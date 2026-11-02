@@ -35,7 +35,7 @@ export function chargerCharte(chemin = join(RACINE, 'packages/donnees/visuel/cha
 export interface Element {
   /** Identifiant du fichier produit : `portrait-bran`, `scene-crypte`. */
   id: string;
-  groupe: 'portraits' | 'scenes';
+  groupe: 'portraits' | 'scenes' | 'lieux' | 'pnj' | 'monstres' | 'objets';
   nom: string;
   format: Format;
   prompt: string;

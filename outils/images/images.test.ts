@@ -2,7 +2,9 @@ import { mkdtempSync, writeFileSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { chargerCharte, construireElements } from './charte';
+import { chargerCharte, construireElements, RACINE } from './charte';
+import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { elementsParLieu } from './monde';
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
 import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
@@ -151,5 +153,57 @@ describe('règle : pas de héros du groupe dans les images du produit', () => {
     const lieux = construireElements(chargerCharte()).filter((e) => ['scene-veillecendre', 'scene-cryptes', 'scene-haute-forge'].includes(e.id));
     expect(lieux).toHaveLength(3);
     for (const e of lieux) expect(e.references).toEqual([]);
+  });
+});
+
+describe('images d’un monde, lieu par lieu', () => {
+  const racineSrd = join(RACINE, 'packages/donnees/srd');
+  const charge = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  if (!charge.ok) throw new Error('monde invalide');
+  const parLieu = elementsParLieu(charge.monde, { charte: chargerCharte(), racineSrd });
+  const tous = [...parLieu.values()].flat();
+
+  it('chaque lieu et chaque PNJ ont une image, une seule fois', () => {
+    const ids = tous.map((e) => e.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(tous.filter((e) => e.groupe === 'lieux')).toHaveLength(charge.monde.lieux.size);
+    expect(tous.filter((e) => e.groupe === 'pnj')).toHaveLength(charge.monde.pnj.size);
+  });
+
+  it('ne cite aucune référence de héros et ne montre personne dans un lieu', () => {
+    for (const e of tous) expect(e.references).toEqual([]);
+    for (const e of tous.filter((x) => x.groupe === 'lieux')) expect(e.prompt).toContain('No people and no creatures');
+  });
+
+  it('les objets illustrés sont les objets notables seulement', () => {
+    for (const e of tous.filter((x) => x.groupe === 'objets')) {
+      const o = charge.monde.objets.get(e.id.replace('objet-', ''))!;
+      expect(o.rarete !== 'commun' || o.magique).toBe(true);
+    }
+  });
+});
+
+describe('textes des prompts de monde', () => {
+  const racineSrd = join(RACINE, 'packages/donnees/srd');
+  const charge = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  if (!charge.ok) throw new Error('monde invalide');
+  const tous = (retouches?: Record<string, string>) => [...elementsParLieu(charge.monde, { charte: chargerCharte(), racineSrd, retouches }).values()].flat();
+
+  it('traduit les espèces et décrit les monstres en anglais', () => {
+    const bertille = tous().find((e) => e.id === 'pnj-bertille-dernier-feu')!;
+    expect(bertille.prompt).toContain('halfling');
+    expect(bertille.prompt).not.toContain('halfelin');
+    expect(tous().find((e) => e.id === 'monstre-bandit')!.prompt).toContain('human bandit');
+  });
+
+  it('une retouche remplace le texte de la fiche', () => {
+    const e = tous({ 'pnj-bertille-dernier-feu': 'TEXTE DE REMPLACEMENT' }).find((x) => x.id === 'pnj-bertille-dernier-feu')!;
+    expect(e.prompt).toContain('TEXTE DE REMPLACEMENT');
+  });
+
+  it('chaque monstre du monde a une fiche visuelle dans la charte', () => {
+    const profils = new Set([...charge.monde.rencontres.values()].flatMap((r) => r.monstres.map((m) => m.profil)));
+    const charte = chargerCharte();
+    for (const p of profils) expect(charte.monstres.some((m) => m.id === p), p).toBe(true);
   });
 });

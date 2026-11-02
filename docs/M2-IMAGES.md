@@ -34,6 +34,7 @@ Modèles comparés par défaut (alias de l'outil). Les références maximales vi
 | --- | --- | --- | --- |
 | `flux2` | `black-forest-labs/flux.2-pro` | 8 | 0,03 $ / mégapixel (soit ~0,03 à 0,05 $ l'image) |
 | `flux3` | `black-forest-labs/flux-3-image` | 10 | 0,048 $ en 1K, 0,07 $ en 1,5K |
+| `klein` | `black-forest-labs/flux-3-image-klein` | 10 (supposé) | modèle à poids ouverts, environ 5 fois moins cher que FLUX 3 Image (tarif catalogue) |
 | `gemini` | `google/gemini-nano-banana-2.1` | 14 | facturé au jeton |
 | `gemini-pro` | `google/gemini-3-pro-image` | 14 | facturé au jeton, plus cher |
 | `gpt-image` | `openai/gpt-image-2.5-sunburst` | 16 | facturé au jeton (qualité `medium`) |
@@ -104,3 +105,26 @@ Constats :
 - Défaut commun : des lettres parasites sur les écussons malgré la consigne « sans texte » ; à traiter par un prompt négatif plus fort ou une retouche.
 - Coût : un essai contrôlé (un portrait Gemini) a montré un coût réel égal au coût annoncé (0,040 $). Un écart inexpliqué est apparu avec la première clé (1,11 $ de dépense affichée pour 0,47 $ annoncés) ; il peut venir d'autres usages de cette clé. `pnpm images generer` affiche désormais le bilan réel du lot, et `pnpm images depense` la dépense cumulée de la clé.
 - Un modèle peut être testé sur les portraits d'un autre : `--refs <service>`.
+
+## Essai de FLUX 3 Image Klein sur les lieux du Val des Cendres (02/11/2026)
+
+Trois scènes de lieux, sans aucun personnage, 1K, 3:2 : Veillecendre, entrée des cryptes d'Ormgard, halles de la Haute-Forge.
+
+- **Coût et délai :** 0,009 $ et 8 à 12 s par image, soit environ 5 fois moins cher que FLUX 3 Image (0,048 $).
+- **Qualité :** style de la charte respecté, compositions très lisibles, aucune lettre parasite. Veillecendre (tour runique, palissade, lueur orangée) et les cryptes (porte de bronze verdie, stèles, neige) collent à la description du monde.
+- **Défaut :** à la Haute-Forge, les canaux de fonte coulent en lave incandescente alors que le monde les décrit **figés** ; le prompt devra l'écrire plus fermement (« cold, solidified, dark metal channels »). Deux statues de nains se sont ajoutées au premier plan.
+- **Non testé :** les références d'images avec Klein (portraits de galerie en entrée) ; c'est le critère décisif pour les scènes du groupe.
+
+## Générer un monde, lieu par lieu
+
+```bash
+pnpm images monde val-des-cendres                                      # lieux dans l'ordre du parcours, images faites / à faire
+pnpm images monde val-des-cendres --lieu vei-auberge-dernier-feu --go   # un lieu (sans --go : simulation)
+```
+
+Chaque lieu produit : son image (sans personne), les portraits de ses PNJ, les monstres de ses rencontres et ses objets notables (rareté supérieure à commun, ou magiques). Un élément n'est fait qu'une fois, dans le premier lieu où il apparaît. Sortie : `sorties/images/mondes/<monde>/` (ignoré par git). Val des Cendres : 255 images prévues (≈ 2,30 $ avec Klein).
+
+Leçons des premiers lieux :
+- **Les fiches sont en français, les prompts en anglais.** « Halfelin » donnait une oreille d'elfe, et « Bandit » un humanoïde-hyène : les espèces sont traduites et chaque monstre a une fiche `apparence` en anglais dans `charte.json` (25 monstres du Val des Cendres).
+- **Un refus de modération n'arrête plus le lot** (HTTP 400 « blocked ») : l'image est signalée et on passe à la suivante. « Brûlures anciennes sur les avant-bras » a été prise pour de l'automutilation. Le texte de remplacement se met dans `packages/mondes/<monde>/images.json` (`{ "pnj-<id>": "texte" }`), sans toucher à la fiche que lit le MJ.
+- Vérifier chaque lot à l'œil : l'image peut être belle et fausse (Haute-Forge : lave au lieu de métal figé).

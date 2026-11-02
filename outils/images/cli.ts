@@ -4,6 +4,8 @@
 //   pnpm images generer <service|tous> --go génère les images (payant) ; sans --go : simulation
 //                                            service = alias (flux2, flux3, gemini…) ou identifiant OpenRouter (auteur/modele)
 //   pnpm images comparer                    construit sorties/images/comparaison.html
+//   pnpm images monde <monde>               lieux du monde, dans l'ordre, avec les images faites / à faire
+//   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
 //   pnpm images depense                     dépense cumulée de la clé OpenRouter
 //
 // Options de `generer` : --lot portraits|scenes|tout (défaut : tout), --id <élément> (une seule image, ex. portrait-bran),
@@ -11,6 +13,8 @@
 // La clé OpenRouter est lue dans l'environnement ou dans le fichier `.env` à la racine (voir `.env.example`).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { elementsParLieu } from './monde';
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
@@ -53,8 +57,8 @@ function charger(dossier: string, id: string): Reference | undefined {
   return { nom: id, mime: mimeDepuisOctets(donnees), donnees };
 }
 
-export async function genererLot(service: Service, elements: Element[], env: Env, go: boolean, max: number, serviceRefs?: string): Promise<void> {
-  const dossier = join(SORTIES, service.id);
+export async function genererLot(service: Service, elements: Element[], env: Env, go: boolean, max: number, serviceRefs?: string, dossierSortie?: string): Promise<void> {
+  const dossier = dossierSortie ?? join(SORTIES, service.id);
   // Les références (portraits) viennent d'un autre service quand on veut tester un modèle sur les mêmes visages.
   const dossierRefs = serviceRefs ? join(SORTIES, trouverService(serviceRefs)?.id ?? serviceRefs) : dossier;
   mkdirSync(dossier, { recursive: true });
@@ -72,6 +76,7 @@ export async function genererLot(service: Service, elements: Element[], env: Env
   const depart = await utilisationCle(cle);
   let annonce = 0;
   let generees = 0;
+  const refuses: string[] = [];
   const bilan = async () => {
     if (depart === undefined || !generees) return;
     await new Promise((r) => setTimeout(r, 30_000));
@@ -101,10 +106,16 @@ export async function genererLot(service: Service, elements: Element[], env: Env
     } catch (erreur) {
       console.log('ÉCHEC');
       console.error(`    ${(erreur as Error).message}`);
+      // Un refus de modération ne concerne que cette image : on passe à la suivante. Toute autre erreur arrête le lot.
+      if (/HTTP 400.*blocked/s.test((erreur as Error).message)) {
+        refuses.push(e.id);
+        continue;
+      }
       await bilan();
       return; // inutile d'enchaîner : la même erreur se répéterait (et coûterait)
     }
   }
+  if (refuses.length) console.log(`  Refusées par le service : ${refuses.join(', ')} — corrige leur texte dans images.json du monde (voir docs/M2-IMAGES.md).`);
   await bilan();
 }
 
@@ -135,6 +146,35 @@ async function main(): Promise<void> {
     if (unique && !choisis.length) throw new Error(`Élément inconnu « ${unique} ». Voir : pnpm images lister`);
     const env = lireEnv();
     for (const s of services) await genererLot(s, choisis, env, args.includes('--go'), Number(option('--max') ?? 12), option('--refs'));
+    return;
+  }
+  if (commande === 'monde') {
+    const idMonde = args[0]?.startsWith('--') ? undefined : args[0];
+    if (!idMonde) throw new Error('Usage : pnpm images monde <monde> [--lieu <id>] [--service klein] [--max N] [--go]');
+    const charge = chargerMonde(join(RACINE_MONDES, idMonde));
+    if (!charge.ok) throw new Error(`Monde « ${idMonde} » invalide : ${charge.erreurs[0]?.message ?? ''}`);
+    const fichierRetouches = join(RACINE_MONDES, idMonde, 'images.json');
+    const retouches = existsSync(fichierRetouches) ? (JSON.parse(readFileSync(fichierRetouches, 'utf8')) as Record<string, string>) : {};
+    const parLieu = elementsParLieu(charge.monde, { charte, racineSrd: join(RACINE, 'packages/donnees/srd'), retouches });
+    const service = trouverService(option('--service') ?? 'klein');
+    if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
+    const dossier = join(SORTIES, 'mondes', idMonde);
+    const fait = (e: Element) => existsSync(join(dossier, `${e.id}.png`));
+    const lieu = option('--lieu');
+    if (!lieu) {
+      let reste = 0;
+      for (const [id, els] of parLieu) {
+        const manque = els.filter((e) => !fait(e)).length;
+        reste += manque;
+        console.log(`${manque === 0 ? '✓' : ' '} ${id.padEnd(40)} ${els.length - manque}/${els.length}`);
+      }
+      console.log(`\n${reste} image(s) restantes sur ${[...parLieu.values()].flat().length}.`);
+      return;
+    }
+    const elements = parLieu.get(lieu);
+    if (!elements) throw new Error(`Lieu inconnu « ${lieu} ». Voir : pnpm images monde ${idMonde}`);
+    console.log(`Lieu ${lieu} : ${elements.map((e) => e.id).join(', ')}`);
+    await genererLot(service, elements, lireEnv(), args.includes('--go'), Number(option('--max') ?? 20), undefined, dossier);
     return;
   }
   if (commande === 'depense') {

@@ -89,6 +89,7 @@ export function openrouter(id: string, nom: string, slug: string, maxReferences:
 export const SERVICES: Service[] = [
   openrouter('flux2', 'FLUX.2 pro', 'black-forest-labs/flux.2-pro', 8),
   openrouter('flux3', 'FLUX 3 Image', 'black-forest-labs/flux-3-image', 10, { resolution: '1K' }),
+  openrouter('klein', 'FLUX 3 Image Klein', 'black-forest-labs/flux-3-image-klein', 10, { resolution: '1K' }),
   openrouter('gemini', 'Gemini Nano Banana 2.1', 'google/gemini-nano-banana-2.1', 14, { resolution: '1K' }),
   openrouter('gemini-pro', 'Gemini 3 Pro Image', 'google/gemini-3-pro-image', 14, { resolution: '1K' }),
   openrouter('gpt-image', 'OpenAI gpt-image 2.5', 'openai/gpt-image-2.5-sunburst', 16, { quality: 'medium' }),
