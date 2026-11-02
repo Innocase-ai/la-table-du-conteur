@@ -31,3 +31,14 @@
 **À valider par toi en jouant** : le critère du PRD §7.3 (durée 10-20 min, choix qui comptent, défaite possible) et l'intérêt du deck d'élan (comparer avec et sans).
 
 **Suite :** retours de jeu sur M1, puis M2 (test des images).
+
+## 02/11/2026 — Retours graphiques du prototype
+
+Retour du joueur : « ça manque de retour graphique, d'images des héros et ennemis ».
+
+- Moteur : les événements du journal portent des `details` structurés (chemin parcouru, résultat et jet d'attaque, CA, projectile, sort, cases d'une zone, sauvegarde, critique). Les déplacements sont découpés autour des attaques d'opportunité ; les poussées sont journalisées.
+- Client : file d'animations rejouant le journal (glissements, élans, flèches et traits de sort colorés, flash et secousse, « Raté ! », « Critique ! », bulle de dé, dégâts et soins flottants, éclats de zone, morts, badges d'état, aura de rage), avec accélération et prise en compte de `prefers-reduced-motion`. Les tours des monstres attendent la fin des animations.
+- 20 pictogrammes de game-icons.net (CC BY 3.0) sur les jetons, l'initiative, la fiche et l'accueil ; chefs marqués d'un liseré doré ; page « Crédits » (pictogrammes et SRD).
+- Accueil sur une colonne dans une fenêtre étroite.
+
+**Suite :** M2, des portraits peints générés par un service d'images (à choisir, clé API nécessaire).

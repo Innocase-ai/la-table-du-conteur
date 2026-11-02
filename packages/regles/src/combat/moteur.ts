@@ -14,6 +14,7 @@ import {
   peutAgir,
   type AttaqueArme,
   type Combattant,
+  type DetailsEvenement,
   type EtatActif,
   type EtatCombat,
   type Modificateur,
@@ -290,6 +291,7 @@ export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristiq
 }
 
 export interface JetAttaque {
+  ca: number;
   touche: boolean;
   critique: boolean;
   avantage: boolean;
@@ -381,7 +383,21 @@ export function jetAttaque(
     }
   }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
-  return { touche, critique, avantage, desavantage, total, de: d };
+  return { ca: caCible, touche, critique, avantage, desavantage, total, de: d };
+}
+
+/** Détails d'un jet d'attaque pour le journal. */
+export function detailsJet(jet: JetAttaque, distance: boolean, sort?: string): DetailsEvenement {
+  return {
+    resultat: jet.touche ? (jet.critique ? 'critique' : 'touche') : 'rate',
+    de: jet.de,
+    total: jet.total,
+    ca: jet.ca,
+    avantage: jet.avantage,
+    desavantage: jet.desavantage,
+    distance,
+    sort,
+  };
 }
 
 export function emplacementDisponible(c: Combattant, niveauMin: number): number | undefined {
@@ -427,6 +443,7 @@ export function infligerDegats(
     acteur: source?.id,
     cible: cible.id,
     valeur: total,
+    details: { critique, types: [...new Set(degats.map((d) => d.type))] },
   });
   // Sommeil : les dégâts réveillent.
   cible.etats = cible.etats.filter((e) => !e.finSurDegats);
@@ -539,6 +556,13 @@ export function allonge(c: Combattant): number {
 export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boolean {
   const chemin = deplacementsPossibles(etat, c).get(cle(vers));
   if (!chemin) return false;
+  // Le chemin est journalisé par segments : une attaque d'opportunité s'intercale au bon moment.
+  let segment: Position[] = [];
+  const publierSegment = () => {
+    if (!segment.length) return;
+    journaliser(etat, { type: 'deplacement', texte: `${c.nom} se déplace.`, acteur: c.id, details: { chemin: segment } });
+    segment = [];
+  };
   for (const etape of chemin.etapes) {
     if (!c.tour.desengage) {
       for (const e of ennemis(etat, c)) {
@@ -550,6 +574,7 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
           distanceMetres(e.position, c.position) <= portee &&
           distanceMetres(e.position, etape) > portee
         ) {
+          publierSegment();
           attaqueDOpportunite(etat, e, c);
           if (horsCombat(c) || aEtat(c, 'inconscient') || etat.vainqueur) {
             c.tour.mouvement = 0;
@@ -559,10 +584,13 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
       }
     }
     c.position = etape;
+    segment.push(etape);
   }
   c.tour.mouvement -= chemin.cout;
   c.tour.aBouge = true;
-  journaliser(etat, { type: 'deplacement', texte: `${c.nom} se déplace de ${chemin.cout} m.`, acteur: c.id });
+  if (segment.length === chemin.etapes.length) {
+    journaliser(etat, { type: 'deplacement', texte: `${c.nom} se déplace de ${chemin.cout} m.`, acteur: c.id, details: { chemin: segment } });
+  } else publierSegment();
   // Ralentissement : la vitesse réduite ne s'applique qu'au tour suivant ; rien à faire ici.
   return true;
 }
@@ -610,6 +638,7 @@ export function attaqueArme(
     texte: `${attaquant.nom} attaque ${cible.nom} (${arme.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
     acteur: attaquant.id,
     cible: cible.id,
+    details: detailsJet(jet, arme.mode === 'distance'),
   });
   const mult = jet.critique ? 2 : 1;
   if (!jet.touche) {
@@ -691,11 +720,14 @@ function appliquerBotte(
       const dx = Math.sign(cible.position.x - attaquant.position.x);
       const dy = Math.sign(cible.position.y - attaquant.position.y);
       const occ = occupation(etat, cible);
+      const pousse: Position[] = [];
       for (let i = 0; i < 2; i++) {
         const p = { x: cible.position.x + dx, y: cible.position.y + dy };
         if (etat.grille.cases[p.y * etat.grille.largeur + p.x] === 'mur' || occ.occupees.has(cle(p))) break;
         cible.position = p;
+        pousse.push(p);
       }
+      if (pousse.length) journaliser(etat, { type: 'deplacement', texte: `${cible.nom} est repoussé.`, acteur: cible.id, details: { chemin: pousse } });
       break;
     }
     case 'enchainement': {
@@ -723,6 +755,7 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
       texte: `${attaquant.nom} attaque ${cible.nom} (${action.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
       acteur: attaquant.id,
       cible: cible.id,
+      details: detailsJet(jet, r.mode === 'distance'),
     });
     if (!jet.touche) return;
     const mult = jet.critique ? 2 : 1;
@@ -744,7 +777,13 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
     }
   } else if (r?.type === 'sauvegarde') {
     const reussite = sauvegarde(etat, cible, r.caracteristique, r.dd ?? 10);
-    journaliser(etat, { type: 'attaque', texte: `${attaquant.nom} utilise ${action.nom} sur ${cible.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, acteur: attaquant.id, cible: cible.id });
+    journaliser(etat, {
+      type: 'attaque',
+      texte: `${attaquant.nom} utilise ${action.nom} sur ${cible.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`,
+      acteur: attaquant.id,
+      cible: cible.id,
+      details: { sauvegarde: reussite ? 'reussie' : 'ratee', distance: action.portee?.type === 'distance' },
+    });
     const facteur = reussite ? (r.moitieSiReussite ? 0.5 : 0) : 1;
     if (facteur > 0 && action.degats.length) {
       infligerDegats(etat, cible, action.degats.map((d) => ({ montant: Math.floor((lancerDes(etat, d.des) + d.bonus) * facteur), type: d.type })), attaquant);

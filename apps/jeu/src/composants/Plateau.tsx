@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { cle, etatApparent, typeCase, type Combattant, type EtatCombat, type Position } from '@crpg/regles';
 import { LIBELLES_APPARENT, nomClasse } from '../libelles';
 import type { Donnees } from '@crpg/regles';
+import type { Effet } from '../animations';
 import { Jeton } from './Jeton';
 
 export interface Surcouches {
@@ -27,9 +28,15 @@ interface Props {
   onClicCase: (p: Position) => void;
   onClicJeton: (c: Combattant) => void;
   onSurvolJeton: (id: string | null) => void;
+  /** Effets d'animation en cours (projectiles, chiffres flottants…). */
+  effets: Effet[];
+  /** Éléments des jetons, pour les animations (élan, secousse, mort). */
+  elements: Map<string, HTMLElement>;
+  /** Multiplicateur des durées d'animation (accéléré < 1). */
+  vitesse: number;
 }
 
-export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onClicCase, onClicJeton, onSurvolJeton }: Props) {
+export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onClicCase, onClicJeton, onSurvolJeton, effets, elements, vitesse }: Props) {
   const conteneur = useRef<HTMLDivElement>(null);
   const [cote, setCote] = useState(36);
   const [infobulle, setInfobulle] = useState<string | null>(null);
@@ -83,7 +90,7 @@ export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onCl
     <div className="plateau-conteneur" ref={conteneur}>
       <div
         className={`plateau mode-${surcouches.modeCible}`}
-        style={{ width: largeur * cote, height: hauteur * cote }}
+        style={{ width: largeur * cote, height: hauteur * cote, ['--vitesse' as string]: vitesse, ['--cote' as string]: `${cote}px` }}
         onMouseLeave={() => {
           onSurvolCase(null);
           setInfobulle(null);
@@ -105,6 +112,10 @@ export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onCl
           return (
             <div
               key={c.id}
+              ref={(el) => {
+                if (el) elements.set(c.id, el);
+                else elements.delete(c.id);
+              }}
               className={classes.join(' ')}
               style={{ left: c.position.x * cote, top: c.position.y * cote, width: cote, height: cote }}
               onMouseEnter={() => {
@@ -121,11 +132,12 @@ export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onCl
                 onClicJeton(c);
               }}
             >
-              <Jeton c={c} taille={Math.round(cote * 0.82)} details />
+              <Jeton c={c} taille={Math.round(cote * (['G', 'TG', 'Gig'].includes(c.taille) ? 0.98 : 0.82))} details />
               {choisie !== undefined && <span className="compteur-cible">{choisie > 1 ? `×${choisie}` : '✓'}</span>}
             </div>
           );
         })}
+        <EffetsPlateau effets={effets} cote={cote} vitesse={vitesse} />
         {survole && (
           <div
             className={`infobulle ${survole.position.y < 2 ? 'infobulle-bas' : ''}`}
@@ -145,6 +157,77 @@ export function Plateau({ etat, donnees, actifId, surcouches, onSurvolCase, onCl
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+const centre = (p: Position, cote: number) => ({ x: (p.x + 0.5) * cote, y: (p.y + 0.5) * cote });
+
+function EffetsPlateau({ effets, cote, vitesse }: { effets: Effet[]; cote: number; vitesse: number }) {
+  return (
+    <div className="effets-plateau" aria-hidden>
+      {effets.map((e) => {
+        const duree = `${Math.round(e.duree * vitesse)}ms`;
+        switch (e.type) {
+          case 'projectile': {
+            const a = centre(e.de, cote);
+            const b = centre(e.vers, cote);
+            const angle = Math.atan2(b.y - a.y, b.x - a.x);
+            return (
+              <div
+                key={e.id}
+                className={`projectile projectile-${e.style}`}
+                style={{
+                  left: a.x,
+                  top: a.y,
+                  animationDuration: duree,
+                  ['--dx' as string]: `${b.x - a.x}px`,
+                  ['--dy' as string]: `${b.y - a.y}px`,
+                  ['--angle' as string]: `${angle}rad`,
+                  ['--couleur' as string]: e.couleur,
+                }}
+              >
+                <span />
+              </div>
+            );
+          }
+          case 'texte': {
+            const a = centre(e.position, cote);
+            return (
+              <div key={e.id} className={`texte-flottant ${e.classe}`} style={{ left: a.x, top: a.y - cote * 0.3, animationDuration: duree }}>
+                {e.texte}
+              </div>
+            );
+          }
+          case 'bulle': {
+            const a = centre(e.position, cote);
+            return (
+              <div key={e.id} className="bulle-de" style={{ left: a.x, top: a.y - cote * 0.55, animationDuration: duree }}>
+                <span className="bulle-de-icone">⚄</span>
+                {e.texte}
+              </div>
+            );
+          }
+          case 'zone':
+            return e.cases.map((p, i) => (
+              <div
+                key={`${e.id}-${i}`}
+                className="eclat-zone"
+                style={{ left: p.x * cote, top: p.y * cote, width: cote, height: cote, animationDuration: duree, ['--couleur' as string]: e.couleur }}
+              />
+            ));
+          case 'lueur': {
+            const a = centre(e.position, cote);
+            return (
+              <div
+                key={e.id}
+                className="lueur"
+                style={{ left: a.x, top: a.y, width: cote * 1.4, height: cote * 1.4, animationDuration: duree, ['--couleur' as string]: e.couleur }}
+              />
+            );
+          }
+        }
+      })}
     </div>
   );
 }

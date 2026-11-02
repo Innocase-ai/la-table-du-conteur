@@ -24,6 +24,7 @@ import {
   type Position,
 } from '@crpg/regles';
 import { OPTIONS_IA, type Reglages } from '../App';
+import { capturer, etatAffiche, mouvementReduit, useAnimations } from '../animations';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { Fiche } from './Fiche';
 import { FinCombat } from './FinCombat';
@@ -45,8 +46,9 @@ interface Selection {
   cibles: string[];
 }
 
-const DELAI_IA = 520;
-const DELAI_IA_RAPIDE = 140;
+// Pause après les animations, avant l'étape suivante de l'IA.
+const DELAI_IA = 280;
+const DELAI_IA_RAPIDE = 90;
 
 export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props) {
   const ctx = useMemo(() => ({ sorts: donnees.sorts }), [donnees]);
@@ -71,8 +73,17 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   const [tourAuto, setTourAuto] = useState<string | null>(null);
   const [herosAuto, setHerosAuto] = useState(false);
 
+  const reduit = useMemo(() => mouvementReduit(), []);
+  const vitesse = (rapide ? 0.4 : 1) * (reduit ? 0.5 : 1);
+  const anim = useAnimations(donnees, vitesse);
+  const occupe = anim.enCours;
+  // État affiché : en retard sur le moteur tant que la file d'animations joue.
+  const vue = etatAffiche(etat, anim.vue, occupe);
+  const cVue = actif(vue);
+
   const c = actif(etat);
   const termine = !!etat.vainqueur;
+  const finAffichee = termine && !occupe;
   const cleCourante = `${etat.round}:${etat.actif}`;
   const tourJoueur = !termine && c.camp === 'heros' && peutAgir(c) && !herosAuto && tourAuto !== cleCourante;
 
@@ -94,8 +105,20 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   // Commandes du joueur
   // ---------------------------------------------------------------------------
 
-  const jouer = (cmd: Commande) => {
+  /** Exécute une commande puis rejoue ses entrées de journal en animation. */
+  const executerAnime = (cmd: Commande) => {
+    const avant = capturer(etat);
     const r = executer(etat, ctx, cmd);
+    anim.jouer(etat, avant);
+    return r;
+  };
+
+  const jouer = (cmd: Commande) => {
+    if (occupe) {
+      anim.terminer();
+      return;
+    }
+    const r = executerAnime(cmd);
     if (!r.ok) setMessage(r.erreur);
     setSelection(null);
     rafraichir();
@@ -108,6 +131,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   };
 
   const choisirCarte = (k: Carte) => {
+    if (occupe) {
+      anim.terminer();
+      return;
+    }
     if (!tourJoueur) return;
     if (selection?.carte === k.id) {
       setSelection(null);
@@ -124,6 +151,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   };
 
   const clicCase = (p: Position) => {
+    if (occupe) {
+      anim.terminer();
+      return;
+    }
     if (!tourJoueur) return;
     if (modeCible === 'point') {
       if (pointValide(p)) jouer({ type: 'jouer', carte: carte!.id, point: p });
@@ -135,6 +166,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   };
 
   const clicJeton = (t: Combattant) => {
+    if (occupe) {
+      anim.terminer();
+      return;
+    }
     if (modeCible !== 'cibles' || !carte || !selection) {
       clicCase(t.position);
       return;
@@ -187,17 +222,19 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
     }
     if (!peutAgir(a)) {
       setPensee(`${a.nom} passe son tour.`);
-      executer(etat, ctx, { type: 'finTour' });
+      executerAnime({ type: 'finTour' });
       return;
     }
     if (!fileIA.current.length) {
       if (etapesIA.current === 0 && doitFuir(etat, a) && !aEtat(a, 'empoigne')) {
         setPensee(`${a.nom} cherche à fuir !`);
+        const avant = capturer(etat);
         jouerTourIA(etat, ctx, OPTIONS_IA[reglages.ia]);
+        anim.jouer(etat, avant);
         return;
       }
       if (etapesIA.current >= 8) {
-        executer(etat, ctx, { type: 'finTour' });
+        executerAnime({ type: 'finTour' });
         return;
       }
       const e = choisirEtape(etat, ctx, OPTIONS_IA[reglages.ia]);
@@ -206,15 +243,15 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       setPensee(`${a.nom} : ${nomsDans(e.libelle)}`);
     }
     const cmd = fileIA.current.shift()!;
-    const r = executer(etat, ctx, cmd);
+    const r = executerAnime(cmd);
     if (!r.ok) {
       fileIA.current = [];
-      if (!etat.vainqueur && actif(etat).id === a.id) executer(etat, ctx, { type: 'finTour' });
+      if (!etat.vainqueur && actif(etat).id === a.id) executerAnime({ type: 'finTour' });
     }
   };
 
   useEffect(() => {
-    if (etat.vainqueur) return;
+    if (etat.vainqueur || occupe) return;
     const a = actif(etat);
     if (a.camp === 'heros' && peutAgir(a) && !herosAuto && tourAuto !== `${etat.round}:${etat.actif}`) return;
     const t = window.setTimeout(
@@ -231,7 +268,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       rapide ? DELAI_IA_RAPIDE : DELAI_IA,
     );
     return () => window.clearTimeout(t);
-  }, [version, rapide, herosAuto, tourAuto]);
+  }, [version, rapide, herosAuto, tourAuto, occupe]);
 
   useEffect(() => {
     if (tourJoueur) setPensee(null);
@@ -251,7 +288,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       ciblesChoisies: new Map(),
       modeCible,
     };
-    if (!tourJoueur) return s;
+    if (!tourJoueur || occupe) return s;
     if (!carte) {
       for (const [k, ch] of chemins) s.atteignables.set(k, ch.cout);
       const ch = survolCase && chemins.get(cle(survolCase));
@@ -272,33 +309,33 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       }
     }
     return s;
-  }, [version, tourJoueur, carte, selection, survolCase, chemins]);
+  }, [version, tourJoueur, occupe, carte, selection, survolCase, chemins]);
 
   // ---------------------------------------------------------------------------
   // Rendu
   // ---------------------------------------------------------------------------
 
-  const ficheId = survolId ?? c.id;
-  const fiche = etat.combattants.find((x) => x.id === ficheId) ?? c;
+  const ficheId = survolId ?? cVue.id;
+  const fiche = vue.combattants.find((x) => x.id === ficheId) ?? cVue;
   const survolChemin = !carte && survolCase ? chemins.get(cle(survolCase)) : undefined;
 
   let consigne: string;
   if (termine) consigne = 'Combat terminé.';
-  else if (!tourJoueur) consigne = pensee ?? `Tour de ${c.nom}…`;
+  else if (!tourJoueur || (occupe && cVue.id !== c.id)) consigne = pensee ?? `Tour de ${cVue.nom}…`;
   else if (carte && modeCible === 'point') consigne = `${carte.nom} : choisissez ${personnel ? 'une direction' : 'un point'} sur le plateau.`;
   else if (carte && carte.nbCibles > 1) consigne = `${carte.nom} : choisissez jusqu'à ${carte.nbCibles} cibles (${selection?.cibles.length ?? 0}/${carte.nbCibles})${ciblesRepetables(carte) ? ', une même créature peut être visée plusieurs fois' : ''}.`;
   else if (carte) consigne = `${carte.nom} : choisissez une cible.`;
   else if (survolChemin) consigne = `Déplacement : ${formatMetres(survolChemin.cout)}.`;
   else consigne = 'Cliquez une case en surbrillance pour vous déplacer, ou jouez une carte.';
 
-  const t = c.tour;
+  const t = cVue.tour;
   return (
     <div className="combat">
       <header className="combat-haut">
         <button type="button" className="bouton-discret" onClick={onRetour} title="Retour à l'accueil">
           ‹ Accueil
         </button>
-        <Initiative etat={etat} onSurvol={setSurvolId} />
+        <Initiative etat={vue} onSurvol={setSurvolId} />
         <div className="combat-titre">
           <span>{reglages.rencontre.nom}</span>
           <small>
@@ -308,32 +345,35 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       </header>
 
       <aside className="colonne-fiche">
-        <Fiche c={fiche} donnees={donnees} estActif={fiche.id === c.id && !termine} elan={reglages.elan} />
+        <Fiche c={fiche} donnees={donnees} estActif={fiche.id === cVue.id && !finAffichee} elan={reglages.elan} />
       </aside>
 
       <main className="zone-plateau">
         <Plateau
-          etat={etat}
+          etat={vue}
           donnees={donnees}
-          actifId={termine ? '' : c.id}
+          actifId={finAffichee ? '' : cVue.id}
           surcouches={surcouches}
           onSurvolCase={setSurvolCase}
           onClicCase={clicCase}
           onClicJeton={clicJeton}
           onSurvolJeton={setSurvolId}
+          effets={anim.vue.effets}
+          elements={anim.elements}
+          vitesse={vitesse}
         />
         {message && <div className="message">{message}</div>}
       </main>
 
       <aside className="colonne-journal">
-        <Journal journal={etat.journal} longueur={etat.journal.length} />
+        <Journal journal={etat.journal} longueur={occupe ? (anim.vue.journal ?? etat.journal.length) : etat.journal.length} />
       </aside>
 
       <footer className="zone-main">
-        <div className={`barre-tour ${tourJoueur ? 'barre-joueur' : 'barre-ia'}`}>
+        <div className={`barre-tour ${tourJoueur && cVue.id === c.id ? 'barre-joueur' : 'barre-ia'}`}>
           <div className="barre-tour-qui">
-            <strong>{termine ? '—' : c.nom}</strong>
-            {!termine && peutAgir(c) && (
+            <strong>{finAffichee ? '—' : cVue.nom}</strong>
+            {!finAffichee && peutAgir(cVue) && (
               <div className="ressources-tour">
                 <span className="rt-mouvement" title="Mouvement restant">
                   ➜ {formatMetres(t.mouvement)}
@@ -344,10 +384,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
                 <span className={`rt ${t.bonus ? 'dispo' : ''} rt-bonus`} title="Action bonus">
                   Bonus
                 </span>
-                <span className={`rt ${c.ressources.reaction ? 'dispo' : ''} rt-reaction`} title="Réaction">
+                <span className={`rt ${cVue.ressources.reaction ? 'dispo' : ''} rt-reaction`} title="Réaction">
                   Réaction
                 </span>
-                {reglages.elan && c.elan && (
+                {reglages.elan && cVue.elan && (
                   <span className={`rt ${!t.elanJoue ? 'dispo' : ''} rt-elan`} title="Carte d'élan">
                     Élan
                   </span>
@@ -385,23 +425,23 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
                 Héros auto
               </button>
             )}
-            {!tourJoueur && !termine && (
-              <button type="button" className={`bouton-discret ${rapide ? 'actif' : ''}`} onClick={() => setRapide(!rapide)} title="Accélérer les tours de l'IA">
+            {!termine && (
+              <button type="button" className={`bouton-discret ${rapide ? 'actif' : ''}`} onClick={() => setRapide(!rapide)} title="Accélérer les animations et les tours de l'IA">
                 {rapide ? '▶▶ Rapide' : '▶ Normal'}
               </button>
             )}
-            <button type="button" className="bouton fin-tour" disabled={!tourJoueur} onClick={() => jouer({ type: 'finTour' })}>
+            <button type="button" className="bouton fin-tour" disabled={!tourJoueur || occupe} onClick={() => jouer({ type: 'finTour' })}>
               Fin du tour
             </button>
           </div>
         </div>
-        <MainCartes cartes={cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} />
+        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} />
       </footer>
 
-      {termine && !masquerFin && (
+      {finAffichee && !masquerFin && (
         <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} />
       )}
-      {termine && masquerFin && (
+      {finAffichee && masquerFin && (
         <button type="button" className="bouton reafficher-fin" onClick={() => setMasquerFin(false)}>
           Résumé du combat
         </button>

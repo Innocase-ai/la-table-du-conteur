@@ -128,6 +128,32 @@ export interface Evenement {
   acteur?: string;
   cible?: string;
   valeur?: number;
+  /** Détails structurés pour l'animation et, plus tard, la narration. */
+  details?: DetailsEvenement;
+}
+
+export interface DetailsEvenement {
+  /** Déplacement : cases traversées, départ exclu. */
+  chemin?: Position[];
+  /** Jet d'attaque. */
+  resultat?: 'touche' | 'critique' | 'rate';
+  de?: number;
+  total?: number;
+  ca?: number;
+  avantage?: boolean;
+  desavantage?: boolean;
+  /** L'attaque part à distance (projectile à animer). */
+  distance?: boolean;
+  /** Sort lancé ou à l'origine de l'attaque. */
+  sort?: string;
+  /** Cases touchées par une zone d'effet. */
+  cases?: Position[];
+  /** Point visé (sort de zone). */
+  point?: Position;
+  /** Sauvegarde : réussie ou ratée. */
+  sauvegarde?: 'reussie' | 'ratee';
+  critique?: boolean;
+  types?: string[];
 }
 
 export interface EtatCombat {

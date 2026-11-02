@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ca, preparerRencontre, RENCONTRES, type Donnees, type Rencontre } from '@crpg/regles';
 import type { Reglages } from '../App';
 import { LIBELLES_DIFFICULTE, nomClasse } from '../libelles';
+import { Credits } from './Credits';
 import { Jeton } from './Jeton';
 
 interface Props {
@@ -39,6 +40,7 @@ export function Accueil({ donnees, initial, onCombattre }: Props) {
   const [rencontre, setRencontre] = useState<Rencontre>(initial?.rencontre ?? RENCONTRES[0]!);
   const [elan, setElan] = useState(initial?.elan ?? true);
   const [ia, setIa] = useState<Reglages['ia']>(initial?.ia ?? 'normale');
+  const [credits, setCredits] = useState(false);
 
   const heros = useMemo(() => preparerRencontre(RENCONTRES[0]!, donnees).combattants.filter((c) => c.camp === 'heros'), [donnees]);
   const px = (r: Rencontre) => r.monstres.reduce((s, m) => s + (donnees.monstres.get(m.profil)?.px ?? 0) * m.nombre, 0);
@@ -124,8 +126,14 @@ export function Accueil({ donnees, initial, onCombattre }: Props) {
               ))}
             </ul>
           </section>
+          <p className="accueil-pied">
+            <button type="button" className="lien-credits" onClick={() => setCredits(true)}>
+              Crédits
+            </button>
+          </p>
         </aside>
       </div>
+      {credits && <Credits onFermer={() => setCredits(false)} />}
     </div>
   );
 }

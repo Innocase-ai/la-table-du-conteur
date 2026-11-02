@@ -1,0 +1,11 @@
+# Crédits des pictogrammes
+
+Pictogrammes issus de [game-icons.net](https://game-icons.net) (dépôt https://github.com/game-icons/icons), sous licence [Creative Commons BY 3.0](https://creativecommons.org/licenses/by/3.0/). Fond noir retiré et couleur adaptée à l'affichage.
+
+| Fichier | Auteur |
+| --- | --- |
+| visored-helm, hood, bowman, holy-symbol, wolf-head, direwolf, fanged-skull | Lorc |
+| barbarian, wizard-face, goblin-head, orc-head, shambling-zombie, ogre, bandit, robber, brute | Delapouite |
+| skeleton | Skoll |
+| hyena-head, warlord-helmet | Caro Asercion |
+| spider-face | Carl Olsen |

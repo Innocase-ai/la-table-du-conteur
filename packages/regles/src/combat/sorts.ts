@@ -3,7 +3,7 @@
 import type { Sort } from '../schemas';
 import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
-import { ajouterEtat, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
+import { ajouterEtat, detailsJet, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
 
 export interface CibleSort {
   cibles?: Combattant[];
@@ -54,10 +54,13 @@ export function preparerIncantation(lanceur: Combattant, sort: Sort): number | s
 
 export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
   if (niveau > 0) lanceur.incantation!.emplacements[niveau - 1]! -= 1;
+  const cases = sort.zone && cible.point ? casesDeZone(etat, lanceur, sort, cible.point) : undefined;
   journaliser(etat, {
     type: 'sort',
     texte: `${lanceur.nom} lance ${sort.nom}${niveau > sort.niveau ? ` (niveau ${niveau})` : ''}.`,
     acteur: lanceur.id,
+    cible: cible.cibles?.length === 1 ? cible.cibles[0]!.id : undefined,
+    details: { sort: sort.id, point: cible.point, cases },
   });
   if (sort.concentration) {
     if (lanceur.concentration) finConcentration(etat, lanceur);
@@ -68,10 +71,14 @@ export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, ni
   else resolutionGenerique(etat, lanceur, sort, niveau, cible);
 }
 
-function ciblesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: Position): Combattant[] {
+function casesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: Position): Position[] {
   const zone = sort.zone!;
   const origine = sort.portee.type === 'personnel' ? lanceur.position : point;
-  const cases = new Set(casesZone(etat.grille, zone.forme, zone.taille, origine, point).map(cle));
+  return casesZone(etat.grille, zone.forme, zone.taille, origine, point);
+}
+
+function ciblesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: Position): Combattant[] {
+  const cases = new Set(casesDeZone(etat, lanceur, sort, point).map(cle));
   return etat.combattants.filter((c) => !c.mort && !c.enFuite && c.id !== lanceur.id && cases.has(cle(c.position)));
 }
 
@@ -83,7 +90,7 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
     const r = sort.resolution;
     if (r?.type === 'attaque') {
       const jet = jetAttaque(etat, lanceur, c, inc.bonusAttaque, r.mode);
-      journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id });
+      journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, r.mode === 'distance', sort.id) });
       if (jet.touche) {
         infligerDegats(etat, c, des.map((d) => ({ montant: lancerDes(etat, d.des, jet.critique ? 2 : 1) + d.bonus, type: d.type })), lanceur, jet.critique);
         effetsSecondaires(etat, lanceur, sort, c);
@@ -94,7 +101,7 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
       }
     } else if (r?.type === 'sauvegarde') {
       const reussite = sauvegarde(etat, c, r.caracteristique, inc.dd);
-      journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, cible: c.id });
+      journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: !sort.zone && sort.portee.type === 'distance' } });
       const appuye = sort.niveau === 0 && lanceur.traits.includes('sort-mineur-appuye');
       const facteur = reussite ? (r.moitieSiReussite || appuye ? 0.5 : 0) : 1;
       if (facteur > 0 && des.length) {
@@ -139,6 +146,7 @@ const SPECIAUX: Record<string, Gestionnaire> = {
     const cibles = cible.cibles ?? [];
     for (let i = 0; i < n && cibles.length; i++) {
       const c = cibles[i % cibles.length]!;
+      journaliser(etat, { type: 'attaque', texte: `Un projectile file vers ${c.nom}.`, acteur: lanceur.id, cible: c.id, details: { resultat: 'touche', distance: true, sort: sort.id } });
       infligerDegats(etat, c, [{ montant: lancerDes(etat, '1d4') + 1, type: 'force' }], lanceur);
     }
   },
@@ -149,7 +157,7 @@ const SPECIAUX: Record<string, Gestionnaire> = {
       const c = cibles[i % cibles.length]!;
       if (c.mort) continue;
       const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'distance');
-      journaliser(etat, { type: 'attaque', texte: `Rayon contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? 'touché' : 'raté'}.`, acteur: lanceur.id, cible: c.id });
+      journaliser(etat, { type: 'attaque', texte: `Rayon contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? 'touché' : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, true, sort.id) });
       if (jet.touche) infligerDegats(etat, c, [{ montant: lancerDes(etat, '2d6', jet.critique ? 2 : 1), type: 'feu' }], lanceur, jet.critique);
     }
   },
@@ -215,7 +223,7 @@ export function attaqueArmeSpirituelle(etat: EtatCombat, lanceur: Combattant, so
   if (!c || c.mort) return;
   const niveau = lanceur.ressources.armeSpirituelle ?? 2;
   const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'corps-a-corps');
-  journaliser(etat, { type: 'attaque', texte: `L'arme spirituelle frappe ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? 'touché' : 'raté'}.`, acteur: lanceur.id, cible: c.id });
+  journaliser(etat, { type: 'attaque', texte: `L'arme spirituelle frappe ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? 'touché' : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, true, sort.id) });
   if (jet.touche) {
     const des = desAmeliores(sort, '1d8', niveau);
     infligerDegats(etat, c, [{ montant: lancerDes(etat, des, jet.critique ? 2 : 1) + lanceur.incantation!.modificateur, type: 'force' }], lanceur, jet.critique);
