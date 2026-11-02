@@ -76,7 +76,7 @@ Le moteur accueille **des dizaines de mondes** (histoires jouables) sans changer
 ## 6. Illustrations
 
 - **Une image par interaction**, même fixe. Le texte s'affiche tout de suite, l'image apparaît en fondu quand elle est prête.
-- L'**illustrateur** (sous-agent, §10) produit une description structurée : lieu, personnages présents, action, lumière, cadrage. Elle est complétée par la **charte graphique** fixe et les **portraits des héros** comme références.
+- L'**illustrateur** (sous-agent, §10) produit une description structurée : lieu, personnages présents, action, lumière, cadrage. Elle est complétée par la **charte graphique** fixe et, pour chaque personnage du joueur présent dans la scène, son **portrait de galerie choisi** comme référence. Le jeu n'illustre **jamais** un héros qu'il n'a pas reçu du joueur : aucun héros pré-tiré dans les images du produit.
 - **Cache :** les lieux et états déjà illustrés sont réutilisés. Les scènes clés du chapitre peuvent être générées à l'avance.
 - **Service de génération : à choisir en M2** (Claude ne génère pas d'images). Critères : cohérence des personnages avec des images de référence, style, délai, coût par image, conditions d'utilisation.
 - **Budget :** un plafond d'images par session sera configurable. Un mode « économie » réutilise davantage le cache.
@@ -160,7 +160,7 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 | --- | --- | --- |
 | **M0 — Fondations** ✅ | Dépôt, inventaire du SRD et conversion en JSON du sous-ensemble utile, moteur de base (caractéristiques, jets, fiches) | Fiches de niveau 1 à 5 calculées correctement, tests verts |
 | **M1 — Combat de cartes** 🧪 (jouable, animé, à valider en jeu ; `docs/COMBAT.md`) | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
-| **M2 — Test des images** 🧪 (outil prêt, en attente des clés) | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
+| **M2 — Test des images** 🧪 (essais réels faits : FLUX 3 Image en tête, voir `docs/M2-IMAGES.md`) | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
 | **M3 — Créateur de personnages** ✅ M3a (sans LLM, voir `docs/CREATION.md`) ; M3b (assistant LLM) à venir | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
 | **M4 — MJ** | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
 | **M5 — Profondeur** | Pièges, énigmes, artisanat, voix des PNJ, stratège, archiviste | Chaque système est utilisé dans le chapitre |

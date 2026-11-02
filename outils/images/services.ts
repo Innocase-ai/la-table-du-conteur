@@ -101,3 +101,15 @@ export function trouverService(nom: string): Service | undefined {
   if (/^[a-z0-9._-]+\/[a-z0-9._-]+$/i.test(nom)) return openrouter(nom.replace('/', '__'), nom, nom, 8);
   return undefined;
 }
+
+/** Dépense cumulée de la clé OpenRouter, en dollars (GET /api/v1/key). `undefined` si l'API ne la donne pas. */
+export async function utilisationCle(cle: string, fetcher: Fetch = fetch): Promise<number | undefined> {
+  try {
+    const rep = await fetcher('https://openrouter.ai/api/v1/key', { headers: { Authorization: `Bearer ${cle}` }, signal: AbortSignal.timeout(20_000) });
+    if (!rep.ok) return undefined;
+    const json = (await rep.json()) as { data?: { usage?: number } };
+    return typeof json.data?.usage === 'number' ? json.data.usage : undefined;
+  } catch {
+    return undefined;
+  }
+}

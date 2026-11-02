@@ -4,15 +4,16 @@
 //   pnpm images generer <service|tous> --go génère les images (payant) ; sans --go : simulation
 //                                            service = alias (flux2, flux3, gemini…) ou identifiant OpenRouter (auteur/modele)
 //   pnpm images comparer                    construit sorties/images/comparaison.html
+//   pnpm images depense                     dépense cumulée de la clé OpenRouter
 //
 // Options de `generer` : --lot portraits|scenes|tout (défaut : tout), --id <élément> (une seule image, ex. portrait-bran),
-// --max N (garde-fou, défaut 12 par service).
+// --refs <service> (prend les portraits de référence dans un autre service), --max N (garde-fou, défaut 12 par service).
 // La clé OpenRouter est lue dans l'environnement ou dans le fichier `.env` à la racine (voir `.env.example`).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
-import { SERVICES, trouverService, type Env, type Reference, type Service } from './services';
+import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
 
 export const SORTIES = join(RACINE, 'sorties/images');
 
@@ -33,6 +34,7 @@ export interface Meta {
   prompt: string;
   references: string[];
   dureeMs: number;
+  /** Coût annoncé par l'API dans la réponse (`usage.cost`). */
   coutUsd?: number;
   date: string;
 }
@@ -51,8 +53,10 @@ function charger(dossier: string, id: string): Reference | undefined {
   return { nom: id, mime: mimeDepuisOctets(donnees), donnees };
 }
 
-export async function genererLot(service: Service, elements: Element[], env: Env, go: boolean, max: number): Promise<void> {
+export async function genererLot(service: Service, elements: Element[], env: Env, go: boolean, max: number, serviceRefs?: string): Promise<void> {
   const dossier = join(SORTIES, service.id);
+  // Les références (portraits) viennent d'un autre service quand on veut tester un modèle sur les mêmes visages.
+  const dossierRefs = serviceRefs ? join(SORTIES, trouverService(serviceRefs)?.id ?? serviceRefs) : dossier;
   mkdirSync(dossier, { recursive: true });
   const cle = env[service.cleEnv];
   const aFaire = elements.filter((e) => !existsSync(join(dossier, `${e.id}.png`)));
@@ -64,10 +68,20 @@ export async function genererLot(service: Service, elements: Element[], env: Env
     return;
   }
   if (!cle) throw new Error(`${service.nom} : variable ${service.cleEnv} absente (voir .env.example).`);
+  // Dépense réelle du lot : variation du compteur de la clé (mis à jour avec un retard de quelques dizaines de secondes).
+  const depart = await utilisationCle(cle);
+  let annonce = 0;
+  let generees = 0;
+  const bilan = async () => {
+    if (depart === undefined || !generees) return;
+    await new Promise((r) => setTimeout(r, 30_000));
+    const fin = await utilisationCle(cle);
+    if (fin !== undefined) console.log(`  Bilan : ${generees} image(s), ${annonce.toFixed(3)} $ annoncés, ${(fin - depart).toFixed(3)} $ réellement dépensés (compteur de la clé).`);
+  };
   // Les portraits d'abord : les scènes s'en servent comme références.
   for (const e of [...aFaire].sort((a, b) => Number(a.groupe === 'scenes') - Number(b.groupe === 'scenes'))) {
     const refs = e.references.map((id) => {
-      const r = charger(dossier, id);
+      const r = charger(dossierRefs, id);
       if (!r) throw new Error(`${e.id} : le portrait « ${id} » manque ; génère d'abord les portraits (--lot portraits).`);
       return r;
     });
@@ -75,9 +89,11 @@ export async function genererLot(service: Service, elements: Element[], env: Env
     process.stdout.write(`  ${e.id} … `);
     try {
       const res = await service.generer({ prompt: e.prompt, references: refs, format: e.format }, cle, env);
+      annonce += res.coutUsd ?? 0;
+      generees += 1;
       writeFileSync(join(dossier, `${e.id}.png`), res.image);
       const meta: Meta = {
-        id: e.id, service: service.id, modele: res.modele, prompt: e.prompt, references: e.references,
+        id: e.id, service: service.id, modele: res.modele, prompt: e.prompt, references: serviceRefs ? e.references.map((r) => `${serviceRefs}/${r}`) : e.references,
         dureeMs: res.dureeMs, coutUsd: res.coutUsd, date: new Date().toISOString(),
       };
       writeFileSync(join(dossier, `${e.id}.json`), JSON.stringify(meta, null, 2) + '\n');
@@ -85,9 +101,11 @@ export async function genererLot(service: Service, elements: Element[], env: Env
     } catch (erreur) {
       console.log('ÉCHEC');
       console.error(`    ${(erreur as Error).message}`);
+      await bilan();
       return; // inutile d'enchaîner : la même erreur se répéterait (et coûterait)
     }
   }
+  await bilan();
 }
 
 async function main(): Promise<void> {
@@ -105,7 +123,7 @@ async function main(): Promise<void> {
     return;
   }
   if (commande === 'generer') {
-    const cible = args.find((a) => !a.startsWith('--') && a !== option('--lot') && a !== option('--max') && a !== option('--id'));
+    const cible = args.find((a) => !a.startsWith('--') && a !== option('--lot') && a !== option('--max') && a !== option('--id') && a !== option('--refs'));
     const service = cible && cible !== 'tous' ? trouverService(cible) : undefined;
     const services = cible === 'tous' ? SERVICES : service ? [service] : [];
     if (!services.length) {
@@ -116,7 +134,14 @@ async function main(): Promise<void> {
     const choisis = elements.filter((e) => (unique ? e.id === unique : lot === 'tout' || e.groupe === lot));
     if (unique && !choisis.length) throw new Error(`Élément inconnu « ${unique} ». Voir : pnpm images lister`);
     const env = lireEnv();
-    for (const s of services) await genererLot(s, choisis, env, args.includes('--go'), Number(option('--max') ?? 12));
+    for (const s of services) await genererLot(s, choisis, env, args.includes('--go'), Number(option('--max') ?? 12), option('--refs'));
+    return;
+  }
+  if (commande === 'depense') {
+    const cle = lireEnv()[CLE_OPENROUTER];
+    if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
+    const usage = await utilisationCle(cle);
+    console.log(usage === undefined ? 'Dépense indisponible (API de la clé injoignable).' : `Dépense cumulée de la clé : ${usage.toFixed(3)} $ (l'API met parfois quelques secondes à la mettre à jour).`);
     return;
   }
   if (commande === 'comparer') {
@@ -126,7 +151,7 @@ async function main(): Promise<void> {
     console.log(`Page écrite : ${page}`);
     return;
   }
-  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--max N] [--go] | comparer');
+  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | comparer | depense');
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()!)) {

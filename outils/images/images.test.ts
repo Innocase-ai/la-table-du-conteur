@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { chargerCharte, construireElements } from './charte';
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
-import { SERVICES, trouverService, type Fetch, type Requete } from './services';
+import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
 
 const PNG = Buffer.from('iVBORw0KGgo=', 'base64');
 const ref = (nom: string) => ({ nom, mime: 'image/png', donnees: PNG });
@@ -20,9 +20,9 @@ describe('charte et prompts', () => {
   const charte = chargerCharte();
   const elements = construireElements(charte);
 
-  it('produit 6 portraits et 4 scènes', () => {
+  it('produit 6 portraits et 7 scènes (dont 3 lieux sans héros)', () => {
     expect(elements.filter((e) => e.groupe === 'portraits')).toHaveLength(6);
-    expect(elements.filter((e) => e.groupe === 'scenes')).toHaveLength(4);
+    expect(elements.filter((e) => e.groupe === 'scenes')).toHaveLength(7);
   });
 
   it('chaque scène référence des portraits existants, dans l\'ordre cité par le prompt', () => {
@@ -120,6 +120,15 @@ describe('type MIME', () => {
   });
 });
 
+describe('dépense de la clé', () => {
+  it('lit la dépense cumulée, ou renvoie undefined en cas de problème', async () => {
+    const ok: Fetch = async () => json({ data: { usage: 1.11, limit: 1 } });
+    expect(await utilisationCle('CLE', ok)).toBe(1.11);
+    expect(await utilisationCle('CLE', async () => json({}, false))).toBeUndefined();
+    expect(await utilisationCle('CLE', async () => { throw new Error('réseau'); })).toBeUndefined();
+  });
+});
+
 describe('page de comparaison', () => {
   it('affiche les images présentes et des tirets pour les manquantes', () => {
     const dossier = mkdtempSync(join(tmpdir(), 'cmp-'));
@@ -134,5 +143,13 @@ describe('page de comparaison', () => {
     expect(html).toContain('Gemini Nano Banana 2.1');
     // Seuls les services qui ont des images deviennent des colonnes.
     expect(html).not.toContain('FLUX.2 pro');
+  });
+});
+
+describe('règle : pas de héros du groupe dans les images du produit', () => {
+  it('les scènes de lieux ne citent aucun héros ni aucune référence', () => {
+    const lieux = construireElements(chargerCharte()).filter((e) => ['scene-veillecendre', 'scene-cryptes', 'scene-haute-forge'].includes(e.id));
+    expect(lieux).toHaveLength(3);
+    for (const e of lieux) expect(e.references).toEqual([]);
   });
 });

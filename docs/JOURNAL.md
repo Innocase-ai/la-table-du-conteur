@@ -92,3 +92,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 
 - `.claude/skills/creer-monde/` : cadrage (trois pistes via questions), canon (modèle de bible et registre d'identifiants fixes), découpage en zones et modèles de prompts d'agents, intégration (validation à 0 erreur, test des fins avec le moteur d'état, document généré, commit), et les leçons du Val des Cendres.
 - `pnpm monde nouveau <id> "<Nom>"` (`outils/monde/nouveau.ts`) : crée le squelette d'un monde en brouillon avec la bible et le guide des zones personnalisés ; testé.
+
+## 02/11/2026 — M2 : premiers essais réels d'images
+
+- Clé OpenRouter en place (la première était une clé de gestion, inutilisable pour générer ; limite de 1 $ atteinte, relevée à 5 $).
+- FLUX.2 pro : 6 portraits et 4 scènes (~0,03 $ le portrait). Verdict détaillé dans `docs/M2-IMAGES.md` : très bons portraits ; fidélité du groupe jusqu'à 3 personnages.
+- Test de l'embuscade à 6 héros avec les mêmes portraits : **FLUX 3 Image fidèle aux 6** (0,048 $) ; Gemini garde les 6 mais déforme Hilda.
+- Outil : option `--refs`, commande `pnpm images depense`, bilan réel de dépense par lot.
+- Suite : régénérer le lot complet avec FLUX 3 Image, ajouter des scènes du Val des Cendres, puis la galerie de portraits du créateur (54).

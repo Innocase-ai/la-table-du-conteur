@@ -45,7 +45,7 @@ thead th{position:sticky;top:0;background:#1d1812}tbody th{width:170px;font-weig
 td img{display:block;width:100%;height:auto;border-radius:4px}.info{font-size:12px;color:#a89d8a;margin-top:4px;font-weight:400}.vide{color:#6b6253;text-align:center}
 </style></head><body>
 <h1>Comparaison des services d'images</h1>
-<p>Même charte graphique et mêmes fiches pour tous. Les scènes reçoivent les portraits du service comme références : cherche si les héros restent reconnaissables.</p>
+<p>Même charte graphique et mêmes fiches pour tous. Les scènes de héros sont un essai technique (les 6 héros de test ne sont jamais utilisés dans le produit) ; les scènes de lieux sont celles du Val des Cendres.</p>
 <table><thead><tr><th></th>${entete}</tr></thead><tbody>
 ${lignes}
 </tbody></table></body></html>
