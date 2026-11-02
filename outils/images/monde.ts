@@ -40,7 +40,7 @@ function lireMonstre(racineSrd: string, profil: string): MonstreSrd | undefined 
 export interface OptionsMonde {
   charte: Charte;
   racineSrd: string;
-  /** Remplace le texte descriptif d'un élément (`pnj-<id>`, `lieu-<id>`, `objet-<id>`) quand le service refuse la fiche d'origine. */
+  /** Remplace le texte descriptif d'un élément (`pnj-<id>`, `lieu-<id>`, `objet-<id>`, `monstre-<profil>`) quand le service refuse la fiche d'origine. */
   retouches?: Record<string, string>;
 }
 
@@ -82,7 +82,7 @@ export function elementsParLieu(dm: DonneesMonde, { charte, racineSrd, retouches
         references: [],
         prompt: [
           charte.style,
-          `Character portrait of ${p.nom}, a ${SEXES[p.sexe] ?? 'person'} of species "${ESPECES[p.espece] ?? p.espece}", ${p.age}. Appearance (in French): ${retouches[`pnj-${p.id}`] ?? p.apparence}`,
+          `Character portrait of ${p.nom}, ${ESPECES[p.espece] ? `a ${SEXES[p.sexe] ?? 'person'} of species "${ESPECES[p.espece]}"` : 'a fantastical non-human being'}${/^(environ )?\d+ ans$/.test(p.age ?? '') ? `, ${p.age}` : ''}. Appearance (in French): ${retouches[`pnj-${p.id}`] ?? p.apparence}`,
           'Waist-up, three-quarter view, looking toward the viewer, neutral dark background with a soft warm rim light. Highly detailed face with a distinctive, memorable design.',
           charte.contraintes,
         ].join('\n'),
@@ -102,7 +102,7 @@ export function elementsParLieu(dm: DonneesMonde, { charte, racineSrd, retouches
           references: [],
           prompt: [
             charte.style,
-            fiche ? `Creature illustration: ${fiche.apparence}.` : `Creature illustration: ${srd!.nom} (French name from a fantasy bestiary${srd!.type ? `, type ${srd!.type}` : ''}).`,
+            fiche ? `Creature illustration: ${retouches[`monstre-${m.profil}`] ?? fiche.apparence}.` : `Creature illustration: ${srd!.nom} (French name from a fantasy bestiary${srd!.type ? `, type ${srd!.type}` : ''}).`,
             'Full body, menacing pose, three-quarter view, dark atmospheric background with a hint of its natural habitat.',
             charte.contraintes,
           ].join('\n'),

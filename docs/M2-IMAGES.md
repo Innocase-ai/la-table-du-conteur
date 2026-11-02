@@ -128,3 +128,12 @@ Leçons des premiers lieux :
 - **Les fiches sont en français, les prompts en anglais.** « Halfelin » donnait une oreille d'elfe, et « Bandit » un humanoïde-hyène : les espèces sont traduites et chaque monstre a une fiche `apparence` en anglais dans `charte.json` (25 monstres du Val des Cendres).
 - **Un refus de modération n'arrête plus le lot** (HTTP 400 « blocked ») : l'image est signalée et on passe à la suivante. « Brûlures anciennes sur les avant-bras » a été prise pour de l'automutilation. Le texte de remplacement se met dans `packages/mondes/<monde>/images.json` (`{ "pnj-<id>": "texte" }`), sans toucher à la fiche que lit le MJ.
 - Vérifier chaque lot à l'œil : l'image peut être belle et fausse (Haute-Forge : lave au lieu de métal figé).
+
+## Bilan : Val des Cendres entièrement illustré (02/11/2026)
+
+255 images générées avec FLUX 3 Image Klein, lieu par lieu : 151 lieux, 63 PNJ, 25 monstres, 16 objets notables. Coût des images du monde : environ 2,30 $ (0,009 $ l'une) ; la clé a cumulé 2,98 $ sur 5 $ avec tous les essais de comparaison.
+
+- **Refus de modération : 9 sur 255**, tous résolus par une retouche de texte dans `packages/mondes/val-des-cendres/images.json` : corps gelé, silhouettes allongées, « cadavre en décomposition », petite fille de fer, un sergent-armure (refus sans motif précis). Les mots qui déclenchent : corps, cadavre, enfant, brûlures, silhouettes couchées.
+- **Un délai dépassé** (300 s) sur un appel : le lot s'arrête alors ; relancer la même commande reprend où il s'est arrêté.
+- **Espèces inconnues** (armure animée, construction de fer…) : le prompt dit « être fantastique non humain » au lieu de « homme de l'espèce X », et l'âge n'est donné que s'il est numérique.
+- **Reste à faire :** relire les 255 images (vérifié à l'œil : lieux 1 à 8 du village, zombi, Brunhild, sergent Brise-fer) ; branchement dans le client, avec un manifeste id → fichier ; export vers un dossier versionné ou un stockage quand le format sera décidé.
