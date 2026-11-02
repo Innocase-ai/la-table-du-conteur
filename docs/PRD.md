@@ -159,12 +159,12 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 | Jalon | Contenu | Critère de fin |
 | --- | --- | --- |
 | **M0 — Fondations** ✅ | Dépôt, inventaire du SRD et conversion en JSON du sous-ensemble utile, moteur de base (caractéristiques, jets, fiches) | Fiches de niveau 1 à 5 calculées correctement, tests verts |
-| **M1 — Combat de cartes** 🧪 | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
+| **M1 — Combat de cartes** 🧪 (jouable, animé, à valider en jeu ; `docs/COMBAT.md`) | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
 | **M2 — Test des images** 🧪 (outil prêt, en attente des clés) | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
-| **M3 — Créateur de personnages** 🧪 M3a (sans LLM) en cours, voir `docs/CREATION.md` ; M3b (assistant LLM) à venir | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
+| **M3 — Créateur de personnages** ✅ M3a (sans LLM, voir `docs/CREATION.md`) ; M3b (assistant LLM) à venir | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
 | **M4 — MJ** | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
 | **M5 — Profondeur** | Pièges, énigmes, artisanat, voix des PNJ, stratège, archiviste | Chaque système est utilisé dans le chapitre |
-| **M6 — Chapitre 1** | Village + donjon, 2 à 3 heures, sauvegarde, équilibrage | Partie complète jouée et terminée |
+| **M6 — Chapitre 1** (données écrites : Val des Cendres, `docs/mondes/val-des-cendres.md` ; reste le MJ, M4) | Village + donjon, 2 à 3 heures, sauvegarde, équilibrage | Partie complète jouée et terminée |
 
 ## 13. Risques
 

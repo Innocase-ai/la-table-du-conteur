@@ -1,6 +1,6 @@
 # CRPG LLM (nom de travail)
 
-CRPG narratif illustré, animé par un MJ IA, sur les règles du SRD 5.2.1. Conception : [docs/PRD.md](docs/PRD.md).
+CRPG narratif illustré, animé par un MJ IA, sur les règles du SRD 5.2.1. Conception : [docs/PRD.md](docs/PRD.md) ; architecture : [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ```bash
 pnpm install

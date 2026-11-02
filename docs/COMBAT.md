@@ -63,7 +63,7 @@ Les cartes sont l'interface ; chaque carte correspond à une option de jeu réel
 - **3 ou 4 rencontres** de difficulté croissante, calculées avec le budget de PX du SRD (« Rencontres de combat »).
 - **Simulation d'équilibre** : l'IA joue aussi les héros ; on mesure taux de victoire, durée en rounds, PV restants.
 
-## 8. État de l'implémentation (02/11/2026)
+## 8. État de l'implémentation (02/11/2026, mis à jour le soir)
 
 Code : `packages/regles/src/combat/` — `grille.ts` (distances, ligne de vue, chemins, zones), `etat.ts` (état sérialisable, dés à graine, dés imposés pour les tests), `moteur.ts` (tours, déplacement et attaques d'opportunité, attaques, bottes, dégâts, sauvegardes, états, mort, concentration), `sorts.ts` (résolution générique + sorts spéciaux), `cartes.ts` (main et exécution des commandes), `creation.ts` (héros depuis une fiche, monstres depuis un profil), `ia.ts` (IA par simulation, doctrine, moral et fuite), `prototype.ts` (héros pré-tirés et rencontres).
 
@@ -72,3 +72,5 @@ Code : `packages/regles/src/combat/` — `grille.ts` (distances, ligne de vue, c
 **Simplifications** : pas de couvert ; Arme spirituelle sans jeton sur la grille ; Projectile magique et Rayon ardent répartis cycliquement sur les cibles choisies ; réactions des héros automatiques (attaque d'opportunité, Bouclier) ; les attaques multiples au choix des monstres prennent la première option ; Coup double non géré .
 
 **Outils** : `pnpm simuler [parties] [rapide|normale] [rencontre]` fait jouer l'IA dans les deux camps et mesure taux de victoire, durée et pertes.
+
+**Ajouts depuis** : retours graphiques (file d'animations pilotée par le journal d'événements : déplacements, élans, projectiles, dégâts flottants, zones, morts ; 20 pictogrammes CC BY 3.0) ; combat avec un **groupe créé** (`docs/CREATION.md` : armes, bottes d'arme, sorts jouables, arts martiaux du Moine, Attaque supplémentaire) ; **30 monstres** du SRD disponibles (spectres, ombres, armures animées… pour les mondes) ; 25 sorts jouables sur 181. Les rencontres des mondes (`docs/MONDES.md`) réutilisent les cartes tactiques et les compositions du prototype.
