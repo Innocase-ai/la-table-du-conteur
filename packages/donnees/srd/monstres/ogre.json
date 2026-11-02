@@ -1,0 +1,108 @@
+{
+  "id": "ogre",
+  "nom": "Ogre",
+  "taille": "G",
+  "type": "Géant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 11,
+  "pv": {
+    "moyenne": 68,
+    "des": "8d10 + 24"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 8,
+    "con": 16,
+    "int": 5,
+    "sag": 7,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "commun, gigant",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "massue",
+      "nom": "Massue",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 13 (2d8 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "javeline-cac",
+      "nom": "Javeline (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "javeline-lancer",
+      "nom": "Javeline (lancer)",
+      "cout": "action",
+      "resume": "À distance +6, portée 9/36 m : 11 (2d6 + 4) dégâts perforants. L'ogre porte 3 javelines.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,97 @@
+{
+  "id": "combattant-hobgobelin",
+  "nom": "Combattant hobgobelin",
+  "taille": "M",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Loyal Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "sag": 10,
+    "cha": 9
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "commun, gobelin",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Le hobgobelin a l'Avantage à ses jets d'attaque contre une créature si au moins un de ses alliés non Neutralisés se trouve à 1,50 m ou moins de cette créature."
+    }
+  ],
+  "actions": [
+    {
+      "id": "epee-longue",
+      "nom": "Épée longue",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 12 (2d10 + 1) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 1,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "arc-long",
+      "nom": "Arc long",
+      "cout": "action",
+      "resume": "À distance +3, portée 45/180 m : 5 (1d8 + 1) dégâts perforants plus 7 (3d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 1,
+          "type": "perforant"
+        },
+        {
+          "des": "3d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

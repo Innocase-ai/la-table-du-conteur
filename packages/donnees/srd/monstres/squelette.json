@@ -1,0 +1,92 @@
+{
+  "id": "squelette",
+  "nom": "Squelette",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Loyal Mauvais",
+  "ca": 14,
+  "pv": {
+    "moyenne": 13,
+    "des": "2d8 + 4"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 16,
+    "con": 15,
+    "int": 6,
+    "sag": 8,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "vulnerabilites": [
+    "contondant"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "comprend le commun et une autre langue, mais ne parle pas",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "epee-courte",
+      "nom": "Épée courte",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-court",
+      "nom": "Arc court",
+      "cout": "action",
+      "resume": "À distance +5, portée 24/96 m : 6 (1d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 24,
+        "longue": 96
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": []
+}

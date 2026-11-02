@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { z, ZodTypeAny } from 'zod';
 import { indexer, type Donnees } from './donnees';
-import { Arme, Armure, Classe, Don, Espece, Historique } from './schemas';
+import { Arme, Armure, Classe, Don, Espece, Historique, Monstre, Sort } from './schemas';
 
 export const RACINE_SRD = join(import.meta.dirname, '../../donnees/srd');
 
@@ -26,5 +26,7 @@ export function chargerDonneesSrd(racine = RACINE_SRD): Donnees {
     dons: indexer(charger(racine, 'dons', Don)),
     armures: indexer(charger(racine, 'armures', Armure)),
     armes: indexer(charger(racine, 'armes', Arme)),
+    monstres: indexer(charger(racine, 'monstres', Monstre)),
+    sorts: indexer(charger(racine, 'sorts', Sort)),
   };
 }

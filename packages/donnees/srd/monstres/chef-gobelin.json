@@ -1,0 +1,112 @@
+{
+  "id": "chef-gobelin",
+  "nom": "Chef gobelin",
+  "taille": "P",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Chaotique Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 21,
+    "des": "6d6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 15,
+    "con": 10,
+    "int": 10,
+    "sag": 8,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "commun, gobelin",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le gobelin effectue deux attaques, réparties à sa guise entre Cimeterre et Arc court (par exemple deux tirs d'Arc court à distance).",
+      "multiattaque": [
+        {
+          "action": "cimeterre",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "cimeterre",
+      "nom": "Cimeterre",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts tranchants, plus 2 (1d4) dégâts tranchants si le jet d'attaque avait l'Avantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "arc-court",
+      "nom": "Arc court",
+      "cout": "action",
+      "resume": "À distance +4, portée 24/96 m : 5 (1d6 + 2) dégâts perforants, plus 2 (1d4) dégâts perforants si le jet d'attaque avait l'Avantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 24,
+        "longue": 96
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "Le gobelin entreprend l'action Désengagement ou Furtivité."
+    },
+    {
+      "id": "attaque-redirigee",
+      "nom": "Attaque redirigée",
+      "cout": "reaction",
+      "resume": "Déclencheur : une créature que le gobelin voit effectue un jet d'attaque contre lui. Le gobelin échange sa place avec un allié de taille P ou M à 1,50 m ou moins ; l'allié devient la nouvelle cible de l'attaque."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

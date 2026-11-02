@@ -1,0 +1,155 @@
+{
+  "id": "traqueur-gobelours",
+  "nom": "Traqueur gobelours",
+  "taille": "M",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 65,
+    "des": "10d8 + 20"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 14,
+    "con": 14,
+    "int": 11,
+    "sag": 12,
+    "cha": 11
+  },
+  "sauvegardes": {
+    "con": 4,
+    "sag": 3
+  },
+  "competences": {
+    "discretion": 6,
+    "survie": 3
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun, gobelin",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "rapt",
+      "nom": "Rapt",
+      "resume": "Le gobelours ne dépense pas de déplacement supplémentaire pour déplacer une créature qu'il agrippe."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le gobelours effectue deux attaques de Javeline (corps à corps ou lancer) ou deux attaques de Morgenstern.",
+      "multiattaque": [
+        {
+          "action": "javeline-cac",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "javeline-cac",
+      "nom": "Javeline (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 3 m : 13 (3d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "javeline-lancer",
+      "nom": "Javeline (lancer)",
+      "cout": "action",
+      "resume": "À distance +5, portée 9/36 m : 13 (3d6 + 3) dégâts perforants. Le gobelours porte 6 javelines.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "morgenstern",
+      "nom": "Morgenstern",
+      "cout": "action",
+      "resume": "Corps à corps +5 (avec Avantage si la cible est Agrippée par le gobelours), allonge 3 m : 12 (2d8 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "lutte-rapide",
+      "nom": "Lutte rapide",
+      "cout": "bonus",
+      "resume": "JS Dextérité DD 13 d'une créature de taille M ou inférieure que le gobelours voit à 3 m ou moins. Échec : la cible subit l'état Agrippé (évasion DD 13).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 3
+      },
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

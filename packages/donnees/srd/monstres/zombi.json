@@ -1,0 +1,75 @@
+{
+  "id": "zombi",
+  "nom": "Zombi",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 8,
+  "pv": {
+    "moyenne": 15,
+    "des": "2d8 + 6"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 6,
+    "con": 16,
+    "int": 3,
+    "sag": 6,
+    "cha": 5
+  },
+  "sauvegardes": {
+    "sag": 0
+  },
+  "competences": {},
+  "initiative": -2,
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "comprend le commun et une autre langue, mais ne parle pas",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "robustesse-de-la-non-vie",
+      "nom": "Robustesse de la non-vie",
+      "resume": "Si des dégâts font tomber le zombi à 0 pv (sauf dégâts radiants ou Coup critique), il fait un JS de Constitution DD 5 + dégâts subis ; en cas de réussite, il reste à 1 pv."
+    }
+  ],
+  "actions": [
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 5 (1d8 + 1) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 1,
+          "type": "contondant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,94 @@
+{
+  "id": "combattant-gobelin",
+  "nom": "Combattant gobelin",
+  "taille": "P",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Chaotique Neutre",
+  "ca": 15,
+  "pv": {
+    "moyenne": 10,
+    "des": "3d6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 15,
+    "con": 10,
+    "int": 10,
+    "sag": 8,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "commun, gobelin",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "cimeterre",
+      "nom": "Cimeterre",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts tranchants, plus 2 (1d4) dégâts tranchants si le jet d'attaque avait l'Avantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "arc-court",
+      "nom": "Arc court",
+      "cout": "action",
+      "resume": "À distance +4, portée 24/96 m : 5 (1d6 + 2) dégâts perforants, plus 2 (1d4) dégâts perforants si le jet d'attaque avait l'Avantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 24,
+        "longue": 96
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "Le gobelin entreprend l'action Désengagement ou Furtivité."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,85 @@
+{
+  "id": "bandit",
+  "nom": "Bandit",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "sag": 10,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "argot des voleurs, commun",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "cimeterre",
+      "nom": "Cimeterre",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 4 (1d6 + 1) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "arbalete-legere",
+      "nom": "Arbalète légère",
+      "cout": "action",
+      "resume": "À distance +3, portée 24/96 m : 5 (1d8 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 24,
+        "longue": 96
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

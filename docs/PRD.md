@@ -1,6 +1,6 @@
 # PRD — CRPG narratif animé par LLM (nom de travail à définir)
 
-**Version :** 0.2 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
+**Version :** 0.3 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
 
 ## 1. Vision
 
@@ -155,7 +155,7 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 | Jalon | Contenu | Critère de fin |
 | --- | --- | --- |
 | **M0 — Fondations** ✅ | Dépôt, inventaire du SRD et conversion en JSON du sous-ensemble utile, moteur de base (caractéristiques, jets, fiches) | Fiches de niveau 1 à 5 calculées correctement, tests verts |
-| **M1 — Combat de cartes** | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
+| **M1 — Combat de cartes** 🧪 | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
 | **M2 — Test des images** | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
 | **M3 — Créateur de personnages** | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
 | **M4 — MJ** | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
