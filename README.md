@@ -17,6 +17,7 @@ pnpm monde valider       # valide les mondes (packages/mondes) ; pnpm monde doc 
 - `apps/jeu` : client web (Vite + React) du prototype de combat.
 - `outils/` : scripts (simulation d'équilibre, comparaison des services d'images).
 - `packages/mondes` : les mondes (histoires jouables) en JSON, validés par `pnpm monde valider`.
+- `.claude/skills/creer-monde` : le skill qui guide la création d'un nouveau monde (`pnpm monde nouveau <id> "<Nom>"`).
 - `docs/` : PRD, spécification du combat, du créateur de personnage, format des mondes, journal, inventaire du SRD.
 
 Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 (« SRD 5.2.1 ») de Wizards of the Coast LLC, disponible à l'adresse https://www.dndbeyond.com/srd. Le SRD 5.2.1 est régi par la Licence Creative Commons Attribution 4.0 International, disponible à l'adresse https://creativecommons.org/licenses/by/4.0/legalcode.

@@ -66,6 +66,8 @@ Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (don
 
 ## Créer un nouveau monde
 
+Le skill **`creer-monde`** (`.claude/skills/creer-monde/`) guide Claude pas à pas : cadrage avec l'utilisateur, canon, échafaudage (`pnpm monde nouveau <id> "<Nom>"`), agents de zone en parallèle, raccordement et validation. Résumé :
+
 1. Écrire l'accroche, le ton, la direction artistique et la liste des factions (une page).
 2. Écrire le **canon** : le secret du monde, les fins, les personnages clés, les lieux principaux (une bible de quelques pages) et le registre des identifiants partagés entre les zones.
 3. Écrire les données zone par zone (un agent ou un auteur par zone), en validant au fil de l'eau.

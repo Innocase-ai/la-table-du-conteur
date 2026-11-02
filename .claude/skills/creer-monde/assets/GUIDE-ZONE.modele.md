@@ -1,0 +1,43 @@
+# Guide d'écriture d'une zone de {{NOM}}
+
+Tu écris les **données** d'une zone d'un monde jouable. Le moteur accueillera des dizaines de mondes : la qualité vient de la **richesse jouable** (lieux explorables, personnages avec qui parler, trésors à trouver, choix) et de la **cohérence** avec le canon.
+
+## À lire d'abord (dans cet ordre)
+1. `~/crpg-llm/packages/mondes/{{ID}}/BIBLE.md` : le canon et le **registre des identifiants fixes** (§7). Respecte-le à la lettre : si ta zone doit créer une entité du registre, elle porte exactement cet id ; tu peux **référencer** les entités créées par d'autres zones (elles existeront à la fin).
+2. `~/crpg-llm/docs/MONDES.md` : le format et les règles d'écriture.
+3. `~/crpg-llm/packages/regles/src/monde/schemas.ts` : **le schéma qui fait foi** (Lieu, Pnj, Objet, Tresor, TableButin, RencontreMonde, Piege, Enigme, Quete, Fait, conditions et effets). Ne le modifie pas.
+4. Le mini-monde d'exemple : `~/crpg-llm/packages/regles/tests/fixtures/mini-monde/` (un fichier par dossier : montre la forme attendue).
+5. `~/crpg-llm/packages/mondes/{{ID}}/monde.json` (ton, direction artistique, règles du MJ).
+
+## Où écrire
+Dans `~/crpg-llm/packages/mondes/{{ID}}/`, un fichier par dossier et **par zone**, nommé avec ton code de zone (ex. `lieux/z1-<nom-de-zone>.json`, `pnj/z1-<nom-de-zone>.json`, `objets/z1-<nom-de-zone>.json`, `tresors/z1-...`, `rencontres/z1-...`, `pieges/`, `enigmes/`, `quetes/`, `faits/`, `evenements/`, `tables/`). Chaque fichier est un tableau JSON. **N'écris que dans des fichiers préfixés par ton code de zone** et ne modifie aucun fichier d'une autre zone ni `monde.json`.
+
+## Identifiants
+- kebab-case ASCII **sans accents ni majuscules** (`vei-auberge-dernier-feu`, pas `vei-auberge-dernier-feu-é`).
+- Préfixe de zone pour tout ce que tu crées en plus du registre : lieux, trésors, pièges, énigmes, rencontres, objets, faits, événements, quêtes secondaires. Les PNJ du registre gardent leur id ; tes autres PNJ portent le préfixe aussi.
+- Les ids du registre (PNJ, objets, lieux racines) sont à créer **exactement** comme indiqués.
+
+## Ce que le moteur attend (rappels essentiels)
+- Un PNJ, un trésor, un piège, une énigme se rattachent à leur lieu par leur champ `lieu` (aucune liste dans le lieu). Un lieu a un `parent` (l'arbre) et des `liens` (portes, chemins, passages secrets, escaliers, avec durée en heures entre lieux éloignés).
+- **Tout lieu doit être atteignable** depuis `veillecendre` via `parent` et `liens`. Les salles d'un donjon sont reliées entre elles par des liens `porte`/`passage`/`escalier`/`passage-secret` (double sens par défaut) ; le donjon est relié à la carte du monde par un lien depuis son parent ou un lieu voisin.
+- Chaque lieu a un `visuel` (ce qu'on voit : matières, lumière, éléments ; **sans nommer de personnage**) ; chaque PNJ une `apparence` (portrait). Ils servent à illustrer chaque scène : sois concret.
+- **Les PNJ parlent par sujets** : au moins 3 sujets par PNJ important (5 à 7 pour les clés), `mots` qui déclenchent, `reponse` = contenu à reformuler dans la voix du PNJ (pas une réplique figée), `revele` (faits), `effets` (quêtes, drapeaux, réputation, objets), `attitudeMin` ou `condition` pour les secrets. Donne-leur de la vie : désirs, peurs, humour, manies. Plusieurs PNJ de ta zone doivent avoir des **secrets** (`secrets` avec jet de compétence, attitude ou prix).
+- **Marchands** : `boutique` avec `stock` réaliste (objets du catalogue SRD ou propres au monde), `rachat`. **Services** : repos, soins, réparation, identification, rumeurs, avec prix en po.
+- **Faits** : toute vérité importante est un `fait` (`texte` à plat, `categorie`, `importance`, `fiable: false` pour une rumeur fausse) qu'un PNJ, un lieu (`faits` avec `decouverte` : auto, jet, condition), un trésor (`indice`) ou un effet révèle. Un fait que personne ne révèle est un défaut.
+- **Quêtes** : `etapes` qui s'achèvent d'elles-mêmes (`completion` = condition sur drapeau, fait, objet, quête, PNJ…) ; au moins une variante ou un échec possible (`ramifications`, `echec`). Les effets posent les drapeaux du registre ; réutilise-les exactement.
+- **Rencontres** : monstres du SRD (profils listés dans le BIBLE §9 ; d'autres sont ajoutés pendant le travail : vérifie l'existence d'un profil dans `~/crpg-llm/packages/donnees/srd/monstres/` avant de l'utiliser), carte tactique (grille de lignes de texte : `.` sol, `#` mur, `~` terrain difficile, `H` départ des héros — au moins 6 —, `m` départ des monstres — au moins autant que de monstres), `difficulte` cohérente avec le budget de PX pour un **groupe de 6** (le validateur avertit ; budget par personnage : niv. 1 : 50/75/100, niv. 2 : 100/150/200, niv. 3 : 150/225/400, niv. 4 : 250/375/500, niv. 5 : 500/750/1100 pour faible/modérée/élevée, multiplié par 6), au moins une `alternatives` (négocier, ruser, fuir) pour les rencontres importantes, `butin`. Tu peux t'inspirer des cartes de `~/crpg-llm/packages/regles/src/combat/prototype.ts`.
+- **Trésors** : un par lieu intéressant, avec contenant, `description`, contenu (pièces, objets, tables), `acces` (caché, verrou avec `cle`, piège), `gardien` (rencontre) quand il est défendu. Les trésors rendent l'exploration payante : mélange pièces, objets utiles, curiosités, une ou deux belles trouvailles (`rare` au plus avant le niveau 5, valeur cohérente avec le niveau). Tables de butin (`tables/`) pour les loots aléatoires.
+- **Objets propres au monde** : relique, objet de quête, curiosité avec `lore`. Pour les objets du catalogue SRD, **vérifie l'id** dans `~/crpg-llm/packages/donnees/srd/objets/*.json` (`grep -l '"id": "…"'`) : les fichiers d'objets magiques (`magiques-*.json`) arrivent pendant ton travail ; s'ils manquent encore, crée un objet propre au monde (préfixe de zone).
+- **Énigmes** : solution **vérifiable par le moteur** (`sequence`, `mot-de-passe`, `leviers`, `placement`, `cadran`, `deduction`), 2 à 3 indices du plus vague au plus clair (`niveau` 1 à 3, jet éventuel), conséquence d'un échec, récompense. Elles doivent être **soluble par déduction à partir de ce que le groupe peut voir** (inscriptions, faits, objets), pas par hasard.
+- **Pièges** : détection, désarmement (outil et DD), déclenchement, sauvegarde, dégâts cohérents avec le niveau (SRD : DD 10-15 niveaux 1-4, DD 13-18 niveau 5 ; dégâts 2d10 environ à bas niveau).
+- Niveaux : `niveau: {min,max}` des lieux selon le BIBLE §8 ; difficulté croissante.
+
+## Style d'écriture
+Français soigné, concret, évocateur sans emphase. Respecte le **ton du monde** (`monde.json`, champ `ton`) et sa direction artistique. Les PNJ ont des **voix distinctes** (`personnalite.voix`). Pas de clichés gratuits ; chaque PNJ a une raison d'être là et un désir. Évite de nommer des éléments d'un univers existant (noms propres originaux).
+
+## Vérification
+`cd ~/crpg-llm && pnpm monde valider {{ID}}` charge le monde et le valide. **Pendant que les autres zones s'écrivent, des erreurs de références vers leurs entités sont normales** : ne corrige que ce qui concerne tes entités (schéma invalide, référence vers une entité de TA zone qui n'existe pas, lieu de TA zone inaccessible, quête de TA zone mal construite). Les **erreurs de chargement** (fichier `fichiers invalides`) concernent forcément un fichier fautif : si elles viennent d'un autre fichier que les tiens, attends et réessaie un peu plus tard. `pnpm test` doit rester vert (le monde est en `statut: brouillon`).
+Objectifs de richesse de ta zone : voir la mission. Pas de commit git.
+
+## Rapport final (court)
+Fichiers écrits, chiffres (lieux, PNJ, sujets, trésors, rencontres, quêtes, énigmes, pièges, objets, faits), les identifiants du registre que tu as créés, les ids **d'autres zones** que tu références (pour que je les vérifie), les drapeaux posés ou lus, et ce qui manque ou te paraît incohérent avec le canon.

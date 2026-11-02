@@ -2,19 +2,32 @@
 //   pnpm monde lister                 mondes disponibles
 //   pnpm monde valider [monde]        validation (références, accessibilité, quêtes, rencontres…) ; code 1 s'il y a des erreurs
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
+//   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { validerMonde } from '../../packages/regles/src/monde/validation';
 import { genererDocMonde } from './doc';
+import { creerSquelette } from './nouveau';
 
-const [commande, cible] = process.argv.slice(2);
+const [commande, cible, nomMonde] = process.argv.slice(2);
 const mondes = cible ? [cible] : listerMondes();
+
+if (commande === 'nouveau') {
+  try {
+    const dossier = creerSquelette(RACINE_MONDES, cible ?? '', nomMonde ?? '', { dossier: join(RACINE_MONDES, '../../.claude/skills/creer-monde/assets') });
+    console.log(`Monde créé : ${dossier}\nÉtapes suivantes : remplir BIBLE.md (canon et registre d'identifiants), compléter monde.json, puis lancer les agents de zone (skill creer-monde).`);
+    process.exit(0);
+  } catch (e) {
+    console.error((e as Error).message);
+    process.exit(1);
+  }
+}
 
 if (commande === 'lister' || !commande) {
   for (const id of listerMondes()) console.log(id);
-  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | doc [monde]');
+  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | doc [monde] | nouveau <id> "<Nom>"');
   process.exit(0);
 }
 

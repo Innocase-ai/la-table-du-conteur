@@ -85,3 +85,10 @@ Demande de l'utilisateur : le moteur doit accueillir des dizaines de nouveaux mo
 **À valider par toi en lisant** : `docs/mondes/val-des-cendres.md` (document généré, 1 000 lignes) : le ton, les personnages, les fins, l'équilibre des trésors (≈ 33 000 po au total).
 
 **Suite** : M4, le MJ (récit illustré, arbitre, PNJ qui parlent) qui lira ce monde ; une visionneuse du monde dans l'interface pour le parcourir ; d'autres mondes.
+
+## 02/11/2026 — Skill « creer-monde »
+
+Demande de l'utilisateur : un skill pour construire les autres histoires.
+
+- `.claude/skills/creer-monde/` : cadrage (trois pistes via questions), canon (modèle de bible et registre d'identifiants fixes), découpage en zones et modèles de prompts d'agents, intégration (validation à 0 erreur, test des fins avec le moteur d'état, document généré, commit), et les leçons du Val des Cendres.
+- `pnpm monde nouveau <id> "<Nom>"` (`outils/monde/nouveau.ts`) : crée le squelette d'un monde en brouillon avec la bible et le guide des zones personnalisés ; testé.
