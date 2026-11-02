@@ -1,0 +1,533 @@
+[
+  {
+    "id": "cry-t-vasque-d-offrandes",
+    "nom": "La vasque des offrandes",
+    "lieu": "cry-vestibule",
+    "contenant": "autel",
+    "description": "Une vasque de bronze, au centre du vestibule, où les cortèges déposaient une pièce par défunt. Deux siècles de pièces ternies, collées par le vert-de-gris, tapissent le fond.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "cry-butin-offrandes",
+          "jets": 1
+        }
+      ],
+      "pieces": {
+        "po": 18,
+        "pa": 40
+      }
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-pupitre-des-porteurs",
+    "nom": "Le registre de la garde",
+    "lieu": "cry-vestibule",
+    "contenant": "etagere",
+    "description": "Le pupitre de pierre porte le grand registre de service de la garde, ouvert à la dernière page, où l'on lit un mot étrange, écrit à l'envers : EMULCNE.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-registre-de-garde",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-cry-mot-d-ordre"
+  },
+  {
+    "id": "cry-t-urnes-renversees",
+    "nom": "Les urnes renversées",
+    "lieu": "cry-galerie-des-urnes",
+    "contenant": "sol",
+    "description": "Quatre urnes de terre cuite gisent au sol, au pied des niches, chacune marquée d'un nom et d'un emblème de métier. Elles ne contiennent que des cendres de défunts, froides et fines.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-urne-de-brokk",
+          "quantite": 1
+        },
+        {
+          "objet": "cry-urne-de-hilde",
+          "quantite": 1
+        },
+        {
+          "objet": "cry-urne-de-torvald",
+          "quantite": 1
+        },
+        {
+          "objet": "cry-urne-de-gunnhild",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-niche-secrete",
+    "nom": "La niche du fond",
+    "lieu": "cry-galerie-des-urnes",
+    "contenant": "cache",
+    "description": "Quand les quatre urnes ont retrouvé leur place, la dernière niche de la galerie s'entrouvre sur une cavité tapissée de velours noir : l'offrande que la famille de Torvald y avait déposée pour le jour de la relève.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-marteau-ceremoniel",
+          "quantite": 1
+        },
+        {
+          "objet": "amulette-de-bonne-sante",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 60
+      }
+    },
+    "acces": {},
+    "condition": {
+      "flag": "cry-urnes-apaisees"
+    }
+  },
+  {
+    "id": "cry-t-ossuaire-cache",
+    "nom": "Entre deux murs d'os",
+    "lieu": "cry-ossuaire",
+    "contenant": "cache",
+    "description": "Un pan d'os est monté plus bas que les autres : derrière, une petite cache où un fossoyeur d'autrefois mettait de côté ce qu'on retrouvait sur les squelettes.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "cry-butin-ossements",
+          "jets": 2
+        }
+      ],
+      "pieces": {
+        "po": 25,
+        "pa": 90
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "cry-t-caserne-capitaine",
+    "nom": "Le coffre du capitaine",
+    "lieu": "cry-caserne",
+    "contenant": "coffre",
+    "description": "Un coffre de bois cerclé de fer, dans l'alcôve du capitaine : la clé de la grille, un bouclier de garde, une plaque de sépulture jamais utilisée et la solde de la dernière paie.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-cle-de-la-grille",
+          "quantite": 1
+        },
+        {
+          "objet": "bouclier-sentinelle",
+          "quantite": 1
+        },
+        {
+          "objet": "cry-plaque-du-gardien",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 45
+      }
+    },
+    "acces": {
+      "verrou": {
+        "dd": 14
+      }
+    },
+    "gardien": "cry-r-caserne-gardes"
+  },
+  {
+    "id": "cry-t-refectoire-cadavre",
+    "nom": "Le compagnon tombé",
+    "lieu": "cry-refectoire",
+    "contenant": "cadavre",
+    "description": "Près du gouffre gît un homme en cuir, la gorge ouverte et déjà rongé : un des compagnons de la bande de Brisca. Dans sa poche, un double plié de leur contrat.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 1
+        },
+        {
+          "objet": "cry-contrat-du-fer-gris",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 12
+      }
+    },
+    "acces": {},
+    "gardien": "cry-r-refectoire-goules",
+    "indice": "f-cry-compagnie-des-fosses"
+  },
+  {
+    "id": "cry-t-boyau-sac-du-fossoyeur",
+    "nom": "Le sac du fossoyeur",
+    "lieu": "cry-boyau-des-mineurs",
+    "contenant": "sac",
+    "description": "Le sac de toile d'un fossoyeur : une corde, des torches à demi consumées, quelques rations déjà entamées et une bourse.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "corde",
+          "quantite": 1
+        },
+        {
+          "objet": "torche",
+          "quantite": 3
+        },
+        {
+          "objet": "rations",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 8,
+        "pa": 30
+      }
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-rotonde-sarcophage",
+    "nom": "Le sarcophage du premier Porteur",
+    "lieu": "cry-rotonde",
+    "contenant": "sarcophage",
+    "description": "Le plus grand des sarcophages, couvercle gravé d'un homme en habit de porteur, mains croisées sur un maillet : on y a déposé, avec lui, une bourse d'offrandes, et un parchemin de prières.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "parchemin-de-sort-niveau-2",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 80,
+        "pa": 50
+      }
+    },
+    "acces": {
+      "piege": "cry-piege-aiguille-du-sarcophage"
+    }
+  },
+  {
+    "id": "cry-t-rotonde-camp",
+    "nom": "Le campement des Fouilleurs",
+    "lieu": "cry-rotonde",
+    "contenant": "sac",
+    "description": "Les sacs, les couvertures et les vivres de la bande de Brisca, rangés au pied d'un pilier. Trois couvertures enveloppent des corps.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 2
+        },
+        {
+          "objet": "rations",
+          "quantite": 4
+        },
+        {
+          "objet": "corde",
+          "quantite": 1
+        },
+        {
+          "objet": "pied-de-biche",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 35
+      }
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-chapelle-autel",
+    "nom": "Les offrandes de l'autel-enclume",
+    "lieu": "cry-chapelle-des-forgerons",
+    "contenant": "autel",
+    "description": "Sur l'autel-enclume, dans de petites coupelles de bronze, les dernières offrandes des forgerons : de l'eau consacrée, des pièces de cuivre, un morceau de fer météorique.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "eau-benite",
+          "quantite": 2
+        },
+        {
+          "objet": "symbole-sacre-reliquaire",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 30
+      }
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-chapelle-reliquaire",
+    "nom": "Le reliquaire sous l'enclume",
+    "lieu": "cry-chapelle-des-forgerons",
+    "contenant": "coffre",
+    "description": "Quand les runes ont été touchées dans l'ordre, l'enclume pivote sur un petit reliquaire de bronze : parchemins de prières et rondelles d'argent offertes aux défunts par la corporation des forgerons.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "parchemin-de-sort-niveau-1",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 70
+      }
+    },
+    "acces": {},
+    "condition": {
+      "flag": "cry-runes-resolues"
+    }
+  },
+  {
+    "id": "cry-t-sonneur-tombe",
+    "nom": "La tombe du sonneur",
+    "lieu": "cry-crypte-du-sonneur",
+    "contenant": "tombe",
+    "description": "Sous la cloche fendue, une dalle de pierre bordée de bronze. Une plaque de sépulture s'est détachée dans la chute et gît dans la poussière avec quelques pièces de deuil.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-plaque-du-sonneur",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "pa": 25
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 11,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-cry-nom-du-sonneur"
+  },
+  {
+    "id": "cry-t-bureau-de-l-archiviste",
+    "nom": "Le bureau de l'archiviste",
+    "lieu": "cry-chambre-des-cartes",
+    "contenant": "etagere",
+    "description": "Le bureau d'Orsolf, que personne n'a touché depuis deux siècles : des cartes, de l'encre qui a séché en poudre, son journal et des feuillets vierges, et le trousseau de l'archiviste, qui tenait aussi les clés de la trésorerie.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-journal-de-l-archiviste",
+          "quantite": 1
+        },
+        {
+          "objet": "outils-de-cartographe",
+          "quantite": 1
+        },
+        {
+          "objet": "parchemin",
+          "quantite": 3
+        },
+        {
+          "objet": "cry-cle-du-tresorier",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-cry-scelles-de-l-archiviste"
+  },
+  {
+    "id": "cry-t-scelles-vitrine-des-allies",
+    "nom": "La vitrine des alliés",
+    "lieu": "cry-salle-des-scelles",
+    "contenant": "vitrine",
+    "description": "Une vitrine à part, sous verre épais : une plaque de bronze à deux écritures, l'une naine, l'autre orque. Elle dit que les Marteau-Vert enterraient leurs morts à Ormgard, côte à côte avec les nains.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-plaque-des-allies",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-orcs-et-nains"
+  },
+  {
+    "id": "cry-t-tresorier-coffre-fort",
+    "nom": "Le coffre-fort du trésorier",
+    "lieu": "cry-chambre-du-tresorier",
+    "contenant": "coffre",
+    "description": "Un grand coffre-fort mural de bronze, dans la trésorerie : deux siècles d'offrandes, et le cadeau que le trésorier réservait à ses héritiers. La serrure est piégée.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cape-de-protection",
+          "quantite": 1
+        },
+        {
+          "objet": "parchemin-de-sort-niveau-2",
+          "quantite": 1
+        }
+      ],
+      "tables": [
+        {
+          "table": "cry-butin-tresorerie",
+          "jets": 1
+        }
+      ],
+      "pieces": {
+        "po": 260,
+        "pa": 300
+      }
+    },
+    "acces": {
+      "verrou": {
+        "dd": 15,
+        "cle": "cry-cle-du-tresorier"
+      },
+      "piege": "cry-piege-aiguille-du-coffre-fort"
+    },
+    "gardien": "cry-r-le-tresorier-embaume"
+  },
+  {
+    "id": "cry-t-tresorier-bureau",
+    "nom": "Le pupitre du trésorier",
+    "lieu": "cry-chambre-du-tresorier",
+    "contenant": "etabli",
+    "description": "Le pupitre du trésorier : livres de comptes, encrier, balance. Une balance de précision et un tiroir de jetons de compte.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "encre",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 15
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "cry-t-armurerie-marteaux",
+    "nom": "La rangée des marteaux",
+    "lieu": "cry-armurerie",
+    "contenant": "etagere",
+    "description": "Au centre du râtelier, un marteau de guerre à tête à ailerons, plus soigné que les autres, et en dessous un carquois de flèches de garde.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cry-marteau-de-garde",
+          "quantite": 1
+        }
+      ],
+      "tables": [
+        {
+          "table": "cry-butin-armurerie",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {
+      "piege": "cry-piege-plafond-de-l-armurerie"
+    },
+    "gardien": "cry-r-veilleurs-de-fer"
+  },
+  {
+    "id": "cry-t-puits-offrandes-des-pelerins",
+    "nom": "Les offrandes des Pèlerins",
+    "lieu": "cry-puits-de-cendre",
+    "contenant": "sol",
+    "description": "Au bord du puits, des petites piles de cendre soigneusement tassées en forme de cairns, et sous chacune une pièce ou un bout de pain. Les Pèlerins laissent ici ce qu'ils n'emportent pas.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "cry-butin-offrandes",
+          "jets": 1
+        }
+      ],
+      "pieces": {
+        "po": 22,
+        "pc": 30
+      }
+    },
+    "acces": {}
+  },
+  {
+    "id": "cry-t-sceau-coffre-du-gardien",
+    "nom": "Le coffre du gardien",
+    "lieu": "cry-salle-du-sceau",
+    "contenant": "coffre",
+    "description": "Le coffre de bronze au centre de la salle, où le gardien a enfermé, avec sa cotte et son casque de parade, la clé du Sceau de la Forge, qu'il n'a jamais rendue à personne. Il ne s'ouvre que devant la relève, ou devant celui qui l'a vaincu.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cle-du-sceau-de-la-forge",
+          "quantite": 1
+        },
+        {
+          "objet": "ceinturon-des-nains",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 150
+      }
+    },
+    "acces": {},
+    "gardien": "cry-r-gardien-des-cryptes",
+    "condition": {
+      "flag": "cryptes-franchies"
+    }
+  }
+]

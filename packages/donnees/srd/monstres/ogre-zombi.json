@@ -1,0 +1,80 @@
+{
+  "id": "ogre-zombi",
+  "nom": "Ogre zombi",
+  "taille": "G",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 8,
+  "pv": {
+    "moyenne": 85,
+    "des": "9d10 + 36"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 6,
+    "con": 18,
+    "int": 3,
+    "sag": 6,
+    "cha": 5
+  },
+  "sauvegardes": {
+    "sag": 0
+  },
+  "competences": {},
+  "initiative": -2,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "comprend le commun et le gigant, mais ne parle pas",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "robustesse-de-la-non-vie",
+      "nom": "Robustesse de la non-vie",
+      "resume": "Si des dégâts font tomber l'ogre zombi à 0 pv (sauf dégâts radiants ou Coup critique), il fait un JS de Constitution DD 5 + dégâts subis ; en cas de réussite, il reste à 1 pv."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 13 (2d8 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "val-des-cendres",
+  "version": 1,
+  "statut": "publie",
+  "nom": "Le Val des Cendres",
+  "resume": "Une haute vallée où retombe, depuis deux siècles, une cendre grise qui réveille les morts. Le dernier village tient grâce à une lanterne naine qui faiblit, et le groupe est coincé dans la vallée quand le col se referme.",
+  "accroche": "Le col vient de se refermer sous la neige. Au fond du Val des Cendres, la Lanterne de Veillecendre n'est plus qu'une braise, et les morts approchent.",
+  "ton": [
+    "sombre et mélancolique",
+    "espoir dans les petits gestes",
+    "humour sec",
+    "choix qui coûtent"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 5
+  },
+  "depart": {
+    "lieu": "veillecendre",
+    "intro": "La caravane vous a laissés au bord de Veillecendre avant que la neige ne ferme le col. Devant vous, des toits de lauzes serrés autour d'une tour de pierre naine dont le sommet ne jette plus qu'une lueur orangée, timide comme une braise sous la cendre. Il tombe des flocons gris qui ne fondent pas."
+  },
+  "direction": {
+    "style": "Dark fantasy peinte : cendre grise en suspension, pierre naine gravée de runes, lueurs chaudes de lanternes et de braises contre des ombres bleutées et froides. Lumière basse, brume, matières usées (lauze, fer noirci, laine grossière).",
+    "palette": [
+      "gris cendre",
+      "orange braise",
+      "bleu nuit",
+      "bronze terni",
+      "blanc sale de la neige"
+    ],
+    "motsCles": [
+      "cendre qui tombe",
+      "braise mourante",
+      "runes naines",
+      "brume froide",
+      "lanternes",
+      "visages fatigués"
+    ],
+    "interdits": [
+      "soleil éclatant",
+      "couleurs saturées",
+      "technologie moderne",
+      "ciel dégagé",
+      "personnages caricaturaux"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1-la-lanterne-faiblit",
+      "nom": "La Lanterne faiblit",
+      "niveaux": {
+        "min": 1,
+        "max": 5
+      },
+      "resume": "Du village de Veillecendre aux cryptes puis à la Haute-Forge, le groupe découvre pourquoi la Lanterne s'éteint et décide du sort du Cœur-de-Braise, entre les Gardiens, le bailli, le Fer-Gris, les brigands et les Pèlerins gris.",
+      "lieux": [
+        "val-des-cendres"
+      ],
+      "quetes": [
+        "q-vei-le-grain-disparait",
+        "q-vei-la-peur-des-enfants",
+        "q-vei-le-colporteur-et-la-neige",
+        "q-vei-les-lettres-du-col",
+        "q-vei-une-dette-de-bertille",
+        "q-vei-la-braise-de-veille",
+        "q-pdf-les-otages",
+        "q-pdf-le-deserteur",
+        "q-gue-la-bande",
+        "q-gro-les-loups-descendent",
+        "q-gro-la-fosse-aux-morts",
+        "q-gro-le-berger-goliath",
+        "q-gro-les-pelerins-gris",
+        "q-cry-les-noms-des-defunts",
+        "q-cry-le-fossoyeur-pris-au-piege",
+        "q-hf-le-dernier-mecanisme",
+        "q-hf-les-noms-des-morts",
+        "q-fer-gris-le-laissez-passer",
+        "q-gardiens-la-braise",
+        "q-ysolde-l-atelier-du-maitre",
+        "q-korvun-le-marteau-du-clan",
+        "q-mireille-le-frere-perdu",
+        "q-la-lanterne-faiblit"
+      ]
+    }
+  ],
+  "regles": [
+    "Il n'existe aucune magie de résurrection dans le Val : les morts qui se lèvent ne sont pas des âmes revenues mais de la cendre animée par le Cœur-de-Braise.",
+    "La cendre ne tombe jamais à l'intérieur des murs de la Lanterne ni sur ceux qui portent une braise de veille.",
+    "Le MJ ne révèle jamais le secret de Thalgrin et de la Dernière Commande avant que le groupe ait découvert les faits correspondants.",
+    "Les PNJ ont de bonnes raisons : même les antagonistes (Fer-Gris, Pèlerins gris, bailli) croient bien faire ; aucun n'est un simple méchant.",
+    "Les choix de fin ont un coût réel : aucune fin n'est entièrement heureuse."
+  ],
+  "auteurs": [
+    "Claude (Opus 5.5 et Sonnet 5.5), d'après un concept validé par l'utilisateur"
+  ]
+}

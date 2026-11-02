@@ -1,5 +1,6 @@
 // Accès aux données de règles. Le moteur reçoit un objet Donnees ; d'où il vient
 // (fichiers JSON sous Node, import statique côté client) ne le concerne pas.
+import type { Objet } from './monde/schemas';
 import type { Arme, Armure, ChoixCreation, Classe, Don, Espece, Historique, Monstre, Sort } from './schemas';
 
 export interface Donnees {
@@ -12,6 +13,8 @@ export interface Donnees {
   monstres: Map<string, Monstre>;
   sorts: Map<string, Sort>;
   choix: Map<string, ChoixCreation>;
+  /** Catalogue d'objets du SRD (équipement, potions, objets magiques), partagé par tous les mondes. */
+  objets: Map<string, Objet>;
 }
 
 export function indexer<T extends { id: string }>(elements: T[]): Map<string, T> {

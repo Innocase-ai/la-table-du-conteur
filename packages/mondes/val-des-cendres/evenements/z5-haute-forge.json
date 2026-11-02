@@ -1,0 +1,89 @@
+[
+  {
+    "id": "hf-ev-sceau-franchi",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-hall-du-sceau",
+    "unique": true,
+    "narration": "La dalle du sceau s'abaisse derrière vous avec un grondement. Une à une, les lampes de cendre du hall se rallument, et très loin, une cloche sonne une fois : la Haute-Forge sait qu'on est entré.",
+    "effets": [
+      {
+        "flag": "haute-forge-ouverte"
+      },
+      {
+        "fait": "f-hf-porte-du-sceau"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-conduit-franchi",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-conduit-des-fumees",
+    "unique": true,
+    "narration": "Après des heures de reptation, la grille cède et vous débouchez sur la plate-forme du conduit. Une bouffée d'air chaud vous reçoit. Quelque part en dessous, une cloche sonne une fois : la Haute-Forge vous a sentis entrer.",
+    "effets": [
+      {
+        "flag": "haute-forge-ouverte"
+      },
+      {
+        "fait": "f-hf-conduits-de-service"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-ecluse-trouvee",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-ecluse-noire",
+    "unique": true,
+    "narration": "La salle est ronde, noire, humide. Derrière la vanne de bronze, la rivière gronde. Vous avez trouvé l'Écluse noire.",
+    "effets": [
+      {
+        "flag": "ecluse-noire-trouvee"
+      },
+      {
+        "fait": "f-ecluse-noire"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-coeur-atteint",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-forge-du-coeur",
+    "unique": true,
+    "narration": "Le couloir débouche sur une rotonde de feu. Au centre, un cœur de braise bat comme un tambour de guerre ; sur la table de fonte, un petit corps de fer repose, et devant lui, immense, translucide, un roi vous regarde venir. La chaleur est celle d'une bouche d'enfer. Vous avez atteint le Cœur.",
+    "effets": [
+      {
+        "flag": "coeur-atteint"
+      },
+      {
+        "fait": "f-coeur-de-braise"
+      },
+      {
+        "fait": "f-fille-de-fer"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-veine-vue",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-lit-de-braise",
+    "unique": true,
+    "narration": "En contrebas, la Veine rouge coule comme un fleuve de lumière. Vous comprenez soudain que le royaume est bâti sur elle, et qu'elle se nourrit du royaume.",
+    "effets": [
+      {
+        "fait": "f-veine-rouge"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-murmure-de-brunhild",
+    "declencheur": "entree-lieu",
+    "lieu": "hf-atelier-de-brunhild",
+    "unique": true,
+    "narration": "Dans le petit atelier, un jouet d'acier se met à chanter, trois notes très lentes, puis s'arrête. Une enfant a vécu ici, et tout le royaume la pleure encore.",
+    "effets": [
+      {
+        "fait": "f-hf-brunhild-enfant"
+      }
+    ]
+  }
+]

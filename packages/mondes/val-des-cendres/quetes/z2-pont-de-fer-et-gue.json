@@ -1,0 +1,32 @@
+[
+  { "id": "q-pdf-les-otages", "nom": "Les otages de Pont-de-Fer", "type": "secondaire", "donneur": "pdf-oldric-vasseur", "lieu": "pont-de-fer",
+    "resume": "Deux habitants de Veillecendre, un charretier et une jeune herboriste, sont retenus en otage par la Compagnie du Fer-Gris pour un convoi de grain arrivé trop maigre. Les libérer, sans verser de sang si possible, et les ramener chez eux.",
+    "niveau": { "min": 4, "max": 5 }, "debut": "trouver",
+    "etapes": [
+      { "id": "trouver", "texte": "Deux habitants de Veillecendre sont aux mains de la Compagnie. Trouvez où on les retient et comment les approcher.", "completion": { "fait": "f-pdf-otages-a-la-prison" }, "suivantes": ["delivrer"] },
+      { "id": "delivrer", "texte": "Libérez Anselme Cordier et Tiphaine Roussel : en négociant avec Kor Varnak, en présentant un ordre scellé à Oumak, en les faisant évader ou en soudoyant un garde.", "completion": { "flag": "pdf-otages-libres" }, "echec": { "pnj": { "id": "pdf-anselme-cordier", "etat": "mort" } }, "suivantes": ["ramener"] },
+      { "id": "ramener", "texte": "Ramenez Anselme et Tiphaine à Veillecendre. Le village doit apprendre qui les a sauvés.", "completion": { "flag": "pdf-otages-rentres" }, "suivantes": [] }
+    ],
+    "recompenses": { "xp": 600, "pieces": 0, "objets": [], "effets": [ { "reputation": { "faction": "bailliage", "delta": 3 } } ] },
+    "ramifications": "Plusieurs façons de libérer les otages : (1) NÉGOCIER avec Kor Varnak (attitude ≥ 30 ou la bande du Gué réglée : sujet « otages-liberation ») qui libère par ordre scellé, réputation Fer-Gris +10 ; (2) RUSER : sceau authentique (Hosk le vend 250 po, Sulka le donne après q-pdf-le-deserteur, Kor l'offre si alliance) ou faux sceau (Sabine, 80 po ; Oumak ne sait pas lire) ; (3) ÉVADER par les drains (grille derrière la dernière cellule), avec ou sans la tisane d'Oldric ; (4) SOUDOYER un garde de relève ; (5) COMBATTRE dans la prison (rencontre pdf-evasion-de-la-prison, réputation Fer-Gris −20). Ruvak Main-de-Fer veut exécuter les otages dès que Kor est absent : plus le groupe tarde, plus les chances de les sauver diminuent. Si Anselme meurt, la quête échoue et Veillecendre est ulcéré. Le retour d'Anselme à Veillecendre offre la preuve du tribut du bailli (bâton de compte) et peut nourrir le flag bailli-demasque." },
+
+  { "id": "q-pdf-le-deserteur", "nom": "Le mort qui marche encore", "type": "secondaire", "donneur": "pdf-sulka-oeil-clair", "lieu": "pdf-egouts",
+    "resume": "Un jeune soldat du Fer-Gris a déserté plutôt que de brûler une ferme sur l'ordre de Ruvak. Il se cache sous Pont-de-Fer. Le sauver, l'aider à fuir, plaider sa grâce auprès de Kor Varnak ou le livrer : chaque issue a un prix.",
+    "niveau": { "min": 4, "max": 5 }, "prerequis": { "non": { "flag": "pdf-camp-vaincu" } }, "debut": "trouver",
+    "etapes": [
+      { "id": "trouver", "texte": "Un soldat déserteur se cache dans le puits des tisserands ou les drains. Trouvez-le avant que Ruvak ne le fasse.", "completion": { "flag": "pdf-tarn-trouve" }, "suivantes": ["decider"] },
+      { "id": "decider", "texte": "Décidez du sort de Tarn : l'aider à quitter le Val, plaider sa grâce auprès de Kor Varnak, ou le livrer à Ruvak.", "completion": { "ou": [ { "flag": "pdf-deserteur-sauve" }, { "flag": "pdf-deserteur-gracie" }, { "flag": "pdf-deserteur-livre" } ] }, "echec": { "et": [ { "pnj": { "id": "pdf-tarn-le-deserteur", "etat": "mort" } }, { "non": { "flag": "pdf-deserteur-livre" } } ] }, "suivantes": [] }
+    ],
+    "recompenses": { "xp": 450, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Trois issues. (1) AIDER Tarn à fuir (sujet « route ») : il connaît les drains et la rivière ; flag pdf-deserteur-sauve, Fer-Gris −5 ; Sulka remet alors le sceau du Fer-Gris en remerciement. (2) PLAIDER sa grâce auprès de Kor Varnak (attitude ≥ 20) : la peine devient exil, flag pdf-deserteur-gracie, Fer-Gris +5 ; Sulka remet aussi le sceau. (3) LIVRER Tarn à Ruvak : flag pdf-deserteur-livre, Tarn est exécuté à l'aube, Fer-Gris +10 et 60 po, mais Sulka ne parlera plus au groupe. Si Tarn est tué avant tout choix (rixe, embuscade, patrouille), la quête échoue. Le sceau est l'enjeu de la quête de faction « q-fer-gris-le-laissez-passer »." },
+
+  { "id": "q-gue-la-bande", "nom": "La bande du Gué", "type": "secondaire", "donneur": "gue-hilaire-passeur", "lieu": "le-gue",
+    "resume": "Une bande de brigands, menée par un ancien meunier affamé et appuyée par deux ogres, rançonne le gué et les réfugiés. En finir avec les pillages : par le combat, la ruse ou la pitié.",
+    "niveau": { "min": 3, "max": 4 }, "debut": "comprendre",
+    "etapes": [
+      { "id": "comprendre", "texte": "Qui est Gaspard le Borgne, et pourquoi pille-t-il ? Interrogez le batelier, Ysabeau et Gaspard lui-même.", "completion": { "fait": "f-gue-origine-de-la-bande" }, "suivantes": ["trancher"] },
+      { "id": "trancher", "texte": "Mettez fin aux pillages du Gué : par la force, par la ruse, ou en offrant aux familles un toit et du pain.", "completion": { "ou": [ { "flag": "gue-bande-vaincue" }, { "flag": "gue-bande-dissoute" } ] }, "suivantes": [] }
+    ],
+    "recompenses": { "xp": 500, "pieces": 100, "objets": [], "effets": [] },
+    "ramifications": "Quatre issues. (1) COMBATTRE (rencontre gue-bande-et-ogres) : flag gue-bande-vaincue, Gaspard meurt, bande −30, bailliage +10, Fer-Gris +5 ; les familles des cabanes sont à la rue (la conscience du groupe). (2) CORROMPRE ou DUPER Gaspard (alternatives de la rencontre : 250 po, ou l'illusion d'une arrivée du Fer-Gris) : flag gue-bande-dissoute. (3) SE RENDRE à la pitié : rendre l'alliance de la meunière (moulin noyé) ou la poupée de Mélie à Gaspard, promettre un toit aux familles via Ysabeau (flag gue-familles-relogees), puis recueillir sa reddition (sujet « reddition ») : flag gue-bande-dissoute, bande +10 ; le groupe doit obtenir du village ou du Fer-Gris l'asile promis. (4) APAISER les ogres avec des rations pour affaiblir la bande avant tout combat. Jeannot la Mouche trahit si on lui offre de l'or (50 po) et pille en secret les convois du Fer-Gris : le dénoncer à Kor ou à Gaspard modifie les équilibres. Gaspard révèle que le grain du Gué a été réquisitionné par le bailli (f-gue-greniers-du-bailli) : un levier sur le bailliage. Un échec grave (mort d'Ysabeau, massacre des cabanes) ruine la réputation auprès des réfugiés de Veillecendre." }
+]

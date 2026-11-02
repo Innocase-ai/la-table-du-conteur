@@ -1,0 +1,70 @@
+[
+  {
+    "id": "gro-p-eboulement-ravine", "nom": "Éboulement de la ravine", "lieu": "gro-sentier-ravine",
+    "resume": "Des dalles posées en équilibre sur une corniche, que le moindre passage ou un fil tendu fait dégringoler.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "athletisme", "outil": "perche ou corde pour caler les dalles" },
+    "declenchement": "Un fil de chanvre tendu au ras du sentier court jusqu'à une pierre-clef ; la franchir ou la tirer fait basculer une corniche entière sur une zone de 3 m de côté.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d10", "type": "contondant" }],
+    "etats": ["a-terre"],
+    "reinitialisation": false
+  },
+  {
+    "id": "gro-p-gaz-du-filon", "nom": "Poche de gaz du filon", "lieu": "gro-fosse-filon",
+    "resume": "Une poche de gaz lourd, à l'odeur de soufre doux, qui stagne dans le creux sud de la galerie basse du filon.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "survie", "outil": "ouvrir la voie d'air avec une pioche ou une lanterne naine qui vire au vert" },
+    "declenchement": "Remuer le minerai ou entrer dans le creux sud libère un nuage de gaz sur 6 m de rayon ; la flamme nue y devient dangereuse (une torche explose : 1d6 feu à chaque créature à portée).",
+    "sauvegarde": { "caracteristique": "con", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d6", "type": "poison" }],
+    "etats": ["empoisonne"],
+    "reinitialisation": true
+  },
+  {
+    "id": "gro-p-fils-d-alerte", "nom": "Fils d'alerte du couloir", "lieu": "gro-fils-couloir-tisse",
+    "resume": "Un réseau de fils de soie tendus à hauteur de genou : le frôler alerte les araignées et colle les bottes.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "couteau ou dague pour trancher sans vibration" },
+    "declenchement": "Quiconque heurte un fil colle sa jambe à la toile (entravé jusqu'à un jet réussi) et fait vibrer toute la caverne : les araignées sont alertées et arrivent en deux rounds.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": false },
+    "degats": [],
+    "etats": ["entrave"],
+    "effets": [{ "narration": "La toile vibre jusque dans le nid : quelque chose de grand se met en mouvement, là-haut." }],
+    "reinitialisation": false
+  },
+  {
+    "id": "gro-p-aiguille-du-chariot", "nom": "Aiguille empoisonnée du coffre", "lieu": "gro-sentier-caravane",
+    "resume": "Une aiguille de fer dissimulée dans la serrure du coffre du colporteur, enduite d'un poison de ménage.",
+    "detection": { "dd": 13, "competence": "investigation" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils de voleur" },
+    "declenchement": "Forcer la serrure ou tourner une clé non préparée fait jaillir une aiguille qui pique la main.",
+    "sauvegarde": { "caracteristique": "con", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d4", "type": "perforant" }, { "des": "2d4", "type": "poison" }],
+    "etats": ["empoisonne"],
+    "reinitialisation": false
+  },
+  {
+    "id": "gro-p-passerelle-du-puits", "nom": "Passerelle vermoulue du puits", "lieu": "gro-fosse-puits",
+    "resume": "Une passerelle de planches pourries au bord du vide : une section entière cède au premier poids.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "athletisme", "outil": "planches, corde ou clous pour consolider" },
+    "declenchement": "Marcher sur la planche centrale la fait basculer ; la victime tombe dans le puits sur la paroi inférieure, six mètres plus bas.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": false },
+    "degats": [{ "des": "2d6", "type": "contondant" }],
+    "etats": ["a-terre"],
+    "effets": [{ "narration": "Le fracas de la chute roule dans toute la mine ; tout ce qui y rôde tourne la tête." }],
+    "reinitialisation": false
+  },
+  {
+    "id": "gro-p-pieges-du-trappeur", "nom": "Pièges à mâchoires du trappeur", "lieu": "gro-sentier-abri-du-trappeur",
+    "resume": "Des pièges à loups posés tout autour de l'abri, mal signalés par des piquets rongés.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "dague ou outils de voleur" },
+    "declenchement": "Marcher sur une plaque de fer ferme des mâchoires de fer sur la jambe : entravé, dégâts perforants.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": false },
+    "degats": [{ "des": "2d4", "type": "perforant" }],
+    "etats": ["entrave"],
+    "reinitialisation": false
+  }
+]

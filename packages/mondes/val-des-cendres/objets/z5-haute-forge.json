@@ -1,0 +1,214 @@
+[
+  {
+    "id": "marteau-du-premier-forgeron",
+    "nom": "Le marteau du premier forgeron",
+    "categorie": "arme",
+    "rarete": "rare",
+    "valeurPo": 2500,
+    "resume": "Marteau de guerre nain de maître, +2 à l'attaque et aux dégâts. Contre un mort-vivant ou une créature de feu, il frappe en plus à l'énergie radiante : +1d6 aux dégâts, une fois par tour. Éclat doux de forge sur le manche quand on le tient.",
+    "lore": "Forgé par le premier roi de la Haute-Forge dans la Veine rouge, il a battu chaque couronne des onze rois. Il pèse peu pour qui est digne ; il se recouvre de cendre pour les autres. Un forgeron y lit les noms des onze rois dans le marteau et un douzième emplacement vide.",
+    "base": "marteau-de-guerre",
+    "bonus": {
+      "attaque": 2,
+      "degats": 2
+    },
+    "magique": true,
+    "attunement": true,
+    "poidsKg": 2.5,
+    "usage": {
+      "type": "permanent",
+      "resume": "+1d6 dégâts radiants contre un mort-vivant ou une créature de feu, une fois par tour ; sert de focaliseur de forge (avantage aux jets d'outils de forgeron)."
+    },
+    "visuel": "Un marteau de guerre à tête de bronze rouge et long manche de fer noir gravé de onze noms, la tête portant une braise toujours tiède."
+  },
+  {
+    "id": "journal-de-brunhild",
+    "nom": "Le journal de Brunhild",
+    "categorie": "livre",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "resume": "Le journal d'une enfant naine de huit ans, écrit en deux écritures : la sienne, ronde, et celle de son père, au dos des pages. Il révèle la Dernière Commande.",
+    "lore": "Une enfant y note ses petites choses : le chat de forge, la toux qui ne passe pas, Ferbillon qui lui apprend à faire des automates. À la fin, la main du roi : des plans de corps de fer, des tables de proportions, et la dernière phrase, « il lui manque un souffle ».",
+    "poidsKg": 0.3,
+    "visuel": "Un petit carnet à couverture de cuivre, aux coins cabossés, fermé par une chaîne en fil de fer."
+  },
+  {
+    "id": "cle-de-l-ecluse-noire",
+    "nom": "La clé de l'Écluse noire",
+    "categorie": "cle",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "resume": "Grande clé de bronze à trois dents, qui ouvre la serrure de la vanne de l'Écluse noire.",
+    "lore": "Le maître-mécanicien l'avait retirée de la vanne pour qu'aucun roi, dans un moment de folie, ne puisse noyer son propre peuple. Il l'a enfermée dans son coffre, et a oublié le mot de passe en mourant.",
+    "poidsKg": 0.8,
+    "visuel": "Une longue clé de bronze verdi à trois dents, au panneton ouvragé en forme de vague."
+  },
+  {
+    "id": "hf-jeton-de-fonderie",
+    "nom": "Maquette de bronze : la fonderie",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 5,
+    "resume": "Une maquette de bronze de la grande fonderie, à poser sur la table des plans.",
+    "lore": "Une des quatre maquettes de la table des plans de la bibliothèque.",
+    "poidsKg": 0.2,
+    "visuel": "Une petite maquette de bronze, une cuve ronde surmontée d'une cheminée."
+  },
+  {
+    "id": "hf-jeton-d-engrenages",
+    "nom": "Maquette de bronze : les engrenages",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 5,
+    "resume": "Une maquette de bronze de la salle des engrenages, à poser sur la table des plans.",
+    "lore": "Une des quatre maquettes de la table des plans de la bibliothèque.",
+    "poidsKg": 0.2,
+    "visuel": "Une petite maquette de bronze, un empilement de trois roues dentées."
+  },
+  {
+    "id": "hf-jeton-de-citerne",
+    "nom": "Maquette de bronze : la citerne",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 5,
+    "resume": "Une maquette de bronze de la citerne, à poser sur la table des plans.",
+    "lore": "Une des quatre maquettes de la table des plans de la bibliothèque.",
+    "poidsKg": 0.2,
+    "visuel": "Une petite maquette de bronze, un bassin carré avec trois marches."
+  },
+  {
+    "id": "hf-jeton-du-coeur",
+    "nom": "Maquette de bronze : le Cœur",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 5,
+    "resume": "Une maquette de bronze de la Forge du Cœur, à poser sur la table des plans.",
+    "lore": "Une des quatre maquettes de la table des plans de la bibliothèque.",
+    "poidsKg": 0.2,
+    "visuel": "Une petite maquette de bronze, une rotonde avec une braise de cuivre en son centre."
+  },
+  {
+    "id": "hf-plan-maitre-de-ferbillon",
+    "nom": "Le plan-maître du Régulateur",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "resume": "Le plan d'un grand mécanisme : le Régulateur du Cœur, que Ferbillon voulait monter pour limiter le feu du Cœur-de-Braise.",
+    "lore": "Sur un parchemin de peau tendu sur cadre de bois, un enchevêtrement de bielles et de cadrans, annoté dans la marge « refusé par le roi ». C'est la preuve que le désastre aurait pu être évité.",
+    "poidsKg": 0.5,
+    "visuel": "Un grand parchemin tendu sur un cadre de bois, couvert de dessins d'engrenages à l'encre brune."
+  },
+  {
+    "id": "hf-livre-des-noms",
+    "nom": "Le Livre des Noms",
+    "categorie": "livre",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "resume": "Le registre où une scribe note, nom par nom, les morts de la Nuit de la Cendre. Il y manque encore des noms.",
+    "lore": "Le travail de deux siècles. Chaque page porte une colonne de noms de nains, leur métier, leur quartier. Une main ajoute au crayon : « vu à la fin ».",
+    "poidsKg": 2,
+    "visuel": "Un gros registre relié de cuir fauve, aux tranches noircies par les doigts, avec un signet de ruban rouge."
+  },
+  {
+    "id": "hf-diademe-des-onze-rois",
+    "nom": "Le diadème des onze rois",
+    "categorie": "bijou",
+    "rarete": "peu-commun",
+    "valeurPo": 1500,
+    "resume": "Un diadème de bronze noirci serti de onze rubis fumés. Valeur de collection ; porté, il impressionne les morts de la Forge (avantage aux jets de Persuasion et d'Intimidation envers eux).",
+    "lore": "Chaque roi a ajouté un rubis à son couronnement. Le douzième chaton est resté vide.",
+    "magique": false,
+    "poidsKg": 0.6,
+    "visuel": "Un diadème de bronze noirci serti de onze rubis fumés disposés en cercle, un douzième chaton vide au sommet."
+  },
+  {
+    "id": "hf-masque-de-filtrage",
+    "nom": "Masque de filtrage",
+    "categorie": "vetement",
+    "rarete": "peu-commun",
+    "valeurPo": 150,
+    "resume": "Un masque de lin et de charbon qui protège des gaz et de la cendre : avantage aux jets de sauvegarde contre le gaz de cendre et la vapeur toxique.",
+    "lore": "Conçu par la scribe pour survivre aux conduits, il est resté le seul de sa série. On devine un monogramme d'atelier gnome sur le cuir.",
+    "magique": false,
+    "usage": {
+      "type": "permanent",
+      "resume": "Avantage aux sauvegardes contre les gaz et la cendre."
+    },
+    "visuel": "Un masque de cuir noir à museau de lin et de charbon, tenu par deux sangles de laine."
+  },
+  {
+    "id": "hf-cuirasse-de-fonte-grise",
+    "nom": "Cuirasse de fonte grise",
+    "categorie": "armure",
+    "rarete": "peu-commun",
+    "valeurPo": 800,
+    "resume": "Cuirasse de la garde du roi : +1 à la CA ; résistance au feu tant qu'elle est portée à proximité de la Veine.",
+    "lore": "Chaque cuirasse de la garde passait trois nuits dans la Veine rouge avant d'être livrée : le métal garde un fond de cendre vivante.",
+    "base": "cuirasse",
+    "bonus": {
+      "ca": 1
+    },
+    "magique": true,
+    "poidsKg": 20,
+    "visuel": "Une cuirasse de fonte gris sombre, ornée d'une enclume gravée sur la poitrine, un reflet orange dans le métal."
+  },
+  {
+    "id": "hf-eclat-de-veine",
+    "nom": "Éclat de Veine rouge",
+    "categorie": "divers",
+    "rarete": "peu-commun",
+    "valeurPo": 400,
+    "resume": "Un cristal de feu solide. Une fois par repos long, on peut l'écraser pour infliger 3d6 dégâts de feu dans un cône de 4,5 m (Dex DD 14 pour moitié), ou pour réchauffer un camp pour toute une nuit.",
+    "lore": "La Veine rouge cristallise en bordure de lit ; les nains la taillaient en lentilles pour allumer les fours.",
+    "magique": true,
+    "usage": {
+      "type": "consommable",
+      "resume": "3d6 feu en cône de 4,5 m (Dex DD 14), ou chaleur pour une nuit."
+    },
+    "poidsKg": 0.3,
+    "visuel": "Un cristal rouge taillé en pointe, qui luit comme une braise de l'intérieur."
+  },
+  {
+    "id": "hf-ruban-de-brunhild",
+    "nom": "Le ruban de Brunhild",
+    "categorie": "curiosite",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "resume": "Un ruban de laine rouge où sont nouées trois perles de fer. Il appartenait à la fille du roi. Remis à Thalgrin, il l'adoucit.",
+    "lore": "Elle le portait le jour de son dernier anniversaire, trois perles, une par année depuis la mort de sa mère.",
+    "poidsKg": 0.05,
+    "visuel": "Un ruban de laine rouge délavée portant trois perles de fer noires."
+  },
+  {
+    "id": "hf-soufflet-de-ferbillon",
+    "nom": "Soufflet de poche de Ferbillon",
+    "categorie": "divers",
+    "rarete": "peu-commun",
+    "valeurPo": 300,
+    "resume": "Un soufflet de précision pour allumer ou apaiser un feu : permet de souffler sur une braise pour la raviver sans la consumer. Trois charges par jour.",
+    "lore": "Le dernier prototype de Ferbillon, tenu à la main par un enfant. Les notes disent : « pour ma petite étincelle ».",
+    "magique": false,
+    "usage": {
+      "type": "charges",
+      "resume": "Raviver ou étouffer une flamme ou une braise à voulu (3 charges par jour)."
+    },
+    "poidsKg": 0.4,
+    "visuel": "Un petit soufflet de cuir et de laiton à tuyère de cuivre, tenu par une poignée de bois."
+  },
+  {
+    "id": "hf-regulateur-de-ferbillon",
+    "nom": "Régulateur de poche",
+    "categorie": "curiosite",
+    "rarete": "peu-commun",
+    "valeurPo": 500,
+    "resume": "Un instrument de gnome qui mesure la chaleur et la pression d'un foyer : avantage aux jets d'Investigation et d'Arcanes sur les mécanismes et les forges.",
+    "lore": "Réalisé par Ferbillon pour son apprenti, avec une marque de maître au dos. Sa version géante était destinée au Cœur.",
+    "magique": false,
+    "usage": {
+      "type": "permanent",
+      "resume": "Avantage aux jets d'Investigation et d'Arcanes sur les mécanismes."
+    },
+    "poidsKg": 0.3,
+    "visuel": "Un cadran de laiton monté sur bielle, aux aiguilles très fines, sous un verre bombé."
+  }
+]

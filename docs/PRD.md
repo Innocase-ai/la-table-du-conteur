@@ -1,6 +1,6 @@
 # PRD — CRPG narratif animé par LLM (nom de travail à définir)
 
-**Version :** 0.4 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
+**Version :** 0.5 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
 
 ## 1. Vision
 
@@ -68,6 +68,10 @@ Tout calcul de règle est fait par le moteur : jets, modificateurs, points de vi
 - Les choix qui demandent un jet l'affichent clairement, par exemple : *[Persuasion DD 15 — Lysandre]*. Le joueur choisit quel personnage agit.
 - **Structure du monde :** une carte composée de lieux, chaque lieu étant un graphe de scènes (pièces, rencontres, PNJ). Le squelette (lieux, PNJ clés, quête principale) est écrit à l'avance dans une **bible du monde**. Le MJ improvise à l'intérieur de ce cadre.
 - **Réactivité :** réputation, relations avec les PNJ et les compagnons, faits établis (un PNJ mort reste mort).
+
+## 5 bis. Les mondes
+
+Le moteur accueille **des dizaines de mondes** (histoires jouables) sans changer de code : un monde est un dossier de données (`packages/mondes/<id>/`) décrit dans `docs/MONDES.md`, avec des villes, villages, grottes et donjons, beaucoup de PNJ à qui parler et de trésors à trouver. Un validateur (`pnpm monde valider`) contrôle les références, l'accessibilité des lieux, les quêtes, l'équilibre des rencontres et la richesse. Premier monde : le Val des Cendres (chapitre 1, niveaux 1 à 5).
 
 ## 6. Illustrations
 

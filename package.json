@@ -7,7 +7,8 @@
     "typecheck": "tsc -p packages/regles --noEmit && tsc -p outils --noEmit",
     "simuler": "tsx outils/simuler.ts",
     "jeu": "pnpm --filter jeu dev",
-    "images": "tsx outils/images/cli.ts"
+    "images": "tsx outils/images/cli.ts",
+    "monde": "tsx outils/monde/cli.ts"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",

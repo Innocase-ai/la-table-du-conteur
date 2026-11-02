@@ -1,0 +1,286 @@
+[
+  {
+    "id": "hf-p-plaque-du-hall",
+    "nom": "Plaque de pression du hall",
+    "lieu": "hf-hall-du-sceau",
+    "resume": "Une dalle piégée devant le portail intérieur : qui n'est pas annoncé reçoit une décharge de flèches de fer.",
+    "detection": {
+      "dd": 15,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "escamotage",
+      "outil": "outils de voleur"
+    },
+    "declenchement": "Une dalle de la file centrale s'enfonce de deux doigts sous le pas ; huit carreaux de fer jaillissent des colonnes en croisant le hall.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 15,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d10",
+        "type": "perforants"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-lames-de-la-galerie",
+    "nom": "Les lames de la galerie",
+    "lieu": "hf-galerie-des-lames",
+    "resume": "Le couloir de service est semé de plaques à contrepoids qui lancent des lames de faux depuis les parois.",
+    "detection": {
+      "dd": 16,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 16,
+      "competence": "escamotage",
+      "outil": "outils de voleur"
+    },
+    "declenchement": "Une plaque du damier s'enfonce : des faux jumelles balaient le couloir à hauteur de poitrine, d'un mur à l'autre, deux fois de suite.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 16,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "4d10",
+        "type": "tranchants"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": true
+  },
+  {
+    "id": "hf-p-coulee-de-fonderie",
+    "nom": "Coulée de fonderie",
+    "lieu": "hf-grande-fonderie",
+    "resume": "Si le cadran est mal réglé, la cuve géante bascule et déverse un flot de bronze en fusion sur l'allée centrale.",
+    "detection": {
+      "dd": 16,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 17,
+      "competence": "arcanes",
+      "outil": "outils de bricoleur"
+    },
+    "declenchement": "La cuve de bronze bascule avec un bruit de cloche, et une vague de métal rouge cerise se répand le long de la rigole centrale.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 16,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "6d6",
+        "type": "feu"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-vapeur-de-la-forge",
+    "nom": "Vapeur de la forge",
+    "lieu": "hf-forge-aux-vapeurs",
+    "resume": "Une conduite sous pression éclate quand on franchit le couloir d'accès et libère un jet de vapeur brûlante.",
+    "detection": {
+      "dd": 15,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "investigation",
+      "outil": "outils de bricoleur"
+    },
+    "declenchement": "Un joint cède : un mur de vapeur blanche remplit le couloir sur dix mètres et brûle tout ce qu'il touche.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 15,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "4d8",
+        "type": "feu"
+      }
+    ],
+    "etats": [
+      "aveuglé (1 round)"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-gaz-de-cendre",
+    "nom": "Gaz de cendre",
+    "lieu": "hf-puits-des-cendres",
+    "resume": "Un gaz lourd s'accumule au fond du puits depuis deux siècles et étouffe qui s'y attarde sans protection.",
+    "detection": {
+      "dd": 14,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "nature"
+    },
+    "declenchement": "En descendant l'échelle, les lampes pâlissent : le gaz monte, et chaque round passé en bas impose un nouveau jet.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 15,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d8",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonné (1 h)"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-effondrement-du-pont",
+    "nom": "Effondrement du pont de la Veine",
+    "lieu": "hf-pont-de-la-veine",
+    "resume": "Le tablier de basalte, fissuré par la chaleur, s'effondre sous le poids d'un groupe qui court.",
+    "detection": {
+      "dd": 17,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 17,
+      "competence": "athletisme"
+    },
+    "declenchement": "Une moitié du pont se détache avec un craquement sec ; ceux qui sont dessus tombent de dix mètres sur la corniche du lit de braise.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 17,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "4d10",
+        "type": "contondants"
+      },
+      {
+        "des": "2d6",
+        "type": "feu"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-tablier-basculant",
+    "nom": "Tablier basculant",
+    "lieu": "hf-pont-basculant",
+    "resume": "Une mauvaise combinaison de leviers fait basculer le tablier du pont sous les pieds du groupe.",
+    "detection": {
+      "dd": 14,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 16,
+      "competence": "investigation",
+      "outil": "outils de bricoleur"
+    },
+    "declenchement": "Le contrepoids lâche : le pont bascule comme une bascule d'enfant, et jette ceux qui sont dessus dans le gouffre de fonte morte.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 16,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "3d10",
+        "type": "contondants"
+      },
+      {
+        "des": "2d6",
+        "type": "feu"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-coup-de-belier",
+    "nom": "Coup de bélier de l'écluse",
+    "lieu": "hf-ecluse-noire",
+    "resume": "Une erreur dans l'ordre des runes déclenche un coup de bélier d'eau noire dans les conduites de la salle.",
+    "detection": {
+      "dd": 16,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 17,
+      "competence": "arcanes",
+      "outil": "outils de bricoleur"
+    },
+    "declenchement": "La vanne frémit, les conduites claquent comme des coups de canon et un jet d'eau glacée balaie la salle.",
+    "sauvegarde": {
+      "caracteristique": "for",
+      "dd": 17,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "4d8",
+        "type": "contondants"
+      }
+    ],
+    "etats": [
+      "renversé"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "hf-p-poison-du-reliquaire",
+    "nom": "Aiguille du reliquaire",
+    "lieu": "hf-chapelle-de-l-enclume",
+    "resume": "Une aiguille empoisonnée dans la serrure du reliquaire.",
+    "detection": {
+      "dd": 15,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "escamotage",
+      "outil": "outils de voleur"
+    },
+    "declenchement": "Un fil d'acier cache une aiguille qui se plante dans le doigt de qui force la serrure.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 15,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonné (1 h)"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

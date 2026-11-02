@@ -1,0 +1,110 @@
+[
+  {
+    "id": "fin-rallumer",
+    "nom": "La veille reprise",
+    "condition": {
+      "et": [
+        {
+          "flag": "choix-rallumer"
+        },
+        {
+          "flag": "coeur-atteint"
+        }
+      ]
+    },
+    "epilogue": "Le Cœur-de-Braise boit le feu du volontaire et s'apaise : la cendre cesse de tomber, les morts s'effondrent en poussière tiède, et la Lanterne de Veillecendre brûle plus claire qu'elle ne l'a fait depuis deux siècles. Le village est sauvé, mais celui qui est resté à la Forge ne reviendra pas : il veillera désormais le Cœur comme le Veilleur veillait la flamme, et Hesta Cendrebrune, la dernière Mère-Gardienne, montera chaque printemps lui porter du pain jusqu'à ce que ses jambes cèdent. Le bailli Aurèle Montclar garde ses toits mais perd son évacuation, et doit enfin avouer au village ce que le grain a coûté. Les Pèlerins gris perdent leur grâce et se dispersent autour de Frère Ocre, qui s'assoit à la porte de la Forge pour tenir compagnie à l'absent. La Compagnie du Fer-Gris, privée du Cœur, se retire sur Pont-de-Fer, patiente et dangereuse, et Kor Varnak rêve encore à voix basse. Ysolde reste à Veillecendre pour entretenir les rouages de la Lanterne, Korvun forge pour les réfugiés qui peuvent enfin rester, et Mireille reprend la chapelle grise pour les vivants.",
+    "consequences": [
+      "Un volontaire (compagnon ou personnage-joueur) reste à la Haute-Forge et n'en reviendra pas.",
+      "La cendre cesse de tomber ; les morts de la Haute-Forge s'effondrent.",
+      "La Lanterne revit et Veillecendre peut passer l'hiver.",
+      "Le bailli est contraint de révéler le tribut au Fer-Gris si ce n'est déjà fait.",
+      "Les Pèlerins gris perdent leur espérance et se dispersent.",
+      "La Compagnie du Fer-Gris reste un voisin hostile à Pont-de-Fer."
+    ]
+  },
+  {
+    "id": "fin-eteindre",
+    "nom": "L'Écluse noire",
+    "condition": {
+      "et": [
+        {
+          "flag": "choix-eteindre"
+        },
+        {
+          "flag": "coeur-atteint"
+        }
+      ]
+    },
+    "epilogue": "L'Écluse noire s'ouvre et l'eau de la montagne noie le Cœur-de-Braise en une nuit. Les morts de la Haute-Forge s'allongent enfin, la cendre cesse, et le roi Thalgrin, dans un dernier éclat, se tait. Mais la Lanterne s'éteint avec le Cœur, et au printemps le Val est abandonné : Hesta Cendrebrune ferme elle-même la porte de la tour et mène le dernier convoi par le col dégelé, sans se retourner. Le bailli voit son évacuation s'accomplir et ne s'en réjouit pas ; le Fer-Gris, privé de son foyer, repart vers le sud, et Kor Varnak vous regarde passer sans un mot. Les Pèlerins gris s'assoient dans la cendre qui ne tombe plus, silencieux : certains parlent de trahison, d'autres de grâce. Ysolde garde les plans de son maître et la vanne qu'il avait dessinée, Korvun emporte son clan vers les basses terres, et Mireille quitte la chapelle grise en emportant la dernière lampe.",
+    "consequences": [
+      "Le Cœur-de-Braise est noyé et la Haute-Forge est perdue.",
+      "Les morts reposent et la cendre cesse définitivement.",
+      "La Lanterne s'éteint, Veillecendre est abandonnée au printemps.",
+      "Thalgrin et Brunhild ne sont pas délivrés autrement que par le silence.",
+      "La Compagnie du Fer-Gris perd son espoir de foyer et quitte le Val.",
+      "Les réfugiés sont dispersés dans les basses terres."
+    ]
+  },
+  {
+    "id": "fin-achever",
+    "nom": "La Fille de fer",
+    "condition": {
+      "et": [
+        {
+          "flag": "choix-achever"
+        },
+        {
+          "flag": "coeur-atteint"
+        }
+      ]
+    },
+    "epilogue": "Le dernier souffle est donné : la braise de veille, ou la chaleur de celui qui la portait, passe à la Fille de fer, et le froid qui s'installe en lui ne le quittera plus. Brunhild s'éveille, mi-enfant mi-forge, ses yeux de braise levés vers un père qui se défait doucement en cendre tiède, délivré. La cendre cesse de tomber, mais la Haute-Forge ne dort plus : la Fille de fer garde désormais le Val et ses morts apaisés, et vous êtes ses hôtes, sans qu'on sache si c'est un honneur ou une garde. Veillecendre vit à l'ombre de son pas lent ; Hesta Cendrebrune cède la tour à une enfant de deux siècles et se tait, le bailli fait inscrire son nom parmi les titres du village, et les Pèlerins gris la regardent comme un miracle ou comme une profanation. Le Fer-Gris, tenu à distance par une garde que rien n'effraie, se replie sur Pont-de-Fer. Ysolde ne quitte plus les ateliers de la Forge, Korvun se tient à la porte de l'enfant comme à celle d'un clan, et Mireille prie pour celui qui a donné son feu.",
+    "consequences": [
+      "Le dernier souffle (la braise de veille ou la chaleur d'un volontaire) est donné ; son porteur perd sa protection contre la cendre et garde un froid durable.",
+      "Thalgrin est délivré ; Brunhild s'éveille, mi-enfant mi-forge, bien qu'elle ait demandé à reposer.",
+      "La cendre cesse, mais le Val reste haunté par des morts apaisés qui obéissent à Brunhild.",
+      "Le groupe devient l'hôte de la Fille de fer, qui garde la Haute-Forge et la Lanterne.",
+      "Les Gardiens perdent leur rôle ; le village vit sous la protection d'un être qui n'est plus tout à fait humain."
+    ]
+  },
+  {
+    "id": "fin-fer-gris",
+    "nom": "Le fief de guerre",
+    "condition": {
+      "et": [
+        {
+          "flag": "choix-fer-gris"
+        },
+        {
+          "flag": "coeur-atteint"
+        }
+      ]
+    },
+    "epilogue": "Kor Varnak franchit la porte de la forge du Cœur à la tête de ses sapeurs et reçoit le Cœur-de-Braise de vos mains, sans cris, avec une gravité presque triste. Les forges de guerre s'allument, la Compagnie s'installe, et le Val devient un fief : ordre brutal, rations comptées, patrouilles aux portes. La cendre cesse dans le Val mais pas ailleurs, car le Cœur n'est pas apaisé, seulement déplacé, et le grain des basses terres commence à se couvrir de gris. Hesta Cendrebrune est contrainte d'entretenir la Lanterne sous la garde de la Compagnie, le bailli Aurèle Montclar devient son intendant, et les Pèlerins gris sont chassés vers le sud. Ysolde est conscrite pour les mécanismes, Korvun forge pour la Compagnie ou rompt avec vous, et Mireille s'en va avec les Pèlerins expulsés. Le col dégelé s'ouvre sous escorte hobgobeline, et chacun sait ce que ce passage vous a coûté.",
+    "consequences": [
+      "La Compagnie du Fer-Gris obtient le Cœur-de-Braise et la Haute-Forge.",
+      "Le Val devient un fief de guerre ; les Gardiens et le bailliage sont soumis.",
+      "La cendre cesse dans le Val mais continue ailleurs.",
+      "Les Pèlerins gris sont expulsés ; la bande du Gué est écrasée.",
+      "Les compagnons peuvent rompre avec le groupe, selon leur attitude.",
+      "Le groupe quitte le Val sous l'escorte de la Compagnie."
+    ]
+  },
+  {
+    "id": "fin-la-cendre-submerge",
+    "nom": "La cendre submerge Veillecendre",
+    "condition": {
+      "jauge": {
+        "id": "cendre",
+        "min": 5
+      }
+    },
+    "epilogue": "La Lanterne s'éteint avant que vous ayez rien décidé. La cendre tombe sur Veillecendre comme une neige de suie, et là où elle se pose les morts se lèvent : dans les rues, dans les maisons, dans la tour où Hesta Cendrebrune tient jusqu'au bout la dernière braise. Le bailli ordonne une évacuation que personne n'a plus la force de mener, le col reste fermé, les Pèlerins gris attendent sur leurs genoux. Le Fer-Gris, retranché derrière les murs de Pont-de-Fer, tient quelques semaines de plus, mais sa chute n'est qu'une question d'hiver. Ceux d'entre vous qui sont vivants se terrent dans une cave du village, entendent monter le gris, et savent qu'ils ont perdu le Val. Aucune victoire à raconter : le chapitre s'achève sans elle.",
+    "consequences": [
+      "La Lanterne s'éteint et Veillecendre est submergée.",
+      "Hesta, le bailli et la plupart des villageois sont perdus.",
+      "Le chapitre se termine sans victoire ; la partie peut reprendre à la dernière sauvegarde.",
+      "Le Fer-Gris survit quelques semaines derrière Pont-de-Fer."
+    ]
+  }
+]

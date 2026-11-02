@@ -1,0 +1,99 @@
+[
+  {
+    "id": "cendre",
+    "nom": "La Cendre",
+    "resume": "La mesure de ce que la cendre a gagné sur la Lanterne. Elle monte d'un cran à chaque repos long pris hors de la Lanterne, quand une victime innocente s'en va ou quand la veille perd ses défenseurs ; elle baisse quand la Lanterne est nourrie de houille rouge. À 5, la flamme s'éteint et la cendre submerge Veillecendre.",
+    "min": 0,
+    "max": 5,
+    "initial": 1,
+    "paliers": [
+      {
+        "seuil": 1,
+        "nom": "La veille tient",
+        "narration": "La Lanterne brûle bas mais droit. La cendre tombe sur les crêtes et dans le col, jamais sur les toits. Les morts restent loin, au bout des routes où personne ne va.",
+        "effets": []
+      },
+      {
+        "seuil": 2,
+        "nom": "Les morts rôdent aux abords",
+        "narration": "La flamme s'affaisse d'un cran. Au petit matin, on trouve des empreintes grises au bord des champs et un mouton à moitié enseveli de poussière. Les chiens n'aboient plus ; ils regardent la route.",
+        "effets": [
+          {
+            "flag": "z6-cendre-rodeurs"
+          }
+        ]
+      },
+      {
+        "seuil": 3,
+        "nom": "Assauts nocturnes",
+        "narration": "La nuit tombe plus vite. Des silhouettes grises viennent cogner aux palissades du village, une, puis trois, puis douze. La garde sonne le couvre-feu : volets clos, nul dehors après le coucher du soleil, des feux dans toutes les cheminées.",
+        "effets": [
+          {
+            "flag": "z6-couvre-feu"
+          }
+        ]
+      },
+      {
+        "seuil": 4,
+        "nom": "La Lanterne vacille",
+        "narration": "La flamme bat comme un cœur fatigué. Dans les rues, les familles chargent leurs charrettes et partent vers le col fermé en pleine neige, par peur plus que par espoir. Le bailli parle d'évacuation, la Mère-Gardienne ne dort plus, et chaque nuit une maison reste vide.",
+        "effets": [
+          {
+            "flag": "z6-village-se-vide"
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "veilleur-mort"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "vei-oswin-le-veilleur",
+              "etat": "mort"
+            }
+          }
+        ]
+      },
+      {
+        "seuil": 5,
+        "nom": "La Lanterne s'éteint",
+        "narration": "Le dernier éclat de la flamme s'éteint d'un souffle. La cendre tombe sur les toits de Veillecendre comme une neige de suie, et là où elle se pose les morts se lèvent. Le chapitre s'achève sans victoire : la cendre submerge le village.",
+        "effets": [
+          {
+            "flag": "z6-lanterne-eteinte"
+          },
+          {
+            "fin": "fin-la-cendre-submerge"
+          }
+        ]
+      }
+    ],
+    "evolution": [
+      {
+        "declencheur": "repos-long",
+        "delta": 1
+      },
+      {
+        "declencheur": "condition",
+        "delta": 1,
+        "condition": {
+          "flag": "veilleur-mort"
+        }
+      },
+      {
+        "declencheur": "condition",
+        "delta": 1,
+        "condition": {
+          "pnj": {
+            "id": "hesta-cendrebrune",
+            "etat": "mort"
+          }
+        }
+      }
+    ]
+  }
+]

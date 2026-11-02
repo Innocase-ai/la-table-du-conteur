@@ -1,0 +1,164 @@
+[
+  {
+    "id": "gardiens-de-la-veille",
+    "nom": "Les Gardiens de la Veille",
+    "resume": "Ordre laïc de nains, d'humains et de gnomes qui entretient la Lanterne de Veillecendre depuis la fuite de la Haute-Forge. Ils tiennent le registre des Veilleurs, la maison des gardes et le secret de ce que la flamme coûte. Leur Mère-Gardienne, Hesta Cendrebrune, ne dort plus depuis que le Veilleur actuel s'éteint à petit feu.",
+    "objectifs": [
+      "Garder la Lanterne allumée, quoi qu'il en coûte.",
+      "Trouver un successeur volontaire au Veilleur mourant, ou une autre source de flamme.",
+      "Tenir les morts à distance du village et protéger les réfugiés qui s'abritent dans la tour.",
+      "Garder secret ce que la flamme prend à ceux qui la nourrissent, pour que le village ne se vide pas."
+    ],
+    "chef": "hesta-cendrebrune",
+    "reputation": 20,
+    "paliers": [
+      { "seuil": -100, "nom": "Proscrits", "effet": "Hesta refuse de recevoir le groupe ; la Maison des Gardiens et la tour lui sont fermées (plus de repos à l'abri de la Lanterne), Rolf Garde-Capitaine fait surveiller ses faits et gestes. La quête q-gardiens-la-braise n'est plus proposée." },
+      { "seuil": -50, "nom": "Suspects", "effet": "Accueil glacial : pas de soins, pas d'accès aux registres, des gardes qui suivent le groupe à distance. Les Gardiens ne partagent aucun secret sur la Lanterne." },
+      { "seuil": 0, "nom": "Étrangers tolérés", "effet": "Accueil poli et distant. Un lit à la Maison des Gardiens contre quelques pièces, des renseignements d'usage, la tour visitable sous escorte." },
+      { "seuil": 40, "nom": "Alliés de la Veille", "effet": "Hesta se confie : elle parle du Veilleur et de ce que la flamme prend. Soins gratuits à la Maison, accès aux registres des Veilleurs, la quête q-gardiens-la-braise est ouverte. Rolf prête une escorte pour traverser le village de nuit." },
+      { "seuil": 80, "nom": "Dévoués de la Veille", "effet": "Hesta remet au groupe une braise de veille et la clé du dernier secret des Gardiens : elle accepte d'envisager de rallumer le Cœur plutôt que de nourrir la Lanterne. Les gardes suivent le groupe au combat devant les murs du village." }
+    ],
+    "relations": [
+      { "faction": "bailliage", "attitude": -15 },
+      { "faction": "compagnie-du-fer-gris", "attitude": -55 },
+      { "faction": "bande-du-gue", "attitude": -45 },
+      { "faction": "pelerins-gris", "attitude": -35 },
+      { "faction": "morts-de-la-forge", "attitude": -70 }
+    ]
+  },
+  {
+    "id": "bailliage",
+    "nom": "Le bailli et les marchands",
+    "resume": "L'autorité civile de Veillecendre : le bailli Aurèle Montclar, les marchands de grain, de laine et de fer, les maîtres de guilde. Ils tiennent les greniers, le marché et la halle. Ils savent que le grain ne suffira pas pour l'hiver et préparent en silence l'évacuation, en payant à la Compagnie du Fer-Gris un tribut qu'ils taisent.",
+    "objectifs": [
+      "Évacuer les habitants avant l'hiver, ou à défaut obtenir du grain pour tenir.",
+      "Garder l'ordre au village et empêcher la panique.",
+      "Cacher le tribut de grain versé au Fer-Gris tant qu'il achète la paix.",
+      "Protéger les biens et les privilèges des familles de marchands."
+    ],
+    "chef": "aurele-montclar",
+    "reputation": 0,
+    "paliers": [
+      { "seuil": -100, "nom": "Hors-la-loi", "effet": "Le bailli fait arrêter le groupe à vue, interdit aux marchands de lui vendre ou de lui acheter quoi que ce soit, met sa tête à prix auprès de la garde." },
+      { "seuil": -50, "nom": "Indésirables", "effet": "Prix majorés de moitié chez les marchands de Veillecendre, portes de la halle du bailli closes, rumeurs défavorables à l'auberge." },
+      { "seuil": 0, "nom": "Voyageurs", "effet": "Commerce ordinaire aux prix normaux ; le bailli reçoit le groupe en audience publique, sans confidence." },
+      { "seuil": 40, "nom": "Amis du bailli", "effet": "Remise d'un dixième chez les marchands, laissez-passer pour les greniers, missions de confiance. Aurèle admet que le grain manque." },
+      { "seuil": 80, "nom": "Conseillers de la halle", "effet": "Aurèle confesse le tribut au Fer-Gris et le plan d'évacuation ; les marchands avancent des fonds et des provisions pour la suite de l'expédition." }
+    ],
+    "relations": [
+      { "faction": "gardiens-de-la-veille", "attitude": -20 },
+      { "faction": "compagnie-du-fer-gris", "attitude": 15 },
+      { "faction": "bande-du-gue", "attitude": -60 },
+      { "faction": "pelerins-gris", "attitude": -25 },
+      { "faction": "morts-de-la-forge", "attitude": -60 }
+    ]
+  },
+  {
+    "id": "compagnie-du-fer-gris",
+    "nom": "La Compagnie du Fer-Gris",
+    "resume": "Une troupe de hobgobelins disciplinés, battus au sud puis arrivés dans le Val il y a cinq ans. Ils ont pris Pont-de-Fer et y vivent en caserne. Leur capitaine, Kor Varnak, est sincère : il lui faut un foyer pour son peuple, et le Cœur-de-Braise de la Haute-Forge alimenterait des forges de guerre capables de le nourrir et de le défendre.",
+    "objectifs": [
+      "Prendre la Haute-Forge et s'emparer du Cœur-de-Braise.",
+      "Tenir Pont-de-Fer et la route du sud, sa seule voie de ravitaillement.",
+      "Faire payer un tribut de grain à Veillecendre en échange de sa protection.",
+      "Écraser la bande du Gué, qui pille les convois de la Compagnie."
+    ],
+    "chef": "kor-varnak",
+    "reputation": -10,
+    "paliers": [
+      { "seuil": -100, "nom": "Ennemis jurés", "effet": "Attaque à vue des patrouilles, Pont-de-Fer fermé, avis de recherche sur la route du sud. Le Fer-Gris refuse tout parlementaire." },
+      { "seuil": -50, "nom": "Intrus", "effet": "Entrée à Pont-de-Fer refusée sans escorte, patrouilles hostiles qui sommeront le groupe de rebrousser chemin, prix de guerre dans les échoppes." },
+      { "seuil": 0, "nom": "Tolérés", "effet": "Entrée à Pont-de-Fer sous réserve de rendre les armes lourdes à la porte ; Kor Varnak reçoit le groupe en audience brève." },
+      { "seuil": 40, "nom": "Alliés de la Compagnie", "effet": "Le sceau du Fer-Gris est remis au groupe ; accès à l'intendance de la caserne (armes et soins au prix coûtant) ; passage vers la Haute-Forge sous escorte (voie alternative à la clé du sceau). La quête q-fer-gris-le-laissez-passer aboutit." },
+      { "seuil": 80, "nom": "Frères d'armes", "effet": "Kor Varnak partage ses plans de siège et ses éclaireurs ; la Compagnie combat aux côtés du groupe contre la bande ou les morts. S'il obtient le Cœur par le groupe, la fin « Livrer la Forge » devient une alliance." }
+    ],
+    "relations": [
+      { "faction": "gardiens-de-la-veille", "attitude": -25 },
+      { "faction": "bailliage", "attitude": 20 },
+      { "faction": "bande-du-gue", "attitude": -50 },
+      { "faction": "pelerins-gris", "attitude": -5 },
+      { "faction": "morts-de-la-forge", "attitude": -40 }
+    ]
+  },
+  {
+    "id": "bande-du-gue",
+    "nom": "La bande du Gué",
+    "resume": "Des réfugiés affamés devenus pillards, installés au hameau du Gué, qui dépouillent les convois et les voyageurs qui passent la rivière. Leur chef, Gaspard le Borgne, était berger avant la faim ; il n'est pas méchant par goût mais il a cessé de se poser la question. Ils ont quelques ogres à leur solde.",
+    "objectifs": [
+      "Survivre à l'hiver en pillant les caravanes et les voyageurs.",
+      "Éviter la Compagnie du Fer-Gris, qui les traque.",
+      "Garder le Gué, seul passage de la rivière, et en tirer un péage.",
+      "Trouver un refuge pour les familles de la bande, à l'abri du froid."
+    ],
+    "chef": "gaspard-le-borgne",
+    "reputation": -30,
+    "paliers": [
+      { "seuil": -100, "nom": "Cibles désignées", "effet": "La bande tend des embuscades au groupe partout où il passe et ne parlemente plus." },
+      { "seuil": -50, "nom": "Proies", "effet": "Le groupe est détroussé de préférence sur la route ; au Gué, on l'accueille à coups de fronde." },
+      { "seuil": 0, "nom": "Passants", "effet": "Le groupe paie le péage au Gué et peut parler à Gaspard ; il passe sans être attaqué." },
+      { "seuil": 40, "nom": "Complices", "effet": "Gaspard partage sa cache de vivres et ses informations sur la route du sud et Pont-de-Fer ; la bande laisse passer les voyageurs que le groupe protège." },
+      { "seuil": 80, "nom": "Frères de la route", "effet": "La bande suit le groupe dans une action contre les morts ou le Fer-Gris ; Gaspard confie son plan d'évacuer les siens avant l'hiver." }
+    ],
+    "relations": [
+      { "faction": "gardiens-de-la-veille", "attitude": -20 },
+      { "faction": "bailliage", "attitude": -40 },
+      { "faction": "compagnie-du-fer-gris", "attitude": -70 },
+      { "faction": "pelerins-gris", "attitude": -10 },
+      { "faction": "morts-de-la-forge", "attitude": -50 }
+    ]
+  },
+  {
+    "id": "pelerins-gris",
+    "nom": "Les Pèlerins gris",
+    "resume": "Une communauté de croyants, venus des basses terres, qui voient dans la cendre une grâce et dans les morts qui marchent une promesse : se laisser prendre, c'est rejoindre les morts en paix. Ils campent au champ de cendre gris, portent un cordon gris et ne tuent personne. Leur prophète, Frère Ocre, parle doucement et écoute mieux que quiconque.",
+    "objectifs": [
+      "Rejoindre les morts en paix, et y mener ceux qui le veulent.",
+      "Faire taire la Lanterne, qui retient la grâce loin des vivants.",
+      "Accompagner les mourants et ne laisser personne seul à sa dernière heure.",
+      "Obtenir que la Haute-Forge accueille leurs morts sans violence."
+    ],
+    "chef": "frere-ocre",
+    "reputation": 0,
+    "paliers": [
+      { "seuil": -100, "nom": "Impies", "effet": "Ils refusent tout contact et prient pour le groupe d'un air triste ; ils n'offrent ni eau ni abri, et les morts ne les protègent plus des intrus." },
+      { "seuil": -50, "nom": "Importuns", "effet": "Frère Ocre n'accorde qu'une audience brève ; les Pèlerins tournent le dos au groupe au champ de cendre gris." },
+      { "seuil": 0, "nom": "Voyageurs", "effet": "Accueil courtois, de l'eau et un feu au champ de cendre gris ; Frère Ocre expose sa foi sans insister." },
+      { "seuil": 40, "nom": "Compagnons de route", "effet": "Frère Ocre parle de ce qu'il a vu dans la cendre et du Cœur ; les Pèlerins soignent les blessés, donnent un cordon gris (les morts du champ ne s'en prennent pas à qui le porte)." },
+      { "seuil": 80, "nom": "Sœurs et frères gris", "effet": "Ils guident le groupe par le chemin des cendres jusqu'à un accès bas de la Haute-Forge, sans croiser de mort, et font taire les leurs devant le choix du Cœur." }
+    ],
+    "relations": [
+      { "faction": "gardiens-de-la-veille", "attitude": -25 },
+      { "faction": "bailliage", "attitude": -10 },
+      { "faction": "compagnie-du-fer-gris", "attitude": -30 },
+      { "faction": "bande-du-gue", "attitude": -15 },
+      { "faction": "morts-de-la-forge", "attitude": 50 }
+    ]
+  },
+  {
+    "id": "morts-de-la-forge",
+    "nom": "Les morts de la Haute-Forge",
+    "resume": "Les nains de la Haute-Forge, morts la Nuit de la Cendre, que le Cœur-de-Braise entretient depuis deux siècles : cendre qui marche, fidèle à son roi, le spectre Thalgrin Cœur-d'Enclume. Ils ne veulent rien pour eux ; ils veulent seulement que le roi achève sa commande, et ils chassent ceux qui l'en empêchent.",
+    "objectifs": [
+      "Que le roi Thalgrin achève la Dernière Commande.",
+      "Garder la Haute-Forge, ses ateliers et le Cœur de tout profanateur.",
+      "Chasser les vivants qui descendent dans la Forge sans l'accord du roi.",
+      "Obtenir de quoi nourrir le Cœur : le dernier souffle qui manque à la Fille de fer."
+    ],
+    "chef": "thalgrin-coeur-d-enclume",
+    "reputation": -20,
+    "paliers": [
+      { "seuil": -100, "nom": "Profanateurs", "effet": "Les morts s'acharnent sur le groupe sans relâche, relancent les assauts après chaque victoire et suivent le groupe jusqu'aux abords de Veillecendre. Thalgrin ne parlera plus." },
+      { "seuil": -50, "nom": "Intrus", "effet": "Les morts de la Forge ciblent le groupe en premier, les salles se verrouillent derrière lui, le roi refuse l'audience." },
+      { "seuil": 0, "nom": "Visiteurs étrangers", "effet": "Les morts hésitent devant ceux qui respectent les lieux ; ils suivent le groupe sans attaquer tant qu'il ne touche pas aux forges et aux tombes." },
+      { "seuil": 40, "nom": "Hôtes du Roi", "effet": "Thalgrin reçoit le groupe en sa forge et lui parle de sa fille ; les gardiens des galeries laissent passer sans combat." },
+      { "seuil": 80, "nom": "Invités de la Forge", "effet": "Les morts se rangent aux côtés du groupe contre les intrus (Fer-Gris compris) ; Thalgrin confie la nature exacte du dernier souffle qui manque à la Fille de fer." }
+    ],
+    "relations": [
+      { "faction": "gardiens-de-la-veille", "attitude": -80 },
+      { "faction": "bailliage", "attitude": -60 },
+      { "faction": "compagnie-du-fer-gris", "attitude": -70 },
+      { "faction": "bande-du-gue", "attitude": -40 },
+      { "faction": "pelerins-gris", "attitude": 40 }
+    ]
+  }
+]

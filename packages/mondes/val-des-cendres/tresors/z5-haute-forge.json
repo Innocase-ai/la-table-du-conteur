@@ -1,0 +1,549 @@
+[
+  {
+    "id": "hf-tr-banc-du-portier",
+    "nom": "Le banc du portier",
+    "lieu": "hf-hall-du-sceau",
+    "contenant": "coffre",
+    "description": "Un petit coffre de service, sous le banc où le portier de fer s'assoit entre deux visiteurs.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "potion-de-guerison-importante"
+        },
+        {
+          "objet": "rations",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 60
+      }
+    },
+    "acces": {
+      "verrou": {
+        "dd": 14
+      }
+    }
+  },
+  {
+    "id": "hf-tr-niche-des-rois",
+    "nom": "La niche des rois",
+    "lieu": "hf-grande-galerie",
+    "contenant": "cache",
+    "description": "Une niche cachée au pied du onzième socle, remplie d'offrandes des rois au roi à venir.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "ceinturon-des-nains"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 150
+      }
+    },
+    "acces": {},
+    "indice": "f-hf-onzieme-socle"
+  },
+  {
+    "id": "hf-tr-etal-du-ferrailleur",
+    "nom": "L'étal du ferrailleur",
+    "lieu": "hf-marche-souterrain",
+    "contenant": "autre",
+    "description": "Un étal de planches où le ferrailleur empile ses trouvailles invendables : on y fouille des heures.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "hf-table-ferraille",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "hf-tr-maisons-des-forgerons",
+    "nom": "Les maisons des forgerons",
+    "lieu": "hf-quartiers-des-forgerons",
+    "contenant": "sol",
+    "description": "Dans les maisons, des tables mises, des tiroirs de ménage, des bourses oubliées sous des oreillers.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "hf-table-butin-des-morts",
+          "jets": 2
+        }
+      ],
+      "pieces": {
+        "po": 70
+      }
+    },
+    "acces": {},
+    "indice": "f-hf-toux-grise"
+  },
+  {
+    "id": "hf-tr-reliquaire-de-la-chapelle",
+    "nom": "Le reliquaire de la chapelle",
+    "lieu": "hf-chapelle-de-l-enclume",
+    "contenant": "autel",
+    "description": "Un reliquaire de bronze verrouillé derrière l'enclume, renfermant les offrandes du dernier culte.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-jeton-du-coeur"
+        },
+        {
+          "objet": "potion-de-resistance"
+        },
+        {
+          "objet": "eau-benite",
+          "quantite": 2
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 15
+      },
+      "piege": "hf-p-poison-du-reliquaire"
+    },
+    "indice": "f-hf-recette-de-la-cloche"
+  },
+  {
+    "id": "hf-tr-fond-de-citerne",
+    "nom": "Le fond de la citerne",
+    "lieu": "hf-citerne",
+    "contenant": "coffre",
+    "description": "Un coffre de service englouti au bout d'une chaîne, au fond du bassin.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-jeton-de-citerne"
+        },
+        {
+          "objet": "potion-de-respiration-aquatique"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 100
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "perception"
+      },
+      "verrou": {
+        "dd": 15
+      }
+    }
+  },
+  {
+    "id": "hf-tr-cache-du-sergent",
+    "nom": "La cache du sergent",
+    "lieu": "hf-salle-des-gardes",
+    "contenant": "cache",
+    "description": "Sous une latte du plancher, la caisse de paris du sergent Brisefer.",
+    "contenu": {
+      "objets": [],
+      "tables": [
+        {
+          "table": "hf-table-reliques-naines",
+          "jets": 1
+        }
+      ],
+      "pieces": {
+        "po": 85
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 15,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "hf-tr-coffre-d-arsenal",
+    "nom": "Le coffre d'arsenal",
+    "lieu": "hf-armurerie-royale",
+    "contenant": "coffre",
+    "description": "Le coffre où l'on rangeait les pièces de maître de la garde.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "arme-magique-plus-1"
+        },
+        {
+          "objet": "hf-cuirasse-de-fonte-grise"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 17
+      }
+    },
+    "gardien": "hf-r-armurerie-eveillee"
+  },
+  {
+    "id": "hf-tr-cache-des-engrenages",
+    "nom": "La cache des engrenages",
+    "lieu": "hf-salle-des-engrenages",
+    "contenant": "cache",
+    "description": "Une maquette de bronze incrustée dans le moyeu d'une roue, qu'on peut déloger sans arrêter la machine.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-jeton-d-engrenages"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 60
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 16,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "hf-tr-reserves-du-fondeur",
+    "nom": "Les réserves du fondeur",
+    "lieu": "hf-reserves-de-charbon",
+    "contenant": "coffre",
+    "description": "Un coffre à outils enfoui sous un tas de coke.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-jeton-de-fonderie"
+        },
+        {
+          "objet": "outils-de-forgeron"
+        },
+        {
+          "objet": "huile",
+          "quantite": 3
+        }
+      ],
+      "tables": [
+        {
+          "table": "hf-table-ferraille"
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "hf-tr-etagere-des-plans",
+    "nom": "L'étagère des plans",
+    "lieu": "hf-bibliotheque-des-plans",
+    "contenant": "etagere",
+    "description": "Un tube de cuivre étiqueté, rangé à la lettre R.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-plan-maitre-de-ferbillon"
+        },
+        {
+          "objet": "baguette-des-secrets"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 15,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-hf-regulateur"
+  },
+  {
+    "id": "hf-tr-tiroir-secret-des-plans",
+    "nom": "Le tiroir secret des plans",
+    "lieu": "hf-bibliotheque-des-plans",
+    "contenant": "cache",
+    "description": "Le tiroir caché de la table des plans, qui s'ouvre quand la table est juste.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "potion-d-heroisme"
+        },
+        {
+          "objet": "parchemin-de-sort-niveau-4"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 200
+      }
+    },
+    "acces": {},
+    "condition": {
+      "flag": "hf-voute-ouverte"
+    }
+  },
+  {
+    "id": "hf-tr-coffre-du-maitre",
+    "nom": "Le coffre du maître",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "contenant": "coffre",
+    "description": "Le coffre de fonte à cadran de lettres où le maître rangeait ses biens les plus précieux.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cle-de-l-ecluse-noire"
+        },
+        {
+          "objet": "baguette-de-detection-de-la-magie"
+        },
+        {
+          "objet": "outils-de-bricoleur"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 150
+      }
+    },
+    "acces": {
+      "verrou": {
+        "dd": 25
+      }
+    },
+    "indice": "f-hf-ecluse-cle"
+  },
+  {
+    "id": "hf-tr-etabli-de-ferbillon",
+    "nom": "L'établi de Ferbillon",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "contenant": "etabli",
+    "description": "L'établi du maître, couvert d'outils et d'inventions à demi achevées.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-soufflet-de-ferbillon"
+        },
+        {
+          "objet": "heaume-de-comprehension-des-langues"
+        },
+        {
+          "objet": "outils-de-voleur"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "hf-tr-tiroir-de-brunhild",
+    "nom": "Le tiroir de Brunhild",
+    "lieu": "hf-atelier-de-brunhild",
+    "contenant": "cache",
+    "description": "Le tiroir à serrure de gnome de l'établi à taille d'enfant : les trésors d'une petite fille.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "journal-de-brunhild"
+        },
+        {
+          "objet": "hf-ruban-de-brunhild"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 16
+      }
+    },
+    "indice": "f-derniere-commande"
+  },
+  {
+    "id": "hf-tr-tresor-royal",
+    "nom": "Le trésor royal",
+    "lieu": "hf-tresor-royal",
+    "contenant": "vitrine",
+    "description": "Les offrandes de onze règnes : vaisselle d'or, couronnes, et sur un coussin de feutre le marteau du premier forgeron.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "marteau-du-premier-forgeron"
+        },
+        {
+          "objet": "hf-diademe-des-onze-rois"
+        }
+      ],
+      "tables": [
+        {
+          "table": "hf-table-reliques-naines"
+        }
+      ],
+      "pieces": {
+        "po": 800
+      }
+    },
+    "acces": {},
+    "indice": "f-hf-marteau-du-premier",
+    "condition": {
+      "flag": "hf-voute-ouverte"
+    }
+  },
+  {
+    "id": "hf-tr-sarcophage-d-aldis",
+    "nom": "Le sarcophage d'Aldis",
+    "lieu": "hf-sepulcre-d-aldis",
+    "contenant": "sarcophage",
+    "description": "Le sarcophage de la reine : couronne de fer, lettre de cuivre sur la poitrine.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "amulette-de-cicatrisation"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 300
+      }
+    },
+    "acces": {},
+    "gardien": "hf-r-sepulcre-d-aldis",
+    "indice": "f-hf-aldis"
+  },
+  {
+    "id": "hf-tr-cache-de-dagna",
+    "nom": "La cache de Dagna",
+    "lieu": "hf-refuge-de-dagna",
+    "contenant": "cache",
+    "description": "Un renfoncement sous la couchette, où la scribe garde ses réserves de survie.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-masque-de-filtrage"
+        },
+        {
+          "objet": "potion-de-guerison-superieure"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 50
+      }
+    },
+    "acces": {
+      "cache": {
+        "dd": 15,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "hf-tr-forge-aux-vapeurs",
+    "nom": "Les restes de la forge aux vapeurs",
+    "lieu": "hf-forge-aux-vapeurs",
+    "contenant": "sol",
+    "description": "Les outils de précision des maîtres-forgerons, oubliés sur les établis.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "huile-d-insaisissabilite"
+        }
+      ],
+      "tables": [
+        {
+          "table": "hf-table-ferraille",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {}
+  },
+  {
+    "id": "hf-tr-corniche-de-la-veine",
+    "nom": "La corniche de la Veine",
+    "lieu": "hf-lit-de-braise",
+    "contenant": "sol",
+    "description": "Des cristaux de Veine rouge, à ramasser à la pince.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "hf-eclat-de-veine",
+          "quantite": 2
+        },
+        {
+          "objet": "gemme-elementaire"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "hf-tr-offrandes-du-coeur",
+    "nom": "Les offrandes du Cœur",
+    "lieu": "hf-forge-du-coeur",
+    "contenant": "sol",
+    "description": "Au pied du puits de feu, les offrandes laissées par les mourants pour que le roi réussisse : bagues, pièces, outils bénis.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "anneau-de-protection"
+        }
+      ],
+      "tables": [],
+      "pieces": {
+        "po": 500
+      }
+    },
+    "acces": {},
+    "gardien": "hf-r-garde-de-thalgrin",
+    "condition": {
+      "flag": "coeur-atteint"
+    }
+  },
+  {
+    "id": "hf-tr-cache-de-l-ecluse",
+    "nom": "La cache de l'écluse",
+    "lieu": "hf-ecluse-noire",
+    "contenant": "cache",
+    "description": "Le kit d'urgence du gardien de l'écluse : corde, potions, huile.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "potion-de-respiration-aquatique",
+          "quantite": 2
+        },
+        {
+          "objet": "corde-d-ascension"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "perception"
+      }
+    }
+  }
+]

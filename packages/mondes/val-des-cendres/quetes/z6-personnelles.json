@@ -1,0 +1,695 @@
+[
+  {
+    "id": "q-ysolde-l-atelier-du-maitre",
+    "nom": "L'atelier du maître",
+    "type": "personnelle",
+    "donneur": "ysolde-rouage",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "resume": "Ysolde Rouage, apprentie du mécanicien Fennick, garde le carnet de leur ancêtre d'atelier, Ferbillon, maître-mécanicien du roi Thalgrin dans la Haute-Forge. Elle veut retrouver son atelier, comprendre ce qu'il a su avant la Nuit de la Cendre, et décider ce que son héritage vaut aujourd'hui.",
+    "niveau": {
+      "min": 2,
+      "max": 5
+    },
+    "prerequis": {
+      "pnj": {
+        "id": "ysolde-rouage",
+        "attitudeMin": 10,
+        "etat": "vivant"
+      }
+    },
+    "debut": "carnet",
+    "etapes": [
+      {
+        "id": "carnet",
+        "texte": "Ysolde garde le carnet de Ferbillon, mécanicien du roi : une page parle d'un atelier au deuxième niveau des ateliers de la Haute-Forge. Il faut d'abord y entrer.",
+        "completion": {
+          "flag": "haute-forge-ouverte"
+        },
+        "suivantes": [
+          "atelier"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": []
+      },
+      {
+        "id": "atelier",
+        "texte": "Trouvez l'atelier du maître-mécanicien, au deuxième niveau de la Haute-Forge. Ysolde marche en silence ; elle reconnaît les marques de son maître sur chaque linteau.",
+        "completion": {
+          "lieu": "hf-atelier-du-maitre-mecanicien"
+        },
+        "suivantes": [
+          "plan"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "plan",
+        "texte": "Le fantôme de Ferbillon, mort mais pas fini, demande qu'on lui rapporte son plan-maître, rangé dans un tube de cuivre à la bibliothèque des plans, pour qu'il sache que quelqu'un l'a lu.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "hf-plan-maitre-de-ferbillon"
+            },
+            {
+              "flag": "hf-plan-remis"
+            }
+          ]
+        },
+        "suivantes": [
+          "lecture"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "lecture",
+        "texte": "Lisez le plan devant Ferbillon. Ysolde veut qu'il l'entende de sa propre voix.",
+        "completion": {
+          "flag": "hf-plan-remis"
+        },
+        "suivantes": [
+          "a-fennick",
+          "plan-garde"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "fait": "z6-ferbillon-et-la-soupape"
+          },
+          {
+            "fait": "f-nuit-de-la-cendre"
+          },
+          {
+            "fait": "z6-chronologie-forge"
+          },
+          {
+            "attitude": {
+              "pnj": "ysolde-rouage",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "a-fennick",
+        "texte": "Ferbillon demande qu'on emporte son plan jusqu'à des gnomes vivants, de préférence à Veillecendre. Rapportez-le à Fennick, dans l'atelier des rouages.",
+        "completion": {
+          "flag": "z6-plans-remis-a-fennick"
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "ysolde-rouage",
+              "delta": 35
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "fennick-rouage",
+              "delta": 20
+            }
+          },
+          {
+            "objet": {
+              "id": "z6-outils-du-maitre-ferbillon"
+            }
+          },
+          {
+            "xp": 450
+          },
+          {
+            "quete": {
+              "id": "q-ysolde-l-atelier-du-maitre",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "plan-garde",
+        "texte": "Ysolde garde le plan sur elle et poursuit avec vous vers le Cœur. Elle le remettra à Fennick quand elle pourra, ou elle le montera elle-même.",
+        "completion": {
+          "et": [
+            {
+              "flag": "coeur-atteint"
+            },
+            {
+              "objet": "hf-plan-maitre-de-ferbillon"
+            },
+            {
+              "non": {
+                "flag": "z6-plans-remis-a-fennick"
+              }
+            }
+          ]
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "ysolde-rouage",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 300
+          },
+          {
+            "quete": {
+              "id": "q-ysolde-l-atelier-du-maitre",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Deux dénouements. Retour au village : le plan remis à Fennick (flag z6-plans-remis-a-fennick, posé par l'événement d'entrée de l'atelier des rouages) donne à Ysolde la paix du deuil (+35), à Fennick un secret de son ancien maître et au groupe les outils du maître. Ou bien le groupe poursuit vers le Cœur sans repasser par le village : Ysolde garde le plan sur elle (+15). Si Ysolde meurt, la quête échoue. Le fantôme de Ferbillon (PNJ hf-ferbillon, Z5) donne la quête annexe q-hf-le-dernier-mecanisme ; les flags hf-plan-remis et hf-ferbillon-apaise viennent de lui. Récompenses (XP, objet, attitude) dans les effets des étapes finales."
+  },
+  {
+    "id": "q-korvun-le-marteau-du-clan",
+    "nom": "Le marteau du clan",
+    "type": "personnelle",
+    "donneur": "korvun-tete-rase",
+    "lieu": "haute-forge",
+    "resume": "Korvun Tête-Rasée porte la honte de son clan : on dit que son ancêtre, Ghorm Marteau-Vert, a vendu un secret aux nains avant la Nuit de la Cendre. Il croit que le marteau du clan, le marteau du premier forgeron, repose encore dans la Haute-Forge, et que le retrouver, ou prouver l'honneur de l'ancêtre, lavera cette honte.",
+    "niveau": {
+      "min": 2,
+      "max": 5
+    },
+    "prerequis": {
+      "et": [
+        {
+          "pnj": {
+            "id": "korvun-tete-rase",
+            "attitudeMin": 10,
+            "etat": "vivant"
+          }
+        },
+        {
+          "fait": "f-orcs-et-nains"
+        }
+      ]
+    },
+    "debut": "honte",
+    "etapes": [
+      {
+        "id": "honte",
+        "texte": "Korvun veut laver la honte du clan Marteau-Vert : le marteau du clan est resté à la Haute-Forge, dit-il, et nul ne l'y a vu depuis deux siècles. Il faut y entrer, ou trouver à Ormgard la preuve que l'ancêtre n'a pas trahi.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "haute-forge-ouverte"
+            },
+            {
+              "objet": "cry-plaque-des-allies"
+            },
+            {
+              "objet": "marteau-du-premier-forgeron"
+            }
+          ]
+        },
+        "suivantes": [
+          "relique"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "mort"
+              }
+            },
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "parti"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "relique",
+        "texte": "Rapportez le marteau du premier forgeron, que le roi garde dans son trésor royal, ou à défaut la plaque des alliés d'Ormgard, qui dit que celui qui a parlé n'a pas trahi, mais sauvé.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "marteau-du-premier-forgeron"
+            },
+            {
+              "objet": "cry-plaque-des-allies"
+            }
+          ]
+        },
+        "suivantes": [
+          "clan"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "mort"
+              }
+            },
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "parti"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 200
+          }
+        ]
+      },
+      {
+        "id": "clan",
+        "texte": "Rapportez la relique à la forge des réfugiés de Veillecendre : Grodak Marteau-Vert et les siens doivent la voir de leurs yeux.",
+        "completion": {
+          "flag": "z6-korvun-clan-informe"
+        },
+        "suivantes": [
+          "honneur-marteau",
+          "honneur-plaque"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "mort"
+              }
+            },
+            {
+              "pnj": {
+                "id": "korvun-tete-rase",
+                "etat": "parti"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "honneur-marteau",
+        "texte": "Le marteau du clan est de retour. Grodak, tremblant, le soulève : l'ancêtre n'a pas vendu le clan, il lui a épargné la Nuit. Korvun relève la tête, et le clan avec lui.",
+        "completion": {
+          "et": [
+            {
+              "flag": "z6-korvun-clan-informe"
+            },
+            {
+              "objet": "marteau-du-premier-forgeron"
+            }
+          ]
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "fait": "f-orcs-et-nains"
+          },
+          {
+            "attitude": {
+              "pnj": "korvun-tete-rase",
+              "delta": 40
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "grodak-marteau-vert",
+              "delta": 25
+            }
+          },
+          {
+            "xp": 600
+          },
+          {
+            "quete": {
+              "id": "q-korvun-le-marteau-du-clan",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "honneur-plaque",
+        "texte": "Le marteau reste hors de portée, mais la plaque des alliés lave l'honneur de l'ancêtre. Grodak la lit à voix haute devant le clan. Korvun garde la tête haute, le poing serré sur une absence.",
+        "completion": {
+          "et": [
+            {
+              "flag": "z6-korvun-clan-informe"
+            },
+            {
+              "objet": "cry-plaque-des-allies"
+            },
+            {
+              "non": {
+                "objet": "marteau-du-premier-forgeron"
+              }
+            }
+          ]
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "fait": "f-orcs-et-nains"
+          },
+          {
+            "attitude": {
+              "pnj": "korvun-tete-rase",
+              "delta": 25
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "grodak-marteau-vert",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 400
+          },
+          {
+            "quete": {
+              "id": "q-korvun-le-marteau-du-clan",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Deux dénouements : le marteau du premier forgeron rapporté (le clan est lavé et Korvun reçoit sa place, +40), ou seulement la plaque des alliés d'Ormgard (honneur lavé, mais sans l'arme du clan, +25). Le marteau dort dans le trésor royal (hf-tr-tresor-royal, Z5), derrière une voûte que Thalgrin n'ouvre qu'à qui jure de lui ramener le dernier souffle : le serment pèse sur le choix de la fin. Si le groupe livre la Forge au Fer-Gris, Korvun peut rompre. Si Korvun meurt ou quitte le groupe, la quête échoue. Le flag z6-korvun-clan-informe est posé par l'événement d'entrée à la forge des réfugiés."
+  },
+  {
+    "id": "q-mireille-le-frere-perdu",
+    "nom": "Le frère perdu",
+    "type": "personnelle",
+    "donneur": "mireille-vanhaut",
+    "lieu": "champ-de-cendre-gris",
+    "resume": "Mireille Vanhaut, clerc tieffelin et ancienne Pèlerine grise, a quitté la communauté quand sa foi a craqué. Son frère, lui, y est resté. Elle veut le retrouver au champ de cendre gris et le convaincre de ne pas se laisser prendre par la cendre, ou à défaut lui dire adieu.",
+    "niveau": {
+      "min": 2,
+      "max": 5
+    },
+    "prerequis": {
+      "pnj": {
+        "id": "mireille-vanhaut",
+        "attitudeMin": 10,
+        "etat": "vivant"
+      }
+    },
+    "debut": "piste",
+    "etapes": [
+      {
+        "id": "piste",
+        "texte": "Le frère de Mireille a rejoint les Pèlerins gris. Ils campent au champ de cendre gris, au bout du sentier. Mireille a peur de ce qu'elle y trouvera.",
+        "completion": {
+          "lieu": "champ-de-cendre-gris"
+        },
+        "suivantes": [
+          "rencontre"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "mireille-vanhaut",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "fait": "f-pelerins-motif"
+          },
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "rencontre",
+        "texte": "Cherchez le frère de Mireille parmi les Pèlerins. Il porte un cordon gris au poignet et ne parle plus que de paix.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "z6-mireille-frere-retrouve"
+            },
+            {
+              "pnj": {
+                "id": "gro-frere-de-mireille",
+                "attitudeMin": 15
+              }
+            }
+          ]
+        },
+        "suivantes": [
+          "convaincre"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "mireille-vanhaut",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "convaincre",
+        "texte": "Il croit à la grâce de la cendre. Mireille veut le convaincre qu'il peut rester vivant et utile, ou qu'à tout le moins il ne s'éteigne pas seul. Il faut des mots, un souvenir, une preuve.",
+        "completion": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "gro-frere-de-mireille",
+                "attitudeMin": 50
+              }
+            },
+            {
+              "flag": "z6-mireille-respecte-son-choix"
+            },
+            {
+              "pnj": {
+                "id": "gro-frere-de-mireille",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "suivantes": [
+          "retour-chapelle",
+          "adieu",
+          "perdu"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "mireille-vanhaut",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "retour-chapelle",
+        "texte": "Il a posé son cordon. Il revient à la chapelle grise de Veillecendre avec Mireille. Il ne croit plus à la grâce, mais à ce qu'ils ont dit.",
+        "completion": {
+          "et": [
+            {
+              "pnj": {
+                "id": "gro-frere-de-mireille",
+                "attitudeMin": 50
+              }
+            },
+            {
+              "non": {
+                "pnj": {
+                  "id": "gro-frere-de-mireille",
+                  "etat": "mort"
+                }
+              }
+            }
+          ]
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "flag": "z6-frere-de-mireille-sauve"
+          },
+          {
+            "deplacer": {
+              "pnj": "gro-frere-de-mireille",
+              "lieu": "vei-chapelle-grise"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "mireille-vanhaut",
+              "delta": 40
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 550
+          },
+          {
+            "quete": {
+              "id": "q-mireille-le-frere-perdu",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "adieu",
+        "texte": "Il reste. Mireille dit adieu à son frère, le front contre le sien, et elle comprend que c'est sa façon à lui de chercher la paix. Elle n'a plus à porter ce qu'elle n'a pas pu changer.",
+        "completion": {
+          "flag": "z6-mireille-respecte-son-choix"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "mireille-vanhaut",
+              "delta": 20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 400
+          },
+          {
+            "quete": {
+              "id": "q-mireille-le-frere-perdu",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "perdu",
+        "texte": "Son frère est mort. Mireille se tait, longtemps. Elle ne dira pas que c'est de votre faute ; elle ne dira rien.",
+        "completion": {
+          "pnj": {
+            "id": "gro-frere-de-mireille",
+            "etat": "mort"
+          }
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "mireille-vanhaut",
+              "delta": -35
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -20
+            }
+          },
+          {
+            "xp": 100
+          },
+          {
+            "quete": {
+              "id": "q-mireille-le-frere-perdu",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Trois dénouements : le frère convaincu rentre au village avec Mireille (+40, il vit à la chapelle grise) ; le frère reste parmi les Pèlerins et Mireille fait ses adieux (+20, flag z6-mireille-respecte-son-choix posé par le MJ lorsque le groupe accepte sa décision) ; le frère meurt (−35 et réputation des Pèlerins en baisse). Si Mireille meurt, la quête échoue. La persuasion du frère repose sur son attitude (>= 50) : souvenirs partagés, preuves que la Lanterne ne le retient pas, présence de Frère Ocre. Récompenses dans les effets des étapes finales."
+  }
+]

@@ -1,0 +1,14 @@
+[
+  { "id": "pdf-releve-de-garde", "declencheur": "entree-lieu", "lieu": "pdf-remparts", "unique": false,
+    "narration": "Le cor sonne deux notes. Les sentinelles quittent leurs postes dans un ordre réglé ; une lanterne passe d'une tour à l'autre, dont les couleurs s'enchaînent comme un chapelet. Pendant le temps d'un battement, la tour nord est vide. La relève, à la minute près, laisse un trou dans la veille.",
+    "effets": [ { "fait": "f-pdf-releve-des-gardes" } ] },
+  { "id": "pdf-convoi-de-fer-gris", "declencheur": "entree-lieu", "lieu": "pdf-le-pont-de-fer", "unique": true,
+    "narration": "Un convoi de charrettes chargées de barres de fer terni franchit le pont, escorté par une main de la Compagnie. Les barres sont grises, mates ; les soldats toussent dans la poussière des roues. Le sergent de tête compte à voix haute, charrette après charrette, comme un chapelet. Un gobelin court derrière, un morceau de pain à la main.",
+    "effets": [ { "fait": "f-pdf-fer-gris-la-trempe" } ] },
+  { "id": "gue-refugies-detrousses", "declencheur": "entree-lieu", "lieu": "le-gue", "unique": true,
+    "narration": "Au bord du gué, une famille de réfugiés assise dans la boue regarde les affaires qu'on vient de lui prendre : couvertures, sac de grain, une vieille mule. Une femme berce un enfant sans un mot. Deux bandits s'éloignent en riant. Hilaire, sur son ponton, détourne les yeux et rame.",
+    "effets": [ { "fait": "f-gue-pillages-des-refugies" } ] },
+  { "id": "pdf-ultimatum-de-ruvak", "declencheur": "condition", "condition": { "et": [ { "quete": { "id": "q-pdf-les-otages", "statut": "active" } }, { "non": { "flag": "pdf-otages-libres" } } ] }, "unique": true,
+    "narration": "Dans la grande halle, on murmure que Ruvak Main-de-Fer a fixé la date : à la prochaine pleine lune, si le grain n'est pas arrivé, les otages seront pendus. Les hobgobelins se taisent quand il passe. Kor Varnak est vu sortir de la caserne, le visage fermé.",
+    "effets": [ { "fait": "f-pdf-ruvak-veut-la-guerre" } ] }
+]

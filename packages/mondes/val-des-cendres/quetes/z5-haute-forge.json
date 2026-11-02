@@ -1,0 +1,200 @@
+[
+  {
+    "id": "q-hf-le-dernier-mecanisme",
+    "nom": "Le dernier mécanisme du maître",
+    "type": "secondaire",
+    "donneur": "hf-ferbillon",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "resume": "Le fantôme du maître-mécanicien gnome Ferbillon est lié à son atelier par un plan jamais lu. Il veut que le groupe retrouve son plan-maître du Régulateur, le lui lise, puis l'emporte à ses héritiers vivants.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "debut": "retrouver-le-plan",
+    "etapes": [
+      {
+        "id": "retrouver-le-plan",
+        "texte": "Ferbillon attend son plan-maître du Régulateur, rangé dans un tube de cuivre au rayon R de la bibliothèque des plans.",
+        "completion": {
+          "objet": "hf-plan-maitre-de-ferbillon"
+        },
+        "suivantes": [
+          "remettre-le-plan"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-eteindre"
+            },
+            {
+              "flag": "choix-fer-gris"
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "remettre-le-plan",
+        "texte": "Rapportez le plan à Ferbillon, dans son atelier, et lisez-le-lui.",
+        "completion": {
+          "flag": "hf-plan-remis"
+        },
+        "suivantes": [
+          "le-repos-du-maitre",
+          "le-regulateur-au-coeur"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-eteindre"
+            },
+            {
+              "flag": "choix-fer-gris"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "le-repos-du-maitre",
+        "texte": "Ferbillon est apaisé : il laisse le plan au groupe, avec la mission de le confier à ses héritiers de Veillecendre, Fennick et Ysolde Rouage.",
+        "completion": {
+          "flag": "hf-ferbillon-apaise"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "fait": "f-hf-regulateur"
+          },
+          {
+            "xp": 300
+          }
+        ]
+      },
+      {
+        "id": "le-regulateur-au-coeur",
+        "texte": "Variante : poser le plan au Cœur même, avec la braise d'un volontaire, pour que le Régulateur plafonne la chaleur et que le volontaire devienne gardien plutôt que combustible.",
+        "completion": {
+          "et": [
+            {
+              "flag": "hf-plan-remis"
+            },
+            {
+              "flag": "choix-rallumer"
+            }
+          ]
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "fait": "f-hf-volontaire-reste"
+          },
+          {
+            "xp": 400
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [
+        "hf-regulateur-de-ferbillon"
+      ],
+      "effets": [
+        {
+          "flag": "hf-ferbillon-apaise"
+        }
+      ]
+    },
+    "ramifications": "Le groupe peut garder le plan (étape finale : Ferbillon est apaisé) ou le poser au Cœur dans la fin « rallumer » (le volontaire devient gardien plutôt que combustible). Si le Cœur est noyé (fin « éteindre ») ou livré au Fer-Gris avant que le plan soit remis, la quête échoue : Ferbillon s'efface sans bruit. Le plan permet aussi de nourrir la quête personnelle q-ysolde-l-atelier-du-maitre : Ysolde reconnaîtra la main du maître."
+  },
+  {
+    "id": "q-hf-les-noms-des-morts",
+    "nom": "Les noms des morts",
+    "type": "secondaire",
+    "donneur": "hf-dagna-plume-de-plomb",
+    "lieu": "hf-refuge-de-dagna",
+    "resume": "Dagna, la scribe survivante, veut compléter son Livre des Noms : il lui manque les noms inscrits dans les quartiers des forgerons, la salle des gardes et le sépulcre d'Aldis.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "debut": "copier-les-noms",
+    "etapes": [
+      {
+        "id": "copier-les-noms",
+        "texte": "Rapportez à Dagna ce qu'on peut lire dans les quartiers, la salle des gardes et le sépulcre d'Aldis.",
+        "completion": {
+          "et": [
+            {
+              "fait": "f-hf-toux-grise"
+            },
+            {
+              "fait": "f-hf-garde-du-roi"
+            },
+            {
+              "fait": "f-hf-aldis"
+            }
+          ]
+        },
+        "suivantes": [
+          "rendre-le-livre"
+        ],
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "rendre-le-livre",
+        "texte": "Racontez à Dagna ce que vous avez lu : elle complétera ses pages et vous remettra son Livre.",
+        "completion": {
+          "flag": "hf-noms-recueillis"
+        },
+        "suivantes": [
+          "porter-le-livre"
+        ],
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "porter-le-livre",
+        "texte": "Emportez le Livre des Noms jusqu'à Veillecendre et confiez-le aux Gardiens de la Veille.",
+        "completion": {
+          "objet": "hf-livre-des-noms"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [
+        "hf-masque-de-filtrage"
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "hf-dagna-plume-de-plomb",
+            "delta": 20
+          }
+        }
+      ]
+    },
+    "ramifications": "Si le Cœur est noyé (éteindre), la cendre cesse et Dagna peut enfin quitter ses conduits ; le livre est achevé. Si le groupe choisit de rallumer, le volontaire peut demander à Dagna d'inscrire son nom en tête du livre. Elle accepte de suivre le groupe jusqu'à Veillecendre pour retrouver sa famille (fait f-hf-dagna-famille)."
+  }
+]

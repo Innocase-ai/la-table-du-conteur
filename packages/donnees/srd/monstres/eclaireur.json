@@ -1,0 +1,102 @@
+{
+  "id": "eclaireur",
+  "nom": "Éclaireur",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 16,
+    "des": "3d8 + 3"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 14,
+    "con": 12,
+    "int": 11,
+    "sag": 13,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6,
+    "nature": 4,
+    "perception": 5,
+    "survie": 5
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "commun et une autre langue",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'éclaireur effectue deux attaques, réparties à sa guise entre Épée courte et Arc long.",
+      "multiattaque": [
+        {
+          "action": "epee-courte",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "epee-courte",
+      "nom": "Épée courte",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-long",
+      "nom": "Arc long",
+      "cout": "action",
+      "resume": "À distance +4, portée 45/180 m : 6 (1d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

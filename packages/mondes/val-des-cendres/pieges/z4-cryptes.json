@@ -1,0 +1,264 @@
+[
+  {
+    "id": "cry-piege-dalle-du-vestibule",
+    "nom": "La dalle aux faucilles",
+    "lieu": "cry-vestibule",
+    "resume": "Une dalle de pression au centre du vestibule déclenche des faucilles de bronze cachées dans les murs, à hauteur de jambe.",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur (ou une cale de fer glissée dans la rainure)"
+    },
+    "declenchement": "Un poids de plus de vingt kilos sur la dalle centrale enfonce un loquet : deux faucilles balaient la salle de gauche à droite.",
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "tranchant"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 13,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-aiguille-du-sarcophage",
+    "nom": "L'aiguille du premier Porteur",
+    "lieu": "cry-rotonde",
+    "resume": "Le couvercle d'un sarcophage cache une aiguille de bronze enduite d'un poison ancien, qui perce la main de qui le soulève.",
+    "detection": {
+      "dd": 14,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur"
+    },
+    "declenchement": "Soulever le couvercle sans retirer d'abord la goupille du mécanisme libère une aiguille dans le bord, sous la paume.",
+    "degats": [
+      {
+        "des": "1d4",
+        "type": "perforant"
+      },
+      {
+        "des": "2d6",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonne"
+    ],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 13,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-glyphe-de-la-chapelle",
+    "nom": "Le glyphe de la trempe ratée",
+    "lieu": "cry-chapelle-des-forgerons",
+    "resume": "Si les runes de l'autel sont touchées dans le mauvais ordre, un glyphe inscrit sous l'enclume projette une gerbe de métal en fusion.",
+    "detection": {
+      "dd": 14,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "arcanes",
+      "outil": "ou effacer le glyphe avec de l'eau-forte ou une trempe d'eau bénite"
+    },
+    "declenchement": "Une rune touchée dans le mauvais ordre fait s'illuminer le glyphe : la chapelle s'emplit d'un feu cuivré.",
+    "degats": [
+      {
+        "des": "2d8",
+        "type": "feu"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 14,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-plafond-de-l-armurerie",
+    "nom": "Le plafond-enclume",
+    "lieu": "cry-armurerie",
+    "resume": "Une dalle de plafond, retenue par une chaîne, s'écrase sur la rangée de marteaux quand on en décroche un.",
+    "detection": {
+      "dd": 14,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "escamotage",
+      "outil": "pied-de-biche ou outils de voleur pour bloquer la chaîne"
+    },
+    "declenchement": "Décrocher un marteau de la rangée centrale tire sur une chaîne cachée : la dalle du plafond retombe.",
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "narration": "Le fracas résonne dans tout l'étage : les armures animées de l'armurerie s'éveillent."
+      }
+    ],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 14,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-vapeur-du-puits",
+    "nom": "La vapeur de cendre",
+    "lieu": "cry-puits-de-cendre",
+    "resume": "Par bouffées, le puits expulse un nuage de cendre chaude qui brûle la gorge et aveugle.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "survie",
+      "outil": "un linge mouillé sur le visage et de ne pas s'attarder au bord"
+    },
+    "declenchement": "Au passage de la galerie circulaire, une bouffée de cendre grise jaillit du puits à intervalles irréguliers.",
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonne"
+    ],
+    "effets": [],
+    "reinitialisation": true,
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 13,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-effondrement-du-refectoire",
+    "nom": "Le plancher du réfectoire",
+    "lieu": "cry-refectoire",
+    "resume": "Le sol de la moitié ouest du réfectoire ne tient plus que par habitude ; il cède sous une charge.",
+    "detection": {
+      "dd": 12,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "athletisme",
+      "outil": "étayer avec des planches ou une corde"
+    },
+    "declenchement": "Plus d'un pas sur la zone fissurée et le sol s'ouvre sur le gouffre.",
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "narration": "Le groupe tombe de six mètres sur la pente d'éboulis du puits de cendre."
+      }
+    ],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-aiguille-du-coffre-fort",
+    "nom": "L'aiguille du trésorier",
+    "lieu": "cry-chambre-du-tresorier",
+    "resume": "La serrure du coffre-fort mural cache une aiguille empoisonnée à un venin de cendre qui ralentit le cœur.",
+    "detection": {
+      "dd": 15,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur"
+    },
+    "declenchement": "Forcer la serrure sans neutraliser le poussoir pique le doigt à travers le trou de clé.",
+    "degats": [
+      {
+        "des": "1d4",
+        "type": "perforant"
+      },
+      {
+        "des": "2d8",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonne"
+    ],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 14,
+      "moitieSiReussite": true
+    }
+  },
+  {
+    "id": "cry-piege-cendre-des-urnes",
+    "nom": "Le souffle des urnes",
+    "lieu": "cry-galerie-des-urnes",
+    "resume": "Une urne mal replacée libère le souffle gris qui y dormait : les morts de la galerie s'agitent.",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "arcanes",
+      "outil": "ou remettre l'urne à la main, sans brusquerie"
+    },
+    "declenchement": "Si une urne est posée dans la mauvaise niche, un souffle de cendre froide s'en échappe et ronge les poumons.",
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "nécrotique"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 12,
+      "moitieSiReussite": true
+    }
+  }
+]

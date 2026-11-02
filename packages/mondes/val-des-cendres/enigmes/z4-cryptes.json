@@ -1,0 +1,281 @@
+[
+  {
+    "id": "cry-e-les-urnes",
+    "nom": "Les urnes et leurs niches",
+    "lieu": "cry-galerie-des-urnes",
+    "enonce": "Quatre urnes renversées, chacune marquée d'un nom et d'un emblème de métier ; quatre niches, chacune surmontée d'une épitaphe. Remettez chaque urne dans la niche qui raconte sa mort.",
+    "solution": {
+      "type": "placement",
+      "emplacements": {
+        "niche-pierre": "cry-urne-de-brokk",
+        "niche-feu": "cry-urne-de-hilde",
+        "niche-voix": "cry-urne-de-torvald",
+        "niche-souffle": "cry-urne-de-gunnhild"
+      }
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chaque urne porte un nom et l'emblème d'un métier (un pic, des tenailles de fondeur, un battant de cloche, une plume). Chaque niche porte une épitaphe qui évoque la mort du défunt."
+      },
+      {
+        "niveau": 2,
+        "texte": "Un mineur meurt de la pierre, une fondeuse du feu. Mais comment un sonneur perd-il sa voix, et une scribe son souffle ?",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Pierre : Brokk, le mineur au pic. Feu : Hilde, la fondeuse aux tenailles. Voix : Torvald, le sonneur au battant. Souffle gris : Gunnhild, la scribe à la plume.",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "cry-piege-cendre-des-urnes",
+      "resume": "L'urne mal placée libère son souffle gris."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "cry-urnes-apaisees"
+        },
+        {
+          "fait": "f-cry-urnes-et-niches"
+        },
+        {
+          "fait": "f-cry-noms-des-defunts"
+        },
+        {
+          "debloquer": "cry-escalier-des-urnes"
+        },
+        {
+          "xp": 100
+        }
+      ],
+      "tresor": "cry-t-niche-secrete",
+      "resume": "Les quatre urnes retrouvent leur place ; un déclic, et le panneau du fond pivote sur un escalier. Une niche s'ouvre sur une petite cavité."
+    }
+  },
+  {
+    "id": "cry-e-les-trois-runes",
+    "nom": "Les trois runes de la chapelle",
+    "lieu": "cry-chapelle-des-forgerons",
+    "enonce": "Trois piliers de rune devant l'autel-enclume : Braise, Marteau, Trempe. Les fresques montrent, dans le désordre, un fer plongé dans l'eau, un marteau sur l'enclume, un soufflet qui ranime la braise. Une inscription circulaire court autour de l'autel.",
+    "solution": {
+      "type": "sequence",
+      "ordre": [
+        "braise",
+        "marteau",
+        "trempe"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "L'inscription de l'autel dit : « Que la braise éveille, que le marteau dise, que l'eau garde. »"
+      },
+      {
+        "niveau": 2,
+        "texte": "Les trois fresques montrent les trois gestes d'une même lame : on ne trempe pas ce qui n'a pas été frappé, on ne frappe pas ce qui n'a pas été chauffé.",
+        "competence": "religion",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Ordre des gestes de la forge : d'abord la braise, puis le marteau, enfin la trempe.",
+        "competence": "histoire",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "cry-piege-glyphe-de-la-chapelle",
+      "resume": "Le glyphe de la trempe ratée s'embrase."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "cry-runes-resolues"
+        },
+        {
+          "fait": "f-cry-trois-runes"
+        },
+        {
+          "debloquer": "cry-passage-de-la-chapelle"
+        },
+        {
+          "xp": 100
+        }
+      ],
+      "tresor": "cry-t-chapelle-reliquaire",
+      "resume": "Les piliers s'embrasent doucement dans l'ordre juste ; derrière l'autel, un mur pivote, et un reliquaire apparaît sous l'enclume."
+    }
+  },
+  {
+    "id": "cry-e-le-mot-d-ordre",
+    "nom": "Le mot d'ordre de la garde",
+    "lieu": "cry-caserne",
+    "enonce": "Quatre gardes squelettes, lances baissées, vous barrent la salle. L'un d'eux frappe le sol de sa lance, deux fois, et attend, silencieux, qu'on lui dise le mot.",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": [
+        "enclume",
+        "l'enclume"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le tableau de service rappelle : « Le mot se dit comme on porte les morts : pieds devant. » À l'entrée du mausolée : « Ici l'on entre les pieds devant. »"
+      },
+      {
+        "niveau": 2,
+        "texte": "Le registre de la garde, au vestibule, consigne un mot d'ordre : « EMULCNE ». Les gardes écrivaient leur mot à l'envers.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Lu à l'endroit, le mot du registre est « enclume ».",
+        "competence": "histoire",
+        "dd": 10
+      }
+    ],
+    "echec": {
+      "effets": [
+        {
+          "rencontre": "cry-r-caserne-gardes"
+        }
+      ],
+      "resume": "Le mauvais mot est une insulte pour des gardes : ils attaquent."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "cry-mot-d-ordre-dit"
+        },
+        {
+          "fait": "f-cry-mot-d-ordre"
+        },
+        {
+          "xp": 75
+        }
+      ],
+      "tresor": "cry-t-caserne-capitaine",
+      "resume": "Les gardes saluent d'un coup de lance, s'écartent, et l'un d'eux tend, d'un geste raide, la clé de l'alcôve du capitaine."
+    }
+  },
+  {
+    "id": "cry-e-les-leviers",
+    "nom": "Les quatre veilleurs de l'ossuaire",
+    "lieu": "cry-ossuaire",
+    "enonce": "Quatre leviers de fer sous quatre crânes sculptés : le premier coiffé d'un casque, le deuxième d'un bandeau sur les orbites, le troisième d'un casque, le quatrième d'un capuchon. Une plaque de bronze : « Qui veille se lève, qui dort se couche. »",
+    "solution": {
+      "type": "leviers",
+      "positions": [
+        true,
+        false,
+        true,
+        false
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "La plaque dit que celui qui veille se lève et que celui qui dort se couche."
+      },
+      {
+        "niveau": 2,
+        "texte": "Un crâne casqué a les yeux ouverts : il veille. Un crâne au bandeau ou au capuchon ne voit rien : il dort.",
+        "competence": "perception",
+        "dd": 11
+      },
+      {
+        "niveau": 3,
+        "texte": "Haut, bas, haut, bas : casque, bandeau, casque, capuchon.",
+        "competence": "investigation",
+        "dd": 12
+      }
+    ],
+    "echec": {
+      "effets": [
+        {
+          "rencontre": "cry-r-ossuaire-zombis"
+        }
+      ],
+      "resume": "Les mauvais leviers font tomber des pans d'os : les zombis se réveillent."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "cry-leviers-ossuaire"
+        },
+        {
+          "fait": "f-cry-leviers-ossuaire"
+        },
+        {
+          "debloquer": "cry-rampe-des-cercueils"
+        },
+        {
+          "xp": 75
+        }
+      ],
+      "resume": "La herse de la rampe des cercueils se relève dans un grondement : une pente large descend à la rotonde."
+    }
+  },
+  {
+    "id": "cry-e-le-nom-de-la-porte",
+    "nom": "Le nom de celui qui tient la porte",
+    "lieu": "cry-salle-des-scelles",
+    "enonce": "Une porte de pierre lisse, sans poignée, porte une phrase en lettres de braise : « DIS LE NOM DE CELUI QUI TIENT LA PORTE, ET LA PORTE SERA TENUE POUR TOI. »",
+    "solution": {
+      "type": "deduction",
+      "reponses": [
+        "brand",
+        "brand garde-serment",
+        "brand gardeserment",
+        "brand garde serment"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "La porte ne demande pas un mot de passe : elle demande le nom d'un homme, celui que l'on aurait chargé de garder les cryptes."
+      },
+      {
+        "niveau": 2,
+        "texte": "L'archiviste d'Ormgard, dans son journal, ou lui-même s'il vous parle, évoque un capitaine de la garde qui a juré de tenir la route funéraire.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Dans une vitrine de la salle, une plaque d'enrôlement porte : « Brand Garde-Serment, capitaine de la garde d'Ormgard. »",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "effets": [
+        {
+          "narration": "Le nom faux se perd en écho ; la porte reste muette et une chaleur diffuse monte du sol."
+        }
+      ],
+      "resume": "La porte se tait."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "cry-sceau-nomme"
+        },
+        {
+          "fait": "f-cry-nom-du-gardien-grave"
+        },
+        {
+          "xp": 100
+        }
+      ],
+      "resume": "Les lettres de braise s'éteignent une à une et la porte coulisse, sans bruit, sur l'antichambre du Sceau."
+    }
+  }
+]

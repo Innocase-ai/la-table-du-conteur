@@ -1,0 +1,557 @@
+[
+  {
+    "id": "vei-lise-petit-pas",
+    "nom": "Lise Petit-Pas",
+    "titre": "Enfant du quartier des réfugiés",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "9 ans",
+    "role": "Petite fille qui voit « l'homme gris » du puits",
+    "lieu": "vei-quartier-des-refugies",
+    "apparence": "Petite fille maigre aux nattes blondes en broussaille, manteau trop grand rapiécé d'un tissu rouge, poupée de chiffon sous le bras, doigts noircis de cendre et regard grave.",
+    "personnalite": {
+      "traits": ["sérieuse", "loyale", "têtue", "secrète"],
+      "voix": "Un chuchotement direct, phrases courtes, aucun mensonge ; elle répond aux questions comme à un examen.",
+      "valeurs": ["tenir sa promesse", "ne pas abandonner les siens"],
+      "desir": "Que son père revienne manger à la table.",
+      "peur": "Le noir, le puits, et qu'on lui prenne son homme gris.",
+      "defaut": "Elle préfère se taire plutôt que d'être grondée."
+    },
+    "presences": [{ "lieu": "vei-puits", "moment": "nuit" }],
+    "attitude": 5,
+    "savoir": ["f-vei-homme-gris-puits"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "l-homme-gris",
+        "mots": ["homme gris", "puits", "nuit", "peur", "silhouette", "qui vient"],
+        "reponse": "Lise serre sa poupée et dit qu'un homme gris vient au puits chaque nuit, avec une écuelle. Il ne parle pas, il ne fait pas de mal, il reste debout. Elle ne l'a dit à personne sauf à Pervenche, parce que les grands ne la croient pas. Elle l'a reconnu à son tablier, mais elle ne veut pas dire de qui il s'agit.",
+        "revele": ["f-vei-homme-gris-puits"]
+      },
+      {
+        "id": "papa",
+        "mots": ["papa", "père", "forgeron", "tablier", "mort", "maladie"],
+        "attitudeMin": 15,
+        "reponse": "Elle chuchote enfin : l'homme gris, c'est son papa. Il est mort de la toux, il y a trois semaines, et on l'a mis dans la terre. Il avait un tablier de forgeron, et il l'emmenait au puits tous les matins pour puiser l'eau. Elle dit qu'il a faim, mais qu'il ne peut pas manger, et qu'elle lui laisse du pain sur la margelle, qu'il ne prend pas.",
+        "revele": ["f-vei-homme-gris-puits"]
+      },
+      {
+        "id": "la-poupee",
+        "mots": ["poupée", "jouet", "chiffon", "nom de la poupée"],
+        "reponse": "Elle la tend : elle s'appelle Miette, elle est en chiffon rouge et elle sait écouter. Lise précise que Miette n'a pas peur, elle. Elle demande au groupe de la garder un moment pendant qu'elle réfléchit.",
+        "revele": [],
+        "effets": [{ "attitude": { "pnj": "vei-lise-petit-pas", "delta": 5 } }]
+      }
+    ],
+    "salutations": {
+      "neutre": "...Bonjour. Vous n'avez pas vu mon homme gris ?",
+      "amical": "C'est vous ! Venez, je vais vous montrer où il se tient.",
+      "hostile": "Allez-vous-en. Vous lui faites peur."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-odile-ferrand",
+    "nom": "Odile Ferrand",
+    "titre": "Veuve du cimetière",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "55 ans",
+    "role": "Veuve qui entretient les tombes et compte les morts de la garde",
+    "lieu": "vei-cimetiere",
+    "apparence": "Femme maigre en noir, mains rouges de gelure, foulard noir noué sous le menton, panier de fleurs de papier au bras, regard sec comme du papier.",
+    "personnalite": {
+      "traits": ["taciturne", "têtue", "attentive", "inflexible"],
+      "voix": "Monotone et patiente, la voix de quelqu'un qui parle aux tombes ; elle tutoie les morts et vouvoie les vivants.",
+      "valeurs": ["le respect des morts", "la mémoire", "la routine"],
+      "desir": "Tenir les tombes propres et ne laisser aucun mort sans nom.",
+      "peur": "Que son mari se relève, et qu'elle n'ait pas la force de le voir.",
+      "defaut": "Elle s'accroche au passé jusqu'à l'obsession."
+    },
+    "presences": [],
+    "attitude": 0,
+    "savoir": ["f-vei-les-morts-rentrent", "f-vei-garde-decimee", "f-vei-greniers-au-tiers"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "les-tombes",
+        "mots": ["tombes", "cimetière", "éventrées", "morts", "traces", "pas dans la cendre"],
+        "reponse": "Odile montre les tombes ouvertes vers l'extérieur et les traces de pieds nus dans la cendre qui mènent au village. Elle dit que les morts ne s'enfuient pas : ils rentrent. Elle a vu l'un d'eux frapper à la porte de sa propre maison, puis s'asseoir sur le seuil et attendre qu'on lui ouvre.",
+        "revele": ["f-vei-les-morts-rentrent"]
+      },
+      {
+        "id": "les-gardes-morts",
+        "mots": ["gardes", "soldats", "tombes de la garde", "combien", "pertes"],
+        "attitudeMin": 20,
+        "reponse": "Elle compte à voix basse : trente-six tombes de gardes depuis la fin de l'été, et il n'y en a pas assez pour ceux qui manquent. La garde de Veillecendre n'est plus que l'ombre de ce qu'elle était, et le capitaine n'ose pas le dire. Elle a gravé chaque nom sur une planchette, un par un.",
+        "revele": ["f-vei-garde-decimee"]
+      },
+      {
+        "id": "le-grain-des-veuves",
+        "mots": ["grain", "grange", "veuves", "caché", "cachette", "réserve"],
+        "reponse": "Elle admet que les veuves ont caché de quoi nourrir leurs enfants derrière les sacs de sable du fond de la grange : le bailli ne regardera pas là. Elle dit qu'elle a vu la grange se vider à vue d'œil, depuis la fin de l'été, et que ce ne sont pas les souris.",
+        "revele": ["f-vei-greniers-au-tiers"]
+      },
+      {
+        "id": "la-tombe-du-veilleur",
+        "mots": ["Veilleur", "tombe marquée", "flamme gravée", "ancien Veilleur"],
+        "reponse": "Elle désigne une dalle de schiste plus soignée que les autres, marquée d'une flamme : la tombe d'un ancien Veilleur, enterré avec sa médaille. Personne n'ose y toucher. Elle ajoute qu'il y a un Veilleur à chaque génération, et que chacun repose en paix quand la flamme l'a pris.",
+        "revele": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Ne marchez pas sur les tombes. Il y en a plus que vous ne croyez.",
+      "amical": "Vous êtes venu voir les miens. C'est bien. Il y en a toujours un qui attend.",
+      "hostile": "Laissez les morts tranquilles."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-bastien-le-fureteur",
+    "nom": "Bastien le Fureteur",
+    "titre": "Mouchard du bailli",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "34 ans",
+    "role": "Secrétaire et mouchard du bailli, qui écoute aux portes du marché",
+    "lieu": "vei-marche",
+    "apparence": "Homme maigre et nerveux, manteau gris rapiécé, chapeau mou enfoncé jusqu'aux yeux, mains fines, sourire en coin, un petit carnet qu'il tient toujours ouvert.",
+    "personnalite": {
+      "traits": ["sournois", "poli", "lâche", "opportuniste"],
+      "voix": "Mielleuse et chuchotante, il s'approche de trop près et termine ses phrases par « entre nous » ou « sauf votre respect ».",
+      "valeurs": ["sa propre peau", "les faveurs", "le bon côté du manche"],
+      "desir": "Obtenir une place sur un chariot d'évacuation avant les autres.",
+      "peur": "Rolf, le conseil, la cendre, et d'être un jour le premier à qui l'on ne rendra pas service.",
+      "defaut": "Il vendrait n'importe qui pour un petit avantage."
+    },
+    "presences": [{ "lieu": "vei-halle-du-bailli", "moment": "jour" }],
+    "faction": "bailliage",
+    "attitude": -5,
+    "savoir": ["f-vei-sacs-vers-le-pont", "f-vei-bailli-veut-partir", "f-vei-dette-de-bertille"],
+    "secrets": [
+      { "fait": "f-tribut-du-bailli", "prix": 50 },
+      { "fait": "f-tribut-du-bailli", "jet": { "competence": "intimidation", "dd": 13 } }
+    ],
+    "sujets": [
+      {
+        "id": "le-marche",
+        "mots": ["marché", "nouvelles", "ce qui se dit", "informations", "rumeurs", "écouter"],
+        "reponse": "Bastien se frotte les mains et dit que le marché est un bon endroit pour qui sait écouter : les gens se plaignent des prix, des gardes, du bailli, et il note tout. Il laisse entendre qu'il vend volontiers ce qu'il sait, à qui sait lui donner quelque chose en retour.",
+        "revele": []
+      },
+      {
+        "id": "les-chariots-de-nuit",
+        "mots": ["chariots", "nuit", "porte du nord", "grain", "Pont-de-Fer", "charrettes"],
+        "reponse": "Il baisse la voix et glisse, entre nous, que des chariots chargés quittent la porte du nord après la cloche, escortés, vers le sud et Pont-de-Fer. Il n'a pas dit que c'était du grain. Il n'a rien dit du tout. Il demande ce que le groupe peut lui offrir pour sa discrétion.",
+        "revele": ["f-vei-sacs-vers-le-pont"],
+        "attitudeMin": 5
+      },
+      {
+        "id": "l-evacuation",
+        "mots": ["évacuation", "partir", "chariots réservés", "départ", "hiver", "notables"],
+        "attitudeMin": 35,
+        "reponse": "Bastien se penche : le bailli fait réserver des chariots et des mules pour évacuer les notables avant l'hiver. Il ne l'a pas dit pour ne pas affoler. Bastien, lui, figure sur la liste en bonne place. Il demande, plein d'espoir, si le groupe pourrait lui rendre ce petit service qu'il leur a rendu.",
+        "revele": ["f-vei-bailli-veut-partir"]
+      },
+      {
+        "id": "creancier",
+        "mots": ["Bertille", "saisie", "auberge", "part", "arrangement", "dette"],
+        "condition": { "quete": { "id": "q-vei-une-dette-de-bertille", "statut": "active" } },
+        "reponse": "Bastien sourit en coin : si l'on laisse le bailli saisir l'auberge, il prévoit une commission pour ceux qui l'auront aidé à ne pas s'y opposer, quarante pièces tout de suite. L'auberge sera plus rentable entre de bonnes mains. Il n'y a rien d'illégal, entre nous, juste du réalisme.",
+        "revele": ["f-vei-dette-de-bertille"],
+        "effets": [{ "pieces": 40 }, { "flag": "vei-auberge-saisie" }, { "attitude": { "pnj": "bertille-dernier-feu", "delta": -40 } }, { "quete": { "id": "q-vei-une-dette-de-bertille", "statut": "echouee" } }],
+        "unique": true
+      },
+      {
+        "id": "acheter-la-lettre",
+        "mots": ["lettre", "vendre la lettre", "Fer-Gris", "prix", "cachet"],
+        "condition": { "objet": "vei-lettre-du-fer-gris" },
+        "reponse": "Bastien jette un coup d'œil nerveux sur le cachet et déclare qu'il sait un acheteur : le bailli lui-même, pour cent vingt pièces. Il propose de servir d'intermédiaire, contre une petite part. Il tremble un peu.",
+        "effets": [{ "objet": { "id": "vei-lettre-du-fer-gris", "retirer": true } }, { "pieces": 120 }, { "flag": "vei-lettres-vendues" }],
+        "unique": true
+      },
+      {
+        "id": "le-bailli",
+        "mots": ["bailli", "Aurèle", "secret", "tribut", "ce qu'il cache", "Fer-Gris"],
+        "attitudeMin": 40,
+        "reponse": "Bastien finit par avouer, avec un regard vers la porte : le bailli paie un tribut en grain au Fer-Gris. C'est Bastien qui tient les comptes. Il n'en dormait plus. Il supplie qu'on ne dise pas qu'il a parlé, et propose son témoignage s'il est certain d'être protégé.",
+        "revele": ["f-tribut-du-bailli"]
+      }
+    ],
+    "salutations": {
+      "neutre": "Tiens, des nouveaux visages, entre nous c'est toujours une bonne nouvelle.",
+      "amical": "Ah, mes amis ! Entre nous, vous êtes les seuls à qui je parlerais ainsi.",
+      "hostile": "Je n'ai rien vu, rien entendu, et je vous prie de sortir."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-garance-veille",
+    "nom": "Garance Veille",
+    "titre": "Sentinelle",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "26 ans",
+    "role": "Sentinelle des remparts, de garde la nuit",
+    "lieu": "vei-remparts",
+    "apparence": "Jeune femme solide au nez cassé, capuche grise rabattue, arc court en bandoulière, yeux cernés, mitaines trouées et sourire qui arrive en retard.",
+    "personnalite": {
+      "traits": ["sèche", "vigilante", "drôle quand elle est épuisée", "loyale"],
+      "voix": "Rapide, un peu rauque, jure en patois paysan, rit pour ne pas pleurer ; elle garde un œil sur l'horizon même en vous parlant.",
+      "valeurs": ["tenir son poste", "ses camarades", "la vérité sans fard"],
+      "desir": "Dormir une nuit entière.",
+      "peur": "S'endormir à son poste, et que la cloche sonne trop tard.",
+      "defaut": "Elle accuse trop vite."
+    },
+    "presences": [{ "lieu": "vei-guerite-du-nord", "moment": "soir" }],
+    "faction": "gardiens-de-la-veille",
+    "attitude": 5,
+    "savoir": ["f-vei-pelerins-rodent", "f-vei-couvre-feu", "f-vei-garde-decimee"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "la-garde-de-nuit",
+        "mots": ["garde", "nuit", "remparts", "que voit-on", "silhouettes", "surveiller"],
+        "reponse": "Garance dit que la nuit, la cendre bouge. Elle ne s'agite pas, elle s'amasse en petits tas, puis se lève et marche. Elle compte les silhouettes à la lueur du brasero : trois la semaine dernière, sept hier. Elle dit qu'on finira par ne plus pouvoir les compter.",
+        "revele": ["f-vei-les-morts-rentrent"]
+      },
+      {
+        "id": "les-pelerins-vus",
+        "mots": ["Pèlerins", "gris", "portail", "paix", "silhouettes en linge", "orée"],
+        "reponse": "Elle a vu trois ou quatre silhouettes en linge gris, quelques nuits, sur la route, immobiles. Elles ne menacent pas. Elles tendent les mains, paumes ouvertes, comme pour inviter. Une fois, une femme du quartier est partie les rejoindre pendant sa garde. Garance n'a pas pu l'arrêter, et ne se le pardonne pas.",
+        "revele": ["f-vei-pelerins-rodent"]
+      },
+      {
+        "id": "le-guichet",
+        "mots": ["guichet", "porte", "ouvrir", "voix", "couvre-feu", "cloche"],
+        "reponse": "Elle explique le règlement : après la cloche, on n'ouvre à personne, quelle que soit la voix. Elle raconte qu'un soir son propre frère, mort au col, a appelé son nom depuis le guichet, et qu'elle a tenu bon, mais qu'elle a pleuré jusqu'au matin.",
+        "revele": ["f-vei-couvre-feu"]
+      },
+      {
+        "id": "les-effectifs",
+        "mots": ["combien de gardes", "effectifs", "garde", "capitaine", "relève", "tours de garde"],
+        "attitudeMin": 30,
+        "reponse": "Elle baisse la voix : ils sont quatorze à se partager les remparts, et le capitaine remplit les rôles avec les noms de ceux qui ne reviendront pas. Elle ne le dirait pas à n'importe qui. Elle avoue qu'elle tourne en rond depuis trois jours sans relève, et que chaque nuit, elle sait qu'il pourrait y avoir une brèche.",
+        "revele": ["f-vei-garde-decimee"]
+      }
+    ],
+    "salutations": {
+      "neutre": "Halte-là. Qui êtes-vous, et que faites-vous dehors ?",
+      "amical": "Ah, c'est vous ! Restez un moment, ça me tient éveillée.",
+      "hostile": "Passez votre chemin. Je n'ai pas envie de vous réveiller avec une flèche."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-nerio-braisemolle",
+    "nom": "Nerio Braisemolle",
+    "titre": "Cuisinier de l'auberge",
+    "espece": "tieffelin",
+    "sexe": "M",
+    "age": "40 ans",
+    "role": "Cuisinier de l'auberge du Dernier Feu, accusé à tort d'avoir attiré la cendre",
+    "lieu": "vei-auberge-dernier-feu",
+    "apparence": "Tieffelin trapu à la peau cuivrée, petites cornes limées court, tablier blanc taché, cuillère de bois glissée à la ceinture, yeux dorés et brûlures anciennes sur les avant-bras.",
+    "personnalite": {
+      "traits": ["bourru", "généreux", "orgueilleux de son art", "rancunier"],
+      "voix": "Bourrue, saccadée, saturée de métaphores culinaires ; il hume les gens avant de leur parler et juge d'une phrase s'ils ont du goût.",
+      "valeurs": ["le métier", "nourrir", "ne rien gaspiller"],
+      "desir": "Servir un vrai repas, un seul, avant l'hiver.",
+      "peur": "L'émeute, et le jour où on lui demandera de partir.",
+      "defaut": "Il garde rancune aux gens qui l'ont soupçonné."
+    },
+    "presences": [],
+    "attitude": 0,
+    "savoir": ["f-vei-tieffelins-accuses", "f-vei-greniers-au-tiers"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "la-soupe-de-nerio",
+        "mots": ["cuisine", "soupe", "recette", "plat", "choux", "préparer"],
+        "reponse": "Nerio soulève le couvercle de la marmite et vous en offre une louche : de la soupe de choux gris à laquelle il ajoute du lard fumé quand il en a. Il ne peut pas faire de miracles avec rien, dit-il, mais il peut faire un bon bouillon avec presque tout. Il refuse de dire ce qu'il met dedans.",
+        "revele": []
+      },
+      {
+        "id": "les-accusations",
+        "mots": ["tieffelins", "accusation", "cendre appelée", "cornes", "soupçons", "haine"],
+        "reponse": "Il serre le poing sur sa cuillère. On l'accuse d'avoir appelé la cendre, lui, parce qu'il a des cornes. Il rappelle qu'elle tombait des siècles avant qu'il soit né, et qu'on lui crache sur les bottes au marché. Il dit qu'il cuisine pour les mêmes gens et qu'il leur pardonne rarement.",
+        "revele": ["f-vei-tieffelins-accuses"]
+      },
+      {
+        "id": "les-provisions",
+        "mots": ["provisions", "garde-manger", "stocks", "grain", "farine", "pénurie"],
+        "reponse": "Il ouvre la porte du garde-manger : presque vide. Il dit que la farine arrive de plus en plus rarement de la grange et que ce qu'on lui livre est mêlé de sable. Il en a gardé un sac, qu'il montre à quiconque lui demande. Il voudrait savoir qui s'enrichit.",
+        "revele": ["f-vei-greniers-au-tiers"]
+      }
+    ],
+    "salutations": {
+      "neutre": "La cuisine est à l'arrière. Si vous cherchez la table, c'est de l'autre côté.",
+      "amical": "Ah, un palais ! Goûtez-moi ça.",
+      "hostile": "Dehors. Je n'ai pas fini de cuire."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-durgan-pic-brise",
+    "nom": "Durgan Pic-Brisé",
+    "titre": "Vieux mineur",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "environ 190 ans",
+    "role": "Ancien mineur de la Fosse, réfugié, qui boit seul à l'auberge",
+    "lieu": "vei-quartier-des-refugies",
+    "apparence": "Vieux nain voûté à la barbe blanche jaunie, un œil laiteux, pioche cassée en bandoulière, mains écrasées par des années de galerie, toux sèche qu'il étouffe dans sa manche.",
+    "personnalite": {
+      "traits": ["bourru", "mélancolique", "malicieux", "obstiné"],
+      "voix": "Traînante et râpeuse, avec de longues pauses ; il appelle tout le monde « petit » ou « petite », même les plus âgés que lui.",
+      "valeurs": ["le travail de la pierre", "le silence des galeries", "la mémoire de son peuple"],
+      "desir": "Retourner une dernière fois à la Fosse et respirer l'air de la galerie.",
+      "peur": "L'effondrement, mourir sous la cendre sans nom ni tombe.",
+      "defaut": "Il s'enferme dans le passé et tient rancune aux vivants de vivre."
+    },
+    "presences": [{ "lieu": "vei-auberge-dernier-feu", "moment": "soir" }],
+    "attitude": 0,
+    "savoir": ["f-vei-combustible", "f-veine-rouge", "f-nuit-de-la-cendre"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "la-fosse",
+        "mots": ["Fosse", "mine", "galerie", "effondrement", "huile de roche", "charbon"],
+        "reponse": "Durgan raconte que la Fosse est la mine d'où l'on tirait l'huile de roche, la seule qui nourrisse la Lanterne. Elle s'est effondrée il y a vingt ans, sur quarante hommes. Il en est sorti avec un œil de moins. Depuis, la Lanterne vit sur ses réserves et elles fondent. Il ne dit pas ce qu'il a vu en bas.",
+        "revele": ["f-vei-combustible"]
+      },
+      {
+        "id": "la-veine",
+        "mots": ["Veine rouge", "feu élémentaire", "coulée", "chaleur", "roche chaude"],
+        "attitudeMin": 20,
+        "reponse": "Il dit que sous la Fosse passe la Veine rouge, une coulée de feu que les nains vénéraient. Les galeries étaient chaudes comme un four, et l'huile suintait de la roche. Ceux qui descendaient trop bas ne remontaient pas toujours, et ceux qui remontaient parlaient de voix dans la chaleur.",
+        "revele": ["f-veine-rouge"]
+      },
+      {
+        "id": "la-nuit-de-la-cendre",
+        "mots": ["Nuit de la Cendre", "Haute-Forge", "chute", "effondrement du royaume", "grands-parents"],
+        "reponse": "Il tient de sa grand-mère que la nuit où le royaume est tombé, le ciel s'est mis à pleuvoir de la cendre chaude, et que ceux qui étaient près de la Forge n'ont même pas eu le temps de crier. Les fuyards ont marché des jours avec la cendre sur les épaules. Il dit qu'il n'a jamais voulu comprendre pourquoi.",
+        "revele": ["f-nuit-de-la-cendre"]
+      },
+      {
+        "id": "le-bruit",
+        "mots": ["bruit", "frappements", "sous terre", "écouter", "galeries", "toc toc"],
+        "reponse": "Il pose l'oreille sur la table de l'auberge et dit entendre, la nuit, quelque chose qui frappe sous le sol, régulier, comme un marteau sur de l'enclume. Il ne sait pas si c'est son esprit qui flanche ou si quelqu'un travaille encore en bas. Il dit que les vieux mineurs entendent ça avant de mourir.",
+        "revele": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Hm. Tiens. Du jeune monde, petit.",
+      "amical": "Assieds-toi, petit. Je vais te raconter la vraie mine.",
+      "hostile": "Va-t'en, petit. Je n'ai pas de patience pour les jeunes sots."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-hubin-marchepied",
+    "nom": "Hubin Marchepied",
+    "titre": "Colporteur retenu par la neige",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "45 ans",
+    "role": "Colporteur coincé à Veillecendre par la neige, qui vend quincaillerie et nouvelles",
+    "lieu": "vei-auberge-dernier-feu",
+    "apparence": "Homme rond et rieur au long manteau de mille poches, chapeau à plume de corbeau, moustache grasse, mains baguées de laiton, besace pleine de menus objets.",
+    "personnalite": {
+      "traits": ["bavard", "optimiste", "mercantile", "lâche en secret"],
+      "voix": "Chantante et enjôleuse, il vante sa marchandise, dit « mes amis » à tout le monde et devient bref dès qu'on parle d'argent ou de danger.",
+      "valeurs": ["le profit honnête", "la bonne histoire", "sa propre peau"],
+      "desir": "Récupérer son chariot et sa cargaison avant la fin de l'hiver.",
+      "peur": "La ruine, les gobelins, et d'être forcé de rester au Val pour toujours.",
+      "defaut": "Il exagère et cache les mauvaises nouvelles."
+    },
+    "presences": [{ "lieu": "vei-marche", "moment": "jour" }],
+    "attitude": 15,
+    "savoir": ["f-vei-col-ferme", "f-vei-gobelins-affames", "f-fer-gris-veut-la-forge"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "le-chariot",
+        "mots": ["chariot", "cargaison", "huile", "route du col", "gobelins", "récupérer", "aider"],
+        "reponse": "Hubin raconte, en gesticulant, que son chariot s'est enfoncé dans une congère sur la route du col, que les gobelins lui ont tué son convoyeur et qu'il a fui à pied. Il y a laissé des tonneaux d'huile de roche, la plus belle qu'il ait jamais eue. Il offre une part du profit à quiconque ramène un baril, ou deux, et laisse entendre qu'il vendra au plus offrant.",
+        "effets": [{ "quete": { "id": "q-vei-le-colporteur-et-la-neige", "statut": "active" } }]
+      },
+      {
+        "id": "les-nouvelles",
+        "mots": ["nouvelles", "bas-pays", "Pont-de-Fer", "Fer-Gris", "Compagnie", "hobgobelins"],
+        "attitudeMin": 20,
+        "reponse": "Il raconte que la Compagnie du Fer-Gris, des hobgobelins disciplinés, occupe Pont-de-Fer depuis cinq ans, qu'ils cherchent un foyer pour leurs forges, et que leur capitaine est un homme, ou presque, de parole. Il en a entendu dire que la Compagnie lorgne sur la Haute-Forge, au fond du Val. Il dit qu'il vaut mieux ne pas se trouver sur leur chemin.",
+        "revele": ["f-fer-gris-veut-la-forge"]
+      },
+      {
+        "id": "ses-barils",
+        "mots": ["baril", "huile de roche", "voici", "rapporté", "tonneau"],
+        "condition": { "objet": "vei-baril-d-huile-de-roche" },
+        "reponse": "Hubin embrasse presque le baril, le fait rouler d'un bout à l'autre de la table et propose cent pièces sans marchander, signe qu'il en aurait donné davantage. Il cache mal sa joie. Il dit qu'il connaît un acheteur au village, un homme qui paie bien.",
+        "effets": [{ "objet": { "id": "vei-baril-d-huile-de-roche", "retirer": true } }, { "pieces": 100 }, { "flag": "vei-huile-rendue-a-hubin" }, { "attitude": { "pnj": "vei-hubin-marchepied", "delta": 10 } }],
+        "unique": true
+      },
+      {
+        "id": "le-col",
+        "mots": ["col", "congère", "porte", "fermé", "ouvrir", "printemps", "passage"],
+        "reponse": "Il confirme que le col est fermé jusqu'au dégel : il a vu la porte de bronze sous la congère, et il n'y a rien à faire avant le printemps. Il avoue qu'il avait tenté de passer à pied avant l'attaque des gobelins, et qu'il a renoncé quand la neige lui est montée à la poitrine.",
+        "revele": ["f-vei-col-ferme"]
+      },
+      {
+        "id": "les-gobelins",
+        "mots": ["gobelins", "embuscade", "loups", "attaque", "Nez-Fendu"],
+        "reponse": "Il frissonne : une dizaine de gobelins efflanqués, deux loups maigres comme des squelettes, un chef à l'oreille fendue. Ils ont pris le sel et le pain, laissé l'huile. Il dit qu'ils avaient l'air plus effrayés qu'effrayants, et qu'il aurait peut-être pu parlementer s'il n'avait pas couru.",
+        "revele": ["f-vei-gobelins-affames"]
+      }
+    ],
+    "salutations": {
+      "neutre": "Mes amis ! Entrez, entrez ! J'ai là quelques merveilles qui n'attendaient que vous.",
+      "amical": "Les voilà, mes bienfaiteurs ! Un siège, un verre, et laissez-moi vous conter une histoire.",
+      "hostile": "Je ne traite pas avec ceux qui me regardent de travers."
+    },
+    "boutique": {
+      "stock": [
+        { "objet": "lampe", "quantite": 3, "prix": 1 },
+        { "objet": "huile", "quantite": 10, "prix": 0.2 },
+        { "objet": "chausse-trappes", "quantite": 5, "prix": 2 },
+        { "objet": "grappin", "quantite": 2, "prix": 3 },
+        { "objet": "pied-de-biche", "quantite": 2, "prix": 3 },
+        { "objet": "materiel-d-escalade", "quantite": 1, "prix": 30 }
+      ],
+      "tables": [],
+      "rachat": 0.4,
+      "types": ["materiel", "outil"]
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-marthe-etal",
+    "nom": "Marthe Étal",
+    "titre": "Marchande du marché",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "50 ans",
+    "role": "Marchande : vivres, matériel de voyage, munitions",
+    "lieu": "vei-marche",
+    "apparence": "Femme forte aux avant-bras nus malgré le froid, bonnet de laine rouge, tablier plein de poches, comptoir de planches chargé de paniers, de rouleaux de corde et de bottes de flèches.",
+    "personnalite": {
+      "traits": ["directe", "pingre", "protectrice des siens", "droite"],
+      "voix": "Claquante, elle annonce ses prix comme des ordres et refuse de les discuter plus d'une fois ; elle tutoie tout le monde.",
+      "valeurs": ["la parole donnée", "le juste prix", "ses enfants"],
+      "desir": "Faire survivre sa famille jusqu'au printemps, quoi qu'il en coûte.",
+      "peur": "La fin des stocks, et le jour où il faudra choisir qui nourrir.",
+      "defaut": "Dure en affaires, elle peut laisser un client dans le besoin."
+    },
+    "presences": [],
+    "attitude": 0,
+    "savoir": ["f-vei-greniers-au-tiers", "f-vei-sacs-vers-le-pont"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "les-prix",
+        "mots": ["prix", "tarifs", "acheter", "cher", "marchandise", "vendre"],
+        "reponse": "Marthe dit que les prix montent chaque semaine parce que les stocks baissent, et que les caravaniers ne reviendront pas avant le printemps. Elle ne bradera rien, mais elle rachètera ce qu'on lui apporte au prix correct. Elle est franche : mieux vaut acheter aujourd'hui que demain.",
+        "revele": []
+      },
+      {
+        "id": "la-penurie",
+        "mots": ["pénurie", "manque", "stocks", "grange", "farine", "grain"],
+        "reponse": "Elle dit que le grain qui arrive de la grange ne suffit plus à remplir son étal, et qu'une partie est mélangée à du sable. Elle a protesté auprès du bailli, qui lui a répondu de ne pas affoler les gens. Elle s'inquiète pour ses enfants.",
+        "revele": ["f-vei-greniers-au-tiers"]
+      },
+      {
+        "id": "les-chariots",
+        "mots": ["chariots", "porte du nord", "convoi", "nuit", "bruits", "roues"],
+        "reponse": "Elle entend, certaines nuits, des chariots passer sous sa fenêtre vers la porte du nord, escortés, lourds comme du plomb. Elle n'a jamais osé regarder. Elle suppose que c'est un convoi du bailli, et qu'il va vers Pont-de-Fer.",
+        "revele": ["f-vei-sacs-vers-le-pont"],
+        "attitudeMin": 10
+      }
+    ],
+    "salutations": {
+      "neutre": "Qu'est-ce que tu veux ? J'ai de tout, mais pas pour rien.",
+      "amical": "Ah, toi ! Je t'ai mis de côté une botte de flèches, la dernière de bonne qualité.",
+      "hostile": "Je ne vends pas à ceux qui critiquent mes prix."
+    },
+    "boutique": {
+      "stock": [
+        { "objet": "rations", "quantite": 30, "prix": 1 },
+        { "objet": "corde", "quantite": 6, "prix": 2 },
+        { "objet": "torche", "quantite": 20, "prix": 0.1 },
+        { "objet": "lanterne-a-capote", "quantite": 4, "prix": 7 },
+        { "objet": "huile", "quantite": 15, "prix": 0.2 },
+        { "objet": "sac-a-dos", "quantite": 4, "prix": 3 },
+        { "objet": "sac-de-couchage", "quantite": 4, "prix": 2 },
+        { "objet": "tente", "quantite": 2, "prix": 3 },
+        { "objet": "couverture", "quantite": 6, "prix": 1 },
+        { "objet": "outre", "quantite": 6, "prix": 0.5 },
+        { "objet": "boite-a-amadou", "quantite": 6, "prix": 1 },
+        { "objet": "fleches", "quantite": 50, "prix": 2 },
+        { "objet": "carreaux-d-arbalete", "quantite": 30, "prix": 2 },
+        { "objet": "billes-de-fronde", "quantite": 30, "prix": 0.1 },
+        { "objet": "cadenas", "quantite": 3, "prix": 12 }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": ["materiel", "nourriture", "outil"]
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "vei-tib-palefrenier",
+    "nom": "Tib",
+    "titre": "Garçon d'écurie",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "14 ans",
+    "role": "Garçon d'écurie, qui veille sur les derniers chevaux",
+    "lieu": "vei-ecurie",
+    "apparence": "Adolescent dégingandé aux cheveux de paille, taches de rousseur, gants trop grands, une étrille à la main, et un regard qui admire tout ce qui porte une épée.",
+    "personnalite": {
+      "traits": ["enthousiaste", "bavard", "courageux", "naïf"],
+      "voix": "Rapide, entrecoupée de « euh » et de « vous savez », il pose dix questions à la suite et n'attend jamais la réponse.",
+      "valeurs": ["ses chevaux", "le courage", "l'amitié"],
+      "desir": "Devenir garde et voir un jour le col sans neige.",
+      "peur": "Que ses chevaux meurent, et d'être trop jeune quand il le faudra.",
+      "defaut": "Il parle trop et révèle ce qu'on lui demande de taire."
+    },
+    "presences": [{ "lieu": "vei-enclos", "moment": "jour" }],
+    "attitude": 15,
+    "savoir": ["f-vei-les-morts-rentrent", "f-vei-sacs-vers-le-pont"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "les-chevaux",
+        "mots": ["chevaux", "écurie", "bêtes", "peur", "nerveux", "hennissements"],
+        "reponse": "Tib explique que les chevaux ne dorment plus depuis une semaine, qu'ils tremblent à la tombée du soir et fixent la porte comme s'ils attendaient quelqu'un. Il dit que les chèvres de l'enclos font pareil, et que tous se serrent vers la Lanterne. Il a vu un cheval se coucher d'un coup, mort, sans une blessure.",
+        "revele": ["f-vei-les-morts-rentrent"]
+      },
+      {
+        "id": "la-nuit-des-chariots",
+        "mots": ["chariots", "nuit", "grain", "porte du nord", "charrettes", "vu"],
+        "reponse": "Il baisse la voix : il a vu, de la lucarne du grenier à foin, des chariots chargés partir par la porte du nord, la nuit, avec les gardes du bailli, plusieurs fois. Il croyait que c'étaient des vivres pour la garnison. Il ne sait pas pourquoi ils ne reviennent jamais pleins.",
+        "revele": ["f-vei-sacs-vers-le-pont"]
+      },
+      {
+        "id": "le-grenier",
+        "mots": ["grenier", "foin", "cachette", "bottes creuses", "cache"],
+        "reponse": "Il confie qu'un réfugié est mort dans le grenier à foin, et qu'il a caché sa bourse dans une botte creuse pour éviter que le bailli ne la prenne. Il ne l'a pas touchée. Si le groupe veut la retrouver, il lui montre où chercher, à condition qu'on promette de la remettre aux enfants du quartier.",
+        "revele": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Euh, bonjour ! Vous êtes aventuriers ? Vous avez une épée ? Je peux la voir ?",
+      "amical": "C'est vous ! Euh, je veux dire, bienvenue ! Venez voir le cheval gris, il vous reconnaît.",
+      "hostile": "Euh, je ne veux pas d'histoires, hein."
+    },
+    "services": [],
+    "inventaire": []
+  }
+]

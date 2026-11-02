@@ -1,0 +1,1224 @@
+[
+ {
+  "id": "pdf-camp-hobgobelin",
+  "nom": "Le camp hobgobelin",
+  "type": "combat",
+  "lieu": "pdf-camp-du-fer-gris",
+  "difficulte": "elevee",
+  "intro": "La cour d'armes de Pont-de-Fer se referme comme un poing. Un cor sonne, les sections se rangent sans un cri, les boucliers s'alignent. Kor Varnak, au centre, lève la main : ses soldats attendent son signal. Derrière lui, Ruvak Main-de-Fer, hache aux poings, ne cache pas son envie d'en finir. Les gobelins se glissent déjà sur les flancs, le gobelours gronde.",
+  "monstres": [
+   {
+    "profil": "capitaine-hobgobelin",
+    "nombre": 1,
+    "nom": "Kor Varnak",
+    "pnj": "kor-varnak"
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 1,
+    "nom": "Ruvak Main-de-Fer",
+    "pnj": "pdf-ruvak-main-de-fer"
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 3
+   },
+   {
+    "profil": "combattant-gobelours",
+    "nombre": 1
+   },
+   {
+    "profil": "combattant-gobelin",
+    "nombre": 4
+   }
+  ],
+  "carte": [
+   "######################",
+   "#....m..mmm..m.......#",
+   "#...###......###.....#",
+   "#.....m......m.......#",
+   "#..m....~~~~.....m...#",
+   "#.......~~~~.........#",
+   "#....#..........#....#",
+   "#....#..........#....#",
+   "#....................#",
+   "#......HHHHHH........#",
+   "######################"
+  ],
+  "tactique": {
+   "doctrine": "Formation serrée en lignes : les hobgobelins protègent le capitaine, le gobelours charge le plus dangereux, les gobelins harcèlent les flancs et visent les lanceurs de sorts. Ils s'appuient les uns les autres (Avantage de groupe).",
+   "fuite": "Aucune fuite sur ordre : seul Kor peut sonner la reddition, et il le fait si le combat tourne mal et que l'adversaire propose des termes honorables.",
+   "renforts": "Si le cor sonne trois fois, une main de cinq gobelins arrive de la caserne en trois rounds."
+  },
+  "alternatives": [
+   {
+    "id": "negocier-avec-kor",
+    "nom": "Négocier avec Kor Varnak",
+    "condition": {
+     "ou": [
+      {
+       "pnj": {
+        "id": "kor-varnak",
+        "attitudeMin": 35
+       }
+      },
+      {
+       "objet": "sceau-du-fer-gris"
+      }
+     ]
+    },
+    "jet": {
+     "competence": "persuasion",
+     "dd": 15
+    },
+    "resume": "Face au capitaine, sans arme dégainée, on parle de son foyer, de la clé de la Haute-Forge et de la toux qui ronge sa troupe. S'il juge la parole sûre, il rengaine : la Compagnie devient alliée, sans promesse de se soumettre.",
+    "effets": [
+     {
+      "flag": "fer-gris-allie"
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": 20
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "kor-varnak",
+       "delta": 15
+      }
+     }
+    ]
+   },
+   {
+    "id": "parlementer-par-sulka",
+    "nom": "Demander audience par Sulka",
+    "condition": {
+     "pnj": {
+      "id": "pdf-sulka-oeil-clair",
+      "attitudeMin": 20
+     }
+    },
+    "jet": {
+     "competence": "persuasion",
+     "dd": 13
+    },
+    "resume": "Sulka s'interpose, convainc Kor d'écouter avant d'ordonner la charge. Le combat est évité ; une audience suit, aux conditions du capitaine.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "kor-varnak",
+       "delta": 10
+      }
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "defi-d-honneur",
+    "nom": "Défi d'honneur au capitaine",
+    "condition": {
+     "fait": "f-pdf-discipline-des-rangs"
+    },
+    "jet": {
+     "competence": "athletisme",
+     "dd": 17
+    },
+    "resume": "Le Livre des Rangs prévoit le duel entre champions : un seul combat singulier, jusqu'au premier sang, règle l'affaire. Si l'adversaire tient bon, la Compagnie le respecte ; s'il échoue, le combat général reprend.",
+    "effets": [
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": 5
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "pdf-ruvak-main-de-fer",
+       "delta": 15
+      }
+     }
+    ]
+   },
+   {
+    "id": "se-replier",
+    "nom": "Battre en retraite vers la porte",
+    "jet": {
+     "competence": "acrobaties",
+     "dd": 14
+    },
+    "resume": "En profitant du désordre des tentes et de la fumée des cuisines, le groupe peut gagner la porte avant que la ligne ne se referme. La Compagnie, vexée, garde les noms.",
+    "effets": [
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": -10
+      }
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "pdf-table-fournitures-du-fer-gris"
+   ],
+   "tresors": [
+    "pdf-tresor-butin-de-guerre"
+   ]
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": -40
+    }
+   },
+   {
+    "flag": "pdf-camp-vaincu"
+   },
+   {
+    "pnjEtat": {
+     "pnj": "kor-varnak",
+     "etat": "mort"
+    }
+   },
+   {
+    "xp": 300
+   }
+  ]
+ },
+ {
+  "id": "gue-bande-et-ogres",
+  "nom": "La bande et ses ogres",
+  "type": "combat",
+  "lieu": "gue-repaire",
+  "difficulte": "moderee",
+  "intro": "La grange du Gué sent la paille humide et la fumée de poêle. Gaspard le Borgne, debout devant son feu, ne dit rien. Autour de lui, ses bandits se lèvent sans hâte, couteaux en main. Dans l'ombre de la porte de service, deux masses se déplient : Glum et Moch, les ogres loués contre de la viande, frottent leurs mains et attendent le signal.",
+  "monstres": [
+   {
+    "profil": "chef-de-bande",
+    "nombre": 1,
+    "nom": "Gaspard le Borgne",
+    "pnj": "gaspard-le-borgne"
+   },
+   {
+    "profil": "bandit",
+    "nombre": 1,
+    "nom": "Jeannot la Mouche",
+    "pnj": "gue-jeannot-la-mouche"
+   },
+   {
+    "profil": "bandit",
+    "nombre": 3
+   },
+   {
+    "profil": "ogre",
+    "nombre": 1,
+    "nom": "Glum",
+    "pnj": "gue-glum-l-ogre"
+   },
+   {
+    "profil": "ogre",
+    "nombre": 1,
+    "nom": "Moch"
+   }
+  ],
+  "carte": [
+   "####################",
+   "#.....mmmmm........#",
+   "#..#...m.m....#....#",
+   "#..#..........#....#",
+   "#.....~~~~~~.......#",
+   "#..................#",
+   "#....##......##....#",
+   "#..................#",
+   "#.....HHHHHH.......#",
+   "####################"
+  ],
+  "tactique": {
+   "doctrine": "Les bandits tiennent la ligne devant le poêle et visent les tireurs ; les ogres chargent par la porte de service dès que le chef lève la main ; Gaspard reste en retrait avec ses deux dagues et tente d'isoler un adversaire.",
+   "fuite": "Jeannot s'enfuit si le combat tourne mal et laisse ses compagnons ; Gaspard se bat jusqu'au bout si l'on menace Mélie, et se rend si on lui rend son alliance ou sa poupée.",
+   "renforts": "Ysabeau et deux mères armées de fourches arrivent des cabanes au bout de quatre rounds, non pour combattre mais pour défendre les enfants."
+  },
+  "alternatives": [
+   {
+    "id": "mot-du-portail",
+    "nom": "Entrer par le mot du portail",
+    "condition": {
+     "flag": "gue-portail-passe"
+    },
+    "resume": "Le mot du soir permet de franchir le portail sans éveiller la meute, et d'aborder Gaspard seul à seul, avant que les ogres ne se réveillent.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "gaspard-le-borgne",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "corrompre-gaspard",
+    "nom": "Acheter la bande",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    },
+    "resume": "On offre à Gaspard de quoi nourrir les siens jusqu'au printemps (250 pièces d'or, ou des vivres à la mesure) : il fait cesser les pillages pour l'hiver et laisse passer. La bande se dissout peu à peu, faute d'ennemi.",
+    "effets": [
+     {
+      "pieces": -250
+     },
+     {
+      "flag": "gue-bande-dissoute"
+     },
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "duper-gaspard",
+    "nom": "Faire croire à l'arrivée du Fer-Gris",
+    "jet": {
+     "competence": "tromperie",
+     "dd": 16
+    },
+    "resume": "On crie que la Compagnie arrive avec une main de soldats et des échelles : la bande, qui redoute les hobgobelins, se disperse dans la brume, laissant les familles dans les cabanes.",
+    "effets": [
+     {
+      "flag": "gue-bande-dissoute"
+     },
+     {
+      "pnjEtat": {
+       "pnj": "gaspard-le-borgne",
+       "etat": "parti"
+      }
+     },
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": -15
+      }
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": -3
+      }
+     }
+    ]
+   },
+   {
+    "id": "nourrir-les-ogres",
+    "nom": "Apaiser les ogres par la nourriture",
+    "condition": {
+     "objet": "rations"
+    },
+    "jet": {
+     "competence": "dressage",
+     "dd": 13
+    },
+    "resume": "Un repas offert à Glum avant le signal : les ogres refusent de se battre et la bande se retrouve sans ses meilleures armes. Gaspard, les bras ballants, accepte de parlementer.",
+    "effets": [
+     {
+      "flag": "gue-ogres-apaises"
+     },
+     {
+      "attitude": {
+       "pnj": "gaspard-le-borgne",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "ysabeau-ouvre-la-porte",
+    "nom": "Entrer par la porte de service",
+    "condition": {
+     "pnj": {
+      "id": "gue-ysabeau-la-louve",
+      "attitudeMin": 25
+     }
+    },
+    "jet": {
+     "competence": "discretion",
+     "dd": 13
+    },
+    "resume": "Ysabeau a ouvert la porte de service et tient les ogres endormis par le repas du soir. Le groupe atteint le chef sans combat et peut parlementer ou le saisir.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "gaspard-le-borgne",
+       "delta": -5
+      }
+     },
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "intimider-gaspard",
+    "nom": "Imposer la loi du Fer-Gris",
+    "condition": {
+     "flag": "fer-gris-allie"
+    },
+    "jet": {
+     "competence": "intimidation",
+     "dd": 15
+    },
+    "resume": "Avec la bénédiction de Kor Varnak, le groupe annonce que la Compagnie, prête à brûler le Gué, accepte de le laisser en paix si la bande dépose les armes. Gaspard comprend qu'il n'a pas le choix.",
+    "effets": [
+     {
+      "flag": "gue-bande-dissoute"
+     },
+     {
+      "pnjEtat": {
+       "pnj": "gaspard-le-borgne",
+       "etat": "parti"
+      }
+     },
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": -10
+      }
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": 5
+      }
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "gue-table-butin-de-bande"
+   ],
+   "tresors": [
+    "gue-tresor-butin-de-la-bande"
+   ]
+  },
+  "effetsVictoire": [
+   {
+    "flag": "gue-bande-vaincue"
+   },
+   {
+    "reputation": {
+     "faction": "bande-du-gue",
+     "delta": -30
+    }
+   },
+   {
+    "reputation": {
+     "faction": "bailliage",
+     "delta": 10
+    }
+   },
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": 5
+    }
+   },
+   {
+    "pnjEtat": {
+     "pnj": "gaspard-le-borgne",
+     "etat": "mort"
+    }
+   },
+   {
+    "xp": 250
+   }
+  ]
+ },
+ {
+  "id": "pdf-patrouille-du-fer-gris",
+  "nom": "Patrouille du Fer-Gris",
+  "type": "combat",
+  "lieu": "pont-de-fer",
+  "difficulte": "faible",
+  "intro": "Une main de la Compagnie, en cotte grise et en cadence, débouche d'un carrefour : deux combattants hobgobelins en tête, deux gobelins éclaireurs sur les flancs. Le chef de main lève un poing et hèle les étrangers.",
+  "monstres": [
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 2
+   },
+   {
+    "profil": "combattant-gobelin",
+    "nombre": 2
+   }
+  ],
+  "carte": [
+   "################",
+   "#..~~....mm....#",
+   "#.......m..m...#",
+   "#...##.....##..#",
+   "#..............#",
+   "#....~~~.......#",
+   "#..HHHHHH......#",
+   "#..............#",
+   "################"
+  ],
+  "tactique": {
+   "doctrine": "Les hobgobelins forment une ligne ; les gobelins se glissent par les flancs pour mordre les archers.",
+   "fuite": "Un gobelin court prévenir la caserne si le combat dure plus de trois rounds.",
+   "renforts": "Une seconde main arrive au bout de cinq rounds si le cor a sonné."
+  },
+  "alternatives": [
+   {
+    "id": "montrer-le-sceau",
+    "nom": "Présenter le sceau du Fer-Gris",
+    "condition": {
+     "objet": "sceau-du-fer-gris"
+    },
+    "resume": "Le chef de main salue et laisse passer : le sceau fait loi.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "payer-la-patrouille",
+    "nom": "Verser un pot-de-vin",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 13
+    },
+    "resume": "Vingt pièces d'or et un beau discours sur l'ordre : la patrouille détourne les yeux pour la durée d'une ronde.",
+    "effets": [
+     {
+      "pieces": -20
+     }
+    ]
+   },
+   {
+    "id": "mentir-a-la-patrouille",
+    "nom": "Se faire passer pour des marchands de drap",
+    "jet": {
+     "competence": "tromperie",
+     "dd": 14
+    },
+    "resume": "Un mensonge calme et un brassard cousu de travers suffisent à faire croire qu'on livre du drap aux tisserands.",
+    "effets": []
+   },
+   {
+    "id": "fuir-la-patrouille",
+    "nom": "Se perdre dans les ruelles",
+    "jet": {
+     "competence": "discretion",
+     "dd": 14
+    },
+    "resume": "On se glisse dans une ruelle avant que la main ne tourne le coin.",
+    "effets": []
+   }
+  ],
+  "butin": {
+   "tables": [
+    "pdf-table-fournitures-du-fer-gris"
+   ],
+   "tresors": []
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": -8
+    }
+   }
+  ]
+ },
+ {
+  "id": "pdf-embuscade-du-pont",
+  "nom": "L'embuscade du pont",
+  "type": "combat",
+  "lieu": "pdf-le-pont-de-fer",
+  "difficulte": "moderee",
+  "intro": "Au milieu du pont, un coup de maillet retentit. Derrière les barbacanes, des hobgobelins se lèvent ; sur les parapets, des gobelins tendent des cordes. Un gobelours jaillit d'une niche. La chaîne nain gronde déjà sous la chaussée : elle va bloquer toute retraite.",
+  "monstres": [
+   {
+    "profil": "combattant-gobelours",
+    "nombre": 2
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 3
+   },
+   {
+    "profil": "combattant-gobelin",
+    "nombre": 2
+   }
+  ],
+  "carte": [
+   "##########################",
+   "#........m......m........#",
+   "#..m.....#......#.....m..#",
+   "#........~~~~~~~~...m....#",
+   "#...m.............m......#",
+   "#..........~~~...m.......#",
+   "#........................#",
+   "#...HHHHHH...............#",
+   "##########################"
+  ],
+  "tactique": {
+   "doctrine": "Le piège se referme par les deux bouts : les hobgobelins bloquent la sortie, les gobelours chargent par le milieu, les gobelins sabotent les cordes des échelles.",
+   "fuite": "Les gobelins sautent à l'eau s'ils sont acculés.",
+   "renforts": "La chaîne de barrage est déclenchée au deuxième round (piège pdf-piege-chaine-du-pont)."
+  },
+  "alternatives": [
+   {
+    "id": "deviner-l-embuscade",
+    "nom": "Repérer le piège avant d'avancer",
+    "jet": {
+     "competence": "perception",
+     "dd": 15
+    },
+    "resume": "Un reflet de cotte entre deux merlons trahit l'embuscade : le groupe évite la chaussée ou prend l'avantage de la surprise.",
+    "effets": []
+   },
+   {
+    "id": "parlementer-sur-le-pont",
+    "nom": "Parlementer en levant un sceau",
+    "condition": {
+     "objet": "sceau-du-fer-gris"
+    },
+    "resume": "Le sergent de l'embuscade reconnaît le sceau : il rappelle ses hommes et ouvre la barbacane.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "esquiver-le-pont",
+    "nom": "Passer par la berge, sous le pont",
+    "jet": {
+     "competence": "athletisme",
+     "dd": 15
+    },
+    "resume": "On évite la chaussée en rampant le long des piles, le pied dans l'eau glacée.",
+    "effets": []
+   }
+  ],
+  "butin": {
+   "tables": [
+    "pdf-table-fournitures-du-fer-gris"
+   ],
+   "tresors": []
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": -15
+    }
+   }
+  ]
+ },
+ {
+  "id": "pdf-rixe-de-la-halle",
+  "nom": "La rixe de la halle",
+  "type": "mixte",
+  "lieu": "pdf-grande-halle",
+  "difficulte": "faible",
+  "intro": "Un pain a disparu. Deux sections s'accusent, les bancs volent, les gobelins s'en mêlent. La grande halle se transforme en champ de bataille de gamelles et de tabourets. Yorga, la louche en main, hurle dans le vacarme sans que personne ne l'écoute.",
+  "monstres": [
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 3
+   },
+   {
+    "profil": "combattant-gobelin",
+    "nombre": 3
+   }
+  ],
+  "carte": [
+   "######################",
+   "#....#..........#....#",
+   "#.m..#...m....m..#..m#",
+   "#......##....##......#",
+   "#..m.....~~~~....m...#",
+   "#......##....##......#",
+   "#...m.....m..........#",
+   "#.......HHHHHH.......#",
+   "######################"
+  ],
+  "tactique": {
+   "doctrine": "Bagarre, non combat : on cogne, on désarme, on renverse ; personne ne tue sauf si on dégaine.",
+   "fuite": "Tout le monde se disperse dès que Kor Varnak entre dans la halle.",
+   "renforts": "Une main de la garde arrive au bout de quatre rounds et arrête les fauteurs de troubles."
+  },
+  "alternatives": [
+   {
+    "id": "crier-un-ordre",
+    "nom": "Hurler un ordre de la Compagnie",
+    "jet": {
+     "competence": "intimidation",
+     "dd": 14
+    },
+    "resume": "Une voix de commandement qui coupe net : les hobgobelins se figent par réflexe. La rixe s'arrête, et le groupe gagne l'estime de Yorga.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "pdf-yorga-marmite",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "partager-du-pain",
+    "nom": "Distribuer du pain pour calmer la foule",
+    "condition": {
+     "objet": "rations"
+    },
+    "jet": {
+     "competence": "persuasion",
+     "dd": 12
+    },
+    "resume": "Quelques rations sorties de sac suffisent à désarmer une rixe causée par la faim.",
+    "effets": [
+     {
+      "objet": {
+       "id": "rations",
+       "quantite": 4,
+       "retirer": true
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "pdf-yorga-marmite",
+       "delta": 15
+      }
+     }
+    ]
+   },
+   {
+    "id": "profiter-du-chaos",
+    "nom": "Profiter du désordre pour passer inaperçu",
+    "jet": {
+     "competence": "discretion",
+     "dd": 13
+    },
+    "resume": "Dans le vacarme, personne ne remarque les étrangers : on peut gagner la porte arrière des cuisines.",
+    "effets": []
+   }
+  ],
+  "butin": {
+   "tables": [],
+   "tresors": []
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": -5
+    }
+   }
+  ]
+ },
+ {
+  "id": "pdf-evasion-de-la-prison",
+  "nom": "L'évasion de la prison",
+  "type": "mixte",
+  "lieu": "pdf-prison",
+  "difficulte": "moderee",
+  "intro": "Quatre cellules, une lampe, un sergent massif qui récite son règlement. Derrière la dernière grille, deux silhouettes se redressent : Anselme et Tiphaine. Tout se joue sur la clé que le sergent porte au ceinturon, et sur le silence : un cri, et la caserne entière déboule.",
+  "monstres": [
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 1,
+    "nom": "Sergent Oumak",
+    "pnj": "pdf-oumak-le-geolier"
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 2
+   },
+   {
+    "profil": "combattant-gobelours",
+    "nombre": 2
+   },
+   {
+    "profil": "combattant-gobelin",
+    "nombre": 2
+   }
+  ],
+  "carte": [
+   "####################",
+   "#m..#....#....#..m.#",
+   "#...#..m.#.m..#....#",
+   "#...#....#....#..m.#",
+   "#.m.......m........#",
+   "#...#....#....#....#",
+   "#########.##########",
+   "#...HHHHHH.........#",
+   "####################"
+  ],
+  "tactique": {
+   "doctrine": "Les gardes bloquent l'escalier et le couloir ; le sergent protège les clés ; les gobelours chargent le premier intrus.",
+   "fuite": "Un gobelin court donner l'alarme au deuxième round, ce qui amène une main de renfort.",
+   "renforts": "Une main de cinq soldats arrive de la caserne au bout de quatre rounds si l'alarme est donnée."
+  },
+  "alternatives": [
+   {
+    "id": "ordre-scelle",
+    "nom": "Présenter un ordre scellé",
+    "condition": {
+     "objet": "sceau-du-fer-gris"
+    },
+    "resume": "Oumak examine le sceau, le reconnaît, ouvre les cellules et escorte lui-même les otages jusqu'à la porte.",
+    "effets": [
+     {
+      "flag": "pdf-otages-libres"
+     }
+    ]
+   },
+   {
+    "id": "faux-ordre",
+    "nom": "Présenter un faux ordre",
+    "condition": {
+     "objet": "pdf-faux-sceau"
+    },
+    "jet": {
+     "competence": "tromperie",
+     "dd": 15
+    },
+    "resume": "Oumak ne sait pas lire : il juge d'après la forme du sceau. Si le faux est assez beau, il ouvre ; plus tard, le subterfuge sera découvert.",
+    "effets": [
+     {
+      "flag": "pdf-otages-libres"
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-fer-gris",
+       "delta": -10
+      }
+     }
+    ]
+   },
+   {
+    "id": "tisane-d-oldric",
+    "nom": "Droguer le sergent avec la tisane d'Oldric",
+    "condition": {
+     "pnj": {
+      "id": "pdf-oldric-vasseur",
+      "attitudeMin": 30
+     }
+    },
+    "resume": "Oumak boit sa tisane habituelle, forcée par Oldric : il s'endort comme une pierre. Les clés changent de mains sans bruit.",
+    "effets": [
+     {
+      "flag": "pdf-otages-libres"
+     },
+     {
+      "objet": {
+       "id": "pdf-cle-de-la-prison"
+      }
+     }
+    ]
+   },
+   {
+    "id": "par-les-egouts",
+    "nom": "Passer par les drains",
+    "condition": {
+     "fait": "f-pdf-egout-du-puits"
+    },
+    "jet": {
+     "competence": "investigation",
+     "dd": 14
+    },
+    "resume": "La grille d'évacuation derrière la dernière cellule, forcée et remontée, donne sur un drain nain. Les otages sortent par la rivière sans croiser un garde.",
+    "effets": [
+     {
+      "flag": "pdf-otages-libres"
+     }
+    ]
+   },
+   {
+    "id": "soudoyer-un-garde",
+    "nom": "Soudoyer le garde de relève",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 15
+    },
+    "resume": "Un garde de relève, affamé et rancunier, accepte cinquante pièces pour oublier ses clés sur la table.",
+    "effets": [
+     {
+      "pieces": -50
+     },
+     {
+      "flag": "pdf-otages-libres"
+     }
+    ]
+   },
+   {
+    "id": "diversion-de-nibb",
+    "nom": "Faire diversion avec Nibb",
+    "condition": {
+     "pnj": {
+      "id": "pdf-nibb-petit-gobelin",
+      "attitudeMin": 30
+     }
+    },
+    "jet": {
+     "competence": "representation",
+     "dd": 13
+    },
+    "resume": "Nibb déclenche un faux incendie à la cuisine ; les gardes courent. Le groupe a le temps de sortir les otages par l'escalier.",
+    "effets": [
+     {
+      "flag": "pdf-otages-libres"
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [],
+   "tresors": [
+    "pdf-tresor-effets-des-otages"
+   ]
+  },
+  "effetsVictoire": [
+   {
+    "flag": "pdf-otages-libres"
+   },
+   {
+    "reputation": {
+     "faction": "compagnie-du-fer-gris",
+     "delta": -20
+    }
+   }
+  ]
+ },
+ {
+  "id": "pdf-controle-de-la-porte",
+  "nom": "Le contrôle de la porte",
+  "type": "social",
+  "lieu": "pdf-porte-principale",
+  "difficulte": "moderee",
+  "intro": "La herse est relevée, mais pas pour tous. Un sergent de garde, entouré de deux sentinelles et d'une baliste braquée sur la route, demande l'objet de la visite, inscrit les noms et jette un regard à chaque sac. Derrière lui, la ville : des toits gris, une fumée de forge, une toux qui court.",
+  "monstres": [],
+  "tactique": {
+   "doctrine": "Le sergent applique le règlement à la lettre : il laisse passer qui porte un sceau, enregistre qui se déclare marchand, refuse tout le reste.",
+   "fuite": "Un refus s'accompagne d'un avertissement ; une insistance fait sonner le cor.",
+   "renforts": "Le cor appelle une main complète en trois rounds."
+  },
+  "alternatives": [
+   {
+    "id": "montrer-le-sceau",
+    "nom": "Présenter le sceau du Fer-Gris",
+    "condition": {
+     "objet": "sceau-du-fer-gris"
+    },
+    "resume": "Le sergent salue : le sceau est celui d'un capitaine. On passe sans autre formalité.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "faux-sceau",
+    "nom": "Présenter un faux sceau",
+    "condition": {
+     "objet": "pdf-faux-sceau"
+    },
+    "jet": {
+     "competence": "tromperie",
+     "dd": 15
+    },
+    "resume": "Le sergent tourne le disque, vérifie la cire. Un faux soigné, présenté avec aplomb, passe ; un faux maladroit fait sonner l'alarme.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "pot-de-vin",
+    "nom": "Verser un pot-de-vin au sergent",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    },
+    "resume": "Trente pièces glissées dans le registre, et l'étranger devient « marchand de drap enregistré » pour trois jours.",
+    "effets": [
+     {
+      "pieces": -30
+     },
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "se-faire-passer-pour-marchand",
+    "nom": "Se faire enregistrer comme marchand",
+    "jet": {
+     "competence": "tromperie",
+     "dd": 12
+    },
+    "resume": "On se déclare marchand de laine venu livrer aux tisserands : le sergent inscrit les noms et laisse passer sous surveillance.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "brassard-de-valet",
+    "nom": "Se faufiler avec un brassard de valet",
+    "condition": {
+     "objet": "pdf-brassard-du-fer-gris"
+    },
+    "jet": {
+     "competence": "discretion",
+     "dd": 13
+    },
+    "resume": "Un brassard gris, un sac de grain à l'épaule : on passe pour un auxiliaire de la Compagnie.",
+    "effets": [
+     {
+      "flag": "pdf-passage-accorde"
+     }
+    ]
+   },
+   {
+    "id": "autre-chemin",
+    "nom": "Renoncer à la porte",
+    "resume": "On quitte la file et on cherche un autre accès : la brèche du nord ou les drains.",
+    "effets": []
+   }
+  ],
+  "butin": {
+   "tables": [],
+   "tresors": []
+  },
+  "effetsVictoire": []
+ },
+ {
+  "id": "gue-embuscade-au-gue",
+  "nom": "L'embuscade au gué",
+  "type": "combat",
+  "lieu": "gue-gue-a-gue",
+  "difficulte": "faible",
+  "intro": "L'eau est froide, le gué silencieux, la brume basse. Un sifflement, et six silhouettes se lèvent des saules ; des flèches claquent, des cordes se tendent. Une voix rauque annonce le péage : la moitié de ce que vous portez, ou vous perdez tout.",
+  "monstres": [
+   {
+    "profil": "bandit",
+    "nombre": 6
+   }
+  ],
+  "carte": [
+   "######################",
+   "#~~~~~~~~~~~~~~~~~~~~#",
+   "#~~..m..m..~~..m..m~~#",
+   "#~~.....~~~~~....~~~~#",
+   "#.....m.~~~~~.m...~~~#",
+   "#.............m......#",
+   "#..~~..............~~#",
+   "#.....HHHHHH.........#",
+   "######################"
+  ],
+  "tactique": {
+   "doctrine": "Les tireurs se postent dans les saules et visent le moins armuré ; les autres coupent la retraite par la berge.",
+   "fuite": "Les bandits fuient si trois d'entre eux tombent.",
+   "renforts": "Les cloches du Gué sonnent : le repaire prépare l'accueil."
+  },
+  "alternatives": [
+   {
+    "id": "payer-le-peage",
+    "nom": "Payer le péage",
+    "resume": "La moitié de ce que porte le groupe, sauf les armes : la bande laisse passer.",
+    "effets": [
+     {
+      "pieces": -40
+     },
+     {
+      "attitude": {
+       "pnj": "gaspard-le-borgne",
+       "delta": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "carte-du-passeur",
+    "nom": "Suivre le chemin sûr de la carte",
+    "condition": {
+     "objet": "gue-carte-du-passeur"
+    },
+    "resume": "Avec la carte d'Hilaire, le groupe évite les pieux et les tireurs, qui ne s'attendaient pas à une traversée si précise.",
+    "effets": []
+   },
+   {
+    "id": "intimider-les-bandits",
+    "nom": "Faire reculer les bandits par la menace",
+    "jet": {
+     "competence": "intimidation",
+     "dd": 15
+    },
+    "resume": "Un ton calme, une main sur la poignée : des hommes affamés réfléchissent avant de mourir pour un péage.",
+    "effets": [
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": -3
+      }
+     }
+    ]
+   },
+   {
+    "id": "parler-de-nourriture",
+    "nom": "Négocier avec des vivres",
+    "condition": {
+     "objet": "rations"
+    },
+    "jet": {
+     "competence": "persuasion",
+     "dd": 12
+    },
+    "resume": "Quelques rations offertes, une parole sensée : les bandits baissent les arcs.",
+    "effets": [
+     {
+      "objet": {
+       "id": "rations",
+       "quantite": 4,
+       "retirer": true
+      }
+     },
+     {
+      "reputation": {
+       "faction": "bande-du-gue",
+       "delta": 3
+      }
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "gue-table-butin-de-bande"
+   ],
+   "tresors": []
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "bande-du-gue",
+     "delta": -8
+    }
+   },
+   {
+    "reputation": {
+     "faction": "bailliage",
+     "delta": 3
+    }
+   }
+  ]
+ },
+ {
+  "id": "gue-rixe-de-la-taverne",
+  "nom": "La rixe du Batelier",
+  "type": "mixte",
+  "lieu": "gue-taverne-du-batelier",
+  "difficulte": "faible",
+  "intro": "Un banc se renverse, une chope vole. Quatre bandits, soûls de bière noire et de mauvaise humeur, cherchent noise à qui croise leur regard. Hilaire, derrière son comptoir, ne bouge pas, mais sa main frôle une cloche de cuivre : la règle de la maison est « pas de sang ».",
+  "monstres": [
+   {
+    "profil": "bandit",
+    "nombre": 4
+   }
+  ],
+  "carte": [
+   "################",
+   "#.....#........#",
+   "#..m..#....m...#",
+   "#.....#........#",
+   "#...m..........#",
+   "#.........m.m..#",
+   "#..HHHHHH......#",
+   "################"
+  ],
+  "tactique": {
+   "doctrine": "Bagarre à mains nues : les bandits dégainent seulement si on dégaine.",
+   "fuite": "Ils se dispersent si Hilaire sonne la cloche.",
+   "renforts": "Aucun : personne n'ose se battre sous le toit du Batelier plus d'un round."
+  },
+  "alternatives": [
+   {
+    "id": "sonner-la-cloche",
+    "nom": "Sonner la cloche d'Hilaire",
+    "condition": {
+     "pnj": {
+      "id": "gue-hilaire-passeur",
+      "attitudeMin": 20
+     }
+    },
+    "resume": "Hilaire sonne : la règle s'applique, les bandits se calment et sortent en grommelant.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "gue-hilaire-passeur",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "payer-une-tournee",
+    "nom": "Offrir une tournée",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 12
+    },
+    "resume": "Une tournée de bière noire, et les poings se desserrent. On y apprend deux ou trois rumeurs.",
+    "effets": [
+     {
+      "pieces": -10
+     },
+     {
+      "fait": "f-gue-pillages-des-refugies"
+     }
+    ]
+   },
+   {
+    "id": "faire-taire-la-salle",
+    "nom": "Imposer le silence d'un seul regard",
+    "jet": {
+     "competence": "intimidation",
+     "dd": 14
+    },
+    "resume": "Un regard glacé, une main sur l'épée : la salle se fige.",
+    "effets": []
+   }
+  ],
+  "butin": {
+   "tables": [],
+   "tresors": []
+  },
+  "effetsVictoire": [
+   {
+    "reputation": {
+     "faction": "bande-du-gue",
+     "delta": -4
+    }
+   }
+  ]
+ }
+]

@@ -1,0 +1,175 @@
+{
+  "id": "fantome",
+  "nom": "Fantôme",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre",
+  "ca": 11,
+  "pv": {
+    "moyenne": 45,
+    "des": "10d8"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 7,
+    "dex": 13,
+    "con": 10,
+    "int": 10,
+    "sag": 12,
+    "cha": 17
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "resistances": [
+    "acide",
+    "contondant",
+    "feu",
+    "foudre",
+    "froid",
+    "perforant",
+    "tonnerre",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "nécrotique",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "empoisonne",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun et une autre langue",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "deplacement-intangible",
+      "nom": "Déplacement intangible",
+      "resume": "Le fantôme traverse les créatures et les objets comme un Terrain difficile ; il subit 5 (1d10) dégâts de force s'il termine son tour à l'intérieur d'un objet. Vol stationnaire."
+    },
+    {
+      "id": "vision-etheree",
+      "nom": "Vision éthérée",
+      "resume": "Depuis le Plan Matériel, le fantôme voit à 18 m dans le Plan Éthéré."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le fantôme effectue deux attaques de Contact flétrissant.",
+      "multiattaque": [
+        {
+          "action": "contact-fletrissant",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "contact-fletrissant",
+      "nom": "Contact flétrissant",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 19 (3d10 + 3) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 3,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "forme-etheree",
+      "nom": "Forme éthérée",
+      "cout": "action",
+      "resume": "Le fantôme lance forme éthérée sans composantes (Charisme). Il reste visible depuis le Plan Matériel à la Frontière éthérée, et inversement, mais ne peut ni affecter ni être affecté par quoi que ce soit depuis l'autre plan.",
+      "portee": {
+        "type": "personnel"
+      }
+    },
+    {
+      "id": "possession",
+      "nom": "Possession",
+      "cout": "action",
+      "resume": "JS Charisme DD 13, un Humanoïde que le fantôme voit à 1,50 m ou moins. Échec : la cible est possédée ; le fantôme disparaît, la cible est Neutralisée et perd le contrôle de son corps (elle reste consciente). Le fantôme prend le contrôle du corps et ne peut être ciblé que par ce qui cible spécifiquement les Morts-vivants ; il garde son profil mais reprend la Vitesse et les modificateurs de Force, Dextérité et Constitution de la cible. La possession dure jusqu'à ce que le corps tombe à 0 pv ou que le fantôme la quitte par une action Bonus ; il réapparaît alors à 1,50 m ou moins de la cible, immunisée 24 h. Réussite : cible immunisée 24 h contre la Possession de ce fantôme.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "cha",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 1.5
+      },
+      "etats": [
+        {
+          "etat": "neutralise"
+        }
+      ],
+      "recharge": "6"
+    },
+    {
+      "id": "visage-terrifiant",
+      "nom": "Visage terrifiant",
+      "cout": "action",
+      "resume": "JS Sagesse DD 13, chaque créature non Mort-vivante qui voit le fantôme dans un Cône de 18 m. Échec : 10 (2d6 + 3) dégâts psychiques et état Effrayé jusqu'au début du prochain tour du fantôme. Réussite : immunité 24 h contre le Visage terrifiant de ce fantôme.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "psychique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

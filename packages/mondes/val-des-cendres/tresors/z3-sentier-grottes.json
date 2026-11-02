@@ -1,0 +1,480 @@
+[
+  {
+    "id": "gro-t-os-du-porche",
+    "nom": "Hardes de voyageurs",
+    "lieu": "gro-loups-porche",
+    "contenant": "sol",
+    "description": "Un tas de vêtements déchirés, de sacs rongés et de bottes que la meute a traînés ici, avec quelques pièces égarées au fond d'une poche.",
+    "contenu": {
+      "pieces": {
+        "po": 8,
+        "pa": 12
+      },
+      "objets": [
+        {
+          "objet": "trousse-de-soins"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "gro-r-loups-porche"
+  },
+  {
+    "id": "gro-t-ossuaire-des-loups",
+    "nom": "Ossuaire de la meute",
+    "lieu": "gro-loups-ossuaire",
+    "contenant": "cache",
+    "description": "Sous un lit d'os, la meute a laissé les restes de ses proies humaines : une bourse, une fiole, une dague rouillée et une pierre plate gravée de spirales goliaths.",
+    "contenu": {
+      "pieces": {
+        "po": 35
+      },
+      "objets": [
+        {
+          "objet": "gro-pierre-de-nom-de-haavi"
+        },
+        {
+          "objet": "potion-de-guerison"
+        },
+        {
+          "objet": "dague"
+        }
+      ],
+      "tables": [
+        {
+          "table": "gro-table-os-et-bourses",
+          "jets": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    },
+    "gardien": "gro-r-loups-salle-de-la-meute",
+    "indice": "f-gro-pierre-de-haavi-chez-les-loups"
+  },
+  {
+    "id": "gro-t-bourse-de-la-fissure",
+    "nom": "Le voyageur de la fissure",
+    "lieu": "gro-loups-fissure-nord",
+    "contenant": "cadavre",
+    "description": "Un voyageur s'est coincé dans la fissure en fuyant les loups. Il est mort de froid. Sa ceinture porte une bourse, un grappin et une dague.",
+    "contenu": {
+      "pieces": {
+        "po": 22
+      },
+      "objets": [
+        {
+          "objet": "grappin"
+        },
+        {
+          "objet": "dague"
+        },
+        {
+          "objet": "corde"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 11,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "gro-t-caravane-coffre",
+    "nom": "Coffre du colporteur",
+    "lieu": "gro-sentier-caravane",
+    "contenant": "coffre",
+    "description": "Un coffre de chêne cerclé de fer au fond du chariot, dont la serrure a été forcée puis refermée à la hâte. Il reste de quoi vivre quelques semaines.",
+    "contenu": {
+      "pieces": {
+        "po": 45
+      },
+      "objets": [
+        {
+          "objet": "parfum"
+        }
+      ],
+      "tables": [
+        {
+          "table": "gro-table-caravane",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {
+      "verrou": {
+        "dd": 13
+      },
+      "piege": "gro-p-aiguille-du-chariot"
+    },
+    "indice": "f-gro-caravane-du-colporteur"
+  },
+  {
+    "id": "gro-t-caravane-sacoches",
+    "nom": "Sacoches du valet",
+    "lieu": "gro-sentier-caravane",
+    "contenant": "sac",
+    "description": "Sous le corps du valet, deux sacoches de cuir contiennent un carnet de comptes, des vivres, des torches et la clochette de tête d'un attelage.",
+    "contenu": {
+      "pieces": {
+        "pa": 30
+      },
+      "objets": [
+        {
+          "objet": "gro-carnet-du-colporteur"
+        },
+        {
+          "objet": "rations",
+          "quantite": 3
+        },
+        {
+          "objet": "torche",
+          "quantite": 2
+        },
+        {
+          "objet": "cloche"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 11,
+        "competence": "perception"
+      }
+    },
+    "indice": "f-gro-caravane-du-colporteur"
+  },
+  {
+    "id": "gro-t-cache-d-odilon",
+    "nom": "La cache sous le plancher",
+    "lieu": "gro-sentier-abri-du-trappeur",
+    "contenant": "cache",
+    "description": "Sous une latte du plancher, une boîte de fer renferme l'argent du colporteur, que le trappeur n'a jamais osé dépenser.",
+    "contenu": {
+      "pieces": {
+        "po": 70,
+        "pa": 40
+      },
+      "objets": [
+        {
+          "objet": "parfum"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-gro-odilon-a-pille-la-caravane"
+  },
+  {
+    "id": "gro-t-fosse-casiers",
+    "nom": "Casiers des mineurs",
+    "lieu": "gro-fosse-dortoir",
+    "contenant": "etagere",
+    "description": "Au pied des couchettes, des casiers à outils où les nains rangeaient pics, coins et lanternes en rentrant de poste.",
+    "contenu": {
+      "pieces": {
+        "po": 12
+      },
+      "objets": [
+        {
+          "objet": "gro-outils-de-mineurs-nains"
+        },
+        {
+          "objet": "gro-minerai-de-braise",
+          "quantite": 2
+        }
+      ],
+      "tables": [
+        {
+          "table": "gro-table-fosse",
+          "jets": 1
+        }
+      ]
+    },
+    "acces": {},
+    "gardien": "gro-r-fosse-dortoir"
+  },
+  {
+    "id": "gro-t-fosse-contremaitre",
+    "nom": "Le contremaître assis",
+    "lieu": "gro-fosse-carreau",
+    "contenant": "cadavre",
+    "description": "Le squelette du contremaître, assis sur son banc, porte encore sa ceinture de cuir : une clé de fer noir et une bourse presque vide pendent à sa boucle.",
+    "contenu": {
+      "pieces": {
+        "po": 15
+      },
+      "objets": [
+        {
+          "objet": "gro-cle-du-contremaitre"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "gro-r-fosse-carreau"
+  },
+  {
+    "id": "gro-t-fosse-coffre-bureau",
+    "nom": "Coffre du contremaître",
+    "lieu": "gro-fosse-bureau-du-contremaitre",
+    "contenant": "coffre",
+    "description": "Un coffre de fer noir cerclé de laiton, où le contremaître gardait la paie et son journal.",
+    "contenu": {
+      "pieces": {
+        "po": 80,
+        "pa": 60
+      },
+      "objets": [
+        {
+          "objet": "gro-journal-du-contremaitre"
+        },
+        {
+          "objet": "potion-de-guerison"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 15,
+        "cle": "gro-cle-du-contremaitre"
+      }
+    },
+    "indice": "f-gro-fosse-menait-a-la-forge"
+  },
+  {
+    "id": "gro-t-fosse-filon",
+    "nom": "Blocs du filon",
+    "lieu": "gro-fosse-filon",
+    "contenant": "sol",
+    "description": "Le long des rails, des blocs de minerai de braise détachés par les mineurs attendent d'être chargés : tièdes, lourds, prêts à brûler.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "gro-minerai-de-braise",
+          "quantite": 4
+        },
+        {
+          "objet": "z6-houille-rouge",
+          "quantite": 2
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "piege": "gro-p-gaz-du-filon"
+    },
+    "gardien": "gro-r-fosse-filon"
+  },
+  {
+    "id": "gro-t-fils-cocons",
+    "nom": "Cocons du garde-manger",
+    "lieu": "gro-fils-garde-manger",
+    "contenant": "cadavre",
+    "description": "Une grappe de cocons où dorment un colporteur, un chasseur de loups et un mouton : leurs biens sont enroulés avec eux, intacts.",
+    "contenu": {
+      "pieces": {
+        "po": 40
+      },
+      "objets": [],
+      "tables": [
+        {
+          "table": "gro-table-cocons",
+          "jets": 3
+        }
+      ]
+    },
+    "acces": {},
+    "gardien": "gro-r-fils-couloir"
+  },
+  {
+    "id": "gro-t-fils-cocon-du-piegeur",
+    "nom": "Le cocon du piégeur",
+    "lieu": "gro-fils-garde-manger",
+    "contenant": "cadavre",
+    "description": "Haut dans la voûte, un cocon plus gros que les autres enferme un piégeur de montagne mort avec tout son équipement, qu'il avait attaché à son dos : arc, flèches et fil tressé.",
+    "contenu": {
+      "pieces": {
+        "po": 25
+      },
+      "objets": [
+        {
+          "objet": "gro-fil-d-araignee-tresse"
+        },
+        {
+          "objet": "potion-d-escalade"
+        },
+        {
+          "objet": "arc-court"
+        },
+        {
+          "objet": "fleches",
+          "quantite": 20
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "perception"
+      },
+      "piege": "gro-p-fils-d-alerte"
+    }
+  },
+  {
+    "id": "gro-t-cairn-offrandes",
+    "nom": "L'offrande la plus ancienne",
+    "lieu": "gro-hauteurs-cairn",
+    "contenant": "autel",
+    "description": "Dans un renfoncement à la base du cairn, sur une pierre plate, repose un galet bleu poli percé d'un cordon : l'offrande première des bâtisseurs.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "gro-offrande-du-cairn"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "condition": {
+      "flag": "gro-cairn-complete"
+    },
+    "indice": "f-gro-cairn-trois-niches"
+  },
+  {
+    "id": "gro-t-cairn-niche-basse",
+    "nom": "La niche basse du cairn",
+    "lieu": "gro-hauteurs-cairn",
+    "contenant": "cache",
+    "description": "Dans un recoin de la base du cairn, une niche sans ruban abrite des offrandes très anciennes : pièces en alliage de bronze, bouchons de gourde, une fiole de liquide ambré.",
+    "contenu": {
+      "pieces": {
+        "po": 30
+      },
+      "objets": [
+        {
+          "objet": "potion-d-amitie-avec-les-animaux"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-gro-cairn-des-premiers-morts"
+  },
+  {
+    "id": "gro-t-champ-poste-ensevelie",
+    "nom": "Coffre du poste enseveli",
+    "lieu": "gro-champ-poste-ensevelie",
+    "contenant": "coffre",
+    "description": "Dans la salle unique du poste de garde, un coffre cerclé de fer que l'on a ouvert et refermé il y a peu. Il contient un linge gris, dans lequel un insigne de laiton est enveloppé.",
+    "contenu": {
+      "pieces": {
+        "po": 40
+      },
+      "objets": [
+        {
+          "objet": "gro-insigne-de-gardien-enfoui"
+        },
+        {
+          "objet": "potion-de-guerison"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 14
+      }
+    },
+    "indice": "f-gro-ocre-fut-gardien"
+  },
+  {
+    "id": "gro-t-champ-biens-des-couches",
+    "nom": "Les biens des couchés",
+    "lieu": "gro-champ-allee-des-couches",
+    "contenant": "sol",
+    "description": "Au pied de chaque couché, un petit tas de biens soigneusement posé : bourse, bague de mariage, livre, amulette. Les Pèlerins n'y touchent pas, mais ne s'opposeraient pas à ce qu'on prenne.",
+    "contenu": {
+      "pieces": {
+        "po": 60,
+        "pa": 90
+      },
+      "objets": [],
+      "tables": [
+        {
+          "table": "gro-table-caravane",
+          "jets": 1
+        }
+      ]
+    },
+    "acces": {}
+  },
+  {
+    "id": "gro-t-vask-sacoche",
+    "nom": "Sacoche de l'éclaireur",
+    "lieu": "gro-sentier-ravine",
+    "contenant": "sac",
+    "description": "La sacoche de cuir du soldat, close d'une boucle de fer gris : vivres soigneusement empaquetés, une carte griffonnée des galeries, et quelques pièces de solde.",
+    "contenu": {
+      "pieces": {
+        "po": 20
+      },
+      "objets": [
+        {
+          "objet": "carte"
+        },
+        {
+          "objet": "rations",
+          "quantite": 2
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-gro-fer-gris-eclaireurs"
+  },
+  {
+    "id": "gro-t-fosse-baril-d-huile",
+    "nom": "Le baril de l'équipe de Sigrun",
+    "lieu": "gro-fosse-filon",
+    "contenant": "autre",
+    "description": "Contre la veine, un baril à demi plein d'huile de roche, calé dans un coin avec des cales de bois : le dernier ouvrage de l'équipe de Sigrun avant que tout ne bascule.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "vei-baril-d-huile-de-roche"
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 11,
+        "competence": "perception"
+      }
+    },
+    "gardien": "gro-r-fosse-filon",
+    "indice": "f-gro-fosse-huile-de-roche"
+  }
+]

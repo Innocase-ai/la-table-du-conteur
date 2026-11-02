@@ -1,0 +1,1104 @@
+[
+  {
+    "id": "cryptes-d-ormgard",
+    "nom": "Les Cryptes d'Ormgard",
+    "type": "donjon",
+    "parent": "val-des-cendres",
+    "resume": "Les anciennes catacombes naines sous le cimetière nord de Veillecendre, scellées depuis deux siècles et rouvertes par la lassitude des morts.",
+    "description": "Ormgard était le quartier des morts de la Haute-Forge : un étage de galeries de niches et d'urnes, puis un étage profond de chapelles, de salles de garde et de scellés, et tout au fond la route funéraire qui mène à la Haute-Forge, fermée par le Sceau de la Forge. On y entre par le portique du mausolée, dans l'angle nord du cimetière, à deux heures de marche de Veillecendre par le chemin des tombes. Une entrée dérobée, un vieux puits d'aération connu des fossoyeurs, donne dans l'ossuaire. Le premier niveau (galeries, ossuaire, caserne, réfectoire) est infesté de morts relevés ; le second (rotonde, chapelle, scellés, trésorerie, puits) garde les énigmes et le chemin du Sceau. Plusieurs raccourcis relient les deux niveaux : la grille de l'escalier (clé de la caserne), la rampe des cercueils (leviers de l'ossuaire), l'escalier caché de la galerie (urnes), l'échelle des mineurs, et la chute du réfectoire. Le donjon est la voie obligée vers la Haute-Forge : le drapeau « cryptes-franchies » s'y pose quand le gardien est apaisé ou vaincu.",
+    "ambiance": "Un froid sec, une poussière de pierre qui sent le fer froid et la cendre. Chaque pas résonne un peu trop longtemps.",
+    "visuel": "Un portique de pierre grise couvert de lichen, au fond d'un cimetière enneigé, et une porte de bronze verdie, entrouverte sur un escalier noir ; la cendre grise s'accumule en congères contre les stèles.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "veillecendre",
+        "type": "chemin",
+        "heures": 2,
+        "sens": "double",
+        "description": "Le chemin des tombes remonte du cimetière nord jusqu'au village, deux heures de marche dans la cendre et la neige."
+      },
+      {
+        "vers": "cry-vestibule",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "La porte de bronze du mausolée, grande ouverte depuis qu'on y est entré."
+      },
+      {
+        "vers": "cry-ossuaire",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 15,
+          "competence": "perception"
+        },
+        "description": "Dans l'angle nord du cimetière, une margelle de puits à demi comblée cache une trappe de pierre ; une échelle de fer descend dans l'ossuaire."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-origine-ormgard",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-cry-entree-secrete",
+        "decouverte": {
+          "dd": 15,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [
+      "cry-ev-entree-mausolee"
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-niveau-1",
+    "nom": "Les galeries hautes",
+    "type": "niveau",
+    "parent": "cryptes-d-ormgard",
+    "resume": "Le premier étage d'Ormgard : galeries d'urnes, ossuaire, caserne des gardes et réfectoire effondré.",
+    "description": "Étage de service et de dépôt : les nains y déposaient les urnes ordinaires et y logeaient la garde. Les morts qui s'y sont relevés sont des gardes, des fossoyeurs et des affamés. Il est le premier test du groupe.",
+    "ambiance": "Un couloir de poussière, des pas qui ne sont pas les vôtres, un silence qui écoute.",
+    "visuel": "Un ensemble de galeries voûtées de pierre grise, aux murs creusés de niches, éclairées par de rares lampes à huile éteintes ; la poussière flotte dans les rayons des torches.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-niveau-2",
+    "nom": "Les cryptes profondes",
+    "type": "niveau",
+    "parent": "cryptes-d-ormgard",
+    "resume": "Le second étage : rotonde des sarcophages, chapelle des Forgerons, scellés, trésorerie, puits de cendre et route du Sceau.",
+    "description": "Étage sacré : c'est là que reposaient les maîtres de forge, et là que l'archiviste, le sonneur et la garde se sont retranchés pour tenir le Sceau. Les énigmes y sont plus subtiles, les pièges plus anciens, les morts plus attentifs.",
+    "ambiance": "Un air plus chaud qu'en haut, presque vivant, et une odeur de métal qui chauffe quelque part très loin.",
+    "visuel": "Des cryptes aux voûtes basses, ornées de fresques de forge en bronze terni, éclairées par un rougeoiement lointain qui remonte du fond.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-vestibule",
+    "nom": "Le vestibule des Porteurs",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "La salle d'accueil des cortèges funèbres, sous le mausolée : un pupitre de garde, une vasque d'offrandes, trois portes et un linteau qui parle des pieds.",
+    "description": "Salle carrée de dix mètres de côté, au sol dallé de pierre noire. Au-dessus de l'arche du fond, une épitaphe gravée en langue commune naine : « ICI L'ON ENTRE LES PIEDS DEVANT. » Un pupitre de pierre, à gauche de l'entrée, porte le registre de la garde (objet : cry-registre-de-garde), ouvert à la dernière page : on y lit, en bas, « mot d'ordre du jour : EMULCNE » (le mot est écrit à l'envers, voir énigme de la caserne). Une vasque de bronze, au centre, garde des pièces d'offrande vieilles de deux siècles. Trois sorties : la galerie des urnes (ouest), la caserne (est), l'escalier des Porteurs (nord). Une dalle de pression, au milieu de la salle, est reliée à des faucilles cachées dans les murs (piège). Deux squelettes en cotte de mailles se tiennent immobiles de part et d'autre de l'arche nord et s'animent quand on s'éloigne de l'entrée sans les saluer.",
+    "ambiance": "Un froid sec, un silence qui retient son souffle.",
+    "visuel": "Un vestibule carré de pierre noire, aux dalles polies par des siècles de cortèges, un pupitre de pierre chargé d'un grand registre, une vasque de bronze verdi au centre, et au fond une arche sombre gravée d'une longue épitaphe ; la lumière grise de l'entrée s'arrête à deux pas du seuil.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-galerie-des-urnes",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une arche basse, à l'ouest, ornée d'urnes sculptées."
+      },
+      {
+        "vers": "cry-caserne",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une lourde porte de chêne cerclée de fer, à l'est, marquée d'un écu à l'enclume."
+      },
+      {
+        "vers": "cry-escalier",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "L'arche du fond, sous l'épitaphe, ouvre sur un escalier qui plonge."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-gardiens-du-vestibule",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-origine-ormgard",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-cry-mot-d-ordre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-galerie-des-urnes",
+    "nom": "La galerie des urnes",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "Une longue galerie de niches funéraires dont les urnes ont été renversées ; il faut remettre chacune à sa place.",
+    "description": "Galerie de trente mètres, deux rangées de niches superposées. Quatre niches sont mises en valeur par une plaque d'épitaphe (« niche-pierre », « niche-feu », « niche-voix », « niche-souffle ») ; les quatre urnes correspondantes ont roulé au sol, chacune marquée d'un nom et d'un emblème de métier : Brokk (un pic), Hilde (des tenailles de fondeur), Torvald (un battant de cloche), Gunnhild (une plume). Épitaphes : niche-pierre « Il est retourné à la pierre qu'il perçait » ; niche-feu « Le feu l'a reprise comme il l'avait nourrie » ; niche-voix « Sa voix s'est tue la dernière, et l'écho garde le reste » ; niche-souffle « Elle a écrit jusqu'au dernier souffle, et le souffle était gris ». Énigme des urnes. Bien placées, les urnes déclenchent un déclic : un panneau de pierre pivote au fond de la galerie et dévoile un escalier étroit qui descend directement à la chambre des cartes (raccourci) ainsi qu'une cavité dans une niche. Mal placées, une poussière grise s'échappe des urnes et les morts alentour s'agitent.",
+    "ambiance": "Murmure de poussière, comme si les niches respiraient.",
+    "visuel": "Une longue galerie voûtée aux murs percés de niches rectangulaires en deux étages, chacune surmontée d'une plaque de bronze gravée ; au sol, des urnes de terre cuite renversées, certaines brisées, d'autres intactes, marquées d'un emblème peint, et une fine cendre grise qui les couvre.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-vestibule",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-ossuaire",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au bout de la galerie, une double porte de pierre sculptée de crânes."
+      },
+      {
+        "vers": "cry-chambre-des-cartes",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-urnes-apaisees"
+        },
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "description": "Le panneau de fond pivote sur un escalier étroit et raide, taillé pour des porteurs en file : il descend à l'étage profond, droit à la chambre des cartes."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-urnes-et-niches",
+        "decouverte": {
+          "dd": 13,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-cry-noms-des-defunts",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-ossuaire",
+    "nom": "L'ossuaire",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "Un charnier voûté où les os de ceux qu'on n'a pas pu identifier sont entassés en murs ; quatre leviers y commandent la rampe des cercueils.",
+    "description": "Salle ronde de douze mètres, murs de crânes et de fémurs empilés avec soin, grand drain central, sol de dalles en pente. Une alcôve latérale porte quatre leviers de fer sous quatre crânes sculptés dans la pierre : le premier coiffé d'un casque, le deuxième d'un bandeau sur les orbites, le troisième d'un casque, le quatrième d'un capuchon ; une plaque de bronze dit : « Qui veille se lève, qui dort se couche. » Énigme des leviers. Solution : levier haut pour les veilleurs, bas pour les dormeurs, soit [haut, bas, haut, bas]. Réussie, la grille de la rampe des cercueils se relève (raccourci vers la rotonde). Au fond de l'ossuaire, une échelle de fer conduit à la trappe de l'entrée secrète. Les zombis qui y rampent sont d'anciens fossoyeurs ; des nuées de rats nichent dans les os. Une cache entre deux murs d'os contient des offrandes oubliées.",
+    "ambiance": "Une odeur sèche de vieux os et de terre froide, avec en dessous quelque chose de plus récent.",
+    "visuel": "Une salle ronde dont les murs sont entièrement bâtis de crânes et d'os longs rangés en motifs réguliers, un drain en cuvette au centre, une alcôve éclairée de lumière grise où se dressent quatre leviers de fer sous quatre visages de pierre, et dans un angle une échelle de fer qui monte dans le noir.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-galerie-des-urnes",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-refectoire",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un couloir bas, ruisselant de condensation, mène au réfectoire en passant sous une voûte étayée."
+      },
+      {
+        "vers": "cry-rotonde",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-leviers-ossuaire"
+        },
+        "description": "La grille de la rampe des cercueils se relève : une pente large et glissante, jadis faite pour les chariots de défunts, descend à la rotonde."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-ossuaire-zombis",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-leviers-ossuaire",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      },
+      {
+        "fait": "f-cry-entree-secrete",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-caserne",
+    "nom": "La caserne de la garde",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "La salle des gardes d'Ormgard : lits de pierre, râteliers vides, une table de jeu abandonnée en pleine partie, et des squelettes qui montent toujours la garde.",
+    "description": "Grande salle de quinze mètres sur huit, lits de pierre en deux rangées, râteliers d'armes (vides pour la plupart), table centrale avec des dés et un damier, tableau de service gravé au mur. Quatre squelettes en cotte de mailles rouillée, jadis des gardes, s'y tiennent à leur poste ; ils attendent le mot d'ordre. Celui qui le dit (« enclume », indiqué à l'envers sur le registre de garde du vestibule) les voit se mettre au garde-à-vous, puis s'écarter. Dans l'alcôve du capitaine, un coffre cadenassé contient la clé de la grille de l'escalier (objet : cry-cle-de-la-grille) et un bouclier de garde. Le tableau de service rappelle : « Le mot se dit comme on porte les morts : pieds devant. »",
+    "ambiance": "Le silence d'une garde qui retient son souffle.",
+    "visuel": "Une grande salle basse aux lits de pierre alignés sous des couvertures effilochées, des râteliers presque vides, une table centrale aux dés encore posés, et quatre silhouettes de squelettes en cotte de mailles rouillée, immobiles, la tête tournée vers la porte ; un tableau de service gravé au mur, sous un écu à l'enclume.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-vestibule",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-refectoire",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte étroite derrière l'alcôve du capitaine, qui sent l'humidité et le rance."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-caserne-gardes",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-mot-d-ordre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-refectoire",
+    "nom": "Le réfectoire effondré",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "Un réfectoire dont la moitié du plafond est tombée dans un gouffre, où les goules, affamées, rongent ce que les nains y ont laissé.",
+    "description": "Grande salle de trente places, tables de pierre cassées, voûte à demi tombée sur la moitié ouest ; un gouffre de six mètres s'ouvre là où le sol a cédé, sur le puits de cendre en dessous. Quatre goules, maigres et luisantes, rôdent entre les tables ; elles sont affamées et peuvent être détournées par de la nourriture (des rations jetées, de la viande). Un cadavre récent, près du gouffre, est celui d'un compagnon de Brisca (voir son trésor). Passages : vers la caserne, vers l'ossuaire, vers le boyau des mineurs (gravats), et la chute dans le gouffre (sens unique : elle mène au puits de cendre et fait mal). Le sol de la moitié ouest est instable (piège d'effondrement).",
+    "ambiance": "Une odeur de charogne et de pierre moite, des claquements de mâchoires dans le noir.",
+    "visuel": "Un réfectoire aux longues tables de pierre fendues et aux bancs renversés, une voûte à demi effondrée dont les blocs s'entassent contre le mur, et un trou noir béant dans le sol, d'où monte un souffle tiède ; des os rongés, nets, jonchent le sol.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-caserne",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-ossuaire",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-boyau-des-mineurs",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un trou irrégulier dans le mur est, élargi à coups de pioche et à demi bouché de gravats."
+      },
+      {
+        "vers": "cry-puits-de-cendre",
+        "type": "passage",
+        "heures": 0,
+        "sens": "simple",
+        "description": "Le gouffre : un saut de six mètres sur une pente d'éboulis, jusqu'à la margelle du puits de cendre. On ne remonte pas par là."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-refectoire-goules",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-toux-grise",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-boyau-des-mineurs",
+    "nom": "Le boyau des mineurs",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "Un tunnel de pioche qui perce les cryptes de part en part, creusé par des fossoyeurs ou des pillards, à demi effondré.",
+    "description": "Boyau étroit, étayé de poutres neuves et vieilles, où se trouvent la lanterne, la pioche et le sac d'un fossoyeur de Veillecendre, bloqué depuis trois jours par un éboulement. Il est vivant et affaibli. Le boyau descend par une échelle de corde jusqu'au second étage, dans l'armurerie (raccourci à dégager). Au sol, des éclats de pierre et un livre de comptes de chantier.",
+    "ambiance": "L'air est lourd, la poussière a un goût de pierre humide, et quelque chose gratte, derrière les pierres.",
+    "visuel": "Un tunnel de roche brute à peine plus haut qu'un homme, étayé de poutres neuves et noircies, un éboulis de blocs au fond, une lanterne à huile qui s'épuise, une échelle de corde qui plonge dans un puits noir.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-refectoire",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-armurerie",
+        "type": "echelle",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 13,
+          "competence": "investigation"
+        },
+        "description": "Derrière les gravats, un puits vertical d'une dizaine de mètres où pend une échelle de corde ; il aboutit dans le plafond de l'armurerie, par un trou fermé d'une planche."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-entree-secrete",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-escalier",
+    "nom": "L'escalier des Porteurs",
+    "type": "salle",
+    "parent": "cry-niveau-1",
+    "resume": "Le grand escalier qui descend au second étage ; une grille de fer le ferme en bas.",
+    "description": "Escalier large de quatre mètres, quatre-vingts marches dans un puits carré, avec un palier à mi-pente où une niche vide a servi de reposoir aux cortèges. Les marches portent des éraflures et des taches sombres : le passage récent d'un groupe de pilleurs (Brisca et sa bande). En bas, une lourde grille de fer ferme l'accès à la rotonde. La serrure est solide (DD 18) ; la clé est dans le coffre du capitaine à la caserne. Sur le palier, une inscription naine : « Descendez comme vous êtes montés : en silence. »",
+    "ambiance": "Un souffle tiède remonte d'en bas, comme une respiration.",
+    "visuel": "Un grand escalier de pierre noire qui s'enfonce en spirale carrée dans un puits, des marches creusées en leur centre par des siècles de pas, un palier voûté à mi-pente, et en bas une grille de fer à barreaux épais, rouillée, par laquelle filtre une lueur rougeâtre.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-vestibule",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-rotonde",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "verrou": {
+          "dd": 18,
+          "cle": "cry-cle-de-la-grille"
+        },
+        "description": "La grille de fer du bas de l'escalier, fermée par une serrure naine massive."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-route-funeraire",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-rotonde",
+    "nom": "La rotonde des sarcophages",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Une rotonde à dôme où huit sarcophages en cercle attendent encore leurs hôtes ; une bande d'aventuriers y a établi un campement.",
+    "description": "Salle ronde de vingt mètres sous une coupole peinte de constellations de forge. Huit sarcophages de pierre en cercle (certains ouverts, un piégé par une aiguille empoisonnée). Cinq sorties : l'escalier (grille) au nord, la chapelle des Forgerons à l'ouest, l'armurerie au sud-ouest, la salle des scellés à l'est, le puits de cendre au sud ; la rampe des cercueils débouche aussi ici. Un campement fait de couchages et d'une lanterne, tenu par Brisca Ravel et ce qui reste de sa bande. Des ombres tapies sous les sarcophages se révèlent quand on touche aux morts.",
+    "ambiance": "Un air sec et tiède, le grésillement ténu d'une lanterne à huile et le bourdonnement très lointain d'un foyer.",
+    "visuel": "Une rotonde coiffée d'une coupole peinte de constellations de bronze et de braise, huit sarcophages de pierre en anneau, un campement de couchages roulés et d'une lanterne de cuivre au pied d'un pilier, des silhouettes enveloppées dans des couvertures près d'un mur.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-escalier",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "verrou": {
+          "dd": 18,
+          "cle": "cry-cle-de-la-grille"
+        }
+      },
+      {
+        "vers": "cry-chapelle-des-forgerons",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-armurerie",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-salle-des-scelles",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-puits-de-cendre",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-ossuaire",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-leviers-ossuaire"
+        }
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-ombres-de-la-rotonde",
+        "declencheur": "exploration",
+        "unique": true
+      },
+      {
+        "id": "cry-r-brisca-rivale",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-compagnie-des-fosses",
+        "decouverte": {
+          "dd": 14,
+          "competence": "intuition"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-chapelle-des-forgerons",
+    "nom": "La chapelle des Forgerons",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Une chapelle de bronze et de pierre, consacrée aux trois gestes de la forge ; trois runes sur l'autel attendent l'ordre juste.",
+    "description": "Nef de quinze mètres, autel en forme d'enclume, trois piliers de rune (braise, marteau, trempe) devant l'autel et des fresques de forgerons sur les murs. Les fresques, de gauche à droite, montrent : un forgeron qui ranime la braise au soufflet, un marteau qui frappe sur l'enclume, un fer plongé dans l'eau. Une inscription circulaire sur l'autel : « Que la braise éveille, que le marteau dise, que l'eau garde. » Énigme des runes : toucher braise, marteau, trempe dans cet ordre. Une erreur déclenche un glyphe qui enflamme l'air (piège). Réussie : le mur derrière l'autel s'ouvre sur un passage vers la chambre des cartes, et la nef s'éclaire. Une gargouille de bronze perchée au-dessus de l'autel s'anime pour qui profane la nef sans y avoir été invité.",
+    "ambiance": "Un recueillement lourd, le tintement d'un métal qui refroidit quelque part dans les murs.",
+    "visuel": "Une nef de bronze terni et de pierre noire, un autel taillé en forme d'enclume sous trois piliers de pierre gravés de runes rougeoyantes, des fresques de forgerons aux murs, et une gargouille de bronze accroupie sur la corniche, la gueule ouverte.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-rotonde",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-crypte-du-sonneur",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une petite porte dérobée à gauche de l'autel, ornée d'une cloche."
+      },
+      {
+        "vers": "cry-chambre-des-cartes",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-runes-resolues"
+        },
+        "cache": {
+          "dd": 15,
+          "competence": "perception"
+        },
+        "description": "Le mur derrière l'autel pivote une fois les trois runes touchées dans l'ordre."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-gargouille-de-la-chapelle",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-trois-runes",
+        "decouverte": {
+          "dd": 13,
+          "competence": "religion"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-crypte-du-sonneur",
+    "nom": "La crypte du glas",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Une petite salle ronde où pend une grande cloche fendue : la cloche du glas, dernier travail du sonneur.",
+    "description": "Pièce ronde de six mètres, une cloche de bronze de deux mètres suspendue à une poutre, fendue sur un flanc. Sous la cloche, la tombe du sonneur, une dalle avec une plaque de sépulture (voir le trésor). Une corde de cloche pend encore ; la tirer fait résonner un glas sourd qui se répand dans les cryptes et agite les morts (le MJ peut y voir un effet de renfort sur les combats suivants). Le mur est gravé : « Il a sonné jusqu'à ce que la cloche se brise. »",
+    "ambiance": "Le souvenir d'un son énorme qui s'est arrêté.",
+    "visuel": "Une petite crypte circulaire, au centre de laquelle pend une immense cloche de bronze fendue de haut en bas, patinée de vert, une corde de chanvre noirci tombant jusqu'au sol, une dalle gravée dessous, et des lettres naines creusées en spirale sur le mur.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-chapelle-des-forgerons",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-glas-de-la-nuit",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-cry-nom-du-sonneur",
+        "decouverte": {
+          "dd": 10,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-chambre-des-cartes",
+    "nom": "La chambre des cartes",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Le bureau de l'archiviste d'Ormgard, intact sous sa poussière : cartes de la vallée, rayonnages, et un archiviste qui n'a pas remarqué qu'il était mort.",
+    "description": "Pièce de douze mètres, grandes tables couvertes de cartes de la vallée et des cryptes (l'une montre les passages secrets), rayonnages de registres. L'ombre d'un archiviste nain, Maître Orsolf Plume-Grise, y relit en boucle le grand registre ; elle est amicale et confuse, gardienne du fait f-sceau-des-cryptes. L'air y est plus froid et la pièce, protégée par des runes de repos, est sûre (repos long possible). On accède à la chambre depuis la chapelle (passage secret après les runes), depuis la salle des scellés (porte) et depuis la galerie des urnes (escalier après les urnes). Un journal de l'archiviste (objet) donne la chronologie de la Nuit de la Cendre et le fait que les cryptes ont été scellées de l'intérieur.",
+    "ambiance": "Un calme studieux, le grattement d'une plume qui n'écrit plus rien.",
+    "visuel": "Une pièce voûtée aux tables couvertes de cartes déroulées et pesées de pierres, des rayonnages pleins de registres reliés de cuir, une lampe de bronze qui brûle d'une flamme bleue immobile, et une silhouette translucide penchée sur un grand registre ouvert.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-chapelle-des-forgerons",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-runes-resolues"
+        }
+      },
+      {
+        "vers": "cry-salle-des-scelles",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-galerie-des-urnes",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "cry-urnes-apaisees"
+        }
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-scelles-de-l-archiviste",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      },
+      {
+        "fait": "f-cry-noms-des-defunts",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "sur"
+  },
+  {
+    "id": "cry-salle-des-scelles",
+    "nom": "La salle des scellés",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "La salle où l'on scellait les titres de sépulture ; la porte de l'antichambre, au fond, exige un nom.",
+    "description": "Grande salle rectangulaire, murs de vitrines de plaques de bronze (titres de sépulture), plafond bas. Au fond, une porte de pierre sans poignée, gravée d'une phrase : « DIS LE NOM DE CELUI QUI TIENT LA PORTE, ET LA PORTE SERA TENUE POUR TOI. » Énigme du nom (réponse : Brand, le gardien). Parmi les plaques, une pièce orc : la plaque des alliés (objet : cry-plaque-des-allies) révèle que le clan Marteau-Vert enterrait ses morts à Ormgard, côte à côte avec les nains. Une porte barrée, vers la chambre du trésorier, exige une clé. La salle communique avec la rotonde, la chambre des cartes, la trésorerie et l'antichambre.",
+    "ambiance": "Des centaines de noms murmurent dans le métal, sans voix.",
+    "visuel": "Une salle rectangulaire aux murs entièrement garnis de vitrines de bois noir où reposent des centaines de plaques de bronze gravées, un plafond bas et lourd, une grande porte de pierre lisse au fond couverte d'une inscription en lettres de braise, et sur le côté une porte verrouillée aux ferrures dorées.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-rotonde",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-chambre-des-cartes",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-chambre-du-tresorier",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": {
+          "dd": 16,
+          "cle": "cry-cle-du-tresorier"
+        },
+        "description": "Une porte aux ferrures dorées, à serrure fine."
+      },
+      {
+        "vers": "cry-antichambre-du-sceau",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "et": [
+            {
+              "flag": "cry-runes-resolues"
+            },
+            {
+              "flag": "cry-sceau-nomme"
+            }
+          ]
+        },
+        "description": "La porte de pierre lisse, qui ne s'ouvre pas tant que la chapelle n'est pas apaisée et que le nom n'est pas dit."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-orcs-et-nains",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      },
+      {
+        "fait": "f-cry-gardien-brand",
+        "decouverte": {
+          "dd": 15,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-chambre-du-tresorier",
+    "nom": "La chambre du trésorier",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "La trésorerie d'Ormgard, gardée par son dernier occupant, embaumé et cupide, et par ses rats.",
+    "description": "Petite salle voûtée aux coffres de bronze verrouillés, aux étagères de livres de comptes et à un pupitre. Le trésorier d'Ormgard, une momie nanie bandée de lin noir, s'y tient assis derrière son bureau et défend les comptes ; deux nuées de rats nichent sous les coffres. Un coffre-fort mural, piégé par une aiguille, renferme l'argent des offrandes de deux siècles. Un passage secret derrière un rayonnage donne sur le puits de cendre (boucle). Le trésor est important : pièces, parchemin, cape, bijou.",
+    "ambiance": "Une odeur d'encens rance et de papier, et le trottinement de petites pattes.",
+    "visuel": "Une petite trésorerie voûtée dont les murs sont garnis de coffres de bronze et d'étagères chargées de livres de comptes, un pupitre de pierre, un grand coffre-fort scellé dans le mur, et une silhouette bandée de lin noir assise derrière le pupitre, immobile comme une statue.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-salle-des-scelles",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": {
+          "dd": 16,
+          "cle": "cry-cle-du-tresorier"
+        }
+      },
+      {
+        "vers": "cry-puits-de-cendre",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 15,
+          "competence": "investigation"
+        },
+        "description": "Derrière un rayonnage de registres, une porte étroite qui sent la cendre chaude."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-le-tresorier-embaume",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-armurerie",
+    "nom": "L'armurerie",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "L'armurerie de la garde, aux râteliers pleins, gardée par trois armures animées et un plafond traître.",
+    "description": "Salle de dix mètres sur huit, râteliers de lances, marteaux de guerre et haches d'armes, mannequins d'armure sur des socles. Trois armures animées se tiennent parmi les mannequins ; un plafond de pierre à dalle mobile, installé pour écraser les pilleurs, retombe sur qui touche à la rangée des marteaux. Un marteau de garde d'Ormgard (arme +1) se détache du lot. Un trou fermé d'une planche, au plafond, laisse tomber l'échelle des mineurs (si on le dégage).",
+    "ambiance": "Un cliquetis imperceptible d'acier froid.",
+    "visuel": "Une salle d'armes aux râteliers alignés le long des murs, couverts de lances, de marteaux de guerre et de haches d'armes sombres, une rangée de mannequins en armure complète sur des socles de pierre, et un plafond de grandes dalles jointives que soutient un mécanisme de chaînes visible dans les interstices.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-rotonde",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-boyau-des-mineurs",
+        "type": "echelle",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 13,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-veilleurs-de-fer",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-puits-de-cendre",
+    "nom": "Le puits de cendre",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Un puits naturel qui descend vers le Cœur, entouré d'une galerie circulaire où la cendre monte en volutes ; la source de la cendre du Val.",
+    "description": "Cheminée verticale d'une dizaine de mètres de diamètre, bordée d'une galerie circulaire, sans garde-fou. De ses profondeurs monte une cendre grise tiède, portée par un souffle régulier, comme une respiration ; tout au fond, très loin, un rougeoiement. Une pèlerine grise s'y tient en prière. La vapeur de cendre est un danger : elle brûle les poumons. Trois accès : la rotonde (sud), la chambre du trésorier (passage secret), le gouffre du réfectoire (chute à sens unique), et une corniche étroite vers l'antichambre du Sceau (passage secret difficile).",
+    "ambiance": "Un souffle chaud et lent, le crépitement de braises mortes, une odeur de forge éteinte.",
+    "visuel": "Un puits vertical aux parois de basalte lisses, une galerie circulaire étroite sans rambarde, des volutes de cendre grise qui montent lentement dans la pénombre en emportant des braises mortes, et tout au fond, minuscule, un rougeoiement orange.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-rotonde",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double"
+      },
+      {
+        "vers": "cry-chambre-du-tresorier",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 15,
+          "competence": "investigation"
+        }
+      },
+      {
+        "vers": "cry-antichambre-du-sceau",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 17,
+          "competence": "perception"
+        },
+        "description": "Une corniche d'un pied de large, qui contourne le puits au-dessus du vide et rejoint une brèche dans le mur de l'antichambre."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-pelerine-du-puits",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-puits-de-cendre",
+        "decouverte": {
+          "dd": 14,
+          "competence": "arcanes"
+        }
+      },
+      {
+        "fait": "f-cry-pelerins-au-puits",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "cry-antichambre-du-sceau",
+    "nom": "L'antichambre du Sceau",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "Le seuil de la route funéraire : un linteau portant le nom du gardien, deux statues de gardes et une enclume de pierre.",
+    "description": "Salle étroite à deux statues de gardes et à une enclume de pierre posée sur un socle devant la porte du Sceau. Le linteau porte l'inscription : « BRAND GARDE-SERMENT TIENT LA PORTE. » L'enclume sert à prononcer la formule de passage : on y frappe, avec le marteau cérémoniel d'Ormgard, la porte du Sceau. Sans le marteau, la porte de la salle du Sceau reste muette.",
+    "ambiance": "Un souffle chaud passe sous la porte.",
+    "visuel": "Une antichambre étroite et haute, deux statues de gardes nains en armure face à face, une enclume de pierre noire sur un socle devant une grande porte de bronze à disques concentriques, et au-dessus de l'arche un linteau gravé en lettres profondes.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-salle-des-scelles",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "et": [
+            {
+              "flag": "cry-runes-resolues"
+            },
+            {
+              "flag": "cry-sceau-nomme"
+            }
+          ]
+        }
+      },
+      {
+        "vers": "cry-puits-de-cendre",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": {
+          "dd": 17,
+          "competence": "perception"
+        }
+      },
+      {
+        "vers": "cry-salle-du-sceau",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "objet": "cry-marteau-ceremoniel"
+        },
+        "description": "La porte de bronze du Sceau, qui répond au marteau cérémoniel frappé sur l'enclume du seuil."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cry-sceau-ouverture",
+        "decouverte": {
+          "dd": 14,
+          "competence": "arcanes"
+        }
+      },
+      {
+        "fait": "f-cry-nom-du-gardien-grave",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cry-salle-du-sceau",
+    "nom": "La salle du Sceau",
+    "type": "salle",
+    "parent": "cry-niveau-2",
+    "resume": "La dernière salle : un disque de bronze et de fer, le Sceau de la Forge, et celui qui le garde.",
+    "description": "Salle circulaire de quinze mètres, voûte basse, au centre un coffre de bronze (la tombe-coffre du gardien) et au fond le Sceau de la Forge : un grand disque de bronze rouge de runes, mi-porte mi-sceau, dont les rainures laissent filtrer une lueur orange. Brand Garde-Serment, l'ombre du gardien, se tient devant ; il attend qu'on vienne le relever. La rencontre finale se joue ici (combattre, parlementer, ruser avec l'inscription du serment). Une fois la clé du Sceau obtenue (dans le coffre) et la rencontre résolue (drapeau cryptes-franchies), un passage s'ouvre derrière le Sceau, vers la Haute-Forge.",
+    "ambiance": "Une chaleur de forge qui couve derrière le métal, le tic-tac d'un métal qui refroidit et ne refroidit jamais.",
+    "visuel": "Une salle circulaire à la voûte basse, un coffre massif de bronze sombre au centre sur une estrade, et au fond un immense disque de bronze et de fer couvert de runes rougeoyantes, entouré d'une lueur orange qui filtre par ses rainures ; des armures vides sont rangées en cercle autour du coffre.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "cry-antichambre-du-sceau",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "objet": "cry-marteau-ceremoniel"
+        }
+      },
+      {
+        "vers": "haute-forge",
+        "type": "passage",
+        "heures": 1,
+        "sens": "double",
+        "condition": {
+          "flag": "cryptes-franchies"
+        },
+        "description": "Derrière le Sceau, la route funéraire des Forgerons monte, tiède puis chaude, jusqu'à la porte basse de la Haute-Forge."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cry-r-gardien-des-cryptes",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cry-gardien-brand",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      },
+      {
+        "fait": "f-cry-route-funeraire",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  }
+]

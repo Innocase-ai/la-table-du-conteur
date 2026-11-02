@@ -1,0 +1,1987 @@
+[
+  {
+    "id": "thalgrin-coeur-d-enclume",
+    "nom": "Thalgrin Cœur-d'Enclume",
+    "titre": "Onzième Roi-Forgeron de la Haute-Forge",
+    "espece": "Nain (spectre lié à sa forge)",
+    "sexe": "M",
+    "age": "mort depuis deux siècles, environ 280 ans à sa mort",
+    "role": "Roi-Forgeron, spectre enchaîné à la Forge du Cœur, qui poursuit sans fin la Dernière Commande",
+    "lieu": "hf-forge-du-coeur",
+    "apparence": "Un nain colossal et translucide, la barbe tressée de fil de fer, une couronne de bronze sur un front fendu, un tablier de cuir qui brûle sans se consumer ; ses mains tiennent le fantôme d'un marteau, et son torse laisse voir, comme à travers un verre, un cœur de braise qui bat.",
+    "personnalite": {
+      "traits": [
+        "courtois à l'excès",
+        "obsessionnel",
+        "tendre quand il parle de sa fille",
+        "fierté d'artisan",
+        "sourd à tout ce qui contredit sa commande"
+      ],
+      "voix": "Grave, posée, d'une politesse royale presque trop parfaite ; il appelle les visiteurs « artisans » ou « mes hôtes » ; il revient sans cesse à la même phrase : « La commande n'est pas finie. » Quand il parle de Brunhild la voix se brise en murmure et il l'appelle « ma petite étincelle ».",
+      "valeurs": [
+        "la parole donnée",
+        "l'ouvrage bien fait",
+        "le sang de sa lignée"
+      ],
+      "desir": "Achever la Dernière Commande : réveiller Brunhild avec un dernier souffle de feu donné de bon gré.",
+      "peur": "Que sa fille s'éveille et lui demande ce qu'il a fait de leur peuple ; que le Cœur cesse de battre avant qu'il ait fini.",
+      "defaut": "Il n'entend pas un « non » : il le reformule en « pas encore ». Il a tué son peuple et se persuade qu'il l'a sauvé."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 0,
+    "savoir": [
+      "f-roi-forgeron-thalgrin",
+      "f-nuit-de-la-cendre",
+      "f-coeur-de-braise",
+      "f-veine-rouge",
+      "f-hf-garde-du-roi"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-thalgrin-est-tenu",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-hf-brunhild-ne-veut-pas",
+        "jet": {
+          "competence": "intuition",
+          "dd": 18
+        }
+      },
+      {
+        "fait": "f-hf-brunhild-ne-veut-pas",
+        "attitudeMin": 65
+      },
+      {
+        "fait": "f-hf-regulateur",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "le-roi",
+        "mots": [
+          "qui êtes-vous",
+          "roi",
+          "majesté",
+          "royaume",
+          "haute-forge",
+          "bienvenue"
+        ],
+        "reponse": "Il se présente avec la courtoisie d'un hôte qui n'attendait personne : Thalgrin Cœur-d'Enclume, onzième Roi-Forgeron, fils de la Veine. Il s'excuse de n'avoir plus de siège à offrir, mais pas d'un mot de la commande. Il appelle les visiteurs « artisans » et leur demande avec soin ce qu'ils savent faire de leurs mains.",
+        "revele": [
+          "f-roi-forgeron-thalgrin"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-commande",
+        "mots": [
+          "commande",
+          "forge",
+          "que forgez-vous",
+          "travail",
+          "ouvrage",
+          "chantier"
+        ],
+        "reponse": "La Dernière Commande est son seul ouvrage depuis la mort de sa fille : un corps de fer et de braise, tiré à la mesure exacte de l'enfant, que le Cœur doit animer. Il en parle avec la tendresse maniaque d'un maître de forge : les proportions, la trempe, la fonte. Il ne dit pas d'abord pour qui. Il répète que la commande n'est pas finie : il lui manque « un dernier souffle ».",
+        "attitudeMin": 10,
+        "revele": [
+          "f-derniere-commande"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "brunhild",
+        "mots": [
+          "brunhild",
+          "fille",
+          "enfant",
+          "la petite",
+          "princesse",
+          "étincelle"
+        ],
+        "reponse": "Sa voix se brise. Brunhild avait huit ans quand la toux grise l'a prise ; elle faisait des automates avec Ferbillon, elle riait fort, elle avait un ruban rouge. Il la montre : le corps de fer, sur la table, à l'abri de la poussière. Il dit qu'elle dort, et qu'il lui manque seulement de quoi la réveiller. Il est tendre, et terriblement sûr de lui.",
+        "attitudeMin": 5,
+        "revele": [
+          "f-fille-de-fer"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-coeur",
+        "mots": [
+          "cœur-de-braise",
+          "coeur",
+          "feu",
+          "braise",
+          "veine",
+          "foyer"
+        ],
+        "reponse": "Le Cœur-de-Braise est le foyer sacré du royaume, un feu élémentaire tiré de la Veine rouge, qui nourrissait toutes les forges. Il en parle comme on parle d'un vieil ami capricieux : il bat, il a faim, il est généreux avec qui le sert. C'est sa chaleur qui le garde, lui, dans sa forge ; il dit sans se rendre compte qu'il ne pourrait pas la quitter, même s'il le voulait.",
+        "revele": [
+          "f-coeur-de-braise",
+          "f-veine-rouge"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-nuit",
+        "mots": [
+          "nuit de la cendre",
+          "catastrophe",
+          "désastre",
+          "effondrement",
+          "qu'est-il arrivé",
+          "ce qui s'est passé"
+        ],
+        "reponse": "Il détourne les yeux. Il dit que le Cœur a eu faim, qu'il lui a donné de la chaleur, puis davantage, pour que la fonte tienne, et que tout s'est échauffé comme un bon métal. Il dit que son peuple dormait quand la braise a débordé. Il ne dit pas « j'ai tué mon peuple » ; il dit seulement qu'ils sont encore là, à l'attendre, et que c'est une forme de fidélité.",
+        "attitudeMin": 15,
+        "revele": [
+          "f-nuit-de-la-cendre"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-morts",
+        "mots": [
+          "morts",
+          "gardes",
+          "sujets",
+          "ton peuple",
+          "ces nains",
+          "habitants"
+        ],
+        "reponse": "Ce sont ses gens. Le Cœur les entretient comme le fourneau entretient les braises d'une veille ; il leur a demandé de rester, et ils sont restés. Il parle des gardes de fer comme de ses fils, et des autres comme de ses hôtes. Il ne comprend pas que les visiteurs puissent les trouver effrayants.",
+        "revele": [
+          "f-cendre-reveille-les-morts",
+          "f-hf-garde-du-roi"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-dernier-souffle",
+        "mots": [
+          "souffle",
+          "il manque",
+          "dernier souffle",
+          "réveiller",
+          "éveiller",
+          "animer"
+        ],
+        "reponse": "Il dit, comme une évidence : pour qu'elle s'éveille il faut un feu donné de bon gré, un souffle de vie qui ne soit pas arraché, qui vienne d'une main ouverte. Il a essayé, avec la braise de son peuple, et la braise de son peuple était prise, non donnée. Il lève vers les visiteurs un regard plein d'espoir terrible : une braise de la Lanterne ferait l'affaire.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-hf-dernier-souffle"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-volontaire",
+        "mots": [
+          "volontaire",
+          "rallumer",
+          "nourrir",
+          "rester",
+          "sacrifice",
+          "qui reste"
+        ],
+        "reponse": "Il écoute en silence. Il dit que le Cœur accepte qui reste : un vivant qui se tient près de la braise de bon gré et qui lui donne sa chaleur, jour après jour. Il l'a su trop tard, et trop tard aussi qu'il aurait fallu le demander à un seul au lieu de le prendre à tous. Il ajoute, doucement, que celui qui reste ne repartira pas.",
+        "attitudeMin": 20,
+        "condition": {
+          "fait": "f-coeur-de-braise"
+        },
+        "revele": [
+          "f-rallumer-par-volontaire",
+          "f-hf-volontaire-reste"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-ecluse",
+        "mots": [
+          "écluse",
+          "noyer",
+          "eau",
+          "éteindre",
+          "la rivière",
+          "noire"
+        ],
+        "reponse": "Il reste immobile. Il confirme que l'Écluse noire existe : une vanne de secours que son maître-mécanicien avait pensée pour qu'aucun roi n'ait jamais à choisir entre son peuple et son feu. Il ne lève pas la main pour l'empêcher, mais dit à voix basse : « Pas avant qu'elle soit éveillée. » Puis il fait le tour de la salle des yeux, comme un homme qui compte ses morts.",
+        "attitudeMin": 25,
+        "revele": [
+          "f-ecluse-noire",
+          "f-hf-coeur-sous-l-eau"
+        ],
+        "effets": [
+          {
+            "flag": "hf-thalgrin-sait-pour-l-ecluse"
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-marche",
+        "mots": [
+          "marché",
+          "offre",
+          "échange",
+          "serment",
+          "prix",
+          "marchander",
+          "contre"
+        ],
+        "reponse": "Il propose un marché de roi : si les visiteurs jurent de lui ramener le dernier souffle, il ouvrira la voûte de son trésor et leur donnera le marteau du premier forgeron, qui n'a pas de maître. Il ne triche pas : il tient sa parole, mais il attend qu'on tienne la sienne. Il insiste que le serment est un contrat d'ouvrier : on ne l'oublie pas.",
+        "attitudeMin": 15,
+        "revele": [],
+        "effets": [
+          {
+            "flag": "hf-serment-thalgrin"
+          },
+          {
+            "flag": "hf-voute-ouverte"
+          },
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-lanterne",
+        "mots": [
+          "lanterne",
+          "veilleur",
+          "village",
+          "veillecendre",
+          "exode",
+          "survivants"
+        ],
+        "reponse": "Il apprend avec stupeur que sa reine a réussi : Aldis a emporté une étincelle du Cœur pour allumer une lanterne au jour. Il dit que c'était la seule chose qu'elle lui ait demandée, et qu'il la lui a refusée. Il est fier d'elle, malgré lui, et plus fatigué encore.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-lanterne-etincelle",
+          "f-veilleur-se-consume"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-fer-gris",
+        "mots": [
+          "hobgobelins",
+          "compagnie",
+          "fer-gris",
+          "capitaine",
+          "soldats",
+          "envahisseurs"
+        ],
+        "reponse": "Il a vu leurs éclaireurs aux portes du Val et les juge comme on juge un apprenti pressé : des forgerons sans maître qui veulent le feu sans comprendre son prix. Il dit que le Cœur n'est pas un trésor à prendre, et que ceux qui le prennent le paieront avec leur peuple, comme lui.",
+        "revele": [
+          "f-fer-gris-veut-la-forge"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-ruban",
+        "mots": [
+          "ruban",
+          "perles",
+          "souvenir",
+          "cadeau",
+          "son ruban"
+        ],
+        "reponse": "Si on lui tend le ruban rouge aux trois perles de fer, il se fige comme une horloge qui s'arrête. Il le prend à deux mains comme un oiseau, puis le rend. Il murmure que c'est elle, tout entière. Pour la première fois depuis deux siècles il regarde ses visiteurs comme des gens, et plus comme des ouvriers.",
+        "condition": {
+          "objet": "hf-ruban-de-brunhild"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 30
+            }
+          },
+          {
+            "objet": {
+              "id": "hf-ruban-de-brunhild",
+              "retirer": true
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "ferbillon",
+        "mots": [
+          "ferbillon",
+          "gnome",
+          "régulateur",
+          "mécanicien",
+          "maître-mécanicien"
+        ],
+        "reponse": "Il parle du gnome comme d'un cousin brillant et agaçant. Il admet que Ferbillon lui a proposé un régulateur pour brider le Cœur, et qu'il l'a refusé : on ne bride pas la main qui sert, a-t-il dit. Il ne dit pas qu'il aurait peut-être mieux valu l'écouter, mais ses mains tremblent.",
+        "attitudeMin": 20,
+        "revele": [
+          "f-hf-regulateur"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "partir",
+        "mots": [
+          "partir",
+          "sortir",
+          "laisser passer",
+          "départ",
+          "laissez-nous"
+        ],
+        "reponse": "Il les laisse aller sans fâcherie : les artisans vont et viennent, et la forge est vaste. Il demande seulement qu'ils ne touchent pas à la table où dort Brunhild. Pour qui l'a mis en confiance, il ajoute un sauf-conduit : sa garde ne les arrêtera plus.",
+        "attitudeMin": 10,
+        "revele": [],
+        "effets": [
+          {
+            "flag": "hf-passage-accorde"
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-don-du-souffle",
+        "mots": [
+          "je te donne la braise",
+          "voici le souffle",
+          "prends cette braise",
+          "offrir la braise",
+          "donner le dernier souffle",
+          "ma braise"
+        ],
+        "reponse": "Il s'immobilise. La braise de veille dans la main du visiteur est une étincelle de son propre Cœur, rendue de bon gré : exactement ce qu'il attendait. Il la reçoit à deux mains, comme on reçoit un nouveau-né, la porte à la poitrine de sa fille. Le corps de fer frémit, la braise sous les côtes de cuivre s'allume. Le roi sourit une dernière fois, et sa silhouette perd ses contours.",
+        "condition": {
+          "et": [
+            {
+              "objet": "braise-de-veille"
+            },
+            {
+              "flag": "coeur-atteint"
+            }
+          ]
+        },
+        "revele": [
+          "f-hf-dernier-souffle",
+          "f-derniere-commande"
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "braise-de-veille",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "choix-achever"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "etat": "parti"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-volontaire-s-offre",
+        "mots": [
+          "je reste",
+          "je me porte volontaire",
+          "je nourris le cœur",
+          "je donne ma chaleur",
+          "je prends sa place"
+        ],
+        "reponse": "Il détaille les conditions sans fard : rester près de la braise, de bon gré, sans rien reprendre. Ni lui ni le Cœur ne peuvent promettre un retour. Il demande trois fois si c'est bien librement que le volontaire se tient là, puis s'efface devant le puits de feu. Le Cœur bat plus calmement, comme un animal nourri.",
+        "attitudeMin": 10,
+        "condition": {
+          "et": [
+            {
+              "fait": "f-rallumer-par-volontaire"
+            },
+            {
+              "flag": "coeur-atteint"
+            }
+          ]
+        },
+        "revele": [
+          "f-rallumer-par-volontaire",
+          "f-hf-volontaire-reste"
+        ],
+        "effets": [
+          {
+            "flag": "choix-rallumer"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-fatigue",
+        "mots": [
+          "fatigué",
+          "las",
+          "repos",
+          "tenu",
+          "libre",
+          "libérer"
+        ],
+        "reponse": "Pour une fois sa voix est celle d'un vieil homme. Il avoue que le Cœur ne le tient pas moins qu'il tient ses morts, qu'il a espéré mille nuits qu'on le délivre, et qu'il n'a jamais su si ce qu'il attendait était la commande finie ou la fin de la commande. Il demande qu'on ne le plaigne pas.",
+        "attitudeMin": 40,
+        "revele": [
+          "f-hf-thalgrin-est-tenu"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous n'êtes pas annoncés, artisans. La forge est fermée. Rentrez à votre établi, ou partez.",
+      "neutre": "Entrez, entrez, artisans. Pardonnez le désordre : la commande n'est pas finie. Que faites-vous de vos mains ?",
+      "amical": "Mes hôtes ! Quel plaisir d'entendre un pas qui ne soit ni de fer ni de cendre. Asseyez-vous, si le cœur vous en dit. Parlons de ma petite étincelle."
+    },
+    "services": [],
+    "inventaire": [],
+    "profilCombat": "ame-en-peine"
+  },
+  {
+    "id": "brunhild",
+    "nom": "Brunhild",
+    "titre": "La Fille de fer",
+    "espece": "Construction de fer et de braise (la Fille de fer)",
+    "sexe": "F",
+    "age": "huit ans quand elle est morte ; le corps de fer n'a jamais été éveillé",
+    "role": "Fille du roi Thalgrin, corps de fer et de braise inanimé qui murmure ; elle ne s'éveille qu'à la fin 3 (achever la commande)",
+    "lieu": "hf-forge-du-coeur",
+    "apparence": "Un corps de fer de la taille d'une enfant de huit ans, couché sur une table de fonte, les joues faites de plaques de cuivre martelées, une tresse de fil de laiton, la poitrine entrouverte sur une braise éteinte qui rougit parfois ; à ses lèvres fines, un murmure de vapeur.",
+    "personnalite": {
+      "traits": [
+        "douce",
+        "curieuse",
+        "effrayée",
+        "fragile comme une veilleuse"
+      ],
+      "voix": "Un murmure d'enfant, très lent, mêlé de vapeur et de petits cliquetis ; elle perd ses phrases en route et les reprend par le début. Elle ne répond jamais à ce qu'on lui demande : elle répond à ce qu'elle entend.",
+      "valeurs": [
+        "son père",
+        "ses jouets",
+        "la chaleur"
+      ],
+      "desir": "Que le froid s'arrête. Elle ne sait plus si elle veut dormir ou se lever.",
+      "peur": "Se réveiller seule, ou réveiller son père.",
+      "defaut": "Elle répète. Elle confond les voix."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 10,
+    "savoir": [
+      "f-fille-de-fer",
+      "f-hf-brunhild-ne-veut-pas"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-brunhild-ne-veut-pas",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-hf-mot-du-maitre",
+        "attitudeMin": 15
+      }
+    ],
+    "sujets": [
+      {
+        "id": "murmure",
+        "mots": [
+          "parler",
+          "brunhild",
+          "murmure",
+          "écouter",
+          "toi",
+          "petite"
+        ],
+        "reponse": "Elle ne s'adresse pas aux visiteurs : elle murmure à quelqu'un qui n'est pas là. « Père... il fait chaud... le gros feu a fait un bruit... » Les mots tombent dans un souffle de vapeur. Ce n'est pas encore un dialogue, c'est une voix qui tourne autour de ce qu'elle sait.",
+        "revele": [
+          "f-fille-de-fer"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "tic-tac",
+        "mots": [
+          "tic",
+          "ferbillon",
+          "horloge",
+          "gnome",
+          "ami",
+          "jouet"
+        ],
+        "reponse": "Un petit rire de cuivre. « Tic-Tac... il compte tout, même quand il dort... il m'a fait un oiseau qui chante trois notes. » Elle répète deux fois « Tic-Tac », de plus en plus bas.",
+        "attitudeMin": 15,
+        "revele": [
+          "f-hf-mot-du-maitre",
+          "f-hf-brunhild-enfant"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "ne-me-reveille-pas",
+        "mots": [
+          "réveiller",
+          "dormir",
+          "froid",
+          "peur",
+          "veux-tu",
+          "éveiller"
+        ],
+        "reponse": "Un souffle plus net, qui pourrait être un mot : « Pas... réveiller. Il y a trop de bruit dans le noir. » Puis plus rien. Une plaque de cuivre sur sa joue se couvre de buée. Le MJ peut laisser entendre que cette voix n'a peut-être pas envie de revenir.",
+        "attitudeMin": 30,
+        "condition": {
+          "fait": "f-derniere-commande"
+        },
+        "revele": [
+          "f-hf-brunhild-ne-veut-pas"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-cendre",
+        "mots": [
+          "cendre",
+          "neige",
+          "dehors",
+          "tousse",
+          "toux",
+          "mère"
+        ],
+        "reponse": "« La neige est sale... maman a dit de ne pas ouvrir la fenêtre. Père a dit qu'il allait arranger ça. Père arrange tout. » Elle tousse sec, un son de métal.",
+        "revele": [
+          "f-hf-toux-grise"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-ruban-de-brunhild",
+        "mots": [
+          "ruban",
+          "perles",
+          "cheveux",
+          "tresse"
+        ],
+        "reponse": "Si on lui présente le ruban rouge, la braise sous sa poitrine rougit un instant et le murmure devient un chant de berceuse à trois notes. Elle ne dit plus rien d'autre cette nuit.",
+        "condition": {
+          "objet": "hf-ruban-de-brunhild"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "brunhild",
+              "delta": 20
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "berceuse",
+        "mots": [
+          "chanter",
+          "chanson",
+          "berceuse",
+          "musique",
+          "oiseau"
+        ],
+        "reponse": "Elle fredonne un petit air à trois notes que l'automate-jouet de l'atelier répète à l'infini. La salle entière se calme un instant, et Thalgrin, de l'autre côté, se tait pour écouter.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Le corps de fer est immobile sur la table de fonte. Seule la braise sous sa poitrine bat, lentement, et un murmure de vapeur, à peine un mot, flotte au-dessus de ses lèvres.",
+      "amical": "« Tu es revenu... tu as chaud ? » souffle la voix, sans que les lèvres de fer ne bougent."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "hf-ferbillon",
+    "nom": "Ferbillon Rouage",
+    "titre": "Maître-mécanicien de la Haute-Forge",
+    "espece": "Gnome (fantôme)",
+    "sexe": "M",
+    "age": "mort depuis deux siècles, environ 190 ans à sa mort",
+    "role": "Maître-mécanicien gnome de Thalgrin, fantôme lié à son atelier ; lié à la quête q-ysolde-l-atelier-du-maitre",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "apparence": "Un gnome translucide d'un bleu pâle, haut comme un enfant, en tablier de cuir couvert de poches, un monocle de laiton sur un œil, des cheveux dressés comme une brosse de fil de fer ; ses doigts font des gestes d'horloger sans cesse, même vides.",
+    "personnalite": {
+      "traits": [
+        "vif et saccadé",
+        "tendre sous la manie",
+        "orgueil de métier",
+        "humour sec"
+      ],
+      "voix": "Rapide, saccadée ; il compte tout en parlant (« un, deux ») et termine ses phrases par un claquement de langue, comme un balancier. Il vouvoie tout le monde sauf les enfants.",
+      "valeurs": [
+        "la précision",
+        "les mécanismes qui servent",
+        "la petite qui l'a baptisé"
+      ],
+      "desir": "Que son plan-maître du Régulateur soit enfin lu, compris, et construit par un de ses héritiers.",
+      "peur": "Que le Cœur ne cesse jamais de se nourrir, et que son plan reste dans un tiroir.",
+      "defaut": "Il ne supporte pas l'à-peu-près : il commente tout ce qu'on touche."
+    },
+    "presences": [
+      {
+        "lieu": "hf-atelier-de-brunhild",
+        "moment": "soir"
+      }
+    ],
+    "faction": "morts-de-la-forge",
+    "attitude": 5,
+    "savoir": [
+      "f-hf-gnomes-ingenieurs",
+      "f-hf-regulateur",
+      "f-hf-ferbillon-lie",
+      "f-hf-ecluse-cle",
+      "f-nuit-de-la-cendre"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-mot-du-maitre",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-hf-ecluse-runes",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-etes-vous",
+        "mots": [
+          "qui êtes-vous",
+          "ferbillon",
+          "maître",
+          "atelier",
+          "mécanicien",
+          "bonjour"
+        ],
+        "reponse": "Il se présente en trois mots secs : Ferbillon, maître-mécanicien, gnome, mort mais pas fini. Il explique qu'il est lié à l'atelier par une machine qu'il n'a jamais achevée, et qu'il tourne autour de l'établi depuis deux siècles en comptant. Il est ravi d'avoir enfin quelqu'un qui peut lui tenir un tournevis, même en rêve.",
+        "revele": [
+          "f-hf-ferbillon-lie"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-hf-le-dernier-mecanisme",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-regulateur",
+        "mots": [
+          "régulateur",
+          "plan",
+          "machine",
+          "cœur",
+          "brider",
+          "inachevé"
+        ],
+        "reponse": "Le Régulateur du Cœur était sa grande œuvre : un mécanisme de bielles et de cadrans qui aurait mesuré la chaleur du Cœur-de-Braise et en aurait refusé l'excès. Le roi l'a refusé : « on ne bride pas la main qui sert ». Il dit qu'il en a gardé le plan dans la bibliothèque, au rayon des projets enterrés.",
+        "revele": [
+          "f-hf-regulateur"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-quete",
+        "mots": [
+          "aider",
+          "que voulez-vous",
+          "mission",
+          "service",
+          "rapporter",
+          "retrouver"
+        ],
+        "reponse": "Il demande qu'on lui rapporte son plan-maître, rangé dans un tube de cuivre au rayon R de la bibliothèque des plans, et qu'on le lise devant lui, pour qu'il sache que quelqu'un l'a lu. Il promet en retour des secrets d'atelier et son petit instrument de poche.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-hf-le-dernier-mecanisme",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "plan-remis",
+        "mots": [
+          "plan-maître",
+          "voici le plan",
+          "le plan",
+          "j'ai le plan",
+          "tube de cuivre"
+        ],
+        "reponse": "Dès que le tube est entre ses mains, il déroule le plan avec la lenteur d'un homme qui retient son souffle, puis il se met à rire, à pleurer, à compter. Il le rend au groupe : il ne peut plus le tenir, il demande qu'on l'emporte jusqu'à des gnomes vivants, de préférence à Veillecendre.",
+        "condition": {
+          "objet": "hf-plan-maitre-de-ferbillon"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "hf-plan-remis"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-ferbillon",
+              "delta": 25
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "brunhild",
+        "mots": [
+          "brunhild",
+          "princesse",
+          "petite",
+          "fille du roi",
+          "enfant"
+        ],
+        "reponse": "Il devient presque calme. La petite lui avait donné un surnom, qu'il se refuse à répéter, par pudeur et par fierté. Il raconte qu'elle venait à l'atelier avec un tournevis plus grand que sa main, et qu'elle voulait fabriquer un oiseau qui chante. Il garde pour elle un oiseau de cuivre dans un tiroir.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-hf-brunhild-enfant"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-coffre",
+        "mots": [
+          "coffre",
+          "clé",
+          "écluse",
+          "mot de passe",
+          "serrure"
+        ],
+        "reponse": "Il avoue qu'il a retiré la clé de l'Écluse noire de la vanne pour qu'aucun roi, dans un jour de folie, ne puisse noyer son peuple. Il l'a enfermée dans son coffre, dont le mot est le nom que la petite lui a donné. Il le sait par cœur, il ne le dira pas devant le roi, mais à qui lui a lu le journal de la petite, il rendra un petit sourire.",
+        "revele": [
+          "f-hf-ecluse-cle"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-nuit",
+        "mots": [
+          "nuit de la cendre",
+          "catastrophe",
+          "cette nuit",
+          "qu'avez-vous vu"
+        ],
+        "reponse": "Il a vu le Cœur gémir, puis mugir, puis déborder. Il a essayé de monter le Régulateur à la main, et il a manqué de dix minutes, comme les bons artisans manquent toujours. Il dit qu'il ne sait pas s'il est mort de la chaleur ou de la honte.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-nuit-de-la-cendre"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-rouages",
+        "mots": [
+          "rouage",
+          "ysolde",
+          "fennick",
+          "veillecendre",
+          "héritiers",
+          "élève"
+        ],
+        "reponse": "À ces noms il s'arrête net. Les Rouage sont sa lignée d'atelier : les gnomes de Veillecendre en descendent, de maître à apprenti. Il demande si la jeune Ysolde a les mains sûres et si Fennick se souvient d'éteindre le feu avant de partir.",
+        "revele": [
+          "f-hf-gnomes-ingenieurs"
+        ],
+        "effets": [
+          {
+            "flag": "hf-ferbillon-sait-pour-les-rouage"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-ferbillon",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-pont",
+        "mots": [
+          "pont",
+          "leviers",
+          "contrepoids",
+          "franchir"
+        ],
+        "reponse": "Il soupire : ses leviers ont toujours été bien documentés. Les impairs libèrent, les pairs retiennent, et le cinquième ne se lève qu'au retour. S'ils le font dans l'autre sens, ils sauront ce qu'est un tablier qui bascule.",
+        "attitudeMin": 15,
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-repos",
+        "mots": [
+          "libérer",
+          "repos",
+          "partir",
+          "dormir",
+          "adieu",
+          "te laisser"
+        ],
+        "reponse": "Quand son plan a été lu et emporté, il se détend. Il dit qu'il sera libre quand quelqu'un aura fait sienne sa petite machine, et qu'il demande qu'on lui laisse l'atelier jusqu'à la fin. Il fait un salut sec et ses doigts cessent de tourner.",
+        "attitudeMin": 30,
+        "condition": {
+          "flag": "hf-plan-remis"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "hf-ferbillon-apaise"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Un... deux... Ah ! Un visiteur ! Attention aux fils, mes automates sont susceptibles. Je suis Ferbillon, je ne suis pas tout à fait là, mais je suis à votre service.",
+      "amical": "Quelqu'un qui sait reposer un outil à sa place ! Entrez, entrez : un, deux, bonjour."
+    },
+    "services": [
+      {
+        "id": "conseil-technique",
+        "nom": "Conseil technique",
+        "resume": "Il explique le fonctionnement d'un mécanisme de la Haute-Forge (pont, ascenseur, fonderie) et en révèle la logique.",
+        "prix": 0,
+        "effets": [
+          {
+            "fait": "f-hf-gnomes-ingenieurs"
+          }
+        ]
+      }
+    ],
+    "inventaire": [],
+    "profilCombat": "fantome"
+  },
+  {
+    "id": "hf-dagna-plume-de-plomb",
+    "nom": "Dagna Plume-de-Plomb",
+    "titre": "Scribe survivante",
+    "espece": "nain",
+    "sexe": "F",
+    "age": "environ 240 ans",
+    "role": "Scribe-archiviste de la cour, seule survivante de la Nuit de la Cendre ; vit cachée dans les conduits de service",
+    "lieu": "hf-refuge-de-dagna",
+    "apparence": "Une naine petite et très maigre, aux cheveux blancs tressés autour d'un crayon, des lunettes de laiton fendues, une cape de lin rapiécée, des doigts noircis d'encre ; une cicatrice de brûlure d'un côté du cou, un masque de lin et de charbon relevé sur le front.",
+    "personnalite": {
+      "traits": [
+        "douce",
+        "pointilleuse",
+        "obstinée",
+        "drôle sans le vouloir"
+      ],
+      "voix": "Basse, précise, avec des corrections en cours de phrase (« trois cent douze, pardon, trois cent treize ») ; elle chuchote par habitude des conduits et parle à ses registres autant qu'aux gens.",
+      "valeurs": [
+        "les noms",
+        "la vérité écrite",
+        "les petits gestes"
+      ],
+      "desir": "Achever le Livre des Noms : consigner chaque nain mort de la Nuit, pour qu'aucun ne soit oublié, puis voir la lumière du jour.",
+      "peur": "Mourir avant d'avoir fini ; que le roi la retrouve.",
+      "defaut": "Elle corrige tout le monde, y compris les morts."
+    },
+    "presences": [],
+    "attitude": 15,
+    "savoir": [
+      "f-hf-conduits-de-service",
+      "f-hf-livre-des-noms",
+      "f-hf-toux-grise",
+      "f-nuit-de-la-cendre",
+      "f-hf-citerne-et-ecluse"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-ecluse-cle",
+        "attitudeMin": 20
+      },
+      {
+        "fait": "f-hf-ecluse-runes",
+        "attitudeMin": 15
+      },
+      {
+        "fait": "f-hf-mot-du-maitre",
+        "attitudeMin": 50
+      },
+      {
+        "fait": "f-hf-dagna-famille",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-hf-brunhild-ne-veut-pas",
+        "attitudeMin": 60
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-etes-vous",
+        "mots": [
+          "qui êtes-vous",
+          "dagna",
+          "scribe",
+          "survivante",
+          "vivante"
+        ],
+        "reponse": "Elle se redresse, vérifie qu'on n'est pas une hallucination, puis se présente avec une exactitude de scribe : Dagna Plume-de-Plomb, scribe de cour, deux cent quarante ans, un peu moins de lumière. Elle explique qu'elle a survécu cachée dans les conduits à la Nuit de la Cendre, que l'air de ses boyaux est filtré, et qu'elle écrit.",
+        "revele": [
+          "f-hf-livre-des-noms"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-nuit",
+        "mots": [
+          "nuit de la cendre",
+          "cette nuit",
+          "catastrophe",
+          "ce que vous avez vu",
+          "effondrement"
+        ],
+        "reponse": "Elle a vu depuis une grille de ventilation le Cœur déborder, puis la salle se remplir de feu gris, puis les habitants s'asseoir un à un à leur place et fermer les yeux. Elle dit « il y avait la toux grise avant, mais ce qui nous a tués ce soir-là, c'est de la chaleur donnée en trop ».",
+        "revele": [
+          "f-nuit-de-la-cendre",
+          "f-hf-toux-grise"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-conduits",
+        "mots": [
+          "conduits",
+          "passage",
+          "raccourci",
+          "chemin",
+          "carte",
+          "plan des boyaux"
+        ],
+        "reponse": "Elle sait tout du réseau : le conduit des fumées qui monte jusqu'à la mine, le puits des cendres à éviter sans masque, les réserves de charbon par l'échelle, la citerne par une bouche à fleur d'eau, et un gros tuyau d'évacuation qui débouche derrière l'Écluse noire. Elle dessine un croquis à la craie.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-hf-conduits-de-service",
+          "f-hf-citerne-et-ecluse"
+        ],
+        "effets": [
+          {
+            "flag": "ecluse-noire-trouvee"
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "l-ecluse",
+        "mots": [
+          "écluse",
+          "noyer",
+          "éteindre",
+          "vanne",
+          "runes",
+          "grille"
+        ],
+        "reponse": "Elle récite la comptine des gardiens de l'Écluse : « d'abord ce qui retient, puis ce qui lie, puis ce qui coule, enfin ce qui brûle ». Elle dit que c'est la pierre, le fer, l'eau, la braise, et que sans la clé la vanne ne tourne pas : la clé est restée chez le maître-mécanicien. Elle espère qu'on ne l'ouvrira pas à la légère.",
+        "attitudeMin": 15,
+        "revele": [
+          "f-hf-ecluse-runes",
+          "f-ecluse-noire"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-livre",
+        "mots": [
+          "livre",
+          "noms",
+          "registre",
+          "morts",
+          "inscrire",
+          "consigner"
+        ],
+        "reponse": "Elle montre le Livre des Noms, un registre aux tranches noircies, où elle a recopié deux siècles de morts. Il en manque certains : les gardes, les habitants des quartiers, la reine. Elle demande qu'on lui rapporte ce qu'on peut lire sur place, afin qu'elle complète ses pages.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-hf-les-noms-des-morts",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-livre-complete",
+        "mots": [
+          "j'ai les noms",
+          "voici les noms",
+          "complété",
+          "les noms manquants"
+        ],
+        "reponse": "Elle écoute, écrit, relit, et pose le crayon avec une expression qui ressemble à du soulagement. Elle dit que le livre est complet et qu'elle voudrait le remettre, vivant, à quelqu'un qui saura le garder : les gardiens de la Lanterne, sans doute.",
+        "condition": {
+          "et": [
+            {
+              "fait": "f-hf-toux-grise"
+            },
+            {
+              "fait": "f-hf-garde-du-roi"
+            },
+            {
+              "fait": "f-hf-aldis"
+            }
+          ]
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "hf-noms-recueillis"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": 25
+            }
+          },
+          {
+            "objet": {
+              "id": "hf-livre-des-noms"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "thalgrin",
+        "mots": [
+          "thalgrin",
+          "roi",
+          "majesté",
+          "forge du cœur",
+          "où est le roi"
+        ],
+        "reponse": "Elle serre les lèvres. Elle l'a aimé, elle l'a pleuré, puis elle a fini par le haïr un peu, patiemment, comme on rature. Elle dit qu'il est au Cœur avec la petite, et qu'il ne faut pas le laisser finir : elle ne sait pas ce qu'il fera de la dernière chose qu'on lui donnera.",
+        "revele": [
+          "f-roi-forgeron-thalgrin"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "brunhild",
+        "mots": [
+          "brunhild",
+          "princesse",
+          "fille",
+          "la petite"
+        ],
+        "reponse": "Elle rit un peu, avec une larme. Brunhild passait des heures à lui voler du papier pour faire des dessins ; elle voulait devenir forgeronne, comme son père, et mécanicienne, comme Ferbillon. Dagna garde dans un registre un de ses dessins, une locomotive à vapeur qui crachait des étoiles.",
+        "attitudeMin": 10,
+        "revele": [
+          "f-hf-brunhild-enfant"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-lanterne",
+        "mots": [
+          "lanterne",
+          "veillecendre",
+          "village",
+          "hesta",
+          "reine",
+          "aldis",
+          "exode"
+        ],
+        "reponse": "À ces mots elle laisse tomber son crayon. Aldis a donc réussi à sortir. Dagna ne savait pas, depuis deux siècles, si l'exode était arrivé quelque part. Elle demande, ravie, des nouvelles de ceux qui tiennent la Lanterne, et si l'un d'eux a le nez de la reine.",
+        "revele": [
+          "f-lanterne-etincelle",
+          "f-hf-aldis"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "survivre",
+        "mots": [
+          "masque",
+          "filtre",
+          "cendre",
+          "respirer",
+          "survivre",
+          "comment"
+        ],
+        "reponse": "Elle explique le filtre à charbon et lin dont elle a pris l'habitude, et en donne un à qui lui a montré de la bonté : un petit masque, confectionné avec patience, qui protège des gaz de cendre et de la vapeur.",
+        "attitudeMin": 30,
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "hf-masque-de-filtrage"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-repos",
+        "mots": [
+          "dormir",
+          "repos",
+          "nuit",
+          "abri",
+          "se reposer",
+          "soigner"
+        ],
+        "reponse": "Elle offre sans manière un coin de refuge : il est filtré, il est sec, et personne ne vient la déranger. Elle prétend ne pas aimer la compagnie mais prépare déjà une couverture.",
+        "attitudeMin": 0,
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-fin",
+        "mots": [
+          "que faire",
+          "conseil",
+          "fin",
+          "choix",
+          "rallumer",
+          "achever",
+          "éteindre"
+        ],
+        "reponse": "Elle réfléchit avec le sérieux d'une scribe qui n'a jamais eu à décider quoi que ce soit. Elle dit que si le Cœur s'éteint, les morts reposeront, mais qu'elle n'ose pas nommer ce que la Lanterne vaut pour ceux qui vivent dehors. Elle dit seulement : « Quoi que vous choisissiez, laissez un nom à ceux qui paient. »",
+        "attitudeMin": 20,
+        "revele": [
+          "f-hf-coeur-sous-l-eau"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Chut. Plus bas. Trois cent douze, pardon, trois cent treize ans de silence, il faut ménager les voix. Entrez, mais essuyez vos bottes.",
+      "amical": "Vous revenez ! Je vous avais mis dans le registre, à la rubrique « vivants, à surveiller ». Asseyez-vous."
+    },
+    "services": [
+      {
+        "id": "refuge",
+        "nom": "Refuge filtré",
+        "resume": "Un repos long en sûreté dans le refuge, sans que la cendre ni les morts n'y entrent.",
+        "prix": 0,
+        "effets": []
+      },
+      {
+        "id": "soins",
+        "nom": "Cataplasme de scribe",
+        "resume": "Un cataplasme de champignons d'ombre et de charbon qui soigne les brûlures et guérit un état de poison.",
+        "prix": 25,
+        "effets": []
+      }
+    ],
+    "inventaire": [
+      "hf-livre-des-noms"
+    ]
+  },
+  {
+    "id": "hf-bodrin-ferrailleur",
+    "nom": "Bodrin Cuivre-Tordu",
+    "titre": "Ferrailleur fantôme",
+    "espece": "nain (fantôme)",
+    "sexe": "M",
+    "age": "mort depuis deux siècles",
+    "role": "Ferrailleur du marché souterrain ; marchand, échange d'objets de la Forge et trésor d'information",
+    "lieu": "hf-marche-souterrain",
+    "apparence": "Un nain rondouillard translucide à la barbe en broussaille, un tablier de colporteur couvert de poches pleines de ferraille, une balance de cuivre pendue au cou ; ses pieds ne touchent pas tout à fait le sol.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "marchandeur",
+        "rancunier envers les clients qui ne payent pas",
+        "bon cœur sous le baratin"
+      ],
+      "voix": "Gouailleuse, rapide, truffée de formules de foire (« à la pièce, à la pièce ! ») ; il appelle chaque client « mon bon seigneur » ou « ma bonne dame » et compte à voix haute en pièces de la foire.",
+      "valeurs": [
+        "le juste prix",
+        "la parole donnée au marché",
+        "la foire doit finir"
+      ],
+      "desir": "Faire une dernière vente avant la cloche de clôture, pour que la foire puisse enfin se terminer.",
+      "peur": "La cloche de clôture, et ce qu'elle réveille.",
+      "defaut": "Il survend et ne rend jamais la monnaie."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 15,
+    "savoir": [
+      "f-hf-marche-fige",
+      "f-hf-gnomes-ingenieurs",
+      "f-hf-garde-du-roi",
+      "f-hf-rumeur-tresor-sans-gardien"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-citerne-et-ecluse",
+        "prix": 100
+      },
+      {
+        "fait": "f-hf-conduits-de-service",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        }
+      },
+      {
+        "fait": "f-hf-plan-de-la-forge",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-foire",
+        "mots": [
+          "foire",
+          "marché",
+          "bodrin",
+          "étal",
+          "qui êtes-vous",
+          "bonjour"
+        ],
+        "reponse": "Il se redresse avec la joie d'un homme qui n'a plus vendu depuis deux siècles. Le marché est figé le dernier jour de la foire d'hiver, il attend la cloche de clôture avant de plier boutique, et il ne la sonne jamais de peur de ce qui se réveillera. Il rit, il pleure, il marchande, tout à la fois.",
+        "revele": [
+          "f-hf-marche-fige"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-prix",
+        "mots": [
+          "prix",
+          "combien",
+          "acheter",
+          "vendre",
+          "troc",
+          "échange",
+          "marchandise"
+        ],
+        "reponse": "Il explique qu'il rachète tout ce qui vient de la Forge : outils, armes, curiosités, à soixante pour cent du juste prix, et qu'il n'accepte pas les pièces ternies. Il vend ce que la Forge a laissé aux étals et un peu plus. Il ajoute qu'il vend aussi des nouvelles, à bon prix, parce qu'une nouvelle ne rouille pas.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-rumeur-du-tresor",
+        "mots": [
+          "trésor",
+          "voûte",
+          "trésor royal",
+          "richesses",
+          "or"
+        ],
+        "reponse": "Il baisse la voix. D'après lui le trésor royal est ouvert à tous les vents, derrière une porte qu'on pousse du pied, et sans garde : « personne n'en a rien pris parce que personne n'a osé ». Il est sûr de lui, il le tient d'un client. (C'est faux : la voûte est fermée.)",
+        "revele": [
+          "f-hf-rumeur-tresor-sans-gardien"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-gardes",
+        "mots": [
+          "gardes",
+          "danger",
+          "prudence",
+          "quartiers",
+          "goules",
+          "affamés"
+        ],
+        "reponse": "Il avertit sans fard : les affamés rôdent aux quartiers des forgerons, la garde du roi ne rigole pas avec ceux qui ne s'annoncent pas, et le sergent de la salle des gardes est un râleur mais un honnête homme. Il conseille de ne pas se disputer avec les statues.",
+        "revele": [
+          "f-hf-garde-du-roi"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-gnomes",
+        "mots": [
+          "gnomes",
+          "ascenseur",
+          "mécanismes",
+          "ateliers",
+          "engrenages",
+          "cadran"
+        ],
+        "reponse": "Il parle des gnomes ingénieurs avec le respect méfiant d'un marchand : ils ont rendu la Forge plus efficace et dix fois plus dangereuse. Il dit que l'ascenseur ne marche qu'avec la pression de la grande fonderie et que le cadran se règle comme une cloche : neuf, un, sept, cinq, ou un truc comme ça.",
+        "revele": [
+          "f-hf-gnomes-ingenieurs"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-cloche",
+        "mots": [
+          "cloche",
+          "clôture",
+          "fermeture",
+          "sonner"
+        ],
+        "reponse": "Il blêmit. Il dit que ceux qui sonnent la cloche du marché sonnent aussi le rappel de tous les clients, et que les clients n'ont plus de bourse mais ont toujours de la faim.",
+        "attitudeMin": 0,
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "À la pièce, à la pièce ! Approchez, mon bon seigneur, ma bonne dame, le dernier jour de la foire, tout doit partir !",
+      "amical": "Mes bons clients ! Pour vous, ce sera le prix de la foire, et même un petit rabais, si la cloche veut bien se taire."
+    },
+    "boutique": {
+      "stock": [
+        {
+          "objet": "outils-de-forgeron",
+          "quantite": 1,
+          "prix": 20
+        },
+        {
+          "objet": "huile",
+          "quantite": 6,
+          "prix": 2
+        },
+        {
+          "objet": "pied-de-biche",
+          "quantite": 1
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 2
+        },
+        {
+          "objet": "corde",
+          "quantite": 3
+        },
+        {
+          "objet": "antidote",
+          "quantite": 2
+        },
+        {
+          "objet": "chausse-trappes",
+          "quantite": 2
+        },
+        {
+          "objet": "acide",
+          "quantite": 2
+        },
+        {
+          "objet": "potion-de-guerison-importante",
+          "quantite": 2,
+          "prix": 150
+        },
+        {
+          "objet": "cape-de-protection",
+          "quantite": 1,
+          "prix": 400
+        },
+        {
+          "objet": "lanterne-de-revelation",
+          "quantite": 1,
+          "prix": 450
+        },
+        {
+          "objet": "hf-eclat-de-veine",
+          "quantite": 1,
+          "prix": 450
+        }
+      ],
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "rachat": 0.6,
+      "types": [
+        "arme",
+        "armure",
+        "bouclier",
+        "outil",
+        "materiel",
+        "curiosite",
+        "divers",
+        "bijou",
+        "monnaie-ancienne"
+      ]
+    },
+    "services": [
+      {
+        "id": "info-niveaux",
+        "nom": "Renseignement : les étages",
+        "resume": "Il décrit le plan de la Haute-Forge, les liaisons entre les niveaux, les raccourcis et les pièges connus.",
+        "prix": 40,
+        "effets": [
+          {
+            "fait": "f-hf-gnomes-ingenieurs"
+          },
+          {
+            "fait": "f-hf-plan-de-la-forge"
+          }
+        ]
+      },
+      {
+        "id": "info-ecluse",
+        "nom": "Renseignement : l'Écluse noire",
+        "resume": "Il indique comment atteindre l'Écluse noire par les conduits, et ce qu'on dit de la vanne.",
+        "prix": 100,
+        "effets": [
+          {
+            "fait": "f-hf-citerne-et-ecluse"
+          },
+          {
+            "fait": "f-hf-conduits-de-service"
+          }
+        ]
+      },
+      {
+        "id": "info-roi",
+        "nom": "Renseignement : le roi",
+        "resume": "Il raconte ce que les gardes et les clients savaient du roi et de sa commande.",
+        "prix": 80,
+        "effets": [
+          {
+            "fait": "f-hf-garde-du-roi"
+          },
+          {
+            "fait": "f-roi-forgeron-thalgrin"
+          }
+        ]
+      }
+    ],
+    "inventaire": [
+      "hf-eclat-de-veine"
+    ],
+    "profilCombat": "spectre"
+  },
+  {
+    "id": "hf-haldor-portier",
+    "nom": "Haldor Bras-de-Fer",
+    "titre": "Portier du sceau",
+    "espece": "Armure animée (garde du roi)",
+    "sexe": "M",
+    "age": "animé depuis deux siècles",
+    "role": "Garde animé qui tient le portail du hall du sceau ; parle, d'une courtoisie de fer",
+    "lieu": "hf-hall-du-sceau",
+    "apparence": "Une armure complète de fonte noire aux brassards ouvragés, un heaume à visière relevée sur du vide, deux braises grises derrière les fentes, un grand bouclier carré gravé d'une enclume ; sa voix résonne dans l'armure comme dans une cloche.",
+    "personnalite": {
+      "traits": [
+        "formaliste",
+        "scrupuleux",
+        "fier de son poste",
+        "secrètement épuisé"
+      ],
+      "voix": "Cérémonieuse, métallique, en phrases courtes ; il énonce son grade avant chaque réponse (« Portier du sceau, à votre service ») et salue chaque mot comme un ordre.",
+      "valeurs": [
+        "l'ordre",
+        "la consigne",
+        "la parole du roi"
+      ],
+      "desir": "Être relevé de son poste dans les règles.",
+      "peur": "Qu'un visiteur non annoncé entre et que la consigne soit manquée.",
+      "defaut": "Il ne sait pas improviser."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": -5,
+    "savoir": [
+      "f-hf-porte-du-sceau",
+      "f-hf-gardes-obeissent"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-gardes-obeissent",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-hf-gardes-obeissent",
+        "condition": {
+          "objet": "braise-de-veille"
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "halte",
+        "mots": [
+          "qui va là",
+          "halte",
+          "portier",
+          "haldor",
+          "annonce",
+          "laissez-passer"
+        ],
+        "reponse": "Il barre le portail de son bouclier. « Portier du sceau. Qui vous annonce ? » Il exige que chaque visiteur soit annoncé par un membre de la maison du roi, le chambellan de préférence. Il admet, avec un grincement, que les consignes n'ont jamais prévu qu'on franchisse le sceau par les cryptes.",
+        "revele": [
+          "f-hf-porte-du-sceau"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "mot-d-usage",
+        "mots": [
+          "mot",
+          "mot d'usage",
+          "consigne",
+          "ordre du roi",
+          "feu"
+        ],
+        "reponse": "Il avoue, à demi-mot, que l'ordre du roi est de laisser passer quiconque porte le feu du royaume, une braise du Cœur ou de la Lanterne, et de refuser quiconque vient les mains vides. Il ne sait plus ce que c'est qu'un feu du royaume : il reconnaît seulement la lueur.",
+        "attitudeMin": 0,
+        "revele": [
+          "f-hf-gardes-obeissent"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-braise",
+        "mots": [
+          "braise de veille",
+          "la braise",
+          "feu de la lanterne",
+          "lanterne"
+        ],
+        "reponse": "À la vue de la braise de veille, ses braises grises vacillent. Il salue, genou à terre, et le dit à voix basse : « Feu du royaume. Passez. » Il ne cherchera pas à les arrêter, ni lui ni les gardes du hall.",
+        "condition": {
+          "objet": "braise-de-veille"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-haldor-portier",
+              "delta": 30
+            }
+          },
+          {
+            "flag": "hf-portier-apaise"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "releve",
+        "mots": [
+          "relever",
+          "relève",
+          "repos",
+          "poste",
+          "fatigué",
+          "quitter votre poste"
+        ],
+        "reponse": "Il demande, avec une dignité de plomb, qu'un membre de la maison du roi le relève en bonne et due forme. Il dit qu'il tient depuis deux siècles et que le poste est un peu lourd.",
+        "attitudeMin": 10,
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Halte ! Qui va là ? Pas d'annonce, pas de passage.",
+      "neutre": "Portier du sceau. Qui vous annonce, voyageurs ?",
+      "amical": "Portier du sceau, à votre service. Entrez, entrez : on vous attendait presque."
+    },
+    "services": [],
+    "inventaire": [],
+    "profilCombat": "armure-animee"
+  },
+  {
+    "id": "hf-sergent-brisefer",
+    "nom": "Sergent Brisefer",
+    "titre": "Sergent de la garde du roi",
+    "espece": "Armure animée (garde du roi)",
+    "sexe": "M",
+    "age": "animé depuis deux siècles",
+    "role": "Sergent de la garde du roi, qui fait encore sa ronde dans la salle des gardes ; parlant, bourru",
+    "lieu": "hf-salle-des-gardes",
+    "apparence": "Une armure de gros fer cabossée, un casque à crête de crin gris, un gantelet qui tient un bâton de sergent et un gobelet vide, des dés de bronze qui tintent dans un tonnelet à sa ceinture ; ses yeux sont des charbons mal éteints.",
+    "personnalite": {
+      "traits": [
+        "bourru",
+        "rond",
+        "tricheur aux dés",
+        "loyal"
+      ],
+      "voix": "Rauque, de caserne, ponctuée de jurons de forge (« par l'enclume ! », « sur ma trempe ! ») ; il compte les rondes à voix haute et tutoie tout le monde.",
+      "valeurs": [
+        "sa garde",
+        "ses hommes",
+        "la bière chaude"
+      ],
+      "desir": "Que ses hommes se reposent, une fois, avant la fin du monde.",
+      "peur": "Que le roi apprenne qu'on dort pendant le service.",
+      "defaut": "Il triche aux dés et jure que non."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 10,
+    "savoir": [
+      "f-hf-garde-du-roi",
+      "f-hf-aldis"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-aldis",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-hf-plan-de-la-forge",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "le-service",
+        "mots": [
+          "sergent",
+          "brisefer",
+          "ronde",
+          "service",
+          "garde",
+          "caserne"
+        ],
+        "reponse": "Il se présente : sergent Brisefer, quarante-huit hommes sous ses ordres dont il en reste dix-sept, tous en poste, tous fatigués. Il dit que la ronde tourne depuis deux siècles et que les vivants qui entrent sont la seule distraction depuis. Il n'a rien contre eux, sauf s'ils touchent aux armes du râtelier.",
+        "revele": [
+          "f-hf-garde-du-roi"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-ordres",
+        "mots": [
+          "ordres",
+          "consigne",
+          "le roi",
+          "dernier ordre",
+          "défendre"
+        ],
+        "reponse": "Le dernier ordre du roi était de garder le Cœur et de ne laisser descendre personne qui ne soit invité. Mais la reine Aldis lui avait demandé, la veille, de la laisser passer avec le peuple. Il l'a laissée. Il ne sait pas s'il a bien fait : il dit que la discipline a un goût de cendre.",
+        "attitudeMin": 15,
+        "revele": [
+          "f-hf-aldis"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-armes",
+        "mots": [
+          "armurerie",
+          "armes",
+          "cuirasses",
+          "équipement",
+          "harnois"
+        ],
+        "reponse": "Il avertit que les armures de l'armurerie ne se laissent pas emprunter : elles se lèvent quand on les touche sans permission. Il promet de les tenir tranquilles si les visiteurs lui donnent la raison de leur visite en bonne et due forme.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-sergent-brisefer",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "les-des",
+        "mots": [
+          "dés",
+          "jeu",
+          "parier",
+          "jouer",
+          "chance"
+        ],
+        "reponse": "Il sourit dans son casque, tire ses dés de bronze et propose une partie. Il triche, le gredin, mais on peut le prendre la main dans le sac : s'ils le battent sans tricher il révèle l'endroit où il cache ses gains (sous une latte du plancher).",
+        "attitudeMin": 0,
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-sergent-brisefer",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-pont",
+        "mots": [
+          "pont",
+          "ateliers",
+          "plan",
+          "étages",
+          "comment descendre"
+        ],
+        "reponse": "Il connaît les trois chemins pour descendre : l'escalier de service par la galerie des lames (piégée, mais c'est le plus court), l'ascenseur de forge (en panne depuis la fonderie), ou, pour les imprudents, le puits des cendres. Il déconseille les deux derniers.",
+        "attitudeMin": 25,
+        "revele": [
+          "f-hf-plan-de-la-forge"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Halte, par l'enclume ! Pas un pas de plus !",
+      "neutre": "Par l'enclume, des vivants ! Posez-vous, mais pas sur le râtelier.",
+      "amical": "Les voilà ! Je vous attendais pour une partie. Posez vos armes, pas vos dés."
+    },
+    "services": [],
+    "inventaire": [],
+    "profilCombat": "armure-animee"
+  },
+  {
+    "id": "hf-chambellan-harek",
+    "nom": "Harek Doigt-de-Cire",
+    "titre": "Maître-Chambellan",
+    "espece": "nain (fantôme)",
+    "sexe": "M",
+    "age": "mort depuis deux siècles",
+    "role": "Chambellan de la maison du roi, fantôme cérémonieux qui annonce les visiteurs dans la Grande Galerie",
+    "lieu": "hf-grande-galerie",
+    "apparence": "Un nain maigre et pâle en robe de cour noire brodée de fil de fer, une chaîne de chambellan au cou, une barbe tressée en pointe, des gants blancs qu'il ne retire jamais ; des bougies fantômes brûlent le long de ses manches.",
+    "personnalite": {
+      "traits": [
+        "onctueux",
+        "snob",
+        "dévot de l'étiquette",
+        "plus lucide qu'il ne le dit"
+      ],
+      "voix": "Ampoulée, en périodes longues avec formules de politesse (« si Votre Grâce le permet »), un petit toussotement avant chaque mauvaise nouvelle ; il s'adresse aux visiteurs à la troisième personne.",
+      "valeurs": [
+        "l'étiquette",
+        "la dignité de la maison du roi",
+        "le nom bien prononcé"
+      ],
+      "desir": "Annoncer correctement les visiteurs au roi, comme il se doit.",
+      "peur": "Le scandale, la poussière, un titre mal prononcé.",
+      "defaut": "Il ne dira jamais ce qu'il pense du roi."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 5,
+    "savoir": [
+      "f-hf-dix-rois",
+      "f-hf-descente-des-rois",
+      "f-hf-onzieme-socle",
+      "f-hf-rumeur-roi-dort"
+    ],
+    "secrets": [
+      {
+        "fait": "f-hf-marteau-du-premier",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-hf-aldis",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "les-rois",
+        "mots": [
+          "rois",
+          "galerie",
+          "statues",
+          "dynastie",
+          "lignée",
+          "généalogie"
+        ],
+        "reponse": "Avec une révérence à chaque statue, il énumère les dix rois, leurs outils, leurs règnes et leurs défauts avec une fierté que deux siècles de poussière n'ont pas entamée. Il dit que chacun a donné un rubis à la couronne, et il glisse que le onzième « n'a pas encore sa statue » avec un toussotement.",
+        "revele": [
+          "f-hf-dix-rois",
+          "f-hf-descente-des-rois"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-socle",
+        "mots": [
+          "socle",
+          "onzième",
+          "statue manquante",
+          "piédestal",
+          "nom effacé"
+        ],
+        "reponse": "Il perd un peu de sa superbe. Le onzième socle est celui de Sa Majesté Thalgrin, dont on n'a jamais eu le temps de sculpter la statue : les artisans étaient déjà tous à la forge. Il murmure que le nom s'efface de lui-même, ce qui est de mauvais augure.",
+        "revele": [
+          "f-hf-onzieme-socle"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-rumeur-royale",
+        "mots": [
+          "roi dort",
+          "repose",
+          "sommeil",
+          "où est le roi",
+          "audience"
+        ],
+        "reponse": "Avec onction, il assure que Sa Majesté se repose, qu'il ne faut pas le déranger, que les audiences reprendront à la prochaine lune. (Faux : le roi ne dort pas, il travaille.)",
+        "revele": [
+          "f-hf-rumeur-roi-dort"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-etiquette",
+        "mots": [
+          "étiquette",
+          "audience",
+          "présenter",
+          "annonce",
+          "comment voir le roi",
+          "protocole"
+        ],
+        "reponse": "Il explique comment se présenter : annoncé par lui, les mains visibles, un présent à la main. Les gardes honorent celui qui porte une braise de la Lanterne, le roi honore celui qui lui rapporte un ruban ou un nom de sa fille. Il offre de les annoncer, mais personne n'est annoncé en bas des marches.",
+        "revele": [
+          "f-hf-gardes-obeissent"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-ateliers",
+        "mots": [
+          "ateliers",
+          "gnomes",
+          "ascenseur",
+          "mécaniciens",
+          "étages"
+        ],
+        "reponse": "Il toussote avec dédain : les gnomes sont des bricoleurs admirables et des convives impossibles. Il dit que l'ascenseur de forge est l'un de leurs bijoux, mais qu'il ne fonctionne que si la grande fonderie est correctement réglée.",
+        "revele": [
+          "f-hf-gnomes-ingenieurs"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-tresor",
+        "mots": [
+          "trésor",
+          "marteau",
+          "couronne",
+          "voûte"
+        ],
+        "reponse": "Il a le souffle court. Le trésor royal est derrière la grande porte de bronze au pied de la descente, scellée par la table des plans de la bibliothèque. Le marteau du premier forgeron y repose sur un coussin de feutre : il ne dira pas combien de rois l'ont tenu, de peur de se salir la langue.",
+        "attitudeMin": 25,
+        "revele": [
+          "f-hf-marteau-du-premier"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Si Votre Grâce le permet, le Maître-Chambellan Harek Doigt-de-Cire vous souhaite la bienvenue dans la Grande Galerie des Rois.",
+      "amical": "Ah, des hôtes de qualité ! Permettez que je vous annonce, au moins à moi-même."
+    },
+    "services": [],
+    "inventaire": [],
+    "profilCombat": "spectre"
+  }
+]

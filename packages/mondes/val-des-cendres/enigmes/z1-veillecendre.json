@@ -1,0 +1,38 @@
+[
+  {
+    "id": "vei-e-cadran-de-la-lanterne",
+    "nom": "Le cadran de la Lanterne",
+    "lieu": "vei-cadran-de-la-lanterne",
+    "enonce": "Dans le réduit sous la lanterne, un grand cadran de bronze à trois couronnes gravées de chiffres nains, chacune graduée de un à neuf, est déréglé. Une plaque, au-dessous, porte quelques lignes de runes : « Règle la flamme sur ce que tu as monté, ce qui regarde le vent, ce qui laisse passer la lueur. » Derrière le cadran, une niche scellée attend. Les trois couronnes se tournent à la main.",
+    "solution": { "type": "cadran", "valeurs": [7, 4, 3] },
+    "indices": [
+      { "niveau": 1, "texte": "La plaque ne parle pas de chiffres abstraits : elle demande de compter des choses que l'on voit dans la tour, de bas en haut, dans l'ordre des couronnes.", "competence": "intuition", "dd": 10 },
+      { "niveau": 2, "texte": "La première couronne correspond à ce que l'on a monté : les paliers de l'escalier tournant, un par rune gravée au mur. La deuxième à ce qui regarde le vent : les meurtrières du foyer.", "competence": "investigation", "dd": 12 },
+      { "niveau": 3, "texte": "Sept paliers, quatre meurtrières, et la calotte de verre qui laisse passer la lueur est faite de trois panneaux : le cadran se règle sur 7, 4, 3.", "competence": "perception", "dd": 13 }
+    ],
+    "echec": { "piege": "vei-p-souffle-de-la-flamme", "effets": [], "resume": "Un mauvais réglage fait cracher à la flamme un souffle brûlant dans le réduit, et les chaînes grincent à se rompre." },
+    "recompense": {
+      "effets": [{ "flag": "vei-cadran-regle" }, { "fait": "f-vei-fennick-et-le-cadran" }, { "xp": 100 }],
+      "tresor": "vei-t-niche-du-cadran",
+      "resume": "La niche s'ouvre sur les dernières réserves du Veilleur ; la flamme, mieux réglée, tire un peu plus droit."
+    }
+  },
+  {
+    "id": "vei-e-mecanisme-de-fennick",
+    "nom": "Le boîtier à rouages",
+    "lieu": "vei-atelier-des-rouages",
+    "enonce": "Sur l'établi de l'atelier, un boîtier de bronze nain dont le couvercle est bloqué par un mécanisme d'engrenages à demi démonté. Trois arbres vides attendent trois pignons : l'arbre moteur, relié à une manivelle, l'arbre relais, au milieu, et l'arbre de sortie, relié à la serrure. Sur le flanc du boîtier est gravée une flèche de plus en plus épaisse, de la manivelle à la serrure. Fennick a laissé, sur un petit plateau, trois pignons : un petit de cuivre, un moyen de laiton, un grand de fer.",
+    "solution": { "type": "placement", "emplacements": { "arbre-moteur": "vei-pignon-petit", "arbre-relais": "vei-pignon-moyen", "arbre-sortie": "vei-pignon-grand" } },
+    "indices": [
+      { "niveau": 1, "texte": "Fennick marmonne qu'un mécanisme de serrure doit tourner de plus en plus lentement et de plus en plus fort vers la serrure : la force se gagne en perdant en vitesse.", "competence": "intuition", "dd": 10 },
+      { "niveau": 2, "texte": "La flèche gravée sur le flanc grossit de la manivelle à la serrure : le mouvement se démultiplie à chaque étage.", "competence": "investigation", "dd": 11 },
+      { "niveau": 3, "texte": "Petit pignon à la manivelle, moyen au milieu, grand à la serrure : chaque roue entraîne une roue deux fois plus grande, donc deux fois plus lente.", "competence": "arcanes", "dd": 12 }
+    ],
+    "echec": { "effets": [], "resume": "Les roues se grippent avec un claquement sec et un ressort saute au visage de qui s'y colle ; Fennick soupire et remet tout à plat." },
+    "recompense": {
+      "effets": [{ "flag": "vei-mecanisme-repare" }, { "objet": { "id": "vei-boitier-de-braise" } }, { "xp": 100 }],
+      "tresor": "vei-t-coffre-de-fennick",
+      "resume": "Le couvercle s'ouvre, le boîtier de bronze est prêt à recevoir une étincelle, et le coffre à tiroirs s'ouvre en prime."
+    }
+  }
+]

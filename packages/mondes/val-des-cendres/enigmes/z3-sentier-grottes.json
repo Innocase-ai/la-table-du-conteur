@@ -1,0 +1,30 @@
+[
+  {
+    "id": "gro-e-aiguillages-de-la-fosse",
+    "nom": "Les aiguillages du carreau",
+    "lieu": "gro-fosse-carreau",
+    "enonce": "Sur le carreau, trois wagonnets attendent chacun sur sa voie, face à trois leviers peints de couleurs passées. Le premier est plein de minerai noir veiné de rouge : ses roues mordent profondément les rails et ses ressorts sont écrasés. Le deuxième est plein de roche grise : il pèse, mais ses ressorts ne sont qu'à demi affaissés. Le troisième est vide. Une plaque de fer rongée est vissée au mur : « Pour descendre au bas, lancer le plus lourd d'abord, le vide en dernier. » Les wagonnets doivent être poussés dans le bon ordre pour ouvrir la voie descendante sans la faire rouler.",
+    "solution": { "type": "sequence", "ordre": ["wagonnet-de-minerai", "wagonnet-de-roche", "wagonnet-vide"] },
+    "indices": [
+      { "niveau": 1, "texte": "La plaque ne parle pas de couleur mais de poids : il suffit de regarder comment chaque wagonnet charge ses ressorts.", "competence": "investigation", "dd": 10 },
+      { "niveau": 2, "texte": "Le wagonnet qui écrase ses ressorts et enfonce ses roues est celui du minerai ; la roche pèse moins ; le vide ne pèse presque rien.", "competence": "perception", "dd": 12 },
+      { "niveau": 3, "texte": "L'ordre est donc : le minerai d'abord, la roche ensuite, le vide en dernier.", "competence": "histoire", "dd": 14 }
+    ],
+    "echec": { "effets": [{ "rencontre": "gro-r-fosse-dortoir" }], "resume": "Les wagonnets partent trop vite et fracassent la voie : le vacarme réveille le dortoir." },
+    "recompense": { "effets": [{ "flag": "gro-aiguillages-regles" }, { "fait": "f-gro-fosse-aiguillages" }], "resume": "La voie descendante s'ouvre sans bruit vers la galerie basse." }
+  },
+  {
+    "id": "gro-e-cairn-des-trois-niches",
+    "nom": "Les trois niches du cairn",
+    "lieu": "gro-hauteurs-cairn",
+    "enonce": "Le grand cairn des goliaths s'ouvre sur trois niches, l'une face à l'est, l'une au sud, l'une à l'ouest, chacune à peine plus grande qu'un poing. Les parois en sont polies par des mains d'enfants. Des rubans de laine pendent à leurs seuils : un ruban clair à l'est, un ruban brun au sud, un ruban noir à l'ouest. Chaque niche attend une offrande : un sifflet d'agneau, une clochette de chèvre de tête, une pierre de nom gravée d'un défunt.",
+    "solution": { "type": "placement", "emplacements": { "niche-du-lever": "sifflet", "niche-de-midi": "cloche", "niche-du-crepuscule": "gro-pierre-de-nom-de-haavi" } },
+    "indices": [
+      { "niveau": 1, "texte": "Chaque niche regarde un moment du jour : le lever à l'est, le midi au sud, le crépuscule à l'ouest.", "competence": "perception", "dd": 10 },
+      { "niveau": 2, "texte": "Les rubans disent la couleur du jour : clair pour ce qui commence, brun pour ce qui nourrit, noir pour ceux qui sont partis.", "competence": "histoire", "dd": 12 },
+      { "niveau": 3, "texte": "Le sifflet d'agneau (ce qui commence) va dans la niche du lever, la cloche de la chèvre de tête (ce qui nourrit) dans celle de midi, la pierre de nom (ceux qui sont partis) dans celle du crépuscule.", "competence": "intuition", "dd": 13 }
+    ],
+    "echec": { "effets": [{ "attitude": { "pnj": "taavi-pas-de-nuage", "delta": -5 } }], "resume": "Une offrande mal placée sonne creux dans la niche : le vent siffle un air triste, et les rubans se tendent comme pour avertir." },
+    "recompense": { "tresor": "gro-t-cairn-offrandes", "effets": [{ "flag": "gro-cairn-complete" }, { "fait": "f-gro-cairn-trois-niches" }], "resume": "Les trois niches se referment doucement, et la plus haute pierre du cairn glisse de côté pour laisser voir l'offrande la plus ancienne." }
+  }
+]

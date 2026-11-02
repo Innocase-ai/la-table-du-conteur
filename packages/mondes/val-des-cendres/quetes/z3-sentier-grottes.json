@@ -1,0 +1,354 @@
+[
+  {
+    "id": "q-gro-les-loups-descendent",
+    "nom": "Les loups descendent",
+    "type": "secondaire",
+    "donneur": "gro-odilon-trappeur",
+    "lieu": "grotte-des-loups-gris",
+    "resume": "Odilon le trappeur veut savoir pourquoi la meute des Loups-Gris a quitté la montagne : elle lui vide ses pièges et menace le sentier. À vous de trouver la cause, et de décider du sort de la meute.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "enqueter",
+    "etapes": [
+      {
+        "id": "enqueter",
+        "texte": "Descendez dans la grotte des Loups-Gris et comprenez ce qui chasse la meute de la montagne.",
+        "completion": {
+          "fait": "f-gro-loups-fuient-la-cendre"
+        },
+        "suivantes": [
+          "apaiser",
+          "chasser"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "gro-odilon-trappeur",
+            "etat": "mort"
+          }
+        }
+      },
+      {
+        "id": "apaiser",
+        "texte": "La meute fuit la cendre et protège une portée : apaisez-la, laissez-lui de la viande et du temps.",
+        "completion": {
+          "flag": "gro-meute-apaisee"
+        },
+        "suivantes": [
+          "rapporter"
+        ],
+        "effets": [
+          {
+            "fait": "f-gro-meute-apaisable"
+          }
+        ]
+      },
+      {
+        "id": "chasser",
+        "texte": "La meute est trop dangereuse pour le sentier : chassez-la de la grotte ou brisez-la.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "gro-meute-chassee"
+            },
+            {
+              "flag": "gro-meute-brisee"
+            }
+          ]
+        },
+        "suivantes": [
+          "rapporter"
+        ]
+      },
+      {
+        "id": "rapporter",
+        "texte": "Rapportez à Odilon ce qu'il est advenu de la meute.",
+        "completion": {
+          "flag": "gro-odilon-informe-loups"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 2
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 40,
+      "objets": [
+        "gro-peau-de-loup-gris"
+      ],
+      "effets": []
+    },
+    "ramifications": "Trois issues : (1) apaiser la meute (dressage ou viande + feu) : la louve garde ses petits, la grotte devient un refuge tranquille, les loups ne descendent plus au sentier ; (2) la chasser par le feu : les louveteaux sont abandonnés et mourront, ou le groupe les adopte ; (3) la tuer : Odilon vend les peaux, mais le sentier est plus calme et le Val plus pauvre. Le groupe peut aussi échouer en laissant Odilon mourir (échec de l'enquête). Un choix lié aux Pèlerins : les loups apaisés ne s'attaquent plus aux pèlerins qui montent au champ."
+  },
+  {
+    "id": "q-gro-la-fosse-aux-morts",
+    "nom": "La Fosse aux morts",
+    "type": "secondaire",
+    "donneur": "gro-ulfrik-basse-veine",
+    "lieu": "la-fosse",
+    "resume": "Ulfrik Basse-Veine veille devant la mine naine que son frère Sigrun et une équipe de volontaires ont rouverte pour y chercher l'huile de la Lanterne. Il y a un survivant, il y a des morts d'hier et d'il y a vingt ans : à vous de les retrouver, de délivrer Sigrun, puis de décider du sort de la Fosse.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "debut": "entrer",
+    "etapes": [
+      {
+        "id": "entrer",
+        "texte": "Entrez dans la Fosse et cherchez les membres de l'équipe de Sigrun.",
+        "completion": {
+          "lieu": "gro-fosse-galerie-d-entree"
+        },
+        "suivantes": [
+          "reposer-sigrun",
+          "descendre"
+        ]
+      },
+      {
+        "id": "reposer-sigrun",
+        "texte": "Sigrun marche parmi les morts du dortoir : donnez-lui le repos des nains.",
+        "completion": {
+          "flag": "gro-sigrun-repose"
+        },
+        "suivantes": [
+          "decider"
+        ]
+      },
+      {
+        "id": "descendre",
+        "texte": "Quelqu'un frappe derrière l'éboulis de la galerie basse. Trouvez un moyen de descendre.",
+        "completion": {
+          "fait": "f-gro-joss-sous-l-eboulis"
+        },
+        "suivantes": [
+          "sauver-joss"
+        ]
+      },
+      {
+        "id": "sauver-joss",
+        "texte": "Dégagez l'éboulis et sortez le survivant de la poche d'air.",
+        "completion": {
+          "flag": "gro-joss-sauve"
+        },
+        "suivantes": [
+          "decider"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "gro-joss-tamisier",
+            "etat": "mort"
+          }
+        }
+      },
+      {
+        "id": "decider",
+        "texte": "La Fosse est pleine de morts et de minerai : décidez avec Ulfrik de la fermer ou de la rouvrir.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "gro-fosse-scellee"
+            },
+            {
+              "flag": "gro-fosse-exploitee"
+            }
+          ]
+        },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 450,
+      "pieces": 60,
+      "objets": [
+        "gro-minerai-de-braise"
+      ],
+      "effets": []
+    },
+    "ramifications": "Sigrun peut être délivré (Ulfrik présent, rites naine) ou abattu ; Joss peut être sauvé (athlétisme ou outils nains pour percer l'éboulis) ou mourir si le groupe tarde. La mine peut être scellée (Ulfrik offre la lanterne naine, réputation des Gardiens +) ou exploitée (minerai de braise pour la forge des réfugiés de Veillecendre, la Fosse sous la garde d'Ulfrik ; réputation des Gardiens −). Si la mine est exploitée sans avoir purgé le dortoir et le filon, les morts reviennent. Le drain secret vers la grotte aux Fils et le puits d'aération vers les hauteurs offrent d'autres accès. L'huile de roche et la houille rouge du filon peuvent nourrir la Lanterne (voir les quêtes de combustible de Veillecendre) : rouvrir la Fosse est donc aussi un moyen de faire reculer la Cendre."
+  },
+  {
+    "id": "q-gro-le-berger-goliath",
+    "nom": "Le berger goliath",
+    "type": "secondaire",
+    "donneur": "taavi-pas-de-nuage",
+    "lieu": "cairn-des-hauteurs",
+    "resume": "Taavi Pas-de-Nuage a perdu six chèvres et une promesse. Retrouvez le troupeau égaré sur la vire, rapportez la pierre de nom de son frère de la grotte des Loups-Gris et aidez-le à la déposer dans le cairn.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "promesse",
+    "etapes": [
+      {
+        "id": "promesse",
+        "texte": "Écoutez Taavi : il a un troupeau à retrouver et une promesse à tenir envers son frère.",
+        "completion": {
+          "fait": "f-gro-promesse-de-taavi"
+        },
+        "suivantes": [
+          "chevres",
+          "pierre"
+        ]
+      },
+      {
+        "id": "chevres",
+        "texte": "Les six chèvres de Taavi sont coincées sur la vire, au-dessus du puits d'aération de la Fosse. Ramenez-les, avec la cloche de la chèvre de tête.",
+        "completion": {
+          "flag": "gro-chevres-retrouvees"
+        },
+        "suivantes": [
+          "cairn"
+        ]
+      },
+      {
+        "id": "pierre",
+        "texte": "La pierre de nom de Haavi a été traînée dans la tanière des loups. Allez la chercher.",
+        "completion": {
+          "objet": "gro-pierre-de-nom-de-haavi"
+        },
+        "suivantes": [
+          "cairn"
+        ]
+      },
+      {
+        "id": "cairn",
+        "texte": "Déposez les trois offrandes dans les trois niches du cairn, chacune à l'heure qui lui convient : le sifflet, la cloche, la pierre de nom.",
+        "completion": {
+          "flag": "gro-cairn-complete"
+        },
+        "suivantes": [
+          "rendre"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "taavi-pas-de-nuage",
+            "etat": "mort"
+          }
+        }
+      },
+      {
+        "id": "rendre",
+        "texte": "Dites à Taavi que la promesse est tenue.",
+        "completion": {
+          "flag": "gro-taavi-remercie"
+        },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 350,
+      "pieces": 0,
+      "objets": [
+        "gro-baton-de-berger-grave"
+      ],
+      "effets": []
+    },
+    "ramifications": "La pierre peut être prise à la meute après un combat, ou obtenue en apaisant les loups ; on peut aussi emprunter la cloche de mule du colporteur (la chèvre de tête refuse de bouger sans la sienne). Si les chèvres sont abandonnées ou la vire dévastée, Taavi tient quand même la promesse mais ne donnera pas son bâton. Si le groupe pille l'offrande du cairn avant d'avoir résolu les niches, Taavi cesse de parler au groupe. Une fois le cairn complet, l'offrande la plus ancienne s'offre à qui l'a gagnée."
+  },
+  {
+    "id": "q-gro-les-pelerins-gris",
+    "nom": "Les Pèlerins gris",
+    "type": "secondaire",
+    "donneur": "gro-perrin-cendrelin",
+    "lieu": "champ-de-cendre-gris",
+    "resume": "Perrin, un jeune Pèlerin, ne sait pas s'il doit se coucher dans la cendre. Il demande qu'on découvre ce que cherchent vraiment les Pèlerins gris, et ce qui arrive aux couchés. Comprendre, dissuader ou rejoindre : le choix est à vous.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "comprendre",
+    "etapes": [
+      {
+        "id": "comprendre",
+        "texte": "Demandez au Frère Ocre ce que cherchent les Pèlerins gris.",
+        "completion": {
+          "fait": "f-pelerins-motif"
+        },
+        "suivantes": [
+          "verite"
+        ]
+      },
+      {
+        "id": "verite",
+        "texte": "Découvrez ce qui arrive aux couchés après leur mort apparente.",
+        "completion": {
+          "fait": "f-gro-les-couches-se-relevent"
+        },
+        "suivantes": [
+          "dissuader",
+          "rejoindre",
+          "laisser"
+        ]
+      },
+      {
+        "id": "dissuader",
+        "texte": "Amenez le Frère Ocre à regarder ce qu'il ne veut pas voir : les couchés se relèvent.",
+        "completion": {
+          "flag": "gro-pelerins-dissuades"
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "frere-ocre",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "id": "rejoindre",
+        "texte": "Acceptez le ruban gris et partagez la veille des Pèlerins.",
+        "completion": {
+          "flag": "gro-pelerins-rejoints"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "laisser",
+        "texte": "Laissez les Pèlerins à leur choix et partez sans les juger.",
+        "completion": {
+          "flag": "gro-pelerins-laisses"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 3
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 350,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Dissuader : il faut avoir recueilli le témoignage d'Aldegonde (le fils relevé) et gagné la confiance d'Ocre ; il ne dissout pas le camp, il cesse d'inviter à se coucher. Rejoindre : le ruban gris ouvre les tentes, les allées et les secrets d'Aubin, mais coûte la confiance du village. Laisser : on peut ramener Perrin ou Aubin à Veillecendre sans toucher au camp. Violence : si le groupe attaque les Pèlerins, les couchés se relèvent et le camp s'enfuit ou se bat ; la réputation auprès de la faction chute et le Frère Ocre meurt dans la cohue. Le secret d'Ocre (ancien Gardien, et l'existence du Veilleur) peut être utilisé comme levier ou comme pardon."
+  }
+]

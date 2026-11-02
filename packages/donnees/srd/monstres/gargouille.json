@@ -1,0 +1,93 @@
+{
+  "id": "gargouille",
+  "nom": "Gargouille",
+  "taille": "M",
+  "type": "Élémentaire",
+  "alignement": "Chaotique Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 67,
+    "des": "9d8 + 27"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 11,
+    "con": 16,
+    "int": 6,
+    "sag": 11,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (terreux)",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "La gargouille ne provoque pas d'attaque d'Opportunité quand elle quitte la zone d'allonge d'un ennemi en volant."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La gargouille effectue deux attaques de Griffe.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (2d4 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ]
+}

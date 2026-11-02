@@ -67,3 +67,21 @@ Cahier des charges de l'utilisateur : complet mais pas trop complexe, comme Bald
 **Limites connues** : portraits en tuiles d'attente (les images viennent avec M2) ; 25 sorts sur 181 jouables en combat ; sorts du don Initié à la magie non lançables ; les messages d'erreur bruts de `calculerFiche` ne sont affichés que s'aucun manque n'est listé.
 
 **À valider par toi en jouant** : le parcours est-il assez simple ? Trop de choix à l'écran 5 ? Le groupe conseillé te convient-il ?
+
+## 02/11/2026 — Mondes : un format pour des dizaines d'histoires
+
+Demande de l'utilisateur : le moteur doit accueillir des dizaines de nouveaux mondes, chacun avec villes, villages, grottes, donjons, beaucoup de PNJ et de trésors. Le Val des Cendres (piste choisie) devient le premier monde de ce format.
+
+- Format (`packages/regles/src/monde/schemas.ts`, `docs/MONDES.md`) : un monde est un dossier de JSON (lieux en arbre avec liens, PNJ avec personnalité, sujets, secrets, boutiques, services, compagnons ; objets, trésors, tables de butin ; rencontres ; pièges ; énigmes à solution vérifiable ; quêtes à étapes ; factions ; jauges ; événements ; fins ; faits). Conditions et effets forment un langage commun.
+- Moteur : chargeur de monde, état de partie (JSON sauvegardable), évaluateur de conditions, effets, avancement automatique des quêtes, vérification des énigmes.
+- Validateur (`pnpm monde valider`) : références, accessibilité des lieux, graphe des quêtes, énigmes, équilibre des rencontres (budget de PX du SRD pour 6), faits jamais révélés, objectifs de richesse par chapitre. `pnpm monde doc` génère le document lisible d'un monde.
+- Catalogue d'objets du SRD partagé par tous les mondes (équipement, objets magiques) ; monstres supplémentaires.
+- Val des Cendres : canon (`packages/mondes/val-des-cendres/BIBLE.md` : secret, quatre fins, factions, registre d'identifiants fixes) et six agents d'écriture en parallèle (Veillecendre, Pont-de-Fer et le Gué, grottes et hauteurs, cryptes, Haute-Forge, éléments centraux).
+- **Val des Cendres écrit et validé** (0 erreur, 0 avertissement) : 1 région, 1 village, 1 ville, 1 hameau, 3 grottes, 2 donjons (cryptes sur 2 niveaux, Haute-Forge sur 3), 63 PNJ (378 sujets, 14 marchands, 3 compagnons), 93 trésors, 101 objets propres, 56 rencontres, 18 énigmes, 33 pièges, 23 quêtes, 176 faits, 6 factions, jauge de Cendre, 4 fins plus l'échec. Les zones ont été écrites en parallèle puis raccordées.
+- Moteur : une étape de quête peut être marquée `termine` pour des fins alternatives (une quête ne se clôt plus tôt par erreur) ; le validateur détecte les conditions mortes (drapeau lu mais jamais posé, objet ou fait introuvable) ; boutiques et butins peuvent citer des armes et armures du SRD.
+- Corrections au raccordement : le Veilleur meurt quand la Cendre atteint 4 (drapeau manquant), laissez-passer du Fer-Gris offert par un déserteur (voie « don »), bande du Gué dissoute ou vaincue compte pour la voie « service ».
+- Tests : les quatre fins sont jouables de bout en bout avec le moteur d'état ; la jauge de Cendre au maximum donne l'échec ; le monde est validé à chaque `pnpm test`.
+
+**À valider par toi en lisant** : `docs/mondes/val-des-cendres.md` (document généré, 1 000 lignes) : le ton, les personnages, les fins, l'équilibre des trésors (≈ 33 000 po au total).
+
+**Suite** : M4, le MJ (récit illustré, arbitre, PNJ qui parlent) qui lira ce monde ; une visionneuse du monde dans l'interface pour le parcourir ; d'autres mondes.

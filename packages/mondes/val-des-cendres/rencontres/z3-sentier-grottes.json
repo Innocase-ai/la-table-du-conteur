@@ -1,0 +1,282 @@
+[
+  {
+    "id": "gro-r-loups-porche", "nom": "Les gardes du porche", "type": "combat", "lieu": "gro-loups-porche", "difficulte": "faible",
+    "intro": "Dans le porche semé d'os, quatre loups gris se redressent sans bruit, les poils hérissés. Ce ne sont pas des loups de chasse : maigres, les côtes visibles, ils reculent d'abord vers le goulet pour couvrir la meute avant de charger. Ils ne veulent pas la bagarre ; ils veulent qu'on s'en aille.",
+    "monstres": [{ "profil": "loup", "nombre": 4 }],
+    "carte": [
+      "##################",
+      "#..~~.....mm....##",
+      "#.~~~..#...mm..###",
+      "#......##......###",
+      "#..~.....~~....###",
+      "#...........#.####",
+      "#..HHHH.....#...##",
+      "#..HH..~~.......##",
+      "#...............##",
+      "##################"
+    ],
+    "tactique": { "doctrine": "Les loups attaquent en meute (Avantage si un allié est adjacent), visent les cibles seules ou à terre, et reculent vers le goulet pour tirer l'adversaire dans le boyau étroit.", "fuite": "Aux deux premiers loups tués, les autres fuient vers la salle de la meute et alertent la louve.", "renforts": "Les grondements portent jusqu'à la salle de la meute : si le combat dure plus de quatre rounds, la louve sanguinaire et son second montent par le boyau." },
+    "alternatives": [
+      { "id": "viande", "nom": "Jeter de la viande et reculer", "condition": { "ou": [{ "objet": "rations" }, { "objet": "gro-viande-seche" }] }, "jet": { "competence": "dressage", "dd": 12 }, "resume": "Poser de la nourriture au sol, reculer lentement, ne pas les fixer : les loups se jettent sur la viande et laissent passer jusqu'au goulet.", "effets": [{ "fait": "f-gro-meute-apaisable" }] },
+      { "id": "fissure", "nom": "Contourner par la fissure nord", "jet": { "competence": "survie", "dd": 13 }, "resume": "Trouver la fissure qui monte du sentier, et gagner la source sans passer par le porche.", "effets": [{ "flag": "gro-fissure-nord-connue" }] }
+    ],
+    "butin": { "tables": ["gro-table-os-et-bourses"], "tresors": ["gro-t-os-du-porche"] },
+    "effetsVictoire": [{ "flag": "gro-porche-des-loups-libre" }]
+  },
+  {
+    "id": "gro-r-loups-salle-de-la-meute", "nom": "La meute et la louve boiteuse", "type": "combat", "lieu": "gro-loups-salle-de-la-meute", "difficulte": "moderee",
+    "intro": "Sous le puits de lumière grise, la vieille louve sanguinaire se lève de son bloc de pierre, boiteuse mais énorme. Son second la flanque ; deux loups plus jeunes se glissent sur les côtés. Derrière eux, vers le fond, vous entendez couiner des petits. Ils se battront jusqu'au bout pour cette portée.",
+    "monstres": [{ "profil": "loup-sanguinaire", "nombre": 2, "nom": "Louve boiteuse et son second" }, { "profil": "loup", "nombre": 2 }],
+    "carte": [
+      "######################",
+      "#....~~.......~~.....#",
+      "#..mm...####...mm....#",
+      "#.......#..#.........#",
+      "#.~~....#..#....~~...#",
+      "#.......####.........#",
+      "#....................#",
+      "#...~~.........~~....#",
+      "#......HHHHHH.......##",
+      "#.~~...HH...........##",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": { "doctrine": "La louve fixe le plus fort de la mêlée pendant que les jeunes loups contournent le bloc central pour mordre les archers ; ils fuient si la louve tombe, mais pas avant.", "fuite": "Si les louveteaux sont menacés, tous les loups se replient sur la source et se battent à mort.", "renforts": "Aucun. Mais le combat réveille les louveteaux, qui couinent et gênent les guérisseurs." },
+    "alternatives": [
+      { "id": "apaiser", "nom": "Apaiser la meute", "condition": { "fait": "f-gro-meute-apaisable" }, "jet": { "competence": "dressage", "dd": 13 }, "resume": "Poser de la viande sur le bloc, sans regarder la louve ni approcher de la source, et montrer une flamme ou une braise : la louve boite jusqu'à la nourriture, ses petits derrière elle, puis laisse passer. On peut ensuite l'aider ou l'écarter du Val.", "effets": [{ "flag": "gro-meute-apaisee" }, { "fait": "f-gro-louveteaux-dans-la-source" }] },
+      { "id": "chasser-par-le-feu", "nom": "Chasser la meute par le feu", "jet": { "competence": "intimidation", "dd": 14 }, "resume": "Torches levées, vacarme, fumée : les loups reculent vers la fissure nord et fuient sur le sentier. Les louveteaux sont abandonnés.", "effets": [{ "flag": "gro-meute-chassee" }] },
+      { "id": "pister-la-cause", "nom": "Comprendre pourquoi ils sont là", "jet": { "competence": "nature", "dd": 12 }, "resume": "L'eau grise, les poils chargés de cendre, les terriers abandonnés des hauts : la meute n'a pas choisi de descendre.", "effets": [{ "fait": "f-gro-loups-fuient-la-cendre" }] }
+    ],
+    "butin": { "tables": ["gro-table-os-et-bourses"], "tresors": ["gro-t-ossuaire-des-loups"] },
+    "effetsVictoire": [{ "flag": "gro-meute-brisee" }, { "fait": "f-gro-louveteaux-dans-la-source" }]
+  },
+  {
+    "id": "gro-r-fosse-dortoir", "nom": "Les dormeurs de la Fosse", "type": "combat", "lieu": "gro-fosse-dortoir", "difficulte": "moderee",
+    "intro": "Les niches de pierre se vident l'une après l'autre : des mineurs nains à cottes rouillées, des squelettes tenant leur pic, et, plus près, des corps encore chauds que la cendre a relevés cette semaine. L'un d'eux porte une barbe nattée de fil rouge. Ils avancent sans cri, comme une équipe qui reprend son poste.",
+    "monstres": [{ "profil": "zombi", "nombre": 4, "nom": "Mineur relevé" }, { "profil": "squelette", "nombre": 2, "nom": "Nain de la Fosse" }, { "profil": "zombi", "nombre": 1, "nom": "Sigrun Basse-Veine, relevé" }],
+    "carte": [
+      "#####################",
+      "#mm.#.mm.#.mm.#.m...#",
+      "#...#....#....#.....#",
+      "#.........~~........#",
+      "#...................#",
+      "#.....#.......#.....#",
+      "#.....#.......#.....#",
+      "#...................#",
+      "#......HHHHHH.......#",
+      "#......H............#",
+      "#####################"
+    ],
+    "tactique": { "doctrine": "Ils avancent en ligne, sans stratégie, vers le plus proche. Les squelettes tiennent la porte des niches pour couper la retraite ; Sigrun fonce vers qui porte une lumière.", "fuite": "Les morts de la mine ne fuient jamais.", "renforts": "Un tumulte dans le dortoir attire la goule du filon si la bataille dure plus de cinq rounds." },
+    "alternatives": [
+      { "id": "prier-et-reposer", "nom": "Laisser reposer Sigrun", "condition": { "pnj": { "id": "gro-ulfrik-basse-veine", "attitudeMin": 20 } }, "resume": "Amener Ulfrik à voir son frère relevé : il prononce les mots des nains pour les morts, et Sigrun s'effondre, délivré. Les autres restent hostiles.", "effets": [{ "flag": "gro-sigrun-repose" }, { "attitude": { "pnj": "gro-ulfrik-basse-veine", "delta": 20 } }] },
+      { "id": "refermer-la-porte", "nom": "Refermer la porte du dortoir", "jet": { "competence": "athletisme", "dd": 13 }, "resume": "Claquer la porte de fer et la coincer avec un étai : le dortoir reste fermé, mais les morts y frappent encore.", "effets": [{ "flag": "gro-dortoir-clos" }] }
+    ],
+    "butin": { "tables": ["gro-table-fosse"], "tresors": ["gro-t-fosse-casiers"] },
+    "effetsVictoire": [{ "flag": "gro-dortoir-purge" }, { "flag": "gro-sigrun-repose" }, { "fait": "f-gro-sigrun-releve" }]
+  },
+  {
+    "id": "gro-r-fosse-carreau", "nom": "Les gardiens du carreau", "type": "combat", "lieu": "gro-fosse-carreau", "difficulte": "moderee",
+    "intro": "Quand vous touchez un levier, la salle se met à gronder. Le squelette du contremaître se lève de son banc ; deux autres, en tablier de cuir, sortent de l'ombre des wagonnets. Derrière, quelque chose de plus maigre et de plus vivant rampe le long de la voûte : une goule, ancienne aide de cuisine, que la faim ronge encore.",
+    "monstres": [{ "profil": "squelette", "nombre": 3, "nom": "Mineur de la Fosse" }, { "profil": "goule", "nombre": 1 }],
+    "carte": [
+      "######################",
+      "#....................#",
+      "#..mm....##....m.....#",
+      "#........##..........#",
+      "#..~~..........~~..m.#",
+      "#....#........#......#",
+      "#....#........#......#",
+      "#....................#",
+      "#.....HHHHHH.........#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": { "doctrine": "Les squelettes barrent les voies pour cacher la goule, qui contourne par la voûte et saute sur un lanceur de sorts ou un blessé.", "fuite": "La goule fuit vers le filon si elle est réduite à moitié de ses PV.", "renforts": "Aucun, sauf si l'énigme des aiguillages a été ratée : les wagonnets déchaînés réveillent le dortoir." },
+    "alternatives": [
+      { "id": "salut-des-morts", "nom": "Saluer les morts à la manière des nains", "condition": { "pnj": { "id": "gro-ulfrik-basse-veine", "attitudeMin": 30 } }, "jet": { "competence": "religion", "dd": 13 }, "resume": "Réciter le salut gravé à l'entrée (« Qui entre ici salue ses morts ») : les squelettes s'arrêtent, hésitants, le temps de laisser passer.", "effets": [{ "flag": "gro-carreau-salue" }] }
+    ],
+    "butin": { "tables": ["gro-table-fosse"], "tresors": ["gro-t-fosse-contremaitre"] },
+    "effetsVictoire": [{ "flag": "gro-carreau-libre" }]
+  },
+  {
+    "id": "gro-r-fosse-filon", "nom": "La goule du filon", "type": "combat", "lieu": "gro-fosse-filon", "difficulte": "moderee",
+    "intro": "La lueur rouge du filon dessine deux silhouettes décharnées accroupies dans le gaz, des goules aux mâchoires distendues, entourées de deux mineurs en loques qui piétinent le long des rails. L'air vibre, l'odeur de soufre prend à la gorge : une torche suffirait à tout embraser.",
+    "monstres": [{ "profil": "goule", "nombre": 2 }, { "profil": "zombi", "nombre": 2, "nom": "Mineur gazé" }],
+    "carte": [
+      "######################",
+      "#~~..........~~~~.mm.#",
+      "#~...#######..~~.....#",
+      "#....#.....#.....m.m.#",
+      "#....#.....#.........#",
+      "#.HHHH.....#..~~~....#",
+      "#.HH...............#.#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": { "doctrine": "Les goules s'embusquent dans la partie gazeuse ; les zombis barrent la galerie. Toute flamme nue dans le creux sud enflamme le gaz (1d6 feu dans 3 m).", "fuite": "Aucune : le filon est leur lieu de mort.", "renforts": "Aucun." },
+    "alternatives": [
+      { "id": "provoquer-une-explosion", "nom": "Enflammer le gaz depuis la galerie", "jet": { "competence": "survie", "dd": 14 }, "resume": "Lancer une torche depuis le puits quand les goules sont dans le creux : le gaz s'embrase et les ravage, mais le minerai brûle aussi.", "effets": [{ "flag": "gro-filon-souffle" }] }
+    ],
+    "butin": { "tables": ["gro-table-fosse"], "tresors": ["gro-t-fosse-filon"] },
+    "effetsVictoire": [{ "flag": "gro-filon-nettoye" }]
+  },
+  {
+    "id": "gro-r-fils-couloir", "nom": "La gardienne du couloir", "type": "combat", "lieu": "gro-fils-couloir-tisse", "difficulte": "faible",
+    "intro": "Le fil frôlé vibre jusqu'au plafond : une araignée géante à la carapace noire se détache de la voûte et descend en silence sur un fil, pendant que d'autres se mettent à bouger au loin dans le nid. Elle attaque d'en haut, pour mordre à la nuque.",
+    "monstres": [{ "profil": "araignee-geante", "nombre": 1 }],
+    "carte": [
+      "####################",
+      "#~~~~~~~~~~~~~~~~~.#",
+      "#..................#",
+      "#HHHHHH.........m..#",
+      "#..................#",
+      "#~~~~~~~~~~~~~~~~~.#",
+      "####################"
+    ],
+    "tactique": { "doctrine": "Elle jette sa toile pour entraver le plus mobile, puis mord à distance et reste hors de portée de la mêlée en remontant au plafond.", "fuite": "Elle fuit vers le nid à moins du quart de ses PV et alerte les autres.", "renforts": "Les deux femelles du nid arrivent en six rounds si le piège d'alerte a sonné." },
+    "alternatives": [
+      { "id": "couper-les-fils", "nom": "Couper les fils d'alerte sans bruit", "jet": { "competence": "escamotage", "dd": 13 }, "resume": "Trancher les fils un à un avec une lame fine pour atteindre le nid sans alerter la gardienne.", "effets": [{ "flag": "gro-fils-coupes" }] },
+      { "id": "bruler-les-toiles", "nom": "Brûler les toiles", "jet": { "competence": "survie", "dd": 12 }, "resume": "Une torche suffit à embraser le couloir : la gardienne tombe, hurlante, mais le feu alerte tout le nid.", "effets": [{ "flag": "gro-toiles-brulees" }] }
+    ],
+    "butin": { "tables": ["gro-table-cocons"], "tresors": [] },
+    "effetsVictoire": [{ "flag": "gro-couloir-des-fils-libre" }]
+  },
+  {
+    "id": "gro-r-fils-nid", "nom": "Les mères du nid", "type": "combat", "lieu": "gro-fils-nid", "difficulte": "moderee",
+    "intro": "Le hamac de soie tangue sous le poids de deux femelles géantes qui veillent sur leurs sacs d'œufs. Elles ne bougent pas tant qu'on n'approche pas, mais dès qu'un fil se tend, elles descendent d'un seul mouvement, silencieuses. Au-dessous, le gouffre aspire les cailloux sans écho.",
+    "monstres": [{ "profil": "araignee-geante", "nombre": 2 }],
+    "carte": [
+      "######################",
+      "#~~~~~..........~~~~~#",
+      "#~~mm..####..####....#",
+      "#~~.....####..###..~~#",
+      "#.........##...#.....#",
+      "#....................#",
+      "#..~~................#",
+      "#..~~.....~~~~.......#",
+      "#........~~~~~.......#",
+      "#..HHHHHH............#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": { "doctrine": "Elles se tiennent à distance en tirant des fils de soie (entrave), mordent les isolés et tentent de pousser un héros vers le gouffre en le tirant par un fil.", "fuite": "Une femelle seule fuit par le plafond vers la grotte ; elles défendent les œufs jusqu'à la mort.", "renforts": "Aucun." },
+    "alternatives": [
+      { "id": "detruire-les-oeufs", "nom": "Menacer les œufs", "jet": { "competence": "intimidation", "dd": 14 }, "resume": "Brandir une torche près des sacs d'œufs fait reculer les mères, qui se précipitent pour protéger leur couvée : on peut passer sur le pont de soie.", "effets": [{ "flag": "gro-nid-contourne" }] },
+      { "id": "furtivite", "nom": "Passer par le pont en silence", "jet": { "competence": "discretion", "dd": 15 }, "resume": "Traverser le fil épais sans le faire vibrer, pour atteindre le gouffre et le drain.", "effets": [{ "flag": "gro-nid-contourne" }] }
+    ],
+    "butin": { "tables": ["gro-table-cocons"], "tresors": ["gro-t-fils-cocons"] },
+    "effetsVictoire": [{ "flag": "gro-nid-detruit" }]
+  },
+  {
+    "id": "gro-r-champ-couches-reveilles", "nom": "La veille des couchés", "type": "combat", "lieu": "gro-champ-allee-des-couches", "difficulte": "moderee",
+    "intro": "Au milieu de la nuit, la cendre se met à bouger. Dans l'allée, les couchés se redressent un à un, mains encore croisées, les yeux grands ouverts. Ils ne vous regardent pas ; ils marchent vers le bord du champ avec la lenteur de gens qui rentrent chez eux. L'un d'eux, un jeune homme, s'arrête devant une vieille femme assise sur un tabouret, qui lui parle doucement. Si vous intervenez, ils vous remarquent.",
+    "monstres": [{ "profil": "zombi", "nombre": 5, "nom": "Couché relevé" }, { "profil": "zombi", "nombre": 1, "nom": "Tomas, fils d'Aldegonde" }],
+    "carte": [
+      "########################",
+      "#......................#",
+      "#...mm......~~~~...mm..#",
+      "#..m......~~~~~~....m..#",
+      "#......................#",
+      "#..###..........###....#",
+      "#......................#",
+      "#.......HHHHHH.........#",
+      "#......................#",
+      "########################"
+    ],
+    "tactique": { "doctrine": "Les couchés marchent tout droit vers la lisière du champ et n'attaquent que ceux qui les arrêtent ou les touchent ; Tomas s'est arrêté devant sa mère et ne se défend pas tant qu'on ne le frappe pas.", "fuite": "Ils ne fuient pas ; ils continuent leur marche.", "renforts": "Aucun. Le tumulte réveille le camp : les Pèlerins accourent, sans armes, et s'interposent." },
+    "alternatives": [
+      { "id": "laisser-passer", "nom": "Les laisser passer", "resume": "Rester à l'écart, laisser les couchés marcher jusqu'au bord de la plaine. Ils s'éloignent dans la nuit et on ne les revoit pas. Aldegonde reste seule avec ses mots.", "effets": [{ "flag": "gro-couches-laisses-passer" }] },
+      { "id": "nommer-tomas", "nom": "Aider Aldegonde à dire adieu à Tomas", "condition": { "pnj": { "id": "gro-aldegonde-pierrefeu", "attitudeMin": 20 } }, "jet": { "competence": "persuasion", "dd": 13 }, "resume": "Laisser Aldegonde prononcer le nom de son fils et lui glisser le pain dans la main : Tomas s'immobilise, puis s'effondre doucement dans la cendre, sans plus se relever.", "effets": [{ "flag": "gro-tomas-apaise" }, { "attitude": { "pnj": "gro-aldegonde-pierrefeu", "delta": 30 } }, { "fait": "f-gro-fils-d-aldegonde" }] }
+    ],
+    "butin": { "tables": [], "tresors": ["gro-t-champ-biens-des-couches"] },
+    "effetsVictoire": [{ "flag": "gro-couches-combattus" }, { "reputation": { "faction": "pelerins-gris", "delta": -10 } }, { "fait": "f-gro-les-couches-se-relevent" }]
+  },
+  {
+    "id": "gro-r-pelerins-veillee", "nom": "La veillée des Pèlerins", "type": "social", "lieu": "gro-champ-camp", "difficulte": "faible",
+    "intro": "On vous fait asseoir autour du feu, on vous tend de la soupe, personne ne demande qui vous êtes. Une femme chante un air sans paroles ; un vieil homme, la main sur le front d'un enfant, parle de ses morts. Au centre, un homme d'âge mûr au regard doux les écoute tous avec le même soin. Ici, on n'a pas besoin de lever la voix.",
+    "monstres": [],
+    "alternatives": [
+      { "id": "ecouter", "nom": "Écouter la veillée", "jet": { "competence": "intuition", "dd": 12 }, "resume": "Derrière la douceur, on devine le désespoir de ceux qui ont tout perdu : chacun est venu pour une perte précise.", "effets": [{ "fait": "f-gro-pelerins-ne-forcent-personne" }, { "attitude": { "pnj": "frere-ocre", "delta": 5 } }] },
+      { "id": "partager-la-soupe", "nom": "Partager la soupe et raconter ses morts", "jet": { "competence": "persuasion", "dd": 11 }, "resume": "Offrir sa propre peine au cercle : les Pèlerins s'ouvrent, et la sœur à la soupe prend le temps de parler.", "effets": [{ "attitude": { "pnj": "gro-soeur-brume", "delta": 10 } }, { "reputation": { "faction": "pelerins-gris", "delta": 5 } }] },
+      { "id": "predire-la-fin", "nom": "Dire sans détour que les couchés se relèvent", "jet": { "competence": "intimidation", "dd": 14 }, "resume": "Un silence glacial : certains pleurent, d'autres se détournent. Ocre, calme, vous prie de vous taire dans la veillée. Personne ne vous retient, mais la douceur se fige.", "effets": [{ "attitude": { "pnj": "frere-ocre", "delta": -10 } }, { "reputation": { "faction": "pelerins-gris", "delta": -10 } }] }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": []
+  },
+  {
+    "id": "gro-r-bergers-chevres", "nom": "Les chèvres de la vire", "type": "mixte", "lieu": "gro-hauteurs-vire", "difficulte": "faible",
+    "intro": "Sur la vire, six chèvres brunes sont figées contre la falaise, trop affolées pour avancer et trop épuisées pour reculer. Une jeune bergère goliath, juchée sur une saillie, essaie de les rassurer en sifflant un air de pâtre. Le vent est fort. Celle qui porte la cloche de tête s'est engagée vers le trou du puits.",
+    "monstres": [],
+    "alternatives": [
+      { "id": "siffler-le-troupeau", "nom": "Siffler l'air du pâtre", "condition": { "objet": "sifflet" }, "jet": { "competence": "dressage", "dd": 12 }, "resume": "Avec un sifflet et le bon air (la bergère le montre), les chèvres se laissent conduire en file jusqu'au pâturage.", "effets": [{ "flag": "gro-chevres-retrouvees" }, { "objet": { "id": "cloche" } }, { "attitude": { "pnj": "gro-aila-bergere", "delta": 15 } }] },
+      { "id": "attraper-la-cloche", "nom": "Aller chercher la chèvre à cloche au bord du puits", "jet": { "competence": "acrobaties", "dd": 13 }, "resume": "Progresser sur la corniche glissante jusqu'à la chèvre de tête, la tenir par les cornes et la ramener ; le troupeau suit son guide.", "effets": [{ "flag": "gro-chevres-retrouvees" }, { "objet": { "id": "cloche" } }, { "attitude": { "pnj": "gro-aila-bergere", "delta": 20 } }] },
+      { "id": "laisser-faire", "nom": "Laisser la bergère se débrouiller", "resume": "La bergère s'en sortira peut-être seule ; sinon les bêtes tomberont dans le puits. Taavi n'oubliera pas.", "effets": [{ "attitude": { "pnj": "taavi-pas-de-nuage", "delta": -10 } }] }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": []
+  },
+  {
+    "id": "gro-r-sentier-loups-egares", "nom": "Loups égarés", "type": "combat", "lieu": "sentier-des-cendres", "difficulte": "faible",
+    "intro": "Trois loups maigres vous suivent depuis un moment. Ils ne grondent pas, ils ne s'approchent pas, mais ils ne lâchent pas. Quand vous vous arrêtez, ils s'arrêtent ; quand l'un de vous traîne, ils se rapprochent.",
+    "monstres": [{ "profil": "loup", "nombre": 3 }],
+    "carte": [
+      "##################",
+      "#~~..............#",
+      "#....mm..m.......#",
+      "#................#",
+      "#...~~..HHHHHH...#",
+      "#................#",
+      "##################"
+    ],
+    "tactique": { "doctrine": "Ils visent le dernier du groupe et fuient dès que deux d'entre eux sont blessés.", "fuite": "Ils fuient vers la grotte au deuxième loup blessé.", "renforts": "Aucun." },
+    "alternatives": [
+      { "id": "nourrir", "nom": "Jeter de quoi manger", "condition": { "ou": [{ "objet": "rations" }, { "objet": "gro-viande-seche" }] }, "jet": { "competence": "dressage", "dd": 11 }, "resume": "Les loups se jettent sur la nourriture et vous laissent passer.", "effets": [{ "fait": "f-gro-loups-fuient-la-cendre" }] }
+    ],
+    "butin": { "tables": ["gro-table-os-et-bourses"], "tresors": [] },
+    "effetsVictoire": []
+  },
+  {
+    "id": "gro-r-sentier-zombis-de-cendre", "nom": "Les marcheurs de cendre", "type": "combat", "lieu": "sentier-des-cendres", "difficulte": "faible",
+    "intro": "Dans la brume, quatre silhouettes grises suivent la piste à la file, d'un pas égal, comme les ouvriers d'un autre siècle qui rentrent de la mine. Ils ne vous ont pas vus ; ils marchent vers Veillecendre depuis toujours.",
+    "monstres": [{ "profil": "zombi", "nombre": 4 }],
+    "carte": [
+      "##################",
+      "#................#",
+      "#..m.....m.......#",
+      "#...~~~~....m..m.#",
+      "#................#",
+      "#....HHHHHH......#",
+      "#................#",
+      "##################"
+    ],
+    "tactique": { "doctrine": "Ils marchent droit sur la cible la plus proche. Ils n'esquivent pas, ne se protègent pas.", "fuite": "Aucune.", "renforts": "Aucun." },
+    "alternatives": [
+      { "id": "laisser-passer", "nom": "Se tenir à l'écart de la piste", "jet": { "competence": "discretion", "dd": 11 }, "resume": "Se laisser longer en silence : les marcheurs passent sans broncher et continuent vers le village.", "effets": [{ "narration": "Les marcheurs passent à trois pas, le regard vide, et poursuivent vers le village." }] }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": []
+  },
+  {
+    "id": "gro-r-sentier-pelerins-passants", "nom": "Pèlerins en route", "type": "social", "lieu": "sentier-des-cendres", "difficulte": "faible",
+    "intro": "Une file de gens en capes grises monte vers le champ, la tête basse, sans bagage. Un homme au pas lent s'écarte pour vous laisser passer et vous salue d'un hochement de tête. Une fille d'une douzaine d'années ferme la marche, une poupée de chiffon serrée contre elle.",
+    "monstres": [],
+    "alternatives": [
+      { "id": "parler", "nom": "Parler avec eux", "jet": { "competence": "persuasion", "dd": 11 }, "resume": "Ils racontent leurs morts, pas leurs raisons : un feu de grange, un enfant, un village vide. Ils vont au champ parce qu'on leur a dit qu'on n'y est jamais seul.", "effets": [{ "fait": "f-gro-pelerins-ne-forcent-personne" }] },
+      { "id": "dissuader", "nom": "Les dissuader de monter", "jet": { "competence": "persuasion", "dd": 15 }, "resume": "Un couple fait demi-tour, l'enfant avec eux ; les autres poursuivent.", "effets": [{ "reputation": { "faction": "pelerins-gris", "delta": -3 } }] }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": []
+  },
+  {
+    "id": "gro-r-sentier-brume-de-cendre", "nom": "Bourrasque de cendre", "type": "exploration", "lieu": "sentier-des-cendres", "difficulte": "faible",
+    "intro": "Le vent tourne d'un coup. Une bourrasque soulève la cendre de la plaine et la rabat sur le sentier en un mur gris qui fait disparaître le chemin, les bornes, vos propres mains tendues. Elle dure une heure. On entend très près des bruits de pas qui ne sont pas les vôtres.",
+    "monstres": [],
+    "alternatives": [
+      { "id": "se-couvrir", "nom": "Se couvrir le visage et attendre", "jet": { "competence": "survie", "dd": 11 }, "resume": "Un tissu mouillé sur la bouche, dos au vent, contre une borne : la bourrasque passe sans dommage.", "effets": [{ "narration": "La bourrasque s'éloigne vers la plaine, laissant tout couvert d'un duvet gris." }] },
+      { "id": "continuer-a-l-aveugle", "nom": "Poursuivre au jugé", "jet": { "competence": "perception", "dd": 13 }, "resume": "En suivant le toucher des bornes, on garde le sentier ; sinon, on s'égare une heure.", "effets": [] }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": []
+  }
+]

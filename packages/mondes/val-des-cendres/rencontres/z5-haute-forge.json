@@ -1,0 +1,1386 @@
+[
+  {
+    "id": "hf-r-portiers-du-sceau",
+    "nom": "Les portiers du sceau",
+    "type": "mixte",
+    "lieu": "hf-hall-du-sceau",
+    "difficulte": "faible",
+    "intro": "À peine la dalle refermée, les armures du hall se retournent d'un seul bloc. Le portier lève son bouclier : « Qui vous annonce ? » Derrière lui, des squelettes de gardes se lèvent de leurs bancs et une gargouille se détache d'une corniche. On peut parler à l'armure parlante, ou en venir aux mains.",
+    "monstres": [
+      {
+        "profil": "armure-animee",
+        "nombre": 3
+      },
+      {
+        "profil": "squelette",
+        "nombre": 6
+      },
+      {
+        "profil": "gargouille",
+        "nombre": 1
+      }
+    ],
+    "carte": [
+      "######################",
+      "#......mm.mmm....m...#",
+      "#....m..m............#",
+      "#....##...##..m##.mm.#",
+      "#....##...##...##....#",
+      "#....................#",
+      "#....##...##...##....#",
+      "#....##...##...##....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les armures s'avancent en ligne pour bloquer le portail ; les squelettes passent en flancs ; la gargouille plonge sur le plus isolé.",
+      "fuite": "Si le portier tombe, les squelettes s'effondrent en pile."
+    },
+    "alternatives": [
+      {
+        "id": "annoncer",
+        "nom": "Se faire annoncer",
+        "resume": "Montrer une braise de veille ou invoquer le chambellan : le portier salue et laisse passer.",
+        "effets": [
+          {
+            "flag": "hf-portier-apaise"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-haldor-portier",
+              "delta": 20
+            }
+          }
+        ],
+        "condition": {
+          "ou": [
+            {
+              "objet": "braise-de-veille"
+            },
+            {
+              "flag": "hf-portier-apaise"
+            }
+          ]
+        }
+      },
+      {
+        "id": "baratin",
+        "nom": "Argumenter le protocole",
+        "resume": "Convaincre le portier que la visite a été dûment annoncée par la maison du roi.",
+        "effets": [
+          {
+            "flag": "hf-portier-apaise"
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 16
+        }
+      },
+      {
+        "id": "forcer-le-passage",
+        "nom": "Forcer la plaque",
+        "resume": "Courir jusqu'au portail intérieur en évitant les gardes et la plaque piégée.",
+        "effets": [],
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 17
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "tresors": [
+        "hf-tr-banc-du-portier"
+      ]
+    },
+    "effetsVictoire": [
+      {
+        "flag": "hf-hall-nettoye"
+      }
+    ]
+  },
+  {
+    "id": "hf-r-statues-de-la-galerie",
+    "nom": "Les statues des rois",
+    "type": "mixte",
+    "lieu": "hf-grande-galerie",
+    "difficulte": "moderee",
+    "intro": "Dans la Grande Galerie, quelqu'un fouille ou profane, et deux gargouilles descendent des corniches pendant que quatre armures d'apparat quittent leurs piédestaux. Dix statues de rois observent la scène sans bouger.",
+    "monstres": [
+      {
+        "profil": "gargouille",
+        "nombre": 2
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 4
+      }
+    ],
+    "carte": [
+      "######################",
+      "#.............m......#",
+      "#.........m....m.....#",
+      "#...mm..........m....#",
+      "#...#..#..#..#..#..m.#",
+      "#....................#",
+      "#....................#",
+      "#...#..#..#..#..#....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les gargouilles frappent depuis les airs puis se posent sur les piédestaux pour se faire statues ; les armures s'ouvrent en éventail.",
+      "renforts": "Une troisième gargouille se réveille si la bataille dure plus de cinq rounds."
+    },
+    "alternatives": [
+      {
+        "id": "nommer-les-rois",
+        "nom": "Nommer les dix rois",
+        "resume": "Réciter les noms des rois devant leurs statues : les gardiens se rangent.",
+        "effets": [
+          {
+            "fait": "f-hf-dix-rois"
+          }
+        ],
+        "jet": {
+          "competence": "histoire",
+          "dd": 15
+        }
+      },
+      {
+        "id": "discretion",
+        "nom": "Passer sous les corniches",
+        "resume": "Longer la galerie sans troubler les gargouilles.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 16
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-butin-des-morts"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-marche-des-ombres",
+    "nom": "Le marché des ombres",
+    "type": "mixte",
+    "lieu": "hf-marche-souterrain",
+    "difficulte": "faible",
+    "intro": "Le marché s'anime : les ombres des clients de la dernière foire se détachent des étals, suivies de la foule des zombis de ceux qui sont restés. Au loin, la cloche de clôture frémit. Le ferrailleur lève les mains : « Pas devant la marchandise ! »",
+    "monstres": [
+      {
+        "profil": "ombre",
+        "nombre": 4
+      },
+      {
+        "profil": "spectre",
+        "nombre": 2
+      },
+      {
+        "profil": "zombi",
+        "nombre": 6
+      }
+    ],
+    "carte": [
+      "######################",
+      "#.......m............#",
+      "#..m.~..m..~....mm.m.#",
+      "#.~~#~...m..m##m.m...#",
+      "#.......m....mm......#",
+      "#.~......##.~....~...#",
+      "#.............~..##..#",
+      "#.....##...~.......~.#",
+      "#.....HHHHHHHH.~.....#",
+      "#......~.............#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les ombres frappent aux étals, les spectres à distance ; les zombis forment un mur."
+    },
+    "alternatives": [
+      {
+        "id": "payer-la-foire",
+        "nom": "Payer la foire",
+        "resume": "Acheter quelque chose à Bodrin : les clients retournent à leurs étals, rassurés qu'on dépense.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-bodrin-ferrailleur",
+              "delta": 15
+            }
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        }
+      },
+      {
+        "id": "ne-pas-sonner",
+        "nom": "Ne pas sonner la cloche",
+        "resume": "Garder le silence : les ombres se rendorment.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "tresors": [
+        "hf-tr-etal-du-ferrailleur"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-quartiers-des-affames",
+    "nom": "Les affamés des quartiers",
+    "type": "combat",
+    "lieu": "hf-quartiers-des-forgerons",
+    "difficulte": "moderee",
+    "intro": "Les ruelles s'animent. Des silhouettes maigres se glissent des maisons, goules et zombis attirés par la chaleur des vivants. Au fond d'une cour, un ogre zombi se redresse en traînant une chaîne.",
+    "monstres": [
+      {
+        "profil": "goule",
+        "nombre": 5
+      },
+      {
+        "profil": "zombi",
+        "nombre": 6
+      },
+      {
+        "profil": "ogre-zombi",
+        "nombre": 1
+      }
+    ],
+    "carte": [
+      "######################",
+      "##..m#.##.m.##.###...#",
+      "##...###.m.m###m##..##",
+      "#....~...m.~~.m..m.m.#",
+      "#.m.m......m~.~~.m...#",
+      "#...............~....#",
+      "#....................#",
+      "#....................#",
+      "#.....HHHHH~HHH......#",
+      "##...####.....####..##",
+      "##..####....#..#.#...#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les goules paralysent et se jettent sur les isolés ; les zombis encombrent ; l'ogre zombi défonce les barricades.",
+      "fuite": "Les affamés ne poursuivent pas dans la Grande Galerie."
+    },
+    "alternatives": [
+      {
+        "id": "fuir-par-le-puits",
+        "nom": "Fuir par le puits",
+        "resume": "Descendre par l'échelle du puits des cendres, avec le risque du gaz.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 14
+        }
+      },
+      {
+        "id": "barricade",
+        "nom": "Barricader une ruelle",
+        "resume": "Bloquer un passage avec des meubles et un chariot pour limiter les assauts.",
+        "effets": [],
+        "jet": {
+          "competence": "investigation",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-butin-des-morts"
+      ],
+      "tresors": [
+        "hf-tr-maisons-des-forgerons"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-citerne-des-noyes",
+    "nom": "Les noyés de la citerne",
+    "type": "combat",
+    "lieu": "hf-citerne",
+    "difficulte": "moderee",
+    "intro": "L'eau noire se met à bouillonner. Des zombis aux visages gonflés se hissent sur les marches, puis des goules aux mains palmées, puis deux ogres zombis, bleus et luisants.",
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 6
+      },
+      {
+        "profil": "ogre-zombi",
+        "nombre": 2
+      },
+      {
+        "profil": "goule",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "######################",
+      "#...mm........mm..mm.#",
+      "#................m...#",
+      "#.m.....mm.........m.#",
+      "#..~~~.~~~~.~~~~m~~..#",
+      "#..~~~.~~~~.~~~~.~~..#",
+      "#..~~~.~~~~.~~~~.~~..#",
+      "#..~~~.~~~~.~~~~.~~..#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les noyés montent en vagues successives depuis l'eau ; les goules tentent de tirer les héros dans le bassin."
+    },
+    "alternatives": [
+      {
+        "id": "rester-sur-les-marches",
+        "nom": "Tenir les marches",
+        "resume": "Se placer sur les marches du haut pour obliger les noyés à monter un par un.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        }
+      },
+      {
+        "id": "fuir-dans-le-conduit",
+        "nom": "Fuir dans la bouche de pierre",
+        "resume": "S'engouffrer dans le passage dérobé.",
+        "effets": [],
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-butin-des-morts"
+      ],
+      "tresors": [
+        "hf-tr-fond-de-citerne"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-ronde-des-gardes-eternels",
+    "nom": "La ronde des gardes éternels",
+    "type": "mixte",
+    "lieu": "hf-salle-des-gardes",
+    "difficulte": "faible",
+    "intro": "Le sergent se redresse et ses hommes avec lui. Trois armures s'avancent, six squelettes en livrée de garde sortent des lits superposés. « Halte ! Vos laissez-passer ! » On peut jouer aux dés, ou en venir aux mains.",
+    "monstres": [
+      {
+        "profil": "armure-animee",
+        "nombre": 3
+      },
+      {
+        "profil": "squelette",
+        "nombre": 6
+      }
+    ],
+    "carte": [
+      "######################",
+      "#.....mm..m........m.#",
+      "#...m.m....m.........#",
+      "#.m..##...##...##....#",
+      "#.m..##..m##...##....#",
+      "#....................#",
+      "#....##...##...##....#",
+      "#....##...##...##....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les armures bloquent la porte ; les squelettes encerclent."
+    },
+    "alternatives": [
+      {
+        "id": "partie-de-des",
+        "nom": "Une partie de dés",
+        "resume": "Jouer avec le sergent : s'il perd, il laisse passer.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-sergent-brisefer",
+              "delta": 15
+            }
+          }
+        ],
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        }
+      },
+      {
+        "id": "raison-de-la-visite",
+        "nom": "Justifier la visite",
+        "resume": "Expliquer en bonne et due forme la raison de la visite.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hf-sergent-brisefer",
+              "delta": 10
+            }
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      },
+      {
+        "id": "braise-de-veille",
+        "nom": "Présenter la braise",
+        "resume": "Montrer le feu du royaume : la garde se met au garde-à-vous.",
+        "effets": [
+          {
+            "flag": "hf-garde-apaisee"
+          }
+        ],
+        "condition": {
+          "objet": "braise-de-veille"
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "tresors": [
+        "hf-tr-cache-du-sergent"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-armurerie-eveillee",
+    "nom": "L'armurerie éveillée",
+    "type": "combat",
+    "lieu": "hf-armurerie-royale",
+    "difficulte": "elevee",
+    "intro": "En touchant à l'arsenal, vous faites vibrer tout l'étage. Le gardien d'arsenal, une immense statue de fer, descend de son socle, et deux armures de parade s'extraient des râteliers.",
+    "monstres": [
+      {
+        "profil": "garde-anime",
+        "nombre": 1
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "######################",
+      "#..m........m........#",
+      "#.............m......#",
+      "#....##...##m..##....#",
+      "#....##...##...##....#",
+      "#....................#",
+      "#....##...##...##....#",
+      "#....##...##...##....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Le gardien d'arsenal cible le plus proche ; les armures tiennent les accès.",
+      "renforts": "Si le sergent est de leur côté, il envoie deux squelettes."
+    },
+    "alternatives": [
+      {
+        "id": "repos-sergent",
+        "nom": "Appeler le sergent",
+        "resume": "Le sergent Brisefer peut ordonner aux armures de se tenir tranquilles.",
+        "effets": [],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        },
+        "condition": {
+          "pnj": {
+            "id": "hf-sergent-brisefer",
+            "attitudeMin": 20
+          }
+        }
+      },
+      {
+        "id": "fuir-par-la-caserne",
+        "nom": "Fuir vers la caserne",
+        "resume": "Se replier dans la salle des gardes et fermer la porte.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-reliques-naines"
+      ],
+      "tresors": [
+        "hf-tr-coffre-d-arsenal"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-fonderie-des-cendres",
+    "nom": "La fonderie des cendres",
+    "type": "combat",
+    "lieu": "hf-grande-fonderie",
+    "difficulte": "moderee",
+    "intro": "La cuve géante fume d'une chaleur nouvelle. Trois gargouilles de fonderie, automates de bronze, quittent leur perchoir, soutenues par quatre armures chargées de fonte.",
+    "monstres": [
+      {
+        "profil": "gargouille",
+        "nombre": 3
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 4
+      }
+    ],
+    "carte": [
+      "######################",
+      "#........mmmm........#",
+      "#.m~..~.m..m.........#",
+      "#..~#~.......##...~..#",
+      "#..........m.........#",
+      "#........##..~.......#",
+      "#.............~..##..#",
+      "#...~.##.............#",
+      "#.....HHHHHHHH~......#",
+      "#.....~..~...~.......#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les gargouilles harcèlent en vol au-dessus de la cuve ; les armures gardent les rigoles.",
+      "renforts": "Une coulée de fonte supplémentaire déferle au round 4."
+    },
+    "alternatives": [
+      {
+        "id": "regler-le-cadran",
+        "nom": "Régler le cadran",
+        "resume": "Résoudre l'énigme du cadran : la pression retombe et les automates se figent.",
+        "effets": [
+          {
+            "flag": "hf-ascenseur-actif"
+          }
+        ],
+        "jet": {
+          "competence": "investigation",
+          "dd": 16
+        }
+      },
+      {
+        "id": "rigole-de-fonte",
+        "nom": "Rigole de fonte",
+        "resume": "Utiliser la coulée de fonte pour forcer les ennemis à s'écarter.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "tresors": [
+        "hf-tr-reserves-du-fondeur"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-lecteurs-sans-visage",
+    "nom": "Les lecteurs sans visage",
+    "type": "mixte",
+    "lieu": "hf-bibliotheque-des-plans",
+    "difficulte": "moderee",
+    "intro": "Les feuillets s'agitent seuls. Dans l'allée centrale, un fantôme de scribe lève la tête de son pupitre, entouré de trois spectres et de quatre ombres de lecteurs. Un doigt se pose sur les lèvres : « Silence, ici. »",
+    "monstres": [
+      {
+        "profil": "fantome",
+        "nombre": 1
+      },
+      {
+        "profil": "spectre",
+        "nombre": 3
+      },
+      {
+        "profil": "ombre",
+        "nombre": 4
+      }
+    ],
+    "carte": [
+      "######################",
+      "#..m........m........#",
+      "#...m..........m.....#",
+      "#..........m.......m.#",
+      "#.m.#m.#..#..#.m#....#",
+      "#...~.....~~.......~.#",
+      "#....................#",
+      "#...#..#..#..#..#....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les ombres s'accrochent aux mages ; les spectres harcèlent ; le fantôme draine les forces."
+    },
+    "alternatives": [
+      {
+        "id": "silence",
+        "nom": "Garder le silence",
+        "resume": "Se faire discret et lire les plans : les lecteurs ne bougent pas.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 16
+        }
+      },
+      {
+        "id": "rendre-un-livre",
+        "nom": "Rendre un livre",
+        "resume": "Remettre à sa place le plan qu'on a emprunté : les lecteurs se calment.",
+        "effets": [],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-reliques-naines"
+      ],
+      "tresors": [
+        "hf-tr-etagere-des-plans"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-chasseurs-des-conduits",
+    "nom": "Les chasseurs des conduits",
+    "type": "combat",
+    "lieu": "hf-conduits-de-service",
+    "difficulte": "faible",
+    "intro": "Dans le noir des boyaux, des yeux jaunes. Une meute de goules et des nuées de rats surgissent des tuyaux, se glissant par les passerelles et les échelles.",
+    "monstres": [
+      {
+        "profil": "goule",
+        "nombre": 6
+      },
+      {
+        "profil": "nuee-de-rats",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "######################",
+      "#...##m##..m###.m#...#",
+      "#...###.#....#.###..##",
+      "#..mm......m.m.......#",
+      "#.~m~...........m.m..#",
+      "#.......~............#",
+      "#.~..................#",
+      "#...~.~..~...........#",
+      "#.....HHHHHHHH.......#",
+      "#...####....#.##.#..##",
+      "##...#.##...##.#.#..##",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les goules attaquent par l'arrière et paralysent ; les rats couvrent les flancs."
+    },
+    "alternatives": [
+      {
+        "id": "mur-de-lumiere",
+        "nom": "Tenir la lumière",
+        "resume": "Garder des torches allumées au bout du boyau : les goules hésitent.",
+        "effets": [],
+        "jet": {
+          "competence": "survie",
+          "dd": 14
+        }
+      },
+      {
+        "id": "refuge",
+        "nom": "Se replier au refuge",
+        "resume": "Rejoindre le refuge de Dagna, protégé par des filtres.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-butin-des-morts"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-sentinelles-de-la-veine",
+    "nom": "Les sentinelles de la Veine",
+    "type": "combat",
+    "lieu": "hf-pont-de-la-veine",
+    "difficulte": "elevee",
+    "intro": "Sur le pont, la chaleur tord l'air. Une âme-en-peine drapée de braise barre le passage, suivie de quatre spectres et de deux gargouilles de basalte dans les rochers.",
+    "monstres": [
+      {
+        "profil": "ame-en-peine",
+        "nombre": 1
+      },
+      {
+        "profil": "spectre",
+        "nombre": 4
+      },
+      {
+        "profil": "gargouille",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "######################",
+      "#..m...m...m..mm.m...#",
+      "#......m.............#",
+      "########......########",
+      "########m.....########",
+      "#~~~~~~~......~~~~~~~#",
+      "########......########",
+      "########......########",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "L'âme-en-peine reste sur le pont ; les spectres tournent autour ; les gargouilles lancent des pierres.",
+      "renforts": "Une seconde âme-en-peine émerge de la Veine au round 5."
+    },
+    "alternatives": [
+      {
+        "id": "passage-accorde",
+        "nom": "Montrer le sauf-conduit",
+        "resume": "Si le roi a accordé le passage, les sentinelles s'écartent.",
+        "effets": [],
+        "condition": {
+          "flag": "hf-passage-accorde"
+        }
+      },
+      {
+        "id": "braise",
+        "nom": "Présenter la braise",
+        "resume": "Les sentinelles honorent le feu du royaume.",
+        "effets": [],
+        "condition": {
+          "objet": "braise-de-veille"
+        }
+      },
+      {
+        "id": "forcer",
+        "nom": "Courir le pont",
+        "resume": "Franchir le pont en courant, au risque de l'effondrement.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 17
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-butin-des-morts"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "fait": "f-hf-veine-et-coeur"
+      }
+    ]
+  },
+  {
+    "id": "hf-r-sepulcre-d-aldis",
+    "nom": "Le sommeil d'Aldis",
+    "type": "mixte",
+    "lieu": "hf-sepulcre-d-aldis",
+    "difficulte": "moderee",
+    "intro": "Les momies de la garde de la reine se détachent de leurs niches, très lentement, avec des bruits de papier. Trois ombres montent autour du sarcophage. La crypte est fraîche et douce, comme si elle gardait quelqu'un.",
+    "monstres": [
+      {
+        "profil": "momie",
+        "nombre": 2
+      },
+      {
+        "profil": "ombre",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "######################",
+      "#...........mm...m...#",
+      "#.............m......#",
+      "#......m.............#",
+      "#...#.m#..#..#..#....#",
+      "#..................~.#",
+      "#....................#",
+      "#...#..#..#..#..#....#",
+      "#.....HHHHHHHH.......#",
+      "#....................#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les momies tiennent les accès ; les ombres frappent les lanceurs."
+    },
+    "alternatives": [
+      {
+        "id": "prier",
+        "nom": "Prier pour la reine",
+        "resume": "Prononcer un mot de paix au sarcophage : la garde de la reine se rend.",
+        "effets": [
+          {
+            "fait": "f-hf-aldis"
+          }
+        ],
+        "jet": {
+          "competence": "religion",
+          "dd": 15
+        }
+      },
+      {
+        "id": "lire-l-epitaphe",
+        "nom": "Lire l'épitaphe",
+        "resume": "Lire à voix haute l'épitaphe gravée sur le couvercle : les momies s'apaisent.",
+        "effets": [
+          {
+            "fait": "f-hf-aldis"
+          }
+        ],
+        "jet": {
+          "competence": "histoire",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-reliques-naines"
+      ],
+      "tresors": [
+        "hf-tr-sarcophage-d-aldis"
+      ]
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-garde-de-thalgrin",
+    "nom": "La garde de Thalgrin",
+    "type": "mixte",
+    "lieu": "hf-forge-du-coeur",
+    "difficulte": "elevee",
+    "intro": "Le roi ne lève pas la voix. Il ouvre simplement la main, et la garde de fer descend des galeries : un gardien d'arsenal en tête, trois armures à ses côtés. « Mes artisans, ce n'est pas votre place. La commande n'est pas finie. » Le Cœur bat plus vite. On peut parler au roi, ou s'en prendre à sa garde.",
+    "monstres": [
+      {
+        "profil": "ame-en-peine",
+        "nombre": 1,
+        "nom": "Thalgrin Cœur-d'Enclume",
+        "pnj": "thalgrin-coeur-d-enclume"
+      },
+      {
+        "profil": "garde-anime",
+        "nombre": 1
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "########################",
+      "#.m.........m......m...#",
+      "#...............m.~....#",
+      "#....~~~...........m...#",
+      "#.......m..###.......~.#",
+      "#.~....~..#####.....~..#",
+      "#.......~..###.........#",
+      "#.....~................#",
+      "#.........~............#",
+      "#...................~..#",
+      "#......H~HHH~HHHH......#",
+      "#........~.........~...#",
+      "#......................#",
+      "########################"
+    ],
+    "tactique": {
+      "doctrine": "Le gardien d'arsenal tient le centre ; les armures prennent les flancs ; Thalgrin n'attaque que ceux qui s'approchent de la table de fonte, de ses vagues de chaleur.",
+      "fuite": "Thalgrin ne poursuit pas hors de la rotonde.",
+      "renforts": "Un mur de braise s'élève de la table de fonte si l'on s'approche de la Fille de fer."
+    },
+    "alternatives": [
+      {
+        "id": "parlementer",
+        "nom": "Parler au roi",
+        "resume": "Ouvrir un dialogue avec Thalgrin : en lui parlant de Brunhild avec respect, on peut obtenir qu'il rappelle sa garde.",
+        "effets": [
+          {
+            "flag": "hf-garde-apaisee"
+          },
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 10
+            }
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 17
+        }
+      },
+      {
+        "id": "serment",
+        "nom": "Le serment du dernier souffle",
+        "resume": "Rappeler le serment prêté à Thalgrin : la garde recule.",
+        "effets": [
+          {
+            "flag": "hf-garde-apaisee"
+          }
+        ],
+        "condition": {
+          "flag": "hf-serment-thalgrin"
+        }
+      },
+      {
+        "id": "ruban",
+        "nom": "Le ruban rouge",
+        "resume": "Lui présenter le ruban aux trois perles : le roi lève la main et la garde se fige.",
+        "effets": [
+          {
+            "flag": "hf-garde-apaisee"
+          },
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": 30
+            }
+          }
+        ],
+        "condition": {
+          "objet": "hf-ruban-de-brunhild"
+        }
+      },
+      {
+        "id": "braise",
+        "nom": "La braise de la Lanterne",
+        "resume": "Montrer le feu du royaume : la garde honore la braise de veille.",
+        "effets": [
+          {
+            "flag": "hf-garde-apaisee"
+          }
+        ],
+        "condition": {
+          "objet": "braise-de-veille"
+        }
+      },
+      {
+        "id": "repli",
+        "nom": "Se replier sur le pont",
+        "resume": "Battre en retraite par le pont de la Veine.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 16
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-reliques-naines"
+      ],
+      "tresors": [
+        "hf-tr-offrandes-du-coeur"
+      ]
+    },
+    "effetsVictoire": [
+      {
+        "flag": "hf-garde-vaincue"
+      },
+      {
+        "attitude": {
+          "pnj": "thalgrin-coeur-d-enclume",
+          "delta": -20
+        }
+      }
+    ]
+  },
+  {
+    "id": "hf-r-le-fer-gris-arrive",
+    "nom": "L'arrivée du Fer-Gris",
+    "type": "mixte",
+    "lieu": "hf-forge-du-coeur",
+    "difficulte": "moderee",
+    "intro": "Un bruit de bottes sur le pont, puis un ordre bref. La Compagnie du Fer-Gris descend dans la rotonde, en bon ordre, bannière grise au vent, et le capitaine Kor Varnak salue le groupe d'un signe sec : « Nous prenons le Cœur, comme convenu. »",
+    "monstres": [
+      {
+        "profil": "capitaine-hobgobelin",
+        "nombre": 1,
+        "nom": "Kor Varnak",
+        "pnj": "kor-varnak"
+      },
+      {
+        "profil": "combattant-hobgobelin",
+        "nombre": 10
+      }
+    ],
+    "carte": [
+      "######################",
+      "#.......mm...........#",
+      "#.~.m.~..~..~.mm...m.#",
+      "#.........~.m...mm.~.#",
+      "#.m....~m.###......m.#",
+      "#..~.....~####...~...#",
+      "#.....~...###........#",
+      "#....................#",
+      "#.....HHHHHHHH.......#",
+      "#....~...~.......~...#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Les hobgobelins avancent en phalange ; le capitaine reste au centre et ordonne en formation.",
+      "fuite": "Le capitaine ordonne la retraite si la moitié de sa troupe tombe."
+    },
+    "alternatives": [
+      {
+        "id": "laisser-prendre",
+        "nom": "Laisser le Fer-Gris prendre la Forge",
+        "resume": "Honorer l'accord conclu : le groupe se retire de devant le Cœur, le capitaine le prend.",
+        "effets": [
+          {
+            "flag": "choix-fer-gris"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 30
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -30
+            }
+          },
+          {
+            "narration": "Le capitaine pose la main sur le Cœur et sa troupe l'entoure. La Haute-Forge devient un fief de guerre ; la cendre continuera à tomber ailleurs."
+          }
+        ],
+        "condition": {
+          "flag": "fer-gris-allie"
+        }
+      },
+      {
+        "id": "refuser",
+        "nom": "Refuser",
+        "resume": "Rompre l'alliance : le groupe s'oppose au capitaine.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -30
+            }
+          }
+        ],
+        "jet": {
+          "competence": "intimidation",
+          "dd": 18
+        }
+      },
+      {
+        "id": "mediation-du-roi",
+        "nom": "Laisser le roi répondre",
+        "resume": "Laisser Thalgrin répondre au capitaine : la garde du roi attaque les hobgobelins.",
+        "effets": [],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 16
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "hf-table-ferraille"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-le-choix-du-coeur",
+    "nom": "Le choix du Cœur",
+    "type": "social",
+    "lieu": "hf-forge-du-coeur",
+    "difficulte": "faible",
+    "intro": "La garde s'est rangée, le roi a baissé la tête. Il ne reste que le battement du Cœur, la petite silhouette de fer sur la table, et une décision à prendre. Le Cœur se tait un instant, comme s'il écoutait.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "rallumer",
+        "nom": "Un volontaire nourrit le Cœur",
+        "resume": "Un vivant, de bon gré, reste à la Forge et donne sa chaleur au Cœur. La cendre cesse, la Lanterne revit, le village est sauvé. Le volontaire (un compagnon ou un membre du groupe) ne repartira pas.",
+        "effets": [
+          {
+            "flag": "choix-rallumer"
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -4
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 25
+            }
+          },
+          {
+            "fait": "f-rallumer-par-volontaire"
+          },
+          {
+            "narration": "Le volontaire s'avance vers le puits de feu. Le Cœur bat plus fort, puis plus doucement. Quelque part, très loin, la Lanterne reprend de la couleur."
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "coeur-atteint"
+            },
+            {
+              "fait": "f-rallumer-par-volontaire"
+            },
+            {
+              "non": {
+                "flag": "choix-achever"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-eteindre"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-fer-gris"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "achever",
+        "nom": "Donner le dernier souffle",
+        "resume": "Remettre à Thalgrin la braise de veille, feu donné de bon gré : il anime Brunhild et s'efface. La cendre cesse, mais la Fille de fer s'éveille, mi-enfant mi-forge, gardienne d'un Val haunté.",
+        "effets": [
+          {
+            "objet": {
+              "id": "braise-de-veille",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "choix-achever"
+          },
+          {
+            "fait": "f-derniere-commande"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -4
+            }
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 30
+            }
+          },
+          {
+            "narration": "Le roi pose la braise sur la poitrine de sa fille. La Fille de fer ouvre les yeux. Thalgrin sourit pour la première fois depuis deux siècles, puis ne se voit plus."
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "coeur-atteint"
+            },
+            {
+              "objet": "braise-de-veille"
+            },
+            {
+              "non": {
+                "flag": "choix-rallumer"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-eteindre"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-fer-gris"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "attendre",
+        "nom": "Ne rien décider encore",
+        "resume": "Quitter la rotonde sans trancher : le Cœur attend, la cendre continue de tomber.",
+        "effets": []
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "hf-r-ecluse-noire",
+    "nom": "La vanne noire",
+    "type": "exploration",
+    "lieu": "hf-ecluse-noire",
+    "difficulte": "faible",
+    "intro": "La salle de l'Écluse. La vanne de bronze, la serrure à trois dents, la grille de quatre runes. Quelque part derrière, la rivière retenue attend qu'on lui ouvre. Le choix est irréversible.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "eteindre",
+        "nom": "Ouvrir l'Écluse noire",
+        "resume": "Tourner la clé de bronze dans la serrure et ouvrir la vanne après avoir pressé les runes dans l'ordre : la rivière noie la Forge et éteint le Cœur. Les morts reposent, la cendre cesse, mais la Lanterne s'éteint et le Val est abandonné.",
+        "effets": [
+          {
+            "flag": "choix-eteindre"
+          },
+          {
+            "fait": "f-ecluse-noire"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -4
+            }
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": -20
+            }
+          },
+          {
+            "narration": "La vanne se soulève, l'eau noire s'engouffre. Le Cœur crie, une longue plainte de forge qu'on étouffe, puis plus rien. Dans les galeries, les morts s'assoient, un à un, et ferment les yeux."
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "objet": "cle-de-l-ecluse-noire"
+            },
+            {
+              "flag": "hf-runes-alignees"
+            },
+            {
+              "non": {
+                "flag": "choix-rallumer"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-achever"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-fer-gris"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "renoncer",
+        "nom": "Refermer la salle",
+        "resume": "Renoncer pour l'instant.",
+        "effets": []
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "hf-tr-cache-de-l-ecluse"
+      ]
+    },
+    "effetsVictoire": []
+  }
+]

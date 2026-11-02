@@ -1,0 +1,62 @@
+[
+  {
+    "id": "vei-ev-arrivee",
+    "declencheur": "entree-lieu",
+    "lieu": "veillecendre",
+    "unique": true,
+    "narration": "Une sentinelle encapuchonnée lève sa lanterne au guichet et vous détaille longuement avant de tirer le verrou. « Les caravaniers, c'est vous ? Bienvenue à Veillecendre. Ne ramassez pas la cendre et ne répondez pas aux voix après la cloche. » Derrière elle, le village s'étale sous les flocons gris, serré autour d'une tour de pierre dont la lueur ne dépasse plus guère le toit.",
+    "effets": [{ "flag": "vei-village-atteint" }]
+  },
+  {
+    "id": "vei-ev-lanterne-visite",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-la-lanterne",
+    "unique": true,
+    "narration": "Dès le seuil, la neige grise cesse de tomber sur vos épaules. L'air est tiède, la pierre murmure comme une bouilloire loin sur le feu. Au sommet de l'escalier, quelque chose bat, doucement, comme une paupière : la flamme. Les gardes parlent bas, comme dans un lieu saint, et personne ne vous regarde plus de quelques secondes.",
+    "effets": [{ "flag": "lanterne-visitee" }]
+  },
+  {
+    "id": "vei-ev-route-du-col",
+    "declencheur": "entree-lieu",
+    "lieu": "route-du-col",
+    "unique": true,
+    "narration": "La route monte entre les congères, bordée de bornes naines où la neige grise s'accumule en bourrelets. Le vent porte l'odeur de la glace, et dans les sapins noirs, des corbeaux immobiles regardent. Quelque chose, très haut, a cessé de bouger quand vous êtes entrés dans la vallée du col.",
+    "effets": []
+  },
+  {
+    "id": "vei-ev-cendre-aux-abords",
+    "declencheur": "condition",
+    "lieu": "veillecendre",
+    "condition": { "jauge": { "id": "cendre", "min": 2 } },
+    "unique": true,
+    "narration": "Au matin, les sentinelles trouvent des empreintes de pieds nus dans la cendre, tout autour de la palissade, comme si des gens avaient fait le tour du village toute la nuit en cherchant leur porte. Un enfant, au quartier des réfugiés, jure avoir entendu sa grand-mère frapper à la planche de son abri. Sa grand-mère est morte au col.",
+    "effets": [{ "flag": "vei-morts-aux-abords" }]
+  },
+  {
+    "id": "vei-ev-couvre-feu",
+    "declencheur": "condition",
+    "lieu": "veillecendre",
+    "condition": { "jauge": { "id": "cendre", "min": 3 } },
+    "unique": true,
+    "narration": "La cloche sonne avant le soleil couchant et ne s'arrête plus. Le capitaine fait fermer les portes, ordonne le couvre-feu : plus personne dans les rues, plus de feu hors des maisons, plus de réponse aux voix de la nuit. Dehors, quelque chose racle les planches de la palissade pendant des heures, avec la patience de ceux qui n'ont plus rien d'autre à faire.",
+    "effets": [{ "flag": "vei-couvre-feu" }, { "reputation": { "faction": "bailliage", "delta": -2 } }]
+  },
+  {
+    "id": "vei-ev-village-se-vide",
+    "declencheur": "condition",
+    "lieu": "veillecendre",
+    "condition": { "jauge": { "id": "cendre", "min": 4 } },
+    "unique": true,
+    "narration": "Au petit matin, plusieurs abris du quartier des réfugiés sont vides, couvertures pliées, braises froides. Des familles sont parties dans la nuit, vers le sud ou vers le col, ou vers les Pèlerins, avec leurs enfants et leurs sacs. La Lanterne n'est plus qu'une braise, et les gardes se comptent sur les doigts d'une main. La petite Lise a disparu avec sa mère.",
+    "effets": [{ "flag": "vei-village-vide" }, { "pnjEtat": { "pnj": "vei-lise-petit-pas", "etat": "parti" } }, { "reputation": { "faction": "gardiens-de-la-veille", "delta": -5 } }]
+  },
+  {
+    "id": "vei-ev-bailli-demasque",
+    "declencheur": "condition",
+    "lieu": "veillecendre",
+    "condition": { "flag": "bailli-demasque" },
+    "unique": true,
+    "narration": "La nouvelle court avant le soir : le grain du village partait au Fer-Gris. Sur la place, des mains se serrent sur des couteaux, d'autres sur des enfants. Le bailli s'enferme dans sa halle, volets clos. Pour la première fois depuis longtemps, les réfugiés et les anciens parlent de la même chose, et personne ne chuchote.",
+    "effets": [{ "attitude": { "pnj": "aurele-montclar", "delta": -30 } }, { "reputation": { "faction": "bailliage", "delta": -10 } }, { "reputation": { "faction": "gardiens-de-la-veille", "delta": 5 } }]
+  }
+]

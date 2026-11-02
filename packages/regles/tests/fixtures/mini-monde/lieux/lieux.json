@@ -1,0 +1,10 @@
+[
+  { "id": "village", "nom": "Brindoux", "type": "village", "resume": "Un village.", "description": "Quelques maisons autour d'un puits.", "visuel": "village de pierre sous la neige", "repos": "sur",
+    "liens": [{ "vers": "sentier", "type": "chemin", "heures": 2 }] },
+  { "id": "auberge", "nom": "L'Ours rieur", "type": "batiment", "parent": "village", "resume": "L'auberge.", "description": "Salle commune.", "visuel": "auberge chaleureuse", "repos": "sur" },
+  { "id": "sentier", "nom": "Sentier du loup", "type": "route", "resume": "Un sentier.", "description": "Un sentier de montagne.", "visuel": "sentier enneigé",
+    "liens": [{ "vers": "grotte", "type": "chemin", "heures": 1 }],
+    "rencontres": [{ "id": "r-loups", "declencheur": "exploration" }] },
+  { "id": "grotte", "nom": "Grotte aux loups", "type": "grotte", "resume": "La tanière.", "description": "Une grotte humide.", "visuel": "grotte sombre aux parois luisantes",
+    "faits": [{ "fait": "f-taniere", "decouverte": { "dd": 12, "competence": "perception" } }] }
+]

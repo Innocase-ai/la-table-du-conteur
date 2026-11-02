@@ -1,0 +1,32 @@
+[
+  { "id": "pdf-enigme-caisse-du-quartier-maitre", "nom": "Le cadran de Hosk", "lieu": "pdf-intendance",
+    "enonce": "Dans l'arrière-salle de l'intendance, un coffre-fort de fer noir, d'origine naine, porte trois molettes numérotées de 0 à 20 et une plaque de bronze : « Qui compte bien ouvre. » Sur le mur voisin, une grande ardoise noire est couverte de colonnes de chiffres à la craie : les bouches à nourrir, ligne par ligne.",
+    "solution": { "type": "cadran", "valeurs": [12, 9, 7] },
+    "indices": [
+      { "niveau": 1, "texte": "Hosk ne choisit jamais un nombre au hasard : il note tout, et il note tout sur son ardoise." },
+      { "niveau": 2, "texte": "L'ardoise compte les rations par ligne : trois compagnies d'armes, l'infirmerie, l'état-major. Le coffre n'a que trois molettes, et la plaque dit « qui compte bien » : les combattants d'abord.", "competence": "investigation", "dd": 12 },
+      { "niveau": 3, "texte": "Dans l'ordre des trois compagnies d'armes, les rations sont de 12, de 9 et de 7.", "competence": "investigation", "dd": 10 }
+    ],
+    "echec": { "effets": [ { "reputation": { "faction": "compagnie-du-fer-gris", "delta": -5 } } ], "resume": "Une fausse combinaison fait tinter une cloche dans l'arrière-salle : Hosk va monter vérifier ce qui se passe." },
+    "recompense": { "effets": [ { "fait": "f-pdf-code-de-la-caisse" } ], "tresor": "pdf-tresor-caisse-du-quartier-maitre", "resume": "Le coffre s'ouvre avec un déclic : la caisse de la Compagnie, ses fonds, son registre." } },
+  { "id": "pdf-enigme-lanternes-des-sentinelles", "nom": "Le signal des sentinelles", "lieu": "pdf-tour-de-guet",
+    "enonce": "Sur la tablette de la tour de guet, quatre lanternes de verre fumé (rouge, blanc, ambre, bleu) attendent leur tour. À chaque relève, la sentinelle les découvre une à une en direction de la tour voisine pour dire que tout va bien. Pour franchir la brèche voisine sans éveiller l'attention, il faut reproduire le signal exact, dans l'ordre.",
+    "solution": { "type": "sequence", "ordre": ["rouge", "blanc", "ambre", "bleu"] },
+    "indices": [
+      { "niveau": 1, "texte": "À la relève, la sentinelle découvre les quatre lanternes l'une après l'autre : il y a un ordre, jamais le même hasard." },
+      { "niveau": 2, "texte": "Le signal commence toujours par la couleur de l'alerte, pour dire « attention », et finit par la plus calme, pour dire « plus rien ».", "competence": "perception", "dd": 12 },
+      { "niveau": 3, "texte": "Observée à la relève : rouge, blanc, ambre, bleu.", "competence": "perception", "dd": 10 }
+    ],
+    "echec": { "effets": [ { "rencontre": "pdf-patrouille-du-fer-gris" } ], "resume": "Un mauvais signal alerte les tours voisines : une patrouille sort aussitôt." },
+    "recompense": { "effets": [ { "flag": "pdf-signal-connu" }, { "fait": "f-pdf-releve-des-gardes" } ], "resume": "Le signal est reconnu : la brèche reste sans surveillance quelques minutes." } },
+  { "id": "gue-enigme-mot-de-la-grange", "nom": "Le mot du portail", "lieu": "gue-repaire",
+    "enonce": "Le portail de la grange est barré d'une poutre. Une voix, derrière, demande le mot du soir. On dit que Gaspard choisit toujours le mot dans son ancien métier, et qu'il aime ce qui manque au Gué.",
+    "solution": { "type": "mot-de-passe", "mots": ["farine", "la farine"] },
+    "indices": [
+      { "niveau": 1, "texte": "Le mot est celui d'un homme qui fut meunier." },
+      { "niveau": 2, "texte": "C'est ce que le moulin produisait et que le Gué n'a plus.", "competence": "histoire", "dd": 12 },
+      { "niveau": 3, "texte": "Le mot est « farine ».", "competence": "intuition", "dd": 14 }
+    ],
+    "echec": { "effets": [ { "attitude": { "pnj": "gaspard-le-borgne", "delta": -5 } } ], "resume": "Le garde crie l'alerte : la bande se tient prête, et le portail s'ouvre sur des armes." },
+    "recompense": { "effets": [ { "flag": "gue-portail-passe" } ], "resume": "Le portail s'ouvre sans bruit : on peut parlementer avec Gaspard avant la bagarre." } }
+]

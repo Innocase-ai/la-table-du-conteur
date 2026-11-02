@@ -1,0 +1,543 @@
+[
+  {
+    "id": "z6-ev-rumeurs-auberge",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-auberge-dernier-feu",
+    "unique": true,
+    "narration": "Dans la salle commune, les conversations baissent d'un ton à votre entrée, puis reprennent. On parle de la cendre comme d'une dette : certains accusent les tieffelins de l'avoir appelée, d'autres jurent qu'un volcan dort sous la montagne, un vieux dit que les nains ont payé leur avarice. Personne n'est d'accord, et tout le monde a tort ou à moitié.",
+    "effets": [
+      {
+        "fait": "z6-rumeur-tieffelins"
+      },
+      {
+        "fait": "z6-rumeur-volcan"
+      },
+      {
+        "fait": "z6-rumeur-chatiment-des-nains"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-rumeurs-marche",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-marche",
+    "unique": true,
+    "narration": "Sous les auvents du marché, un colporteur vante des couronnes naines trouvées « tout près », une grand-mère raconte l'enclume du dernier roi qui chantait à trois lieues. Les mots d'or et de Haute-Forge reviennent à toutes les conversations, comme si la ruine n'avait jamais cessé de payer ses dettes en histoires.",
+    "effets": [
+      {
+        "fait": "z6-rumeur-or-de-la-haute-forge"
+      },
+      {
+        "fait": "z6-legende-enclume-qui-chante"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-halle-du-bailli",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-halle-du-bailli",
+    "unique": true,
+    "narration": "Dans la halle, des clercs recopient des listes de familles sous l'œil d'un bailli fatigué. Au mur, une carte du col : des charrettes réservées, des vivres comptés au sac près. Ici, on ne prépare pas un siège, on prépare une fuite.",
+    "effets": [
+      {
+        "fait": "z6-bailli-evacuation"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-le-gue",
+    "declencheur": "entree-lieu",
+    "lieu": "le-gue",
+    "unique": true,
+    "narration": "Au Gué, les granges abritent plus de familles que de pillards : des enfants maigres, des vieux serrés contre un poêle. Ceux qui vous observent depuis les toits ont des mains calleuses de bergers, pas des mains de soldats.",
+    "effets": [
+      {
+        "fait": "z6-bande-du-gue-faim"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-premiere-cendre-goliaths",
+    "declencheur": "entree-lieu",
+    "lieu": "cairn-des-hauteurs",
+    "unique": true,
+    "narration": "Sur le cairn, le vent tourne et un berger goliath, assis les mains sur les genoux, désigne l'horizon : c'est de là, dit-il, que la première cendre est venue, il y a deux cents ans. La neige est devenue grise en une nuit et les troupeaux sont devenus muets.",
+    "effets": [
+      {
+        "fait": "z6-premiere-cendre"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-rodeurs-du-sentier",
+    "declencheur": "entree-lieu",
+    "lieu": "sentier-des-cendres",
+    "unique": true,
+    "narration": "Au détour du sentier, un homme gris se tient immobile entre deux rochers, les bras le long du corps, trop droit pour un vivant. Il n'a pas de sang à la place du poignet, seulement une poussière tiède qui s'écoule quand le vent la prend.",
+    "effets": [
+      {
+        "fait": "z6-mort-de-cendre-se-reconnait"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-hesta-propose-la-quete",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "a-parle-a-hesta"
+    },
+    "unique": true,
+    "narration": "Hesta Cendrebrune vous confie ce qu'elle redoute : la Lanterne ne tiendra pas jusqu'au dégel, et personne au village n'ose chercher pourquoi. Elle vous demande de remonter à la source du mal, au risque de ce qui dort sous la montagne.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-la-lanterne-faiblit",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-hesta-demande-de-la-houille",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "flag": "a-parle-a-hesta"
+        },
+        {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 2
+              }
+            },
+            {
+              "faction": {
+                "id": "gardiens-de-la-veille",
+                "min": 40
+              }
+            }
+          ]
+        },
+        {
+          "faction": {
+            "id": "gardiens-de-la-veille",
+            "min": 0
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Hesta vous retient sur le seuil de la tour : la flamme baisse, dit-elle, et il lui faudrait de la houille rouge, le charbon de la Veine, pour tenir quelques nuits de plus. Elle ne peut pas quitter la tour, mais vous le pouvez.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-gardiens-la-braise",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-houille-a-la-lanterne",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-la-lanterne",
+    "condition": {
+      "et": [
+        {
+          "objet": "z6-houille-rouge"
+        },
+        {
+          "etape": {
+            "quete": "q-gardiens-la-braise",
+            "etape": "livraison"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Au pied de la flamme, vous posez le pain de houille. Il ne brûle pas : il s'enfonce dans la braise comme dans de l'eau, et la Lanterne reprend couleur, d'un orange plus profond, presque vivant. Les gardes se redressent. Hesta, derrière vous, murmure un mot qui n'est pas une prière.",
+    "effets": [
+      {
+        "objet": {
+          "id": "z6-houille-rouge",
+          "retirer": true
+        }
+      },
+      {
+        "flag": "z6-lanterne-nourrie"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-houille-encore",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-la-lanterne",
+    "condition": {
+      "et": [
+        {
+          "objet": "z6-houille-rouge"
+        },
+        {
+          "quete": {
+            "id": "q-gardiens-la-braise",
+            "statut": "terminee"
+          }
+        }
+      ]
+    },
+    "unique": false,
+    "narration": "Vous donnez un nouveau pain de houille à la flamme. Elle le boit sans bruit, et la Lanterne se redresse un instant, reculant encore la cendre d'un souffle.",
+    "effets": [
+      {
+        "objet": {
+          "id": "z6-houille-rouge",
+          "retirer": true
+        }
+      },
+      {
+        "jauge": {
+          "id": "cendre",
+          "delta": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-repos-sous-la-lanterne",
+    "declencheur": "repos",
+    "lieu": "vei-la-lanterne",
+    "unique": false,
+    "narration": "Vous dormez sous la flamme et la cendre ne tombe pas : l'abri des murs de la Lanterne tient la nuit à distance.",
+    "effets": [
+      {
+        "jauge": {
+          "id": "cendre",
+          "delta": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-repos-sous-la-cendre",
+    "declencheur": "repos",
+    "condition": {
+      "jauge": {
+        "id": "cendre",
+        "min": 2
+      }
+    },
+    "unique": false,
+    "narration": "Vous dormez mal. Dans la nuit, le feu baisse seul, les sentinelles murmurent à voix basse, et au matin une couche grise a recouvert vos couvertures sans qu'aucun vent ne l'ait portée.",
+    "effets": []
+  },
+  {
+    "id": "z6-ev-quete-ysolde",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "pnj": {
+            "id": "ysolde-rouage",
+            "attitudeMin": 10,
+            "etat": "vivant"
+          }
+        },
+        {
+          "ou": [
+            {
+              "fait": "f-sceau-des-cryptes"
+            },
+            {
+              "flag": "cryptes-ouvertes"
+            }
+          ]
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Ysolde tire de sa veste un carnet gras d'huile et le feuillette sans oser vous regarder. C'était celui de Ferbillon, dit-elle, l'ancien maître de Fennick, mécanicien du roi dans la Haute-Forge : une page parle d'un atelier sous le grand soufflet. Si la Forge s'ouvre un jour, elle voudrait le voir.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-ysolde-l-atelier-du-maitre",
+          "statut": "active"
+        }
+      },
+      {
+        "fait": "z6-chronologie-forge"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-plans-remis-a-fennick",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-atelier-des-rouages",
+    "condition": {
+      "et": [
+        {
+          "objet": "hf-plan-maitre-de-ferbillon"
+        },
+        {
+          "flag": "hf-plan-remis"
+        },
+        {
+          "etape": {
+            "quete": "q-ysolde-l-atelier-du-maitre",
+            "etape": "a-fennick"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Fennick déroule le plan de Ferbillon sur son établi, de ses doigts de gnome vieux et précis. Il lit jusqu'au dernier feuillet, se tait, puis pose la main sur l'épaule d'Ysolde. Il garde le tube de cuivre, mais il vous remercie d'une voix qui tremble : son maître, finalement, ne l'avait pas oublié, ni lui.",
+    "effets": [
+      {
+        "objet": {
+          "id": "hf-plan-maitre-de-ferbillon",
+          "retirer": true
+        }
+      },
+      {
+        "flag": "z6-plans-remis-a-fennick"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-quete-korvun",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "pnj": {
+            "id": "korvun-tete-rase",
+            "attitudeMin": 10,
+            "etat": "vivant"
+          }
+        },
+        {
+          "fait": "f-orcs-et-nains"
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Korvun fixe longtemps le feu avant de parler. Il ne dit pas son ancêtre, il dit « le vieux », comme s'il craignait de le nommer. Le marteau du clan est resté à la Haute-Forge, murmure-t-il. S'il le retrouve, la honte tombera. S'il ne le retrouve pas, il saura au moins qu'il a cherché.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-korvun-le-marteau-du-clan",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-korvun-clan-informe",
+    "declencheur": "entree-lieu",
+    "lieu": "vei-forge-des-refugies",
+    "condition": {
+      "et": [
+        {
+          "etape": {
+            "quete": "q-korvun-le-marteau-du-clan",
+            "etape": "clan"
+          }
+        },
+        {
+          "ou": [
+            {
+              "objet": "marteau-du-premier-forgeron"
+            },
+            {
+              "objet": "cry-plaque-des-allies"
+            }
+          ]
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Grodak lève les yeux de son enclume et voit ce que vous tenez. Le marteau s'arrête en l'air. Il le prend, ou la tablette, des deux mains, comme on prend un enfant qu'on croyait perdu, et il lit à voix haute, lentement, pour que tous les forgerons du village l'entendent.",
+    "effets": [
+      {
+        "flag": "z6-korvun-clan-informe"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-quete-mireille",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "pnj": {
+            "id": "mireille-vanhaut",
+            "attitudeMin": 10,
+            "etat": "vivant"
+          }
+        },
+        {
+          "ou": [
+            {
+              "lieu": "sentier-des-cendres"
+            },
+            {
+              "fait": "f-pelerins-motif"
+            }
+          ]
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Mireille s'est arrêtée au bord du sentier, la main sur le symbole de sa déesse. Mon frère est resté chez eux, dit-elle, au champ de cendre gris. Je n'ai pas eu la force de l'emmener. Je voudrais le revoir, avant qu'il ne choisisse de ne plus rien voir.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-mireille-le-frere-perdu",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-mireille-frere-retrouve",
+    "declencheur": "entree-lieu",
+    "lieu": "champ-de-cendre-gris",
+    "condition": {
+      "etape": {
+        "quete": "q-mireille-le-frere-perdu",
+        "etape": "piste"
+      }
+    },
+    "unique": true,
+    "narration": "Mireille s'arrête net. Parmi les pèlerins assis dans la cendre, les yeux fermés, un homme maigre lève la tête vers elle. Il a ses yeux à elle, et un cordon gris noué au poignet. Il sourit comme on sourit à quelqu'un dont on a fait son deuil.",
+    "effets": [
+      {
+        "flag": "z6-mireille-frere-retrouve"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-pelerins-motif",
+    "declencheur": "entree-lieu",
+    "lieu": "champ-de-cendre-gris",
+    "unique": true,
+    "narration": "Au champ de cendre gris, personne ne se défend de la poussière qui tombe : les pèlerins la laissent s'amasser sur leurs épaules, sur leurs paupières, avec un calme qui serre la gorge. Un vieux vous dit doucement qu'ils ne cherchent pas la mort, mais la paix, et qu'elle est du côté de ceux qui ne dorment plus.",
+    "effets": [
+      {
+        "fait": "f-pelerins-motif"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-sceau-lu-dans-les-cryptes",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "cryptes-ouvertes"
+    },
+    "unique": true,
+    "narration": "Sous la voûte des cryptes d'Ormgard, une inscription naine court le long du mur : la Haute-Forge est scellée, et la clé du sceau est ici, sous la garde de ceux qui reposent. Le message est vieux de deux siècles, comme une lettre adressée à celui qui viendrait.",
+    "effets": [
+      {
+        "fait": "f-sceau-des-cryptes"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-ecluse-noire-trouvee",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "ecluse-noire-trouvee"
+    },
+    "unique": true,
+    "narration": "La vanne est là, noire, immense, scellée d'une roue de fer plus haute qu'un homme. Si on l'ouvrait, l'eau de la montagne noierait le Cœur en quelques heures. Les morts reposeraient. La Lanterne, elle, ne survivrait pas à la nuit.",
+    "effets": [
+      {
+        "fait": "f-ecluse-noire"
+      },
+      {
+        "fait": "z6-eteindre-eteint-la-lanterne"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-journal-de-brunhild",
+    "declencheur": "condition",
+    "condition": {
+      "objet": "journal-de-brunhild"
+    },
+    "unique": true,
+    "narration": "Le journal est écrit d'une main d'enfant, régulière, qui se défait au fil des pages. Brunhild y parle de son père avec tendresse, de la toux qui l'empêche de dormir, et, dans la dernière page, d'une prière : qu'on la laisse reposer, qu'on ne touche pas au Cœur pour elle.",
+    "effets": [
+      {
+        "fait": "f-derniere-commande"
+      },
+      {
+        "fait": "f-fille-de-fer"
+      },
+      {
+        "fait": "z6-brunhild-voulait-reposer"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-veilleur-meurt",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "veilleur-mort"
+    },
+    "unique": true,
+    "narration": "Le Veilleur s'éteint à l'aube, la main ouverte sur la pierre froide au pied de la flamme. La Lanterne vacille, comme étonnée, et pour la première fois depuis deux siècles personne ne reste pour la veiller.",
+    "effets": [
+      {
+        "fait": "f-veilleur-se-consume"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-lanterne-rallumee",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "choix-rallumer"
+    },
+    "unique": true,
+    "narration": "La Lanterne prend, au loin, comme si quelqu'un avait enfin soufflé sur une braise. Une lueur blanche, saine, traverse la Haute-Forge, et le Cœur cesse de rejeter sa cendre. Quelque part au-dessus de vous, la neige redevient de la neige.",
+    "effets": [
+      {
+        "flag": "z6-lanterne-vive"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-lanterne-eteinte",
+    "declencheur": "condition",
+    "condition": {
+      "flag": "choix-eteindre"
+    },
+    "unique": true,
+    "narration": "L'eau tombe dans la Forge comme un grand soupir. Au-dessus de vous, très loin, la Lanterne de Veillecendre s'éteint d'un seul coup, sans un bruit, et les morts, partout dans la vallée, s'arrêtent, le temps d'un souffle, avant de s'allonger.",
+    "effets": [
+      {
+        "flag": "z6-lanterne-eteinte"
+      }
+    ]
+  },
+  {
+    "id": "z6-ev-lanterne-submergee",
+    "declencheur": "condition",
+    "condition": {
+      "jauge": {
+        "id": "cendre",
+        "min": 5
+      }
+    },
+    "unique": true,
+    "narration": "La Lanterne s'éteint. Pas dans un fracas : dans un soupir, comme une chandelle qu'on a oublié de moucher. La cendre tombe sur Veillecendre, douce, régulière, et les premiers morts se lèvent dans les rues avant même que les cloches aient fini de sonner.",
+    "effets": [
+      {
+        "flag": "z6-lanterne-eteinte"
+      }
+    ]
+  }
+]
