@@ -1,0 +1,170 @@
+[
+  {
+    "id": "doue",
+    "nom": "Doué",
+    "categorie": "origines",
+    "repetable": true,
+    "resume": "Vous recevez la maîtrise de trois compétences ou outils, combinés comme vous le voulez.",
+    "effets": [
+      {
+        "type": "maitrise_competences",
+        "nombre": 3
+      }
+    ]
+  },
+  {
+    "id": "initie-a-la-magie",
+    "nom": "Initié à la magie",
+    "categorie": "origines",
+    "repetable": true,
+    "resume": "Choisissez la liste de sorts du Clerc, du Druide ou du Magicien (Int, Sag ou Cha comme caractéristique d'incantation) : vous apprenez deux sorts mineurs et un sort du 1er niveau toujours préparé, lançable une fois par Repos long sans emplacement. À chaque niveau, vous pouvez remplacer un de ces sorts par un autre du même niveau de la liste. Répétable avec une liste différente à chaque fois.",
+    "effets": []
+  },
+  {
+    "id": "sauvagerie-martiale",
+    "nom": "Sauvagerie martiale",
+    "categorie": "origines",
+    "repetable": false,
+    "resume": "Une fois par tour, quand vous touchez avec une arme, vous lancez deux fois les dés de dégâts de l'arme et gardez le résultat de votre choix.",
+    "effets": []
+  },
+  {
+    "id": "vigilant",
+    "nom": "Vigilant",
+    "categorie": "origines",
+    "repetable": false,
+    "resume": "Vous ajoutez votre bonus de maîtrise à l'Initiative. Juste après avoir joué l'Initiative, vous pouvez échanger la vôtre avec celle d'un allié volontaire, sauf si l'un de vous est Neutralisé.",
+    "effets": [
+      {
+        "type": "maitrise_initiative"
+      }
+    ]
+  },
+  {
+    "id": "amelioration-de-caracteristique",
+    "nom": "Amélioration de caractéristique",
+    "categorie": "general",
+    "prerequis": "niveau 4 ou supérieur",
+    "repetable": true,
+    "resume": "Augmentez une valeur de caractéristique de 2, ou deux valeurs de 1, sans dépasser 20.",
+    "effets": [
+      {
+        "type": "amelioration_caracteristique"
+      }
+    ]
+  },
+  {
+    "id": "empoigneur",
+    "nom": "Empoigneur",
+    "categorie": "general",
+    "prerequis": "niveau 4 ou supérieur, Force ou Dextérité 13 ou plus",
+    "repetable": false,
+    "resume": "Force ou Dextérité +1 (max 20). Une fois par tour, une attaque à mains nues qui touche pendant l'action Attaque peut appliquer à la fois Dégâts et Lutte ; Avantage aux attaques contre une créature que vous agrippez, et votre Vitesse n'est pas divisée par deux en déplaçant une créature agrippée de votre taille ou moins.",
+    "effets": []
+  },
+  {
+    "id": "archerie",
+    "nom": "Archerie",
+    "categorie": "style-de-combat",
+    "prerequis": "aptitude Style de combat",
+    "repetable": false,
+    "resume": "Vous avez un bonus de +2 aux jets d'attaque avec les armes à distance.",
+    "effets": []
+  },
+  {
+    "id": "armes-a-deux-mains",
+    "nom": "Armes à deux mains",
+    "categorie": "style-de-combat",
+    "prerequis": "aptitude Style de combat",
+    "repetable": false,
+    "resume": "Avec une arme de corps à corps tenue à deux mains ayant la propriété Deux mains ou Polyvalente, chaque 1 ou 2 aux dés de dégâts compte comme un 3.",
+    "effets": []
+  },
+  {
+    "id": "combat-a-deux-armes",
+    "nom": "Combat à deux armes",
+    "categorie": "style-de-combat",
+    "prerequis": "aptitude Style de combat",
+    "repetable": false,
+    "resume": "Vous ajoutez votre modificateur de caractéristique aux dégâts de l'attaque supplémentaire accordée par la propriété Légère.",
+    "effets": []
+  },
+  {
+    "id": "defense",
+    "nom": "Défense",
+    "categorie": "style-de-combat",
+    "prerequis": "aptitude Style de combat",
+    "repetable": false,
+    "resume": "Vous avez un bonus de +1 à la CA tant que vous portez une armure légère, intermédiaire ou lourde.",
+    "effets": [
+      {
+        "type": "bonus_ca",
+        "valeur": 1,
+        "condition": "en_armure"
+      }
+    ]
+  },
+  {
+    "id": "faveur-d-attaque-irresistible",
+    "nom": "Faveur d'attaque irrésistible",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Force ou Dextérité +1 (max 30). Vos dégâts contondants, perforants et tranchants ignorent la Résistance, et sur un 20 au d20 d'attaque vous infligez en plus des dégâts égaux à la valeur augmentée par ce don.",
+    "effets": []
+  },
+  {
+    "id": "faveur-de-deplacement-dimensionnel",
+    "nom": "Faveur de déplacement dimensionnel",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Une caractéristique +1 (max 30). Juste après l'action Attaque ou Magie, vous pouvez vous téléporter de 9 m au maximum dans un espace inoccupé visible.",
+    "effets": []
+  },
+  {
+    "id": "faveur-de-l-esprit-nocturne",
+    "nom": "Faveur de l'esprit nocturne",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Une caractéristique +1 (max 30). En Lumière faible ou dans les Ténèbres, vous pouvez devenir Invisible par une action Bonus (jusqu'à votre prochaine action, action Bonus ou Réaction) et avez la Résistance à tous les dégâts sauf psychiques et radiants.",
+    "effets": []
+  },
+  {
+    "id": "faveur-de-prouesse-martiale",
+    "nom": "Faveur de prouesse martiale",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Une caractéristique +1 (max 30). Quand vous ratez un jet d'attaque, vous pouvez décider qu'il touche ; utilisable de nouveau au début de votre tour suivant.",
+    "effets": []
+  },
+  {
+    "id": "faveur-de-memoire-magique",
+    "nom": "Faveur de mémoire magique",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur, aptitude Sorts",
+    "repetable": false,
+    "resume": "Intelligence, Sagesse ou Charisme +1 (max 30). Quand vous lancez un sort avec un emplacement du 1er au 4e niveau, lancez 1d4 : si le résultat égale le niveau de l'emplacement, celui-ci n'est pas dépensé.",
+    "effets": []
+  },
+  {
+    "id": "faveur-de-vision-lucide",
+    "nom": "Faveur de Vision lucide",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Une caractéristique +1 (max 30). Vous disposez de la Vision lucide sur 18 m.",
+    "effets": []
+  },
+  {
+    "id": "faveur-du-destin",
+    "nom": "Faveur du destin",
+    "categorie": "faveur-epique",
+    "prerequis": "niveau 19 ou supérieur",
+    "repetable": false,
+    "resume": "Une caractéristique +1 (max 30). Quand vous ou une créature à 18 m ou moins réussissez ou ratez un Test d20, vous pouvez lancer 2d4 et l'appliquer en bonus ou en malus ; de nouveau disponible après avoir joué l'Initiative ou un Repos court ou long.",
+    "effets": []
+  }
+]

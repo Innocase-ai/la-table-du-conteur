@@ -1,0 +1,37 @@
+{
+  "id": "orc",
+  "nom": "Orc",
+  "type": "Humanoïde",
+  "tailles": [
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "acharnement",
+      "nom": "Acharnement",
+      "niveau": 1,
+      "resume": "Si vous tombez à 0 point de vie sans être tué sur le coup, vous pouvez rester à 1 point de vie. Une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "poussee-d-adrenaline",
+      "nom": "Poussée d'adrénaline",
+      "niveau": 1,
+      "resume": "Vous pouvez entreprendre l'action Pointe par une action Bonus et gagnez alors des points de vie temporaires égaux à votre bonus de maîtrise. Utilisable autant de fois que votre bonus de maîtrise par Repos court ou long.",
+      "effets": []
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 36 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 36
+        }
+      ]
+    }
+  ]
+}

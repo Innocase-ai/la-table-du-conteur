@@ -1,0 +1,161 @@
+{
+  "id": "guerrier",
+  "nom": "Guerrier",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["for", "dex"] },
+  "deVie": 10,
+  "sauvegardes": ["for", "con"],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "acrobaties",
+      "athletisme",
+      "dressage",
+      "histoire",
+      "intuition",
+      "intimidation",
+      "perception",
+      "persuasion",
+      "survie"
+    ]
+  },
+  "maitrisesArmes": ["courantes", "guerre"],
+  "formationArmures": ["legere", "intermediaire", "lourde", "bouclier"],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Cotte de mailles",
+        "Épée à deux mains",
+        "Fléau d’armes",
+        "8 javelines",
+        "Paquetage d’exploration souterraine"
+      ],
+      "po": 4
+    },
+    {
+      "id": "B",
+      "objets": [
+        "Armure de cuir clouté",
+        "Cimeterre",
+        "Épée courte",
+        "Arc long",
+        "20 flèches",
+        "Carquois",
+        "Paquetage d’exploration souterraine"
+      ],
+      "po": 11
+    },
+    { "id": "C", "objets": [], "po": 155 }
+  ],
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Bottes d’arme", "Second souffle", "Style de combat"],
+      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Fougue (une utilisation)", "Sens tactique"],
+      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sous-classe de Guerrier"],
+      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Second souffle": 3, "Bottes d’arme": 4 }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Attaque supplémentaire", "Décalage tactique"],
+      "colonnes": { "Second souffle": 3, "Bottes d’arme": 4 }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "style-de-combat",
+      "nom": "Style de combat",
+      "niveau": 1,
+      "resume": "Vous recevez un don de Style de combat de votre choix (Défense recommandé), que vous pouvez remplacer par un autre à chaque niveau de Guerrier gagné.",
+      "effets": []
+    },
+    {
+      "id": "second-souffle",
+      "nom": "Second souffle",
+      "niveau": 1,
+      "resume": "Par une action Bonus, vous récupérez 1d10 + votre niveau de Guerrier points de vie. Deux utilisations (colonne Second souffle), une regagnée au Repos court et toutes au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Vous pouvez exploiter la botte de trois types d’arme courante ou de guerre de votre choix (nombre selon la colonne Bottes d’arme). Vous pouvez changer l’un de ces choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "fougue",
+      "nom": "Fougue",
+      "niveau": 2,
+      "resume": "À votre tour, vous pouvez entreprendre une action supplémentaire (sauf l’action Magie). Une utilisation, récupérée au Repos court ou long (deux à partir du niveau 17, une seule par tour).",
+      "effets": []
+    },
+    {
+      "id": "sens-tactique",
+      "nom": "Sens tactique",
+      "niveau": 2,
+      "resume": "Quand vous ratez un test de caractéristique, vous pouvez dépenser une utilisation de Second souffle pour ajouter 1d10 au test ; si le test échoue malgré tout, l’utilisation n’est pas dépensée.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 6, 8, 12, 14 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Vous attaquez deux fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour.",
+      "effets": []
+    },
+    {
+      "id": "decalage-tactique",
+      "nom": "Décalage tactique",
+      "niveau": 5,
+      "resume": "Quand vous activez Second souffle par une action Bonus, vous pouvez vous déplacer de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "champion",
+    "nom": "Champion",
+    "aptitudes": [
+      {
+        "id": "critique-ameliore",
+        "nom": "Critique amélioré",
+        "niveau": 3,
+        "resume": "Vos jets d’attaque avec des armes et à mains nues obtiennent un Coup critique sur 19 ou 20 au d20.",
+        "effets": []
+      },
+      {
+        "id": "athlete-accompli",
+        "nom": "Athlète accompli",
+        "niveau": 3,
+        "resume": "Vous avez l’Avantage aux jets d’Initiative et aux tests de Force (Athlétisme). Juste après un Coup critique, vous pouvez vous déplacer de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité.",
+        "effets": []
+      }
+    ]
+  }
+}

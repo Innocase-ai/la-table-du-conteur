@@ -1,0 +1,154 @@
+{
+  "id": "roublard",
+  "nom": "Roublard",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["dex"] },
+  "deVie": 8,
+  "sauvegardes": ["dex", "int"],
+  "competences": {
+    "nombre": 4,
+    "parmi": [
+      "acrobaties",
+      "athletisme",
+      "discretion",
+      "escamotage",
+      "intimidation",
+      "intuition",
+      "investigation",
+      "perception",
+      "persuasion",
+      "tromperie"
+    ]
+  },
+  "maitrisesArmes": ["courantes", "armes de guerre dotées de la propriété Finesse ou Légère"],
+  "formationArmures": ["legere"],
+  "outils": ["outils de voleur"],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "armure de cuir",
+        "2 dagues",
+        "épée courte",
+        "arc court",
+        "20 flèches",
+        "carquois",
+        "outils de voleur",
+        "paquetage de cambrioleur"
+      ],
+      "po": 8
+    },
+    { "id": "B", "objets": [], "po": 100 }
+  ],
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Argot des voleurs", "Attaque sournoise", "Bottes d’arme", "Expertise"],
+      "colonnes": { "Attaque sournoise": "1d6" }
+    },
+    { "niveau": 2, "bonusMaitrise": 2, "aptitudes": ["Ruse"], "colonnes": { "Attaque sournoise": "1d6" } },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sous-classe de Roublard", "Visée appliquée"],
+      "colonnes": { "Attaque sournoise": "2d6" }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Attaque sournoise": "2d6" }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Frappe malicieuse", "Esquive instinctive"],
+      "colonnes": { "Attaque sournoise": "3d6" }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "argot-des-voleurs",
+      "nom": "Argot des voleurs",
+      "niveau": 1,
+      "resume": "Connaît l’argot des voleurs et une autre langue au choix.",
+      "effets": []
+    },
+    {
+      "id": "attaque-sournoise",
+      "nom": "Attaque sournoise",
+      "niveau": 1,
+      "resume": "Une fois par tour, inflige des dégâts supplémentaires (1d6, selon la colonne Attaque sournoise) avec une arme Finesse ou À distance s’il a l’Avantage, ou si un allié non Neutralisé est à 1,50 m de la cible et qu’il n’a pas le Désavantage.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Peut utiliser la propriété Botte de deux types d’arme maîtrisés au choix ; il peut changer ce choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "expertise",
+      "nom": "Expertise",
+      "niveau": 1,
+      "resume": "Reçoit l’Expertise dans deux compétences maîtrisées au choix (Escamotage et Discrétion recommandées) ; deux de plus au niveau 6.",
+      "effets": [{ "type": "expertise", "nombre": 2 }]
+    },
+    {
+      "id": "ruse",
+      "nom": "Ruse",
+      "niveau": 2,
+      "resume": "Peut entreprendre l’action Désengagement, Furtivité ou Pointe par une action Bonus.",
+      "effets": []
+    },
+    {
+      "id": "visee-appliquee",
+      "nom": "Visée appliquée",
+      "niveau": 3,
+      "resume": "Par une action Bonus, s’il ne s’est pas déplacé ce tour, obtient l’Avantage à son prochain jet d’attaque du tour ; sa Vitesse tombe à 0 jusqu’à la fin du tour.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 10, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "frappe-malicieuse",
+      "nom": "Frappe malicieuse",
+      "niveau": 5,
+      "resume": "Peut renoncer à des dés d’Attaque sournoise pour ajouter un effet (DD 8 + Dextérité + maîtrise) : Croc-en-jambe (1d6, JS de Dextérité ou À terre, taille G ou moins), Poison (1d6, JS de Constitution ou Empoisonné 1 minute, matériel d’empoisonneur requis) ou Repli (1d6, déplacement de la moitié de la Vitesse sans attaque d’Opportunité).",
+      "effets": []
+    },
+    {
+      "id": "esquive-instinctive",
+      "nom": "Esquive instinctive",
+      "niveau": 5,
+      "resume": "Par une Réaction, quand un assaillant visible le touche avec un jet d’attaque, réduit de moitié les dégâts de cette attaque (arrondi à l’inférieur).",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "voleur",
+    "nom": "Voleur",
+    "aptitudes": [
+      {
+        "id": "mains-lestes",
+        "nom": "Mains lestes",
+        "niveau": 3,
+        "resume": "Par une action Bonus, fait un test de Dextérité (Escamotage) pour crocheter, désamorcer un piège avec les outils de voleur ou faire les poches, ou utilise un objet magique demandant l’action Utilisation ou Magie.",
+        "effets": []
+      },
+      {
+        "id": "monte-en-l-air",
+        "nom": "Monte-en-l’air",
+        "niveau": 3,
+        "resume": "Reçoit une Vitesse d’escalade égale à sa Vitesse et peut calculer sa distance de saut avec la Dextérité au lieu de la Force.",
+        "effets": []
+      }
+    ]
+  }
+}

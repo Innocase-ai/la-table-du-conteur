@@ -1,0 +1,61 @@
+{
+  "id": "elfe",
+  "nom": "Elfe",
+  "type": "Humanoïde",
+  "tailles": [
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "ascendance-feerique",
+      "nom": "Ascendance féerique",
+      "niveau": 1,
+      "resume": "Vous avez l'Avantage aux jets de sauvegarde visant à éviter l'état Charmé ou à y mettre fin.",
+      "effets": []
+    },
+    {
+      "id": "lignage-elfique",
+      "nom": "Lignage elfique",
+      "niveau": 1,
+      "resume": "Choisissez un lignage (Int, Sag ou Cha comme caractéristique d'incantation) ; ses sorts de niveaux 3 et 5 sont toujours préparés et lançables une fois par Repos long sans emplacement. Drow : Vision dans le noir portée à 36 m et lumières dansantes, puis lueurs féeriques (niv. 3) et ténèbres (niv. 5) ; elfe sylvestre : Vitesse 10,50 m et druidisme, puis grande foulée et passage sans trace ; haut-elfe : prestidigitation (échangeable contre un sort mineur de Magicien à chaque Repos long), puis détection de la magie et foulée brumeuse.",
+      "effets": []
+    },
+    {
+      "id": "sens-aiguises",
+      "nom": "Sens aiguisés",
+      "niveau": 1,
+      "resume": "Vous recevez la maîtrise d'une compétence au choix : Intuition, Perception ou Survie.",
+      "effets": [
+        {
+          "type": "maitrise_competences",
+          "nombre": 1,
+          "parmi": [
+            "intuition",
+            "perception",
+            "survie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transe",
+      "nom": "Transe",
+      "niveau": 1,
+      "resume": "Vous n'avez pas besoin de dormir et la magie ne peut pas vous endormir. Vous terminez un Repos long en 4 heures de transe méditative, en restant conscient.",
+      "effets": []
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 18 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 18
+        }
+      ]
+    }
+  ]
+}

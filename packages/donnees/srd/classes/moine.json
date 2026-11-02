@@ -1,0 +1,144 @@
+{
+  "id": "moine",
+  "nom": "Moine",
+  "caracteristiquesPrincipales": { "mode": "et", "liste": ["dex", "sag"] },
+  "deVie": 8,
+  "sauvegardes": ["for", "dex"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["acrobaties", "athletisme", "discretion", "histoire", "intuition", "religion"]
+  },
+  "maitrisesArmes": ["courantes", "armes de guerre dotées de la propriété Légère"],
+  "formationArmures": [],
+  "outils": ["un type d’outils d’artisan ou un instrument de musique au choix"],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "lance",
+        "5 dagues",
+        "outils d’artisan ou instrument de musique (celui choisi pour la maîtrise d’outils)",
+        "paquetage d’explorateur"
+      ],
+      "po": 11
+    },
+    { "id": "B", "objets": [], "po": 50 }
+  ],
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Arts martiaux", "Défense sans armure"],
+      "colonnes": { "Arts martiaux": "1d6", "Points de Credo": "—", "Déplacement sans armure": "—" }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Déplacement sans armure", "Credo du Moine", "Métabolisme surnaturel"],
+      "colonnes": { "Arts martiaux": "1d6", "Points de Credo": 2, "Déplacement sans armure": "+3 m" }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Déviation d’assaut", "Sous-classe de Moine"],
+      "colonnes": { "Arts martiaux": "1d6", "Points de Credo": 3, "Déplacement sans armure": "+3 m" }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique", "Chute ralentie"],
+      "colonnes": { "Arts martiaux": "1d6", "Points de Credo": 4, "Déplacement sans armure": "+3 m" }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Attaque supplémentaire", "Frappe étourdissante"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 5, "Déplacement sans armure": "+3 m" }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "arts-martiaux",
+      "nom": "Arts martiaux",
+      "niveau": 1,
+      "resume": "Sans armure ni bouclier, à mains nues ou avec une arme de Moine (armes courantes de corps à corps, armes de guerre de corps à corps Légères) : attaque à mains nues par une action Bonus, dé d’Arts martiaux (1d6, 1d8 au niveau 5) à la place des dégâts normaux, et Dextérité au lieu de Force pour l’attaque, les dégâts et le DD de Bousculade ou Lutte.",
+      "effets": []
+    },
+    {
+      "id": "defense-sans-armure",
+      "nom": "Défense sans armure",
+      "niveau": 1,
+      "resume": "Sans armure ni bouclier, la CA de base est égale à 10 + modificateur de Dextérité + modificateur de Sagesse.",
+      "effets": [{ "type": "ca_sans_armure", "base": 10, "caracteristiques": ["dex", "sag"], "bouclierAutorise": false }]
+    },
+    {
+      "id": "deplacement-sans-armure",
+      "nom": "Déplacement sans armure",
+      "niveau": 2,
+      "resume": "La Vitesse augmente de 3 m tant que le Moine ne porte ni armure ni bouclier ; le bonus augmente avec le niveau (colonne Déplacement sans armure).",
+      "effets": [{ "type": "bonus_vitesse", "metres": 3, "condition": "sans_armure_ni_bouclier" }]
+    },
+    {
+      "id": "credo-du-moine",
+      "nom": "Credo du Moine",
+      "niveau": 2,
+      "resume": "Dispose de points de Credo (colonne de la table, 2 au niveau 2), tous récupérés au Repos court ou long ; DD = 8 + Sagesse + maîtrise. Déluge de coups (1 point : deux attaques à mains nues par une action Bonus), Patience défensive (Désengagement en action Bonus, ou Désengagement et Esquive pour 1 point) et Porté par le vent (Pointe en action Bonus, ou Désengagement et Pointe avec saut doublé pour 1 point).",
+      "effets": []
+    },
+    {
+      "id": "metabolisme-surnaturel",
+      "nom": "Métabolisme surnaturel",
+      "niveau": 2,
+      "resume": "En jouant l’Initiative, peut récupérer tous ses points de Credo dépensés et regagner des points de vie égaux au niveau de Moine + un jet du dé d’Arts martiaux. Une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "deviation-d-assaut",
+      "nom": "Déviation d’assaut",
+      "niveau": 3,
+      "resume": "Par une Réaction quand une attaque contondante, perforante ou tranchante le touche, réduit les dégâts de 1d10 + modificateur de Dextérité + niveau de Moine. Si les dégâts tombent à 0, il peut dépenser 1 point de Credo pour renvoyer l’impact sur une créature (1,50 m au corps à corps, 18 m à distance) : JS de Dextérité ou deux dés d’Arts martiaux + Dextérité de dégâts.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "chute-ralentie",
+      "nom": "Chute ralentie",
+      "niveau": 4,
+      "resume": "Par une Réaction, réduit les dégâts de chute subis de cinq fois son niveau de Moine.",
+      "effets": []
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Attaque deux fois au lieu d’une lorsqu’il entreprend l’action Attaque.",
+      "effets": []
+    },
+    {
+      "id": "frappe-etourdissante",
+      "nom": "Frappe étourdissante",
+      "niveau": 5,
+      "resume": "Une fois par tour, en touchant avec une arme de Moine ou à mains nues, dépense 1 point de Credo : la cible fait un JS de Constitution ou est Étourdie jusqu’au début du prochain tour du Moine ; en cas de réussite, sa Vitesse est réduite de moitié et la prochaine attaque contre elle a l’Avantage.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "credo-de-la-paume",
+    "nom": "Credo de la Paume",
+    "aptitudes": [
+      {
+        "id": "technique-de-la-paume",
+        "nom": "Technique de la Paume",
+        "niveau": 3,
+        "resume": "Chaque attaque de Déluge de coups qui touche peut imposer un effet : Hésitation (pas d’attaque d’Opportunité jusqu’à son prochain tour), Bourrade (JS de Force ou repoussée de 4,50 m au plus) ou Renversement (JS de Dextérité ou À terre).",
+        "effets": []
+      }
+    ]
+  }
+}

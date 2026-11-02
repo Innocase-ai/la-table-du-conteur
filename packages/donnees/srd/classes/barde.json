@@ -1,0 +1,122 @@
+{
+  "id": "barde",
+  "nom": "Barde",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["cha"] },
+  "deVie": 8,
+  "sauvegardes": ["dex", "cha"],
+  "competences": { "nombre": 3, "parmi": "toutes" },
+  "maitrisesArmes": ["courantes"],
+  "formationArmures": ["legere"],
+  "outils": ["3 instruments de musique au choix"],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": ["Armure de cuir", "2 dagues", "Instrument de musique au choix", "Paquetage d’artiste"],
+      "po": 19
+    },
+    { "id": "B", "objets": [], "po": 90 }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "cha",
+    "sortsMineurs": [2, 2, 2, 3, 3],
+    "sortsPrepares": [4, 5, 6, 7, 9],
+    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Inspiration bardique", "Sorts"],
+      "colonnes": { "Dé bardique": "d6" }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Expertise", "Touche-à-tout"],
+      "colonnes": { "Dé bardique": "d6" }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sous-classe de Barde"],
+      "colonnes": { "Dé bardique": "d6" }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Dé bardique": "d6" }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Source d’inspiration"],
+      "colonnes": { "Dé bardique": "d8" }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "inspiration-bardique",
+      "nom": "Inspiration bardique",
+      "niveau": 1,
+      "resume": "Par une action Bonus, vous donnez un dé d’Inspiration bardique (d6, puis d8 au niveau 5) à une autre créature qui vous voit ou vous entend dans un rayon de 18 m ; dans l’heure, elle peut l’ajouter à un Test d20 raté. Utilisations égales à votre modificateur de Charisme (minimum 1), récupérées au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts de Barde avec le Charisme, en utilisant un instrument de musique comme focaliseur. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer un sort préparé à chaque niveau gagné.",
+      "effets": []
+    },
+    {
+      "id": "expertise",
+      "nom": "Expertise",
+      "niveau": 2,
+      "resume": "Vous recevez l’Expertise dans deux compétences que vous maîtrisez (Persuasion et Représentation recommandées), puis dans deux autres au niveau 9.",
+      "effets": [{ "type": "expertise", "nombre": 2 }]
+    },
+    {
+      "id": "touche-a-tout",
+      "nom": "Touche-à-tout",
+      "niveau": 2,
+      "resume": "Vous ajoutez la moitié de votre bonus de maîtrise (arrondie à l’inférieur) aux tests de caractéristique dont vous ne maîtrisez pas la compétence et auxquels votre bonus de maîtrise ne s’applique pas déjà.",
+      "effets": [{ "type": "demi_maitrise_tests_non_maitrises" }]
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "source-d-inspiration",
+      "nom": "Source d’inspiration",
+      "niveau": 5,
+      "resume": "Vous récupérez toutes vos utilisations d’Inspiration bardique au Repos court ou long. Vous pouvez aussi dépenser un emplacement de sort (sans action) pour récupérer une utilisation.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "college-du-savoir",
+    "nom": "Collège du Savoir",
+    "aptitudes": [
+      {
+        "id": "maitrises-supplementaires",
+        "nom": "Maîtrises supplémentaires",
+        "niveau": 3,
+        "resume": "Vous recevez la maîtrise de trois compétences de votre choix.",
+        "effets": [{ "type": "maitrise_competences", "nombre": 3 }]
+      },
+      {
+        "id": "mots-cinglants",
+        "nom": "Mots cinglants",
+        "niveau": 3,
+        "resume": "Quand une créature que vous voyez dans un rayon de 18 m fait un jet de dégâts, ou réussit un test de caractéristique ou un jet d’attaque, vous pouvez jouer votre Réaction et dépenser une Inspiration bardique : lancez le dé et soustrayez le résultat de son jet.",
+        "effets": []
+      }
+    ]
+  }
+}

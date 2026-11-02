@@ -1,0 +1,100 @@
+{
+  "id": "magicien",
+  "nom": "Magicien",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["int"] },
+  "deVie": 6,
+  "sauvegardes": ["int", "sag"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["arcanes", "histoire", "intuition", "investigation", "medecine", "nature", "religion"]
+  },
+  "maitrisesArmes": ["courantes"],
+  "formationArmures": [],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": ["2 dagues", "focaliseur arcanique (bâton de combat)", "robe", "grimoire", "paquetage d’érudit"],
+      "po": 5
+    },
+    { "id": "B", "objets": [], "po": 55 }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "int",
+    "sortsMineurs": [3, 3, 3, 4, 4],
+    "sortsPrepares": [4, 5, 6, 7, 9],
+    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+  },
+  "progression": [
+    { "niveau": 1, "bonusMaitrise": 2, "aptitudes": ["Sorts", "Savoir rituel", "Restauration magique"], "colonnes": {} },
+    { "niveau": 2, "bonusMaitrise": 2, "aptitudes": ["Érudition"], "colonnes": {} },
+    { "niveau": 3, "bonusMaitrise": 2, "aptitudes": ["Sous-classe de Magicien"], "colonnes": {} },
+    { "niveau": 4, "bonusMaitrise": 2, "aptitudes": ["Amélioration de caractéristique"], "colonnes": {} },
+    { "niveau": 5, "bonusMaitrise": 3, "aptitudes": ["Mémorisation de sort"], "colonnes": {} }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Lance des sorts de Magicien avec l’Intelligence, via un focaliseur arcanique ou le grimoire. Le grimoire débute avec six sorts du 1er niveau et en reçoit deux de plus à chaque niveau de Magicien ; les sorts préparés sont choisis dans le grimoire et peuvent être changés après un Repos long, les emplacements se récupèrent au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "savoir-rituel",
+      "nom": "Savoir rituel",
+      "niveau": 1,
+      "resume": "Peut lancer comme rituel tout sort à mention « rituel » inscrit dans son grimoire, même non préparé, en le lisant dans le grimoire.",
+      "effets": []
+    },
+    {
+      "id": "restauration-magique",
+      "nom": "Restauration magique",
+      "niveau": 1,
+      "resume": "En terminant un Repos court, récupère des emplacements de sort dépensés dont la somme des niveaux ne dépasse pas la moitié du niveau de Magicien (arrondie au supérieur), aucun du 6e niveau ou plus. Une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "erudition",
+      "nom": "Érudition",
+      "niveau": 2,
+      "resume": "Reçoit l’Expertise dans une compétence maîtrisée parmi Arcanes, Histoire, Intuition, Investigation, Médecine, Nature ou Religion.",
+      "effets": [{ "type": "expertise", "nombre": 1 }]
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "memorisation-de-sort",
+      "nom": "Mémorisation de sort",
+      "niveau": 5,
+      "resume": "En terminant un Repos court, peut étudier son grimoire pour remplacer un sort préparé du 1er niveau ou plus par un autre sort du grimoire.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "evocateur",
+    "nom": "Évocateur",
+    "aptitudes": [
+      {
+        "id": "evocateur-erudit",
+        "nom": "Évocateur érudit",
+        "niveau": 3,
+        "resume": "Ajoute gratuitement à son grimoire deux sorts de Magicien d’Évocation du 2e niveau au plus, puis un sort d’Évocation gratuit chaque fois qu’il accède à un nouveau niveau d’emplacements de sort.",
+        "effets": []
+      },
+      {
+        "id": "sort-mineur-appuye",
+        "nom": "Sort mineur appuyé",
+        "niveau": 3,
+        "resume": "Quand un de ses sorts mineurs rate son jet d’attaque ou que la cible réussit son jet de sauvegarde, la cible subit quand même la moitié des dégâts du sort mineur, sans ses effets supplémentaires.",
+        "effets": []
+      }
+    ]
+  }
+}

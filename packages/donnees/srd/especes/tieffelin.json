@@ -1,0 +1,38 @@
+{
+  "id": "tieffelin",
+  "nom": "Tieffelin",
+  "type": "Humanoïde",
+  "tailles": [
+    "P",
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "heritage-fielon",
+      "nom": "Héritage fiélon",
+      "niveau": 1,
+      "resume": "Choisissez un héritage (Int, Sag ou Cha comme caractéristique d'incantation) ; ses sorts de niveaux 3 et 5 sont toujours préparés et lançables une fois par Repos long sans emplacement. Abyssal : Résistance au poison et bouffée de poison, puis rayon empoisonné (niv. 3) et immobilisation de personne (niv. 5) ; chtonien : Résistance nécrotique et contact glacial, puis simulacre de vie et rayon affaiblissant ; infernal : Résistance au feu et trait de feu, puis représailles infernales et ténèbres.",
+      "effets": []
+    },
+    {
+      "id": "presence-d-outre-monde",
+      "nom": "Présence d'outre-monde",
+      "niveau": 1,
+      "resume": "Vous connaissez le sort mineur thaumaturgie, lancé avec la caractéristique d'incantation de votre Héritage fiélon.",
+      "effets": []
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 18 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 18
+        }
+      ]
+    }
+  ]
+}

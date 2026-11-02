@@ -1,0 +1,51 @@
+{
+  "id": "drakeide",
+  "nom": "Drakéide",
+  "type": "Humanoïde",
+  "tailles": [
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "ascendance-draconique",
+      "nom": "Ascendance draconique",
+      "niveau": 1,
+      "resume": "Choisissez un dragon ancêtre, qui fixe le type de dégâts de votre Souffle et de votre Résistance : airain, or ou rouge (feu), cuivre ou noir (acide), argent ou blanc (froid), bleu ou bronze (foudre), vert (poison).",
+      "effets": []
+    },
+    {
+      "id": "resistance-aux-degats",
+      "nom": "Résistance aux dégâts",
+      "niveau": 1,
+      "resume": "Vous avez la Résistance au type de dégâts déterminé par votre Ascendance draconique.",
+      "effets": []
+    },
+    {
+      "id": "souffle",
+      "nom": "Souffle",
+      "niveau": 1,
+      "resume": "Quand vous entreprenez l'action Attaque, vous pouvez remplacer une attaque par un souffle en Cône de 4,50 m ou en Ligne de 9 m sur 1,50 m : sauvegarde de Dextérité (DD 8 + mod. de Con + bonus de maîtrise), 1d10 dégâts du type de votre ascendance, moitié en cas de réussite. Les dégâts passent à 2d10 au niveau 5, 3d10 au niveau 11 et 4d10 au niveau 17. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 18 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 18
+        }
+      ]
+    },
+    {
+      "id": "vol-draconique",
+      "nom": "Vol draconique",
+      "niveau": 5,
+      "resume": "Par une action Bonus, des ailes spectrales vous donnent pendant 10 minutes une Vitesse de vol égale à votre Vitesse (elles disparaissent si vous les rétractez ou subissez l'état Neutralisé). Une fois par Repos long.",
+      "effets": []
+    }
+  ]
+}

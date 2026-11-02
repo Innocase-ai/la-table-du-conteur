@@ -1,0 +1,139 @@
+{
+  "id": "druide",
+  "nom": "Druide",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["sag"] },
+  "deVie": 8,
+  "sauvegardes": ["int", "sag"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["arcanes", "dressage", "intuition", "medecine", "nature", "perception", "religion", "survie"]
+  },
+  "maitrisesArmes": ["courantes"],
+  "formationArmures": ["legere", "bouclier"],
+  "outils": ["Matériel d’herboriste"],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Armure de cuir",
+        "Bouclier",
+        "Serpe",
+        "Focaliseur druidique (bâton de combat)",
+        "Paquetage d’explorateur",
+        "Matériel d’herboriste"
+      ],
+      "po": 9
+    },
+    { "id": "B", "objets": [], "po": 50 }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "sag",
+    "sortsMineurs": [2, 2, 2, 3, 3],
+    "sortsPrepares": [4, 5, 6, 7, 9],
+    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sorts", "Druidique", "Ordre primitif"],
+      "colonnes": { "Forme sauvage": "—" }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Compagnon sauvage", "Forme sauvage"],
+      "colonnes": { "Forme sauvage": 2 }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sous-classe de Druide"],
+      "colonnes": { "Forme sauvage": 2 }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Forme sauvage": 2 }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Regain sauvage"],
+      "colonnes": { "Forme sauvage": 2 }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts de Druide avec la Sagesse, en utilisant un focaliseur druidique. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer vos sorts préparés à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "druidique",
+      "nom": "Druidique",
+      "niveau": 1,
+      "resume": "Vous connaissez le druidique, langue secrète des Druides, et le sort communication avec les animaux est toujours préparé. Vous pouvez laisser des messages cachés, repérables par d’autres sur un test d’Intelligence (Investigation) DD 15 mais indéchiffrables pour eux.",
+      "effets": []
+    },
+    {
+      "id": "ordre-primitif",
+      "nom": "Ordre primitif",
+      "niveau": 1,
+      "resume": "Choisissez un rôle. Mage : un sort mineur de Druide supplémentaire et un bonus égal à votre modificateur de Sagesse (minimum +1) aux tests d’Intelligence (Arcanes et Nature). Gardien : maîtrise des armes de guerre et formation aux armures intermédiaires.",
+      "effets": []
+    },
+    {
+      "id": "compagnon-sauvage",
+      "nom": "Compagnon sauvage",
+      "niveau": 2,
+      "resume": "Par l’action Magie, vous dépensez un emplacement de sort ou une utilisation de Forme sauvage pour lancer appel de familier sans composantes matérielles ; le familier est une Fée et disparaît à votre prochain Repos long.",
+      "effets": []
+    },
+    {
+      "id": "forme-sauvage",
+      "nom": "Forme sauvage",
+      "niveau": 2,
+      "resume": "Par une action Bonus, vous prenez la forme d’une Bête connue (4 formes, FP 1/4 max., sans vol ; 6 formes FP 1/2 au niveau 4) pendant un nombre d’heures égal à la moitié de votre niveau de Druide, en gagnant autant de points de vie temporaires que votre niveau de Druide ; vous ne pouvez pas lancer de sorts sous cette forme. Deux utilisations (colonne Forme sauvage), une regagnée au Repos court et toutes au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "regain-sauvage",
+      "nom": "Regain sauvage",
+      "niveau": 5,
+      "resume": "Une fois par tour, si vous n’avez plus d’utilisation de Forme sauvage, vous pouvez en regagner une en dépensant un emplacement de sort. Vous pouvez aussi dépenser une utilisation de Forme sauvage pour obtenir un emplacement du 1er niveau, une fois par Repos long.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "cercle-de-la-terre",
+    "nom": "Cercle de la Terre",
+    "aptitudes": [
+      {
+        "id": "sorts-du-cercle-de-la-terre",
+        "nom": "Sorts du Cercle de la Terre",
+        "niveau": 3,
+        "resume": "À chaque Repos long, choisissez un environnement (aride, polaire, tempéré ou tropical) : les sorts de cercle correspondants à votre niveau sont préparés. Niveau 3 — aride : flou, mains brûlantes, trait de feu ; polaire : immobilisation de personne, nappe de brouillard, rayon de givre ; tempéré : foulée brumeuse, poigne électrique, sommeil ; tropical : aspersion acide, rayon empoisonné, toile d’araignée. Niveau 5 : boule de feu, tempête de neige, éclair ou nuage nauséabond respectivement.",
+        "effets": []
+      },
+      {
+        "id": "aval-de-la-terre",
+        "nom": "Aval de la terre",
+        "niveau": 3,
+        "resume": "Par l’action Magie et une utilisation de Forme sauvage, vous ciblez une Sphère de 3 m de rayon à 18 m : les créatures choisies font un JS de Constitution contre votre DD des sorts et subissent 2d6 dégâts nécrotiques (moitié en cas de réussite), et une créature choisie récupère 2d6 points de vie (3d6 au niveau 10, 4d6 au niveau 14).",
+        "effets": []
+      }
+    ]
+  }
+}

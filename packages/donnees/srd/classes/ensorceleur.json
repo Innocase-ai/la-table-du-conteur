@@ -1,0 +1,128 @@
+{
+  "id": "ensorceleur",
+  "nom": "Ensorceleur",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["cha"] },
+  "deVie": 6,
+  "sauvegardes": ["con", "cha"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["arcanes", "intimidation", "intuition", "persuasion", "religion", "tromperie"]
+  },
+  "maitrisesArmes": ["courantes"],
+  "formationArmures": [],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": ["Lance", "2 dagues", "Focaliseur arcanique (cristal)", "Paquetage d’exploration souterraine"],
+      "po": 28
+    },
+    { "id": "B", "objets": [], "po": 50 }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "cha",
+    "sortsMineurs": [4, 4, 4, 5, 5],
+    "sortsPrepares": [2, 4, 6, 7, 9],
+    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sorts", "Sorcellerie innée"],
+      "colonnes": { "Points de sorcellerie": "—" }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Réserve arcanique", "Métamagie"],
+      "colonnes": { "Points de sorcellerie": 2 }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sous-classe d’Ensorceleur"],
+      "colonnes": { "Points de sorcellerie": 3 }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Points de sorcellerie": 4 }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Restauration ensorcelée"],
+      "colonnes": { "Points de sorcellerie": 5 }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts d’Ensorceleur avec le Charisme, en utilisant un focaliseur arcanique. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer un sort préparé à chaque niveau gagné.",
+      "effets": []
+    },
+    {
+      "id": "sorcellerie-innee",
+      "nom": "Sorcellerie innée",
+      "niveau": 1,
+      "resume": "Par une action Bonus, vous libérez votre magie pendant 1 minute : le DD de sauvegarde de vos sorts d’Ensorceleur augmente de 1 et vous avez l’Avantage à leurs jets d’attaque. Deux utilisations, récupérées au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "reserve-arcanique",
+      "nom": "Réserve arcanique",
+      "niveau": 2,
+      "resume": "Vous disposez de points de Sorcellerie (colonne Points de sorcellerie), tous récupérés au Repos long. Vous pouvez dépenser un emplacement pour gagner autant de points que son niveau, ou, par une action Bonus, convertir des points en emplacement (1er niveau : 2 points ; 2e : 3 points ; 3e : 5 points, à partir du niveau 5 ; 4e : 6 ; 5e : 7) qui disparaît au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "metamagie",
+      "nom": "Métamagie",
+      "niveau": 2,
+      "resume": "Vous apprenez deux options de Métamagie, payées en points de Sorcellerie, pour modifier vos sorts (une seule option par sort sauf mention contraire). Vous pouvez en remplacer une à chaque niveau ; deux de plus aux niveaux 10 et 17.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "restauration-ensorcelee",
+      "nom": "Restauration ensorcelée",
+      "niveau": 5,
+      "resume": "En terminant un Repos court, vous récupérez des points de Sorcellerie dépensés à concurrence de la moitié de votre niveau d’Ensorceleur (arrondie à l’inférieur), une fois par Repos long.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "sorcellerie-draconique",
+    "nom": "Sorcellerie draconique",
+    "aptitudes": [
+      {
+        "id": "resistance-draconique",
+        "nom": "Résistance draconique",
+        "niveau": 3,
+        "resume": "Votre maximum de points de vie augmente de 3, puis de 1 à chaque niveau d’Ensorceleur suivant. Sans armure, votre CA de base est égale à 10 + vos modificateurs de Dextérité et de Charisme.",
+        "effets": [
+          { "type": "ca_sans_armure", "base": 10, "caracteristiques": ["dex", "cha"], "bouclierAutorise": true },
+          { "type": "pv_par_niveau", "valeur": 1 }
+        ]
+      },
+      {
+        "id": "sorts-draconiques",
+        "nom": "Sorts draconiques",
+        "niveau": 3,
+        "resume": "Sorts toujours préparés : injonction, modification d’apparence, orbe chromatique et souffle du dragon au niveau 3 ; terreur et vol au niveau 5 (puis d’autres aux niveaux 7 et 9).",
+        "effets": []
+      }
+    ]
+  }
+}

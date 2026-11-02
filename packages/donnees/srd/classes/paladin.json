@@ -1,0 +1,153 @@
+{
+  "id": "paladin",
+  "nom": "Paladin",
+  "caracteristiquesPrincipales": { "mode": "et", "liste": ["for", "cha"] },
+  "deVie": 10,
+  "sauvegardes": ["sag", "cha"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["athletisme", "intimidation", "intuition", "medecine", "persuasion", "religion"]
+  },
+  "maitrisesArmes": ["courantes", "guerre"],
+  "formationArmures": ["legere", "intermediaire", "lourde", "bouclier"],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "cotte de mailles",
+        "bouclier",
+        "épée longue",
+        "6 javelines",
+        "symbole sacré",
+        "paquetage d’ecclésiastique"
+      ],
+      "po": 9
+    },
+    { "id": "B", "objets": [], "po": 150 }
+  ],
+  "incantation": {
+    "type": "demi",
+    "caracteristique": "cha",
+    "sortsMineurs": [0, 0, 0, 0, 0],
+    "sortsPrepares": [2, 3, 4, 5, 6],
+    "emplacements": [[2], [2], [3], [3], [4, 2]]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Bottes d’arme", "Imposition des mains", "Sorts"],
+      "colonnes": { "Conduit divin": "—" }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Châtiment de paladin", "Style de combat"],
+      "colonnes": { "Conduit divin": "—" }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Conduit divin", "Sous-classe de Paladin"],
+      "colonnes": { "Conduit divin": 2 }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Conduit divin": 2 }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Attaque supplémentaire", "Fidèle destrier"],
+      "colonnes": { "Conduit divin": 2 }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Peut utiliser la propriété Botte de deux types d’arme maîtrisés au choix ; il peut changer ce choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "imposition-des-mains",
+      "nom": "Imposition des mains",
+      "niveau": 1,
+      "resume": "Réserve de soins égale à cinq fois le niveau de Paladin, reconstituée au Repos long. Par une action Bonus et un contact, rend des points de vie puisés dans la réserve, ou dépense 5 points pour retirer l’état Empoisonné.",
+      "effets": []
+    },
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Lance des sorts de Paladin avec le Charisme, via un symbole sacré. Emplacements récupérés au Repos long ; après un Repos long, peut remplacer un sort préparé.",
+      "effets": []
+    },
+    {
+      "id": "chatiment-de-paladin",
+      "nom": "Châtiment de paladin",
+      "niveau": 2,
+      "resume": "Châtiment divin est toujours préparé, et il peut le lancer une fois sans dépenser d’emplacement de sort par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "style-de-combat",
+      "nom": "Style de combat",
+      "niveau": 2,
+      "resume": "Reçoit un don de Style de combat au choix, ou l’option Combattant béni : deux sorts mineurs de Clerc (assistance et flamme sacrée recommandés), lancés avec le Charisme comme sorts de Paladin.",
+      "effets": []
+    },
+    {
+      "id": "conduit-divin",
+      "nom": "Conduit divin",
+      "niveau": 3,
+      "resume": "Deux utilisations de Conduit divin ; il en regagne une au Repos court et toutes au Repos long (une de plus au niveau 11). Effet de base, Perception divine : par une action Bonus, pendant 10 minutes, il localise Célestes, Fiélons et Morts-vivants ainsi que les lieux ou objets consacrés ou profanés à 18 m.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Attaque deux fois au lieu d’une lorsqu’il entreprend l’action Attaque.",
+      "effets": []
+    },
+    {
+      "id": "fidele-destrier",
+      "nom": "Fidèle destrier",
+      "niveau": 5,
+      "resume": "Appel de destrier est toujours préparé, et il peut le lancer une fois sans dépenser d’emplacement de sort par Repos long.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "serment-de-devotion",
+    "nom": "Serment de Dévotion",
+    "aptitudes": [
+      {
+        "id": "sorts-du-serment-de-devotion",
+        "nom": "Sorts du Serment de Dévotion",
+        "niveau": 3,
+        "resume": "Sorts toujours préparés : au niveau 3 bouclier de la foi et protection contre le mal et le bien ; au niveau 5 aide et zone de vérité.",
+        "effets": []
+      },
+      {
+        "id": "arme-sacree",
+        "nom": "Arme sacrée",
+        "niveau": 3,
+        "resume": "En prenant l’action Attaque, dépense un Conduit divin pour bénir une arme de corps à corps pendant 10 minutes : + modificateur de Charisme aux jets d’attaque (minimum +1), dégâts normaux ou radiants au choix, Lumière vive sur 6 m et faible sur 6 m de plus.",
+        "effets": []
+      }
+    ]
+  }
+}

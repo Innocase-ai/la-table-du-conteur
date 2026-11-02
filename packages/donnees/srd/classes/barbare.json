@@ -1,0 +1,136 @@
+{
+  "id": "barbare",
+  "nom": "Barbare",
+  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["for"] },
+  "deVie": 12,
+  "sauvegardes": ["for", "con"],
+  "competences": {
+    "nombre": 2,
+    "parmi": ["athletisme", "dressage", "intimidation", "nature", "perception", "survie"]
+  },
+  "maitrisesArmes": ["courantes", "guerre"],
+  "formationArmures": ["legere", "intermediaire", "bouclier"],
+  "outils": [],
+  "equipementDepart": [
+    { "id": "A", "objets": ["Hache à deux mains", "4 hachettes", "Paquetage d’explorateur"], "po": 15 },
+    { "id": "B", "objets": [], "po": 75 }
+  ],
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Rage", "Bottes d’arme", "Défense sans armure"],
+      "colonnes": { "Rages": 2, "Dégâts de Rage": "+2", "Bottes d’arme": 2 }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sens du danger", "Témérité"],
+      "colonnes": { "Rages": 2, "Dégâts de Rage": "+2", "Bottes d’arme": 2 }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Savoir primal", "Sous-classe de Barbare"],
+      "colonnes": { "Rages": 3, "Dégâts de Rage": "+2", "Bottes d’arme": 2 }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Rages": 3, "Dégâts de Rage": "+2", "Bottes d’arme": 3 }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Attaque supplémentaire", "Déplacement rapide"],
+      "colonnes": { "Rages": 3, "Dégâts de Rage": "+2", "Bottes d’arme": 3 }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "rage",
+      "nom": "Rage",
+      "niveau": 1,
+      "resume": "Par une action Bonus et sans armure lourde, vous entrez en Rage (nombre d’utilisations selon la colonne Rages ; vous en regagnez une au Repos court et toutes au Repos long). Pendant la Rage : Résistance aux dégâts contondants, perforants et tranchants, bonus de Dégâts de Rage aux attaques basées sur la Force, Avantage aux tests et JS de Force, mais ni Concentration ni sorts. Elle dure jusqu’à la fin de votre tour suivant et se prolonge d’un round si vous attaquez un ennemi, lui imposez un JS ou dépensez une action Bonus, pour 10 minutes au maximum ; elle cesse si vous enfilez une armure lourde ou subissez l’état Neutralisé.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Vous pouvez exploiter la botte de deux types d’arme de corps à corps courante ou de guerre de votre choix (nombre selon la colonne Bottes d’arme). Vous pouvez changer l’un de ces choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "defense-sans-armure",
+      "nom": "Défense sans armure",
+      "niveau": 1,
+      "resume": "Sans armure, votre CA de base est égale à 10 + vos modificateurs de Dextérité et de Constitution. Vous conservez ce bénéfice avec un bouclier.",
+      "effets": [
+        { "type": "ca_sans_armure", "base": 10, "caracteristiques": ["dex", "con"], "bouclierAutorise": true }
+      ]
+    },
+    {
+      "id": "sens-du-danger",
+      "nom": "Sens du danger",
+      "niveau": 2,
+      "resume": "Vous avez l’Avantage aux jets de sauvegarde de Dextérité, sauf si vous subissez l’état Neutralisé.",
+      "effets": []
+    },
+    {
+      "id": "temerite",
+      "nom": "Témérité",
+      "niveau": 2,
+      "resume": "Lors de votre premier jet d’attaque du tour, vous pouvez attaquer avec témérité : vous avez l’Avantage aux jets d’attaque basés sur la Force jusqu’au début de votre tour suivant, mais les jets d’attaque contre vous ont aussi l’Avantage pendant ce temps.",
+      "effets": []
+    },
+    {
+      "id": "savoir-primal",
+      "nom": "Savoir primal",
+      "niveau": 3,
+      "resume": "Vous recevez la maîtrise d’une compétence supplémentaire de la liste du Barbare de niveau 1. Pendant la Rage, vos tests d’Acrobaties, Discrétion, Intimidation, Perception et Survie peuvent être faits comme des tests de Force.",
+      "effets": [
+        {
+          "type": "maitrise_competences",
+          "nombre": 1,
+          "parmi": ["athletisme", "dressage", "intimidation", "nature", "perception", "survie"]
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Vous attaquez deux fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour.",
+      "effets": []
+    },
+    {
+      "id": "deplacement-rapide",
+      "nom": "Déplacement rapide",
+      "niveau": 5,
+      "resume": "Votre Vitesse augmente de 3 m tant que vous ne portez pas d’armure lourde.",
+      "effets": [{ "type": "bonus_vitesse", "metres": 3, "condition": "sans_armure_lourde" }]
+    }
+  ],
+  "sousClasse": {
+    "id": "voie-du-berserker",
+    "nom": "Voie du Berserker",
+    "aptitudes": [
+      {
+        "id": "frenesie",
+        "nom": "Frénésie",
+        "niveau": 3,
+        "resume": "Si vous recourez à Témérité pendant votre Rage, la première cible que vous touchez à votre tour avec une attaque basée sur la Force subit des dégâts supplémentaires : autant de d6 que votre bonus de Dégâts de Rage, du même type que l’arme ou l’attaque à mains nues.",
+        "effets": []
+      }
+    ]
+  }
+}

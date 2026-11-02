@@ -1,0 +1,131 @@
+{
+  "id": "rodeur",
+  "nom": "Rôdeur",
+  "caracteristiquesPrincipales": { "mode": "et", "liste": ["dex", "sag"] },
+  "deVie": 10,
+  "sauvegardes": ["for", "dex"],
+  "competences": {
+    "nombre": 3,
+    "parmi": ["athletisme", "discretion", "dressage", "intuition", "investigation", "nature", "perception", "survie"]
+  },
+  "maitrisesArmes": ["courantes", "guerre"],
+  "formationArmures": ["legere", "intermediaire", "bouclier"],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "armure de cuir clouté",
+        "cimeterre",
+        "épée courte",
+        "arc long",
+        "20 flèches",
+        "carquois",
+        "focaliseur druidique (branche de gui)",
+        "paquetage d’explorateur"
+      ],
+      "po": 7
+    },
+    { "id": "B", "objets": [], "po": 150 }
+  ],
+  "incantation": {
+    "type": "demi",
+    "caracteristique": "sag",
+    "sortsMineurs": [0, 0, 0, 0, 0],
+    "sortsPrepares": [2, 3, 4, 5, 6],
+    "emplacements": [[2], [2], [3], [3], [4, 2]]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Sorts", "Ennemi juré", "Bottes d’arme"],
+      "colonnes": { "Ennemi juré": 2 }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Fin explorateur", "Style de combat"],
+      "colonnes": { "Ennemi juré": 2 }
+    },
+    { "niveau": 3, "bonusMaitrise": 2, "aptitudes": ["Sous-classe de Rôdeur"], "colonnes": { "Ennemi juré": 2 } },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Ennemi juré": 2 }
+    },
+    { "niveau": 5, "bonusMaitrise": 3, "aptitudes": ["Attaque supplémentaire"], "colonnes": { "Ennemi juré": 3 } }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Lance des sorts de Rôdeur avec la Sagesse, via un focaliseur druidique. Emplacements récupérés au Repos long ; après un Repos long, peut remplacer un sort préparé.",
+      "effets": []
+    },
+    {
+      "id": "ennemi-jure",
+      "nom": "Ennemi juré",
+      "niveau": 1,
+      "resume": "Marque du chasseur est toujours préparé ; il peut le lancer sans emplacement de sort autant de fois qu’indiqué dans la colonne Ennemi juré (2, puis 3 au niveau 5), toutes ces utilisations revenant au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Peut utiliser la propriété Botte de deux types d’arme maîtrisés au choix ; il peut changer ce choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "fin-explorateur",
+      "nom": "Fin explorateur",
+      "niveau": 2,
+      "resume": "Reçoit l’Expertise dans une compétence maîtrisée et apprend deux langues au choix.",
+      "effets": [{ "type": "expertise", "nombre": 1 }]
+    },
+    {
+      "id": "style-de-combat",
+      "nom": "Style de combat",
+      "niveau": 2,
+      "resume": "Reçoit un don de Style de combat au choix, ou l’option Combattant druidique : deux sorts mineurs de Druide (assistance et poussière d’étoile recommandés), lancés avec la Sagesse comme sorts de Rôdeur.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Attaque deux fois au lieu d’une lorsqu’il entreprend l’action Attaque.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "chasseur",
+    "nom": "Chasseur",
+    "aptitudes": [
+      {
+        "id": "savoir-du-chasseur",
+        "nom": "Savoir du Chasseur",
+        "niveau": 3,
+        "resume": "Connaît les Immunités, Résistances et Vulnérabilités de la créature marquée par sa marque du chasseur.",
+        "effets": []
+      },
+      {
+        "id": "proie-du-chasseur",
+        "nom": "Proie du chasseur",
+        "niveau": 3,
+        "resume": "Choisit une option, modifiable à chaque Repos court ou long : Briseur de hordes (une fois par tour, attaque supplémentaire avec la même arme contre une autre créature à 1,50 m de la cible) ou Goût du sang (une fois par tour, +1d8 dégâts contre une créature qui a perdu des points de vie).",
+        "effets": []
+      }
+    ]
+  }
+}
