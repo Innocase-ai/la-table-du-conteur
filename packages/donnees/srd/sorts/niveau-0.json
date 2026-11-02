@@ -1,0 +1,551 @@
+[
+  {
+    "id": "aspersion-acide",
+    "nom": "Aspersion acide",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 1.5
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une bulle d'acide explose en un point à portée en une sphère de 1,50 m de rayon : chaque créature prise dedans fait un jet de sauvegarde de Dextérité ou subit 1d6 dégâts d'acide (rien en cas de réussite). Dégâts : 2d6 au niveau 5, 3d6 au niveau 11, 4d6 au niveau 17.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "acide"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "assistance",
+    "nom": "Assistance",
+    "niveau": 0,
+    "ecole": "divination",
+    "classes": [
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Le lanceur touche une créature consentante et choisit une compétence : jusqu'à la fin du sort (concentration, 1 minute), elle ajoute 1d4 à ses tests de caractéristique liés à cette compétence."
+  },
+  {
+    "id": "bouffee-de-poison",
+    "nom": "Bouffée de poison",
+    "niveau": 0,
+    "ecole": "nécromancie",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature : si elle touche, 1d12 dégâts de poison. Dégâts : 2d12 au niveau 5, 3d12 au niveau 11, 4d12 au niveau 17.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "1d12",
+        "type": "poison"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "contact-glacial",
+    "nom": "Contact glacial",
+    "niveau": 0,
+    "ecole": "nécromancie",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort au corps à corps contre une créature à portée d'allonge : si elle touche, 1d10 dégâts nécrotiques et la cible ne peut pas récupérer de points de vie jusqu'à la fin du prochain tour du lanceur. Dégâts : 2d10 au niveau 5, 3d10 au niveau 11, 4d10 au niveau 17.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "corps-a-corps"
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "nécrotique"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "coup-au-but",
+    "nom": "Coup au but",
+    "niveau": 0,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "S, M (une arme dont vous avez la maîtrise, d'une valeur minimale de 1 pc)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur fait une attaque avec l'arme servant à l'incantation, en utilisant sa caractéristique d'incantation (au lieu de Force ou Dextérité) pour les jets d'attaque et de dégâts ; en cas de dégâts, ils sont radiants ou ceux de l'arme, au choix. Si l'attaque touche, elle inflige en plus 1d6 dégâts radiants au niveau 5, 2d6 au niveau 11, 3d6 au niveau 17."
+  },
+  {
+    "id": "crosse-des-druides",
+    "nom": "Crosse des druides",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (du gui)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Action Bonus. Un gourdin ou un bâton de combat tenu par le lanceur utilise sa caractéristique d'incantation (au lieu de Force) pour les jets d'attaque et de dégâts au corps à corps pendant 1 minute, et son dé de dégâts passe à d8 ; les dégâts peuvent être de force ou ceux de l'arme, au choix. Dé de dégâts : d10 au niveau 5, d12 au niveau 11, 2d6 au niveau 17. Le sort prend fin si le lanceur le relance ou lâche l'arme."
+  },
+  {
+    "id": "decharge-occulte",
+    "nom": "Décharge occulte",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature ou un objet : si elle touche, 1d10 dégâts de force. Au niveau 5 le sort produit 2 rayons, 3 au niveau 11 et 4 au niveau 17 ; chacun demande un jet d'attaque séparé et ils peuvent viser la même cible ou des cibles différentes.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "force"
+      }
+    ]
+  },
+  {
+    "id": "druidisme",
+    "nom": "Druidisme",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur crée à portée un petit effet naturel inoffensif, au choix : un capteur climatique qui prédit le temps des 24 prochaines heures (dure 1 round), la floraison instantanée d'une fleur ou d'un bourgeon, un effet sensoriel tenant dans un cube de 1,50 m (feuilles, brise, bruit animal, etc.), ou l'allumage/extinction d'une bougie, d'une torche ou d'un petit feu de camp."
+  },
+  {
+    "id": "elementalisme",
+    "nom": "Élémentalisme",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur contrôle les éléments pour produire un effet au choix : une brise dans un cube de 1,50 m, des embruns ou 20 cl d'eau claire (qui s'évapore en 1 minute), un nuage de fumée colorée inoffensive qui allume bougies et torches, un linceul de poussière ou un mot écrit dans la terre ou le sable, ou bien le façonnage grossier d'un cube de 30 cm de matière élémentaire pendant 1 heure."
+  },
+  {
+    "id": "eruption-ensorcelee",
+    "nom": "Éruption ensorcelée",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature ou un objet : si elle touche, 1d8 dégâts du type choisi par le lanceur (acide, feu, foudre, froid, poison, psychique ou tonnerre). Chaque 8 obtenu sur un d8 du sort permet de lancer un d8 supplémentaire, jusqu'à un nombre égal au modificateur de caractéristique d'incantation. Dégâts : 2d8 au niveau 5, 3d8 au niveau 11, 4d8 au niveau 17.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    }
+  },
+  {
+    "id": "flammes",
+    "nom": "Flammes",
+    "niveau": 0,
+    "ecole": "invocation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": false,
+    "resume": "Action Bonus. Une flamme inoffensive brûle dans la main du lanceur pendant 10 minutes (Lumière vive sur 6 m, faible sur 6 m de plus ; le sort prend fin s'il est relancé). Tant qu'elle brûle, le lanceur peut utiliser l'action Magie pour la projeter sur une cible à 18 m maximum : attaque de sort à distance, 1d8 dégâts de feu si elle touche (2d8 au niveau 5, 3d8 au niveau 11, 4d8 au niveau 17)."
+  },
+  {
+    "id": "illusion-mineure",
+    "nom": "Illusion mineure",
+    "niveau": 0,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "S, M (un peu de laine brute)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Le lanceur crée à portée soit un son (du murmure au cri, voix comprise), soit l'image d'un objet tenant dans un cube de 1,50 m, sans autre effet sensoriel. Une créature qui fait l'action Étude peut percer l'illusion par un test d'Intelligence (Investigation) contre le DD de sauvegarde des sorts du lanceur ; toute interaction physique avec l'image la dévoile. Le sort prend fin s'il est relancé."
+  },
+  {
+    "id": "lumiere",
+    "nom": "Lumière",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "barde",
+      "clerc",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, M (une luciole ou de la mousse phosphorescente)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Le lanceur touche un objet de taille G ou inférieure qui n'est porté par personne d'autre : il émet une Lumière vive sur 6 m et une Lumière faible sur 6 m de plus, de la teinte voulue, pendant 1 heure. Le recouvrir d'une surface opaque bloque la lumière ; le sort prend fin s'il est relancé."
+  },
+  {
+    "id": "lumieres-dansantes",
+    "nom": "Lumières dansantes",
+    "niveau": 0,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un peu de phosphore)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Le lanceur crée jusqu'à quatre lumières de la taille d'une torche (ou les fusionne en une forme humanoïde lumineuse de taille M), chacune émettant une Lumière faible sur 3 m, pendant 1 minute (concentration). Par une action Bonus, il les déplace de 18 m maximum ; chaque lueur doit rester à 6 m d'une autre et à portée du sort, sinon elle s'évanouit."
+  },
+  {
+    "id": "main-du-mage",
+    "nom": "Main du mage",
+    "niveau": 0,
+    "ecole": "invocation",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Une main spectrale flottante apparaît à portée pour 1 minute. Elle peut manipuler un objet, ouvrir une porte ou un récipient non verrouillés, ranger ou récupérer un objet dans un conteneur ouvert ou verser une fiole. Avec l'action Magie aux tours suivants, le lanceur la recontrôle et la déplace de 9 m maximum. Elle ne peut ni attaquer, ni activer d'objet magique, ni porter plus de 5 kg, et disparaît si elle s'éloigne de plus de 9 m du lanceur ou si le sort est relancé."
+  },
+  {
+    "id": "message",
+    "nom": "Message",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "S, M (du fil de cuivre)",
+    "duree": "1 round",
+    "concentration": false,
+    "resume": "Le lanceur pointe le doigt vers une créature à portée et lui murmure un message que seule elle entend ; elle peut répondre par un murmure que seul le lanceur entend. Le sort traverse les obstacles si le lanceur connaît la cible et sait qu'elle est derrière, sauf silence magique, 30 cm de pierre, de métal ou de bois, ou une feuille de plomb."
+  },
+  {
+    "id": "moquerie-cruelle",
+    "nom": "Moquerie cruelle",
+    "niveau": 0,
+    "ecole": "enchantement",
+    "classes": [
+      "barde"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature que le lanceur voit ou entend à portée fait un jet de sauvegarde de Sagesse ou subit 1d6 dégâts psychiques et a le Désavantage à son prochain jet d'attaque avant la fin de son prochain tour. Dégâts : 2d6 au niveau 5, 3d6 au niveau 11, 4d6 au niveau 17.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "psychique"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "poussiere-d-etoile",
+    "nom": "Poussière d'étoile",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "barde",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature ou un objet : si elle touche, 1d8 dégâts radiants et, jusqu'à la fin du prochain tour du lanceur, la cible émet une Lumière faible sur 3 m et ne peut pas bénéficier de l'état Invisible. Dégâts : 2d8 au niveau 5, 3d8 au niveau 11, 4d8 au niveau 17.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "radiant"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "prestidigitation",
+    "nom": "Prestidigitation",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S",
+    "duree": "jusqu'à 1 heure",
+    "concentration": false,
+    "resume": "Le lanceur produit à portée un petit effet magique au choix : effet sensoriel instantané inoffensif, allumage ou extinction d'une bougie, torche ou petit feu, nettoyage ou souillure d'un objet de moins de 30 litres, refroidissement/réchauffement/parfum de matière inerte (1 heure), marque ou symbole sur un objet (1 heure), ou babiole non magique ou image illusoire tenant dans la main (jusqu'à la fin de son prochain tour). Jusqu'à trois effets non instantanés peuvent coexister."
+  },
+  {
+    "id": "reparation",
+    "nom": "Réparation",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (deux magnétites)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Temps d'incantation : 1 minute. Le lanceur répare une dégradation (déchirure, bris) d'un objet touché, tant qu'elle ne dépasse pas 30 cm dans aucune dimension ; il n'en reste aucune trace. Le sort peut réparer la structure d'un objet magique mais ne lui rend pas sa magie."
+  },
+  {
+    "id": "resistance",
+    "nom": "Résistance",
+    "niveau": 0,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Le lanceur touche une créature consentante et choisit un type de dégâts (acide, contondants, feu, foudre, froid, nécrotiques, perforants, poison, radiants, tonnerre ou tranchants) : quand elle subit des dégâts de ce type avant la fin du sort (concentration, 1 minute), elle réduit les dégâts subis de 1d4, une seule fois par tour."
+  },
+  {
+    "id": "stabilisation",
+    "nom": "Stabilisation",
+    "niveau": 0,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 4.5
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature à 0 point de vie mais pas morte, choisie à portée, devient Stabilisée. La portée passe à 9 m au niveau 5, 18 m au niveau 11 et 36 m au niveau 17."
+  },
+  {
+    "id": "thaumaturgie",
+    "nom": "Thaumaturgie",
+    "niveau": 0,
+    "ecole": "transmutation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V",
+    "duree": "jusqu'à 1 minute",
+    "concentration": false,
+    "resume": "Le lanceur produit une manifestation surnaturelle mineure à portée, au choix : un bruit fantôme, des flammes qui vacillent ou changent de couleur, l'ouverture ou la fermeture brusque d'une porte ou fenêtre non verrouillée, un léger tremblement de terre inoffensif, sa voix jusqu'à trois fois plus forte (Avantage aux tests de Charisme (Intimidation)) ou un changement d'aspect de ses yeux. Les effets durent 1 minute ; jusqu'à trois peuvent coexister."
+  }
+]

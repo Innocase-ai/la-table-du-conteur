@@ -52,13 +52,17 @@ export const Effet = z.discriminatedUnion('type', [
   z.object({ type: z.literal('vision_dans_le_noir'), metres: z.number() }),
   z.object({ type: z.literal('resistance'), degats: z.string() }),
   z.object({ type: z.literal('maitrise_competences'), nombre: z.number().int(), parmi: z.array(Competence).optional() }),
-  z.object({ type: z.literal('expertise'), nombre: z.number().int() }),
+  z.object({ type: z.literal('expertise'), nombre: z.number().int(), parmi: z.array(Competence).optional() }),
   z.object({ type: z.literal('maitrise_initiative') }),
   z.object({ type: z.literal('demi_maitrise_tests_non_maitrises') }),
   z.object({ type: z.literal('formation_armures'), categories: z.array(CategorieArmure) }),
   z.object({ type: z.literal('maitrise_armes'), armes: z.array(z.string()) }),
   // Amélioration de caractéristique (niveau 4, etc.) : +2 à une ou +1 à deux.
   z.object({ type: z.literal('amelioration_caracteristique') }),
+  // Sorts mineurs en plus de ceux de la classe (Thaumaturge, Mage primitif) : le joueur les choisit.
+  z.object({ type: z.literal('sorts_mineurs_supplementaires'), nombre: z.number().int() }),
+  // Sorts toujours connus, accordés par l'espèce ou une option (ids des données de sorts).
+  z.object({ type: z.literal('sorts_accordes'), sorts: z.array(z.string()) }),
 ]);
 export type Effet = z.infer<typeof Effet>;
 
@@ -320,3 +324,26 @@ export const Sort = z.object({
   special: z.string().optional(),
 });
 export type Sort = z.infer<typeof Sort>;
+
+// ---------------------------------------------------------------------------
+// Création : choix proposés au joueur (lignages, ordres, métamagie…)
+// ---------------------------------------------------------------------------
+
+export const OptionChoix = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  nom: z.string(),
+  // Paraphrase courte avec les nombres exacts (sorts accordés aux niveaux 3 et 5 compris).
+  resume: z.string(),
+  effets: z.array(Effet).default([]),
+});
+export type OptionChoix = z.infer<typeof OptionChoix>;
+
+export const ChoixCreation = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  nom: z.string(),
+  source: z.object({ type: z.enum(['espece', 'classe']), id: z.string() }),
+  // Nombre d'options à choisir au niveau de personnage 1, 2, 3, 4 et 5 (0 tant que le choix n'est pas disponible).
+  nombres: z.array(z.number().int().min(0)).length(5),
+  options: z.array(OptionChoix).min(2),
+});
+export type ChoixCreation = z.infer<typeof ChoixCreation>;

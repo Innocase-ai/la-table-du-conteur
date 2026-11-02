@@ -1,6 +1,6 @@
 // Contenu du prototype M1 : 6 héros pré-tirés de niveau 3 et quelques rencontres.
 import type { Donnees } from '../donnees';
-import { calculerFiche, type ChoixPersonnage } from '../fiche';
+import { calculerFiche, type ChoixPersonnage, type Fiche } from '../fiche';
 import { heroDepuisFiche, monstreDepuisProfil, type Kit } from './creation';
 import type { Combattant } from './etat';
 import { grilleDepuisTexte, type Grille, type Position } from './grille';
@@ -195,14 +195,31 @@ function departs(carte: string[], marque: string): Position[] {
   return [...marquees, ...sols.sort((a, b) => proximite(a) - proximite(b))];
 }
 
-export function preparerRencontre(rencontre: Rencontre, donnees: Donnees): { grille: Grille; combattants: Combattant[] } {
+/** Un héros prêt pour le combat : sa fiche calculée et son équipement de combat. */
+export interface HeroCombat {
+  fiche: Fiche;
+  kit: Kit;
+}
+
+export function herosPreTires(donnees: Donnees): HeroCombat[] {
+  return HEROS_PRE_TIRES.map((h) => {
+    const r = calculerFiche(h.choix, donnees);
+    if (!r.ok) throw new Error(`${h.choix.nom} : ${r.erreurs.join(' ')}`);
+    return { fiche: r.fiche, kit: h.kit };
+  });
+}
+
+/** Prépare une rencontre ; sans `heros`, ce sont les 6 héros pré-tirés (jusqu'à 6 héros, placés sur les cases de départ). */
+export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?: HeroCombat[]): { grille: Grille; combattants: Combattant[] } {
   const grille = grilleDepuisTexte(rencontre.carte.map((l) => l.replace(/[Hm]/g, '.')));
   const casesHeros = departs(rencontre.carte, 'H');
   const casesMonstres = departs(rencontre.carte, 'm');
-  const combattants: Combattant[] = HEROS_PRE_TIRES.map((h, i) => {
-    const r = calculerFiche(h.choix, donnees);
-    if (!r.ok) throw new Error(`${h.choix.nom} : ${r.erreurs.join(' ')}`);
-    return heroDepuisFiche(r.fiche, h.kit, donnees, casesHeros[i]!);
+  const ids = new Set<string>();
+  const combattants: Combattant[] = (heros ?? herosPreTires(donnees)).map((h, i) => {
+    let id = h.fiche.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `heros-${i + 1}`;
+    if (ids.has(id)) id = `${id}-${i + 1}`;
+    ids.add(id);
+    return heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id);
   });
   let i = 0;
   for (const { profil, nombre } of rencontre.monstres) {

@@ -1,13 +1,17 @@
 import { useMemo, useState } from 'react';
-import { ca, preparerRencontre, RENCONTRES, type Donnees, type Rencontre } from '@crpg/regles';
+import { ca, personnageComplet, bilanPersonnage, preparerRencontre, RENCONTRES, TAILLE_GROUPE, type Donnees, type Groupe, type Rencontre } from '@crpg/regles';
 import type { Reglages } from '../App';
 import { LIBELLES_DIFFICULTE, nomClasse } from '../libelles';
 import { Credits } from './Credits';
+import { herosDuGroupe } from '../groupe/stockage';
+import { Portrait } from '../createur/ui';
 import { Jeton } from './Jeton';
 
 interface Props {
   donnees: Donnees;
+  groupe: Groupe;
   initial?: Reglages;
+  onGerer: () => void;
   onCombattre: (r: Reglages) => void;
 }
 
@@ -36,13 +40,20 @@ function listeMonstres(r: Rencontre, donnees: Donnees): string {
     .join(' · ');
 }
 
-export function Accueil({ donnees, initial, onCombattre }: Props) {
+export function Accueil({ donnees, groupe, initial, onGerer, onCombattre }: Props) {
   const [rencontre, setRencontre] = useState<Rencontre>(initial?.rencontre ?? RENCONTRES[0]!);
   const [elan, setElan] = useState(initial?.elan ?? true);
   const [ia, setIa] = useState<Reglages['ia']>(initial?.ia ?? 'normale');
   const [credits, setCredits] = useState(false);
+  const [heros, setHeros] = useState<Reglages['heros']>(initial?.heros ?? 'pretires');
 
-  const heros = useMemo(() => preparerRencontre(RENCONTRES[0]!, donnees).combattants.filter((c) => c.camp === 'heros'), [donnees]);
+  const pretires = useMemo(() => preparerRencontre(RENCONTRES[0]!, donnees).combattants.filter((c) => c.camp === 'heros'), [donnees]);
+  const bilans = useMemo(() => groupe.emplacements.map((p) => (p ? { p, bilan: bilanPersonnage(p, donnees) } : null)), [groupe, donnees]);
+  const nbComplets = bilans.filter((x) => x && personnageComplet(x.bilan)).length;
+  const groupeDispo = nbComplets > 0;
+  const modeHeros: Reglages['heros'] = heros === 'groupe' && groupeDispo ? 'groupe' : 'pretires';
+  const lancer = (r: Rencontre) =>
+    onCombattre({ rencontre: r, elan, ia, heros: modeHeros, herosCombat: modeHeros === 'groupe' ? herosDuGroupe(groupe, donnees) : undefined });
   const px = (r: Rencontre) => r.monstres.reduce((s, m) => s + (donnees.monstres.get(m.profil)?.px ?? 0) * m.nombre, 0);
 
   return (
@@ -63,7 +74,7 @@ export function Accueil({ donnees, initial, onCombattre }: Props) {
                 type="button"
                 className={`rencontre ${r.id === rencontre.id ? 'choisie' : ''}`}
                 onClick={() => setRencontre(r)}
-                onDoubleClick={() => onCombattre({ rencontre: r, elan, ia })}
+                onDoubleClick={() => lancer(r)}
               >
                 <MiniCarte carte={r.carte} />
                 <div className="rencontre-texte">
@@ -101,30 +112,76 @@ export function Accueil({ donnees, initial, onCombattre }: Props) {
                 ))}
               </div>
             </div>
-            <button type="button" className="bouton-principal" onClick={() => onCombattre({ rencontre, elan, ia })}>
+            <button type="button" className="bouton-principal" onClick={() => lancer(rencontre)}>
               Combattre
             </button>
           </section>
 
           <section className="panneau">
-            <h2>La compagnie</h2>
-            <ul className="liste-heros">
-              {heros.map((h) => (
-                <li key={h.id}>
-                  <div className="liste-heros-jeton">
-                    <Jeton c={h} taille={34} />
-                  </div>
-                  <div>
-                    <strong>{h.nom}</strong>
-                    <span className="classe">{nomClasse(h, donnees)}</span>
-                  </div>
-                  <div className="stats">
-                    <span title="Points de vie">PV {h.pvMax}</span>
-                    <span title="Classe d'armure">CA {ca(h)}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <h2>Les héros</h2>
+            <div className="segments segments-heros" role="group" aria-label="Héros du combat">
+              <button type="button" className={modeHeros === 'pretires' ? 'actif' : ''} aria-pressed={modeHeros === 'pretires'} onClick={() => setHeros('pretires')}>
+                Pré-tirés
+              </button>
+              <button
+                type="button"
+                className={modeHeros === 'groupe' ? 'actif' : ''}
+                aria-pressed={modeHeros === 'groupe'}
+                disabled={!groupeDispo}
+                title={groupeDispo ? undefined : 'Créez au moins un personnage complet dans « Mon groupe ».'}
+                onClick={() => setHeros('groupe')}
+              >
+                Mon groupe
+              </button>
+            </div>
+            {modeHeros === 'pretires' ? (
+              <ul className="liste-heros">
+                {pretires.map((h) => (
+                  <li key={h.id}>
+                    <div className="liste-heros-jeton">
+                      <Jeton c={h} taille={34} />
+                    </div>
+                    <div>
+                      <strong>{h.nom}</strong>
+                      <span className="classe">{nomClasse(h, donnees)}</span>
+                    </div>
+                    <div className="stats">
+                      <span title="Points de vie">PV {h.pvMax}</span>
+                      <span title="Classe d'armure">CA {ca(h)}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul className="liste-heros">
+                {bilans.map((x) =>
+                  x && personnageComplet(x.bilan) && x.bilan.fiche ? (
+                    <li key={x.p.id}>
+                      <div className="liste-heros-jeton">
+                        <Portrait id={x.p.portrait} espece={x.p.choix.espece} classe={x.p.choix.classe} taille={30} />
+                      </div>
+                      <div>
+                        <strong>{x.p.choix.nom}</strong>
+                        <span className="classe">
+                          {donnees.classes.get(x.p.choix.classe)?.nom} · niv. {x.p.choix.niveau}
+                        </span>
+                      </div>
+                      <div className="stats">
+                        <span>PV {x.bilan.fiche.pvMax}</span>
+                        <span>CA {x.bilan.fiche.ca}</span>
+                      </div>
+                    </li>
+                  ) : null,
+                )}
+              </ul>
+            )}
+            <p className="resume-groupe">
+              Mon groupe : {nbComplets} / {TAILLE_GROUPE} personnage(s) complet(s)
+              {bilans.filter((x) => x && !personnageComplet(x.bilan)).length > 0 && `, ${bilans.filter((x) => x && !personnageComplet(x.bilan)).length} incomplet(s)`}
+            </p>
+            <button type="button" className="bouton bouton-large" onClick={onGerer}>
+              Gérer mon groupe
+            </button>
           </section>
           <p className="accueil-pied">
             <button type="button" className="lien-credits" onClick={() => setCredits(true)}>

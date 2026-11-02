@@ -1,6 +1,6 @@
 # PRD — CRPG narratif animé par LLM (nom de travail à définir)
 
-**Version :** 0.3 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
+**Version :** 0.4 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
 
 ## 1. Vision
 
@@ -57,7 +57,7 @@ Tout calcul de règle est fait par le moteur : jets, modificateurs, points de vi
 ## 4. Le groupe : création de 6 personnages
 
 - **Créateur complet :** espèce, classe, historique, caractéristiques (tableau standard, achat de points ou tirage), compétences, équipement, sorts, nom, apparence et personnalité.
-- **Portrait généré** pour chaque personnage à partir de son apparence, avec possibilité de le régénérer. Il sert ensuite de **référence visuelle** pour toutes les illustrations.
+- **Portrait choisi dans une galerie** pré-générée (par espèce et par sexe), sans personnalisation physique, comme dans Baldur's Gate. Il sert ensuite de **référence visuelle** pour toutes les illustrations.
 - **Création assistée :** le joueur décrit un personnage en une phrase, le MJ propose une fiche complète, et le moteur la valide (règles respectées) avant de l'accepter.
 - **Groupe pré-tiré** disponible pour démarrer vite.
 - **Personnalités :** chaque fiche contient des traits, idéaux, liens et défauts. Les compagnons réagissent aux choix, commentent, et peuvent entrer en conflit (esprit BG2).
@@ -156,8 +156,8 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 | --- | --- | --- |
 | **M0 — Fondations** ✅ | Dépôt, inventaire du SRD et conversion en JSON du sous-ensemble utile, moteur de base (caractéristiques, jets, fiches) | Fiches de niveau 1 à 5 calculées correctement, tests verts |
 | **M1 — Combat de cartes** 🧪 | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
-| **M2 — Test des images** | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
-| **M3 — Créateur de personnages** | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
+| **M2 — Test des images** 🧪 (outil prêt, en attente des clés) | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
+| **M3 — Créateur de personnages** 🧪 M3a (sans LLM) en cours, voir `docs/CREATION.md` ; M3b (assistant LLM) à venir | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
 | **M4 — MJ** | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
 | **M5 — Profondeur** | Pièges, énigmes, artisanat, voix des PNJ, stratège, archiviste | Chaque système est utilisé dans le chapitre |
 | **M6 — Chapitre 1** | Village + donjon, 2 à 3 heures, sauvegarde, équilibrage | Partie complète jouée et terminée |

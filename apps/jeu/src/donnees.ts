@@ -1,6 +1,6 @@
 // Chargement des données SRD côté navigateur : les JSON sont inclus par Vite au build
 // puis validés avec les schémas Zod du moteur.
-import { Arme, Armure, Classe, Don, Espece, Historique, Monstre, Sort, indexer, type Donnees } from '@crpg/regles';
+import { Arme, Armure, ChoixCreation, Classe, Don, Espece, Historique, Monstre, Sort, indexer, type Donnees } from '@crpg/regles';
 import type { z, ZodTypeAny } from 'zod';
 
 const fichiers = import.meta.glob('../../../packages/donnees/srd/**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
@@ -30,6 +30,7 @@ export function chargerDonnees(): Donnees {
     armes: indexer(charger('armes', Arme)),
     monstres: indexer(charger('monstres', Monstre)),
     sorts: indexer(charger('sorts', Sort)),
+    choix: indexer(charger('choix', ChoixCreation)),
   };
   return cache;
 }

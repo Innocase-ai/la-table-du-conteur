@@ -1,0 +1,85 @@
+{
+  "style": "Dark fantasy digital painting, refined painterly rendering with visible brushwork, dramatic warm lighting with deep shadows, muted earthy palette with copper and gold accents, realistic proportions, cinematic composition. Not pixel art, not cartoon, not anime, not 3D render.",
+  "contraintes": "No text, no letters, no logos, no watermark, no frame, no user interface.",
+  "heros": [
+    {
+      "id": "bran",
+      "nom": "Bran",
+      "resume": "guerrier humain",
+      "apparence": "a human fighter in his mid-thirties, short dark hair, stubbled jaw, a thin scar through the left eyebrow, weathered tired eyes, wearing riveted chain mail under a worn red surcoat, carrying a dented kite shield with a faded red-and-white crest and a plain longsword; steel grey and crimson palette"
+    },
+    {
+      "id": "grukk",
+      "nom": "Grukk",
+      "resume": "barbare orc",
+      "apparence": "a towering orc barbarian, grey-green skin, two short lower tusks, long black hair in thick braids, tribal scar patterns across bare muscular arms, a shoulder mantle of grey fur, a huge two-handed axe with a notched blade; ochre, bone white and slate palette"
+    },
+    {
+      "id": "pip",
+      "nom": "Pip",
+      "resume": "roublarde halfeline",
+      "apparence": "a young halfling rogue, small and quick, messy curly auburn hair, freckles, a mischievous half-smile, wearing a dark green hooded leather jacket with many pockets, a rapier at the hip and a short bow slung across the back; dark green and chestnut palette"
+    },
+    {
+      "id": "sylvaine",
+      "nom": "Sylvaine",
+      "resume": "rôdeuse elfe",
+      "apparence": "an elven ranger, long silver-blonde hair in a single braid over the shoulder, sharp pointed ears, calm grey eyes, a moss-green hooded cloak over studded leather, a leaf-shaped silver brooch, a tall longbow; forest green and silver palette"
+    },
+    {
+      "id": "hilda",
+      "nom": "Hilda",
+      "resume": "clerc naine",
+      "apparence": "a dwarven cleric, stocky and broad-shouldered, long auburn hair woven into two thick braids with bronze rings, ruddy cheeks, a kind but stern expression, wearing bronze scale mail and a tabard with a golden sun, a round shield bearing a sun emblem and a flanged mace; gold, bronze and warm brown palette"
+    },
+    {
+      "id": "ambrine",
+      "nom": "Ambrine",
+      "resume": "magicienne gnome",
+      "apparence": "a gnome wizard, small with big curious eyes behind round brass spectacles, wild white-blonde hair with a tiny braid, ink-stained fingers, a deep blue robe embroidered with silver stars, a gnarled quarterstaff topped with a softly glowing violet crystal, a spellbook tied at the belt; deep blue and violet palette"
+    }
+  ],
+  "monstres": [
+    {
+      "id": "chef-gobelin",
+      "nom": "Chef gobelin",
+      "apparence": "a goblin chieftain, wiry with mottled green skin, oversized pointed ears, a cruel grin of crooked teeth, wearing a patchwork of stolen armour plates and a rusty crown made from a pot lid, holding a curved scimitar"
+    },
+    {
+      "id": "ogre",
+      "nom": "Ogre",
+      "apparence": "a hulking ogre, pale sagging skin covered in warts and scars, a heavy brow, tiny cruel eyes, a crude hide kilt, a splintered tree trunk as a club"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "embuscade",
+      "nom": "Embuscade sur la route",
+      "format": "paysage",
+      "references": ["bran", "grukk", "pip", "sylvaine", "hilda", "ambrine"],
+      "description": "Wide cinematic shot of all six heroes on a muddy forest road at dusk, caught in an ambush: goblins leap out of the bushes and a snarling dire wolf charges from the left. Bran and Grukk are at the front, Sylvaine draws her bow, Pip is crouched with her rapier, Hilda raises her shield and Ambrine casts a spell with her glowing staff. Misty pine forest, low orange light."
+    },
+    {
+      "id": "crypte",
+      "nom": "La crypte",
+      "format": "paysage",
+      "references": ["bran", "hilda", "ambrine"],
+      "description": "Three heroes in a crumbling stone crypt lit by torches and a sickly green glow: Bran holds the line with his shield, Hilda's mace glows with golden light against the undead, Ambrine reads from her spellbook. Skeletons claw their way out of open sarcophagi in the background. Dust, cobwebs, broken pillars."
+    },
+    {
+      "id": "taverne-pip",
+      "nom": "Conversation à la taverne",
+      "format": "paysage",
+      "references": ["pip"],
+      "description": "Intimate tavern scene lit by candles: Pip leans over a worn wooden table, talking in a low voice to a hooded stranger seen from behind, a half-finished mug in front of her, a suspicious innkeeper in the background wiping a glass. Warm amber light, smoke, wooden beams."
+    },
+    {
+      "id": "chef-gobelin",
+      "nom": "Le chef gobelin",
+      "format": "carre",
+      "references": [],
+      "monstre": "chef-gobelin",
+      "description": "Portrait of the monster, waist-up, snarling at the viewer, torchlit cave background with a hint of bones and stolen loot."
+    }
+  ]
+}

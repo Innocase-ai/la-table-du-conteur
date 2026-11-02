@@ -1,37 +1,134 @@
 {
   "id": "magicien",
   "nom": "Magicien",
-  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["int"] },
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "int"
+    ]
+  },
   "deVie": 6,
-  "sauvegardes": ["int", "sag"],
+  "sauvegardes": [
+    "int",
+    "sag"
+  ],
   "competences": {
     "nombre": 2,
-    "parmi": ["arcanes", "histoire", "intuition", "investigation", "medecine", "nature", "religion"]
+    "parmi": [
+      "arcanes",
+      "histoire",
+      "intuition",
+      "investigation",
+      "medecine",
+      "nature",
+      "religion"
+    ]
   },
-  "maitrisesArmes": ["courantes"],
+  "maitrisesArmes": [
+    "courantes"
+  ],
   "formationArmures": [],
   "outils": [],
   "equipementDepart": [
     {
       "id": "A",
-      "objets": ["2 dagues", "focaliseur arcanique (bâton de combat)", "robe", "grimoire", "paquetage d’érudit"],
+      "objets": [
+        "2 dagues",
+        "focaliseur arcanique (bâton de combat)",
+        "robe",
+        "grimoire",
+        "paquetage d’érudit"
+      ],
       "po": 5
     },
-    { "id": "B", "objets": [], "po": 55 }
+    {
+      "id": "B",
+      "objets": [],
+      "po": 55
+    }
   ],
   "incantation": {
     "type": "complet",
     "caracteristique": "int",
-    "sortsMineurs": [3, 3, 3, 4, 4],
-    "sortsPrepares": [4, 5, 6, 7, 9],
-    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+    "sortsMineurs": [
+      3,
+      3,
+      3,
+      4,
+      4
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ]
+    ]
   },
   "progression": [
-    { "niveau": 1, "bonusMaitrise": 2, "aptitudes": ["Sorts", "Savoir rituel", "Restauration magique"], "colonnes": {} },
-    { "niveau": 2, "bonusMaitrise": 2, "aptitudes": ["Érudition"], "colonnes": {} },
-    { "niveau": 3, "bonusMaitrise": 2, "aptitudes": ["Sous-classe de Magicien"], "colonnes": {} },
-    { "niveau": 4, "bonusMaitrise": 2, "aptitudes": ["Amélioration de caractéristique"], "colonnes": {} },
-    { "niveau": 5, "bonusMaitrise": 3, "aptitudes": ["Mémorisation de sort"], "colonnes": {} }
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Savoir rituel",
+        "Restauration magique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Érudition"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe de Magicien"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Mémorisation de sort"
+      ],
+      "colonnes": {}
+    }
   ],
   "aptitudes": [
     {
@@ -60,14 +157,32 @@
       "nom": "Érudition",
       "niveau": 2,
       "resume": "Reçoit l’Expertise dans une compétence maîtrisée parmi Arcanes, Histoire, Intuition, Investigation, Médecine, Nature ou Religion.",
-      "effets": [{ "type": "expertise", "nombre": 1 }]
+      "effets": [
+        {
+          "type": "expertise",
+          "nombre": 1,
+          "parmi": [
+            "arcanes",
+            "histoire",
+            "intuition",
+            "investigation",
+            "medecine",
+            "nature",
+            "religion"
+          ]
+        }
+      ]
     },
     {
       "id": "amelioration-de-caracteristique",
       "nom": "Amélioration de caractéristique",
       "niveau": 4,
       "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
-      "effets": [{ "type": "amelioration_caracteristique" }]
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
     },
     {
       "id": "memorisation-de-sort",

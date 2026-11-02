@@ -80,6 +80,21 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
     if (!arme) throw new Error(`Arme inconnue : ${a.id}`);
     return attaquesArme(fiche, arme, !!a.botte);
   });
+  // Arts martiaux du Moine, et coup de poing pour qui n'a aucune arme.
+  const nombreForce = mods.for;
+  const colArts = fiche.colonnes['Arts martiaux'];
+  if (fiche.classe === 'moine') {
+    const carac: Caracteristique = mods.dex >= mods.for ? 'dex' : 'for';
+    attaques.push({
+      id: 'arts-martiaux', nom: 'Arts martiaux', mode: 'corps-a-corps', caracteristique: carac, bonusAttaque: mods[carac] + fiche.bonusMaitrise,
+      degats: [{ des: typeof colArts === 'string' && /^\d*d\d+$/.test(colArts) ? colArts : '1d6', bonus: mods[carac], type: 'contondant' }], allonge: 1.5, finesse: true,
+    });
+  } else if (!attaques.length) {
+    attaques.push({
+      id: 'mains-nues', nom: 'Coup de poing', mode: 'corps-a-corps', caracteristique: 'for', bonusAttaque: nombreForce + fiche.bonusMaitrise,
+      degats: [{ des: '1', bonus: nombreForce, type: 'contondant' }], allonge: 1.5, finesse: false,
+    });
+  }
   const col = fiche.colonnes;
   const nombre = (v: number | string | undefined) => (typeof v === 'number' ? v : Number(String(v ?? '0').replace(/[^\d-]/g, '')) || 0);
   const ressources: Record<string, number> = { reaction: 1, potions: kit.potions ?? 0 };
@@ -90,6 +105,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   }
   if (traits.includes('second-souffle')) ressources.secondSouffle = nombre(col['Second souffle']);
   if (traits.includes('fougue')) ressources.fougue = 1;
+  if (fiche.aptitudes.some((a) => a.id === 'attaque-supplementaire')) ressources.attaquesParAction = 2;
   if (traits.includes('survivance')) ressources.conduit = nombre(col['Conduit divin']);
   let incantation: Combattant['incantation'];
   if (fiche.incantation) {

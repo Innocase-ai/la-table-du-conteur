@@ -5,6 +5,14 @@ import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type
 import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
 import { ajouterEtat, detailsJet, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
 
+/** Sorts que le moteur de combat sait jouer fidèlement (les autres figurent sur la fiche, marqués « non jouable en combat »). */
+export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
+  'trait-de-feu', 'rayon-de-givre', 'poigne-electrique', 'flamme-sacree', 'aspersion-acide', 'bouffee-de-poison', 'contact-glacial',
+  'projectile-magique', 'bouclier', 'mains-brulantes', 'sommeil', 'soins', 'mot-de-guerison', 'benediction', 'fleau', 'eclair-tracant',
+  'bouclier-de-la-foi', 'marque-du-chasseur', 'blessure', 'vague-tonnante',
+  'rayon-ardent', 'arme-spirituelle', 'aide', 'immobilisation-de-personne', 'restauration-partielle',
+]);
+
 export interface CibleSort {
   cibles?: Combattant[];
   point?: Position;

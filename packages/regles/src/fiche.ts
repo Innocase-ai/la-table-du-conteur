@@ -9,6 +9,8 @@ import {
   VALEURS_STANDARD,
   type Valeurs,
 } from './caracteristiques';
+import { bottesPossibles, choixRequis, niveauSortMax, regleInitie, sortsEligibles } from './creation/regles-creation';
+import { equipementChoisi, type EquipementResolu } from './creation/equipement';
 import type { Donnees } from './donnees';
 import {
   CARACTERISTIQUES,
@@ -44,6 +46,17 @@ export interface ChoixPersonnage {
   expertises?: Competence[];
   armure?: string;
   bouclier?: boolean;
+  /** Options choisies pour les choix de création (lignage, ordre divin, métamagie…), par id de choix. */
+  choix?: Record<string, string[]>;
+  sortsMineurs?: string[];
+  sortsPrepares?: string[];
+  /** Sorts du don Initié à la magie, quand l'historique l'accorde. */
+  sortsInitie?: { mineurs: string[]; niveau1: string[] };
+  /** Armes dont le personnage maîtrise la botte (aptitude Bottes d'arme). */
+  bottes?: string[];
+  /** Options d'équipement de départ (A, B…) ; l'armure et le bouclier en découlent si `armure` n'est pas imposée. */
+  equipementClasse?: string;
+  equipementHistorique?: string;
 }
 
 export type NiveauMaitrise = 'aucune' | 'demi' | 'maitrise' | 'expertise';
@@ -90,6 +103,14 @@ export interface Fiche {
   colonnes: Record<string, number | string>;
   dons: string[];
   aptitudes: AptitudeAcquise[];
+  choix: Record<string, string[]>;
+  sortsMineurs: string[];
+  sortsPrepares: string[];
+  /** Sorts toujours connus, accordés par l'espèce ou une option. */
+  sortsAccordes: string[];
+  sortsInitie?: { mineurs: string[]; niveau1: string[] };
+  bottes: string[];
+  equipement?: EquipementResolu;
   avertissements: string[];
 }
 
@@ -211,6 +232,22 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
     }
     ajouter('Don', { ...don, niveau: 1 });
   }
+  // --- Options choisies (lignages, ordres, métamagie…) ---
+  for (const [idChoix, ids] of Object.entries(choix.choix ?? {})) {
+    const def = donnees.choix.get(idChoix);
+    const applicable = def && (def.source.type === 'classe' ? def.source.id === classe.id : def.source.id === espece.id);
+    if (!def || !applicable) {
+      erreurs.push(`Choix « ${idChoix} » non applicable à ${classe.nom} ${espece.nom}.`);
+      continue;
+    }
+    if (ids.length > (def.nombres[niveau - 1] ?? 0)) erreurs.push(`${def.nom} : ${def.nombres[niveau - 1] ?? 0} option(s) au plus, ${ids.length} choisie(s).`);
+    if (new Set(ids).size !== ids.length) erreurs.push(`${def.nom} : la même option est choisie deux fois.`);
+    for (const id of ids) {
+      const option = def.options.find((o) => o.id === id);
+      if (!option) erreurs.push(`${def.nom} : option inconnue « ${id} ».`);
+      else ajouter(def.nom, { id: option.id, nom: option.nom, niveau: 1, resume: option.resume, effets: option.effets });
+    }
+  }
   const tous = effets.map((e) => e.effet);
   const de = <T extends Effet['type']>(type: T) => tous.filter((e): e is Extract<Effet, { type: T }> => e.type === type);
 
@@ -269,11 +306,20 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       erreurs.push(`Une compétence supplémentaire doit être choisie parmi : ${e.parmi!.join(', ')}.`);
     }
   }
-  const expertisesAttendues = de('expertise').reduce((s, e) => s + e.nombre, 0);
+  const effetsExpertise = de('expertise');
+  const expertisesAttendues = effetsExpertise.reduce((s, e) => s + e.nombre, 0);
   const expertises = choix.expertises ?? [];
   if (expertises.length !== expertisesAttendues) {
     erreurs.push(`${expertisesAttendues} expertise(s) à choisir, ${expertises.length} fournie(s).`);
   }
+  // Une expertise restreinte à une liste (Érudition) ne peut porter que sur cette liste.
+  const libres = effetsExpertise.filter((e) => !e.parmi).reduce((s, e) => s + e.nombre, 0);
+  const restreintesExp = effetsExpertise.filter((e) => e.parmi);
+  const horsListes = expertises.filter((c) => !restreintesExp.some((e) => e.parmi!.includes(c)));
+  if (restreintesExp.length && horsListes.length > libres) {
+    erreurs.push(`Expertise limitée à : ${[...new Set(restreintesExp.flatMap((e) => e.parmi!))].join(', ')}.`);
+  }
+  if (new Set(expertises).size !== expertises.length) erreurs.push('Expertise choisie deux fois pour la même compétence.');
   for (const c of expertises) if (!maitrises.has(c)) erreurs.push(`Expertise en « ${c} » sans en avoir la maîtrise.`);
   const demiMaitrise = de('demi_maitrise_tests_non_maitrises').length > 0;
 
@@ -295,15 +341,18 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
     ...new Set([...classe.formationArmures, ...de('formation_armures').flatMap((e) => e.categories)]),
   ];
   const maitrisesArmes = [...new Set([...classe.maitrisesArmes, ...de('maitrise_armes').flatMap((e) => e.armes)])];
+  const equipement = equipementChoisi(classe.id, historique.id, choix.equipementClasse, choix.equipementHistorique, donnees);
+  if (choix.equipementClasse && !equipement) erreurs.push(`Option d'équipement inconnue : « ${choix.equipementClasse} ».`);
+  const armureId = choix.armure ?? equipement?.armure;
   let armure: Armure | undefined;
-  if (choix.armure) {
-    armure = donnees.armures.get(choix.armure);
+  if (armureId) {
+    armure = donnees.armures.get(armureId);
     if (!armure || armure.categorie === 'bouclier') erreurs.push(`Armure inconnue : « ${choix.armure} ».`);
     else if (!formationArmures.includes(armure.categorie)) {
       avertissements.push(`${armure.nom} : pas de formation à cette armure (désavantage et pas d'incantation).`);
     }
   }
-  const bouclier = !!choix.bouclier;
+  const bouclier = choix.bouclier ?? equipement?.bouclier ?? false;
   if (bouclier && !formationArmures.includes('bouclier')) {
     avertissements.push("Bouclier : pas de formation, il n'apporte pas de bonus de CA.");
   }
@@ -349,6 +398,48 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
     };
   }
 
+  // --- Sorts, bottes d'arme ---
+  const sortsAccordes = [...new Set(de('sorts_accordes').flatMap((e) => e.sorts))];
+  const mineursPermis = (incantation?.sortsMineurs ?? 0) + de('sorts_mineurs_supplementaires').reduce((s, e) => s + e.nombre, 0);
+  if (incantation) incantation.sortsMineurs = mineursPermis;
+  const sortsMineurs = choix.sortsMineurs ?? [];
+  const sortsPrepares = choix.sortsPrepares ?? [];
+  if ((sortsMineurs.length || sortsPrepares.length) && !incantation) erreurs.push(`${classe.nom} n'a pas de sorts à choisir.`);
+  if (incantation) {
+    const maxNiveau = niveauSortMax(classe, niveau);
+    const eligibles = new Map(sortsEligibles(classe.id, maxNiveau, donnees).map((s) => [s.id, s]));
+    if (sortsMineurs.length > mineursPermis) erreurs.push(`${sortsMineurs.length} sorts mineurs choisis pour ${mineursPermis} permis.`);
+    if (sortsPrepares.length > incantation.sortsPrepares) erreurs.push(`${sortsPrepares.length} sorts préparés choisis pour ${incantation.sortsPrepares} permis.`);
+    if (new Set([...sortsMineurs, ...sortsPrepares]).size !== sortsMineurs.length + sortsPrepares.length) erreurs.push('Un sort est choisi deux fois.');
+    for (const id of sortsMineurs) {
+      const s = eligibles.get(id);
+      if (!s || s.niveau !== 0) erreurs.push(`« ${id} » n'est pas un sort mineur de la liste ${classe.nom}.`);
+    }
+    for (const id of sortsPrepares) {
+      const s = eligibles.get(id);
+      if (!s || s.niveau === 0) erreurs.push(`« ${id} » n'est pas un sort de niveau 1 à ${maxNiveau} de la liste ${classe.nom}.`);
+    }
+  }
+  const regleInit = regleInitie(historique.id, idsDons);
+  if (choix.sortsInitie) {
+    if (!regleInit) erreurs.push("Aucun don Initié à la magie : pas de sorts d'initié.");
+    else {
+      const liste = sortsEligibles(regleInit.liste, 1, donnees);
+      const { mineurs, niveau1 } = choix.sortsInitie;
+      if (mineurs.length > regleInit.mineurs || niveau1.length > regleInit.niveau1) erreurs.push('Trop de sorts choisis pour le don Initié à la magie.');
+      for (const id of mineurs) if (!liste.some((s) => s.id === id && s.niveau === 0)) erreurs.push(`« ${id} » n'est pas un sort mineur de la liste ${regleInit.liste}.`);
+      for (const id of niveau1) if (!liste.some((s) => s.id === id && s.niveau === 1)) erreurs.push(`« ${id} » n'est pas un sort de niveau 1 de la liste ${regleInit.liste}.`);
+    }
+  }
+  const bottes = choix.bottes ?? [];
+  const reglesBottes = bottesPossibles(classe, niveau, donnees);
+  if (bottes.length && !reglesBottes) erreurs.push(`${classe.nom} n'a pas de bottes d'arme.`);
+  if (reglesBottes) {
+    if (bottes.length > reglesBottes.nombre) erreurs.push(`${bottes.length} bottes d'arme choisies pour ${reglesBottes.nombre} permises.`);
+    if (new Set(bottes).size !== bottes.length) erreurs.push("Une botte d'arme est choisie deux fois.");
+    for (const id of bottes) if (!reglesBottes.parmi.includes(id)) erreurs.push(`« ${id} » ne convient pas aux bottes d'arme de ${classe.nom}.`);
+  }
+
   if (erreurs.length) return { ok: false, erreurs };
 
   const sauvegardes = {} as Fiche['sauvegardes'];
@@ -387,6 +478,13 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       colonnes: classe.progression[niveau - 1]!.colonnes,
       dons: idsDons,
       aptitudes,
+      choix: choix.choix ?? {},
+      sortsMineurs,
+      sortsPrepares,
+      sortsAccordes,
+      sortsInitie: choix.sortsInitie,
+      bottes,
+      equipement,
       avertissements,
     },
   };

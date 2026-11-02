@@ -42,3 +42,28 @@ Retour du joueur : « ça manque de retour graphique, d'images des héros et enn
 - Accueil sur une colonne dans une fenêtre étroite.
 
 **Suite :** M2, des portraits peints générés par un service d'images (à choisir, clé API nécessaire).
+
+## 02/11/2026 — M2 : outil de comparaison des services d'images (préparé)
+
+- Charte graphique et fiches visuelles des 6 héros, 2 monstres et 4 scènes : `packages/donnees/visuel/charte.json`.
+- Outil `pnpm images` (`outils/images/`) : génération du lot (portraits, puis scènes avec les portraits en références), garde-fous (simulation par défaut, `--go` obligatoire, `--max`, arrêt à la première erreur, `--id` pour un essai à une image), page de comparaison HTML avec délai et coût. Tests avec un faux serveur.
+- Décision de l'utilisateur : passer par **OpenRouter**, une clé et une API pour toute une famille de modèles, avec le coût réel renvoyé à chaque image. J'ai remplacé mes trois adaptateurs directs (Gemini, OpenAI, FLUX), jamais utilisés, par un seul adaptateur OpenRouter. Cinq alias (`flux2`, `flux3`, `gemini`, `gemini-pro`, `gpt-image`) et n'importe quel identifiant `auteur/modele`.
+- À noter : FLUX 3 Image (10 références) est apparu dans le catalogue ; à comparer à FLUX.2 pro (8 références), car l'embuscade demande 6 héros.
+- Protocole, budget (environ 0,3 à 1,5 $ par modèle) et critères : `docs/M2-IMAGES.md`.
+- **Aucun appel réel n'a été fait** : en attente de la clé OpenRouter de l'utilisateur.
+
+## 02/11/2026 — M3a : créateur de personnage
+
+Cahier des charges de l'utilisateur : complet mais pas trop complexe, comme Baldur's Gate, sans personnalisation physique (visage, couleurs).
+
+- Spécification : `docs/CREATION.md` (8 écrans, Recommandé partout, Création rapide, galerie de portraits).
+- Données : 181 sorts de niveaux 0 à 3 extraits du SRD (5 agents en parallèle, convention d'identifiants partagée, détection des doublons), choix de création (lignages, ordres, manifestations, métamagie), liste des sorts jouables en combat.
+- Moteur (`packages/regles/src/creation/`) : exigences et manquants par écran, effets des choix, sorts mineurs et préparés, bottes d'arme, équipement de départ résolu depuis les objets du SRD, recommandations et création rapide, groupe de 6 (format JSON versionné, conseils de composition), kit de combat. L'indexeur refuse les identifiants en double.
+- Combat : arts martiaux du Moine, coup de poing, Attaque supplémentaire ; `preparerRencontre` accepte un groupe de 1 à 6 héros.
+- Tests : 540 personnages de création rapide valides (12 classes × 9 espèces × 5 niveaux), groupes complets joués jusqu'au bout par l'IA, aller-retour de sauvegarde, groupe conseillé sans avertissement.
+- Interface (`apps/jeu/src/createur/`, `groupe/`) : créateur à 8 écrans avec liste à gauche et description à droite, Recommandé partout, Création rapide, aperçu de fiche en direct, écran Groupe (6 emplacements, groupe conseillé, dupliquer, réordonner, export et import JSON, sauvegarde dans le navigateur), accueil avec choix « Pré-tirés | Mon groupe ». Vérifié en jouant : création à la main (clerc nain), création rapide (magicien elfe niveau 3), combat lancé avec un groupe créé.
+- Corrections après revue : message d'import de groupe en français, choix d'espèce contrôlés dès que l'espèce est choisie.
+
+**Limites connues** : portraits en tuiles d'attente (les images viennent avec M2) ; 25 sorts sur 181 jouables en combat ; sorts du don Initié à la magie non lançables ; les messages d'erreur bruts de `calculerFiche` ne sont affichés que s'aucun manque n'est listé.
+
+**À valider par toi en jouant** : le parcours est-il assez simple ? Trop de choix à l'écran 5 ? Le groupe conseillé te convient-il ?

@@ -55,7 +55,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   // Le moteur mute l'état en place : on le garde dans une ref et on force le rendu avec `version`.
   const etatRef = useRef<EtatCombat | null>(null);
   if (!etatRef.current) {
-    const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees);
+    const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees, reglages.herosCombat);
     etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan });
   }
   const etat = etatRef.current;

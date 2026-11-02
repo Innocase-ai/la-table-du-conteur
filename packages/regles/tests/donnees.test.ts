@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { ZodTypeAny } from 'zod';
-import { Arme, Armure, Classe, Don, Espece, Historique, Monstre, Sort } from '../src/schemas';
+import { Arme, Armure, ChoixCreation, Classe, Don, Espece, Historique, Monstre, Sort } from '../src/schemas';
 
 const RACINE = join(import.meta.dirname, '../../donnees/srd');
 
@@ -15,6 +15,7 @@ const COLLECTIONS: Record<string, ZodTypeAny> = {
   armes: Arme,
   monstres: Monstre,
   sorts: Sort,
+  choix: ChoixCreation,
 };
 
 describe('données SRD', () => {
