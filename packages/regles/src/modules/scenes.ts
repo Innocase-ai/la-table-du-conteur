@@ -40,6 +40,11 @@ export const SceneNarree = z.object({
   declencheur: DeclencheurScene,
   /** Une scène unique ne se joue qu'une fois (on peut la revoir depuis le journal). */
   unique: z.boolean().default(true),
+  /**
+   * `plans` : un plan à la fois, le joueur avance (« Suivant »). `film` : la scène se joue d'une traite, comme une
+   * vidéo : carton de titre, images en fondu enchaîné, texte qui défile au rythme de la voix (prologue, épilogues).
+   */
+  presentation: z.enum(['plans', 'film']).default('plans'),
   plans: z.array(PlanScene).min(1),
 });
 export type SceneNarree = z.infer<typeof SceneNarree>;

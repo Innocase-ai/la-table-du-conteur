@@ -96,6 +96,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
   const sceneNarree = moteur.vue<SceneNarree | undefined>('sceneEnCours', partie);
+  const sceneRevue = !!sceneNarree && ((partie.modules['scenes'] as { vues?: string[] } | undefined)?.vues ?? []).includes(sceneNarree.id);
   const propositions = moteur.propositions(partie);
   const encarts = moteur.encarts(partie);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
@@ -233,7 +234,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           Sac : {scene.inventaire.reduce((s, o) => s + o.quantite, 0)} objet(s)
         </div>
       </footer>
-      {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
+      {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }

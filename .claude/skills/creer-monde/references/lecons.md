@@ -52,4 +52,6 @@ Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la l
 ## Voix des scènes (après accord de l'utilisateur)
 - **Un plan, deux ou trois phrases** : la voix lit ce que le joueur voit écrit. Pas de parenthèse, d'abréviation ni de chiffre romain : écris « deux siècles », pas « 2 s. ».
 - **Relire les transcriptions** : `pnpm voix generer <id> --go` refuse déjà une lecture infidèle ou trop longue (ce que fait le modèle quand on le laisse « conter » : il invente une suite). Si un plan échoue trois fois, c'est souvent le texte : une phrase qui appelle une suite (« Que faire ? ») ou un nom difficile. Retouche le texte, puis relance seulement ce plan (supprime son MP3, `--scene <id>`).
+- **Le prologue est un film** : il ouvre l'histoire comme une bande-annonce. Un plan par idée (le passé, la menace, ce qui la retient, ce qui change maintenant, pourquoi le groupe est là, une dernière phrase qui donne envie), le dernier plan sur le lieu de départ. Le secret de la bible n'y entre pas.
+- **Retoucher un texte** : `pnpm voix generer <id> --go` refait seul les plans dont le texte a changé. Relance ensuite `pnpm jeu`, qui ne voit pas les nouveaux fichiers.
 - Budget : environ 0,001 $ par plan avec `gpt-audio-mini` ; un monde de 25 plans ≈ 0,03 $.

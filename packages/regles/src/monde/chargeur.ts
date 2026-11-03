@@ -2,7 +2,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ManifesteImages } from './images';
-import { assemblerMonde, DOSSIERS_MONDE, type ErreurChargement, type FichierMonde, type ResultatChargement } from './assemblage';
+import { assemblerMonde, DOSSIERS_MEDIAS, DOSSIERS_MONDE, type ErreurChargement, type FichierMonde, type ResultatChargement } from './assemblage';
 
 export const RACINE_MONDES = join(import.meta.dirname, '../../../mondes');
 
@@ -20,7 +20,7 @@ export function chargerMonde(dossier: string): ResultatChargement {
   const erreurs: ErreurChargement[] = [];
   // Les dossiers du format de base et ceux des modules (`scenes/`…) ; pas les images ni les voix.
   const sousDossiers = readdirSync(dossier, { withFileTypes: true })
-    .filter((d) => d.isDirectory() && !['images', 'voix'].includes(d.name))
+    .filter((d) => d.isDirectory() && !(DOSSIERS_MEDIAS as readonly string[]).includes(d.name))
     .map((d) => d.name);
   for (const nom of new Set([...DOSSIERS_MONDE, ...sousDossiers])) {
     const chemin = join(dossier, nom);

@@ -8,7 +8,7 @@
 // Documentation lue le 03/11/2026 : https://openrouter.ai/docs/features/multimodal/audio
 // (chat/completions, modalities ["text", "audio"], audio { voice, format }, stream obligatoire, base64 dans delta.audio.data).
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { scenesDu } from '../../packages/regles/src/modules/scenes';
@@ -144,11 +144,16 @@ async function main(): Promise<void> {
   const dossier = join(RACINE_MONDES, idMonde, 'voix');
   const scenes = scenesDu(r.monde).scenes.filter((s) => !option('--scene') || s.id === option('--scene'));
   const plans = scenes.flatMap((s) => s.plans.map((p, i) => ({ nom: `${s.id}-${i + 1}`, texte: p.texte })));
-  const fait = (nom: string) => existsSync(join(dossier, `${nom}.mp3`));
+  // Une voix est faite si son MP3 existe et que le texte lu est encore celui du plan (sinon : texte retouché, à relire).
+  const fait = ({ nom, texte }: { nom: string; texte: string }) => {
+    if (!existsSync(join(dossier, `${nom}.mp3`))) return false;
+    const trace = join(dossier, `${nom}.json`);
+    return !existsSync(trace) || (JSON.parse(readFileSync(trace, 'utf8')) as { texte?: string }).texte === texte;
+  };
   if (commande === 'lister') {
-    for (const p of plans) console.log(`${fait(p.nom) ? '✓' : ' '} ${p.nom.padEnd(32)} ${p.texte.length} caractères`);
+    for (const p of plans) console.log(`${fait(p) ? '✓' : ' '} ${p.nom.padEnd(32)} ${p.texte.length} caractères`);
     console.log(
-      `\n${plans.filter((p) => !fait(p.nom)).length} voix à faire sur ${plans.length} (${plans.reduce((s, p) => s + p.texte.length, 0)} caractères en tout).`,
+      `\n${plans.filter((p) => !fait(p)).length} voix à faire sur ${plans.length} (${plans.reduce((s, p) => s + p.texte.length, 0)} caractères en tout).`,
     );
     return;
   }
@@ -156,7 +161,7 @@ async function main(): Promise<void> {
   const voix = option('--voix') ?? 'onyx';
   if (!modele) throw new Error('Modèle : mini ou complet.');
   if (!(VOIX as readonly string[]).includes(voix)) throw new Error(`Voix : ${VOIX.join(', ')}.`);
-  const aFaire = plans.filter((p) => !fait(p.nom));
+  const aFaire = plans.filter((p) => !fait(p));
   console.log(`${modele}, voix ${voix} : ${aFaire.length} plan(s) à lire sur ${plans.length}.`);
   if (!args.includes('--go')) {
     for (const p of aFaire) console.log(`  [simulation] ${p.nom} (${p.texte.length} caractères)`);

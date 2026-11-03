@@ -8,7 +8,11 @@ const ESTIMATIONS = import.meta.glob('../../../packages/mondes/*/estimation.json
 const MANIFESTES = import.meta.glob('../../../packages/mondes/*/images/manifeste.json', { eager: true, import: 'default' }) as Record<string, ManifesteImages>;
 // Chargement paresseux : les données complètes et les images ne sont téléchargées qu'au début de l'aventure.
 const VOIX = import.meta.glob<string>('../../../packages/mondes/*/voix/*.{mp3,ogg,wav}', { query: '?url', import: 'default' });
-const DONNEES = import.meta.glob('../../../packages/mondes/*/*/*.json', { import: 'default' });
+// Les données de jeu seulement : ni le manifeste des images ni les fiches des voix (texte lu, coût), qui n'ont rien à
+// faire dans le jeu livré.
+const DONNEES = import.meta.glob(['../../../packages/mondes/*/*/*.json', '!../../../packages/mondes/*/images/*.json', '!../../../packages/mondes/*/voix/*.json'], {
+  import: 'default',
+});
 const IMAGES = import.meta.glob<string>('../../../packages/mondes/*/images/*.webp', { query: '?url', import: 'default' });
 
 export interface Histoire {
@@ -42,7 +46,7 @@ export function histoires(): Histoire[] {
 export async function chargerHistoire(id: string): Promise<DonneesMonde> {
   const brut = Object.entries(FICHIERS).find(([c]) => dossier(c) === id)?.[1];
   const prefixe = `../../../packages/mondes/${id}/`;
-  const entrees = Object.entries(DONNEES).filter(([c]) => c.startsWith(prefixe) && !c.includes('/images/'));
+  const entrees = Object.entries(DONNEES).filter(([c]) => c.startsWith(prefixe));
   const fichiers = await Promise.all(entrees.map(async ([c, charger]) => ({ chemin: c.slice(prefixe.length), contenu: await charger() })));
   const r = assemblerMonde(brut, fichiers);
   if (!r.ok) throw new Error(`Histoire « ${id} » invalide : ${r.erreurs.map((e) => `${e.fichier} — ${e.message}`).join(' ; ')}`);

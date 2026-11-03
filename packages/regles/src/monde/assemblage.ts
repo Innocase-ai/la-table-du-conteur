@@ -37,12 +37,15 @@ function lire<T extends { id: string }>(fichiers: FichierMonde[], nom: string, s
   return index;
 }
 
+/** Les dossiers de fichiers livrés avec le monde (images, voix et leurs fiches), qui ne sont pas des données de jeu. */
+export const DOSSIERS_MEDIAS = ['images', 'voix'] as const;
+
 /** Les dossiers que le format de base ne connaît pas (`scenes/`…) : laissés aux modules, sans validation ici. */
 function extensions(fichiers: FichierMonde[]): Record<string, unknown[]> {
   const res: Record<string, unknown[]> = {};
   for (const f of [...fichiers].sort((a, b) => a.chemin.localeCompare(b.chemin))) {
     const dossier = f.chemin.split('/')[0]!;
-    if (!f.chemin.includes('/') || (DOSSIERS_MONDE as readonly string[]).includes(dossier) || dossier === 'images') continue;
+    if (!f.chemin.includes('/') || (DOSSIERS_MONDE as readonly string[]).includes(dossier) || (DOSSIERS_MEDIAS as readonly string[]).includes(dossier)) continue;
     (res[dossier] ??= []).push(...(Array.isArray(f.contenu) ? f.contenu : [f.contenu]));
   }
   return res;

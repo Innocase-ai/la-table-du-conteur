@@ -179,3 +179,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 
 - 25 plans lus par `openai/gpt-audio-mini` (voix `onyx`) : 4,4 Mo de MP3, 0,025 $.
 - Deux pièges du modèle audio : il inventait une suite après le texte, et à `temperature: 0` l'audio bouclait 13 minutes (0,04 $ perdus). L'outil vérifie maintenant la transcription mot à mot, la durée (coupure du flux au-delà du double attendu), retire les silences, refait jusqu'à trois fois, plafonne la dépense et garde chaque transcription à côté du MP3.
+
+## 03/11/2026 — Le prologue en film
+
+- Nouvelle présentation des scènes narrées, « film » : carton de titre, fondus enchaînés, texte qui défile au rythme de la voix, « Commencer l'aventure » à la fin. Le prologue du Val passe à 6 plans (Haute-Forge, Val, champ de cendre, Lanterne, col fermé, Veillecendre), environ 70 s, voix refaites (0,004 $).
+- `pnpm voix` refait un plan dont le texte a changé. Corrigé : le client chargeait les fiches des voix (`voix/*.json`) avec les données du monde.
+- Vérifié dans le jeu : les six voix enregistrées s'enchaînent, le texte défile centré, le titre revient à la fin.

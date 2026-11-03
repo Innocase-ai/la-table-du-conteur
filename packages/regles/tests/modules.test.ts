@@ -139,7 +139,7 @@ describe('module Scènes narrées', () => {
     let p = depart();
     expect(file(p)).toEqual(['ouverture']);
     expect(p.journal).toContainEqual({ type: 'sceneNarree', scene: 'ouverture' });
-    expect(moteur.vue<{ id: string; plans: unknown[] }>('sceneEnCours', p)).toMatchObject({ id: 'ouverture' });
+    expect(moteur.vue<{ id: string; plans: unknown[] }>('sceneEnCours', p)).toMatchObject({ id: 'ouverture', presentation: 'film' });
     p = moteur.executer(p, { type: 'terminerScene', scene: 'ouverture' }).partie;
     expect(file(p)).toEqual([]);
     expect(vues(p)).toEqual(['ouverture']);
@@ -161,6 +161,10 @@ describe('module Scènes narrées', () => {
     p = moteur.executer(p, { type: 'terminerScene', scene: 'la-haute-forge' }).partie;
     p = moteur.executer(moteur.executer(p, { type: 'aller', vers: 'haute-forge' }).partie, { type: 'aller', vers: 'hf-hall-du-sceau' }).partie;
     expect(file(p)).toEqual([]);
+  });
+
+  it('les fichiers livrés avec le monde (images, voix et leurs fiches) ne sont pas des données de module', () => {
+    expect(Object.keys(r.monde.extensions ?? {})).toEqual(['scenes']);
   });
 
   it('la validation signale une scène qui cite un lieu, une quête ou une image inexistants', () => {
