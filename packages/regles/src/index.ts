@@ -22,3 +22,4 @@ export * from './creation/kit';
 export * from './monde/schemas';
 export * from './monde/etat';
 export * from './monde/validation';
+export * from './monde/images';

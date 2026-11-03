@@ -136,7 +136,7 @@ Leçons des premiers lieux :
 - **Refus de modération : 9 sur 255**, tous résolus par une retouche de texte dans `packages/mondes/val-des-cendres/images.json` : corps gelé, silhouettes allongées, « cadavre en décomposition », petite fille de fer, un sergent-armure (refus sans motif précis). Les mots qui déclenchent : corps, cadavre, enfant, brûlures, silhouettes couchées.
 - **Un délai dépassé** (300 s) sur un appel : le lot s'arrête alors ; relancer la même commande reprend où il s'est arrêté.
 - **Espèces inconnues** (armure animée, construction de fer…) : le prompt dit « être fantastique non humain » au lieu de « homme de l'espèce X », et l'âge n'est donné que s'il est numérique.
-- **Reste à faire :** relire les 255 images (vérifié à l'œil : lieux 1 à 8 du village, zombi, Brunhild, sergent Brise-fer) ; branchement dans le client, avec un manifeste id → fichier ; export vers un dossier versionné ou un stockage quand le format sera décidé.
+- **Relu en entier le 03/11/2026** (planches de 12) : voir « Images livrées avec le monde » plus bas.
 
 ## Galerie de portraits du créateur (03/11/2026)
 
@@ -145,7 +145,21 @@ Les 54 portraits (9 espèces × 2 sexes × 3 visages) sont **du moteur, pas d'un
 - **Données :** `packages/donnees/visuel/portraits.json` (les 54 ids, lus par le créateur) et `galerie.json` (traits de chaque espèce, en anglais, et description de chacun des 54 visages : âge, peau, cheveux, regard). Un test vérifie que les deux fichiers se correspondent et qu'aucun visage n'est décrit deux fois.
 - **Prompt :** charte + « portrait d'un·e <sexe> de l'espèce <traits> » + visage décrit + **tenue de voyage neutre, sans armure, arme, symbole sacré ni outil** (le joueur choisit sa classe après) + buste de trois quarts sur fond sombre.
 - **Génération :** `pnpm images galerie [--service klein] [--go]` écrit dans `sorties/images/galerie/<id>.png` ; on peut la relancer, elle ne refait que les manquantes. Résultat : 54 images en 5 min avec Klein, 0,49 $, aucun refus.
-- **Installation :** `python3 outils/images/installer-galerie.py` réduit les PNG en WebP 512 px (2,1 Mo les 54) vers `apps/jeu/src/portraits/`, **versionné** : le créateur les trouve par `import.meta.glob`. Les PNG d'origine restent dans `sorties/`.
+- **Installation :** `python3 outils/images/installer.py galerie` réduit les PNG en WebP 512 px (2,1 Mo les 54) vers `apps/jeu/src/portraits/`, **versionné** : le créateur les trouve par `import.meta.glob`. Les PNG d'origine restent dans `sorties/`.
 - **Pour changer ou ajouter un visage :** éditer `galerie.json` (et `portraits.json` pour un nouvel id), effacer le PNG concerné, relancer `pnpm images galerie --go`, puis l'installation.
 - **Vérifié à l'œil :** toutes les espèces sont reconnaissables et les 6 visages de chaque espèce sont distincts. Défaut mineur : des gnomes et halfelins ont les oreilles un peu pointues malgré le prompt.
 - **Toujours non testé :** Klein avec ces portraits en référence pour les scènes du groupe.
+
+## Images livrées avec le monde (03/11/2026)
+
+**Principe : un monde est un paquet autonome, données et images.** Le moteur ne connaît aucun monde : il lit `packages/mondes/<monde>/images/manifeste.json` s'il existe, le vérifie et répond « quelle image pour cet élément ? ». Un monde sans images reste jouable (tuiles d'attente).
+
+- **Manifeste :** quatre groupes, chacun indexé par l'identifiant de l'élément du monde : `lieux`, `pnj`, `monstres` (par profil SRD, partagé par toutes les rencontres), `objets`. Valeur : nom du fichier WebP dans `images/`.
+- **Moteur :** `packages/regles/src/monde/images.ts` (`ManifesteImages`, `imageDe`, `verifierImages`) et `chargerManifesteImages(dossier)` dans le chargeur. Les tests vérifient, pour chaque monde livré, que le manifeste ne cite que des éléments existants et des fichiers présents ; pour le Val des Cendres, que chaque lieu et chaque PNJ a son image.
+- **Installation :** `python3 outils/images/installer.py monde <monde>` réduit les PNG de `sorties/images/mondes/<monde>/` en WebP (lieux 960 px qualité 75, le reste 512 px qualité 80) et réécrit le manifeste. Val des Cendres : 255 images, **16 Mo** versionnés (contre 140 Mo de PNG).
+- **Chaîne complète pour un nouveau monde :** `pnpm images monde <monde> --lieu <id> --go` lieu par lieu → relecture → retouches dans `images.json` si besoin → `installer.py monde <monde>`.
+
+Relecture complète du Val des Cendres :
+- **Lieux (151) :** très bons, fidèles au texte et cohérents entre eux. Les silhouettes présentes (squelettes de la caserne, fantôme de la chambre des cartes, gardes de fer, corps du relais du col) viennent du texte du lieu.
+- **Refaits (3) :** `haute-forge`, `hf-niveau-2-ateliers` et `hf-pont-basculant` montraient de la lave alors que le texte parle de **fonte figée / morte**. Retouche dans `images.json` (« FROIDS et solidifiés, pas de lave »), régénération : corrigé. La lave reste là où le monde la veut (Veine rouge, lit de braise, pont de la Veine, Forge du Cœur).
+- **PNJ (63), monstres (25), objets (16) :** conformes (espèces, signes distinctifs, fantômes translucides). Défaut mineur conservé : sœur Brume (halfeline) a les oreilles un peu pointues ; la momie porte un collier égyptien.

@@ -2,6 +2,7 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { ZodType } from 'zod';
+import { ManifesteImages } from './images';
 import { Enigme, EvenementMonde, Faction, Fait, Fin, Jauge, Lieu, Monde, Objet, Piege, Pnj, Quete, RencontreMonde, TableButin, Tresor, type DonneesMonde } from './schemas';
 
 export const RACINE_MONDES = join(import.meta.dirname, '../../../mondes');
@@ -70,6 +71,13 @@ export function chargerMonde(dossier: string): ResultatChargement {
     faits: lire(dossier, 'faits', Fait, erreurs),
   };
   return erreurs.length ? { ok: false, erreurs } : { ok: true, monde: dm };
+}
+
+/** Manifeste des images du monde (`images/manifeste.json`), ou undefined si le monde n'a pas encore d'images. */
+export function chargerManifesteImages(dossier: string): ManifesteImages | undefined {
+  const chemin = join(dossier, 'images', 'manifeste.json');
+  if (!existsSync(chemin)) return undefined;
+  return ManifesteImages.parse(JSON.parse(readFileSync(chemin, 'utf8')));
 }
 
 /** Dossiers de mondes disponibles dans packages/mondes. */

@@ -1,7 +1,8 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { appliquerEffets, avancerQuetes, etatInitial, evaluerCondition, validerMonde, verifierEnigme, type DonneesMonde } from '../src';
-import { chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
+import { existsSync } from 'node:fs';
+import { appliquerEffets, avancerQuetes, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
+import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
 const srd = chargerDonneesSrd();
@@ -127,7 +128,41 @@ describe('mondes livrés', () => {
       expect(r.ok, r.ok ? '' : r.erreurs.map((e) => `${e.fichier}: ${e.message}`).join('\n')).toBe(true);
       if (r.ok && r.monde.monde.statut === 'publie') expect(validerMonde(r.monde, srd).erreurs).toEqual([]);
     });
+
+    it(`${id} : son manifeste d'images (s'il existe) ne cite que des éléments du monde et des fichiers présents`, () => {
+      const dossier = join(RACINE_MONDES, id);
+      const manifeste = chargerManifesteImages(dossier);
+      const r = chargerMonde(dossier);
+      if (!manifeste || !r.ok) return;
+      expect(verifierImages(r.monde, manifeste).inconnues).toEqual([]);
+      for (const fichiers of Object.values(manifeste)) {
+        for (const f of Object.values(fichiers)) expect(existsSync(join(dossier, 'images', f)), f).toBe(true);
+      }
+    });
   }
+});
+
+describe('images d\'un monde', () => {
+  it('signale les entrées inconnues et les lieux / PNJ sans image', () => {
+    const dm = charger();
+    const lieu = [...dm.lieux.keys()][0]!;
+    const bilan = verifierImages(dm, { lieux: { [lieu]: `lieu-${lieu}.webp`, fantome: 'lieu-fantome.webp' }, pnj: {}, monstres: { 'dragon-inexistant': 'x.webp' }, objets: {} });
+    expect(bilan.inconnues).toEqual(['lieux/fantome', 'monstres/dragon-inexistant']);
+    expect(bilan.manquantes).toContain('pnj/bertrand');
+    expect(bilan.manquantes).not.toContain(`lieux/${lieu}`);
+  });
+
+  it('Val des Cendres : tout est illustré (151 lieux, 63 PNJ, 25 monstres, 16 objets)', () => {
+    const dossier = join(RACINE_MONDES, 'val-des-cendres');
+    const r = chargerMonde(dossier);
+    const manifeste = chargerManifesteImages(dossier)!;
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(verifierImages(r.monde, manifeste).manquantes).toEqual([]);
+    expect(imageDe(manifeste, 'lieux', 'haute-forge')).toBe('lieu-haute-forge.webp');
+    expect(imageDe(manifeste, 'monstres', 'zombi')).toBe('monstre-zombi.webp');
+    expect(imageDe(undefined, 'pnj', 'brunhild')).toBeUndefined();
+  });
 });
 
 describe('Val des Cendres : parcours', () => {
