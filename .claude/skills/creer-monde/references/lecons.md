@@ -25,3 +25,14 @@ Défauts rencontrés en écrivant le premier monde, et leur remède. À relire a
 - Leurs rapports contiennent les ids qu'ils référencent hors de leur zone : vérifie-les un par un (le validateur le fait aussi).
 - Un agent qui ajoute un PNJ ou un fait au canon (ex. une survivante) : accepte si cohérent, mais mets-le au registre ou à la bible pour la suite.
 - Le catalogue d'objets et les monstres sont partagés : ne les modifie que pour **ajouter**.
+
+## Images (après l'intégration)
+Le texte des fiches devient directement le prompt d'image : ce qui est flou ou ambigu dans `visuel` / `apparence` sort faux à l'image.
+- **Dire l'état des choses, pas seulement la chose** : « canaux de fonte » dans une forge a donné de la lave partout à la Haute-Forge ; il fallait « fonte **figée, froide, noire** ». Idem pour l'eau (gelée ou courante), le feu (éteint ou vif), la lumière (d'où elle vient).
+- **Mots que le service refuse** (9 refus sur 255) : corps, cadavre, enfant (surtout près de métal ou de danger), brûlures sur la peau, silhouettes couchées. Si le MJ a besoin de ces mots, garde la fiche telle quelle et mets une version adoucie dans `packages/mondes/<id>/images.json` (`lieu-<id>`, `pnj-<id>`, `objet-<id>`, `monstre-<profil>`).
+- **Espèces** : utilise les espèces du SRD (humain, nain, elfe, halfelin, gnome, tieffelin, orc, goliath, drakéide, gobelin, hobgobelin, ogre) ; elles sont traduites dans le prompt. Pour un être hors liste (armure animée, automate, fantôme), l'`apparence` doit dire **de quoi il est fait et quelle forme il a**, car le prompt ne dit plus que « être fantastique non humain ».
+- **Âge** : écris-le sous la forme « 40 ans » ou « environ 40 ans » ; toute autre forme (« sans âge », « vieux ») n'est pas transmise.
+- **Monstres** : chaque profil utilisé par une rencontre doit avoir une fiche `apparence` **en anglais** dans `packages/donnees/visuel/charte.json` (le test l'exige). Sans elle, « Bandit » est devenu un humanoïde-hyène.
+- **Lieux** : le prompt demande « sans personne ni créature », mais ce que le `visuel` nomme (gardes de fer, squelettes, un fantôme) apparaît quand même. N'y mets que les figures que tu veux voir.
+- **Relire chaque lot à l'œil** : une image peut être belle et fausse. Fais des planches (12 images par planche, id en légende) pour tout relire vite.
+- Budget : environ 0,01 $ l'image avec Klein ; un monde de 150 lieux ≈ 250 images ≈ 2,30 $.
