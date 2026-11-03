@@ -1,6 +1,6 @@
 # Architecture
 
-Vue d'ensemble du dépôt. Détails : `PRD.md` (vision et jalons), `COMBAT.md`, `CREATION.md`, `MONDES.md`, `M2-IMAGES.md`, `SRD-INVENTAIRE.md`, `JOURNAL.md` (historique).
+Vue d'ensemble du dépôt. **Évolution prévue : `ARCHITECTURE-CIBLE.md`** (noyau à modules : état unique, commandes, événements). Détails : `PRD.md` (vision et jalons), `COMBAT.md`, `CREATION.md`, `MONDES.md`, `M2-IMAGES.md`, `SRD-INVENTAIRE.md`, `JOURNAL.md` (historique).
 
 ## Principe
 

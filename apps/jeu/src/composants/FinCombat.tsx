@@ -5,9 +5,11 @@ interface Props {
   onRejouer: () => void;
   onRetour: () => void;
   onVoir: () => void;
+  /** Combat d'une histoire : un seul bouton, retour au récit. */
+  onContinuer?: () => void;
 }
 
-export function FinCombat({ etat, onRejouer, onRetour, onVoir }: Props) {
+export function FinCombat({ etat, onRejouer, onRetour, onVoir, onContinuer }: Props) {
   const victoire = etat.vainqueur === 'heros';
   const heros = etat.combattants.filter((c) => c.camp === 'heros');
   const monstres = etat.combattants.filter((c) => c.camp === 'monstres');
@@ -44,12 +46,20 @@ export function FinCombat({ etat, onRejouer, onRetour, onVoir }: Props) {
           </div>
         </dl>
         <div className="fin-boutons">
-          <button type="button" className="bouton-principal" onClick={onRejouer}>
-            Rejouer
-          </button>
-          <button type="button" className="bouton" onClick={onRetour}>
-            Retour
-          </button>
+          {onContinuer ? (
+            <button type="button" className="bouton-principal" onClick={onContinuer}>
+              Reprendre le récit
+            </button>
+          ) : (
+            <>
+              <button type="button" className="bouton-principal" onClick={onRejouer}>
+                Rejouer
+              </button>
+              <button type="button" className="bouton" onClick={onRetour}>
+                Retour
+              </button>
+            </>
+          )}
           <button type="button" className="bouton-discret" onClick={onVoir}>
             Voir le plateau
           </button>

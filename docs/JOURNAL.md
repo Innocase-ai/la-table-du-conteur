@@ -131,3 +131,16 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Nouveau principe : **le moteur et les textes écrits portent le jeu ; le conteur intervient là où il apporte quelque chose** (saisie libre, vraies conversations, imprévus, moments forts, bouton « Raconter »). Les actions mécaniques sont des boutons qui appellent le moteur directement, gratuitement ; sans clé, le jeu reste jouable en mode « livre ».
 - Estimation refaite (tours mécaniques / tours du conteur) : Val des Cendres 918 tours dont 337 racontés ; ≈ 0,7 $ (Haiku 5.5), 4,5 $ (Sonnet 5.5), 8 $ (Opus 5.5). Haiku pressenti par défaut, à confirmer sur la qualité en M4b.
 - Nouvelle étape M4b' : récit d'arrivée de chaque lieu généré une fois par nous et livré avec le jeu.
+
+## 03/11/2026 — M4c en mode « livre » : le Val des Cendres se joue dans le navigateur
+
+- « Commencer l'aventure » : écran d'aventure (image, récit, actions du moteur en boutons, dialogue, trésors, pièges, énigmes, sorties, groupe), combats de l'histoire avec PV conservés et retour au récit, sauvegarde automatique et reprise. Sans clé ni IA.
+- Moteur : chargement pur des mondes (`assemblage.ts`, partagé Node / navigateur), verbe `commencer`.
+- Détails et vérifications : `docs/M4-CONTEUR.md` § 11.
+
+## 03/11/2026 — Analyse d'architecture : vers un moteur à modules
+
+- Demande : préparer le moteur aux ajouts (scènes narrées, inventaire, grimoire, journal de quêtes…) sans réécriture, voire changer de langage.
+- Analyse (`docs/ARCHITECTURE-CIBLE.md`) : règles saines, mais état du personnage éclaté en trois (fiche, combattant, aventurier ; d'où une potion neuve et des sorts rechargés à chaque combat de l'histoire), pas d'état racine, pas d'événements, chaque verbe déclaré trois fois.
+- Cible : noyau (état de partie unique et versionné, graine dans l'état, commandes Zod, événements, effets extensibles, registre de modules) ; chaque fonctionnalité devient un module. Langage : TypeScript conservé (Rust pour la coquille de bureau Tauri, et éventuellement l'IA du combat si une mesure le justifie).
+- Migration en 6 étapes, la première (noyau) rendant les suivantes additives.

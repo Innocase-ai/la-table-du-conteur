@@ -12,6 +12,8 @@ interface Props {
   onGroupe: () => void;
   onEscarmouche: () => void;
   onAide: () => void;
+  /** Aventure en cours (dans cette session), à reprendre. */
+  enCours?: { nom: string; onReprendre: () => void };
 }
 
 /** Taille de l'illustration de l'écran titre (pixels) : les zones ci-dessous sont dans ce repère. */
@@ -41,18 +43,19 @@ const ZONES: Zone[] = [
 ];
 
 /** Écran d'arrivée du joueur : l'histoire à vivre, le groupe à créer, l'entraînement au combat, l'aide. */
-export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouche, onAide }: Props) {
+export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouche, onAide, enCours }: Props) {
   const [credits, setCredits] = useState(false);
   const complets = groupe.emplacements.filter((p) => p && personnageComplet(bilanPersonnage(p, donnees))).length;
   const nbHistoires = histoires().length;
   const fond = imageInterface('ecran-titre');
 
   const entrees = [
+    ...(enCours ? [{ titre: "Reprendre l'aventure", detail: enCours.nom, action: enCours.onReprendre, principale: true }] : []),
     {
       titre: 'Choisir une histoire',
       detail: `${nbHistoires} histoire${nbHistoires > 1 ? 's' : ''} disponible${nbHistoires > 1 ? 's' : ''}`,
       action: onHistoires,
-      principale: true,
+      principale: !enCours,
     },
     {
       titre: 'Mon groupe',

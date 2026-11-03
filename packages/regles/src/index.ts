@@ -27,3 +27,4 @@ export * from './monde/estimation';
 export * from './monde/exploration';
 export * from './monde/dialogue';
 export * from './monde/scene';
+export * from './monde/assemblage';

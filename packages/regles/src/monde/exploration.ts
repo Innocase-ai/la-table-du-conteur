@@ -279,8 +279,7 @@ function cachettes(p: Partie, lieu: string): { cle: string; dd: number; competen
     const d = f.decouverte;
     if (d.auto || !d.dd || p.etat.faits.includes(f.fait)) continue;
     if (d.condition && !evaluerCondition(d.condition, p.etat)) continue;
-    const texte = p.dm.faits.get(f.fait)?.texte ?? f.fait;
-    res.push({ cle: `fait:${f.fait}`, dd: d.dd, competence: (d.competence ?? 'investigation') as Competence, libelle: `un indice : ${texte}`, reveler: () => p.etat.faits.push(f.fait) });
+    res.push({ cle: `fait:${f.fait}`, dd: d.dd, competence: (d.competence ?? 'investigation') as Competence, libelle: 'un indice', reveler: () => p.etat.faits.push(f.fait) });
   }
   return res;
 }
@@ -330,6 +329,14 @@ function declencherRencontre(p: Partie, r: CompteRendu, lieu: Lieu, declencheur:
     r.narrations.push(def.intro);
     return;
   }
+}
+
+/** Début de l'histoire : l'arrivée au lieu de départ (faits évidents, événements, perception, rencontre). */
+export function commencer(p: Partie): CompteRendu {
+  const r = resultat();
+  entrer(p, r, p.dm.lieux.get(p.dm.monde.depart.lieu)!);
+  suites(p, r);
+  return r;
 }
 
 /** Aller vers un lieu voisin (passage, porte, escalier, entrée d'un bâtiment, retour au lieu parent…). */
@@ -645,7 +652,7 @@ export function issueRencontre(p: Partie, rencontre: string, issue: { type: 'vic
     r.constats.push(`${alt.nom} : ${alt.resume}`);
     appliquer(p, r, alt.effets);
   } else {
-    r.constats.push(`Victoire : ${def.nom}.`);
+    r.constats.push(`Victoire : ${def.nom}${issue.px ? ` (${issue.px} PX)` : ''}.`);
     if (issue.px) p.etat.xp += issue.px;
     appliquer(p, r, def.effetsVictoire);
     for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);

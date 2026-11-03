@@ -158,3 +158,18 @@ Règles tranchées en écrivant le moteur :
 Tests (`packages/regles/tests/exploration.test.ts`, dés imposés) : trappe du cellier trouvée, piège de l'aiguille repéré puis désarmé (ou raté et déclenché), coffret crocheté et vidé (85 po, double registre) ; Nério et ses sujets ; persuasion ; mot d'ordre des cryptes ; repos long et palier de la cendre ; marche au hasard de 400 actions dans tout le Val sans erreur.
 
 Pas encore fait (M4b et suivants) : le moment de la journée (présences du soir et de la nuit), les boutiques et services, l'usage des objets, la montée de niveau, les compagnons ; les rencontres `aleatoire`.
+
+## 11. État : M4c en mode « livre » (03/11/2026)
+
+L'histoire se joue dans le navigateur, **sans clé et sans IA** : « Choisir une histoire » → « Commencer l'aventure » (groupe de 6 complet).
+
+- **Chargement** : le client charge le monde à la demande (`chargerHistoire`) ; l'assemblage et la validation sont communs avec Node (`packages/regles/src/monde/assemblage.ts`).
+- **Écran d'aventure** (`apps/jeu/src/aventure/`) : image du lieu (manifeste du monde), récit (textes de l'auteur, jets, constats, faits appris), actions du moteur en boutons à droite (personnes, fouiller, halte, dormir, trésors et pièges à portée, énigmes avec réponse et indices, sorties avec clé / crocheter / forcer), groupe en bas (portraits, PV), sac et pièces, jauges et jour en haut. La saisie libre est visible mais désactivée : c'est la place du conteur (M4b).
+- **Dialogue** : « Parler à… » ouvre le PNJ (portrait, salutation) ; ses sujets disponibles sont des boutons ; persuader, intimider, tromper.
+- **Combats de l'histoire** : une rencontre déclenchée attend (Combattre, ses alternatives avec leur jet, Se replier). « Combattre » ouvre le plateau avec les **PV actuels** du groupe et l'ambiance du lieu ; « ‹ Fuir » ou la fin du combat ramènent au récit : victoire (PX des monstres, butin, effets), défaite ou fuite (repli à 1 PV). Les héros tombés sont relevés à 1 PV après une victoire.
+- **Sauvegarde automatique** dans le navigateur après chaque action ; « Reprendre l'aventure » sur l'écran titre (en attendant la sauvegarde complète de M4d).
+- **Ce que le joueur ne voit pas** : la description MJ des lieux (il lit `resume` et `ambiance`), le texte des rumeurs (il contient la vérité pour le conteur), la liste technique des sujets.
+
+Vérifié dans le navigateur : Veillecendre, la trappe de la halle du bailli trouvée par Ilyra, le coffret crocheté par Pip qui prend l'aiguille (sauvegarde réussie, 2 dégâts), 85 po et deux objets ; l'embuscade du gué (piège repéré à la perception passive, alternatives proposées, combat gagné, 150 PX, 10 po de butin, blessures conservées) ; la reprise après rechargement ; Nério et le sujet des tieffelins.
+
+À faire ensuite : récits d'arrivée (M4b'), moment de la journée, boutiques, usage des objets et potions hors combat, montée de niveau, carte des lieux visités, journal de quêtes à l'écran.

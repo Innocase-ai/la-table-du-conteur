@@ -7,6 +7,7 @@ interface Props {
   groupe: Groupe;
   onGroupe: () => void;
   onRetour: () => void;
+  onCommencer: (monde: string) => void;
 }
 
 const nombre = (x: number) => x.toLocaleString('fr-FR', { maximumFractionDigits: 1 });
@@ -65,7 +66,7 @@ function Couverture({ h }: { h: Histoire }) {
 }
 
 /** Choix de l'histoire à vivre : chaque monde publié, avec ce qu'il faut pour le commencer. */
-export function EcranHistoires({ donnees, groupe, onGroupe, onRetour }: Props) {
+export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommencer }: Props) {
   const liste = useMemo(() => histoires(), []);
   const [choisie, setChoisie] = useState<Histoire | undefined>(liste[0]);
   const complets = groupe.emplacements.filter((p) => p && personnageComplet(bilanPersonnage(p, donnees))).length;
@@ -139,12 +140,12 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour }: Props) {
                     Niveau du groupe : {groupe.niveau} (histoire écrite pour les niveaux {choisie.monde.niveaux.min} à {choisie.monde.niveaux.max})
                   </li>
                 </ul>
-                <button type="button" className="bouton-principal" disabled title="Le conteur (maître de jeu) n'est pas encore branché.">
+                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE} onClick={() => onCommencer(choisie.monde.id)}>
                   Commencer l'aventure
                 </button>
                 <p className="histoire-bientot">
-                  Bientôt : le conteur, le maître de jeu animé par l'IA, n'est pas encore branché. L'histoire est écrite et illustrée ; elle sera jouable à
-                  l'étape suivante du projet.
+                  Mode « livre » : vous jouez avec les actions proposées et les textes de l'histoire, sans clé d'API et sans frais. Le conteur (l'IA qui répond à
+                  ce que vous écrivez) arrive à l'étape suivante.
                 </p>
               </div>
             </article>

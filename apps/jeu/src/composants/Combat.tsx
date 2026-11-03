@@ -40,6 +40,8 @@ interface Props {
   graine: number;
   onRejouer: () => void;
   onRetour: () => void;
+  /** Combat d'une histoire : pas de « Rejouer » ; à la fin (ou en fuyant), l'état final revient au récit. */
+  onFinHistoire?: (etat: EtatCombat) => void;
 }
 
 interface Selection {
@@ -51,12 +53,14 @@ interface Selection {
 const DELAI_IA = 280;
 const DELAI_IA_RAPIDE = 90;
 
-export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props) {
+export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire }: Props) {
   const ctx = useMemo(() => ({ sorts: donnees.sorts }), [donnees]);
   // Le moteur mute l'état en place : on le garde dans une ref et on force le rendu avec `version`.
   const etatRef = useRef<EtatCombat | null>(null);
   if (!etatRef.current) {
     const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees, reglages.herosCombat);
+    // Dans une histoire, les héros arrivent avec leurs PV du moment.
+    for (const c of combattants) if (c.camp === 'heros' && reglages.pvHeros?.[c.id] !== undefined) c.pv = Math.max(1, reglages.pvHeros[c.id]!);
     etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan });
   }
   const etat = etatRef.current;
@@ -333,8 +337,13 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   return (
     <div className="combat">
       <header className="combat-haut">
-        <button type="button" className="bouton-discret" onClick={onRetour} title="Retour au choix de la rencontre">
-          ‹ Escarmouche
+        <button
+          type="button"
+          className="bouton-discret"
+          onClick={onFinHistoire ? () => onFinHistoire(etat) : onRetour}
+          title={onFinHistoire ? 'Le groupe se replie et retourne au récit' : 'Retour au choix de la rencontre'}
+        >
+          {onFinHistoire ? '‹ Fuir' : '‹ Escarmouche'}
         </button>
         <Initiative etat={vue} onSurvol={setSurvolId} />
         <div className="combat-titre">
@@ -444,7 +453,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       </aside>
 
       {finAffichee && !masquerFin && (
-        <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} />
+        <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} onContinuer={onFinHistoire && (() => onFinHistoire(etat))} />
       )}
       {finAffichee && masquerFin && (
         <button type="button" className="bouton reafficher-fin" onClick={() => setMasquerFin(false)}>
