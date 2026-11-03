@@ -178,3 +178,16 @@ Un seul modèle de héros pour tout le jeu : `Personnage` (`packages/regles/src/
 Vérifié dans le navigateur : reprise d'une sauvegarde de version 1 (migrée), embuscade du défilé (Pip boit sa potion, les lanceurs dépensent leurs sorts : l'état reste après le combat), halte (PV par dé de vie, une rage regagnée, pas de sorts), nuit (sorts rendus, potion toujours bue). 370 tests verts.
 
 Prochaine étape : **3, les commandes partout** (boutons générés depuis les commandes disponibles), puis **4, Inventaire, Grimoire, Journal de quêtes**.
+
+## 8. État : étape 3 faite (03/11/2026) — les boutons viennent des commandes
+
+- **Propositions** (`Proposition`, `noyau/types.ts`) : chaque commande peut dire quelles actions concrètes elle offre maintenant (`propositions(ctx, partie)`) : un libellé, l'ordre à envoyer, un panneau (`groupe` : id, titre, ordre d'affichage, description), un élément auquel se rattacher (un trésor, une sortie verrouillée, un piège), un style, une saisie de texte (`saisie`), une raison d'être grisée (`desactivee`), ou une intention gérée par le client (`combattre`).
+- **Moteur** : `propositions(partie)` réunit celles de toutes les commandes **disponibles**, rangées par panneau. Pendant une rencontre, on ne voit donc que la rencontre ; en conversation, que la conversation.
+- **Panneaux** du jeu (`PANNEAUX`, `modules/commun.ts`) : rencontre (0), dialogue (10), personnes (20), ici (30), à portée de main (40), énigmes (50), partir (90). Un module peut en créer d'autres (un numéro d'ordre suffit).
+- **Client** : le panneau d'actions est **générique** (`Panneaux` dans `EcranAventure.tsx`) : il ne connaît aucune commande. Seuls restent spécifiques la fin de l'histoire et le portrait de l'interlocuteur.
+- **État** : le niveau d'indice atteint par énigme est désormais dans la partie (`exploration.indices`), et non plus dans l'écran.
+- **Test clé** : une marche au hasard de 300 actions, toujours prises parmi les boutons proposés, **sans un seul refus** du moteur. Un module qui propose un bouton cassé fait échouer ce test.
+
+Vérifié dans le navigateur : panneaux du départ, de l'auberge, de la conversation avec Nério (sujets, influence, terminer), « Fouiller » grisé après une fouille (« Déjà fouillé aujourd'hui »), rencontre du gué (issues avec leur compétence), piège repéré avec « Désarmer ». 374 tests verts.
+
+Prochaine étape : **4, Inventaire, Grimoire, Journal de quêtes** — les premiers vrais modules ajoutés sur le noyau.

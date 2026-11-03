@@ -28,3 +28,18 @@ export function libre(_ctx: unknown, p: { scene: { type: string } }): true | str
   if (p.scene.type === 'fin') return "L'histoire est terminée.";
   return true;
 }
+
+/** Les panneaux de l'écran d'aventure, dans l'ordre d'affichage. Un module peut en ajouter d'autres. */
+export const PANNEAUX = {
+  dialogue: (titre: string) => ({ id: 'dialogue', titre, ordre: 10 }),
+  personnes: { id: 'personnes', titre: 'Personnes', ordre: 20 },
+  ici: { id: 'ici', titre: 'Ici', ordre: 30 },
+  objets: { id: 'objets', titre: 'À portée de main', ordre: 40 },
+  enigme: (id: string, titre: string, enonce: string) => ({ id: `enigme:${id}`, titre, ordre: 50, description: enonce }),
+  partir: { id: 'partir', titre: 'Partir', ordre: 90 },
+};
+
+/** La scène d'exploration seulement (pas pendant une conversation, une rencontre ni après la fin). */
+export function enExploration(p: { scene: { type: string } }): boolean {
+  return p.scene.type === 'exploration';
+}

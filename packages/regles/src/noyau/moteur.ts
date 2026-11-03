@@ -6,7 +6,7 @@ import { etatExplorationVide } from '../monde/exploration';
 import type { Personnage } from '../personnage';
 import { differences } from './differences';
 import { migrer } from './migrations';
-import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, type Module, type Ordre, type Partie, type ResultatOrdre, type Transaction } from './types';
+import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, type Module, type Ordre, type Partie, type Proposition, type ResultatOrdre, type Transaction } from './types';
 
 export interface Moteur {
   ctx: ContexteJeu;
@@ -15,6 +15,8 @@ export interface Moteur {
   executer(partie: Partie, ordre: Ordre): ResultatOrdre;
   /** Les commandes connues, avec leur disponibilité dans la partie (pour les boutons et le conteur). */
   commandes(partie?: Partie): { type: string; module: string; description: string; commande: CommandeJeu; disponible: true | string }[];
+  /** Les actions concrètes offertes maintenant, tous modules confondus, rangées par panneau. */
+  propositions(partie: Partie): Proposition[];
   vue<T = unknown>(id: string, partie: Partie): T;
   /** Relit une partie sauvegardée (JSON) ; refuse une version inconnue. */
   charger(json: string): Partie;
@@ -104,6 +106,16 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         commande,
         disponible: partie ? (commande.disponible?.(ctx, partie) ?? true) : true,
       }));
+    },
+
+    propositions(partie) {
+      const res: Proposition[] = [];
+      for (const { commande } of index.values()) {
+        if (!commande.propositions || (commande.disponible?.(ctx, partie) ?? true) !== true) continue;
+        res.push(...commande.propositions(ctx, partie));
+      }
+      // Tri stable : par panneau, puis dans l'ordre où les modules les ont proposées.
+      return res.map((p, i) => ({ p, i })).sort((a, b) => a.p.groupe.ordre - b.p.groupe.ordre || a.i - b.i).map((x) => x.p);
     },
 
     vue<T>(id: string, partie: Partie) {

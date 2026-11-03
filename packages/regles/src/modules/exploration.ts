@@ -18,7 +18,20 @@ import {
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
 import { appliquerEtat } from '../personnage';
-import { libre, partieMonde, verser } from './commun';
+import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
+import type { ContexteJeu, Partie, Proposition } from '../noyau/types';
+
+/** La fiche de scène du moment (sorties, trésors, pièges, énigmes visibles). */
+const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 });
+
+/** Ouvrir avec la clé (si le groupe l'a), crocheter, forcer : les propositions d'un élément fermé. */
+function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: string }, element: Proposition['element'], groupe: Proposition['groupe'], cle?: string): Proposition[] {
+  const res: Proposition[] = [];
+  if (cle && (p.etat.inventaire[cle] ?? 0) > 0) res.push({ groupe, element, libelle: 'Clé', ordre: { type: 'ouvrir', cible, methode: 'cle' } });
+  res.push({ groupe, element, libelle: 'Crocheter', style: 'discret', aide: 'Escamotage, avec des outils de voleur', ordre: { type: 'ouvrir', cible, methode: 'crocheter' } });
+  res.push({ groupe, element, libelle: 'Forcer', style: 'discret', aide: 'Athlétisme', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
+  return res;
+}
 
 const Personnage = z.string().optional().describe("Id du personnage qui agit ; sans lui, le meilleur du groupe pour l'action.");
 
@@ -44,12 +57,36 @@ export const moduleExploration: Module = {
         if (r) return r;
         if (t.partie.scene.type === 'dialogue') t.partie.scene = { type: 'exploration' };
       },
+      propositions: (ctx, p) => {
+        if (!enExploration(p)) return [];
+        const sc = scene(ctx, p);
+        return sc.sorties
+          .filter((x) => x.etat !== 'verrouille')
+          .map((x) => ({
+            groupe: PANNEAUX.partir,
+            libelle: `${x.vers === sc.lieu.parent ? '↑ ' : ''}${x.nom}`,
+            aide: x.description,
+            ordre: { type: 'aller', vers: x.vers },
+            desactivee: x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
+          }));
+      },
     }),
     fouiller: commande({
       description: 'Fouiller le lieu (passages secrets, trésors cachés, pièges, indices). Une fois par lieu et par jour.',
       entree: z.object({ personnage: Personnage }),
       disponible: libre,
       executer: (t, e) => verser(t, fouiller(partieMonde(t), e.personnage)),
+      propositions: (_ctx, p) =>
+        enExploration(p)
+          ? [
+              {
+                groupe: PANNEAUX.ici,
+                libelle: 'Fouiller',
+                desactivee: p.etat.exploration.fouilles.includes(`${p.etat.lieu}:${p.etat.jour}`) ? 'Déjà fouillé aujourd’hui.' : undefined,
+                ordre: { type: 'fouiller' },
+              },
+            ]
+          : [],
     }),
     ouvrir: commande({
       description: 'Ouvrir un passage ou un trésor verrouillé : avec la clé, en crochetant (outils de voleur) ou en forçant.',
@@ -60,36 +97,103 @@ export const moduleExploration: Module = {
       }),
       disponible: libre,
       executer: (t, e) => verser(t, ouvrir(partieMonde(t), e.cible, e.methode, e.personnage)),
+      propositions: (ctx, p) => {
+        if (!enExploration(p)) return [];
+        const sc = scene(ctx, p);
+        const res: Proposition[] = [];
+        for (const x of sc.sorties.filter((y) => y.etat === 'verrouille')) {
+          const lien = ctx.dm.lieux.get(p.etat.lieu)?.liens.find((l) => l.vers === x.vers) ?? ctx.dm.lieux.get(x.vers)?.liens.find((l) => l.vers === p.etat.lieu);
+          res.push(...propositionsOuvrir(p, { lien: x.vers }, { id: `sortie:${x.vers}`, titre: `${x.nom} (verrouillé, DD ${x.dd})` }, PANNEAUX.partir, lien?.verrou?.cle));
+        }
+        for (const t of sc.tresors.filter((y) => y.etat === 'ferme')) {
+          res.push(...propositionsOuvrir(p, { tresor: t.id }, { id: `tresor:${t.id}`, titre: t.nom }, PANNEAUX.objets, ctx.dm.tresors.get(t.id)?.acces.verrou?.cle));
+        }
+        return res;
+      },
     }),
     desarmer: commande({
       description: 'Désarmer un piège repéré.',
       entree: z.object({ piege: z.string(), personnage: Personnage }),
       disponible: libre,
       executer: (t, e) => verser(t, desarmer(partieMonde(t), e.piege, e.personnage)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? scene(ctx, p)
+              .pieges.filter((x) => x.etat === 'repere')
+              .map((x) => ({ groupe: PANNEAUX.objets, element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true }, libelle: 'Désarmer', aide: x.resume, ordre: { type: 'desarmer', piege: x.id } }))
+          : [],
     }),
     prendre: commande({
       description: "Prendre le contenu d'un trésor visible et ouvert.",
       entree: z.object({ tresor: z.string() }),
       disponible: libre,
       executer: (t, e) => verser(t, prendre(partieMonde(t), e.tresor)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? scene(ctx, p)
+              .tresors.filter((x) => x.etat !== 'ferme')
+              .map((x) => ({
+                groupe: PANNEAUX.objets,
+                element: { id: `tresor:${x.id}`, titre: x.nom },
+                libelle: 'Prendre',
+                aide: x.description,
+                ordre: { type: 'prendre', tresor: x.id },
+                desactivee: x.etat === 'garde' ? 'Gardé.' : undefined,
+              }))
+          : [],
     }),
     repondreEnigme: commande({
       description: 'Proposer une réponse à une énigme du lieu (le moteur la vérifie).',
       entree: z.object({ enigme: z.string(), reponse: z.union([z.string(), z.array(z.union([z.string(), z.number(), z.boolean()])), z.record(z.string())]) }),
       disponible: libre,
       executer: (t, e) => verser(t, repondreEnigme(partieMonde(t), e.enigme, e.reponse)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? scene(ctx, p)
+              .enigmes.filter((x) => x.etat !== 'resolue')
+              .map((x) => ({ groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce), libelle: 'Répondre', saisie: { champ: 'reponse', indication: 'Votre réponse' }, ordre: { type: 'repondreEnigme', enigme: x.id } }))
+          : [],
     }),
     indiceEnigme: commande({
       description: "Chercher un indice sur une énigme (niveau 1 : vague, 3 : clair).",
       entree: z.object({ enigme: z.string(), niveau: z.number().int().min(1).max(3), personnage: Personnage }),
       disponible: libre,
       executer: (t, e) => verser(t, indiceEnigme(partieMonde(t), e.enigme, e.niveau, e.personnage)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? scene(ctx, p)
+              .enigmes.filter((x) => x.etat !== 'resolue')
+              .map((x) => {
+                const niveau = (p.etat.exploration.indices?.[x.id] ?? 0) + 1;
+                return {
+                  groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce),
+                  libelle: 'Chercher un indice',
+                  style: 'discret' as const,
+                  ordre: { type: 'indiceEnigme', enigme: x.id, niveau: Math.min(3, niveau) },
+                  desactivee: niveau > 3 ? 'Plus d’indice.' : undefined,
+                };
+              })
+          : [],
     }),
     seReposer: commande({
       description: 'Se reposer : une halte (court) ou une nuit (long), selon ce que permet le lieu.',
       entree: z.object({ duree: z.enum(['court', 'long']) }),
       disponible: libre,
       executer: (t, e) => verser(t, seReposer(partieMonde(t), e.duree)),
+      propositions: (ctx, p) =>
+        enExploration(p)
+          ? [
+              { groupe: PANNEAUX.ici, libelle: 'Halte', style: 'discret' as const, aide: 'Repos court : un dé de vie de PV, certains usages reviennent.', ordre: { type: 'seReposer', duree: 'court' } },
+              {
+                groupe: PANNEAUX.ici,
+                libelle: 'Dormir',
+                style: 'discret' as const,
+                aide: 'Repos long : PV, usages et sorts au maximum ; le temps passe.',
+                ordre: { type: 'seReposer', duree: 'long' },
+                desactivee: ctx.dm.lieux.get(p.etat.lieu)?.repos === 'impossible' ? 'Impossible de dormir ici.' : undefined,
+              },
+            ]
+          : [],
     }),
     testLibre: commande({
       description: 'Un test que les données ne prévoient pas (escalader, nager, se souvenir) : jet contre un DD de 5 à 30, sans effet sur le monde.',
@@ -125,6 +229,23 @@ export const moduleExploration: Module = {
         // La rencontre est réglée, sauf si une autre issue a échoué : le combat attend toujours.
         t.partie.scene = { type: 'exploration' };
         return verser(t, cr);
+      },
+      propositions: (ctx, p) => {
+        if (p.scene.type !== 'rencontre') return [];
+        const r = ctx.dm.rencontres.get(p.scene.rencontre);
+        if (!r) return [];
+        const groupe = { id: 'rencontre', titre: r.nom, ordre: 0, danger: true };
+        return [
+          ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
+          ...r.alternatives.map((a) => ({
+            groupe,
+            libelle: a.nom,
+            detail: a.jet ? `${a.jet.competence}` : undefined,
+            aide: a.resume,
+            ordre: { type: 'reglerRencontre', issue: 'alternative', alternative: a.id },
+          })),
+          { groupe, libelle: 'Se replier', style: 'discret' as const, ordre: { type: 'reglerRencontre', issue: 'fuite' } },
+        ];
       },
     }),
   },

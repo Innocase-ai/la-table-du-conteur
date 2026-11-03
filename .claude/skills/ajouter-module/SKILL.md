@@ -41,7 +41,8 @@ Dans `packages/regles/tests/<id>.test.ts`, avec `creerMoteur` et un vrai monde (
 
 ## 4. Brancher dans le client
 
-- Les actions : un bouton envoie `moteur.executer(partie, { type: '<commande>', … })` ; afficher `refus` sans changer la partie.
+- Les actions : **ne code pas de bouton**. Donne à chaque commande jouable par le joueur une fonction `propositions(ctx, partie)` qui renvoie les actions concrètes du moment (`Proposition`, `noyau/types.ts`) : libellé, ordre, panneau (`PANNEAUX` de `modules/commun.ts` ou un nouveau `{ id, titre, ordre }`), élément de rattachement, style, `saisie` pour un texte du joueur, `desactivee` avec la raison. L'écran d'aventure les affiche tout seul. Le test « chaque bouton proposé est jouable » (marche au hasard, `tests/noyau.test.ts`) doit rester vert : ajoute ton module au moteur de ce test si besoin.
+- Une commande réservée au conteur (comme `testLibre`) n'a pas de propositions.
 - Le récit : si le module ajoute des événements visibles, un `case` dans `EntreeRecit` (`apps/jeu/src/aventure/EcranAventure.tsx`).
 - Un panneau (Inventaire, Grimoire, Journal…) : un composant dans `apps/jeu/src/aventure/` qui lit les **vues** du module.
 - Vérifie dans le navigateur (skill `run` ou le panneau navigateur) : jouer la fonctionnalité de bout en bout, recharger la page, reprendre.

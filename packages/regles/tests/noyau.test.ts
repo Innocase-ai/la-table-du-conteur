@@ -161,3 +161,58 @@ describe('noyau : modules et réactions', () => {
     }
   });
 });
+
+describe('noyau : propositions (boutons générés depuis les commandes)', () => {
+  it('au départ : partir, fouiller, se reposer ; les panneaux sont rangés', () => {
+    const props = moteur.propositions(depart());
+    const groupes = [...new Set(props.map((x) => x.groupe.id))];
+    expect(groupes).toContain('partir');
+    expect(groupes).toContain('ici');
+    expect(props.map((x) => x.groupe.ordre)).toEqual([...props.map((x) => x.groupe.ordre)].sort((a, b) => a - b));
+    expect(props.find((x) => x.ordre?.type === 'aller' && x.ordre.vers === 'vei-auberge-dernier-feu')).toBeDefined();
+  });
+
+  it('en conversation, seuls les sujets, l’influence et « terminer » ; pendant une rencontre, seulement la rencontre', () => {
+    let p = moteur.executer(depart(), { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
+    p = moteur.executer(p, { type: 'parler', pnj: 'vei-nerio-braisemolle' }).partie;
+    const dialogue = moteur.propositions(p);
+    expect(new Set(dialogue.map((x) => x.groupe.id))).toEqual(new Set(['dialogue']));
+    expect(dialogue.some((x) => x.ordre?.type === 'parler' && x.ordre.sujet === 'les-accusations')).toBe(true);
+
+    let r = moteur.executer(depart(), { type: 'aller', vers: 'le-gue' }).partie;
+    r = moteur.executer(r, { type: 'aller', vers: 'gue-gue-a-gue' }).partie;
+    const rencontre = moteur.propositions(r);
+    expect(new Set(rencontre.map((x) => x.groupe.id))).toEqual(new Set(['rencontre']));
+    expect(rencontre[0]).toMatchObject({ libelle: 'Combattre', intention: 'combattre' });
+  });
+
+  it('une énigme propose une réponse à saisir et des indices de plus en plus clairs, retenus dans la partie', () => {
+    let p = depart();
+    p = { ...p, etat: { ...p.etat, lieu: 'cry-caserne' } };
+    const props = moteur.propositions(p).filter((x) => x.groupe.id === 'enigme:cry-e-le-mot-d-ordre');
+    expect(props.find((x) => x.saisie)?.saisie).toEqual({ champ: 'reponse', indication: 'Votre réponse' });
+    const indice = props.find((x) => x.ordre?.type === 'indiceEnigme')!;
+    p = moteur.executer(p, indice.ordre!).partie;
+    const suivant = moteur.propositions(p).find((x) => x.ordre?.type === 'indiceEnigme' && x.groupe.id === 'enigme:cry-e-le-mot-d-ordre')!;
+    expect(suivant.ordre).toMatchObject({ niveau: 2 });
+  });
+
+  it('chaque bouton proposé est jouable : une marche au hasard de 300 actions sans aucun refus', () => {
+    let p = depart(77);
+    let hasard = 0.123;
+    const suivant = () => (hasard = (hasard * 9301 + 49297) % 233280) / 233280;
+    for (let i = 0; i < 300; i++) {
+      const jouables = moteur.propositions(p).filter((x) => x.ordre && !x.saisie && !x.desactivee);
+      // Une rencontre se règle comme après un combat gagné.
+      const choix =
+        p.scene.type === 'rencontre'
+          ? ({ type: 'reglerRencontre', issue: 'victoire' } as const)
+          : jouables[Math.floor(suivant() * jouables.length)]!.ordre!;
+      const res = moteur.executer(p, choix);
+      expect(res.refus, `${JSON.stringify(choix)} à ${p.etat.lieu}`).toBeUndefined();
+      p = res.partie;
+      if (p.scene.type === 'fin') break;
+    }
+    expect(p.etat.lieuxVisites.length).toBeGreaterThan(4);
+  });
+});

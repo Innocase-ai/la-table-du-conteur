@@ -97,6 +97,32 @@ export interface Transaction {
   emettre(e: EvenementJeu): void;
 }
 
+/**
+ * Une action concrète proposée au joueur dans l'état présent (« Aller à la halle », « Crocheter le coffret ») :
+ * l'écran en fait un bouton sans connaître la commande. Les indications de présentation (panneau, ligne, style)
+ * restent génériques : un nouveau module apparaît à l'écran sans code d'interface.
+ */
+export interface Proposition {
+  /** Le panneau où ranger l'action ; les panneaux s'affichent par `ordre` croissant. */
+  groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean };
+  libelle: string;
+  /** Précision affichée en petit (rôle d'un PNJ, compétence utilisée). */
+  detail?: string;
+  /** Texte d'aide au survol. */
+  aide?: string;
+  /** La commande à envoyer au moteur. */
+  ordre?: Ordre;
+  /** Action prise en charge par le client lui-même (ouvrir l'écran de combat). */
+  intention?: 'combattre';
+  /** La commande attend un texte du joueur, placé dans ce champ de l'ordre. */
+  saisie?: { champ: string; indication: string };
+  style?: 'principal' | 'normal' | 'discret';
+  /** Les propositions d'un même élément (un trésor, une sortie) s'affichent sur une ligne, sous son titre. */
+  element?: { id: string; titre: string; danger?: boolean };
+  /** Proposition visible mais impossible maintenant, avec la raison. */
+  desactivee?: string;
+}
+
 export interface CommandeJeu<S extends ZodTypeAny = ZodTypeAny> {
   /** Ce que la commande fait, pour le joueur et pour le conteur (description de l'outil). */
   description: string;
@@ -105,6 +131,8 @@ export interface CommandeJeu<S extends ZodTypeAny = ZodTypeAny> {
   disponible?(ctx: ContexteJeu, partie: Partie): true | string;
   /** Résout la commande ; renvoie une raison pour la refuser sans rien changer. */
   executer(t: Transaction, entree: z.infer<S>): void | { refus: string };
+  /** Les actions concrètes que cette commande offre maintenant (pour les boutons). Sans fonction : aucune (outil du conteur seulement). */
+  propositions?(ctx: ContexteJeu, partie: Partie): Proposition[];
 }
 
 export type Reaction<K extends TypeEvenement = TypeEvenement> = (t: Transaction, e: EvenementJeu<K>) => void;

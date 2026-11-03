@@ -6,6 +6,7 @@ import {
   type DonneesMonde,
   type EvenementJeu,
   type FicheScene,
+  type Proposition,
   type Interlocuteur,
   type Jet,
   type Ordre,
@@ -85,16 +86,12 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const { moteur, partie } = aventure;
   const dm = moteur.ctx.dm;
   const [refus, setRefus] = useState<string>();
-  const [reponses, setReponses] = useState<Record<string, string>>({});
-  const [indices, setIndices] = useState<Record<string, number>>({});
   const recit = useRef<HTMLDivElement>(null);
   const scene = moteur.vue<FicheScene>('scene', partie);
   const interlocuteur = moteur.vue<Interlocuteur | undefined>('interlocuteur', partie);
   const image = useImage(dm.monde.id, 'lieux', scene.lieu.id);
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
-  const rencontre = partie.scene.type === 'rencontre' ? dm.rencontres.get(partie.scene.rencontre) : undefined;
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
-  const bloque = !!rencontre || !!fin;
 
   useEffect(() => {
     recit.current?.scrollTo({ top: recit.current.scrollHeight, behavior: 'smooth' });
@@ -156,32 +153,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             </button>
           </section>
         )}
-
-        {rencontre && (
-          <section className="panneau-action panneau-danger">
-            <h3>{rencontre.nom}</h3>
-            <button type="button" className="bouton-principal" onClick={onCombat}>
-              Combattre
-            </button>
-            {rencontre.alternatives.map((alt) => (
-              <button
-                key={alt.id}
-                type="button"
-                className="bouton"
-                title={alt.jet ? `${NOMS_COMPETENCES[alt.jet.competence]} DD ${alt.jet.dd}` : undefined}
-                onClick={() => jouer({ type: 'reglerRencontre', issue: 'alternative', alternative: alt.id })}
-              >
-                {alt.nom}
-                {alt.jet && <small> ({NOMS_COMPETENCES[alt.jet.competence]})</small>}
-              </button>
-            ))}
-            <button type="button" className="bouton-discret" onClick={() => jouer({ type: 'reglerRencontre', issue: 'fuite' })}>
-              Se replier
-            </button>
-          </section>
-        )}
-
-        {interlocuteur ? (
+        {interlocuteur && (
           <section className="panneau-action">
             <div className="dialogue-entete">
               <div className="dialogue-portrait" style={imagePnj ? { backgroundImage: `url(${imagePnj})` } : undefined} />
@@ -190,220 +162,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                 <small>{interlocuteur.role}</small>
               </div>
             </div>
-            <div className="liste-actions">
-              {interlocuteur.sujets.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  className="bouton"
-                  disabled={bloque}
-                  onClick={() => jouer({ type: 'parler', pnj: interlocuteur.id, sujet: s.id })}
-                >
-                  {s.mots.slice(0, 3).join(' · ')}
-                </button>
-              ))}
-            </div>
-            <div className="liste-actions liste-actions-ligne">
-              {(['persuasion', 'intimidation', 'tromperie'] as const).map((m) => (
-                <button
-                  key={m}
-                  type="button"
-                  className="bouton-discret"
-                  disabled={bloque}
-                  onClick={() => jouer({ type: 'influencer', pnj: interlocuteur.id, maniere: m })}
-                >
-                  {m === 'persuasion' ? 'Persuader' : m === 'intimidation' ? 'Intimider' : 'Tromper'}
-                </button>
-              ))}
-            </div>
-            <button type="button" className="bouton-discret" onClick={() => jouer({ type: 'quitterDialogue' })}>
-              ‹ Terminer la conversation
-            </button>
           </section>
-        ) : (
-          <>
-            {scene.pnj.length > 0 && (
-              <section className="panneau-action">
-                <h3>Personnes</h3>
-                <div className="liste-actions">
-                  {scene.pnj.map((n) => (
-                    <button key={n.id} type="button" className="bouton" disabled={bloque} onClick={() => jouer({ type: 'parler', pnj: n.id })}>
-                      Parler à {n.nom}
-                      <small> — {n.role}</small>
-                    </button>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            <section className="panneau-action">
-              <h3>Ici</h3>
-              <div className="liste-actions liste-actions-ligne">
-                <button type="button" className="bouton" disabled={bloque} onClick={() => jouer({ type: 'fouiller' })}>
-                  Fouiller
-                </button>
-                <button type="button" className="bouton-discret" disabled={bloque} onClick={() => jouer({ type: 'seReposer', duree: 'court' })}>
-                  Halte
-                </button>
-                <button
-                  type="button"
-                  className="bouton-discret"
-                  disabled={bloque || scene.lieu.repos === 'impossible'}
-                  onClick={() => jouer({ type: 'seReposer', duree: 'long' })}
-                >
-                  Dormir
-                </button>
-              </div>
-            </section>
-
-            {(scene.tresors.length > 0 || scene.pieges.some((x) => x.etat === 'repere')) && (
-              <section className="panneau-action">
-                <h3>À portée de main</h3>
-                {scene.pieges
-                  .filter((x) => x.etat === 'repere')
-                  .map((pg) => (
-                    <div key={pg.id} className="objet-action objet-danger">
-                      <span>⚠ {pg.nom}</span>
-                      <button type="button" className="bouton" disabled={bloque} onClick={() => jouer({ type: 'desarmer', piege: pg.id })}>
-                        Désarmer
-                      </button>
-                    </div>
-                  ))}
-                {scene.tresors.map((t) => {
-                  const cle = dm.tresors.get(t.id)?.acces.verrou?.cle;
-                  return (
-                    <div key={t.id} className="objet-action">
-                      <span title={t.description}>{t.nom}</span>
-                      {t.etat === 'garde' && <small>gardé</small>}
-                      {t.etat === 'ouvert' && (
-                        <button type="button" className="bouton" disabled={bloque} onClick={() => jouer({ type: 'prendre', tresor: t.id })}>
-                          Prendre
-                        </button>
-                      )}
-                      {t.etat === 'ferme' && (
-                        <span className="liste-actions-ligne">
-                          {cle && (partie.etat.inventaire[cle] ?? 0) > 0 && (
-                            <button
-                              type="button"
-                              className="bouton"
-                              disabled={bloque}
-                              onClick={() => jouer({ type: 'ouvrir', cible: { tresor: t.id }, methode: 'cle' })}
-                            >
-                              Clé
-                            </button>
-                          )}
-                          <button
-                            type="button"
-                            className="bouton-discret"
-                            disabled={bloque}
-                            onClick={() => jouer({ type: 'ouvrir', cible: { tresor: t.id }, methode: 'crocheter' })}
-                          >
-                            Crocheter
-                          </button>
-                          <button
-                            type="button"
-                            className="bouton-discret"
-                            disabled={bloque}
-                            onClick={() => jouer({ type: 'ouvrir', cible: { tresor: t.id }, methode: 'forcer' })}
-                          >
-                            Forcer
-                          </button>
-                        </span>
-                      )}
-                    </div>
-                  );
-                })}
-              </section>
-            )}
-
-            {scene.enigmes
-              .filter((e) => e.etat !== 'resolue')
-              .map((e) => (
-                <section key={e.id} className="panneau-action">
-                  <h3>{e.nom}</h3>
-                  <p className="enonce">{e.enonce}</p>
-                  <form
-                    className="enigme-reponse"
-                    onSubmit={(ev) => {
-                      ev.preventDefault();
-                      jouer({ type: 'repondreEnigme', enigme: e.id, reponse: reponses[e.id] ?? '' });
-                    }}
-                  >
-                    <input
-                      type="text"
-                      value={reponses[e.id] ?? ''}
-                      placeholder="Votre réponse"
-                      onChange={(ev) => setReponses({ ...reponses, [e.id]: ev.target.value })}
-                    />
-                    <button type="submit" className="bouton" disabled={bloque || !(reponses[e.id] ?? '').trim()}>
-                      Répondre
-                    </button>
-                  </form>
-                  <button
-                    type="button"
-                    className="bouton-discret"
-                    disabled={(indices[e.id] ?? 0) >= 3}
-                    onClick={() => {
-                      const n = (indices[e.id] ?? 0) + 1;
-                      setIndices({ ...indices, [e.id]: n });
-                      jouer({ type: 'indiceEnigme', enigme: e.id, niveau: n });
-                    }}
-                  >
-                    Chercher un indice
-                  </button>
-                </section>
-              ))}
-
-            <section className="panneau-action">
-              <h3>Partir</h3>
-              <div className="liste-actions">
-                {scene.sorties.map((s) => (
-                  <div key={s.vers} className="objet-action">
-                    <button
-                      type="button"
-                      className="bouton"
-                      disabled={bloque || s.etat !== 'libre'}
-                      onClick={() => jouer({ type: 'aller', vers: s.vers })}
-                      title={s.description}
-                    >
-                      {s.vers === scene.lieu.parent ? '↑ ' : ''}
-                      {s.nom}
-                    </button>
-                    {s.etat === 'verrouille' && (
-                      <span className="liste-actions-ligne">
-                        <button
-                          type="button"
-                          className="bouton-discret"
-                          disabled={bloque}
-                          onClick={() => jouer({ type: 'ouvrir', cible: { lien: s.vers }, methode: 'cle' })}
-                        >
-                          Clé
-                        </button>
-                        <button
-                          type="button"
-                          className="bouton-discret"
-                          disabled={bloque}
-                          onClick={() => jouer({ type: 'ouvrir', cible: { lien: s.vers }, methode: 'crocheter' })}
-                        >
-                          Crocheter
-                        </button>
-                        <button
-                          type="button"
-                          className="bouton-discret"
-                          disabled={bloque}
-                          onClick={() => jouer({ type: 'ouvrir', cible: { lien: s.vers }, methode: 'forcer' })}
-                        >
-                          Forcer
-                        </button>
-                      </span>
-                    )}
-                    {s.etat === 'bloque' && <small>infranchissable</small>}
-                  </div>
-                ))}
-              </div>
-            </section>
-          </>
         )}
+        <Panneaux propositions={moteur.propositions(partie)} jouer={jouer} onCombat={onCombat} cacherTitre={interlocuteur ? 'dialogue' : undefined} />
       </aside>
 
       <footer className="aventure-groupe">
@@ -434,6 +195,106 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         </div>
       </footer>
     </div>
+  );
+}
+
+/**
+ * Les actions proposées par les modules, rangées en panneaux. Cet affichage ne connaît aucune commande : un module
+ * qui ajoute des propositions apparaît ici sans code d'interface.
+ */
+function Panneaux({
+  propositions,
+  jouer,
+  onCombat,
+  cacherTitre,
+}: {
+  propositions: Proposition[];
+  jouer: (o: Ordre) => void;
+  onCombat: () => void;
+  cacherTitre?: string;
+}) {
+  const [saisies, setSaisies] = useState<Record<string, string>>({});
+  const panneaux: { groupe: Proposition['groupe']; items: Proposition[] }[] = [];
+  for (const p of propositions) {
+    const dernier = panneaux[panneaux.length - 1];
+    if (dernier && dernier.groupe.id === p.groupe.id) dernier.items.push(p);
+    else panneaux.push({ groupe: p.groupe, items: [p] });
+  }
+
+  const bouton = (p: Proposition, cle: string) => {
+    if (p.saisie) {
+      const valeur = saisies[cle] ?? '';
+      return (
+        <form
+          key={cle}
+          className="enigme-reponse"
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            if (p.ordre && valeur.trim()) jouer({ ...p.ordre, [p.saisie!.champ]: valeur.trim() });
+          }}
+        >
+          <input type="text" value={valeur} placeholder={p.saisie.indication} onChange={(ev) => setSaisies({ ...saisies, [cle]: ev.target.value })} />
+          <button type="submit" className="bouton" disabled={!valeur.trim() || !!p.desactivee}>
+            {p.libelle}
+          </button>
+        </form>
+      );
+    }
+    const classe = p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton';
+    const detail = p.detail ? (NOMS_COMPETENCES[p.detail as keyof typeof NOMS_COMPETENCES] ?? p.detail) : undefined;
+    return (
+      <button
+        key={cle}
+        type="button"
+        className={classe}
+        disabled={!!p.desactivee}
+        title={p.desactivee ?? p.aide}
+        onClick={() => (p.intention === 'combattre' ? onCombat() : p.ordre && jouer(p.ordre))}
+      >
+        {p.libelle}
+        {detail && <small> — {detail}</small>}
+      </button>
+    );
+  };
+
+  return (
+    <>
+      {panneaux.map(({ groupe, items }) => {
+        // Dans un panneau : les éléments (un trésor, une sortie verrouillée) sur une ligne chacun ; les actions discrètes
+        // côte à côte ; les autres en liste.
+        const blocs: { element?: Proposition['element']; items: Proposition[] }[] = [];
+        for (const p of items) {
+          const dernier = blocs[blocs.length - 1];
+          const memeBloc = p.element
+            ? dernier?.element?.id === p.element.id
+            : !dernier?.element && dernier?.items[0]?.style === 'discret' && p.style === 'discret';
+          if (dernier && memeBloc) dernier.items.push(p);
+          else blocs.push({ element: p.element, items: [p] });
+        }
+        return (
+          <section key={groupe.id} className={`panneau-action ${groupe.danger ? 'panneau-danger' : ''}`}>
+            {cacherTitre !== groupe.id && <h3>{groupe.titre}</h3>}
+            {groupe.description && <p className="enonce">{groupe.description}</p>}
+            <div className="liste-actions">
+              {blocs.map((b, i) =>
+                b.element ? (
+                  <div key={`${groupe.id}:${b.element.id}`} className={`objet-action ${b.element.danger ? 'objet-danger' : ''}`}>
+                    <span>{b.element.titre}</span>
+                    <span className="liste-actions-ligne">{b.items.map((p, j) => bouton(p, `${groupe.id}:${b.element!.id}:${j}`))}</span>
+                  </div>
+                ) : b.items.length > 1 || b.items[0]?.style === 'discret' ? (
+                  <div key={`${groupe.id}:${i}`} className="liste-actions-ligne">
+                    {b.items.map((p, j) => bouton(p, `${groupe.id}:${i}:${j}`))}
+                  </div>
+                ) : (
+                  bouton(b.items[0]!, `${groupe.id}:${i}`)
+                ),
+              )}
+            </div>
+          </section>
+        );
+      })}
+    </>
   );
 }
 

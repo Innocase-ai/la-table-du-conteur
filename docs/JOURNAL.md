@@ -156,3 +156,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - `Personnage` remplace l'aventurier : PV, ressources durables et emplacements de sorts, partagés par l'exploration et le combat (`heroCombatDe`, `appliquerEtat`). Corrige la potion offerte et les sorts rechargés à chaque combat de l'histoire.
 - Repos selon le SRD (`recuperer`, table `RECUPERATION`), événement `ressourceChange`, sauvegarde en version 2 avec la première migration.
 - Bandeau du groupe : potions et sorts restants. 370 tests verts ; vérifié en jeu.
+
+## 03/11/2026 — Étape 3 de l'architecture : les boutons viennent des commandes
+
+- `Proposition` : chaque commande décrit les actions concrètes qu'elle offre (panneau, élément, style, saisie, raison d'être grisée) ; `moteur.propositions(partie)` les réunit.
+- L'écran d'aventure affiche les panneaux de façon générique : un module ajouté apparaît sans code d'interface.
+- Test : 300 actions au hasard parmi les boutons proposés, aucun refus. 374 tests verts ; vérifié en jeu.

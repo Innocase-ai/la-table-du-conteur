@@ -27,6 +27,8 @@ export interface EtatExploration {
   evolutions: string[];
   /** Fouilles déjà faites : `<lieu>:<jour>` (une par lieu et par jour). */
   fouilles: string[];
+  /** Niveau d'indice déjà atteint par énigme (absent des sauvegardes anciennes). */
+  indices?: Record<string, number>;
 }
 
 export interface PartieMonde {
@@ -568,6 +570,8 @@ export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, per
   const e = p.dm.enigmes.get(enigme);
   if (!e || e.lieu !== p.etat.lieu) return refus("Il n'y a pas d'énigme de ce genre ici.");
   const r = resultat();
+  const indices = (p.etat.exploration.indices ??= {});
+  indices[enigme] = Math.max(indices[enigme] ?? 0, niveau);
   for (const i of e.indices.filter((x) => x.niveau <= niveau)) {
     if (i.competence && i.dd) {
       const a = choisir(p, i.competence, personnage);
