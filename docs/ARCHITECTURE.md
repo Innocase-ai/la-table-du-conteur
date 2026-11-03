@@ -10,6 +10,7 @@ Vue d'ensemble du dépôt. **Évolution prévue : `ARCHITECTURE-CIBLE.md`** (noy
 
 | Dossier | Rôle |
 | --- | --- |
+| `packages/regles/src/noyau`, `src/modules` | **Noyau** (partie unique et versionnée, commandes, événements, modules ; `ARCHITECTURE-CIBLE.md`) et modules livrés (Exploration, Dialogue) |
 | `packages/regles` | Moteur en TypeScript pur (aucune dépendance graphique ni réseau) : fiches de personnage, **combat** (`src/combat` : grille, tours, cartes, sorts, IA par simulation), **création** (`src/creation` : exigences, recommandations, groupe), **monde** (`src/monde` : schémas, état de partie, conditions et effets, validation) |
 | `packages/donnees/srd` | Données du SRD 5.2.1 français en JSON : classes, espèces, historiques, dons, armes, armures, 181 sorts, 30 monstres, 446 objets, choix de création |
 | `packages/donnees/visuel` | Charte graphique et fiches visuelles des héros, noms, galerie de portraits |

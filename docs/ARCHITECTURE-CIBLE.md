@@ -149,3 +149,17 @@ Chaque étape garde les 355 tests verts et le jeu jouable. On ne réécrit pas :
 | **6. Conteur (M4b)** | Outils générés depuis les commandes, fiche de scène tirée des vues | Le conteur se branche sans code spécifique par verbe |
 
 L'étape 1 est la plus importante : c'est elle qui rend toutes les suivantes additives.
+
+## 6. État : étape 1 faite (03/11/2026)
+
+Le noyau existe (`packages/regles/src/noyau/`) et le mode « livre » tourne dessus.
+
+- **`types.ts`** : `Partie` (JSON, versionnée : monde, graine, scène, groupe, état du monde, état des modules, journal), `CarteEvenements` (événements par type, extensible par un module avec `declare module`), `CommandeJeu` (description, schéma Zod, disponibilité, exécution), `Module` (commandes, réactions, vues, état initial), `ContexteJeu` (monde chargé, SRD).
+- **`moteur.ts`** : `creerMoteur(ctx, modules)` vérifie dépendances et doublons de commandes ; `executer(partie, ordre)` valide l'entrée, vérifie la disponibilité, travaille sur une **copie** (l'ancienne partie n'est jamais modifiée), tire les dés sur la graine **de la partie** (`generateurSur`), puis fait réagir les modules aux événements (jusqu'à 10 vagues) ; `commandes(partie)` liste les commandes et leur disponibilité ; `vue(id, partie)` ; `charger(json)` relit une sauvegarde en vérifiant sa version.
+- **`differences.ts`** : le noyau compare la partie avant et après chaque action et en tire les événements d'état (déplacement, faits appris, découvertes, objets, pièces, PX, jauges, quêtes, PV, scène, fin) : tout module qui modifie l'état produit ses événements sans rien faire de plus.
+- **Modules** (`packages/regles/src/modules/`) : **Exploration** (commencer, aller, fouiller, ouvrir, désarmer, prendre, énigmes, repos, test libre, régler une rencontre ; vue `scene`) et **Dialogue** (parler, influencer, quitter ; vue `interlocuteur`). Ils enveloppent les verbes de `monde/` sans les réécrire.
+- **Client** : l'aventure est `{ moteur, partie }` ; chaque bouton envoie une commande ; le récit est rendu depuis `partie.journal` (une nouvelle annonce « Nouvelle quête », « Quête terminée » vient gratuitement des événements) ; la sauvegarde est la `Partie` telle quelle ; un combat se règle par la commande `reglerRencontre`.
+- **Tests** (`tests/noyau.test.ts`) : immuabilité, refus (entrée invalide, commande inconnue, indisponible), dés identiques après sauvegarde et rechargement, événements d'état, réaction d'un module à un autre, dialogue en scène, rencontre bloquante puis réglée ; 365 tests verts.
+- **Vérifié dans le navigateur** : début de l'histoire, halle et cellier du bailli, reprise après rechargement, embuscade du gué (combat, 150 PX, butin, blessures conservées), conversation avec Hesta qui donne la quête « La Lanterne faiblit ».
+
+Ajouter un module : voir le skill `.claude/skills/ajouter-module/`. Prochaine étape : **2, le personnage unifié** (fin de la potion gratuite et des sorts rechargés à chaque combat).

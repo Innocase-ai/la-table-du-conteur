@@ -3,7 +3,7 @@
 // les secrets restent accessibles par les outils de consultation.
 import { attitude, pnjPresents, sujetsDisponibles } from './dialogue';
 import { evaluerCondition } from './etat';
-import { sortiesDe, type Partie } from './exploration';
+import { sortiesDe, type PartieMonde } from './exploration';
 
 export interface FicheScene {
   jour: number;
@@ -23,7 +23,7 @@ export interface FicheScene {
   fin?: string;
 }
 
-export function ficheDeScene(p: Partie): FicheScene {
+export function ficheDeScene(p: PartieMonde): FicheScene {
   const { dm, etat } = p;
   const ex = etat.exploration;
   const l = dm.lieux.get(etat.lieu)!;

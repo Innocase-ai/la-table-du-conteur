@@ -2,7 +2,7 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { type Aventurier, type CompteRendu, type Partie } from './exploration';
+import { type Aventurier, type CompteRendu, type PartieMonde } from './exploration';
 import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets } from './etat';
@@ -11,12 +11,12 @@ import { appliquerEffets } from './etat';
 export const SEUIL_HOSTILE = -30;
 export const SEUIL_AMICAL = 30;
 
-export function lieuDuPnj(p: Partie, pnj: Pnj): string {
+export function lieuDuPnj(p: PartieMonde, pnj: Pnj): string {
   return p.etat.pnjLieux[pnj.id] ?? pnj.lieu;
 }
 
 /** PNJ présents dans le lieu courant, vivants et toujours là. */
-export function pnjPresents(p: Partie): Pnj[] {
+export function pnjPresents(p: PartieMonde): Pnj[] {
   return [...p.dm.pnj.values()].filter((n) => {
     if ((p.etat.pnjEtats[n.id] ?? 'vivant') !== 'vivant') return false;
     if (lieuDuPnj(p, n) === p.etat.lieu) return true;
@@ -25,12 +25,12 @@ export function pnjPresents(p: Partie): Pnj[] {
   });
 }
 
-export function attitude(p: Partie, pnj: Pnj): number {
+export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
 }
 
 /** Sujets que le PNJ accepte d'aborder maintenant. */
-export function sujetsDisponibles(p: Partie, pnj: Pnj): Pnj['sujets'] {
+export function sujetsDisponibles(p: PartieMonde, pnj: Pnj): Pnj['sujets'] {
   const a = attitude(p, pnj);
   return pnj.sujets.filter(
     (s) =>
@@ -44,7 +44,7 @@ function vide(): CompteRendu {
   return { ok: true, jets: [], constats: [], revele: [], narrations: [] };
 }
 
-function present(p: Partie, id: string): Pnj | CompteRendu {
+function present(p: PartieMonde, id: string): Pnj | CompteRendu {
   const pnj = p.dm.pnj.get(id);
   if (!pnj) return { ...vide(), ok: false, refus: `PNJ inconnu : ${id}.` };
   if (!pnjPresents(p).some((x) => x.id === id)) return { ...vide(), ok: false, refus: `${pnj.nom} n'est pas ici.` };
@@ -55,7 +55,7 @@ function present(p: Partie, id: string): Pnj | CompteRendu {
  * Parler à un PNJ. Sans sujet : sa salutation (selon son attitude) et la liste des sujets qu'il accepte d'aborder.
  * Avec un sujet : sa réponse (à reformuler dans sa voix), les faits qu'il révèle et ses effets.
  */
-export function parler(p: Partie, id: string, sujet?: string): CompteRendu {
+export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu {
   const pnj = present(p, id);
   if (!('sujets' in pnj)) return pnj;
   const r = vide();
@@ -93,7 +93,7 @@ export function ddInfluence(attitudePnj: number): number {
  * Influencer un PNJ. Avec un secret visé (id de fait) : on tente de le lui faire dire (condition, attitude minimale,
  * prix éventuel, jet propre au secret). Sans secret : on gagne (ou perd) de l'attitude.
  */
-export function influencer(p: Partie, id: string, maniere: Influence, options: { secret?: string; personnage?: string } = {}): CompteRendu {
+export function influencer(p: PartieMonde, id: string, maniere: Influence, options: { secret?: string; personnage?: string } = {}): CompteRendu {
   const pnj = present(p, id);
   if (!('sujets' in pnj)) return pnj;
   const r = vide();
@@ -133,13 +133,13 @@ export function influencer(p: Partie, id: string, maniere: Influence, options: {
   return r;
 }
 
-function choisirOrateur(p: Partie, comp: Influence, id?: string): Aventurier | undefined {
+function choisirOrateur(p: PartieMonde, comp: Influence, id?: string): Aventurier | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => y.fiche.competences[comp].bonus - x.fiche.competences[comp].bonus)[0];
 }
 
-function jet(p: Partie, r: CompteRendu, a: Aventurier, comp: keyof Aventurier['fiche']['competences'], dd: number): boolean {
+function jet(p: PartieMonde, r: CompteRendu, a: Aventurier, comp: keyof Aventurier['fiche']['competences'], dd: number): boolean {
   const bonus = a.fiche.competences[comp].bonus;
   const t = testD20({ bonus, dd }, p.gen);
   r.jets.push({ qui: a.id, nom: a.nom, test: comp, dd, des: t.des, bonus, total: t.total, reussite: t.reussite });

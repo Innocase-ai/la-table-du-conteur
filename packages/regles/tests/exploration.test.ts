@@ -21,7 +21,7 @@ import {
   testLibre,
   type Aventurier,
   type Generateur,
-  type Partie,
+  type PartieMonde,
 } from '../src';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
@@ -46,7 +46,7 @@ function groupe(): Aventurier[] {
   }));
 }
 
-function partie(gen: Generateur = SUCCES): Partie {
+function partie(gen: Generateur = SUCCES): PartieMonde {
   return nouvellePartie(dm, etatInitial(dm, 3), groupe(), gen);
 }
 

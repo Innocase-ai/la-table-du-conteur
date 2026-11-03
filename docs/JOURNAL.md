@@ -144,3 +144,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Analyse (`docs/ARCHITECTURE-CIBLE.md`) : règles saines, mais état du personnage éclaté en trois (fiche, combattant, aventurier ; d'où une potion neuve et des sorts rechargés à chaque combat de l'histoire), pas d'état racine, pas d'événements, chaque verbe déclaré trois fois.
 - Cible : noyau (état de partie unique et versionné, graine dans l'état, commandes Zod, événements, effets extensibles, registre de modules) ; chaque fonctionnalité devient un module. Langage : TypeScript conservé (Rust pour la coquille de bureau Tauri, et éventuellement l'IA du combat si une mesure le justifie).
 - Migration en 6 étapes, la première (noyau) rendant les suivantes additives.
+
+## 03/11/2026 — Étape 1 de l'architecture : le noyau
+
+- `packages/regles/src/noyau/` : partie unique et versionnée (hasard compris), commandes Zod, événements typés extensibles, transactions sur copie, événements d'état déduits automatiquement, réactions entre modules, vues.
+- Modules Exploration et Dialogue (enveloppes des verbes existants) ; le client tourne sur le noyau (boutons → commandes, récit ← journal d'événements, sauvegarde = la partie).
+- Nouveau skill `ajouter-module` ; 365 tests verts ; parcours vérifié dans le navigateur.

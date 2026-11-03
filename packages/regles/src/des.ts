@@ -15,6 +15,20 @@ export function creerGenerateur(graine: number): Generateur {
   };
 }
 
+/**
+ * Même générateur, mais son état vit dans un objet sérialisable (`{ graine }`) : la partie sauvegardée
+ * contient le hasard, et une partie rechargée tire exactement les mêmes dés.
+ */
+export function generateurSur(porteur: { graine: number }): Generateur {
+  return () => {
+    porteur.graine = (porteur.graine + 0x6d2b79f5) >>> 0;
+    let t = porteur.graine;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 export function lancerDe(faces: number, gen: Generateur): number {
   return Math.floor(gen() * faces) + 1;
 }

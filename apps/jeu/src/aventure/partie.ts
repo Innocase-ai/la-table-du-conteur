@@ -1,54 +1,10 @@
-// Démarrer une aventure : le monde chargé, le groupe du joueur, une partie du moteur d'exploration.
-import {
-  commencer,
-  creerGenerateur,
-  etatInitial,
-  nouvellePartie,
-  type Aventurier,
-  type DonneesMonde,
-  type Donnees,
-  type CompteRendu,
-  type Groupe,
-  type Jet,
-  type Partie,
-  type Rencontre,
-  type Terrain,
-} from '@crpg/regles';
+// Une aventure dans le client : le moteur (monde chargé + modules) et la partie en cours, sauvegardée telle quelle.
+import { creerMoteur, MODULES_STANDARD, type Aventurier, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain } from '@crpg/regles';
 import { herosDuGroupe } from '../groupe/stockage';
 
-/** Une ligne du récit affiché au joueur. */
-export type Entree =
-  | { type: 'lieu'; titre: string; texte: string; ambiance?: string }
-  | { type: 'texte'; texte: string }
-  | { type: 'parole'; qui: string; texte: string }
-  | { type: 'constat'; texte: string }
-  | { type: 'fait'; texte: string; rumeur: boolean }
-  | { type: 'jet'; jet: Jet }
-  | { type: 'refus'; texte: string };
-
 export interface Aventure {
-  dm: DonneesMonde;
+  moteur: Moteur;
   partie: Partie;
-  /** Portrait de galerie de chaque aventurier (id → portrait). */
-  portraits: Record<string, string | undefined>;
-  journal: Entree[];
-  /** Rencontre déclenchée qui attend : combattre, une alternative, ou se replier. */
-  combatEnAttente?: string;
-}
-
-/** Verse un compte rendu du moteur dans le journal (utilisé au démarrage et après un combat). */
-export function journaliser(a: Aventure, cr: CompteRendu): void {
-  if (!cr.ok && cr.refus) a.journal.push({ type: 'refus', texte: cr.refus });
-  // Ordre de lecture : les dés, le texte de l'auteur, ce que le groupe constate, puis ce qu'il apprend.
-  for (const j of cr.jets) a.journal.push({ type: 'jet', jet: j });
-  for (const n of cr.narrations) a.journal.push({ type: 'texte', texte: n });
-  for (const t of cr.constats) a.journal.push({ type: 'constat', texte: t });
-  for (const f of cr.revele) {
-    const fait = a.dm.faits.get(f);
-    // Une rumeur porte la vérité pour le conteur : le joueur ne l'apprend que par les PNJ.
-    if (fait?.fiable) a.journal.push({ type: 'fait', texte: fait.texte, rumeur: false });
-  }
-  if (cr.combat) a.combatEnAttente = cr.combat;
 }
 
 /** Même identifiant que le combat (`preparerRencontre`) : le nom en minuscules, sans accents ni espaces. */
@@ -67,21 +23,24 @@ const slug = (t: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
+export function creerMoteurHistoire(dm: DonneesMonde, donnees: Donnees): Moteur {
+  return creerMoteur({ dm, srd: donnees }, MODULES_STANDARD);
+}
+
 export function demarrerAventure(dm: DonneesMonde, groupe: Groupe, donnees: Donnees): Aventure {
-  const heros = herosDuGroupe(groupe, donnees);
   const pris = new Set<string>();
-  const portraits: Record<string, string | undefined> = {};
-  const aventuriers: Aventurier[] = heros.map((h, i) => {
-    const id = idAventurier(h.fiche.nom, i, pris);
-    portraits[id] = h.portrait;
-    return { id, nom: h.fiche.nom, fiche: h.fiche, pv: h.fiche.pvMax, outils: (h.fiche.equipement?.autres ?? []).map(slug) };
-  });
+  const aventuriers: Aventurier[] = herosDuGroupe(groupe, donnees).map((h, i) => ({
+    id: idAventurier(h.fiche.nom, i, pris),
+    nom: h.fiche.nom,
+    fiche: h.fiche,
+    pv: h.fiche.pvMax,
+    outils: (h.fiche.equipement?.autres ?? []).map(slug),
+    portrait: h.portrait,
+  }));
+  const moteur = creerMoteurHistoire(dm, donnees);
   const niveau = Math.max(dm.monde.niveaux.min, Math.min(dm.monde.niveaux.max, groupe.niveau));
-  const partie = nouvellePartie(dm, etatInitial(dm, niveau), aventuriers, creerGenerateur(Math.floor(Math.random() * 2 ** 31)));
-  const depart = dm.lieux.get(dm.monde.depart.lieu)!;
-  const a: Aventure = { dm, partie, portraits, journal: [{ type: 'texte', texte: dm.monde.depart.intro }, { type: 'lieu', titre: depart.nom, texte: depart.resume, ambiance: depart.ambiance }] };
-  journaliser(a, commencer(partie));
-  return a;
+  const partie = moteur.executer(moteur.nouvellePartie(aventuriers, { niveau }), { type: 'commencer' }).partie;
+  return { moteur, partie };
 }
 
 /** Ambiance du plateau d'une rencontre de l'histoire : la sienne, sinon celle du type de lieu. */
@@ -124,56 +83,32 @@ export function rencontreDeMonde(dm: DonneesMonde, id: string): Rencontre {
 }
 
 // ---------------------------------------------------------------------------
-// Sauvegarde automatique (navigateur) — en attendant la vraie sauvegarde de M4d
+// Sauvegarde : la partie du noyau, telle quelle (JSON versionné).
 // ---------------------------------------------------------------------------
 
-const CLE_SAUVEGARDE = 'table-du-conteur:aventure:v1';
+const CLE_SAUVEGARDE = 'table-du-conteur:partie';
 
-interface Sauvegarde {
-  monde: string;
-  etat: Partie['etat'];
-  pv: Record<string, number>;
-  journal: Entree[];
-  combatEnAttente?: string;
-}
-
-export function sauverAventure(a: Aventure): void {
-  const s: Sauvegarde = {
-    monde: a.dm.monde.id,
-    etat: a.partie.etat,
-    pv: Object.fromEntries(a.partie.groupe.map((x) => [x.id, x.pv])),
-    journal: a.journal.slice(-300),
-    combatEnAttente: a.combatEnAttente,
-  };
+export function sauverPartie(p: Partie): void {
   try {
-    localStorage.setItem(CLE_SAUVEGARDE, JSON.stringify(s));
+    localStorage.setItem(CLE_SAUVEGARDE, JSON.stringify(p));
   } catch {
     // Stockage indisponible (navigation privée…) : la partie continue sans sauvegarde.
   }
 }
 
-/** Monde et lieu de l'aventure sauvegardée, s'il y en a une. */
-export function aventureSauvegardee(): { monde: string; lieu: string } | undefined {
+/** Monde et lieu de la partie sauvegardée, s'il y en a une. */
+export function partieSauvegardee(): { monde: string; lieu: string } | undefined {
   try {
-    const s = JSON.parse(localStorage.getItem(CLE_SAUVEGARDE) ?? 'null') as Sauvegarde | null;
-    return s ? { monde: s.monde, lieu: s.etat.lieu } : undefined;
+    const p = JSON.parse(localStorage.getItem(CLE_SAUVEGARDE) ?? 'null') as Partie | null;
+    return p ? { monde: p.monde, lieu: p.etat.lieu } : undefined;
   } catch {
     return undefined;
   }
 }
 
-export function restaurerAventure(dm: DonneesMonde, groupe: Groupe, donnees: Donnees): Aventure | undefined {
-  let s: Sauvegarde | null;
-  try {
-    s = JSON.parse(localStorage.getItem(CLE_SAUVEGARDE) ?? 'null') as Sauvegarde | null;
-  } catch {
-    return undefined;
-  }
-  if (!s || s.monde !== dm.monde.id) return undefined;
-  const a = demarrerAventure(dm, groupe, donnees);
-  a.partie.etat = { ...s.etat, exploration: { ...a.partie.etat.exploration, ...s.etat.exploration } };
-  for (const x of a.partie.groupe) if (s.pv[x.id] !== undefined) x.pv = s.pv[x.id]!;
-  a.journal = [...s.journal, { type: 'constat', texte: 'Partie reprise.' }];
-  a.combatEnAttente = s.combatEnAttente;
-  return a;
+export function reprendreAventure(dm: DonneesMonde, donnees: Donnees): Aventure | undefined {
+  const json = localStorage.getItem(CLE_SAUVEGARDE);
+  if (!json) return undefined;
+  const moteur = creerMoteurHistoire(dm, donnees);
+  return { moteur, partie: moteur.charger(json) };
 }

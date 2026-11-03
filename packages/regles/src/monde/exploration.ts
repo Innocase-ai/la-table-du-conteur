@@ -2,6 +2,7 @@
 // Aucun LLM ici : chaque verbe prend une partie et une demande, lance les dés sur les vraies fiches du groupe,
 // applique les effets du monde et renvoie un compte rendu factuel, que le conteur raconte. Voir docs/M4-CONTEUR.md.
 import { lancer, type Generateur } from '../des';
+import type { Jet } from '../noyau/types';
 import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
@@ -16,6 +17,8 @@ export interface Aventurier {
   pv: number;
   /** Outils portés (`outils-de-voleur`…), pour crocheter et désarmer. */
   outils: string[];
+  /** Portrait de galerie choisi par le joueur (`elfe-f-2`). */
+  portrait?: string;
 }
 
 /** Ce que l'exploration ajoute à l'état du monde (sauvegardé avec lui). */
@@ -37,29 +40,14 @@ export interface EtatExploration {
   fouilles: string[];
 }
 
-export interface Partie {
+export interface PartieMonde {
   dm: DonneesMonde;
   etat: EtatMonde & { exploration: EtatExploration };
   groupe: Aventurier[];
   gen: Generateur;
 }
 
-/** Un jet de dés fait par le moteur, montré au joueur tel quel. */
-export interface Jet {
-  qui: string;
-  nom: string;
-  /** Compétence, caractéristique ou « sauvegarde de con »… */
-  test: string;
-  dd: number;
-  des: number[];
-  bonus: number;
-  total: number;
-  reussite: boolean;
-  avantage?: boolean;
-  desavantage?: boolean;
-  /** DD tenu secret (fouille) : le jet est montré, pas le DD. */
-  ddSecret?: boolean;
-}
+export type { Jet };
 
 /** Compte rendu d'un verbe : ce que le conteur doit raconter, rien de plus. */
 export interface CompteRendu {
@@ -83,7 +71,7 @@ export function etatExplorationVide(): EtatExploration {
   return { decouverts: [], ouverts: [], pieges: {}, tresorsPris: [], sujetsVus: [], enigmes: {}, paliers: [], evolutions: [], fouilles: [] };
 }
 
-export function nouvellePartie(dm: DonneesMonde, etat: EtatMonde, groupe: Aventurier[], gen: Generateur): Partie {
+export function nouvellePartie(dm: DonneesMonde, etat: EtatMonde, groupe: Aventurier[], gen: Generateur): PartieMonde {
   return { dm, etat: { ...etat, exploration: etatExplorationVide() }, groupe, gen };
 }
 
@@ -112,14 +100,14 @@ function bonusTest(a: Aventurier, test: Competence | Caracteristique): number {
 }
 
 /** Le personnage désigné, ou celui du groupe qui a le meilleur bonus (« le groupe fouille »). */
-function choisir(p: Partie, test: Competence | Caracteristique, id?: string): Aventurier | undefined {
+function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string): Aventurier | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
 }
 
 /** Un test d20 du personnage, consigné dans le compte rendu. */
-function tester(p: Partie, r: CompteRendu, a: Aventurier, test: Competence | Caracteristique, dd: number, opts: { avantage?: boolean; desavantage?: boolean } = {}): Jet {
+function tester(p: PartieMonde, r: CompteRendu, a: Aventurier, test: Competence | Caracteristique, dd: number, opts: { avantage?: boolean; desavantage?: boolean } = {}): Jet {
   const bonus = bonusTest(a, test);
   const t = testD20({ bonus, dd, ...opts }, p.gen);
   const jet: Jet = { qui: a.id, nom: a.nom, test, dd, des: t.des, bonus, total: t.total, reussite: t.reussite, ...opts };
@@ -127,7 +115,7 @@ function tester(p: Partie, r: CompteRendu, a: Aventurier, test: Competence | Car
   return jet;
 }
 
-function appliquer(p: Partie, r: CompteRendu, effets: EffetMonde[]): void {
+function appliquer(p: PartieMonde, r: CompteRendu, effets: EffetMonde[]): void {
   const avant = { faits: p.etat.faits.length, narrations: p.etat.narrations.length, jauges: { ...p.etat.jauges } };
   appliquerEffets(effets, p.etat, p.dm);
   r.revele.push(...p.etat.faits.slice(avant.faits));
@@ -136,7 +124,7 @@ function appliquer(p: Partie, r: CompteRendu, effets: EffetMonde[]): void {
 }
 
 /** Paliers de jauge franchis dans le sens du changement : narration et effets, une seule fois chacun. */
-function franchirPaliers(p: Partie, r: CompteRendu, id: string, avant: number, apres: number): void {
+function franchirPaliers(p: PartieMonde, r: CompteRendu, id: string, avant: number, apres: number): void {
   const j = p.dm.jauges.get(id);
   if (!j) return;
   for (const palier of j.paliers) {
@@ -150,12 +138,12 @@ function franchirPaliers(p: Partie, r: CompteRendu, id: string, avant: number, a
   }
 }
 
-function changerJauge(p: Partie, r: CompteRendu, id: string, delta: number): void {
+function changerJauge(p: PartieMonde, r: CompteRendu, id: string, delta: number): void {
   appliquer(p, r, [{ jauge: { id, delta } }]);
 }
 
 /** Événements, évolutions de jauge sur condition, quêtes et fin : à vérifier après chaque action. */
-function suites(p: Partie, r: CompteRendu): void {
+function suites(p: PartieMonde, r: CompteRendu): void {
   for (let tour = 0; tour < 10; tour++) {
     let change = false;
     for (const j of p.dm.jauges.values()) {
@@ -186,12 +174,12 @@ function suites(p: Partie, r: CompteRendu): void {
   if (p.etat.fin) r.fin = p.etat.fin;
 }
 
-function jouable(p: Partie, id: string, unique: boolean, condition?: Parameters<typeof evaluerCondition>[0]): boolean {
+function jouable(p: PartieMonde, id: string, unique: boolean, condition?: Parameters<typeof evaluerCondition>[0]): boolean {
   if (unique && p.etat.evenementsJoues.includes(id)) return false;
   return !condition || evaluerCondition(condition, p.etat);
 }
 
-function jouerEvenement(p: Partie, r: CompteRendu, id: string): void {
+function jouerEvenement(p: PartieMonde, r: CompteRendu, id: string): void {
   const ev = p.dm.evenements.get(id)!;
   if (!p.etat.evenementsJoues.includes(id)) p.etat.evenementsJoues.push(id);
   r.narrations.push(ev.narration);
@@ -220,7 +208,7 @@ type Lien = Lieu['liens'][number];
 const cleLien = (de: string, vers: string) => `lien:${de}>${vers}`;
 
 /** Passages qui partent d'un lieu, avec leur définition : liens déclarés ici, liens à double sens déclarés en face, parent et enfants. */
-function passages(p: Partie, lieu: string): { sortie: Sortie; lien?: Lien }[] {
+function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }[] {
   const ex = p.etat.exploration;
   const res: { sortie: Sortie; lien?: Lien }[] = [];
   const ajouter = (vers: string, cle: string, lien?: Lien) => {
@@ -251,12 +239,12 @@ function passages(p: Partie, lieu: string): { sortie: Sortie; lien?: Lien }[] {
   return res;
 }
 
-export function sortiesDe(p: Partie, lieu: string): Sortie[] {
+export function sortiesDe(p: PartieMonde, lieu: string): Sortie[] {
   return passages(p, lieu).map((x) => x.sortie);
 }
 
 /** Choses cachées d'un lieu, avec la compétence qui permet de les trouver. */
-function cachettes(p: Partie, lieu: string): { cle: string; dd: number; competence: Competence; libelle: string; reveler: () => void }[] {
+function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; competence: Competence; libelle: string; reveler: () => void }[] {
   const ex = p.etat.exploration;
   const res: ReturnType<typeof cachettes> = [];
   for (const { sortie: s, lien } of passages(p, lieu)) {
@@ -285,7 +273,7 @@ function cachettes(p: Partie, lieu: string): { cle: string; dd: number; competen
 }
 
 /** Ce que la perception passive du groupe repère sans jet (SRD : Perception passive = 10 + bonus). */
-function perceptionPassive(p: Partie, r: CompteRendu): void {
+function perceptionPassive(p: PartieMonde, r: CompteRendu): void {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (!vivants.length) return;
   const meilleur = [...vivants].sort((x, y) => y.fiche.perceptionPassive - x.fiche.perceptionPassive)[0]!;
@@ -298,7 +286,7 @@ function perceptionPassive(p: Partie, r: CompteRendu): void {
 }
 
 /** Entrée dans un lieu : visite, faits évidents, jauges du lieu, événements d'entrée, rencontres. */
-function entrer(p: Partie, r: CompteRendu, lieu: Lieu): void {
+function entrer(p: PartieMonde, r: CompteRendu, lieu: Lieu): void {
   p.etat.lieu = lieu.id;
   if (!p.etat.lieuxVisites.includes(lieu.id)) p.etat.lieuxVisites.push(lieu.id);
   for (const f of lieu.faits) {
@@ -316,7 +304,7 @@ function entrer(p: Partie, r: CompteRendu, lieu: Lieu): void {
   declencherRencontre(p, r, lieu, 'entree');
 }
 
-function declencherRencontre(p: Partie, r: CompteRendu, lieu: Lieu, declencheur: 'entree' | 'exploration' | 'repos'): void {
+function declencherRencontre(p: PartieMonde, r: CompteRendu, lieu: Lieu, declencheur: 'entree' | 'exploration' | 'repos'): void {
   if (r.combat) return;
   for (const rc of lieu.rencontres) {
     if (rc.declencheur !== declencheur) continue;
@@ -332,7 +320,7 @@ function declencherRencontre(p: Partie, r: CompteRendu, lieu: Lieu, declencheur:
 }
 
 /** Début de l'histoire : l'arrivée au lieu de départ (faits évidents, événements, perception, rencontre). */
-export function commencer(p: Partie): CompteRendu {
+export function commencer(p: PartieMonde): CompteRendu {
   const r = resultat();
   entrer(p, r, p.dm.lieux.get(p.dm.monde.depart.lieu)!);
   suites(p, r);
@@ -340,7 +328,7 @@ export function commencer(p: Partie): CompteRendu {
 }
 
 /** Aller vers un lieu voisin (passage, porte, escalier, entrée d'un bâtiment, retour au lieu parent…). */
-export function aller(p: Partie, vers: string): CompteRendu {
+export function aller(p: PartieMonde, vers: string): CompteRendu {
   const s = sortiesDe(p, p.etat.lieu).find((x) => x.vers === vers);
   if (!s || s.cache) return refus(`Aucun passage connu ne mène d'ici à « ${p.dm.lieux.get(vers)?.nom ?? vers} ».`);
   if (s.bloque) return refus(`Le passage vers ${s.nom} est infranchissable pour l'instant${s.description ? ` (${s.description})` : ''}.`);
@@ -348,7 +336,6 @@ export function aller(p: Partie, vers: string): CompteRendu {
     return refus(`Le passage vers ${s.nom} est verrouillé (DD ${s.verrou.dd}${s.verrou.cle ? `, clé : ${p.dm.objets.get(s.verrou.cle)?.nom ?? s.verrou.cle}` : ''}).`);
   }
   const r = resultat();
-  r.constats.push(`Le groupe va à ${s.nom}.`);
   entrer(p, r, p.dm.lieux.get(vers)!);
   suites(p, r);
   return r;
@@ -362,7 +349,7 @@ export function aller(p: Partie, vers: string): CompteRendu {
  * Fouille du lieu : un jet par compétence utile, contre chaque chose cachée. Une seule fouille par lieu et par jour :
  * on ne relance pas les dés jusqu'à réussir (on revient après un repos long).
  */
-export function fouiller(p: Partie, personnage?: string): CompteRendu {
+export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
   const fouille = `${p.etat.lieu}:${p.etat.jour}`;
   if (p.etat.exploration.fouilles.includes(fouille)) return refus('Le groupe a déjà fouillé ce lieu aujourd\'hui : il faudra revenir après un repos.');
   p.etat.exploration.fouilles.push(fouille);
@@ -393,7 +380,7 @@ export function fouiller(p: Partie, personnage?: string): CompteRendu {
 export type CibleOuvrir = { lien: string } | { tresor: string };
 
 /** Ouvrir un passage verrouillé ou un trésor fermé : avec la clé, en crochetant (outils de voleur) ou en forçant. */
-export function ouvrir(p: Partie, cible: CibleOuvrir, methode: 'cle' | 'crocheter' | 'forcer', personnage?: string): CompteRendu {
+export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'crocheter' | 'forcer', personnage?: string): CompteRendu {
   const ex = p.etat.exploration;
   let verrou: { dd: number; cle?: string } | undefined;
   let cle: string;
@@ -437,17 +424,17 @@ export function ouvrir(p: Partie, cible: CibleOuvrir, methode: 'cle' | 'crochete
   return r;
 }
 
-function aOutils(p: Partie, a: Aventurier): boolean {
+function aOutils(p: PartieMonde, a: Aventurier): boolean {
   return a.outils.includes('outils-de-voleur') || (p.etat.inventaire['outils-de-voleur'] ?? 0) > 0;
 }
 
-function tresorVisible(p: Partie, t: Tresor): boolean {
+function tresorVisible(p: PartieMonde, t: Tresor): boolean {
   if (t.condition && !evaluerCondition(t.condition, p.etat)) return false;
   return !t.acces.cache || p.etat.exploration.decouverts.includes(`tresor:${t.id}`);
 }
 
 /** Désarmer un piège repéré. Sans l'outil requis : désavantage. Un échec de 5 ou plus le déclenche. */
-export function desarmer(p: Partie, piege: string, personnage?: string): CompteRendu {
+export function desarmer(p: PartieMonde, piege: string, personnage?: string): CompteRendu {
   const pg = p.dm.pieges.get(piege);
   const ex = p.etat.exploration;
   if (!pg || pg.lieu !== p.etat.lieu || !ex.decouverts.includes(`piege:${piege}`)) return refus("Aucun piège repéré de ce genre ici.");
@@ -469,7 +456,7 @@ export function desarmer(p: Partie, piege: string, personnage?: string): CompteR
 }
 
 /** Un piège se déclenche sur un personnage : sauvegarde, dégâts, états, effets du monde. */
-export function declencher(p: Partie, r: CompteRendu, pg: Piege, victime: Aventurier): void {
+export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: Aventurier): void {
   const ex = p.etat.exploration;
   if (!pg.reinitialisation) ex.pieges[pg.id] = 'declenche';
   if (!ex.decouverts.includes(`piege:${pg.id}`)) ex.decouverts.push(`piege:${pg.id}`);
@@ -493,7 +480,7 @@ export function declencher(p: Partie, r: CompteRendu, pg: Piege, victime: Aventu
 }
 
 /** Prendre le contenu d'un trésor : il doit être visible, ouvert, non gardé. */
-export function prendre(p: Partie, tresor: string): CompteRendu {
+export function prendre(p: PartieMonde, tresor: string): CompteRendu {
   const t = p.dm.tresors.get(tresor);
   const ex = p.etat.exploration;
   if (!t || t.lieu !== p.etat.lieu || !tresorVisible(p, t)) return refus("Il n'y a rien de tel ici.");
@@ -525,12 +512,12 @@ export function prendre(p: Partie, tresor: string): CompteRendu {
   return r;
 }
 
-function nomObjet(p: Partie, id: string): string {
+function nomObjet(p: PartieMonde, id: string): string {
   return p.dm.objets.get(id)?.nom ?? id;
 }
 
 /** Un tirage sur une table de butin (entrées pondérées, tables imbriquées). */
-function tirerTable(p: Partie, id: string, profondeur = 0): string[] {
+function tirerTable(p: PartieMonde, id: string, profondeur = 0): string[] {
   const t = p.dm.tables.get(id);
   if (!t || profondeur > 5) return [];
   const total = t.entrees.reduce((s, e) => s + e.poids, 0);
@@ -556,7 +543,7 @@ function tirerTable(p: Partie, id: string, profondeur = 0): string[] {
 // Énigmes, repos, issue des rencontres, test libre
 // ---------------------------------------------------------------------------
 
-export function repondreEnigme(p: Partie, enigme: string, reponse: unknown): CompteRendu {
+export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown): CompteRendu {
   const e = p.dm.enigmes.get(enigme);
   const ex = p.etat.exploration;
   if (!e || e.lieu !== p.etat.lieu) return refus("Il n'y a pas d'énigme de ce genre ici.");
@@ -588,7 +575,7 @@ export function repondreEnigme(p: Partie, enigme: string, reponse: unknown): Com
 }
 
 /** Indices d'une énigme jusqu'à un niveau (1 : vague, 3 : clair). Un indice avec jet ne se donne qu'en le réussissant. */
-export function indiceEnigme(p: Partie, enigme: string, niveau: number, personnage?: string): CompteRendu {
+export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, personnage?: string): CompteRendu {
   const e = p.dm.enigmes.get(enigme);
   if (!e || e.lieu !== p.etat.lieu) return refus("Il n'y a pas d'énigme de ce genre ici.");
   const r = resultat();
@@ -602,7 +589,7 @@ export function indiceEnigme(p: Partie, enigme: string, niveau: number, personna
   return r;
 }
 
-export function seReposer(p: Partie, duree: 'court' | 'long'): CompteRendu {
+export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu {
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
   if (lieu.repos === 'impossible') return refus(`Impossible de se reposer ici (${lieu.nom}).`);
   const r = resultat();
@@ -627,7 +614,7 @@ export function seReposer(p: Partie, duree: 'court' | 'long'): CompteRendu {
 }
 
 /** Issue d'une rencontre : victoire (combat gagné), alternative réussie (négocier, ruser…) ou fuite. */
-export function issueRencontre(p: Partie, rencontre: string, issue: { type: 'victoire'; px?: number } | { type: 'alternative'; id: string; personnage?: string } | { type: 'fuite' }): CompteRendu {
+export function issueRencontre(p: PartieMonde, rencontre: string, issue: { type: 'victoire'; px?: number } | { type: 'alternative'; id: string; personnage?: string } | { type: 'fuite' }): CompteRendu {
   const def = p.dm.rencontres.get(rencontre);
   if (!def) return refus(`Rencontre inconnue : ${rencontre}.`);
   const r = resultat();
@@ -663,7 +650,7 @@ export function issueRencontre(p: Partie, rencontre: string, issue: { type: 'vic
 }
 
 /** Test libre (escalader, nager, se souvenir…) : un jet contre un DD de 5 à 30, sans effet sur le monde. */
-export function testLibre(p: Partie, competence: Competence | Caracteristique, dd: number, personnage?: string): CompteRendu {
+export function testLibre(p: PartieMonde, competence: Competence | Caracteristique, dd: number, personnage?: string): CompteRendu {
   if (!Number.isInteger(dd) || dd < 5 || dd > 30) return refus('Le DD doit être un entier de 5 à 30.');
   if (!(competence in CARAC_COMPETENCE) && !['for', 'dex', 'con', 'int', 'sag', 'cha'].includes(competence)) return refus(`Test inconnu : ${competence}.`);
   const a = choisir(p, competence, personnage);
