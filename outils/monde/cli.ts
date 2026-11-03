@@ -2,12 +2,14 @@
 //   pnpm monde lister                 mondes disponibles
 //   pnpm monde valider [monde]        validation (références, accessibilité, quêtes, rencontres…) ; code 1 s'il y a des erreurs
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
+//   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { validerMonde } from '../../packages/regles/src/monde/validation';
+import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
 
@@ -27,7 +29,7 @@ if (commande === 'nouveau') {
 
 if (commande === 'lister' || !commande) {
   for (const id of listerMondes()) console.log(id);
-  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | doc [monde] | nouveau <id> "<Nom>"');
+  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
   process.exit(0);
 }
 
@@ -39,6 +41,14 @@ for (const id of mondes) {
     echec = true;
     console.error(`\n❌ ${id} : fichiers invalides`);
     for (const e of r.erreurs) console.error(`  ${e.fichier} — ${e.message}`);
+    continue;
+  }
+  if (commande === 'estimer') {
+    const e = estimerCampagne(r.monde);
+    writeFileSync(join(RACINE_MONDES, id, 'estimation.json'), JSON.stringify(e, null, 2) + '\n');
+    console.log(`${id} : ${e.tours} tours, ≈ ${e.heures.total} h (${e.heures.recit} h de récit, ${e.heures.combats} h de combats)`);
+    for (const c of e.couts) console.log(`  ${c.nom.padEnd(18)} ≈ ${c.usd} $ (${c.min} à ${c.max} $)`);
+    console.log(`  images du groupe   ≈ ${e.imagesUsd} $`);
     continue;
   }
   const bilan = validerMonde(r.monde, srd);

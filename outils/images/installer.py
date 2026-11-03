@@ -5,6 +5,7 @@
   python3 outils/images/installer.py monde <monde>    → packages/mondes/<monde>/images/<id>.webp + manifeste.json
   python3 outils/images/installer.py bestiaire        → apps/jeu/src/bestiaire/<profil>.webp (images de combat, tous mondes)
   python3 outils/images/installer.py terrains         → apps/jeu/src/terrains/<ambiance>-<type>.webp (raccordables)
+  python3 outils/images/installer.py interface        → apps/jeu/src/interface/<id>.webp (écran titre…, 1600 px)
 
 Les PNG d'origine restent dans sorties/ (ignoré par git). Le manifeste d'un monde range chaque image par groupe
 (lieux, pnj, monstres, objets) sous l'identifiant de l'élément du monde ; le moteur le lit et le vérifie
@@ -65,6 +66,15 @@ def terrains() -> None:
     print(f"{len(pngs)} texture(s) installées dans {cible.relative_to(RACINE)}")
 
 
+def interface() -> None:
+    source, cible = RACINE / "sorties/images/interface", RACINE / "apps/jeu/src/interface"
+    cible.mkdir(parents=True, exist_ok=True)
+    pngs = sorted(source.glob("*.png"))
+    for png in pngs:
+        reduire(png, cible / f"{png.stem}.webp", 1600, 80)
+    print(f"{len(pngs)} illustration(s) d'interface installées dans {cible.relative_to(RACINE)}")
+
+
 def galerie() -> None:
     source, cible = RACINE / "sorties/images/galerie", RACINE / "apps/jeu/src/portraits"
     cible.mkdir(parents=True, exist_ok=True)
@@ -100,6 +110,8 @@ if __name__ == "__main__":
         bestiaire()
     elif sys.argv[1:2] == ["terrains"]:
         terrains()
+    elif sys.argv[1:2] == ["interface"]:
+        interface()
     elif sys.argv[1:2] == ["monde"] and len(sys.argv) == 3:
         monde(sys.argv[2])
     else:

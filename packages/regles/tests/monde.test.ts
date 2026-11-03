@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { existsSync } from 'node:fs';
-import { appliquerEffets, avancerQuetes, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
+import { existsSync, readFileSync } from 'node:fs';
+import { appliquerEffets, avancerQuetes, Estimation, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
 import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -197,4 +197,28 @@ describe('Val des Cendres : parcours', () => {
     appliquerEffets([{ pnjEtat: { pnj: 'kor-varnak', etat: 'vivant' } }], e, dm!);
     expect(e.flags['z6-sceau-vole']).toBeUndefined();
   });
+});
+
+describe('estimation de campagne', () => {
+  it('compte les tours depuis le contenu et chiffre chaque modèle (le plus cher coûte le plus)', () => {
+    const e = estimerCampagne(charger());
+    expect(e.tours).toBeGreaterThan(0);
+    const [opus, sonnet, haiku] = e.couts;
+    expect(opus!.usd).toBeGreaterThan(sonnet!.usd);
+    expect(sonnet!.usd).toBeGreaterThan(haiku!.usd);
+    for (const c of e.couts) {
+      expect(c.min).toBeLessThanOrEqual(c.usd);
+      expect(c.max).toBeGreaterThanOrEqual(c.usd);
+    }
+  });
+
+  for (const id of listerMondes()) {
+    it(`${id} : estimation.json est à jour (sinon : pnpm monde estimer ${id})`, () => {
+      const r = chargerMonde(join(RACINE_MONDES, id));
+      if (!r.ok || r.monde.monde.statut !== 'publie') return;
+      const fichier = join(RACINE_MONDES, id, 'estimation.json');
+      expect(existsSync(fichier), 'estimation.json manquant').toBe(true);
+      expect(Estimation.parse(JSON.parse(readFileSync(fichier, 'utf8')))).toEqual(estimerCampagne(r.monde));
+    });
+  }
 });

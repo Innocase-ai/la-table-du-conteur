@@ -3913,3 +3913,525 @@ li.fp-maitrise {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ======================================================================== */
+/* Écran titre, choix de l'histoire, aide                                    */
+/* ======================================================================== */
+
+.titre {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--fond);
+  overflow: hidden;
+}
+
+.titre-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Objets cliquables : invisibles au repos, ils s'illuminent au survol et donnent leur nom. */
+.titre-zone {
+  cursor: pointer;
+  outline: none;
+}
+
+.titre-zone polygon {
+  fill: rgba(255, 214, 140, 0);
+  stroke: rgba(255, 220, 150, 0);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition: fill 0.25s, stroke 0.25s;
+}
+
+.titre-zone:hover polygon,
+.titre-zone:focus-visible polygon {
+  fill: rgba(255, 214, 140, 0.14);
+  stroke: rgba(255, 220, 150, 0.85);
+  filter: drop-shadow(0 0 10px rgba(255, 200, 110, 0.8));
+}
+
+.titre-zone text {
+  font-family: var(--titre);
+  font-size: 26px;
+  font-weight: 700;
+  text-anchor: middle;
+  fill: var(--or-vif);
+  stroke: rgba(10, 8, 6, 0.9);
+  stroke-width: 5px;
+  paint-order: stroke;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.titre-zone:hover text,
+.titre-zone:focus-visible text {
+  opacity: 1;
+}
+
+/* Le menu se lit sur la partie gauche, assombrie ; l'illustration reste visible à droite. */
+.titre-voile {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(10, 8, 6, 0.96) 0%, rgba(10, 8, 6, 0.86) 34%, rgba(10, 8, 6, 0.35) 62%, rgba(10, 8, 6, 0.1) 100%),
+    linear-gradient(0deg, rgba(10, 8, 6, 0.7), transparent 30%);
+}
+
+.titre-contenu {
+  position: relative;
+  pointer-events: none;
+  width: min(520px, 100%);
+  margin-left: clamp(16px, 7vw, 120px);
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.titre-entete {
+  text-align: left;
+}
+
+.titre-entete .ornement {
+  text-align: left;
+}
+
+.titre-entete h1 {
+  margin: 0;
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.05;
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--or-vif), var(--cuivre));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 30px rgba(240, 205, 132, 0.15);
+}
+
+.titre-menu,
+.titre-pied {
+  pointer-events: auto;
+}
+
+.titre-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titre-entree {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  text-align: left;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--bord);
+  background: rgba(27, 23, 19, 0.72);
+  color: var(--texte);
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+
+.titre-entree:hover,
+.titre-entree:focus-visible {
+  border-color: var(--or);
+  background: rgba(40, 32, 24, 0.85);
+  transform: translateX(4px);
+}
+
+.titre-entree-nom {
+  font-family: var(--titre);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--or-vif);
+  letter-spacing: 0.03em;
+}
+
+.titre-entree-detail {
+  font-size: 13px;
+  color: var(--texte-doux);
+}
+
+.titre-entree-principale {
+  border-color: var(--or);
+  background: linear-gradient(90deg, rgba(212, 174, 102, 0.22), rgba(27, 23, 19, 0.75));
+}
+
+.titre-pied {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--texte-faible);
+}
+
+/* En-tête commun des écrans du menu. */
+.ecran-entete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.ecran-entete h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--or-vif);
+}
+
+.accueil-entete {
+  position: relative;
+}
+
+.accueil-retour {
+  position: absolute;
+  left: 0;
+  top: 4px;
+}
+
+/* Choix de l'histoire ---------------------------------------------------- */
+
+.histoires,
+.aide {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 20px 30px;
+}
+
+.histoires-corps {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.histoires-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.histoire-carte {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  border-radius: 10px;
+  border: 1px solid var(--bord);
+  background: var(--panneau);
+  color: var(--texte);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.histoire-carte:hover {
+  border-color: var(--bord-clair);
+}
+
+.histoire-carte.choisie {
+  border-color: var(--or);
+  box-shadow: 0 0 0 1px var(--or), var(--ombre);
+}
+
+.histoire-carte .histoire-couverture {
+  aspect-ratio: 3 / 1.3;
+}
+
+.histoire-couverture {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, #2a221a, #15120f) center / cover no-repeat;
+}
+
+.histoire-carte-texte {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 14px 12px;
+}
+
+.histoire-carte-texte strong {
+  font-family: var(--titre);
+  font-size: 17px;
+  color: var(--or-vif);
+}
+
+.histoire-carte-texte span {
+  font-size: 13px;
+  color: var(--texte-doux);
+  line-height: 1.4;
+}
+
+.histoire-carte-texte small {
+  color: var(--texte-faible);
+  font-size: 11px;
+}
+
+.histoire-detail {
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--panneau-2), var(--panneau));
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+
+.histoire-detail .histoire-couverture {
+  aspect-ratio: 16 / 6;
+}
+
+.histoire-detail-texte {
+  padding: 18px 24px 24px;
+  line-height: 1.55;
+}
+
+.histoire-detail-texte h2 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  color: var(--or-vif);
+}
+
+.histoire-detail-texte h3 {
+  margin: 18px 0 6px;
+  font-size: 15px;
+  color: var(--or);
+}
+
+.histoire-accroche {
+  font-style: italic;
+  color: var(--texte);
+  font-size: 15px;
+}
+
+.histoire-ton {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.histoire-ton li {
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 99px;
+  border: 1px solid var(--bord-clair);
+  color: var(--texte-doux);
+}
+
+.histoire-chapitres small {
+  color: var(--texte-faible);
+}
+
+.histoire-conditions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.histoire-conditions li::before {
+  display: inline-block;
+  width: 1.4em;
+  font-weight: 700;
+}
+
+.histoire-conditions .ok::before {
+  content: '✓';
+  color: var(--vert);
+}
+
+.histoire-conditions .manque::before {
+  content: '✗';
+  color: var(--rouge);
+}
+
+.lien {
+  background: none;
+  border: none;
+  padding: 0 0 0 8px;
+  color: var(--or);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+.histoire-bientot {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--texte-faible);
+}
+
+.bouton-principal:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.vide {
+  color: var(--texte-faible);
+  font-style: italic;
+}
+
+/* Aide au jeu ------------------------------------------------------------ */
+
+.aide-corps {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.aide-sommaire {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: sticky;
+  top: 12px;
+}
+
+.aide-sommaire button {
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: none;
+  color: var(--texte-doux);
+  font: inherit;
+  cursor: pointer;
+}
+
+.aide-sommaire button:hover {
+  color: var(--texte);
+  background: var(--panneau);
+}
+
+.aide-sommaire button.actif {
+  color: var(--or-vif);
+  border-color: var(--bord);
+  background: var(--panneau-2);
+}
+
+.aide-texte {
+  max-width: 760px;
+  padding: 20px 28px 28px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--panneau-2), var(--panneau));
+  line-height: 1.6;
+}
+
+.aide-texte h2 {
+  margin: 0 0 10px;
+  color: var(--or-vif);
+}
+
+.aide-texte h3 {
+  margin: 18px 0 4px;
+  color: var(--or);
+  font-size: 15px;
+}
+
+.aide-texte li {
+  margin-bottom: 4px;
+}
+
+.aide-note {
+  font-size: 13px;
+  color: var(--texte-faible);
+  border-left: 2px solid var(--bord-clair);
+  padding-left: 10px;
+}
+
+.aide-couts,
+.aide-etats,
+.aide-touches {
+  list-style: none;
+  padding: 0;
+}
+
+.aide-couts .cout {
+  display: inline-block;
+  min-width: 78px;
+  text-align: center;
+  margin-right: 8px;
+}
+
+.aide-etats .badge {
+  display: inline-block;
+  margin-right: 4px;
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--bord-clair);
+  border-bottom-width: 2px;
+  background: var(--fond-2);
+  font-family: var(--texte-police);
+  font-size: 12px;
+  color: var(--texte);
+}
+
+.aide-glossaire dt {
+  font-weight: 700;
+  color: var(--or);
+  margin-top: 10px;
+}
+
+.aide-glossaire dd {
+  margin: 2px 0 0;
+  color: var(--texte-doux);
+}
+
+@media (max-width: 760px) {
+  .histoires-corps,
+  .aide-corps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .aide-sommaire {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.histoire-cout table {
+  border-collapse: collapse;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.histoire-cout th,
+.histoire-cout td {
+  text-align: left;
+  padding: 4px 18px 4px 0;
+  border-bottom: 1px solid var(--bord);
+}
+
+.histoire-cout th {
+  font-weight: 500;
+  color: var(--texte-faible);
+  font-size: 12px;
+}
+
+.histoire-cout small {
+  color: var(--texte-faible);
+}

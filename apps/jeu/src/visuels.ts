@@ -9,6 +9,7 @@ const parNom = (fichiers: Record<string, string>) =>
   new Map(Object.entries(fichiers).map(([chemin, url]) => [chemin.replace(/^.*\/(.+)\.[a-z]+$/, '$1'), url]));
 
 const BESTIAIRE = parNom(import.meta.glob<string>('./bestiaire/*.webp', { eager: true, query: '?url', import: 'default' }));
+const INTERFACE = parNom(import.meta.glob<string>('./interface/*.webp', { eager: true, query: '?url', import: 'default' }));
 const TERRAINS = parNom(import.meta.glob<string>('./terrains/*.webp', { eager: true, query: '?url', import: 'default' }));
 
 /** Image d'un combattant : le portrait choisi par le joueur, ou le monstre du bestiaire. */
@@ -19,4 +20,9 @@ export function imageCombattant(c: Combattant): string | undefined {
 
 export function textureTerrain(terrain: Terrain | undefined, type: TypeCase): string | undefined {
   return terrain ? TERRAINS.get(`${terrain}-${type}`) : undefined;
+}
+
+/** Illustration de l'interface (`ecran-titre`…), générée par `pnpm images interface`. */
+export function imageInterface(id: string): string | undefined {
+  return INTERFACE.get(id);
 }

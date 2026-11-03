@@ -71,8 +71,9 @@ Quand tous les agents ont terminé :
 3. Remplis `chapitres[].quetes` dans `monde.json` avec toutes les quêtes, passe le `statut` à `"publie"`.
 4. `pnpm monde doc <id>` : génère `docs/mondes/<id>.md`, que l'utilisateur relira (il juge le ton, les personnages, les fins, la générosité des trésors).
 5. **Images du monde** (après accord de l'utilisateur : c'est payant, environ 0,01 $ l'image avec Klein) : `pnpm images monde <id>` liste les lieux ; génère **lieu par lieu** (`--lieu <lieu> --go`), relis chaque lot à l'œil, corrige un refus ou une image fausse par une retouche dans `packages/mondes/<id>/images.json` (jamais dans les fiches), puis `python3 outils/images/installer.py monde <id>` installe les WebP et le manifeste. Ne jamais illustrer les héros du joueur. Pièges connus : `references/lecons.md` § Images ; détails : `docs/M2-IMAGES.md`.
-6. `pnpm test` et `pnpm typecheck` verts.
-7. Mets à jour `docs/MONDES.md` (liste des mondes), `docs/JOURNAL.md`, la mémoire du projet ; propose le commit (demande l'accord avant).
+6. `pnpm monde estimer <id>` : écrit `estimation.json` (durée et coût d'API pour le joueur, affichés sur l'écran « Choisir une histoire » ; un test exige qu'il soit à jour). Signale à l'utilisateur la durée et le coût obtenus : une histoire trop longue coûte cher au joueur, qui paie avec sa propre clé.
+7. `pnpm test` et `pnpm typecheck` verts.
+8. Mets à jour `docs/MONDES.md` (liste des mondes), `docs/JOURNAL.md`, la mémoire du projet ; propose le commit (demande l'accord avant).
 
 ## Ce qui fait un bon monde (à garder en tête à chaque étape)
 

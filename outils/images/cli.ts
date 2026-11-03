@@ -9,6 +9,7 @@
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--go]           une image par profil de monstre du SRD (combat, tous mondes)
 //   pnpm images terrains [--go]            textures du plateau de combat (sol, difficile, mur par ambiance)
+//   pnpm images interface [--go]           illustrations de l'interface (écran titre)
 //   pnpm images depense                     dépense cumulée de la clé OpenRouter
 //
 // Options de `generer` : --lot portraits|scenes|tout (défaut : tout), --id <élément> (une seule image, ex. portrait-bran),
@@ -19,7 +20,7 @@ import { join } from 'node:path';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { elementsGalerie } from './galerie';
-import { elementsBestiaire, elementsTerrains } from './plateau';
+import { elementsBestiaire, elementsInterface, elementsTerrains } from './plateau';
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
@@ -189,10 +190,10 @@ async function main(): Promise<void> {
     await genererLot(service, elementsGalerie(charte), lireEnv(), args.includes('--go'), Number(option('--max') ?? 60), undefined, join(SORTIES, 'galerie'));
     return;
   }
-  if (commande === 'bestiaire' || commande === 'terrains') {
+  if (commande === 'bestiaire' || commande === 'terrains' || commande === 'interface') {
     const service = trouverService(option('--service') ?? 'klein');
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
-    const lot = commande === 'bestiaire' ? elementsBestiaire(charte) : elementsTerrains(charte);
+    const lot = commande === 'bestiaire' ? elementsBestiaire(charte) : commande === 'terrains' ? elementsTerrains(charte) : elementsInterface(charte);
     await genererLot(service, lot, lireEnv(), args.includes('--go'), Number(option('--max') ?? 40), undefined, join(SORTIES, commande));
     return;
   }
@@ -210,7 +211,7 @@ async function main(): Promise<void> {
     console.log(`Page écrite : ${page}`);
     return;
   }
-  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | terrains | comparer | depense');
+  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | terrains | interface | comparer | depense');
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()!)) {

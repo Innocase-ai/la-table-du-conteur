@@ -333,8 +333,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
   return (
     <div className="combat">
       <header className="combat-haut">
-        <button type="button" className="bouton-discret" onClick={onRetour} title="Retour à l'accueil">
-          ‹ Accueil
+        <button type="button" className="bouton-discret" onClick={onRetour} title="Retour au choix de la rencontre">
+          ‹ Escarmouche
         </button>
         <Initiative etat={vue} onSurvol={setSurvolId} />
         <div className="combat-titre">

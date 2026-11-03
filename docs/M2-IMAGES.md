@@ -174,3 +174,7 @@ Demande : un plateau plus beau, des cases lisibles, des personnages plus grands.
 - **Écran de combat** : le plateau prend tout le centre ; la colonne de droite porte le tour en cours (ressources, consigne, boutons) et les cartes en liste compacte ; l'illustration, la fiche et le journal sont en bas.
 - **Commandes** : `pnpm images terrains --go`, `pnpm images bestiaire --go`, puis `python3 outils/images/installer.py terrains|bestiaire` (vers `apps/jeu/src/terrains/` et `apps/jeu/src/bestiaire/`, versionnés). Coût : 12 textures + 30 monstres ≈ 0,34 $.
 - **Nouveau monstre** : sa fiche `apparence` (anglais) dans `charte.json`, puis `pnpm images bestiaire --go` (ne refait que les manquantes) et l'installation.
+
+## Écran titre (03/11/2026)
+
+Illustration `ecran-titre` (table du conteur, sans personnage) : `pnpm images interface --go` puis `python3 outils/images/installer.py interface`. Ses objets sont cliquables : les zones sont des polygones **dans le repère de l'image (1248 × 832)**, dans `apps/jeu/src/menu/EcranTitre.tsx`. **Si l'illustration est régénérée, il faut redessiner ces zones** (les tracer sur l'image avec Pillow pour vérifier le calage).

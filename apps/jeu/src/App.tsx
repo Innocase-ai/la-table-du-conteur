@@ -6,6 +6,9 @@ import { Combat } from './composants/Combat';
 import { Createur } from './createur/Createur';
 import { EcranGroupe } from './groupe/EcranGroupe';
 import { chargerGroupe, sauverGroupe } from './groupe/stockage';
+import { EcranAide } from './menu/EcranAide';
+import { EcranHistoires } from './menu/EcranHistoires';
+import { EcranTitre } from './menu/EcranTitre';
 
 export interface Reglages {
   rencontre: Rencontre;
@@ -23,7 +26,11 @@ function nouvelleGraine(): number {
   return Math.floor(Math.random() * 2 ** 31);
 }
 
-type Vue = { nom: 'accueil' } | { nom: 'groupe' } | { nom: 'createur'; index: number; personnage?: PersonnageCree };
+type Ecran = 'titre' | 'histoires' | 'escarmouche' | 'aide';
+type Vue =
+  | { nom: Ecran }
+  | { nom: 'groupe'; retour: Ecran }
+  | { nom: 'createur'; index: number; personnage?: PersonnageCree; retour: Ecran };
 
 export function App() {
   const donnees = useMemo(() => {
@@ -35,7 +42,8 @@ export function App() {
   }, []);
   const [partie, setPartie] = useState<{ reglages: Reglages; graine: number } | null>(null);
   const [derniers, setDerniers] = useState<Reglages | undefined>();
-  const [vue, setVue] = useState<Vue>({ nom: 'accueil' });
+  // Le joueur arrive sur l'écran titre.
+  const [vue, setVue] = useState<Vue>({ nom: 'titre' });
   const [groupe, setGroupe] = useState<Groupe>(() => chargerGroupe());
 
   // Sauvegarde automatique du groupe.
@@ -69,9 +77,9 @@ export function App() {
         groupe={groupe}
         donnees={d}
         onChange={setGroupe}
-        onCreer={(index) => setVue({ nom: 'createur', index })}
-        onModifier={(index) => setVue({ nom: 'createur', index, personnage: groupe.emplacements[index] ?? undefined })}
-        onRetour={() => setVue({ nom: 'accueil' })}
+        onCreer={(index) => setVue({ nom: 'createur', index, retour: vue.retour })}
+        onModifier={(index) => setVue({ nom: 'createur', index, personnage: groupe.emplacements[index] ?? undefined, retour: vue.retour })}
+        onRetour={() => setVue({ nom: vue.retour })}
       />
     );
   }
@@ -82,11 +90,27 @@ export function App() {
         donnees={d}
         personnage={vue.personnage}
         niveauGroupe={groupe.niveau}
-        onQuitter={() => setVue({ nom: 'groupe' })}
+        onQuitter={() => setVue({ nom: 'groupe', retour: vue.retour })}
         onTerminer={(p) => {
           setGroupe((g) => ({ ...g, emplacements: g.emplacements.map((x, i) => (i === vue.index ? p : x)) }));
-          setVue({ nom: 'groupe' });
+          setVue({ nom: 'groupe', retour: vue.retour });
         }}
+      />
+    );
+  }
+  if (vue.nom === 'histoires') {
+    return <EcranHistoires donnees={d} groupe={groupe} onGroupe={() => setVue({ nom: 'groupe', retour: 'histoires' })} onRetour={() => setVue({ nom: 'titre' })} />;
+  }
+  if (vue.nom === 'aide') return <EcranAide onRetour={() => setVue({ nom: 'titre' })} />;
+  if (vue.nom === 'titre') {
+    return (
+      <EcranTitre
+        donnees={d}
+        groupe={groupe}
+        onHistoires={() => setVue({ nom: 'histoires' })}
+        onGroupe={() => setVue({ nom: 'groupe', retour: 'titre' })}
+        onEscarmouche={() => setVue({ nom: 'escarmouche' })}
+        onAide={() => setVue({ nom: 'aide' })}
       />
     );
   }
@@ -95,7 +119,8 @@ export function App() {
       donnees={d}
       groupe={groupe}
       initial={derniers}
-      onGerer={() => setVue({ nom: 'groupe' })}
+      onRetour={() => setVue({ nom: 'titre' })}
+      onGerer={() => setVue({ nom: 'groupe', retour: 'escarmouche' })}
       onCombattre={(reglages) => {
         setDerniers(reglages);
         setPartie({ reglages, graine: nouvelleGraine() });

@@ -181,7 +181,7 @@ export function EcranGroupe(props: Props) {
     <div className="ecran-groupe">
       <header className="groupe-entete">
         <button type="button" className="bouton-discret" onClick={onRetour}>
-          ‹ Accueil
+          ‹ Retour
         </button>
         <div>
           <h1>Mon groupe</h1>

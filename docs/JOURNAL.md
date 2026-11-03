@@ -108,3 +108,13 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Relecture complète des 255 images du Val des Cendres : 3 lieux de la Haute-Forge refaits (lave au lieu de fonte figée), le reste conforme.
 - Images livrées avec le monde : `packages/mondes/<monde>/images/` (WebP, 16 Mo) + `manifeste.json` ; module moteur `monde/images.ts` (lecture, vérification, `imageDe`) ; `outils/images/installer.py galerie|monde <id>`. 340 tests verts.
 - Plateau de combat refait : textures peintes par ambiance (forêt, souterrain, caverne, camp ; 12 textures raccordables), murs en léger relief, jetons agrandis, zoom et défilement ; illustration du combattant actif ou survolé en bas à gauche (portrait de galerie ou bestiaire de 30 monstres). Un essai de figurines debout en plongée a été abandonné (trop grand). Écran réorganisé : plateau au centre, actions à droite, illustration, fiche et journal en bas. Champ `terrain` des rencontres. 0,34 $ d'images.
+
+## 03/11/2026 — Écran titre et menus
+
+- Nom du jeu choisi : **La Table du Conteur** (`apps/jeu/src/jeu.ts`, seul endroit à changer).
+- Écran titre (arrivée du joueur) sur une illustration générée (table du conteur, sans personnage ; `pnpm images interface`) : Choisir une histoire, Mon groupe, Escarmouche (l'ancien accueil, combat d'entraînement), Aide au jeu, Crédits. Les objets de l'image sont cliquables (calque SVG calé sur l'image) : livre → histoires, plume → groupe, dés → escarmouche, lanterne → aide, parchemins → crédits ; ils s'illuminent et donnent leur nom au survol, et se jouent aussi au clavier.
+- Choisir une histoire : les mondes publiés de `packages/mondes` (couverture tirée du manifeste d'images, accroche, ton, résumé, chapitres) et ce qu'il faut pour commencer (groupe complet, niveau). « Commencer l'aventure » reste désactivé jusqu'au conteur (M4).
+- Aide au jeu : principe, création du groupe, combat, cartes et deck d'élan, états et mort, commandes, glossaire.
+- Plan de M4 (le conteur) : `docs/M4-CONTEUR.md` — tour de jeu, verbes du conteur validés par le moteur, fiche de scène + préfixe en cache (le monde complet est trop gros pour chaque tour), serveur Node pour la clé, écran d'exploration, étapes M4a (moteur d'exploration sans LLM) à M4e (partie test d'une heure).
+- Décision : le jeu sera **vendu**, chaque joueur fournit **ses propres clés d'API** (plan § 7 : trousseau sécurisé, plafond de dépense, erreurs claires).
+- Coût d'API par campagne : `estimerCampagne` (moteur) et `pnpm monde estimer` → `estimation.json`, affiché sur « Choisir une histoire » par modèle. Val des Cendres : ≈ 30 h, ≈ 51 $ (Opus 5.5), 29 $ (Sonnet 5.5), 4,5 $ (Haiku 5.5), provisoire jusqu'aux mesures de M4b.

@@ -1,12 +1,12 @@
-# CRPG LLM (nom de travail)
+# La Table du Conteur
 
-CRPG narratif illustré, animé par un MJ IA, sur les règles du SRD 5.2.1. Conception : [docs/PRD.md](docs/PRD.md) ; architecture : [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+CRPG narratif illustré (nom de travail : CRPG LLM), animé par un MJ IA (« le conteur »), sur les règles du SRD 5.2.1. Conception : [docs/PRD.md](docs/PRD.md) ; architecture : [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ```bash
 pnpm install
 pnpm test        # tests du moteur et validation des données SRD
 pnpm typecheck
-pnpm jeu         # prototype du combat de cartes : http://localhost:5173
+pnpm jeu         # le jeu : écran titre, histoires, groupe, escarmouche, aide — http://localhost:5173
 pnpm simuler 8 normale   # l'IA joue les deux camps sur chaque rencontre
 pnpm images lister       # M2 : lot de test des services d'images (voir docs/M2-IMAGES.md)
 pnpm monde valider       # valide les mondes (packages/mondes) ; pnpm monde doc <monde> génère le document lisible

@@ -13,6 +13,7 @@ interface Props {
   initial?: Reglages;
   onGerer: () => void;
   onCombattre: (r: Reglages) => void;
+  onRetour: () => void;
 }
 
 function MiniCarte({ carte }: { carte: string[] }) {
@@ -40,7 +41,7 @@ function listeMonstres(r: Rencontre, donnees: Donnees): string {
     .join(' · ');
 }
 
-export function Accueil({ donnees, groupe, initial, onGerer, onCombattre }: Props) {
+export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onRetour }: Props) {
   const [rencontre, setRencontre] = useState<Rencontre>(initial?.rencontre ?? RENCONTRES[0]!);
   const [elan, setElan] = useState(initial?.elan ?? true);
   const [ia, setIa] = useState<Reglages['ia']>(initial?.ia ?? 'normale');
@@ -59,9 +60,12 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre }: Prop
   return (
     <div className="accueil">
       <header className="accueil-entete">
+        <button type="button" className="bouton-discret accueil-retour" onClick={onRetour}>
+          ‹ Menu
+        </button>
         <div className="ornement">✦</div>
-        <h1>Le Combat de cartes</h1>
-        <p className="sous-titre">Prototype tactique — règles du SRD 5.2.1</p>
+        <h1>Escarmouche</h1>
+        <p className="sous-titre">Un combat d'entraînement, hors de toute histoire</p>
       </header>
 
       <div className="accueil-corps">

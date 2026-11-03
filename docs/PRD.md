@@ -1,4 +1,4 @@
-# PRD — CRPG narratif animé par LLM (nom de travail à définir)
+# PRD — La Table du Conteur, CRPG narratif animé par LLM
 
 **Version :** 0.5 — 02/11/2026 **Statut :** Brouillon de conception ; M0 terminé, prototype M1 jouable (à valider en jeu) **Plateforme cible :** navigateur (PC), exécutable desktop envisagé plus tard (Tauri ou Electron) **Langue :** français **Stack :** TypeScript (moteur de règles pur + client React + serveur Node) **Règles :** D&D SRD 5.2.1 (CC-BY-4.0)
 
@@ -162,7 +162,7 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 | **M1 — Combat de cartes** 🧪 (jouable, animé, à valider en jeu ; `docs/COMBAT.md`) | Combat complet + IA tactique, 6 héros pré-tirés, quelques rencontres, sans LLM ni images | Le critère du §7.3 est atteint, après des parties de test |
 | **M2 — Test des images** 🧪 (essais réels faits : FLUX 3 Image en tête, voir `docs/M2-IMAGES.md`) | Comparaison de 2 ou 3 services sur 10 scènes avec les mêmes héros | Service choisi, délai et coût mesurés, charte graphique fixée |
 | **M3 — Créateur de personnages** ✅ M3a (sans LLM, voir `docs/CREATION.md`) ; M3b (assistant LLM) à venir | Création complète, portraits, création assistée | Un groupe de 6 se crée en moins de 20 minutes |
-| **M4 — MJ** | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
+| **M4 — MJ** (plan : `docs/M4-CONTEUR.md`) | MJ + arbitre + illustrateur, un lieu court jouable de bout en bout | Une partie d'une heure sans incohérence de règles |
 | **M5 — Profondeur** | Pièges, énigmes, artisanat, voix des PNJ, stratège, archiviste | Chaque système est utilisé dans le chapitre |
 | **M6 — Chapitre 1** (données écrites : Val des Cendres, `docs/mondes/val-des-cendres.md` ; reste le MJ, M4) | Village + donjon, 2 à 3 heures, sauvegarde, équilibrage | Partie complète jouée et terminée |
 
@@ -183,7 +183,7 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 1. **Nom du jeu, univers et ton** (sombre, héroïque, humoristique ?).
 2. **Service d'images** et clé API (décision en M2).
 3. **Budget acceptable** par heure de jeu.
-4. **Usage :** jeu personnel ou destiné à être partagé ou distribué ? Cela change l'hébergement et la gestion des clés.
+4. ~~**Usage**~~ : **tranché le 03/11/2026, le jeu sera vendu** ; chaque joueur utilise **ses propres clés d'API** (Anthropic, et OpenRouter pour les images), gardées sur sa machine, et chaque histoire affiche son coût d'API estimé (`docs/M4-CONTEUR.md` § 7 et 8).
 5. **Hasard dans le combat :** deck d'élan pioché ou toutes les cartes visibles (décision en M1).
 6. **Mort des personnages :** définitive, ou avec possibilité de résurrection et recrutement ?
 

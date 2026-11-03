@@ -1,5 +1,5 @@
-// Images du plateau de combat, communes à tous les mondes : le bestiaire (une image en pied par profil de monstre du SRD)
-// et les textures de terrain (packages/donnees/visuel/terrains.json).
+// Images du moteur, communes à tous les mondes : le bestiaire (une image en pied par profil de monstre du SRD),
+// les textures de terrain (packages/donnees/visuel/terrains.json) et les illustrations de l'interface (écran titre).
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { z } from 'zod';
@@ -54,4 +54,22 @@ export function elementsTerrains(charte: Charte): Element[] {
       ].join('\n'),
     })),
   );
+}
+
+/** Illustrations de l'interface du jeu (écran titre…), sans personnage ni lien avec un monde. */
+export function elementsInterface(charte: Charte): Element[] {
+  return [
+    {
+      id: 'ecran-titre',
+      groupe: 'scenes',
+      nom: 'Écran titre : la table du conteur',
+      format: 'paysage',
+      references: [],
+      prompt: [
+        charte.style,
+        "A storyteller's table in a dim candle-lit stone study at night: a heavy old oak table covered with an open leather-bound book of tales with illuminated pages, hand-drawn parchment maps of unknown lands, scattered polyhedral dice, carved wooden game tokens, a brass lantern, a quill and an inkwell, melted candles. Warm golden candlelight on the right, deep shadow on the left third of the image (empty dark space for a title). No people, no hands, no creatures.",
+        charte.contraintes,
+      ].join('\n'),
+    },
+  ];
 }
