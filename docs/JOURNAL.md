@@ -162,3 +162,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - `Proposition` : chaque commande décrit les actions concrètes qu'elle offre (panneau, élément, style, saisie, raison d'être grisée) ; `moteur.propositions(partie)` les réunit.
 - L'écran d'aventure affiche les panneaux de façon générique : un module ajouté apparaît sans code d'interface.
 - Test : 300 actions au hasard parmi les boutons proposés, aucun refus. 374 tests verts ; vérifié en jeu.
+
+## 03/11/2026 — Étape 4 de l'architecture : Inventaire, Grimoire, Journal de quêtes
+
+- Trois modules ajoutés sans toucher au reste ; nouvelle notion du noyau : l'encart (fiche d'information dans un onglet).
+- Inventaire (utiliser, confier une potion pour le combat, identifier, jeter ; onglet Sac), Grimoire (sorts de soins hors combat ; onglet Grimoire), Journal (quêtes et notes ; onglet Journal).
+- 382 tests verts ; vérifié en jeu avec le groupe du joueur.

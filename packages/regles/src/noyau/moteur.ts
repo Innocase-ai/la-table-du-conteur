@@ -6,7 +6,7 @@ import { etatExplorationVide } from '../monde/exploration';
 import type { Personnage } from '../personnage';
 import { differences } from './differences';
 import { migrer } from './migrations';
-import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, type Module, type Ordre, type Partie, type Proposition, type ResultatOrdre, type Transaction } from './types';
+import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, type Module, type Ordre, type Partie, type Encart, type Proposition, type ResultatOrdre, type Transaction } from './types';
 
 export interface Moteur {
   ctx: ContexteJeu;
@@ -15,6 +15,8 @@ export interface Moteur {
   executer(partie: Partie, ordre: Ordre): ResultatOrdre;
   /** Les commandes connues, avec leur disponibilité dans la partie (pour les boutons et le conteur). */
   commandes(partie?: Partie): { type: string; module: string; description: string; commande: CommandeJeu; disponible: true | string }[];
+  /** Les fiches d'information de tous les modules, rangées par onglet puis par ordre. */
+  encarts(partie: Partie): Encart[];
   /** Les actions concrètes offertes maintenant, tous modules confondus, rangées par panneau. */
   propositions(partie: Partie): Proposition[];
   vue<T = unknown>(id: string, partie: Partie): T;
@@ -106,6 +108,13 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         commande,
         disponible: partie ? (commande.disponible?.(ctx, partie) ?? true) : true,
       }));
+    },
+
+    encarts(partie) {
+      // Les onglets dans l'ordre d'enregistrement des modules ; dans un onglet, par `ordre`.
+      const tous = modules.flatMap((m) => m.encarts?.(ctx, partie) ?? []);
+      const rang = [...new Set(tous.map((e) => e.onglet))];
+      return tous.sort((a, b) => rang.indexOf(a.onglet) - rang.indexOf(b.onglet) || a.ordre - b.ordre);
     },
 
     propositions(partie) {

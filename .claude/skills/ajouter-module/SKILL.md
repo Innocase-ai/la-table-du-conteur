@@ -43,8 +43,8 @@ Dans `packages/regles/tests/<id>.test.ts`, avec `creerMoteur` et un vrai monde (
 
 - Les actions : **ne code pas de bouton**. Donne à chaque commande jouable par le joueur une fonction `propositions(ctx, partie)` qui renvoie les actions concrètes du moment (`Proposition`, `noyau/types.ts`) : libellé, ordre, panneau (`PANNEAUX` de `modules/commun.ts` ou un nouveau `{ id, titre, ordre }`), élément de rattachement, style, `saisie` pour un texte du joueur, `desactivee` avec la raison. L'écran d'aventure les affiche tout seul. Le test « chaque bouton proposé est jouable » (marche au hasard, `tests/noyau.test.ts`) doit rester vert : ajoute ton module au moteur de ce test si besoin.
 - Une commande réservée au conteur (comme `testLibre`) n'a pas de propositions.
-- Le récit : si le module ajoute des événements visibles, un `case` dans `EntreeRecit` (`apps/jeu/src/aventure/EcranAventure.tsx`).
-- Un panneau (Inventaire, Grimoire, Journal…) : un composant dans `apps/jeu/src/aventure/` qui lit les **vues** du module.
+- L'information (contenu d'un sac, livre de sorts, liste de quêtes) : **ne code pas de panneau**. Déclare `encarts(ctx, partie)` dans le module : des `Encart` (onglet, titre, ordre, texte, lignes avec libellé, valeur, détail et ton). L'écran crée l'onglet tout seul ; pour y mettre aussi des boutons, donne `onglet` au `groupe` des propositions. Exemples : `modules/inventaire.ts` (onglet Sac), `modules/grimoire.ts`, `modules/journal.ts` (un module sans aucune commande).
+- Le récit : si le module ajoute des événements visibles, un `case` dans `EntreeRecit` (`apps/jeu/src/aventure/EcranAventure.tsx`). C'est le seul endroit du client à toucher, et seulement si l'événement doit s'afficher autrement qu'en `constat` ou `texte` (le plus simple : émettre aussi un `constat`).
 - Vérifie dans le navigateur (skill `run` ou le panneau navigateur) : jouer la fonctionnalité de bout en bout, recharger la page, reprendre.
 
 ## 5. Documenter

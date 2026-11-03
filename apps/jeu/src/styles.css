@@ -4810,3 +4810,88 @@ kbd {
   font-size: 10px;
   color: var(--texte-faible);
 }
+
+/* Onglets de la colonne d'actions (fournis par les modules) et fiches d'information. */
+.onglets {
+  display: flex;
+  gap: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding-bottom: 4px;
+  background: var(--fond);
+}
+
+.onglets button {
+  flex: 1;
+  padding: 6px 4px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid var(--bord);
+  border-bottom-color: transparent;
+  background: var(--panneau);
+  color: var(--texte-doux);
+  font-family: var(--titre);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.onglets button.actif {
+  color: var(--or-vif);
+  border-color: var(--or);
+  background: var(--panneau-2);
+}
+
+.encart-texte {
+  margin: 0;
+  font-size: 13px;
+  color: var(--texte-doux);
+  font-style: italic;
+}
+
+.encart-ligne {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 230, 190, 0.06);
+  font-size: 13px;
+}
+
+.encart-ligne:last-child {
+  border-bottom: none;
+}
+
+.encart-tete {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.encart-valeur {
+  flex: none;
+  color: var(--texte-faible);
+  font-size: 12px;
+}
+
+.encart-detail {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--texte-faible);
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.ton-fort > .encart-tete > span:first-child {
+  color: var(--or-vif);
+  font-weight: 600;
+}
+
+.ton-succes > .encart-tete > span:first-child {
+  color: #a9d79b;
+}
+
+.ton-danger > .encart-tete > span:first-child {
+  color: var(--rouge);
+}
+
+.ton-faible {
+  opacity: 0.6;
+}

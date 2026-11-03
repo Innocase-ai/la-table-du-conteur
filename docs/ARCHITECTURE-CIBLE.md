@@ -191,3 +191,23 @@ Prochaine étape : **3, les commandes partout** (boutons générés depuis les c
 Vérifié dans le navigateur : panneaux du départ, de l'auberge, de la conversation avec Nério (sujets, influence, terminer), « Fouiller » grisé après une fouille (« Déjà fouillé aujourd'hui »), rencontre du gué (issues avec leur compétence), piège repéré avec « Désarmer ». 374 tests verts.
 
 Prochaine étape : **4, Inventaire, Grimoire, Journal de quêtes** — les premiers vrais modules ajoutés sur le noyau.
+
+## 9. État : étape 4 faite (03/11/2026) — Inventaire, Grimoire, Journal de quêtes
+
+Les trois premiers modules ajoutés sur le noyau, **sans toucher aux autres** : un fichier chacun dans `packages/regles/src/modules/`, une ligne dans `MODULES_STANDARD`. Le noyau a gagné une notion : l'**encart** (`Encart`), une fiche d'information qu'un module montre dans un **onglet** ; une proposition peut aussi viser un onglet (`groupe.onglet`). L'écran affiche les onglets que déclarent les modules (dans leur ordre d'enregistrement), sans les connaître.
+
+| Module | Commandes | Événements ajoutés | Onglet |
+| --- | --- | --- | --- |
+| **Inventaire** (`inventaire.ts`) | `utiliserObjet` (consommables : soins sur le plus blessé, effets), `confierPotion` (une potion de guérison du sac passe à un héros, qui la boira en combat), `identifierObjet` (Arcanes contre le DD de l'objet : son histoire et ses malédictions), `jeterObjet` (jamais un objet de quête) | `objetUtilise`, `objetIdentifie` | **Sac** : bourse et poids, potions portées par chacun, contenu du sac (détail, histoire si identifié) et ses boutons |
+| **Grimoire** (`grimoire.ts`) | `lancerSort` : les sorts de soins hors combat (Soins, Mot de guérison, Prière de guérison, Mot de guérison de groupe), sur le plus blessé ou tout le groupe, avec le plus petit emplacement suffisant | `sortLance` | **Grimoire** : un encart par lanceur (DD, attaque, emplacements restants, sorts mineurs et préparés avec leur résumé) ; boutons « Soigner » |
+| **Journal** (`journal.ts`) | aucune | aucun | **Journal** : quêtes en cours (type, résumé, étapes actives), quêtes achevées ou échouées, notes (les faits sûrs, du plus récent au plus ancien) |
+
+Le module Inventaire déclare ses événements par augmentation de `CarteEvenements` (`declare module '../noyau/types'`) : la preuve que l'extension prévue fonctionne.
+
+Tests (`tests/modules.test.ts`, groupe conseillé du créateur) : potion du sac qui soigne puis potion confiée, refus (objet absent, personne blessé, objet de quête), identification (jet d'Arcanes, histoire), onglet Sac ; Soins de Hilda (emplacement dépensé, événements), refus (sort inconnu, sort de combat, plus d'emplacement), onglet Grimoire ; quête de la Lanterne dans le Journal. La marche au hasard de 300 actions joue aussi leurs boutons. 382 tests verts.
+
+Vérifié dans le navigateur avec le groupe du joueur : onglets Actions, Sac, Grimoire, Journal ; potions portées, livres de sorts d'Ilyra, Hilda, Sylvaine et Ambrine ; quête « La Lanterne faiblit » au journal après la conversation avec Hesta.
+
+**Pas encore** (prochaines versions de ces modules) : l'équipement de départ des héros dans le sac, équiper une arme ou une armure (il faudra recalculer la fiche), préparer d'autres sorts au repos long, les parchemins, les boutiques, la charge maximale selon la Force, la quête suivie.
+
+Prochaine étape : **5, les scènes narrées** (image, texte, voix).

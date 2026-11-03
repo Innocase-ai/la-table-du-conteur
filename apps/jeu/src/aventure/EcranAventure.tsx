@@ -5,6 +5,7 @@ import {
   etatDurableMax,
   type DonneesMonde,
   type EvenementJeu,
+  type Encart,
   type FicheScene,
   type Proposition,
   type Interlocuteur,
@@ -92,6 +93,16 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const image = useImage(dm.monde.id, 'lieux', scene.lieu.id);
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
+  const propositions = moteur.propositions(partie);
+  const encarts = moteur.encarts(partie);
+  // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
+  const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])];
+  const [onglet, setOnglet] = useState('Actions');
+  const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
+  // Une rencontre ou une conversation ramène à l'onglet des actions.
+  useEffect(() => {
+    if (partie.scene.type !== 'exploration') setOnglet('Actions');
+  }, [partie.scene.type]);
 
   useEffect(() => {
     recit.current?.scrollTo({ top: recit.current.scrollHeight, behavior: 'smooth' });
@@ -144,27 +155,52 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </main>
 
       <aside className="aventure-actions">
-        {fin && (
-          <section className="panneau-action fin-histoire">
-            <h3>{fin.nom}</h3>
-            <p>{fin.epilogue}</p>
-            <button type="button" className="bouton-principal" onClick={onMenu}>
-              Retour au menu
+        <nav className="onglets" aria-label="Onglets">
+          {onglets.map((o) => (
+            <button key={o} type="button" className={o === ongletActif ? 'actif' : ''} aria-current={o === ongletActif} onClick={() => setOnglet(o)}>
+              {o}
             </button>
-          </section>
+          ))}
+        </nav>
+        {ongletActif !== 'Actions' ? (
+          <>
+            {encarts
+              .filter((e) => e.onglet === ongletActif)
+              .map((e) => (
+                <FicheEncart key={e.id} e={e} />
+              ))}
+            <Panneaux propositions={propositions.filter((x) => x.groupe.onglet === ongletActif)} jouer={jouer} onCombat={onCombat} />
+          </>
+        ) : (
+          <>
+            {fin && (
+              <section className="panneau-action fin-histoire">
+                <h3>{fin.nom}</h3>
+                <p>{fin.epilogue}</p>
+                <button type="button" className="bouton-principal" onClick={onMenu}>
+                  Retour au menu
+                </button>
+              </section>
+            )}
+            {interlocuteur && (
+              <section className="panneau-action">
+                <div className="dialogue-entete">
+                  <div className="dialogue-portrait" style={imagePnj ? { backgroundImage: `url(${imagePnj})` } : undefined} />
+                  <div>
+                    <h3>{interlocuteur.nom}</h3>
+                    <small>{interlocuteur.role}</small>
+                  </div>
+                </div>
+              </section>
+            )}
+            <Panneaux
+              propositions={propositions.filter((x) => !x.groupe.onglet)}
+              jouer={jouer}
+              onCombat={onCombat}
+              cacherTitre={interlocuteur ? 'dialogue' : undefined}
+            />
+          </>
         )}
-        {interlocuteur && (
-          <section className="panneau-action">
-            <div className="dialogue-entete">
-              <div className="dialogue-portrait" style={imagePnj ? { backgroundImage: `url(${imagePnj})` } : undefined} />
-              <div>
-                <h3>{interlocuteur.nom}</h3>
-                <small>{interlocuteur.role}</small>
-              </div>
-            </div>
-          </section>
-        )}
-        <Panneaux propositions={moteur.propositions(partie)} jouer={jouer} onCombat={onCombat} cacherTitre={interlocuteur ? 'dialogue' : undefined} />
       </aside>
 
       <footer className="aventure-groupe">
@@ -195,6 +231,25 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         </div>
       </footer>
     </div>
+  );
+}
+
+/** Une fiche d'information d'un module (sac, grimoire, journal…). */
+function FicheEncart({ e }: { e: Encart }) {
+  return (
+    <section className="panneau-action encart">
+      <h3>{e.titre}</h3>
+      {e.texte && <p className="encart-texte">{e.texte}</p>}
+      {e.lignes?.map((l, i) => (
+        <div key={i} className={`encart-ligne ${l.ton ? `ton-${l.ton}` : ''}`}>
+          <div className="encart-tete">
+            <span>{l.libelle}</span>
+            {l.valeur && <span className="encart-valeur">{l.valeur}</span>}
+          </div>
+          {l.detail && <p className="encart-detail">{l.detail}</p>}
+        </div>
+      ))}
+    </section>
   );
 }
 

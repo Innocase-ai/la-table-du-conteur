@@ -103,8 +103,8 @@ export interface Transaction {
  * restent génériques : un nouveau module apparaît à l'écran sans code d'interface.
  */
 export interface Proposition {
-  /** Le panneau où ranger l'action ; les panneaux s'affichent par `ordre` croissant. */
-  groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean };
+  /** Le panneau où ranger l'action ; les panneaux s'affichent par `ordre` croissant, dans l'onglet `onglet` (« Actions » par défaut). */
+  groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean; onglet?: string };
   libelle: string;
   /** Précision affichée en petit (rôle d'un PNJ, compétence utilisée). */
   detail?: string;
@@ -121,6 +121,19 @@ export interface Proposition {
   element?: { id: string; titre: string; danger?: boolean };
   /** Proposition visible mais impossible maintenant, avec la raison. */
   desactivee?: string;
+}
+
+/**
+ * Une fiche d'information qu'un module montre au joueur (le contenu du sac, un livre de sorts, les quêtes en cours),
+ * rangée dans un onglet. Comme les propositions, l'écran l'affiche sans connaître le module.
+ */
+export interface Encart {
+  onglet: string;
+  id: string;
+  titre: string;
+  ordre: number;
+  texte?: string;
+  lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger' }[];
 }
 
 export interface CommandeJeu<S extends ZodTypeAny = ZodTypeAny> {
@@ -147,6 +160,8 @@ export interface Module {
   reactions?: { [K in TypeEvenement]?: Reaction<K> };
   /** Vues calculées pour l'interface et le conteur. */
   vues?: Record<string, (ctx: ContexteJeu, partie: Partie) => unknown>;
+  /** Fiches d'information à montrer au joueur (onglets Sac, Grimoire, Journal…). */
+  encarts?(ctx: ContexteJeu, partie: Partie): Encart[];
 }
 
 /** Une commande envoyée au moteur : son nom et ses paramètres. */
