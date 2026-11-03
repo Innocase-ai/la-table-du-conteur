@@ -65,7 +65,7 @@ Une scène est une petite cinématique jouée quand quelque chose arrive :
 
 - **Déclencheurs** : `{ "debut": true }` (ouverture de l'histoire), `{ "lieu": id }` (première entrée), `{ "quete": id, "statut": "active" | "terminee" | "echouee" }`, `{ "fait": id }`, `{ "fin": id }`. Une scène `unique` (par défaut) ne se joue qu'une fois ; on la revoit depuis l'onglet Journal.
 - **Plans** : une image du monde (groupe du manifeste et id : lieu, PNJ, monstre, objet), un mouvement de caméra (`approche`, `recul`, `gauche`, `droite`, `fixe`), le texte lu et affiché, une durée minimale facultative.
-- **Voix** : `pnpm voix generer <monde> --go` fait lire chaque plan par un modèle audio (OpenRouter) et écrit `voix/<scene>-<plan>.mp3`, livré avec le monde ; sans fichier, le jeu utilise la voix de synthèse du système, que le joueur peut couper.
+- **Voix** : `pnpm voix generer <monde> --go` fait lire chaque plan par un modèle audio (OpenRouter) et écrit `voix/<scene>-<plan>.mp3`, livré avec le monde, et `voix/<scene>-<plan>.json` (texte, transcription, durée, coût : pour relire ce qui a été dit ; non livré au joueur). Une lecture infidèle (mots ajoutés ou oubliés) ou trop longue est refaite, trois fois au plus, sinon le fichier n'est pas écrit. Sans fichier, le jeu utilise la voix de synthèse du système, que le joueur peut couper. Coût : environ 0,001 $ par plan avec `gpt-audio-mini`.
 - **Règles d'écriture** : le texte est lu au joueur, au présent ou au passé de conte, sans rien dévoiler qu'il ne découvre au même moment ; deux ou trois phrases par plan, trois ou quatre plans par scène.
 
 ## Conditions et effets

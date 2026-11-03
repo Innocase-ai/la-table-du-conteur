@@ -174,3 +174,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Les mondes acceptent les données des modules (`extensions`, validées par chaque module).
 - Module Scènes (déclencheurs par événements, file, revoir), lecteur plein écran (image animée, texte, voix), outil `pnpm voix` (OpenRouter gpt-audio, simulation par défaut).
 - 8 scènes du Val des Cendres. Corrigé : le CLI des images s'exécutait à l'import. 386 tests verts.
+
+## 03/11/2026 — Voix des scènes du Val
+
+- 25 plans lus par `openai/gpt-audio-mini` (voix `onyx`) : 4,4 Mo de MP3, 0,025 $.
+- Deux pièges du modèle audio : il inventait une suite après le texte, et à `temperature: 0` l'audio bouclait 13 minutes (0,04 $ perdus). L'outil vérifie maintenant la transcription mot à mot, la durée (coupure du flux au-delà du double attendu), retire les silences, refait jusqu'à trois fois, plafonne la dépense et garde chaque transcription à côté du MP3.
