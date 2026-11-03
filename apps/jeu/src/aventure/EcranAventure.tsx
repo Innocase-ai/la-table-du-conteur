@@ -9,12 +9,15 @@ import {
   type SceneNarree,
   type Interlocuteur,
   type Jet,
+  jouerTour,
+  type Echange,
   type Ordre,
   type Partie,
   type Personnage,
 } from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
-import { manifesteDe, urlImage } from '../mondes';
+import { bibleDe, manifesteDe, urlImage } from '../mondes';
+import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import type { Aventure } from './partie';
 import { BoutonProposition } from './BoutonProposition';
 import { BandeauHeros, FicheEncart } from './fiches';
@@ -70,6 +73,17 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const dm = moteur.ctx.dm;
   const [refus, setRefus] = useState<string>();
   const recit = useRef<HTMLDivElement>(null);
+  // Le conteur (IA) : disponible si le serveur du jeu a une clé ; le joueur lui écrit librement.
+  const [conteur, setConteur] = useState<EtatConteur>();
+  const [saisie, setSaisie] = useState('');
+  const [enCours, setEnCours] = useState<string>();
+  const [memoire, setMemoire] = useState<Echange[]>([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [erreurConteur, setErreurConteur] = useState<string>();
+  const [depense, setDepense] = useState(0);
+  useEffect(() => {
+    void etatConteur().then(setConteur);
+  }, []);
   const scene = moteur.vue<FicheScene>('scene', partie);
   const interlocuteur = moteur.vue<Interlocuteur | undefined>('interlocuteur', partie);
   const image = useImage(dm.monde.id, 'lieux', scene.lieu.id);
@@ -110,6 +124,38 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     window.addEventListener('keydown', surTouche);
     return () => window.removeEventListener('keydown', surTouche);
   }, [encarts, pageOuverte, sceneNarree]);
+
+  /** Un tour du conteur : le joueur écrit, le conteur agit par les commandes du moteur et raconte. */
+  const raconter = async (texte: string) => {
+    const t = texte.trim();
+    if (!t || enCours) return;
+    setEnCours('Le conteur réfléchit…');
+    setErreurConteur(undefined);
+    setRefus(undefined);
+    try {
+      const res = await jouerTour({
+        moteur,
+        partie,
+        texte: t,
+        bible: await bibleDe(dm.monde.id),
+        llm: llmDuJeu(),
+        memoire,
+        surOutil: (o) => setEnCours(`Le moteur résout : ${o.nom}…`),
+      });
+      setDepense((d) => d + res.usage.cout);
+      if (res.erreur) setErreurConteur(res.erreur);
+      else {
+        setSaisie('');
+        setSuggestions(res.actions);
+        setMemoire(res.memoire);
+      }
+      if (res.partie !== partie) onPartie(res.partie);
+    } finally {
+      setEnCours(undefined);
+    }
+  };
+  const plafond = conteur?.plafond ?? 0.5;
+  const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
   /** Envoie une commande au moteur ; un refus s'affiche sans changer la partie. */
   const jouer = (ordre: Ordre) => {
@@ -152,12 +198,51 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           ))}
           {refus && <p className="recit-refus">{refus}</p>}
         </div>
-        <div className="aventure-saisie" title="Le conteur (IA) arrive à l'étape suivante : il répondra à ce que vous écrivez.">
-          <input type="text" disabled placeholder="Que faites-vous ? (le conteur arrive bientôt ; jouez avec les actions de droite)" />
-        </div>
+        {suggestions.length > 0 && !enCours && (
+          <div className="aventure-suggestions" aria-label="Actions suggérées par le conteur">
+            {suggestions.map((s) => (
+              <button key={s} type="button" className="bouton-discret" onClick={() => void raconter(s)}>
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+        {erreurConteur && <p className="recit-refus">{erreurConteur}</p>}
+        <form
+          className="aventure-saisie"
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            void raconter(saisie);
+          }}
+        >
+          <input
+            type="text"
+            value={saisie}
+            onChange={(ev) => setSaisie(ev.target.value)}
+            disabled={!conteur?.disponible || !!enCours || plafondAtteint}
+            maxLength={500}
+            placeholder={
+              !conteur?.disponible
+                ? 'Saisie libre indisponible (pas de clé du conteur sur ce serveur) : jouez avec les actions de droite.'
+                : plafondAtteint
+                  ? 'Plafond de dépense du conteur atteint.'
+                  : enCours
+                    ? enCours
+                    : 'Que faites-vous ? (le conteur vous répond)'
+            }
+          />
+          <button type="submit" className="bouton" disabled={!conteur?.disponible || !!enCours || plafondAtteint || !saisie.trim()}>
+            {enCours ? '…' : 'Raconter ›'}
+          </button>
+          {conteur?.disponible && (
+            <small className="aventure-depense" title={`Modèle : ${conteur.modele}`}>
+              {(depense + (conteur.depense ?? 0)).toFixed(3)} $ / {plafond} $
+            </small>
+          )}
+        </form>
       </main>
 
-      <aside className="aventure-actions">
+      <aside className={`aventure-actions ${enCours ? 'occupe' : ''}`} aria-busy={!!enCours}>
         <nav className="onglets" aria-label="Onglets">
           {onglets.map((o) => (
             <button key={o} type="button" className={o === ongletActif ? 'actif' : ''} aria-current={o === ongletActif} onClick={() => setOnglet(o)}>
@@ -172,7 +257,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               e.grille ? (
                 <section key={e.id} className="panneau-action encart">
                   <h3>{e.titre}</h3>
-                  <GrilleElements monde={dm.monde.id} grille={e.grille} cle={e.id} compact onChoisir={(x) => setPage({ onglet: e.onglet, selection: x.id })} />
+                  <GrilleElements monde={dm.monde.id} grille={e.grille} cle={e.id} compact heros={partie.groupe} onChoisir={(x) => setPage({ onglet: e.onglet, selection: x.id })} />
                   <button type="button" className="bouton" onClick={() => setPage({ onglet: e.onglet })}>
                     Ouvrir en plein écran{e.grille.touche ? ` (${e.grille.touche.toUpperCase()})` : ''}
                   </button>
@@ -346,6 +431,16 @@ function EntreeRecit({ e, dm }: { e: EvenementJeu; dm: DonneesMonde }) {
       );
     case 'constat':
       return <p className="recit-constat">{e.texte}</p>;
+    case 'saisieJoueur':
+      return <p className="recit-saisie">▸ {e.texte}</p>;
+    case 'recitConteur':
+      return (
+        <div className="recit-conteur">
+          {e.texte.split(/\n{2,}/).map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+      );
     case 'faitAppris': {
       // Le texte d'une rumeur porte la vérité pour le conteur : le joueur ne l'apprend que par la bouche des PNJ.
       const f = dm.faits.get(e.fait);

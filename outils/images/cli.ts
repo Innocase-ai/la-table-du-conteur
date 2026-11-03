@@ -8,6 +8,7 @@
 //   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--go]           une image par profil de monstre du SRD (combat, tous mondes)
+//   pnpm images equipement [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
 //   pnpm images terrains [--go]            textures du plateau de combat (sol, difficile, mur par ambiance)
 //   pnpm images interface [--go]           illustrations de l'interface (écran titre)
 //   pnpm images depense                     dépense cumulée de la clé OpenRouter
@@ -21,7 +22,7 @@ import { pathToFileURL } from 'node:url';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { elementsGalerie } from './galerie';
-import { elementsBestiaire, elementsInterface, elementsTerrains } from './plateau';
+import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerrains } from './plateau';
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
@@ -191,10 +192,11 @@ async function main(): Promise<void> {
     await genererLot(service, elementsGalerie(charte), lireEnv(), args.includes('--go'), Number(option('--max') ?? 60), undefined, join(SORTIES, 'galerie'));
     return;
   }
-  if (commande === 'bestiaire' || commande === 'terrains' || commande === 'interface') {
+  if (commande === 'bestiaire' || commande === 'terrains' || commande === 'interface' || commande === 'equipement') {
     const service = trouverService(option('--service') ?? 'klein');
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
-    const lot = commande === 'bestiaire' ? elementsBestiaire(charte) : commande === 'terrains' ? elementsTerrains(charte) : elementsInterface(charte);
+    const lot =
+      commande === 'bestiaire' ? elementsBestiaire(charte) : commande === 'terrains' ? elementsTerrains(charte) : commande === 'equipement' ? elementsEquipement(charte) : elementsInterface(charte);
     await genererLot(service, lot, lireEnv(), args.includes('--go'), Number(option('--max') ?? 40), undefined, join(SORTIES, commande));
     return;
   }
@@ -212,7 +214,7 @@ async function main(): Promise<void> {
     console.log(`Page écrite : ${page}`);
     return;
   }
-  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | terrains | interface | comparer | depense');
+  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | equipement | terrains | interface | comparer | depense');
 }
 
 // Seulement quand ce fichier est le programme lancé (pas quand un autre outil l'importe, comme outils/voix).

@@ -159,6 +159,11 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   // --- Faits, objets ---
   for (const o of dm.objets.values()) {
     if (o.base && !srd.armes.has(o.base) && !srd.armures.has(o.base)) err(`Objet « ${o.id} » : base SRD inconnue « ${o.base} ».`);
+    // L'équipement repose sur le catalogue du SRD, commun à tous les mondes : une arme, une armure ou un bouclier du monde
+    // dit lesquels (`base`) pour que le combat et la CA le comprennent ; il n'ajoute que son nom, ses bonus et son histoire.
+    if (o.categorie === 'arme' && !(o.base && srd.armes.has(o.base))) err(`Objet « ${o.id} » : une arme du monde doit citer l'arme du SRD sur laquelle elle repose (« base »), sinon elle ne peut pas être équipée.`);
+    if (o.categorie === 'armure' && !(o.base && srd.armures.has(o.base) && o.base !== 'bouclier')) err(`Objet « ${o.id} » : une armure du monde doit citer l'armure du SRD sur laquelle elle repose (« base »).`);
+    if (o.categorie === 'bouclier' && o.base !== 'bouclier') err(`Objet « ${o.id} » : un bouclier du monde doit avoir « base » : « bouclier ».`);
     if (srd.objets.has(o.id) || srd.armes.has(o.id) || srd.armures.has(o.id)) err(`Objet « ${o.id} » : identifiant déjà pris par le catalogue du SRD.`);
     const minNiveau = RAPPORT_RARETE_NIVEAU[o.rarete]!;
     if (dm.monde.niveaux.max < minNiveau && o.rarete !== 'commun') avis(`Objet « ${o.id} » : rareté « ${o.rarete} » inhabituelle pour les niveaux ${dm.monde.niveaux.min} à ${dm.monde.niveaux.max}.`);

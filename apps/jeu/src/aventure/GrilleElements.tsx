@@ -3,21 +3,27 @@
 // `ElementGrille` (noyau/types.ts), de sorte qu'un grimoire ou un bestiaire pourra s'afficher de la même façon.
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { ElementGrille, GrilleElements as Grille } from '@crpg/regles';
-import { manifesteDe, urlImage } from '../mondes';
+import type { Personnage } from '@crpg/regles';
+import { Portrait } from '../createur/ui';
+import { manifesteDe, urlImage, urlImageCommune } from '../mondes';
 import { Icone, LIBELLE_RARETE } from './icones';
 
-/** L'image d'un élément, d'après le manifeste du monde (rien si l'élément n'en a pas : on montre alors l'icône). */
-function useImageElement(monde: string, image?: ElementGrille['image']): string | undefined {
+/**
+ * L'image d'un élément : celle du monde (manifeste), sinon l'image commune du moteur (équipement du SRD), sinon rien,
+ * et on montre alors l'icône.
+ */
+function useImageElement(monde: string, image?: ElementGrille['image'], commune?: ElementGrille['imageCommune']): string | undefined {
   const [url, setUrl] = useState<string>();
   useEffect(() => {
     let actif = true;
     setUrl(undefined);
     const fichier = image ? (manifesteDe(monde) as Record<string, Record<string, string>> | undefined)?.[image.groupe]?.[image.id] : undefined;
-    if (fichier) urlImage(monde, fichier)?.then((u) => actif && setUrl(u));
+    const promesse = (fichier ? urlImage(monde, fichier) : undefined) ?? (commune ? urlImageCommune(commune.groupe, commune.id) : undefined);
+    promesse?.then((u) => actif && setUrl(u));
     return () => {
       actif = false;
     };
-  }, [monde, image?.groupe, image?.id]);
+  }, [monde, image?.groupe, image?.id, commune?.groupe, commune?.id]);
   return url;
 }
 
@@ -79,8 +85,9 @@ function usePreference(cle: string, defaut: string): [string, (v: string) => voi
 // Vignette
 // ---------------------------------------------------------------------------
 
-function Tuile({ monde, e, choisi, legende, onClick }: { monde: string; e: ElementGrille; choisi: boolean; legende: boolean; onClick: () => void }) {
-  const url = useImageElement(monde, e.image);
+function Tuile({ monde, e, choisi, legende, heros, onClick }: { monde: string; e: ElementGrille; choisi: boolean; legende: boolean; heros?: Personnage[]; onClick: () => void }) {
+  const url = useImageElement(monde, e.image, e.imageCommune);
+  const porteur = e.porteur ? heros?.find((h) => h.id === e.porteur!.id) : undefined;
   const plusieurs = (e.quantite ?? 1) > 1;
   return (
     <button
@@ -94,6 +101,11 @@ function Tuile({ monde, e, choisi, legende, onClick }: { monde: string; e: Eleme
         {url ? <img src={url} alt="" loading="lazy" /> : <Icone id={e.icone} taille={legende ? 40 : 30} />}
         {plusieurs && <span className="tuile-quantite">×{e.quantite}</span>}
         {e.nouveau && <span className="tuile-nouveau" aria-label="Nouveau" />}
+        {e.porteur && (
+          <span className="tuile-porteur" title={`Porté par ${e.porteur.nom}`}>
+            {porteur ? <Portrait id={porteur.portrait} espece={porteur.fiche.espece} classe={porteur.fiche.classe} taille={20} /> : e.porteur.nom.charAt(0)}
+          </span>
+        )}
         {e.inconnu && (
           <span className="tuile-inconnu" aria-label="À découvrir">
             ?
@@ -118,9 +130,11 @@ interface PropsGrille {
   compact?: boolean;
   selection?: string;
   onChoisir: (e: ElementGrille) => void;
+  /** Les héros du groupe, pour montrer qui porte un élément. */
+  heros?: Personnage[];
 }
 
-export function GrilleElements({ monde, grille, cle, compact, selection, onChoisir }: PropsGrille) {
+export function GrilleElements({ monde, grille, cle, compact, selection, onChoisir, heros }: PropsGrille) {
   const [critere, setCritere] = usePreference(`tri:${cle}`, 'rangement');
   const [filtre, setFiltre] = useState<string>();
   const [recherche, setRecherche] = useState('');
@@ -134,7 +148,7 @@ export function GrilleElements({ monde, grille, cle, compact, selection, onChois
   const visibles = grille.elements.filter(
     (e) => (compact || !filtre || e.groupe.id === filtre) && (compact || !q || normaliser(`${e.titre} ${e.resume ?? ''} ${e.groupe.titre}`).includes(q)),
   );
-  const tuile = (e: ElementGrille) => <Tuile key={e.id} monde={monde} e={e} choisi={e.id === selection} legende={!compact} onClick={() => onChoisir(e)} />;
+  const tuile = (e: ElementGrille) => <Tuile key={e.id} monde={monde} e={e} choisi={e.id === selection} legende={!compact} heros={heros} onClick={() => onChoisir(e)} />;
 
   let contenu: ReactNode;
   if (!grille.elements.length) contenu = <p className="encart-texte">{grille.vide ?? 'Rien ici.'}</p>;
@@ -208,7 +222,7 @@ export function GrilleElements({ monde, grille, cle, compact, selection, onChois
 // ---------------------------------------------------------------------------
 
 export function FicheElement({ monde, e, actions }: { monde: string; e: ElementGrille; actions?: ReactNode }) {
-  const url = useImageElement(monde, e.image);
+  const url = useImageElement(monde, e.image, e.imageCommune);
   return (
     <section className={`fiche-element rarete-${e.rarete ?? 'commun'}`}>
       <div className="fiche-element-image">{url ? <img src={url} alt="" /> : <Icone id={e.icone} taille={88} />}</div>

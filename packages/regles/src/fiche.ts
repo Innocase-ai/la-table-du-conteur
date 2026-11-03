@@ -82,6 +82,8 @@ export interface Fiche {
   pvMax: number;
   deVie: number;
   ca: number;
+  /** De quoi recalculer `ca` quand l'équipement change ; absent des fiches enregistrées avant l'équipement. */
+  defense?: DefenseFiche;
   initiative: number;
   vitesse: number;
   perceptionPassive: number;
@@ -165,33 +167,48 @@ function verifierAmelioration(amelioration: Partial<Valeurs>, erreurs: string[])
   }
 }
 
-function calculerCa(
-  dex: number,
-  mods: Record<Caracteristique, number>,
-  armure: Armure | undefined,
-  bouclier: boolean,
-  effets: Effet[],
-): number {
+/**
+ * Ce qui, dans une fiche, fait la Classe d'Armure en dehors de l'équipement : les modificateurs et les effets de classe,
+ * d'espèce et de dons. Avec elle, on recalcule la CA de n'importe quelle armure ou bouclier sans refaire la fiche (équiper,
+ * retirer) : voir `caAvec`.
+ */
+export interface DefenseFiche {
+  mods: Record<Caracteristique, number>;
+  /** Bonus de CA « toujours » et « en armure » (styles de combat, aptitudes). */
+  bonusToujours: number;
+  bonusEnArmure: number;
+  /** Formules sans armure (Défense sans armure du barbare et du moine…). */
+  sansArmure: { base: number; caracteristiques: Caracteristique[]; bouclierAutorise: boolean }[];
+}
+
+/** La CA d'un personnage avec cette armure et ce bouclier (`bonus` : objets magiques portés). */
+export function caAvec(d: DefenseFiche, armure: Armure | undefined, bouclier: boolean, bonus = 0): number {
   const bonusBouclier = bouclier ? 2 : 0;
-  const bonusFixe = (enArmure: boolean) =>
-    effets.reduce(
-      (total, e) =>
-        e.type === 'bonus_ca' && (e.condition === 'toujours' || (e.condition === 'en_armure' && enArmure))
-          ? total + e.valeur
-          : total,
-      0,
-    );
+  const dex = d.mods.dex;
   if (armure) {
     const partDex = armure.dex === 'complet' ? dex : armure.dex === 'max2' ? Math.min(dex, 2) : 0;
-    return armure.ca + partDex + bonusBouclier + bonusFixe(true);
+    return armure.ca + partDex + bonusBouclier + d.bonusToujours + d.bonusEnArmure + bonus;
   }
   // Sans armure : la meilleure formule disponible (10 + Dex par défaut, ou Défense sans armure…).
   let base = 10 + dex;
-  for (const e of effets) {
-    if (e.type !== 'ca_sans_armure' || (bouclier && !e.bouclierAutorise)) continue;
-    base = Math.max(base, e.base + e.caracteristiques.reduce((s, c) => s + mods[c], 0));
+  for (const f of d.sansArmure) {
+    if (bouclier && !f.bouclierAutorise) continue;
+    base = Math.max(base, f.base + f.caracteristiques.reduce((s, c) => s + d.mods[c], 0));
   }
-  return base + bonusBouclier + bonusFixe(false);
+  return base + bonusBouclier + d.bonusToujours + bonus;
+}
+
+function defenseDepuis(mods: Record<Caracteristique, number>, effets: Effet[]): DefenseFiche {
+  let bonusToujours = 0;
+  let bonusEnArmure = 0;
+  const sansArmure: DefenseFiche['sansArmure'] = [];
+  for (const e of effets) {
+    if (e.type === 'bonus_ca') {
+      if (e.condition === 'toujours') bonusToujours += e.valeur;
+      else bonusEnArmure += e.valeur;
+    } else if (e.type === 'ca_sans_armure') sansArmure.push({ base: e.base, caracteristiques: e.caracteristiques, bouclierAutorise: e.bouclierAutorise ?? false });
+  }
+  return { mods, bonusToujours, bonusEnArmure, sansArmure };
 }
 
 export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): ResultatFiche {
@@ -356,13 +373,8 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
   if (bouclier && !formationArmures.includes('bouclier')) {
     avertissements.push("Bouclier : pas de formation, il n'apporte pas de bonus de CA.");
   }
-  const ca = calculerCa(
-    mods.dex,
-    mods,
-    armure,
-    bouclier && formationArmures.includes('bouclier'),
-    tous,
-  );
+  const defense = defenseDepuis(mods, tous);
+  const ca = caAvec(defense, armure, bouclier && formationArmures.includes('bouclier'));
 
   let vitesse = espece.vitesse;
   const armureLourde = armure?.categorie === 'lourde';
@@ -465,6 +477,7 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       pvMax,
       deVie: classe.deVie,
       ca,
+      defense,
       initiative: mods.dex + (de('maitrise_initiative').length ? pb : 0),
       vitesse,
       perceptionPassive: 10 + competences.perception.bonus,

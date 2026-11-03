@@ -5,9 +5,11 @@ import { lancer } from '../des';
 import { appliquerEffets } from '../monde/etat';
 import type { Objet } from '../monde/schemas';
 import { commande, type ContexteJeu, type ElementGrille, type Encart, type Module, type Partie, type Proposition, type Transaction } from '../noyau/types';
-import type { Personnage } from '../personnage';
+import { equipementDe, type Personnage } from '../personnage';
 import { testD20 } from '../tests-d20';
+import { objetDe } from './catalogue';
 import { libre } from './commun';
+import { chargeDuGroupe, idElementPorte, objetsPortes } from './equipement-regles';
 
 declare module '../noyau/types' {
   interface CarteEvenements {
@@ -26,16 +28,7 @@ export interface EtatInventaire {
 /** La potion que les héros boivent en combat (2d4 + 2). */
 export const POTION_DE_COMBAT = 'potion-de-guerison';
 
-/** Un objet du catalogue : celui du monde d'abord, puis celui du SRD (équipement, potions, armes, armures). */
-export function objetDe(ctx: ContexteJeu, id: string): Pick<Objet, 'id' | 'nom' | 'categorie' | 'resume'> & Partial<Objet> {
-  const o = ctx.dm.objets.get(id) ?? ctx.srd?.objets.get(id);
-  if (o) return o;
-  const arme = ctx.srd?.armes.get(id);
-  if (arme) return { id, nom: arme.nom, categorie: 'arme', resume: `Arme : ${arme.degats} ${arme.typeDegats}.`, poidsKg: arme.poidsKg, valeurPo: arme.prixPo };
-  const armure = ctx.srd?.armures.get(id);
-  if (armure) return { id, nom: armure.nom, categorie: armure.id === 'bouclier' ? 'bouclier' : 'armure', resume: `Armure (CA ${armure.ca})` };
-  return { id, nom: id, categorie: 'divers', resume: '' };
-}
+export { objetDe };
 
 const etatModule = (p: Partie): EtatInventaire => (p.modules['inventaire'] as EtatInventaire | undefined) ?? { identifies: [] };
 /** L'état du module, créé s'il manque, pour le modifier. */
@@ -111,12 +104,26 @@ function groupeDuSac(o: Pick<Objet, 'categorie'> & Partial<Objet>): (typeof GROU
 }
 
 /** Un objet du sac vu par la grille : ce que le joueur a le droit de savoir (un objet à identifier reste mystérieux). */
-function elementDuSac(o: ReturnType<typeof objetDe>, quantite: number, identifies: string[], nouveaux: string[]): ElementGrille {
+function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite: number, identifies: string[], nouveaux: string[]): ElementGrille {
   const aIdentifier = !!o.identification && !identifies.includes(o.id);
   const mystere = aIdentifier ? o.inconnu : undefined;
   const proprietes: { libelle: string; valeur: string }[] = [];
+  const base = o.base ?? o.id;
+  const arme = o.categorie === 'arme' ? ctx.srd?.armes.get(base) : undefined;
+  const armure = o.categorie === 'armure' || o.categorie === 'bouclier' ? ctx.srd?.armures.get(base) : undefined;
   if (aIdentifier) proprietes.push({ libelle: 'À étudier', valeur: `Arcanes, DD ${o.identification}` });
   else {
+    // Les caractéristiques de l'arme ou de l'armure viennent du catalogue du SRD, commun à tous les mondes.
+    if (arme) {
+      proprietes.push({ libelle: 'Dégâts', valeur: `${arme.degats} ${arme.typeDegats}` });
+      if (arme.proprietes.length) proprietes.push({ libelle: 'Propriétés', valeur: arme.proprietes.join(', ') });
+      if (arme.portees) proprietes.push({ libelle: 'Portée', valeur: `${arme.portees[0]} / ${arme.portees[1]} m` });
+    }
+    if (armure) {
+      proprietes.push({ libelle: armure.categorie === 'bouclier' ? 'CA' : 'CA de base', valeur: armure.categorie === 'bouclier' ? `+${armure.ca}` : `${armure.ca}${armure.dex === 'complet' ? ' + Dex' : armure.dex === 'max2' ? ' + Dex (2 au plus)' : ''}` });
+      if (armure.forceMin) proprietes.push({ libelle: 'Force min.', valeur: String(armure.forceMin) });
+      if (armure.desavantageDiscretion) proprietes.push({ libelle: 'Discrétion', valeur: 'désavantage' });
+    }
     if (o.usage) {
       const type = { consommable: 'Consommable', charges: 'À charges', permanent: 'Effet permanent' }[o.usage.type];
       proprietes.push({ libelle: type, valeur: o.usage.soins ? `soigne ${o.usage.soins}` : (o.usage.resume ?? '—') });
@@ -133,6 +140,8 @@ function elementDuSac(o: ReturnType<typeof objetDe>, quantite: number, identifie
     groupe: groupeDuSac(o),
     rarete: o.rarete,
     image: { groupe: 'objets', id: o.id },
+    // Le SRD est commun à tous les mondes : l'image d'une arme ou d'une armure se partage, sans la refaire par histoire.
+    imageCommune: arme || armure ? { groupe: 'equipement', id: base } : undefined,
     icone: o.categorie,
     resume: mystere?.resume ?? o.resume,
     histoire: !aIdentifier && identifies.includes(o.id) ? o.lore : undefined,
@@ -249,8 +258,19 @@ export const moduleInventaire: Module = {
   encarts: (ctx, p): Encart[] => {
     const identifies = etatModule(p).identifies;
     const nouveaux = etatModule(p).nouveaux ?? [];
-    const elements = Object.entries(p.etat.inventaire).map(([id, q]) => elementDuSac(objetDe(ctx, id), q, identifies, nouveaux));
-    const poids = Object.entries(p.etat.inventaire).reduce((s, [id, q]) => s + (objetDe(ctx, id).poidsKg ?? 0) * q, 0);
+    const dansLeSac = Object.entries(p.etat.inventaire).map(([id, q]) => elementDuSac(ctx, objetDe(ctx, id), q, identifies, nouveaux));
+    // Ce que portent les héros : un groupe par héros, avant le sac ; l'objet garde son identifiant propre pour ses actions.
+    const portes = p.groupe.flatMap((h, i) =>
+      objetsPortes(equipementDe(h)).map((id) => ({
+        ...elementDuSac(ctx, objetDe(ctx, id), 1, identifies, []),
+        id: idElementPorte(h.id, id),
+        quantite: undefined,
+        groupe: { id: `porte:${h.id}`, titre: `Porté par ${h.nom}`, ordre: -100 + i },
+        porteur: { id: h.id, nom: h.nom },
+      })),
+    );
+    const elements = [...dansLeSac, ...portes];
+    const { poids, capacite } = chargeDuGroupe(ctx, p.groupe, p.etat.inventaire);
     return [
       {
         onglet: 'Sac',
@@ -261,7 +281,7 @@ export const moduleInventaire: Module = {
           elements,
           resume: [
             { libelle: 'Pièces', valeur: `${p.etat.pieces.toLocaleString('fr-FR')} po`, ton: 'fort' },
-            { libelle: 'Poids du sac', valeur: `${poids.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} kg` },
+            { libelle: 'Charge du groupe', valeur: `${poids.toLocaleString('fr-FR', { maximumFractionDigits: 1 })} / ${capacite.toLocaleString('fr-FR', { maximumFractionDigits: 0 })} kg`, ton: poids > capacite ? ('danger' as const) : undefined },
           ],
           vide: 'Le sac est vide.',
           touche: 'i',

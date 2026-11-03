@@ -4,6 +4,7 @@
   python3 outils/images/installer.py galerie          → apps/jeu/src/portraits/<id>.webp (512 px, commun à tous les mondes)
   python3 outils/images/installer.py monde <monde>    → packages/mondes/<monde>/images/<id>.webp + manifeste.json
   python3 outils/images/installer.py bestiaire        → apps/jeu/src/bestiaire/<profil>.webp (images de combat, tous mondes)
+  python3 outils/images/installer.py equipement       → apps/jeu/src/equipement/<id>.webp (armes et armures du SRD, tous mondes)
   python3 outils/images/installer.py terrains         → apps/jeu/src/terrains/<ambiance>-<type>.webp (raccordables)
   python3 outils/images/installer.py interface        → apps/jeu/src/interface/<id>.webp (écran titre…, 1600 px)
 
@@ -53,6 +54,15 @@ def bestiaire() -> None:
     for png in pngs:
         reduire(png, cible / f"{png.stem}.webp", 384, 80)
     print(f"{len(pngs)} image(s) de monstres installées dans {cible.relative_to(RACINE)}")
+
+
+def equipement() -> None:
+    source, cible = RACINE / "sorties/images/equipement", RACINE / "apps/jeu/src/equipement"
+    cible.mkdir(parents=True, exist_ok=True)
+    pngs = sorted(source.glob("*.png"))
+    for png in pngs:
+        reduire(png, cible / f"{png.stem}.webp", 384, 80)
+    print(f"{len(pngs)} image(s) d'équipement installées dans {cible.relative_to(RACINE)}")
 
 
 def terrains() -> None:
@@ -108,6 +118,8 @@ if __name__ == "__main__":
         galerie()
     elif sys.argv[1:2] == ["bestiaire"]:
         bestiaire()
+    elif sys.argv[1:2] == ["equipement"]:
+        equipement()
     elif sys.argv[1:2] == ["terrains"]:
         terrains()
     elif sys.argv[1:2] == ["interface"]:

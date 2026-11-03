@@ -173,3 +173,14 @@ L'histoire se joue dans le navigateur, **sans clé et sans IA** : « Choisir une
 Vérifié dans le navigateur : Veillecendre, la trappe de la halle du bailli trouvée par Ilyra, le coffret crocheté par Pip qui prend l'aiguille (sauvegarde réussie, 2 dégâts), 85 po et deux objets ; l'embuscade du gué (piège repéré à la perception passive, alternatives proposées, combat gagné, 150 PX, 10 po de butin, blessures conservées) ; la reprise après rechargement ; Nério et le sujet des tieffelins.
 
 À faire ensuite : récits d'arrivée (M4b'), moment de la journée, boutiques, usage des objets et potions hors combat, montée de niveau, carte des lieux visités, journal de quêtes à l'écran.
+
+## 12. État : M4b, le conteur joue (03/11/2026)
+
+Voir `docs/ARCHITECTURE-CIBLE.md` § 13 pour le détail. En bref : le conteur appelle les commandes du moteur comme des outils (`packages/regles/src/conteur/`), par **OpenRouter avec Claude Haiku 5.5** (`anthropic/claude-haiku-5.5`), sans SDK (appel HTTP direct, comme les images et les voix) ; le serveur de développement relaie la requête et garde la clé (`apps/jeu/serveur-conteur.ts`) ; l'écran d'aventure a sa saisie libre, son récit et ses actions suggérées ; `pnpm conteur --go` joue dans le terminal.
+
+Écarts avec le plan : pas de `apps/serveur` ni de `packages/conteur` (le relais est un plugin Vite, le code est dans `regles`) ; pas de SDK Anthropic ni de `betaZodTool` (boucle écrite à la main sur l'API de chat à outils d'OpenRouter) ; mémoire de quatre échanges, sans résumé.
+
+**Coût mesuré : ≈ 0,0015 $ par tour** avec Haiku 5.5, préfixe en cache (4 tours : 0,0056 $). Les récits sont sombres et concrets ; deux défauts relevés au premier essai (invention d'un objet, paraphrase de ce que le joueur voit déjà) ont été traités dans les consignes.
+
+Reste de M4b : comparaison Haiku / Sonnet / Opus sur les mêmes scènes, choix du modèle par défaut sur pièces, écran Options (clé du joueur, plafond).
+

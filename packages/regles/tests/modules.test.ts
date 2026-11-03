@@ -92,7 +92,7 @@ describe('module Inventaire', () => {
     p.etat.inventaire[POTION_DE_COMBAT] = 1;
     p.etat.inventaire['rations'] = 3;
     expect(sac(p).elements.map((e) => `${e.quantite} × ${e.titre}`)).toEqual(expect.arrayContaining(['1 × Potion de guérison', '3 × Rations']));
-    expect(sac(p).resume!.map((l) => l.libelle)).toEqual(['Pièces', 'Poids du sac']);
+    expect(sac(p).resume!.map((l) => l.libelle)).toEqual(['Pièces', 'Charge du groupe']);
     expect(encart(p, 'sac-potions').lignes).toHaveLength(6);
     const boutons = moteur.propositions(p).filter((x) => x.groupe.onglet === 'Sac');
     expect(boutons.some((x) => x.ordre?.type === 'confierPotion')).toBe(true);

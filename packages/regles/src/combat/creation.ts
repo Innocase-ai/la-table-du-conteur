@@ -27,8 +27,11 @@ const TRAITS_COMBAT = [
 const CLASSES_LANCEUSES = ['barde', 'clerc', 'druide', 'ensorceleur', 'magicien', 'occultiste'];
 
 export interface Kit {
-  /** Armes portées ; `botte` : l'arme fait partie des bottes maîtrisées. */
-  armes: { id: string; botte?: boolean }[];
+  /**
+   * Armes portées ; `botte` : l'arme fait partie des bottes maîtrisées. Une arme magique repose sur une arme du SRD (`id`) :
+   * `nom` est son nom propre, `bonus` ses bonus d'attaque et de dégâts.
+   */
+  armes: { id: string; botte?: boolean; nom?: string; bonus?: { attaque: number; degats: number } }[];
   sorts?: string[];
   potions?: number;
 }
@@ -114,7 +117,15 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   const attaques = kit.armes.flatMap((a) => {
     const arme = donnees.armes.get(a.id);
     if (!arme) throw new Error(`Arme inconnue : ${a.id}`);
-    return attaquesArme(fiche, arme, !!a.botte);
+    return attaquesArme(fiche, arme, !!a.botte).map((atq) => {
+      if (!a.bonus && !a.nom) return atq;
+      return {
+        ...atq,
+        nom: a.nom ? atq.nom.replace(arme.nom, a.nom) : atq.nom,
+        bonusAttaque: atq.bonusAttaque + (a.bonus?.attaque ?? 0),
+        degats: atq.degats.map((d, i) => (i === 0 ? { ...d, bonus: d.bonus + (a.bonus?.degats ?? 0) } : d)),
+      };
+    });
   });
   // Arts martiaux du Moine, et coup de poing pour qui n'a aucune arme.
   const nombreForce = mods.for;

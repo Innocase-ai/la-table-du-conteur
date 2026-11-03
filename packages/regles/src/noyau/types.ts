@@ -164,8 +164,12 @@ export interface ElementGrille {
   groupe: { id: string; titre: string; ordre: number };
   /** Couleur du cadre, de commun à légendaire. */
   rarete?: (typeof RARETES_ELEMENT)[number];
-  /** Image du monde (groupe du manifeste et id) ; sans elle, l'icône. */
+  /** Image du monde (groupe du manifeste et id) ; sans elle, l'image commune de repli, puis l'icône. */
   image?: { groupe: string; id: string };
+  /** Image commune à tous les mondes (galerie du moteur : équipement du SRD), quand le monde n'a pas la sienne. */
+  imageCommune?: { groupe: string; id: string };
+  /** Le héros qui le porte, quand l'élément n'est pas dans le sac mais sur quelqu'un. */
+  porteur?: { id: string; nom: string };
   /** Identifiant de l'icône de repli (la catégorie de l'objet, par exemple). */
   icone?: string;
   resume?: string;

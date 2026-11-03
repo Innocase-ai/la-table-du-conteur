@@ -4503,9 +4503,9 @@ kbd {
 }
 
 .aventure-image {
-  flex: none;
+  flex: 0 1 auto;
   height: 38vh;
-  min-height: 180px;
+  min-height: 110px;
   border-radius: 10px;
   border: 1px solid var(--bord);
   background: linear-gradient(135deg, #2a221a, #15120f) center / cover no-repeat;
@@ -4538,7 +4538,8 @@ kbd {
 
 .aventure-recit {
   flex: 1;
-  min-height: 0;
+  /* Le récit garde toujours de quoi lire, même quand les suggestions et la saisie du conteur s'ajoutent sous lui. */
+  min-height: 140px;
   overflow-y: auto;
   padding: 14px 20px;
   border: 1px solid var(--bord);
@@ -5889,5 +5890,105 @@ kbd {
 
 .formulaire-levier.haut strong {
   color: var(--or-vif);
+}
+
+/* Qui porte un objet : le portrait du héros sur la vignette */
+
+.tuile-porteur {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  border: 1px solid var(--or);
+  border-radius: 50%;
+  background: var(--panneau);
+  font-size: 11px;
+  color: var(--or-vif);
+}
+
+.tuile-porteur .portrait {
+  width: 22px !important;
+  height: 22px !important;
+  border: none;
+  border-radius: 50%;
+}
+
+.tuile-porteur .portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Le conteur : saisie libre, récit et suggestions ----------------------------------------- */
+
+.aventure-saisie {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.aventure-saisie input:not(:disabled) {
+  color: var(--texte);
+  border-color: var(--bord-clair);
+}
+
+.aventure-depense {
+  flex: none;
+  color: var(--texte-faible);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.aventure-suggestions {
+  display: flex;
+  flex: none;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bord-clair) transparent;
+}
+
+.aventure-suggestions button {
+  flex: none;
+  white-space: nowrap;
+}
+
+.recit-saisie {
+  margin: 10px 0 2px;
+  color: var(--or-vif);
+  font-style: italic;
+}
+
+.recit-conteur {
+  margin: 4px 0 10px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--cuivre);
+  border-radius: 0 6px 6px 0;
+  background: rgba(184, 116, 60, 0.07);
+}
+
+.recit-conteur p {
+  margin: 0 0 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #efe3cf;
+}
+
+.recit-conteur p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pendant un tour du conteur, les actions du moteur attendent (la partie ne doit pas changer sous ses pieds). */
+.aventure-actions.occupe {
+  opacity: 0.55;
+  pointer-events: none;
 }
 

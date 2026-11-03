@@ -48,6 +48,7 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, on
             grille={grille}
             cle={principal.id}
             selection={choisi?.id}
+            heros={partie.groupe}
             onChoisir={(e) => {
               onChoisir(e.id);
               // Regarder un élément « nouveau » lui retire sa pastille.

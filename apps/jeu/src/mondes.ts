@@ -68,3 +68,21 @@ export function urlVoix(id: string, nom: string): Promise<string> | undefined {
   const cle = Object.keys(VOIX).find((c) => c.startsWith(`../../../packages/mondes/${id}/voix/${nom}.`));
   return cle ? VOIX[cle]!() : undefined;
 }
+
+// Les images communes à tous les mondes (équipement du SRD : armes et armures), livrées avec le moteur et non avec
+// chaque histoire : un monde qui cite `epee-longue` n'a pas à la faire dessiner. Dossier `equipement/<id>.webp`.
+const COMMUNES = import.meta.glob<string>('./equipement/*.webp', { query: '?url', import: 'default' });
+
+/** URL d'une image commune du moteur (`groupe` : pour l'instant `equipement`), si elle existe. */
+export function urlImageCommune(groupe: string, id: string): Promise<string> | undefined {
+  return groupe === 'equipement' ? COMMUNES[`./equipement/${id}.webp`]?.() : undefined;
+}
+
+// La bible d'un monde (canon et secrets, réservés au conteur) : chargée à la demande.
+const BIBLES = import.meta.glob<string>('../../../packages/mondes/*/BIBLE.md', { query: '?raw', import: 'default' });
+
+export async function bibleDe(id: string): Promise<string> {
+  const cle = Object.keys(BIBLES).find((c) => dossier(c) === id);
+  return cle ? BIBLES[cle]!() : '';
+}
+

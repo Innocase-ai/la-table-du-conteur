@@ -7,6 +7,21 @@ import { kitDepuisFiche } from './creation/kit';
 import { lancer, type Generateur } from './des';
 import type { Fiche } from './fiche';
 
+/**
+ * Ce que porte un héros, en identifiants d'objets (catalogue du SRD, commun à tous les mondes, ou objets du monde). Le SRD
+ * y est la référence : une arme ou une armure du monde repose sur une arme ou une armure du SRD (`base`).
+ */
+export interface Equipement {
+  armure?: string;
+  bouclier?: string;
+  /** Armes portées (six au plus), que le combat propose. */
+  armes: string[];
+  /** Parures et objets magiques portés (cinq au plus, dont trois harmonisés). */
+  portes: string[];
+  /** Bonus des armes magiques portées, par arme du SRD sur laquelle elles reposent ; recalculé quand on équipe. */
+  bonusArmes?: Record<string, { attaque: number; degats: number; nom?: string }>;
+}
+
 export interface Personnage extends EtatDurable {
   id: string;
   nom: string;
@@ -16,6 +31,15 @@ export interface Personnage extends EtatDurable {
   outils: string[];
   /** Portrait de galerie choisi par le joueur (`elfe-f-2`). */
   portrait?: string;
+  /** Ce qu'il porte ; absent tant qu'on n'a rien changé à l'équipement de départ (voir `equipementDe`). */
+  equipe?: Equipement;
+}
+
+/** L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ. */
+export function equipementDe(p: Personnage): Equipement {
+  if (p.equipe) return p.equipe;
+  const e = p.fiche.equipement;
+  return { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
 }
 
 const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin' };
@@ -30,7 +54,10 @@ export function personnageDepuisFiche(fiche: Fiche, options: { id: string; portr
 
 /** Le personnage prêt pour un combat : fiche, armes, sorts, et son état du moment. */
 export function heroCombatDe(p: Personnage): HeroCombat {
-  return { fiche: p.fiche, kit: { ...kitDepuisFiche(p.fiche), potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
+  const kit = kitDepuisFiche(p.fiche);
+  // Les armes magiques gardent leur nom et leurs bonus.
+  const armes = kit.armes.map((a) => ({ ...a, ...(p.equipe?.bonusArmes?.[a.id] ? { bonus: p.equipe.bonusArmes[a.id], nom: p.equipe.bonusArmes[a.id]!.nom } : {}) }));
+  return { fiche: p.fiche, kit: { ...kit, armes, potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
 }
 
 /** Reprend l'état durable laissé par un combat (borné par les maximums de la fiche). */

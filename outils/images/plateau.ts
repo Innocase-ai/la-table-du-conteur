@@ -73,3 +73,40 @@ export function elementsInterface(charte: Charte): Element[] {
     },
   ];
 }
+
+/** Armes et armures du SRD en anglais, pour le prompt (le catalogue du SRD est commun à tous les mondes). */
+const EQUIPEMENT_EN: Record<string, string> = {
+  'baton-de-combat': 'a wooden quarterstaff', dague: 'a steel dagger', gourdin: 'a plain wooden club', hachette: 'a small throwing hatchet', javeline: 'a javelin with an iron head',
+  lance: 'a spear with a leaf-shaped iron head', 'marteau-leger': 'a light war hammer', "masse-d-armes": 'a flanged iron mace', massue: 'a great knobbed wooden club', serpe: 'a curved sickle with a wooden handle',
+  'arbalete-legere': 'a light crossbow', 'arc-court': 'a short wooden bow with a string', flechette: 'a bundle of throwing darts', fronde: 'a leather sling with a stone', cimeterre: 'a curved scimitar',
+  coutille: 'a glaive, a long pole with a single-edged blade', 'epee-a-deux-mains': 'a great two-handed greatsword', 'epee-courte': 'a short sword', 'epee-longue': 'a longsword with a cross guard',
+  "fleau-d-armes": 'a spiked flail with a chain', fouet: 'a coiled leather whip', 'hache-a-deux-mains': 'a heavy two-handed great axe', "hache-d-armes": 'a single-bladed battleaxe',
+  hallebarde: 'a halberd with axe blade and spike', "lance-d-arcon": 'a long jousting lance', "maillet-d-armes": 'a heavy iron maul', 'marteau-de-guerre': 'a war hammer', morgenstern: 'a spiked morningstar',
+  'pic-de-guerre': 'a war pick', pique: 'a very long pike', rapiere: 'a slender rapier with a swept hilt', trident: 'a three-pronged trident', 'arbalete-de-poing': 'a small hand crossbow',
+  'arbalete-lourde': 'a heavy crossbow with a stirrup', 'arc-long': 'a tall longbow', mousquet: 'an old flintlock musket', pistolet: 'an old flintlock pistol', sarbacane: 'a long wooden blowgun with a few darts',
+  'armure-matelassee': 'a padded quilted gambeson armor', 'armure-de-cuir': 'a leather armor cuirass', 'armure-de-cuir-cloute': 'a studded leather armor', 'armure-de-peaux': 'a hide armor made of thick furs',
+  'chemise-de-mailles': 'a chain shirt', "armure-d-ecailles": 'a scale mail armor', cuirasse: 'a steel breastplate', 'demi-plate': 'a half plate armor', broigne: 'a ring mail armor with iron rings',
+  'cotte-de-mailles': 'a full chain mail hauberk', clibanion: 'a splint armor with vertical iron strips', harnois: 'a full suit of plate armor', bouclier: 'a round wooden shield with an iron boss',
+};
+
+/** Une image par arme et par armure du SRD : l'équipement commun, dessiné une fois pour tous les mondes. */
+export function elementsEquipement(charte: Charte, ids = Object.keys(EQUIPEMENT_EN)): Element[] {
+  return ids.map((id) => {
+    const sujet = EQUIPEMENT_EN[id];
+    if (!sujet) throw new Error(`Équipement : aucune description de « ${id} » (outils/images/plateau.ts).`);
+    return {
+      id,
+      groupe: 'objets' as const,
+      nom: id,
+      format: 'carre' as const,
+      references: [],
+      prompt: [
+        charte.style,
+        `A single item: ${sujet}.`,
+        'Isolated object centred in the frame, seen at a slight three-quarter angle, fully visible, like an inventory icon of a painted tabletop RPG. Plain dark neutral background with a soft warm rim light and a subtle shadow under the object. No hands, no character wearing it, no scenery, no text.',
+        charte.contraintes,
+      ].join('\n'),
+    };
+  });
+}
+

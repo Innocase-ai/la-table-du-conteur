@@ -204,3 +204,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Skill de projet `enigmes` : écrire, vérifier et réparer les énigmes, avec la vérification obligatoire (demande de l'utilisateur : « toujours les vérifier »).
 - `pnpm monde enigmes <monde>` joue chaque énigme dans le moteur et contrôle l'échec, la récompense, les indices et l'énoncé ; `pnpm monde valider` l'inclut. Le Val : 0 erreur, 6 avis. 423 tests verts.
 
+## 03/11/2026 — L'équipement et le conteur
+
+- **Équipement** (module `equipement`) : équiper et retirer armure, bouclier, armes, parures et objets magiques ; la CA et les armes de combat suivent (`Fiche.defense`, `caAvec`) ; les objets portés sont dans la grille du sac, groupés par héros ; catalogue du SRD commun à tous les mondes (une arme du monde repose sur une arme du SRD) ; outil `pnpm images equipement` pour les images communes (51, ≈ 0,46 $, en attente d'accord).
+- **Conteur** (M4b) : le conteur appelle les commandes du moteur comme outils (OpenRouter, Claude Haiku 5.5), saisie libre dans l'écran d'aventure, récit et actions suggérées, relais du serveur de développement qui garde la clé. **≈ 0,0015 $ par tour** mesuré sur quatre tours réels. 453 tests verts.
+
