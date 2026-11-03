@@ -3,10 +3,12 @@ import type { Donnees } from '../donnees';
 import { calculerFiche, type ChoixPersonnage, type Fiche } from '../fiche';
 import { heroDepuisFiche, monstreDepuisProfil, type Kit } from './creation';
 import type { Combattant } from './etat';
-import { grilleDepuisTexte, type Grille, type Position } from './grille';
+import { grilleDepuisTexte, type Grille, type Position, type Terrain } from './grille';
 
 export interface HeroPreTire {
   choix: ChoixPersonnage;
+  /** Portrait de la galerie qui sert de figurine (aucune image propre aux pré-tirés). */
+  portrait: string;
   kit: Kit;
 }
 
@@ -18,6 +20,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       dons: ['defense'], competencesClasse: ['perception', 'survie'], competencesSupplementaires: ['intuition'],
       armure: 'cotte-de-mailles', bouclier: true,
     },
+    portrait: 'humain-m-1',
     kit: { armes: [{ id: 'epee-longue', botte: true }, { id: 'javeline', botte: true }], potions: 1 },
   },
   {
@@ -26,6 +29,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       valeursBase: { for: 15, dex: 13, con: 14, int: 8, sag: 12, cha: 10 }, bonusHistorique: { for: 2, con: 1 },
       competencesClasse: ['perception', 'survie'], competencesSupplementaires: ['nature'],
     },
+    portrait: 'orc-m-1',
     kit: { armes: [{ id: 'hache-a-deux-mains', botte: true }, { id: 'hachette', botte: true }], potions: 1 },
   },
   {
@@ -35,6 +39,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       competencesClasse: ['acrobaties', 'perception', 'investigation', 'tromperie'], expertises: ['discretion', 'perception'],
       armure: 'armure-de-cuir',
     },
+    portrait: 'halfelin-m-1',
     kit: { armes: [{ id: 'rapiere', botte: true }, { id: 'arc-court', botte: true }], potions: 1 },
   },
   {
@@ -44,6 +49,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       dons: ['archerie'], competencesClasse: ['perception', 'discretion', 'survie'], competencesSupplementaires: ['intuition'],
       expertises: ['perception'], armure: 'armure-de-cuir-cloute',
     },
+    portrait: 'elfe-f-1',
     kit: { armes: [{ id: 'arc-long', botte: true }, { id: 'epee-courte', botte: true }], sorts: ['marque-du-chasseur', 'soins'], potions: 1 },
   },
   {
@@ -52,6 +58,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       valeursBase: { for: 13, dex: 10, con: 14, int: 8, sag: 15, cha: 12 }, bonusHistorique: { sag: 2, cha: 1 },
       competencesClasse: ['medecine', 'persuasion'], armure: 'armure-d-ecailles', bouclier: true,
     },
+    portrait: 'nain-f-1',
     kit: {
       armes: [{ id: 'masse-d-armes' }],
       sorts: ['flamme-sacree', 'benediction', 'soins', 'mot-de-guerison', 'eclair-tracant', 'bouclier-de-la-foi', 'arme-spirituelle', 'aide', 'immobilisation-de-personne'],
@@ -64,6 +71,7 @@ export const HEROS_PRE_TIRES: HeroPreTire[] = [
       valeursBase: { for: 8, dex: 13, con: 14, int: 15, sag: 12, cha: 10 }, bonusHistorique: { int: 2, con: 1 },
       competencesClasse: ['investigation', 'nature'], expertises: ['arcanes'],
     },
+    portrait: 'gnome-f-1',
     kit: {
       armes: [{ id: 'baton-de-combat' }, { id: 'dague' }],
       sorts: ['trait-de-feu', 'rayon-de-givre', 'poigne-electrique', 'projectile-magique', 'bouclier', 'mains-brulantes', 'sommeil', 'rayon-ardent', 'immobilisation-de-personne'],
@@ -77,6 +85,8 @@ export interface Rencontre {
   nom: string;
   description: string;
   difficulte: 'faible' | 'moderee' | 'elevee';
+  /** Ambiance du plateau (textures du sol et des murs, packages/donnees/visuel/terrains.json). */
+  terrain: Terrain;
   carte: string[]; // « . » sol, « # » mur, « ~ » terrain difficile, « H » départ des héros, « m » départ des monstres
   monstres: { profil: string; nombre: number }[];
 }
@@ -84,6 +94,7 @@ export interface Rencontre {
 export const RENCONTRES: Rencontre[] = [
   {
     id: 'embuscade-gobeline',
+    terrain: 'foret',
     nom: 'Embuscade gobeline',
     description: 'Sur la route forestière, des gobelins et leurs loups jaillissent des fourrés.',
     difficulte: 'faible',
@@ -109,6 +120,7 @@ export const RENCONTRES: Rencontre[] = [
   },
   {
     id: 'crypte',
+    terrain: 'souterrain',
     nom: 'La crypte',
     description: 'Les morts se lèvent dans une crypte aux piliers effondrés.',
     difficulte: 'moderee',
@@ -133,6 +145,7 @@ export const RENCONTRES: Rencontre[] = [
   },
   {
     id: 'bande-et-ogres',
+    terrain: 'caverne',
     nom: 'La bande et ses ogres',
     description: 'Une bande de brigands a recruté deux ogres pour garder son repaire.',
     difficulte: 'moderee',
@@ -156,6 +169,7 @@ export const RENCONTRES: Rencontre[] = [
   },
   {
     id: 'camp-hobgobelin',
+    terrain: 'camp',
     nom: 'Le camp hobgobelin',
     description: 'Un capitaine hobgobelin et ses troupes disciplinées défendent leur camp.',
     difficulte: 'elevee',
@@ -199,13 +213,15 @@ function departs(carte: string[], marque: string): Position[] {
 export interface HeroCombat {
   fiche: Fiche;
   kit: Kit;
+  /** Portrait de la galerie choisi par le joueur (`elfe-f-2`) : il sert de figurine sur le plateau. */
+  portrait?: string;
 }
 
 export function herosPreTires(donnees: Donnees): HeroCombat[] {
   return HEROS_PRE_TIRES.map((h) => {
     const r = calculerFiche(h.choix, donnees);
     if (!r.ok) throw new Error(`${h.choix.nom} : ${r.erreurs.join(' ')}`);
-    return { fiche: r.fiche, kit: h.kit };
+    return { fiche: r.fiche, kit: h.kit, portrait: h.portrait };
   });
 }
 
@@ -219,7 +235,7 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     let id = h.fiche.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `heros-${i + 1}`;
     if (ids.has(id)) id = `${id}-${i + 1}`;
     ids.add(id);
-    return heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id);
+    return { ...heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id), portrait: h.portrait };
   });
   let i = 0;
   for (const { profil, nombre } of rencontre.monstres) {

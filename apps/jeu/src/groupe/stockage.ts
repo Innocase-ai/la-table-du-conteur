@@ -29,7 +29,7 @@ export function herosDuGroupe(groupe: Groupe, donnees: Donnees): HeroCombat[] {
   for (const p of groupe.emplacements) {
     if (!p) continue;
     const bilan = bilanPersonnage(p, donnees);
-    if (personnageComplet(bilan) && bilan.fiche) res.push({ fiche: bilan.fiche, kit: kitDepuisFiche(bilan.fiche) });
+    if (personnageComplet(bilan) && bilan.fiche) res.push({ fiche: bilan.fiche, kit: kitDepuisFiche(bilan.fiche), portrait: p.portrait });
   }
   return res;
 }

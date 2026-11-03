@@ -4,6 +4,10 @@ export const TAILLE_CASE = 1.5;
 
 export type TypeCase = 'sol' | 'mur' | 'difficile';
 
+/** Ambiances de plateau : chacune a ses textures (sol, difficile, mur), communes à tous les mondes. */
+export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp'] as const;
+export type Terrain = (typeof TERRAINS)[number];
+
 export interface Position {
   x: number;
   y: number;

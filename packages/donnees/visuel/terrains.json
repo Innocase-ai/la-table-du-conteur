@@ -1,0 +1,29 @@
+{
+  "_note": "Textures des plateaux de combat, communes à tous les mondes. Une ambiance = trois textures vues de dessus (sol, terrain difficile, dessus de mur). Le moteur choisit l'ambiance d'une rencontre (champ `terrain`).",
+  "terrains": {
+    "foret": {
+      "nom": "Forêt",
+      "sol": "a forest road and clearing floor: packed earth, short grass tufts, scattered fallen leaves and small pebbles",
+      "difficile": "dense forest undergrowth: thick ferns, brambles, tangled roots and low thorny bushes",
+      "mur": "the tops of large old tree trunks and boulders seen from above, mossy bark and grey rock"
+    },
+    "souterrain": {
+      "nom": "Souterrain",
+      "sol": "an ancient crypt floor of worn square grey flagstones with thin cracks, dust and a few scattered bone fragments",
+      "difficile": "collapsed crypt rubble: broken flagstones, heaped stone debris, shattered urns and bones",
+      "mur": "the top of a thick dungeon wall of large dark grey stone blocks, seen from above"
+    },
+    "caverne": {
+      "nom": "Caverne",
+      "sol": "a cave floor of uneven brown rock, damp patches, gravel and small puddles",
+      "difficile": "a cave floor strewn with loose scree, sharp stalagmite stumps and slippery wet stones",
+      "mur": "rough solid cave rock seen from above, dark brown and grey, natural rock formations"
+    },
+    "camp": {
+      "nom": "Camp",
+      "sol": "a military camp ground of trampled muddy earth and dry straw, cart ruts and boot prints",
+      "difficile": "deep churned mud with puddles, broken crates and scattered straw",
+      "mur": "a palisade of sharpened wooden stakes and stacked crates seen from above"
+    }
+  }
+}

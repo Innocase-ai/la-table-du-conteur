@@ -84,6 +84,8 @@ export interface Combattant {
   nom: string;
   camp: Camp;
   modele: string; // classe du héros ou id du monstre
+  /** Portrait de galerie d'un héros (figurine) ; un monstre est illustré d'après son `modele`. */
+  portrait?: string;
   type: string; // « Humanoïde », « Mort-vivant »…
   taille: Taille;
   niveau: number; // niveau du héros ; 0 pour un monstre

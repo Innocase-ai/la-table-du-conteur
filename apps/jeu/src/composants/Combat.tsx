@@ -27,6 +27,7 @@ import { OPTIONS_IA, type Reglages } from '../App';
 import { capturer, etatAffiche, mouvementReduit, useAnimations } from '../animations';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { Fiche } from './Fiche';
+import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
 import { Initiative } from './Initiative';
 import { Journal } from './Journal';
@@ -345,7 +346,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
       </header>
 
       <aside className="colonne-fiche">
-        <Fiche c={fiche} donnees={donnees} estActif={fiche.id === cVue.id && !finAffichee} elan={reglages.elan} />
+        <Illustration c={fiche} />
+        <div className="colonne-fiche-texte">
+          <Fiche c={fiche} donnees={donnees} estActif={fiche.id === cVue.id && !finAffichee} elan={reglages.elan} />
+        </div>
       </aside>
 
       <main className="zone-plateau">
@@ -353,6 +357,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
           etat={vue}
           donnees={donnees}
           actifId={finAffichee ? '' : cVue.id}
+          terrain={reglages.rencontre.terrain}
           surcouches={surcouches}
           onSurvolCase={setSurvolCase}
           onClicCase={clicCase}
@@ -369,7 +374,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
         <Journal journal={etat.journal} longueur={occupe ? (anim.vue.journal ?? etat.journal.length) : etat.journal.length} />
       </aside>
 
-      <footer className="zone-main">
+      <aside className="zone-main">
         <div className={`barre-tour ${tourJoueur && cVue.id === c.id ? 'barre-joueur' : 'barre-ia'}`}>
           <div className="barre-tour-qui">
             <strong>{finAffichee ? '—' : cVue.nom}</strong>
@@ -436,7 +441,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour }: Props
           </div>
         </div>
         <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} />
-      </footer>
+      </aside>
 
       {finAffichee && !masquerFin && (
         <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} />

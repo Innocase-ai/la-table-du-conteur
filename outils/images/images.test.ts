@@ -6,6 +6,8 @@ import { chargerCharte, construireElements, RACINE } from './charte';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { chargerGalerie, elementsGalerie } from './galerie';
+import { chargerTerrains, elementsBestiaire, elementsTerrains, profilsSrd } from './plateau';
+import { RENCONTRES, TERRAINS } from '../../packages/regles/src';
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
 import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
@@ -231,5 +233,21 @@ describe('galerie de portraits (commune à tous les mondes)', () => {
       expect(e.prompt).toContain('no armour, no weapons');
       for (const h of chargerCharte().heros) expect(e.prompt).not.toContain(h.nom);
     }
+  });
+});
+
+describe('plateau de combat (commun à tous les mondes)', () => {
+  const charte = chargerCharte();
+
+  it('le bestiaire a une image par profil de monstre du SRD, en pied et sans décor', () => {
+    const elements = elementsBestiaire(charte);
+    expect(elements.map((e) => e.id)).toEqual(profilsSrd());
+    for (const e of elements) expect(e.prompt).toContain('Full-body figure');
+  });
+
+  it('chaque ambiance du moteur a ses trois textures, et chaque rencontre une ambiance connue', () => {
+    expect(Object.keys(chargerTerrains()).sort()).toEqual([...TERRAINS].sort());
+    expect(elementsTerrains(charte)).toHaveLength(TERRAINS.length * 3);
+    for (const r of RENCONTRES) expect(TERRAINS).toContain(r.terrain);
   });
 });

@@ -163,3 +163,14 @@ Relecture complète du Val des Cendres :
 - **Lieux (151) :** très bons, fidèles au texte et cohérents entre eux. Les silhouettes présentes (squelettes de la caserne, fantôme de la chambre des cartes, gardes de fer, corps du relais du col) viennent du texte du lieu.
 - **Refaits (3) :** `haute-forge`, `hf-niveau-2-ateliers` et `hf-pont-basculant` montraient de la lave alors que le texte parle de **fonte figée / morte**. Retouche dans `images.json` (« FROIDS et solidifiés, pas de lave »), régénération : corrigé. La lave reste là où le monde la veut (Veine rouge, lit de braise, pont de la Veine, Forge du Cœur).
 - **PNJ (63), monstres (25), objets (16) :** conformes (espèces, signes distinctifs, fantômes translucides). Défaut mineur conservé : sœur Brume (halfeline) a les oreilles un peu pointues ; la momie porte un collier égyptien.
+
+## Plateau de combat : textures, jetons et illustration (03/11/2026)
+
+Demande : un plateau plus beau, des cases lisibles, des personnages plus grands. Un premier essai en figurines debout (plateau en plongée) a été jugé trop chargé : retour aux jetons ronds, un peu plus grands, et l'image du combattant en grand à côté de sa fiche. Tout est **du moteur**, commun à toutes les campagnes.
+
+- **Plateau vu de dessus**, cases carrées texturées, murs en léger relief (dessus décalé, face sombre). Jetons à pictogramme de 0,9 case (1 case pour les grandes créatures). Le plateau s'ajuste à l'écran (cases d'au moins 52 px, sinon il défile ; Ctrl + molette ou boutons − ⤢ + pour zoomer) et suit le combattant actif.
+- **Terrain** : 4 ambiances (`foret`, `souterrain`, `caverne`, `camp`) × 3 textures vues de dessus (`sol`, `difficile`, `mur`), décrites dans `packages/donnees/visuel/terrains.json`. Une rencontre choisit son ambiance (champ `terrain` des rencontres du prototype et, en option, des rencontres d'un monde). Les textures sont rendues **raccordables** à l'installation (bords fondus avec le côté opposé) et couvrent 4 × 4 cases avant de se répéter.
+- **Illustration** : en bas à gauche, l'image du combattant actif ou survolé, à côté de sa fiche. Héros : le **portrait de galerie choisi par le joueur** (les pré-tirés empruntent un portrait de galerie) ; monstre : le **bestiaire**, une image en pied par profil du SRD (30), sur fond neutre.
+- **Écran de combat** : le plateau prend tout le centre ; la colonne de droite porte le tour en cours (ressources, consigne, boutons) et les cartes en liste compacte ; l'illustration, la fiche et le journal sont en bas.
+- **Commandes** : `pnpm images terrains --go`, `pnpm images bestiaire --go`, puis `python3 outils/images/installer.py terrains|bestiaire` (vers `apps/jeu/src/terrains/` et `apps/jeu/src/bestiaire/`, versionnés). Coût : 12 textures + 30 monstres ≈ 0,34 $.
+- **Nouveau monstre** : sa fiche `apparence` (anglais) dans `charte.json`, puis `pnpm images bestiaire --go` (ne refait que les manquantes) et l'installation.

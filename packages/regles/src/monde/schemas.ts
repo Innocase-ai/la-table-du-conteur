@@ -250,6 +250,8 @@ export const RencontreMonde = z.object({
   monstres: z.array(z.object({ profil: Id, nombre: z.number().int().positive(), nom: z.string().optional(), pnj: Id.optional() })).default([]),
   // Carte de la grille tactique : « . » sol, « # » mur, « ~ » terrain difficile, « H » départ héros, « m » départ monstres.
   carte: z.array(z.string()).optional(),
+  // Ambiance du plateau (textures) ; à défaut, le client choisit selon le lieu.
+  terrain: z.enum(['foret', 'souterrain', 'caverne', 'camp']).optional(),
   tactique: z.object({ doctrine: z.string().optional(), fuite: z.string().optional(), renforts: z.string().optional() }).optional(),
   // Autres façons de résoudre la rencontre (négocier, ruser, fuir).
   alternatives: z
