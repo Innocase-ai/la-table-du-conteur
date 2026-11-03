@@ -162,6 +162,8 @@ export interface Module {
   vues?: Record<string, (ctx: ContexteJeu, partie: Partie) => unknown>;
   /** Fiches d'information à montrer au joueur (onglets Sac, Grimoire, Journal…). */
   encarts?(ctx: ContexteJeu, partie: Partie): Encart[];
+  /** Vérifie les données du module dans un monde (`dm.extensions`) : la liste des erreurs, vide si tout va bien. */
+  valider?(ctx: ContexteJeu): string[];
 }
 
 /** Une commande envoyée au moteur : son nom et ses paramètres. */

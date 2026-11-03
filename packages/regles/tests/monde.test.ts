@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
-import { appliquerEffets, avancerQuetes, Estimation, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
+import { appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
 import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -127,6 +127,12 @@ describe('mondes livrés', () => {
       const r = chargerMonde(join(RACINE_MONDES, id));
       expect(r.ok, r.ok ? '' : r.erreurs.map((e) => `${e.fichier}: ${e.message}`).join('\n')).toBe(true);
       if (r.ok && r.monde.monde.statut === 'publie') expect(validerMonde(r.monde, srd).erreurs).toEqual([]);
+    });
+
+    it(`${id} : les données des modules (scènes narrées…) sont valides`, () => {
+      const r = chargerMonde(join(RACINE_MONDES, id));
+      if (!r.ok) return;
+      for (const m of MODULES_STANDARD) expect(m.valider?.({ dm: r.monde, srd }) ?? [], m.id).toEqual([]);
     });
 
     it(`${id} : son manifeste d'images (s'il existe) ne cite que des éléments du monde et des fichiers présents`, () => {

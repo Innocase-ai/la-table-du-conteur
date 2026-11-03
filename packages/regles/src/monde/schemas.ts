@@ -516,4 +516,9 @@ export interface DonneesMonde {
   evenements: Map<string, EvenementMonde>;
   fins: Map<string, Fin>;
   faits: Map<string, Fait>;
+  /**
+   * Données propres aux modules (dossier → éléments bruts), par exemple `scenes/` pour les scènes narrées.
+   * Le moteur ne les connaît pas : chaque module valide les siennes (`Module.valider`).
+   */
+  extensions?: Record<string, unknown[]>;
 }

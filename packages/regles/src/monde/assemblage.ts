@@ -37,6 +37,17 @@ function lire<T extends { id: string }>(fichiers: FichierMonde[], nom: string, s
   return index;
 }
 
+/** Les dossiers que le format de base ne connaît pas (`scenes/`…) : laissés aux modules, sans validation ici. */
+function extensions(fichiers: FichierMonde[]): Record<string, unknown[]> {
+  const res: Record<string, unknown[]> = {};
+  for (const f of [...fichiers].sort((a, b) => a.chemin.localeCompare(b.chemin))) {
+    const dossier = f.chemin.split('/')[0]!;
+    if (!f.chemin.includes('/') || (DOSSIERS_MONDE as readonly string[]).includes(dossier) || dossier === 'images') continue;
+    (res[dossier] ??= []).push(...(Array.isArray(f.contenu) ? f.contenu : [f.contenu]));
+  }
+  return res;
+}
+
 /** Assemble un monde : `monde.json` et les fichiers de ses sous-dossiers. */
 export function assemblerMonde(mondeBrut: unknown, fichiers: FichierMonde[], erreursLecture: ErreurChargement[] = []): ResultatChargement {
   const m = Monde.safeParse(mondeBrut);
@@ -58,6 +69,7 @@ export function assemblerMonde(mondeBrut: unknown, fichiers: FichierMonde[], err
     evenements: lire(fichiers, 'evenements', EvenementMonde, erreurs),
     fins: lire(fichiers, 'fins', Fin, erreurs),
     faits: lire(fichiers, 'faits', Fait, erreurs),
+    extensions: extensions(fichiers),
   };
   return erreurs.length ? { ok: false, erreurs } : { ok: true, monde: dm };
 }

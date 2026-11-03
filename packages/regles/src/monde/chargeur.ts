@@ -18,7 +18,11 @@ export function chargerMonde(dossier: string): ResultatChargement {
   }
   const fichiers: FichierMonde[] = [];
   const erreurs: ErreurChargement[] = [];
-  for (const nom of DOSSIERS_MONDE) {
+  // Les dossiers du format de base et ceux des modules (`scenes/`…) ; pas les images ni les voix.
+  const sousDossiers = readdirSync(dossier, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && !['images', 'voix'].includes(d.name))
+    .map((d) => d.name);
+  for (const nom of new Set([...DOSSIERS_MONDE, ...sousDossiers])) {
     const chemin = join(dossier, nom);
     if (!existsSync(chemin)) continue;
     for (const f of readdirSync(chemin).filter((x) => x.endsWith('.json'))) {

@@ -211,3 +211,16 @@ Vérifié dans le navigateur avec le groupe du joueur : onglets Actions, Sac, Gr
 **Pas encore** (prochaines versions de ces modules) : l'équipement de départ des héros dans le sac, équiper une arme ou une armure (il faudra recalculer la fiche), préparer d'autres sorts au repos long, les parchemins, les boutiques, la charge maximale selon la Force, la quête suivie.
 
 Prochaine étape : **5, les scènes narrées** (image, texte, voix).
+
+## 10. État : étape 5 faite (03/11/2026) — les scènes narrées
+
+- **Données de modules dans les mondes** : tout dossier inconnu du format de base (`scenes/`…) est lu et rangé dans `DonneesMonde.extensions` ; le module concerné le valide (`Module.valider`), appelé par `pnpm monde valider` et par les tests de chaque monde livré. Le format des mondes s'étend donc sans toucher au chargeur.
+- **Module Scènes** (`modules/scenes.ts`) : format (`SceneNarree` : déclencheur, plans avec image, mouvement, texte, durée), déclenchement par **réaction** aux événements des autres modules (`arrivee`, `deplacement`, `queteMiseAJour`, `faitAppris`, `fin`), file des scènes à jouer et scènes vues (état du module), commandes `terminerScene` et `revoirScene` (boutons « Revoir » dans l'onglet Journal), vue `sceneEnCours`, événement `sceneNarree`.
+- **Lecteur** (`apps/jeu/src/aventure/LecteurScene.tsx`) : plein écran, image du monde avec un lent mouvement de caméra, texte en fondu, voix (fichier livré avec le monde, sinon synthèse vocale du système, coupable), enchaînement automatique, « Suivant », « Passer la scène ».
+- **Voix** : `pnpm voix lister|generer <monde>` (`outils/voix/cli.ts`), OpenRouter `openai/gpt-audio-mini` ou `openai/gpt-audio`, six voix, PCM en streaming converti en MP3 par ffmpeg, bilan de coût, alerte si la lecture s'écarte du texte. Simulation par défaut ; **aucune voix générée à ce jour** (en attente de l'accord de l'utilisateur).
+- **Val des Cendres** : 8 scènes (ouverture, La Lanterne faiblit, le hall du sceau, une par fin), 25 plans, 6 000 caractères à lire.
+- **Corrigé au passage** : le CLI des images s'exécutait quand un autre outil l'importait (garde sur le seul nom `cli.ts`) ; il compare maintenant le chemin complet.
+
+Vérifié dans le navigateur : l'ouverture se joue au début de l'histoire et s'enchaîne seule, « Revoir » et « Passer » fonctionnent, la scène de la Lanterne se déclenche quand Hesta confie la quête. 386 tests verts.
+
+Prochaine étape : **6, le conteur (M4b)**, branché sur les commandes et les vues du noyau.

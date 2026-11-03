@@ -7,6 +7,7 @@ const FICHIERS = import.meta.glob('../../../packages/mondes/*/monde.json', { eag
 const ESTIMATIONS = import.meta.glob('../../../packages/mondes/*/estimation.json', { eager: true, import: 'default' }) as Record<string, unknown>;
 const MANIFESTES = import.meta.glob('../../../packages/mondes/*/images/manifeste.json', { eager: true, import: 'default' }) as Record<string, ManifesteImages>;
 // Chargement paresseux : les données complètes et les images ne sont téléchargées qu'au début de l'aventure.
+const VOIX = import.meta.glob<string>('../../../packages/mondes/*/voix/*.{mp3,ogg,wav}', { query: '?url', import: 'default' });
 const DONNEES = import.meta.glob('../../../packages/mondes/*/*/*.json', { import: 'default' });
 const IMAGES = import.meta.glob<string>('../../../packages/mondes/*/images/*.webp', { query: '?url', import: 'default' });
 
@@ -56,4 +57,10 @@ export function manifesteDe(id: string): ManifesteImages | undefined {
 /** URL d'une image du monde (chargée à la demande). */
 export function urlImage(id: string, fichier: string): Promise<string> | undefined {
   return IMAGES[`../../../packages/mondes/${id}/images/${fichier}`]?.();
+}
+
+/** URL de la voix enregistrée d'un plan de scène (`voix/<scene>-<plan>.mp3`), si elle existe. */
+export function urlVoix(id: string, nom: string): Promise<string> | undefined {
+  const cle = Object.keys(VOIX).find((c) => c.startsWith(`../../../packages/mondes/${id}/voix/${nom}.`));
+  return cle ? VOIX[cle]!() : undefined;
 }

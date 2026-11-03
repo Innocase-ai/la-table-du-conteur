@@ -8,6 +8,7 @@ import {
   type Encart,
   type FicheScene,
   type Proposition,
+  type SceneNarree,
   type Interlocuteur,
   type Jet,
   type Ordre,
@@ -18,6 +19,7 @@ import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
 import { manifesteDe, urlImage } from '../mondes';
 import type { Aventure } from './partie';
+import { LecteurScene } from './LecteurScene';
 
 interface Props {
   aventure: Aventure;
@@ -93,6 +95,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const image = useImage(dm.monde.id, 'lieux', scene.lieu.id);
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
+  const sceneNarree = moteur.vue<SceneNarree | undefined>('sceneEnCours', partie);
   const propositions = moteur.propositions(partie);
   const encarts = moteur.encarts(partie);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
@@ -230,6 +233,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           Sac : {scene.inventaire.reduce((s, o) => s + o.quantite, 0)} objet(s)
         </div>
       </footer>
+      {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }

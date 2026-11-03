@@ -168,3 +168,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Trois modules ajoutés sans toucher au reste ; nouvelle notion du noyau : l'encart (fiche d'information dans un onglet).
 - Inventaire (utiliser, confier une potion pour le combat, identifier, jeter ; onglet Sac), Grimoire (sorts de soins hors combat ; onglet Grimoire), Journal (quêtes et notes ; onglet Journal).
 - 382 tests verts ; vérifié en jeu avec le groupe du joueur.
+
+## 03/11/2026 — Étape 5 de l'architecture : les scènes narrées
+
+- Les mondes acceptent les données des modules (`extensions`, validées par chaque module).
+- Module Scènes (déclencheurs par événements, file, revoir), lecteur plein écran (image animée, texte, voix), outil `pnpm voix` (OpenRouter gpt-audio, simulation par défaut).
+- 8 scènes du Val des Cendres. Corrigé : le CLI des images s'exécutait à l'import. 386 tests verts.

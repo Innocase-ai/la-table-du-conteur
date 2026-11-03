@@ -16,7 +16,8 @@
 // --refs <service> (prend les portraits de référence dans un autre service), --max N (garde-fou, défaut 12 par service).
 // La clé OpenRouter est lue dans l'environnement ou dans le fichier `.env` à la racine (voir `.env.example`).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { elementsGalerie } from './galerie';
@@ -214,7 +215,8 @@ async function main(): Promise<void> {
   console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | terrains | interface | comparer | depense');
 }
 
-if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split('/').pop()!)) {
+// Seulement quand ce fichier est le programme lancé (pas quand un autre outil l'importe, comme outils/voix).
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   main().catch((e) => {
     console.error((e as Error).message);
     process.exit(1);

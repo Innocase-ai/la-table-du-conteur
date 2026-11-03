@@ -10,6 +10,7 @@ import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { validerMonde } from '../../packages/regles/src/monde/validation';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
+import { MODULES_STANDARD } from '../../packages/regles/src/modules';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
 
@@ -52,6 +53,8 @@ for (const id of mondes) {
     continue;
   }
   const bilan = validerMonde(r.monde, srd);
+  // Les données des modules (scènes narrées…) : chaque module vérifie les siennes.
+  for (const m of MODULES_STANDARD) for (const e of m.valider?.({ dm: r.monde, srd }) ?? []) bilan.erreurs.push(`[${m.id}] ${e}`);
   if (commande === 'doc') {
     mkdirSync(join(RACINE_MONDES, '../../docs/mondes'), { recursive: true });
     const chemin = join(RACINE_MONDES, '../../docs/mondes', `${id}.md`);

@@ -130,3 +130,43 @@ describe('module Journal', () => {
     expect(encart(p, 'notes').lignes!.length).toBeGreaterThan(0);
   });
 });
+
+describe('module Scènes narrées', () => {
+  const file = (p: Partie) => (p.modules['scenes'] as { file: string[]; vues: string[] }).file;
+  const vues = (p: Partie) => (p.modules['scenes'] as { file: string[]; vues: string[] }).vues;
+
+  it("l'ouverture se joue au début de l'histoire ; une fois terminée, elle se revoit depuis le journal", () => {
+    let p = depart();
+    expect(file(p)).toEqual(['ouverture']);
+    expect(p.journal).toContainEqual({ type: 'sceneNarree', scene: 'ouverture' });
+    expect(moteur.vue<{ id: string; plans: unknown[] }>('sceneEnCours', p)).toMatchObject({ id: 'ouverture' });
+    p = moteur.executer(p, { type: 'terminerScene', scene: 'ouverture' }).partie;
+    expect(file(p)).toEqual([]);
+    expect(vues(p)).toEqual(['ouverture']);
+    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'revoirScene')).toMatchObject({ libelle: 'Revoir : Le Val des Cendres' });
+    p = moteur.executer(p, { type: 'revoirScene', scene: 'ouverture' }).partie;
+    expect(file(p)).toEqual(['ouverture']);
+  });
+
+  it('une quête qui démarre et un lieu atteint déclenchent leur scène, une seule fois', () => {
+    let p = depart();
+    p = moteur.executer(p, { type: 'terminerScene', scene: 'ouverture' }).partie;
+    for (const o of [{ type: 'aller', vers: 'vei-maison-des-gardiens' }, { type: 'parler', pnj: 'hesta-cendrebrune' }, { type: 'parler', pnj: 'hesta-cendrebrune', sujet: 'la-lanterne' }]) p = moteur.executer(p, o).partie;
+    expect(file(p)).toEqual(['la-lanterne-faiblit']);
+    p = moteur.executer(p, { type: 'terminerScene', scene: 'la-lanterne-faiblit' }).partie;
+    // Le hall du sceau : la scène se joue à la première entrée, pas à la seconde.
+    p = { ...p, etat: { ...p.etat, lieu: 'haute-forge' } };
+    p = moteur.executer(p, { type: 'aller', vers: 'hf-hall-du-sceau' }).partie;
+    expect(file(p)).toEqual(['la-haute-forge']);
+    p = moteur.executer(p, { type: 'terminerScene', scene: 'la-haute-forge' }).partie;
+    p = moteur.executer(moteur.executer(p, { type: 'aller', vers: 'haute-forge' }).partie, { type: 'aller', vers: 'hf-hall-du-sceau' }).partie;
+    expect(file(p)).toEqual([]);
+  });
+
+  it('la validation signale une scène qui cite un lieu, une quête ou une image inexistants', () => {
+    const faux = { ...r.monde, extensions: { scenes: [{ id: 'x', nom: 'X', declencheur: { lieu: 'nulle-part' }, plans: [{ image: { groupe: 'pnj', id: 'personne' }, texte: 'Rien.' }] }] } };
+    const erreurs = MODULES_STANDARD.find((m) => m.id === 'scenes')!.valider!({ dm: faux });
+    expect(erreurs.join('\n')).toMatch(/lieu inconnu « nulle-part »/);
+    expect(erreurs.join('\n')).toMatch(/image inconnue « pnj\/personne »/);
+  });
+});

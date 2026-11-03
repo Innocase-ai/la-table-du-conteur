@@ -4895,3 +4895,178 @@ kbd {
 .ton-faible {
   opacity: 0.6;
 }
+
+/* Lecteur des scènes narrées ------------------------------------------- */
+
+.lecteur-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: #050403;
+  overflow: hidden;
+  animation: apparition 0.6s ease;
+}
+
+.lecteur-image {
+  position: absolute;
+  inset: -4%;
+  background: #0d0a08 center / cover no-repeat;
+  animation-duration: 16s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.mouvement-approche {
+  animation-name: plan-approche;
+}
+.mouvement-recul {
+  animation-name: plan-recul;
+}
+.mouvement-gauche {
+  animation-name: plan-gauche;
+}
+.mouvement-droite {
+  animation-name: plan-droite;
+}
+.mouvement-fixe {
+  animation-name: plan-fondu;
+}
+
+@keyframes plan-approche {
+  from {
+    opacity: 0;
+    transform: scale(1);
+  }
+  8% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes plan-recul {
+  from {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+  8% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes plan-gauche {
+  from {
+    opacity: 0;
+    transform: scale(1.1) translateX(3%);
+  }
+  8% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1) translateX(-3%);
+  }
+}
+
+@keyframes plan-droite {
+  from {
+    opacity: 0;
+    transform: scale(1.1) translateX(-3%);
+  }
+  8% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.1) translateX(3%);
+  }
+}
+
+@keyframes plan-fondu {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lecteur-voile {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(5, 4, 3, 0.92) 0%, rgba(5, 4, 3, 0.55) 30%, transparent 60%);
+}
+
+.lecteur-texte {
+  position: absolute;
+  left: 50%;
+  bottom: 12vh;
+  transform: translateX(-50%);
+  width: min(900px, calc(100% - 48px));
+  text-align: center;
+}
+
+.lecteur-titre {
+  display: block;
+  font-family: var(--titre);
+  color: var(--or);
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.lecteur-texte p {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(17px, 2.1vw, 24px);
+  line-height: 1.55;
+  color: #f1e8d8;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  animation: texte-scene 1.4s ease both;
+}
+
+@keyframes texte-scene {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.lecteur-progression {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.lecteur-progression span {
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.lecteur-progression span.faite {
+  background: var(--or);
+}
+
+.lecteur-boutons {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lecteur-image {
+    animation-name: plan-fondu;
+  }
+}

@@ -46,6 +46,28 @@ Chaque fichier contient un tableau (ou un objet) d'entités. L'identifiant (`id`
 | **Quête** | Donneur, étapes qui s'achèvent d'elles-mêmes quand leur condition devient vraie, suites, échecs, récompenses ; une étape marquée `termine` clôt la quête aussitôt (fins alternatives) ; sinon la quête se clôt quand la dernière étape active, sans suite, est accomplie |
 | **Faction, Jauge, Événement, Fin, Fait** | Réputation et relations ; compteurs à paliers ; déclencheurs ; conditions d'achèvement et épilogue ; les vérités que le MJ connaît |
 
+## Données des modules : les scènes narrées
+
+Un monde peut contenir des dossiers que le format de base ne connaît pas : chacun appartient à un module du moteur, qui le valide (`pnpm monde valider` et les tests le font pour tous les modules). Le premier est **`scenes/`** (module Scènes narrées, `packages/regles/src/modules/scenes.ts`).
+
+Une scène est une petite cinématique jouée quand quelque chose arrive :
+
+```json
+{
+  "id": "la-lanterne-faiblit",
+  "nom": "La Lanterne faiblit",
+  "declencheur": { "quete": "q-la-lanterne-faiblit", "statut": "active" },
+  "plans": [
+    { "image": { "groupe": "pnj", "id": "hesta-cendrebrune" }, "mouvement": "approche", "texte": "Hesta Cendrebrune, la Mère-Gardienne…" }
+  ]
+}
+```
+
+- **Déclencheurs** : `{ "debut": true }` (ouverture de l'histoire), `{ "lieu": id }` (première entrée), `{ "quete": id, "statut": "active" | "terminee" | "echouee" }`, `{ "fait": id }`, `{ "fin": id }`. Une scène `unique` (par défaut) ne se joue qu'une fois ; on la revoit depuis l'onglet Journal.
+- **Plans** : une image du monde (groupe du manifeste et id : lieu, PNJ, monstre, objet), un mouvement de caméra (`approche`, `recul`, `gauche`, `droite`, `fixe`), le texte lu et affiché, une durée minimale facultative.
+- **Voix** : `pnpm voix generer <monde> --go` fait lire chaque plan par un modèle audio (OpenRouter) et écrit `voix/<scene>-<plan>.mp3`, livré avec le monde ; sans fichier, le jeu utilise la voix de synthèse du système, que le joueur peut couper.
+- **Règles d'écriture** : le texte est lu au joueur, au présent ou au passé de conte, sans rien dévoiler qu'il ne découvre au même moment ; deux ou trois phrases par plan, trois ou quatre plans par scène.
+
 ## Conditions et effets
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.

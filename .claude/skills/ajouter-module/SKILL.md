@@ -22,7 +22,7 @@ Réponds à ces questions avant d'écrire du code, et montre-les à l'utilisateu
   ```
 - **Réactions** : à quels événements d'autres modules il répond (ex. Quêtes écoute `faitAppris`). Ne jamais appeler un autre module directement.
 - **Vues** : ce que l'interface et le conteur lisent (calculé, jamais stocké en double).
-- **Données de monde** : si le module lit des fichiers d'un monde (ex. `scenes/*.json`), leur schéma Zod et leur validation.
+- **Données de monde** : si le module lit des fichiers d'un monde, mets-les dans un dossier à son nom (`scenes/*.json`) : le chargeur les range dans `dm.extensions[dossier]` sans les connaître. Le module les valide avec son schéma Zod (mets le résultat en cache, voir `scenesDu`) et déclare `valider(ctx)` (références vers les lieux, quêtes, images…) : `pnpm monde valider` et les tests l'appellent pour chaque monde. Documente le format dans `docs/MONDES.md` et le skill `creer-monde`.
 
 ## 2. Écrire
 
