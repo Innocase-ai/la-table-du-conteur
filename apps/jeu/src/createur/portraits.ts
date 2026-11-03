@@ -1,5 +1,6 @@
-// Noms et portraits de la galerie. Les images n'existent pas encore : on les affiche si un fichier
-// `src/portraits/<id>.(png|jpg|jpeg|webp)` est présent, sinon une tuile d'attente est dessinée.
+// Noms et portraits de la galerie, communs à toutes les campagnes (moteur, pas monde). Les images sont dans
+// `src/portraits/<id>.(png|jpg|jpeg|webp)` (générées par `pnpm images galerie`, voir docs/M2-IMAGES.md) ;
+// si un fichier manque, une tuile d'attente est dessinée.
 import noms from '../../../../packages/donnees/visuel/noms.json';
 import portraitsJson from '../../../../packages/donnees/visuel/portraits.json';
 

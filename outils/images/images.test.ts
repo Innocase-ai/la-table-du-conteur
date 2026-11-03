@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { chargerCharte, construireElements, RACINE } from './charte';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
+import { chargerGalerie, elementsGalerie } from './galerie';
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
 import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
@@ -205,5 +206,30 @@ describe('textes des prompts de monde', () => {
     const profils = new Set([...charge.monde.rencontres.values()].flatMap((r) => r.monstres.map((m) => m.profil)));
     const charte = chargerCharte();
     for (const p of profils) expect(charte.monstres.some((m) => m.id === p), p).toBe(true);
+  });
+});
+
+describe('galerie de portraits (commune à tous les mondes)', () => {
+  const elements = elementsGalerie(chargerCharte());
+  const { galerie, entrees } = chargerGalerie();
+
+  it('produit un portrait par entrée de portraits.json, avec le même id que le créateur', () => {
+    expect(elements).toHaveLength(54);
+    expect(elements.map((e) => e.id)).toEqual(entrees.map((p) => p.id));
+  });
+
+  it('chaque espèce a 2 sexes × 3 variantes décrites, sans doublon', () => {
+    expect(Object.keys(galerie.portraits).sort()).toEqual(entrees.map((p) => p.id).sort());
+    expect(new Set(Object.values(galerie.portraits)).size).toBe(54);
+    expect(new Set(entrees.map((p) => p.espece))).toEqual(new Set(Object.keys(galerie.especes)));
+  });
+
+  it('visage générique : tenue neutre, aucune référence, aucun héros fixe', () => {
+    for (const e of elements) {
+      expect(e.references).toEqual([]);
+      expect(e.format).toBe('carre');
+      expect(e.prompt).toContain('no armour, no weapons');
+      for (const h of chargerCharte().heros) expect(e.prompt).not.toContain(h.nom);
+    }
   });
 });

@@ -100,3 +100,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Test de l'embuscade à 6 héros avec les mêmes portraits : **FLUX 3 Image fidèle aux 6** (0,048 $) ; Gemini garde les 6 mais déforme Hilda.
 - Outil : option `--refs`, commande `pnpm images depense`, bilan réel de dépense par lot.
 - Suite : régénérer le lot complet avec FLUX 3 Image, ajouter des scènes du Val des Cendres, puis la galerie de portraits du créateur (54).
+
+## 03/11/2026 — M2 : galerie de 54 portraits (moteur)
+
+- Galerie commune à toutes les campagnes : `galerie.json` (descriptions), `outils/images/galerie.ts`, commande `pnpm images galerie`, installation WebP dans `apps/jeu/src/portraits/` (versionnée). 54 images Klein, 0,49 $, aucun refus ; 337 tests verts, build du jeu OK.
+- Reste : relire les 255 images du Val des Cendres, manifeste et client, test des références Klein pour les scènes du groupe.

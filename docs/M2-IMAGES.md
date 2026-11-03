@@ -137,3 +137,15 @@ Leçons des premiers lieux :
 - **Un délai dépassé** (300 s) sur un appel : le lot s'arrête alors ; relancer la même commande reprend où il s'est arrêté.
 - **Espèces inconnues** (armure animée, construction de fer…) : le prompt dit « être fantastique non humain » au lieu de « homme de l'espèce X », et l'âge n'est donné que s'il est numérique.
 - **Reste à faire :** relire les 255 images (vérifié à l'œil : lieux 1 à 8 du village, zombi, Brunhild, sergent Brise-fer) ; branchement dans le client, avec un manifeste id → fichier ; export vers un dossier versionné ou un stockage quand le format sera décidé.
+
+## Galerie de portraits du créateur (03/11/2026)
+
+Les 54 portraits (9 espèces × 2 sexes × 3 visages) sont **du moteur, pas d'un monde** : toutes les campagnes les partagent, et le créateur de personnages les propose avant que le monde ne soit connu. Ils ne dépendent donc ni de `packages/mondes/` ni de `images.json`.
+
+- **Données :** `packages/donnees/visuel/portraits.json` (les 54 ids, lus par le créateur) et `galerie.json` (traits de chaque espèce, en anglais, et description de chacun des 54 visages : âge, peau, cheveux, regard). Un test vérifie que les deux fichiers se correspondent et qu'aucun visage n'est décrit deux fois.
+- **Prompt :** charte + « portrait d'un·e <sexe> de l'espèce <traits> » + visage décrit + **tenue de voyage neutre, sans armure, arme, symbole sacré ni outil** (le joueur choisit sa classe après) + buste de trois quarts sur fond sombre.
+- **Génération :** `pnpm images galerie [--service klein] [--go]` écrit dans `sorties/images/galerie/<id>.png` ; on peut la relancer, elle ne refait que les manquantes. Résultat : 54 images en 5 min avec Klein, 0,49 $, aucun refus.
+- **Installation :** `python3 outils/images/installer-galerie.py` réduit les PNG en WebP 512 px (2,1 Mo les 54) vers `apps/jeu/src/portraits/`, **versionné** : le créateur les trouve par `import.meta.glob`. Les PNG d'origine restent dans `sorties/`.
+- **Pour changer ou ajouter un visage :** éditer `galerie.json` (et `portraits.json` pour un nouvel id), effacer le PNG concerné, relancer `pnpm images galerie --go`, puis l'installation.
+- **Vérifié à l'œil :** toutes les espèces sont reconnaissables et les 6 visages de chaque espèce sont distincts. Défaut mineur : des gnomes et halfelins ont les oreilles un peu pointues malgré le prompt.
+- **Toujours non testé :** Klein avec ces portraits en référence pour les scènes du groupe.
