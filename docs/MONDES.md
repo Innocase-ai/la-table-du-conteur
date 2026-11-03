@@ -73,7 +73,26 @@ Une scène est une petite cinématique jouée quand quelque chose arrive :
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.
 
-Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `debloquer`, `rencontre`, `fin`, `narration`.
+Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `debloquer`, `rencontre`, `fin`, `narration`. L'effet `rencontre` **déclenche** la rencontre (combat compris) à la fin de l'action en cours ; une rencontre que son lieu déclare `unique` et qui a déjà été jouée ne se relance pas. C'est ainsi qu'un échec d'énigme ou un piège lance un combat.
+
+## Énigmes : solution et réponse du joueur
+
+Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté au type (le texte libre ne sert qu'aux deux premiers) :
+
+| `solution.type` | Données | Ce que le joueur fait |
+| --- | --- | --- |
+| `mot-de-passe` | `mots` (réponses acceptées) | écrit un mot |
+| `deduction` | `reponses` | écrit une réponse |
+| `sequence` | `ordre` : les éléments dans l'ordre | les choisit un à un, dans l'ordre |
+| `placement` | `emplacements` : emplacement → élément | associe chaque emplacement à un élément |
+| `cadran` | `valeurs`, `plage` : [min, max] (facultatif), `libelles` : le nom de chaque réglage (facultatif) | règle chaque nombre |
+| `leviers` | `positions` : `true` = en haut, `false` = en bas | met chaque levier en haut ou en bas |
+
+- Les éléments d'une `sequence` et d'un `placement` sont **ce que le joueur voit** : un identifiant lisible (`wagonnet-de-minerai` s'affiche « Wagonnet de minerai ») ou l'id d'un objet (son nom s'affiche). Ils sont proposés dans un ordre qui ne donne pas la solution.
+- L'énoncé doit dire comment se lisent les leviers (« en haut = levé, en bas = repos ») et la plage des cadrans.
+- Une réponse mal formée (un élément inconnu, un mauvais nombre de leviers) est **refusée sans conséquence** : seule une réponse bien formée mais fausse est un échec (`echec.effets`, `echec.piege`).
+- Un test (`tests/enigmes.test.ts`) résout chaque énigme de chaque monde livré par son formulaire.
+- **`pnpm monde enigmes <monde>`** joue chaque énigme dans le vrai moteur (bonne réponse, mauvaise, mal formée) et vérifie l'échec, la récompense, les indices et l'énoncé ; zéro erreur exigé, les avis se lisent un par un. `pnpm monde valider` l'inclut. Procédure complète : skill `enigmes`.
 
 ## Règles d'écriture (pour les auteurs, humains ou LLM)
 

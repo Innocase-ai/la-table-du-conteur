@@ -221,7 +221,13 @@ const SolutionEnigme = z.discriminatedUnion('type', [
   z.object({ type: z.literal('mot-de-passe'), mots: z.array(Texte).min(1) }),
   z.object({ type: z.literal('leviers'), positions: z.array(z.boolean()).min(2) }),
   z.object({ type: z.literal('placement'), emplacements: z.record(Id) }),
-  z.object({ type: z.literal('cadran'), valeurs: z.array(z.number().int()).min(1) }),
+  // `plage` : valeurs que peut prendre chaque réglage (le formulaire en borne les champs) ; `libelles` : le nom de chaque réglage.
+  z.object({
+    type: z.literal('cadran'),
+    valeurs: z.array(z.number().int()).min(1),
+    plage: z.tuple([z.number().int(), z.number().int()]).optional(),
+    libelles: z.array(Texte).optional(),
+  }),
   z.object({ type: z.literal('deduction'), reponses: z.array(Texte).min(1) }),
 ]);
 

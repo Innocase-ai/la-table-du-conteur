@@ -25,6 +25,8 @@ export * from './monde/validation';
 export * from './monde/images';
 export * from './monde/estimation';
 export * from './monde/exploration';
+export * from './monde/reponses';
+export * from './verification/enigmes';
 export * from './monde/dialogue';
 export * from './monde/scene';
 export * from './monde/assemblage';

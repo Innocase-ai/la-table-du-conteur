@@ -15,6 +15,7 @@ import {
   seReposer,
   testLibre,
 } from '../monde/exploration';
+import { formulaireEnigme } from '../monde/reponses';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
 import { appliquerEtat } from '../personnage';
@@ -151,7 +152,16 @@ export const moduleExploration: Module = {
         enExploration(p)
           ? scene(ctx, p)
               .enigmes.filter((x) => x.etat !== 'resolue')
-              .map((x) => ({ groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce), libelle: 'Répondre', saisie: { champ: 'reponse', indication: 'Votre réponse' }, ordre: { type: 'repondreEnigme', enigme: x.id } }))
+              .map((x) => {
+                // Un mot de passe ou une déduction se répondent par un texte ; les autres énigmes par un formulaire adapté.
+                const formulaire = formulaireEnigme(ctx.dm.enigmes.get(x.id)!, (id) => ctx.dm.objets.get(id)?.nom ?? ctx.srd?.objets.get(id)?.nom);
+                return {
+                  groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce),
+                  libelle: 'Répondre',
+                  ...(formulaire ? { formulaire } : { saisie: { champ: 'reponse', indication: 'Votre réponse' } }),
+                  ordre: { type: 'repondreEnigme', enigme: x.id },
+                };
+              })
           : [],
     }),
     indiceEnigme: commande({

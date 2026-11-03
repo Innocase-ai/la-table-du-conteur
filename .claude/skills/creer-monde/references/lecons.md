@@ -56,3 +56,11 @@ Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la l
 - **Le prologue est un film** : il ouvre l'histoire comme une bande-annonce. Un plan par idée (le passé, la menace, ce qui la retient, ce qui change maintenant, pourquoi le groupe est là, une dernière phrase qui donne envie), le dernier plan sur le lieu de départ. Le secret de la bible n'y entre pas.
 - **Retoucher un texte** : `pnpm voix generer <id> --go` refait seul les plans dont le texte a changé. Relance ensuite `pnpm jeu`, qui ne voit pas les nouveaux fichiers.
 - Budget : environ 0,001 $ par plan avec `gpt-audio-mini` ; un monde de 25 plans ≈ 0,03 $.
+
+## Énigmes
+- **Skill dédié : `enigmes`** (écrire, vérifier, réparer) ; `pnpm monde enigmes <monde>` joue chaque énigme et doit donner zéro erreur.
+- **Ce que le joueur manipule, c'est ce que tu écris** : les éléments d'une `sequence` ou d'un `placement` s'affichent sur des boutons. Écris-les comme le joueur les lit dans l'énoncé (`wagonnet-de-minerai`, `rouge`, ou l'id d'un objet : son nom s'affiche) ; ils sont proposés dans un ordre neutre, donc l'énoncé ne doit pas se contenter de les citer dans l'ordre de la solution.
+- **Leviers** : `true` = en haut. Dis-le dans l'énoncé (« en haut = levé, en bas = repos »). **Cadrans** : donne `plage` et `libelles` (« Couronne 1 »…), le formulaire borne les champs et nomme les réglages.
+- **Un échec qui lance un combat** : `"echec": { "effets": [{ "rencontre": "<id>" }], "resume": "…" }`. L'effet `rencontre` déclenche la rencontre (un combat est lancé aussitôt) ; si elle est `unique` et déjà jouée, rien ne se passe. Un piège peut faire de même.
+- **Le test `tests/enigmes.test.ts` joue chaque énigme du monde** par son formulaire : une énigme injouable (élément absent des options, mauvais nombre de réglages) le fait échouer.
+

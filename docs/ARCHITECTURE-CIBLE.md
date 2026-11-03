@@ -242,3 +242,15 @@ Demande : un sac plus agréable (icônes, page dédiée, tris…), sans réécri
 - **Tests** : 391 verts (grille et groupes, « nouveau », objet à identifier, soins ciblés ; la marche au hasard joue aussi les boutons à choix).
 - **Pas encore** : glisser un objet sur un portrait, images des objets manquants, équipement et charge maximale (étape D de la proposition), coffre au village, boutiques.
 
+## 12. État : les énigmes jouables et les échecs qui déclenchent leur rencontre (03/11/2026)
+
+Une vérification de l'énigme « Les aiguillages du carreau » a montré deux défauts du mode « livre ».
+
+- **13 énigmes sur 18 du Val étaient injouables par les boutons** : le bouton « Répondre » n'envoyait qu'un texte, alors que le moteur attend une liste (séquence, leviers, cadran) ou une association (placement). Toute réponse était un échec. Correction : `Proposition.formulaire` (`FormulaireReponse` : `ordre`, `nombres`, `interrupteurs`, `association`), construit par `formulaireEnigme` (`monde/reponses.ts`) d'après la solution, et rendu par `aventure/FormulaireReponse.tsx` ; le texte libre ne reste que pour les mots de passe et les déductions.
+- **Réponse mal formée ≠ mauvaise réponse** : `controlerReponse` refuse (sans rien changer ni déclencher l'échec) une réponse qui n'a pas la forme attendue ou cite un élément inconnu. Utile aussi au conteur (M4b), dont les appels d'outil peuvent se tromper de forme.
+- **L'effet `rencontre` déclenchait… rien** : il marquait la rencontre comme faite, de sorte qu'un échec d'énigme *supprimait* le combat qu'il annonçait (4 énigmes, plus un piège). Il la déclenche maintenant : l'état garde les rencontres en attente (`rencontresEnAttente`), lancées à la fin de l'action (`suites`). Une rencontre unique déjà jouée ne se relance pas.
+- Le récit d'une énigme passe avant le verdict (le `resume` de la récompense ou de l'échec se raconte, « Bonne réponse » / « Mauvaise réponse » se constate).
+- Données : `plage` et `libelles` facultatifs des cadrans (renseignés pour les trois du Val ; le validateur vérifie les valeurs et le nombre de libellés).
+- **Tests** : 420 verts ; `tests/enigmes.test.ts` résout les 18 énigmes du Val par leur formulaire (et vérifie que les options ne sont pas dans l'ordre de la solution), refuse les réponses mal formées et vérifie que chaque échec annoncé lance son combat.
+- **Audit des énigmes** (`verification/enigmes.ts`, `pnpm monde enigmes`, inclus dans `pnpm monde valider`) : chaque énigme est *jouée* (bonne réponse construite d'après le formulaire, mauvaise réponse, réponse mal formée) ; erreurs : injouable, options dans l'ordre de la solution, réponse mal formée acceptée ou sans refus, échec qui ne lance pas la rencontre ou le piège annoncé ; avis : pas d'échec défini, récompense jamais lue, indices incomplets, énoncé qui donne l'ordre, leviers ou cadran mal décrits. Skill de projet `enigmes` : vérification obligatoire à chaque création ou modification. Sur le Val : 0 erreur, 6 avis (2 drapeaux de récompense jamais lus, 3 énoncés qui citent les éléments dans l'ordre de la solution, 1 énigme sans échec).
+

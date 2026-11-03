@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import type { Ordre, Personnage, Proposition } from '@crpg/regles';
 import { NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
+import { FormulaireReponse } from './FormulaireReponse';
 
 interface Props {
   p: Proposition;
@@ -25,6 +26,8 @@ export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
     const t = window.setTimeout(() => setAConfirmer(false), 3000);
     return () => window.clearTimeout(t);
   }, [aConfirmer]);
+
+  if (p.formulaire) return <FormulaireReponse p={p} f={p.formulaire} jouer={jouer} />;
 
   if (p.saisie) {
     return (

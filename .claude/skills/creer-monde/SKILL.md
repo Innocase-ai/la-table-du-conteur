@@ -66,7 +66,8 @@ Pendant qu'ils travaillent, n'écris pas dans les fichiers d'une zone. Ils lance
 
 Quand tous les agents ont terminé :
 
-1. `pnpm monde valider <id>` et corrige jusqu'à **0 erreur, 0 avertissement**. Les rapports des agents listent les « points à vérifier » : traite-les. `references/lecons.md` donne les défauts typiques (drapeau lu mais jamais posé, quêtes à fins alternatives, noms différents pour un même objet, boutiques sans armes…).
+1. `pnpm monde valider <id>` et corrige jusqu'à **0 erreur, 0 avertissement** (sauf les avis `[énigmes]`, qui se lisent un par un : corrige-les ou justifie-les à l'utilisateur, voir le skill `enigmes`). Les rapports des agents listent les « points à vérifier » : traite-les. `references/lecons.md` donne les défauts typiques (drapeau lu mais jamais posé, quêtes à fins alternatives, noms différents pour un même objet, boutiques sans armes…).
+   **Énigmes : skill `enigmes`.** Lance `pnpm monde enigmes <id>` (elle *joue* chaque énigme : zéro erreur, chaque avis lu) et joue une énigme de chaque type dans le jeu ; une énigme que tu n'as pas jouée n'est pas finie.
 2. **Rejoue les fins avec le moteur d'état** : ajoute au test `packages/regles/tests/monde.test.ts` (modèle : « Val des Cendres : parcours ») un cas par fin qui pose les drapeaux et les objets du chemin et vérifie que la quête principale se termine avec la bonne fin. C'est la seule façon de savoir que l'histoire est finissable.
 3. Remplis `chapitres[].quetes` dans `monde.json` avec toutes les quêtes, passe le `statut` à `"publie"`.
 4. `pnpm monde doc <id>` : génère `docs/mondes/<id>.md`, que l'utilisateur relira (il juge le ton, les personnages, les fins, la générosité des trésors).
@@ -81,6 +82,6 @@ Quand tous les agents ont terminé :
 - **Des PNJ qui ont des désirs, des peurs et des secrets**, une voix distincte et des sujets qui font avancer ; pas des distributeurs de quêtes.
 - **Plusieurs façons de résoudre** : négocier, ruser, corrompre, fuir. Les rencontres importantes ont des alternatives.
 - **Des trésors qui récompensent l'exploration** : cachés, verrouillés, gardés, piégés ; quelques belles trouvailles, jamais d'objet disproportionné pour le niveau.
-- **Des énigmes solubles par déduction** à partir de ce que le groupe peut voir ; le moteur tranche la réponse.
+- **Des énigmes solubles par déduction** à partir de ce que le groupe peut voir ; le moteur tranche la réponse. Le joueur répond par un formulaire adapté au type (éléments à ordonner, nombres, leviers, placement) : voir le skill **`enigmes`** (écriture et vérification obligatoire), `docs/MONDES.md` § Énigmes et `references/lecons.md`.
 - **Des choix qui coûtent** et une jauge qui rend le temps précieux.
 - **Du concret visuel** : chaque lieu et chaque PNJ se dessine (c'est ce qui nourrira les illustrations).

@@ -31,6 +31,8 @@ export interface EtatMonde {
   lieuxVisites: string[];
   debloques: string[];
   rencontresFaites: string[];
+  /** Rencontres déclenchées par un effet (échec d'une énigme, piège…) : elles se jouent à la fin de l'action en cours. */
+  rencontresEnAttente?: string[];
   evenementsJoues: string[];
   fin?: string;
   /** Narrations produites par les effets, à raconter par le MJ. */
@@ -124,7 +126,9 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
   else if ('debloquer' in effet) {
     if (!e.debloques.includes(effet.debloquer)) e.debloques.push(effet.debloquer);
   } else if ('rencontre' in effet) {
-    if (!e.rencontresFaites.includes(effet.rencontre)) e.rencontresFaites.push(effet.rencontre);
+    // L'effet déclenche la rencontre ; le moteur d'exploration la lance à la fin de l'action (`suites`).
+    const attente = (e.rencontresEnAttente ??= []);
+    if (!attente.includes(effet.rencontre)) attente.push(effet.rencontre);
   } else if ('fin' in effet) e.fin = effet.fin;
   else e.narrations.push(effet.narration);
 }
@@ -176,10 +180,13 @@ export function avancerQuetes(e: EtatMonde, dm: DonneesMonde): void {
   }
 }
 
+/** Un texte comparé sans casse, sans accents ni ponctuation (réponses d'énigme). */
+export const normaliserTexte = (t: unknown) => String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
 /** Vérifie la réponse d'un joueur à une énigme : le moteur tranche, pas le MJ. */
 export function verifierEnigme(enigme: Enigme, reponse: unknown): boolean {
   const s = enigme.solution;
-  const norme = (t: unknown) => String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const norme = normaliserTexte;
   switch (s.type) {
     case 'sequence':
       return Array.isArray(reponse) && reponse.length === s.ordre.length && reponse.every((x, i) => norme(x) === norme(s.ordre[i]));

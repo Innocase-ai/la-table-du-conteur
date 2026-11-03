@@ -5784,3 +5784,110 @@ kbd {
   color: #ffd0c9;
   background: var(--monstre-sombre);
 }
+
+/* Formulaire de réponse d'une énigme (séquence, cadran, leviers, placement) ---------------- */
+
+.formulaire-reponse {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: var(--fond-2);
+}
+
+.formulaire-ordre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pas;
+}
+
+.formulaire-ordre li {
+  counter-increment: pas;
+  min-width: 90px;
+  padding: 4px 10px;
+  border: 1px dashed var(--bord-clair);
+  border-radius: 6px;
+  color: var(--texte-faible);
+  font-size: 13px;
+}
+
+.formulaire-ordre li::before {
+  content: counter(pas) '. ';
+  color: var(--texte-faible);
+}
+
+.formulaire-ordre li.rempli {
+  border-style: solid;
+  border-color: var(--or);
+  color: var(--texte);
+  background: var(--panneau-2);
+}
+
+.formulaire-options,
+.formulaire-leviers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.formulaire-champs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.formulaire-champ {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--texte-doux);
+}
+
+.formulaire-champ input,
+.formulaire-champ select {
+  padding: 5px 8px;
+  border: 1px solid var(--bord);
+  border-radius: 6px;
+  background: var(--panneau);
+  color: var(--texte);
+  font: inherit;
+  font-size: 13px;
+}
+
+.formulaire-levier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 76px;
+  padding: 6px 10px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: var(--panneau);
+  color: var(--texte-doux);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.formulaire-levier strong {
+  font-size: 14px;
+  color: var(--texte-faible);
+}
+
+.formulaire-levier.haut {
+  border-color: var(--or);
+  background: var(--panneau-2);
+}
+
+.formulaire-levier.haut strong {
+  color: var(--or-vif);
+}
+

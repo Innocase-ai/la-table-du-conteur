@@ -8,6 +8,7 @@ import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets, avancerQuetes, evaluerCondition, verifierEnigme, type EtatMonde } from './etat';
+import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
 
 /** Ce que l'exploration ajoute à l'état du monde (sauvegardé avec lui). */
@@ -153,6 +154,7 @@ function suites(p: PartieMonde, r: CompteRendu): void {
     }
     if (!change) break;
   }
+  lancerRencontresEnAttente(p, r);
   avancerQuetes(p.etat, p.dm);
   if (!p.etat.fin) {
     for (const f of p.dm.fins.values()) {
@@ -301,12 +303,32 @@ function declencherRencontre(p: PartieMonde, r: CompteRendu, lieu: Lieu, declenc
     if (rc.declencheur !== declencheur) continue;
     if (rc.unique && p.etat.rencontresFaites.includes(rc.id)) continue;
     if (rc.condition && !evaluerCondition(rc.condition, p.etat)) continue;
-    const def = p.dm.rencontres.get(rc.id);
-    if (!def) continue;
-    if (def.type === 'combat' || def.type === 'mixte') r.combat = rc.id;
-    r.constats.push(`Rencontre : ${def.nom}.`);
-    r.narrations.push(def.intro);
-    return;
+    if (lancerRencontre(p, r, rc.id)) return;
+  }
+}
+
+/** Met la rencontre en scène : son introduction, et le combat si c'en est un. */
+function lancerRencontre(p: PartieMonde, r: CompteRendu, id: string): boolean {
+  const def = p.dm.rencontres.get(id);
+  if (!def) return false;
+  if (def.type === 'combat' || def.type === 'mixte') r.combat = id;
+  r.constats.push(`Rencontre : ${def.nom}.`);
+  r.narrations.push(def.intro);
+  return true;
+}
+
+/** Une rencontre qu'un lieu déclare non unique peut se rejouer ; les autres ne se jouent qu'une fois. */
+function rencontreRepetable(dm: DonneesMonde, id: string): boolean {
+  return [...dm.lieux.values()].some((l) => l.rencontres.some((rc) => rc.id === id && !rc.unique));
+}
+
+/** Les rencontres que des effets ont déclenchées (échec d'une énigme, piège…) : une seule à la fois si c'est un combat. */
+function lancerRencontresEnAttente(p: PartieMonde, r: CompteRendu): void {
+  const attente = p.etat.rencontresEnAttente;
+  while (attente?.length && !r.combat) {
+    const id = attente.shift()!;
+    if (p.etat.rencontresFaites.includes(id) && !rencontreRepetable(p.dm, id)) continue;
+    lancerRencontre(p, r, id);
   }
 }
 
@@ -539,10 +561,15 @@ export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown)
   const ex = p.etat.exploration;
   if (!e || e.lieu !== p.etat.lieu) return refus("Il n'y a pas d'énigme de ce genre ici.");
   if (ex.enigmes[enigme] === 'resolue') return refus(`${e.nom} est déjà résolue.`);
+  // Une réponse mal formée n'est pas une mauvaise réponse : refusée, sans aucune conséquence.
+  const malFormee = controlerReponse(e, reponse);
+  if (malFormee) return refus(malFormee);
   const r = resultat();
   if (verifierEnigme(e, reponse)) {
     ex.enigmes[enigme] = 'resolue';
-    r.constats.push(`Bonne réponse : ${e.nom} est résolue.${e.recompense.resume ? ` ${e.recompense.resume}` : ''}`);
+    // Ce qui arrive se raconte (récit), le verdict se constate : le récit passe avant, comme la suite d'une scène.
+    if (e.recompense.resume) r.narrations.push(e.recompense.resume);
+    r.constats.push(`Bonne réponse : ${e.nom} est résolue.`);
     appliquer(p, r, e.recompense.effets);
     if (e.recompense.tresor) {
       // Le trésor de l'énigme devient accessible : trouvé et ouvert.
@@ -554,7 +581,9 @@ export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown)
   } else {
     ex.enigmes[enigme] = 'echouee';
     r.ok = true;
-    r.constats.push(`Mauvaise réponse à ${e.nom}.${e.echec?.resume ? ` ${e.echec.resume}` : ''}`);
+    // Le récit de l'échec précède la rencontre qu'il déclenche (dont l'introduction se raconte à la suite).
+    if (e.echec?.resume) r.narrations.push(e.echec.resume);
+    r.constats.push(`Mauvaise réponse à ${e.nom}.`);
     if (e.echec?.piege) {
       const pg = p.dm.pieges.get(e.echec.piege);
       if (pg && !ex.pieges[pg.id]) declencher(p, r, pg, choisir(p, 'perception')!);

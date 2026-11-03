@@ -205,7 +205,7 @@ describe('noyau : propositions (boutons générés depuis les commandes)', () =>
       ({ ...x.ordre, ...(x.choix ? { [x.choix.champ]: x.choix.options.find((o) => !o.desactivee)?.valeur } : {}) }) as { type: string };
     const suivant = () => (hasard = (hasard * 9301 + 49297) % 233280) / 233280;
     for (let i = 0; i < 300; i++) {
-      const jouables = moteur.propositions(p).filter((x) => x.ordre && !x.saisie && !x.desactivee);
+      const jouables = moteur.propositions(p).filter((x) => x.ordre && !x.saisie && !x.formulaire && !x.desactivee);
       // Une rencontre se règle comme après un combat gagné.
       const choix =
         p.scene.type === 'rencontre'

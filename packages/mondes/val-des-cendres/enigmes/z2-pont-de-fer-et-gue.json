@@ -1,7 +1,7 @@
 [
   { "id": "pdf-enigme-caisse-du-quartier-maitre", "nom": "Le cadran de Hosk", "lieu": "pdf-intendance",
     "enonce": "Dans l'arrière-salle de l'intendance, un coffre-fort de fer noir, d'origine naine, porte trois molettes numérotées de 0 à 20 et une plaque de bronze : « Qui compte bien ouvre. » Sur le mur voisin, une grande ardoise noire est couverte de colonnes de chiffres à la craie : les bouches à nourrir, ligne par ligne.",
-    "solution": { "type": "cadran", "valeurs": [12, 9, 7] },
+    "solution": { "type": "cadran", "valeurs": [12, 9, 7], "plage": [0, 20], "libelles": ["Molette 1", "Molette 2", "Molette 3"] },
     "indices": [
       { "niveau": 1, "texte": "Hosk ne choisit jamais un nombre au hasard : il note tout, et il note tout sur son ardoise." },
       { "niveau": 2, "texte": "L'ardoise compte les rations par ligne : trois compagnies d'armes, l'infirmerie, l'état-major. Le coffre n'a que trois molettes, et la plaque dit « qui compte bien » : les combattants d'abord.", "competence": "investigation", "dd": 12 },

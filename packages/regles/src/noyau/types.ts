@@ -5,6 +5,7 @@ import type { ZodTypeAny, z } from 'zod';
 import type { Donnees } from '../donnees';
 import type { EtatMonde, StatutQuete } from '../monde/etat';
 import type { EtatExploration } from '../monde/exploration';
+import type { FormulaireReponse } from '../monde/reponses';
 import type { Personnage } from '../personnage';
 import type { DonneesMonde } from '../monde/schemas';
 import type { Generateur } from '../des';
@@ -116,6 +117,8 @@ export interface Proposition {
   intention?: 'combattre';
   /** La commande attend un texte du joueur, placé dans ce champ de l'ordre. */
   saisie?: { champ: string; indication: string };
+  /** La commande attend une réponse structurée (des éléments dans l'ordre, des nombres, des leviers, un placement), placée dans le champ `champ` de l'ordre. */
+  formulaire?: FormulaireReponse;
   /**
    * La commande attend un choix parmi des options (un héros, un sort…), placé dans ce champ de l'ordre. Une option qui
    * désigne un héros (`personnage`) s'affiche avec son portrait et ses points de vie.

@@ -193,3 +193,14 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Inventaire : soigner ou confier à un héros précis, identifier avec le héros de son choix, jeter avec confirmation ; objets à identifier mystérieux (`inconnu`, 3 objets du Val).
 - Vérifié dans le jeu avec un sac de 20 objets ; trouvé au passage : le serveur de développement ne voyait pas le catalogue SRD ajouté après son démarrage (446 objets absents côté navigateur), d'où des objets affichés par leur identifiant. Relancer `pnpm jeu` règle ce cas. 391 tests verts.
 
+## 03/11/2026 — Les énigmes, vérifiées et réparées
+
+- Vérification de « Les aiguillages du carreau » : l'énigme est juste, mais 13 des 18 énigmes du Val ne se résolvaient pas par les boutons (réponse envoyée en texte, attendue en liste ou en association) et l'échec d'une énigme *supprimait* le combat annoncé au lieu de le lancer.
+- Formulaires de réponse par type (éléments à ordonner, nombres, leviers, placement), réponses mal formées refusées sans conséquence, effet `rencontre` qui déclenche vraiment, `plage` et `libelles` des cadrans.
+- Vérifié dans le jeu : séquence (bonne et mauvaise réponse, le combat du dortoir se lance), cadran, leviers et placement. 420 tests verts.
+
+## 03/11/2026 — Skill « enigmes » et audit automatique
+
+- Skill de projet `enigmes` : écrire, vérifier et réparer les énigmes, avec la vérification obligatoire (demande de l'utilisateur : « toujours les vérifier »).
+- `pnpm monde enigmes <monde>` joue chaque énigme dans le moteur et contrôle l'échec, la récompense, les indices et l'énoncé ; `pnpm monde valider` l'inclut. Le Val : 0 erreur, 6 avis. 423 tests verts.
+

@@ -249,6 +249,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     const s = e.solution;
     if (s.type === 'sequence' && new Set(s.ordre.map((x) => x.toLowerCase())).size !== s.ordre.length) err(`${ou} : la séquence contient deux éléments identiques.`);
     if (s.type === 'leviers' && s.positions.every((x) => !x) ) avis(`${ou} : tous les leviers sont à « bas » : la solution est triviale.`);
+    if (s.type === 'cadran') {
+      if (s.plage && (s.plage[0] > s.plage[1] || s.valeurs.some((v) => v < s.plage![0] || v > s.plage![1]))) err(`${ou} : une valeur du cadran sort de sa plage ${s.plage[0]} à ${s.plage[1]}.`);
+      if (s.libelles && s.libelles.length !== s.valeurs.length) err(`${ou} : le cadran a ${s.valeurs.length} réglages mais ${s.libelles.length} libellés.`);
+    }
     if (s.type === 'placement') for (const o of Object.values(s.emplacements)) verifierRef(ou, 'objet', o);
     const niveaux = e.indices.map((i) => i.niveau);
     if (!niveaux.includes(1)) avis(`${ou} : aucun indice de niveau 1.`);

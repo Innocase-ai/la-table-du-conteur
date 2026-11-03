@@ -1,6 +1,7 @@
 // Outils des mondes :
 //   pnpm monde lister                 mondes disponibles
 //   pnpm monde valider [monde]        validation (références, accessibilité, quêtes, rencontres…) ; code 1 s'il y a des erreurs
+//   pnpm monde enigmes [monde]        audit des énigmes : chacune est JOUÉE dans le moteur (bonne, mauvaise, mal formée) ; code 1 s'il y a des erreurs
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
 //   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
@@ -11,6 +12,7 @@ import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles
 import { validerMonde } from '../../packages/regles/src/monde/validation';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { MODULES_STANDARD } from '../../packages/regles/src/modules';
+import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
 
@@ -30,7 +32,7 @@ if (commande === 'nouveau') {
 
 if (commande === 'lister' || !commande) {
   for (const id of listerMondes()) console.log(id);
-  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
+  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | enigmes [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
   process.exit(0);
 }
 
@@ -52,9 +54,27 @@ for (const id of mondes) {
     console.log(`  images du groupe   ≈ ${e.imagesUsd} $`);
     continue;
   }
+  if (commande === 'enigmes') {
+    const rapports = auditerEnigmes(r.monde, srd);
+    console.log(`\nÉnigmes de ${id} : ${rapports.length}`);
+    for (const rap of rapports) {
+      const manques = rap.verifications.filter((x) => !x.ok);
+      const erreurs = manques.filter((x) => x.gravite === 'erreur');
+      console.log(`${erreurs.length ? '❌' : manques.length ? '⚠️ ' : '✅'} ${rap.nom} (${rap.type}, ${rap.lieu}) — ${rap.verifications.length - manques.length}/${rap.verifications.length} contrôles`);
+      for (const x of manques) console.log(`     ${x.gravite === 'erreur' ? 'ERREUR' : 'avis  '}  [${x.id}] ${x.detail}`);
+    }
+    const b = bilanAudit(rapports);
+    console.log(`\n${b.erreurs ? '❌' : '✅'} ${b.erreurs} erreur(s), ${b.avis} avis sur ${rapports.length} énigmes`);
+    if (b.erreurs) echec = true;
+    continue;
+  }
   const bilan = validerMonde(r.monde, srd);
   // Les données des modules (scènes narrées…) : chaque module vérifie les siennes.
   for (const m of MODULES_STANDARD) for (const e of m.valider?.({ dm: r.monde, srd }) ?? []) bilan.erreurs.push(`[${m.id}] ${e}`);
+  // Les énigmes se jouent : une énigme qu'on ne peut pas résoudre par ses boutons est une erreur du monde.
+  for (const rap of auditerEnigmes(r.monde, srd)) {
+    for (const x of rap.verifications.filter((v) => !v.ok)) (x.gravite === 'erreur' ? bilan.erreurs : bilan.avertissements).push(`[énigmes] « ${rap.nom} » (${x.id}) : ${x.detail}`);
+  }
   if (commande === 'doc') {
     mkdirSync(join(RACINE_MONDES, '../../docs/mondes'), { recursive: true });
     const chemin = join(RACINE_MONDES, '../../docs/mondes', `${id}.md`);

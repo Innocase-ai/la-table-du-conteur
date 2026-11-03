@@ -4,7 +4,7 @@
     "nom": "Le cadran de la Lanterne",
     "lieu": "vei-cadran-de-la-lanterne",
     "enonce": "Dans le réduit sous la lanterne, un grand cadran de bronze à trois couronnes gravées de chiffres nains, chacune graduée de un à neuf, est déréglé. Une plaque, au-dessous, porte quelques lignes de runes : « Règle la flamme sur ce que tu as monté, ce qui regarde le vent, ce qui laisse passer la lueur. » Derrière le cadran, une niche scellée attend. Les trois couronnes se tournent à la main.",
-    "solution": { "type": "cadran", "valeurs": [7, 4, 3] },
+    "solution": { "type": "cadran", "valeurs": [7, 4, 3], "plage": [1, 9], "libelles": ["Couronne 1", "Couronne 2", "Couronne 3"] },
     "indices": [
       { "niveau": 1, "texte": "La plaque ne parle pas de chiffres abstraits : elle demande de compter des choses que l'on voit dans la tour, de bas en haut, dans l'ordre des couronnes.", "competence": "intuition", "dd": 10 },
       { "niveau": 2, "texte": "La première couronne correspond à ce que l'on a monté : les paliers de l'escalier tournant, un par rune gravée au mur. La deuxième à ce qui regarde le vent : les meurtrières du foyer.", "competence": "investigation", "dd": 12 },
