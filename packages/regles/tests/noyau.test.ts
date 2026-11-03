@@ -200,6 +200,9 @@ describe('noyau : propositions (boutons générés depuis les commandes)', () =>
   it('chaque bouton proposé est jouable : une marche au hasard de 300 actions sans aucun refus', () => {
     let p = depart(77);
     let hasard = 0.123;
+    // Un bouton à choix se joue avec sa première option disponible.
+    const jouable = (x: { ordre?: Record<string, unknown>; choix?: { champ: string; options: { valeur: string; desactivee?: string }[] } }) =>
+      ({ ...x.ordre, ...(x.choix ? { [x.choix.champ]: x.choix.options.find((o) => !o.desactivee)?.valeur } : {}) }) as { type: string };
     const suivant = () => (hasard = (hasard * 9301 + 49297) % 233280) / 233280;
     for (let i = 0; i < 300; i++) {
       const jouables = moteur.propositions(p).filter((x) => x.ordre && !x.saisie && !x.desactivee);
@@ -207,7 +210,7 @@ describe('noyau : propositions (boutons générés depuis les commandes)', () =>
       const choix =
         p.scene.type === 'rencontre'
           ? ({ type: 'reglerRencontre', issue: 'victoire' } as const)
-          : jouables[Math.floor(suivant() * jouables.length)]!.ordre!;
+          : jouable(jouables[Math.floor(suivant() * jouables.length)]!);
       const res = moteur.executer(p, choix);
       expect(res.refus, `${JSON.stringify(choix)} à ${p.etat.lieu}`).toBeUndefined();
       p = res.partie;

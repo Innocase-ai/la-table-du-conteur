@@ -139,6 +139,8 @@ export const Objet = z.object({
     })
     .optional(),
   identification: Dd.optional(),
+  // Ce que le joueur voit tant qu'il n'a pas identifié l'objet (nom et description vagues) ; sans cela, l'objet se montre tel quel.
+  inconnu: z.object({ nom: Texte, resume: Texte }).optional(),
   maudit: z.string().optional(),
   attunement: z.boolean().default(false),
   visuel: z.string().optional(),

@@ -116,7 +116,14 @@ export interface Proposition {
   intention?: 'combattre';
   /** La commande attend un texte du joueur, placé dans ce champ de l'ordre. */
   saisie?: { champ: string; indication: string };
+  /**
+   * La commande attend un choix parmi des options (un héros, un sort…), placé dans ce champ de l'ordre. Une option qui
+   * désigne un héros (`personnage`) s'affiche avec son portrait et ses points de vie.
+   */
+  choix?: { champ: string; indication: string; options: { valeur: string; libelle: string; detail?: string; personnage?: string; desactivee?: string }[] };
   style?: 'principal' | 'normal' | 'discret';
+  /** Une action qu'on ne défait pas (jeter un objet) : l'écran demande un second clic pour confirmer. */
+  confirmer?: boolean;
   /** Les propositions d'un même élément (un trésor, une sortie) s'affichent sur une ligne, sous son titre. */
   element?: { id: string; titre: string; danger?: boolean };
   /** Proposition visible mais impossible maintenant, avec la raison. */
@@ -134,6 +141,53 @@ export interface Encart {
   ordre: number;
   texte?: string;
   lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger' }[];
+  /** Une grille d'éléments (objets d'un sac, sorts d'un livre…) : l'écran la montre en vignettes triables, avec une page plein écran. */
+  grille?: GrilleElements;
+}
+
+export type Ton = 'faible' | 'fort' | 'succes' | 'danger';
+export const RARETES_ELEMENT = ['commun', 'peu-commun', 'rare', 'tres-rare', 'legendaire'] as const;
+
+/**
+ * Un élément de grille. L'écran sait le ranger, le trier, le filtrer et en montrer la fiche sans rien savoir de ce qu'il
+ * est : un objet du sac aujourd'hui, un sort ou une créature demain. Les actions qui le concernent sont les
+ * propositions de l'onglet dont `element.id` est le sien.
+ */
+export interface ElementGrille {
+  id: string;
+  titre: string;
+  quantite?: number;
+  /** Le groupe où il se range (catégorie d'objet, niveau de sort…) ; les groupes s'affichent par `ordre` croissant. */
+  groupe: { id: string; titre: string; ordre: number };
+  /** Couleur du cadre, de commun à légendaire. */
+  rarete?: (typeof RARETES_ELEMENT)[number];
+  /** Image du monde (groupe du manifeste et id) ; sans elle, l'icône. */
+  image?: { groupe: string; id: string };
+  /** Identifiant de l'icône de repli (la catégorie de l'objet, par exemple). */
+  icone?: string;
+  resume?: string;
+  /** Histoire ou longue description, montrée dans la fiche. */
+  histoire?: string;
+  /** Mesures lisibles qui servent aussi de critères de tri (valeur, poids…). */
+  mesures?: { id: string; libelle: string; valeur: number; unite?: string }[];
+  /** Autres informations (effets, conditions…). */
+  proprietes?: { libelle: string; valeur: string }[];
+  /** Arrivé depuis le dernier regard du joueur : l'écran envoie `ordreVu` quand le joueur le regarde. */
+  nouveau?: boolean;
+  ordreVu?: Ordre;
+  /** Il reste quelque chose à découvrir : l'élément porte un « ? ». */
+  inconnu?: boolean;
+  ton?: Ton;
+}
+
+export interface GrilleElements {
+  elements: ElementGrille[];
+  /** Chiffres clés au-dessus de la grille (bourse, charge…). */
+  resume?: { libelle: string; valeur: string; ton?: Ton }[];
+  /** Ce qu'on lit quand la grille est vide. */
+  vide?: string;
+  /** Touche qui ouvre la page plein écran de l'onglet. */
+  touche?: string;
 }
 
 export interface CommandeJeu<S extends ZodTypeAny = ZodTypeAny> {

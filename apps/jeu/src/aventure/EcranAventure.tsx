@@ -2,10 +2,8 @@
 // d'événements de la partie. Le conteur (IA) viendra s'ajouter pour la saisie libre (M4b).
 import { useEffect, useRef, useState } from 'react';
 import {
-  etatDurableMax,
   type DonneesMonde,
   type EvenementJeu,
-  type Encart,
   type FicheScene,
   type Proposition,
   type SceneNarree,
@@ -16,10 +14,13 @@ import {
   type Personnage,
 } from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
-import { Portrait } from '../createur/ui';
 import { manifesteDe, urlImage } from '../mondes';
 import type { Aventure } from './partie';
+import { BoutonProposition } from './BoutonProposition';
+import { BandeauHeros, FicheEncart } from './fiches';
+import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
+import { PagePleine } from './PagePleine';
 
 interface Props {
   aventure: Aventure;
@@ -34,27 +35,6 @@ function libelleTest(test: string): string {
   const sauvegarde = /^sauvegarde de (\w+)$/.exec(test);
   if (sauvegarde) return `Sauvegarde de ${NOMS_CARAC[sauvegarde[1] as keyof typeof NOMS_CARAC] ?? sauvegarde[1]}`;
   return test;
-}
-
-const NOMS_RESSOURCES: Record<string, string> = {
-  potions: 'Potions',
-  secondSouffle: 'Second souffle',
-  fougue: 'Fougue',
-  rages: 'Rages',
-  conduit: 'Conduit divin',
-};
-
-/** Ressources d'un héros en une ligne : potions, emplacements de sorts restants, usages d'aptitudes. */
-function resumeRessources(a: Personnage): { court: string; detail: string } {
-  const max = etatDurableMax(a.fiche);
-  const sorts = a.emplacements.reduce((s, n) => s + n, 0);
-  const sortsMax = max.emplacements.reduce((s, n) => s + n, 0);
-  const court = [`Potions ${a.ressources.potions ?? 0}`, sortsMax ? `Sorts ${sorts}/${sortsMax}` : ''].filter(Boolean).join(' · ');
-  const detail = Object.entries(a.ressources)
-    .map(([k, v]) => `${NOMS_RESSOURCES[k] ?? k} : ${v}${k !== 'potions' && max.ressources[k] !== undefined ? `/${max.ressources[k]}` : ''}`)
-    .concat(a.emplacements.map((n, i) => (max.emplacements[i] ? `Emplacements niv. ${i + 1} : ${n}/${max.emplacements[i]}` : '')).filter(Boolean))
-    .join('\n');
-  return { court, detail };
 }
 
 function TexteJet({ j }: { j: Jet }) {
@@ -103,6 +83,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])];
   const [onglet, setOnglet] = useState('Actions');
   const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
+  // La page plein écran d'un onglet qui a une grille (le sac : touche I).
+  const [page, setPage] = useState<{ onglet: string; selection?: string }>();
+  const encartsDe = (o: string) => encarts.filter((e) => e.onglet === o);
+  const pageOuverte = page && encartsDe(page.onglet).some((e) => e.grille) ? page : undefined;
+  const nouveautes = (o: string) => encartsDe(o).reduce((n, e) => n + (e.grille?.elements.filter((x) => x.nouveau).length ?? 0), 0);
   // Une rencontre ou une conversation ramène à l'onglet des actions.
   useEffect(() => {
     if (partie.scene.type !== 'exploration') setOnglet('Actions');
@@ -111,6 +96,20 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   useEffect(() => {
     recit.current?.scrollTo({ top: recit.current.scrollHeight, behavior: 'smooth' });
   }, [partie.journal.length, refus]);
+
+  // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
+  useEffect(() => {
+    const surTouche = (ev: KeyboardEvent) => {
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree) return;
+      const cible = ev.target as HTMLElement | null;
+      if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (ev.key === 'Escape' && pageOuverte) return setPage(undefined);
+      const e = encarts.find((x) => x.grille?.touche === ev.key.toLowerCase());
+      if (e) setPage(pageOuverte?.onglet === e.onglet ? undefined : { onglet: e.onglet });
+    };
+    window.addEventListener('keydown', surTouche);
+    return () => window.removeEventListener('keydown', surTouche);
+  }, [encarts, pageOuverte, sceneNarree]);
 
   /** Envoie une commande au moteur ; un refus s'affiche sans changer la partie. */
   const jouer = (ordre: Ordre) => {
@@ -163,17 +162,34 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           {onglets.map((o) => (
             <button key={o} type="button" className={o === ongletActif ? 'actif' : ''} aria-current={o === ongletActif} onClick={() => setOnglet(o)}>
               {o}
+              {nouveautes(o) > 0 && <span className="onglet-nouveau" title={`${nouveautes(o)} nouveau(x)`}>{nouveautes(o)}</span>}
             </button>
           ))}
         </nav>
         {ongletActif !== 'Actions' ? (
           <>
-            {encarts
-              .filter((e) => e.onglet === ongletActif)
-              .map((e) => (
+            {encartsDe(ongletActif).map((e) =>
+              e.grille ? (
+                <section key={e.id} className="panneau-action encart">
+                  <h3>{e.titre}</h3>
+                  <GrilleElements monde={dm.monde.id} grille={e.grille} cle={e.id} compact onChoisir={(x) => setPage({ onglet: e.onglet, selection: x.id })} />
+                  <button type="button" className="bouton" onClick={() => setPage({ onglet: e.onglet })}>
+                    Ouvrir en plein écran{e.grille.touche ? ` (${e.grille.touche.toUpperCase()})` : ''}
+                  </button>
+                </section>
+              ) : (
                 <FicheEncart key={e.id} e={e} />
-              ))}
-            <Panneaux propositions={propositions.filter((x) => x.groupe.onglet === ongletActif)} jouer={jouer} onCombat={onCombat} />
+              ),
+            )}
+            {/* Les actions d'un élément de la grille sont dans sa fiche (page plein écran), pas ici. */}
+            <Panneaux
+              propositions={propositions.filter(
+                (x) => x.groupe.onglet === ongletActif && !encartsDe(ongletActif).some((e) => e.grille?.elements.some((el) => el.id === x.element?.id)),
+              )}
+              jouer={jouer}
+              onCombat={onCombat}
+              groupe={partie.groupe}
+            />
           </>
         ) : (
           <>
@@ -201,6 +217,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               propositions={propositions.filter((x) => !x.groupe.onglet)}
               jouer={jouer}
               onCombat={onCombat}
+              groupe={partie.groupe}
               cacherTitre={interlocuteur ? 'dialogue' : undefined}
             />
           </>
@@ -208,53 +225,32 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        {partie.groupe.map((a) => {
-          const res = resumeRessources(a);
-          return (
-            <div
-              key={a.id}
-              className={`aventure-heros ${a.pv <= 0 ? 'aventure-heros-tombe' : ''}`}
-              title={`${a.nom} — ${a.pv}/${a.fiche.pvMax} PV\n${res.detail}`}
-            >
-              <Portrait id={a.portrait} espece={a.fiche.espece} classe={a.fiche.classe} taille={40} />
-              <div>
-                <strong>{a.nom}</strong>
-                <div className="barre">
-                  <div
-                    className={`barre-remplie ${a.pv / a.fiche.pvMax > 0.5 ? 'pv-haut' : a.pv / a.fiche.pvMax > 0.25 ? 'pv-moyen' : 'pv-bas'}`}
-                    style={{ width: `${(Math.max(0, a.pv) / a.fiche.pvMax) * 100}%` }}
-                  />
-                </div>
-                <small className="aventure-ressources">{res.court}</small>
-              </div>
-            </div>
-          );
-        })}
-        <div className="aventure-sac" title={scene.inventaire.map((o) => `${o.quantite} × ${o.nom}`).join('\n') || 'Sac vide'}>
-          Sac : {scene.inventaire.reduce((s, o) => s + o.quantite, 0)} objet(s)
-        </div>
+        <BandeauHeros groupe={partie.groupe} />
+        <button
+          type="button"
+          className="aventure-sac"
+          title={(scene.inventaire.map((o) => `${o.quantite} × ${o.nom}`).join('\n') || 'Sac vide') + '\n\nOuvrir le sac (I)'}
+          onClick={() => setPage({ onglet: 'Sac' })}
+        >
+          Sac : {scene.inventaire.reduce((n, o) => n + o.quantite, 0)} objet(s)
+          {nouveautes('Sac') > 0 && <span className="onglet-nouveau">{nouveautes('Sac')}</span>}
+        </button>
       </footer>
+      {pageOuverte && (
+        <PagePleine
+          monde={dm.monde.id}
+          encarts={encartsDe(pageOuverte.onglet)}
+          propositions={propositions.filter((x) => x.groupe.onglet === pageOuverte.onglet)}
+          partie={partie}
+          selection={pageOuverte.selection}
+          onChoisir={(id) => setPage({ onglet: pageOuverte.onglet, selection: id })}
+          jouer={jouer}
+          onCombat={onCombat}
+          onFermer={() => setPage(undefined)}
+        />
+      )}
       {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
-  );
-}
-
-/** Une fiche d'information d'un module (sac, grimoire, journal…). */
-function FicheEncart({ e }: { e: Encart }) {
-  return (
-    <section className="panneau-action encart">
-      <h3>{e.titre}</h3>
-      {e.texte && <p className="encart-texte">{e.texte}</p>}
-      {e.lignes?.map((l, i) => (
-        <div key={i} className={`encart-ligne ${l.ton ? `ton-${l.ton}` : ''}`}>
-          <div className="encart-tete">
-            <span>{l.libelle}</span>
-            {l.valeur && <span className="encart-valeur">{l.valeur}</span>}
-          </div>
-          {l.detail && <p className="encart-detail">{l.detail}</p>}
-        </div>
-      ))}
-    </section>
   );
 }
 
@@ -266,14 +262,15 @@ function Panneaux({
   propositions,
   jouer,
   onCombat,
+  groupe,
   cacherTitre,
 }: {
   propositions: Proposition[];
   jouer: (o: Ordre) => void;
   onCombat: () => void;
+  groupe: Personnage[];
   cacherTitre?: string;
 }) {
-  const [saisies, setSaisies] = useState<Record<string, string>>({});
   const panneaux: { groupe: Proposition['groupe']; items: Proposition[] }[] = [];
   for (const p of propositions) {
     const dernier = panneaux[panneaux.length - 1];
@@ -281,45 +278,11 @@ function Panneaux({
     else panneaux.push({ groupe: p.groupe, items: [p] });
   }
 
-  const bouton = (p: Proposition, cle: string) => {
-    if (p.saisie) {
-      const valeur = saisies[cle] ?? '';
-      return (
-        <form
-          key={cle}
-          className="enigme-reponse"
-          onSubmit={(ev) => {
-            ev.preventDefault();
-            if (p.ordre && valeur.trim()) jouer({ ...p.ordre, [p.saisie!.champ]: valeur.trim() });
-          }}
-        >
-          <input type="text" value={valeur} placeholder={p.saisie.indication} onChange={(ev) => setSaisies({ ...saisies, [cle]: ev.target.value })} />
-          <button type="submit" className="bouton" disabled={!valeur.trim() || !!p.desactivee}>
-            {p.libelle}
-          </button>
-        </form>
-      );
-    }
-    const classe = p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton';
-    const detail = p.detail ? (NOMS_COMPETENCES[p.detail as keyof typeof NOMS_COMPETENCES] ?? p.detail) : undefined;
-    return (
-      <button
-        key={cle}
-        type="button"
-        className={classe}
-        disabled={!!p.desactivee}
-        title={p.desactivee ?? p.aide}
-        onClick={() => (p.intention === 'combattre' ? onCombat() : p.ordre && jouer(p.ordre))}
-      >
-        {p.libelle}
-        {detail && <small> — {detail}</small>}
-      </button>
-    );
-  };
+  const bouton = (p: Proposition, cle: string) => <BoutonProposition key={cle} p={p} jouer={jouer} onCombat={onCombat} groupe={groupe} />;
 
   return (
     <>
-      {panneaux.map(({ groupe, items }) => {
+      {panneaux.map(({ groupe: panneau, items }) => {
         // Dans un panneau : les éléments (un trésor, une sortie verrouillée) sur une ligne chacun ; les actions discrètes
         // côte à côte ; les autres en liste.
         const blocs: { element?: Proposition['element']; items: Proposition[] }[] = [];
@@ -332,22 +295,22 @@ function Panneaux({
           else blocs.push({ element: p.element, items: [p] });
         }
         return (
-          <section key={groupe.id} className={`panneau-action ${groupe.danger ? 'panneau-danger' : ''}`}>
-            {cacherTitre !== groupe.id && <h3>{groupe.titre}</h3>}
-            {groupe.description && <p className="enonce">{groupe.description}</p>}
+          <section key={panneau.id} className={`panneau-action ${panneau.danger ? 'panneau-danger' : ''}`}>
+            {cacherTitre !== panneau.id && <h3>{panneau.titre}</h3>}
+            {panneau.description && <p className="enonce">{panneau.description}</p>}
             <div className="liste-actions">
               {blocs.map((b, i) =>
                 b.element ? (
-                  <div key={`${groupe.id}:${b.element.id}`} className={`objet-action ${b.element.danger ? 'objet-danger' : ''}`}>
+                  <div key={`${panneau.id}:${b.element.id}`} className={`objet-action ${b.element.danger ? 'objet-danger' : ''}`}>
                     <span>{b.element.titre}</span>
-                    <span className="liste-actions-ligne">{b.items.map((p, j) => bouton(p, `${groupe.id}:${b.element!.id}:${j}`))}</span>
+                    <span className="liste-actions-ligne">{b.items.map((p, j) => bouton(p, `${panneau.id}:${b.element!.id}:${j}`))}</span>
                   </div>
                 ) : b.items.length > 1 || b.items[0]?.style === 'discret' ? (
-                  <div key={`${groupe.id}:${i}`} className="liste-actions-ligne">
-                    {b.items.map((p, j) => bouton(p, `${groupe.id}:${i}:${j}`))}
+                  <div key={`${panneau.id}:${i}`} className="liste-actions-ligne">
+                    {b.items.map((p, j) => bouton(p, `${panneau.id}:${i}:${j}`))}
                   </div>
                 ) : (
-                  bouton(b.items[0]!, `${groupe.id}:${i}`)
+                  bouton(b.items[0]!, `${panneau.id}:${i}`)
                 ),
               )}
             </div>

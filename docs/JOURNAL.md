@@ -185,3 +185,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Nouvelle présentation des scènes narrées, « film » : carton de titre, fondus enchaînés, texte qui défile au rythme de la voix, « Commencer l'aventure » à la fin. Le prologue du Val passe à 6 plans (Haute-Forge, Val, champ de cendre, Lanterne, col fermé, Veillecendre), environ 70 s, voix refaites (0,004 $).
 - `pnpm voix` refait un plan dont le texte a changé. Corrigé : le client chargeait les fiches des voix (`voix/*.json`) avec les données du monde.
 - Vérifié dans le jeu : les six voix enregistrées s'enchaînent, le texte défile centré, le titre revient à la fin.
+
+## 03/11/2026 — Un sac plus agréable : grille, page dédiée, tris
+
+- Noyau : `Encart.grille` (éléments rangés par groupe, avec rareté, image ou icône, mesures, « nouveau », « à découvrir »), `Proposition.choix` (choix d'un héros avec portrait) et `Proposition.confirmer`.
+- Écran : grille triable, filtrable et cherchable ; page plein écran du sac (touche I, Échap) avec fiche et actions de l'objet choisi ; 18 icônes dessinées ; cadre de rareté ; pastille « nouveau ».
+- Inventaire : soigner ou confier à un héros précis, identifier avec le héros de son choix, jeter avec confirmation ; objets à identifier mystérieux (`inconnu`, 3 objets du Val).
+- Vérifié dans le jeu avec un sac de 20 objets ; trouvé au passage : le serveur de développement ne voyait pas le catalogue SRD ajouté après son démarrage (446 objets absents côté navigateur), d'où des objets affichés par leur identifiant. Relancer `pnpm jeu` règle ce cas. 391 tests verts.
+

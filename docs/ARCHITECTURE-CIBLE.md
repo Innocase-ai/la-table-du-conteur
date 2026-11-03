@@ -228,3 +228,17 @@ Prochaine étape : **5, les scènes narrées** (image, texte, voix).
 Vérifié dans le navigateur : l'ouverture se joue au début de l'histoire et s'enchaîne seule, « Revoir » et « Passer » fonctionnent, la scène de la Lanterne se déclenche quand Hesta confie la quête. 386 tests verts.
 
 Prochaine étape : **6, le conteur (M4b)**, branché sur les commandes et les vues du noyau.
+
+## 11. État : l'inventaire amélioré (03/11/2026) — grille, page dédiée, choix du héros
+
+Demande : un sac plus agréable (icônes, page dédiée, tris…), sans réécrire le module. Le noyau a gagné trois notions **génériques**, l'Inventaire s'en sert, et le Grimoire ou un bestiaire pourront faire de même.
+
+- **Grille d'éléments** (`Encart.grille`, `GrilleElements` et `ElementGrille` dans `noyau/types.ts`) : une liste d'éléments avec leur groupe (rangement), rareté, image du monde ou icône, résumé, histoire, mesures (valeur, poids… qui servent aussi de critères de tri), propriétés, pastille « nouveau » et « ? » (à découvrir). Les actions d'un élément sont les propositions de l'onglet dont `element.id` est le sien. L'écran sait la ranger, la trier (par type, nom, arrivée, chaque mesure), la filtrer et la chercher ; il n'a aucune idée de ce qu'est un objet.
+- **Page dédiée** (`aventure/PagePleine.tsx`) : l'onglet qui a une grille s'ouvre en plein écran (touche déclarée par la grille, `i` pour le sac ; Échap ferme) : grille à gauche, fiche et actions de l'élément choisi à droite, héros en bas. En colonne, l'onglet montre la grille réduite et un bouton « Ouvrir en plein écran » ; les actions des éléments de la grille n'y sont plus répétées. Pastille de nouveautés sur l'onglet et sur « Sac : N objets ».
+- **Choix et confirmation** dans les propositions : `choix` (options, avec portrait et PV quand l'option désigne un héros, `personnage`) et `confirmer` (second clic pour ce qui ne se défait pas). Un seul composant les rend (`BoutonProposition.tsx`) pour la colonne comme pour la page.
+- **Inventaire** (`modules/inventaire.ts`) : dix groupes (quête, consommables, armes, armures, parures, magie, matériel, livres et clés, curiosités, divers), état `nouveaux` (réactions `objetObtenu` / `objetPerdu`, commande `voirObjet` envoyée par l'écran quand on regarde l'élément), soigner ou confier une potion à un héros précis, identifier avec le héros de son choix, jeter 1 ou toute la pile avec confirmation. Un héros qui n'est pas blessé ne peut plus recevoir de soins.
+- **Objets à identifier** : champ `inconnu { nom, resume }` d'un objet (ce que voit le joueur tant qu'il ne l'a pas étudié) ; l'histoire reste cachée, la fiche dit « À étudier : Arcanes, DD n ». Écrit pour les trois objets du Val qui ont un DD d'identification.
+- **Icônes** : une par catégorie d'objet (18), dessinées au trait (`aventure/icones.tsx`), couleur de cadre selon la rareté. L'image de l'objet (manifeste du monde) passe avant l'icône : 16 objets du Val en ont une, les autres et le catalogue SRD montrent leur icône.
+- **Tests** : 391 verts (grille et groupes, « nouveau », objet à identifier, soins ciblés ; la marche au hasard joue aussi les boutons à choix).
+- **Pas encore** : glisser un objet sur un portrait, images des objets manquants, équipement et charge maximale (étape D de la proposition), coffre au village, boutiques.
+

@@ -37,6 +37,7 @@ Le texte des fiches devient directement le prompt d'image : ce qui est flou ou a
 - **Lieux** : le prompt demande « sans personne ni créature », mais ce que le `visuel` nomme (gardes de fer, squelettes, un fantôme) apparaît quand même. N'y mets que les figures que tu veux voir.
 - **Relire chaque lot à l'œil** : une image peut être belle et fausse. Fais des planches (12 images par planche, id en légende) pour tout relire vite.
 - Budget : environ 0,01 $ l'image avec Klein ; un monde de 150 lieux ≈ 250 images ≈ 2,30 $.
+- **Objets** : une image d'objet n'est pas obligatoire (le sac montre alors l'icône de sa catégorie, au cadre de sa rareté) ; fais celles des objets de quête, rares et très rares. Un objet qui se découvre en l'étudiant (`identification` : DD d'Arcanes) a besoin de `inconnu { nom, resume }` : c'est ce que le joueur voit avant ; son vrai `resume` et son `lore` ne se montrent qu'identifié.
 
 ## Exploration (ce que le moteur fait de tes données)
 Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la lettre ; écris-les en conséquence.

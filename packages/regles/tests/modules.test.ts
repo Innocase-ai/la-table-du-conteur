@@ -1,6 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, POTION_DE_COMBAT, type Encart, type Partie, type Personnage } from '../src';
+import { z } from 'zod';
+import { bilanPersonnage, commande, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, POTION_DE_COMBAT, type ElementGrille, type Encart, type Module, type Partie, type Personnage } from '../src';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -8,6 +9,21 @@ const srd = chargerDonneesSrd();
 const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const moteur = creerMoteur({ dm: r.monde, srd }, MODULES_STANDARD);
+
+/** Un module de test qui met des objets dans le sac par une commande : le noyau en déduit les événements d'obtention. */
+const don: Module = {
+  id: 'don',
+  commandes: {
+    donner: commande({
+      description: 'Met un objet dans le sac (test).',
+      entree: z.object({ objet: z.string(), quantite: z.number() }),
+      executer: (t, e) => {
+        t.partie.etat.inventaire[e.objet] = (t.partie.etat.inventaire[e.objet] ?? 0) + e.quantite;
+      },
+    }),
+  },
+};
+const moteurDon = creerMoteur({ dm: r.monde, srd }, [...MODULES_STANDARD, don]);
 
 /** Le groupe conseillé du créateur : de vrais personnages, avec leurs sorts préparés. */
 function groupe(): Personnage[] {
@@ -23,6 +39,8 @@ function depart(): Partie {
 
 const perso = (p: Partie, id: string) => p.groupe.find((a) => a.id === id)!;
 const encart = (p: Partie, id: string) => moteur.encarts(p).find((e) => e.id === id) as Encart;
+const sac = (p: Partie) => encart(p, 'sac-objets').grille!;
+const element = (p: Partie, id: string) => sac(p).elements.find((e) => e.id === id) as ElementGrille;
 
 describe('module Inventaire', () => {
   it('une potion du sac soigne le plus blessé ; une potion confiée se boira en combat', () => {
@@ -73,11 +91,65 @@ describe('module Inventaire', () => {
     const p = depart();
     p.etat.inventaire[POTION_DE_COMBAT] = 1;
     p.etat.inventaire['rations'] = 3;
-    expect(encart(p, 'sac-objets').lignes!.map((l) => l.libelle)).toEqual(expect.arrayContaining(['Potion de guérison', '3 × Rations']));
+    expect(sac(p).elements.map((e) => `${e.quantite} × ${e.titre}`)).toEqual(expect.arrayContaining(['1 × Potion de guérison', '3 × Rations']));
+    expect(sac(p).resume!.map((l) => l.libelle)).toEqual(['Pièces', 'Poids du sac']);
     expect(encart(p, 'sac-potions').lignes).toHaveLength(6);
-    const sac = moteur.propositions(p).filter((x) => x.groupe.onglet === 'Sac');
-    expect(sac.some((x) => x.ordre?.type === 'confierPotion')).toBe(true);
-    expect(sac.some((x) => x.ordre?.type === 'utiliserObjet' && x.ordre.objet === 'rations')).toBe(true);
+    const boutons = moteur.propositions(p).filter((x) => x.groupe.onglet === 'Sac');
+    expect(boutons.some((x) => x.ordre?.type === 'confierPotion')).toBe(true);
+    expect(boutons.some((x) => x.ordre?.type === 'utiliserObjet' && x.ordre.objet === 'rations')).toBe(true);
+  });
+
+  it('la grille range les objets par groupe, avec rareté, mesures et image ; chaque objet a ses boutons', () => {
+    const p = depart();
+    p.etat.inventaire[POTION_DE_COMBAT] = 2;
+    p.etat.inventaire['rations'] = 3;
+    const quete = [...r.monde.objets.values()].find((o) => o.categorie === 'quete')!;
+    p.etat.inventaire[quete.id] = 1;
+    p.etat.inventaire['marteau-du-premier-forgeron'] = 1;
+    expect(element(p, POTION_DE_COMBAT).groupe.id).toBe('consommables');
+    expect(element(p, quete.id)).toMatchObject({ groupe: { id: 'quete' }, ton: 'fort' });
+    expect(element(p, 'marteau-du-premier-forgeron')).toMatchObject({ groupe: { id: 'armes' }, rarete: 'rare', image: { groupe: 'objets', id: 'marteau-du-premier-forgeron' }, icone: 'arme' });
+    expect(element(p, 'marteau-du-premier-forgeron').mesures!.map((m) => m.id)).toContain('valeur');
+    const actions = (id: string) => moteur.propositions(p).filter((x) => x.groupe.onglet === 'Sac' && x.element?.id === id);
+    expect(actions(quete.id)).toEqual([]);
+    expect(actions('rations').some((x) => x.libelle === 'Jeter 1' && x.confirmer)).toBe(true);
+    expect(actions('rations').some((x) => x.libelle === 'Jeter les 3' && x.ordre?.quantite === 3)).toBe(true);
+    const soin = actions(POTION_DE_COMBAT).find((x) => x.choix);
+    expect(soin?.choix?.options).toHaveLength(6);
+    expect(soin?.choix?.options.every((o) => o.personnage === o.valeur)).toBe(true);
+  });
+
+  it("la pastille « nouveau » : un objet obtenu l'est jusqu'à ce qu'on le regarde, ou qu'il quitte le sac", () => {
+    let p = moteurDon.executer(depart(), { type: 'donner', objet: 'rations', quantite: 2 }).partie;
+    p = moteurDon.executer(p, { type: 'donner', objet: 'corde', quantite: 1 }).partie;
+    expect(element(p, 'rations')).toMatchObject({ nouveau: true, ordreVu: { type: 'voirObjet', objet: 'rations' } });
+    p = moteurDon.executer(p, element(p, 'rations').ordreVu!).partie;
+    expect(element(p, 'rations').nouveau).toBeUndefined();
+    expect(element(p, 'corde').nouveau).toBe(true);
+    p = moteurDon.executer(p, { type: 'jeterObjet', objet: 'corde' }).partie;
+    expect((p.modules['inventaire'] as { nouveaux: string[] }).nouveaux).not.toContain('corde');
+  });
+
+  it('un objet à identifier reste mystérieux (nom, description, histoire) jusqu’à ce qu’il soit étudié', () => {
+    let p = depart();
+    p.etat.inventaire['braise-de-veille'] = 1;
+    const avant = element(p, 'braise-de-veille');
+    expect(avant).toMatchObject({ titre: 'Pendentif de bronze', inconnu: true, histoire: undefined });
+    expect(avant.proprietes).toEqual([{ libelle: 'À étudier', valeur: 'Arcanes, DD 14' }]);
+    expect(moteur.propositions(p).some((x) => x.element?.id === 'braise-de-veille' && x.choix?.options.some((o) => o.detail?.startsWith('Arcanes')))).toBe(true);
+    for (let g = 1; g < 40 && element(p, 'braise-de-veille').inconnu; g++) p = moteur.executer({ ...p, graine: g }, { type: 'identifierObjet', objet: 'braise-de-veille' }).partie;
+    expect(element(p, 'braise-de-veille')).toMatchObject({ titre: 'Braise de veille', inconnu: undefined });
+    expect(element(p, 'braise-de-veille').histoire).toMatch(/étincelle/);
+  });
+
+  it("soigner un héros précis : refusé s'il n'est pas blessé, sinon c'est lui qui est soigné", () => {
+    const p = depart();
+    p.etat.inventaire[POTION_DE_COMBAT] = 2;
+    perso(p, 'pip').pv = 3;
+    expect(moteur.executer(p, { type: 'utiliserObjet', objet: POTION_DE_COMBAT, personnage: 'grukk' }).refus).toMatch(/Grukk n’a pas besoin de soins/);
+    const res = moteur.executer(p, { type: 'utiliserObjet', objet: POTION_DE_COMBAT, personnage: 'pip' });
+    expect(res.refus).toBeUndefined();
+    expect(perso(res.partie, 'pip').pv).toBeGreaterThan(3);
   });
 });
 
