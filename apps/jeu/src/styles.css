@@ -5992,3 +5992,24 @@ kbd {
   pointer-events: none;
 }
 
+/* Escarmouche : difficulté choisie, rencontres composées pour le groupe */
+
+.choix-difficulte {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 10px;
+}
+
+.choix-difficulte small {
+  color: var(--texte-faible);
+}
+
+.rencontre-note {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-style: italic;
+  color: #e3b48a;
+}
+

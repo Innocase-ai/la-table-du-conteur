@@ -12,6 +12,7 @@ export * from './combat/moteur';
 export * from './combat/sorts';
 export * from './combat/ia';
 export * from './combat/prototype';
+export * from './combat/escarmouche';
 export * from './creation/equipement';
 export * from './creation/exigences';
 export * from './creation/regles-creation';

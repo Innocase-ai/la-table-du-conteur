@@ -1,5 +1,20 @@
 import { useMemo, useState } from 'react';
-import { ca, personnageComplet, bilanPersonnage, preparerRencontre, RENCONTRES, TAILLE_GROUPE, type Donnees, type Groupe, type Rencontre } from '@crpg/regles';
+import {
+  ca,
+  composerRencontre,
+  DIFFICULTES,
+  personnageComplet,
+  bilanPersonnage,
+  preparerRencontre,
+  RENCONTRES,
+  TAILLE_GROUPE,
+  THEMES,
+  type Difficulte,
+  type Donnees,
+  type Groupe,
+  type Rencontre,
+  type RencontreComposee,
+} from '@crpg/regles';
 import type { Reglages } from '../App';
 import { LIBELLES_DIFFICULTE, nomClasse } from '../libelles';
 import { Credits } from './Credits';
@@ -41,8 +56,17 @@ function listeMonstres(r: Rencontre, donnees: Donnees): string {
     .join(' · ');
 }
 
+/** « 6 héros de niveau 3 » ou « 4 héros, niveaux 2 à 4 ». */
+function resumeGroupe(niveaux: number[]): string {
+  const min = Math.min(...niveaux);
+  const max = Math.max(...niveaux);
+  return `${niveaux.length} héros ${min === max ? `de niveau ${min}` : `de niveaux ${min} à ${max}`}`;
+}
+
 export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onRetour }: Props) {
-  const [rencontre, setRencontre] = useState<Rencontre>(initial?.rencontre ?? RENCONTRES[0]!);
+  // Le thème choisi (une carte, un camp de monstres) et la difficulté : la rencontre est composée pour le groupe.
+  const [themeId, setThemeId] = useState<string>(initial?.rencontre.id ?? THEMES[0]!.id);
+  const [difficulte, setDifficulte] = useState<Difficulte>(initial?.rencontre.difficulte ?? 'moderee');
   const [elan, setElan] = useState(initial?.elan ?? true);
   const [ia, setIa] = useState<Reglages['ia']>(initial?.ia ?? 'normale');
   const [credits, setCredits] = useState(false);
@@ -53,9 +77,16 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
   const nbComplets = bilans.filter((x) => x && personnageComplet(x.bilan)).length;
   const groupeDispo = nbComplets > 0;
   const modeHeros: Reglages['heros'] = heros === 'groupe' && groupeDispo ? 'groupe' : 'pretires';
+  // Les niveaux des héros qui combattront : leur nombre et leur niveau font le budget de la rencontre.
+  const niveaux = useMemo(
+    () =>
+      modeHeros === 'groupe' ? bilans.flatMap((x) => (x && personnageComplet(x.bilan) && x.bilan.fiche ? [x.bilan.fiche.niveau] : [])) : pretires.map(() => 3),
+    [modeHeros, bilans, pretires],
+  );
+  const composees = useMemo(() => THEMES.map((t) => composerRencontre(t, niveaux, difficulte, donnees)), [niveaux, difficulte, donnees]);
+  const rencontre: RencontreComposee = composees.find((r) => r.id === themeId) ?? composees[0]!;
   const lancer = (r: Rencontre) =>
     onCombattre({ rencontre: r, elan, ia, heros: modeHeros, herosCombat: modeHeros === 'groupe' ? herosDuGroupe(groupe, donnees) : undefined });
-  const px = (r: Rencontre) => r.monstres.reduce((s, m) => s + (donnees.monstres.get(m.profil)?.px ?? 0) * m.nombre, 0);
 
   return (
     <div className="accueil">
@@ -71,13 +102,23 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
       <div className="accueil-corps">
         <section className="accueil-rencontres">
           <h2>Choisissez une rencontre</h2>
+          <div className="choix-difficulte">
+            <div className="segments" role="group" aria-label="Difficulté de la rencontre">
+              {DIFFICULTES.map((d) => (
+                <button key={d} type="button" className={d === difficulte ? 'actif' : ''} aria-pressed={d === difficulte} onClick={() => setDifficulte(d)}>
+                  {LIBELLES_DIFFICULTE[d]}
+                </button>
+              ))}
+            </div>
+            <small>Composée pour {resumeGroupe(niveaux)}.</small>
+          </div>
           <div className="grille-rencontres">
-            {RENCONTRES.map((r) => (
+            {composees.map((r) => (
               <button
                 key={r.id}
                 type="button"
                 className={`rencontre ${r.id === rencontre.id ? 'choisie' : ''}`}
-                onClick={() => setRencontre(r)}
+                onClick={() => setThemeId(r.id)}
                 onDoubleClick={() => lancer(r)}
               >
                 <MiniCarte carte={r.carte} />
@@ -88,7 +129,10 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
                   </div>
                   <p>{r.description}</p>
                   <p className="rencontre-monstres">{listeMonstres(r, donnees)}</p>
-                  <p className="rencontre-px">{px(r)} PX</p>
+                  <p className="rencontre-px">
+                    {r.px} PX sur {r.depense} prévus
+                  </p>
+                  {r.px < 0.8 * r.depense && <p className="rencontre-note">Peu de monstres assez puissants pour ce niveau : plus facile que prévu.</p>}
                 </div>
               </button>
             ))}
@@ -124,7 +168,12 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
           <section className="panneau">
             <h2>Les héros</h2>
             <div className="segments segments-heros" role="group" aria-label="Héros du combat">
-              <button type="button" className={modeHeros === 'pretires' ? 'actif' : ''} aria-pressed={modeHeros === 'pretires'} onClick={() => setHeros('pretires')}>
+              <button
+                type="button"
+                className={modeHeros === 'pretires' ? 'actif' : ''}
+                aria-pressed={modeHeros === 'pretires'}
+                onClick={() => setHeros('pretires')}
+              >
                 Pré-tirés
               </button>
               <button
@@ -181,7 +230,8 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
             )}
             <p className="resume-groupe">
               Mon groupe : {nbComplets} / {TAILLE_GROUPE} personnage(s) complet(s)
-              {bilans.filter((x) => x && !personnageComplet(x.bilan)).length > 0 && `, ${bilans.filter((x) => x && !personnageComplet(x.bilan)).length} incomplet(s)`}
+              {bilans.filter((x) => x && !personnageComplet(x.bilan)).length > 0 &&
+                `, ${bilans.filter((x) => x && !personnageComplet(x.bilan)).length} incomplet(s)`}
             </p>
             <button type="button" className="bouton bouton-large" onClick={onGerer}>
               Gérer mon groupe

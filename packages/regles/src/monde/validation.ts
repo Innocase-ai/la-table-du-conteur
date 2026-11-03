@@ -1,5 +1,6 @@
 // Validation d'un monde : références, accessibilité, quêtes, énigmes, trésors, rencontres.
 // Les erreurs rendent le monde injouable ; les avertissements signalent un manque de cohérence ou de richesse.
+import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
@@ -26,11 +27,7 @@ export interface StatsMonde {
   factions: number;
 }
 
-/** Budget de PX par personnage (SRD 5.2.1, « Rencontres de combat »), niveaux 1 à 10 : faible, modérée, élevée. */
-export const BUDGET_PX: Record<number, [number, number, number]> = {
-  1: [50, 75, 100], 2: [100, 150, 200], 3: [150, 225, 400], 4: [250, 375, 500], 5: [500, 750, 1100],
-  6: [600, 1000, 1400], 7: [750, 1300, 1700], 8: [1000, 1700, 2100], 9: [1300, 2000, 2600], 10: [1600, 2300, 3100],
-};
+export { BUDGET_PX } from '../budget';
 
 /** Objectifs de richesse par chapitre (niveaux 1 à 5) : en dessous, le validateur avertit. */
 export const MINIMA_PAR_CHAPITRE = {

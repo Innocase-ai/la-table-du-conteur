@@ -209,3 +209,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Équipement** (module `equipement`) : équiper et retirer armure, bouclier, armes, parures et objets magiques ; la CA et les armes de combat suivent (`Fiche.defense`, `caAvec`) ; les objets portés sont dans la grille du sac, groupés par héros ; catalogue du SRD commun à tous les mondes (une arme du monde repose sur une arme du SRD) ; outil `pnpm images equipement` pour les images communes (51, ≈ 0,46 $, en attente d'accord).
 - **Conteur** (M4b) : le conteur appelle les commandes du moteur comme outils (OpenRouter, Claude Haiku 5.5), saisie libre dans l'écran d'aventure, récit et actions suggérées, relais du serveur de développement qui garde la clé. **≈ 0,0015 $ par tour** mesuré sur quatre tours réels. 453 tests verts.
 
+## 03/11/2026 — Escarmouches adaptées au groupe
+
+- Question de l'utilisateur : les adversaires des escarmouches sont-ils du niveau des héros ? Non, quatre rencontres fixes pour six héros de niveau 3.
+- Nouveau : `composerRencontre` (thème + difficulté + niveaux des héros → rencontre au budget du groupe), écran d'escarmouche avec choix de la difficulté, `pnpm escarmouches` pour caler l'équilibre par simulation. Les PX du SRD ne disent pas tout (la crypte était bien plus dure que la bande à PX égaux) : coefficient de danger par thème. Limite : 30 monstres au catalogue, niveau 5 trop facile.
+
