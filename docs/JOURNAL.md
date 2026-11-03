@@ -150,3 +150,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - `packages/regles/src/noyau/` : partie unique et versionnée (hasard compris), commandes Zod, événements typés extensibles, transactions sur copie, événements d'état déduits automatiquement, réactions entre modules, vues.
 - Modules Exploration et Dialogue (enveloppes des verbes existants) ; le client tourne sur le noyau (boutons → commandes, récit ← journal d'événements, sauvegarde = la partie).
 - Nouveau skill `ajouter-module` ; 365 tests verts ; parcours vérifié dans le navigateur.
+
+## 03/11/2026 — Étape 2 de l'architecture : le personnage unifié
+
+- `Personnage` remplace l'aventurier : PV, ressources durables et emplacements de sorts, partagés par l'exploration et le combat (`heroCombatDe`, `appliquerEtat`). Corrige la potion offerte et les sorts rechargés à chaque combat de l'histoire.
+- Repos selon le SRD (`recuperer`, table `RECUPERATION`), événement `ressourceChange`, sauvegarde en version 2 avec la première migration.
+- Bandeau du groupe : potions et sorts restants. 370 tests verts ; vérifié en jeu.

@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-import { commande, creerMoteur, herosPreTires, MODULES_STANDARD, type Aventurier, type EvenementJeu, type Interlocuteur, type Module, type Partie } from '../src';
+import { commande, creerMoteur, herosPreTires, MODULES_STANDARD, personnageDepuisFiche, type Personnage, type EvenementJeu, type Interlocuteur, type Module, type Partie } from '../src';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -10,8 +10,8 @@ const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
 
-function groupe(): Aventurier[] {
-  return herosPreTires(srd).map((h) => ({ id: h.fiche.nom.toLowerCase(), nom: h.fiche.nom, fiche: h.fiche, pv: h.fiche.pvMax, outils: h.fiche.nom === 'Pip' ? ['outils-de-voleur'] : [] }));
+function groupe(): Personnage[] {
+  return herosPreTires(srd).map((h) => personnageDepuisFiche(h.fiche, { id: h.fiche.nom.toLowerCase(), outils: h.fiche.nom === 'Pip' ? ['outils-de-voleur'] : [] }));
 }
 
 const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
@@ -60,6 +60,20 @@ describe('noyau : commandes et transactions', () => {
     expect(b.evenements).toEqual(a.evenements);
     expect(b.partie.graine).toBe(a.partie.graine);
     expect(() => moteur.charger(JSON.stringify({ ...p, version: 99 }))).toThrow(/version/);
+  });
+
+  it('une sauvegarde de version 1 (sans ressources) est migrée : potions et emplacements rendus', () => {
+    const p = depart(9);
+    const v1 = JSON.parse(JSON.stringify(p));
+    v1.version = 1;
+    for (const a of v1.groupe) {
+      delete a.ressources;
+      delete a.emplacements;
+    }
+    const migree = moteur.charger(JSON.stringify(v1));
+    expect(migree.version).toBe(p.version);
+    expect(migree.groupe.find((a) => a.id === 'bran')!.ressources.potions).toBe(1);
+    expect(migree.groupe.find((a) => a.id === 'ambrine')!.emplacements).toEqual(p.groupe.find((a) => a.id === 'ambrine')!.emplacements);
   });
 
   it("les changements d'état deviennent des événements typés (objets, pièces, découvertes)", () => {
@@ -130,11 +144,12 @@ describe('noyau : modules et réactions', () => {
     expect(p.scene).toEqual({ type: 'rencontre', rencontre: 'gue-embuscade-au-gue' });
     expect(moteur.executer(p, { type: 'fouiller' }).refus).toMatch(/rencontre attend/);
     expect(moteur.commandes(p).find((c) => c.type === 'fouiller')!.disponible).not.toBe(true);
-    const fin = moteur.executer(p, { type: 'reglerRencontre', issue: 'victoire', px: 150, pv: { bran: 10 } });
+    const fin = moteur.executer(p, { type: 'reglerRencontre', issue: 'victoire', px: 150, heros: { bran: { pv: 10, ressources: { potions: 0 } } } });
     expect(fin.partie.scene).toEqual({ type: 'exploration' });
     expect(fin.partie.groupe.find((a) => a.id === 'bran')!.pv).toBe(10);
     expect(fin.evenements).toContainEqual(expect.objectContaining({ type: 'xp', delta: 150 }));
     expect(fin.evenements).toContainEqual(expect.objectContaining({ type: 'pvChange', personnage: 'bran', apres: 10 }));
+    expect(fin.evenements).toContainEqual({ type: 'ressourceChange', personnage: 'bran', ressource: 'potions', avant: 1, apres: 0 });
   });
 
   it('chaque commande a une description et un schéma : de quoi générer boutons et outils du conteur', () => {

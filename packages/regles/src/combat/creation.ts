@@ -72,6 +72,42 @@ function attaquesArme(fiche: Fiche, arme: Arme, botte: boolean): AttaqueArme[] {
   return res;
 }
 
+const nombreColonne = (v: number | string | undefined) => (typeof v === 'number' ? v : Number(String(v ?? '0').replace(/[^\d-]/g, '')) || 0);
+
+/** Ce qu'un héros garde d'un combat à l'autre, PV mis à part : potions, usages d'aptitudes, emplacements de sorts. */
+export interface EtatDurable {
+  ressources: Record<string, number>;
+  emplacements: number[];
+}
+
+/** Récupération d'une ressource au repos (SRD 5.2.1) : une seule, toutes, ou aucune. */
+export const RECUPERATION: Record<string, { court: 'une' | 'toutes' | 'aucune'; long: 'toutes' | 'aucune' }> = {
+  potions: { court: 'aucune', long: 'aucune' },
+  rages: { court: 'une', long: 'toutes' },
+  secondSouffle: { court: 'une', long: 'toutes' },
+  fougue: { court: 'toutes', long: 'toutes' },
+  conduit: { court: 'une', long: 'toutes' },
+};
+
+/** Les ressources durables d'une fiche, à leur maximum (avec `potions` potions de départ). */
+export function etatDurableMax(fiche: Fiche, potions = 0): EtatDurable {
+  const col = fiche.colonnes;
+  const traits = fiche.aptitudes.map((a) => a.id).filter((t) => TRAITS_COMBAT.includes(t));
+  const ressources: Record<string, number> = { potions };
+  if (traits.includes('rage')) ressources.rages = nombreColonne(col.Rages);
+  if (traits.includes('second-souffle')) ressources.secondSouffle = nombreColonne(col['Second souffle']);
+  if (traits.includes('fougue')) ressources.fougue = 1;
+  if (traits.includes('survivance')) ressources.conduit = nombreColonne(col['Conduit divin']);
+  let emplacements: number[] = [];
+  const i = fiche.incantation;
+  if (i) {
+    emplacements = [...i.emplacements];
+    // Magie de pacte : tous les emplacements sont du même niveau.
+    if (i.niveauEmplacementPacte) emplacements = Array.from({ length: i.niveauEmplacementPacte }, (_, n) => (n === i.niveauEmplacementPacte! - 1 ? i.emplacements[0]! : 0));
+  }
+  return { ressources, emplacements };
+}
+
 export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, position: Position, id = fiche.nom.toLowerCase()): Combattant {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.caracteristiques[c].modificateur])) as Record<Caracteristique, number>;
   const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.sauvegardes[c].bonus])) as Record<Caracteristique, number>;
@@ -95,26 +131,16 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
       degats: [{ des: '1', bonus: nombreForce, type: 'contondant' }], allonge: 1.5, finesse: false,
     });
   }
-  const col = fiche.colonnes;
-  const nombre = (v: number | string | undefined) => (typeof v === 'number' ? v : Number(String(v ?? '0').replace(/[^\d-]/g, '')) || 0);
-  const ressources: Record<string, number> = { reaction: 1, potions: kit.potions ?? 0 };
+  const durable = etatDurableMax(fiche, kit.potions ?? 0);
+  // Les ressources qui durent d'un combat à l'autre (potions, rages…), plus celles qui ne servent qu'en combat.
+  const ressources: Record<string, number> = { reaction: 1, ...durable.ressources };
   const traits = fiche.aptitudes.map((a) => a.id).filter((t) => TRAITS_COMBAT.includes(t));
-  if (traits.includes('rage')) {
-    ressources.rages = nombre(col.Rages);
-    ressources.degatsRage = nombre(col['Dégâts de Rage']);
-  }
-  if (traits.includes('second-souffle')) ressources.secondSouffle = nombre(col['Second souffle']);
-  if (traits.includes('fougue')) ressources.fougue = 1;
+  if (traits.includes('rage')) ressources.degatsRage = nombreColonne(fiche.colonnes['Dégâts de Rage']);
   if (fiche.aptitudes.some((a) => a.id === 'attaque-supplementaire')) ressources.attaquesParAction = 2;
-  if (traits.includes('survivance')) ressources.conduit = nombre(col['Conduit divin']);
   let incantation: Combattant['incantation'];
   if (fiche.incantation) {
     const i = fiche.incantation;
-    let emplacements = [...i.emplacements];
-    if (i.niveauEmplacementPacte) {
-      emplacements = Array.from({ length: i.niveauEmplacementPacte }, (_, n) => (n === i.niveauEmplacementPacte! - 1 ? i.emplacements[0]! : 0));
-    }
-    incantation = { dd: i.ddSauvegarde, bonusAttaque: i.bonusAttaque, modificateur: mods[i.caracteristique], emplacements, emplacementsMax: [...emplacements] };
+    incantation = { dd: i.ddSauvegarde, bonusAttaque: i.bonusAttaque, modificateur: mods[i.caracteristique], emplacements: [...durable.emplacements], emplacementsMax: [...durable.emplacements] };
   }
   const lanceur = CLASSES_LANCEUSES.includes(fiche.classe);
   return {

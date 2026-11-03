@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IA_NORMALE, IA_RAPIDE, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
+import { IA_NORMALE, IA_RAPIDE, heroCombatDe, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
 import { chargerDonnees } from './donnees';
 import { Accueil } from './composants/Accueil';
 import { Combat } from './composants/Combat';
@@ -21,8 +21,6 @@ export interface Reglages {
   heros: 'pretires' | 'groupe';
   /** Personnages du groupe prêts pour le combat (quand `heros` vaut « groupe »). */
   herosCombat?: HeroCombat[];
-  /** PV de départ des héros (combat d'une histoire), par id de combattant. */
-  pvHeros?: Record<string, number>;
 }
 
 export const OPTIONS_IA: Record<Reglages['ia'], OptionsIA> = {
@@ -93,11 +91,15 @@ export function App() {
 
   if (combatHistoire && aventure) {
     const finCombat = (etat: EtatCombat) => {
-      // Les PV du combat reviennent au groupe ; un héros tombé est relevé à 1 PV une fois le combat fini (ou au repli).
-      const pv = Object.fromEntries(etat.combattants.filter((c) => c.camp === 'heros').map((c) => [c.id, Math.max(1, c.pv)]));
+      // L'état des héros revient à l'histoire : PV (un héros tombé est relevé à 1 PV), potions bues, usages et emplacements dépensés.
+      const heros = Object.fromEntries(
+        etat.combattants
+          .filter((c) => c.camp === 'heros')
+          .map((c) => [c.id, { pv: Math.max(1, c.pv), ressources: c.ressources, emplacements: c.incantation?.emplacements }]),
+      );
       const victoire = etat.vainqueur === 'heros';
       const px = etat.combattants.filter((c) => c.camp === 'monstres' && (c.mort || c.enFuite)).reduce((s, c) => s + c.px, 0);
-      const r = aventure.moteur.executer(aventure.partie, victoire ? { type: 'reglerRencontre', issue: 'victoire', px, pv } : { type: 'reglerRencontre', issue: 'fuite', pv });
+      const r = aventure.moteur.executer(aventure.partie, victoire ? { type: 'reglerRencontre', issue: 'victoire', px, heros } : { type: 'reglerRencontre', issue: 'fuite', heros });
       suite(r.partie);
       setCombatHistoire(null);
     };
@@ -129,8 +131,7 @@ export function App() {
               elan: true,
               ia: 'normale',
               heros: 'groupe',
-              herosCombat: herosDuGroupe(groupe, d),
-              pvHeros: Object.fromEntries(p.groupe.map((a) => [a.id, a.pv])),
+              herosCombat: p.groupe.map(heroCombatDe),
             },
           });
         }}

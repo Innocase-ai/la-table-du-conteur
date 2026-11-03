@@ -4,11 +4,13 @@
 import type { ZodTypeAny, z } from 'zod';
 import type { Donnees } from '../donnees';
 import type { EtatMonde, StatutQuete } from '../monde/etat';
-import type { Aventurier, EtatExploration } from '../monde/exploration';
+import type { EtatExploration } from '../monde/exploration';
+import type { Personnage } from '../personnage';
 import type { DonneesMonde } from '../monde/schemas';
 import type { Generateur } from '../des';
 
-export const VERSION_PARTIE = 1;
+/** Version du format de sauvegarde ; chaque changement de forme ajoute une migration (noyau/migrations.ts). */
+export const VERSION_PARTIE = 2;
 
 /** Un jet de dés fait par le moteur, montré au joueur tel quel. */
 export interface Jet {
@@ -37,7 +39,7 @@ export interface Partie {
   /** État du hasard : une partie rechargée tire les mêmes dés. */
   graine: number;
   scene: Scene;
-  groupe: Aventurier[];
+  groupe: Personnage[];
   /** État du monde (lieux, faits, quêtes, jauges…) et de son exploration. */
   etat: EtatMonde & { exploration: EtatExploration };
   /** État propre à chaque module, par id de module. */
@@ -66,6 +68,8 @@ export interface CarteEvenements {
   objetPerdu: { objet: string; quantite: number };
   pieces: { delta: number; total: number };
   pvChange: { personnage: string; avant: number; apres: number };
+  /** Une ressource durable d'un héros change (`potions`, `secondSouffle`…, ou `emplacement-<niveau>`). */
+  ressourceChange: { personnage: string; ressource: string; avant: number; apres: number };
   xp: { delta: number; total: number };
   jaugeChange: { jauge: string; avant: number; apres: number };
   /** `nouvelle` : la quête vient d'entrer au journal. */

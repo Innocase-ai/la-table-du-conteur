@@ -2,7 +2,8 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { type Aventurier, type CompteRendu, type PartieMonde } from './exploration';
+import type { CompteRendu, PartieMonde } from './exploration';
+import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets } from './etat';
@@ -133,13 +134,13 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   return r;
 }
 
-function choisirOrateur(p: PartieMonde, comp: Influence, id?: string): Aventurier | undefined {
+function choisirOrateur(p: PartieMonde, comp: Influence, id?: string): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => y.fiche.competences[comp].bonus - x.fiche.competences[comp].bonus)[0];
 }
 
-function jet(p: PartieMonde, r: CompteRendu, a: Aventurier, comp: keyof Aventurier['fiche']['competences'], dd: number): boolean {
+function jet(p: PartieMonde, r: CompteRendu, a: Personnage, comp: keyof Personnage['fiche']['competences'], dd: number): boolean {
   const bonus = a.fiche.competences[comp].bonus;
   const t = testD20({ bonus, dd }, p.gen);
   r.jets.push({ qui: a.id, nom: a.nom, test: comp, dd, des: t.des, bonus, total: t.total, reussite: t.reussite });

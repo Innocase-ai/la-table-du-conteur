@@ -11,6 +11,8 @@ Le moteur est un **noyau** (`packages/regles/src/noyau/`) sur lequel chaque fonc
 
 Réponds à ces questions avant d'écrire du code, et montre-les à l'utilisateur pour un module important :
 - **État** : que garde le module ? Dans `partie.modules[id]` s'il lui est propre ; dans `partie.groupe` ou `partie.etat` s'il est partagé (ex. inventaire d'un personnage). Tout doit être du JSON.
+  - L'état d'un héros vit dans `Personnage` (`src/personnage.ts`) : PV, `ressources` durables, `emplacements` de sorts. Une nouvelle ressource qui dure d'un combat à l'autre (ex. points de ki) : l'ajouter à `etatDurableMax` et à `RECUPERATION` (règle du repos court et long), le combat la reprendra et la rendra sans autre code.
+  - Changer la forme de la partie (nouveau champ obligatoire) : augmente `VERSION_PARTIE` et ajoute la migration dans `noyau/migrations.ts`, avec un test qui recharge une sauvegarde de l'ancienne version.
 - **Commandes** : ce que le joueur (ou le conteur) peut faire. Une commande = un nom unique, une description d'une phrase (elle sert aussi d'outil au conteur), un schéma Zod strict, une disponibilité (« possible maintenant ? »), une résolution.
 - **Événements** : ce qui se passe, en données. Réutilise ceux du noyau (`objetObtenu`, `pvChange`…) ; ajoute les tiens par augmentation de `CarteEvenements` dans le fichier du module :
   ```ts
@@ -27,7 +29,7 @@ Réponds à ces questions avant d'écrire du code, et montre-les à l'utilisateu
 1. `packages/regles/src/modules/<id>.ts` : `export const module<Id>: Module = { id, dependances, etatInitial, commandes, reactions, vues }`. Déclare les commandes avec `commande({ … })` pour l'inférence des types. Les règles pures (calculs) vont dans un fichier à part, sans dépendre du noyau, comme `monde/exploration.ts`.
 2. Dans une commande : modifie `t.partie` (c'est une copie), tire les dés avec `t.hasard` (jamais `Math.random`), émets ce que le noyau ne déduit pas seul (`t.emettre({ type: 'texte', … })`). Les changements d'état connus (objets, PV, faits, quêtes…) deviennent des événements **automatiquement**. Pour refuser sans rien changer : `return { refus: 'raison lisible' }`.
 3. Enregistre le module dans `modules/index.ts` (`MODULES_STANDARD`) et exporte-le.
-4. Si la sauvegarde change de forme : augmente `VERSION_PARTIE` et ajoute une migration.
+4. Si la sauvegarde change de forme : augmente `VERSION_PARTIE` et ajoute une migration (`noyau/migrations.ts`).
 
 ## 3. Tester
 

@@ -1,7 +1,17 @@
 // Écran d'aventure, mode « livre » : chaque bouton envoie une commande au moteur ; le récit se lit dans le journal
 // d'événements de la partie. Le conteur (IA) viendra s'ajouter pour la saisie libre (M4b).
 import { useEffect, useRef, useState } from 'react';
-import type { DonneesMonde, EvenementJeu, FicheScene, Interlocuteur, Jet, Ordre, Partie } from '@crpg/regles';
+import {
+  etatDurableMax,
+  type DonneesMonde,
+  type EvenementJeu,
+  type FicheScene,
+  type Interlocuteur,
+  type Jet,
+  type Ordre,
+  type Partie,
+  type Personnage,
+} from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
 import { manifesteDe, urlImage } from '../mondes';
@@ -20,6 +30,27 @@ function libelleTest(test: string): string {
   const sauvegarde = /^sauvegarde de (\w+)$/.exec(test);
   if (sauvegarde) return `Sauvegarde de ${NOMS_CARAC[sauvegarde[1] as keyof typeof NOMS_CARAC] ?? sauvegarde[1]}`;
   return test;
+}
+
+const NOMS_RESSOURCES: Record<string, string> = {
+  potions: 'Potions',
+  secondSouffle: 'Second souffle',
+  fougue: 'Fougue',
+  rages: 'Rages',
+  conduit: 'Conduit divin',
+};
+
+/** Ressources d'un héros en une ligne : potions, emplacements de sorts restants, usages d'aptitudes. */
+function resumeRessources(a: Personnage): { court: string; detail: string } {
+  const max = etatDurableMax(a.fiche);
+  const sorts = a.emplacements.reduce((s, n) => s + n, 0);
+  const sortsMax = max.emplacements.reduce((s, n) => s + n, 0);
+  const court = [`Potions ${a.ressources.potions ?? 0}`, sortsMax ? `Sorts ${sorts}/${sortsMax}` : ''].filter(Boolean).join(' · ');
+  const detail = Object.entries(a.ressources)
+    .map(([k, v]) => `${NOMS_RESSOURCES[k] ?? k} : ${v}${k !== 'potions' && max.ressources[k] !== undefined ? `/${max.ressources[k]}` : ''}`)
+    .concat(a.emplacements.map((n, i) => (max.emplacements[i] ? `Emplacements niv. ${i + 1} : ${n}/${max.emplacements[i]}` : '')).filter(Boolean))
+    .join('\n');
+  return { court, detail };
 }
 
 function TexteJet({ j }: { j: Jet }) {
@@ -376,20 +407,28 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        {partie.groupe.map((a) => (
-          <div key={a.id} className={`aventure-heros ${a.pv <= 0 ? 'aventure-heros-tombe' : ''}`} title={`${a.nom} — ${a.pv}/${a.fiche.pvMax} PV`}>
-            <Portrait id={a.portrait} espece={a.fiche.espece} classe={a.fiche.classe} taille={40} />
-            <div>
-              <strong>{a.nom}</strong>
-              <div className="barre">
-                <div
-                  className={`barre-remplie ${a.pv / a.fiche.pvMax > 0.5 ? 'pv-haut' : a.pv / a.fiche.pvMax > 0.25 ? 'pv-moyen' : 'pv-bas'}`}
-                  style={{ width: `${(Math.max(0, a.pv) / a.fiche.pvMax) * 100}%` }}
-                />
+        {partie.groupe.map((a) => {
+          const res = resumeRessources(a);
+          return (
+            <div
+              key={a.id}
+              className={`aventure-heros ${a.pv <= 0 ? 'aventure-heros-tombe' : ''}`}
+              title={`${a.nom} — ${a.pv}/${a.fiche.pvMax} PV\n${res.detail}`}
+            >
+              <Portrait id={a.portrait} espece={a.fiche.espece} classe={a.fiche.classe} taille={40} />
+              <div>
+                <strong>{a.nom}</strong>
+                <div className="barre">
+                  <div
+                    className={`barre-remplie ${a.pv / a.fiche.pvMax > 0.5 ? 'pv-haut' : a.pv / a.fiche.pvMax > 0.25 ? 'pv-moyen' : 'pv-bas'}`}
+                    style={{ width: `${(Math.max(0, a.pv) / a.fiche.pvMax) * 100}%` }}
+                  />
+                </div>
+                <small className="aventure-ressources">{res.court}</small>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <div className="aventure-sac" title={scene.inventaire.map((o) => `${o.quantite} × ${o.nom}`).join('\n') || 'Sac vide'}>
           Sac : {scene.inventaire.reduce((s, o) => s + o.quantite, 0)} objet(s)
         </div>

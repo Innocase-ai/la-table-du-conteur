@@ -59,8 +59,6 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const etatRef = useRef<EtatCombat | null>(null);
   if (!etatRef.current) {
     const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees, reglages.herosCombat);
-    // Dans une histoire, les héros arrivent avec leurs PV du moment.
-    for (const c of combattants) if (c.camp === 'heros' && reglages.pvHeros?.[c.id] !== undefined) c.pv = Math.max(1, reglages.pvHeros[c.id]!);
     etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan });
   }
   const etat = etatRef.current;

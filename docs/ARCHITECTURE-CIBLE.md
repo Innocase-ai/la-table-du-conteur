@@ -163,3 +163,18 @@ Le noyau existe (`packages/regles/src/noyau/`) et le mode « livre » tourne des
 - **Vérifié dans le navigateur** : début de l'histoire, halle et cellier du bailli, reprise après rechargement, embuscade du gué (combat, 150 PX, butin, blessures conservées), conversation avec Hesta qui donne la quête « La Lanterne faiblit ».
 
 Ajouter un module : voir le skill `.claude/skills/ajouter-module/`. Prochaine étape : **2, le personnage unifié** (fin de la potion gratuite et des sorts rechargés à chaque combat).
+
+## 7. État : étape 2 faite (03/11/2026) — le personnage unifié
+
+Un seul modèle de héros pour tout le jeu : `Personnage` (`packages/regles/src/personnage.ts`), qui remplace l'`Aventurier` de l'exploration et nourrit le combat.
+
+- **État durable** : PV, `ressources` (potions, rages, second souffle, fougue, conduit divin) et `emplacements` de sorts. Les maximums se calculent depuis la fiche (`etatDurableMax`, dans `combat/creation.ts`, qui sert aussi au combat).
+- **Combat** : `heroCombatDe(personnage)` donne au combat la fiche, l'équipement et **l'état du moment** ; à la fin, `reglerRencontre` reçoit l'état de chaque héros (`heros: { id: { pv, ressources, emplacements } }`) et `appliquerEtat` le reprend, borné par la fiche, sans les ressources qui ne servent qu'en combat (réaction). **Fini la potion neuve et les sorts rechargés à chaque combat.**
+- **Repos** (`recuperer`, SRD 5.2.1) : long = PV, usages et emplacements au maximum ; court = un dé de vie (+ Con), une rage, un second souffle, un conduit divin regagnés, la fougue entière, la magie de pacte de l'occultiste ; **jamais les potions**. Table : `RECUPERATION`.
+- **Événements** : `ressourceChange` (potions, usages, `emplacement-<niveau>`), déduit automatiquement par le noyau.
+- **Sauvegardes** : format en **version 2** ; `noyau/migrations.ts` amène une partie de version 1 (sans ressources) à la version 2. Première migration, premier test de migration.
+- **Client** : le bandeau du groupe montre potions et sorts restants (« Potions 1 · Sorts 3/6 »), le détail au survol.
+
+Vérifié dans le navigateur : reprise d'une sauvegarde de version 1 (migrée), embuscade du défilé (Pip boit sa potion, les lanceurs dépensent leurs sorts : l'état reste après le combat), halte (PV par dé de vie, une rage regagnée, pas de sorts), nuit (sorts rendus, potion toujours bue). 370 tests verts.
+
+Prochaine étape : **3, les commandes partout** (boutons générés depuis les commandes disponibles), puis **4, Inventaire, Grimoire, Journal de quêtes**.

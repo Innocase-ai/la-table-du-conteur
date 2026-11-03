@@ -27,7 +27,14 @@ export function differences(avant: Partie, apres: Partie): EvenementJeu[] {
   }
   for (const p of apres.groupe) {
     const pa = avant.groupe.find((x) => x.id === p.id);
-    if (pa && pa.pv !== p.pv) ev.push({ type: 'pvChange', personnage: p.id, avant: pa.pv, apres: p.pv });
+    if (!pa) continue;
+    if (pa.pv !== p.pv) ev.push({ type: 'pvChange', personnage: p.id, avant: pa.pv, apres: p.pv });
+    for (const k of new Set([...Object.keys(pa.ressources), ...Object.keys(p.ressources)])) {
+      if ((pa.ressources[k] ?? 0) !== (p.ressources[k] ?? 0)) ev.push({ type: 'ressourceChange', personnage: p.id, ressource: k, avant: pa.ressources[k] ?? 0, apres: p.ressources[k] ?? 0 });
+    }
+    p.emplacements.forEach((v, i) => {
+      if (v !== (pa.emplacements[i] ?? 0)) ev.push({ type: 'ressourceChange', personnage: p.id, ressource: `emplacement-${i + 1}`, avant: pa.emplacements[i] ?? 0, apres: v });
+    });
   }
   if (JSON.stringify(a.fin) !== JSON.stringify(b.fin) && b.fin) ev.push({ type: 'fin', fin: b.fin });
   if (JSON.stringify(avant.scene) !== JSON.stringify(apres.scene)) ev.push({ type: 'sceneChange', scene: apres.scene });

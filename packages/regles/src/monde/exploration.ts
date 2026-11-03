@@ -3,23 +3,12 @@
 // applique les effets du monde et renvoie un compte rendu factuel, que le conteur raconte. Voir docs/M4-CONTEUR.md.
 import { lancer, type Generateur } from '../des';
 import type { Jet } from '../noyau/types';
+import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets, avancerQuetes, evaluerCondition, verifierEnigme, type EtatMonde } from './etat';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
-
-/** Un personnage du groupe, tel que l'exploration le connaît. */
-export interface Aventurier {
-  id: string;
-  nom: string;
-  fiche: Fiche;
-  pv: number;
-  /** Outils portés (`outils-de-voleur`…), pour crocheter et désarmer. */
-  outils: string[];
-  /** Portrait de galerie choisi par le joueur (`elfe-f-2`). */
-  portrait?: string;
-}
 
 /** Ce que l'exploration ajoute à l'état du monde (sauvegardé avec lui). */
 export interface EtatExploration {
@@ -43,7 +32,7 @@ export interface EtatExploration {
 export interface PartieMonde {
   dm: DonneesMonde;
   etat: EtatMonde & { exploration: EtatExploration };
-  groupe: Aventurier[];
+  groupe: Personnage[];
   gen: Generateur;
 }
 
@@ -71,7 +60,7 @@ export function etatExplorationVide(): EtatExploration {
   return { decouverts: [], ouverts: [], pieges: {}, tresorsPris: [], sujetsVus: [], enigmes: {}, paliers: [], evolutions: [], fouilles: [] };
 }
 
-export function nouvellePartie(dm: DonneesMonde, etat: EtatMonde, groupe: Aventurier[], gen: Generateur): PartieMonde {
+export function nouvellePartie(dm: DonneesMonde, etat: EtatMonde, groupe: Personnage[], gen: Generateur): PartieMonde {
   return { dm, etat: { ...etat, exploration: etatExplorationVide() }, groupe, gen };
 }
 
@@ -93,21 +82,21 @@ const CARAC_COMPETENCE: Record<string, Caracteristique> = {
   survie: 'sag', tromperie: 'cha',
 };
 
-function bonusTest(a: Aventurier, test: Competence | Caracteristique): number {
+function bonusTest(a: Personnage, test: Competence | Caracteristique): number {
   const comp = a.fiche.competences[test as Competence];
   if (comp) return comp.bonus;
   return a.fiche.caracteristiques[test as Caracteristique]?.modificateur ?? 0;
 }
 
 /** Le personnage désigné, ou celui du groupe qui a le meilleur bonus (« le groupe fouille »). */
-function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string): Aventurier | undefined {
+function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
 }
 
 /** Un test d20 du personnage, consigné dans le compte rendu. */
-function tester(p: PartieMonde, r: CompteRendu, a: Aventurier, test: Competence | Caracteristique, dd: number, opts: { avantage?: boolean; desavantage?: boolean } = {}): Jet {
+function tester(p: PartieMonde, r: CompteRendu, a: Personnage, test: Competence | Caracteristique, dd: number, opts: { avantage?: boolean; desavantage?: boolean } = {}): Jet {
   const bonus = bonusTest(a, test);
   const t = testD20({ bonus, dd, ...opts }, p.gen);
   const jet: Jet = { qui: a.id, nom: a.nom, test, dd, des: t.des, bonus, total: t.total, reussite: t.reussite, ...opts };
@@ -424,7 +413,7 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
   return r;
 }
 
-function aOutils(p: PartieMonde, a: Aventurier): boolean {
+function aOutils(p: PartieMonde, a: Personnage): boolean {
   return a.outils.includes('outils-de-voleur') || (p.etat.inventaire['outils-de-voleur'] ?? 0) > 0;
 }
 
@@ -456,7 +445,7 @@ export function desarmer(p: PartieMonde, piege: string, personnage?: string): Co
 }
 
 /** Un piège se déclenche sur un personnage : sauvegarde, dégâts, états, effets du monde. */
-export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: Aventurier): void {
+export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: Personnage): void {
   const ex = p.etat.exploration;
   if (!pg.reinitialisation) ex.pieges[pg.id] = 'declenche';
   if (!ex.decouverts.includes(`piege:${pg.id}`)) ex.decouverts.push(`piege:${pg.id}`);
@@ -593,21 +582,17 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu 
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
   if (lieu.repos === 'impossible') return refus(`Impossible de se reposer ici (${lieu.nom}).`);
   const r = resultat();
+  // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
+  for (const a of p.groupe) {
+    const changes = recuperer(a, duree, p.gen);
+    if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
+  }
   if (duree === 'long') {
-    for (const a of p.groupe) a.pv = a.fiche.pvMax;
     p.etat.jour += 1;
-    r.constats.push(`Le groupe se repose une nuit entière${lieu.repos === 'dangereux' ? ', malgré le danger' : ''} : tous retrouvent leurs PV. Jour ${p.etat.jour}.`);
+    r.constats.push(`Le groupe se repose une nuit entière${lieu.repos === 'dangereux' ? ', malgré le danger' : ''}. Jour ${p.etat.jour}.`);
     for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if (ev.declencheur === 'repos-long' || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
     for (const ev of p.dm.evenements.values()) if ((ev.declencheur === 'repos' || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === lieu.id) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
-  } else {
-    for (const a of p.groupe) {
-      if (a.pv <= 0 || a.pv >= a.fiche.pvMax) continue;
-      const soin = Math.max(1, lancer(`1d${a.fiche.deVie}`, p.gen).total + a.fiche.caracteristiques.con.modificateur);
-      a.pv = Math.min(a.fiche.pvMax, a.pv + soin);
-      r.constats.push(`${a.nom} récupère ${soin} PV (${a.pv}/${a.fiche.pvMax}).`);
-    }
-    if (!r.constats.length) r.constats.push('Une courte halte.');
-  }
+  } else if (!r.constats.length) r.constats.push('Une courte halte.');
   declencherRencontre(p, r, lieu, 'repos');
   suites(p, r);
   return r;

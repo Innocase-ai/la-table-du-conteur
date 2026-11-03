@@ -19,7 +19,8 @@ import {
   seReposer,
   sortiesDe,
   testLibre,
-  type Aventurier,
+  personnageDepuisFiche,
+  type Personnage,
   type Generateur,
   type PartieMonde,
 } from '../src';
@@ -36,14 +37,8 @@ const des = (v: number): Generateur => () => v;
 const SUCCES = des(0.999);
 const ECHEC = des(0);
 
-function groupe(): Aventurier[] {
-  return herosPreTires(srd).map((h) => ({
-    id: h.fiche.nom.toLowerCase(),
-    nom: h.fiche.nom,
-    fiche: h.fiche,
-    pv: h.fiche.pvMax,
-    outils: h.fiche.nom === 'Pip' ? ['outils-de-voleur'] : [],
-  }));
+function groupe(): Personnage[] {
+  return herosPreTires(srd).map((h) => personnageDepuisFiche(h.fiche, { id: h.fiche.nom.toLowerCase(), outils: h.fiche.nom === 'Pip' ? ['outils-de-voleur'] : [] }));
 }
 
 function partie(gen: Generateur = SUCCES): PartieMonde {

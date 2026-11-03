@@ -2,14 +2,16 @@
 // de la partie ; l'ancienne partie n'est jamais modifiée (annuler, comparer, rejouer deviennent simples).
 import { generateurSur } from '../des';
 import { etatInitial } from '../monde/etat';
-import { etatExplorationVide, type Aventurier } from '../monde/exploration';
+import { etatExplorationVide } from '../monde/exploration';
+import type { Personnage } from '../personnage';
 import { differences } from './differences';
+import { migrer } from './migrations';
 import { VERSION_PARTIE, type CommandeJeu, type ContexteJeu, type EvenementJeu, type Module, type Ordre, type Partie, type ResultatOrdre, type Transaction } from './types';
 
 export interface Moteur {
   ctx: ContexteJeu;
   modules: Module[];
-  nouvellePartie(groupe: Aventurier[], options?: { graine?: number; niveau?: number }): Partie;
+  nouvellePartie(groupe: Personnage[], options?: { graine?: number; niveau?: number }): Partie;
   executer(partie: Partie, ordre: Ordre): ResultatOrdre;
   /** Les commandes connues, avec leur disponibilité dans la partie (pour les boutons et le conteur). */
   commandes(partie?: Partie): { type: string; module: string; description: string; commande: CommandeJeu; disponible: true | string }[];
@@ -111,8 +113,7 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
     },
 
     charger(json) {
-      const p = JSON.parse(json) as Partie;
-      if (p.version !== VERSION_PARTIE) throw new Error(`Sauvegarde de version ${p.version}, ce jeu lit la version ${VERSION_PARTIE}.`);
+      const p = migrer(JSON.parse(json) as Record<string, unknown> & { version: number }) as unknown as Partie;
       if (p.monde !== ctx.dm.monde.id) throw new Error(`Sauvegarde du monde « ${p.monde} », pas « ${ctx.dm.monde.id} ».`);
       return p;
     },

@@ -215,6 +215,8 @@ export interface HeroCombat {
   kit: Kit;
   /** Portrait de la galerie choisi par le joueur (`elfe-f-2`) : il sert de figurine sur le plateau. */
   portrait?: string;
+  /** Dans une histoire : l'état du moment (PV, potions, usages, emplacements). Sans lui, le héros est au maximum. */
+  etat?: { pv: number; ressources: Record<string, number>; emplacements: number[] };
 }
 
 export function herosPreTires(donnees: Donnees): HeroCombat[] {
@@ -235,7 +237,13 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     let id = h.fiche.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `heros-${i + 1}`;
     if (ids.has(id)) id = `${id}-${i + 1}`;
     ids.add(id);
-    return { ...heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id), portrait: h.portrait };
+    const c = { ...heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id), portrait: h.portrait };
+    if (h.etat) {
+      c.pv = Math.max(1, h.etat.pv);
+      c.ressources = { ...c.ressources, ...h.etat.ressources, reaction: 1 };
+      if (c.incantation) c.incantation = { ...c.incantation, emplacements: [...h.etat.emplacements] };
+    }
+    return c;
   });
   let i = 0;
   for (const { profil, nombre } of rencontre.monstres) {

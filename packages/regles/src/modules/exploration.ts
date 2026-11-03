@@ -17,6 +17,7 @@ import {
 } from '../monde/exploration';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
+import { appliquerEtat } from '../personnage';
 import { libre, partieMonde, verser } from './commun';
 
 const Personnage = z.string().optional().describe("Id du personnage qui agit ; sans lui, le meilleur du groupe pour l'action.");
@@ -103,14 +104,16 @@ export const moduleExploration: Module = {
         alternative: z.string().optional(),
         personnage: Personnage,
         px: z.number().int().min(0).optional(),
-        /** PV des héros à la fin du combat. */
-        pv: z.record(z.number().int().min(0)).optional(),
+        /** État des héros à la fin du combat : PV, ressources durables (potions, usages), emplacements de sorts. */
+        heros: z
+          .record(z.object({ pv: z.number().int().min(0), ressources: z.record(z.number().int()).optional(), emplacements: z.array(z.number().int().min(0)).optional() }))
+          .optional(),
       }),
       disponible: (_c, p) => (p.scene.type === 'rencontre' ? true : "Aucune rencontre n'attend."),
       executer: (t, e) => {
         const scene = t.partie.scene;
         if (scene.type !== 'rencontre') return { refus: "Aucune rencontre n'attend." };
-        for (const a of t.partie.groupe) if (e.pv?.[a.id] !== undefined) a.pv = Math.min(a.fiche.pvMax, e.pv[a.id]!);
+        for (const a of t.partie.groupe) if (e.heros?.[a.id]) appliquerEtat(a, e.heros[a.id]!);
         const issue =
           e.issue === 'victoire'
             ? { type: 'victoire' as const, px: e.px }

@@ -1,5 +1,5 @@
 // Une aventure dans le client : le moteur (monde chargé + modules) et la partie en cours, sauvegardée telle quelle.
-import { creerMoteur, MODULES_STANDARD, type Aventurier, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain } from '@crpg/regles';
+import { creerMoteur, MODULES_STANDARD, personnageDepuisFiche, type Personnage, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain } from '@crpg/regles';
 import { herosDuGroupe } from '../groupe/stockage';
 
 export interface Aventure {
@@ -29,14 +29,9 @@ export function creerMoteurHistoire(dm: DonneesMonde, donnees: Donnees): Moteur 
 
 export function demarrerAventure(dm: DonneesMonde, groupe: Groupe, donnees: Donnees): Aventure {
   const pris = new Set<string>();
-  const aventuriers: Aventurier[] = herosDuGroupe(groupe, donnees).map((h, i) => ({
-    id: idAventurier(h.fiche.nom, i, pris),
-    nom: h.fiche.nom,
-    fiche: h.fiche,
-    pv: h.fiche.pvMax,
-    outils: (h.fiche.equipement?.autres ?? []).map(slug),
-    portrait: h.portrait,
-  }));
+  const aventuriers: Personnage[] = herosDuGroupe(groupe, donnees).map((h, i) =>
+    personnageDepuisFiche(h.fiche, { id: idAventurier(h.fiche.nom, i, pris), outils: (h.fiche.equipement?.autres ?? []).map(slug), portrait: h.portrait }),
+  );
   const moteur = creerMoteurHistoire(dm, donnees);
   const niveau = Math.max(dm.monde.niveaux.min, Math.min(dm.monde.niveaux.max, groupe.niveau));
   const partie = moteur.executer(moteur.nouvellePartie(aventuriers, { niveau }), { type: 'commencer' }).partie;
