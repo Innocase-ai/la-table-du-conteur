@@ -37,3 +37,12 @@ Le texte des fiches devient directement le prompt d'image : ce qui est flou ou a
 - **Lieux** : le prompt demande « sans personne ni créature », mais ce que le `visuel` nomme (gardes de fer, squelettes, un fantôme) apparaît quand même. N'y mets que les figures que tu veux voir.
 - **Relire chaque lot à l'œil** : une image peut être belle et fausse. Fais des planches (12 images par planche, id en légende) pour tout relire vite.
 - Budget : environ 0,01 $ l'image avec Klein ; un monde de 150 lieux ≈ 250 images ≈ 2,30 $.
+
+## Exploration (ce que le moteur fait de tes données)
+Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la lettre ; écris-les en conséquence.
+- **Un lieu enfant s'ouvre librement depuis son parent.** Pour qu'une salle soit secrète, verrouillée ou conditionnelle, déclare un lien entre le parent et elle (`cache`, `verrou`, `condition`) : c'est lui qui contrôle l'accès.
+- **Perception ou Investigation ?** Au niveau 3, la perception passive du meilleur héros vaut souvent 15 à 16 (le rôdeur pré-tiré : 16) : tout ce qui se trouve à la Perception avec un DD inférieur ou égal est repéré **sans jet** en entrant. Un vrai secret demande l'Investigation (fouille active) ou un DD de 17 et plus.
+- **Une fouille par lieu et par jour** : ne cache pas l'indice indispensable d'une quête derrière une seule fouille ratée ; prévois un autre chemin (un PNJ qui le sait, un second indice).
+- **Contenant piégé** : il se déclenche quand on l'ouvre sans la clé, sauf s'il a été désarmé. Si une clé existe, place-la dans le monde.
+- **Sujets de PNJ** : le conteur choisit le sujet d'après les mots du joueur ; des `mots` variés et concrets l'aident. Un secret sans `jet` ni `attitudeMin` se donne à la première demande.
+- **Les textes sont lus tels quels par le joueur.** Pour garder le coût d'API bas, l'IA n'est appelée que pour la saisie libre, les vraies conversations et les moments forts ; le reste du temps, le jeu affiche directement les réponses des sujets de PNJ, les narrations des événements et des paliers, le déclenchement des pièges, l'intro des rencontres. Écris-les pour le joueur : phrases complètes, au présent, sans identifiant ni note technique (`drapeau`, `DD`, ids). Les notes pour le MJ vont dans `description`, `ramifications` ou `tactique`.

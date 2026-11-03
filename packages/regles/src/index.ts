@@ -24,3 +24,6 @@ export * from './monde/etat';
 export * from './monde/validation';
 export * from './monde/images';
 export * from './monde/estimation';
+export * from './monde/exploration';
+export * from './monde/dialogue';
+export * from './monde/scene';

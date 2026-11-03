@@ -19,8 +19,8 @@ function CoutHistoire({ h }: { h: Histoire }) {
   return (
     <div className="histoire-cout">
       <p>
-        Durée estimée : <strong>environ {e.heures.total} h</strong> ({nombre(e.heures.recit)} h de récit, {nombre(e.heures.combats)} h de combats), soit {e.tours} tours de
-        conteur.
+        Durée estimée : <strong>environ {e.heures.total} h</strong> ({nombre(e.heures.recit)} h d'exploration et de dialogues, {nombre(e.heures.combats)} h de
+        combats), dont {e.toursConteur} moments racontés par le conteur.
       </p>
       <table>
         <thead>
@@ -45,8 +45,8 @@ function CoutHistoire({ h }: { h: Histoire }) {
         </tbody>
       </table>
       <p className="histoire-bientot">
-        Payé avec votre propre clé d'API, pour finir l'histoire. Les combats et les images du monde ne coûtent rien. Estimation provisoire, calculée sur le
-        contenu de l'histoire ; elle sera recalée sur des parties réelles.
+        Payé avec votre propre clé d'API, pour finir l'histoire. Seuls les moments racontés par le conteur coûtent : l'exploration, les combats et les
+        images du monde sont gratuits. Estimation provisoire, calculée sur le contenu de l'histoire ; elle sera recalée sur des parties réelles.
       </p>
     </div>
   );

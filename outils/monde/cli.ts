@@ -46,7 +46,7 @@ for (const id of mondes) {
   if (commande === 'estimer') {
     const e = estimerCampagne(r.monde);
     writeFileSync(join(RACINE_MONDES, id, 'estimation.json'), JSON.stringify(e, null, 2) + '\n');
-    console.log(`${id} : ${e.tours} tours, ≈ ${e.heures.total} h (${e.heures.recit} h de récit, ${e.heures.combats} h de combats)`);
+    console.log(`${id} : ${e.tours} tours dont ${e.toursConteur} racontés par le conteur, ≈ ${e.heures.total} h (${e.heures.recit} h de récit, ${e.heures.combats} h de combats)`);
     for (const c of e.couts) console.log(`  ${c.nom.padEnd(18)} ≈ ${c.usd} $ (${c.min} à ${c.max} $)`);
     console.log(`  images du groupe   ≈ ${e.imagesUsd} $`);
     continue;

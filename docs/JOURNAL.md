@@ -118,3 +118,16 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Plan de M4 (le conteur) : `docs/M4-CONTEUR.md` — tour de jeu, verbes du conteur validés par le moteur, fiche de scène + préfixe en cache (le monde complet est trop gros pour chaque tour), serveur Node pour la clé, écran d'exploration, étapes M4a (moteur d'exploration sans LLM) à M4e (partie test d'une heure).
 - Décision : le jeu sera **vendu**, chaque joueur fournit **ses propres clés d'API** (plan § 7 : trousseau sécurisé, plafond de dépense, erreurs claires).
 - Coût d'API par campagne : `estimerCampagne` (moteur) et `pnpm monde estimer` → `estimation.json`, affiché sur « Choisir une histoire » par modèle. Val des Cendres : ≈ 30 h, ≈ 51 $ (Opus 5.5), 29 $ (Sonnet 5.5), 4,5 $ (Haiku 5.5), provisoire jusqu'aux mesures de M4b.
+
+## 03/11/2026 — M4a : moteur d'exploration (sans LLM)
+
+- `exploration.ts`, `dialogue.ts`, `scene.ts` dans `packages/regles/src/monde/` : aller, fouiller, ouvrir, désarmer, prendre, parler, influencer, test libre, énigmes, repos, issue des rencontres, fiche de scène ; jets réels sur les fiches du groupe, comptes rendus factuels pour le conteur.
+- Règles tranchées (docs/M4-CONTEUR.md § 10) : parent/enfant libres sauf lien déclaré, perception passive, DD de fouille secret et une fouille par lieu et par jour, pièges de contenants, barème d'influence, paliers de jauge.
+- 11 tests sur le Val des Cendres (dont une marche au hasard de 400 actions) ; 355 tests verts.
+
+## 03/11/2026 — Révision du plan M4 : coût d'API acceptable
+
+- Constat de l'utilisateur : 30 à 50 $ d'API par histoire, c'est le prix d'un jeu AAA ; objectif fixé à **moins de 5 $ par histoire**.
+- Nouveau principe : **le moteur et les textes écrits portent le jeu ; le conteur intervient là où il apporte quelque chose** (saisie libre, vraies conversations, imprévus, moments forts, bouton « Raconter »). Les actions mécaniques sont des boutons qui appellent le moteur directement, gratuitement ; sans clé, le jeu reste jouable en mode « livre ».
+- Estimation refaite (tours mécaniques / tours du conteur) : Val des Cendres 918 tours dont 337 racontés ; ≈ 0,7 $ (Haiku 5.5), 4,5 $ (Sonnet 5.5), 8 $ (Opus 5.5). Haiku pressenti par défaut, à confirmer sur la qualité en M4b.
+- Nouvelle étape M4b' : récit d'arrivée de chaque lieu généré une fois par nous et livré avec le jeu.

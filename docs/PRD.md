@@ -182,7 +182,7 @@ Joueur → MJ narrateur (orchestre, écrit, propose)
 
 1. **Nom du jeu, univers et ton** (sombre, héroïque, humoristique ?).
 2. **Service d'images** et clé API (décision en M2).
-3. **Budget acceptable** par heure de jeu.
+3. ~~**Budget acceptable**~~ : **tranché le 03/11/2026** : moins de 5 $ d'API pour finir une histoire avec le modèle conseillé. D'où le principe « le moteur et les textes écrits portent le jeu, le conteur intervient là où il apporte quelque chose » (`docs/M4-CONTEUR.md` § 1 et 8).
 4. ~~**Usage**~~ : **tranché le 03/11/2026, le jeu sera vendu** ; chaque joueur utilise **ses propres clés d'API** (Anthropic, et OpenRouter pour les images), gardées sur sa machine, et chaque histoire affiche son coût d'API estimé (`docs/M4-CONTEUR.md` § 7 et 8).
 5. **Hasard dans le combat :** deck d'élan pioché ou toutes les cartes visibles (décision en M1).
 6. **Mort des personnages :** définitive, ou avec possibilité de résurrection et recrutement ?

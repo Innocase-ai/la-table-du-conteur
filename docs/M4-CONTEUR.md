@@ -2,33 +2,41 @@
 
 Objectif du PRD : **un lieu court jouable de bout en bout** avec le maître de jeu (le conteur), l'arbitre et les illustrations ; critère : **une partie d'une heure sans incohérence de règles**.
 
-Principe inchangé : **le conteur propose, le moteur décide.** Le conteur (Claude) comprend ce que veut le joueur, raconte et fait parler les PNJ ; il ne change jamais l'état de la partie lui-même. Il passe par des **verbes** (des outils) que le moteur valide, résout (jets, règles, effets du monde) et applique. Le résultat lui revient, et il le raconte.
+Principe inchangé : **le conteur propose, le moteur décide.** Le conteur (Claude) comprend ce que veut le joueur, raconte et fait parler les PNJ ; il ne change jamais l'état de la partie lui-même. Il passe par des **verbes** que le moteur valide, résout (jets, règles, effets du monde) et applique.
 
-## 1. Un tour de jeu
+**Révision du 03/11/2026 : le moteur et les textes écrits portent le jeu ; le conteur intervient là où il apporte quelque chose.** Le jeu sera vendu et le joueur paie l'API avec sa propre clé : un conteur appelé à chaque action coûtait 30 à 50 $ par histoire, le prix d'un jeu AAA. Objectif : **moins de 5 $ pour finir une histoire** avec le modèle conseillé par défaut. Bonus : sans clé, le jeu reste jouable en mode « livre » (tours mécaniques seulement).
+
+## 1. Deux façons de jouer un tour
+
+**Tour mécanique (gratuit)** : le joueur clique une action proposée par l'écran (aller vers une sortie, fouiller, ouvrir, désarmer, prendre, se reposer, combattre, répondre à une énigme, choisir un sujet de conversation). Le client appelle directement le verbe du moteur, sans IA. Le jeu affiche les jets, les constats du moteur et les **textes écrits par l'auteur** : récit d'arrivée du lieu, narrations des pièges et des événements, réponse du PNJ sur le sujet choisi.
 
 ```
-Joueur : « Je fouille le cellier, et Pip regarde si le coffret est piégé. »
+Clic « Fouiller » → moteur : fouiller(p) → « Ambrine — Investigation 17 : elle trouve une trappe sous la grande table. »
+Clic « Le cellier du bailli » → moteur : aller(p, …) → récit d'arrivée du cellier (écrit d'avance), image du lieu
+```
+
+**Tour du conteur (payant)** : le conteur n'est appelé que dans ces cas :
+1. **Saisie libre** du joueur (« je lui dis que nous venons de la part du bailli », « je grimpe sur la palissade »).
+2. **Vraie conversation** avec un PNJ (au-delà de la salutation et du sujet cliqué).
+3. **Imprévu** : une action que les boutons ne couvrent pas, ou un refus du moteur à expliquer.
+4. **Moment fort** : première entrée dans un lieu important, révélation d'un fait majeur (importance 3), fin d'un combat important, fin de quête, fin de l'histoire.
+5. **Bouton « Raconter »**, au choix du joueur, pour un récit plus vivant d'une scène.
+
+```
+Joueur : « Pip, tu crois que le bailli cache autre chose ? Je vais lui demander, l'air de rien. »
    │
    ▼
-Serveur : fiche de scène (lieu courant, sorties, PNJ présents, quêtes, état du groupe)
-          + l'action du joueur  ──►  Conteur (Claude, outils)
-   │
-   ├─► fouiller({ lieu: "vei-cellier-du-bailli", personnage: "pip" })
-   │      moteur : jet d'Investigation de Pip (d20 + bonus) contre les DD cachés du lieu
-   │      → « coffret repéré ; piège vei-p-aiguille-du-coffret repéré (DD 13, jet 17) »
-   ├─► desarmer({ piege: "vei-p-aiguille-du-coffret", personnage: "pip" })
-   │      moteur : Escamotage + outils de voleur contre DD 13 → réussite
-   ├─► proposer_actions([ « Ouvrir le coffret », « Remonter voir le bailli », … ])
+Moteur : fiche de scène compacte + action  ──►  Conteur (un appel)
+   ├─► parler({ pnj: "vei-bailli…", sujet: "…" }) ou influencer(…, "tromperie")   (le moteur lance les dés)
    ▼
-Récit en streaming : « Pip s'agenouille devant le coffret… une aiguille noire… »
-Client : récit, image du lieu, jets affichés, boutons d'actions suggérées + saisie libre
+Récit court en streaming, dans la voix du PNJ ; boutons d'actions suggérées
 ```
 
 Les jets sont toujours faits par le moteur, avec les vraies fiches des personnages. Le conteur ne voit que leurs résultats.
 
 ## 2. Les verbes (outils du conteur)
 
-Deux familles : **consulter** (lecture, sans effet) et **agir** (le moteur vérifie, lance les dés, applique). Chaque outil a un schéma Zod strict ; une entrée invalide ou une action impossible revient au conteur comme une erreur expliquée (« la porte est verrouillée, DD 22, clé : clé du sceau »), qu'il raconte ou contourne.
+Les mêmes verbes servent aux deux voies : les boutons de l'écran les appellent directement, le conteur les appelle comme outils quand le joueur écrit librement. Deux familles : **consulter** (lecture, sans effet) et **agir** (le moteur vérifie, lance les dés, applique). Chaque outil a un schéma Zod strict ; une entrée invalide ou une action impossible revient au conteur comme une erreur expliquée (« la porte est verrouillée, DD 22, clé : clé du sceau »), qu'il raconte ou contourne.
 
 | Verbe | Entrée | Ce que fait le moteur |
 | --- | --- | --- |
@@ -66,7 +74,7 @@ Le monde complet du Val des Cendres pèse environ 1,15 Mo de JSON (plus de 300 0
 - **Serveur local** (`apps/serveur`, Node) : il tourne **sur la machine du joueur** (lancé avec le jeu), tient la partie (état du monde, groupe), appelle le conteur avec la clé du joueur et diffuse le récit au client en streaming. En développement, il lit les clés dans `.env` (ignoré par git).
 - **`packages/conteur`** : prompts, schémas des outils, construction de la fiche de scène, boucle de tour. Les verbes eux-mêmes sont **du moteur** (`packages/regles/src/monde/`), en code pur testé, utilisables sans LLM.
 - **SDK** : `@anthropic-ai/sdk` en TypeScript, outils définis avec Zod (`betaZodTool`) et boucle par le tool runner du SDK ; streaming du texte ; `strict: true` sur les outils.
-- **Modèle, au choix du joueur** : Claude Opus 5.5 (`claude-opus-5-5`, 4 $ / 20 $ par million de tokens en entrée / sortie, lecture du cache 0,20 $), Claude Sonnet 5.5 (2 $ / 10 $) ou Claude Haiku 5.5 (0,10 $ / 0,50 $), avec le coût estimé de chacun affiché. Réflexion adaptative, effort réglé pour un rythme de jeu fluide (à mesurer : `low` ou `medium`). Repli automatique en cas de refus par les filtres de sécurité (`fallbacks: "default"`), utile pour un monde sombre plein de morts-vivants.
+- **Modèle, au choix du joueur** : Claude Haiku 5.5 (`claude-haiku-5-5`, 0,10 $ / 0,50 $ par million de tokens en entrée / sortie) **pressenti par défaut**, à confirmer sur la qualité du récit en M4b ; Claude Sonnet 5.5 (2 $ / 10 $) et Claude Opus 5.5 (4 $ / 20 $, lecture du cache 0,20 $) en option « récit plus riche », avec le coût estimé de chacun affiché. Réflexion adaptative, effort bas (`low`) : un tour du conteur est un récit court sur une action déjà résolue. Repli automatique en cas de refus par les filtres de sécurité (`fallbacks: "default"`), utile pour un monde sombre plein de morts-vivants.
 - **Coût mesuré dès le premier prototype** : chaque tour enregistre ses tokens (`usage`) et son coût ; les hypothèses de l'estimation (§ 8) sont recalées sur ces mesures.
 - **Images** : celles du monde (lieux, PNJ, monstres, objets) via le manifeste, affichées au fil du récit. Les scènes avec le groupe (portraits choisis en référence) viennent plus tard (illustrateur, après M4).
 - **Journal de partie** : chaque tour est enregistré (action, fiche de scène, appels d'outils, jets, récit, coût). C'est la matière pour déboguer et évaluer.
@@ -74,8 +82,9 @@ Le monde complet du Val des Cendres pèse environ 1,15 Mo de JSON (plus de 300 0
 ## 5. L'écran d'exploration
 
 - **Grand panneau image** : le lieu courant, ou le PNJ à qui l'on parle.
-- **Récit** qui défile en streaming, avec les **jets** affichés en clair (« Pip — Investigation : 17 contre DD 13, réussi »).
-- **Actions suggérées** en boutons, et une **saisie libre** toujours disponible.
+- **Récit** qui défile : textes de l'auteur pour les tours mécaniques, récit du conteur (en streaming) pour les autres ; les **jets** affichés en clair (« Pip — Investigation : 17 contre DD 13, réussi »).
+- **Actions du moteur en boutons** (gratuites) : sorties, Fouiller, Ouvrir, Désarmer, Prendre, Se reposer, sujets des PNJ présents, énigme ; et une **saisie libre** (« Que faites-vous ? ») qui appelle le conteur, avec un petit indicateur de coût.
+- **Compteur de dépense** discret (coût de la session et de l'histoire), plafond réglable.
 - **Panneau du groupe** : portraits choisis, PV, états ; clic → fiche.
 - **Journal de quêtes**, **inventaire**, **carte** des lieux visités (graphe des liens découverts).
 - Bascule vers l'**écran de combat** quand un combat commence, et retour au récit avec l'issue.
@@ -85,8 +94,9 @@ Le monde complet du Val des Cendres pèse environ 1,15 Mo de JSON (plus de 300 0
 | Étape | Contenu | Fini quand |
 | --- | --- | --- |
 | **M4a — Moteur d'exploration** (sans LLM) | Les verbes en code pur dans le moteur, avec jets réels sur les fiches du groupe ; fiche de scène ; tests sur le mini-monde et le Val des Cendres (traverser Veillecendre, ouvrir le coffret piégé, parler à Nério, résoudre une énigme) | Tous les verbes testés ; un parcours scripté du Val se joue sans LLM |
-| **M4b — Le conteur** | `apps/serveur`, `packages/conteur`, prompts, outils, cache, streaming, clés et plafond de dépense ; `pnpm conteur` pour jouer dans le terminal | Une scène jouée au terminal ; journal de partie et coût par tour mesurés |
-| **M4c — L'écran d'exploration** | Le client : récit, image, actions, groupe, journal ; écran Options (clés, modèle, plafond) ; branchement du combat ; « Commencer l'aventure » activé | Veillecendre jouable dans le navigateur |
+| **M4b — Le conteur** | `apps/serveur`, `packages/conteur`, prompts, outils, cache, streaming, clés et plafond de dépense ; `pnpm conteur` pour jouer dans le terminal ; **comparaison Haiku / Sonnet / Opus** sur les mêmes scènes (récits côte à côte) | Une scène jouée au terminal ; coût par tour mesuré ; modèle par défaut choisi par l'utilisateur sur pièces |
+| **M4b' — Textes du joueur** | Un **récit d'arrivée** par lieu (la `description` actuelle est faite pour le MJ et contient des notes techniques) : nouveau champ `recit`, généré **une fois par nous** avec Claude, relu, livré avec le jeu (≈ 1 à 2 $ pour le Val) | Chaque lieu du Val a son récit d'arrivée ; le jeu les affiche sans appel |
+| **M4c — L'écran d'exploration** | Le client : récit, image, actions du moteur en boutons (jouables **sans clé**), saisie libre vers le conteur, groupe, journal ; écran Options (clés, modèle, plafond) ; branchement du combat ; « Commencer l'aventure » activé | Veillecendre jouable dans le navigateur, avec et sans conteur |
 | **M4d — Sauvegarde** | Sauver et reprendre une partie (état du monde, groupe, résumé) ; « Continuer » sur l'écran titre | Reprise d'une partie sans perte |
 | **M4e — Partie test** | Une heure de jeu réelle à Veillecendre, relue tour par tour | Critère du PRD : aucune incohérence de règles |
 
@@ -105,14 +115,46 @@ Le jeu est vendu ; **chaque joueur utilise ses propres clés** et paie lui-même
 
 Chaque histoire affiche sa **durée** et son **coût d'API estimé** pour la finir, par modèle (écran « Choisir une histoire »). Le calcul est dans le moteur (`packages/regles/src/monde/estimation.ts`) ; `pnpm monde estimer` écrit `packages/mondes/<monde>/estimation.json`, qu'un test garde à jour.
 
-- **Tours de conteur** déduits du contenu : 1,5 par lieu (85 % des lieux visités), 3 par PNJ, 2 par combat (mise en scène et issue ; le combat lui-même est local et gratuit), 4 par autre rencontre ou énigme, 1,5 par piège, 0,5 par trésor, 3 par quête, 1 par événement, plus 15 % de marge ; 45 tours par heure, 12 minutes par combat.
-- **Un tour** : 2,5 appels ; à chaque appel 15 000 tokens relus du cache et 3 000 nouveaux ; 900 tokens produits.
-- **Images du groupe** : une tous les 12 tours, à 0,009 $.
+- **Tours de jeu** déduits du contenu, avec la **part racontée par le conteur** : lieux 1,5 tour (85 % visités, aucun par le conteur : récit d'arrivée écrit) ; PNJ 3 tours (2 par le conteur) ; combats 2 tours (un quart par le conteur ; le combat est local) ; autres rencontres 4 (trois quarts) ; énigmes 4 (un quart) ; pièges 1,5 et trésors 0,5 (aucun) ; quêtes 3 (un tiers) ; événements 1 (aucun) ; plus 15 % d'imprévus, tous racontés. 45 tours par heure, 12 minutes par combat.
+- **Un tour du conteur** : 1,3 appel ; à chaque appel 12 000 tokens relus du cache et 2 000 nouveaux ; 500 tokens produits.
+- **Images du groupe** : une tous les 8 tours du conteur (les moments forts), à 0,009 $.
 
-Le Val des Cendres (151 lieux, 63 PNJ, 47 combats, 23 quêtes, 18 énigmes) : **918 tours, environ 30 h** (20,5 h de récit, 9,5 h de combats) ; **≈ 51 $ avec Opus 5.5, ≈ 29 $ avec Sonnet 5.5, ≈ 4,5 $ avec Haiku 5.5** (± 30 %), plus ≈ 0,7 $ d'images. Ces chiffres sont **provisoires** : ils seront recalés sur les mesures de M4b et M4e.
+Le Val des Cendres : **918 tours, dont 337 racontés par le conteur ; environ 30 h** (20,5 h d'exploration et de dialogues, 9,5 h de combats) ; **≈ 0,7 $ avec Haiku 5.5, ≈ 4,5 $ avec Sonnet 5.5, ≈ 8 $ avec Opus 5.5** (± 30 %), plus ≈ 0,4 $ d'images. Avant cette révision (conteur à chaque tour) : 4,5 $, 29 $ et 51 $. Chiffres **provisoires**, à recaler sur les mesures de M4b et M4e.
 
 ## 9. Décisions à prendre
 
 1. **Clé Anthropic de développement** : à créer sur console.anthropic.com et à mettre dans `.env` (`ANTHROPIC_API_KEY=…`) ; nécessaire à partir de M4b.
-2. **Modèle conseillé par défaut au joueur**, une fois les coûts mesurés : la qualité du récit d'Opus 5.5 vaut-elle son prix face à Sonnet 5.5 ou Haiku 5.5 ? À trancher sur des parties réelles.
+2. **Modèle conseillé par défaut au joueur** : Haiku 5.5 pressenti (≈ 0,7 $ pour le Val) ; à confirmer en M4b en comparant les récits des trois modèles sur les mêmes scènes.
 3. **Application de bureau** (Tauri ou Electron) : nécessaire pour vendre le jeu avec un serveur local et un trousseau sécurisé ; à prévoir après M4.
+
+## 10. État : M4a fait (03/11/2026)
+
+Le moteur d'exploration existe, sans LLM, dans `packages/regles/src/monde/` : `exploration.ts` (partie, jets, passages, fouille, verrous, pièges, trésors, énigmes, repos, issue des rencontres, test libre), `dialogue.ts` (PNJ présents, sujets, influence) et `scene.ts` (fiche de scène). Chaque verbe prend la partie et renvoie un **compte rendu** : jets (montrés au joueur), constats factuels, faits révélés, narrations de l'auteur à reformuler, combat à lancer, fin atteinte.
+
+| Verbe (moteur) | Outil du conteur prévu |
+| --- | --- |
+| `aller(p, vers)` | `aller` |
+| `fouiller(p, personnage?)` | `fouiller` |
+| `ouvrir(p, { lien } \| { tresor }, 'cle' \| 'crocheter' \| 'forcer', personnage?)` | `ouvrir` |
+| `desarmer(p, piege, personnage?)`, `declencher(…)` | `desarmer` |
+| `prendre(p, tresor)` | `prendre` |
+| `parler(p, pnj, sujet?)` | `parler` |
+| `influencer(p, pnj, 'persuasion' \| 'intimidation' \| 'tromperie', { secret?, personnage? })` | `persuader`, `intimider`, `tromper` |
+| `testLibre(p, competence, dd, personnage?)` | `test` |
+| `repondreEnigme(p, enigme, reponse)`, `indiceEnigme(p, enigme, niveau)` | `repondre_enigme`, `indice` |
+| `seReposer(p, 'court' \| 'long')` | `se_reposer` |
+| `issueRencontre(p, rencontre, victoire \| alternative \| fuite)` | retour de `combattre` |
+| `ficheDeScene(p)`, `sortiesDe(p, lieu)` | contexte de chaque tour |
+
+Règles tranchées en écrivant le moteur :
+- **Passages** : un lieu enfant est accessible librement depuis son parent (entrer, sortir), **sauf** si un lien déclaré entre eux le contrôle (caché, verrouillé, conditionnel) : la trappe du cellier du bailli reste secrète. Les liens à double sens se prennent des deux côtés ; un effet `debloquer` qui nomme un lieu ouvre et révèle les passages vers lui.
+- **Perception passive** : en entrant, le meilleur score du groupe repère sans jet ce qui se trouve à la Perception (DD ≤ perception passive). Ce qui demande l'Investigation exige une fouille.
+- **Fouille** : le moteur prend, pour chaque compétence utile, le meilleur du groupe (ou le personnage nommé) ; le DD reste **secret** ; **une fouille par lieu et par jour**.
+- **Verrous** : la clé ouvre sans jet ; crocheter = Escamotage avec outils de voleur (refusé sans) ; forcer = Athlétisme. Un contenant piégé se déclenche quand on l'ouvre sans clé s'il n'a pas été désarmé.
+- **Pièges** : désarmer sans l'outil requis se fait avec désavantage ; un échec de 5 ou plus déclenche le piège (sauvegarde, dégâts sur les PV du personnage, états, effets).
+- **Influence** : DD 15 pour un PNJ neutre, de 5 (dévoué) à 25 (hostile) ; réussite : +10 d'attitude (intimidation : obéit mais −5) ; échec : −5, −10 (intimidation), −15 (tromperie).
+- **Jauges** : un palier franchi dans le sens du changement donne sa narration et ses effets, une seule fois ; les évolutions « sur condition » s'appliquent une fois quand la condition devient vraie.
+
+Tests (`packages/regles/tests/exploration.test.ts`, dés imposés) : trappe du cellier trouvée, piège de l'aiguille repéré puis désarmé (ou raté et déclenché), coffret crocheté et vidé (85 po, double registre) ; Nério et ses sujets ; persuasion ; mot d'ordre des cryptes ; repos long et palier de la cendre ; marche au hasard de 400 actions dans tout le Val sans erreur.
+
+Pas encore fait (M4b et suivants) : le moment de la journée (présences du soir et de la nuit), les boutiques et services, l'usage des objets, la montée de niveau, les compagnons ; les rencontres `aleatoire`.
