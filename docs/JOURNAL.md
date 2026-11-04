@@ -239,3 +239,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Cercle d'incantation** : un cercle de runes (deux carrés, anneau gradué) se trace sous le lanceur avant chaque sort. Mouvement réduit : lueur simple, zone sans propagation.
 - Banc d'essai (`/?effets`) : onze sorts, lancés depuis un disque bleu vers la case choisie ; il rejoue la même séquence que le combat.
 - Vérifié : chaque forme au banc d'essai (images arrêtées à mi-course) et dans un vrai combat (cercle d'incantation et éclair). 464 tests verts, typecheck OK. Reste le palier 3 : auras persistantes (bénédiction, bouclier de la foi, fléau, marque) et états lisibles sur les jetons.
+
+## 04/11/2026 — Retour visuel des attaques et de la magie, palier 3 : des effets qui restent visibles
+
+- **Auras persistantes** sur les jetons du plateau (`aurasDe`, trois au plus), tirées des modificateurs en cours : bénédiction (anneau doré parcouru d'une étincelle), bouclier de la foi et sort Bouclier (bulle froide qui miroite), fléau (anneau violet qui vacille), marque du chasseur (réticule rouge), givre (rayon de givre, ralentissement), éclair traçant (anneau jaune), concentration (cercle de runes qui tourne), points de vie temporaires (liseré blanc). Une aura qui apparaît « se pose » en une demi-seconde.
+- **États lisibles sur le jeton** : signes flottants (z pour le sommeil et l'inconscience, cœurs pour le charme, points d'exclamation pour la peur, éclairs pour la paralysie, points d'interrogation pour la cécité, bulles pour le poison), jeton couché quand il est à terre, icône qui tremble quand il est effrayé, crépitement jaune pour la paralysie, chaîne pour l'entrave et l'empoignade. Les badges restent pour le détail. Rien de tout cela dans la barre d'initiative (jetons trop petits).
+- Banc d'essai (`/?effets`) : une section « Auras et états » avec un jeton par aura et par état.
+- Vérifié au banc d'essai et dans un vrai combat (sommeil, chaînes, points de vie temporaires). 464 tests verts, typecheck OK. Les auras s'affichent d'après l'état réel du moteur : elles peuvent apparaître un instant avant la fin de l'animation du sort qui les pose.

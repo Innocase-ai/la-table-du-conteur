@@ -1,3 +1,5 @@
+import type { Combattant, Etat } from '@crpg/regles';
+
 // Familles de dégâts pour les effets visuels : une famille = un habillage (impact, couleur des chiffres, mort).
 // Les types viennent du moteur (« feu », « nécrotique », « tranchant »…), avec ou sans accent.
 
@@ -201,3 +203,49 @@ export function formeSort(id: string | undefined, f: Famille): FormeSort {
 export function estRayon(forme: FormeSort): forme is 'zigzag' | 'rayon' {
   return forme === 'zigzag' || forme === 'rayon';
 }
+
+// ---------------------------------------------------------------------------
+// Auras et états : ce qui reste visible sur le jeton tant que l'effet dure
+// ---------------------------------------------------------------------------
+
+export type Aura = 'benediction' | 'bouclier' | 'fleau' | 'marque' | 'givre' | 'trace' | 'concentration' | 'pvtemp';
+
+export const LIBELLES_AURAS: Record<Aura, string> = {
+  benediction: 'béni',
+  bouclier: 'protégé',
+  fleau: 'maudit',
+  marque: 'marqué',
+  givre: 'ralenti par le froid',
+  trace: 'illuminé (avantage contre lui)',
+  concentration: 'concentré',
+  pvtemp: 'points de vie temporaires',
+};
+
+const ORDRE_AURAS: Aura[] = ['benediction', 'bouclier', 'fleau', 'marque', 'givre', 'trace', 'concentration', 'pvtemp'];
+
+/** Les auras d'un combattant, d'après ses modificateurs en cours (trois au plus, les plus parlantes d'abord). */
+export function aurasDe(c: Pick<Combattant, 'modificateurs' | 'concentration' | 'pvTemp'>): Aura[] {
+  const ids = new Set(c.modificateurs.map((m) => m.id));
+  const presentes: Record<Aura, boolean> = {
+    benediction: ids.has('benediction-a'),
+    bouclier: ids.has('bouclier-de-la-foi') || ids.has('bouclier'),
+    fleau: ids.has('fleau-a'),
+    marque: ids.has('marque-du-chasseur'),
+    givre: c.modificateurs.some((m) => m.type === 'vitesse' && (m.valeur ?? 0) < 0),
+    trace: ids.has('eclair-tracant'),
+    concentration: !!c.concentration,
+    pvtemp: c.pvTemp > 0,
+  };
+  return ORDRE_AURAS.filter((a) => presentes[a]).slice(0, 3);
+}
+
+/** Petits signes qui flottent au-dessus d'un jeton atteint par cet état (le signe et leur nombre). */
+export const FX_ETATS: Partial<Record<Etat, { glyphe: string; n: number }>> = {
+  inconscient: { glyphe: 'z', n: 3 },
+  neutralise: { glyphe: 'z', n: 3 },
+  paralyse: { glyphe: '⚡', n: 3 },
+  charme: { glyphe: '♥', n: 3 },
+  effraye: { glyphe: '!', n: 2 },
+  aveugle: { glyphe: '?', n: 2 },
+  empoisonne: { glyphe: '●', n: 3 },
+};

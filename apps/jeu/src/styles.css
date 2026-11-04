@@ -1963,6 +1963,274 @@ button:disabled {
   }
 }
 
+/* ------------------------------------------------------------------------ */
+/* Auras (effets en cours) et états lisibles sur le jeton                    */
+/* ------------------------------------------------------------------------ */
+
+.aura {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+@keyframes aura-pose {
+  from {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bénédiction : un anneau doré qu'une étincelle parcourt. */
+.aura-benediction {
+  border: 2px solid rgba(240, 205, 132, 0.85);
+  animation: aura-pose 0.5s ease-out, aura-benediction 3s linear 0.5s infinite;
+}
+
+.aura-benediction::before {
+  content: '';
+  position: absolute;
+  top: -0.16em;
+  left: calc(50% - 0.16em);
+  width: 0.32em;
+  height: 0.32em;
+  border-radius: 50%;
+  background: #fff6c8;
+  box-shadow: 0 0 6px 2px #f0cd84;
+}
+
+@keyframes aura-benediction {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 6px 1px rgba(240, 205, 132, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px rgba(240, 205, 132, 0.85);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 6px 1px rgba(240, 205, 132, 0.5);
+  }
+}
+
+/* Bouclier : une bulle de lumière froide qui miroite. */
+.aura-bouclier {
+  border: 2px solid rgba(190, 225, 255, 0.9);
+  background: radial-gradient(circle, transparent 55%, rgba(150, 200, 255, 0.3) 100%);
+  box-shadow: inset 0 0 8px rgba(190, 225, 255, 0.7), 0 0 8px rgba(150, 200, 255, 0.55);
+  animation: aura-pose 0.5s ease-out, aura-miroite 2.2s ease-in-out 0.5s infinite;
+}
+
+@keyframes aura-miroite {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Fléau : un anneau violet sombre qui vacille et tourne à l'envers. */
+.aura-fleau {
+  border: 2px dashed rgba(170, 100, 210, 0.9);
+  box-shadow: 0 0 9px 2px rgba(90, 20, 120, 0.75);
+  animation: aura-pose 0.5s ease-out, aura-fleau 3.4s linear 0.5s infinite;
+}
+
+@keyframes aura-fleau {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(-360deg);
+    opacity: 1;
+  }
+}
+
+/* Marque : un réticule rouge sur le jeton. */
+.aura-marque {
+  border: 2px solid rgba(255, 90, 70, 0.9);
+  background: linear-gradient(rgba(255, 90, 70, 0.9), rgba(255, 90, 70, 0.9)) center / 1.5px 100% no-repeat,
+    linear-gradient(rgba(255, 90, 70, 0.9), rgba(255, 90, 70, 0.9)) center / 100% 1.5px no-repeat;
+  animation: aura-pose 0.5s ease-out, aura-reticule 1.6s ease-in-out 0.5s infinite;
+}
+
+@keyframes aura-reticule {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Givre : un anneau de glace qui pulse lentement. */
+.aura-givre {
+  border: 2px solid #bfeaff;
+  box-shadow: 0 0 7px 1px #9fe2ff, inset 0 0 8px rgba(159, 226, 255, 0.6);
+  animation: aura-pose 0.5s ease-out, aura-miroite 2.8s ease-in-out 0.5s infinite;
+}
+
+/* Illuminé (éclair traçant) : un anneau jaune qui scintille. */
+.aura-trace {
+  border: 2px dashed #ffe45c;
+  box-shadow: 0 0 8px 2px rgba(255, 228, 92, 0.6);
+  animation: aura-pose 0.5s ease-out, aura-tourne 4s linear 0.5s infinite;
+}
+
+/* Concentration : un fin cercle de runes qui tourne. */
+.aura-concentration {
+  border: 1.5px dashed rgba(210, 180, 255, 0.95);
+  box-shadow: 0 0 5px rgba(200, 168, 255, 0.6);
+  animation: aura-pose 0.5s ease-out, aura-tourne 7s linear 0.5s infinite;
+}
+
+@keyframes aura-tourne {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Points de vie temporaires : un mince liseré blanc. */
+.aura-pvtemp {
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  animation: aura-pose 0.5s ease-out;
+}
+
+/* Signes qui montent au-dessus d'un jeton atteint par un état (z, cœurs, éclairs…). */
+.etat-signes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.15em;
+  height: 1em;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.etat-signes span {
+  position: absolute;
+  left: calc(50% + (var(--i) - 1) * 0.75em);
+  top: 0;
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: 0.85em;
+  text-shadow: 0 1px 2px #000, 0 0 4px currentColor;
+  opacity: 0;
+  animation: etat-monte 2.2s ease-out infinite;
+  animation-delay: calc(var(--i) * 0.7s);
+}
+
+@keyframes etat-monte {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0.2em) scale(0.6);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0.35em, -1.5em) scale(1.35);
+  }
+}
+
+.etat-signes-inconscient,
+.etat-signes-neutralise {
+  color: #dcd6ff;
+}
+.etat-signes-paralyse {
+  color: #ffe45c;
+}
+.etat-signes-charme {
+  color: #ff8ad8;
+}
+.etat-signes-effraye {
+  color: #ffd166;
+}
+.etat-signes-aveugle {
+  color: #cfd8e8;
+}
+.etat-signes-empoisonne {
+  color: #a8ff3c;
+}
+.etat-signes-empoisonne span {
+  font-size: 0.55em;
+}
+
+/* À terre : le jeton est couché. */
+.jeton-etat-a-terre .jeton-disque {
+  transform: rotate(-78deg) scale(0.9, 0.78);
+}
+
+/* Effrayé : l'icône tremble. */
+.jeton-etat-effraye .pictogramme,
+.jeton-etat-effraye .jeton-lettres {
+  animation: tremble 0.22s linear infinite;
+}
+
+@keyframes tremble {
+  0%,
+  100% {
+    transform: translateX(-1px);
+  }
+  50% {
+    transform: translateX(1px);
+  }
+}
+
+/* Paralysé : le jeton crépite d'étincelles jaunes. */
+.jeton-etat-paralyse {
+  animation: paralysie 0.5s steps(1) infinite;
+}
+
+@keyframes paralysie {
+  0% {
+    filter: drop-shadow(0 0 5px #ffe45c);
+  }
+  50% {
+    filter: none;
+  }
+}
+
+/* Aveugle, empoisonné, charmé : l'icône s'altère. */
+.jeton-etat-aveugle .pictogramme {
+  opacity: 0.5;
+}
+.jeton-etat-empoisonne .pictogramme {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 4px #7fd94a);
+}
+.jeton-etat-charme .pictogramme {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 4px #ff8ad8);
+}
+
+/* Entravé, empoigné : une chaîne autour du jeton. */
+.etat-chaine {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 3px dashed #b0a088;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
 /* Un nouveau badge d'état apparaît avec un « pop ». */
 .badge {
   animation: pop 0.35s cubic-bezier(0.3, 1.8, 0.5, 1);
@@ -3013,6 +3281,15 @@ button:disabled {
   .eclat-zone,
   .lueur {
     animation-name: fondu;
+  }
+  .aura,
+  .jeton-etat-effraye .pictogramme,
+  .jeton-etat-effraye .jeton-lettres,
+  .jeton-etat-paralyse {
+    animation: none;
+  }
+  .etat-signes span {
+    opacity: 0.9;
   }
   .aura-rage,
   .jeton-actif .jeton-disque,

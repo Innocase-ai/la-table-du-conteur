@@ -1,4 +1,5 @@
 import { aEtat, libelleEtat, type Combattant } from '@crpg/regles';
+import { aurasDe, FX_ETATS, LIBELLES_AURAS } from '../effets-visuels';
 import { estChef, svgDe } from '../icones';
 import { abreviation, SYMBOLES_ETATS } from '../libelles';
 
@@ -30,10 +31,28 @@ export function Jeton({ c, taille, details = false }: Props) {
     estChef(c) ? 'jeton-chef' : '',
     grand ? 'jeton-grand' : '',
     c.rage && !tombe ? 'jeton-rage' : '',
+    // Un état se lit sur le jeton lui-même (couché, tremblant, teinté…) ; voir `jeton-etat-*` dans styles.css.
+    ...(details && !c.mort ? [...new Set(c.etats.map((e) => `jeton-etat-${e.etat}`))] : []),
   ];
+  // Sur le plateau : les auras des effets en cours (bénédiction, bouclier, fléau…) et les signes flottants des états.
+  const auras = details && !c.mort ? aurasDe(c) : [];
+  const signes = details && !c.mort ? c.etats.map((e) => ({ etat: e.etat, fx: FX_ETATS[e.etat] })).filter((x, i, t) => x.fx && t.findIndex((y) => y.fx?.glyphe === x.fx?.glyphe) === i) : [];
   return (
     <div className={classes.join(' ')} style={{ width: taille, height: taille, fontSize: Math.max(10, taille * 0.36) }}>
       {c.rage && !tombe && <span className="aura-rage" />}
+      {auras.map((a, i) => (
+        <span key={a} className={`aura aura-${a}`} style={{ inset: -(4 + i * 3) }} title={LIBELLES_AURAS[a]} />
+      ))}
+      {(c.etats.some((e) => e.etat === 'entrave' || e.etat === 'empoigne') && details && !c.mort) && <span className="etat-chaine" />}
+      {signes.map(({ etat, fx }) => (
+        <span key={etat} className={`etat-signes etat-signes-${etat}`} aria-hidden>
+          {Array.from({ length: fx!.n }, (_, i) => (
+            <span key={i} style={{ ['--i' as string]: i }}>
+              {fx!.glyphe}
+            </span>
+          ))}
+        </span>
+      ))}
       <div className="jeton-disque">
         {c.mort ? (
           <span className="jeton-lettres">✝</span>

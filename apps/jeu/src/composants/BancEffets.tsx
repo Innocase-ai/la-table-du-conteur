@@ -1,11 +1,43 @@
 // Banc d'essai des effets de combat : http://localhost:5173/?effets
 // Un plateau vide, un bouton par famille de dégâts. Sert à régler les effets sans lancer un combat.
 import { useRef, useState } from 'react';
-import { casesZone, grilleDepuisTexte, type Position } from '@crpg/regles';
+import { casesZone, ETATS, grilleDepuisTexte, libelleEtat, type Combattant, type Modificateur, type Position } from '@crpg/regles';
 import { couleurSort, effetDeSort, effetsDeCoup, type Effet, type EffetSansId } from '../animations';
 import { chargerDonnees } from '../donnees';
-import { COULEURS_FAMILLES, FAMILLES, LIBELLES_FAMILLES, famille, type Famille } from '../effets-visuels';
+import { COULEURS_FAMILLES, FAMILLES, LIBELLES_AURAS, LIBELLES_FAMILLES, famille, type Aura, type Famille } from '../effets-visuels';
 import { EffetsPlateau, type Geometrie } from './Plateau';
+import { Jeton } from './Jeton';
+
+/** Modificateur factice qui déclenche une aura. */
+const MODIFICATEURS_AURAS: Record<Exclude<Aura, 'concentration' | 'pvtemp'>, Modificateur> = {
+  benediction: { id: 'benediction-a', type: 'de_attaque', de: '1d4', source: 'x' },
+  bouclier: { id: 'bouclier-de-la-foi', type: 'bonus_ca', valeur: 2, source: 'x' },
+  fleau: { id: 'fleau-a', type: 'de_attaque', de: '-1d4', source: 'x' },
+  marque: { id: 'marque-du-chasseur', type: 'bonus_attaque', valeur: 0, source: 'x' },
+  givre: { id: 'rayon-de-givre', type: 'vitesse', valeur: -3, source: 'x' },
+  trace: { id: 'eclair-tracant', type: 'avantage_contre', source: 'x', usageUnique: true },
+};
+
+/** Un combattant minimal pour afficher un jeton d'essai (seuls les champs lus par le jeton comptent). */
+function pion(nom: string, extra: Partial<Combattant> = {}): Combattant {
+  return {
+    id: `essai-${nom}`,
+    nom,
+    camp: 'heros',
+    modele: 'paladin',
+    type: 'Humanoïde',
+    taille: 'M',
+    pv: 20,
+    pvMax: 24,
+    pvTemp: 0,
+    etats: [],
+    modificateurs: [],
+    mort: false,
+    rage: false,
+    enFuite: false,
+    ...extra,
+  } as unknown as Combattant;
+}
 
 const COLONNES = 9;
 const LIGNES = 5;
@@ -131,6 +163,37 @@ export function BancEffets() {
         <label>
           <input type="checkbox" checked={reduit} onChange={(e) => setReduit(e.target.checked)} /> Mouvement réduit (texte seul)
         </label>
+      </div>
+      <h3 style={{ margin: '12px 0 4px' }}>Auras et états (jetons sur le plateau)</h3>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 22, padding: '14px 24px 22px' }}>
+        {(Object.keys(MODIFICATEURS_AURAS) as (keyof typeof MODIFICATEURS_AURAS)[]).map((a) => (
+          <figure key={a} style={{ margin: 0, textAlign: 'center', width: 70 }}>
+            <Jeton c={pion(a, { modificateurs: [MODIFICATEURS_AURAS[a]] })} taille={56} details />
+            <figcaption style={{ fontSize: 11, marginTop: 6 }}>{LIBELLES_AURAS[a]}</figcaption>
+          </figure>
+        ))}
+        <figure style={{ margin: 0, textAlign: 'center', width: 70 }}>
+          <Jeton c={pion('conc', { concentration: { sort: 'benediction', cibles: [] } })} taille={56} details />
+          <figcaption style={{ fontSize: 11, marginTop: 6 }}>{LIBELLES_AURAS.concentration}</figcaption>
+        </figure>
+        <figure style={{ margin: 0, textAlign: 'center', width: 70 }}>
+          <Jeton c={pion('pvt', { pvTemp: 5 })} taille={56} details />
+          <figcaption style={{ fontSize: 11, marginTop: 6 }}>PV temporaires</figcaption>
+        </figure>
+        <figure style={{ margin: 0, textAlign: 'center', width: 70 }}>
+          <Jeton
+            c={pion('trio', { modificateurs: [MODIFICATEURS_AURAS.benediction, MODIFICATEURS_AURAS.bouclier, MODIFICATEURS_AURAS.marque] })}
+            taille={56}
+            details
+          />
+          <figcaption style={{ fontSize: 11, marginTop: 6 }}>trois auras</figcaption>
+        </figure>
+        {ETATS.map((e) => (
+          <figure key={e} style={{ margin: 0, textAlign: 'center', width: 70 }}>
+            <Jeton c={pion(e, { etats: [{ etat: e }], camp: 'monstres', modele: 'ogre' })} taille={56} details />
+            <figcaption style={{ fontSize: 11, marginTop: 6 }}>{libelleEtat(e)}</figcaption>
+          </figure>
+        ))}
       </div>
       <div style={{ overflow: 'auto', padding: 24 }}>
         <div
