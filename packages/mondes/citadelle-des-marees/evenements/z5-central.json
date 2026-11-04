@@ -1,0 +1,18 @@
+[
+  {
+    "id": "z5-ev-mer-au-repos",
+    "declencheur": "repos",
+    "condition": { "jauge": { "id": "maree", "min": 2 } },
+    "unique": false,
+    "narration": "Au réveil, le sel a durci sur les vitres, et la mer fait un bruit qu'on n'entend pas d'habitude : un long roulement de galets, comme des pas qui s'arrêtent et repartent. Les volets restent clos jusqu'au jour, et personne ne parle de la nuit qu'on vient de passer.",
+    "effets": []
+  },
+  {
+    "id": "z5-ev-compte-a-rebours",
+    "declencheur": "jour",
+    "condition": { "jauge": { "id": "maree", "min": 3 } },
+    "unique": false,
+    "narration": "Sur la table des marées, la dernière ligne rouge a été tracée à la règle. Les cartographes comptent les jours à voix basse, sans regarder le registre. Le ciel reste bas, et la marée basse dure un peu plus longtemps que la veille.",
+    "effets": []
+  }
+]

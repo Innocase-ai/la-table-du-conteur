@@ -20,6 +20,8 @@ export function lieuDuPnj(p: PartieMonde, pnj: Pnj): string {
 export function pnjPresents(p: PartieMonde): Pnj[] {
   return [...p.dm.pnj.values()].filter((n) => {
     if ((p.etat.pnjEtats[n.id] ?? 'vivant') !== 'vivant') return false;
+    // Un PNJ escorté suit le groupe : il est présent partout.
+    if (p.etat.escortes?.includes(n.id)) return true;
     if (lieuDuPnj(p, n) === p.etat.lieu) return true;
     // Une présence ailleurs ne compte que si le PNJ n'a pas été déplacé, de jour (le moment de la journée viendra plus tard).
     return !p.etat.pnjLieux[n.id] && n.presences.some((x) => x.lieu === p.etat.lieu && x.moment === 'jour' && (!x.condition || evaluerCondition(x.condition, p.etat)));

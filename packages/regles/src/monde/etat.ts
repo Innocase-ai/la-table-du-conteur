@@ -24,6 +24,8 @@ export interface EtatMonde {
   attitudes: Record<string, number>;
   pnjEtats: Record<string, EtatPnj>;
   pnjLieux: Record<string, string>;
+  /** PNJ escortés : ils suivent le groupe et sont présents partout où il va (absent des anciennes sauvegardes). */
+  escortes?: string[];
   inventaire: Record<string, number>;
   pieces: number;
   xp: number;
@@ -123,6 +125,12 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     if (!q.actives.includes(effet.etape.etape) && !q.accomplies.includes(effet.etape.etape)) q.actives.push(effet.etape.etape);
   } else if ('pnjEtat' in effet) e.pnjEtats[effet.pnjEtat.pnj] = effet.pnjEtat.etat;
   else if ('deplacer' in effet) e.pnjLieux[effet.deplacer.pnj] = effet.deplacer.lieu;
+  else if ('escorte' in effet) {
+    const liste = (e.escortes ??= []);
+    const i = liste.indexOf(effet.escorte.pnj);
+    if (effet.escorte.actif !== false && i < 0) liste.push(effet.escorte.pnj);
+    else if (effet.escorte.actif === false && i >= 0) liste.splice(i, 1);
+  }
   else if ('debloquer' in effet) {
     if (!e.debloques.includes(effet.debloquer)) e.debloques.push(effet.debloquer);
   } else if ('rencontre' in effet) {

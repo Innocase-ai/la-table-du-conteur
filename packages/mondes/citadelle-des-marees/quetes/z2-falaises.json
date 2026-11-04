@@ -1,0 +1,96 @@
+[
+  {
+    "id": "q-fal-saunieres-disparues",
+    "nom": "Les saunières des digues",
+    "type": "secondaire",
+    "donneur": "marthe-la-saniere",
+    "lieu": "fal-salines",
+    "resume": "Trois saunières sont parties aux digues au crépuscule et ne sont pas revenues. Les retrouver avant que la mer ne ferme les digues, puis les ramener à Marthe.",
+    "niveau": { "min": 1, "max": 2 },
+    "debut": "retrouver",
+    "etapes": [
+      {
+        "id": "retrouver",
+        "texte": "Oda, Berthe et Nine sont parties aux digues. Cherchez leurs traces dans le marais.",
+        "completion": { "fait": "f-fal-saunieres-retrouvees" },
+        "echec": { "jauge": { "id": "maree", "min": 4 } },
+        "suivantes": ["ramener"]
+      },
+      {
+        "id": "ramener",
+        "texte": "Ramenez les trois saunières à Marthe, aux salines.",
+        "completion": { "flag": "fal-saunieres-rentrees" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 20,
+      "objets": [],
+      "effets": [{ "attitude": { "pnj": "marthe-la-saniere", "delta": 5 } }]
+    },
+    "ramifications": "Les digues ne s'ouvrent qu'à marée basse : le passage se sonde mieux pendant le jusant. Si la mer couvre les digues avant qu'on ne trouve les saunières (jauge à 4), elles restent perdues et Marthe ne vend plus de sel au groupe."
+  },
+  {
+    "id": "q-fal-courrier-ligue",
+    "nom": "Le pli de la Ligue",
+    "type": "secondaire",
+    "donneur": "fal-lise-morvan",
+    "lieu": "fal-relais-des-voyageurs",
+    "resume": "Une messagère de la Ligue a confié un pli scellé au groupe. Il doit arriver au Maître Osric, à Port-aux-Cordes, sans avoir été ouvert.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "porter",
+    "etapes": [
+      {
+        "id": "porter",
+        "texte": "Portez le pli scellé au Hall de la Ligue, à Port-aux-Cordes.",
+        "completion": { "lieu": "por-hall-de-la-ligue" },
+        "echec": { "jauge": { "id": "maree", "min": 4 } },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "objet": { "id": "fal-lettre-de-la-ligue", "retirer": true } }]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "reputation": { "faction": "ligue-des-phares", "delta": 5 } }]
+    },
+    "ramifications": "Le pli peut être ouvert, lu ou gardé : Lise ne le saura pas, mais la cire brisée se voit à l'arrivée et la Ligue en tire ses conclusions. Si le port est fermé à la marée (jauge à 4), le pli reste sans destinataire et la quête échoue."
+  },
+  {
+    "id": "q-fal-la-lanterne-du-cap",
+    "nom": "La lanterne du Cap-Mort",
+    "type": "secondaire",
+    "donneur": "corentin-brumevoile",
+    "lieu": "fal-brumevoile",
+    "resume": "Le phare du Cap-Mort est éteint depuis la nuit où Brumevoile a été pris. Corentin demande qu'on le rallume, pour que les barques égarées retrouvent la terre.",
+    "niveau": { "min": 1, "max": 2 },
+    "debut": "monter",
+    "etapes": [
+      {
+        "id": "monter",
+        "texte": "Gagnez le phare du Cap-Mort, au bout de la route des falaises.",
+        "completion": { "lieu": "fal-phare-du-cap-mort" },
+        "echec": { "jauge": { "id": "maree", "min": 4 } },
+        "suivantes": ["rallumer"]
+      },
+      {
+        "id": "rallumer",
+        "texte": "Remettez la lentille en marche : les volets se règlent dans l'ordre où la mer se meut.",
+        "completion": { "flag": "fal-phare-rallume" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 350,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Idrien ne se rappelle plus l'ordre complet des volets : l'énigme de la salle de la lampe reste à résoudre par le groupe. Si la mer coupe le cap (jauge à 4), le phare reste hors d'atteinte jusqu'à la fin de la nuit."
+  }
+]

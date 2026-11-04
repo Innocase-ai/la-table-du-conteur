@@ -1,0 +1,46 @@
+[
+  {
+    "id": "por-ev-arrivee",
+    "declencheur": "entree-lieu",
+    "lieu": "port-aux-cordes",
+    "unique": true,
+    "narration": "Le port se dresse au fond de l'anse, de quais de pierre noire et de voiles raidies. Les mouettes crient plus haut que les marchandes. La mer s'est retirée si loin que les pieux d'une ancienne jetée sortent de l'eau, et l'on dirait que toute la ville attend qu'elle revienne.",
+    "effets": [{ "flag": "port-atteint" }]
+  },
+  {
+    "id": "por-ev-ruelles-inondees",
+    "declencheur": "condition",
+    "lieu": "port-aux-cordes",
+    "condition": { "jauge": { "id": "maree", "min": 4 } },
+    "unique": true,
+    "narration": "Au matin, les ruelles basses sont couvertes d'une eau brune qui ne s'en va plus. Les habitants ont posé des planches sur les seuils. La Ligue a fermé le port : une chaîne barre la jetée, et les pêcheurs regardent les noyés marcher au pied des quais, à marée basse, sans se hâter.",
+    "effets": [{ "flag": "por-ruelles-inondees" }]
+  },
+  {
+    "id": "por-ev-chaussee-ouverte",
+    "declencheur": "entree-lieu",
+    "lieu": "por-cale-seche",
+    "condition": { "objet": "cle-des-eaux-basses" },
+    "unique": true,
+    "narration": "La clé tourne dans la serrure de la grille, avec un grincement long comme une prière. La grille cède et s'ouvre sur la chaussée des Basses-Eaux : une route de pierre pâle, luisante, qui s'enfonce dans la brume vers un palais que la mer ne couvre plus.",
+    "effets": [{ "flag": "chaussee-ouverte" }]
+  },
+  {
+    "id": "por-ev-gamin-coince",
+    "declencheur": "entree-lieu",
+    "lieu": "por-egouts-bassin",
+    "condition": { "quete": { "id": "q-por-le-gamin-disparu", "statut": "active" } },
+    "unique": true,
+    "narration": "Sur la corniche, un garçon de l'âge de Piot est serré contre le mur, les bras autour des genoux. L'eau brune monte à petits coups sous ses pieds. Il crie le nom de Piot dès qu'il vous voit, puis se tait, effrayé par la grille qui gronde.",
+    "effets": [{ "flag": "por-gamin-trouve" }]
+  },
+  {
+    "id": "por-ev-maree-haute-egouts",
+    "declencheur": "condition",
+    "lieu": "por-egouts-a-maree",
+    "condition": { "jauge": { "id": "maree", "min": 3 } },
+    "unique": true,
+    "narration": "Un grondement monte des galeries, puis l'eau entre par les grilles basses, lente et sans bruit. En quelques minutes, les marches disparaissent sous la marée. Les Rats crient des ordres, et les torches s'éteignent une à une dans la boue qui se dérobe.",
+    "effets": [{ "flag": "por-egouts-inondes" }]
+  }
+]

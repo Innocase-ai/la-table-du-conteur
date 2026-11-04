@@ -63,6 +63,7 @@ function refsEffet(e: EffetMonde, f: (genre: string, id: string, extra?: string)
   else if ('quete' in e) f('quete', e.quete.id);
   else if ('etape' in e) f('etape', e.etape.quete, e.etape.etape);
   else if ('pnjEtat' in e) f('pnj', e.pnjEtat.pnj);
+  else if ('escorte' in e) f('pnj', e.escorte.pnj);
   else if ('deplacer' in e) {
     f('pnj', e.deplacer.pnj);
     f('lieu', e.deplacer.lieu);

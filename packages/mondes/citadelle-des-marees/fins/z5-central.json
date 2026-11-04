@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fin-renouer",
+    "nom": "Le Sceau renoué",
+    "condition": { "flag": "choix-renouer" },
+    "epilogue": "Nolwen descend seule à marée basse, par la chaussée des Basses-Eaux, jusqu'au sanctuaire du Palais. Elle n'appelle personne. Elle pose la main sur la marque, et le pacte se referme avec un bruit de porte de cale. La mer se retire de la côte, la Cour s'endort enfin sous les flots, et la Grande Marée s'éloigne vers le large. Mais le Sceau ne remonte pas : Nolwen tient la mer, vivante et liée, et personne ne lui demandera plus son avis. À la Citadelle, les cartographes reprennent leurs registres et ne parlent plus de l'apprentie. La Ligue fête la côte sauvée sans savoir qui l'a payée. Les Rats de quai ferment leurs passages, qui ne servent plus à rien. Le groupe reste sur la grève, avec la carte d'Ysmène et la mer calme. Personne ne dit que Nolwen ne reviendra pas.",
+    "consequences": [
+      "Nolwen reste au sanctuaire du Sceau : elle ne revient plus.",
+      "La mer se retire de la côte ; la Cour repose.",
+      "La Citadelle et Port-aux-Cordes sont sauvés.",
+      "Le groupe garde la carte des marées d'Ysmène."
+    ]
+  },
+  {
+    "id": "fin-briser",
+    "nom": "Le Sceau brisé",
+    "condition": { "flag": "choix-briser" },
+    "epilogue": "La Pierre de rupture touche la marque, et le bruit est celui d'une cloche fêlée. Les lanternes du Palais s'éteignent une à une. Les noyés se tiennent immobiles, puis s'assoient, puis se couchent sur le sable de la chapelle, comme des gens qui rentrent après une longue marche. La Dame Noyée passe la main sur le front de Nolwen et s'efface. Nolwen se réveille libre, sur les galets, sans marque sur l'épaule, et elle vit. Mais la mer n'est plus tenue. Elle reviendra aux grandes marées, de plus en plus haut : la Ligue doit reculer ses digues, les cartographes emportent leurs registres vers l'intérieur des terres, et la Citadelle sera abandonnée avant l'hiver. Mère Sorel vend encore des passages, mais vers des villes qui n'existent plus. Le Chancelier Orvald se tait. Le groupe garde la pierre, ou la jette à la mer.",
+    "consequences": [
+      "Nolwen est libre et vit, sans marque.",
+      "Les noyés reposent ; la Cour s'éteint.",
+      "La mer n'est plus tenue : les grandes marées reviendront plus haut.",
+      "La Citadelle est abandonnée ; la Ligue recule ses digues."
+    ]
+  },
+  {
+    "id": "fin-relever",
+    "nom": "Lothmar relevée",
+    "condition": { "flag": "choix-relever" },
+    "epilogue": "Le Chancelier Orvald pose la couronne sur la tête de Nolwen, dans une salle du Palais qui n'a plus de murs. Les nobles se lèvent un à un, pâles, couverts de coraux qui tombent comme des feuilles. Lothmar remonte : des toits de marbre sortent du fond, des cloches sonnent sous l'eau, et la mer, docile, recule. Mais Port-aux-Cordes disparaît à sa place. Ses quais, ses entrepôts et la chapelle des noyés sont engloutis par une marée qui ne remonte plus. Les villages de la baie ferment leurs volets sur des mers basses. Lothmar a sa Cour, et la Cour a ses comptes : elle réclame ses terres, ses vies, ses bouches à nourrir. Nolwen règne, jeune et seule, sur une ville qui a payé pour elle. Les Rats de quai ne trouvent plus de côte à vendre. Les cartographes ferment la Citadelle sur des cartes qui ne disent plus rien de vrai. Le groupe a choisi, et il porte sa part du prix.",
+    "consequences": [
+      "Nolwen est couronnée ; Lothmar remonte, mal.",
+      "Port-aux-Cordes et les villages de la baie sont engloutis.",
+      "La Cour réclame son dû : les nobles noyés ne se contentent pas de peu.",
+      "Le groupe est complice du couronnement."
+    ]
+  },
+  {
+    "id": "fin-livrer",
+    "nom": "L'enfant à la Ligue",
+    "condition": { "flag": "choix-livrer" },
+    "epilogue": "Maître Osric attend au pied du phare-cellule, la lanterne haute, le registre ouvert. Nolwen ne pleure pas ; elle demande qu'on la laisse garder la carte. La porte de fer se ferme à double tour, et le plomb de la serrure est coulé. Les bourses de la Ligue sont pleines : les digues tiennent, les navires rentrent au port, les villages de la baie gardent leurs toits. Pour un temps. La mer ronge la cellule goutte à goutte, les scellés verdissent, et les noyés frappent parfois la coque du phare. Osric dort mal, et il le sait. Nolwen vieillira dans une pièce où l'on entend la mer, sans revoir la côte. Le groupe reçoit sa récompense et son silence. Les cartographes brûlent leurs registres de marée. Mère Sorel garde une clé qu'elle n'a pas eu besoin d'utiliser.",
+    "consequences": [
+      "Nolwen est enfermée au phare-cellule et y vieillira seule.",
+      "La côte est protégée, l'ordre revient pour un temps.",
+      "La cellule se ronge ; la solution ne durera pas.",
+      "Les cartographes rompent avec le groupe."
+    ]
+  },
+  {
+    "id": "fin-maree-haute",
+    "nom": "La Grande Marée",
+    "condition": { "jauge": { "id": "maree", "min": 5 } },
+    "epilogue": "La mer ne se retire plus. Elle monte cette nuit même, en une seule vague grise qui prend Port-aux-Cordes avant le lever du jour. Les quais disparaissent, la Ligue ferme ses portes et ses dernières lanternes s'éteignent. Les noyés marchent dans les rues, en rangs serrés, sans bruit, et les survivants se réfugient aux étages. Le groupe survit, au sommet d'un rocher de la falaise, avec Nolwen à ses côtés : personne n'a décidé de ce qui est arrivé à Nolwen, et personne ne décidera plus de rien. Le pacte reste entier, et la Cour continue de tenir, sans vainqueur ni vaincu. La Citadelle tient encore quelques saisons, puis les cartographes la quittent avec leurs cartes. Au matin, la côte a reculé de deux lieues, et les chroniqueurs parlent de la « marée sans fin ». Le groupe a vécu. La côte, non.",
+    "consequences": [
+      "Port-aux-Cordes est engloutie ; les villages de la baie avec elle.",
+      "Le pacte reste entier : la Cour tient toujours la mer.",
+      "Nolwen survit, mais sans rien avoir décidé.",
+      "La Citadelle est abandonnée par les cartographes."
+    ]
+  }
+]

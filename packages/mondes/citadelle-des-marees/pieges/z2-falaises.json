@@ -1,0 +1,41 @@
+[
+  {
+    "id": "fal-piege-fosse-du-pont",
+    "nom": "La fosse aux pieux",
+    "lieu": "fal-pont-des-corbeaux",
+    "resume": "Une fosse masquée de branchages, en travers de l'accès au tablier, hérissée de pieux de bois durci.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Un poids sur les branchages : la fosse cède, et les pieux se dressent sous celui qui a marché dessus.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "2d10", "type": "perforant" }],
+    "etats": [],
+    "effets": []
+  },
+  {
+    "id": "fal-piege-herse-de-cale",
+    "nom": "La herse de la cale",
+    "lieu": "fal-epave-de-la-perle-grise",
+    "resume": "Une herse de fer retenue par une chaîne au plafond de la cale, reliée au couvercle du coffre.",
+    "detection": { "dd": 13, "competence": "investigation" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Soulever le couvercle sans couper la chaîne libère la herse, qui tombe sur celui qui se penche au-dessus du coffre.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d10", "type": "contondant" }],
+    "etats": [],
+    "effets": []
+  },
+  {
+    "id": "fal-piege-vase-de-galerie",
+    "nom": "La dalle de vase",
+    "lieu": "fal-grotte-des-marees-galerie",
+    "resume": "Une dalle couverte de vase, au bord de la fosse de galets, qui s'enfonce sous le poids et aspire les pieds.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "survie" },
+    "declenchement": "Un pas sur la dalle : la vase cède, et la boue aspire les jambes jusqu'aux genoux.",
+    "sauvegarde": { "caracteristique": "for", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d6", "type": "contondant" }],
+    "etats": ["entrave"],
+    "effets": []
+  }
+]

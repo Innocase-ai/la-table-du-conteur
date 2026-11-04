@@ -1,0 +1,46 @@
+[
+  {
+    "id": "maree",
+    "nom": "La Marée",
+    "resume": "La mesure de ce que la mer a repris à la côte. Elle monte d'un cran à chaque repos long : le temps passe, et la Grande Marée approche. Les mauvais choix (laisser un habitant sans abri, trahir un allié) la font monter aussi ; les fanaux rallumés et les brèches fermées la font baisser, par les effets des autres zones. À 5, la Grande Marée engloutit Port-aux-Cordes : c'est la fin d'échec.",
+    "min": 0,
+    "max": 5,
+    "initial": 1,
+    "paliers": [
+      {
+        "seuil": 2,
+        "nom": "Des noyés au pied de la falaise",
+        "narration": "La mer recule d'un cran de plus que la veille. Au pied de la falaise, sur le sable gris, des silhouettes se tiennent debout, la tête penchée comme si elles écoutaient quelque chose sous les galets. Elles ne montent pas. Pas encore.",
+        "effets": []
+      },
+      {
+        "seuil": 3,
+        "nom": "La chaussée s'ouvre",
+        "narration": "La mer découvre la chaussée des Basses-Eaux, un chemin de pierres noires que personne n'a vu depuis une génération. Les cloches de la Citadelle sonnent la marée basse à contretemps. La nuit du départ est là, et le Héraut blême se tient au bord de la grille, sans bruit, comme s'il avait toujours été là.",
+        "effets": []
+      },
+      {
+        "seuil": 4,
+        "nom": "Le port ferme ses portes",
+        "narration": "Port-aux-Cordes a les pieds dans l'eau. Les ruelles basses sont inondées à chaque marée, et les noyés remontent les escaliers des quais aux heures creuses. La Ligue ferme le port et barre les digues. Aux fenêtres, les lanternes s'éteignent une à une.",
+        "effets": []
+      },
+      {
+        "seuil": 5,
+        "nom": "La Grande Marée",
+        "narration": "La mer ne se retire plus. Elle engloutit Port-aux-Cordes, ses digues et ses fanaux, et lèche le pied de la Citadelle comme un chien qui attend la porte. Ce qui reste de la côte se défait en une nuit : l'échec est consommé.",
+        "effets": [
+          {
+            "fin": "fin-maree-haute"
+          }
+        ]
+      }
+    ],
+    "evolution": [
+      {
+        "declencheur": "repos-long",
+        "delta": 1
+      }
+    ]
+  }
+]

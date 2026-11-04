@@ -66,6 +66,7 @@ export type EffetMonde =
   | { etape: { quete: string; etape: string } }
   | { pnjEtat: { pnj: string; etat: 'vivant' | 'mort' | 'parti' } }
   | { deplacer: { pnj: string; lieu: string } }
+  | { escorte: { pnj: string; actif?: boolean } }
   | { debloquer: string }
   | { rencontre: string }
   | { fin: string }
@@ -84,6 +85,8 @@ export const EffetMonde: z.ZodType<EffetMonde> = z.union([
   z.object({ etape: z.object({ quete: Id, etape: Id }) }).strict(),
   z.object({ pnjEtat: z.object({ pnj: Id, etat: z.enum(['vivant', 'mort', 'parti']) }) }).strict(),
   z.object({ deplacer: z.object({ pnj: Id, lieu: Id }) }).strict(),
+  // Escorter : le PNJ suit le groupe et se trouve présent dans tous les lieux où il va (`actif: false` : il reste où il est).
+  z.object({ escorte: z.object({ pnj: Id, actif: z.boolean().default(true) }) }).strict(),
   z.object({ debloquer: Id }).strict(),
   z.object({ rencontre: Id }).strict(),
   z.object({ fin: Id }).strict(),

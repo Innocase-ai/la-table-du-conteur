@@ -1,0 +1,91 @@
+[
+  {
+    "id": "cit-ev-arrivee",
+    "declencheur": "entree-lieu",
+    "lieu": "citadelle-des-marees",
+    "unique": true,
+    "narration": "La porte de terre s'ouvre avant que vous ayez frappé. Une odeur de cire et de sel monte de la cour, et derrière vous la mer hurle contre le cap. Plus bas, très loin, l'eau a reculé, comme si elle voulait prendre de l'élan.",
+    "effets": []
+  },
+  {
+    "id": "cit-ev-signe-de-la-mer",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-grille-de-mer",
+    "unique": true,
+    "narration": "Les coquilles fraîches couvrent les barreaux, toutes tournées vers le large. Une seule ouverture reste libre dans la grille, et le vent y entre en sifflant.",
+    "effets": [{ "flag": "cit-signe-mer" }]
+  },
+  {
+    "id": "cit-ev-signe-de-la-falaise",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-jardins-de-falaise",
+    "unique": true,
+    "narration": "Au pied de la terrasse, des cercles de sel frais forment une ligne droite qui file vers la mer, comme un chemin tracé pour quelqu'un qui marche de nuit.",
+    "effets": [{ "flag": "cit-signe-falaise" }]
+  },
+  {
+    "id": "cit-ev-signes-vus",
+    "declencheur": "condition",
+    "condition": { "et": [{ "flag": "cit-signe-mer" }, { "flag": "cit-signe-falaise" }] },
+    "unique": true,
+    "narration": "Le sel et les coquilles se répondent : la mer a donné ses deux signes. Quelque part sous le cap, quelqu'un a noté que vous les avez vus.",
+    "effets": [{ "flag": "cit-signes-vus" }]
+  },
+  {
+    "id": "cit-ev-fanal-falaise",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-jardins-de-falaise",
+    "unique": true,
+    "narration": "Vous montez une torche jusqu'au fanal de fer sur son piquet. Malgré le vent, qui couche la flamme à plat sur les terrasses, la lampe reprend sa lueur, et tient.",
+    "effets": [{ "flag": "cit-fanal-falaise" }]
+  },
+  {
+    "id": "cit-ev-fanal-observatoire",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-observatoire",
+    "unique": true,
+    "narration": "La lampe de bronze, sous le dôme, n'a plus que le fond de sa cuve. Vous y versez ce qui reste d'huile, et la mèche prend lentement, avec une odeur de suif.",
+    "effets": [{ "flag": "cit-fanal-observatoire" }]
+  },
+  {
+    "id": "cit-ev-fanal-grille",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-grille-de-mer",
+    "unique": true,
+    "narration": "Le fanal de la grille, posé à l'envers sur son crochet, tourne et se redresse. Sa flamme jaillit au ras de l'eau et se reflète dans les barreaux.",
+    "effets": [{ "flag": "cit-fanal-grille" }]
+  },
+  {
+    "id": "cit-ev-nuit-du-depart",
+    "declencheur": "condition",
+    "condition": {
+      "ou": [
+        { "et": [{ "flag": "cit-signes-vus" }, { "flag": "cit-infiltre-demasque" }] },
+        { "jauge": { "id": "maree", "min": 3 } }
+      ]
+    },
+    "unique": true,
+    "narration": "Le Héraut Blême paraît à la grille de mer, vêtu d'une armure couverte de coraux. Ysmène va à sa rencontre, lui parle bas, puis se tourne vers vous. Elle confie Nolwen au groupe, vous remet sa carte et un fanal de cuivre, et demande qu'on ne quitte pas la jeune fille. Derrière la grille, la mer répond par trois coups.",
+    "effets": [
+      { "flag": "cit-nuit-du-depart" },
+      { "flag": "nolwen-avec-le-groupe" },
+      { "objet": { "id": "carte-des-marees-d-ysmene", "quantite": 1 } },
+      { "objet": { "id": "fanal-de-poche", "quantite": 1 } },
+      { "escorte": { "pnj": "nolwen-brevemer", "actif": true } },
+      { "quete": { "id": "q-la-grande-maree", "statut": "active" } },
+      { "etape": { "quete": "q-la-grande-maree", "etape": "abri" } },
+      { "etape": { "quete": "q-la-grande-maree", "etape": "signes" } },
+      { "etape": { "quete": "q-la-grande-maree", "etape": "heraut" } },
+      { "rencontre": "cit-r-la-grille-de-mer" }
+    ]
+  },
+  {
+    "id": "cit-ev-ysmene-tombee",
+    "declencheur": "entree-lieu",
+    "lieu": "route-des-falaises",
+    "condition": { "flag": "cit-nuit-du-depart" },
+    "unique": true,
+    "narration": "Sur la route, la mer revient en une vague brune qui couvre la chaussée. Au loin, debout sur les pierres, Ysmène retient le Héraut ; elle ne se retourne pas. Quand la brume se referme, il ne reste d'elle qu'un bruit de pierres et de flots.",
+    "effets": [{ "flag": "ysmene-tombee" }]
+  }
+]

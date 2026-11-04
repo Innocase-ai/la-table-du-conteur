@@ -65,3 +65,9 @@ Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la l
 - **Un échec qui lance un combat** : `"echec": { "effets": [{ "rencontre": "<id>" }], "resume": "…" }`. L'effet `rencontre` déclenche la rencontre (un combat est lancé aussitôt) ; si elle est `unique` et déjà jouée, rien ne se passe. Un piège peut faire de même.
 - **Le test `tests/enigmes.test.ts` joue chaque énigme du monde** par son formulaire : une énigme injouable (élément absent des options, mauvais nombre de réglages) le fait échouer.
 
+
+## Les fins (leçon de La Citadelle des Marées)
+
+- Le moteur ne pose `fin` que par un **effet `{"fin":"<id>"}`**, jamais d'après la `condition` d'une fin. Dans la quête principale : une étape `choix` (complétion `ou` des drapeaux de choix) suivie d'une étape `issue-<x>` par fin (complétion = son drapeau, `termine: true`, effets `{xp}` + `{fin}`). Une jauge qui échoue met `{fin}` dans l'effet de son dernier palier. Une fin atteignable avant l'étape `choix` (livrer, fuir) met `{fin}` et `{quete … terminee}` dans l'effet du sujet.
+- Les agents de zone suivent la liste des faits du registre (BIBLE) plutôt que les ids cités dans les missions : écrire les ids exacts du BIBLE dans les missions, ou les faits propres à une zone dans son propre fichier.
+- Toujours ajouter le test de parcours (`monde.test.ts`) : une fin qui ne se déclenche jamais passe le validateur.

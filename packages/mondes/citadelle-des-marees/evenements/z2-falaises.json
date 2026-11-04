@@ -1,0 +1,26 @@
+[
+  {
+    "id": "fal-ev-brumevoile-vide",
+    "declencheur": "entree-lieu",
+    "lieu": "fal-brumevoile",
+    "unique": true,
+    "narration": "Le village n'a plus de bruit : les portes battent sans personne, et dans l'anse les barques retournées ont la coque fendue. Une seule cheminée fume, tout en haut. Sur le seuil de la maison la plus haute, un goliath vous regarde descendre le sentier sans un mot.",
+    "effets": [{ "fait": "f-fal-brumevoile-deserte" }]
+  },
+  {
+    "id": "fal-ev-mer-au-marais",
+    "declencheur": "jour",
+    "condition": { "jauge": { "id": "maree", "min": 2 } },
+    "unique": true,
+    "narration": "Au matin, les digues sont à découvert sur une demi-lieue. Les bassins de sel n'ont plus une goutte, et des traces de pas, pieds nus, rejoignent la digue de l'Ouest en passant par les roseaux.",
+    "effets": []
+  },
+  {
+    "id": "fal-ev-bassin-marque",
+    "declencheur": "entree-lieu",
+    "lieu": "fal-grotte-des-marees-bassin",
+    "unique": true,
+    "narration": "Le bassin s'ouvre sur une eau si claire qu'on voit le dallage au fond. La ligne de sel blanc, sur la paroi, est restée sèche depuis si longtemps que personne n'a pu l'atteindre.",
+    "effets": [{ "fait": "f-fal-grotte-marque-de-maree" }]
+  }
+]

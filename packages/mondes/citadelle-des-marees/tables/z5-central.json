@@ -1,0 +1,44 @@
+[
+  {
+    "id": "table-epave",
+    "nom": "Ce que la mer rend sur l'épave",
+    "palier": 1,
+    "entrees": [
+      { "poids": 3, "pieces": { "des": "2d6", "unite": "pa" } },
+      { "poids": 2, "objet": "corde" },
+      { "poids": 2, "objet": "rations" },
+      { "poids": 1, "objet": "lanterne-sourde" },
+      { "poids": 1, "objet": "parchemin" },
+      { "poids": 1, "objet": "huile" },
+      { "poids": 3, "rien": true }
+    ]
+  },
+  {
+    "id": "table-poche-de-noye",
+    "nom": "Ce qu'il reste dans les poches d'un noyé",
+    "palier": 1,
+    "entrees": [
+      { "poids": 3, "pieces": { "des": "2d6", "unite": "pa" } },
+      { "poids": 2, "objet": "fiole" },
+      { "poids": 1, "objet": "bougie" },
+      { "poids": 1, "objet": "eau-benite" },
+      { "poids": 1, "objet": "potion-de-guerison" },
+      { "poids": 1, "objet": "sacoche" },
+      { "poids": 3, "rien": true }
+    ]
+  },
+  {
+    "id": "table-cellier-de-citadelle",
+    "nom": "Le cellier de la Citadelle",
+    "palier": 1,
+    "entrees": [
+      { "poids": 3, "objet": "rations", "quantite": 2 },
+      { "poids": 2, "objet": "huile" },
+      { "poids": 2, "objet": "bougie", "quantite": 3 },
+      { "poids": 1, "objet": "trousse-de-soins" },
+      { "poids": 1, "objet": "potion-de-guerison" },
+      { "poids": 1, "objet": "parchemin-de-sort-niveau-1" },
+      { "poids": 2, "rien": true }
+    ]
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "lot-p-herse-des-marees",
+    "nom": "La herse d'eau de l'horloge",
+    "lieu": "lot-grande-salle",
+    "resume": "Une dalle du hall relie l'horloge à des tuyaux de bronze : si l'on force un cadran, l'eau salée jaillit d'une gueule dans le plafond.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "La dalle s'enfonce sous le pied, et une gerbe d'eau salée, sous pression, frappe la nef depuis une gueule de bronze.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d10", "type": "contondant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "lot-p-brume-de-sel",
+    "nom": "Le fût de brume salée",
+    "lieu": "lot-cuisines-englouties",
+    "resume": "Un fût de sel bouché de cire, caché sous la trappe, qui lâche une brume grise et piquante quand on la soulève.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "La trappe cède d'un coup, et le fût éclate : une brume épaisse et poivrée remonte dans les yeux et la gorge.",
+    "sauvegarde": { "caracteristique": "con", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "2d6", "type": "poison" }],
+    "etats": ["empoisonne"],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "lot-p-dalle-tranchante",
+    "nom": "Le seuil des lames",
+    "lieu": "lot-armurerie-rouillee",
+    "resume": "Un ressort caché sous le seuil du râtelier, qui fait jaillir des lames rouillées à hauteur de genou.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 14, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Le pas fait céder la dalle ; trois lames rouillées sortent du mur, à hauteur des jambes, dans un bruit de ferraille.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d8", "type": "tranchant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "lot-p-cendre-de-sel",
+    "nom": "Le nuage des niches",
+    "lieu": "lot-crypte-des-rois",
+    "resume": "Une niche pleine de sel fin : retirer la pierre qui la ferme la fait éclater en nuage froid, qui pique les yeux et fige les mains.",
+    "detection": { "dd": 13, "competence": "investigation" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "La pierre glisse, et un nuage de sel fin jaillit de la niche, froid comme la nuit, en se collant aux yeux et aux doigts.",
+    "sauvegarde": { "caracteristique": "con", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d8", "type": "nécrotique" }],
+    "etats": ["aveugle"],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

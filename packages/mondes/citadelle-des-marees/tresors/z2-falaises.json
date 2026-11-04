@@ -1,0 +1,118 @@
+[
+  {
+    "id": "fal-t-relais-coffre",
+    "nom": "Le coffre du relais",
+    "lieu": "fal-relais-des-voyageurs",
+    "contenant": "coffre",
+    "description": "Un coffre de chêne ferré, glissé sous le banc du fond de la salle commune. Sa serrure a été forcée autrefois, puis rescellée à la hâte avec du fil de fer.",
+    "contenu": {
+      "pieces": { "po": 12, "pa": 30 },
+      "objets": [
+        { "objet": "trousse-de-soins", "quantite": 1 },
+        { "objet": "rations", "quantite": 3 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 12 }
+    }
+  },
+  {
+    "id": "fal-t-pont-bourse",
+    "nom": "La bourse des pillards",
+    "lieu": "fal-pont-des-corbeaux",
+    "contenant": "sac",
+    "description": "Un sac de toile glissé sous une pierre descellée du parapet, où la bande garde la part de son chef. Les corbeaux ne s'en approchent pas.",
+    "contenu": {
+      "pieces": { "po": 25 },
+      "objets": [{ "objet": "lanterne-sourde", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    },
+    "gardien": "fal-r-pillards-du-pont"
+  },
+  {
+    "id": "fal-t-epave-coffre",
+    "nom": "Le coffre de la cale",
+    "lieu": "fal-epave-de-la-perle-grise",
+    "contenant": "coffre",
+    "description": "Un coffre de cuivre sanglé de chaînes, au fond de la cale. Son couvercle est lourd, et l'eau salée y entre encore par les coins.",
+    "contenu": {
+      "pieces": { "po": 40 },
+      "objets": [],
+      "tables": [{ "table": "fal-butin-naufrage", "jets": 1 }]
+    },
+    "acces": {
+      "verrou": { "dd": 13 },
+      "piege": "fal-piege-herse-de-cale"
+    },
+    "indice": "f-fal-perle-grise-coulee"
+  },
+  {
+    "id": "fal-t-phare-lentille",
+    "nom": "La lentille de rechange",
+    "lieu": "fal-phare-lampe",
+    "contenant": "coffre",
+    "description": "Un coffre de bois sous le pivot de la lentille, rempli de feutre et de bandes de laine. Une lentille de rechange y dort, enveloppée comme un enfant qu'on aurait voulu garder.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "fal-lentille-du-cap", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {},
+    "condition": { "flag": "fal-phare-rallume" }
+  },
+  {
+    "id": "fal-t-cimetiere-tombe",
+    "nom": "La tombe ouverte",
+    "lieu": "fal-cimetiere-des-naufrages",
+    "contenant": "tombe",
+    "description": "Une tombe ouverte, à la pierre rongée. Dans la terre noire gît un médaillon d'étain, avec quelques pièces collées par le sel.",
+    "contenu": {
+      "pieces": { "pa": 60 },
+      "objets": [{ "objet": "fal-medaillon-de-brumevoile", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 12, "competence": "investigation" }
+    },
+    "gardien": "fal-r-goules-du-cimetiere"
+  },
+  {
+    "id": "fal-t-galerie-sac",
+    "nom": "Le sac des toiles",
+    "lieu": "fal-grotte-des-marees-galerie",
+    "contenant": "sac",
+    "description": "Un sac de voyage éventré, pendu à un crochet entre deux cocons. Les bêtes en ont vidé le contenu, mais des pièces ont roulé dans les fentes du sol.",
+    "contenu": {
+      "pieces": { "pa": 60 },
+      "objets": [
+        { "objet": "corde", "quantite": 1 },
+        { "objet": "torche", "quantite": 2 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    },
+    "gardien": "fal-r-araignees-de-la-grotte"
+  },
+  {
+    "id": "fal-t-bassin-sceau",
+    "nom": "Le sceau sous l'eau",
+    "lieu": "fal-grotte-des-marees-bassin",
+    "contenant": "sol",
+    "description": "Un sceau de cire noire, logé dans une fente du dallage sous l'eau claire. Il faut le dégager à la main, en tâtant la pierre.",
+    "contenu": {
+      "pieces": { "po": 30 },
+      "objets": [{ "objet": "fal-sceau-de-cire-de-lothmar", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    },
+    "indice": "f-fal-grotte-marque-de-maree"
+  }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "lot-t-coffre-du-majordome",
+    "nom": "Le coffre du majordome",
+    "lieu": "lot-cuisines-englouties",
+    "contenant": "coffre",
+    "description": "Un coffre de chêne cerclé de cuivre, sous le comptoir. Le sel a gonflé le bois, mais le couvercle tient encore, et la serrure n'a pas rouillé.",
+    "contenu": {
+      "pieces": { "po": 30 },
+      "objets": [{ "objet": "lot-cle-de-l-armurerie", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 12 } }
+  },
+  {
+    "id": "lot-t-armes-de-la-garde",
+    "nom": "Les râteliers de la garde",
+    "lieu": "lot-armurerie-rouillee",
+    "contenant": "etagere",
+    "description": "Des râteliers de fer où pendent les armes de la garde, rongées mais réparables. Ce qui reste peut encore servir à qui sait le trier.",
+    "contenu": {
+      "pieces": {},
+      "objets": [],
+      "tables": [{ "table": "lot-butin-armurerie", "jets": 1 }]
+    },
+    "acces": {},
+    "gardien": "lot-r-armurerie"
+  },
+  {
+    "id": "lot-t-geole-du-gardien",
+    "nom": "La boîte du gardien",
+    "lieu": "lot-geole-des-noyes",
+    "contenant": "cache",
+    "description": "Sous une dalle descellée, près de la porte, une petite boîte de fer où le gardien rangeait ses clés et quelques pièces de cuivre.",
+    "contenu": {
+      "pieces": { "po": 10 },
+      "objets": [{ "objet": "lot-cle-du-conseil", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 13, "competence": "perception" } },
+    "indice": "f-lot-prisonnier-voit-les-barques"
+  },
+  {
+    "id": "lot-t-journal-du-chroniqueur",
+    "nom": "La chronique cachée",
+    "lieu": "lot-bibliotheque-des-noms",
+    "contenant": "etagere",
+    "description": "Sous le troisième rayonnage, un registre relié de cuir, bombé par l'humidité, dont l'encre a tenu malgré l'eau. Il n'a pas été ouvert depuis la Nuit Haute.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "lot-journal-du-chroniqueur", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 12, "competence": "investigation" } },
+    "gardien": "lot-r-bibliotheque",
+    "indice": "f-lot-nom-des-rois"
+  },
+  {
+    "id": "lot-t-cle-de-la-chapelle",
+    "nom": "La clé du sarcophage",
+    "lieu": "lot-crypte-des-rois",
+    "contenant": "sarcophage",
+    "description": "Un sarcophage ouvert, aux bords arrondis par le sel. Sur le couvercle, une clé de bronze repose sous une poussière grise ; elle n'a été rangée là que pour le roi qui doit être honoré.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "lot-cle-de-la-chapelle", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 14, "competence": "investigation" } },
+    "gardien": "lot-r-crypte",
+    "condition": { "flag": "lot-ordre-trouve" }
+  },
+  {
+    "id": "lot-t-medaillon-de-la-regente",
+    "nom": "Le coffre de la Régente",
+    "lieu": "lot-chambre-de-la-regente",
+    "contenant": "coffre",
+    "description": "Un coffre de bois clair, fermé d'une serrure de laiton, rangé sous le lit à baldaquin. La poussière de sel n'a pas franchi son couvercle.",
+    "contenu": {
+      "pieces": { "po": 40 },
+      "objets": [{ "objet": "lot-medaillon-de-la-regente", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 13 } }
+  },
+  {
+    "id": "lot-t-pierre-de-rupture",
+    "nom": "Le creux de l'autel",
+    "lieu": "lot-chapelle-de-la-regente",
+    "contenant": "autel",
+    "description": "Au pied de l'autel, un creux dans la pierre où une pièce noire, lisse comme un galet, repose sur un coussin de sel. Le creux est presque invisible, sous les coquillages.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "pierre-de-rupture", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 13, "competence": "investigation" } }
+  },
+  {
+    "id": "lot-t-couronne-du-conseil",
+    "nom": "Le coffre du dais",
+    "lieu": "lot-salle-du-conseil",
+    "contenant": "coffre",
+    "description": "Un coffre de fer, scellé sous le siège du dais, où le Chancelier range ce qui doit rester au palais. Sa serrure de bronze est lourde, et son couvercle est froid.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "couronne-de-lothmar", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 15, "cle": "lot-cle-du-conseil" } }
+  },
+  {
+    "id": "lot-t-galerie-medailles",
+    "nom": "La vitrine des médailles",
+    "lieu": "lot-galerie-des-portraits",
+    "contenant": "vitrine",
+    "description": "Une vitrine de verre épais, fêlée en un coin, qui renferme des médailles d'or noircies et une fiole d'huile encore claire.",
+    "contenu": {
+      "pieces": { "po": 25 },
+      "objets": [{ "objet": "potion-de-guerison", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 12, "competence": "perception" } }
+  }
+]

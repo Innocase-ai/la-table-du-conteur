@@ -1,0 +1,1629 @@
+[
+  {
+    "id": "mere-sorel-quaibas",
+    "nom": "Mère Sorel Quaibas",
+    "titre": "Cheffe des Rats de quai",
+    "espece": "tieffelin",
+    "sexe": "F",
+    "age": "environ 55 ans",
+    "role": "Cheffe des Rats de quai : passages, trafic et secrets du port",
+    "lieu": "por-entrepots-des-rats",
+    "apparence": "Tieffeline de 55 ans, cornes usées et polies, foulard de soie sale sur les cheveux, manteau de cuir ciré, deux bagues de cuivre aux doigts, regard qui compte les gens sans en avoir l'air.",
+    "personnalite": {
+      "traits": [
+        "calculatrice",
+        "drôle quand elle ne mise pas",
+        "fière de ne rien devoir"
+      ],
+      "voix": "Basse, rapide, ironique ; elle appelle les gens « mon grand » ou « ma belle » selon l'humeur, et ne répète jamais deux fois le même prix.",
+      "valeurs": [
+        "la dette se rend",
+        "les Rats ne vendent pas leurs amis"
+      ],
+      "desir": "Mettre le port à l'abri de la Ligue et ne plus payer de tribut à personne.",
+      "peur": "Que la Ligue découvre le passage de la cale, et prenne les quais en une seule nuit.",
+      "defaut": "Elle marchande tout, même la sécurité des autres."
+    },
+    "presences": [
+      {
+        "lieu": "por-quai-aux-cordes",
+        "moment": "soir"
+      }
+    ],
+    "faction": "rats-de-quai",
+    "attitude": 0,
+    "savoir": [
+      "f-por-filets-coupes-par-rats",
+      "f-por-caisses-faux-noms"
+    ],
+    "secrets": [
+      {
+        "fait": "f-rats-vendent-les-passages",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-rats-vendent-les-passages",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "passages-des-rats",
+        "mots": [
+          "passage",
+          "passer",
+          "rats",
+          "contrebande",
+          "sortir du port"
+        ],
+        "question": "Comment faites-vous passer les gens hors du port ?",
+        "reponse": "Elle sourit sans répondre, puis dit que les Rats vendent des passages : une barque, une porte, un bout de quai à marée basse. Elle ne donne pas de prix, dit que le prix dépend de la personne, et ajoute que la Ligue paie plus cher pour savoir qui passe.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "filets-coupes",
+        "mots": [
+          "filets",
+          "coupés",
+          "sabotage",
+          "pêcheurs",
+          "halle"
+        ],
+        "question": "Qui a coupé les filets des pêcheurs ?",
+        "reponse": "Elle hausse les épaules : les filets sont tranchés par ceux qui veulent que la halle ait faim, parce que la faim fait monter le prix du sel. Elle conseille de regarder les galeries plutôt que le quai, et ne nie pas qu'il y ait des Rats dans les galeries.",
+        "revele": [
+          "f-por-filets-coupes-par-rats"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-ligue",
+        "mots": [
+          "Ligue",
+          "Osric",
+          "fanaux",
+          "Ligue des Phares",
+          "laissez-passer"
+        ],
+        "question": "Que pensez-vous de la Ligue des Phares ?",
+        "reponse": "Elle dit que la Ligue tient le port avec des registres et des soldats, et que les deux sont aussi sales l'un que l'autre. Les Rats paient la Ligue pour qu'elle ne regarde pas sous les quais. Elle tient à ce qu'on ne confonde pas : la Ligue fait les lois, les Rats font les routes.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "alliance-rats",
+        "mots": [
+          "alliance",
+          "aider",
+          "allier",
+          "avec vous",
+          "rats"
+        ],
+        "question": "Proposer de faire alliance avec les Rats.",
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "flag": "ligue-alliee"
+              }
+            },
+            {
+              "non": {
+                "objet": "cle-des-eaux-basses"
+              }
+            }
+          ]
+        },
+        "attitudeMin": 20,
+        "reponse": "Elle vous toise longuement. Elle veut en échange que le groupe passe par la cale sèche sans que la Ligue le sache, et que chacun jure de ne rien dire des entrepôts. Si c'est accepté, elle remet la clé de la chaussée, qu'un de ses pilotes a décrochée pour elle, et ouvre ses galeries aux alliés.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "rats-allies"
+          },
+          {
+            "quete": {
+              "id": "q-rats-le-passage",
+              "statut": "active"
+            }
+          },
+          {
+            "objet": {
+              "id": "cle-des-eaux-basses",
+              "quantite": 1
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "passage-de-la-chaussee",
+        "mots": [
+          "chaussée",
+          "basse mer",
+          "passage",
+          "sous la jetée",
+          "galets"
+        ],
+        "question": "Vous connaissez un passage vers la chaussée ?",
+        "condition": {
+          "non": {
+            "flag": "rats-allies"
+          }
+        },
+        "attitudeMin": 40,
+        "reponse": "Elle baisse la voix : les Rats connaissent la chaussée depuis plus longtemps que la Ligue ne l'a cartographiée. Il y a un chemin de galets sous la jetée, praticable à la basse mer, que les Rats ont emprunté pour vendre des marchandises au palais. Elle ne dit pas qui l'a pris la dernière fois.",
+        "revele": [
+          "f-rats-vendent-les-passages"
+        ],
+        "effets": [],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous êtes sur mon quai sans y être invités.",
+      "neutre": "Vous êtes nouveaux. Ça se paie, les nouveaux.",
+      "amical": "Ah, vous voilà. Asseyez-vous, je vous garde la place."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "maitre-osric-vent",
+    "nom": "Osric Vent",
+    "titre": "Maître de la Ligue des Phares à Port-aux-Cordes",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 50 ans",
+    "role": "Maître de la Ligue : registres, fanaux, laissez-passer du port",
+    "lieu": "por-hall-de-la-ligue",
+    "apparence": "Homme de 50 ans, droit comme un mât, cheveux gris coupés court, manteau de drap bleu nuit aux boutons de cuivre, écusson de phare à la boutonnière, gants de cuir fin ; il lit avec des lunettes cerclées de fer.",
+    "personnalite": {
+      "traits": [
+        "méthodique",
+        "sincère dans sa peur",
+        "courtois jusqu'à la froideur"
+      ],
+      "voix": "Posée, précise, des phrases qui se referment comme des registres ; il ne hausse jamais le ton et répète les chiffres pour qu'on les retienne.",
+      "valeurs": [
+        "l'ordre",
+        "les chiffres justes"
+      ],
+      "desir": "Garder la côte vivante, et ne plus voir de familles engloutir leurs maisons.",
+      "peur": "Que la mer prenne le port avant qu'il ait pu la contenir.",
+      "defaut": "Il croit que les chiffres valent toutes les vies, et il le dit."
+    },
+    "faction": "ligue-des-phares",
+    "attitude": 0,
+    "savoir": [
+      "f-ligue-et-phare-cellule",
+      "f-chaussee-des-basses-eaux",
+      "f-por-marees-du-registre"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ligue-et-phare-cellule",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "registres-ligue",
+        "mots": [
+          "registre",
+          "Ligue",
+          "fanaux",
+          "pouvoir",
+          "marée"
+        ],
+        "question": "Que fait la Ligue dans ce port ?",
+        "reponse": "Il répond avec précision : la Ligue tient les fanaux, les registres de marée et les laissez-passer, et fait payer les pilotes qui s'en servent. Il dit que la mer se retire depuis plus d'un mois, et que la Ligue a compté quarante-deux jours sans marée haute complète. Il ne parle ni de l'enfant ni du palais.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "palais-sous-l-eau",
+        "mots": [
+          "palais",
+          "chaussée",
+          "sous l'eau",
+          "Lothmar",
+          "basses-eaux"
+        ],
+        "question": "Qu'est-ce que la chaussée des Basses-Eaux ?",
+        "reponse": "Il garde le silence un moment. Il dit que la chaussée mène au palais de l'ancienne Lothmar, englouti depuis trois siècles, et que la mer ne le couvre plus depuis quelques jours. On n'y va pas sans la clé de la grille, dit-il, ni sans un pilote qui connaît les galets. La Ligue ne laisse passer personne, et il veut qu'on le croie.",
+        "revele": [
+          "f-chaussee-des-basses-eaux"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "cellule-du-phare",
+        "mots": [
+          "cellule",
+          "enfermer",
+          "enfant",
+          "Nolwen",
+          "marquée",
+          "phare"
+        ],
+        "question": "Que comptez-vous faire de l'enfant ?",
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
+        "attitudeMin": 30,
+        "reponse": "Il ne cache rien, parce qu'il croit que c'est la moins mauvaise chose. La Ligue veut une cellule scellée dans le phare, où la mer ne peut plus atteindre celle qu'elle réclame. Il assure que la jeune fille y serait nourrie, logée, protégée, et qu'elle ne sentirait jamais la mer monter. Elle n'en sortirait pas.",
+        "revele": [
+          "f-ligue-et-phare-cellule"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "livrer-l-enfant",
+        "mots": [
+          "livrer",
+          "confier",
+          "remettre",
+          "laisser",
+          "phare-cellule"
+        ],
+        "question": "Lui proposer de confier Nolwen à la Ligue.",
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
+        "reponse": "Il ne se réjouit pas, mais il ne recule pas. Il promet cent pièces d'or, une protection pour le port, des familles qui ne seront plus englouties, et une cellule saine et sèche au phare. Il demande une réponse avant la prochaine basse mer. Il ne ment pas sur le confort : il ment seulement sur ce qu'il faut pour y vivre.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "choix-livrer"
+          },
+          {
+            "escorte": {
+              "pnj": "nolwen-brevemer",
+              "actif": false
+            }
+          },
+          {
+            "deplacer": {
+              "pnj": "nolwen-brevemer",
+              "lieu": "por-phare-du-port"
+            }
+          },
+          {
+            "pieces": 100
+          },
+          {
+            "xp": 300
+          },
+          {
+            "fin": "fin-livrer"
+          },
+          {
+            "quete": {
+              "id": "q-la-grande-maree",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "alliance-ligue",
+        "mots": [
+          "aider",
+          "alliance",
+          "allier",
+          "servir",
+          "soutien",
+          "Ligue"
+        ],
+        "question": "Proposer de servir la Ligue contre la mer.",
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "flag": "rats-allies"
+              }
+            },
+            {
+              "ou": [
+                {
+                  "quete": {
+                    "id": "q-por-les-filets-coupes",
+                    "statut": "terminee"
+                  }
+                },
+                {
+                  "fait": "f-por-filets-coupes-par-rats"
+                }
+              ]
+            }
+          ]
+        },
+        "attitudeMin": 15,
+        "reponse": "Il vous jauge un long moment, puis dit que la Ligue manque de gens qui ne tremblent pas. Il remet au groupe un sceau de bronze, le laissez-passer du port, et demande qu'on lui rapporte tout ce qu'on découvre dans les égouts et sur les quais. Il donne aussi la clé de la grille de la chaussée, qu'il ne voulait confier à personne.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "ligue-alliee"
+          },
+          {
+            "quete": {
+              "id": "q-ligue-le-phare-cellule",
+              "statut": "active"
+            }
+          },
+          {
+            "objet": {
+              "id": "sceau-de-la-ligue",
+              "quantite": 1
+            }
+          },
+          {
+            "objet": {
+              "id": "cle-des-eaux-basses",
+              "quantite": 1
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Vos noms sont inscrits. Ce n'est pas une bonne nouvelle pour vous.",
+      "neutre": "Asseyez-vous. Vous avez dix minutes, et je compte.",
+      "amical": "Ah, les gens qui savent compter. Entrez, je vous attendais."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "soeur-elwyn",
+    "nom": "Soeur Elwyn",
+    "titre": "Gardienne de la chapelle des noyés",
+    "espece": "elfe",
+    "sexe": "F",
+    "age": "environ 180 ans",
+    "role": "Gardienne de la chapelle des noyés : soins, refuge et registre des noms",
+    "lieu": "por-chapelle-des-noyes",
+    "apparence": "Elfe mince de 180 ans, cheveux d'argent noués bas, robe de lin bleu délavé, chapelet de coquillages au cou, mains tachées de sel et de cire, regard calme et fatigué.",
+    "personnalite": {
+      "traits": [
+        "patiente",
+        "discrète",
+        "obstinée dans la compassion"
+      ],
+      "voix": "Douce et lente, avec des silences où l'on entend la mer ; elle dit « mon enfant » à presque tout le monde, sauf aux Ligueurs.",
+      "valeurs": [
+        "les noms comptent",
+        "personne ne se perd en mer sans être écrit"
+      ],
+      "desir": "Que chaque naufragé du port ait un nom gravé, et une tombe où le poser.",
+      "peur": "Que la mer reprenne ses morts pour de bon, sans qu'on puisse leur rendre leur nom.",
+      "defaut": "Elle porte tout seule, et se reproche chaque nom qu'elle n'a pas pu sauver."
+    },
+    "faction": "cartographes",
+    "attitude": 10,
+    "savoir": [
+      "f-por-noms-des-noyes",
+      "f-por-fosses-vides"
+    ],
+    "secrets": [
+      {
+        "fait": "f-por-fosses-vides",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "soins",
+        "mots": [
+          "blessé",
+          "soigner",
+          "soins",
+          "plaie",
+          "fièvre",
+          "guérir"
+        ],
+        "question": "Pouvez-vous soigner nos blessures ?",
+        "reponse": "Elle nettoie les plaies à l'eau-de-vie et au sel, sans rien demander pour le premier soin. Pour les autres, elle note un nom dans son registre et demande qu'on lui raconte d'où l'on vient. Elle dit que la chapelle ne garde pas d'argent, seulement des noms.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-noms",
+        "mots": [
+          "noms",
+          "registre",
+          "gravés",
+          "piliers",
+          "noyés",
+          "chapelle"
+        ],
+        "question": "Que signifient les noms gravés aux piliers ?",
+        "reponse": "Ce sont les naufragés repêchés depuis un an, dont elle a demandé le nom avant qu'ils ne partent. La mer ne garde pas les noms, dit-elle, alors ce sont les vivants qui doivent les garder. Elle montre le dernier pilier, où le nom est encore frais, celui d'un marin de la Ligue.",
+        "revele": [
+          "f-por-noms-des-noyes"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "mer-et-lumieres",
+        "mots": [
+          "mer",
+          "lumières",
+          "sous l'eau",
+          "marée",
+          "noyés",
+          "falaise"
+        ],
+        "question": "Que se passe-t-il avec la mer, ces derniers temps ?",
+        "reponse": "Elle dit que les noyés ne viennent plus seuls : ils marchent en file au pied des falaises, et elle en a compté quatre au bord de la chapelle, immobiles, qui attendaient la porte. Elle ne connaît pas leurs noms, seulement leurs rangs. La mer ne se retire pas par hasard, selon elle : elle attend quelque chose.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-fosses",
+        "mots": [
+          "fosse",
+          "cimetière",
+          "tombes",
+          "enterrer",
+          "vides"
+        ],
+        "question": "Où sont enterrés les naufragés repêchés ?",
+        "condition": {
+          "non": {
+            "flag": "por-fosses-racontees"
+          }
+        },
+        "attitudeMin": 25,
+        "reponse": "Elle ferme les yeux. Les fosses sont vides depuis deux mois : les repêchés n'y ont jamais été mis, car la mer les reprenait avant la pelle. Elle a donc gravé leurs noms sans tombes. Quelqu'un, sur la chaussée, a parlé de les rendre à la mer, et elle n'a pas su le dire aux autres.",
+        "revele": [
+          "f-por-fosses-vides"
+        ],
+        "effets": [
+          {
+            "flag": "por-fosses-racontees"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-marque",
+        "mots": [
+          "Nolwen",
+          "marque",
+          "épaule",
+          "marquée",
+          "enfant"
+        ],
+        "question": "Regardez la marque de cette jeune fille.",
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
+        "attitudeMin": 20,
+        "reponse": "Elle reconnaît la marque de basse-mer, une tache pâle en forme de vague, et reste silencieuse un long moment. Elle dit qu'elle a déjà vu cette forme, gravée près d'un nom sur un pilier, et qu'elle ne sait pas si l'on prie pour une marque ou pour une enfant. Elle propose de prier pour les deux.",
+        "revele": [
+          "f-marque-de-basse-mer"
+        ],
+        "effets": [],
+        "unique": true
+      }
+    ],
+    "services": [
+      {
+        "id": "soins-chapelle",
+        "nom": "Soins et pansements",
+        "resume": "Elle referme les plaies, soigne le mal de mer et la fièvre, et note le nom de chacun dans son registre.",
+        "prix": 5,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "hostile": "Je ne soigne pas ceux qui brûlent les noms.",
+      "neutre": "Entrez, la porte ne se ferme pas à ceux qui ont froid.",
+      "amical": "Vous revoilà, mes enfants. Il y a de la soupe au fond de la nef."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "joss-la-rame",
+    "nom": "Joss la Rame",
+    "titre": "Tavernier du Hareng gris et passeur",
+    "espece": "orc",
+    "sexe": "M",
+    "age": "environ 40 ans",
+    "role": "Tavernier et passeur ; espion du Chancelier, à son insu pour certains",
+    "lieu": "por-taverne-du-hareng",
+    "apparence": "Orc de 40 ans, large d'épaules, sourire facile, cheveux noués en queue de cheval, veste de marin en cuir repassée, bottes cirées, cicatrice de rame sur la main droite.",
+    "personnalite": {
+      "traits": [
+        "affable",
+        "compte tout",
+        "toujours de bonne humeur, jusqu'au moment où ça compte"
+      ],
+      "voix": "Chaleureux et plaisantin, il appelle chacun « l'ami » et détourne les questions par une blague ; quand il devient sérieux, il baisse les yeux sur ses mains.",
+      "valeurs": [
+        "la famille du quai",
+        "les bons comptes"
+      ],
+      "desir": "Que la Cour lui paie une fortune et efface les dettes de la taverne.",
+      "peur": "Que le groupe trouve les lettres, et que les Rats le prennent pour un traître.",
+      "defaut": "Il vend ce qu'il ne possède pas, et se persuade que ça ne fait de mal à personne."
+    },
+    "attitude": 10,
+    "savoir": [
+      "f-por-joss-vend-les-fuyards",
+      "f-por-heraut-suit-le-groupe"
+    ],
+    "secrets": [
+      {
+        "fait": "f-por-joss-vend-les-fuyards",
+        "attitudeMin": 45
+      },
+      {
+        "fait": "f-por-heraut-suit-le-groupe",
+        "jet": {
+          "competence": "intuition",
+          "dd": 13
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "bruits-du-port",
+        "mots": [
+          "port",
+          "nouvelles",
+          "rumeurs",
+          "bruit",
+          "gens"
+        ],
+        "question": "Quelles nouvelles circulent sur le port ?",
+        "reponse": "Il raconte les rumeurs : une barque qui a tourné sur la jetée sans personne à bord, des lueurs sous l'eau à marée basse, un gamin qui a disparu dans les égouts. Il dit que ça ne le regarde pas, puis finit son verre et le remplit pour vous.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "qui-mene-a-la-chaussee",
+        "mots": [
+          "barque",
+          "bateau",
+          "passage",
+          "chaussée",
+          "traverser",
+          "pilote"
+        ],
+        "question": "Qui peut nous mener à la chaussée ?",
+        "reponse": "Il dit qu'un vieux pilote, Ambroise, connaît les galets, mais que la barque du chantier n'est pas à vendre. Pour une somme raisonnable, il pourrait lui-même faire passer des gens, sans trop de questions. Il évite de dire à quelle heure il comptait partir.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "lueurs-sous-l-eau",
+        "mots": [
+          "lumières",
+          "lueurs",
+          "sous l'eau",
+          "éclat",
+          "mer"
+        ],
+        "question": "Vous avez vu des lueurs sous l'eau, vous aussi ?",
+        "reponse": "Il dit qu'il a vu la même chose que les autres : une lueur au fond, comme une lanterne portée par quelqu'un qui marche. Il ne veut pas en parler devant les clients. Il ajoute que la Cour, comme il l'appelle entre les dents, n'a jamais eu besoin que de patience.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "montrer-la-lettre",
+        "mots": [
+          "lettre",
+          "Chancelier",
+          "preuve",
+          "trahison",
+          "fuyards",
+          "vendre"
+        ],
+        "question": "Montrer la lettre du Chancelier trouvée dans les égouts.",
+        "condition": {
+          "fait": "f-por-lettre-du-chancelier"
+        },
+        "reponse": "Il lit la lettre lentement et la repose sur le comptoir. Il ne nie rien : il explique qu'il a accepté une dette envers des gens qu'il ne voit jamais, et qu'on lui a promis de ne prendre que des fuyards et des naufragés. Puis il change de ton, sort une dague de sous le comptoir, et ses hommes se lèvent dans la salle.",
+        "revele": [
+          "f-por-joss-vend-les-fuyards"
+        ],
+        "effets": [
+          {
+            "flag": "joss-demasque"
+          },
+          {
+            "fait": "f-por-joss-vend-les-fuyards"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "dettes-de-la-taverne",
+        "mots": [
+          "dette",
+          "taverne",
+          "argent",
+          "payer",
+          "aider"
+        ],
+        "question": "Proposer de régler les dettes de la taverne.",
+        "attitudeMin": 20,
+        "reponse": "Il se réjouit, sincèrement, et prend l'argent. Puis il laisse entendre qu'un Héraut blême vient parfois prendre des nouvelles du quai, qu'il suit les voyageurs à distance, et que ses hommes veillent sur la ruelle la nuit. Il ne dit pas pour qui.",
+        "revele": [
+          "f-por-heraut-suit-le-groupe"
+        ],
+        "effets": [
+          {
+            "pieces": -30
+          },
+          {
+            "attitude": {
+              "pnj": "joss-la-rame",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Oh. Vous, encore. Je vous ai pourtant bien servi.",
+      "neutre": "Bienvenue au Hareng gris, l'ami ! Que boit-on ce soir ?",
+      "amical": "Mes meilleurs clients ! La table du fond vous attend, et la maison régale."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-garance-bolle",
+    "nom": "Garance Bolle",
+    "titre": "Patronne de la taverne du Hareng gris",
+    "espece": "halfelin",
+    "sexe": "F",
+    "age": "environ 50 ans",
+    "role": "Patronne de la taverne : repas, chambres, nouvelles du port",
+    "lieu": "por-taverne-du-hareng",
+    "apparence": "Halfeline de 50 ans, joues rondes, cheveux roux tressés autour d'un bandeau de lin, tablier de cuir taché de sauce, mains couvertes de farine et de petites cicatrices de couteau.",
+    "personnalite": {
+      "traits": [
+        "généreuse",
+        "curieuse",
+        "pingre sur les pièces"
+      ],
+      "voix": "Vive et chaleureuse ; elle parle en cuisine, et tout pour elle est affaire de cuisson, de sel ou de patience.",
+      "valeurs": [
+        "la table est sacrée",
+        "personne ne dort dehors"
+      ],
+      "desir": "Garder la taverne ouverte pour les naufragés et les pauvres du port.",
+      "peur": "Qu'on lui ferme la porte, et que la Ligue ou les Rats prennent son toit pour une dette.",
+      "defaut": "Elle compte les dettes et ne les oublie jamais."
+    },
+    "faction": "rats-de-quai",
+    "attitude": 5,
+    "savoir": [],
+    "sujets": [
+      {
+        "id": "repas-du-soir",
+        "mots": [
+          "manger",
+          "repas",
+          "nourriture",
+          "faim",
+          "soupe"
+        ],
+        "question": "Qu'est-ce qu'on mange ce soir ?",
+        "reponse": "Une soupe de poisson, du pain noir et du hareng fumé, servis à la table commune avec une menace : si la halle n'ouvre pas demain, il n'y aura plus de hareng. Elle ne fait pas payer les enfants ni les naufragés, dit-elle, et les autres paient pour eux.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "dettes-du-port",
+        "mots": [
+          "dette",
+          "compte",
+          "argent",
+          "fournisseurs",
+          "dû"
+        ],
+        "question": "À qui devez-vous de l'argent au port ?",
+        "reponse": "Elle sort un registre de dettes : les Rats, la Ligue, le boucher, le fournisseur de bière. Elle dit que Joss paie tout en retard, mais toujours. Elle a un chiffre en tête, deux cents pièces pour sauver la taverne. Elle n'en demandera pas au groupe, dit-elle, mais son regard dit le contraire.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "chambre-pour-la-nuit",
+        "mots": [
+          "dormir",
+          "lit",
+          "chambre",
+          "nuit",
+          "refuge"
+        ],
+        "question": "Avez-vous une chambre pour la nuit ?",
+        "reponse": "Elle en a trois, dont une au-dessus de la cuisine, la plus chaude. Elle demande le nom de chacun, puis le verrou se tire de l'intérieur. Elle prévient que les fenêtres du port donnent sur l'eau, et qu'à marée basse on entend marcher sur les galets sous la jetée.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "services": [
+      {
+        "id": "repas",
+        "nom": "Repas du soir",
+        "resume": "Soupe de poisson, pain noir et hareng fumé, à la table commune.",
+        "prix": 1,
+        "effets": []
+      },
+      {
+        "id": "chambre",
+        "nom": "Chambre à l'étage",
+        "resume": "Une nuit dans un lit sec, derrière une porte à verrou, pour un repos long en sécurité.",
+        "prix": 2,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Entrez, entrez, vous êtes trempés comme des chiots !",
+      "amical": "Ah, mes naufragés préférés ! La soupe est chaude, et la chambre est prête."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-piot",
+    "nom": "Piot",
+    "titre": "Gamin des quais",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 11 ans",
+    "role": "Gamin des quais : messager, guetteur, bourse trouée",
+    "lieu": "por-quai-aux-cordes",
+    "apparence": "Garçon de 11 ans, maigre et vif, cheveux roux coupés au couteau, pieds nus sur les pavés, veste de marin trop grande, bourse de cuir au cou, sifflet d'os accroché à une ficelle.",
+    "personnalite": {
+      "traits": [
+        "vif",
+        "fier",
+        "menteur de bonne foi"
+      ],
+      "voix": "Rapide, il coupe ses phrases, s'exclame, et dit « m'sieur » ou « m'dame » en comptant ses pièces à voix haute.",
+      "valeurs": [
+        "les amis ne se laissent pas",
+        "le quai, c'est la famille"
+      ],
+      "desir": "Retrouver Nino, son meilleur copain, qui a disparu dans les égouts.",
+      "peur": "Que personne ne le croie, et que Nino soit déjà trop loin sous les pavés.",
+      "defaut": "Il exagère tout, surtout ce qu'il a vu."
+    },
+    "attitude": 10,
+    "savoir": [
+      "f-por-lumieres-dans-les-egouts"
+    ],
+    "sujets": [
+      {
+        "id": "nino-disparu",
+        "mots": [
+          "Nino",
+          "disparu",
+          "gamin",
+          "égouts",
+          "ami",
+          "cherche"
+        ],
+        "question": "Que s'est-il passé avec votre ami ?",
+        "reponse": "Piot raconte que Nino est descendu dans les égouts pour voir les lumières, et qu'il ne l'a plus revu. Les Rats ne veulent rien dire. Il a entendu un cri au bassin de tri, derrière la grille. Il a peur que Nino soit coincé sur la corniche quand la marée reviendra, et il propose sa bourse pour le retrouver.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-por-le-gamin-disparu",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "lumieres-dans-les-galeries",
+        "mots": [
+          "lumière",
+          "lueur",
+          "galeries",
+          "nuit",
+          "vu"
+        ],
+        "question": "Qu'avez-vous vu la nuit, dans les galeries ?",
+        "reponse": "Une lueur grise qui ne fume pas, à marée basse, qui glisse au fond du bassin comme une lanterne sous l'eau. Il dit qu'il a eu peur et qu'il s'est sauvé. Il jure qu'elle ne lui a rien fait, mais qu'elle a regardé dans sa direction.",
+        "revele": [
+          "f-por-lumieres-dans-les-egouts"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "nino-retrouve",
+        "mots": [
+          "retrouvé",
+          "ramené",
+          "revenu",
+          "Nino",
+          "rendu"
+        ],
+        "question": "On a retrouvé Nino. Le voilà.",
+        "condition": {
+          "flag": "por-gamin-trouve"
+        },
+        "reponse": "Piot pleure, puis rit, puis cache ses larmes derrière sa manche. Il dit qu'il s'en doutait, que Nino est le meilleur pêcheur de galets du quai. Il rend au groupe la pièce promise, et une pièce en plus pour l'honneur, puis propose de dire aux Rats que vous êtes des amis.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "por-gamin-rendu"
+          },
+          {
+            "attitude": {
+              "pnj": "por-piot",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Dégage du quai, toi, on t'a vu avec les Ligueurs !",
+      "neutre": "Vous êtes pas du port, vous. Vous voulez quoi ?",
+      "amical": "C'est les gens de la Citadelle ! Venez voir, j'ai des trucs à vous montrer."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-hennequin-lacet",
+    "nom": "Hennequin Lacet",
+    "titre": "Maître cordier et calfat du chantier",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "environ 60 ans",
+    "role": "Maître cordier et calfat : cordages, grappins, lanternes, réparation des barques",
+    "lieu": "por-chantier-naval",
+    "apparence": "Nain de 60 ans, barbe grise tressée et enroulée de ficelle, tablier de cuir gras, forte carrure, mains couvertes de goudron et de cicatrices de fil, crayon de charpentier derrière l'oreille.",
+    "personnalite": {
+      "traits": [
+        "bourru",
+        "honnête sur le prix",
+        "fier de son ouvrage"
+      ],
+      "voix": "Rauque et terse ; il parle de ses cordages comme de ses enfants, et n'admet pas qu'on les méprise.",
+      "valeurs": [
+        "le travail bien fait",
+        "la dette se rend au juste prix"
+      ],
+      "desir": "Finir la barque qu'il répare depuis un an, avant que la mer ne la lui prenne.",
+      "peur": "Que la cale s'effondre sous le poids de la chaussée.",
+      "defaut": "Il tient trop à ses outils et garde ses rancunes plus longtemps que ses dettes."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-por-barque-cachee"
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "corde",
+          "quantite": 6
+        },
+        {
+          "objet": "grappin",
+          "quantite": 2
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 2
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        },
+        {
+          "objet": "materiel-d-escalade",
+          "quantite": 1
+        }
+      ],
+      "rachat": 0.4,
+      "types": [
+        "materiel",
+        "outil"
+      ]
+    },
+    "sujets": [
+      {
+        "id": "la-barque",
+        "mots": [
+          "barque",
+          "bateau",
+          "chaussée",
+          "bâche",
+          "pilote",
+          "sous la bâche"
+        ],
+        "question": "Cette barque sous la bâche, elle est à qui ?",
+        "reponse": "Elle est à Ambroise Carène, le pilote du phare, qui la lui a confiée pour la réparer. Elle est presque prête : il manque une quille de rechange, une bonne corde de chanvre et une lanterne de pilote dont le verre tienne dans le brouillard. Il dit qu'elle ne fera pas le voyage sans lanterne.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "reparer-la-barque",
+        "mots": [
+          "réparer",
+          "aider",
+          "corde",
+          "quille",
+          "barque",
+          "lanterne"
+        ],
+        "question": "Proposer de réparer la barque avec lui.",
+        "condition": {
+          "et": [
+            {
+              "objet": "corde"
+            },
+            {
+              "objet": "por-lanterne-du-pilote"
+            }
+          ]
+        },
+        "reponse": "Il accepte, sans sourire, et prend la corde et la lanterne. Il jure qu'il n'en fait pas une affaire d'orgueil, puis sort son marteau et un bout de chêne. Au bout d'une heure, la barque flotte dans la cale, et il dit qu'elle est prête pour la chaussée.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "por-barque-prete"
+          },
+          {
+            "objet": {
+              "id": "corde",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "objet": {
+              "id": "por-lanterne-du-pilote",
+              "quantite": 1,
+              "retirer": true
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "cordages-a-vendre",
+        "mots": [
+          "prix",
+          "acheter",
+          "corde",
+          "vendre",
+          "marchandise",
+          "lanterne"
+        ],
+        "question": "Qu'avez-vous à vendre pour un voyage en mer ?",
+        "reponse": "Il ouvre son étal : cordes de chanvre à l'épreuve de l'eau, grappins à trois griffes, lanternes à capote. Il ne fait pas de rabais, mais dit qu'une corde bien tressée sauve plus de vies qu'un prêtre. Il ajoute que la Ligue lui a commandé une cage de fer la semaine dernière, et qu'il n'a pas encore répondu.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Vous voulez acheter, ou vous êtes là pour faire du bruit ?",
+      "amical": "Ah, un client qui sait ce que vaut une corde. Montrez-moi vos mains."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-odile-sauvrac",
+    "nom": "Odile Sauvrac",
+    "titre": "Poissonnière et saunière de la halle",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 45 ans",
+    "role": "Poissonnière de la halle : salaisons, rations, cordes de chanvre",
+    "lieu": "por-marche-aux-poissons",
+    "apparence": "Femme de 45 ans, bras forts, cheveux bruns sous un fichu rouge, tablier de toile raidie par le sel, couteau à poisson à la ceinture, rides creusées par le vent de mer.",
+    "personnalite": {
+      "traits": [
+        "vive",
+        "rancunière",
+        "juste dans ses comptes"
+      ],
+      "voix": "Haute et franche ; elle crie les prix pour que tout le marché les entende, et baisse le ton seulement pour les mauvaises nouvelles.",
+      "valeurs": [
+        "la honte se paie",
+        "les pêcheurs d'abord"
+      ],
+      "desir": "Que les filets reviennent, et que la halle nourrisse le port cet hiver.",
+      "peur": "Qu'on fasse crever la halle pour une querelle de Ligue.",
+      "defaut": "Elle soupçonne tout le monde, même ceux qui l'aident."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-por-filets-coupes-par-rats"
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 20
+        },
+        {
+          "objet": "outre",
+          "quantite": 4
+        },
+        {
+          "objet": "huile",
+          "quantite": 4
+        },
+        {
+          "objet": "sac-a-dos",
+          "quantite": 2
+        }
+      ],
+      "rachat": 0.3,
+      "types": [
+        "nourriture",
+        "materiel"
+      ]
+    },
+    "sujets": [
+      {
+        "id": "filets-tranches",
+        "mots": [
+          "filets",
+          "coupés",
+          "sabotage",
+          "pêcheurs",
+          "halle",
+          "pertes"
+        ],
+        "question": "Qui coupe les filets de vos pêcheurs ?",
+        "reponse": "Elle est furieuse : quarante brasses de filets tranchés cette semaine, et la halle n'a plus rien pour l'hiver. Elle accuse la Ligue, puis les Rats, puis se reprend : elle a vu une barque basse sur le quai, sans feux, la nuit. Elle promet une récompense à qui lui ramène un nom.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-por-les-filets-coupes",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rapporter-le-nom",
+        "mots": [
+          "filets",
+          "rapporter",
+          "nom",
+          "coupé",
+          "Rats",
+          "qui"
+        ],
+        "question": "Lui dire qui a coupé les filets.",
+        "condition": {
+          "fait": "f-por-filets-coupes-par-rats"
+        },
+        "reponse": "Elle écoute sans rien dire, puis compte vingt pièces sur le comptoir, sans les lâcher tout de suite. Elle dit qu'elle n'a pas besoin qu'on fasse justice, seulement qu'on lui dise la vérité. Elle la notera, et pas qu'à la halle.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "por-filets-rapportes"
+          },
+          {
+            "pieces": 20
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-sel-de-la-halle",
+        "mots": [
+          "sel",
+          "saumure",
+          "poisson",
+          "marché",
+          "fournisseurs"
+        ],
+        "question": "Comment la halle se fournit-elle en sel ?",
+        "reponse": "Auprès des Rats, sans poser de question. Elle n'aime pas ça, mais le sel des salines ne vient plus depuis que la mer a quitté les marais. Elle dit que les Rats vendent du sel de contrebande en même temps que des passages, et que ça vaut mieux que la faim.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous, je vous connais. Ne mettez pas les pieds à ma halle.",
+      "neutre": "Qu'est-ce que vous voulez, sans vous approcher des caisses ?",
+      "amical": "Ma bonne! Vous voulez du hareng pour le voyage ?"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-ottilie-brasse",
+    "nom": "Ottilie Brasse",
+    "titre": "Capitaine de la garde du port",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 40 ans",
+    "role": "Capitaine de la garde : ordre du quai, amendes, tenue des portes",
+    "lieu": "por-quai-aux-cordes",
+    "apparence": "Femme de 40 ans, grande, cheveux noirs tirés en chignon serré, cuirasse de cuir bouilli usée, visage fatigué, bâton de commandement en if, cernes marqués.",
+    "personnalite": {
+      "traits": [
+        "lasse",
+        "pragmatique",
+        "vénale sans méchanceté"
+      ],
+      "voix": "Sèche et brève, avec un petit sourire qu'elle regrette dès qu'il apparaît ; elle dit « on verra » quand elle ne veut pas dire non.",
+      "valeurs": [
+        "l'ordre avant tout",
+        "la solde arrive toujours en retard"
+      ],
+      "desir": "Avoir assez d'hommes pour tenir les quais, sans payer ni la Ligue ni les Rats.",
+      "peur": "Que la mer prenne le quai avec ses hommes dessus.",
+      "defaut": "Elle accepte les pièces pour fermer les yeux, et se dit que c'est pour la solde."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-por-garde-touchee-par-les-rats"
+    ],
+    "sujets": [
+      {
+        "id": "la-garde-du-quai",
+        "mots": [
+          "garde",
+          "quai",
+          "amende",
+          "ordre",
+          "loi",
+          "cachot"
+        ],
+        "question": "Que fait la garde pour le quai ?",
+        "reponse": "Elle compte les hommes en riant sans joie : trois veilleurs pour tout le port, une cabane, une lampe, et des consignes qui changent selon qui vient les demander. Quiconque casse les caisses du quai paie l'amende ou passe la nuit au cachot, dit-elle. La cellule du poste est pleine de bagarreurs depuis un mois.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "amende-pour-la-bagarre",
+        "mots": [
+          "bagarre",
+          "brigands",
+          "bandits",
+          "péage",
+          "payer",
+          "amende"
+        ],
+        "question": "Demander ce qu'il faut payer pour la bagarre.",
+        "condition": {
+          "flag": "por-bagarre-au-quai"
+        },
+        "reponse": "Elle hausse les épaules : les brigands paient la garde, et la garde paie la Ligue. Si vous avez tapé sur les gens du péage, vous êtes dans le mauvais registre. Elle propose de régler l'amende pour l'oublier, vingt pièces, et de ne plus revenir sur ce sujet.",
+        "revele": [],
+        "effets": [
+          {
+            "pieces": -20
+          },
+          {
+            "flag": "por-amende-payee"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "qui-vous-paie",
+        "mots": [
+          "Ligue",
+          "Rats",
+          "bourse",
+          "payer",
+          "corrompue",
+          "garde"
+        ],
+        "question": "Qui vous paie vraiment, capitaine ?",
+        "attitudeMin": 10,
+        "reponse": "Elle se tait, puis dit que la Ligue paie la garde en double et que les Rats complètent, pour fermer les yeux sur des choses différentes. Elle ne sait plus très bien qui elle protège. Elle propose de ne pas regarder vos armes si vous ne regardez pas les siennes.",
+        "revele": [
+          "f-por-garde-touchee-par-les-rats"
+        ],
+        "effets": [],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous avez une heure pour quitter le quai, ou vous passez la nuit au cachot.",
+      "neutre": "Papiers. Et ne me faites pas de discours.",
+      "amical": "Ah, les voyageurs de la Citadelle. Il y a encore de la place au poste, si vous en avez besoin."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-gaspard-filet",
+    "nom": "Gaspard Filet",
+    "titre": "Pêcheur de nuit",
+    "espece": "goliath",
+    "sexe": "M",
+    "age": "environ 35 ans",
+    "role": "Pêcheur de nuit : il a vu des lumières sous l'eau",
+    "lieu": "por-marche-aux-poissons",
+    "apparence": "Goliath de 35 ans, grand et gris, peau de pierre couverte de sel séché, yeux pâles, bras tatoués de traits de marée, veste de toile raidie, filet pendu sur l'épaule.",
+    "personnalite": {
+      "traits": [
+        "taciturne",
+        "honnête",
+        "superstitieux"
+      ],
+      "voix": "Lente et grave ; il choisit ses mots comme des pierres qu'il pose l'une après l'autre.",
+      "valeurs": [
+        "le filet ne ment pas",
+        "il faut rendre à la mer ce qu'on lui prend"
+      ],
+      "desir": "Retrouver le sommeil, et ne plus voir de lueurs au large.",
+      "peur": "Que les lueurs reviennent avec quelque chose qui le suit.",
+      "defaut": "Il attend trop qu'on lui demande, et il ne demande jamais rien."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-por-lumieres-sous-l-eau"
+    ],
+    "sujets": [
+      {
+        "id": "lueurs-au-large",
+        "mots": [
+          "lumières",
+          "sous l'eau",
+          "nuit",
+          "éclat",
+          "mer",
+          "vu"
+        ],
+        "question": "Avez-vous vu des lumières sous l'eau ?",
+        "reponse": "Deux nuits de suite, à marée basse, une lueur au fond de la chaussée, qui allait et venait comme une lanterne portée par quelqu'un qui marche. Il ne sait pas ce qui la porte. Quand il pointait sa propre lampe vers elle, elle s'arrêtait. Il conseille de ne pas marcher là où elle est passée.",
+        "revele": [
+          "f-por-lumieres-sous-l-eau"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-pilote-du-phare",
+        "mots": [
+          "pilote",
+          "Ambroise",
+          "chaussée",
+          "palais",
+          "vu"
+        ],
+        "question": "Qui connaît le mieux la chaussée ?",
+        "reponse": "Ambroise Carène, le vieux pilote du phare, qui a vu le palais sous l'eau une nuit de basse mer, et n'en parle plus depuis. Gaspard dit qu'on le trouve au pied de l'escalier du phare, à deux pas de la porte.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-barque-sans-feux",
+        "mots": [
+          "filets",
+          "nuit",
+          "quai",
+          "barque",
+          "personne",
+          "bateau"
+        ],
+        "question": "Avez-vous vu quelqu'un toucher aux filets ?",
+        "reponse": "Une barque basse, sans feux, qui longeait le quai vers la cale à la basse mer. Deux hommes à bord, un troisième qui parlait tout seul. Il ne sait pas à qui elle appartenait, seulement qu'elle sentait le sel et le plomb, et qu'elle a coupé à travers les filets en rentrant.",
+        "revele": [],
+        "effets": [
+          {
+            "fait": "f-por-filets-coupes-par-rats"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Je vends du poisson, pas des histoires.",
+      "amical": "Vous, vous avez les yeux qui regardent la mer. Asseyez-vous."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-ambroise-carene",
+    "nom": "Ambroise Carène",
+    "titre": "Vieux pilote du phare",
+    "espece": "elfe",
+    "sexe": "M",
+    "age": "environ 210 ans",
+    "role": "Pilote de la jetée : cartes, passages, mémoire de la chaussée",
+    "lieu": "por-phare-du-port",
+    "apparence": "Elfe de 210 ans, très maigre, cheveux blancs tombant sur des épaules voûtées, vareuse de marin reprisée, doigts noueux, lunettes de cuivre sur le nez, carnet à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "taciturne",
+        "précis",
+        "hanté par ce qu'il a vu"
+      ],
+      "voix": "Lente et mesurée ; il s'arrête au milieu des phrases, comme s'il regardait encore la mer.",
+      "valeurs": [
+        "la carte dit la vérité",
+        "il faut tenir les registres"
+      ],
+      "desir": "Rendre la clé de la grille à la Citadelle avant de mourir.",
+      "peur": "Que la mer reprenne la chaussée avec tout ce qu'il y a dessus.",
+      "defaut": "Il a gardé le silence trop longtemps, et il se le reproche."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-por-ambroise-vu-palais",
+      "f-chaussee-des-basses-eaux",
+      "f-por-cle-chez-le-pilote"
+    ],
+    "sujets": [
+      {
+        "id": "le-palais-vu",
+        "mots": [
+          "palais",
+          "vu",
+          "chaussée",
+          "sous l'eau",
+          "nuit",
+          "basse mer"
+        ],
+        "question": "Vous avez vu le palais sous l'eau ?",
+        "reponse": "Une fois, une nuit de basse mer : des toits couverts de coraux, des fenêtres sous l'eau, une grille à la lumière d'une lanterne, et des silhouettes assises sur un banc de pierre qui ne bougeaient pas. Il l'a noté en rouge dans son carnet, puis il a cessé de regarder. Il ne dit pas qui était assis.",
+        "revele": [
+          "f-por-ambroise-vu-palais"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-por-la-barque-de-la-chaussee",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-carnet",
+        "mots": [
+          "carnet",
+          "notes",
+          "cartes",
+          "écrit",
+          "registre",
+          "marées"
+        ],
+        "question": "Puis-je voir vos notes de marée ?",
+        "condition": {
+          "fait": "f-por-ambroise-vu-palais"
+        },
+        "reponse": "Il hésite, puis tend son carnet de route : sondages, heures de marée, et les pages rouges. Il dit qu'il ne vend pas la mer, et qu'il le confie à quelqu'un qui en fera un bon usage. Il le donne au groupe s'il sent qu'on en prendra soin.",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "por-carnet-du-pilote",
+              "quantite": 1
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-cle-de-la-grille",
+        "mots": [
+          "clé",
+          "grille",
+          "chaussée",
+          "ouvrir",
+          "serrure",
+          "cachée"
+        ],
+        "question": "Où est la clé de la grille de la chaussée ?",
+        "attitudeMin": 25,
+        "reponse": "Il rit sans joie : il l'a cachée il y a des années, dans le tiroir du bas de son cabinet, sous un double fond, parce que d'autres la demandaient déjà. Il dit qu'elle doit rester au phare, et qu'il ne la rendra qu'à quelqu'un qui la mérite.",
+        "revele": [
+          "f-por-cle-chez-le-pilote"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "la-barque-du-chantier",
+        "mots": [
+          "barque",
+          "bateau",
+          "pilote",
+          "naviguer",
+          "chantier",
+          "lanterne"
+        ],
+        "question": "Peut-on prendre une barque pour aller sur la chaussée ?",
+        "reponse": "La seule qui tienne la mer basse est au chantier, sous la bâche d'Hennequin. Elle n'est pas à vendre, et elle n'a pas navigué depuis trop longtemps. Il faut une lanterne qui ne s'éteigne pas dans le brouillard, sinon les galets vous retiennent au pied de l'escalier.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-ligue-interdit-la-jetee",
+        "mots": [
+          "Ligue",
+          "Osric",
+          "fanaux",
+          "jetée",
+          "pilotes",
+          "interdit"
+        ],
+        "question": "Pourquoi la Ligue vous interdit-elle la jetée ?",
+        "reponse": "Parce qu'il a dit à Maître Osric que la mer ne se retire pas sans raison, et que la Ligue ne veut pas de témoins. Il ajoute que les pilotes qui voient trop finissent sur le registre des disparus, et qu'il y a six noms qu'il connaît. Il se tait et regarde l'eau.",
+        "revele": [
+          "f-por-ligue-prime-les-pilotes"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Je ne parle pas aux gens de la Ligue. Ni à leurs chiens.",
+      "neutre": "Vous êtes montés jusqu'ici ? Il fallait pas.",
+      "amical": "Ah, des gens qui montent l'escalier sans se plaindre. Asseyez-vous, la lampe brûle encore."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "por-lucien-crochemain",
+    "nom": "Lucien Crochemain",
+    "titre": "Receleur des Rats de quai",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 60 ans",
+    "role": "Receleur et marchand de la contrebande des Rats",
+    "lieu": "por-entrepots-des-rats",
+    "apparence": "Homme de 60 ans, crâne chauve, moustache blanche bien taillée, habit de drap gris aux poches cousues, monocle, bague de jais au petit doigt, doigts agiles de voleur.",
+    "personnalite": {
+      "traits": [
+        "flatteur",
+        "prudent",
+        "ne dit jamais la vérité sur les prix"
+      ],
+      "voix": "Doux et mielleux ; il appelle ses clients « mon cher » et ne hausse jamais la voix, même quand il ment.",
+      "valeurs": [
+        "la discrétion",
+        "le marché ne ment pas"
+      ],
+      "desir": "Quitter le port avec sa fortune, avant que la mer ne le rattrape.",
+      "peur": "Qu'on le dénonce à la Ligue, ou que la Mère Sorel le donne en paiement.",
+      "defaut": "Il revend ce qu'on lui a confié de garder."
+    },
+    "faction": "rats-de-quai",
+    "attitude": 0,
+    "savoir": [
+      "f-por-caisses-faux-noms"
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "outils-de-voleur",
+          "quantite": 1
+        },
+        {
+          "objet": "pied-de-biche",
+          "quantite": 1
+        },
+        {
+          "objet": "cadenas",
+          "quantite": 2
+        },
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 2
+        },
+        {
+          "objet": "antidote",
+          "quantite": 2
+        }
+      ],
+      "rachat": 0.6,
+      "types": [
+        "outil",
+        "materiel",
+        "potion"
+      ]
+    },
+    "sujets": [
+      {
+        "id": "marchandise-sous-le-comptoir",
+        "mots": [
+          "acheter",
+          "marchandise",
+          "vendre",
+          "outils",
+          "objets",
+          "dessous"
+        ],
+        "question": "Qu'avez-vous à vendre, sous le comptoir ?",
+        "reponse": "Il ouvre son étal de contrebande : outils de voleur à l'acier doux, un pied-de-biche, des cadenas, et deux potions de la Mère Sorel qu'il n'est pas censé avoir. Il exige qu'on ne parle pas de leur provenance, et fixe les prix avec un sourire qui ne quitte pas ses yeux.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-faux-noms",
+        "mots": [
+          "caisses",
+          "noms",
+          "marque",
+          "sel",
+          "faux",
+          "sceaux"
+        ],
+        "question": "Pourquoi ces caisses portent-elles de faux noms ?",
+        "reponse": "Pour que la Ligue n'y voie qu'un trafic de sel, et que le sel reste taxé à bas prix. Il explique que les vraies marchandises sont dans la cale, sous le plancher, et qu'il a l'ordre de ne pas les ouvrir sans la Mère. Il ajoute que la bonne marchandise se vend mieux à marée basse.",
+        "revele": [
+          "f-por-caisses-faux-noms"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "qui-vous-protege",
+        "mots": [
+          "protection",
+          "Ligue",
+          "garde",
+          "payer",
+          "argent",
+          "couverture"
+        ],
+        "question": "Qui vous protège ici, monsieur Crochemain ?",
+        "reponse": "Il ne répond pas franchement : la Mère Sorel, la garde du quai, parfois la Ligue, selon la marée. Il paie tout le monde d'avance et ne dort jamais dans son lit. Il propose une assurance contre une petite somme : un nom sur la liste des amis du port.",
+        "revele": [],
+        "effets": [
+          {
+            "pieces": -15
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 3
+            }
+          }
+        ],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Mon cher, vous êtes déjà en retard pour votre paiement.",
+      "neutre": "Entrez, entrez, la porte ferme toute seule si on la laisse.",
+      "amical": "Ah, mon cher ami ! Je vous ai gardé la meilleure pièce du stock."
+    },
+    "inventaire": []
+  }
+]

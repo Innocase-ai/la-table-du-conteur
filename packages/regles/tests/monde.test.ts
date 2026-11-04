@@ -205,6 +205,39 @@ describe('Val des Cendres : parcours', () => {
   });
 });
 
+describe('La Citadelle des Marées : parcours', () => {
+  const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const dm = r.ok ? r.monde : undefined;
+  const jusquAuPort = ['a-parle-a-ysmene', 'cit-signes-vus', 'cit-nuit-du-depart', 'nolwen-avec-le-groupe', 'ysmene-tombee', 'port-atteint', 'ligue-alliee'];
+  const jusquAuPalais = [...jusquAuPort, 'chaussee-ouverte', 'palais-atteint', 'regente-rencontree'];
+
+  for (const choix of ['renouer', 'briser', 'relever']) {
+    it(`la quête principale mène à la fin « ${choix} »`, () => {
+      expect(dm).toBeDefined();
+      const e = etatInitial(dm!, 4);
+      appliquerEffets([{ quete: { id: 'q-la-grande-maree', statut: 'active' } }, ...[...jusquAuPalais, `choix-${choix}`].map((flag) => ({ flag }))], e, dm!);
+      expect(e.quetes['q-la-grande-maree']).toMatchObject({ statut: 'terminee', actives: [] });
+      expect(e.fin).toBe(`fin-${choix}`);
+    });
+  }
+
+  it('livrer Nolwen au phare de la Ligue est une fin possible dès le port, et Nolwen cesse d\'être escortée', () => {
+    const e = etatInitial(dm!, 3);
+    const livrer = dm!.pnj.get('maitre-osric-vent')!.sujets.find((s) => s.id === 'livrer-l-enfant')!;
+    appliquerEffets([{ quete: { id: 'q-la-grande-maree', statut: 'active' } }, { escorte: { pnj: 'nolwen-brevemer', actif: true } }, ...jusquAuPort.map((flag) => ({ flag }))], e, dm!);
+    appliquerEffets(livrer.effets, e, dm!);
+    expect(e.fin).toBe('fin-livrer');
+    expect(e.escortes ?? []).not.toContain('nolwen-brevemer');
+  });
+
+  it('la Grande Marée au maximum noie la côte avant tout choix', () => {
+    const e = etatInitial(dm!, 2);
+    appliquerEffets([{ jauge: { id: 'maree', delta: 10 } }, ...dm!.jauges.get('maree')!.paliers.filter((p) => p.seuil <= 5).flatMap((p) => p.effets)], e, dm!);
+    expect(e.jauges.maree).toBe(5);
+    expect(e.fin).toBe('fin-maree-haute');
+  });
+});
+
 describe('estimation de campagne', () => {
   it('compte les tours depuis le contenu et chiffre chaque modèle (le plus cher coûte le plus)', () => {
     const e = estimerCampagne(charger());

@@ -1,0 +1,256 @@
+[
+  {
+    "id": "lot-r-cour-des-noyes",
+    "nom": "Les gardes du parvis",
+    "type": "combat",
+    "lieu": "lot-parvis-des-noyes",
+    "difficulte": "elevee",
+    "intro": "Dès que le groupe franchit le seuil de la cour, les silhouettes du portique se retournent ensemble, lentes comme des marées. Une eau noire goutte de leurs armures, et l'une d'elles, plus haute que les autres, lève une lance rouillée vers la porte de corail.",
+    "monstres": [
+      { "profil": "zombi", "nombre": 4 },
+      { "profil": "ame-en-peine", "nombre": 1 }
+    ],
+    "alternatives": [
+      {
+        "id": "lot-cour-fanal",
+        "nom": "Lever le fanal de poche",
+        "condition": { "objet": "fanal-de-poche" },
+        "resume": "La flamme du fanal de phare fait reculer les noyés, qui s'écartent de la chaussée en grinçant et laissent passer le groupe.",
+        "effets": []
+      },
+      {
+        "id": "lot-cour-longer-le-portique",
+        "nom": "Longer le portique sans bruit",
+        "jet": { "competence": "discretion", "dd": 14 },
+        "resume": "En longeant les colonnes de corail, le groupe évite le regard des gardes, qui ne réagissent qu'au bruit des pas dans la cour.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": ["lot-butin-ossements"], "tresors": [] },
+    "effetsVictoire": [],
+    "carte": [
+      "##############",
+      "#............#",
+      "#..m....m....#",
+      "#....~~......#",
+      "#.m........m.#",
+      "#.....m......#",
+      "#.HHHHHH.....#",
+      "##############"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les noyés restent près du portique tant que le groupe ne franchit pas la porte ; ils chargent ceux qui traversent le milieu de la cour.",
+      "fuite": "Ils ne poursuivent pas au-delà de la porte de corail."
+    }
+  },
+  {
+    "id": "lot-r-galerie-portraits",
+    "nom": "Les armures de la galerie",
+    "type": "combat",
+    "lieu": "lot-galerie-des-portraits",
+    "difficulte": "moderee",
+    "intro": "Les armures de parade, rangées le long de la galerie, tournent la tête ensemble vers le groupe. Leurs gantelets s'ouvrent, et de la poussière de sel tombe des jointures.",
+    "monstres": [{ "profil": "armure-animee", "nombre": 6 }],
+    "alternatives": [
+      {
+        "id": "lot-galerie-passer",
+        "nom": "Passer sans les réveiller",
+        "jet": { "competence": "discretion", "dd": 13 },
+        "resume": "Le groupe longe les murs et franchit la galerie sur la pointe des pieds ; les armures restent figées, la tête baissée.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": ["lot-t-galerie-medailles"] },
+    "effetsVictoire": [],
+    "carte": [
+      "############",
+      "#.m.m.m.m..#",
+      "#..........#",
+      "#.m.m....m.#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "souterrain"
+  },
+  {
+    "id": "lot-r-armurerie",
+    "nom": "La garde de l'armurerie",
+    "type": "mixte",
+    "lieu": "lot-armurerie-rouillee",
+    "difficulte": "faible",
+    "intro": "Trois armures de la garde se tiennent entre les râteliers, lance au poing, et quatre squelettes en cuir pourri sortent des coffres à leur suite. Derrière eux, un capitaine à la barbe tressée d'algues lève la main, et la garde reste droite, attendant son ordre.",
+    "monstres": [
+      { "profil": "armure-animee", "nombre": 3 },
+      { "profil": "squelette", "nombre": 4 }
+    ],
+    "alternatives": [
+      {
+        "id": "lot-armurerie-relever",
+        "nom": "Relever le capitaine de son serment",
+        "condition": { "flag": "lot-garde-relevee" },
+        "resume": "Le capitaine a relevé sa garde ; les soldats déposent leurs lances et s'écartent des râteliers sans un mot.",
+        "effets": []
+      },
+      {
+        "id": "lot-armurerie-persuader",
+        "nom": "Parler au capitaine",
+        "jet": { "competence": "persuasion", "dd": 14 },
+        "resume": "Le groupe lui parle d'une consigne qui n'a plus de sens. Le capitaine réfléchit, puis fait signe à la garde de se tenir en retrait.",
+        "effets": [{ "flag": "lot-garde-relevee" }]
+      }
+    ],
+    "butin": { "tables": ["lot-butin-armurerie"], "tresors": ["lot-t-armes-de-la-garde"] },
+    "effetsVictoire": [],
+    "carte": [
+      "############",
+      "#.R.m......#",
+      "#..m..m..m.#",
+      "#.m.....m..#",
+      "#m.e.~~....#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les armures forment un mur devant les râteliers ; les squelettes se glissent entre elles pour frapper ceux qui s'approchent des coffres.",
+      "fuite": "Ils ne quittent jamais l'armurerie."
+    }
+  },
+  {
+    "id": "lot-r-bibliotheque",
+    "nom": "Le spectre des rayonnages",
+    "type": "mixte",
+    "lieu": "lot-bibliotheque-des-noms",
+    "difficulte": "faible",
+    "intro": "Un spectre en robe d'encre se dresse entre les rayonnages, une page détrempée dans une main décharnée. Trois ombres se détachent des livres derrière lui, et il ne quitte pas des yeux le tiroir où se cache le registre.",
+    "monstres": [
+      { "profil": "spectre", "nombre": 1 },
+      { "profil": "ombre", "nombre": 3 }
+    ],
+    "alternatives": [
+      {
+        "id": "lot-bibliotheque-chroniqueur",
+        "nom": "Réciter le nom du registre",
+        "jet": { "competence": "histoire", "dd": 12 },
+        "resume": "Le groupe cite la première page de la chronique ; le spectre s'arrête, comme s'il reconnaissait sa propre écriture, puis rend la page.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": ["lot-t-journal-du-chroniqueur"] },
+    "effetsVictoire": [],
+    "carte": [
+      "############",
+      "#..m.....m.#",
+      "#.R....R...#",
+      "#.....m....#",
+      "#.m........#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "souterrain"
+  },
+  {
+    "id": "lot-r-crypte",
+    "nom": "Les gardiens des caveaux",
+    "type": "combat",
+    "lieu": "lot-crypte-des-rois",
+    "difficulte": "elevee",
+    "intro": "Une ombre couronnée de nacre se lève près de la traverse des cloches. Deux goules se redressent entre les sarcophages, le menton tourné vers vos pas, et trois squelettes en armure de cuir se détachent des niches, à pas comptés.",
+    "monstres": [
+      { "profil": "ame-en-peine", "nombre": 1 },
+      { "profil": "goule", "nombre": 2 },
+      { "profil": "squelette", "nombre": 3 }
+    ],
+    "alternatives": [
+      {
+        "id": "lot-crypte-noms",
+        "nom": "Réciter les noms des rois",
+        "condition": { "fait": "f-lot-nom-des-rois" },
+        "resume": "Les goules s'arrêtent à chaque nom du registre, puis retournent à leur niche, la tête baissée. L'ombre couronnée se tait.",
+        "effets": []
+      },
+      {
+        "id": "lot-crypte-benir",
+        "nom": "Dire une prière sur les tombes",
+        "jet": { "competence": "religion", "dd": 13 },
+        "resume": "Une prière lente, au pied des cloches, calme les squelettes : ils se figent contre les niches, sans reprendre les armes.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": ["lot-t-cle-de-la-chapelle"] },
+    "effetsVictoire": [],
+    "carte": [
+      "##############",
+      "#............#",
+      "#.R..m..m..R.#",
+      "#....~~......#",
+      "#.m.........m#",
+      "#.......m....#",
+      "#.....m......#",
+      "#....HHHHHH..#",
+      "##############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "L'ombre couronnée reste près de la traverse et parle avant de frapper ; les goules attaquent celui qui s'approche des sarcophages, et les squelettes gardent les niches.",
+      "fuite": "Les squelettes ne franchissent pas l'escalier des cuisines."
+    }
+  },
+  {
+    "id": "lot-r-sanctuaire",
+    "nom": "Les ombres du Sceau",
+    "type": "mixte",
+    "lieu": "lot-sanctuaire-du-sceau",
+    "difficulte": "moderee",
+    "intro": "Deux ombres se détachent des colonnes couvertes de coquillages, et un fantôme en couronne de nacre s'avance entre elles, les mains tendues. La lueur de la cuve palpite, et l'air devient aussi froid que le fond de la mer.",
+    "monstres": [
+      { "profil": "ombre", "nombre": 2 },
+      { "profil": "fantome", "nombre": 1 }
+    ],
+    "alternatives": [
+      {
+        "id": "lot-sanctuaire-la-dame",
+        "nom": "Demander à la Dame de retenir les ombres",
+        "condition": { "flag": "regente-rencontree" },
+        "resume": "La Dame Noyée lève la main : les ombres reculent, et elle laisse le groupe approcher la cuve, à condition de choisir ce qu'il fera du Sceau.",
+        "effets": []
+      },
+      {
+        "id": "lot-sanctuaire-briser",
+        "nom": "Poser la Pierre de rupture sur la cuve",
+        "condition": { "objet": "pierre-de-rupture" },
+        "resume": "La pierre brise la lueur d'un coup ; les ombres se dissolvent dans l'eau, et la mer n'est plus tenue. Le choix est fait.",
+        "effets": [
+          { "flag": "choix-briser" },
+          { "etape": { "quete": "q-la-grande-maree", "etape": "choix" } }
+        ]
+      },
+      {
+        "id": "lot-sanctuaire-persuader",
+        "nom": "Parler aux ombres",
+        "jet": { "competence": "persuasion", "dd": 15 },
+        "resume": "Le groupe leur parle de la fatigue et du repos ; les ombres s'écartent, sans cesser de regarder la cuve.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": [] },
+    "effetsVictoire": [],
+    "carte": [
+      "##############",
+      "#............#",
+      "#..m.......m.#",
+      "#....eee.....#",
+      "#.R........R.#",
+      "#.....m......#",
+      "#............#",
+      "#....HHHHHH..#",
+      "##############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les ombres encerclent celui qui touche la cuve ; le fantôme parle avant de frapper et attaque dès qu'on le contredit.",
+      "fuite": "Aucune fuite : le sanctuaire se referme derrière le groupe."
+    }
+  }
+]

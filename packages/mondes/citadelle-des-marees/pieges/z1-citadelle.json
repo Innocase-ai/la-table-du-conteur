@@ -1,0 +1,28 @@
+[
+  {
+    "id": "cit-piege-observatoire",
+    "nom": "Le contrepoids du dôme",
+    "lieu": "cit-observatoire",
+    "resume": "Le tiroir de l'astronome est relié à un contrepoids de fonte, suspendu à un bras de bronze au-dessus de la table.",
+    "detection": { "dd": 12, "competence": "investigation" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils de voleur, ou une cale de bois glissée sous le bras" },
+    "declenchement": "Tirer le tiroir sans caler d'abord le bras libère le contrepoids de fonte, qui bascule et s'abat sur la table, sur qui se penche par-dessus.",
+    "degats": [{ "des": "2d10", "type": "contondant" }],
+    "etats": ["à terre"],
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "reinitialisation": false
+  },
+  {
+    "id": "cit-piege-caveaux",
+    "nom": "La herse du caveau",
+    "lieu": "cit-caveaux",
+    "resume": "Une dalle de pression devant le coffre libère une herse de fer qui tombe du plafond sur la personne penchée sur la serrure.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils de voleur" },
+    "declenchement": "Poser le pied sur la dalle devant le coffre fait tomber une herse à pointes ; qui ne recule pas à temps est piqué par le fer.",
+    "degats": [{ "des": "2d10", "type": "perforant" }],
+    "etats": [],
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "reinitialisation": false
+  }
+]

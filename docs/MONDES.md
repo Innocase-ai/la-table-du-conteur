@@ -74,7 +74,7 @@ Une scène est une petite cinématique jouée quand quelque chose arrive :
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.
 
-Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `debloquer`, `rencontre`, `fin`, `narration`. L'effet `rencontre` **déclenche** la rencontre (combat compris) à la fin de l'action en cours ; une rencontre que son lieu déclare `unique` et qui a déjà été jouée ne se relance pas. C'est ainsi qu'un échec d'énigme ou un piège lance un combat.
+Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `escorte` (le PNJ suit le groupe et est présent partout ; `actif: false` l'arrête), `debloquer`, `rencontre`, `fin`, `narration`. L'effet `rencontre` **déclenche** la rencontre (combat compris) à la fin de l'action en cours ; une rencontre que son lieu déclare `unique` et qui a déjà été jouée ne se relance pas. C'est ainsi qu'un échec d'énigme ou un piège lance un combat.
 
 ## Énigmes : solution et réponse du joueur
 
@@ -121,3 +121,4 @@ Un monde en cours d'écriture porte `"statut": "brouillon"` dans `monde.json` : 
 ## Mondes existants
 
 - [Le Val des Cendres](mondes/val-des-cendres.md) (niveaux 1 à 5) : 1 région, 1 village, 1 ville, 1 hameau, 3 grottes, 2 donjons ; 63 PNJ (378 sujets), 93 trésors, 56 rencontres, 23 quêtes, 18 énigmes, 33 pièges, 176 faits, 4 fins. Canon et registre d'identifiants : `packages/mondes/val-des-cendres/BIBLE.md` ; guide d'écriture d'une zone : `GUIDE-ZONE.md`.
+- [La Citadelle des Marées](mondes/citadelle-des-marees.md) (niveaux 1 à 4, ≈ 13 h) : 1 région, 1 ville, 1 donjon ; 40 PNJ (181 sujets), 31 trésors, 19 rencontres, 19 quêtes, 6 énigmes, 62 faits, 5 fins. Un PNJ escorté (effet `escorte`). Canon : `packages/mondes/citadelle-des-marees/BIBLE.md`.

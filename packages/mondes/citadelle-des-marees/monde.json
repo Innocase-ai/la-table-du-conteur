@@ -1,0 +1,95 @@
+{
+  "id": "citadelle-des-marees",
+  "version": 1,
+  "statut": "publie",
+  "nom": "La Citadelle des Marées",
+  "resume": "Sur la Côte de Hautmarée, la Citadelle des Marées, monastère de cartographes, cache depuis seize ans une apprentie marquée par un pacte ancien. La Grande Marée arrive dans trois jours, et avec elle les noyés d'un royaume englouti qui réclament leur dû.",
+  "accroche": "La mer s'est retirée trop loin cette nuit. Quelque chose, dessous, attend qu'on lui rende ce qu'on lui doit.",
+  "ton": [
+    "mélancolique et maritime",
+    "espoir dans les petits gestes",
+    "humour sec",
+    "choix qui coûtent"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 4
+  },
+  "depart": {
+    "lieu": "citadelle-des-marees",
+    "intro": "La tempête vous a rabattus sur la route des falaises, jusqu'à une porte de pierre que l'on ouvre pour vous sans poser de question. Derrière vous, la mer hurle contre le cap. Devant, une cour étroite, des fenêtres où brûlent des lampes de cuivre, et l'odeur de cire et de sel d'une maison où l'on étudie les marées. Au loin, très bas, l'eau s'est retirée comme on retient son souffle."
+  },
+  "direction": {
+    "style": "Dark fantasy peinte et maritime : brume salée, pierre mouillée, cuivre patiné de vert-de-gris, lumière d'ambre des phares contre des ombres bleu nuit. Matières usées par l'eau (ardoise, corde, voile raidie, parchemin), reflets d'écume, ciel bas.",
+    "palette": [
+      "gris ardoise",
+      "vert-de-gris",
+      "ambre de phare",
+      "blanc d'écume",
+      "bleu nuit"
+    ],
+    "motsCles": [
+      "marée basse",
+      "phare",
+      "cartes anciennes",
+      "brume",
+      "algues sur la pierre",
+      "cuivre patiné",
+      "visages fatigués"
+    ],
+    "interdits": [
+      "soleil éclatant",
+      "couleurs saturées",
+      "kraken ou monstre marin géant",
+      "sirènes séductrices",
+      "pirates de carnaval",
+      "technologie moderne",
+      "personnages caricaturaux"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1-la-grande-maree",
+      "nom": "La Grande Marée",
+      "niveaux": {
+        "min": 1,
+        "max": 4
+      },
+      "resume": "De la Citadelle des Marées à Port-aux-Cordes puis au Palais-Basmarée, le groupe escorte Nolwen et décide de ce qu'on doit à la mer, entre les cartographes, la Ligue des Phares, les Rats de quai et la Cour noyée de Lothmar.",
+      "lieux": [
+        "cote-de-hautmaree"
+      ],
+      "quetes": [
+        "q-citadelle-les-fanaux",
+        "q-cit-les-tables-decalees",
+        "q-cit-la-soupe-des-naufrages",
+        "q-cit-le-marin-de-la-tempete",
+        "q-cit-la-cle-des-caveaux",
+        "q-cit-les-cartes-du-cap",
+        "q-fal-saunieres-disparues",
+        "q-fal-courrier-ligue",
+        "q-fal-la-lanterne-du-cap",
+        "q-por-les-filets-coupes",
+        "q-por-la-barque-de-la-chaussee",
+        "q-por-le-gamin-disparu",
+        "q-lot-journal-du-chroniqueur",
+        "q-lot-prisonnier",
+        "q-lot-l-horloge",
+        "q-la-grande-maree",
+        "q-ligue-le-phare-cellule",
+        "q-rats-le-passage",
+        "q-regente-la-pierre"
+      ]
+    }
+  ],
+  "regles": [
+    "La mer ne se montre jamais en entier : on voit ses effets (marée, brume, noyés), jamais un monstre marin. Aucune créature marine n'existe dans ce monde.",
+    "Les noyés de Lothmar sont fidèles et épuisés, pas cruels : ils parlent peu, poliment, et veulent cesser de tenir la mer. Les antagonistes croient bien faire ; aucun n'est un simple méchant.",
+    "Nolwen n'est pas un personnage du groupe : le groupe l'escorte, et elle le suit partout une fois la nuit du départ passée. Le MJ ne dit jamais qu'elle est « le Sceau » avant que le groupe ait découvert les faits correspondants.",
+    "Les cartes de marée de la Citadelle brouillent la marque de basse-mer : tant que le groupe porte la carte d'Ysmène, la Cour peine à trouver Nolwen.",
+    "Les choix de fin ont un coût réel : aucune fin n'est entièrement heureuse."
+  ],
+  "auteurs": [
+    "Claude (Sonnet 5.5, agents Haiku), d'après un concept validé par l'utilisateur"
+  ]
+}

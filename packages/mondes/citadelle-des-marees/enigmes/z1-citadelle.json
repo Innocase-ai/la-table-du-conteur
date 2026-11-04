@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cit-e-tiroir-des-vives-eaux",
+    "nom": "Le tiroir des vives-eaux",
+    "lieu": "cit-salle-des-cartes",
+    "enonce": "Un tiroir de chêne, fermé par une plaque de cuivre gravée d'un cartouche vide. Le cartouche attend un mot. Sur le pupitre voisin, le registre des vives-eaux est ouvert à une page marquée de traits rouges. Écrivez le mot qui ouvre le tiroir.",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": ["vive-eau", "vives-eaux", "vive eau", "viveeau"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "La page ouverte sur le pupitre est marquée de traits rouges : elle ne parle que des plus fortes marées de l'année, celles qui couvrent les rochers de la grève.",
+        "competence": "intuition",
+        "dd": 10
+      },
+      {
+        "niveau": 2,
+        "texte": "Les cartographes ont un nom pour ces marées-là, quand la lune et le soleil tirent ensemble. Ce nom tient en deux mots, unis par un trait d'union.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Le mot est « vive-eau », au singulier, comme la marée elle-même. Écrivez-le tel quel, avec son trait d'union.",
+        "competence": "perception",
+        "dd": 13
+      }
+    ],
+    "echec": {
+      "effets": [],
+      "resume": "La plaque se referme avec un claquement sec, et le cuivre chauffe sous la main. Un instant, on croit entendre la mer sous le plancher."
+    },
+    "recompense": {
+      "effets": [{ "xp": 60 }],
+      "tresor": "cit-t-tiroir-scelle",
+      "resume": "Le tiroir s'ouvre sur quelques pièces et un compas de marée, rangés avec soin."
+    }
+  }
+]

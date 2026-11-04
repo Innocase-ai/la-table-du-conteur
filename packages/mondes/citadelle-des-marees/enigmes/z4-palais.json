@@ -1,0 +1,123 @@
+[
+  {
+    "id": "lot-e-horloge-a-maree",
+    "nom": "Les cadrans de l'horloge",
+    "lieu": "lot-grande-salle",
+    "enonce": "Trois cadrans de bronze, gradués de 0 à 9, aux aiguilles figées. Sous chacun, un symbole : un croissant, une double vague, une ancre. Un tableau gravé au mur, à côté de l'horloge, range ces trois signes dans un ordre que personne n'a plus lu depuis longtemps.",
+    "solution": {
+      "type": "cadran",
+      "valeurs": [4, 7, 2],
+      "plage": [0, 9],
+      "libelles": ["Croissant", "Double vague", "Ancre"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chaque cadran porte un symbole. Le tableau du mur les range dans cet ordre : d'abord le croissant, puis la double vague, puis l'ancre."
+      },
+      {
+        "niveau": 2,
+        "texte": "Le tableau compte les quarts de la lune depuis la nouvelle. Le croissant tombe au quatrième quart, et il faut ensuite compter les marées pour la vague.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Croissant : 4. Double vague : 7. Ancre : 2. Réglez les trois cadrans sur ces chiffres, dans l'ordre des symboles.",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "lot-p-herse-des-marees",
+      "resume": "Une aiguille forcée fait jaillir l'eau salée des tuyaux de l'horloge, et la herse du hall se referme d'un coup."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "lot-horloge-reparee" },
+        { "fait": "f-lot-horloge-a-maree" },
+        { "xp": 150 }
+      ],
+      "resume": "Le mécanisme se remet à tourner. Quelque part dans la pierre, une herse de bronze remonte avec un long grincement."
+    }
+  },
+  {
+    "id": "lot-e-ordre-des-rois",
+    "nom": "L'ordre des cloches",
+    "lieu": "lot-crypte-des-rois",
+    "enonce": "Quatre cloches de bronze pendent d'une traverse, chacune frappée d'un nom de roi. Sous elles, quatre dalles portent une date de règne, dont le sel a rongé les premiers chiffres. Frappez les cloches dans l'ordre des règnes, du plus ancien au plus récent.",
+    "solution": {
+      "type": "sequence",
+      "ordre": ["Haldor", "Sigrid", "Ragnar", "Edda"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chaque dalle porte une date de règne. Le sel a rongé les premiers chiffres ; il ne reste que les deux derniers, lisibles sur chaque pierre."
+      },
+      {
+        "niveau": 2,
+        "texte": "Une date se lit comme un nombre : le plus petit est le plus ancien, le plus grand est le plus récent.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Haldor (07), Sigrid (31), Ragnar (58), Edda (96) : frappez les cloches dans cet ordre, en commençant par Haldor.",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "lot-p-cendre-de-sel",
+      "resume": "Une cloche frappée à contretemps fait tomber une pierre de niche : un nuage de sel fin s'élève sur la crypte."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "lot-ordre-trouve" },
+        { "fait": "f-lot-nom-des-rois" },
+        { "xp": 150 }
+      ],
+      "tresor": "lot-t-cle-de-la-chapelle",
+      "resume": "Les cloches sonnent ensemble, un son grave qui fait trembler la traverse. Un sarcophage s'entrouvre, et une clé de bronze apparaît sur son couvercle."
+    }
+  },
+  {
+    "id": "lot-e-le-nom-de-la-barque",
+    "nom": "La signature de la barque",
+    "lieu": "lot-bibliotheque-des-noms",
+    "enonce": "Un registre ouvert sur un pupitre : la chronique des Sceaux. Pour la Nuit Haute, chaque régent a son nom, sauf une ligne tracée sans date, qui parle d'une barque envoyée vers le nord, et qu'une seule signature confirme. Qui a signé l'ordre ?",
+    "solution": {
+      "type": "deduction",
+      "reponses": ["Aelis Corvane", "Aelis", "la Régente", "Dame Aelis"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le registre donne le nom de chaque régent, mais la ligne de la barque n'en porte aucun : seule une signature y est tracée, à demi effacée."
+      },
+      {
+        "niveau": 2,
+        "texte": "Un sceau de cire, à côté de la ligne, porte les armes d'une seule famille, celle des Corvane.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "La famille Corvane n'a donné qu'une régente pendant la Nuit Haute : Aelis, qui a signé l'ordre de la barque.",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "resume": "Le registre se referme sur une mauvaise réponse ; la page reste blanche, et le chroniqueur se tait."
+    },
+    "recompense": {
+      "effets": [
+        { "fait": "f-lot-aelis-fait-partir-l-enfant" },
+        { "xp": 150 }
+      ],
+      "resume": "La signature se lit enfin : la régente a elle-même signé l'ordre, et la barque est partie vers le nord avant la marée."
+    }
+  }
+]

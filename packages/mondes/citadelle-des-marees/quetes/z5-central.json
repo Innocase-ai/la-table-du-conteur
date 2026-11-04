@@ -1,0 +1,594 @@
+[
+  {
+    "id": "q-la-grande-maree",
+    "nom": "La Grande Marée",
+    "type": "principale",
+    "donneur": "ysmene-hautecote",
+    "lieu": "citadelle-des-marees",
+    "resume": "La mer s'est retirée trop loin, et une enfant que vous escortez porte une marque que personne ne doit voir. Des émissaires venus de sous les flots la réclament. Il reste trois jours avant la Grande Marée : décidez de ce qu'on doit à la mer.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "abri",
+    "etapes": [
+      {
+        "id": "abri",
+        "texte": "La tempête vous a conduits à la Citadelle des Marées. Parlez à Dame Ysmène : elle sait pourquoi la mer se retire.",
+        "completion": {
+          "flag": "a-parle-a-ysmene"
+        },
+        "suivantes": [
+          "signes"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "signes",
+        "texte": "Deux signes de la mer ont été vus à la Citadelle. Il est temps de comprendre ce qui approche, et ce qu'on attend de vous.",
+        "completion": {
+          "flag": "cit-signes-vus"
+        },
+        "suivantes": [
+          "heraut"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "heraut",
+        "texte": "Le Héraut blême se tient à la grille de mer. Nolwen doit quitter la Citadelle cette nuit, et Dame Ysmène ne vous dit pas tout.",
+        "completion": {
+          "flag": "cit-nuit-du-depart"
+        },
+        "suivantes": [
+          "chaussee"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "chaussee",
+        "texte": "Sur la route des falaises, Dame Ysmène retient le Héraut pour que vous puissiez fuir. Ne vous retournez pas et gagnez Port-aux-Cordes.",
+        "completion": {
+          "flag": "ysmene-tombee"
+        },
+        "suivantes": [
+          "port"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "port",
+        "texte": "Port-aux-Cordes est encore debout, mais la mer y monte. Il faut passer le port, et l'on ne passe pas sans nom ni dette.",
+        "completion": {
+          "flag": "port-atteint"
+        },
+        "suivantes": [
+          "alliance"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "alliance",
+        "texte": "Le port ne laisse passer que ceux qui ont un répondant : la Ligue des Phares ou les Rats de quai. Choisissez à qui vous devez quelque chose.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "ligue-alliee"
+            },
+            {
+              "flag": "rats-allies"
+            }
+          ]
+        },
+        "suivantes": [
+          "basses-eaux"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "basses-eaux",
+        "texte": "La chaussée des Basses-Eaux ne se découvre qu'à marée très basse. Il faut la franchir avant que la mer ne la reprenne.",
+        "completion": {
+          "flag": "chaussee-ouverte"
+        },
+        "suivantes": [
+          "palais"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "palais",
+        "texte": "Le Palais-Basmarée se dresse au bout de la chaussée, à demi noyé. Entrez, et cherchez ce qui retient la mer.",
+        "completion": {
+          "flag": "palais-atteint"
+        },
+        "suivantes": [
+          "choix"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "choix",
+        "texte": "Au cœur du Palais, la Cour attend. Ce que vous faites de Nolwen, et de la mer, ne se reprend pas.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "choix-renouer"
+            },
+            {
+              "flag": "choix-briser"
+            },
+            {
+              "flag": "choix-relever"
+            }
+          ]
+        },
+        "suivantes": [
+          "issue-renouer",
+          "issue-briser",
+          "issue-relever"
+        ],
+        "termine": false,
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "xp": 300
+          }
+        ]
+      },
+      {
+        "id": "issue-renouer",
+        "texte": "Nolwen descend d'elle-même et reprend le pacte : la mer s'apaise, la Cour repose.",
+        "completion": {
+          "flag": "choix-renouer"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 500
+          },
+          {
+            "fin": "fin-renouer"
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "issue-briser",
+        "texte": "La Pierre de rupture brise le Pacte : la mer se rend, le Palais s'effondre.",
+        "completion": {
+          "flag": "choix-briser"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 500
+          },
+          {
+            "fin": "fin-briser"
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "issue-relever",
+        "texte": "Lothmar est relevé par le Chancelier : le royaume revient, et le groupe en est complice.",
+        "completion": {
+          "flag": "choix-relever"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 500
+          },
+          {
+            "fin": "fin-relever"
+          }
+        ],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "La quête se termine à l'étape « choix », dès qu'un choix de fin est posé ; la fin se déclenche alors d'après ses drapeaux. Si la Marée atteint 5 avant le choix, la fin d'échec (Grande Marée) prend la place de tout le reste. Le groupe qui n'a pas la carte d'Ysmène est plus vite trouvé par la Cour, car la marque se voit mieux sans elle."
+  },
+  {
+    "id": "q-ligue-le-phare-cellule",
+    "nom": "Le phare-cellule",
+    "type": "faction",
+    "donneur": "maitre-osric-vent",
+    "lieu": "por-hall-de-la-ligue",
+    "resume": "Maître Osric, de la Ligue des Phares, veut rallier les porteurs de cartes à la défense des ports. Son plan est un phare-cellule scellé, où l'enfant serait gardée à jamais. Acceptez son alliance, tenez les digues, puis décidez de ce qu'il advient de Nolwen.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "accord",
+    "etapes": [
+      {
+        "id": "accord",
+        "texte": "Maître Osric propose l'alliance de la Ligue. Acceptez-la, si vous voulez passer les digues et entrer dans Port-aux-Cordes.",
+        "completion": {
+          "flag": "ligue-alliee"
+        },
+        "suivantes": [
+          "garde"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-renouer"
+            },
+            {
+              "flag": "choix-briser"
+            },
+            {
+              "flag": "choix-relever"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "garde",
+        "texte": "Les digues de Port-aux-Cordes sont gardées par les hommes de la Ligue. Tenez-les avec eux, jusqu'à ce que le port soit à vous.",
+        "completion": {
+          "flag": "port-atteint"
+        },
+        "suivantes": [
+          "cellule"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-renouer"
+            },
+            {
+              "flag": "choix-briser"
+            },
+            {
+              "flag": "choix-relever"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "cellule",
+        "texte": "Osric veut que Nolwen soit conduite au phare-cellule, scellée, pour que la mer n'ait personne à réclamer. C'est lui qui décide, mais c'est vous qui la conduirez.",
+        "completion": {
+          "flag": "choix-livrer"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-renouer"
+            },
+            {
+              "flag": "choix-briser"
+            },
+            {
+              "flag": "choix-relever"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 0,
+      "objets": [
+        "sceau-de-la-ligue"
+      ],
+      "effets": []
+    },
+    "ramifications": "Le drapeau ligue-alliee est posé par la zone du port au moment où le groupe accepte l'alliance. Le phare-cellule est le choix de la fin « L'enfant à la Ligue » ; la quête échoue si le groupe a déjà choisi une autre fin."
+  },
+  {
+    "id": "q-rats-le-passage",
+    "nom": "Le passage des Rats",
+    "type": "faction",
+    "donneur": "mere-sorel-quaibas",
+    "lieu": "por-entrepots-des-rats",
+    "resume": "Mère Sorel vend des passages hors de la côte, par les chaussées et les égouts à marée. Traitez avec les Rats de quai : ils ouvriront leurs caches et vous montreront où la chaussée tient encore sous l'eau. Le port n'aura rien vu.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "passage",
+    "etapes": [
+      {
+        "id": "passage",
+        "texte": "Mère Sorel vend des passages. Traitez avec les Rats, et ils ouvriront les égouts à marée et les caches des quais.",
+        "completion": {
+          "flag": "rats-allies"
+        },
+        "suivantes": [
+          "chaussee"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "chaussee",
+        "texte": "Les Rats savent où la chaussée des Basses-Eaux tient encore sous l'eau. Suivez leur trace, sans vous faire voir de la Ligue.",
+        "completion": {
+          "flag": "chaussee-ouverte"
+        },
+        "suivantes": [
+          "solde"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "solde",
+        "texte": "Mère Sorel règle sa dette et ne pose plus de questions. Le port n'a jamais rien vu.",
+        "completion": {
+          "flag": "palais-atteint"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 0,
+      "objets": [
+        "outils-de-voleur"
+      ],
+      "effets": []
+    },
+    "ramifications": "Les Rats ne vendent rien qui mène à la Ligue. L'alliance des Rats remplit l'étape « alliance » de la quête principale comme la Ligue, mais la quête s'achève au Palais, pas au port. Si la Marée atteint 5, le passage est perdu avec le port."
+  },
+  {
+    "id": "q-regente-la-pierre",
+    "nom": "La pierre de la Régente",
+    "type": "faction",
+    "donneur": "dame-aelis-corvane",
+    "lieu": "lot-chapelle-de-la-regente",
+    "resume": "La Dame Noyée, la Régente que la mer a engloutie, veut qu'on lui rapporte ce qui la retient : la Pierre de rupture, cachée au Palais. Elle peut briser le Sceau et libérer la Cour. Elle ne la donne à personne : il faut la trouver, puis décider.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "debut": "rencontre",
+    "etapes": [
+      {
+        "id": "rencontre",
+        "texte": "Dans la chapelle du Palais, une femme couronnée d'algues vous attend. Elle demande qu'on l'écoute, et propose un marché.",
+        "completion": {
+          "flag": "regente-rencontree"
+        },
+        "suivantes": [
+          "pierre"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "cour-noyee",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "pierre",
+        "texte": "La Pierre de rupture est cachée dans le Palais. Elle seule peut briser la marque du Sceau. Retrouvez-la avant que le Chancelier ne le fasse.",
+        "completion": {
+          "objet": "pierre-de-rupture"
+        },
+        "suivantes": [
+          "remise"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "maree",
+            "min": 5
+          }
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "cour-noyee",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "remise",
+        "texte": "La pierre est entre vos mains. Ce que vous en faites décide de la mer, et de la Cour.",
+        "completion": {
+          "flag": "choix-briser"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "ou": [
+            {
+              "flag": "choix-renouer"
+            },
+            {
+              "flag": "choix-relever"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "cour-noyee",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [
+        "potion-de-guerison-importante"
+      ],
+      "effets": []
+    },
+    "ramifications": "La Dame ne donne pas la pierre : le groupe doit la trouver dans le Palais, où elle est cachée. Porter la pierre n'est pas une fin, c'est un choix : la quête s'achève quand le groupe brise le Sceau avec elle, et échoue si le pacte est renoué ou que la couronne est choisie. La Dame ne se trompe pas sur le coût, et ne le cache pas."
+  }
+]

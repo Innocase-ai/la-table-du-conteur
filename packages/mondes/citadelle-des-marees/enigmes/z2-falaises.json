@@ -1,0 +1,41 @@
+[
+  {
+    "id": "fal-e-les-volets-du-phare",
+    "nom": "Les volets du feu",
+    "lieu": "fal-phare-lampe",
+    "enonce": "La lentille est fermée par quatre volets de laiton, chacun gravé d'un état de la mer : pleine mer, jusant, basse mer, flot. Le feu ne s'ouvre qu'en suivant l'ordre de la marée, et il commence à la pleine mer, quand l'eau couvre tout. Ouvrez les volets dans cet ordre.",
+    "solution": {
+      "type": "sequence",
+      "ordre": ["pleine mer", "jusant", "basse mer", "flot"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le feu commence à la pleine mer, quand l'eau couvre tout. Les autres états suivent ensuite, dans l'ordre où la mer les traverse."
+      },
+      {
+        "niveau": 2,
+        "texte": "Après la pleine mer, l'eau se retire : elle baisse, puis reste basse un moment, avant de remonter.",
+        "competence": "nature",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Pleine mer, jusant, basse mer, flot : la mer se retire d'abord, puis revient, et l'ordre ne se répète pas.",
+        "competence": "survie",
+        "dd": 13
+      }
+    ],
+    "echec": {
+      "resume": "Un volet mal placé ferme la lentille : le feu s'éteint un instant, et le groupe perd une bonne partie de la nuit à le rallumer."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "fal-phare-rallume" },
+        { "xp": 150 }
+      ],
+      "tresor": "fal-t-phare-lentille",
+      "resume": "Les volets glissent à leur place ; la lentille s'éclaire, et son faisceau balaie la mer noire."
+    }
+  }
+]
