@@ -1,0 +1,160 @@
+// Familles de dégâts pour les effets visuels : une famille = un habillage (impact, couleur des chiffres, mort).
+// Les types viennent du moteur (« feu », « nécrotique », « tranchant »…), avec ou sans accent.
+
+export const FAMILLES = [
+  'tranchant',
+  'perforant',
+  'contondant',
+  'feu',
+  'froid',
+  'foudre',
+  'acide',
+  'poison',
+  'necrotique',
+  'radiant',
+  'force',
+  'psychique',
+  'tonnerre',
+] as const;
+
+export type Famille = (typeof FAMILLES)[number];
+
+export type FamillePhysique = 'tranchant' | 'perforant' | 'contondant';
+
+const PHYSIQUES: ReadonlySet<string> = new Set(['tranchant', 'perforant', 'contondant']);
+
+export const LIBELLES_FAMILLES: Record<Famille, string> = {
+  tranchant: 'Tranchant',
+  perforant: 'Perforant',
+  contondant: 'Contondant',
+  feu: 'Feu',
+  froid: 'Froid',
+  foudre: 'Foudre',
+  acide: 'Acide',
+  poison: 'Poison',
+  necrotique: 'Nécrotique',
+  radiant: 'Radiant',
+  force: 'Force',
+  psychique: 'Psychique',
+  tonnerre: 'Tonnerre',
+};
+
+/** Couleur dominante d'une famille (chiffres de dégâts, halo, éclats). */
+export const COULEURS_FAMILLES: Record<Famille, string> = {
+  tranchant: '#e6ecf5',
+  perforant: '#f0dfb8',
+  contondant: '#e0b98a',
+  feu: '#ff8a3c',
+  froid: '#9fe2ff',
+  foudre: '#ffe45c',
+  acide: '#a8ff3c',
+  poison: '#7fd94a',
+  necrotique: '#6fdc8c',
+  radiant: '#fff0b5',
+  force: '#b98cff',
+  psychique: '#ff8ad8',
+  tonnerre: '#c9d4ff',
+};
+
+const sansAccent = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+/** Famille d'un type de dégâts du moteur ; les types inconnus sont traités comme du contondant. */
+export function famille(type: string | undefined): Famille {
+  const t = type ? sansAccent(type) : '';
+  return (FAMILLES as readonly string[]).includes(t) ? (t as Famille) : 'contondant';
+}
+
+export function estPhysique(f: Famille): f is FamillePhysique {
+  return PHYSIQUES.has(f);
+}
+
+/** Famille dominante d'un événement de dégâts : un élément l'emporte sur le physique (une épée de feu brûle). */
+export function familleDominante(types: readonly string[] | undefined): Famille {
+  const familles = (types ?? []).map(famille);
+  return familles.find((f) => !estPhysique(f)) ?? familles[0] ?? 'contondant';
+}
+
+/** Une mort « à la façon de » la famille : durée et image-clés du jeton qui disparaît. */
+export interface StyleMort {
+  duree: number;
+  images: Keyframe[];
+}
+
+export function styleMort(f: Famille, definitive: boolean): StyleMort {
+  if (!definitive) {
+    return {
+      duree: 300,
+      images: [
+        { opacity: 1, transform: 'scale(1) translateY(0)' },
+        { opacity: 0.35, transform: 'scale(0.72) translateY(14%) rotate(-8deg)' },
+      ],
+    };
+  }
+  switch (f) {
+    case 'feu':
+      // Le jeton noircit, se recroqueville et s'effrite.
+      return {
+        duree: 700,
+        images: [
+          { opacity: 1, filter: 'none', transform: 'scale(1)' },
+          { opacity: 1, filter: 'brightness(1.8) sepia(1) saturate(4) hue-rotate(-20deg)', transform: 'scale(1.05)', offset: 0.25 },
+          { opacity: 0.6, filter: 'brightness(0.25) grayscale(1)', transform: 'scale(0.85) translateY(6%)', offset: 0.7 },
+          { opacity: 0.35, filter: 'brightness(0.2) grayscale(1)', transform: 'scale(0.72) translateY(14%)' },
+        ],
+      };
+    case 'froid':
+      // Le jeton se fige puis éclate.
+      return {
+        duree: 620,
+        images: [
+          { opacity: 1, filter: 'none', transform: 'scale(1)' },
+          { opacity: 1, filter: 'brightness(1.6) saturate(0.4) hue-rotate(160deg)', transform: 'scale(1)', offset: 0.35 },
+          { opacity: 0.9, filter: 'brightness(2) saturate(0.3) hue-rotate(160deg)', transform: 'scale(1.25)', offset: 0.55 },
+          { opacity: 0.35, filter: 'brightness(0.6) grayscale(0.6)', transform: 'scale(0.72) translateY(14%)' },
+        ],
+      };
+    case 'radiant':
+      // Le jeton blanchit et s'élève.
+      return {
+        duree: 700,
+        images: [
+          { opacity: 1, filter: 'none', transform: 'translateY(0)' },
+          { opacity: 1, filter: 'brightness(3) saturate(0)', transform: 'translateY(-10%)', offset: 0.4 },
+          { opacity: 0.35, filter: 'brightness(0.5) grayscale(1)', transform: 'scale(0.72) translateY(14%)' },
+        ],
+      };
+    case 'acide':
+    case 'poison':
+    case 'necrotique':
+      // Le jeton s'affaisse en virant au vert.
+      return {
+        duree: 700,
+        images: [
+          { opacity: 1, filter: 'none', transform: 'scale(1)' },
+          { opacity: 1, filter: 'sepia(1) saturate(3) hue-rotate(60deg) brightness(0.9)', transform: 'scale(0.95) translateY(5%)', offset: 0.4 },
+          { opacity: 0.35, filter: 'sepia(1) saturate(2) hue-rotate(60deg) brightness(0.4)', transform: 'scale(0.7) translateY(18%)' },
+        ],
+      };
+    case 'foudre':
+    case 'tonnerre':
+      // Le jeton grésille avant de tomber.
+      return {
+        duree: 600,
+        images: [
+          { opacity: 1, filter: 'none', transform: 'translateX(0)' },
+          { opacity: 1, filter: 'brightness(3)', transform: 'translateX(-6%)', offset: 0.12 },
+          { opacity: 1, filter: 'invert(1)', transform: 'translateX(6%)', offset: 0.24 },
+          { opacity: 1, filter: 'brightness(2)', transform: 'translateX(-4%)', offset: 0.36 },
+          { opacity: 0.35, filter: 'brightness(0.4) grayscale(1)', transform: 'scale(0.72) translateY(14%) rotate(-8deg)' },
+        ],
+      };
+    default:
+      return {
+        duree: 560,
+        images: [
+          { opacity: 1, transform: 'scale(1) translateY(0)' },
+          { opacity: 0.35, transform: 'scale(0.72) translateY(14%) rotate(-8deg)' },
+        ],
+      };
+  }
+}

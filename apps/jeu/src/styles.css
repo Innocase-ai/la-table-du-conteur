@@ -1982,7 +1982,8 @@ button:disabled {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 6;
+  /* Au-dessus des jetons (z-index 11 et plus) et des murs, sous l'infobulle : les impacts se voient sur la cible. */
+  z-index: 400;
 }
 
 .projectile {
@@ -2197,6 +2198,557 @@ button:disabled {
     opacity: 0;
     transform: translate(-50%, -50%) scale(1.3);
   }
+}
+
+/* ------------------------------------------------------------------------ */
+/* Impacts : une famille de dégâts, un habillage                             */
+/* ------------------------------------------------------------------------ */
+
+.impact,
+.lame,
+.flash-ecran {
+  position: absolute;
+  pointer-events: none;
+}
+
+.impact {
+  translate: -50% -50%;
+}
+
+.impact > * {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation-duration: var(--duree);
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.impact-gros {
+  --portee: 1.45;
+}
+
+/* Éclat central. */
+.impact-noyau {
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--couleur) 38%, transparent 70%);
+  mix-blend-mode: screen;
+  animation-name: imp-flash;
+  animation-duration: calc(var(--duree) * 0.5);
+}
+
+@keyframes imp-flash {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(1.1 * var(--portee, 1)));
+  }
+}
+
+/* Onde de choc. */
+.impact-onde {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--couleur);
+  box-shadow: 0 0 10px var(--couleur);
+  animation-name: imp-onde;
+}
+
+@keyframes imp-onde {
+  from {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(1.3 * var(--portee, 1)));
+  }
+}
+
+/* Particule : part du centre dans la direction --a, sur la distance --d (en cases), à l'échelle --r. */
+.impact-part {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--couleur);
+  box-shadow: 0 0 6px var(--couleur);
+  animation-name: imp-part;
+}
+
+@keyframes imp-part {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(0) scale(var(--r));
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--d) * var(--cote) * 0.75 * var(--portee, 1))) scale(0.2);
+  }
+}
+
+/* Tranchant, perforant : étincelles allongées dans le sens du coup. */
+.impact-tranchant .impact-noyau,
+.impact-perforant .impact-noyau,
+.impact-contondant .impact-noyau {
+  width: 65%;
+  height: 65%;
+}
+
+.impact-tranchant .impact-onde,
+.impact-perforant .impact-onde {
+  display: none;
+}
+
+.impact-tranchant .impact-part,
+.impact-perforant .impact-part {
+  width: 15px;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  box-shadow: 0 0 6px var(--couleur), 0 0 2px #fff;
+}
+
+.impact-perforant .impact-part {
+  width: 11px;
+}
+
+/* Contondant : poussière et onde sourde. */
+.impact-contondant .impact-onde {
+  border-width: 5px;
+  border-color: rgba(224, 185, 138, 0.8);
+  box-shadow: none;
+}
+
+.impact-contondant .impact-part {
+  width: 11px;
+  height: 11px;
+  background: radial-gradient(circle, #ecd7b4, #9a7a52);
+  box-shadow: none;
+  filter: blur(1px);
+}
+
+/* Feu : boule de feu, braises qui montent. */
+.impact-feu .impact-noyau {
+  background: radial-gradient(circle, #fff3a0 0%, #ff8a3c 40%, rgba(200, 48, 10, 0.7) 62%, transparent 74%);
+  width: 150%;
+  height: 150%;
+}
+
+.impact-feu .impact-onde {
+  border-width: 2px;
+  opacity: 0.8;
+}
+
+.impact-feu .impact-part {
+  width: 9px;
+  height: 9px;
+  background: radial-gradient(circle, #fff3a0, #ff8a3c 55%, #d63a10);
+  animation-name: imp-braise;
+}
+
+@keyframes imp-braise {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(0) rotate(calc(-1 * var(--a))) translateY(0) scale(var(--r));
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--d) * var(--cote) * 0.4)) rotate(calc(-1 * var(--a)))
+      translateY(calc(var(--cote) * -0.6)) scale(0.15);
+  }
+}
+
+/* Froid : éclats de glace pointés vers l'extérieur, onde pointillée. */
+.impact-froid .impact-onde {
+  border-style: dashed;
+}
+
+.impact-froid .impact-part {
+  width: 6px;
+  height: 17px;
+  border-radius: 0;
+  background: linear-gradient(#fff, var(--couleur));
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  box-shadow: none;
+  animation-name: imp-glace;
+}
+
+@keyframes imp-glace {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(0) rotate(90deg) scale(var(--r));
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--d) * var(--cote) * 0.65 * var(--portee, 1))) rotate(90deg) scale(0.4);
+  }
+}
+
+/* Foudre : un éclair qui crépite, des étincelles. */
+.impact-eclair {
+  width: 70%;
+  height: 76%;
+  fill: var(--couleur);
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px var(--couleur));
+  animation-name: imp-eclair;
+  animation-duration: calc(var(--duree) * 0.7);
+  translate: -50% -70%;
+}
+
+@keyframes imp-eclair {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.15;
+  }
+  35% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.impact-foudre .impact-part {
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+}
+
+/* Acide et poison : bulles qui montent et éclatent. */
+.impact-acide .impact-part,
+.impact-poison .impact-part {
+  width: 10px;
+  height: 10px;
+  background: rgba(168, 255, 60, 0.25);
+  border: 2px solid var(--couleur);
+  box-shadow: none;
+  animation-name: imp-bulle;
+}
+
+@keyframes imp-bulle {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(0) rotate(calc(-1 * var(--a))) translateY(0) scale(var(--r));
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--d) * var(--cote) * 0.25)) rotate(calc(-1 * var(--a)))
+      translateY(calc(var(--cote) * -0.55)) scale(1.5);
+  }
+}
+
+/* Nécrotique : brume sombre, volutes vertes. */
+.impact-necrotique .impact-noyau {
+  background: radial-gradient(circle, rgba(10, 36, 18, 0.95) 0%, rgba(111, 220, 140, 0.65) 45%, transparent 72%);
+  mix-blend-mode: normal;
+  width: 140%;
+  height: 140%;
+}
+
+.impact-necrotique .impact-part {
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, rgba(111, 220, 140, 0.85), transparent 70%);
+  box-shadow: none;
+  animation-name: imp-bulle;
+}
+
+/* Radiant : éclair blanc doré, rayons. */
+.impact-radiant .impact-noyau {
+  background: radial-gradient(circle, #fff 0%, #fff 25%, var(--couleur) 50%, transparent 72%);
+  width: 150%;
+  height: 150%;
+}
+
+.impact-radiant .impact-part {
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #fff, var(--couleur));
+  box-shadow: none;
+}
+
+/* Force : tout converge vers la cible. */
+.impact-force .impact-onde {
+  animation-name: imp-onde-inverse;
+}
+
+@keyframes imp-onde-inverse {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(1.4 * var(--portee, 1)));
+  }
+  50% {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+}
+
+.impact-force .impact-part {
+  animation-name: imp-aspire;
+}
+
+@keyframes imp-aspire {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--d) * var(--cote) * 0.75 * var(--portee, 1))) scale(0.4);
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--a)) translateX(0) scale(var(--r));
+  }
+}
+
+/* Psychique : ondes concentriques. */
+.impact-psychique .impact-onde::after {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: 50%;
+  border: 2px solid var(--couleur);
+}
+
+.impact-psychique .impact-part {
+  width: 5px;
+  height: 5px;
+}
+
+/* Tonnerre : onde épaisse, poussière. */
+.impact-tonnerre .impact-onde {
+  border-width: 7px;
+  box-shadow: 0 0 16px #fff;
+  animation-duration: calc(var(--duree) * 0.8);
+}
+
+.impact-tonnerre .impact-part {
+  background: radial-gradient(circle, #fff, #8fa4d8);
+  filter: blur(1px);
+}
+
+/* Coups d'arme : tracé orienté de l'attaquant vers la cible (--angle). */
+.lame {
+  translate: -50% -50%;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.lame svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: #fff;
+  filter: drop-shadow(0 0 5px rgba(200, 220, 255, 0.95)) drop-shadow(0 0 2px #fff);
+}
+
+.lame-tranchant {
+  rotate: calc(var(--angle) + 0.35rad);
+  animation-name: lame-trace;
+}
+
+@keyframes lame-trace {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 1;
+  }
+  45% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+}
+
+.lame-perforant {
+  rotate: var(--angle);
+  animation-name: lame-estoc;
+}
+
+.lame-perforant svg {
+  fill: #f6e8c4;
+}
+
+@keyframes lame-estoc {
+  0% {
+    transform: translateX(-75%) scaleX(0.3);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  55% {
+    transform: translateX(12%) scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(12%) scaleX(1);
+    opacity: 0;
+  }
+}
+
+.lame-contondant {
+  animation-name: lame-choc;
+}
+
+.lame-contondant svg {
+  fill: #ffe9c4;
+  filter: drop-shadow(0 0 6px rgba(255, 170, 70, 0.9));
+}
+
+@keyframes lame-choc {
+  from {
+    opacity: 1;
+    transform: scale(0.25) rotate(-12deg);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.05) rotate(8deg);
+  }
+}
+
+/* Critique : le plateau tremble et se rapproche, les bords rougissent. */
+.plateau-secoue {
+  animation: plateau-secousse ease-out;
+}
+
+.plateau-secoue-fort {
+  animation-name: plateau-secousse-forte;
+}
+
+@keyframes plateau-secousse {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  20% {
+    transform: translate(-2px, 1px) scale(1.012);
+  }
+  40% {
+    transform: translate(2px, -1px) scale(1.012);
+  }
+  65% {
+    transform: translate(-1px, 1px) scale(1.006);
+  }
+}
+
+@keyframes plateau-secousse-forte {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  12% {
+    transform: translate(-6px, 3px) scale(1.045);
+  }
+  28% {
+    transform: translate(5px, -4px) scale(1.045);
+  }
+  46% {
+    transform: translate(-4px, 2px) scale(1.03);
+  }
+  66% {
+    transform: translate(2px, -1px) scale(1.015);
+  }
+}
+
+.flash-ecran {
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(255, 70, 40, 0.5) 100%);
+  animation: flash-ecran ease-out forwards;
+}
+
+@keyframes flash-ecran {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Chiffres de dégâts : la couleur dit le type. */
+.ft-t-tranchant {
+  color: #e6ecf5;
+}
+.ft-t-perforant {
+  color: #f0dfb8;
+}
+.ft-t-contondant {
+  color: #e0b98a;
+}
+.ft-t-feu {
+  color: #ff8a3c;
+}
+.ft-t-froid {
+  color: #9fe2ff;
+}
+.ft-t-foudre {
+  color: #ffe45c;
+}
+.ft-t-acide {
+  color: #a8ff3c;
+}
+.ft-t-poison {
+  color: #7fd94a;
+}
+.ft-t-necrotique {
+  color: #6fdc8c;
+}
+.ft-t-radiant {
+  color: #fff0b5;
+}
+.ft-t-force {
+  color: #b98cff;
+}
+.ft-t-psychique {
+  color: #ff8ad8;
+}
+.ft-t-tonnerre {
+  color: #c9d4ff;
+}
+
+.ft-degats[class*='ft-t-'] {
+  text-shadow: 0 0 6px currentColor, 0 0 3px #000, 0 2px 4px #000;
+}
+
+.ft-reaction {
+  font-size: 12px;
+  font-style: italic;
+}
+.ft-reaction-resiste {
+  color: #cfe0ff;
+}
+.ft-reaction-vulnerable {
+  color: #ffd166;
+  font-style: normal;
+  font-size: 13px;
+}
+.ft-reaction-immunise {
+  color: #b6b0a4;
 }
 
 @media (prefers-reduced-motion: reduce) {

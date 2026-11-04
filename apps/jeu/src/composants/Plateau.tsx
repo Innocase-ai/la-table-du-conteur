@@ -3,6 +3,7 @@ import { cle, etatApparent, typeCase, type Combattant, type EtatCombat, type Pos
 import { LIBELLES_APPARENT, nomClasse } from '../libelles';
 import type { Donnees } from '@crpg/regles';
 import type { Effet } from '../animations';
+import { COULEURS_FAMILLES, type Famille } from '../effets-visuels';
 import { textureTerrain } from '../visuels';
 import { Jeton } from './Jeton';
 
@@ -160,12 +161,23 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
   // Les morts d'abord, pour que les vivants passent au-dessus.
   visibles.sort((a, b) => Number(b.mort) - Number(a.mort));
   const survole = infobulle ? etat.combattants.find((c) => c.id === infobulle) : undefined;
+  // Un coup critique fait trembler le plateau et le rapproche de la cible.
+  const secousse = effets.find((e) => e.type === 'secousse');
+  const origineSecousse = secousse ? centre(secousse.position, g) : undefined;
 
   return (
     <div className="plateau-conteneur" ref={conteneur}>
       <div
-        className={`plateau mode-${surcouches.modeCible}${terrain ? ` terrain-${terrain}` : ''}`}
-        style={{ width: largeur * g.cote, height: g.marge + hauteur * g.hc, ['--vitesse' as string]: vitesse, ['--cote' as string]: `${g.cote}px` }}
+        className={`plateau mode-${surcouches.modeCible}${terrain ? ` terrain-${terrain}` : ''}${secousse ? (secousse.fort ? ' plateau-secoue plateau-secoue-fort' : ' plateau-secoue') : ''}`}
+        style={{
+          width: largeur * g.cote,
+          height: g.marge + hauteur * g.hc,
+          ['--vitesse' as string]: vitesse,
+          ['--cote' as string]: `${g.cote}px`,
+          ...(secousse && origineSecousse
+            ? { transformOrigin: `${origineSecousse.x}px ${origineSecousse.y}px`, animationDuration: `${Math.round(secousse.duree * vitesse)}ms` }
+            : {}),
+        }}
         onMouseLeave={() => {
           onSurvolCase(null);
           setInfobulle(null);
@@ -255,7 +267,34 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
   );
 }
 
-function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geometrie; vitesse: number }) {
+/** Nombre de particules d'un impact, selon la famille de dégâts. */
+const PARTICULES: Record<Famille, number> = {
+  tranchant: 6,
+  perforant: 4,
+  contondant: 8,
+  feu: 10,
+  froid: 7,
+  foudre: 6,
+  acide: 8,
+  poison: 8,
+  necrotique: 7,
+  radiant: 10,
+  force: 8,
+  psychique: 6,
+  tonnerre: 6,
+};
+
+/** Pseudo-hasard stable (même effet, même rendu) pour disperser les particules. */
+function alea(id: number, i: number): number {
+  const x = Math.sin(id * 12.9898 + i * 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+/** Éclair en zigzag, tracé d'un trait qui s'efface (famille foudre). */
+const ECLAIR = 'M62 0 L44 34 L58 38 L36 72 L50 76 L30 108 L66 62 L52 58 L70 24 L56 20 Z';
+
+/** Effets d'animation posés sur le plateau (aussi utilisés par le banc d'essai). */
+export function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geometrie; vitesse: number }) {
   const cote = g.cote;
   return (
     <div className="effets-plateau" aria-hidden>
@@ -287,7 +326,7 @@ function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geometrie; 
           case 'texte': {
             const a = centre(e.position, g);
             return (
-              <div key={e.id} className={`texte-flottant ${e.classe}`} style={{ left: a.x, top: a.y - cote * 0.3, animationDuration: duree }}>
+              <div key={e.id} className={`texte-flottant ${e.classe}`} style={{ left: a.x, top: a.y - cote * 0.3 + (e.decalage ?? 0) * cote, animationDuration: duree }}>
                 {e.texte}
               </div>
             );
@@ -309,6 +348,55 @@ function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geometrie; 
                 style={{ left: p.x * cote, top: g.marge + p.y * g.hc, width: cote, height: g.hc, animationDuration: duree, ['--couleur' as string]: e.couleur }}
               />
             ));
+          case 'impact': {
+            const a = centre(e.position, g);
+            const n = Math.round(PARTICULES[e.famille] * (e.gros ? 1.5 : 1));
+            return (
+              <div
+                key={e.id}
+                className={`impact impact-${e.famille}${e.gros ? ' impact-gros' : ''}`}
+                style={{ left: a.x, top: a.y, width: cote, height: cote, ['--couleur' as string]: COULEURS_FAMILLES[e.famille], ['--duree' as string]: duree }}
+              >
+                <span className="impact-noyau" />
+                <span className="impact-onde" />
+                {e.famille === 'foudre' && (
+                  <svg className="impact-eclair" viewBox="0 0 100 108" aria-hidden>
+                    <path d={ECLAIR} />
+                  </svg>
+                )}
+                {Array.from({ length: n }, (_, i) => (
+                  <span
+                    key={i}
+                    className="impact-part"
+                    style={{
+                      ['--a' as string]: `${Math.round((i * 360) / n + alea(e.id, i) * 40 - 20)}deg`,
+                      ['--d' as string]: (0.5 + alea(e.id, i + 50) * 0.55).toFixed(2),
+                      ['--r' as string]: (0.6 + alea(e.id, i + 99) * 0.8).toFixed(2),
+                      animationDelay: `${Math.round(alea(e.id, i + 7) * 90)}ms`,
+                    }}
+                  />
+                ))}
+              </div>
+            );
+          }
+          case 'lame': {
+            const a = centre(e.position, g);
+            return (
+              <div
+                key={e.id}
+                className={`lame lame-${e.genre}`}
+                style={{ left: a.x, top: a.y, width: cote * 1.05, height: cote * 1.05, animationDuration: duree, ['--angle' as string]: `${e.angle}rad` }}
+              >
+                <svg viewBox="0 0 100 100" aria-hidden>
+                  {e.genre === 'tranchant' && <path d="M52 6 C78 30 78 70 48 94 C62 70 62 30 52 6 Z" />}
+                  {e.genre === 'perforant' && <path d="M0 50 L100 50 L8 46 Z M0 50 L100 50 L8 54 Z" />}
+                  {e.genre === 'contondant' && <path d="M50 4 L58 36 L92 28 L66 50 L92 72 L58 64 L50 96 L42 64 L8 72 L34 50 L8 28 L42 36 Z" />}
+                </svg>
+              </div>
+            );
+          }
+          case 'secousse':
+            return e.fort ? <div key={e.id} className="flash-ecran" style={{ animationDuration: duree }} /> : null;
           case 'lueur': {
             const a = centre(e.position, g);
             return (

@@ -96,6 +96,25 @@ describe('règles de combat', () => {
     expect(grukk.pvMax - grukk.pv).toBe(5);
   });
 
+  it("le journal des dégâts dit si la cible résiste, est vulnérable ou immunisée (pour l'animation)", () => {
+    etat = combat([hero('Grukk', 1, 1), monstre('ogre', 2, 1, 'ogre')]);
+    const grukk = combattant(etat, 'grukk');
+    const dernier = () => etat.journal.filter((e) => e.type === 'degats').at(-1)!.details!;
+    infligerDegats(etat, grukk, [{ montant: 4, type: 'feu' }], undefined);
+    expect(dernier().reaction).toBeUndefined();
+    expect(dernier().types).toEqual(['feu']);
+    grukk.resistances.push('froid');
+    infligerDegats(etat, grukk, [{ montant: 4, type: 'froid' }], undefined);
+    expect(dernier().reaction).toBe('resiste');
+    grukk.vulnerabilites.push('foudre');
+    infligerDegats(etat, grukk, [{ montant: 4, type: 'foudre' }], undefined);
+    expect(dernier().reaction).toBe('vulnerable');
+    grukk.immunites.push('poison');
+    infligerDegats(etat, grukk, [{ montant: 4, type: 'poison' }], undefined);
+    expect(dernier().reaction).toBe('immunise');
+    expect(etat.journal.at(-1)!.valeur).toBe(0);
+  });
+
   it('un héros à 0 PV tombe inconscient, subit des échecs contre la mort et se relève avec des soins', () => {
     etat = combat([hero('Hilda', 1, 1), hero('Ambrine', 2, 1), monstre('ogre', 5, 1, 'ogre')]);
     const ambrine = combattant(etat, 'ambrine');

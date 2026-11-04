@@ -428,9 +428,27 @@ export function infligerDegats(
 ): number {
   if (cible.mort) return 0;
   let total = 0;
-  for (const d of degats) total += Math.floor(Math.max(0, d.montant) * multiplicateurDegats(cible, d.type));
+  const multiplicateurs = degats.map((d) => multiplicateurDegats(cible, d.type));
+  degats.forEach((d, i) => {
+    total += Math.floor(Math.max(0, d.montant) * multiplicateurs[i]!);
+  });
+  const reaction: 'resiste' | 'vulnerable' | 'immunise' | undefined = multiplicateurs.every((m) => m === 0)
+    ? 'immunise'
+    : multiplicateurs.some((m) => m > 1)
+      ? 'vulnerable'
+      : multiplicateurs.some((m) => m < 1)
+        ? 'resiste'
+        : undefined;
+  const typesDegats = [...new Set(degats.map((d) => d.type))];
   if (total <= 0) {
-    journaliser(etat, { type: 'degats', texte: `${cible.nom} ne subit aucun dégât.`, cible: cible.id, valeur: 0 });
+    journaliser(etat, {
+      type: 'degats',
+      texte: `${cible.nom} ne subit aucun dégât.`,
+      acteur: source?.id,
+      cible: cible.id,
+      valeur: 0,
+      details: { types: typesDegats, ...(reaction ? { reaction } : {}) },
+    });
     return 0;
   }
   const absorbe = Math.min(cible.pvTemp, total);
@@ -443,7 +461,7 @@ export function infligerDegats(
     acteur: source?.id,
     cible: cible.id,
     valeur: total,
-    details: { critique, types: [...new Set(degats.map((d) => d.type))] },
+    details: { critique, types: typesDegats, ...(reaction ? { reaction } : {}) },
   });
   // Sommeil : les dégâts réveillent.
   cible.etats = cible.etats.filter((e) => !e.finSurDegats);

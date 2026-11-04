@@ -220,3 +220,13 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Chaque classe jouable a son pictogramme propre : six classes empruntaient une icône voisine (paladin, ensorceleur, occultiste, druide, moine, barde). Dessins maison pour ces six (`apps/jeu/src/icones/`, sans source externe, crédits dans `CREDITS.md`).
 - L'icône de la classe est posée en bas à droite du portrait du héros dans la fiche de combat (médaillon aux couleurs du camp, grisé à la mort). Les jetons l'affichaient déjà.
 - Vérifié dans le navigateur (escarmouche avec les héros pré-tirés) ; 463 tests verts, typecheck OK.
+
+## 04/11/2026 — Retour visuel des attaques et de la magie, palier 1 : des impacts qui se sentent
+
+- **Une famille de dégâts, un habillage** (`apps/jeu/src/effets-visuels.ts`) : 13 familles (tranchant, perforant, contondant, feu, froid, foudre, acide, poison, nécrotique, radiant, force, psychique, tonnerre), chacune avec son impact (braises, éclats de glace, éclair, bulles, rayons, onde qui converge, ondes concentriques…), sa couleur de chiffre et sa façon de mourir (le jeton noircit, se fige, blanchit, vire au vert, grésille). Un élément l'emporte sur le physique : une épée de feu brûle.
+- **Coups d'arme** : arc de lame (tranchant), estoc (perforant), onde de choc en étoile (contondant), orientés de l'attaquant vers la cible.
+- **Critique** : arrêt sur image de 90 ms, plateau qui tremble et se rapproche de la cible, bords rougis. Le tonnerre fait trembler le plateau en plus léger.
+- **Mentions** « Résiste », « Vulnérable ! », « Immunisé » : le journal du moteur porte maintenant `details.reaction` (un test). Mouvement réduit : seuls les chiffres restent.
+- Les effets passent au-dessus des jetons (le conteneur était sous eux).
+- **Banc d'essai** : `http://localhost:5173/?effets` (un bouton par famille, critique, réaction, « tout enchaîner ») pour régler les effets sans lancer de combat.
+- Vérifié dans un vrai combat (impacts perforant et tranchant, critique avec secousse et flash) ; 464 tests verts, typecheck OK. Reste à voir en jeu : les sorts (feu, froid…), la mort par famille. Paliers 2 (projectiles de sorts, zones qui se propagent) et 3 (auras, états) à faire.

@@ -156,6 +156,8 @@ export interface DetailsEvenement {
   sauvegarde?: 'reussie' | 'ratee';
   critique?: boolean;
   types?: string[];
+  /** Dégâts : la cible résiste, est vulnérable ou immunisée (affiché par l'animation). */
+  reaction?: 'resiste' | 'vulnerable' | 'immunise';
 }
 
 export interface EtatCombat {

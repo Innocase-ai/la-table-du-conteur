@@ -5,6 +5,7 @@
 // et avancent au rythme des animations ; à la fin, on revient à l'état réel du moteur.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
+import { estPhysique, familleDominante, styleMort, type Famille, type FamillePhysique } from './effets-visuels';
 
 export interface Surcharge {
   position: Position;
@@ -17,13 +18,52 @@ export interface Surcharge {
 
 export type Effet =
   | { id: number; type: 'projectile'; de: Position; vers: Position; style: 'fleche' | 'trait'; couleur: string; duree: number }
-  | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number }
+  | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number; decalage?: number }
   | { id: number; type: 'bulle'; position: Position; texte: string; duree: number }
   | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number }
-  | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number };
+  | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number }
+  /** Impact d'une famille de dégâts sur une case (éclat, particules) ; `gros` pour une mort ou un critique. */
+  | { id: number; type: 'impact'; position: Position; famille: Famille; gros: boolean; duree: number }
+  /** Coup d'arme : arc de lame, estoc ou onde de choc, orienté de l'attaquant vers la cible (angle en radians). */
+  | { id: number; type: 'lame'; position: Position; angle: number; genre: FamillePhysique; duree: number }
+  /** Le plateau tremble et se rapproche de la cible (critique, tonnerre). */
+  | { id: number; type: 'secousse'; position: Position; fort: boolean; duree: number };
 
 type SansId<T> = T extends unknown ? Omit<T, 'id'> : never;
-type EffetSansId = SansId<Effet>;
+export type EffetSansId = SansId<Effet>;
+
+export interface Coup {
+  famille: Famille;
+  /** Case de la cible. */
+  position: Position;
+  /** Direction du coup, de l'attaquant vers la cible (radians). */
+  angle: number;
+  valeur: number;
+  critique: boolean;
+  reaction?: 'resiste' | 'vulnerable' | 'immunise';
+}
+
+/** Les effets visuels d'un coup qui porte : arme, impact, secousse, chiffre et mention de résistance. */
+export function effetsDeCoup(c: Coup, reduit: boolean): EffetSansId[] {
+  const effets: EffetSansId[] = [];
+  if (c.valeur > 0 && !reduit) {
+    if (estPhysique(c.famille)) effets.push({ type: 'lame', position: c.position, angle: c.angle, genre: c.famille, duree: c.famille === 'tranchant' ? 420 : 360 });
+    effets.push({ type: 'impact', position: c.position, famille: c.famille, gros: c.critique, duree: c.famille === 'feu' || c.famille === 'necrotique' ? 900 : 650 });
+    if (c.critique || c.famille === 'tonnerre') effets.push({ type: 'secousse', position: c.position, fort: c.critique, duree: 420 });
+  }
+  effets.push({
+    type: 'texte',
+    position: c.position,
+    texte: c.valeur > 0 ? `−${c.valeur}` : '0',
+    classe: `ft-degats ft-t-${c.famille}${c.critique ? ' ft-gros' : ''}`,
+    duree: 1100,
+  });
+  if (c.reaction) {
+    const libelle = c.reaction === 'resiste' ? 'Résiste' : c.reaction === 'vulnerable' ? 'Vulnérable !' : 'Immunisé';
+    effets.push({ type: 'texte', position: c.position, texte: libelle, classe: `ft-reaction ft-reaction-${c.reaction}`, duree: 1200, decalage: -0.42 });
+  }
+  return effets;
+}
 
 export interface Vue {
   surcharges: Map<string, Surcharge>;
@@ -146,6 +186,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
   const pos = (id: string | undefined) => (id ? positions.get(id) : undefined);
   const s = (id: string) => o.vue().surcharges.get(id);
   const reel = (id: string): Combattant | undefined => etat.combattants.find((c) => c.id === id);
+  // Dernière famille de dégâts reçue par chacun : la mort s'habille comme le coup fatal.
+  const derniereFamille = new Map<string, Famille>();
 
   etat.journal.slice(inst.journal).forEach((ev: Evenement, i) => {
     const index = inst.journal + i + 1;
@@ -222,6 +264,13 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         const b = pos(id);
         if (!id || !b) break;
         const valeur = ev.valeur ?? 0;
+        const fam = familleDominante(d.types);
+        if (valeur > 0) derniereFamille.set(id, fam);
+        const source = pos(ev.acteur);
+        // Direction du coup : de l'attaquant vers la cible (à défaut, une diagonale descendante).
+        const angle = source && (source.x !== b.x || source.y !== b.y) ? Math.atan2(b.y - source.y, b.x - source.x) : -0.6;
+        // Un critique marque un temps d'arrêt avant que le coup ne porte.
+        if (d.critique && !reduit && valeur > 0) ajouter(90);
         ajouter(300, () => {
           const x = s(id);
           if (x) {
@@ -229,13 +278,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
             x.pvTemp -= absorbe;
             x.pv = Math.max(0, x.pv - (valeur - absorbe));
           }
-          o.effet({
-            type: 'texte',
-            position: b,
-            texte: valeur > 0 ? `−${valeur}` : '0',
-            classe: d.critique ? 'ft-degats ft-gros' : 'ft-degats',
-            duree: 1100,
-          });
+          for (const e of effetsDeCoup({ famille: fam, position: b, angle, valeur, critique: !!d.critique, reaction: d.reaction }, reduit)) o.effet(e);
         });
         break;
       }
@@ -295,16 +338,13 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         const c = id && reel(id);
         if (!id || !c) break;
         const etats = c.etats.map((e) => ({ ...e }));
-        ajouter(c.mort ? 560 : 300, () =>
-          o.animer(
-            id,
-            [
-              { opacity: 1, transform: 'scale(1) translateY(0)' },
-              { opacity: 0.35, transform: 'scale(0.72) translateY(14%) rotate(-8deg)' },
-            ],
-            c.mort ? 560 : 300,
-          ),
-        );
+        const fam = derniereFamille.get(id) ?? 'contondant';
+        const style = styleMort(fam, c.mort);
+        const lieu = pos(id);
+        ajouter(style.duree, () => {
+          o.animer(id, style.images, style.duree);
+          if (c.mort && lieu && !reduit) o.effet({ type: 'impact', position: lieu, famille: fam, gros: true, duree: 900 });
+        });
         ajouter(0, () => {
           const x = s(id);
           if (!x) return;
