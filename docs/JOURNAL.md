@@ -230,3 +230,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Les effets passent au-dessus des jetons (le conteneur était sous eux).
 - **Banc d'essai** : `http://localhost:5173/?effets` (un bouton par famille, critique, réaction, « tout enchaîner ») pour régler les effets sans lancer de combat.
 - Vérifié dans un vrai combat (impacts perforant et tranchant, critique avec secousse et flash) ; 464 tests verts, typecheck OK. Reste à voir en jeu : les sorts (feu, froid…), la mort par famille. Paliers 2 (projectiles de sorts, zones qui se propagent) et 3 (auras, états) à faire.
+
+## 04/11/2026 — Retour visuel des attaques et de la magie, palier 2 : des sorts qui voyagent
+
+- **Un projectile par forme de sort** (`formeSort`, `effetDeSort`) : boule de feu à traînée (trait de feu), éclat de glace (rayon de givre), dard qui dévie en arc (projectile magique, un par fléchette), jet d'acide qui monte en arc, volute sinueuse (poison, nécrotique, psychique). Un sort inconnu suit la famille de ses dégâts.
+- **Rayons instantanés** : faisceau qui jaillit puis s'éteint (rayon ardent, flamme sacrée), éclair en zigzag qui crépite (éclair traçant).
+- **Zones qui se propagent** : la zone part de son centre (le point visé, ou le lanceur pour un souffle) et gagne les cases une à une (60 ms par case) ; taches de couleur aux bords fondus ; explosion à l'origine pour un sort de dégâts lancé à distance.
+- **Cercle d'incantation** : un cercle de runes (deux carrés, anneau gradué) se trace sous le lanceur avant chaque sort. Mouvement réduit : lueur simple, zone sans propagation.
+- Banc d'essai (`/?effets`) : onze sorts, lancés depuis un disque bleu vers la case choisie ; il rejoue la même séquence que le combat.
+- Vérifié : chaque forme au banc d'essai (images arrêtées à mi-course) et dans un vrai combat (cercle d'incantation et éclair). 464 tests verts, typecheck OK. Reste le palier 3 : auras persistantes (bénédiction, bouclier de la foi, fléau, marque) et états lisibles sur les jetons.

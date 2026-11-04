@@ -158,3 +158,46 @@ export function styleMort(f: Famille, definitive: boolean): StyleMort {
       };
   }
 }
+
+// ---------------------------------------------------------------------------
+// Formes des sorts lancés à distance
+// ---------------------------------------------------------------------------
+
+/** Ce qui traverse le plateau : un projectile (boule, éclat de glace, dard, jet, volute) ou un rayon (instantané). */
+export type FormeSort = 'boule' | 'glace' | 'dard' | 'lob' | 'volute' | 'zigzag' | 'rayon';
+
+/** Formes propres à certains sorts ; les autres suivent la famille de leurs dégâts. */
+const FORMES_SORTS: Record<string, FormeSort> = {
+  'trait-de-feu': 'boule',
+  'rayon-de-givre': 'glace',
+  'flamme-sacree': 'rayon',
+  'eclair-tracant': 'zigzag',
+  'rayon-ardent': 'rayon',
+  'projectile-magique': 'dard',
+  'aspersion-acide': 'lob',
+  'bouffee-de-poison': 'volute',
+};
+
+const FORMES_FAMILLES: Record<Famille, FormeSort> = {
+  tranchant: 'dard',
+  perforant: 'dard',
+  contondant: 'dard',
+  feu: 'boule',
+  froid: 'glace',
+  foudre: 'zigzag',
+  acide: 'lob',
+  poison: 'volute',
+  necrotique: 'volute',
+  radiant: 'rayon',
+  force: 'dard',
+  psychique: 'volute',
+  tonnerre: 'boule',
+};
+
+export function formeSort(id: string | undefined, f: Famille): FormeSort {
+  return (id && FORMES_SORTS[id]) || FORMES_FAMILLES[f];
+}
+
+export function estRayon(forme: FormeSort): forme is 'zigzag' | 'rayon' {
+  return forme === 'zigzag' || forme === 'rayon';
+}

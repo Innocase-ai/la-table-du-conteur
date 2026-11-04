@@ -305,6 +305,10 @@ export function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geom
             const a = centre(e.de, g);
             const b = centre(e.vers, g);
             const angle = Math.atan2(b.y - a.y, b.x - a.x);
+            const longueur = Math.hypot(b.x - a.x, b.y - a.y);
+            // Un jet d'acide monte en arc ; un dard dévie d'un côté ou de l'autre, au hasard de son numéro.
+            const arc =
+              e.style === 'lob' ? -Math.round(longueur * 0.4) : e.style === 'dard' ? Math.round((alea(e.id, 1) > 0.5 ? -1 : 1) * (10 + alea(e.id, 2) * 24)) : 0;
             return (
               <div
                 key={e.id}
@@ -316,10 +320,58 @@ export function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geom
                   ['--dx' as string]: `${b.x - a.x}px`,
                   ['--dy' as string]: `${b.y - a.y}px`,
                   ['--angle' as string]: `${angle}rad`,
+                  ['--arc' as string]: `${arc}px`,
                   ['--couleur' as string]: e.couleur,
                 }}
               >
-                <span />
+                <span style={{ animationDuration: duree }} />
+              </div>
+            );
+          }
+          case 'rayon': {
+            const a = centre(e.de, g);
+            const b = centre(e.vers, g);
+            const longueur = Math.hypot(b.x - a.x, b.y - a.y);
+            const angle = Math.atan2(b.y - a.y, b.x - a.x);
+            const style = {
+              left: a.x,
+              top: a.y,
+              width: longueur,
+              animationDuration: duree,
+              ['--angle' as string]: `${angle}rad`,
+              ['--couleur' as string]: e.couleur,
+            };
+            if (e.forme === 'zigzag') {
+              // Un éclair : une ligne brisée aux écarts tirés du numéro de l'effet (stable d'un rendu à l'autre).
+              const n = Math.max(3, Math.round(longueur / 22));
+              const points = Array.from({ length: n + 1 }, (_, i) => {
+                const ecart = i === 0 || i === n ? 0 : (alea(e.id, i) - 0.5) * 26;
+                return `${((i / n) * longueur).toFixed(1)},${(20 + ecart).toFixed(1)}`;
+              }).join(' ');
+              return (
+                <svg key={e.id} className="rayon rayon-zigzag" style={{ ...style, height: 40 }} viewBox={`0 0 ${longueur.toFixed(1)} 40`} preserveAspectRatio="none">
+                  <polyline className="zigzag-halo" points={points} />
+                  <polyline className="zigzag-coeur" points={points} />
+                </svg>
+              );
+            }
+            return <div key={e.id} className="rayon rayon-droit" style={style} />;
+          }
+          case 'cercle': {
+            const a = centre(e.position, g);
+            return (
+              <div
+                key={e.id}
+                className="cercle-magique"
+                style={{ left: a.x, top: a.y, width: cote * 1.5, height: cote * 1.5, animationDuration: duree, ['--couleur' as string]: e.couleur }}
+              >
+                <svg viewBox="0 0 100 100" aria-hidden>
+                  <circle cx="50" cy="50" r="46" />
+                  <circle cx="50" cy="50" r="42" strokeDasharray="2 9.9" />
+                  <circle cx="50" cy="50" r="34" />
+                  <polygon points="50,16 84,50 50,84 16,50" />
+                  <polygon points="26,26 74,26 74,74 26,74" />
+                </svg>
               </div>
             );
           }
@@ -341,13 +393,25 @@ export function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geom
             );
           }
           case 'zone':
-            return e.cases.map((p, i) => (
-              <div
-                key={`${e.id}-${i}`}
-                className="eclat-zone"
-                style={{ left: p.x * cote, top: g.marge + p.y * g.hc, width: cote, height: g.hc, animationDuration: duree, ['--couleur' as string]: e.couleur }}
-              />
-            ));
+            return e.cases.map((p, i) => {
+              // Propagation : chaque case s'allume après un délai proportionnel à sa distance à l'origine.
+              const delai = e.origine && e.delai ? Math.max(Math.abs(p.x - e.origine.x), Math.abs(p.y - e.origine.y)) * e.delai : 0;
+              return (
+                <div
+                  key={`${e.id}-${i}`}
+                  className="eclat-zone"
+                  style={{
+                    left: p.x * cote,
+                    top: g.marge + p.y * g.hc,
+                    width: cote,
+                    height: g.hc,
+                    animationDuration: e.delai ? `${Math.round(480 * vitesse)}ms` : duree,
+                    animationDelay: `${Math.round(delai * vitesse)}ms`,
+                    ['--couleur' as string]: e.couleur,
+                  }}
+                />
+              );
+            });
           case 'impact': {
             const a = centre(e.position, g);
             const n = Math.round(PARTICULES[e.famille] * (e.gros ? 1.5 : 1));

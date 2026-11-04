@@ -5,7 +5,7 @@
 // et avancent au rythme des animations ; à la fin, on revient à l'état réel du moteur.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
-import { estPhysique, familleDominante, styleMort, type Famille, type FamillePhysique } from './effets-visuels';
+import { estPhysique, estRayon, famille, familleDominante, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 
 export interface Surcharge {
   position: Position;
@@ -17,10 +17,15 @@ export interface Surcharge {
 }
 
 export type Effet =
-  | { id: number; type: 'projectile'; de: Position; vers: Position; style: 'fleche' | 'trait'; couleur: string; duree: number }
+  | { id: number; type: 'projectile'; de: Position; vers: Position; style: 'fleche' | 'trait' | Exclude<FormeSort, 'zigzag' | 'rayon'>; couleur: string; duree: number }
+  /** Rayon instantané d'un sort (éclair en zigzag, faisceau) : il apparaît d'un coup, puis s'éteint. */
+  | { id: number; type: 'rayon'; de: Position; vers: Position; forme: 'zigzag' | 'rayon'; couleur: string; duree: number }
+  /** Cercle d'incantation, tracé sous le lanceur. */
+  | { id: number; type: 'cercle'; position: Position; couleur: string; duree: number }
   | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number; decalage?: number }
   | { id: number; type: 'bulle'; position: Position; texte: string; duree: number }
-  | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number }
+  /** Zone d'effet ; avec `origine` et `delai`, elle se propage case après case depuis l'origine (délai par case, en ms). */
+  | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number; origine?: Position; delai?: number }
   | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number }
   /** Impact d'une famille de dégâts sur une case (éclat, particules) ; `gros` pour une mort ou un critique. */
   | { id: number; type: 'impact'; position: Position; famille: Famille; gros: boolean; duree: number }
@@ -63,6 +68,16 @@ export function effetsDeCoup(c: Coup, reduit: boolean): EffetSansId[] {
     effets.push({ type: 'texte', position: c.position, texte: libelle, classe: `ft-reaction ft-reaction-${c.reaction}`, duree: 1200, decalage: -0.42 });
   }
   return effets;
+}
+
+/** Ce qui traverse le plateau quand un sort est lancé de `de` vers `vers` : projectile ou rayon, selon le sort. */
+export function effetDeSort(donnees: Donnees, sortId: string | undefined, de: Position, vers: Position, duree: number): EffetSansId {
+  const type = sortId ? donnees.sorts.get(sortId)?.degats[0]?.type : undefined;
+  const forme = formeSort(sortId, famille(type));
+  const couleur = couleurSort(donnees, sortId);
+  if (estRayon(forme)) return { type: 'rayon', de, vers, forme, couleur, duree: Math.max(duree, 450) };
+  // Un jet d'acide décrit un arc et met plus de temps à arriver.
+  return { type: 'projectile', de, vers, style: forme, couleur, duree: forme === 'lob' ? Math.round(duree * 1.35) : duree };
 }
 
 export interface Vue {
@@ -218,9 +233,14 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         if (d.distance) {
           if (!reduit) {
             const duree = Math.max(160, Math.min(420, distanceCases(a, b) * 40));
-            const style = d.sort || d.sauvegarde ? 'trait' : 'fleche';
-            const couleur = d.sort ? couleurSort(donnees, d.sort) : d.sauvegarde ? '#c9b48a' : '#e8d6b0';
-            ajouter(duree, () => o.effet({ type: 'projectile', de: a, vers: b, style, couleur, duree }));
+            if (d.sort) {
+              // Un sort a son projectile (boule, éclat de glace, dard…) ou son rayon.
+              ajouter(duree, () => o.effet(effetDeSort(donnees, d.sort, a, b, duree)));
+            } else {
+              const style = d.sauvegarde ? 'trait' : 'fleche';
+              const couleur = d.sauvegarde ? '#c9b48a' : '#e8d6b0';
+              ajouter(duree, () => o.effet({ type: 'projectile', de: a, vers: b, style, couleur, duree }));
+            }
           }
         } else if (!reduit) {
           const dx = Math.sign(b.x - a.x);
@@ -303,8 +323,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           const cible = ev.cible;
           if (d.distance && a && !reduit) {
             const duree = Math.max(160, Math.min(420, distanceCases(a, b) * 40));
-            const couleur = couleurSort(donnees, d.sort);
-            ajouter(duree, () => o.effet({ type: 'projectile', de: a, vers: b, style: 'trait', couleur, duree }));
+            ajouter(duree, () => o.effet(effetDeSort(donnees, d.sort, a, b, duree)));
           }
           ajouter(220, () => {
             if (d.sauvegarde === 'ratee') o.animer(cible, reduit ? FLASH : SECOUSSE, 300);
@@ -312,10 +331,24 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           });
         } else if (d.sort && a) {
           const couleur = couleurSort(donnees, d.sort);
-          ajouter(d.cases?.length ? 120 : 260, () => o.effet({ type: 'lueur', position: a, couleur, duree: 600 }));
+          const definition = donnees.sorts.get(d.sort);
+          const typeDegats = definition?.degats[0]?.type;
+          // Incantation : un cercle de runes se trace sous le lanceur (une simple lueur en mouvement réduit).
+          ajouter(d.cases?.length ? 200 : 300, () =>
+            o.effet(reduit ? { type: 'lueur', position: a, couleur, duree: 600 } : { type: 'cercle', position: a, couleur, duree: 850 }),
+          );
           if (d.cases?.length) {
             const cases = d.cases;
-            ajouter(480, () => o.effet({ type: 'zone', cases, couleur, duree: 700 }));
+            // La zone part de son centre (le point visé, ou le lanceur pour un sort personnel) et s'étend case après case.
+            const origine = definition?.portee.type === 'personnel' || !d.point ? a : d.point;
+            const rayon = Math.max(0, ...cases.map((p) => distanceCases(origine, p)));
+            ajouter(Math.min(720, 240 + rayon * 60), () => {
+              o.effet({ type: 'zone', cases, couleur, duree: 520 + (reduit ? 0 : rayon * 60), origine, delai: reduit ? 0 : 60 });
+              // Une explosion à l'origine pour les sorts de dégâts lancés à distance (pas pour un souffle parti du lanceur).
+              if (!reduit && typeDegats && definition?.portee.type !== 'personnel') {
+                o.effet({ type: 'impact', position: origine, famille: famille(typeDegats), gros: true, duree: 900 });
+              }
+            });
           }
         } else if (b && !ev.details) {
           ajouter(160, () => o.effet({ type: 'lueur', position: b, couleur: '#f0cd84', duree: 500 }));

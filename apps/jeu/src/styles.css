@@ -2037,6 +2037,260 @@ button:disabled {
   box-shadow: 0 0 10px 4px var(--couleur);
 }
 
+/* Sorts : un projectile par forme (boule, glace, dard, jet d'acide, volute). */
+.projectile-boule span {
+  width: calc(var(--cote) * 0.85);
+  height: 14px;
+  border-radius: 7px;
+  background: linear-gradient(90deg, transparent, var(--couleur) 70%, #fff3a0);
+}
+
+.projectile-boule span::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #fff3a0 25%, var(--couleur) 55%, rgba(200, 48, 10, 0.8) 80%, transparent 100%);
+  box-shadow: 0 0 16px 6px var(--couleur);
+  animation: boule-pulse 0.16s linear infinite alternate;
+}
+
+@keyframes boule-pulse {
+  from {
+    transform: scale(0.88);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.projectile-glace span {
+  width: calc(var(--cote) * 0.9);
+  height: 6px;
+  background: linear-gradient(90deg, transparent, rgba(159, 226, 255, 0.7) 60%, #fff);
+}
+
+.projectile-glace span::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: -6px;
+  width: 24px;
+  height: 18px;
+  background: linear-gradient(90deg, #cfeeff, #fff);
+  clip-path: polygon(0 50%, 35% 0, 100% 50%, 35% 100%);
+  filter: drop-shadow(0 0 6px var(--couleur));
+}
+
+.projectile-dard span {
+  width: calc(var(--cote) * 0.55);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--couleur));
+}
+
+.projectile-dard span::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -3px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 3px var(--couleur);
+}
+
+.projectile-lob span {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 35% 30%, #efffc0, var(--couleur) 60%, #3f7a0c);
+  box-shadow: 0 0 10px 3px var(--couleur);
+}
+
+.projectile-volute span {
+  width: calc(var(--cote) * 0.5);
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, transparent, var(--couleur));
+  filter: blur(1.5px);
+  animation-name: volute;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.projectile-volute span::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--couleur) 40%, transparent 72%);
+}
+
+.projectile-dard span,
+.projectile-lob span {
+  animation-name: arc-lateral;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+/* Écart perpendiculaire à la trajectoire (--arc) : dévie le dard, fait monter le jet d'acide. */
+@keyframes arc-lateral {
+  0%,
+  100% {
+    top: 0;
+  }
+  50% {
+    top: var(--arc);
+  }
+}
+
+@keyframes volute {
+  0%,
+  100% {
+    top: 0;
+  }
+  20% {
+    top: -7px;
+  }
+  40% {
+    top: 7px;
+  }
+  60% {
+    top: -7px;
+  }
+  80% {
+    top: 7px;
+  }
+}
+
+/* Rayons : un faisceau droit ou un éclair en zigzag, de l'origine à la cible. */
+.rayon {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: 0 50%;
+  translate: 0 -50%;
+  rotate: var(--angle);
+  animation-fill-mode: forwards;
+}
+
+.rayon-droit {
+  height: 9px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, transparent 0, var(--couleur) 15%, #fff 50%, var(--couleur) 85%, transparent 100%);
+  box-shadow: 0 0 12px 3px var(--couleur);
+  animation-name: rayon-tir;
+  animation-timing-function: ease-out;
+}
+
+@keyframes rayon-tir {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  22% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1) scaleY(0.15);
+    opacity: 0;
+  }
+}
+
+.rayon-zigzag {
+  overflow: visible;
+  animation-name: zigzag-eclair;
+  animation-timing-function: linear;
+}
+
+.rayon-zigzag polyline {
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.rayon-zigzag .zigzag-halo {
+  stroke: var(--couleur);
+  stroke-width: 7;
+  opacity: 0.55;
+  filter: blur(2px);
+}
+
+.rayon-zigzag .zigzag-coeur {
+  stroke: #fff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 4px var(--couleur));
+}
+
+@keyframes zigzag-eclair {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+  }
+  15% {
+    clip-path: inset(-20% 0 -20% 0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.25;
+  }
+  45% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.35;
+  }
+  100% {
+    clip-path: inset(-20% 0 -20% 0);
+    opacity: 0;
+  }
+}
+
+/* Incantation : un cercle de runes se trace sous le lanceur. */
+.cercle-magique {
+  position: absolute;
+  pointer-events: none;
+  translate: -50% -50%;
+  animation-name: cercle-rune;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.cercle-magique svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--couleur);
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 4px var(--couleur));
+}
+
+@keyframes cercle-rune {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-70deg);
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.12) rotate(35deg);
+  }
+}
+
 @keyframes vol {
   from {
     transform: translate(0, 0) rotate(var(--angle));
@@ -2156,10 +2410,12 @@ button:disabled {
 
 .eclat-zone {
   position: absolute;
-  background: var(--couleur);
+  /* Des taches de couleur aux bords fondus : la zone se lit comme un champ de flammes, de givre… plutôt que des carrés pleins. */
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, var(--couleur) 40%, transparent 78%);
   mix-blend-mode: screen;
   animation-name: eclat;
-  animation-fill-mode: forwards;
+  /* both : avant son délai, une case de la zone reste invisible (propagation depuis l'origine). */
+  animation-fill-mode: both;
   animation-timing-function: ease-out;
 }
 
