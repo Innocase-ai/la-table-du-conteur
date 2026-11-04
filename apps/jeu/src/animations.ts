@@ -5,9 +5,9 @@
 // et avancent au rythme des animations ; à la fin, on revient à l'état réel du moteur.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
-import { estPhysique, estRayon, famille, familleDominante, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
+import { estPhysique, estRayon, famille, familleDominante, famillePhysique, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 import { jouerSon, precharger } from './sons';
-import { armeDuJournal, degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
+import { degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
 
 export interface Surcharge {
   position: Position;
@@ -48,13 +48,16 @@ export interface Coup {
   valeur: number;
   critique: boolean;
   reaction?: 'resiste' | 'vulnerable' | 'immunise';
+  /** La part physique du coup (l'arme), qui trace l'arc de lame, l'estoc ou le choc, même si un élément colore l'impact. */
+  physique?: FamillePhysique;
 }
 
 /** Les effets visuels d'un coup qui porte : arme, impact, secousse, chiffre et mention de résistance. */
 export function effetsDeCoup(c: Coup, reduit: boolean): EffetSansId[] {
   const effets: EffetSansId[] = [];
   if (c.valeur > 0 && !reduit) {
-    if (estPhysique(c.famille)) effets.push({ type: 'lame', position: c.position, angle: c.angle, genre: c.famille, duree: c.famille === 'tranchant' ? 420 : 360 });
+    const genre = c.physique ?? (estPhysique(c.famille) ? c.famille : undefined);
+    if (genre) effets.push({ type: 'lame', position: c.position, angle: c.angle, genre, duree: genre === 'tranchant' ? 420 : 360 });
     effets.push({ type: 'impact', position: c.position, famille: c.famille, gros: c.critique, duree: c.famille === 'feu' || c.famille === 'necrotique' ? 900 : 650 });
     if (c.critique || c.famille === 'tonnerre') effets.push({ type: 'secousse', position: c.position, fort: c.critique, duree: 420 });
   }
@@ -209,7 +212,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
   const derniereFamille = new Map<string, Famille>();
   // D'où vient le coup en cours (arme, sort, à distance) : décide du bruitage des dégâts qui suivent.
   // `sonJoue` : le bruit du coup a déjà été joué quand la cible a été touchée (ne pas le rejouer avec les dégâts).
-  let contexte: { sort?: string; arme?: string; distance?: boolean; sonJoue?: boolean } = {};
+  // `rate` : l'attaque a raté (une botte comme l'Écorchure inflige quand même des dégâts : pas de bruit de coup en plus).
+  let contexte: { sort?: string; arme?: string; distance?: boolean; sonJoue?: boolean; rate?: boolean } = {};
   /** Le son d'un sort, d'après le sort et la famille de ses dégâts. */
   const sonDuSort = (id: string | undefined) => sonDeSort(id, famille(id ? donnees.sorts.get(id)?.degats[0]?.type : undefined));
 
@@ -240,16 +244,23 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
       case 'attaque': {
         const a = pos(ev.acteur);
         const b = pos(ev.cible);
-        contexte = { sort: d.sort, arme: armeDuJournal(ev.texte), distance: !!d.distance };
+        // L'arme vient du moteur (`details.arme`), pas du texte du journal.
+        contexte = { sort: d.sort, arme: d.arme, distance: !!d.distance, rate: d.resultat === 'rate' };
         // Le bruit d'un coup d'arme part quand la cible est touchée (sa secousse), pas avec l'affichage des dégâts qui suit :
         // on va chercher dans le journal les dégâts que porte cette attaque pour savoir quel son jouer.
         const portes = d.resultat === 'touche' || d.resultat === 'critique' ? degatsDeLAttaque(nouveaux, i) : undefined;
         const sonImpact =
           portes && (portes.valeur ?? 0) > 0
-            ? sonDeCoup({ famille: familleDominante(portes.details?.types), arme: contexte.arme, sort: !!d.sort, distance: !!d.distance })
+            ? sonDeCoup({
+                famille: famillePhysique(portes.details?.types) ?? familleDominante(portes.details?.types),
+                arme: contexte.arme,
+                sort: !!d.sort,
+                distance: !!d.distance,
+              })
             : undefined;
-        contexte.sonJoue = !!sonImpact;
         if (!a || !b || !ev.acteur || !ev.cible) break;
+        // Seulement si le coup s'anime : sinon, le bruit jouera avec l'affichage des dégâts.
+        contexte.sonJoue = !!sonImpact;
         const acteur = ev.acteur;
         const cible = ev.cible;
         // Le bruit du départ : la corde d'un arc, ou le sort qui part (au contact comme à distance).
@@ -321,7 +332,10 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         // Un critique marque un temps d'arrêt avant que le coup ne porte.
         if (d.critique && !reduit && valeur > 0) ajouter(90);
         // Le bruit du coup, au moment où il porte (les dégâts d'un sort n'en ont pas : le sort a eu le sien au départ).
-        if (valeur > 0 && !contexte.sonJoue) jouer(sonDeCoup({ famille: fam, arme: contexte.arme, sort: !!contexte.sort, distance: contexte.distance }));
+        const physique = famillePhysique(d.types);
+        if (valeur > 0 && !contexte.sonJoue && !contexte.rate) {
+          jouer(sonDeCoup({ famille: physique ?? fam, arme: contexte.arme, sort: !!contexte.sort, distance: contexte.distance }));
+        }
         contexte.sonJoue = false;
         ajouter(300, () => {
           const x = s(id);
@@ -330,7 +344,9 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
             x.pvTemp -= absorbe;
             x.pv = Math.max(0, x.pv - (valeur - absorbe));
           }
-          for (const e of effetsDeCoup({ famille: fam, position: b, angle, valeur, critique: !!d.critique, reaction: d.reaction }, reduit)) o.effet(e);
+          // Une attaque de sort n'a pas de tracé d'arme ; un coup d'arme garde le sien, même si un élément s'y ajoute.
+          const trace = contexte.sort ? undefined : physique;
+          for (const e of effetsDeCoup({ famille: fam, position: b, angle, valeur, critique: !!d.critique, reaction: d.reaction, physique: trace }, reduit)) o.effet(e);
         });
         break;
       }

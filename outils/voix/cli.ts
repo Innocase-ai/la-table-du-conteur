@@ -12,6 +12,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node
 import { join } from 'node:path';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { scenesDu } from '../../packages/regles/src/modules/scenes';
+import { empreinte, lireMontant } from '../cle';
 import { lireEnv } from '../images/cli';
 import { CLE_OPENROUTER, utilisationCle } from '../images/services';
 
@@ -168,12 +169,13 @@ async function main(): Promise<void> {
     console.log('  Ajoute --go pour générer réellement (service payant).');
     return;
   }
+  const plafond = lireMontant(option('--plafond'), 0.25);
   const cle = lireEnv()[CLE_OPENROUTER];
   if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
+  console.log(`Clé utilisée : ${empreinte(cle)} (celle du .env du projet).`);
   mkdirSync(dossier, { recursive: true });
   const depart = await utilisationCle(cle);
   let annonce = 0;
-  const plafond = Number(option('--plafond') ?? '0.25');
   let echecs = 0;
   for (const p of aFaire) {
     if (annonce > plafond) {

@@ -148,6 +148,11 @@ export interface DetailsEvenement {
   distance?: boolean;
   /** Sort lancé ou à l'origine de l'attaque. */
   sort?: string;
+  /**
+   * Attaque d'arme : identifiant de l'arme du héros (`epee-longue`, `javeline-lancer` pour une arme lancée) ou de
+   * l'action du monstre (`morsure`). Sert à la mise en scène (bruitages) sans relire le texte du journal.
+   */
+  arme?: string;
   /** Cases touchées par une zone d'effet. */
   cases?: Position[];
   /** Point visé (sort de zone). */

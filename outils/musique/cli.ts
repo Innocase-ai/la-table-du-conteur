@@ -16,10 +16,11 @@
 // https://openrouter.ai/google/lyria-3-pro-preview (0,08 $ le morceau complet). Sortie audio : chat/completions,
 // modalities ["text", "audio"], stream obligatoire (https://openrouter.ai/docs/features/multimodal/audio).
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, extname, join, resolve } from 'node:path';
-import { CLE_OPENROUTER, utilisationCle } from '../images/services';
+import { CLE_OPENROUTER, cleOpenRouter, empreinte, lireMontant } from '../cle';
+import { utilisationCle } from '../images/services';
 import { AMBIANCES, consigne, coutEstime, MODELES, type NomModele } from './ambiances';
 import { gainPour, lireVolumes } from '../sons/rogner';
 import { bornesStables, dureeBoucle, ecartAPosition, filtreBoucle, filtreNiveau, FONDU_PAR_DEFAUT, mesurerJonction, NIVEAU_AMBIANCE, type Jonction } from './boucle';
@@ -49,21 +50,6 @@ async function demander(modele: NomModele, texte: string, cle: string, audio: Re
     signal: AbortSignal.timeout(modele === 'pro' ? 360_000 : 180_000),
   });
   return { http: rep.status, corps: await rep.text() };
-}
-
-/**
- * La clé du projet : celle du fichier `.env`, pas celle d'une variable d'environnement du shell. Une variable
- * `OPENROUTER_API_KEY` laissée par un autre projet masquerait la bonne clé (erreur « User not found » à l'appel).
- */
-export function cleDuProjet(): string | undefined {
-  const fichier = join(RACINE, '.env');
-  if (existsSync(fichier)) {
-    for (const ligne of readFileSync(fichier, 'utf8').split('\n')) {
-      const m = new RegExp(`^\\s*${CLE_OPENROUTER}\\s*=\\s*(.*?)\\s*$`).exec(ligne);
-      if (m?.[1]) return m[1].replace(/^["']|["']$/g, '');
-    }
-  }
-  return process.env[CLE_OPENROUTER];
 }
 
 function dureeDe(fichier: string): number {
@@ -187,7 +173,7 @@ async function main(): Promise<void> {
   const choisies = AMBIANCES.filter((a) => !demandees || demandees.includes(a.id));
   if (!choisies.length) throw new Error(`Ambiance inconnue. Choix : ${AMBIANCES.map((a) => a.id).join(', ')}.`);
   const estime = coutEstime(nomModele, choisies.length);
-  const plafond = Number(option('--plafond') ?? '0.10');
+  const plafond = lireMontant(option('--plafond'), 0.1);
   console.log(`${MODELES[nomModele].libelle} : ${choisies.length} morceau(x) (${choisies.map((a) => a.id).join(', ')}), coût annoncé ${estime} $.`);
   if (!args.includes('--go')) {
     for (const a of choisies) console.log(`\n  [simulation] ${a.id}\n  ${consigne(a, nomModele)}`);
@@ -195,8 +181,9 @@ async function main(): Promise<void> {
     return;
   }
   if (estime > plafond) throw new Error(`Coût annoncé (${estime} $) au-delà du plafond (${plafond} $) : ajoute --plafond ${estime} pour l’accepter.`);
-  const cle = cleDuProjet();
+  const cle = cleOpenRouter(RACINE);
   if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
+  console.log(`Clé utilisée : ${empreinte(cle)} (celle du .env du projet).`);
   mkdirSync(DOSSIER, { recursive: true });
   const depart = await utilisationCle(cle);
   let annonce = 0;

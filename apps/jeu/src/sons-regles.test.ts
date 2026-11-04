@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Evenement } from '@crpg/regles';
-import { armeDuJournal, degatsDeLAttaque, estArmeDeTir, LIBELLES_SONS, SONS, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir } from './sons-regles';
+import { degatsDeLAttaque, estArmeDeTir, LIBELLES_SONS, SONS, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir } from './sons-regles';
 
 const ev = (type: Evenement['type'], extra: Partial<Evenement> = {}): Evenement => ({ round: 1, type, texte: '', ...extra });
 
@@ -168,18 +168,23 @@ describe('sonAuLancement', () => {
   });
 });
 
-describe('armeDuJournal', () => {
-  it('lit le nom de l’arme dans la ligne d’attaque', () => {
-    expect(armeDuJournal('Grukk attaque Sbire gobelin 1 (Hache à deux mains) : 10 avec désavantage → 15, touché.')).toBe('Hache à deux mains');
-    expect(armeDuJournal('Sylvaine attaque Gob (Arc court) : 12 → 17, raté.')).toBe('Arc court');
+describe('armes données par leur identifiant (celui que le moteur met dans le journal)', () => {
+  it('reconnaît les identifiants du SRD', () => {
+    expect(sonDeCoup({ famille: 'tranchant', arme: 'hache-a-deux-mains' })).toBe('hache');
+    expect(sonDeCoup({ famille: 'tranchant', arme: 'fouet' })).toBe('fouet');
+    expect(sonDeCoup({ famille: 'perforant', arme: 'pic-de-guerre' })).toBe('lance');
+    expect(sonDeCoup({ famille: 'perforant', arme: 'lance-d-arcon' })).toBe('lance');
+    expect(sonDeCoup({ famille: 'perforant', arme: 'epee-courte' })).toBe('rapiere');
+    expect(sonDeCoup({ famille: 'contondant', arme: 'fleau-d-armes' })).toBe('masse');
+    expect(sonDeCoup({ famille: 'contondant', arme: 'baton-de-combat' })).toBe('massue');
+    expect(sonDeTir('arbalete-de-poing')).toBe('arbalete');
+    expect(sonDeTir('arc-long')).toBe('arc');
+    expect(sonDeTir('javeline-lancer')).toBe('lancer');
   });
 
-  it('garde la mention « lancer » d’une arme de jet', () => {
-    expect(armeDuJournal('Bran attaque Gob (Javeline (lancer)) : 12 → 17, touché.')).toBe('Javeline (lancer)');
-  });
-
-  it('rend undefined quand il n’y a pas d’arme', () => {
-    expect(armeDuJournal('Loup profite d’une ouverture (attaque d’opportunité).')).toBeUndefined();
+  it('cherche des mots entiers : « arc » n’est pas dans « lance d’arçon »', () => {
+    expect(estArmeDeTir('lance-d-arcon')).toBe(false);
+    expect(sonDeTir('lance-d-arcon')).toBe('lancer');
   });
 });
 

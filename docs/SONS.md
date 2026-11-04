@@ -1,6 +1,6 @@
 # Bruitages : ce qu'on a, ce qu'il manque
 
-Les sons vont dans `apps/jeu/src/sons/<nom>.mp3`. Pour en ajouter : déposer les fichiers bruts (mp3, wav, ogg) dans un dossier, puis `pnpm sons rogner <dossier> apps/jeu/src/sons` (coupe les silences, égalise le volume, nettoie le nom : minuscules, sans accents, tirets). Le branchement sur les effets est dans `apps/jeu/src/sons-regles.ts` (tests dans `sons-regles.test.ts`). **Relancer `pnpm jeu` après l'ajout de fichiers** : le serveur de développement ne voit pas les fichiers ajoutés après son démarrage.
+Les sons vont dans `apps/jeu/src/sons/<nom>.mp3`. Pour en ajouter : déposer les fichiers bruts (mp3, wav, ogg) dans un dossier, puis `pnpm sons rogner <dossier> apps/jeu/src/sons` (coupe les silences, égalise le volume, nettoie le nom : minuscules, sans accents, tirets). Le branchement sur les effets est dans `apps/jeu/src/sons-regles.ts` (tests dans `sons-regles.test.ts`, et `journal-sons.test.ts` sur un vrai journal du moteur). L'arme d'une attaque est donnée par le moteur (`details.arme` : identifiant de l'arme ou de l'action du monstre), le bruit vient de la part physique du coup même quand un élément s'y ajoute (Marque du chasseur). **Relancer `pnpm jeu` après l'ajout de fichiers** : le serveur de développement ne voit pas les fichiers ajoutés après son démarrage.
 
 ## En place (34 sons)
 

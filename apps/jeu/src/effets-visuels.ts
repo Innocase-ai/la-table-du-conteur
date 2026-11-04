@@ -70,10 +70,21 @@ export function estPhysique(f: Famille): f is FamillePhysique {
   return PHYSIQUES.has(f);
 }
 
-/** Famille dominante d'un événement de dégâts : un élément l'emporte sur le physique (une épée de feu brûle). */
+/**
+ * Famille dominante d'un événement de dégâts, pour la **couleur** de l'impact : un élément l'emporte sur le physique
+ * (une épée de feu brûle). Pour le bruit et le tracé du coup d'arme, voir `famillePhysique`.
+ */
 export function familleDominante(types: readonly string[] | undefined): Famille {
   const familles = (types ?? []).map(famille);
   return familles.find((f) => !estPhysique(f)) ?? familles[0] ?? 'contondant';
+}
+
+/**
+ * La part physique d'un coup (le type de l'arme), s'il y en a une : c'est elle qui fait le bruit et le tracé (arc de lame,
+ * estoc, choc), même quand un élément s'y ajoute (Marque du chasseur, morsure empoisonnée, arme enflammée).
+ */
+export function famillePhysique(types: readonly string[] | undefined): FamillePhysique | undefined {
+  return (types ?? []).map(famille).find(estPhysique);
 }
 
 /** Une mort « à la façon de » la famille : durée et image-clés du jeton qui disparaît. */

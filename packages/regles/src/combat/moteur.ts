@@ -379,7 +379,7 @@ export function jetAttaque(
       cible.modificateurs.push({ id: 'bouclier', type: 'bonus_ca', valeur: 5, source: cible.id, expire: { moment: 'debut_tour', de: cible.id } });
       caCible += 5;
       touche = false;
-      journaliser(etat, { type: 'sort', texte: `${cible.nom} lance Bouclier (+5 CA).`, acteur: cible.id });
+      journaliser(etat, { type: 'sort', texte: `${cible.nom} lance Bouclier (+5 CA).`, acteur: cible.id, details: { sort: 'bouclier' } });
     }
   }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
@@ -387,8 +387,9 @@ export function jetAttaque(
 }
 
 /** Détails d'un jet d'attaque pour le journal. */
-export function detailsJet(jet: JetAttaque, distance: boolean, sort?: string): DetailsEvenement {
+export function detailsJet(jet: JetAttaque, distance: boolean, sort?: string, arme?: string): DetailsEvenement {
   return {
+    ...(arme ? { arme } : {}),
     resultat: jet.touche ? (jet.critique ? 'critique' : 'touche') : 'rate',
     de: jet.de,
     total: jet.total,
@@ -656,7 +657,7 @@ export function attaqueArme(
     texte: `${attaquant.nom} attaque ${cible.nom} (${arme.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
     acteur: attaquant.id,
     cible: cible.id,
-    details: detailsJet(jet, arme.mode === 'distance'),
+    details: detailsJet(jet, arme.mode === 'distance', undefined, arme.id),
   });
   const mult = jet.critique ? 2 : 1;
   if (!jet.touche) {
@@ -773,7 +774,7 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
       texte: `${attaquant.nom} attaque ${cible.nom} (${action.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
       acteur: attaquant.id,
       cible: cible.id,
-      details: detailsJet(jet, r.mode === 'distance'),
+      details: detailsJet(jet, r.mode === 'distance', undefined, action.id),
     });
     if (!jet.touche) return;
     const mult = jet.critique ? 2 : 1;

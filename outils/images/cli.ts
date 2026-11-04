@@ -26,17 +26,16 @@ import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerra
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
+import { lireFichierEnv } from '../cle';
 
 export const SORTIES = join(RACINE, 'sorties/images');
 
+/**
+ * Les variables du projet (clé OpenRouter comprise) : le fichier `.env` gagne sur le shell, comme pour tous les outils
+ * (voir `outils/cle.ts`). Avant, la variable du shell l'emportait, et une clé laissée par un autre projet était facturée.
+ */
 export function lireEnv(fichier = join(RACINE, '.env')): Env {
-  const env: Env = { ...process.env };
-  if (!existsSync(fichier)) return env;
-  for (const ligne of readFileSync(fichier, 'utf8').split('\n')) {
-    const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(ligne);
-    if (m && m[2] && !env[m[1]!]) env[m[1]!] = m[2].replace(/^["']|["']$/g, '');
-  }
-  return env;
+  return { ...process.env, ...lireFichierEnv(fichier) };
 }
 
 export interface Meta {

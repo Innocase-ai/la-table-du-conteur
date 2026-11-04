@@ -15,6 +15,7 @@ import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/cha
 import { MODULES_STANDARD } from '../../packages/regles/src/modules';
 import { creerMoteur } from '../../packages/regles/src/noyau/moteur';
 import { personnageDepuisFiche } from '../../packages/regles/src/personnage';
+import { empreinte, lireMontant } from '../cle';
 import { lireEnv } from '../images/cli';
 import { CLE_OPENROUTER } from '../images/services';
 
@@ -35,7 +36,7 @@ const essais = (() => {
 })();
 const idMonde = args[0] && !args[0].startsWith('--') ? args[0] : 'val-des-cendres';
 const modele = option('--modele') ?? MODELE_CONTEUR;
-const plafond = Number(option('--plafond') ?? '0.25');
+const plafond = lireMontant(option('--plafond'), 0.25);
 
 async function main(): Promise<void> {
   const dossier = join(RACINE_MONDES, idMonde);
@@ -61,6 +62,7 @@ async function main(): Promise<void> {
   }
   const cle = lireEnv()[CLE_OPENROUTER];
   if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
+  console.log(`Clé utilisée : ${empreinte(cle)} (celle du .env du projet).`);
   const llm = creerLLM({ cle, modele });
 
   let memoire: Echange[] = [];

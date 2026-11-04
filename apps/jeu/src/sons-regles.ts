@@ -142,29 +142,52 @@ export function sonAuLancement(sortId: string | undefined): Son | undefined {
   return sortId ? SONS_AU_LANCEMENT[sortId] : undefined;
 }
 
+/**
+ * Une arme sous forme de mots : son identifiant (`hache-a-deux-mains`, `javeline-lancer`) ou son nom (« Hache à deux
+ * mains »), en minuscules, sans accents, mots séparés par des tirets. On cherche ensuite des mots entiers : « arc » ne
+ * se confond pas avec « lance-d-arcon ».
+ */
+function motsDe(arme: string | undefined): string {
+  if (!arme) return '-';
+  const mots = arme
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return `-${mots}-`;
+}
+
+/** L'arme contient-elle l'un de ces mots (ou suites de mots : `epee-courte`) ? */
+function contient(mots: string, ...cherches: string[]): boolean {
+  return cherches.some((c) => mots.includes(`-${c}-`));
+}
+
 /** Une arme qui se tire : arc, arbalète, fronde, arme à feu, sarbacane (on entend le départ, pas l'impact). */
-export function estArmeDeTir(nomArme: string | undefined): boolean {
-  return !!nomArme && /\b(arc|arbal[èe]te|fronde|mousquet|pistolet|sarbacane)\b/i.test(nomArme);
+export function estArmeDeTir(arme: string | undefined): boolean {
+  return contient(motsDe(arme), 'arc', 'arbalete', 'fronde', 'mousquet', 'pistolet', 'sarbacane');
 }
 
 /**
  * Le son de départ d'une attaque à distance d'arme : la corde d'un arc, le déclic d'une arbalète, la fronde, la détonation,
- * la sarbacane, ou le bruit d'une arme lancée (javeline, hachette, dague…). `undefined` pour une attaque de sort.
+ * la sarbacane, ou le bruit d'une arme lancée (javeline, hachette, dague…). `arme` : identifiant ou nom de l'arme.
  */
-export function sonDeTir(nomArme: string | undefined): Son | undefined {
-  if (!nomArme) return undefined;
-  if (/\bfronde\b/i.test(nomArme)) return 'fronde';
-  if (/\bsarbacane\b/i.test(nomArme)) return 'sarbacane';
-  if (/\b(mousquet|pistolet)\b/i.test(nomArme)) return 'arme-a-feu';
-  if (/\barbal[èe]te\b/i.test(nomArme)) return 'arbalete';
-  if (/\barc\b/i.test(nomArme)) return 'arc';
-  // Toute autre arme tirée à distance est une arme de jet : « Javeline (lancer) », « Hachette (lancer) »…
+export function sonDeTir(arme: string | undefined): Son | undefined {
+  if (!arme) return undefined;
+  const mots = motsDe(arme);
+  if (contient(mots, 'fronde')) return 'fronde';
+  if (contient(mots, 'sarbacane')) return 'sarbacane';
+  if (contient(mots, 'mousquet', 'pistolet')) return 'arme-a-feu';
+  if (contient(mots, 'arbalete')) return 'arbalete';
+  if (contient(mots, 'arc')) return 'arc';
+  // Toute autre arme tirée à distance est une arme de jet : `javeline-lancer`, « Hachette (lancer) »…
   return 'lancer';
 }
 
 export interface Coup {
+  /** La famille de dégâts qui fait le bruit : la part physique du coup quand il y en a une (voir `famillePhysique`). */
   famille: Famille;
-  /** Nom de l'arme (ou de l'action du monstre), tel qu'il figure dans le journal. */
+  /** Identifiant (ou nom) de l'arme ou de l'action du monstre, fourni par le moteur dans le journal. */
   arme?: string;
   /** Le coup vient d'un sort : son propre son a déjà joué au départ. */
   sort?: boolean;
@@ -175,23 +198,23 @@ export interface Coup {
 /** Le son d'un coup qui porte. Seuls les coups d'arme en font un ; ceux d'un sort ont joué le leur au départ. */
 export function sonDeCoup(c: Coup): Son | undefined {
   if (c.sort || !estPhysique(c.famille)) return undefined;
-  const arme = c.arme ?? '';
+  const mots = motsDe(c.arme);
   switch (c.famille) {
     case 'tranchant':
-      if (/\bfouet\b/i.test(arme)) return 'fouet';
-      return /hache/i.test(arme) ? 'hache' : 'epee';
+      if (contient(mots, 'fouet')) return 'fouet';
+      return contient(mots, 'hache', 'hachette') ? 'hache' : 'epee';
     case 'perforant':
       // À distance, la flèche a fait son bruit au départ ; au corps à corps, on entend la pointe.
       if (c.distance) return undefined;
-      if (/morgenstern/i.test(arme)) return 'masse';
-      if (/lance|pique|pic de guerre|trident|javeline/i.test(arme)) return 'lance';
-      if (/rapi[èe]re|dague|[ée]p[ée]e courte/i.test(arme)) return 'rapiere';
+      if (contient(mots, 'morgenstern')) return 'masse';
+      if (contient(mots, 'lance', 'pique', 'pic-de-guerre', 'trident', 'javeline')) return 'lance';
+      if (contient(mots, 'rapiere', 'dague', 'epee-courte')) return 'rapiere';
       return 'perforant';
     case 'contondant':
       // Une pierre de fronde qui touche n'a pas de son propre : le tir a déjà joué.
       if (c.distance) return undefined;
-      if (/massue|gourdin|b[aâ]ton/i.test(arme)) return 'massue';
-      if (/masse|maillet|marteau|fl[ée]au/i.test(arme)) return 'masse';
+      if (contient(mots, 'massue', 'gourdin', 'baton')) return 'massue';
+      if (contient(mots, 'masse', 'maillet', 'marteau', 'fleau')) return 'masse';
       return 'contondant';
   }
 }
@@ -214,9 +237,4 @@ export function degatsDeLAttaque(journal: readonly Evenement[], i: number): Even
     if (e.type === 'degats' && e.cible === attaque.cible) return e;
   }
   return undefined;
-}
-
-/** Le nom de l'arme dans une ligne de journal d'attaque (« Grukk attaque Gobelin (Hache à deux mains) : … »). */
-export function armeDuJournal(texte: string): string | undefined {
-  return /attaque .+? \((.+?)\) :/.exec(texte)?.[1];
 }
