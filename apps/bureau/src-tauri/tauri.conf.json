@@ -1,0 +1,51 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "La Table du Conteur",
+  "version": "0.1.0",
+  "identifier": "fr.tableduconteur.jeu",
+  "build": {
+    "frontendDist": "../../jeu/dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "pnpm --filter jeu dev",
+    "beforeBuildCommand": "pnpm --filter jeu build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "La Table du Conteur",
+        "width": 1440,
+        "height": 900,
+        "minWidth": 1100,
+        "minHeight": 700,
+        "center": true,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "shortDescription": "Jeu de rôle narratif illustré, sur les règles du SRD 5.2.1",
+    "longDescription": "La Table du Conteur : un jeu de rôle pour un groupe de six aventuriers, raconté par un conteur, sur les règles du System Reference Document 5.2.1 (CC-BY-4.0).",
+    "category": "RolePlayingGame",
+    "copyright": "Contient du matériel issu du SRD 5.2.1 de Wizards of the Coast LLC (CC-BY-4.0).",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "nsis": {
+        "languages": ["French"],
+        "installMode": "currentUser"
+      }
+    }
+  }
+}

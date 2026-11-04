@@ -10,6 +10,7 @@ pnpm test            # moteur + données SRD
 pnpm typecheck
 pnpm jeu             # le jeu sur http://localhost:5173
 pnpm monde valider   # mondes + énigmes
+pnpm bureau          # le jeu dans sa fenêtre de bureau (Tauri) ; pnpm bureau:installeur pour l'installeur Windows
 ```
 
 Autres commandes : `pnpm monde <doc|enigmes|estimer|nouveau>`, `pnpm simuler`, `pnpm escarmouches`, `pnpm images`, `pnpm voix`, `pnpm conteur`.
@@ -20,7 +21,8 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 - `docs/JOURNAL.md` : l'histoire du projet, **lire ses dernières entrées en premier** pour savoir où on en est.
 - `docs/PRD.md` (conception), `docs/ARCHITECTURE-CIBLE.md` (noyau à modules), `docs/COMBAT.md`, `docs/CREATION.md`, `docs/MONDES.md`, `docs/M2-IMAGES.md`, `docs/M4-CONTEUR.md`, `docs/SRD-INVENTAIRE.md`.
-- Code : `packages/regles` (moteur en TypeScript pur), `packages/donnees` (SRD en JSON, charte visuelle), `packages/mondes` (les histoires, un dossier par monde), `apps/jeu` (client Vite + React), `outils/` (scripts en ligne de commande).
+- Code : `packages/regles` (moteur en TypeScript pur), `packages/donnees` (SRD en JSON, charte visuelle), `packages/mondes` (les histoires, un dossier par monde), `apps/jeu` (client Vite + React), `apps/bureau` (coquille de bureau Tauri), `outils/` (scripts en ligne de commande).
+- Son : `docs/SONS.md` (bruitages en place et manquants) ; musiques d'ambiance : `outils/musique/` et `apps/jeu/src/musique/`.
 
 ## Skills du projet (`.claude/skills/`)
 
@@ -34,6 +36,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - SRD 5.2.1 (licence CC-BY), web en TypeScript, combat avec des cartes, groupe de 6 personnages créé par le joueur.
 - Le moteur accueille des dizaines de mondes (premier : Le Val des Cendres). Les objets communs viennent du catalogue SRD partagé, pas de chaque monde.
 - Coût : cible inférieure à 5 $ d'API par histoire. Le moteur et les textes écrits portent le jeu ; le conteur n'intervient que pour la saisie libre, les dialogues et les imprévus. Modèle par défaut : Claude Haiku 5.5 via OpenRouter.
+- Distribution : on développe dans le navigateur, on **vend une application de bureau Tauri** (`apps/bureau`, voir `docs/BUREAU.md`) : poids des contenus sans contrainte, clé du joueur dans le trousseau du système.
 - Images : FLUX Klein via OpenRouter, livrées en WebP avec le monde. Les images du groupe se construisent à l'exécution depuis les choix du joueur : **jamais d'images avec les 6 héros pré-tirés** (Bran, Grukk, Pip, Sylvaine, Hilda, Ambrine).
 
 ## Façon de travailler avec l'utilisateur

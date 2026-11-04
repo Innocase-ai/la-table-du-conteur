@@ -13,7 +13,9 @@
     "conteur": "tsx outils/conteur/cli.ts",
     "escarmouches": "tsx outils/escarmouches.ts",
     "sons": "tsx outils/sons/cli.ts",
-    "musique": "tsx outils/musique/cli.ts"
+    "musique": "tsx outils/musique/cli.ts",
+    "bureau": "pnpm --filter bureau dev",
+    "bureau:installeur": "pnpm --filter bureau build"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
