@@ -88,7 +88,7 @@ Identifiant `cendre`, de 0 à 5, départ 1. Elle monte d'un cran à chaque repos
 ### Jauge, drapeaux, faits centraux
 
 - Jauge : `cendre`.
-- Drapeaux (posés par les zones, lus par les quêtes) : `a-parle-a-hesta`, `lanterne-visitee`, `cryptes-ouvertes`, `cryptes-franchies` (le gardien des cryptes est vaincu et la clé du sceau récupérée), `haute-forge-ouverte`, `ecluse-noire-trouvee`, `coeur-atteint`, `choix-rallumer`, `choix-eteindre`, `choix-achever`, `choix-fer-gris`, `fer-gris-allie`, `bailli-demasque`, `veilleur-mort`.
+- Drapeaux (posés par les zones, lus par les quêtes) : `a-parle-a-hesta`, `lanterne-visitee`, `cryptes-ouvertes`, `cryptes-franchies` (le gardien des cryptes est vaincu et la clé du sceau récupérée), `haute-forge-ouverte`, `ecluse-noire-trouvee`, `coeur-atteint`, `choix-rallumer`, `choix-eteindre`, `choix-achever`, `choix-fer-gris`, `fer-gris-allie`, `bailli-demasque`, `veilleur-mort`, `vei-conseil-tenu` (le conseil des Gardiens a eu lieu : événement `vei-ev-conseil-des-gardiens`, fait `f-vei-conseil-des-gardiens`, sujet `le-conseil` chez Hesta, Aurèle, Rolf et Fennick).
 - Faits centraux (fichier `faits/faits-centraux.json`) : `f-nuit-de-la-cendre`, `f-roi-forgeron-thalgrin`, `f-derniere-commande`, `f-fille-de-fer`, `f-coeur-de-braise`, `f-veine-rouge`, `f-lanterne-etincelle`, `f-veilleur-se-consume`, `f-cendre-reveille-les-morts`, `f-pelerins-motif`, `f-fer-gris-veut-la-forge`, `f-tribut-du-bailli`, `f-ecluse-noire`, `f-rallumer-par-volontaire`, `f-sceau-des-cryptes`, `f-orcs-et-nains`.
 
 ### Quêtes principales (créées par Z6)

@@ -291,6 +291,19 @@
           "f-vei-combustible"
         ],
         "attitudeMin": 10
+      },
+      {
+        "id": "le-conseil",
+        "mots": [
+          "conseil",
+          "la table",
+          "réunion",
+          "ce qui s'est dit"
+        ],
+        "condition": {
+          "flag": "vei-conseil-tenu"
+        },
+        "reponse": "Hesta ne revient pas sur ce qui s'est dit autour de la table. Elle dit seulement que le conseil a eu lieu, que personne n'en est sorti d'accord, et qu'elle n'attend pas que cela change avant l'aube. Elle ajoute que le bailli, le capitaine et le gnome savent désormais, et que ce qu'ils en feront les regarde. Elle tourne la tête vers l'escalier de la tour, se tait un moment, puis répète que la flamme tient encore. Elle ne tranche rien et ne promet rien."
       }
     ],
     "salutations": {
@@ -617,6 +630,19 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "le-conseil",
+        "mots": [
+          "conseil des Gardiens",
+          "la table",
+          "réunion",
+          "ce qui s'est dit"
+        ],
+        "condition": {
+          "flag": "vei-conseil-tenu"
+        },
+        "reponse": "Aurèle ne sourit pas. Il dit que le conseil n'a rien tranché et que c'est bien ce qui l'inquiète : chaque soir sans vote, la neige gagne une marche. Il maintient que la flamme est condamnée et que le col va se fermer, qu'il parle de chiffres, non de cruauté. Quand on prononce le nom d'Oswin, sa bague s'arrête ; il répond qu'il ne dormira pas cette nuit, puis revient aussitôt à ses tonneaux."
       }
     ],
     "salutations": {
@@ -1561,6 +1587,19 @@
         "revele": [
           "f-lanterne-etincelle"
         ]
+      },
+      {
+        "id": "le-conseil",
+        "mots": [
+          "conseil des Gardiens",
+          "la table",
+          "réunion",
+          "ce qui s'est dit"
+        ],
+        "condition": {
+          "flag": "vei-conseil-tenu"
+        },
+        "reponse": "Fennick tourne la molette de son cadran de poche sans le regarder. Il dit qu'il n'a pas dormi, qu'il est descendu à l'atelier trois fois sans savoir ce qu'il venait y chercher. Il répète qu'on ne remplace pas un homme comme une pièce, et qu'il ne veut entendre aucun nom tant qu'il n'a pas compris pourquoi ses mains ne s'y retrouvent plus. Il lâche qu'il soupçonne, soupçonne seulement, que cela n'arrange pas Oswin, puis se reprend et parle d'huile. Il demande qu'on ne le presse pas."
       }
     ],
     "salutations": {
@@ -2134,6 +2173,19 @@
         "revele": [
           "f-vei-gobelins-affames"
         ]
+      },
+      {
+        "id": "le-conseil",
+        "mots": [
+          "conseil des Gardiens",
+          "la table",
+          "réunion",
+          "ce qui s'est dit"
+        ],
+        "condition": {
+          "flag": "vei-conseil-tenu"
+        },
+        "reponse": "Rolf ne répond pas tout de suite. Il regarde ses mains, puis la porte de la maison des Gardiens. Il dit que le conseil n'a rien tranché et qu'il n'aime pas dormir sur une question sans ordre. Il admet que la Mère-Gardienne aurait dû parler plus tôt, et qu'il ne sait pas ce qu'il ferait à sa place. Il ajoute que les rondes seront tenues ce soir comme les autres, et qu'on ne lui demande pas davantage."
       }
     ],
     "salutations": {
