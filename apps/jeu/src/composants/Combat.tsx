@@ -24,9 +24,10 @@ import {
   type Position,
 } from '@crpg/regles';
 import { OPTIONS_IA, type Reglages } from '../App';
-import { capturer, dureeReplique, etatAffiche, mouvementReduit, useAnimations, type Instantane } from '../animations';
+import { capturer, effetDeReplique, etatAffiche, mouvementReduit, useAnimations, type Instantane } from '../animations';
 import { REPLIQUES } from '../repliques';
-import { choisirReplique, declencheurs, nouvelleMemoire, type Replique } from '../repliques-regles';
+import { prechargerVoix } from '../voix';
+import { choisirReplique, declencheurs, nouvelleMemoire, voixDuPortrait, type Replique } from '../repliques-regles';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { arreterMusique, demarrerMusique } from '../musique';
 import { Fiche } from './Fiche';
@@ -117,12 +118,14 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const [repliques, setRepliques] = useState<Replique[]>([]);
   // Au début du combat, un héros donne le ton (après un court instant, que le plateau soit affiché).
   useEffect(() => {
+    prechargerVoix(etat.combattants.flatMap((x) => (x.camp === 'heros' ? [voixDuPortrait(x.portrait) ?? ''] : [])));
     const t = window.setTimeout(() => {
+      if (!REPLIQUES) return;
       const r = choisirReplique([{ situation: 'debut-combat', apres: etat.journal.length }], etat, REPLIQUES, memoireRepliques.current, Math.random);
       if (!r) return;
       setRepliques((l) => [...l, r]);
       const lieu = etat.combattants.find((x) => x.id === r.locuteur)?.position;
-      if (lieu) anim.afficher({ type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte) });
+      if (lieu) anim.afficher(effetDeReplique(r, lieu));
     }, 700);
     return () => window.clearTimeout(t);
   }, []);
@@ -140,7 +143,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
 
   /** Rejoue les entrées de journal ajoutées depuis `avant`, avec la réplique d'un compagnon si la situation s'y prête. */
   const rejouer = (avant: Instantane) => {
-    const r = choisirReplique(declencheurs(etat, avant), etat, REPLIQUES, memoireRepliques.current, Math.random);
+    const r = REPLIQUES ? choisirReplique(declencheurs(etat, avant), etat, REPLIQUES, memoireRepliques.current, Math.random) : undefined;
     if (r) setRepliques((l) => [...l, r]);
     anim.jouer(etat, avant, r ? [r] : []);
   };

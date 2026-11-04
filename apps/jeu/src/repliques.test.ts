@@ -1,5 +1,5 @@
-// Les répliques des compagnons : les fichiers écrits, le repérage des situations sur un vrai journal du moteur, et le choix
-// (priorités, silences, pas de redite, accords).
+// Les cris de combat des compagnons : les fichiers de données (cris communs, voix par race et par genre), le repérage des
+// situations sur un vrai journal du moteur, et le choix (priorités, silences, pas de redite, accords).
 import { describe, expect, it } from 'vitest';
 import {
   calculerFiche,
@@ -18,14 +18,17 @@ import {
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
 import portraits from '../../../packages/donnees/visuel/portraits.json';
 import { capturer } from './animations';
-import { FICHIERS_REPLIQUES, REPLIQUES } from './repliques';
+import { FICHIER_CRIS, FICHIER_VOIX, REPLIQUES } from './repliques';
+import { CLES_VOIX } from './voix';
 import {
+  accorder,
   choisirReplique,
   declencheurs,
-  FichierRepliques,
+  FichierCris,
+  FichierVoix,
   nouvelleMemoire,
-  remplir,
   SITUATIONS,
+  voixDuPortrait,
   type Declencheur,
   type Situation,
 } from './repliques-regles';
@@ -34,7 +37,7 @@ const donnees = chargerDonneesSrd();
 const ctx = { sorts: donnees.sorts };
 const ARENE = grilleDepuisTexte(['..........', '..........', '..........', '..........', '..........']);
 
-/** Un héros pré-tiré, habillé d'un portrait qui a des répliques. */
+/** Un héros pré-tiré, habillé d'un portrait de la galerie (la voix vient de sa race et de son genre). */
 function hero(nom: string, x: number, y: number, portrait: string): Combattant {
   const h = HEROS_PRE_TIRES.find((p) => p.choix.nom === nom)!;
   const r = calculerFiche(h.choix, donnees);
@@ -52,44 +55,68 @@ const situations = (d: Declencheur[]) => d.map((x) => `${x.situation}:${x.locute
 /** Un hasard qui dit toujours oui (le tirage passe) et prend le premier choix. */
 const toujours = () => 0;
 
-describe('les fichiers de répliques', () => {
-  const ids = new Set(portraits.map((p) => p.id));
+const cris = FichierCris.parse(FICHIER_CRIS);
+const voix = FichierVoix.parse(FICHIER_VOIX);
+const R = REPLIQUES!;
 
-  it('chaque fichier est valide, porte le nom de son portrait, et ce portrait existe', () => {
-    const chemins = Object.keys(FICHIERS_REPLIQUES);
-    expect(chemins.length).toBeGreaterThanOrEqual(3);
-    for (const [chemin, brut] of Object.entries(FICHIERS_REPLIQUES)) {
-      const r = FichierRepliques.safeParse(brut);
-      expect(r.success, `${chemin} : ${r.success ? '' : r.error.message}`).toBe(true);
-      if (!r.success) continue;
-      expect(chemin.endsWith(`/${r.data.portrait}.json`), chemin).toBe(true);
-      expect(ids.has(r.data.portrait), `portrait inconnu : ${r.data.portrait}`).toBe(true);
+describe('les fichiers de cris et de voix', () => {
+  it('les deux fichiers sont valides et le jeu les charge', () => {
+    expect(FichierCris.safeParse(FICHIER_CRIS).success).toBe(true);
+    expect(FichierVoix.safeParse(FICHIER_VOIX).success).toBe(true);
+    expect(REPLIQUES).toBeDefined();
+  });
+
+  it('de 10 à 15 cris en tout, courts (6 mots au plus), sans doublon dans une situation', () => {
+    const tous = SITUATIONS.flatMap((s) => cris.situations[s]);
+    expect(tous.length).toBeGreaterThanOrEqual(10);
+    expect(tous.length).toBeLessThanOrEqual(15);
+    for (const s of SITUATIONS) {
+      expect(new Set(cris.situations[s]).size, s).toBe(cris.situations[s].length);
+      for (const c of cris.situations[s]) expect(c.split(/\s+/).length, `${s} : ${c}`).toBeLessThanOrEqual(6);
     }
-    expect(REPLIQUES.size).toBe(chemins.length);
   });
 
-  it('les phrases n’utilisent que {nom} et {masculin|féminin}, et seulement quand on parle de quelqu’un', () => {
-    for (const f of REPLIQUES.values())
-      for (const s of SITUATIONS)
-        for (const phrase of f.situations[s]) {
-          const reste = phrase.replace(/\{nom\}/g, '').replace(/\{[^{}|]*\|[^{}|]*\}/g, '');
-          expect(reste, `${f.portrait} / ${s} : ${phrase}`).not.toMatch(/[{}|]/);
-          if (s !== 'allie-tombe') expect(phrase, `${f.portrait} / ${s} : ${phrase}`).not.toMatch(/[{}]/);
-        }
+  it('les cris n’ont que des accords {masculin|féminin} : rien d’autre à remplir, tout peut être enregistré d’avance', () => {
+    for (const s of SITUATIONS)
+      for (const c of cris.situations[s]) {
+        expect(c.replace(/\{[^{}|]*\|[^{}|]*\}/g, ''), `${s} : ${c}`).not.toMatch(/[{}|]/);
+        for (const feminin of [false, true]) expect(accorder(c, feminin)).not.toMatch(/[{}|]/);
+      }
   });
 
-  it('pas deux fois la même phrase dans une situation', () => {
-    for (const f of REPLIQUES.values()) for (const s of SITUATIONS) expect(new Set(f.situations[s]).size, `${f.portrait} / ${s}`).toBe(f.situations[s].length);
+  it('chaque race de la galerie a une voix masculine et une voix féminine, toutes différentes', () => {
+    const attendues = new Set(portraits.map((p) => `${p.espece}-${p.sexe.toLowerCase()}`));
+    expect(Object.keys(voix).sort()).toEqual([...attendues].sort());
+    const timbres = Object.values(voix).map((v) => v.timbre);
+    expect(new Set(timbres).size, 'deux voix avec le même timbre').toBe(timbres.length);
+  });
+
+  it('tous les portraits de la galerie ont une voix', () => {
+    for (const p of portraits) expect(voixDuPortrait(p.id) ?? '', p.id in voix ? '' : p.id).toSatisfy((v: string) => v in voix);
+  });
+
+  it('chaque fichier de voix livré correspond à une voix et à un cri qui existent', () => {
+    for (const cle of CLES_VOIX) {
+      const [v, reste] = cle.split('/');
+      const m = /^(.+)-(\d+)$/.exec(reste ?? '');
+      expect(voix[v ?? ''], `voix inconnue : ${cle}`).toBeDefined();
+      expect(cris.situations[m?.[1] as Situation]?.[Number(m?.[2]) - 1], `cri inconnu : ${cle}`).toBeDefined();
+    }
   });
 });
 
-describe('remplir', () => {
-  it('accorde selon la personne dont on parle, et met son nom', () => {
-    const elle = { nom: 'Hilda', portrait: 'nain-f-1' } as Combattant;
-    const lui = { nom: 'Bran', portrait: 'humain-m-1' } as Combattant;
-    expect(remplir('Couvrez-{le|la}, {nom} est à terre !', elle)).toBe('Couvrez-la, Hilda est à terre !');
-    expect(remplir('Couvrez-{le|la}, {nom} est à terre !', lui)).toBe('Couvrez-le, Bran est à terre !');
-    expect(remplir('{Il|Elle} est tombé{|e}.', elle)).toBe('Elle est tombée.');
+describe('accorder et voixDuPortrait', () => {
+  it('accorde au genre de la voix', () => {
+    expect(accorder('Je suis grièvement {blessé|blessée} !', false)).toBe('Je suis grièvement blessé !');
+    expect(accorder('Je suis grièvement {blessé|blessée} !', true)).toBe('Je suis grièvement blessée !');
+    expect(accorder('Victoire !', true)).toBe('Victoire !');
+  });
+
+  it('la voix d’un portrait est celle de sa race et de son genre', () => {
+    expect(voixDuPortrait('elfe-f-2')).toBe('elfe-f');
+    expect(voixDuPortrait('nain-m-1')).toBe('nain-m');
+    expect(voixDuPortrait('inconnu')).toBeUndefined();
+    expect(voixDuPortrait(undefined)).toBeUndefined();
   });
 });
 
@@ -135,6 +162,20 @@ describe('repérage sur un vrai journal du moteur', () => {
     expect(situations(declencheurs(etat, avant))).toEqual(['grievement-blesse:bran']);
   });
 
+  it('un coup raté, puis encore raté au round suivant', () => {
+    // 2 et 3 au dé : l'épée longue de Bran (+5) ne passe pas la CA du gobelin.
+    const etat = combat([hero('Bran', 1, 1, 'humain-f-1'), monstreDepuisProfil(donnees.monstres.get('combattant-gobelin')!, 'gob', { x: 2, y: 1 })], [2, 3]);
+    let avant = capturer(etat);
+    executer(etat, ctx, { type: 'jouer', carte: 'attaque:epee-longue', cibles: ['gob'] });
+    expect(situations(declencheurs(etat, avant))).toEqual(['rate:bran']);
+    executer(etat, ctx, { type: 'finTour' });
+    executer(etat, ctx, { type: 'finTour' });
+    expect(etat.round).toBe(2);
+    avant = capturer(etat);
+    executer(etat, ctx, { type: 'jouer', carte: 'attaque:epee-longue', cibles: ['gob'] });
+    expect(situations(declencheurs(etat, avant))).toEqual(['rate-encore:bran']);
+  });
+
   it('un soin ordinaire d’un allié : soigné', () => {
     const etat = combat([hero('Bran', 1, 1, 'humain-f-1'), hero('Hilda', 2, 1, 'nain-m-2')]);
     const bran = combattant(etat, 'bran');
@@ -146,55 +187,76 @@ describe('repérage sur un vrai journal du moteur', () => {
 });
 
 describe('choisirReplique', () => {
-  const deux = () => combat([hero('Bran', 1, 1, 'humain-f-1'), hero('Hilda', 2, 1, 'nain-m-2')]);
+  const deux = () => combat([hero('Bran', 1, 1, 'humain-m-1'), hero('Hilda', 2, 1, 'nain-f-2')]);
   const d = (situation: Situation, locuteur?: string, cible?: string): Declencheur => ({ situation, locuteur, cible, apres: 3 });
 
   it('la plus importante passe d’abord, et une seule réplique par commande', () => {
-    const etat = deux();
-    const r = choisirReplique([d('ennemi-abattu', 'bran'), d('grievement-blesse', 'hilda')], etat, REPLIQUES, nouvelleMemoire(), toujours);
+    const r = choisirReplique([d('ennemi-abattu', 'bran'), d('grievement-blesse', 'hilda')], deux(), R, nouvelleMemoire(), toujours);
     expect(r?.situation).toBe('grievement-blesse');
     expect(r?.locuteur).toBe('hilda');
-    expect(REPLIQUES.get('nain-m-2')!.situations['grievement-blesse']).toContain(r!.texte);
   });
 
-  it('un allié tombé est commenté par un autre, avec son nom et le bon accord', () => {
+  it('la voix est celle de la race et du genre du portrait, et le numéro dit quel cri', () => {
+    const r = choisirReplique([d('grievement-blesse', 'hilda')], deux(), R, nouvelleMemoire(), toujours);
+    expect(r?.voix).toBe('nain-f');
+    expect(R.situations['grievement-blesse'].map((c) => accorder(c, true))[r!.numero - 1]).toBe(r!.texte);
+  });
+
+  it('l’accord suit celui qui parle : « blessée » pour une voix féminine, « blessé » pour une masculine', () => {
+    // Le premier cri de la situation est déjà dit : on tombe sur « Je suis grièvement … ».
+    const dejaDit = (id: string) => {
+      const m = nouvelleMemoire();
+      m.dites.set(`${id}:grievement-blesse`, [0]);
+      return m;
+    };
+    expect(choisirReplique([d('grievement-blesse', 'hilda')], deux(), R, dejaDit('hilda'), toujours)?.texte).toBe('Je suis grièvement blessée !');
+    expect(choisirReplique([d('grievement-blesse', 'bran')], deux(), R, dejaDit('bran'), toujours)?.texte).toBe('Je suis grièvement blessé !');
+  });
+
+  it('un allié tombé est commenté par un autre héros, pas par lui-même', () => {
     const etat = deux();
     etat.combattants.find((c) => c.id === 'bran')!.pv = 0;
-    const r = choisirReplique([d('allie-tombe', undefined, 'bran')], etat, REPLIQUES, nouvelleMemoire(), toujours);
+    const r = choisirReplique([d('allie-tombe', undefined, 'bran')], etat, R, nouvelleMemoire(), toujours);
     expect(r?.locuteur).toBe('hilda');
-    expect(r?.texte).toContain('Bran');
-    expect(r?.texte).not.toMatch(/[{}]/);
+    expect(r?.texte).toBe('Un allié est à terre !');
   });
 
-  it('un portrait sans répliques se tait', () => {
-    const etat = combat([hero('Bran', 1, 1, 'humain-m-3')]);
-    expect(choisirReplique([d('grievement-blesse', 'bran')], etat, REPLIQUES, nouvelleMemoire(), toujours)).toBeUndefined();
+  it('un personnage dont le portrait n’est pas de la galerie se tait', () => {
+    const etat = combat([hero('Bran', 1, 1, 'portrait-inconnu')]);
+    expect(choisirReplique([d('grievement-blesse', 'bran')], etat, R, nouvelleMemoire(), toujours)).toBeUndefined();
+  });
+
+  it('chaque portrait de la galerie peut parler, avec la voix de sa race et de son genre', () => {
+    for (const p of portraits) {
+      const etat = combat([hero('Bran', 1, 1, p.id)]);
+      expect(choisirReplique([d('victoire')], etat, R, nouvelleMemoire(), toujours)?.voix, p.id).toBe(voixDuPortrait(p.id));
+    }
   });
 
   it('silences : une réplique ordinaire par round pour le groupe, deux rounds pour la même personne ; l’urgent passe outre', () => {
     const etat = deux();
     const m = nouvelleMemoire();
-    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, REPLIQUES, m, toujours)).toBeDefined();
-    expect(choisirReplique([d('ennemi-abattu', 'hilda')], etat, REPLIQUES, m, toujours)).toBeUndefined();
-    expect(choisirReplique([d('grievement-blesse', 'hilda')], etat, REPLIQUES, m, toujours)).toBeDefined();
+    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, R, m, toujours)).toBeDefined();
+    expect(choisirReplique([d('ennemi-abattu', 'hilda')], etat, R, m, toujours)).toBeUndefined();
+    expect(choisirReplique([d('grievement-blesse', 'hilda')], etat, R, m, toujours)).toBeDefined();
     etat.round += 1;
-    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, REPLIQUES, m, toujours)).toBeUndefined();
+    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, R, m, toujours)).toBeUndefined();
     etat.round += 1;
-    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, REPLIQUES, m, toujours)).toBeDefined();
+    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, R, m, toujours)).toBeDefined();
   });
 
   it('une situation courante n’est pas commentée à chaque fois', () => {
-    const etat = deux();
-    expect(choisirReplique([d('ennemi-abattu', 'bran')], etat, REPLIQUES, nouvelleMemoire(), () => 0.99)).toBeUndefined();
+    expect(choisirReplique([d('ennemi-abattu', 'bran')], deux(), R, nouvelleMemoire(), () => 0.99)).toBeUndefined();
   });
 
-  it('pas de redite avant d’avoir tout dit, ni deux fois de suite la même en recommençant', () => {
+  it('pas de redite avant d’avoir tout dit, ni deux fois de suite le même cri en recommençant', () => {
     const etat = deux();
     const m = nouvelleMemoire();
-    const lignes = REPLIQUES.get('humain-f-1')!.situations['grievement-blesse'];
+    const n = R.situations['grievement-blesse'].length;
+    expect(n).toBeGreaterThanOrEqual(2);
     const dites: string[] = [];
-    for (let i = 0; i < lignes.length * 3; i++) dites.push(choisirReplique([d('grievement-blesse', 'bran')], etat, REPLIQUES, m, toujours)!.texte);
-    expect(new Set(dites.slice(0, lignes.length)).size).toBe(lignes.length);
-    for (let i = 1; i < dites.length; i++) expect(dites[i], `réplique ${i}`).not.toBe(dites[i - 1]);
+    for (let i = 0; i < n * 3; i++) dites.push(choisirReplique([d('grievement-blesse', 'bran')], etat, R, m, toujours)!.texte);
+    expect(new Set(dites.slice(0, n)).size).toBe(n);
+    for (let i = 1; i < dites.length; i++) expect(dites[i], `cri ${i}`).not.toBe(dites[i - 1]);
   });
 });

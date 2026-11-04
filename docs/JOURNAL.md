@@ -349,3 +349,35 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Affichage : une bulle de parchemin au-dessus du jeton et une ligne dans le journal (« Hilda : « … » »). Une bulle à la fois (la suivante attend), un temps de lecture qui ne suit pas le mode rapide, une bulle qui survit au clic qui termine les animations ; le bilan de fin attend la dernière réplique.
 - Tests : 14 (fichiers valides, accords, repérage sur un vrai journal du moteur, priorités, silences, pas de redite). Vérifié dans de vrais combats (héros joués par l'IA, portraits du pilote posés en mémoire) : 7 répliques sur 4 rounds, jamais deux bulles ensemble, accords justes.
 - Suite : les 51 autres portraits ; des répliques liées à la classe ou à l'alignement ; les situations d'histoire (entrer dans un lieu, trouver un trésor, se reposer) ; une voix lue, plus tard et avec accord sur le coût.
+
+## 04/11/2026 — Voix des répliques : essais, Gemini retenu
+
+- Essai 1, `openai/gpt-audio-mini` et `gpt-audio` (7 prises du vieux nain, 0,0154 $) : **refusé par l'utilisateur**, « on dirait un robot qui récite une phrase ». C'est un modèle de conversation qui parle, pas un moteur de voix ; la consigne « mot pour mot » le poussait à réciter.
+- Essai 2, **Gemini 3.8 Flash TTS** (choix de l'utilisateur), voix Algenib (« rocailleuse ») : 5 prises, 0,0046 $. Le texte exact et le style (« vieux nain guerrier, voix grave et rocailleuse ; gravement blessé, à bout de souffle… ») partent séparément (`instructions`, transmis à Gemini comme `speech_metadata.style`) : le style n'est pas lu.
+- « C'est mou » : deux versions accélérées sur la machine, sans appel ; l'utilisateur choisit **×1,25**, avec les pauses internes ramenées à 0,12 s. C'est le réglage de toutes les répliques (`filtreReplique`, `outils/voix/lecture.ts`).
+- Outil `pnpm repliques` (`outils/voix/repliques.ts`) : `lister`, `voix <portrait>` (simulation sans `--go`, plafond, coût relevé pour chaque prise), `convertir <portrait>` (refait les MP3 depuis l'audio brut gardé, gratuit). La lecture commune aux scènes et aux répliques est dans `outils/voix/lecture.ts`. Les essais sont dans `sorties/voix-repliques/` (hors de git).
+- Limite : les phrases qui nomment un allié (`{nom}`) ne se lisent pas d'avance. Reste à faire : brancher les voix dans le jeu (canal des bruitages), les répliques et les voix des autres portraits, vérifier la licence commerciale des voix Gemini avant la vente.
+
+## 04/11/2026 — Répliques : des cris courts, et les ratés
+
+- Retour de l'utilisateur après avoir écouté Gemini à ×1,25 : « c'est mieux, mais je voyais surtout pour les combats des phrases plus petites » (« J'ai besoin de soins », « Je suis grièvement blessé », « Victoire ! », « Encore raté »…). Les phrases de dialogue du pilote étaient trop longues pour un combat.
+- Les 3 portraits du pilote sont **réécrits en cris de 1 à 5 mots** ; la bulle reste 1,3 s plus 45 ms par caractère, au plus 3,2 s. Les 5 prises Gemini déjà payées (0,0046 $) disaient les anciennes phrases : elles ne servent plus.
+- Deux situations nouvelles, **12 en tout** : `rate` (le héros rate une attaque, commenté une fois sur quatre) et `rate-encore` (sa précédente attaque avait déjà raté, six fois sur dix). Repérées dans le journal du moteur, testées avec des dés imposés (15 tests).
+
+## 04/11/2026 — Répliques : le groupe de base parle, les voix se branchent
+
+- Constat de l'utilisateur : en escarmouche avec le groupe de base, aucune voix. Normal : seuls les 3 portraits du pilote avaient des phrases, et aucune voix n'était branchée. Les cris sont maintenant écrits pour les **6 héros pré-tirés** (`humain-m-1`, `orc-m-1`, `halfelin-m-1`, `elfe-f-1`, `nain-f-1`, `gnome-f-1`) : 9 portraits en tout, 36 phrases chacun, chacun avec son timbre Gemini (Achird, Orus, Puck, Vindemiatrix, Kore, Leda, Zephyr, Pulcherrima, Algenib).
+- Le cri court du vieux nain (« J'ai besoin de soins ! », « Pour les ancêtres ! »…) a été validé à l'oreille par l'utilisateur.
+- Branchement : `apps/jeu/src/voix.ts` dit la phrase quand sa bulle apparaît (canal des bruitages, un peu plus fort qu'eux, une voix à la fois), précharge les voix des héros du combat ; sans fichier, bulle muette. `Replique` porte le portrait et le numéro de la phrase.
+- `pnpm repliques voix tous --livrer` : tous les portraits d'un coup, MP3 livrés dans `apps/jeu/src/voix/`, phrases déjà livrées sautées, plafond vérifié sur le compteur de la clé toutes les 10 prises. Tests : 578 verts.
+
+## 04/11/2026 — Cris de combat : une voix par race, des cris communs
+
+- Idée de l'utilisateur : plutôt que des phrases propres à chaque portrait, **10 à 15 cris communs à tous**, et **une voix différente par race, gardée pour tous les cris** (« le principal est de garder la cohérence d'une voix »). Adopté : les 9 fichiers par portrait sont supprimés (le premier essai du pilote reste dans l'historique git).
+- Les voix sont par race **et par genre** (18 voix pour les 9 races) : les voix de Gemini ont un genre, et le cri s'accorde (« blessé » ou « blessée »). Les 3 portraits d'une même race et d'un même genre partagent sa voix ; un nouveau portrait parle sans rien écrire.
+- Données : `packages/donnees/repliques/cris.json` (15 cris sur les 12 situations, accord `{blessé|blessée}`) et `voix.json` (timbre Gemini et personnage à jouer pour chacune des 18 voix, timbres tous différents : Achird, Zephyr, Algenib, Kore, Iapetus, Vindemiatrix, Puck, Aoede, Sadachbia, Leda, Algieba, Pulcherrima, Orus, Gacrux, Alnilam, Sulafat, Schedar, Autonoe).
+- Code : la voix d'un héros vient de son portrait (`elfe-f-2` donne `elfe-f`), le choix du cri est par personnage (pas de redite avant d'avoir tout dit), `Replique` porte la voix et le numéro du cri. `pnpm repliques voix tous --livrer` génère les 18 voix × 15 cris = 270 appels (≈ 0,12 $), saute ce qui est déjà livré, vérifie le plafond sur le compteur de la clé. 583 tests verts.
+- Reste à faire : générer les voix (accord de l'utilisateur pour la dépense), puis vérifier à l'oreille, race par race ; améliorer plus tard (davantage de cris par situation, cris propres à certains portraits en bulle seulement).
+- **Voix générées** (accord de l'utilisateur) : 270 cris, 18 voix × 15, avec Gemini 3.8 Flash TTS, **≈ 0,11 $** au compteur de la clé (0,1061 $, plus une prise refaite : « Un de moins ! » de l'humain, que Gemini avait tronquée). 4,7 Mo de MP3 dans `apps/jeu/src/voix/`.
+- **Volume égalisé** depuis l'audio brut, sans appel : jusqu'à 15 dB d'écart entre deux cris d'une même voix, ramenés à 6 dB au plus ; moyenne −17 dB, juste au-dessus des bruitages (−20 dB), pic à −1 dB (`enMp3Egalise`, `NIVEAU_CRI`). `pnpm repliques convertir tous --livrer` refait tout en quelques minutes.
+- Défaut trouvé en jouant : quand une bulle attendait son tour, sa voix partait tout de suite. La voix part maintenant avec la bulle (`effetDeReplique`). Vérifié dans de vrais combats avec le groupe de base : 8 cris, 8 voix, chacune à 10 ms de sa bulle, la bonne race et le bon genre (« blessée » pour Ambrine la gnome).

@@ -1,15 +1,14 @@
-// Les répliques écrites pour chaque portrait (packages/donnees/repliques/<portrait>.json), chargées avec le jeu.
-// Un portrait sans fichier se tait. Les fichiers sont validés par `repliques.test.ts`.
-import { FichierRepliques } from './repliques-regles';
+// Les cris de combat (packages/donnees/repliques/cris.json) et les voix par race et par genre (voix.json), chargés avec
+// le jeu. Un portrait dont la race n'a pas de voix se tait. Les fichiers sont validés par `repliques.test.ts`.
+import cris from '../../../packages/donnees/repliques/cris.json';
+import voix from '../../../packages/donnees/repliques/voix.json';
+import { FichierCris, FichierVoix, type Repliques } from './repliques-regles';
 
-const fichiers = import.meta.glob<unknown>('../../../packages/donnees/repliques/*.json', { eager: true, import: 'default' });
+/** Les fichiers tels quels : pour les tests (un fichier invalide ne doit pas se taire en silence). */
+export const FICHIER_CRIS: unknown = cris;
+export const FICHIER_VOIX: unknown = voix;
 
-export const REPLIQUES: ReadonlyMap<string, FichierRepliques> = new Map(
-  Object.values(fichiers).flatMap((brut) => {
-    const r = FichierRepliques.safeParse(brut);
-    return r.success ? [[r.data.portrait, r.data] as const] : [];
-  }),
-);
+const c = FichierCris.safeParse(cris);
+const v = FichierVoix.safeParse(voix);
 
-/** Les fichiers tels quels, par chemin : pour les tests (un fichier invalide ne doit pas se taire en silence). */
-export const FICHIERS_REPLIQUES = fichiers;
+export const REPLIQUES: Repliques | undefined = c.success && v.success ? { situations: c.data.situations, voix: v.data } : undefined;

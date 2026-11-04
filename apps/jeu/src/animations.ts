@@ -9,6 +9,7 @@ import { estPhysique, estRayon, famille, familleDominante, famillePhysique, form
 import { jouerSon, precharger } from './sons';
 import { degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
 import type { Replique } from './repliques-regles';
+import { direReplique } from './voix';
 
 export interface Surcharge {
   position: Position;
@@ -28,7 +29,7 @@ export type Effet =
   | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number; decalage?: number }
   | { id: number; type: 'bulle'; position: Position; texte: string; duree: number }
   /** Réplique d'un compagnon : une bulle de parole au-dessus de son jeton. */
-  | { id: number; type: 'replique'; position: Position; texte: string; duree: number }
+  | { id: number; type: 'replique'; position: Position; texte: string; duree: number; dire?: Pick<Replique, 'voix' | 'situation' | 'numero'> }
   /** Zone d'effet ; avec `origine` et `delai`, elle se propage case après case depuis l'origine (délai par case, en ms). */
   | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number; origine?: Position; delai?: number }
   | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number }
@@ -205,9 +206,14 @@ const SECOUSSE: Keyframe[] = [
 
 const FLASH: Keyframe[] = [{ filter: 'none' }, { filter: 'brightness(1.9) drop-shadow(0 0 6px #ff3b2f)' }, { filter: 'none' }];
 
+/** La bulle d'une réplique au-dessus de celui qui parle ; sa voix part quand la bulle apparaît (elle peut attendre son tour). */
+export function effetDeReplique(r: Replique, lieu: Position): EffetSansId {
+  return { type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte), dire: { voix: r.voix, situation: r.situation, numero: r.numero } };
+}
+
 /** Durée d'une bulle de réplique : le temps de la lire. */
 export function dureeReplique(texte: string): number {
-  return Math.min(4200, 1800 + texte.length * 45);
+  return Math.min(3200, 1300 + texte.length * 45);
 }
 
 function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Outils, reduit: boolean, repliques: readonly Replique[] = []): Pas[] {
@@ -477,7 +483,10 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
     // Une réplique de compagnon se dit juste après ce qui l'a provoquée ; elle ne retient pas la suite de la file.
     for (const r of repliques) {
       const lieu = r.apres === index ? pos(r.locuteur) : undefined;
-      if (lieu) ajouter(0, () => o.effet({ type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte) }));
+      if (lieu)
+        ajouter(0, () => {
+          o.effet(effetDeReplique(r, lieu));
+        });
     }
     // Le journal s'affiche au rythme des animations.
     const premier = local[0];
@@ -556,6 +565,8 @@ export function useAnimations(donnees: Donnees, facteur: number) {
     vue.current.effets = [...vue.current.effets, { ...e, id } as Effet];
     // Une réplique se lit : elle garde sa durée en mode rapide, et survit au clic qui termine la file.
     const replique = e.type === 'replique';
+    // La voix part avec la bulle, pas avant : une bulle qui attend son tour ne parle pas encore.
+    if (e.type === 'replique' && e.dire) direReplique(e.dire);
     const minuteurs = replique ? minuteursRepliques.current : minuteursEffets.current;
     const t = window.setTimeout(
       () => {

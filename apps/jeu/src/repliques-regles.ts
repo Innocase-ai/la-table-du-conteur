@@ -3,7 +3,7 @@
 // on y repère les situations, puis on choisit au plus une réplique, sans saturer l'écran ni se répéter.
 // Tout est pur : le hasard est passé en paramètre (le tirage du moteur n'est jamais touché).
 import { z } from 'zod';
-import type { Combattant, EtatCombat } from '@crpg/regles';
+import type { Combattant, EtatCombat, Evenement } from '@crpg/regles';
 
 export const SITUATIONS = [
   'debut-combat',
@@ -15,6 +15,8 @@ export const SITUATIONS = [
   'critique-recu',
   'ennemi-abattu',
   'allie-tombe',
+  'rate',
+  'rate-encore',
   'victoire',
 ] as const;
 export type Situation = (typeof SITUATIONS)[number];
@@ -29,27 +31,51 @@ export const LIBELLES_SITUATIONS: Record<Situation, string> = {
   'critique-recu': 'Reçoit un coup critique',
   'ennemi-abattu': 'Abat un ennemi',
   'allie-tombe': 'Un allié tombe',
+  rate: 'Rate une attaque',
+  'rate-encore': 'Rate encore (sa précédente attaque avait déjà raté)',
   victoire: 'Victoire',
 };
 
 const Lignes = z.array(z.string().min(2)).min(1);
-/** Un fichier `packages/donnees/repliques/<portrait>.json`. */
-export const FichierRepliques = z
-  .object({
-    portrait: z.string().regex(/^[a-z]+-[fm]-\d+$/),
-    /** Le caractère que portent les phrases (tiré de la description du portrait) : sert à les écrire, et au conteur. */
-    caractere: z.string().min(3),
-    situations: z.object(Object.fromEntries(SITUATIONS.map((s) => [s, Lignes])) as Record<Situation, typeof Lignes>).strict(),
-  })
+/**
+ * `packages/donnees/repliques/cris.json` : les cris de combat, les mêmes pour tous les personnages (de 10 à 15 en tout).
+ * L'accord de genre s'écrit `{blessé|blessée}` : chaque voix dit sa forme.
+ */
+export const FichierCris = z
+  .object({ situations: z.object(Object.fromEntries(SITUATIONS.map((s) => [s, Lignes])) as Record<Situation, typeof Lignes>).strict() })
   .strict();
-export type FichierRepliques = z.infer<typeof FichierRepliques>;
+export type FichierCris = z.infer<typeof FichierCris>;
+
+/**
+ * `packages/donnees/repliques/voix.json` : une voix par race et par genre (`nain-f`), gardée pour tous les cris :
+ * le timbre (une des 30 voix de Gemini) et le personnage à jouer. Tous les portraits d'une race et d'un genre la partagent.
+ */
+export const FichierVoix = z.record(z.string().regex(/^[a-z]+-[fm]$/), z.object({ timbre: z.string().min(2), jeu: z.string().min(10) }).strict());
+export type FichierVoix = z.infer<typeof FichierVoix>;
+
+/** Les cris et les voix, réunis : ce que le jeu charge. */
+export interface Repliques {
+  situations: FichierCris['situations'];
+  voix: FichierVoix;
+}
+
+/** La voix d'un portrait (`elfe-f-2` → `elfe-f`), ou rien si ce n'est pas un portrait de la galerie. */
+export function voixDuPortrait(portrait: string | undefined): string | undefined {
+  const m = /^([a-z]+)-([fm])-\d+$/.exec(portrait ?? '');
+  return m ? `${m[1]}-${m[2]}` : undefined;
+}
+
+/** Les accords `{masculin|féminin}` d'un cri, pour une voix féminine ou masculine. */
+export function accorder(texte: string, feminin: boolean): string {
+  return texte.replace(/\{([^{}|]*)\|([^{}|]*)\}/g, (_, m: string, f: string) => (feminin ? f : m));
+}
 
 /** Une situation repérée dans le journal. */
 export interface Declencheur {
   situation: Situation;
   /** Qui parle ; absent quand n'importe quel héros debout peut parler (allié tombé, victoire, début du combat). */
   locuteur?: string;
-  /** De qui on parle (l'allié tombé) : son nom et son genre remplissent la phrase. */
+  /** Le héros dont il s'agit (l'allié tombé) : il ne se commente pas lui-même. */
   cible?: string;
   /** La réplique se dit une fois que le journal affiche ce nombre d'entrées. */
   apres: number;
@@ -60,6 +86,9 @@ export interface Replique {
   nom: string;
   texte: string;
   situation: Situation;
+  /** La voix qui parle (`nain-f`) et le numéro du cri dans sa situation (à partir de 1) : ils nomment son fichier. */
+  voix: string;
+  numero: number;
   apres: number;
 }
 
@@ -95,6 +124,15 @@ export function declencheurs(etat: EtatCombat, avant: Avant): Declencheur[] {
       case 'attaque':
       case 'sort':
         if (ev.acteur) dernierActeur = ev.acteur;
+        if (ev.type === 'attaque' && ev.details?.resultat === 'rate' && heros(ev.acteur)) {
+          // « Encore raté » quand la précédente attaque du même héros, plus tôt dans le combat, avait déjà raté.
+          let precedente: Evenement | undefined;
+          for (let k = apres - 2; k >= 0 && !precedente; k--) {
+            const e = etat.journal[k]!;
+            if (e.type === 'attaque' && e.acteur === ev.acteur) precedente = e;
+          }
+          trouves.push({ situation: precedente?.details?.resultat === 'rate' ? 'rate-encore' : 'rate', locuteur: ev.acteur, apres });
+        }
         if (ev.type === 'attaque' && ev.details?.resultat === 'critique') {
           if (heros(ev.acteur)) trouves.push({ situation: 'critique-donne', locuteur: ev.acteur, apres });
           if (heros(ev.cible)) trouves.push({ situation: 'critique-recu', locuteur: ev.cible, apres });
@@ -153,8 +191,10 @@ const PRIORITE: Situation[] = [
   'critique-recu',
   'critique-donne',
   'ennemi-abattu',
+  'rate-encore',
   'blesse',
   'soigne',
+  'rate',
 ];
 
 /** Chance qu'une situation soit commentée : les courantes ne le sont pas à chaque fois. */
@@ -169,6 +209,9 @@ export const CHANCES: Record<Situation, number> = {
   'ennemi-abattu': 0.35,
   blesse: 0.5,
   soigne: 0.4,
+  // Les ratés sont fréquents : on n'en commente qu'une partie, davantage quand ils s'enchaînent.
+  rate: 0.25,
+  'rate-encore': 0.6,
 };
 
 /** Les situations graves ou rares passent outre les silences imposés. */
@@ -183,7 +226,7 @@ export interface Memoire {
   parPersonnage: Map<string, number>;
   /** Round de la dernière réplique du groupe. */
   groupe?: number;
-  /** Phrases déjà dites, par `portrait:situation` (indices) : pas de redite avant d'avoir tout dit. */
+  /** Cris déjà dits, par personnage et situation (`id:situation`, indices) : pas de redite avant d'avoir tout dit. */
   dites: Map<string, number[]>;
 }
 
@@ -191,15 +234,9 @@ export function nouvelleMemoire(): Memoire {
   return { parPersonnage: new Map(), dites: new Map() };
 }
 
-/** Genre d'un héros d'après son portrait (`elfe-f-2`). */
+/** Le héros est une voix féminine (d'après son portrait, `elfe-f-2`). */
 export function estFeminin(c: Combattant | undefined): boolean {
   return /-f-\d+$/.test(c?.portrait ?? '');
-}
-
-/** Remplit `{nom}` et les accords `{masculin|féminin}` d'après la personne dont on parle. */
-export function remplir(texte: string, cible: Combattant | undefined): string {
-  const f = estFeminin(cible);
-  return texte.replace(/\{nom\}/g, cible?.nom ?? '').replace(/\{([^{}|]*)\|([^{}|]*)\}/g, (_, m: string, fe: string) => (f ? fe : m));
 }
 
 function melanger<T>(liste: T[], hasard: () => number): T[] {
@@ -212,7 +249,7 @@ function melanger<T>(liste: T[], hasard: () => number): T[] {
 }
 
 /** Tire une phrase pas encore dite (et jamais celle d'avant quand on recommence le tour des phrases). */
-function tirerPhrase(lignes: string[], cle: string, memoire: Memoire, hasard: () => number): string {
+function tirerPhrase(lignes: string[], cle: string, memoire: Memoire, hasard: () => number): { indice: number; texte: string } {
   let dites = memoire.dites.get(cle) ?? [];
   let libres = lignes.map((_, i) => i).filter((i) => !dites.includes(i));
   if (!libres.length) {
@@ -222,20 +259,14 @@ function tirerPhrase(lignes: string[], cle: string, memoire: Memoire, hasard: ()
   }
   const choix = libres[Math.floor(hasard() * libres.length)]!;
   memoire.dites.set(cle, [...dites, choix]);
-  return lignes[choix]!;
+  return { indice: choix, texte: lignes[choix]! };
 }
 
 /**
- * Au plus une réplique pour ces situations : la plus importante qui trouve quelqu'un pour parler, qui a des phrases,
+ * Au plus une réplique pour ces situations : la plus importante qui trouve quelqu'un pour parler, qui a une voix,
  * qui n'est pas tenu au silence et dont le tirage réussit. Met la mémoire à jour.
  */
-export function choisirReplique(
-  trouves: Declencheur[],
-  etat: EtatCombat,
-  repliques: ReadonlyMap<string, FichierRepliques>,
-  memoire: Memoire,
-  hasard: () => number,
-): Replique | undefined {
+export function choisirReplique(trouves: Declencheur[], etat: EtatCombat, repliques: Repliques, memoire: Memoire, hasard: () => number): Replique | undefined {
   const par = new Map(etat.combattants.map((c) => [c.id, c]));
   const round = etat.round;
   const tries = [...trouves].sort((a, b) => PRIORITE.indexOf(a.situation) - PRIORITE.indexOf(b.situation));
@@ -247,18 +278,24 @@ export function choisirReplique(
         !!c &&
         peutParler(c) &&
         c.id !== d.cible &&
-        !!c.portrait &&
-        repliques.has(c.portrait) &&
+        (voixDuPortrait(c.portrait) ?? '') in repliques.voix &&
         (urgente || round - (memoire.parPersonnage.get(c.id) ?? -Infinity) >= SILENCE_PERSONNEL),
     );
     const c = candidats[0];
     if (!c) continue;
     if (hasard() >= CHANCES[d.situation]) continue;
-    const fichier = repliques.get(c.portrait!)!;
-    const phrase = tirerPhrase(fichier.situations[d.situation], `${c.portrait}:${d.situation}`, memoire, hasard);
+    const phrase = tirerPhrase(repliques.situations[d.situation], `${c.id}:${d.situation}`, memoire, hasard);
     memoire.parPersonnage.set(c.id, round);
     memoire.groupe = round;
-    return { locuteur: c.id, nom: c.nom, texte: remplir(phrase, d.cible ? par.get(d.cible) : undefined), situation: d.situation, apres: d.apres };
+    return {
+      locuteur: c.id,
+      nom: c.nom,
+      texte: accorder(phrase.texte, estFeminin(c)),
+      situation: d.situation,
+      voix: voixDuPortrait(c.portrait)!,
+      numero: phrase.indice + 1,
+      apres: d.apres,
+    };
   }
   return undefined;
 }
