@@ -162,3 +162,35 @@ export function enMp3(pcm: Buffer, chemin: string, options: { debit?: string; ma
   rmSync(brut);
   return Number(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', chemin]).toString().trim());
 }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Gemini Flash TTS (Google, via OpenRouter) : un vrai moteur de synthèse vocale, commun aux répliques de combat
+// (`repliques.ts`) et aux voix des scènes (`cli.ts`). On lui donne le texte exact et, à part, le style.
+// ---------------------------------------------------------------------------------------------------------------------
+
+export const MODELES_GEMINI = { flash: 'google/gemini-3.8-flash-tts', lite: 'google/gemini-3.8-flash-lite-tts' } as const;
+
+/** Une phrase dite par Gemini : l'audio PCM (16 bits, mono) tel que reçu, son débit, et l'identifiant de la génération. */
+export async function direGemini(texte: string, options: { modele: string; voix: string; style: string; cle: string }): Promise<{ pcm: Buffer; frequence: number; generation?: string }> {
+  const rep = await fetch('https://openrouter.ai/api/v1/audio/speech', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${options.cle}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model: options.modele, input: texte, voice: options.voix, instructions: options.style, response_format: 'pcm' }),
+    signal: AbortSignal.timeout(90_000),
+  });
+  if (!rep.ok) throw new Error(`HTTP ${rep.status} — ${(await rep.text()).slice(0, 500)}`);
+  const type = rep.headers.get('content-type') ?? '';
+  const frequence = Number(/rate=(\d+)/.exec(type)?.[1] ?? 24000);
+  return { pcm: Buffer.from(await rep.arrayBuffer()), frequence, generation: rep.headers.get('x-generation-id') ?? undefined };
+}
+
+/** Le coût d'une génération, lu après coup (appel gratuit ; la fiche met quelques secondes à apparaître). */
+export async function coutGeneration(generation: string | undefined, cle: string): Promise<number | undefined> {
+  if (!generation) return undefined;
+  for (let i = 0; i < 4; i++) {
+    await new Promise((r) => setTimeout(r, 2500));
+    const rep = await fetch(`https://openrouter.ai/api/v1/generation?id=${encodeURIComponent(generation)}`, { headers: { Authorization: `Bearer ${cle}` } });
+    if (rep.ok) return ((await rep.json()) as { data?: { total_cost?: number } }).data?.total_cost;
+  }
+  return undefined;
+}

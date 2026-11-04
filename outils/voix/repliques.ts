@@ -27,7 +27,7 @@ import { accorder, FichierCris, FichierVoix, SITUATIONS, type Situation } from '
 import { empreinte, lireMontant } from '../cle';
 import { lireEnv } from '../images/cli';
 import { CLE_OPENROUTER, utilisationCle } from '../images/services';
-import { durees, enMp3Egalise, filtreLong, filtreReplique } from './lecture';
+import { coutGeneration, direGemini, durees, enMp3Egalise, filtreLong, filtreReplique } from './lecture';
 
 const RACINE = join(import.meta.dirname, '..', '..');
 const DOSSIER_REPLIQUES = join(RACINE, 'packages', 'donnees', 'repliques');
@@ -85,30 +85,8 @@ function phrasesDe(voix: string, lignes: string | undefined): Phrase[] {
 
 const livre = (voix: string, p: Phrase) => join(LIVRAISON, voix, `${p.situation}-${p.numero}.mp3`);
 
-/** Une phrase dite par Gemini : l'audio PCM (16 bits, mono) tel que reçu, son débit, et l'identifiant de la génération. */
-async function dire(texte: string, options: { modele: string; voix: string; style: string; cle: string }): Promise<{ pcm: Buffer; frequence: number; generation?: string }> {
-  const rep = await fetch('https://openrouter.ai/api/v1/audio/speech', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${options.cle}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: options.modele, input: texte, voice: options.voix, instructions: options.style, response_format: 'pcm' }),
-    signal: AbortSignal.timeout(90_000),
-  });
-  if (!rep.ok) throw new Error(`HTTP ${rep.status} — ${(await rep.text()).slice(0, 500)}`);
-  const type = rep.headers.get('content-type') ?? '';
-  const frequence = Number(/rate=(\d+)/.exec(type)?.[1] ?? 24000);
-  return { pcm: Buffer.from(await rep.arrayBuffer()), frequence, generation: rep.headers.get('x-generation-id') ?? undefined };
-}
-
-/** Le coût d'une génération, lu après coup (appel gratuit ; la fiche met quelques secondes à apparaître). */
-async function coutDe(generation: string | undefined, cle: string): Promise<number | undefined> {
-  if (!generation) return undefined;
-  for (let i = 0; i < 4; i++) {
-    await new Promise((r) => setTimeout(r, 2500));
-    const rep = await fetch(`https://openrouter.ai/api/v1/generation?id=${encodeURIComponent(generation)}`, { headers: { Authorization: `Bearer ${cle}` } });
-    if (rep.ok) return ((await rep.json()) as { data?: { total_cost?: number } }).data?.total_cost;
-  }
-  return undefined;
-}
+const dire = direGemini;
+const coutDe = coutGeneration;
 
 async function main(): Promise<void> {
   const [commande, voixDemandee, ...args] = process.argv.slice(2);

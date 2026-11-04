@@ -4,6 +4,7 @@
 //   pnpm voix lister <monde>                                      plans, longueur des textes, voix déjà faites
 //   pnpm voix generer <monde> [--scene id] [--modele mini|complet] [--voix onyx] [--plafond 0.25] [--go]
 //                                                                  sans --go : simulation (aucun appel, aucun coût)
+//   VOIX OFFICIELLE du Maître de jeu (Gemini Flash TTS, Algieba, ×1,15) : par défaut ; essai | convertir, voir gemini-scenes.ts
 //
 // La lecture elle-même (appel, contrôle de fidélité et de durée, MP3) est dans `lecture.ts`.
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -13,6 +14,7 @@ import { scenesDu } from '../../packages/regles/src/modules/scenes';
 import { empreinte, lireMontant } from '../cle';
 import { lireEnv } from '../images/cli';
 import { CLE_OPENROUTER, utilisationCle } from '../images/services';
+import { convertir, essai, genererGemini } from './gemini-scenes';
 import { durees, enMp3, fidelite, lire, MODELES, VOIX } from './lecture';
 
 /**
@@ -31,8 +33,8 @@ async function main(): Promise<void> {
     const i = args.indexOf(nom);
     return i >= 0 ? args[i + 1] : undefined;
   };
-  if (!idMonde || !['lister', 'generer'].includes(commande ?? '')) {
-    console.log('Usage : pnpm voix lister <monde> | generer <monde> [--scene id] [--modele mini|complet] [--voix onyx] [--go]');
+  if (!idMonde || !['lister', 'generer', 'essai', 'convertir'].includes(commande ?? '')) {
+    console.log('Usage : pnpm voix lister <monde> | generer <monde> [--scene id] [--refaire] [--plans 2,3] [--go] (voix officielle : Gemini, Algieba, ×1,15) | generer <monde> --moteur gpt [--modele mini|complet] [--voix onyx] [--go] (ancienne lecture) | essai <monde> --scene id --plan n --timbres A,B,C [--go] | convertir <monde> [--tempo 1.15]');
     return;
   }
   const r = chargerMonde(join(RACINE_MONDES, idMonde));
@@ -53,6 +55,11 @@ async function main(): Promise<void> {
     );
     return;
   }
+  const gemini = { idMonde, plans, dossier, option, args };
+  if (commande === 'essai') return essai(gemini);
+  if (commande === 'convertir') return convertir(gemini);
+  // Gemini est le moteur par défaut (voix officielle du Maître de jeu) ; `--moteur gpt` garde l'ancienne lecture gpt-audio.
+  if (option('--moteur') !== 'gpt') return genererGemini(gemini, fait);
   const modele = MODELES[(option('--modele') ?? 'mini') as keyof typeof MODELES];
   const voix = option('--voix') ?? 'onyx';
   if (!modele) throw new Error('Modèle : mini ou complet.');

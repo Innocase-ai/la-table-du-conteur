@@ -40,6 +40,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - Le moteur accueille des dizaines de mondes (premier : Le Val des Cendres). Les objets communs viennent du catalogue SRD partagé, pas de chaque monde.
 - Coût : cible inférieure à 5 $ d'API par histoire. Le moteur et les textes écrits portent le jeu ; le conteur n'intervient que pour la saisie libre, les dialogues et les imprévus. Modèle par défaut : Claude Haiku 5.5 via OpenRouter.
 - Distribution : on développe dans le navigateur, on **vend une application de bureau Tauri** (`apps/bureau`, voir `docs/BUREAU.md`) : poids des contenus sans contrainte, clé du joueur dans le trousseau du système.
+- **Voix officielle du Maître de jeu** (décision du 04/11/2026) : toutes les vidéos et scènes narrées de toutes les histoires sont lues par Gemini Flash TTS, timbre **Algieba**, débit **×1,15**, style naturel (« intonations nuancées mais retenues, sans emphase »). C'est le défaut de `pnpm voix generer` (`outils/voix/gemini-scenes.ts`, `VOIX_OFFICIELLE`) : ne jamais en changer sans l'accord de l'utilisateur.
 - Images : FLUX Klein via OpenRouter, livrées en WebP avec le monde. Les images du groupe se construisent à l'exécution depuis les choix du joueur : **jamais d'images avec les 6 héros pré-tirés** (Bran, Grukk, Pip, Sylvaine, Hilda, Ambrine).
 
 ## Façon de travailler avec l'utilisateur
