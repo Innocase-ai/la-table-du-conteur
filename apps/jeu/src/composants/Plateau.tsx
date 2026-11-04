@@ -271,8 +271,9 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
                 top: g.marge + c.position.y * g.hc,
                 width: g.cote,
                 height: g.hc,
-                // Un jeton passe devant le relief du mur situé juste au sud ; les morts restent dessous.
-                zIndex: c.mort ? 2 : 11 + c.position.y * 3 + (c.id === actifId ? 1 : 0),
+                // Un jeton passe devant le relief du mur situé juste au sud (z = 10 + 3 × (y + 1) = 13 + 3y : il dépasse d'une
+                // demi-case sur la rangée du jeton) ; les morts passent aussi devant les murs, mais sous les vivants.
+                zIndex: (c.mort ? 14 : 15) + c.position.y * 3 + (c.id === actifId ? 1 : 0),
               }}
               onMouseEnter={() => {
                 setInfobulle(c.id);

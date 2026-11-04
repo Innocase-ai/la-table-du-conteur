@@ -435,3 +435,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Constat de conception** : les `repliques` et `opinions` des compagnons du schéma ne sont lues par rien (ni moteur, ni conteur, ni interface) et les compagnons ne se recrutent pas encore : une scène à plusieurs voix passe par un événement et des sujets. À câbler si on veut des compagnons qui réagissent en partie.
 - Test `conseil-gardiens.test.ts` : 4 cas (ne se joue pas sans le fait ; une seule fois, drapeau et fait posés ; « neuf » seulement après Hesta et aucun mot interdit ; le sujet s'ouvre chez les quatre, là où on les retrouve, et pas avant). 620 tests verts. Méthode consignée dans le skill `creer-monde`.
 - Pas encore : un avis de l'utilisateur sur le texte (à jouer dans le jeu, après avoir appris le secret d'Oswin) ; des réactions des héros pendant la partie (une petite couche d'exécution légère, seulement si le pilote plaît).
+
+## 04/11/2026 — Correctif : les murs ne masquent plus les jetons
+
+- Retour de l'utilisateur (capture à l'appui) : sur certaines cartes, un mur cache la moitié basse d'un jeton (un monstre « GA » sous une bande de murs, le voleur sur la rangée du bas).
+- Cause : un mur est dessiné en relief, son dessus remonte d'une demi-case sur la rangée au-dessus. Son z-index (`10 + 3 × y`) dépassait celui du jeton de cette rangée (`11 + 3 × (y − 1)`), alors que le commentaire du code voulait le contraire. Ce défaut est apparu avec le relief des murs et touchait toutes les cartes où un mur se trouve juste sous un jeton.
+- Correctif (`Plateau.tsx`) : vivants à `15 + 3y` (le combattant actif `+ 1`), morts à `14 + 3y` : les jetons passent devant le mur du sud, les morts restent sous les vivants. Les arbres et rochers (`7 + 3y`) et les effets (400) ne bougent pas.
+- Vérifié dans le jeu en mesurant, sur les six cartes d'escarmouche, les jetons qui recouvrent un mur : 0 jeton caché (avec l'ancien ordre, 10 sur « Le camp hobgobelin ») ; contrôle à l'écran. Tests inchangés, 620 verts. Pas de test automatique : l'interface n'en a pas encore pour le plateau.
