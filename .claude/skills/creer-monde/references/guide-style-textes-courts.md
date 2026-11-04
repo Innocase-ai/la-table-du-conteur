@@ -63,3 +63,32 @@ Un fichier `reprise-<id>.json` avec : `lieuxDuContexte` (les lieux concernés **
 ```
 `garde` : tu recopies le texte actuel mot pour mot (il est déjà concret, varié et dans les quotas). `reecrit` : ton nouveau texte, 12 à 30 mots. Attends-toi à en **réécrire au moins la moitié**. Guillemets droits `"` pour le JSON ; dans les textes, apostrophes `’` ou `'` et « » si besoin.
 Avant de rendre : relis ton fichier, **compte les mots rationnés du §3**, corrige, vérifie le JSON et le nombre d'objets. Termine par : « Paquet <id> : N éléments, X réécrits, quotas respectés : oui/non. »
+## 8. Passe « Tolkien » : la voix à viser pour cette reprise
+Cette passe change la **voix** (pas les faits, ni les interdits, ni les quotas, ni le format). On s'inspire des **techniques** de J. R. R. Tolkien. **On ne cite aucune de ses phrases, on n'emploie aucun de ses noms ou de ses lieux, on ne fait pas de pastiche** : on écrit comme un narrateur qui connaît bien cette vallée et qui la montre à quelqu'un qui va la traverser.
+
+### Les cinq techniques
+1. **Le trajet.** Un chemin se décrit par ce qu'il fait : il monte, tourne, se resserre, s'ouvre, s'efface. Le lecteur sait où il est, d'où il vient et ce qui borne la vue (crête, col, rivière, mur). Les compléments de lieu font le travail : « jusqu'à », « au pied de », « là où », « sous », « au-delà de ».
+2. **La chose qui donne son nom au lieu.** On montre un lieu par ce qui le fait reconnaître (la porte du col, le relais, le puits). Pas de nom inventé.
+3. **Le temps long.** C'est la technique la plus précieuse et la moins appliquée. Dans **au moins un élément sur quatre** (et dans presque tous ceux de la Haute-Forge, des cryptes et de la mine), un signe d'ancienneté ou d'usure : des marches creusées en leur milieu par des siècles de pas, une pierre polie par des mains, un ouvrage de nains que personne n'entretient plus, une rampe encore solide alors que ceux qui l'ont bâtie sont partis, une inscription effacée (sans dire ce qu'elle dit). **Au plus un signe par phrase, et jamais de lore inventé.**
+4. **La peur par le décor.** Le danger se sent par le silence, le froid, un endroit où personne ne s'attarde ; jamais par un monstre nommé ni un mot d'épouvante.
+5. **Le foyer contre la nuit** (village et lieux habités). Le chaud est un refuge : soupe, porte basse, lumière jaune, bols. **Garde les détails accueillants et concrets du texte actuel** (l'odeur de la soupe, un linge qui sèche) : ne les remplace jamais par plus vague.
+
+### Règles dures de cette passe (le premier essai les a violées)
+- **Pas de formule répétée.** « de X en X » (de borne en borne, de congère en congère, de barreau en barreau…) : **une seule fois dans tout ton paquet**. « jusqu'à » : au plus quatre fois. Ne recopie pas les exemples de ce guide.
+- **N'ajoute aucun objet ni détail absent des fiches** du paquet (charge d'un chariot, rouleaux, toits voisins, statues, inscriptions lisibles, panneaux). Si tu veux un détail, **prends-le dans « résumé », « ce qu'on y voit » ou « ambiance » des lieux du contexte**. Un détail banal de matière (planches, gonds, givre, joncs, étais) reste permis.
+- **Ne supprime pas un détail concret du texte actuel sans en mettre un aussi précis à la place.** Si le texte actuel est déjà concret et bon, **garde-le** (`garde`) : réécrire pour réécrire l'abîme.
+- **Verbes justes.** Une odeur flotte, un bruit monte, une toux s'entend, un souffle passe ; **des objets ne « flottent » pas, ne « dorment » pas**. Pas de personnification (la pierre qui écoute, la porte qui attend).
+- **« usé », « poli », « usure » : trois fois au plus dans tout ton paquet.** Le temps long ne se réduit pas à ces mots : une porte noircie, des veilleuses éteintes depuis longtemps, une rampe taillée pour des chariots, une marque effacée disent aussi les siècles.
+- Phrases claires : une idée de lieu par proposition ; pas plus de 30 mots.
+- **Éviter** : le faux archaïsme (« point de », « moult »), les mots rares inutiles, les adverbes en « -ment » en série, les majuscules d'emphase, les exclamations, les mots modernes.
+
+### Exemples (écrits pour ce guide : à ne pas recopier, à imiter par la manière)
+- **Trajet** : « La route d'en haut longe le torrent, puis s'en écarte au pied des éboulis, où l'on ne peut plus marcher qu'à la file. »
+- **Temps long** (escalier) : « Les marches, creusées en leur milieu par des siècles de pas, descendent sous la voûte jusqu'à une porte de bronze que la rouille a verdie. »
+- **Temps long** (nain) : « Une rampe de pierre taillée pour des chariots que personne ne pousse plus monte vers la haute galerie, encore droite et sans une fissure. »
+- **Peur par le décor** : « Passé la porte, le sol est sec et net, comme si personne n'avait osé s'y attarder ; le froid y est plus ancien que dehors. »
+- **Foyer** : « La porte basse, entrouverte, laisse sortir un rai de lumière jaune et le bruit des bols ; sur le seuil, la neige est piétinée de pas pressés. »
+
+**Dans cette passe** : réécris **ce qui gagne à l'être** (le trajet, le temps long, la peur par le décor) ; **garde** (`garde`) ce qui est déjà concret et juste. Les faits (direction, forme, matière, état du passage) **ne changent pas**. Écris ton fichier sous le nom qu'on t'indique dans ta mission (et non `reprise-sortie-…`).
+
+**Retour d'expérience (Val des Cendres, 04/11/2026)** : sur 2 paquets d'essai, cette voix n'a donné que des gains ponctuels (peur par le décor, détails de métier, trajets) et un tic qui se déplace à chaque consigne (« de borne en borne », puis « usé par les pas »). **Ne pas la généraliser** : la tester sur 2 paquets, retenir les meilleurs textes à la main, laisser le reste.
