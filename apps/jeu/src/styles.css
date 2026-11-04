@@ -712,6 +712,7 @@ button:disabled {
 
 /* Grande image du combattant actif ou survolé, à gauche de sa fiche. */
 .illustration {
+  position: relative;
   flex: none;
   height: 100%;
   aspect-ratio: 1;
@@ -744,6 +745,37 @@ button:disabled {
 }
 
 .illustration-mort img {
+  filter: grayscale(1) brightness(0.5);
+}
+
+/* Icône de classe posée sur le portrait d'un héros, en bas à droite, dans un médaillon de son camp. */
+.illustration-classe {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 30%;
+  max-width: 56px;
+  aspect-ratio: 1;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #6fa4d2, var(--heros) 45%, var(--heros-sombre));
+  border: 2px solid var(--or);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  color: #f6ecd8;
+  pointer-events: none;
+}
+
+.illustration-classe svg {
+  width: 60%;
+  height: 60%;
+  display: block;
+}
+
+.illustration-mort .illustration-classe {
   filter: grayscale(1) brightness(0.5);
 }
 

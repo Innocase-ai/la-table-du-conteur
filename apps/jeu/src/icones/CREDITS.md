@@ -9,3 +9,5 @@ Pictogrammes issus de [game-icons.net](https://game-icons.net) (dépôt https://
 | skeleton | Skoll |
 | hyena-head, warlord-helmet | Caro Asercion |
 | spider-face | Carl Olsen |
+
+Dessins maison (originaux, sans source externe) : paladin, ensorceleur, occultiste, druide, moine, barde. Ils suivent le même format (512×512, couleur héritée).

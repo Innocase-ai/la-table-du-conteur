@@ -214,3 +214,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Question de l'utilisateur : les adversaires des escarmouches sont-ils du niveau des héros ? Non, quatre rencontres fixes pour six héros de niveau 3.
 - Nouveau : `composerRencontre` (thème + difficulté + niveaux des héros → rencontre au budget du groupe), écran d'escarmouche avec choix de la difficulté, `pnpm escarmouches` pour caler l'équilibre par simulation. Les PX du SRD ne disent pas tout (la crypte était bien plus dure que la bande à PX égaux) : coefficient de danger par thème. Limite : 30 monstres au catalogue, niveau 5 trop facile.
 
+
+## 04/11/2026 — Icônes de classe sur les jetons et les portraits
+
+- Chaque classe jouable a son pictogramme propre : six classes empruntaient une icône voisine (paladin, ensorceleur, occultiste, druide, moine, barde). Dessins maison pour ces six (`apps/jeu/src/icones/`, sans source externe, crédits dans `CREDITS.md`).
+- L'icône de la classe est posée en bas à droite du portrait du héros dans la fiche de combat (médaillon aux couleurs du camp, grisé à la mort). Les jetons l'affichaient déjà.
+- Vérifié dans le navigateur (escarmouche avec les héros pré-tirés) ; 463 tests verts, typecheck OK.
