@@ -134,7 +134,7 @@ export const moduleScenes: Module = {
         const vues = (p.modules['scenes'] as EtatScenes | undefined)?.vues ?? [];
         return scenesDu(ctx.dm)
           .scenes.filter((s) => vues.includes(s.id))
-          .map((s) => ({ groupe: { id: 'scenes', titre: 'Scènes', ordre: 30, onglet: 'Journal' }, libelle: `Revoir : ${s.nom}`, style: 'discret' as const, ordre: { type: 'revoirScene', scene: s.id } }));
+          .map((s) => ({ groupe: { id: 'scenes', titre: 'Scènes', ordre: 30, onglet: 'Journal' }, libelle: `Revoir : ${s.nom}`, icone: 'base:revoir', style: 'discret' as const, ordre: { type: 'revoirScene', scene: s.id } }));
       },
     }),
   },

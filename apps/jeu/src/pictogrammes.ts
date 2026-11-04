@@ -386,6 +386,105 @@ export const DESSINS: Record<string, Dessin> = {
   'cout:gratuit': { teinte: 'gratuit', corps: trait('M32 32 m-23 0 a23 23 0 1 0 46 0 a23 23 0 1 0 -46 0', 't2', 9) + rond(32, 32, 6) },
 
   // ---- Actions de base ---------------------------------------------------
+  // Désamorcer : un engrenage de mécanisme, barré (neutralisé).
+  'base:desamorcer': {
+    teinte: 'sang',
+    corps:
+      [0, 1, 2, 3, 4, 5, 6, 7].map((k) => g(`rotate(${k * 45} 32 32)`, '<rect x="27.5" y="4" width="9" height="13" rx="2.5" class="p2"/>')).join('') +
+      rond(32, 32, 19, 'p2') +
+      rond(32, 32, 8, 'p3') +
+      trait('M10 54 L54 10', 't3', 10) +
+      trait('M10 54 L54 10', 't1', 5.5),
+  },
+  // Crocheter : un cadenas et un crochet de serrurier dans la serrure.
+  'base:crocheter': {
+    teinte: 'acier',
+    corps:
+      trait('M20 28 V19 C20 5 40 5 40 19 V28', 't1', 5) +
+      '<rect x="10" y="27" width="40" height="28" rx="6" class="p2"/>' +
+      rond(30, 38, 4.2, 'p3') +
+      '<path class="p3" d="M27.6 40 H32.4 L33.6 49 H26.4Z"/>' +
+      trait('M61 60 L40 45', 't3', 6) +
+      trait('M61 60 L40 45', 't1', 3.4) +
+      trait('M40 45 L35 46.5', 't1', 3.4),
+  },
+  // Forcer : un pied-de-biche qui fait levier, des éclats autour.
+  'base:forcer': {
+    teinte: 'acier',
+    corps:
+      trait('M12 55 L46 21', 't3', 9) +
+      trait('M12 55 L46 21', 't1', 6) +
+      trait('M46 21 C50 14 57 13 60 17', 't3', 9) +
+      trait('M46 21 C50 14 57 13 60 17', 't1', 6) +
+      trait('M8 26 L17 30', 't2', 3.4) +
+      trait('M14 12 L21 20', 't2', 3.4) +
+      trait('M27 6 L29 15', 't2', 3.4),
+  },
+  // Clé : un anneau, une tige et deux dents.
+  'base:cle': {
+    teinte: 'or',
+    corps:
+      rond(18, 22, 14, 'p2') +
+      rond(18, 22, 6, 'p3') +
+      trait('M28 32 L55 59', 't3', 9) +
+      trait('M28 32 L55 59', 't1', 6) +
+      trait('M44 47 L51 40', 't1', 5) +
+      trait('M51 54 L58 47', 't1', 5),
+  },
+  // Prendre : un sac de butin noué au col, une pièce dessus.
+  'base:prendre': {
+    teinte: 'or',
+    corps:
+      '<path class="p2" d="M22 25 C9 35 8 49 15 56 C22 62 42 62 49 56 C56 49 55 35 42 25Z"/>' +
+      '<path class="p2" d="M24 22 C20 11 29 12 32 17 C35 12 44 11 40 22Z"/>' +
+      '<rect x="22" y="22" width="20" height="6" rx="2.5" class="p1"/>' +
+      rond(32, 45, 7, 'p1') +
+      trait('M32 40.5 V49.5', 't3', 2.4) +
+      etoile(52, 12, 0.7),
+  },
+  // Répondre (énigme) : une bulle de parole avec un point d'interrogation.
+  'base:repondre': {
+    teinte: 'divination',
+    corps:
+      '<path class="p2" d="M10 8 H54 a5 5 0 0 1 5 5 V38 a5 5 0 0 1 -5 5 H31 L17 56 V43 H10 a5 5 0 0 1 -5 -5 V13 a5 5 0 0 1 5 -5Z"/>' +
+      trait('M24 21 C24 11 40 11 40 21 C40 28 32 28 32 34', 't3', 4.6) +
+      rond(32, 39, 2.8, 'p3'),
+  },
+  // Chercher un indice : une bougie allumée, ses rayons.
+  'base:indice': {
+    teinte: 'radiant',
+    corps:
+      '<path class="p2" d="M32 4 C37 12 41 17 39 23 C37 28 27 28 25 23 C23 17 27 12 32 4Z"/>' +
+      '<path class="p1" d="M32 14 C34 18 36 20 35 23 C34 25 30 25 29 23 C28 20 30 18 32 14Z"/>' +
+      trait('M32 28 V33', 't3', 2.6) +
+      '<rect x="24" y="32" width="16" height="25" rx="2.5" class="p1"/>' +
+      '<path class="p3" d="M32 32 H40 V57 H36Z"/>' +
+      '<ellipse cx="32" cy="58" rx="13" ry="3.6" class="p3"/>' +
+      trait('M12 16 L18 20 M52 16 L46 20 M7 30 L14 30 M57 30 L50 30', 't2', 3),
+  },
+  // Halte : un feu de camp, deux bûches croisées.
+  'base:halte': {
+    teinte: 'feu',
+    corps: g('translate(8 -3) scale(.84)', FLAMME) + trait('M8 58 L56 45', 't3', 9) + trait('M8 58 L56 45', 't1', 6) + trait('M8 45 L56 58', 't3', 9) + trait('M8 45 L56 58', 't1', 6),
+  },
+  // Dormir : un croissant de lune et des z.
+  'base:dormir': {
+    teinte: 'protection',
+    corps:
+      '<path class="p2" d="M36 5 C20 7 8 20 8 36 C8 51 21 61 36 61 C44 61 51 58 56 52 C40 53 29 43 29 30 C29 20 32 11 36 5Z"/>' +
+      trait('M42 12 H52 L42 24 H52', 't1', 4.2) +
+      trait('M51 33 H58 L51 42 H58', 't1', 3.4),
+  },
+  // Combattre : deux épées croisées.
+  'base:combattre': {
+    teinte: 'acier',
+    corps: g('rotate(40 32 32)', LAME_LONGUE) + g('rotate(-40 32 32)', LAME_LONGUE),
+  },
+  // Revoir une scène : une flèche qui reboucle autour d'un triangle de lecture.
+  'base:revoir': {
+    teinte: 'gratuit',
+    corps: trait('M52 34 A20 20 0 1 1 44 17', 't1', 5) + '<path class="p1" d="M34 7 L49 16 L35 26Z"/>' + '<path class="p2" d="M26 22 L44 33 L26 44Z"/>',
+  },
   // Une loupe : verre cerclé d'un reflet, manche épais.
   'base:fouiller': {
     teinte: 'or',

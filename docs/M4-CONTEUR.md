@@ -8,7 +8,7 @@ Principe inchangé : **le conteur propose, le moteur décide.** Le conteur (Clau
 
 ## 1. Deux façons de jouer un tour
 
-**Tour mécanique (gratuit)** : le joueur clique une action proposée par l'écran (aller vers une sortie, fouiller, ouvrir, désarmer, prendre, se reposer, combattre, répondre à une énigme, choisir un sujet de conversation). Le client appelle directement le verbe du moteur, sans IA. Le jeu affiche les jets, les constats du moteur et les **textes écrits par l'auteur** : récit d'arrivée du lieu, narrations des pièges et des événements, réponse du PNJ sur le sujet choisi.
+**Tour mécanique (gratuit)** : le joueur clique une action proposée par l'écran (aller vers une sortie, fouiller, ouvrir, désamorcer, prendre, se reposer, combattre, répondre à une énigme, choisir un sujet de conversation). Le client appelle directement le verbe du moteur, sans IA. Le jeu affiche les jets, les constats du moteur et les **textes écrits par l'auteur** : récit d'arrivée du lieu, narrations des pièges et des événements, réponse du PNJ sur le sujet choisi.
 
 ```
 Clic « Fouiller » → moteur : fouiller(p) → « Ambrine — Investigation 17 : elle trouve une trappe sous la grande table. »
@@ -83,7 +83,7 @@ Le monde complet du Val des Cendres pèse environ 1,15 Mo de JSON (plus de 300 0
 
 - **Grand panneau image** : le lieu courant, ou le PNJ à qui l'on parle.
 - **Récit** qui défile : textes de l'auteur pour les tours mécaniques, récit du conteur (en streaming) pour les autres ; les **jets** affichés en clair (« Pip — Investigation : 17 contre DD 13, réussi »).
-- **Actions du moteur en boutons** (gratuites) : sorties, Fouiller, Ouvrir, Désarmer, Prendre, Se reposer, sujets des PNJ présents, énigme ; et une **saisie libre** (« Que faites-vous ? ») qui appelle le conteur, avec un petit indicateur de coût.
+- **Actions du moteur en boutons** (gratuites) : sorties, Fouiller, Ouvrir, Désamorcer, Prendre, Se reposer, sujets des PNJ présents, énigme ; et une **saisie libre** (« Que faites-vous ? ») qui appelle le conteur, avec un petit indicateur de coût.
 - **Compteur de dépense** discret (coût de la session et de l'histoire), plafond réglable.
 - **Panneau du groupe** : portraits choisis, PV, états ; clic → fiche.
 - **Journal de quêtes**, **inventaire**, **carte** des lieux visités (graphe des liens découverts).
@@ -150,12 +150,12 @@ Règles tranchées en écrivant le moteur :
 - **Passages** : un lieu enfant est accessible librement depuis son parent (entrer, sortir), **sauf** si un lien déclaré entre eux le contrôle (caché, verrouillé, conditionnel) : la trappe du cellier du bailli reste secrète. Les liens à double sens se prennent des deux côtés ; un effet `debloquer` qui nomme un lieu ouvre et révèle les passages vers lui.
 - **Perception passive** : en entrant, le meilleur score du groupe repère sans jet ce qui se trouve à la Perception (DD ≤ perception passive). Ce qui demande l'Investigation exige une fouille.
 - **Fouille** : le moteur prend, pour chaque compétence utile, le meilleur du groupe (ou le personnage nommé) ; le DD reste **secret** ; **une fouille par lieu et par jour**.
-- **Verrous** : la clé ouvre sans jet ; crocheter = Escamotage avec outils de voleur (refusé sans) ; forcer = Athlétisme. Un contenant piégé se déclenche quand on l'ouvre sans clé s'il n'a pas été désarmé.
-- **Pièges** : désarmer sans l'outil requis se fait avec désavantage ; un échec de 5 ou plus déclenche le piège (sauvegarde, dégâts sur les PV du personnage, états, effets).
+- **Verrous** : la clé ouvre sans jet ; crocheter = Escamotage avec outils de voleur (refusé sans) ; forcer = Athlétisme. Un contenant piégé se déclenche quand on l'ouvre sans clé s'il n'a pas été désamorcé.
+- **Pièges** : désamorcer sans l'outil requis se fait avec désavantage ; un échec de 5 ou plus déclenche le piège (sauvegarde, dégâts sur les PV du personnage, états, effets).
 - **Influence** : DD 15 pour un PNJ neutre, de 5 (dévoué) à 25 (hostile) ; réussite : +10 d'attitude (intimidation : obéit mais −5) ; échec : −5, −10 (intimidation), −15 (tromperie).
 - **Jauges** : un palier franchi dans le sens du changement donne sa narration et ses effets, une seule fois ; les évolutions « sur condition » s'appliquent une fois quand la condition devient vraie.
 
-Tests (`packages/regles/tests/exploration.test.ts`, dés imposés) : trappe du cellier trouvée, piège de l'aiguille repéré puis désarmé (ou raté et déclenché), coffret crocheté et vidé (85 po, double registre) ; Nério et ses sujets ; persuasion ; mot d'ordre des cryptes ; repos long et palier de la cendre ; marche au hasard de 400 actions dans tout le Val sans erreur.
+Tests (`packages/regles/tests/exploration.test.ts`, dés imposés) : trappe du cellier trouvée, piège de l'aiguille repéré puis désamorcé (ou raté et déclenché), coffret crocheté et vidé (85 po, double registre) ; Nério et ses sujets ; persuasion ; mot d'ordre des cryptes ; repos long et palier de la cendre ; marche au hasard de 400 actions dans tout le Val sans erreur.
 
 Pas encore fait (M4b et suivants) : le moment de la journée (présences du soir et de la nuit), les boutiques et services, l'usage des objets, la montée de niveau, les compagnons ; les rencontres `aleatoire`.
 

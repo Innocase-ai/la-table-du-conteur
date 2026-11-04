@@ -76,6 +76,7 @@ export const moduleGrimoire: Module = {
               return {
                 groupe: PANNEAU_SOINS,
                 element: { id: `${a.id}:${s.id}`, titre: `${a.nom} — ${s.nom}` },
+                icone: 'sort:soins',
                 libelle: soinsDeGroupe(s) ? 'Soigner le groupe' : blesse ? `Soigner ${blesse.nom}` : 'Soigner',
                 aide: s.resume,
                 ordre: { type: 'lancerSort', lanceur: a.id, sort: s.id },

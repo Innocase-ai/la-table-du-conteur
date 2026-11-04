@@ -1,6 +1,6 @@
 // Les pictogrammes des cartes : chaque carte que peut jouer un héros ou un monstre trouve son dessin, jamais le symbole par
 // défaut ; les dessins sont bien formés ; le choix de l'icône (arme, école de magie…) est juste.
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { cartesDisponibles, creerCombat, preparerRencontre, RENCONTRES, type CoutCarte } from '@crpg/regles';
@@ -97,5 +97,20 @@ describe('toutes les cartes jouables en combat trouvent un dessin', () => {
     const defaut = [...vues].filter(([, cle]) => cle === 'aptitude:defaut').map(([id]) => id);
     expect(defaut, `cartes sans dessin : ${defaut.join(', ')}`).toEqual([]);
     expect(vues.size).toBeGreaterThan(30);
+  });
+});
+
+describe('icônes des boutons d\'actions', () => {
+  it('chaque icône demandée par un module (`icone: \'…\'`) a son dessin, jamais le symbole par défaut', () => {
+    const dossier = join(import.meta.dirname, '..', '..', '..', 'packages', 'regles', 'src', 'modules');
+    const cles = new Set<string>();
+    for (const f of readdirSync(dossier).filter((x) => x.endsWith('.ts'))) {
+      for (const m of readFileSync(join(dossier, f), 'utf8').matchAll(/icone: '([^']+)'/g)) cles.add(m[1]!);
+    }
+    expect([...cles].length).toBeGreaterThanOrEqual(12);
+    for (const c of cles) {
+      expect(DESSINS[c], `icône « ${c} » sans dessin`).toBeDefined();
+      expect(DESSINS[c]).not.toBe(DESSIN_DEFAUT);
+    }
   });
 });

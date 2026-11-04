@@ -372,7 +372,7 @@ export function aller(p: PartieMonde, vers: string): CompteRendu {
 }
 
 // ---------------------------------------------------------------------------
-// Fouiller, ouvrir, désarmer, prendre
+// Fouiller, ouvrir, désamorcer, prendre
 // ---------------------------------------------------------------------------
 
 /**
@@ -448,7 +448,7 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     ex.ouverts.push(cle);
     r.constats.push(`${a.nom} ${methode === 'crocheter' ? 'crochète' : 'force'} ${nom}.`);
   } else r.constats.push(`${a.nom} ne parvient pas à ${methode === 'crocheter' ? 'crocheter' : 'forcer'} ${nom}.`);
-  // Un contenant piégé se déclenche quand on l'ouvre sans clé, s'il n'a pas été désarmé.
+  // Un contenant piégé se déclenche quand on l'ouvre sans clé, s'il n'a pas été désamorcé.
   if (tresor?.acces.piege && !ex.pieges[tresor.acces.piege]) declencher(p, r, p.dm.pieges.get(tresor.acces.piege)!, a);
   suites(p, r);
   return r;
@@ -463,12 +463,12 @@ function tresorVisible(p: PartieMonde, t: Tresor): boolean {
   return !t.acces.cache || p.etat.exploration.decouverts.includes(`tresor:${t.id}`);
 }
 
-/** Désarmer un piège repéré. Sans l'outil requis : désavantage. Un échec de 5 ou plus le déclenche. */
+/** Désamorcer un piège repéré. Sans l'outil requis : désavantage. Un échec de 5 ou plus le déclenche. */
 export function desarmer(p: PartieMonde, piege: string, personnage?: string): CompteRendu {
   const pg = p.dm.pieges.get(piege);
   const ex = p.etat.exploration;
   if (!pg || pg.lieu !== p.etat.lieu || !ex.decouverts.includes(`piege:${piege}`)) return refus("Aucun piège repéré de ce genre ici.");
-  if (ex.pieges[piege]) return refus(`${pg.nom} est déjà ${ex.pieges[piege] === 'desarme' ? 'désarmé' : 'déclenché'}.`);
+  if (ex.pieges[piege]) return refus(`${pg.nom} est déjà ${ex.pieges[piege] === 'desarme' ? 'désamorcé' : 'déclenché'}.`);
   const r = resultat();
   const a = choisir(p, pg.desarmement.competence, personnage);
   if (!a) return refus('Personne ne peut le faire.');
@@ -476,11 +476,11 @@ export function desarmer(p: PartieMonde, piege: string, personnage?: string): Co
   const jet = tester(p, r, a, pg.desarmement.competence, pg.desarmement.dd, sansOutil ? { desavantage: true } : {});
   if (jet.reussite) {
     ex.pieges[piege] = 'desarme';
-    r.constats.push(`${a.nom} désarme ${pg.nom}.`);
+    r.constats.push(`${a.nom} désamorce ${pg.nom}.`);
   } else if (jet.total <= pg.desarmement.dd - 5) {
     r.constats.push(`${a.nom} se trompe : ${pg.nom} se déclenche.`);
     declencher(p, r, pg, a);
-  } else r.constats.push(`${a.nom} n'arrive pas à désarmer ${pg.nom}, mais ne le déclenche pas.`);
+  } else r.constats.push(`${a.nom} n'arrive pas à désamorcer ${pg.nom}, mais ne le déclenche pas.`);
   suites(p, r);
   return r;
 }

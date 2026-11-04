@@ -22,7 +22,7 @@ packages/mondes/<id>/
   tresors/          trésors placés dans les lieux
   tables/           tables de butin pondérées
   rencontres/       combats, rencontres sociales ou mixtes
-  pieges/  enigmes/ pièges (détection, désarmement, dégâts) et énigmes (solution vérifiable)
+  pieges/  enigmes/ pièges (détection, désamorçage, dégâts) et énigmes (solution vérifiable)
   quetes/           quêtes à étapes et ramifications
   factions/         factions, réputation, relations
   jauges/           compteurs qui évoluent (la Cendre, la peur, l'heure…)
@@ -41,7 +41,7 @@ Chaque fichier contient un tableau (ou un objet) d'entités. L'identifiant (`id`
 | **Trésor** | Lieu, contenant, contenu (pièces, objets, tables), accès (caché, verrouillé, piégé), gardien, indice |
 | **Table de butin** | Entrées pondérées (objet, pièces, autre table), palier de niveau |
 | **Rencontre** | Type, difficulté, monstres du SRD, carte tactique, alternatives (négocier, ruser, fuir), butin, effets de victoire |
-| **Piège** | Détection, désarmement, déclenchement, sauvegarde, dégâts |
+| **Piège** | Détection, désamorçage, déclenchement, sauvegarde, dégâts |
 | **Énigme** | Énoncé, **solution vérifiable par le moteur** (séquence, mot de passe, leviers, placement, cadran, déduction), indices graduels, récompense |
 | **Quête** | Donneur, étapes qui s'achèvent d'elles-mêmes quand leur condition devient vraie, suites, échecs, récompenses ; une étape marquée `termine` clôt la quête aussitôt (fins alternatives) ; sinon la quête se clôt quand la dernière étape active, sans suite, est accomplie |
 | **Faction, Jauge, Événement, Fin, Fait** | Réputation et relations ; compteurs à paliers ; déclencheurs ; conditions d'achèvement et épilogue ; les vérités que le MJ connaît |

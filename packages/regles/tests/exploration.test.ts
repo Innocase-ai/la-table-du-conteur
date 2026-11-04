@@ -68,7 +68,7 @@ describe('déplacements', () => {
 });
 
 describe('le cellier du bailli : passage secret, piège, coffret', () => {
-  it('trouver la trappe, repérer et désarmer le piège, crocheter le coffret, le vider', () => {
+  it('trouver la trappe, repérer et désamorcer le piège, crocheter le coffret, le vider', () => {
     const p = partie(SUCCES);
     aller(p, 'vei-halle-du-bailli');
     expect(aller(p, 'vei-cellier-du-bailli').ok).toBe(false); // la trappe est cachée
@@ -93,7 +93,7 @@ describe('le cellier du bailli : passage secret, piège, coffret', () => {
     expect(o.jets[0]!.test).toBe('escamotage');
     expect(p.etat.exploration.ouverts).toContain(`tresor:${coffret}`);
     const pip = p.groupe.find((a) => a.id === 'pip')!;
-    expect(pip.pv).toBe(pip.fiche.pvMax); // piège désarmé : pas d'aiguille
+    expect(pip.pv).toBe(pip.fiche.pvMax); // piège désamorcé : pas d'aiguille
 
     const pris = prendre(p, coffret);
     expect(pris.ok).toBe(true);
@@ -102,7 +102,7 @@ describe('le cellier du bailli : passage secret, piège, coffret', () => {
     expect(prendre(p, coffret).ok).toBe(false); // déjà vidé
   });
 
-  it('un désarmement raté de 5 ou plus déclenche le piège ; sans outils, pas de crochetage', () => {
+  it('un désamorçage raté de 5 ou plus déclenche le piège ; sans outils, pas de crochetage', () => {
     const p = partie(SUCCES);
     aller(p, 'vei-halle-du-bailli');
     fouiller(p);

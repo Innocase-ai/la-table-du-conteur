@@ -27,7 +27,7 @@ export interface Personnage extends EtatDurable {
   nom: string;
   fiche: Fiche;
   pv: number;
-  /** Outils portés (`outils-de-voleur`…), pour crocheter et désarmer. */
+  /** Outils portés (`outils-de-voleur`…), pour crocheter et désamorcer. */
   outils: string[];
   /** Portrait de galerie choisi par le joueur (`elfe-f-2`). */
   portrait?: string;

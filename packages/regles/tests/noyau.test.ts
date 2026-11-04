@@ -84,7 +84,7 @@ describe('noyau : commandes et transactions', () => {
       return res;
     };
     jouer({ type: 'aller', vers: 'vei-halle-du-bailli' });
-    // On rend la trappe et le piège visibles, puis on désarme et on vide le coffret.
+    // On rend la trappe et le piège visibles, puis on désamorce et on vide le coffret.
     p.etat.exploration.decouverts.push('lien:vei-halle-du-bailli>vei-cellier-du-bailli');
     jouer({ type: 'aller', vers: 'vei-cellier-du-bailli' });
     p.etat.exploration.pieges['vei-p-aiguille-du-coffret'] = 'desarme';

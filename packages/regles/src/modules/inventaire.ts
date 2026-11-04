@@ -312,7 +312,7 @@ const propositionsSac = (ctx: ContexteJeu, p: Partie): Proposition[] => {
     const agir = (x: Omit<Proposition, 'groupe' | 'element'>) => res.push({ groupe: PANNEAU_SAC, element, ...x });
     if (o.usage?.type === 'consommable' && o.usage.soins) {
       const ordre = { type: 'utiliserObjet', objet: id };
-      agir({ libelle: blesse ? `Soigner ${blesse.nom}` : 'Soigner', desactivee: blesse ? undefined : 'Personne n’est blessé.', ordre });
+      agir({ libelle: blesse ? `Soigner ${blesse.nom}` : 'Soigner', icone: 'sort:soins', desactivee: blesse ? undefined : 'Personne n’est blessé.', ordre });
       agir({
         libelle: 'Soigner…',
         style: 'discret',
@@ -337,7 +337,7 @@ const propositionsSac = (ctx: ContexteJeu, p: Partie): Proposition[] => {
     }
     if (o.identification && !identifies.includes(id)) {
       const ordre = { type: 'identifierObjet', objet: id };
-      agir({ libelle: 'Identifier', style: 'discret', aide: `Arcanes, DD ${o.identification}`, ordre });
+      agir({ libelle: 'Identifier', icone: 'ecole:divination', style: 'discret', aide: `Arcanes, DD ${o.identification}`, ordre });
       agir({
         libelle: 'Identifier avec…',
         style: 'discret',

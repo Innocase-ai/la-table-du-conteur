@@ -1,4 +1,4 @@
-// Module Exploration : se déplacer, fouiller, ouvrir, désarmer, prendre, résoudre les énigmes, se reposer,
+// Module Exploration : se déplacer, fouiller, ouvrir, désamorcer, prendre, résoudre les énigmes, se reposer,
 // régler les rencontres. Les règles sont dans monde/exploration.ts ; ce module les expose en commandes.
 import { z } from 'zod';
 import { Competence, Caracteristique } from '../schemas';
@@ -36,9 +36,9 @@ const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: 
 /** Ouvrir avec la clé (si le groupe l'a), crocheter, forcer : les propositions d'un élément fermé. */
 function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: string }, element: Proposition['element'], groupe: Proposition['groupe'], cle?: string): Proposition[] {
   const res: Proposition[] = [];
-  if (cle && (p.etat.inventaire[cle] ?? 0) > 0) res.push({ groupe, element, libelle: 'Clé', ordre: { type: 'ouvrir', cible, methode: 'cle' } });
-  res.push({ groupe, element, libelle: 'Crocheter', style: 'discret', aide: 'Escamotage, avec des outils de voleur', ordre: { type: 'ouvrir', cible, methode: 'crocheter' } });
-  res.push({ groupe, element, libelle: 'Forcer', style: 'discret', aide: 'Athlétisme', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
+  if (cle && (p.etat.inventaire[cle] ?? 0) > 0) res.push({ groupe, element, libelle: 'Clé', icone: 'base:cle', ordre: { type: 'ouvrir', cible, methode: 'cle' } });
+  res.push({ groupe, element, libelle: 'Crocheter', icone: 'base:crocheter', style: 'discret', aide: 'Escamotage, avec des outils de voleur', ordre: { type: 'ouvrir', cible, methode: 'crocheter' } });
+  res.push({ groupe, element, libelle: 'Forcer', icone: 'base:forcer', style: 'discret', aide: 'Athlétisme', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
   return res;
 }
 
@@ -124,7 +124,7 @@ export const moduleExploration: Module = {
       },
     }),
     desarmer: commande({
-      description: 'Désarmer un piège repéré.',
+      description: 'Désamorcer un piège repéré (neutraliser son mécanisme).',
       entree: z.object({ piege: z.string(), personnage: Personnage }),
       disponible: libre,
       executer: (t, e) => verser(t, desarmer(partieMonde(t), e.piege, e.personnage)),
@@ -132,7 +132,7 @@ export const moduleExploration: Module = {
         enExploration(p)
           ? scene(ctx, p)
               .pieges.filter((x) => x.etat === 'repere')
-              .map((x) => ({ groupe: PANNEAUX.objets, element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true }, libelle: 'Désarmer', aide: x.resume, ordre: { type: 'desarmer', piege: x.id } }))
+              .map((x) => ({ groupe: PANNEAUX.objets, element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true }, libelle: 'Désamorcer', icone: 'base:desamorcer', aide: x.resume, ordre: { type: 'desarmer', piege: x.id } }))
           : [],
     }),
     prendre: commande({
@@ -148,6 +148,7 @@ export const moduleExploration: Module = {
                 groupe: PANNEAUX.objets,
                 element: { id: `tresor:${x.id}`, titre: x.nom },
                 libelle: 'Prendre',
+                icone: 'base:prendre',
                 aide: x.description,
                 ordre: { type: 'prendre', tresor: x.id },
                 desactivee: x.etat === 'garde' ? 'Gardé.' : undefined,
@@ -169,6 +170,7 @@ export const moduleExploration: Module = {
                 return {
                   groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce),
                   libelle: 'Répondre',
+                  icone: 'base:repondre',
                   ...(formulaire ? { formulaire } : { saisie: { champ: 'reponse', indication: 'Votre réponse' } }),
                   ordre: { type: 'repondreEnigme', enigme: x.id },
                 };
@@ -189,6 +191,7 @@ export const moduleExploration: Module = {
                 return {
                   groupe: PANNEAUX.enigme(x.id, x.nom, x.enonce),
                   libelle: 'Chercher un indice',
+                  icone: 'base:indice',
                   style: 'discret' as const,
                   ordre: { type: 'indiceEnigme', enigme: x.id, niveau: Math.min(3, niveau) },
                   desactivee: niveau > 3 ? 'Plus d’indice.' : undefined,
@@ -207,6 +210,7 @@ export const moduleExploration: Module = {
               {
                 groupe: PANNEAUX.ici,
                 libelle: 'Halte',
+                icone: 'base:halte',
                 style: 'discret' as const,
                 aide: 'Repos court : un dé de vie de PV, certains usages reviennent.',
                 ordre: { type: 'seReposer', duree: 'court' },
@@ -215,6 +219,7 @@ export const moduleExploration: Module = {
               {
                 groupe: PANNEAUX.ici,
                 libelle: 'Dormir',
+                icone: 'base:dormir',
                 style: 'discret' as const,
                 aide: 'Repos long : PV, usages et sorts au maximum ; le temps passe. Seulement dans un abri sûr (auberge, camp, refuge).',
                 ordre: { type: 'seReposer', duree: 'long' },
@@ -264,7 +269,7 @@ export const moduleExploration: Module = {
         if (!r) return [];
         const groupe = { id: 'rencontre', titre: r.nom, ordre: 0, danger: true };
         return [
-          ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
+          ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', icone: 'base:combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
           ...r.alternatives.map((a) => ({
             groupe,
             libelle: a.nom,
@@ -272,7 +277,7 @@ export const moduleExploration: Module = {
             aide: a.resume,
             ordre: { type: 'reglerRencontre', issue: 'alternative', alternative: a.id },
           })),
-          { groupe, libelle: 'Se replier', style: 'discret' as const, ordre: { type: 'reglerRencontre', issue: 'fuite' } },
+          { groupe, libelle: 'Se replier', icone: 'base:desengager', style: 'discret' as const, ordre: { type: 'reglerRencontre', issue: 'fuite' } },
         ];
       },
     }),

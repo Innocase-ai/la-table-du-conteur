@@ -97,7 +97,7 @@ export function genererDocMonde(dm: DonneesMonde, srd: Donnees, bilan: BilanMond
   if (dm.enigmes.size || dm.pieges.size) {
     L.push('## Énigmes et pièges', '');
     for (const e of dm.enigmes.values()) L.push(`- **${e.nom}** (énigme, ${nomLieu(e.lieu)}, ${e.solution.type}) — ${e.indices.length} indice(s)`);
-    for (const p of dm.pieges.values()) L.push(`- **${p.nom}** (piège, ${nomLieu(p.lieu)}) — détection DD ${p.detection.dd}, désarmement DD ${p.desarmement.dd}`);
+    for (const p of dm.pieges.values()) L.push(`- **${p.nom}** (piège, ${nomLieu(p.lieu)}) — détection DD ${p.detection.dd}, désamorçage DD ${p.desarmement.dd}`);
     L.push('');
   }
 

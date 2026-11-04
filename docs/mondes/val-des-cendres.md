@@ -27,11 +27,20 @@ Palette : gris cendre, orange braise, bleu nuit, bronze terni, blanc sale de la 
 ## Chiffres
 
 - Lieux : 1 région, 1 village, 24 bâtiment, 74 salle, 6 quartier, 25 lieu-dit, 2 route, 4 ruine, 1 hameau, 1 ville, 2 camp, 3 grotte, 2 donjon, 5 niveau
-- 63 PNJ (378 sujets de conversation, 14 marchands, 3 compagnons recrutables)
+- 63 PNJ (382 sujets de conversation, 14 marchands, 3 compagnons recrutables)
 - Quêtes : 17 secondaire, 2 faction, 3 personnelle, 1 principale
 - 56 rencontres, 33 pièges, 18 énigmes
 - 93 trésors (valeur totale ≈ 33 280 po), 101 objets propres au monde
-- 6 factions, 176 faits, 1 jauge(s), 5 fin(s)
+- 6 factions, 177 faits, 1 jauge(s), 5 fin(s)
+
+## Validation
+
+- ⚠️ [énigmes] « Le cadran de la Lanterne » (recompense-lue) : le drapeau « vei-cadran-regle » posé par la récompense n'est lu nulle part (aucune condition, aucun lien ne l'utilise)
+- ⚠️ [énigmes] « Le signal des sentinelles » (recompense-lue) : le drapeau « pdf-signal-connu » posé par la récompense n'est lu nulle part (aucune condition, aucun lien ne l'utilise)
+- ⚠️ [énigmes] « Le signal des sentinelles » (enonce-ordre) : l'énoncé cite les éléments dans l'ordre de la solution : la réponse se lit sans réfléchir (vérifie que c'est voulu)
+- ⚠️ [énigmes] « Les aiguillages du carreau » (enonce-ordre) : l'énoncé cite les éléments dans l'ordre de la solution : la réponse se lit sans réfléchir (vérifie que c'est voulu)
+- ⚠️ [énigmes] « Les trois runes de la chapelle » (enonce-ordre) : l'énoncé cite les éléments dans l'ordre de la solution : la réponse se lit sans réfléchir (vérifie que c'est voulu)
+- ⚠️ [énigmes] « Le onzième socle » (echec-defini) : pas d'échec défini : on peut tenter toutes les réponses sans rien risquer
 
 ## Chapitres
 
@@ -817,39 +826,39 @@ La Lanterne s'éteint avant que vous ayez rien décidé. La cendre tombe sur Vei
 - **La grille des runes de l'écluse** (énigme, L'Écluse noire, sequence) — 3 indice(s)
 - **Le coffre du maître-mécanicien** (énigme, L'atelier du maître-mécanicien, mot-de-passe) — 3 indice(s)
 - **Le onzième socle** (énigme, La Grande Galerie des Rois, deduction) — 3 indice(s)
-- **Aiguille empoisonnée du coffret** (piège, Le cellier du bailli) — détection DD 13, désarmement DD 13
-- **Souffle de la flamme** (piège, Le foyer de la Lanterne) — détection DD 12, désarmement DD 14
-- **Corde à clochettes et fosse** (piège, Le défilé de l'embuscade) — détection DD 12, désarmement DD 11
-- **Serrure à pétard de l'armoire** (piège, Les archives) — détection DD 14, désarmement DD 14
-- **Aiguille empoisonnée du coffre du capitaine** (piège, La chambre du capitaine) — détection DD 15, désarmement DD 14
-- **Fil d'alarme des drains** (piège, Les drains nains) — détection DD 13, désarmement DD 12
-- **Dalle creuse du puits de cendre** (piège, Le puits de cendre) — détection DD 14, désarmement DD 13
-- **Chaîne de barrage du pont** (piège, Le Pont de Fer) — détection DD 13, désarmement DD 14
-- **Pieux noyés du gué** (piège, Le gué) — détection DD 14, désarmement DD 13
-- **Tonneau aux émanations** (piège, La cave du batelier) — détection DD 13, désarmement DD 12
-- **Éboulement de la ravine** (piège, La ravine de la Chute) — détection DD 13, désarmement DD 13
-- **Poche de gaz du filon** (piège, Le filon de braise) — détection DD 12, désarmement DD 12
-- **Fils d'alerte du couloir** (piège, Le couloir tissé) — détection DD 13, désarmement DD 13
-- **Aiguille empoisonnée du coffre** (piège, La caravane du colporteur) — détection DD 13, désarmement DD 13
-- **Passerelle vermoulue du puits** (piège, Le puits d'extraction) — détection DD 12, désarmement DD 12
-- **Pièges à mâchoires du trappeur** (piège, L'abri du trappeur) — détection DD 12, désarmement DD 12
-- **La dalle aux faucilles** (piège, Le vestibule des Porteurs) — détection DD 13, désarmement DD 13
-- **L'aiguille du premier Porteur** (piège, La rotonde des sarcophages) — détection DD 14, désarmement DD 13
-- **Le glyphe de la trempe ratée** (piège, La chapelle des Forgerons) — détection DD 14, désarmement DD 15
-- **Le plafond-enclume** (piège, L'armurerie) — détection DD 14, désarmement DD 14
-- **La vapeur de cendre** (piège, Le puits de cendre) — détection DD 12, désarmement DD 14
-- **Le plancher du réfectoire** (piège, Le réfectoire effondré) — détection DD 12, désarmement DD 12
-- **L'aiguille du trésorier** (piège, La chambre du trésorier) — détection DD 15, désarmement DD 15
-- **Le souffle des urnes** (piège, La galerie des urnes) — détection DD 13, désarmement DD 13
-- **Plaque de pression du hall** (piège, Le hall du sceau) — détection DD 15, désarmement DD 15
-- **Les lames de la galerie** (piège, La galerie des lames) — détection DD 16, désarmement DD 16
-- **Coulée de fonderie** (piège, La grande fonderie) — détection DD 16, désarmement DD 17
-- **Vapeur de la forge** (piège, La forge aux vapeurs) — détection DD 15, désarmement DD 15
-- **Gaz de cendre** (piège, Le puits des cendres) — détection DD 14, désarmement DD 15
-- **Effondrement du pont de la Veine** (piège, Le pont de la Veine) — détection DD 17, désarmement DD 17
-- **Tablier basculant** (piège, Le pont basculant) — détection DD 14, désarmement DD 16
-- **Coup de bélier de l'écluse** (piège, L'Écluse noire) — détection DD 16, désarmement DD 17
-- **Aiguille du reliquaire** (piège, La chapelle de l'Enclume) — détection DD 15, désarmement DD 15
+- **Aiguille empoisonnée du coffret** (piège, Le cellier du bailli) — détection DD 13, désamorçage DD 13
+- **Souffle de la flamme** (piège, Le foyer de la Lanterne) — détection DD 12, désamorçage DD 14
+- **Corde à clochettes et fosse** (piège, Le défilé de l'embuscade) — détection DD 12, désamorçage DD 11
+- **Serrure à pétard de l'armoire** (piège, Les archives) — détection DD 14, désamorçage DD 14
+- **Aiguille empoisonnée du coffre du capitaine** (piège, La chambre du capitaine) — détection DD 15, désamorçage DD 14
+- **Fil d'alarme des drains** (piège, Les drains nains) — détection DD 13, désamorçage DD 12
+- **Dalle creuse du puits de cendre** (piège, Le puits de cendre) — détection DD 14, désamorçage DD 13
+- **Chaîne de barrage du pont** (piège, Le Pont de Fer) — détection DD 13, désamorçage DD 14
+- **Pieux noyés du gué** (piège, Le gué) — détection DD 14, désamorçage DD 13
+- **Tonneau aux émanations** (piège, La cave du batelier) — détection DD 13, désamorçage DD 12
+- **Éboulement de la ravine** (piège, La ravine de la Chute) — détection DD 13, désamorçage DD 13
+- **Poche de gaz du filon** (piège, Le filon de braise) — détection DD 12, désamorçage DD 12
+- **Fils d'alerte du couloir** (piège, Le couloir tissé) — détection DD 13, désamorçage DD 13
+- **Aiguille empoisonnée du coffre** (piège, La caravane du colporteur) — détection DD 13, désamorçage DD 13
+- **Passerelle vermoulue du puits** (piège, Le puits d'extraction) — détection DD 12, désamorçage DD 12
+- **Pièges à mâchoires du trappeur** (piège, L'abri du trappeur) — détection DD 12, désamorçage DD 12
+- **La dalle aux faucilles** (piège, Le vestibule des Porteurs) — détection DD 13, désamorçage DD 13
+- **L'aiguille du premier Porteur** (piège, La rotonde des sarcophages) — détection DD 14, désamorçage DD 13
+- **Le glyphe de la trempe ratée** (piège, La chapelle des Forgerons) — détection DD 14, désamorçage DD 15
+- **Le plafond-enclume** (piège, L'armurerie) — détection DD 14, désamorçage DD 14
+- **La vapeur de cendre** (piège, Le puits de cendre) — détection DD 12, désamorçage DD 14
+- **Le plancher du réfectoire** (piège, Le réfectoire effondré) — détection DD 12, désamorçage DD 12
+- **L'aiguille du trésorier** (piège, La chambre du trésorier) — détection DD 15, désamorçage DD 15
+- **Le souffle des urnes** (piège, La galerie des urnes) — détection DD 13, désamorçage DD 13
+- **Plaque de pression du hall** (piège, Le hall du sceau) — détection DD 15, désamorçage DD 15
+- **Les lames de la galerie** (piège, La galerie des lames) — détection DD 16, désamorçage DD 16
+- **Coulée de fonderie** (piège, La grande fonderie) — détection DD 16, désamorçage DD 17
+- **Vapeur de la forge** (piège, La forge aux vapeurs) — détection DD 15, désamorçage DD 15
+- **Gaz de cendre** (piège, Le puits des cendres) — détection DD 14, désamorçage DD 15
+- **Effondrement du pont de la Veine** (piège, Le pont de la Veine) — détection DD 17, désamorçage DD 17
+- **Tablier basculant** (piège, Le pont basculant) — détection DD 14, désamorçage DD 16
+- **Coup de bélier de l'écluse** (piège, L'Écluse noire) — détection DD 16, désamorçage DD 17
+- **Aiguille du reliquaire** (piège, La chapelle de l'Enclume) — détection DD 15, désamorçage DD 15
 
 ## Trésors
 
@@ -1028,7 +1037,7 @@ La Lanterne s'éteint avant que vous ayez rien décidé. La cendre tombe sur Vei
 | Médaille des Veilleurs | curiosite | commun | 25 po | Une médaille de bronze gravée d'une flamme et d'un nom effacé, qu'on remettait au Veilleur sortant. |
 | Onguent gris de Pervenche | potion | commun | 15 po | Un onguent à base d'écorce de saule, de plantain et de graisse d'oie, qui referme les plaies et soulage les gelures. |
 | Outils de mineur nain | outil | peu-commun | 45 po | Un lot de pics, de coins et de ciseaux à pierre en acier noir qui n'ont pas rouillé en vingt ans : donne un bonus de +2 aux jets pour percer un éboulis ou étayer une galerie. |
-| Outils du maître Ferbillon | outil | peu-commun | 150 po | Un étui de tournevis, ressorts, pinces et verres grossissants d'un maître mécanicien gnome. Utilisés comme outils de bricoleur, ils donnent l'avantage aux jets de désarmement des mécanismes et pièges nains. |
+| Outils du maître Ferbillon | outil | peu-commun | 150 po | Un étui de tournevis, ressorts, pinces et verres grossissants d'un maître mécanicien gnome. Utilisés comme outils de bricoleur, ils donnent l'avantage aux jets pour désamorcer les mécanismes et les pièges nains. |
 | Peau de loup gris | materiel | commun | 6 po | Une peau tannée de loup gris, épaisse, qui sert de manteau ou de couverture ; vaut quelques pièces à qui la revend. |
 | Pelle du fossoyeur | outil | commun | 2 po | Pelle de fossoyeur de Veillecendre, au manche usé jusqu'à la patine. Utile pour dégager des gravats (avantage aux jets d'Athlétisme pour déblayer). |
 | Petit pignon de cuivre | divers | commun | 2 po | Un pignon de cuivre à douze dents, pièce d'un mécanisme de l'atelier. |

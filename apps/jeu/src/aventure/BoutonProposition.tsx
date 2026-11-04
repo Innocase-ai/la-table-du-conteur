@@ -124,7 +124,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
         </>
       ) : (
         <>
-          {p.icone && !aConfirmer && <Pictogramme cle={p.icone} taille={22} />}
+          {p.icone && !aConfirmer && <Pictogramme cle={p.icone} taille={p.style === 'discret' ? 18 : 22} surFond={p.style === 'principal'} />}
           {aConfirmer ? 'Confirmer ?' : p.libelle}
           {!aConfirmer && detail && <small> — {detail}</small>}
         </>

@@ -9,7 +9,8 @@ Chaque carte du panneau de droite porte un **médaillon** (à droite) et une **p
 | Sorts jouables | `sort:<id>` (trait de feu, rayon de givre, poigne électrique, flamme sacrée, projectile magique, bouclier, mains brûlantes, sommeil, soins, mot de guérison, bénédiction, imprécation, rayon traçant, bouclier de la foi, marque du chasseur, rayon ardent, arme spirituelle, aide, immobilisation de personne, restauration partielle) | 20 |
 | Écoles de magie (repli d'un sort sans dessin) | `ecole:abjuration`, `conjuration` (le SRD français dit « invocation »), `divination`, `enchantement`, `evocation`, `illusion`, `necromancie`, `transmutation` | 8 |
 | Coûts | `cout:action` (rond), `cout:bonus` (triangle), `cout:reaction` (flèche en boucle), `cout:elan` (étincelle), `cout:gratuit` (anneau) | 5 |
-| Actions de base | `base:foncer`, `base:desengager`, `base:esquiver`, `base:potion`, `base:fouiller` (la loupe du bouton « Fouiller », via `Proposition.icone`) | 5 |
+| Actions de base | `base:foncer`, `base:desengager`, `base:esquiver`, `base:potion` | 4 |
+| Boutons d'exploration (`Proposition.icone`) | `base:fouiller`, `base:desamorcer`, `base:crocheter`, `base:forcer`, `base:cle`, `base:prendre`, `base:repondre`, `base:indice`, `base:halte`, `base:dormir`, `base:combattre`, `base:revoir` | 12 |
 | Armes | `arme:epee`, `epee-courte`, `rapiere`, `dague`, `hache`, `hachette`, `masse`, `baton`, `arc`, `javeline`, `cimeterre` (une arme lancée reçoit des traînées) | 11 |
 | Monstres et aptitudes | `monstre:morsure`, `monstre:attaques-multiples`, `aptitude:rage`, `second-souffle`, `preservation`, `visee-appliquee`, `aptitude:defaut` | 7 |
 
@@ -34,3 +35,7 @@ Inspiration : les écoles de magie du SRD 5.2.1 (chaque sort en porte une, champ
 ## Pas encore
 
 Les cartes d'élan (Coordination, Pas de côté…) partagent l'étincelle d'élan ; les capacités de monstres rares et les aptitudes des classes non jouables ont le signe d'aptitude. Les sorts du SRD hors du jeu de combat prennent le médaillon de leur école.
+
+## Icônes des boutons d'actions
+
+Un module peut ajouter `icone: 'base:…'` à une proposition (`Proposition.icone`) : le pictogramme s'affiche avant le libellé du bouton (18 px sur un bouton discret, 22 px sinon, en foncé sur le bouton principal). Boutons dotés d'une icône : Fouiller (loupe), Désamorcer (engrenage barré), Clé, Crocheter (cadenas et crochet), Forcer (pied-de-biche), Prendre (sac de butin), Répondre (bulle et point d'interrogation), Chercher un indice (bougie), Halte (feu de camp), Dormir (lune), Combattre (épées croisées), Se replier (réutilise `base:desengager`), Soigner (réutilise `sort:soins`), Identifier (réutilise `ecole:divination`), Revoir une scène. Un test (`pictogrammes.test.ts`) vérifie que chaque icône demandée par un module a son dessin.

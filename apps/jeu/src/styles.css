@@ -5964,8 +5964,14 @@ kbd {
 
 /* Un bouton avec un pictogramme (la loupe de « Fouiller ») : l'icône avant le libellé. */
 .bouton-icone {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 8px;
+}
+
+.liste-actions > .bouton-icone,
+.objet-action > .bouton-icone {
+  display: flex;
   gap: 10px;
 }
 
