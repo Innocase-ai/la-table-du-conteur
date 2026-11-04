@@ -14,16 +14,21 @@ import {
   soigner,
   type Combattant,
   type EtatCombat,
+  type Evenement,
 } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
 import portraits from '../../../packages/donnees/visuel/portraits.json';
-import { capturer } from './animations';
+import { capturer, planifierBulle, SILENCE_ENTRE_BULLES } from './animations';
 import { FICHIER_CRIS, FICHIER_VOIX, REPLIQUES } from './repliques';
 import { CLES_VOIX } from './voix';
 import {
   accorder,
+  ATTENTE_MAX,
   choisirReplique,
+  convient,
   declencheurs,
+  MAX_PAR_ROUND,
+  rateVraiment,
   FichierCris,
   FichierVoix,
   nouvelleMemoire,
@@ -187,7 +192,12 @@ describe('repérage sur un vrai journal du moteur', () => {
 });
 
 describe('choisirReplique', () => {
-  const deux = () => combat([hero('Bran', 1, 1, 'humain-m-1'), hero('Hilda', 2, 1, 'nain-f-2')]);
+  // Deux héros au plus mal (1 PV) : « gravement blessé » doit leur convenir.
+  const deux = () => {
+    const etat = combat([hero('Bran', 1, 1, 'humain-m-1'), hero('Hilda', 2, 1, 'nain-f-2')]);
+    for (const c of etat.combattants) c.pv = 1;
+    return etat;
+  };
   const d = (situation: Situation, locuteur?: string, cible?: string): Declencheur => ({ situation, locuteur, cible, apres: 3 });
 
   it('la plus importante passe d’abord, et une seule réplique par commande', () => {
@@ -255,8 +265,82 @@ describe('choisirReplique', () => {
     const n = R.situations['grievement-blesse'].length;
     expect(n).toBeGreaterThanOrEqual(2);
     const dites: string[] = [];
-    for (let i = 0; i < n * 3; i++) dites.push(choisirReplique([d('grievement-blesse', 'bran')], etat, R, m, toujours)!.texte);
+    // Un round par cri : au plus deux répliques par round.
+    for (let i = 0; i < n * 3; i++) {
+      etat.round = i + 1;
+      dites.push(choisirReplique([d('grievement-blesse', 'bran')], etat, R, m, toujours)!.texte);
+    }
     expect(new Set(dites.slice(0, n)).size).toBe(n);
     for (let i = 1; i < dites.length; i++) expect(dites[i], `cri ${i}`).not.toBe(dites[i - 1]);
+  });
+});
+
+describe('cohérence : ce que dit un personnage colle à ce qui se passe', () => {
+  const ev = (type: Evenement['type'], extra: Partial<Evenement> = {}): Evenement => ({ round: 1, type, texte: '', ...extra });
+  const deux = () => combat([hero('Bran', 1, 1, 'humain-m-1'), hero('Hilda', 2, 1, 'nain-f-2')]);
+  const d = (situation: Situation, locuteur?: string): Declencheur => ({ situation, locuteur, apres: 3 });
+
+  it('un raté qui blesse quand même (Écorchure) n’est pas un raté', () => {
+    const rate = ev('attaque', { acteur: 'bran', cible: 'gob', details: { resultat: 'rate' } });
+    expect(rateVraiment([rate], 0)).toBe(true);
+    expect(rateVraiment([rate, ev('degats', { cible: 'gob', valeur: 3 })], 0)).toBe(false);
+    // Les dégâts d'une autre action, ou sur quelqu'un d'autre, ne comptent pas.
+    expect(rateVraiment([rate, ev('degats', { cible: 'loup', valeur: 3 })], 0)).toBe(true);
+    expect(rateVraiment([rate, ev('attaque', { acteur: 'pip', cible: 'gob' }), ev('degats', { cible: 'gob', valeur: 3 })], 0)).toBe(true);
+    expect(rateVraiment([ev('attaque', { details: { resultat: 'touche' } })], 0)).toBe(false);
+  });
+
+  it('dans le journal : un raté suivi de dégâts sur la cible ne fait pas dire « Raté ! »', () => {
+    const etat = combat([hero('Bran', 1, 1, 'humain-m-1'), monstreDepuisProfil(donnees.monstres.get('combattant-gobelin')!, 'gob', { x: 2, y: 1 })]);
+    const avant = capturer(etat);
+    etat.journal.push(ev('attaque', { acteur: 'bran', cible: 'gob', details: { resultat: 'rate' } }), ev('degats', { cible: 'gob', valeur: 3 }));
+    expect(situations(declencheurs(etat, avant))).not.toContain('rate:bran');
+  });
+
+  it('un héros à l’agonie ne crie pas victoire, ni ne lance le combat avec entrain : un autre le fait', () => {
+    const etat = deux();
+    const hilda = etat.combattants.find((c) => c.id === 'hilda')!;
+    hilda.pv = 1;
+    expect(convient('victoire', hilda)).toBe(false);
+    expect(convient('debut-combat', hilda)).toBe(false);
+    expect(convient('grievement-blesse', hilda)).toBe(true);
+    for (let i = 0; i < 20; i++) {
+      const r = choisirReplique([d('victoire')], etat, R, nouvelleMemoire(), () => (i % 10) / 10);
+      if (r) expect(r.locuteur).toBe('bran');
+    }
+    // Si tous sont au plus mal, personne ne crie victoire.
+    etat.combattants.find((c) => c.id === 'bran')!.pv = 1;
+    expect(choisirReplique([d('victoire')], etat, R, nouvelleMemoire(), toujours)).toBeUndefined();
+  });
+
+  it('« Aïe, ça fait mal ! » ne se dit pas quand on est déjà gravement blessé', () => {
+    const etat = deux();
+    etat.combattants.find((c) => c.id === 'bran')!.pv = 1;
+    expect(choisirReplique([d('blesse', 'bran')], etat, R, nouvelleMemoire(), toujours)).toBeUndefined();
+  });
+
+  it(`pas plus de ${MAX_PAR_ROUND} répliques par round, même graves ; la victoire passe toujours`, () => {
+    const etat = combat([hero('Bran', 1, 1, 'humain-m-1'), hero('Hilda', 2, 1, 'nain-f-2'), hero('Pip', 3, 1, 'halfelin-m-1')]);
+    const m = nouvelleMemoire();
+    const dites = ['bran', 'hilda', 'pip'].map((id) => choisirReplique([d('allie-tombe')], etat, R, m, toujours) ?? id);
+    expect(dites.filter((x) => typeof x !== 'string').length).toBe(MAX_PAR_ROUND);
+    expect(choisirReplique([d('victoire')], etat, R, m, toujours)).toBeDefined();
+  });
+});
+
+describe('planifierBulle : une bulle à la fois, et jamais en retard', () => {
+  it('sans bulle en cours, elle part tout de suite', () => {
+    expect(planifierBulle(1000, 0, 1500, 300)).toEqual({ debut: 1000, fin: 2500 });
+    expect(planifierBulle(5000, 2000, 1500, 300)).toEqual({ debut: 5000, fin: 6500 });
+  });
+
+  it('après une bulle, elle attend la fin et un silence', () => {
+    expect(planifierBulle(1000, 2000, 1500, Infinity)).toEqual({ debut: 2000 + SILENCE_ENTRE_BULLES, fin: 2000 + SILENCE_ENTRE_BULLES + 1500 });
+  });
+
+  it('un cri ordinaire qui devrait trop attendre n’est pas dit ; un cri grave attend un peu, la victoire toujours', () => {
+    expect(planifierBulle(1000, 2000, 1500, ATTENTE_MAX['rate-encore'])).toBeUndefined();
+    expect(planifierBulle(1000, 1500, 1500, ATTENTE_MAX['grievement-blesse'])).toBeDefined();
+    expect(planifierBulle(1000, 9000, 1500, ATTENTE_MAX.victoire)).toBeDefined();
   });
 });

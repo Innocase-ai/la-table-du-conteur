@@ -8,7 +8,7 @@ import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } 
 import { estPhysique, estRayon, famille, familleDominante, famillePhysique, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 import { jouerSon, precharger } from './sons';
 import { degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
-import type { Replique } from './repliques-regles';
+import { ATTENTE_MAX, type Replique } from './repliques-regles';
 import { direReplique } from './voix';
 
 export interface Surcharge {
@@ -29,7 +29,7 @@ export type Effet =
   | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number; decalage?: number }
   | { id: number; type: 'bulle'; position: Position; texte: string; duree: number }
   /** Réplique d'un compagnon : une bulle de parole au-dessus de son jeton. */
-  | { id: number; type: 'replique'; position: Position; texte: string; duree: number; dire?: Pick<Replique, 'voix' | 'situation' | 'numero'> }
+  | { id: number; type: 'replique'; position: Position; texte: string; duree: number; replique?: Replique }
   /** Zone d'effet ; avec `origine` et `delai`, elle se propage case après case depuis l'origine (délai par case, en ms). */
   | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number; origine?: Position; delai?: number }
   | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number }
@@ -208,7 +208,7 @@ const FLASH: Keyframe[] = [{ filter: 'none' }, { filter: 'brightness(1.9) drop-s
 
 /** La bulle d'une réplique au-dessus de celui qui parle ; sa voix part quand la bulle apparaît (elle peut attendre son tour). */
 export function effetDeReplique(r: Replique, lieu: Position): EffetSansId {
-  return { type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte), dire: { voix: r.voix, situation: r.situation, numero: r.numero } };
+  return { type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte), replique: r };
 }
 
 /** Durée d'une bulle de réplique : le temps de la lire. */
@@ -517,7 +517,22 @@ export function mouvementReduit(): boolean {
   return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 }
 
-export function useAnimations(donnees: Donnees, facteur: number) {
+/** Silence entre deux répliques (ms) : sans lui, deux cris collés donnent l'impression que tout le monde parle à la fois. */
+export const SILENCE_ENTRE_BULLES = 700;
+
+/**
+ * Quand montrer une bulle qui arrive à `maintenant`, la précédente finissant à `finPrecedente` : après elle et un silence.
+ * Rend `undefined` si elle devrait attendre plus que `attenteMax` (elle ne collerait plus à ce qui se passe à l'écran).
+ */
+export function planifierBulle(maintenant: number, finPrecedente: number, duree: number, attenteMax: number): { debut: number; fin: number } | undefined {
+  const debut = Math.max(maintenant, finPrecedente > 0 ? finPrecedente + SILENCE_ENTRE_BULLES : maintenant);
+  if (debut - maintenant > attenteMax) return undefined;
+  return { debut, fin: debut + duree };
+}
+
+export function useAnimations(donnees: Donnees, facteur: number, surReplique?: (r: Replique) => void) {
+  const surRepliqueRef = useRef(surReplique);
+  surRepliqueRef.current = surReplique;
   const [, setTic] = useState(0);
   const [enCours, setEnCours] = useState(false);
   const vue = useRef<Vue>({ surcharges: new Map(), effets: [] });
@@ -536,11 +551,13 @@ export function useAnimations(donnees: Donnees, facteur: number) {
   const outils: Outils = {
     vue: () => vue.current,
     effet: (e) => {
-      // Une bulle de réplique à la fois : la suivante attend que la précédente ait été lue.
+      // Une bulle de réplique à la fois, un silence entre deux ; celle qui devrait trop attendre n'est pas dite.
       if (e.type === 'replique') {
         const maintenant = performance.now();
-        const attente = finBulle.current > maintenant ? finBulle.current - maintenant + 200 : 0;
-        finBulle.current = maintenant + attente + e.duree;
+        const plan = planifierBulle(maintenant, finBulle.current, e.duree, e.replique ? ATTENTE_MAX[e.replique.situation] : Infinity);
+        if (!plan) return;
+        finBulle.current = plan.fin;
+        const attente = plan.debut - maintenant;
         if (attente > 0) {
           const t = window.setTimeout(() => {
             minuteursRepliques.current.delete(t);
@@ -565,8 +582,12 @@ export function useAnimations(donnees: Donnees, facteur: number) {
     vue.current.effets = [...vue.current.effets, { ...e, id } as Effet];
     // Une réplique se lit : elle garde sa durée en mode rapide, et survit au clic qui termine la file.
     const replique = e.type === 'replique';
-    // La voix part avec la bulle, pas avant : une bulle qui attend son tour ne parle pas encore.
-    if (e.type === 'replique' && e.dire) direReplique(e.dire);
+    // La voix part avec la bulle, pas avant : une bulle qui attend son tour ne parle pas encore. Le journal ne note que
+    // ce qui est vraiment dit.
+    if (e.type === 'replique' && e.replique) {
+      direReplique(e.replique);
+      surRepliqueRef.current?.(e.replique);
+    }
     const minuteurs = replique ? minuteursRepliques.current : minuteursEffets.current;
     const t = window.setTimeout(
       () => {

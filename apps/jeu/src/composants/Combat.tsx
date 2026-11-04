@@ -83,7 +83,9 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
 
   const reduit = useMemo(() => mouvementReduit(), []);
   const vitesse = (rapide ? 0.4 : 1) * (reduit ? 0.5 : 1);
-  const anim = useAnimations(donnees, vitesse);
+  // Cris des compagnons notés dans le journal : seulement ceux vraiment dits (une bulle trop en retard est abandonnée).
+  const [repliques, setRepliques] = useState<Replique[]>([]);
+  const anim = useAnimations(donnees, vitesse, (r) => setRepliques((l) => [...l, r]));
   const occupe = anim.enCours;
   // État affiché : en retard sur le moteur tant que la file d'animations joue.
   const vue = etatAffiche(etat, anim.vue, occupe);
@@ -113,9 +115,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     if (finAffichee) arreterMusique(3);
   }, [finAffichee]);
 
-  // Répliques des compagnons : chacun a ses phrases (selon son portrait), dites dans le journal et dans une bulle.
+  // Cris des compagnons : la voix vient de la race et du genre du portrait ; dits dans une bulle et notés au journal.
   const memoireRepliques = useRef(nouvelleMemoire());
-  const [repliques, setRepliques] = useState<Replique[]>([]);
   // Au début du combat, un héros donne le ton (après un court instant, que le plateau soit affiché).
   useEffect(() => {
     prechargerVoix(etat.combattants.flatMap((x) => (x.camp === 'heros' ? [voixDuPortrait(x.portrait) ?? ''] : [])));
@@ -123,7 +124,6 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       if (!REPLIQUES) return;
       const r = choisirReplique([{ situation: 'debut-combat', apres: etat.journal.length }], etat, REPLIQUES, memoireRepliques.current, Math.random);
       if (!r) return;
-      setRepliques((l) => [...l, r]);
       const lieu = etat.combattants.find((x) => x.id === r.locuteur)?.position;
       if (lieu) anim.afficher(effetDeReplique(r, lieu));
     }, 700);
@@ -144,7 +144,6 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   /** Rejoue les entrées de journal ajoutées depuis `avant`, avec la réplique d'un compagnon si la situation s'y prête. */
   const rejouer = (avant: Instantane) => {
     const r = REPLIQUES ? choisirReplique(declencheurs(etat, avant), etat, REPLIQUES, memoireRepliques.current, Math.random) : undefined;
-    if (r) setRepliques((l) => [...l, r]);
     anim.jouer(etat, avant, r ? [r] : []);
   };
 

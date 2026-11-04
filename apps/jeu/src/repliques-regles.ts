@@ -106,6 +106,21 @@ export function peutParler(c: Combattant): boolean {
   return c.camp === 'heros' && !c.mort && !c.enFuite && c.pv > 0 && !c.etats.some((e) => e.etat === 'inconscient');
 }
 
+/**
+ * L'attaque du journal à cet indice a raté pour de bon : jet raté, et aucun dégât sur sa cible avant l'action suivante.
+ * Une botte comme l'Écorchure blesse même sur un raté : à l'écran, le coup porte, et « Raté ! » serait faux.
+ */
+export function rateVraiment(journal: readonly Evenement[], indice: number): boolean {
+  const ev = journal[indice];
+  if (ev?.type !== 'attaque' || ev.details?.resultat !== 'rate') return false;
+  for (let k = indice + 1; k < journal.length; k++) {
+    const e = journal[k]!;
+    if (e.type === 'attaque' || e.type === 'sort' || e.type === 'tour') break;
+    if (e.type === 'degats' && e.cible === ev.cible && (e.valeur ?? 0) > 0) return false;
+  }
+  return true;
+}
+
 /** Les situations nées d'une commande : les nouvelles entrées du journal, comparées à l'état d'avant. */
 export function declencheurs(etat: EtatCombat, avant: Avant): Declencheur[] {
   const trouves: Declencheur[] = [];
@@ -124,14 +139,14 @@ export function declencheurs(etat: EtatCombat, avant: Avant): Declencheur[] {
       case 'attaque':
       case 'sort':
         if (ev.acteur) dernierActeur = ev.acteur;
-        if (ev.type === 'attaque' && ev.details?.resultat === 'rate' && heros(ev.acteur)) {
-          // « Encore raté » quand la précédente attaque du même héros, plus tôt dans le combat, avait déjà raté.
-          let precedente: Evenement | undefined;
-          for (let k = apres - 2; k >= 0 && !precedente; k--) {
+        if (ev.type === 'attaque' && heros(ev.acteur) && rateVraiment(etat.journal, apres - 1)) {
+          // « Encore raté » quand la précédente attaque du même héros, plus tôt dans le combat, avait déjà raté pour de bon.
+          let precedente = -1;
+          for (let k = apres - 2; k >= 0 && precedente < 0; k--) {
             const e = etat.journal[k]!;
-            if (e.type === 'attaque' && e.acteur === ev.acteur) precedente = e;
+            if (e.type === 'attaque' && e.acteur === ev.acteur) precedente = k;
           }
-          trouves.push({ situation: precedente?.details?.resultat === 'rate' ? 'rate-encore' : 'rate', locuteur: ev.acteur, apres });
+          trouves.push({ situation: precedente >= 0 && rateVraiment(etat.journal, precedente) ? 'rate-encore' : 'rate', locuteur: ev.acteur, apres });
         }
         if (ev.type === 'attaque' && ev.details?.resultat === 'critique') {
           if (heros(ev.acteur)) trouves.push({ situation: 'critique-donne', locuteur: ev.acteur, apres });
@@ -220,18 +235,62 @@ const URGENTES = new Set<Situation>(['allie-tombe', 'grievement-blesse', 'releve
 export const SILENCE_PERSONNEL = 2;
 /** Rounds de silence du groupe après une réplique ordinaire (une par round au plus). */
 export const SILENCE_GROUPE = 1;
+/** Répliques par round au plus, urgentes comprises (la victoire, qui clôt le combat, n'est pas comptée). */
+export const MAX_PAR_ROUND = 2;
+
+/**
+ * Temps (ms) qu'un cri peut attendre que le cri précédent soit fini avant d'être dit. Au-delà, il ne colle plus à ce qui
+ * se passe à l'écran (« Encore raté ! » alors que le coup suivant vient de porter) : on ne le dit pas. Seule la victoire,
+ * qui termine le combat, attend toujours son tour.
+ */
+export const ATTENTE_MAX: Record<Situation, number> = {
+  'debut-combat': 1500,
+  blesse: 300,
+  'grievement-blesse': 1500,
+  releve: 1500,
+  soigne: 300,
+  'critique-donne': 300,
+  'critique-recu': 300,
+  'ennemi-abattu': 300,
+  'allie-tombe': 1500,
+  rate: 300,
+  'rate-encore': 300,
+  victoire: Infinity,
+};
+
+/**
+ * Celui qui parle vit bien ce qu'il dit : un héros à l'agonie ne crie pas victoire, ne lance pas le combat avec
+ * entrain et ne fanfaronne pas sur un critique ; « Aïe, ça fait mal ! » ne se dit pas quand on est déjà au plus mal.
+ */
+export function convient(situation: Situation, c: Combattant): boolean {
+  const etat = c.pvMax > 0 ? c.pv / c.pvMax : 1;
+  switch (situation) {
+    case 'victoire':
+    case 'debut-combat':
+    case 'critique-donne':
+      return etat > SEUIL_GRAVE;
+    case 'blesse':
+      return etat > SEUIL_GRAVE && etat <= SEUIL_BLESSE;
+    case 'grievement-blesse':
+      return etat <= SEUIL_GRAVE;
+    default:
+      return true;
+  }
+}
 
 export interface Memoire {
   /** Round de la dernière réplique de chacun. */
   parPersonnage: Map<string, number>;
   /** Round de la dernière réplique du groupe. */
   groupe?: number;
+  /** Répliques déjà dites dans chaque round. */
+  parRound: Map<number, number>;
   /** Cris déjà dits, par personnage et situation (`id:situation`, indices) : pas de redite avant d'avoir tout dit. */
   dites: Map<string, number[]>;
 }
 
 export function nouvelleMemoire(): Memoire {
-  return { parPersonnage: new Map(), dites: new Map() };
+  return { parPersonnage: new Map(), parRound: new Map(), dites: new Map() };
 }
 
 /** Le héros est une voix féminine (d'après son portrait, `elfe-f-2`). */
@@ -273,11 +332,14 @@ export function choisirReplique(trouves: Declencheur[], etat: EtatCombat, repliq
   for (const d of tries) {
     const urgente = URGENTES.has(d.situation);
     if (!urgente && memoire.groupe !== undefined && round - memoire.groupe < SILENCE_GROUPE) continue;
+    // Pas plus de deux répliques par round, même graves : sinon tout le monde parle à la fois.
+    if (d.situation !== 'victoire' && (memoire.parRound.get(round) ?? 0) >= MAX_PAR_ROUND) continue;
     const candidats = (d.locuteur ? [par.get(d.locuteur)] : melanger(etat.combattants, hasard)).filter(
       (c): c is Combattant =>
         !!c &&
         peutParler(c) &&
         c.id !== d.cible &&
+        convient(d.situation, c) &&
         (voixDuPortrait(c.portrait) ?? '') in repliques.voix &&
         (urgente || round - (memoire.parPersonnage.get(c.id) ?? -Infinity) >= SILENCE_PERSONNEL),
     );
@@ -287,6 +349,7 @@ export function choisirReplique(trouves: Declencheur[], etat: EtatCombat, repliq
     const phrase = tirerPhrase(repliques.situations[d.situation], `${c.id}:${d.situation}`, memoire, hasard);
     memoire.parPersonnage.set(c.id, round);
     memoire.groupe = round;
+    memoire.parRound.set(round, (memoire.parRound.get(round) ?? 0) + 1);
     return {
       locuteur: c.id,
       nom: c.nom,

@@ -121,6 +121,15 @@ export function filtreReplique(tempo = 1.25, marge = 0.15): string {
 }
 
 /**
+ * Filtre d'une phrase libre (histoire, dialogue) : seulement les silences de début et de fin sont retirés ; les pauses du
+ * milieu, qui font respirer une phrase longue, sont gardées (contrairement aux cris), et le débit reste naturel par défaut.
+ */
+export function filtreLong(tempo = 1, marge = 0.3): string {
+  const tempoFiltre = tempo === 1 ? '' : `atempo=${tempo},`;
+  return `silenceremove=start_periods=1:start_threshold=-50dB,${tempoFiltre}areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse,apad=pad_dur=${marge}`;
+}
+
+/**
  * Niveau des cris de combat : un peu au-dessus des bruitages (−20 dB de moyenne, `outils/sons`) pour qu'une voix se
  * comprenne par-dessus un coup. Sans égalisation, deux cris d'une même voix pouvaient avoir 15 dB d'écart.
  */

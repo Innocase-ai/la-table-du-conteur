@@ -6,6 +6,8 @@
 //   pnpm repliques voix <voix|tous> [--lignes situation:n,…] [--modele flash|lite] [--tempo 1.25]
 //                                   [--livrer] [--refaire] [--cout] [--plafond 0.05] [--go]
 //                                                                    sans --go : simulation (aucun appel, aucun coût)
+//   pnpm repliques dire <voix> "<texte>" [--ton "…"] [--tempo 1] [--sortie fichier.mp3] [--go]
+//                                                                    une phrase libre (histoire, dialogue) avec la voix d'une race : mêmes timbres, texte quelconque
 //   pnpm repliques convertir <voix|tous> [--tempo 1.25] [--livrer]   refait les MP3 (débit, volume égalisé) depuis l’audio brut, sans appel
 //
 // Premier essai (04/11/2026) avec gpt-audio, un modèle de conversation qui parle : jugé « robotique » par l'utilisateur.
@@ -25,7 +27,7 @@ import { accorder, FichierCris, FichierVoix, SITUATIONS, type Situation } from '
 import { empreinte, lireMontant } from '../cle';
 import { lireEnv } from '../images/cli';
 import { CLE_OPENROUTER, utilisationCle } from '../images/services';
-import { durees, enMp3Egalise, filtreReplique } from './lecture';
+import { durees, enMp3Egalise, filtreLong, filtreReplique } from './lecture';
 
 const RACINE = join(import.meta.dirname, '..', '..');
 const DOSSIER_REPLIQUES = join(RACINE, 'packages', 'donnees', 'repliques');
@@ -117,6 +119,39 @@ async function main(): Promise<void> {
   const tempo = Number((option('--tempo') ?? '1.25').replace(',', '.'));
   if (!(tempo >= 0.8 && tempo <= 1.6)) throw new Error('--tempo : entre 0,8 et 1,6 (1,25 par défaut).');
   const toutes = Object.keys(voixDispo);
+  if (commande === 'dire' && voixDemandee) {
+    // Une phrase libre dite par la voix d'une race (histoires, dialogues) : les mêmes timbres que les cris, tout autre texte.
+    const texte = args.find((a, i) => !a.startsWith('--') && (i === 0 || !args[i - 1]!.startsWith('--')));
+    const reglage = voixDispo[voixDemandee];
+    if (!reglage) throw new Error(`Voix inconnue « ${voixDemandee} » (voix.json) : ${toutes.join(', ')}.`);
+    if (!texte) throw new Error('Usage : pnpm repliques dire <voix> "<texte>" [--ton "…"] [--tempo 1] [--sortie fichier.mp3] [--go]');
+    const ton = option('--ton') ?? 'naturel, posé';
+    const style = `${reglage.jeu} ; ${ton}`;
+    const debit = Number((option('--tempo') ?? '1').replace(',', '.'));
+    if (!(debit >= 0.8 && debit <= 1.6)) throw new Error('--tempo : entre 0,8 et 1,6 (1 par défaut pour une phrase libre).');
+    console.log(`${MODELES.flash} : voix ${voixDemandee} (${reglage.timbre}), ${texte.split(/\s+/).length} mots, un appel.`);
+    console.log(`  « ${texte} »
+  style : ${style}`);
+    if (!args.includes('--go')) {
+      console.log('  [simulation] Ajoute --go pour générer réellement (service payant, ≈ 0,0005 $ par phrase courte).');
+      return;
+    }
+    const cle = lireEnv()[CLE_OPENROUTER];
+    if (!cle) throw new Error(`Variable ${CLE_OPENROUTER} absente (voir .env.example).`);
+    console.log(`Clé utilisée : ${empreinte(cle)} (celle du .env du projet).`);
+    const dossier = join(SORTIES, voixDemandee);
+    mkdirSync(dossier, { recursive: true });
+    const nom = `histoire-${texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40)}-${Date.now().toString(36)}`;
+    const res = await dire(texte, { modele: MODELES.flash, voix: reglage.timbre, style, cle });
+    writeFileSync(join(dossier, `${nom}.pcm`), res.pcm);
+    if (!res.pcm.length) throw new Error('Pas d’audio reçu.');
+    const { duree, gain } = enMp3Egalise(res.pcm, join(dossier, `${nom}.mp3`), { frequence: res.frequence, filtre: filtreLong(debit) });
+    const { attendue } = durees(texte);
+    writeFileSync(join(dossier, `${nom}.json`), JSON.stringify({ texte, modele: MODELES.flash, voix: reglage.timbre, style, frequence: res.frequence, duree: Math.round(duree * 10) / 10, generation: res.generation }, null, 2) + '\n');
+    if (option('--sortie')) copyFileSync(join(dossier, `${nom}.mp3`), option('--sortie')!);
+    console.log(`  ${nom}.mp3 : ${duree.toFixed(1)} s (≈ ${attendue.toFixed(1)} s attendues, ${gain >= 0 ? '+' : ''}${gain.toFixed(1)} dB)${duree < attendue / 2 ? ' — SUSPECT : bien plus court que prévu, texte peut-être tronqué' : ''}`);
+    return;
+  }
   if (commande === 'convertir' && voixDemandee) {
     // Refait les MP3 depuis l'audio brut gardé (.pcm), sans appel : pour régler le débit ou le volume après coup.
     // Avec --livrer, les prises bonnes remplacent celles du jeu.
@@ -124,7 +159,7 @@ async function main(): Promise<void> {
     for (const voix of voixDemandee === 'tous' ? toutes : [voixDemandee]) {
       const dossier = join(SORTIES, voix);
       if (!existsSync(dossier)) continue;
-      for (const brut of readdirSync(dossier).filter((x) => x.endsWith('.pcm') && !x.endsWith('.mp3.pcm'))) {
+      for (const brut of readdirSync(dossier).filter((x) => x.endsWith('.pcm') && !x.endsWith('.mp3.pcm') && !x.startsWith('histoire-'))) {
         const nom = brut.replace(/\.pcm$/, '');
         const fiche = join(dossier, `${nom}.json`);
         const lu = existsSync(fiche) ? (JSON.parse(readFileSync(fiche, 'utf8')) as { frequence?: number; probleme?: string }) : {};
@@ -151,7 +186,7 @@ async function main(): Promise<void> {
     return;
   }
   if (commande !== 'voix' || !voixDemandee) {
-    console.log('Usage : pnpm repliques lister | voix <voix|tous> [--lignes situation:n,…] [--modele flash|lite] [--tempo 1.25] [--livrer] [--refaire] [--cout] [--plafond 0.05] [--go] | convertir <voix|tous> [--tempo 1.25] [--livrer]');
+    console.log('Usage : pnpm repliques lister | dire <voix> "<texte>" | voix <voix|tous> [--lignes situation:n,…] [--modele flash|lite] [--tempo 1.25] [--livrer] [--refaire] [--cout] [--plafond 0.05] [--go] | convertir <voix|tous> [--tempo 1.25] [--livrer]');
     return;
   }
   const cleModele = (option('--modele') ?? 'flash') as keyof typeof MODELES;
