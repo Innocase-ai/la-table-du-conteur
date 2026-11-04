@@ -271,12 +271,25 @@ const SECTIONS: Section[] = [
 
         <h3>Les bruitages</h3>
         <p>
-          Les coups et les sorts s’entendent aussi. Un <strong>coup d’épée</strong> ou de <strong>hache</strong> sonne à l’impact d’une arme tranchante ; une pointe,
-          un choc sourd pour le <strong>perforant</strong> et le <strong>contondant</strong> ; une corde d’<strong>arc</strong> quand la flèche part. Les sorts ont leur
-          bruit au départ : <strong>feu</strong> (trait de feu, mains brûlantes, rayon ardent), <strong>glace</strong>, <strong>foudre</strong> (éclair traçant, poigne
-          électrique) et <strong>projectile magique</strong> (un son par fléchette). Un <strong>soin</strong> a son bruit, et les sorts de <strong>protection</strong>{' '}
-          (bouclier, bouclier de la foi, bénédiction) aussi. Les autres sorts restent silencieux pour l’instant.
+          Les coups et les sorts s’entendent aussi.
         </p>
+        <ul className="aide-etats">
+          <li>
+            <strong>Les armes</strong> sonnent à l’impact selon leur nature : épée, hache, fouet, estoc de lance, rapière ou dague, masse ou marteau, massue ou gourdin, choc
+            sourd. Une arme qui <strong>rate</strong> siffle dans le vide.
+          </li>
+          <li>
+            <strong>Les tirs</strong> s’entendent au départ : corde d’arc, déclic d’arbalète, fronde, détonation d’une arme à feu, sarbacane, et le sifflement d’une arme lancée
+            (javeline, hachette, dague).
+          </li>
+          <li>
+            <strong>Les sorts</strong> ont leur bruit au départ : feu, glace, foudre, lumière sacrée, acide, poison, magie nécrotique, tonnerre, projectile magique (un son par
+            fléchette) et arme spirituelle. Sommeil et immobilisation ont aussi le leur.
+          </li>
+          <li>
+            <strong>Le soutien</strong> a le sien : soin, protection (bouclier, bouclier de la foi, bénédiction), renforcement (Aide), marque du chasseur et malédiction.
+          </li>
+        </ul>
         <p>
           Le bouton <strong>🔊</strong> de la barre d’actions coupe ou remet le son, et le curseur règle le volume ; votre choix est gardé d’une partie à l’autre.
         </p>

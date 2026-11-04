@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
 import { estPhysique, estRayon, famille, familleDominante, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 import { jouerSon, precharger } from './sons';
-import { armeDuJournal, degatsDeLAttaque, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir, type Son } from './sons-regles';
+import { armeDuJournal, degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
 
 export interface Surcharge {
   position: Position;
@@ -285,6 +285,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           o.effet({ type: 'bulle', position: a, texte: `${fleche}${d.de} ${signe(d.total - d.de)} = ${d.total}${d.ca !== undefined ? ` contre CA ${d.ca}` : ''}`, duree: 1200 });
         };
         if (d.resultat === 'rate') {
+          // Une arme qui rate siffle dans le vide (un sort qui rate n'a pas de bruit propre).
+          jouer(sonDeRate({ sort: !!d.sort }));
           ajouter(260, () => {
             bulle();
             o.effet({ type: 'texte', position: b, texte: 'Raté !', classe: 'ft-rate', duree: 1000 });
@@ -353,6 +355,9 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         if (d.sort) contexte = { sort: d.sort };
         if (d.sauvegarde && ev.cible && b) {
           const cible = ev.cible;
+          // Le bruit d'un sort à jet de sauvegarde (flamme sacrée, blessure, immobilisation…) ; pour une zone, il joue une
+          // seule fois, au départ de la zone, pas à chaque créature atteinte.
+          if (d.sort && !donnees.sorts.get(d.sort)?.zone) jouer(sonDuSort(d.sort));
           if (d.distance && a && !reduit) {
             const duree = Math.max(160, Math.min(420, distanceCases(a, b) * 40));
             ajouter(duree, () => o.effet(effetDeSort(donnees, d.sort, a, b, duree)));
@@ -365,8 +370,9 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           const couleur = couleurSort(donnees, d.sort);
           const definition = donnees.sorts.get(d.sort);
           const typeDegats = definition?.degats[0]?.type;
-          // Un sort de protection (bouclier, bénédiction) a son bruit dès le lancement : rien ne traverse le plateau.
-          jouer(sonDeProtection(d.sort));
+          // Un sort de soutien (bouclier, bénédiction, aide, marque, malédiction) a son bruit dès le lancement : rien ne
+          // traverse le plateau.
+          jouer(sonAuLancement(d.sort));
           // Incantation : un cercle de runes se trace sous le lanceur (une simple lueur en mouvement réduit).
           ajouter(d.cases?.length ? 200 : 300, () =>
             o.effet(reduit ? { type: 'lueur', position: a, couleur, duree: 600 } : { type: 'cercle', position: a, couleur, duree: 850 }),

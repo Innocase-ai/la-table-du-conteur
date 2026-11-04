@@ -8,7 +8,7 @@ import { COULEURS_FAMILLES, FAMILLES, LIBELLES_AURAS, LIBELLES_FAMILLES, famille
 import { arreterMusique, demarrerMusique } from '../musique';
 import { AMBIANCES_MUSIQUE, LIBELLES_MUSIQUES } from '../musique-regles';
 import { jouerSon } from '../sons';
-import { LIBELLES_SONS, SONS, sonDeCoup, sonDeSort } from '../sons-regles';
+import { LIBELLES_SONS, SONS, sonAuLancement, sonDeCoup, sonDeSort } from '../sons-regles';
 import { ControleSon } from './ControleSon';
 import { EffetsPlateau, type Geometrie } from './Plateau';
 import { Illustration } from './Illustration';
@@ -82,6 +82,14 @@ const SORTS: { id: string; libelle: string }[] = [
   { id: 'mains-brulantes', libelle: 'Mains brûlantes (cône)' },
   { id: 'sommeil', libelle: 'Sommeil (sphère)' },
   { id: 'vague-tonnante', libelle: 'Vague tonnante (cube)' },
+  { id: 'contact-glacial', libelle: 'Contact glacial' },
+  { id: 'blessure', libelle: 'Blessure' },
+  { id: 'immobilisation-de-personne', libelle: 'Immobilisation de personne' },
+  { id: 'arme-spirituelle', libelle: 'Arme spirituelle' },
+  { id: 'fleau', libelle: 'Imprécation (malédiction)' },
+  { id: 'marque-du-chasseur', libelle: 'Marque du chasseur' },
+  { id: 'aide', libelle: 'Aide (renforcement)' },
+  { id: 'benediction', libelle: 'Bénédiction (protection)' },
 ];
 const STYLE_BOUTON = { padding: '6px 10px', background: '#2a221a', color: '#f6ecd8', border: '1px solid #5a4a36', borderRadius: 4, cursor: 'pointer' } as const;
 
@@ -112,6 +120,12 @@ export function BancEffets() {
       if (typeDegats) for (const e of effetsDeCoup({ famille: fam, position, angle, valeur: 9, critique, reaction: reaction || undefined }, reduit)) poser(e);
     };
     poser(reduit ? { type: 'lueur', position: LANCEUR, couleur, duree: 600 } : { type: 'cercle', position: LANCEUR, couleur, duree: 850 });
+    // Un sort de soutien (bouclier, aide, marque, malédiction) joue son bruit au lancement et ne lance rien sur le plateau.
+    const soutien = sonAuLancement(id);
+    if (soutien) {
+      apres(300, () => jouerSon(soutien));
+      return;
+    }
     const son = sonDeSort(id, fam);
     if (sort.zone) {
       const personnel = sort.portee.type === 'personnel';
