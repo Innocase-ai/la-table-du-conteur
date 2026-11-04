@@ -116,6 +116,24 @@ button:disabled {
   box-shadow: 0 6px 20px rgba(212, 174, 102, 0.45);
 }
 
+/* Sourdine et volume des bruitages, dans la barre d'actions du combat. */
+.controle-son {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controle-son input[type='range'] {
+  width: 72px;
+  accent-color: var(--or);
+  cursor: pointer;
+}
+
+.controle-son input[type='range']:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
 .bouton-discret {
   background: transparent;
   border-color: var(--bord);

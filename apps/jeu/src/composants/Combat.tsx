@@ -29,6 +29,7 @@ import { ciblesRepetables, formatMetres } from '../libelles';
 import { Fiche } from './Fiche';
 import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
+import { ControleSon } from './ControleSon';
 import { Initiative } from './Initiative';
 import { Journal } from './Journal';
 import { MainCartes } from './MainCartes';
@@ -442,6 +443,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
                 {rapide ? '▶▶ Rapide' : '▶ Normal'}
               </button>
             )}
+            <ControleSon />
             <button type="button" className="bouton fin-tour" disabled={!tourJoueur || occupe} onClick={() => jouer({ type: 'finTour' })}>
               Fin du tour
             </button>

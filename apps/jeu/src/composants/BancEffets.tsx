@@ -5,6 +5,9 @@ import { casesZone, ETATS, grilleDepuisTexte, libelleEtat, type Combattant, type
 import { couleurSort, effetDeSort, effetsDeCoup, type Effet, type EffetSansId } from '../animations';
 import { chargerDonnees } from '../donnees';
 import { COULEURS_FAMILLES, FAMILLES, LIBELLES_AURAS, LIBELLES_FAMILLES, famille, type Aura, type Famille } from '../effets-visuels';
+import { jouerSon } from '../sons';
+import { LIBELLES_SONS, SONS, sonDeCoup, sonDeSort } from '../sons-regles';
+import { ControleSon } from './ControleSon';
 import { EffetsPlateau, type Geometrie } from './Plateau';
 import { Illustration } from './Illustration';
 import { Jeton } from './Jeton';
@@ -107,12 +110,14 @@ export function BancEffets() {
       if (typeDegats) for (const e of effetsDeCoup({ famille: fam, position, angle, valeur: 9, critique, reaction: reaction || undefined }, reduit)) poser(e);
     };
     poser(reduit ? { type: 'lueur', position: LANCEUR, couleur, duree: 600 } : { type: 'cercle', position: LANCEUR, couleur, duree: 850 });
+    const son = sonDeSort(id, fam);
     if (sort.zone) {
       const personnel = sort.portee.type === 'personnel';
       const origine = personnel ? LANCEUR : cible;
       const cases = casesZone(GRILLE, sort.zone.forme, sort.zone.taille, origine, cible);
       const rayon = Math.max(0, ...cases.map((p) => Math.max(Math.abs(p.x - origine.x), Math.abs(p.y - origine.y))));
       apres(300, () => {
+        if (son) jouerSon(son);
         poser({ type: 'zone', cases, couleur, duree: 520 + (reduit ? 0 : rayon * 60), origine, delai: reduit ? 0 : 60 });
         if (!reduit && typeDegats && !personnel) poser({ type: 'impact', position: origine, famille: fam, gros: true, duree: 900 });
         // Les cibles de la zone encaissent quand la vague les atteint.
@@ -126,6 +131,7 @@ export function BancEffets() {
     const n = id === 'projectile-magique' ? 3 : 1;
     for (let i = 0; i < n; i++) {
       apres(300 + i * 160, () => {
+        if (son) jouerSon(son);
         poser(effetDeSort(donnees, id, LANCEUR, cible, 280));
         apres(300, () => coup(cible));
       });
@@ -136,6 +142,9 @@ export function BancEffets() {
     const valeur = reaction === 'immunise' ? 0 : 9;
     // L'attaquant est à gauche de la cible (le coup part vers la droite).
     for (const e of effetsDeCoup({ famille, position, angle: 0, valeur, critique, reaction: reaction || undefined }, reduit)) poser(e);
+    // Le bruit d'un coup d'arme de cette famille (le bouton « Tranchant » donne un coup d'épée).
+    const son = valeur > 0 ? sonDeCoup({ famille }) : undefined;
+    if (son) jouerSon(son);
   };
 
   const enchainer = () => {
@@ -157,6 +166,15 @@ export function BancEffets() {
         <button type="button" onClick={enchainer} style={{ ...STYLE_BOUTON, fontWeight: 700 }}>
           Tout enchaîner
         </button>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, alignItems: 'center' }}>
+        <strong>Écouter les bruitages :</strong>
+        {SONS.map((s) => (
+          <button key={s} type="button" onClick={() => jouerSon(s)} style={STYLE_BOUTON} title={`sons/${s}.mp3`}>
+            {LIBELLES_SONS[s]}
+          </button>
+        ))}
+        <ControleSon />
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, alignItems: 'center' }}>
         <strong>Sorts (lancés depuis le disque bleu) :</strong>

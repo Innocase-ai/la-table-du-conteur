@@ -269,8 +269,21 @@ const SECTIONS: Section[] = [
           <Capture nom="zone-sphere" alt="Une sphère violette entoure la cible" legende="Sommeil : une sphère centrée sur le point visé." />
         </div>
 
+        <h3>Les bruitages</h3>
+        <p>
+          Les coups et les sorts s’entendent aussi. Un <strong>coup d’épée</strong> ou de <strong>hache</strong> sonne à l’impact d’une arme tranchante ; une pointe,
+          un choc sourd pour le <strong>perforant</strong> et le <strong>contondant</strong> ; une corde d’<strong>arc</strong> quand la flèche part. Les sorts ont leur
+          bruit au départ : <strong>feu</strong> (trait de feu, mains brûlantes, rayon ardent), <strong>glace</strong>, <strong>foudre</strong> (éclair traçant, poigne
+          électrique) et <strong>projectile magique</strong> (un son par fléchette). Un <strong>soin</strong> a son bruit, et les sorts de <strong>protection</strong>{' '}
+          (bouclier, bouclier de la foi, bénédiction) aussi. Les autres sorts restent silencieux pour l’instant.
+        </p>
+        <p>
+          Le bouton <strong>🔊</strong> de la barre d’actions coupe ou remet le son, et le curseur règle le volume ; votre choix est gardé d’une partie à l’autre.
+        </p>
+
         <p className="aide-note">
-          « Rapide » accélère toutes les animations. Si votre système demande de réduire les animations, les effets en mouvement sont remplacés par les seuls chiffres.
+          « Rapide » accélère toutes les animations. Si votre système demande de réduire les animations, les effets en mouvement sont remplacés par les seuls chiffres ;
+          les bruitages, eux, restent.
         </p>
       </>
     ),
@@ -439,6 +452,9 @@ const SECTIONS: Section[] = [
           <kbd>Survol</kbd> d'un jeton ou de la barre d'initiative : fiche et illustration du combattant.
         </li>
         <li>« Tour auto » fait jouer l'IA à votre place pour ce tour ; « Héros auto » pour tout le combat ; « Rapide » accélère les animations.</li>
+        <li>
+          <kbd>🔊</kbd> coupe ou remet les bruitages ; le curseur à côté règle leur volume.
+        </li>
       </ul>
     ),
   },

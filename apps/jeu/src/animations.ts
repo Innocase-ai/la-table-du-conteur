@@ -6,6 +6,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
 import { estPhysique, estRayon, famille, familleDominante, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
+import { jouerSon, precharger } from './sons';
+import { armeDuJournal, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir, type Son } from './sons-regles';
 
 export interface Surcharge {
   position: Position;
@@ -174,6 +176,8 @@ interface Outils {
   vue: () => Vue;
   effet: (e: EffetSansId) => void;
   animer: (id: string, images: Keyframe[], duree: number) => void;
+  /** Joue un bruitage (sans effet si le joueur a coupé le son). */
+  son: (nom: Son) => void;
 }
 
 function distanceCases(a: Position, b: Position): number {
@@ -203,12 +207,20 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
   const reel = (id: string): Combattant | undefined => etat.combattants.find((c) => c.id === id);
   // Dernière famille de dégâts reçue par chacun : la mort s'habille comme le coup fatal.
   const derniereFamille = new Map<string, Famille>();
+  // D'où vient le coup en cours (arme, sort, à distance) : décide du bruitage des dégâts qui suivent.
+  let contexte: { sort?: string; arme?: string; distance?: boolean } = {};
+  /** Le son d'un sort, d'après le sort et la famille de ses dégâts. */
+  const sonDuSort = (id: string | undefined) => sonDeSort(id, famille(id ? donnees.sorts.get(id)?.degats[0]?.type : undefined));
 
   etat.journal.slice(inst.journal).forEach((ev: Evenement, i) => {
     const index = inst.journal + i + 1;
     const d = ev.details ?? {};
     const local: Pas[] = [];
     const ajouter = (duree: number, appliquer: () => void = () => {}) => local.push({ duree, appliquer });
+    /** Un bruitage, joué à cet endroit de la file (le son ne dépend pas du réglage « mouvement réduit »). */
+    const jouer = (nom: Son | undefined) => {
+      if (nom) ajouter(0, () => o.son(nom));
+    };
 
     switch (ev.type) {
       case 'deplacement': {
@@ -226,9 +238,12 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
       case 'attaque': {
         const a = pos(ev.acteur);
         const b = pos(ev.cible);
+        contexte = { sort: d.sort, arme: armeDuJournal(ev.texte), distance: !!d.distance };
         if (!a || !b || !ev.acteur || !ev.cible) break;
         const acteur = ev.acteur;
         const cible = ev.cible;
+        // Le bruit du départ : la corde d'un arc, ou le sort qui part (au contact comme à distance).
+        jouer(d.sort ? sonDuSort(d.sort) : d.distance ? sonDeTir(contexte.arme) : undefined);
         // Élan ou projectile.
         if (d.distance) {
           if (!reduit) {
@@ -291,6 +306,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         const angle = source && (source.x !== b.x || source.y !== b.y) ? Math.atan2(b.y - source.y, b.x - source.x) : -0.6;
         // Un critique marque un temps d'arrêt avant que le coup ne porte.
         if (d.critique && !reduit && valeur > 0) ajouter(90);
+        // Le bruit du coup, au moment où il porte (les dégâts d'un sort n'en ont pas : le sort a eu le sien au départ).
+        if (valeur > 0) jouer(sonDeCoup({ famille: fam, arme: contexte.arme, sort: !!contexte.sort, distance: contexte.distance }));
         ajouter(300, () => {
           const x = s(id);
           if (x) {
@@ -308,6 +325,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         if (!id || !b || !ev.valeur) break;
         const valeur = ev.valeur;
         const max = reel(id)?.pvMax ?? Infinity;
+        jouer('soin');
         ajouter(300, () => {
           const x = s(id);
           if (x) x.pv = Math.min(max, Math.max(0, x.pv) + valeur);
@@ -319,6 +337,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
       case 'sort': {
         const a = pos(ev.acteur);
         const b = pos(ev.cible);
+        if (d.sort) contexte = { sort: d.sort };
         if (d.sauvegarde && ev.cible && b) {
           const cible = ev.cible;
           if (d.distance && a && !reduit) {
@@ -333,6 +352,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           const couleur = couleurSort(donnees, d.sort);
           const definition = donnees.sorts.get(d.sort);
           const typeDegats = definition?.degats[0]?.type;
+          // Un sort de protection (bouclier, bénédiction) a son bruit dès le lancement : rien ne traverse le plateau.
+          jouer(sonDeProtection(d.sort));
           // Incantation : un cercle de runes se trace sous le lanceur (une simple lueur en mouvement réduit).
           ajouter(d.cases?.length ? 200 : 300, () =>
             o.effet(reduit ? { type: 'lueur', position: a, couleur, duree: 600 } : { type: 'cercle', position: a, couleur, duree: 850 }),
@@ -342,6 +363,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
             // La zone part de son centre (le point visé, ou le lanceur pour un sort personnel) et s'étend case après case.
             const origine = definition?.portee.type === 'personnel' || !d.point ? a : d.point;
             const rayon = Math.max(0, ...cases.map((p) => distanceCases(origine, p)));
+            jouer(sonDuSort(d.sort));
             ajouter(Math.min(720, 240 + rayon * 60), () => {
               o.effet({ type: 'zone', cases, couleur, duree: 520 + (reduit ? 0 : rayon * 60), origine, delai: reduit ? 0 : 60 });
               // Une explosion à l'origine pour les sorts de dégâts lancés à distance (pas pour un souffle parti du lanceur).
@@ -388,6 +410,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         break;
       }
       case 'tour': {
+        contexte = {};
         const idx = ev.acteur ? etat.ordre.indexOf(ev.acteur) : -1;
         if (idx >= 0)
           ajouter(140, () => {
@@ -466,6 +489,7 @@ export function useAnimations(donnees: Donnees, facteur: number) {
       const el = elements.current.get(id);
       el?.animate?.(images, { duration: duree * facteurRef.current, easing: 'ease-out' });
     },
+    son: (nom) => jouerSon(nom),
   };
 
   const finir = useCallback(() => {
@@ -521,13 +545,13 @@ export function useAnimations(donnees: Donnees, facteur: number) {
     finir();
   };
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    precharger();
+    return () => {
       window.clearTimeout(minuteur.current);
       for (const t of minuteursEffets.current) window.clearTimeout(t);
-    },
-    [],
-  );
+    };
+  }, []);
 
   return { vue: vue.current, enCours, jouer, terminer, elements: elements.current };
 }
