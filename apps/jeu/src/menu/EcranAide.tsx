@@ -213,6 +213,12 @@ const SECTIONS: Section[] = [
             rivière ralentit celui qui la traverse : cherchez le gué.
           </li>
           <li>
+            <strong>Rochers bas, troncs couchés, caisses</strong> : on ne peut pas les traverser, mais on voit et on tire par-dessus. Ils donnent un{' '}
+            <strong>demi-couvert</strong> à qui se tient derrière : <strong>+2 à la CA</strong> et +2 aux jets de sauvegarde de Dextérité contre ce qui
+            vient de l'autre côté. Qui se tient collé à l'obstacle tire par-dessus sans gêne. Quand vous visez, un bouclier{' '}
+            <strong>🛡+2</strong> marque les cibles à couvert.
+          </li>
+          <li>
             <strong>Murs</strong> : le bord du plateau, les piliers, les palissades. Ils bloquent comme un arbre.
           </li>
         </ul>
@@ -222,8 +228,8 @@ const SECTIONS: Section[] = [
           legende="Le gué des brigands : l'eau et la boue (cases doublées) ralentissent, le rocher et l'arbre bloquent le passage et la vue."
         />
         <p>
-          Sur l'écran de choix d'une escarmouche, l'aperçu de chaque carte montre ces éléments (vert : arbre, gris : rocher, bleu : eau, brun : boue, blanc :
-          neige).
+          Sur l'écran de choix d'une escarmouche, l'aperçu de chaque carte montre ces éléments (vert : arbre, gris : rocher, gris clair : rocher bas, bleu : eau,
+          brun : boue ou tronc, beige : caisse, blanc : neige).
         </p>
       </>
     ),

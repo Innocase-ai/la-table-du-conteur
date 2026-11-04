@@ -40,6 +40,9 @@ const CLASSES_MINI_CARTE: Record<string, string> = {
   e: 'mc-eau',
   b: 'mc-boue',
   n: 'mc-neige',
+  r: 'mc-rocher-bas',
+  t: 'mc-tronc',
+  c: 'mc-caisse',
   H: 'mc-heros',
   m: 'mc-monstre',
 };

@@ -23,7 +23,9 @@ import {
 import {
   cheminsAtteignables,
   cle,
+  couvert,
   distanceMetres,
+  franchissable,
   ligneDeVue,
   TAILLE_CASE,
   type Chemin,
@@ -280,18 +282,26 @@ function desModificateurs(etat: EtatCombat, c: Combattant, type: 'de_attaque' | 
   return c.modificateurs.filter((m) => m.type === type && m.de).reduce((s, m) => s + lancerDes(etat, m.de!), 0);
 }
 
-export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristique, dd: number): boolean {
+/** Jet de sauvegarde ; `bonus` s'ajoute au total (le demi-couvert, +2 en Dextérité, voir `couvertSauvegarde`). */
+export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristique, dd: number, bonus = 0): boolean {
   if ((carac === 'for' || carac === 'dex') && c.etats.some((e) => ['paralyse', 'inconscient'].includes(e.etat))) return false;
   const avantage =
     carac === 'dex' && (c.tour.esquive || (aTrait(c, 'sens-du-danger') && !aEtat(c, 'neutralise')));
   const d1 = de(etat, 20);
   const d = avantage ? Math.max(d1, de(etat, 20)) : d1;
-  const total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde');
+  const total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
   return total >= dd;
+}
+
+/** Le demi-couvert compte pour les sauvegardes de Dextérité contre un effet venu de `origine` (SRD 5.2.1). */
+export function couvertSauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristique, origine: Position): number {
+  return carac === 'dex' ? couvert(etat.grille, origine, c.position) : 0;
 }
 
 export interface JetAttaque {
   ca: number;
+  /** Demi-couvert de la cible (+2 à sa CA), déjà compris dans `ca`. */
+  couvert: number;
   touche: boolean;
   critique: boolean;
   avantage: boolean;
@@ -368,7 +378,8 @@ export function jetAttaque(
     mode === 'corps-a-corps' &&
     distanceMetres(attaquant.position, cible.position) <= TAILLE_CASE &&
     cible.etats.some((e) => e.etat === 'paralyse' || e.etat === 'inconscient');
-  let caCible = ca(cible);
+  const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
+  let caCible = ca(cible) + bonusCouvert;
   let touche = d !== 1 && (d >= seuilCritique || total >= caCible);
   // Réaction Bouclier : +5 CA si cela transforme le coup en échec.
   if (touche && d < seuilCritique && cible.sorts.includes('bouclier') && cible.ressources.reaction && total < caCible + 5) {
@@ -383,7 +394,7 @@ export function jetAttaque(
     }
   }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
-  return { ca: caCible, touche, critique, avantage, desavantage, total, de: d };
+  return { ca: caCible, couvert: bonusCouvert, touche, critique, avantage, desavantage, total, de: d };
 }
 
 /** Détails d'un jet d'attaque pour le journal. */
@@ -394,6 +405,7 @@ export function detailsJet(jet: JetAttaque, distance: boolean, sort?: string, ar
     de: jet.de,
     total: jet.total,
     ca: jet.ca,
+    ...(jet.couvert ? { couvert: jet.couvert } : {}),
     avantage: jet.avantage,
     desavantage: jet.desavantage,
     distance,
@@ -654,7 +666,7 @@ export function attaqueArme(
   const jet = jetAttaque(etat, attaquant, cible, arme.bonusAttaque, arme.mode, arme.mode === 'distance' ? p.normale : undefined);
   journaliser(etat, {
     type: 'attaque',
-    texte: `${attaquant.nom} attaque ${cible.nom} (${arme.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
+    texte: `${attaquant.nom} attaque ${cible.nom} (${arme.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}${jet.couvert ? ' (cible à couvert, +2 CA)' : ''}.`,
     acteur: attaquant.id,
     cible: cible.id,
     details: detailsJet(jet, arme.mode === 'distance', undefined, arme.id),
@@ -742,7 +754,7 @@ function appliquerBotte(
       const pousse: Position[] = [];
       for (let i = 0; i < 2; i++) {
         const p = { x: cible.position.x + dx, y: cible.position.y + dy };
-        if (etat.grille.cases[p.y * etat.grille.largeur + p.x] === 'mur' || occ.occupees.has(cle(p))) break;
+        if (!franchissable(etat.grille.cases[p.y * etat.grille.largeur + p.x] ?? 'mur') || occ.occupees.has(cle(p))) break;
         cible.position = p;
         pousse.push(p);
       }
@@ -771,7 +783,7 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
     const jet = jetAttaque(etat, attaquant, cible, r.bonus ?? 0, r.mode, action.portee?.normale);
     journaliser(etat, {
       type: 'attaque',
-      texte: `${attaquant.nom} attaque ${cible.nom} (${action.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`,
+      texte: `${attaquant.nom} attaque ${cible.nom} (${action.nom}) : ${jet.de}${jet.avantage ? ' avec avantage' : jet.desavantage ? ' avec désavantage' : ''} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}${jet.couvert ? ' (cible à couvert, +2 CA)' : ''}.`,
       acteur: attaquant.id,
       cible: cible.id,
       details: detailsJet(jet, r.mode === 'distance', undefined, action.id),
@@ -795,7 +807,7 @@ export function attaqueMonstre(etat: EtatCombat, attaquant: Combattant, cible: C
       ajouterEtat(etat, cible, { etat: e.etat, source: attaquant.id, evasion: e.evasion, finTourDe: e.dureeRounds ? cible.id : undefined });
     }
   } else if (r?.type === 'sauvegarde') {
-    const reussite = sauvegarde(etat, cible, r.caracteristique, r.dd ?? 10);
+    const reussite = sauvegarde(etat, cible, r.caracteristique, r.dd ?? 10, couvertSauvegarde(etat, cible, r.caracteristique, attaquant.position));
     journaliser(etat, {
       type: 'attaque',
       texte: `${attaquant.nom} utilise ${action.nom} sur ${cible.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`,

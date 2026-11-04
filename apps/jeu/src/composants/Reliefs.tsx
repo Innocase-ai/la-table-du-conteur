@@ -1,7 +1,7 @@
 // Les éléments posés sur les cases du plateau : arbres et rochers, dessinés en vecteur (sans fond, donc sur n'importe quel
 // sol), chacun un peu différent de son voisin ; l'eau, la boue et la neige sont des plaques de terrain, dessinées par
 // `Plateau.tsx` (textures peintes si elles existent, sinon un dégradé).
-import type { Terrain } from '@crpg/regles';
+import type { Relief, Terrain } from '@crpg/regles';
 
 /** Un nombre entre 0 et 1, toujours le même pour une case et une graine : chaque arbre garde son visage d'un rendu à l'autre. */
 export function alea(x: number, y: number, graine = 0): number {
@@ -100,4 +100,86 @@ export function Rocher({ x, y, terrain }: Props) {
       {neige && <path d={`M${pts[2]![0].toFixed(1)} ${pts[2]![1].toFixed(1)} Q50 ${(2 + a(20) * 6).toFixed(1)} ${pts[4]![0].toFixed(1)} ${pts[4]![1].toFixed(1)} Q58 38 ${pts[2]![0].toFixed(1)} ${pts[2]![1].toFixed(1)}Z`} fill="rgba(255,255,255,0.9)" />}
     </svg>
   );
+}
+
+/** Un rocher bas : le même rocher, tassé (on tire par-dessus). */
+export function RocherBas({ x, y, terrain }: Props) {
+  return (
+    <div style={{ width: '100%', height: '100%', transform: 'scale(1.05, 0.62)', transformOrigin: '50% 92%' }}>
+      <Rocher x={x} y={y} terrain={terrain} />
+    </div>
+  );
+}
+
+/** Un tronc couché : écorce sombre, bout scié aux cernes clairs, posé de travers selon la case. */
+export function Tronc({ x, y, terrain }: Props) {
+  const a = (n: number) => alea(x, y, 200 + n);
+  const angle = [-32, 0, 0, 28][Math.floor(a(1) * 4)]!;
+  const neige = terrain === 'neige';
+  const mousse = terrain === 'foret' && a(2) > 0.4;
+  return (
+    <svg viewBox="0 0 100 100" className="relief-svg" aria-hidden>
+      <ellipse cx="52" cy="66" rx="44" ry="13" fill="rgba(0,0,0,0.35)" />
+      <g transform={`rotate(${angle} 50 52)`}>
+        <rect x="8" y="38" width="80" height="26" rx="12" fill="#5d4129" stroke="#2e1f12" strokeWidth="1.5" />
+        <path d="M14 44 Q40 41 70 45 M12 52 Q44 49 78 53 M16 59 Q42 57 72 60" stroke="#3b2817" strokeWidth="2" fill="none" opacity="0.8" />
+        <rect x="10" y="39" width="76" height="7" rx="4" fill="rgba(255,230,190,0.12)" />
+        <ellipse cx="86" cy="51" rx="7" ry="13" fill="#c79d6c" stroke="#2e1f12" strokeWidth="1.2" />
+        <ellipse cx="86" cy="51" rx="4.2" ry="8" fill="none" stroke="#8a6440" strokeWidth="1.2" />
+        <ellipse cx="86" cy="51" rx="1.6" ry="3" fill="#8a6440" />
+        {mousse && <ellipse cx={30 + a(3) * 24} cy="41" rx="12" ry="4" fill="#5f8a3d" opacity="0.85" />}
+        {neige && <rect x="12" y="35" width="70" height="7" rx="4" fill="rgba(255,255,255,0.9)" />}
+      </g>
+    </svg>
+  );
+}
+
+/** Une caisse de bois : planches, renfort en croix, un peu de travers. */
+export function Caisse({ x, y, terrain }: Props) {
+  const a = (n: number) => alea(x, y, 300 + n);
+  const angle = ((a(1) - 0.5) * 14).toFixed(1);
+  const neige = terrain === 'neige';
+  return (
+    <svg viewBox="0 0 100 100" className="relief-svg" aria-hidden>
+      <ellipse cx="54" cy="86" rx="36" ry="9" fill="rgba(0,0,0,0.38)" />
+      <g transform={`rotate(${angle} 50 54)`}>
+        <rect x="18" y="22" width="64" height="62" rx="3" fill="#94683a" stroke="#3f2914" strokeWidth="2" />
+        <path d="M18 43 H82 M18 63 H82" stroke="#6d4a26" strokeWidth="2" />
+        <path d="M22 26 L78 80 M78 26 L22 80" stroke="#6d4a26" strokeWidth="4" opacity="0.85" />
+        <rect x="18" y="22" width="64" height="62" rx="3" fill="none" stroke="#3f2914" strokeWidth="5" opacity="0.55" />
+        <rect x="20" y="24" width="60" height="6" fill="rgba(255,235,200,0.18)" />
+        {neige && <rect x="18" y="20" width="64" height="9" rx="3" fill="rgba(255,255,255,0.9)" />}
+      </g>
+    </svg>
+  );
+}
+
+/** Taille d'un élément dessiné, en cases (largeur, hauteur) : un arbre déborde, un obstacle bas reste dans sa case. */
+export const TAILLE_SPRITE: Record<Relief, readonly [number, number]> = {
+  arbre: [1.35, 1.55],
+  rocher: [1.05, 1.05],
+  'rocher-bas': [1, 0.95],
+  tronc: [1.15, 1],
+  caisse: [0.95, 0.95],
+  eau: [1, 1],
+  boue: [1, 1],
+  neige: [1, 1],
+};
+
+/** Le dessin d'un élément (rien pour une plaque : elle est dessinée par la case elle-même). */
+export function DessinRelief({ relief, x, y, terrain }: Props & { relief: Relief }) {
+  switch (relief) {
+    case 'arbre':
+      return <Arbre x={x} y={y} terrain={terrain} />;
+    case 'rocher':
+      return <Rocher x={x} y={y} terrain={terrain} />;
+    case 'rocher-bas':
+      return <RocherBas x={x} y={y} terrain={terrain} />;
+    case 'tronc':
+      return <Tronc x={x} y={y} terrain={terrain} />;
+    case 'caisse':
+      return <Caisse x={x} y={y} terrain={terrain} />;
+    default:
+      return null;
+  }
 }

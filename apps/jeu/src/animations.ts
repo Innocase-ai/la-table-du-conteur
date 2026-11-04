@@ -307,7 +307,7 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         const bulle = () => {
           if (d.de === undefined || d.total === undefined) return;
           const fleche = d.avantage ? '⇈ ' : d.desavantage ? '⇊ ' : '';
-          o.effet({ type: 'bulle', position: a, texte: `${fleche}${d.de} ${signe(d.total - d.de)} = ${d.total}${d.ca !== undefined ? ` contre CA ${d.ca}` : ''}`, duree: 1200 });
+          o.effet({ type: 'bulle', position: a, texte: `${fleche}${d.de} ${signe(d.total - d.de)} = ${d.total}${d.ca !== undefined ? ` contre CA ${d.ca}${d.couvert ? ' 🛡' : ''}` : ''}`, duree: 1200 });
         };
         if (d.resultat === 'rate') {
           // Une arme qui rate siffle dans le vide (un sort qui rate n'a pas de bruit propre).

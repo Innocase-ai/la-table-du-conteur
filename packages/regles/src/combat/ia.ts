@@ -6,7 +6,7 @@
 // d'après leur état apparent (intact, blessé, en sang).
 import { cartesDisponibles, executer, type Carte, type Commande, type Contexte } from './cartes';
 import { actif, aEtat, cloner, combattant, ennemis, horsCombat, journaliser, peutAgir, type Camp, type Combattant, type EtatCombat } from './etat';
-import { cle, distanceCases, distanceMetres, ligneDeVue, type Position } from './grille';
+import { cle, couvert, distanceCases, distanceMetres, ligneDeVue, type Position } from './grille';
 import { deplacementsPossibles, deplacer, etatApparent, finTour } from './moteur';
 
 export interface Doctrine {
@@ -177,6 +177,10 @@ function destinations(etat: EtatCombat, c: Combattant): Position[] {
   // Position de tir : loin du contact, avec une ligne de vue sur un ennemi à moins de 18 m.
   const tirs = chemins.filter((ch) => adversaires.some((e) => distanceMetres(ch.arrivee, e.position) <= 18 && ligneDeVue(etat.grille, ch.arrivee, e.position)));
   ajouter(tirs.sort((a, b) => distMin(b.arrivee) - distMin(a.arrivee))[0]?.arrivee);
+  // Tir à couvert : une position de tir où un obstacle bas protège des ennemis qui pourraient tirer en retour.
+  // La simulation du round dira si elle vaut mieux que les autres.
+  const abrites = (p: Position) => adversaires.filter((e) => couvert(etat.grille, e.position, p) > 0).length;
+  ajouter(tirs.filter((ch) => abrites(ch.arrivee) > 0).sort((a, b) => abrites(b.arrivee) - abrites(a.arrivee) || distMin(b.arrivee) - distMin(a.arrivee))[0]?.arrivee);
   // Repli : le plus loin possible des ennemis.
   ajouter(chemins.sort((a, b) => distMin(b.arrivee) - distMin(a.arrivee))[0]?.arrivee);
   // Rapprochement à mi-chemin.

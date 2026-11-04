@@ -309,6 +309,15 @@ button:disabled {
 .mc-neige {
   background: #d7e2e8;
 }
+.mc-rocher-bas {
+  background: #9a948a;
+}
+.mc-tronc {
+  background: #6b4a2f;
+}
+.mc-caisse {
+  background: #a77a47;
+}
 .mc-heros {
   background: var(--heros);
 }
@@ -7367,4 +7376,21 @@ kbd {
 }
 .terrain-neige .mur-face:not([style*='background-image']) {
   background-color: #6c767d;
+}
+
+/* Une cible à couvert (obstacle bas entre elle et l'attaquant) : +2 à sa CA. */
+.badge-couvert {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  padding: 0 4px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #f3e6c8;
+  background: rgba(40, 52, 70, 0.95);
+  border: 1px solid #8fb2d8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  z-index: 3;
 }

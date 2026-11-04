@@ -161,6 +161,8 @@ export interface DetailsEvenement {
   sauvegarde?: 'reussie' | 'ratee';
   critique?: boolean;
   types?: string[];
+  /** Attaque : la cible est à couvert derrière un obstacle bas (+2 à sa CA, déjà compris dans `ca`). */
+  couvert?: number;
   /** Dégâts : la cible résiste, est vulnérable ou immunisée (affiché par l'animation). */
   reaction?: 'resiste' | 'vulnerable' | 'immunise';
 }

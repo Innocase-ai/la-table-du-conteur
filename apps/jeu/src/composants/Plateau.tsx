@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState, type ReactElement } from 'react';
-import { cle, etatApparent, reliefDe, typeCase, type Combattant, type EtatCombat, type Position, type Relief, type Terrain } from '@crpg/regles';
+import { cle, couvert, etatApparent, reliefDe, typeCase, type Combattant, type EtatCombat, type Position, type Relief, type Terrain } from '@crpg/regles';
 import { LIBELLES_APPARENT, nomClasse } from '../libelles';
 import type { Donnees } from '@crpg/regles';
 import type { Effet } from '../animations';
 import { COULEURS_FAMILLES, type Famille } from '../effets-visuels';
 import { textureRelief, textureTerrain } from '../visuels';
 import { Jeton } from './Jeton';
-import { Arbre, Rocher } from './Reliefs';
+import { DessinRelief, TAILLE_SPRITE } from './Reliefs';
 
 export interface Surcouches {
   /** Cases atteignables par le héros actif (clé « x,y » → coût en mètres). */
@@ -138,8 +138,8 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
       const relief = reliefDe(etat.grille, p);
       // Arbres et rochers se dessinent par-dessus un sol normal ; l'eau, la boue et la neige remplacent le sol de la case.
       const plaque = relief === 'eau' || relief === 'boue' || relief === 'neige' ? relief : undefined;
-      // Sous un arbre ou un rocher, la case a l'aspect d'un sol (les règles, elles, la traitent toujours comme un mur).
-      const sousRelief = relief === 'arbre' || relief === 'rocher';
+      // Sous un élément dessiné (arbre, rocher, obstacle bas), la case a l'aspect d'un sol ; les règles gardent son type.
+      const sousRelief = !!relief && !plaque;
       const classes = ['case', `case-${sousRelief ? 'sol' : type}`];
       if (plaque) classes.push('case-relief', `case-relief-${plaque}`);
       if (surcouches.atteignables.has(k)) classes.push('case-atteignable');
@@ -172,7 +172,7 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
           }
         : {};
       // Sous un arbre ou un rocher, le sol de l'ambiance.
-      const styleCase = type === 'mur' && !sousRelief ? {} : plaque ? stylePlaque : texture(sousRelief ? 'sol' : type);
+      const styleCase = type === 'mur' && !sousRelief ? {} : plaque ? stylePlaque : texture(sousRelief || type === 'obstacle' ? 'sol' : type);
       cases.push(
         <div
           key={k}
@@ -185,18 +185,19 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
           {plaque === 'eau' && <span className="ondes" />}
         </div>,
       );
-      if (relief === 'arbre' || relief === 'rocher') {
-        // Plus large et plus haut que la case : la couronne dépasse un peu. Toujours sous les jetons (lisibilité d'abord).
-        const arbre = relief === 'arbre';
-        const largeur = Math.round(g.cote * (arbre ? 1.35 : 1.05));
-        const hauteur = Math.round(g.cote * (arbre ? 1.55 : 1.05));
+      if (relief && !plaque) {
+        // Plus large et plus haut que la case : la couronne d'un arbre dépasse un peu ; un obstacle bas reste dans sa case.
+        // Toujours sous les jetons (lisibilité d'abord).
+        const [fl, fh] = TAILLE_SPRITE[relief];
+        const largeur = Math.round(g.cote * fl);
+        const hauteur = Math.round(g.cote * fh);
         reliefsDessines.push(
           <div
             key={`r${k}`}
             className={`relief relief-${relief}`}
             style={{ left: Math.round((x + 0.5) * g.cote - largeur / 2), top: g.marge + (y + 1) * g.hc - hauteur + Math.round(g.hc * 0.06), width: largeur, height: hauteur, zIndex: 7 + y * 3 }}
           >
-            {arbre ? <Arbre x={x} y={y} terrain={terrain} /> : <Rocher x={x} y={y} terrain={terrain} />}
+            <DessinRelief relief={relief} x={x} y={y} terrain={terrain} />
           </div>,
         );
         continue;
@@ -214,6 +215,7 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
   }
 
   const visibles = etat.combattants.filter((c) => !c.enFuite);
+  const positionActif = etat.combattants.find((c) => c.id === actifId)?.position;
   // Les morts d'abord, pour que les vivants passent au-dessus.
   visibles.sort((a, b) => Number(b.mort) - Number(a.mort));
   const survole = infobulle ? etat.combattants.find((c) => c.id === infobulle) : undefined;
@@ -245,6 +247,8 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
         {murs}
         {visibles.map((c) => {
           const valide = surcouches.ciblesValides.has(c.id);
+          // Une cible visée derrière un obstacle bas est à couvert : +2 à sa CA, signalé par un bouclier.
+          const aCouvert = valide && surcouches.modeCible === 'cibles' && !!positionActif && c.id !== actifId && couvert(etat.grille, positionActif, c.position) > 0;
           const choisie = surcouches.ciblesChoisies.get(c.id);
           const dansZone = surcouches.zone.has(cle(c.position));
           const classes = ['emplacement-jeton'];
@@ -286,6 +290,11 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
             >
               <Jeton c={c} taille={Math.round(g.cote * (['G', 'TG', 'Gig'].includes(c.taille) ? TAILLE_JETON_GRAND : TAILLE_JETON))} details />
               {choisie !== undefined && <span className="compteur-cible">{choisie > 1 ? `×${choisie}` : '✓'}</span>}
+              {aCouvert && (
+                <span className="badge-couvert" title="À couvert derrière un obstacle bas : +2 à sa CA">
+                  🛡+2
+                </span>
+              )}
             </div>
           );
         })}

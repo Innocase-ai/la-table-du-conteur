@@ -3,7 +3,7 @@
 import type { Sort } from '../schemas';
 import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
-import { ajouterEtat, detailsJet, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
+import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
 
 /** Sorts que le moteur de combat sait jouer fidèlement (les autres figurent sur la fiche, marqués « non jouable en combat »). */
 export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
@@ -98,7 +98,7 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
     const r = sort.resolution;
     if (r?.type === 'attaque') {
       const jet = jetAttaque(etat, lanceur, c, inc.bonusAttaque, r.mode);
-      journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, r.mode === 'distance', sort.id) });
+      journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}${jet.couvert ? ' (cible à couvert, +2 CA)' : ''}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, r.mode === 'distance', sort.id) });
       if (jet.touche) {
         infligerDegats(etat, c, des.map((d) => ({ montant: lancerDes(etat, d.des, jet.critique ? 2 : 1) + d.bonus, type: d.type })), lanceur, jet.critique);
         effetsSecondaires(etat, lanceur, sort, c);
@@ -108,8 +108,11 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
         infligerDegats(etat, c, des.map((d) => ({ montant: Math.floor(lancerDes(etat, d.des) / 2), type: d.type })), lanceur);
       }
     } else if (r?.type === 'sauvegarde') {
-      const reussite = sauvegarde(etat, c, r.caracteristique, inc.dd);
-      journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: !sort.zone && sort.portee.type === 'distance' } });
+      // Le demi-couvert aide à la sauvegarde de Dextérité contre l'effet, depuis son origine (le point visé d'une zone, sinon le lanceur).
+      const origine = sort.zone && cible.point && sort.portee.type !== 'personnel' ? cible.point : lanceur.position;
+      const bonusCouvert = couvertSauvegarde(etat, c, r.caracteristique, origine);
+      const reussite = sauvegarde(etat, c, r.caracteristique, inc.dd, bonusCouvert);
+      journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}${bonusCouvert ? ' (à couvert, +2)' : ''}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: !sort.zone && sort.portee.type === 'distance' } });
       const appuye = sort.niveau === 0 && lanceur.traits.includes('sort-mineur-appuye');
       const facteur = reussite ? (r.moitieSiReussite || appuye ? 0.5 : 0) : 1;
       if (facteur > 0 && des.length) {

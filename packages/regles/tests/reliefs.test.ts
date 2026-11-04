@@ -1,8 +1,13 @@
-// Les éléments posés sur les cases (arbre, rocher, eau, boue, neige) : lus dans les cartes en texte, et sans rien changer
-// aux règles : un arbre ou un rocher fait le même effet qu'un mur, l'eau, la boue ou la neige celui d'un terrain difficile.
+// Les éléments posés sur les cases : lus dans les cartes en texte, avec leurs règles. Arbre et rocher font l'effet d'un mur, eau,
+// boue et neige celui d'un terrain difficile ; les obstacles bas (rocher bas, tronc, caisse) bloquent le passage et donnent un couvert.
 import { describe, expect, it } from 'vitest';
-import { cheminsAtteignables, grilleDepuisTexte, INFO_RELIEFS, ligneDeVue, RELIEFS, reliefDe, TERRAINS, typeCase } from '../src/combat/grille';
-import { RENCONTRES } from '../src/combat/prototype';
+import { heroDepuisFiche, monstreDepuisProfil } from '../src/combat/creation';
+import { combattant } from '../src/combat/etat';
+import { BONUS_COUVERT, cheminsAtteignables, couvert, grilleDepuisTexte, INFO_RELIEFS, ligneDeVue, RELIEFS, reliefDe, TERRAINS, typeCase } from '../src/combat/grille';
+import { ca, couvertSauvegarde, creerCombat, detailsJet, jetAttaque, sauvegarde } from '../src/combat/moteur';
+import { HEROS_PRE_TIRES, RENCONTRES } from '../src/combat/prototype';
+import { chargerDonneesSrd } from '../src/donnees-node';
+import { calculerFiche } from '../src/fiche';
 
 const vide = { bloquees: new Set<string>(), occupees: new Set<string>() };
 
@@ -35,10 +40,11 @@ describe('éléments sur les cases', () => {
     expect(grilleDepuisTexte(['..#', '.~.']).reliefs).toBeUndefined();
   });
 
-  it('les types de case de chaque élément : mur pour l’arbre et le rocher, terrain difficile pour le reste', () => {
+  it('les types de case de chaque élément : mur pour l’arbre et le rocher, terrain difficile pour les plaques, obstacle bas pour le reste', () => {
     expect(INFO_RELIEFS.arbre.type).toBe('mur');
     expect(INFO_RELIEFS.rocher.type).toBe('mur');
     for (const r of ['eau', 'boue', 'neige'] as const) expect(INFO_RELIEFS[r].type).toBe('difficile');
+    for (const r of ['rocher-bas', 'tronc', 'caisse'] as const) expect(INFO_RELIEFS[r].type).toBe('obstacle');
   });
 
   it('un arbre bloque le passage et la vue comme un mur', () => {
@@ -66,5 +72,87 @@ describe('éléments sur les cases', () => {
       expect(TERRAINS).toContain(r.terrain);
       for (const ligne of r.carte) for (const c of ligne) expect(connus.has(c), `${r.id} : « ${c} »`).toBe(true);
     }
+  });
+});
+
+describe('obstacles bas et couvert (phase 2)', () => {
+  it('un obstacle bas (rocher bas, tronc, caisse) bloque le passage mais pas la vue', () => {
+    for (const lettre of ['r', 't', 'c']) {
+      const g = grilleDepuisTexte([`.${lettre}.`]);
+      expect(typeCase(g, { x: 1, y: 0 })).toBe('obstacle');
+      expect(ligneDeVue(g, { x: 0, y: 0 }, { x: 2, y: 0 })).toBe(true);
+      expect(cheminsAtteignables(g, { x: 0, y: 0 }, 30, vide).has('1,0')).toBe(false);
+    }
+  });
+
+  it('demi-couvert : +2 quand un obstacle bas est entre les deux, rien s’il est collé à celui qui tire', () => {
+    const g = grilleDepuisTexte(['......', '......']);
+    expect(couvert(g, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(0);
+    const derriere = grilleDepuisTexte(['....r.']);
+    expect(couvert(derriere, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(BONUS_COUVERT);
+    expect(BONUS_COUVERT).toBe(2);
+    // Le tireur se tient contre le rocher : il tire par-dessus.
+    const contre = grilleDepuisTexte(['.r....']);
+    expect(couvert(contre, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(0);
+    // Un obstacle hors du tracé ne protège pas.
+    const cote = grilleDepuisTexte(['......', '....r.']);
+    expect(couvert(cote, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(0);
+    // Au corps à corps (cases voisines), rien entre les deux.
+    expect(couvert(derriere, { x: 3, y: 0 }, { x: 5, y: 0 })).toBe(0);
+  });
+
+  it('un arbre ou un mur ne donne pas de couvert : il coupe la vue, l’attaque n’a pas lieu', () => {
+    const g = grilleDepuisTexte(['..T...']);
+    expect(couvert(g, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(0);
+    expect(ligneDeVue(g, { x: 0, y: 0 }, { x: 5, y: 0 })).toBe(false);
+  });
+});
+
+describe('le couvert dans un vrai combat', () => {
+  const donnees = chargerDonneesSrd();
+  const hero = (x: number, y: number) => {
+    const h = HEROS_PRE_TIRES.find((p) => p.choix.nom === 'Sylvaine')!;
+    const r = calculerFiche(h.choix, donnees);
+    if (!r.ok) throw new Error(r.erreurs.join());
+    return heroDepuisFiche(r.fiche, h.kit, donnees, { x, y });
+  };
+  const combat = (carte: string[]) => {
+    const etat = creerCombat(
+      grilleDepuisTexte(carte),
+      [
+        { ...hero(0, 0), bonusInitiative: 100 },
+        { ...monstreDepuisProfil(donnees.monstres.get('combattant-gobelin')!, 'gob', { x: 5, y: 0 }), bonusInitiative: 0 },
+      ],
+      1,
+      { elan: false },
+    );
+    return { etat, sylvaine: combattant(etat, 'sylvaine'), gob: combattant(etat, 'gob') };
+  };
+
+  it('le même jet touche à découvert et rate derrière un rocher bas, et le journal dit pourquoi', () => {
+    const ouvert = combat(['......']);
+    const juste = ca(ouvert.gob) - 5;
+    ouvert.etat.desImposes = [juste];
+    expect(jetAttaque(ouvert.etat, ouvert.sylvaine, ouvert.gob, 5, 'distance').touche).toBe(true);
+
+    const abrite = combat(['....r.']);
+    abrite.etat.desImposes = [juste];
+    const jet = jetAttaque(abrite.etat, abrite.sylvaine, abrite.gob, 5, 'distance');
+    expect(jet.couvert).toBe(2);
+    expect(jet.ca).toBe(ca(abrite.gob) + 2);
+    expect(jet.touche).toBe(false);
+    expect(detailsJet(jet, true).couvert).toBe(2);
+  });
+
+  it('le couvert aide aux sauvegardes de Dextérité, et à elles seules', () => {
+    const { etat, gob } = combat(['....r.']);
+    expect(couvertSauvegarde(etat, gob, 'dex', { x: 0, y: 0 })).toBe(2);
+    expect(couvertSauvegarde(etat, gob, 'sag', { x: 0, y: 0 })).toBe(0);
+    // Un jet qui rate de 1 réussit avec le couvert.
+    const dd = 15;
+    etat.desImposes = [dd - 1 - gob.sauvegardes.dex];
+    expect(sauvegarde(etat, gob, 'dex', dd)).toBe(false);
+    etat.desImposes = [dd - 1 - gob.sauvegardes.dex];
+    expect(sauvegarde(etat, gob, 'dex', dd, couvertSauvegarde(etat, gob, 'dex', { x: 0, y: 0 }))).toBe(true);
   });
 });

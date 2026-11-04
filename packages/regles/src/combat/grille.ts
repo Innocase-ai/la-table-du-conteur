@@ -2,7 +2,16 @@
 
 export const TAILLE_CASE = 1.5;
 
-export type TypeCase = 'sol' | 'mur' | 'difficile';
+/**
+ * Type d'une case pour les règles : sol ; mur (bloque le passage et la vue) ; terrain difficile (déplacement ×2) ;
+ * obstacle bas (bloque le passage, pas la vue, et donne un demi-couvert à qui se tient derrière).
+ */
+export type TypeCase = 'sol' | 'mur' | 'difficile' | 'obstacle';
+
+/** On peut entrer dans la case (ni mur, ni obstacle). */
+export function franchissable(t: TypeCase): boolean {
+  return t !== 'mur' && t !== 'obstacle';
+}
 
 /** Ambiances de plateau : chacune a ses textures (sol, difficile, mur), communes à tous les mondes. */
 export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp', 'neige'] as const;
@@ -17,13 +26,13 @@ export interface Position {
  * Éléments posés sur les cases, indépendants de l'ambiance du plateau (un arbre ou de l'eau peuvent se trouver sur
  * n'importe quel sol). Chacun reprend les règles d'un type de case existant : l'apparence est libre, le jeu ne change pas.
  */
-export const RELIEFS = ['arbre', 'rocher', 'eau', 'boue', 'neige'] as const;
+export const RELIEFS = ['arbre', 'rocher', 'eau', 'boue', 'neige', 'rocher-bas', 'tronc', 'caisse'] as const;
 export type Relief = (typeof RELIEFS)[number];
 
 export interface InfoRelief {
   /** Le caractère qui le désigne dans une carte écrite en texte. */
   lettre: string;
-  /** Les règles qu'il applique : un mur (bloque le passage et la vue) ou un terrain difficile (déplacement doublé). */
+  /** Les règles qu'il applique : mur, terrain difficile ou obstacle bas (voir `TypeCase`). */
   type: Exclude<TypeCase, 'sol'>;
   libelle: string;
 }
@@ -34,6 +43,9 @@ export const INFO_RELIEFS: Record<Relief, InfoRelief> = {
   eau: { lettre: 'e', type: 'difficile', libelle: 'Eau peu profonde' },
   boue: { lettre: 'b', type: 'difficile', libelle: 'Boue' },
   neige: { lettre: 'n', type: 'difficile', libelle: 'Neige profonde' },
+  'rocher-bas': { lettre: 'r', type: 'obstacle', libelle: 'Rocher bas' },
+  tronc: { lettre: 't', type: 'obstacle', libelle: 'Tronc couché' },
+  caisse: { lettre: 'c', type: 'obstacle', libelle: 'Caisse' },
 };
 
 const RELIEF_PAR_LETTRE = new Map(RELIEFS.map((r) => [INFO_RELIEFS[r].lettre, r]));
@@ -48,7 +60,8 @@ export interface Grille {
 
 /**
  * Construit une grille à partir de lignes de texte : « . » sol, « # » mur, « ~ » terrain difficile, et les éléments
- * « T » arbre, « R » rocher (comme des murs), « e » eau peu profonde, « b » boue, « n » neige (terrain difficile).
+ * « T » arbre, « R » rocher (comme des murs), « e » eau peu profonde, « b » boue, « n » neige (terrain difficile),
+ * « r » rocher bas, « t » tronc couché, « c » caisse (obstacles bas : on ne passe pas, on voit et on tire par-dessus).
  */
 export function grilleDepuisTexte(lignes: string[]): Grille {
   const hauteur = lignes.length;
@@ -102,10 +115,47 @@ export function voisins(grille: Grille, p: Position): Position[] {
     for (let dx = -1; dx <= 1; dx++) {
       if (dx === 0 && dy === 0) continue;
       const v = { x: p.x + dx, y: p.y + dy };
-      if (typeCase(grille, v) !== 'mur') res.push(v);
+      if (franchissable(typeCase(grille, v))) res.push(v);
     }
   }
   return res;
+}
+
+/** Les cases traversées par le tracé entre deux centres de cases (Bresenham), extrémités exclues. */
+export function casesEntre(a: Position, b: Position): Position[] {
+  const res: Position[] = [];
+  let x0 = a.x;
+  let y0 = a.y;
+  const dx = Math.abs(b.x - x0);
+  const dy = -Math.abs(b.y - y0);
+  const sx = x0 < b.x ? 1 : -1;
+  const sy = y0 < b.y ? 1 : -1;
+  let err = dx + dy;
+  for (;;) {
+    if (x0 === b.x && y0 === b.y) return res;
+    if (!(x0 === a.x && y0 === a.y)) res.push({ x: x0, y: y0 });
+    const e2 = 2 * err;
+    if (e2 >= dy) {
+      err += dy;
+      x0 += sx;
+    }
+    if (e2 <= dx) {
+      err += dx;
+      y0 += sy;
+    }
+  }
+}
+
+/** Bonus d'un demi-couvert (SRD 5.2.1) : +2 à la CA et aux jets de sauvegarde de Dextérité. */
+export const BONUS_COUVERT = 2;
+
+/**
+ * Demi-couvert de la cible face à une attaque (ou un effet) venant de `origine` : un obstacle bas sur le tracé, qui
+ * n'est pas collé à l'origine. Qui se tient contre un muret tire par-dessus sans gêne ; qui se cache derrière en profite.
+ * Les murs ne comptent pas : ils coupent la vue, l'attaque n'a pas lieu.
+ */
+export function couvert(grille: Grille, origine: Position, cible: Position): number {
+  return casesEntre(origine, cible).some((p) => typeCase(grille, p) === 'obstacle' && distanceCases(origine, p) > 1) ? BONUS_COUVERT : 0;
 }
 
 /** Ligne de vue entre deux centres de cases : aucun mur sur le tracé (Bresenham, extrémités exclues). */
