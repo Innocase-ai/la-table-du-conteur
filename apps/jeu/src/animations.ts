@@ -8,6 +8,7 @@ import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } 
 import { estPhysique, estRayon, famille, familleDominante, famillePhysique, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 import { jouerSon, precharger } from './sons';
 import { degatsDeLAttaque, sonAuLancement, sonDeCoup, sonDeRate, sonDeSort, sonDeTir, type Son } from './sons-regles';
+import type { Replique } from './repliques-regles';
 
 export interface Surcharge {
   position: Position;
@@ -26,6 +27,8 @@ export type Effet =
   | { id: number; type: 'cercle'; position: Position; couleur: string; duree: number }
   | { id: number; type: 'texte'; position: Position; texte: string; classe: string; duree: number; decalage?: number }
   | { id: number; type: 'bulle'; position: Position; texte: string; duree: number }
+  /** Réplique d'un compagnon : une bulle de parole au-dessus de son jeton. */
+  | { id: number; type: 'replique'; position: Position; texte: string; duree: number }
   /** Zone d'effet ; avec `origine` et `delai`, elle se propage case après case depuis l'origine (délai par case, en ms). */
   | { id: number; type: 'zone'; cases: Position[]; couleur: string; duree: number; origine?: Position; delai?: number }
   | { id: number; type: 'lueur'; position: Position; couleur: string; duree: number }
@@ -202,7 +205,12 @@ const SECOUSSE: Keyframe[] = [
 
 const FLASH: Keyframe[] = [{ filter: 'none' }, { filter: 'brightness(1.9) drop-shadow(0 0 6px #ff3b2f)' }, { filter: 'none' }];
 
-function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Outils, reduit: boolean): Pas[] {
+/** Durée d'une bulle de réplique : le temps de la lire. */
+export function dureeReplique(texte: string): number {
+  return Math.min(4200, 1800 + texte.length * 45);
+}
+
+function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Outils, reduit: boolean, repliques: readonly Replique[] = []): Pas[] {
   const pas: Pas[] = [];
   const positions = new Map([...inst.surcharges].map(([id, s]) => [id, { ...s.position }]));
   const pos = (id: string | undefined) => (id ? positions.get(id) : undefined);
@@ -466,6 +474,11 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
       default:
         break;
     }
+    // Une réplique de compagnon se dit juste après ce qui l'a provoquée ; elle ne retient pas la suite de la file.
+    for (const r of repliques) {
+      const lieu = r.apres === index ? pos(r.locuteur) : undefined;
+      if (lieu) ajouter(0, () => o.effet({ type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte) }));
+    }
     // Le journal s'affiche au rythme des animations.
     const premier = local[0];
     if (premier) {
@@ -502,6 +515,9 @@ export function useAnimations(donnees: Donnees, facteur: number) {
   const file = useRef<Pas[]>([]);
   const minuteur = useRef<number | undefined>(undefined);
   const minuteursEffets = useRef(new Set<number>());
+  const minuteursRepliques = useRef(new Set<number>());
+  /** Quand la dernière bulle de réplique (montrée ou en attente) aura fini d'être lue. */
+  const finBulle = useRef(0);
   const elements = useRef(new Map<string, HTMLElement>());
   const facteurRef = useRef(facteur);
   facteurRef.current = facteur;
@@ -511,14 +527,22 @@ export function useAnimations(donnees: Donnees, facteur: number) {
   const outils: Outils = {
     vue: () => vue.current,
     effet: (e) => {
-      const id = prochainId.current++;
-      vue.current.effets = [...vue.current.effets, { ...e, id } as Effet];
-      const t = window.setTimeout(() => {
-        minuteursEffets.current.delete(t);
-        vue.current.effets = vue.current.effets.filter((x) => x.id !== id);
-        forcer();
-      }, e.duree * facteurRef.current + 50);
-      minuteursEffets.current.add(t);
+      // Une bulle de réplique à la fois : la suivante attend que la précédente ait été lue.
+      if (e.type === 'replique') {
+        const maintenant = performance.now();
+        const attente = finBulle.current > maintenant ? finBulle.current - maintenant + 200 : 0;
+        finBulle.current = maintenant + attente + e.duree;
+        if (attente > 0) {
+          const t = window.setTimeout(() => {
+            minuteursRepliques.current.delete(t);
+            montrer(e);
+            forcer();
+          }, attente);
+          minuteursRepliques.current.add(t);
+          return;
+        }
+      }
+      montrer(e);
     },
     animer: (id, images, duree) => {
       const el = elements.current.get(id);
@@ -526,6 +550,23 @@ export function useAnimations(donnees: Donnees, facteur: number) {
     },
     son: (nom) => jouerSon(nom),
   };
+
+  function montrer(e: EffetSansId) {
+    const id = prochainId.current++;
+    vue.current.effets = [...vue.current.effets, { ...e, id } as Effet];
+    // Une réplique se lit : elle garde sa durée en mode rapide, et survit au clic qui termine la file.
+    const replique = e.type === 'replique';
+    const minuteurs = replique ? minuteursRepliques.current : minuteursEffets.current;
+    const t = window.setTimeout(
+      () => {
+        minuteurs.delete(t);
+        vue.current.effets = vue.current.effets.filter((x) => x.id !== id);
+        forcer();
+      },
+      e.duree * (replique ? 1 : facteurRef.current) + 50,
+    );
+    minuteurs.add(t);
+  }
 
   const finir = useCallback(() => {
     window.clearTimeout(minuteur.current);
@@ -552,7 +593,7 @@ export function useAnimations(donnees: Donnees, facteur: number) {
   };
 
   /** Rejoue les entrées du journal ajoutées depuis l'instantané. */
-  const jouer = (etat: EtatCombat, inst: Instantane) => {
+  const jouer = (etat: EtatCombat, inst: Instantane, repliques: readonly Replique[] = []) => {
     if (file.current.length) terminer();
     vue.current = {
       surcharges: new Map([...inst.surcharges].map(([id, x]) => [id, { ...x, position: { ...x.position }, etats: [...x.etats] }])),
@@ -561,7 +602,7 @@ export function useAnimations(donnees: Donnees, facteur: number) {
       journal: inst.journal,
       effets: vue.current.effets,
     };
-    const pas = construire(etat, inst, donnees, outils, mouvementReduit());
+    const pas = construire(etat, inst, donnees, outils, mouvementReduit(), repliques);
     if (!pas.length) {
       finir();
       return;
@@ -575,7 +616,7 @@ export function useAnimations(donnees: Donnees, facteur: number) {
   const terminer = () => {
     for (const t of minuteursEffets.current) window.clearTimeout(t);
     minuteursEffets.current.clear();
-    vue.current.effets = [];
+    vue.current.effets = vue.current.effets.filter((e) => e.type === 'replique');
     for (const el of elements.current.values()) for (const a of el.getAnimations?.() ?? []) a.finish();
     finir();
   };
@@ -585,8 +626,18 @@ export function useAnimations(donnees: Donnees, facteur: number) {
     return () => {
       window.clearTimeout(minuteur.current);
       for (const t of minuteursEffets.current) window.clearTimeout(t);
+      for (const t of minuteursRepliques.current) window.clearTimeout(t);
     };
   }, []);
 
-  return { vue: vue.current, enCours, jouer, terminer, elements: elements.current };
+  /** Montre un effet hors de la file (la réplique du début du combat). */
+  const afficher = (e: EffetSansId) => {
+    outils.effet(e);
+    forcer();
+  };
+
+  /** Une réplique est à l'écran ou attend son tour (la fin du combat attend qu'elle soit lue). */
+  const parle = () => performance.now() < finBulle.current;
+
+  return { vue: vue.current, enCours, jouer, terminer, afficher, parle, elements: elements.current };
 }

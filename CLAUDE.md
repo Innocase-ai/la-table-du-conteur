@@ -23,6 +23,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `docs/PRD.md` (conception), `docs/ARCHITECTURE-CIBLE.md` (noyau à modules), `docs/COMBAT.md`, `docs/CREATION.md`, `docs/MONDES.md`, `docs/M2-IMAGES.md`, `docs/M4-CONTEUR.md`, `docs/SRD-INVENTAIRE.md`.
 - Code : `packages/regles` (moteur en TypeScript pur), `packages/donnees` (SRD en JSON, charte visuelle), `packages/mondes` (les histoires, un dossier par monde), `apps/jeu` (client Vite + React), `apps/bureau` (coquille de bureau Tauri), `outils/` (scripts en ligne de commande).
 - Son : `docs/SONS.md` (bruitages en place et manquants) ; musiques d'ambiance : `outils/musique/` et `apps/jeu/src/musique/`.
+- Répliques des compagnons (une voix par portrait) : `docs/REPLIQUES.md`, fichiers dans `packages/donnees/repliques/`.
 
 ## Skills du projet (`.claude/skills/`)
 

@@ -24,7 +24,9 @@ import {
   type Position,
 } from '@crpg/regles';
 import { OPTIONS_IA, type Reglages } from '../App';
-import { capturer, etatAffiche, mouvementReduit, useAnimations } from '../animations';
+import { capturer, dureeReplique, etatAffiche, mouvementReduit, useAnimations, type Instantane } from '../animations';
+import { REPLIQUES } from '../repliques';
+import { choisirReplique, declencheurs, nouvelleMemoire, type Replique } from '../repliques-regles';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { arreterMusique, demarrerMusique } from '../musique';
 import { Fiche } from './Fiche';
@@ -88,7 +90,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
 
   const c = actif(etat);
   const termine = !!etat.vainqueur;
-  const finAffichee = termine && !occupe;
+  // Le bilan attend que la dernière réplique (la victoire, souvent) ait été lue.
+  const finAffichee = termine && !occupe && !anim.parle();
   const cleCourante = `${etat.round}:${etat.actif}`;
   const tourJoueur = !termine && c.camp === 'heros' && peutAgir(c) && !herosAuto && tourAuto !== cleCourante;
 
@@ -109,6 +112,21 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     if (finAffichee) arreterMusique(3);
   }, [finAffichee]);
 
+  // Répliques des compagnons : chacun a ses phrases (selon son portrait), dites dans le journal et dans une bulle.
+  const memoireRepliques = useRef(nouvelleMemoire());
+  const [repliques, setRepliques] = useState<Replique[]>([]);
+  // Au début du combat, un héros donne le ton (après un court instant, que le plateau soit affiché).
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      const r = choisirReplique([{ situation: 'debut-combat', apres: etat.journal.length }], etat, REPLIQUES, memoireRepliques.current, Math.random);
+      if (!r) return;
+      setRepliques((l) => [...l, r]);
+      const lieu = etat.combattants.find((x) => x.id === r.locuteur)?.position;
+      if (lieu) anim.afficher({ type: 'replique', position: { ...lieu }, texte: r.texte, duree: dureeReplique(r.texte) });
+    }, 700);
+    return () => window.clearTimeout(t);
+  }, []);
+
   // Messages éphémères.
   useEffect(() => {
     if (!message) return;
@@ -120,11 +138,18 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   // Commandes du joueur
   // ---------------------------------------------------------------------------
 
+  /** Rejoue les entrées de journal ajoutées depuis `avant`, avec la réplique d'un compagnon si la situation s'y prête. */
+  const rejouer = (avant: Instantane) => {
+    const r = choisirReplique(declencheurs(etat, avant), etat, REPLIQUES, memoireRepliques.current, Math.random);
+    if (r) setRepliques((l) => [...l, r]);
+    anim.jouer(etat, avant, r ? [r] : []);
+  };
+
   /** Exécute une commande puis rejoue ses entrées de journal en animation. */
   const executerAnime = (cmd: Commande) => {
     const avant = capturer(etat);
     const r = executer(etat, ctx, cmd);
-    anim.jouer(etat, avant);
+    rejouer(avant);
     return r;
   };
 
@@ -245,7 +270,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
         setPensee(`${a.nom} cherche à fuir !`);
         const avant = capturer(etat);
         jouerTourIA(etat, ctx, OPTIONS_IA[reglages.ia]);
-        anim.jouer(etat, avant);
+        rejouer(avant);
         return;
       }
       if (etapesIA.current >= 8) {
@@ -390,7 +415,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       </main>
 
       <aside className="colonne-journal">
-        <Journal journal={etat.journal} longueur={occupe ? (anim.vue.journal ?? etat.journal.length) : etat.journal.length} />
+        <Journal journal={etat.journal} longueur={occupe ? (anim.vue.journal ?? etat.journal.length) : etat.journal.length} repliques={repliques} />
       </aside>
 
       <aside className="zone-main">

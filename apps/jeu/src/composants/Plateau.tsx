@@ -392,6 +392,15 @@ export function EffetsPlateau({ effets, g, vitesse }: { effets: Effet[]; g: Geom
               </div>
             );
           }
+          case 'replique': {
+            const a = centre(e.position, g);
+            return (
+              // Le temps de lecture ne suit pas la vitesse des animations.
+              <div key={e.id} className="bulle-replique" style={{ left: a.x, top: a.y - cote * 0.62, animationDuration: `${e.duree}ms` }}>
+                {e.texte}
+              </div>
+            );
+          }
           case 'zone':
             return e.cases.map((p, i) => {
               // Propagation : chaque case s'allume après un délai proportionnel à sa distance à l'origine.
