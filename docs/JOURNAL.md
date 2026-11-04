@@ -538,3 +538,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Scènes** (agent Haiku) : 8 scènes, 27 plans (ouverture en film sans secret, remise de la quête, entrée du palais, une scène par fin) ; **27 voix officielles** (Gemini, Algieba, ×1,15), ≈ 0,09 $. Le plafond de sécurité de `pnpm voix generer` (0,05 $) arrête le lot : passer `--plafond 0.2` pour un monde entier.
 - Contrôle automatique des textes courts (longueurs, tics, révélations anticipées) : propre ; une question trop courte corrigée.
 - 0 erreur de validation, 645 tests verts. **Reste** : jouer les 6 énigmes dans le jeu (seulement validées par `pnpm monde enigmes`), relire à la main quelques descriptions, monstres du bestiaire aux fonds de braise (hérités du style du Val).
+
+### Suite (même jour) : images, scènes, voix de La Citadelle des Marées
+
+- **Autorisation de l'utilisateur** : « tu as l'autorisation de tout faire ». Dépenses : **127 images** FLUX Klein (≈ 1,15 $, 63 lieux, 40 PNJ, 15 monstres, 9 objets ; un seul refus de modération signalé par le journal, l'image de Garance Bolle existe pourtant ; relues sur 11 planches : aucune image à refaire) installées en WebP (7 Mo) ; **27 voix** officielles (≈ 0,09 $, un arrêt au plafond de 0,05 $ de l'outil : relevé avec `--plafond 0.2`).
+- **Scènes** (`scenes/scenes.json`, écrites par un agent Haiku, relues) : ouverture en film (6 plans, sans secret), remise de la quête principale, entrée du palais, une scène par fin (5), soit 8 scènes et 27 plans.
+- **Textes courts** : contrôle automatique (longueurs, tics, révélations) propre ; un libellé trop court corrigé. Pas de passe de critiques Haiku : rien à signaler.
+- **Essai en jeu** (groupe de 6 de test injecté dans le navigateur) : carte d'histoire avec couverture, film d'ouverture, arrivée, jauge « La Marée », passages expliqués, énigme du tiroir des vives-eaux jouée et résolue, conversation avec Ysmène (questions écrites, Influencer). Piège : si un ancien serveur occupe le port 5173, `pnpm jeu` démarre sur 5174 et le jeu ne voit pas les nouveaux fichiers.
+- **Pas encore joué à la main** : les 5 autres énigmes (validées par `pnpm monde enigmes`), le combat de la grille de mer, les quatre fins de bout en bout (rejouées seulement par test).
