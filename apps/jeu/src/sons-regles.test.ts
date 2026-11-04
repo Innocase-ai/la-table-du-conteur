@@ -1,5 +1,35 @@
 import { describe, expect, it } from 'vitest';
-import { armeDuJournal, estArmeDeTir, SONS, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir } from './sons-regles';
+import type { Evenement } from '@crpg/regles';
+import { armeDuJournal, degatsDeLAttaque, estArmeDeTir, SONS, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir } from './sons-regles';
+
+const ev = (type: Evenement['type'], extra: Partial<Evenement> = {}): Evenement => ({ round: 1, type, texte: '', ...extra });
+
+describe('degatsDeLAttaque', () => {
+  it('trouve les dégâts portés par l’attaque, sur sa cible', () => {
+    const journal = [ev('attaque', { cible: 'gob' }), ev('etat', { cible: 'gob' }), ev('degats', { cible: 'gob', valeur: 7 })];
+    expect(degatsDeLAttaque(journal, 0)?.valeur).toBe(7);
+  });
+
+  it('ne prend pas les dégâts d’une attaque suivante', () => {
+    const journal = [ev('attaque', { cible: 'gob' }), ev('attaque', { cible: 'gob' }), ev('degats', { cible: 'gob', valeur: 7 })];
+    expect(degatsDeLAttaque(journal, 0)).toBeUndefined();
+    expect(degatsDeLAttaque(journal, 1)?.valeur).toBe(7);
+  });
+
+  it('ignore les dégâts subis par quelqu’un d’autre', () => {
+    const journal = [ev('attaque', { cible: 'gob' }), ev('degats', { cible: 'loup', valeur: 3 })];
+    expect(degatsDeLAttaque(journal, 0)).toBeUndefined();
+  });
+
+  it('une attaque ratée n’a pas de dégâts', () => {
+    const journal = [ev('attaque', { cible: 'gob' }), ev('tour', { acteur: 'loup' }), ev('degats', { cible: 'gob', valeur: 2 })];
+    expect(degatsDeLAttaque(journal, 0)).toBeUndefined();
+  });
+
+  it('rend undefined pour un événement qui n’est pas une attaque', () => {
+    expect(degatsDeLAttaque([ev('degats', { cible: 'gob' })], 0)).toBeUndefined();
+  });
+});
 
 describe('sonDeCoup', () => {
   it('une épée, c’est le son d’épée ; une hache, celui de hache', () => {

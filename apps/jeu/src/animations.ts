@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Combattant, Donnees, EtatActif, EtatCombat, Evenement, Position } from '@crpg/regles';
 import { estPhysique, estRayon, famille, familleDominante, formeSort, styleMort, type Famille, type FamillePhysique, type FormeSort } from './effets-visuels';
 import { jouerSon, precharger } from './sons';
-import { armeDuJournal, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir, type Son } from './sons-regles';
+import { armeDuJournal, degatsDeLAttaque, sonDeCoup, sonDeProtection, sonDeSort, sonDeTir, type Son } from './sons-regles';
 
 export interface Surcharge {
   position: Position;
@@ -208,11 +208,13 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
   // Dernière famille de dégâts reçue par chacun : la mort s'habille comme le coup fatal.
   const derniereFamille = new Map<string, Famille>();
   // D'où vient le coup en cours (arme, sort, à distance) : décide du bruitage des dégâts qui suivent.
-  let contexte: { sort?: string; arme?: string; distance?: boolean } = {};
+  // `sonJoue` : le bruit du coup a déjà été joué quand la cible a été touchée (ne pas le rejouer avec les dégâts).
+  let contexte: { sort?: string; arme?: string; distance?: boolean; sonJoue?: boolean } = {};
   /** Le son d'un sort, d'après le sort et la famille de ses dégâts. */
   const sonDuSort = (id: string | undefined) => sonDeSort(id, famille(id ? donnees.sorts.get(id)?.degats[0]?.type : undefined));
 
-  etat.journal.slice(inst.journal).forEach((ev: Evenement, i) => {
+  const nouveaux = etat.journal.slice(inst.journal);
+  nouveaux.forEach((ev: Evenement, i) => {
     const index = inst.journal + i + 1;
     const d = ev.details ?? {};
     const local: Pas[] = [];
@@ -239,6 +241,14 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         const a = pos(ev.acteur);
         const b = pos(ev.cible);
         contexte = { sort: d.sort, arme: armeDuJournal(ev.texte), distance: !!d.distance };
+        // Le bruit d'un coup d'arme part quand la cible est touchée (sa secousse), pas avec l'affichage des dégâts qui suit :
+        // on va chercher dans le journal les dégâts que porte cette attaque pour savoir quel son jouer.
+        const portes = d.resultat === 'touche' || d.resultat === 'critique' ? degatsDeLAttaque(nouveaux, i) : undefined;
+        const sonImpact =
+          portes && (portes.valeur ?? 0) > 0
+            ? sonDeCoup({ famille: familleDominante(portes.details?.types), arme: contexte.arme, sort: !!d.sort, distance: !!d.distance })
+            : undefined;
+        contexte.sonJoue = !!sonImpact;
         if (!a || !b || !ev.acteur || !ev.cible) break;
         const acteur = ev.acteur;
         const cible = ev.cible;
@@ -281,8 +291,10 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
           });
         } else if (d.resultat === 'touche' || d.resultat === 'critique') {
           const critique = d.resultat === 'critique';
-          ajouter(critique ? 340 : 220, () => {
+          // Les dégâts (arc de lame, impact, chiffre) suivent de près la secousse : le coup se voit et s'entend d'un bloc.
+          ajouter(critique ? 240 : 110, () => {
             bulle();
+            if (sonImpact) o.son(sonImpact);
             o.animer(cible, reduit ? FLASH : SECOUSSE, critique ? 420 : 300);
             if (critique) o.effet({ type: 'texte', position: b, texte: 'Critique !', classe: 'ft-critique', duree: 1300 });
           });
@@ -307,7 +319,8 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
         // Un critique marque un temps d'arrêt avant que le coup ne porte.
         if (d.critique && !reduit && valeur > 0) ajouter(90);
         // Le bruit du coup, au moment où il porte (les dégâts d'un sort n'en ont pas : le sort a eu le sien au départ).
-        if (valeur > 0) jouer(sonDeCoup({ famille: fam, arme: contexte.arme, sort: !!contexte.sort, distance: contexte.distance }));
+        if (valeur > 0 && !contexte.sonJoue) jouer(sonDeCoup({ famille: fam, arme: contexte.arme, sort: !!contexte.sort, distance: contexte.distance }));
+        contexte.sonJoue = false;
         ajouter(300, () => {
           const x = s(id);
           if (x) {

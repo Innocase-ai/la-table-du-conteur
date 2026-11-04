@@ -1,5 +1,6 @@
 // Quel son pour quel effet : la correspondance entre ce qui se passe au combat et les bruitages (dossier `sons/`).
 // Logique pure, sans lecture audio (voir `sons.ts`), pour pouvoir la tester.
+import type { Evenement } from '@crpg/regles';
 import { estPhysique, type Famille } from './effets-visuels';
 
 /** Les bruitages disponibles : un fichier `sons/<nom>.mp3` chacun. */
@@ -100,6 +101,21 @@ export function sonDeCoup(c: Coup): Son | undefined {
     case 'contondant':
       return 'contondant';
   }
+}
+
+/**
+ * Les dégâts que porte une attaque : l'événement « degats » qui la suit sur la même cible, avant l'action suivante.
+ * Sert à jouer le bruit du coup au moment où il porte (la secousse de la cible), sans attendre l'événement des dégâts.
+ */
+export function degatsDeLAttaque(journal: readonly Evenement[], i: number): Evenement | undefined {
+  const attaque = journal[i];
+  if (!attaque || attaque.type !== 'attaque') return undefined;
+  for (let j = i + 1; j < journal.length; j++) {
+    const e = journal[j]!;
+    if (e.type === 'attaque' || e.type === 'sort' || e.type === 'tour') return undefined;
+    if (e.type === 'degats' && e.cible === attaque.cible) return e;
+  }
+  return undefined;
 }
 
 /** Le nom de l'arme dans une ligne de journal d'attaque (« Grukk attaque Gobelin (Hache à deux mains) : … »). */

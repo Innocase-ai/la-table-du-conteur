@@ -59,33 +59,93 @@ export function useReglagesSon(): ReglagesSon {
   );
 }
 
-// Un élément audio par son, chargé une fois ; chaque lecture en clone un, pour que deux coups rapprochés se recouvrent.
-const modeles = new Map<Son, HTMLAudioElement>();
+// Lecture par Web Audio : chaque son est téléchargé et décodé une fois, puis joué instantanément (un élément <audio>
+// met, lui, plusieurs dizaines de millisecondes à démarrer, ce qui décale le bruit d'un coup par rapport à l'image).
+// Deux coups rapprochés se recouvrent sans se couper.
+let contexteAudio: AudioContext | undefined;
+const tampons = new Map<Son, AudioBuffer>();
+const chargements = new Map<Son, Promise<void>>();
 
-function modele(nom: Son): HTMLAudioElement | undefined {
-  const url = FICHIERS[nom];
-  if (!url || typeof Audio === 'undefined') return undefined;
-  let m = modeles.get(nom);
-  if (!m) {
-    m = new Audio(url);
-    m.preload = 'auto';
-    modeles.set(nom, m);
-  }
-  return m;
+function audio(): AudioContext | undefined {
+  if (contexteAudio) return contexteAudio;
+  if (typeof window === 'undefined') return undefined;
+  const Contexte = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!Contexte) return undefined;
+  contexteAudio = new Contexte({ latencyHint: 'interactive' });
+  return contexteAudio;
 }
 
-/** Charge tous les sons d'avance, pour qu'aucun ne se fasse attendre au premier coup. */
+function charger(nom: Son): Promise<void> {
+  const deja = chargements.get(nom);
+  if (deja) return deja;
+  const url = FICHIERS[nom];
+  const ctx = audio();
+  if (!url || !ctx) return Promise.resolve();
+  const p = fetch(url)
+    .then((r) => r.arrayBuffer())
+    .then((octets) => ctx.decodeAudioData(octets))
+    .then((tampon) => {
+      tampons.set(nom, tampon);
+    })
+    .catch(() => {
+      // Son illisible : on retentera au prochain appel, et l'élément <audio> sert de repli d'ici là.
+      chargements.delete(nom);
+    });
+  chargements.set(nom, p);
+  return p;
+}
+
+// Le navigateur garde le contexte audio en veille tant que le joueur n'a ni cliqué ni tapé : on le réveille au premier geste.
+let deverrouille = false;
+function deverrouiller(): void {
+  if (deverrouille || typeof window === 'undefined') return;
+  deverrouille = true;
+  const reveil = () => {
+    void audio()?.resume();
+    window.removeEventListener('pointerdown', reveil);
+    window.removeEventListener('keydown', reveil);
+  };
+  window.addEventListener('pointerdown', reveil);
+  window.addEventListener('keydown', reveil);
+}
+
+/** Télécharge et décode tous les sons d'avance, pour qu'aucun ne se fasse attendre au premier coup. */
 export function precharger(): void {
-  for (const nom of SONS) modele(nom);
+  deverrouiller();
+  for (const nom of SONS) void charger(nom);
+}
+
+/** Repli quand Web Audio n'est pas disponible, ou que le son n'est pas encore décodé : un élément <audio>. */
+function jouerParElement(nom: Son, volume: number): void {
+  const url = FICHIERS[nom];
+  if (!url || typeof Audio === 'undefined') return;
+  const lecture = new Audio(url);
+  lecture.volume = volume;
+  // Le navigateur refuse de jouer avant tout geste du joueur : sans conséquence, le prochain coup passera.
+  void lecture.play().catch(() => {});
 }
 
 /** Joue un bruitage, sauf si le joueur a coupé le son. `volume` (0 à 1) ajuste ce son seul. */
 export function jouerSon(nom: Son, volume = 1): void {
   if (!reglages.actif || reglages.volume <= 0) return;
-  const m = modele(nom);
-  if (!m) return;
-  const lecture = m.cloneNode(true) as HTMLAudioElement;
-  lecture.volume = Math.min(1, Math.max(0, reglages.volume * volume));
-  // Le navigateur refuse de jouer avant tout geste du joueur : sans conséquence, le prochain coup passera.
-  void lecture.play().catch(() => {});
+  const niveau = Math.min(1, Math.max(0, reglages.volume * volume));
+  const ctx = audio();
+  const tampon = tampons.get(nom);
+  if (!ctx || !tampon) {
+    void charger(nom);
+    jouerParElement(nom, niveau);
+    return;
+  }
+  if (ctx.state === 'suspended') {
+    // Contexte encore en veille (aucun geste depuis son ouverture) : on le réveille, et ce son-ci passe par un élément <audio>.
+    void ctx.resume();
+    jouerParElement(nom, niveau);
+    return;
+  }
+  const source = ctx.createBufferSource();
+  source.buffer = tampon;
+  const gain = ctx.createGain();
+  gain.gain.value = niveau;
+  source.connect(gain).connect(ctx.destination);
+  source.start();
 }

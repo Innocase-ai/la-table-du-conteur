@@ -265,3 +265,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Commande** : 🔊 et curseur de volume dans la barre d'actions du combat, réglage mémorisé dans le navigateur (`crpg.son`) ; un coup d'épée à la fin du réglage. Le banc d'essai (`/?effets`) a une ligne « Écouter les bruitages » (un bouton par son) et joue les mêmes sons que le combat.
 - Vitest couvre maintenant aussi `apps/*/src/**/*.test.ts` (13 tests de correspondance).
 - Vérifié dans un vrai combat (arc, épée, hache, perforant, foudre, soin ; sourdine à 0 son) et au banc d'essai (chaque sort et chaque famille). Je ne peux pas écouter : le rendu à l'oreille reste à juger. Manquent : sons pour les autres familles de dégâts, la zone de sommeil, la mort.
+
+## 04/11/2026 — Bruitages : le son d'un coup d'arme part avec le coup
+
+- Constat de l'utilisateur : les sons des coups d'arme arrivaient en retard. Mesuré en combat : le son partait 230 ms après la secousse de la cible (440 ms sur un critique), parce qu'il attendait l'événement des dégâts ; et un élément `<audio>` met en plus plusieurs dizaines de millisecondes à démarrer.
+- Le bruit du coup se joue maintenant **au moment où la cible est touchée** : l'animation va chercher dans le journal les dégâts que porte l'attaque (`degatsDeLAttaque`, 5 tests) pour choisir le son, et ne le rejoue pas avec les dégâts.
+- L'arc de lame, l'impact et le chiffre suivent la secousse de plus près (110 ms au lieu de 220 ; 240 au lieu de 340 sur un critique).
+- **Lecture par Web Audio** (`sons.ts`) : chaque son est téléchargé et décodé une fois, puis joué sans délai ; repli sur un élément `<audio>` tant que le son n'est pas décodé ou que le navigateur garde l'audio en veille.
+- Mesuré à nouveau : 0 ms entre la secousse et le son d'arme. 498 tests verts, typecheck OK.
