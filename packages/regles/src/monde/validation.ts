@@ -153,6 +153,11 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     if (d.type === 'donjon' && !sursDuMonde.some((s) => sousLe(s.id, d.id))) avis(`Repos : le donjon « ${d.id} » n'a aucun lieu sûr à l'intérieur (repos « sur ») : le groupe devra en sortir pour dormir.`);
   }
 
+  // Chaque sujet de conversation a une « question » : le libellé du bouton (sans elle, le joueur ne voit que des mots-clés).
+  const sansQuestion = [...dm.pnj.values()].flatMap((n) => n.sujets.filter((s) => !s.question?.trim()).map((s) => `${n.id}:${s.id}`));
+  if (sansQuestion.length)
+    avis(`Dialogues : ${sansQuestion.length} sujets n'ont pas de « question » (le joueur ne verra que leurs mots-clés) : ${sansQuestion.slice(0, 5).join(', ')}${sansQuestion.length > 5 ? '…' : ''}`);
+
   // Les lieux enfants (bâtiments, salles) sans lien propre vers leur parent s'expliquent par leur `accroche`.
   const lienPropre = new Set<string>();
   for (const l of dm.lieux.values()) for (const k of l.liens) (lienPropre.add(`${l.id}>${k.vers}`), lienPropre.add(`${k.vers}>${l.id}`));

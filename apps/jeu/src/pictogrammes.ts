@@ -485,6 +485,33 @@ export const DESSINS: Record<string, Dessin> = {
     teinte: 'gratuit',
     corps: trait('M52 34 A20 20 0 1 1 44 17', 't1', 5) + '<path class="p1" d="M34 7 L49 16 L35 26Z"/>' + '<path class="p2" d="M26 22 L44 33 L26 44Z"/>',
   },
+  // Persuader : une bulle de parole et un cœur.
+  'base:persuader': {
+    teinte: 'charme',
+    corps:
+      '<path class="p2" d="M10 8 H54 a5 5 0 0 1 5 5 V38 a5 5 0 0 1 -5 5 H31 L17 56 V43 H10 a5 5 0 0 1 -5 -5 V13 a5 5 0 0 1 5 -5Z"/>' +
+      '<path class="p3" d="M32 35 C17 26 21 11 32 20 C43 11 47 26 32 35Z"/>',
+  },
+  // Intimider : un crâne.
+  'base:intimider': {
+    teinte: 'sang',
+    corps:
+      rond(32, 28, 21, 'p2') +
+      '<rect x="21" y="38" width="22" height="19" rx="5" class="p2"/>' +
+      rond(23.5, 29, 5.6, 'p3') +
+      rond(40.5, 29, 5.6, 'p3') +
+      '<path class="p3" d="M32 35 L28 43 H36Z"/>' +
+      trait('M27 49 V56 M32 49 V56 M37 49 V56', 't3', 2.2),
+  },
+  // Tromper : un masque de théâtre, les yeux en biais, le sourire en coin.
+  'base:tromper': {
+    teinte: 'malediction',
+    corps:
+      '<path class="p2" d="M9 10 H55 V30 C55 47 44 59 32 59 C20 59 9 47 9 30Z"/>' +
+      '<path class="p3" d="M15 25 C20 20 29 23 29 30 C24 35 17 33 15 25Z"/>' +
+      '<path class="p3" d="M49 25 C44 20 35 23 35 30 C40 35 47 33 49 25Z"/>' +
+      trait('M20 43 C27 51 37 51 44 43', 't3', 3.6),
+  },
   // Une loupe : verre cerclé d'un reflet, manche épais.
   'base:fouiller': {
     teinte: 'or',

@@ -280,6 +280,9 @@ export const Sujet = z.object({
   mots: z.array(Texte).min(1),
   condition: Condition.optional(),
   attitudeMin: z.number().optional(),
+  // Ce que dit ou fait le joueur pour aborder le sujet, en quelques mots, naturellement (« Que savez-vous de la Lanterne ? »,
+  // « Proposer de régler la dette »). C'est le libellé du bouton ; sans lui, le joueur ne voit que les mots-clés.
+  question: z.string().optional(),
   // Ce que le PNJ dit ou fait savoir (le MJ le reformule dans la voix du PNJ).
   reponse: Texte,
   revele: z.array(Id).default([]),

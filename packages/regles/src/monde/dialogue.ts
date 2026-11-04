@@ -75,7 +75,8 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
     const existe = pnj.sujets.some((x) => x.id === sujet);
     return { ...vide(), ok: false, refus: existe ? `${pnj.nom} ne veut pas (ou plus) parler de cela pour l'instant.` : `${pnj.nom} n'a rien à dire là-dessus.` };
   }
-  if (s.unique) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
+  // Tous les sujets abordés sont notés (un sujet unique disparaît ; les autres restent, marqués « déjà abordé »).
+  if (!p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`)) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
   r.narrations.push(s.reponse);
   const avant = p.etat.faits.length;
   appliquerEffets([...s.revele.map((f) => ({ fait: f })), ...s.effets], p.etat, p.dm);

@@ -85,7 +85,7 @@ Pour un grand nombre de petits textes (une phrase par lien, par lieu…), **touj
 3. **Essai sur 2 paquets d'abord**, lecture avant / après, correction du guide, puis le reste.
 4. **Contrôle automatique** (JSON valide, tout couvert, 9 à 36 mots, mots interdits, quotas) puis **critique** par des agents Haiku (`references/consignes-critique-textes.md` : cohérence des deux sens d'un passage, fait d'abord, contradiction avec les fiches, secret ou indice inventé, langue, doublons).
 5. **Le directeur arbitre** : il applique les propositions des critiques sauf celles qui introduisent un défaut, retouche à la main (fichier de corrections qui prime), recompte les quotas, compile par script, valide et teste.
-Piège : un `retour` est mort quand le lieu d'arrivée déclare son propre lien ; le résumé d'un lieu jamais visité peut divulguer, on ne s'en sert pas comme repli. Modèle complet : passages et accroches du Val des Cendres (journal du 04/11/2026).
+Même méthode pour les `question` des sujets de conversation (382 du Val des Cendres, 8 paquets par PNJ, contrôle de la variété des débuts et des noms déjà visibles dans les mots-clés, relecture des sujets conditionnels pour les spoilers). Piège : un `retour` est mort quand le lieu d'arrivée déclare son propre lien ; le résumé d'un lieu jamais visité peut divulguer, on ne s'en sert pas comme repli. Modèle complet : passages et accroches du Val des Cendres (journal du 04/11/2026).
 
 ## Atelier d'écriture : une scène clé à plusieurs voix (méthode éprouvée, pilote du conseil des Gardiens)
 
