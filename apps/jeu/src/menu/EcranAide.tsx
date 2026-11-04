@@ -3,6 +3,7 @@ import { TAILLE_GROUPE } from '@crpg/regles';
 import { SYMBOLES_ETATS } from '../libelles';
 import { NOM_JEU } from '../jeu';
 import { IconeClasse } from '../createur/ui';
+import { Pictogramme } from '../composants/Pictogramme';
 import { COULEURS_FAMILLES, FAMILLES, LIBELLES_FAMILLES, type Famille } from '../effets-visuels';
 
 interface Section {
@@ -356,21 +357,66 @@ const SECTIONS: Section[] = [
     titre: 'Les cartes',
     contenu: (
       <>
-        <p>Chaque option de votre personnage est une carte, rangée dans la colonne de droite. Sa couleur indique son coût :</p>
+        <p>
+          Chaque option de votre personnage est une carte, rangée dans la colonne de droite. Sa couleur et son signe indiquent son coût (les mêmes signes
+          s'allument ou s'éteignent en haut du panneau, selon ce qu'il vous reste à jouer ce tour-ci) :
+        </p>
         <ul className="aide-couts">
           <li>
-            <span className="cout cout-action">Action</span> utilise votre action du tour.
+            <span className="cout cout-action">
+              <Pictogramme cle="cout:action" taille={11} surFond />
+              Action
+            </span>{' '}
+            utilise votre action du tour.
           </li>
           <li>
-            <span className="cout cout-bonus">Bonus</span> utilise votre action bonus.
+            <span className="cout cout-bonus">
+              <Pictogramme cle="cout:bonus" taille={11} surFond />
+              Bonus
+            </span>{' '}
+            utilise votre action bonus.
           </li>
           <li>
-            <span className="cout cout-reaction">Réaction</span> utilise votre réaction.
+            <span className="cout cout-reaction">
+              <Pictogramme cle="cout:reaction" taille={11} surFond />
+              Réaction
+            </span>{' '}
+            utilise votre réaction.
           </li>
           <li>
-            <span className="cout cout-elan">Élan</span> est gratuite.
+            <span className="cout cout-elan">
+              <Pictogramme cle="cout:elan" taille={11} surFond />
+              Élan
+            </span>{' '}
+            est gratuite.
           </li>
         </ul>
+        <p>
+          À droite de chaque carte, un <strong>médaillon</strong> dit ce qu'elle est : la <strong>couleur</strong> est celle de son effet (orange pour le feu,
+          bleu clair pour le froid, jaune pour la foudre, vert pour les soins, bleu pour la protection, violet pour la force et les sorts d'esprit…), le
+          dessin est propre à chaque sort, à chaque arme et à chaque action de base. Un sort sans dessin à lui porte le signe de son <strong>école de
+          magie</strong> (abjuration, conjuration, divination, enchantement, évocation, illusion, nécromancie ou transmutation).
+        </p>
+        <div className="aide-pictos">
+          {[
+            ['sort:trait-de-feu', 'Trait de feu'],
+            ['sort:rayon-de-givre', 'Rayon de givre'],
+            ['sort:poigne-electrique', 'Poigne électrique'],
+            ['sort:soins', 'Soins'],
+            ['sort:bouclier', 'Bouclier'],
+            ['sort:sommeil', 'Sommeil'],
+            ['sort:projectile-magique', 'Projectile magique'],
+            ['arme:epee', 'Épée'],
+            ['arme:arc', 'Arc'],
+            ['base:foncer', 'Foncer'],
+            ['ecole:necromancie', 'École de nécromancie'],
+          ].map(([cle, nom]) => (
+            <span key={cle} className="aide-picto">
+              <Pictogramme cle={cle!} taille={34} medaillon />
+              <span>{nom}</span>
+            </span>
+          ))}
+        </div>
         <p>
           Jouez une carte, puis choisissez sa cible sur le plateau (ou un point, pour un sort de zone). Une carte grisée n'est pas jouable : survolez-la pour
           savoir pourquoi.

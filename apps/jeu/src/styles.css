@@ -7394,3 +7394,129 @@ kbd {
   pointer-events: none;
   z-index: 3;
 }
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   Pictogrammes des cartes (`pictogrammes.ts`) : deux tons, la teinte du sujet en `--pic-clair`, son fond en `--pic-fonce`.
+   --------------------------------------------------------------------------------------------------------------------- */
+.pic {
+  display: inline-block;
+  flex: none;
+  line-height: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+.pic svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.pic .p1 {
+  fill: #fff6e0;
+}
+.pic .p2 {
+  fill: var(--pic-clair);
+}
+.pic .p3 {
+  fill: rgba(0, 0, 0, 0.38);
+}
+.pic .t1,
+.pic .t2,
+.pic .t3 {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pic .t1 {
+  stroke: #fff6e0;
+}
+.pic .t2 {
+  stroke: var(--pic-clair);
+}
+.pic .t3 {
+  stroke: rgba(0, 0, 0, 0.4);
+}
+
+/* Médaillon : un fond sombre de la couleur du sujet, un liseré clair et un reflet en haut à gauche. */
+.pic-medaillon {
+  /* En pixels, d'après la taille : un pourcentage se calculerait sur la largeur du parent, pas sur celle du médaillon. */
+  padding: calc(var(--pic-taille, 30px) * 0.11);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.2), transparent 58%), var(--pic-fonce);
+  box-shadow: inset 0 0 0 1.5px var(--pic-clair), inset 0 -3px 5px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+/* Sur une pastille de couleur (coût) : un dessin foncé, rehaussé de clair. */
+.pic-sur-fond .p1 {
+  fill: rgba(255, 255, 255, 0.62);
+}
+.pic-sur-fond .p2 {
+  fill: #1b1209;
+}
+.pic-sur-fond .p3 {
+  fill: rgba(255, 255, 255, 0.42);
+}
+.pic-sur-fond .t1,
+.pic-sur-fond .t2 {
+  stroke: #1b1209;
+}
+
+/* Les pastilles de coût et de ressource : le pictogramme devant le libellé. */
+.cout,
+.rt {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+/* Une ressource déjà dépensée : le pictogramme s'éteint avec son libellé. */
+.rt:not(.dispo) .pic-sur-fond .p1,
+.rt:not(.dispo) .pic-sur-fond .p2 {
+  fill: var(--texte-faible);
+}
+.rt:not(.dispo) .pic-sur-fond .p3 {
+  fill: transparent;
+}
+.rt:not(.dispo) .pic-sur-fond .t1,
+.rt:not(.dispo) .pic-sur-fond .t2 {
+  stroke: var(--texte-faible);
+}
+.rt:not(.dispo) .pic {
+  opacity: 0.7;
+}
+
+/* Dans le panneau des cartes, la pastille de coût et le médaillon prennent de la place : le nom se resserre un peu plutôt que d'être coupé. */
+.zone-main .carte {
+  column-gap: 5px;
+}
+.zone-main .carte-nom {
+  font-size: 11.5px;
+  letter-spacing: -0.01em;
+}
+.zone-main .cout {
+  padding: 1px 5px;
+  gap: 3px;
+}
+.carte-symbole {
+  display: inline-flex;
+}
+
+/* Aide : quelques médaillons en exemple. */
+.aide-pictos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin: 10px 0 14px;
+}
+.aide-picto {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--texte-doux);
+}
+
+/* Dans l'aide, les pastilles de coût gardent leur pictogramme à côté du libellé. */
+.aide-couts .cout {
+  display: inline-flex;
+  justify-content: center;
+}

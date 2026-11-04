@@ -11,3 +11,5 @@ Pictogrammes issus de [game-icons.net](https://game-icons.net) (dépôt https://
 | spider-face | Carl Olsen |
 
 Dessins maison (originaux, sans source externe) : paladin, ensorceleur, occultiste, druide, moine, barde. Ils suivent le même format (512×512, couleur héritée).
+
+Pictogrammes des cartes (sorts, écoles de magie, coûts, actions de base, armes, aptitudes) : dessins maison, originaux, écrits en SVG dans `apps/jeu/src/pictogrammes.ts` (aucune source externe). Voir `docs/PICTOGRAMMES.md`.

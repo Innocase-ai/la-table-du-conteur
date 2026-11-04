@@ -50,15 +50,6 @@ export const SYMBOLES_ETATS: Record<Etat, string> = {
 
 export const ORDRE_CATEGORIES: Carte['categorie'][] = ['elan', 'attaque', 'monstre', 'sort', 'aptitude', 'base'];
 
-export const SYMBOLES_CATEGORIES: Record<Carte['categorie'], string> = {
-  elan: '✦',
-  attaque: '⚔',
-  monstre: '⚔',
-  sort: '✧',
-  aptitude: '❖',
-  base: '◆',
-};
-
 const ABREVIATIONS_MONSTRES: Record<string, string> = {
   'sbire-gobelin': 'Gb',
   'combattant-gobelin': 'Gb',

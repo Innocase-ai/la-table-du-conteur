@@ -35,6 +35,7 @@ import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
 import { ControleSon } from './ControleSon';
 import { Initiative } from './Initiative';
+import { Pictogramme } from './Pictogramme';
 import { Journal } from './Journal';
 import { MainCartes } from './MainCartes';
 import { Plateau, type Surcouches } from './Plateau';
@@ -430,16 +431,20 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
                   ➜ {formatMetres(t.mouvement)}
                 </span>
                 <span className={`rt ${t.action || t.attaquesRestantes > 0 ? 'dispo' : ''} rt-action`} title="Action">
+                  <Pictogramme cle="cout:action" taille={11} surFond />
                   Action{t.attaquesRestantes > 0 ? ` (${t.attaquesRestantes} att.)` : ''}
                 </span>
                 <span className={`rt ${t.bonus ? 'dispo' : ''} rt-bonus`} title="Action bonus">
+                  <Pictogramme cle="cout:bonus" taille={11} surFond />
                   Bonus
                 </span>
                 <span className={`rt ${cVue.ressources.reaction ? 'dispo' : ''} rt-reaction`} title="Réaction">
+                  <Pictogramme cle="cout:reaction" taille={11} surFond />
                   Réaction
                 </span>
                 {reglages.elan && cVue.elan && (
                   <span className={`rt ${!t.elanJoue ? 'dispo' : ''} rt-elan`} title="Carte d'élan">
+                    <Pictogramme cle="cout:elan" taille={11} surFond />
                     Élan
                   </span>
                 )}
@@ -487,7 +492,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
             </button>
           </div>
         </div>
-        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} />
+        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} ecoleDe={(id) => donnees.sorts.get(id)?.ecole} />
       </aside>
 
       {finAffichee && !masquerFin && (

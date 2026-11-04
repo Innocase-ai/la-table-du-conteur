@@ -8,9 +8,17 @@ import './styles.css';
 const BancEffets = import.meta.env.DEV ? lazy(() => import('./composants/BancEffets').then((m) => ({ default: m.BancEffets }))) : null;
 const banc = BancEffets && new URLSearchParams(window.location.search).has('effets');
 
+// `?icones` : le banc d'essai des pictogrammes des cartes, de même en développement seulement.
+const BancIcones = import.meta.env.DEV ? lazy(() => import('./composants/BancIcones').then((m) => ({ default: m.BancIcones }))) : null;
+const bancIcones = BancIcones && new URLSearchParams(window.location.search).has('icones');
+
 createRoot(document.getElementById('racine')!).render(
   <StrictMode>
-    {banc && BancEffets ? (
+    {bancIcones && BancIcones ? (
+      <Suspense fallback={null}>
+        <BancIcones />
+      </Suspense>
+    ) : banc && BancEffets ? (
       <Suspense fallback={null}>
         <BancEffets />
       </Suspense>
