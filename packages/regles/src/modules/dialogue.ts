@@ -42,7 +42,7 @@ export const moduleDialogue: Module = {
       propositions: (ctx, p) => {
         // En exploration : les personnes présentes ; en conversation : les sujets que le PNJ accepte d'aborder.
         if (enExploration(p)) {
-          return pnjPresents(pm(ctx, p)).map((n) => ({ groupe: PANNEAUX.personnes, libelle: `Parler à ${n.nom}`, detail: n.role, ordre: { type: 'parler', pnj: n.id } }));
+          return pnjPresents(pm(ctx, p)).map((n) => ({ groupe: PANNEAUX.personnes, libelle: `Parler à ${n.nom}`, detail: n.role, image: { groupe: 'pnj' as const, id: n.id }, ordre: { type: 'parler', pnj: n.id } }));
         }
         const i = interlocuteur(ctx, p);
         return i ? i.sujets.map((s) => ({ groupe: PANNEAUX.dialogue(i.nom), libelle: s.mots.slice(0, 3).join(' · '), ordre: { type: 'parler', pnj: i.id, sujet: s.id } })) : [];

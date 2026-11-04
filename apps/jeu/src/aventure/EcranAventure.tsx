@@ -268,6 +268,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             )}
             {/* Les actions d'un élément de la grille sont dans sa fiche (page plein écran), pas ici. */}
             <Panneaux
+              monde={dm.monde.id}
               propositions={propositions.filter(
                 (x) => x.groupe.onglet === ongletActif && !encartsDe(ongletActif).some((e) => e.grille?.elements.some((el) => el.id === x.element?.id)),
               )}
@@ -299,6 +300,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               </section>
             )}
             <Panneaux
+              monde={dm.monde.id}
               propositions={propositions.filter((x) => !x.groupe.onglet)}
               jouer={jouer}
               onCombat={onCombat}
@@ -344,12 +346,14 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
  * qui ajoute des propositions apparaît ici sans code d'interface.
  */
 function Panneaux({
+  monde,
   propositions,
   jouer,
   onCombat,
   groupe,
   cacherTitre,
 }: {
+  monde: string;
   propositions: Proposition[];
   jouer: (o: Ordre) => void;
   onCombat: () => void;
@@ -363,7 +367,7 @@ function Panneaux({
     else panneaux.push({ groupe: p.groupe, items: [p] });
   }
 
-  const bouton = (p: Proposition, cle: string) => <BoutonProposition key={cle} p={p} jouer={jouer} onCombat={onCombat} groupe={groupe} />;
+  const bouton = (p: Proposition, cle: string) => <BoutonProposition key={cle} p={p} jouer={jouer} onCombat={onCombat} groupe={groupe} monde={monde} />;
 
   return (
     <>

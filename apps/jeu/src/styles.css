@@ -5957,6 +5957,53 @@ kbd {
 .liste-actions .bouton,
 .objet-action > .bouton {
   text-align: left;
+  /* Un libellé long passe à la ligne au lieu de déborder du panneau. */
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Un bouton avec une vignette (portrait d'un PNJ) : l'image à gauche, le nom et la précision empilés à droite. */
+.bouton-vignette {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 5px 12px 5px 6px;
+}
+
+.vignette-bouton {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 6px;
+  border: 1px solid var(--bord-clair);
+  background: #1a1612 center 18% / cover no-repeat;
+  color: var(--or);
+  font-family: var(--titre-police, serif);
+  font-size: 20px;
+}
+
+.bouton-texte {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bouton-titre {
+  line-height: 1.25;
+}
+
+.bouton-texte small {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--texte-doux);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .liste-actions small,

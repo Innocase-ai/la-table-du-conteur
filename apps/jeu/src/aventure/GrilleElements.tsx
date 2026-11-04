@@ -12,7 +12,7 @@ import { Icone, LIBELLE_RARETE } from './icones';
  * L'image d'un élément : celle du monde (manifeste), sinon l'image commune du moteur (équipement du SRD), sinon rien,
  * et on montre alors l'icône.
  */
-function useImageElement(monde: string, image?: ElementGrille['image'], commune?: ElementGrille['imageCommune']): string | undefined {
+export function useImageElement(monde: string, image?: ElementGrille['image'], commune?: ElementGrille['imageCommune']): string | undefined {
   const [url, setUrl] = useState<string>();
   useEffect(() => {
     let actif = true;

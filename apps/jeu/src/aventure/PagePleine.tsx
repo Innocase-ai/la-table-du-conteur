@@ -62,7 +62,7 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, on
               monde={monde}
               e={choisi}
               actions={actions.map((p, i) => (
-                <BoutonProposition key={`${p.libelle}:${i}`} p={p} jouer={jouer} onCombat={onCombat} groupe={partie.groupe} />
+                <BoutonProposition key={`${p.libelle}:${i}`} p={p} jouer={jouer} onCombat={onCombat} groupe={partie.groupe} monde={monde} />
               ))}
             />
           ) : (

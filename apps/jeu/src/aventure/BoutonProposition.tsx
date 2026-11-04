@@ -6,6 +6,7 @@ import type { Ordre, Personnage, Proposition } from '@crpg/regles';
 import { NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
 import { FormulaireReponse } from './FormulaireReponse';
+import { useImageElement } from './GrilleElements';
 
 interface Props {
   p: Proposition;
@@ -13,12 +14,15 @@ interface Props {
   onCombat: () => void;
   /** Les héros du groupe, pour montrer le portrait des options qui en désignent un. */
   groupe: Personnage[];
+  /** Le monde de l'histoire, pour retrouver la vignette d'un bouton (portrait d'un PNJ). */
+  monde?: string;
 }
 
-export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
+export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Props) {
   const [texte, setTexte] = useState('');
   const [ouvert, setOuvert] = useState(false);
   const [aConfirmer, setAConfirmer] = useState(false);
+  const vignette = useImageElement(monde, p.image);
 
   // Une confirmation demandée se perd si on n'y répond pas.
   useEffect(() => {
@@ -46,7 +50,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
     );
   }
 
-  const classe = p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton';
+  const classe = `${p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton'}${p.image ? ' bouton-vignette' : ''}`;
   const detail = p.detail ? (NOMS_COMPETENCES[p.detail as keyof typeof NOMS_COMPETENCES] ?? p.detail) : undefined;
 
   if (p.choix) {
@@ -107,8 +111,22 @@ export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
         else if (p.ordre) jouer(p.ordre);
       }}
     >
-      {aConfirmer ? 'Confirmer ?' : p.libelle}
-      {!aConfirmer && detail && <small> — {detail}</small>}
+      {p.image && !aConfirmer ? (
+        <>
+          <span className="vignette-bouton" style={vignette ? { backgroundImage: `url(${vignette})` } : undefined} aria-hidden>
+            {!vignette && p.libelle.replace(/^Parler à /, '').charAt(0)}
+          </span>
+          <span className="bouton-texte">
+            <span className="bouton-titre">{p.libelle}</span>
+            {detail && <small>{detail}</small>}
+          </span>
+        </>
+      ) : (
+        <>
+          {aConfirmer ? 'Confirmer ?' : p.libelle}
+          {!aConfirmer && detail && <small> — {detail}</small>}
+        </>
+      )}
     </button>
   );
   // Une phrase d'explication sous le bouton (où mène une sortie) : le joueur sait pourquoi il clique.
