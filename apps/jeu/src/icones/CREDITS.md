@@ -5,11 +5,11 @@ Pictogrammes issus de [game-icons.net](https://game-icons.net) (dépôt https://
 | Fichier | Auteur |
 | --- | --- |
 | visored-helm, hood, bowman, holy-symbol, wolf-head, direwolf, fanged-skull | Lorc |
-| barbarian, wizard-face, goblin-head, orc-head, shambling-zombie, ogre, bandit, robber, brute | Delapouite |
+| wizard-face, goblin-head, orc-head, shambling-zombie, ogre, bandit, robber, brute | Delapouite |
 | skeleton | Skoll |
 | hyena-head, warlord-helmet | Caro Asercion |
 | spider-face | Carl Olsen |
 
-Dessins maison (originaux, sans source externe) : paladin, ensorceleur, occultiste, druide, moine, barde. Ils suivent le même format (512×512, couleur héritée).
+Dessins maison (originaux, sans source externe) : barbare (une hache de guerre à deux tranchants, qui remplace un visage trop détaillé de game-icons.net, peu lisible en petit), paladin, ensorceleur, occultiste, druide, moine, barde. Ils suivent le même format (512×512, couleur héritée).
 
 Pictogrammes des cartes (sorts, écoles de magie, coûts, actions de base, armes, aptitudes) : dessins maison, originaux, écrits en SVG dans `apps/jeu/src/pictogrammes.ts` (aucune source externe). Voir `docs/PICTOGRAMMES.md`.

@@ -16,7 +16,7 @@ const SVG: Record<string, string> = Object.fromEntries(
 
 const PAR_MODELE: Record<string, string> = {
   guerrier: 'visored-helm',
-  barbare: 'barbarian',
+  barbare: 'barbare',
   roublard: 'hood',
   rodeur: 'bowman',
   clerc: 'holy-symbol',
