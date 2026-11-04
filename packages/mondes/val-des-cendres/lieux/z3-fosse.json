@@ -8,7 +8,7 @@
     "description": "La Fosse est la mine d'où l'on tirait l'huile de roche qui nourrit la Lanterne, et le minerai de braise dont les forges ne se passent pas. Elle s'est effondrée il y a vingt ans sur quarante mineurs, et le Val a fini par l'oublier ; la Lanterne vit depuis sur ses réserves. Il y a trois jours, une équipe de volontaires menée par un nain, Sigrun Basse-Veine, a percé l'éboulis du portail pour ramener de l'huile et du minerai au village. Les quarante morts d'autrefois, relevés par la cendre, se sont levés avec eux. Deux niveaux : le haut (galerie d'entrée, dortoir, carreau, bureau, puits) et le bas (le filon, la galerie basse, la poche où un survivant est enfermé). Le puits d'aération donne sur les hauteurs ; un vieux drain mène à la grotte aux Fils.",
     "ambiance": "Cliquetis de pierres qui roulent, étais qui gémissent, chaleur sourde qui monte du bas, odeur de fer chaud et de charogne.",
     "visuel": "Un portail de pierre naine à moitié éboulé dans une paroi noire, des rails encastrés dans le sol, des étais de chêne gris, une lueur rouge tapie très bas dans les galeries ; une cendre fine sur chaque surface.",
-    "accroche": "Dans une paroi noire, un portail de pierre à moitié éboulé laisse monter une chaleur sourde et une odeur de fer chaud.",
+    "accroche": "Dans une paroi noire, un portail de pierre naine à moitié éboulé ; de la suie couvre le seuil, et une brèche étayée laisse passer un air froid.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -18,8 +18,8 @@
         "vers": "gro-fosse-parvis",
         "type": "chemin",
         "heures": 0,
-        "description": "Dehors, une esplanade de dalles noires s'ouvre sous le ciel, et le froid de la montagne remplace la chaleur de la mine.",
-        "retour": "Le portail éboulé s'ouvre dans la paroi noire, et une chaleur sourde monte de la brèche étayée."
+        "description": "Au sortir du portail, une esplanade de dalles noires s'étend sous le ciel gris, et le vent des hauteurs remplace l'air de la mine.",
+        "retour": "Le portail éboulé s'ouvre dans la paroi noire ; par la brèche étayée de madriers, un air sec et froid sort de la mine."
       }
     ],
     "repos": "dangereux"
@@ -50,7 +50,7 @@
         "type": "chemin",
         "heures": 3,
         "description": "Une piste de pierre noircie descend à flanc de montagne, bordée de petites bornes gravées d'une flamme, et la cendre étouffe les pas.",
-        "retour": "Le chemin remonte vers une esplanade de dalles noires, et la lueur orange du village s'éloigne en contrebas."
+        "retour": "Le chemin remonte vers une esplanade de dalles noires ; en contrebas, les toits de lauzes du village s'éloignent dans la brume."
       }
     ],
     "repos": "dangereux"
@@ -64,7 +64,7 @@
     "description": "Un couloir d'accès large de quatre pas, dont les étais de chêne gémissent. Les volontaires y ont laissé des sacs, une lanterne brisée et des vivres, abandonnés au premier cri. Sur la paroi, une inscription naine rappelle : « Qui entre ici salue ses morts. » À droite, une porte basse mène au dortoir ; devant, le couloir descend vers le carreau.",
     "ambiance": "Gouttes, grincement des étais, froid humide, odeur de poussière de roche.",
     "visuel": "Un large couloir de pierre noire étayé de poutres de chêne grises, des sacs de toile abandonnés, une lanterne brisée, une inscription naine gravée dans la paroi et des traces de pas dans la cendre.",
-    "accroche": "Des étais gris soutiennent la pente qui s'enfonce dans la mine, et un air froid et poussiéreux remonte jusqu'à l'entrée. Quelques gouttes tombent au loin.",
+    "accroche": "Des étais gris soutiennent la pente qui s'enfonce dans la mine, et un air froid remonte jusqu'à l'entrée, avec le bruit lointain de gouttes.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -74,8 +74,8 @@
         "vers": "gro-fosse-carreau",
         "type": "passage",
         "heures": 0,
-        "description": "Les rails continuent vers une salle à la voûte haute où le son des roues résonne, et une braise rougeoie quelque part.",
-        "retour": "Vers l'entrée, les étais gémissent le long du couloir, et les rails s'enfoncent dans la poussière de roche."
+        "description": "Les rails filent droit vers une salle à la voûte haute, où le roulement des wagonnets résonne sur la pierre.",
+        "retour": "Vers l'entrée, les étais gémissent le long du couloir, et les rails s'enfoncent dans la roche noire, jusqu'au jour."
       },
       {
         "vers": "gro-fosse-dortoir",
@@ -105,7 +105,7 @@
     "description": "Vingt niches de pierre superposées, avec leurs casiers à outils. Les mineurs de l'effondrement y gisent encore : des nains réduits à l'os dans leurs cottes rouillées, d'autres hommes plus récents, dont deux volontaires morts ces trois derniers jours et le chef de l'équipe, que la cendre qui tombe du plafond a relevés. Dans les casiers, des outils de mineurs nains se sont conservés intacts.",
     "ambiance": "Respirations rauques qui ne sont pas des respirations, pieds traînants sur la pierre, odeur douceâtre.",
     "visuel": "Des couchettes de pierre taillées en étagères le long des murs, des squelettes en cottes de mailles rouillées couchés dans les niches, des silhouettes grises qui se redressent lentement, des casiers à outils en fer sombre ; cendre fine partout.",
-    "accroche": "Du fond de la salle monte une odeur douceâtre et un traînement de pas lents, qui ne semblent pas pressés de s'arrêter.",
+    "accroche": "Une odeur douceâtre sort d'une pièce basse étayée de poutres, avec un bruit de pas traînés, lents.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -154,7 +154,7 @@
         "vers": "gro-fosse-bureau-du-contremaitre",
         "type": "porte",
         "heures": 0,
-        "description": "Une cabine de pierre s'ouvre sur le côté de la salle, et la poussière s'y dépose en fines couches.",
+        "description": "Dans le côté de la salle, une cabine de pierre s'ouvre par une porte basse, à moitié tirée sur des gonds rouillés.",
         "retour": "Du seuil, on voit la salle voûtée, ses rails luisants et la cendre fine qui retombe sur les voies."
       },
       {
@@ -220,7 +220,7 @@
     "description": "Un puits de dix pas de large ouvrant sur le vide, entouré d'une passerelle de planches. Un treuil de fer rouillé tient encore un câble. Une échelle descend vers le filon, plus bas ; un passage monte, au contraire, vers le puits d'aération qui donne sur les hauteurs. Le plancher de la passerelle est pourri par endroits.",
     "ambiance": "Un souffle chaud qui monte du fond, craquement des planches, goutte-à-goutte très loin en dessous.",
     "visuel": "Un puits circulaire de pierre noire ouvert dans le sol, une passerelle de planches grises sur le pourtour, un treuil de fer rouillé avec son câble tendu, une échelle de fer qui plonge dans la pénombre rougeâtre.",
-    "accroche": "Le souffle chaud d'un trou béant monte jusqu'au bord, et les planches d'une passerelle craquent à chaque pas, comme si elles hésitaient.",
+    "accroche": "Un trou béant, cerclé de pierre noire, s'ouvre dans le sol ; une passerelle de planches craque à chaque pas, et un treuil grince au-dessus.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -230,15 +230,15 @@
         "vers": "gro-fosse-filon",
         "type": "echelle",
         "heures": 0,
-        "description": "Une échelle de fer descend dans la roche, ses barreaux tièdes sous la main, vers une lueur qui pulse au fond.",
-        "retour": "L’échelle raide monte vers le puits, ses barreaux encore chauds, et un souffle froid descend du haut à sa rencontre."
+        "description": "Une échelle de fer descend dans la roche, ses barreaux tièdes sous la main, jusqu'à la veine qui luit au fond.",
+        "retour": "L'échelle raide monte vers le puits, et un courant d'air froid descend du haut à sa rencontre, sur les barreaux de fer."
       },
       {
         "vers": "gro-fosse-aeration",
         "type": "passage",
         "heures": 0,
         "description": "Un boyau montant, étroit, sur la paroi nord du puits.",
-        "retour": "Un boyau étroit plonge en pente vers le puits ; de là-bas monte une chaleur sèche et une odeur de braise."
+        "retour": "Un boyau étroit descend en pente vers le puits d'extraction ; de là-bas arrive une odeur de suie et le bruit d'un câble qui glisse."
       }
     ],
     "repos": "dangereux"
@@ -252,7 +252,7 @@
     "description": "Une galerie basse chauffée par la roche. Une veine large comme un homme court sur la paroi, noire et veinée de rouge. Le minerai se détache en blocs lourds et tièdes, et une huile noire suinte de la roche en un mince filet qu'un mineur a recueilli dans un baril. L'air y est lourd : une poche de gaz stagne dans le creux sud, à l'odeur de soufre doux. Une goule, ancienne ouvrière relevée, hante les lieux.",
     "ambiance": "Chaleur crue, odeur de soufre, lueurs rouges qui pulsent, claquements de la roche qui travaille.",
     "visuel": "Une galerie basse aux parois noires traversées d'une veine de minerai rougeoyant, des reflets orange dansant sur le plafond, des tas de blocs sombres près des rails, des silhouettes décharnées au bout du boyau.",
-    "accroche": "La chaleur et l'odeur de soufre sortent de la roche noire, sous une lueur rouge qui pulse à intervalles réguliers, comme un souffle qui s'emballe.",
+    "accroche": "De la roche noire sort une odeur de soufre, et une lueur rouge pulse lentement, au fond d'un boyau.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -262,7 +262,7 @@
         "vers": "gro-fosse-galerie-basse",
         "type": "passage",
         "heures": 0,
-        "description": "Vers le fond de la mine, un couloir bas s’éloigne ; de l’autre côté, on devine des coups sourds derrière la roche.",
+        "description": "Un long couloir bas s'éloigne du filon entre des rails ; tout au bout, un martèlement lent ébranle la roche.",
         "retour": "Une pente douce remonte vers la lueur rouge de la veine, et les reflets dansent déjà sur les parois."
       }
     ],
@@ -299,7 +299,7 @@
     "description": "Un long couloir bas, aux rails encore intacts, qui s'enfonce vers le nord, dans la direction de la Haute-Forge. Il est barré par l'éboulement d'il y a vingt ans, que les volontaires ont commencé à percer. En tendant l'oreille, on entend derrière un coup frappé à intervalles réguliers : quelqu'un est vivant dans une poche d'air. Sur la paroi est, une dalle aux fines rainures cache un vieux drain nain qui descend vers la grotte aux Fils.",
     "ambiance": "Coups sourds et réguliers derrière les gravats, écho de rails, souffle tiède.",
     "visuel": "Un long couloir bas aux rails de fer intacts, une paroi nord effondrée en un tas de blocs gris, la lueur rouge du filon au sud, une dalle aux fines rainures dans le mur est, des traces de picoches dans l'éboulis.",
-    "accroche": "Derrière un tas de gravats, des coups sourds et réguliers résonnent dans un couloir bas, où les rails luisent encore sous un souffle tiède.",
+    "accroche": "Derrière un tas de gravats, des coups sourds résonnent à intervalles réguliers dans un couloir bas, où des rails de fer luisent faiblement.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -313,7 +313,7 @@
           "dd": 14
         },
         "description": "L'éboulis : un jet de Force (Athlétisme) ou une demi-heure à plusieurs avec des outils pour le percer.",
-        "retour": "Un éboulis de blocs gris bouche le passage ; de l’autre côté, un air tiède et le bruit lointain de rails."
+        "retour": "Un éboulis de blocs gris bouche le passage ; de l'autre côté, un air lourd et le bruit lointain de rails."
       },
       {
         "vers": "gro-fils-gouffre",
@@ -324,7 +324,7 @@
           "competence": "investigation"
         },
         "description": "Un vieux drain nain, fermé par une dalle, qui descend vers la grotte aux Fils.",
-        "retour": "Le vieux drain nain s’enfonce dans la paroi, ses runes de ruissellement usées ; il remonte vers la galerie, et un vent tiède en sort."
+        "retour": "Le vieux drain nain s'enfonce dans la paroi, ses runes de ruissellement usées ; il remonte vers la galerie, et un vent sec en sort."
       }
     ],
     "faits": [

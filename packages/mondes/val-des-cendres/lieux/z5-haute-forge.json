@@ -46,7 +46,7 @@
     "resume": "Premier étage : accueil, galerie des rois, marché souterrain, quartiers, citerne.",
     "description": "Le niveau d'accueil du royaume. Un hall d'apparat, la Grande Galerie qui distribue tout, un marché souterrain figé en pleine foire, les quartiers des forgerons, la chapelle de l'Enclume, la citerne et, par-dessous, un réseau de conduits de service que personne ne devrait connaître. C'est ici que les morts du royaume attendent encore le roi.",
     "visuel": "Grandes arcades de basalte, lampadaires à cuvette de fer, statues colossales et ruelles de pierre où l'on devine des étals.",
-    "accroche": "Sous de grandes arcades noires, des ruelles de pierre s'enfoncent, et l'on devine à leurs seuils des étals.",
+    "accroche": "Dans la paroi de basalte, une rangée d’arcades s’ouvre sur les halles, leurs seuils couverts de cendre grise.",
     "niveau": {
       "min": 4,
       "max": 5
@@ -62,7 +62,7 @@
     "resume": "Deuxième étage : fonderies, engrenages, ponts basculants, bibliothèque des plans, atelier du maître-mécanicien.",
     "description": "Le cœur industriel, conçu par les gnomes ingénieurs que le roi avait pris à son service. Tout y est mécanisme : ponts à contrepoids, ascenseur de forge, tables de plans, cadrans de fonderie. Les morts y sont plus rares mais plus dangereux, et les pièges s'y comptent par dizaines.",
     "visuel": "Une succession de halles à voûtes de fer, de ponts suspendus et de canaux de fonte noircis, avec des roues dentées de la taille d'une maison dans les murs.",
-    "accroche": "Enjambant des canaux de fonte noircis, des ponts suspendus traversent des halles dont les voûtes de fer gardent une lueur terne.",
+    "accroche": "Des ponts suspendus franchissent des canaux de fonte noircis, vers des halles aux voûtes de fer.",
     "niveau": {
       "min": 4,
       "max": 5
@@ -94,7 +94,7 @@
     "resume": "Le hall d'apparat derrière la porte scellée : des gardes de fer y attendent les visiteurs depuis deux siècles.",
     "description": "Premier hall de la Haute-Forge, derrière la dalle scellée. Une voûte haute, deux rangées de colonnes, un portail de bronze côté intérieur, une grande plaque gravée qui récite les titres du roi. Des gardes de fer animés montent la garde ; le portier, une armure animée qui parle, exige le mot d'usage de qui entre sans être annoncé. L'ouverture du sceau et l'entrée posent le drapeau `haute-forge-ouverte` : la Haute-Forge « s'éveille » à la présence du groupe (les ronds de garde s'accélèrent, la cloche du marché sonne une fois). Une plaque de pression dissimulée dans le dallage devant le portail intérieur protège le hall contre ceux qui passent sans s'annoncer.",
     "visuel": "Un hall voûté de basalte, deux colonnes de chaque côté, des armures noircies au garde-à-vous sous des lampes de fer qui brûlent d'une flamme grise.",
-    "accroche": "Quelque part derrière une porte close, un raclement lent de métal traverse la pierre, et une flamme grise filtre sous le seuil.",
+    "accroche": "Une porte scellée ; derrière elle, un raclement de métal traverse la pierre, et un filet de lueur grise passe sous le seuil.",
     "ambiance": "Le raclement lent d'un gantelet sur une cuirasse. Quelqu'un, quelque part, répète un mot de passe.",
     "niveau": {
       "min": 4,
@@ -104,7 +104,7 @@
       {
         "vers": "hf-grande-galerie",
         "type": "porte",
-        "description": "Dans le hall, un grand portail de bronze à deux battants s'ouvre sur une lueur grise ; des clés tintent derrière, et un courant tiède souffle par l'interstice.",
+        "description": "Au fond du hall, un portail de bronze à deux battants, mal fermé, laisse passer un souffle tiède et la lumière grise de la nef.",
         "retour": "Côté nef, le portail laisse voir une longue rangée de statues de rois et un piédestal vide au fond."
       }
     ],
@@ -140,7 +140,7 @@
     "resume": "Une nef de pierre aux dix statues de rois, carrefour de tout le niveau.",
     "description": "La nef centrale des halles basses, bordée de dix colosses de basalte : les dix premiers Rois-Forgerons, chacun un outil à la main. Le onzième socle est vide : il attend la statue de Thalgrin, jamais sculptée. Plusieurs portes s'ouvrent sur les flancs : marché, quartiers, chapelle, salle des gardes. Un escalier descend vers les ateliers ; l'ascenseur de forge, une fois remis en marche, rejoint la galerie depuis le niveau inférieur. Énigme de la galerie : le onzième socle porte un nom effacé (`hf-enigme-onzieme-socle`). Les statues se dressent comme à l'écoute : certaines peuvent bouger si l'on profane la galerie (gargouilles de garde).",
     "visuel": "Une nef aussi longue qu'une rue, dix statues de rois au bronze terni se faisant face, un onzième piédestal nu au fond, des banderoles de cendre figée tombant des corniches.",
-    "accroche": "Tout au bout d'une nef longue comme une rue, des silhouettes de bronze se font face, et des banderoles de cendre pendent aux corniches.",
+    "accroche": "Au bout de la rue, une haute arche de basalte s’ouvre sur une nef où pendent des banderoles de cendre figée.",
     "ambiance": "Un courant d'air tiède fait chanter les clés des anciens rois, accrochées aux statues comme des offrandes.",
     "niveau": {
       "min": 4,
@@ -160,12 +160,12 @@
       {
         "vers": "hf-quartiers-des-forgerons",
         "type": "porte",
-        "description": "Entre deux statues, une porte basse mène à des ruelles de basalte où la cendre dort sur les seuils."
+        "description": "Entre deux statues, une arche basse, sans battant, mène à des ruelles de basalte où la cendre dort sur les seuils."
       },
       {
         "vers": "hf-chapelle-de-l-enclume",
         "type": "porte",
-        "description": "Côté opposé de la nef, une porte basse s’ouvre sur une chapelle silencieuse, où l’on devine une lumière éteinte."
+        "description": "Côté opposé de la nef, une porte basse s’ouvre sur une chapelle où les veilleuses sont éteintes."
       },
       {
         "vers": "hf-galerie-des-lames",
@@ -181,7 +181,7 @@
           "flag": "hf-ascenseur-actif"
         },
         "description": "La cage de l'ascenseur de forge, derrière une grille de fer. Elle ne descend que lorsque la pression de la grande fonderie est réglée.",
-        "retour": "Par la grille de la cage, on devine la nef des rois ; quand la pression est réglée, la cage se met en route."
+        "retour": "Par la grille de la cage, on aperçoit la nef des rois ; la cage ne se met en route que lorsque la pression est réglée."
       }
     ],
     "rencontres": [
@@ -216,7 +216,7 @@
     "resume": "Un marché figé en pleine foire, tenu par un seul marchand qui n'a pas fini sa journée.",
     "description": "Une halle voûtée remplie d'étals de bois noirci, de balances, de cordages d'enseigne, de rouleaux de tissu devenus cendre. Le dernier jour de la foire, tout s'est arrêté. Un ferrailleur fantôme, Bodrin, y tient encore boutique et vend ce que le royaume a laissé. Les ombres des clients ne sont pas loin et rôdent autour des étals.",
     "visuel": "Un marché voûté : étals de bois calciné, enseignes de fer qui oscillent, tapis de cendre couvrant des balances et des sacs, une lanterne verte au centre.",
-    "accroche": "Les enseignes de fer grincent au-dessus d'une voûte basse, et une lanterne verte éclaire faiblement des étals couverts de cendre.",
+    "accroche": "Au-dessus d’une voûte basse, des enseignes de fer grincent, et une lanterne verte luit faiblement dans la cendre.",
     "ambiance": "Une cloche d'ouverture sonne parfois toute seule, sans que personne n'y touche.",
     "niveau": {
       "min": 4,
@@ -226,12 +226,12 @@
       {
         "vers": "hf-grande-galerie",
         "type": "porte",
-        "description": "Deux battants de bronze, mal ajustés, s’ouvrent sur une nef dont l’air tiède fait chanter des clés."
+        "description": "Un battant de bronze, mal ajusté, s’ouvre sur la nef ; par l’interstice passe un souffle tiède et une odeur de métal."
       },
       {
         "vers": "hf-quartiers-des-forgerons",
         "type": "porte",
-        "description": "Sous une arche basse, un couloir de briques mène vers trois ruelles de maisons basses, d’où monte une odeur de cendre froide."
+        "description": "Sous une arche basse, un couloir de basalte mène vers trois ruelles de maisons à toits plats, d’où monte une odeur de cendre froide."
       },
       {
         "vers": "hf-citerne",
@@ -267,7 +267,7 @@
     "resume": "Des rues de maisons de pierre et des dortoirs où les familles de la forge dormaient quand la cendre est venue.",
     "description": "Un quartier d'habitation : trois ruelles bordées de maisons de pierre à un étage, un réfectoire commun, des dortoirs de cuivre et des jardins de champignons morts. Les habitants n'ont pas eu le temps de fuir : leurs corps, momifiés par la chaleur, sont encore dans leurs lits ou assis à table. Les affamés de la cendre (goules et zombis) rôdent ici, attirés par la chaleur résiduelle.",
     "visuel": "Trois ruelles de maisons de basalte à toits plats, des portes ouvertes sur des tables mises, de la cendre en nappe sur les lits.",
-    "accroche": "Sur trois ruelles bordées de maisons de basalte à toits plats, la cendre dort en nappe, et des portes restent ouvertes.",
+    "accroche": "Trois ruelles bordées de maisons de basalte s’ouvrent dans la halle ; la cendre dort en nappe, et des portes restent ouvertes.",
     "ambiance": "Une berceuse sans paroles que le vent des conduits siffle dans les cheminées.",
     "niveau": {
       "min": 4,
@@ -277,12 +277,12 @@
       {
         "vers": "hf-grande-galerie",
         "type": "porte",
-        "description": "Pas de battant à cette ouverture de pierre : on passe directement de la ruelle vers une nef sonore."
+        "description": "Une simple ouverture dans le mur de pierre ; de la ruelle, on passe à une nef où les pas résonnent."
       },
       {
         "vers": "hf-marche-souterrain",
         "type": "porte",
-        "description": "Une cloison de fortune, clouée à la hâte ; derrière elle, des enseignes de fer qui oscillent."
+        "description": "Sous l'arche basse, un couloir de basalte mène au marché ; au bout, une enseigne de fer oscille."
       },
       {
         "vers": "hf-chapelle-de-l-enclume",
@@ -292,7 +292,7 @@
       {
         "vers": "hf-armurerie-royale",
         "type": "porte",
-        "description": "Grille de fer ouvragé, sans battant : derrière elle, des lames tintent doucement sur leur râtelier."
+        "description": "Une grille de fer ouvragé, sans battant ; derrière elle, des lames longues sont dressées sur leur râtelier."
       },
       {
         "vers": "hf-puits-des-cendres",
@@ -340,7 +340,7 @@
       {
         "vers": "hf-quartiers-des-forgerons",
         "type": "porte",
-        "description": "La rampe de basalte descend vers les maisons ; la cendre garde l’empreinte de pas qui ne sont pas revenus."
+        "description": "Une rampe de basalte descend vers les maisons, bordée de traces de pas dans la cendre."
       },
       {
         "vers": "hf-refuge-de-dagna",
@@ -380,7 +380,7 @@
       {
         "vers": "hf-marche-souterrain",
         "type": "escalier",
-        "description": "Un escalier de pierre quitte l’eau noire et grimpe vers un éclat vert, quelque part au-dessus."
+        "description": "Un escalier de pierre quitte l’eau noire, marches rongées, et grimpe vers un éclat vert, sous la voûte du marché."
       },
       {
         "vers": "hf-conduits-de-service",
@@ -390,7 +390,7 @@
           "competence": "investigation"
         },
         "description": "Une bouche de pierre au ras de l'eau, cachée par une grille factice.",
-        "retour": "Un boyau de pierre, bas de plafond, débouche au ras d’une eau noire et stagnante."
+        "retour": "Un boyau de pierre, bas de plafond, débouche au ras de l'eau noire d'un bassin."
       }
     ],
     "rencontres": [
@@ -428,7 +428,7 @@
       {
         "vers": "hf-grande-galerie",
         "type": "porte",
-        "description": "Un corridor de pierre file droit vers la nef, où le pas cadencé de la garde semble se rapprocher."
+        "description": "Un corridor de pierre file droit vers la nef, où le bronze terni de dix statues de rois luit au bout."
       },
       {
         "vers": "hf-armurerie-royale",
@@ -461,7 +461,7 @@
     "resume": "L'arsenal de la garde du roi : armures et armes de maître, dont certaines se dressent seules.",
     "description": "Une longue salle voûtée tapissée de râteliers : armures de plaques complètes, lames longues, boucliers d'apparat. Les pièces d'exception se tiennent sur des mannequins de fer, dont plusieurs sont animés. Un coffre d'arsenal dans le fond conserve les pièces de maître.",
     "visuel": "Une armurerie voûtée : harnois lustrés sur des mannequins, râteliers de lames longues, boucliers ronds accrochés comme des lunes, le tout sous une pellicule de cendre.",
-    "accroche": "L'acier luit faiblement derrière une porte de bois que la cendre a gonflée, et l'on devine des formes immobiles, bien alignées.",
+    "accroche": "Une porte de bois que la cendre a gonflée ferme mal ; à travers la fente, l'acier luit faiblement.",
     "niveau": {
       "min": 4,
       "max": 5
@@ -470,7 +470,7 @@
       {
         "vers": "hf-salle-des-gardes",
         "type": "porte",
-        "description": "Une arche basse, sans vantail, ouvre sur une caserne de pierre où quelqu’un a laissé des dés."
+        "description": "Une arche basse, aux vantaux de fer entrouverts, ouvre sur une caserne de pierre où des dés de bronze restent sur une table."
       },
       {
         "vers": "hf-quartiers-des-forgerons",
@@ -495,7 +495,7 @@
     "resume": "Un puits d'aération rempli de gaz lourd où la cendre s'accumule depuis deux siècles.",
     "description": "Un puits d'aération circulaire, profond de quinze mètres, au fond duquel dort un gaz lourd et gris. Une échelle de fer descend dans le noir ; en bas, un tunnel conduit au réseau de conduits de service. Le gaz est un piège naturel : il tue les imprudents (piège `hf-p-gaz-de-cendre`).",
     "visuel": "Un puits rond de pierre noire, une échelle de fer rouillé qui plonge dans une brume grise et basse, des traces de suie sur les parois.",
-    "accroche": "Une haleine grise et lente monte d'une ouverture dans la pierre, avec une odeur de suie froide qui pique la gorge.",
+    "accroche": "Une ouverture dans la pierre laisse monter une haleine grise ; l'odeur de suie froide pique la gorge.",
     "ambiance": "Le gaz murmure quand on s'en approche, comme une respiration lente.",
     "niveau": {
       "min": 4,
@@ -510,7 +510,7 @@
       {
         "vers": "hf-conduits-de-service",
         "type": "echelle",
-        "description": "L’échelle s’enfonce dans la brume ; en contrebas, des boyaux de maintenance s’ouvrent, pleins de bruits d’eau."
+        "description": "L'échelle s'enfonce dans la brume ; en contrebas, un couloir de service s'ouvre, bordé de tuyaux de cuivre verdis."
       }
     ],
     "repos": "dangereux"
@@ -539,7 +539,7 @@
           "competence": "investigation"
         },
         "description": "Une grille de bronze au fond de la mine effondrée de la Fosse, derrière un éboulis, ouvre sur un conduit de ventilation que l'on remonte en cinq heures de reptation.",
-        "retour": "Le conduit remonte, étroit et noir de suie, vers un souffle plus frais qui descend d’en haut."
+        "retour": "Derrière la grille de bronze, un conduit étroit descend dans la suie, et l'air qui monte du fond est lourd."
       },
       {
         "vers": "hf-conduits-de-service",
@@ -565,7 +565,7 @@
     "resume": "Un réseau de boyaux de maintenance qui relie secrètement la citerne, le puits, l'Écluse noire et les réserves.",
     "description": "Un labyrinthe de boyaux de service où deux nains peuvent à peine se croiser : conduites de vapeur froides, passerelles de grille, escaliers en colimaçon. Il relie le conduit des fumées, la citerne, le puits des cendres, le refuge du scribe, les réserves de charbon et l'Écluse noire. Des goules s'y glissent la nuit. C'est le raccourci qu'on évite si l'on sait ce qu'il y a au bout.",
     "visuel": "Un boyau de pierre étroit, des tuyaux de cuivre verdis le long des parois, des passerelles de grille au-dessus du vide, la lueur rouge lointaine d'un soupirail.",
-    "accroche": "Des gargouillis d'eau cherchent leur chemin derrière les murs, et un soupirail lointain laisse filtrer un reflet rouge sur la pierre.",
+    "accroche": "Derrière le mur, l'eau gargouille dans les conduits, et un reflet rouge glisse sur la pierre.",
     "ambiance": "Un gargouillement lointain d'eau cherche son chemin entre les murs.",
     "niveau": {
       "min": 4,
@@ -580,7 +580,7 @@
       {
         "vers": "hf-puits-des-cendres",
         "type": "echelle",
-        "description": "Un fil d’eau court sur les grilles, puis une échelle plonge vers un gaz lourd qui murmure."
+        "description": "Un fil d'eau court sur les grilles, puis une échelle de fer remonte le long d'un puits, dans la brume."
       },
       {
         "vers": "hf-refuge-de-dagna",
@@ -637,7 +637,7 @@
       {
         "vers": "hf-conduits-de-service",
         "type": "passage",
-        "description": "Une trappe de tôle s'ouvre au pied du mur sur un boyau qui file vers le fond, tiède et chargé de suie."
+        "description": "Une trappe de tôle s'ouvre au pied du mur sur un boyau tiède qui file vers le fond, chargé de suie."
       },
       {
         "vers": "hf-chapelle-de-l-enclume",
@@ -646,7 +646,7 @@
           "dd": 15,
           "competence": "perception"
         },
-        "description": "Une fois la fausse étagère repoussée, un couloir bas et froid descend vers une odeur d'huile éteinte."
+        "description": "Au fond de la cellule, un couloir de pierre descend, froid, vers une odeur d'huile éteinte."
       }
     ],
     "faits": [
@@ -670,7 +670,7 @@
     "resume": "Un couloir de service piégé de lames, qui mène de l'escalier à la grande fonderie.",
     "description": "Un long couloir voûté, éclairé de rares lucarnes de verre rouge, qui relie l'escalier de la Grande Galerie à la grande fonderie. Le sol est parqueté de dalles de pierre sur lesquelles les gnomes ont posé des plaques de pression : un convoi de visiteurs non annoncés déclenche des lames de faux qui sortent des murs (piège `hf-p-lames-de-la-galerie`).",
     "visuel": "Un couloir de basalte étroit, des fentes régulières sur les murs, un sol damier de dalles pâles et sombres, la lueur rouge d'une fonderie au fond.",
-    "accroche": "Le basalte d'un couloir étroit s'enfonce devant soi, et une clarté de fournaise rougeoie tout au bout, comme une bouche de four.",
+    "accroche": "Une entrée étroite de basalte, aux murs striés de fentes régulières, s'enfonce devant soi dans une pénombre.",
     "niveau": {
       "min": 4,
       "max": 5
@@ -679,7 +679,7 @@
       {
         "vers": "hf-grande-fonderie",
         "type": "porte",
-        "description": "Le couloir se termine par un vantail fendu, d'où filtrent une lueur rouge et une chaleur de four."
+        "description": "Le couloir se termine par une grande porte de basalte entrouverte ; au-delà, une lueur rouge et une chaleur de four."
       }
     ],
     "repos": "dangereux"
@@ -707,17 +707,17 @@
       {
         "vers": "hf-salle-des-engrenages",
         "type": "porte",
-        "description": "Dans le mur de l'est, une lourde porte de bronze s'ouvre sur un bruit de roues qui claquent."
+        "description": "Dans le mur de l'est, une lourde porte de bronze à deux battants s'ouvre sur un bruit de roues qui claquent."
       },
       {
         "vers": "hf-forge-aux-vapeurs",
         "type": "porte",
-        "description": "Un battant de cuivre, tiède au toucher, cache mal un sifflement continu et des bouffées de buée blanche."
+        "description": "Dans le mur de l'ouest, un battant de cuivre laisse sortir des bouffées de buée blanche et un sifflement continu."
       },
       {
         "vers": "hf-reserves-de-charbon",
         "type": "porte",
-        "description": "Derrière la tôle de ce battant, une odeur d'huile et de suie annonce des monts de charbon."
+        "description": "Un battant de tôle rivée ferme le passage ; une odeur d'huile et de suie filtre par ses joints."
       },
       {
         "vers": "hf-ascenseur-de-forge",
@@ -767,12 +767,12 @@
       {
         "vers": "hf-grande-fonderie",
         "type": "porte",
-        "description": "Au bout de la passerelle, un battant de cuivre laisse filtrer une lueur chaude et un grondement sourd."
+        "description": "Au bout de la passerelle, une porte de bronze laisse filtrer une lueur orangée et un grondement sourd."
       },
       {
         "vers": "hf-pont-basculant",
         "type": "pont",
-        "description": "Au-dessus d'un gouffre dont la chaleur monte, une passerelle de bronze se tient relevée contre le mur."
+        "description": "Au bord d'un gouffre, un pont de bronze à contrepoids ; sa chaîne de plomb pend le long du mur, et la chaleur monte du vide."
       },
       {
         "vers": "hf-bibliotheque-des-plans",
@@ -782,7 +782,7 @@
       {
         "vers": "hf-ascenseur-de-forge",
         "type": "passage",
-        "description": "La cage de fer attend, suspendue par des poulies qui grincent doucement dans le noir."
+        "description": "Une cage de fer ajourée attend au bord d'un puits noir, suspendue à des chaînes dont les poulies grincent."
       }
     ],
     "repos": "dangereux"
@@ -825,7 +825,7 @@
     "resume": "Une salle d'archives où les gnomes rangeaient les plans de chaque machine, avec une table de placement.",
     "description": "Une vaste salle d'archives : étagères de chêne noir, tiroirs à plans, longues tables de dessin, une grande table des plans au centre sur laquelle quatre emplacements attendent des maquettes (énigme `hf-enigme-table-des-plans`). Une porte dérobée derrière un rayonnage conduit à l'atelier du maître (Investigation DD 16). Des lecteurs sans visage hantent la salle : ombres de scribes.",
     "visuel": "Une salle d'archives mal éclairée : étagères de chêne noir, tiroirs à plans étiquetés, une grande table de dessin à quatre empreintes de bronze, parchemins roulés dans des tubes de cuivre.",
-    "accroche": "Un relent de vieux papier et de bronze filtre par une porte à demi close, où la lumière tombe mal.",
+    "accroche": "Une porte de chêne à demi close, dans une pénombre où la lumière tombe mal ; une odeur de parchemin filtre par l'entrebâillement.",
     "ambiance": "Le froissement de feuilles qu'on tourne, par-dessus l'épaule.",
     "niveau": {
       "min": 4,
@@ -835,7 +835,7 @@
       {
         "vers": "hf-salle-des-engrenages",
         "type": "porte",
-        "description": "Au pied des étagères, un battant de fer s'ouvre sur un grincement de roues et une lumière rouge."
+        "description": "Au pied des étagères, un battant de chêne sombre s'ouvre sur un grincement de roues et une lumière rouge."
       },
       {
         "vers": "hf-atelier-de-brunhild",
@@ -849,7 +849,7 @@
           "dd": 16,
           "competence": "investigation"
         },
-        "description": "Un rayonnage de chêne noir pivote sur un gond caché ; derrière, un air sec et le cliquetis de mécanismes légers, et l'on devine des établis."
+        "description": "Un rayonnage de chêne noir pivote sur un gond caché ; derrière, un air sec sent l'huile fine, et des mécanismes légers cliquettent."
       }
     ],
     "rencontres": [
@@ -892,7 +892,7 @@
       {
         "vers": "hf-bibliotheque-des-plans",
         "type": "passage-secret",
-        "description": "Au fond de l'atelier, une étagère entrouverte laisse passer un air plus sec et une odeur de papier."
+        "description": "Au fond de l'atelier, un rayonnage de chêne noir pivote sur un gond ; derrière, une salle sèche bourrée de tiroirs à plans."
       },
       {
         "vers": "hf-atelier-de-brunhild",
@@ -921,7 +921,7 @@
     "resume": "Le coin de jeu et d'étude de la fille du roi : jouets d'acier, esquisses, un journal d'enfant.",
     "description": "Un petit atelier qu'on a bâti pour une enfant : un établi à sa taille, des outils de bois, des automates-jouets, un tableau noir couvert de dessins à la craie. Le journal de Brunhild est dans un tiroir fermé par une serrure de gnome. On y voit combien elle était aimée, et combien sa mort a été le début de tout.",
     "visuel": "Un petit atelier rempli de jouets d'acier, de bonshommes en cuivre, d'un tableau noir de dessins à la craie et d'un établi à hauteur d'enfant sous une lampe à abat-jour.",
-    "accroche": "Une petite mélodie lente, toujours la même, s'échappe d'un atelier, et la lumière d'une lampe à abat-jour filtre sous le battant.",
+    "accroche": "Au bout d'une galerie, une porte basse laisse filtrer une lumière jaune sous le seuil.",
     "ambiance": "Un automate-jouet répète un petit air de musique à trois notes, très lentement.",
     "niveau": {
       "min": 4,
@@ -931,12 +931,12 @@
       {
         "vers": "hf-bibliotheque-des-plans",
         "type": "porte",
-        "description": "Un battant de bois s'ouvre sur des rayonnages de papier, dans une pénombre où l'air est sec."
+        "description": "Un seuil bas, sans battant, ouvre sur des étagères de chêne noir chargées de parchemins roulés dans des tubes de cuivre."
       },
       {
         "vers": "hf-atelier-du-maitre-mecanicien",
         "type": "porte",
-        "description": "Au fond de la pièce, une porte de métal donne sur des automates qui cliquettent doucement."
+        "description": "Au fond de la pièce, une porte de métal s'ouvre sur un atelier d'automates à demi finis."
       }
     ],
     "faits": [
@@ -977,7 +977,7 @@
       {
         "vers": "hf-descente-des-braises",
         "type": "escalier",
-        "description": "Un grand escalier de basalte rouge-noir s'enfonce en spirale, éclairé de torchères qui grincent dans la chaleur montante."
+        "description": "Un escalier de basalte rouge-noir s'enfonce en spirale au fond de la forge, bordé de torchères de fer."
       }
     ],
     "repos": "dangereux"
@@ -990,7 +990,7 @@
     "resume": "Des soutes de charbon et de coke, avec un soupirail vers les conduits de service.",
     "description": "Un vaste dépôt de charbon et de coke empilés en collines noires, avec les plans des fours et des tonneaux d'huile de forge. Une échelle dans un angle descend dans les conduits de service. La poussière de charbon rend l'air inflammable.",
     "visuel": "Des collines de charbon noir sous des lampes à capote, des tonneaux d'huile alignés, des pelles, des paniers de fer, un soupirail grillagé qui laisse passer une lueur rouge.",
-    "accroche": "Une odeur de suie tiède et de coke monte des soutes, et une lueur de grille rougit le sol devant leur seuil.",
+    "accroche": "Une grille de soupirail s'ouvre au ras du sol, et la suie de charbon marque le seuil des soutes.",
     "niveau": {
       "min": 4,
       "max": 5
@@ -999,12 +999,12 @@
       {
         "vers": "hf-grande-fonderie",
         "type": "porte",
-        "description": "Au bout de la soute, un battant de fer laisse filtrer une lueur rouge et un ronronnement de machines."
+        "description": "Au bout de la soute, un battant de fer, aux gonds grinçants, laisse filtrer une lueur rouge depuis les machines."
       },
       {
         "vers": "hf-forge-aux-vapeurs",
         "type": "porte",
-        "description": "Sous une lampe à capote, un panneau de bois s'ouvre sur un sifflement de vapeur et une chaleur moite."
+        "description": "Sous une lampe à capote, une grille basse laisse monter une buée de vapeur des tuyauteries de la forge."
       },
       {
         "vers": "hf-conduits-de-service",
@@ -1031,12 +1031,12 @@
       {
         "vers": "hf-grande-fonderie",
         "type": "porte",
-        "description": "Une grille à claire-voie s'ouvre sur une chaleur qui sent le métal et une halle qu'on devine immense."
+        "description": "Une grille de fer s'ouvre sur une halle immense, et la lumière de la fonderie tombe sur des rigoles de fonte figée."
       },
       {
         "vers": "hf-salle-des-engrenages",
         "type": "passage",
-        "description": "Une passerelle étroite file entre les roues, et chaque dent qui mord fait trembler la grille sous les pieds."
+        "description": "Une passerelle de fer étroite file entre les engrenages, et chaque dent qui mord fait vibrer la grille sous les pieds."
       },
       {
         "vers": "hf-descente-des-braises",
@@ -1058,7 +1058,7 @@
     "resume": "Le grand escalier qui plonge vers la Veine rouge, jalonné de portes royales.",
     "description": "Un escalier de basalte large comme une rue, taillé en spirale dans la roche rouge. À chaque palier s'ouvre une porte : celle du sépulcre de la reine Aldis, celle du pont de la Veine. Le trésor royal, plus bas, est fermé par une porte de coffre-fort (flag `hf-voute-ouverte`). L'ascenseur arrive ici.",
     "visuel": "Un escalier de basalte rouge-noir qui descend en spirale dans une roche rougeoyante, des torchères de fer, des runes gravées à chaque palier.",
-    "accroche": "La pente descend en spirale vers une rougeur qui monte des profondeurs, et des torchères crachotent à chaque palier.",
+    "accroche": "Un escalier de basalte rouge-noir plonge vers une rougeur, et des torchères crachotent à chaque palier.",
     "niveau": {
       "min": 5,
       "max": 5
@@ -1072,7 +1072,7 @@
       {
         "vers": "hf-pont-de-la-veine",
         "type": "porte",
-        "description": "Dans le mur, une porte basse laisse passer un grondement qui fait vibrer la pierre."
+        "description": "Dans le mur de la spirale s'ouvre une porte haute en fer ; la pierre vibre sous la main."
       },
       {
         "vers": "hf-sepulcre-d-aldis",
@@ -1098,7 +1098,7 @@
     "resume": "Un pont de basalte jeté au-dessus de la Veine rouge, fleuve de feu élémentaire.",
     "description": "Un long pont de basalte au-dessus d'un ravin où coule la Veine rouge. La chaleur est écrasante. Des sentinelles de la Veine tiennent le pont ; le tablier est miné par l'usure (piège `hf-p-effondrement-du-pont`). De là, on peut descendre sur l'escalier du lit de braise ou franchir le portail du Cœur.",
     "visuel": "Un pont de basalte au-dessus d'un ravin où coule un fleuve de feu orange, la roche rougeoie, des gerbes d'étincelles montent en tourbillons.",
-    "accroche": "Un grondement continu traverse la roche, comme celui d'une bête qui ronronne, et des gerbes d'étincelles montent d'un ravin.",
+    "accroche": "Derrière le battant de fer, un grondement continu traverse la roche, et des gerbes d'étincelles montent d'un ravin.",
     "ambiance": "Un grondement continu, comme une bête qui ronronne.",
     "niveau": {
       "min": 5,
@@ -1118,7 +1118,7 @@
       {
         "vers": "hf-lit-de-braise",
         "type": "escalier",
-        "description": "Un escalier de roche noire, étroit et glissant, s'enfonce vers la lueur orange du fleuve de feu."
+        "description": "Un escalier étroit taillé dans la roche noire s'enfonce vers le fleuve de feu, marche après marche."
       }
     ],
     "rencontres": [
@@ -1138,7 +1138,7 @@
     "resume": "Le lit de la Veine rouge : une coulée de feu élémentaire qu'on peut longer par une corniche.",
     "description": "Le fond du ravin : la Veine rouge elle-même, une coulée de feu vivant qui serpente entre deux murailles. Une corniche permet de la longer jusqu'à l'entrée de service du Cœur. On y trouve des éclats de Veine cristallisée. La chaleur inflige des dégâts de feu à qui reste trop longtemps sans protection.",
     "visuel": "Un lit de lave orange vif entre deux parois de roche noire, une corniche étroite, des cristaux rouges comme des braises figées.",
-    "accroche": "Dès le seuil, un souffle de four sèche les lèvres, et la lumière orange venue du fond fait danser les parois noires.",
+    "accroche": "Au fond de la rotonde, un passage laisse monter une lueur orange qui fait danser les parois noires.",
     "ambiance": "La lumière danse sur les parois, la parole est difficile à entendre.",
     "niveau": {
       "min": 5,
@@ -1148,7 +1148,7 @@
       {
         "vers": "hf-pont-de-la-veine",
         "type": "escalier",
-        "description": "Des marches taillées dans la roche noire montent vers une voûte où le pont se devine."
+        "description": "Des marches taillées dans la roche noire montent vers une voûte basse, jusqu'au tablier de basalte du pont."
       },
       {
         "vers": "hf-forge-du-coeur",
@@ -1180,7 +1180,7 @@
     "resume": "La salle du Cœur-de-Braise, où le roi achève sa commande depuis deux siècles.",
     "description": "La salle finale : une rotonde de basalte de soixante pas de large, ouverte au centre sur un puits de feu où bat le Cœur-de-Braise, un cœur de feu élémentaire gros comme un chariot. Autour, des fourneaux, des enclumes, des tables de fonte ; sur la plus grande, la Fille de fer : un corps de fer et de braise de la taille d'une enfant, couché, immobile, qui murmure parfois. Thalgrin Cœur-d'Enclume y veille, spectre lié à sa forge. L'entrée pose `coeur-atteint` (événement d'entrée). Le groupe peut y affronter la garde du roi, négocier avec lui, ou en venir aux voies de la fin : (1) RALLUMER : un volontaire vivant reste et nourrit le Cœur (`choix-rallumer`) ; (2) ÉTEINDRE : aller à l'Écluse noire avec `cle-de-l-ecluse-noire` (`choix-eteindre`) ; (3) ACHEVER : donner à Thalgrin le dernier souffle, un sacrifice de feu (la braise de veille) pour animer Brunhild (`choix-achever`) ; (4) LIVRER LA FORGE au Fer-Gris si `fer-gris-allie` (`choix-fer-gris`). Une porte de fer à l'est mène à l'Écluse noire.",
     "visuel": "Une rotonde de basalte rouge-noir ouverte sur un puits de feu où bat un grand cœur de braise, des enclumes et des fourneaux en cercle, une table de fonte au centre portant un petit corps de fer, des chaînes de forge accrochées aux voûtes.",
-    "accroche": "Le sol vibre d'un battement lent, et sous le grondement monte un chant si bas qu'on le devine plus qu'on ne l'entend.",
+    "accroche": "Sous la rotonde, le sol vibre d'un battement lent, et un chant très bas traverse la pierre.",
     "ambiance": "Le Cœur bat, lentement, et la salle bat avec lui. On y entend aussi, par-dessous, quelqu'un qui chante bas.",
     "niveau": {
       "min": 5,
@@ -1256,7 +1256,7 @@
     "resume": "La vanne de secours du royaume, qui peut noyer le Cœur sous la rivière noire.",
     "description": "Une salle ronde coupée par une vanne de bronze colossale : l'Écluse noire, qui retient une rivière souterraine au-dessus de la Forge du Cœur. Ouvrir la vanne noie la Forge et éteint le Cœur-de-Braise. La vanne se verrouille par une serrure à clé (`cle-de-l-ecluse-noire`, gardée par le maître-mécanicien) et se commande par une grille de quatre runes (énigme `hf-enigme-grille-des-runes`). Un mauvais ordre déclenche un coup de bélier d'eau (piège `hf-p-coup-de-belier`). On y entre par la porte de fer du Cœur, ou par le conduit de service (chemin dérobé). L'entrée pose `ecluse-noire-trouvee`.",
     "visuel": "Une salle ronde de basalte noir, une vanne de bronze verdie haute comme trois hommes, quatre runes en relief sur une grille de fer, un suintement d'eau noire qui court sur les dalles.",
-    "accroche": "De l'autre côté d'une vanne, une rivière gronde comme une bête patiente, et l'eau noire suinte sur les dalles.",
+    "accroche": "Derrière un battant de fer, sur le côté, une rivière gronde sous la roche, et l'eau noire suinte sur les dalles.",
     "ambiance": "Derrière la vanne, la rivière gronde, comme un animal qui attend qu'on lui ouvre.",
     "niveau": {
       "min": 5,
@@ -1275,7 +1275,7 @@
           "dd": 14,
           "competence": "perception"
         },
-        "description": "Sous les dalles, un boyau de maintenance étroit et humide file vers le bas, en gargouillant."
+        "description": "Sous les dalles, un boyau de maintenance file vers le bas ; au fond, de l'eau gargouille entre les murs."
       }
     ],
     "rencontres": [
@@ -1315,7 +1315,7 @@
     "resume": "La chambre forte des rois, fermée par une porte de coffre-fort que la table des plans (ou le roi) peut ouvrir.",
     "description": "Une chambre forte de basalte et de bronze, aux murs doublés de fer. Les offrandes de onze règnes y reposent : couronnes, vaisselle d'or, le marteau du premier forgeron sur son coussin de feutre. La porte (flag `hf-voute-ouverte`) s'ouvre lorsque la table des plans est correctement agencée, ou lorsque Thalgrin le permet.",
     "visuel": "Une chambre forte de bronze et de basalte, des étagères d'or terni, un marteau de forge au long manche sur un coussin de feutre, des vitrines de verre noirci.",
-    "accroche": "Derrière un seuil de bronze épais, de l'or terni accroche une lueur pâle, et le fond de la chambre reste noyé d'ombre.",
+    "accroche": "Un seuil de bronze épais, sombre et froid, ferme le fond d’une chambre noyée d’ombre.",
     "niveau": {
       "min": 5,
       "max": 5
@@ -1348,7 +1348,7 @@
     "resume": "Le tombeau de la reine Aldis, qui a mené l'exode, et la porte du trésor royal.",
     "description": "Une petite crypte de pierre claire dédiée à la reine Aldis, qui a vu le désastre et conduit le peuple dehors. Il y a plusieurs niches, un sarcophage, et un message gravé pour qui viendrait. La porte du trésor royal s'ouvre au fond. Les nains momifiés de la garde de la reine veillent encore.",
     "visuel": "Une crypte de pierre claire, un sarcophage orné d'une couronne de fer et de fleurs de bronze, des niches de mort aux nains alignés, des lampes à huile éteintes.",
-    "accroche": "L'air qui sort de cette crypte est étonnamment frais, presque doux, comme si on y veillait sur quelqu'un.",
+    "accroche": "Un air frais sort d'une crypte de pierre claire, et il ne porte aucune trace de suie.",
     "ambiance": "L'air y est frais, presque doux, comme si le tombeau protégeait quelqu'un.",
     "niveau": {
       "min": 5,
@@ -1366,7 +1366,7 @@
         "condition": {
           "flag": "hf-voute-ouverte"
         },
-        "description": "Au fond du sépulcre, la porte du trésor royal, panneau de métal lisse et sombre, laisse filer un souffle froid et métallique par sa fente."
+        "description": "Au fond du sépulcre, une porte de coffre-fort en bronze, sombre et lisse, occupe tout le mur."
       }
     ],
     "rencontres": [

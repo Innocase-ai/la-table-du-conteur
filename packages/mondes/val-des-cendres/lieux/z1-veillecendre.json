@@ -30,7 +30,7 @@
     "description": "Une centaine de toits de lauzes serrés derrière une palissade de rondins et un rempart de pierre sèche, autour d'une tour de garde naine, la Lanterne. Un puits sur la place, une halle, un marché de planches, une auberge, une forge improvisée par les réfugiés, une chapelle grise où l'on prie en silence. Le col est fermé : plus de caravane avant le printemps, les vivres comptent, les nerfs aussi. Le soir, la cloche sonne le couvre-feu et chacun ferme sa porte. Le village est le hub du chapitre : tout part d'ici et tout y revient.",
     "ambiance": "Fumées basses, pas étouffés dans la neige grise, odeur de soupe de choux et de fer chaud ; on parle bas.",
     "visuel": "Un village de toits de lauzes noirs de cendre blottis autour d'une tour de pierre naine gravée de runes, dont le sommet jette une lueur orangée faible. Une palissade de rondins, des ruelles étroites pleines de neige grise, des fenêtres éclairées de chandelles, de la fumée qui rampe.",
-    "accroche": "Des toits de lauzes noires se serrent autour d'une tour qui jette une lueur orangée. Une fumée de soupe monte des ruelles, et l'on parle bas.",
+    "accroche": "Au fond du val, des toits de lauzes noires se serrent contre une tour trapue, et une fumée basse traîne entre eux.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -41,7 +41,7 @@
         "type": "route",
         "heures": 1,
         "description": "La route du col monte vers le nord entre les congères, jusqu'à la porte de la vallée.",
-        "retour": "Le col s’éloigne derrière ; la route redescend vers les lueurs du village, et l’on devine sa fumée basse au ras des toits."
+        "retour": "La route redescend entre les congères vers Veillecendre ; le col s'éloigne derrière, et les premiers toits noirs se dessinent plus bas."
       },
       {
         "vers": "sentier-des-cendres",
@@ -101,7 +101,7 @@
     "description": "Une tour de pierre grise haute de vingt mètres, bâtie par les nains en fuite, couverte de runes de bronze. Au pied, une salle de garde où veille le capitaine Rolf avec ses hommes ; un escalier tournant monte au foyer, puis au cadran qui règle le tirage de la flamme. À l'intérieur des murs, la cendre ne tombe pas : l'air y est tiède, et la neige grise s'arrête net au seuil. La flamme au sommet n'est plus qu'une braise orange.",
     "ambiance": "Chaleur sourde, bourdonnement grave de la pierre, odeur d'huile chaude ; les gardes parlent à voix basse comme dans un lieu saint.",
     "visuel": "Une tour de pierre grise couverte de runes de bronze, un escalier tournant, une salle de garde basse avec des râteliers et un poêle rougeoyant. Au sommet, une flamme orange pâle à l'abri de vitres épaisses. Aucune cendre ne tombe sous la voûte ; la neige grise s'arrête au seuil.",
-    "accroche": "La tour couverte de runes de bronze vibre d'une chaleur sourde sous une flamme pâle ; la neige s'arrête net au seuil.",
+    "accroche": "La tour de pierre grise, aux plaques de bronze, garde une flamme pâle derrière ses vitres ; la neige s'arrête net au seuil.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -111,7 +111,7 @@
         "vers": "vei-foyer-de-la-lanterne",
         "type": "escalier",
         "heures": 0,
-        "description": "L'escalier tournant monte jusqu'au foyer, ses marches de pierre grise usées au centre ; la chaleur grimpe à mesure, et une lueur orange tombe de là-haut.",
+        "description": "Un escalier tournant aux marches grises monte jusqu'au foyer ; l'air s'y réchauffe à chaque palier.",
         "retour": "Les marches tournent et redescendent vers le poêle ; la lumière orange recule marche après marche."
       }
     ],
@@ -146,8 +146,8 @@
         "vers": "vei-cadran-de-la-lanterne",
         "type": "escalier",
         "heures": 0,
-        "description": "Une échelle de fer, froide et piquée de rouille, grimpe dans un conduit étroit jusqu'au cadran, où le bronze tinte à chaque souffle de la flamme.",
-        "retour": "Une échelle de fer remonte vers la salle de la flamme ; les chaînes tintent dans l’ombre, et une clarté pâle filtre par le haut."
+        "description": "Une échelle de fer descend dans un conduit étroit jusqu'au cadran, d'où monte un tintement de bronze régulier.",
+        "retour": "Une échelle de fer remonte vers la salle de la flamme ; dans l'ombre, des chaînes rouillées pendent du plafond, et une clarté pâle filtre par le haut."
       }
     ],
     "faits": [
@@ -183,7 +183,7 @@
     "description": "Sous la lanterne, une calotte de verre épais faite de trois panneaux, un réduit étroit où des chaînes de bronze descendent du plafond vers un grand cadran à trois couronnes. C'est le régulateur nain qui règle le tirage de la flamme. Il est déréglé depuis des mois ; une niche scellée, derrière lui, attend son bon réglage.",
     "ambiance": "Cliquetis de chaînes, chaleur lourde, vertige.",
     "visuel": "Un réduit étroit sous une calotte de verre épais. Un cadran de bronze à trois couronnes gravées de chiffres nains, des chaînes qui montent dans l'ombre, une niche scellée par une plaque. La flamme brûle juste au-dessus, lumière orange sur le métal.",
-    "accroche": "Depuis le seuil étroit, un cliquetis de chaînes et une chaleur lourde qui monte de l'ombre. On devine une vieille mécanique qui tourne quelque part.",
+    "accroche": "Un réduit étroit de bronze s'ouvre au-dessus de l'escalier ; une chaîne en sort et disparaît dans l'ombre.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -208,7 +208,7 @@
     "description": "Une grande salle basse à poutres noircies, une cheminée à tirage dont le feu ne s'éteint jamais, une quinzaine de tables, une cuisine fumante où l'on fait la soupe aux choux gris. Quelques chambres à l'étage, un dortoir sous les combles pour les réfugiés qui peuvent payer. Les gens s'y retrouvent pour se plaindre, jouer aux dés et chuchoter des rumeurs. L'auberge est un lieu sûr : le feu est entretenu jour et nuit.",
     "ambiance": "Fumée, chaleur humaine, odeur de choux, de bière tiède et de laine mouillée ; les conversations s'arrêtent un instant quand un inconnu entre.",
     "visuel": "Une salle basse aux poutres noircies, une grande cheminée où brûle un feu constant, tables de bois sombre usées, lanternes de fer, silhouettes en manteaux gris attablées sous des bols fumants. Un escalier de bois mène à l'étage.",
-    "accroche": "Par les fenêtres basses filtrent une lumière chaude, des éclats de voix et l'odeur du chou bouilli.",
+    "accroche": "Les fenêtres basses laissent filtrer des éclats de voix et une lumière jaune ; une odeur de chou bouilli passe sur la neige.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -279,7 +279,7 @@
     "description": "Une maison basse aux murs tapissés de fagots d'herbes, de racines pendues et de fioles. Une salle commune avec huit paillasses pour les malades, une arrière-boutique où l'on prépare onguents et teintures. Les réfugiés y affluent : toux grise, gelures, engelures, pieds en sang. L'herboriste y vit seule depuis la mort de son mari.",
     "ambiance": "Odeur d'herbes amères et de camphre, chuchotements, une toux sèche quelque part.",
     "visuel": "Une maison basse au toit de lauzes, intérieur de bois sombre tapissé de bouquets d'herbes séchées, de fioles de verre ambré alignées sur des étagères, de huit paillasses. Une marmite fume sur un petit poêle, une fenêtre de papier huilé diffuse une lumière jaune.",
-    "accroche": "Derrière le papier huilé d'une fenêtre, une lumière jaune ; une odeur d'herbes amères flotte jusque sur le seuil, et une toux sèche.",
+    "accroche": "Le papier huilé d'une fenêtre laisse passer une lueur pâle ; une odeur d'herbes amères flotte sur le seuil, avec une toux sèche.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -299,7 +299,7 @@
     "description": "Un atelier encombré où tictaquent des dizaines de pendules, de serrures à combinaison et de mécanismes à engrenages, tous réparés ou à demi démontés. Le maître gnome entretient depuis trente ans les mécanismes de la Lanterne et du village (pompe du puits, cloche, portes). Une cave sert d'archive de pièces ; un atelier plus petit dans l'arrière-boutique abrite ses recherches. Sur l'établi, un coffre à tiroirs refuse de s'ouvrir.",
     "ambiance": "Cliquetis permanent, huile chaude, cuivre, bonne humeur excentrique.",
     "visuel": "Un atelier encombré aux poutres couvertes d'horloges et d'engrenages de cuivre, des établis chargés de pignons, de ressorts et de loupes, une lampe à huile suspendue, un coffre à tiroirs de bronze et un petit automate au regard de verre.",
-    "accroche": "Au travers des volets entrouverts, un tintement continu de rouages s'échappe et une odeur d'huile chaude, comme si rien ici ne s'arrêtait jamais.",
+    "accroche": "Par les volets entrouverts sortent un tintement de rouages sans fin et une odeur d'huile chaude.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -362,7 +362,7 @@
     "description": "Une maison de pierre naine basse, appuyée contre la Lanterne, qui ressemble à un petit fort. Au rez-de-chaussée, une salle de conseil avec une table longue et un râtelier de lances ; à l'étage, la chambre de la Mère-Gardienne, ouverte sur le feu. Des bannières de laine grise portent la lampe stylisée des Gardiens. On y reçoit les volontaires pour la garde, on y tient les comptes de la flamme.",
     "ambiance": "Ordre austère, odeur de laine et de cire, murmures de conseil.",
     "visuel": "Une maison de pierre naine basse et trapue, bannières grises portant une lampe brodée, une longue table de chêne, un râtelier de lances, un poêle de fonte, des murs de pierre gravés de runes. Lumière chaude de bougeoirs de bronze.",
-    "accroche": "Bannières grises pendues à la porte basse, murs de pierre trapus : la chaleur de bougeoirs et de laine tient le froid à distance.",
+    "accroche": "Des bannières grises pendent à la porte basse d'une maison de pierre trapue serrée contre la Lanterne.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -378,7 +378,7 @@
     "description": "Une chapelle étroite aux murs de pierre nus et à la nef minuscule, bâtie avant la Lanterne. On y veille les mourants, on y prie les morts ; elle appartenait aux Pèlerins gris avant qu'ils ne quittent le village. Aujourd'hui une jeune prêtresse tieffeline la tient, entre des bancs presque vides. Sur l'autel de granit, une coupe de cendre bénite.",
     "ambiance": "Silence profond, froid de pierre, odeur de cire d'abeille et d'encens pâle.",
     "visuel": "Une petite chapelle de pierre nue, nef étroite, bancs de bois pâle, cierges gris dans des chandeliers de fer, un autel de granit portant une coupe de cendre, un vitrail terni qui filtre une lumière bleutée.",
-    "accroche": "Du silence épais s'échappe par la porte entrouverte, avec une odeur de cire froide et un bleu pâle venu d'un vitrail terni.",
+    "accroche": "La porte basse de la chapelle reste entrouverte ; un filet de lumière bleue, venu du vitrail, passe sur le seuil.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -417,7 +417,7 @@
     "description": "Un bâtiment de pierre à étroite façade, dont chaque pièce est tapissée de rayonnages : rouleaux nains, registres de la flamme, cartes, chroniques, notes de passage. L'archiviste elfe y trie et recopie depuis dix ans. Une armoire de chêne à serrure complexe renferme les pièces les plus anciennes. On peut y consulter des ouvrages, identifier des objets d'érudit, demander de l'aide pour lire les runes.",
     "ambiance": "Poussière douce, odeur de vélin et de cire, silence studieux.",
     "visuel": "Un bâtiment étroit tapissé de rayonnages de bois sombre, rouleaux de parchemin, livres reliés de cuir, cartes épinglées, une grande table de lecture sous une lampe, une armoire de chêne verrouillée, lumière dorée et poussière en suspension.",
-    "accroche": "Une lumière dorée flotte derrière les vitres poussiéreuses, sur des rayonnages qu'on devine jusqu'au plafond ; une odeur de vélin passe sur le seuil.",
+    "accroche": "Derrière des vitres sales, une lumière dorée éclaire des rayonnages qui montent jusqu'au plafond ; une odeur de vélin passe sur le seuil.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -462,7 +462,7 @@
     "description": "Une margelle de pierre naine gravée de runes, surmontée d'une pompe à levier de bronze entretenue par le mécanicien gnome. Une eau noire et froide, bonne à boire. Les gens y viennent le matin ; la nuit, il est vide, sauf pour une silhouette grise qui y revient. Au fond, des pièces brillent : l'usage veut qu'on y jette un sou en demandant pardon aux morts.",
     "ambiance": "Grincement de pompe, eau qui tombe en gouttes, froid humide.",
     "visuel": "Une margelle ronde de pierre naine gravée de runes, une pompe à levier de bronze patinée, un seau de bois, des traînées de cendre sur la neige piétinée. Au fond du puits, des éclats de pièces dans l'eau noire.",
-    "accroche": "Grincement d'une pompe de bronze et gouttes qui tombent dans une margelle de pierre runique, traînées de cendre sur la neige piétinée.",
+    "accroche": "Au milieu de la place, une margelle de pierre runique et une pompe de bronze qui grince ; l'eau goutte au fond du puits.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -500,7 +500,7 @@
     "description": "Une enceinte de rondins épaulée de pierre sèche, un chemin de ronde où se relaient les sentinelles. Des braseros éclairent les plates-formes ; la nuit, les gardes surveillent la cendre qui s'amasse hors des murs et les silhouettes qui rôdent. Depuis la jauge de cendre, les alertes se multiplient. Une guérite au nord garde la porte du village.",
     "ambiance": "Vent froid, torches sifflantes, bruit de bottes sur le bois.",
     "visuel": "Une palissade de rondins noircis épaulée de pierre sèche, un chemin de ronde de planches, des braseros qui rougeoient sur les plates-formes, la nuit grise au-delà, des silhouettes vagues qui bougent dans la cendre.",
-    "accroche": "Au-dessus de la palissade noircie, des braseros rougeoient, et la nuit grise s'étend au-delà, où des silhouettes vagues bougent dans la cendre.",
+    "accroche": "Au-dessus de la palissade noircie, une plate-forme de guet se détache sur la nuit grise, et des braseros y brûlent.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -548,7 +548,7 @@
     "resume": "La porte du village et sa guérite, face à la route du col.",
     "description": "Une porte de chêne cerclée de fer, flanquée d'une guérite de pierre et d'une cloche d'alarme. Un guichet permet de parler sans ouvrir. Les sentinelles y notent les allées et venues ; la nuit, elles n'ouvrent à personne, même à une voix aimée.",
     "visuel": "Une lourde porte de chêne cerclée de fer au milieu d'une palissade, une guérite de pierre avec une meurtrière et un brasero, une cloche de bronze accrochée à une potence, une route blanche qui s'éloigne dans la brume.",
-    "accroche": "Sur la route blanche, une lourde porte cerclée de fer ferme la palissade, et une cloche tinte doucement dans le vent.",
+    "accroche": "Au nord, une lourde porte de chêne cerclée de fer ferme la palissade, et la route blanche s'éloigne au-delà.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -564,7 +564,7 @@
     "description": "Une longue grange de pierre à toit de lauzes, cadenassée, où les sacs de grain sont empilés jusqu'aux chevrons. À voir, de quoi tenir l'hiver. En y regardant de près, beaucoup de sacs sont lestés de sable, et les rangs du fond sont presque vides. Le bailli en a seul les clés ; le capitaine de la garde en possède un double.",
     "ambiance": "Odeur de poussière de grain et de souris, craquements du bois.",
     "visuel": "Une longue grange de pierre à toit de lauzes, portes de chêne cadenassées, intérieur de piles de sacs de toile écrue jusqu'aux chevrons, poussière de grain dans des rais de lumière grise, souris qui détalent.",
-    "accroche": "Portes de chêne cadenassées, toit de lauzes et murs de pierre : la grange se tait, et l'on n'entend que des souris qui détalent.",
+    "accroche": "Une longue grange de pierre à toit de lauzes, aux portes de chêne cadenassées ; un bruit de souris traverse parfois le bois.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -589,7 +589,7 @@
     "description": "Un enclos de pierres plates derrière la chapelle. Plusieurs tombes sont éventrées vers l'extérieur, la terre repoussée. Des traces de pieds nus dans la cendre mènent vers le village. Les veuves y entretiennent les tombes qui restent, plantent des fleurs de papier et parlent à ceux d'en dessous.",
     "ambiance": "Silence, craquements de glace, vent léger ; on a l'impression d'être observé.",
     "visuel": "Un enclos de pierres plates sous la neige grise, croix de bois et dalles de schiste, plusieurs tombes éventrées, des empreintes de pieds nus qui s'éloignent dans la cendre, des fleurs de papier gelées.",
-    "accroche": "Croix de bois et dalles de schiste sous la neige grise, certaines tombes éventrées, et un vent léger qui donne l'impression d'être observé.",
+    "accroche": "Derrière un muret bas, un enclos de dalles de schiste sous la neige grise ; des croix de bois penchent, et plusieurs tombes sont éventrées.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -630,7 +630,7 @@
     "description": "Une longue écurie de pierre et de bois, dont la plupart des stalles sont vides : les chevaux ont été mangés ou vendus. Reste une poignée de bêtes de trait qui tremblent à la tombée du soir. Un grenier à foin, un râtelier, une forge à ferrer. On y met les montures des voyageurs, quand il y en a.",
     "ambiance": "Odeur de foin et de crottin, hennissements anxieux.",
     "visuel": "Une longue écurie de pierre et de bois sombre, stalles ouvertes, quelques chevaux gris aux flancs agités, bottes de foin, un râtelier de licous, une lanterne accrochée à une poutre.",
-    "accroche": "Hennissements anxieux et odeur de foin sortent d'une longue bâtisse de pierre et de bois sombre, où les chevaux ont peur de la nuit.",
+    "accroche": "Une bâtisse basse de pierre et de bois sombre, au bout de la ruelle ; odeur de foin et hennissements passent par les volets.",
     "niveau": {
       "min": 1,
       "max": 5
@@ -659,15 +659,15 @@
         "vers": "route-du-col-embuscade",
         "type": "route",
         "heures": 0.5,
-        "description": "Une demi-heure de marche dans la neige mène au défilé boisé ; des sapins noirs serrent la route ; la neige y étouffe tous les bruits.",
-        "retour": "Le défilé se resserre entre les talus, et la route s’ouvre à nouveau sur les bornes gravées et la brume."
+        "description": "Une demi-heure de marche dans la neige, la route se resserre entre des talus de sapins noirs et de roches grises, jusqu'au défilé boisé.",
+        "retour": "Le défilé s'éclaircit derrière soi, et la route revient vers les bornes gravées, dans la brume bleutée."
       },
       {
         "vers": "vei-relais-du-col",
         "type": "route",
         "heures": 1,
-        "description": "À mi-pente, un relais à demi enneigé se dresse au bord de la route, son toit effondré ; la neige grise s'amasse au seuil, et l'on devine un foyer froid.",
-        "retour": "La pente descend vers la route, entre les congères, et la neige grise étouffe les bruits."
+        "description": "À mi-pente, un relais de pierre se dresse au bord de la route, son toit à demi effondré ; la neige grise s'amasse contre le seuil.",
+        "retour": "La pente descend vers la route, entre les congères grises, et les traces de bottes s'effacent sous la neige."
       },
       {
         "vers": "vei-porte-du-col",
@@ -697,8 +697,8 @@
         "vers": "vei-relais-du-col",
         "type": "route",
         "heures": 0.5,
-        "description": "La route continue en montant, bordée de talus enneigés ; les ornières gelées craquent sous les pas, et un toit affaissé se devine au bout.",
-        "retour": "En contrebas, les sapins du défilé cachent la route ; un bruit de branches craque parfois dans le silence."
+        "description": "La route continue de monter entre les bas-côtés enneigés ; les ornières gelées craquent sous les pas, jusqu'à un toit affaissé.",
+        "retour": "En contrebas, les sapins du défilé cachent la route ; une branche craque parfois sous le poids de la neige."
       }
     ],
     "rencontres": [
@@ -761,7 +761,7 @@
     "description": "Un grand chariot bâché, une roue brisée, enfoncé dans une congère en bordure de route. Les mules ont été emmenées ou mangées. Sous la bâche, des tonneaux d'huile de roche, des ballots de laine, des caisses éventrées. Le convoyeur du colporteur gît à côté, une flèche dans le dos.",
     "ambiance": "Silence blanc, odeur d'huile, craquements de glace.",
     "visuel": "Un grand chariot à bâche déchirée, une roue brisée, enfoncé dans une congère grise au bord de la route. Tonneaux de bois, ballots de laine, caisses éventrées, un corps gelé à côté, une flèche brisée dans la neige.",
-    "accroche": "Bâche déchirée, roue brisée : un chariot s'est enfoncé dans une congère, au bord de la route.",
+    "accroche": "Au bord de la route, un grand chariot à bâche déchirée est enfoncé dans une congère grise, la roue brisée.",
     "niveau": {
       "min": 1,
       "max": 2
