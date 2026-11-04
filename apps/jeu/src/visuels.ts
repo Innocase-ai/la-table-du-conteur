@@ -2,7 +2,7 @@
 // un monstre) et textures de terrain. Générées par `pnpm images bestiaire|terrains`, installées par
 // `python3 outils/images/installer.py bestiaire|terrains` (voir docs/M2-IMAGES.md). Une image absente n'empêche rien :
 // l'illustration montre alors le jeton à pictogramme.
-import type { Combattant, Terrain, TypeCase } from '@crpg/regles';
+import type { Combattant, Relief, Terrain, TypeCase } from '@crpg/regles';
 import { imagePortrait } from './createur/portraits';
 
 const parNom = (fichiers: Record<string, string>) =>
@@ -20,6 +20,11 @@ export function imageCombattant(c: Combattant): string | undefined {
 
 export function textureTerrain(terrain: Terrain | undefined, type: TypeCase): string | undefined {
   return terrain ? TERRAINS.get(`${terrain}-${type}`) : undefined;
+}
+
+/** Texture peinte d'un élément en plaque (`relief-eau`, `relief-boue`, `relief-neige`) ; sans elle, un dégradé en tient lieu. */
+export function textureRelief(relief: Relief): string | undefined {
+  return TERRAINS.get(`relief-${relief}`);
 }
 
 /** Illustration de l'interface (`ecran-titre`…), générée par `pnpm images interface`. */

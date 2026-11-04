@@ -1,5 +1,5 @@
 {
-  "_note": "Textures des plateaux de combat, communes à tous les mondes. Une ambiance = trois textures vues de dessus (sol, terrain difficile, dessus de mur). Le moteur choisit l'ambiance d'une rencontre (champ `terrain`).",
+  "_note": "Textures des plateaux de combat, communes à tous les mondes. Une ambiance = trois textures vues de dessus (sol, terrain difficile, dessus de mur). Le moteur choisit l'ambiance d'une rencontre (champ `terrain`). Les `reliefs` sont des plaques (eau, boue, neige) posées sur les cases de n'importe quelle ambiance ; les arbres et les rochers sont dessinés en vecteur par le jeu.",
   "terrains": {
     "foret": {
       "nom": "Forêt",
@@ -24,6 +24,17 @@
       "sol": "a military camp ground of trampled muddy earth and dry straw, cart ruts and boot prints",
       "difficile": "deep churned mud with puddles, broken crates and scattered straw",
       "mur": "a palisade of sharpened wooden stakes and stacked crates seen from above"
+    },
+    "neige": {
+      "nom": "Neige",
+      "sol": "a snowy mountain pass floor: packed white snow with faint footprints, patches of frozen grey earth and scattered small stones",
+      "difficile": "deep snow drifts: soft heaped powder snow in uneven mounds with pale blue shadows",
+      "mur": "the top of rocky cliffs and jagged boulders dusted with snow, seen from above, dark grey stone with white snow caps"
     }
+  },
+  "reliefs": {
+    "eau": "shallow clear water over a pebbly river bed seen from above: gentle ripples, translucent teal-blue, pebbles and sand visible beneath, no shoreline, no foam",
+    "boue": "wet churned mud: dark brown glossy mud with puddle reflections, boot prints and sticky ruts",
+    "neige": "freshly fallen deep snow: smooth white powder with soft blue-grey shadow hollows and a few sparkles"
   }
 }

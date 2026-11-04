@@ -5,7 +5,11 @@ import { join } from 'node:path';
 import { z } from 'zod';
 import { RACINE, type Charte, type Element } from './charte';
 
-const Terrains = z.object({ terrains: z.record(z.object({ nom: z.string(), sol: z.string(), difficile: z.string(), mur: z.string() })) });
+const Terrains = z.object({
+  terrains: z.record(z.object({ nom: z.string(), sol: z.string(), difficile: z.string(), mur: z.string() })),
+  /** Plaques posées sur les cases de n'importe quelle ambiance (eau, boue, neige). */
+  reliefs: z.record(z.string()),
+});
 
 /** Profils de monstres du SRD livrés (packages/donnees/srd/monstres/<profil>.json). */
 export function profilsSrd(racine = join(RACINE, 'packages/donnees/srd/monstres')): string[] {
@@ -37,8 +41,34 @@ export function chargerTerrains(chemin = join(RACINE, 'packages/donnees/visuel/t
   return Terrains.parse(JSON.parse(readFileSync(chemin, 'utf8'))).terrains;
 }
 
-/** Trois textures par ambiance (`foret-sol`, `foret-difficile`, `foret-mur`…), vues exactement de dessus. */
+export function chargerReliefs(chemin = join(RACINE, 'packages/donnees/visuel/terrains.json')) {
+  return Terrains.parse(JSON.parse(readFileSync(chemin, 'utf8'))).reliefs;
+}
+
+/**
+ * Trois textures par ambiance (`foret-sol`, `foret-difficile`, `foret-mur`…), et une par plaque (`relief-eau`,
+ * `relief-boue`, `relief-neige`), vues exactement de dessus.
+ */
 export function elementsTerrains(charte: Charte): Element[] {
+  const consigne = (sujet: string) =>
+    [
+      'Seamless tileable texture for a tabletop battle map, painted in a refined painterly dark fantasy style with visible brushwork, muted earthy palette.',
+      `Subject: ${sujet}.`,
+      'Strictly top-down orthographic view, perfectly flat, no perspective, no horizon, no shadows cast from one side, even soft lighting. The pattern fills the whole square evenly to the edges, with no central focal object, no frame, no grid lines.',
+      charte.contraintes,
+    ].join('\n');
+  const plaques = Object.entries(chargerReliefs()).map(([id, sujet]) => ({
+    id: `relief-${id}`,
+    groupe: 'scenes' as const,
+    nom: `Plaque : ${id}`,
+    format: 'carre' as const,
+    references: [],
+    prompt: consigne(sujet),
+  }));
+  return [...elementsAmbiances(charte), ...plaques];
+}
+
+function elementsAmbiances(charte: Charte): Element[] {
   return Object.entries(chargerTerrains()).flatMap(([id, t]) =>
     (['sol', 'difficile', 'mur'] as const).map((type) => ({
       id: `${id}-${type}`,

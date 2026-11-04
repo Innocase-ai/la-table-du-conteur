@@ -5,7 +5,7 @@ export const TAILLE_CASE = 1.5;
 export type TypeCase = 'sol' | 'mur' | 'difficile';
 
 /** Ambiances de plateau : chacune a ses textures (sol, difficile, mur), communes à tous les mondes. */
-export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp'] as const;
+export const TERRAINS = ['foret', 'souterrain', 'caverne', 'camp', 'neige'] as const;
 export type Terrain = (typeof TERRAINS)[number];
 
 export interface Position {
@@ -13,24 +13,62 @@ export interface Position {
   y: number;
 }
 
+/**
+ * Éléments posés sur les cases, indépendants de l'ambiance du plateau (un arbre ou de l'eau peuvent se trouver sur
+ * n'importe quel sol). Chacun reprend les règles d'un type de case existant : l'apparence est libre, le jeu ne change pas.
+ */
+export const RELIEFS = ['arbre', 'rocher', 'eau', 'boue', 'neige'] as const;
+export type Relief = (typeof RELIEFS)[number];
+
+export interface InfoRelief {
+  /** Le caractère qui le désigne dans une carte écrite en texte. */
+  lettre: string;
+  /** Les règles qu'il applique : un mur (bloque le passage et la vue) ou un terrain difficile (déplacement doublé). */
+  type: Exclude<TypeCase, 'sol'>;
+  libelle: string;
+}
+
+export const INFO_RELIEFS: Record<Relief, InfoRelief> = {
+  arbre: { lettre: 'T', type: 'mur', libelle: 'Arbre' },
+  rocher: { lettre: 'R', type: 'mur', libelle: 'Rocher' },
+  eau: { lettre: 'e', type: 'difficile', libelle: 'Eau peu profonde' },
+  boue: { lettre: 'b', type: 'difficile', libelle: 'Boue' },
+  neige: { lettre: 'n', type: 'difficile', libelle: 'Neige profonde' },
+};
+
+const RELIEF_PAR_LETTRE = new Map(RELIEFS.map((r) => [INFO_RELIEFS[r].lettre, r]));
+
 export interface Grille {
   largeur: number;
   hauteur: number;
   cases: TypeCase[]; // index = y * largeur + x
+  /** Les éléments posés sur certaines cases (clé « x,y »), sans effet sur les règles au-delà de leur type de case. */
+  reliefs?: Record<string, Relief>;
 }
 
-/** Construit une grille à partir de lignes de texte : « . » sol, « # » mur, « ~ » terrain difficile. */
+/**
+ * Construit une grille à partir de lignes de texte : « . » sol, « # » mur, « ~ » terrain difficile, et les éléments
+ * « T » arbre, « R » rocher (comme des murs), « e » eau peu profonde, « b » boue, « n » neige (terrain difficile).
+ */
 export function grilleDepuisTexte(lignes: string[]): Grille {
   const hauteur = lignes.length;
   const largeur = Math.max(...lignes.map((l) => l.length));
   const cases: TypeCase[] = [];
+  const reliefs: Record<string, Relief> = {};
   for (let y = 0; y < hauteur; y++) {
     for (let x = 0; x < largeur; x++) {
       const c = lignes[y]![x] ?? '#';
-      cases.push(c === '#' ? 'mur' : c === '~' ? 'difficile' : 'sol');
+      const relief = RELIEF_PAR_LETTRE.get(c);
+      if (relief) reliefs[`${x},${y}`] = relief;
+      cases.push(relief ? INFO_RELIEFS[relief].type : c === '#' ? 'mur' : c === '~' ? 'difficile' : 'sol');
     }
   }
-  return { largeur, hauteur, cases };
+  return Object.keys(reliefs).length ? { largeur, hauteur, cases, reliefs } : { largeur, hauteur, cases };
+}
+
+/** L'élément posé sur une case, s'il y en a un. */
+export function reliefDe(grille: Grille, p: Position): Relief | undefined {
+  return grille.reliefs?.[`${p.x},${p.y}`];
 }
 
 export function dans(grille: Grille, p: Position): boolean {

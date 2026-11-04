@@ -196,6 +196,39 @@ const SECTIONS: Section[] = [
     ),
   },
   {
+    id: 'terrain',
+    titre: 'Le terrain',
+    contenu: (
+      <>
+        <p>
+          Chaque combat a son décor : une <strong>ambiance</strong> (forêt, souterrain, caverne, camp, neige) donne le sol et les murs du plateau, et des
+          éléments sont posés sur les cases. Un élément a toujours un effet sur le jeu, jamais seulement un dessin.
+        </p>
+        <ul>
+          <li>
+            <strong>Arbres et rochers</strong> : on ne peut ni les traverser ni voir ou tirer à travers, comme un mur. Contournez-les, ou cachez-vous derrière.
+          </li>
+          <li>
+            <strong>Eau peu profonde, boue, neige profonde</strong> : du <strong>terrain difficile</strong>, chaque case coûte double en déplacement. Une
+            rivière ralentit celui qui la traverse : cherchez le gué.
+          </li>
+          <li>
+            <strong>Murs</strong> : le bord du plateau, les piliers, les palissades. Ils bloquent comme un arbre.
+          </li>
+        </ul>
+        <Capture
+          nom="terrain"
+          alt="Une rivière à galets, de la boue, un rocher et un arbre sur le plateau"
+          legende="Le gué des brigands : l'eau et la boue (cases doublées) ralentissent, le rocher et l'arbre bloquent le passage et la vue."
+        />
+        <p>
+          Sur l'écran de choix d'une escarmouche, l'aperçu de chaque carte montre ces éléments (vert : arbre, gris : rocher, bleu : eau, brun : boue, blanc :
+          neige).
+        </p>
+      </>
+    ),
+  },
+  {
     id: 'effets',
     titre: 'Voir les attaques et la magie',
     contenu: (

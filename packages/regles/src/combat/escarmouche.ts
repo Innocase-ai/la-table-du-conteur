@@ -32,7 +32,7 @@ function base(id: string): Pick<ThemeEscarmouche, 'id' | 'nom' | 'description' |
   return { id, nom, description, terrain, carte };
 }
 
-/** Les quatre thèmes : les cartes et le décor des rencontres du prototype, avec leurs troupes. */
+/** Les thèmes : les cartes et le décor des rencontres du prototype, avec leurs troupes. */
 export const THEMES: ThemeEscarmouche[] = [
   {
     ...base('embuscade-gobeline'),
@@ -79,6 +79,29 @@ export const THEMES: ThemeEscarmouche[] = [
       { profil: 'sbire-gobelin', poids: 2, max: 4 },
     ],
     danger: 1.1,
+  },
+  {
+    ...base('gue-des-brigands'),
+    chefs: ['chef-de-bande'],
+    troupes: [
+      { profil: 'bandit', poids: 5, max: 10 },
+      { profil: 'eclaireur', poids: 2, max: 6 },
+      { profil: 'loup', poids: 2, max: 6 },
+    ],
+    // Calé par simulation le 04/11/2026 (16 parties, niveaux 2 à 4) : faible 100 %, modérée 88 à 100 %, élevée 56 à 63 %.
+    danger: 1.4,
+  },
+  {
+    ...base('col-gele'),
+    chefs: ['traqueur-gobelours', 'combattant-gobelours'],
+    troupes: [
+      { profil: 'loup', poids: 4, max: 6 },
+      { profil: 'loup-sanguinaire', poids: 3, max: 5 },
+      { profil: 'combattant-gobelours', poids: 2, max: 3 },
+      { profil: 'combattant-gobelin', poids: 3, max: 6 },
+    ],
+    // Calé par simulation le 04/11/2026 (16 parties, niveaux 2 à 4) : faible 100 %, modérée 88 à 100 %, élevée 31 à 81 %.
+    danger: 1.25,
   },
 ];
 

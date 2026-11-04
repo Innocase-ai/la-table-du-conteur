@@ -31,6 +31,19 @@ interface Props {
   onRetour: () => void;
 }
 
+/** La couleur de chaque caractère d'une carte en texte dans l'aperçu (un caractère inconnu se lit comme du sol). */
+const CLASSES_MINI_CARTE: Record<string, string> = {
+  '#': 'mc-mur',
+  '~': 'mc-difficile',
+  T: 'mc-arbre',
+  R: 'mc-rocher',
+  e: 'mc-eau',
+  b: 'mc-boue',
+  n: 'mc-neige',
+  H: 'mc-heros',
+  m: 'mc-monstre',
+};
+
 function MiniCarte({ carte }: { carte: string[] }) {
   const largeur = Math.max(...carte.map((l) => l.length));
   return (
@@ -39,7 +52,7 @@ function MiniCarte({ carte }: { carte: string[] }) {
         [...ligne.padEnd(largeur, '#')].map((c, x) => (
           <span
             key={`${x},${y}`}
-            className={c === '#' ? 'mc-mur' : c === '~' ? 'mc-difficile' : c === 'H' ? 'mc-heros' : c === 'm' ? 'mc-monstre' : 'mc-sol'}
+            className={CLASSES_MINI_CARTE[c] ?? 'mc-sol'}
           />
         )),
       )}

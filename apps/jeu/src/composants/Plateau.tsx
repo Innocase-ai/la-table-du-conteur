@@ -1,11 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import { cle, etatApparent, typeCase, type Combattant, type EtatCombat, type Position, type Terrain } from '@crpg/regles';
+import { useEffect, useRef, useState, type ReactElement } from 'react';
+import { cle, etatApparent, reliefDe, typeCase, type Combattant, type EtatCombat, type Position, type Relief, type Terrain } from '@crpg/regles';
 import { LIBELLES_APPARENT, nomClasse } from '../libelles';
 import type { Donnees } from '@crpg/regles';
 import type { Effet } from '../animations';
 import { COULEURS_FAMILLES, type Famille } from '../effets-visuels';
-import { textureTerrain } from '../visuels';
+import { textureRelief, textureTerrain } from '../visuels';
 import { Jeton } from './Jeton';
+import { Arbre, Rocher } from './Reliefs';
 
 export interface Surcouches {
   /** Cases atteignables par le héros actif (clé « x,y » → coût en mètres). */
@@ -62,6 +63,21 @@ export interface Geometrie {
   marge: number;
 }
 
+/**
+ * Liseré d'une plaque (eau, boue, neige) : un fin ombrage sur chaque côté où la plaque s'arrête, pour qu'une mare se lise
+ * comme une mare et pas comme un damier. Le trait de grille, lui, reste partout.
+ */
+function liseres(grille: EtatCombat['grille'], p: Position, relief: Relief, cote: number): string {
+  const e = Math.max(2, Math.round(cote * 0.07));
+  const autre = (dx: number, dy: number) => reliefDe(grille, { x: p.x + dx, y: p.y + dy }) !== relief;
+  const ombres = ['inset 0 0 0 0.5px rgba(0,0,0,0.35)'];
+  if (autre(0, -1)) ombres.push(`inset 0 ${e}px ${e}px -${Math.round(e / 2)}px rgba(0,0,0,0.42)`);
+  if (autre(0, 1)) ombres.push(`inset 0 -${e}px ${e}px -${Math.round(e / 2)}px rgba(0,0,0,0.42)`);
+  if (autre(-1, 0)) ombres.push(`inset ${e}px 0 ${e}px -${Math.round(e / 2)}px rgba(0,0,0,0.42)`);
+  if (autre(1, 0)) ombres.push(`inset -${e}px 0 ${e}px -${Math.round(e / 2)}px rgba(0,0,0,0.42)`);
+  return ombres.join(', ');
+}
+
 /** Centre d'une case (départ et arrivée des projectiles, lueurs, textes). */
 const centre = (p: Position, g: Geometrie) => ({ x: (p.x + 0.5) * g.cote, y: g.marge + (p.y + 0.5) * g.hc });
 
@@ -113,12 +129,19 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
 
   const cases = [];
   const murs = [];
+  const reliefsDessines: ReactElement[] = [];
   for (let y = 0; y < hauteur; y++) {
     for (let x = 0; x < largeur; x++) {
       const p = { x, y };
       const k = cle(p);
       const type = typeCase(etat.grille, p);
-      const classes = ['case', `case-${type}`];
+      const relief = reliefDe(etat.grille, p);
+      // Arbres et rochers se dessinent par-dessus un sol normal ; l'eau, la boue et la neige remplacent le sol de la case.
+      const plaque = relief === 'eau' || relief === 'boue' || relief === 'neige' ? relief : undefined;
+      // Sous un arbre ou un rocher, la case a l'aspect d'un sol (les règles, elles, la traitent toujours comme un mur).
+      const sousRelief = relief === 'arbre' || relief === 'rocher';
+      const classes = ['case', `case-${sousRelief ? 'sol' : type}`];
+      if (plaque) classes.push('case-relief', `case-relief-${plaque}`);
       if (surcouches.atteignables.has(k)) classes.push('case-atteignable');
       if (surcouches.chemin.has(k)) classes.push('case-chemin');
       if (surcouches.portee.has(k)) classes.push('case-portee');
@@ -134,18 +157,51 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
           : {};
       };
       if (textureTerrain(terrain, 'sol')) classes.push('case-texturee');
+      // Une plaque (eau, boue, neige) a sa propre texture, continue d'une case à l'autre, et un liseré sur les côtés où elle s'arrête.
+      const urlPlaque = plaque ? textureRelief(plaque) : undefined;
+      const stylePlaque = plaque
+        ? {
+            ...(urlPlaque
+              ? {
+                  backgroundImage: `url(${urlPlaque})`,
+                  backgroundSize: `${REPETITION * g.cote}px ${REPETITION * g.hc}px`,
+                  backgroundPosition: `${-(x % REPETITION) * g.cote}px ${-(y % REPETITION) * g.hc}px`,
+                }
+              : {}),
+            boxShadow: liseres(etat.grille, p, plaque, g.cote),
+          }
+        : {};
+      // Sous un arbre ou un rocher, le sol de l'ambiance.
+      const styleCase = type === 'mur' && !sousRelief ? {} : plaque ? stylePlaque : texture(sousRelief ? 'sol' : type);
       cases.push(
         <div
           key={k}
           className={classes.join(' ')}
-          style={{ left: x * g.cote, top: g.marge + y * g.hc, width: g.cote, height: g.hc, ...(type === 'mur' ? {} : texture(type)) }}
+          style={{ left: x * g.cote, top: g.marge + y * g.hc, width: g.cote, height: g.hc, ...styleCase }}
           onMouseEnter={() => onSurvolCase(p)}
           onClick={() => type !== 'mur' && onClicCase(p)}
         >
-          {type === 'difficile' && !textureTerrain(terrain, 'difficile') && <span className="motif-difficile" />}
+          {type === 'difficile' && !plaque && !textureTerrain(terrain, 'difficile') && <span className="motif-difficile" />}
+          {plaque === 'eau' && <span className="ondes" />}
         </div>,
       );
-      if (type === 'mur') {
+      if (relief === 'arbre' || relief === 'rocher') {
+        // Plus large et plus haut que la case : la couronne dépasse un peu. Toujours sous les jetons (lisibilité d'abord).
+        const arbre = relief === 'arbre';
+        const largeur = Math.round(g.cote * (arbre ? 1.35 : 1.05));
+        const hauteur = Math.round(g.cote * (arbre ? 1.55 : 1.05));
+        reliefsDessines.push(
+          <div
+            key={`r${k}`}
+            className={`relief relief-${relief}`}
+            style={{ left: Math.round((x + 0.5) * g.cote - largeur / 2), top: g.marge + (y + 1) * g.hc - hauteur + Math.round(g.hc * 0.06), width: largeur, height: hauteur, zIndex: 7 + y * 3 }}
+          >
+            {arbre ? <Arbre x={x} y={y} terrain={terrain} /> : <Rocher x={x} y={y} terrain={terrain} />}
+          </div>,
+        );
+        continue;
+      }
+      if (type === 'mur' && !relief) {
         // Un mur est un bloc en relief : son dessus est décalé vers le haut, sa face avant tombe sur la case.
         murs.push(
           <div key={`m${k}`} className="mur" style={{ left: x * g.cote, top: g.marge + y * g.hc - hMur, width: g.cote, height: g.hc + hMur, zIndex: 10 + y * 3 }}>
@@ -185,6 +241,7 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
         }}
       >
         {cases}
+        {reliefsDessines}
         {murs}
         {visibles.map((c) => {
           const valide = surcouches.ciblesValides.has(c.id);

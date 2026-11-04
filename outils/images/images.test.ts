@@ -6,8 +6,8 @@ import { chargerCharte, construireElements, RACINE } from './charte';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { chargerGalerie, elementsGalerie } from './galerie';
-import { chargerTerrains, elementsBestiaire, elementsTerrains, profilsSrd } from './plateau';
-import { RENCONTRES, TERRAINS } from '../../packages/regles/src';
+import { chargerReliefs, chargerTerrains, elementsBestiaire, elementsTerrains, profilsSrd } from './plateau';
+import { INFO_RELIEFS, RELIEFS, RENCONTRES, TERRAINS } from '../../packages/regles/src';
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
 import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
@@ -247,7 +247,13 @@ describe('plateau de combat (commun à tous les mondes)', () => {
 
   it('chaque ambiance du moteur a ses trois textures, et chaque rencontre une ambiance connue', () => {
     expect(Object.keys(chargerTerrains()).sort()).toEqual([...TERRAINS].sort());
-    expect(elementsTerrains(charte)).toHaveLength(TERRAINS.length * 3);
+    expect(elementsTerrains(charte).filter((e) => !e.id.startsWith('relief-'))).toHaveLength(TERRAINS.length * 3);
     for (const r of RENCONTRES) expect(TERRAINS).toContain(r.terrain);
+  });
+
+  it('chaque plaque (eau, boue, neige) du moteur a sa texture, et seulement elles : arbres et rochers sont dessinés en vecteur', () => {
+    const plaques = RELIEFS.filter((r) => INFO_RELIEFS[r].type === 'difficile');
+    expect(Object.keys(chargerReliefs()).sort()).toEqual([...plaques].sort());
+    expect(elementsTerrains(charte).filter((e) => e.id.startsWith('relief-')).map((e) => e.id).sort()).toEqual(plaques.map((r) => `relief-${r}`).sort());
   });
 });

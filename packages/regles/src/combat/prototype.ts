@@ -87,7 +87,8 @@ export interface Rencontre {
   difficulte: 'faible' | 'moderee' | 'elevee';
   /** Ambiance du plateau (textures du sol et des murs, packages/donnees/visuel/terrains.json). */
   terrain: Terrain;
-  carte: string[]; // « . » sol, « # » mur, « ~ » terrain difficile, « H » départ des héros, « m » départ des monstres
+  /** « . » sol, « # » mur, « ~ » terrain difficile, « T » arbre, « R » rocher, « e » eau, « b » boue, « n » neige, « H » départ des héros, « m » départ des monstres. */
+  carte: string[];
   monstres: { profil: string; nombre: number }[];
 }
 
@@ -100,11 +101,11 @@ export const RENCONTRES: Rencontre[] = [
     difficulte: 'faible',
     carte: [
       '####################',
-      '#..~~~....mmm..~~~.#',
-      '#..~~.....m.m...~~.#',
-      '#.......#.....#....#',
-      '#..m....#.....#..m.#',
-      '#.......~~~.~~~....#',
+      '#..eee....mmm..~~~.#',
+      '#..ee.....m.m...~~.#',
+      '#.......T.....T....#',
+      '#..m....T.....T..m.#',
+      '#.......bbb.bbb....#',
       '#..................#',
       '#...~~........~~...#',
       '#...~~..HHHH..~~...#',
@@ -152,11 +153,11 @@ export const RENCONTRES: Rencontre[] = [
     carte: [
       '####################',
       '#.....mmmmm........#',
-      '#..#...m.m....#....#',
-      '#..#..........#....#',
-      '#.....~~~~~~.......#',
+      '#..R...m.m....R....#',
+      '#..R..........R....#',
+      '#.....eeeeee.......#',
       '#..................#',
-      '#....##......##....#',
+      '#....RR......RR....#',
       '#..................#',
       '#.....HHHHHH.......#',
       '####################',
@@ -178,8 +179,8 @@ export const RENCONTRES: Rencontre[] = [
       '#....m..mmm..m.......#',
       '#...###......###.....#',
       '#.....m......m.......#',
-      '#..m....~~~~.....m...#',
-      '#.......~~~~.........#',
+      '#..m....bbbb.....m...#',
+      '#.......bbbb.........#',
       '#....#..........#....#',
       '#....#..........#....#',
       '#....................#',
@@ -191,6 +192,58 @@ export const RENCONTRES: Rencontre[] = [
       { profil: 'combattant-hobgobelin', nombre: 4 },
       { profil: 'combattant-gobelours', nombre: 1 },
       { profil: 'combattant-gobelin', nombre: 4 },
+    ],
+  },
+  {
+    id: 'gue-des-brigands',
+    terrain: 'foret',
+    nom: 'Le gué des brigands',
+    description: 'Une rivière coupe la route : les brigands tiennent l’autre rive, et le gué est le seul passage facile.',
+    difficulte: 'moderee',
+    carte: [
+      '####################',
+      '#..T....mmm....T...#',
+      '#.T..m.......m..T..#',
+      '#...ee..T.....ee...#',
+      '#eeeeeeee.eeeeeeeee#',
+      '#eeeeeeee.eeeeeeeee#',
+      '#...ee.....R..ee...#',
+      '#.R....bbb.........#',
+      '#..T..HHHHHH...T...#',
+      '#.....bb...........#',
+      '####################',
+    ],
+    monstres: [
+      { profil: 'chef-de-bande', nombre: 1 },
+      { profil: 'bandit', nombre: 4 },
+      { profil: 'eclaireur', nombre: 2 },
+      { profil: 'loup', nombre: 2 },
+    ],
+  },
+  {
+    id: 'col-gele',
+    terrain: 'neige',
+    nom: 'Le col gelé',
+    description: 'Dans un col balayé par la neige, des loups et des gobelours guettent les voyageurs.',
+    difficulte: 'moderee',
+    carte: [
+      '######################',
+      '#..R..mmm..m....R..T.#',
+      '#.TT...m..m.....nn.TT#',
+      '#..nnn........nnnn...#',
+      '#..nnn..R....nn......#',
+      '#.......R..T.........#',
+      '#...T..........R..nn.#',
+      '#..nn.......TT..nnn..#',
+      '#.....HHHHHH.........#',
+      '#..R......T......R...#',
+      '######################',
+    ],
+    monstres: [
+      { profil: 'traqueur-gobelours', nombre: 1 },
+      { profil: 'combattant-gobelours', nombre: 2 },
+      { profil: 'loup-sanguinaire', nombre: 3 },
+      { profil: 'loup', nombre: 3 },
     ],
   },
 ];

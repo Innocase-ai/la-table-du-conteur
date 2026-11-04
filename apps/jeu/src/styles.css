@@ -294,6 +294,21 @@ button:disabled {
 .mc-difficile {
   background: #4a4a2c;
 }
+.mc-arbre {
+  background: #2f5a2a;
+}
+.mc-rocher {
+  background: #6b665e;
+}
+.mc-eau {
+  background: #2f6a86;
+}
+.mc-boue {
+  background: #5a4630;
+}
+.mc-neige {
+  background: #d7e2e8;
+}
 .mc-heros {
   background: var(--heros);
 }
@@ -7271,3 +7286,85 @@ kbd {
   color: #e3b48a;
 }
 
+
+/* ---------------------------------------------------------------------------------------------------------------------
+   Éléments posés sur les cases : arbres et rochers (vecteurs), plaques d'eau, de boue et de neige.
+   Les textures peintes (`relief-eau.webp`…) prennent le relais de ces dégradés quand elles existent.
+   --------------------------------------------------------------------------------------------------------------------- */
+.relief {
+  position: absolute;
+  pointer-events: none;
+}
+
+.relief-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.case-relief {
+  background-size: cover;
+}
+
+.case-relief-eau {
+  background-color: #2b6783;
+  background-image: linear-gradient(160deg, #3f86a3 0%, #2b6783 45%, #1f526b 100%);
+  filter: none;
+}
+
+.case-relief-boue {
+  background-color: #4f3b28;
+  background-image: radial-gradient(circle at 24% 30%, rgba(255, 220, 170, 0.14) 0 9%, transparent 10%),
+    radial-gradient(circle at 70% 64%, rgba(20, 10, 0, 0.3) 0 14%, transparent 15%), linear-gradient(150deg, #5d4630, #43321f);
+  filter: none;
+}
+
+.case-relief-neige {
+  background-color: #dbe5ea;
+  background-image: radial-gradient(circle at 30% 24%, rgba(255, 255, 255, 0.9) 0 16%, transparent 17%),
+    radial-gradient(circle at 72% 68%, rgba(170, 190, 205, 0.5) 0 18%, transparent 19%), linear-gradient(155deg, #eef4f7, #cbd9e0);
+  filter: none;
+}
+
+/* Une plaque peinte garde la couleur de son dégradé comme fond de repli, sans filtre qui la ternirait. */
+.case-texturee.case-relief {
+  filter: none;
+}
+
+/* Des reflets qui glissent lentement sur l'eau. */
+.ondes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(115deg, transparent 0 9px, rgba(255, 255, 255, 0.1) 9px 11px, transparent 11px 20px);
+  background-size: 200% 100%;
+  animation: ondes calc(9s * var(--vitesse, 1)) linear infinite;
+  mix-blend-mode: soft-light;
+}
+
+@keyframes ondes {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ondes {
+    animation: none;
+  }
+}
+
+/* Plateau enneigé : sol, terrain difficile et murs de repli, tant que les textures peintes n'existent pas. */
+.terrain-neige .case-sol:not(.case-texturee) {
+  background: linear-gradient(145deg, #c9d6dd, #b6c6cf);
+}
+.terrain-neige .case-difficile:not(.case-texturee):not(.case-relief) {
+  background: repeating-linear-gradient(45deg, #d8e3e9 0 5px, #c2d0d8 5px 10px);
+}
+.terrain-neige .mur-dessus:not([style*='background-image']) {
+  background-color: #8f9aa1;
+}
+.terrain-neige .mur-face:not([style*='background-image']) {
+  background-color: #6c767d;
+}
