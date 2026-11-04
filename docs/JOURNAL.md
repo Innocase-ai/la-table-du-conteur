@@ -273,3 +273,40 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - L'arc de lame, l'impact et le chiffre suivent la secousse de plus près (110 ms au lieu de 220 ; 240 au lieu de 340 sur un critique).
 - **Lecture par Web Audio** (`sons.ts`) : chaque son est téléchargé et décodé une fois, puis joué sans délai ; repli sur un élément `<audio>` tant que le son n'est pas décodé ou que le navigateur garde l'audio en veille.
 - Mesuré à nouveau : 0 ms entre la secousse et le son d'arme. 498 tests verts, typecheck OK.
+
+## 04/11/2026 — Musiques d'ambiance de combat : l'outil et un premier clip
+
+- **Modèles trouvés sur OpenRouter** (catalogue de 455 modèles, seuls deux produisent de la musique) : `google/lyria-3-clip-preview` (clip de 30 s, **0,04 $**) et `google/lyria-3-pro-preview` (morceau complet d'environ 2 min, **0,08 $**), tous deux de Google. Sortie : audio stéréo 44,1 kHz (mp3 ou wav), instrumental demandé dans la consigne, filigrane SynthID inaudible, résultat non déterministe, pas de retouche. **Licence d'usage commercial des sorties non précisée par OpenRouter ni par la page Google : à vérifier avant la vente.**
+- **Outil `pnpm musique`** (`outils/musique/`) : `lister` (les cinq ambiances : forêt, souterrain, caverne, camp, intense, une par terrain du plateau + le combat intense) et `generer [--ambiance] [--modele clip|pro] [--plafond] [--go]`. Simulation par défaut ; plafond de dépense (0,10 $) ; la réponse brute est écrite avant d'être lue, pour ne jamais perdre ce qui a été payé ; brouillons dans `sorties/musique/` (hors git) avec un `.json` (consigne, durée, coût). 10 tests (lecture du flux, format, ambiances, coûts).
+- **Piège trouvé** : une variable `OPENROUTER_API_KEY` du shell (laissée par un autre projet) masquait la clé du `.env` (« User not found »). L'outil lit maintenant la clé du `.env` du projet.
+- **Dépense** : 0,16 $ au total sur la clé (0,12 $ pour trois requêtes de diagnostic à jeter, mon erreur, plus 0,04 $ pour le clip). Règle retenue : jamais de requête de diagnostic qui peut réussir sur un service payant.
+- **Premier clip** (`foret-clip-1.mp3`, ambiance forêt, Lyria 3 Clip) : 30,8 s, mp3 192 kb/s stéréo 44,1 kHz, 727 Ko, sans silence, volume constant (−12 à −16 dB, aucun fondu à la fin). À écouter pour juger la consigne ; reste à faire les quatre autres ambiances.
+
+## 04/11/2026 — Musiques : l'étape « boucler »
+
+- Mesure du clip forêt brut : pas de clic au raccord, durée de 30,77 s ≈ 12 mesures à environ 94 battements par minute (bon signe), mais les 100 premières millisecondes sont à −29 dB (entrée douce de 0,5 s) et les 100 dernières à −17 dB : bouclé tel quel, le morceau se couperait en pleine énergie puis repartirait doucement.
+- **`pnpm musique boucler <fichier> [--fondu 1.5] [--format mp3|ogg]`** (`outils/musique/boucle.ts`, gratuit) : fondu enchaîné fin → début en puissance égale. La boucle dure L − fondu et reprend exactement l'original à L − fondu : au tour suivant la musique continue sans coupure. `pnpm musique verifier <fichier>` mesure un raccord.
+- **Vérifié par construction** sur `foret-clip-1-boucle.mp3` : le début de la boucle corrèle à 0,999 avec l'original à 29,27 s (décalage 0 ms), la fin à 1,000 avec l'original juste avant ; l'énergie pendant le fondu suit le mélange attendu à 0,6 dB près (pas de creux). Mesurer seulement « l'écart de volume au raccord » s'est révélé trompeur : cette musique est percussive et varie de plusieurs dB d'une fenêtre à l'autre ; la mesure compare maintenant au changement de volume que l'original a lui-même à cet endroit.
+- 20 tests sur l'outil (flux, ambiances, boucle, mesures). Reste à faire : lire la boucle sans blanc dans le jeu (Web Audio avec points de boucle, l'élément `<audio>` laisse un petit trou), puis les quatre autres ambiances.
+
+## 04/11/2026 — Musiques d'ambiance : un niveau de fond sonore
+
+- Remarque de l'utilisateur : les musiques de fond ne doivent pas être jouées trop fort. Le clip forêt brut sortait à −14 dB de volume moyen (pic 0 dB), nettement au-dessus des bruitages (−20 dB).
+- `pnpm musique boucler` ramène maintenant la boucle au niveau d'une musique d'ambiance : **−26 dB de volume moyen** (6 dB sous les bruitages) et pic ≤ −3 dB (`NIVEAU_AMBIANCE`, réglable avec `--moyenne`). Forêt bouclée mesurée à −26,3 dB, pic −11,6 dB. 22 tests.
+- Règle pour l'intégration dans le jeu : la musique aura son propre canal et son propre curseur, séparés des bruitages, avec un défaut bas (environ 30 %) ; bruitages et voix restent toujours au-dessus.
+
+## 04/11/2026 — Musiques d'ambiance de combat : les cinq sont faites
+
+- **Quatre clips générés** (Lyria 3 Clip, 4 appels, 0,16 $) : souterrain, caverne, camp de guerre, combat intense ; la forêt existait. Brouillons dans `sorties/musique/<ambiance>-clip-1.mp3` (hors git), boucles prêtes dans `<ambiance>-clip-1-boucle.mp3`. Dépense totale de la clé pour ce chantier : 0,32 $ (dont 0,12 $ d'essais de diagnostic perdus).
+- **Le souterrain finissait par une résonance qui s'éteint** (−15 dB à 26 s, puis −29, −38, −49) malgré la consigne « sans fondu » : bouclé tel quel, il aurait laissé un creux de silence à chaque tour (38 dB de chute au raccord). `pnpm musique boucler` écarte maintenant la partie faible aux extrémités (`bornesStables` : fenêtres de 0,25 s à plus de 8 dB sous le volume médian, au moins deux de suite, pour ne pas couper un simple silence entre deux coups) : le souterrain devient une boucle de 25,0 s, raccord à 0,4 dB (l'original a 0,0 dB à cet endroit).
+- Les cinq boucles : 25 à 29,3 s, volume moyen −26,2 à −26,3 dB, pic ≤ −11,6 dB, raccord fidèle à l'original partout. `--ambiance` accepte une liste (`souterrain,caverne`). 27 tests sur l'outil.
+- Reste : brancher les musiques dans le jeu (une au hasard à chaque combat), lecture sans blanc, canal de volume à part, et licence d'usage commercial à vérifier.
+
+## 04/11/2026 — Les musiques d'ambiance sont dans le jeu
+
+- **Une musique au hasard à chaque combat** parmi les cinq (`musique-regles.ts`, `choisirAmbiance` : jamais la même que le combat précédent ; 5 tests). Les cinq boucles sont dans `apps/jeu/src/musique/` (3,4 Mo, crédits et réserve de licence dans `musique/CREDITS.md`).
+- **Lecteur** (`musique.ts`) : Web Audio, boucle sans blanc (`loop`, `loopStart` 0, `loopEnd` = durée de la boucle, déjà montée pour se raccorder), fondu d'entrée de 2 s, fondu de sortie de 3 s à la fin du combat et de 0,8 s quand on quitte l'écran. Seule l'ambiance tirée est téléchargée et décodée (le jeu démarre vite). Le contexte audio est partagé avec les bruitages.
+- **Canal à part** : bouton ♪ et curseur de musique à côté de 🔊, réglage mémorisé (`crpg.musique`), défaut 50 % : les fichiers étant à −26 dB, la musique reste environ 8 dB sous les bruitages (60 %), conformément à la consigne « musique de fond, pas trop forte ». Couper la musique éteint en fondu, la rallumer repart sur la même ambiance.
+- Banc d'essai (`/?effets`) : une ligne « Écouter les musiques d'ambiance » (un bouton par boucle, « Arrêter »).
+- Vérifié dans un vrai combat : une boucle de 29,25 s avec `loop` actif et `loopEnd` égal à sa durée, gain de musique à 0,5 contre 0,6 pour les bruitages, sourdine = gain à 0 et source arrêtée (réglage mémorisé), la reprise relance en fondu, quitter l'écran arrête la musique, la fin du combat l'éteint en 3 s. En développement, le double montage de React charge parfois une deuxième ambiance pour rien (sans effet en production). 530 tests verts.
+- Reste : la licence d'usage commercial des musiques générées, et choisir une ambiance par terrain pour les combats de l'histoire si on le souhaite.

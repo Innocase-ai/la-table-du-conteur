@@ -26,6 +26,7 @@ import {
 import { OPTIONS_IA, type Reglages } from '../App';
 import { capturer, etatAffiche, mouvementReduit, useAnimations } from '../animations';
 import { ciblesRepetables, formatMetres } from '../libelles';
+import { arreterMusique, demarrerMusique } from '../musique';
 import { Fiche } from './Fiche';
 import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
@@ -97,6 +98,16 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const sort = carte?.categorie === 'sort' ? donnees.sorts.get(carte.id.slice('sort:'.length)) : undefined;
   const personnel = sort?.portee.type === 'personnel';
   const modeCible: Surcouches['modeCible'] = !carte ? 'aucun' : carte.ciblage === 'point' ? 'point' : 'cibles';
+
+  // Musique d'ambiance : une au hasard à chaque combat (jamais la même deux fois de suite), qui s'éteint en douceur quand le
+  // combat se termine et à la sortie de l'écran.
+  useEffect(() => {
+    demarrerMusique();
+    return () => arreterMusique(0.8);
+  }, []);
+  useEffect(() => {
+    if (finAffichee) arreterMusique(3);
+  }, [finAffichee]);
 
   // Messages éphémères.
   useEffect(() => {

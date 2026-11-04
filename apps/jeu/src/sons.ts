@@ -66,7 +66,8 @@ let contexteAudio: AudioContext | undefined;
 const tampons = new Map<Son, AudioBuffer>();
 const chargements = new Map<Son, Promise<void>>();
 
-function audio(): AudioContext | undefined {
+/** Le contexte audio du jeu, créé à la première demande et partagé avec la musique (`musique.ts`). */
+export function audio(): AudioContext | undefined {
   if (contexteAudio) return contexteAudio;
   if (typeof window === 'undefined') return undefined;
   const Contexte = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -97,7 +98,7 @@ function charger(nom: Son): Promise<void> {
 
 // Le navigateur garde le contexte audio en veille tant que le joueur n'a ni cliqué ni tapé : on le réveille au premier geste.
 let deverrouille = false;
-function deverrouiller(): void {
+export function deverrouiller(): void {
   if (deverrouille || typeof window === 'undefined') return;
   deverrouille = true;
   const reveil = () => {

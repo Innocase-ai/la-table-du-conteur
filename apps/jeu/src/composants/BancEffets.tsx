@@ -5,6 +5,8 @@ import { casesZone, ETATS, grilleDepuisTexte, libelleEtat, type Combattant, type
 import { couleurSort, effetDeSort, effetsDeCoup, type Effet, type EffetSansId } from '../animations';
 import { chargerDonnees } from '../donnees';
 import { COULEURS_FAMILLES, FAMILLES, LIBELLES_AURAS, LIBELLES_FAMILLES, famille, type Aura, type Famille } from '../effets-visuels';
+import { arreterMusique, demarrerMusique } from '../musique';
+import { AMBIANCES_MUSIQUE, LIBELLES_MUSIQUES } from '../musique-regles';
 import { jouerSon } from '../sons';
 import { LIBELLES_SONS, SONS, sonDeCoup, sonDeSort } from '../sons-regles';
 import { ControleSon } from './ControleSon';
@@ -175,6 +177,17 @@ export function BancEffets() {
           </button>
         ))}
         <ControleSon />
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, alignItems: 'center' }}>
+        <strong>Écouter les musiques d'ambiance (en boucle) :</strong>
+        {AMBIANCES_MUSIQUE.map((m) => (
+          <button key={m} type="button" onClick={() => demarrerMusique(m)} style={STYLE_BOUTON} title={`musique/${m}.mp3`}>
+            {LIBELLES_MUSIQUES[m]}
+          </button>
+        ))}
+        <button type="button" onClick={() => arreterMusique(1)} style={{ ...STYLE_BOUTON, fontWeight: 700 }}>
+          Arrêter
+        </button>
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12, alignItems: 'center' }}>
         <strong>Sorts (lancés depuis le disque bleu) :</strong>

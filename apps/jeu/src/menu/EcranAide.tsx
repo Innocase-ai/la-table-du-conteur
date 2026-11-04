@@ -281,6 +281,17 @@ const SECTIONS: Section[] = [
           Le bouton <strong>🔊</strong> de la barre d’actions coupe ou remet le son, et le curseur règle le volume ; votre choix est gardé d’une partie à l’autre.
         </p>
 
+        <h3>La musique d’ambiance</h3>
+        <p>
+          Chaque combat a sa <strong>musique d’ambiance</strong>, tirée au hasard parmi cinq : embuscade en forêt, crypte et souterrain, caverne, camp de guerre et combat
+          intense. On ne retombe jamais deux fois de suite sur la même. Elle s’installe en fondu au début du combat, tourne en boucle sans coupure et s’éteint en douceur
+          quand le combat se termine.
+        </p>
+        <p>
+          C’est un fond sonore : elle reste volontairement <strong>sous les bruitages</strong>, qu’elle ne couvre jamais. Le bouton <strong>♪</strong> la coupe ou la remet, et
+          son curseur, séparé de celui des bruitages, règle son volume ; votre choix est gardé d’une partie à l’autre.
+        </p>
+
         <p className="aide-note">
           « Rapide » accélère toutes les animations. Si votre système demande de réduire les animations, les effets en mouvement sont remplacés par les seuls chiffres ;
           les bruitages, eux, restent.
@@ -453,7 +464,7 @@ const SECTIONS: Section[] = [
         </li>
         <li>« Tour auto » fait jouer l'IA à votre place pour ce tour ; « Héros auto » pour tout le combat ; « Rapide » accélère les animations.</li>
         <li>
-          <kbd>🔊</kbd> coupe ou remet les bruitages ; le curseur à côté règle leur volume.
+          <kbd>🔊</kbd> coupe ou remet les bruitages ; le curseur à côté règle leur volume. <kbd>♪</kbd> et son curseur font de même pour la musique d’ambiance.
         </li>
       </ul>
     ),
