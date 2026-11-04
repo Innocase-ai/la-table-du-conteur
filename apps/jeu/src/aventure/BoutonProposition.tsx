@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import type { Ordre, Personnage, Proposition } from '@crpg/regles';
 import { NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
+import { Pictogramme } from '../composants/Pictogramme';
 import { FormulaireReponse } from './FormulaireReponse';
 import { useImageElement } from './GrilleElements';
 
@@ -50,7 +51,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
     );
   }
 
-  const classe = `${p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton'}${p.image ? ' bouton-vignette' : ''}`;
+  const classe = `${p.style === 'principal' ? 'bouton-principal' : p.style === 'discret' ? 'bouton-discret' : 'bouton'}${p.image ? ' bouton-vignette' : ''}${p.icone && !p.image ? ' bouton-icone' : ''}`;
   const detail = p.detail ? (NOMS_COMPETENCES[p.detail as keyof typeof NOMS_COMPETENCES] ?? p.detail) : undefined;
 
   if (p.choix) {
@@ -123,6 +124,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
         </>
       ) : (
         <>
+          {p.icone && !aConfirmer && <Pictogramme cle={p.icone} taille={22} />}
           {aConfirmer ? 'Confirmer ?' : p.libelle}
           {!aConfirmer && detail && <small> — {detail}</small>}
         </>

@@ -628,9 +628,14 @@ export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, per
   return r;
 }
 
+/** Le refus d'une nuit hors d'un lieu sûr (le conteur le raconte ; le bouton « Dormir » le dit au joueur). */
+export const MESSAGE_PAS_DE_NUIT = (lieu: string) => `On ne dort pas ici (${lieu}) : trop exposé. Une halte est possible ; pour une nuit entière, il faut un abri sûr (auberge, camp, refuge).`;
+
 export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu {
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
   if (lieu.repos === 'impossible') return refus(`Impossible de se reposer ici (${lieu.nom}).`);
+  // Une halte (repos court) se fait presque partout ; une nuit entière demande un abri sûr : auberge, camp, refuge.
+  if (duree === 'long' && lieu.repos !== 'sur') return refus(MESSAGE_PAS_DE_NUIT(lieu.nom));
   const r = resultat();
   // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
   for (const a of p.groupe) {
@@ -639,7 +644,7 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu 
   }
   if (duree === 'long') {
     p.etat.jour += 1;
-    r.constats.push(`Le groupe se repose une nuit entière${lieu.repos === 'dangereux' ? ', malgré le danger' : ''}. Jour ${p.etat.jour}.`);
+    r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
     for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if (ev.declencheur === 'repos-long' || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
     for (const ev of p.dm.evenements.values()) if ((ev.declencheur === 'repos' || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === lieu.id) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
   } else if (!r.constats.length) r.constats.push('Une courte halte.');

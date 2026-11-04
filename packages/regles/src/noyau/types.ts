@@ -111,6 +111,8 @@ export interface Proposition {
   detail?: string;
   /** Texte d'aide au survol. */
   aide?: string;
+  /** Un pictogramme du bouton (clé de `DESSINS`, ex. `base:fouiller`), affiché avant le libellé. */
+  icone?: string;
   /** Une vignette (portrait d'un PNJ, image d'un lieu) du manifeste d'images du monde, affichée à gauche du bouton. */
   image?: { groupe: 'lieux' | 'pnj'; id: string };
   /** Une phrase d'explication affichée sous le bouton (où mène une sortie, ce que fait l'action), pour que le joueur sache pourquoi il clique. */

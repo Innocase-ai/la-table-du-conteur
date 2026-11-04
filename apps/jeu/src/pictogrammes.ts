@@ -386,6 +386,17 @@ export const DESSINS: Record<string, Dessin> = {
   'cout:gratuit': { teinte: 'gratuit', corps: trait('M32 32 m-23 0 a23 23 0 1 0 46 0 a23 23 0 1 0 -46 0', 't2', 9) + rond(32, 32, 6) },
 
   // ---- Actions de base ---------------------------------------------------
+  // Une loupe : verre cerclé d'un reflet, manche épais.
+  'base:fouiller': {
+    teinte: 'or',
+    corps:
+      '<circle cx="26" cy="26" r="17" class="p3"/>' +
+      '<circle cx="26" cy="26" r="13" class="p2" opacity=".22"/>' +
+      trait('M26 26 m-18 0 a18 18 0 1 0 36 0 a18 18 0 1 0 -36 0', 't1', 4.5) +
+      trait('M15 23 C16 18 20 14 26 13', 't1', 3) +
+      trait('M40 40 L55 55', 't2', 9) +
+      trait('M52 52 L57 57', 't1', 9),
+  },
   'base:foncer': {
     teinte: 'action',
     corps: [4, 20, 36].map((x, i) => `<path class="${i === 2 ? 'p1' : 'p2'}" opacity="${0.5 + i * 0.25}" d="M${x} 10 L${x + 22} 32 L${x} 54 L${x} 43 L${x + 11} 32 L${x} 21Z"/>`).join('') + trait('M2 8 H12 M2 56 H12', 't2', 3),

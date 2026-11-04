@@ -28,3 +28,32 @@ describe('vignettes des PNJ', () => {
     }
   });
 });
+
+/** Les boutons de l'onglet « Ici » : la loupe de « Fouiller », et « Dormir » seulement dans un lieu sûr. */
+describe('boutons Fouiller, Halte et Dormir', () => {
+  const boutonsA = (lieu: string) => {
+    const groupe = groupeConseille(3, srd).emplacements.map((p) => {
+      const f = bilanPersonnage(p!, srd).fiche!;
+      return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
+    });
+    const depart = moteur.executer(moteur.nouvellePartie(groupe, { graine: 5, niveau: 3 }), { type: 'commencer' }).partie;
+    const p = { ...depart, etat: { ...depart.etat, lieu } };
+    const tous = moteur.propositions(p);
+    return { fouiller: tous.find((x) => x.libelle === 'Fouiller')!, halte: tous.find((x) => x.libelle === 'Halte')!, dormir: tous.find((x) => x.libelle === 'Dormir')! };
+  };
+
+  it('« Fouiller » porte une loupe', () => {
+    expect(boutonsA('veillecendre').fouiller.icone).toBe('base:fouiller');
+  });
+
+  it('on peut dormir à l’auberge ; dans la rue, seulement faire une halte ; au repaire, rien', () => {
+    const auberge = boutonsA('vei-auberge-dernier-feu');
+    expect(auberge.dormir.desactivee).toBeUndefined();
+    const rue = boutonsA('veillecendre');
+    expect(rue.halte.desactivee).toBeUndefined();
+    expect(rue.dormir.desactivee).toMatch(/On ne dort pas ici/);
+    const repaire = boutonsA('gue-repaire');
+    expect(repaire.halte.desactivee).toMatch(/Impossible/);
+    expect(repaire.dormir.desactivee).toMatch(/Impossible/);
+  });
+});

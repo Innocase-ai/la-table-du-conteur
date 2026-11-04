@@ -141,6 +141,18 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   if (passagesSansTexte.length)
     avis(`Passages : ${passagesSansTexte.length} sur ${nbPassages} n'ont pas de description (le joueur ne lit rien sous le bouton avant d'y aller) : ${passagesSansTexte.slice(0, 6).join(', ')}${passagesSansTexte.length > 6 ? '…' : ''}`);
+  // On ne dort que dans un lieu sûr (`repos: "sur"`) : un monde sans lieu sûr ne laisserait jamais dormir, et un donjon sans refuge
+  // oblige le groupe à en sortir pour passer la nuit.
+  const sursDuMonde = [...dm.lieux.values()].filter((l) => l.repos === 'sur');
+  if (!sursDuMonde.length) avis('Repos : aucun lieu sûr (repos « sur ») : le groupe ne pourra jamais dormir.');
+  const sousLe = (id: string, racine: string): boolean => {
+    for (let c = dm.lieux.get(id), i = 0; c && i < 30; c = c.parent ? dm.lieux.get(c.parent) : undefined, i++) if (c.id === racine) return true;
+    return false;
+  };
+  for (const d of dm.lieux.values()) {
+    if (d.type === 'donjon' && !sursDuMonde.some((s) => sousLe(s.id, d.id))) avis(`Repos : le donjon « ${d.id} » n'a aucun lieu sûr à l'intérieur (repos « sur ») : le groupe devra en sortir pour dormir.`);
+  }
+
   // Les lieux enfants (bâtiments, salles) sans lien propre vers leur parent s'expliquent par leur `accroche`.
   const lienPropre = new Set<string>();
   for (const l of dm.lieux.values()) for (const k of l.liens) (lienPropre.add(`${l.id}>${k.vers}`), lienPropre.add(`${k.vers}>${l.id}`));

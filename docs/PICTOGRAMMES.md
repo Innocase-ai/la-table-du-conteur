@@ -9,7 +9,7 @@ Chaque carte du panneau de droite porte un **médaillon** (à droite) et une **p
 | Sorts jouables | `sort:<id>` (trait de feu, rayon de givre, poigne électrique, flamme sacrée, projectile magique, bouclier, mains brûlantes, sommeil, soins, mot de guérison, bénédiction, imprécation, rayon traçant, bouclier de la foi, marque du chasseur, rayon ardent, arme spirituelle, aide, immobilisation de personne, restauration partielle) | 20 |
 | Écoles de magie (repli d'un sort sans dessin) | `ecole:abjuration`, `conjuration` (le SRD français dit « invocation »), `divination`, `enchantement`, `evocation`, `illusion`, `necromancie`, `transmutation` | 8 |
 | Coûts | `cout:action` (rond), `cout:bonus` (triangle), `cout:reaction` (flèche en boucle), `cout:elan` (étincelle), `cout:gratuit` (anneau) | 5 |
-| Actions de base | `base:foncer`, `base:desengager`, `base:esquiver`, `base:potion` | 4 |
+| Actions de base | `base:foncer`, `base:desengager`, `base:esquiver`, `base:potion`, `base:fouiller` (la loupe du bouton « Fouiller », via `Proposition.icone`) | 5 |
 | Armes | `arme:epee`, `epee-courte`, `rapiere`, `dague`, `hache`, `hachette`, `masse`, `baton`, `arc`, `javeline`, `cimeterre` (une arme lancée reçoit des traînées) | 11 |
 | Monstres et aptitudes | `monstre:morsure`, `monstre:attaques-multiples`, `aptitude:rage`, `second-souffle`, `preservation`, `visee-appliquee`, `aptitude:defaut` | 7 |
 

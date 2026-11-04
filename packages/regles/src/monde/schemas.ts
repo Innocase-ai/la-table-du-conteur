@@ -393,7 +393,8 @@ export const Lieu = z.object({
   evenements: z.array(Id).default([]),
   // Services de lieu habité : auberge, temple, forge, marché…
   services: z.array(z.string()).default([]),
-  // Peut-on s'y reposer ? (un repos long dans un lieu dangereux a un coût narratif)
+  // Peut-on s'y reposer ? `sur` : une nuit entière (repos long : auberge, camp, refuge, maison) ; `dangereux` (défaut) : une halte
+  // seulement (repos court), on n'y dort pas ; `impossible` : aucun repos (repaire, caserne, prison…).
   repos: z.enum(['sur', 'dangereux', 'impossible']).default('dangereux'),
   carte: z.array(z.string()).optional(),
 });

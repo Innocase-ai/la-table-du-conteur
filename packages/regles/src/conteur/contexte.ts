@@ -86,7 +86,7 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
   l.push(`## Lieu : ${f.lieu.nom} (${f.lieu.id}) — jour ${f.jour}`);
   l.push(f.lieu.description);
   if (f.lieu.ambiance) l.push(`Ambiance : ${f.lieu.ambiance}`);
-  l.push(`Repos : ${f.lieu.repos}.`);
+  l.push(`Repos : ${f.lieu.repos === 'sur' ? 'sûr (on peut dormir une nuit)' : f.lieu.repos === 'impossible' ? 'impossible' : 'dangereux (une halte seulement, on ne dort pas ici)'}.`);
   if (f.sorties.length)
     l.push(
       `Sorties : ${f.sorties.map((s) => `${s.nom} [vers: ${s.vers}]${s.description ? ` (${s.description})` : ''}${s.etat !== 'libre' ? ` (${s.etat}${s.dd ? `, DD ${s.dd}` : ''})` : ''}`).join(' ; ')}`,

@@ -5962,6 +5962,13 @@ kbd {
   overflow-wrap: anywhere;
 }
 
+/* Un bouton avec un pictogramme (la loupe de « Fouiller ») : l'icône avant le libellé. */
+.bouton-icone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Un bouton avec une vignette (portrait d'un PNJ) : l'image à gauche, le nom et la précision empilés à droite. */
 .bouton-vignette {
   display: flex;

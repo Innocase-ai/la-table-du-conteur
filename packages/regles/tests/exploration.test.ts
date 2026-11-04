@@ -163,8 +163,29 @@ describe('énigmes, repos, tests, fiche de scène', () => {
     expect(repondreEnigme(p, 'cry-e-le-mot-d-ordre', 'enclume').ok).toBe(false); // déjà résolue
   });
 
-  it('un repos long à Veillecendre : PV pleins, jour suivant, la cendre monte et franchit un palier', () => {
+  it('on ne dort pas n’importe où : une nuit seulement dans un lieu sûr, une halte presque partout', () => {
     const p = partie();
+    // Les rues du village sont « dangereuses » : une halte, pas une nuit.
+    expect(p.dm.lieux.get(p.etat.lieu)!.repos).toBe('dangereux');
+    const refus = seReposer(p, 'long');
+    expect(refus.ok).toBe(false);
+    expect(refus.refus).toMatch(/On ne dort pas ici/);
+    expect(p.etat.jour).toBe(1);
+    expect(seReposer(p, 'court').ok).toBe(true);
+    // Un repaire de brigands : aucun repos, même court.
+    p.etat.lieu = 'gue-repaire';
+    expect(p.dm.lieux.get('gue-repaire')!.repos).toBe('impossible');
+    expect(seReposer(p, 'court').ok).toBe(false);
+    expect(seReposer(p, 'long').ok).toBe(false);
+    // L'auberge est sûre : on y dort.
+    p.etat.lieu = 'vei-auberge-dernier-feu';
+    expect(seReposer(p, 'long').ok).toBe(true);
+    expect(p.etat.jour).toBe(2);
+  });
+
+  it('un repos long à l’auberge de Veillecendre : PV pleins, jour suivant, la cendre monte et franchit un palier', () => {
+    const p = partie();
+    p.etat.lieu = 'vei-auberge-dernier-feu';
     p.groupe[0]!.pv = 1;
     const avant = p.etat.jauges['cendre']!;
     const rp = seReposer(p, 'long');

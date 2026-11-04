@@ -22,6 +22,14 @@ import { appliquerEtat } from '../personnage';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
 import type { ContexteJeu, Partie, Proposition } from '../noyau/types';
 
+/** Pourquoi on ne peut pas dormir ici (sinon rien) : « impossible » = aucun repos ; « dangereux » = une halte seulement. */
+const raisonPasDeNuit = (lieu: { repos: string } | undefined): string | undefined =>
+  !lieu || lieu.repos === 'sur'
+    ? undefined
+    : lieu.repos === 'impossible'
+      ? 'Impossible de se reposer ici.'
+      : 'On ne dort pas ici : trop exposé. Une halte est possible ; pour une nuit, cherchez un abri sûr (auberge, camp, refuge).';
+
 /** La fiche de scène du moment (sorties, trésors, pièges, énigmes visibles). */
 const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 });
 
@@ -85,6 +93,7 @@ export const moduleExploration: Module = {
               {
                 groupe: PANNEAUX.ici,
                 libelle: 'Fouiller',
+                icone: 'base:fouiller',
                 desactivee: p.etat.exploration.fouilles.includes(`${p.etat.lieu}:${p.etat.jour}`) ? 'Déjà fouillé aujourd’hui.' : undefined,
                 ordre: { type: 'fouiller' },
               },
@@ -188,21 +197,28 @@ export const moduleExploration: Module = {
           : [],
     }),
     seReposer: commande({
-      description: 'Se reposer : une halte (court) ou une nuit (long), selon ce que permet le lieu.',
+      description: 'Se reposer : une halte (court) presque partout, ou une nuit (long) seulement dans un lieu sûr (auberge, camp, refuge ; la fiche de scène dit « Repos : sûr »).',
       entree: z.object({ duree: z.enum(['court', 'long']) }),
       disponible: libre,
       executer: (t, e) => verser(t, seReposer(partieMonde(t), e.duree)),
       propositions: (ctx, p) =>
         enExploration(p)
           ? [
-              { groupe: PANNEAUX.ici, libelle: 'Halte', style: 'discret' as const, aide: 'Repos court : un dé de vie de PV, certains usages reviennent.', ordre: { type: 'seReposer', duree: 'court' } },
+              {
+                groupe: PANNEAUX.ici,
+                libelle: 'Halte',
+                style: 'discret' as const,
+                aide: 'Repos court : un dé de vie de PV, certains usages reviennent.',
+                ordre: { type: 'seReposer', duree: 'court' },
+                desactivee: ctx.dm.lieux.get(p.etat.lieu)?.repos === 'impossible' ? 'Impossible de se reposer ici.' : undefined,
+              },
               {
                 groupe: PANNEAUX.ici,
                 libelle: 'Dormir',
                 style: 'discret' as const,
-                aide: 'Repos long : PV, usages et sorts au maximum ; le temps passe.',
+                aide: 'Repos long : PV, usages et sorts au maximum ; le temps passe. Seulement dans un abri sûr (auberge, camp, refuge).',
                 ordre: { type: 'seReposer', duree: 'long' },
-                desactivee: ctx.dm.lieux.get(p.etat.lieu)?.repos === 'impossible' ? 'Impossible de dormir ici.' : undefined,
+                desactivee: raisonPasDeNuit(ctx.dm.lieux.get(p.etat.lieu)),
               },
             ]
           : [],
