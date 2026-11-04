@@ -111,6 +111,8 @@ export interface Proposition {
   detail?: string;
   /** Texte d'aide au survol. */
   aide?: string;
+  /** Une phrase d'explication affichée sous le bouton (où mène une sortie, ce que fait l'action), pour que le joueur sache pourquoi il clique. */
+  apercu?: string;
   /** La commande à envoyer au moteur. */
   ordre?: Ordre;
   /** Action prise en charge par le client lui-même (ouvrir l'écran de combat). */

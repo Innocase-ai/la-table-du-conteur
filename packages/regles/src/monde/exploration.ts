@@ -187,7 +187,14 @@ export interface Sortie {
   vers: string;
   nom: string;
   type: string;
+  /** Le texte de l'auteur pour ce passage, vu de ce côté (absent si l'auteur n'en a pas écrit). */
   description?: string;
+  /** Ce que le joueur lit sous le bouton : le texte de l'auteur, à défaut (lieu déjà visité) le résumé du lieu d'arrivée, sinon rien. */
+  apercu: string;
+  /** Le groupe est déjà allé là-bas. */
+  visite: boolean;
+  /** Heures de trajet (0 à l'intérieur d'un lieu). */
+  heures: number;
   /** Identifiant du passage, dans le sens où l'auteur l'a déclaré : `lien:<de>><vers>`. */
   cle: string;
   /** Passage caché pas encore trouvé : invisible pour le groupe. */
@@ -204,17 +211,24 @@ const cleLien = (de: string, vers: string) => `lien:${de}>${vers}`;
 function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }[] {
   const ex = p.etat.exploration;
   const res: { sortie: Sortie; lien?: Lien }[] = [];
-  const ajouter = (vers: string, cle: string, lien?: Lien) => {
+  // `retour` : le lien est déclaré de l'autre côté ; on lit alors le texte « vu d'ici » (`retour`) avant celui de l'auteur.
+  // `parDefaut` : texte d'un lien automatique (parent / enfant), qui n'a pas de définition propre.
+  const ajouter = (vers: string, cle: string, lien?: Lien, retour = false, parDefaut?: string) => {
     const dest = p.dm.lieux.get(vers);
     if (!dest || res.some((x) => x.sortie.vers === vers)) return;
     const debloque = p.etat.debloques.includes(vers);
+    const description = (retour ? (lien?.retour ?? lien?.description) : lien?.description) || parDefaut || undefined;
     res.push({
       lien,
       sortie: {
         vers,
         nom: dest.nom,
         type: lien?.type ?? 'passage',
-        description: lien?.description,
+        description,
+        // Le résumé d'un lieu jamais visité peut en dire trop (il est écrit pour l'arrivée) : on ne le montre qu'après.
+        apercu: description ?? (p.etat.lieuxVisites.includes(vers) ? dest.resume : ''),
+        visite: p.etat.lieuxVisites.includes(vers),
+        heures: lien?.heures ?? 0,
         cle,
         cache: !!lien?.cache && !ex.decouverts.includes(cle) && !debloque,
         bloque: !!lien?.condition && !evaluerCondition(lien.condition, p.etat) && !debloque,
@@ -225,10 +239,13 @@ function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }
   const ici = p.dm.lieux.get(lieu);
   for (const l of ici?.liens ?? []) ajouter(l.vers, cleLien(lieu, l.vers), l);
   for (const autre of p.dm.lieux.values()) {
-    for (const l of autre.liens) if (l.vers === lieu && l.sens === 'double') ajouter(autre.id, cleLien(autre.id, lieu), l);
+    for (const l of autre.liens) if (l.vers === lieu && l.sens === 'double') ajouter(autre.id, cleLien(autre.id, lieu), l, true);
   }
-  for (const enfant of p.dm.lieux.values()) if (enfant.parent === lieu) ajouter(enfant.id, cleLien(lieu, enfant.id));
-  if (ici?.parent) ajouter(ici.parent, cleLien(ici.parent, lieu));
+  for (const enfant of p.dm.lieux.values()) if (enfant.parent === lieu) ajouter(enfant.id, cleLien(lieu, enfant.id), undefined, false, enfant.accroche);
+  const parent = ici?.parent ? p.dm.lieux.get(ici.parent) : undefined;
+  // « Le pont » → « le pont » au milieu d'une phrase (les noms propres, eux, gardent leur majuscule).
+  const minuscule = (nom: string) => nom.replace(/^(Le |La |Les |L['’])/, (a) => a.toLowerCase());
+  if (ici && parent) ajouter(parent.id, cleLien(parent.id, lieu), undefined, false, `Quitter ${minuscule(ici.nom)} pour revenir à « ${parent.nom} », d'où l'on rejoint les autres lieux.`);
   return res;
 }
 

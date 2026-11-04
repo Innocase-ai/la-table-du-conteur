@@ -130,6 +130,29 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   verifierRef('Monde (départ)', 'lieu', dm.monde.depart.lieu);
 
+  // Le joueur n'a pas de monde en 3D : c'est la phrase du passage qui lui dit où il va. Sans elle il ne lit rien avant d'y aller.
+  const passagesSansTexte: string[] = [];
+  let nbPassages = 0;
+  for (const l of dm.lieux.values()) {
+    for (const lien of l.liens) {
+      nbPassages++;
+      if (!lien.description?.trim()) passagesSansTexte.push(`${l.id} > ${lien.vers}`);
+    }
+  }
+  if (passagesSansTexte.length)
+    avis(`Passages : ${passagesSansTexte.length} sur ${nbPassages} n'ont pas de description (le joueur ne lit rien sous le bouton avant d'y aller) : ${passagesSansTexte.slice(0, 6).join(', ')}${passagesSansTexte.length > 6 ? '…' : ''}`);
+  // Les lieux enfants (bâtiments, salles) sans lien propre vers leur parent s'expliquent par leur `accroche`.
+  const lienPropre = new Set<string>();
+  for (const l of dm.lieux.values()) for (const k of l.liens) (lienPropre.add(`${l.id}>${k.vers}`), lienPropre.add(`${k.vers}>${l.id}`));
+  const sansAccroche = [...dm.lieux.values()].filter((l) => l.parent && !lienPropre.has(`${l.parent}>${l.id}`) && !l.accroche?.trim()).map((l) => l.id);
+  if (sansAccroche.length)
+    avis(`Accroches : ${sansAccroche.length} lieux n'ont pas de phrase pour y entrer depuis leur parent (champ « accroche ») : ${sansAccroche.slice(0, 6).join(', ')}${sansAccroche.length > 6 ? '…' : ''}`);
+  for (const l of dm.lieux.values()) {
+    for (const lien of l.liens) {
+      if (lien.retour && lien.sens === 'simple') avis(`Lieu « ${l.id} », lien vers « ${lien.vers} » : « retour » n'a pas de sens pour un lien à sens unique.`);
+    }
+  }
+
   // Accessibilité : tout lieu doit pouvoir être atteint depuis le départ (les conditions sont supposées satisfiables).
   const voisins = new Map<string, Set<string>>();
   const relier = (a: string, b: string) => {

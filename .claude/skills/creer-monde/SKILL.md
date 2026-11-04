@@ -77,6 +77,10 @@ Quand tous les agents ont terminé :
 8. `pnpm test` et `pnpm typecheck` verts.
 9. Mets à jour `docs/MONDES.md` (liste des mondes), `docs/JOURNAL.md`, la mémoire du projet ; propose le commit (demande l'accord avant).
 
+## Écrire les textes en série (passages, accroches, descriptions) : agents Haiku
+
+Pour un grand nombre de petits textes (une phrase par lien, par lieu…), **toujours des agents Haiku** (consigne de l'utilisateur), en lots de ≈ 25 : un script (dans le bac à sable, jamais d'apostrophes dans un `node -e`) découpe les entrées en `sorties/<atelier>/lot-N.json` avec les fiches des deux lieux, un fichier de consignes commun (format JSON de sortie, 12 à 30 mots, interdits, varier les débuts) et chaque agent écrit **uniquement** son `sortie-lot-N.json`. Un script contrôle (JSON valide, tout est couvert, longueurs, mots interdits, débuts répétés), le directeur relit, corrige à la main et compile dans le monde. Modèle : passages et accroches du Val des Cendres (journal du 04/11/2026). Piège : un `retour` est mort quand le lieu d'arrivée déclare son propre lien ; le résumé d'un lieu jamais visité peut divulguer, on ne s'en sert pas comme repli.
+
 ## Atelier d'écriture : une scène clé à plusieurs voix (méthode éprouvée, pilote du conseil des Gardiens)
 
 Pour **une scène où plusieurs PNJ s'opposent** (conseil, procès, dispute, repas tendu), un seul auteur tend à lisser les voix en un consensus poli. L'atelier donne à chaque PNJ **son propre avocat** (un agent) avant d'assembler. Ce n'est pas un système d'exécution : tout se passe à l'écriture, le jeu ne lit que du JSON. À réserver aux 3 ou 4 scènes qui portent le monde, pas à chaque PNJ (comptez une dizaine d'appels, abonnement Claude Code, rien sur OpenRouter).

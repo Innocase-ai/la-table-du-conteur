@@ -8,26 +8,104 @@
     "description": "Une piste de montagne large de deux chariots, taillée par les nains pour relier la Lanterne à ses postes avancés. Elle serpente à flanc de coteau, bordée de bornes de pierre gravées d'une flamme. Plus on s'éloigne du village, plus la cendre s'épaissit sur le sol : après la septième borne, elle monte jusqu'à la cheville. Le sentier est la porte de tout le versant : on y bifurque vers la grotte des Loups-Gris, la Fosse, la grotte aux Fils, les hauteurs des goliaths et le champ des Pèlerins. Il s'y croise des trappeurs, des pèlerins au pas lent, des loups affamés et, la nuit, des morts de cendre qui suivent la piste par habitude.",
     "ambiance": "Silence ouaté, craquement de la cendre sous la botte, vent de neige, loin derrière soi la lueur orange du village.",
     "visuel": "Une piste de pierre noircie qui serpente à flanc de montagne sous un ciel de plomb ; de petites bornes de granit gravées d'une flamme se perdent dans une brume grise ; la cendre claire étouffe les cailloux et garde l'empreinte des pas ; au loin en contrebas, une lueur orange timide.",
-    "niveau": { "min": 1, "max": 3 },
+    "accroche": "Une piste de pierre noircie grimpe à flanc de montagne, jalonnée de bornes à flamme qui se perdent dans une brume grise, et la cendre étouffe tout bruit.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
     "liens": [
-      { "vers": "veillecendre", "type": "route", "heures": 1, "description": "La piste de ronde, balisée par les bornes de la Veille." },
-      { "vers": "grotte-des-loups-gris", "type": "chemin", "heures": 2, "description": "Un embranchement vers l'ouest, marqué de crânes de brebis plantés sur des piquets." },
-      { "vers": "grotte-aux-fils", "type": "chemin", "heures": 2, "description": "Un lacet qui descend dans un ravin couvert de gaze blanche." },
-      { "vers": "la-fosse", "type": "chemin", "heures": 3, "description": "La vieille voie des mineurs nains, pavée sous la cendre." },
-      { "vers": "cairn-des-hauteurs", "type": "chemin", "heures": 3, "description": "Un sentier de chèvres qui grimpe dans les pâturages." },
-      { "vers": "champ-de-cendre-gris", "type": "chemin", "heures": 2, "description": "La piste s'ouvre sur une plaine où la cendre efface l'horizon." },
-      { "vers": "gro-sentier-abri-du-trappeur", "type": "chemin", "heures": 0.5 },
-      { "vers": "gro-sentier-caravane", "type": "chemin", "heures": 1 },
-      { "vers": "gro-sentier-ravine", "type": "chemin", "heures": 1.5 }
+      {
+        "vers": "veillecendre",
+        "type": "route",
+        "heures": 1,
+        "description": "La piste de ronde, balisée par les bornes de la Veille."
+      },
+      {
+        "vers": "grotte-des-loups-gris",
+        "type": "chemin",
+        "heures": 2,
+        "description": "Un embranchement vers l'ouest, marqué de crânes de brebis plantés sur des piquets.",
+        "retour": "Le chemin redescend vers la piste entre des piquets couronnés de crânes blanchis ; le vent ramène une odeur de fauve et de cendre."
+      },
+      {
+        "vers": "grotte-aux-fils",
+        "type": "chemin",
+        "heures": 2,
+        "description": "Un lacet qui descend dans un ravin couvert de gaze blanche.",
+        "retour": "Un lacet remonte du ravin, en travers de toiles pâles qui ploient sous la cendre ; un fil frôle la joue."
+      },
+      {
+        "vers": "la-fosse",
+        "type": "chemin",
+        "heures": 3,
+        "description": "La vieille voie des mineurs nains, pavée sous la cendre.",
+        "retour": "Des dalles usées par les pas des mineurs descendent du portail vers la piste ; une fine cendre étouffe les bruits."
+      },
+      {
+        "vers": "cairn-des-hauteurs",
+        "type": "chemin",
+        "heures": 3,
+        "description": "Un sentier de chèvres quitte la piste noircie et s'élève dans les pâturages pâles ; on entend des clochettes au loin, et le village n'est déjà plus qu'une lueur.",
+        "retour": "Un sentier de chèvres dévale les pâturages, marqué de sabots et de murets ; le tintement des clochettes s’éloigne vers la piste."
+      },
+      {
+        "vers": "champ-de-cendre-gris",
+        "type": "chemin",
+        "heures": 2,
+        "description": "La piste s'ouvre sur une plaine où la cendre efface l'horizon.",
+        "retour": "La cendre s’amincit en un chemin tassé qui redescend vers la piste ; derrière soi, un murmure de chants lents se perd dans la neige."
+      },
+      {
+        "vers": "gro-sentier-abri-du-trappeur",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Un chemin étroit grimpe de la piste vers un rocher d’où monte une fumée ; une odeur de bouleau brûlé descend jusqu’ici.",
+        "retour": "Le sentier dévale le rocher vers la piste, glissant sur la cendre ; derrière soi, des peaux claquent au vent."
+      },
+      {
+        "vers": "gro-sentier-caravane",
+        "type": "chemin",
+        "heures": 1,
+        "description": "La piste s’abaisse vers un fossé où une bâche claque au vent ; on devine quelque chose de couché dans la cendre.",
+        "retour": "Une pente de cendre remonte vers la piste, et derrière soi une clochette tinte encore faiblement."
+      },
+      {
+        "vers": "gro-sentier-ravine",
+        "type": "chemin",
+        "heures": 1.5,
+        "description": "Entre deux parois fendues s’ouvre un goulet de schiste noir, où les gravillons glissent et l’ombre du fond paraît occupée.",
+        "retour": "La pente de schiste remonte vers la piste ; un souffle froid descend de la paroi et fait rouler les pierres."
+      }
     ],
     "rencontres": [
-      { "id": "gro-r-sentier-loups-egares", "declencheur": "aleatoire", "unique": false },
-      { "id": "gro-r-sentier-zombis-de-cendre", "declencheur": "aleatoire", "unique": false },
-      { "id": "gro-r-sentier-pelerins-passants", "declencheur": "aleatoire", "unique": false },
-      { "id": "gro-r-sentier-brume-de-cendre", "declencheur": "aleatoire", "unique": false }
+      {
+        "id": "gro-r-sentier-loups-egares",
+        "declencheur": "aleatoire",
+        "unique": false
+      },
+      {
+        "id": "gro-r-sentier-zombis-de-cendre",
+        "declencheur": "aleatoire",
+        "unique": false
+      },
+      {
+        "id": "gro-r-sentier-pelerins-passants",
+        "declencheur": "aleatoire",
+        "unique": false
+      },
+      {
+        "id": "gro-r-sentier-brume-de-cendre",
+        "declencheur": "aleatoire",
+        "unique": false
+      }
     ],
     "faits": [
-      { "fait": "f-gro-bornes-de-la-veille", "decouverte": { "auto": true } }
+      {
+        "fait": "f-gro-bornes-de-la-veille",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -40,8 +118,14 @@
     "description": "Une cabane basse à toit de lauzes, un auvent chargé de peaux de loup, de lièvre et de renard, un poêle de fonte qui tire bien. Le trappeur y vend peaux, vivres, cordes et pièges, et loue un coin de plancher aux voyageurs. Le sentier autour est semé de pièges à mâchoires, mal signalés pour qui ne le connaît pas.",
     "ambiance": "Odeur de graisse, de fumée de bouleau et de fourrure mouillée ; un poêle qui ronfle ; cliquetis des pièges contre le mur.",
     "visuel": "Une cabane de rondins sombres sous un auvent chargé de peaux tendues ; un poêle de fonte rougeoyant derrière une fenêtre embuée ; des cordes, des pièges à mâchoires et des crânes de loups accrochés au mur de pierre.",
-    "niveau": { "min": 1, "max": 2 },
-    "services": ["abri", "commerce"],
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "services": [
+      "abri",
+      "commerce"
+    ],
     "repos": "sur"
   },
   {
@@ -53,9 +137,17 @@
     "description": "Le chariot d'un colporteur qui montait au village avant la fermeture du col. Les mules ont été dévorées par les loups, le colporteur et son valet gisent dans la cendre sous des couvertures raides de gel. La bâche est déchirée ; le coffre du fond a été fracturé, puis refermé à la hâte. Quelqu'un est déjà passé avant les loups.",
     "ambiance": "Un claquement de bâche dans le vent, des os rongés, une clochette de mule qui tinte encore quand on touche le harnais.",
     "visuel": "Un chariot à bâche déchirée couché dans un fossé plein de cendre ; des barriques éventrées, des ballots détrempés, deux silhouettes recouvertes de couvertures de laine givrées ; des os de mules éparpillés autour du timon brisé.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "faits": [
-      { "fait": "f-gro-caravane-du-colporteur", "decouverte": { "auto": true } }
+      {
+        "fait": "f-gro-caravane-du-colporteur",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -68,7 +160,10 @@
     "description": "Le sentier se resserre entre deux murs de schiste fracturé. Les nains l'avaient étayé de poutres de mélèze, dont il ne reste que des moignons. Les pierres tombent de temps à autre, et des cailloux sont posés en équilibre sur les corniches, comme si quelqu'un avait préparé de quoi faire dégringoler la paroi. Au fond d'une alcôve, un soldat étranger, la cheville tordue, se tient immobile.",
     "ambiance": "Cliquetis de gravillons qui glissent, écho des pas, souffle froid qui descend de la paroi.",
     "visuel": "Un goulet de schiste noir entre deux parois fendues, des moignons de poutres de mélèze, un éboulis de dalles sombres sous une fine pellicule de cendre ; au fond, une alcôve où se devine une cape grise de soldat.",
-    "niveau": { "min": 1, "max": 3 },
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
     "repos": "dangereux"
   },
   {
@@ -80,8 +175,20 @@
     "description": "Une faille ouverte dans une falaise de calcaire, qui s'enfonce en un boyau descendant vers une salle haute, puis vers une source tiède au fond. La meute y est installée depuis la fin de l'automne : une louve sanguinaire vieille et boiteuse, ses loups, et des louveteaux de l'année cachés près de l'eau. Les loups sont affamés parce que les hauts pâturages sont couverts de cendre ; ils ne sont pas méchants, mais ils défendent leur portée. La grotte a une seconde entrée : une fissure au nord, dissimulée par un éboulis, qui donne directement sur le sentier.",
     "ambiance": "Odeur de fauve et de viande rance, souffle chaud sortant de la faille, grattements de griffes dans l'ombre.",
     "visuel": "Une faille sombre dans une falaise de calcaire clair, des crânes de brebis plantés sur des piquets de bois à l'entrée, des traces de griffes et de la cendre foulée par des pattes ; au-dedans, une pénombre froide et des reflets humides.",
-    "niveau": { "min": 1, "max": 2 },
-    "liens": [{ "vers": "gro-loups-porche", "type": "passage", "heures": 0 }],
+    "accroche": "Au pied d'une falaise de calcaire clair, une faille sombre est bordée de crânes de brebis sur des piquets, et une odeur de fauve monte de l'ombre.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "gro-loups-porche",
+        "type": "passage",
+        "heures": 0,
+        "description": "La faille s’élargit en une salle basse où le jour tombe de biais ; l’odeur de fauve s’épaissit, et des souffles lents répondent au pas.",
+        "retour": "Vers la faille, le couloir remonte entre les dalles, et déjà la lumière grise s’y reflète sur des os."
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -93,11 +200,26 @@
     "description": "Une salle large mais basse, où le jour entre par la faille. Des os de brebis, de chèvre, d'un mulet et d'un homme sont éparpillés sur un lit de cendre. Contre la paroi, un tas de hardes de voyageurs ramené par les loups : vestes, sacs, une bourse. Un étroit goulet s'ouvre au fond, vers le boyau. Les loups de garde dorment à demi.",
     "ambiance": "Une pénombre jaunâtre, des os qui craquent sous la botte, des yeux brillants dans l'ombre.",
     "visuel": "Une salle basse au sol couvert d'os blanchis et de cendre grise, un tas de hardes de voyageurs moisies contre la paroi, le jour pâle de la faille tombant en biais ; deux silhouettes de loups gris couchées près du goulet.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
-      { "vers": "gro-loups-boyau", "type": "passage", "heures": 0, "description": "Un goulet bas, où l'on avance courbé." }
+      {
+        "vers": "gro-loups-boyau",
+        "type": "passage",
+        "heures": 0,
+        "description": "Un goulet bas, où l'on avance courbé, s'enfonce en pente vers une obscurité fraîche ; des traces de griffes marquent le sol, et une odeur de fauve monte.",
+        "retour": "Le boyau remonte vers un porche éclairé d’un jour pâle ; le calcaire poli luit sous les doigts."
+      }
     ],
-    "rencontres": [{ "id": "gro-r-loups-porche", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "gro-r-loups-porche",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -109,11 +231,29 @@
     "description": "Un boyau de trois pas de large, humide, qui descend en pente douce. Le sol est poli par des siècles de pattes. À mi-pente, une anfractuosité haute sert de poste de guet aux louveteaux de l'an passé. Les pas résonnent : impossible de s'approcher sans bruit, sauf à ramper ou à brûler de la graisse pour couvrir l'odeur.",
     "ambiance": "Résonance, gouttes, grattement de griffes plus bas, odeur de fauve de plus en plus forte.",
     "visuel": "Un couloir étroit de calcaire luisant, aux parois polies, qui plonge en pente douce dans une obscurité fraîche ; des traînées de griffes sur le sol, une lueur grisâtre au fond.",
-    "niveau": { "min": 1, "max": 2 },
+    "accroche": "En pente douce, la roche luisante plonge dans l'obscurité ; une lueur grisâtre flotte au fond, et des grattements de griffes résonnent plus bas.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
-      { "vers": "gro-loups-salle-de-la-meute", "type": "passage", "heures": 0 }
+      {
+        "vers": "gro-loups-salle-de-la-meute",
+        "type": "passage",
+        "heures": 0,
+        "description": "Le boyau s’enfonce vers une clarté grise ; des traînées de griffes rayent la pierre polie, et une odeur de fauve pèse de plus en plus.",
+        "retour": "Un couloir étroit remonte de la caverne vers le porche, aux parois polies ; des gouttes y résonnent à chaque pas."
+      }
     ],
-    "faits": [{ "fait": "f-gro-loups-fuient-la-cendre", "decouverte": { "dd": 12, "competence": "nature" } }],
+    "faits": [
+      {
+        "fait": "f-gro-loups-fuient-la-cendre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "nature"
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -125,12 +265,34 @@
     "description": "Une caverne ronde sous un dôme percé d'un puits de lumière grise. Le sol est creusé de couches, couvert de pelage et d'os. Au centre se dresse un bloc de calcaire où dort la vieille louve. Deux passages s'ouvrent : l'un vers l'ossuaire, une niche où la meute entasse ses restes, l'autre vers la source au fond, où les louveteaux sont cachés. La meute n'attaque pas tout de suite : les loups grondent, les poils hérissés, avant de charger.",
     "ambiance": "Grondements sourds, haleine fumante dans l'air froid, lumière cendrée qui tombe du puits.",
     "visuel": "Une caverne en dôme éclairée par un puits de lumière grise, un bloc de calcaire pâle au centre, des couches de pelage et d'os, de grands loups gris et un animal massif aux flancs maigres, aux yeux clairs fixés sur l'entrée.",
-    "niveau": { "min": 1, "max": 2 },
+    "accroche": "Des grondements sourds roulent jusqu'à l'entrée, et une haleine fumante flotte dans une caverne baignée d'une lumière cendrée qui tombe d'en haut.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
-      { "vers": "gro-loups-ossuaire", "type": "passage", "heures": 0 },
-      { "vers": "gro-loups-source", "type": "passage", "heures": 0 }
+      {
+        "vers": "gro-loups-ossuaire",
+        "type": "passage",
+        "heures": 0,
+        "description": "Une niche étroite s’enfonce dans la paroi du dôme, où stagne une odeur de moisi ; au fond, on devine une cavité sèche et un craquement.",
+        "retour": "Par l’ouverture de la niche, on aperçoit une caverne en dôme ; des grondements sourds y résonnent, et la lumière d’en haut tombe au centre."
+      },
+      {
+        "vers": "gro-loups-source",
+        "type": "passage",
+        "heures": 0,
+        "description": "Une fissure basse s’ouvre au fond de la caverne ; un murmure d’eau tiède et une chaleur humide en sortent, avec de petits bruits.",
+        "retour": "Le passage remonte vers une caverne en dôme ; la lumière grise s’y devine, et des grondements sourds s’élèvent de loin."
+      }
     ],
-    "rencontres": [{ "id": "gro-r-loups-salle-de-la-meute", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "gro-r-loups-salle-de-la-meute",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -142,8 +304,20 @@
     "description": "Une étroite chambre sans issue, tapissée d'os de toutes tailles. Des objets humains y traînent : bottes sans pied, sacoches rongées, une pierre plate gravée de signes goliaths prise aux affaires d'un berger mort, des pièces tombées d'une bourse. La meute y revient par habitude, sans comprendre.",
     "ambiance": "Craquement des os, odeur de moisi et de sang séché, éclat terne de quelques pièces.",
     "visuel": "Une niche étroite tapissée d'os blanchis entassés en vagues, des bottes éventrées, des sacoches rongées, un éclat de pièces d'argent dans la cendre, une pierre plate gravée de spirales.",
-    "niveau": { "min": 1, "max": 2 },
-    "faits": [{ "fait": "f-gro-pierre-de-haavi-chez-les-loups", "decouverte": { "dd": 11, "competence": "investigation" } }],
+    "accroche": "Une odeur de moisi et de sang séché filtre d'une niche étroite, et des craquements secs ponctuent le moindre mouvement sur le sol.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "faits": [
+      {
+        "fait": "f-gro-pierre-de-haavi-chez-les-loups",
+        "decouverte": {
+          "dd": 11,
+          "competence": "investigation"
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -155,11 +329,28 @@
     "description": "Une petite salle au fond de la grotte, où une source tiède sourd d'une fente. L'eau charrie des filaments gris, comme si de la cendre se dissolvait en elle, et les loups la boivent à contre-cœur. Quatre louveteaux dorment dans un creux de la roche, tout près de la fissure nord qui donne sur l'extérieur. La grotte est leur refuge : la meute a fui les hauts, où les sources sont devenues grises.",
     "ambiance": "Murmure de l'eau, chaleur humide, petits couinements, odeur de lait et de laine mouillée.",
     "visuel": "Une petite caverne basse où sourd une eau tiède voilée de filaments gris, un creux de roche tapissé de fourrure où dorment des louveteaux, une fissure claire dans la voûte.",
-    "niveau": { "min": 1, "max": 2 },
+    "accroche": "Le murmure d'une eau tiède filtre d'une caverne basse, dans une chaleur humide où flottent de petits couinements et une odeur de laine mouillée.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
-      { "vers": "gro-loups-fissure-nord", "type": "passage", "heures": 0, "description": "Une chatière montante, derrière le creux des louveteaux." }
+      {
+        "vers": "gro-loups-fissure-nord",
+        "type": "passage",
+        "heures": 0,
+        "description": "Derrière le creux des louveteaux, une chatière monte vers la voûte ; l'eau tiède ruisselle sous les doigts, et un jour gris tombe d'en haut.",
+        "retour": "Une étroite gorge descend vers une petite caverne d’eau tiède ; la pierre y est chaude sous les paumes, et l’humidité monte du bas."
+      }
     ],
-    "faits": [{ "fait": "f-gro-louveteaux-dans-la-source", "decouverte": { "auto": true } }],
+    "faits": [
+      {
+        "fait": "f-gro-louveteaux-dans-la-source",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -171,9 +362,23 @@
     "description": "Une chatière qui remonte entre deux dalles et débouche dans un fouillis de rochers, au-dessus du sentier. On y voit un cadavre de voyageur, pris par les loups avant d'avoir pu s'extraire. La fissure permet de contourner le porche et de surprendre la meute par derrière, ou de s'échapper.",
     "ambiance": "Un courant d'air froid et la lumière pâle du dehors, des cailloux qui glissent sous les mains.",
     "visuel": "Une fissure étroite entre deux dalles de calcaire, un jour gris tombant d'en haut, des rochers moussus et de la cendre au sol ; contre la paroi, un voyageur mort enveloppé de laine.",
-    "niveau": { "min": 1, "max": 2 },
+    "accroche": "Un jour gris tombe par une fissure étroite cachée sous un éboulis moussu, et un air froid siffle entre les dalles de calcaire.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
-      { "vers": "sentier-des-cendres", "type": "passage", "heures": 1, "cache": { "dd": 12, "competence": "perception" }, "description": "Une fissure dissimulée sous un éboulis, au-dessus du sentier." }
+      {
+        "vers": "sentier-des-cendres",
+        "type": "passage",
+        "heures": 1,
+        "cache": {
+          "dd": 12,
+          "competence": "perception"
+        },
+        "description": "Une fissure étroite, dissimulée sous un éboulis désormais écarté, s'ouvre au-dessus de la piste ; un courant d'air froid et une clarté pâle y entrent.",
+        "retour": "Au-dessus de la piste, un éboulis de rochers moussus cache une fissure étroite d’où tombe un jour gris et un courant d’air."
+      }
     ],
     "repos": "dangereux"
   }

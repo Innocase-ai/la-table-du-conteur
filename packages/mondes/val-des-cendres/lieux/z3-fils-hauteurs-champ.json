@@ -8,6 +8,7 @@
     "description": "Une grotte voilée de toiles, au fond d'un ravin sans soleil. Les araignées s'y sont installées après avoir fui un lieu plus profond : leur nid est sur un replat qui domine un gouffre, relié par un vieux drain nain à la galerie basse de la Fosse. Des cocons contiennent leurs proies, parfois encore bien conservées. La cendre y tombe moins, retenue par la soie.",
     "ambiance": "Un silence cotonneux, des fils qui vibrent, un froid humide, le claquement discret de pattes sur la pierre.",
     "visuel": "Une caverne entièrement drapée de toiles blanches où la lumière grise filtre comme à travers de la gaze, des fils tendus qui ploient sous la cendre, des cocons pendus au plafond et, très haut, des yeux qui reflètent la lumière.",
+    "accroche": "Au fond d’un ravin, une caverne drapée de toiles blanches, où la lumière grise traverse les fils comme à travers de la gaze.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -16,7 +17,9 @@
       {
         "vers": "gro-fils-entree-voilee",
         "type": "passage",
-        "heures": 0
+        "heures": 0,
+        "description": "Au fond de la caverne, une soie blanche épaisse masque une bouche de roche ; la cendre s'accroche aux fils.",
+        "retour": "De l'intérieur, le rideau de soie laisse passer une lumière grise, et toute la caverne se devine derrière son voile."
       }
     ],
     "repos": "dangereux"
@@ -38,7 +41,9 @@
       {
         "vers": "gro-fils-couloir-tisse",
         "type": "passage",
-        "heures": 0
+        "heures": 0,
+        "description": "Le couloir s'enfonce dans la roche, étroit, et ses parois se couvrent de toiles qui vibrent au moindre souffle.",
+        "retour": "Derrière soi, le couloir ramène à la soie blanche, dont le pan claque doucement quand on le frôle."
       }
     ],
     "repos": "dangereux"
@@ -52,6 +57,7 @@
     "description": "Un couloir de quinze pas dont chaque centimètre porte des fils. Les plus fins sont des fils d'alerte : ils tremblent dès qu'on les frôle, et les araignées accourent. Un gardien guette du plafond. Deux ouvertures sur le côté mènent au garde-manger (à droite) et au nid (au fond).",
     "ambiance": "Vibrations invisibles, claquement de pattes lointain, souffle court de qui retient sa respiration.",
     "visuel": "Un long couloir étroit presque entièrement drapé de toiles, des fils scintillants tendus à hauteur de genou, une grande araignée noire immobile au plafond, des cocons dans une alcôve latérale.",
+    "accroche": "De l’ouverture monte un frémissement continu, comme si des fils invisibles vibraient, et l’air sent la soie tiède.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -60,12 +66,16 @@
       {
         "vers": "gro-fils-garde-manger",
         "type": "passage",
-        "heures": 0
+        "heures": 0,
+        "description": "Une alcôve s'ouvre sur le côté, basse, et l'air y est lourd d'une odeur sucrée qui colle aux lèvres.",
+        "retour": "Le couloir s'étend devant, coupé de fils tendus à hauteur de genou, et sa longueur se perd dans la pénombre."
       },
       {
         "vers": "gro-fils-nid",
         "type": "passage",
-        "heures": 0
+        "heures": 0,
+        "description": "Le boyau descend en pente vers une grande cuve de roche, et l'air se charge d'un parfum musqué.",
+        "retour": "La pente remonte vers le couloir, long et étroit, et le bruit des pas s'étouffe dans la soie qui l'habille."
       }
     ],
     "rencontres": [
@@ -86,6 +96,7 @@
     "description": "Une chambre basse tapissée de cocons suspendus en grappes. Les plus anciens sont secs comme du papier ; les récents sont encore tièdes. On y distingue un chasseur de loups, un colporteur, un mouton. Les biens des victimes, enroulés avec elles, sont intacts.",
     "ambiance": "Craquement de soie sèche, odeur sucrée de décomposition, balancement lent des cocons.",
     "visuel": "Une alcôve basse aux voûtes tendues de soie, des cocons blancs de la taille d'un homme pendus en grappes, des formes humaines à peine visibles à travers la gaze, des armes et des sacoches prises dans les fils.",
+    "accroche": "L’odeur sucrée qui sort de l’alcôve est écœurante, et l’on entend à peine le craquement d’une soie sèche.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -101,6 +112,7 @@
     "description": "Une caverne haute dont le sol descend en entonnoir vers un gouffre. Les toiles forment un hamac géant au-dessus du vide. Deux femelles y veillent sur des sacs d'œufs. Un fil plus épais que les autres, tendu sur le gouffre, sert de pont vers la paroi opposée.",
     "ambiance": "Un frémissement permanent des fils, un parfum musqué, des cliquetis de mandibules.",
     "visuel": "Une grande caverne en entonnoir drapée d'un hamac de toiles tendues au-dessus d'un gouffre noir, de gros sacs d'œufs blancs accrochés aux parois, deux araignées aux pattes velues grosses comme des chiens.",
+    "accroche": "Au-dessus de l’entrée, les fils tremblent, et un parfum musqué se mêle à un cliquetis sec venu du fond.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -110,7 +122,8 @@
         "vers": "gro-fils-gouffre",
         "type": "passage",
         "heures": 0,
-        "description": "Un pont de soie tendu au-dessus du gouffre."
+        "description": "Un pont de soie, épais comme un câble, est tendu au-dessus du gouffre noir ; il vibre au moindre souffle, et une corniche se devine de l'autre côté.",
+        "retour": "De l'autre côté du pont de soie, une salle en entonnoir remonte vers des toiles, et des cliquetis de mandibules y résonnent."
       }
     ],
     "rencontres": [
@@ -131,6 +144,7 @@
     "description": "Une corniche étroite sur la paroi opposée du gouffre. Une dalle de pierre ouvragée y masque l'orifice d'un drain que les nains avaient creusé pour évacuer l'eau de la Fosse. Il suffit de la faire pivoter pour passer. De l'autre côté, la galerie basse de la mine.",
     "ambiance": "Un vent froid qui monte du gouffre, l'écho d'un caillou qui tombe longtemps.",
     "visuel": "Une corniche étroite au bord d'un gouffre noir, un fil de soie épais tendu en pont, une dalle de pierre naine gravée de runes de ruissellement dans la paroi.",
+    "accroche": "D’un gouffre noir monte un vent froid qui fait vibrer la soie, et l’écho d’une chute de pierre dure longtemps.",
     "niveau": {
       "min": 2,
       "max": 3
@@ -155,6 +169,7 @@
     "description": "Au-dessus de la limite des arbres, les prairies sont encore à peu près vertes, avec leurs bergeries de pierre sèche et leur grand cairn : un tas de pierres haut comme une maison, bâti par les générations de goliaths, où chaque pierre est un mort et chaque niche une offrande. Les bergers y gardent leurs troupeaux, de moins en moins nombreux. De là-haut on voit la vallée entière : le village et sa lueur, le champ gris au sud, et à l'est, la montagne d'où est montée la première cendre.",
     "ambiance": "Vent ample, tintement de clochettes de chèvres, odeur de laine et de pierre froide ; de loin, le village n'est plus qu'une braise.",
     "visuel": "Des prairies pâles sous un ciel de plomb, des murets de pierre sèche, une bergerie basse aux lauzes couvertes de cendre, un grand cairn de pierres plates empilées, des chèvres brunes aux cornes tordues, et très loin en contrebas la lueur orangée d'un village.",
+    "accroche": "Sur la crête, un grand cairn se détache du ciel de plomb, et l’on entend tinter les clochettes d’un troupeau.",
     "niveau": {
       "min": 1,
       "max": 3
@@ -163,33 +178,44 @@
       {
         "vers": "gro-hauteurs-bergerie",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Un sentier de chèvres traverse les prairies pâles vers une bergerie basse, dont la fumée de tourbe se mêle à la cendre.",
+        "retour": "Depuis le seuil, un grand tas de pierres plates se dresse au-dessus des murets, pâle sous le ciel de plomb, et les clochettes tintent tout près."
       },
       {
         "vers": "gro-hauteurs-enclos",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Un muret de pierre sèche longe le chemin jusqu'à un enclos à moitié vide, où une cloche tinte au bout d'un piquet.",
+        "retour": "Les murets de pierre sèche suivent le chemin vers les hauteurs, et le vent se lève déjà sur la pente."
       },
       {
         "vers": "gro-hauteurs-cairn",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Le chemin monte droit vers un grand cône de pierres plates, percé de niches où le vent siffle déjà.",
+        "retour": "En bas, les toits de lauzes et la prairie s'étalent, et le sentier redescend entre les pierres."
       },
       {
         "vers": "gro-hauteurs-replat",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Le sentier file à l'est, sur une dalle de granit nue que le vent balaie ; on n'y trouve aucun abri.",
+        "retour": "Vers l'ouest, la pente redescend vers les pierres empilées, et la vue sur la montagne sombre disparaît."
       },
       {
         "vers": "gro-hauteurs-vire",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Une corniche étroite, taillée au flanc d'une falaise, s'ouvre au bord d'un vide gris ; les sabots glissent sur la pierre.",
+        "retour": "Les prairies pâles s'étalent vers l'ouest, et le vide gris reste derrière, d'où monte le vent."
       },
       {
         "vers": "champ-de-cendre-gris",
         "type": "chemin",
         "heures": 2,
-        "description": "La piste des brebis, qui redescend vers la plaine grise."
+        "description": "La piste des brebis, qui redescend vers la plaine grise.",
+        "retour": "Une piste de brebis remonte vers les pâturages, entre des murets, loin de la neige grise qui ne fond pas."
       }
     ],
     "evenements": [
@@ -317,6 +343,7 @@
     "description": "Une vaste plaine jadis cultivée, aujourd'hui ensevelie sous une cendre épaisse comme une neige tassée. Aucun vent ne la lève, aucun cours d'eau ne l'emporte. Des tentes grises forment un camp ; autour, de longues files de gens couchés sur le dos dorment immobiles. Les Pèlerins n'ont aucune arme et n'attaquent personne. Le soir, une lueur rousse monte du sol et les couchés s'effacent peu à peu sous la cendre.",
     "ambiance": "Murmure de chants lents, neige grise qui ne fond pas, étrange douceur, odeur d'encens et de cendre froide.",
     "visuel": "Une immense plaine recouverte d'une cendre grise épaisse, des tentes de toile grise alignées, de longues files de silhouettes couchées sur le dos à demi ensevelies, des fumées d'encens droites, un ciel de plomb sans horizon.",
+    "accroche": "Neige grise qui ne fond pas, la plaine s’étend sans horizon ; de fines fumées d’encens montent droit.",
     "niveau": {
       "min": 1,
       "max": 3
@@ -325,22 +352,30 @@
       {
         "vers": "gro-champ-camp",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Des traces damées mènent vers des tentes grises groupées autour d'un feu, où un chaudron fume et des voix basses chantent.",
+        "retour": "Depuis le camp, la plaine grise s'étend sans horizon, et la cendre tombe doucement sur les couvertures."
       },
       {
         "vers": "gro-champ-tente-du-frere",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Un monticule de cendre porte une tente plus haute, dont le pan relevé laisse voir une lampe à huile.",
+        "retour": "De la tente, on voit la cendre se dérouler sans fin, et l'encens monte droit dans l'air immobile."
       },
       {
         "vers": "gro-champ-allee-des-couches",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Des pierres plates bordent une allée où des silhouettes allongées reposent, mains croisées, sous une fine couche de cendre.",
+        "retour": "Devant soi, un chemin de pas se perd dans la brume, et des tentes se devinent au loin."
       },
       {
         "vers": "gro-champ-cercle-des-noms",
         "type": "chemin",
-        "heures": 0
+        "heures": 0,
+        "description": "Treize pierres dressées forment un cercle dans la cendre, et la craie crisse sur chaque nom écrit.",
+        "retour": "Vu d'ici, la cendre s'étire jusqu'aux fumées lointaines, et la craie blanche reste collée aux doigts."
       },
       {
         "vers": "gro-champ-poste-ensevelie",
@@ -350,7 +385,8 @@
           "dd": 14,
           "competence": "investigation"
         },
-        "description": "Une cheminée de pierre noire à peine saillante de la cendre."
+        "description": "Une cheminée de pierre noire à peine saillante de la cendre.",
+        "retour": "Tout en haut, la cheminée n'est plus qu'un rond de ciel gris, et la cendre glisse le long du conduit."
       }
     ],
     "evenements": [

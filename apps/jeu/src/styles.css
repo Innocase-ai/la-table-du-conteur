@@ -5972,6 +5972,28 @@ kbd {
   gap: 4px;
 }
 
+/* Une sortie (ou une action) avec sa phrase d'explication : le joueur sait où il va avant de cliquer. */
+.proposition-apercu {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 6px;
+}
+
+.proposition-apercu > .bouton,
+.proposition-apercu > .bouton-principal {
+  width: 100%;
+}
+
+.proposition-apercu p {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--texte-doux);
+}
+
 .objet-action {
   display: flex;
   align-items: center;

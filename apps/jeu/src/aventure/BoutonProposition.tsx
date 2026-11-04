@@ -94,7 +94,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
     );
   }
 
-  return (
+  const bouton = (
     <button
       type="button"
       className={`${classe} ${aConfirmer ? 'bouton-confirmer' : ''}`}
@@ -110,5 +110,13 @@ export function BoutonProposition({ p, jouer, onCombat, groupe }: Props) {
       {aConfirmer ? 'Confirmer ?' : p.libelle}
       {!aConfirmer && detail && <small> — {detail}</small>}
     </button>
+  );
+  // Une phrase d'explication sous le bouton (où mène une sortie) : le joueur sait pourquoi il clique.
+  if (!p.apercu) return bouton;
+  return (
+    <div className="proposition-apercu">
+      {bouton}
+      <p>{p.apercu}</p>
+    </div>
   );
 }

@@ -8,6 +8,7 @@
     "description": "Ormgard était le quartier des morts de la Haute-Forge : un étage de galeries de niches et d'urnes, puis un étage profond de chapelles, de salles de garde et de scellés, et tout au fond la route funéraire qui mène à la Haute-Forge, fermée par le Sceau de la Forge. On y entre par le portique du mausolée, dans l'angle nord du cimetière, à deux heures de marche de Veillecendre par le chemin des tombes. Une entrée dérobée, un vieux puits d'aération connu des fossoyeurs, donne dans l'ossuaire. Le premier niveau (galeries, ossuaire, caserne, réfectoire) est infesté de morts relevés ; le second (rotonde, chapelle, scellés, trésorerie, puits) garde les énigmes et le chemin du Sceau. Plusieurs raccourcis relient les deux niveaux : la grille de l'escalier (clé de la caserne), la rampe des cercueils (leviers de l'ossuaire), l'escalier caché de la galerie (urnes), l'échelle des mineurs, et la chute du réfectoire. Le donjon est la voie obligée vers la Haute-Forge : le drapeau « cryptes-franchies » s'y pose quand le gardien est apaisé ou vaincu.",
     "ambiance": "Un froid sec, une poussière de pierre qui sent le fer froid et la cendre. Chaque pas résonne un peu trop longtemps.",
     "visuel": "Un portique de pierre grise couvert de lichen, au fond d'un cimetière enneigé, et une porte de bronze verdie, entrouverte sur un escalier noir ; la cendre grise s'accumule en congères contre les stèles.",
+    "accroche": "Sur le cimetière enneigé du nord, un portique de pierre couvert de lichen encadre une porte de bronze verdie, entrouverte sur le noir.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -25,7 +26,8 @@
         "type": "porte",
         "heures": 0,
         "sens": "double",
-        "description": "La porte de bronze du mausolée, grande ouverte depuis qu'on y est entré."
+        "description": "La porte de bronze du mausolée, grande ouverte depuis qu'on y est entré.",
+        "retour": "Un escalier monte vers une porte de bronze verdie, et la lumière grise du cimetière filtre par l’entrebâillement."
       },
       {
         "vers": "cry-ossuaire",
@@ -36,7 +38,8 @@
           "dd": 15,
           "competence": "perception"
         },
-        "description": "Dans l'angle nord du cimetière, une margelle de puits à demi comblée cache une trappe de pierre ; une échelle de fer descend dans l'ossuaire."
+        "description": "Dans l'angle nord du cimetière, une margelle de puits à demi comblée cache une trappe de pierre ; une échelle de fer descend dans l'ossuaire.",
+        "retour": "Au-dessus de l’échelle de fer, une trappe de pierre s’ouvre sur un ciel gris, et une odeur de terre froide monte du bas."
       }
     ],
     "rencontres": [],
@@ -70,6 +73,7 @@
     "description": "Étage de service et de dépôt : les nains y déposaient les urnes ordinaires et y logeaient la garde. Les morts qui s'y sont relevés sont des gardes, des fossoyeurs et des affamés. Il est le premier test du groupe.",
     "ambiance": "Un couloir de poussière, des pas qui ne sont pas les vôtres, un silence qui écoute.",
     "visuel": "Un ensemble de galeries voûtées de pierre grise, aux murs creusés de niches, éclairées par de rares lampes à huile éteintes ; la poussière flotte dans les rayons des torches.",
+    "accroche": "Des marches grises s'enfoncent sous la voûte, et l'air qui monte est sec, chargé de poussière, avec un silence qui semble tendre l'oreille.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -90,6 +94,7 @@
     "description": "Étage sacré : c'est là que reposaient les maîtres de forge, et là que l'archiviste, le sonneur et la garde se sont retranchés pour tenir le Sceau. Les énigmes y sont plus subtiles, les pièges plus anciens, les morts plus attentifs.",
     "ambiance": "Un air plus chaud qu'en haut, presque vivant, et une odeur de métal qui chauffe quelque part très loin.",
     "visuel": "Des cryptes aux voûtes basses, ornées de fresques de forge en bronze terni, éclairées par un rougeoiement lointain qui remonte du fond.",
+    "accroche": "Une chaleur inattendue monte de l'escalier, plus douce que l'air du haut, et une odeur de métal qui chauffe résonne très loin en dessous.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -110,6 +115,7 @@
     "description": "Salle carrée de dix mètres de côté, au sol dallé de pierre noire. Au-dessus de l'arche du fond, une épitaphe gravée en langue commune naine : « ICI L'ON ENTRE LES PIEDS DEVANT. » Un pupitre de pierre, à gauche de l'entrée, porte le registre de la garde (objet : cry-registre-de-garde), ouvert à la dernière page : on y lit, en bas, « mot d'ordre du jour : EMULCNE » (le mot est écrit à l'envers, voir énigme de la caserne). Une vasque de bronze, au centre, garde des pièces d'offrande vieilles de deux siècles. Trois sorties : la galerie des urnes (ouest), la caserne (est), l'escalier des Porteurs (nord). Une dalle de pression, au milieu de la salle, est reliée à des faucilles cachées dans les murs (piège). Deux squelettes en cotte de mailles se tiennent immobiles de part et d'autre de l'arche nord et s'animent quand on s'éloigne de l'entrée sans les saluer.",
     "ambiance": "Un froid sec, un silence qui retient son souffle.",
     "visuel": "Un vestibule carré de pierre noire, aux dalles polies par des siècles de cortèges, un pupitre de pierre chargé d'un grand registre, une vasque de bronze verdi au centre, et au fond une arche sombre gravée d'une longue épitaphe ; la lumière grise de l'entrée s'arrête à deux pas du seuil.",
+    "accroche": "On sent un froid sec sortir d'un silence dense, et la lumière grise s'arrête net sur des dalles polies par des siècles de pas.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -120,7 +126,7 @@
         "type": "porte",
         "heures": 0,
         "sens": "double",
-        "description": "Une arche basse, à l'ouest, ornée d'urnes sculptées."
+        "description": "Une arche basse, à l'ouest, aux urnes sculptées, ouvre sur un couloir ; le froid s'y fait plus sec encore et la poussière flotte sans bruit."
       },
       {
         "vers": "cry-caserne",
@@ -172,6 +178,7 @@
     "description": "Galerie de trente mètres, deux rangées de niches superposées. Quatre niches sont mises en valeur par une plaque d'épitaphe (« niche-pierre », « niche-feu », « niche-voix », « niche-souffle ») ; les quatre urnes correspondantes ont roulé au sol, chacune marquée d'un nom et d'un emblème de métier : Brokk (un pic), Hilde (des tenailles de fondeur), Torvald (un battant de cloche), Gunnhild (une plume). Épitaphes : niche-pierre « Il est retourné à la pierre qu'il perçait » ; niche-feu « Le feu l'a reprise comme il l'avait nourrie » ; niche-voix « Sa voix s'est tue la dernière, et l'écho garde le reste » ; niche-souffle « Elle a écrit jusqu'au dernier souffle, et le souffle était gris ». Énigme des urnes. Bien placées, les urnes déclenchent un déclic : un panneau de pierre pivote au fond de la galerie et dévoile un escalier étroit qui descend directement à la chambre des cartes (raccourci) ainsi qu'une cavité dans une niche. Mal placées, une poussière grise s'échappe des urnes et les morts alentour s'agitent.",
     "ambiance": "Murmure de poussière, comme si les niches respiraient.",
     "visuel": "Une longue galerie voûtée aux murs percés de niches rectangulaires en deux étages, chacune surmontée d'une plaque de bronze gravée ; au sol, des urnes de terre cuite renversées, certaines brisées, d'autres intactes, marquées d'un emblème peint, et une fine cendre grise qui les couvre.",
+    "accroche": "De longues niches en deux étages se devinent depuis l'entrée, et une fine poussière grise flotte dans les rayons de lumière.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -181,7 +188,8 @@
         "vers": "cry-vestibule",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Dans le mur près de l'entrée, une ouverture étroite laisse filtrer une clarté grise et un air sec qui sent la pierre et la cendre."
       },
       {
         "vers": "cry-ossuaire",
@@ -235,6 +243,7 @@
     "description": "Salle ronde de douze mètres, murs de crânes et de fémurs empilés avec soin, grand drain central, sol de dalles en pente. Une alcôve latérale porte quatre leviers de fer sous quatre crânes sculptés dans la pierre : le premier coiffé d'un casque, le deuxième d'un bandeau sur les orbites, le troisième d'un casque, le quatrième d'un capuchon ; une plaque de bronze dit : « Qui veille se lève, qui dort se couche. » Énigme des leviers. Solution : levier haut pour les veilleurs, bas pour les dormeurs, soit [haut, bas, haut, bas]. Réussie, la grille de la rampe des cercueils se relève (raccourci vers la rotonde). Au fond de l'ossuaire, une échelle de fer conduit à la trappe de l'entrée secrète. Les zombis qui y rampent sont d'anciens fossoyeurs ; des nuées de rats nichent dans les os. Une cache entre deux murs d'os contient des offrandes oubliées.",
     "ambiance": "Une odeur sèche de vieux os et de terre froide, avec en dessous quelque chose de plus récent.",
     "visuel": "Une salle ronde dont les murs sont entièrement bâtis de crânes et d'os longs rangés en motifs réguliers, un drain en cuvette au centre, une alcôve éclairée de lumière grise où se dressent quatre leviers de fer sous quatre visages de pierre, et dans un angle une échelle de fer qui monte dans le noir.",
+    "accroche": "Une senteur de vieux os et de terre froide flotte dans l'air, et sous elle quelque chose de plus récent, qu'on préfère ne pas nommer.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -244,7 +253,8 @@
         "vers": "cry-galerie-des-urnes",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Entre les rangées d'os, une lourde dalle de pierre nue, à double battant, s'entrouvre sur un air sec venu d'une longue galerie."
       },
       {
         "vers": "cry-refectoire",
@@ -299,6 +309,7 @@
     "description": "Grande salle de quinze mètres sur huit, lits de pierre en deux rangées, râteliers d'armes (vides pour la plupart), table centrale avec des dés et un damier, tableau de service gravé au mur. Quatre squelettes en cotte de mailles rouillée, jadis des gardes, s'y tiennent à leur poste ; ils attendent le mot d'ordre. Celui qui le dit (« enclume », indiqué à l'envers sur le registre de garde du vestibule) les voit se mettre au garde-à-vous, puis s'écarter. Dans l'alcôve du capitaine, un coffre cadenassé contient la clé de la grille de l'escalier (objet : cry-cle-de-la-grille) et un bouclier de garde. Le tableau de service rappelle : « Le mot se dit comme on porte les morts : pieds devant. »",
     "ambiance": "Le silence d'une garde qui retient son souffle.",
     "visuel": "Une grande salle basse aux lits de pierre alignés sous des couvertures effilochées, des râteliers presque vides, une table centrale aux dés encore posés, et quatre silhouettes de squelettes en cotte de mailles rouillée, immobiles, la tête tournée vers la porte ; un tableau de service gravé au mur, sous un écu à l'enclume.",
+    "accroche": "Passé la porte, un silence de garde ne se relâche jamais, et une odeur de cuir et de métal rouillé flotte, comme après un long tour de faction.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -308,7 +319,8 @@
         "vers": "cry-vestibule",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Le battant de chêne, à demi poussé, ouvre sur une fraîcheur de caveau et l'écho de pas lointains."
       },
       {
         "vers": "cry-refectoire",
@@ -347,6 +359,7 @@
     "description": "Grande salle de trente places, tables de pierre cassées, voûte à demi tombée sur la moitié ouest ; un gouffre de six mètres s'ouvre là où le sol a cédé, sur le puits de cendre en dessous. Quatre goules, maigres et luisantes, rôdent entre les tables ; elles sont affamées et peuvent être détournées par de la nourriture (des rations jetées, de la viande). Un cadavre récent, près du gouffre, est celui d'un compagnon de Brisca (voir son trésor). Passages : vers la caserne, vers l'ossuaire, vers le boyau des mineurs (gravats), et la chute dans le gouffre (sens unique : elle mène au puits de cendre et fait mal). Le sol de la moitié ouest est instable (piège d'effondrement).",
     "ambiance": "Une odeur de charogne et de pierre moite, des claquements de mâchoires dans le noir.",
     "visuel": "Un réfectoire aux longues tables de pierre fendues et aux bancs renversés, une voûte à demi effondrée dont les blocs s'entassent contre le mur, et un trou noir béant dans le sol, d'où monte un souffle tiède ; des os rongés, nets, jonchent le sol.",
+    "accroche": "Un pan de voûte effondré bloque à moitié le passage, et de l'air moite et une odeur de chair rongée filtrent par l'ouverture.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -356,13 +369,15 @@
         "vers": "cry-caserne",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Cette porte étroite, à l'écart du gouffre, a un linteau bas et un loquet de fer rouillé."
       },
       {
         "vers": "cry-ossuaire",
         "type": "passage",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Un corridor bas aux murs suintants file vers le charnier, sous une voûte que des étais retiennent à peine."
       },
       {
         "vers": "cry-boyau-des-mineurs",
@@ -408,6 +423,7 @@
     "description": "Boyau étroit, étayé de poutres neuves et vieilles, où se trouvent la lanterne, la pioche et le sac d'un fossoyeur de Veillecendre, bloqué depuis trois jours par un éboulement. Il est vivant et affaibli. Le boyau descend par une échelle de corde jusqu'au second étage, dans l'armurerie (raccourci à dégager). Au sol, des éclats de pierre et un livre de comptes de chantier.",
     "ambiance": "L'air est lourd, la poussière a un goût de pierre humide, et quelque chose gratte, derrière les pierres.",
     "visuel": "Un tunnel de roche brute à peine plus haut qu'un homme, étayé de poutres neuves et noircies, un éboulis de blocs au fond, une lanterne à huile qui s'épuise, une échelle de corde qui plonge dans un puits noir.",
+    "accroche": "Étayé de poutres neuves et noircies, un tunnel de roche brute s'enfonce, et sa poussière a un goût de pierre mouillée.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -417,7 +433,8 @@
         "vers": "cry-refectoire",
         "type": "passage",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Sous les poutres noircies, le tunnel s'enfonce, à peine plus haut qu'un homme, et garde une poussière de pierre humide dans l'air."
       },
       {
         "vers": "cry-armurerie",
@@ -453,6 +470,7 @@
     "description": "Escalier large de quatre mètres, quatre-vingts marches dans un puits carré, avec un palier à mi-pente où une niche vide a servi de reposoir aux cortèges. Les marches portent des éraflures et des taches sombres : le passage récent d'un groupe de pilleurs (Brisca et sa bande). En bas, une lourde grille de fer ferme l'accès à la rotonde. La serrure est solide (DD 18) ; la clé est dans le coffre du capitaine à la caserne. Sur le palier, une inscription naine : « Descendez comme vous êtes montés : en silence. »",
     "ambiance": "Un souffle tiède remonte d'en bas, comme une respiration.",
     "visuel": "Un grand escalier de pierre noire qui s'enfonce en spirale carrée dans un puits, des marches creusées en leur centre par des siècles de pas, un palier voûté à mi-pente, et en bas une grille de fer à barreaux épais, rouillée, par laquelle filtre une lueur rougeâtre.",
+    "accroche": "Du fond d'un puits carré, une spirale de pierre noire descend vers une lueur rougeâtre, avec un souffle tiède qui remonte.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -462,7 +480,8 @@
         "vers": "cry-vestibule",
         "type": "passage",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "La tiédeur qui monte du bas s'arrête au palier, et les marches, grises de suie, remontent vers la lumière."
       },
       {
         "vers": "cry-rotonde",
@@ -499,6 +518,7 @@
     "description": "Salle ronde de vingt mètres sous une coupole peinte de constellations de forge. Huit sarcophages de pierre en cercle (certains ouverts, un piégé par une aiguille empoisonnée). Cinq sorties : l'escalier (grille) au nord, la chapelle des Forgerons à l'ouest, l'armurerie au sud-ouest, la salle des scellés à l'est, le puits de cendre au sud ; la rampe des cercueils débouche aussi ici. Un campement fait de couchages et d'une lanterne, tenu par Brisca Ravel et ce qui reste de sa bande. Des ombres tapies sous les sarcophages se révèlent quand on touche aux morts.",
     "ambiance": "Un air sec et tiède, le grésillement ténu d'une lanterne à huile et le bourdonnement très lointain d'un foyer.",
     "visuel": "Une rotonde coiffée d'une coupole peinte de constellations de bronze et de braise, huit sarcophages de pierre en anneau, un campement de couchages roulés et d'une lanterne de cuivre au pied d'un pilier, des silhouettes enveloppées dans des couvertures près d'un mur.",
+    "accroche": "Au bout de l'arche, une lueur de lanterne tremble sur la pierre, et une odeur de ragoût brûlé et de laine mouillée s'en échappe.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -512,31 +532,36 @@
         "verrou": {
           "dd": 18,
           "cle": "cry-cle-de-la-grille"
-        }
+        },
+        "description": "Derrière des barreaux épais et rouillés, un escalier monte vers la pénombre, et une haleine sourde en sort par saccades."
       },
       {
         "vers": "cry-chapelle-des-forgerons",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Entre deux piliers de la rotonde, une porte de bronze patiné donne sur une nef où un métal refroidit en tintant."
       },
       {
         "vers": "cry-armurerie",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Sur le côté, un huis de fer lourd laisse entrevoir des râteliers, et l'odeur d'huile de graissage passe dans la rotonde."
       },
       {
         "vers": "cry-salle-des-scelles",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Contre le mur de la coupole, un battant de bois sombre ouvre sur des plaques de bronze qui renvoient une lueur mate."
       },
       {
         "vers": "cry-puits-de-cendre",
         "type": "passage",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Dans le sol de la rotonde, une ouverture ronde laisse monter des volutes grises et une odeur de forge éteinte."
       },
       {
         "vers": "cry-ossuaire",
@@ -545,7 +570,8 @@
         "sens": "double",
         "condition": {
           "flag": "cry-leviers-ossuaire"
-        }
+        },
+        "description": "Une rampe creusée d'ornières grimpe vers le charnier ; quand sa grille est levée, on y sent un courant froid."
       }
     ],
     "rencontres": [
@@ -582,6 +608,7 @@
     "description": "Nef de quinze mètres, autel en forme d'enclume, trois piliers de rune (braise, marteau, trempe) devant l'autel et des fresques de forgerons sur les murs. Les fresques, de gauche à droite, montrent : un forgeron qui ranime la braise au soufflet, un marteau qui frappe sur l'enclume, un fer plongé dans l'eau. Une inscription circulaire sur l'autel : « Que la braise éveille, que le marteau dise, que l'eau garde. » Énigme des runes : toucher braise, marteau, trempe dans cet ordre. Une erreur déclenche un glyphe qui enflamme l'air (piège). Réussie : le mur derrière l'autel s'ouvre sur un passage vers la chambre des cartes, et la nef s'éclaire. Une gargouille de bronze perchée au-dessus de l'autel s'anime pour qui profane la nef sans y avoir été invité.",
     "ambiance": "Un recueillement lourd, le tintement d'un métal qui refroidit quelque part dans les murs.",
     "visuel": "Une nef de bronze terni et de pierre noire, un autel taillé en forme d'enclume sous trois piliers de pierre gravés de runes rougeoyantes, des fresques de forgerons aux murs, et une gargouille de bronze accroupie sur la corniche, la gueule ouverte.",
+    "accroche": "Des runes rougeoient entre deux piliers de pierre noire, et le bronze ternit sur une façade dont on devine la fraîcheur.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -591,7 +618,8 @@
         "vers": "cry-rotonde",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Au fond de la nef, un vantail de bronze donne sur un silence lourd et une salle ronde où l'on devine la chaleur d'un foyer."
       },
       {
         "vers": "cry-crypte-du-sonneur",
@@ -644,6 +672,7 @@
     "description": "Pièce ronde de six mètres, une cloche de bronze de deux mètres suspendue à une poutre, fendue sur un flanc. Sous la cloche, la tombe du sonneur, une dalle avec une plaque de sépulture (voir le trésor). Une corde de cloche pend encore ; la tirer fait résonner un glas sourd qui se répand dans les cryptes et agite les morts (le MJ peut y voir un effet de renfort sur les combats suivants). Le mur est gravé : « Il a sonné jusqu'à ce que la cloche se brise. »",
     "ambiance": "Le souvenir d'un son énorme qui s'est arrêté.",
     "visuel": "Une petite crypte circulaire, au centre de laquelle pend une immense cloche de bronze fendue de haut en bas, patinée de vert, une corde de chanvre noirci tombant jusqu'au sol, une dalle gravée dessous, et des lettres naines creusées en spirale sur le mur.",
+    "accroche": "Dans une arche ronde couverte de suie, un silence si lourd qu'on y devine presque un tintement.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -653,7 +682,8 @@
         "vers": "cry-chapelle-des-forgerons",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Dans le mur rond, un battant étroit ouvre sur une nef ; la pierre garde un écho qui s'éteint lentement."
       }
     ],
     "rencontres": [],
@@ -685,6 +715,7 @@
     "description": "Pièce de douze mètres, grandes tables couvertes de cartes de la vallée et des cryptes (l'une montre les passages secrets), rayonnages de registres. L'ombre d'un archiviste nain, Maître Orsolf Plume-Grise, y relit en boucle le grand registre ; elle est amicale et confuse, gardienne du fait f-sceau-des-cryptes. L'air y est plus froid et la pièce, protégée par des runes de repos, est sûre (repos long possible). On accède à la chambre depuis la chapelle (passage secret après les runes), depuis la salle des scellés (porte) et depuis la galerie des urnes (escalier après les urnes). Un journal de l'archiviste (objet) donne la chronologie de la Nuit de la Cendre et le fait que les cryptes ont été scellées de l'intérieur.",
     "ambiance": "Un calme studieux, le grattement d'une plume qui n'écrit plus rien.",
     "visuel": "Une pièce voûtée aux tables couvertes de cartes déroulées et pesées de pierres, des rayonnages pleins de registres reliés de cuir, une lampe de bronze qui brûle d'une flamme bleue immobile, et une silhouette translucide penchée sur un grand registre ouvert.",
+    "accroche": "Par l'entrebâillement d'une lourde porte de bois, une lumière bleue immobile s'échappe, avec le froid sec des registres.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -697,13 +728,15 @@
         "sens": "double",
         "condition": {
           "flag": "cry-runes-resolues"
-        }
+        },
+        "description": "Quand le rayonnage pivote, une fente étroite s’ouvre dans le mur, et de l’autre côté monte un air métallique et froid."
       },
       {
         "vers": "cry-salle-des-scelles",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Un battant de bois noir, au fond de la pièce, s’ouvre sur une salle où le moindre pas revient en écho."
       },
       {
         "vers": "cry-galerie-des-urnes",
@@ -712,7 +745,8 @@
         "sens": "double",
         "condition": {
           "flag": "cry-urnes-apaisees"
-        }
+        },
+        "description": "Sous la trappe, un escalier de pierre mène à une galerie où l’air a un goût de poussière et de terre."
       }
     ],
     "rencontres": [],
@@ -744,6 +778,7 @@
     "description": "Grande salle rectangulaire, murs de vitrines de plaques de bronze (titres de sépulture), plafond bas. Au fond, une porte de pierre sans poignée, gravée d'une phrase : « DIS LE NOM DE CELUI QUI TIENT LA PORTE, ET LA PORTE SERA TENUE POUR TOI. » Énigme du nom (réponse : Brand, le gardien). Parmi les plaques, une pièce orc : la plaque des alliés (objet : cry-plaque-des-allies) révèle que le clan Marteau-Vert enterrait ses morts à Ormgard, côte à côte avec les nains. Une porte barrée, vers la chambre du trésorier, exige une clé. La salle communique avec la rotonde, la chambre des cartes, la trésorerie et l'antichambre.",
     "ambiance": "Des centaines de noms murmurent dans le métal, sans voix.",
     "visuel": "Une salle rectangulaire aux murs entièrement garnis de vitrines de bois noir où reposent des centaines de plaques de bronze gravées, un plafond bas et lourd, une grande porte de pierre lisse au fond couverte d'une inscription en lettres de braise, et sur le côté une porte verrouillée aux ferrures dorées.",
+    "accroche": "Derrière une arche, des vitrines de bois noir luisent faiblement, et l'on entend le frottement lent de centaines de plaques de métal.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -753,13 +788,15 @@
         "vers": "cry-rotonde",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Sur le côté, une porte cintrée sans battant laisse passer un air sec et tiède, et le grésillement d’une lanterne."
       },
       {
         "vers": "cry-chambre-des-cartes",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Entre deux vitrines, une porte plaquée de bronze s’ouvre sur une pièce de papier et de cartes, où l’on devine une lumière."
       },
       {
         "vers": "cry-chambre-du-tresorier",
@@ -770,7 +807,7 @@
           "dd": 16,
           "cle": "cry-cle-du-tresorier"
         },
-        "description": "Une porte aux ferrures dorées, à serrure fine."
+        "description": "Une porte aux ferrures dorées, à la serrure fine, ferme le fond de la salle ; le bronze luit faiblement, et des petits pas grattent de l'autre côté."
       },
       {
         "vers": "cry-antichambre-du-sceau",
@@ -820,6 +857,7 @@
     "description": "Petite salle voûtée aux coffres de bronze verrouillés, aux étagères de livres de comptes et à un pupitre. Le trésorier d'Ormgard, une momie nanie bandée de lin noir, s'y tient assis derrière son bureau et défend les comptes ; deux nuées de rats nichent sous les coffres. Un coffre-fort mural, piégé par une aiguille, renferme l'argent des offrandes de deux siècles. Un passage secret derrière un rayonnage donne sur le puits de cendre (boucle). Le trésor est important : pièces, parchemin, cape, bijou.",
     "ambiance": "Une odeur d'encens rance et de papier, et le trottinement de petites pattes.",
     "visuel": "Une petite trésorerie voûtée dont les murs sont garnis de coffres de bronze et d'étagères chargées de livres de comptes, un pupitre de pierre, un grand coffre-fort scellé dans le mur, et une silhouette bandée de lin noir assise derrière le pupitre, immobile comme une statue.",
+    "accroche": "Relents d'encens rance et de papier moisi filtrent jusqu'à l'entrée, et un trottinement de petites pattes court dans les recoins.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -833,7 +871,8 @@
         "verrou": {
           "dd": 16,
           "cle": "cry-cle-du-tresorier"
-        }
+        },
+        "description": "Dans la trésorerie, le vantail reste sans ornement et verrouillé ; quelque chose gratte doucement sous le bois."
       },
       {
         "vers": "cry-puits-de-cendre",
@@ -868,6 +907,7 @@
     "description": "Salle de dix mètres sur huit, râteliers de lances, marteaux de guerre et haches d'armes, mannequins d'armure sur des socles. Trois armures animées se tiennent parmi les mannequins ; un plafond de pierre à dalle mobile, installé pour écraser les pilleurs, retombe sur qui touche à la rangée des marteaux. Un marteau de garde d'Ormgard (arme +1) se détache du lot. Un trou fermé d'une planche, au plafond, laisse tomber l'échelle des mineurs (si on le dégage).",
     "ambiance": "Un cliquetis imperceptible d'acier froid.",
     "visuel": "Une salle d'armes aux râteliers alignés le long des murs, couverts de lances, de marteaux de guerre et de haches d'armes sombres, une rangée de mannequins en armure complète sur des socles de pierre, et un plafond de grandes dalles jointives que soutient un mécanisme de chaînes visible dans les interstices.",
+    "accroche": "De l'huile et du fer rouillé suintent d'une salle sombre, où un cliquetis d'acier froid revient par intervalles.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -877,7 +917,8 @@
         "vers": "cry-rotonde",
         "type": "porte",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Au fond de la salle, une large ouverture de fer laisse filtrer une lueur de braise et le bourdonnement d’un foyer."
       },
       {
         "vers": "cry-boyau-des-mineurs",
@@ -887,7 +928,8 @@
         "cache": {
           "dd": 13,
           "competence": "investigation"
-        }
+        },
+        "description": "Derrière un râtelier mal fixé, une trappe ouvre sur un trou noir où descend une échelle de corde."
       }
     ],
     "rencontres": [
@@ -911,6 +953,7 @@
     "description": "Cheminée verticale d'une dizaine de mètres de diamètre, bordée d'une galerie circulaire, sans garde-fou. De ses profondeurs monte une cendre grise tiède, portée par un souffle régulier, comme une respiration ; tout au fond, très loin, un rougeoiement. Une pèlerine grise s'y tient en prière. La vapeur de cendre est un danger : elle brûle les poumons. Trois accès : la rotonde (sud), la chambre du trésorier (passage secret), le gouffre du réfectoire (chute à sens unique), et une corniche étroite vers l'antichambre du Sceau (passage secret difficile).",
     "ambiance": "Un souffle chaud et lent, le crépitement de braises mortes, une odeur de forge éteinte.",
     "visuel": "Un puits vertical aux parois de basalte lisses, une galerie circulaire étroite sans rambarde, des volutes de cendre grise qui montent lentement dans la pénombre en emportant des braises mortes, et tout au fond, minuscule, un rougeoiement orange.",
+    "accroche": "Sans rambarde, le bord d'un puits laisse monter de lentes volutes grises, portées par une tiédeur qui sent la forge éteinte.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -920,7 +963,8 @@
         "vers": "cry-rotonde",
         "type": "passage",
         "heures": 0,
-        "sens": "double"
+        "sens": "double",
+        "description": "Le long de la galerie circulaire, sans rambarde, un chemin plat contourne le vide vers une salle tiède où l’on entend un foyer."
       },
       {
         "vers": "cry-chambre-du-tresorier",
@@ -930,7 +974,8 @@
         "cache": {
           "dd": 15,
           "competence": "investigation"
-        }
+        },
+        "description": "Sur la galerie, un pan de mur ressemble à un mur plein ; la cendre s’y engouffre par une brèche qu’on ne voit qu’en approchant."
       },
       {
         "vers": "cry-antichambre-du-sceau",
@@ -979,6 +1024,7 @@
     "description": "Salle étroite à deux statues de gardes et à une enclume de pierre posée sur un socle devant la porte du Sceau. Le linteau porte l'inscription : « BRAND GARDE-SERMENT TIENT LA PORTE. » L'enclume sert à prononcer la formule de passage : on y frappe, avec le marteau cérémoniel d'Ormgard, la porte du Sceau. Sans le marteau, la porte de la salle du Sceau reste muette.",
     "ambiance": "Un souffle chaud passe sous la porte.",
     "visuel": "Une antichambre étroite et haute, deux statues de gardes nains en armure face à face, une enclume de pierre noire sur un socle devant une grande porte de bronze à disques concentriques, et au-dessus de l'arche un linteau gravé en lettres profondes.",
+    "accroche": "À l'entrée d'une arche étroite, deux silhouettes de pierre en armure font face à qui s'approche, et un courant chaud glisse sous le seuil.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -998,7 +1044,8 @@
               "flag": "cry-sceau-nomme"
             }
           ]
-        }
+        },
+        "description": "Quand la pierre lisse s’ouvre, on devine une salle de vitrines noires et de métal froid."
       },
       {
         "vers": "cry-puits-de-cendre",
@@ -1008,7 +1055,8 @@
         "cache": {
           "dd": 17,
           "competence": "perception"
-        }
+        },
+        "description": "Par la brèche, une saillie de pierre court au-dessus d’un gouffre noir, d’où monte une chaleur de cendre."
       },
       {
         "vers": "cry-salle-du-sceau",
@@ -1050,6 +1098,7 @@
     "description": "Salle circulaire de quinze mètres, voûte basse, au centre un coffre de bronze (la tombe-coffre du gardien) et au fond le Sceau de la Forge : un grand disque de bronze rouge de runes, mi-porte mi-sceau, dont les rainures laissent filtrer une lueur orange. Brand Garde-Serment, l'ombre du gardien, se tient devant ; il attend qu'on vienne le relever. La rencontre finale se joue ici (combattre, parlementer, ruser avec l'inscription du serment). Une fois la clé du Sceau obtenue (dans le coffre) et la rencontre résolue (drapeau cryptes-franchies), un passage s'ouvre derrière le Sceau, vers la Haute-Forge.",
     "ambiance": "Une chaleur de forge qui couve derrière le métal, le tic-tac d'un métal qui refroidit et ne refroidit jamais.",
     "visuel": "Une salle circulaire à la voûte basse, un coffre massif de bronze sombre au centre sur une estrade, et au fond un immense disque de bronze et de fer couvert de runes rougeoyantes, entouré d'une lueur orange qui filtre par ses rainures ; des armures vides sont rangées en cercle autour du coffre.",
+    "accroche": "La chaleur d'une forge couve derrière le métal, et une lueur orange suinte par les joints d'une voûte basse.",
     "niveau": {
       "min": 3,
       "max": 4
@@ -1062,7 +1111,8 @@
         "sens": "double",
         "condition": {
           "objet": "cry-marteau-ceremoniel"
-        }
+        },
+        "description": "Le battant de bronze garde une chaleur de salle circulaire, qui se glisse vers l’antichambre plus froide."
       },
       {
         "vers": "haute-forge",
@@ -1072,7 +1122,8 @@
         "condition": {
           "flag": "cryptes-franchies"
         },
-        "description": "Derrière le Sceau, la route funéraire des Forgerons monte, tiède puis chaude, jusqu'à la porte basse de la Haute-Forge."
+        "description": "Derrière le Sceau, la route funéraire des Forgerons monte, tiède puis chaude, jusqu'à la porte basse de la Haute-Forge.",
+        "retour": "Depuis la Haute-Forge, la route redescend en pente douce vers le Sceau, et sa chaleur s’estompe à chaque palier."
       }
     ],
     "rencontres": [

@@ -89,7 +89,7 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
   l.push(`Repos : ${f.lieu.repos}.`);
   if (f.sorties.length)
     l.push(
-      `Sorties : ${f.sorties.map((s) => `${s.nom} [vers: ${s.vers}]${s.etat !== 'libre' ? ` (${s.etat}${s.dd ? `, DD ${s.dd}` : ''})` : ''}`).join(' ; ')}`,
+      `Sorties : ${f.sorties.map((s) => `${s.nom} [vers: ${s.vers}]${s.description ? ` (${s.description})` : ''}${s.etat !== 'libre' ? ` (${s.etat}${s.dd ? `, DD ${s.dd}` : ''})` : ''}`).join(' ; ')}`,
     );
   if (f.pnj.length) l.push(`Personnes ici : ${f.pnj.map((n) => `${n.nom} [id: ${n.id}], ${n.role}, attitude ${n.attitude}`).join(' ; ')}`);
   if (interlocuteur)

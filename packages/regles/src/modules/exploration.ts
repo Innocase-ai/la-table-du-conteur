@@ -66,7 +66,9 @@ export const moduleExploration: Module = {
           .map((x) => ({
             groupe: PANNEAUX.partir,
             libelle: `${x.vers === sc.lieu.parent ? '↑ ' : ''}${x.nom}`,
-            aide: x.description,
+            // Le joueur doit savoir où il va avant de cliquer : une phrase sous le bouton, et ce qu'il ignore encore.
+            detail: [x.visite ? undefined : 'inexploré', x.heures > 0 ? `${x.heures} h` : undefined].filter(Boolean).join(', ') || undefined,
+            apercu: x.apercu,
             ordre: { type: 'aller', vers: x.vers },
             desactivee: x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
           }));
@@ -104,7 +106,7 @@ export const moduleExploration: Module = {
         const res: Proposition[] = [];
         for (const x of sc.sorties.filter((y) => y.etat === 'verrouille')) {
           const lien = ctx.dm.lieux.get(p.etat.lieu)?.liens.find((l) => l.vers === x.vers) ?? ctx.dm.lieux.get(x.vers)?.liens.find((l) => l.vers === p.etat.lieu);
-          res.push(...propositionsOuvrir(p, { lien: x.vers }, { id: `sortie:${x.vers}`, titre: `${x.nom} (verrouillé, DD ${x.dd})` }, PANNEAUX.partir, lien?.verrou?.cle));
+          res.push(...propositionsOuvrir(p, { lien: x.vers }, { id: `sortie:${x.vers}`, titre: `${x.nom} (verrouillé, DD ${x.dd})${x.description ? ` : ${x.description}` : ''}` }, PANNEAUX.partir, lien?.verrou?.cle));
         }
         for (const t of sc.tresors.filter((y) => y.etat === 'ferme')) {
           res.push(...propositionsOuvrir(p, { tresor: t.id }, { id: `tresor:${t.id}`, titre: t.nom }, PANNEAUX.objets, ctx.dm.tresors.get(t.id)?.acces.verrou?.cle));

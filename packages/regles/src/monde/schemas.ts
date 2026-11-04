@@ -361,7 +361,12 @@ export const Lien = z.object({
   condition: Condition.optional(),
   verrou: z.object({ dd: Dd, cle: Id.optional() }).optional(),
   cache: z.object({ dd: Dd, competence: COMPETENCES_RECHERCHE.default('perception') }).optional(),
+  // Ce que le joueur voit de ce passage depuis ce lieu : où il mène, à quoi il ressemble, ce qu'on devine de l'autre côté
+  // (une ou deux phrases, sans révéler ce qui s'y trouve ni aucun secret). Affichée sous le bouton de sortie. Sans elle, le
+  // joueur ne lit rien avant d'y aller (puis le résumé du lieu, une fois visité).
   description: z.string().optional(),
+  // La même chose vue depuis l'autre côté (lien à double sens). Sans elle, `description` sert aussi au retour.
+  retour: z.string().optional(),
 });
 
 export const Lieu = z.object({
@@ -375,6 +380,10 @@ export const Lieu = z.object({
   ambiance: z.string().optional(),
   // Pour l'illustrateur : décrire ce qu'on voit, sans nommer les personnages.
   visuel: Texte,
+  // La phrase que le joueur lit sous le bouton qui mène ici depuis le lieu parent (entrer dans un bâtiment, descendre
+  // dans une salle) : ce qu'on voit du dehors, ce qui attire ou inquiète, sans secret ni contenu de la salle. Le lien
+  // parent / enfant n'a pas de `description` propre : c'est elle qui l'explique.
+  accroche: z.string().optional(),
   niveau: z.object({ min: z.number().int().min(1).max(20), max: z.number().int().min(1).max(20) }).optional(),
   liens: z.array(Lien).default([]),
   // Les PNJ, trésors, pièges, énigmes et événements se rattachent au lieu par leur propre champ `lieu`
