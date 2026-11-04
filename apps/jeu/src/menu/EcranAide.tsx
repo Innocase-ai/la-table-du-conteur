@@ -2,12 +2,66 @@ import { useState, type ReactNode } from 'react';
 import { TAILLE_GROUPE } from '@crpg/regles';
 import { SYMBOLES_ETATS } from '../libelles';
 import { NOM_JEU } from '../jeu';
+import { IconeClasse } from '../createur/ui';
+import { COULEURS_FAMILLES, FAMILLES, LIBELLES_FAMILLES, type Famille } from '../effets-visuels';
 
 interface Section {
   id: string;
   titre: string;
   contenu: ReactNode;
 }
+
+/** Captures d'écran de l'aide (dossier `aide/`), par nom de fichier sans extension. */
+const IMAGES_AIDE = new Map(
+  Object.entries(import.meta.glob<string>('../aide/*.{png,jpg}', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
+    chemin.replace(/^.*\/(.+)\.[a-z]+$/, '$1'),
+    url,
+  ]),
+);
+
+/** Une capture d'écran légendée. */
+function Capture({ nom, alt, legende }: { nom: string; alt: string; legende: ReactNode }) {
+  const url = IMAGES_AIDE.get(nom);
+  return (
+    <figure className="aide-capture">
+      {url && <img src={url} alt={alt} loading="lazy" />}
+      <figcaption>{legende}</figcaption>
+    </figure>
+  );
+}
+
+/** Les classes jouables : identifiant, nom et rôle en une phrase. */
+const CLASSES_AIDE: { id: string; nom: string; role: string }[] = [
+  { id: 'guerrier', nom: 'Guerrier', role: 'Combattant robuste, maître des armes et des armures ; il se ressaisit en plein combat.' },
+  { id: 'barbare', nom: 'Barbare', role: 'Entre en rage : il frappe fort et encaisse la moitié des dégâts physiques.' },
+  { id: 'roublard', nom: 'Roublard', role: 'Agile et rusé ; son attaque sournoise fait très mal quand il a l’avantage.' },
+  { id: 'rodeur', nom: 'Rôdeur', role: 'Tireur et pisteur ; il marque sa proie pour la frapper plus sûrement.' },
+  { id: 'clerc', nom: 'Clerc', role: 'Soigneur et lanceur de sorts divins ; il protège et soutient le groupe.' },
+  { id: 'magicien', nom: 'Magicien', role: 'Lanceur de sorts offensifs, fragile au contact.' },
+  { id: 'paladin', nom: 'Paladin', role: 'Guerrier sacré, entre combat au contact et magie de protection.' },
+  { id: 'ensorceleur', nom: 'Ensorceleur', role: 'Magie innée, sorts puissants tirés de son sang.' },
+  { id: 'occultiste', nom: 'Occultiste', role: 'Lié par un pacte à une entité ; ses sorts reviennent vite.' },
+  { id: 'druide', nom: 'Druide', role: 'Magie de la nature et soins, appuyés sur les forces vives.' },
+  { id: 'moine', nom: 'Moine', role: 'Combat à mains nues, vif et mobile.' },
+  { id: 'barde', nom: 'Barde', role: 'Soutien par la musique et la parole, avec une magie variée.' },
+];
+
+/** Ce que l'on voit à l'impact de chaque famille de dégâts. */
+const IMPACTS_AIDE: Record<Famille, string> = {
+  tranchant: 'un arc de lame blanc et des étincelles',
+  perforant: 'un estoc rapide et quelques étincelles',
+  contondant: 'une onde de choc et de la poussière',
+  feu: 'une boule de feu dont les braises montent',
+  froid: 'des éclats de glace qui jaillissent',
+  foudre: 'un éclair qui crépite',
+  acide: 'des bulles vertes qui montent et éclatent',
+  poison: 'des bulles vertes plus sombres',
+  necrotique: 'une brume sombre aux volutes vertes',
+  radiant: 'un éclair blanc doré et des rayons',
+  force: 'tout converge vers la cible dans une onde violette',
+  psychique: 'des ondes roses concentriques',
+  tonnerre: 'une onde de choc épaisse qui secoue le plateau',
+};
 
 const SECTIONS: Section[] = [
   {
@@ -62,6 +116,39 @@ const SECTIONS: Section[] = [
     ),
   },
   {
+    id: 'classes',
+    titre: 'Les classes et leurs icônes',
+    contenu: (
+      <>
+        <p>
+          Chaque classe a <strong>son icône</strong>. Vous la retrouvez à deux endroits : sur le <strong>jeton</strong> de votre héros, sur le plateau, et en{' '}
+          <strong>médaillon</strong> en bas à droite de son portrait, dans la fiche du combattant. Un coup d’œil suffit alors pour reconnaître qui est le guerrier,
+          qui est le soigneur, et qui doit rester à l’arrière.
+        </p>
+        <Capture
+          nom="classes"
+          alt="Les douze classes : portrait avec médaillon de classe et jeton"
+          legende="Les douze classes. Au-dessus : le portrait du héros avec son médaillon de classe ; en dessous : son jeton sur le plateau."
+        />
+        <ul className="aide-classes">
+          {CLASSES_AIDE.map((k) => (
+            <li key={k.id}>
+              <IconeClasse classe={k.id} taille={34} />
+              <span>
+                <strong>{k.nom}</strong> : {k.role}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <Capture
+          nom="plateau"
+          alt="Le plateau de combat : jetons des héros avec l’icône de leur classe, jetons rouges des monstres"
+          legende="Sur le plateau, les héros (jetons bleus) portent l’icône de leur classe ; les monstres (jetons rouges) portent leur propre pictogramme. Les cases dorées montrent où le héros actif peut aller."
+        />
+      </>
+    ),
+  },
+  {
     id: 'combat',
     titre: 'Le combat',
     contenu: (
@@ -104,6 +191,86 @@ const SECTIONS: Section[] = [
         <p>
           Les monstres sont menés par une IA tactique qui ne triche pas : elle ignore vos PV exacts et peut fuir quand son chef tombe. Survolez un jeton pour
           voir sa fiche et son illustration en bas à gauche.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'effets',
+    titre: 'Voir les attaques et la magie',
+    contenu: (
+      <>
+        <p>
+          Chaque attaque et chaque sort se voit à l’écran : ce que vous regardez est ce que le moteur vient de calculer. Les effets ne changent rien aux règles, ils
+          les <strong>racontent</strong>.
+        </p>
+
+        <h3>Les coups : une famille de dégâts, un habillage</h3>
+        <p>
+          Le <strong>type de dégâts</strong> d’un coup décide de ce que l’on voit à l’impact et de la couleur du chiffre. Une arme enchantée prend l’habillage de son
+          élément : une épée de feu brûle.
+        </p>
+        <Capture
+          nom="familles-degats"
+          alt="Les treize impacts, un par famille de dégâts, avec le chiffre de dégâts coloré"
+          legende="Les treize familles de dégâts, de gauche à droite et de haut en bas (tranchant, perforant, contondant, feu, froid, foudre, acide, poison, nécrotique, radiant, force, psychique, tonnerre)."
+        />
+        <ul className="aide-familles">
+          {FAMILLES.map((f) => (
+            <li key={f}>
+              <span className="pastille-famille" style={{ background: COULEURS_FAMILLES[f] }} />
+              <strong>{LIBELLES_FAMILLES[f]}</strong> : {IMPACTS_AIDE[f]}.
+            </li>
+          ))}
+        </ul>
+        <p>
+          Pour une arme, le tracé suit le sens du coup : l’<strong>arc de lame</strong> du tranchant, l’<strong>estoc</strong> du perforant, l’<strong>étoile de choc</strong>{' '}
+          du contondant.
+        </p>
+
+        <h3>Le coup critique</h3>
+        <p>
+          Un critique marque un <strong>temps d’arrêt</strong>, puis le plateau <strong>tremble</strong> et se rapproche de la cible, tandis que les bords de l’écran
+          rougissent. Le tonnerre secoue aussi le plateau, plus légèrement.
+        </p>
+        <Capture
+          nom="critique"
+          alt="Un coup critique tranchant : le plateau est zoomé, les bords sont rouges, le chiffre est grand"
+          legende="Un critique tranchant sur une cible vulnérable : arc de lame, plateau qui se rapproche, bords rougis, chiffre agrandi et mention « Vulnérable ! »."
+        />
+
+        <h3>Résiste, vulnérable, immunisé</h3>
+        <p>
+          Sous le chiffre de dégâts, une mention vous dit ce qui s’est passé : <strong>Résiste</strong> (dégâts divisés par deux), <strong>Vulnérable !</strong> (dégâts
+          doublés) ou <strong>Immunisé</strong> (aucun dégât). La rage du barbare, par exemple, fait résister aux dégâts physiques.
+        </p>
+
+        <h3>Les sorts à distance</h3>
+        <p>Chaque sort a sa façon de traverser le plateau, selon sa nature :</p>
+        <div className="aide-captures">
+          <Capture nom="sort-boule" alt="Une boule de feu traverse le plateau" legende="Trait de feu : une boule de feu à traînée." />
+          <Capture nom="sort-glace" alt="Un éclat de glace traverse le plateau" legende="Rayon de givre : un éclat de glace." />
+          <Capture nom="sort-eclair" alt="Un éclair en zigzag relie le lanceur à la cible" legende="Éclair traçant : un éclair en zigzag, instantané." />
+          <Capture nom="sort-rayon" alt="Un faisceau orange relie le lanceur à la cible" legende="Rayon ardent, flamme sacrée : un faisceau qui jaillit puis s’éteint." />
+          <Capture nom="sort-dards" alt="Un dard magique en vol vers la cible" legende="Projectile magique : un dard par fléchette, qui dévie en arc avant de toucher." />
+        </div>
+        <p>
+          Un jet d’acide décrit un arc, une volute de poison ou de nécrotique serpente. Avant chaque sort, un <strong>cercle de runes</strong> se trace sous le lanceur
+          (visible sur chaque capture ci-dessus) : c’est le signal qu’une incantation commence.
+        </p>
+
+        <h3>Les zones d’effet</h3>
+        <p>
+          Une zone part de son <strong>centre</strong> — le point visé, ou le lanceur pour un souffle — et gagne les cases une à une. Les créatures qu’elle atteint
+          encaissent à leur tour, et un sort de dégâts lancé à distance ajoute une explosion à son point d’origine.
+        </p>
+        <div className="aide-captures">
+          <Capture nom="zone-cone" alt="Un cône de feu part du lanceur et s’étend vers la droite" legende="Mains brûlantes : un cône de feu parti du lanceur." />
+          <Capture nom="zone-sphere" alt="Une sphère violette entoure la cible" legende="Sommeil : une sphère centrée sur le point visé." />
+        </div>
+
+        <p className="aide-note">
+          « Rapide » accélère toutes les animations. Si votre système demande de réduire les animations, les effets en mouvement sont remplacés par les seuls chiffres.
         </p>
       </>
     ),
@@ -177,6 +344,78 @@ const SECTIONS: Section[] = [
     ),
   },
   {
+    id: 'auras',
+    titre: 'Auras et états sur les jetons',
+    contenu: (
+      <>
+        <p>
+          Tant qu’un effet dure, il reste visible sur le jeton du plateau. Les <strong>auras</strong> sont des anneaux autour du jeton ; les <strong>états</strong>{' '}
+          se lisent sur le jeton lui-même. Les badges (voir « États, blessures et mort ») donnent le détail.
+        </p>
+        <Capture
+          nom="auras-etats"
+          alt="Les auras (béni, protégé, maudit, marqué, givre, illuminé, concentré, points de vie temporaires) et les états (à terre, aveugle, charmé, empoigné, entravé, effrayé, inconscient, neutralisé, paralysé, empoisonné)"
+          legende="Les auras (en haut) et les états (en dessous), chacun sur un jeton."
+        />
+        <h3>Les auras</h3>
+        <ul className="aide-etats">
+          <li>
+            <strong>Béni</strong> : anneau doré qu’une étincelle parcourt (Bénédiction).
+          </li>
+          <li>
+            <strong>Protégé</strong> : bulle de lumière froide qui miroite (Bouclier de la foi, sort Bouclier).
+          </li>
+          <li>
+            <strong>Maudit</strong> : anneau violet sombre qui vacille (Fléau).
+          </li>
+          <li>
+            <strong>Marqué</strong> : réticule rouge sur le jeton (Marque du chasseur).
+          </li>
+          <li>
+            <strong>Ralenti par le froid</strong> : anneau de glace (Rayon de givre, botte Ralentissement).
+          </li>
+          <li>
+            <strong>Illuminé</strong> : anneau jaune qui scintille (Éclair traçant : la prochaine attaque contre lui a l’avantage).
+          </li>
+          <li>
+            <strong>Concentré</strong> : fin cercle de runes qui tourne ; le personnage maintient un sort.
+          </li>
+          <li>
+            <strong>Points de vie temporaires</strong> : mince liseré blanc.
+          </li>
+        </ul>
+        <p>Un jeton montre au plus trois auras à la fois. Une aura qui apparaît « se pose » en une demi-seconde.</p>
+        <h3>Les états</h3>
+        <ul className="aide-etats">
+          <li>
+            <strong>À terre</strong> : le jeton est couché.
+          </li>
+          <li>
+            <strong>Inconscient, neutralisé</strong> (dont le sommeil) : des « z » montent au-dessus du jeton.
+          </li>
+          <li>
+            <strong>Paralysé</strong> : le jeton crépite d’étincelles jaunes et des éclairs apparaissent.
+          </li>
+          <li>
+            <strong>Effrayé</strong> : l’icône tremble, avec des points d’exclamation.
+          </li>
+          <li>
+            <strong>Charmé</strong> : des cœurs montent au-dessus du jeton.
+          </li>
+          <li>
+            <strong>Aveugle</strong> : l’icône s’éteint, des points d’interrogation apparaissent.
+          </li>
+          <li>
+            <strong>Empoisonné</strong> : une lueur verte et de petites bulles.
+          </li>
+          <li>
+            <strong>Entravé, empoigné</strong> : une chaîne entoure le jeton.
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
     id: 'raccourcis',
     titre: 'Commandes',
     contenu: (
@@ -229,7 +468,7 @@ const SECTIONS: Section[] = [
   },
 ];
 
-/** Aide au jeu : principe, création du groupe, combat, cartes, états, commandes, glossaire. */
+/** Aide au jeu : principe, groupe, classes, combat, effets, cartes, états, auras, commandes, glossaire. */
 export function EcranAide({ onRetour }: { onRetour: () => void }) {
   const [active, setActive] = useState(SECTIONS[0]!.id);
   const section = SECTIONS.find((s) => s.id === active) ?? SECTIONS[0]!;

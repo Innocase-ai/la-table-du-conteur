@@ -5478,9 +5478,56 @@ li.fp-maitrise {
 
 .aide-couts,
 .aide-etats,
-.aide-touches {
+.aide-touches,
+.aide-classes,
+.aide-familles {
   list-style: none;
   padding: 0;
+}
+
+/* Captures d'écran légendées. */
+.aide-capture {
+  margin: 12px 0 16px;
+}
+
+.aide-capture img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--bord-clair);
+  border-radius: 8px;
+  box-shadow: var(--ombre);
+}
+
+.aide-capture figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--texte-faible);
+}
+
+/* Plusieurs petites captures côte à côte. */
+.aide-captures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4px 16px;
+}
+
+/* Une classe : son icône, son nom et son rôle. */
+.aide-classes li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Une famille de dégâts : une pastille de sa couleur, puis ce que l'on voit à l'impact. */
+.pastille-famille {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  margin-right: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.25);
 }
 
 .aide-couts .cout {

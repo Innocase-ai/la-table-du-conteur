@@ -6,7 +6,24 @@ import { couleurSort, effetDeSort, effetsDeCoup, type Effet, type EffetSansId } 
 import { chargerDonnees } from '../donnees';
 import { COULEURS_FAMILLES, FAMILLES, LIBELLES_AURAS, LIBELLES_FAMILLES, famille, type Aura, type Famille } from '../effets-visuels';
 import { EffetsPlateau, type Geometrie } from './Plateau';
+import { Illustration } from './Illustration';
 import { Jeton } from './Jeton';
+
+/** Une classe jouable, un portrait de la galerie : de quoi montrer le jeton et le médaillon de chaque classe. */
+const CLASSES_ESSAI: { classe: string; nom: string; portrait: string }[] = [
+  { classe: 'guerrier', nom: 'Guerrier', portrait: 'humain-m-1' },
+  { classe: 'barbare', nom: 'Barbare', portrait: 'orc-m-1' },
+  { classe: 'roublard', nom: 'Roublard', portrait: 'halfelin-m-1' },
+  { classe: 'rodeur', nom: 'Rôdeur', portrait: 'elfe-f-1' },
+  { classe: 'clerc', nom: 'Clerc', portrait: 'nain-f-1' },
+  { classe: 'magicien', nom: 'Magicien', portrait: 'gnome-m-1' },
+  { classe: 'paladin', nom: 'Paladin', portrait: 'humain-f-1' },
+  { classe: 'ensorceleur', nom: 'Ensorceleur', portrait: 'tieffelin-f-1' },
+  { classe: 'occultiste', nom: 'Occultiste', portrait: 'tieffelin-m-1' },
+  { classe: 'druide', nom: 'Druide', portrait: 'elfe-m-1' },
+  { classe: 'moine', nom: 'Moine', portrait: 'humain-m-2' },
+  { classe: 'barde', nom: 'Barde', portrait: 'drakeide-f-1' },
+];
 
 /** Modificateur factice qui déclenche une aura. */
 const MODIFICATEURS_AURAS: Record<Exclude<Aura, 'concentration' | 'pvtemp'>, Modificateur> = {
@@ -41,7 +58,9 @@ function pion(nom: string, extra: Partial<Combattant> = {}): Combattant {
 
 const COLONNES = 9;
 const LIGNES = 5;
-const G: Geometrie = { cote: 96, hc: 96, marge: 0 };
+// `?effets&cote=72` règle la taille d'une case (utile pour les captures du guide) ; 96 par défaut.
+const COTE = Math.min(160, Math.max(40, Number(new URLSearchParams(window.location.search).get('cote')) || 96));
+const G: Geometrie = { cote: COTE, hc: COTE, marge: 0 };
 /** Le lanceur des sorts d'essai, fixe à gauche du plateau (la cible se choisit en cliquant une case). */
 const LANCEUR: Position = { x: 1, y: 2 };
 const GRILLE = grilleDepuisTexte(Array.from({ length: LIGNES }, () => '.'.repeat(COLONNES)));
@@ -163,6 +182,20 @@ export function BancEffets() {
         <label>
           <input type="checkbox" checked={reduit} onChange={(e) => setReduit(e.target.checked)} /> Mouvement réduit (texte seul)
         </label>
+      </div>
+      <h3 style={{ margin: '12px 0 4px' }}>Classes : jeton et portrait en combat</h3>
+      <div id="classes-essai" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, padding: '10px 24px 22px' }}>
+        {CLASSES_ESSAI.map((k) => (
+          <figure key={k.classe} style={{ margin: 0, textAlign: 'center', width: 108 }}>
+            <div style={{ height: 108, display: 'flex', justifyContent: 'center' }}>
+              <Illustration c={pion(k.nom, { modele: k.classe, portrait: k.portrait })} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '8px 0 2px' }}>
+              <Jeton c={pion(k.nom, { modele: k.classe, portrait: k.portrait })} taille={44} />
+            </div>
+            <figcaption style={{ fontSize: 12 }}>{k.nom}</figcaption>
+          </figure>
+        ))}
       </div>
       <h3 style={{ margin: '12px 0 4px' }}>Auras et états (jetons sur le plateau)</h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 22, padding: '14px 24px 22px' }}>

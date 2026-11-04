@@ -246,3 +246,13 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **États lisibles sur le jeton** : signes flottants (z pour le sommeil et l'inconscience, cœurs pour le charme, points d'exclamation pour la peur, éclairs pour la paralysie, points d'interrogation pour la cécité, bulles pour le poison), jeton couché quand il est à terre, icône qui tremble quand il est effrayé, crépitement jaune pour la paralysie, chaîne pour l'entrave et l'empoignade. Les badges restent pour le détail. Rien de tout cela dans la barre d'initiative (jetons trop petits).
 - Banc d'essai (`/?effets`) : une section « Auras et états » avec un jeton par aura et par état.
 - Vérifié au banc d'essai et dans un vrai combat (sommeil, chaînes, points de vie temporaires). 464 tests verts, typecheck OK. Les auras s'affichent d'après l'état réel du moteur : elles peuvent apparaître un instant avant la fin de l'animation du sort qui les pose.
+
+## 04/11/2026 — L'aide du jeu devient un vrai guide du joueur, avec captures d'écran
+
+- **Trois nouvelles sections** dans « Aide au jeu » (`apps/jeu/src/menu/EcranAide.tsx`) :
+  - « Les classes et leurs icônes » : les douze classes, leur icône (celle du jeton et le médaillon du portrait), leur rôle en une phrase ; capture des douze portraits avec médaillon et jeton, capture du plateau.
+  - « Voir les attaques et la magie » : les treize familles de dégâts (pastille de couleur et description de l'impact), le coup critique, les mentions Résiste / Vulnérable / Immunisé, les projectiles et rayons de sorts (boule, glace, éclair, faisceau, dards), les zones qui se propagent (cône, sphère), le cercle d'incantation, le mouvement réduit.
+  - « Auras et états sur les jetons » : chaque aura et chaque état, avec sa capture.
+- Onze captures d'écran dans `apps/jeu/src/aide/` (PNG et JPG, 1,3 Mo), chargées par Vite et affichées par un petit composant `Capture` légendé.
+- Les captures viennent du banc d'essai : `/?effets&cote=72` règle la taille d'une case et propose maintenant aussi une planche « Classes : jeton et portrait en combat ». Pour les refaire : ouvrir le banc d'essai dans un navigateur de 800 × 600, lancer l'effet, figer les animations et rogner la zone.
+- Si un effet change d'apparence, refaire sa capture : elles montrent l'état du jeu au 04/11/2026.
