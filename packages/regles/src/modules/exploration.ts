@@ -54,6 +54,9 @@ export const moduleExploration: Module = {
       executer: (t) => {
         t.emettre({ type: 'texte', texte: t.ctx.dm.monde.depart.intro });
         t.emettre({ type: 'arrivee', lieu: t.ctx.dm.monde.depart.lieu });
+        // L'or de départ des fiches (kits de classe et d'historique, plus le prix des armes retirées du kit allégé) forme la bourse du groupe.
+        const orDeDepart = t.partie.groupe.reduce((s, h) => s + (h.fiche.equipement?.po ?? 0), 0);
+        t.partie.etat.pieces += Math.round(orDeDepart * 100) / 100;
         return verser(t, commencer(partieMonde(t)));
       },
     }),

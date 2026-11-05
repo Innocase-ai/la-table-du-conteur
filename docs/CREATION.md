@@ -33,7 +33,8 @@ Création de personnage dans l'esprit de Baldur's Gate : des écrans courts, une
 
 - **Sorts jouables en combat** : 25 sorts sur 181 (liste `SORTS_JOUABLES_EN_COMBAT`). Les autres figurent sur la fiche, marqués « non jouable en combat ». La liste s'agrandit au fil des sorts codés.
 - **Initié à la magie** (historiques Acolyte et Sage) : sorts choisis et affichés sur la fiche, pas encore lançables en combat.
-- **Pas d'option « or »** à la place de l'équipement, pas de boutique.
+- **Kit de départ allégé** (décision du 05/11/2026, `allegerKit` dans `creation/equipement.ts`) : le SRD donne le kit de classe (3 à 8 objets) plus celui de l'historique (5 à 7), un sac d'armes. Le jeu garde l'armure, le bouclier, les outils et le paquetage, mais **deux armes** au plus par classe (l'arme principale et la première arme de jet ou de tir qui suit, ou la deuxième), les munitions seulement avec une arme de tir ou de jet gardée, et **aucune arme venant de l'historique** (lance et arc court du Soldat, dagues du Criminel). **Le prix des armes retirées s'ajoute à l'or de départ** : le reste est à acheter. L'or de départ des fiches forme la **bourse du groupe** au début de l'histoire (commande `commencer`). Un guerrier-soldat passe de 6 armes à 2 (+36 po).
+- **Pas d'option « or »** à la place de l'équipement.
 - **Choix de langues et d'outils** : ni demandés ni calculés.
 - **Grimoire du Magicien** : traité comme les autres classes (sorts préparés choisis dans la liste de classe).
 - Une seule sous-classe par classe (celle du SRD), donc pas de choix de sous-classe.

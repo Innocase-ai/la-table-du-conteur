@@ -106,8 +106,8 @@ export function exigences(c: ChoixPartiel & { niveau: number }, donnees: Donnees
       : undefined,
     initie: regleInitie(historique.id, [historique.don, ...(c.dons ?? [])]),
     bottes: bottesPossibles(classe, niveau, donnees),
-    equipementClasse: optionsEquipement(classe.equipementDepart),
-    equipementHistorique: optionsEquipement(historique.equipementDepart),
+    equipementClasse: optionsEquipement(classe.equipementDepart, 'classe', donnees),
+    equipementHistorique: optionsEquipement(historique.equipementDepart, 'historique', donnees),
   };
 }
 

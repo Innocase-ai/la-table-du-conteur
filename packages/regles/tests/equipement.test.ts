@@ -132,6 +132,7 @@ describe('module Équipement', () => {
 
   it('les limites : six armes au plus, un objet qui ne s’équipe pas, un héros inconnu, un héros hors de combat', () => {
     let p = depart();
+    const armesDeDepart = equipementDe(heros(p, 'pip')).armes.length;
     const armes = ['epee-longue', 'javeline', 'hachette', 'lance', 'arbalete-legere'];
     for (const a of armes) p = donner(p, a);
     p = donner(p, 'rations');
@@ -141,11 +142,12 @@ describe('module Équipement', () => {
       if (res.refus) refus = res.refus;
       else p = res.partie;
     }
-    // Pip part avec trois armes : trois de plus, puis le sac.
+    // Pip part avec peu d'armes (kit allégé) : on en équipe jusqu'à six, le reste demeure dans le sac.
+    expect(armesDeDepart).toBeLessThan(6);
     expect(equipementDe(heros(p, 'pip')).armes).toHaveLength(6);
     expect(refus).toMatch(/6 armes/);
     const restantes = Object.keys(p.etat.inventaire).filter((id) => armes.includes(id));
-    expect(restantes).toHaveLength(2);
+    expect(restantes).toHaveLength(armes.length - (6 - armesDeDepart));
     expect(moteur.executer(p, { type: 'equiper', objet: 'rations', personnage: 'pip' }).refus).toMatch(/ne s'équipe pas/);
     expect(moteur.executer(p, { type: 'equiper', objet: restantes[0]!, personnage: 'personne' }).refus).toMatch(/Aucun héros/);
     const blesse = donner(depart(), 'cotte-de-mailles');
