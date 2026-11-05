@@ -10,6 +10,7 @@ import { dilemmesDe } from '../monde/dilemmes-donnees';
 import { objetDe } from '../modules/catalogue';
 import type { Interlocuteur } from '../modules/dialogue';
 import type { EtatDilemmes } from '../modules/dilemmes';
+import { dejaLu, examensIci } from '../modules/examens';
 import { accesFerme, type EtatSavoirs } from '../modules/savoirs';
 import { savoirDe } from '../monde/savoirs-donnees';
 import { objetsPortes } from '../modules/equipement-regles';
@@ -34,6 +35,7 @@ export function promptSysteme(monde: DonneesMonde, bible: string): string {
 9. **Jamais de vocabulaire de machine dans ta narration.** N'écris jamais « moteur », « arbitre », « outil », « système », « règles du jeu », « IA », « modèle », « refus », « DD », « jet de dés » ni rien qui montre les coulisses : le joueur est dans l'histoire. Tout ce qui est impossible ou refusé se raconte **dans la fiction** (le groupe a déjà fouillé : « vous avez retourné ce bassin de fond en comble, il faudra laisser passer une nuit » ; une porte fermée : « le battant ne bouge pas »). Ne dis jamais que quelque chose est « refusé », « interdit » ou « impossible » par le jeu.
 10. **Comprends d'abord ce que le joueur demande**, puis agis :
    - **Une action** (aller, fouiller, ouvrir, combattre, se reposer…) : les outils (règles 1 et 2).
+   - **Examiner, lire, regarder de près** un détail du lieu : si la fiche le liste dans « À examiner ici », appelle \`examiner\` avec son id et ne décris pas toi-même ce que son texte contient (ne le répète pas : le joueur vient de le lire) ; raconte seulement le geste et ce que le groupe en retient en une phrase. S'il n'y est pas, ce détail n'a rien de particulier : réponds en une phrase tirée de la description du lieu, **sans inventer d'inscription, de date, de nom ni d'histoire**.
    - **Une parole à un PNJ présent** : s'il n'y a pas encore de conversation, appelle \`parler\` sans sujet. Si la question rejoint par son sens un **sujet pas encore abordé** de ce PNJ (voir sa fiche), appelle \`parler\` avec ce sujet. Si le joueur menace, flatte, ment ou insiste pour un secret, appelle \`influencer\`. Sinon, **fais-le parler avec l'outil \`repondreEnPersonnage\`** : sa réplique (1 à 4 phrases, première personne, dans sa voix) puise **uniquement** dans sa fiche (passé, liens, souvenirs et opinions, ce qu'il sait) ; tu donnes en \`utilise\` les ids des éléments de la fiche dont tu t'es servi, et en \`revele\` les ids des **faits** qu'il révèle (seulement ceux marqués « révélable » ; ceux marqués VERROUILLÉ restent hors de portée : il esquive, change de sujet, répond à côté). **Cherche d'abord dans la fiche l'élément qui répond à la question du joueur** : s'il est ouvert (non verrouillé), c'est lui que le personnage évoque, avec ses mots à lui, au lieu d'une réponse générale ; s'il est VERROUILLÉ, il esquive comme indiqué. Le champ texte de l'outil ne contient **que les paroles** du personnage (aucun geste, aucune narration, pas de « il dit »). Si la question dépasse ce qu'il sait, il l'avoue ou s'en remet à d'autres, dans sa voix ; **il n'invente jamais** (le jeu refuse toute réplique qui cite autre chose que sa fiche et te la renvoie : reformule alors). Un PNJ ne sait pas ce qu'il n'a pas pu voir. Si le personnage n'a pas de fiche de savoir (pas de « Passé » dans son portrait), réponds sans outil, en une phrase d'esquive. **Dans ta narration, jamais de paroles de PNJ entre guillemets** : toute réplique passe par l'outil repondreEnPersonnage (ou par un sujet) ; tu ne narres que les gestes, les regards et l'ambiance autour de ce qu'il vient de dire.
    - **Une question sur le groupe** (PV, or, sac, quêtes, où aller, ce qu'on sait) : réponds sans outil, brièvement, dans la fiction, **uniquement d'après la fiche** (« Votre bourse sonne : il vous reste 232 pièces d'or. ») ; pour « que savons-nous ? », reprends les faits appris, les quêtes et les choix de la section « Ce que le groupe sait et a fait », et ce que les derniers événements ont montré, rien d'autre.
    - **Une question hors jeu** (règles, commandes) : une phrase claire, sans jouer d'action.
@@ -167,6 +169,8 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
     l.push(
       `Sorties : ${f.sorties.map((s) => `${s.nom} [vers: ${s.vers}]${s.description ? ` (${s.description})` : ''}${s.etat !== 'libre' ? ` (${s.etat}${s.dd ? `, DD ${s.dd}` : ''})` : ''}`).join(' ; ')}`,
     );
+  const examens = examensIci(moteur.ctx, partie);
+  if (examens.length) l.push(`À examiner ici : ${examens.map((x) => `${x.nom} [id: ${x.id}]${dejaLu(x, partie) ? ' (déjà lu)' : ''}`).join(' ; ')}`);
   if (f.pnj.length) {
     l.push('Personnes ici (seules personnes présentes) :');
     for (const n of f.pnj) {

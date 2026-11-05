@@ -1,0 +1,114 @@
+[
+  {
+    "id": "exa-coque-de-la-perle-grise",
+    "lieu": "fal-epave-de-la-perle-grise",
+    "nom": "La coque de la Perle grise",
+    "apercu": "Un cotre couché, presque intact, et une amarre coupée.",
+    "texte": "La coque repose sur les galets presque entière, le bordage gris d'algues mais sans une seule déchirure de rocher. Le nom du cotre est peint en lettres blanches à l'arrière, encore net malgré le sel. À la proue pend une aussière coupée net, la fibre blanche, sans trace de hache ni de frottement. Le pont est sec sous la toile raidie, et la cale sent la saumure froide, comme si l'eau s'était retirée de l'intérieur plutôt que de l'extérieur.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "tiree-vers-le-bas",
+        "condition": {
+          "fait": "f-fal-perle-grise-coulee"
+        },
+        "texte": "Aucune planche n'est arrachée, aucun mât brisé : la coque n'a pas été jetée sur les rochers. On l'y a posée, ou plutôt tirée vers le bas, par une force venue de dessous. Le nom peint à l'arrière est intact, les lettres blanches sans une écaille. L'aussière coupée à la proue est nette, comme sciée par quelque chose qui n'avait pas besoin de hache. La mer a gardé le cotre et l'a couché sans un bris.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-borne-du-pont",
+    "lieu": "fal-pont-des-corbeaux",
+    "nom": "La borne du parapet",
+    "apercu": "Une pierre moussue, un blason rongé au bout du pont.",
+    "texte": "La borne de pierre se dresse au bout du pont, couverte de mousse grise que les corbeaux ont fini par déserter. Le blason est rongé par les embruns ; il ne reste de la devise que trois lettres, « …MAR », et une couronne à demi effacée, dont on devine encore les fleurons. Les bords de la pierre sont polis, comme si des générations de mains s'y étaient posées en attendant quelqu'un. Un coup de vent salé fait tinter la chaîne du pont.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "borne-de-lothmar",
+        "condition": {
+          "fait": "f-lothmar-englouti"
+        },
+        "texte": "C'est la borne d'un royaume qui s'arrêtait ici : la couronne gravée est celle de Lothmar, et toute la côte, de la falaise jusqu'à la baie, lui appartenait. Les fleurons ont été frottés par des doigts pendant des siècles, comme on touche une chose sacrée. Le royaume n'a plus de nom que sur cette pierre, et la mer, en contrebas, a pris sa place. Les trois lettres restantes ne suffisent plus à dire quoi que ce soit, sauf qu'on était chez eux. Un coup de vent salé fait tinter la chaîne du pont.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-lanterne-du-cap-mort",
+    "lieu": "fal-phare-lampe",
+    "nom": "La lentille sous ses volets",
+    "apercu": "Une lampe sous toile cirée, et une main dans la poussière.",
+    "texte": "La lentille de cristal est enveloppée d'une toile cirée, nouée autour du socle comme un paquet qu'on n'a pas voulu défaire. Sur le cuivre du socle, une dédicace est gravée, à demi lisible sous la patine : quelqu'un a voulu qu'on se souvienne de cette lampe. Dans la poussière du plancher, une main d'enfant est dessinée, les doigts écartés, comme pour toucher la vitre. Les volets de bois sont fermés, et l'air sent encore le suif froid.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "phare-eteint-expres",
+        "condition": {
+          "fait": "f-cit-carte-du-cap-mort"
+        },
+        "texte": "La lampe n'a pas été éteinte par négligence. Les volets sont fermés de l'intérieur, leurs barres tirées, et la toile cirée a été nouée par des mains qui savaient où elles allaient. Celui qui a fermé ces volets est sorti par la falaise, pas par la porte : la vieille carte du Cap-Mort marque ce passage sous le rocher. La main d'enfant dans la poussière n'a pas fini son dessin. Le cuivre du socle porte une dédicace qu'on a pris soin de ne pas effacer.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-tables-de-brumevoile",
+    "lieu": "fal-brumevoile",
+    "nom": "Les maisons ouvertes",
+    "apercu": "Des tables dressées, des craies de comptes sur les portes.",
+    "texte": "Les maisons de pierre sont ouvertes, leurs portes poussées contre le mur. Dans la plus grande, une table est encore dressée, avec des bols couverts d'un sable fin, et une chaise repoussée comme si on allait revenir. Sur chaque porte, des craies comptent des jours : des barres par paquets de cinq, parfois effacées, parfois reprises. Le vent entre par les fenêtres sans vitres et fait danser le sable sur le plancher.",
+    "effets": [
+      {
+        "fait": "f-fal-brumevoile-deserte"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "mer-trop-loin-brumevoile",
+        "condition": {
+          "fait": "f-fal-mer-trop-loin"
+        },
+        "texte": "Les craies comptent les jours d'une mer qui s'éloignait : chaque paquet de barres marque une marée plus basse que la précédente, jusqu'à la dernière marque, sur la porte la plus proche du sentier. Elle n'est pas comptée comme les autres. C'est une marque de départ : une croix tracée d'un geste pressé, et une flèche vers la falaise. Les bols de la grande table sont encore pleins de sable fin, comme si personne n'avait eu le temps de les vider.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-tombes-sans-terre",
+    "lieu": "fal-cimetiere-des-naufrages",
+    "nom": "Les tombes plates",
+    "apercu": "Des dalles gravées de noms, et une terre lisse dessous.",
+    "texte": "Les dalles sont posées à même l'herbe rase, gravées de noms de naufragés, certains usés jusqu'à la pierre nue. Sous chaque nom, un métier : cordier, saunier, pilote. Mais la terre au pied des dalles est lisse comme un sol battu, sans bosse, sans affaissement, sans une herbe arrachée. On dirait que la pierre tient lieu de terre, et que personne n'a jamais rien couché dessous.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "ce-que-la-mer-garde",
+        "condition": {
+          "fait": "f-fal-noyes-ne-remontent-pas"
+        },
+        "texte": "La terre n'a jamais été remuée : ces tombes sont des tombes de mémoire. Les noms sont là pour ceux que la mer a gardés, et les dalles n'ont rien à garder, sinon l'écriture. La mer n'a rendu aucun corps, pas un seul, depuis que le premier nom a été gravé. Les cordiers, les sauniers, les pilotes gravés ici ont disparu en mer, et la pierre dit leurs noms sans les rendre au sol. Une dalle est plus récente que les autres, son nom encore net.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-ligne-de-sel-du-bassin",
+    "lieu": "fal-grotte-des-marees-bassin",
+    "nom": "La ligne de sel",
+    "apercu": "Un trait blanc sur la paroi, bien au-dessus d'un homme.",
+    "texte": "Une ligne de sel blanc court sur la paroi du bassin, bien au-dessus de la tête d'un homme debout. Sous elle, la pierre est polie, lisse comme un galet qu'on aurait frotté longtemps ; au-dessus, la roche est brute, couverte de coquilles sèches et de vieux lichens. L'eau du bassin est calme, presque noire. Le sel n'a pas coulé : il est resté là, net, comme tracé au pinceau.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "pas-une-maree-d-ici",
+        "condition": {
+          "fait": "f-fal-grotte-marque-de-maree"
+        },
+        "texte": "Cette ligne de sel marque le niveau d'une marée plus haute que toutes celles qu'on a mesurées à la Citadelle. Elle est bien au-dessus de la tête d'un homme, à une hauteur qu'aucune marée de la baie n'atteint, et pourtant le sel est là, d'un blanc sans pluie. Sous elle, la pierre est polie, lisse comme un galet ; au-dessus, la roche est brute, comme jamais touchée. On dirait le niveau d'une autre mer, qui s'est retirée en laissant sa trace.",
+        "effets": []
+      }
+    ]
+  }
+]

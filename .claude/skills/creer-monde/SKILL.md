@@ -17,6 +17,7 @@ Les deux mondes livrés sont les références : **le Val des Cendres** et **La C
 | Écrire des **contrats de combat** : mini-quêtes variées dont le but est un petit combat, avec un PNJ qui a un vrai problème | `creer-contrats` |
 | Écrire des **choix difficiles** (dossier `dilemmes/`), échos, épilogues, pertes | `creer-dilemmes` |
 | Donner de la **profondeur aux PNJ** (passé, liens, confidences, savoir vérifié ; dossier `savoirs/`) | `creer-personnages` |
+| Donner du **lore au décor** : détails à examiner par lieu (inscriptions, objets, traces) qui se relisent selon ce que le groupe sait ; dossier `examens/`, format dans `docs/MONDES.md`, brief type `references/brief-examens.md` | ce skill (agents Haiku, relecture par Claude) |
 | Écrire et vérifier des **énigmes** | `enigmes` |
 | Toucher au **conteur IA** | `conteur` ; nouvelle mécanique de jeu : `ajouter-module` |
 

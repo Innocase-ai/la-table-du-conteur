@@ -215,3 +215,23 @@ Le quatrième dossier d'extension est **`interjections/`** (module Interjections
 - **Voix** : le texte est émis comme paroles du personnage (`voix` = son nom).
 - **Validation** : erreurs (PNJ inconnu, références de la condition et des effets, id en double) ; conseils (un personnage escorté a moins de 10 interjections ; texte de plus de 45 mots).
 - **Quête personnelle d'un compagnon** : une quête `personnelle` en trois étapes dont le sujet de proposition est conditionné par la confiance (exemple : Nolwen, « La carte inachevée », attitude 40).
+
+## Données des modules : les examens (le décor qui raconte)
+
+Le cinquième dossier d'extension est **`examens/`** (module Examens, `modules/examens.ts`, format dans `monde/examens-donnees.ts`). Un examen est un détail d'un lieu qu'on peut **regarder de près** (une inscription, un objet, une trace) ; le texte, écrit par l'auteur, est le **lore du décor**. Le LLM du jeu ne l'invente jamais : il appelle la commande `examiner` avec l'id du détail et le jeu donne le texte.
+
+```json
+{ "id": "exa-borne-du-pont", "lieu": "fal-pont-des-corbeaux", "nom": "La borne du parapet",
+  "apercu": "Un blason rongé, trois lettres.",
+  "texte": "45 à 100 mots : des détails concrets, une question, jamais l'explication complète.",
+  "visible": { "fait": "…" },
+  "effets": [ { "fait": "…" } ],
+  "variantes": [ { "id": "borne-de-lothmar", "condition": { "fait": "f-lothmar-englouti" }, "texte": "Ce qu'on lit quand on sait déjà…", "effets": [] } ] }
+```
+
+- **Boutons** : chaque détail visible du lieu est une proposition « Examiner » dans le panneau « À portée de main » ; discrète une fois lue, « Examiner de nouveau » quand une variante nouvelle est disponible.
+- **Variantes** : la dernière dont la condition est vraie **remplace** le texte de base ; le même détail se lit autrement selon ce que le groupe sait (un fait appris, un drapeau, un choix). Le texte de base ne révèle jamais de secret ; c'est la variante qui nomme ce que le fait révèle.
+- **Effets** : appliqués une seule fois par lecture (la première pour le texte de base, la première pour chaque variante) : un fait appris, un drapeau, de l'attitude.
+- **Le conteur** voit dans sa fiche « À examiner ici : nom [id] (déjà lu) » (jamais le texte) ; pour tout autre détail, il répond en une phrase tirée de la description du lieu, sans inventer d'inscription, de date ni de nom.
+- **Validation** : erreurs (lieu inconnu, id en double, variante `base` ou en double, références des conditions et effets) ; conseils (texte < 25 ou > 130 mots, moins d'un lieu sur trois a un examen, aucune variante dans le monde).
+- **À éviter** : les éléments d'une énigme (la solution ne passe pas par un texte d'examen), les secrets dans le texte de base.

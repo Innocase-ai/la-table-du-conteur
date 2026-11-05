@@ -1,0 +1,92 @@
+[
+  {
+    "id": "exa-colonnes-du-hall",
+    "lieu": "lot-grande-salle",
+    "nom": "Les colonnes du hall",
+    "apercu": "Trois traits de sel, et un quatrième, tout petit, à hauteur d'enfant.",
+    "texte": "Des colonnes de la nef gardent trois laisses de sel superposées. La plus haute s'arrête juste au-dessus du chapiteau, nette comme un trait de crayon. Deux autres, plus basses, sont moins nettes, usées par les années. Et tout en bas, à hauteur d'enfant, une petite laisse très fine semble avoir été tracée hier. Quelqu'un a dû poser la main contre la pierre pour la regarder de près.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "la-nuit-haute",
+        "condition": {
+          "fait": "f-nuit-haute"
+        },
+        "texte": "La plus haute laisse de sel, juste au-dessus du chapiteau, est celle de la Nuit Haute : la mer est montée jusque-là en une seule nuit, et n'a jamais reculé complètement. Les deux autres, plus basses, sont plus récentes. La plus basse, à hauteur d'enfant, est la plus nette de toutes : comme si la mer venait toujours s'arrêter à cet endroit, et y restait.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-cadres-vides",
+    "lieu": "lot-galerie-des-portraits",
+    "nom": "Les cadres de bronze",
+    "apercu": "Des visages tournés vers le mur, sauf un cadre vide, au bout.",
+    "texte": "Les portraits de la galerie ont été décrochés puis tournés face au mur : on ne voit plus que leurs dos, toiles noircies, châssis rongés, cordons pourris par le sel. Seul un cadre a gardé sa place, au bout du couloir. Il est vide, sans toile ni nom, et son bronze est brillant, comme frotté chaque jour par une main qui passe sans s'arrêter. La poussière autour est fine, mais le cadre, lui, est propre.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "le-cadre-de-l-enfant",
+        "condition": {
+          "fait": "f-regente-a-cache-l-enfant"
+        },
+        "texte": "Le cadre vide au bout de la galerie attendait le portrait du fils de la Régente, celui qu'elle a fait passer en secret dans une barque vers le nord. Les autres visages ont été tournés contre le mur, les dos des toiles noircis par l'eau ; pas celui-là. On ne l'a pas caché, on l'a laissé vide. Et quelqu'un le frotte encore, en passant, depuis trois siècles, comme on touche la main d'un enfant qu'on ne verra plus.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-chaise-d-enfant",
+    "lieu": "lot-salle-du-conseil",
+    "nom": "La chaise d'enfant",
+    "apercu": "Une place plus basse que les autres, au bout de la table.",
+    "texte": "Les sièges de nacre entourent la table en arc de cercle. Ils sont tous à hauteur d'homme, sauf un, au bout, nettement plus bas : un siège d'enfant, dont le dossier arrive à peine à la hauteur d'une épaule. Son coussin de velours est encore intact, sans tache de sel ni trace de moisissure, alors que ses voisins pourrissent. Quelqu'un l'a garni avec soin, et souvent. La poussière des autres sièges n'a pas touché celui-là.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "la-place-du-sceau",
+        "condition": {
+          "fait": "f-pacte-des-marees"
+        },
+        "texte": "Ce siège n'a pas été fait pour un conseiller : c'est la place du Sceau. Autrefois, l'enfant marquée siégeait à cette table, parmi les nobles, jusqu'à ses seize ans, l'âge où elle descendait tenir la mer. Elle était toujours là, à sa place basse, pendant que le conseil décidait au-dessus d'elle. Son coussin reste intact, comme si personne n'avait cessé de le garnir.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-marmites-pleines",
+    "lieu": "lot-cuisines-englouties",
+    "nom": "Les marmites encore pleines",
+    "apercu": "Sous l'eau claire, un repas attend encore sur les étagères.",
+    "texte": "Sous l'eau claire, les marmites de cuivre sont alignées sur les étagères, pleines à ras bord. Des pains sont restés figés dans leur pâte, à côté d'un couteau posé en travers. Sur la table de bois, une louche repose contre un bol, comme si quelqu'un venait de la poser pour goûter et allait revenir. Plus rien ne fume dans les fours éteints, mais le sel a laissé sur le rebord des marmites une fine croûte blanche.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "repas-interrompu",
+        "condition": {
+          "fait": "f-lothmar-englouti"
+        },
+        "texte": "Les marmites sont pleines à ras bord, les pains sont restés figés dans leur pâte, la louche repose contre un bol : tout est prêt, et rien n'a été mangé. C'est le dernier repas de Lothmar, servi la nuit même où la mer a monté. Elle n'a pas pris les plats ; elle a pris ceux qui allaient les manger. Une fine croûte de sel court sur le rebord des marmites, comme une trace de marée laissée en partant.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-pas-du-sanctuaire",
+    "lieu": "lot-sanctuaire-du-sceau",
+    "nom": "Les pas usés du sol",
+    "apercu": "Des pas creusés dans le marbre, du seuil jusqu'à la vasque.",
+    "texte": "Une longue trace de pas, usée dans le marbre, va du seuil à la vasque centrale. Chaque pas est un peu plus creux que le précédent, comme si une même route avait été refaite des centaines de fois. Les creux sont petits, serrés, à peine plus longs qu'une main d'homme. Au bord de la vasque, la pierre est lisse, polie par la main de qui se penchait pour toucher le sel.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "les-pas-de-nolwen",
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
+        "texte": "Les creux sont petits, serrés, à peine plus longs qu'une main d'homme. Nolwen, qui vous accompagne, pose ses pieds dans les creux sans y penser, en comptant tout bas, comme on compte des marches qu'on croit connaître. Ses pas tombent exactement là, creux après creux, jusqu'au bord de la vasque. Elle s'y arrête, très pâle, et ne répond pas quand on l'appelle.",
+        "effets": []
+      }
+    ]
+  }
+]
