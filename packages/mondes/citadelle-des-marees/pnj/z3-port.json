@@ -1696,6 +1696,35 @@
         ],
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "les-points-de-nolwen",
+        "mots": [
+          "carnet",
+          "points",
+          "repères",
+          "chaussée",
+          "apprentie",
+          "sondage"
+        ],
+        "question": "Reconnaissez-vous ces repères, pilote ?",
+        "reponse": "Il prend le carnet, le tourne lentement, et s'arrête sur une page couverte de points. Il reste longtemps sans parler. Puis il tire d'un tiroir une vieille carte de sondage, la pose à côté, et pointe trois repères identiques : une très ancienne chaussée de pierre noire, qui ne se découvre qu'aux plus grandes basses mers. Il dit que la mer la reprend vite, et qu'elle n'attend pas. Il ne sait pas où elle mène, ni d'où l'apprentie connaît ces points. Il note quelque chose en rouge, referme le carnet, et le rend d'une main ferme, en disant qu'on ne lit pas ce genre de chose sur la jetée.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "nolwen-points-lus"
+          },
+          {
+            "fait": "f-chaussee-des-basses-eaux"
+          }
+        ],
+        "unique": true,
+        "condition": {
+          "etape": {
+            "quete": "q-nolwen-la-carte-inachevee",
+            "etape": "points"
+          }
+        }
       }
     ],
     "salutations": {

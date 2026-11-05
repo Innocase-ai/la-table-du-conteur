@@ -42,3 +42,14 @@ Ce document complète `BIBLE.md` pour les personnages écrits en profondeur (pil
 - Il y a neuf ans, à la mort de l'ancien prieur, Anselme devient **Prieur** ; les cartographes relèvent du priorat, et Ysmène lui laisse leur direction (elle garde la salle des cartes).
 - La Grande Marée sera « la plus haute depuis deux siècles » (fiche d'Ysmène dans `pnj/`).
 - Les liens réciproques d'Ysmène et de Sorel ne disent pas la corde : « la petite du quai » / « une vieille connaissance du quai » ; l'épisode se gagne (confidences verrouillées).
+
+## Nolwen Brevemer (16 ans) : l'accompagnatrice
+- **Origine** : trouvée nouveau-née par Ysmène il y a seize ans (voir plus haut). Elle a grandi à la Citadelle, entre les dortoirs et la salle des cartes. Elle appelle Ysmène « Maîtresse » devant les autres et « Dame Ysmène » quand elle est fâchée ; elle ne dit jamais « mère ».
+- **Apprentissage** : apprentie cartographe d'Ysmène depuis quatre ans (à 12 ans). **Aldous Lindenvert** lui a appris à copier les colonnes de marées ; elle corrige en secret ses erreurs de calcul, au crayon, et il fait semblant de ne rien voir.
+- **Gudrun** la laisse allumer la lampe du phare-archive, seule pièce chaude de la Citadelle selon elle.
+- **Le Prieur** : elle le trouve poli et lointain ; elle dit qu'il la regarde comme une ligne mal tirée.
+- **Habitudes** : un petit carnet où elle note, depuis ses 12 ans, des points qu'elle n'arrive pas à relier (voir sa fiche) ; elle compte ses pas dans les escaliers ; elle dort volets ouverts pour entendre la mer ; elle déteste la tisane amère d'Ysmène et y glisse du miel en cachette.
+- **Ce qu'elle ignore** : elle ne sait pas ce que signifie sa marque (Ysmène lui a interdit de la montrer) ; elle ne sait pas qu'elle est le Sceau, ni rien du Pacte. Elle connaît seulement son rêve : une salle sous l'eau, très haute, où quelqu'un compte des pas sans jamais arriver au bout.
+- **Les points du carnet** : ce sont, sans qu'elle le sache, les repères de l'ancienne chaussée des Basses-Eaux (elle les a vus en rêve). **Ambroise Carène**, pilote de la jetée du port, saurait les reconnaître.
+- **Elle a peur** d'être seule quand la mer viendra ; elle garde longtemps ses rancunes ; elle cache ses cauchemars.
+- **Sa quête personnelle** : « La carte inachevée » : tracer la baie entière depuis le phare du Cap-Mort, faire lire ses points par un pilote, nommer sa carte.

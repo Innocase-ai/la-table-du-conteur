@@ -199,3 +199,19 @@ Un monde en cours d'écriture porte `"statut": "brouillon"` dans `monde.json` : 
 
 - [Le Val des Cendres](mondes/val-des-cendres.md) (niveaux 1 à 5) : 1 région, 1 village, 1 ville, 1 hameau, 3 grottes, 2 donjons ; 63 PNJ (378 sujets), 93 trésors, 56 rencontres, 23 quêtes, 18 énigmes, 33 pièges, 176 faits, 4 fins. Canon et registre d'identifiants : `packages/mondes/val-des-cendres/BIBLE.md` ; guide d'écriture d'une zone : `GUIDE-ZONE.md`.
 - [La Citadelle des Marées](mondes/citadelle-des-marees.md) (niveaux 1 à 4, ≈ 13 h) : 1 région, 1 ville, 1 donjon ; 40 PNJ (181 sujets), 31 trésors, 19 rencontres, 19 quêtes, 6 énigmes, 62 faits, 5 fins. Un PNJ escorté (effet `escorte`). Canon : `packages/mondes/citadelle-des-marees/BIBLE.md`.
+
+## Données des modules : les interjections (accompagnateurs)
+
+Le quatrième dossier d'extension est **`interjections/`** (module Interjections, `modules/interjections.ts`, format dans `monde/interjections-donnees.ts`). Un personnage qui **voyage avec le groupe** (escorté par un effet `escorte`, ou présent là où l'on est) lance de lui-même de petites phrases à chaque nouveau lieu ou événement. Elles sont écrites à l'avance : **aucun appel au LLM, gratuit**.
+
+```json
+{ "id": "nolwen-ysmene-tombee", "pnj": "nolwen-brevemer", "quand": { "flag": "ysmene-tombee" },
+  "texte": "Une à deux phrases courtes (25 à 45 mots), dans sa voix, avec un détail concret.",
+  "effets": [ { "attitude": { "pnj": "nolwen-brevemer", "delta": 5 } } ] }
+```
+
+- **Quand** : une `Condition` quelconque (lieu visité, drapeau, fait, étape de quête, palier de jauge, choix de dilemme `choix-<dilemme>-<option>`). L'interjection part à la première réaction du moteur où la condition est vraie et où le personnage est avec le groupe ; **une seule fois** ; jamais par un mort ni par un absent.
+- **Effets** : ils font l'**approbation** (`attitude`), qui ouvre ensuite les confidences verrouillées du module Savoirs et les quêtes personnelles (condition `pnj.attitudeMin`).
+- **Voix** : le texte est émis comme paroles du personnage (`voix` = son nom).
+- **Validation** : erreurs (PNJ inconnu, références de la condition et des effets, id en double) ; conseils (un personnage escorté a moins de 10 interjections ; texte de plus de 45 mots).
+- **Quête personnelle d'un compagnon** : une quête `personnelle` en trois étapes dont le sujet de proposition est conditionné par la confiance (exemple : Nolwen, « La carte inachevée », attitude 40).

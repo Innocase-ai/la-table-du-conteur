@@ -1,0 +1,60 @@
+[
+  {
+    "id": "q-nolwen-la-carte-inachevee",
+    "nom": "La carte inachevée",
+    "type": "personnelle",
+    "donneur": "nolwen-brevemer",
+    "lieu": "fal-phare-du-cap-mort",
+    "resume": "Nolwen a passé des années à noter des points qu'elle n'arrive pas à relier. Elle veut tracer la baie entière depuis le phare du Cap-Mort, faire lire ses repères par un pilote du port, puis nommer sa carte.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "cap",
+    "etapes": [
+      {
+        "id": "cap",
+        "texte": "Montez avec Nolwen au phare du Cap-Mort : elle veut y tracer la baie entière.",
+        "completion": {
+          "flag": "nolwen-baie-tracee"
+        },
+        "suivantes": [
+          "points"
+        ]
+      },
+      {
+        "id": "points",
+        "texte": "Faites lire ses points à un pilote du port : Ambroise Carène, à la jetée.",
+        "completion": {
+          "flag": "nolwen-points-lus"
+        },
+        "suivantes": [
+          "nom"
+        ]
+      },
+      {
+        "id": "nom",
+        "texte": "Aidez Nolwen à donner un nom à sa carte.",
+        "completion": {
+          "flag": "nolwen-carte-nommee"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 100,
+      "pieces": 0,
+      "objets": [],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "nolwen-brevemer",
+            "delta": 10
+          }
+        }
+      ]
+    },
+    "ramifications": "forme : quête personnelle de compagnon. Se débloque par la confiance (attitude 40). Les points du carnet sont les repères de l'ancienne chaussée des Basses-Eaux (canon)."
+  }
+]

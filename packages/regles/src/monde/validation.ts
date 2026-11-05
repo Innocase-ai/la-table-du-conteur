@@ -4,6 +4,7 @@ import { SEUILS_PX } from '../caracteristiques';
 import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
 import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-donnees';
+import { interjectionsDe } from './interjections-donnees';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
 export interface BilanMonde {
@@ -407,6 +408,11 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     d.options.forEach((o) => cond(`${ou}, option « ${o.id} »`, o.condition));
     effets(ou, effetsDuDilemme(d));
   }
+  const { interjections } = interjectionsDe(dm);
+  for (const i of interjections) {
+    cond(`Interjection « ${i.id} »`, i.quand);
+    effets(`Interjection « ${i.id} »`, i.effets);
+  }
   if (!dm.fins.size) avis('Aucune fin définie.');
   for (const c of dm.monde.chapitres) {
     for (const l of c.lieux) verifierRef(`Chapitre « ${c.id} »`, 'lieu', l);
@@ -418,6 +424,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const viaEffet = new Set<string>();
   const collecter = (es: EffetMonde[] | undefined) => es?.forEach((e) => 'fait' in e && viaEffet.add(e.fait));
   for (const d of dilemmes) collecter(effetsDuDilemme(d));
+  for (const i of interjections) collecter(i.effets);
   for (const p of dm.pnj.values()) {
     p.sujets.forEach((s) => collecter(s.effets));
     p.services.forEach((s) => collecter(s.effets));
@@ -465,6 +472,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const p of dm.pieges.values()) collecterEffets(p.effets);
   for (const j of dm.jauges.values()) j.paliers.forEach((x) => collecterEffets(x.effets));
   for (const d of dilemmes) collecterEffets(effetsDuDilemme(d));
+  for (const i of interjections) collecterEffets(i.effets);
   for (const flag of drapeauxDesDilemmes(dm)) poses.add(flag);
   for (const t of dm.tresors.values()) {
     t.contenu.objets.forEach((o) => objetsObtenables.add(o.objet));
@@ -512,6 +520,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const t of dm.tresors.values()) toutes(`Trésor « ${t.id} »`, t.condition);
   for (const e of dm.evenements.values()) toutes(`Événement « ${e.id} »`, e.condition);
   for (const f of dm.fins.values()) toutes(`Fin « ${f.id} »`, f.condition);
+  for (const i of interjections) toutes(`Interjection « ${i.id} »`, i.quand);
   for (const d of dilemmes) {
     toutes(`Dilemme « ${d.id} »`, d.quand);
     d.options.forEach((o) => toutes(`Dilemme « ${d.id} », option « ${o.id} »`, o.condition));

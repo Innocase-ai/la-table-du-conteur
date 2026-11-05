@@ -1,0 +1,165 @@
+[
+  {
+    "id": "nolwen-route-des-falaises",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "route-des-falaises"
+    },
+    "texte": "Au troisième virage, la Citadelle n'est plus qu'une tache grise sur la falaise. J'ai noté l'heure : quarante-deux minutes depuis la porte de terre, et je ne suis jamais allée si loin."
+  },
+  {
+    "id": "nolwen-marais-de-sel",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "marais-de-sel"
+    },
+    "texte": "La ligne de sel marque la marée d'hier, sur les digues. Celle d'aujourd'hui est déjà plus haute de la largeur de ma main, et je n'aime pas ce chiffre."
+  },
+  {
+    "id": "nolwen-fal-brumevoile",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "fal-brumevoile"
+    },
+    "texte": "Douze maisons, les portes ouvertes, les filets encore sur les pieux. J'ai compté les barques tirées au sec : il en manque une, et personne ne sait laquelle. J'ai envie de descendre vers l'eau, et je ne sais pas pourquoi."
+  },
+  {
+    "id": "nolwen-cap-mort-phare",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "fal-phare-du-cap-mort"
+    },
+    "texte": "La lentille du phare est couverte de sel, et la lampe est éteinte depuis longtemps. De là-haut, la baie tient entière dans une fenêtre : je voudrais la tracer toute, à l'encre verte, avec le compas."
+  },
+  {
+    "id": "nolwen-port-aux-cordes",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "port-aux-cordes"
+    },
+    "texte": "Deux cents cordages au quai, et trois cents voix par-dessus. Je préfère les lignes qui ne bougent pas : ici, on me regarde comme une carte pliée de travers."
+  },
+  {
+    "id": "nolwen-taverne-du-hareng",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "por-taverne-du-hareng"
+    },
+    "texte": "Soupe de hareng à quatre pièces de cuivre, pain à deux, cidre à trois : les prix sont justes, et c'est rare dans un port. J'ai mangé deux bols sans compter, ce qui ne m'arrive jamais."
+  },
+  {
+    "id": "nolwen-hall-de-la-ligue",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "por-hall-de-la-ligue"
+    },
+    "texte": "Le registre de la Ligue tient les navires à la ligne, jamais les marées. Aldous en ferait une maladie : trois colonnes pour les coques, aucune pour la mer."
+  },
+  {
+    "id": "nolwen-chapelle-des-noyes",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "por-chapelle-des-noyes"
+    },
+    "texte": "Trois cent quarante et un noms gravés sur les dalles, la plupart sans date. J'en ai compté une vingtaine avant de m'arrêter, et il y en a deux que j'ai lus deux fois sans savoir pourquoi."
+  },
+  {
+    "id": "nolwen-palais-basmaree",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "lieu": "palais-basmaree"
+    },
+    "texte": "Le sol ne tremble plus sous mes pieds : il est calme comme un bassin d'abri. Ma marque est tiède sous le col, alors que j'ai froid partout ailleurs ; je ne sais pas ce que ça veut dire."
+  },
+  {
+    "id": "nolwen-ysmene-tombee",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "ysmene-tombee"
+    },
+    "texte": "Dame Ysmène ne rentrera pas à la Citadelle. Elle corrigeait mes cartes à l'encre verte, et je ne l'ai jamais remerciée : elle détestait ça, et je ne vais pas commencer maintenant.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "nolwen-brevemer",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "nolwen-maree-haute",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "jauge": {
+        "id": "maree",
+        "min": 3
+      }
+    },
+    "texte": "La mer monte plus vite que mes tables. J'ai refait le calcul trois fois, au crayon, et il dit toujours la même chose ; je ne le dirai pas devant eux."
+  },
+  {
+    "id": "nolwen-promesse-ne-pas-retenir",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-la-promesse-de-nolwen-ne-pas-retenir"
+    },
+    "texte": "Vous avez promis de ne pas me retenir, et vous n'avez pas demandé pourquoi. Je ne vous le rappellerai pas ; je note seulement la date dans mon carnet."
+  },
+  {
+    "id": "nolwen-promesse-sauver",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-la-promesse-de-nolwen-sauver"
+    },
+    "texte": "Vous avez juré de me sauver quoi qu'il arrive, et ça me touche, je ne le cache pas. Mais je vois ce que ça coûte : trois sacs, deux gourdes, une nuit de plus sans lit ; si ça devient trop lourd, dites-le-moi."
+  },
+  {
+    "id": "nolwen-promesse-refuser",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-la-promesse-de-nolwen-refuser"
+    },
+    "texte": "Vous avez refusé ce que je vous demandais, et je ne l'oublie pas ; je garde les rancunes comme un écueil, longtemps, sans jamais le contourner."
+  },
+  {
+    "id": "nolwen-ruelles-evacuees",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-les-ruelles-basses-evacuer"
+    },
+    "texte": "J'ai compté les gens sortis par les fenêtres, quarante-sept, puis cinquante-deux quand les barques sont revenues ; je les ai notés un par un. Ce n'est pas assez, mais c'est un chiffre qu'on peut dire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "nolwen-brevemer",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "nolwen-ruelles-chaussee",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-les-ruelles-basses-chaussee"
+    },
+    "texte": "Je n'ai rien dit de cruel. Mais j'ai compté aussi ceux qu'on n'a pas sortis : leurs noms sont restés dans la rue, et je les tiens dans mon compte.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "nolwen-brevemer",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "nolwen-ruelles-rats",
+    "pnj": "nolwen-brevemer",
+    "quand": {
+      "flag": "choix-les-ruelles-basses-rats"
+    },
+    "texte": "Une femme et deux enfants sur trois : c'est le compte des caves. Gaspard n'y est pas. Je ne sais pas combien vaut une porte, mais j'ai appris ce qu'elle peut coûter."
+  }
+]

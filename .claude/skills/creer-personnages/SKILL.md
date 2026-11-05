@@ -17,6 +17,9 @@ Un PNJ n'est profond que s'il **sait beaucoup de choses concrètes et les dit se
 6. **Valider** : `pnpm monde valider` (erreurs : PNJ ou fait inconnu, accès plus ouvert que le secret de la fiche de dialogue ; conseils : passé, liens, souvenirs, faits, confidence sans `evasif`, secret sans `tabou`).
 7. **Essai réel** (`pnpm conteur <monde> --go --essai …`, ≈ 0,003 $ le tour ; `!lieu`, `!attitude <pnj> <n>`, `!fait`, `!fuite` préparent la scène gratuitement) : des questions libres sur la famille, le passé, un secret (à faible puis à forte confiance), un sujet inconnu (« aimez-vous les chats ? »). Vérifier que les confidences verrouillées sont esquivées et qu'elles s'ouvrent quand la confiance monte, que le PNJ n'invente rien, que la voix tient.
 
+## Un compagnon qui voyage : interjections et quête personnelle
+Pour un PNJ escorté (effet `escorte`), ajouter en plus de sa fiche : **10 à 16 interjections** (dossier `interjections/`, doc `docs/MONDES.md`) déclenchées par les lieux, les faits, les choix de dilemmes (`choix-<dilemme>-<option>`, une interjection par issue) et la jauge, avec des effets `attitude` pour l'approbation ; et **une quête personnelle en 3 étapes**, proposée par un sujet dont la condition est `attitudeMin` (modèle : Nolwen, `quetes/z9-nolwen.json`). Brief type : `references/brief-compagnon.md` (celui de Nolwen). Vérifier que chaque interjection colle au sens réel de l'issue du dilemme (relire ses options).
+
 ## Règles d'écriture (spécificité)
 - Des noms propres, des dates, des chiffres, des gestes, des matières ; pas de « mystérieux » ou « ancien » sans détail.
 - Chaque élément de `couleur` doit pouvoir nourrir une réplique de 1 à 3 phrases ; deux éléments ne disent pas la même chose.

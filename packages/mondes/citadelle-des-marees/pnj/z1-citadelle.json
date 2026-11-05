@@ -425,6 +425,110 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "ma-carte-inachevee",
+        "mots": [
+          "carte",
+          "tracer",
+          "baie",
+          "cap-mort",
+          "phare",
+          "points"
+        ],
+        "question": "Qu'aimeriez-vous tracer sur votre carte ?",
+        "reponse": "Elle hésite, puis ouvre son carnet à une page couverte de points. « Je voudrais tracer la baie entière, depuis le Cap-Mort, d'un seul trait. Je ne l'ai vue que de dos, en partant : une ligne de falaise, la lumière sur l'eau, et derrière nous la Citadelle qui rapetissait. Depuis mes douze ans, je note ces points sans savoir les relier. Ils ne tombent sur aucun rocher que je connais. Je veux savoir si la baie les contient. » Elle referme le carnet, puis le rouvre aussitôt. « Vous voulez bien regarder avec moi ? Je compte mal quand j'ai peur, alors je compte à voix haute. »",
+        "condition": {
+          "et": [
+            {
+              "flag": "nolwen-avec-le-groupe"
+            },
+            {
+              "pnj": {
+                "id": "nolwen-brevemer",
+                "attitudeMin": 40
+              }
+            },
+            {
+              "non": {
+                "quete": {
+                  "id": "q-nolwen-la-carte-inachevee",
+                  "statut": "active"
+                }
+              }
+            },
+            {
+              "non": {
+                "quete": {
+                  "id": "q-nolwen-la-carte-inachevee",
+                  "statut": "terminee"
+                }
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "quete": {
+              "id": "q-nolwen-la-carte-inachevee",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-baie-du-cap-mort",
+        "mots": [
+          "baie",
+          "tracer",
+          "phare",
+          "carte",
+          "ligne",
+          "compter"
+        ],
+        "question": "Tracerez-vous la baie depuis ici ?",
+        "reponse": "Elle étale la feuille sur la pierre du phare, puis fixe le crayon et trace la première ligne sans lever la main. « Là, c'est la pointe, et voilà le ressac. Je compte les pas de la côte : quarante-deux jusqu'au rocher blanc. » Elle note la hauteur de la marée à chaque ligne, à voix basse, et corrige deux points au crayon avant de les effacer, honteuse. « Il manque une ligne au large. Je la trace pour plus tard, quand la mer sera basse. » Ses doigts sont froids, elle ne s'en plaint pas. Quand elle a fini, elle relève la tête et regarde la mer, comme si elle attendait qu'on lui dise qu'elle a raison.",
+        "condition": {
+          "et": [
+            {
+              "etape": {
+                "quete": "q-nolwen-la-carte-inachevee",
+                "etape": "cap"
+              }
+            },
+            {
+              "lieu": "fal-phare-du-cap-mort"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "flag": "nolwen-baie-tracee"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-nom-de-la-carte",
+        "mots": [
+          "nom",
+          "carte",
+          "nommer",
+          "titre",
+          "baptiser"
+        ],
+        "question": "Comment nommerez-vous votre carte ?",
+        "reponse": "Elle réfléchit longtemps, le crayon entre les dents. « Pas de nom de légende. Le port en invente déjà assez. Je la nommerai comme on nomme une pointe ou un rocher : la Baie du Cap-Mort, parce que c'est là que je l'ai tracée, et parce que le nom dit où je me tenais. Mon carnet a des points de la côte, pas des histoires. Les points doivent rester des points. » Elle écrit le titre en lettres droites, sans fioriture, puis le souligne d'un trait vert. « Quand la carte sera pliée, je la sortirai à marée basse pour vérifier mes calculs. »",
+        "condition": {
+          "flag": "nolwen-points-lus"
+        },
+        "effets": [
+          {
+            "flag": "nolwen-carte-nommee"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
