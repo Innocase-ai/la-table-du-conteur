@@ -633,3 +633,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Contenu** : 6 tables neuves (acolytes, rats, toiles, gardes, reliques de Lothmar, dépouille du Héraut) et des tables existantes rattachées aux 13 combats de la Citadelle ; 4 combats du Val reçoivent une table.
 - **Contrat des rats** : le premier contrat de la Citadelle (« Ce qui ronge les réserves », à l'intendance) est écrit et joué par `contrats.test.ts` (trois issues et le refus).
 - Tests : `butin.test.ts` (réserve prise, réserve fermée révélée, table versée, avis) ; 718 tests verts. Skill `creer-rencontres` : section butin ; leçon notée dans `creer-contrats` (un lieu verrouillé ne convient pas à un contrat du hub).
+
+## 05/11/2026 — Dépouilles automatiques par adversaire
+
+- **Demande** : adapter le butin directement à tous les adversaires (monstre, humanoïde…), au lieu d'écrire une table par rencontre.
+- **Moteur** : `monde/depouilles.ts`. Chaque adversaire vaincu porte une bourse et du matériel **selon son type SRD et son FP** : humanoïdes, gobelinoïdes et gnolls (bourse 70 %, rations, torche, rarement potion ou parchemin), géants, morts-vivants (vieilles pièces, bougie, fiole, eau bénite), bêtes et artificiels (presque rien). Bourse de 1d4 pa à 6d6 po selon le FP. Un tirage par créature, un seul résumé (« Dépouilles : 14 po, 2 × rations »). Les tables de rencontre restent pour la saveur de l'histoire ; `butin.depouilles: false` les supprime. `PartieMonde.srd` (facultatif) fournit les profils ; les noms d'objets du SRD s'affichent proprement.
+- **Équilibre mesuré** (400 tirages par combat) : sur toute la Citadelle ≈ 24 po et moins d'une potion ; sur tout le Val ≈ 113 po et ≈ 4 potions : modeste, les trésors restent la grande source de richesse.
+- **Validateur** : l'avis « Butin » ne vise plus que les combats avec `depouilles: false` et sans table, réserve ni trésor gardé.
+- Tests : `butin.test.ts` (familles, bourse selon le FP, humanoïde/bête/artificiel, victoire qui verse et annonce, opt-out). Docs : `docs/MONDES.md`, skill `creer-rencontres`.

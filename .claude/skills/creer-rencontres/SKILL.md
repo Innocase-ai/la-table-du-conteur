@@ -43,7 +43,8 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 ## 3 bis. Le butin (un combat gagné rapporte quelque chose)
 - `butin.tables` : des tables de `tables/` (entrées pondérées : pièces `{des, unite}`, objet du SRD ou du monde avec `quantite`, `rien`) ; chaque victoire en tire une entrée par table, versée au sac, avec un constat « Butin : … ». Adapter à l'ennemi (noyés : poches, offrandes ; bandits : bourse, armes ; rats : grain, corde) ; un combat « élevée » mérite une table plus riche (potion, parchemin de sort, eau bénite) et peu ou pas de `rien`.
 - `butin.tresors` : la réserve de l'ennemi. Sans verrou ni piège et dans le lieu du combat, elle est prise à la victoire ; sinon elle est révélée.
-- Un combat qui ne rapporte que des PX est signalé (avis « Butin »). Sauf un contrat dont la récompense est ailleurs (réputation, fait, PNJ), donner une table.
+- **Dépouilles automatiques** : le moteur donne déjà à chaque adversaire vaincu une bourse et du matériel selon son type SRD et son FP (humanoïde : bourse et matériel ; mort-vivant : vieilles pièces ; bête, artificiel : presque rien ; `monde/depouilles.ts`). Pas besoin d'écrire ces gains ; les tables de la rencontre ne servent qu'à la **saveur de l'histoire** (un objet précis, une relique). `butin.depouilles: false` les supprime (rixe, duel).
+- Un combat sans aucun butin (`depouilles: false`, ni table ni réserve) est signalé (avis « Butin »).
 
 ## 4. Écrire les issues (alternatives)
 

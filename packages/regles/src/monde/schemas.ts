@@ -272,7 +272,8 @@ export const RencontreMonde = z.object({
         // Un jet raté a un prix (fail forward) : ces effets s'appliquent à l'échec ; avec `echecResout`, l'échec dénoue aussi la rencontre (autrement, plus cher).
         echec: Effets.optional(), echecResout: z.boolean().default(false) }))
     .default([]),
-  butin: z.object({ tables: z.array(Id).default([]), tresors: z.array(Id).default([]) }).default({}),
+  // `depouilles: false` : les adversaires n'ont rien sur eux (une rixe, un duel d'honneur, un spectre sans corps).
+  butin: z.object({ tables: z.array(Id).default([]), tresors: z.array(Id).default([]), depouilles: z.boolean().default(true) }).default({}),
   effetsVictoire: Effets.default([]),
 });
 export type RencontreMonde = z.infer<typeof RencontreMonde>;

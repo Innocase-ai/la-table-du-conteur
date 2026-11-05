@@ -5,7 +5,7 @@ import type { Transaction } from '../noyau/types';
 
 /** La partie telle que les verbes du monde l'attendent, branchée sur la transaction (état, groupe, hasard). */
 export function partieMonde(t: Transaction): PartieExploration {
-  return { dm: t.ctx.dm, etat: t.partie.etat, groupe: t.partie.groupe, gen: t.hasard };
+  return { dm: t.ctx.dm, etat: t.partie.etat, groupe: t.partie.groupe, gen: t.hasard, srd: t.ctx.srd };
 }
 
 /**

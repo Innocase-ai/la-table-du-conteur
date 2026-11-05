@@ -2,6 +2,8 @@
 // Aucun LLM ici : chaque verbe prend une partie et une demande, lance les dés sur les vraies fiches du groupe,
 // applique les effets du monde et renvoie un compte rendu factuel, que le conteur raconte. Voir docs/M4-CONTEUR.md.
 import { lancer, type Generateur } from '../des';
+import type { Donnees } from '../donnees';
+import { tirerDepouilles } from './depouilles';
 import type { Jet } from '../noyau/types';
 import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
@@ -39,6 +41,8 @@ export interface PartieMonde {
   etat: EtatMonde & { exploration: EtatExploration };
   groupe: Personnage[];
   gen: Generateur;
+  /** Le SRD (type et FP des monstres) : sans lui, pas de dépouilles automatiques. */
+  srd?: Donnees;
 }
 
 export type { Jet };
@@ -610,7 +614,24 @@ export function prendre(p: PartieMonde, tresor: string): CompteRendu {
 }
 
 function nomObjet(p: PartieMonde, id: string): string {
-  return p.dm.objets.get(id)?.nom ?? id;
+  return p.dm.objets.get(id)?.nom ?? p.srd?.objets.get(id)?.nom ?? id;
+}
+
+/** Les dépouilles des adversaires vaincus (bourse, matériel selon leur nature) : un résumé unique, versé au sac. */
+function depouilles(p: PartieMonde, r: CompteRendu, rencontre: string): void {
+  const def = p.dm.rencontres.get(rencontre);
+  if (!p.srd || !def || !def.butin.depouilles) return;
+  const d = tirerDepouilles(p.srd, def.monstres, p.gen);
+  const lignes: string[] = [];
+  if (d.pieces > 0) {
+    p.etat.pieces = Number((p.etat.pieces + d.pieces).toFixed(2));
+    lignes.push(`${d.pieces} po`);
+  }
+  for (const [objet, q] of Object.entries(d.objets)) {
+    p.etat.inventaire[objet] = (p.etat.inventaire[objet] ?? 0) + q;
+    lignes.push(`${q > 1 ? `${q} × ` : ''}${nomObjet(p, objet)}`);
+  }
+  if (lignes.length) r.constats.push(`Dépouilles : ${lignes.join(', ')}.`);
 }
 
 /** Un tirage sur une table de butin (entrées pondérées, tables imbriquées). */
@@ -781,6 +802,7 @@ export function issueRencontre(
     appliquer(p, r, def.effetsVictoire);
     for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);
     butinFixe(p, r, rencontre);
+    depouilles(p, r, rencontre);
   }
   if (!p.etat.rencontresFaites.includes(rencontre)) p.etat.rencontresFaites.push(rencontre);
   suites(p, r);
