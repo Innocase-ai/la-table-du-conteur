@@ -210,7 +210,7 @@ describe('module Journal', () => {
     expect(quetes[0]!.libelle).toBe('La Lanterne faiblit');
     expect(quetes[0]!.valeur).toBe('Quête principale');
     expect(quetes[0]!.detail).toMatch(/→/);
-    expect(encart(p, 'notes').lignes!.length).toBeGreaterThan(0);
+    expect(moteur.encarts(p).filter((e) => e.id.startsWith('codex-')).some((e) => (e.lignes ?? []).length > 0)).toBe(true);
   });
 });
 

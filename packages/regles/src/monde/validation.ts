@@ -4,6 +4,7 @@ import { SEUILS_PX } from '../caracteristiques';
 import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
 import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-donnees';
+import { questionsDe } from './codex-donnees';
 import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
@@ -414,6 +415,11 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     cond(`Interjection « ${i.id} »`, i.quand);
     effets(`Interjection « ${i.id} »`, i.effets);
   }
+  const { questions } = questionsDe(dm);
+  for (const q of questions) {
+    cond(`Question « ${q.id} »`, q.quand);
+    cond(`Question « ${q.id} »`, q.resolue);
+  }
   const { examens } = examensDe(dm);
   for (const x of examens) {
     const ou = `Examen « ${x.id} »`;
@@ -540,6 +546,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const e of dm.evenements.values()) toutes(`Événement « ${e.id} »`, e.condition);
   for (const f of dm.fins.values()) toutes(`Fin « ${f.id} »`, f.condition);
   for (const i of interjections) toutes(`Interjection « ${i.id} »`, i.quand);
+  for (const q of questions) {
+    toutes(`Question « ${q.id} »`, q.quand);
+    toutes(`Question « ${q.id} »`, q.resolue);
+  }
   for (const x of examens) {
     toutes(`Examen « ${x.id} »`, x.visible);
     for (const va of x.variantes) toutes(`Examen « ${x.id} », variante « ${va.id} »`, va.condition);

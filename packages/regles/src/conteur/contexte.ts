@@ -10,6 +10,7 @@ import { dilemmesDe } from '../monde/dilemmes-donnees';
 import { objetDe } from '../modules/catalogue';
 import type { Interlocuteur } from '../modules/dialogue';
 import type { EtatDilemmes } from '../modules/dilemmes';
+import { questions as questionsDuCodex } from '../modules/codex';
 import { dejaLu, examensIci } from '../modules/examens';
 import { accesFerme, type EtatSavoirs } from '../modules/savoirs';
 import { savoirDe } from '../monde/savoirs-donnees';
@@ -207,6 +208,9 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
     .map((x) => court(x!.texte, 160));
   if (faits.length) l.push(`Faits appris (les plus récents d'abord${faits.length > 12 ? `, 12 sur ${faits.length}` : ''}) : ${faits.slice(0, 12).join(' | ')}`);
   else l.push('Faits appris : aucun pour l’instant.');
+  const qs = questionsDuCodex(moteur.ctx, partie);
+  if (qs.ouvertes.length) l.push(`Questions en suspens (celles que le groupe se pose, à rappeler si on demande quoi chercher ; ne donne jamais la réponse) : ${qs.ouvertes.map((q) => `${q.texte}${q.piste ? ` (piste : ${q.piste})` : ''}`).join(' | ')}`);
+  if (qs.eclaircies.length) l.push(`Questions éclaircies : ${qs.eclaircies.map((q) => `${q.texte} → ${q.reponse}`).join(' | ')}`);
   const ed = partie.modules['dilemmes'] as EtatDilemmes | undefined;
   if (ed) {
     const dilemmes = dilemmesDe(dm).dilemmes;

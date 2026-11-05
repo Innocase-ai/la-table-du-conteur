@@ -235,3 +235,22 @@ Le cinquième dossier d'extension est **`examens/`** (module Examens, `modules/e
 - **Le conteur** voit dans sa fiche « À examiner ici : nom [id] (déjà lu) » (jamais le texte) ; pour tout autre détail, il répond en une phrase tirée de la description du lieu, sans inventer d'inscription, de date ni de nom.
 - **Validation** : erreurs (lieu inconnu, id en double, variante `base` ou en double, références des conditions et effets) ; conseils (texte < 25 ou > 130 mots, moins d'un lieu sur trois a un examen, aucune variante dans le monde).
 - **À éviter** : les éléments d'une énigme (la solution ne passe pas par un texte d'examen), les secrets dans le texte de base.
+
+## Données des modules : le codex (ce que le groupe sait, et ce qu'il se demande)
+
+Le sixième dossier d'extension est **`codex/`** (module Codex, `modules/codex.ts`, format dans `monde/codex-donnees.ts`). Le module remplace la liste plate des « notes » du journal par un **codex** vivant :
+
+- **Rubriques** : ce que le groupe a appris est rangé en *Histoire* (histoire et secrets révélés), *Indices*, *Lieux*, *Personnes*, *Factions*, *Rumeurs*. Une rumeur non fiable est marquée « non vérifiée ».
+- **Sources** : chaque fait garde d'où il vient (lieu, jour, et l'interlocuteur s'il a été appris en conversation) ; la ligne le dit, et sa fiche (fenêtre de parchemin) le détaille. Un joueur qui revient après une semaine retrouve le fil.
+- **Questions en suspens** : les mystères que le monde pose, écrits dans `codex/` :
+
+```json
+{ "id": "q-ligne-de-sel", "texte": "De quelle marée date la ligne de sel de la grotte ?",
+  "quand": { "fait": "f-fal-grotte-marque-de-maree" }, "resolue": { "fait": "f-nuit-haute" },
+  "piste": "Cherchez qui garde la mémoire des plus grandes marées.",
+  "reponse": "Ce que la Nuit Haute a laissé : la mer est montée une nuit, et n'a jamais tout rendu." }
+```
+
+  Une question **apparaît** quand sa condition `quand` devient vraie, reste en suspens avec sa **piste** (où chercher, jamais la réponse), puis passe dans « Questions éclaircies » avec sa **réponse** quand `resolue` est vraie. La réponse peut n'être que partielle : elle ouvre la suite.
+- **Le conteur** voit « Questions en suspens (avec leur piste) » et « Questions éclaircies » dans sa fiche : il peut répondre à « qu'est-ce qu'on cherche ? » sans rien inventer, et ne donne jamais la réponse d'une question en suspens.
+- **Validation** : erreurs (id en double, références des conditions) ; conseil (moins de 10 questions, question sans piste ou de plus de 20 mots).

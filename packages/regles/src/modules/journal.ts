@@ -1,5 +1,5 @@
-// Module Journal : les quêtes (proposées, en cours avec leurs étapes, accomplies, échouées) et les notes du groupe (ce
-// qu'il a appris de sûr). Sa seule commande : accepter une quête proposée.
+// Module Journal : les quêtes (proposées, en cours avec leurs étapes, accomplies, échouées). Ce que le groupe sait et les
+// questions qu'il se pose vivent dans le module Codex. Sa seule commande : accepter une quête proposée.
 import { z } from 'zod';
 import { evaluerCondition } from '../monde/etat';
 import { accepterQuete } from '../monde/exploration';
@@ -51,11 +51,6 @@ export const moduleJournal: Module = {
       .filter((x) => x.def);
     const enCours = quetes.filter((x) => x.q.statut === 'active' || x.q.statut === 'proposee').sort((a, b) => Number(b.def!.type === 'principale') - Number(a.def!.type === 'principale'));
     const finies = quetes.filter((x) => x.q.statut === 'terminee' || x.q.statut === 'echouee');
-    // Les notes : les faits sûrs, du plus récent au plus ancien (une rumeur porte la vérité pour le conteur : elle n'y figure pas).
-    const notes = [...p.etat.faits]
-      .reverse()
-      .map((f) => ctx.dm.faits.get(f))
-      .filter((f) => f?.fiable);
     return [
       {
         onglet: 'Journal',
@@ -82,14 +77,6 @@ export const moduleJournal: Module = {
             },
           ]
         : []),
-      {
-        onglet: 'Journal',
-        id: 'notes',
-        titre: 'Notes',
-        ordre: 2,
-        texte: notes.length ? undefined : 'Rien de noté pour l’instant.',
-        lignes: notes.slice(0, 40).map((f) => ({ libelle: f!.texte })),
-      },
     ];
   },
 };
