@@ -86,6 +86,15 @@ export function memoireDuJournal(partie: Partie, max = 12): Echange[] {
   return paires.slice(-Math.max(1, Math.floor(max / 2))).flat();
 }
 
+/** Des paroles entre guillemets françaises (≥ 15 caractères) : une réplique, ou une inscription. */
+const PAROLES = /«[^»]{15,}»/;
+
+/** Les corrections demandées au modèle, une seule fois par tour. */
+const CORRECTION = {
+  machine: "Ta narration parle des coulisses du jeu (« moteur », « règles », « refus »…). Réécris-la en une seule fois, sans ces mots : tout est un fait du monde, raconté de l'intérieur de l'histoire. Même longueur, mêmes événements.",
+  parole: "Ta narration met des paroles entre guillemets dans la bouche d'un personnage sans passer par l'outil repondreEnPersonnage (le jeu vérifie ce que dit un personnage d'après sa fiche). Appelle l'outil pour sa réplique, puis ne narre que ses gestes, ses regards et l'ambiance, sans guillemets de dialogue.",
+} as const;
+
 const vide = (): UsageLLM => ({ entree: 0, cache: 0, sortie: 0, cout: 0 });
 const texteDe = (m: MessageLLM) => (typeof m.content === 'string' ? m.content : (m.content ?? []).map((c) => c.text).join('')).trim();
 
@@ -109,7 +118,19 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
     { role: 'user', content: `${ficheDeTour(moteur, partie)}\n\n## Le joueur écrit\n${texte}` },
   ];
 
+  /** Un défaut du récit à corriger : les coulisses du jeu, ou des paroles de PNJ non vérifiées. */
+  const defautDeRecit = (texteRecit: string): keyof typeof CORRECTION | undefined => {
+    if (MACHINE.test(texteRecit)) return 'machine';
+    if (PAROLES.test(texteRecit) && !resultat.outils.some((o) => o.nom === 'repondreEnPersonnage' && !o.refus)) {
+      const presents = moteur.vue<{ pnj: { nom: string }[] }>('scene', partie).pnj.map((n) => n.nom.split(' ')[0]!);
+      if (presents.some((n) => texteRecit.includes(n))) return 'parole';
+    }
+    return undefined;
+  };
+
   let recit = '';
+  let recitAvant: string | undefined;
+  let corrige = false;
   try {
     for (let i = 0; i < maxAppels; i++) {
       const { message, usage } = await llm({ messages, tools });
@@ -123,7 +144,17 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
       const dit = texteDe(message);
       if (dit) recit = dit;
       messages.push({ role: 'assistant', content: message.content, tool_calls: message.tool_calls?.length ? message.tool_calls : undefined });
-      if (!message.tool_calls?.length) break;
+      if (!message.tool_calls?.length) {
+        // Garde-fou : un récit fautif est repris une fois (les outils restent disponibles : la réplique d'un PNJ passe par l'outil).
+        const defaut = recit ? defautDeRecit(recit) : undefined;
+        if (defaut && !corrige && i < maxAppels - 1) {
+          corrige = true;
+          recitAvant = recit;
+          messages.push({ role: 'user', content: CORRECTION[defaut] });
+          continue;
+        }
+        break;
+      }
 
       let fini = false;
       for (const appel of message.tool_calls) {
@@ -170,24 +201,9 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
     return { ...resultat, partie: modifiee ? partie : p.partie, erreur };
   }
 
-  // Garde-fou : un récit qui parle des coulisses (« le moteur refuse… ») est réécrit une fois, dans la fiction.
-  if (recit && MACHINE.test(recit) && resultat.appels < maxAppels + 1) {
-    try {
-      messages.push({ role: 'user', content: "Ta narration parle des coulisses du jeu (« moteur », « règles », « refus »…). Réécris-la en une seule fois, sans ces mots : tout est un fait du monde, raconté de l'intérieur de l'histoire. Même longueur, mêmes événements." });
-      const { message, usage } = await llm({ messages, tools });
-      resultat.appels++;
-      resultat.usage = {
-        entree: resultat.usage.entree + usage.entree,
-        cache: resultat.usage.cache + usage.cache,
-        sortie: resultat.usage.sortie + usage.sortie,
-        cout: resultat.usage.cout + usage.cout,
-      };
-      const propre = texteDe(message);
-      if (propre && !MACHINE.test(propre)) recit = propre;
-    } catch {
-      // Le récit d'origine reste : mieux vaut un mot de trop qu'un tour perdu.
-    }
-  }
+  // Si la reprise est encore fautive, on garde le premier récit : mieux vaut un défaut qu'un tour perdu.
+  if (corrige && recitAvant && recit && defautDeRecit(recit) && !MACHINE.test(recitAvant)) recit = recitAvant;
+  else if (corrige && recitAvant && recit && MACHINE.test(recit)) recit = recitAvant;
 
   if (!recit) recit = 'Le conteur reste un instant silencieux…';
   const racontee = moteur.executer(partie, { type: 'raconter', texte: recit });

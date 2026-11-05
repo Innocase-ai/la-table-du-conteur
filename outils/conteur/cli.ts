@@ -3,6 +3,9 @@
 //
 //   pnpm conteur [monde] [--essai "texte" "texte"…] [--modele anthropic/claude-haiku-5.5] [--plafond 0.25] [--go]
 //
+// Dans --essai, une ligne qui commence par ! prépare la scène sans appeler le modèle (gratuit) : !fuite (le groupe se
+// replie d'une rencontre), !lieu <id>, !attitude <pnj> <n>, !fait <id>, !drapeau <id>.
+//
 // Sans --go : simulation (aucun appel, aucun coût). Avec --essai : les tours sont joués dans l'ordre ; sinon, chaque ligne
 // tapée est un tour. La clé OpenRouter est lue dans `.env` (jamais affichée).
 import { readFileSync } from 'node:fs';
@@ -101,7 +104,23 @@ async function main(): Promise<void> {
   };
 
   if (essais.length) {
+    const preparer = (t: string): void => {
+      const [cmd, a, b] = t.slice(1).trim().split(/\s+/);
+      if (cmd === 'fuite') {
+        const res = moteur.executer(partie, { type: 'reglerRencontre', issue: 'fuite' });
+        if (!res.refus) partie = res.partie;
+      } else if (cmd === 'lieu' && a) partie = { ...partie, etat: { ...partie.etat, lieu: a, lieuxVisites: [...new Set([...partie.etat.lieuxVisites, a])] } };
+      else if (cmd === 'attitude' && a) partie.etat.attitudes[a] = Number(b ?? 0);
+      else if (cmd === 'fait' && a && !partie.etat.faits.includes(a)) partie.etat.faits.push(a);
+      else if (cmd === 'drapeau' && a) partie.etat.flags[a] = true;
+      else console.log(`  (préparation inconnue : ${t})`);
+      console.log(`  [préparation] ${t.slice(1)}`);
+    };
     for (const t of essais) {
+      if (t.startsWith('!')) {
+        preparer(t);
+        continue;
+      }
       if (depense >= plafond) {
         console.log(`Plafond de ${plafond} $ atteint : arrêt.`);
         break;

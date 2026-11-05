@@ -16,6 +16,7 @@ Les deux mondes livrés sont les références : **le Val des Cendres** et **La C
 | Écrire ou régler des **rencontres** (combat, social, exploration), leurs déclencheurs, difficulté, alternatives, prix d'échec, rythme | `creer-rencontres` |
 | Écrire des **contrats de combat** : mini-quêtes variées dont le but est un petit combat, avec un PNJ qui a un vrai problème | `creer-contrats` |
 | Écrire des **choix difficiles** (dossier `dilemmes/`), échos, épilogues, pertes | `creer-dilemmes` |
+| Donner de la **profondeur aux PNJ** (passé, liens, confidences, savoir vérifié ; dossier `savoirs/`) | `creer-personnages` |
 | Écrire et vérifier des **énigmes** | `enigmes` |
 | Toucher au **conteur IA** | `conteur` ; nouvelle mécanique de jeu : `ajouter-module` |
 

@@ -101,6 +101,34 @@ Le second dossier d'extension est **`dilemmes/`** (module Dilemmes, `packages/re
 - **Mémoire** : un choix pose les drapeaux `choix-<dilemme>` et `choix-<dilemme>-<option>`, lisibles partout (variantes de salutation, conditions de sujet, de rencontre, de fin). Le journal tient une **Chronique des choix** (et les « Choix en suspens ») ; à la fin de l'histoire, les `epilogue` des choix faits sont racontés.
 - **Validation** : erreurs (référence inconnue, jet sans `echec`, écho sur une option inconnue) et conseils `[dilemmes]` (option sans effet ou seulement narrative, aucun écho, épilogue manquant, deux options aux effets identiques). Le validateur du monde connaît les drapeaux de choix.
 
+## Données des modules : le savoir des PNJ
+
+Le troisième dossier d'extension est **`savoirs/`** (module Savoirs, `modules/savoirs.ts`, format dans `monde/savoirs-donnees.ts`). Une fiche de savoir donne à un personnage **de la profondeur** : de quoi parler librement de lui-même, de ses proches et de ce qu'il sait, **sans rien inventer**. Le LLM du jeu s'en sert quand le joueur sort des sujets écrits ; le jeu **vérifie chaque réplique**.
+
+```json
+{
+  "pnj": "ysmene-hautecote",
+  "passe": "80 à 150 mots : parcours, noms propres, dates, une blessure (jamais récité tel quel).",
+  "liens": [ { "pnj": "prieur-anselme-vareuil", "nature": "son élève", "opinion": "…" }, { "qui": "son frère aîné", "nature": "disparu", "opinion": "…" } ],
+  "couleur": [
+    { "id": "tisane-de-criste-marine", "texte": "souvenir, manie ou opinion, 25 à 50 mots concrets" },
+    { "id": "tristan-equinoxe", "texte": "une confidence intime", "acces": { "attitudeMin": 30 }, "evasif": "elle détourne les yeux vers la fenêtre" }
+  ],
+  "sait": [
+    { "id": "la-marque", "fait": "f-marque-de-basse-mer", "version": "comment elle le dit", "acces": { "attitudeMin": 60 }, "evasif": "…", "tabou": ["marque de basse-mer"] }
+  ]
+}
+```
+
+- **Libre** : `passe`, `liens` et les éléments de `couleur` sans `acces` : de la matière pour parler (aucun secret, aucun fait d'intrigue).
+- **Verrouillé par la confiance** : un `acces` (`attitudeMin`, `condition`) sur une confidence (`couleur`) ou un fait (`sait`) ; `evasif` dit ce que le personnage laisse entendre tant que c'est fermé. Les confidences se gagnent par couches, comme les histoires personnelles des compagnons des grands jeux.
+- **Tabou** : mots qui trahissent un fait que le groupe ne connaît pas encore ; interdits dans toute réplique, sauf dans celle qui révèle légitimement ce fait.
+- **Le jeu vérifie** (commande `repondreEnPersonnage`) : le LLM donne la réplique, les ids de la fiche utilisés (`utilise`) et les faits révélés (`revele`). Refus si : un id n'est pas dans la fiche, un fait ou une confidence est verrouillé, un mot tabou apparaît, la réplique dépasse 130 mots, le PNJ est absent ou sans fiche. Le LLM reçoit le motif comme un fait du monde et reformule. Un fait révélé est appris par le groupe (événements, quêtes). Le PNJ ne se répète pas (« déjà dit »).
+- **Dans le prompt** : le portrait de chaque PNJ présent donne son passé, ses liens, ses souvenirs, ce qu'il sait, avec VERROUILLÉ et le motif ; le texte d'un secret verrouillé n'est jamais envoyé.
+- **Validation** : erreurs (PNJ ou fait inconnu, id en double, accès plus ouvert que le secret de la fiche de dialogue) et conseils (passé ≥ 70 mots, ≥ 2 liens, ≥ 6 souvenirs, ≥ 4 faits, au moins un verrouillé avec `evasif`, un `tabou` pour tout fait secret).
+- **Cohérence** : le canon des passés vit dans un document du monde (`CANON-PERSONNAGES.md` pour la Citadelle) ; une fiche ne peut rien affirmer qui le contredise ni qui contredise la bible. Un agent relit les fiches contre la bible et le canon avant publication.
+- Limite connue : le jeu vérifie les **ids** et les **mots tabous**, pas le sens de chaque phrase ; un détail de décor non écrit peut encore se glisser dans une réplique (consigne et relecture le limitent).
+
 ## Conditions et effets
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.

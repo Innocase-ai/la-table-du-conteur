@@ -1,0 +1,176 @@
+[
+  {
+    "pnj": "ysmene-hautecote",
+    "passe": "Ysmène Hautecôte est née à Port-aux-Cordes, ruelle des Voiles, fille d'Aubert Hautecôte, cordier, et d'une saunière du marais. Elle est entrée à la Citadelle à quatorze ans, il y a 56 ans, pour apprendre ce que la mer fait avant de la faire. Cartographe à vingt-deux ans, elle a dirigé la salle des cartes pendant vingt et un ans, puis laissé la direction des cartographes à son élève Anselme, devenu Prieur, il y a neuf ans, pour s'occuper de Nolwen. Il y a seize ans, elle a trouvé cette enfant dans une barque à la dérive, au pied de la falaise, et ne l'a jamais regretté. Elle garde pour elle ce qu'elle juge dangereux. Elle sait ce qu'est devenue la petite du quai, et ne le dit pas.",
+    "liens": [
+      {
+        "pnj": "nolwen-brevemer",
+        "nature": "mentor, et la jeune fille qu'elle a trouvée",
+        "opinion": "Elle ne l'a jamais regretté, et lui cache encore ce qu'elle juge dangereux. Elle lui reconnaît les mains d'une cartographe et l'impatience d'une navigatrice."
+      },
+      {
+        "pnj": "prieur-anselme-vareuil",
+        "nature": "son élève, qui a pris ses comptes",
+        "opinion": "Elle l'aime « comme un fils qui compte ses mots », et lui reproche de calculer au lieu de regarder : il a préféré les colonnes de chiffres aux marées qu'elle lui apprenait à lire."
+      },
+      {
+        "pnj": "gudrun-lanterne",
+        "nature": "amie de quarante ans",
+        "opinion": "Elle se dispute avec elle chaque équinoxe sur l'huile des fanaux, et l'appelle « ma vieille tête de pierre »."
+      },
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "la petite du quai de son père",
+        "opinion": "Elle sait ce qu’est devenue la gamine du quai d’Aubert et ne le dit à personne."
+      },
+      {
+        "qui": "son frère aîné Tristan, noyé à la marée d'équinoxe",
+        "nature": "frère aîné (disparu)",
+        "opinion": "Elle ne prononce pas son nom devant des inconnus."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "tristan-equinoxe",
+        "texte": "Il y a cinquante-sept ans, à la marée d'équinoxe, la barque de son frère Tristan est revenue sans lui. Il avait dix-neuf ans, et personne n'a jamais su où il avait chaviré. Elle n'en parle qu'à demi-mot.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "elle détourne les yeux vers la fenêtre et dit que la mer a pris plus d’un nom à cette famille"
+      },
+      {
+        "id": "porte-de-terre",
+        "texte": "Il y a cinquante-six ans, elle a franchi la porte de terre de la Citadelle, à quatorze ans, pour apprendre ce que la mer fait avant de la faire."
+      },
+      {
+        "id": "corde-du-quai",
+        "texte": "Il y a quarante-six ans, au bout du quai de son père, une gamine de neuf ans est tombée à l'eau. Le cordier a lancé la corde, et Ysmène, de passage chez lui à vingt-quatre ans, l'a tirée à elle. Elle ne fait jamais le récit de ce soir-là.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "elle hausse les épaules et dit que c’est une vieille histoire de quai qui ne regarde personne"
+      },
+      {
+        "id": "tisane-de-criste-marine",
+        "texte": "Chaque matin, elle boit une tisane de criste-marine, le fenouil de mer, si amère qu'elle grimace. Elle la laisse refroidir jusqu'à la tiédeur, puis la finit sans un mot, les yeux sur les cartes."
+      },
+      {
+        "id": "encre-verte",
+        "texte": "Elle corrige les cartes à l'encre verte, jamais à l'encre noire, et laisse dans les marges des chiffres si petits qu'il faut une loupe pour les lire."
+      },
+      {
+        "id": "compte-des-cloches",
+        "texte": "Elle compte les coups de cloche sans y penser, et perd le fil d'une phrase quand le compte tombe faux. Elle ne s'en aperçoit qu'une fois la phrase finie."
+      },
+      {
+        "id": "aube-et-mer",
+        "texte": "À l'aube, avant la cloche, elle sort seule et parle à la mer comme à une personne qu'il faut ménager. Elle ne répond jamais à qui lui demande ce qu'elle dit."
+      },
+      {
+        "id": "opinion-sur-la-ligue",
+        "texte": "La Ligue des Phares est honnête, dit-elle, mais arrogante : elle parle des ports comme d'un dossier qu'on boucle avant la marée."
+      },
+      {
+        "id": "opinion-sur-les-rats",
+        "texte": "Les Rats de quai sont un mal utile, dit-elle : ils connaissent la côte comme personne et savent où elle se fend. Elle les tolère comme une vieille corde qui sert encore."
+      },
+      {
+        "id": "opinion-sur-le-port",
+        "texte": "Le port de Port-aux-Cordes est trop bruyant : des dockers, des chaînes sur les quais, des cris de chaland. Elle ne le supporte qu'à l'aube, quand les quais se taisent."
+      },
+      {
+        "id": "anecdote-gudrun",
+        "texte": "Chaque équinoxe, elle se dispute avec Gudrun Lanterne sur l'huile des fanaux. Elles finissent toujours à la même table, la lampe entre elles, et aucune des deux ne concède le dernier mot."
+      },
+      {
+        "id": "anecdote-anselme-novice",
+        "texte": "Il y a trente-neuf ans, le novice Anselme, seize ans, l'a suivie jusqu'au bout de la salle des cartes. Elle lui a dit qu'il calculait au lieu de regarder, et il s'est excusé avant d'avoir tort."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Elle l’annonce sans détour : la mer montera dans trois jours, la plus haute depuis deux siècles, et il faudra avoir quitté la côte avant la nuit du troisième jour.",
+        "acces": {}
+      },
+      {
+        "id": "la-barque-bleue",
+        "fait": "f-cit-barque-a-la-derive",
+        "version": "Elle dit qu'elle a trouvé une enfant dans une barque à la dérive, au pied de la falaise, un soir de tempête d'équinoxe, enveloppée dans une couverture de laine bleue. Elle ne l'a jamais regretté, et n'en dit guère plus.",
+        "acces": {}
+      },
+      {
+        "id": "les-pages-arrachees",
+        "fait": "f-cit-registre-deux-pages",
+        "version": "Elle l'a remarqué, et n'en parle qu'à regret : deux pages du registre des vives-eaux manquent, arrachées il y a peu.",
+        "acces": {}
+      },
+      {
+        "id": "le-pacte",
+        "fait": "f-pacte-des-marees",
+        "version": "Elle dit que la Couronne d'autrefois traitait avec la mer, et que la mer s'en souvient mieux que les hommes. Elle ne sait pas ce que ce contrat a coûté.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle repose sa tasse de criste-marine sans répondre, et regarde la carte comme si elle y cherchait une date.",
+        "tabou": [
+          "Sceau",
+          "Pacte des Marées"
+        ]
+      },
+      {
+        "id": "ceux-qui-tiennent",
+        "fait": "f-la-cour-tient-sous-la-mer",
+        "version": "Elle dit que des gens tiennent quelque chose sous la mer depuis trois siècles, et qu'on ne les voit jamais en entier. Elle ne connaît pas leur nom, et sait qu'ils ne sont pas cruels.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle se tait un instant, regarde la fenêtre, et dit seulement que la baie a des profondeurs que personne ne mesure.",
+        "tabou": [
+          "Cour de Lothmar",
+          "Cour noyée",
+          "Chancelier"
+        ]
+      },
+      {
+        "id": "les-cartes-brouillees",
+        "fait": "f-cartes-cachent-la-marque",
+        "version": "Elle reconnaît à demi-mot que les cartes tenues ici brouillent une trace que la mer cherche, et que la carte qu'elle a tracée pour le groupe les protégera.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Elle pose la main sur la carte de la salle, comme pour la protéger, et change de sujet.",
+        "tabou": [
+          "brouillent la marque",
+          "cachent la marque"
+        ]
+      },
+      {
+        "id": "la-marque",
+        "fait": "f-marque-de-basse-mer",
+        "version": "Elle dit que chaque enfant de cette lignée porte une tache pâle, en forme de vague, sur l'épaule, et que la mer la reconnaît mieux qu'eux.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Elle se tait longtemps, et dit seulement que la mer connaît une chose qu'elle ne montrera pas.",
+        "tabou": [
+          "marque de basse-mer",
+          "basse-mer"
+        ]
+      },
+      {
+        "id": "ce-que-porte-nolwen",
+        "fait": "f-nolwen-est-le-sceau",
+        "version": "Elle ne le dit pas franchement : la jeune fille a la tache pâle de la lignée, et la Cour la cherche depuis son enfance. Ysmène sait ce que cela signifie, sans en connaître le prix.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Elle répond qu'il faut faire confiance à sa parole, et que cette question ne se pose pas à une table.",
+        "tabou": [
+          "porte la marque"
+        ]
+      }
+    ]
+  }
+]

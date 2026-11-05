@@ -1,0 +1,165 @@
+[
+  {
+    "pnj": "prieur-anselme-vareuil",
+    "passe": "Anselme Vareuil est le fils d'un voilier de Port-aux-Cordes. Entré novice à la Citadelle à seize ans, il y a trente-neuf ans, il devient l'élève d'Ysmène Hautecôte, qui lui apprend à lire les marées ; il préfère les colonnes de chiffres. Il passe aux comptes à trente ans et, à la mort de l'ancien prieur, prend la charge il y a neuf ans. Depuis, il tient les comptes de la maison avec une exactitude que même Ysmène ne lui conteste pas : il taille lui-même ses plumes d'oie au couteau après la dernière cloche, porte à son cou la clé du coffre des comptes, et s'excuse avant de refuser, même quand il a raison.",
+    "liens": [
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "son ancienne maîtresse de cartes",
+        "opinion": "« Ma maîtresse de cartes, la seule qui ose me corriger ». Il la craint un peu et la protège beaucoup."
+      },
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "cheffe des Rats de quai, qu'il ne connaît que par ses effets",
+        "opinion": "Elle paie toujours le prix annoncé, et il apprécie cela malgré lui, sans le lui dire."
+      },
+      {
+        "pnj": "gudrun-lanterne",
+        "nature": "fanalière de la Citadelle",
+        "opinion": "Utile mais mal embouchée. Elle crie à propos de l'huile des fanaux, et il finit toujours par lui donner ce qu'elle demande, en colonne."
+      },
+      {
+        "pnj": "aldous-lindenvert",
+        "nature": "bibliothécaire des marées",
+        "opinion": "Un copiste sérieux dont les tables retardent depuis le printemps : il attend de comprendre pourquoi avant de le blâmer."
+      },
+      {
+        "pnj": "corentin-brumevoile",
+        "nature": "dernier habitant de Brumevoile",
+        "opinion": "Il pense à lui chaque hiver et ne lui écrit jamais."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "plume-d-oie",
+        "texte": "Anselme taille lui-même ses plumes d'oie, au couteau, le soir après la dernière cloche. Il en garde toujours une de rechange dans la manche de son col de bure, et il la taille de nouveau avant de refuser une demande."
+      },
+      {
+        "id": "excuses-avant-refus",
+        "texte": "Il s'excuse avant de refuser, même quand il a raison et que la demande est absurde. Il pose la plume, baisse la tête, et dit « je suis navré » avant même d'énoncer le chiffre qui fait le refus."
+      },
+      {
+        "id": "chaine-de-cuivre",
+        "texte": "Une chaîne de cuivre patiné pend à son cou, sous le col. La clé qu'elle porte ouvre le coffre des comptes, dans la pièce voisine du bureau ; il la touche du pouce quand il réfléchit, comme on touche une amulette."
+      },
+      {
+        "id": "levee-avant-cloche",
+        "texte": "Il se lève avant la cloche, une lampe à huile au poing, pour relire les colonnes de la nuit. Les autres entendent sa chaise racler le carrelage avant le premier coup, et disent que c'est signe qu'il n'a pas dormi."
+      },
+      {
+        "id": "novice-seize-ans",
+        "texte": "Il a seize ans quand il entre novice à la Citadelle, il y a trente-neuf ans. Il n'a jamais dit pourquoi il a choisi les comptes plutôt que la carte, et Ysmène ne le lui a jamais demandé deux fois."
+      },
+      {
+        "id": "lecons-d-ysmene",
+        "texte": "Ysmène lui a appris à lire les marées à voix haute, debout au bord de la grande table de cartes. Il a retenu les heures et non l'horizon : depuis, il préfère les colonnes aux lignes de côte, et elle le lui reproche encore."
+      },
+      {
+        "id": "registre-onze-noms",
+        "texte": "Au dos de son dernier registre de comptes, onze noms sont écrits à l'encre pâle, de sa main, sur une page que personne n'ouvre. Il ne la relit jamais devant les visiteurs, mais le registre s'ouvre toujours à cette page.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "il referme le registre sans l’ouvrir à cette page, et parle d’autre chose"
+      },
+      {
+        "id": "sel-de-brumevoile",
+        "texte": "Chaque hiver, un sac de sel quitte les caves de la Citadelle, noté dans le registre sous une ligne de dépense ordinaire. La case du destinataire reste vide : tout le monde sait où va le sel, et personne ne pose la question.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "il dit que la Citadelle a des dépenses qu’on ne détaille pas devant des visiteurs"
+      },
+      {
+        "id": "opinion-la-ligue",
+        "texte": "La Ligue, il la tient pour des clercs qui jouent aux marins : des hommes de bureau avec des lanternes et des règlements. Il le dit une fois, sans rire, et ne le répète jamais devant les ligueurs."
+      },
+      {
+        "id": "opinion-la-mer",
+        "texte": "La mer est un créancier. Elle réclame toujours plus qu'on ne doit et n'accepte aucun délai. Il le dit à voix basse, en regardant la fenêtre du bureau, qui donne sur la baie et sur les marques de la marée."
+      },
+      {
+        "id": "opinion-gudrun",
+        "texte": "Gudrun est utile et mal embouchée : elle crie à propos de l'huile, puis revient quand la colonne est juste. Il ne la contredit jamais en public, et il garde pour elle une ligne à part dans le budget des fanaux."
+      },
+      {
+        "id": "prix-annonce-de-sorel",
+        "texte": "La Quaibas paie toujours le prix annoncé, une fois dit, sans marchander ni se plaindre. Il trouve cela honnête et le fait remarquer de temps en temps à Ysmène, qui se contente de hausser les épaules."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "La mer montera dans trois jours, plus haut que mémoire d'homme. Il a fait ses comptes : barques, greniers, digues, et la liste de ceux qui ne pourront pas monter sur la colline.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-comptes-sous-la-mer",
+        "fait": "f-la-cour-tient-sous-la-mer",
+        "version": "Il sait que quelque chose tient sous la mer depuis trois siècles, et il l'appelle « les comptes d'en bas ». Il n'évoque ni noms ni visages, seulement des dettes que la mer n'a jamais soldées.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il range ses plumes et répond qu'il y a des créances qu'on ne règle pas à la Citadelle. Il ne regarde pas la baie.",
+        "tabou": [
+          "Cour de Lothmar",
+          "Cour noyée",
+          "Chancelier"
+        ]
+      },
+      {
+        "id": "l-offre-de-la-ligue",
+        "fait": "f-ligue-et-phare-cellule",
+        "version": "La Ligue propose de tout enfermer dans un phare scellé : une solution de clercs, mais une solution. Il ne la juge pas ; il la compte, et il conclut qu'elle coûte moins cher qu'une vague.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il dit que la Ligue a de bons juristes et de mauvais marins, puis revient aux tarifs du port.",
+        "tabou": [
+          "phare-cellule"
+        ]
+      },
+      {
+        "id": "le-pacte-des-comptes",
+        "fait": "f-pacte-des-marees",
+        "version": "Il connaît l'ancien contrat : autrefois une lignée donnait à la mer un enfant du sang royal, et l'on tenait le prix de ce don sur les registres. Il n'a jamais trouvé de mot pour cela qui ne sonne pas comme une dette.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Il pose la plume et dit que la maison a des archives plus anciennes que sa charge, et qu'il vaut mieux ne pas les rouvrir.",
+        "tabou": [
+          "Sceau",
+          "Pacte des Marées"
+        ]
+      },
+      {
+        "id": "l-enfant-marquee",
+        "fait": "f-nolwen-est-le-sceau",
+        "version": "Il sait que Nolwen porte la marque, et que la mer la réclame depuis seize ans. Il dit qu'elle est sous la protection de la maison, et répète qu'il n'a rien contre elle.",
+        "acces": {
+          "attitudeMin": 75
+        },
+        "evasif": "Il ne regarde pas la fenêtre et répète trois fois qu'il n'a rien contre l'apprentie d'Ysmène.",
+        "tabou": [
+          "porte la marque"
+        ]
+      },
+      {
+        "id": "ses-comptes-froids",
+        "fait": "f-prieur-veut-livrer",
+        "version": "Il croit qu'il vaut mieux payer un peu, souvent, que tout perdre une fois. Il a fait ce calcul et s'y tient, même lorsque la somme se présente sous la forme d'une enfant. Il n'attend pas le pardon.",
+        "acces": {
+          "attitudeMin": 75
+        },
+        "evasif": "Il se tait avant la fin de sa phrase, sans se lever ; sa plume tremble une fois, puis il la repose.",
+        "tabou": [
+          "livrer l'enfant",
+          "livrer une enfant",
+          "livrer Nolwen"
+        ]
+      }
+    ]
+  }
+]

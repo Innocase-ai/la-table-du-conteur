@@ -28,6 +28,7 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 - Préfixe en cache : rôle, 11 règles (dont 9 : aucun mot des coulisses ; 10 : trier la demande ; 11 : cohérence), `monde.json`, la bible.
 - Fiche de tour (`ficheDeTour`) : lieu, heure et moment, sorties, **portraits des PNJ présents** (voix, traits, désir, peur, déjà dit, sujets ouverts ; jamais les secrets), conversation, objets, pièges, énigmes, jauges ; **« Ce que le groupe sait et a fait »** (quêtes, faits appris, choix, disparus) ; le groupe ; derniers événements raccourcis.
 - Mémoire : `memoireDuJournal` (6 échanges, tirés du journal sauvegardé).
+- **Savoir des PNJ** (`savoirs/`, skill `creer-personnages`) : l'outil `repondreEnPersonnage` (réplique + ids utilisés + faits révélés) est **vérifié par le jeu** ; ne jamais le contourner dans le prompt. Les essais réels se préparent avec `!lieu`, `!attitude`, `!fait`, `!fuite` dans `--essai`.
 
 ## Règles à garder
 

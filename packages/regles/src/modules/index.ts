@@ -9,10 +9,11 @@ import { moduleExploration } from './exploration';
 import { moduleGrimoire } from './grimoire';
 import { moduleInventaire } from './inventaire';
 import { moduleJournal } from './journal';
+import { moduleSavoirs } from './savoirs';
 import { moduleScenes } from './scenes';
 import type { Module } from '../noyau/types';
 
-export { moduleCommerce, moduleProgression, moduleConteur, moduleDialogue, moduleDilemmes, moduleEquipement, moduleExploration, moduleGrimoire, moduleInventaire, moduleJournal, moduleScenes };
+export { moduleCommerce, moduleProgression, moduleConteur, moduleDialogue, moduleDilemmes, moduleEquipement, moduleExploration, moduleGrimoire, moduleInventaire, moduleJournal, moduleSavoirs, moduleScenes };
 export { sceneEnCours, scenesDu, SceneNarree, PlanScene, type EtatScenes } from './scenes';
 export { objetDe, plusBlesse, POTION_DE_COMBAT, type EtatInventaire } from './inventaire';
 export { appliquerEquipement, caAvecEquipement, chargeDuGroupe, infoEquipement, objetsPortes } from './equipement-regles';
@@ -22,4 +23,4 @@ export { articles, rachats, prixLisible, type EtatCommerce } from './commerce';
 export { idImageCommune } from './image-commune';
 export type { Interlocuteur } from './dialogue';
 
-export const MODULES_STANDARD: Module[] = [moduleExploration, moduleDialogue, moduleInventaire, moduleEquipement, moduleGrimoire, moduleJournal, moduleCommerce, moduleProgression, moduleDilemmes, moduleScenes, moduleConteur];
+export const MODULES_STANDARD: Module[] = [moduleExploration, moduleDialogue, moduleInventaire, moduleEquipement, moduleGrimoire, moduleJournal, moduleCommerce, moduleProgression, moduleDilemmes, moduleSavoirs, moduleScenes, moduleConteur];

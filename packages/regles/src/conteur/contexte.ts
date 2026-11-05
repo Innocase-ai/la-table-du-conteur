@@ -10,6 +10,8 @@ import { dilemmesDe } from '../monde/dilemmes-donnees';
 import { objetDe } from '../modules/catalogue';
 import type { Interlocuteur } from '../modules/dialogue';
 import type { EtatDilemmes } from '../modules/dilemmes';
+import { accesFerme, type EtatSavoirs } from '../modules/savoirs';
+import { savoirDe } from '../monde/savoirs-donnees';
 import { objetsPortes } from '../modules/equipement-regles';
 import type { Moteur } from '../noyau/moteur';
 import type { EvenementJeu, Partie } from '../noyau/types';
@@ -32,7 +34,7 @@ export function promptSysteme(monde: DonneesMonde, bible: string): string {
 9. **Jamais de vocabulaire de machine dans ta narration.** N'écris jamais « moteur », « arbitre », « outil », « système », « règles du jeu », « IA », « modèle », « refus », « DD », « jet de dés » ni rien qui montre les coulisses : le joueur est dans l'histoire. Tout ce qui est impossible ou refusé se raconte **dans la fiction** (le groupe a déjà fouillé : « vous avez retourné ce bassin de fond en comble, il faudra laisser passer une nuit » ; une porte fermée : « le battant ne bouge pas »). Ne dis jamais que quelque chose est « refusé », « interdit » ou « impossible » par le jeu.
 10. **Comprends d'abord ce que le joueur demande**, puis agis :
    - **Une action** (aller, fouiller, ouvrir, combattre, se reposer…) : les outils (règles 1 et 2).
-   - **Une parole à un PNJ présent** : s'il n'y a pas encore de conversation, appelle \`parler\` sans sujet. Si la question rejoint par son sens un **sujet pas encore abordé** de ce PNJ (voir sa fiche), appelle \`parler\` avec ce sujet. Si le joueur menace, flatte, ment ou insiste pour un secret, appelle \`influencer\`. Sinon, réponds **dans la voix du PNJ**, d'après sa fiche (voix, traits, désir, peur, ce qu'il a déjà dit), en une à trois phrases, **sans aucune information nouvelle** : il hésite, esquive, renvoie à ce qu'il a déjà dit, ou réagit selon son humeur. Un PNJ ne sait pas ce qu'il n'a pas pu voir.
+   - **Une parole à un PNJ présent** : s'il n'y a pas encore de conversation, appelle \`parler\` sans sujet. Si la question rejoint par son sens un **sujet pas encore abordé** de ce PNJ (voir sa fiche), appelle \`parler\` avec ce sujet. Si le joueur menace, flatte, ment ou insiste pour un secret, appelle \`influencer\`. Sinon, **fais-le parler avec l'outil \`repondreEnPersonnage\`** : sa réplique (1 à 4 phrases, première personne, dans sa voix) puise **uniquement** dans sa fiche (passé, liens, souvenirs et opinions, ce qu'il sait) ; tu donnes en \`utilise\` les ids des éléments de la fiche dont tu t'es servi, et en \`revele\` les ids des **faits** qu'il révèle (seulement ceux marqués « révélable » ; ceux marqués VERROUILLÉ restent hors de portée : il esquive, change de sujet, répond à côté). **Cherche d'abord dans la fiche l'élément qui répond à la question du joueur** : s'il est ouvert (non verrouillé), c'est lui que le personnage évoque, avec ses mots à lui, au lieu d'une réponse générale ; s'il est VERROUILLÉ, il esquive comme indiqué. Le champ texte de l'outil ne contient **que les paroles** du personnage (aucun geste, aucune narration, pas de « il dit »). Si la question dépasse ce qu'il sait, il l'avoue ou s'en remet à d'autres, dans sa voix ; **il n'invente jamais** (le jeu refuse toute réplique qui cite autre chose que sa fiche et te la renvoie : reformule alors). Un PNJ ne sait pas ce qu'il n'a pas pu voir. Si le personnage n'a pas de fiche de savoir (pas de « Passé » dans son portrait), réponds sans outil, en une phrase d'esquive. **Dans ta narration, jamais de paroles de PNJ entre guillemets** : toute réplique passe par l'outil repondreEnPersonnage (ou par un sujet) ; tu ne narres que les gestes, les regards et l'ambiance autour de ce qu'il vient de dire.
    - **Une question sur le groupe** (PV, or, sac, quêtes, où aller, ce qu'on sait) : réponds sans outil, brièvement, dans la fiction, **uniquement d'après la fiche** (« Votre bourse sonne : il vous reste 232 pièces d'or. ») ; pour « que savons-nous ? », reprends les faits appris, les quêtes et les choix de la section « Ce que le groupe sait et a fait », et ce que les derniers événements ont montré, rien d'autre.
    - **Une question hors jeu** (règles, commandes) : une phrase claire, sans jouer d'action.
    - **Une demande impossible ou ambiguë** (un lieu qui n'est pas relié, un PNJ absent) : fais l'action raisonnable la plus proche ou raconte pourquoi ce n'est pas possible ici, dans la fiction.
@@ -102,9 +104,35 @@ function humeur(a: number): string {
 }
 
 /** Le portrait d'un PNJ présent : de quoi le faire parler dans sa voix, sans rien dévoiler de ce qu'il n'a pas dit. */
-function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[]): string {
+function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[], tx: Parameters<typeof accesFerme>[0], ditsLibres: string[]): string {
   const p = pnj.personnalite;
   const dits = pnj.sujets.filter((s) => vus.includes(`${pnj.id}:${s.id}`)).map((s) => s.question ?? s.mots[0]);
+  const sv = savoirDe(pm.dm, pnj.id);
+  const savoir: string[] = [];
+  if (sv) {
+    savoir.push(`  Passé (pour nourrir ses répliques, jamais à réciter) : ${sv.passe}`);
+    if (sv.liens.length) savoir.push(`  Liens : ${sv.liens.map((l) => `${l.pnj ? (pm.dm.pnj.get(l.pnj)?.nom ?? l.pnj) : l.qui} (${l.nature}) : ${l.opinion}`).join(' ; ')}`);
+    if (sv.couleur.length)
+      savoir.push(
+        `  Souvenirs et opinions (cite leur id dans \`utilise\` ; une confidence VERROUILLÉE se gagne : il esquive) : ${sv.couleur
+          .map((c) => {
+            const ferme = accesFerme(tx, pnj, c);
+            return ferme ? `[${c.id}] VERROUILLÉ (${ferme})${c.evasif ? ` — évasif : ${c.evasif}` : ''}` : `[${c.id}]${ditsLibres.includes(c.id) ? ' (déjà dit)' : ''} ${c.texte}`;
+          })
+          .join(' | ')}`,
+      );
+    if (sv.sait.length)
+      savoir.push(
+        `  Ce qu'il sait : ${sv.sait
+          .map((x) => {
+            const ferme = accesFerme(tx, pnj, x);
+            const connu = pm.etat.faits.includes(x.fait);
+            if (ferme && !connu) return `[${x.id}] VERROUILLÉ (${ferme})${x.evasif ? ` — s'il est pressé, il reste évasif : ${x.evasif}` : ''}`;
+            return `[${x.id}] (fait ${x.fait}${ditsLibres.includes(x.id) ? ', déjà dit' : connu ? ', le groupe le sait déjà' : ', révélable'}) ${x.version}`;
+          })
+          .join(' | ')}`,
+      );
+  }
   const ouverts = sujetsDisponibles(pm, pnj)
     .filter((s) => !vus.includes(`${pnj.id}:${s.id}`))
     .map((s) => `${s.id} (${s.mots.slice(0, 4).join(', ')})`);
@@ -114,6 +142,7 @@ function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[]): string
     `  Voix : ${p.voix} Traits : ${p.traits.join(', ')}. Désir : ${p.desir}${p.peur ? ` Peur : ${p.peur}` : ''}`,
     dits.length ? `  Déjà abordé avec le groupe : ${dits.join(' ; ')}.` : '',
     ouverts.length ? `  Sujets pas encore abordés : ${ouverts.join(' ; ')}.` : '  Plus rien de nouveau à dire pour l’instant.',
+    ...savoir,
   ]
     .filter(Boolean)
     .join('\n');
@@ -127,6 +156,8 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
   const nom = (id: string) => objetDe(moteur.ctx, id).nom;
   const pm: PartieMonde = { dm, etat: partie.etat as PartieMonde['etat'], groupe: partie.groupe, gen: () => 0 };
   const vus = partie.etat.exploration?.sujetsVus ?? [];
+  const tx = { ctx: moteur.ctx, partie } as Parameters<typeof accesFerme>[0];
+  const ditsParPnj = (partie.modules['savoirs'] as EtatSavoirs | undefined)?.dits ?? {};
   const l: string[] = [];
   l.push(`## Lieu : ${f.lieu.nom} (${f.lieu.id}) — jour ${f.jour}, ${f.heure} h (${MOMENTS[momentDe(f.heure)]})`);
   l.push(f.lieu.description);
@@ -140,7 +171,7 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
     l.push('Personnes ici (seules personnes présentes) :');
     for (const n of f.pnj) {
       const pnj = dm.pnj.get(n.id);
-      l.push(pnj ? portrait(pm, pnj, n.attitude, vus) : `- ${n.nom} [id: ${n.id}], ${n.role}`);
+      l.push(pnj ? portrait(pm, pnj, n.attitude, vus, tx, ditsParPnj[pnj.id] ?? []) : `- ${n.nom} [id: ${n.id}], ${n.role}`);
     }
   } else l.push('Personnes ici : personne.');
   if (interlocuteur)

@@ -35,6 +35,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `creer-rencontres` : combats et rencontres (déclencheurs, difficulté, alternatives, prix d'échec, rythme).
 - `creer-contrats` : mini-quêtes de combat variées, ancrées dans la fiction (jamais une heure sans combat).
 - `creer-dilemmes` : choix difficiles, échos, épilogues (dossier `dilemmes/`).
+- `creer-personnages` : profondeur des PNJ (canon des personnages, fiches de savoir, confidences verrouillées, conversations libres vérifiées).
 - `enigmes` : dès qu'une énigme est créée, modifiée ou relue ; les énigmes se vérifient toujours en les jouant (`pnpm monde enigmes <monde>`, puis dans le jeu).
 - `conteur` : le MJ IA (outils, prompt, essais réels).
 
