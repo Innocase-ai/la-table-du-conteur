@@ -1,16 +1,40 @@
 {
   "id": "druide",
   "nom": "Druide",
-  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["sag"] },
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "sag"
+    ]
+  },
   "deVie": 8,
-  "sauvegardes": ["int", "sag"],
+  "sauvegardes": [
+    "int",
+    "sag"
+  ],
   "competences": {
     "nombre": 2,
-    "parmi": ["arcanes", "dressage", "intuition", "medecine", "nature", "perception", "religion", "survie"]
+    "parmi": [
+      "arcanes",
+      "dressage",
+      "intuition",
+      "medecine",
+      "nature",
+      "perception",
+      "religion",
+      "survie"
+    ]
   },
-  "maitrisesArmes": ["courantes"],
-  "formationArmures": ["legere", "bouclier"],
-  "outils": ["Matériel d’herboriste"],
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [
+    "legere",
+    "bouclier"
+  ],
+  "outils": [
+    "Matériel d’herboriste"
+  ],
   "equipementDepart": [
     {
       "id": "A",
@@ -24,45 +48,104 @@
       ],
       "po": 9
     },
-    { "id": "B", "objets": [], "po": 50 }
+    {
+      "id": "B",
+      "objets": [],
+      "po": 50
+    }
   ],
   "incantation": {
     "type": "complet",
     "caracteristique": "sag",
-    "sortsMineurs": [2, 2, 2, 3, 3],
-    "sortsPrepares": [4, 5, 6, 7, 9],
-    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+    "sortsMineurs": [
+      2,
+      2,
+      2,
+      3,
+      3
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ]
+    ]
   },
   "progression": [
     {
       "niveau": 1,
       "bonusMaitrise": 2,
-      "aptitudes": ["Sorts", "Druidique", "Ordre primitif"],
-      "colonnes": { "Forme sauvage": "—" }
+      "aptitudes": [
+        "Sorts",
+        "Druidique",
+        "Ordre primitif"
+      ],
+      "colonnes": {
+        "Forme sauvage": "—"
+      }
     },
     {
       "niveau": 2,
       "bonusMaitrise": 2,
-      "aptitudes": ["Compagnon sauvage", "Forme sauvage"],
-      "colonnes": { "Forme sauvage": 2 }
+      "aptitudes": [
+        "Compagnon sauvage",
+        "Forme sauvage"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
     },
     {
       "niveau": 3,
       "bonusMaitrise": 2,
-      "aptitudes": ["Sous-classe de Druide"],
-      "colonnes": { "Forme sauvage": 2 }
+      "aptitudes": [
+        "Sous-classe de Druide"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
     },
     {
       "niveau": 4,
       "bonusMaitrise": 2,
-      "aptitudes": ["Amélioration de caractéristique"],
-      "colonnes": { "Forme sauvage": 2 }
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
     },
     {
       "niveau": 5,
       "bonusMaitrise": 3,
-      "aptitudes": ["Regain sauvage"],
-      "colonnes": { "Forme sauvage": 2 }
+      "aptitudes": [
+        "Regain sauvage"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
     }
   ],
   "aptitudes": [
@@ -106,7 +189,11 @@
       "nom": "Amélioration de caractéristique",
       "niveau": 4,
       "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
-      "effets": [{ "type": "amelioration_caracteristique" }]
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
     },
     {
       "id": "regain-sauvage",
@@ -124,8 +211,31 @@
         "id": "sorts-du-cercle-de-la-terre",
         "nom": "Sorts du Cercle de la Terre",
         "niveau": 3,
-        "resume": "À chaque Repos long, choisissez un environnement (aride, polaire, tempéré ou tropical) : les sorts de cercle correspondants à votre niveau sont préparés. Niveau 3 — aride : flou, mains brûlantes, trait de feu ; polaire : immobilisation de personne, nappe de brouillard, rayon de givre ; tempéré : foulée brumeuse, poigne électrique, sommeil ; tropical : aspersion acide, rayon empoisonné, toile d’araignée. Niveau 5 : boule de feu, tempête de neige, éclair ou nuage nauséabond respectivement.",
-        "effets": []
+        "resume": "À chaque Repos long, choisissez un environnement (aride, polaire, tempéré ou tropical) : les sorts de cercle correspondants à votre niveau sont préparés. Niveau 3 — aride : flou, mains brûlantes, trait de feu ; polaire : immobilisation de personne, nappe de brouillard, rayon de givre ; tempéré : foulée brumeuse, poigne électrique, sommeil ; tropical : aspersion acide, rayon empoisonné, toile d’araignée. Niveau 5 : boule de feu, tempête de neige, éclair ou nuage nauséabond respectivement. Le jeu prépare pour l'instant les sorts de l'environnement tempéré.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "foulee-brumeuse",
+              "poigne-electrique",
+              "sommeil"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-cercle-de-la-terre-niveau-5",
+        "nom": "Sorts du Cercle de la Terre (niveau 5)",
+        "niveau": 5,
+        "resume": "Sort de cercle du niveau 5 (environnement tempéré, choisi par défaut) : éclair.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "eclair"
+            ]
+          }
+        ]
       },
       {
         "id": "aval-de-la-terre",

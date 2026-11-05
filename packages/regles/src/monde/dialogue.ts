@@ -2,11 +2,10 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import type { CompteRendu, PartieMonde } from './exploration';
+import { appliquer, momentDe, suites, type CompteRendu, type PartieMonde } from './exploration';
 import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
-import { appliquerEffets } from './etat';
 
 /** Seuils d'attitude : en dessous de -30, hostile ; au-dessus de 30, amical. */
 export const SEUIL_HOSTILE = -30;
@@ -23,8 +22,9 @@ export function pnjPresents(p: PartieMonde): Pnj[] {
     // Un PNJ escorté suit le groupe : il est présent partout.
     if (p.etat.escortes?.includes(n.id)) return true;
     if (lieuDuPnj(p, n) === p.etat.lieu) return true;
-    // Une présence ailleurs ne compte que si le PNJ n'a pas été déplacé, de jour (le moment de la journée viendra plus tard).
-    return !p.etat.pnjLieux[n.id] && n.presences.some((x) => x.lieu === p.etat.lieu && x.moment === 'jour' && (!x.condition || evaluerCondition(x.condition, p.etat)));
+    // Une présence ailleurs ne compte que si le PNJ n'a pas été déplacé, et au bon moment de la journée (jour, soir, nuit).
+    const moment = momentDe(p.etat.heure);
+    return !p.etat.pnjLieux[n.id] && n.presences.some((x) => x.lieu === p.etat.lieu && x.moment === moment && (!x.condition || evaluerCondition(x.condition, p.etat)));
   });
 }
 
@@ -66,6 +66,7 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   if (!sujet) {
     const salut = a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre;
     r.narrations.push(salut);
+    r.paroles = 1;
     const dispo = sujetsDisponibles(p, pnj);
     r.constats.push(
       `${pnj.nom} (${pnj.role}, attitude ${a}). Sujets qu'il accepte d'aborder : ${dispo.map((s) => `${s.id} [${s.mots.join(', ')}]`).join(' ; ') || 'aucun pour l\'instant'}.`,
@@ -80,9 +81,10 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   // Tous les sujets abordés sont notés (un sujet unique disparaît ; les autres restent, marqués « déjà abordé »).
   if (!p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`)) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
   r.narrations.push(s.reponse);
-  const avant = p.etat.faits.length;
-  appliquerEffets([...s.revele.map((f) => ({ fait: f })), ...s.effets], p.etat, p.dm);
-  r.revele.push(...p.etat.faits.slice(avant));
+  r.paroles = 1;
+  // Les effets d'un sujet passent par le même chemin qu'une action : paliers de jauge, événements, quêtes, rencontres, fin.
+  appliquer(p, r, [...s.revele.map((f) => ({ fait: f })), ...s.effets]);
+  suites(p, r);
   return r;
 }
 
@@ -101,6 +103,7 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   const pnj = present(p, id);
   if (!('sujets' in pnj)) return pnj;
   const r = vide();
+  r.paroles = 0;
   const a = attitude(p, pnj);
   const acteur = choisirOrateur(p, maniere, options.personnage);
   if (!acteur) return { ...vide(), ok: false, refus: 'Personne ne peut le tenter.' };
@@ -120,20 +123,22 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
     if (!jet(p, r, acteur, comp, dd)) {
       r.ok = true;
       r.constats.push(`${pnj.nom} ne dit rien.`);
-      appliquerEffets([{ attitude: { pnj: pnj.id, delta: maniere === 'intimidation' ? -10 : -5 } }], p.etat, p.dm);
+      appliquer(p, r, [{ attitude: { pnj: pnj.id, delta: maniere === 'intimidation' ? -10 : -5 } }]);
+      suites(p, r);
       return r;
     }
-    appliquerEffets([{ fait: sec.fait }], p.etat, p.dm);
-    r.revele.push(sec.fait);
+    appliquer(p, r, [{ fait: sec.fait }]);
     r.constats.push(`${pnj.nom} finit par parler.`);
+    suites(p, r);
     return r;
   }
 
   const reussi = jet(p, r, acteur, maniere, ddInfluence(a));
   // L'intimidation fait obéir mais n'attire pas la sympathie ; la tromperie découverte coûte cher.
   const delta = reussi ? (maniere === 'intimidation' ? -5 : 10) : maniere === 'tromperie' ? -15 : maniere === 'intimidation' ? -10 : -5;
-  appliquerEffets([{ attitude: { pnj: pnj.id, delta } }], p.etat, p.dm);
+  appliquer(p, r, [{ attitude: { pnj: pnj.id, delta } }]);
   r.constats.push(`${acteur.nom} ${reussi ? 'convainc' : 'ne convainc pas'} ${pnj.nom} (attitude ${attitude(p, pnj)}).`);
+  suites(p, r);
   return r;
 }
 

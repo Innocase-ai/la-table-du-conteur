@@ -15,7 +15,7 @@ export function partieMonde(t: Transaction): PartieExploration {
 export function verser(t: Transaction, cr: CompteRendu, options: { voix?: string; sansConstats?: boolean } = {}): void | { refus: string } {
   if (!cr.ok && !cr.jets.length && cr.refus) return { refus: cr.refus };
   for (const j of cr.jets) t.emettre({ type: 'jet', jet: j });
-  for (const n of cr.narrations) t.emettre({ type: 'texte', texte: n, ...(options.voix ? { voix: options.voix } : {}) });
+  cr.narrations.forEach((n, i) => t.emettre({ type: 'texte', texte: n, ...(options.voix && i < (cr.paroles ?? Infinity) ? { voix: options.voix } : {}) }));
   if (!options.sansConstats) for (const c of cr.constats) t.emettre({ type: 'constat', texte: c });
   if (cr.refus) t.emettre({ type: 'constat', texte: cr.refus });
   if (cr.fin) t.partie.scene = { type: 'fin', fin: cr.fin };

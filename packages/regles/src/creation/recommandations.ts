@@ -136,7 +136,10 @@ export function recommanderEspece(c: ChoixPartiel & { niveau: number }, donnees:
   res.choix = choix;
   if (espece.traits.some((t) => t.id === 'polyvalent')) {
     const style = (c.dons ?? []).filter((id) => donnees.dons.get(id)?.categorie !== 'origines');
-    res.dons = [...style, 'vigilant'];
+    // Vigilant, sauf si l'historique le donne déjà (un don non répétable ne se prend qu'une fois) : alors Robuste, ou le premier don d'origine libre.
+    const dejaDonne = c.historique ? donnees.historiques.get(c.historique)?.don : undefined;
+    const origine = ['vigilant', 'robuste', ...[...donnees.dons.values()].filter((d) => d.categorie === 'origines').map((d) => d.id)].find((id) => id !== dejaDonne && donnees.dons.has(id))!;
+    res.dons = [...style, origine];
   }
   void ex;
   return res;

@@ -16,6 +16,9 @@ function groupe(): Personnage[] {
 
 const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
 
+/** Une rencontre aléatoire (une fois sur trois à l'arrivée) est écartée : le test porte sur autre chose. */
+const calme = (p: Partie): Partie => (p.scene.type === 'rencontre' ? moteur.executer(p, { type: 'reglerRencontre', issue: 'fuite' }).partie : p);
+
 function depart(graine = 1234): Partie {
   return moteur.executer(moteur.nouvellePartie(groupe(), { graine, niveau: 3 }), { type: 'commencer' }).partie;
 }
@@ -124,7 +127,7 @@ describe('noyau : modules et réactions', () => {
   });
 
   it('dialogue : la conversation est une scène ; la vue donne les sujets ; un sujet parle dans la voix du PNJ', () => {
-    let p = moteur.executer(depart(), { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
+    let p = calme(moteur.executer(depart(), { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie);
     const salut = moteur.executer(p, { type: 'parler', pnj: 'vei-nerio-braisemolle' });
     p = salut.partie;
     expect(p.scene).toEqual({ type: 'dialogue', pnj: 'vei-nerio-braisemolle' });
@@ -147,7 +150,8 @@ describe('noyau : modules et réactions', () => {
     const fin = moteur.executer(p, { type: 'reglerRencontre', issue: 'victoire', px: 150, heros: { bran: { pv: 10, ressources: { potions: 0 } } } });
     expect(fin.partie.scene).toEqual({ type: 'exploration' });
     expect(fin.partie.groupe.find((a) => a.id === 'bran')!.pv).toBe(10);
-    expect(fin.evenements).toContainEqual(expect.objectContaining({ type: 'xp', delta: 150 }));
+    // L'XP d'un combat se partage entre les héros (SRD 5.2.1).
+    expect(fin.evenements).toContainEqual(expect.objectContaining({ type: 'xp', delta: Math.floor(150 / p.groupe.length) }));
     expect(fin.evenements).toContainEqual(expect.objectContaining({ type: 'pvChange', personnage: 'bran', apres: 10 }));
     expect(fin.evenements).toContainEqual({ type: 'ressourceChange', personnage: 'bran', ressource: 'potions', avant: 1, apres: 0 });
   });
@@ -173,10 +177,11 @@ describe('noyau : propositions (boutons générés depuis les commandes)', () =>
   });
 
   it('en conversation, seuls les sujets, l’influence et « terminer » ; pendant une rencontre, seulement la rencontre', () => {
-    let p = moteur.executer(depart(), { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
+    let p = calme(moteur.executer(depart(), { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie);
     p = moteur.executer(p, { type: 'parler', pnj: 'vei-nerio-braisemolle' }).partie;
     const dialogue = moteur.propositions(p);
-    expect(new Set(dialogue.map((x) => x.groupe.id))).toEqual(new Set(['dialogue']));
+    // La boutique et les services du PNJ s'affichent aussi pendant la conversation.
+    expect(new Set(dialogue.filter((x) => !x.groupe.onglet).map((x) => x.groupe.id).filter((g) => !['boutique', 'rachat', 'services'].includes(g)))).toEqual(new Set(['dialogue']));
     expect(dialogue.some((x) => x.ordre?.type === 'parler' && x.ordre.sujet === 'les-accusations')).toBe(true);
 
     let r = moteur.executer(depart(), { type: 'aller', vers: 'le-gue' }).partie;

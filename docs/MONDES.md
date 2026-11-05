@@ -76,6 +76,17 @@ Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), 
 
 Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `escorte` (le PNJ suit le groupe et est présent partout ; `actif: false` l'arrête), `debloquer`, `rencontre`, `fin`, `narration`. L'effet `rencontre` **déclenche** la rencontre (combat compris) à la fin de l'action en cours ; une rencontre que son lieu déclare `unique` et qui a déjà été jouée ne se relance pas. C'est ainsi qu'un échec d'énigme ou un piège lance un combat.
 
+## Ce que le moteur fait des données (audit du 05/11/2026)
+
+- **Boutiques** (`boutique.stock`, `tables`, `rachat`, `types`) : pendant une conversation avec le marchand, ses articles (quantités limitées ; prix donné ou valeur de l'objet), ce qu'il rachète (valeur × `rachat`, seulement les catégories de `types` ; vide = tout ; jamais un objet de quête) et ses **services** s'affichent à côté de la boîte de dialogue (module `commerce` : `acheter`, `vendre`, `payerService`). Un service paie son prix, raconte son résumé et applique ses effets ; d'après son identifiant, `soins…`/`guerison…` rend tous les PV du groupe, `chambre`/`dortoir`/`abri`/`refuge`/`hospitalite` donne une nuit de repos même là où l'on ne peut pas dormir, `identification…` identifie les objets du sac. Vérifier que les `types` d'une boutique couvrent ce qu'elle vend si elle doit le racheter.
+- **Quêtes proposées** : un effet `{ quete: { statut: "proposee" } }` la propose ; le joueur l'accepte (bouton « Accepter : … », commande `accepterQuete`), seulement si son `prerequis` est rempli. Le validateur signale (erreur) une quête que rien ne propose ni n'active.
+- **Rencontres sociales et d'exploration** : elles ouvrent la scène de rencontre avec leurs `alternatives` (dont la `condition` est remplie) ; une issue ratée ne se retente pas ; « Passer son chemin » pour s'en aller. Sans alternative, ce n'est qu'un récit. Une rencontre `aleatoire` survient une fois sur trois en arrivant au lieu ou en s'y reposant.
+- **Temps** : un lien a des `heures` de trajet ; elles font avancer l'heure, et passer minuit commence un nouveau jour (évolutions de jauge et événements `jour`). Une nuit de repos mène au matin (8 h). Les `presences` des PNJ (`jour` de 6 h à 17 h, `soir` de 18 h à 21 h, `nuit`) en tiennent compte.
+- **Événement `condition` avec un `lieu`** : il ne se joue que dans ce lieu.
+- **Dialogue** : les effets d'un sujet passent par le même chemin qu'une action (paliers de jauge, événements, quêtes, rencontres, **fin** : elle s'affiche aussitôt). Un PNJ qui a un **secret** propose une réplique pour insister (jet, attitude ou prix), sans en dévoiler le contenu.
+- **Défaite** au combat : les héros reviennent à 1 PV huit heures plus tard, délestés de la moitié de l'or ; la rencontre attend toujours.
+- **Pas encore lus par le moteur** : `Pnj.compagnon` (recrutement), `Pnj.profilCombat` et `monstres[].pnj`, `RencontreMonde.tactique` et `butin.tresors`, `Fin.consequences`, `Objet.usage.type = "charges"`, `Piege.etats`.
+
 ## Énigmes : solution et réponse du joueur
 
 Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté au type (le texte libre ne sert qu'aux deux premiers) :

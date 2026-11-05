@@ -1,6 +1,7 @@
 // Module Dialogue : parler aux PNJ présents (sujets), les influencer (persuader, intimider, tromper).
 import { z } from 'zod';
 import { ddInfluence, influencer, parler, pnjPresents, sujetsDisponibles, attitude } from '../monde/dialogue';
+import { evaluerCondition } from '../monde/etat';
 import { commande, type Module } from '../noyau/types';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
 import type { ContexteJeu, Partie } from '../noyau/types';
@@ -37,7 +38,8 @@ export const moduleDialogue: Module = {
         // Sans sujet, la liste technique des sujets est pour le conteur (vue « interlocuteur »), pas pour le récit.
         const r = verser(t, parler(partieMonde(t), e.pnj, e.sujet), { voix: nom, sansConstats: !e.sujet });
         if (r) return r;
-        t.partie.scene = { type: 'dialogue', pnj: e.pnj };
+        // Une fin ou une rencontre déclenchée par la conversation l'emporte sur la conversation.
+        if (t.partie.scene.type !== 'fin' && t.partie.scene.type !== 'rencontre') t.partie.scene = { type: 'dialogue', pnj: e.pnj };
       },
       propositions: (ctx, p) => {
         // En exploration : les personnes présentes ; en conversation : les sujets que le PNJ accepte d'aborder.
@@ -75,7 +77,7 @@ export const moduleDialogue: Module = {
           intimidation: `Le faire plier par la menace (Intimidation, DD ${dd}). Il cède, mais vous apprécie moins ; raté, il s’en souvient.`,
           tromperie: `Le mener en bateau (Tromperie, DD ${dd}). Réussi, il vous croit ; découvert, il vous en veut beaucoup.`,
         } as const;
-        return (Object.keys(etiquettes) as (keyof typeof etiquettes)[]).map((m) => ({
+        const base = (Object.keys(etiquettes) as (keyof typeof etiquettes)[]).map((m) => ({
           groupe: PANNEAUX.dialogue(i.nom),
           element: { id: 'influence', titre: 'Peser sur son attitude' },
           libelle: repliques[m],
@@ -85,6 +87,33 @@ export const moduleDialogue: Module = {
           style: 'discret' as const,
           ordre: { type: 'influencer', pnj: i.id, maniere: m },
         }));
+        // Un secret qu'il pourrait lâcher : une réplique pour insister, sans rien dire de ce qu'il cache.
+        const pnj = ctx.dm.pnj.get(i.id);
+        const sec = pnj?.secrets.find((s) => !p.etat.faits.includes(s.fait) && (!s.condition || evaluerCondition(s.condition, p.etat)));
+        if (!sec) return base;
+        const competence = sec.jet?.competence;
+        const maniere = competence === 'intimidation' || competence === 'tromperie' ? competence : 'persuasion';
+        const etiquette = sec.prix ? `Payer ${sec.prix} po` : competence === 'intimidation' ? 'Intimider' : competence === 'tromperie' ? 'Tromper' : competence && competence !== 'persuasion' ? 'Insister' : 'Persuader';
+        const libelle = sec.prix
+          ? 'Glisser quelques pièces : il en sait plus qu’il ne le dit.'
+          : maniere === 'intimidation'
+            ? 'Assez de détours. Ce que vous cachez, maintenant.'
+            : maniere === 'tromperie'
+              ? 'On nous a déjà tout raconté ; confirmez seulement.'
+              : 'Vous en savez plus que vous ne le dites. Faites-nous confiance.';
+        const trop = sec.attitudeMin !== undefined && i.attitude < sec.attitudeMin && !sec.jet;
+        return [
+          ...base,
+          {
+            groupe: PANNEAUX.dialogue(i.nom),
+            libelle,
+            etiquette,
+            icone: icones[maniere],
+            aide: sec.prix ? `Payer ${sec.prix} po pour qu'il parle.` : `Tenter de lui faire dire ce qu'il cache (${competence ?? maniere}${sec.jet ? `, DD ${sec.jet.dd}` : `, DD ${dd}`}).`,
+            ordre: { type: 'influencer', pnj: i.id, maniere, secret: sec.fait },
+            desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined,
+          },
+        ];
       },
     }),
     quitterDialogue: commande({

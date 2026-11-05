@@ -11,6 +11,7 @@ const NOMS_RESSOURCES: Record<string, string> = {
   fougue: 'Fougue',
   rages: 'Rages',
   conduit: 'Conduit divin',
+  desVie: 'Dés de vie',
 };
 
 /** Ressources d'un héros en une ligne : potions, emplacements de sorts restants, usages d'aptitudes. */

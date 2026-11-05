@@ -240,7 +240,38 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
   for (const a of classe.aptitudes) if (a.niveau <= niveau) ajouter(classe.nom, a);
   if (niveau >= 3) for (const a of classe.sousClasse.aptitudes) if (a.niveau <= niveau) ajouter(classe.sousClasse.nom, a);
 
-  const idsDons = [historique.don, ...(choix.dons ?? [])];
+  // Les dons choisis : le moteur les vérifie lui-même (pas seulement l'écran de création). Un don d'origine en plus si
+  // l'espèce l'accorde (Polyvalent), un style de combat si la classe en donne un, pas de doublon sauf don répétable, ni don
+  // général (pas encore à la place d'une amélioration), ni faveur épique. Un don en trop est ignoré, avec un avertissement :
+  // un groupe déjà créé reste jouable.
+  const donsRetenus: string[] = [];
+  {
+    const permis: Record<string, number> = {
+      origines: espece.traits.some((t) => t.id === 'polyvalent' && t.niveau <= niveau) ? 1 : 0,
+      'style-de-combat': Math.min(1, classe.aptitudes.filter((a) => a.id === 'style-de-combat' && a.niveau <= niveau).length),
+      general: 0,
+      'faveur-epique': 0,
+    };
+    const pris: Record<string, number> = {};
+    for (const id of choix.dons ?? []) {
+      const d = donnees.dons.get(id);
+      if (!d) {
+        donsRetenus.push(id); // l'erreur « don inconnu » est donnée plus bas
+        continue;
+      }
+      if (!d.repetable && (id === historique.don || donsRetenus.includes(id))) {
+        avertissements.push(`Don « ${d.nom} » en double : ignoré (il ne se prend qu'une fois).`);
+        continue;
+      }
+      if ((pris[d.categorie] ?? 0) >= (permis[d.categorie] ?? Infinity)) {
+        avertissements.push(`Don « ${d.nom} » : pas de place pour un don de cette catégorie à ce niveau, ignoré.`);
+        continue;
+      }
+      pris[d.categorie] = (pris[d.categorie] ?? 0) + 1;
+      donsRetenus.push(id);
+    }
+  }
+  const idsDons = [historique.don, ...donsRetenus];
   for (const id of idsDons) {
     const don = donnees.dons.get(id);
     if (!don) {

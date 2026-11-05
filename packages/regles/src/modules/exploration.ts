@@ -15,6 +15,7 @@ import {
   seReposer,
   testLibre,
 } from '../monde/exploration';
+import { evaluerCondition } from '../monde/etat';
 import { formulaireEnigme } from '../monde/reponses';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
@@ -240,7 +241,7 @@ export const moduleExploration: Module = {
     reglerRencontre: commande({
       description: "Régler la rencontre en cours : victoire (après le combat), autre issue (négocier, ruser…) ou repli.",
       entree: z.object({
-        issue: z.enum(['victoire', 'alternative', 'fuite']),
+        issue: z.enum(['victoire', 'alternative', 'fuite', 'defaite']),
         alternative: z.string().optional(),
         personnage: Personnage,
         px: z.number().int().min(0).optional(),
@@ -259,7 +260,9 @@ export const moduleExploration: Module = {
             ? { type: 'victoire' as const, px: e.px }
             : e.issue === 'fuite'
               ? { type: 'fuite' as const }
-              : { type: 'alternative' as const, id: e.alternative ?? '', personnage: e.personnage };
+              : e.issue === 'defaite'
+                ? { type: 'defaite' as const }
+                : { type: 'alternative' as const, id: e.alternative ?? '', personnage: e.personnage };
         const cr = issueRencontre(partieMonde(t), scene.rencontre, issue);
         if (!cr.ok && !cr.jets.length) return { refus: cr.refus ?? 'Impossible.' };
         // La rencontre est réglée, sauf si une autre issue a échoué : le combat attend toujours.
@@ -273,14 +276,23 @@ export const moduleExploration: Module = {
         const groupe = { id: 'rencontre', titre: r.nom, ordre: 0, danger: true };
         return [
           ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', icone: 'base:combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
-          ...r.alternatives.map((a) => ({
+          ...r.alternatives
+            .filter((a) => !a.condition || evaluerCondition(a.condition, p.etat))
+            .map((a) => ({
+              groupe,
+              libelle: a.nom,
+              detail: a.jet ? `${a.jet.competence}` : undefined,
+              aide: a.resume,
+              ordre: { type: 'reglerRencontre', issue: 'alternative', alternative: a.id },
+              desactivee: p.etat.exploration.essais?.includes(`${r.id}:${a.id}`) ? 'Déjà tenté, sans succès.' : undefined,
+            })),
+          {
             groupe,
-            libelle: a.nom,
-            detail: a.jet ? `${a.jet.competence}` : undefined,
-            aide: a.resume,
-            ordre: { type: 'reglerRencontre', issue: 'alternative', alternative: a.id },
-          })),
-          { groupe, libelle: 'Se replier', icone: 'base:desengager', style: 'discret' as const, ordre: { type: 'reglerRencontre', issue: 'fuite' } },
+            libelle: r.type === 'combat' || r.type === 'mixte' ? 'Se replier' : 'Passer son chemin',
+            icone: 'base:desengager',
+            style: 'discret' as const,
+            ordre: { type: 'reglerRencontre', issue: 'fuite' },
+          },
         ];
       },
     }),

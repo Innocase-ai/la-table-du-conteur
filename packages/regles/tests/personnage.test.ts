@@ -44,7 +44,7 @@ describe('personnage unifié', () => {
     const bran = perso('Bran');
     bran.ressources = { potions: 0, secondSouffle: 0, fougue: 0 };
     recuperer(bran, 'court', gen);
-    expect(bran.ressources).toEqual({ potions: 0, secondSouffle: 1, fougue: 1 });
+    expect(bran.ressources).toMatchObject({ potions: 0, secondSouffle: 1, fougue: 1 });
     const ambrine = perso('Ambrine');
     const max = [...ambrine.emplacements];
     ambrine.emplacements = max.map(() => 0);
@@ -54,6 +54,20 @@ describe('personnage unifié', () => {
     expect(ambrine.emplacements).toEqual(max);
   });
 
+  it('repos court : les dés de vie se dépensent pour soigner, et s’épuisent ; le repos long les rend tous', () => {
+    const grukk = perso('Grukk');
+    grukk.pv = 1;
+    grukk.ressources.desVie = 1;
+    recuperer(grukk, 'court', gen);
+    expect(grukk.ressources.desVie).toBe(0);
+    const apres = grukk.pv;
+    expect(apres).toBeLessThanOrEqual(1 + grukk.fiche.deVie + grukk.fiche.caracteristiques.con.modificateur);
+    recuperer(grukk, 'court', gen);
+    expect(grukk.pv).toBe(apres); // plus de dé : une halte ne soigne plus
+    recuperer(grukk, 'long', gen);
+    expect(grukk.ressources.desVie).toBe(grukk.fiche.niveau);
+  });
+
   it('repos long : PV et usages au maximum ; les potions ne reviennent pas', () => {
     const grukk = perso('Grukk');
     const rages = grukk.ressources.rages!;
@@ -61,7 +75,7 @@ describe('personnage unifié', () => {
     grukk.ressources = { potions: 0, rages: 0 };
     const changes = recuperer(grukk, 'long', gen);
     expect(grukk.pv).toBe(grukk.fiche.pvMax);
-    expect(grukk.ressources).toEqual({ potions: 0, rages });
+    expect(grukk.ressources).toEqual({ potions: 0, rages, desVie: grukk.fiche.niveau });
     expect(changes.join(' ')).toMatch(/PV/);
   });
 });

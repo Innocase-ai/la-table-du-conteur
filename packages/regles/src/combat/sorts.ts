@@ -3,7 +3,8 @@
 import type { Sort } from '../schemas';
 import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
-import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, sauvegarde, soigner, emplacementDisponible } from './moteur';
+import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible } from './moteur';
+import { franchissable } from './grille';
 
 /** Sorts que le moteur de combat sait jouer fidèlement (les autres figurent sur la fiche, marqués « non jouable en combat »). */
 export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
@@ -74,7 +75,7 @@ export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, ni
     if (lanceur.concentration) finConcentration(etat, lanceur);
     lanceur.concentration = { sort: sort.id, cibles: (cible.cibles ?? []).map((c) => c.id) };
   }
-  const gestionnaire = sort.special ? SPECIAUX[sort.special] : undefined;
+  const gestionnaire = sort.special ? SPECIAUX[sort.special] : SPECIAUX[sort.id];
   if (gestionnaire) gestionnaire(etat, lanceur, sort, niveau, cible);
   else resolutionGenerique(etat, lanceur, sort, niveau, cible);
 }
@@ -110,7 +111,8 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
     } else if (r?.type === 'sauvegarde') {
       // Le demi-couvert aide à la sauvegarde de Dextérité contre l'effet, depuis son origine (le point visé d'une zone, sinon le lanceur).
       const origine = sort.zone && cible.point && sort.portee.type !== 'personnel' ? cible.point : lanceur.position;
-      const bonusCouvert = couvertSauvegarde(etat, c, r.caracteristique, origine);
+      // Flamme sacrée ignore les abris (SRD 5.2.1).
+      const bonusCouvert = sort.id === 'flamme-sacree' ? 0 : couvertSauvegarde(etat, c, r.caracteristique, origine);
       const reussite = sauvegarde(etat, c, r.caracteristique, inc.dd, bonusCouvert);
       journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}${bonusCouvert ? ' (à couvert, +2)' : ''}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: !sort.zone && sort.portee.type === 'distance' } });
       const appuye = sort.niveau === 0 && lanceur.traits.includes('sort-mineur-appuye');
@@ -118,6 +120,7 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
       if (facteur > 0 && des.length) {
         infligerDegats(etat, c, des.map((d) => ({ montant: Math.floor((lancerDes(etat, d.des) + d.bonus) * facteur), type: d.type })), lanceur);
       }
+      if (!reussite && sort.id === 'vague-tonnante') repousser(etat, lanceur.position, c, 2);
       if (!reussite) {
         for (const e of sort.etats) {
           ajouterEtat(etat, c, {
@@ -143,11 +146,43 @@ function effetsSecondaires(etat: EtatCombat, lanceur: Combattant, sort: Sort, c:
     c.modificateurs.push({ id: 'rayon-de-givre', type: 'vitesse', valeur: -3, source: lanceur.id, expire: { moment: 'debut_tour', de: lanceur.id } });
   }
   if (sort.id === 'eclair-tracant') {
-    c.modificateurs.push({ id: 'eclair-tracant', type: 'avantage_contre', source: lanceur.id, usageUnique: true, expire: { moment: 'fin_tour', de: lanceur.id } });
-    // L'avantage dure jusqu'à la fin du prochain tour du lanceur.
-    c.modificateurs[c.modificateurs.length - 1]!.expire = undefined;
+    // Jusqu'à la fin du prochain tour du lanceur (on laisse passer la fin de ce tour-ci).
+    c.modificateurs.push({ id: 'eclair-tracant', type: 'avantage_contre', source: lanceur.id, usageUnique: true, expire: { moment: 'fin_tour', de: lanceur.id, apres: 1 } });
   }
 }
+
+/** Déplacement forcé : la cible s'éloigne de `depuis` de `cases` cases au plus, arrêtée par un mur ou une créature. */
+function repousser(etat: EtatCombat, depuis: Position, c: Combattant, cases: number): void {
+  if (c.mort) return;
+  const dx = Math.sign(c.position.x - depuis.x);
+  const dy = Math.sign(c.position.y - depuis.y);
+  const occ = occupation(etat, c);
+  const chemin: Position[] = [];
+  for (let i = 0; i < cases; i++) {
+    const p = { x: c.position.x + dx, y: c.position.y + dy };
+    if (p.x < 0 || p.y < 0 || p.x >= etat.grille.largeur || p.y >= etat.grille.hauteur) break;
+    if (!franchissable(etat.grille.cases[p.y * etat.grille.largeur + p.x] ?? 'mur') || occ.occupees.has(cle(p))) break;
+    c.position = p;
+    chemin.push(p);
+  }
+  if (chemin.length) journaliser(etat, { type: 'deplacement', texte: `${c.nom} est repoussé.`, acteur: c.id, details: { chemin } });
+}
+
+/** Bouclier en réaction contre Projectile magique : il annule les dards (SRD 5.2.1). */
+function bouclierContreProjectiles(etat: EtatCombat, c: Combattant): boolean {
+  if (c.modificateurs.some((m) => m.id === 'bouclier')) return true;
+  if (!c.sorts.includes('bouclier') || !c.ressources.reaction || !peutAgir(c)) return false;
+  const niveau = emplacementDisponible(c, 1);
+  if (!niveau) return false;
+  c.incantation!.emplacements[niveau - 1]! -= 1;
+  c.ressources.reaction = 0;
+  c.modificateurs.push({ id: 'bouclier', type: 'bonus_ca', valeur: 5, source: c.id, expire: { moment: 'debut_tour', de: c.id } });
+  journaliser(etat, { type: 'sort', texte: `${c.nom} lance Bouclier : les projectiles magiques s'y brisent.`, acteur: c.id, details: { sort: 'bouclier' } });
+  return true;
+}
+
+// « Assourdi » n'est pas un état du moteur : les trois autres le sont.
+const ETATS_RESTAURATION = ['aveugle', 'empoisonne', 'paralyse'] as const;
 
 type Gestionnaire = (etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort) => void;
 
@@ -157,6 +192,7 @@ const SPECIAUX: Record<string, Gestionnaire> = {
     const cibles = cible.cibles ?? [];
     for (let i = 0; i < n && cibles.length; i++) {
       const c = cibles[i % cibles.length]!;
+      if (bouclierContreProjectiles(etat, c)) continue;
       journaliser(etat, { type: 'attaque', texte: `Un projectile file vers ${c.nom}.`, acteur: lanceur.id, cible: c.id, details: { resultat: 'touche', distance: true, sort: sort.id } });
       infligerDegats(etat, c, [{ montant: lancerDes(etat, '1d4') + 1, type: 'force' }], lanceur);
     }
@@ -215,6 +251,15 @@ const SPECIAUX: Record<string, Gestionnaire> = {
       c.pvMax += bonus;
       if (c.pv > 0 || bonus > 0) soigner(etat, c, bonus, lanceur);
     }
+  },
+  // Restauration partielle : met fin à un état parmi Aveuglé, Assourdi, Empoisonné, Paralysé.
+  'restauration-partielle': (etat, lanceur, _sort, _niveau, cible) => {
+    const c = cible.cibles?.[0];
+    if (!c) return;
+    const e = ETATS_RESTAURATION.find((x) => c.etats.some((y) => y.etat === x));
+    if (!e) return journaliser(etat, { type: 'sort', texte: `${c.nom} n'a aucun mal que ce sort guérit.`, acteur: lanceur.id, cible: c.id });
+    retirerEtat(c, e);
+    journaliser(etat, { type: 'sort', texte: `${c.nom} est délivré : il n'est plus ${e === 'empoisonne' ? 'empoisonné' : e === 'paralyse' ? 'paralysé' : 'aveuglé'}.`, acteur: lanceur.id, cible: c.id });
   },
   sommeil: (etat, lanceur, sort, _niveau, cible) => {
     if (!cible.point) return;

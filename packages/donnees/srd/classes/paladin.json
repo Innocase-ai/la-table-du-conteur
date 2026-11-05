@@ -1,15 +1,39 @@
 {
   "id": "paladin",
   "nom": "Paladin",
-  "caracteristiquesPrincipales": { "mode": "et", "liste": ["for", "cha"] },
+  "caracteristiquesPrincipales": {
+    "mode": "et",
+    "liste": [
+      "for",
+      "cha"
+    ]
+  },
   "deVie": 10,
-  "sauvegardes": ["sag", "cha"],
+  "sauvegardes": [
+    "sag",
+    "cha"
+  ],
   "competences": {
     "nombre": 2,
-    "parmi": ["athletisme", "intimidation", "intuition", "medecine", "persuasion", "religion"]
+    "parmi": [
+      "athletisme",
+      "intimidation",
+      "intuition",
+      "medecine",
+      "persuasion",
+      "religion"
+    ]
   },
-  "maitrisesArmes": ["courantes", "guerre"],
-  "formationArmures": ["legere", "intermediaire", "lourde", "bouclier"],
+  "maitrisesArmes": [
+    "courantes",
+    "guerre"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "lourde",
+    "bouclier"
+  ],
   "outils": [],
   "equipementDepart": [
     {
@@ -24,45 +48,103 @@
       ],
       "po": 9
     },
-    { "id": "B", "objets": [], "po": 150 }
+    {
+      "id": "B",
+      "objets": [],
+      "po": 150
+    }
   ],
   "incantation": {
     "type": "demi",
     "caracteristique": "cha",
-    "sortsMineurs": [0, 0, 0, 0, 0],
-    "sortsPrepares": [2, 3, 4, 5, 6],
-    "emplacements": [[2], [2], [3], [3], [4, 2]]
+    "sortsMineurs": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "sortsPrepares": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ]
+    ]
   },
   "progression": [
     {
       "niveau": 1,
       "bonusMaitrise": 2,
-      "aptitudes": ["Bottes d’arme", "Imposition des mains", "Sorts"],
-      "colonnes": { "Conduit divin": "—" }
+      "aptitudes": [
+        "Bottes d’arme",
+        "Imposition des mains",
+        "Sorts"
+      ],
+      "colonnes": {
+        "Conduit divin": "—"
+      }
     },
     {
       "niveau": 2,
       "bonusMaitrise": 2,
-      "aptitudes": ["Châtiment de paladin", "Style de combat"],
-      "colonnes": { "Conduit divin": "—" }
+      "aptitudes": [
+        "Châtiment de paladin",
+        "Style de combat"
+      ],
+      "colonnes": {
+        "Conduit divin": "—"
+      }
     },
     {
       "niveau": 3,
       "bonusMaitrise": 2,
-      "aptitudes": ["Conduit divin", "Sous-classe de Paladin"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Conduit divin",
+        "Sous-classe de Paladin"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     },
     {
       "niveau": 4,
       "bonusMaitrise": 2,
-      "aptitudes": ["Amélioration de caractéristique"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     },
     {
       "niveau": 5,
       "bonusMaitrise": 3,
-      "aptitudes": ["Attaque supplémentaire", "Fidèle destrier"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Attaque supplémentaire",
+        "Fidèle destrier"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     }
   ],
   "aptitudes": [
@@ -113,7 +195,11 @@
       "nom": "Amélioration de caractéristique",
       "niveau": 4,
       "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
-      "effets": [{ "type": "amelioration_caracteristique" }]
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
     },
     {
       "id": "attaque-supplementaire",
@@ -139,7 +225,30 @@
         "nom": "Sorts du Serment de Dévotion",
         "niveau": 3,
         "resume": "Sorts toujours préparés : au niveau 3 bouclier de la foi et protection contre le mal et le bien ; au niveau 5 aide et zone de vérité.",
-        "effets": []
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "bouclier-de-la-foi",
+              "protection-contre-le-mal-et-le-bien"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-serment-de-devotion-niveau-5",
+        "nom": "Sorts du Serment de Dévotion (niveau 5)",
+        "niveau": 5,
+        "resume": "Sorts toujours préparés au niveau 5 : aide, zone de verite.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "aide",
+              "zone-de-verite"
+            ]
+          }
+        ]
       },
       {
         "id": "arme-sacree",

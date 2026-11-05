@@ -198,7 +198,14 @@
           "f-lot-pierre-cachee-chapelle",
           "f-pierre-de-rupture"
         ],
-        "effets": []
+        "effets": [
+          {
+            "quete": {
+              "id": "q-regente-la-pierre",
+              "statut": "active"
+            }
+          }
+        ]
       },
       {
         "id": "lot-aelis-cour",
@@ -857,6 +864,12 @@
         "effets": [
           {
             "flag": "lot-prisonnier-ecoute"
+          },
+          {
+            "quete": {
+              "id": "q-lot-prisonnier",
+              "statut": "active"
+            }
           }
         ]
       },

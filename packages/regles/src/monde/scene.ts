@@ -7,6 +7,7 @@ import { sortiesDe, type PartieMonde } from './exploration';
 
 export interface FicheScene {
   jour: number;
+  heure: number;
   lieu: { id: string; nom: string; type: string; resume: string; description: string; ambiance?: string; services: string[]; repos: string; parent?: string };
   sorties: { vers: string; nom: string; type: string; description?: string; apercu: string; visite: boolean; heures: number; etat: 'libre' | 'verrouille' | 'bloque'; dd?: number }[];
   pnj: { id: string; nom: string; role: string; attitude: number; sujets: number }[];
@@ -34,6 +35,7 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
   const faitsDuLieu = new Set([...l.faits.map((f) => f.fait), ...presents.flatMap((n) => [...n.savoir, ...n.sujets.flatMap((s) => s.revele)])]);
   return {
     jour: etat.jour,
+    heure: etat.heure ?? 8,
     lieu: { id: l.id, nom: l.nom, type: l.type, resume: l.resume, description: l.description, ambiance: l.ambiance, services: l.services, repos: l.repos, parent: l.parent },
     sorties: sortiesDe(p, l.id)
       .filter((s) => !s.cache)

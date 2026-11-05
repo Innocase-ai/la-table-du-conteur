@@ -30,6 +30,8 @@ export interface EtatExploration {
   fouilles: string[];
   /** Niveau d'indice déjà atteint par énigme (absent des sauvegardes anciennes). */
   indices?: Record<string, number>;
+  /** Autres issues de rencontre tentées sans succès : `<rencontre>:<alternative>` (on ne retente pas la même). */
+  essais?: string[];
 }
 
 export interface PartieMonde {
@@ -40,6 +42,11 @@ export interface PartieMonde {
 }
 
 export type { Jet };
+
+/** Le moment de la journée : jour de 6 h à 17 h, soir de 18 h à 21 h, nuit ensuite (présences des PNJ). */
+export function momentDe(heure = 8): 'jour' | 'soir' | 'nuit' {
+  return heure >= 6 && heure < 18 ? 'jour' : heure >= 18 && heure < 22 ? 'soir' : 'nuit';
+}
 
 /** Compte rendu d'un verbe : ce que le conteur doit raconter, rien de plus. */
 export interface CompteRendu {
@@ -57,6 +64,8 @@ export interface CompteRendu {
   combat?: string;
   /** Fin de l'histoire atteinte. */
   fin?: string;
+  /** Combien des premières narrations sont les paroles du PNJ (les suivantes, d'un événement ou d'un palier, sont du récit). */
+  paroles?: number;
 }
 
 export function etatExplorationVide(): EtatExploration {
@@ -107,7 +116,8 @@ function tester(p: PartieMonde, r: CompteRendu, a: Personnage, test: Competence 
   return jet;
 }
 
-function appliquer(p: PartieMonde, r: CompteRendu, effets: EffetMonde[]): void {
+/** Applique des effets du monde en versant au compte rendu ce qu'ils produisent (faits, narrations, paliers de jauge). */
+export function appliquer(p: PartieMonde, r: CompteRendu, effets: EffetMonde[]): void {
   const avant = { faits: p.etat.faits.length, narrations: p.etat.narrations.length, jauges: { ...p.etat.jauges } };
   appliquerEffets(effets, p.etat, p.dm);
   r.revele.push(...p.etat.faits.slice(avant.faits));
@@ -134,8 +144,8 @@ function changerJauge(p: PartieMonde, r: CompteRendu, id: string, delta: number)
   appliquer(p, r, [{ jauge: { id, delta } }]);
 }
 
-/** Événements, évolutions de jauge sur condition, quêtes et fin : à vérifier après chaque action. */
-function suites(p: PartieMonde, r: CompteRendu): void {
+/** Événements, évolutions de jauge sur condition, quêtes et fin : à vérifier après chaque action (exploration et dialogue). */
+export function suites(p: PartieMonde, r: CompteRendu): void {
   for (let tour = 0; tour < 10; tour++) {
     let change = false;
     for (const j of p.dm.jauges.values()) {
@@ -148,14 +158,20 @@ function suites(p: PartieMonde, r: CompteRendu): void {
       });
     }
     for (const ev of p.dm.evenements.values()) {
-      if (ev.declencheur !== 'condition' || !jouable(p, ev.id, ev.unique, ev.condition)) continue;
+      // Un événement attaché à un lieu ne se joue que là.
+      if (ev.declencheur !== 'condition' || (ev.lieu && ev.lieu !== p.etat.lieu) || !jouable(p, ev.id, ev.unique, ev.condition)) continue;
       jouerEvenement(p, r, ev.id);
       change = true;
     }
     if (!change) break;
   }
-  lancerRencontresEnAttente(p, r);
+  // Les étapes et récompenses de quête ont leurs effets : leurs narrations, faits et paliers vont au compte rendu.
+  const avantQuetes = { faits: p.etat.faits.length, narrations: p.etat.narrations.length, jauges: { ...p.etat.jauges } };
   avancerQuetes(p.etat, p.dm);
+  r.revele.push(...p.etat.faits.slice(avantQuetes.faits));
+  r.narrations.push(...p.etat.narrations.slice(avantQuetes.narrations));
+  for (const [id, v] of Object.entries(p.etat.jauges)) if (v !== avantQuetes.jauges[id]) franchirPaliers(p, r, id, avantQuetes.jauges[id] ?? 0, v);
+  lancerRencontresEnAttente(p, r);
   if (!p.etat.fin) {
     for (const f of p.dm.fins.values()) {
       if (evaluerCondition(f.condition, p.etat)) {
@@ -317,18 +333,25 @@ function entrer(p: PartieMonde, r: CompteRendu, lieu: Lieu): void {
 function declencherRencontre(p: PartieMonde, r: CompteRendu, lieu: Lieu, declencheur: 'entree' | 'exploration' | 'repos'): void {
   if (r.combat) return;
   for (const rc of lieu.rencontres) {
-    if (rc.declencheur !== declencheur) continue;
+    // Une rencontre « aléatoire » survient une fois sur trois en arrivant au lieu ou en s'y reposant.
+    if (rc.declencheur === 'aleatoire') {
+      if (declencheur === 'exploration' || lancer('1d6', p.gen).total > 2) continue;
+    } else if (rc.declencheur !== declencheur) continue;
     if (rc.unique && p.etat.rencontresFaites.includes(rc.id)) continue;
     if (rc.condition && !evaluerCondition(rc.condition, p.etat)) continue;
     if (lancerRencontre(p, r, rc.id)) return;
   }
 }
 
-/** Met la rencontre en scène : son introduction, et le combat si c'en est un. */
+/**
+ * Met la rencontre en scène : son introduction, puis la scène de rencontre (combattre, une autre issue, se replier). Une
+ * rencontre sociale ou d'exploration sans autre issue n'est qu'un récit : elle est faite aussitôt.
+ */
 function lancerRencontre(p: PartieMonde, r: CompteRendu, id: string): boolean {
   const def = p.dm.rencontres.get(id);
   if (!def) return false;
-  if (def.type === 'combat' || def.type === 'mixte') r.combat = id;
+  if (def.type === 'combat' || def.type === 'mixte' || def.alternatives.length) r.combat = id;
+  else if (!p.etat.rencontresFaites.includes(id)) p.etat.rencontresFaites.push(id);
   r.constats.push(`Rencontre : ${def.nom}.`);
   r.narrations.push(def.intro);
   return true;
@@ -366,9 +389,28 @@ export function aller(p: PartieMonde, vers: string): CompteRendu {
     return refus(`Le passage vers ${s.nom} est verrouillé (DD ${s.verrou.dd}${s.verrou.cle ? `, clé : ${p.dm.objets.get(s.verrou.cle)?.nom ?? s.verrou.cle}` : ''}).`);
   }
   const r = resultat();
+  if (s.heures) avancerHeures(p, r, s.heures);
   entrer(p, r, p.dm.lieux.get(vers)!);
   suites(p, r);
   return r;
+}
+
+/** Le temps passe (un trajet) : à minuit, un nouveau jour commence, avec ses évolutions de jauge et ses événements. */
+export function avancerHeures(p: PartieMonde, r: CompteRendu, heures: number): void {
+  let h = (p.etat.heure ?? 8) + heures;
+  while (h >= 24) {
+    h -= 24;
+    p.etat.jour += 1;
+    r.constats.push(`Le jour se lève : jour ${p.etat.jour}.`);
+    nouveauJour(p, r, false);
+  }
+  p.etat.heure = h;
+}
+
+/** Ce qu'apporte un nouveau jour : évolutions de jauge « jour » (et « repos-long » après une nuit de repos), événements. */
+function nouveauJour(p: PartieMonde, r: CompteRendu, repos: boolean): void {
+  for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if ((repos && ev.declencheur === 'repos-long') || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
+  for (const ev of p.dm.evenements.values()) if (((repos && ev.declencheur === 'repos') || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === p.etat.lieu) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
 }
 
 // ---------------------------------------------------------------------------
@@ -631,11 +673,12 @@ export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, per
 /** Le refus d'une nuit hors d'un lieu sûr (le conteur le raconte ; le bouton « Dormir » le dit au joueur). */
 export const MESSAGE_PAS_DE_NUIT = (lieu: string) => `On ne dort pas ici (${lieu}) : trop exposé. Une halte est possible ; pour une nuit entière, il faut un abri sûr (auberge, camp, refuge).`;
 
-export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu {
+/** `abri` : une nuit payée à un PNJ (chambre, refuge) se passe chez lui, quel que soit le lieu. */
+export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { abri?: boolean } = {}): CompteRendu {
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
-  if (lieu.repos === 'impossible') return refus(`Impossible de se reposer ici (${lieu.nom}).`);
+  if (lieu.repos === 'impossible' && !options.abri) return refus(`Impossible de se reposer ici (${lieu.nom}).`);
   // Une halte (repos court) se fait presque partout ; une nuit entière demande un abri sûr : auberge, camp, refuge.
-  if (duree === 'long' && lieu.repos !== 'sur') return refus(MESSAGE_PAS_DE_NUIT(lieu.nom));
+  if (duree === 'long' && lieu.repos !== 'sur' && !options.abri) return refus(MESSAGE_PAS_DE_NUIT(lieu.nom));
   const r = resultat();
   // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
   for (const a of p.groupe) {
@@ -644,9 +687,9 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu 
   }
   if (duree === 'long') {
     p.etat.jour += 1;
+    p.etat.heure = 8;
     r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
-    for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if (ev.declencheur === 'repos-long' || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
-    for (const ev of p.dm.evenements.values()) if ((ev.declencheur === 'repos' || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === lieu.id) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
+    nouveauJour(p, r, true);
   } else if (!r.constats.length) r.constats.push('Une courte halte.');
   declencherRencontre(p, r, lieu, 'repos');
   suites(p, r);
@@ -654,10 +697,25 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long'): CompteRendu 
 }
 
 /** Issue d'une rencontre : victoire (combat gagné), alternative réussie (négocier, ruser…) ou fuite. */
-export function issueRencontre(p: PartieMonde, rencontre: string, issue: { type: 'victoire'; px?: number } | { type: 'alternative'; id: string; personnage?: string } | { type: 'fuite' }): CompteRendu {
+export function issueRencontre(
+  p: PartieMonde,
+  rencontre: string,
+  issue: { type: 'victoire'; px?: number } | { type: 'alternative'; id: string; personnage?: string } | { type: 'fuite' } | { type: 'defaite' },
+): CompteRendu {
   const def = p.dm.rencontres.get(rencontre);
   if (!def) return refus(`Rencontre inconnue : ${rencontre}.`);
   const r = resultat();
+  // Défaite : le groupe n'est pas achevé (l'histoire continue), mais il paie. Les héros reviennent à 1 PV des heures plus
+  // tard, dépouillés de la moitié de leur or ; la rencontre n'est pas faite (elle attend toujours au même endroit).
+  if (issue.type === 'defaite') {
+    for (const a of p.groupe) a.pv = Math.max(1, a.pv);
+    const perte = Math.floor(p.etat.pieces / 2);
+    p.etat.pieces -= perte;
+    r.constats.push(`Défaite : ${def.nom}. Le groupe reprend connaissance bien plus tard, meurtri${perte ? `, et délesté de ${perte} po` : ''}.`);
+    avancerHeures(p, r, 8);
+    suites(p, r);
+    return r;
+  }
   if (issue.type === 'fuite') {
     r.constats.push(`Le groupe se dérobe à ${def.nom}.`);
     return r;
@@ -666,13 +724,17 @@ export function issueRencontre(p: PartieMonde, rencontre: string, issue: { type:
     const alt = def.alternatives.find((x) => x.id === issue.id);
     if (!alt) return refus(`Pas d'issue « ${issue.id} » pour ${def.nom}.`);
     if (alt.condition && !evaluerCondition(alt.condition, p.etat)) return refus(`${alt.nom} : ce n'est pas possible pour l'instant.`);
+    const essai = `${rencontre}:${alt.id}`;
+    if (p.etat.exploration.essais?.includes(essai)) return refus(`${alt.nom} : déjà tenté, sans succès.`);
     if (alt.jet) {
       const a = choisir(p, alt.jet.competence, issue.personnage);
       if (!a) return refus('Personne ne peut le tenter.');
       if (!tester(p, r, a, alt.jet.competence, alt.jet.dd).reussite) {
         r.ok = false;
         r.constats.push(`${alt.nom} échoue.`);
-        if (def.type === 'combat' || def.type === 'mixte') r.combat = rencontre;
+        // La rencontre attend toujours : combattre, tenter une autre issue ou se replier.
+        (p.etat.exploration.essais ??= []).push(essai);
+        r.combat = rencontre;
         return r;
       }
     }
@@ -680,11 +742,26 @@ export function issueRencontre(p: PartieMonde, rencontre: string, issue: { type:
     appliquer(p, r, alt.effets);
   } else {
     r.constats.push(`Victoire : ${def.nom}${issue.px ? ` (${issue.px} PX)` : ''}.`);
-    if (issue.px) p.etat.xp += issue.px;
+    // L'XP d'un combat se partage entre les héros (SRD 5.2.1) ; l'XP du monde (quêtes, effets) est celle de chacun.
+    if (issue.px) p.etat.xp += Math.floor(issue.px / Math.max(1, p.groupe.length));
     appliquer(p, r, def.effetsVictoire);
     for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);
   }
   if (!p.etat.rencontresFaites.includes(rencontre)) p.etat.rencontresFaites.push(rencontre);
+  suites(p, r);
+  return r;
+}
+
+/** Accepter une quête proposée : elle devient active (si ses prérequis sont remplis) et commence à sa première étape. */
+export function accepterQuete(p: PartieMonde, id: string): CompteRendu {
+  const q = p.etat.quetes[id];
+  const def = p.dm.quetes.get(id);
+  if (!def || !q) return refus('Aucune quête de ce nom ne vous a été proposée.');
+  if (q.statut !== 'proposee') return refus(`« ${def.nom} » n'est pas en attente : elle est déjà ${q.statut === 'active' ? 'en cours' : 'close'}.`);
+  if (def.prerequis && !evaluerCondition(def.prerequis, p.etat)) return refus(`« ${def.nom} » : les conditions pour l'accepter ne sont pas réunies.`);
+  const r = resultat();
+  r.constats.push(`Quête acceptée : ${def.nom}.`);
+  appliquer(p, r, [{ quete: { id, statut: 'active' } }]);
   suites(p, r);
   return r;
 }

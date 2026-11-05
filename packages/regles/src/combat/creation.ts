@@ -40,7 +40,7 @@ function vierge(): Combattant['tour'] {
   return {
     mouvement: 0, action: true, bonus: true, attaquesRestantes: 0, desengage: false, esquive: false, aBouge: false,
     sortEmplacementLance: false, sortBonusLance: false, sournoiseUtilisee: false, proieUtilisee: false,
-    enchainementUtilise: false, temeraire: false, elanJoue: false,
+    enchainementUtilise: false, frenesieUtilisee: false, temeraire: false, elanJoue: false,
   };
 }
 
@@ -90,17 +90,22 @@ export const RECUPERATION: Record<string, { court: 'une' | 'toutes' | 'aucune'; 
   secondSouffle: { court: 'une', long: 'toutes' },
   fougue: { court: 'toutes', long: 'toutes' },
   conduit: { court: 'une', long: 'toutes' },
+  // Dés de vie (SRD 5.2.1) : on en dépense au repos court pour se soigner ; le repos long les rend tous.
+  desVie: { court: 'aucune', long: 'toutes' },
+  // Imposition des mains (paladin) : une réserve de PV, reconstituée au repos long.
+  impositionDesMains: { court: 'aucune', long: 'toutes' },
 };
 
 /** Les ressources durables d'une fiche, à leur maximum (avec `potions` potions de départ). */
 export function etatDurableMax(fiche: Fiche, potions = 0): EtatDurable {
   const col = fiche.colonnes;
   const traits = fiche.aptitudes.map((a) => a.id).filter((t) => TRAITS_COMBAT.includes(t));
-  const ressources: Record<string, number> = { potions };
+  const ressources: Record<string, number> = { potions, desVie: fiche.niveau };
   if (traits.includes('rage')) ressources.rages = nombreColonne(col.Rages);
   if (traits.includes('second-souffle')) ressources.secondSouffle = nombreColonne(col['Second souffle']);
   if (traits.includes('fougue')) ressources.fougue = 1;
   if (traits.includes('survivance')) ressources.conduit = nombreColonne(col['Conduit divin']);
+  if (fiche.aptitudes.some((a) => a.id === 'imposition-des-mains')) ressources.impositionDesMains = 5 * fiche.niveau;
   let emplacements: number[] = [];
   const i = fiche.incantation;
   if (i) {

@@ -257,7 +257,18 @@ export function casesZone(
       if (forme === 'sphere' || forme === 'cylindre' || forme === 'emanation') {
         inclus = distanceCases(p, vise) <= n && ligneDeVue(grille, vise, p);
       } else if (forme === 'cube') {
-        inclus = p.x >= vise.x && p.x < vise.x + n && p.y >= vise.y && p.y < vise.y + n;
+        if (origine.x === vise.x && origine.y === vise.y) {
+          inclus = p.x >= vise.x && p.x < vise.x + n && p.y >= vise.y && p.y < vise.y + n;
+        } else {
+          // Un cube qui émane du lanceur (Vague tonnante) : collé à sa case, du côté du point visé.
+          const bornes = (o: number, v: number): [number, number] => {
+            const d = Math.sign(v - o);
+            return d > 0 ? [o + 1, o + n] : d < 0 ? [o - n, o - 1] : [o - Math.floor((n - 1) / 2), o - Math.floor((n - 1) / 2) + n - 1];
+          };
+          const [x0, x1] = bornes(origine.x, vise.x);
+          const [y0, y1] = bornes(origine.y, vise.y);
+          inclus = p.x >= x0 && p.x <= x1 && p.y >= y0 && p.y <= y1;
+        }
       } else if (forme === 'cone') {
         // Cône : la largeur égale la distance parcourue, dans la direction du point visé.
         const vx = p.x - origine.x;

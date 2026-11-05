@@ -5,7 +5,7 @@ import { etatDurableMax, RECUPERATION, type EtatDurable } from './combat/creatio
 import type { HeroCombat } from './combat/prototype';
 import { kitDepuisFiche } from './creation/kit';
 import { lancer, type Generateur } from './des';
-import type { Fiche } from './fiche';
+import type { ChoixPersonnage, Fiche } from './fiche';
 
 /**
  * Ce que porte un héros, en identifiants d'objets (catalogue du SRD, commun à tous les mondes, ou objets du monde). Le SRD
@@ -33,6 +33,8 @@ export interface Personnage extends EtatDurable {
   portrait?: string;
   /** Ce qu'il porte ; absent tant qu'on n'a rien changé à l'équipement de départ (voir `equipementDe`). */
   equipe?: Equipement;
+  /** Ses choix de création, pour le faire monter de niveau en gardant ce que le joueur a choisi. */
+  choix?: ChoixPersonnage;
 }
 
 /** L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ. */
@@ -42,14 +44,14 @@ export function equipementDe(p: Personnage): Equipement {
   return { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
 }
 
-const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin' };
+const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains' };
 
 /** Ressources dont l'état dure d'un combat à l'autre (les autres, comme la réaction, ne servent qu'en combat). */
 export const RESSOURCES_DURABLES = Object.keys(RECUPERATION);
 
-export function personnageDepuisFiche(fiche: Fiche, options: { id: string; portrait?: string; outils?: string[]; potions?: number }): Personnage {
+export function personnageDepuisFiche(fiche: Fiche, options: { id: string; portrait?: string; outils?: string[]; potions?: number; choix?: ChoixPersonnage }): Personnage {
   const max = etatDurableMax(fiche, options.potions ?? kitDepuisFiche(fiche).potions ?? 0);
-  return { id: options.id, nom: fiche.nom, fiche, pv: fiche.pvMax, outils: options.outils ?? [], portrait: options.portrait, ...max };
+  return { id: options.id, nom: fiche.nom, fiche, pv: fiche.pvMax, outils: options.outils ?? [], portrait: options.portrait, ...max, ...(options.choix ? { choix: options.choix } : {}) };
 }
 
 /** Le personnage prêt pour un combat : fiche, armes, sorts, et son état du moment. */
@@ -82,8 +84,15 @@ export function recuperer(p: Personnage, duree: 'court' | 'long', gen: Generateu
   if (duree === 'long') {
     p.pv = p.fiche.pvMax;
     p.emplacements = [...max.emplacements];
-  } else if (p.pv > 0 && p.pv < p.fiche.pvMax) {
-    p.pv = Math.min(p.fiche.pvMax, p.pv + Math.max(1, lancer(`1d${p.fiche.deVie}`, gen).total + p.fiche.caracteristiques.con.modificateur));
+  } else if (p.pv > 0) {
+    // Repos court : le héros dépense ses dés de vie, un à un, tant qu'il est blessé (dé + modificateur de Constitution).
+    // Une ancienne sauvegarde sans réserve compte une réserve pleine.
+    let des = p.ressources.desVie ?? p.fiche.niveau;
+    while (p.pv < p.fiche.pvMax && des > 0) {
+      des -= 1;
+      p.pv = Math.min(p.fiche.pvMax, p.pv + Math.max(0, lancer(`1d${p.fiche.deVie}`, gen).total + p.fiche.caracteristiques.con.modificateur));
+    }
+    p.ressources.desVie = des;
   }
   if (duree === 'court' && p.fiche.incantation?.niveauEmplacementPacte) p.emplacements = [...max.emplacements];
   for (const [cle, regle] of Object.entries(RECUPERATION)) {

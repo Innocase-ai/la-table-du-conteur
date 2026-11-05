@@ -78,6 +78,7 @@ function tourVierge(c: Combattant): Combattant['tour'] {
     sournoiseUtilisee: false,
     proieUtilisee: false,
     enchainementUtilise: false,
+    frenesieUtilisee: false,
     temeraire: false,
     elanJoue: false,
   };
@@ -119,7 +120,14 @@ export function creerCombat(
 
 function expirer(etat: EtatCombat, moment: 'debut_tour' | 'fin_tour', de: string): void {
   for (const c of etat.combattants) {
-    c.modificateurs = c.modificateurs.filter((m) => !(m.expire?.moment === moment && m.expire.de === de));
+    c.modificateurs = c.modificateurs.filter((m) => {
+      if (!(m.expire?.moment === moment && m.expire.de === de)) return true;
+      if (m.expire.apres) {
+        m.expire.apres -= 1;
+        return true;
+      }
+      return false;
+    });
   }
 }
 
@@ -373,9 +381,8 @@ export function jetAttaque(
   consommerModificateursAttaque(attaquant, cible);
   const total = d + bonus + bonusTemp + desModificateurs(etat, attaquant, 'de_attaque');
   const seuilCritique = aTrait(attaquant, 'critique-ameliore') ? 19 : 20;
-  // Une attaque de corps à corps à 1,5 m contre une cible paralysée ou inconsciente est un critique.
+  // Toute attaque qui touche, à 1,5 m ou moins, une cible paralysée ou inconsciente est un critique (SRD 5.2.1).
   const critiqueAuto =
-    mode === 'corps-a-corps' &&
     distanceMetres(attaquant.position, cible.position) <= TAILLE_CASE &&
     cible.etats.some((e) => e.etat === 'paralyse' || e.etat === 'inconscient');
   const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
@@ -442,9 +449,10 @@ export function infligerDegats(
   if (cible.mort) return 0;
   let total = 0;
   const multiplicateurs = degats.map((d) => multiplicateurDegats(cible, d.type));
-  degats.forEach((d, i) => {
-    total += Math.floor(Math.max(0, d.montant) * multiplicateurs[i]!);
-  });
+  // Les dégâts d'un même type s'additionnent, puis la résistance (ou la vulnérabilité) s'applique une fois, arrondie à l'inférieur.
+  const parType = new Map<string, number>();
+  for (const d of degats) parType.set(d.type, (parType.get(d.type) ?? 0) + Math.max(0, d.montant));
+  for (const [type, montant] of parType) total += Math.floor(montant * multiplicateurDegats(cible, type));
   const reaction: 'resiste' | 'vulnerable' | 'immunise' | undefined = multiplicateurs.every((m) => m === 0)
     ? 'immunise'
     : multiplicateurs.some((m) => m > 1)
@@ -685,8 +693,9 @@ export function attaqueArme(
   }));
   const physique = arme.degats[0]!.type;
   if (attaquant.rage && arme.caracteristique === 'for') degats.push({ montant: attaquant.ressources.degatsRage ?? 2, type: physique });
-  // Frénésie (Berserker) : Témérité pendant la rage, dés supplémentaires sur la première cible touchée.
-  if (attaquant.rage && attaquant.tour.temeraire && aTrait(attaquant, 'frenesie') && !attaquant.tour.enchainementUtilise && !options.opportunite) {
+  // Frénésie (Berserker) : Témérité pendant la rage, dés supplémentaires une fois par tour, sur la première cible touchée par une attaque de Force.
+  if (attaquant.rage && attaquant.tour.temeraire && aTrait(attaquant, 'frenesie') && arme.caracteristique === 'for' && !attaquant.tour.frenesieUtilisee && !options.opportunite) {
+    attaquant.tour.frenesieUtilisee = true;
     degats.push({ montant: lancerDes(etat, `${attaquant.ressources.degatsRage ?? 2}d6`, mult), type: physique });
   }
   // Attaque sournoise : une fois par tour, arme de finesse ou à distance, avec avantage ou un allié au contact de la cible.
@@ -694,8 +703,9 @@ export function attaqueArme(
   if (
     aTrait(attaquant, 'attaque-sournoise') &&
     !attaquant.tour.sournoiseUtilisee &&
-    (arme.finesse || arme.mode === 'distance') &&
-    !(s.desavantage && !jet.avantage) &&
+    // Arme de finesse ou arme à distance (un javelot lancé n'en est pas une) ; jamais avec un désavantage.
+    (arme.finesse || (arme.mode === 'distance' && arme.caracteristique === 'dex')) &&
+    !jet.desavantage &&
     (jet.avantage || allieAuContact(etat, attaquant, cible))
   ) {
     attaquant.tour.sournoiseUtilisee = true;
@@ -735,9 +745,8 @@ function appliquerBotte(
       cible.modificateurs.push({ id: 'sape', type: 'desavantage_attaque', source: attaquant.id, usageUnique: true, expire: { moment: 'debut_tour', de: attaquant.id } });
       break;
     case 'ouverture':
-      attaquant.modificateurs.push({ id: 'ouverture', type: 'avantage_attaque', source: attaquant.id, contre: cible.id, usageUnique: true, expire: { moment: 'fin_tour', de: attaquant.id } });
-      // L'avantage vaut jusqu'à la fin du prochain tour de l'attaquant : on retire l'expiration de ce tour.
-      attaquant.modificateurs[attaquant.modificateurs.length - 1]!.expire = undefined;
+      // L'avantage vaut jusqu'à la fin du prochain tour de l'attaquant (on laisse passer la fin de ce tour-ci).
+      attaquant.modificateurs.push({ id: 'ouverture', type: 'avantage_attaque', source: attaquant.id, contre: cible.id, usageUnique: true, expire: { moment: 'fin_tour', de: attaquant.id, apres: 1 } });
       break;
     case 'renversement':
       if (cible.pv > 0 && !sauvegarde(etat, cible, 'con', dd)) ajouterEtat(etat, cible, { etat: 'a-terre' });
@@ -748,6 +757,8 @@ function appliquerBotte(
       }
       break;
     case 'poussee': {
+      // Seule une créature de taille G ou moins peut être repoussée.
+      if (TAILLES.indexOf(cible.taille) > TAILLES.indexOf('G')) break;
       const dx = Math.sign(cible.position.x - attaquant.position.x);
       const dy = Math.sign(cible.position.y - attaquant.position.y);
       const occ = occupation(etat, cible);
@@ -766,8 +777,9 @@ function appliquerBotte(
       const seconde = ennemis(etat, attaquant).find(
         (e) => e.id !== cible.id && distanceMetres(e.position, cible.position) <= TAILLE_CASE && distanceMetres(e.position, attaquant.position) <= arme.allonge,
       );
+      if (!seconde) break;
       attaquant.tour.enchainementUtilise = true;
-      if (seconde) attaqueArme(etat, attaquant, seconde, arme, { enchainement: true });
+      attaqueArme(etat, attaquant, seconde, arme, { enchainement: true });
       break;
     }
     default:

@@ -541,5 +541,23 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     faits: dm.faits.size,
     factions: dm.factions.size,
   };
+  // Une quête que rien ne propose ni n'active (effet `quete`, ou `etape` qui l'ouvre) ne se jouera jamais.
+  const citees = new Set<string>();
+  const parcourir = (x: unknown): void => {
+    if (Array.isArray(x)) return x.forEach(parcourir);
+    if (!x || typeof x !== 'object') return;
+    const o = x as Record<string, unknown>;
+    const q = o['quete'] as { id?: string } | string | undefined;
+    if (q && typeof q === 'object' && q.id) citees.add(q.id);
+    if (o['etape'] && typeof o['etape'] === 'object') citees.add((o['etape'] as { quete: string }).quete);
+    Object.values(o).forEach(parcourir);
+  };
+  for (const m of [dm.lieux, dm.pnj, dm.evenements, dm.rencontres, dm.enigmes, dm.tresors, dm.pieges, dm.jauges, dm.fins]) parcourir([...m.values()]);
+  for (const q of dm.quetes.values()) {
+    parcourir(q.etapes.map((e) => e.effets));
+    parcourir(q.recompenses.effets);
+  }
+  for (const q of dm.quetes.values()) if (!citees.has(q.id)) err(`Quête « ${q.id} » : rien ne la propose ni ne l'active (aucun effet « quete » ou « etape »), elle ne se jouera jamais.`);
+
   return { erreurs, avertissements, stats };
 }

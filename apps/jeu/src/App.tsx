@@ -99,7 +99,9 @@ export function App() {
       );
       const victoire = etat.vainqueur === 'heros';
       const px = etat.combattants.filter((c) => c.camp === 'monstres' && (c.mort || c.enFuite)).reduce((s, c) => s + c.px, 0);
-      const r = aventure.moteur.executer(aventure.partie, victoire ? { type: 'reglerRencontre', issue: 'victoire', px, heros } : { type: 'reglerRencontre', issue: 'fuite', heros });
+      // Une défaite (tout le groupe à terre) a un prix ; une retraite non.
+      const issue = victoire ? 'victoire' : etat.vainqueur === 'monstres' ? 'defaite' : 'fuite';
+      const r = aventure.moteur.executer(aventure.partie, { type: 'reglerRencontre', issue, ...(victoire ? { px } : {}), heros });
       suite(r.partie);
       setCombatHistoire(null);
     };

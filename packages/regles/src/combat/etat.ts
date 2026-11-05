@@ -56,7 +56,8 @@ export interface Modificateur {
   source: string; // combattant à l'origine
   sort?: string; // lié à la concentration de ce sort
   // Fin : au début ou à la fin du tour d'un combattant, ou après un usage.
-  expire?: { moment: 'debut_tour' | 'fin_tour'; de: string };
+  // `apres` : nombre de ces moments à laisser passer avant d'expirer (1 : « jusqu'à la fin de votre prochain tour »).
+  expire?: { moment: 'debut_tour' | 'fin_tour'; de: string; apres?: number };
   usageUnique?: boolean;
   // Restreint à des attaques contre une cible donnée (Ouverture).
   contre?: string;
@@ -75,6 +76,7 @@ export interface TourCourant {
   sournoiseUtilisee: boolean;
   proieUtilisee: boolean;
   enchainementUtilise: boolean;
+  frenesieUtilisee: boolean;
   temeraire: boolean;
   elanJoue: boolean;
 }

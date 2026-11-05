@@ -1,6 +1,10 @@
-// Module Journal : les quêtes (en cours avec leurs étapes, accomplies, échouées) et les notes du groupe (ce qu'il a
-// appris de sûr). Un module sans commande : il ne fait que montrer l'état, tiré des quêtes du monde et des faits connus.
-import type { Encart, FicheInfo, Module, Partie, ContexteJeu } from '../noyau/types';
+// Module Journal : les quêtes (proposées, en cours avec leurs étapes, accomplies, échouées) et les notes du groupe (ce
+// qu'il a appris de sûr). Sa seule commande : accepter une quête proposée.
+import { z } from 'zod';
+import { evaluerCondition } from '../monde/etat';
+import { accepterQuete } from '../monde/exploration';
+import { commande, type Encart, type FicheInfo, type Module, type Partie, type ContexteJeu } from '../noyau/types';
+import { libre, partieMonde, verser } from './commun';
 import type { Quete } from '../monde/schemas';
 
 const TYPES = { principale: 'Quête principale', secondaire: 'Quête secondaire', personnelle: 'Quête personnelle', faction: 'Quête de faction' } as const;
@@ -20,8 +24,27 @@ function ficheDeQuete(ctx: ContexteJeu, p: Partie, def: Quete, statut: keyof typ
   return { rubrique: 'Informations sur la quête', titre: def.nom, sousTitre: TYPES[def.type], proprietes, texte: [def.resume, ...aFaire].join('\n\n') };
 }
 
+const PANNEAU_PROPOSEES = { id: 'quetes-proposees', titre: 'Quêtes proposées', ordre: 15 };
+
 export const moduleJournal: Module = {
   id: 'journal',
+  commandes: {
+    accepterQuete: commande({
+      description: 'Accepter une quête proposée par un personnage : elle devient active et ses étapes commencent.',
+      entree: z.object({ quete: z.string() }),
+      disponible: libre,
+      executer: (t, e) => verser(t, accepterQuete(partieMonde(t), e.quete)),
+      propositions: (ctx, p) =>
+        Object.entries(p.etat.quetes)
+          .filter(([, q]) => q.statut === 'proposee')
+          .flatMap(([id]) => {
+            const def = ctx.dm.quetes.get(id);
+            if (!def) return [];
+            const ok = !def.prerequis || evaluerCondition(def.prerequis, p.etat);
+            return [{ groupe: PANNEAU_PROPOSEES, libelle: `Accepter : ${def.nom}`, aide: def.resume, ordre: { type: 'accepterQuete', quete: id }, desactivee: ok ? undefined : 'Les conditions pour l’accepter ne sont pas réunies.' }];
+          }),
+    }),
+  },
   encarts: (ctx, p): Encart[] => {
     const quetes = Object.entries(p.etat.quetes)
       .map(([id, q]) => ({ id, q, def: ctx.dm.quetes.get(id) }))

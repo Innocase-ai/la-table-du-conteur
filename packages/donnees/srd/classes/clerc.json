@@ -1,61 +1,144 @@
 {
   "id": "clerc",
   "nom": "Clerc",
-  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["sag"] },
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "sag"
+    ]
+  },
   "deVie": 8,
-  "sauvegardes": ["sag", "cha"],
+  "sauvegardes": [
+    "sag",
+    "cha"
+  ],
   "competences": {
     "nombre": 2,
-    "parmi": ["histoire", "intuition", "medecine", "persuasion", "religion"]
+    "parmi": [
+      "histoire",
+      "intuition",
+      "medecine",
+      "persuasion",
+      "religion"
+    ]
   },
-  "maitrisesArmes": ["courantes"],
-  "formationArmures": ["legere", "intermediaire", "bouclier"],
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "bouclier"
+  ],
   "outils": [],
   "equipementDepart": [
     {
       "id": "A",
-      "objets": ["Chemise de mailles", "Bouclier", "Masse d’armes", "Symbole sacré", "Paquetage d’ecclésiastique"],
+      "objets": [
+        "Chemise de mailles",
+        "Bouclier",
+        "Masse d’armes",
+        "Symbole sacré",
+        "Paquetage d’ecclésiastique"
+      ],
       "po": 7
     },
-    { "id": "B", "objets": [], "po": 110 }
+    {
+      "id": "B",
+      "objets": [],
+      "po": 110
+    }
   ],
   "incantation": {
     "type": "complet",
     "caracteristique": "sag",
-    "sortsMineurs": [3, 3, 3, 4, 4],
-    "sortsPrepares": [4, 5, 6, 7, 9],
-    "emplacements": [[2], [3], [4, 2], [4, 3], [4, 3, 2]]
+    "sortsMineurs": [
+      3,
+      3,
+      3,
+      4,
+      4
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ]
+    ]
   },
   "progression": [
     {
       "niveau": 1,
       "bonusMaitrise": 2,
-      "aptitudes": ["Sorts", "Ordre divin"],
-      "colonnes": { "Conduit divin": "—" }
+      "aptitudes": [
+        "Sorts",
+        "Ordre divin"
+      ],
+      "colonnes": {
+        "Conduit divin": "—"
+      }
     },
     {
       "niveau": 2,
       "bonusMaitrise": 2,
-      "aptitudes": ["Conduit divin"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Conduit divin"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     },
     {
       "niveau": 3,
       "bonusMaitrise": 2,
-      "aptitudes": ["Sous-classe de Clerc"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Sous-classe de Clerc"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     },
     {
       "niveau": 4,
       "bonusMaitrise": 2,
-      "aptitudes": ["Amélioration de caractéristique"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     },
     {
       "niveau": 5,
       "bonusMaitrise": 3,
-      "aptitudes": ["Calcination de Mort-vivant"],
-      "colonnes": { "Conduit divin": 2 }
+      "aptitudes": [
+        "Calcination de Mort-vivant"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
     }
   ],
   "aptitudes": [
@@ -85,7 +168,11 @@
       "nom": "Amélioration de caractéristique",
       "niveau": 4,
       "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
-      "effets": [{ "type": "amelioration_caracteristique" }]
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
     },
     {
       "id": "calcination-de-mort-vivant",
@@ -111,7 +198,32 @@
         "nom": "Sorts du Domaine de la Vie",
         "niveau": 3,
         "resume": "Sorts toujours préparés : aide, bénédiction, restauration partielle et soins au niveau 3 ; mot de guérison de groupe et retour à la vie au niveau 5 (puis d’autres aux niveaux 7 et 9).",
-        "effets": []
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "aide",
+              "benediction",
+              "restauration-partielle",
+              "soins"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-domaine-de-la-vie-niveau-5",
+        "nom": "Sorts du Domaine de la Vie (niveau 5)",
+        "niveau": 5,
+        "resume": "Sorts toujours préparés au niveau 5 : mot de guerison de groupe, retour a la vie.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "mot-de-guerison-de-groupe",
+              "retour-a-la-vie"
+            ]
+          }
+        ]
       },
       {
         "id": "survivance",

@@ -27,6 +27,9 @@ import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
 import { PagePleine } from './PagePleine';
 
+/** Le moment de la journée, pour l'en-tête (les présences des PNJ, elles, ne distinguent que jour, soir et nuit). */
+const momentLisible = (heure: number) => (heure >= 6 && heure < 12 ? 'matin' : heure >= 12 && heure < 18 ? 'après-midi' : heure >= 18 && heure < 22 ? 'soir' : 'nuit');
+
 interface Props {
   aventure: Aventure;
   onPartie: (p: Partie) => void;
@@ -220,7 +223,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           <strong>{scene.lieu.nom}</strong>
         </div>
         <div className="aventure-etat">
-          <span>Jour {scene.jour}</span>
+          <span title={`${scene.heure} h`}>
+            Jour {scene.jour} · {momentLisible(scene.heure)}
+          </span>
           {scene.jauges.map((j) => (
             <span key={j.id} className="aventure-jauge" title={dm.jauges.get(j.id)?.resume}>
               {j.nom} {j.valeur}/{j.max}

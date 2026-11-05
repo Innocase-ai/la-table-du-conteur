@@ -38,9 +38,40 @@ const soinsDeGroupe = (s: Sort) => (s.cibles ?? 1) > 1;
 
 const PANNEAU_SOINS = { id: 'soins', titre: 'Soigner', ordre: 10, onglet: 'Grimoire' };
 
+/** Les paladins qui ont encore des points d'Imposition des mains. */
+const paladins = (p: Partie) => p.groupe.filter((a) => (a.ressources.impositionDesMains ?? 0) > 0);
+
 export const moduleGrimoire: Module = {
   id: 'grimoire',
   commandes: {
+    imposerLesMains: commande({
+      description: "Imposition des mains (paladin) : puiser dans sa réserve pour rendre des PV à un héros (le plus blessé par défaut), hors combat.",
+      entree: z.object({ paladin: z.string(), cible: z.string().optional() }),
+      disponible: libre,
+      executer: (t, e) => {
+        const a = t.partie.groupe.find((x) => x.id === e.paladin);
+        if (!a || a.pv <= 0) return { refus: 'Ce héros ne peut pas imposer les mains.' };
+        const reserve = a.ressources.impositionDesMains ?? 0;
+        if (reserve <= 0) return { refus: `${a.nom} n'a plus de réserve d'Imposition des mains (elle revient au repos long).` };
+        const c = e.cible ? t.partie.groupe.find((x) => x.id === e.cible) : plusBlesse(t.partie);
+        if (!c || c.pv >= c.fiche.pvMax) return { refus: 'Personne n’a besoin de soins.' };
+        const soin = Math.min(reserve, c.fiche.pvMax - c.pv);
+        c.pv += soin;
+        a.ressources.impositionDesMains = reserve - soin;
+        t.emettre({ type: 'constat', texte: `${a.nom} impose les mains à ${c.nom} : +${soin} PV (${c.pv}/${c.fiche.pvMax}) ; réserve ${reserve - soin}.` });
+      },
+      propositions: (_ctx, p): Proposition[] => {
+        const blesse = plusBlesse(p);
+        return paladins(p).map((a) => ({
+          groupe: PANNEAU_SOINS,
+          element: { id: `${a.id}:imposition`, titre: `${a.nom} — Imposition des mains (${a.ressources.impositionDesMains} PV)` },
+          icone: 'sort:soins',
+          libelle: blesse ? `Soigner ${blesse.nom}` : 'Soigner',
+          ordre: { type: 'imposerLesMains', paladin: a.id },
+          desactivee: a.pv <= 0 ? `${a.nom} est hors de combat.` : !blesse ? 'Personne n’est blessé.' : undefined,
+        }));
+      },
+    }),
     lancerSort: commande({
       description: 'Lancer hors combat un sort de soins connu, en dépensant un emplacement ; sans cible, sur le héros le plus blessé (ou tout le groupe pour un sort à plusieurs cibles).',
       entree: z.object({ lanceur: z.string(), sort: z.string(), cible: z.string().optional() }),

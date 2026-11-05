@@ -16,6 +16,8 @@ export interface EtatMonde {
   monde: string;
   lieu: string;
   jour: number;
+  /** Heure du jour (0 à 23) : les trajets la font avancer ; absente des sauvegardes anciennes (8 h). */
+  heure?: number;
   niveauGroupe: number;
   flags: Record<string, boolean>;
   faits: string[];
@@ -46,6 +48,7 @@ export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.mi
     monde: dm.monde.id,
     lieu: dm.monde.depart.lieu,
     jour: 1,
+    heure: 8,
     niveauGroupe,
     flags: {},
     faits: [],

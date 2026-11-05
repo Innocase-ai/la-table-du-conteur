@@ -6,8 +6,15 @@
     "unique": true,
     "narration": "La chaussée se referme derrière le groupe : la mer a reculé jusqu'à la ligne des quais, et le palais gris de Lothmar se dresse devant vous, muet, couvert de coquillages, ses portes ouvertes sur le noir.",
     "effets": [
-      { "flag": "palais-atteint" },
-      { "etape": { "quete": "q-la-grande-maree", "etape": "palais" } }
+      {
+        "flag": "palais-atteint"
+      },
+      {
+        "etape": {
+          "quete": "q-la-grande-maree",
+          "etape": "palais"
+        }
+      }
     ]
   },
   {
@@ -16,7 +23,11 @@
     "lieu": "lot-chapelle-de-la-regente",
     "unique": true,
     "narration": "Une femme noyée est assise au bord de l'autel, la tête tournée vers la porte. Elle ne se lève pas, et ne parle pas tout de suite ; elle attend que vous soyez assez près pour l'entendre.",
-    "effets": [{ "flag": "regente-rencontree" }]
+    "effets": [
+      {
+        "flag": "regente-rencontree"
+      }
+    ]
   },
   {
     "id": "lot-ev-sanctuaire-lueur",
@@ -24,6 +35,25 @@
     "lieu": "lot-sanctuaire-du-sceau",
     "unique": true,
     "narration": "Une lueur pâle monte de la cuve de sel, et le froid remonte dans vos mains jusqu'aux épaules. Sous la mer, quelque chose est tenu, depuis trois siècles, et cela se sent comme un pouls.",
-    "effets": [{ "flag": "lot-sanctuaire-atteint" }]
+    "effets": [
+      {
+        "flag": "lot-sanctuaire-atteint"
+      }
+    ]
+  },
+  {
+    "id": "lot-ev-horloge-arretee",
+    "declencheur": "entree-lieu",
+    "lieu": "lot-grande-salle",
+    "unique": true,
+    "narration": "Au fond du hall, une horloge de bronze haute comme deux hommes s'est arrêtée il y a trois siècles. Ses trois cadrans restent figés, et une herse ferme l'escalier des marées juste à côté.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-lot-l-horloge",
+          "statut": "active"
+        }
+      }
+    ]
   }
 ]
