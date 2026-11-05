@@ -19,7 +19,9 @@ export interface Diagnostic {
   entite?: RefEntite;
   /** Où, dans l'entité (`['liens', 2, 'condition']`), quand on le sait. */
   chemin?: (string | number)[];
-  source: 'validation' | `module:${string}` | 'enigmes' | 'references' | 'controles';
+  source: 'validation' | `module:${string}` | 'enigmes' | 'references' | 'controles' | 'revue';
+  /** Ce que la revue a trouvé, pour l'afficher et le corriger : le mot, l'extrait, le champ, la valeur attendue… */
+  donnees?: Record<string, unknown>;
 }
 
 /** Les préfixes de message du validateur (« Lieu « x » », « PNJ « x »… ») et le dossier de l'entité. */

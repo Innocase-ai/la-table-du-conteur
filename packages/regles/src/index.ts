@@ -31,6 +31,8 @@ export * from './monde/graphes';
 export * from './monde/identifiants';
 export * from './monde/schemas-par-dossier';
 export * from './monde/registre';
+export * from './monde/canon';
+export * from './monde/revue';
 export * from './monde/ecriture-json';
 export * from './monde/controles';
 export * from './monde/diagnostiquer';

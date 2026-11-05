@@ -11,6 +11,9 @@ export interface MondeLu {
   fichiers: { chemin: string; contenu: unknown; empreinte: string }[];
   erreursLecture: { fichier: string; message: string }[];
   docs: { bible?: string; canonPersonnages?: string };
+  /** canon.json et revue.json de la racine du monde (`null` : absents). */
+  canon: { contenu: unknown; empreinte: string } | null;
+  revue: { contenu: unknown; empreinte: string } | null;
 }
 
 async function obtenir<T>(url: string): Promise<T> {
@@ -44,6 +47,14 @@ export class ErreurEcriture extends Error {
 /** Remplace ou ajoute UNE fiche dans un fichier du monde ; renvoie la nouvelle empreinte du fichier. */
 export async function ecrireFiche(d: DemandeFiche): Promise<{ empreinte: string }> {
   const rep = await fetch('/api/atelier/fiche', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+  const corps = (await rep.json().catch(() => ({}))) as { erreur?: string; empreinte?: string };
+  if (!rep.ok) throw new ErreurEcriture(corps.erreur ?? `Erreur ${rep.status}`, rep.status);
+  return { empreinte: corps.empreinte! };
+}
+
+/** Écrit canon.json ou revue.json (écrits en entier : l'atelier en est le seul auteur) ; renvoie la nouvelle empreinte. */
+export async function ecrireDocument(d: { monde: string; nom: 'canon' | 'revue'; contenu: unknown; empreinteAttendue: string | null }): Promise<{ empreinte: string }> {
+  const rep = await fetch('/api/atelier/document', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
   const corps = (await rep.json().catch(() => ({}))) as { erreur?: string; empreinte?: string };
   if (!rep.ok) throw new ErreurEcriture(corps.erreur ?? `Erreur ${rep.status}`, rep.status);
   return { empreinte: corps.empreinte! };

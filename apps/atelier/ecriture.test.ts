@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { corpsJson } from './chemins';
-import { ecrireFiche, empreinteDe, type DemandeEcriture } from './ecriture';
+import { ecrireDocument, ecrireFiche, empreinteDe, type DemandeEcriture } from './ecriture';
 
 const MINI = resolve(import.meta.dirname, '../../packages/regles/tests/fixtures/mini-monde');
 
@@ -125,5 +125,37 @@ describe('chemins interdits', () => {
     expect(corpsJson('application/json')).toBe(true);
     expect(corpsJson('application/json; charset=utf-8')).toBe(true);
     for (const mauvais of ['text/plain', 'application/x-www-form-urlencoded', 'multipart/form-data', undefined, 'application/jsonp']) expect(corpsJson(mauvais)).toBe(false);
+  });
+});
+
+describe('documents de revue (canon.json, revue.json)', () => {
+  const canon = { secrets: [{ id: 'pacte', texte: 'Le meunier paie.', motsTabou: ['pacte'], autorise: [] }], noms: { lexique: [] }, personnages: [] };
+
+  it('crée un document, puis le remplace avec l’empreinte lue, et refuse si le disque a changé', () => {
+    const r1 = ecrireDocument(racine, { monde: 'm', nom: 'canon', contenu: canon, empreinteAttendue: null });
+    expect(r1.ok).toBe(true);
+    expect(JSON.parse(lire('canon.json'))).toEqual(canon);
+    expect(lire('canon.json').endsWith('\n')).toBe(true);
+    const lu = empreinteDe(lire('canon.json'));
+    expect(r1.ok && r1.empreinte).toBe(lu);
+
+    const r2 = ecrireDocument(racine, { monde: 'm', nom: 'canon', contenu: { ...canon, noms: { lexique: ['Brindoux'] } }, empreinteAttendue: lu });
+    expect(r2.ok).toBe(true);
+    writeFileSync(fichier('canon.json'), '{ "secrets": [] }\n');
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'canon', contenu: canon, empreinteAttendue: lu })).toMatchObject({ ok: false, statut: 409 });
+  });
+
+  it('refuse de créer un document qui existe déjà sans connaître son empreinte', () => {
+    ecrireDocument(racine, { monde: 'm', nom: 'revue', contenu: { rejets: [] }, empreinteAttendue: null });
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'revue', contenu: { rejets: ['x'] }, empreinteAttendue: null })).toMatchObject({ ok: false, statut: 409 });
+  });
+
+  it('valide le contenu avec son schéma et refuse tout autre document', () => {
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'canon', contenu: { secrets: [{ id: 'Mauvais Id', texte: 'x' }] }, empreinteAttendue: null })).toMatchObject({ ok: false, statut: 400 });
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'revue', contenu: { rejets: [3] }, empreinteAttendue: null })).toMatchObject({ ok: false, statut: 400 });
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'canon', contenu: [], empreinteAttendue: null })).toMatchObject({ ok: false, statut: 400 });
+    expect(ecrireDocument(racine, { monde: 'm', nom: 'monde' as never, contenu: {}, empreinteAttendue: null })).toMatchObject({ ok: false, statut: 403 });
+    expect(ecrireDocument(racine, { monde: '../x', nom: 'canon', contenu: {}, empreinteAttendue: null })).toMatchObject({ ok: false, statut: 403 });
+    expect(existsSync(fichier('canon.json'))).toBe(false);
   });
 });

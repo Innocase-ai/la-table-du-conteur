@@ -6,6 +6,7 @@ import { Fiches } from './vues/Fiches';
 import { Graphes } from './vues/Graphes';
 import { Parcours } from './vues/Parcours';
 import { Registre } from './vues/Registre';
+import { Revue } from './vues/Revue';
 import { Sante } from './vues/Sante';
 
 type Etat =
@@ -15,7 +16,7 @@ type Etat =
   | { etat: 'illisible'; erreurs: { fichier: string; message: string }[] }
   | { etat: 'ok'; lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; duree: number };
 
-const VUES = ['graphes', 'parcours', 'fiches', 'registre'] as const;
+const VUES = ['graphes', 'parcours', 'fiches', 'registre', 'revue'] as const;
 
 /** Le monde et la vue choisis : `#/<monde>` (santé), `#/<monde>/graphes`, `#/<monde>/fiches/<dossier>/<id>`… */
 const lireHash = () => {
@@ -97,6 +98,9 @@ export function App() {
             <a href={`#/${id}/registre`} className={h.vue === 'registre' ? 'actif' : ''}>
               Registre
             </a>
+            <a href={`#/${id}/revue`} className={h.vue === 'revue' ? 'actif' : ''}>
+              Revue
+            </a>
           </nav>
         )}
         {maj && <span className="muet">à jour à {maj.toLocaleTimeString('fr-FR')} · surveille le disque</span>}
@@ -123,6 +127,7 @@ export function App() {
         {etat.etat === 'ok' && h.vue === 'parcours' && <Parcours lu={etat.lu} dm={etat.dm} />}
         {etat.etat === 'ok' && h.vue === 'fiches' && <Fiches lu={etat.lu} dm={etat.dm} diag={etat.diag} dossier={h.dossier} ident={h.ident} recharger={() => charger(id)} />}
         {etat.etat === 'ok' && h.vue === 'registre' && <Registre lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
+        {etat.etat === 'ok' && h.vue === 'revue' && <Revue lu={etat.lu} dm={etat.dm} diag={etat.diag} recharger={() => charger(id)} />}
       </main>
     </div>
   );

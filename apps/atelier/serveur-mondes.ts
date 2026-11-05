@@ -11,7 +11,7 @@ import type { ServerResponse } from 'node:http';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre } from './chemins';
-import { ecrireFiche, type DemandeEcriture } from './ecriture';
+import { ecrireDocument, ecrireFiche, empreinteDe, type DemandeDocument, type DemandeEcriture } from './ecriture';
 
 interface FichierLu {
   chemin: string;
@@ -36,6 +36,17 @@ function estDossier(chemin: string): boolean {
 
 function lireTexte(chemin: string): string | undefined {
   return existsSync(chemin) && lstatSync(chemin).isFile() ? readFileSync(chemin, 'utf8') : undefined;
+}
+
+/** canon.json ou revue.json : le contenu et l'empreinte du fichier, ou `null` s'il n'existe pas (ou n'est pas du JSON). */
+function lireDocument(chemin: string): { contenu: unknown; empreinte: string } | null {
+  const texte = lireTexte(chemin);
+  if (texte === undefined) return null;
+  try {
+    return { contenu: JSON.parse(texte) as unknown, empreinte: empreinteDe(texte) };
+  } catch {
+    return null;
+  }
 }
 
 export function lireMondes(racine: string): { id: string; nom: string; statut: string }[] {
@@ -82,6 +93,8 @@ export function lireMonde(racine: string, id: string) {
     fichiers,
     erreursLecture,
     docs: { bible: lireTexte(join(dossier, 'BIBLE.md')), canonPersonnages: lireTexte(join(dossier, 'CANON-PERSONNAGES.md')) },
+    canon: lireDocument(join(dossier, 'canon.json')),
+    revue: lireDocument(join(dossier, 'revue.json')),
   };
 }
 
@@ -110,37 +123,45 @@ export function serveurMondes(dossierMondes: string): Plugin {
         repondre(res, 200, monde);
       });
 
-      // Écrire UNE fiche : une requête à la fois (deux écritures simultanées ne se marchent pas dessus).
+      // Écrire UNE fiche, ou un document de revue (canon.json, revue.json) : une requête à la fois (deux écritures simultanées ne se
+      // marchent pas dessus). Le corps est du JSON, de moins de 2 Mo, envoyé par une page de l'atelier.
       let ecritureEnCours = false;
-      serveur.middlewares.use('/api/atelier/fiche', (req, res) => {
-        if (req.method !== 'PUT') return repondre(res, 405, { erreur: 'PUT seulement.' });
-        if (!origineAutorisee(req.headers.origin)) return repondre(res, 403, { erreur: 'Origine refusée : le serveur ne sert que l’atelier.' });
-        if (!corpsJson(req.headers['content-type'])) return repondre(res, 415, { erreur: 'Corps JSON attendu.' });
-        if (ecritureEnCours) return repondre(res, 429, { erreur: 'Une écriture est déjà en cours.' });
-        ecritureEnCours = true;
-        let texte = '';
-        let trop = false;
-        req.on('data', (c: Buffer) => {
-          texte += c.toString('utf8');
-          if (texte.length > 2_000_000 && !trop) (trop = true), req.destroy();
+      const routeEcriture = (chemin: string, traiter: (d: Record<string, unknown>) => ReturnType<typeof ecrireFiche> | string) =>
+        serveur.middlewares.use(chemin, (req, res) => {
+          if (req.method !== 'PUT') return repondre(res, 405, { erreur: 'PUT seulement.' });
+          if (!origineAutorisee(req.headers.origin)) return repondre(res, 403, { erreur: 'Origine refusée : le serveur ne sert que l’atelier.' });
+          if (!corpsJson(req.headers['content-type'])) return repondre(res, 415, { erreur: 'Corps JSON attendu.' });
+          if (ecritureEnCours) return repondre(res, 429, { erreur: 'Une écriture est déjà en cours.' });
+          ecritureEnCours = true;
+          let texte = '';
+          let trop = false;
+          req.on('data', (c: Buffer) => {
+            texte += c.toString('utf8');
+            if (texte.length > 2_000_000 && !trop) (trop = true), req.destroy();
+          });
+          req.on('error', () => (ecritureEnCours = false));
+          req.on('end', () => {
+            try {
+              if (trop) return repondre(res, 413, { erreur: 'Requête trop grande.' });
+              const d = JSON.parse(texte) as Record<string, unknown>;
+              if (typeof d['monde'] !== 'string' || (d['empreinteAttendue'] !== null && typeof d['empreinteAttendue'] !== 'string')) return repondre(res, 400, { erreur: 'Requête invalide.' });
+              const r = traiter(d);
+              if (typeof r === 'string') return repondre(res, 400, { erreur: r });
+              if (r.ok) repondre(res, 200, { empreinte: r.empreinte });
+              else repondre(res, r.statut, { erreur: r.erreur, ...(r.empreinteActuelle ? { empreinteActuelle: r.empreinteActuelle } : {}) });
+            } catch (e) {
+              repondre(res, 400, { erreur: `Requête illisible : ${(e as Error).message}` });
+            } finally {
+              ecritureEnCours = false;
+            }
+          });
         });
-        req.on('error', () => (ecritureEnCours = false));
-        req.on('end', () => {
-          try {
-            if (trop) return repondre(res, 413, { erreur: 'Requête trop grande.' });
-            const d = JSON.parse(texte) as Partial<DemandeEcriture>;
-            if (typeof d.monde !== 'string' || typeof d.chemin !== 'string' || (d.empreinteAttendue !== null && typeof d.empreinteAttendue !== 'string'))
-              return repondre(res, 400, { erreur: 'Requête invalide.' });
-            const r = ecrireFiche(racine, { monde: d.monde, chemin: d.chemin, mode: d.mode as DemandeEcriture['mode'], ...(d.id !== undefined ? { id: String(d.id) } : {}), valeur: d.valeur, empreinteAttendue: d.empreinteAttendue });
-            if (r.ok) repondre(res, 200, { empreinte: r.empreinte });
-            else repondre(res, r.statut, { erreur: r.erreur, ...(r.empreinteActuelle ? { empreinteActuelle: r.empreinteActuelle } : {}) });
-          } catch (e) {
-            repondre(res, 400, { erreur: `Requête illisible : ${(e as Error).message}` });
-          } finally {
-            ecritureEnCours = false;
-          }
-        });
-      });
+      routeEcriture('/api/atelier/fiche', (d) =>
+        typeof d['chemin'] !== 'string'
+          ? 'Requête invalide.'
+          : ecrireFiche(racine, { monde: d['monde'] as string, chemin: d['chemin'], mode: d['mode'] as DemandeEcriture['mode'], ...(d['id'] !== undefined ? { id: String(d['id']) } : {}), valeur: d['valeur'], empreinteAttendue: d['empreinteAttendue'] as string | null }),
+      );
+      routeEcriture('/api/atelier/document', (d) => ecrireDocument(racine, { monde: d['monde'] as string, nom: d['nom'] as DemandeDocument['nom'], contenu: d['contenu'], empreinteAttendue: d['empreinteAttendue'] as string | null }));
 
       // Un fichier du monde change sur le disque (un autre éditeur, Claude Code, un agent) : on prévient la page, qui recharge.
       serveur.watcher.add(racine);

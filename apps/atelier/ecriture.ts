@@ -7,6 +7,7 @@ import { existsSync, lstatSync, mkdirSync, readdirSync, readFileSync, renameSync
 import { dirname, join } from 'node:path';
 // Imports relatifs (et non `@crpg/regles`) : ce fichier est chargé par la configuration de Vite, qui ne sait pas lire le TypeScript d'un paquet.
 import { ajouterElement, elementsDuFichier, indexDeElement, remplacerElement } from '../../packages/regles/src/monde/ecriture-json';
+import { Canon, Revue } from '../../packages/regles/src/monde/canon';
 import { problemeIdentifiant } from '../../packages/regles/src/monde/identifiants';
 import { champIdentifiant, DOSSIERS_EDITABLES, schemaDuDossier } from '../../packages/regles/src/monde/schemas-par-dossier';
 import { cheminFichierValide, resoudre } from './chemins';
@@ -146,4 +147,40 @@ export function ecrireFiche(racine: string, d: DemandeEcriture): ResultatEcritur
     return refus(500, `Écriture impossible : ${(e as Error).message}`);
   }
   return { ok: true, empreinte: empreinteDe(neuf) };
+}
+
+// ---------------------------------------------------------------------------
+// Les documents de revue à la racine du monde : canon.json et revue.json (écrits en entier : l'atelier en est le seul auteur)
+// ---------------------------------------------------------------------------
+
+export interface DemandeDocument {
+  monde: string;
+  nom: 'canon' | 'revue';
+  contenu: unknown;
+  /** L'empreinte du fichier telle que la page l'a lue ; `null` pour le créer. */
+  empreinteAttendue: string | null;
+}
+
+export function ecrireDocument(racine: string, d: DemandeDocument): ResultatEcriture {
+  if (d.nom !== 'canon' && d.nom !== 'revue') return refus(403, 'Seuls canon.json et revue.json peuvent être écrits.');
+  const fichier = resoudre(racine, d.monde, `${d.nom}.json`);
+  if (!fichier) return refus(403, 'Chemin refusé.');
+  if (!d.contenu || typeof d.contenu !== 'object' || Array.isArray(d.contenu)) return refus(400, 'Le document doit être un objet.');
+  if (JSON.stringify(d.contenu).length > 2_000_000) return refus(413, 'Document trop grand.');
+  const valide = (d.nom === 'canon' ? Canon : Revue).safeParse(d.contenu);
+  if (!valide.success) {
+    const i = valide.error.issues[0];
+    return refus(400, `${d.nom}.json invalide : ${i?.path.join('.') || 'racine'} — ${i?.message}`);
+  }
+  const existe = existsSync(fichier);
+  if (existe && !lstatSync(fichier).isFile()) return refus(403, 'Chemin refusé.');
+  const empreinte = existe ? empreinteDe(readFileSync(fichier, 'utf8')) : null;
+  if (empreinte !== d.empreinteAttendue) return refus(409, `${d.nom}.json a changé sur le disque depuis que vous l’avez ouvert : rechargez avant de modifier.`, empreinte ?? undefined);
+  const texte = `${JSON.stringify(d.contenu, null, 2)}\n`;
+  try {
+    ecrireAtomique(fichier, texte);
+  } catch (e) {
+    return refus(500, `Écriture impossible : ${(e as Error).message}`);
+  }
+  return { ok: true, empreinte: empreinteDe(texte) };
 }

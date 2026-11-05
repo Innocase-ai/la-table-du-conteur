@@ -7,9 +7,9 @@ export const PORT_ATELIER = 5180;
 /** Un identifiant de monde : kebab-case ASCII, comme les dossiers de packages/mondes. */
 export const idMondeValide = (id: unknown): id is string => typeof id === 'string' && /^[a-z0-9][a-z0-9-]*$/.test(id);
 
-/** Un fichier de données d'un monde : `monde.json`, `canon.json`, ou `<dossier>/<fichier>.json` (un seul niveau). */
+/** Un fichier de données d'un monde : `monde.json`, `canon.json`, `revue.json`, ou `<dossier>/<fichier>.json` (un seul niveau). */
 export const cheminFichierValide = (chemin: unknown): chemin is string =>
-  typeof chemin === 'string' && (/^(?:monde|canon)\.json$/.test(chemin) || /^[a-z0-9][a-z0-9-]*\/[A-Za-z0-9][A-Za-z0-9._-]*\.json$/.test(chemin));
+  typeof chemin === 'string' && (/^(?:monde|canon|revue)\.json$/.test(chemin) || /^[a-z0-9][a-z0-9-]*\/[A-Za-z0-9][A-Za-z0-9._-]*\.json$/.test(chemin));
 
 /** Les dossiers de médias d'un monde (images, voix) : ce ne sont pas des données de jeu et l'atelier n'y touche pas. */
 export const DOSSIERS_IGNORES = ['images', 'voix'];
