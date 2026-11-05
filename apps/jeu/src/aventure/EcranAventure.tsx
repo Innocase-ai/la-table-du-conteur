@@ -10,7 +10,6 @@ import {
   type Interlocuteur,
   type Jet,
   jouerTour,
-  type Echange,
   type Ordre,
   type Partie,
   type Personnage,
@@ -91,6 +90,31 @@ function useImage(monde: string, groupe: 'lieux' | 'pnj', id: string | undefined
   return url;
 }
 
+/** Ce que l'écran affiche pendant que le conteur agit : jamais le nom d'une commande, toujours un geste du groupe. */
+const PENDANT_OUTIL: Record<string, string> = {
+  aller: 'En route…',
+  fouiller: 'Le groupe fouille…',
+  ouvrir: 'Le groupe tente d’ouvrir…',
+  desarmer: 'Des doigts prudents sur le mécanisme…',
+  prendre: 'Le groupe se sert…',
+  repondreEnigme: 'Le groupe tente une réponse…',
+  indiceEnigme: 'Le groupe réfléchit…',
+  seReposer: 'Un temps de repos…',
+  testLibre: 'Le groupe s’y essaie…',
+  parler: 'La conversation s’engage…',
+  influencer: 'Les mots se font plus pressants…',
+  quitterDialogue: 'Le groupe prend congé…',
+  utiliserObjet: 'Le groupe fouille dans le sac…',
+  lancerSort: 'Une formule s’élève…',
+  imposerLesMains: 'Des mains se posent sur une blessure…',
+  equiper: 'On ajuste l’équipement…',
+  retirerEquipement: 'On ajuste l’équipement…',
+  accepterQuete: 'Une promesse est faite…',
+  acheter: 'On marchande…',
+  vendre: 'On marchande…',
+  payerService: 'Quelques pièces changent de main…',
+};
+
 export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const { moteur, partie } = aventure;
   const dm = moteur.ctx.dm;
@@ -100,7 +124,6 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const [conteur, setConteur] = useState<EtatConteur>();
   const [saisie, setSaisie] = useState('');
   const [enCours, setEnCours] = useState<string>();
-  const [memoire, setMemoire] = useState<Echange[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [erreurConteur, setErreurConteur] = useState<string>();
   const [depense, setDepense] = useState(0);
@@ -170,15 +193,14 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         texte: t,
         bible: await bibleDe(dm.monde.id),
         llm: llmDuJeu(),
-        memoire,
-        surOutil: (o) => setEnCours(`Le moteur résout : ${o.nom}…`),
+        // La mémoire du conteur vient du journal de la partie : rien à garder ici, elle survit au rechargement.
+        surOutil: (o) => setEnCours(PENDANT_OUTIL[o.nom] ?? 'Le récit se poursuit…'),
       });
       setDepense((d) => d + res.usage.cout);
       if (res.erreur) setErreurConteur(res.erreur);
       else {
         setSaisie('');
         setSuggestions(res.actions);
-        setMemoire(res.memoire);
       }
       if (res.partie !== partie) onPartie(res.partie);
     } finally {

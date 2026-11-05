@@ -12,6 +12,7 @@ import {
   groupeConseille,
   jouerTour,
   MACHINE,
+  memoireDuJournal,
   MODULES_STANDARD,
   outilsDuConteur,
   personnageDepuisFiche,
@@ -329,5 +330,67 @@ describe('le conteur ne parle jamais des coulisses du jeu', () => {
     expect(MACHINE.test('Le moteur refuse de refouiller.')).toBe(true);
     expect(MACHINE.test('Selon les règles du jeu, c’est impossible.')).toBe(true);
     expect(MACHINE.test('L’arbitre a tranché.')).toBe(true);
+  });
+});
+
+describe('le conteur comprend la scène : fiche enrichie, tri des demandes, mémoire tirée du journal', () => {
+  /** Le groupe chez Hesta, conversation ouverte, un sujet déjà abordé. */
+  const chezHesta = (): Partie => {
+    let p = depart();
+    p = moteur.executer(p, { type: 'aller', vers: 'vei-maison-des-gardiens' }).partie;
+    p = moteur.executer(p, { type: 'parler', pnj: 'hesta-cendrebrune' }).partie;
+    const sujet = dm.pnj.get('hesta-cendrebrune')!.sujets.find((s) => !s.condition && !s.attitudeMin)!;
+    return moteur.executer(p, { type: 'parler', pnj: 'hesta-cendrebrune', sujet: sujet.id }).partie;
+  };
+
+  it('la fiche donne l’heure et le moment, le portrait des PNJ présents (voix, désir), ce qu’ils ont déjà dit et leurs sujets ouverts', () => {
+    const p = chezHesta();
+    const fiche = ficheDeTour(moteur, p);
+    const hesta = dm.pnj.get('hesta-cendrebrune')!;
+    expect(fiche).toMatch(/jour 1, \d+ h \((le jour|le soir|la nuit)\)/);
+    expect(fiche).toContain('Personnes ici (seules personnes présentes)');
+    expect(fiche).toContain(`Voix : ${hesta.personnalite.voix}`);
+    expect(fiche).toContain(`Désir : ${hesta.personnalite.desir}`);
+    expect(fiche).toMatch(/Déjà abordé avec le groupe : /);
+    expect(fiche).toMatch(/Sujets pas encore abordés : |Plus rien de nouveau/);
+    // Aucun secret ni savoir caché n'est donné dans le portrait.
+    for (const s of hesta.secrets) expect(fiche).not.toContain(dm.faits.get(s.fait)?.texte ?? '§§');
+  });
+
+  it('la fiche dit ce que le groupe sait et a fait : faits appris, quêtes closes, choix, disparus', () => {
+    const p = depart();
+    const fait = [...dm.faits.values()].find((f) => f.fiable)!;
+    p.etat.faits.push(fait.id);
+    const q = [...dm.quetes.keys()][0]!;
+    p.etat.quetes[q] = { statut: 'terminee', actives: [], accomplies: [] };
+    p.etat.pnjEtats['hesta-cendrebrune'] = 'mort';
+    const fiche = ficheDeTour(moteur, p);
+    expect(fiche).toContain('## Ce que le groupe sait et a fait');
+    expect(fiche).toContain(fait.texte.slice(0, 40));
+    expect(fiche).toContain('Quêtes closes : ');
+    expect(fiche).toContain(`${dm.quetes.get(q)!.nom} (accomplie)`);
+    expect(fiche).toMatch(/Disparus : Hesta Cendrebrune \(mort\)/);
+  });
+
+  it('le prompt prend le ton du monde et apprend à trier les demandes (action, parole, question, hors jeu)', () => {
+    const prompt = promptSysteme(dm, BIBLE);
+    expect(prompt).toContain(`ton du monde (${dm.monde.ton.join(', ')})`);
+    expect(prompt).toMatch(/Comprends d'abord ce que le joueur demande/);
+    expect(prompt).toMatch(/sujet pas encore abordé/);
+    expect(prompt).toMatch(/Une question sur le groupe/);
+    expect(prompt).toMatch(/uniquement avec ce que la fiche contient/);
+  });
+
+  it('la mémoire se reconstruit à partir du journal sauvegardé, par paires complètes', async () => {
+    const { llm } = scripte([{ content: 'Un.' }, { content: 'Deux.' }]);
+    let partie = depart();
+    partie = (await jouerTour({ moteur, partie, texte: 'a', bible: BIBLE, llm })).partie;
+    // Une saisie restée sans récit (panne) ne casse pas les paires.
+    partie = moteur.executer(partie, { type: 'saisie', texte: 'perdu' }).partie;
+    expect(memoireDuJournal(partie).map((m) => m.content)).toEqual(['a', 'Un.']);
+    // Sans mémoire passée, le tour suivant la reçoit du journal (elle survit au rechargement).
+    const { llm: llm2, recus } = scripte([{ content: 'Trois.' }]);
+    await jouerTour({ moteur, partie, texte: 'b', bible: BIBLE, llm: llm2 });
+    expect(recus[0]!.slice(1, 3).map((m) => m.content)).toEqual(['a', 'Un.']);
   });
 });

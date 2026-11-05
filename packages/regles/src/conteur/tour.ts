@@ -44,6 +44,7 @@ export interface ParamsTour {
   /** La bible du monde (`BIBLE.md`), réservée au conteur. */
   bible: string;
   llm: LLM;
+  /** Mémoire courte ; absente, elle est tirée du journal de la partie (elle survit au rechargement). */
   memoire?: Echange[];
   /** Appels du modèle au plus pour un tour (outils compris). */
   maxAppels?: number;
@@ -68,6 +69,23 @@ export interface ResultatTour {
 /** Les mots des coulisses, interdits dans le récit (voir la règle 9 du prompt). */
 export const MACHINE = /\bmoteur\b|\barbitre\b|\bl['’]outil\b|\bsyst[èe]me de jeu\b|\br[èe]gles? du jeu\b|\bLLM\b|\bl['’]IA\b|\brefus(e|é|és)? (du|par le) (jeu|moteur)\b/i;
 
+/**
+ * La mémoire courte tirée du journal de la partie (sauvegardé) : les derniers échanges joueur / conteur, par paires
+ * complètes (une saisie restée sans récit, après une panne, est ignorée).
+ */
+export function memoireDuJournal(partie: Partie, max = 12): Echange[] {
+  const paires: Echange[][] = [];
+  let attente: string | undefined;
+  for (const e of partie.journal) {
+    if (e.type === 'saisieJoueur') attente = (e as { texte: string }).texte;
+    else if (e.type === 'recitConteur' && attente !== undefined) {
+      paires.push([{ role: 'user', content: attente }, { role: 'assistant', content: (e as { texte: string }).texte }]);
+      attente = undefined;
+    }
+  }
+  return paires.slice(-Math.max(1, Math.floor(max / 2))).flat();
+}
+
 const vide = (): UsageLLM => ({ entree: 0, cache: 0, sortie: 0, cout: 0 });
 const texteDe = (m: MessageLLM) => (typeof m.content === 'string' ? m.content : (m.content ?? []).map((c) => c.text).join('')).trim();
 
@@ -76,7 +94,8 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
   const maxAppels = p.maxAppels ?? 6;
   const tools = outilsDuConteur(moteur);
   const noms = new Set(tools.map((t) => t.function.name));
-  const resultat: ResultatTour = { partie: p.partie, recit: '', actions: [], memoire: p.memoire ?? [], appels: 0, usage: vide(), outils: [] };
+  const memoire0 = p.memoire ?? memoireDuJournal(p.partie, p.memoireMax ?? 12);
+  const resultat: ResultatTour = { partie: p.partie, recit: '', actions: [], memoire: memoire0, appels: 0, usage: vide(), outils: [] };
 
   // Le joueur a écrit : c'est un événement de la partie.
   const saisie = moteur.executer(p.partie, { type: 'saisie', texte });
@@ -86,7 +105,7 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
 
   const messages: MessageLLM[] = [
     { role: 'system', content: [{ type: 'text', text: promptSysteme(moteur.ctx.dm, p.bible), cache_control: { type: 'ephemeral' } }] },
-    ...(p.memoire ?? []).map((m): MessageLLM => ({ role: m.role, content: m.content })),
+    ...memoire0.map((m): MessageLLM => ({ role: m.role, content: m.content })),
     { role: 'user', content: `${ficheDeTour(moteur, partie)}\n\n## Le joueur écrit\n${texte}` },
   ];
 
@@ -173,6 +192,6 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
   if (!recit) recit = 'Le conteur reste un instant silencieux…';
   const racontee = moteur.executer(partie, { type: 'raconter', texte: recit });
   partie = racontee.refus ? partie : racontee.partie;
-  const memoire = [...(p.memoire ?? []), { role: 'user' as const, content: texte }, { role: 'assistant' as const, content: recit }].slice(-(p.memoireMax ?? 8));
+  const memoire = [...memoire0, { role: 'user' as const, content: texte }, { role: 'assistant' as const, content: recit }].slice(-(p.memoireMax ?? 12));
   return { ...resultat, partie, recit, memoire };
 }

@@ -18,10 +18,16 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 ## Quand tu changes le conteur
 
 1. **Tests** : `pnpm test` (`tests/conteur.test.ts` : modèle scripté, outils, refus, erreurs, mémoire, appel simulé). Ils prouvent la mécanique, pas la qualité.
-2. **Un essai réel** avec `pnpm conteur --go --essai …` (quelques tours variés : une fouille sans résultat, un déplacement suivi d'une conversation, un sujet de PNJ). Un tour coûte ≈ 0,0015 $ : ne t'en prive pas, mais garde un plafond (`--plafond`). **Lis les récits** comme un joueur.
+2. **Un essai réel** avec `pnpm conteur --go --essai …` : la batterie type (≈ 0,015 $) : un déplacement, une parole libre à un PNJ (« je lui demande s'il a vu… »), « combien d'or avons-nous ? », un PNJ absent, un sujet de quête, une question de règles, une fouille puis une refouille, une nuit, « que savons-nous ? ». Un tour coûte ≈ 0,0015 $ : ne t'en prive pas, mais garde un plafond (`--plafond`). **Lis les récits** comme un joueur.
 3. **Ce qu'on cherche dans un récit** (défauts déjà vus) : une trouvaille inventée (un objet, un passage, un indice que le moteur n'a pas donné) ; la réponse d'un PNJ redite alors que le texte de l'auteur est déjà affiché ; une réplique de PNJ qui donne un ordre ou une information ; un secret révélé trop tôt (DD, solution d'énigme, vérité d'une rumeur) ; plus de 120 mots ; une question posée au joueur ; **un mot des coulisses** (« le moteur refuse… », « règles du jeu », « outil », « arbitre » : jamais, tout refus se raconte dans la fiction ; règle 9 du prompt, garde-fou `MACHINE` dans `tour.ts` qui fait réécrire le récit une fois).
 4. **Corriger par les consignes** (`promptSysteme`, règles numérotées) ou par ce que le moteur rend au conteur (`evenementsEnTexte`, `ficheDeTour`), puis rejouer le même essai.
 5. Dans l'écran : un tour réel dans le navigateur (le relais doit tourner : redémarre le serveur après avoir touché `vite.config.ts` ou `serveur-conteur.ts`). Sauvegarde du joueur : copie avant, remets après (voir le skill `enigmes`).
+
+## Ce que reçoit le conteur (à tenir à jour)
+
+- Préfixe en cache : rôle, 11 règles (dont 9 : aucun mot des coulisses ; 10 : trier la demande ; 11 : cohérence), `monde.json`, la bible.
+- Fiche de tour (`ficheDeTour`) : lieu, heure et moment, sorties, **portraits des PNJ présents** (voix, traits, désir, peur, déjà dit, sujets ouverts ; jamais les secrets), conversation, objets, pièges, énigmes, jauges ; **« Ce que le groupe sait et a fait »** (quêtes, faits appris, choix, disparus) ; le groupe ; derniers événements raccourcis.
+- Mémoire : `memoireDuJournal` (6 échanges, tirés du journal sauvegardé).
 
 ## Règles à garder
 

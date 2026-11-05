@@ -652,3 +652,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Défaut vu en jeu** : le conteur écrivait « le moteur refuse de refouiller le bassin ». Causes : le prompt et les retours d'outils parlaient eux-mêmes du « moteur » et de « REFUS DU MOTEUR ».
 - **Corrections** : le prompt dit « les règles du jeu » / « les outils », ajoute la règle 9 (jamais de vocabulaire de machine : moteur, arbitre, outil, système, règles du jeu, IA, refus, DD ; tout refus se raconte dans la fiction, avec un exemple) ; les retours d'outils deviennent « IMPOSSIBLE POUR L'INSTANT : … (à raconter comme un fait du monde) » ; garde-fou dans `tour.ts` : si le récit contient un mot des coulisses (`MACHINE`), une seule réécriture est demandée (même liste d'outils, cache gardé) ; si elle est encore sale, on garde le premier récit.
 - Tests : 5 cas ajoutés à `conteur.test.ts`. **Pas d'essai réel avec le modèle** (payant) : à faire avec l'accord de l'utilisateur (≈ 0,005 $ pour trois tours).
+
+## 05/11/2026 — Audit et amélioration du conteur
+
+- **Audit** : le conteur ne connaissait des PNJ que le nom, le rôle et un chiffre ; il ignorait ce que le groupe sait, les choix faits, l'heure ; sa mémoire (4 échanges) vivait dans l'écran et se perdait au rechargement ; le ton était écrit en dur ; il traitait toute demande comme une action ; l'écran affichait « Le moteur résout ».
+- **Fait** : fiche de tour enrichie (portraits des PNJ présents sans leurs secrets, « Ce que le groupe sait et a fait », heure), prompt qui trie les demandes (règle 10) et reste cohérent (règle 11), ton tiré du monde, décor neutre et aucun nom de la bible pas encore rencontré, mémoire tirée du journal sauvegardé (`memoireDuJournal`, 6 échanges), gestes du groupe à l'écran pendant un tour. Détail : `docs/M4-CONTEUR.md` § 13.
+- **Essais réels** : 13 tours, ≈ 0,016 $ ; deux défauts corrigés et revérifiés. Tests : 4 cas de plus dans `conteur.test.ts`.

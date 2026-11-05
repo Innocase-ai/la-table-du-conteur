@@ -184,3 +184,11 @@ Voir `docs/ARCHITECTURE-CIBLE.md` § 13 pour le détail. En bref : le conteur ap
 
 Reste de M4b : comparaison Haiku / Sonnet / Opus sur les mêmes scènes, choix du modèle par défaut sur pièces, écran Options (clé du joueur, plafond).
 
+
+## 13. Le conteur comprend la scène (05/11/2026)
+
+- **Fiche de tour enrichie** (`ficheDeTour`, gratuite, construite par le jeu) : heure et moment de la journée ; pour chaque PNJ présent, un **portrait** (voix, traits, désir, peur, humeur en mots, ce qu'il a déjà dit au groupe, ses sujets pas encore abordés ; jamais ses secrets ni son savoir caché) ; une section **« Ce que le groupe sait et a fait »** (quêtes en cours et closes, faits appris les plus récents, choix des dilemmes faits et en suspens, PNJ disparus) ; héros gravement blessés ou inconscients signalés ; palier de la jauge ; derniers événements raccourcis.
+- **Prompt** : le ton vient du monde (`monde.ton`) ; règle 10 « Comprends d'abord ce que le joueur demande » (action → outils ; parole à un PNJ → `parler` sans sujet, puis le sujet qui correspond par le sens, `influencer` pour insister, sinon une réponse dans la voix du PNJ sans information nouvelle ; question sur le groupe → réponse brève d'après la fiche ; hors jeu → une phrase ; demande impossible → dans la fiction) ; règle 11 (cohérence avec l'heure, ce qu'on sait, les choix, la jauge, les PV) ; décor **neutre** (aucune piste inventée), **aucun nom de la bible** pas encore rencontré ; actions suggérées construites seulement avec la fiche.
+- **Mémoire** : tirée du journal sauvegardé (`memoireDuJournal`, 6 échanges par paires complètes) : elle survit au rechargement ; l'écran ne la garde plus.
+- **Écran** : pendant un tour, des gestes du groupe (« Le groupe fouille… », « En route… ») au lieu de « Le moteur résout : … ».
+- **Essais réels** (Haiku 5.5, 13 tours, ≈ 0,016 $) : action, parole libre à un PNJ (elle choisit le bon sujet et répond dans sa voix), question sur l'or (brève), PNJ absent, sujet de quête, question de règles (une phrase hors jeu), fouille et refouille (refus raconté dans la fiction), nuit (le matin suit), « que savons-nous ? ». Deux défauts au premier passage (une trace inventée prise ensuite pour un fait, un nom de la bible cité trop tôt) : corrigés par les consignes, vérifiés au second passage. Coût par tour inchangé (≈ 0,0007 à 0,003 $).
