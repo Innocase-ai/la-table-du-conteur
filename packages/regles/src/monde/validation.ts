@@ -7,11 +7,15 @@ import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-don
 import { questionsDe } from './codex-donnees';
 import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
+import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
+import { refsCondition, refsEffet } from './references';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
 export interface BilanMonde {
   erreurs: string[];
   avertissements: string[];
+  /** Les mêmes messages rangés (code, gravité, entité visée), dans l'ordre où le validateur les produit. */
+  diagnostics: Diagnostic[];
   stats: StatsMonde;
 }
 
@@ -42,44 +46,6 @@ export const MINIMA_PAR_CHAPITRE = {
 
 const RAPPORT_RARETE_NIVEAU: Record<string, number> = { commun: 1, 'peu-commun': 1, rare: 5, 'tres-rare': 11, legendaire: 17 };
 
-/** Parcourt toutes les références d'une condition. */
-function refsCondition(c: Condition, f: (genre: string, id: string, extra?: string) => void): void {
-  if ('flag' in c) return;
-  if ('fait' in c) f('fait', c.fait);
-  else if ('quete' in c) f('quete', c.quete.id);
-  else if ('etape' in c) f('etape', c.etape.quete, c.etape.etape);
-  else if ('faction' in c) f('faction', c.faction.id);
-  else if ('jauge' in c) f('jauge', c.jauge.id);
-  else if ('objet' in c) f('objet', c.objet);
-  else if ('pnj' in c) f('pnj', c.pnj.id);
-  else if ('lieu' in c) f('lieu', c.lieu);
-  else if ('heros' in c) {
-    if (c.heros.classe) f('classe', c.heros.classe);
-    if (c.heros.espece) f('espece', c.heros.espece);
-    if (c.heros.historique) f('historique', c.heros.historique);
-  } else if ('niveauGroupe' in c || 'pieces' in c) return;
-  else if ('non' in c) refsCondition(c.non, f);
-  else if ('et' in c) c.et.forEach((x) => refsCondition(x, f));
-  else c.ou.forEach((x) => refsCondition(x, f));
-}
-
-function refsEffet(e: EffetMonde, f: (genre: string, id: string, extra?: string) => void): void {
-  if ('fait' in e) f('fait', e.fait);
-  else if ('jauge' in e) f('jauge', e.jauge.id);
-  else if ('reputation' in e) f('faction', e.reputation.faction);
-  else if ('attitude' in e) f('pnj', e.attitude.pnj);
-  else if ('objet' in e) f('objet', e.objet.id);
-  else if ('quete' in e) f('quete', e.quete.id);
-  else if ('etape' in e) f('etape', e.etape.quete, e.etape.etape);
-  else if ('pnjEtat' in e) f('pnj', e.pnjEtat.pnj);
-  else if ('escorte' in e) f('pnj', e.escorte.pnj);
-  else if ('deplacer' in e) {
-    f('pnj', e.deplacer.pnj);
-    f('lieu', e.deplacer.lieu);
-  } else if ('rencontre' in e) f('rencontre', e.rencontre);
-  else if ('fin' in e) f('fin', e.fin);
-}
-
 function compter(valeurs: string[]): Record<string, number> {
   const res: Record<string, number> = {};
   for (const v of valeurs) res[v] = (res[v] ?? 0) + 1;
@@ -89,8 +55,9 @@ function compter(valeurs: string[]): Record<string, number> {
 export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const erreurs: string[] = [];
   const avertissements: string[] = [];
-  const err = (m: string) => erreurs.push(m);
-  const avis = (m: string) => avertissements.push(m);
+  const diagnostics: Diagnostic[] = [];
+  const err = (m: string) => (erreurs.push(m), diagnostics.push(diagnosticDeMessage(m, 'erreur')));
+  const avis = (m: string) => (avertissements.push(m), diagnostics.push(diagnosticDeMessage(m, 'avis')));
 
   // Un « objet » peut être un objet du monde, du catalogue SRD, ou une arme ou armure du SRD (boutiques, butins, récompenses).
   const objetExiste = (id: string) => dm.objets.has(id) || srd.objets.has(id) || srd.armes.has(id) || srd.armures.has(id);
@@ -109,6 +76,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       case 'historique': return srd.historiques.has(id);
       case 'rencontre': return dm.rencontres.has(id);
       case 'fin': return dm.fins.has(id);
+      case 'flag': return true; // un drapeau n'a pas de déclaration : il existe dès qu'on le pose
       default: return false;
     }
   };
@@ -710,5 +678,5 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const l of dm.lieux.values()) l.liens.forEach((x) => noterCle(x.condition));
   for (const f of dm.fins.values()) noterCle(f.condition);
   for (const id of cles) if ((sources.get(id) ?? 0) === 1) avis(`Fait clé « ${id} » : une seule source. S'il est exigé pour avancer (quête, passage, fin), donnez-lui trois sources (un PNJ, un lieu à fouiller, un objet) : un jet raté ne doit pas bloquer l'histoire.`);
-  return { erreurs, avertissements, stats };
+  return { erreurs, avertissements, diagnostics, stats };
 }

@@ -9,9 +9,8 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
-import { validerMonde } from '../../packages/regles/src/monde/validation';
+import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
-import { MODULES_STANDARD } from '../../packages/regles/src/modules';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
@@ -68,16 +67,8 @@ for (const id of mondes) {
     if (b.erreurs) echec = true;
     continue;
   }
-  const bilan = validerMonde(r.monde, srd);
-  // Les données des modules (scènes narrées…) : chaque module vérifie les siennes.
-  for (const m of MODULES_STANDARD) {
-    for (const e of m.valider?.({ dm: r.monde, srd }) ?? []) bilan.erreurs.push(`[${m.id}] ${e}`);
-    for (const a of m.conseils?.({ dm: r.monde, srd }) ?? []) bilan.avertissements.push(`[${m.id}] ${a}`);
-  }
-  // Les énigmes se jouent : une énigme qu'on ne peut pas résoudre par ses boutons est une erreur du monde.
-  for (const rap of auditerEnigmes(r.monde, srd)) {
-    for (const x of rap.verifications.filter((v) => !v.ok)) (x.gravite === 'erreur' ? bilan.erreurs : bilan.avertissements).push(`[énigmes] « ${rap.nom} » (${x.id}) : ${x.detail}`);
-  }
+  // Le diagnostic complet : validateur, modules, audit des énigmes (même sortie qu'avant, voir diagnostiquerMonde).
+  const bilan = diagnostiquerMonde(r.monde, srd);
   if (commande === 'doc') {
     mkdirSync(join(RACINE_MONDES, '../../docs/mondes'), { recursive: true });
     const chemin = join(RACINE_MONDES, '../../docs/mondes', `${id}.md`);
