@@ -85,6 +85,10 @@ Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (don
 - **Événement `condition` avec un `lieu`** : il ne se joue que dans ce lieu.
 - **Dialogue** : les effets d'un sujet passent par le même chemin qu'une action (paliers de jauge, événements, quêtes, rencontres, **fin** : elle s'affiche aussitôt). Un PNJ qui a un **secret** propose une réplique pour insister (jet, attitude ou prix), sans en dévoiler le contenu.
 - **Défaite** au combat : les héros reviennent à 1 PV huit heures plus tard, délestés de la moitié de l'or ; la rencontre attend toujours.
+- **Récompense conditionnelle (bonus pour un objectif secondaire)** : un événement `declencheur: "condition"` avec une `condition` (un drapeau posé par l'objectif, par exemple « Lanéa libérée sans blessure ») et `effets: [{ "xp": 50 }]`. Il se joue une fois (`unique: true`), à la première action qui rend la condition vraie.
+- **Issue de repli** : une alternative sans `jet` (« se rendre », « payer le passage ») règle la rencontre et peut poser un drapeau ou une fin. Le validateur signale un combat « élevée » qui n'en a aucune.
+- **Variante selon le parcours** : une rencontre ou une alternative avec une `condition` (un drapeau, un compteur, une jauge) n'apparaît que lorsque celle-ci est vraie ; plusieurs rencontres au même lieu, chacune conditionnée, donnent une fin différente selon ce qui a été fait avant.
+- **Avis du validateur** (conseils d'écriture) : « Enjeu » (aucune fin liée à une jauge ou à un palier), « PX » (le monde ne rapporte pas assez de PX pour atteindre son niveau maximum), « sans autre issue » (combat élevé sans alternative).
 - **Pas encore lus par le moteur** : `Pnj.compagnon` (recrutement), `Pnj.profilCombat` et `monstres[].pnj`, `RencontreMonde.tactique` et `butin.tresors`, `Fin.consequences`, `Objet.usage.type = "charges"`, `Piege.etats`.
 
 ## Énigmes : solution et réponse du joueur

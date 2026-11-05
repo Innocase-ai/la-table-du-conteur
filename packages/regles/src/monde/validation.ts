@@ -1,5 +1,6 @@
 // Validation d'un monde : références, accessibilité, quêtes, énigmes, trésors, rencontres.
 // Les erreurs rendent le monde injouable ; les avertissements signalent un manque de cohérence ou de richesse.
+import { SEUILS_PX } from '../caracteristiques';
 import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
@@ -559,5 +560,30 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   for (const q of dm.quetes.values()) if (!citees.has(q.id)) err(`Quête « ${q.id} » : rien ne la propose ni ne l'active (aucun effet « quete » ou « etape »), elle ne se jouera jamais.`);
 
+  // Trois conseils d'écriture (inspirés des aventures AideDD et des six ingrédients d'une histoire) :
+  // 1. un enjeu : une fin qui arrive quand la jauge du monde tourne mal (ou un palier qui mène à une fin) ;
+  const enjeu = [...dm.fins.values()].some((f) => JSON.stringify(f.condition).includes('"jauge"')) ||
+    [...dm.jauges.values()].some((j) => j.paliers.some((p) => JSON.stringify(p.effets).includes('"fin"')));
+  if (dm.fins.size && !enjeu) avis("Enjeu : aucune fin ne dépend d'une jauge ni d'un palier : que se passe-t-il si les personnages échouent ?");
+  // 2. des PX qui mènent au niveau maximum du monde (le groupe partage une seule réserve d'XP) ;
+  const xp = (x: unknown): number => {
+    if (Array.isArray(x)) return x.reduce((s: number, y) => s + xp(y), 0);
+    if (!x || typeof x !== 'object') return 0;
+    const o = x as Record<string, unknown>;
+    return (typeof o['xp'] === 'number' ? (o['xp'] as number) : 0) + Object.values(o).reduce((s: number, y) => s + xp(y), 0);
+  };
+  const total =
+    [...dm.quetes.values()].reduce((s, q) => s + q.recompenses.xp + q.etapes.reduce((a, e) => a + xp(e.effets), 0) + xp(q.recompenses.effets), 0) +
+    [...dm.rencontres.values()].reduce((s, r) => s + xp(r.effetsVictoire) + r.alternatives.reduce((a, x) => a + xp(x.effets), 0), 0) +
+    [...dm.evenements.values()].reduce((s, e) => s + xp(e.effets), 0) +
+    [...dm.pnj.values()].reduce((s, p) => s + p.sujets.reduce((a, x) => a + xp(x.effets), 0), 0);
+  const niveauMax = dm.monde.niveaux.max;
+  if (total < SEUILS_PX[niveauMax - 1]!) avis(`PX : le monde rapporte ${total} PX au groupe, pas assez pour atteindre le niveau ${niveauMax} (seuil : ${SEUILS_PX[niveauMax - 1]}).`);
+  // 3. une issue autre que la fuite pour les combats difficiles (négocier, se rendre), sinon le groupe n'a que deux choix.
+  for (const r of dm.rencontres.values()) {
+    if ((r.type === 'combat' || r.type === 'mixte') && r.difficulte === 'elevee' && !r.alternatives.length) {
+      avis(`Rencontre « ${r.id} » : combat difficile sans autre issue (négocier, se rendre, ruser) : le groupe n'a que la fuite.`);
+    }
+  }
   return { erreurs, avertissements, stats };
 }

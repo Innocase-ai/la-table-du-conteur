@@ -39,6 +39,18 @@ Remplis **`BIBLE.md`** toi-même (ne le délègue pas : c'est la colonne vertéb
 
 Remplis aussi `monde.json` : accroche, ton, direction artistique (palette, mots-clés, interdits, qui guideront les illustrations), départ, règles du MJ.
 
+**Liste des six ingrédients** (inspirée des aventures publiées et des conseils d'un guide d'aventure en ligne) : à cocher dans la BIBLE avant de découper en zones :
+- **Intrigue** : une phrase.
+- **Enjeu** : ce qui arrive si les personnages échouent (une fin qui dépend d'une jauge, ou un palier qui mène à une fin). Le validateur le signale si rien ne le porte.
+- **Antagoniste** : une figure, une faction ou un dilemme, avec de bonnes raisons.
+- **Lieux** : 3 à 5 par histoire courte, chacun avec une fonction narrative.
+- **PNJ clés** : mentor, allié, informateur ou traître, avec un trait et une motivation.
+- **Rebondissement** : facultatif mais marquant (l'allié qui trahit, le sauvetage piégé).
+
+**Paliers de difficulté par lieu** : pour chaque lieu à fouiller, écris dans la fiche des paliers d'information, pas un seul DD : un indice à DD bas (la présence d'un piège ou d'un passage), un détail à DD moyen (son mécanisme, ce qu'il protège), une cachette ou une vérité à DD élevé. Chaque palier donne une phrase différente, pour que la réussite apprenne quelque chose.
+
+**Issue de repli pour les combats difficiles** : tout combat « élevée » a au moins une autre issue (négocier, se rendre, ruser, payer). Le validateur le signale. Une rencontre finale qui réagit à ce qui s'est passé avant (un drapeau, un compteur) vaut mieux qu'une embuscade identique quoi qu'il arrive.
+
 Fais valider un **résumé** du canon à l'utilisateur (pas le document entier) avant d'écrire les zones : changer un secret après coup coûte tout le travail des agents.
 
 ## Étape 3 — Découper en zones

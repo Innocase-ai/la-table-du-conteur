@@ -1,7 +1,7 @@
 // Les correctifs de l'audit du moteur (05/11/2026) : un test par défaut corrigé.
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
+import { validerMonde, articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -270,5 +270,46 @@ describe('audit : montée de niveau', () => {
     });
     expect(r.partie.groupe[2]!.emplacements[1]).toBeGreaterThan(0); // magicien niveau 3 : emplacements de niveau 2
     expect(r.evenements.some((e) => e.type === 'constat' && /atteint le niveau 3/.test(e.texte))).toBe(true);
+  });
+});
+
+describe('récompenses conditionnelles et variantes de rencontre', () => {
+  it('un événement conditionnel donne son XP une seule fois, quand la condition devient vraie', () => {
+    const { dm, moteur, groupe } = (() => {
+      const dm = monde('citadelle-des-marees');
+      dm.evenements.set('test-bonus-objectif', { id: 'test-bonus-objectif', declencheur: 'condition', condition: { flag: 'objectif-atteint' }, unique: true, narration: 'Un bonus.', effets: [{ xp: 50 }] } as never);
+      const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
+      const groupe = groupeConseille(1, srd).emplacements.map((p) => {
+        const f = bilanPersonnage(p!, srd).fiche!;
+        return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
+      });
+      return { dm, moteur, groupe };
+    })();
+    const debut = moteur.nouvellePartie(groupe, { graine: 1, niveau: 1 });
+    const sans = moteur.executer(debut, { type: 'commencer' }).partie;
+    expect(sans.etat.xp).toBe(0); // condition fausse : rien
+    const avec = { ...debut, etat: { ...debut.etat, flags: { ...debut.etat.flags, 'objectif-atteint': true } } };
+    const r = moteur.executer(avec, { type: 'commencer' }).partie;
+    expect(r.etat.xp).toBe(50);
+    expect(dm.evenements.has('test-bonus-objectif')).toBe(true);
+  });
+});
+
+describe('avis d’écriture du validateur (enjeu, PX, issue de repli)', () => {
+  const avis = (id: string, dm = monde(id)) => validerMonde(dm, srd).avertissements;
+  it('les deux mondes livrés ne déclenchent aucun de ces avis', () => {
+    for (const id of ['val-des-cendres', 'citadelle-des-marees']) {
+      expect(avis(id).filter((a) => /^Enjeu|^PX :|sans autre issue/.test(a)), id).toEqual([]);
+    }
+  });
+  it('un monde sans fin liée à une jauge n’a pas d’enjeu écrit', () => {
+    const dm = JSON.parse(JSON.stringify({ x: 0 })) && monde('citadelle-des-marees');
+    const copie = { ...dm, fins: new Map([...dm.fins].map(([k, f]) => [k, { ...f, condition: { flag: 'x' } }])), jauges: new Map() } as DonneesMonde;
+    expect(avis('citadelle-des-marees', copie).some((a) => /^Enjeu/.test(a))).toBe(true);
+  });
+  it('un monde qui n’atteint pas son niveau maximum avec ses PX le signale', () => {
+    const dm = monde('citadelle-des-marees');
+    const copie = { ...dm, monde: { ...dm.monde, niveaux: { min: 1, max: 5 } } } as DonneesMonde;
+    expect(avis('citadelle-des-marees', copie).some((a) => /^PX :/.test(a))).toBe(true);
   });
 });

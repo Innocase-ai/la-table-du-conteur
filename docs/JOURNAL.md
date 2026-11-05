@@ -594,3 +594,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Création** : dons vérifiés par le moteur (un doublon est ignoré avec un avertissement ; la recommandation donnait Vigilant en double aux humains criminels) ; sorts de sous-classe accordés ; Imposition des mains ; **montée de niveau** en jeu (module `progression`).
 - Tests : `audit.test.ts` (15 cas, dont chaque classe du niveau 1 au niveau 5), `combat-audit.test.ts` (5 cas) ; tests existants adaptés (rencontres aléatoires, XP partagée, ressources). Essai dans le navigateur : achat chez l'intendant de la Citadelle (120 → 105 po), en-tête « Jour 1 · matin ».
 - **Restent** (mineurs ou à décider) : compagnons recrutables, Conduit divin du paladin et Inspiration bardique, Témérité limitée aux attaques de Force, Rage qui ne s'arrête pas d'elle-même, Sommeil contre les elfes, Archerie sur les armes de lancer, sorts de soins hors combat sans surclassement, 14 sorts au temps d'incantation long notés « action », dons généraux à la place d'une amélioration, boutique d'Aldous (Citadelle) qui ne rachète pas ce qu'elle vend.
+
+## 05/11/2026 — Les quatre premiers conseils d'écriture (aventures AideDD)
+
+- **Demande** : analyser « Le collier de Zark », « À la chasse aux gobs » et les règles de base, puis appliquer les quatre premières améliorations proposées.
+- **Validateur** : trois avis nouveaux. « Enjeu » (aucune fin liée à une jauge ni à un palier), « PX » (le monde ne rapporte pas assez de PX pour atteindre son niveau maximum, en additionnant quêtes, rencontres, événements et sujets) et « sans autre issue » (combat élevé sans alternative). Les deux mondes livrés passent sans avis ; les cas forcés les déclenchent (vérifié).
+- **Skill creer-monde** : la liste des six ingrédients à cocher dans la BIBLE, les trois paliers d'information par lieu à fouiller, l'issue de repli pour les combats difficiles, les rencontres finales qui lisent le parcours. Ajouté dans `SKILL.md` (étape 2) et `references/canon-modele.md` (§7 bis).
+- **Moteur** : la reddition et les variantes par drapeau existaient déjà (alternatives sans jet, rencontres et alternatives conditionnées) ; seule la documentation manquait. Les récompenses conditionnelles existaient aussi (événement `condition` avec `xp`) : un test le prouve (bonus une seule fois, quand la condition devient vraie).
+- **Docs** : `docs/MONDES.md`, section « Ce que le moteur fait des données ».
+- Tests : 19 cas dans `audit.test.ts`, dont les avis du validateur et la récompense conditionnelle.
