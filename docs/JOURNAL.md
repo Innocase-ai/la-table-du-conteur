@@ -646,3 +646,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 
 - **Contrats** (écrits par des agents Haiku avec `creer-contrats`, relus, testés) : « Les voleurs d'huile » (embuscade de nuit : Gudrun, déclencheur `repos` aux jardins de falaise), « La charrette éventrée » (traque : un fait à trois sources, loups à l'entrée de la grotte des marées), « La coque neuve » (défense en deux vagues chez Hennequin, la seconde déclenchée par effet), « La caisse de Gaspard » (le client ment : Garance cache sa dette envers les Rats ; rencontre puis **dilemme** à trois issues). Avec les rats de Bertrane : 5 formes différentes, chacune avec une issue sans combat réelle, un enjeu de refus (la marée à 3) et un test qui joue chaque issue (`contrats.test.ts`, `contrats-citadelle.test.ts`).
 - Reste : l'avis « Rythme » (5 rencontres sur 31 sans combat) ; contrats du Val ; champ `forme`, avis du validateur sur le rythme du hub, compteur de calme.
+
+## 05/11/2026 — Le conteur ne parle plus du moteur
+
+- **Défaut vu en jeu** : le conteur écrivait « le moteur refuse de refouiller le bassin ». Causes : le prompt et les retours d'outils parlaient eux-mêmes du « moteur » et de « REFUS DU MOTEUR ».
+- **Corrections** : le prompt dit « les règles du jeu » / « les outils », ajoute la règle 9 (jamais de vocabulaire de machine : moteur, arbitre, outil, système, règles du jeu, IA, refus, DD ; tout refus se raconte dans la fiction, avec un exemple) ; les retours d'outils deviennent « IMPOSSIBLE POUR L'INSTANT : … (à raconter comme un fait du monde) » ; garde-fou dans `tour.ts` : si le récit contient un mot des coulisses (`MACHINE`), une seule réécriture est demandée (même liste d'outils, cache gardé) ; si elle est encore sale, on garde le premier récit.
+- Tests : 5 cas ajoutés à `conteur.test.ts`. **Pas d'essai réel avec le modèle** (payant) : à faire avec l'accord de l'utilisateur (≈ 0,005 $ pour trois tours).

@@ -65,6 +65,9 @@ export interface ResultatTour {
   erreur?: string;
 }
 
+/** Les mots des coulisses, interdits dans le récit (voir la règle 9 du prompt). */
+export const MACHINE = /\bmoteur\b|\barbitre\b|\bl['’]outil\b|\bsyst[èe]me de jeu\b|\br[èe]gles? du jeu\b|\bLLM\b|\bl['’]IA\b|\brefus(e|é|és)? (du|par le) (jeu|moteur)\b/i;
+
 const vide = (): UsageLLM => ({ entree: 0, cache: 0, sortie: 0, cout: 0 });
 const texteDe = (m: MessageLLM) => (typeof m.content === 'string' ? m.content : (m.content ?? []).map((c) => c.text).join('')).trim();
 
@@ -133,7 +136,7 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
         const res = moteur.executer(partie, { type: nom, ...(typeof args === 'object' && args !== null ? args : {}) });
         resultat.outils.push({ nom, args, refus: res.refus });
         p.surOutil?.({ nom, args, refus: res.refus });
-        if (res.refus) messages.push({ role: 'tool', tool_call_id: appel.id, content: `REFUS DU MOTEUR : ${res.refus}` });
+        if (res.refus) messages.push({ role: 'tool', tool_call_id: appel.id, content: `IMPOSSIBLE POUR L'INSTANT : ${res.refus} (à raconter comme un fait du monde, sans parler de refus ni de règles)` });
         else {
           partie = res.partie;
           modifiee = true;
@@ -146,6 +149,25 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
     // Rien n'a changé : le joueur peut réécrire. Sinon, on garde ce que les règles ont déjà appliqué.
     const erreur = (e as Error).message;
     return { ...resultat, partie: modifiee ? partie : p.partie, erreur };
+  }
+
+  // Garde-fou : un récit qui parle des coulisses (« le moteur refuse… ») est réécrit une fois, dans la fiction.
+  if (recit && MACHINE.test(recit) && resultat.appels < maxAppels + 1) {
+    try {
+      messages.push({ role: 'user', content: "Ta narration parle des coulisses du jeu (« moteur », « règles », « refus »…). Réécris-la en une seule fois, sans ces mots : tout est un fait du monde, raconté de l'intérieur de l'histoire. Même longueur, mêmes événements." });
+      const { message, usage } = await llm({ messages, tools });
+      resultat.appels++;
+      resultat.usage = {
+        entree: resultat.usage.entree + usage.entree,
+        cache: resultat.usage.cache + usage.cache,
+        sortie: resultat.usage.sortie + usage.sortie,
+        cout: resultat.usage.cout + usage.cout,
+      };
+      const propre = texteDe(message);
+      if (propre && !MACHINE.test(propre)) recit = propre;
+    } catch {
+      // Le récit d'origine reste : mieux vaut un mot de trop qu'un tour perdu.
+    }
   }
 
   if (!recit) recit = 'Le conteur reste un instant silencieux…';

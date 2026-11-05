@@ -11,6 +11,7 @@ import {
   ficheDeTour,
   groupeConseille,
   jouerTour,
+  MACHINE,
   MODULES_STANDARD,
   outilsDuConteur,
   personnageDepuisFiche,
@@ -168,7 +169,7 @@ describe('conteur : un tour', () => {
     const avant = depart();
     const res = await jouerTour({ moteur, partie: avant, texte: 'Je vais nulle part.', bible: BIBLE, llm });
     const retours = recus[1]!.filter((m) => m.role === 'tool').map((m) => m.content as string);
-    expect(retours[0]).toMatch(/^REFUS DU MOTEUR : /);
+    expect(retours[0]).toMatch(/^IMPOSSIBLE POUR L'INSTANT : /);
     expect(retours[1]).toMatch(/n'existe pas/);
     expect(retours[2]).toMatch(/pas du JSON/);
     expect(res.partie.etat.lieu).toBe(avant.etat.lieu);
@@ -281,5 +282,52 @@ describe('conteur : l’appel au service (OpenRouter)', () => {
     const ok = await creerLLM({ pause })({ messages: [], tools: [] });
     expect(ok.message.content).toBe('Ça va.');
     vi.unstubAllGlobals();
+  });
+});
+
+describe('le conteur ne parle jamais des coulisses du jeu', () => {
+  it('le prompt interdit le vocabulaire de machine et apprend à raconter une impossibilité dans la fiction', () => {
+    const prompt = promptSysteme(dm, BIBLE);
+    expect(prompt).toContain('Jamais de vocabulaire de machine');
+    expect(prompt).toMatch(/« moteur », « arbitre »/);
+    expect(prompt).toMatch(/dans la fiction/);
+    // Ce que reçoit le modèle ne présente plus les refus comme ceux d'un « moteur ».
+    expect(prompt).not.toMatch(/Un refus du moteur/);
+  });
+
+  it('un récit qui parle du moteur est réécrit une fois, dans la fiction', async () => {
+    const { llm, recus } = scripte([
+      { content: 'Le moteur refuse de refouiller le bassin aujourd’hui.' },
+      { content: 'Vous avez déjà retourné ce bassin de fond en comble : il faudra laisser passer une nuit.' },
+    ]);
+    const res = await jouerTour({ moteur, partie: depart(), texte: 'On refouille le bassin.', bible: BIBLE, llm });
+    expect(res.erreur).toBeUndefined();
+    expect(res.appels).toBe(2);
+    expect(res.recit).toBe('Vous avez déjà retourné ce bassin de fond en comble : il faudra laisser passer une nuit.');
+    const consigne = recus[1]!.at(-1)!;
+    expect(consigne.role).toBe('user');
+    expect(String(consigne.content)).toMatch(/coulisses/);
+    expect(res.partie.journal.at(-1)).toMatchObject({ type: 'recitConteur' });
+  });
+
+  it('un récit propre ne coûte aucun appel de plus', async () => {
+    const { llm } = scripte([{ content: 'Le bassin est vide : vous l’avez déjà fouillé.' }]);
+    const res = await jouerTour({ moteur, partie: depart(), texte: 'Encore le bassin.', bible: BIBLE, llm });
+    expect(res.appels).toBe(1);
+  });
+
+  it('si la réécriture parle encore des coulisses, on garde le premier récit (le tour n’est pas perdu)', async () => {
+    const { llm } = scripte([{ content: 'Le moteur refuse.' }, { content: 'Le moteur refuse toujours.' }]);
+    const res = await jouerTour({ moteur, partie: depart(), texte: 'Encore.', bible: BIBLE, llm });
+    expect(res.recit).toBe('Le moteur refuse.');
+    expect(res.appels).toBe(2);
+  });
+
+  it('le détecteur ne confond pas un mot du décor avec les coulisses', () => {
+    expect(MACHINE.test('Vous prenez les outils de voleur et crochetez la serrure.')).toBe(false);
+    expect(MACHINE.test('Le règlement du village interdit les armes.')).toBe(false);
+    expect(MACHINE.test('Le moteur refuse de refouiller.')).toBe(true);
+    expect(MACHINE.test('Selon les règles du jeu, c’est impossible.')).toBe(true);
+    expect(MACHINE.test('L’arbitre a tranché.')).toBe(true);
   });
 });
