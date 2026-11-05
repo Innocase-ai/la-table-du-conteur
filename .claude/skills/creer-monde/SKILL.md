@@ -51,6 +51,18 @@ Remplis aussi `monde.json` : accroche, ton, direction artistique (palette, mots-
 
 **Issue de repli pour les combats difficiles** : tout combat « élevée » a au moins une autre issue (négocier, se rendre, ruser, payer). Le validateur le signale. Une rencontre finale qui réagit à ce qui s'est passé avant (un drapeau, un compteur) vaut mieux qu'une embuscade identique quoi qu'il arrive.
 
+**Faire une histoire dont le joueur ne s'ennuie pas** (recherche sur Baldur's Gate 3, Disco Elysium, The Witcher 3, Fallout New Vegas, Pillars of Eternity, Wasteland 3 et sur les techniques de maître du jeu ; chaque règle est portée par un avis du validateur ou un module) :
+1. **Des dilemmes sans bonne réponse** (dossier `dilemmes/`, 3 par chapitre au moins). Chaque option sert une valeur que le joueur aime, annonce son coût ET son gain, et l'abstention coûte aussi. Test : si deux joueurs choisiraient la même option, réécris.
+2. **Un échec fait avancer** : jamais d'étape qui ne dépend que d'un jet. Le jet raté coûte autrement (un dilemme avec `jet` impose `echec`). Un fait clé a trois sources (un PNJ, un lieu à fouiller, un objet) et un chemin sans jet.
+3. **Révéler dans le bon ordre** : sympathie pour le PNJ d'abord, doute ensuite, puis le choix ; prévoir un lieu de pause juste avant. Le dilemme s'ouvre sur une condition (`quand`) qui suit ces révélations.
+4. **Le monde se souvient** : concentre la réactivité aux points de passage obligés et aux PNJ majeurs (`salutations.variantes`, au moins 5 PNJ), plutôt que des branches entières. Une ligne qui réagit vaut mieux qu'une scène supplémentaire.
+5. **Des conséquences en deux temps** : un effet immédiat et un `echo` quelques jours plus tard (le déserteur épargné revient, la ruelle noyée). Chaque grand choix laisse une trace dans la suite.
+6. **Des pertes réelles** : au moins un PNJ qui peut mourir ou partir selon les choix (`pnjEtat`), des événements `condition` sur la jauge qui ferment une porte (un PNJ perdu, un port fermé).
+7. **Une horloge qui se voit** : jauge à 4 paliers au moins, la moitié avec des effets, un moyen de la ralentir ; le joueur doit sentir le danger monter.
+8. **Du rythme** : alterne combat, négociation, exploration chronométrée, énigme, repos ; au moins 20 % de rencontres sans combat, au moins 3 rencontres élevées, deux issues vraiment différentes par rencontre (pas « combattre ou fuir »).
+9. **Des épilogues** : une phrase par option de dilemme (« ce qu'il est advenu »), racontée à la fin ; c'est peu coûteux et très mémorable.
+10. **Un ton par scène** : alterne le grave, le léger, l'étrange ; une quête secondaire tient en dix minutes et finit sur une chute ou une image.
+
 Fais valider un **résumé** du canon à l'utilisateur (pas le document entier) avant d'écrire les zones : changer un secret après coup coûte tout le travail des agents.
 
 ## Étape 3 — Découper en zones

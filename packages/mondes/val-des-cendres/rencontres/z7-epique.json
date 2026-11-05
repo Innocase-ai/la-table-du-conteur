@@ -1,0 +1,663 @@
+[
+  {
+    "id": "z7-r-grange-du-comptage",
+    "nom": "Le comptage de la grange",
+    "type": "exploration",
+    "lieu": "vei-grange-aux-grains",
+    "difficulte": "faible",
+    "intro": "La grange aux grains sent la poussière et la paille moisie. Les sacs sont alignés en rangs bien droits près de la porte, comme sur une estampe ; les rangs du fond, eux, sont vides depuis des semaines. Un homme du bailli tient un registre ouvert sur un tonneau et attend qu'on lui pose une question.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "compter-les-rangs",
+        "nom": "Compter les rangs vides",
+        "jet": {
+          "competence": "perception",
+          "dd": 12
+        },
+        "resume": "Vous comptez les sacs du fond jusqu'à la porte. Le chiffre ne ment pas : la moitié de la grange ne contient que de la poussière.",
+        "effets": [
+          {
+            "fait": "f-vei-greniers-au-tiers"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "aurele-montclar",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "L'homme au registre note votre nom, lentement, en levant les yeux. Le bailli saura bientôt que quelqu'un compte à sa place."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "glisser-un-sac",
+        "nom": "Glisser un sac vers la file",
+        "jet": {
+          "competence": "escamotage",
+          "dd": 13
+        },
+        "resume": "Un sac disparaît sous une cape et finit chez la veuve qui attend dehors, les mains vides. Le gardien regarde ailleurs, peut-être. Pas longtemps.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 3
+            }
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": -4
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": -6
+            }
+          },
+          {
+            "pieces": -20
+          },
+          {
+            "narration": "Le sac tombe sur les dalles devant toute la file. Le registre enregistre une amende, et le bailli une raison de plus de se méfier de vous."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "parler-a-la-file",
+        "nom": "Parler à la file qui attend dehors",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Les familles parlent à voix basse des chariots qui quittent Veillecendre la nuit, par la porte du nord. Une femme vous répète ce qu'elle a vu de ses yeux.",
+        "effets": [
+          {
+            "fait": "f-vei-sacs-vers-le-pont"
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Une femme vous prend pour un homme du bailli et referme sa porte. La file se tait, et personne ne répondra plus ce jour-là."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z7-r-sentier-eclaireur",
+    "nom": "L'éclaireur de la ravine",
+    "type": "social",
+    "lieu": "gro-sentier-ravine",
+    "difficulte": "faible",
+    "intro": "Un éclaireur du Fer-Gris, plaque de cuir sur le cœur, relève des bornes de granit au fond de la ravine. Il compte les pierres à voix haute, comme on récite une leçon. Il vous a vus depuis la crête et n'a pas encore levé son arc.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "tromper-la-piste",
+        "nom": "Lui indiquer le mauvais versant",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 12
+        },
+        "resume": "Vous lui montrez le versant nord, qui mène aux éboulis. Il le croit, ou fait semblant. Le chemin de la Veille reste à l'abri des bottes de la Compagnie.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z7-fausse-piste-donnee"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "gro-vask-eclaireur",
+              "delta": -20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -4
+            }
+          },
+          {
+            "narration": "Il sourit sans lever son arc. Il sait que vous mentez, et il le note dans son carnet, à côté des bornes."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "payer-le-passage",
+        "nom": "Lui donner vingt-cinq pièces d'or",
+        "condition": {
+          "pieces": {
+            "min": 25
+          }
+        },
+        "resume": "Vingt-cinq pièces pour qu'il oublie votre visage. Il les prend sans les compter, ce qui est pire que de les refuser.",
+        "effets": [
+          {
+            "pieces": -25
+          },
+          {
+            "attitude": {
+              "pnj": "gro-vask-eclaireur",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "guider-la-compagnie",
+        "nom": "Le conduire par les bornes jusqu'à la vire",
+        "jet": {
+          "competence": "survie",
+          "dd": 13
+        },
+        "resume": "Vous le menez pas à pas jusqu'à la vire. Il trouvera ainsi le chemin de la Veille, et la Compagnie saura désormais où le trouver.",
+        "effets": [
+          {
+            "fait": "f-gro-bornes-de-la-veille"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 8
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -8
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -4
+            }
+          },
+          {
+            "narration": "La brume de la ravine vous fait perdre les bornes. Il tourne en rond avec vous, puis repart en jurant qu'il reviendra avec des hommes."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z7-r-cocon-du-garde-manger",
+    "nom": "Le cocon du garde-manger",
+    "type": "exploration",
+    "lieu": "gro-fils-garde-manger",
+    "difficulte": "faible",
+    "intro": "Dans le garde-manger, les cocons pendent comme des fruits gris. L'un d'eux porte un casque de mineur nain et bouge encore : quelqu'un de vivant, ou ce que la cendre en a fait, est enfermé dans la soie. Aucune araignée n'est en vue, mais les fils tremblent au-dessus de votre tête.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "couper-le-cocon",
+        "nom": "Trancher la soie avec précaution",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "Vous tranchez la soie couche après couche. L'homme tombe sur le sol, la gorge encombrée de toux grise, mais il respire. Il vous montre le drain nain qu'il a suivi avant d'être pris.",
+        "effets": [
+          {
+            "fait": "f-gro-fils-drain-des-nains"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "La soie cède d'un coup. Le cocon s'ouvre sur un visage gris, et il vous faut reculer en hâte, la gorge serrée."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "ecouter-les-noms",
+        "nom": "Écouter ce qui murmure dans le cocon",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
+        "resume": "Un murmure sort de la soie : une liste de noms, les quarante mineurs de l'effondrement. Vous les retenez, comme on retient une promesse qu'on ne pourra pas tenir.",
+        "effets": [
+          {
+            "fait": "f-gro-fosse-mineurs-releves"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le murmure se tait. Il ne vous répondra plus ce soir, et vous entendez les fils remonter lentement vers la voûte."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "bruler-la-soie",
+        "nom": "Brûler la soie avec la braise de veille",
+        "condition": {
+          "objet": "braise-de-veille"
+        },
+        "resume": "La flamme de la braise mord la soie et la fait fondre en odeur de cire. Le cocon se consume sans bruit, avec ce qu'il contient. Vous emportez la braise éteinte, et plus rien ne vous protège de la cendre.",
+        "effets": [
+          {
+            "objet": {
+              "id": "braise-de-veille",
+              "retirer": true
+            }
+          },
+          {
+            "fait": "f-gro-fils-drain-des-nains"
+          },
+          {
+            "xp": 50
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z7-r-prison-des-otages",
+    "nom": "La prison des otages",
+    "type": "social",
+    "lieu": "pdf-prison",
+    "difficulte": "faible",
+    "intro": "La prison de Pont-de-Fer est une cave aux barreaux de fer rouillé. Sous la lampe, un homme au visage couvert de suie vous regarde sans demander de pitié : Anselme Cordier, pris en otage pour une dette de grain qu'il n'a jamais contractée. Le geôlier Oumak fume près de la porte, une clé à la ceinture.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "payer-le-geolier",
+        "nom": "Payer le geôlier, soixante pièces d'or",
+        "condition": {
+          "pieces": {
+            "min": 60
+          }
+        },
+        "resume": "Soixante pièces comptées dans une main grasse. Le geôlier ouvre la grille sans un mot. Anselme sort en se demandant qui vous êtes et ce qu'il vous doit.",
+        "effets": [
+          {
+            "pieces": -60
+          },
+          {
+            "attitude": {
+              "pnj": "pdf-anselme-cordier",
+              "delta": 25
+            }
+          },
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "mentir-sur-le-sceau",
+        "nom": "Présenter un ordre de libération de la Compagnie",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "resume": "Vous montrez un ordre qui porte un sceau de la Compagnie. Le geôlier hésite, puis compare l'empreinte à la sienne. Il sait lire les faux, mais il lui faut un chef pour le dire.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pdf-anselme-cordier",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -6
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Le geôlier appelle la garde. Vous sortez à reculons par l'escalier, sans Anselme, et la rue entière sait désormais votre nom."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "ecouter-les-cellules",
+        "nom": "Écouter les prisonniers des cellules voisines",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
+        "resume": "Dans la cellule d'à côté, une voix de femme raconte que les sacs de grain sont comptés deux fois : une fois pour la Compagnie, une fois pour le bailli. Elle vous répète ce que Pont-de-Fer ne peut pas ouvrir.",
+        "effets": [
+          {
+            "fait": "f-pdf-le-sceau-bloque-la-compagnie"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "pdf-oumak-le-geolier",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Le geôlier a entendu. Il vous regarde comme on regarde une dette, et pose la main sur sa clé."
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z7-r-serment-de-brand",
+    "nom": "Le serment de Brand",
+    "type": "social",
+    "lieu": "cry-antichambre-du-sceau",
+    "difficulte": "moderee",
+    "intro": "Devant la salle du sceau, un squelette de garde en armure de cérémonie se tient droit, la hache posée en travers du seuil. Brand, mort depuis deux siècles, retient le serment de la forge : nul ne franchit cette porte sans avoir prononcé la formule. Il ne bouge pas encore ; il attend une parole.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "rappeler-le-serment",
+        "nom": "Réciter la formule de la forge",
+        "jet": {
+          "competence": "histoire",
+          "dd": 13
+        },
+        "resume": "Vous récitez la formule telle que le journal de Brunhild la donne, mot pour mot. Les orbites du squelette s'éclairent d'une lueur de braise, et il s'écarte.",
+        "effets": [
+          {
+            "flag": "z7-serment-rappele"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-brand-garde-serment",
+              "delta": 20
+            }
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Vous hésitez sur un mot. Brand lève sa hache, et la cendre tombe plus épaisse dans la salle derrière lui."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "offrir-la-braise",
+        "nom": "Poser la braise de veille sur le seuil",
+        "condition": {
+          "objet": "braise-de-veille"
+        },
+        "resume": "Vous déposez la braise de la Lanterne sur la pierre. Brand reconnaît la flamme des nains de Veillecendre et s'incline, la hache remontée contre l'épaule.",
+        "effets": [
+          {
+            "objet": {
+              "id": "braise-de-veille",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "cry-brand-garde-serment",
+              "delta": 30
+            }
+          },
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "defier-le-serment",
+        "nom": "Le défier de passer par la force",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 14
+        },
+        "resume": "Vous frappez sa hache du plat de votre arme. Il recule d'un pas, puis le serment le retient : il vous laisse passer par défi, non par honneur, et il vous le fait sentir.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-brand-garde-serment",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z7-brand-defie"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-brand-garde-serment",
+              "delta": -25
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Le serment vous tient à distance. Pendant que vous reculez, la salle se remplit de cendre grise, et la porte reste fermée."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z7-r-dagna-du-refuge",
+    "nom": "Dagna et le refuge",
+    "type": "social",
+    "lieu": "hf-refuge-de-dagna",
+    "difficulte": "moderee",
+    "intro": "Un refuge creusé dans la paroi, avec un poêle de fonte et des couvertures tirées d'un sac de cendre. Dagna Plume-de-Plomb, une naine en tablier de cuir, aiguise une lame sans vous regarder. Elle a entendu la Forge gronder sous ses pieds, et elle sait que vous descendez vers le Cœur.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "negocier-la-gaine",
+        "nom": "Négocier le chemin de la gaine",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "resume": "Elle connaît la gaine où la Veine rouge alimente le Cœur. Elle la décrit contre la promesse de ne pas éteindre les braises qu'elle garde depuis des années.",
+        "effets": [
+          {
+            "fait": "f-hf-veine-et-coeur"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "z7-promesse-aux-braises"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": -15
+            }
+          },
+          {
+            "narration": "Elle se lève, la lame à la main : « On ne marchande pas avec la gaine. Sortez de mon refuge. »"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "laisser-les-vivres",
+        "nom": "Laisser quarante pièces pour le poêle",
+        "condition": {
+          "pieces": {
+            "min": 40
+          }
+        },
+        "resume": "Vous posez quarante pièces sur l'établi. Elle les regarde longtemps, puis les pousse dans un tiroir sans un mot, et vous parle un peu de la Forge comme on parle d'un voisin.",
+        "effets": [
+          {
+            "pieces": -40
+          },
+          {
+            "fait": "f-hf-porte-du-sceau"
+          },
+          {
+            "attitude": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "demander-le-chemin-du-coeur",
+        "nom": "Lui demander la descente des braises",
+        "jet": {
+          "competence": "intuition",
+          "dd": 13
+        },
+        "resume": "Vous devinez qu'elle a perdu quelqu'un au Cœur. Elle vous indique la descente des braises, mais elle vous demande de ne plus jamais revenir, et elle quitte le refuge avec ses couvertures.",
+        "effets": [
+          {
+            "fait": "f-hf-porte-du-sceau"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "hf-dagna-plume-de-plomb",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Elle vous répond par un silence, puis rentre dans son refuge et tire le verrou. Le poêle s'éteint dans le bruit de la cendre."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  }
+]

@@ -11,19 +11,37 @@
         "seuil": 2,
         "nom": "Des noyés au pied de la falaise",
         "narration": "La mer recule d'un cran de plus que la veille. Au pied de la falaise, sur le sable gris, des silhouettes se tiennent debout, la tête penchée comme si elles écoutaient quelque chose sous les galets. Elles ne montent pas. Pas encore.",
-        "effets": []
+        "effets": [
+          {
+            "flag": "maree-2"
+          }
+        ]
       },
       {
         "seuil": 3,
         "nom": "La chaussée s'ouvre",
         "narration": "La mer découvre la chaussée des Basses-Eaux, un chemin de pierres noires que personne n'a vu depuis une génération. Les cloches de la Citadelle sonnent la marée basse à contretemps. La nuit du départ est là, et le Héraut blême se tient au bord de la grille, sans bruit, comme s'il avait toujours été là.",
-        "effets": []
+        "effets": [
+          {
+            "flag": "maree-3"
+          }
+        ]
       },
       {
         "seuil": 4,
         "nom": "Le port ferme ses portes",
         "narration": "Port-aux-Cordes a les pieds dans l'eau. Les ruelles basses sont inondées à chaque marée, et les noyés remontent les escaliers des quais aux heures creuses. La Ligue ferme le port et barre les digues. Aux fenêtres, les lanternes s'éteignent une à une.",
-        "effets": []
+        "effets": [
+          {
+            "flag": "maree-4"
+          },
+          {
+            "attitude": {
+              "pnj": "maitre-osric-vent",
+              "delta": 10
+            }
+          }
+        ]
       },
       {
         "seuil": 5,

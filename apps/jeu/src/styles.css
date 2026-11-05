@@ -6045,6 +6045,23 @@ kbd {
   width: 100%;
 }
 
+/* Une réplique ou un choix (dilemme) est une phrase entière : le bouton la montre sur plusieurs lignes. */
+.proposition-apercu > .bouton-principal {
+  white-space: normal;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  padding: 9px 14px;
+  line-height: 1.35;
+}
+
+.proposition-apercu > .bouton {
+  white-space: normal;
+  text-align: left;
+  line-height: 1.35;
+}
+
 .proposition-apercu p {
   margin: 0;
   padding: 0 4px;
@@ -6052,6 +6069,7 @@ kbd {
   line-height: 1.4;
   font-style: italic;
   color: var(--texte-doux);
+  white-space: pre-line;
 }
 
 .objet-action {
@@ -6076,6 +6094,7 @@ kbd {
   font-style: italic;
   color: var(--texte-doux);
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .enigme-reponse {

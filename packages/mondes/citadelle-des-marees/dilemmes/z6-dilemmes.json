@@ -1,0 +1,825 @@
+[
+  {
+    "id": "le-pli-scelle",
+    "titre": "Le pli scellé",
+    "situation": "Lise Morvan serre contre elle un pli cacheté à la cire de la Ligue, la manche tachée de sang. « Il doit arriver à Port-aux-Cordes, dit-elle, et je ne tiendrai pas jusque-là. Je ne vous demande pas de le lire. Je sais seulement qu'il pèse plus lourd que du papier. »",
+    "quand": {
+      "quete": {
+        "id": "q-fal-courrier-ligue",
+        "statut": "active"
+      }
+    },
+    "options": [
+      {
+        "id": "porter",
+        "libelle": "Je porte le pli sans l'ouvrir.",
+        "ton": "Loyauté",
+        "couts": [
+          "Vous ignorez ce que la Ligue vous fait transporter.",
+          "Si le pli compte, c'est vous qui en porterez le poids."
+        ],
+        "gains": [
+          "Maître Osric vous recevra sans méfiance."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "maitre-osric-vent",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Maître Osric a lu le pli debout, sans un mot, puis il a refermé la porte derrière vous."
+      },
+      {
+        "id": "ouvrir",
+        "libelle": "J'ouvre le pli, à l'abri des regards.",
+        "ton": "Ruse",
+        "couts": [
+          "Si le sceau casse, la Ligue saura qui l'a forcé.",
+          "Lise ne vous pardonnera pas d'avoir touché à ce qui ne vous regardait pas."
+        ],
+        "gains": [
+          "Vous apprenez ce que la Ligue prévoit pour la côte."
+        ],
+        "jet": {
+          "competence": "escamotage",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "fait": "f-ligue-et-phare-cellule"
+          },
+          {
+            "attitude": {
+              "pnj": "fal-lise-morvan",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Le sceau se rompt entre vos doigts avec un bruit sec. Vous n'avez pas le temps de lire : des pas résonnent déjà dans l'escalier."
+          }
+        ],
+        "epilogue": "Vous saviez ce que la Ligue cachait, et vous ne l'avez dit à personne."
+      },
+      {
+        "id": "bruler",
+        "libelle": "Je jette le pli dans le feu du phare.",
+        "ton": "Défiance",
+        "couts": [
+          "La Ligue vous tiendra pour ses ennemis.",
+          "La quête du pli est perdue."
+        ],
+        "gains": [
+          "Les Rats de quai vous devront une faveur."
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "fal-lettre-de-la-ligue",
+              "retirer": true
+            }
+          },
+          {
+            "quete": {
+              "id": "q-fal-courrier-ligue",
+              "statut": "echouee"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": -15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "Le pli s'est consumé en un instant, et la cire a coulé sur les pierres du phare."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je garde le pli scellé et je ne décide rien.",
+      "couts": [
+        "Lise attend une réponse qui ne vient pas."
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "fal-lise-morvan",
+            "delta": -3
+          }
+        }
+      ],
+      "epilogue": "Lise a fini la route à pied, le pli serré contre elle, sans jamais vous demander pourquoi."
+    },
+    "echos": [
+      {
+        "si": "porter",
+        "apres": 3,
+        "annonce": "Un matelot de la Ligue vous offre un verre à la taverne du Hareng gris. « Maître Osric dit que vous êtes le premier à ne pas avoir ouvert le pli. Il ne le dit à personne d'autre. »",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "maitre-osric-vent",
+              "delta": 3
+            }
+          }
+        ]
+      },
+      {
+        "si": "ouvrir",
+        "apres": 2,
+        "annonce": "Un messager de la Ligue vous rattrape sur la route : « Maître Osric veut savoir si le sceau est resté fermé. Il n'a pas l'air de croire ce que vous allez répondre. »"
+      },
+      {
+        "si": "bruler",
+        "apres": 2,
+        "annonce": "Un Rat de quai vous attend au coin d'une ruelle. « Mère Sorel dit que la Ligue a fermé les quais à votre nom. Un passage vous attend, si vous en voulez un. »",
+        "effets": [
+          {
+            "pieces": 30
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-fanal-ou-le-hameau",
+    "titre": "Le fanal ou le hameau",
+    "situation": "À Brumevoile, la marée descend, et sur la grève les noyés avancent en silence. Corentin tient sa gaffe comme une arme et ne quitte pas la jetée. « Le fanal que vous portez tient la mer à distance, dit-il. Il n'en tient qu'un seul morceau de côte. Choisissez lequel. »",
+    "quand": {
+      "et": [
+        {
+          "lieu": "fal-brumevoile"
+        },
+        {
+          "objet": "fanal-de-poche"
+        }
+      ]
+    },
+    "lieu": "fal-brumevoile",
+    "delai": 2,
+    "options": [
+      {
+        "id": "fanal",
+        "libelle": "Je laisse le fanal à Corentin.",
+        "ton": "Clémence",
+        "couts": [
+          "Vous perdez le fanal-de-poche, et la route vers la chaussée se fera dans le noir.",
+          "Le palais saura que vous n'avez plus rien pour tenir les noyés."
+        ],
+        "gains": [
+          "Corentin tient la grève jusqu'à l'aube, et il vous donne sa barque."
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "fanal-de-poche",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "corentin-brumevoile",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "epilogue": "Corentin a tenu la grève jusqu'au matin, et sa lanterne est restée allumée sur le hameau."
+      },
+      {
+        "id": "emmener",
+        "libelle": "Je garde le fanal et j'emmène Corentin.",
+        "ton": "Fermeté",
+        "couts": [
+          "Corentin ne supporte pas la route : il ralentit la marche et se tait.",
+          "Il vous en veut d'avoir quitté son hameau."
+        ],
+        "gains": [
+          "Vous gardez le fanal, et un homme qui connaît les passages du marais."
+        ],
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "corentin-brumevoile",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "fal-corentin-guide"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Corentin se trompe de passage dans les bancs de sel. Il faut une demi-heure de marche à reculons pour retrouver la route, et la mer gagne du terrain pendant ce temps."
+          }
+        ],
+        "epilogue": "Corentin a suivi le groupe jusqu'à la route des falaises, sans jamais regarder derrière lui."
+      },
+      {
+        "id": "partir",
+        "libelle": "Je pars avec le fanal, sans l'attendre.",
+        "ton": "Nécessité",
+        "couts": [
+          "Corentin reste seul sur la grève.",
+          "La mer gagne un pas de plus sur la côte."
+        ],
+        "gains": [
+          "Le fanal vous garde en vie jusqu'à la chaussée."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "corentin-brumevoile",
+              "etat": "mort"
+            }
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Sa barque a été retrouvée retournée sur la grève, la gaffe posée en travers."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas, et la marée décide.",
+      "couts": [
+        "Le temps passe, et la mer prend le hameau sans que personne ne l'ait choisi."
+      ],
+      "effets": [
+        {
+          "jauge": {
+            "id": "maree",
+            "delta": 1
+          }
+        }
+      ],
+      "epilogue": "Corentin a tenu la grève seul jusqu'à la marée haute, et la mer a emporté la moitié de Brumevoile."
+    },
+    "echos": [
+      {
+        "si": "fanal",
+        "apres": 2,
+        "annonce": "Une lueur apparaît au bout de la jetée de Brumevoile. Corentin ne vous doit rien, mais il vous fait signe depuis la grève.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "corentin-brumevoile",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "partir",
+        "apres": 2,
+        "annonce": "La nuit suivante, la lanterne du Cap-Mort ne répond plus à la vôtre. Quelqu'un est resté là-haut, et ce n'était pas vous."
+      }
+    ]
+  },
+  {
+    "id": "le-sort-de-quentin",
+    "titre": "Le sort de Quentin",
+    "situation": "Quentin Salmier ne nie plus rien. Assis sur sa couchette, les mains liées, il sourit d'un air las. « Vous pouvez me livrer, me laisser filer ou me poser des questions. Je ne parlerai qu'à celui qui acceptera de m'entendre jusqu'au bout. Et la Cour, de son côté, ne dort pas. »",
+    "quand": {
+      "flag": "cit-infiltre-demasque"
+    },
+    "lieu": "cit-dortoirs",
+    "options": [
+      {
+        "id": "liberer",
+        "libelle": "Je le laisse filer.",
+        "ton": "Clémence",
+        "couts": [
+          "Il rejoint la Cour et l'avertit de votre présence.",
+          "La Cour aura un peu plus de patience pour la côte."
+        ],
+        "gains": [
+          "Il vous laisse, en échange, ce qu'il sait de la Cour."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "quentin-salmier",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "fait": "f-deux-cours"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "Quentin a quitté la Citadelle par la porte des cuisines, et l'on n'a plus jamais entendu sa voix dans les salles."
+      },
+      {
+        "id": "livrer",
+        "libelle": "Je le remets au Prieur.",
+        "ton": "Loi",
+        "couts": [
+          "Quentin est emmené aux caveaux, et ce qu'il savait meurt avec lui.",
+          "Vous devenez les hommes du Prieur, aux yeux de tous ceux qui ont vu la scène."
+        ],
+        "gains": [
+          "Les cartographes vous respectent, et le Prieur vous offre sa confiance."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "quentin-salmier",
+              "etat": "parti"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cartographes",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "prieur-anselme-vareuil",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "On a fermé la grille des caveaux sur Quentin, et le Prieur a dîné ce soir-là avec un appétit tranquille."
+      },
+      {
+        "id": "interroger",
+        "libelle": "Je l'interroge, sans menace et sans pitié.",
+        "ton": "Fermeté",
+        "couts": [
+          "Vos méthodes seront racontées dans les réfectoires.",
+          "S'il ment bien, vous ne saurez jamais s'il a parlé vrai."
+        ],
+        "gains": [
+          "Il lâche une vérité sur le Prieur, si vous savez la presser."
+        ],
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "fait": "f-prieur-veut-livrer"
+          },
+          {
+            "reputation": {
+              "faction": "cartographes",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "pnjEtat": {
+              "pnj": "quentin-salmier",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Quentin se dégage d'un coup de tête et court vers les escaliers. Vous entendez sa voix crier le nom de la Cour dans les couloirs."
+          }
+        ],
+        "epilogue": "Quentin a tenu sa langue ou l'a perdue : la Citadelle ne l'a jamais dit."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne décide rien : Quentin reste enfermé.",
+      "couts": [
+        "La Cour attend de savoir ce qu'il dira, et vous ne le saurez pas avant elle."
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "quentin-salmier",
+            "delta": -5
+          }
+        }
+      ],
+      "epilogue": "Quentin est resté dans sa cellule, muet, jusqu'à ce que la garde change."
+    },
+    "echos": [
+      {
+        "si": "liberer",
+        "apres": 2,
+        "annonce": "Un homme vêtu de gris traverse la Cour de la Citadelle et s'arrête devant la salle des cartes, comme s'il cherchait une porte qu'il connaît déjà."
+      },
+      {
+        "si": "livrer",
+        "apres": 3,
+        "annonce": "Le Prieur vous fait porter une carte du cap, encore humide. Une marque au crayon la traverse : il n'est pas sûr de ce qu'il a fait."
+      }
+    ]
+  },
+  {
+    "id": "les-ruelles-basses",
+    "titre": "Les ruelles basses",
+    "situation": "À Port-aux-Cordes, la mer est entrée dans les ruelles basses sans frapper. Les habitants sortent par les fenêtres, les barques fendent les rues, et la Ligue crie des ordres que personne n'entend. Un homme vous désigne les caves des Rats : « Il y a encore des gens là-dessous. Vite. »",
+    "quand": {
+      "et": [
+        {
+          "flag": "port-atteint"
+        },
+        {
+          "jauge": {
+            "id": "maree",
+            "min": 3
+          }
+        }
+      ]
+    },
+    "delai": 2,
+    "options": [
+      {
+        "id": "evacuer",
+        "libelle": "J'aide la Ligue à évacuer les ruelles.",
+        "ton": "Devoir",
+        "couts": [
+          "Deux jours de plus perdus : la marée monte pendant que vous portez des enfants.",
+          "Les caves restent fermées à la marée."
+        ],
+        "gains": [
+          "La Ligue vous doit beaucoup, et des habitants survivent."
+        ],
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "por-ruelles-evacuees"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 3
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "por-odile-sauvrac",
+              "etat": "mort"
+            }
+          }
+        ],
+        "epilogue": "Les ruelles basses ont été vidées une à une, à la lanterne. Il manque pourtant quelques noms sur le registre de la halle."
+      },
+      {
+        "id": "chaussee",
+        "libelle": "Je file vers la chaussée pendant que la rue se noie.",
+        "ton": "Nécessité",
+        "couts": [
+          "Vous ne revenez pas en arrière, quoi qu'on vous crie.",
+          "Odile et Gaspard restent dans la rue basse."
+        ],
+        "gains": [
+          "Vous gagnez le temps qui vous manque sur la chaussée."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "por-odile-sauvrac",
+              "etat": "mort"
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "por-gaspard-filet",
+              "etat": "mort"
+            }
+          },
+          {
+            "flag": "por-chaussee-gagnee"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "On a retrouvé le filet de Gaspard accroché à une grille, et la balance de la halle encore dans la boue."
+      },
+      {
+        "id": "rats",
+        "libelle": "Je paie les Rats pour ouvrir leurs caves.",
+        "ton": "Marché",
+        "couts": [
+          "100 pièces d'or, payées d'avance.",
+          "La Ligue saura que vous avez traité avec les Rats."
+        ],
+        "gains": [
+          "Les caves s'ouvrent, et les Rats vous devront une fière chandelle."
+        ],
+        "requis": {
+          "pieces": {
+            "min": 100
+          }
+        },
+        "requisTexte": "Il vous faut 100 po pour payer les Rats d’avance.",
+        "effets": [
+          {
+            "pieces": -100
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": -5
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "por-gaspard-filet",
+              "etat": "mort"
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "Les caves ont livré leurs habitants, une femme et deux enfants sur trois. Gaspard, lui, a voulu sortir par la mauvaise porte."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas, et la marée fait le reste.",
+      "couts": [
+        "Personne ne décide à votre place, et la rue décide pour vous."
+      ],
+      "effets": [
+        {
+          "pnjEtat": {
+            "pnj": "por-odile-sauvrac",
+            "etat": "mort"
+          }
+        },
+        {
+          "pnjEtat": {
+            "pnj": "por-gaspard-filet",
+            "etat": "mort"
+          }
+        },
+        {
+          "jauge": {
+            "id": "maree",
+            "delta": 1
+          }
+        }
+      ],
+      "epilogue": "La mer est montée jusqu'aux fenêtres du premier étage. La halle n'a plus de poissonnière."
+    },
+    "echos": [
+      {
+        "si": "evacuer",
+        "apres": 1,
+        "annonce": "Un enfant de la rue basse vous apporte une pièce cassée en deux, la moitié qu'il a gardée pour vous. « Pour la barque », dit-il."
+      },
+      {
+        "si": "rats",
+        "apres": 2,
+        "annonce": "Mère Sorel vous fait dire que les Rats ne vendront plus de passage à la Ligue. « Pas pour le moment », précise-t-elle.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "la-promesse-de-nolwen",
+    "titre": "La promesse de Nolwen",
+    "situation": "Nolwen vous attend au bout du quai, les mains dans les poches de son manteau trop grand. Elle ne regarde pas la mer. « J'ai une chose à vous demander, dit-elle. Pas une aide. Une promesse. Si la mer me réclame, promettez-moi quelque chose, et je vous dirai ce que je sais. »",
+    "quand": {
+      "flag": "port-atteint"
+    },
+    "options": [
+      {
+        "id": "ne-pas-retenir",
+        "libelle": "Je promets de ne jamais vous retenir, si vous devez descendre.",
+        "ton": "Honnêteté",
+        "couts": [
+          "Si la mer la réclame, vous la laisserez partir.",
+          "Vous vous privez de la seule main qui pouvait la tenir en arrière."
+        ],
+        "gains": [
+          "Nolwen vous fait confiance, et vous dit ce qu'elle sait de sa marque."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "nolwen-brevemer",
+              "delta": 10
+            }
+          },
+          {
+            "fait": "f-nolwen-est-le-sceau"
+          },
+          {
+            "xp": 35
+          }
+        ],
+        "epilogue": "Nolwen ne vous a jamais retenu, même quand la marée est montée jusqu'à sa porte."
+      },
+      {
+        "id": "sauver",
+        "libelle": "Je promets de vous sauver, quoi qu'il arrive.",
+        "ton": "Serment",
+        "couts": [
+          "Ce serment vous liera face à la Ligue, qui veut la fermer dans un phare.",
+          "Vous n'aurez plus le droit de choisir la mer contre elle."
+        ],
+        "gains": [
+          "Nolwen vous donne sa confiance, et les cartographes vous tiennent pour des leurs."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "nolwen-brevemer",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cartographes",
+              "delta": 5
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "On dit encore, dans les réfectoires de la Citadelle, que vous avez juré devant la jeune fille, et que vous avez tenu."
+      },
+      {
+        "id": "refuser",
+        "libelle": "Je refuse de promettre quoi que ce soit.",
+        "ton": "Franchise",
+        "couts": [
+          "Nolwen comprend que vous ne la sauverez peut-être pas.",
+          "Les cartographes vous jugent froid et prudent."
+        ],
+        "gains": [
+          "Aucune promesse ne vous enchaîne : vous gardez la main sur la fin."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "nolwen-brevemer",
+              "delta": -15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cartographes",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Nolwen a marché seule jusqu'au bout du quai, et vous n'avez pas essayé de la suivre."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne réponds pas.",
+      "couts": [
+        "Nolwen attend une réponse qui ne vient pas, et elle le remarque."
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "nolwen-brevemer",
+            "delta": -5
+          }
+        }
+      ],
+      "epilogue": "Nolwen n'a plus jamais reparlé de promesses, et sa voix s'est faite plus basse dans la nuit."
+    },
+    "echos": [
+      {
+        "si": "ne-pas-retenir",
+        "apres": 2,
+        "annonce": "Cette nuit-là, Nolwen s'endort contre la fenêtre, la main ouverte sur le rebord, comme pour vous rappeler qu'elle peut partir."
+      },
+      {
+        "si": "sauver",
+        "apres": 3,
+        "annonce": "Un homme de la Ligue vous barre le passage sur la jetée et répète le nom de la jeune fille, lentement, comme une condamnation.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": -3
+            }
+          }
+        ]
+      },
+      {
+        "si": "refuser",
+        "apres": 1,
+        "annonce": "Nolwen ne vous parle plus jusqu'au matin. Puis elle vous tend la carte des marées sans un mot, pliée en quatre."
+      }
+    ]
+  }
+]

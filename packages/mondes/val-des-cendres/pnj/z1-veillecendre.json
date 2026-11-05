@@ -319,7 +319,27 @@
     "salutations": {
       "neutre": "Parle vite. La nuit tombe tôt, et les jours sont comptés.",
       "amical": "Entre. Le feu est chaud, et j'ai besoin de gens qui ne parlent pas pour ne rien dire.",
-      "hostile": "Vous n'avez rien à faire ici. Sortez."
+      "hostile": "Vous n'avez rien à faire ici. Sortez.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-gardiens-la-braise",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Vous avez porté la braise jusqu'au bout, et le village le sait. Je ne vous remercierai pas : la flamme ne remercie personne. Asseyez-vous, la soupe est pour vous."
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "cendre",
+              "min": 3
+            }
+          },
+          "texte": "La cendre est à trois pas de la porte et vous rentrez quand même. Entrez vite. Les morts n'attendent pas la cloche du soir."
+        }
+      ]
     },
     "services": [],
     "inventaire": []
@@ -668,7 +688,24 @@
     "salutations": {
       "neutre": "Soyez les bienvenus à la halle. Nous avons peu, mais nous le partageons avec ordre.",
       "amical": "Ah, nos voyageurs ! Asseyez-vous, je vous en prie. Un peu de vin ? Il est tiède, mais honnête.",
-      "hostile": "Je crains que nous n'ayons rien à nous dire. Bastien vous raccompagnera."
+      "hostile": "Je crains que nous n'ayons rien à nous dire. Bastien vous raccompagnera.",
+      "variantes": [
+        {
+          "condition": {
+            "fait": "f-tribut-du-bailli"
+          },
+          "texte": "Vous savez ce que je paie, et à qui. Je n'ai pas le droit de vous le reprocher, puisque vous savez compter. Asseyez-vous : mieux vaut parler de grain que de honte."
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "cendre",
+              "min": 3
+            }
+          },
+          "texte": "Vous arrivez à l'heure où les gens se taisent. Le couvre-feu est tombé ; je vous demande de ne pas le faire tomber plus bas. Entrez, je vous en prie."
+        }
+      ]
     },
     "services": [],
     "inventaire": []
@@ -896,7 +933,18 @@
     "salutations": {
       "neutre": "Entrez, entrez, mes poulets ! Il y a de la soupe, et si Dieu veut du pain.",
       "amical": "Les voilà, mes préférés ! Asseyez-vous, je vous mets la bonne table, celle près du feu.",
-      "hostile": "Payez ou sortez. Je n'ai plus de patience pour les ingrats."
+      "hostile": "Payez ou sortez. Je n'ai plus de patience pour les ingrats.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-vei-une-dette-de-bertille",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Mes poulets ! Ma dette est réglée et je ne sais plus quoi faire de mes mains. La soupe est offerte, le vin aussi. Ne le répétez pas au bailli."
+        }
+      ]
     },
     "boutique": {
       "stock": [
@@ -1651,7 +1699,18 @@
     "salutations": {
       "neutre": "Entrez, entrez, mais ne touchez à rien, voyez-vous ! Ah, ceci tourne : ne touchez pas à ça non plus.",
       "amical": "Enfin quelqu'un qui comprend l'importance d'un pignon ! Un thé, ça tient dans une tasse à engrenages.",
-      "hostile": "Ne cassez rien. Vraiment rien."
+      "hostile": "Ne cassez rien. Vraiment rien.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-vei-la-braise-de-veille",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Ah ! Vous avez rapporté la braise en un seul morceau, voyez-vous, c'est presque un miracle. Entrez, et ne touchez pas au cadran. Il vous aime encore moins que moi."
+        }
+      ]
     },
     "boutique": {
       "stock": [
@@ -1742,7 +1801,8 @@
       "f-coeur-de-braise",
       "f-sceau-des-cryptes",
       "f-vei-registre-de-la-flamme",
-      "f-vei-runes-du-foyer"
+      "f-vei-runes-du-foyer",
+      "f-vei-lettres-du-col"
     ],
     "secrets": [
       {
@@ -2254,7 +2314,18 @@
     "salutations": {
       "neutre": "Halte. Qui va là ? Ah, les caravaniers. Restez dans la lumière.",
       "amical": "Entrez. Il y a une chaise et du thé noir. C'est tout ce que j'ai, mais c'est chaud.",
-      "hostile": "Dehors. Je n'ai pas le temps pour vos histoires."
+      "hostile": "Dehors. Je n'ai pas le temps pour vos histoires.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-vei-les-lettres-du-col",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Halte. Ah, c'est vous. Les lettres ont fait leur chemin, à ce qu'on m'a dit. Entrez dans la lumière, et ne parlez pas trop fort de ce que vous avez lu."
+        }
+      ]
     },
     "services": [],
     "inventaire": [

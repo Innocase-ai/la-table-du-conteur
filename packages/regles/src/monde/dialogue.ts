@@ -64,7 +64,8 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   const r = vide();
   const a = attitude(p, pnj);
   if (!sujet) {
-    const salut = a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre;
+    const variante = pnj.salutations.variantes.find((v) => evaluerCondition(v.condition, p.etat));
+    const salut = variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre;
     r.narrations.push(salut);
     r.paroles = 1;
     const dispo = sujetsDisponibles(p, pnj);

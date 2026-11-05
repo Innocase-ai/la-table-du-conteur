@@ -1,0 +1,67 @@
+[
+  {
+    "id": "z6-fanal-eteint",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 2 } },
+        { "non": { "quete": { "id": "q-citadelle-les-fanaux", "statut": "terminee" } } }
+      ]
+    },
+    "unique": true,
+    "narration": "Le fanal des jardins de falaise s'éteint sans qu'un souffle de vent ait bougé la flamme, comme si quelqu'un avait refermé une porte à l'intérieur. En contrebas, la mer a gagné une main de rocher depuis la dernière marée.",
+    "effets": [
+      { "attitude": { "pnj": "gudrun-lanterne", "delta": -10 } },
+      { "flag": "z6-fanal-eteint" }
+    ]
+  },
+  {
+    "id": "z6-piot-perdu",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 4 } },
+        { "non": { "quete": { "id": "q-por-le-gamin-disparu", "statut": "terminee" } } }
+      ]
+    },
+    "unique": true,
+    "narration": "Piot ne revient pas. On retrouve sa casquette sur une marche de l'escalier des égouts, trempée de sel, et les dockers ont cessé de dire qu'il court plus vite que la mer.",
+    "effets": [
+      { "pnjEtat": { "pnj": "por-piot", "etat": "parti" } },
+      { "quete": { "id": "q-por-le-gamin-disparu", "statut": "echouee" } }
+    ]
+  },
+  {
+    "id": "z6-corentin-noye",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 3 } },
+        { "lieu": "fal-brumevoile" },
+        { "non": { "quete": { "id": "q-fal-la-lanterne-du-cap", "statut": "terminee" } } },
+        { "non": { "flag": "choix-le-fanal-ou-le-hameau" } }
+      ]
+    },
+    "unique": true,
+    "narration": "Corentin n'est pas rentré de la grève. Sa dernière barque est restée retournée sur les galets, et la mer, en se retirant, a laissé derrière elle une file de traces mouillées qui s'en vont vers le large.",
+    "effets": [
+      { "pnjEtat": { "pnj": "corentin-brumevoile", "etat": "mort" } }
+    ]
+  },
+  {
+    "id": "z6-la-ligue-ferme-le-port",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 4 } },
+        { "flag": "port-atteint" }
+      ]
+    },
+    "unique": true,
+    "narration": "La Ligue ferme le port. Des planches sont clouées en travers de la passe, un ligueur tient chaque corde, et une cloche compte à voix haute les maisons qu'on a dû vider. Vous êtes déjà de ce côté-ci de la chaîne, et les ligueurs le remarquent.",
+    "effets": [
+      { "reputation": { "faction": "ligue-des-phares", "delta": 5 } },
+      { "flag": "z6-port-ferme" }
+    ]
+  }
+]

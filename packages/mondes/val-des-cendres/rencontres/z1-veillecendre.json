@@ -7,9 +7,19 @@
     "difficulte": "faible",
     "intro": "La route se resserre entre deux talus de sapins noirs. Un silence trop plein, une corde à clochettes à hauteur de cheville, des traces de loups dans la neige fraîche. Dès que le groupe s'engage dans le défilé, Nez-Fendu, un chef gobelin à l'oreille fendue et au manteau de laine volée, se dresse sur un rocher, une demi-douzaine de gobelins efflanqués surgissent des broussailles et deux loups sanguinaires, ventre creux, se détachent des fourrés. Ils ne cherchent pas la gloire : ils ont faim, et la route du col est fermée.",
     "monstres": [
-      { "profil": "chef-gobelin", "nombre": 1, "nom": "Nez-Fendu" },
-      { "profil": "combattant-gobelin", "nombre": 6 },
-      { "profil": "loup-sanguinaire", "nombre": 2 }
+      {
+        "profil": "chef-gobelin",
+        "nombre": 1,
+        "nom": "Nez-Fendu"
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 6
+      },
+      {
+        "profil": "loup-sanguinaire",
+        "nombre": 2
+      }
     ],
     "carte": [
       "####################",
@@ -34,34 +44,88 @@
       {
         "id": "parlementer",
         "nom": "Parlementer avec Nez-Fendu",
-        "jet": { "competence": "persuasion", "dd": 13 },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
         "resume": "Offrir des vivres, du sel ou du pain, et rappeler que le col fermé les condamne tous : Nez-Fendu accepte un marché, une part des vivres du groupe contre le passage libre et un conseil sur la route.",
-        "effets": [{ "flag": "vei-gobelins-apaises" }, { "fait": "f-vei-gobelins-affames" }, { "xp": 100 }]
+        "effets": [
+          {
+            "flag": "vei-gobelins-apaises"
+          },
+          {
+            "fait": "f-vei-gobelins-affames"
+          },
+          {
+            "xp": 100
+          }
+        ]
       },
       {
         "id": "intimider",
         "nom": "Les faire reculer par la peur",
-        "jet": { "competence": "intimidation", "dd": 15 },
+        "jet": {
+          "competence": "intimidation",
+          "dd": 15
+        },
         "resume": "Montrer à Nez-Fendu que la perte sera plus lourde que le butin : les gobelins reculent, rancuniers, et les loups grognent.",
-        "effets": [{ "flag": "vei-gobelins-apaises" }, { "xp": 75 }]
+        "effets": [
+          {
+            "flag": "vei-gobelins-apaises"
+          },
+          {
+            "xp": 75
+          }
+        ]
       },
       {
         "id": "contourner",
         "nom": "Contourner le défilé",
-        "jet": { "competence": "survie", "dd": 14 },
+        "jet": {
+          "competence": "survie",
+          "dd": 14
+        },
         "resume": "Trouver le sentier de chèvres qui contourne le défilé par les hauteurs et passer sans être vu.",
-        "effets": [{ "flag": "vei-embuscade-contournee" }, { "xp": 50 }]
+        "effets": [
+          {
+            "flag": "vei-embuscade-contournee"
+          },
+          {
+            "xp": 50
+          }
+        ]
       },
       {
         "id": "fuir-au-village",
         "nom": "Fuir vers le village",
-        "jet": { "competence": "athletisme", "dd": 12 },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
         "resume": "Courir vers la guérite sans se retourner. Les gobelins ne poursuivent pas au-delà de la borne, mais ils pillent ce que le groupe laisse sur la route.",
-        "effets": [{ "flag": "vei-embuscade-fuie" }]
+        "effets": [
+          {
+            "flag": "vei-embuscade-fuie"
+          }
+        ]
       }
     ],
-    "butin": { "tables": ["vei-tb-pillage-gobelin"], "tresors": ["vei-t-camp-des-gobelins"] },
-    "effetsVictoire": [{ "flag": "vei-embuscade-vaincue" }, { "fait": "f-vei-gobelins-affames" }]
+    "butin": {
+      "tables": [
+        "vei-tb-pillage-gobelin"
+      ],
+      "tresors": [
+        "vei-t-camp-des-gobelins"
+      ]
+    },
+    "effetsVictoire": [
+      {
+        "flag": "vei-embuscade-vaincue"
+      },
+      {
+        "fait": "f-vei-gobelins-affames"
+      }
+    ]
   },
   {
     "id": "vei-r-rixe-du-dernier-feu",
@@ -70,7 +134,13 @@
     "lieu": "vei-auberge-dernier-feu",
     "difficulte": "faible",
     "intro": "La soupe est plus claire que la veille, la bière plus rare, et un réfugié lance qu'on cache de la viande aux gardes. Un banc tombe, un autre se lève : quatre hommes affamés contre le comptoir, la louche de Bertille brandie en réponse. La rixe peut tourner à l'émeute ou s'éteindre avec un mot juste.",
-    "monstres": [{ "profil": "bandit", "nombre": 4, "nom": "Réfugié affamé" }],
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 4,
+        "nom": "Réfugié affamé"
+      }
+    ],
     "carte": [
       "################",
       "#.......#......#",
@@ -90,20 +160,55 @@
       {
         "id": "apaiser",
         "nom": "Calmer la salle",
-        "jet": { "competence": "persuasion", "dd": 12 },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
         "resume": "Un mot juste, une tournée payée, la promesse d'une enquête sur les vivres : la salle s'apaise et Bertille respire.",
-        "effets": [{ "attitude": { "pnj": "bertille-dernier-feu", "delta": 10 } }, { "xp": 75 }]
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "bertille-dernier-feu",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 75
+          }
+        ]
       },
       {
         "id": "dominer",
         "nom": "Se dresser entre eux",
-        "jet": { "competence": "intimidation", "dd": 13 },
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
         "resume": "S'imposer physiquement entre les deux camps pour que personne n'ose frapper.",
-        "effets": [{ "xp": 50 }]
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
       }
     ],
-    "butin": { "tables": ["vei-tb-fonds-de-poche"], "tresors": [] },
-    "effetsVictoire": [{ "attitude": { "pnj": "bertille-dernier-feu", "delta": 5 } }, { "flag": "vei-rixe-reglee" }]
+    "butin": {
+      "tables": [
+        "vei-tb-fonds-de-poche"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "attitude": {
+          "pnj": "bertille-dernier-feu",
+          "delta": 5
+        }
+      },
+      {
+        "flag": "vei-rixe-reglee"
+      }
+    ]
   },
   {
     "id": "vei-r-mort-egare",
@@ -112,7 +217,13 @@
     "lieu": "vei-puits",
     "difficulte": "faible",
     "intro": "Dans la nuit grise, une silhouette immobile se tient près de la margelle du puits, une écuelle à la main, les pieds nus dans la cendre. Il porte encore le tablier de forgeron et les cheveux collés de poussière : c'est un mort relevé qui revient puiser l'eau. Il ne vous voit pas. Il n'attaquera que si on le heurte ou le menace ; s'il est blessé, il se défendra avec la maladresse de quelqu'un qui n'a plus de force.",
-    "monstres": [{ "profil": "zombi", "nombre": 1, "nom": "Le père de Lise" }],
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 1,
+        "nom": "Le père de Lise"
+      }
+    ],
     "carte": [
       "##############",
       "#............#",
@@ -132,28 +243,89 @@
       {
         "id": "apaiser-par-la-priere",
         "nom": "L'apaiser par la prière ou la cendre bénite",
-        "condition": { "ou": [{ "objet": "vei-cendre-benite" }, { "pnj": { "id": "mireille-vanhaut", "attitudeMin": 10 } }] },
-        "jet": { "competence": "religion", "dd": 12 },
+        "condition": {
+          "ou": [
+            {
+              "objet": "vei-cendre-benite"
+            },
+            {
+              "pnj": {
+                "id": "mireille-vanhaut",
+                "attitudeMin": 10
+              }
+            }
+          ]
+        },
+        "jet": {
+          "competence": "religion",
+          "dd": 12
+        },
         "resume": "Répandre de la cendre bénite et dire des mots de paix. Le mort pose son écuelle, s'agenouille et retombe en poussière, en paix.",
-        "effets": [{ "flag": "vei-egare-apaise" }, { "xp": 100 }]
+        "effets": [
+          {
+            "flag": "vei-egare-apaise"
+          },
+          {
+            "xp": 100
+          }
+        ]
       },
       {
         "id": "parler-a-lise",
         "nom": "Laisser Lise lui dire adieu",
-        "jet": { "competence": "persuasion", "dd": 11 },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
         "resume": "Amener l'enfant à quelques pas, la laisser lui dire adieu. Le mort se couche, apaisé, dans la neige.",
-        "effets": [{ "flag": "vei-egare-apaise" }, { "attitude": { "pnj": "vei-lise-petit-pas", "delta": 20 } }, { "xp": 100 }]
+        "effets": [
+          {
+            "flag": "vei-egare-apaise"
+          },
+          {
+            "attitude": {
+              "pnj": "vei-lise-petit-pas",
+              "delta": 20
+            }
+          },
+          {
+            "xp": 100
+          }
+        ]
       },
       {
         "id": "le-conduire-au-cimetiere",
         "nom": "Le conduire au cimetière",
-        "jet": { "competence": "dressage", "dd": 13 },
+        "jet": {
+          "competence": "dressage",
+          "dd": 13
+        },
         "resume": "Le prendre par la main et le conduire à sa tombe, comme on guide un somnambule.",
-        "effets": [{ "flag": "vei-egare-conduit" }, { "xp": 75 }]
+        "effets": [
+          {
+            "flag": "vei-egare-conduit"
+          },
+          {
+            "xp": 75
+          }
+        ]
       }
     ],
-    "butin": { "tables": [], "tresors": [] },
-    "effetsVictoire": [{ "flag": "vei-egare-detruit" }, { "attitude": { "pnj": "vei-lise-petit-pas", "delta": -20 } }]
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "vei-egare-detruit"
+      },
+      {
+        "attitude": {
+          "pnj": "vei-lise-petit-pas",
+          "delta": -20
+        }
+      }
+    ]
   },
   {
     "id": "vei-r-morts-aux-remparts",
@@ -163,8 +335,14 @@
     "difficulte": "moderee",
     "intro": "La cloche sonne. Sur le chemin de ronde, une sentinelle hurle : des silhouettes grises montent le talus de neige, d'abord quelques-unes, puis une douzaine. Les squelettes marchent en tête, avec le cliquetis d'un sac de noix ; derrière eux, des zombis tirent les pieds. La palissade tiendra, mais pas longtemps sans renfort.",
     "monstres": [
-      { "profil": "squelette", "nombre": 3 },
-      { "profil": "zombi", "nombre": 2 }
+      {
+        "profil": "squelette",
+        "nombre": 3
+      },
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
     ],
     "carte": [
       "####################",
@@ -185,13 +363,35 @@
       {
         "id": "braises-contre-la-cendre",
         "nom": "Jeter de l'huile sur le talus",
-        "jet": { "competence": "investigation", "dd": 12 },
+        "jet": {
+          "competence": "investigation",
+          "dd": 12
+        },
         "resume": "Embraser le talus avec de l'huile pour retarder les morts et gagner du temps.",
-        "effets": [{ "xp": 50 }]
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
       }
     ],
-    "butin": { "tables": ["vei-tb-fonds-de-poche"], "tresors": [] },
-    "effetsVictoire": [{ "flag": "vei-assaut-repousse" }, { "reputation": { "faction": "gardiens-de-la-veille", "delta": 5 } }]
+    "butin": {
+      "tables": [
+        "vei-tb-fonds-de-poche"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "vei-assaut-repousse"
+      },
+      {
+        "reputation": {
+          "faction": "gardiens-de-la-veille",
+          "delta": 5
+        }
+      }
+    ]
   },
   {
     "id": "vei-r-pelerins-au-portail",
@@ -205,25 +405,88 @@
       {
         "id": "ecouter-les-pelerins",
         "nom": "Écouter ce qu'ils proposent",
-        "jet": { "competence": "intuition", "dd": 12 },
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
         "resume": "Les Pèlerins parlent d'une « grâce » qui attend ceux qui s'avancent dans la cendre. Ils ne mentent pas : ils y croient.",
-        "effets": [{ "fait": "f-vei-pelerins-rodent" }, { "xp": 50 }]
+        "effets": [
+          {
+            "fait": "f-vei-pelerins-rodent"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -3
+            }
+          },
+          {
+            "narration": "Vous ne retenez que le mot « grâce », et votre hésitation se voit. Garance Veille vous rappelle à la guérite, et les Pèlerins se détournent de vous."
+          }
+        ],
+        "echecResout": true
       },
       {
         "id": "dissuader-la-mere",
         "nom": "Retenir la jeune mère",
-        "jet": { "competence": "persuasion", "dd": 13 },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
         "resume": "Convaincre la mère de rester, promettre un abri et de la soupe : la mère rentre, les Pèlerins s'inclinent et repartent sans insister.",
-        "effets": [{ "xp": 100 }, { "reputation": { "faction": "pelerins-gris", "delta": -3 } }]
+        "effets": [
+          {
+            "xp": 100
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -3
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "vei-garance-veille",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Votre voix monte plus que vous ne le voulez : la mère s'éloigne en serrant son enfant, et la sentinelle vous juge trop dur pour la garde."
+          }
+        ],
+        "echecResout": true
       },
       {
         "id": "chasser-les-pelerins",
         "nom": "Les chasser",
         "resume": "Les sentinelles les chassent à coups de lance. La jeune mère part quand même, dans la nuit, avec sa petite : la cendre monte d'un cran.",
-        "effets": [{ "jauge": { "id": "cendre", "delta": 1 } }, { "reputation": { "faction": "pelerins-gris", "delta": -10 } }]
+        "effets": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -10
+            }
+          }
+        ]
       }
     ],
-    "butin": { "tables": [], "tresors": [] },
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
     "effetsVictoire": []
   },
   {
@@ -238,26 +501,97 @@
       {
         "id": "creuser-la-congere",
         "nom": "Creuser dans la congère",
-        "jet": { "competence": "athletisme", "dd": 14 },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 14
+        },
         "resume": "Après des heures, on dégage un panneau de bronze et on apprend que la porte est verrouillée de l'intérieur : impossible de l'ouvrir avant le dégel.",
-        "effets": [{ "fait": "f-vei-col-ferme" }, { "xp": 50 }]
+        "effets": [
+          {
+            "fait": "f-vei-col-ferme"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "narration": "La neige cède sous vous et vous ensevelit à mi-corps ; on vous sort à la pelle, et les provisions sont restées dans la congère."
+          }
+        ],
+        "echecResout": true
       },
       {
         "id": "lire-les-runes",
         "nom": "Lire les runes de garde",
-        "jet": { "competence": "histoire", "dd": 13 },
+        "jet": {
+          "competence": "histoire",
+          "dd": 13
+        },
         "resume": "Les runes disent : « Close pour l'hiver, ouverte au printemps ; qui l'ouvre avant, que la cendre le prenne. » Les nains ont bien voulu l'enfermer.",
-        "effets": [{ "fait": "f-vei-col-ferme" }, { "xp": 50 }]
+        "effets": [
+          {
+            "fait": "f-vei-col-ferme"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Vous butez sur une rune et prononcez le mauvais passage à voix haute ; une bouffée froide monte du bronze, et la cendre s'épaissit sur le col."
+          }
+        ],
+        "echecResout": true
       },
       {
         "id": "chercher-un-passage",
         "nom": "Chercher un passage dans la roche",
-        "jet": { "competence": "perception", "dd": 15 },
+        "jet": {
+          "competence": "perception",
+          "dd": 15
+        },
         "resume": "Sous la corniche de glace, une fissure : un passage de chasseur, trop étroit pour un chariot. Il mène de l'autre côté, mais l'orage de neige l'a rendu mortel pour qui s'y risque maintenant.",
-        "effets": [{ "xp": 50 }, { "narration": "La fissure est trop dangereuse avant le printemps : un pas de travers, et la neige engloutit." }]
+        "effets": [
+          {
+            "xp": 50
+          },
+          {
+            "narration": "La fissure est trop dangereuse avant le printemps : un pas de travers, et la neige engloutit."
+          }
+        ],
+        "echec": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "narration": "Une plaque de glace se rompt sous vos pieds : le sac de provisions glisse dans la fissure et ne remonte pas."
+          }
+        ],
+        "echecResout": true
       }
     ],
-    "butin": { "tables": [], "tresors": [] },
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
     "effetsVictoire": []
   }
 ]

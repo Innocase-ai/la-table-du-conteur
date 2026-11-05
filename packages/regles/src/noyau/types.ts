@@ -251,6 +251,8 @@ export interface Module {
   encarts?(ctx: ContexteJeu, partie: Partie): Encart[];
   /** Vérifie les données du module dans un monde (`dm.extensions`) : la liste des erreurs, vide si tout va bien. */
   valider?(ctx: ContexteJeu): string[];
+  /** Conseils d'écriture sur les données du module (le monde reste jouable) : la liste des avis, vide si tout va bien. */
+  conseils?(ctx: ContexteJeu): string[];
 }
 
 /** Une commande envoyée au moteur : son nom et ses paramètres. */

@@ -247,7 +247,7 @@ describe('module Scènes narrées', () => {
   });
 
   it('les fichiers livrés avec le monde (images, voix et leurs fiches) ne sont pas des données de module', () => {
-    expect(Object.keys(r.monde.extensions ?? {})).toEqual(['scenes']);
+    for (const dossier of Object.keys(r.monde.extensions ?? {})) expect(['scenes', 'dilemmes']).toContain(dossier);
   });
 
   it('la validation signale une scène qui cite un lieu, une quête ou une image inexistants', () => {

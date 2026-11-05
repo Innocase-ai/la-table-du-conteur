@@ -47,16 +47,18 @@ describe('audit : rencontres sans combat', () => {
     expect(issues.some((x) => x.ordre?.alternative === 'pot-de-vin')).toBe(true);
     expect(issues.some((x) => x.libelle === 'Combattre')).toBe(false);
     expect(issues.some((x) => x.ordre?.alternative === 'montrer-le-sceau')).toBe(false); // sa condition n'est pas remplie
-    // Un échec laisse la rencontre en attente et marque l'issue comme tentée.
-    let essai = q;
-    for (let g = 1; g < 40; g++) {
+    // Un échec a un prix (fail forward) : la rencontre se dénoue quand même, plus cher, et la scène reprend.
+    const avant = q.etat.reputations['compagnie-du-fer-gris'] ?? 0;
+    let rate;
+    for (let g = 1; g < 40 && !rate; g++) {
       const r = moteur.executer({ ...q, graine: g }, { type: 'reglerRencontre', issue: 'alternative', alternative: 'pot-de-vin' });
-      if (r.partie.scene.type === 'rencontre') { essai = r.partie; break; }
+      if (r.evenements.some((e) => e.type === 'jet' && !e.jet.reussite)) rate = r;
     }
-    expect(essai.scene.type).toBe('rencontre');
-    expect(moteur.propositions(essai).find((x) => x.ordre?.alternative === 'pot-de-vin')?.desactivee).toMatch(/Déjà tenté/);
+    expect(rate, 'un échec du pot-de-vin').toBeDefined();
+    expect(rate!.partie.scene.type).toBe('exploration');
+    expect(rate!.partie.etat.reputations['compagnie-du-fer-gris']).toBeLessThan(avant);
     // Une issue sans jet règle la rencontre.
-    const fin = moteur.executer(essai, { type: 'reglerRencontre', issue: 'alternative', alternative: 'autre-chemin' }).partie;
+    const fin = moteur.executer(q, { type: 'reglerRencontre', issue: 'alternative', alternative: 'autre-chemin' }).partie;
     expect(fin.scene.type).toBe('exploration');
   });
 });

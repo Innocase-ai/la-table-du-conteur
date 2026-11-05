@@ -44,3 +44,10 @@ Objectifs de richesse de ta zone : voir la mission. Pas de commit git.
 
 ## Rapport final (court)
 Fichiers écrits, chiffres (lieux, PNJ, sujets, trésors, rencontres, quêtes, énigmes, pièges, objets, faits), les identifiants du registre que tu as créés, les ids **d'autres zones** que tu références (pour que je les vérifie), les drapeaux posés ou lus, et ce qui manque ou te paraît incohérent avec le canon.
+
+## Pour que le joueur ne s'ennuie jamais (à appliquer dans ta zone)
+- **Des rencontres variées** : au moins une rencontre sur cinq se joue sans combat (`social`, `exploration`). Toute rencontre importante a au moins deux issues vraiment différentes (pas « combattre ou fuir ») et un enjeu clair.
+- **Un échec fait avancer** : une alternative avec un `jet` dans une rencontre sans monstres porte `echec` (les effets du prix : réputation, objet, argent, jauge) et `echecResout: true` : la rencontre se dénoue quand même, plus cher. Le validateur le signale sinon.
+- **Un fait clé a trois sources** (un PNJ, un lieu à fouiller, un objet) et jamais un seul jet pour y accéder.
+- **Le monde se souvient** : pour tes PNJ importants, `salutations.variantes` (une condition : un drapeau posé plus tôt, une quête terminée, un choix `choix-<dilemme>-<option>`, un palier de jauge `<jauge>-<n>` si le monde en pose).
+- **Des choix qui coûtent** : les dilemmes (dossier `dilemmes/`, un fichier `<zone>-dilemmes.json`) sont écrits par l'auteur du monde : chaque option annonce `couts` et `gains`, a ses `effets` et son `epilogue` ; l'abstention coûte aussi ; un ou deux `echos` laissent une trace trois jours plus tard. Voir `docs/MONDES.md` § Les dilemmes.

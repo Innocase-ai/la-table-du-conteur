@@ -9,7 +9,10 @@
     "ambiance": "Vent du large, pierre mouillée, rares voix de voyageurs qui s'éloignent.",
     "accroche": "Une route de crête qui court le long du cap, bordée de bornes de pierre, au-dessus d'une mer retirée trop loin.",
     "visuel": "une route de crête en dalles grises usées, des bornes de pierre couvertes de lichen, des croix de bois aux noms effacés, des rochers noirs découverts au pied de la falaise, un ciel bas couleur d'ardoise",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
       {
         "vers": "citadelle-des-marees",
@@ -37,7 +40,11 @@
       }
     ],
     "rencontres": [
-      { "id": "fal-r-naufrages-de-la-route", "declencheur": "exploration", "unique": true }
+      {
+        "id": "fal-r-naufrages-de-la-route",
+        "declencheur": "exploration",
+        "unique": true
+      }
     ],
     "faits": [],
     "evenements": [],
@@ -54,12 +61,17 @@
     "ambiance": "Un feu de bois flotté, des bancs qui craquent et la porte de l'écurie qui bat dans le vent.",
     "visuel": "un relais de pierre à toit de lauzes en partie effondré, une cheminée de granit, des bancs de chêne, des ballots de toile et de cordage, un feu de bois flotté, une écurie ouverte sur la cour",
     "accroche": "Un toit de lauzes à moitié effondré, une fumée de bois flotté qui sort de la cheminée et l'odeur de crottin d'une écurie.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
     "evenements": [],
-    "services": ["information"],
+    "services": [
+      "information"
+    ],
     "repos": "sur"
   },
   {
@@ -72,10 +84,17 @@
     "ambiance": "Le cri des corbeaux qui se répond d'une rive à l'autre.",
     "visuel": "un pont de pierre à deux arches, un parapet couvert de fientes, un ravin de schiste noir, des corbeaux par dizaines sur les pierres, un ruisseau gris au fond de la gorge",
     "accroche": "Un pont de pierre au-dessus d'une gorge, son parapet blanchi par les oiseaux, et des rochers qui surplombent la route.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [
-      { "id": "fal-r-pillards-du-pont", "declencheur": "entree", "unique": true }
+      {
+        "id": "fal-r-pillards-du-pont",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "faits": [],
     "evenements": [],
@@ -92,11 +111,20 @@
     "ambiance": "Une voile qui claque, l'eau qui gargouille dans la cale, le bois qui gémit.",
     "visuel": "une coque de bois noir couchée sur des galets, des mâts brisés en travers, une voile raidie de sel pendue aux vergues, une cale inondée, des planches couvertes d'algues",
     "accroche": "Une coque de bois noir couchée sur les galets, ses mâts en travers, et une voile raidie par le sel qui claque au vent.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-fal-perle-grise-coulee", "decouverte": { "dd": 12, "competence": "histoire" } }
+      {
+        "fait": "f-fal-perle-grise-coulee",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
     ],
     "evenements": [],
     "services": [],
@@ -112,12 +140,17 @@
     "ambiance": "Un poêle qui ronfle, le vent sous la galerie, les registres qui tournent leurs pages seuls.",
     "visuel": "une tour ronde de moellons gris, une galerie de fer rouillé, une porte de chêne ferrée, un poêle de fonte, des registres ouverts sur une table, un escalier de pierre en colimaçon, une lanterne noire au sommet",
     "accroche": "Une tour ronde de moellons gris à la pointe du cap, sa lanterne noire au sommet, et une porte de chêne ferrée entrouverte.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
     "evenements": [],
-    "services": ["information"],
+    "services": [
+      "information"
+    ],
     "repos": "dangereux"
   },
   {
@@ -130,7 +163,10 @@
     "ambiance": "Le vent qui siffle entre les carreaux, et la mer sombre qui ne cesse de bouger au-dehors.",
     "visuel": "une salle ronde aux parois de verre, une lentille de cristal à échelons sur un pivot de laiton, quatre volets de métal gravés, une vitrine de cuivre, des cartes jaunies, la mer sombre à travers les carreaux",
     "accroche": "Une salle de verre au sommet de la tour, où le vent siffle sous une grande lentille couverte de poussière.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
@@ -148,9 +184,24 @@
     "ambiance": "Plat, humide, silencieux ; des bassins qui se vident et une odeur de sel.",
     "accroche": "Une plaine plate de bassins carrés et de digues de terre brune, où le sel gris blanchit les bords des canaux.",
     "visuel": "une plaine plate couverte de bassins carrés et d'eau saumâtre, des digues de terre brune, des tas de sel gris sous des bâches, des canaux étroits, des planches glissantes, un ciel pâle au-dessus des roseaux",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "fal-r-la-maree-qui-monte",
+        "declencheur": "entree",
+        "condition": {
+          "jauge": {
+            "id": "maree",
+            "min": 2
+          }
+        },
+        "unique": true
+      }
+    ],
     "faits": [],
     "evenements": [],
     "services": [],
@@ -166,7 +217,10 @@
     "ambiance": "La marmite qui chante doucement et le grincement des claies sous le vent.",
     "visuel": "une cabane de planches goudronnées, un séchoir à sel en claies, des râteaux de bois, des sacs de toile, un poêle de fonte avec une marmite, des bassins carrés pleins d'eau grise",
     "accroche": "Une cabane de planches goudronnées au bord des bassins, avec un séchoir à claies et une fumée de poêle qui s'élève droit.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
       {
         "vers": "fal-digues-du-marais",
@@ -180,7 +234,9 @@
     "rencontres": [],
     "faits": [],
     "evenements": [],
-    "services": ["information"],
+    "services": [
+      "information"
+    ],
     "repos": "sur"
   },
   {
@@ -193,13 +249,26 @@
     "ambiance": "La boue qui aspire les pas, et le clapotis qui revient toujours du même côté.",
     "visuel": "une digue de terre noire entre deux étangs gris, des flaques qui brillent, des joncs couchés, des traces de bottes dans la boue, une bande d'écume sur la vase",
     "accroche": "Une digue de boue noire entre deux étangs, à peine plus haute que l'eau, et des traces de pas qui s'arrêtent net.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [
-      { "id": "fal-r-noyes-du-marais", "declencheur": "entree", "unique": true }
+      {
+        "id": "fal-r-noyes-du-marais",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "faits": [
-      { "fait": "f-fal-saunieres-retrouvees", "decouverte": { "dd": 12, "competence": "perception" } }
+      {
+        "fait": "f-fal-saunieres-retrouvees",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
     ],
     "evenements": [],
     "services": [],
@@ -215,11 +284,16 @@
     "ambiance": "Un village qui n'a plus de voix ; un seul pas résonne sur les dalles.",
     "accroche": "Une dizaine de maisons basses en gradins sur une anse grise, leurs toits effondrés et le goémon séché sur les murs.",
     "visuel": "des maisons basses de pierre en gradins sur une anse grise, des toits de lauzes effondrés, des barques retournées à coque fendue, du goémon séché sur les murs, une cloche de bois, une falaise de schiste",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
-    "evenements": ["fal-ev-brumevoile-vide"],
+    "evenements": [
+      "fal-ev-brumevoile-vide"
+    ],
     "services": [],
     "repos": "dangereux"
   },
@@ -233,13 +307,25 @@
     "ambiance": "L'herbe couchée par le vent, les chaînes d'ancre qui tintent faiblement.",
     "visuel": "un champ de stèles grises face à la mer, des inscriptions rongées par le sel, des chaînes d'ancre rouillées autour des tombes, une petite chapelle de moellons, de l'herbe couchée par le vent",
     "accroche": "Un champ de stèles grises, face à la mer, au bout d'un sentier de falaise où le vent couche l'herbe.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [
-      { "id": "fal-r-goules-du-cimetiere", "declencheur": "entree", "unique": true }
+      {
+        "id": "fal-r-goules-du-cimetiere",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "faits": [
-      { "fait": "f-fal-noyes-ne-remontent-pas", "decouverte": { "auto": true } }
+      {
+        "fait": "f-fal-noyes-ne-remontent-pas",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "evenements": [],
     "services": [],
@@ -255,7 +341,10 @@
     "ambiance": "Un goutte-à-goutte régulier, et le bruit de l'eau qui revient dans les galeries.",
     "visuel": "une ouverture basse dans un schiste noir, des piliers de roche couverts d'algues, des flaques qui brillent, des lignes de sel sur les parois, un sol de galets lisses, une lueur bleue venue du fond",
     "accroche": "Une ouverture basse dans le schiste noir, au pied des rochers, où des flaques brillent sur des galets lisses.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
@@ -273,7 +362,10 @@
     "ambiance": "Des gouttes qui tombent du plafond, et la lumière grise de l'entrée qui s'éloigne.",
     "visuel": "un couloir de schiste bas de plafond, des flaques claires, des coquilles de moules accrochées aux parois, un crochet de fer rouillé, une lumière grise qui vient de l'entrée",
     "accroche": "Un couloir qui descend et se rétrécit, avec des coquilles de moules accrochées jusqu'à hauteur d'épaule.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
       {
         "vers": "fal-grotte-des-marees-galerie",
@@ -300,20 +392,32 @@
     "ambiance": "Un souffle d'air qui fait danser les toiles, et les cocons qui se balancent.",
     "visuel": "une galerie aux piliers de roche voilés de toiles grises, des cocons suspendus au plafond, une fosse de galets noirs, des sacs de toile éventrés, une lueur bleue sur l'eau",
     "accroche": "Une galerie de piliers voilés de toiles grises, d'où l'on entend l'eau couler au fond de la roche.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [
       {
         "vers": "fal-grotte-des-marees-bassin",
         "type": "passage",
         "heures": 0,
         "sens": "double",
-        "condition": { "jauge": { "id": "maree", "max": 2 } },
+        "condition": {
+          "jauge": {
+            "id": "maree",
+            "max": 2
+          }
+        },
         "description": "Une fente étroite, au fond de la galerie, ne s'ouvre que lorsque la mer se tient bas ; de l'eau claire et froide suinte dessous.",
         "retour": "La fente longe le bassin et ramène à la galerie, où les cocons se balancent au courant d'air."
       }
     ],
     "rencontres": [
-      { "id": "fal-r-araignees-de-la-grotte", "declencheur": "entree", "unique": true }
+      {
+        "id": "fal-r-araignees-de-la-grotte",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "faits": [],
     "evenements": [],
@@ -330,13 +434,24 @@
     "ambiance": "Un silence plein, interrompu par une goutte qui tombe de loin en loin.",
     "visuel": "un bassin plat de pierre noire plein d'eau immobile, une ligne de sel blanc sur la paroi, des dalles jointes sous l'eau claire, une lumière qui vient d'en bas, des parois polies",
     "accroche": "Un bassin de pierre noire au fond de la grotte, dont la surface immobile reflète une lueur qui ne vient pas du jour.",
-    "niveau": { "min": 1, "max": 2 },
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-chaussee-des-basses-eaux", "decouverte": { "dd": 14, "competence": "histoire" } }
+      {
+        "fait": "f-chaussee-des-basses-eaux",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      }
     ],
-    "evenements": ["fal-ev-bassin-marque"],
+    "evenements": [
+      "fal-ev-bassin-marque"
+    ],
     "services": [],
     "repos": "impossible"
   }

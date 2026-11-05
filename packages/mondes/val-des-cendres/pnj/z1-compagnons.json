@@ -339,7 +339,18 @@
     "salutations": {
       "neutre": "Je suis Korvun. Si vous cherchez mon oncle, il est derrière l'enclume.",
       "amical": "Ah, c'est vous. Pas de nouvelles de l'ennemi ? Tant mieux. Restez un peu.",
-      "hostile": "Vous n'avez pas votre place ici."
+      "hostile": "Vous n'avez pas votre place ici.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-korvun-le-marteau-du-clan",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Le nom du clan Marteau-Vert revient dans la bouche des gens, grâce à vous. Je ne le dis pas souvent : merci. Entrez, mon oncle a de la soupe sur le feu."
+        }
+      ]
     },
     "services": [],
     "inventaire": [],
@@ -584,7 +595,15 @@
     "salutations": {
       "neutre": "Entrez doucement. Ici, on ne se presse pas.",
       "amical": "Je vous attendais. Asseyez-vous, il y a toujours une place pour ceux qui n'ont pas peur du silence.",
-      "hostile": "Vous avez la main lourde sur la porte. Je ne veux pas vous fâcher."
+      "hostile": "Vous avez la main lourde sur la porte. Je ne veux pas vous fâcher.",
+      "variantes": [
+        {
+          "condition": {
+            "fait": "f-gro-aubin-au-champ"
+          },
+          "texte": "Vous avez vu le champ. Vous avez vu mon frère, ou son ombre. Je ne vous demanderai rien ce soir. Asseyez-vous, et laissez le silence faire le reste."
+        }
+      ]
     },
     "boutique": {
       "stock": [

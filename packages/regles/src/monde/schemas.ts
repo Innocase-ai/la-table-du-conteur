@@ -26,6 +26,7 @@ export type Condition =
   | { objet: string }
   | { pnj: { id: string; attitudeMin?: number; attitudeMax?: number; etat?: 'vivant' | 'mort' | 'parti' } }
   | { lieu: string }
+  | { pieces: { min?: number; max?: number } }
   | { niveauGroupe: { min?: number; max?: number } }
   | { non: Condition }
   | { et: Condition[] }
@@ -46,6 +47,7 @@ export const Condition: z.ZodType<Condition> = z.lazy(() =>
       })
       .strict(),
     z.object({ lieu: Id }).strict(),
+    z.object({ pieces: z.object({ min: z.number().optional(), max: z.number().optional() }) }).strict(),
     z.object({ niveauGroupe: z.object({ min: z.number().int().optional(), max: z.number().int().optional() }) }).strict(),
     z.object({ non: Condition }).strict(),
     z.object({ et: z.array(Condition).min(1) }).strict(),
@@ -266,7 +268,9 @@ export const RencontreMonde = z.object({
   tactique: z.object({ doctrine: z.string().optional(), fuite: z.string().optional(), renforts: z.string().optional() }).optional(),
   // Autres façons de résoudre la rencontre (négocier, ruser, fuir).
   alternatives: z
-    .array(z.object({ id: Id, nom: Texte, condition: Condition.optional(), jet: z.object({ competence: Competence, dd: Dd }).optional(), resume: Texte, effets: Effets.default([]) }))
+    .array(z.object({ id: Id, nom: Texte, condition: Condition.optional(), jet: z.object({ competence: Competence, dd: Dd }).optional(), resume: Texte, effets: Effets.default([]),
+        // Un jet raté a un prix (fail forward) : ces effets s'appliquent à l'échec ; avec `echecResout`, l'échec dénoue aussi la rencontre (autrement, plus cher).
+        echec: Effets.optional(), echecResout: z.boolean().default(false) }))
     .default([]),
   butin: z.object({ tables: z.array(Id).default([]), tresors: z.array(Id).default([]) }).default({}),
   effetsVictoire: Effets.default([]),
@@ -323,7 +327,13 @@ export const Pnj = z.object({
     .array(z.object({ fait: Id, condition: Condition.optional(), jet: z.object({ competence: Competence, dd: Dd }).optional(), attitudeMin: z.number().optional(), prix: z.number().optional() }))
     .default([]),
   sujets: z.array(Sujet).default([]),
-  salutations: z.object({ hostile: z.string().optional(), neutre: Texte, amical: z.string().optional() }),
+  salutations: z.object({
+    hostile: z.string().optional(),
+    neutre: Texte,
+    amical: z.string().optional(),
+    // Le monde se souvient : la première variante dont la condition est vraie remplace la salutation (un acte passé, un choix, une jauge).
+    variantes: z.array(z.object({ condition: Condition, texte: Texte })).default([]),
+  }),
   boutique: z
     .object({
       stock: z.array(z.object({ objet: Id, quantite: z.number().int().positive().default(1), prix: z.number().min(0).optional() })).default([]),

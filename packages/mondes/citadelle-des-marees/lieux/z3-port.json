@@ -9,7 +9,10 @@
     "ambiance": "Cris de mouettes, claquement de voiles, eau qui goutte des cordages, gens qui parlent bas sur les quais.",
     "visuel": "Un port de pierre grise et de bois noirci, des quais bordés de cordages enroulés, des entrepôts aux toits d'ardoise mouillée, une jetée qui s'avance dans une eau basse et luisante. Au bout, une tour de phare à demi éteinte.",
     "accroche": "Au fond de l'anse, la ville serre ses toits d'ardoise autour d'une jetée qui s'avance vers une mer trop basse.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [
       {
         "vers": "route-des-falaises",
@@ -19,7 +22,10 @@
         "retour": "La route descend des falaises par des lacets pierreux ; les toits du port apparaissent au fond de l'anse, au bout d'une longue pente."
       }
     ],
-    "evenements": ["por-ev-arrivee", "por-ev-ruelles-inondees"],
+    "evenements": [
+      "por-ev-arrivee",
+      "por-ev-ruelles-inondees"
+    ],
     "repos": "dangereux"
   },
   {
@@ -32,7 +38,10 @@
     "ambiance": "Crissement de poulies, claquements de bottes sur les planches, voix basses et rires gras.",
     "visuel": "Un quai de pierre noire bordé de bornes de fer et de cordages enroulés, des caisses empilées, une cabane de bois à la lanterne jaune, et une eau basse, brune, qui luit au pied des pilotis.",
     "accroche": "Le quai s'ouvre au bout de la rue, long et bas, bordé de piles de cordages et de caisses goudronnées ; on y crie les prix.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [
       {
         "vers": "por-marche-aux-poissons",
@@ -66,14 +75,42 @@
         "vers": "por-entrepots-des-rats",
         "type": "passage-secret",
         "heures": 0,
-        "cache": { "dd": 13, "competence": "perception" },
+        "cache": {
+          "dd": 13,
+          "competence": "perception"
+        },
         "description": "Entre deux caisses de sel, un panneau mal joint laisse passer un courant froid et des pas étouffés.",
         "retour": "Derrière le panneau, un hangar sombre, bourré de caisses, où le quai n'entre jamais sans permission."
       }
     ],
     "rencontres": [
-      { "id": "por-r-brigands-du-quai", "declencheur": "exploration", "unique": true },
-      { "id": "por-r-garde-du-quai", "declencheur": "entree", "unique": true, "condition": { "et": [{ "flag": "por-bagarre-au-quai" }, { "non": { "flag": "por-amende-payee" } }] } }
+      {
+        "id": "por-r-brigands-du-quai",
+        "declencheur": "exploration",
+        "unique": true
+      },
+      {
+        "id": "por-r-garde-du-quai",
+        "declencheur": "entree",
+        "unique": true,
+        "condition": {
+          "et": [
+            {
+              "flag": "por-bagarre-au-quai"
+            },
+            {
+              "non": {
+                "flag": "por-amende-payee"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "por-r-le-proces-du-quai",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "repos": "dangereux"
   },
@@ -87,7 +124,10 @@
     "ambiance": "Balances qui tintent, eau qui coule des tables, cris de marchandes.",
     "visuel": "Une halle sans murs, de planches grises et de poutres noircies, des tables couvertes de poissons glacés, des balances de cuivre vert-de-grisé, des filets qui pendent aux poutres.",
     "accroche": "Une halle de planches ouvertes sur trois côtés, où les étals de poisson brillent sous une lumière grise et froide.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "repos": "dangereux"
   },
@@ -101,9 +141,15 @@
     "ambiance": "Chaleur de tourbe, voix qui montent, tintement de chopes, un air de poisson fumé.",
     "visuel": "Une salle basse aux poutres noircies, un feu de tourbe dans une cheminée de pierre, des tables de bois usé, des lanternes de cuivre et un escalier de bois qui grimpe dans l'ombre.",
     "accroche": "Une porte de bois peint, au coin du quai, d'où sortent des éclats de voix, une fumée de tourbe et une chaleur de cuisine.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
-    "services": ["repas", "chambres"],
+    "services": [
+      "repas",
+      "chambres"
+    ],
     "repos": "sur"
   },
   {
@@ -116,7 +162,10 @@
     "ambiance": "Voiles qui claquent, pavés qui goutent, portes qui se ferment doucement.",
     "visuel": "Une ruelle pavée, bordée de hauts entrepôts de bois, des voiles brunes tendues en travers, des fenêtres sans lumière, une grille rouillée au ras du pavé.",
     "accroche": "Une ruelle étroite qui monte entre les entrepôts, barrée de voiles sombres tendues d'un toit à l'autre.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [
       {
         "vers": "por-hall-de-la-ligue",
@@ -136,7 +185,10 @@
         "vers": "por-egouts-a-maree",
         "type": "passage-secret",
         "heures": 0,
-        "cache": { "dd": 14, "competence": "investigation" },
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
         "description": "Sous une voile, une grille rouillée cache une bouche de drain qui descend vers l'eau noire.",
         "retour": "Depuis les galeries, une échelle de fer monte jusqu'à la grille, que l'on soulève par en dessous."
       }
@@ -154,10 +206,26 @@
     "ambiance": "Plumes qui grattent, horloge de marée qui tic-tac, lampe qui ne fume pas.",
     "visuel": "Une maison carrée de pierre grise, volets de fer rivetés, un écusson de phare en bronze au-dessus d'une porte haute, une lanterne de garde qui brûle sans fumée.",
     "accroche": "Une maison de pierre aux volets de fer, avec un écusson de phare cloué au-dessus de la porte, plus haute que ses voisines.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "faits": [
-      { "fait": "f-por-marees-du-registre", "decouverte": { "dd": 12, "competence": "investigation" } }
+      {
+        "fait": "f-por-marees-du-registre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-por-ambroise-vu-palais",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -171,7 +239,10 @@
     "ambiance": "Vent qui siffle dans la lanterne, galets qui roulent sous la jetée, papier qui sent la craie.",
     "visuel": "Une tour de pierre sur une jetée de galets, une lanterne au sommet dont les miroirs sont piqués de rouille, un escalier de pierre en colimaçon, des cartes et des instruments de cuivre.",
     "accroche": "Une tour de pierre sur la jetée, dont la lanterne ne brille plus qu'à demi, derrière des planches clouées aux fenêtres.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "evenements": [],
     "repos": "dangereux"
@@ -186,12 +257,23 @@
     "ambiance": "Lampe qui grésille, sel qui craque sous les pas, une voix de femme qui chante bas.",
     "visuel": "Une chapelle basse de pierre bleue fanée, une vasque de sel au centre de la nef, une lampe de cuivre suspendue, des bancs de chêne, des noms gravés sur les piliers.",
     "accroche": "Une porte basse, peinte de bleu fané, au bout de la ruelle ; une lampe brûle derrière une vitre salie de sel.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "faits": [
-      { "fait": "f-por-noms-des-noyes", "decouverte": { "auto": true } }
+      {
+        "fait": "f-por-noms-des-noyes",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
-    "services": ["soins", "repos"],
+    "services": [
+      "soins",
+      "repos"
+    ],
     "repos": "sur"
   },
   {
@@ -204,7 +286,10 @@
     "ambiance": "Pas étouffés sur les passerelles, sel qui coule d'un sac, murmures derrière les planches.",
     "visuel": "Trois hangars de bois noirci serrés contre un mur de pierre, des caisses marquées de faux noms, une passerelle de planches, une lanterne couverte d'un chiffon qui ne laisse passer qu'un filet de lumière.",
     "accroche": "Trois hangars de bois noir serrés contre le mur d'enceinte, aux portes closes et aux toits bas, sans fenêtre visible.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [
       {
         "vers": "por-egouts-a-maree",
@@ -215,9 +300,22 @@
       }
     ],
     "faits": [
-      { "fait": "f-por-caisses-faux-noms", "decouverte": { "dd": 12, "competence": "investigation" } }
+      {
+        "fait": "f-por-caisses-faux-noms",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-le-marche-de-sorel",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "por-chantier-naval",
@@ -229,10 +327,18 @@
     "ambiance": "Maillets qui frappent le bois, odeur de brai qui monte, cordes qui sifflent dans la corderie.",
     "visuel": "Des coques retournées sur des chantiers de bois, des copeaux clairs jonchant le sol, une corderie en longueur, des cordages qui pendent, et une grande bâche tendue au fond d'une cale creusée dans la roche.",
     "accroche": "Des charpentes de bois et des coques retournées au bord du quai, un chantier à ciel ouvert où tout sent le brai.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "faits": [
-      { "fait": "f-por-barque-cachee", "decouverte": { "auto": true } }
+      {
+        "fait": "f-por-barque-cachee",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -246,11 +352,20 @@
     "ambiance": "Eau qui goutte des parois, brume qui roule au ras des galets, silence de pierre.",
     "visuel": "Une cale sèche creusée dans la roche noire, des marches taillées, des galets luisants et une grille de fer au fond, un fond de mer découvert qui s'enfonce vers une chaussée de pierre dans la brume.",
     "accroche": "Une fosse taillée dans la roche au fond du chantier, avec des marches droites qui descendent vers des galets luisants.",
-    "niveau": { "min": 3, "max": 3 },
+    "niveau": {
+      "min": 3,
+      "max": 3
+    },
     "liens": [],
-    "evenements": ["por-ev-chaussee-ouverte"],
+    "evenements": [
+      "por-ev-chaussee-ouverte"
+    ],
     "rencontres": [
-      { "id": "por-r-noye-de-la-cale", "declencheur": "entree", "unique": true }
+      {
+        "id": "por-r-noye-de-la-cale",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "repos": "dangereux"
   },
@@ -264,9 +379,14 @@
     "ambiance": "Eau brune qui coule, échos de gouttes, grattements dans les caisses, odeur de plomb mouillé.",
     "visuel": "Une galerie voûtée de briques noircies, une eau brune qui coule au centre, des marches usées, des grilles de fer rouillé, des anneaux scellés aux murs.",
     "accroche": "Un escalier humide qui descend sous les pavés, avec un fil d'eau noire qui coule au milieu des marches.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
-    "evenements": ["por-ev-maree-haute-egouts"],
+    "evenements": [
+      "por-ev-maree-haute-egouts"
+    ],
     "repos": "impossible"
   },
   {
@@ -279,7 +399,10 @@
     "ambiance": "Griffes sur la brique, filets qui traînent, goutte qui tombe dans une flaque.",
     "visuel": "Une galerie de briques en pente, des caisses ouvertes et des filets emmêlés, des marques de pattes dans la boue, une lanterne accrochée à un crochet de fer.",
     "accroche": "Une galerie en pente qui file dans le noir sous les pavés, bordée de caisses humides et de filets roulés.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [
       {
         "vers": "por-egouts-bassin",
@@ -290,10 +413,20 @@
       }
     ],
     "rencontres": [
-      { "id": "por-r-rats-des-egouts", "declencheur": "entree", "unique": true }
+      {
+        "id": "por-r-rats-des-egouts",
+        "declencheur": "entree",
+        "unique": true
+      }
     ],
     "faits": [
-      { "fait": "f-por-filets-coupes-par-rats", "decouverte": { "dd": 12, "competence": "investigation" } }
+      {
+        "fait": "f-por-filets-coupes-par-rats",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
     ],
     "repos": "impossible"
   },
@@ -307,11 +440,22 @@
     "ambiance": "Eau qui monte par à-coups, vanne qui grince, écho d'un appel lointain.",
     "visuel": "Un bassin carré de pierre, une grille de fer rouillé au mur du fond, un pont de planches, une eau brune qui monte par à-coups, une corniche étroite, des anneaux scellés.",
     "accroche": "Une salle plus large que les autres, où l'on entend l'eau monter et descendre deux fois par jour, sous une grille.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
-    "evenements": ["por-ev-gamin-coince"],
+    "evenements": [
+      "por-ev-gamin-coince"
+    ],
     "faits": [
-      { "fait": "f-por-lumieres-dans-les-egouts", "decouverte": { "dd": 12, "competence": "perception" } }
+      {
+        "fait": "f-por-lumieres-dans-les-egouts",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
     ],
     "repos": "impossible"
   },
@@ -325,7 +469,10 @@
     "ambiance": "Air sec, odeur de cuir et de craie, silence presque complet.",
     "visuel": "Une porte de fer noir à trois anneaux de bronze, une inscription à la craie sur le battant, une pièce voûtée au sol sec, des sacs de cuir et un coffre cerclé de fer.",
     "accroche": "Une porte de fer, à trois anneaux, enfoncée dans le mur d'une galerie sèche, au-dessus de la ligne de l'eau.",
-    "niveau": { "min": 2, "max": 3 },
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
     "liens": [],
     "repos": "impossible"
   }

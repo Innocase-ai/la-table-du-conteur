@@ -7,7 +7,10 @@
     "description": "Des falaises de schiste et de craie, battues par le vent du large, bordent une baie où les pêcheurs n'osent plus sortir à marée basse. Au sud, le marais de sel ; au nord, le cap Mort. Au large, une chaussée découverte à marée basse s'enfonce vers des ruines. La Citadelle des Marées domine le tout depuis son cap.",
     "ambiance": "Vent froid et embruns, cris de goélands qui se taisent au crépuscule.",
     "visuel": "Une côte de falaises pâles sous un ciel bas, une grève luisante de flaques où la mer s'est retirée très loin, et sur un promontoire une tour coiffée de cuivre.",
-    "niveau": { "min": 1, "max": 3 },
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],
@@ -119,7 +122,9 @@
     ],
     "rencontres": [],
     "faits": [],
-    "services": ["repas"],
+    "services": [
+      "repas"
+    ],
     "repos": "sur"
   },
   {
@@ -155,9 +160,16 @@
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-cit-herbes-de-falaise", "decouverte": { "auto": true } }
+      {
+        "fait": "f-cit-herbes-de-falaise",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
-    "services": ["soins"],
+    "services": [
+      "soins"
+    ],
     "repos": "sur"
   },
   {
@@ -170,7 +182,13 @@
     "visuel": "Une pièce nue, lambrissée de chêne sombre, une grande table couverte de dossiers et de cire, une fenêtre sur la cour et un blason de cuivre fixé au mur.",
     "accroche": "Sur le côté de la cour, une porte de chêne sombre, close, dont la bande de cuivre a été fraîchement polie.",
     "liens": [],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "cit-r-le-conseil-du-prieur",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [],
     "repos": "dangereux"
   },
@@ -186,7 +204,9 @@
     "liens": [],
     "rencontres": [],
     "faits": [],
-    "services": ["equipement"],
+    "services": [
+      "equipement"
+    ],
     "repos": "dangereux"
   },
   {
@@ -204,14 +224,31 @@
         "type": "escalier",
         "description": "Un escalier étroit descend sous le dallage, fermé par une grille de fer dont le verrou est ancien.",
         "retour": "L'escalier remonte vers la bibliothèque, usé au centre des marches par les pas des copistes.",
-        "verrou": { "dd": 13, "cle": "cit-cle-des-caveaux" }
+        "verrou": {
+          "dd": 13,
+          "cle": "cit-cle-des-caveaux"
+        }
       }
     ],
     "rencontres": [
-      { "id": "cit-r-l-infiltre", "declencheur": "exploration", "unique": true }
+      {
+        "id": "cit-r-l-infiltre",
+        "declencheur": "exploration",
+        "unique": true
+      }
     ],
-    "faits": [],
-    "services": ["identification"],
+    "faits": [
+      {
+        "fait": "f-cit-carte-du-cap-mort",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
+    ],
+    "services": [
+      "identification"
+    ],
     "repos": "dangereux"
   },
   {
@@ -226,7 +263,19 @@
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-cit-registre-deux-pages", "decouverte": { "auto": true } }
+      {
+        "fait": "f-cit-registre-deux-pages",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-cit-tables-decalees",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -251,7 +300,10 @@
     "faits": [
       {
         "fait": "f-cit-lentille-encrassee",
-        "decouverte": { "dd": 12, "competence": "investigation" }
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
       }
     ],
     "repos": "dangereux"
@@ -268,7 +320,9 @@
     "liens": [],
     "rencontres": [],
     "faits": [],
-    "services": ["repos-de-veille"],
+    "services": [
+      "repos-de-veille"
+    ],
     "repos": "sur"
   },
   {
@@ -283,7 +337,12 @@
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-cit-cercles-de-sel", "decouverte": { "auto": true } }
+      {
+        "fait": "f-cit-cercles-de-sel",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -311,7 +370,11 @@
       }
     ],
     "rencontres": [
-      { "id": "cit-r-les-noyes-du-quai", "declencheur": "exploration", "unique": true }
+      {
+        "id": "cit-r-les-noyes-du-quai",
+        "declencheur": "exploration",
+        "unique": true
+      }
     ],
     "faits": [],
     "repos": "dangereux"
@@ -328,7 +391,12 @@
     "liens": [],
     "rencontres": [],
     "faits": [
-      { "fait": "f-cit-coquilles-fraiches", "decouverte": { "auto": true } }
+      {
+        "fait": "f-cit-coquilles-fraiches",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   },
@@ -345,14 +413,22 @@
       {
         "vers": "cit-quai-des-basses-eaux",
         "type": "passage-secret",
-        "cache": { "dd": 12, "competence": "perception" },
+        "cache": {
+          "dd": 12,
+          "competence": "perception"
+        },
         "description": "Derrière un pilier fendu, une dalle descellée laisse passer un souffle froid et un escalier mouillé qui descend.",
         "retour": "Une dalle cachée dans le mur du quai ouvre sur un escalier qui monte vers les voûtes sèches."
       }
     ],
     "rencontres": [],
     "faits": [
-      { "fait": "f-cit-clepsydre-faussee", "decouverte": { "auto": true } }
+      {
+        "fait": "f-cit-clepsydre-faussee",
+        "decouverte": {
+          "auto": true
+        }
+      }
     ],
     "repos": "dangereux"
   }

@@ -17,7 +17,7 @@ export interface FicheScene {
   quetes: { id: string; nom: string; etapes: string[] }[];
   /** Faits connus du groupe, propres à ce lieu ou à ses PNJ. */
   faitsIci: string[];
-  jauges: { id: string; nom: string; valeur: number; max: number }[];
+  jauges: { id: string; nom: string; valeur: number; max: number; palier?: string; prochain?: string }[];
   groupe: { id: string; nom: string; classe: string; pv: number; pvMax: number }[];
   pieces: number;
   inventaire: { id: string; nom: string; quantite: number }[];
@@ -71,7 +71,11 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
         return { id, nom: def?.nom ?? id, etapes: q.actives.map((e) => def?.etapes.find((x) => x.id === e)?.texte ?? e) };
       }),
     faitsIci: etat.faits.filter((f) => faitsDuLieu.has(f)),
-    jauges: [...dm.jauges.values()].map((j) => ({ id: j.id, nom: j.nom, valeur: etat.jauges[j.id] ?? j.initial, max: j.max })),
+    jauges: [...dm.jauges.values()].map((j) => {
+      const valeur = etat.jauges[j.id] ?? j.initial;
+      const paliers = [...j.paliers].sort((a, b) => a.seuil - b.seuil);
+      return { id: j.id, nom: j.nom, valeur, max: j.max, palier: paliers.filter((x) => x.seuil <= valeur).pop()?.nom, prochain: paliers.find((x) => x.seuil > valeur)?.nom };
+    }),
     groupe: p.groupe.map((a) => ({ id: a.id, nom: a.nom, classe: a.fiche.classe, pv: a.pv, pvMax: a.fiche.pvMax })),
     pieces: etat.pieces,
     inventaire: Object.entries(etat.inventaire).map(([id, quantite]) => ({ id, nom: dm.objets.get(id)?.nom ?? id, quantite })),

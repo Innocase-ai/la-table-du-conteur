@@ -10,82 +10,178 @@
     "lieu": "cit-salle-des-cartes",
     "apparence": "Femme de 70 ans, maigre et droite, cheveux blancs relevés en chignon, lunettes de cuivre sur le nez, manteau de laine bleu nuit brodé d'une rose des vents, mains tachées d'encre.",
     "personnalite": {
-      "traits": ["méthodique", "fatiguée et tenace", "tendre sans le dire"],
+      "traits": [
+        "méthodique",
+        "fatiguée et tenace",
+        "tendre sans le dire"
+      ],
       "voix": "Phrases nettes et un peu sèches ; elle pose une question avant d'accorder une réponse, et parle de la mer comme d'une personne qu'il faut ménager.",
-      "valeurs": ["la mesure exacte", "la protection des siens", "la parole donnée"],
+      "valeurs": [
+        "la mesure exacte",
+        "la protection des siens",
+        "la parole donnée"
+      ],
       "desir": "Mettre Nolwen à l'abri de la mer et de ceux qui la réclament, sans que la Citadelle en paie le prix.",
       "peur": "Que la mer retrouve Nolwen avant qu'elle ait pu la cacher pour de bon.",
       "defaut": "Elle garde pour elle ce qu'elle juge dangereux, jusqu'à mentir par omission."
     },
     "presences": [
-      { "lieu": "cit-cour-des-vents", "moment": "soir", "condition": { "non": { "flag": "ysmene-tombee" } } }
+      {
+        "lieu": "cit-cour-des-vents",
+        "moment": "soir",
+        "condition": {
+          "non": {
+            "flag": "ysmene-tombee"
+          }
+        }
+      }
     ],
     "faction": "cartographes",
     "attitude": 10,
-    "savoir": ["f-grande-maree-dans-trois-jours", "f-marque-de-basse-mer", "f-cartes-cachent-la-marque", "f-cit-barque-a-la-derive", "f-cit-registre-deux-pages", "f-la-cour-tient-sous-la-mer"],
+    "savoir": [
+      "f-grande-maree-dans-trois-jours",
+      "f-marque-de-basse-mer",
+      "f-cartes-cachent-la-marque",
+      "f-cit-barque-a-la-derive",
+      "f-cit-registre-deux-pages",
+      "f-la-cour-tient-sous-la-mer",
+      "f-cit-tables-decalees"
+    ],
     "secrets": [
-      { "fait": "f-marque-de-basse-mer", "attitudeMin": 60 },
-      { "fait": "f-cartes-cachent-la-marque", "attitudeMin": 50 }
+      {
+        "fait": "f-marque-de-basse-mer",
+        "attitudeMin": 60
+      },
+      {
+        "fait": "f-cartes-cachent-la-marque",
+        "attitudeMin": 50
+      }
     ],
     "sujets": [
       {
         "id": "ce-que-la-mer-fait",
-        "mots": ["mer", "marée", "retire", "nuit", "eau"],
+        "mots": [
+          "mer",
+          "marée",
+          "retire",
+          "nuit",
+          "eau"
+        ],
         "question": "Que fait la mer cette nuit ?",
         "reponse": "Elle dit que la mer s'est retirée bien au-delà de ses repères, et qu'elle le consigne depuis le coucher du soleil. Elle ne sait pas encore si c'est une marée ou un avertissement, mais elle refuse de dire le second mot à voix haute. Elle demande au groupe de l'aider à noter les heures.",
         "revele": [],
-        "effets": [{ "flag": "a-parle-a-ysmene" }],
+        "effets": [
+          {
+            "flag": "a-parle-a-ysmene"
+          }
+        ],
         "unique": true
       },
       {
         "id": "les-cartes-de-la-citadelle",
-        "mots": ["carte", "cartes", "tracer", "citadelle", "registre"],
+        "mots": [
+          "carte",
+          "cartes",
+          "tracer",
+          "citadelle",
+          "registre"
+        ],
         "question": "Que gardez-vous dans ces cartes ?",
         "reponse": "Les cartes de marée de la Citadelle sont tenues depuis cinq siècles, à la minute près. Il manque deux pages au registre des vives-eaux, arrachées il y a peu, et elle n'en parle qu'à regret. Elle confie au groupe une tâche : comparer sa grande carte à celle du Cap-Mort, à la bibliothèque, et lui dire où la route s'arrête.",
-        "revele": ["f-cit-registre-deux-pages"],
-        "effets": [{ "quete": { "id": "q-cit-les-cartes-du-cap", "statut": "active" } }]
+        "revele": [
+          "f-cit-registre-deux-pages"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-les-cartes-du-cap",
+              "statut": "active"
+            }
+          }
+        ]
       },
       {
         "id": "pourquoi-la-mer-se-retire",
-        "mots": ["retire", "grande marée", "trois jours", "pourquoi", "monter"],
+        "mots": [
+          "retire",
+          "grande marée",
+          "trois jours",
+          "pourquoi",
+          "monter"
+        ],
         "question": "Pourquoi la mer se retire-t-elle si loin ?",
         "reponse": "Elle annonce une Grande Marée dans trois jours, la plus haute depuis deux siècles. La mer se retire toujours avant de reprendre son souffle, dit-elle, et celle-ci a pris beaucoup d'élan. Elle ajoute qu'il faudra avoir quitté la côte avant la nuit du troisième jour.",
-        "revele": ["f-grande-maree-dans-trois-jours"],
+        "revele": [
+          "f-grande-maree-dans-trois-jours"
+        ],
         "effets": []
       },
       {
         "id": "l-apprentie",
-        "mots": ["Nolwen", "apprentie", "fille", "jeune", "enfant"],
+        "mots": [
+          "Nolwen",
+          "apprentie",
+          "fille",
+          "jeune",
+          "enfant"
+        ],
         "question": "Parlez-nous de votre apprentie, Nolwen.",
         "reponse": "Ysmène dit que Nolwen a seize ans, les mains d'une cartographe et l'impatience d'une navigatrice. Elle l'a trouvée il y a seize ans, dans une barque à la dérive, au pied de la falaise. Elle n'en dit guère plus, sinon qu'elle ne l'a jamais regretté.",
-        "revele": ["f-cit-barque-a-la-derive"],
+        "revele": [
+          "f-cit-barque-a-la-derive"
+        ],
         "effets": []
       },
       {
         "id": "la-marque",
-        "mots": ["marque", "épaule", "tache", "pâle", "signe"],
+        "mots": [
+          "marque",
+          "épaule",
+          "tache",
+          "pâle",
+          "signe"
+        ],
         "question": "Lui demander ce que porte Nolwen à l'épaule.",
         "attitudeMin": 60,
         "reponse": "Ysmène se tait longtemps, puis dit que la jeune fille porte une marque pâle, en forme de vague, que la mer connaît mieux qu'eux. Elle ne veut pas la montrer ni dire ce qu'elle signifie, et demande qu'on fasse confiance à sa parole.",
-        "revele": ["f-marque-de-basse-mer"],
+        "revele": [
+          "f-marque-de-basse-mer"
+        ],
         "effets": []
       },
       {
         "id": "les-cartes-cachent",
-        "mots": ["cacher", "cachent", "brouiller", "caché", "cartes"],
+        "mots": [
+          "cacher",
+          "cachent",
+          "brouiller",
+          "caché",
+          "cartes"
+        ],
         "question": "Ces cartes servent-elles à cacher quelque chose ?",
         "attitudeMin": 50,
         "reponse": "Elle reconnaît à demi-mot que les cartes de marée tenues ici brouillent une trace que la mer cherche. Elle dit que la carte qu'elle a tracée pour le groupe les protégera, et demande qu'on ne la montre à personne.",
-        "revele": ["f-cartes-cachent-la-marque"],
+        "revele": [
+          "f-cartes-cachent-la-marque"
+        ],
         "effets": []
       },
       {
         "id": "les-noyes",
-        "mots": ["noyés", "morts", "sous la mer", "dessous", "voix", "tiennent"],
+        "mots": [
+          "noyés",
+          "morts",
+          "sous la mer",
+          "dessous",
+          "voix",
+          "tiennent"
+        ],
         "question": "Qui parle sous la mer ?",
         "attitudeMin": 40,
         "reponse": "Ysmène dit que la mer n'est pas vide : des gens y tiennent quelque chose depuis trois siècles, et on ne les voit jamais en entier. Elle ne connaît pas leur nom. Elle sait qu'ils ne sont pas cruels, et que leur patience a une limite.",
-        "revele": ["f-la-cour-tient-sous-la-mer"],
+        "revele": [
+          "f-la-cour-tient-sous-la-mer"
+        ],
         "effets": []
       }
     ],
@@ -105,9 +201,16 @@
     "lieu": "cit-grande-bibliotheque",
     "apparence": "Jeune fille de 16 ans, mince, cheveux châtains coupés court, yeux gris-vert, tunique de laine écrue, manteau de marin trop grand, une tache pâle sous le col de l'épaule.",
     "personnalite": {
-      "traits": ["curieuse", "réservée", "têtue"],
+      "traits": [
+        "curieuse",
+        "réservée",
+        "têtue"
+      ],
       "voix": "Phrases courtes et précises ; elle aime les nombres et les détours, et pose des questions sur les cartes qu'on lui tend.",
-      "valeurs": ["la vérité des mesures", "la fidélité à Ysmène"],
+      "valeurs": [
+        "la vérité des mesures",
+        "la fidélité à Ysmène"
+      ],
       "desir": "Comprendre pourquoi la mer l'appelle et qui était vraiment Ysmène.",
       "peur": "Être seule quand la mer viendra.",
       "defaut": "Elle cache ses cauchemars et garde longtemps ses rancunes."
@@ -117,7 +220,13 @@
     "sujets": [
       {
         "id": "mes-cartes",
-        "mots": ["carte", "cartes", "tracer", "marées", "lignes"],
+        "mots": [
+          "carte",
+          "cartes",
+          "tracer",
+          "marées",
+          "lignes"
+        ],
         "question": "Que tracez-vous sur ces cartes ?",
         "reponse": "Nolwen montre ses traits à l'encre : les lignes de basse mer, puis, sur une feuille à part, des points qu'elle n'arrive pas à relier. Elle dit que la mer retient quelque chose, et qu'elle ne sait pas encore quoi.",
         "revele": [],
@@ -125,7 +234,13 @@
       },
       {
         "id": "mes-reves",
-        "mots": ["rêve", "rêves", "dormir", "nuit", "songe"],
+        "mots": [
+          "rêve",
+          "rêves",
+          "dormir",
+          "nuit",
+          "songe"
+        ],
         "question": "Que rêvez-vous la nuit ?",
         "reponse": "Elle rêve d'une salle sous l'eau, très haute, où quelqu'un compte des pas sans jamais arriver au bout. Ces rêves ne lui font jamais peur, dit-elle, seulement de la peine.",
         "revele": [],
@@ -133,7 +248,13 @@
       },
       {
         "id": "ysmene-et-vous",
-        "mots": ["Ysmène", "maîtresse", "mentor", "accueillie", "hiver"],
+        "mots": [
+          "Ysmène",
+          "maîtresse",
+          "mentor",
+          "accueillie",
+          "hiver"
+        ],
         "question": "Comment Ysmène vous a-t-elle accueillie ?",
         "reponse": "Nolwen se souvient d'un hiver, de la voix d'Ysmène dans le couloir et de la soupe qu'on lui a faite. Elle ne sait pas d'où elle vient, et personne ne lui a jamais demandé.",
         "revele": [],
@@ -141,7 +262,13 @@
       },
       {
         "id": "la-peur-de-la-mer",
-        "mots": ["peur", "mer", "effrayée", "vagues", "craindre"],
+        "mots": [
+          "peur",
+          "mer",
+          "effrayée",
+          "vagues",
+          "craindre"
+        ],
         "question": "Avez-vous peur de la mer ?",
         "reponse": "Elle répond non, puis oui, puis ajoute qu'elle ne sait pas laquelle des deux choses lui fait peur : celle qui monte ou celle qui se retire.",
         "revele": [],
@@ -149,8 +276,16 @@
       },
       {
         "id": "la-marque-de-l-epaule",
-        "mots": ["marque", "épaule", "tache", "signe", "pâlit"],
-        "condition": { "flag": "nolwen-avec-le-groupe" },
+        "mots": [
+          "marque",
+          "épaule",
+          "tache",
+          "signe",
+          "pâlit"
+        ],
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
         "question": "Lui demander ce que signifie sa marque.",
         "reponse": "Elle dit qu'Ysmène lui a toujours interdit de la montrer, et qu'elle ne sait pas ce qu'elle veut dire. Elle a seulement remarqué que la tache pâlit quand la mer se retire.",
         "revele": [],
@@ -158,8 +293,16 @@
       },
       {
         "id": "peur-du-groupe",
-        "mots": ["peur", "nuit", "seule", "cauchemar", "dormir"],
-        "condition": { "flag": "nolwen-avec-le-groupe" },
+        "mots": [
+          "peur",
+          "nuit",
+          "seule",
+          "cauchemar",
+          "dormir"
+        ],
+        "condition": {
+          "flag": "nolwen-avec-le-groupe"
+        },
         "question": "Comment vous sentez-vous depuis le départ ?",
         "reponse": "Elle dit que la mer lui parle quand elle s'endort, et que la nuit elle entend des pas mouillés sur les dalles sous elle. Elle demande qu'on dorme près d'elle, sans en faire une affaire.",
         "revele": [],
@@ -167,8 +310,16 @@
       },
       {
         "id": "deuil-d-ysmene",
-        "mots": ["Ysmène", "morte", "tombée", "perdue", "deuil"],
-        "condition": { "flag": "ysmene-tombee" },
+        "mots": [
+          "Ysmène",
+          "morte",
+          "tombée",
+          "perdue",
+          "deuil"
+        ],
+        "condition": {
+          "flag": "ysmene-tombee"
+        },
         "question": "Parlez-moi d'Ysmène, si vous le pouvez.",
         "reponse": "Nolwen serre son manteau et dit qu'Ysmène lui a laissé la carte et le silence. Elle ne pleure pas devant eux ; elle demande seulement qu'on ne la laisse pas seule la nuit.",
         "revele": [],
@@ -176,8 +327,23 @@
       },
       {
         "id": "la-mer-appelle",
-        "mots": ["appel", "appelle", "voix", "brume", "marais"],
-        "condition": { "ou": [{ "lieu": "fal-brumevoile" }, { "lieu": "marais-de-sel" }] },
+        "mots": [
+          "appel",
+          "appelle",
+          "voix",
+          "brume",
+          "marais"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "lieu": "fal-brumevoile"
+            },
+            {
+              "lieu": "marais-de-sel"
+            }
+          ]
+        },
         "question": "La mer vous appelle-t-elle ici aussi ?",
         "reponse": "Dans la brume de ces lieux, Nolwen reconnaît la même attraction : une envie de descendre vers l'eau et de rester immobile face aux vagues. Elle s'en méfie et demande qu'on la tienne par le bras au bord de l'eau.",
         "revele": [],
@@ -185,8 +351,17 @@
       },
       {
         "id": "la-foule-du-port",
-        "mots": ["foule", "ville", "port", "gens", "méfiance", "regards"],
-        "condition": { "lieu": "port-aux-cordes" },
+        "mots": [
+          "foule",
+          "ville",
+          "port",
+          "gens",
+          "méfiance",
+          "regards"
+        ],
+        "condition": {
+          "lieu": "port-aux-cordes"
+        },
         "question": "Ces gens du port vous ont-ils reconnue ?",
         "reponse": "Elle a senti les regards qui la suivaient dans les ruelles, la méfiance des dockers et des ligueurs. Elle dit qu'on la reconnaît sans l'avoir jamais vue, et que cela lui fait plus peur que la mer.",
         "revele": [],
@@ -194,8 +369,16 @@
       },
       {
         "id": "le-palais-en-soi",
-        "mots": ["palais", "sous la mer", "sanctuaire", "sentir", "sentiment"],
-        "condition": { "lieu": "palais-basmaree" },
+        "mots": [
+          "palais",
+          "sous la mer",
+          "sanctuaire",
+          "sentir",
+          "sentiment"
+        ],
+        "condition": {
+          "lieu": "palais-basmaree"
+        },
         "question": "Qu'éprouvez-vous en approchant du Palais ?",
         "reponse": "Nolwen dit que le sol devient calme, et que la marque, sur son épaule, se réchauffe comme une pierre tenue près d'un poêle. Elle ne veut pas y rester longtemps, et elle le dit très bas.",
         "revele": [],
@@ -203,24 +386,73 @@
       },
       {
         "id": "accepter-le-pacte",
-        "mots": ["pacte", "accepter", "descendre", "rester", "sceau", "mer"],
+        "mots": [
+          "pacte",
+          "accepter",
+          "descendre",
+          "rester",
+          "sceau",
+          "mer"
+        ],
         "condition": {
           "et": [
-            { "lieu": "lot-sanctuaire-du-sceau" },
-            { "non": { "flag": "choix-briser" } },
-            { "non": { "flag": "choix-relever" } },
-            { "non": { "flag": "choix-livrer" } }
+            {
+              "lieu": "lot-sanctuaire-du-sceau"
+            },
+            {
+              "non": {
+                "flag": "choix-briser"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-relever"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-livrer"
+              }
+            }
           ]
         },
         "question": "Proposer à Nolwen d'accepter le pacte.",
         "reponse": "Nolwen écoute longtemps sans bouger. Puis elle dit qu'elle y est prête, à condition que la mer rende ce qu'elle retient. Elle ne veut plus qu'on lui cache la vérité, et elle descendra seule si personne ne la suit.",
         "revele": [],
-        "effets": [{ "flag": "choix-renouer" }],
+        "effets": [
+          {
+            "flag": "choix-renouer"
+          }
+        ],
         "unique": true
       }
     ],
     "salutations": {
-      "neutre": "Nolwen lève les yeux de son carnet, puis les rebaisse aussitôt. « Vous êtes avec Ysmène ? Alors je vous fais confiance, un peu. »"
+      "neutre": "Nolwen lève les yeux de son carnet, puis les rebaisse aussitôt. « Vous êtes avec Ysmène ? Alors je vous fais confiance, un peu. »",
+      "variantes": [
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "choix-la-promesse-de-nolwen-ne-pas-retenir"
+              },
+              {
+                "flag": "choix-la-promesse-de-nolwen-sauver"
+              },
+              {
+                "flag": "choix-la-promesse-de-nolwen-refuser"
+              }
+            ]
+          },
+          "texte": "Nolwen range son carnet quand vous entrez, sans rien demander. « Vous m'avez répondu, à propos de la promesse. Je ne la redemanderai pas. Je compte seulement les jours qui restent. »"
+        },
+        {
+          "condition": {
+            "flag": "port-atteint"
+          },
+          "texte": "Nolwen ne regarde pas les quais. Elle fixe les flaques noires que la marée a laissées entre les planches. « Elle est plus haute ici que dans la Citadelle. Restez près de moi, s'il vous plaît, et ne parlez pas aux dockers à ma place. »"
+        }
+      ]
     }
   },
   {
@@ -234,24 +466,50 @@
     "lieu": "cit-bureau-du-prieur",
     "apparence": "Homme de 55 ans, sec, tempes grises, barbe taillée court, col de bure gris, doigts longs couverts d'encre, une chaîne de cuivre au cou.",
     "personnalite": {
-      "traits": ["consciencieux", "fatigué", "poli jusqu'à la froideur"],
+      "traits": [
+        "consciencieux",
+        "fatigué",
+        "poli jusqu'à la froideur"
+      ],
       "voix": "Posée et mesurée ; il choisit ses mots comme des pièces de monnaie, et s'excuse souvent sans avoir tort.",
-      "valeurs": ["la survie de la maison", "la parole des comptes"],
+      "valeurs": [
+        "la survie de la maison",
+        "la parole des comptes"
+      ],
       "desir": "Garder la Citadelle debout et la côte intacte, sans que personne paie la facture à sa place.",
       "peur": "Que la mer prenne la Citadelle pendant qu'il tient les comptes.",
       "defaut": "Il fait des comptes froids et s'y tient, même quand ils condamnent quelqu'un."
     },
     "faction": "cartographes",
     "attitude": 0,
-    "savoir": ["f-grande-maree-dans-trois-jours", "f-prieur-veut-livrer", "f-la-cour-tient-sous-la-mer"],
+    "savoir": [
+      "f-grande-maree-dans-trois-jours",
+      "f-prieur-veut-livrer",
+      "f-la-cour-tient-sous-la-mer"
+    ],
     "secrets": [
-      { "fait": "f-prieur-veut-livrer", "attitudeMin": 75 },
-      { "fait": "f-prieur-veut-livrer", "jet": { "competence": "intuition", "dd": 15 } }
+      {
+        "fait": "f-prieur-veut-livrer",
+        "attitudeMin": 75
+      },
+      {
+        "fait": "f-prieur-veut-livrer",
+        "jet": {
+          "competence": "intuition",
+          "dd": 15
+        }
+      }
     ],
     "sujets": [
       {
         "id": "les-cartographes",
-        "mots": ["cartographes", "maison", "garde", "pourquoi", "mesure"],
+        "mots": [
+          "cartographes",
+          "maison",
+          "garde",
+          "pourquoi",
+          "mesure"
+        ],
         "question": "Pourquoi les cartographes gardent-ils la mer ?",
         "reponse": "Il répond que quelqu'un doit relever la marée chaque jour, sinon les villages de la baie ne sauraient jamais quand fuir. La mesure est une forme de charité, dit-il, et il ne s'y attarde pas.",
         "revele": [],
@@ -259,15 +517,29 @@
       },
       {
         "id": "la-grande-maree",
-        "mots": ["grande marée", "marée", "trois jours", "monter", "mer"],
+        "mots": [
+          "grande marée",
+          "marée",
+          "trois jours",
+          "monter",
+          "mer"
+        ],
         "question": "Parlez-nous de la Grande Marée.",
         "reponse": "Il confirme : la mer montera dans trois jours, plus haut que mémoire d'homme. Il a fait ses comptes : les barques, les greniers, les digues, et la liste de ceux qui ne pourront pas monter sur la colline. Il ne dit pas comment il les a faits.",
-        "revele": ["f-grande-maree-dans-trois-jours"],
+        "revele": [
+          "f-grande-maree-dans-trois-jours"
+        ],
         "effets": []
       },
       {
         "id": "la-fille-de-ysmene",
-        "mots": ["Nolwen", "apprentie", "fille", "jeune", "Ysmène"],
+        "mots": [
+          "Nolwen",
+          "apprentie",
+          "fille",
+          "jeune",
+          "Ysmène"
+        ],
         "question": "Que pensez-vous de l'apprentie d'Ysmène ?",
         "reponse": "Il dit qu'elle est sous la protection de la maison, et qu'il ne voudrait pas la voir fâchée avec la Citadelle. Il répète trois fois qu'il n'a rien contre elle, et ne regarde pas la fenêtre en parlant.",
         "revele": [],
@@ -275,7 +547,14 @@
       },
       {
         "id": "les-comptes",
-        "mots": ["comptes", "prix", "coût", "payer", "sacrifice", "faire"],
+        "mots": [
+          "comptes",
+          "prix",
+          "coût",
+          "payer",
+          "sacrifice",
+          "faire"
+        ],
         "question": "Que coûte la mer, selon vous ?",
         "reponse": "Il dit que la mer coûte toujours : des bateaux, des vies, un port de temps en temps. Il croit qu'il vaut mieux payer un peu, souvent, que tout perdre une fois. Il se tait avant d'avoir fini sa phrase.",
         "revele": [],
@@ -283,16 +562,46 @@
       },
       {
         "id": "ce-qu-il-sacrifierait",
-        "mots": ["vérité", "sacrifier", "livrer", "enfant", "donner", "comptes"],
+        "mots": [
+          "vérité",
+          "sacrifier",
+          "livrer",
+          "enfant",
+          "donner",
+          "comptes"
+        ],
         "question": "Lui demander ce qu'il est prêt à sacrifier.",
         "attitudeMin": 80,
         "reponse": "Il pose la plume, longuement. Il dit que la maison a eu besoin autrefois d'une enfant pour tenir la mer, qu'il en connaît le prix, et qu'il croit qu'il vaut mieux livrer une seule enfant que laisser la côte se noyer. Il n'attend pas qu'on lui pardonne.",
-        "revele": ["f-prieur-veut-livrer"],
+        "revele": [
+          "f-prieur-veut-livrer"
+        ],
         "effets": []
       }
     ],
     "salutations": {
-      "neutre": "Le Prieur referme un dossier sans se lever. « Asseyez-vous, je vous prie. Vous voyez que la maison ne dort guère. »"
+      "neutre": "Le Prieur referme un dossier sans se lever. « Asseyez-vous, je vous prie. Vous voyez que la maison ne dort guère. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "cit-infiltre-demasque"
+          },
+          "texte": "Le Prieur referme le dossier qu'il tenait, lentement. « On m'a dit que vous avez démasqué notre érudit. Je ne vous en veux pas : je l'aurais peut-être fait à votre place. Asseyez-vous, et dites-moi ce qu'il vous a laissé dire. »"
+        },
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "z6-fanal-eteint"
+              },
+              {
+                "flag": "maree-3"
+              }
+            ]
+          },
+          "texte": "Le Prieur ne lève pas les yeux de ses registres. « Vous avez vu le fanal de la falaise ? Il ne tiendra pas la nuit. Asseyez-vous, je vous prie : il me reste des comptes à faire, et vous y figurez. »"
+        }
+      ]
     }
   },
   {
@@ -306,9 +615,16 @@
     "lieu": "cit-phare-archive",
     "apparence": "Naine trapue de 160 ans, tresses rousses striées de gris, bras tachés de suie, tablier de cuir sur une veste de laine, trousseau de clés pendu à la ceinture.",
     "personnalite": {
-      "traits": ["directe", "bougonne", "loyale envers la lumière"],
+      "traits": [
+        "directe",
+        "bougonne",
+        "loyale envers la lumière"
+      ],
       "voix": "Courte et cassante, avec des jurons de métier ; elle parle des fanaux comme d'enfants difficiles.",
-      "valeurs": ["les signaux qu'on fait pour les autres", "le travail bien fait"],
+      "valeurs": [
+        "les signaux qu'on fait pour les autres",
+        "le travail bien fait"
+      ],
       "desir": "Rallumer les fanaux de la côte avant que la nuit ne tombe sur les bateaux.",
       "peur": "Qu'une nuit sans fanal coûte la vie d'un pêcheur.",
       "defaut": "Elle ne fait confiance qu'à ce qu'elle a vérifié de ses mains."
@@ -318,16 +634,36 @@
     "sujets": [
       {
         "id": "les-fanaux",
-        "mots": ["fanal", "fanaux", "lumière", "phare", "feu", "lanterne"],
+        "mots": [
+          "fanal",
+          "fanaux",
+          "lumière",
+          "phare",
+          "feu",
+          "lanterne"
+        ],
         "question": "Parlez-nous des fanaux de la côte.",
         "reponse": "Gudrun dit que trois fanaux doivent brûler avant la nuit : celui des jardins de falaise, celui de l'observatoire et celui de la grille. Elle n'a plus assez d'huile pour tous à la fois, et les mèches sont humides. Elle demande de les rallumer malgré le vent, et de revenir lui dire qu'ils tiennent.",
         "revele": [],
-        "effets": [{ "quete": { "id": "q-citadelle-les-fanaux", "statut": "active" } }],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-citadelle-les-fanaux",
+              "statut": "active"
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "la-lumiere-faiblit",
-        "mots": ["faiblit", "huile", "flamme", "baisse", "pourquoi"],
+        "mots": [
+          "faiblit",
+          "huile",
+          "flamme",
+          "baisse",
+          "pourquoi"
+        ],
         "question": "Pourquoi la lumière faiblit-elle ?",
         "reponse": "Elle répond qu'elle n'en sait rien, ce qui l'agace. Les mèches brûlent plus vite, la flamme est moins haute, et l'air de la côte a un goût de sel qu'il n'avait pas au printemps.",
         "revele": [],
@@ -335,7 +671,14 @@
       },
       {
         "id": "les-barques",
-        "mots": ["bateau", "navire", "pêcheurs", "barques", "sortie", "mer"],
+        "mots": [
+          "bateau",
+          "navire",
+          "pêcheurs",
+          "barques",
+          "sortie",
+          "mer"
+        ],
         "question": "Des barques sont-elles sorties ce matin ?",
         "reponse": "Gudrun a vu deux barques rentrer de la baie sans avoir pêché. Les hommes disaient avoir vu la mer s'éloigner trop loin, et ils avaient peur de la voir revenir.",
         "revele": [],
@@ -343,7 +686,13 @@
       },
       {
         "id": "les-signes-du-sel",
-        "mots": ["signe", "signes", "sel", "coquilles", "grille"],
+        "mots": [
+          "signe",
+          "signes",
+          "sel",
+          "coquilles",
+          "grille"
+        ],
         "question": "Avez-vous remarqué des signes étranges sur la côte ?",
         "reponse": "Elle dit qu'un fanal de la grille a été reposé à l'envers cette semaine. Personne ne l'a touché, selon elle, mais le verre est couvert d'une fine couche de sel, comme après une vague.",
         "revele": [],
@@ -351,7 +700,13 @@
       },
       {
         "id": "la-ligue",
-        "mots": ["Ligue", "phares", "Osric", "port", "règles"],
+        "mots": [
+          "Ligue",
+          "phares",
+          "Osric",
+          "port",
+          "règles"
+        ],
         "question": "Que pensez-vous de la Ligue des Phares ?",
         "reponse": "Elle la trouve trop pleine de règles et trop peu d'huile. Elle dit que les ligueurs veulent des phares fermés à clé, comme s'il fallait protéger la lumière de ceux qui la regardent. Elle ne sait pas de quoi ils ont peur, sinon de la mer.",
         "revele": [],
@@ -359,7 +714,24 @@
       }
     ],
     "salutations": {
-      "neutre": "Gudrun ne se retourne pas. « Si c'est pour la lumière, parlez vite. Sinon, la porte est derrière vous. »"
+      "neutre": "Gudrun ne se retourne pas. « Si c'est pour la lumière, parlez vite. Sinon, la porte est derrière vous. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "z6-fanal-eteint"
+          },
+          "texte": "Gudrun jure entre ses dents sans se retourner. « Le fanal des jardins est éteint, et je n'ai plus d'huile pour le rallumer. Si vous êtes là pour la lumière, parlez vite : il m'en reste très peu. »"
+        },
+        {
+          "condition": {
+            "quete": {
+              "id": "q-citadelle-les-fanaux",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Gudrun lève le menton vers la tour. « Les trois fanaux brûlent encore. Je ne vous remercierai pas : la lumière n'est pas un cadeau. Mais je vous offrirais bien une tasse, si j'en avais une propre. »"
+        }
+      ]
     }
   },
   {
@@ -373,50 +745,117 @@
     "lieu": "cit-grande-bibliotheque",
     "apparence": "Gnome de 120 ans, petit et voûté, lunettes à double verre sur un nez long, doigts tachés d'encre, tablier de cuir gris sur une veste de velours passé.",
     "personnalite": {
-      "traits": ["pointilleux", "bavard sur les tables", "avide de questions"],
+      "traits": [
+        "pointilleux",
+        "bavard sur les tables",
+        "avide de questions"
+      ],
       "voix": "Il parle vite, avec des chiffres et des exemples ; il s'interrompt pour corriger un mot, puis reprend là où il était.",
-      "valeurs": ["l'exactitude", "le savoir partagé"],
+      "valeurs": [
+        "l'exactitude",
+        "le savoir partagé"
+      ],
       "desir": "Trouver la cause de son erreur avant que le Prieur ne le blâme.",
       "peur": "Qu'une table fausse coûte un bateau.",
       "defaut": "Il oublie qu'il n'est pas seul à savoir les choses."
     },
     "faction": "cartographes",
     "attitude": 10,
-    "savoir": ["f-cit-tables-decalees", "f-cit-carte-du-cap-mort", "f-cit-registre-deux-pages", "f-cit-lentille-encrassee"],
+    "savoir": [
+      "f-cit-tables-decalees",
+      "f-cit-carte-du-cap-mort",
+      "f-cit-registre-deux-pages",
+      "f-cit-lentille-encrassee"
+    ],
     "secrets": [
-      { "fait": "f-cit-carte-du-cap-mort", "jet": { "competence": "histoire", "dd": 12 } }
+      {
+        "fait": "f-cit-carte-du-cap-mort",
+        "jet": {
+          "competence": "histoire",
+          "dd": 12
+        }
+      }
     ],
     "sujets": [
       {
         "id": "les-tables",
-        "mots": ["tables", "marées", "décalées", "fausses", "retard", "heures"],
+        "mots": [
+          "tables",
+          "marées",
+          "décalées",
+          "fausses",
+          "retard",
+          "heures"
+        ],
         "question": "Les tables de marée de l'observatoire sont-elles justes ?",
         "reponse": "Aldous grimace : elles retardent de deux heures depuis le printemps, et les pêcheurs de la baie s'en plaignent déjà. Il a vérifié ses calculs trois fois. Il demande au groupe d'aller voir la lentille de l'observatoire, ou la clepsydre, et de lui dire laquelle est fautive.",
-        "revele": ["f-cit-tables-decalees"],
-        "effets": [{ "quete": { "id": "q-cit-les-tables-decalees", "statut": "active" } }],
+        "revele": [
+          "f-cit-tables-decalees"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-les-tables-decalees",
+              "statut": "active"
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "la-cause",
-        "mots": ["cause", "lentille", "clepsydre", "rapport", "dire"],
-        "condition": { "fait": "f-cit-lentille-encrassee" },
+        "mots": [
+          "cause",
+          "lentille",
+          "clepsydre",
+          "rapport",
+          "dire"
+        ],
+        "condition": {
+          "fait": "f-cit-lentille-encrassee"
+        },
         "question": "Lui rapporter la cause des tables décalées.",
         "reponse": "Aldous hoche la tête, soulagé, puis note quelque chose sur une feuille. Il dit qu'il corrigera les tables dès demain, et qu'on ne le blâmera pas, cette fois. Il n'oubliera pas le nom de celui qui a vu juste.",
         "revele": [],
-        "effets": [{ "flag": "cit-tables-rapportees" }, { "attitude": { "pnj": "aldous-lindenvert", "delta": 5 } }],
+        "effets": [
+          {
+            "flag": "cit-tables-rapportees"
+          },
+          {
+            "attitude": {
+              "pnj": "aldous-lindenvert",
+              "delta": 5
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "carte-du-cap-mort",
-        "mots": ["Cap-Mort", "cap", "carte", "falaise", "passage", "rocher"],
+        "mots": [
+          "Cap-Mort",
+          "cap",
+          "carte",
+          "falaise",
+          "passage",
+          "rocher"
+        ],
         "question": "Que montre la carte du Cap-Mort ?",
         "reponse": "Il tire une vieille carte aux bords brunis : un passage sous la falaise, à l'endroit où la carte moderne ne dessine qu'un rocher. Il ne sait pas si le passage existe encore, ni si quelqu'un l'a emprunté depuis cent ans.",
-        "revele": ["f-cit-carte-du-cap-mort"],
+        "revele": [
+          "f-cit-carte-du-cap-mort"
+        ],
         "effets": []
       },
       {
         "id": "la-bibliotheque",
-        "mots": ["bibliothèque", "livres", "registre", "archives", "copier"],
+        "mots": [
+          "bibliothèque",
+          "livres",
+          "registre",
+          "archives",
+          "copier"
+        ],
         "question": "Que conservez-vous ici ?",
         "reponse": "Des registres de marée qui remontent à cinq siècles, des cartes copiées à la main, des tables de vives-eaux. Il regrette les deux pages arrachées du registre, et ne sait pas qui les a prises.",
         "revele": [],
@@ -424,12 +863,24 @@
       },
       {
         "id": "comparer-les-cartes",
-        "mots": ["carte", "comparer", "Ysmène", "cartographe", "route"],
-        "condition": { "objet": "carte-des-marees-d-ysmene" },
+        "mots": [
+          "carte",
+          "comparer",
+          "Ysmène",
+          "cartographe",
+          "route"
+        ],
+        "condition": {
+          "objet": "carte-des-marees-d-ysmene"
+        },
         "question": "Comparer votre carte avec celle d'Ysmène.",
         "reponse": "Aldous trouve, à la loupe, que la route de la carte d'Ysmène s'arrête au même rocher que celui du Cap-Mort ; une ligne d'encre manque, un peu plus loin. Il est sûr que quelqu'un a effacé ce passage.",
         "revele": [],
-        "effets": [{ "flag": "cit-carte-verifiee" }],
+        "effets": [
+          {
+            "flag": "cit-carte-verifiee"
+          }
+        ],
         "unique": true
       }
     ],
@@ -438,16 +889,40 @@
     },
     "boutique": {
       "stock": [
-        { "objet": "encre", "quantite": 3 },
-        { "objet": "papier", "quantite": 10 },
-        { "objet": "parchemin", "quantite": 5 },
-        { "objet": "porte-plume", "quantite": 2 },
-        { "objet": "etui-a-cartes-ou-a-parchemins", "quantite": 2 },
-        { "objet": "materiel-de-calligraphe", "quantite": 1 },
-        { "objet": "carte", "quantite": 3 }
+        {
+          "objet": "encre",
+          "quantite": 3
+        },
+        {
+          "objet": "papier",
+          "quantite": 10
+        },
+        {
+          "objet": "parchemin",
+          "quantite": 5
+        },
+        {
+          "objet": "porte-plume",
+          "quantite": 2
+        },
+        {
+          "objet": "etui-a-cartes-ou-a-parchemins",
+          "quantite": 2
+        },
+        {
+          "objet": "materiel-de-calligraphe",
+          "quantite": 1
+        },
+        {
+          "objet": "carte",
+          "quantite": 3
+        }
       ],
       "rachat": 0.4,
-      "types": ["parchemin", "livre"]
+      "types": [
+        "parchemin",
+        "livre"
+      ]
     },
     "services": [
       {
@@ -469,19 +944,34 @@
     "lieu": "cit-refectoire",
     "apparence": "Halfeline de 60 ans, ronde, joues rouges, cheveux blonds couverts d'un foulard à carreaux, tablier taché de bouillon, cuillère de bois glissée à la ceinture.",
     "personnalite": {
-      "traits": ["généreuse", "autoritaire en cuisine", "rancunière quand on gaspille"],
+      "traits": [
+        "généreuse",
+        "autoritaire en cuisine",
+        "rancunière quand on gaspille"
+      ],
       "voix": "Chaleureuse et directe, avec des proverbes de cuisine ; elle appelle les voyageurs « mes chéris ».",
-      "valeurs": ["le repas partagé", "la réserve pour l'hiver"],
+      "valeurs": [
+        "le repas partagé",
+        "la réserve pour l'hiver"
+      ],
       "desir": "Nourrir tout le monde jusqu'à la fin de la tempête.",
       "peur": "Que les réserves ne suffisent pas si la mer monte.",
       "defaut": "Elle garde les réserves pour elle quand elle a peur, et s'en veut ensuite."
     },
     "attitude": 15,
-    "savoir": ["f-cit-herbes-de-falaise"],
+    "savoir": [
+      "f-cit-herbes-de-falaise"
+    ],
     "sujets": [
       {
         "id": "la-soupe",
-        "mots": ["soupe", "cuisine", "manger", "repas", "faim"],
+        "mots": [
+          "soupe",
+          "cuisine",
+          "manger",
+          "repas",
+          "faim"
+        ],
         "question": "Que cuisinez-vous ce soir ?",
         "reponse": "Une soupe de poisson sec, du pain qu'elle a fait lever deux fois, et une eau chaude pour ceux qui ont froid. Elle regrette de n'avoir plus de bon sel de falaise, ni assez de bois pour tout faire cuire.",
         "revele": [],
@@ -489,7 +979,14 @@
       },
       {
         "id": "voyageurs-echoues",
-        "mots": ["voyageurs", "échoués", "tempête", "pèlerin", "colporteur", "marin"],
+        "mots": [
+          "voyageurs",
+          "échoués",
+          "tempête",
+          "pèlerin",
+          "colporteur",
+          "marin"
+        ],
         "question": "Parlez-nous des voyageurs échoués.",
         "reponse": "Un colporteur qui a perdu son mulet, un pèlerin qui a donné sa bourse au portier, et un marin tiré de l'eau qui délire. Elle les nourrit tous sans compter, mais la faim se lit dans les yeux du pèlerin.",
         "revele": [],
@@ -497,41 +994,129 @@
       },
       {
         "id": "aider-la-soupe",
-        "mots": ["aider", "aide", "besoin", "herbes", "bois"],
+        "mots": [
+          "aider",
+          "aide",
+          "besoin",
+          "herbes",
+          "bois"
+        ],
         "question": "Proposer de l'aider pour la soupe.",
         "reponse": "Elle accepte aussitôt. Il lui faut des herbes grises des jardins de falaise, qui font une soupe moins fade, et du bois sec, car la réserve de la cuisine est trempée. Elle promet un bol à qui rapporte les deux.",
-        "revele": ["f-cit-herbes-de-falaise"],
-        "effets": [{ "quete": { "id": "q-cit-la-soupe-des-naufrages", "statut": "active" } }],
+        "revele": [
+          "f-cit-herbes-de-falaise"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-la-soupe-des-naufrages",
+              "statut": "active"
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "remettre-herbes-et-bois",
-        "mots": ["herbes", "bois", "rapporter", "apporter", "donner"],
-        "condition": { "et": [{ "objet": "cit-herbes-de-falaise" }, { "objet": "cit-bois-sec" }] },
+        "mots": [
+          "herbes",
+          "bois",
+          "rapporter",
+          "apporter",
+          "donner"
+        ],
+        "condition": {
+          "et": [
+            {
+              "objet": "cit-herbes-de-falaise"
+            },
+            {
+              "objet": "cit-bois-sec"
+            }
+          ]
+        },
         "question": "Lui remettre les herbes et le bois.",
         "reponse": "Elle regarde le bouquet, l'éprouve entre ses doigts, et dit que c'est exactement ce qu'il fallait. Elle jette les herbes dans la marmite sans attendre, et la cuisine sent la soupe chaude.",
         "revele": [],
-        "effets": [{ "flag": "cit-soupe-servie" }],
+        "effets": [
+          {
+            "flag": "cit-soupe-servie"
+          }
+        ],
         "unique": true
       },
       {
         "id": "partager-les-reserves",
-        "mots": ["partager", "réserves", "donner", "nourrir", "naufragés"],
-        "condition": { "et": [{ "flag": "cit-soupe-servie" }, { "non": { "flag": "cit-reserves-gardees" } }] },
+        "mots": [
+          "partager",
+          "réserves",
+          "donner",
+          "nourrir",
+          "naufragés"
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-soupe-servie"
+            },
+            {
+              "non": {
+                "flag": "cit-reserves-gardees"
+              }
+            }
+          ]
+        },
         "question": "Proposer de partager les réserves avec les voyageurs.",
         "reponse": "Elle s'arrête, la louche en l'air. Puis elle ouvre le placard du fond, sort deux sacs et dit qu'on les partage avant la nuit. Elle a honte de l'avoir pensé, et soulagée qu'on le propose.",
         "revele": [],
-        "effets": [{ "flag": "cit-reserves-partagees" }, { "attitude": { "pnj": "bertrane-mijotee", "delta": 10 } }],
+        "effets": [
+          {
+            "flag": "cit-reserves-partagees"
+          },
+          {
+            "attitude": {
+              "pnj": "bertrane-mijotee",
+              "delta": 10
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "garder-les-reserves",
-        "mots": ["garder", "réserves", "garde", "hiver", "stock"],
-        "condition": { "et": [{ "flag": "cit-soupe-servie" }, { "non": { "flag": "cit-reserves-partagees" } }] },
+        "mots": [
+          "garder",
+          "réserves",
+          "garde",
+          "hiver",
+          "stock"
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-soupe-servie"
+            },
+            {
+              "non": {
+                "flag": "cit-reserves-partagees"
+              }
+            }
+          ]
+        },
         "question": "Garder les réserves pour la Citadelle.",
         "reponse": "Elle serre le placard, les lèvres pincées. Elle dit que l'hiver ne prévient pas, et que la maison n'a que ses sacs. Elle ne parle plus, et sert le reste de la soupe sans un mot.",
         "revele": [],
-        "effets": [{ "flag": "cit-reserves-gardees" }, { "attitude": { "pnj": "bertrane-mijotee", "delta": -15 } }],
+        "effets": [
+          {
+            "flag": "cit-reserves-gardees"
+          },
+          {
+            "attitude": {
+              "pnj": "bertrane-mijotee",
+              "delta": -15
+            }
+          }
+        ],
         "unique": true
       }
     ],
@@ -540,13 +1125,27 @@
     },
     "boutique": {
       "stock": [
-        { "objet": "rations", "quantite": 12 },
-        { "objet": "flasque", "quantite": 3 },
-        { "objet": "outre", "quantite": 2 },
-        { "objet": "torche", "quantite": 6 }
+        {
+          "objet": "rations",
+          "quantite": 12
+        },
+        {
+          "objet": "flasque",
+          "quantite": 3
+        },
+        {
+          "objet": "outre",
+          "quantite": 2
+        },
+        {
+          "objet": "torche",
+          "quantite": 6
+        }
       ],
       "rachat": 0.3,
-      "types": ["nourriture"]
+      "types": [
+        "nourriture"
+      ]
     },
     "services": [
       {
@@ -568,26 +1167,53 @@
     "lieu": "cit-dortoirs",
     "apparence": "Homme de 35 ans en robe de voyage grise, barbe courte et soignée, cheveux bruns tirés en arrière, anneau d'argent à l'annulaire, sac de cuir fermé par une sangle.",
     "personnalite": {
-      "traits": ["charmant", "patient", "menteur habile"],
+      "traits": [
+        "charmant",
+        "patient",
+        "menteur habile"
+      ],
       "voix": "Doux et cultivé, avec des citations qu'il laisse en suspens ; il pose des questions pour s'effacer et sourit trop souvent.",
-      "valeurs": ["l'ordre des choses", "la discrétion"],
+      "valeurs": [
+        "l'ordre des choses",
+        "la discrétion"
+      ],
       "desir": "Obtenir ce que la Cour lui a demandé de trouver dans les archives, sans que personne ne voie le lien.",
       "peur": "Que la lettre scellée de son sac soit lue avant qu'il ait fini sa mission.",
       "defaut": "Il ment par plaisir de jouer, et surestime sa finesse."
     },
     "presences": [
-      { "lieu": "cit-grande-bibliotheque", "moment": "nuit", "condition": { "non": { "flag": "cit-infiltre-demasque" } } }
+      {
+        "lieu": "cit-grande-bibliotheque",
+        "moment": "nuit",
+        "condition": {
+          "non": {
+            "flag": "cit-infiltre-demasque"
+          }
+        }
+      }
     ],
     "faction": "cour-noyee",
     "attitude": -5,
-    "savoir": ["f-cit-lettres-cire-noire"],
+    "savoir": [
+      "f-cit-lettres-cire-noire"
+    ],
     "secrets": [
-      { "fait": "f-cit-lettres-cire-noire", "attitudeMin": 40 }
+      {
+        "fait": "f-cit-lettres-cire-noire",
+        "attitudeMin": 40
+      }
     ],
     "sujets": [
       {
         "id": "que-faites-vous-ici",
-        "mots": ["ici", "faites", "venu", "recherche", "archives", "voyage"],
+        "mots": [
+          "ici",
+          "faites",
+          "venu",
+          "recherche",
+          "archives",
+          "voyage"
+        ],
         "question": "Que venez-vous chercher à la Citadelle ?",
         "reponse": "Il dit qu'il recopie des cartes anciennes pour une université de la capitale, et qu'une tempête l'a bloqué ici plus longtemps que prévu. Il parle des archives avec enthousiasme, puis s'en détourne vite, comme s'il avait trop dit.",
         "revele": [],
@@ -595,7 +1221,13 @@
       },
       {
         "id": "cartes-anciennes",
-        "mots": ["mer", "marée", "carte", "cartes", "navigation"],
+        "mots": [
+          "mer",
+          "marée",
+          "carte",
+          "cartes",
+          "navigation"
+        ],
         "question": "Parlez-nous des anciennes cartes de marée.",
         "reponse": "Il explique que les anciennes cartes marquaient des routes sous l'eau, disparues depuis, et qu'un cartographe prudent les tenait secrètes. Il sourit trop en le disant.",
         "revele": [],
@@ -603,7 +1235,13 @@
       },
       {
         "id": "l-apprentie-quentin",
-        "mots": ["apprentie", "Nolwen", "jeune", "fille", "Ysmène"],
+        "mots": [
+          "apprentie",
+          "Nolwen",
+          "jeune",
+          "fille",
+          "Ysmène"
+        ],
         "question": "Connaissez-vous l'apprentie d'Ysmène ?",
         "reponse": "Il répond qu'il l'a croisée à peine, dans la bibliothèque, et qu'elle ne lui a rien dit. Il regarde pourtant la porte de la bibliothèque en le disant, plus longtemps que nécessaire.",
         "revele": [],
@@ -611,8 +1249,19 @@
       },
       {
         "id": "le-sac-scelle",
-        "mots": ["lettres", "sac", "sceau", "cire", "papiers", "scellé"],
-        "condition": { "non": { "flag": "cit-infiltre-demasque" } },
+        "mots": [
+          "lettres",
+          "sac",
+          "sceau",
+          "cire",
+          "papiers",
+          "scellé"
+        ],
+        "condition": {
+          "non": {
+            "flag": "cit-infiltre-demasque"
+          }
+        },
         "question": "Demander ce que contient son sac scellé.",
         "reponse": "« Des notes de voyage, rien de plus », dit-il vite, en refermant la sangle. Il promet de partir au matin, si on le laisse en paix.",
         "revele": [],
@@ -620,11 +1269,22 @@
       },
       {
         "id": "pour-qui-travaillez-vous",
-        "mots": ["Cour", "lettres", "cire noire", "mensonge", "ment", "vrai"],
-        "condition": { "flag": "cit-infiltre-demasque" },
+        "mots": [
+          "Cour",
+          "lettres",
+          "cire noire",
+          "mensonge",
+          "ment",
+          "vrai"
+        ],
+        "condition": {
+          "flag": "cit-infiltre-demasque"
+        },
         "question": "Lui demander pour qui il travaille vraiment.",
         "reponse": "Il pose la main sur son sac et avoue, sans colère, qu'il agit pour la Cour, et que la Cour a plus de patience que les vivants. Il ne dit rien de plus, sinon qu'il a déjà fait ce qu'on lui demandait.",
-        "revele": ["f-cit-lettres-cire-noire"],
+        "revele": [
+          "f-cit-lettres-cire-noire"
+        ],
         "effets": []
       }
     ],
@@ -643,9 +1303,16 @@
     "lieu": "cit-porte-de-terre",
     "apparence": "Homme de 60 ans, large d'épaules, crâne rasé, bure grise serrée à la taille par une corde, lanterne de cuivre à la main.",
     "personnalite": {
-      "traits": ["vigilant", "silencieux", "pieux sans ostentation"],
+      "traits": [
+        "vigilant",
+        "silencieux",
+        "pieux sans ostentation"
+      ],
       "voix": "Brève et polie ; il pose une question par phrase et répond toujours à la même.",
-      "valeurs": ["accueillir sans demander", "tenir le registre juste"],
+      "valeurs": [
+        "accueillir sans demander",
+        "tenir le registre juste"
+      ],
       "desir": "Ne plus voir de gens dehors par ce temps.",
       "peur": "Ouvrir un jour sans savoir à qui.",
       "defaut": "Il tient ses principes avec obstination, même contre le bon sens."
@@ -654,7 +1321,13 @@
     "sujets": [
       {
         "id": "qui-entre",
-        "mots": ["entrer", "porte", "entrée", "accueil", "registre"],
+        "mots": [
+          "entrer",
+          "porte",
+          "entrée",
+          "accueil",
+          "registre"
+        ],
         "question": "Pourquoi ouvrir à des inconnus ce soir ?",
         "reponse": "Il dit que la Citadelle ouvre à qui la tempête chasse, depuis toujours. Il montre le registre : les noms des derniers arrivés, certains effacés par la pluie. La porte ne se ferme que sur ceux qu'on attend.",
         "revele": [],
@@ -662,7 +1335,14 @@
       },
       {
         "id": "la-nuit-dehors",
-        "mots": ["nuit", "dehors", "ombres", "bruit", "entendu", "appel"],
+        "mots": [
+          "nuit",
+          "dehors",
+          "ombres",
+          "bruit",
+          "entendu",
+          "appel"
+        ],
         "question": "Avez-vous entendu quelque chose, cette nuit ?",
         "reponse": "Il répond qu'il a entendu des pas mouillés sur les pavés, en bas du chemin, qui s'arrêtaient à la porte puis repartaient. Il n'a pas ouvert. Il ne dit pas qu'il en a eu peur, mais il tient sa lanterne plus haut.",
         "revele": [],
@@ -670,7 +1350,13 @@
       },
       {
         "id": "les-cloches",
-        "mots": ["cloche", "sonner", "heures", "marée", "sonne"],
+        "mots": [
+          "cloche",
+          "sonner",
+          "heures",
+          "marée",
+          "sonne"
+        ],
         "question": "Pourquoi la cloche sonne-t-elle si souvent ?",
         "reponse": "Elle sonne chaque fois que la mer change de sens, selon les cartographes ; le frère la tire à l'heure qu'ils lui donnent. Ce soir, elle a sonné deux fois plus tôt que prévu.",
         "revele": [],
@@ -692,9 +1378,16 @@
     "lieu": "cit-intendance",
     "apparence": "Homme de 50 ans, carré, moustache grise, gilet de cuir sur chemise de lin, lunettes relevées sur le front, clés accrochées à une chaîne.",
     "personnalite": {
-      "traits": ["calculateur", "bourru", "juste"],
+      "traits": [
+        "calculateur",
+        "bourru",
+        "juste"
+      ],
       "voix": "Rude, les chiffres à la bouche ; il tutoie les marins et vouvoie les nobles, et ne fait jamais semblant de ne pas compter.",
-      "valeurs": ["l'équité des prix", "la solidité des choses"],
+      "valeurs": [
+        "l'équité des prix",
+        "la solidité des choses"
+      ],
       "desir": "Garder la maison équipée, et les clés de ses coffres à leur place.",
       "peur": "Perdre la confiance du Prieur si un objet disparaît sous sa garde.",
       "defaut": "Il soupçonne tout le monde et compte les objets deux fois par jour."
@@ -704,7 +1397,14 @@
     "sujets": [
       {
         "id": "equipement",
-        "mots": ["équiper", "acheter", "armes", "armure", "matériel", "vendre"],
+        "mots": [
+          "équiper",
+          "acheter",
+          "armes",
+          "armure",
+          "matériel",
+          "vendre"
+        ],
         "question": "Qu'avez-vous à vendre pour un voyage ?",
         "reponse": "Il énumère sans regarder son registre : des armes du pays, des armures de cuir, des cordes, des lanternes, des rations pour trois jours. Il ajoute, sur le ton de la plaisanterie : « Payez comptant. Je n'ai pas de cœur pour le crédit. »",
         "revele": [],
@@ -712,7 +1412,14 @@
       },
       {
         "id": "les-prets",
-        "mots": ["prêt", "prêter", "gage", "dette", "registre", "caution"],
+        "mots": [
+          "prêt",
+          "prêter",
+          "gage",
+          "dette",
+          "registre",
+          "caution"
+        ],
         "question": "Comment fonctionnent vos prêts ?",
         "reponse": "Il prête des objets contre une caution, rendue à la restitution. Il tient un registre à la plume et à l'encre, et précise qu'il ne prête jamais ses clés.",
         "revele": [],
@@ -720,17 +1427,40 @@
       },
       {
         "id": "la-cle-des-caveaux",
-        "mots": ["clé", "caveaux", "coffre", "réserve", "perdue"],
+        "mots": [
+          "clé",
+          "caveaux",
+          "coffre",
+          "réserve",
+          "perdue"
+        ],
         "question": "La clé des caveaux est-elle en sûreté ?",
         "reponse": "Il grommelle : la clé est tombée dans le bassin du quai, à marée haute, quand il a voulu la pendre à sa ceinture. Il ne peut pas aller la chercher, ses genoux le lâchent. Il demande qu'on la rapporte, et qu'on ne fasse pas de bruit sur les dalles.",
         "revele": [],
-        "effets": [{ "quete": { "id": "q-cit-la-cle-des-caveaux", "statut": "active" } }],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-la-cle-des-caveaux",
+              "statut": "active"
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "forcer-la-porte",
-        "mots": ["forcer", "porte", "caveaux", "autorisation", "ouvrir"],
-        "condition": { "non": { "objet": "cit-cle-des-caveaux" } },
+        "mots": [
+          "forcer",
+          "porte",
+          "caveaux",
+          "autorisation",
+          "ouvrir"
+        ],
+        "condition": {
+          "non": {
+            "objet": "cit-cle-des-caveaux"
+          }
+        },
         "question": "Proposer de forcer la porte des caveaux.",
         "reponse": "Il se tait longtemps, puis dit qu'il ferme les yeux à une condition : que personne ne sache qu'il l'a permis. Il ne veut pas savoir comment on s'y prendra, et il tourne le dos.",
         "revele": [],
@@ -738,22 +1468,62 @@
       },
       {
         "id": "rendre-la-cle",
-        "mots": ["rendre", "clé", "rapporter", "retrouvée", "voici"],
-        "condition": { "objet": "cit-cle-des-caveaux" },
+        "mots": [
+          "rendre",
+          "clé",
+          "rapporter",
+          "retrouvée",
+          "voici"
+        ],
+        "condition": {
+          "objet": "cit-cle-des-caveaux"
+        },
         "question": "Lui rendre la clé des caveaux.",
         "reponse": "Il la prend, la retourne deux fois entre ses doigts et la glisse dans sa ceinture sans un mot de plus. Puis il ajoute que la maison lui doit une chaîne neuve, et qu'il ne demandera pas d'autre remerciement.",
         "revele": [],
-        "effets": [{ "flag": "cit-cle-rendue" }],
+        "effets": [
+          {
+            "flag": "cit-cle-rendue"
+          }
+        ],
         "unique": true
       },
       {
         "id": "avouer-la-porte",
-        "mots": ["avouer", "porte", "ouverte", "caveaux", "entrés", "désolé"],
-        "condition": { "et": [{ "lieu": "cit-caveaux" }, { "non": { "objet": "cit-cle-des-caveaux" } }] },
+        "mots": [
+          "avouer",
+          "porte",
+          "ouverte",
+          "caveaux",
+          "entrés",
+          "désolé"
+        ],
+        "condition": {
+          "et": [
+            {
+              "lieu": "cit-caveaux"
+            },
+            {
+              "non": {
+                "objet": "cit-cle-des-caveaux"
+              }
+            }
+          ]
+        },
         "question": "Avouer que les caveaux ont été ouverts sans clé.",
         "reponse": "Il pâlit, puis grommelle qu'il le savait, à la poussière qu'on a laissée sur les marches. Il ne dira rien au Prieur, mais il ne le pardonne pas facilement, et le fait sentir en rangeant ses étagères.",
         "revele": [],
-        "effets": [{ "flag": "cit-cle-rendue" }, { "attitude": { "pnj": "cit-ansgar-mauclerc", "delta": -10 } }],
+        "effets": [
+          {
+            "flag": "cit-cle-rendue"
+          },
+          {
+            "attitude": {
+              "pnj": "cit-ansgar-mauclerc",
+              "delta": -10
+            }
+          }
+        ],
         "unique": true
       }
     ],
@@ -762,25 +1532,79 @@
     },
     "boutique": {
       "stock": [
-        { "objet": "epee-longue", "quantite": 2 },
-        { "objet": "dague", "quantite": 4 },
-        { "objet": "arc-court", "quantite": 2 },
-        { "objet": "fleches", "quantite": 40 },
-        { "objet": "carquois", "quantite": 3 },
-        { "objet": "armure-de-cuir", "quantite": 2 },
-        { "objet": "bouclier", "quantite": 2 },
-        { "objet": "cotte-de-mailles", "quantite": 1 },
-        { "objet": "corde", "quantite": 4 },
-        { "objet": "lanterne-sourde", "quantite": 3 },
-        { "objet": "huile", "quantite": 6 },
-        { "objet": "sac-de-couchage", "quantite": 3 },
-        { "objet": "couverture", "quantite": 4 },
-        { "objet": "trousse-de-soins", "quantite": 2 },
-        { "objet": "tente", "quantite": 1 },
-        { "objet": "torche", "quantite": 8 }
+        {
+          "objet": "epee-longue",
+          "quantite": 2
+        },
+        {
+          "objet": "dague",
+          "quantite": 4
+        },
+        {
+          "objet": "arc-court",
+          "quantite": 2
+        },
+        {
+          "objet": "fleches",
+          "quantite": 40
+        },
+        {
+          "objet": "carquois",
+          "quantite": 3
+        },
+        {
+          "objet": "armure-de-cuir",
+          "quantite": 2
+        },
+        {
+          "objet": "bouclier",
+          "quantite": 2
+        },
+        {
+          "objet": "cotte-de-mailles",
+          "quantite": 1
+        },
+        {
+          "objet": "corde",
+          "quantite": 4
+        },
+        {
+          "objet": "lanterne-sourde",
+          "quantite": 3
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        },
+        {
+          "objet": "sac-de-couchage",
+          "quantite": 3
+        },
+        {
+          "objet": "couverture",
+          "quantite": 4
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 2
+        },
+        {
+          "objet": "tente",
+          "quantite": 1
+        },
+        {
+          "objet": "torche",
+          "quantite": 8
+        }
       ],
       "rachat": 0.5,
-      "types": ["arme", "armure", "bouclier", "materiel", "outil"]
+      "types": [
+        "arme",
+        "armure",
+        "bouclier",
+        "materiel",
+        "outil"
+      ]
     },
     "services": [
       {
@@ -802,19 +1626,34 @@
     "lieu": "cit-infirmerie",
     "apparence": "Femme de 40 ans, cheveux bruns relevés, visage fatigué et calme, blouse de lin blanchie à la lessive, mains rougies d'eau et de simples, tablier de toile.",
     "personnalite": {
-      "traits": ["calme", "pratique", "émue en silence"],
+      "traits": [
+        "calme",
+        "pratique",
+        "émue en silence"
+      ],
       "voix": "Douce et précise ; elle explique les soins pas à pas et ne promet que ce qu'elle peut tenir.",
-      "valeurs": ["le soin sans question", "la patience"],
+      "valeurs": [
+        "le soin sans question",
+        "la patience"
+      ],
       "desir": "Sauver le marin fiévreux avant que la fièvre ne monte.",
       "peur": "Manquer de remèdes le jour où la côte en aura le plus besoin.",
       "defaut": "Elle se tait sur ses propres douleurs."
     },
     "attitude": 10,
-    "savoir": ["f-cit-herbes-de-falaise"],
+    "savoir": [
+      "f-cit-herbes-de-falaise"
+    ],
     "sujets": [
       {
         "id": "les-malades",
-        "mots": ["malades", "patients", "blessés", "lits", "soigner"],
+        "mots": [
+          "malades",
+          "patients",
+          "blessés",
+          "lits",
+          "soigner"
+        ],
         "question": "Comment vont vos malades ?",
         "reponse": "Deux voyageurs se remettent, dit-elle, et le marin fiévreux n'a pas repris conscience depuis la tombée de la nuit. Elle a peur que la fièvre monte avec la marée, et ne se soigne pas avec le seul feu.",
         "revele": [],
@@ -822,25 +1661,62 @@
       },
       {
         "id": "le-marin",
-        "mots": ["marin", "fièvre", "fiévreux", "tiré", "malade", "remède"],
+        "mots": [
+          "marin",
+          "fièvre",
+          "fiévreux",
+          "tiré",
+          "malade",
+          "remède"
+        ],
         "question": "Que faut-il au marin fiévreux ?",
         "reponse": "Un remède de falaise, fait avec les herbes grises des jardins, infusées longtemps. Elle n'en a plus, et ne peut pas sortir seule au cap. Elle demande qu'on lui apporte des herbes, et qu'on lui laisse le soin du reste.",
-        "revele": ["f-cit-herbes-de-falaise"],
-        "effets": [{ "quete": { "id": "q-cit-le-marin-de-la-tempete", "statut": "active" } }],
+        "revele": [
+          "f-cit-herbes-de-falaise"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-le-marin-de-la-tempete",
+              "statut": "active"
+            }
+          }
+        ],
         "unique": true
       },
       {
         "id": "preparer-le-remede",
-        "mots": ["remède", "préparer", "herbes", "infuser", "tisane"],
-        "condition": { "objet": "cit-herbes-de-falaise" },
+        "mots": [
+          "remède",
+          "préparer",
+          "herbes",
+          "infuser",
+          "tisane"
+        ],
+        "condition": {
+          "objet": "cit-herbes-de-falaise"
+        },
         "question": "Lui demander de préparer le remède.",
         "reponse": "Elle prend le bouquet, le sent, et dit qu'il est sec mais bon. Elle en fait une infusion dans un petit pot de terre, la laisse reposer et la verse dans une fiole qu'elle bouche de cire. La dose est pour un seul homme.",
         "revele": [],
-        "effets": [{ "objet": { "id": "cit-remede-de-falaise", "quantite": 1 } }]
+        "effets": [
+          {
+            "objet": {
+              "id": "cit-remede-de-falaise",
+              "quantite": 1
+            }
+          }
+        ]
       },
       {
         "id": "ce-qu-il-murmure",
-        "mots": ["entendu", "nuit", "voix", "murmures", "répétait"],
+        "mots": [
+          "entendu",
+          "nuit",
+          "voix",
+          "murmures",
+          "répétait"
+        ],
         "question": "Avez-vous entendu ce qu'il disait cette nuit ?",
         "reponse": "Elle répond qu'il répétait le même mot à voix basse, en regardant la fenêtre : une femme debout sous l'eau, et une demande qu'il ne comprenait pas. Elle ne voulait pas le contredire, et conseille de l'écouter quand il sera remis.",
         "revele": [],
@@ -870,27 +1746,52 @@
     "lieu": "cit-cour-des-vents",
     "apparence": "Halfelin de 17 ans, petit et vif, cheveux bouclés coupés à la va-vite, bure trop grande retroussée aux manches, seau à la main.",
     "personnalite": {
-      "traits": ["curieux", "bavard", "courageux à moitié"],
+      "traits": [
+        "curieux",
+        "bavard",
+        "courageux à moitié"
+      ],
       "voix": "Rapide, avec des exclamations et des phrases qui tournent en rond. Il pense à voix haute et s'excuse de l'avoir fait.",
-      "valeurs": ["le devoir bien fait", "l'envie de voir"],
+      "valeurs": [
+        "le devoir bien fait",
+        "l'envie de voir"
+      ],
       "desir": "Être envoyé un jour avec les cartographes sur la chaussée.",
       "peur": "Les grilles, la nuit, quand on entend tapoter de l'autre côté.",
       "defaut": "Il exagère ce qu'il a vu."
     },
     "attitude": 10,
-    "savoir": ["f-cit-coquilles-fraiches"],
+    "savoir": [
+      "f-cit-coquilles-fraiches"
+    ],
     "sujets": [
       {
         "id": "le-quai",
-        "mots": ["quai", "grille", "seau", "travail", "entretien", "algues"],
+        "mots": [
+          "quai",
+          "grille",
+          "seau",
+          "travail",
+          "entretien",
+          "algues"
+        ],
         "question": "Que faites-vous au quai ?",
         "reponse": "Il nettoie les pieux et ramasse les algues avant qu'elles ne sèchent sur les anneaux. Il dit qu'il a vu des coquilles fraîches sur la grille ce matin, alors que la veille il n'y en avait pas.",
-        "revele": ["f-cit-coquilles-fraiches"],
+        "revele": [
+          "f-cit-coquilles-fraiches"
+        ],
         "effets": []
       },
       {
         "id": "la-grille-tapote",
-        "mots": ["grille", "tapote", "bruit", "frapper", "nuit", "coups"],
+        "mots": [
+          "grille",
+          "tapote",
+          "bruit",
+          "frapper",
+          "nuit",
+          "coups"
+        ],
         "question": "Entendez-vous des bruits derrière la grille ?",
         "reponse": "Il jure avoir entendu trois coups très lents, comme des gens qui frappent à une porte sous l'eau. Il ne veut pas y retourner seul, et demande qu'on regarde à sa place.",
         "revele": [],
@@ -898,7 +1799,13 @@
       },
       {
         "id": "les-livres-de-pim",
-        "mots": ["lire", "livres", "novices", "étudier", "apprendre"],
+        "mots": [
+          "lire",
+          "livres",
+          "novices",
+          "étudier",
+          "apprendre"
+        ],
         "question": "Que lisez-vous, Pim ?",
         "reponse": "Un traité sur les marées de vives-eaux, qu'il a emprunté à la bibliothèque et qu'il rendra avant que quelqu'un ne le remarque. Il rit, puis baisse la voix : il n'a pas rendu l'autre livre.",
         "revele": [],
@@ -920,19 +1827,34 @@
     "lieu": "cit-cour-des-vents",
     "apparence": "Homme de 45 ans, maigre et nerveux, chapeau de feutre gris à bord cassé, gilet à poches multiples, balluchon de toile sur l'épaule.",
     "personnalite": {
-      "traits": ["bavard", "malin", "triste de son mulet"],
+      "traits": [
+        "bavard",
+        "malin",
+        "triste de son mulet"
+      ],
       "voix": "Vif, avec des formules de foire et des rires forcés ; il commence toujours par vanter sa marchandise.",
-      "valeurs": ["le commerce honnête", "la route"],
+      "valeurs": [
+        "le commerce honnête",
+        "la route"
+      ],
       "desir": "Retrouver son mulet, perdu sur la route des falaises, et repartir au plus vite.",
       "peur": "Les silhouettes qu'il a aperçues dans la brume, au loin.",
       "defaut": "Il surfacture et ne s'en cache pas."
     },
     "attitude": 0,
-    "savoir": ["f-cit-cercles-de-sel"],
+    "savoir": [
+      "f-cit-cercles-de-sel"
+    ],
     "sujets": [
       {
         "id": "le-mulet",
-        "mots": ["mulet", "bête", "route", "perdu", "animal"],
+        "mots": [
+          "mulet",
+          "bête",
+          "route",
+          "perdu",
+          "animal"
+        ],
         "question": "Où avez-vous perdu votre mulet ?",
         "reponse": "Il montre la route du col, sans conviction. Il a perdu la bête dans les congères, au tournant des bornes, et croit qu'elle est revenue seule vers les falaises. Il ne veut pas y retourner, mais ne veut pas qu'on le dise.",
         "revele": [],
@@ -940,7 +1862,14 @@
       },
       {
         "id": "les-silhouettes-de-la-brume",
-        "mots": ["brume", "silhouettes", "morts", "marais", "vu", "dehors"],
+        "mots": [
+          "brume",
+          "silhouettes",
+          "morts",
+          "marais",
+          "vu",
+          "dehors"
+        ],
         "question": "Qu'avez-vous vu dans la brume ?",
         "reponse": "Des silhouettes debout dans l'eau, immobiles, couvertes de sel et d'algues, qui regardaient la route. Il n'en a pas parlé à Bertrane, et demande qu'on n'en parle pas non plus ce soir.",
         "revele": [],
@@ -948,7 +1877,13 @@
       },
       {
         "id": "marchandise-rare",
-        "mots": ["acheter", "marchandise", "prix", "vendre", "rare"],
+        "mots": [
+          "acheter",
+          "marchandise",
+          "prix",
+          "vendre",
+          "rare"
+        ],
         "question": "Qu'avez-vous de plus rare à vendre ?",
         "reponse": "Il sort d'un sac une fiole de sel de falaise et un bout de corde qu'il jure avoir fait tresser par un marin. Rien de précieux, dit-il, mais tout le nécessaire.",
         "revele": [],
@@ -960,16 +1895,41 @@
     },
     "boutique": {
       "stock": [
-        { "objet": "corde", "quantite": 3 },
-        { "objet": "huile", "quantite": 4 },
-        { "objet": "fiole", "quantite": 6 },
-        { "objet": "sac-a-dos", "quantite": 2 },
-        { "objet": "sac", "quantite": 4 },
-        { "objet": "lanterne-sourde", "quantite": 2 },
-        { "objet": "rations", "quantite": 4 }
+        {
+          "objet": "corde",
+          "quantite": 3
+        },
+        {
+          "objet": "huile",
+          "quantite": 4
+        },
+        {
+          "objet": "fiole",
+          "quantite": 6
+        },
+        {
+          "objet": "sac-a-dos",
+          "quantite": 2
+        },
+        {
+          "objet": "sac",
+          "quantite": 4
+        },
+        {
+          "objet": "lanterne-sourde",
+          "quantite": 2
+        },
+        {
+          "objet": "rations",
+          "quantite": 4
+        }
       ],
       "rachat": 0.3,
-      "types": ["materiel", "divers", "nourriture"]
+      "types": [
+        "materiel",
+        "divers",
+        "nourriture"
+      ]
     }
   },
   {
@@ -983,9 +1943,16 @@
     "lieu": "cit-refectoire",
     "apparence": "Homme de 55 ans, voûté, cheveux gris épars, capuche de bure grise, bâton de marche usé, médaillon de cuivre sur la poitrine, pieds enveloppés de chiffons.",
     "personnalite": {
-      "traits": ["pieux", "craintif", "obstiné"],
+      "traits": [
+        "pieux",
+        "craintif",
+        "obstiné"
+      ],
       "voix": "Lent, avec des formules de prière ; il s'arrête entre deux phrases comme s'il écoutait quelqu'un d'autre.",
-      "valeurs": ["le recueillement", "les morts qu'on n'a pas enterrés"],
+      "valeurs": [
+        "le recueillement",
+        "les morts qu'on n'a pas enterrés"
+      ],
       "desir": "Atteindre la chapelle des noyés à Port-aux-Cordes et y déposer le nom de sa famille.",
       "peur": "Entendre son nom venir de la mer.",
       "defaut": "Il ne dit jamais tout ce qu'il sait."
@@ -994,7 +1961,14 @@
     "sujets": [
       {
         "id": "destination",
-        "mots": ["voyage", "pèlerinage", "chapelle", "port", "allez", "où"],
+        "mots": [
+          "voyage",
+          "pèlerinage",
+          "chapelle",
+          "port",
+          "allez",
+          "où"
+        ],
         "question": "Où allez-vous, mon ami ?",
         "reponse": "Il va à Port-aux-Cordes, à la chapelle des noyés, pour y déposer le nom de son fils, mort en mer il y a vingt ans. Il ne sait pas si le nom sera entendu, mais il veut qu'on le lise.",
         "revele": [],
@@ -1002,7 +1976,14 @@
       },
       {
         "id": "la-route-des-falaises",
-        "mots": ["route", "falaise", "vu", "chemin", "cap", "barques"],
+        "mots": [
+          "route",
+          "falaise",
+          "vu",
+          "chemin",
+          "cap",
+          "barques"
+        ],
         "question": "Qu'avez-vous vu sur la route ?",
         "reponse": "Des cercles de sel au pied des jardins, des bornes arrachées, et des barques à demi enfoncées dans la vase. Il dit que la route n'est pas sûre après le coucher, et qu'il n'a pas osé regarder en bas.",
         "revele": [],
@@ -1010,7 +1991,13 @@
       },
       {
         "id": "conseil-pour-la-nuit",
-        "mots": ["conseil", "aider", "prière", "sauver", "faire"],
+        "mots": [
+          "conseil",
+          "aider",
+          "prière",
+          "sauver",
+          "faire"
+        ],
         "question": "Demander à Eudes un conseil pour la nuit.",
         "reponse": "Il répond qu'il faut parler aux morts en face, sans crainte, et ne jamais les laisser attendre. On ne sait jamais, ajoute-t-il, combien de temps un mort peut attendre.",
         "revele": [],
@@ -1032,19 +2019,35 @@
     "lieu": "cit-infirmerie",
     "apparence": "Homme de 35 ans, amaigri, barbe de plusieurs jours, cheveux collés de sel, couverture de laine sur les épaules, mains gonflées et veinées de bleu.",
     "personnalite": {
-      "traits": ["fiévreux", "lucide par moments", "hanté"],
+      "traits": [
+        "fiévreux",
+        "lucide par moments",
+        "hanté"
+      ],
       "voix": "Heurté, par bribes ; il répète les mots, s'arrête, puis reprend de plus loin. Il parle de la mer comme d'une personne.",
-      "valeurs": ["les gens de mer", "la parole donnée à un ami"],
+      "valeurs": [
+        "les gens de mer",
+        "la parole donnée à un ami"
+      ],
       "desir": "Rentrer chez lui et ne plus jamais entendre la marée.",
       "peur": "Retourner en mer, ou être repris par ce qui l'a tiré de l'eau.",
       "defaut": "Il ment sur ce qu'il a fait pour survivre."
     },
     "attitude": -5,
-    "savoir": ["f-cit-dame-sous-la-mer"],
+    "savoir": [
+      "f-cit-dame-sous-la-mer"
+    ],
     "sujets": [
       {
         "id": "d-ou-venez-vous",
-        "mots": ["où", "venez", "bateau", "navire", "nom", "pays"],
+        "mots": [
+          "où",
+          "venez",
+          "bateau",
+          "navire",
+          "nom",
+          "pays"
+        ],
         "question": "D'où venez-vous, Corwen ?",
         "reponse": "Il tente de répondre, perd le fil, puis murmure le nom de son bateau, la Clé-du-Sud, qui n'existe plus. Il sait qu'il a été le seul à survivre, mais pas à quoi il le doit.",
         "revele": [],
@@ -1052,7 +2055,14 @@
       },
       {
         "id": "le-naufrage",
-        "mots": ["naufrage", "tempête", "vague", "sombré", "coulé", "eau"],
+        "mots": [
+          "naufrage",
+          "tempête",
+          "vague",
+          "sombré",
+          "coulé",
+          "eau"
+        ],
         "question": "Que vous est-il arrivé en mer ?",
         "reponse": "Le bateau a heurté la chaussée à marée basse, là où il n'y a jamais d'eau, puis la mer est revenue si vite que les hommes n'ont pas eu le temps de crier. Il dit avoir vu, sous la coque, des visages qu'il connaissait.",
         "revele": [],
@@ -1060,21 +2070,50 @@
       },
       {
         "id": "donner-le-remede",
-        "mots": ["remède", "donner", "tisane", "herbes", "fiole"],
-        "condition": { "objet": "cit-remede-de-falaise" },
+        "mots": [
+          "remède",
+          "donner",
+          "tisane",
+          "herbes",
+          "fiole"
+        ],
+        "condition": {
+          "objet": "cit-remede-de-falaise"
+        },
         "question": "Lui donner le remède de falaise.",
         "reponse": "Il avale la tisane en grimaçant, puis dit qu'elle a un goût de sel et de feu. Il regarde la fenêtre un long moment, reprend ses esprits, et dit qu'il veut parler, mais qu'il faudra écouter sans l'interrompre.",
         "revele": [],
-        "effets": [{ "objet": { "id": "cit-remede-de-falaise", "retirer": true } }, { "flag": "cit-marin-soigne" }],
+        "effets": [
+          {
+            "objet": {
+              "id": "cit-remede-de-falaise",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "cit-marin-soigne"
+          }
+        ],
         "unique": true
       },
       {
         "id": "la-dame-sous-la-mer",
-        "mots": ["dame", "femme", "sous", "eau", "chaussée", "voix"],
-        "condition": { "flag": "cit-marin-soigne" },
+        "mots": [
+          "dame",
+          "femme",
+          "sous",
+          "eau",
+          "chaussée",
+          "voix"
+        ],
+        "condition": {
+          "flag": "cit-marin-soigne"
+        },
         "question": "Lui demander ce qu'il a vu sous la chaussée.",
         "reponse": "Il murmure qu'il a vu une femme debout dans l'eau, immobile, sans cligner des yeux, qui demandait qu'on lui rende ce qui lui appartenait. Il a cru qu'elle parlait d'un enfant perdu, puis il a compris que c'était un dû, non un deuil.",
-        "revele": ["f-cit-dame-sous-la-mer"],
+        "revele": [
+          "f-cit-dame-sous-la-mer"
+        ],
         "effets": [],
         "unique": true
       }

@@ -70,6 +70,37 @@ Une scène est une petite cinématique jouée quand quelque chose arrive :
   **VOIX OFFICIELLE du Maître de jeu (décision de l'utilisateur, 04/11/2026), pour toutes les histoires** : `gpt-audio` est un modèle de conversation qui lit « comme un robot » ; toutes les scènes sont lues par **Gemini Flash TTS**, avec les mêmes réglages, qui sont les défauts de l'outil (celui des répliques de combat) : `pnpm voix essai <monde> --scene id --plan n --timbres Orus,Algieba` (plusieurs timbres sur un plan, rien n'est livré), puis `pnpm voix generer <monde> --go` (timbre Algieba, ×1,15 : rien à préciser ; `--moteur gpt` pour l'ancienne lecture ; `--refaire` pour remplacer des voix existantes, `--plans 2,3` pour certains plans). L'audio brut est gardé dans `sorties/voix-scenes/<monde>/` : `pnpm voix convertir <monde> --tempo 1.2` règle le débit sans aucun appel. Réglage officiel (ne pas en changer) : timbre **Algieba**, débit **×1,15**, style « conteur naturel, intonations nuancées mais retenues » (un premier style plus théâtral a été jugé « trop accentué »). Coût : ≈ 0,003 $ par plan de 30 mots.
 - **Règles d'écriture** : le texte est lu au joueur, au présent ou au passé de conte, sans rien dévoiler qu'il ne découvre au même moment ; deux ou trois phrases par plan, trois ou quatre plans par scène.
 
+## Données des modules : les dilemmes
+
+Le second dossier d'extension est **`dilemmes/`** (module Dilemmes, `packages/regles/src/modules/dilemmes.ts`, format dans `monde/dilemmes-donnees.ts`). Un dilemme est un **choix difficile** : le joueur lit ce que chaque option coûte et rapporte *avant* de trancher, et ne pas trancher a aussi un prix.
+
+```json
+{
+  "id": "le-pli-scelle",
+  "titre": "Le pli scellé",
+  "situation": "Lise Morvan vous tend un pli…",
+  "quand": { "quete": { "id": "q-fal-courrier-ligue", "statut": "active" } },
+  "delai": 3,
+  "options": [
+    { "id": "porter", "libelle": "Je le porte fermé.", "ton": "Loyauté",
+      "couts": ["Vous ignorerez ce qu'il contient"], "gains": ["La Ligue vous fait confiance"],
+      "effets": [{ "reputation": { "faction": "ligue-des-phares", "delta": 10 } }], "epilogue": "…" },
+    { "id": "ouvrir", "libelle": "Je l'ouvre en cachette.", "couts": ["Si le jet échoue, la Ligue le saura"], "gains": ["Vous apprenez la vérité"],
+      "jet": { "competence": "escamotage", "dd": 14 },
+      "effets": [{ "fait": "f-ligue-et-phare-cellule" }], "echec": [{ "reputation": { "faction": "ligue-des-phares", "delta": -10 } }] }
+  ],
+  "abstention": { "libelle": "Je garde le pli sans rien décider.", "couts": ["Le temps passe"], "effets": [], "epilogue": "…" },
+  "echos": [{ "si": "porter", "apres": 2, "annonce": "Osric Vent vous attend…", "effets": [{ "pieces": 25 }] }]
+}
+```
+
+- **Ouverture** : dès que `quand` (une condition) est vraie ; `lieu` restreint l'endroit où l'on tranche. Les boutons apparaissent en tête des actions (« Un choix s'impose : … ») avec, sous chaque option, une ligne **Coût** et une ligne **Gain**.
+- **Option** : `libelle` à la première personne, `ton` (étiquette entre crochets), `couts` et `gains` (au moins une ligne chacun : jamais de choix gratuit), `condition` (option réservée : un objet, la confiance d'un PNJ), `effets`, `epilogue`. Avec un `jet`, `echec` est **obligatoire** : un jet raté ne bloque jamais, il coûte autrement.
+- **Le temps presse** : `delai` en jours ; passé ce délai, l'abstention s'applique d'elle-même (« faute de décision à temps »).
+- **Échos** : `echos[]`, des conséquences `apres` N jours (une narration `annonce`, des effets : une rencontre, un PNJ qui revient, de l'argent). C'est ce qui fait qu'un choix compte encore trois jours plus tard.
+- **Mémoire** : un choix pose les drapeaux `choix-<dilemme>` et `choix-<dilemme>-<option>`, lisibles partout (variantes de salutation, conditions de sujet, de rencontre, de fin). Le journal tient une **Chronique des choix** (et les « Choix en suspens ») ; à la fin de l'histoire, les `epilogue` des choix faits sont racontés.
+- **Validation** : erreurs (référence inconnue, jet sans `echec`, écho sur une option inconnue) et conseils `[dilemmes]` (option sans effet ou seulement narrative, aucun écho, épilogue manquant, deux options aux effets identiques). Le validateur du monde connaît les drapeaux de choix.
+
 ## Conditions et effets
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.
@@ -89,6 +120,8 @@ Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (don
 - **Issue de repli** : une alternative sans `jet` (« se rendre », « payer le passage ») règle la rencontre et peut poser un drapeau ou une fin. Le validateur signale un combat « élevée » qui n'en a aucune.
 - **Variante selon le parcours** : une rencontre ou une alternative avec une `condition` (un drapeau, un compteur, une jauge) n'apparaît que lorsque celle-ci est vraie ; plusieurs rencontres au même lieu, chacune conditionnée, donnent une fin différente selon ce qui a été fait avant.
 - **Avis du validateur** (conseils d'écriture) : « Enjeu » (aucune fin liée à une jauge ou à un palier), « PX » (le monde ne rapporte pas assez de PX pour atteindre son niveau maximum), « sans autre issue » (combat élevé sans alternative).
+- **Le monde se souvient** : `Pnj.salutations.variantes` (liste `{ condition, texte }`) : la première variante vraie remplace la salutation habituelle (un acte passé, un choix de dilemme, un palier de jauge). Les jauges s'affichent en haut de l'écran avec leurs repères (●●●○○) et le **palier actuel** ; l'infobulle annonce le prochain.
+- **Avis du validateur pour les histoires qui ne s'ennuient pas** : « Rythme » (moins de 20 % de rencontres sans combat), « Tension » (moins de 3 rencontres élevées), jauge (moins de 4 paliers, moins de la moitié avec des effets, monte sans rien pour la freiner), « Choix » (moins de 3 dilemmes par chapitre), « Pertes » (aucun PNJ ne peut mourir ou partir), « Réactivité » (moins de 5 PNJ aux salutations variables), « Fait clé » (exigé pour avancer mais révélé par une seule source).
 - **Pas encore lus par le moteur** : `Pnj.compagnon` (recrutement), `Pnj.profilCombat` et `monstres[].pnj`, `RencontreMonde.tactique` et `butin.tresors`, `Fin.consequences`, `Objet.usage.type = "charges"`, `Piege.etats`.
 
 ## Énigmes : solution et réponse du joueur

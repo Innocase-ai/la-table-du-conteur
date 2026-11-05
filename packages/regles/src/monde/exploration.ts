@@ -730,11 +730,20 @@ export function issueRencontre(
       const a = choisir(p, alt.jet.competence, issue.personnage);
       if (!a) return refus('Personne ne peut le tenter.');
       if (!tester(p, r, a, alt.jet.competence, alt.jet.dd).reussite) {
-        r.ok = false;
         r.constats.push(`${alt.nom} échoue.`);
+        // L'échec a un prix : ses effets s'appliquent.
+        if (alt.echec?.length) appliquer(p, r, alt.echec);
+        if (alt.echecResout) {
+          // Fail forward : la rencontre se dénoue quand même, autrement et plus cher.
+          if (!p.etat.rencontresFaites.includes(rencontre)) p.etat.rencontresFaites.push(rencontre);
+          suites(p, r);
+          return r;
+        }
+        r.ok = false;
         // La rencontre attend toujours : combattre, tenter une autre issue ou se replier.
         (p.etat.exploration.essais ??= []).push(essai);
         r.combat = rencontre;
+        suites(p, r);
         return r;
       }
     }
@@ -764,6 +773,17 @@ export function accepterQuete(p: PartieMonde, id: string): CompteRendu {
   appliquer(p, r, [{ quete: { id, statut: 'active' } }]);
   suites(p, r);
   return r;
+}
+
+/**
+ * Joue des effets du monde en dehors d'un verbe (choix d'un dilemme, écho différé) : les constats d'abord, puis les effets
+ * et leurs suites (quêtes, paliers, rencontres déclenchées). `base` reprend un compte rendu déjà commencé (un jet).
+ */
+export function jouerEffets(p: PartieMonde, constats: string[], effets: EffetMonde[], base: CompteRendu = resultat()): CompteRendu {
+  base.constats.push(...constats);
+  appliquer(p, base, effets);
+  suites(p, base);
+  return base;
 }
 
 /** Test libre (escalader, nager, se souvenir…) : un jet contre un DD de 5 à 30, sans effet sur le monde. */

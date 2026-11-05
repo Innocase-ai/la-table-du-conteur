@@ -327,7 +327,18 @@
     "salutations": {
       "hostile": "Ton nom, ton affaire. Tu as le temps d'une phrase.",
       "neutre": "Parle. Les étrangers qui entrent ici parlent d'abord.",
-      "amical": "Assieds-toi. Il y a de la soupe, et elle est chaude."
+      "amical": "Assieds-toi. Il y a de la soupe, et elle est chaude.",
+      "variantes": [
+        {
+          "condition": {
+            "faction": {
+              "id": "compagnie-du-fer-gris",
+              "min": 30
+            }
+          },
+          "texte": "Vous avez tenu ce que vous aviez promis, et cela se sait jusqu'au Pont. Mes hommes vous saluent. Parlez, je vous écoute, et cette fois je ne compterai pas vos mots."
+        }
+      ]
     }
   },
   {

@@ -170,7 +170,22 @@
     "salutations": {
       "hostile": "Vous êtes sur mon quai sans y être invités.",
       "neutre": "Vous êtes nouveaux. Ça se paie, les nouveaux.",
-      "amical": "Ah, vous voilà. Asseyez-vous, je vous garde la place."
+      "amical": "Ah, vous voilà. Asseyez-vous, je vous garde la place.",
+      "variantes": [
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "choix-les-ruelles-basses-rats"
+              },
+              {
+                "flag": "rats-allies"
+              }
+            ]
+          },
+          "texte": "Mère Sorel vous attend au bout de la cale, les mains dans les poches. « Mes alliés. Ça ne se dit pas souvent sur ce quai, alors je ne le dirai qu'une fois. Entrez, ma belle, la place est gardée. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -381,7 +396,28 @@
     "salutations": {
       "hostile": "Vos noms sont inscrits. Ce n'est pas une bonne nouvelle pour vous.",
       "neutre": "Asseyez-vous. Vous avez dix minutes, et je compte.",
-      "amical": "Ah, les gens qui savent compter. Entrez, je vous attendais."
+      "amical": "Ah, les gens qui savent compter. Entrez, je vous attendais.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-pli-scelle-bruler"
+          },
+          "texte": "Osric ne se lève pas. Il inscrit votre nom dans un registre, d'une écriture égale. « Vous avez brûlé le pli de la Ligue. Je n'ai pas encore décidé ce que cela coûte. Asseyez-vous, et ne me faites pas perdre de temps. »"
+        },
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "choix-le-pli-scelle-porter"
+              },
+              {
+                "flag": "ligue-alliee"
+              }
+            ]
+          },
+          "texte": "Osric pose sa plume et vous salue d'un signe bref. « Vous avez tenu votre parole à la Ligue. Entrez : la porte est ouverte, et les registres aussi. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -534,7 +570,15 @@
     "salutations": {
       "hostile": "Je ne soigne pas ceux qui brûlent les noms.",
       "neutre": "Entrez, la porte ne se ferme pas à ceux qui ont froid.",
-      "amical": "Vous revoilà, mes enfants. Il y a de la soupe au fond de la nef."
+      "amical": "Vous revoilà, mes enfants. Il y a de la soupe au fond de la nef.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "maree-3"
+          },
+          "texte": "Soeur Elwyn range la soupe sans se presser, puis pose une main sur votre manche. « La mer a déjà pris la chaussée deux fois cette nuit. Je ne vous demande pas où vous allez. Revenez seulement me dire les noms. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -688,7 +732,15 @@
     "salutations": {
       "hostile": "Oh. Vous, encore. Je vous ai pourtant bien servi.",
       "neutre": "Bienvenue au Hareng gris, l'ami ! Que boit-on ce soir ?",
-      "amical": "Mes meilleurs clients ! La table du fond vous attend, et la maison régale."
+      "amical": "Mes meilleurs clients ! La table du fond vous attend, et la maison régale.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "joss-demasque"
+          },
+          "texte": "Joss ne sourit plus. Il essuie le comptoir plus fort que nécessaire, les yeux sur ses mains. « Je sais ce que vous savez, l'ami. Asseyez-vous, et ne commandez rien : vous me devez une explication. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -1290,7 +1342,8 @@
     },
     "attitude": 0,
     "savoir": [
-      "f-por-lumieres-sous-l-eau"
+      "f-por-lumieres-sous-l-eau",
+      "f-por-ambroise-vu-palais"
     ],
     "sujets": [
       {

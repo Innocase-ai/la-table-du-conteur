@@ -67,3 +67,11 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 ## 9. Monstres disponibles (SRD, ids de profil)
 
 [Liste des profils de `packages/donnees/srd/monstres/` utilisables. Les rencontres n'utilisent que ceux-là.]
+
+## 10. Choix, pertes et horloge (checklist « histoire qui ne s'ennuie pas »)
+
+[Trois dilemmes par chapitre : la situation, les trois options avec leur coût et leur gain, l'écho trois jours plus tard.]
+[Qui peut mourir ou partir selon les choix (au moins un PNJ).]
+[L'horloge : une jauge à 4 paliers au moins, la moitié avec des effets qui ferment une porte, un moyen de la ralentir.]
+[Les PNJ importants dont la salutation change (au moins 5) et ce qui la change.]
+[Les faits clés et leurs trois sources.]

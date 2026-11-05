@@ -21,6 +21,8 @@ export const COMMANDES_HORS_CONTEUR = new Set([
   'jeterObjet',
   'saisie',
   'raconter',
+  // Un grand choix (dilemme) est celui du joueur : le conteur le raconte, il ne tranche jamais à sa place.
+  'trancher',
 ]);
 
 /** L'outil qui termine un tour : les actions que le joueur peut tenter ensuite. */

@@ -101,7 +101,9 @@ interface Module<Etat> {
   id: string;                                   // 'inventaire', 'grimoire', 'quetes', 'scenes'…
   dependances?: string[];
   etatInitial(contexte): Etat;
-  donnees?: Record<string, ZodSchema>;          // ce qu'un monde peut fournir (ex. scenes/*.json)
+  donnees?: Record<string, ZodSchema>;          // ce qu'un monde peut fournir (ex. scenes/*.json, dilemmes/*.json)
+  valider?(contexte): string[];                 // erreurs des données du module dans un monde
+  conseils?(contexte): string[];                // avis d'écriture (le monde reste jouable) : `pnpm monde valider`
   commandes?: Record<string, Commande>;         // schéma + disponibilité + résolution
   reactions?: Partial<Record<TypeEvenement, Reaction>>;
   effets?: Record<string, GestionnaireEffet>;   // nouveaux effets du langage commun

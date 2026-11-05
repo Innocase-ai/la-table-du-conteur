@@ -24,6 +24,9 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
     mkdirSync(join(dossier, d));
     writeFileSync(join(dossier, d, '.gitkeep'), '');
   }
+  // Le dossier des dilemmes (module Dilemmes) : des choix dont chaque option annonce son coût et son gain.
+  mkdirSync(join(dossier, 'dilemmes'));
+  writeFileSync(join(dossier, 'dilemmes', '.gitkeep'), '');
   const monde = {
     id,
     version: 1,

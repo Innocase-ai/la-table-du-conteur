@@ -227,8 +227,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             Jour {scene.jour} · {momentLisible(scene.heure)}
           </span>
           {scene.jauges.map((j) => (
-            <span key={j.id} className="aventure-jauge" title={dm.jauges.get(j.id)?.resume}>
-              {j.nom} {j.valeur}/{j.max}
+            <span key={j.id} className="aventure-jauge" title={[dm.jauges.get(j.id)?.resume, j.prochain ? `Prochain palier : ${j.prochain}.` : 'Dernier palier atteint.'].filter(Boolean).join('\n\n')}>
+              {j.nom} {j.max <= 10 ? `${'●'.repeat(Math.max(0, j.valeur))}${'○'.repeat(Math.max(0, j.max - j.valeur))}` : `${j.valeur}/${j.max}`}
+              {j.palier ? ` · ${j.palier}` : ''}
             </span>
           ))}
           <span>{scene.pieces.toLocaleString('fr-FR')} po</span>

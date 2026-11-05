@@ -9,19 +9,31 @@
     "ambiance": "Vent salé qui siffle entre les tours, grondement lointain sous les dalles, odeur de coquillage séché.",
     "visuel": "Un palais gris, incrusté de coquillages et de sel blanc, des algues figées le long des corniches, des tours trapues, des baies sans vitres, et une porte de corail rose entrouverte au bout d'une chaussée pavée.",
     "accroche": "Une silhouette grise sort de la mer basse, au bout d'une chaussée de pierre qui s'enfonce dans les flots.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "por-cale-seche",
         "type": "chemin",
         "heures": 3,
         "sens": "double",
-        "condition": { "flag": "chaussee-ouverte" },
+        "condition": {
+          "flag": "chaussee-ouverte"
+        },
         "description": "Une chaussée de pierre à découvert, pavée de coquillages, descend vers les quais de Port-aux-Cordes ; elle se couvre à chaque marée haute.",
         "retour": "Au bout de la chaussée qui se dresse hors de l'eau, un palais gris de coquillages, ses portes ouvertes sur le noir."
       }
     ],
-    "faits": [{ "fait": "f-lot-palais-hors-des-flots", "decouverte": { "auto": true } }],
+    "faits": [
+      {
+        "fait": "f-lot-palais-hors-des-flots",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -34,7 +46,10 @@
     "ambiance": "Vent du large, clapotis contre les murs, craquement des coquillages sous les pas.",
     "visuel": "Une chaussée de dalles noires entre deux murs de coquillages blancs, des bornes de bronze verdi qui s'alignent jusqu'au bout, une eau claire de chaque côté, et au fond, la masse grise du palais.",
     "accroche": "Une chaussée pavée de dalles noires, entre deux murs de coquillages, qui file droit vers la cour du palais sous une eau basse.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-parvis-des-noyes",
@@ -58,7 +73,10 @@
     "ambiance": "Dalles glissantes, eau basse qui clapote contre les marches, silence qui pèse sur la cour.",
     "visuel": "Une cour carrée pavée de dalles blanches gravées de vagues, un portique de colonnes couvertes de moules, une eau basse et claire qui luit entre les pavés, et un ciel gris sans oiseau.",
     "accroche": "La cour d'honneur, pavée de dalles pâles sous une eau basse ; des formes immobiles s'y tiennent, la tête tournée vers la chaussée.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-grande-salle",
@@ -68,8 +86,26 @@
         "retour": "Par la porte de corail, on aperçoit la cour pavée de sel et les silhouettes immobiles du portique."
       }
     ],
-    "rencontres": [{ "id": "lot-r-cour-des-noyes", "declencheur": "entree", "unique": true }],
-    "faits": [{ "fait": "f-lot-garde-des-noyes", "decouverte": { "auto": true } }],
+    "rencontres": [
+      {
+        "id": "lot-r-cour-des-noyes",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "lot-r-le-heraut-au-parvis",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-garde-des-noyes",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -82,7 +118,10 @@
     "ambiance": "Écho profond, goutte à goutte qui tombe des voûtes, odeur de vase sèche.",
     "visuel": "Une nef haute de colonnes couvertes de nacre et de sel, un sol de mosaïque bleue craquelée, une horloge de bronze verdi au centre, trois cadrans ronds à peine lisibles sous la rouille, et des pans de tenture pendant du plafond.",
     "accroche": "Au centre du palais, une lumière grise tombe d'une verrière écaillée sur une nef de colonnes couvertes de sel.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-galerie-des-portraits",
@@ -95,7 +134,10 @@
         "vers": "lot-armurerie-rouillee",
         "type": "porte",
         "heures": 0,
-        "verrou": { "dd": 12, "cle": "lot-cle-de-l-armurerie" },
+        "verrou": {
+          "dd": 12,
+          "cle": "lot-cle-de-l-armurerie"
+        },
         "description": "Une porte basse, de fer rouillé, ferme l'aile sud du hall ; elle est fermée à clé.",
         "retour": "De l'armurerie, la porte basse donne sur le hall ; ses gonds grincent à chaque passage."
       },
@@ -103,7 +145,9 @@
         "vers": "lot-escalier-des-marees",
         "type": "escalier",
         "heures": 0,
-        "condition": { "flag": "lot-horloge-reparee" },
+        "condition": {
+          "flag": "lot-horloge-reparee"
+        },
         "description": "Un escalier de marbre gris monte vers le nord, fermé par une herse de bronze que l'horloge commande.",
         "retour": "L'escalier descend du nord ; ses marches sont couvertes de sel, et des algues pendent de la rampe."
       },
@@ -116,7 +160,14 @@
       }
     ],
     "rencontres": [],
-    "faits": [{ "fait": "f-lot-horloge-a-maree", "decouverte": { "auto": true } }],
+    "faits": [
+      {
+        "fait": "f-lot-horloge-a-maree",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -129,18 +180,30 @@
     "ambiance": "Air sec et froid, bruits de pas amplifiés, poussière de sel qui retombe des cadres.",
     "visuel": "Une longue galerie aux murs de pierre gris, des cadres de bronze couverts de vert-de-gris, des portraits écaillés, un sol de dalles en damier, et deux armures debout au milieu du passage.",
     "accroche": "Une galerie étroite, à l'est du hall, dont les fenêtres sont murées de coquillages ; le sol y est sec.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-salle-du-conseil",
         "type": "porte",
         "heures": 0,
-        "verrou": { "dd": 14, "cle": "lot-cle-du-conseil" },
+        "verrou": {
+          "dd": 14,
+          "cle": "lot-cle-du-conseil"
+        },
         "description": "Une double porte de fer, fermée d'un verrou, ferme le fond de la galerie sur la salle du conseil.",
         "retour": "La double porte de fer fait face à une table en arc de cercle, sous une voûte de nacre."
       }
     ],
-    "rencontres": [{ "id": "lot-r-galerie-portraits", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "lot-r-galerie-portraits",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [],
     "repos": "dangereux"
   },
@@ -154,7 +217,10 @@
     "ambiance": "Voix basse qui résonne contre les parois, froid de nacre, lumière verte qui vient de la mer.",
     "visuel": "Une salle en demi-cercle aux parois de nacre irisée, une table de bois noir en arc, des sièges sculptés couverts de sel, un dais à la place d'honneur, et une lumière verte qui filtre d'un balcon.",
     "accroche": "Derrière une double porte de fer, au bout de la galerie, une voûte de nacre luit faiblement sous la mer.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-jardin-de-nacre",
@@ -164,7 +230,13 @@
         "retour": "Le jardin de nacre se referme sur la salle du conseil par un balcon à balustres, au ras de l'eau."
       }
     ],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "lot-r-le-conseil-des-noyes",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [],
     "repos": "impossible"
   },
@@ -178,9 +250,18 @@
     "ambiance": "Métal qui crisse sous les pieds, odeur de fer et d'eau stagnante, cliquetis de chaînes lointaines.",
     "visuel": "Une salle basse aux murs de pierre noire, des râteliers de fer rouillés, des lances et des boucliers couverts de vase, un banc de bois pourri, et une lumière grise qui tombe d'une grille haute.",
     "accroche": "Une porte basse et fermée à clé, dans le mur sud du hall, où le fer rouille derrière la pierre.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [],
-    "rencontres": [{ "id": "lot-r-armurerie", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "lot-r-armurerie",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [],
     "repos": "impossible"
   },
@@ -194,7 +275,10 @@
     "ambiance": "Eau tiède qui s'écoule en goutte à goutte, odeur de sel et de viande fumée depuis longtemps.",
     "visuel": "Une grande salle aux murs de pierre blanche, des fours de briques noircies, des marmites de cuivre sur les étagères, une eau claire qui couvre le sol, et une trappe ronde au fond.",
     "accroche": "Une arche de coquillage à mi-hauteur du hall, qui s'enfonce vers une eau claire et des fours éteints.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-crypte-des-rois",
@@ -207,7 +291,9 @@
         "vers": "lot-geole-des-noyes",
         "type": "porte",
         "heures": 0,
-        "verrou": { "dd": 13 },
+        "verrou": {
+          "dd": 13
+        },
         "description": "Une grille de fer ferme le fond de la réserve, derrière une porte de bois gonflé.",
         "retour": "La grille de la geôle donne sur la réserve des cuisines ; un courant d'air froid passe entre les barreaux."
       },
@@ -215,13 +301,23 @@
         "vers": "lot-bibliotheque-des-noms",
         "type": "passage-secret",
         "heures": 0,
-        "cache": { "dd": 14, "competence": "perception" },
+        "cache": {
+          "dd": 14,
+          "competence": "perception"
+        },
         "description": "Derrière une étagère de jarres vides, un passage étroit monte vers les rayonnages du nord.",
         "retour": "Le passage secret descend derrière les rayonnages, jusqu'aux fours des cuisines."
       }
     ],
     "rencontres": [],
-    "faits": [{ "fait": "f-lot-majordome-cuisines", "decouverte": { "auto": true } }],
+    "faits": [
+      {
+        "fait": "f-lot-majordome-cuisines",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "dangereux"
   },
   {
@@ -234,7 +330,10 @@
     "ambiance": "Chute d'eau lente le long des murs, marches glissantes, écho des pas qui remonte.",
     "visuel": "Un escalier de marbre gris, large de trois pas, aux marches creusées par l'usure, une rampe de bronze couverte de sel, une cage de pierre ruisselante et une lumière pâle en haut.",
     "accroche": "Une cage d'escalier de marbre gris, au nord du hall, dont l'entrée est grillée et ruisselante.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-bibliotheque-des-noms",
@@ -258,7 +357,10 @@
     "ambiance": "Odeur de papier mouillé, goutte à goutte qui marque le temps, silence des livres.",
     "visuel": "Une salle haute aux rayonnages de chêne noirci, des livres aux reliures gonflées, un pupitre de bois couvert de sel, des vitraux verdâtres et une lumière d'algue qui tombe sur les pages.",
     "accroche": "Au-dessus de l'escalier, une salle haute aux rayonnages noircis, dont l'air sent le papier mouillé.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-chambre-de-la-regente",
@@ -268,7 +370,13 @@
         "retour": "Par la porte de chêne, on voit les rayonnages humides et la lumière verdâtre qui y filtre."
       }
     ],
-    "rencontres": [{ "id": "lot-r-bibliotheque", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "lot-r-bibliotheque",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [],
     "repos": "dangereux"
   },
@@ -282,13 +390,19 @@
     "ambiance": "Air sec et tiède, tissus qui bruissent, lumière pâle qui vient de la fenêtre.",
     "visuel": "Une chambre haute, au plafond voûté, avec un lit à baldaquin de bois clair, des tentures de lin délavé, une fenêtre étroite qui donne sur la baie, et un coffre sous le lit.",
     "accroche": "Une porte de chêne, côté est de la bibliothèque, qu'on entrouvre sur une pièce plus claire.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-chapelle-de-la-regente",
         "type": "porte",
         "heures": 0,
-        "verrou": { "dd": 14, "cle": "lot-cle-de-la-chapelle" },
+        "verrou": {
+          "dd": 14,
+          "cle": "lot-cle-de-la-chapelle"
+        },
         "description": "Une porte de bronze, cerclée de coquillages, ferme le fond de la chambre sur une chapelle.",
         "retour": "La porte de bronze de la chapelle est lourde et froide sous la main ; elle donne sur la chambre."
       }
@@ -307,7 +421,10 @@
     "ambiance": "Silence de cathédrale, lumière d'algue sur les murs, froid qui monte du sol.",
     "visuel": "Une petite chapelle aux murs de nacre irisée, un autel de pierre blanche orné de coquillages, une lumière verte qui vient d'un vitrail brisé, et des bancs de bois couverts de sel.",
     "accroche": "Une porte de bronze, cerclée de coquillages, au fond d'une chambre ; la porte est lourde, et le froid y passe.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-sanctuaire-du-sceau",
@@ -331,12 +448,32 @@
     "ambiance": "Froid sec, silence des caveaux, sel qui crisse sous les pas.",
     "visuel": "Un caveau de pierre ancienne, des voûtes basses, des niches couvertes de sel fin, quatre cloches de bronze suspendues à une traverse, et des sarcophages ouverts aux bords arrondis.",
     "accroche": "Un escalier étroit qui plonge derrière les cuisines, vers des caves où l'air est sec et très froid.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [],
-    "rencontres": [{ "id": "lot-r-crypte", "declencheur": "entree", "unique": true }],
+    "rencontres": [
+      {
+        "id": "lot-r-crypte",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [
-      { "fait": "f-lot-cendre-de-sel", "decouverte": { "auto": true } },
-      { "fait": "f-lot-nom-des-rois", "decouverte": { "dd": 12, "competence": "histoire" } }
+      {
+        "fait": "f-lot-cendre-de-sel",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-lot-nom-des-rois",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
     ],
     "repos": "impossible"
   },
@@ -350,7 +487,10 @@
     "ambiance": "Murmure de l'eau qui s'écoule entre les coquillages, lumière blanche, vent froid qui passe au-dessus.",
     "visuel": "Un jardin de coquillages blancs et roses, des buissons de corail, des allées pavées de nacre, des statues de rois aux visages rongés, et une voûte lumineuse au fond.",
     "accroche": "Un balcon de nacre au bout de la salle du conseil, sur un jardin pâle qui luit sous une eau basse.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [
       {
         "vers": "lot-sanctuaire-du-sceau",
@@ -374,10 +514,26 @@
     "ambiance": "Froid pénétrant, lueur qui palpite, silence total, comme au fond d'un puits.",
     "visuel": "Une salle ronde aux murs de nacre, une cuve de pierre blanche pleine de sel luisant, une lumière qui pulse doucement au fond, et des colonnes couvertes de coquillages qui convergent vers le centre.",
     "accroche": "Une voûte pâle au bout d'un escalier de nacre ; un froid y monte qui ne vient ni de l'eau ni de l'air.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [],
-    "rencontres": [{ "id": "lot-r-sanctuaire", "declencheur": "entree", "unique": true }],
-    "faits": [{ "fait": "f-lot-sanctuaire-du-sceau", "decouverte": { "auto": true } }],
+    "rencontres": [
+      {
+        "id": "lot-r-sanctuaire",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-sanctuaire-du-sceau",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
     "repos": "impossible"
   },
   {
@@ -390,7 +546,10 @@
     "ambiance": "Eau qui suinte, chaînes qui tintent quand on bouge, odeur de sel et de sueur.",
     "visuel": "Un couloir de roche noire, trois cellules aux grilles rouillées, une chaîne scellée dans le mur, une dalle descellée au sol, et une petite lumière qui tombe d'un soupirail.",
     "accroche": "Une grille de fer basse, au fond de la réserve des cuisines, avec une chaîne qui pend du seuil.",
-    "niveau": { "min": 3, "max": 4 },
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
     "liens": [],
     "rencontres": [],
     "faits": [],

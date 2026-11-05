@@ -852,7 +852,19 @@
         "jet": {
           "competence": "persuasion",
           "dd": 14
-        }
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Vos mots tombent dans le vide ; elle murmure qu'elle entend déjà ceux qui l'attendent, et se penche un peu plus au-dessus du puits."
+          }
+        ],
+        "echecResout": false
       },
       {
         "id": "la-laisser-ecouter",
@@ -869,7 +881,19 @@
         "jet": {
           "competence": "intuition",
           "dd": 12
-        }
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Vous vous asseyez trop près du bord : une pierre cède sous vous, vous vous rattrapez de justesse, et elle se détourne, agacée."
+          }
+        ],
+        "echecResout": true
       },
       {
         "id": "l-ecarter-de-force",
@@ -886,7 +910,19 @@
         "jet": {
           "competence": "athletisme",
           "dd": 12
-        }
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Vos mains glissent sur la pierre humide ; elle se rattrape au rebord du puits et vous regarde avec le même froid qu'au premier mot."
+          }
+        ],
+        "echecResout": true
       }
     ],
     "butin": {

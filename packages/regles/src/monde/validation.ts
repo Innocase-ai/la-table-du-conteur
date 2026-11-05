@@ -3,6 +3,7 @@
 import { SEUILS_PX } from '../caracteristiques';
 import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
+import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-donnees';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
 export interface BilanMonde {
@@ -49,7 +50,7 @@ function refsCondition(c: Condition, f: (genre: string, id: string, extra?: stri
   else if ('objet' in c) f('objet', c.objet);
   else if ('pnj' in c) f('pnj', c.pnj.id);
   else if ('lieu' in c) f('lieu', c.lieu);
-  else if ('niveauGroupe' in c) return;
+  else if ('niveauGroupe' in c || 'pieces' in c) return;
   else if ('non' in c) refsCondition(c.non, f);
   else if ('et' in c) c.et.forEach((x) => refsCondition(x, f));
   else c.ou.forEach((x) => refsCondition(x, f));
@@ -228,6 +229,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       verifierRef(`${ou}, présence`, 'lieu', pr.lieu);
       cond(`${ou}, présence`, pr.condition);
     }
+    p.salutations.variantes.forEach((v) => cond(`${ou}, salutation`, v.condition));
     for (const f of p.savoir) (verifierRef(ou, 'fait', f), revele.add(f));
     for (const s of p.secrets) {
       verifierRef(`${ou}, secret`, 'fait', s.fait);
@@ -316,7 +318,12 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     for (const a of r.alternatives) {
       cond(`${ou}, alternative « ${a.id} »`, a.condition);
       effets(`${ou}, alternative « ${a.id} »`, a.effets);
+      effets(`${ou}, alternative « ${a.id} » (échec)`, a.echec);
     }
+    // Fail forward : sans monstres, un jet raté ne doit pas laisser le groupe sans conséquence ni impasse.
+    const sansPrix = r.alternatives.filter((a) => a.jet && !a.echec?.length).map((a) => a.id);
+    if ((r.type === 'social' || r.type === 'exploration') && sansPrix.length)
+      avis(`${ou} : un jet raté ne coûte rien (${sansPrix.join(', ')}). Ajoutez \`echec\` (effets) et \`echecResout\` pour que la rencontre se dénoue quand même, plus cher.`);
     effets(ou, r.effetsVictoire);
     if (r.carte) {
       const compte = (c: string) => r.carte!.reduce((n, l) => n + [...l].filter((x) => x === c).length, 0);
@@ -392,6 +399,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     effets(`Événement « ${ev.id} »`, ev.effets);
   }
   for (const f of dm.fins.values()) cond(`Fin « ${f.id} »`, f.condition);
+  const { dilemmes } = dilemmesDe(dm);
+  for (const d of dilemmes) {
+    const ou = `Dilemme « ${d.id} »`;
+    cond(ou, d.quand);
+    if (d.lieu) verifierRef(ou, 'lieu', d.lieu);
+    d.options.forEach((o) => cond(`${ou}, option « ${o.id} »`, o.condition));
+    effets(ou, effetsDuDilemme(d));
+  }
   if (!dm.fins.size) avis('Aucune fin définie.');
   for (const c of dm.monde.chapitres) {
     for (const l of c.lieux) verifierRef(`Chapitre « ${c.id} »`, 'lieu', l);
@@ -402,6 +417,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const l of dm.lieux.values()) for (const f of l.faits) revele.add(f.fait);
   const viaEffet = new Set<string>();
   const collecter = (es: EffetMonde[] | undefined) => es?.forEach((e) => 'fait' in e && viaEffet.add(e.fait));
+  for (const d of dilemmes) collecter(effetsDuDilemme(d));
   for (const p of dm.pnj.values()) {
     p.sujets.forEach((s) => collecter(s.effets));
     p.services.forEach((s) => collecter(s.effets));
@@ -412,7 +428,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   dm.rencontres.forEach((r) => {
     collecter(r.effetsVictoire);
-    r.alternatives.forEach((a) => collecter(a.effets));
+    r.alternatives.forEach((a) => (collecter(a.effets), collecter(a.echec)));
   });
   dm.enigmes.forEach((e) => collecter(e.recompense.effets));
   dm.evenements.forEach((e) => collecter(e.effets));
@@ -442,12 +458,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   for (const r of dm.rencontres.values()) {
     collecterEffets(r.effetsVictoire);
-    r.alternatives.forEach((a) => collecterEffets(a.effets));
+    r.alternatives.forEach((a) => (collecterEffets(a.effets), collecterEffets(a.echec)));
   }
   for (const e of dm.enigmes.values()) collecterEffets(e.recompense.effets);
   for (const e of dm.evenements.values()) collecterEffets(e.effets);
   for (const p of dm.pieges.values()) collecterEffets(p.effets);
   for (const j of dm.jauges.values()) j.paliers.forEach((x) => collecterEffets(x.effets));
+  for (const d of dilemmes) collecterEffets(effetsDuDilemme(d));
+  for (const flag of drapeauxDesDilemmes(dm)) poses.add(flag);
   for (const t of dm.tresors.values()) {
     t.contenu.objets.forEach((o) => objetsObtenables.add(o.objet));
     t.contenu.tables.forEach((x) => dm.tables.get(x.table)?.entrees.forEach((en) => en.objet && objetsObtenables.add(en.objet)));
@@ -480,6 +498,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     p.secrets.forEach((x) => toutes(`PNJ « ${p.id} », secret « ${x.fait} »`, x.condition));
     p.services.forEach((x) => toutes(`PNJ « ${p.id} », service « ${x.id} »`, x.condition));
     p.presences.forEach((x) => toutes(`PNJ « ${p.id} », présence`, x.condition));
+    p.salutations.variantes.forEach((x) => toutes(`PNJ « ${p.id} », salutation`, x.condition));
     toutes(`PNJ « ${p.id} », recrutement`, p.compagnon?.recrutement);
   }
   for (const q of dm.quetes.values()) {
@@ -493,6 +512,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const t of dm.tresors.values()) toutes(`Trésor « ${t.id} »`, t.condition);
   for (const e of dm.evenements.values()) toutes(`Événement « ${e.id} »`, e.condition);
   for (const f of dm.fins.values()) toutes(`Fin « ${f.id} »`, f.condition);
+  for (const d of dilemmes) {
+    toutes(`Dilemme « ${d.id} »`, d.quand);
+    d.options.forEach((o) => toutes(`Dilemme « ${d.id} », option « ${o.id} »`, o.condition));
+  }
   for (const j of dm.jauges.values()) j.evolution.forEach((e) => toutes(`Jauge « ${j.id} »`, e.condition));
   for (const [flag, ou] of lus) if (!poses.has(flag)) avis(`${ou} : le drapeau « ${flag} » est lu mais jamais posé (sauf par le MJ).`);
 
@@ -585,5 +608,53 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       avis(`Rencontre « ${r.id} » : combat difficile sans autre issue (négocier, se rendre, ruser) : le groupe n'a que la fuite.`);
     }
   }
+
+  // Conseils pour que l'histoire ne soit jamais ennuyeuse (rythme, tension, choix qui coûtent, monde qui réagit) :
+  // 4. du rythme : des rencontres qui ne sont pas toutes des combats, et des pics de tension ;
+  const rencontres = [...dm.rencontres.values()];
+  const sansCombat = rencontres.filter((r) => r.type === 'social' || r.type === 'exploration').length;
+  if (rencontres.length >= 8 && sansCombat < rencontres.length * 0.2)
+    avis(`Rythme : ${sansCombat} rencontre(s) sur ${rencontres.length} se jouent sans combat (négociation, exploration) ; visez au moins 20 % pour varier les scènes.`);
+  const elevees = rencontres.filter((r) => r.difficulte === 'elevee').length;
+  if (rencontres.length >= 8 && elevees < 3) avis(`Tension : ${elevees} rencontre(s) « élevée(s) ». Il en faut au moins 3 pour les moments forts (boss, embuscade, finale).`);
+  // 5. une horloge qui compte : assez de paliers, des paliers qui changent le monde, et un moyen de la ralentir ;
+  const tout = JSON.stringify([dm.pnj, dm.quetes, dm.rencontres, dm.evenements, dm.enigmes, dm.pieges, dm.tresors, dm.jauges, dm.lieux, dilemmes.flatMap((d) => effetsDuDilemme(d))].map((x) => (x instanceof Map ? [...x.values()] : x)));
+  for (const j of dm.jauges.values()) {
+    const ou = `Jauge « ${j.id} »`;
+    if (j.paliers.length < 4) avis(`${ou} : ${j.paliers.length} palier(s) ; il en faut au moins 4 pour que le joueur voie le monde changer.`);
+    const agissants = j.paliers.filter((p) => p.effets.length).length;
+    if (j.paliers.length >= 2 && agissants < Math.ceil(j.paliers.length / 2)) avis(`${ou} : ${agissants} palier(s) sur ${j.paliers.length} changent vraiment le monde (effets) ; les autres ne font que raconter.`);
+    const baisse = new RegExp(`"jauge":\\{"id":"${j.id}","delta":-`).test(tout) || j.evolution.some((e) => e.delta < 0);
+    const monte = j.evolution.some((e) => e.delta > 0);
+    if (monte && !baisse) avis(`${ou} : elle monte toute seule mais rien ne la fait baisser ; le joueur ne peut pas agir sur le danger.`);
+  }
+  // 6. des choix qui coûtent : des dilemmes, des pertes possibles, un monde qui se souvient ;
+  const nbChapitres = Math.max(1, dm.monde.chapitres.length);
+  if (dilemmes.length < 3 * nbChapitres) avis(`Choix : ${dilemmes.length} dilemme(s) pour ${nbChapitres} chapitre(s) ; visez 3 par chapitre (dossier dilemmes/ : des choix dont chaque option a un coût et un gain).`);
+  if (!/"pnjEtat"/.test(tout)) avis('Pertes : aucun PNJ ne peut mourir ni partir selon les choix ; sans perte possible, aucun choix ne pèse.');
+  const reactifs = [...dm.pnj.values()].filter((p) => p.salutations.variantes.length).length;
+  if (reactifs < 5) avis(`Réactivité : ${reactifs} PNJ seulement saluent différemment selon ce que le groupe a fait (salutations.variantes) ; visez au moins 5 PNJ importants.`);
+  // 7. des faits clés qu'on peut apprendre de plusieurs façons (jamais une seule source, sinon un jet raté bloque l'histoire).
+  const sources = new Map<string, number>();
+  const compterSources = (x: unknown): void => {
+    if (Array.isArray(x)) return x.forEach(compterSources);
+    if (!x || typeof x !== 'object') return;
+    for (const [k, v] of Object.entries(x as Record<string, unknown>)) {
+      if (['condition', 'prerequis', 'completion', 'echec', 'quand'].includes(k)) continue;
+      if (k === 'fait' && typeof v === 'string') sources.set(v, (sources.get(v) ?? 0) + 1);
+      else if ((k === 'savoir' || k === 'revele') && Array.isArray(v)) for (const f of v) if (typeof f === 'string') sources.set(f, (sources.get(f) ?? 0) + 1);
+      else compterSources(v);
+    }
+  };
+  compterSources([[...dm.lieux.values()].map((l) => l.faits), [...dm.pnj.values()], [...dm.quetes.values()].map((q) => [q.etapes.map((e) => e.effets), q.recompenses.effets]), [...dm.rencontres.values()].map((r) => [r.effetsVictoire, r.alternatives.map((a) => a.effets)]), [...dm.evenements.values()].map((e) => e.effets), [...dm.tresors.values()].map((t) => t.contenu), [...dm.enigmes.values()].map((e) => e.recompense.effets), dilemmes.flatMap((d) => effetsDuDilemme(d))]);
+  const cles = new Set<string>();
+  const noterCle = (c: Condition | undefined): void => c && refsCondition(c, (g, id) => g === 'fait' && cles.add(id));
+  for (const q of dm.quetes.values()) {
+    noterCle(q.prerequis);
+    q.etapes.forEach((e) => noterCle(e.completion));
+  }
+  for (const l of dm.lieux.values()) l.liens.forEach((x) => noterCle(x.condition));
+  for (const f of dm.fins.values()) noterCle(f.condition);
+  for (const id of cles) if ((sources.get(id) ?? 0) === 1) avis(`Fait clé « ${id} » : une seule source. S'il est exigé pour avancer (quête, passage, fin), donnez-lui trois sources (un PNJ, un lieu à fouiller, un objet) : un jet raté ne doit pas bloquer l'histoire.`);
   return { erreurs, avertissements, stats };
 }

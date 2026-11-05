@@ -1069,7 +1069,13 @@
         "description": "La porte de bronze du Sceau, qui répond au marteau cérémoniel frappé sur l'enclume du seuil."
       }
     ],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "z7-r-serment-de-brand",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
     "faits": [
       {
         "fait": "f-cry-sceau-ouverture",
