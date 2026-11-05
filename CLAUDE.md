@@ -31,7 +31,10 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 ## Skills du projet (`.claude/skills/`)
 
 - `ajouter-module` : pour toute nouvelle fonctionnalité du moteur.
-- `creer-monde` : pour tout nouveau monde.
+- `creer-monde` : pour tout nouveau monde (chef d'orchestre : étapes, canon, zones, agents).
+- `creer-rencontres` : combats et rencontres (déclencheurs, difficulté, alternatives, prix d'échec, rythme).
+- `creer-contrats` : mini-quêtes de combat variées, ancrées dans la fiction (jamais une heure sans combat).
+- `creer-dilemmes` : choix difficiles, échos, épilogues (dossier `dilemmes/`).
 - `enigmes` : dès qu'une énigme est créée, modifiée ou relue ; les énigmes se vérifient toujours en les jouant (`pnpm monde enigmes <monde>`, puis dans le jeu).
 - `conteur` : le MJ IA (outils, prompt, essais réels).
 

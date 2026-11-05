@@ -34,7 +34,7 @@ Tout identifiant qu'une zone doit **lire sans l'avoir écrit** est dans le regis
 Si tu hésites à mettre un identifiant dans le registre, mets-le : l'oublier crée des erreurs de référence que le validateur ne résout pas à ta place.
 
 ## §7 bis Les ingrédients et les paliers
-Vérifie les six ingrédients de l'étape 2 (intrigue, enjeu, antagoniste, lieux, PNJ clés, rebondissement). Pour chaque lieu à fouiller, prévois trois paliers d'information (DD bas, moyen, élevé), chacun avec sa phrase. Pour chaque combat « élevée », une issue autre que la fuite. Les rencontres finales se lisent en fonction du parcours : un drapeau ou un compteur pose la variante.
+Vérifie les six ingrédients de l'étape 2 (intrigue, enjeu, antagoniste, lieux, PNJ clés, rebondissement). Pour chaque lieu à fouiller, prévois trois paliers d'information (DD bas, moyen, élevé), chacun avec sa phrase. Pour chaque combat « élevée », une issue autre que la fuite. Les rencontres finales se lisent en fonction du parcours : un drapeau ou un compteur pose la variante. Détails : skills `creer-rencontres` (rencontres, rythme), `creer-contrats` (mini-quêtes de combat du hub), `creer-dilemmes` (choix difficiles, échos, épilogues).
 
 ## §8 Progression
 Quels lieux à quels niveaux, pour que les zones calibrent leurs rencontres (budget de PX du SRD pour un groupe de 6) et leurs trésors (rareté).
