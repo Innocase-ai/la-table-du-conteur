@@ -22,6 +22,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `docs/JOURNAL.md` : l'histoire du projet, **lire ses dernières entrées en premier** pour savoir où on en est.
 - `docs/PRD.md` (conception), `docs/ARCHITECTURE-CIBLE.md` (noyau à modules), `docs/COMBAT.md`, `docs/CREATION.md`, `docs/MONDES.md`, `docs/M2-IMAGES.md`, `docs/M4-CONTEUR.md`, `docs/SRD-INVENTAIRE.md`.
 - Code : `packages/regles` (moteur en TypeScript pur), `packages/donnees` (SRD en JSON, charte visuelle), `packages/mondes` (les histoires, un dossier par monde), `apps/jeu` (client Vite + React), `apps/bureau` (coquille de bureau Tauri), `outils/` (scripts en ligne de commande).
+- Images communes à tous les mondes : 433 objets du catalogue SRD (armes, armures, matériel, outils, objets magiques) dans `apps/jeu/src/equipement/`, prompts dans `packages/donnees/visuel/objets-communs.json`, `idImageCommune` regroupe les variantes ; `pnpm images equipement --max 500 --partie i/n --go` pour en refaire.
 - Son : `docs/SONS.md` (bruitages en place et manquants) ; musiques d'ambiance : `outils/musique/` et `apps/jeu/src/musique/`.
 - Pictogrammes des cartes (sorts, écoles de magie, coûts, armes ; banc d'essai `/?icones`) : `docs/PICTOGRAMMES.md`.
 - Plateaux de combat (ambiances, éléments sur les cases `T R e b n r t c`, couvert, cartes) : `docs/PLATEAUX.md`.
@@ -59,4 +60,4 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 ## Ce qui reste à faire
 
-Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; glisser-déposer d'objets ; images des 51 objets d'équipement communs (`pnpm images equipement`, ≈ 0,46 $, avec accord) ; 6 avis de l'audit des énigmes du Val ; monstres puissants pour les escarmouches de niveau 5.
+Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; glisser-déposer d'objets ; 6 avis de l'audit des énigmes du Val ; monstres puissants pour les escarmouches de niveau 5.

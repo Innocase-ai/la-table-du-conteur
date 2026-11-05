@@ -15,6 +15,7 @@ export { objetDe, plusBlesse, POTION_DE_COMBAT, type EtatInventaire } from './in
 export { appliquerEquipement, caAvecEquipement, chargeDuGroupe, infoEquipement, objetsPortes } from './equipement-regles';
 export { sortsConnus } from './grimoire';
 export { ficheDeSort } from './fiche-sort';
+export { idImageCommune } from './image-commune';
 export type { Interlocuteur } from './dialogue';
 
 export const MODULES_STANDARD: Module[] = [moduleExploration, moduleDialogue, moduleInventaire, moduleEquipement, moduleGrimoire, moduleJournal, moduleScenes, moduleConteur];

@@ -8,7 +8,7 @@
 //   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--go]           une image par profil de monstre du SRD (combat, tous mondes)
-//   pnpm images equipement [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
+//   pnpm images equipement [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
 //   pnpm images terrains [--go]            textures du plateau de combat (sol, difficile, mur par ambiance)
 //   pnpm images interface [--go]           illustrations de l'interface (écran titre)
 //   pnpm images depense                     dépense cumulée de la clé OpenRouter
@@ -196,7 +196,10 @@ async function main(): Promise<void> {
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
     const lot =
       commande === 'bestiaire' ? elementsBestiaire(charte) : commande === 'terrains' ? elementsTerrains(charte) : commande === 'equipement' ? elementsEquipement(charte) : elementsInterface(charte);
-    await genererLot(service, lot, lireEnv(), args.includes('--go'), Number(option('--max') ?? 40), undefined, join(SORTIES, commande));
+    // --partie i/n : ne fait que le i-ème des n morceaux de la liste, pour lancer plusieurs processus en parallèle (reprise sans doublon : les images déjà faites sont sautées).
+    const partie = /^(\d+)\/(\d+)$/.exec(option('--partie') ?? '');
+    const part = partie ? lot.filter((_, k) => k % Number(partie[2]) === Number(partie[1]) - 1) : lot;
+    await genererLot(service, part, lireEnv(), args.includes('--go'), Number(option('--max') ?? 40), undefined, join(SORTIES, commande));
     return;
   }
   if (commande === 'depense') {

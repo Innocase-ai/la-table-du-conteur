@@ -10,6 +10,7 @@ import { testD20 } from '../tests-d20';
 import { objetDe } from './catalogue';
 import { libre } from './commun';
 import { chargeDuGroupe, idElementPorte, objetsPortes } from './equipement-regles';
+import { idImageCommune } from './image-commune';
 
 declare module '../noyau/types' {
   interface CarteEvenements {
@@ -140,8 +141,8 @@ function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite:
     groupe: groupeDuSac(o),
     rarete: o.rarete,
     image: { groupe: 'objets', id: o.id },
-    // Le SRD est commun à tous les mondes : l'image d'une arme ou d'une armure se partage, sans la refaire par histoire.
-    imageCommune: arme || armure ? { groupe: 'equipement', id: base } : undefined,
+    // Le SRD est commun à tous les mondes : l'image d'un objet du catalogue se partage, sans la refaire par histoire.
+    imageCommune: { groupe: 'equipement', id: idImageCommune(base) },
     icone: o.categorie,
     resume: mystere?.resume ?? o.resume,
     histoire: !aIdentifier && identifies.includes(o.id) ? o.lore : undefined,

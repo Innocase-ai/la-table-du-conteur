@@ -556,3 +556,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Tests : `fiche-sort.test.ts` (6 cas, dont « chaque sort du SRD donne une fiche complète »), conversation mise à jour. 651 tests verts, typechecks propres. Essai dans le navigateur : conversation avec Ysmène (touches 2 et 5, Échap), parchemin d'un sort et d'une quête.
 - **À savoir** : (1) les réponses des PNJ étant du récit à la 3e personne (91 %), la boîte affiche « Ysmène Hautecôte  Ysmène lève à peine les yeux… » : l'effet « parole » viendra avec la réécriture en discours direct (suite proposée, Haiku). (2) L'écran d'aventure n'est pas utilisable sous ~760 px de large (colonne de droite fixe de 360 px) : sans objet pour l'application de bureau.
 - **Suites possibles** : réécrire les 563 réponses en paroles ; dialogue LLM « Dire autre chose… » (fiche du PNJ dans le contexte du conteur, essais payants) ; fiches parchemin pour objets, monstres, lieux.
+
+## 05/11/2026 — Images communes de tout le catalogue SRD
+
+- Demande : en finir avec le moteur ; il manquait presque toutes les images d'objets communs à toutes les aventures (seules les armes et armures avaient un mécanisme, et aucune image n'existait). Accord de l'utilisateur pour le périmètre complet, magiques inclus (clé OpenRouter plafonnée à 10 $, 2,18 $ dépensés avant).
+- **Moteur** : `idImageCommune` (base, famille de variantes) ; le sac donne `imageCommune` à tous les objets du catalogue. Prompts dans `packages/donnees/visuel/objets-communs.json` (51 repris + 382 écrits par 5 agents Haiku). Option `--partie i/n` de `pnpm images equipement` pour générer en parallèle.
+- **Leçon** : un premier regroupement des variantes était faux (préfixe collé au suffixe : `ceinturon-de-force-de-geantcollines`) et gonflait la liste à 470 images ; le test « chaque image attendue a un prompt, aucune n'est orpheline » l'a trouvé. 433 images au final.
+- **Résultat** : 433 images générées en ≈ 10 minutes (4 processus), ≈ 3,9 $, 0 refus ; installées (4,9 Mo) ; test « chaque objet du catalogue a son image installée ». 655 tests verts, typechecks propres. Chargeur vérifié dans le navigateur.
