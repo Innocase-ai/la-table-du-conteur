@@ -1,8 +1,24 @@
 // Module Journal : les quêtes (en cours avec leurs étapes, accomplies, échouées) et les notes du groupe (ce qu'il a
 // appris de sûr). Un module sans commande : il ne fait que montrer l'état, tiré des quêtes du monde et des faits connus.
-import type { Encart, Module } from '../noyau/types';
+import type { Encart, FicheInfo, Module, Partie, ContexteJeu } from '../noyau/types';
+import type { Quete } from '../monde/schemas';
 
 const TYPES = { principale: 'Quête principale', secondaire: 'Quête secondaire', personnelle: 'Quête personnelle', faction: 'Quête de faction' } as const;
+
+const STATUTS = { proposee: 'proposée', active: 'en cours', terminee: 'accomplie', echouee: 'échouée' } as const;
+
+/** La fiche d'une quête pour le joueur : type, donneur, niveaux, état, puis son résumé et ce qu'il reste à faire. */
+function ficheDeQuete(ctx: ContexteJeu, p: Partie, def: Quete, statut: keyof typeof STATUTS, actives: string[]): FicheInfo {
+  const proprietes: FicheInfo['proprietes'] = [{ libelle: 'État', valeur: STATUTS[statut] }];
+  const donneur = def.donneur ? ctx.dm.pnj.get(def.donneur)?.nom : undefined;
+  if (donneur) proprietes.push({ libelle: 'Confiée par', valeur: donneur });
+  const lieu = def.lieu ? ctx.dm.lieux.get(def.lieu) : undefined;
+  if (lieu && p.etat.lieuxVisites.includes(lieu.id)) proprietes.push({ libelle: 'Lieu', valeur: lieu.nom });
+  proprietes.push({ libelle: 'Niveaux', valeur: def.niveau.min === def.niveau.max ? String(def.niveau.min) : `${def.niveau.min} à ${def.niveau.max}` });
+  const etapes = actives.map((e) => def.etapes.find((x) => x.id === e)?.texte).filter((x): x is string => !!x);
+  const aFaire = statut === 'active' && etapes.length ? [`À faire :\n${etapes.map((e) => `→ ${e}`).join('\n')}`] : [];
+  return { rubrique: 'Informations sur la quête', titre: def.nom, sousTitre: TYPES[def.type], proprietes, texte: [def.resume, ...aFaire].join('\n\n') };
+}
 
 export const moduleJournal: Module = {
   id: 'journal',
@@ -29,6 +45,7 @@ export const moduleJournal: Module = {
           valeur: TYPES[def!.type],
           detail: [def!.resume, ...q.actives.map((e) => `→ ${def!.etapes.find((x) => x.id === e)?.texte ?? e}`)].join('\n'),
           ton: def!.type === 'principale' ? ('fort' as const) : undefined,
+          fiche: ficheDeQuete(ctx, p, def!, q.statut, q.actives),
         })),
       },
       ...(finies.length
@@ -38,7 +55,7 @@ export const moduleJournal: Module = {
               id: 'quetes-finies',
               titre: 'Quêtes achevées',
               ordre: 1,
-              lignes: finies.map(({ q, def }) => ({ libelle: def!.nom, valeur: q.statut === 'terminee' ? 'accomplie' : 'échouée', ton: q.statut === 'terminee' ? ('succes' as const) : ('danger' as const) })),
+              lignes: finies.map(({ q, def }) => ({ libelle: def!.nom, valeur: q.statut === 'terminee' ? 'accomplie' : 'échouée', ton: q.statut === 'terminee' ? ('succes' as const) : ('danger' as const), fiche: ficheDeQuete(ctx, p, def!, q.statut, []) })),
             },
           ]
         : []),

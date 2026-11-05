@@ -6,6 +6,7 @@ import { commande, type ContexteJeu, type Encart, type Module, type Partie, type
 import type { Personnage } from '../personnage';
 import type { Sort } from '../schemas';
 import { libre } from './commun';
+import { ficheDeSort } from './fiche-sort';
 import { plusBlesse } from './inventaire';
 
 declare module '../noyau/types' {
@@ -99,7 +100,7 @@ export const moduleGrimoire: Module = {
         texte: `DD des sorts ${a.fiche.incantation!.ddSauvegarde}, attaque +${a.fiche.incantation!.bonusAttaque}.`,
         lignes: [
           ...a.emplacements.map((v, i) => ({ libelle: `Emplacements de niveau ${i + 1}`, valeur: `${v} / ${a.fiche.incantation!.niveauEmplacementPacte ? v : (max[i] ?? v)}`, ton: v ? ('fort' as const) : ('faible' as const) })).filter((_, i) => (max[i] ?? 0) > 0 || a.fiche.incantation!.niveauEmplacementPacte),
-          ...sorts.map((s) => ({ libelle: s.nom, valeur: s.niveau ? `niveau ${s.niveau}` : 'mineur', detail: s.resume, ton: s.soins ? ('succes' as const) : undefined })),
+          ...sorts.map((s) => ({ libelle: s.nom, valeur: s.niveau ? `niveau ${s.niveau}` : 'mineur', detail: s.resume, ton: s.soins ? ('succes' as const) : undefined, fiche: ficheDeSort(s) })),
         ],
       };
     }),

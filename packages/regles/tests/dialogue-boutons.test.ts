@@ -47,7 +47,8 @@ describe('boutons de conversation', () => {
 
   it('« Influencer » dit ce que fait chaque bouton, avec le DD, et porte un pictogramme', () => {
     const boutons = moteur.propositions(enConversation()).filter((x) => x.element?.id === 'influence');
-    expect(boutons.map((b) => b.libelle)).toEqual(['Persuader', 'Intimider', 'Tromper']);
+    expect(boutons.map((b) => b.etiquette)).toEqual(['Persuader', 'Intimider', 'Tromper']);
+    for (const b of boutons) expect(b.libelle, 'une vraie phrase du joueur').toMatch(/[a-zé]{4,} .+./i);
     for (const b of boutons) {
       expect(b.icone, b.libelle).toMatch(/^base:/);
       expect(b.aide, b.libelle).toMatch(/DD \d+/);

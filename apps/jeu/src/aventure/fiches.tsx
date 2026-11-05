@@ -1,6 +1,8 @@
 // Les morceaux d'écran que partagent l'écran d'aventure et les pages plein écran : la fiche d'information d'un module
 // et la bande des héros.
-import { etatDurableMax, type Encart, type Personnage } from '@crpg/regles';
+import { useState } from 'react';
+import { etatDurableMax, type Encart, type FicheInfo, type Personnage } from '@crpg/regles';
+import { Parchemin } from '../composants/Parchemin';
 import { Portrait } from '../createur/ui';
 
 const NOMS_RESSOURCES: Record<string, string> = {
@@ -56,19 +58,41 @@ export function BandeauHeros({ groupe }: { groupe: Personnage[] }) {
 
 /** Une fiche d'information d'un module (potions portées, livre de sorts, quêtes…). */
 export function FicheEncart({ e }: { e: Encart }) {
+  // Une ligne qui porte une fiche s'ouvre en fenêtre de parchemin (un sort, une quête).
+  const [fiche, setFiche] = useState<FicheInfo>();
   return (
     <section className="panneau-action encart">
       <h3>{e.titre}</h3>
       {e.texte && <p className="encart-texte">{e.texte}</p>}
-      {e.lignes?.map((l, i) => (
-        <div key={i} className={`encart-ligne ${l.ton ? `ton-${l.ton}` : ''}`}>
-          <div className="encart-tete">
-            <span>{l.libelle}</span>
-            {l.valeur && <span className="encart-valeur">{l.valeur}</span>}
+      {e.lignes?.map((l, i) => {
+        const contenu = (
+          <>
+            <div className="encart-tete">
+              <span>
+                {l.libelle}
+                {l.fiche && (
+                  <span className="encart-info" aria-hidden>
+                    ⓘ
+                  </span>
+                )}
+              </span>
+              {l.valeur && <span className="encart-valeur">{l.valeur}</span>}
+            </div>
+            {l.detail && <p className="encart-detail">{l.detail}</p>}
+          </>
+        );
+        const classe = `encart-ligne ${l.ton ? `ton-${l.ton}` : ''}`;
+        return l.fiche ? (
+          <button key={i} type="button" className={`${classe} encart-ligne-fiche`} title="Voir la fiche" onClick={() => setFiche(l.fiche)}>
+            {contenu}
+          </button>
+        ) : (
+          <div key={i} className={classe}>
+            {contenu}
           </div>
-          {l.detail && <p className="encart-detail">{l.detail}</p>}
-        </div>
-      ))}
+        );
+      })}
+      {fiche && <Parchemin fiche={fiche} onFermer={() => setFiche(undefined)} />}
     </section>
   );
 }

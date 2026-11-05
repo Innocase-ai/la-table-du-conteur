@@ -66,17 +66,20 @@ export const moduleDialogue: Module = {
         const i = interlocuteur(ctx, p);
         if (!i) return [];
         const dd = ddInfluence(i.attitude);
-        const libelles = { persuasion: 'Persuader', intimidation: 'Intimider', tromperie: 'Tromper' } as const;
+        // Le joueur dit une vraie phrase, dans un ton : l'étiquette dit comment elle pèse (jet de Persuasion, d'Intimidation ou de Tromperie).
+        const etiquettes = { persuasion: 'Persuader', intimidation: 'Intimider', tromperie: 'Tromper' } as const;
+        const repliques = { persuasion: 'Vous pouvez compter sur nous. Aidez-nous, et vous n’y perdrez rien.', intimidation: 'Parlez, et vite. Nous ne sommes pas venus pour perdre notre temps.', tromperie: 'Un ami commun nous envoie. Il vous salue, et vous savez pourquoi.' } as const;
         const icones = { persuasion: 'base:persuader', intimidation: 'base:intimider', tromperie: 'base:tromper' } as const;
         const aides = {
           persuasion: `Gagner sa confiance par les mots (Persuasion, DD ${dd}). Réussi, il vous apprécie davantage ; raté, il se refroidit un peu.`,
           intimidation: `Le faire plier par la menace (Intimidation, DD ${dd}). Il cède, mais vous apprécie moins ; raté, il s’en souvient.`,
           tromperie: `Le mener en bateau (Tromperie, DD ${dd}). Réussi, il vous croit ; découvert, il vous en veut beaucoup.`,
         } as const;
-        return (Object.keys(libelles) as (keyof typeof libelles)[]).map((m) => ({
+        return (Object.keys(etiquettes) as (keyof typeof etiquettes)[]).map((m) => ({
           groupe: PANNEAUX.dialogue(i.nom),
           element: { id: 'influence', titre: 'Peser sur son attitude' },
-          libelle: libelles[m],
+          libelle: repliques[m],
+          etiquette: etiquettes[m],
           icone: icones[m],
           aide: aides[m],
           style: 'discret' as const,
@@ -93,7 +96,7 @@ export const moduleDialogue: Module = {
       },
       propositions: (ctx, p) => {
         const i = interlocuteur(ctx, p);
-        return i ? [{ groupe: PANNEAUX.dialogue(i.nom), libelle: '‹ Terminer la conversation', style: 'discret' as const, ordre: { type: 'quitterDialogue' } }] : [];
+        return i ? [{ groupe: PANNEAUX.dialogue(i.nom), libelle: 'Fin du dialogue', style: 'discret' as const, ordre: { type: 'quitterDialogue' } }] : [];
       },
     }),
   },

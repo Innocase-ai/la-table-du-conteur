@@ -19,6 +19,7 @@ import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
 import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import type { Aventure } from './partie';
+import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
@@ -51,6 +52,24 @@ function TexteJet({ j }: { j: Jet }) {
       {j.ddSecret ? (j.reussite ? ' — trouve quelque chose' : ' — rien') : ` contre DD ${j.dd} — ${j.reussite ? 'réussi' : 'raté'}`}
     </>
   );
+}
+
+/**
+ * Ce qui vient de se dire dans la conversation en cours : la dernière parole du personnage et ce qui l'a suivie (ce que le
+ * groupe apprend, un jet d'influence). Sans parole du personnage, la fin du journal jusqu'à l'arrivée au lieu, à la saisie
+ * du joueur ou à la parole d'un autre personnage.
+ */
+function entreesDeConversation(journal: EvenementJeu[], pnj: string): EvenementJeu[] {
+  const derniere = journal.map((e) => e.type === 'texte' && e.voix === pnj).lastIndexOf(true);
+  if (derniere >= 0) return journal.slice(derniere);
+  const res: EvenementJeu[] = [];
+  for (let i = journal.length - 1; i >= 0 && res.length < 12; i--) {
+    const e = journal[i]!;
+    if (e.type === 'arrivee' || e.type === 'deplacement' || e.type === 'saisieJoueur' || e.type === 'recitConteur') break;
+    if (e.type === 'texte' && e.voix && e.voix !== pnj) break;
+    res.unshift(e);
+  }
+  return res;
 }
 
 /** Image d'un lieu ou d'un PNJ, d'après le manifeste du monde. */
@@ -92,6 +111,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const sceneNarree = moteur.vue<SceneNarree | undefined>('sceneEnCours', partie);
   const sceneRevue = !!sceneNarree && ((partie.modules['scenes'] as { vues?: string[] } | undefined)?.vues ?? []).includes(sceneNarree.id);
   const propositions = moteur.propositions(partie);
+  // La conversation : les répliques du joueur (touches 1 à 9) et « Fin du dialogue » vont dans la boîte posée sur la scène.
+  const delaConversation = (x: Proposition) => !!interlocuteur && x.groupe.id === 'dialogue';
+  const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
+  const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
+  const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
   const encarts = moteur.encarts(partie);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
   const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])];
@@ -164,6 +188,23 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     if (!r.refus) onPartie(r.partie);
   };
 
+  // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
+  // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
+  useEffect(() => {
+    if (!interlocuteur || sceneNarree || pageOuverte) return;
+    const surTouche = (ev: KeyboardEvent) => {
+      if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      const cible = ev.target as HTMLElement | null;
+      if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (ev.key === 'Escape' && finDialogue?.ordre) return jouer(finDialogue.ordre);
+      const n = Number(ev.key);
+      const choix = Number.isInteger(n) && n >= 1 ? choixDialogue[n - 1] : undefined;
+      if (choix?.ordre && !choix.desactivee) jouer(choix.ordre);
+    };
+    window.addEventListener('keydown', surTouche);
+    return () => window.removeEventListener('keydown', surTouche);
+  });
+
   return (
     <div className="aventure">
       <header className="aventure-haut">
@@ -186,19 +227,38 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </header>
 
       <main className="aventure-centre">
-        <div className="aventure-image" style={image ? { backgroundImage: `url(${image})` } : undefined}>
-          <div className="aventure-image-legende">
-            <strong>{scene.lieu.nom}</strong>
-            <span>{scene.lieu.resume}</span>
+        <div className={`aventure-image${interlocuteur ? ' en-dialogue' : ''}`} style={image ? { backgroundImage: `url(${image})` } : undefined}>
+          {interlocuteur ? (
+            <BoiteDialogue
+              nom={interlocuteur.nom}
+              role={interlocuteur.role}
+              portrait={imagePnj}
+              nombreEntrees={entreesDialogue.length + (refus ? 1 : 0)}
+              choix={choixDialogue}
+              fin={finDialogue}
+              jouer={jouer}
+            >
+              {entreesDialogue.map((e, i) => (
+                <EntreeRecit key={i} e={e} dm={dm} />
+              ))}
+              {refus && <p className="recit-refus">{refus}</p>}
+            </BoiteDialogue>
+          ) : (
+            <div className="aventure-image-legende">
+              <strong>{scene.lieu.nom}</strong>
+              <span>{scene.lieu.resume}</span>
+            </div>
+          )}
+        </div>
+        {!interlocuteur && (
+          <div className="aventure-recit" ref={recit}>
+            {partie.journal.map((e, i) => (
+              <EntreeRecit key={i} e={e} dm={dm} />
+            ))}
+            {refus && <p className="recit-refus">{refus}</p>}
           </div>
-        </div>
-        <div className="aventure-recit" ref={recit}>
-          {partie.journal.map((e, i) => (
-            <EntreeRecit key={i} e={e} dm={dm} />
-          ))}
-          {refus && <p className="recit-refus">{refus}</p>}
-        </div>
-        {suggestions.length > 0 && !enCours && (
+        )}
+        {suggestions.length > 0 && !enCours && !interlocuteur && (
           <div className="aventure-suggestions" aria-label="Actions suggérées par le conteur">
             {suggestions.map((s) => (
               <button key={s} type="button" className="bouton-discret" onClick={() => void raconter(s)}>
@@ -290,23 +350,13 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             )}
             {interlocuteur && (
               <section className="panneau-action">
-                <div className="dialogue-entete">
-                  <div className="dialogue-portrait" style={imagePnj ? { backgroundImage: `url(${imagePnj})` } : undefined} />
-                  <div>
-                    <h3>{interlocuteur.nom}</h3>
-                    <small>{interlocuteur.role}</small>
-                  </div>
-                </div>
+                <h3>Conversation</h3>
+                <p className="enonce">
+                  Vous parlez à {interlocuteur.nom}. Choisissez une réplique dans la boîte de dialogue, sur l'illustration (touches 1 à 9, Échap pour finir).
+                </p>
               </section>
             )}
-            <Panneaux
-              monde={dm.monde.id}
-              propositions={propositions.filter((x) => !x.groupe.onglet)}
-              jouer={jouer}
-              onCombat={onCombat}
-              groupe={partie.groupe}
-              cacherTitre={interlocuteur ? 'dialogue' : undefined}
-            />
+            <Panneaux monde={dm.monde.id} propositions={propositions.filter((x) => !x.groupe.onglet && !delaConversation(x))} jouer={jouer} onCombat={onCombat} groupe={partie.groupe} />
           </>
         )}
       </aside>

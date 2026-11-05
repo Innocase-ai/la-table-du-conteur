@@ -107,6 +107,8 @@ export interface Proposition {
   /** Le panneau où ranger l'action ; les panneaux s'affichent par `ordre` croissant, dans l'onglet `onglet` (« Actions » par défaut). */
   groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean; onglet?: string };
   libelle: string;
+  /** Le ton ou la nature de l'action, affiché entre crochets avant le libellé (« Persuader » devant une réplique de conversation). */
+  etiquette?: string;
   /** Précision affichée en petit (rôle d'un PNJ, compétence utilisée). */
   detail?: string;
   /** Texte d'aide au survol. */
@@ -149,9 +151,25 @@ export interface Encart {
   titre: string;
   ordre: number;
   texte?: string;
-  lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger' }[];
+  /** Une ligne qui porte une `fiche` s'ouvre en fenêtre de parchemin quand le joueur la choisit. */
+  lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger'; fiche?: FicheInfo }[];
   /** Une grille d'éléments (objets d'un sac, sorts d'un livre…) : l'écran la montre en vignettes triables, avec une page plein écran. */
   grille?: GrilleElements;
+}
+
+/**
+ * Une fiche d'information « importante » (un sort, une quête) : un titre, un tableau libellé / valeur et un texte. L'écran
+ * la montre en fenêtre de parchemin, sans savoir de quoi elle parle.
+ */
+export interface FicheInfo {
+  /** Le bandeau de la fenêtre (« Informations sur le sort »). */
+  rubrique: string;
+  titre: string;
+  /** Sous le titre : l'école d'un sort, le type d'une quête. */
+  sousTitre?: string;
+  proprietes: { libelle: string; valeur: string }[];
+  /** Le texte : description du sort, résumé et étapes d'une quête. Les paragraphes sont séparés par une ligne vide. */
+  texte?: string;
 }
 
 export type Ton = 'faible' | 'fort' | 'succes' | 'danger';

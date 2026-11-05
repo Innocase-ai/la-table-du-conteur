@@ -7602,3 +7602,309 @@ kbd {
   display: inline-flex;
   justify-content: center;
 }
+
+/* --- Fenêtre de parchemin : les informations importantes (sorts, quêtes), façon livre de règles. --- */
+.parchemin-cadre {
+  width: min(560px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px 12px;
+  border-radius: 10px;
+  border: 2px solid #4a4f58;
+  background: linear-gradient(180deg, #2c3037, #14161a);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.parchemin-bandeau {
+  text-align: center;
+  font-family: var(--titre);
+  letter-spacing: 0.04em;
+  color: #d9dbe0;
+  font-size: 15px;
+}
+
+.parchemin-nom {
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #4a4f58;
+  background: #1b1d22;
+  color: var(--or-vif);
+  font-family: var(--titre);
+  font-size: 15px;
+}
+
+.parchemin-feuille {
+  overflow-y: auto;
+  padding: 16px 20px 18px;
+  border-radius: 6px;
+  border: 3px solid #3a3f47;
+  background: radial-gradient(ellipse at 30% 20%, #f6ead0, #e4d1a4 70%, #d3bd8b);
+  color: #2a1d10;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  box-shadow: inset 0 0 24px rgba(90, 60, 20, 0.35);
+}
+
+.parchemin-feuille h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  color: #1d1208;
+}
+
+.parchemin-sous-titre {
+  margin: 0 0 12px;
+  font-style: italic;
+  color: #5a4326;
+}
+
+.parchemin-proprietes {
+  margin: 0 0 14px;
+}
+
+.parchemin-proprietes > div {
+  display: flex;
+  gap: 8px;
+  padding: 1px 0;
+}
+
+.parchemin-proprietes dt {
+  flex: none;
+  font-weight: 700;
+  min-width: 150px;
+}
+
+.parchemin-proprietes dd {
+  margin: 0;
+}
+
+.parchemin-texte p {
+  margin: 0 0 8px;
+  white-space: pre-line;
+}
+
+.parchemin-terminer {
+  align-self: center;
+  min-width: 150px;
+  padding: 8px 26px;
+  border-radius: 6px;
+  border: 1px solid #7a5a2e;
+  background: linear-gradient(180deg, #4a3721, #2a1e11);
+  color: var(--or-vif);
+  font-family: var(--titre);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.parchemin-terminer:hover,
+.parchemin-terminer:focus-visible {
+  background: linear-gradient(180deg, #5d4527, #38281a);
+  outline: none;
+  border-color: var(--or);
+}
+
+/* Une ligne d'encart qui s'ouvre en parchemin. */
+.encart-ligne-fiche {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 230, 190, 0.06);
+  cursor: pointer;
+}
+
+.encart-ligne-fiche:hover .encart-tete > span:first-child,
+.encart-ligne-fiche:focus-visible .encart-tete > span:first-child {
+  color: var(--or-vif);
+  text-decoration: underline;
+}
+
+.encart-info {
+  margin-left: 6px;
+  color: var(--or);
+  font-size: 12px;
+}
+
+@media (max-width: 560px) {
+  .parchemin-proprietes > div {
+    flex-direction: column;
+    gap: 0;
+  }
+  .parchemin-proprietes dt {
+    min-width: 0;
+  }
+}
+
+/* --- Boîte de dialogue d'une conversation, posée sur l'illustration du lieu (façon Baldur's Gate). --- */
+.aventure-image.en-dialogue {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 340px;
+}
+
+.boite-dialogue {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  max-height: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--cuivre);
+  background: linear-gradient(180deg, rgba(24, 18, 12, 0.86), rgba(10, 8, 6, 0.9));
+  backdrop-filter: blur(2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(240, 205, 132, 0.12);
+}
+
+.boite-entete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boite-portrait {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--cuivre);
+  background: #15120f center 20% / cover no-repeat;
+  color: var(--or);
+  font-family: var(--titre);
+  font-size: 24px;
+}
+
+.boite-identite {
+  flex: 1;
+  min-width: 0;
+}
+
+.boite-identite h3 {
+  margin: 0;
+  font-family: var(--titre);
+  font-size: 17px;
+  color: var(--or-vif);
+}
+
+.boite-identite small {
+  color: var(--texte-doux);
+}
+
+.boite-fin {
+  flex: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid #7a5a2e;
+  background: linear-gradient(180deg, #4a3721, #2a1e11);
+  color: var(--or-vif);
+  font-family: var(--titre);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.boite-fin:hover,
+.boite-fin:focus-visible {
+  border-color: var(--or);
+  background: linear-gradient(180deg, #5d4527, #38281a);
+  outline: none;
+}
+
+.boite-texte {
+  /* Ce que dit le personnage : défilable ; il cède de la place aux répliques quand l'écran est bas. */
+  flex: 1 1 auto;
+  min-height: 4.8em;
+  max-height: 14em;
+  overflow-y: auto;
+  padding: 2px 6px 2px 2px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--texte);
+  scrollbar-width: thin;
+  scrollbar-color: var(--cuivre) transparent;
+}
+
+.boite-texte p {
+  margin: 0 0 7px;
+}
+
+.boite-texte .recit-parole {
+  font-size: 16px;
+}
+
+.boite-choix {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(184, 116, 60, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  /* Beaucoup de sujets : la liste défile, le texte et « Fin du dialogue » restent en vue. */
+  overflow-y: auto;
+  flex: 0 1 auto;
+  min-height: 5.2em;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cuivre) transparent;
+}
+
+.boite-choix-bouton {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 6px;
+  text-align: left;
+  font: inherit;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: #e0705e;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.boite-choix-bouton:hover,
+.boite-choix-bouton:focus-visible {
+  color: #ff9a85;
+  background: rgba(184, 68, 58, 0.16);
+  outline: none;
+}
+
+.boite-choix-bouton.vu {
+  color: #a8685c;
+}
+
+.boite-choix-bouton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.boite-choix-num {
+  flex: none;
+  min-width: 1.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+.boite-choix-ton {
+  font-weight: 700;
+  color: var(--or);
+}
+
+.boite-choix-texte small {
+  color: var(--texte-faible);
+}
