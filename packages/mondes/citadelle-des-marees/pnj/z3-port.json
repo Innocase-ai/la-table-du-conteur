@@ -817,6 +817,91 @@
         "revele": [],
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "caisse-de-sel",
+        "mots": [
+          "caisse",
+          "sel",
+          "volé",
+          "vol",
+          "Gaspard"
+        ],
+        "question": "Que s'est-il passé avec votre caisse de sel ?",
+        "reponse": "Elle pose sa louche, essuie ses mains dans son tablier et baisse la voix. Gaspard Filet lui a pris une caisse de sel fin dans la réserve, au plus froid de la nuit. Ce sel servait à conserver le poisson pour l'hiver, et la soupe du soir en dépend. Il traîne désormais avec des gaillards armés de couteaux à écailler, et personne sur le marché n'osera la croire contre lui. Elle veut sa caisse, et qu'il se tienne tranquille.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-por-la-caisse-de-gaspard",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "quete": {
+                  "id": "q-por-la-caisse-de-gaspard",
+                  "statut": "active"
+                }
+              }
+            },
+            {
+              "non": {
+                "quete": {
+                  "id": "q-por-la-caisse-de-gaspard",
+                  "statut": "terminee"
+                }
+              }
+            },
+            {
+              "non": {
+                "quete": {
+                  "id": "q-por-la-caisse-de-gaspard",
+                  "statut": "echouee"
+                }
+              }
+            }
+          ]
+        },
+        "unique": false
+      },
+      {
+        "id": "caisse-rendue",
+        "mots": [
+          "caisse",
+          "rendue",
+          "rapporté",
+          "récupéré",
+          "retrouvé"
+        ],
+        "question": "Vous avez récupéré votre caisse.",
+        "reponse": "Elle ouvre la caisse, passe un doigt dans le sel, et ne dit rien pendant un long moment. « Il est là, dit-elle enfin. Tout le sel. Merci. » Elle pose une pièce sur le comptoir, puis ajoute une louche de soupe, pour la route.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "por-garance-bolle",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "por-garance-rapport"
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "por-gaspard-regle"
+            },
+            {
+              "non": {
+                "fait": "f-por-gaspard-temoin"
+              }
+            }
+          ]
+        },
+        "unique": true
       }
     ],
     "services": [
@@ -1081,6 +1166,59 @@
         "revele": [],
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "coque-grattee",
+        "mots": [
+          "coque",
+          "barque",
+          "grattée",
+          "noyés",
+          "reflux",
+          "chantier",
+          "gratter"
+        ],
+        "question": "Qu'est-il arrivé à votre barque ?",
+        "reponse": "Il ne regarde pas la bâche, il regarde la coque. « À chaque reflux, ils remontent de la grève. Des noyés, vous voyez, qui grattent le bois neuf avec leurs ongles, deux marées de suite. J'ai un an de travail là-dessous, et je n'ai que des cordes et un maillet. » Il vous demande de tenir le chantier pendant le reflux, parce que la cale ne tiendra pas une troisième marée.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-por-la-coque-neuve",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "chantier-tenu",
+        "mots": [
+          "chantier",
+          "tenu",
+          "défendu",
+          "noyés",
+          "repoussés",
+          "barque"
+        ],
+        "question": "Le chantier a tenu pendant le reflux.",
+        "condition": {
+          "flag": "por-chantier-defendu"
+        },
+        "reponse": "Il passe la main sur les sillons de la coque, longtemps, comme on rassure un cheval. « Des égratignures. Le bois tient, la cale tient. » Il ne dit pas merci, il répète seulement le nom de la barque, qu'il n'a pas encore choisi, et il retourne sa bâche sur le bord de la cale.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "por-chantier-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "por-hennequin-lacet",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
@@ -1397,6 +1535,23 @@
             "fait": "f-por-filets-coupes-par-rats"
           }
         ],
+        "unique": true
+      },
+      {
+        "id": "ma-version",
+        "mots": [
+          "caisses",
+          "Rats",
+          "barques",
+          "passage",
+          "version"
+        ],
+        "question": "Qu'avez-vous vu de cette nuit-là ?",
+        "reponse": "Gaspard parle lentement, comme s'il comptait chaque mot. « Je n'ai rien pris. J'ai vu des lueurs sous l'eau, au large des caches, et des caisses qui passaient de barque en barque sans toucher le quai. Des caisses des Rats, à la corde rouge. Je n'ai rien dit à personne, parce que personne ne demande. »",
+        "effets": [],
+        "condition": {
+          "flag": "por-gaspard-parle"
+        },
         "unique": true
       }
     ],

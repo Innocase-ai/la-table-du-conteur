@@ -641,3 +641,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Équilibre mesuré** (400 tirages par combat) : sur toute la Citadelle ≈ 24 po et moins d'une potion ; sur tout le Val ≈ 113 po et ≈ 4 potions : modeste, les trésors restent la grande source de richesse.
 - **Validateur** : l'avis « Butin » ne vise plus que les combats avec `depouilles: false` et sans table, réserve ni trésor gardé.
 - Tests : `butin.test.ts` (familles, bourse selon le FP, humanoïde/bête/artificiel, victoire qui verse et annonce, opt-out). Docs : `docs/MONDES.md`, skill `creer-rencontres`.
+
+## 05/11/2026 — Quatre contrats de plus pour la Citadelle
+
+- **Contrats** (écrits par des agents Haiku avec `creer-contrats`, relus, testés) : « Les voleurs d'huile » (embuscade de nuit : Gudrun, déclencheur `repos` aux jardins de falaise), « La charrette éventrée » (traque : un fait à trois sources, loups à l'entrée de la grotte des marées), « La coque neuve » (défense en deux vagues chez Hennequin, la seconde déclenchée par effet), « La caisse de Gaspard » (le client ment : Garance cache sa dette envers les Rats ; rencontre puis **dilemme** à trois issues). Avec les rats de Bertrane : 5 formes différentes, chacune avec une issue sans combat réelle, un enjeu de refus (la marée à 3) et un test qui joue chaque issue (`contrats.test.ts`, `contrats-citadelle.test.ts`).
+- Reste : l'avis « Rythme » (5 rencontres sur 31 sans combat) ; contrats du Val ; champ `forme`, avis du validateur sur le rythme du hub, compteur de calme.

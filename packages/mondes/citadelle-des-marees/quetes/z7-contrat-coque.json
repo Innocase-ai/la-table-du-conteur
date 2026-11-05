@@ -1,0 +1,29 @@
+[
+  {
+    "id": "q-por-la-coque-neuve",
+    "nom": "La coque neuve",
+    "type": "secondaire",
+    "donneur": "por-hennequin-lacet",
+    "lieu": "por-chantier-naval",
+    "resume": "Hennequin Lacet répare depuis un an une barque de pilote dans la cale du chantier. À chaque reflux, des noyés remontent de la grève et grattent la coque neuve, deux marées de suite. Il n'a que des cordes et un maillet, et il demande qu'on tienne le chantier pendant le reflux.",
+    "niveau": { "min": 2, "max": 3 },
+    "debut": "tenir",
+    "etapes": [
+      {
+        "id": "tenir",
+        "texte": "Tenez le chantier pendant le reflux : deux assauts de noyés sont attendus, sur la grève puis sous la cale.",
+        "completion": { "flag": "por-chantier-defendu" },
+        "suivantes": ["retour"]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Hennequin que sa coque est à l'abri.",
+        "completion": { "flag": "por-chantier-retour" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 100, "pieces": 40, "objets": ["pied-de-biche"], "effets": [] },
+    "ramifications": "Forme : défense d'un lieu, en deux vagues. Issues : fermer la vanne du chenal (jet d'athlétisme) ; sonner la cloche du quai (la garde de la Ligue arrive, Hennequin s'en plaint) ; allumer les braseros avec une huile (la seconde vague suit quand même). Si la marée atteint 3 avant le règlement, la coque est grattée à nu (événement z7-coque-rongee)."
+  }
+]

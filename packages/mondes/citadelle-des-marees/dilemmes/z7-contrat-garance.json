@@ -1,0 +1,118 @@
+[
+  {
+    "id": "le-contrat-de-garance",
+    "titre": "La caisse de Gaspard",
+    "situation": "Vous savez maintenant que Garance ment. La caisse de sel n'a jamais été volée : Gaspard a vu des barques des Rats la transporter pendant la nuit, et Garance a demandé qu'on le fasse taire. Elle doit à quelqu'un plus qu'une caisse de sel. Elle a nourri des naufragés tout l'hiver au Hareng gris, et c'est ce qui rend son mensonge si difficile à porter. Gaspard, lui, ne dort plus chez lui.",
+    "quand": {
+      "et": [
+        { "fait": "f-por-gaspard-temoin" },
+        { "quete": { "id": "q-por-la-caisse-de-gaspard", "statut": "active" } },
+        { "pnj": { "id": "por-gaspard-filet", "etat": "vivant" } }
+      ]
+    },
+    "delai": 3,
+    "options": [
+      {
+        "id": "livrer",
+        "libelle": "Je dis à Garance où dort Gaspard.",
+        "ton": "Loyauté",
+        "couts": [
+          "Gaspard ne verra pas le lever du jour.",
+          "Les pêcheurs du marché se souviendront de qui les a trahis."
+        ],
+        "gains": [
+          "Garance vous doit la soupe chaude de tout l'hiver.",
+          "Les Rats de quai vous comptent désormais parmi les leurs."
+        ],
+        "effets": [
+          { "reputation": { "faction": "rats-de-quai", "delta": 10 } },
+          { "attitude": { "pnj": "por-garance-bolle", "delta": 10 } },
+          { "pnjEtat": { "pnj": "por-gaspard-filet", "etat": "mort" } },
+          { "xp": 30 }
+        ],
+        "epilogue": "On a retrouvé Gaspard au petit matin, près des cales, la veste de travers. Garance a fermé la taverne ce jour-là, et elle n'a jamais dit pourquoi."
+      },
+      {
+        "id": "mentir",
+        "libelle": "Je dis à Garance que Gaspard a juré de se taire.",
+        "ton": "Ruse",
+        "couts": [
+          "Si Garance comprend le mensonge, elle ne vous croira plus jamais.",
+          "Il faudra soutenir ce mensonge longtemps, devant les Rats."
+        ],
+        "gains": [
+          "Gaspard reste en vie, et le marché aux poissons reste ouvert.",
+          "Vous gardez la main sur ce que vous ferez de lui ensuite."
+        ],
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "effets": [
+          { "attitude": { "pnj": "por-garance-bolle", "delta": -5 } },
+          { "xp": 40 }
+        ],
+        "echec": [
+          { "reputation": { "faction": "rats-de-quai", "delta": -10 } },
+          { "narration": "Garance vous regarde longtemps, la louche immobile au-dessus de la marmite. Elle ne dit pas qu'elle vous croit, et elle ne dit pas le contraire." }
+        ],
+        "epilogue": "Gaspard a quitté le port dans une barque, loin des quais, et Garance n'a jamais su si vous l'aviez cru."
+      },
+      {
+        "id": "denoncer",
+        "libelle": "J'apporte l'affaire à Maître Osric.",
+        "ton": "Loi",
+        "couts": [
+          "Garance perd son crédit auprès des Rats, et sa taverne peut tomber avec sa dette.",
+          "Les Rats de quai ne vous laisseront plus passer sur leurs quais."
+        ],
+        "gains": [
+          "La Ligue vous doit une faveur, et Maître Osric le sait.",
+          "Les caisses des Rats ne passeront plus la nuit sous le nez de Gaspard."
+        ],
+        "effets": [
+          { "reputation": { "faction": "ligue-des-phares", "delta": 10 } },
+          { "reputation": { "faction": "rats-de-quai", "delta": -15 } },
+          { "attitude": { "pnj": "por-garance-bolle", "delta": -20 } },
+          { "attitude": { "pnj": "maitre-osric-vent", "delta": 10 } },
+          { "xp": 50 }
+        ],
+        "epilogue": "Maître Osric a fait ouvrir un registre et fermer les entrepôts des Rats. Garance a payé sa dette à la Ligue, et le Hareng gris n'a plus jamais été le même."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas, et la nuit décide pour moi.",
+      "couts": [
+        "Gaspard disparaît cette nuit, et vous ne saurez jamais ce qu'il avait vu.",
+        "Les Rats vous jugent indécis, et Garance attend une réponse qui ne vient pas."
+      ],
+      "effets": [
+        { "pnjEtat": { "pnj": "por-gaspard-filet", "etat": "parti" } },
+        { "reputation": { "faction": "rats-de-quai", "delta": -3 } }
+      ],
+      "epilogue": "Gaspard a quitté le marché avant l'aube, sans laisser d'adresse. Garance a continué à servir la soupe, en comptant ses dettes."
+    },
+    "echos": [
+      {
+        "si": "livrer",
+        "apres": 2,
+        "annonce": "Un Rat de quai se présente au comptoir du Hareng gris, pose une pièce sur la table et repart sans un mot. Garance la ramasse sans la regarder."
+      },
+      {
+        "si": "mentir",
+        "apres": 3,
+        "annonce": "Une lettre sans signature arrive au Hareng gris, écrite par quelqu'un qui n'aime pas les menteurs. Garance la lit deux fois, puis la range dans son tablier."
+      },
+      {
+        "si": "denoncer",
+        "apres": 2,
+        "annonce": "Une lettre de la Ligue arrive au Hareng gris : Garance est convoquée au hall, les mains vides. Maître Osric vous fait dire qu'il sait qui a parlé."
+      },
+      {
+        "si": "abstention",
+        "apres": 2,
+        "annonce": "Le filet de Gaspard est accroché à la porte de la halle, sans un mot. Personne ne sait dire qui l'a laissé là, ni pourquoi."
+      }
+    ]
+  }
+]

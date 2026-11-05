@@ -347,7 +347,19 @@
     "visuel": "Des terrasses de pierre sèche accrochées à la falaise, des touffes d'herbes grises et de lavande de falaise, un fanal de fer sur un piquet et, au loin, une mer gris ardoise.",
     "accroche": "Au bord de la falaise, un jardin de terrasses accroché au vide, où les herbes grises tiennent malgré le vent.",
     "liens": [],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "cit-r-voleurs-d-huile",
+        "declencheur": "repos",
+        "condition": {
+          "quete": {
+            "id": "q-cit-les-voleurs-d-huile",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
     "faits": [
       {
         "fait": "f-cit-cercles-de-sel",

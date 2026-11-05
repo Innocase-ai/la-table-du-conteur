@@ -1,0 +1,21 @@
+[
+  {
+    "id": "z7-gaspard-disparu",
+    "declencheur": "condition",
+    "unique": true,
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 3 } },
+        { "quete": { "id": "q-por-la-caisse-de-gaspard", "statut": "active" } },
+        { "non": { "flag": "por-gaspard-regle" } },
+        { "non": { "flag": "por-gaspard-parle" } }
+      ]
+    },
+    "narration": "Au matin, le marché aux poissons ouvre sans Gaspard Filet. Son étal est débarrassé, son filet n'est plus sur le quai, et les marchands haussent les épaules quand on leur demande où il est allé. La marée a tout effacé dans la nuit.",
+    "effets": [
+      { "pnjEtat": { "pnj": "por-gaspard-filet", "etat": "parti" } },
+      { "attitude": { "pnj": "por-garance-bolle", "delta": -5 } },
+      { "quete": { "id": "q-por-la-caisse-de-gaspard", "statut": "echouee" } }
+    ]
+  }
+]

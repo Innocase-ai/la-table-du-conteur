@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z7-huile-perdue",
+    "declencheur": "condition",
+    "unique": true,
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 3 } },
+        { "quete": { "id": "q-cit-les-voleurs-d-huile", "statut": "active" } },
+        { "non": { "flag": "cit-voleurs-regles" } }
+      ]
+    },
+    "narration": "Au réveil, les jarres de l'intendance des fanaux sont vides jusqu'à la dernière goutte, et le fanal des jardins de falaise ne reprend pas sa flamme. Gudrun ne cherche personne à blâmer : elle a déjà compté les nuits qui restent avant le noir.",
+    "effets": [
+      { "attitude": { "pnj": "gudrun-lanterne", "delta": -10 } },
+      { "flag": "cit-huile-perdue" },
+      { "quete": { "id": "q-cit-les-voleurs-d-huile", "statut": "echouee" } }
+    ]
+  }
+]

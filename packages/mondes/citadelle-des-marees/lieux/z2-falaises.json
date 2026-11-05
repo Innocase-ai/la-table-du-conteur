@@ -96,7 +96,15 @@
         "unique": true
       }
     ],
-    "faits": [],
+    "faits": [
+      {
+        "fait": "f-fal-meute-de-la-grotte",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 11
+        }
+      }
+    ],
     "evenements": [],
     "services": [],
     "repos": "dangereux"
@@ -376,7 +384,26 @@
         "retour": "Le boyau remonte vers le couloir ; on ressort des blocs la tête la première, les genoux pleins de sable."
       }
     ],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "fal-r-meute-de-la-grotte",
+        "declencheur": "entree",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-fal-la-charrette-eventree",
+                "statut": "active"
+              }
+            },
+            {
+              "fait": "f-fal-meute-de-la-grotte"
+            }
+          ]
+        },
+        "unique": true
+      }
+    ],
     "faits": [],
     "evenements": [],
     "services": [],

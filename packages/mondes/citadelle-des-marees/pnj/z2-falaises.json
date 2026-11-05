@@ -28,7 +28,8 @@
     "savoir": [
       "f-fal-saunieres-retrouvees",
       "f-fal-mer-trop-loin",
-      "f-lothmar-englouti"
+      "f-lothmar-englouti",
+      "f-fal-meute-de-la-grotte"
     ],
     "secrets": [
       {
@@ -379,6 +380,63 @@
         "revele": [
           "f-rats-vendent-les-passages"
         ]
+      },
+      {
+        "id": "charrette-eventree",
+        "mots": [
+          "remise",
+          "sacs",
+          "griffes",
+          "salaisons",
+          "éventré",
+          "vivres"
+        ],
+        "question": "Que s'est-il passé à votre remise ?",
+        "reponse": "Il montre la remise du relais : sacs de vivres déchirés, traces de griffes sur les planches, la moitié des salaisons emportée. Il jure que ce ne sont pas des pillards mais des loups, devenus audacieux depuis que la mer a chassé le gibier. Il ne sait pas où ils vivent, et cela le met hors de lui : il a compté ses pertes, pas leurs repaires. Il parle de son essieu, qui attendra, et de la nuit qui tombe. Il veut qu'on retrouve la tanière et qu'on les éloigne avant qu'il perde son stock d'hiver.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fal-la-charrette-eventree",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "quete": {
+              "id": "q-fal-la-charrette-eventree",
+              "statut": "terminee"
+            }
+          }
+        },
+        "unique": false
+      },
+      {
+        "id": "loups-eloignes",
+        "mots": [
+          "loups",
+          "tanière",
+          "meute",
+          "éloignés",
+          "réglé"
+        ],
+        "question": "Dire que les loups sont éloignés.",
+        "reponse": "Il fait le compte à voix haute : dix-huit salaisons sauvées sur trente-six, le chariot tiré hors de la boue, l'essieu qui tient encore. Il le répète trois fois, pour être sûr que vous l'ayez entendu, puis glisse les pièces sur le comptoir sans les compter devant vous. Il ne dira pas merci, mais il reviendra vous saluer au prochain passage.",
+        "effets": [
+          {
+            "flag": "fal-meute-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "fal-aubin-lacombe",
+              "delta": 10
+            }
+          }
+        ],
+        "condition": {
+          "flag": "fal-meute-reglee"
+        },
+        "unique": true
       }
     ],
     "boutique": {
@@ -707,7 +765,8 @@
     "attitude": 0,
     "savoir": [
       "f-fal-perle-grise-coulee",
-      "f-fal-noyes-ne-remontent-pas"
+      "f-fal-noyes-ne-remontent-pas",
+      "f-fal-meute-de-la-grotte"
     ],
     "secrets": [
       {

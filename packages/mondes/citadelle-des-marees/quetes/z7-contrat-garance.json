@@ -1,0 +1,39 @@
+[
+  {
+    "id": "q-por-la-caisse-de-gaspard",
+    "nom": "La caisse de Gaspard",
+    "type": "secondaire",
+    "donneur": "por-garance-bolle",
+    "lieu": "por-taverne-du-hareng",
+    "resume": "Garance Bolle accuse Gaspard Filet, pêcheur de nuit, de lui avoir volé une caisse de sel fin, et de le protéger des hommes armés. Elle veut qu'on la lui rapporte et qu'il cesse de traîner sur le marché. Ce qu'elle dit de cette nuit-là ne tient pas tout à fait debout.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "retrouver-gaspard",
+    "etapes": [
+      {
+        "id": "retrouver-gaspard",
+        "texte": "Retrouvez Gaspard Filet sur le marché aux poissons, et apprenez ce qu'il a vraiment fait cette nuit-là.",
+        "completion": {
+          "ou": [
+            { "flag": "por-gaspard-regle" },
+            { "flag": "por-gaspard-parle" }
+          ]
+        },
+        "suivantes": ["rendre-compte"]
+      },
+      {
+        "id": "rendre-compte",
+        "texte": "Rendez compte à Garance de ce qui s'est passé sur le marché aux poissons.",
+        "completion": {
+          "ou": [
+            { "flag": "por-garance-rapport" },
+            { "flag": "choix-le-contrat-de-garance" }
+          ]
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 100, "pieces": 40, "objets": [], "effets": [] },
+    "ramifications": "Forme : le client ment. Issues : combattre les hommes de Gaspard (drapeau por-gaspard-regle, sans la vérité) ; leur parler (le fait du témoin et le drapeau por-gaspard-parle, qui ouvre le dilemme « La caisse de Gaspard ») ; payer la caisse de sa poche (drapeau por-gaspard-regle, sans la vérité). Au retour simple (sujet caisse-rendue), Garance remercie et pose por-garance-rapport ; si le groupe a appris la vérité, c'est le dilemme qui règle l'étape « rendre-compte ». Si on laisse Gaspard disparaître, la quête échoue (événement z7-gaspard-disparu)."
+  }
+]

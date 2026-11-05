@@ -711,6 +711,110 @@
         "reponse": "Elle la trouve trop pleine de règles et trop peu d'huile. Elle dit que les ligueurs veulent des phares fermés à clé, comme s'il fallait protéger la lumière de ceux qui la regardent. Elle ne sait pas de quoi ils ont peur, sinon de la mer.",
         "revele": [],
         "effets": []
+      },
+      {
+        "id": "huile-des-fanaux",
+        "mots": [
+          "voleurs",
+          "jarres",
+          "vidées",
+          "siphonne",
+          "réserves",
+          "traces"
+        ],
+        "question": "Que se passe-t-il avec vos réserves ?",
+        "reponse": "Elle jure entre ses dents, en marin plutôt qu'en dame. Ses jarres d'huile sont vides jusqu'au fond, et la boue du chemin des falaises porte des traces de bottes, pas celles d'un pêcheur. Sans huile, trois fanaux s'éteindront et les barques ne rentreront plus au port. Elle ne peut pas veiller, elle garde la lampe du phare-archive. Elle demande qu'on passe la nuit aux jardins de falaise, une halte suffira si l'on n'a pas le cœur à dormir, et qu'on attende les voleurs là-bas.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-les-voleurs-d-huile",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "quete": {
+              "id": "q-cit-les-voleurs-d-huile",
+              "statut": "terminee"
+            }
+          }
+        },
+        "unique": false
+      },
+      {
+        "id": "voleurs-pris",
+        "mots": [
+          "partis",
+          "fuis",
+          "chassés",
+          "pris",
+          "réglés",
+          "reviendront"
+        ],
+        "question": "Dire que les voleurs ne reviendront pas.",
+        "reponse": "Elle lâche la lampe qu'elle tenait, se frotte les yeux, et ne dit pas merci. « Bien. Les fanaux auront leur huile ce soir. » Puis elle ajoute, la voix un peu moins dure, qu'elle ira elle-même l'annoncer aux pêcheurs avant midi.",
+        "effets": [
+          {
+            "flag": "cit-voleurs-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "gudrun-lanterne",
+              "delta": 10
+            }
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-voleurs-regles"
+            },
+            {
+              "non": {
+                "flag": "cit-voleurs-rachetes"
+              }
+            }
+          ]
+        },
+        "unique": true
+      },
+      {
+        "id": "voleurs-rachetes",
+        "mots": [
+          "payé",
+          "pièces",
+          "bourse",
+          "acheté",
+          "racheté",
+          "argent"
+        ],
+        "question": "Dire que vous avez payé les voleurs.",
+        "reponse": "Elle ne sourit pas. « Vous avez payé des voleurs d'huile. Les fanaux brûleront ce soir, et la prochaine bande saura que la côte rapporte. » Elle prend sa lampe sans vous regarder, et elle ne vous remercie pas.",
+        "effets": [
+          {
+            "flag": "cit-voleurs-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "gudrun-lanterne",
+              "delta": 5
+            }
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-voleurs-rachetes"
+            },
+            {
+              "non": {
+                "flag": "cit-voleurs-retour"
+              }
+            }
+          ]
+        },
+        "unique": true
       }
     ],
     "salutations": {

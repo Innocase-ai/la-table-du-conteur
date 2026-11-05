@@ -1,0 +1,91 @@
+[
+  {
+    "id": "fal-r-meute-de-la-grotte",
+    "nom": "La meute de la grotte",
+    "type": "mixte",
+    "lieu": "fal-grotte-des-marees-entree",
+    "difficulte": "faible",
+    "intro": "Une odeur de viande pourrie et de poil mouillé monte de l'entrée. Des os rongés jonchent le sol, et dans le noir du fond, un souffle chaud répond au vôtre. Trois paires d'yeux pâles se lèvent, sans hâte, comme si la nuit leur appartenait déjà.",
+    "monstres": [
+      {
+        "profil": "loup",
+        "nombre": 3,
+        "nom": "Loups de la tanière"
+      }
+    ],
+    "carte": [
+      "############",
+      "#m.....R...#",
+      "#m..~~.....#",
+      "#m.R.......#",
+      "#.....~~R..#",
+      "#HHHHHH....#",
+      "############"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Les loups tournent autour du groupe et cherchent le flanc découvert ; ils évitent l'étroit et mordent le premier qui recule.",
+      "fuite": "Quand deux d'entre eux sont à terre, le troisième se replie vers le fond de la galerie.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "apaiser-la-meute",
+        "nom": "Je pose de la viande à l'entrée et je recule lentement.",
+        "resume": "Les loups reniflent la viande, puis reculent d'un pas à la fois. Il faut reculer avec eux, sans geste brusque, jusqu'à ce que l'odeur de la grotte ne soit plus qu'un souvenir.",
+        "jet": {
+          "competence": "dressage",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "flag": "fal-meute-reglee"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le premier loup ignore la viande, bondit par-dessus les os et vous frappe à l'épaule avant que vous ayez reculé d'un pas. Les deux autres se resserrent autour de vous."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "les-chasser-au-feu",
+        "nom": "J'allume une torche à l'entrée et je les chasse vers le nord.",
+        "resume": "Les loups craignent le feu plus que la faim : une torche agitée dans l'entrée les refoule vers la galerie du nord, où ils disparaissent entre les rochers. La torche, elle, ne revient pas.",
+        "condition": {
+          "objet": "torche"
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "torche",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "fal-meute-reglee"
+          },
+          {
+            "xp": 30
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "fal-meute-reglee"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  }
+]

@@ -129,7 +129,20 @@
       "max": 3
     },
     "liens": [],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-les-pecheurs-de-gaspard",
+        "declencheur": "entree",
+        "condition": {
+          "quete": {
+            "id": "q-por-la-caisse-de-gaspard",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ]
   },
   {
     "id": "por-taverne-du-hareng",
@@ -340,7 +353,29 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-premiere-vague-du-chantier",
+        "declencheur": "entree",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-por-la-coque-neuve",
+                "statut": "active"
+              }
+            },
+            {
+              "non": {
+                "flag": "por-chantier-defendu"
+              }
+            }
+          ]
+        },
+        "unique": true
+      }
+    ]
   },
   {
     "id": "por-cale-seche",

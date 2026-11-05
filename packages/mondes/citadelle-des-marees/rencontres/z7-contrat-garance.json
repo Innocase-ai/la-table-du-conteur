@@ -1,0 +1,99 @@
+[
+  {
+    "id": "por-r-les-pecheurs-de-gaspard",
+    "nom": "Les pêcheurs de Gaspard",
+    "type": "mixte",
+    "lieu": "por-marche-aux-poissons",
+    "difficulte": "faible",
+    "intro": "L'odeur de poisson saumâtre vous prend à la gorge avant les lanternes. Entre les étals vides, trois hommes en tabliers de cuir sortent les couteaux à écailler de leur ceinture, sans un mot. Le plus grand porte la veste de Gaspard Filet, trop large pour lui.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3,
+        "nom": "Pêcheurs de nuit"
+      }
+    ],
+    "carte": [
+      "#..c...c...#",
+      "#.e.e...m.m#",
+      "#c...ee.m..#",
+      "#.....c..e.#",
+      "#.HHH......#",
+      "#.HHH.c....#",
+      "#..........#"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les pêcheurs se déploient entre les étals et frappent les premiers qui s'approchent de la caisse de sel ; ils ne visent pas à tuer, mais à faire reculer.",
+      "fuite": "Quand deux d'entre eux sont à terre, le troisième recule vers les quais sans chercher à mourir.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "parler-a-gaspard",
+        "nom": "Je demande à Gaspard de me dire ce qu'il a vu cette nuit-là.",
+        "resume": "Gaspard reconnaît un groupe qui ne vient pas pour sa tête. Ses hommes attendent son signe, et il hésite : il faut le convaincre qu'on veut la vérité, pas la caisse seule.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "fait": "f-por-gaspard-temoin"
+          },
+          {
+            "flag": "por-gaspard-parle"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Gaspard se renferme, sa main se referme sur le manche de son couteau, et ses hommes se rapprochent d'un pas."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer-la-caisse",
+        "nom": "Je paie la caisse de ma poche et je ferme l'affaire.",
+        "resume": "Trente pièces d'or suffisent à faire baisser les couteaux. Gaspard n'a pas l'air content, mais il n'a pas non plus l'air surpris ; la vérité reste sur le quai.",
+        "condition": {
+          "pieces": {
+            "min": 30
+          }
+        },
+        "effets": [
+          {
+            "pieces": -30
+          },
+          {
+            "flag": "por-gaspard-regle"
+          },
+          {
+            "attitude": {
+              "pnj": "por-gaspard-filet",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 20
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "por-gaspard-regle"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  }
+]
