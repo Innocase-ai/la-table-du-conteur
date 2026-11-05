@@ -70,6 +70,11 @@ export function Detail({ noeud, entite, lu, dm, idx, onVoir }: { noeud: NoeudGra
             {cible.type}
             {brut ? ` · ${brut.chemin}` : ''}
           </p>
+          {brut && (
+            <p>
+              <a href={`#/${lu.id}/fiches/${cible.type}/${cible.id}`}>Modifier cette fiche</a>
+            </p>
+          )}
           {brut ? <pre>{JSON.stringify(brut.objet, null, 2)}</pre> : <p className="muet">Fiche introuvable dans les fichiers du monde.</p>}
         </>
       )}

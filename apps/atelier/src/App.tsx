@@ -2,8 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { assemblerMonde, diagnostiquerMonde, type DiagnosticMonde, type DonneesMonde } from '@crpg/regles';
 import { lireMonde, listerMondes, type MondeLu, type ResumeMonde } from './api';
 import { chargerDonnees } from './donnees';
+import { Fiches } from './vues/Fiches';
 import { Graphes } from './vues/Graphes';
 import { Parcours } from './vues/Parcours';
+import { Registre } from './vues/Registre';
 import { Sante } from './vues/Sante';
 
 type Etat =
@@ -13,10 +15,12 @@ type Etat =
   | { etat: 'illisible'; erreurs: { fichier: string; message: string }[] }
   | { etat: 'ok'; lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; duree: number };
 
-/** Le monde et la vue choisis : `#/<monde>` (santé) ou `#/<monde>/graphes`. */
+const VUES = ['graphes', 'parcours', 'fiches', 'registre'] as const;
+
+/** Le monde et la vue choisis : `#/<monde>` (santé), `#/<monde>/graphes`, `#/<monde>/fiches/<dossier>/<id>`… */
 const lireHash = () => {
-  const [monde = '', vue = ''] = window.location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
-  return { monde, vue: vue === 'graphes' || vue === 'parcours' ? vue : ('sante' as const) };
+  const [monde = '', vue = '', dossier = '', ident = ''] = window.location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+  return { monde, vue: (VUES as readonly string[]).includes(vue) ? (vue as (typeof VUES)[number]) : ('sante' as const), dossier, ident };
 };
 
 export function App() {
@@ -87,6 +91,12 @@ export function App() {
             <a href={`#/${id}/parcours`} className={h.vue === 'parcours' ? 'actif' : ''}>
               Parcours
             </a>
+            <a href={`#/${id}/fiches`} className={h.vue === 'fiches' ? 'actif' : ''}>
+              Fiches
+            </a>
+            <a href={`#/${id}/registre`} className={h.vue === 'registre' ? 'actif' : ''}>
+              Registre
+            </a>
           </nav>
         )}
         {maj && <span className="muet">à jour à {maj.toLocaleTimeString('fr-FR')} · surveille le disque</span>}
@@ -111,6 +121,8 @@ export function App() {
         {etat.etat === 'ok' && h.vue === 'sante' && <Sante nom={courant?.nom ?? id} statut={courant?.statut ?? ''} dm={etat.dm} diag={etat.diag} duree={etat.duree} />}
         {etat.etat === 'ok' && h.vue === 'graphes' && <Graphes lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
         {etat.etat === 'ok' && h.vue === 'parcours' && <Parcours lu={etat.lu} dm={etat.dm} />}
+        {etat.etat === 'ok' && h.vue === 'fiches' && <Fiches lu={etat.lu} dm={etat.dm} diag={etat.diag} dossier={h.dossier} ident={h.ident} recharger={() => charger(id)} />}
+        {etat.etat === 'ok' && h.vue === 'registre' && <Registre lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
       </main>
     </div>
   );

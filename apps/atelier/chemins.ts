@@ -33,3 +33,6 @@ export function origineAutorisee(origine: string | undefined): boolean {
   if (origine === undefined) return true;
   return new RegExp(`^http://(localhost|127\\.0\\.0\\.1):${PORT_ATELIER}$`).test(origine);
 }
+
+/** Le corps de la requête doit être du JSON (pas un formulaire envoyé depuis une autre page). */
+export const corpsJson = (typeContenu: string | undefined): boolean => /^application\/json(;|$)/i.test(typeContenu ?? '');

@@ -1,14 +1,17 @@
-// Le serveur de l'atelier (développement seulement) : il lit les mondes de packages/mondes pour le navigateur, en LECTURE SEULE,
-// et prévient la page quand un fichier change sur le disque (Claude Code et les agents écrivent en parallèle).
+// Le serveur de l'atelier (développement seulement) : il lit les mondes de packages/mondes pour le navigateur, écrit les fiches
+// modifiées (une à la fois, avec toutes les précautions de ecriture.ts) et prévient la page quand un fichier change sur le disque
+// (Claude Code et les agents écrivent en parallèle).
 //   GET /api/atelier/mondes        les mondes (brouillons compris) : id, nom, statut
 //   GET /api/atelier/monde/<id>    monde.json, ses fichiers de données (contenu JSON + empreinte), BIBLE.md et CANON-PERSONNAGES.md
+//   PUT /api/atelier/fiche         remplace ou ajoute UNE fiche dans un fichier (voir ecriture.ts : empreinte, schéma, écriture atomique)
 // Le navigateur assemble et valide lui-même (le moteur est du TypeScript pur). Les gardes de chemins sont dans chemins.ts.
 import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
 import type { ServerResponse } from 'node:http';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
-import { DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre } from './chemins';
+import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre } from './chemins';
+import { ecrireFiche, type DemandeEcriture } from './ecriture';
 
 interface FichierLu {
   chemin: string;
@@ -105,6 +108,38 @@ export function serveurMondes(dossierMondes: string): Plugin {
         const monde = lireMonde(racine, id);
         if (!monde) return repondre(res, 404, { erreur: `Monde introuvable : « ${id} ».` });
         repondre(res, 200, monde);
+      });
+
+      // Écrire UNE fiche : une requête à la fois (deux écritures simultanées ne se marchent pas dessus).
+      let ecritureEnCours = false;
+      serveur.middlewares.use('/api/atelier/fiche', (req, res) => {
+        if (req.method !== 'PUT') return repondre(res, 405, { erreur: 'PUT seulement.' });
+        if (!origineAutorisee(req.headers.origin)) return repondre(res, 403, { erreur: 'Origine refusée : le serveur ne sert que l’atelier.' });
+        if (!corpsJson(req.headers['content-type'])) return repondre(res, 415, { erreur: 'Corps JSON attendu.' });
+        if (ecritureEnCours) return repondre(res, 429, { erreur: 'Une écriture est déjà en cours.' });
+        ecritureEnCours = true;
+        let texte = '';
+        let trop = false;
+        req.on('data', (c: Buffer) => {
+          texte += c.toString('utf8');
+          if (texte.length > 2_000_000 && !trop) (trop = true), req.destroy();
+        });
+        req.on('error', () => (ecritureEnCours = false));
+        req.on('end', () => {
+          try {
+            if (trop) return repondre(res, 413, { erreur: 'Requête trop grande.' });
+            const d = JSON.parse(texte) as Partial<DemandeEcriture>;
+            if (typeof d.monde !== 'string' || typeof d.chemin !== 'string' || (d.empreinteAttendue !== null && typeof d.empreinteAttendue !== 'string'))
+              return repondre(res, 400, { erreur: 'Requête invalide.' });
+            const r = ecrireFiche(racine, { monde: d.monde, chemin: d.chemin, mode: d.mode as DemandeEcriture['mode'], ...(d.id !== undefined ? { id: String(d.id) } : {}), valeur: d.valeur, empreinteAttendue: d.empreinteAttendue });
+            if (r.ok) repondre(res, 200, { empreinte: r.empreinte });
+            else repondre(res, r.statut, { erreur: r.erreur, ...(r.empreinteActuelle ? { empreinteActuelle: r.empreinteActuelle } : {}) });
+          } catch (e) {
+            repondre(res, 400, { erreur: `Requête illisible : ${(e as Error).message}` });
+          } finally {
+            ecritureEnCours = false;
+          }
+        });
       });
 
       // Un fichier du monde change sur le disque (un autre éditeur, Claude Code, un agent) : on prévient la page, qui recharge.

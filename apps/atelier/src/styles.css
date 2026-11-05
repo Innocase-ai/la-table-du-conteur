@@ -694,3 +694,160 @@ button.lien {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Fiches et registre --- */
+.fiches {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.listeFiches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 680px;
+  overflow: auto;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+}
+
+.listeFiches button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--bord);
+  border-left: 3px solid transparent;
+  padding: 6px 10px;
+  color: var(--texte);
+  text-align: left;
+  cursor: pointer;
+}
+
+.listeFiches button.actif {
+  background: #262b34;
+  border-left-color: var(--or);
+}
+
+.editeur {
+  min-width: 0;
+}
+
+.champs {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.champ label {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.champ input:not([type='checkbox']),
+.champ textarea {
+  width: 100%;
+  background: var(--carte);
+  color: var(--texte);
+  border: 1px solid var(--bord);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font: inherit;
+}
+
+.champ input[readonly] {
+  color: var(--muet);
+}
+
+.champ textarea.json {
+  font: 12.5px/1.45 ui-monospace, Consolas, monospace;
+  color: #cfcab8;
+}
+
+.champ .retirer {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.ajoutChamp {
+  display: block;
+  margin: 8px 0 14px;
+}
+
+.problemes {
+  color: var(--erreur);
+  margin: 8px 0;
+}
+
+.barreEdition {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  position: sticky;
+  bottom: 0;
+  background: var(--fond);
+  padding: 8px 0;
+}
+
+.bouton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.copie {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+}
+
+.copie .muet {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.diagFiche {
+  margin: 8px 0;
+  padding-left: 18px;
+  font-size: 13.5px;
+}
+
+.diagFiche li.erreur {
+  color: var(--erreur);
+}
+
+.diagFiche li.avis {
+  color: var(--avis);
+}
+
+.diagFiche li.conseil {
+  color: var(--conseil);
+}
+
+.inconnus ul {
+  line-height: 1.9;
+}
+
+.puce {
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+@media (max-width: 900px) {
+  .fiches {
+    grid-template-columns: 1fr;
+  }
+}
