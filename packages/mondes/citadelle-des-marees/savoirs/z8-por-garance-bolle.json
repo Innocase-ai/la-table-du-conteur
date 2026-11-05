@@ -1,0 +1,124 @@
+[
+  {
+    "pnj": "por-garance-bolle",
+    "passe": "Garance Bolle est née à Port-aux-Cordes, et elle tient le Hareng gris depuis vingt ans. Elle l'a repris des mains de sa tante, la patronne d'avant, et n'a presque rien changé : une soupe de poisson le soir, du pain noir, du hareng fumé, et une table commune où les naufragés du port ne paient pas leur assiette. Personne ne dort dehors, c'est la règle qu'elle répète à tous. Il y a douze ans, Joss la Rame a poussé la porte de la taverne, la main droite marquée d'une cicatrice de rame, pour demander du travail. Elle l'a mis au comptoir. Elle compte les pièces en les faisant sauter, elle n'oublie jamais une dette, et elle nourrit le port sans compter les bouches.",
+    "liens": [
+      {
+        "pnj": "joss-la-rame",
+        "nature": "son tavernier, son employé et son ami depuis douze ans",
+        "opinion": "Un bavard qu'elle garde parce qu'il rit. Il lui doit son premier emploi à terre, et paie toujours en retard, mais il paie."
+      },
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "la cheffe des Rats de quai",
+        "opinion": "Une femme de quai qui tient ses comptes à la virgule. Elle n'aime pas les créanciers qui sourient en réclamant, et le dit."
+      },
+      {
+        "qui": "la Ligue des Phares",
+        "nature": "l'autorité du port, qu'elle tolère sans l'aimer",
+        "opinion": "Trop de papier, et pas assez de pain pour ceux qui en ont besoin."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "reprise-du-hareng",
+        "texte": "Il y a vingt ans, elle a repris le Hareng gris des mains de sa tante. Elle n'a rien changé à la soupe de poisson du soir ni au pain noir, et la porte de la cuisine a gardé son vieux loquet de cuivre, qu'elle refuse de faire remplacer."
+      },
+      {
+        "id": "joss-au-comptoir",
+        "texte": "Il y a douze ans, un passeur à la cicatrice de rame sur la main droite est entré au Hareng gris demander du travail. Elle l'a mis au comptoir parce qu'il riait trop fort pour mentir proprement, et il y est toujours."
+      },
+      {
+        "id": "chambre-au-dessus-de-la-cuisine",
+        "texte": "La chambre la plus chaude est celle au-dessus de la cuisine, où la vapeur monte la nuit. Elle y installe les naufragés qui ont perdu leur barque, leur demande le nom de chacun, et tire le verrou de l'intérieur."
+      },
+      {
+        "id": "soupe-au-bout-du-couteau",
+        "texte": "Elle goûte la soupe du bout de la pointe du couteau, debout, sans jamais s'asseoir, et rajoute un demi-geste de sel sans regarder la marmite. Elle dit que le sel se goûte à la pointe, pas à la cuillère."
+      },
+      {
+        "id": "pieces-qui-sautent",
+        "texte": "Elle compte les pièces en les faisant sauter dans la paume, et le tintement lui sert de calculette quand un client discute le prix d'une chambre. Elle ne se trompe jamais de plus d'une pièce."
+      },
+      {
+        "id": "air-de-halage",
+        "texte": "En pétrissant le pain, elle chantonne à voix basse un air de halage sans paroles, les mains enfarinées jusqu'aux coudes. Elle s'arrête net dès qu'on lui demande d'où vient cet air."
+      },
+      {
+        "id": "opinion-sur-la-ligue",
+        "texte": "La Ligue, dit-elle, c'est trop de papier et pas assez de pain : des clercs qui écrivent des listes de naufragés et oublient de leur donner une seule soupe. Elle le dit fort, au comptoir, quand un Ligueur entre."
+      },
+      {
+        "id": "opinion-sur-les-rats",
+        "texte": "Les Rats sont des créanciers, pas des amis, dit-elle. Ils prêtent sans rire, réclament avec le sourire, et ne rendent jamais un service sans en garder la note dans leur tête."
+      },
+      {
+        "id": "opinion-sur-la-mer",
+        "texte": "La mer est la mère de ses clients, dit-elle : elle les lui rend salés, transis, et sans un sou, et Garance n'a jamais su la mettre à la porte. Elle la regarde monter le soir depuis la fenêtre de la cuisine."
+      },
+      {
+        "id": "joss-qui-fait-oublier-les-dettes",
+        "texte": "Elle dit de Joss qu'il est un bavard qu'elle garde parce qu'il rit. Une fois par semaine, il lui raconte une histoire de passeur si fausse qu'elle en oublie de compter la caisse, et elle le laisse faire."
+      },
+      {
+        "id": "la-dette-aux-rats",
+        "texte": "Il y a dix-huit mois, une tempête a arraché le toit du Hareng gris. Pour le réparer, elle doit cent vingt pièces aux Rats de quai, et elle les rend en laissant leurs caisses dormir dans sa cave. Elle déteste ça, et ne le dit à personne.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle essuie ses mains sur son tablier, regarde la cave par la porte entrouverte, et dit que le toit tient bon, que c'est tout ce qui compte."
+      },
+      {
+        "id": "bastien",
+        "texte": "Son mari Bastien, pêcheur, s'est noyé il y a douze ans. Elle porte sur son tablier l'une de ses boucles de ceinture, et ne la montre à personne, même quand les naufragés demandent à la voir.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Elle tapote le tablier, là où le cuir fait une bosse, et dit qu'il y a des choses qu'on ne met pas sur une table commune."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Elle a entendu dire que la mer montera dans trois jours, plus haut que depuis deux siècles, et que Port-aux-Cordes ne reviendra pas à son niveau d'avant. Elle range les marmites du haut.",
+        "acces": {}
+      },
+      {
+        "id": "la-bourse-des-gardes",
+        "fait": "f-por-garde-touchee-par-les-rats",
+        "version": "Elle sait que les gardes du quai reçoivent une bourse des Rats chaque mois, pour regarder ailleurs pendant que les entrepôts travaillent. Elle le dit sur le ton de quelqu'un qui paie aussi son guet.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Elle jette un œil vers la porte du quai, et dit que le guet compte mieux que les marins, et que c'est une affaire de bourse, pas de justice."
+      },
+      {
+        "id": "les-caisses-de-la-cave",
+        "fait": "f-por-caisses-faux-noms",
+        "version": "Elle dit que les caisses de sa cave portent des noms de sel qui ne sont pas les leurs, et que la vraie marchandise dort sous le plancher, à la cale. Elle n'ouvre jamais ces caisses et ne veut pas savoir ce qu'elles contiennent.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Elle répond que ce sont des caisses de sel, et qu'elle n'a pas de temps à perdre à lire des étiquettes sur les caisses d'autrui.",
+        "tabou": [
+          "faux noms",
+          "sous le plancher"
+        ]
+      },
+      {
+        "id": "ce-que-gaspard-a-vu",
+        "fait": "f-por-gaspard-temoin",
+        "version": "Elle dit que Gaspard Filet a pris un sel qui n'était pas à lui, et qu'il ferait mieux de rentrer chez lui, sur ses propres pieds. Elle a l'air de croire le contraire de ce qu'elle dit, et elle ne le dit pas.",
+        "acces": {
+          "attitudeMin": 65
+        },
+        "evasif": "Elle repose la louche, regarde le plafond, et dit qu'un homme qui parle trop la nuit finit souvent par se noyer tout seul.",
+        "tabou": [
+          "témoin",
+          "faire taire"
+        ]
+      }
+    ]
+  }
+]

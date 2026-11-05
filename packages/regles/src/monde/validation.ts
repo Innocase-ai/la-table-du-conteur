@@ -53,7 +53,11 @@ function refsCondition(c: Condition, f: (genre: string, id: string, extra?: stri
   else if ('objet' in c) f('objet', c.objet);
   else if ('pnj' in c) f('pnj', c.pnj.id);
   else if ('lieu' in c) f('lieu', c.lieu);
-  else if ('niveauGroupe' in c || 'pieces' in c) return;
+  else if ('heros' in c) {
+    if (c.heros.classe) f('classe', c.heros.classe);
+    if (c.heros.espece) f('espece', c.heros.espece);
+    if (c.heros.historique) f('historique', c.heros.historique);
+  } else if ('niveauGroupe' in c || 'pieces' in c) return;
   else if ('non' in c) refsCondition(c.non, f);
   else if ('et' in c) c.et.forEach((x) => refsCondition(x, f));
   else c.ou.forEach((x) => refsCondition(x, f));
@@ -100,6 +104,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       case 'objet': return objetExiste(id);
       case 'pnj': return dm.pnj.has(id);
       case 'lieu': return dm.lieux.has(id);
+      case 'classe': return srd.classes.has(id);
+      case 'espece': return srd.especes.has(id);
+      case 'historique': return srd.historiques.has(id);
       case 'rencontre': return dm.rencontres.has(id);
       case 'fin': return dm.fins.has(id);
       default: return false;
@@ -425,6 +432,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     const ou = `Examen « ${x.id} »`;
     cond(ou, x.visible);
     effets(ou, x.effets);
+    x.regards.forEach((r, k) => cond(`${ou}, regard ${k + 1}`, r.condition));
     for (const va of x.variantes) {
       cond(`${ou}, variante « ${va.id} »`, va.condition);
       effets(`${ou}, variante « ${va.id} »`, va.effets);

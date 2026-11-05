@@ -15,6 +15,24 @@
         "texte": "Aucune planche n'est arrachée, aucun mât brisé : la coque n'a pas été jetée sur les rochers. On l'y a posée, ou plutôt tirée vers le bas, par une force venue de dessous. Le nom peint à l'arrière est intact, les lettres blanches sans une écaille. L'aussière coupée à la proue est nette, comme sciée par quelque chose qui n'avait pas besoin de hache. La mer a gardé le cotre et l'a couché sans un bris.",
         "effets": []
       }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous remarque que le pont ne porte aucune trace de lutte ni de fuite : les cordages sont lovés, les bailles rangées. Les marins n'ont pas eu le temps de comprendre."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "goliath"
+          }
+        },
+        "texte": "L'un de vous, habitué aux hautes falaises, sent que la coque ne bouge pas comme un bateau échoué : elle a fini sa course en douceur, comme posée à la main."
+      }
     ]
   },
   {
@@ -32,6 +50,24 @@
         },
         "texte": "C'est la borne d'un royaume qui s'arrêtait ici : la couronne gravée est celle de Lothmar, et toute la côte, de la falaise jusqu'à la baie, lui appartenait. Les fleurons ont été frottés par des doigts pendant des siècles, comme on touche une chose sacrée. Le royaume n'a plus de nom que sur cette pierre, et la mer, en contrebas, a pris sa place. Les trois lettres restantes ne suffisent plus à dire quoi que ce soit, sauf qu'on était chez eux. Un coup de vent salé fait tinter la chaîne du pont.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît la devise à demi effacée : le mot « …MAR » appartient à un usage ancien, quand les bornes portaient le nom des fiefs plutôt que la hauteur des eaux."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous, bâtisseur, voit que la borne est taillée d'un seul bloc, scellée au plomb, et que le polissage des bords tient d'un ouvrage de tailleur, non du hasard."
       }
     ]
   },
@@ -90,6 +126,24 @@
         },
         "texte": "La terre n'a jamais été remuée : ces tombes sont des tombes de mémoire. Les noms sont là pour ceux que la mer a gardés, et les dalles n'ont rien à garder, sinon l'écriture. La mer n'a rendu aucun corps, pas un seul, depuis que le premier nom a été gravé. Les cordiers, les sauniers, les pilotes gravés ici ont disparu en mer, et la pierre dit leurs noms sans les rendre au sol. Une dalle est plus récente que les autres, son nom encore net.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L'un de vous, clerc, remarque qu'aucune dalle n'est suivie de la formule de prière d'usage : on a gravé les métiers, rien pour l'âme."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L'un de vous, ancien acolyte, sait qu'on ne grave pas un nom sur une dalle sans que le défunt repose dessous : ici, la coutume a survécu par entêtement, comme un rite qu'on n'ose pas rompre."
       }
     ]
   },

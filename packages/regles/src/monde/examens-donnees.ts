@@ -30,6 +30,8 @@ export const Examen = z.object({
   effets: z.array(EffetMonde).default([]),
   /** Lectures plus fines : la dernière dont la condition est vraie remplace le texte de base ; ses effets s'appliquent une fois. */
   variantes: z.array(ExamenVariante).default([]),
+  /** Regards d'origine : une phrase de plus quand un héros du groupe a l'œil pour ça (condition `heros`). S'ajoutent à la lecture, deux au plus. */
+  regards: z.array(z.object({ condition: Condition, texte: z.string().min(1) })).default([]),
 });
 export type Examen = z.infer<typeof Examen>;
 

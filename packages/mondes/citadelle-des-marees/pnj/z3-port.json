@@ -184,6 +184,22 @@
             ]
           },
           "texte": "Mère Sorel vous attend au bout de la cale, les mains dans les poches. « Mes alliés. Ça ne se dit pas souvent sur ce quai, alors je ne le dirai qu'une fois. Entrez, ma belle, la place est gardée. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "tieffelin"
+            }
+          },
+          "texte": "Mère Sorel remarque vos cornes avant votre visage, sans s'en étonner. Elle polit la sienne du pouce, en vous jaugeant. « Sur ce quai, on vous fera payer la corne en plus. Moi, je la compte dans le prix : c'est plus honnête. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "historique": "criminel"
+            }
+          },
+          "texte": "Mère Sorel reconnaît à la démarche d'un de vous un passé de truand avant qu'il ait parlé, et dénoue la cordelette qu'elle tenait. « Vous connaissez les portes de derrière. Bien. Ici, on ne demande pas d'où vient l'argent. »"
         }
       ]
     },
@@ -486,7 +502,7 @@
           "chapelle"
         ],
         "question": "Que signifient les noms gravés aux piliers ?",
-        "reponse": "Ce sont les naufragés repêchés depuis un an, dont elle a demandé le nom avant qu'ils ne partent. La mer ne garde pas les noms, dit-elle, alors ce sont les vivants qui doivent les garder. Elle montre le dernier pilier, où le nom est encore frais, celui d'un marin de la Ligue.",
+        "reponse": "Ce sont les naufragés repêchés ces derniers mois, dont elle a demandé le nom avant qu'ils ne partent. La mer ne garde pas les noms, dit-elle, alors ce sont les vivants qui doivent les garder. Elle montre le dernier pilier, où le nom est encore frais, celui d'un marin de la Ligue.",
         "revele": [
           "f-por-noms-des-noyes"
         ],
@@ -739,6 +755,22 @@
             "flag": "joss-demasque"
           },
           "texte": "Joss ne sourit plus. Il essuie le comptoir plus fort que nécessaire, les yeux sur ses mains. « Je sais ce que vous savez, l'ami. Asseyez-vous, et ne commandez rien : vous me devez une explication. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "orc"
+            }
+          },
+          "texte": "Joss la Rame reconnaît un des siens, et son sourire s'élargit d'un cran. « Un frère du quai, l'ami ! Ça se voit aux épaules. Asseyez-vous, la maison régale. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "historique": "soldat"
+            }
+          },
+          "texte": "Joss la Rame reconnaît la façon de se tenir de votre soldat, et sa main quitte le torchon. « Un ancien de la garde, l'ami ? Ça se voit à vos pieds, qui ne traînent jamais. Commandez, je vous paie la première. »"
         }
       ]
     },
@@ -1223,7 +1255,25 @@
     ],
     "salutations": {
       "neutre": "Vous voulez acheter, ou vous êtes là pour faire du bruit ?",
-      "amical": "Ah, un client qui sait ce que vaut une corde. Montrez-moi vos mains."
+      "amical": "Ah, un client qui sait ce que vaut une corde. Montrez-moi vos mains.",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "espece": "nain"
+            }
+          },
+          "texte": "Hennequin Lacet regarde les mains du nain, puis sa ceinture, sans rien demander. « Bon cuir, bonne prise. Vous savez tenir un ciseau, vous. Ça ne s'apprend pas à la taverne. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "guerrier"
+            }
+          },
+          "texte": "Hennequin Lacet regarde le fourreau de votre guerrier, puis ses bras, et s'essuie les mains avant de tendre la sienne. « Un homme de fer. Qu'il ne tire pas sur les cordages, ou je le fais payer. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -1730,7 +1780,25 @@
     "salutations": {
       "hostile": "Je ne parle pas aux gens de la Ligue. Ni à leurs chiens.",
       "neutre": "Vous êtes montés jusqu'ici ? Il fallait pas.",
-      "amical": "Ah, des gens qui montent l'escalier sans se plaindre. Asseyez-vous, la lampe brûle encore."
+      "amical": "Ah, des gens qui montent l'escalier sans se plaindre. Asseyez-vous, la lampe brûle encore.",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "espece": "elfe"
+            }
+          },
+          "texte": "Ambroise Carène regarde l'elfe franchir le seuil, et sa phrase s'arrête au milieu, comme s'il écoutait encore la mer. Il ne se lève pas. « Vous entendez ce qu'on ne dit pas, vous. Gardez-le pour vous, ici. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "rodeur"
+            }
+          },
+          "texte": "Ambroise Carène remarque les traces du rôdeur sur les planches mouillées, et se lève enfin. « Vous lisez le sol comme une carte. Alors lisez celui-là : il est trop propre pour un quai. »"
+        }
+      ]
     },
     "inventaire": []
   },

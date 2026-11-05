@@ -132,3 +132,64 @@ describe('La Citadelle des Marées : chaque détail à examiner se lit, dans son
     }
   });
 });
+
+describe('Les origines des héros : la condition heros et les regards d’origine', () => {
+  const p0 = depart();
+  const heros = p0.etat.heros!;
+  const absent = ['guerrier', 'barbare', 'barde', 'clerc', 'druide', 'ensorceleur', 'magicien', 'moine', 'occultiste', 'paladin', 'rodeur', 'roublard'].find((c) => !heros.some((h) => h.classe === c))!;
+  const classeDuGroupe = heros[0]!.classe;
+  const regards = [
+    { condition: { heros: { classe: classeDuGroupe } }, texte: 'Un œil de la classe du groupe y lit autre chose.' },
+    { condition: { heros: { classe: absent } }, texte: 'Personne ici ne lirait cela.' },
+    { condition: { heros: { classe: classeDuGroupe, espece: heros[0]!.espece, historique: heros[0]!.historique } }, texte: 'Le premier héros, tout entier, reconnaît le détail.' },
+  ];
+  const d2 = { ...dm0, extensions: { ...(dm0.extensions ?? {}), examens: [{ ...EXAMENS[0]!, regards }] } };
+  const m2 = creerMoteur({ dm: d2, srd }, MODULES_STANDARD);
+
+  it('l’état garde les origines du groupe (classe, espèce, historique de chaque héros)', () => {
+    expect(heros).toHaveLength(p0.groupe.length);
+    expect(heros[0]).toEqual({ classe: p0.groupe[0]!.fiche.classe, espece: p0.groupe[0]!.fiche.espece, historique: p0.groupe[0]!.fiche.historique });
+  });
+
+  it('un regard s’ajoute après la lecture quand un héros du groupe a l’origine demandée, jamais sinon', () => {
+    const res = m2.executer(p0, { type: 'examiner', examen: 'inscription-du-linteau' });
+    const t = textes(res.evenements);
+    expect(t[0]).toContain('quatre lettres gravées');
+    expect(t).toContain('Un œil de la classe du groupe y lit autre chose.');
+    expect(t).toContain('Le premier héros, tout entier, reconnaît le détail.');
+    expect(t).not.toContain('Personne ici ne lirait cela.');
+    expect(t.length).toBe(3);
+  });
+
+  it('la validation connaît les classes, espèces et historiques du SRD', () => {
+    const bilan = validerMonde({ ...dm0, extensions: { examens: [{ ...EXAMENS[0]!, regards: [{ condition: { heros: { classe: 'chevalier-dragon', espece: 'elfe', historique: 'pirate' } }, texte: 'x' }] }] } }, srd);
+    const e = bilan.erreurs.join('\n');
+    expect(e).toMatch(/classe inconnu « chevalier-dragon »/);
+    expect(e).toMatch(/historique inconnu « pirate »/);
+    expect(e).not.toMatch(/espece inconnu/);
+  });
+});
+
+describe('Le Val des Cendres : chaque détail à examiner se lit, dans son lieu', () => {
+  const mv = creerMoteur({ dm: dm0, srd }, MODULES_STANDARD);
+  const examens = (dm0.extensions?.['examens'] ?? []) as { id: string; lieu: string; variantes: { condition: { fait?: string; flag?: string }; texte: string }[] }[];
+  const g = groupeConseille(3, srd).emplacements.map((p) => {
+    const f = bilanPersonnage(p!, srd).fiche!;
+    return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
+  });
+  const base = mv.executer(mv.nouvellePartie(g, { graine: 3, niveau: 3 }), { type: 'commencer' }).partie;
+  const ici = (lieu: string, faits: string[] = []): Partie => ({ ...base, scene: { type: 'exploration' } as Partie['scene'], etat: { ...base.etat, lieu, faits: [...base.etat.faits, ...faits] } });
+
+  it('au moins 20 examens, tous lisibles ; la variante remplace la lecture de base quand son fait est connu', () => {
+    expect(examens.length).toBeGreaterThanOrEqual(20);
+    for (const e of examens) {
+      const res = mv.executer(ici(e.lieu), { type: 'examiner', examen: e.id });
+      expect(res.refus, e.id).toBeUndefined();
+      expect(textes(res.evenements)[0]!.length, e.id).toBeGreaterThan(150);
+      for (const v of e.variantes) {
+        const lu = mv.executer(ici(e.lieu, v.condition.fait ? [v.condition.fait] : []), { type: 'examiner', examen: e.id });
+        expect(textes(lu.evenements)[0], e.id).toBe(v.texte);
+      }
+    }
+  });
+});

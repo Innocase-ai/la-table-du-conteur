@@ -51,6 +51,24 @@
         "texte": "Ce siège n'a pas été fait pour un conseiller : c'est la place du Sceau. Autrefois, l'enfant marquée siégeait à cette table, parmi les nobles, jusqu'à ses seize ans, l'âge où elle descendait tenir la mer. Elle était toujours là, à sa place basse, pendant que le conseil décidait au-dessus d'elle. Son coussin reste intact, comme si personne n'avait cessé de le garnir.",
         "effets": []
       }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "texte": "L'un de vous, musicien, remarque que la nacre de ce siège est plus fine que celle des autres, et polie plus longtemps, comme pour un rang qu'on ne donne qu'une fois."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L'un de vous, ancien acolyte, sait que le velours d'un tel coussin ne se garnit pas à la légère : on le refait à la main, chaque saison, par quelqu'un qui en a le temps."
+      }
     ]
   },
   {
@@ -86,6 +104,24 @@
         },
         "texte": "Les creux sont petits, serrés, à peine plus longs qu'une main d'homme. Nolwen, qui vous accompagne, pose ses pieds dans les creux sans y penser, en comptant tout bas, comme on compte des marches qu'on croit connaître. Ses pas tombent exactement là, creux après creux, jusqu'au bord de la vasque. Elle s'y arrête, très pâle, et ne répond pas quand on l'appelle.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L'un de vous, clerc, reconnaît dans la régularité des creux la cadence d'un rite répété, non celle d'un pèlerinage libre : chaque pas a été posé là où l'on avait posé le précédent."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "elfe"
+          }
+        },
+        "texte": "L'un de vous, elfe, entend sous les pas une note basse, presque inaudible, comme celle d'une corde tendue sous l'eau que la marche fait vibrer."
       }
     ]
   }

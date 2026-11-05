@@ -254,3 +254,15 @@ Le sixième dossier d'extension est **`codex/`** (module Codex, `modules/codex.t
   Une question **apparaît** quand sa condition `quand` devient vraie, reste en suspens avec sa **piste** (où chercher, jamais la réponse), puis passe dans « Questions éclaircies » avec sa **réponse** quand `resolue` est vraie. La réponse peut n'être que partielle : elle ouvre la suite.
 - **Le conteur** voit « Questions en suspens (avec leur piste) » et « Questions éclaircies » dans sa fiche : il peut répondre à « qu'est-ce qu'on cherche ? » sans rien inventer, et ne donne jamais la réponse d'une question en suspens.
 - **Validation** : erreurs (id en double, références des conditions) ; conseil (moins de 10 questions, question sans piste ou de plus de 20 mots).
+
+## Les origines des héros (condition `heros`)
+
+Chaque héros du groupe a une **espèce**, une **classe** et un **historique** ; le monde peut s'en apercevoir. La condition `{ "heros": { "espece": "nain" } }` (ou `classe`, ou `historique`, ou plusieurs ensemble : alors le **même** héros doit avoir tout) est vraie si au moins un héros du groupe correspond. Elle s'écrit partout où une `Condition` est permise : variantes de salutation (`salutations.variantes`, la première vraie l'emporte : mettre les plus précises avant), sujets, examens, interjections, événements, dilemmes. L'état garde les origines du groupe à la création de la partie (`etat.heros`) ; une ancienne sauvegarde sans elles répond « faux ». Le validateur vérifie que la classe, l'espèce et l'historique existent dans le SRD.
+
+- **Regards d'origine sur les examens** : le champ `regards` d'un examen (`[ { "condition": { "heros": {…} }, "texte": "…" } ]`) ajoute **une phrase** après la lecture quand un héros du groupe a l'œil pour ça (deux au plus par lecture) ; il s'ajoute au texte de base ou à la variante au lieu de la remplacer. Une phrase de 15 à 35 mots, un détail concret en plus (une technique, un défaut, une habitude) ; jamais un secret ni une solution d'énigme.
+- **Salutations d'origine** : un PNJ réagit à un héros (un mot, un regard, un geste) dans sa voix ; les variantes d'origine se placent **après** celles de l'histoire.
+- **À écrire** : un agent Haiku (brief : `.claude/skills/creer-monde/references/brief-origines.md`), relu par Claude (pas de lore inventé, pas de secret).
+
+## L'antagoniste présent dès le début
+
+Un antagoniste qui n'apparaît qu'à la fin du prologue n'existe pas pour le joueur. Pour le faire hanter le début sans rien révéler : **deux ou trois apparitions** qui montent en étrangeté (événements `entree-lieu` avec condition sur le prologue), un **fait par apparition** (catégorie `indice`), un **sujet** d'un PNJ qui l'a croisé, une **interjection** d'un accompagnateur, et une **question du codex** qui part de la première apparition. Exemple : « l'homme au manteau sec » de la Citadelle (`evenements/z9-heraut.json`, brief : `.claude/skills/creer-monde/references/brief-antagoniste.md`).

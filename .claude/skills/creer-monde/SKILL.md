@@ -18,6 +18,7 @@ Les deux mondes livrés sont les références : **le Val des Cendres** et **La C
 | Écrire des **choix difficiles** (dossier `dilemmes/`), échos, épilogues, pertes | `creer-dilemmes` |
 | Donner de la **profondeur aux PNJ** (passé, liens, confidences, savoir vérifié ; dossier `savoirs/`) | `creer-personnages` |
 | Donner du **lore au décor** : détails à examiner par lieu (inscriptions, objets, traces) qui se relisent selon ce que le groupe sait ; dossier `examens/`, format dans `docs/MONDES.md`, brief type `references/brief-examens.md` | ce skill (agents Haiku, relecture par Claude) |
+| Faire **réagir le monde aux héros** (condition `heros` : regards d'origine sur les examens, salutations de PNJ ; brief `references/brief-origines.md`) et **faire hanter le début par l'antagoniste** (apparitions qui montent en étrangeté, un fait chacune ; brief `references/brief-antagoniste.md`) | ce skill (agents Haiku, relecture par Claude : aucun lore inventé) |
 | Poser des **mystères au joueur** : questions du codex (dossier `codex/`, 10 à 15 par monde), chacune ouverte par un fait connu, avec une piste et fermée par le fait qui répond ; brief type `references/brief-codex.md` | ce skill (un agent Haiku, relecture par Claude ; **vérifier que `quand` est le fait que le groupe sait déjà et `resolue` celui qui répond**) |
 | Écrire et vérifier des **énigmes** | `enigmes` |
 | Toucher au **conteur IA** | `conteur` ; nouvelle mécanique de jeu : `ajouter-module` |

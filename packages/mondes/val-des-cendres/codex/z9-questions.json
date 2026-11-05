@@ -1,0 +1,98 @@
+[
+  {
+    "id": "q-d-ou-vient-la-cendre",
+    "texte": "D'où vient la cendre qui tombe sur le Val ?",
+    "quand": { "fait": "f-vei-cendre-grise" },
+    "resolue": { "fait": "f-coeur-de-braise" },
+    "piste": "Demande aux anciens depuis quand la cendre tombe, et d'où venait la première ; monte observer les coulées grises au-dessus du village.",
+    "reponse": "Elle vient du Cœur-de-Braise, foyer sacré de la Haute-Forge, branché sur la Veine rouge. Il n'est pas éteint : il rejette la cendre qui tombe sur le Val et entretient les morts."
+  },
+  {
+    "id": "q-morts-qui-rentrent",
+    "texte": "Qu'est-ce qui relève les morts, et pourquoi rentrent-ils chez eux ?",
+    "quand": { "fait": "f-vei-les-morts-rentrent" },
+    "resolue": { "fait": "f-cendre-reveille-les-morts" },
+    "piste": "Demande à ceux qui ont abattu un mort ce qui coulait de ses blessures, et regarde la cendre accrochée aux seuils.",
+    "reponse": "Ce ne sont pas des âmes revenues : la cendre qui tombe réveille les morts, animée par le Cœur-de-Braise. Sans sang, ils retombent en poussière quand on les abat."
+  },
+  {
+    "id": "q-huile-de-la-lanterne",
+    "texte": "Où trouver de l'huile pour la Lanterne ?",
+    "quand": { "fait": "f-vei-combustible" },
+    "resolue": { "fait": "f-gro-fosse-huile-de-roche" },
+    "piste": "Retourne à la Fosse et descends voir ce qui suinte encore des parois, au plus bas des galeries.",
+    "reponse": "L'huile de roche suinte encore des parois du filon de la Fosse, en bas : de quoi nourrir la Lanterne, avec la houille rouge du même filon."
+  },
+  {
+    "id": "q-ce-que-coute-la-lanterne",
+    "texte": "Que coûte la Lanterne à son Veilleur ?",
+    "quand": { "fait": "f-vei-veilleur-visage" },
+    "resolue": { "fait": "f-veilleur-se-consume" },
+    "piste": "Demande à Oswin qui était le Veilleur avant lui, et ce que sont devenus ceux qui se sont offerts à la flamme.",
+    "reponse": "Chaque année, un volontaire, le Veilleur, donne un peu de sa vie à la flamme ; la Mère-Gardienne le cache au village. Oswin est mourant, et il n'y a plus de volontaire."
+  },
+  {
+    "id": "q-ou-va-le-grain",
+    "texte": "Où va le grain de Veillecendre ?",
+    "quand": { "fait": "f-vei-greniers-au-tiers" },
+    "resolue": { "fait": "f-tribut-du-bailli" },
+    "piste": "Suis les charrettes qui quittent la grange à la nuit tombée, et demande aux charretiers qui les attend à la porte.",
+    "reponse": "Le bailli paie en secret un tribut de grain à la Compagnie du Fer-Gris, pour que le village soit « protégé ». Les greniers sont presque vides : il veut évacuer avant l'hiver."
+  },
+  {
+    "id": "q-les-pelerins",
+    "texte": "Que veulent les Pèlerins gris qui rôdent la nuit ?",
+    "quand": { "fait": "f-vei-pelerins-rodent" },
+    "resolue": { "fait": "f-pelerins-motif" },
+    "piste": "Parle à l'un de ceux qui ont suivi les pèlerins, s'il est revenu, et demande ce qu'on leur promettait au bout du chemin.",
+    "reponse": "Ils croient que la cendre est une grâce : se laisser prendre, c'est rejoindre les morts en paix. Ils ne tuent pas et ne se défendent pas, mais voudraient voir la Lanterne s'éteindre."
+  },
+  {
+    "id": "q-les-pillards-du-gue",
+    "texte": "Qui sont vraiment les pillards du Gué ?",
+    "quand": { "fait": "f-gue-pillages-des-refugies" },
+    "resolue": { "fait": "z6-bande-du-gue-faim" },
+    "piste": "Va voir les granges du hameau, derrière le gué, et demande qui y mange le soir, et ce que les familles ont à perdre.",
+    "reponse": "Ce ne sont pas des brigands de naissance : des réfugiés affamés, à qui la Lanterne n'a pas fait place. Leur chef, Gaspard le Borgne, était meunier ; chaque pillage nourrit des familles."
+  },
+  {
+    "id": "q-le-fer-gris",
+    "texte": "Que veut la Compagnie du Fer-Gris ?",
+    "quand": { "fait": "f-pdf-compagnie-arrivee" },
+    "resolue": { "fait": "f-fer-gris-veut-la-forge" },
+    "piste": "Parle aux tisserands de Pont-de-Fer qui ont accepté de rester, et demande-leur ce que la Compagnie fait chaque nuit à la vieille forge.",
+    "reponse": "La Compagnie veut la Haute-Forge et le Cœur-de-Braise. Son capitaine est sincère : il cherche un foyer pour son peuple. S'il obtient le Cœur, le Val deviendra un fief de guerre."
+  },
+  {
+    "id": "q-le-roi-forgeron",
+    "texte": "Pourquoi le roi a-t-il tout risqué la Nuit de la Cendre ?",
+    "quand": { "fait": "f-nuit-de-la-cendre" },
+    "resolue": { "fait": "f-derniere-commande" },
+    "piste": "Cherche ce que le roi forgeait ses dernières années, dans les ateliers les plus profonds, et demande qui y travaillait avec lui.",
+    "reponse": "Il forgeait une Dernière Commande, un corps de fer et de braise pour ramener sa fille. Pour l'animer, il a nourri le Cœur du feu de ses forges, puis du feu de son peuple."
+  },
+  {
+    "id": "q-la-cle-du-sceau",
+    "texte": "Où repose la clé du sceau de la Haute-Forge ?",
+    "quand": { "fait": "f-pdf-le-sceau-bloque-la-compagnie" },
+    "resolue": { "fait": "f-sceau-des-cryptes" },
+    "piste": "Demande aux plus vieux forgerons du village qui a juré de garder ce que les nains ont laissé derrière eux, et où.",
+    "reponse": "La Haute-Forge est fermée par un sceau nain. Sa clé repose dans les cryptes d'Ormgard, sous la garde de leur gardien, au fond des salles funéraires."
+  },
+  {
+    "id": "q-le-gardien-d-ormgard",
+    "texte": "Qui garde la route funéraire des cryptes ?",
+    "quand": { "fait": "f-cry-route-funeraire" },
+    "resolue": { "fait": "f-cry-gardien-brand" },
+    "piste": "Cherche les noms gravés sur les portes de la garde, et demande qui a fait serment de tenir la route jusqu'à la relève.",
+    "reponse": "Brand Garde-Serment, capitaine de la garde d'Ormgard, est mort à son poste. Son serment le retient : il tient la route fermée, et la clé du Sceau repose avec lui."
+  },
+  {
+    "id": "q-les-loups-gris",
+    "texte": "Pourquoi les Loups-Gris attaquent-ils les voyageurs ?",
+    "quand": { "fait": "f-gro-caravane-du-colporteur" },
+    "resolue": { "fait": "f-gro-loups-fuient-la-cendre" },
+    "piste": "Monte aux hauts pâturages voir l'eau des sources, et regarde ce qui vit dans les terriers qu'on n'ose pas approcher.",
+    "reponse": "La meute n'est pas venue chasser : elle a fui les hauts pâturages, où les sources ont tourné au gris et où les morts de cendre errent dans les terriers. Une louve protège ses louveteaux."
+  }
+]

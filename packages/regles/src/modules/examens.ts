@@ -49,6 +49,7 @@ export const moduleExamens: Module = {
         if (premiere) vus.push(lecture.id);
         const cr = jouerEffets(partieMonde(t), [], premiere ? lecture.effets : []);
         cr.narrations.unshift(lecture.texte);
+        for (const r of ex.regards.filter((x) => evaluerCondition(x.condition, t.partie.etat)).slice(0, 2)) cr.narrations.push(r.texte);
         return verser(t, cr);
       },
       propositions: (ctx, p): Proposition[] =>
@@ -87,10 +88,11 @@ export const moduleExamens: Module = {
       const n = nbMots(e.texte);
       if (n < 25) avis.push(`Examen « ${e.id} » : ${n} mots ; visez 40 à 110, avec des détails concrets (matière, gravure, trace, odeur).`);
       if (n > 130) avis.push(`Examen « ${e.id} » : ${n} mots ; 110 au plus.`);
+      for (const r of e.regards) if (nbMots(r.texte) > 40) avis.push(`Examen « ${e.id} », regard d'origine : plus de 40 mots ; une phrase.`);
       for (const v of e.variantes) if (nbMots(v.texte) > 130) avis.push(`Examen « ${e.id} », variante « ${v.id} » : plus de 130 mots.`);
     }
     const lieux = new Set(examens.map((e) => e.lieu));
-    if (examens.length && lieux.size < ctx.dm.lieux.size / 3) avis.push(`Examens : ${lieux.size} lieu(x) sur ${ctx.dm.lieux.size} ont un détail à examiner ; visez au moins un tiers (inscriptions, objets, traces qui racontent le lieu).`);
+    if (examens.length && lieux.size < Math.min(ctx.dm.lieux.size / 3, 20)) avis.push(`Examens : ${lieux.size} lieu(x) sur ${ctx.dm.lieux.size} ont un détail à examiner ; visez au moins un tiers (ou 20 pour un grand monde : inscriptions, objets, traces qui racontent le lieu).`);
     if (!examens.some((e) => e.variantes.length)) avis.push('Examens : aucune variante ; au moins un détail devrait se lire autrement une fois un fait appris (le lore se recoupe).');
     return avis;
   },

@@ -28,6 +28,7 @@ export type Condition =
   | { lieu: string }
   | { pieces: { min?: number; max?: number } }
   | { niveauGroupe: { min?: number; max?: number } }
+  | { heros: { classe?: string; espece?: string; historique?: string } }
   | { non: Condition }
   | { et: Condition[] }
   | { ou: Condition[] };
@@ -49,6 +50,10 @@ export const Condition: z.ZodType<Condition> = z.lazy(() =>
     z.object({ lieu: Id }).strict(),
     z.object({ pieces: z.object({ min: z.number().optional(), max: z.number().optional() }) }).strict(),
     z.object({ niveauGroupe: z.object({ min: z.number().int().optional(), max: z.number().int().optional() }) }).strict(),
+    // Au moins un héros du groupe a cette classe, cette espèce et cet historique (ceux qui sont donnés) : les origines du groupe.
+    z
+      .object({ heros: z.object({ classe: Id.optional(), espece: Id.optional(), historique: Id.optional() }).refine((h) => !!(h.classe || h.espece || h.historique), 'heros : au moins une classe, une espèce ou un historique') })
+      .strict(),
     z.object({ non: Condition }).strict(),
     z.object({ et: z.array(Condition).min(1) }).strict(),
     z.object({ ou: z.array(Condition).min(1) }).strict(),

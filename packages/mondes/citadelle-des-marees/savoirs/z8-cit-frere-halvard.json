@@ -1,0 +1,108 @@
+[
+  {
+    "pnj": "cit-frere-halvard",
+    "passe": "Frère Halvard est entré à la Citadelle à vingt-neuf ans, il y a trente et un ans, et en garde depuis la porte de terre. Il tient le registre des entrées, et chaque matin il rend compte de la nuit au Prieur Anselme Vareuil, qui lui trouve trop de colonnes et pas assez de pas dans la cour. Il a soixante ans, la carrure large d'un homme habitué aux charges, le crâne rasé et la bure grise serrée à la taille par une corde. Il ouvre à qui la tempête chasse, comme la Citadelle l'a toujours fait, et il tient cela pour la seule justice qui vaille. Il tire le verrou deux fois chaque soir, compte les cloches de la nuit et porte sa lanterne de cuivre à deux mains. Le registre garde les noms des derniers arrivés, mais la pluie en efface déjà certains.",
+    "liens": [
+      {
+        "pnj": "prieur-anselme-vareuil",
+        "nature": "le Prieur, à qui il rend compte chaque matin",
+        "opinion": "Il le respecte, et lui trouve « trop de colonnes, pas assez de pas dans la cour »."
+      },
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "cartographe de la maison, qui passe la porte de terre",
+        "opinion": "Il la salue sans lui demander d'où elle revient, par règle de la porte ; il ne la questionne jamais, même quand elle rentre tard."
+      },
+      {
+        "qui": "l'homme blême, visiteur de la nuit",
+        "nature": "inconnu qu'il a trouvé dans la cour sans l'avoir laissé entrer",
+        "opinion": "Il a entendu sa question sur l'apprentie de seize ans, à travers la porte, puis il l'a retrouvé dans la cour. Il tient sa lanterne plus haut depuis."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "porte-de-terre-trente-et-un-ans",
+        "texte": "Il y a trente et un ans, à vingt-neuf ans, il a franchi la porte de terre de la Citadelle pour y rester. La garde de cette porte est la seule qu'il ait jamais tenue."
+      },
+      {
+        "id": "verrou-deux-fois",
+        "texte": "Chaque soir, il tire le verrou de la porte de terre deux fois de suite, la main sur le fer froid, avant de toucher au registre. Il dit qu'une fois ne suffit jamais à fermer une porte."
+      },
+      {
+        "id": "lanterne-deux-mains",
+        "texte": "Il tient la lanterne de cuivre à deux mains, même au repos, comme s'il craignait qu'elle lui échappe. Le cuivre est tiède contre sa paume, et il ne la pose jamais sur la pierre froide du seuil."
+      },
+      {
+        "id": "cloche-heure-des-cartographes",
+        "texte": "Il ne tire la grosse cloche qu'à l'heure que lui donnent les cartographes, au moment où la mer change de sens. Sonner avant l'heure, dit-il, c'est réveiller les gens pour rien."
+      },
+      {
+        "id": "question-par-phrase",
+        "texte": "Il ne répond jamais à une question par une autre. Il en pose une par phrase, toujours la même au premier passant : « Vos noms, s'il vous plaît, avant d'entrer ? » Le reste, dit-il, peut attendre."
+      },
+      {
+        "id": "colonnes-du-prieur",
+        "texte": "Il rend compte chaque matin au Prieur Anselme Vareuil, qu'il respecte. Il lui trouve « trop de colonnes, pas assez de pas dans la cour », et le dit comme une remarque de portier, sans s'en excuser."
+      },
+      {
+        "id": "accueil-sans-demander",
+        "texte": "La Citadelle ouvre à qui la tempête chasse, depuis toujours, et il tient cela pour la seule justice qui vaille la peine d'être tenue : accueillir sans demander."
+      },
+      {
+        "id": "cloche-deux-fois-plus-tot",
+        "texte": "Une nuit de vent, la cloche a sonné deux fois plus tôt que les cartographes ne l'avaient annoncé. Il a tenu sa lanterne plus haut jusqu'au matin, sans dire pourquoi."
+      },
+      {
+        "id": "la-ligne-sans-nom",
+        "texte": "Il y a seize ans, un soir de tempête d'équinoxe, il a écrit dans le registre de la porte de terre une seule ligne : « une entrante, sans nom ». Il ne l'a jamais barrée, et il ne l'a jamais remplie.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il ouvre le registre à la page des entrées de nuit, passe le pouce sur une ligne sans la lire, et referme le livre sans un mot."
+      },
+      {
+        "id": "la-peur-d-ouvrir",
+        "texte": "Sa vraie peur, il ne la dit qu'à demi : ouvrir un jour la porte sans savoir à qui il ouvre. Il tire le verrou deux fois chaque soir, et ne dit jamais pourquoi la seconde fois compte plus que la première.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Il tire le verrou une seconde fois, sans un mot, et répète que la porte ne se ferme que sur ceux qu'on attend."
+      }
+    ],
+    "sait": [
+      {
+        "id": "l-homme-au-manteau-sec",
+        "fait": "f-cit-homme-bleme-vu",
+        "version": "Il dit avoir vu un homme blême, au manteau sec sous la pluie, traverser la cour des vents sans que personne ne l'arrête. Il ne sait pas qui l'a laissé passer, et ne croit pas qu'une porte retienne quelqu'un sans raison.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-question-de-l-homme-sec",
+        "fait": "f-cit-homme-bleme-question",
+        "version": "Il a entendu l'homme blême demander quelle apprentie de la maison avait seize ans, sans donner de nom ni attendre de réponse. Il n'a rien répondu, et ne dit pas pourquoi cette question l'a fait tenir sa lanterne plus haut.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-nuit-d-equinoxe",
+        "fait": "f-cit-barque-a-la-derive",
+        "version": "Il y a seize ans, un soir d'équinoxe, il a ouvert la porte de terre à Ysmène, qui rentrait sous la tempête avec un panier d'osier tiré d'une barque. Dans le panier dormait un nouveau-né, enveloppé d'une couverture de laine bleue. Il l'a inscrite sans nom.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il tient la lanterne à deux mains, regarde le registre sans l'ouvrir, et dit qu'il a déjà trop parlé de la porte cette nuit.",
+        "tabou": [
+          "couverture"
+        ]
+      },
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Il a entendu les cartographes annoncer la Grande Marée dans trois jours, après laquelle Port-aux-Cordes ne sera plus à l'abri des hautes eaux. Il dit que la porte restera ouverte à qui la mer chassera.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

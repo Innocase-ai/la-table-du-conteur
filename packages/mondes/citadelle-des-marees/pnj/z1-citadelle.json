@@ -187,7 +187,25 @@
     ],
     "salutations": {
       "neutre": "Ysmène lève à peine les yeux de ses cartes. « Vous êtes les voyageurs de la tempête. Asseyez-vous, et ne touchez pas au compas. »",
-      "amical": "« Ah, vous voilà. Venez voir la carte : c'est la seule chose qui ne ment pas ce soir. »"
+      "amical": "« Ah, vous voilà. Venez voir la carte : c'est la seule chose qui ne ment pas ce soir. »",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "classe": "magicien"
+            }
+          },
+          "texte": "Ysmène lève enfin les yeux de sa carte, et son regard quitte les lunettes pour le bout des doigts de votre magicien. « Vous comptez vos sorts ? Bien. Mais regardez la mer : elle ne se compte pas. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "historique": "sage"
+            }
+          },
+          "texte": "Ysmène reconnaît votre sage à la façon dont il tient son livre, le pouce glissé sous la page. « Vous avez lu les tables, ou seulement leurs titres ? »"
+        }
+      ]
     }
   },
   {
@@ -704,6 +722,22 @@
             ]
           },
           "texte": "Le Prieur ne lève pas les yeux de ses registres. « Vous avez vu le fanal de la falaise ? Il ne tiendra pas la nuit. Asseyez-vous, je vous prie : il me reste des comptes à faire, et vous y figurez. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "clerc"
+            }
+          },
+          "texte": "Le Prieur voit le symbole à votre clerc, et sa plume s'arrête. Il s'excuse d'avance. « Pardonnez-moi, mais la mer n'écoute pas les prières. Elle écoute les comptes. Asseyez-vous, je vous prie. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "paladin"
+            }
+          },
+          "texte": "Le Prieur remarque l'écu du paladin et reste un instant silencieux, la plume entre deux doigts. « Un serment est une dette qu'on ne raccourcit pas. Je respecte cela. Asseyez-vous, je vous prie. »"
         }
       ]
     }
@@ -733,7 +767,7 @@
       "peur": "Qu'une nuit sans fanal coûte la vie d'un pêcheur.",
       "defaut": "Elle ne fait confiance qu'à ce qu'elle a vérifié de ses mains."
     },
-    "faction": "ligue-des-phares",
+    "faction": "cartographes",
     "attitude": 10,
     "sujets": [
       {
@@ -812,7 +846,7 @@
           "règles"
         ],
         "question": "Que pensez-vous de la Ligue des Phares ?",
-        "reponse": "Elle la trouve trop pleine de règles et trop peu d'huile. Elle dit que les ligueurs veulent des phares fermés à clé, comme s'il fallait protéger la lumière de ceux qui la regardent. Elle ne sait pas de quoi ils ont peur, sinon de la mer.",
+        "reponse": "Elle la trouve trop pleine de règles et trop peu d'huile. Elle dit que les ligueurs veulent tenir les phares sous leur main, comme s'il fallait protéger la lumière de ceux qui la regardent. Elle ne sait pas de quoi ils ont peur, sinon de la mer.",
         "revele": [],
         "effets": []
       },
@@ -938,6 +972,22 @@
             }
           },
           "texte": "Gudrun lève le menton vers la tour. « Les trois fanaux brûlent encore. Je ne vous remercierai pas : la lumière n'est pas un cadeau. Mais je vous offrirais bien une tasse, si j'en avais une propre. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "nain"
+            }
+          },
+          "texte": "Gudrun Lanterne se retourne enfin, et regarde vos mains plutôt que votre visage. « Un nain ! Enfin quelqu'un qui sait ce que pèse un rivet. Touchez la lampe par la poignée, pas par le verre. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "gnome"
+            }
+          },
+          "texte": "Gudrun Lanterne remarque aussitôt les doigts fins du gnome, et lui tend une mèche sans un mot. « Vous savez régler une flamme sans la noyer ? Je ne vous crois pas. Essayez quand même. »"
         }
       ]
     }
@@ -1093,7 +1143,25 @@
       }
     ],
     "salutations": {
-      "neutre": "Aldous lève le nez de son parchemin et cligne des yeux derrière ses verres. « Ah, des visiteurs. Ne posez rien sur la table des marées, s'il vous plaît. »"
+      "neutre": "Aldous lève le nez de son parchemin et cligne des yeux derrière ses verres. « Ah, des visiteurs. Ne posez rien sur la table des marées, s'il vous plaît. »",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "espece": "gnome"
+            }
+          },
+          "texte": "Aldous lâche sa plume et vous examine avec un plaisir visible. Il a reconnu le gnome avant votre visage. « Un confrère ! Vous comptez de tête, ou sur les doigts ? Les deux se trompent, mais pas de la même façon. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "historique": "sage"
+            }
+          },
+          "texte": "Aldous remonte ses verres sur le nez et examine votre sage comme une copie suspecte. « Vous lisez les marges ? C'est là que les copistes se trahissent. »"
+        }
+      ]
     },
     "boutique": {
       "stock": [
@@ -1429,7 +1497,25 @@
       }
     ],
     "salutations": {
-      "neutre": "Bertrane essuie ses mains sur son tablier. « Entrez, mes chéris, la soupe est presque prête. Et enlevez vos bottes. »"
+      "neutre": "Bertrane essuie ses mains sur son tablier. « Entrez, mes chéris, la soupe est presque prête. Et enlevez vos bottes. »",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "espece": "halfelin"
+            }
+          },
+          "texte": "Bertrane essuie ses mains sur son tablier et examine le halfelin de la tête aux pieds, comme une pâte bien levée. « Un de chez nous, mon chéri ! Vous avez les mains d'un homme qui a porté du sel. Mangez d'abord. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "barde"
+            }
+          },
+          "texte": "Bertrane s'arrête de remuer sa marmite quand le barde ouvre la bouche, et lève sa cuillère de bois comme une baguette. « Vous chantez pour la soupe, ou pour vous ? Chantez pour les enfants qui dorment, ça porte mieux. »"
+        }
+      ]
     },
     "boutique": {
       "stock": [
@@ -1669,6 +1755,29 @@
         "reponse": "Elle sonne chaque fois que la mer change de sens, selon les cartographes ; le frère la tire à l'heure qu'ils lui donnent. Ce soir, elle a sonné deux fois plus tôt que prévu.",
         "revele": [],
         "effets": []
+      },
+      {
+        "id": "l-homme-au-manteau-sec",
+        "mots": [
+          "homme",
+          "manteau",
+          "étranger",
+          "porte",
+          "pluie",
+          "visiteur"
+        ],
+        "question": "Avez-vous laissé entrer un homme au manteau sec ?",
+        "reponse": "Je n'ai laissé entrer personne, et pourtant il se tenait dans la cour. Il n'était pas mouillé, pas une goutte sur son manteau, alors que la pluie tombait à verse. Il m'a posé une seule question, à travers la porte : quelle apprentie de la maison avait seize ans. Il n'a donné aucun nom et n'a pas attendu ma réponse. J'ai tiré le verrou, et quand je me suis retourné, il était déjà dedans. J'en frissonne encore.",
+        "condition": {
+          "fait": "f-cit-homme-bleme-vu"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "fait": "f-cit-homme-bleme-question"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {

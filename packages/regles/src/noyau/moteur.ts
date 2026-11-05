@@ -62,7 +62,7 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         graine: (options.graine ?? Math.floor(Math.random() * 2 ** 31)) >>> 0,
         scene: { type: 'exploration' },
         groupe: structuredClone(groupe),
-        etat: { ...etatInitial(dm, niveau), exploration: etatExplorationVide() },
+        etat: { ...etatInitial(dm, niveau), heros: groupe.map((p) => ({ classe: p.fiche.classe, espece: p.fiche.espece, historique: p.fiche.historique })), exploration: etatExplorationVide() },
         modules: Object.fromEntries(modules.filter((m) => m.etatInitial).map((m) => [m.id, m.etatInitial!(ctx)])),
         journal: [],
       };

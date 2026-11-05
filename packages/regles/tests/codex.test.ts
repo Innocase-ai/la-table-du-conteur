@@ -131,3 +131,25 @@ describe('La Citadelle des Marées : le codex', () => {
     }
   });
 });
+
+describe('Le Val des Cendres : le codex', () => {
+  const qs = (r.monde.extensions?.['codex'] ?? []) as { id: string; texte: string; piste?: string; reponse: string; quand: { fait: string }; resolue: { fait: string } }[];
+  const g = groupeConseille(3, srd).emplacements.map((p) => {
+    const f = bilanPersonnage(p!, srd).fiche!;
+    return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
+  });
+  const mv = creerMoteur({ dm: r.monde, srd }, MODULES_STANDARD);
+  const base = mv.executer(mv.nouvellePartie(g, { graine: 3, niveau: 3 }), { type: 'commencer' }).partie;
+  const avec = (...faits: string[]): Partie => ({ ...base, etat: { ...base.etat, faits: [...base.etat.faits, ...faits] } });
+  const lignes = (p: Partie, id: string) => (mv.encarts(p).find((e) => e.id === id) as Encart | undefined)?.lignes ?? [];
+
+  it('au moins 10 questions, chacune avec une piste, ouverte par son fait puis fermée par celui qui répond', () => {
+    expect(qs.length).toBeGreaterThanOrEqual(10);
+    for (const q of qs) {
+      expect(q.piste, q.id).toBeTruthy();
+      expect(lignes(avec(q.quand.fait), 'codex-questions').some((l) => l.libelle === q.texte), `${q.id} ouverte`).toBe(true);
+      const ferme = avec(q.quand.fait, q.resolue.fait);
+      expect(lignes(ferme, 'codex-eclaircies').some((l) => l.libelle === q.texte && l.detail === q.reponse), `${q.id} éclaircie`).toBe(true);
+    }
+  });
+});

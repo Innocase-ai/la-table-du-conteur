@@ -19,6 +19,8 @@ export interface EtatMonde {
   /** Heure du jour (0 à 23) : les trajets la font avancer ; absente des sauvegardes anciennes (8 h). */
   heure?: number;
   niveauGroupe: number;
+  /** Les origines des héros du groupe (classe, espèce, historique), pour les conditions `heros` ; absent des anciennes sauvegardes. */
+  heros?: { classe: string; espece: string; historique: string }[];
   flags: Record<string, boolean>;
   faits: string[];
   jauges: Record<string, number>;
@@ -94,6 +96,7 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
   if ('lieu' in c) return e.lieuxVisites.includes(c.lieu);
   if ('pieces' in c) return (c.pieces.min === undefined || e.pieces >= c.pieces.min) && (c.pieces.max === undefined || e.pieces <= c.pieces.max);
   if ('niveauGroupe' in c) return (c.niveauGroupe.min === undefined || e.niveauGroupe >= c.niveauGroupe.min) && (c.niveauGroupe.max === undefined || e.niveauGroupe <= c.niveauGroupe.max);
+  if ('heros' in c) return (e.heros ?? []).some((h) => (!c.heros.classe || h.classe === c.heros.classe) && (!c.heros.espece || h.espece === c.heros.espece) && (!c.heros.historique || h.historique === c.heros.historique));
   if ('non' in c) return !evaluerCondition(c.non, e);
   if ('et' in c) return c.et.every((x) => evaluerCondition(x, e));
   return c.ou.some((x) => evaluerCondition(x, e));

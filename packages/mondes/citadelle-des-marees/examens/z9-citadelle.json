@@ -15,6 +15,24 @@
         "texte": "Une girouette de bronze en forme de poisson-vague grince au-dessus de la cour, et ne se tait jamais. À sa base, les trois vagues en relief, polies par les doigts, reprennent exactement le motif du sceau de cire noire trouvé dans le sac de l'érudit. La Citadelle porte ce dessin depuis toujours, gravé dans sa pierre, sans qu'on sache qui l'a choisi, ni pourquoi une lettre qui parle de « la Cour » le reprend. Les trois vagues ne sont plus un ornement : elles sont une adresse.",
         "effets": []
       }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous voit que le pivot est de fonte grossière, coulée à la hâte, et que son axe a été refait au fer forgé par un forgeron de métier."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît dans les trois vagues un usage ancien de l'héraldique : la pointe centrale est plus large que les autres, comme sur les armes des maisons de la côte."
+      }
     ]
   },
   {
@@ -32,6 +50,24 @@
         },
         "texte": "Les poutres portent les hauteurs des plus fortes marées, rangée après rangée, noircies par la fumée. Tout en haut, l'encoche grattée au couteau est la plus ancienne de toutes : son bois est plus sombre que la poutre autour, et elle domine d'une longueur de bras les marées que les cuisiniers ont notées après elle. Elle marque la marée d'une nuit qu'on a voulu faire oublier. Quelqu'un a raclé le bois pour que la ligne ne se lise plus qu'à la lumière rasante, et personne n'a jamais osé la refaire.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "Les entailles se suivent à intervalles réguliers, comme les rondes d'une garde : l'un de vous compte dans chaque rangée quatre coups et un cinquième barré, la marque d'un relevé."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "Sous la couche noire, le cœur du chêne est resté clair : l'un de vous juge que la fumée n'a pas plus d'un siècle, et que le bois en a bien plus."
       }
     ]
   },
@@ -69,6 +105,24 @@
         "texte": "Les colonnes sont parfaites, comme toujours. La ligne « encre et vélins de la salle des cartes » revient chaque année, doublée dans la marge, depuis seize ans. Ce que cette encre en trop payait, ce n'étaient pas des cartes de plus : c'étaient les mêmes cartes, recopiées et retouchées chaque année, trait après trait, pour que la côte reste floue. La somme a toujours été payée ; quelqu'un, dans cette maison, a toujours signé en bas de la ligne, et n'a jamais demandé pourquoi il en fallait le double.",
         "effets": []
       }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous flaire la ligne qui compte double : c'est la seule dont l'encre n'a pas pâli, comme si on la repassait chaque année à la plume pour qu'elle reste lisible."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous voit le papier usé à l'angle de la ligne doublée, comme une page souvent feuilletée, et des chiffres qui ont coulé le long d'un pli."
+      }
     ]
   },
   {
@@ -86,6 +140,24 @@
         },
         "texte": "Les heures de pleine mer inscrites à l'encre brune retardent de deux heures sur les marées réelles : on le voit à la laisse d'écume de la baie, qui monte bien avant ce que dit la carte. Quelqu'un a tenté de corriger ces chiffres au crayon, en marge, de deux heures exactement, puis a effacé la correction ; le gris du crayon reste visible sous la gomme. Cette carte est juste dans ses traits, et fausse dans ses heures.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît la méthode des anciens copistes : chaque cap a été d'abord tracé au stylet, puis repris à l'encre, ce qui laisse sous le trait une légère empreinte en creux."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "Chaque case a été tracée au compas à pointe fine : l'un de vous voit que l'écart entre deux heures ne dépasse pas la largeur d'un cheveu, une précision d'horloger."
       }
     ]
   },
@@ -108,6 +180,24 @@
         },
         "texte": "Depuis que la mer s'éloigne, les embruns ne devraient plus monter jusqu'à ce dôme ; pourtant le voile de sel sur la lentille est frais, et il s'épaissit à chaque jour de vent. Les initiales anciennes sont encore lisibles sous la couche blanche, gravées dans le cuivre par des observateurs qui n'ont jamais vu ça. Quelque chose, dans cette baie, continue d'envoyer la mer jusqu'à cette lentille.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous, versé dans les verres et les lentilles, voit que le voile suit les courbes comme un film régulier, sans une trace de doigt ni de chiffon : personne n'a touché cette lentille depuis longtemps."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "Le cuivre du cercle est gradué d'une finesse d'horloge : l'un de vous compte sous le sel des divisions bien plus serrées que sur n'importe quel instrument de la Citadelle."
       }
     ]
   },
@@ -166,6 +256,24 @@
         },
         "texte": "Le fer poli et les coquilles fraîches dessinent le passage de quelqu'un qui entre et sort à marée basse, comme une habitude plutôt qu'une fuite. Les coquilles ont été arrachées au fond du tunnel la veille au soir, et rien ne les a lavées depuis. Le poli se trouve exactement à l'endroit où une main passe, à force d'être passée. Quelqu'un ouvre cette grille sans la forcer, puis la referme derrière lui.",
         "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous voit que le poli n'a pas la forme qu'aurait laissée l'eau : il est sur la face intérieure, là où une main tire et pousse, jamais sur la face de mer."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "Dans la vase au pied de la grille, les traces d'une seule personne, légère, reviennent au même endroit : trois passages au moins, sans jamais un pas perdu."
       }
     ]
   }
