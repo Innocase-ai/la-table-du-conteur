@@ -142,6 +142,17 @@ describe('module Inventaire', () => {
     expect(element(p, 'braise-de-veille').histoire).toMatch(/étincelle/);
   });
 
+  it('un objet magique reconnu porte un repère (quelle que soit sa rareté) ; un objet ordinaire ou à identifier, non', () => {
+    const p = depart();
+    p.etat.inventaire['anneau-d-invisibilite'] = 1;
+    p.etat.inventaire['rations'] = 1;
+    p.etat.inventaire['braise-de-veille'] = 1;
+    expect(element(p, 'anneau-d-invisibilite').magique).toBe(true);
+    expect(element(p, 'rations').magique).toBeUndefined();
+    // Un objet à identifier ne trahit pas sa nature.
+    expect(element(p, 'braise-de-veille')).toMatchObject({ inconnu: true, magique: undefined });
+  });
+
   it("soigner un héros précis : refusé s'il n'est pas blessé, sinon c'est lui qui est soigné", () => {
     const p = depart();
     p.etat.inventaire[POTION_DE_COMBAT] = 2;

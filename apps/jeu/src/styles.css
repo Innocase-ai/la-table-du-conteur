@@ -7908,3 +7908,62 @@ kbd {
 .boite-choix-texte small {
   color: var(--texte-faible);
 }
+
+/* --- Objet magique : un éclat dans le coin de la tuile et un reflet qui passe sur l'image, quelle que soit la rareté. --- */
+.tuile-magique {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #24406a, #0f1c33);
+  border: 1px solid #9fd4ff;
+  color: #d8efff;
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: 0 0 8px rgba(130, 200, 255, 0.75);
+  animation: scintillement 2.6s ease-in-out infinite;
+}
+
+@keyframes scintillement {
+  50% {
+    box-shadow: 0 0 3px rgba(130, 200, 255, 0.35);
+    color: #8fc3ee;
+  }
+}
+
+.tuile-est-magique .tuile-cadre::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 38%, rgba(190, 228, 255, 0.34) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-position: 130% 0;
+  animation: reflet-magique 5.5s ease-in-out infinite;
+}
+
+@keyframes reflet-magique {
+  0%,
+  55% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -30% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tuile-magique,
+  .tuile-est-magique .tuile-cadre::after {
+    animation: none;
+  }
+}
+
+.fiche-etiquette-magique {
+  --rarete: #9fd4ff;
+  background: rgba(60, 110, 170, 0.18);
+}

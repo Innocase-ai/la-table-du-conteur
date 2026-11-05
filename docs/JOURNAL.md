@@ -563,3 +563,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Moteur** : `idImageCommune` (base, famille de variantes) ; le sac donne `imageCommune` à tous les objets du catalogue. Prompts dans `packages/donnees/visuel/objets-communs.json` (51 repris + 382 écrits par 5 agents Haiku). Option `--partie i/n` de `pnpm images equipement` pour générer en parallèle.
 - **Leçon** : un premier regroupement des variantes était faux (préfixe collé au suffixe : `ceinturon-de-force-de-geantcollines`) et gonflait la liste à 470 images ; le test « chaque image attendue a un prompt, aucune n'est orpheline » l'a trouvé. 433 images au final.
 - **Résultat** : 433 images générées en ≈ 10 minutes (4 processus), ≈ 3,9 $, 0 refus ; installées (4,9 Mo) ; test « chaque objet du catalogue a son image installée ». 655 tests verts, typechecks propres. Chargeur vérifié dans le navigateur.
+
+### Suite : un repère pour les objets magiques
+
+- Question de l'utilisateur : comment reconnaître une arme magique dans le sac ? Constat : seuls la couleur du cadre (rareté) et un halo (rare et plus) la distinguaient ; 19 objets magiques (épée radieuse, masse terrifiante, boucliers +1/+2/+3…) partagent l'image de leur base et ressemblent donc à l'objet ordinaire.
+- **Repère magique** (option 1 choisie, sans coût d'image) : `ElementGrille.magique` (vrai pour un objet magique **reconnu** ; absent tant qu'il reste à identifier, pour ne pas trahir sa nature) ; sur la tuile, un éclat bleu ✦ en haut à droite qui scintille et un reflet qui traverse le cadre de temps en temps ; sur la fiche, l'étiquette « ✦ Magique » ; infobulle « objet magique ». Indépendant de la rareté ; `prefers-reduced-motion` coupe les animations. Test dans `modules.test.ts`.
+- Vérifié dans le navigateur : épée longue ordinaire sans repère, épée radieuse et potion de guérison avec. 656 tests verts.
+- Reste proposé : images dédiées pour les 19 objets magiques qui reprennent leur base (≈ 0,17 $).

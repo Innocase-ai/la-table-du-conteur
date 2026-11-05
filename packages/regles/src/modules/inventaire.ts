@@ -154,6 +154,7 @@ function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite:
     nouveau: nouveaux.includes(o.id) || undefined,
     ordreVu: nouveaux.includes(o.id) ? { type: 'voirObjet', objet: o.id } : undefined,
     inconnu: aIdentifier || undefined,
+    magique: (o.magique && !aIdentifier) || undefined,
     ton: o.categorie === 'quete' ? 'fort' : o.magique && !aIdentifier ? 'succes' : undefined,
   };
 }

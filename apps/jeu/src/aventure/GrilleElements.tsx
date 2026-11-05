@@ -92,9 +92,9 @@ function Tuile({ monde, e, choisi, legende, heros, onClick }: { monde: string; e
   return (
     <button
       type="button"
-      className={`tuile rarete-${e.rarete ?? 'commun'} ${choisi ? 'tuile-choisie' : ''} ${e.ton ? `ton-${e.ton}` : ''}`}
+      className={`tuile rarete-${e.rarete ?? 'commun'} ${choisi ? 'tuile-choisie' : ''} ${e.ton ? `ton-${e.ton}` : ''}${e.magique ? ' tuile-est-magique' : ''}`}
       aria-pressed={choisi}
-      title={`${e.titre}${plusieurs ? ` × ${e.quantite}` : ''}${e.nouveau ? ' (nouveau)' : ''}${e.inconnu ? ' — à découvrir' : ''}`}
+      title={`${e.titre}${plusieurs ? ` × ${e.quantite}` : ''}${e.magique ? ' — objet magique' : ''}${e.nouveau ? ' (nouveau)' : ''}${e.inconnu ? ' — à découvrir' : ''}`}
       onClick={onClick}
     >
       <span className="tuile-cadre">
@@ -104,6 +104,11 @@ function Tuile({ monde, e, choisi, legende, heros, onClick }: { monde: string; e
         {e.porteur && (
           <span className="tuile-porteur" title={`Porté par ${e.porteur.nom}`}>
             {porteur ? <Portrait id={porteur.portrait} espece={porteur.fiche.espece} classe={porteur.fiche.classe} taille={20} /> : e.porteur.nom.charAt(0)}
+          </span>
+        )}
+        {e.magique && (
+          <span className="tuile-magique" role="img" aria-label="Objet magique">
+            ✦
           </span>
         )}
         {e.inconnu && (
@@ -224,7 +229,7 @@ export function GrilleElements({ monde, grille, cle, compact, selection, onChois
 export function FicheElement({ monde, e, actions }: { monde: string; e: ElementGrille; actions?: ReactNode }) {
   const url = useImageElement(monde, e.image, e.imageCommune);
   return (
-    <section className={`fiche-element rarete-${e.rarete ?? 'commun'}`}>
+    <section className={`fiche-element rarete-${e.rarete ?? 'commun'}${e.magique ? ' fiche-est-magique' : ''}`}>
       <div className="fiche-element-image">{url ? <img src={url} alt="" /> : <Icone id={e.icone} taille={88} />}</div>
       <h3>
         {e.titre}
@@ -232,6 +237,7 @@ export function FicheElement({ monde, e, actions }: { monde: string; e: ElementG
       </h3>
       <p className="fiche-element-etiquettes">
         {e.rarete && <span className="fiche-etiquette">{LIBELLE_RARETE[e.rarete] ?? e.rarete}</span>}
+        {e.magique && <span className="fiche-etiquette fiche-etiquette-magique">✦ Magique</span>}
         <span>{e.groupe.titre}</span>
         {e.inconnu && <span className="fiche-etiquette fiche-etiquette-inconnu">À découvrir</span>}
       </p>

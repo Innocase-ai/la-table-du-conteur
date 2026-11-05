@@ -208,6 +208,8 @@ export interface ElementGrille {
   ordreVu?: Ordre;
   /** Il reste quelque chose à découvrir : l'élément porte un « ? ». */
   inconnu?: boolean;
+  /** Objet magique reconnu : l'écran le marque d'un éclat, quelle que soit sa rareté. Absent tant que l'objet reste à identifier. */
+  magique?: boolean;
   ton?: Ton;
 }
 
