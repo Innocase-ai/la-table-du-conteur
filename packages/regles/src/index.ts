@@ -27,6 +27,7 @@ export * from './monde/etat';
 export * from './monde/validation';
 export * from './monde/diagnostics';
 export * from './monde/references';
+export * from './monde/graphes';
 export * from './monde/controles';
 export * from './monde/diagnostiquer';
 export * from './monde/images';

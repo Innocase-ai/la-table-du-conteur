@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { assemblerMonde, diagnostiquerMonde, type DiagnosticMonde, type DonneesMonde } from '@crpg/regles';
 import { lireMonde, listerMondes, type MondeLu, type ResumeMonde } from './api';
 import { chargerDonnees } from './donnees';
+import { Graphes } from './vues/Graphes';
 import { Sante } from './vues/Sante';
 
 type Etat =
@@ -11,18 +12,22 @@ type Etat =
   | { etat: 'illisible'; erreurs: { fichier: string; message: string }[] }
   | { etat: 'ok'; lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; duree: number };
 
-/** L'identifiant du monde choisi : `#/<monde>`. */
-const monde = () => decodeURIComponent(window.location.hash.replace(/^#\/?/, '').split('/')[0] ?? '');
+/** Le monde et la vue choisis : `#/<monde>` (santé) ou `#/<monde>/graphes`. */
+const lireHash = () => {
+  const [monde = '', vue = ''] = window.location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
+  return { monde, vue: vue === 'graphes' ? ('graphes' as const) : ('sante' as const) };
+};
 
 export function App() {
   const [mondes, setMondes] = useState<ResumeMonde[]>([]);
-  const [id, setId] = useState(monde());
+  const [h, setH] = useState(lireHash());
+  const id = h.monde;
   const [etat, setEtat] = useState<Etat>({ etat: 'vide' });
   const [maj, setMaj] = useState<Date | null>(null);
 
   useEffect(() => {
     listerMondes().then(setMondes, (e: Error) => setEtat({ etat: 'erreur', message: e.message }));
-    const surHash = () => setId(monde());
+    const surHash = () => setH(lireHash());
     window.addEventListener('hashchange', surHash);
     return () => window.removeEventListener('hashchange', surHash);
   }, []);
@@ -61,7 +66,7 @@ export function App() {
     <div className="atelier">
       <header className="entete">
         <h1>Atelier du Conteur</h1>
-        <select value={id} onChange={(e) => (window.location.hash = `#/${e.target.value}`)} aria-label="Monde">
+        <select value={id} onChange={(e) => (window.location.hash = `#/${e.target.value}${h.vue === 'graphes' ? '/graphes' : ''}`)} aria-label="Monde">
           <option value="">— choisir un monde —</option>
           {mondes.map((m) => (
             <option key={m.id} value={m.id}>
@@ -70,6 +75,16 @@ export function App() {
             </option>
           ))}
         </select>
+        {id && (
+          <nav className="vues">
+            <a href={`#/${id}`} className={h.vue === 'sante' ? 'actif' : ''}>
+              Santé
+            </a>
+            <a href={`#/${id}/graphes`} className={h.vue === 'graphes' ? 'actif' : ''}>
+              Graphes
+            </a>
+          </nav>
+        )}
         {maj && <span className="muet">à jour à {maj.toLocaleTimeString('fr-FR')} · surveille le disque</span>}
       </header>
       <main>
@@ -89,7 +104,8 @@ export function App() {
             </ul>
           </section>
         )}
-        {etat.etat === 'ok' && <Sante nom={courant?.nom ?? id} statut={courant?.statut ?? ''} dm={etat.dm} diag={etat.diag} duree={etat.duree} />}
+        {etat.etat === 'ok' && h.vue === 'sante' && <Sante nom={courant?.nom ?? id} statut={courant?.statut ?? ''} dm={etat.dm} diag={etat.diag} duree={etat.duree} />}
+        {etat.etat === 'ok' && h.vue === 'graphes' && <Graphes lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
       </main>
     </div>
   );

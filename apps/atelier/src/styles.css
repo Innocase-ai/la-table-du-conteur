@@ -239,3 +239,402 @@ code {
     white-space: normal;
   }
 }
+
+/* --- Navigation, outils et graphes --- */
+nav.vues {
+  display: flex;
+  gap: 4px;
+}
+
+nav.vues a,
+.onglets button {
+  color: var(--muet);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+nav.vues a.actif,
+.onglets button.actif {
+  color: var(--or);
+  border-color: var(--or);
+}
+
+.onglets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.mise {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+.principal {
+  min-width: 0;
+}
+
+.outils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  margin-bottom: 10px;
+}
+
+.grapheZone {
+  position: relative;
+  height: 560px;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+.grapheZone svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+}
+
+.recentrer {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: var(--fond);
+  color: var(--muet);
+  border: 1px solid var(--bord);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.tronque {
+  position: absolute;
+  left: 10px;
+  bottom: 6px;
+  margin: 0;
+  color: var(--avis);
+  font-size: 13px;
+}
+
+.arete path {
+  fill: none;
+  stroke: #5b6472;
+  stroke-width: 1.4;
+}
+
+.arete.a-parent path {
+  stroke-dasharray: 3 5;
+  stroke: #3f4651;
+}
+
+.arete.cache path {
+  stroke-dasharray: 7 4;
+}
+
+.arete.a-declenche path,
+.arete.a-exige path {
+  stroke: #7a8494;
+}
+
+.pointe {
+  fill: #7a8494;
+}
+
+.glyphe {
+  font-size: 13px;
+  paint-order: stroke;
+  stroke: var(--carte);
+  stroke-width: 4px;
+  fill: var(--texte);
+}
+
+.noeud {
+  cursor: pointer;
+  outline: none;
+}
+
+.noeud rect {
+  fill: #262b34;
+  stroke: #46505f;
+  stroke-width: 1.4;
+}
+
+.noeud text {
+  fill: var(--texte);
+  font-size: 12.5px;
+  pointer-events: none;
+}
+
+.noeud:hover rect,
+.noeud:focus rect {
+  stroke: var(--or);
+}
+
+.noeud.choisi rect {
+  stroke: var(--or);
+  stroke-width: 2.6;
+}
+
+.noeud.fort rect {
+  stroke-width: 3;
+}
+
+.noeud.externe rect {
+  fill: #1c1f25;
+  stroke-dasharray: 4 3;
+}
+
+.noeud.externe text {
+  fill: var(--muet);
+}
+
+.noeud.inaccessible rect,
+.noeud.orphelin rect {
+  stroke: var(--erreur);
+  fill: #3a2426;
+}
+
+.noeud.g-fins rect,
+.noeud.g-fin rect {
+  fill: #4a3b1c;
+  stroke: var(--or);
+}
+
+.noeud.g-fait rect {
+  fill: #1f3342;
+  stroke: #3f7aa3;
+}
+
+.noeud.g-flag rect {
+  fill: #33283f;
+  stroke: #8566a8;
+}
+
+.noeud.g-objet rect {
+  fill: #2f3a22;
+  stroke: #7a9a4a;
+}
+
+.noeud.g-quetes rect,
+.noeud.g-quete rect,
+.noeud.g-etape rect {
+  fill: #233a35;
+  stroke: #4a9a88;
+}
+
+.noeud.g-etape-debut rect {
+  fill: #234a3a;
+  stroke: var(--ok);
+}
+
+.noeud.g-etape-finale rect {
+  fill: #4a3b1c;
+  stroke: var(--or);
+}
+
+.noeud.g-evenements rect,
+.noeud.g-dilemmes rect {
+  fill: #3a2d22;
+  stroke: #b57a45;
+}
+
+.noeud.g-village rect,
+.noeud.g-ville rect,
+.noeud.g-region rect {
+  fill: #2a3040;
+}
+
+.noeud.g-grotte rect,
+.noeud.g-donjon rect,
+.noeud.g-niveau rect {
+  fill: #2b2530;
+}
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  color: var(--muet);
+  font-size: 13px;
+}
+
+.pastilleLegende {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: #262b34;
+  border: 1.5px solid #46505f;
+  vertical-align: -1px;
+}
+
+.pastilleLegende.externe {
+  border-style: dashed;
+}
+
+.pastilleLegende.inaccessible,
+.pastilleLegende.orphelin {
+  border-color: var(--erreur);
+  background: #3a2426;
+}
+
+.pastilleLegende.g-fins {
+  background: #4a3b1c;
+  border-color: var(--or);
+}
+
+.pastilleLegende.g-fait {
+  background: #1f3342;
+  border-color: #3f7aa3;
+}
+
+.pastilleLegende.g-flag {
+  background: #33283f;
+  border-color: #8566a8;
+}
+
+.pastilleLegende.g-objet {
+  background: #2f3a22;
+  border-color: #7a9a4a;
+}
+
+.pastilleLegende.g-etape-debut {
+  background: #234a3a;
+  border-color: var(--ok);
+}
+
+.pastilleLegende.g-etape {
+  background: #233a35;
+  border-color: #4a9a88;
+}
+
+.pastilleLegende.g-etape-finale {
+  background: #4a3b1c;
+  border-color: var(--or);
+}
+
+.detail {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  padding: 12px 14px;
+  max-height: 640px;
+  overflow: auto;
+}
+
+.detail h3 {
+  margin: 0 0 2px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.detail h4 {
+  margin: 12px 0 4px;
+  font-size: 13px;
+}
+
+.detail ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.detail pre {
+  margin: 8px 0 0;
+  font: 12px/1.45 ui-monospace, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #cfcab8;
+}
+
+.detail .fait {
+  margin: 6px 0;
+  font-style: italic;
+}
+
+button.lien {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--or);
+  font: 13px ui-monospace, Consolas, monospace;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.drapeaux {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.listeDrapeaux {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 560px;
+  overflow: auto;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+}
+
+.listeDrapeaux button {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--bord);
+  border-left: 3px solid transparent;
+  padding: 6px 10px;
+  color: var(--texte);
+  text-align: left;
+  cursor: pointer;
+}
+
+.listeDrapeaux button span {
+  white-space: nowrap;
+}
+
+.listeDrapeaux button.lu-jamais-pose {
+  border-left-color: var(--erreur);
+}
+
+.listeDrapeaux button.pose-jamais-lu {
+  border-left-color: var(--avis);
+}
+
+.listeDrapeaux button.actif {
+  background: #262b34;
+}
+
+.rouge {
+  color: var(--erreur);
+}
+
+.orange {
+  color: var(--avis);
+}
+
+@media (max-width: 900px) {
+  .mise,
+  .drapeaux {
+    grid-template-columns: 1fr;
+  }
+}
