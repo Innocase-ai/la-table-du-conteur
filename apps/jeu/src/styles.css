@@ -7967,3 +7967,181 @@ kbd {
   --rarete: #9fd4ff;
   background: rgba(60, 110, 170, 0.18);
 }
+
+/* --- Feuille de personnage pendant l'aventure (touche C, clic sur un héros du bandeau). --- */
+.aventure-heros-cliquable {
+  cursor: pointer;
+  transition:
+    border-color 0.12s,
+    transform 0.12s;
+}
+
+.aventure-heros-cliquable:hover,
+.aventure-heros-cliquable:focus-visible {
+  border-color: var(--or);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.feuille-heros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.feuille-heros-bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px 2px 3px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: var(--panneau);
+  color: var(--texte);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.feuille-heros-bouton.actif {
+  border-color: var(--or);
+  background: var(--panneau-2);
+  color: var(--or-vif);
+}
+
+.feuille-heros-bouton.tombe {
+  opacity: 0.6;
+}
+
+.feuille-corps {
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  grid-template-areas:
+    'identite identite'
+    'equipement fiche';
+  gap: 10px;
+  align-content: start;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bord-clair) transparent;
+}
+
+.feuille-corps > .fiche-perso {
+  grid-area: fiche;
+  grid-template-columns: 250px 250px minmax(0, 1fr);
+}
+
+.feuille-identite {
+  grid-area: identite;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--panneau-2), var(--panneau));
+}
+
+.feuille-identite-texte {
+  min-width: 0;
+  flex: 1;
+}
+
+.feuille-identite-texte h3 {
+  margin: 0;
+  font-family: var(--titre);
+  font-size: 22px;
+  color: var(--or-vif);
+}
+
+.feuille-identite-texte p {
+  margin: 2px 0 6px;
+  color: var(--texte-doux);
+}
+
+.feuille-pv {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.feuille-pv .barre {
+  width: 200px;
+  height: 10px;
+}
+
+.feuille-tombe {
+  color: var(--rouge);
+}
+
+.feuille-ressources {
+  white-space: pre-line;
+  font-size: 12.5px;
+  color: var(--texte-faible);
+}
+
+.feuille-equipement {
+  grid-area: equipement;
+  align-self: start;
+}
+
+.feuille-liste {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.feuille-liste li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 230, 190, 0.06);
+  font-size: 13.5px;
+}
+
+.feuille-liste li:last-child {
+  border-bottom: none;
+}
+
+.feuille-genre {
+  flex: none;
+  width: 58px;
+  color: var(--texte-faible);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.feuille-nom {
+  flex: 1;
+  min-width: 0;
+}
+
+.feuille-effet {
+  flex: none;
+  color: var(--texte-faible);
+  font-size: 12px;
+}
+
+.feuille-pied {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 1100px) {
+  .feuille-corps {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'identite'
+      'equipement'
+      'fiche';
+  }
+  .feuille-corps > .fiche-perso {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

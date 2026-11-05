@@ -14,7 +14,7 @@ const NOMS_RESSOURCES: Record<string, string> = {
 };
 
 /** Ressources d'un héros en une ligne : potions, emplacements de sorts restants, usages d'aptitudes. */
-function resumeRessources(a: Personnage): { court: string; detail: string } {
+export function resumeRessources(a: Personnage): { court: string; detail: string } {
   const max = etatDurableMax(a.fiche);
   const sorts = a.emplacements.reduce((s, n) => s + n, 0);
   const sortsMax = max.emplacements.reduce((s, n) => s + n, 0);
@@ -27,7 +27,7 @@ function resumeRessources(a: Personnage): { court: string; detail: string } {
 }
 
 /** Les héros du groupe : portrait, points de vie et ressources. */
-export function BandeauHeros({ groupe }: { groupe: Personnage[] }) {
+export function BandeauHeros({ groupe, onChoisir }: { groupe: Personnage[]; onChoisir?: (id: string) => void }) {
   return (
     <>
       {groupe.map((a) => {
@@ -35,8 +35,11 @@ export function BandeauHeros({ groupe }: { groupe: Personnage[] }) {
         return (
           <div
             key={a.id}
-            className={`aventure-heros ${a.pv <= 0 ? 'aventure-heros-tombe' : ''}`}
-            title={`${a.nom} — ${a.pv}/${a.fiche.pvMax} PV\n${res.detail}`}
+            className={`aventure-heros ${a.pv <= 0 ? 'aventure-heros-tombe' : ''}${onChoisir ? ' aventure-heros-cliquable' : ''}`}
+            title={`${a.nom} — ${a.pv}/${a.fiche.pvMax} PV\n${res.detail}${onChoisir ? '\n\nOuvrir sa feuille de personnage (C)' : ''}`}
+            {...(onChoisir
+              ? { role: 'button', tabIndex: 0, onClick: () => onChoisir(a.id), onKeyDown: (ev: React.KeyboardEvent) => (ev.key === 'Enter' || ev.key === ' ') && (ev.preventDefault(), onChoisir(a.id)) }
+              : {})}
           >
             <Portrait id={a.portrait} espece={a.fiche.espece} classe={a.fiche.classe} taille={40} />
             <div>

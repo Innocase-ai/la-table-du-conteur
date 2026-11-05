@@ -560,6 +560,12 @@ const SECTIONS: Section[] = [
         <li>
           <kbd>Survol</kbd> d'un jeton ou de la barre d'initiative : fiche et illustration du combattant.
         </li>
+        <li>
+          <kbd>I</kbd> : le sac du groupe (en aventure). <kbd>C</kbd>, ou un clic sur un héros du bandeau : sa feuille de personnage (flèches ← → pour changer de héros).
+        </li>
+        <li>
+          <kbd>1</kbd> à <kbd>9</kbd> : choisir une réplique dans une conversation ; <kbd>Échap</kbd> y met fin.
+        </li>
         <li>« Tour auto » fait jouer l'IA à votre place pour ce tour ; « Héros auto » pour tout le combat ; « Rapide » accélère les animations.</li>
         <li>
           <kbd>🔊</kbd> coupe ou remet les bruitages ; le curseur à côté règle leur volume. <kbd>♪</kbd> et son curseur font de même pour la musique d’ambiance.

@@ -28,7 +28,11 @@ function attaquesDe(fiche: Fiche, donnees: Donnees) {
   }
 }
 
-export function FichePerso({ fiche, donnees }: { fiche: Fiche; donnees: Donnees }) {
+/**
+ * `enJeu` : la fiche d'un héros pendant l'aventure. L'équipement (porté, avec ses actions) et l'or sont montrés ailleurs, par
+ * la page de la feuille de personnage : le kit de création et son « or restant » n'ont plus de sens une fois l'histoire commencée.
+ */
+export function FichePerso({ fiche, donnees, enJeu }: { fiche: Fiche; donnees: Donnees; enJeu?: boolean }) {
   const attaques = attaquesDe(fiche, donnees);
   const inc = fiche.incantation;
   const sorts = [
@@ -106,6 +110,7 @@ export function FichePerso({ fiche, donnees }: { fiche: Fiche; donnees: Donnees 
             ))}
           </ul>
         </section>
+        {!enJeu && (
         <section className="fp-bloc">
           <h3>Équipement</h3>
           <ul className="fp-liste">
@@ -125,6 +130,7 @@ export function FichePerso({ fiche, donnees }: { fiche: Fiche; donnees: Donnees 
           </ul>
           {eq && <p className="fp-ligne">Or restant : {eq.po} po</p>}
         </section>
+        )}
       </div>
 
       <div className="fp-colonne">

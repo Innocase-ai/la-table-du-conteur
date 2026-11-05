@@ -21,6 +21,7 @@ import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import type { Aventure } from './partie';
 import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
+import { FeuillePersonnage } from './FeuillePersonnage';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
@@ -123,6 +124,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
   // La page plein écran d'un onglet qui a une grille (le sac : touche I).
   const [page, setPage] = useState<{ onglet: string; selection?: string }>();
+  // La feuille de personnage d'un héros (touche C, ou un clic sur le bandeau).
+  const [feuille, setFeuille] = useState<string>();
   const encartsDe = (o: string) => encarts.filter((e) => e.onglet === o);
   const pageOuverte = page && encartsDe(page.onglet).some((e) => e.grille) ? page : undefined;
   const nouveautes = (o: string) => encartsDe(o).reduce((n, e) => n + (e.grille?.elements.filter((x) => x.nouveau).length ?? 0), 0);
@@ -138,16 +141,17 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (ev.key.toLowerCase() === 'c' && partie.groupe.length) return setFeuille(partie.groupe.find((h) => h.pv > 0)?.id ?? partie.groupe[0]!.id);
       if (ev.key === 'Escape' && pageOuverte) return setPage(undefined);
       const e = encarts.find((x) => x.grille?.touche === ev.key.toLowerCase());
       if (e) setPage(pageOuverte?.onglet === e.onglet ? undefined : { onglet: e.onglet });
     };
     window.addEventListener('keydown', surTouche);
     return () => window.removeEventListener('keydown', surTouche);
-  }, [encarts, pageOuverte, sceneNarree]);
+  }, [encarts, pageOuverte, sceneNarree, feuille, partie.groupe]);
 
   /** Un tour du conteur : le joueur écrit, le conteur agit par les commandes du moteur et raconte. */
   const raconter = async (texte: string) => {
@@ -191,7 +195,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -362,7 +366,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        <BandeauHeros groupe={partie.groupe} />
+        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} />
         <button
           type="button"
           className="aventure-sac"
@@ -385,6 +389,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
         />
+      )}
+      {feuille && !sceneNarree && (
+        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} />
       )}
       {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
