@@ -4,6 +4,9 @@
 //   pnpm monde enigmes [monde]        audit des énigmes : chacune est JOUÉE dans le moteur (bonne, mauvaise, mal formée) ; code 1 s'il y a des erreurs
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
 //   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
+//   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]
+//                                     un joueur automatique joue le VRAI moteur pour atteindre chaque fin (combats supposés gagnés) ;
+//                                     code 1 si une fin n'est pas atteinte (avec ce budget : ce n'est pas une preuve d'impossibilité)
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -12,10 +15,27 @@ import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
+import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
 
-const [commande, cible, nomMonde] = process.argv.slice(2);
+const args = process.argv.slice(2);
+/** La valeur d'une option `--nom valeur` (et on la retire des arguments positionnels). */
+function option(nom: string): string | undefined {
+  const i = args.indexOf(`--${nom}`);
+  if (i < 0) return undefined;
+  const v = args[i + 1];
+  args.splice(i, 2);
+  return v;
+}
+const optEtats = option('etats');
+const optMs = option('ms');
+const optGraines = option('graines');
+const optChemin = args.includes('--chemin');
+if (optChemin) args.splice(args.indexOf('--chemin'), 1);
+const optCouvrir = args.includes('--couvrir');
+if (optCouvrir) args.splice(args.indexOf('--couvrir'), 1);
+const [commande, cible, nomMonde] = args;
 const mondes = cible ? [cible] : listerMondes();
 
 if (commande === 'nouveau') {
@@ -51,6 +71,26 @@ for (const id of mondes) {
     console.log(`${id} : ${e.tours} tours dont ${e.toursConteur} racontés par le conteur, ≈ ${e.heures.total} h (${e.heures.recit} h de récit, ${e.heures.combats} h de combats)`);
     for (const c of e.couts) console.log(`  ${c.nom.padEnd(18)} ≈ ${c.usd} $ (${c.min} à ${c.max} $)`);
     console.log(`  images du groupe   ≈ ${e.imagesUsd} $`);
+    continue;
+  }
+  if (commande === 'parcours') {
+    const t0 = Date.now();
+    const rap = explorerParcours(
+      { dm: r.monde, srd },
+      { budgetEtats: optEtats ? Number(optEtats) : 6000, budgetMs: optMs ? Number(optMs) : 120_000, couvrir: optCouvrir, ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) },
+    );
+    const manque = rap.finsNonAtteintes.length > 0;
+    console.log(`
+${manque ? '⚠️ ' : '✅'} ${id} — ${rap.parcours.length}/${r.monde.fins.size} fins atteintes (${rap.etats} états en ${((Date.now() - t0) / 1000).toFixed(1)} s ; arrêt : ${rap.arret})`);
+    for (const p of rap.parcours) {
+      console.log(`  ✅ ${p.fin} — ${p.etapes.length} pas (graine ${p.graine})`);
+      if (optChemin) p.etapes.forEach((e, i) => console.log(`       ${String(i + 1).padStart(3)}. ${e.libelle}  → ${e.lieu}`));
+    }
+    for (const f of rap.finsNonAtteintes) console.log(`  ❌ ${f} — non atteinte${rap.arret === 'epuise' ? ' (tous les états ont été explorés)' : ' (budget ou temps épuisé : relancer avec --etats plus grand)'}`);
+    const c = rap.couverture;
+    console.log('  vu : ' + (['lieux', 'pnj', 'rencontres', 'evenements', 'faits', 'enigmes'] as const).map((k) => `${k} ${c[k].vus.length}/${c[k].vus.length + c[k].jamais.length}`).join(' · '));
+    console.log('  hypothèses : ' + rap.hypotheses.join(' '));
+    if (manque) echec = true;
     continue;
   }
   if (commande === 'enigmes') {

@@ -3,6 +3,7 @@ import { assemblerMonde, diagnostiquerMonde, type DiagnosticMonde, type DonneesM
 import { lireMonde, listerMondes, type MondeLu, type ResumeMonde } from './api';
 import { chargerDonnees } from './donnees';
 import { Graphes } from './vues/Graphes';
+import { Parcours } from './vues/Parcours';
 import { Sante } from './vues/Sante';
 
 type Etat =
@@ -15,7 +16,7 @@ type Etat =
 /** Le monde et la vue choisis : `#/<monde>` (santé) ou `#/<monde>/graphes`. */
 const lireHash = () => {
   const [monde = '', vue = ''] = window.location.hash.replace(/^#\/?/, '').split('/').map(decodeURIComponent);
-  return { monde, vue: vue === 'graphes' ? ('graphes' as const) : ('sante' as const) };
+  return { monde, vue: vue === 'graphes' || vue === 'parcours' ? vue : ('sante' as const) };
 };
 
 export function App() {
@@ -66,7 +67,7 @@ export function App() {
     <div className="atelier">
       <header className="entete">
         <h1>Atelier du Conteur</h1>
-        <select value={id} onChange={(e) => (window.location.hash = `#/${e.target.value}${h.vue === 'graphes' ? '/graphes' : ''}`)} aria-label="Monde">
+        <select value={id} onChange={(e) => (window.location.hash = `#/${e.target.value}${h.vue === 'sante' ? '' : `/${h.vue}`}`)} aria-label="Monde">
           <option value="">— choisir un monde —</option>
           {mondes.map((m) => (
             <option key={m.id} value={m.id}>
@@ -82,6 +83,9 @@ export function App() {
             </a>
             <a href={`#/${id}/graphes`} className={h.vue === 'graphes' ? 'actif' : ''}>
               Graphes
+            </a>
+            <a href={`#/${id}/parcours`} className={h.vue === 'parcours' ? 'actif' : ''}>
+              Parcours
             </a>
           </nav>
         )}
@@ -106,6 +110,7 @@ export function App() {
         )}
         {etat.etat === 'ok' && h.vue === 'sante' && <Sante nom={courant?.nom ?? id} statut={courant?.statut ?? ''} dm={etat.dm} diag={etat.diag} duree={etat.duree} />}
         {etat.etat === 'ok' && h.vue === 'graphes' && <Graphes lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
+        {etat.etat === 'ok' && h.vue === 'parcours' && <Parcours lu={etat.lu} dm={etat.dm} />}
       </main>
     </div>
   );

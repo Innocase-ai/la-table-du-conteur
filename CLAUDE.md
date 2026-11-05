@@ -10,7 +10,8 @@ pnpm test            # moteur + données SRD
 pnpm typecheck
 pnpm jeu             # le jeu sur http://localhost:5173
 pnpm monde valider   # mondes + énigmes
-pnpm atelier         # l'atelier d'auteur (santé du monde, en lecture seule) sur http://localhost:5180
+pnpm atelier         # l'atelier d'auteur (santé, graphes, parcours ; lecture seule) sur http://localhost:5180
+pnpm monde parcours  # un joueur automatique joue le moteur pour atteindre chaque fin
 pnpm bureau          # le jeu dans sa fenêtre de bureau (Tauri) ; pnpm bureau:installeur pour l'installeur Windows
 ```
 

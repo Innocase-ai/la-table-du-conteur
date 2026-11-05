@@ -632,6 +632,62 @@ button.lien {
   color: var(--avis);
 }
 
+/* --- Simulateur de parcours --- */
+.bouton {
+  background: var(--carte);
+  color: var(--texte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  padding: 7px 16px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.bouton.principal {
+  color: #1a1405;
+  background: var(--or);
+  border-color: var(--or);
+  font-weight: 600;
+}
+
+.outils input[type='number'] {
+  width: 84px;
+  background: var(--carte);
+  color: var(--texte);
+  border: 1px solid var(--bord);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font: inherit;
+}
+
+.avertit {
+  color: var(--avis);
+}
+
+.couverture details {
+  margin: 4px 0;
+}
+
+.couverture summary {
+  cursor: pointer;
+}
+
+.chemin {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  padding: 4px 18px 12px;
+  margin: 14px 0;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.chemin ol {
+  margin: 0;
+  padding-left: 26px;
+  line-height: 1.7;
+}
+
 @media (max-width: 900px) {
   .mise,
   .drapeaux {
