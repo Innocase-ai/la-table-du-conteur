@@ -6,7 +6,12 @@
     "lieu": "route-des-falaises",
     "difficulte": "faible",
     "intro": "Deux silhouettes trempées, debout au milieu de la route, se retournent vers vous. Leurs vêtements dégoulinent d'eau de mer, et chacun de leurs pas laisse une flaque sur les dalles.",
-    "monstres": [{ "profil": "zombi", "nombre": 2 }],
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
+    ],
     "carte": [
       "####################",
       "#..................#",
@@ -29,17 +34,28 @@
         "nom": "Les appeler par leur nom",
         "resume": "Les naufragés reconnaissent parfois leur nom : ils s'arrêtent, se tournent vers la mer et s'éloignent lentement, sans se battre.",
         "effets": [],
-        "jet": { "competence": "persuasion", "dd": 13 }
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        }
       },
       {
         "id": "fal-faire-demi-tour",
         "nom": "Faire demi-tour",
         "resume": "Reculer pas à pas vers le relais sans leur tourner le dos : ils ne vous suivent pas au-delà du premier virage.",
         "effets": [],
-        "jet": { "competence": "discretion", "dd": 12 }
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        }
       }
     ],
-    "butin": { "tables": [], "tresors": [] }
+    "butin": {
+      "tables": [
+        "fal-butin-naufrage"
+      ],
+      "tresors": []
+    }
   },
   {
     "id": "fal-r-pillards-du-pont",
@@ -48,7 +64,12 @@
     "lieu": "fal-pont-des-corbeaux",
     "difficulte": "faible",
     "intro": "Trois hommes sortent des rochers, arcs tendus, sur un coup de sifflet de corbeau. Le plus grand lève la main : « Le péage, ou la charrette. »",
-    "monstres": [{ "profil": "bandit", "nombre": 3 }],
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3
+      }
+    ],
     "carte": [
       "####################",
       "#mmm...............#",
@@ -71,17 +92,29 @@
         "id": "payer-le-peage",
         "nom": "Payer le péage",
         "resume": "Une bourse de pièces suffit : les trois hommes s'écartent du pont sans un mot, et le chef compte la somme avant de rire.",
-        "effets": [{ "pieces": -15 }]
+        "effets": [
+          {
+            "pieces": -15
+          }
+        ]
       },
       {
         "id": "fal-passer-sous-le-pont",
         "nom": "Passer sous les arches",
         "resume": "Descendre par la berge et longer l'eau sous les arches, sans attirer les tireurs : une course entre les galets.",
         "effets": [],
-        "jet": { "competence": "discretion", "dd": 13 }
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        }
       }
     ],
-    "butin": { "tables": ["fal-butin-pillards"], "tresors": [] }
+    "butin": {
+      "tables": [
+        "fal-butin-pillards"
+      ],
+      "tresors": []
+    }
   },
   {
     "id": "fal-r-noyes-du-marais",
@@ -91,8 +124,14 @@
     "difficulte": "faible",
     "intro": "Dans la boue des digues, des silhouettes se redressent, lentes, une à une. Elles tiennent encore des râteaux de bois, et de l'eau coule de leurs vêtements à chaque mouvement.",
     "monstres": [
-      { "profil": "squelette", "nombre": 3 },
-      { "profil": "zombi", "nombre": 2 }
+      {
+        "profil": "squelette",
+        "nombre": 3
+      },
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
     ],
     "carte": [
       "####################",
@@ -115,10 +154,18 @@
         "nom": "Attendre le flot",
         "resume": "Se tenir loin de l'eau : les noyés suivent la mer, et reculent avec elle quand le flot remonte sur les digues.",
         "effets": [],
-        "jet": { "competence": "survie", "dd": 13 }
+        "jet": {
+          "competence": "survie",
+          "dd": 13
+        }
       }
     ],
-    "butin": { "tables": ["fal-butin-naufrage"], "tresors": [] }
+    "butin": {
+      "tables": [
+        "fal-butin-naufrage"
+      ],
+      "tresors": []
+    }
   },
   {
     "id": "fal-r-goules-du-cimetiere",
@@ -128,8 +175,14 @@
     "difficulte": "faible",
     "intro": "Entre les stèles, une forme rampe hors d'une tombe ouverte, griffes de sel, bouche grande ouverte. Deux silhouettes trempées la suivent lentement dans l'herbe couchée.",
     "monstres": [
-      { "profil": "goule", "nombre": 1 },
-      { "profil": "zombi", "nombre": 2 }
+      {
+        "profil": "goule",
+        "nombre": 1
+      },
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
     ],
     "carte": [
       "####################",
@@ -152,10 +205,18 @@
         "nom": "Apaiser les tombes",
         "resume": "Quelques mots de liturgie sur les stèles : les morts se calment et retournent à la terre, comme on le fait pour les naufragés.",
         "effets": [],
-        "jet": { "competence": "religion", "dd": 13 }
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        }
       }
     ],
-    "butin": { "tables": ["fal-butin-cimetiere"], "tresors": [] }
+    "butin": {
+      "tables": [
+        "fal-butin-cimetiere"
+      ],
+      "tresors": []
+    }
   },
   {
     "id": "fal-r-araignees-de-la-grotte",
@@ -164,7 +225,12 @@
     "lieu": "fal-grotte-des-marees-galerie",
     "difficulte": "faible",
     "intro": "Les toiles tremblent d'un coup au-dessus de la galerie, et deux bêtes grises aux pattes longues descendent des piliers, lentement, comme pour éprouver l'air autour de vous.",
-    "monstres": [{ "profil": "araignee-geante", "nombre": 2 }],
+    "monstres": [
+      {
+        "profil": "araignee-geante",
+        "nombre": 2
+      }
+    ],
     "carte": [
       "####################",
       "#RR....~~~.........#",
@@ -186,9 +252,19 @@
         "nom": "Passer sans les réveiller",
         "resume": "Longer la paroi sans toucher aux toiles et sans lumière trop vive : les bêtes restent immobiles dans leurs cocons.",
         "effets": [],
-        "jet": { "competence": "discretion", "dd": 13 }
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        }
       }
     ],
-    "butin": { "tables": [], "tresors": ["fal-t-galerie-sac"] }
+    "butin": {
+      "tables": [
+        "fal-butin-toiles"
+      ],
+      "tresors": [
+        "fal-t-galerie-sac"
+      ]
+    }
   }
 ]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "q-cit-les-rats-des-reserves",
+    "nom": "Ce qui ronge les réserves",
+    "type": "secondaire",
+    "donneur": "bertrane-mijotee",
+    "lieu": "cit-intendance",
+    "resume": "Bertrane a trouvé ses sacs d'orge éventrés. De gros rats fuient la cave inondée sous l'intendance, et au fond de la réserve l'eau luit : elle n'ose plus descendre seule. Elle veut qu'on s'occupe des rats avant la nuit, car la marée monte à chaque nuit de repos.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "descendre",
+    "etapes": [
+      {
+        "id": "descendre",
+        "texte": "Descendez dans l'arrière-magasin de l'intendance et chassez les rats qui rongent l'orge de l'hiver, avant la nuit.",
+        "completion": { "flag": "cit-rats-regles" },
+        "suivantes": ["retour"]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Bertrane que ses réserves sont à l'abri.",
+        "completion": { "flag": "cit-rats-retour" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 75, "pieces": 25, "objets": [], "effets": [] },
+    "ramifications": "Forme : nid à nettoyer. Issues : combat dans l'arrière-magasin ; colmater la brèche (le fait de la fissure) ; chasser au grain (une ration perdue, Bertrane fâchée). Si on refuse de s'en occuper, les réserves sont ravagées (événement z7-reserves-ravagees)."
+  }
+]

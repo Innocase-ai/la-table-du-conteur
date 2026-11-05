@@ -49,6 +49,8 @@ Retirez la récompense : le PNJ a-t-il encore une raison de demander ? Sinon, c'
 5. **Valider et jouer** : `pnpm monde valider <monde>` (0 erreur), `pnpm monde estimer <monde>`, un test qui joue le contrat (accepter, déclencher, résoudre par chaque issue, vérifier l'étape et la récompense), puis dans le navigateur.
 
 ## Pièges connus
+- **Un lieu verrouillé ou à passage secret ne convient pas pour un contrat du hub** : vérifier ses `liens` (`verrou`, `cache`) avant de le choisir (premier essai : les caveaux de la Citadelle exigent la clé d'une autre quête, le contrat a dû descendre à l'intendance). Le test du contrat doit **atteindre le lieu par les passages du jeu**, pas en posant `etat.lieu`.
+- Après avoir parlé à un PNJ, la scène est `dialogue` : `quitterDialogue` avant de se déplacer dans un test.
 - Une alternative qui règle la rencontre mais **ne pose pas le drapeau** de la quête : le joueur a réussi et la quête reste bloquée. Tester chaque issue.
 - Un contrat rattaché à un lieu **sans condition** se déclenche même sans la quête : toujours conditionner sur la quête (`active`).
 - Le hub trop riche en contrats « va tuer » : voir les règles de variété.

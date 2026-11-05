@@ -551,18 +551,9 @@ export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: P
   appliquer(p, r, pg.effets);
 }
 
-/** Prendre le contenu d'un trésor : il doit être visible, ouvert, non gardé. */
-export function prendre(p: PartieMonde, tresor: string): CompteRendu {
-  const t = p.dm.tresors.get(tresor);
-  const ex = p.etat.exploration;
-  if (!t || t.lieu !== p.etat.lieu || !tresorVisible(p, t)) return refus("Il n'y a rien de tel ici.");
-  if (ex.tresorsPris.includes(t.id)) return refus(`${t.nom} a déjà été vidé.`);
-  if (t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`)) return refus(`${t.nom} est fermé (DD ${t.acces.verrou.dd}).`);
-  if (t.gardien && !p.etat.rencontresFaites.includes(t.gardien)) return refus(`${t.nom} est gardé : ${p.dm.rencontres.get(t.gardien)?.nom ?? t.gardien}.`);
-  const r = resultat();
-  // Un piège encore armé se déclenche sur qui se sert (sauf trésor ouvert à la clé, déjà déclenché dans ouvrir sinon).
-  if (t.acces.piege && !ex.pieges[t.acces.piege] && !t.acces.verrou) declencher(p, r, p.dm.pieges.get(t.acces.piege)!, choisir(p, 'perception')!);
-  ex.tresorsPris.push(t.id);
+/** Verse le contenu d'un trésor au groupe (pièces, objets, tirages, indice) et le marque vidé. */
+function viderTresor(p: PartieMonde, r: CompteRendu, t: Tresor): void {
+  p.etat.exploration.tresorsPris.push(t.id);
   const gains: string[] = [];
   const pc = t.contenu.pieces;
   if (pc) {
@@ -580,6 +571,40 @@ export function prendre(p: PartieMonde, tresor: string): CompteRendu {
     r.revele.push(t.indice);
   }
   r.constats.push(`Dans ${t.nom} : ${gains.filter(Boolean).join(', ') || 'rien de valeur'}.`);
+}
+
+/**
+ * Le butin fixe d'une victoire (`butin.tresors`) : la réserve de l'ennemi, ici même, sans verrou ni piège, est prise aussitôt ;
+ * une réserve cachée, fermée ou piégée est seulement révélée (il reste à l'ouvrir ou la désamorcer).
+ */
+function butinFixe(p: PartieMonde, r: CompteRendu, rencontre: string): void {
+  const def = p.dm.rencontres.get(rencontre);
+  for (const id of def?.butin.tresors ?? []) {
+    const t = p.dm.tresors.get(id);
+    const ex = p.etat.exploration;
+    if (!t || ex.tresorsPris.includes(t.id) || (t.condition && !evaluerCondition(t.condition, p.etat))) continue;
+    if (t.gardien && t.gardien !== rencontre && !p.etat.rencontresFaites.includes(t.gardien)) continue;
+    if (!t.acces.verrou && !t.acces.piege && t.lieu === p.etat.lieu) {
+      viderTresor(p, r, t);
+      continue;
+    }
+    if (t.acces.cache && !ex.decouverts.includes(`tresor:${t.id}`)) ex.decouverts.push(`tresor:${t.id}`);
+    r.constats.push(`Vous remarquez : ${t.nom}.`);
+  }
+}
+
+/** Prendre le contenu d'un trésor : il doit être visible, ouvert, non gardé. */
+export function prendre(p: PartieMonde, tresor: string): CompteRendu {
+  const t = p.dm.tresors.get(tresor);
+  const ex = p.etat.exploration;
+  if (!t || t.lieu !== p.etat.lieu || !tresorVisible(p, t)) return refus("Il n'y a rien de tel ici.");
+  if (ex.tresorsPris.includes(t.id)) return refus(`${t.nom} a déjà été vidé.`);
+  if (t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`)) return refus(`${t.nom} est fermé (DD ${t.acces.verrou.dd}).`);
+  if (t.gardien && !p.etat.rencontresFaites.includes(t.gardien)) return refus(`${t.nom} est gardé : ${p.dm.rencontres.get(t.gardien)?.nom ?? t.gardien}.`);
+  const r = resultat();
+  // Un piège encore armé se déclenche sur qui se sert (sauf trésor ouvert à la clé, déjà déclenché dans ouvrir sinon).
+  if (t.acces.piege && !ex.pieges[t.acces.piege] && !t.acces.verrou) declencher(p, r, p.dm.pieges.get(t.acces.piege)!, choisir(p, 'perception')!);
+  viderTresor(p, r, t);
   suites(p, r);
   return r;
 }
@@ -755,6 +780,7 @@ export function issueRencontre(
     if (issue.px) p.etat.xp += Math.floor(issue.px / Math.max(1, p.groupe.length));
     appliquer(p, r, def.effetsVictoire);
     for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);
+    butinFixe(p, r, rencontre);
   }
   if (!p.etat.rencontresFaites.includes(rencontre)) p.etat.rencontresFaites.push(rencontre);
   suites(p, r);

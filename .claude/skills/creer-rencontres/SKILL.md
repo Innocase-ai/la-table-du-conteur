@@ -40,6 +40,11 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 - **Défaite** : l'histoire continue. Les héros se réveillent à 1 PV huit heures plus tard, délestés de la moitié de l'or ; la rencontre les attend toujours.
 - **PX** : ceux d'un combat se partagent entre les héros ; l'XP des quêtes et effets est celle de chacun. Le monde entier doit rapporter assez de PX pour atteindre son niveau maximum (avis « PX »).
 
+## 3 bis. Le butin (un combat gagné rapporte quelque chose)
+- `butin.tables` : des tables de `tables/` (entrées pondérées : pièces `{des, unite}`, objet du SRD ou du monde avec `quantite`, `rien`) ; chaque victoire en tire une entrée par table, versée au sac, avec un constat « Butin : … ». Adapter à l'ennemi (noyés : poches, offrandes ; bandits : bourse, armes ; rats : grain, corde) ; un combat « élevée » mérite une table plus riche (potion, parchemin de sort, eau bénite) et peu ou pas de `rien`.
+- `butin.tresors` : la réserve de l'ennemi. Sans verrou ni piège et dans le lieu du combat, elle est prise à la victoire ; sinon elle est révélée.
+- Un combat qui ne rapporte que des PX est signalé (avis « Butin »). Sauf un contrat dont la récompense est ailleurs (réputation, fait, PNJ), donner une table.
+
 ## 4. Écrire les issues (alternatives)
 
 - Toute rencontre importante a **au moins deux issues vraiment différentes** (pas « combattre ou fuir ») et un **enjeu** (ce qu'on gagne, ce qu'on perd).

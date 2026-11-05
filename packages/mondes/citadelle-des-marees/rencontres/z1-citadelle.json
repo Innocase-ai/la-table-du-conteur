@@ -7,7 +7,10 @@
     "difficulte": "faible",
     "intro": "Deux hommes en manteau sombre sont penchés sur les rayonnages du fond, une lampe posée à terre. L'un d'eux a une lettre à la main, et se retourne d'un coup en entendant vos pas. Quentin Salmier se tient près de la porte de la salle des cartes, la main sur la sangle de son sac, et ne fait pas un geste.",
     "monstres": [
-      { "profil": "eclaireur", "nombre": 2 }
+      {
+        "profil": "eclaireur",
+        "nombre": 2
+      }
     ],
     "carte": [
       "################",
@@ -32,19 +35,42 @@
         "id": "demasquer-en-public",
         "nom": "Le démasquer devant tout le monde",
         "resume": "Montrer la lettre à la lampe, à voix haute, devant les acolytes : l'érudit blêmit, et ses hommes hésitent à frapper.",
-        "jet": { "competence": "perception", "dd": 12 },
-        "effets": [{ "flag": "cit-infiltre-demasque" }]
+        "jet": {
+          "competence": "perception",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "cit-infiltre-demasque"
+          }
+        ]
       },
       {
         "id": "negocier-la-sortie",
         "nom": "Leur proposer de sortir par la porte de terre",
         "resume": "Ils acceptent de partir sans bruit, à condition qu'on ne dise rien à l'érudit, et ils rentrent par la porte de terre.",
-        "jet": { "competence": "persuasion", "dd": 13 },
-        "effets": [{ "flag": "cit-infiltre-demasque" }]
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "flag": "cit-infiltre-demasque"
+          }
+        ]
       }
     ],
-    "butin": { "tables": [], "tresors": [] },
-    "effetsVictoire": [{ "flag": "cit-infiltre-demasque" }]
+    "butin": {
+      "tables": [
+        "cit-butin-acolytes"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "cit-infiltre-demasque"
+      }
+    ]
   },
   {
     "id": "cit-r-la-grille-de-mer",
@@ -54,8 +80,14 @@
     "difficulte": "moderee",
     "intro": "Les barreaux de la grille de mer s'ébranlent sous des mains froides. Trois silhouettes trempées se hissent par le tunnel, et derrière elles, plus sombre que l'eau, une ombre glisse le long de la roche. Là-haut, dans la cour, une voix grave parle encore avec Ysmène.",
     "monstres": [
-      { "profil": "zombi", "nombre": 3 },
-      { "profil": "ombre", "nombre": 1 }
+      {
+        "profil": "zombi",
+        "nombre": 3
+      },
+      {
+        "profil": "ombre",
+        "nombre": 1
+      }
     ],
     "carte": [
       "##################",
@@ -82,7 +114,10 @@
         "id": "refermer-la-grille",
         "nom": "Refermer la grille et la bloquer",
         "resume": "Pousser la grille contre les mains tendues et la caler avec une barre : il faut peser de tout son poids, et les barreaux tiennent.",
-        "jet": { "competence": "athletisme", "dd": 13 },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
         "effets": []
       },
       {
@@ -92,7 +127,12 @@
         "effets": []
       }
     ],
-    "butin": { "tables": [], "tresors": [] },
+    "butin": {
+      "tables": [
+        "table-poche-de-noye"
+      ],
+      "tresors": []
+    },
     "effetsVictoire": []
   },
   {
@@ -103,7 +143,10 @@
     "difficulte": "faible",
     "intro": "Deux squelettes en armure de cuir couverte d'algues sortent de l'eau du bassin, lentement, sans un bruit. Leurs mâchoires sont serrées sur un sel gris, et leurs mains ne tiennent rien. Ils se tournent vers vous comme on se tourne vers une porte qu'on attend.",
     "monstres": [
-      { "profil": "squelette", "nombre": 2 }
+      {
+        "profil": "squelette",
+        "nombre": 2
+      }
     ],
     "carte": [
       "##################",
@@ -129,11 +172,19 @@
         "id": "les-renvoyer",
         "nom": "Leur ordonner de rentrer",
         "resume": "Un ton de commandement, et quelques mots de la liturgie des marées : les squelettes hésitent, puis reculent lentement vers le bassin.",
-        "jet": { "competence": "religion", "dd": 12 },
+        "jet": {
+          "competence": "religion",
+          "dd": 12
+        },
         "effets": []
       }
     ],
-    "butin": { "tables": ["cit-butin-du-quai"], "tresors": [] },
+    "butin": {
+      "tables": [
+        "cit-butin-du-quai"
+      ],
+      "tresors": []
+    },
     "effetsVictoire": []
   }
 ]

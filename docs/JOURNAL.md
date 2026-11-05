@@ -624,3 +624,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Mises à jour** : `CLAUDE.md` (liste des skills), `references/canon-modele.md` (§ 7 bis), `assets/GUIDE-ZONE.modele.md` (renvois).
 - **Limites notées** (dans les skills) : pas de protection d'un allié dans le combat (convoi partiel), pas de duel à un seul héros, pas de condition « avant le jour N » (le chronomètre passe par une jauge ou un dilemme à délai).
 - **Reste à faire** : contenu (5 contrats pour la Citadelle, 4 pour le Val, avec le skill `creer-contrats`), puis moteur : champ `forme` sur les quêtes, avis du validateur (formes consécutives, « N lieux avant le premier combat »), compteur de calme (chance de rencontre aléatoire croissante).
+
+
+## 05/11/2026 — Le butin des combats
+
+- **Question** : un combat gagné rapporte-t-il des objets, de l'or, des parchemins ? Oui, par les tables de butin, mais 13 combats de la Citadelle n'en avaient pas, et `butin.tresors` (cité par 5 combats de la Citadelle et 28 du Val) n'était lu par rien.
+- **Moteur** : `butin.tresors` est lu à la victoire : la réserve de l'ennemi, dans le lieu du combat et sans verrou ni piège, est prise aussitôt ; une réserve cachée, fermée ou piégée est révélée (« Vous remarquez : … »). `prendre` et la victoire partagent `viderTresor`. Avis « Butin » du validateur (combat avec monstres, sans table, sans réserve ni trésor gardé).
+- **Contenu** : 6 tables neuves (acolytes, rats, toiles, gardes, reliques de Lothmar, dépouille du Héraut) et des tables existantes rattachées aux 13 combats de la Citadelle ; 4 combats du Val reçoivent une table.
+- **Contrat des rats** : le premier contrat de la Citadelle (« Ce qui ronge les réserves », à l'intendance) est écrit et joué par `contrats.test.ts` (trois issues et le refus).
+- Tests : `butin.test.ts` (réserve prise, réserve fermée révélée, table versée, avis) ; 718 tests verts. Skill `creer-rencontres` : section butin ; leçon notée dans `creer-contrats` (un lieu verrouillé ne convient pas à un contrat du hub).

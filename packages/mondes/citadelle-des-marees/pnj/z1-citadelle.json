@@ -1118,6 +1118,106 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "rats-des-reserves",
+        "mots": [
+          "réserves",
+          "orge",
+          "sacs",
+          "grain",
+          "inquiète",
+          "rongé"
+        ],
+        "question": "Vous semblez inquiète pour vos réserves.",
+        "reponse": "Elle montre ses sacs d'orge éventrés, la paille de l'hiver semée sur les dalles. De gros rats fuient la cave inondée sous l'intendance depuis la tempête, et au fond de la réserve l'eau luit d'une lueur verte qu'elle n'ose plus regarder seule. Elle veut qu'on les chasse avant la nuit, car la marée monte à chaque nuit de repos.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cit-les-rats-des-reserves",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "quete": {
+              "id": "q-cit-les-rats-des-reserves",
+              "statut": "terminee"
+            }
+          }
+        },
+        "unique": false
+      },
+      {
+        "id": "rats-regles-breche",
+        "mots": [
+          "brèche",
+          "fissure",
+          "bouchée",
+          "mortier",
+          "bouché"
+        ],
+        "question": "Dire que la brèche est bouchée.",
+        "reponse": "Elle se signe, la cuillère de bois serrée dans le poing, et son visage se défait. Si la mer entre par le sol de la Citadelle, il faut prévenir le Prieur tout de suite, et elle n'ose pas monter seule le lui dire.",
+        "effets": [
+          {
+            "flag": "cit-rats-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "bertrane-mijotee",
+              "delta": 15
+            }
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-rats-regles"
+            },
+            {
+              "fait": "f-cit-fissure-de-l-intendance"
+            }
+          ]
+        },
+        "unique": true
+      },
+      {
+        "id": "rats-regles-simple",
+        "mots": [
+          "partis",
+          "chassés",
+          "envolés",
+          "fuis",
+          "disparus"
+        ],
+        "question": "Dire que les rats sont partis.",
+        "reponse": "Elle soupire et range sa cuillère, soulagée. « Ils sont partis, mes chéris, mais ils reviendront tant que l'eau suinte sous le dallage. Gardez l'œil sur la réserve. »",
+        "effets": [
+          {
+            "flag": "cit-rats-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "bertrane-mijotee",
+              "delta": 15
+            }
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "cit-rats-regles"
+            },
+            {
+              "non": {
+                "fait": "f-cit-fissure-de-l-intendance"
+              }
+            }
+          ]
+        },
+        "unique": true
       }
     ],
     "salutations": {

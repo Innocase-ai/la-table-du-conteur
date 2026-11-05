@@ -1,0 +1,102 @@
+[
+  {
+    "id": "cit-r-rats-des-reserves",
+    "nom": "Les rats des réserves",
+    "type": "mixte",
+    "lieu": "cit-intendance",
+    "difficulte": "faible",
+    "intro": "Dans la pénombre, des yeux ronds s'allument entre les sacs éventrés, et une odeur de moisi monte de l'eau qui luit au fond de la réserve. Trois rats gros comme des chats se dressent sur les caisses, moustaches frémissantes, sans reculer d'un pouce. Dans le magasin, quelqu'un a oublié de fermer la trappe de la cave.",
+    "monstres": [
+      {
+        "profil": "rat-geant",
+        "nombre": 3,
+        "nom": "Rats géants des réserves"
+      }
+    ],
+    "carte": [
+      "############",
+      "#m.c.....e.#",
+      "#m..##....c#",
+      "#m.....ee..#",
+      "#.c....~~..#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les rats attaquent par la gauche, en se glissant derrière les caisses ; ils mordent le premier qui s'approche de l'eau.",
+      "fuite": "Quand un tiers d'entre eux est tombé, les survivants se replient derrière les caisses et ne sortent plus de la réserve.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "colmater-la-breche",
+        "nom": "Je cherche la fissure par où l'eau entre et je la bouche avec des sacs et du mortier.",
+        "resume": "Une fente ancienne court dans la paroi, à hauteur du genou, et l'eau remonte par ce trou noir. En la bouchant avec des sacs de sable et du mortier, on prive les rats de leur chemin et de leur eau.",
+        "jet": {
+          "competence": "investigation",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "cit-rats-regles"
+          },
+          {
+            "fait": "f-cit-fissure-de-l-intendance"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Vous suivez les suintements jusqu'à la paroi, mais le mortier se délite sous vos doigts. Les rats se jettent par la fente, et la mer répond en remontant d'un cran dans la cave."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "chasser-au-grain",
+        "nom": "J'ouvre la porte de service sur la cour et je les chasse avec un sac de rations.",
+        "resume": "Les rats se ruent vers la lumière de la cour à l'odeur du pain, et se dispersent entre les pavés mouillés. Un sac de rations y passe ; les rats reviendront peut-être, tant que l'eau suinte.",
+        "condition": {
+          "objet": "rations"
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "cit-rats-regles"
+          },
+          {
+            "attitude": {
+              "pnj": "bertrane-mijotee",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 30
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cit-butin-rats"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "cit-rats-regles"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  }
+]

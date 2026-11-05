@@ -617,6 +617,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     avis(`Rythme : ${sansCombat} rencontre(s) sur ${rencontres.length} se jouent sans combat (négociation, exploration) ; visez au moins 20 % pour varier les scènes.`);
   const elevees = rencontres.filter((r) => r.difficulte === 'elevee').length;
   if (rencontres.length >= 8 && elevees < 3) avis(`Tension : ${elevees} rencontre(s) « élevée(s) ». Il en faut au moins 3 pour les moments forts (boss, embuscade, finale).`);
+  // 4 bis. un combat gagné doit rapporter quelque chose : une table de butin, un trésor qu'il garde ou la réserve de l'ennemi.
+  const gardes = new Set([...dm.tresors.values()].map((t) => t.gardien).filter((g): g is string => !!g));
+  const sansButin = rencontres.filter((r) => (r.type === 'combat' || r.type === 'mixte') && r.monstres.length > 0 && !r.butin.tables.length && !r.butin.tresors.length && !gardes.has(r.id)).map((r) => r.id);
+  if (sansButin.length) avis(`Butin : ${sansButin.length} combat(s) ne rapportent que des PX (${sansButin.slice(0, 6).join(', ')}${sansButin.length > 6 ? '…' : ''}). Donnez-leur une table de butin (\`butin.tables\`) ou une réserve (\`butin.tresors\`).`);
   // 5. une horloge qui compte : assez de paliers, des paliers qui changent le monde, et un moyen de la ralentir ;
   const tout = JSON.stringify([dm.pnj, dm.quetes, dm.rencontres, dm.evenements, dm.enigmes, dm.pieges, dm.tresors, dm.jauges, dm.lieux, dilemmes.flatMap((d) => effetsDuDilemme(d))].map((x) => (x instanceof Map ? [...x.values()] : x)));
   for (const j of dm.jauges.values()) {

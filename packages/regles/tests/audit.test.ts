@@ -311,7 +311,7 @@ describe('avis d’écriture du validateur (enjeu, PX, issue de repli)', () => {
   });
   it('un monde qui n’atteint pas son niveau maximum avec ses PX le signale', () => {
     const dm = monde('citadelle-des-marees');
-    const copie = { ...dm, monde: { ...dm.monde, niveaux: { min: 1, max: 5 } } } as DonneesMonde;
+    const copie = { ...dm, monde: { ...dm.monde, niveaux: { min: 1, max: 10 } } } as DonneesMonde; // le monde rapporte désormais assez de PX pour le niveau 5
     expect(avis('citadelle-des-marees', copie).some((a) => /^PX :/.test(a))).toBe(true);
   });
 });

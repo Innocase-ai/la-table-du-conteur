@@ -202,7 +202,19 @@
     "visuel": "Un magasin en longueur aux étagères de planches, des sacs de toile suspendus, des caisses de bois empilées, des bobines de corde et des armes rangées en faisceaux contre un mur.",
     "accroche": "Sous une arcade de la cour, une porte de planches donne sur un magasin plein de sacs de toile et de cordes.",
     "liens": [],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "cit-r-rats-des-reserves",
+        "declencheur": "entree",
+        "condition": {
+          "quete": {
+            "id": "q-cit-les-rats-des-reserves",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
     "faits": [],
     "services": [
       "equipement"
