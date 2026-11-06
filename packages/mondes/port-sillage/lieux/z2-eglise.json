@@ -87,6 +87,23 @@
           }
         },
         "unique": true
+      },
+      {
+        "id": "z5-r-aubin-savait",
+        "declencheur": "exploration",
+        "condition": {
+          "et": [
+            {
+              "fait": "f-aubin-savait"
+            },
+            {
+              "non": {
+                "flag": "aubin-tranche"
+              }
+            }
+          ]
+        },
+        "unique": true
       }
     ],
     "faits": [

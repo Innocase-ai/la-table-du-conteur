@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
-import { appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
+import { adapterRencontre, appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
 import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -370,5 +370,69 @@ describe('Le Grimoire de Port-Sillage : parcours', () => {
     const e = etatInitial(dm!, 2);
     appliquerEffets([{ flag: 'livre-retrouve' }, { jauge: { id: 'grande-maree', delta: 10 } }], e, dm!);
     expect(finAtteinte(e)).toBeUndefined();
+  });
+
+  it('rebondissement A : le guet-apens du quai exige le livre retrouvé et la jauge à 2, et aucune issue ne retire le livre', () => {
+    const ren = dm!.rencontres.get('z5-r-guet-apens-du-quai')!;
+    const lieu = dm!.lieux.get('pl-quai')!.rencontres.find((x) => x.id === ren.id)!;
+    expect(lieu.declencheur).toBe('exploration');
+    const cond = lieu.condition!;
+    const e = etatInitial(dm!, 3);
+    expect(evaluerCondition(cond, e), 'au départ').toBe(false);
+    appliquerEffets([{ flag: 'livre-retrouve' }], e, dm!);
+    expect(evaluerCondition(cond, e), 'livre retrouvé mais jauge à 1').toBe(false);
+    appliquerEffets([{ jauge: { id: 'grande-maree', delta: 1 } }], e, dm!);
+    expect(evaluerCondition(cond, e), 'livre retrouvé, jauge à 2').toBe(true);
+    appliquerEffets([{ flag: 'emissaire-neutralise' }], e, dm!);
+    expect(evaluerCondition(cond, e), 'émissaire neutralisé').toBe(false);
+    const issues = [ren.effetsVictoire, ...ren.alternatives.flatMap((a) => [a.effets, a.echec ?? []])];
+    expect(ren.alternatives.filter((a) => a.jet).every((a) => a.echec?.length && a.echecResout)).toBe(true);
+    for (const effets of issues) {
+      const s = etatInitial(dm!, 3);
+      appliquerEffets([{ flag: 'livre-retrouve' }, { jauge: { id: 'grande-maree', delta: 1 } }], s, dm!);
+      s.inventaire['livre-de-maelle'] = 1;
+      appliquerEffets(effets, s, dm!);
+      expect(s.flags['emissaire-neutralise']).toBe(true);
+      expect(s.inventaire['livre-de-maelle']).toBe(1);
+      expect(effets.some((x) => 'objet' in x && x.objet.retirer)).toBe(false);
+    }
+    expect(adapterRencontre(ren as never, 4).monstres.map((m) => m.nombre)).toEqual([1, 2, 2]);
+  });
+
+  it('rebondissement C : « Aubin savait » se joue quand le fait est connu, et chaque issue pose aubin-tranche', () => {
+    const ren = dm!.rencontres.get('z5-r-aubin-savait')!;
+    const lieu = dm!.lieux.get('eg-nef')!.rencontres.find((x) => x.id === ren.id)!;
+    const e = etatInitial(dm!, 3);
+    expect(evaluerCondition(lieu.condition!, e), 'fait inconnu').toBe(false);
+    appliquerEffets([{ fait: 'f-aubin-savait' }], e, dm!);
+    expect(evaluerCondition(lieu.condition!, e), 'fait connu').toBe(true);
+    appliquerEffets([{ flag: 'aubin-tranche' }], e, dm!);
+    expect(evaluerCondition(lieu.condition!, e), 'déjà tranché').toBe(false);
+    const attendu: Record<string, { flag?: string; attitude: number; reputation: number }> = {
+      'lui-pardonner': { flag: 'aubin-pardonne', attitude: 25, reputation: 5 },
+      'le-denoncer': { flag: 'aubin-denonce', attitude: -30, reputation: -10 },
+      'se-taire': { attitude: 0, reputation: 0 },
+    };
+    for (const a of ren.alternatives) {
+      const s = etatInitial(dm!, 3);
+      const att0 = s.attitudes['pere-aubin']!;
+      const rep0 = s.reputations['eglise-de-la-bonace']!;
+      appliquerEffets(a.effets, s, dm!);
+      const x = attendu[a.id]!;
+      expect(s.flags['aubin-tranche'], a.id).toBe(true);
+      expect(x.flag ? s.flags[x.flag] : undefined, a.id).toBe(x.flag ? true : undefined);
+      expect(s.attitudes['pere-aubin']! - att0, a.id).toBe(x.attitude);
+      expect(s.reputations['eglise-de-la-bonace']! - rep0, a.id).toBe(x.reputation);
+    }
+    const aubin = dm!.pnj.get('pere-aubin')!;
+    const sujet = aubin.sujets.find((s) => s.id === 'la-nuit-de-la-fete')!;
+    const s0 = etatInitial(dm!, 3);
+    expect(evaluerCondition(sujet.condition!, s0), 'sujet verrouillé').toBe(false);
+    appliquerEffets([{ attitude: { pnj: 'pere-aubin', delta: 50 } }], s0, dm!);
+    expect(evaluerCondition(sujet.condition!, s0), 'forte confiance').toBe(true);
+    const s1 = etatInitial(dm!, 3);
+    s1.inventaire['cle-de-la-crypte'] = 1;
+    expect(evaluerCondition(sujet.condition!, s1), 'preuve : la clé').toBe(true);
+    expect(aubin.salutations.variantes.slice(0, 2).map((v) => JSON.stringify(v.condition))).toEqual(['{"flag":"aubin-pardonne"}', '{"flag":"aubin-denonce"}']);
   });
 });

@@ -94,6 +94,29 @@
           }
         },
         "unique": true
+      },
+      {
+        "id": "z5-r-guet-apens-du-quai",
+        "declencheur": "exploration",
+        "condition": {
+          "et": [
+            {
+              "flag": "livre-retrouve"
+            },
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 2
+              }
+            },
+            {
+              "non": {
+                "flag": "emissaire-neutralise"
+              }
+            }
+          ]
+        },
+        "unique": true
       }
     ],
     "faits": [

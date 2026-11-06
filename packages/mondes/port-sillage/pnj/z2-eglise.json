@@ -35,7 +35,8 @@
       "f-aubin-perd-sa-voix",
       "f-livre-use-la-voix",
       "f-page-de-soin",
-      "f-z2-aubin-voulait-tobie"
+      "f-z2-aubin-voulait-tobie",
+      "f-aubin-savait"
     ],
     "secrets": [
       {
@@ -65,6 +66,23 @@
         "jet": {
           "competence": "persuasion",
           "dd": 14
+        }
+      },
+      {
+        "fait": "f-aubin-savait",
+        "attitudeMin": 60
+      },
+      {
+        "fait": "f-aubin-savait",
+        "condition": {
+          "ou": [
+            {
+              "objet": "cle-de-la-crypte"
+            },
+            {
+              "fait": "f-cle-de-tobie"
+            }
+          ]
         }
       }
     ],
@@ -223,6 +241,43 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "la-nuit-de-la-fete",
+        "mots": [
+          "nuit",
+          "clé",
+          "fête",
+          "silence",
+          "confidence"
+        ],
+        "question": "Où étiez-vous la nuit de la fête, mon père ?",
+        "condition": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "pere-aubin",
+                "attitudeMin": 60
+              }
+            },
+            {
+              "objet": "cle-de-la-crypte"
+            },
+            {
+              "fait": "f-cle-de-tobie"
+            }
+          ]
+        },
+        "reponse": "Le père Aubin parle bas, par phrases courtes, sans chercher à se faire plaindre. Cette nuit-là, depuis l'allée, il a vu Tobie Ancre prendre la clé de la crypte. Il ne l'a pas arrêté. Il n'a rien dit, ni ce soir-là ni après. « J'ai eu peur, voyez-vous, d'être remplacé auprès de la Bonace, et auprès du village. » Il avoue que l'orgueil a fait le reste, ce silence qu'il croyait être de la sagesse. Il en a honte et ne cherche pas à s'en laver. « Soyez justes avec le garçon avant de l'être avec moi. Il a voulu payer le remède de sa mère, et moi j'ai voulu sauver ma place. »",
+        "revele": [
+          "f-aubin-savait"
+        ],
+        "effets": [
+          {
+            "rencontre": "z5-r-aubin-savait"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {
@@ -230,6 +285,18 @@
       "neutre": "Entrez, entrez. L'église est ouverte à tous, et le banc devant l'autel est libre. Que puis-je pour vous ?",
       "amical": "Ah, vous voilà ! Asseyez-vous près de moi. Ma tisane est encore chaude, enfin, presque.",
       "variantes": [
+        {
+          "condition": {
+            "flag": "aubin-pardonne"
+          },
+          "texte": "« Enfin. Vous êtes revenus. Je ne vois plus guère, mais je devine dans votre voix que vous m'avez pardonné. Voyez-vous, je vais parler à Tobie moi-même. Merci d'avoir été justes avec un vieil homme. Je n'oublierai pas cette nuit. »"
+        },
+        {
+          "condition": {
+            "flag": "aubin-denonce"
+          },
+          "texte": "« Bonjour. Je vois que le village a déjà la nouvelle. Vous avez fait ce que vous jugiez juste, je ne vous le reprocherai pas. Maintenant, laissez-moi, s'il vous plaît, avec ma tisane. »"
+        },
         {
           "condition": {
             "flag": "choix-le-sacristain-livrer"

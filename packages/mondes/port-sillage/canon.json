@@ -12,7 +12,7 @@
       "texte": "Sorel a vendu le livre au marquis de Verdelune, dont le navire mouille à la grande marée.",
       "fait": "f-marche-de-sorel",
       "motsTabou": ["Verdelune", "marquis"],
-      "autorise": ["pnj:sorel-noirbec", "pnj:mirande-sel", "dilemmes"]
+      "autorise": ["pnj:sorel-noirbec", "pnj:mirande-sel", "pnj:octave-lamberte", "rencontres:z5-r-guet-apens-du-quai", "dilemmes"]
     },
     {
       "id": "secret-solde-detournee",
@@ -26,6 +26,13 @@
       "texte": "Le livre use la voix de son lecteur ; Aubin perd la sienne et voulait Tobie pour successeur.",
       "fait": "f-aubin-perd-sa-voix",
       "motsTabou": ["perd sa voix", "use la voix", "successeur"],
+      "autorise": ["pnj:pere-aubin", "dilemmes"]
+    },
+    {
+      "id": "secret-aubin-savait",
+      "texte": "Aubin a vu Tobie prendre la clé de la crypte la nuit de la fête et s'est tu, par orgueil et par peur d'être remplacé.",
+      "fait": "f-aubin-savait",
+      "motsTabou": ["Aubin savait", "il s'est tu"],
       "autorise": ["pnj:pere-aubin", "dilemmes"]
     }
   ],
@@ -42,6 +49,7 @@
     { "id": "sorel-noirbec", "nom": "Sorel Noirbec", "age": 42, "espece": "tieffelin" },
     { "id": "cyprien-crieur", "nom": "Cyprien", "age": 30, "espece": "gnome" },
     { "id": "mirande-sel", "nom": "Mirande Sel", "age": 120, "espece": "elfe" },
-    { "id": "basile-ecume", "nom": "Basile Écume", "age": 19, "espece": "humain" }
+    { "id": "basile-ecume", "nom": "Basile Écume", "age": 19, "espece": "humain" },
+    { "id": "octave-lamberte", "nom": "Octave Lamberte", "age": 50, "espece": "humain" }
   ]
 }
