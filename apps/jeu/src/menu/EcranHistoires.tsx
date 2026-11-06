@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { bilanPersonnage, personnageComplet, TAILLE_GROUPE, type Donnees, type Groupe } from '@crpg/regles';
+import { bilanPersonnage, personnageComplet, TAILLE_GROUPE, TAILLE_GROUPE_MIN, type Donnees, type Groupe } from '@crpg/regles';
 import { histoires, type Histoire } from '../mondes';
 
 interface Props {
@@ -128,11 +128,12 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
 
                 <h3>Pour commencer</h3>
                 <ul className="histoire-conditions">
-                  <li className={complets === TAILLE_GROUPE ? 'ok' : 'manque'}>
-                    Un groupe de {TAILLE_GROUPE} personnages complets : {complets} / {TAILLE_GROUPE}
-                    {complets < TAILLE_GROUPE && (
+                  <li className={complets >= TAILLE_GROUPE_MIN ? 'ok' : 'manque'}>
+                    Un groupe de {TAILLE_GROUPE_MIN} à {TAILLE_GROUPE} personnages complets : {complets} prêt{complets > 1 ? 's' : ''}
+                    {complets > 0 && complets < TAILLE_GROUPE && ` (les combats seront adaptés à ${complets} héros)`}
+                    {(complets < TAILLE_GROUPE_MIN || complets < TAILLE_GROUPE) && (
                       <button type="button" className="lien" onClick={onGroupe}>
-                        compléter mon groupe
+                        {complets < TAILLE_GROUPE_MIN ? 'créer mon groupe' : 'modifier mon groupe'}
                       </button>
                     )}
                   </li>
@@ -140,7 +141,7 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                     Niveau du groupe : {groupe.niveau} (histoire écrite pour les niveaux {choisie.monde.niveaux.min} à {choisie.monde.niveaux.max})
                   </li>
                 </ul>
-                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE} onClick={() => onCommencer(choisie.monde.id)}>
+                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE_MIN} onClick={() => onCommencer(choisie.monde.id)}>
                   Commencer l'aventure
                 </button>
                 <p className="histoire-bientot">

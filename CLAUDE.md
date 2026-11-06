@@ -47,7 +47,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 ## Décisions prises avec l'utilisateur (à ne pas rouvrir sans raison)
 
-- SRD 5.2.1 (licence CC-BY), web en TypeScript, combat avec des cartes, groupe de 6 personnages créé par le joueur.
+- SRD 5.2.1 (licence CC-BY), web en TypeScript, combat avec des cartes, groupe de 1 à 6 personnages créé par le joueur (rencontres adaptées au nombre de héros).
 - Le moteur accueille des dizaines de mondes (premier : Le Val des Cendres). Les objets communs viennent du catalogue SRD partagé, pas de chaque monde.
 - Coût : cible inférieure à 5 $ d'API par histoire. Le moteur et les textes écrits portent le jeu ; le conteur n'intervient que pour la saisie libre, les dialogues et les imprévus. Modèle par défaut : Claude Haiku 5.5 via OpenRouter.
 - Distribution : on développe dans le navigateur, on **vend une application de bureau Tauri** (`apps/bureau`, voir `docs/BUREAU.md`) : poids des contenus sans contrainte, clé du joueur dans le trousseau du système.

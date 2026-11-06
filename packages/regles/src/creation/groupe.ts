@@ -6,7 +6,9 @@ import { Competence } from '../schemas';
 import { manquants, type Manquant } from './exigences';
 import { creationRapide } from './recommandations';
 
+/** Un groupe compte de 1 à 6 personnages (le joueur choisit) ; les rencontres des histoires sont écrites pour 6 et adaptées au nombre de héros (`adapterRencontre`). */
 export const TAILLE_GROUPE = 6;
+export const TAILLE_GROUPE_MIN = 1;
 
 export const ALIGNEMENTS = [
   { id: 'LB', nom: 'Loyal bon' },
@@ -124,20 +126,22 @@ const CLASSES_PREMIERE_LIGNE = ['barbare', 'guerrier', 'paladin', 'moine'];
 /** Conseils de composition (jamais bloquants). */
 export function avertissementsGroupe(fiches: Fiche[], donnees: Donnees): string[] {
   const avis: string[] = [];
-  if (fiches.length < TAILLE_GROUPE) avis.push(`Groupe incomplet : ${fiches.length} personnage(s) sur ${TAILLE_GROUPE}.`);
-  if (!fiches.length) return avis;
+  if (!fiches.length) return ['Aucun personnage complet : créez au moins un aventurier.'];
+  const n = fiches.length;
+  if (n < TAILLE_GROUPE) avis.push(`Groupe de ${n} : les combats des histoires auront moins de monstres (calculés pour ${n} héros au lieu de ${TAILLE_GROUPE}).`);
   const soigne = (f: Fiche) =>
     CLASSES_SOIGNEUSES.includes(f.classe) || [...f.sortsMineurs, ...f.sortsPrepares, ...f.sortsAccordes].some((id) => !!donnees.sorts.get(id)?.soins);
-  if (!fiches.some(soigne)) avis.push('Aucun soigneur : personne ne rend de points de vie.');
-  if (!fiches.some((f) => CLASSES_PREMIERE_LIGNE.includes(f.classe) || f.ca >= 17)) avis.push('Personne en première ligne : aucun personnage robuste pour tenir le front.');
-  if (!fiches.some((f) => f.classe === 'roublard' || f.aptitudes.some((a) => a.id === 'expertise' && f.competences.discretion.maitrise !== 'aucune'))) {
+  // Les conseils de composition ne valent que pour un groupe qui peut se répartir les rôles : un héros seul ou en duo se débrouille.
+  if (n >= 2 && !fiches.some(soigne)) avis.push('Aucun soigneur : personne ne rend de points de vie.');
+  if (n >= 4 && !fiches.some((f) => CLASSES_PREMIERE_LIGNE.includes(f.classe) || f.ca >= 17)) avis.push('Personne en première ligne : aucun personnage robuste pour tenir le front.');
+  if (n >= 4 && !fiches.some((f) => f.classe === 'roublard' || f.aptitudes.some((a) => a.id === 'expertise' && f.competences.discretion.maitrise !== 'aucune'))) {
     avis.push("Aucun roublard : pièges et serrures seront plus difficiles à gérer.");
   }
-  if (!fiches.some((f) => f.incantation)) avis.push('Aucun lanceur de sorts.');
-  if (!fiches.some((f) => f.perceptionPassive >= 14)) avis.push('Perception faible : le groupe risque de manquer pièges et embuscades.');
+  if (n >= 4 && !fiches.some((f) => f.incantation)) avis.push('Aucun lanceur de sorts.');
+  if (n >= 3 && !fiches.some((f) => f.perceptionPassive >= 14)) avis.push('Perception faible : le groupe risque de manquer pièges et embuscades.');
   const parClasse = new Map<string, number>();
   for (const f of fiches) parClasse.set(f.classe, (parClasse.get(f.classe) ?? 0) + 1);
-  const doublons = [...parClasse].filter(([, n]) => n > 2).map(([c]) => donnees.classes.get(c)?.nom ?? c);
+  const doublons = [...parClasse].filter(([, k]) => k > 2).map(([c]) => donnees.classes.get(c)?.nom ?? c);
   if (doublons.length) avis.push(`Beaucoup de personnages de la même classe : ${doublons.join(', ')}.`);
   return avis;
 }

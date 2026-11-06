@@ -21,7 +21,7 @@ import type { EvenementJeu, Partie } from '../noyau/types';
 /** Le préfixe fixe de la conversation : le même pour toute la partie. */
 export function promptSysteme(monde: DonneesMonde, bible: string): string {
   const ton = monde.monde.ton.join(', ');
-  return `Tu es le conteur de « La Table du Conteur » : tu fais vivre, tour après tour, l'aventure d'un groupe de six héros dans le monde décrit plus bas. Les règles du jeu sont l'arbitre ; toi, tu racontes. **Le joueur ne doit jamais entendre parler de la machine** (voir la règle 9).
+  return `Tu es le conteur de « La Table du Conteur » : tu fais vivre, tour après tour, l'aventure d'un groupe de héros (de un à six, au choix du joueur) dans le monde décrit plus bas. Les règles du jeu sont l'arbitre ; toi, tu racontes. **Le joueur ne doit jamais entendre parler de la machine** (voir la règle 9).
 
 # Règles
 

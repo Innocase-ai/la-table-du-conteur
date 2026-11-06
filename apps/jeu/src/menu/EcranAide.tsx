@@ -71,7 +71,7 @@ const SECTIONS: Section[] = [
     contenu: (
       <>
         <p>
-          {NOM_JEU} est un jeu de rôle : vous menez un groupe de {TAILLE_GROUPE} aventuriers dans une histoire racontée par <strong>le conteur</strong>, un
+          {NOM_JEU} est un jeu de rôle : vous menez un groupe de 1 à {TAILLE_GROUPE} aventuriers (au choix) dans une histoire racontée par <strong>le conteur</strong>, un
           maître de jeu animé par une IA. Il décrit les lieux, fait parler les personnages et réagit à vos choix.
         </p>
         <p>
@@ -92,7 +92,7 @@ const SECTIONS: Section[] = [
     titre: 'Créer son groupe',
     contenu: (
       <>
-        <p>Un groupe compte {TAILLE_GROUPE} personnages, tous du même niveau. Le créateur vous guide étape par étape :</p>
+        <p>Un groupe compte de 1 à {TAILLE_GROUPE} personnages, tous du même niveau ; les combats des histoires s'adaptent au nombre de héros. Le créateur vous guide étape par étape :</p>
         <ol>
           <li>
             <strong>Espèce</strong> (humain, elfe, nain, halfelin, gnome, orc, tieffelin, goliath, drakéide) et <strong>classe</strong> (guerrier, magicien,

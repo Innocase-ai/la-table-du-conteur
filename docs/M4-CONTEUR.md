@@ -161,7 +161,7 @@ Pas encore fait (M4b et suivants) : le moment de la journée (présences du soir
 
 ## 11. État : M4c en mode « livre » (03/11/2026)
 
-L'histoire se joue dans le navigateur, **sans clé et sans IA** : « Choisir une histoire » → « Commencer l'aventure » (groupe de 6 complet).
+L'histoire se joue dans le navigateur, **sans clé et sans IA** : « Choisir une histoire » → « Commencer l'aventure » (au moins un personnage complet, jusqu'à 6).
 
 - **Chargement** : le client charge le monde à la demande (`chargerHistoire`) ; l'assemblage et la validation sont communs avec Node (`packages/regles/src/monde/assemblage.ts`).
 - **Écran d'aventure** (`apps/jeu/src/aventure/`) : image du lieu (manifeste du monde), récit (textes de l'auteur, jets, constats, faits appris), actions du moteur en boutons à droite (personnes, fouiller, halte, dormir, trésors et pièges à portée, énigmes avec réponse et indices, sorties avec clé / crocheter / forcer), groupe en bas (portraits, PV), sac et pièces, jauges et jour en haut. La saisie libre est visible mais désactivée : c'est la place du conteur (M4b).

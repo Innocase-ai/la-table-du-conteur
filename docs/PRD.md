@@ -14,7 +14,7 @@ Un jeu de rôle pour un groupe de **6 aventuriers créés par le joueur**, racon
 
 - **Un MJ qui improvise, mais ne triche pas.** Le LLM raconte et décide des conséquences. Les règles, les dés et l'état du jeu appartiennent au code.
 - **Chaque scène se voit.** Une illustration accompagne chaque interaction, dans un style unique, avec des héros reconnaissables.
-- **Un groupe qui compte.** 6 personnages, chacun avec sa personnalité, ses compétences et sa voix. La composition du groupe change la façon de jouer.
+- **Un groupe qui compte.** 1 à 6 personnages (au choix du joueur ; décision du 06/11/2026), chacun avec sa personnalité, ses compétences et sa voix. La composition du groupe change la façon de jouer.
 - **Des combats tactiques.** Cartes, système d'actions de la 5e, et des adversaires qui exploitent les erreurs du joueur.
 
 ## 2. Boucle de jeu principale
@@ -48,13 +48,13 @@ Repos, progression, scène suivante → … → fin du chapitre
 - Les 9 espèces, 4 historiques, 12 classes (une sous-classe chacune) et 17 dons du SRD 5.2.1, extraits en JSON en M0.
 - **Les 339 sorts du SRD (tours de magie à niveau 9)**, les 12 classes **du niveau 1 au niveau 20** (décision du 06/11/2026, qui remplace la limite des niveaux 1 à 5), équipement, bottes d'armes, repos court et long.
 - Bestiaire SRD adapté aux niveaux 1 à 5, complété par des créatures originales.
-- Rencontres calibrées pour **6 personnages** (le calcul de difficulté de la 5e le permet, mais l'équilibrage sera à surveiller).
+- Rencontres écrites pour **6 personnages** et **adaptées au nombre de héros** (`adapterRencontre` : moins de monstres, au prorata ; le calcul de difficulté de la 5e le permet).
 
 ### 3.3 Ce que le code garantit
 
 Tout calcul de règle est fait par le moteur : jets, modificateurs, points de vie, emplacements de sorts, durées, concentration, inventaire, XP. **Aucun LLM ne modifie l'état du jeu directement.**
 
-## 4. Le groupe : création de 6 personnages
+## 4. Le groupe : création de 1 à 6 personnages
 
 - **Créateur complet :** espèce, classe, historique, caractéristiques (tableau standard, achat de points ou tirage), compétences, équipement, sorts, nom, apparence et personnalité.
 - **Portrait choisi dans une galerie** pré-générée (par espèce et par sexe), sans personnalisation physique, comme dans Baldur's Gate. Il sert ensuite de **référence visuelle** pour toutes les illustrations.

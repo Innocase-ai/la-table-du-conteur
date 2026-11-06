@@ -245,7 +245,7 @@ export function Accueil({ donnees, groupe, initial, onGerer, onCombattre, onReto
               </ul>
             )}
             <p className="resume-groupe">
-              Mon groupe : {nbComplets} / {TAILLE_GROUPE} personnage(s) complet(s)
+              Mon groupe : {nbComplets} personnage(s) complet(s) (jusqu'à {TAILLE_GROUPE})
               {bilans.filter((x) => x && !personnageComplet(x.bilan)).length > 0 &&
                 `, ${bilans.filter((x) => x && !personnageComplet(x.bilan)).length} incomplet(s)`}
             </p>

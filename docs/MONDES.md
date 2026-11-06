@@ -181,7 +181,7 @@ Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté
 4. **Les faits d'abord** : une vérité importante est un `fait` ; elle doit pouvoir être découverte (un PNJ la sait, un lieu la contient, un trésor l'indique). Une rumeur douteuse a `fiable: false`.
 5. **Les PNJ parlent par sujets** : chaque PNJ important a au moins 3 sujets, dont un qui avance une quête ou révèle un fait ; les réponses sont des contenus à reformuler dans la voix du PNJ, pas des répliques figées.
 6. **Chaque piège et chaque énigme a une solution** : le moteur vérifie la réponse (`verifierEnigme`) ; les indices vont du plus vague au plus clair.
-7. **Équilibre** : les rencontres respectent le budget de PX du SRD pour un groupe de 6 (le validateur avertit) ; les trésors suivent la rareté du niveau (pas d'objet légendaire au niveau 3).
+7. **Équilibre** : les rencontres respectent le budget de PX du SRD pour un groupe de 6, la taille maximale (le validateur avertit) ; avec moins de héros, le jeu retire des monstres au prorata (`adapterRencontre`, `docs/COMBAT.md`) ; les trésors suivent la rareté du niveau (pas d'objet légendaire au niveau 3).
 8. **Plusieurs façons de résoudre** : les rencontres importantes ont une alternative (négocier, ruser, fuir) ; les quêtes ont des ramifications.
 9. **Richesse minimale par chapitre** (niveaux 1 à 5) : 30 lieux dont au moins un village ou une ville, 3 grottes et 1 donjon ; 25 PNJ (75 sujets), 3 marchands, 3 compagnons ; 1 quête principale, 6 secondaires, 3 personnelles ; 25 trésors, 10 objets propres au monde, 3 tables de butin ; 3 énigmes, 5 pièges, 15 rencontres ; 40 faits, 4 factions, 2 fins. En dessous, `pnpm monde valider` avertit.
 

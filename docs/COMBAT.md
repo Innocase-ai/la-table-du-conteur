@@ -87,3 +87,7 @@ Les escarmouches n'étaient que quatre rencontres fixes, calibrées pour six hé
 - **Résultat du calage** (10 parties par cas, IA contre IA, six héros ; ±15 % de bruit) : niveau 3, faible 92 %, modérée 80 %, élevée 62 % de victoires ; niveau 2, 85 / 85 / 55 ; les niveaux 1 et 4 ont été resserrés après un premier passage trop dur ou trop facile. Les rencontres du niveau 5 sont plafonnées par le catalogue (80 à 100 % de victoires).
 - **Tests** : `tests/escarmouche.test.ts` (budget, validité de chaque niveau × nombre de héros × difficulté, PX qui montent avec la difficulté et le niveau, déterminisme).
 
+
+## Groupe de 1 à 6 héros
+
+Le joueur compose un groupe de **1 à 6 personnages**. Les rencontres des histoires sont écrites pour 6 ; `adapterRencontre(rencontre, nbHéros)` (`packages/regles/src/combat/echelle.ts`) les réduit au prorata du nombre de héros (le budget de PX du SRD est une somme par héros) : chaque groupe de monstres est réduit (au moins un), puis les derniers groupes (les renforts) sont retirés d'abord ; le premier groupe, le principal, reste toujours. À 6 héros la rencontre est inchangée. Les PX viennent des monstres vaincus, donc ils suivent. Limite : un monstre unique très fort (un chef seul) ne peut pas être réduit, il reste dur pour un héros seul. Les escarmouches composaient déjà leur rencontre pour le nombre de héros.

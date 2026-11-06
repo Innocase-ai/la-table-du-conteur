@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IA_NORMALE, IA_RAPIDE, heroCombatDe, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
+import { IA_NORMALE, IA_RAPIDE, adapterRencontre, heroCombatDe, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
 import { chargerDonnees } from './donnees';
 import { Accueil } from './composants/Accueil';
 import { Combat } from './composants/Combat';
@@ -129,7 +129,7 @@ export function App() {
           setCombatHistoire({
             graine: nouvelleGraine(),
             reglages: {
-              rencontre: rencontreDeMonde(aventure.moteur.ctx.dm, p.scene.rencontre),
+              rencontre: adapterRencontre(rencontreDeMonde(aventure.moteur.ctx.dm, p.scene.rencontre), p.groupe.length),
               elan: true,
               ia: 'normale',
               heros: 'groupe',

@@ -20,7 +20,7 @@ Création de personnage dans l'esprit de Baldur's Gate : des écrans courts, une
 - `calculerFiche` (packages/regles/src/fiche.ts) valide les choix et calcule la fiche.
 - `exigences` et `manquants` (src/creation/exigences.ts) disent ce qu'il reste à choisir, écran par écran : « Suivant » est permis quand rien ne manque pour l'écran.
 - `recommandations.ts` fournit les valeurs du bouton Recommandé : répartition standard de la classe (table du SRD p. 22), historique et bonus adaptés, compétences usuelles, sorts jouables en combat d'abord, équipement de l'option A. Toute recommandation est validée comme un choix du joueur. Test : les 12 classes × 9 espèces × 5 niveaux (540 personnages) sont valides.
-- `groupe.ts` : le groupe de 6 (format JSON versionné, validé par Zod), les conseils de composition (jamais bloquants) et le **groupe conseillé** (Bran, Hilda, Pip, Sylvaine, Ambrine, Grukk).
+- `groupe.ts` : le groupe de 1 à 6 personnages (six emplacements, format JSON versionné, validé par Zod), les conseils de composition (jamais bloquants) et le **groupe conseillé** (Bran, Hilda, Pip, Sylvaine, Ambrine, Grukk).
 - `kit.ts` : du personnage au combattant (armes, bottes, sorts jouables, potion).
 
 ## Ce que le créateur couvre

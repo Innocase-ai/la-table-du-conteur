@@ -59,7 +59,7 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
     },
     {
       titre: 'Mon groupe',
-      detail: complets ? `${complets} / ${TAILLE_GROUPE} personnages prêts` : 'Créer ses six aventuriers',
+      detail: complets ? `${complets} personnage${complets > 1 ? 's' : ''} prêt${complets > 1 ? 's' : ''} (jusqu'à ${TAILLE_GROUPE})` : `Créer de 1 à ${TAILLE_GROUPE} aventuriers`,
       action: onGroupe,
     },
     { titre: 'Escarmouche', detail: "Un combat d'entraînement, sans histoire", action: onEscarmouche },

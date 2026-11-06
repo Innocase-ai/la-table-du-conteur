@@ -186,7 +186,7 @@ export function EcranGroupe(props: Props) {
         </button>
         <div>
           <h1>Mon groupe</h1>
-          <p className="sous-titre">{nombre} personnage(s) sur {TAILLE_GROUPE} · {fiches.length} complet(s)</p>
+          <p className="sous-titre">{nombre} personnage(s) (de 1 à {TAILLE_GROUPE}) · {fiches.length} complet(s)</p>
         </div>
         <div className="groupe-outils">
           <div className="niveau-groupe">

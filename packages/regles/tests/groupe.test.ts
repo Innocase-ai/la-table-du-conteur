@@ -32,9 +32,9 @@ describe('groupe', () => {
   });
 
   it('les conseils de composition signalent les manques', () => {
-    const fiches = ['guerrier', 'barbare'].map((c) => bilanPersonnage(personnage(c, 'humain'), donnees).fiche!);
+    const fiches = ['guerrier', 'barbare', 'moine', 'roublard'].map((c) => bilanPersonnage(personnage(c, 'humain'), donnees).fiche!);
     const avis = avertissementsGroupe(fiches, donnees).join('\n');
-    expect(avis).toMatch(/Groupe incomplet : 2/);
+    expect(avis).toMatch(/Groupe de 4/);
     expect(avis).toMatch(/Aucun soigneur/);
     expect(avis).toMatch(/Aucun lanceur/);
     const bon = ['guerrier', 'clerc', 'roublard', 'magicien', 'rodeur', 'paladin'].map((c) => bilanPersonnage(personnage(c, 'humain'), donnees).fiche!);

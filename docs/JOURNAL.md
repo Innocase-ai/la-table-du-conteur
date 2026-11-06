@@ -929,3 +929,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Combat** : 3 attaques par action au niveau 11 du Guerrier, 4 au niveau 20 (`niveaux-eleves.test.ts` : attaques, dégâts de rage, emplacements de niveau 20).
 - **Créateur** : le sélecteur de niveau (1 à 20) s'affiche sur deux rangées de dix ; fiche d'une Magicienne de niveau 20 vérifiée à l'écran (102 PV, +6, emplacements 4-3-3-3-3-2-2-1-1).
 - **Reste** : aptitudes de haut niveau et sorts de niveaux 4 à 9 en texte pour le moteur de combat ; équilibrage du bestiaire et des rencontres au-delà du niveau 5.
+
+## 06/11/2026 — Un groupe de 1 à 6 personnages
+
+- **Décision** : le groupe de 6 n'est plus obligatoire ; le joueur mène de 1 à 6 héros (beaucoup préfèrent 1, 4, 5 ou 6).
+- **Moteur** : `TAILLE_GROUPE_MIN` = 1 ; les conseils de composition s'adaptent (plus de « groupe incomplet » ; soigneur dès 2 héros, première ligne / roublard / lanceur dès 4 ; une note « Groupe de N : combats adaptés »). **`adapterRencontre`** (`combat/echelle.ts`) : les rencontres des histoires, écrites pour 6, perdent des monstres au prorata du nombre de héros (renforts retirés d'abord, groupe principal conservé) ; utilisée au lancement d'un combat d'histoire. Les PX viennent des monstres vaincus, la sauvegarde du groupe garde ses 6 emplacements (certains vides).
+- **Interface** : « Commencer l'aventure » demande au moins un personnage complet ; textes du titre, de l'accueil, de l'aide et de l'écran du groupe mis à jour ; le conteur sait que le groupe compte de un à six héros.
+- **Tests** : `echelle.test.ts` (adaptation, combats jouables à 1, 2, 3, 4, 5 et 6 héros, conseils, joueur automatique sur la Citadelle à 1, 2 et 4 héros). Vérifié à l'écran avec un groupe de 2 (le groupe de l'utilisateur a été restauré à l'identique).
+- **Limites** : un chef seul n'est pas réduit (dur pour un héros seul) ; le validateur de monde calcule toujours pour 6 ; les dialogues et quêtes ne dépendent pas du nombre de héros mais certains textes d'histoire disent peut-être « vous six » (non relus).
