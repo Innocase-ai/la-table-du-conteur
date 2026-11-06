@@ -68,7 +68,7 @@ const html = `<!doctype html>
 <body>
 <header class="barre">
   <a class="marque" href="#haut">${esc(c.meta.titre)}</a>
-  <nav>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
+  <nav><a href="#presentation">Le jeu</a>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
@@ -85,6 +85,15 @@ const html = `<!doctype html>
 
 <section class="chiffres" aria-label="Le jeu en chiffres">
   ${c.chiffres.map((x) => `<div><b>${esc(x.valeur)}</b><span>${esc(x.libelle)}</span></div>`).join('')}
+</section>
+
+<section id="presentation" class="bloc intro">
+  <p class="num">${esc(c.intro.surtitre)}</p>
+  <h2>${esc(c.intro.titre)}</h2>
+  <p class="accroche">${esc(c.intro.accroche)}</p>
+  <div class="intro-texte">${c.intro.paragraphes.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+  <div class="piliers">${c.intro.piliers.map((x, k) => `<div class="pilier"><b>${k + 1}</b><h3>${esc(x.titre)}</h3><p>${esc(x.texte)}</p></div>`).join('')}</div>
+  <p class="mention">${esc(c.intro.mention)}</p>
 </section>
 
 ${c.sections.map((s, n) => section(s, n) + (s.id === 'groupe' ? createur : '')).join('\n')}
