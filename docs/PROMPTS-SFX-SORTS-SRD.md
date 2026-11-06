@@ -1,0 +1,206 @@
+# Prompts SFX — les 181 sorts du SRD
+
+Un prompt par sort pour le modèle de bruitages d'ElevenLabs (`eleven_text_to_sound_v2`), en anglais. Chaque prompt décrit **uniquement ce qu'on entend** (matières, textures, mouvement) : attaque, corps, queue courte. Les noms des sorts sont ceux du SRD français du projet ; l'identifiant entre accents graves est celui du fichier de données (`packages/donnees/srd/sorts/`), pour nommer le fichier son produit.
+
+Réécrit le 06/11/2026 : l'ancienne version avait 16 modèles passe-partout partagés par 96 sorts (« crystalline resonance blooms » pour 16 divinations, « matter creaks… clean magical click » pour 15 transmutations…) et beaucoup de vocabulaire visuel (« shimmer », « glows », « aura ») qu'un modèle de bruitages ne sait pas jouer. Chaque sort a maintenant sa propre signature sonore.
+
+## Réglages à la génération
+
+- **Durée** : paramètre `duration_seconds` = **2** (pas dans le texte du prompt). Si le modèle déborde, générer 3 s et couper le dernier tiers.
+- **Pas de boucle** (`loop` faux) : ce sont des effets ponctuels.
+- **Fidélité au texte** (`prompt_influence`) : 0,5 pour commencer (0,3 par défaut est plus libre) ; à régler sur un essai.
+- Le modèle n'a pas de champ « negative prompt » : si de la musique ou des voix apparaissent, ajouter « No music. » à la fin du prompt, pas avant.
+- Après génération : `pnpm sons rogner <dossier> apps/jeu/src/sons` (coupe les silences, ramène le volume moyen à −20 dB, nettoie le nom). Pour un sort à dégâts, garder l'impact vers 0,8 à 1,2 s et la queue courte ; pour une divination ou une illusion, privilégier les textures fines.
+
+## Niveau 0 — 27 sorts
+
+- **Aspersion acide** (`aspersion-acide`, *évocation*) — A thick bubble bursts open with a wet plop, then a brief crackling fizz spreads and dies out in a sudden hush.
+- **Assistance** (`assistance`, *divination*) — A tuning fork is struck once, then a soft brass tone rises and steadies, holding a clean sustain before a quiet metal tap ends it.
+- **Bouffée de poison** (`bouffee-de-poison`, *nécromancie*) — A sharp hissing burst of air exits a glass tube, followed by a soft bubbling spit and a sizzle that fades.
+- **Contact glacial** (`contact-glacial`, *nécromancie*) — Ice crackles and creaks as a brittle frosted shell is pressed, a sharp crunch, then a brief dead silence.
+- **Coup au but** (`coup-au-but`, *divination*) — A steel blade whistles through the air and cracks against stone, followed by a high ringing ping of struck metal that dies quickly.
+- **Crosse des druides** (`crosse-des-druides`, *transmutation*) — A heavy oak staff thumps the ground and a deep wooden knock rolls out, then a short pulsing creak of bark settles.
+- **Décharge occulte** (`decharge-occulte`, *évocation*) — A taut wire snaps with a sharp high zing, then a dry hollow thump lands and a faint buzz dies.
+- **Druidisme** (`druidisme`, *transmutation*) — A dry twig snaps, then a soft rustle of leaves rises into a brief high bird trill that fades quickly.
+- **Élémentalisme** (`elementalisme`, *transmutation*) — A gust of air hisses over wet gravel, then trickling droplets patter onto packed clay and a low grainy rumble settles.
+- **Éruption ensorcelée** (`eruption-ensorcelee`, *évocation*) — A rapid rattle of small stones clatters across a metal sheet, then a bursting pop and a rising hiss dies quickly.
+- **Flamme sacrée** (`flamme-sacree`, *évocation*) — A thin glass rod is flicked, ringing out with a fine rising whine that dies into a faint sizzle.
+- **Flammes** (`flammes`, *invocation*) — A soft papery whoosh of flame catches with a low crackle, then a brief sharp snap of kindling as the fire leaps outward and dies.
+- **Illusion mineure** (`illusion-mineure`, *illusion*) — A thin airy breath slides sideways across the room, then a faint wooden knock sounds from nowhere and cuts off abruptly.
+- **Lumière** (`lumiere`, *évocation*) — A small metal cap is struck against flint with a quick scrape, then a tiny sputter lifts and a steady dry crackle follows.
+- **Lumières dansantes** (`lumieres-dansantes`, *illusion*) — Four small wisps of breathy hiss drift and swirl in quick flutters, each ticking softly with a tiny high whistle, then they thin out.
+- **Main du mage** (`main-du-mage`, *invocation*) — A dry leather glove snaps open in the air, followed by a gentle knuckle tap on wood and a quick soft flick.
+- **Message** (`message`, *transmutation*) — Two dry taps on hollow wood, then a thin breathy hush slides through a narrow gap and fades quickly.
+- **Moquerie cruelle** (`moquerie-cruelle`, *enchantement*) — A sharp metallic zing cuts the air like a barbed whip, followed by a nasty brittle crackle, the sting fading into a thin jagged buzz.
+- **Poigne électrique** (`poigne-electrique`, *évocation*) — Two copper rods buzz and spit a tight crackle, then a single dry snap bites at the target and dies in a brief fizz.
+- **Poussière d'étoile** (`poussiere-d-etoile`, *évocation*) — A scatter of fine grit rattles down onto a tin plate, then a sharp, dry ticking tail falls away.
+- **Prestidigitation** (`prestidigitation`, *transmutation*) — A small brass coin spins and clinks on glass, followed by a quick metallic flick and a crisp, dry snap.
+- **Rayon de givre** (`rayon-de-givre`, *évocation*) — A thin high creak of ice splits in a quick cold crack, then a brittle tinkle of frozen shards spreads and fades away.
+- **Réparation** (`reparation`, *transmutation*) — A slow stitch of thread pulls tight through leather, then a dry wooden seam knits closed with a soft fibrous rustle.
+- **Résistance** (`resistance`, *abjuration*) — A thick leather strap tightens with a quick twang, then a muffled thump settles into a dull leathery squeak that holds.
+- **Stabilisation** (`stabilisation`, *nécromancie*) — A low steady stone tap settles into a calm even thud, like a heartbeat slowing, then stops in a soft gravel scuff.
+- **Thaumaturgie** (`thaumaturgie`, *transmutation*) — A heavy wooden door slams open with a sharp bang, followed by a low ghostly moan that wavers and dies.
+- **Trait de feu** (`trait-de-feu`, *évocation*) — A sudden hiss of gas ignites with a tight snap, followed by a short crackle that dies away.
+
+## Niveau 1 — 56 sorts
+
+- **Alarme** (`alarme`, *abjuration*) — A small iron bell rings twice sharply, then a rapid chatter rolls on for a moment before dying into a dry scrape.
+- **Amitié avec les animaux** (`amitie-avec-les-animaux`, *enchantement*) — A soft warm rustle of fur and feathers, a gentle low coo drifts from a crowd of birds, then a tender tone rounds off into calm breathing.
+- **Appel de familier** (`appel-de-familier`, *invocation*) — A soft flutter of feathered wings bursts out, followed by a small bird's chirp and a brief scratch of claws landing on a perch.
+- **Armure du mage** (`armure-du-mage`, *abjuration*) — Soft cloth stretches over a wooden frame with a dense rustle, a metallic tick, then a quiet taut creak settles and holds.
+- **Baies nourricières** (`baies-nourricieres`, *invocation*) — Several small wet berries drop into a cupped palm with a soft plip, rolling and bumping together in a brief juicy patter.
+- **Bénédiction** (`benediction`, *enchantement*) — Several small brass coins are dropped onto a marble table and ring out together in a tinny jingle that spreads gently and settles.
+- **Blessure** (`blessure`, *nécromancie*) — A wet tearing sound of flesh stretched, followed by a dull bump and a dry rattling exhale that fades quickly.
+- **Bouclier** (`bouclier`, *abjuration*) — A flat metal slab slams up with a hard clang, a sharp deflected hiss slides away, then the ring is cut dead.
+- **Bouclier de la foi** (`bouclier-de-la-foi`, *abjuration*) — A heavy iron chain is laid across a stone slab, a dense clink and rattle, then a low solid thrum holds steady.
+- **Charme-personne** (`charme-personne`, *enchantement*) — A low muffled throb of breathing tightens slowly into a narrow pulsing buzz that pulls inward and holds the listener still.
+- **Châtiment de fournaise** (`chatiment-de-fournaise`, *évocation*) — A hot iron bar plunges into water with a violent hiss, then crackling flames catch and sputter out quickly.
+- **Châtiment divin** (`chatiment-divin`, *évocation*) — A heavy hammer strikes a stone slab with a clear high clang, and a rushing gust of air follows, then stops.
+- **Communication avec les animaux** (`communication-avec-les-animaux`, *divination*) — Two reed whistles trill in quick succession, then a flutter of small wings and a low wren chirp answer from far away.
+- **Compréhension des langues** (`comprehension-des-langues`, *divination*) — Thin paper pages flutter and flip rapidly, then a small iron gear clicks into place with a dry, precise tick.
+- **Couleurs dansantes** (`couleurs-dansantes`, *illusion*) — A rapid rising sizzle sweeps out in a fan, with fizzing crackles and tiny spitting pops, then drops into a sudden dull thud.
+- **Création ou destruction d'eau** (`creation-ou-destruction-d-eau`, *transmutation*) — A tin pail is tipped and water pours with a rushing splash, then a sharp hiss as droplets scatter onto flagstone.
+- **Déguisement** (`deguisement`, *illusion*) — A soft rustle of cloth and leather shifts and resettles, a few stiff buckles clink, then a muffled sigh of fabric settles into a new shape.
+- **Détection de la magie** (`detection-de-la-magie`, *divination*) — A low electric hum swells from nowhere, sliding up and down in pitch, then a faint whine thins into silence.
+- **Détection du mal et du bien** (`detection-du-mal-et-du-bien`, *divination*) — Two tones pull apart, one low and rough like grinding gravel, one clean and high like a struck bell, then both settle quietly.
+- **Détection du poison et des maladies** (`detection-du-poison-et-des-maladies`, *divination*) — A glass stopper pops out of a bottle, a thin hiss escapes, then a few heavy drips patter onto wood.
+- **Disque flottant** (`disque-flottant`, *invocation*) — A metal disc slides up off a ratchet with a steady clicking whirr, then settles with a soft wooden thock.
+- **Enchevêtrement** (`enchevetrement`, *invocation*) — Thick stems rasp and tighten with a wet creak, dragging through dry leaves that rattle as they wrap around ankles.
+- **Faveur divine** (`faveur-divine`, *transmutation*) — A warm draft rushes past, then a low brass gong swells with a deep round tone that softly fades.
+- **Feuille morte** (`feuille-morte`, *transmutation*) — Dry leaves flutter in a slow, sliding rustle, then a soft brushing whisper of feathers descends and settles to silence.
+- **Fou rire** (`fou-rire`, *enchantement*) — A bouncy rubber squeak and a quick series of springy boings, rapid and giddy, tumbling into a wobbling rattle that ends with a soft thud.
+- **Frappe piégeuse** (`frappe-piegeuse`, *invocation*) — Wet green vines unspool with a rubbery creak and a sudden thick rustle, tightening around a target with a short damp squeeze.
+- **Graisse** (`graisse`, *invocation*) — A thick sticky smack spreads across stone with a slow squelch, then a faint greasy slide that hisses quietly and fades.
+- **Grande foulée** (`grande-foulee`, *transmutation*) — A quick rush of wind whips past, a rapid double rhythm of boots tapping on dirt, then a breezy hush trails off.
+- **Héroïsme** (`heroisme`, *enchantement*) — A deep bronze bowl is struck once, its ring swelling upward, then a steady low drone of tin pipes holds softly before fading.
+- **Identification** (`identification`, *divination*) — A small tin box rattles while a pair of thin metal rods clink together, then a slow mechanical whirr winds down.
+- **Image silencieuse** (`image-silencieuse`, *illusion*) — A faint dry paper flutter with a gentle airy brush of cloth, then a thin high tick that holds steady and fades into nothing.
+- **Imprécation** (`fleau`, *enchantement*) — A brittle bone knocks inside a hollow wooden box, a dry ticking rasp that falls in pitch, then stops dead.
+- **Injonction** (`injonction`, *enchantement*) — A sharp dry click snaps out, then a short firm knock of wood on stone, and a low rasping tail that dies quickly.
+- **Lueurs féeriques** (`lueurs-feeriques`, *évocation*) — A handful of tiny glass pellets spills across a tin tray, each one landing with a faint tap before the last pellets patter away.
+- **Mains brûlantes** (`mains-brulantes`, *évocation*) — Dry kindling crackles as a wide gust of flame roars outward, a fan of hissing air followed by sharp popping embers that scatter and fade.
+- **Maléfice** (`malefice`, *enchantement*) — A low wet groan rises from a hollow chest, then a thin cold hiss of breath slides downward, and a dragging rasp tails off.
+- **Marque du chasseur** (`marque-du-chasseur`, *divination*) — A thin steel pin taps sharply into dry wood, then a focused tiny ping narrows to a fine whistle that points onward.
+- **Mot de guérison** (`mot-de-guerison`, *abjuration*) — A breath pushed through a hollow reed rises into a soft whistle, then a single muffled knock closes the sound with a quick flutter of cloth.
+- **Murmures dissonants** (`murmures-dissonants`, *enchantement*) — Two detuned metal bells clash with a harsh grating beat, a piercing rising screech stabs in, then the beating smears into a sour rasp.
+- **Nappe de brouillard** (`nappe-de-brouillard`, *invocation*) — A wet, breathy rush of air blows out softly, followed by a muffled drip of droplets patting onto soft leaves.
+- **Orbe chromatique** (`orbe-chromatique`, *évocation*) — A tight whistle rises as a hurled sphere streaks past, then bursts against stone with a sharp crackling snap and a short scatter of popping fizzes.
+- **Projectile magique** (`projectile-magique`, *évocation*) — Three quick whistling zips cut through the air, and each one strikes a thick steel plate with a dull sharp thud.
+- **Protection contre le mal et le bien** (`protection-contre-le-mal-et-le-bien`, *abjuration*) — A thin brass wire is drawn tight with a high steady whine, then a low tremble settles, and a dull seal clicks closed.
+- **Purification de la nourriture et de l'eau** (`purification-de-la-nourriture-et-de-l-eau`, *transmutation*) — A thin stream of water pours into a clay bowl, then a brief fizzing bubble rolls out and settles into a quiet, clean ripple.
+- **Rayon empoisonné** (`rayon-empoisonne`, *nécromancie*) — A bolt of pressured gas whooshes through the air, then a sticky wet splat hits sharply and drips.
+- **Rayon traçant** (`eclair-tracant`, *évocation*) — A thin needle whistle zips through the air and a sharp tick lands, followed by a tight dry buzz that fades.
+- **Repli expéditif** (`repli-expeditif`, *transmutation*) — Two quick scuffs of boots on gravel snap off a sharp stamp, then a swift cloth whoosh streaks away into the distance.
+- **Représailles infernales** (`represailles-infernales`, *évocation*) — A sudden gasp of air and a deep whoomph of flame erupt, followed by a crackling roar that snaps down quickly.
+- **Sanctuaire** (`sanctuaire`, *abjuration*) — A heavy wooden latch drops into its catch with a solid thud, then a faint dry scrape of a bolt slides and locks.
+- **Saut** (`saut`, *transmutation*) — A tight metal spring twangs with a quick boing, then a breathy rush and a gentle thump as feet land.
+- **Serviteur invisible** (`serviteur-invisible`, *invocation*) — Unseen hands drag a wooden chair across a floor, pick up a clay cup with a clink, then set it down with a soft knock.
+- **Simulacre de vie** (`simulacre-de-vie`, *nécromancie*) — A slow soft thump of a heartbeat, twice, through a taut drum skin, then a warm breath rises and settles.
+- **Soins** (`soins`, *abjuration*) — A low ceramic bowl is struck and its warm tone swells upward, then wraps into a slow wet swish that fades out gently.
+- **Sommeil** (`sommeil`, *enchantement*) — A loose rustle of feathers moves slowly across the air, then drifts down into a soft breathy exhale that sinks low and goes quiet.
+- **Texte illusoire** (`texte-illusoire`, *illusion*) — A dry scratch of a quill across parchment, slow and steady, with a faint ink drip and a crisp page turn that settles softly.
+- **Vague tonnante** (`vague-tonnante`, *évocation*) — A deep thunderous boom rolls out of a tight air blast, a heavy concussive thud hits and the low rumble rolls away into a dry, short tail.
+
+## Niveau 2 — 56 sorts
+
+- **Agrandissement/rapetissement** (`agrandissement-rapetissement`, *transmutation*) — A deep hollow thrum swells upward in pitch, stretching into a low rumble that drops to a dry thud.
+- **Aide** (`aide`, *abjuration*) — A dull round thump of stretched hide, followed by three quick soft taps and a gentle upward swell that fades.
+- **Amélioration de caractéristique** (`amelioration-de-caracteristique`, *transmutation*) — A wooden winch turns and a leather strap tightens with a rising taut creak, then the tension steadies and holds.
+- **Apaisement des émotions** (`apaisement-des-emotions`, *enchantement*) — A slow tide of soft felt brushes across a stone floor, a gentle low sigh that fades downward into near silence.
+- **Appel de destrier** (`appel-de-destrier`, *invocation*) — A deep hoof stomp shakes the ground, a heavy breath rattles out of a large chest, then a long rising neigh tails off into a low rumble.
+- **Arme magique** (`arme-magique`, *transmutation*) — A steel blade is struck and rings with a long sharp hum that climbs in pitch, then a thin metallic ringing trail fades out.
+- **Arme spirituelle** (`arme-spirituelle`, *évocation*) — A metallic whirr rises in pitch, then a sharp ringing blade swing cuts the air, ending with a quick clean chime.
+- **Augure** (`augure`, *divination*) — Three dice clatter loosely across a felt table, tumble twice, then come to rest with one final hollow clack.
+- **Aura magique de l'arcaniste** (`aura-magique-de-l-arcaniste`, *illusion*) — A low breathy hum of wind through a hollow tube rises and then falls, followed by a dull cloth rustle that drapes softly over a surface and stays.
+- **Bouche magique** (`bouche-magique`, *illusion*) — A small brass horn clicks open with a tinny metallic rattle, a wooden lid thunks shut, and a faint tin resonance rings off the sides.
+- **Bourrasque** (`bourrasque`, *évocation*) — A hard gust of wind roars along a narrow line, rushing past with a hiss of air and a whoosh that dies out quickly.
+- **Cécité/surdité** (`cecite-surdite`, *transmutation*) — A heavy wet cloth is pressed over a brass bell, muffling it into a flat damp thump and a low hum drops away.
+- **Châtiment de révélation** (`chatiment-de-revelation`, *transmutation*) — A sharp metallic chime strikes hard, followed by a brittle crackling burst of hot fizz and a short dry crunch.
+- **Corde enchantée** (`corde-enchantee`, *transmutation*) — A coiled hemp rope slithers upward with a dry rattle, then stops with a sharp rap and a hollow suck of air into a sealed space.
+- **Croissance d'épines** (`croissance-d-epines`, *transmutation*) — Dry branches crack and split in quick succession, followed by a rough, dragging scrape of thorny stems pushing up through stony soil.
+- **Déblocage** (`deblocage`, *transmutation*) — A heavy iron padlock is struck once against a steel plate, a loud metallic clang, then a bolt slides back with a crisp clack.
+- **Détection de l'invisibilité** (`detection-de-l-invisibilite`, *divination*) — A thin rush of air whistles through a narrow gap, then a quick flutter of cloth and a faint sigh.
+- **Détection des pensées** (`detection-des-pensees`, *divination*) — A cluster of tiny needles clicks and taps against a metal plate, rapid and uneven, before a single cold tink rings out.
+- **Détection des pièges** (`detection-des-pieges`, *divination*) — A taut wire twangs softly, then a brittle spring-loaded click snaps shut against stone, dry and short.
+- **Discours captivant** (`discours-captivant`, *enchantement*) — A dense cotton-muffled buzz swells and smothers the air, a thick low blanket of sound that slowly loosens and fades.
+- **Doux repos** (`doux-repos`, *nécromancie*) — Soft folds of linen are gently smoothed, a slow exhale of breath drifts down, then a low bowed string holds long and hushed.
+- **Épine mentale** (`epine-mentale`, *divination*) — A sliver-thin pulse of piercing high whine stabs inward, then breaks into a sharp dry crack and a grating ring that grinds away.
+- **Flamme éternelle** (`flamme-eternelle`, *évocation*) — A steady low crackle of a small gas flame, with a soft hiss that stays constant and never flares or dies, then a faint tick.
+- **Flou** (`flou`, *illusion*) — A soft wet smear of air drags across the ear, a low muffled rush that wavers, unfocused, and then smooths into a murky hush.
+- **Force fantasmagorique** (`force-fantasmagorique`, *illusion*) — A low sinister groan swells in the skull, a pressing dull pressure that tightens to a sharp hissing screech, then falls into a muffled thud.
+- **Foulée brumeuse** (`foulee-brumeuse`, *invocation*) — A sharp hollow snap of air rushes inward, then a dry tick and a muffled thump as boots land on stone.
+- **Fracassement** (`fracassement`, *évocation*) — A violent crack of splitting stone and glass explodes outward, a heavy sharp impact, then a rattle of falling debris that quickly fades.
+- **Image miroir** (`image-miroir`, *illusion*) — Three hollow glass bottles are tapped in quick succession, their pitches overlapping and wavering, then a single cracked clink ends the sequence.
+- **Immobilisation de personne** (`immobilisation-de-personne`, *enchantement*) — Long chain links drop across stone with a clattering rattle, then pull taut and lock with a sharp metallic bite.
+- **Invisibilité** (`invisibilite`, *illusion*) — Thin silk is drawn across a stone floor with a soft hushed rustle that thins into nothing, leaving a faint breathy trail behind.
+- **Lame de feu** (`lame-de-feu`, *évocation*) — A hissing rush of fire swishes through the air, rising in a crackling roar, then a sharp sizzle cuts short as the blade settles.
+- **Lévitation** (`levitation`, *transmutation*) — A low hum climbs steadily, rising in pitch and smoothing into a soft airy glide that holds, then eases to a rest.
+- **Lien de protection** (`lien-de-protection`, *abjuration*) — Two taut gut strings are plucked together, a matched low tone, then a tremor carries back and forth between them and softens.
+- **Localisation d'animaux ou de plantes** (`localisation-d-animaux-ou-de-plantes`, *divination*) — Rustling leaves and a soft crunch of dry twigs, then a distant animal cry carries across the wind.
+- **Localisation d'objet** (`localisation-d-objet`, *divination*) — A metal compass needle spins, clicks, and settles, while a thin string of coins jingles faintly and then goes still.
+- **Messager animal** (`messager-animal`, *enchantement*) — A quick flap of wings bursts in a rush of air, followed by a sharp bird chirp, then a fading whoosh of feathers beating away.
+- **Métal brûlant** (`metal-brulant`, *transmutation*) — Thin metal ticks and pings as it swells hot, then a sudden roar of gas jets out with a crackling hiss, quickly dying to a sizzle.
+- **Modification d'apparence** (`modification-d-apparence`, *transmutation*) — Dense bones crunch and reset with a wet stretching squelch, then sharp claws click briefly against bare stone.
+- **Passage sans trace** (`passage-sans-trace`, *abjuration*) — Dry leaves barely crackle under soft padded feet, a brush of cloth over dust, then the sound thins out to nothing.
+- **Pattes d'araignée** (`pattes-d-araignee`, *transmutation*) — Eight tiny claws tick and skitter rapidly across stone, a dry chitinous clicking that quickens as the body climbs upward.
+- **Peau d'écorce** (`peau-d-ecorce`, *transmutation*) — Thick wood plates lock together with a deep hollow knock, followed by a low grinding creak of bark settling into a rigid, hard shell.
+- **Prière de guérison** (`priere-de-guerison`, *abjuration*) — Slow wooden clacks of a rattle pulse over a long breath, then a soft cushioned roll fades away into air.
+- **Protection contre le poison** (`protection-contre-le-poison`, *abjuration*) — A glass stopper is pulled free with a wet suck, then a short fizz of liquid clears and a firm dry tap seals it.
+- **Rayon affaiblissant** (`rayon-affaiblissant`, *nécromancie*) — A dry brittle creak of old bone sinks into a low sagging groan, then a faint weary sigh of wood fades into the silence.
+- **Rayon ardent** (`rayon-ardent`, *évocation*) — Three short gas bursts ignite one after another, each a sudden roar of flame that snaps and sputters out.
+- **Rayon de lune** (`rayon-de-lune`, *évocation*) — A thin high pure tone hums like a taut wire, sweeping slowly downward and then a soft airy chime settles into a faint steady ring.
+- **Restauration partielle** (`restauration-partielle`, *abjuration*) — A metal buckle is unclasped with a quick click, a cloth slips loose, and a soft release settles away.
+- **Silence** (`silence`, *illusion*) — A sudden vacuum-like suck of air collapses into a deep padded hush, every sound smothered by thick wool, with a faint final cushioned thump.
+- **Souffle du dragon** (`souffle-du-dragon`, *transmutation*) — A deep throat rumble draws in a breath, then a roaring exhale of hot air blasts out with a hissing crackle that fades.
+- **Sphère de feu** (`sphere-de-feu`, *invocation*) — A heavy ball of coals rolls across gravel, crunching loud and fast, with a sizzling hiss that flares when it hits.
+- **Suggestion** (`suggestion`, *enchantement*) — A soft wooden tap on glass, then a smooth descending slide across polished wood, ending in a gentle, low, unhurried thud.
+- **Ténèbres** (`tenebres`, *évocation*) — A heavy wool blanket drops over stone with a low thud, and the surrounding sound is swallowed by a sudden dull hush.
+- **Toile d'araignée** (`toile-d-araignee`, *invocation*) — Sticky silk threads twang and stretch with a series of rapid wet ticks, then a thick clinging rustle settles into stillness.
+- **Verrou magique** (`verrou-magique`, *abjuration*) — A heavy wooden bar drops into iron brackets with a deep solid thunk, followed by a sharp ratchet that snaps and holds still.
+- **Vision dans le noir** (`vision-dans-le-noir`, *transmutation*) — A low pulse thumps dully in the chest while a faint hum wavers, rising and falling in slow, patient breaths.
+- **Zone de vérité** (`zone-de-verite`, *enchantement*) — A thin wire string is plucked once and its pitch slides down into a low steady thrum that hangs in the air and seals everything tight.
+
+## Niveau 3 — 42 sorts
+
+- **Animation des morts** (`animation-des-morts`, *nécromancie*) — Loose bones clack and scrape across gravel as a corpse stiffens, with a dry rasp of cloth and a thick rattle.
+- **Antidétection** (`antidetection`, *abjuration*) — A thin wire is plucked taut and clicks against a brass plate, then a soft cloth drapes over it with a muffled rustle that fades quickly.
+- **Appel de la foudre** (`appel-de-la-foudre`, *invocation*) — A distant low rumble of thunder swells, then a sharp crack strikes the ground with a heavy hollow thud and a fizzing spark.
+- **Boule de feu** (`boule-de-feu`, *évocation*) — A deep thudding blast punches outward, then a rolling growl of fire crackles across the air and collapses into a dull settling.
+- **Caresse du vampire** (`caresse-du-vampire`, *nécromancie*) — A low wet suction pulls steadily, a slow throbbing pulse slides upward, then a thick slurp breaks and goes still.
+- **Cercle magique** (`cercle-magique`, *abjuration*) — A wide ring of stones grinds once against stone, then a deep rumble rises through the floor and settles into a short gravelly drone.
+- **Clairvoyance** (`clairvoyance`, *divination*) — A glass bowl of water is tapped, its surface ringing and wobbling, then a slow watery swell rises and holds steady.
+- **Clignotement** (`clignotement`, *transmutation*) — A thin wet pop of pressure releases, then a faint breath of air snaps back a moment later.
+- **Communication à distance** (`communication-a-distance`, *divination*) — A faint wire hum and crackle of a far stone bell, then a short quiet pulse of breath, rising slightly.
+- **Communication avec les morts** (`communication-avec-les-morts`, *nécromancie*) — A dry hollow breath is drawn through a cracked reed, followed by a faint rattle of air and a soft brittle creak of jawbone.
+- **Communication avec les plantes** (`communication-avec-les-plantes`, *transmutation*) — Leaves rustle and brush together in a soft wave, then a dry whisper of sap and creaking stems murmurs in a slow, low pattern.
+- **Contresort** (`contresort`, *abjuration*) — A sharp dry snap, like a green branch breaking, cuts the air, followed by a quick hollow thud and a sudden drop into silence.
+- **Création de nourriture et d'eau** (`creation-de-nourriture-et-d-eau`, *invocation*) — Water pours in a steady splashing stream into a tin bowl, and a heavy bread loaf drops onto a table with a soft thud.
+- **Croissance végétale** (`croissance-vegetale`, *transmutation*) — Thick wooden vines surge upward with a rapid cracking of splitting stems, a grinding groan, then a dense crunch settling into a heavy thud.
+- **Délivrance des malédictions** (`delivrance-des-maledictions`, *abjuration*) — A tight knotted cord unravels with a slow dry slide, then a single snip cuts the last loop clean.
+- **Dissipation de la magie** (`dissipation-de-la-magie`, *abjuration*) — A tight cluster of brittle glass rods is tapped together and crumbles, shattering into a fine rattling spray of splinters that dies quickly.
+- **Don des langues** (`don-des-langues`, *divination*) — A soft sequence of small hard clicks ticks quickly in the air, like tumbling pebbles sorting themselves into a clean steady rhythm.
+- **Éclair** (`eclair`, *évocation*) — A huge whip-crack splits the air down a narrow line, followed by a deep thunder clap that rips apart and fades.
+- **Esprits gardiens** (`esprits-gardiens`, *invocation*) — A rising swarm of low buzzing whirs circles tightly, sharp metallic stings slice through it, and the swarm drones on, dwindling.
+- **Forme gazeuse** (`forme-gazeuse`, *transmutation*) — A pressurized hiss escapes as a body dissolves into vapor, a thin breathy whoosh drawn out and dispersing into a wispy trailing airflow.
+- **Fusion dans la pierre** (`fusion-dans-la-pierre`, *transmutation*) — Rough gravel grinds as a slab of rock slides and shifts, then a heavy stone block closes over with a low rumbling drone and a dull, muffled thump.
+- **Glyphe de garde** (`glyphe-de-garde`, *abjuration*) — A stylus scratches across stone once, then a hot spit of fat hisses and a sudden crackle of embers rises and dies.
+- **Hâte** (`hate`, *transmutation*) — A rapid ticking of a wound spring races faster and faster, then a sudden whip of air and a snapping release.
+- **Image majeure** (`image-majeure`, *illusion*) — A wide sheet of silk snaps taut in the air with a papery crack, a faint distant bell tone hangs over it, then a low hollow thud pins it down.
+- **Invocation d'animaux** (`invocation-d-animaux`, *invocation*) — Rustling leaves and padding paws, a flurry of soft animal breaths, then a short thump as a pack of beasts bursts out.
+- **Lenteur** (`lenteur`, *transmutation*) — A heavy bronze gong is struck and its tone drags downward, sinking in pitch and smearing into a thick, murky sludge of sound.
+- **Lueur d'espoir** (`lueur-d-espoir`, *abjuration*) — A slow gust of wind swells into an airy rise, then a clean upward swoosh softens and climbs away.
+- **Lumière du jour** (`lumiere-du-jour`, *évocation*) — A deep brass gong is struck once and a wide airy swell rises and spreads outward, then a dry hiss of wind dies away.
+- **Malédiction** (`malediction`, *nécromancie*) — A low iron bell is struck once and its tone sinks into a heavy grinding of chains dragged across wet stone.
+- **Marche sur l'onde** (`marche-sur-l-onde`, *transmutation*) — Quick barefoot slaps patter over a liquid surface, each step splashing softly, then a rippling gurgle spreads outward and dies away.
+- **Monture fantôme** (`monture-fantome`, *illusion*) — Hooves strike wood and a horse snorts with a breathy huff, then the hoofbeats fade away into an airy hollow hiss.
+- **Mot de guérison de groupe** (`mot-de-guerison-de-groupe`, *abjuration*) — Rapid ticking pebbles patter across stone, then a round soft thud and a gentle rising chime that dies quickly.
+- **Motif hypnotique** (`motif-hypnotique`, *illusion*) — A wet fingertip circles the rim of a bronze bowl, producing a wobbling drone that swells, slows, and tightens into a steady pulse.
+- **Mur de vent** (`mur-de-vent`, *évocation*) — A gale rushes upward, climbing in pitch, then a heavy canvas sail snaps taut and billows with a deep rushing whoosh.
+- **Nuage nauséabond** (`nuage-nauseabond`, *invocation*) — A low sickly gurgle of thick liquid swells in a slow boil, with a wheezy hollow breath and a damp drip that lingers.
+- **Petite hutte** (`petite-hutte`, *évocation*) — Wooden planks knock together and lock with a dull thud, followed by a low hollow ring that holds steady and fades.
+- **Protection contre l'énergie** (`protection-contre-l-energie`, *abjuration*) — A thick leather strap cinches tight around a wooden frame with a firm clap, then locks in place with a low creak that holds steady.
+- **Respiration aquatique** (`respiration-aquatique`, *transmutation*) — Bubbles gurgle and rise in a slow stream, a soft watery bubbling pulse that breathes in and out as steady bubbles pop.
+- **Retour à la vie** (`retour-a-la-vie`, *nécromancie*) — A slow, heavy heartbeat thumps twice in a deep chest cavity, then a wet, ragged gasp of breath tears in, and a dry rasp settles.
+- **Tempête de neige** (`tempete-de-neige`, *invocation*) — A rising howl of wind rushes down, and dry snow hisses against stone in a crackling spray that fades to a thin whistle.
+- **Terreur** (`terreur`, *illusion*) — Thin glass rims warble out of tune in a wavering, unstable drone, then a clatter of dropped metal falls to stone.
+- **Vol** (`vol`, *transmutation*) — A strong airy updraft roars upward with a deep rushing wind, lifting into a long steady whoosh that thins to a rustle.
