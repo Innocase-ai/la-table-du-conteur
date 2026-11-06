@@ -16,13 +16,14 @@
 <body>
 <header class="barre">
   <a class="marque" href="#haut">La Table du Conteur</a>
-  <nav><a href="#conteur">Le conteur</a><a href="#groupe">Groupe</a><a href="#createur">Créateur</a><a href="#histoires">Histoires</a><a href="#explorer">Explorer</a><a href="#parler">Parler</a><a href="#choix">Choix</a><a href="#combat">Combat</a><a href="#monstres">Monstres</a><a href="#monde">Image et son</a><a href="#cout">Coût</a><a href="#etat">État du jeu</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
+  <nav><a href="#conteur">Le conteur</a><a href="#groupe">Groupe</a><a href="#createur">Créateur</a><a href="#histoires">Histoires</a><a href="#explorer">Explorer</a><a href="#parler">Parler</a><a href="#choix">Choix</a><a href="#combat">Combat</a><a href="#monstres">Monstres</a><a href="#monde">Image et son</a><a href="#cout">Coût</a><a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
 <section class="hero" style="background-image:linear-gradient(180deg,rgba(14,11,8,.35),rgba(14,11,8,.92)),url('images/art/hero.webp')">
   <div class="hero-contenu">
     <p class="surtitre">Jeu de rôle narratif illustré · règles du SRD 5.2.1</p>
+    <a class="pastille" href="#claude">Entièrement créé par Claude, l'IA d'Anthropic</a>
     <h1>La Table du Conteur</h1>
     <p class="accroche-hero">Racontez l'histoire, mais laissez les dés décider.</p>
     <p class="para-hero">La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires complètes. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence.</p>
@@ -215,6 +216,19 @@
   <div class="mosaique"><figure><img src="images/art/carte-citadelle.webp" alt="La Citadelle des Marées" loading="lazy"><figcaption>La Citadelle des Marées</figcaption></figure><figure><img src="images/art/carte-cote.webp" alt="La côte de Hautmarée" loading="lazy"><figcaption>La côte de Hautmarée</figcaption></figure><figure><img src="images/art/carte-port-sillage.webp" alt="Port-Sillage" loading="lazy"><figcaption>Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-crypte.webp" alt="La crypte de Port-Sillage" loading="lazy"><figcaption>La crypte de Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-place.webp" alt="La place de la Criée" loading="lazy"><figcaption>La place de la Criée</figcaption></figure><figure><img src="images/art/pnj-octave.webp" alt="Octave Lamberte" loading="lazy"><figcaption>Octave Lamberte</figcaption></figure><figure><img src="images/art/pnj-sorel.webp" alt="Sorel Noirbec" loading="lazy"><figcaption>Sorel Noirbec</figcaption></figure><figure><img src="images/art/pnj-aubin.webp" alt="Père Aubin" loading="lazy"><figcaption>Père Aubin</figcaption></figure><figure><img src="images/art/objet-livre.webp" alt="Le Livre de Maëlle" loading="lazy"><figcaption>Le Livre de Maëlle</figcaption></figure></div>
 </section>
 
+<section id="claude" class="bloc claude">
+  <div class="claude-carte">
+    <p class="num">Fait par Claude</p>
+    <h2>Fait par une IA, de bout en bout</h2>
+    <p class="accroche">La Table du Conteur a été entièrement créée par Claude, l'intelligence artificielle d'Anthropic.</p>
+    <div class="claude-colonnes">
+      <div><p>Le jeu, ses règles, ses combats, l'intelligence des monstres, le créateur de personnage et ce site lui-même : Claude les a conçus et écrits, étape par étape, en dialoguant avec son auteur humain. C'est lui qui décide de la direction et qui valide chaque choix ; Claude propose, construit, vérifie et corrige.</p><p>Les histoires aussi. Les mondes, les personnages, les énigmes, les dilemmes et les fins ont été imaginés et écrits par Claude, avec des assistants Claude spécialisés qui se relisent entre eux et un joueur automatique qui prouve que chaque fin est atteignable.</p><p>Pour les images, les voix, les musiques et les bruitages, Claude a dirigé des modèles de création spécialisés : il a écrit les consignes, choisi, relu et installé chaque résultat.</p></div>
+      <ul class="puces"><li>Code du jeu, règles et combats : écrits par Claude</li><li>Histoires, personnages, énigmes et dialogues : écrits par Claude</li><li>Images, voix et sons : dirigés et sélectionnés par Claude</li><li>Ce site : conçu, rédigé et mis en page par Claude</li><li>Un humain garde la main : il décide, Claude exécute</li></ul>
+    </div>
+    <p class="mention">Claude est une IA développée par Anthropic. Ce projet est indépendant et n'est pas un produit d'Anthropic.</p>
+  </div>
+</section>
+
 <section id="inscription" class="bloc inscription">
   <h2>Soyez prévenu de la sortie</h2>
   <p>Laissez votre adresse e-mail pour être averti quand le jeu sortira.</p>
@@ -233,7 +247,7 @@
 </section>
 </main>
 
-<footer class="pied"><p>Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 de Wizards of the Coast LLC, publié sous licence Creative Commons Attribution 4.0. Le monde du jeu est original.</p></footer>
+<footer class="pied"><p class="fierte">Conçu, codé et écrit par Claude, sous la direction de son auteur.</p><p>Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 de Wizards of the Coast LLC, publié sous licence Creative Commons Attribution 4.0. Le monde du jeu est original.</p></footer>
 
 <div id="visionneuse" hidden><button id="fermer" aria-label="Fermer">×</button><img alt=""><p></p></div>
 <script src="site.js"></script>

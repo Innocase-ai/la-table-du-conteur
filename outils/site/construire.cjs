@@ -68,13 +68,14 @@ const html = `<!doctype html>
 <body>
 <header class="barre">
   <a class="marque" href="#haut">${esc(c.meta.titre)}</a>
-  <nav>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
+  <nav>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
 <section class="hero" style="background-image:linear-gradient(180deg,rgba(14,11,8,.35),rgba(14,11,8,.92)),url('images/art/hero.webp')">
   <div class="hero-contenu">
     <p class="surtitre">Jeu de rôle narratif illustré · règles du SRD 5.2.1</p>
+    <a class="pastille" href="#claude">Entièrement créé par Claude, l'IA d'Anthropic</a>
     <h1>${esc(c.meta.titre)}</h1>
     <p class="accroche-hero">${esc(c.hero.accroche)}</p>
     <p class="para-hero">${esc(c.hero.paragraphe)}</p>
@@ -91,6 +92,19 @@ ${c.sections.map((s, n) => section(s, n) + (s.id === 'groupe' ? createur : '')).
 ${galerie('Un bestiaire complet', 'Les 329 monstres du SRD ont leur illustration, dans un même style peint. En voici quelques-uns.', monstres, 'monstres-galerie')}
 ${galerie('Des héros qui vous ressemblent', 'Neuf espèces, deux silhouettes, trois visages chacune : 54 portraits à choisir.', portraits, 'portraits-galerie')}
 ${galerie('Des mondes qui se dessinent', 'Cartes, lieux, personnages et objets des histoires livrées.', histoires, 'mondes-galerie')}
+
+<section id="claude" class="bloc claude">
+  <div class="claude-carte">
+    <p class="num">Fait par Claude</p>
+    <h2>${esc(c.claude.titre)}</h2>
+    <p class="accroche">${esc(c.claude.accroche)}</p>
+    <div class="claude-colonnes">
+      <div>${c.claude.paragraphes.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+      <ul class="puces">${c.claude.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
+    </div>
+    <p class="mention">${esc(c.claude.mention)}</p>
+  </div>
+</section>
 
 <section id="inscription" class="bloc inscription">
   <h2>Soyez prévenu de la sortie</h2>
@@ -110,7 +124,7 @@ ${galerie('Des mondes qui se dessinent', 'Cartes, lieux, personnages et objets d
 </section>
 </main>
 
-<footer class="pied"><p>${esc(c.pied)}</p></footer>
+<footer class="pied"><p class="fierte">Conçu, codé et écrit par Claude, sous la direction de son auteur.</p><p>${esc(c.pied)}</p></footer>
 
 <div id="visionneuse" hidden><button id="fermer" aria-label="Fermer">×</button><img alt=""><p></p></div>
 <script src="site.js"></script>
