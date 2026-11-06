@@ -9,6 +9,27 @@ Un monde est un dossier de données (`packages/mondes/<id>/`) lu par le même mo
 
 Les mondes livrés sont les références : **le Val des Cendres** et **La Citadelle des Marées** (publiés), **La Dîme des Roseaux** (brouillon court) (`packages/mondes/`) ; relis leur `BIBLE.md` et `GUIDE-ZONE.md` pour voir le niveau de détail attendu.
 
+## Les points de validation (décision de l'utilisateur, 06/11/2026)
+
+L'utilisateur est l'auteur : il valide **chaque étape, chaque niveau et chaque lieu**. Claude reste le maître du jeu : à chaque point, il **propose une version complète et argumentée** (jamais une page blanche ni une liste de questions ouvertes), puis attend un « oui » explicite. **Rien ne passe à l'étape suivante sans ce oui.** Un refus ou une correction reprend l'étape en cours, pas le début.
+
+| Point | Ce que Claude présente (une page au plus, décisions en tête) | Ce que l'utilisateur décide |
+| --- | --- | --- |
+| **V1. Pitch** | 3 pistes en 3 phrases, puis ton, niveaux, taille, coût | la piste et le cadre |
+| **V2. Canon** | une page : secret, fins, factions, horloge, personnages clés | ce qui est vrai dans ce monde |
+| **V3. Atlas, niveau 0** | la carte du monde en mots : territoire, grands lieux et leur rôle, routes, charte (matériaux, couleurs, lumière) | la géographie |
+| **V4. Atlas, niveau 1, lieu par lieu** | pour **chaque** lieu : plan, points à visiter, budget de contenu (« 2 combats, 4 PNJ, 1 piège… »), secret du lieu | ce qui se passe dans ce lieu |
+| **V5. Niveau 2 et suivants, lieu par lieu** | les fiches de tous les points du lieu (et de leurs sous-lieux), après le vérificateur | le détail du lieu |
+| **V6. Contenu, lieu par lieu** | les PNJ (qui, ce qu'ils savent, ce qu'ils veulent), combats, pièges, trésors, énigmes du lieu, tels qu'écrits dans les données | ce qu'on y vit |
+| **V7. Intrigue et choix** | quête principale, jauge, dilemmes, fins (et leurs épilogues) | comment l'histoire se tranche |
+| **V8. Publication** | le verdict du vérificateur d'ensemble, les fins prouvées par le parcours, la durée et le coût estimés | on publie |
+
+Règles :
+- **Ce qui est validé est gelé** : dans le canon (`BIBLE.md`) et l'atlas (`LIEUX.md`), marque-le (« Validé par l'utilisateur le <date> ») ; les agents ne travaillent que sur du validé, et les vérificateurs signalent tout écart. Changer un élément gelé demande un nouveau oui.
+- **Lieu par lieu** : les agents travaillent sur un lieu (ou une zone) à la fois, dans l'ordre que l'utilisateur choisit ; plusieurs en parallèle seulement s'il le demande.
+- **Les dépenses** (images, voix, API) gardent leur propre accord, coût annoncé d'abord.
+- Les présentations sont courtes, concrètes, en tableau quand c'est possible ; les choix que Claude recommande sont dits comme tels, avec la raison.
+
 ## Les skills de la famille (à appeler au bon moment)
 
 | Quand | Skill |
@@ -36,7 +57,7 @@ Les mondes livrés sont les références : **le Val des Cendres** et **La Citade
 
 ## Étape 1 — Cadrer avec l'utilisateur
 
-L'utilisateur est l'auteur du monde, tu es son éditeur et son équipe. Ne commence jamais à écrire sans accord sur le pitch. Propose **trois pistes** réellement différentes (ton, thème, structure), en 3 phrases chacune, appuyées sur le bestiaire, avec `AskUserQuestion`. Une piste se résume en : un décor singulier, un secret, une question centrale, des factions aux motivations opposées, plusieurs fins qui coûtent.
+**→ V1.** L'utilisateur est l'auteur du monde, tu es son éditeur et son équipe. Ne commence jamais à écrire sans accord sur le pitch. Propose **trois pistes** réellement différentes (ton, thème, structure), en 3 phrases chacune, appuyées sur le bestiaire, avec `AskUserQuestion`. Une piste se résume en : un décor singulier, un secret, une question centrale, des factions aux motivations opposées, plusieurs fins qui coûtent.
 
 Décide ensuite avec lui (propose des défauts) : le ton, les niveaux (1 à 5 par défaut), la taille (un chapitre complet ≈ 30 lieux, 25 PNJ, 25 trésors, 15 rencontres, 3 dilemmes ; un monde plus court est possible, le validateur avertira), ce qu'il faut éviter, le nombre de fins (au moins 3). **Prévenir du coût avant de lancer les agents** : un monde complet mobilise ~6 agents de zone (15 à 25 minutes chacun), plus les agents de l'atlas et ses vérificateurs (un par lieu du niveau 1, plus un), les savoirs (un par PNJ approfondi) et les briefs de l'étape 5 ; annonce le total et obtiens l'accord.
 
@@ -65,13 +86,13 @@ Décide ensuite avec lui (propose des défauts) : le ton, les niveaux (1 à 5 pa
 9. **Des épilogues** : une phrase par option de dilemme, racontée à la fin.
 10. **Un ton par scène** : alterner grave, léger, étrange ; une quête secondaire tient en dix minutes et finit sur une chute.
 
-Fais valider un **résumé** du canon à l'utilisateur (pas le document entier) avant d'écrire les zones : changer un secret après coup coûte tout le travail des agents.
+**→ V2** : fais valider un **résumé** du canon à l'utilisateur (pas le document entier) avant d'aller plus loin : changer un secret après coup coûte tout le travail des agents.
 
 **Le canon des personnages** (`CANON-PERSONNAGES.md`, skill `creer-personnages` étape 1, par Claude) s'écrit **ici**, juste après la BIBLE : les savoirs, les examens, les origines et l'antagoniste le lisent plus tard. Reporte les mêmes personnages (nom, âge, espèce) dans `canon.json` : BIBLE §7, `CANON-PERSONNAGES.md` et `canon.json` disent la même chose, et la BIBLE fait foi.
 
 ## Étape 2 bis — Décrire les lieux (l'atlas)
 
-Skill `decrire-lieux` : l'atlas `LIEUX.md` (créé par `pnpm monde nouveau`). Niveau 0 (la carte du monde) et niveau 1 (chaque lieu de cette carte, avec son **budget de contenu**) par Claude avec l'utilisateur, puis niveaux 2 et suivants par des agents, et la vérification en cascade. Il fixe une fois pour toutes plans, matériaux, positions, descriptions et l'emplacement de chaque PNJ, piège, trésor et rencontre ; **les agents de zone recopient ses champs** au lieu de les inventer, et les images et les cartes en découlent.
+Skill `decrire-lieux` : l'atlas `LIEUX.md` (créé par `pnpm monde nouveau`). **→ V3** (niveau 0), **V4** (chaque lieu du niveau 1) et **V5** (le détail de chaque lieu). Niveau 0 (la carte du monde) et niveau 1 (chaque lieu de cette carte, avec son **budget de contenu**) par Claude avec l'utilisateur, puis niveaux 2 et suivants par des agents, et la vérification en cascade. Il fixe une fois pour toutes plans, matériaux, positions, descriptions et l'emplacement de chaque PNJ, piège, trésor et rencontre ; **les agents de zone recopient ses champs** au lieu de les inventer, et les images et les cartes en découlent.
 
 ## Étape 3 — Découper en zones
 
@@ -79,21 +100,21 @@ Skill `decrire-lieux` : l'atlas `LIEUX.md` (créé par `pnpm monde nouveau`). Ni
 
 ## Étape 4 — Lancer les agents de zone
 
-Un agent `general-purpose` par zone, modèle **Sonnet 5.5** (données structurées et cohérence entre fichiers ; annonce-le en une ligne), tous lancés **dans le même message**. Chaque prompt est court : il renvoie au `GUIDE-ZONE.md` (à suivre à la lettre), au `BIBLE.md` et à l'**atlas** `LIEUX.md`, puis donne la mission de la zone (modèles : `references/prompts-zones.md`). Pendant qu'ils travaillent, n'écris pas dans les fichiers d'une zone ; les erreurs de référence vers les autres zones sont normales. Garde `"statut": "brouillon"` jusqu'à la fin. Relis chaque rapport : un agent qui s'écarte de l'atlas (lieu, contenu, texte) est corrigé avant la suite.
+Un agent `general-purpose` par zone, modèle **Sonnet 5.5** (données structurées et cohérence entre fichiers ; annonce-le en une ligne), **une zone à la fois** dans l'ordre choisi par l'utilisateur (toutes en parallèle seulement s'il le demande). **→ V6** : après chaque zone, présente lieu par lieu ce qui a été écrit (PNJ, combats, pièges, trésors, énigmes) et attends son oui avant la zone suivante. Chaque prompt est court : il renvoie au `GUIDE-ZONE.md` (à suivre à la lettre), au `BIBLE.md` et à l'**atlas** `LIEUX.md`, puis donne la mission de la zone (modèles : `references/prompts-zones.md`). Pendant qu'ils travaillent, n'écris pas dans les fichiers d'une zone ; les erreurs de référence vers les autres zones sont normales. Garde `"statut": "brouillon"` jusqu'à la fin. Relis chaque rapport : un agent qui s'écarte de l'atlas (lieu, contenu, texte) est corrigé avant la suite.
 
 ## Étape 5 — Intégrer, enrichir, raccorder (dans cet ordre)
 
 1. **Les zones assemblées** : `pnpm monde valider <id>` donne **0 erreur**. À ce stade, les avis « Choix », « Pertes » et « Réactivité » sont **normaux** (les dilemmes et les salutations variables viennent plus loin) ; lis les autres (`references/lecons.md`). **Énigmes** : skill `enigmes` (`pnpm monde enigmes <id>`, et jouer une énigme de chaque type).
 2. **Combats, récompenses et commerce** : contrats (`creer-contrats`, fichiers `z7-`), rencontres relues (`creer-rencontres`), pièges et trésors relus (`creer-pieges-tresors`) contre l'emplacement prévu par l'atlas, marchands et services relus (`creer-marchands-compagnons`).
 3. **Les personnages en profondeur** (`creer-personnages`) : fiches de savoir (`savoirs/z8-…`), et le compagnon qui voyage (`creer-marchands-compagnons` : `escorte` + `interjections/`, sa quête personnelle).
-4. **Les choix** (`creer-dilemmes`) : dilemmes, échos, épilogues ; **puis seulement** les `salutations.variantes` qui citent les drapeaux de choix.
+4. **Les choix** (`creer-dilemmes`, **→ V7** avec la quête principale, la jauge et les fins) : dilemmes, échos, épilogues ; **puis seulement** les `salutations.variantes` qui citent les drapeaux de choix.
 5. **Le décor qui raconte et le mystère** : examens (`references/brief-examens.md`, un examen par élément remarquable de l'atlas), codex (`brief-codex.md`), regards et salutations d'origine (`brief-origines.md`), apparitions de l'antagoniste (`brief-antagoniste.md`). Ces briefs sont des **exemples tirés de la Citadelle** : adapte-les (voir leur en-tête).
 6. **Rattacher les « patchs »** que certains briefs écrivent dans le dossier temporaire de la session (sujets, regards, salutations, rencontres de lieu) : Claude les applique à la main, fiche par fiche, puis revalide.
 7. `pnpm monde valider <id>` : **0 erreur, 0 avertissement** (sauf les avis `[énigmes]`, lus un par un) ; puis l'atelier (Santé, Registre, Revue avec `canon.json`, Graphes).
 8. **Prouve que chaque fin arrive** : `pnpm monde parcours <id>` lance un joueur automatique qui joue le VRAI moteur (mêmes boutons que le joueur ; combats supposés gagnés) et rend, pour chaque fin atteinte, un parcours rejouable ; `--chemin` le détaille, `--couvrir` continue après les fins pour lister ce qu'il n'a jamais vu, `--graines` change le nombre de tirages. Une fin « non atteinte » est une piste, pas une preuve (budget : `--etats`, `--ms`) : cherche ce qui la bloque (atelier, onglet Graphes > dépendances d'une fin). Vérifie aussi qu'**aucune fin n'arrive trop tôt** (sa condition doit être le drapeau de l'issue). En complément, un cas par fin dans `packages/regles/tests/monde.test.ts` (modèle : « Val des Cendres : parcours »).
 8 bis. **Vérificateur d'ensemble du monde** (`references/verificateur-monde.md`) : un agent neuf, d'un autre modèle que les rédacteurs, lit tout le monde contre la BIBLE (fins, horloge, personnages, atlas, lore inventé, rythme) et rend un verdict ; deux tours au plus.
 9. **Reporte les ids** des entités créées dans le « Contenu prévu » de l'atlas (`decrire-lieux`) et vérifie l'écart avec le budget.
-10. Remplis `chapitres[].quetes` dans `monde.json`, passe le `statut` à `"publie"` ; `pnpm monde doc <id>` génère `docs/mondes/<id>.md`, que l'utilisateur relit.
+10. **→ V8** : présente le verdict du vérificateur d'ensemble, les fins prouvées, la durée et le coût estimés ; seulement après le oui : remplis `chapitres[].quetes` dans `monde.json`, passe le `statut` à `"publie"` ; `pnpm monde doc <id>` génère `docs/mondes/<id>.md`, que l'utilisateur relit.
 11. **Cartes, puis images** (après accord ; environ 0,01 dollar l'image, un essai d'abord) : d'abord la carte principale (`pnpm images cartes <id> --lieu <racine> --go`), puis on **pose ses lieux** (atelier, onglet Cartes), puis les cartes de détail (`--lieu <lieu>`), enfin les images des lieux, PNJ et objets (`pnpm images monde <id> --lieu <lieu> --go`, lieu par lieu). Relis chaque lot, corrige par retouche de `images.json`, installe les WebP (`uv run --with pillow python outils/images/installer.py monde <id>` ; garde `sorties/images/mondes/<id>/`). Ne jamais illustrer les héros du joueur ; pièges : `references/lecons.md` § Images, `docs/M2-IMAGES.md`.
 12. **Scènes narrées** : `scenes/scenes.json` (format : `docs/MONDES.md`) : l'ouverture en `"presentation": "film"` (5 ou 6 plans, une minute, sans rien révéler du secret), la remise de la quête principale, l'entrée du donjon final, une scène par fin. Les voix : `pnpm voix generer <id> --go` **après accord** (environ 0,003 dollar par plan) : **voix officielle du Maître de jeu** (Gemini, Algieba, ×1,15, style naturel), défaut de l'outil : jamais d'autre timbre ni style.
 13. `pnpm monde estimer <id>` : écrit `estimation.json` (durée et coût d'API pour le joueur ; un test exige qu'il soit à jour) ; signale-les à l'utilisateur.

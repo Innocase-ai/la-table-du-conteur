@@ -39,7 +39,7 @@ Le moteur n'a pas de limite de profondeur : un lieu a un `parent`, et un lieu pe
 - **Les routes et les passages** : qui relie quoi, les ponts, les cols, les gués, ce qui est fermé ou caché, les raccourcis dangereux.
 - **La composition de la carte** : 3 à 5 phrases qui disent où se trouve chaque grand lieu (« la citadelle sur le promontoire au nord-ouest, le port dans l'anse au sud-est, les marais entre les deux »). Ce texte va dans `images.json` (`carte-<racine>`) et remplace le `visuel` de la racine dans le prompt de la carte : le modèle d'images ne place pas les lieux où on le lui dit, mais une composition claire aide beaucoup.
 
-Fais valider à l'utilisateur un **résumé d'une page** (territoire, charte, liste des grands lieux avec leur rôle) avant de passer au niveau 1.
+**→ Validation V3** : présente à l'utilisateur un **résumé d'une page** (territoire, charte, liste des grands lieux avec leur rôle et leur position) et attends son oui avant le niveau 1. Marque le niveau 0 « Validé par l'utilisateur le <date> ».
 
 ## Niveau 1 : chaque lieu de la carte
 
@@ -54,11 +54,11 @@ Un lieu qui contient d'autres lieux (au moins ~5 enfants, ou un niveau de donjon
 - **Ce que le joueur voit en y arrivant**, et **ce qu'il ne voit pas** (les secrets du lieu, **dans une section séparée** « Secret du MJ »).
 - **La composition de la carte** : 3 à 5 phrases pour `images.json` (`carte-<lieu>`), comme au niveau 0.
 
-Une fiche de niveau 1 se fait **avec l'utilisateur**, lieu par lieu pour les trois ou quatre lieux principaux (il décide de la forme, des points, des combats et des rencontres : c'est son histoire), puis par lots pour les autres.
+**→ Validation V4, lieu par lieu, pour tous les lieux** : Claude propose la fiche complète d'un lieu (plan, points à visiter, budget de contenu, secret), l'utilisateur la valide ou la corrige (il décide de la forme, des points, des combats et des rencontres : c'est son histoire), puis on passe au lieu suivant. La fiche validée est marquée et gelée.
 
 ## Niveau 2 et suivants : chaque point à visiter
 
-Un agent par lieu du niveau 1, **tous lancés dans le même message**, avec `references/brief-agent-lieu.md` (à suivre à la lettre), l'atlas (niveaux 0 et 1 du lieu), `BIBLE.md` et le schéma. Chaque point reçoit une **fiche très détaillée** (modèle dans l'atlas) :
+Un agent par lieu du niveau 1, **un lieu à la fois** (dans l'ordre choisi par l'utilisateur ; en parallèle seulement s'il le demande), et seulement pour un lieu dont la fiche de niveau 1 est validée, avec `references/brief-agent-lieu.md` (à suivre à la lettre), l'atlas (niveaux 0 et 1 du lieu), `BIBLE.md` et le schéma. Chaque point reçoit une **fiche très détaillée** (modèle dans l'atlas) :
 
 - le bloc d'héritage (recopié, jamais modifié) ;
 - **dimensions et structure** (taille en pas, hauteur, forme, niveaux, ce qui soutient ou ferme) ;
@@ -89,6 +89,8 @@ C'est ce champ, tel quel, qui fabrique l'image du lieu **et** nourrit la carte d
 4. l'**état** des choses (eau gelée ou courante, fonte figée ou en fusion, porte ouverte ou close).
 
 Interdits : nommer un personnage ou une créature (ce qui est nommé apparaît à l'image), les mots refusés par le service d'images (corps, cadavre, enfant près d'un danger, brûlures sur la peau, silhouettes couchées), le vocabulaire abstrait (« inquiétant », « mystérieux » : on décrit ce qui inquiète), tout secret (le `visuel` est vu par le joueur). Les matériaux et couleurs viennent **du bloc d'héritage** : pas de nouvelle teinte sans la justifier plus haut.
+
+**→ Validation V5, lieu par lieu** : après le vérificateur du niveau 2 de ce lieu, présente à l'utilisateur les fiches de ses points (et sous-lieux) en tableau (point, ce qu'on y voit, ce qu'on y trouve, détail propre) ; à son oui, le lieu est gelé et on passe au suivant.
 
 ## Le contenu des lieux (PNJ, monstres, objets, pièges, énigmes)
 
