@@ -103,7 +103,7 @@ L'atlas décrit **où** et **dans quel décor** ; il ne crée pas les entités. 
 | PNJ et leur profondeur | `creer-personnages` (et les agents de zone pour les PNJ simples) | l'endroit où ils se tiennent, la lumière, les sons, ce qu'ils ont sous la main |
 | Rencontres et monstres, contrats | `creer-rencontres`, `creer-contrats` | les dimensions et le mobilier pour la carte tactique, les issues pour la fuite, la lumière pour l'ambiance du plateau |
 | Énigmes | `enigmes` | seulement ce que le groupe peut **voir** : inscriptions, objets, traces des éléments remarquables |
-| Pièges, trésors, objets | agents de zone (voir `GUIDE-ZONE.md`) | l'élément auquel ils sont liés (la dalle, le coffre), pour que la détection et la description collent |
+| Pièges, trésors, objets, tables de butin | `creer-pieges-tresors` (agents de zone pour les cas courants, voir `GUIDE-ZONE.md`) | l'élément auquel ils sont liés (la dalle, le coffre), pour que la détection et la description collent |
 | Détails à examiner | agents Haiku (`brief-examens.md` de `creer-monde`) | les éléments remarquables, un examen par élément |
 
 Quand les entités existent, **reporte leurs ids** dans le « Contenu prévu » de chaque point de l'atlas (l'atelier, onglets Registre et Graphes, donne la liste) : l'atlas redevient fidèle, et l'écart avec le budget du niveau 1 se voit. Rien de ce que l'atlas dit d'un décor ne doit être contredit par une entité (un piège qui se déclenche dans une pièce que l'atlas décrit sans dalle, un PNJ dans un lieu sans place pour lui).

@@ -802,3 +802,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Coût** : 7 images de carte au total (4 gardées, 3 essais écartés), ~0,06 $.
 - **Positions** : les 39 lieux enfants posés d'après les images (atelier, API de fiche) ; à corriger dans l'onglet Cartes si un repère est mal placé (les salles intérieures du palais sont placées sur l'extérieur, de façon approximative).
 - **Outil** : `elementsCartes` prend `existe` (références `recadre-`, `carte-`, `lieu-`), `preparerRecadrages` ; test des références. `pnpm images cartes` découpe avant de générer (`--go`, uv et Pillow requis).
+
+## 06/11/2026 — Skill `creer-pieges-tresors`
+
+- **Demande** : un skill dédié aux pièges et aux trésors (jusque-là seulement des règles dans `GUIDE-ZONE.md` et `docs/MONDES.md`, écrites par les agents de zone).
+- **Contenu** : `.claude/skills/creer-pieges-tresors/` : `SKILL.md` (ce que le moteur fait des trésors : caché, verrouillé avec clé, piégé, gardé, indice ; des pièges : détection par la fouille seulement, désamorçage, déclenchement narré, dégâts et effets, **les trois rattachements** contenant / énigme / libre ; principes de conception : indice dans le décor, pas que des dégâts, accès à plusieurs voies, valeur et rareté par niveau ; liste de contrôle ; pièges connus) et `references/gabarits.md` (8 gabarits JSON, **tous validés contre les schémas du moteur**).
+- **Repères mesurés** sur les mondes livrés : Val (93 trésors, 33 pièges) et Citadelle (31 trésors, 12 pièges) : proportions de trésors verrouillés, cachés, piégés, gardés, avec indice ; DD de détection, de désamorçage et de sauvegarde ; dégâts typiques ; valeurs en pièces.
+- **Corrigé en route** : `deplacer` déplace un PNJ, pas le groupe (retiré des exemples d'effets de piège) ; `etats` d'un piège n'est pas appliqué par le moteur (le skill le dit).
+- **Liens** : `creer-monde` (tableau des skills), `decrire-lieux` (qui écrit le contenu prévu), `CLAUDE.md`.
+- **Pas encore essayé** sur un vrai monde.

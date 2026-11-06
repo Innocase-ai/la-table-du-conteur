@@ -21,6 +21,7 @@ Les deux mondes livrés sont les références : **le Val des Cendres** et **La C
 | Faire **réagir le monde aux héros** (condition `heros` : regards d'origine sur les examens, salutations de PNJ ; brief `references/brief-origines.md`) et **faire hanter le début par l'antagoniste** (apparitions qui montent en étrangeté, un fait chacune ; brief `references/brief-antagoniste.md`) | ce skill (agents Haiku, relecture par Claude : aucun lore inventé) |
 | Poser des **mystères au joueur** : questions du codex (dossier `codex/`, 10 à 15 par monde), chacune ouverte par un fait connu, avec une piste et fermée par le fait qui répond ; brief type `references/brief-codex.md` | ce skill (un agent Haiku, relecture par Claude ; **vérifier que `quand` est le fait que le groupe sait déjà et `resolue` celui qui répond**) |
 | Décrire **tous les lieux en détail**, de la carte du monde à chaque salle (atlas `LIEUX.md` : source des descriptions du MJ, des `visuel` des images et des cartes illustrées) ; **après le canon, avant les zones** | `decrire-lieux` |
+| Écrire ou régler des **pièges, trésors, objets propres au monde et tables de butin** (cachettes, serrures et clés, gardiens, détection par la fouille, désamorçage, valeur et rareté par niveau) | `creer-pieges-tresors` |
 | Écrire et vérifier des **énigmes** | `enigmes` |
 | Toucher au **conteur IA** | `conteur` ; nouvelle mécanique de jeu : `ajouter-module` |
 

@@ -36,6 +36,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `creer-monde` : pour tout nouveau monde (chef d'orchestre : étapes, canon, zones, agents).
 - `creer-rencontres` : combats et rencontres (déclencheurs, difficulté, alternatives, prix d'échec, rythme).
 - `decrire-lieux` : décrire tous les lieux d'un monde en détail, du général au particulier (carte du monde, chaque lieu, chaque point à visiter), dans un atlas qui sert l'histoire, les images et les cartes.
+- `creer-pieges-tresors` : pièges, trésors, objets propres au monde, tables de butin (cachettes, clés, gardiens, détection par la fouille, rattachement des pièges, valeur et rareté par niveau).
 - `creer-contrats` : mini-quêtes de combat variées, ancrées dans la fiction (jamais une heure sans combat).
 - `creer-dilemmes` : choix difficiles, échos, épilogues (dossier `dilemmes/`).
 - `creer-personnages` : profondeur des PNJ (canon des personnages, fiches de savoir, confidences verrouillées, conversations libres vérifiées).
