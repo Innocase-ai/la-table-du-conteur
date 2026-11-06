@@ -596,5 +596,83 @@ export const DESSINS: Record<string, Dessin> = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// Motifs de sorts : un dessin par type d'effet, pour les sorts qui n'ont pas le leur. `cleDeSort` (pictogrammes-regles) choisit
+// le motif d'après les dégâts du sort (feu, froid…), son soin, sinon l'école de magie reste le repli.
+// ---------------------------------------------------------------------------
+const FLOCON = [0, 60, 120]
+  .map((a) => g(`rotate(${a} 32 32)`, trait('M32 5 V59', 't2', 4) + trait('M32 15 L25 8 M32 15 L39 8 M32 49 L25 56 M32 49 L39 56', 't2', 3)))
+  .join('') + rond(32, 32, 5, 'p1');
+const GOUTTE = '<path class="p2" d="M32 5 C40 20 51 30 51 42 C51 53 43 59 32 59 C21 59 13 53 13 42 C13 30 24 20 32 5Z"/>';
+
+const MOTIFS: Record<string, Dessin> = {
+  'motif:feu': { teinte: 'feu', corps: FLAMME + etoile(53, 12, 0.5) },
+  'motif:froid': { teinte: 'froid', corps: FLOCON },
+  'motif:foudre': { teinte: 'foudre', corps: ECLAIR + etoile(52, 12, 0.5) },
+  'motif:tonnerre': {
+    teinte: 'foudre',
+    corps: rond(13, 32, 8, 'p2') + rond(13, 32, 3.5, 'p1') + trait('M24 20 A16 16 0 0 1 24 44', 't2', 4.5) + trait('M35 11 A28 28 0 0 1 35 53', 't2', 4.5) + trait('M46 4 A40 40 0 0 1 46 60', 't2', 4.5),
+  },
+  'motif:acide': {
+    teinte: 'malediction',
+    corps: GOUTTE + '<path class="p1" d="M23 42 C23 49 27 53 32 54 C27 49 26 45 27 39Z"/>' + rond(51, 12, 4.5, 'p2') + rond(58, 26, 2.8, 'p2') + rond(12, 14, 3, 'p2'),
+  },
+  'motif:poison': {
+    teinte: 'necro',
+    corps: GOUTTE + rond(25, 40, 4.2, 'p3') + rond(39, 40, 4.2, 'p3') + '<path class="p3" d="M32 45 L29 51 H35Z"/>' + rond(52, 12, 3.5, 'p2') + rond(11, 18, 2.6, 'p2'),
+  },
+  'motif:necrotique': { teinte: 'necro', corps: DESSINS['ecole:necromancie']!.corps },
+  'motif:radiant': { teinte: 'radiant', corps: rayons(32, 32, 19, 30, 12, 't2') + rond(32, 32, 14, 'p2') + rond(32, 32, 7.5, 'p1') },
+  'motif:force': {
+    teinte: 'force',
+    corps: '<path class="p2" d="M32 4 L54 24 L32 60 L10 24Z"/><path class="p1" d="M32 4 L54 24 H10Z"/><path class="p3" d="M32 60 L54 24 H32Z"/>' + etoile(53, 52, 0.5),
+  },
+  'motif:psychique': { teinte: 'charme', corps: spirale() + rond(32, 32, 4, 'p1') + etoile(53, 11, 0.5) },
+  'motif:physique': { teinte: 'acier', corps: `<polygon class="p2" points="${polygoneEtoile(32, 32, 29, 14, 9)}"/>` + rond(32, 32, 10, 'p1') },
+  'motif:soin': { teinte: 'soin', corps: CROIX + etoile(53, 11, 0.5) },
+
+  // ---- Quelques sorts emblématiques, dessinés pour eux ----
+  'sort:boule-de-feu': {
+    teinte: 'feu',
+    corps: rayons(32, 33, 27, 31, 14, 't2') + rond(32, 33, 25, 'p2') + rond(32, 33, 17, 'p1') + g('translate(17 19) scale(.62)', FLAMME),
+  },
+  'sort:teleportation': {
+    teinte: 'force',
+    corps:
+      '<ellipse cx="32" cy="52" rx="23" ry="8" class="p2"/><ellipse cx="32" cy="52" rx="14" ry="4.6" class="p3"/>' +
+      trait('M32 46 V16', 't1', 4) +
+      '<path class="p1" d="M32 4 L43 19 H21Z"/>' +
+      etoile(11, 22, 0.5) +
+      etoile(54, 30, 0.45, 'p2'),
+  },
+  'sort:souhait': { teinte: 'radiant', corps: etoile(32, 32, 3, 'p2') + etoile(32, 32, 1.7) + etoile(11, 11, 0.55) + etoile(54, 52, 0.65) + etoile(54, 10, 0.4, 'p2') },
+  'sort:arret-du-temps': {
+    teinte: 'divination',
+    corps:
+      rond(32, 32, 27, 'p2') +
+      rond(32, 32, 21, 'p3') +
+      [0, 3, 6, 9].map((h) => g(`rotate(${h * 30} 32 32)`, trait('M32 13 V18', 't1', 3))).join('') +
+      trait('M32 32 V17', 't1', 4) +
+      trait('M32 32 L43 38', 't1', 4) +
+      rond(32, 32, 3.5, 'p1'),
+  },
+  'sort:nuee-de-meteores': {
+    teinte: 'feu',
+    corps: [[44, 18, 9], [26, 32, 7], [48, 44, 8]].map(([x, y, r]) => trait(`M${x! - 20} ${y! - 18} L${x! - 4} ${y! - 4}`, 't2', 4) + rond(x!, y!, r!, 'p2') + rond(x! - 1, y! - 1, r! * 0.5, 'p1')).join(''),
+  },
+  'sort:resurrection': {
+    teinte: 'soin',
+    corps: rayons(32, 32, 24, 30, 16, 't2') + g('translate(14 14) scale(.58)', CROIX) + etoile(52, 10, 0.5) + etoile(10, 54, 0.45, 'p2'),
+  },
+  'sort:desintegration': {
+    teinte: 'force',
+    corps:
+      '<path class="p2" d="M6 24 L24 14 L22 32Z"/><path class="p2" d="M34 6 L56 14 L40 26Z"/><path class="p2" d="M42 38 L60 36 L52 58Z"/><path class="p2" d="M10 44 L28 40 L24 58Z"/>' +
+      '<path class="p1" d="M28 28 L40 32 L32 42Z"/>' +
+      etoile(32, 32, 0.45),
+  },
+};
+Object.assign(DESSINS, MOTIFS);
+
 /** Un dessin qui n'existe pas se remplace par un autre, jamais par un trou. */
 export const DESSIN_DEFAUT = DESSINS['aptitude:defaut']!;

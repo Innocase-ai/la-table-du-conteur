@@ -36,6 +36,7 @@ import { FinCombat } from './FinCombat';
 import { ControleSon } from './ControleSon';
 import { Initiative } from './Initiative';
 import { Pictogramme } from './Pictogramme';
+import { cleDeSort } from '../pictogrammes-regles';
 import { Journal } from './Journal';
 import { MainCartes } from './MainCartes';
 import { Plateau, type Surcouches } from './Plateau';
@@ -492,7 +493,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
             </button>
           </div>
         </div>
-        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} ecoleDe={(id) => donnees.sorts.get(id)?.ecole} />
+        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} ecoleDe={(id) => { const s = donnees.sorts.get(id); return s ? cleDeSort(s) : undefined; }} />
       </aside>
 
       {finAffichee && !masquerFin && (

@@ -7,6 +7,7 @@ Chaque carte du panneau de droite porte un **médaillon** (à droite) et une **p
 | Groupe | Clés | Nombre |
 | --- | --- | --- |
 | Sorts jouables | `sort:<id>` (trait de feu, rayon de givre, poigne électrique, flamme sacrée, projectile magique, bouclier, mains brûlantes, sommeil, soins, mot de guérison, bénédiction, imprécation, rayon traçant, bouclier de la foi, marque du chasseur, rayon ardent, arme spirituelle, aide, immobilisation de personne, restauration partielle) | 20 |
+| Motifs de sorts (`motif:feu`, `froid`, `foudre`, `tonnerre`, `acide`, `poison`, `necrotique`, `radiant`, `force`, `psychique`, `physique`, `soin`) : un sort sans dessin propre prend le motif de ses dégâts, ou de son soin | 12 |
 | Écoles de magie (repli d'un sort sans dessin) | `ecole:abjuration`, `conjuration` (le SRD français dit « invocation »), `divination`, `enchantement`, `evocation`, `illusion`, `necromancie`, `transmutation` | 8 |
 | Coûts | `cout:action` (rond), `cout:bonus` (triangle), `cout:reaction` (flèche en boucle), `cout:elan` (étincelle), `cout:gratuit` (anneau) | 5 |
 | Actions de base | `base:foncer`, `base:desengager`, `base:esquiver`, `base:potion` | 4 |
@@ -31,6 +32,10 @@ Inspiration : les écoles de magie du SRD 5.2.1 (chaque sort en porte une, champ
 1. Écrire le SVG (viewBox 64 × 64, classes `p1 p2 p3 t1 t2 t3`) dans `DESSINS` (`pictogrammes.ts`), avec une teinte de `TEINTES` ; réutiliser les pièces communes (`FLAMME`, `BOULE`, `ECLAIR`, `BOUCLIER`, `CROIX`, `etoile`, `rayons`…).
 2. Le regarder : `pnpm jeu`, puis **`/?icones`** (banc d'essai, développement seulement) ; `&grand=128` pour juger les détails, `&prefixe=sort:` pour un groupe.
 3. `pnpm test` : `pictogrammes.test.ts` vérifie que les dessins sont bien formés, que chaque sort jouable a le sien, et que **chaque carte que peut jouer un héros ou un monstre trouve un vrai dessin** : une nouvelle capacité sans icône fait échouer le test.
+
+## Les 339 sorts du SRD
+
+`cleDeSort` (`pictogrammes-regles.ts`) donne à chaque sort, du plus précis au plus général : son dessin `sort:<id>` (27 sorts, dont 7 emblématiques : Boule de feu, Téléportation, Souhait, Arrêt du temps, Nuée de météores, Résurrection, Désintégration), le motif de son premier type de dégâts, le motif de soin, puis le symbole de son école. Le test vérifie que **aucun sort du catalogue ne tombe sur le dessin par défaut**. Les icônes s'affichent sur les cartes de combat et dans les listes de sorts du créateur. Pour dessiner un sort de plus : ajouter `sort:<id>` dans `MOTIFS` (fin de `pictogrammes.ts`).
 
 ## Pas encore
 

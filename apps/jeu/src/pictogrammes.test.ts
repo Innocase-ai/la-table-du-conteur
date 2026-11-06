@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { cartesDisponibles, creerCombat, preparerRencontre, RENCONTRES, type CoutCarte } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
 import { DESSIN_DEFAUT, DESSINS, TEINTES } from './pictogrammes';
-import { armeDeCarte, cleDeCarte, cleEcole } from './pictogrammes-regles';
+import { armeDeCarte, cleDeCarte, cleDeSort, cleEcole } from './pictogrammes-regles';
 
 const donnees = chargerDonneesSrd();
 const ctx = { sorts: donnees.sorts };
@@ -61,7 +61,7 @@ describe('quelle icône pour quelle carte', () => {
 
   it('un sort a son dessin ; sans lui, celui de son école ; sans école, un signe d’aptitude', () => {
     expect(cleDeCarte({ id: 'sort:soins', categorie: 'sort' }, 'abjuration').cle).toBe('sort:soins');
-    expect(cleDeCarte({ id: 'sort:boule-de-feu', categorie: 'sort' }, 'évocation').cle).toBe('ecole:evocation');
+    expect(cleDeCarte({ id: 'sort:vol', categorie: 'sort' }, 'évocation').cle).toBe('ecole:evocation');
     expect(cleDeCarte({ id: 'sort:inconnu', categorie: 'sort' }, 'Nécromancie').cle).toBe('ecole:necromancie');
     expect(cleDeCarte({ id: 'sort:inconnu', categorie: 'sort' }).cle).toBe('aptitude:defaut');
     expect(cleEcole('école inventée')).toBeUndefined();
@@ -112,5 +112,28 @@ describe('icônes des boutons d\'actions', () => {
       expect(DESSINS[c], `icône « ${c} » sans dessin`).toBeDefined();
       expect(DESSINS[c]).not.toBe(DESSIN_DEFAUT);
     }
+  });
+});
+
+describe('les sorts du SRD', () => {
+  it('chacun des sorts du catalogue trouve un vrai dessin (le sien, un motif de dégâts ou de soin, ou son école)', () => {
+    for (const s of donnees.sorts.values()) {
+      const cle = cleDeSort(s);
+      expect(cle, s.id).not.toBe('aptitude:defaut');
+      expect(DESSINS[cle], `${s.id} → ${cle}`).toBeDefined();
+    }
+  });
+
+  it("le motif suit l'effet : dégâts de feu, de froid, soin, sinon l'école", () => {
+    const base = { id: 'x', ecole: 'abjuration', degats: [], soins: undefined };
+    expect(cleDeSort({ ...base, degats: [{ des: '3d6', type: 'froid' }] } as never)).toBe('motif:froid');
+    expect(cleDeSort({ ...base, soins: { des: '2d8' } } as never)).toBe('motif:soin');
+    expect(cleDeSort(base as never)).toBe('ecole:abjuration');
+    expect(cleDeSort({ ...base, id: 'boule-de-feu', degats: [{ des: '8d6', type: 'feu' }] } as never)).toBe('sort:boule-de-feu');
+  });
+
+  it('au moins quelques motifs et sorts emblématiques sont dessinés', () => {
+    for (const m of ['feu', 'froid', 'foudre', 'tonnerre', 'acide', 'poison', 'necrotique', 'radiant', 'force', 'psychique', 'physique', 'soin']) expect(DESSINS[`motif:${m}`], m).toBeDefined();
+    for (const id of ['boule-de-feu', 'teleportation', 'souhait', 'arret-du-temps', 'nuee-de-meteores', 'resurrection', 'desintegration']) expect(donnees.sorts.has(id) && DESSINS[`sort:${id}`], id).toBeTruthy();
   });
 });

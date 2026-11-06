@@ -5,6 +5,7 @@ import { Pictogramme } from './Pictogramme';
 const GROUPES: { titre: string; prefixe: string; medaillon: boolean }[] = [
   { titre: 'Sorts', prefixe: 'sort:', medaillon: true },
   { titre: 'Écoles de magie (repli)', prefixe: 'ecole:', medaillon: true },
+  { titre: 'Motifs de sorts (dégâts, soin)', prefixe: 'motif:', medaillon: true },
   { titre: 'Actions de base', prefixe: 'base:', medaillon: true },
   { titre: 'Armes', prefixe: 'arme:', medaillon: true },
   { titre: 'Monstres et aptitudes', prefixe: 'monstre:', medaillon: true },

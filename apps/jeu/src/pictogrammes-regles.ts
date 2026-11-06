@@ -1,4 +1,5 @@
 // Quelle icône pour quelle carte (pur : testé dans `pictogrammes.test.ts`).
+import type { Sort } from '@crpg/regles';
 import { DESSINS } from './pictogrammes';
 
 /** Le SRD français appelle « invocation » l'école que les autres éditions appellent conjuration. */
@@ -7,6 +8,8 @@ const SYNONYMES_ECOLES: Record<string, string> = { invocation: 'conjuration' };
 /** « évocation » → « evocation » : la clé d'une école de magie dans les dessins. */
 export function cleEcole(ecole: string | undefined): string | undefined {
   if (!ecole) return undefined;
+  // Déjà une clé de dessin (motif d'un sort, voir `cleDeSort`).
+  if (ecole.startsWith('motif:') || ecole.startsWith('ecole:')) return ecole in DESSINS ? ecole : undefined;
   const nom = ecole.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   const k = `ecole:${SYNONYMES_ECOLES[nom] ?? nom}`;
   return k in DESSINS ? k : undefined;
@@ -40,6 +43,25 @@ export function armeDeCarte(reste: string): { cle: string; lancer: boolean } {
                         ? 'arme:cimeterre'
                         : 'arme:epee';
   return { cle, lancer };
+}
+
+/** Le motif d'un type de dégâts. */
+const MOTIF_DEGATS: Record<string, string> = {
+  feu: 'feu', froid: 'froid', foudre: 'foudre', tonnerre: 'tonnerre', acide: 'acide', poison: 'poison', 'nécrotique': 'necrotique',
+  radiant: 'radiant', force: 'force', psychique: 'psychique', tranchant: 'physique', contondant: 'physique', perforant: 'physique',
+};
+
+/**
+ * La clé du dessin d'un sort, du plus précis au plus général : son propre dessin (`sort:<id>`), le motif de ses dégâts (feu,
+ * froid…), le motif de soin, puis le symbole de son école de magie. Jamais le dessin par défaut.
+ */
+export function cleDeSort(s: Pick<Sort, 'id' | 'ecole' | 'degats' | 'soins'>): string {
+  if (`sort:${s.id}` in DESSINS) return `sort:${s.id}`;
+  const type = s.degats[0]?.type;
+  const motif = type ? MOTIF_DEGATS[type] : undefined;
+  if (motif && `motif:${motif}` in DESSINS) return `motif:${motif}`;
+  if (s.soins) return 'motif:soin';
+  return cleEcole(s.ecole) ?? 'aptitude:defaut';
 }
 
 export interface CarteIcone {

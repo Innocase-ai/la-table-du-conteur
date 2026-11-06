@@ -1,6 +1,8 @@
 // Petits composants partagés par le créateur et l'écran du groupe.
 import { useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { SORTS_JOUABLES_EN_COMBAT, type Sort } from '@crpg/regles';
+import { Pictogramme } from '../composants/Pictogramme';
+import { cleDeSort } from '../pictogrammes-regles';
 import { svgModele } from '../icones';
 import { COULEURS_ESPECES, imagePortrait, infoPortrait } from './portraits';
 import { majuscule, tronquer } from './libelles';
@@ -199,6 +201,7 @@ export function CarteSort({
       raison={raison}
       onSurvol={onSurvol}
       compact
+      gauche={<Pictogramme cle={cleDeSort(sort)} taille={26} medaillon />}
       titre={
         <>
           {sort.nom}
