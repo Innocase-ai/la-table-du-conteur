@@ -152,7 +152,7 @@ Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (don
 - **Avis du validateur pour les histoires qui ne s'ennuient pas** : « Rythme » (moins de 20 % de rencontres sans combat), « Tension » (moins de 3 rencontres élevées), jauge (moins de 4 paliers, moins de la moitié avec des effets, monte sans rien pour la freiner), « Choix » (moins de 3 dilemmes par chapitre), « Pertes » (aucun PNJ ne peut mourir ou partir), « Réactivité » (moins de 5 PNJ aux salutations variables), « Fait clé » (exigé pour avancer mais révélé par une seule source).
 - **Butin d'un combat** : une victoire verse l'XP (partagée), tire chaque table de `butin.tables` (pièces, objets du sac, parchemins ; une entrée `rien` possible) et traite `butin.tresors` : la réserve de l'ennemi, **ici même, sans verrou ni piège**, est prise aussitôt ; une réserve cachée, fermée ou piégée est seulement révélée (« Vous remarquez : … »). **Dépouilles automatiques** (`monde/depouilles.ts`) : chaque adversaire vaincu porte une bourse et du matériel **selon son type SRD et son FP**, sans que l'auteur écrive quoi que ce soit : humanoïdes, gobelinoïdes et gnolls (bourse 70 %, rations, torche, rarement potion ou parchemin), géants (bourse, corde, rations), morts-vivants (vieilles pièces, bougie, fiole, eau bénite), bêtes (presque rien), artificiels (presque rien). La bourse monte avec le FP (1d4 pa à 6d6 po). Un seul tirage par créature, un résumé unique : « Dépouilles : 14 po, 2 × rations ». Les tables d'une rencontre (`butin.tables`) s'y ajoutent pour la saveur de l'histoire ; `butin.depouilles: false` supprime les dépouilles (une rixe, un duel d'honneur). Avis « Butin » du validateur : un combat qui a `depouilles: false` et ni table, ni réserve, ni trésor qui le garde.
 - **Pièges : détection** : la perception passive du groupe repère à l'entrée d'un lieu les passages et trésors cachés de Perception, **jamais les pièges**. Un piège ne se découvre qu'en **fouillant** (un jet par compétence, DD secret, une fouille par lieu et par jour) ; il peut donc rester caché. Un piège non trouvé se déclenche quand on ouvre le contenant qu'il garde (`tresor.acces.piege`) ou quand l'énigme qui le cite est ratée (`enigme.echec.piege`) ; un piège **rattaché à rien** (ni contenant piégé ni énigme) se déclenche, lui, dès que le groupe **prend ou ouvre quelque chose dans son lieu** (un trésor, une serrure, une clé) sans l'avoir trouvé : un seul piège à la fois, sur celui qui agit ; trouvé, désamorcé ou déjà déclenché, il ne fait plus rien.
-- **Pas encore lus par le moteur** : `Pnj.compagnon` (recrutement), `Pnj.profilCombat` et `monstres[].pnj`, `RencontreMonde.tactique`, `Fin.consequences`, `Objet.usage.type = "charges"`, `Piege.etats`.
+- **Pas encore lus par le moteur** : `Pnj.compagnon` (recrutement), `Pnj.profilCombat` et `monstres[].pnj`, `RencontreMonde.tactique`, `Fin.consequences`, `Objet.usage.type = "charges"`, `Piege.etats` (affiché, pas appliqué), `Monde.regles` (seulement dans la doc du monde, pas dans le prompt du conteur), `Faction.paliers`, `relations`, `objectifs`, `chef` (la réputation n'agit que comme condition), `TableButin.palier` (indicatif).
 
 ## Énigmes : solution et réponse du joueur
 
@@ -177,7 +177,7 @@ Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté
 
 1. **Aucun contenu hors SRD** : pas de noms, de lieux ni de créatures d'un univers existant. Les noms propres sont originaux.
 2. **Une seule source de vérité** : un PNJ, un trésor, un piège, une énigme se rattachent à leur lieu par leur propre champ `lieu`. Le lieu ne les liste pas.
-3. **Tout ce qui se voit se décrit** : chaque lieu a un `visuel`, chaque PNJ une `apparence`, en une ou deux phrases concrètes (matières, lumière, éléments). Le visuel d'un lieu ne nomme pas de personnage.
+3. **Tout ce qui se voit se décrit** : chaque lieu a un `visuel`, chaque PNJ une `apparence`, en phrases concrètes (2 à 4 pour un lieu, voir le skill `decrire-lieux`) (matières, lumière, éléments). Le visuel d'un lieu ne nomme pas de personnage.
 4. **Les faits d'abord** : une vérité importante est un `fait` ; elle doit pouvoir être découverte (un PNJ la sait, un lieu la contient, un trésor l'indique). Une rumeur douteuse a `fiable: false`.
 5. **Les PNJ parlent par sujets** : chaque PNJ important a au moins 3 sujets, dont un qui avance une quête ou révèle un fait ; les réponses sont des contenus à reformuler dans la voix du PNJ, pas des répliques figées.
 6. **Chaque piège et chaque énigme a une solution** : le moteur vérifie la réponse (`verifierEnigme`) ; les indices vont du plus vague au plus clair.
@@ -198,10 +198,14 @@ Le jeu dessine une carte par lieu qui en contient d'autres, avec le repère du g
 
 Le skill **`creer-monde`** (`.claude/skills/creer-monde/`) guide Claude pas à pas : cadrage avec l'utilisateur, canon, échafaudage (`pnpm monde nouveau <id> "<Nom>"`), agents de zone en parallèle, raccordement et validation. Résumé :
 
-1. Écrire l'accroche, le ton, la direction artistique et la liste des factions (une page).
-2. Écrire le **canon** : le secret du monde, les fins, les personnages clés, les lieux principaux (une bible de quelques pages) et le registre des identifiants partagés entre les zones.
-3. Écrire les données zone par zone (un agent ou un auteur par zone), en validant au fil de l'eau.
-4. Rééquilibrer d'après les avertissements, puis générer le document (`pnpm monde doc`).
+1. Cadrer avec l'utilisateur : trois pistes, puis le ton, les niveaux, la taille et le coût.
+2. Écrire le **canon** (`BIBLE.md`, registre des identifiants, `canon.json`) et le **canon des personnages** (`CANON-PERSONNAGES.md`).
+3. Écrire l'**atlas des lieux** (`LIEUX.md`, skill `decrire-lieux`) : carte du monde, chaque lieu, chaque point à visiter, avec le contenu prévu ; vérification en cascade.
+4. Écrire les données zone par zone (un agent par zone, qui recopie l'atlas), en validant au fil de l'eau.
+5. Enrichir dans l'ordre : contrats, rencontres, pièges et trésors ; savoirs et compagnon ; dilemmes puis salutations variables ; examens, codex, origines, antagoniste.
+6. Valider (0 erreur, 0 avertissement), prouver les fins (`pnpm monde parcours`), publier, générer le document (`pnpm monde doc`), puis cartes, images, scènes et voix (après accord sur le coût).
+
+L'ordre détaillé, étape par étape, est dans le skill `creer-monde`.
 
 Un monde en cours d'écriture porte `"statut": "brouillon"` dans `monde.json` : ses erreurs de validation ne bloquent pas les tests ; un monde `publie` doit valider sans erreur.
 

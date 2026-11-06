@@ -40,7 +40,7 @@ const mondes = cible ? [cible] : listerMondes();
 
 if (commande === 'nouveau') {
   try {
-    const dossier = creerSquelette(RACINE_MONDES, cible ?? '', nomMonde ?? '', { dossier: join(RACINE_MONDES, '../../.claude/skills/creer-monde/assets') });
+    const dossier = creerSquelette(RACINE_MONDES, cible ?? '', nomMonde ?? '', { dossier: join(RACINE_MONDES, '../../.claude/skills/creer-monde/assets'), atlas: join(RACINE_MONDES, '../../.claude/skills/decrire-lieux/assets/ATLAS.modele.md') });
     console.log(`Monde créé : ${dossier}\nÉtapes suivantes : remplir BIBLE.md (canon et registre d'identifiants), compléter monde.json, puis lancer les agents de zone (skill creer-monde).`);
     process.exit(0);
   } catch (e) {

@@ -9,7 +9,7 @@ Tous les vérificateurs du niveau 2 ont rendu « OK » (au plus deux tours chacu
 
 ---
 
-Tu vérifies l'atlas **`~/crpg-llm/packages/mondes/{{id du monde}}/LIEUX.md`** contre le canon (`BIBLE.md`, `monde.json`). Tu as : l'atlas complet, les rapports des vérificateurs du niveau 2, le canon. Tu ne modifies aucun fichier.
+Tu vérifies l'atlas **`packages/mondes/{{id du monde}}/LIEUX.md`** contre le canon (`BIBLE.md`, `monde.json`). Tu as : l'atlas complet, les rapports des vérificateurs du niveau 2, le canon. Tu ne modifies aucun fichier.
 
 ## A. Contrôler le contrôleur (sondage)
 Pour **chaque lieu du niveau 1**, choisis **2 ou 3 fiches** de niveau 2 ou 3 au hasard (prends au moins une fiche de sous-lieu quand il y en a) et refais, à la main, les contrôles 1 (héritage identique), 4 (issues réciproques), 6 (détail propre) et 9 (champs dérivés) du vérificateur du niveau 2. Si tu trouves un défaut qu'il avait laissé passer, note-le : son rapport n'est pas fiable pour ce lieu, et **tout le lieu est à revérifier**.

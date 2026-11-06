@@ -10,7 +10,7 @@ Claude lance d'abord ce qui se vérifie à la machine, et ne confie au vérifica
 
 ---
 
-Tu vérifies les fiches du lieu **{{id du lieu}}** du monde **{{id du monde}}** (`~/crpg-llm/packages/mondes/{{id du monde}}/LIEUX.md`) : sa fiche de niveau 1 et toutes les fiches en dessous (niveaux 2, 3…). Lis d'abord le niveau 0 (charte du monde) et le niveau 1 de ce lieu : ce sont tes références. Tu ne modifies aucun fichier.
+Tu vérifies les fiches du lieu **{{id du lieu}}** du monde **{{id du monde}}** (`packages/mondes/{{id du monde}}/LIEUX.md`) : sa fiche de niveau 1 et toutes les fiches en dessous (niveaux 2, 3…). Lis d'abord le niveau 0 (charte du monde) et le niveau 1 de ce lieu : ce sont tes références. Tu ne modifies aucun fichier.
 
 ## Ce que tu contrôles, fiche par fiche
 

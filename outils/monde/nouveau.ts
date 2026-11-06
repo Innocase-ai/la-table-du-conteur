@@ -7,7 +7,12 @@ export const DOSSIERS_MONDE = ['lieux', 'pnj', 'objets', 'tresors', 'tables', 'r
 export interface Modeles {
   /** Dossier des modèles (assets du skill creer-monde). */
   dossier: string;
+  /** Modèle de l'atlas des lieux (skill decrire-lieux, `assets/ATLAS.modele.md`) : copié en `LIEUX.md`. */
+  atlas?: string;
 }
+
+/** Dossiers des modules que les étapes suivantes remplissent (dilemmes, savoirs, examens, codex, interjections, scènes). */
+export const DOSSIERS_MODULES = ['dilemmes', 'savoirs', 'examens', 'codex', 'interjections', 'scenes'] as const;
 
 function remplacer(texte: string, id: string, nom: string): string {
   return texte.replaceAll('{{ID}}', id).replaceAll('{{NOM}}', nom);
@@ -24,9 +29,11 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
     mkdirSync(join(dossier, d));
     writeFileSync(join(dossier, d, '.gitkeep'), '');
   }
-  // Le dossier des dilemmes (module Dilemmes) : des choix dont chaque option annonce son coût et son gain.
-  mkdirSync(join(dossier, 'dilemmes'));
-  writeFileSync(join(dossier, 'dilemmes', '.gitkeep'), '');
+  // Les dossiers des modules (dilemmes, savoirs, examens, codex, interjections, scènes), remplis après les zones.
+  for (const d of DOSSIERS_MODULES) {
+    mkdirSync(join(dossier, d));
+    writeFileSync(join(dossier, d, '.gitkeep'), '');
+  }
   const monde = {
     id,
     version: 1,
@@ -45,6 +52,8 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
   writeFileSync(join(dossier, 'monde.json'), JSON.stringify(monde, null, 2) + '\n');
   writeFileSync(join(dossier, 'BIBLE.md'), remplacer(readFileSync(join(modeles.dossier, 'BIBLE.modele.md'), 'utf8'), id, nom));
   writeFileSync(join(dossier, 'GUIDE-ZONE.md'), remplacer(readFileSync(join(modeles.dossier, 'GUIDE-ZONE.modele.md'), 'utf8'), id, nom));
+  // L'atlas des lieux à remplir (skill decrire-lieux) ; ses autres {{…}} sont les cases des fiches, remplies lieu par lieu.
+  if (modeles.atlas) writeFileSync(join(dossier, 'LIEUX.md'), readFileSync(modeles.atlas, 'utf8').replaceAll('{{NOM DU MONDE}}', nom));
   return dossier;
 }
 

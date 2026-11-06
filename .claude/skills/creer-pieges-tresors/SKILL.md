@@ -32,7 +32,7 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 4. **Le chemin d'accès est un choix**, pas un mur : au moins deux façons d'obtenir ce qui est **indispensable** (une fouille ratée ne doit pas fermer la quête : prévois la clé chez un PNJ, un second indice). Réserve le verrou + le piège + le gardien aux trésors qui le méritent.
 5. **Répartition** (mesure du Val) : environ 1 trésor sur 4 est verrouillé, 2 sur 5 caché, 1 sur 8 piégé, 1 sur 5 gardé, 1 sur 3 porte un indice. Un lieu où on se bat, on se repose ou on parle beaucoup n'a pas besoin d'un trésor de plus.
 6. **Objets du monde** (`objets/`) : n'écris que ce qui est propre au monde (relique, objet de quête, curiosité avec `lore`). Les armes, armures, boucliers et objets magiques courants se **citent par leur id du catalogue SRD** (`grep -l '"id": "…"' packages/donnees/srd/objets/*.json`) ; un objet qui se découvre en l'étudiant a besoin de `identification` (DD d'Arcanes) **et** de `inconnu { nom, resume }`. Une arme ou armure du monde **doit** avoir `base` (id SRD).
-7. **Tables de butin** (`tables/`) : entrées **pondérées** (`poids`), `palier` de niveau (1 = niveaux 1 à 4, 2 = 5 à 10…), avec une entrée `rien`. Une table par famille d'adversaires ou de lieu (« pillage gobelin », « bourse de bandit »), pas une table pour tout. Les combats donnent déjà des **dépouilles automatiques** selon le type et le FP (voir `creer-rencontres`) : n'en réécris pas.
+7. **Tables de butin** (`tables/`) : entrées **pondérées** (`poids`), `palier` de niveau (1 = niveaux 1 à 4, 2 = 5 à 10… ; obligatoire, mais une indication pour l'auteur : le moteur ne le lit pas au tirage), avec une entrée `rien`. Une table par famille d'adversaires ou de lieu (« pillage gobelin », « bourse de bandit »), pas une table pour tout. Les combats donnent déjà des **dépouilles automatiques** selon le type et le FP (voir `creer-rencontres`) : n'en réécris pas.
 
 ## Les pièges
 
@@ -41,7 +41,7 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 - **Une fois repéré**, le groupe lit `nom` et `resume` (« un piège : nom (résumé) ») : écris le `resume` pour **ce que le groupe comprend en le voyant** (le mécanisme, pas la solution, aucun DD).
 - **Désamorçage** (`desarmement` : compétence, DD, `outil` facultatif) : sans l'outil requis, désavantage ; un échec de **5 ou plus** le déclenche ; un échec plus léger ne fait rien et on peut réessayer. `outils-de-voleur` est reconnu dans l'inventaire ; un autre outil doit être dans la liste d'outils du personnage.
 - **Déclenchement** : le texte `declenchement` est **narré au joueur** ; puis une **sauvegarde** éventuelle (`sauvegarde` : caractéristique, DD, `moitieSiReussite`), des **dégâts** (`degats` : dés et type), puis les **`effets`** du monde. Le moteur **ne tue pas** : 0 PV = inconscient. `etats` est affiché mais **n'est pas appliqué mécaniquement** : décris l'état dans `declenchement` si tu y tiens. `reinitialisation: true` : le piège se redéclenche à chaque fois.
-- **Qui le subit** : le héros qui agit (qui ouvre, qui prend), pas le groupe entier.
+- **Qui le subit** : un seul héros, jamais le groupe : celui qui ouvre la serrure (crocheter, forcer) ou rate le désamorçage ; quand on prend un objet piégé, rate une énigme ou déclenche un piège libre, c'est le héros qui a la meilleure Perception (il est en tête).
 
 ### Les trois rattachements (choisis-le consciemment)
 | Rattachement | Quand il se déclenche | À utiliser pour |
@@ -64,7 +64,7 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 - [ ] Rien d'**indispensable** n'est derrière une seule fouille ratée.
 - [ ] Les **raretés et valeurs** respectent le niveau du lieu ; les objets du monde ont `lore` ou `inconnu` quand ils s'identifient ; les armes et armures ont `base`.
 - [ ] `description` d'un trésor et `resume` d'un piège : lisibles par le joueur, **sans secret, sans DD, sans solution**.
-- [ ] `pnpm monde valider <id>` : pas de nouvel avis « Butin », « Richesse » ; l'atelier (Registre : objets jamais obtenus, clés introuvables).
+- [ ] `pnpm monde valider <id>` : pas de nouvel avis « Butin », « Richesse » ; l'atelier (Registre, filtres « Jamais cité » et « Jamais produit » : une clé ou un objet que rien ne donne).
 - [ ] **Joue-le** : fouiller (le piège se trouve ou non), désarmer, ouvrir avec la clé, en crochetant, en forçant, et vérifie que le texte lu a du sens. Pour un piège spécial (rattaché à une énigme, effet `rencontre`), un test dans `packages/regles/tests/exploration.test.ts` (modèle : « les pièges ne se repèrent qu'en fouillant »).
 
 ## Les pièges connus

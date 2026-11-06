@@ -24,4 +24,4 @@ Contexte : monde `packages/mondes/[monde]/` (lis `BIBLE.md` = canon, `GUIDE-ZONE
 
 **Règles d'écriture** : libellés du joueur à la 1re personne ; vouvoiement des PNJ envers le groupe ; images rationnées (pas deux phrases voisines sur le même mot) ; un détail concret par texte ; le PNJ dit son problème, pas la solution. Identifiants kebab-case ASCII sans accent, préfixe de zone.
 
-**Vérification** : `cd ~/crpg-llm && pnpm monde valider [monde]` (0 erreur pour tes entités) puis `pnpm exec vitest run packages/regles/tests`. Rapport final court : fichiers écrits, ids créés, ce qui te pose problème.
+**Vérification** : `pnpm monde valider [monde]` (0 erreur pour tes entités) puis `pnpm exec vitest run packages/regles/tests`. Rapport final court : fichiers écrits, ids créés, ce qui te pose problème.

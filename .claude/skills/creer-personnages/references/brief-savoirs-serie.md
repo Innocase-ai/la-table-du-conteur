@@ -1,6 +1,8 @@
 # Mission : écrire la fiche de savoir d'un personnage de La Citadelle des Marées (une mission = un personnage)
 
-Contexte : monde `C:/Users/sebas/Documents/GitHub/D&D/crpg-llm/packages/mondes/citadelle-des-marees/`. Lis, dans l'ordre : `BIBLE.md` (canon, secrets), **`CANON-PERSONNAGES.md` (la seule source des passés, dates et liens : tu n'inventes AUCUN nom, date ni lien qui n'y soit pas ; pour un détail qui manque, reste vague ou omets-le)**, la fiche du personnage dans `pnj/*.json` (sa voix, traits, désir, peur, salutations, sujets, secrets : tu respectes sa voix exactement), et `faits/*.json` (le canon des faits). Format défini par `packages/regles/src/monde/savoirs-donnees.ts` (lis-le). Pas de commit. N'écris que ton fichier : `savoirs/z8-<id du pnj>.json` (un tableau JSON avec **un seul objet**).
+> **Exemple réel, tiré de La Citadelle des Marées.** Pour un autre monde, garde la structure, les règles et le format ; remplace l'id du monde, les noms, les identifiants et les listes (examens, questions, PNJ, lieux…) par ceux de ton monde, tirés du canon et de l'atlas. `<dossier temporaire de la session>` est le dossier temporaire (scratchpad) de la session en cours. Tous les chemins sont relatifs à la racine du dépôt.
+
+Contexte : monde `packages/mondes/citadelle-des-marees/`. Lis, dans l'ordre : `BIBLE.md` (canon, secrets), **`CANON-PERSONNAGES.md` (la seule source des passés, dates et liens : tu n'inventes AUCUN nom, date ni lien qui n'y soit pas ; pour un détail qui manque, reste vague ou omets-le)**, la fiche du personnage dans `pnj/*.json` (sa voix, traits, désir, peur, salutations, sujets, secrets : tu respectes sa voix exactement), et `faits/*.json` (le canon des faits). Format défini par `packages/regles/src/monde/savoirs-donnees.ts` (lis-le). Pas de commit. N'écris que ton fichier : `savoirs/z8-<id du pnj>.json` (un tableau JSON avec **un seul objet**).
 
 ## À quoi ça sert
 Le LLM qui anime le jeu lira cette fiche pour faire parler le personnage **librement** (n'importe quelle question du joueur) sans rien inventer. Chaque réplique est vérifiée : elle ne peut citer que les éléments de la fiche (par id) et ne révéler que les faits dont l'accès est ouvert. La profondeur d'une conversation dépend donc de la **richesse concrète** de ce que tu écris ici.
@@ -21,7 +23,7 @@ Le LLM qui anime le jeu lira cette fiche pour faire parler le personnage **libre
 - **Spécificité obligatoire** : noms propres, chiffres, matières, odeurs, gestes ; pas de « mystérieux », « ancien », « sombre » sans détail attaché ; pas deux éléments qui disent la même chose ; chaque élément doit pouvoir servir de matière à une réplique de 1 à 3 phrases.
 - Voix : le texte de la fiche (`passe`, `couleur`, `version`) est à la troisième personne ; la `version` d'un fait peut citer une tournure du personnage entre guillemets.
 
-Vérification : `cd C:/Users/sebas/Documents/GitHub/D\&D/crpg-llm && pnpm monde valider citadelle-des-marees` : aucune erreur `[savoirs]` et aucun avis `[savoirs]` pour ta fiche (les avis demandent : passé ≥ 70 mots, ≥ 2 liens, ≥ 6 souvenirs, ≥ 4 faits, au moins un fait verrouillé avec `evasif`, un `tabou` pour tout fait de catégorie secret). Rapport final court : ce que tu as écrit, ce que tu as omis faute de canon.
+Vérification : `pnpm monde valider citadelle-des-marees` : aucune erreur `[savoirs]` et aucun avis `[savoirs]` pour ta fiche (les avis demandent : passé ≥ 70 mots, ≥ 2 liens, ≥ 6 souvenirs, ≥ 4 faits, au moins un fait verrouillé avec `evasif`, un `tabou` pour tout fait de catégorie secret). Rapport final court : ce que tu as écrit, ce que tu as omis faute de canon.
 
 
 ---

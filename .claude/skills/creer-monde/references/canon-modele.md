@@ -26,7 +26,7 @@ Place pour toutes les espèces jouables (une ligne chacune). Le groupe est cré�
 ## §7 Le registre (le cœur du travail)
 Tout identifiant qu'une zone doit **lire sans l'avoir écrit** est dans le registre, avec la zone qui le crée :
 - **Lieux** : la racine, le hub, la racine de chaque zone, les lieux clés (salle du boss, entrée secrète). Préfixes des sous-lieux par zone.
-- **PNJ clés** : id, qui, zone, lieu. Les compagnons y figurent avec classe, espèce, niveau et l'id de leur quête personnelle.
+- **PNJ clés** : id, qui, zone, lieu. Les compagnons qui voyageront (escorte + interjections, `creer-personnages`) y figurent avec l'id de leur quête personnelle.
 - **Objets clés** : reliques, clés, objets de quête qui traversent des zones.
 - **Drapeaux** : ceux que la quête principale lit (étapes, choix de fin) et que les zones posent. Un drapeau lu par la zone centrale doit avoir **une zone désignée pour le poser**.
 - **Faits centraux** : la dizaine de vérités que les PNJ de toutes les zones peuvent révéler (ils sont écrits par la zone centrale, révélés par les autres).

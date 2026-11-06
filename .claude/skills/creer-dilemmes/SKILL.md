@@ -43,7 +43,7 @@ Un **dilemme** est un choix où chaque option **sert une valeur que le joueur ai
 - Les dilemmes du **monde entier** sont écrits par l'auteur du monde (Claude), car ils touchent plusieurs zones ; les agents de zone ne les écrivent pas.
 
 ## Volume et production
-Visez **3 dilemmes par chapitre** (le validateur avertit). Pour la rédaction, des agents **Haiku** avec un brief précis (ids exacts, forme du choix, coûts voulus) ; Claude relit : un dilemme dont une option domine est un échec d'écriture. Modèles abordés : `packages/mondes/citadelle-des-marees/dilemmes/z6-dilemmes.json` et `packages/mondes/val-des-cendres/dilemmes/z7-dilemmes.json`.
+Visez **3 dilemmes par chapitre** (le validateur avertit). **Qui fait quoi** : Claude **conçoit** chaque dilemme (la forme du choix, les options, les coûts et gains voulus, les ids exacts) ; des agents **Haiku** en **rédigent** les textes avec ce brief précis ; Claude relit : un dilemme dont une option domine est un échec d'écriture. Modèles abordés : `packages/mondes/citadelle-des-marees/dilemmes/z6-dilemmes.json` et `packages/mondes/val-des-cendres/dilemmes/z7-dilemmes.json`.
 
 ## Vérifier
 `pnpm monde valider <monde>` : erreurs (référence inconnue, jet sans `echec`, écho sur une option inconnue) et conseils `[dilemmes]` (option sans effet ou seulement narrative, aucun écho, épilogue manquant, deux options aux effets identiques). Test : `packages/regles/tests/dilemmes.test.ts` (modèle d'un test qui ouvre, tranche, vérifie coûts, drapeaux et échos). Puis dans le jeu : le dilemme s'ouvre-t-il au bon moment ? les boutons sont-ils lisibles (libellés longs sur plusieurs lignes) ? la chronique du Journal est-elle juste ?

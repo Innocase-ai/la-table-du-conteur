@@ -1,13 +1,15 @@
 # Mission : le monde réagit aux origines des héros (La Citadelle des Marées)
 
-Monde : `C:/Users/sebas/Documents/GitHub/D&D/crpg-llm/packages/mondes/citadelle-des-marees/`. Lis `BIBLE.md` (canon et secrets), `CANON-PERSONNAGES.md`, les fiches `pnj/*.json` concernées et les `examens/z9-*.json`. Pas de commit ; n'écris que ton fichier (chemin donné dans ta mission). Français soigné, ton du monde (mélancolique, maritime, sobre, humour sec rare). Rapport final court.
+> **Exemple réel, tiré de La Citadelle des Marées.** Pour un autre monde, garde la structure, les règles et le format ; remplace l'id du monde, les noms, les identifiants et les listes (examens, questions, PNJ, lieux…) par ceux de ton monde, tirés du canon et de l'atlas. `<dossier temporaire de la session>` est le dossier temporaire (scratchpad) de la session en cours. Tous les chemins sont relatifs à la racine du dépôt.
+
+Monde : `packages/mondes/citadelle-des-marees/`. Lis `BIBLE.md` (canon et secrets), `CANON-PERSONNAGES.md`, les fiches `pnj/*.json` concernées et les `examens/z9-*.json`. Pas de commit ; n'écris que ton fichier (chemin donné dans ta mission). Français soigné, ton du monde (mélancolique, maritime, sobre, humour sec rare). Rapport final court.
 
 ## Le principe
 Le joueur compose son groupe de six héros : chacun a une **espèce** (`nain`, `elfe`, `gnome`, `goliath`, `halfelin`, `humain`, `orc`, `tieffelin`, `drakeide`), une **classe** (`barbare`, `barde`, `clerc`, `druide`, `ensorceleur`, `guerrier`, `magicien`, `moine`, `occultiste`, `paladin`, `rodeur`, `roublard`) et un **historique** (`acolyte`, `criminel`, `sage`, `soldat`). Le monde doit **s'en apercevoir** : un nain juge un ouvrage de pierre, un roublard voit où le livre de comptes est truqué, une elfe entend ce qu'on ne dit pas. Ces réactions sont de la **couleur** : elles montrent un œil, un savoir-faire, une façon d'être regardé ; elles **ne révèlent aucun secret, aucun fait d'intrigue, aucune solution d'énigme**, et ne contredisent rien du canon. Elles ne disent jamais qu'un héros « est » telle personne : seulement ce qu'il remarque ou comment on le reçoit. Une condition s'écrit `{ "heros": { "espece": "nain" } }` (ou `classe`, ou `historique`, ou plusieurs ensemble : alors le **même** héros doit avoir tout). Ids exacts, en minuscules et sans accent.
 
 ---
 
-## Mission A — Regards d'origine sur les examens (fichier `C:/Users/sebas/AppData/Local/Temp/claude/584d935d5a46fbdf/937ece50-a4aa-4b31-b9fc-ca75efdf6d37/scratchpad/regards.json`)
+## Mission A — Regards d'origine sur les examens (fichier `<dossier temporaire de la session>/regards.json`)
 Un objet `{ "<id d'examen>": [ { "condition": {…}, "texte": "…" } ] }`. Chaque `texte` : **une phrase, 15 à 35 mots**, qui s'ajoute **après** le texte de l'examen (relis-le : n'en répète aucun détail, apporte ce que cet œil remarque **en plus**, un détail concret et plausible : une technique, un défaut, une habitude, une odeur ; ne change pas ce que l'examen affirme). Écris à la 3ᵉ personne neutre ou avec « l'un de vous » : on ne sait pas quel héros parle.
 À écrire (exactement ces examens et ces conditions) :
 1. `exa-girouette` : espèce `nain` (le bronze, la fonte) ; historique `sage` (un motif héraldique ou savant, pas un ornement).
@@ -26,7 +28,7 @@ Un objet `{ "<id d'examen>": [ { "condition": {…}, "texte": "…" } ] }`. Chaq
 
 ---
 
-## Mission B — Salutations d'origine (fichier `C:/Users/sebas/AppData/Local/Temp/claude/584d935d5a46fbdf/937ece50-a4aa-4b31-b9fc-ca75efdf6d37/scratchpad/salutations-origines.json`)
+## Mission B — Salutations d'origine (fichier `<dossier temporaire de la session>/salutations-origines.json`)
 Un objet `{ "<id pnj>": [ { "condition": {…}, "texte": "…" } ] }`. La **salutation** est ce que le PNJ dit et fait en voyant le groupe (voir `salutations.neutre` et les `variantes` de sa fiche : même registre, narration brève puis une réplique entre « » ; **25 à 50 mots**). Ici, il **réagit à un héros du groupe** (espèce, classe ou historique) : un mot, un regard, un geste qui montre qu'il l'a remarqué, **dans sa voix** et selon ses opinions (relis sa fiche : désir, peur, défaut). Ne révèle rien qu'il tait ; ne change pas son attitude (ce sont des mots, pas des effets). Plusieurs conditions possibles par PNJ ; elles seront évaluées **dans l'ordre** après les variantes de l'histoire, la première vraie l'emporte : mets la plus **précise** en premier.
 À écrire :
 - `mere-sorel-quaibas` (tieffelin, cheffe des Rats) : espèce `tieffelin` ; historique `criminel`.

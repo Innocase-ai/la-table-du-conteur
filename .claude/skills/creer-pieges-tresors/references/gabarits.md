@@ -21,6 +21,8 @@ Tous les identifiants sont en kebab-case ASCII, avec le préfixe de la zone. Les
 }
 ```
 
+(`etats` est seulement affiché, jamais appliqué par le moteur : l'empoisonnement n'a pas d'effet mécanique.)
+
 Le trésor qui le garde (`acces.piege`) :
 
 ```json

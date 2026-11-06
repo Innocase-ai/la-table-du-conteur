@@ -42,7 +42,7 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 | --- | --- | --- |
 | `…` | … | Z1, `…` |
 
-[Inclure les compagnons recrutables (classe, espèce, niveau, quête personnelle).]
+[Inclure le ou les compagnons qui voyageront avec le groupe (escorte + interjections, skill `creer-personnages`) et leur quête personnelle. Le recrutement de compagnons jouables n'existe pas encore dans le moteur.]
 
 ### Objets clés
 
