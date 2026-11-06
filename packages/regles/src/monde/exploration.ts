@@ -274,7 +274,7 @@ export function sortiesDe(p: PartieMonde, lieu: string): Sortie[] {
 }
 
 /** Choses cachées d'un lieu, avec la compétence qui permet de les trouver. */
-function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; competence: Competence; libelle: string; reveler: () => void }[] {
+function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; competence: Competence; libelle: string; reveler: () => void; passif?: boolean }[] {
   const ex = p.etat.exploration;
   const res: ReturnType<typeof cachettes> = [];
   for (const { sortie: s, lien } of passages(p, lieu)) {
@@ -290,7 +290,8 @@ function cachettes(p: PartieMonde, lieu: string): { cle: string; dd: number; com
   for (const pg of p.dm.pieges.values()) {
     const cle = `piege:${pg.id}`;
     if (pg.lieu !== lieu || ex.decouverts.includes(cle) || ex.pieges[pg.id]) continue;
-    res.push({ cle, dd: pg.detection.dd, competence: pg.detection.competence, libelle: `un piège : ${pg.nom} (${pg.resume})`, reveler: () => ex.decouverts.push(cle) });
+    // Un piège ne se repère pas d'office en entrant (perception passive) : il faut fouiller, avec un jet qui peut échouer.
+    res.push({ cle, dd: pg.detection.dd, competence: pg.detection.competence, libelle: `un piège : ${pg.nom} (${pg.resume})`, reveler: () => ex.decouverts.push(cle), passif: false });
   }
   const ici = p.dm.lieux.get(lieu);
   for (const f of ici?.faits ?? []) {
@@ -308,7 +309,7 @@ function perceptionPassive(p: PartieMonde, r: CompteRendu): void {
   if (!vivants.length) return;
   const meilleur = [...vivants].sort((x, y) => y.fiche.perceptionPassive - x.fiche.perceptionPassive)[0]!;
   for (const c of cachettes(p, p.etat.lieu)) {
-    if (c.competence !== 'perception' || meilleur.fiche.perceptionPassive < c.dd) continue;
+    if (c.passif === false || c.competence !== 'perception' || meilleur.fiche.perceptionPassive < c.dd) continue;
     c.reveler();
     if (c.cle.startsWith('fait:')) r.revele.push(c.cle.slice(5));
     r.constats.push(`${meilleur.nom} remarque ${c.libelle} (perception passive ${meilleur.fiche.perceptionPassive}, DD ${c.dd}).`);
@@ -482,6 +483,7 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     if (!verrou.cle || !(p.etat.inventaire[verrou.cle] ?? 0)) return refus(`Le groupe n'a pas la clé de ${nom}.`);
     ex.ouverts.push(cle);
     r.constats.push(`La clé ouvre ${nom}.`);
+    declencherPiegeLibre(p, r, undefined);
     suites(p, r);
     return r;
   }
@@ -496,6 +498,7 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
   } else r.constats.push(`${a.nom} ne parvient pas à ${methode === 'crocheter' ? 'crocheter' : 'forcer'} ${nom}.`);
   // Un contenant piégé se déclenche quand on l'ouvre sans clé, s'il n'a pas été désamorcé.
   if (tresor?.acces.piege && !ex.pieges[tresor.acces.piege]) declencher(p, r, p.dm.pieges.get(tresor.acces.piege)!, a);
+  declencherPiegeLibre(p, r, a);
   suites(p, r);
   return r;
 }
@@ -555,6 +558,32 @@ export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: P
   appliquer(p, r, pg.effets);
 }
 
+const piegesRattaches = new WeakMap<DonneesMonde, Set<string>>();
+
+/** Les pièges que quelque chose garde déjà : un contenant piégé (`tresor.acces.piege`) ou l'échec d'une énigme (`enigme.echec.piege`). */
+function rattaches(dm: DonneesMonde): Set<string> {
+  let s = piegesRattaches.get(dm);
+  if (!s) {
+    s = new Set();
+    for (const t of dm.tresors.values()) if (t.acces.piege) s.add(t.acces.piege);
+    for (const e of dm.enigmes.values()) if (e.echec?.piege) s.add(e.echec.piege);
+    piegesRattaches.set(dm, s);
+  }
+  return s;
+}
+
+/**
+ * Un piège de ce lieu que rien ne garde et que le groupe n'a pas trouvé se déclenche dès que le groupe prend ou ouvre quelque
+ * chose ici (un seul à la fois : le suivant attend la prochaine fois). Trouvé, désamorcé ou déjà déclenché, il ne fait plus rien.
+ */
+function declencherPiegeLibre(p: PartieMonde, r: CompteRendu, victime: Personnage | undefined): void {
+  const ex = p.etat.exploration;
+  const garde = rattaches(p.dm);
+  const pg = [...p.dm.pieges.values()].find((x) => x.lieu === p.etat.lieu && !garde.has(x.id) && !ex.pieges[x.id] && !ex.decouverts.includes(`piege:${x.id}`));
+  const cible = victime ?? choisir(p, 'perception');
+  if (pg && cible) declencher(p, r, pg, cible);
+}
+
 /** Verse le contenu d'un trésor au groupe (pièces, objets, tirages, indice) et le marque vidé. */
 function viderTresor(p: PartieMonde, r: CompteRendu, t: Tresor): void {
   p.etat.exploration.tresorsPris.push(t.id);
@@ -608,6 +637,7 @@ export function prendre(p: PartieMonde, tresor: string): CompteRendu {
   const r = resultat();
   // Un piège encore armé se déclenche sur qui se sert (sauf trésor ouvert à la clé, déjà déclenché dans ouvrir sinon).
   if (t.acces.piege && !ex.pieges[t.acces.piege] && !t.acces.verrou) declencher(p, r, p.dm.pieges.get(t.acces.piege)!, choisir(p, 'perception')!);
+  declencherPiegeLibre(p, r, undefined);
   viderTresor(p, r, t);
   suites(p, r);
   return r;

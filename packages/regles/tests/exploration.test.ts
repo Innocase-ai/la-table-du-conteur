@@ -122,6 +122,148 @@ describe('le cellier du bailli : passage secret, piège, coffret', () => {
   });
 });
 
+describe('les pièges ne se repèrent qu’en fouillant', () => {
+  const PIEGE = 'vei-p-aiguille-du-coffret';
+  const COFFRET = 'vei-t-plancher-du-bailli';
+
+  /** Au cellier du bailli, avec une perception passive énorme : si les pièges se repéraient d'office, celui-ci le serait. */
+  function auCellier(gen: Generateur): PartieMonde {
+    const p = partie(SUCCES);
+    for (const a of p.groupe) a.fiche.perceptionPassive = 40;
+    aller(p, 'vei-halle-du-bailli');
+    fouiller(p); // trouve la trappe
+    expect(aller(p, 'vei-cellier-du-bailli').ok).toBe(true);
+    p.gen = gen;
+    return p;
+  }
+
+  it('entrer dans le lieu ne révèle pas le piège, même avec une perception passive très haute', () => {
+    const p = auCellier(SUCCES);
+    expect(p.etat.exploration.decouverts).not.toContain(`piege:${PIEGE}`);
+    expect(ficheDeScene(p).pieges.map((x) => x.id)).not.toContain(PIEGE);
+    expect(desarmer(p, PIEGE, 'pip').ok).toBe(false); // rien de repéré : rien à désamorcer
+  });
+
+  it('la fouille peut le trouver, ou le rater : le jet décide, et le joueur ne voit pas le DD', () => {
+    const trouve = auCellier(SUCCES);
+    const f = fouiller(trouve);
+    expect(f.constats.join(' ')).toMatch(/piège/);
+    expect(f.jets.every((j) => j.ddSecret)).toBe(true);
+    expect(trouve.etat.exploration.decouverts).toContain(`piege:${PIEGE}`);
+
+    const rate = auCellier(ECHEC);
+    const dd = dm.pieges.get(PIEGE)!.detection.dd;
+    const f2 = fouiller(rate);
+    expect(f2.jets.some((j) => j.total >= dd)).toBe(false); // le jet est bien en dessous du DD
+    expect(rate.etat.exploration.decouverts).not.toContain(`piege:${PIEGE}`);
+    expect(f2.constats.join(' ')).not.toMatch(/piège/);
+    // Une seule fouille par lieu et par jour : on ne relance pas les dés.
+    expect(fouiller(rate).ok).toBe(false);
+  });
+
+  it('un piège non trouvé se déclenche quand on ouvre le coffret sans le désamorcer', () => {
+    const p = auCellier(SUCCES);
+    const pip = p.groupe.find((a) => a.id === 'pip')!;
+    const o = ouvrir(p, { tresor: COFFRET }, 'crocheter', 'pip');
+    expect(o.narrations.join(' ')).toBe(dm.pieges.get(PIEGE)!.declenchement);
+    expect(p.etat.exploration.pieges[PIEGE]).toBe('declenche');
+    expect(pip.pv).toBeLessThan(pip.fiche.pvMax);
+  });
+
+  describe('un piège que rien ne garde se déclenche si on prend ou ouvre quelque chose sans l’avoir trouvé', () => {
+    const LIBRE = 'gro-p-eboulement-ravine';
+    const LIEU = 'gro-sentier-ravine';
+    const BUTIN = 'gro-t-vask-sacoche';
+
+    function surLePlace(): PartieMonde {
+      const p = partie(SUCCES);
+      p.etat.lieu = LIEU;
+      return p;
+    }
+
+    it('le piège est bien « libre » : ni contenant piégé ni énigme ne le cite', () => {
+      expect([...dm.tresors.values()].some((t) => t.acces.piege === LIBRE)).toBe(false);
+      expect([...dm.enigmes.values()].some((e) => e.echec?.piege === LIBRE)).toBe(false);
+      expect(dm.pieges.get(LIBRE)!.lieu).toBe(LIEU);
+    });
+
+    it('prendre quelque chose le déclenche : narration, sauvegarde, dégâts, et il est alors connu', () => {
+      const p = surLePlace();
+      p.gen = ECHEC; // la sauvegarde est ratée : pleins dégâts
+      const avant = p.groupe.reduce((s, a) => s + a.pv, 0);
+      const r = prendre(p, BUTIN);
+      expect(r.ok).toBe(true);
+      expect(r.narrations).toContain(dm.pieges.get(LIBRE)!.declenchement);
+      expect(p.etat.exploration.pieges[LIBRE]).toBe('declenche');
+      expect(p.etat.exploration.decouverts).toContain(`piege:${LIBRE}`);
+      expect(p.groupe.reduce((s, a) => s + a.pv, 0)).toBeLessThan(avant);
+      expect(p.etat.exploration.tresorsPris).toContain(BUTIN);
+    });
+
+    it('il ne se déclenche qu’une fois, et pas quand le groupe se contente d’entrer, de fouiller ou de se reposer', () => {
+      const p = surLePlace();
+      aller(p, 'veillecendre'); // partir ne déclenche rien
+      p.etat.lieu = LIEU;
+      expect(p.etat.exploration.pieges[LIBRE]).toBeUndefined();
+      prendre(p, BUTIN);
+      expect(p.etat.exploration.pieges[LIBRE]).toBe('declenche');
+      const apres = p.groupe.reduce((s, a) => s + a.pv, 0);
+      // Le piège est connu et déclenché : plus rien à craindre ici.
+      p.etat.exploration.tresorsPris = p.etat.exploration.tresorsPris.filter((t) => t !== BUTIN);
+      prendre(p, BUTIN);
+      expect(p.groupe.reduce((s, a) => s + a.pv, 0)).toBe(apres);
+    });
+
+    it('trouvé en fouillant, il ne se déclenche pas ; désamorcé non plus', () => {
+      const trouve = surLePlace();
+      for (const a of trouve.groupe) a.fiche.perceptionPassive = 40;
+      const f = fouiller(trouve);
+      expect(f.constats.join(' ')).toMatch(/piège/);
+      const avant = trouve.groupe.reduce((s, a) => s + a.pv, 0);
+      prendre(trouve, BUTIN);
+      expect(trouve.etat.exploration.pieges[LIBRE]).toBeUndefined(); // repéré, pas déclenché
+      expect(trouve.groupe.reduce((s, a) => s + a.pv, 0)).toBe(avant);
+
+      const desarme = surLePlace();
+      desarme.etat.exploration.pieges[LIBRE] = 'desarme';
+      prendre(desarme, BUTIN);
+      expect(desarme.etat.exploration.pieges[LIBRE]).toBe('desarme');
+    });
+
+    it('ouvrir quelque chose (ici un coffret crocheté) le déclenche aussi, sur celui qui crochète', () => {
+      const libre = { ...structuredClone(dm.pieges.get('vei-p-aiguille-du-coffret')!), id: 'test-piege-libre', lieu: 'vei-cellier-du-bailli', degats: [{ des: '1d4', type: 'perforant' }], sauvegarde: undefined };
+      dm.pieges.set(libre.id, libre);
+      try {
+        const p = partie(SUCCES);
+        aller(p, 'vei-halle-du-bailli');
+        fouiller(p);
+        aller(p, 'vei-cellier-du-bailli');
+        p.etat.exploration.pieges['vei-p-aiguille-du-coffret'] = 'desarme'; // celui du coffret ne compte pas ici
+        const pip = p.groupe.find((a) => a.id === 'pip')!;
+        const r = ouvrir(p, { tresor: 'vei-t-plancher-du-bailli' }, 'crocheter', 'pip');
+        expect(r.narrations).toContain(libre.declenchement);
+        expect(p.etat.exploration.pieges[libre.id]).toBe('declenche');
+        expect(pip.pv).toBeLessThan(pip.fiche.pvMax);
+      } finally {
+        dm.pieges.delete('test-piege-libre');
+      }
+    });
+  });
+
+  it('les passages cachés de perception restent repérés sans jet par la perception passive (seuls les pièges changent)', () => {
+    const p = partie(SUCCES);
+    for (const a of p.groupe) a.fiche.perceptionPassive = 40;
+    const r = aller(p, 'pont-de-fer'); // une brèche cachée (perception, DD 13) et des égouts cachés
+    expect(r.constats.join(' ')).toMatch(/perception passive/);
+    expect(p.etat.exploration.decouverts.some((c) => c.startsWith('lien:pont-de-fer>pdf-breche'))).toBe(true);
+    // Le même groupe, avec une perception passive trop faible, ne repère rien sans fouiller.
+    const faible = partie(SUCCES);
+    for (const a of faible.groupe) a.fiche.perceptionPassive = 5;
+    aller(faible, 'pont-de-fer');
+    expect(faible.etat.exploration.decouverts.some((c) => c.startsWith('lien:pont-de-fer>pdf-breche'))).toBe(false);
+  });
+});
+
 describe('dialogue', () => {
   it('Nério salue, liste ses sujets, et révèle un fait sur le bon sujet', () => {
     const p = partie();
