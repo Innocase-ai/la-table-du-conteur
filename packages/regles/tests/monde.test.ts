@@ -183,7 +183,7 @@ describe('images d\'un monde', () => {
     expect(verifierImages(dm, { ...base, cartes: { [feuille.id]: 'x.webp' } }).inconnues).toEqual([`cartes/${feuille.id}`]);
   });
 
-  it('Val des Cendres : tout est illustré (151 lieux, 63 PNJ, 25 monstres, 16 objets)', () => {
+  it('Val des Cendres : tout est illustré (151 lieux, 63 PNJ, 16 objets ; les monstres sont au bestiaire commun)', () => {
     const dossier = join(RACINE_MONDES, 'val-des-cendres');
     const r = chargerMonde(dossier);
     const manifeste = chargerManifesteImages(dossier)!;
@@ -191,7 +191,7 @@ describe('images d\'un monde', () => {
     if (!r.ok) return;
     expect(verifierImages(r.monde, manifeste).manquantes).toEqual([]);
     expect(imageDe(manifeste, 'lieux', 'haute-forge')).toBe('lieu-haute-forge.webp');
-    expect(imageDe(manifeste, 'monstres', 'zombi')).toBe('monstre-zombi.webp');
+    expect(manifeste.monstres).toEqual({});
     expect(imageDe(undefined, 'pnj', 'brunhild')).toBeUndefined();
   });
 });

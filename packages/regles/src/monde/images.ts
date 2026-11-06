@@ -34,11 +34,11 @@ export interface BilanImages {
 }
 
 export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): BilanImages {
-  const profils = new Set([...dm.rencontres.values()].flatMap((r) => r.monstres.map((m) => m.profil)));
   const connus: Record<GroupeImage, Set<string>> = {
     lieux: new Set(dm.lieux.keys()),
     pnj: new Set(dm.pnj.keys()),
-    monstres: profils,
+    // Aucune image de monstre propre à une histoire : le bestiaire commun du moteur les illustre (règle du 06/11/2026).
+    monstres: new Set<string>(),
     objets: new Set(dm.objets.keys()),
     cartes: new Set([...dm.lieux.values()].flatMap((l) => (l.parent ? [l.parent] : []))),
   };
