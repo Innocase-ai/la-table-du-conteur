@@ -1,6 +1,8 @@
-# Brief : ajouter des monstres du SRD (gabarit)
+# Brief : ajouter des monstres du SRD au moteur (gabarit)
 
-À donner à **un agent** `general-purpose`, modèle **Sonnet 5.5** (des statistiques à recopier exactement : pas d'invention), **avant** les agents de zone, quand le thème du monde demande des monstres absents de `packages/donnees/srd/monstres/` (30 profils au 06/11/2026). Remplace les `<…>`. Claude relit le rapport et vérifie deux profils à la main contre le SRD.
+> **Le catalogue du moteur contient les 329 profils de l'index du SRD français (06/11/2026).** Ce brief ne sert plus qu'à ajouter un profil **absent du SRD** décidé par l'utilisateur pour le moteur, ou à corriger un profil. Une histoire n'ajoute jamais de monstre.
+
+À donner à **un agent** `general-purpose`, modèle **Sonnet 5.5** (des statistiques à recopier exactement : pas d'invention), **avant** les agents de zone, pour un profil absent de `packages/donnees/srd/monstres/` (329 profils au 06/11/2026), sur décision de l'utilisateur. Remplace les `<…>`. Claude relit le rapport et vérifie deux profils à la main contre le SRD.
 
 ---
 

@@ -66,7 +66,7 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 
 ## 9. Monstres disponibles (SRD, ids de profil)
 
-[Liste des profils de `packages/donnees/srd/monstres/` utilisables. Les rencontres n'utilisent que ceux-là.]
+[Les profils choisis parmi les 329 de `packages/donnees/srd/monstres/` (tout le SRD). Les rencontres n'utilisent **que ceux-là** : une histoire ne crée jamais de monstre ni d'image de monstre ; un boss est un profil du catalogue avec un nom et des textes propres.]
 
 ## 10. Choix, pertes et horloge (checklist « histoire qui ne s'ennuie pas »)
 

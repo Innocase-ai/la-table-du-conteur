@@ -9,7 +9,7 @@
 //   pnpm images cartes <monde>              lieux qui méritent une carte illustrée (≥ 5 enfants), avec les cartes faites / à faire
 //   pnpm images cartes <monde> --lieu <id> | --tous [--service klein] [--go]   génère la carte d'un lieu (ou de tous les candidats ; sans --go : simulation)
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
-//   pnpm images bestiaire [--go]           une image par profil de monstre du SRD (combat, tous mondes)
+//   pnpm images bestiaire [--profils a,b] [--max N] [--go]   une image par profil de monstre du SRD (combat, tous mondes) ; --profils : seulement ceux-là
 //   pnpm images equipement [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
 //   pnpm images terrains [--go]            textures du plateau de combat (sol, difficile, mur par ambiance)
 //   pnpm images interface [--go]           illustrations de l'interface (écran titre)
@@ -223,8 +223,10 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
   if (commande === 'bestiaire' || commande === 'terrains' || commande === 'interface' || commande === 'equipement') {
     const service = trouverService(option('--service') ?? 'klein');
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
+    // --profils a,b,c : seulement ces monstres (essai d'une famille avant de lancer le reste).
+    const profils = option('--profils')?.split(',').map((x) => x.trim()).filter(Boolean);
     const lot =
-      commande === 'bestiaire' ? elementsBestiaire(charte) : commande === 'terrains' ? elementsTerrains(charte) : commande === 'equipement' ? elementsEquipement(charte) : elementsInterface(charte);
+      commande === 'bestiaire' ? elementsBestiaire(charte, profils) : commande === 'terrains' ? elementsTerrains(charte) : commande === 'equipement' ? elementsEquipement(charte) : elementsInterface(charte);
     // --partie i/n : ne fait que le i-ème des n morceaux de la liste, pour lancer plusieurs processus en parallèle (reprise sans doublon : les images déjà faites sont sautées).
     const partie = /^(\d+)\/(\d+)$/.exec(option('--partie') ?? '');
     const part = partie ? lot.filter((_, k) => k % Number(partie[2]) === Number(partie[1]) - 1) : lot;

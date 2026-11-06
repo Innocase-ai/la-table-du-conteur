@@ -31,5 +31,8 @@ Chiffres visés : <récapitulatif>.
 - Les drapeaux lus par la zone centrale sont posés par la zone désignée dans le registre.
 - Rapport final attendu : fichiers, chiffres, ids du registre créés, ids d'autres zones référencés, drapeaux posés et lus, incohérences avec le canon.
 
-## Extraction de monstres SRD (si le thème l'exige)
+## Monstres : uniquement ceux du moteur
+Les zones n'utilisent que les 329 profils de `packages/donnees/srd/monstres/` (le validateur refuse les autres) et ne créent aucune image de monstre. Si un profil manque, on étend le moteur, pas l'histoire.
+
+## Extraction de monstres SRD (chantier du moteur)
 Avant les zones, un agent extrait les profils manquants : brief `brief-monstres.md` (il reprend la méthode de l'agent « monstres supplémentaires » du Val : liste de monstres, pages de l'index du SRD, schéma `Monstre`, exemples de fichiers existants, `pnpm test`).
