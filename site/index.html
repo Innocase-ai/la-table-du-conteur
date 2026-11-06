@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Table du Conteur : Un jeu de rôle narratif illustré, en français, sur les règles du SRD 5.2.1</title>
+<meta name="description" content="Un jeu de rôle narratif illustré en français : menez de 1 à 6 aventuriers dans des histoires complètes, avec un conteur qui propose et des règles qui décident.">
+<meta property="og:title" content="La Table du Conteur">
+<meta property="og:description" content="Un jeu de rôle narratif illustré en français : menez de 1 à 6 aventuriers dans des histoires complètes, avec un conteur qui propose et des règles qui décident.">
+<meta property="og:image" content="images/ecrans/titre.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="barre">
+  <a class="marque" href="#haut">La Table du Conteur</a>
+  <nav><a href="#conteur">Le conteur</a><a href="#groupe">Groupe</a><a href="#createur">Créateur</a><a href="#histoires">Histoires</a><a href="#explorer">Explorer</a><a href="#parler">Parler</a><a href="#choix">Choix</a><a href="#combat">Combat</a><a href="#monstres">Monstres</a><a href="#monde">Image et son</a><a href="#auteurs">Auteurs</a><a href="#cout">Coût</a><a href="#etat">État du jeu</a></nav>
+</header>
+
+<main id="haut">
+<section class="hero" style="background-image:linear-gradient(180deg,rgba(14,11,8,.35),rgba(14,11,8,.92)),url('images/art/hero.webp')">
+  <div class="hero-contenu">
+    <p class="surtitre">Jeu de rôle narratif illustré · règles du SRD 5.2.1</p>
+    <h1>La Table du Conteur</h1>
+    <p class="accroche-hero">Racontez l'histoire, mais laissez les dés décider.</p>
+    <p class="para-hero">La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires complètes. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence.</p>
+    <p class="actions"><a class="bouton" href="#conteur">Découvrir le jeu</a><a class="bouton second" href="#etat">Où en est-il ?</a></p>
+  </div>
+</section>
+
+<section class="chiffres" aria-label="Le jeu en chiffres">
+  <div><b>1 à 6</b><span>héros dans votre groupe</span></div><div><b>9</b><span>espèces à choisir, de la drakéide au tieffelin</span></div><div><b>12</b><span>classes, du niveau 1 au niveau 20</span></div><div><b>339</b><span>sorts du SRD, du tour de magie au niveau 9</span></div><div><b>329</b><span>monstres du bestiaire, tous illustrés</span></div><div><b>502</b><span>objets illustrés</span></div><div><b>3</b><span>histoires complètes livrées</span></div><div><b>54</b><span>portraits à choisir pour vos héros</span></div>
+</section>
+
+
+<section id="conteur" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">01</p>
+      <h2>Un conteur qui improvise, mais ne triche pas</h2>
+      <p class="accroche">Le conteur est une intelligence artificielle qui raconte la scène et répond à vos idées libres.</p>
+      <p>Vous écrivez ce que votre personnage veut faire ou dire, et le conteur répond avec ses mots et son ton. Il ne lance jamais les dés lui-même.</p>
+      <p>Le conteur propose, le jeu décide. Les règles, les combats, les trésors et les conséquences sont calculés par le jeu, et l'IA ne peut ni tricher ni inventer un secret.</p>
+      <p>Vous pouvez aussi jouer sans lui. Le mode livre suit les textes écrits par les auteurs et les boutons proposés.</p>
+      <ul class="puces"><li>Le conteur raconte et répond à vos idées libres</li><li>Le jeu calcule tous les dés et toutes les règles</li><li>L'IA ne peut ni tricher ni inventer un secret</li><li>Mode livre : les textes des auteurs, sans clé d'API</li><li>Conteur IA : écrivez librement ce que vous voulez faire ou dire</li><li>Des personnages qui ne révèlent un secret que si le jeu le permet</li><li>Un récit plus vivant, sur demande, pour une scène</li><li>Seuls les moments racontés par le conteur coûtent</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/titre.webp" data-leg="L'écran d'accueil, avec une table de jeu, un grimoire ouvert et des dés. Le menu permet de choisir une histoire, de gérer son groupe, de lancer une escarmouche ou d'ouvrir l'aide au jeu." aria-label="Agrandir : L'écran d'accueil, avec une table de jeu, un grimoire ouvert et des dés. Le menu permet de choisir une histoire, de gérer son groupe, de lancer une escarmouche ou d'ouvrir l'aide au jeu."><img src="images/ecrans/titre.webp" alt="L'écran d'accueil, avec une table de jeu, un grimoire ouvert et des dés. Le menu permet de choisir une histoire, de gérer son groupe, de lancer une escarmouche ou d'ouvrir l'aide au jeu." loading="lazy"></button><figcaption>L'écran d'accueil, avec une table de jeu, un grimoire ouvert et des dés. Le menu permet de choisir une histoire, de gérer son groupe, de lancer une escarmouche ou d'ouvrir l'aide au jeu.</figcaption></figure></div>
+  </div>
+  
+</section>
+
+<section id="groupe" class="bloc inverse">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">02</p>
+      <h2>Créez vos aventuriers</h2>
+      <p class="accroche">Créez vos héros pas à pas, puis formez un groupe de 1 à 6 aventuriers.</p>
+      <p>Le créateur compte huit écrans, dans l'esprit de Baldur's Gate : une liste à gauche, la description à droite. Un bouton « Recommandé » vous guide partout, et « Création rapide » vous lance en un clic.</p>
+      <p>Vous choisissez l'espèce, la classe, l'historique, les caractéristiques, l'alignement, le nom et le portrait. Le jeu vérifie que chaque choix respecte les règles.</p>
+      <p>Pour le groupe, de 1 à 6 héros suffisent, et beaucoup de joueurs en préfèrent 1, 4, 5 ou 6. Vous pouvez exporter votre groupe, l'importer ou dupliquer un héros.</p>
+      <ul class="puces"><li>9 espèces, de la drakéide au tieffelin</li><li>12 classes, du guerrier au barde</li><li>Caractéristiques : valeurs standard, achat de points ou tirage 4d6</li><li>54 portraits à choisir dans une galerie</li><li>Un groupe conseillé, prêt à jouer</li><li>Export, import et duplication des héros</li><li>Niveau du groupe réglable de 1 à 20</li><li>Des conseils de composition, jamais bloquants</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/groupe.webp" data-leg="L'écran « Mon groupe » : six héros, un niveau de groupe réglable de 1 à 20, un groupe conseillé prêt à jouer, et les boutons pour exporter, importer ou dupliquer." aria-label="Agrandir : L'écran « Mon groupe » : six héros, un niveau de groupe réglable de 1 à 20, un groupe conseillé prêt à jouer, et les boutons pour exporter, importer ou dupliquer."><img src="images/ecrans/groupe.webp" alt="L'écran « Mon groupe » : six héros, un niveau de groupe réglable de 1 à 20, un groupe conseillé prêt à jouer, et les boutons pour exporter, importer ou dupliquer." loading="lazy"></button><figcaption>L'écran « Mon groupe » : six héros, un niveau de groupe réglable de 1 à 20, un groupe conseillé prêt à jouer, et les boutons pour exporter, importer ou dupliquer.</figcaption></figure></div>
+  </div>
+  <div class="galerie g1"><figure class=""><button class="zoom" data-src="images/ecrans/feuille.webp" data-leg="La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes." aria-label="Agrandir : La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes."><img src="images/ecrans/feuille.webp" alt="La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes." loading="lazy"></button><figcaption>La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes.</figcaption></figure></div>
+</section>
+<section id="createur" class="bloc createur">
+  <div class="entete"><p class="num">Création</p><h2>Le créateur de personnage, en 8 écrans</h2><p>Des écrans courts, une liste à gauche, une description à droite, un bouton Recommandé partout et une Création rapide. Le jeu vérifie chaque choix : une fiche invalide ne passe pas.</p></div>
+  <ol class="etapes"><li><button class="zoom" data-src="images/ecrans/createur-espece.webp" data-leg="Écran 1 : Espèce. Neuf espèces, leurs traits et leur lignage."><img src="images/ecrans/createur-espece.webp" alt="Créateur de personnage, écran 1 : Espèce" loading="lazy"></button><div><b>1. Espèce</b><span>Neuf espèces, leurs traits et leur lignage.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-classe.webp" data-leg="Écran 2 : Classe. Douze classes, niveau de départ de 1 à 20."><img src="images/ecrans/createur-classe.webp" alt="Créateur de personnage, écran 2 : Classe" loading="lazy"></button><div><b>2. Classe</b><span>Douze classes, niveau de départ de 1 à 20.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-historique.webp" data-leg="Écran 3 : Historique. Le passé du héros, ses atouts et son don."><img src="images/ecrans/createur-historique.webp" alt="Créateur de personnage, écran 3 : Historique" loading="lazy"></button><div><b>3. Historique</b><span>Le passé du héros, ses atouts et son don.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-caracteristiques.webp" data-leg="Écran 4 : Caractéristiques. Valeurs standard, achat de points ou tirage 4d6."><img src="images/ecrans/createur-caracteristiques.webp" alt="Créateur de personnage, écran 4 : Caractéristiques" loading="lazy"></button><div><b>4. Caractéristiques</b><span>Valeurs standard, achat de points ou tirage 4d6.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-choix.webp" data-leg="Écran 5 : Choix de classe. Compétences, sorts, équipement, avec le bouton Recommandé."><img src="images/ecrans/createur-choix.webp" alt="Créateur de personnage, écran 5 : Choix de classe" loading="lazy"></button><div><b>5. Choix de classe</b><span>Compétences, sorts, équipement, avec le bouton Recommandé.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-alignement.webp" data-leg="Écran 6 : Alignement. Les neuf alignements, en un clic."><img src="images/ecrans/createur-alignement.webp" alt="Créateur de personnage, écran 6 : Alignement" loading="lazy"></button><div><b>6. Alignement</b><span>Les neuf alignements, en un clic.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-portrait.webp" data-leg="Écran 7 : Nom et portrait. Une galerie de 54 portraits, et une ligne de caractère."><img src="images/ecrans/createur-portrait.webp" alt="Créateur de personnage, écran 7 : Nom et portrait" loading="lazy"></button><div><b>7. Nom et portrait</b><span>Une galerie de 54 portraits, et une ligne de caractère.</span></div></li><li><button class="zoom" data-src="images/ecrans/createur-recap.webp" data-leg="Écran 8 : Récapitulatif. La fiche complète, validée par le jeu."><img src="images/ecrans/createur-recap.webp" alt="Créateur de personnage, écran 8 : Récapitulatif" loading="lazy"></button><div><b>8. Récapitulatif</b><span>La fiche complète, validée par le jeu.</span></div></li></ol>
+</section>
+
+<section id="histoires" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">03</p>
+      <h2>Trois histoires à vivre</h2>
+      <p class="accroche">Chaque histoire est complète, avec sa carte, ses lieux illustrés et ses fins différentes.</p>
+      <p>Le Val des Cendres (niveaux 1 à 5, environ 30 h) raconte un village de réfugiés autour d'une Lanterne qui faiblit sous la neige. La Citadelle des Marées (niveaux 1 à 4, environ 16 h) vous mène dans un monastère de cartographes, face à une marée qui s'éloigne trop.</p>
+      <p>Le Grimoire de Port-Sillage (niveaux 1 à 3, environ 6 h) est une histoire facile pour 4 héros. Le grimoire de la sainte qui calmait les tempêtes a disparu de la crypte pendant la fête de la Mer.</p>
+      <p>Une histoire s'ouvre sur un film d'ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés, et chaque fin a sa propre scène.</p>
+      <ul class="puces"><li>3 histoires complètes, livrées avec le jeu</li><li>Le Val des Cendres : environ 30 h, niveaux 1 à 5</li><li>La Citadelle des Marées : environ 16 h, niveaux 1 à 4</li><li>Le Grimoire de Port-Sillage : environ 6 h, niveaux 1 à 3</li><li>Un film d'ouverture, avec des images en fondu et une voix</li><li>Une jauge qui rend le temps précieux</li><li>Des choix qui coûtent, et des fins différentes</li><li>Port-Sillage : 4 fins, 13 personnages et 6 combats</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/histoires.webp" data-leg="La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre." aria-label="Agrandir : La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre."><img src="images/ecrans/histoires.webp" alt="La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre." loading="lazy"></button><figcaption>La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre.</figcaption></figure></div>
+  </div>
+  <div class="galerie g3"><figure class=""><button class="zoom" data-src="images/ecrans/film-titre.webp" data-leg="Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village." aria-label="Agrandir : Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village."><img src="images/ecrans/film-titre.webp" alt="Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village." loading="lazy"></button><figcaption>Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/film-plan.webp" data-leg="Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur." aria-label="Agrandir : Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur."><img src="images/ecrans/film-plan.webp" alt="Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur." loading="lazy"></button><figcaption>Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/val.webp" data-leg="Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu." aria-label="Agrandir : Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu."><img src="images/ecrans/val.webp" alt="Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu." loading="lazy"></button><figcaption>Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu.</figcaption></figure></div>
+</section>
+
+<section id="explorer" class="bloc inverse">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">04</p>
+      <h2>Explorer, fouiller, examiner</h2>
+      <p class="accroche">On se déplace de lieu en lieu, en lisant des descriptions illustrées et en choisissant ses actions.</p>
+      <p>Chaque lieu propose ses actions : fouiller, ouvrir, crocheter, forcer, désamorcer un piège, examiner un détail du décor, prendre, faire une halte ou dormir. Ses personnages attendent aussi qu'on leur parle.</p>
+      <p>La carte du monde se dévoile au fil de vos pas. Les lieux connus apparaissent, on voit où l'on est, et l'on sait ce qui a déjà été visité. Vous pouvez l'ouvrir en plein écran.</p>
+      <p>Le journal garde la trace de tout : quêtes en cours, mystères et scènes à revoir. Le sac du groupe réunit les objets, la charge portée et l'or.</p>
+      <ul class="puces"><li>Actions de lieu : fouiller, ouvrir, crocheter, forcer</li><li>Désamorcer un piège, examiner un détail du décor</li><li>Chaque sortie expliquée en une phrase avant le clic</li><li>Carte du monde avec brouillard, en plein écran</li><li>Journal : quêtes, mystères, scènes à revoir</li><li>Sac du groupe : objets illustrés, répartis par héros</li><li>Grimoire et fiche complète de chaque héros</li><li>Les jets de dés sont visibles : « Ambrine — Investigation 9 (DD 14) »</li><li>Tous les boutons sont proposés, sans rien écrire</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/aventure.webp" data-leg="L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée »." aria-label="Agrandir : L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée »."><img src="images/ecrans/aventure.webp" alt="L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée »." loading="lazy"></button><figcaption>L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée ».</figcaption></figure></div>
+  </div>
+  <div class="galerie g4"><figure class=""><button class="zoom" data-src="images/ecrans/fouille-examen.webp" data-leg="Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné." aria-label="Agrandir : Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné."><img src="images/ecrans/fouille-examen.webp" alt="Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné." loading="lazy"></button><figcaption>Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/carte-monde.webp" data-leg="La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve." aria-label="Agrandir : La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve."><img src="images/ecrans/carte-monde.webp" alt="La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve." loading="lazy"></button><figcaption>La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/journal.webp" data-leg="L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir." aria-label="Agrandir : L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir."><img src="images/ecrans/journal.webp" alt="L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir." loading="lazy"></button><figcaption>L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/sac.webp" data-leg="Le sac du groupe : objets illustrés, rangés par héros, avec la charge portée et l'or." aria-label="Agrandir : Le sac du groupe : objets illustrés, rangés par héros, avec la charge portée et l'or."><img src="images/ecrans/sac.webp" alt="Le sac du groupe : objets illustrés, rangés par héros, avec la charge portée et l'or." loading="lazy"></button><figcaption>Le sac du groupe : objets illustrés, rangés par héros, avec la charge portée et l'or.</figcaption></figure></div>
+</section>
+
+<section id="parler" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">05</p>
+      <h2>Parler, convaincre, mentir</h2>
+      <p class="accroche">Les personnages ont une voix, des désirs et des peurs. On leur parle, on les convainc, parfois on les trompe.</p>
+      <p>Les dialogues se font par sujets : on clique sur ce qu'on veut demander. Pour convaincre, intimider ou tromper, on tente une approche sociale avec un jet de Persuader, d'Intimider ou de Tromper.</p>
+      <p>Chaque personnage a sa confiance, appelée attitude. Un secret se gagne par la confiance, un jet, un prix ou une preuve. Une rencontre sociale offre plusieurs issues, et un échec fait avancer l'histoire.</p>
+      <p>Les salutations changent selon ce que vous avez fait. Certains personnages deviennent compagnons de voyage et commentent vos choix.</p>
+      <ul class="puces"><li>Dialogues par sujets, à cliquer</li><li>Approches : Persuader, Intimider, Tromper</li><li>La confiance des personnages, appelée attitude</li><li>Secrets gagnés par la confiance, un jet, un prix ou une preuve</li><li>Rencontres sociales avec plusieurs issues</li><li>Un échec qui fait avancer l'histoire</li><li>Salutations qui changent selon vos actes</li><li>Compagnons de voyage qui commentent vos choix</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/dialogue.webp" data-leg="Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper]." aria-label="Agrandir : Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper]."><img src="images/ecrans/dialogue.webp" alt="Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper]." loading="lazy"></button><figcaption>Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper].</figcaption></figure></div>
+  </div>
+  <div class="galerie g2"><figure class=""><button class="zoom" data-src="images/ecrans/rencontre.webp" data-leg="Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition." aria-label="Agrandir : Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition."><img src="images/ecrans/rencontre.webp" alt="Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition." loading="lazy"></button><figcaption>Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/rencontre-resultat.webp" data-leg="Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… »." aria-label="Agrandir : Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… »."><img src="images/ecrans/rencontre-resultat.webp" alt="Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… »." loading="lazy"></button><figcaption>Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… ».</figcaption></figure></div>
+</section>
+
+<section id="choix" class="bloc inverse">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">06</p>
+      <h2>Des choix qui coûtent</h2>
+      <p class="accroche">Chaque option annonce ce qu'elle coûte et ce qu'elle rapporte, avant que vous ne cliquiez.</p>
+      <p>Les dilemmes vous obligent à trancher. Une horloge monte avec le temps et change le monde autour de vous, et des personnages peuvent partir, ou mourir.</p>
+      <p>Quelques jours plus tard, des échos rappellent ce que vous avez fait. Chaque choix a son épilogue.</p>
+      <p>Il n'y a pas de fin entièrement heureuse : plusieurs fins sont possibles, et chacune a son prix.</p>
+      <ul class="puces"><li>Dilemmes : chaque option annonce son coût et son gain</li><li>Une horloge qui monte avec le temps</li><li>Des choix qui changent le monde</li><li>Des personnages qui peuvent partir ou mourir</li><li>Des échos quelques jours après vos décisions</li><li>Un épilogue pour chaque choix</li><li>Plusieurs fins, aucune entièrement heureuse</li><li>Port-Sillage : 3 dilemmes, dont la remise finale du livre</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/rencontre-combat.webp" data-leg="Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence." aria-label="Agrandir : Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence."><img src="images/ecrans/rencontre-combat.webp" alt="Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence." loading="lazy"></button><figcaption>Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence.</figcaption></figure></div>
+  </div>
+  
+</section>
+
+<section id="combat" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">07</p>
+      <h2>Le combat de cartes</h2>
+      <p class="accroche">Un combat tactique au tour par tour, sur une grille de cases de 1,5 m, fidèle aux règles de la 5e.</p>
+      <p>Vos héros et leurs ennemis se disputent la grille case par case. On suit l'initiative, on se déplace, on agit et l'on utilise sa réaction. Les attaques d'opportunité, l'avantage, le désavantage et la concentration suivent les règles de la 5e.</p>
+      <p>Chaque carte est une vraie option de jeu : une attaque avec chaque arme, un sort préparé, une aptitude comme la rage ou le second souffle, ou une action de base comme foncer, esquiver, se désengager ou boire une potion.</p>
+      <p>Le deck d'élan vous offre une carte gratuite : à chaque tour, on pioche deux cartes tactiques et l'on peut en jouer une sans frais. Vous pouvez désactiver cette option.</p>
+      <ul class="puces"><li>Grille de cases de 1,5 m, au tour par tour</li><li>Initiative, mouvement, action, action bonus et réaction</li><li>Attaques d'opportunité, avantage et désavantage</li><li>États comme à terre ou effrayé, et concentration</li><li>Jets de sauvegarde contre la mort</li><li>Deck d'élan : deux cartes piochées à chaque tour</li><li>Terrains : souterrain, forêt, caverne, camp, neige</li><li>Couvert (+2 à la CA), eau qui ralentit, murs qui bloquent la vue</li><li>Mode « Héros auto », vitesse réglable, journal de chaque jet</li><li>Escarmouche : un combat d'entraînement hors histoire</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/combat-debut.webp" data-leg="Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas." aria-label="Agrandir : Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas."><img src="images/ecrans/combat-debut.webp" alt="Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas." loading="lazy"></button><figcaption>Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas.</figcaption></figure></div>
+  </div>
+  <div class="galerie g3"><figure class=""><button class="zoom" data-src="images/ecrans/combat-milieu.webp" data-leg="Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée." aria-label="Agrandir : Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée."><img src="images/ecrans/combat-milieu.webp" alt="Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée." loading="lazy"></button><figcaption>Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/combat-victoire.webp" data-leg="L'écran « Victoire » : le nombre de rounds, les PV des héros et les ennemis vaincus." aria-label="Agrandir : L'écran « Victoire » : le nombre de rounds, les PV des héros et les ennemis vaincus."><img src="images/ecrans/combat-victoire.webp" alt="L'écran « Victoire » : le nombre de rounds, les PV des héros et les ennemis vaincus." loading="lazy"></button><figcaption>L'écran « Victoire » : le nombre de rounds, les PV des héros et les ennemis vaincus.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/escarmouche.webp" data-leg="L'écran Escarmouche : six rencontres d'entraînement, de faible à élevée, avec la difficulté de l'IA et le choix de vos héros." aria-label="Agrandir : L'écran Escarmouche : six rencontres d'entraînement, de faible à élevée, avec la difficulté de l'IA et le choix de vos héros."><img src="images/ecrans/escarmouche.webp" alt="L'écran Escarmouche : six rencontres d'entraînement, de faible à élevée, avec la difficulté de l'IA et le choix de vos héros." loading="lazy"></button><figcaption>L'écran Escarmouche : six rencontres d'entraînement, de faible à élevée, avec la difficulté de l'IA et le choix de vos héros.</figcaption></figure></div>
+</section>
+
+<section id="monstres" class="bloc inverse">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">08</p>
+      <h2>Des adversaires qui réfléchissent</h2>
+      <p class="accroche">Les monstres évaluent leurs options avant de frapper, et ils ont leur propre moral.</p>
+      <p>L'IA des monstres simule des suites de coups avant de choisir. Elle vise les lanceurs de sorts, se met à couvert, prend vos héros à revers et garde ses ressources pour le moment décisif.</p>
+      <p>Elle a du moral : un chef qui tombe peut faire fuir ses troupes, ou les pousser à se rendre. Elle ne triche jamais, et ne sait de vos héros que ce qu'un joueur verrait.</p>
+      <p>Le bestiaire contient les 329 monstres du SRD, tous illustrés, des gobelins aux dragons de toutes les couleurs, en passant par les liches, les krakens et les golems.</p>
+      <ul class="puces"><li>Simulation de suites de coups avant chaque choix</li><li>Vise les lanceurs de sorts en priorité</li><li>Se met à couvert et prend à revers</li><li>Garde ses ressources pour le bon moment</li><li>Du moral : un chef qui tombe peut faire fuir</li><li>Peut se rendre quand le combat tourne mal</li><li>Ne triche jamais : ne voit que ce qu'un joueur verrait</li><li>329 monstres du SRD, tous illustrés</li><li>Des gobelins aux dragons, des liches aux golems</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/combat-sorts.webp" data-leg="La crypte : la magicienne Ambrine et ses cartes de sorts, face à un spectre, une momie, une goule et un ogre zombi." aria-label="Agrandir : La crypte : la magicienne Ambrine et ses cartes de sorts, face à un spectre, une momie, une goule et un ogre zombi."><img src="images/ecrans/combat-sorts.webp" alt="La crypte : la magicienne Ambrine et ses cartes de sorts, face à un spectre, une momie, une goule et un ogre zombi." loading="lazy"></button><figcaption>La crypte : la magicienne Ambrine et ses cartes de sorts, face à un spectre, une momie, une goule et un ogre zombi.</figcaption></figure></div>
+  </div>
+  
+</section>
+
+<section id="monde" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">09</p>
+      <h2>Un monde qui se voit et s'entend</h2>
+      <p class="accroche">Chaque lieu, personnage, objet et monstre a son image peinte, dans un style commun.</p>
+      <p>Les images suivent un style peint cohérent. Vos héros ne reprennent jamais les images des héros pré-tirés : ils se construisent à partir de vos choix.</p>
+      <p>Le maître de jeu a une seule voix de conteur, naturelle et retenue, pour les scènes racontées. Des musiques d'ambiance accompagnent l'exploration, et d'autres les combats.</p>
+      <p>Les bruitages marquent les coups et les sorts, et chaque espèce et chaque genre de héros a ses cris de combat. Des pictogrammes indiquent la famille des dégâts, qu'il s'agisse de tranchant, de feu ou de foudre.</p>
+      <ul class="puces"><li>Images peintes pour lieux, personnages, objets et monstres</li><li>Une seule voix de conteur, naturelle et retenue</li><li>Musiques d'ambiance et musiques de combat</li><li>Bruitages de combat et de sorts</li><li>Cris de combat : une voix par espèce et par genre</li><li>13 familles de dégâts, chacune avec son pictogramme</li><li>Un effet visuel pour chaque sort</li><li>Une icône pour chaque sort du SRD</li><li>Une jauge de PV sur chaque jeton</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/citadelle.webp" data-leg="La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu." aria-label="Agrandir : La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu."><img src="images/ecrans/citadelle.webp" alt="La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu." loading="lazy"></button><figcaption>La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu.</figcaption></figure></div>
+  </div>
+  <div class="galerie g2"><figure class=""><button class="zoom" data-src="images/ecrans/val.webp" data-leg="Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte." aria-label="Agrandir : Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte."><img src="images/ecrans/val.webp" alt="Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte." loading="lazy"></button><figcaption>Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/aide-magie.webp" data-leg="L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil." aria-label="Agrandir : L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil."><img src="images/ecrans/aide-magie.webp" alt="L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil." loading="lazy"></button><figcaption>L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil.</figcaption></figure></div>
+</section>
+
+<section id="auteurs" class="bloc inverse">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">10</p>
+      <h2>Écrire ses propres histoires</h2>
+      <p class="accroche">L'Atelier du Conteur permet d'écrire une histoire et de vérifier qu'elle tient debout.</p>
+      <p>Un monde est un dossier de données : le jeu peut accueillir des dizaines d'histoires sans que le jeu lui-même change.</p>
+      <p>L'Atelier montre la santé du monde, la carte des lieux et des passages, et les dépendances d'une fin. On place aussi les lieux sur la carte illustrée. Des guides d'écriture et des assistants vous accompagnent pas à pas.</p>
+      <p>Un validateur contrôle les références, l'accessibilité des lieux, les quêtes et les énigmes, qu'il joue pour de vrai. Un joueur automatique prouve que chaque fin est atteignable.</p>
+      <ul class="puces"><li>Santé du monde : erreurs, avis et conseils</li><li>Carte des lieux et des passages</li><li>Graphe des dépendances d'une fin</li><li>Un joueur automatique prouve que chaque fin est atteignable</li><li>Fiches modifiables pour les éléments de l'histoire</li><li>Placement des lieux sur la carte illustrée</li><li>Revue de cohérence : secrets qui fuient, personnages qui se contredisent</li><li>Guides d'écriture et assistants pas à pas</li><li>Validateur : quêtes, énigmes et équilibre des rencontres</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/atelier-sante.webp" data-leg="L'Atelier du Conteur : la santé d'un monde, avec le nombre d'erreurs, les avis et les conseils." aria-label="Agrandir : L'Atelier du Conteur : la santé d'un monde, avec le nombre d'erreurs, les avis et les conseils."><img src="images/ecrans/atelier-sante.webp" alt="L'Atelier du Conteur : la santé d'un monde, avec le nombre d'erreurs, les avis et les conseils." loading="lazy"></button><figcaption>L'Atelier du Conteur : la santé d'un monde, avec le nombre d'erreurs, les avis et les conseils.</figcaption></figure></div>
+  </div>
+  <div class="galerie g2"><figure class=""><button class="zoom" data-src="images/ecrans/atelier-graphes.webp" data-leg="L'Atelier : la carte des lieux et des passages, pour voir d'un coup d'œil comment l'histoire se relie." aria-label="Agrandir : L'Atelier : la carte des lieux et des passages, pour voir d'un coup d'œil comment l'histoire se relie."><img src="images/ecrans/atelier-graphes.webp" alt="L'Atelier : la carte des lieux et des passages, pour voir d'un coup d'œil comment l'histoire se relie." loading="lazy"></button><figcaption>L'Atelier : la carte des lieux et des passages, pour voir d'un coup d'œil comment l'histoire se relie.</figcaption></figure><figure class=""><button class="zoom" data-src="images/ecrans/atelier-cartes.webp" data-leg="L'Atelier : on place les lieux sur la carte illustrée du monde." aria-label="Agrandir : L'Atelier : on place les lieux sur la carte illustrée du monde."><img src="images/ecrans/atelier-cartes.webp" alt="L'Atelier : on place les lieux sur la carte illustrée du monde." loading="lazy"></button><figcaption>L'Atelier : on place les lieux sur la carte illustrée du monde.</figcaption></figure></div>
+</section>
+
+<section id="cout" class="bloc ">
+  <div class="colonne">
+    <div class="texte">
+      <p class="num">11</p>
+      <h2>Le conteur IA et son coût</h2>
+      <p class="accroche">Le mode livre est gratuit. Le conteur IA utilise votre propre clé d'API, et seuls les moments qu'il raconte coûtent.</p>
+      <p>En mode livre, on joue avec les textes écrits par les auteurs et les boutons proposés. Aucune clé d'API n'est nécessaire, et cela ne coûte rien.</p>
+      <p>Avec le conteur IA, vous écrivez librement ce que vous voulez faire ou dire, tenez de vraies conversations avec les personnages et demandez un récit plus vivant d'une scène.</p>
+      <p>Seuls les moments racontés par le conteur coûtent : l'exploration, les combats et les images restent gratuits. Une estimation s'affiche avant de commencer.</p>
+      <ul class="puces"><li>Mode livre : gratuit, sans clé d'API</li><li>Conteur IA : votre propre clé d'API</li><li>Écrivez librement ce que vous voulez faire ou dire</li><li>Conversations avec les personnages</li><li>Un récit plus vivant, sur demande</li><li>Exploration, combats et images : gratuits</li><li>Estimation affichée avant de commencer</li><li>Port-Sillage : environ 6 heures, de 0,2 $ à 2,4 $ selon le modèle</li></ul>
+    </div>
+    <div class="vue"><figure class="gros"><button class="zoom" data-src="images/ecrans/histoire-detail.webp" data-leg="La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer." aria-label="Agrandir : La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer."><img src="images/ecrans/histoire-detail.webp" alt="La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer." loading="lazy"></button><figcaption>La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer.</figcaption></figure></div>
+  </div>
+  
+</section>
+
+
+<section class="bloc art monstres-galerie">
+  <div class="entete"><h2>Un bestiaire complet</h2><p>Les 329 monstres du SRD ont leur illustration, dans un même style peint. En voici quelques-uns.</p></div>
+  <div class="mosaique"><figure><img src="images/art/monstre-dragon-rouge-adulte.webp" alt="Dragon rouge adulte" loading="lazy"><figcaption>Dragon rouge adulte</figcaption></figure><figure><img src="images/art/monstre-liche.webp" alt="Liche" loading="lazy"><figcaption>Liche</figcaption></figure><figure><img src="images/art/monstre-troll.webp" alt="Troll" loading="lazy"><figcaption>Troll</figcaption></figure><figure><img src="images/art/monstre-kraken.webp" alt="Kraken" loading="lazy"><figcaption>Kraken</figcaption></figure><figure><img src="images/art/monstre-hydre.webp" alt="Hydre" loading="lazy"><figcaption>Hydre</figcaption></figure><figure><img src="images/art/monstre-vampire.webp" alt="Vampire" loading="lazy"><figcaption>Vampire</figcaption></figure><figure><img src="images/art/monstre-golem-de-fer.webp" alt="Golem de fer" loading="lazy"><figcaption>Golem de fer</figcaption></figure><figure><img src="images/art/monstre-mimique.webp" alt="Mimique" loading="lazy"><figcaption>Mimique</figcaption></figure><figure><img src="images/art/monstre-manticore.webp" alt="Manticore" loading="lazy"><figcaption>Manticore</figcaption></figure><figure><img src="images/art/monstre-basilic.webp" alt="Basilic" loading="lazy"><figcaption>Basilic</figcaption></figure><figure><img src="images/art/monstre-griffon.webp" alt="Griffon" loading="lazy"><figcaption>Griffon</figcaption></figure><figure><img src="images/art/monstre-licorne.webp" alt="Licorne" loading="lazy"><figcaption>Licorne</figcaption></figure><figure><img src="images/art/monstre-balor.webp" alt="Balor" loading="lazy"><figcaption>Balor</figcaption></figure><figure><img src="images/art/monstre-spectre.webp" alt="Spectre" loading="lazy"><figcaption>Spectre</figcaption></figure></div>
+</section>
+
+<section class="bloc art portraits-galerie">
+  <div class="entete"><h2>Des héros qui vous ressemblent</h2><p>Neuf espèces, deux silhouettes, trois visages chacune : 54 portraits à choisir.</p></div>
+  <div class="mosaique"><figure><img src="images/art/portrait-drakeide-f-1.webp" alt="Drakéide" loading="lazy"><figcaption>Drakéide</figcaption></figure><figure><img src="images/art/portrait-elfe-m-2.webp" alt="Elfe" loading="lazy"><figcaption>Elfe</figcaption></figure><figure><img src="images/art/portrait-gnome-f-2.webp" alt="Gnome" loading="lazy"><figcaption>Gnome</figcaption></figure><figure><img src="images/art/portrait-goliath-m-1.webp" alt="Goliath" loading="lazy"><figcaption>Goliath</figcaption></figure><figure><img src="images/art/portrait-halfelin-f-1.webp" alt="Halfelin" loading="lazy"><figcaption>Halfelin</figcaption></figure><figure><img src="images/art/portrait-humain-m-3.webp" alt="Humain" loading="lazy"><figcaption>Humain</figcaption></figure><figure><img src="images/art/portrait-nain-f-2.webp" alt="Nain" loading="lazy"><figcaption>Nain</figcaption></figure><figure><img src="images/art/portrait-orc-m-2.webp" alt="Orc" loading="lazy"><figcaption>Orc</figcaption></figure><figure><img src="images/art/portrait-tieffelin-f-1.webp" alt="Tieffelin" loading="lazy"><figcaption>Tieffelin</figcaption></figure></div>
+</section>
+
+<section class="bloc art mondes-galerie">
+  <div class="entete"><h2>Des mondes qui se dessinent</h2><p>Cartes, lieux, personnages et objets des histoires livrées.</p></div>
+  <div class="mosaique"><figure><img src="images/art/carte-citadelle.webp" alt="La Citadelle des Marées" loading="lazy"><figcaption>La Citadelle des Marées</figcaption></figure><figure><img src="images/art/carte-cote.webp" alt="La côte de Hautmarée" loading="lazy"><figcaption>La côte de Hautmarée</figcaption></figure><figure><img src="images/art/carte-port-sillage.webp" alt="Port-Sillage" loading="lazy"><figcaption>Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-crypte.webp" alt="La crypte de Port-Sillage" loading="lazy"><figcaption>La crypte de Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-place.webp" alt="La place de la Criée" loading="lazy"><figcaption>La place de la Criée</figcaption></figure><figure><img src="images/art/pnj-octave.webp" alt="Octave Lamberte" loading="lazy"><figcaption>Octave Lamberte</figcaption></figure><figure><img src="images/art/pnj-sorel.webp" alt="Sorel Noirbec" loading="lazy"><figcaption>Sorel Noirbec</figcaption></figure><figure><img src="images/art/pnj-aubin.webp" alt="Père Aubin" loading="lazy"><figcaption>Père Aubin</figcaption></figure><figure><img src="images/art/objet-livre.webp" alt="Le Livre de Maëlle" loading="lazy"><figcaption>Le Livre de Maëlle</figcaption></figure></div>
+</section>
+
+<section id="etat" class="bloc etat">
+  <h2>Où en est le jeu</h2>
+  <p>La Table du Conteur est un prototype jouable, encore en cours de développement. Les trois histoires sont livrées complètes, mais le jeu continue d'évoluer.</p><p>Le conteur IA est à l'essai. L'écran de réglage de votre clé d'API n'est pas encore là.</p><p>Une application de bureau est en préparation. Elle gardera la clé d'API du joueur dans le trousseau du système.</p>
+  <ul class="puces"><li>Prototype jouable, en cours de développement</li><li>Trois histoires complètes livrées</li><li>Le conteur IA est à l'essai</li><li>L'écran de réglage de la clé d'API n'est pas encore là</li><li>Application de bureau en préparation</li><li>Clé d'API gardée dans le trousseau du système, sur le bureau</li></ul>
+</section>
+</main>
+
+<footer class="pied"><p>Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 de Wizards of the Coast LLC, publié sous licence Creative Commons Attribution 4.0. Le monde du jeu est original.</p></footer>
+
+<div id="visionneuse" hidden><button id="fermer" aria-label="Fermer">×</button><img alt=""><p></p></div>
+<script src="site.js"></script>
+</body>
+</html>
