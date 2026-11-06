@@ -101,6 +101,20 @@ const ICONES: Record<string, ReactNode> = {
       <path d="M12 9.8v4.4" />
     </>
   ),
+  // Pierre précieuse : une gemme taillée, vue de dessus (couronne, table et pointe).
+  gemme: (
+    <>
+      <path d="M7 4h10l4 5-9 11L3 9z" />
+      <path d="M3 9h18M9 4 7.5 9 12 20M15 4l1.5 5L12 20M7.5 9h9" />
+    </>
+  ),
+  // Objet d'art : un calice sur son pied.
+  'objet-d-art': (
+    <>
+      <path d="M6 4h12c0 5-2.5 8-6 8s-6-3-6-8z" />
+      <path d="M12 12v6M8 20h8M9 18h6" />
+    </>
+  ),
   divers: (
     <>
       <path d="M4 8l8-4 8 4v8l-8 4-8-4z" />

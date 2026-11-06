@@ -121,7 +121,7 @@ export type Fait = z.infer<typeof Fait>;
 // Objets, trésors
 // ---------------------------------------------------------------------------
 
-export const CATEGORIES_OBJET = ['arme', 'armure', 'bouclier', 'potion', 'parchemin', 'baguette', 'anneau', 'bijou', 'vetement', 'outil', 'materiel', 'nourriture', 'livre', 'cle', 'quete', 'curiosite', 'monnaie-ancienne', 'divers'] as const;
+export const CATEGORIES_OBJET = ['arme', 'armure', 'bouclier', 'potion', 'parchemin', 'baguette', 'anneau', 'bijou', 'vetement', 'outil', 'materiel', 'nourriture', 'livre', 'cle', 'quete', 'curiosite', 'monnaie-ancienne', 'gemme', 'objet-d-art', 'divers'] as const;
 export const RARETES = ['commun', 'peu-commun', 'rare', 'tres-rare', 'legendaire'] as const;
 
 export const Objet = z.object({

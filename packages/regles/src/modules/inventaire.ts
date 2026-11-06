@@ -98,6 +98,8 @@ function groupeDuSac(o: Pick<Objet, 'categorie'> & Partial<Objet>): (typeof GROU
       return GROUPES_SAC.savoir;
     case 'curiosite':
     case 'monnaie-ancienne':
+    case 'gemme':
+    case 'objet-d-art':
       return GROUPES_SAC.curiosites;
     default:
       return GROUPES_SAC.divers;
