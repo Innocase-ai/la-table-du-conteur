@@ -116,6 +116,17 @@ Quand les entités existent, **reporte leurs ids** dans le « Contenu prévu » 
 4. **Les images des lieux** : `pnpm images monde <id>`, lot par lot, relues une à une contre le bloc d'héritage et la carte du parent.
 5. `pnpm monde valider <id>`, puis l'**atelier** (Santé, Cartes, Revue) : secrets qui fuient dans un champ lu par le joueur, lieux sans accroche, frères au même endroit de la carte.
 
+## Vérifier en cascade
+
+Le contrôle se fait **de bas en haut**, avec des yeux qui ne sont pas ceux du rédacteur :
+
+1. **Le mécanique d'abord** (pas d'agent) : `pnpm monde valider <id>`, l'atelier (Revue : secrets qui fuient ; Cartes : frères au même endroit ; Santé), positions entre 0 et 100.
+2. **Vérificateur du niveau 2, un par lieu du niveau 1** (`references/verificateur-niveau-2.md`) : cohérence interne du lieu, de ses points et de leurs sous-niveaux (héritage identique, issues réciproques, sous-lieux annoncés, plan et voisins, détail propre, contenu prévu, champs dérivés). Il rend un verdict, ne corrige rien.
+3. **Vérificateur du niveau 1, un seul** (`references/verificateur-niveau-1.md`) : contrôle le contrôleur par sondage (2 ou 3 fiches par lieu) puis vérifie la cohérence avec l'histoire (rôle des lieux, ordre des révélations, fins, factions et horloge, budget et rythme, lieux frères, carte du monde).
+4. **Claude au sommet** : arbitre les désaccords et tranche avec l'utilisateur ce qui touche au canon.
+
+Vérificateurs en **Sonnet 5.5** (jamais le modèle des rédacteurs), contexte neuf, **au plus deux tours** de correction par niveau. Annonce le modèle et le nombre d'agents avant de les lancer (un par lieu du niveau 1, plus un).
+
 ## Contrôle de cohérence (avant de dire « c'est fini »)
 
 À faire lieu par lieu, avec l'atlas et les images sous les yeux :
@@ -143,5 +154,6 @@ Quand les entités existent, **reporte leurs ids** dans le « Contenu prévu » 
 ## Qui fait quoi (modèles)
 
 - **Niveaux 0 et 1 : Claude lui-même** (jamais un agent : un atlas écrit par plusieurs mains se contredit, comme un canon), **avec l'utilisateur** pour les décisions (forme des lieux, points à visiter, combats, rencontres).
+- **Vérificateurs** : voir « Vérifier en cascade » (Sonnet 5.5, un par lieu du niveau 1, puis un pour le niveau 1).
 - **Niveaux 2 et suivants : un agent par lieu du niveau 1**, `general-purpose`, modèle **Haiku** (règle du projet pour l'écriture de textes) ; Claude **relit chaque fiche** contre le bloc d'héritage et la liste de contrôle, et arbitre. Si les fiches restent génériques après une relecture, passe le lot à **Sonnet 5.5** (annonce le modèle en une ligne, comme pour tout sous-agent).
 - Pas de commit sans l'accord de l'utilisateur ; mets à jour `docs/JOURNAL.md` après le chantier.

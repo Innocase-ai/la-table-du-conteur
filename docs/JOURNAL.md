@@ -811,3 +811,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Corrigé en route** : `deplacer` déplace un PNJ, pas le groupe (retiré des exemples d'effets de piège) ; `etats` d'un piège n'est pas appliqué par le moteur (le skill le dit).
 - **Liens** : `creer-monde` (tableau des skills), `decrire-lieux` (qui écrit le contenu prévu), `CLAUDE.md`.
 - **Pas encore essayé** sur un vrai monde.
+
+## 06/11/2026 — Vérificateurs de niveau 2 et de niveau 1 pour `decrire-lieux`
+
+- **Demande** : un vérificateur de niveau 2 pour la cohérence des sous-niveaux, et un vérificateur de niveau 1 pour vérifier le premier et la cohérence avec l'histoire.
+- **Fait** (`.claude/skills/decrire-lieux/`) : section « Vérifier en cascade » dans `SKILL.md` ; `references/verificateur-niveau-2.md` (un par lieu du niveau 1 : héritage identique, sous-lieux annoncés et complets, issues réciproques, plan et voisins, détail propre, contenu prévu, champs dérivés, rien d'inventé ; verdict structuré) ; `references/verificateur-niveau-1.md` (un seul : sondage du travail du vérificateur 2, puis rôle des lieux, ordre des révélations, fins, factions et horloge, budget et rythme, lieux frères, carte du monde ; verdict structuré, le canon n'est jamais modifié par un agent).
+- **Règles** : le mécanique (validateur, atelier) passe avant les agents ; vérificateurs en Sonnet 5.5, jamais le modèle des rédacteurs, contexte neuf ; deux tours au plus ; Claude arbitre.
+- **Pas encore essayé** sur un vrai monde.
