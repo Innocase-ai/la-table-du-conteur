@@ -16,6 +16,9 @@ Le moteur ne lit pas l'atlas (comme `BIBLE.md` et `CANON-PERSONNAGES.md`, c'est 
 | **0. La carte du monde** | tout le territoire de l'histoire, vu de loin : forme, relief, eau, climat, régions, grands lieux, routes, distances, menace | **Claude seul** (comme le canon) | la carte principale (`carte-<racine>`), la charte du monde (matériaux, couleurs, lumière), les `position` des grands lieux |
 | **1. Chaque lieu de cette carte** | une région, ville, village, camp, donjon, grotte : son plan vu de dessus, ses limites, ses accès, sa liste de points à visiter avec leur place | **Claude seul**, avec l'utilisateur | une carte de détail par lieu (`carte-<lieu>`), les `position` de ses points, le `resume` / `accroche` du lieu |
 | **2. Chaque point à visiter** | une salle, un bâtiment, un quartier, un lieu-dit : dimensions, matériaux, lumière, sons, odeurs, mobilier, issues, détails à examiner, ce qui change selon l'histoire | **agents**, un par lieu du niveau 1 (relus par Claude) | `description`, `visuel`, `ambiance`, `accroche`, passages (`liens`), `examens`, plans des rencontres |
+| **3, 4… Les points à l'intérieur d'un point** | la cave, le cellier et les chambres d'une taverne ; les cellules d'une geôle ; les étages d'une tour : **même fiche que le niveau 2**, répétée à chaque profondeur | le même agent que son niveau 2 | les mêmes champs, pour chaque sous-lieu |
+
+Le moteur n'a pas de limite de profondeur : un lieu a un `parent`, et un lieu peut contenir des lieux qui en contiennent d'autres (le Val va jusqu'à région, village, bâtiment, salle). Au-delà du niveau 2 on **répète la même fiche** : une taverne est un niveau 2 ; sa cave, son cellier et ses chambres sont des niveaux 3, qui héritent de la taverne comme la taverne hérite du village.
 
 **Règle d'héritage** : un niveau ne contredit jamais celui du dessus, il le précise. Chaque fiche commence par un **bloc d'héritage** recopié du niveau supérieur (matériaux, couleurs, architecture, lumière, état général) ; celui qui écrit la fiche ne le modifie pas. Si un point à visiter exige un matériau absent du bloc (une salle de nacre dans un palais de pierre grise), on le justifie dans la fiche **et** on ajoute la nuance au bloc du dessus.
 
@@ -52,7 +55,7 @@ Un lieu qui contient d'autres lieux (au moins ~5 enfants, ou un niveau de donjon
 
 Une fiche de niveau 1 se fait **avec l'utilisateur**, lieu par lieu pour les trois ou quatre lieux principaux (il décide de la forme, des points, des combats et des rencontres : c'est son histoire), puis par lots pour les autres.
 
-## Niveau 2 : chaque point à visiter
+## Niveau 2 et suivants : chaque point à visiter
 
 Un agent par lieu du niveau 1, **tous lancés dans le même message**, avec `references/brief-agent-lieu.md` (à suivre à la lettre), l'atlas (niveaux 0 et 1 du lieu), `BIBLE.md` et le schéma. Chaque point reçoit une **fiche très détaillée** (modèle dans l'atlas) :
 
@@ -65,6 +68,15 @@ Un agent par lieu du niveau 1, **tous lancés dans le même message**, avec `ref
 - **ce qu'on y trouve** : références (id) aux PNJ, trésors, pièges, énigmes, rencontres déjà prévus dans le canon ; aucune nouvelle entité inventée ici ;
 - **avant / après** : ce qui change selon l'avancée de l'histoire (une salle propre puis dévastée, une porte close puis ouverte) ;
 - les **champs dérivés**, rédigés à la fin de la fiche : `visuel` (voir ci-dessous), `description` (pour le MJ : factuelle, détaillée, 100 à 250 mots), `resume` (une phrase qui ne spoile rien), `ambiance` (3 à 8 mots), `accroche` (12 à 30 mots, vue du dehors).
+
+### Quand un point en contient d'autres (taverne, tour, geôle…)
+
+- La fiche du point (niveau 2) a une section **Intérieur** : le plan intérieur (où est l'entrée, comment les pièces s'enchaînent), la liste **exhaustive** de ses sous-lieux (`id`, type, fonction dramatique, position approximative sur ce plan, voisins directs : la cave sous la salle commune, l'escalier qui monte aux chambres) et **ce qu'on voit de la taverne qui annonce chaque sous-lieu** (la trappe derrière le comptoir, l'escalier de bois au fond).
+- Chaque sous-lieu a ensuite **sa propre fiche** (niveau 3), avec le même modèle ; son **bloc d'héritage est celui de son conteneur**, avec les nuances propres de la pièce (le cellier est plus froid et plus sombre que la salle commune, mais mêmes pierres et mêmes poutres). Même règle pour un niveau 4 (le fond du cellier, un passage derrière un tonneau).
+- Le sous-lieu est un **vrai lieu** du monde : `parent` = le conteneur, `accroche` vue du dehors depuis le conteneur, ses propres `liens`, `visuel`, `description`.
+- **Cartes** : un conteneur n'a de carte illustrée que s'il a au moins ~5 sous-lieux ou si c'est un niveau de donjon ; sinon le jeu dessine ses sous-lieux en anneau sur un fond sobre, ce qui suffit pour une taverne de trois pièces. Les `position` des sous-lieux n'ont de sens que sur la carte illustrée de leur conteneur.
+- **Un point simple** (une salle sans rien dedans) n'a pas de section Intérieur.
+- Le même agent écrit un point et tous ses sous-lieux (il garde ainsi le bloc d'héritage et la cohérence des issues entre la salle et sa cave).
 
 ### Le `visuel`, prompt de l'image
 
@@ -110,5 +122,5 @@ Interdits : nommer un personnage ou une créature (ce qui est nommé apparaît �
 ## Qui fait quoi (modèles)
 
 - **Niveaux 0 et 1 : Claude lui-même** (jamais un agent : un atlas écrit par plusieurs mains se contredit, comme un canon), **avec l'utilisateur** pour les décisions (forme des lieux, points à visiter, combats, rencontres).
-- **Niveau 2 : un agent par lieu du niveau 1**, `general-purpose`, modèle **Haiku** (règle du projet pour l'écriture de textes) ; Claude **relit chaque fiche** contre le bloc d'héritage et la liste de contrôle, et arbitre. Si les fiches restent génériques après une relecture, passe le lot à **Sonnet 5.5** (annonce le modèle en une ligne, comme pour tout sous-agent).
+- **Niveaux 2 et suivants : un agent par lieu du niveau 1**, `general-purpose`, modèle **Haiku** (règle du projet pour l'écriture de textes) ; Claude **relit chaque fiche** contre le bloc d'héritage et la liste de contrôle, et arbitre. Si les fiches restent génériques après une relecture, passe le lot à **Sonnet 5.5** (annonce le modèle en une ligne, comme pour tout sous-agent).
 - Pas de commit sans l'accord de l'utilisateur ; mets à jour `docs/JOURNAL.md` après le chantier.

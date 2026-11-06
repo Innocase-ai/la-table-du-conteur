@@ -13,7 +13,10 @@ Tu écris les fiches détaillées des points à visiter du lieu **{{id du lieu}}
 4. Un exemple du niveau attendu : `~/crpg-llm/packages/mondes/citadelle-des-marees/lieux/z1-citadelle.json` (champs `visuel`, `description`, `accroche`, `liens`).
 
 ## Ce que tu produis
-Pour **chaque point à visiter** listé dans le niveau 1 de {{id du lieu}} (et seulement eux), une fiche au format du modèle `.claude/skills/decrire-lieux/assets/ATLAS.modele.md` (« Niveau 2 »), écrite dans `LIEUX.md` sous la fiche de niveau 1 du lieu, dans l'ordre de la liste. Aucun fichier JSON : la dérivation vers les fichiers du monde se fait ensuite.
+Pour **chaque point à visiter** listé dans le niveau 1 de {{id du lieu}} (et seulement eux, plus leurs sous-lieux déclarés dans leur section « Intérieur »), une fiche au format du modèle `.claude/skills/decrire-lieux/assets/ATLAS.modele.md` (« Niveau 2 »), écrite dans `LIEUX.md` sous la fiche de niveau 1 du lieu, dans l'ordre de la liste. Aucun fichier JSON : la dérivation vers les fichiers du monde se fait ensuite.
+
+## Les points qui en contiennent d'autres
+Si la fiche de niveau 1 (ou la section « Intérieur » d'un point) liste des **sous-lieux** (la cave et les chambres d'une taverne…), écris **aussi leurs fiches**, juste sous celle de leur conteneur, avec le même modèle (« Niveau 3 », puis 4 si besoin). Le bloc d'héritage d'un sous-lieu est la fiche de son conteneur, recopiée sans changement. Écris dans la section « Intérieur » du conteneur ce qui annonce chaque sous-lieu vu d'en haut (la trappe, l'escalier) : ce texte nourrit l'`accroche` du sous-lieu.
 
 ## Règles
 - **Bloc d'héritage** : recopie-le mot pour mot depuis le niveau 1 ; ne le modifie pas. Si une salle exige un matériau ou une couleur absents du bloc, écris-le dans « Un détail propre » avec sa raison, et signale-le dans ton rapport (je l'ajouterai au bloc du dessus).

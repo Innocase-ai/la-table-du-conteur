@@ -91,6 +91,8 @@ Positions : `(x, y)` en % de la carte du parent (x : 0 à gauche, 100 à droite 
 
 ### Niveau 2 : {{id du point}} ({{nom}}, {{type}}), dans {{id du lieu}}
 
+(Même modèle pour un sous-lieu : « Niveau 3 : {{id}} ({{nom}}, {{type}}), dans {{id du conteneur}} », puis 4, etc. Son héritage est la fiche de son conteneur.)
+
 **Héritage** (recopié du niveau 1, ne pas modifier) :
 
 - **Dimensions et structure** :
@@ -106,6 +108,13 @@ Positions : `(x, y)` en % de la carte du parent (x : 0 à gauche, 100 à droite 
 - **Ce qu'on y trouve** (ids du canon seulement : PNJ, trésors, pièges, énigmes, rencontres) :
 - **Avant / après** (avec le drapeau ou le fait qui déclenche le changement) :
 - **Un détail propre à ce lieu** (inscription, odeur, objet cassé : ce qui empêche cette fiche d'être échangeable) :
+- **Intérieur** (seulement si ce point contient d'autres lieux : cave, cellier, chambres, étages) :
+  - plan intérieur (entrée, enchaînement des pièces) :
+  - sous-lieux (chacun aura sa fiche « Niveau 3 », même modèle, héritage = cette fiche) :
+
+    | id | nom | type | fonction dramatique | position | ce qui l'annonce depuis ce lieu | voisins directs |
+    | --- | --- | --- | --- | --- | --- | --- |
+    |  |  |  |  | (  ,  ) | la trappe derrière le comptoir |  |
 
 **Champs dérivés**
 - **resume** :
