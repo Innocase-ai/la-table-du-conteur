@@ -142,5 +142,32 @@
         "flag": "livre-retrouve"
       }
     ]
+  },
+  {
+    "id": "z4-ev-alarme-a-la-crique",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "flag": "alarme-donnee"
+        },
+        {
+          "jauge": {
+            "id": "grande-maree",
+            "max": 2
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Au loin, sur le sable, des pas pressés et des voix étouffées : la crique est en alerte, et la grande marée se rapproche.",
+    "effets": [
+      {
+        "jauge": {
+          "id": "grande-maree",
+          "delta": 1
+        }
+      }
+    ]
   }
 ]

@@ -171,6 +171,42 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "la-lettre-de-l-acheteur",
+        "mots": [
+          "lettre",
+          "acheteur",
+          "navire",
+          "port",
+          "chaîne"
+        ],
+        "question": "Lui montrer la lettre trouvée à la crique.",
+        "condition": {
+          "objet": "lettre-de-verdelune"
+        },
+        "reponse": "Gilda lit la lettre, blêmit, puis hurle un ordre : on tendra une chaîne en travers de la passe et le port sera fermé aux barques inconnues. Le navire de l'acheteur devra attendre, ou repartir.",
+        "revele": [
+          "f-navire-de-verdelune"
+        ],
+        "effets": [
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": -1
+            }
+          },
+          {
+            "flag": "navire-retarde"
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {

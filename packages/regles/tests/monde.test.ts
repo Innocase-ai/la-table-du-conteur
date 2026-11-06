@@ -344,6 +344,19 @@ describe('Le Grimoire de Port-Sillage : parcours', () => {
     expect(evaluerCondition(enMain.condition!, e2), 'livre crocheté dans le coffre').toBe(true);
   });
 
+  it('l’alarme du coffre ne peut pas finir la partie : elle ne monte la jauge que jusqu’à 3', () => {
+    const piege = dm!.pieges.get('z3-p-cloche-d-alarme')!;
+    expect(JSON.stringify(piege.effets)).not.toContain('"jauge"');
+    const ev = dm!.evenements.get('z4-ev-alarme-a-la-crique')!;
+    const e = etatInitial(dm!, 3);
+    appliquerEffets([{ flag: 'alarme-donnee' }, { jauge: { id: 'grande-maree', delta: 2 } }], e, dm!);
+    expect(e.jauges['grande-maree']).toBe(3);
+    expect(evaluerCondition(ev.condition!, e), 'déjà à 3 : plus de montée').toBe(false);
+    const e2 = etatInitial(dm!, 3);
+    appliquerEffets([{ flag: 'alarme-donnee' }], e2, dm!);
+    expect(evaluerCondition(ev.condition!, e2), 'à 1 : l’alerte fait monter').toBe(true);
+  });
+
   const finAtteinte = (e: ReturnType<typeof etatInitial>) => [...dm!.fins.values()].find((f) => evaluerCondition(f.condition, e))?.id;
 
   it('la grande marée au maximum sans le livre emporte le livre (fin d’échec, testée avant les autres)', () => {

@@ -44,7 +44,7 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 1. **Retour à la crypte (Église)** — Fait : `f-fin-eglise`. Le groupe rend le livre à Aubin, qui lit la Bonace. **Gagné** : la fête sauvée, la flotte en sûreté. **Coût** : Aubin y laisse sa voix, Tobie est puni (pénitence ou exil), Hélène reste malade.
 2. **À la caserne (garnison)** — Fait : `f-fin-caserne`. Le groupe confie le livre à Odile. **Gagné** : le livre en sûreté, la garnison payée. **Coût** : l'Église perd son autorité, la Bonace devient un service qu'on facture.
 3. **À Tobie, nouveau lecteur** — Fait : `f-fin-tobie`. Le groupe le remet à Tobie, successeur d'Aubin. **Gagné** : Hélène guérie par la page de soin, l'Église et le garçon réconciliés. **Coût** : un lecteur novice, donc une mer capricieuse cet hiver ; Aubin vexé, la garnison méfiante.
-4. **Fin d'échec** — Fait : `f-fin-echec`. La jauge atteint 4 : le navire de Verdelune emporte le livre. **Perdu** : plus de Bonace, la flotte reste à terre, Tobie s'enfuit sur le navire, Hélène meurt.
+4. **Fin d'échec** — Fait : `f-fin-echec`. La jauge atteint 4 : le navire de Verdelune emporte le livre. **Perdu** : plus de Bonace, la flotte reste à terre, Hélène meurt ; le sort de Tobie dépend de ce que le groupe en a fait (le texte de fin reste neutre : décision déléguée à Claude le 06/11/2026, qui remplace « Tobie s'enfuit sur le navire »).
 
 ## 4. La jauge : la grande marée (0 à 4)
 
@@ -153,6 +153,8 @@ Monte d'un cran par nuit passée sans avancer (repos long), quand une alarme est
 `rat-geant`, `nuee-de-rats`, `squelette`, `crabe-geant`, `bandit`, `chef-de-bande`, `garde`, `eclaireur`. À confirmer par `ls packages/donnees/srd/monstres/` avant d'écrire les rencontres.
 
 ## 10. Choix, pertes et horloge (checklist « histoire qui ne s'ennuie pas »)
+
+> **Décisions déléguées à Claude par l'utilisateur le 06/11/2026** : (1) Sorel : le dilemme reste dans la rencontre de la grotte, mais « le laisser fuir » coûte (il prévient l'acheteur : jauge +1) ; (2) jauge : l'alarme du coffre ne peut plus déclencher la fin d'échec sur place (elle ne monte la jauge que jusqu'à 3), et Gilda peut fermer le port avec la lettre de l'acheteur (jauge −1) ; (3) Tobie : épilogues neutres sur son sort.
 
 ### Les trois dilemmes (légers)
 
