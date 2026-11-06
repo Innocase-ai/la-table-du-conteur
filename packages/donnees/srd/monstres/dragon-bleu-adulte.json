@@ -1,0 +1,170 @@
+{
+  "id": "dragon-bleu-adulte",
+  "nom": "Dragon bleu adulte",
+  "taille": "TG",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Loyal Mauvais",
+  "ca": 19,
+  "pv": {
+    "moyenne": 212,
+    "des": "17d12 + 102"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 25,
+    "dex": 10,
+    "con": 23,
+    "int": 16,
+    "sag": 15,
+    "cha": 20
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 7
+  },
+  "competences": {
+    "discretion": 5,
+    "perception": 12
+  },
+  "initiative": 10,
+  "resistances": [],
+  "immunitesDegats": [
+    "foudre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 22
+  },
+  "langues": "commun, draconique",
+  "fp": "16",
+  "px": 15000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 9 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 18 000 PX dans son antre (15 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 18) : À volonté : détection de la magie, fracassement, invisibilité, main du mage. 1/jour chacun : communication à distance, scrutation."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours. Balayage caudal : le dragon effectue une attaque de Saignée. Envol furtif : Le dragon recourt à Incantation pour lancer invisibilité sur lui-même, et il peut voler à concurrence de la moitié de sa Vitesse de vol. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant. Fracas tonitruant : Le dragon recourt à Incantation pour lancer fracassement. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation d'Incantation pour lancer fracassement.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 3 m : 16 (2d8 + 7) dégâts tranchants plus 5 (1d10) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 7,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-foudre",
+      "nom": "Souffle de foudre",
+      "cout": "action",
+      "resume": "JS Dextérité DD 19, chaque créature dans une Ligne de 27 m de long sur 1,5 m de large. Échec : 60 (11d10) dégâts de foudre. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 19,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 27,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "11d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "balayage-caudal",
+      "nom": "Balayage caudal",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "envol-furtif",
+      "nom": "Envol furtif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer invisibilité sur lui-même, et il peut voler à concurrence de la moitié de sa Vitesse de vol. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "fracas-tonitruant",
+      "nom": "Fracas tonitruant",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer fracassement. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

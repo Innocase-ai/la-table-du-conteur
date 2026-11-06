@@ -1,0 +1,56 @@
+{
+  "id": "hippocampe",
+  "nom": "Hippocampe",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 6
+  },
+  "caracteristiques": {
+    "for": 1,
+    "dex": 12,
+    "con": 8,
+    "int": 1,
+    "sag": 10,
+    "cha": 2
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 2
+  },
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 0,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "L'hippocampe ne peut respirer que sous l'eau."
+    }
+  ],
+  "actions": [
+    {
+      "id": "acceleration-bulleuse",
+      "nom": "Accélération bulleuse",
+      "cout": "action",
+      "resume": "Alors qu'il est sous l'eau, l'hippocampe se déplace à concurrence de sa Vitesse de nage sans provoquer d'attaques d'Opportunité."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,111 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "grick",
+  "nom": "Grick",
+  "taille": "M",
+  "type": "Aberration",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 54,
+    "des": "12d8"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 14,
+    "con": 11,
+    "int": 3,
+    "sag": 14,
+    "cha": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 12
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le grick effectue une attaque de Bec et une de Tentacules.",
+      "multiattaque": [
+        {
+          "action": "bec",
+          "nombre": 1
+        },
+        {
+          "action": "tentacules",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "bec",
+      "nom": "Bec",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 9 (2d6 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "tentacules",
+      "nom": "Tentacules",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (1d10 + 2) dégâts tranchants. Si la cible est une créature de taille M ou inférieure, elle subit l'état Agrippé (évasion DD 12) par les quatre tentacules.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 12,
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

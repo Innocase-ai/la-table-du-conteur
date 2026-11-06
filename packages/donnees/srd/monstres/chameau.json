@@ -1,0 +1,66 @@
+{
+  "id": "chameau",
+  "nom": "Chameau",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 17,
+    "des": "2d10 + 6"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 8,
+    "con": 17,
+    "int": 2,
+    "sag": 11,
+    "cha": 5
+  },
+  "sauvegardes": {
+    "con": 5
+  },
+  "competences": {},
+  "initiative": -1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

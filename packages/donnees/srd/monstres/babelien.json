@@ -1,0 +1,117 @@
+{
+  "id": "babelien",
+  "nom": "Babélien",
+  "taille": "M",
+  "type": "Aberration",
+  "alignement": "Chaotique Neutre",
+  "ca": 9,
+  "pv": {
+    "moyenne": 52,
+    "des": "7d8 + 21"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 6
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 8,
+    "con": 16,
+    "int": 3,
+    "sag": 10,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "a-terre"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "charabia",
+      "nom": "Charabia",
+      "resume": "Le babélien bredouille de façon incohérente tant qu'il ne subit pas l'état Neutralisé. JS Sagesse : DD 10, toute créature qui commence son tour dans un rayon de 6 m du babélien alors qu'il bredouille. Échec : la cible lance 1d8 pour déterminer ce qu'elle fait pour le tour en cours : 1-4. La cible ne fait rien. 5-6. La cible n'entreprend ni action ni action Bonus, et consacre tout son déplacement dans une direction aléatoire. 7-8. La cible effectue une attaque de corps à corps contre une créature déterminée aléatoirement à portée d'allonge (elle ne fait rien si une telle attaque n'est pas possible)."
+    },
+    {
+      "id": "sol-aberrant",
+      "nom": "Sol aberrant",
+      "resume": "Le sol dans une Émanation de 3 m centrée sur le babélien est un Terrain difficile."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 7 (2d6) dégâts perforants. Si la cible est une créature de taille M ou inférieure, elle subit l'état À terre. La cible meurt si cette attaque la fait tomber à 0 point de vie. Son corps est alors absorbé par le babélien en ne laissant que son équipement.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "crachat-aveuglant",
+      "nom": "Crachat aveuglant",
+      "cout": "action",
+      "resume": "JS Dextérité : DD 10, chaque créature dans une Sphère de 3 m de rayon centrée sur un point dans un rayon de 9 m. Échec : 7 (2d6) dégâts radiants, et la cible subit l'état Aveuglé jusqu'à la fin du tour suivant du babélien.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 10,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "aveugle",
+          "dureeRounds": 1
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

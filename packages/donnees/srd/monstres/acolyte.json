@@ -1,0 +1,103 @@
+{
+  "id": "acolyte",
+  "nom": "Acolyte",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 10,
+    "con": 12,
+    "int": 10,
+    "sag": 14,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "medecine": 4,
+    "religion": 2
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le prêtre lance l'un des sorts suivants, la Sagesse étant sa caractéristique d'incantation : À volonté : lumière, thaumaturgie."
+    },
+    {
+      "id": "soutien-divin",
+      "nom": "Soutien divin (1/jour)",
+      "resume": "Action bonus. L'acolyte lance bénédiction, mot de guérison ou sanctuaire, avec la même caractéristique d'incantation que pour Incantation."
+    }
+  ],
+  "actions": [
+    {
+      "id": "masse-d-armes",
+      "nom": "Masse d'armes",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts contondants plus 2 (1d4) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "contondant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    },
+    {
+      "id": "flamme-radiante",
+      "nom": "Flamme radiante",
+      "cout": "action",
+      "resume": "À distance +4, portée 18 m : 7 (2d6) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

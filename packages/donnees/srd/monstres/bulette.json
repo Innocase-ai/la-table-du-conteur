@@ -1,0 +1,122 @@
+{
+  "id": "bulette",
+  "nom": "Bulette",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 17,
+  "pv": {
+    "moyenne": 94,
+    "des": "9d10 + 45"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 11,
+    "con": 21,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 12 m."
+    },
+    {
+      "id": "perception-des-vibrations",
+      "nom": "Perception des vibrations",
+      "resume": "Sens : Perception des vibrations 36 m (non représentée dans le moteur)."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La bulette effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 17 (2d12 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "saut-meurtrier",
+      "nom": "Saut meurtrier",
+      "cout": "action",
+      "resume": "Au prix de 1,50 m de déplacement, la bulette saute en un espace situé dans un rayon de 4,50 m et contenant une ou plusieurs créatures de taille G ou inférieure. JS Dextérité DD 15, chaque créature dans l'espace de destination de la bulette. Échec : 19 (3d12) dégâts contondants, et la cible subit l'état À terre. Réussite : demi-dégâts, et la cible est repoussée sur 1,50 m en ligne droite de la bulette.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 15,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 4.5
+      },
+      "degats": [
+        {
+          "des": "3d12",
+          "bonus": 0,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre"
+        }
+      ]
+    },
+    {
+      "id": "bond",
+      "nom": "Bond",
+      "cout": "bonus",
+      "resume": "La bulette effectue un saut d'un maximum de 9 m en dépensant 3 m de déplacement."
+    }
+  ]
+}

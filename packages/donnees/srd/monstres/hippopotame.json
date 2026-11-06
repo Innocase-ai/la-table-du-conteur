@@ -1,0 +1,85 @@
+{
+  "id": "hippopotame",
+  "nom": "Hippopotame",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 82,
+    "des": "11d10 + 22"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 7,
+    "con": 15,
+    "int": 2,
+    "sag": 12,
+    "cha": 4
+  },
+  "sauvegardes": {
+    "for": 7
+  },
+  "competences": {
+    "perception": 3
+  },
+  "initiative": -2,
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "L'hippopotame peut retenir son souffle pendant 10 minutes."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'hippopotame effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 16 (2d10 + 5) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

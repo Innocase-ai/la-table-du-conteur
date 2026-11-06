@@ -1,0 +1,72 @@
+{
+  "id": "faucon-de-sang",
+  "nom": "Faucon de sang",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 7,
+    "des": "2d6"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 14,
+    "con": 10,
+    "int": 3,
+    "sag": 14,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le faucon a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "bec",
+      "nom": "Bec",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants, ou 6 (1d8 + 2) dégâts perforants si la cible est En péril.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

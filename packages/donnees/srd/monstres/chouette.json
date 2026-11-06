@@ -1,0 +1,74 @@
+{
+  "id": "chouette",
+  "nom": "Chouette",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 3,
+    "dex": 13,
+    "con": 8,
+    "int": 2,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 5
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "La chouette ne provoque pas d'attaque d'Opportunité lorsqu'elle quitte la zone d'allonge d'un ennemi en volant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "serres",
+      "nom": "Serres",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 1 dégât tranchant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

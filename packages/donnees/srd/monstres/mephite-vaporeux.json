@@ -1,0 +1,121 @@
+{
+  "id": "mephite-vaporeux",
+  "nom": "Méphite vaporeux",
+  "taille": "P",
+  "type": "Élémentaire",
+  "alignement": "Neutre Mauvais",
+  "ca": 10,
+  "pv": {
+    "moyenne": 17,
+    "des": "5d6"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 9
+  },
+  "caracteristiques": {
+    "for": 5,
+    "dex": 11,
+    "con": 10,
+    "int": 11,
+    "sag": 10,
+    "cha": 12
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 2
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (aquatique, igné)",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "explosion-finale",
+      "nom": "Explosion finale",
+      "resume": "Le méphite explose quand il meurt. JS Dextérité DD 10, chaque créature dans une Émanation de 1,50 m centrée sur le méphite. Échec : 5 (2d4) dégâts de feu. Réussite : demi-dégâts."
+    },
+    {
+      "id": "forme-floue",
+      "nom": "Forme floue",
+      "resume": "Les jets d'attaque contre le méphite subissent le Désavantage sauf si le méphite subit l'état Neutralisé."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité à l'état suivant, non représenté dans le moteur : Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "griffe",
+      "nom": "Griffe",
+      "resume": "Corps à corps +2, allonge 1,50 m : 2 (1d4) dégâts tranchants plus 2 (1d4) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "souffle-de-vapeur",
+      "nom": "Souffle de vapeur",
+      "resume": "Recharge 6. JS Constitution DD 10, chaque créature dans un Cône de 4,50 m. Échec : 5 (2d4) dégâts de feu, et la Vitesse de la cible est réduite de 3 m jusqu'à la fin du tour suivant du méphite. Réussite : demi-dégâts uniquement.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 10,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "recharge": "6"
+    }
+  ]
+}

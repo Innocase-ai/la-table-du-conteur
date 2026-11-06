@@ -1,0 +1,174 @@
+{
+  "id": "planetar",
+  "nom": "Planétar",
+  "taille": "G",
+  "type": "Céleste (Ange)",
+  "alignement": "Loyal Bon",
+  "ca": 19,
+  "pv": {
+    "moyenne": 262,
+    "des": "21d10 + 147"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 36
+  },
+  "caracteristiques": {
+    "for": 24,
+    "dex": 20,
+    "con": 24,
+    "int": 19,
+    "sag": 22,
+    "cha": 25
+  },
+  "sauvegardes": {
+    "for": 12,
+    "con": 12,
+    "sag": 11,
+    "cha": 12
+  },
+  "competences": {
+    "perception": 11
+  },
+  "initiative": 10,
+  "resistances": [
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 21
+  },
+  "langues": "toutes ; télépathie 36 m",
+  "fp": "16",
+  "px": 15000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans les sens du moteur)."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Le vol de la créature permet le vol stationnaire."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le planétar a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-exaltee",
+      "nom": "Restauration exaltée",
+      "resume": "Si le planétar meurt hors du Mont Céleste, son corps disparaît et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part sur le Mont Céleste."
+    },
+    {
+      "id": "vigilance-divine",
+      "nom": "Vigilance divine",
+      "resume": "Le planétar reconnaît un mensonge quand il en entend un."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "resume": "Le planétar effectue trois attaques d'Épée radiante ou recourt deux fois à Éruption bénie.",
+      "multiattaque": [
+        {
+          "action": "epee-radiante",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 7,
+          "type": "tranchant"
+        },
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "epee-radiante",
+      "nom": "Épée radiante",
+      "resume": "Corps à corps +12, allonge 3 m : 14 (2d6 + 7) dégâts tranchants plus 18 (4d8) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "7d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "eruption-benie",
+      "nom": "Éruption bénie",
+      "resume": "JS Dextérité DD 20, chaque ennemi dans une Sphère de 6 m de rayon centrée sur un point que le planétar voit dans un rayon de 36 m. Échec : 24 (7d6) dégâts radiants. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 20,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 6
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le planétar lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 20). À volonté : détection du mal et du bien. 1/jour chacun : communion, contrôle du climat, dissipation du mal et du bien, rappel à la vie."
+    },
+    {
+      "cout": "bonus",
+      "degats": [],
+      "etats": [],
+      "id": "soutien-divin",
+      "nom": "Soutien divin",
+      "resume": "2/jour. Le planétar lance délivrance des malédictions, invisibilité, restauration partielle ou soins, avec la même caractéristique d'incantation que pour Incantation.",
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

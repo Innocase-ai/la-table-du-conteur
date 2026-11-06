@@ -1,0 +1,69 @@
+{
+  "id": "chevre-geante",
+  "nom": "Chèvre géante",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d10 + 3"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 13,
+    "con": 12,
+    "int": 3,
+    "sag": 12,
+    "cha": 6
+  },
+  "sauvegardes": {
+    "for": 5
+  },
+  "competences": {
+    "perception": 3
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "coup-de-belier",
+      "nom": "Coup de bélier",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants. Si la cible est une créature de taille G ou inférieure et si la chèvre s'est déplacée en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 5 (2d4) dégâts contondants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

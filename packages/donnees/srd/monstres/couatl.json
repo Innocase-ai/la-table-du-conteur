@@ -1,0 +1,143 @@
+{
+  "id": "couatl",
+  "nom": "Couatl",
+  "taille": "M",
+  "type": "Céleste",
+  "alignement": "Loyal Bon",
+  "ca": 19,
+  "pv": {
+    "moyenne": 60,
+    "des": "8d8 + 24"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 27
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 20,
+    "con": 17,
+    "int": 18,
+    "sag": 20,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "con": 5,
+    "sag": 7
+  },
+  "competences": {},
+  "initiative": 5,
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "psychique",
+    "radiant"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "toutes ; télépathie 36 m",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "esprit-protege",
+      "nom": "Esprit protégé",
+      "resume": "Rien ne peut lire les pensées du couatl, et les autres créatures ne peuvent communiquer avec lui par télépathie que s'il le permet."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 11 (1d12 + 5) dégâts perforants, et la cible subit l'état Empoisonné jusqu'à la fin du tour suivant du couatl.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d12",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "constriction",
+      "nom": "Constriction",
+      "cout": "action",
+      "resume": "JS Force : DD 15, une créature de taille M ou inférieure que le couatl voit dans un rayon de 1,50 m. Échec : 8 (1d6 + 5) dégâts contondants. La cible subit l'état Agrippé (évasion DD 13), ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "M"
+        },
+        {
+          "etat": "entrave"
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le couatl lance l'un des sorts suivants sans la moindre composante, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 15). À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, détection des pensées, détection du mal et du bien. 1/jour chacun : création de nourriture et d'eau, restauration suprême, scrutation, sommeil, songe.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "soutien-divin",
+      "nom": "Soutien divin",
+      "cout": "bonus",
+      "resume": "Le couatl lance bénédiction, restauration partielle ou sanctuaire sans la moindre composante et avec la même caractéristique d'incantation que pour Incantation.",
+      "degats": [],
+      "etats": [],
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

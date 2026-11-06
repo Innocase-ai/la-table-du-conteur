@@ -1,0 +1,66 @@
+{
+  "id": "arbuste-eveille",
+  "nom": "Arbuste éveillé",
+  "taille": "P",
+  "type": "Plante",
+  "alignement": "Neutre",
+  "ca": 9,
+  "pv": {
+    "moyenne": 10,
+    "des": "3d6"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 3,
+    "dex": 8,
+    "con": 11,
+    "int": 10,
+    "sag": 10,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "resistances": [
+    "perforant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [
+    "feu"
+  ],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun et une autre langue",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "ratissage",
+      "nom": "Ratissage",
+      "cout": "action",
+      "resume": "Corps à corps +1, allonge 1,50 m : 1 dégât tranchant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 1
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "feu-follet",
+  "nom": "Feu follet",
+  "taille": "TP",
+  "type": "Mort-vivant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 19,
+  "pv": {
+    "moyenne": 27,
+    "des": "11d4"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 1,
+    "dex": 28,
+    "con": 10,
+    "int": 13,
+    "sag": 14,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 9,
+  "resistances": [
+    "acide",
+    "contondant",
+    "feu",
+    "froid",
+    "nécrotique",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "foudre",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "empoisonne",
+    "entrave",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 12
+  },
+  "langues": "commun et une autre langue",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 15 m (vol stationnaire)."
+    },
+    {
+      "id": "deplacement-intangible",
+      "nom": "Déplacement intangible",
+      "resume": "Le feu follet peut traverser d'autres créatures et objets comme s'il s'agissait d'un Terrain difficile. Il subit 5 (1d10) dégâts de force s'il termine son tour à l'intérieur d'un objet."
+    },
+    {
+      "id": "fugace",
+      "nom": "Fugace",
+      "resume": "Le feu follet ne peut rien porter."
+    },
+    {
+      "id": "illumination",
+      "nom": "Illumination",
+      "resume": "Le feu follet émet une Lumière vive sur un rayon de 6 m et une Lumière faible sur 6 m de plus."
+    }
+  ],
+  "actions": [
+    {
+      "id": "decharge",
+      "nom": "Décharge",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 11 (2d8 + 2) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 2,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "disparition",
+      "nom": "Disparition",
+      "cout": "bonus",
+      "resume": "Le feu follet et sa lumière ont l'état Invisible jusqu'à ce qu'il rompe sa Concentration sur cet effet, mais l'état prend fin prématurément juste après que le feu follet effectue un jet d'attaque ou recourt à Festin d'essence vitale.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "festin-d-essence-vitale",
+      "nom": "Festin d'essence vitale",
+      "cout": "bonus",
+      "resume": "JS Constitution : DD 10, une créature vivante à 0 point de vie que le feu follet voit dans un rayon de 1,50 m. Échec : la cible meurt et le feu follet récupère 10 (3d6) points de vie.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

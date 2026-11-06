@@ -1,0 +1,111 @@
+{
+  "id": "druide",
+  "nom": "Druide",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 44,
+    "des": "8d8 + 8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 12,
+    "con": 13,
+    "int": 12,
+    "sag": 16,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "medecine": 5,
+    "nature": 3,
+    "perception": 5
+  },
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "commun, druidique, sylvestre",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le druide lance l'un des sorts suivants, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 13) : À volonté : communication avec les animaux, druidisme. 2/jour chacun : enchevêtrement, vague tonnante. 1/jour chacun : grande foulée, messager animal, rayon de lune."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le druide effectue deux attaques, réparties à sa guise entre Bâton-lierre et Éclat verdoyant.",
+      "multiattaque": [
+        {
+          "action": "baton-lierre",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "baton-lierre",
+      "nom": "Bâton-lierre",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts contondants plus 2 (1d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "eclat-verdoyant",
+      "nom": "Éclat verdoyant",
+      "cout": "action",
+      "resume": "À distance +5, portée 27 m : 10 (3d6) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 27
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,92 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison",
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement, Pétrifié."
+    }
+  ],
+  "id": "tapis-etrangleur",
+  "nom": "Tapis étrangleur",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 27,
+    "des": "5d10"
+  },
+  "vitesse": {
+    "marche": 3
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 14,
+    "con": 10,
+    "int": 1,
+    "sag": 3,
+    "cha": 1
+  },
+  "initiative": 4,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 6
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "etouffement",
+      "nom": "Étouffement",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts contondants. Si la cible est une créature de taille M ou inférieure, le tapis peut lui imposer l'état Agrippé (évasion DD 13) au lieu de lui infliger des dégâts. Tant que la cible est Agrippée, elle subit les états Aveuglé et Entravé, s'asphyxie, et subit 10 (2d6 + 3) dégâts contondants au début de chacun de ses tours. Le tapis ne peut étouffer qu'une créature à la fois. Tant qu'il agrippe la cible, le tapis ne peut pas entreprendre cette action, il réduit de moitié les dégâts qu'il subit (arrondis à l'inférieur) et la cible subit autant de dégâts que lui.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "M"
+        },
+        {
+          "etat": "aveugle",
+          "tailleMax": "M"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

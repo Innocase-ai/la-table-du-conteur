@@ -1,0 +1,140 @@
+{
+  "id": "elementaire-de-la-terre",
+  "nom": "Élémentaire de la terre",
+  "taille": "G",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 147,
+    "des": "14d10 + 70"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 8,
+    "con": 20,
+    "int": 5,
+    "sag": 10,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [
+    "tonnerre"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (terreux)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    },
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 9 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "perception-des-vibrations",
+      "nom": "Perception des vibrations",
+      "resume": "Sens : Perception des vibrations 18 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "deplacement-tellurique",
+      "nom": "Déplacement tellurique",
+      "resume": "L'élémentaire peut se déplacer par fouissement dans la pierre et la terre brutes et non magiques. Ce faisant, il laisse intacte la structure de ce qu'il traverse."
+    },
+    {
+      "id": "monstre-de-siege",
+      "nom": "Monstre de siège",
+      "resume": "L'élémentaire inflige des dégâts doublés aux objets et aux structures."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'élémentaire effectue deux attaques, réparties à sa guise entre Coup et Projection de rocher (choix complet laissé au MJ).",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 14 (2d8 + 5) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "projection-de-rocher",
+      "nom": "Projection de rocher",
+      "cout": "action",
+      "resume": "À distance +8, portée 18 m : 8 (1d6 + 5) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

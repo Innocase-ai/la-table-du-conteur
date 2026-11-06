@@ -1,0 +1,123 @@
+{
+  "id": "dragonnet-de-cuivre",
+  "nom": "Dragonnet de cuivre",
+  "taille": "M",
+  "type": "Dragon (Métallique)",
+  "alignement": "Chaotique Bon",
+  "ca": 16,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d8 + 4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 13,
+    "int": 14,
+    "sag": 11,
+    "cha": 13
+  },
+  "sauvegardes": {
+    "dex": 3,
+    "sag": 2
+  },
+  "competences": {
+    "discretion": 3,
+    "perception": 4
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "visionAveugle": 3,
+    "perceptionPassive": 14
+  },
+  "langues": "draconique",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (1d10 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "souffle-d-acide",
+      "nom": "Souffle d’acide",
+      "cout": "action",
+      "resume": "JS Dextérité : DD 11, chaque créature dans une Ligne de 6 m de long sur 1.5 m de large. Échec : 18 (4d8) dégâts de acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 11,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 6,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-ralentissant",
+      "nom": "Souffle ralentissant",
+      "cout": "action",
+      "resume": "JS Constitution : DD 11, chaque créature dans un Cône de 4,50 m. Échec : la cible voit sa Vitesse réduite de moitié, ne peut pas jouer de Réaction et peut entreprendre une action ou une action Bonus à son tour, mais pas les deux. L'effet persiste jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

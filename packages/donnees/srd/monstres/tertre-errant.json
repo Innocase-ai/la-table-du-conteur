@@ -1,0 +1,131 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 3
+  },
+  "resistances": [
+    "feu",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "foudre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement."
+    },
+    {
+      "id": "absorption-de-la-foudre",
+      "nom": "Absorption de la foudre",
+      "resume": "Chaque fois que le tertre errant est soumis à des dégâts de foudre, il récupère en fait autant de points de vie que les dégâts de foudre infligés."
+    }
+  ],
+  "id": "tertre-errant",
+  "nom": "Tertre errant",
+  "taille": "G",
+  "type": "Plante",
+  "alignement": "non aligné",
+  "ca": 15,
+  "pv": {
+    "moyenne": 110,
+    "des": "13d10 + 39"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 6
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 8,
+    "con": 16,
+    "int": 5,
+    "sag": 10,
+    "cha": 5
+  },
+  "initiative": -1,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le tertre errant effectue trois attaques de Vrille électrisée. Il peut remplacer l'une de ces attaques par une utilisation d'Enveloppement.",
+      "multiattaque": [
+        {
+          "action": "vrille-electrisee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "vrille-electrisee",
+      "nom": "Vrille électrisée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 7 (1d6 + 4) dégâts contondants plus 5 (2d4) dégâts de foudre. Si la cible est une créature de taille M ou inférieure, le tertre errant la tire en ligne droite vers lui de 1,50 m.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ]
+    },
+    {
+      "id": "enveloppement",
+      "nom": "Enveloppement",
+      "cout": "action",
+      "resume": "JS Force DD 15, une créature de taille M ou inférieure dans un rayon de 1,50 m. Échec : la cible est tirée dans l'espace du tertre errant et subit l'état Agrippé (évasion DD 14). Tant qu'elle est Agrippée, la cible subit les états Aveuglé et Entravé, ainsi que 10 (3d6) dégâts de foudre au début de chacun de ses tours. Quand le tertre errant se déplace, la cible Agrippée l'accompagne, sans dépense supplémentaire en déplacement. Si le tertre errant a déjà une créature Agrippée par cette action, il ne peut pas en avoir une autre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "degats": [],
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14,
+          "tailleMax": "M"
+        },
+        {
+          "etat": "aveugle",
+          "tailleMax": "M"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

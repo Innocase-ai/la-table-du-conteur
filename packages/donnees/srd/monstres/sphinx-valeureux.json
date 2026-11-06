@@ -1,0 +1,232 @@
+{
+  "sauvegardes": {
+    "dex": 6,
+    "con": 11,
+    "int": 9,
+    "sag": 12
+  },
+  "competences": {
+    "arcanes": 9,
+    "perception": 12,
+    "religion": 15
+  },
+  "resistances": [
+    "nécrotique",
+    "radiant"
+  ],
+  "immunitesDegats": [
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans le schéma des sens)."
+    },
+    {
+      "id": "insondable",
+      "nom": "Insondable",
+      "resume": "Nulle magie ne permet d'observer le sphinx à distance ni de détecter ses pensées sans son consentement. Les tests de Sagesse (Intuition) visant à percer ses intentions ou évaluer sa sincérité subissent le Désavantage."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "Résistance légendaire (3/jour, ou 4/jour dans son antre). Si le sphinx rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "px-antre",
+      "nom": "PX dans l'antre",
+      "resume": "FP 17 : 18 000 PX, ou 20 000 PX dans son antre."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le sphinx peut dépenser une utilisation pour entreprendre l'une des actions légendaires ci-après (actions de coût « gratuit » du profil). Il récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "id": "sphinx-valeureux",
+  "nom": "Sphinx valeureux",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Loyal Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 199,
+    "des": "19d10 + 95"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 10,
+    "con": 20,
+    "int": 16,
+    "sag": 23,
+    "cha": 18
+  },
+  "initiative": 12,
+  "sens": {
+    "perceptionPassive": 22
+  },
+  "langues": "céleste, commun",
+  "fp": "17",
+  "px": 18000,
+  "bonusMaitrise": 6,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le sphinx effectue deux attaques de Griffe et recourt à Rugissement.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        },
+        {
+          "action": "rugissement",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 1,50 m : 20 (4d6 + 6) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 6,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le sphinx lance l'un des sorts suivants, sans composantes matérielles, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 20). À volonté : détection du mal et du bien, thaumaturgie. 1/jour chacun : détection de la magie, dissipation de la magie, festin des héros, restauration suprême, zone de vérité."
+    },
+    {
+      "id": "rugissement",
+      "nom": "Rugissement",
+      "cout": "action",
+      "resume": "Rugissement (3/jour). Le sphinx pousse un rugissement magique. Chaque fois qu'il rugit, il produit un effet différent (la séquence est réinitialisée lorsqu'il prend un Repos long). Premier rugissement : JS Sagesse DD 20, chaque ennemi dans une Émanation de 150 m centrée sur le sphinx ; échec : état Effrayé pendant 1 minute. Deuxième rugissement : JS Sagesse DD 20, chaque ennemi dans une Émanation de 150 m ; échec : état Paralysé, la cible réitère le JS à la fin de chacun de ses tours et met fin à l'effet en cas de réussite ; au bout de 1 minute, elle réussit automatiquement ce JS. Troisième rugissement : JS Constitution DD 20, chaque ennemi dans une Émanation de 90 m ; échec : 44 (8d10) dégâts de tonnerre et état À terre ; réussite : demi-dégâts uniquement. Les trois effets sont détaillés par les actions rugissement-premier, rugissement-deuxieme et rugissement-troisieme.",
+      "utilisations": {
+        "nombre": 3,
+        "par": "jour"
+      }
+    },
+    {
+      "id": "rugissement-premier",
+      "nom": "Rugissement (premier)",
+      "cout": "action",
+      "resume": "Premier rugissement : JS Sagesse DD 20, chaque ennemi dans une Émanation de 150 m centrée sur le sphinx. Échec : état Effrayé pendant 1 minute.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 20,
+        "moitieSiReussite": false
+      },
+      "degats": [],
+      "zone": {
+        "forme": "emanation",
+        "taille": 150
+      },
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 10
+        }
+      ]
+    },
+    {
+      "id": "rugissement-deuxieme",
+      "nom": "Rugissement (deuxième)",
+      "cout": "action",
+      "resume": "Deuxième rugissement : JS Sagesse DD 20, chaque ennemi dans une Émanation de 150 m centrée sur le sphinx. Échec : état Paralysé ; la cible réitère le JS à la fin de chacun de ses tours et met fin à l'effet en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 20,
+        "moitieSiReussite": false
+      },
+      "degats": [],
+      "zone": {
+        "forme": "emanation",
+        "taille": 150
+      },
+      "etats": [
+        {
+          "etat": "paralyse",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        }
+      ]
+    },
+    {
+      "id": "rugissement-troisieme",
+      "nom": "Rugissement (troisième)",
+      "cout": "action",
+      "resume": "Troisième rugissement : JS Constitution DD 20, chaque ennemi dans une Émanation de 90 m centrée sur le sphinx. Échec : 44 (8d10) dégâts de tonnerre, et la cible subit l'état À terre. Réussite : demi-dégâts uniquement.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 20,
+        "moitieSiReussite": true
+      },
+      "degats": [
+        {
+          "des": "8d10",
+          "bonus": 0,
+          "type": "tonnerre"
+        }
+      ],
+      "zone": {
+        "forme": "emanation",
+        "taille": 90
+      },
+      "etats": [
+        {
+          "etat": "a-terre"
+        }
+      ]
+    },
+    {
+      "id": "poids-des-annees",
+      "nom": "Poids des années",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Constitution DD 16, une créature que le sphinx voit dans un rayon de 36 m. Échec : la cible reçoit 1 niveau d'Épuisement (non représenté dans le moteur). Tant que la cible a le moindre niveau d'Épuisement, elle paraît 3d10 ans plus âgée que la réalité. Échec ou réussite : le sphinx ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 16,
+        "moitieSiReussite": false
+      },
+      "degats": []
+    },
+    {
+      "id": "traque-arcanique",
+      "nom": "Traque arcanique",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le sphinx se téléporte en un espace inoccupé qu'il voit dans un rayon de 9 m, et il effectue une attaque de Griffe."
+    }
+  ]
+}

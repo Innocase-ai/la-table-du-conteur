@@ -1,0 +1,157 @@
+{
+  "id": "ettercap",
+  "nom": "Ettercap",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Neutre Mauvaise",
+  "ca": 13,
+  "pv": {
+    "moyenne": 44,
+    "des": "8d8 + 8"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 15,
+    "con": 13,
+    "int": 7,
+    "sag": 12,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 3,
+    "survie": 3
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "marche-dans-les-toiles",
+      "nom": "Marche dans les toiles",
+      "resume": "L'ettercap n'est pas soumis aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile que lui."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "L'ettercap peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ettercap effectue une attaque de Griffe et une de Morsure.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 1
+        },
+        {
+          "action": "morsure",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (2d4 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts perforants plus 2 (1d4) dégâts de poison, et la cible subit l'état Empoisonné jusqu'au début du tour suivant de l'ettercap.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "filandre",
+      "nom": "Filandre",
+      "cout": "action",
+      "resume": "JS Dextérité DD 12 d'une créature de taille G ou inférieure que l'ettercap voit dans un rayon de 9 m. Échec : la cible subit l'état Entravé jusqu'à ce que la filandre soit détruite (CA 10 ; 5 pv ; Vulnérabilité aux dégâts de feu ; Immunité contre les dégâts contondants, psychiques et de poison).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 12,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "etats": [
+        {
+          "etat": "entrave",
+          "tailleMax": "G"
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "traction",
+      "nom": "Traction",
+      "cout": "bonus",
+      "resume": "L'ettercap tire vers lui en ligne droite une créature Entravée par sa Filandre et située dans un rayon de 9 m, en la déplaçant d'un maximum de 7,50 m."
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "Le plésiosaure peut retenir son souffle pendant 1 heure."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête (Dinosaure)",
+  "langues": "aucune",
+  "id": "plesiosaure",
+  "nom": "Plésiosaure",
+  "taille": "G",
+  "ca": 13,
+  "pv": {
+    "moyenne": 68,
+    "des": "8d10 + 24"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 16,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 11 (2d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

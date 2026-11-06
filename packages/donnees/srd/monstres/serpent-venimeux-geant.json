@@ -1,0 +1,72 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "serpent-venimeux-geant",
+  "nom": "Serpent venimeux géant",
+  "taille": "M",
+  "ca": 14,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 18,
+    "con": 13,
+    "int": 2,
+    "sag": 10,
+    "cha": 3
+  },
+  "initiative": 4,
+  "sens": {
+    "visionAveugle": 3,
+    "perceptionPassive": 12
+  },
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 6 (1d4 + 4) dégâts perforants plus 4 (1d8) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

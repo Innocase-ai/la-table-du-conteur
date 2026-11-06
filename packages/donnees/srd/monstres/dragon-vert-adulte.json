@@ -1,0 +1,199 @@
+{
+  "id": "dragon-vert-adulte",
+  "nom": "Dragon vert adulte",
+  "taille": "TG",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Loyal Mauvais",
+  "ca": 19,
+  "pv": {
+    "moyenne": 207,
+    "des": "18d12 + 90"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 12,
+    "con": 21,
+    "int": 18,
+    "sag": 15,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "dex": 6,
+    "sag": 7
+  },
+  "competences": {
+    "discretion": 6,
+    "perception": 12,
+    "persuasion": 9,
+    "tromperie": 9
+  },
+  "initiative": 11,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 22
+  },
+  "langues": "commun, draconique",
+  "fp": "15",
+  "px": 13000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 15 000 PX dans son antre (13 000 PX hors antre)."
+    },
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation d'Incantation pour lancer épine mentale (au 3e niveau).",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +11, allonge 3 m : 15 (2d8 + 6) dégâts tranchants plus 7 (2d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 17). À volonté : détection de la magie, épine mentale (au 3e niveau). 1/jour : quête.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-empoisonne",
+      "nom": "Souffle empoisonné",
+      "cout": "action",
+      "resume": "JS Constitution DD 18, chaque créature dans un Cône de 18 m. Échec : 56 (16d6) dégâts de poison. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 18,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "16d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "invasion-mentale",
+      "nom": "Invasion mentale",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer épine mentale (au 3e niveau).",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "miasmes-nocifs",
+      "nom": "Miasmes nocifs",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Constitution DD 17, chaque créature dans une Sphère de 6 m de rayon centrée sur un point que le dragon voit dans un rayon de 27 m. Échec : 7 (2d6) dégâts de poison, et la cible subit un malus de −2 à la CA jusqu'à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 27
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 6
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

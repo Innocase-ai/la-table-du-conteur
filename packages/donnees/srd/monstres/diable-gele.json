@@ -1,0 +1,168 @@
+{
+  "id": "diable-gele",
+  "nom": "Diable gelé",
+  "taille": "G",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 228,
+    "des": "24d10 + 96"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 14,
+    "con": 18,
+    "int": 18,
+    "sag": 15,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "dex": 7,
+    "con": 9,
+    "sag": 7,
+    "cha": 9
+  },
+  "competences": {
+    "intuition": 7,
+    "perception": 7,
+    "persuasion": 9
+  },
+  "initiative": 7,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "froid",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 36,
+    "perceptionPassive": 17
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "14",
+  "px": 11500,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le diable a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu'il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le diable effectue trois attaques de Lance de glace. Il peut en remplacer une par une attaque de Queue.",
+      "multiattaque": [
+        {
+          "action": "lance-de-glace-cac",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "lance-de-glace-cac",
+      "nom": "Lance de glace (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 1,50 m : 14 (2d8 + 5) dégâts perforants plus 10 (3d6) dégâts de froid. Jusqu'à la fin de son tour suivant, la cible ne peut entreprendre ni action Bonus ni Réaction, sa Vitesse est réduite de 3 m et elle peut se déplacer ou entreprendre son action à son tour, mais pas les deux.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "perforant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ]
+    },
+    {
+      "id": "lance-de-glace-distance",
+      "nom": "Lance de glace (à distance)",
+      "cout": "action",
+      "resume": "À distance +10, portée 9/36 m : 14 (2d8 + 5) dégâts perforants plus 10 (3d6) dégâts de froid. Jusqu'à la fin de son tour suivant, la cible ne peut entreprendre ni action Bonus ni Réaction, sa Vitesse est réduite de 3 m et elle peut se déplacer ou entreprendre son action à son tour, mais pas les deux. Touché ou raté : aussitôt après une attaque à distance, la lance retourne magiquement dans la main du diable.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "perforant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 15 (3d6 + 5) dégâts contondants plus 18 (4d8) dégâts de froid.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 5,
+          "type": "contondant"
+        },
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ]
+    },
+    {
+      "id": "mur-de-glace",
+      "nom": "Mur de glace",
+      "cout": "action",
+      "resume": "Recharge 6. Le diable lance mur de glace (au 8e niveau) sans composantes de sort, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 17).",
+      "recharge": "6"
+    }
+  ]
+}

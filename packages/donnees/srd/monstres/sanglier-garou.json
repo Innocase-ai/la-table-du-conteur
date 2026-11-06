@@ -1,0 +1,167 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "formes-et-vitesses",
+      "nom": "Taille et vitesses selon la forme",
+      "resume": "Humanoïde de taille M ou P ; hybride de taille M ; sanglier de taille P. Vitesse 9 m, 12 m (forme de sanglier uniquement). Équipement : javelines (6)."
+    }
+  ],
+  "id": "sanglier-garou",
+  "nom": "Sanglier-garou",
+  "taille": "M",
+  "type": "Monstruosité (Lycanthrope)",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 97,
+    "des": "15d8 + 30"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 10,
+    "con": 15,
+    "int": 10,
+    "sag": 11,
+    "cha": 8
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun (ne parle pas sous forme de sanglier)",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le sanglier-garou effectue deux attaques, réparties à sa guise entre Défense et Javeline. Il peut en remplacer une par une attaque de Coup de défense.",
+      "multiattaque": [
+        {
+          "action": "defense",
+          "nombre": 1
+        },
+        {
+          "action": "javeline-cac",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup-de-defense",
+      "nom": "Coup de défense",
+      "cout": "action",
+      "resume": "Forme de sanglier ou hybride uniquement. Corps à corps +5, allonge 1,50 m : 12 (2d8 + 3) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l'effet suivant. JS Constitution DD 12. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un sanglier-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce sanglier-garou pendant 24 heures.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "defense",
+      "nom": "Défense",
+      "cout": "action",
+      "resume": "Forme de sanglier ou hybride uniquement. Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts perforants. Si la cible est une créature de taille M ou inférieure et si le sanglier-garou s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 7 (2d6) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "javeline-cac",
+      "nom": "Javeline (corps à corps)",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. Corps à corps +5, allonge 1,50 m : 13 (3d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "javeline-lancer",
+      "nom": "Javeline (lancer)",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. À distance +5, portée 9/36 m : 13 (3d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le sanglier-garou se transforme en hybride sanglier-humanoïde de taille M ou en sanglier de taille P, ou bien retrouve sa forme véritable d'humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

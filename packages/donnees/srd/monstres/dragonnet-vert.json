@@ -1,0 +1,134 @@
+{
+  "id": "dragonnet-vert",
+  "nom": "Dragonnet vert",
+  "taille": "M",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Loyal Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 38,
+    "des": "7d8 + 7"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 13,
+    "int": 14,
+    "sag": 11,
+    "cha": 13
+  },
+  "sauvegardes": {
+    "for": 2,
+    "dex": 3,
+    "con": 1,
+    "int": 2,
+    "sag": 2,
+    "cha": 1
+  },
+  "competences": {
+    "discretion": 3,
+    "perception": 4
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "visionAveugle": 3,
+    "perceptionPassive": 14
+  },
+  "langues": "draconique",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (1d10 + 2) dégâts tranchants plus 3 (1d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 2,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-empoisonne",
+      "nom": "Souffle empoisonné",
+      "cout": "action",
+      "resume": "Souffle empoisonné (recharge 5-6). JS Constitution DD 11, chaque créature dans un Cône de 4,50 m. Échec : 21 (6d6) dégâts de poison. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 11,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "degats": [
+        {
+          "des": "6d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

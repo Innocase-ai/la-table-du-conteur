@@ -1,0 +1,117 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "contondant",
+    "perforant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [
+    "feu"
+  ],
+  "traits": [
+    {
+      "id": "monstre-de-siege",
+      "nom": "Monstre de siège",
+      "resume": "Le sylvanien inflige des dégâts doublés aux objets et aux structures."
+    }
+  ],
+  "id": "sylvanien",
+  "nom": "Sylvanien",
+  "taille": "TG",
+  "type": "Plante",
+  "alignement": "Chaotique Bon",
+  "ca": 16,
+  "pv": {
+    "moyenne": 138,
+    "des": "12d12 + 60"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 8,
+    "con": 21,
+    "int": 12,
+    "sag": 16,
+    "cha": 12
+  },
+  "initiative": 3,
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "commun, druidique, elfique, sylvestre",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le sylvanien effectue deux attaques de Coup.",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 1,50 m : 16 (3d6 + 6) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 6,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "pluie-d-ecorce",
+      "nom": "Pluie d'écorce",
+      "cout": "action",
+      "resume": "À distance +10, portée 54 m : 28 (4d10 + 6) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 54
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 6,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "animation-des-arbres",
+      "nom": "Animation des arbres",
+      "cout": "action",
+      "resume": "Animation des arbres (1/jour). Le sylvanien anime magiquement un ou deux arbres qu'il voit dans un rayon de 18 m. Chaque arbre reprend le profil du sylvanien, si ce n'est que ses valeurs d'Intelligence et de Charisme sont de 1, qu'il ne parle pas et ne dispose pas de la présente action. L'arbre joue son tour juste après le sylvanien, au même rang d'initiative, et obéit à celui-ci. Cette animation dure 1 jour, mais prend fin prématurément si l'arbre ou le sylvanien meurt, ou si les deux se retrouvent éloignés de plus de 36 m. L'arbre prend alors racine, si possible.",
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    }
+  ]
+}

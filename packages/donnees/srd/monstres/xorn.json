@@ -1,0 +1,147 @@
+{
+  "id": "xorn",
+  "nom": "Xorn",
+  "taille": "M",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 19,
+  "pv": {
+    "moyenne": 84,
+    "des": "8d8 + 48"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 10,
+    "con": 22,
+    "int": 11,
+    "sag": 10,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6,
+    "perception": 6
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 16
+  },
+  "langues": "primordial (terreux)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 6 m (non représentée dans le schéma des vitesses)."
+    },
+    {
+      "id": "perception-des-vibrations",
+      "nom": "Perception des vibrations",
+      "resume": "Perception des vibrations 18 m (non représentée dans le schéma des sens)."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Pétrifié."
+    },
+    {
+      "id": "deplacement-tellurique",
+      "nom": "Déplacement tellurique",
+      "resume": "Le xorn peut se déplacer par fouissement dans la pierre et la terre brutes et non magiques. Ce faisant, il laisse intacte la structure de ce qu'il traverse."
+    },
+    {
+      "id": "perception-des-tresors",
+      "nom": "Perception des trésors",
+      "resume": "Le xorn localise précisément les pierres et métaux précieux dans un rayon de 18 m."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "resume": "Le xorn effectue trois attaques de Griffe et une de Morsure.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 3
+        },
+        {
+          "action": "morsure",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [],
+      "id": "griffe",
+      "nom": "Griffe",
+      "resume": "Corps à corps +6, allonge 1,50 m : 8 (1d10 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [],
+      "id": "morsure",
+      "nom": "Morsure",
+      "resume": "Corps à corps +6, allonge 1,50 m : 17 (4d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "bonus",
+      "degats": [],
+      "etats": [],
+      "id": "charge",
+      "nom": "Charge",
+      "resume": "Le xorn se déplace en ligne droite dans les limites de sa Vitesse ou de sa Vitesse de fouissement vers un ennemi qu'il perçoit."
+    }
+  ]
+}

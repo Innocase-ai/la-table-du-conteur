@@ -1,0 +1,78 @@
+{
+  "id": "grenouille",
+  "nom": "Grenouille",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 6
+  },
+  "caracteristiques": {
+    "for": 1,
+    "dex": 13,
+    "con": 8,
+    "int": 1,
+    "sag": 8,
+    "cha": 3
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 3,
+    "perception": 1
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 9,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "La grenouille peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "saut-sans-elan",
+      "nom": "Saut sans élan",
+      "resume": "Les sauts en longueur de la grenouille peuvent atteindre 3 m et ses sauts en hauteur 1,50 m, avec ou sans élan."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

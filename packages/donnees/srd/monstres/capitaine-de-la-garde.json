@@ -1,0 +1,122 @@
+{
+  "id": "capitaine-de-la-garde",
+  "nom": "Capitaine de la garde",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 18,
+  "pv": {
+    "moyenne": 75,
+    "des": "10d8 + 30"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 14,
+    "con": 16,
+    "int": 12,
+    "sag": 14,
+    "cha": 13
+  },
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 6,
+    "perception": 4
+  },
+  "initiative": 4,
+  "sens": {
+    "perceptionPassive": 14
+  },
+  "langues": "commun",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le garde effectue deux attaques, réparties à sa guise entre Épée longue et Javeline.",
+      "multiattaque": [
+        {
+          "action": "epee-longue",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "epee-longue",
+      "nom": "Épée longue",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 15 (2d10 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "javeline-cac",
+      "nom": "Javeline (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 14 (3d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "javeline-lancer",
+      "nom": "Javeline (lancer)",
+      "cout": "action",
+      "resume": "À distance +6, portée 9/36 m : 14 (3d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

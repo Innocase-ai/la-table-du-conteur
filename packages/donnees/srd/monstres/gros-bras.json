@@ -1,0 +1,91 @@
+{
+  "id": "gros-bras",
+  "nom": "Gros-bras",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 32,
+    "des": "5d8 + 10"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 14,
+    "int": 10,
+    "sag": 10,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le gros-bras a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "masse-d-armes",
+      "nom": "Masse d'armes",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "arbalete-lourde",
+      "nom": "Arbalète lourde",
+      "cout": "action",
+      "resume": "À distance +3, portée 30/120 m : 6 (1d10 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 30,
+        "longue": 120
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

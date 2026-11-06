@@ -1,0 +1,89 @@
+{
+  "id": "homoncule",
+  "nom": "Homoncule",
+  "taille": "TP",
+  "type": "Artificiel",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 4,
+    "des": "1d4 + 2"
+  },
+  "vitesse": {
+    "marche": 6,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 4,
+    "dex": 15,
+    "con": 14,
+    "int": 10,
+    "sag": 10,
+    "cha": 7
+  },
+  "sauvegardes": {
+    "sag": 2,
+    "cha": 0
+  },
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "comprend le commun et une autre langue, mais ne parle pas",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "lien-telepathique",
+      "nom": "Lien télépathique",
+      "resume": "Tant que l'homoncule et son maître se trouvent sur le même plan d'existence, ils peuvent communiquer entre eux par télépathie."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1,
+          "sauvegardeFinDeTour": false,
+          "sauvegarde": {
+            "caracteristique": "con",
+            "dd": 12
+          }
+        }
+      ],
+      "id": "morsure",
+      "nom": "Morsure",
+      "resume": "Corps à corps +4, allonge 1,50 m : 1 dégât perforant, et la cible subit l'effet suivant. JS Constitution DD 12. Échec : la cible subit l'état Empoisonné jusqu'à la fin du tour suivant de l'homoncule. Échec de 5 ou plus : la cible subit l'état Empoisonné pendant 1 minute. Ainsi Empoisonnée, la cible subit en outre l'état Inconscient, qui prend fin prématurément si la cible subit des dégâts.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    }
+  ]
+}

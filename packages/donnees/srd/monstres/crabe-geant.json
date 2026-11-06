@@ -1,0 +1,79 @@
+{
+  "id": "crabe-geant",
+  "nom": "Crabe géant",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 15,
+  "pv": {
+    "moyenne": 13,
+    "des": "3d8"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 13,
+    "con": 11,
+    "int": 1,
+    "sag": 9,
+    "cha": 3
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 3
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 9
+  },
+  "langues": "aucune",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le crabe peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 4 (1d6 + 1) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l'état Agrippé (évasion DD 11) par l'une des deux pinces.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 11,
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

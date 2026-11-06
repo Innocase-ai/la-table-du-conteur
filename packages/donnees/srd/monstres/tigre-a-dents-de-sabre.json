@@ -1,0 +1,98 @@
+{
+  "sauvegardes": {
+    "for": 6,
+    "dex": 5
+  },
+  "competences": {
+    "discretion": 7,
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "saut-avec-elan",
+      "nom": "Saut avec élan",
+      "resume": "Avec une prise d'élan de 3 m, le tigre peut franchir jusqu'à 7,50 m lors d'un saut en longueur."
+    }
+  ],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "tigre-a-dents-de-sabre",
+  "nom": "Tigre à dents de sabre",
+  "taille": "G",
+  "ca": 13,
+  "pv": {
+    "moyenne": 52,
+    "des": "7d10 + 14"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 17,
+    "con": 15,
+    "int": 3,
+    "sag": 12,
+    "cha": 8
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le tigre effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 11 (2d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "Le tigre entreprend l'action Désengagement ou Furtivité.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "id": "dragon-tortue",
+  "nom": "Dragon-tortue",
+  "taille": "Gig",
+  "type": "Dragon",
+  "alignement": "Neutre",
+  "ca": 20,
+  "pv": {
+    "moyenne": 356,
+    "des": "23d20 + 115"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 15
+  },
+  "caracteristiques": {
+    "for": 25,
+    "dex": 10,
+    "con": 20,
+    "int": 10,
+    "sag": 12,
+    "cha": 12
+  },
+  "sauvegardes": {
+    "con": 11,
+    "sag": 7
+  },
+  "competences": {},
+  "initiative": 6,
+  "resistances": [
+    "feu"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "draconique, primordial (aquatique)",
+  "fp": "17",
+  "px": 18000,
+  "bonusMaitrise": 6,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Morsure. Il peut en remplacer une par une attaque de Queue.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +13, allonge 4,50 m : 23 (3d10 + 7) dégâts perforants plus 7 (2d6) dégâts de feu. Être immergé dans l'eau n'octroie pas la Résistance à ces dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 13
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 7,
+          "type": "perforant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +13, allonge 4,50 m : 18 (2d10 + 7) dégâts contondants. Si la cible est une créature de taille TG ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 13
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 7,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    },
+    {
+      "id": "souffle-de-vapeur",
+      "nom": "Souffle de vapeur",
+      "cout": "action",
+      "resume": "JS Constitution DD 19, chaque créature dans un Cône de 18 m. Échec : 56 (16d6) dégâts de feu. Réussite : demi-dégâts. Échec ou réussite : être immergé dans l'eau n'octroie pas la Résistance à ces dégâts de feu.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 19,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "16d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

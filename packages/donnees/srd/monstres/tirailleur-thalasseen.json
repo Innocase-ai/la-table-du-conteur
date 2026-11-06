@@ -1,0 +1,102 @@
+{
+  "id": "tirailleur-thalasseen",
+  "nom": "Tirailleur thalasséen",
+  "taille": "M",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 11,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 3,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 13,
+    "con": 12,
+    "int": 11,
+    "sag": 14,
+    "cha": 12
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun, primordial (aquatique)",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le thalasséen peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "lance-oceanique-cac",
+      "nom": "Lance océanique (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 3 (1d6) dégâts perforants plus 2 (1d4) dégâts de froid. Si la cible est une créature, sa Vitesse est réduite de 3 m jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ]
+    },
+    {
+      "id": "lance-oceanique-lancer",
+      "nom": "Lance océanique (lancer)",
+      "cout": "action",
+      "resume": "À distance +2, portée 6/18 m : 3 (1d6) dégâts perforants plus 2 (1d4) dégâts de froid. Si la cible est une créature, sa Vitesse est réduite de 3 m jusqu'à la fin de son tour suivant. Touché ou raté : aussitôt après une attaque à distance, la lance retourne magiquement dans la main du thalasséen.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ]
+    }
+  ]
+}

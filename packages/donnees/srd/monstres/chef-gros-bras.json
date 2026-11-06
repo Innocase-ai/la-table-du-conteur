@@ -1,0 +1,107 @@
+{
+  "id": "chef-gros-bras",
+  "nom": "Chef gros-bras",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 16,
+  "pv": {
+    "moyenne": 82,
+    "des": "11d8 + 33"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 14,
+    "con": 16,
+    "int": 11,
+    "sag": 10,
+    "cha": 11
+  },
+  "sauvegardes": {
+    "for": 5,
+    "con": 5,
+    "cha": 2
+  },
+  "competences": {},
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun et une autre langue",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le gros-bras a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le gros-bras effectue deux attaques, réparties à sa guise entre Marteau de guerre et Arbalète lourde.",
+      "multiattaque": [
+        {
+          "action": "marteau-de-guerre",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "marteau-de-guerre",
+      "nom": "Marteau de guerre",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 12 (2d8 + 3) dégâts contondants. Si la cible est une créature de taille G ou inférieure, le gros-bras la repousse en ligne droite d'un maximum de 3 m.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "arbalete-lourde",
+      "nom": "Arbalète lourde",
+      "cout": "action",
+      "resume": "À distance +4, portée 30/120 m : 13 (2d10 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 30,
+        "longue": 120
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

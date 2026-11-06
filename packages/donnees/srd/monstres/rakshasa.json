@@ -1,0 +1,150 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "intuition": 8,
+    "perception": 8,
+    "tromperie": 10
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [
+    "dégâts perforants infligés avec une arme maniée par une créature sous l'effet du sort bénédiction"
+  ],
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 18 m (non représentée dans les sens du moteur)."
+    },
+    {
+      "id": "resistance-a-la-magie-supreme",
+      "nom": "Résistance à la magie suprême",
+      "resume": "Le rakshasa réussit automatiquement les jets de sauvegarde contre les sorts et autres effets magiques, et les jets d'attaque des sorts le ratent automatiquement. Nul sort ne permet d'observer le rakshasa à distance ni de détecter ses pensées, son type de créature ou son alignement sans son consentement."
+    },
+    {
+      "id": "restauration-fielonne",
+      "nom": "Restauration fiélonne",
+      "resume": "Si le rakshasa meurt hors des Neuf Enfers, son corps se dissout en ichor et il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv, quelque part dans les Neuf Enfers."
+    }
+  ],
+  "id": "rakshasa",
+  "nom": "Rakshasa",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Loyal Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 221,
+    "des": "26d8 + 104"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 17,
+    "con": 18,
+    "int": 13,
+    "sag": 16,
+    "cha": 20
+  },
+  "initiative": 8,
+  "sens": {
+    "perceptionPassive": 18
+  },
+  "langues": "commun, infernal",
+  "fp": "13",
+  "px": 10000,
+  "bonusMaitrise": 5,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le rakshasa effectue trois attaques de Contact maudit.",
+      "multiattaque": [
+        {
+          "action": "contact-maudit",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "contact-maudit",
+      "nom": "Contact maudit",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 1,50 m : 12 (2d6 + 5) dégâts tranchants plus 19 (3d12) dégâts nécrotiques. Si la cible est une créature, elle est maudite. Une cible ainsi maudite ne tire aucun bénéfice lorsqu'elle termine un Repos court ou long.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 5,
+          "type": "tranchant"
+        },
+        {
+          "des": "3d12",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le rakshasa lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 18). À volonté : déguisement, détection de la magie, détection des pensées, illusion mineure, main du mage. 1/jour chacun : changement de plan, image majeure, invisibilité, vol.",
+      "portee": {
+        "type": "personnel"
+      }
+    },
+    {
+      "id": "injonction-lugubre",
+      "nom": "Injonction lugubre",
+      "cout": "action",
+      "resume": "(Recharge 5-6.) JS Sagesse DD 18, chaque ennemi dans une Émanation de 9 m centrée sur le rakshasa. Échec : 28 (8d6) dégâts psychiques, et la cible subit l'état Effrayé et Neutralisé jusqu'au début du tour suivant du rakshasa.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 18,
+        "moitieSiReussite": false
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 9
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "degats": [
+        {
+          "des": "8d6",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        },
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

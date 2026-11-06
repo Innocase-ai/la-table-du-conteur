@@ -1,0 +1,111 @@
+{
+  "id": "lion",
+  "nom": "Lion",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d10"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 15,
+    "con": 11,
+    "int": 3,
+    "sag": 12,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 3
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "saut-avec-elan",
+      "nom": "Saut avec élan",
+      "resume": "Avec une prise d'élan de 3 m, le lion peut franchir jusqu'à 7,50 m d'un saut en longueur."
+    },
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le lion a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le lion effectue deux attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de Rugissement.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "rugissement",
+      "nom": "Rugissement",
+      "cout": "action",
+      "resume": "JS Sagesse DD 11, une créature dans un rayon de 4,50 m. Échec : la cible subit l'état Effrayé jusqu'au début du tour suivant du lion.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 4.5
+      },
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

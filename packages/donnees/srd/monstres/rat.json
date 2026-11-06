@@ -1,0 +1,73 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "agile",
+      "nom": "Agile",
+      "resume": "Le rat ne provoque pas d'attaque d'Opportunité lorsqu'il quitte l'allonge d'un ennemi en se déplaçant."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "rat",
+  "nom": "Rat",
+  "taille": "TP",
+  "ca": 10,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 6,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 2,
+    "dex": 11,
+    "con": 9,
+    "int": 2,
+    "sag": 10,
+    "cha": 4
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 9,
+    "perceptionPassive": 12
+  },
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

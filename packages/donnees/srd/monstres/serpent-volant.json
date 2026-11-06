@@ -1,0 +1,77 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "Le serpent ne provoque pas d'attaque d'Opportunité lorsqu'il quitte la zone d'allonge d'un ennemi en volant."
+    }
+  ],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Monstruosité",
+  "bonusMaitrise": 2,
+  "id": "serpent-volant",
+  "nom": "Serpent volant",
+  "taille": "TP",
+  "ca": 14,
+  "pv": {
+    "moyenne": 5,
+    "des": "2d4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 4,
+    "dex": 15,
+    "con": 11,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 3,
+    "perceptionPassive": 11
+  },
+  "fp": "1/8",
+  "px": 25,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 1 dégât perforant plus 5 (2d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

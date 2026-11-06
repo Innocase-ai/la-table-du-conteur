@@ -1,0 +1,130 @@
+{
+  "id": "drider",
+  "nom": "Drider",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 19,
+  "pv": {
+    "moyenne": 123,
+    "des": "13d10 + 52"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 19,
+    "con": 18,
+    "int": 13,
+    "sag": 16,
+    "cha": 12
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 10,
+    "perception": 6
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 16
+  },
+  "langues": "commun des profondeurs, elfique",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "marche-dans-les-toiles",
+      "nom": "Marche dans les toiles",
+      "resume": "Le drider n'est pas soumis aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile que lui."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "Le drider peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    },
+    {
+      "id": "sensibilite-au-soleil",
+      "nom": "Sensibilité au soleil",
+      "resume": "Tant qu'il est exposé à la lumière du soleil, le drider subit le Désavantage aux tests de caractéristique et aux jets d'attaque."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le drider effectue trois attaques, réparties à sa guise entre Patte avant et Décharge toxique.",
+      "multiattaque": [
+        {
+          "action": "patte-avant",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "patte-avant",
+      "nom": "Patte avant",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 13 (2d8 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "decharge-toxique",
+      "nom": "Décharge toxique",
+      "cout": "action",
+      "resume": "À distance +6, portée 36 m : 13 (3d6 + 3) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "magie-de-la-reine-araignee",
+      "nom": "Magie de la Reine Araignée",
+      "cout": "bonus",
+      "resume": "Le drider lance lueurs féeriques, ténèbres ou toile d'araignée, sans composantes matérielles, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 14).",
+      "degats": [],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

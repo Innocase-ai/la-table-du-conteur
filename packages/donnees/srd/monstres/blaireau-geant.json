@@ -1,0 +1,74 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 3
+  },
+  "resistances": [
+    "poison"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 3 m (non représentée dans le moteur)."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "id": "blaireau-geant",
+  "nom": "Blaireau géant",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 15,
+    "des": "2d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 10,
+    "con": 17,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 6 (2d4 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

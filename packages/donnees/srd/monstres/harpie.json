@@ -1,0 +1,92 @@
+{
+  "id": "harpie",
+  "nom": "Harpie",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 11,
+  "pv": {
+    "moyenne": 38,
+    "des": "7d8 + 7"
+  },
+  "vitesse": {
+    "marche": 6,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 13,
+    "con": 12,
+    "int": 7,
+    "sag": 10,
+    "cha": 13
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 6 (2d4 + 1) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 1,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "chant-captivant",
+      "nom": "Chant captivant",
+      "cout": "action",
+      "resume": "La harpie chante une mélodie magique qui persiste jusqu'à ce que cesse sa Concentration. JS Sagesse DD 11, chaque Humanoïde et Géant dans une Émanation de 90 m centrée sur la harpie quand le chant débute. Échec : la cible subit l'état Charmé jusqu'à ce que le chant cesse et réitère le JS à la fin de chacun de ses tours. Tant qu'elle est ainsi Charmée, la cible subit l'état Neutralisé et ignore le Chant captivant des autres harpies. Si la cible se trouve à plus de 1,50 m de la harpie, elle doit consacrer son déplacement à se rapprocher d'elle par le chemin le plus direct, jusqu'à terminer dans un rayon de 1,50 m. La cible ne cherche pas à éviter les attaques d'Opportunité, mais si elle doit traverser un terrain dangereux (fosse de lave), elle peut réitérer le JS, de même chaque fois qu'elle subit des dégâts d'une source autre que la harpie. Réussite : la cible est immunisée contre le Chant captivant de cette harpie pendant 24 heures.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 90
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "etats": [
+        {
+          "etat": "charme",
+          "sauvegardeFinDeTour": true
+        },
+        {
+          "etat": "neutralise",
+          "sauvegardeFinDeTour": true
+        }
+      ]
+    }
+  ]
+}

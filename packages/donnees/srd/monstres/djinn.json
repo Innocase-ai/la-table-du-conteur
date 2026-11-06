@@ -1,0 +1,174 @@
+{
+  "id": "djinn",
+  "nom": "Djinn",
+  "taille": "G",
+  "type": "Élémentaire (Génie)",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 218,
+    "des": "19d10 + 114"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 27
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 15,
+    "con": 22,
+    "int": 15,
+    "sag": 16,
+    "cha": 20
+  },
+  "sauvegardes": {
+    "dex": 6,
+    "sag": 7
+  },
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "foudre",
+    "tonnerre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 13
+  },
+  "langues": "primordial (aérien)",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 27 m (vol stationnaire)."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le djinn a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-elementaire",
+      "nom": "Restauration élémentaire",
+      "resume": "Si le djinn meurt hors du Plan Élémentaire de l'Air, son corps se dissipe en brume et il en acquiert un nouveau en 1d4 jours, pour revenir à la vie avec tous ses pv quelque part dans le Plan de l'Air."
+    },
+    {
+      "id": "souhaits",
+      "nom": "Souhaits",
+      "resume": "Le djinn a 30 % de chances de connaître le sort souhait. Si tel est le cas, il ne peut le lancer que pour une créature autre qu'un génie, qui doit communiquer son souhait d'une manière intelligible pour le djinn. Si le djinn lance le sort pour la créature, il ne subit pas les effets délétères normalement liés à cette épreuve. Après que le djinn a lancé trois fois ce sort, il doit attendre 365 jours pour pouvoir le relancer."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le djinn effectue trois attaques, réparties à sa guise entre Lame d'orage et Trait d'orage (choix complet laissé au MJ).",
+      "multiattaque": [
+        {
+          "action": "lame-d-orage",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "lame-d-orage",
+      "nom": "Lame d'orage",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 1,50 m : 12 (2d6 + 5) dégâts tranchants plus 7 (2d6) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 5,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "trait-d-orage",
+      "nom": "Trait d'orage",
+      "cout": "action",
+      "resume": "À distance +9, portée 36 m : 13 (3d8) dégâts de tonnerre. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 0,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "creation-de-tourbillon",
+      "nom": "Création de tourbillon",
+      "cout": "action",
+      "resume": "Le djinn invoque un tourbillon en un point qu'il voit dans un rayon de 36 m. Le tourbillon emplit un Cylindre de 6 m de rayon et 18 m de haut, centré sur ce point. Le tourbillon persiste jusqu'à ce que cesse la Concentration du djinn sur lui. Le djinn peut déplacer le tourbillon d'un maximum de 6 m au début de chacun de ses tours. Chaque fois que le tourbillon pénètre dans l'espace d'une créature ou qu'une créature entre dans le tourbillon, celle-ci est soumise à l'effet suivant. JS Force : DD 17 (une même créature n'effectue en aucun cas ce JS plus d'une fois par tour et le djinn n'est pas affecté). Échec : tant qu'elle est dans le tourbillon, la cible subit l'état Entravé et se déplace avec le tourbillon. Au début de chacun de ses tours, la cible Entravée subit 21 (6d6) dégâts de tonnerre. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l'effet sur elle-même en cas de réussite.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "zone": {
+        "forme": "cylindre",
+        "taille": 6
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "entrave",
+          "sauvegardeFinDeTour": true
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le djinn lance l'un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 17). À volonté : détection de la magie, détection du mal et du bien. 2/jour chacun : création de nourriture et d'eau (peut produire du vin plutôt que de l'eau), don des langues, vent divin. 1/jour chacun : création, changement de plan, forme gazeuse, image majeure, invisibilité.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

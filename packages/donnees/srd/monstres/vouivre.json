@@ -1,0 +1,55 @@
+{
+  "id": "vouivre",
+  "nom": "Vouivre",
+  "taille": "G",
+  "type": "Dragon",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": { "moyenne": 127, "des": "15d10 + 45" },
+  "vitesse": { "marche": 9, "vol": 24 },
+  "caracteristiques": { "for": 19, "dex": 10, "con": 16, "int": 5, "sag": 12, "cha": 6 },
+  "sauvegardes": {},
+  "competences": { "perception": 4 },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": { "visionDansLeNoir": 36, "perceptionPassive": 14 },
+  "langues": "aucune",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La vouivre effectue une attaque de Dard et une de Morsure.",
+      "multiattaque": [{ "action": "dard", "nombre": 1 }, { "action": "morsure", "nombre": 1 }]
+    },
+    {
+      "id": "dard",
+      "nom": "Dard",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 11 (2d6 + 4) dégâts perforants plus 24 (7d6) dégâts de poison, et la cible subit l'état Empoisonné jusqu'au début du tour suivant de la vouivre.",
+      "resolution": { "type": "attaque", "mode": "corps-a-corps", "bonus": 7 },
+      "portee": { "type": "contact", "allonge": 3 },
+      "degats": [
+        { "des": "2d6", "bonus": 4, "type": "perforant" },
+        { "des": "7d6", "bonus": 0, "type": "poison" }
+      ],
+      "etats": [{ "etat": "empoisonne", "dureeRounds": 1 }]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 13 (2d8 + 4) dégâts perforants.",
+      "resolution": { "type": "attaque", "mode": "corps-a-corps", "bonus": 7 },
+      "portee": { "type": "contact", "allonge": 1.5 },
+      "degats": [{ "des": "2d8", "bonus": 4, "type": "perforant" }]
+    }
+  ]
+}

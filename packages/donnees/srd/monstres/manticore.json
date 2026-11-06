@@ -1,0 +1,103 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "manticore",
+  "nom": "Manticore",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Loyale Mauvaise",
+  "ca": 14,
+  "pv": {
+    "moyenne": 68,
+    "des": "8d10 + 24"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 16,
+    "con": 17,
+    "int": 7,
+    "sag": 12,
+    "cha": 8
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La manticore effectue trois attaques, réparties à sa guise entre Saignée et Piquant caudal.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        },
+        {
+          "action": "piquant-caudal",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "piquant-caudal",
+      "nom": "Piquant caudal",
+      "cout": "action",
+      "resume": "À distance +5, portée 30/60 m : 7 (1d8 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 30,
+        "longue": 60
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

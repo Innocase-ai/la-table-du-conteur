@@ -1,0 +1,140 @@
+{
+  "id": "gladiateur",
+  "nom": "Gladiateur",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 16,
+  "pv": {
+    "moyenne": 112,
+    "des": "15d8 + 45"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 16,
+    "int": 10,
+    "sag": 12,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "for": 7,
+    "dex": 5,
+    "con": 6,
+    "sag": 4
+  },
+  "competences": {
+    "athletisme": 10,
+    "representation": 5
+  },
+  "initiative": 5,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "commun",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le gladiateur effectue trois attaques de Lance. Il peut remplacer l'une de ces attaques par une utilisation de Coup de bouclier.",
+      "multiattaque": [
+        {
+          "action": "lance",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "lance",
+      "nom": "Lance (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "lance-lancer",
+      "nom": "Lance (lancer)",
+      "cout": "action",
+      "resume": "À distance +7, portée 6/18 m : 11 (2d6 + 4) dégâts perforants. Le gladiateur porte 3 lances.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "coup-de-bouclier",
+      "nom": "Coup de bouclier",
+      "cout": "action",
+      "resume": "JS Force DD 15, une créature dans un rayon de 1,50 m que le gladiateur voit. Échec : 9 (2d4 + 4) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "cout": "reaction",
+      "resume": "Déclencheur : le gladiateur est touché par un jet d'attaque de corps à corps alors qu'il tient une arme. Conséquences : il ajoute 3 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ]
+}

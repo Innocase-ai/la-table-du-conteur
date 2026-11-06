@@ -1,0 +1,137 @@
+{
+  "id": "jeune-dragon-blanc",
+  "nom": "Jeune dragon blanc",
+  "taille": "G",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 123,
+    "des": "13d10 + 52"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 10,
+    "con": 18,
+    "int": 6,
+    "sag": 11,
+    "cha": 12
+  },
+  "sauvegardes": {
+    "for": 4,
+    "dex": 3,
+    "con": 4,
+    "int": -2,
+    "sag": 3,
+    "cha": 1
+  },
+  "competences": {
+    "discretion": 3,
+    "perception": 6
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 9,
+    "perceptionPassive": 16
+  },
+  "langues": "commun, draconique",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 6 m (non représentée dans les vitesses du moteur)."
+    },
+    {
+      "id": "marche-sur-la-glace",
+      "nom": "Marche sur la glace",
+      "resume": "Le dragon peut parcourir et gravir toute surface gelée sans passer par le moindre test de caractéristique. En outre, tout Terrain difficile composé de glace ou de neige ne lui demande aucune dépense de déplacement supplémentaire."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 9 (2d4 + 4) dégâts tranchants plus 2 (1d4) dégâts de froid.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-glacial",
+      "nom": "Souffle glacial",
+      "cout": "action",
+      "resume": "Souffle glacial (recharge 5-6). JS Constitution DD 15, chaque créature dans un Cône de 9 m. Échec : 40 (9d8) dégâts de froid. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 15,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "9d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

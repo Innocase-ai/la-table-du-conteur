@@ -1,0 +1,70 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "mille-pattes-geant",
+  "nom": "Mille-pattes géant",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 9,
+    "des": "2d6 + 2"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 5,
+    "dex": 14,
+    "con": 12,
+    "int": 1,
+    "sag": 7,
+    "cha": 3
+  },
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 8
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants, et la cible subit l'état Empoisonné jusqu'au début du tour suivant du mille-pattes.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

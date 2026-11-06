@@ -1,0 +1,116 @@
+{
+  "id": "pretre",
+  "nom": "Prêtre",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 38,
+    "des": "7d8 + 7"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 10,
+    "con": 12,
+    "int": 13,
+    "sag": 16,
+    "cha": 13
+  },
+  "sauvegardes": {},
+  "competences": {
+    "medecine": 7,
+    "perception": 5,
+    "religion": 5
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "commun et une autre langue",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le prêtre lance l'un des sorts suivants, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 13). À volonté : lumière, thaumaturgie. 1/jour : esprits gardiens."
+    },
+    {
+      "id": "soutien-divin",
+      "nom": "Soutien divin",
+      "resume": "Action bonus (3/jour). Le prêtre lance bénédiction, dissipation de la magie, mot de guérison ou restauration partielle, avec la même caractéristique d'incantation que pour Incantation."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le prêtre effectue deux attaques, réparties à sa guise entre Masse d'armes et Flamme radiante.",
+      "multiattaque": [
+        {
+          "action": "masse-d-armes",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "masse-d-armes",
+      "nom": "Masse d'armes",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants plus 5 (2d4) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    },
+    {
+      "id": "flamme-radiante",
+      "nom": "Flamme radiante",
+      "cout": "action",
+      "resume": "À distance +5, portée 18 m : 11 (2d10) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    }
+  ]
+}

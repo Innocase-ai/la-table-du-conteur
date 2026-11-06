@@ -1,0 +1,83 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vision-dans-le-noir-infernale",
+      "nom": "Vision dans le noir infernale",
+      "resume": "Vision dans le noir 36 m (perce les Ténèbres magiques)."
+    },
+    {
+      "id": "restauration-infernale",
+      "nom": "Restauration infernale",
+      "resume": "Si le lémure meurt dans les Neuf Enfers, il revient à la vie avec tous ses pv en 1d10 jours sauf s'il est tué par une créature sous les effets du sort bénédiction ou si ce qu'il en reste est aspergé d'eau bénite."
+    }
+  ],
+  "id": "lemure",
+  "nom": "Lémure",
+  "taille": "M",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 9,
+  "pv": {
+    "moyenne": 9,
+    "des": "2d8"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 5,
+    "con": 11,
+    "int": 1,
+    "sag": 11,
+    "cha": 3
+  },
+  "initiative": -3,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 10
+  },
+  "langues": "comprend l'infernal, mais ne parle pas",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "limon-abject",
+      "nom": "Limon abject",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 2 (1d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    }
+  ]
+}

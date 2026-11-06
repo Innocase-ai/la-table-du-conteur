@@ -1,0 +1,88 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "resistances": [
+    "nécrotique",
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "id": "aigle-geant",
+  "nom": "Aigle géant",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Neutre Bon",
+  "ca": 13,
+  "pv": {
+    "moyenne": 26,
+    "des": "4d10 + 4"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 17,
+    "con": 13,
+    "int": 8,
+    "sag": 14,
+    "cha": 10
+  },
+  "initiative": 3,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "céleste ; comprend le commun et le primordial (aérien) mais ne parle pas",
+  "fp": "1",
+  "px": 200,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'aigle effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts tranchants plus 3 (1d6) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

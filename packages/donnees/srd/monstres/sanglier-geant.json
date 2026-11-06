@@ -1,0 +1,76 @@
+{
+  "sauvegardes": {
+    "for": 5
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "fureur-du-peril",
+      "nom": "Fureur du péril",
+      "resume": "Le sanglier a l'Avantage aux jets d'attaque de corps à corps lorsqu'il est En péril."
+    }
+  ],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "sanglier-geant",
+  "nom": "Sanglier géant",
+  "taille": "G",
+  "ca": 13,
+  "pv": {
+    "moyenne": 42,
+    "des": "5d10 + 15"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 10,
+    "con": 16,
+    "int": 2,
+    "sag": 7,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 8
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "coup-de-defense",
+      "nom": "Coup de défense",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts perforants. Si la cible est de taille G ou inférieure et si le sanglier s'est déplacé en ligne droite d'au moins 6 m juste avant de la toucher, la cible subit 7 (2d6) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

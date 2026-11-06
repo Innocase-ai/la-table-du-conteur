@@ -1,0 +1,69 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "acrobaties": 5,
+    "discretion": 5,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "id": "belette-geante",
+  "nom": "Belette géante",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 9,
+    "des": "2d8"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 17,
+    "con": 10,
+    "int": 4,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/8",
+  "px": 25,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

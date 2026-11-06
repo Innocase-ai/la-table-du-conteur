@@ -1,0 +1,139 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 10,
+    "perception": 8
+  },
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "empoisonne",
+    "entrave",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 15 m (vol stationnaire)."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    },
+    {
+      "id": "corps-d-air",
+      "nom": "Corps d'air",
+      "resume": "Le traqueur peut pénétrer dans un espace occupé par un ennemi et s'y arrêter. Il peut se déplacer dans un espace étroit d'une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+    },
+    {
+      "id": "invisibilite",
+      "nom": "Invisibilité",
+      "resume": "Le traqueur bénéficie de l'état Invisible."
+    }
+  ],
+  "id": "traqueur-invisible",
+  "nom": "Traqueur invisible",
+  "taille": "G",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 97,
+    "des": "13d10 + 26"
+  },
+  "vitesse": {
+    "marche": 15,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 19,
+    "con": 14,
+    "int": 10,
+    "sag": 15,
+    "cha": 11
+  },
+  "initiative": 7,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 18
+  },
+  "langues": "commun, primordial (aérien)",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le traqueur effectue trois attaques de Pique de vent. Il peut remplacer l'une de ces attaques par une utilisation de Vortex.",
+      "multiattaque": [
+        {
+          "action": "pique-de-vent",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "pique-de-vent",
+      "nom": "Pique de vent",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 11 (2d6 + 4) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "vortex",
+      "nom": "Vortex",
+      "cout": "action",
+      "resume": "JS Constitution DD 14, une créature de taille G ou inférieure dans l'espace du traqueur. Échec : 7 (1d8 + 3) dégâts de tonnerre, et la cible subit l'état Agrippé (évasion DD 13). Tant qu'elle est Agrippée, la cible ne peut pas lancer de sorts à composante verbale et subit 7 (2d6) dégâts de tonnerre au début de chacun des tours du traqueur.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

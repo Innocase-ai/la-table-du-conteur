@@ -1,0 +1,129 @@
+{
+  "id": "crocodile-geant",
+  "nom": "Crocodile géant",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 85,
+    "des": "9d12 + 27"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 15
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 9,
+    "con": 17,
+    "int": 2,
+    "sag": 10,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5
+  },
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "Le crocodile peut retenir son souffle pendant 1 heure."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le crocodile effectue une attaque de Morsure et une de Queue.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 1
+        },
+        {
+          "action": "queue",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 21 (3d10 + 5) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 15). Ainsi Agrippée, la cible subit aussi l'état Entravé et ne peut pas être ciblée par la Queue du crocodile.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 15,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "evasion": 15,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 18 (3d8 + 5) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

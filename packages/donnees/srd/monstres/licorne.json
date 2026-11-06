@@ -1,0 +1,140 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "id": "licorne",
+  "nom": "Licorne",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Loyal Bon",
+  "ca": 12,
+  "pv": {
+    "moyenne": 97,
+    "des": "13d10 + 26"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 14,
+    "con": 15,
+    "int": 11,
+    "sag": 17,
+    "cha": 16
+  },
+  "initiative": 8,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "céleste, elfique, sylvestre ; télépathie 36 m",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "La licorne a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire (3/jour)",
+      "resume": "Si la licorne rate un jet de sauvegarde, elle peut décider de le réussir tout de même."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "La licorne lance l'un des sorts suivants, sans composantes de sort, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 14). À volonté : détection du mal et du bien, druidisme. 1/jour chacun : apaisement des émotions, dissipation du mal et du bien, enchevêtrement, mot de retour, passage sans trace."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3. Aussitôt après le tour d'une autre créature, la licorne peut dépenser une utilisation pour entreprendre l'une des actions suivantes ; elle récupère toutes ses utilisations au début de chacun de ses tours. Corne la première : la licorne se déplace à concurrence de la moitié de sa Vitesse sans provoquer d'attaques d'Opportunité, et elle effectue une attaque de Corne radiante. Pavois chatoyant : la licorne cible une créature qu'elle voit dans un rayon de 18 m (ou elle-même) ; la cible reçoit 10 (3d6) points de vie temporaires et sa CA augmente de 2 jusqu'à la fin du tour suivant de la licorne. La licorne ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La licorne effectue une attaque de Corne radiante et une de Sabots.",
+      "multiattaque": [
+        {
+          "action": "corne-radiante",
+          "nombre": 1
+        },
+        {
+          "action": "sabots",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "corne-radiante",
+      "nom": "Corne radiante",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 9 (1d10 + 4) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 4,
+          "type": "radiant"
+        }
+      ]
+    },
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 11 (2d6 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "faveur-de-la-licorne",
+      "nom": "Faveur de la licorne",
+      "cout": "bonus",
+      "resume": "La licorne touche physiquement une autre créature avec sa corne et lance restauration partielle ou soins sur cette créature, avec la même caractéristique d'incantation que pour Incantation.",
+      "utilisations": {
+        "nombre": 3,
+        "par": "jour"
+      },
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

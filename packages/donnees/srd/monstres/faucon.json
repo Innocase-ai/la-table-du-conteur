@@ -1,0 +1,66 @@
+{
+  "id": "faucon",
+  "nom": "Faucon",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 5,
+    "dex": 16,
+    "con": 8,
+    "int": 2,
+    "sag": 14,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "serres",
+      "nom": "Serres",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 1 dégât tranchant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

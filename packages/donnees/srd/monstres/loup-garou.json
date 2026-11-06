@@ -1,0 +1,142 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "loup-garou",
+  "nom": "Loup-garou",
+  "taille": "M",
+  "type": "Monstruosité (Lycanthrope)",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 15,
+  "pv": {
+    "moyenne": 71,
+    "des": "11d8 + 22"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 10,
+    "sag": 11,
+    "cha": 10
+  },
+  "initiative": 4,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "commun (ne parle pas sous forme de loup)",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le loup-garou a l'Avantage au jet d'attaque correspondant."
+    },
+    {
+      "id": "vitesse-forme-de-loup",
+      "nom": "Vitesse en forme de loup",
+      "resume": "Vitesse 9 m, 12 m (forme de loup uniquement) ; la vitesse de 12 m n'est pas représentée dans le moteur. Taille M ou P selon le SRD (profil noté en M). Équipement : arc long."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le loup-garou effectue deux attaques, réparties à sa guise entre Éraflure et Arc long. Il peut en remplacer une par une attaque de Morsure.",
+      "multiattaque": [
+        {
+          "action": "eraflure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "eraflure",
+      "nom": "Éraflure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure (forme de loup ou hybride uniquement)",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 12 (2d8 + 3) dégâts perforants. Si la cible est un Humanoïde, JS Constitution DD 12. Échec : la cible est maudite ; si elle tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un loup-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce loup-garou pendant 24 heures.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-long",
+      "nom": "Arc long (forme humanoïde ou hybride uniquement)",
+      "cout": "action",
+      "resume": "À distance +4, portée 45/180 m : 11 (2d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le loup-garou se transforme en hybride loup-humanoïde de taille G ou en loup de taille M, ou bien retrouve sa forme véritable d'humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

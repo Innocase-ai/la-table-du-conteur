@@ -1,0 +1,97 @@
+{
+  "id": "combattant-kobold",
+  "nom": "Combattant kobold",
+  "taille": "P",
+  "type": "Dragon",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 7,
+    "des": "3d6 - 3"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 7,
+    "dex": 15,
+    "con": 9,
+    "int": 8,
+    "sag": 7,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "commun, draconique",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "sensibilite-au-soleil",
+      "nom": "Sensibilité au soleil",
+      "resume": "Tant qu'il est exposé à la lumière du soleil, le kobold subit le Désavantage aux tests de caractéristique et aux jets d'attaque."
+    },
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le kobold a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "dague-cac",
+      "nom": "Dague (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "dague-lancer",
+      "nom": "Dague (lancer)",
+      "cout": "action",
+      "resume": "À distance +4, portée 6/18 m : 4 (1d4 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

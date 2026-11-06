@@ -1,0 +1,78 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "Le requin ne peut respirer que sous l'eau."
+    },
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le requin a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "requin-de-recif",
+  "nom": "Requin de récif",
+  "taille": "M",
+  "ca": 12,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d8 + 4"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 15,
+    "con": 13,
+    "int": 1,
+    "sag": 10,
+    "cha": 4
+  },
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 12
+  },
+  "fp": "1/2",
+  "px": 100,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (2d4 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

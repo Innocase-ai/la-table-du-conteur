@@ -1,0 +1,71 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "Le piranha ne peut respirer que sous l'eau."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "piranha",
+  "nom": "Piranha",
+  "taille": "TP",
+  "ca": 13,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 2,
+    "dex": 16,
+    "con": 9,
+    "int": 1,
+    "sag": 7,
+    "cha": 2
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5 (avec Avantage si la cible n'a pas tous ses pv), allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

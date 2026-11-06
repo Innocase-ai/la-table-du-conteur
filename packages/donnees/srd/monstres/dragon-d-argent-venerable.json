@@ -1,0 +1,224 @@
+{
+  "id": "dragon-d-argent-venerable",
+  "nom": "Dragon d’argent vénérable",
+  "taille": "Gig",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 22,
+  "pv": {
+    "moyenne": 468,
+    "des": "24d20 + 216"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 30,
+    "dex": 10,
+    "con": 29,
+    "int": 18,
+    "sag": 15,
+    "cha": 26
+  },
+  "sauvegardes": {
+    "for": 10,
+    "dex": 7,
+    "con": 9,
+    "int": 4,
+    "sag": 9,
+    "cha": 8
+  },
+  "competences": {
+    "discretion": 7,
+    "histoire": 11,
+    "perception": 16
+  },
+  "initiative": 14,
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 26
+  },
+  "langues": "commun, draconique",
+  "fp": "23",
+  "px": 50000,
+  "bonusMaitrise": 7,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 62 000 PX dans son antre (50 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(4/jour, ou 5/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre Assaut incisif, On ne bouge plus, Rafale gelée. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de (A) Incantation pour lancer couteau de glace (au 2e niveau) ou (B) Souffle paralysant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +17, allonge 4,5 m : 19 (2d8 + 10) dégâts tranchants plus 9 (2d8) dégâts de froid.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 17
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 10,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 23, +15 pour toucher) : À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), couteau de glace (au 2e niveau), détection de la magie, immobilisation de monstre. 1/jour chacun : contrôle du climat, téléportation, tempête de grêle (au 7e niveau), zone de vérité.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-glacial",
+      "nom": "Souffle glacial",
+      "cout": "action",
+      "resume": "JS Constitution DD 24, chaque créature dans un Cône de 27 m. Échec : 67 (15d8) dégâts de froid. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 24,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 27
+      },
+      "degats": [
+        {
+          "des": "15d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-paralysant",
+      "nom": "Souffle paralysant",
+      "cout": "action",
+      "resume": "JS Constitution DD 24, chaque créature dans un Cône de 27 m. Premier échec : la cible subit l'état Neutralisé jusqu'à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l'état Paralysé et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 24,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 27
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "neutralise"
+        },
+        {
+          "etat": "paralyse",
+          "sauvegardeFinDeTour": true,
+          "dureeRounds": 10
+        }
+      ]
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "on-ne-bouge-plus",
+      "nom": "On ne bouge plus",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer immobilisation de monstre. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "rafale-gelee",
+      "nom": "Rafale gelée",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Dextérité DD 23, chaque créature dans une Ligne de 18 m de long sur 3 m de large. Échec : 14 (4d6) dégâts de froid, et la cible est repoussée du dragon en ligne droite d'un maximum de 9 m. Réussite : demi-dégâts uniquement. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 23,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 18,
+        "largeur": 3
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

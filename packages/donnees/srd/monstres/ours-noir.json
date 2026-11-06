@@ -1,0 +1,82 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "ours-noir",
+  "nom": "Ours noir",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 14,
+    "int": 2,
+    "sag": 12,
+    "cha": 7
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "fp": "1/2",
+  "px": 100,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ours effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

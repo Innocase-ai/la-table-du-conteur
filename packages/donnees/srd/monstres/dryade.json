@@ -1,0 +1,131 @@
+{
+  "id": "dryade",
+  "nom": "Dryade",
+  "taille": "M",
+  "type": "Fée",
+  "alignement": "Neutre",
+  "ca": 16,
+  "pv": {
+    "moyenne": 22,
+    "des": "5d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 12,
+    "con": 11,
+    "int": 14,
+    "sag": 15,
+    "cha": 18
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 4
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "elfique, sylvestre",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "communication-avec-les-betes-et-les-plantes",
+      "nom": "Communication avec les bêtes et les plantes",
+      "resume": "La dryade peut communiquer avec les Bêtes et les Plantes comme si elles parlaient la même langue."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "La dryade a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La dryade effectue une attaque de Vrille cinglante ou de Décharge d'épines, et peut recourir à Incantation pour lancer charme-monstre.",
+      "multiattaque": [
+        {
+          "action": "vrille-cinglante",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "vrille-cinglante",
+      "nom": "Vrille cinglante",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 8 (1d8 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "decharge-d-epines",
+      "nom": "Décharge d'épines",
+      "cout": "action",
+      "resume": "À distance +6, portée 18 m : 7 (1d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "La dryade lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 14) : À volonté : amitié avec les animaux, charme-monstre (dure 24 heures ; se termine prématurément si la dryade relance le sort), druidisme. 1/jour chacun : enchevêtrement, passage sans trace.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "passage-par-les-arbres",
+      "nom": "Passage par les arbres",
+      "cout": "bonus",
+      "resume": "Si elle est dans un rayon de 1,50 m d'un arbre de taille G ou supérieure, la dryade se téléporte en un espace inoccupé à 1,50 m ou moins d'un autre arbre de taille G ou supérieure, dans un rayon de 18 m du premier.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

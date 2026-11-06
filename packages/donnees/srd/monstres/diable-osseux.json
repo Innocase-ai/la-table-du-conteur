@@ -1,0 +1,144 @@
+{
+  "id": "diable-osseux",
+  "nom": "Diable osseux",
+  "taille": "G",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 16,
+  "pv": {
+    "moyenne": 161,
+    "des": "17d10 + 68"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 16,
+    "con": 18,
+    "int": 13,
+    "sag": 14,
+    "cha": 16
+  },
+  "sauvegardes": {
+    "for": 8,
+    "int": 5,
+    "sag": 6,
+    "cha": 7
+  },
+  "competences": {
+    "intuition": 6,
+    "tromperie": 7
+  },
+  "initiative": 7,
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 12
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "vision-perce-tenebres",
+      "nom": "Vision dans le noir (perce les Ténèbres magiques)",
+      "resume": "La Vision dans le noir de ce fiélon perce les Ténèbres magiques."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le diable a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu'il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le diable effectue deux attaques de Griffe et une de Dard infernal.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        },
+        {
+          "action": "dard-infernal",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "dard-infernal",
+      "nom": "Dard infernal",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 15 (2d10 + 4) dégâts perforants plus 18 (4d8) dégâts de poison, et la cible subit l'état Empoisonné jusqu'au début du tour suivant du diable. Ainsi Empoisonnée, la cible ne peut pas récupérer de points de vie.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 13 (2d8 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ]
+}

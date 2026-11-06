@@ -1,0 +1,86 @@
+{
+  "id": "sentinelle-azer",
+  "nom": "Sentinelle azer",
+  "taille": "M",
+  "type": "Élémentaire",
+  "alignement": "Loyal Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 39,
+    "des": "6d8 + 12"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 12,
+    "con": 15,
+    "int": 12,
+    "sag": 13,
+    "cha": 10
+  },
+  "sauvegardes": {
+    "con": 4
+  },
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "primordial (igné)",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "aura-de-feu",
+      "nom": "Aura de feu",
+      "resume": "À la fin de chaque tour de l'azer, chaque créature qu'il choisit dans une Émanation de 1,50 m centrée sur lui subit 5 (1d10) dégâts de feu, sauf si cet azer subit l'état Neutralisé."
+    },
+    {
+      "id": "illumination",
+      "nom": "Illumination",
+      "resume": "L'azer projette une Lumière vive sur un rayon de 3 m, et une Lumière faible sur 3 m de plus."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "marteau-ardent",
+      "nom": "Marteau ardent",
+      "resume": "Corps à corps +5, allonge 1,50 m : 8 (1d10 + 3) dégâts contondants plus 3 (1d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "dragonnet-rouge",
+  "nom": "Dragonnet rouge",
+  "taille": "M",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 75,
+    "des": "10d8 + 30"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 10,
+    "con": 17,
+    "int": 12,
+    "sag": 11,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "for": 4,
+    "dex": 2,
+    "con": 3,
+    "int": 1,
+    "sag": 2,
+    "cha": 2
+  },
+  "competences": {
+    "discretion": 2,
+    "perception": 4
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "visionAveugle": 3,
+    "perceptionPassive": 14
+  },
+  "langues": "draconique",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 9 (1d10 + 4) dégâts tranchants plus 3 (1d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "Souffle de feu (recharge 5-6). JS Dextérité DD 13, chaque créature dans un Cône de 4,50 m. Échec : 24 (7d6) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 13,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "degats": [
+        {
+          "des": "7d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

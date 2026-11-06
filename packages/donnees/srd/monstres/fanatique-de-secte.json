@@ -1,0 +1,84 @@
+{
+  "id": "fanatique-de-secte",
+  "nom": "Fanatique de secte",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 44,
+    "des": "8d8 + 8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 14,
+    "con": 12,
+    "int": 10,
+    "sag": 14,
+    "cha": 13
+  },
+  "sauvegardes": {
+    "sag": 4
+  },
+  "competences": {
+    "persuasion": 3,
+    "religion": 2,
+    "tromperie": 3
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le sectateur lance l'un des sorts suivants, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 12, +4 pour toucher) : À volonté : lumière, thaumaturgie. 2/jour : injonction. 1/jour : immobilisation de personne."
+    },
+    {
+      "id": "arme-spirituelle",
+      "nom": "Arme spirituelle (2/jour)",
+      "resume": "Action bonus. Le sectateur lance le sort arme spirituelle avec la même caractéristique d'incantation que pour Incantation."
+    }
+  ],
+  "actions": [
+    {
+      "id": "lame-de-pacte",
+      "nom": "Lame de pacte",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts tranchants plus 7 (2d6) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

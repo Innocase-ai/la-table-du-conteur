@@ -1,0 +1,160 @@
+{
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 4,
+    "cha": 2
+  },
+  "competences": {},
+  "resistances": [
+    "feu",
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le vrock a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-demoniaque",
+      "nom": "Restauration démoniaque",
+      "resume": "Si le vrock meurt hors des Abysses, son corps se dissout en ichor et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part dans les Abysses."
+    }
+  ],
+  "id": "vrock",
+  "nom": "Vrock",
+  "taille": "G",
+  "type": "Fiélon (Démon)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 152,
+    "des": "16d10 + 64"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 15,
+    "con": 18,
+    "int": 8,
+    "sag": 13,
+    "cha": 8
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "abyssal ; télépathie 36 m",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le vrock effectue deux attaques de Déchiquetage.",
+      "multiattaque": [
+        {
+          "action": "dechiquetage",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "dechiquetage",
+      "nom": "Déchiquetage",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 10 (2d6 + 3) dégâts perforants plus 10 (3d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "piaillement-etourdissant",
+      "nom": "Piaillement étourdissant (1/jour)",
+      "cout": "action",
+      "resume": "JS Constitution DD 15, chaque créature dans une Émanation de 6 m centrée sur le vrock (les démons réussissent automatiquement). Échec : 10 (3d6) dégâts de tonnerre, et la cible subit l'état Étourdi jusqu'à la fin du tour suivant du vrock (état Étourdi non représenté dans le moteur).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 6
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "tonnerre"
+        }
+      ],
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    },
+    {
+      "id": "spores",
+      "nom": "Spores",
+      "cout": "action",
+      "resume": "(Recharge 6.) JS Constitution DD 15, chaque créature dans une Émanation de 6 m centrée sur le vrock. Échec : la cible subit l'état Empoisonné et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l'effet sur elle-même en cas de réussite. Ainsi Empoisonnée, une cible subit 5 (1d10) dégâts de poison au début de chacun de ses tours. Vider une flasque d'eau bénite sur la cible met prématurément fin à l'effet.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 6
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "sauvegardeFinDeTour": true
+        }
+      ],
+      "recharge": "6"
+    }
+  ]
+}

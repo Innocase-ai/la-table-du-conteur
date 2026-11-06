@@ -1,0 +1,158 @@
+{
+  "sauvegardes": {
+    "dex": 3,
+    "con": 6,
+    "sag": 4,
+    "cha": 5
+  },
+  "competences": {
+    "arcanes": 5,
+    "perception": 4,
+    "tromperie": 8
+  },
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "regeneration",
+      "nom": "Régénération",
+      "resume": "L'oni récupère 10 points de vie au début de chacun de ses tours s'il lui reste au moins 1 point de vie."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 9 m (vol stationnaire)."
+    }
+  ],
+  "id": "oni",
+  "nom": "Oni",
+  "taille": "G",
+  "type": "Fiélon",
+  "alignement": "Loyal Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 119,
+    "des": "14d10 + 42"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 11,
+    "con": 16,
+    "int": 14,
+    "sag": 12,
+    "cha": 15
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "commun, gigant",
+  "fp": "7",
+  "px": 2900,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'oni effectue deux attaques de Griffe ou de Rayon de cauchemar (modélisé : deux Griffe). Il peut remplacer l'une de ces attaques par une utilisation d'Incantation.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 10 (1d12 + 4) dégâts tranchants plus 9 (2d8) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d12",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "rayon-de-cauchemar",
+      "nom": "Rayon de cauchemar",
+      "cout": "action",
+      "resume": "À distance +5, portée 18 m : 9 (2d6 + 2) dégâts psychiques, et la cible subit l'état Effrayé jusqu'au début du tour suivant de l'oni.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 2,
+          "type": "psychique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "action",
+      "resume": "L'oni se transforme en Humanoïde de taille P ou M, en Géant de taille G ou bien retrouve sa forme véritable. Hormis sa catégorie de taille, son profil reste le même, quelle que soit sa forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "L'oni lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 13). 1/jour chacun : charme-personne (au 2e niveau), forme gazeuse, sommeil, ténèbres.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "invisibilite",
+      "nom": "Invisibilité",
+      "cout": "bonus",
+      "resume": "L'oni lance invisibilité sur lui-même, sans composantes de sort, avec la même caractéristique d'incantation que pour Incantation.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

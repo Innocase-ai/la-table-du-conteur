@@ -1,0 +1,67 @@
+{
+  "id": "chacal",
+  "nom": "Chacal",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 3,
+    "des": "1d6"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 15,
+    "con": 11,
+    "int": 3,
+    "sag": 12,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 27,
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

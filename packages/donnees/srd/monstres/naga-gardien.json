@@ -1,0 +1,145 @@
+{
+  "sauvegardes": {
+    "dex": 8,
+    "con": 7,
+    "int": 7,
+    "sag": 8,
+    "cha": 8
+  },
+  "competences": {
+    "arcanes": 11,
+    "histoire": 11,
+    "religion": 11
+  },
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "empoisonne",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "restauration-celeste",
+      "nom": "Restauration céleste",
+      "resume": "Quand le naga meurt, il revient à la vie au bout de 1d6 jours avec tous ses points de vie, sauf si dissipation du mal et du bien est lancé sur son cadavre."
+    }
+  ],
+  "id": "naga-gardien",
+  "nom": "Naga gardien",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Loyal Bon",
+  "ca": 18,
+  "pv": {
+    "moyenne": 136,
+    "des": "16d10 + 48"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 18,
+    "con": 16,
+    "int": 16,
+    "sag": 19,
+    "cha": 18
+  },
+  "initiative": 4,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "céleste, commun",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le naga effectue deux attaques de Morsure. Il peut remplacer l'une de ces attaques par une utilisation de Crachat venimeux.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 17 (2d12 + 4) dégâts perforants plus 22 (4d10) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "4d10",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le naga lance l'un des sorts suivants sans composantes matérielles ni somatiques, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 16). À volonté : thaumaturgie. 1/jour chacun : clairvoyance, colonne de flamme (au 6e niveau), quête, soins (au 6e niveau), vision suprême.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "crachat-venimeux",
+      "nom": "Crachat venimeux",
+      "cout": "action",
+      "resume": "JS Constitution DD 16, une créature que le naga voit dans un rayon de 18 m. Échec : 31 (7d8) dégâts de poison, et la cible subit l'état Aveuglé jusqu'au début du tour suivant du naga. Réussite : demi-dégâts uniquement.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 16,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "7d8",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "aveugle",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

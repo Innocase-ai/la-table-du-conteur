@@ -1,0 +1,135 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison",
+    "psychiques"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "forme-immuable",
+      "nom": "Forme immuable",
+      "resume": "Le golem ne peut pas être métamorphosé."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le golem a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "id": "golem-de-pierre",
+  "nom": "Golem de pierre",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 18,
+  "pv": {
+    "moyenne": 220,
+    "des": "21d10 + 105"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 9,
+    "con": 20,
+    "int": 3,
+    "sag": 11,
+    "cha": 1
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 10
+  },
+  "langues": "comprend le commun et deux autres langues, mais ne parle pas",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le golem effectue deux attaques, réparties à sa guise entre Coup et Trait de force.",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 1,50 m : 15 (2d8 + 6) dégâts contondants plus 9 (2d8) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "contondant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "trait-de-force",
+      "nom": "Trait de force",
+      "cout": "action",
+      "resume": "À distance +9, portée 36 m : 22 (4d10) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 0,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "lenteur",
+      "nom": "Lenteur",
+      "cout": "bonus",
+      "resume": "Le golem lance lenteur, sans composantes de sort, la Constitution étant sa caractéristique d'incantation (DD de sauvegarde 17).",
+      "recharge": "5-6",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

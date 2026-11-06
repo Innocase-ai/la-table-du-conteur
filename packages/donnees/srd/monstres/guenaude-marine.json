@@ -1,0 +1,112 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "La guenaude peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "laideur-effroyable",
+      "nom": "Laideur effroyable",
+      "resume": "JS Sagesse DD 11, tout Humanoïde ou Bête qui commence son tour dans un rayon de 9 m de la guenaude et qui voit sa forme véritable. Échec : la cible subit l'état Effrayé jusqu'au début de son tour suivant. Réussite : la cible est immunisée contre la Laideur effroyable de cette guenaude pendant 24 heures."
+    },
+    {
+      "id": "magie-d-assemblee",
+      "nom": "Magie d'assemblée",
+      "resume": "Tant qu'elle se trouve dans un rayon de 9 m d'au moins deux alliées guenaudes, la guenaude peut lancer l'un des sorts suivants sans composantes matérielles, avec le temps d'incantation normal, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 11) : appel de familier, augure, identification, localisation d'objet, scrutation, serviteur invisible. La guenaude doit terminer un Repos long avant de pouvoir relancer ce sort par ce trait."
+    }
+  ],
+  "id": "guenaude-marine",
+  "nom": "Guenaude marine",
+  "taille": "M",
+  "type": "Fée",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 14,
+  "pv": {
+    "moyenne": 52,
+    "des": "7d8 + 21"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 13,
+    "con": 16,
+    "int": 12,
+    "sag": 12,
+    "cha": 13
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun, gigant, primordial (aquatique)",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "regard-mortel",
+      "nom": "Regard mortel",
+      "cout": "action",
+      "resume": "JS Sagesse DD 11, une créature Effrayée que la guenaude voit dans un rayon de 9 m. Échec : si la cible a 20 points de vie ou moins, elle tombe à 0 point de vie. Sinon, la cible subit 13 (3d8) dégâts psychiques.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "apparence-illusoire",
+      "nom": "Apparence illusoire",
+      "cout": "action",
+      "resume": "La guenaude lance déguisement, la Constitution étant sa caractéristique d'incantation (DD de sauvegarde 13). La durée du sort est de 24 heures.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

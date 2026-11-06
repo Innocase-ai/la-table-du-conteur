@@ -1,0 +1,141 @@
+{
+  "id": "efrit",
+  "nom": "Éfrit",
+  "taille": "G",
+  "type": "Élémentaire (Génie)",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 212,
+    "des": "17d10 + 119"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 12,
+    "con": 24,
+    "int": 16,
+    "sag": 15,
+    "cha": 19
+  },
+  "sauvegardes": {
+    "sag": 6,
+    "cha": 8
+  },
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 12
+  },
+  "langues": "primordial (igné)",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 18 m (vol stationnaire)."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "L'éfrit a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-elementaire",
+      "nom": "Restauration élémentaire",
+      "resume": "Si l'éfrit meurt hors du Plan Élémentaire du Feu, son corps se réduit en cendres et il en acquiert un nouveau en 1d4 jours, pour revenir à la vie avec tous ses pv quelque part dans le Plan du Feu."
+    },
+    {
+      "id": "souhaits",
+      "nom": "Souhaits",
+      "resume": "L'éfrit a 30 % de chances de connaître le sort souhait. Si tel est le cas, il ne peut le lancer que pour une créature autre qu'un génie, qui doit communiquer son souhait d'une manière intelligible pour l'éfrit. Si l'éfrit lance le sort pour la créature, il ne subit pas les effets délétères normalement liés à cette épreuve. Après que l'éfrit a lancé trois fois ce sort, il doit attendre 365 jours pour pouvoir le relancer."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'éfrit effectue trois attaques, réparties à sa guise entre Lame incandescente et Jet de flammes (choix complet laissé au MJ).",
+      "multiattaque": [
+        {
+          "action": "lame-incandescente",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "lame-incandescente",
+      "nom": "Lame incandescente",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 1,50 m : 13 (2d6 + 6) dégâts tranchants plus 13 (2d12) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d12",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "jet-de-flammes",
+      "nom": "Jet de flammes",
+      "cout": "action",
+      "resume": "À distance +8, portée 36 m : 24 (7d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "7d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "L'éfrit lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 16). À volonté : détection de la magie, élémentalisme. 1/jour chacun : changement de plan, don des langues, forme gazeuse, image majeure, invisibilité, mur de feu (au 7e niveau).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

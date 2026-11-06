@@ -1,0 +1,83 @@
+{
+  "id": "archelon",
+  "nom": "Archélon",
+  "taille": "TG",
+  "type": "Bête (Dinosaure)",
+  "alignement": "non aligné",
+  "ca": 17,
+  "pv": {
+    "moyenne": 90,
+    "des": "12d12 + 12"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 24
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 16,
+    "con": 13,
+    "int": 4,
+    "sag": 14,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "aucune",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "L'archélon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'archélon effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 14 (3d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

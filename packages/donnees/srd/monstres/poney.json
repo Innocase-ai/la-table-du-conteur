@@ -1,0 +1,65 @@
+{
+  "sauvegardes": {
+    "for": 4
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "poney",
+  "nom": "Poney",
+  "taille": "M",
+  "ca": 10,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 10,
+    "con": 13,
+    "int": 2,
+    "sag": 11,
+    "cha": 7
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "fp": "1/8",
+  "px": 25,
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

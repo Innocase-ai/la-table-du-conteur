@@ -1,0 +1,154 @@
+{
+  "id": "diable-cornu",
+  "nom": "Diable cornu",
+  "taille": "G",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 199,
+    "des": "19d10 + 95"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 17,
+    "con": 21,
+    "int": 12,
+    "sag": 16,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "for": 10,
+    "dex": 7,
+    "sag": 7,
+    "cha": 8
+  },
+  "competences": {},
+  "initiative": 7,
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 45,
+    "perceptionPassive": 13
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "vision-perce-tenebres",
+      "nom": "Vision dans le noir (perce les Ténèbres magiques)",
+      "resume": "La Vision dans le noir de ce fiélon perce les Ténèbres magiques."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le diable a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu'il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le diable effectue trois attaques, réparties à sa guise entre Fourche incendiaire et Jet de flammes. Il peut remplacer l'une de ces attaques par une utilisation de Queue infernale.",
+      "multiattaque": [
+        {
+          "action": "fourche-incendiaire",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "fourche-incendiaire",
+      "nom": "Fourche incendiaire",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 15 (2d8 + 6) dégâts perforants plus 9 (2d8) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "perforant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ]
+    },
+    {
+      "id": "jet-de-flammes",
+      "nom": "Jet de flammes",
+      "cout": "action",
+      "resume": "À distance +8, portée 45 m : 26 (5d8 + 4) dégâts de feu. Si la cible est un objet inflammable qui n'est porté par personne, elle s'embrase.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45
+      },
+      "degats": [
+        {
+          "des": "5d8",
+          "bonus": 4,
+          "type": "feu"
+        }
+      ]
+    },
+    {
+      "id": "queue-infernale",
+      "nom": "Queue infernale",
+      "cout": "action",
+      "resume": "JS Dextérité DD 17, une créature que le diable voit dans un rayon de 3 m. Échec : 10 (1d8 + 6) dégâts nécrotiques, et la cible subit une plaie infernale si elle n'en a pas déjà une. Ainsi blessée, la cible perd 10 (3d6) points de vie au début de chacun de ses tours. La plaie se referme au bout de 1 minute, si un sort restitue des points de vie à la cible ou si elle-même ou une créature dans un rayon de 1,50 m d'elle consacre une action à panser la plaie et réussit un test de Sagesse (Médecine) DD 17.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 3
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 6,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le molosse a l'Avantage au jet d'attaque correspondant contre cette créature."
+    }
+  ],
+  "id": "molosse-infernal",
+  "nom": "Molosse infernal",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Loyal Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 58,
+    "des": "9d8 + 18"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 12,
+    "con": 14,
+    "int": 6,
+    "sag": 13,
+    "cha": 6
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "comprend l'infernal, mais ne parle pas",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le molosse effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts perforants plus 3 (1d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ]
+    }
+  ]
+}

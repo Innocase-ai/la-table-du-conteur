@@ -1,0 +1,132 @@
+{
+  "id": "enlaceur",
+  "nom": "Enlaceur",
+  "taille": "G",
+  "type": "Aberration",
+  "alignement": "Neutre Mauvaise",
+  "ca": 20,
+  "pv": {
+    "moyenne": 93,
+    "des": "11d10 + 33"
+  },
+  "vitesse": {
+    "marche": 3,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 8,
+    "con": 17,
+    "int": 7,
+    "sag": 16,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 6
+  },
+  "initiative": 5,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "L'enlaceur peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'enlaceur effectue deux attaques de Tentacule, recourt à Traction et effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "tentacule",
+          "nombre": 2
+        },
+        {
+          "action": "traction",
+          "nombre": 1
+        },
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 17 (3d8 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "tentacule",
+      "nom": "Tentacule",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 18 m : la cible subit l'état Agrippé (évasion DD 14) par l'un des six tentacules, ainsi que l'état Empoisonné tant qu'elle est Agrippée. Le tentacule peut subir des dégâts et libère la créature Agrippée s'il est détruit (CA 20, 10 pv, Immunité contre les dégâts psychiques et de poison). Infliger des dégâts à un tentacule n'en inflige aucun à l'enlaceur, et tout tentacule ainsi détruit repousse au début du tour suivant de l'enlaceur.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 18
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14
+        },
+        {
+          "etat": "empoisonne"
+        }
+      ]
+    },
+    {
+      "id": "traction",
+      "nom": "Traction",
+      "cout": "action",
+      "resume": "L'enlaceur tire vers lui chaque créature Agrippée, en ligne droite, d'un maximum de 9 m.",
+      "resolution": {
+        "type": "automatique"
+      },
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

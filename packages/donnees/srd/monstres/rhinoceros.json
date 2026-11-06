@@ -1,0 +1,68 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "rhinoceros",
+  "nom": "Rhinocéros",
+  "taille": "G",
+  "ca": 13,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 8,
+    "con": 15,
+    "int": 2,
+    "sag": 12,
+    "cha": 6
+  },
+  "initiative": -1,
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "coup-de-corne",
+      "nom": "Coup de corne",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 14 (2d8 + 5) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si le rhinocéros s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 9 (2d8) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

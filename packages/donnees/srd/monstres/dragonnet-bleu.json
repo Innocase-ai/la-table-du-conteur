@@ -1,0 +1,128 @@
+{
+  "id": "dragonnet-bleu",
+  "nom": "Dragonnet bleu",
+  "taille": "M",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Loyal Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 65,
+    "des": "10d8 + 20"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 10,
+    "con": 15,
+    "int": 12,
+    "sag": 11,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "dex": 2,
+    "sag": 2
+  },
+  "competences": {
+    "discretion": 2,
+    "perception": 4
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "foudre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "visionAveugle": 3,
+    "perceptionPassive": 14
+  },
+  "langues": "draconique",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 4,50 m (non représentée dans le moteur)."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 8 (1d10 + 3) dégâts tranchants plus 3 (1d6) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-foudre",
+      "nom": "Souffle de foudre",
+      "cout": "action",
+      "resume": "JS Dextérité DD 12, chaque créature dans une Ligne de 9 m de long sur 1,50 m de large. Échec : 21 (6d6) dégâts de foudre. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 12,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 9,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "6d6",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

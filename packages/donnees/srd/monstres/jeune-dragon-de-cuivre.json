@@ -1,0 +1,140 @@
+{
+  "id": "jeune-dragon-de-cuivre",
+  "nom": "Jeune dragon de cuivre",
+  "taille": "G",
+  "type": "Dragon (Métallique)",
+  "alignement": "Chaotique Bon",
+  "ca": 17,
+  "pv": {
+    "moyenne": 119,
+    "des": "14d10 + 42"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 12,
+    "con": 17,
+    "int": 16,
+    "sag": 13,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "dex": 4,
+    "sag": 4
+  },
+  "competences": {
+    "discretion": 4,
+    "perception": 7,
+    "tromperie": 5
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 17
+  },
+  "langues": "commun, draconique",
+  "fp": "7",
+  "px": 2900,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de Souffle ralentissant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 15 (2d10 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-d-acide",
+      "nom": "Souffle d'acide",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 14, chaque créature dans une Ligne de 12 m de long sur 1,50 m de large. Échec : 40 (9d8) dégâts d'acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 14,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 12,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "9d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-ralentissant",
+      "nom": "Souffle ralentissant",
+      "cout": "action",
+      "resume": "JS Constitution DD 14, chaque créature dans un Cône de 9 m. Échec : la cible voit sa Vitesse réduite de moitié, ne peut pas jouer de Réaction et peut entreprendre une action ou une action Bonus à son tour, mais pas les deux. L'effet persiste jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

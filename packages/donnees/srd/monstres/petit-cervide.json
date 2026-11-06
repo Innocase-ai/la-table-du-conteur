@@ -1,0 +1,72 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "agile",
+      "nom": "Agile",
+      "resume": "Le cervidé ne provoque pas d'attaque d'Opportunité lorsqu'il quitte l'allonge d'un ennemi en se déplaçant."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "petit-cervide",
+  "nom": "Petit cervidé",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 4,
+    "des": "1d8"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 16,
+    "con": 11,
+    "int": 2,
+    "sag": 14,
+    "cha": 5
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "coup-de-belier",
+      "nom": "Coup de bélier",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 2 (1d4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

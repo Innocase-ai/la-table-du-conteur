@@ -1,0 +1,155 @@
+{
+  "id": "merrow",
+  "nom": "Merrow",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 13,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 3,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 15,
+    "int": 8,
+    "sag": 10,
+    "cha": 9
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "abyssal, primordial (aquatique)",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le merrow peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le merrow effectue deux attaques, réparties à sa guise entre Griffe, Morsure et Harpon.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 9 (2d4 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "harpon-cac",
+      "nom": "Harpon (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure, le merrow la tire en ligne droite vers lui d'un maximum de 4,50 m.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "harpon-lancer",
+      "nom": "Harpon (lancer)",
+      "cout": "action",
+      "resume": "À distance +6, portée 6/18 m : 11 (2d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure, le merrow la tire en ligne droite vers lui d'un maximum de 4,50 m.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 6 (1d4 + 4) dégâts perforants, et la cible subit l'état Empoisonné jusqu'à la fin du tour suivant du merrow.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

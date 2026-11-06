@@ -1,0 +1,69 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "scorpion",
+  "nom": "Scorpion",
+  "taille": "TP",
+  "ca": 11,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 3
+  },
+  "caracteristiques": {
+    "for": 2,
+    "dex": 11,
+    "con": 8,
+    "int": 1,
+    "sag": 8,
+    "cha": 2
+  },
+  "initiative": 0,
+  "sens": {
+    "visionAveugle": 3,
+    "perceptionPassive": 9
+  },
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "dard",
+      "nom": "Dard",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 1 dégât perforant plus 3 (1d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

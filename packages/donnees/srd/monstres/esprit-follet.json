@@ -1,0 +1,112 @@
+{
+  "id": "esprit-follet",
+  "nom": "Esprit follet",
+  "taille": "TP",
+  "type": "Fée",
+  "alignement": "Neutre Bonne",
+  "ca": 15,
+  "pv": {
+    "moyenne": 10,
+    "des": "4d4"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 3,
+    "dex": 18,
+    "con": 10,
+    "int": 14,
+    "sag": 13,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 8,
+    "perception": 3
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "commun, elfique, sylvestre",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "epee-ingle",
+      "nom": "Épée-ingle",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 6 (1d4 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "arc-enchante",
+      "nom": "Arc enchanté",
+      "cout": "action",
+      "resume": "À distance +6, portée 12/48 m : 1 dégât perforant, et la cible subit l'état Charmé jusqu'au début du tour suivant de l'esprit follet.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 12,
+        "longue": 48
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "charme",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "invisibilite",
+      "nom": "Invisibilité",
+      "cout": "action",
+      "resume": "L'esprit follet lance invisibilité sur lui-même, sans composante matérielle, le Charisme étant sa caractéristique d'incantation.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "perception-du-for-interieur",
+      "nom": "Perception du for intérieur",
+      "cout": "action",
+      "resume": "JS Charisme : DD 10, une créature que l'esprit follet voit dans un rayon de 1,50 m (Célestes, Fiélons et Morts-vivants ratent automatiquement ce JS). Échec : l'esprit follet perçoit l'alignement et l'affect actuel de la cible.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

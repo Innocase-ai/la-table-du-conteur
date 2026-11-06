@@ -1,0 +1,147 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "formes",
+      "nom": "Taille selon la forme",
+      "resume": "Humanoïde de taille M ou P ; hybride de taille M ; rat de taille P. Équipement : arbalète de poing."
+    }
+  ],
+  "id": "rat-garou",
+  "nom": "Rat-garou",
+  "taille": "M",
+  "type": "Monstruosité (Lycanthrope)",
+  "alignement": "Loyal Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 60,
+    "des": "11d8 + 11"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 16,
+    "con": 12,
+    "int": 11,
+    "sag": 10,
+    "cha": 8
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "commun (ne parle pas sous forme de rat)",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le rat-garou effectue deux attaques, réparties à sa guise entre Éraflure et Arbalète de poing. Il peut en remplacer une par une attaque de Morsure.",
+      "multiattaque": [
+        {
+          "action": "eraflure",
+          "nombre": 1
+        },
+        {
+          "action": "arbalete-de-poing",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "eraflure",
+      "nom": "Éraflure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Formes de rat et hybride uniquement. Corps à corps +5, allonge 1,50 m : 8 (2d4 + 3) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l'effet suivant. JS Constitution DD 11. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un rat-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce rat-garou pendant 24 heures.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "arbalete-de-poing",
+      "nom": "Arbalète de poing",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. À distance +5, portée 9/36 m : 6 (1d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 36
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le rat-garou se transforme en hybride rat-humanoïde de taille M ou en rat de taille P, ou bien retrouve sa forme véritable d'humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

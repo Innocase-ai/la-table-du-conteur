@@ -1,0 +1,99 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "membres-abominables",
+      "nom": "Membres abominables (4/jour)",
+      "resume": "Si le troll termine un tour En péril et subit au moins 15 dégâts tranchants à ce tour, l'un de ses membres est sectionné et tombe dans l'espace du monstre, pour devenir un abattis de troll, sorte de membre autonome. L'abattis agit juste après le tour du troll. Le troll subit 1 niveau d'Épuisement par membre manquant, sachant qu'un nouveau membre pousse pour le remplacer la prochaine fois qu'il récupère des points de vie."
+    },
+    {
+      "id": "regeneration",
+      "nom": "Régénération",
+      "resume": "Le troll récupère 15 points de vie au début de chacun de ses tours. S'il subit des dégâts d'acide ou de feu, ce trait ne fonctionne pas à son tour suivant. Le troll ne meurt que s'il commence son tour à 0 point de vie et ne se régénère pas."
+    }
+  ],
+  "id": "troll",
+  "nom": "Troll",
+  "taille": "G",
+  "type": "Géant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 94,
+    "des": "9d10 + 45"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 13,
+    "con": 20,
+    "int": 7,
+    "sag": 9,
+    "cha": 7
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "gigant",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le troll effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 11 (2d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "charge",
+      "nom": "Charge",
+      "cout": "bonus",
+      "resume": "Le troll se déplace à concurrence de la moitié de sa Vitesse en ligne droite vers un ennemi qu'il voit.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

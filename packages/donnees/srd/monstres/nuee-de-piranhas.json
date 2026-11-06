@@ -1,0 +1,92 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "nuee",
+      "nom": "Nuée",
+      "resume": "La nuée peut occuper l'espace d'une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour un piranha de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+    },
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "La nuée ne peut respirer que sous l'eau."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Étourdi, Pétrifié."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "nuee-de-piranhas",
+  "nom": "Nuée de piranhas",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 28,
+    "des": "8d8 - 8"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 16,
+    "con": 9,
+    "int": 1,
+    "sag": 7,
+    "cha": 2
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 8
+  },
+  "fp": "1",
+  "px": 200,
+  "actions": [
+    {
+      "id": "morsures",
+      "nom": "Morsures",
+      "cout": "action",
+      "resume": "Corps à corps +5 (avec Avantage si la cible n'a pas tous ses pv), allonge 1,50 m : 8 (2d4 + 3) dégâts perforants, ou 5 (1d4 + 3) dégâts perforants si la nuée est En péril.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

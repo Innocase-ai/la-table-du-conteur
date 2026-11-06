@@ -1,0 +1,134 @@
+{
+  "id": "assassin",
+  "nom": "Assassin",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 16,
+  "pv": {
+    "moyenne": 97,
+    "des": "15d8 + 30"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 18,
+    "con": 14,
+    "int": 16,
+    "sag": 11,
+    "cha": 10
+  },
+  "sauvegardes": {
+    "dex": 7,
+    "int": 6
+  },
+  "competences": {
+    "acrobaties": 7,
+    "discretion": 10,
+    "perception": 6
+  },
+  "initiative": 10,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "argot des voleurs, commun",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "esquive-totale",
+      "nom": "Esquive totale",
+      "resume": "Si l'assassin est soumis à un effet qui lui permet d'effectuer un jet de sauvegarde de Dextérité pour réduire les dégâts de moitié, il ne subit en fait aucun dégât en cas de JS réussi, et seulement la moitié en cas d'échec. Il ne peut pas recourir à ce trait s'il subit l'état Neutralisé."
+    },
+    {
+      "id": "ruse",
+      "nom": "Ruse",
+      "resume": "Action bonus. L'assassin entreprend l'action Désengagement, Furtivité ou Pointe."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'assassin effectue trois attaques, réparties à sa guise entre Épée courte et Arbalète légère.",
+      "multiattaque": [
+        {
+          "action": "epee-courte",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "epee-courte",
+      "nom": "Épée courte",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 7 (1d6 + 4) dégâts perforants plus 17 (5d6) dégâts de poison, et la cible subit l'état Empoisonné jusqu'au début du tour suivant de l'assassin.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "5d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1,
+          "sauvegardeFinDeTour": false
+        }
+      ]
+    },
+    {
+      "id": "arbalete-legere",
+      "nom": "Arbalète légère",
+      "cout": "action",
+      "resume": "À distance +7, portée 24/96 m : 8 (1d8 + 4) dégâts perforants plus 21 (6d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 24,
+        "longue": 96
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "6d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    }
+  ],
+  "resistances": [
+    "poison"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

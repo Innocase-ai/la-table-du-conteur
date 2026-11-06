@@ -1,0 +1,73 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "feu"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "illumination",
+      "nom": "Illumination",
+      "resume": "Le scarabée projette une Lumière vive sur un rayon de 3 m et une Lumière faible sur 3 m de plus."
+    }
+  ],
+  "id": "scarabee-de-feu-geant",
+  "nom": "Scarabée de feu géant",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 4,
+    "des": "1d6 + 1"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 10,
+    "con": 12,
+    "int": 1,
+    "sag": 7,
+    "cha": 3
+  },
+  "initiative": 0,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 8
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +1, allonge 1,50 m : 1 dégât de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 1
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

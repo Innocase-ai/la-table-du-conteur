@@ -1,0 +1,65 @@
+{
+  "id": "chauve-souris",
+  "nom": "Chauve-souris",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 9
+  },
+  "caracteristiques": {
+    "for": 2,
+    "dex": 15,
+    "con": 8,
+    "int": 2,
+    "sag": 12,
+    "cha": 4
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

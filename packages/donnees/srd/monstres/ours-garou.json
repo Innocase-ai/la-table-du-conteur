@@ -1,0 +1,169 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 7
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "formes-et-vitesses",
+      "nom": "Taille et vitesses selon la forme",
+      "resume": "Humanoïde de taille M ou P ; hybride ou ours de taille G. Vitesse 9 m, 12 m (forme d'ours uniquement), escalade 9 m (forme d'ours uniquement). Équipement : hachettes (4)."
+    }
+  ],
+  "id": "ours-garou",
+  "nom": "Ours-garou",
+  "taille": "M",
+  "type": "Monstruosité (Lycanthrope)",
+  "alignement": "Neutre Bonne",
+  "ca": 15,
+  "pv": {
+    "moyenne": 135,
+    "des": "18d8 + 54"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 10,
+    "con": 17,
+    "int": 11,
+    "sag": 12,
+    "cha": 12
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 17
+  },
+  "langues": "commun (ne parle pas sous forme d'ours)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ours-garou effectue deux attaques, réparties à sa guise entre Hachette et Saignée. Il peut en remplacer une par une attaque de Morsure.",
+      "multiattaque": [
+        {
+          "action": "hachette-cac",
+          "nombre": 1
+        },
+        {
+          "action": "saignee",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "hachette-cac",
+      "nom": "Hachette (corps à corps)",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. Corps à corps +7, allonge 1,50 m : 14 (3d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "hachette-lancer",
+      "nom": "Hachette (lancer)",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. À distance +7, portée 6/18 m : 14 (3d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Forme d'ours ou hybride uniquement. Corps à corps +7, allonge 1,50 m : 17 (2d12 + 4) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l'effet suivant. JS Constitution DD 14. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un ours-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce ours-garou pendant 24 heures.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Forme d'ours ou hybride uniquement. Corps à corps +7, allonge 1,50 m : 13 (2d8 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "L'ours-garou se transforme en hybride ours-humanoïde de taille G ou en ours de taille G, ou bien retrouve sa forme véritable d'humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "nuee",
+      "nom": "Nuée",
+      "resume": "La nuée peut occuper l'espace d'une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour un insecte de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+    },
+    {
+      "id": "vitesse-escalade-ou-vol",
+      "nom": "Vitesse d'escalade ou de vol",
+      "resume": "Vitesse 6 m, escalade ou vol 6 m (au choix du MJ) ; seule l'escalade est représentée dans le moteur."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "Si la nuée dispose d'une Vitesse d'escalade, elle peut parcourir les parois les plus difficiles, y compris les plafonds, sans test de caractéristique."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Étourdi, Pétrifié."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "nuee-d-insectes",
+  "nom": "Nuée d'insectes",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d8 + 6"
+  },
+  "vitesse": {
+    "marche": 6,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 3,
+    "dex": 13,
+    "con": 14,
+    "int": 1,
+    "sag": 7,
+    "cha": 1
+  },
+  "initiative": 1,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 8
+  },
+  "fp": "1/2",
+  "px": 100,
+  "actions": [
+    {
+      "id": "morsures",
+      "nom": "Morsures",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 6 (2d4 + 1) dégâts de poison, ou 3 (1d4 + 1) dégâts de poison si la nuée est En péril.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 1,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

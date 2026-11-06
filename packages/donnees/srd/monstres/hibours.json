@@ -1,0 +1,78 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "hibours",
+  "nom": "Hibours",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 59,
+    "des": "7d10 + 21"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 12,
+    "con": 17,
+    "int": 3,
+    "sag": 12,
+    "cha": 7
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le hibours effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 14 (2d8 + 5) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "sauvegardes": {
+    "for": 14,
+    "con": 10,
+    "sag": 10,
+    "cha": 9
+  },
+  "competences": {
+    "arcanes": 8,
+    "athletisme": 14,
+    "histoire": 8,
+    "perception": 10
+  },
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "foudre",
+    "tonnerre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le géant peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 9 m (non représentée dans le moteur). Vol 7,50 m en vol stationnaire."
+    }
+  ],
+  "id": "geant-des-tempetes",
+  "nom": "Géant des tempêtes",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Chaotique Bon",
+  "ca": 16,
+  "pv": {
+    "moyenne": 230,
+    "des": "20d12 + 100"
+  },
+  "vitesse": {
+    "marche": 15,
+    "nage": 15,
+    "vol": 7.5
+  },
+  "caracteristiques": {
+    "for": 29,
+    "dex": 14,
+    "con": 20,
+    "int": 16,
+    "sag": 20,
+    "cha": 18
+  },
+  "initiative": 7,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 20
+  },
+  "langues": "commun, gigant",
+  "fp": "13",
+  "px": 10000,
+  "bonusMaitrise": 5,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Épée des orages et Foudroiement (modélisé : deux Épée des orages).",
+      "multiattaque": [
+        {
+          "action": "epee-des-orages",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "epee-des-orages",
+      "nom": "Épée des orages",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 3 m : 23 (4d6 + 9) dégâts tranchants plus 13 (3d8) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 9,
+          "type": "tranchant"
+        },
+        {
+          "des": "3d8",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "foudroiement",
+      "nom": "Foudroiement",
+      "cout": "action",
+      "resume": "À distance +14, portée 150 m : 22 (2d12 + 9) dégâts de foudre, et la cible subit les états Assourdi et Aveuglé jusqu'au début du tour suivant du géant (Assourdi non représenté dans le moteur).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 150
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 9,
+          "type": "foudre"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "aveugle",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le géant lance l'un des sorts suivants, sans composantes matérielles, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 18). À volonté : détection de la magie, lumière. 1/jour : contrôle du climat.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "tempete-foudroyante",
+      "nom": "Tempête foudroyante",
+      "cout": "action",
+      "resume": "JS Dextérité DD 18, chaque créature dans un Cylindre de 3 m de rayon et 12 m de haut émanant d'un point que le géant voit dans un rayon de 150 m. Échec : 55 (10d10) dégâts de foudre. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 18,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 150
+      },
+      "zone": {
+        "forme": "cylindre",
+        "taille": 3
+      },
+      "degats": [
+        {
+          "des": "10d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "recharge": "5-6",
+      "etats": []
+    }
+  ]
+}

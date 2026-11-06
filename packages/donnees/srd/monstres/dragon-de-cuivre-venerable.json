@@ -1,0 +1,212 @@
+{
+  "id": "dragon-de-cuivre-venerable",
+  "nom": "Dragon de cuivre vénérable",
+  "taille": "Gig",
+  "type": "Dragon (Métallique)",
+  "alignement": "Chaotique Bon",
+  "ca": 21,
+  "pv": {
+    "moyenne": 367,
+    "des": "21d20 + 147"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 27,
+    "dex": 12,
+    "con": 25,
+    "int": 20,
+    "sag": 17,
+    "cha": 22
+  },
+  "sauvegardes": {
+    "for": 8,
+    "dex": 8,
+    "con": 7,
+    "int": 5,
+    "sag": 10,
+    "cha": 6
+  },
+  "competences": {
+    "discretion": 8,
+    "perception": 17,
+    "tromperie": 13
+  },
+  "initiative": 15,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 27
+  },
+  "langues": "commun, draconique",
+  "fp": "21",
+  "px": 33000,
+  "bonusMaitrise": 7,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 41 000 PX dans son antre (33 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(4/jour, ou 5/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après (Assaut incisif, Décharge mentale, Gloussement magique). Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de (A) Incantation pour lancer épine mentale (au 5e niveau) ou (B) Souffle ralentissant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +15, allonge 4,5 m : 19 (2d10 + 8) dégâts tranchants plus 9 (2d8) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 15
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 8,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 21) : À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, épine mentale (au 5e niveau), illusion mineure. 1/jour chacun : Image majeure, image projetée, restauration suprême.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-d-acide",
+      "nom": "Souffle d'acide",
+      "cout": "action",
+      "resume": "JS Dextérité DD 22, chaque créature dans une Ligne de 27 m de long sur 3 m de large. Échec : 63 (14d8) dégâts d'acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 22,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 27,
+        "largeur": 3
+      },
+      "degats": [
+        {
+          "des": "14d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-ralentissant",
+      "nom": "Souffle ralentissant",
+      "cout": "action",
+      "resume": "JS Constitution DD 22, chaque créature dans un Cône de 27 m. Échec : la cible voit sa Vitesse réduite de moitié, ne peut pas jouer de Réaction et peut entreprendre une action ou une action Bonus à son tour, mais pas les deux. L'effet persiste jusqu'à la fin de son tour suivant. (Effet non représenté dans les états du moteur.)",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 22,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 27
+      },
+      "degats": [],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "decharge-mentale",
+      "nom": "Décharge mentale",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer épine mentale (au 5e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "gloussement-magique",
+      "nom": "Gloussement magique",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Charisme DD 21, une créature que le dragon voit dans un rayon de 36 m. Échec : 31 (9d6) dégâts psychiques. Jusqu'à la fin de son tour suivant, la cible lance 1d8 chaque fois qu'elle effectue un test de caractéristique ou un jet d'attaque et soustrait le résultat obtenu au Test d20. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [
+        {
+          "des": "9d6",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "etats": [],
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "cha",
+        "dd": 21,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      }
+    }
+  ]
+}

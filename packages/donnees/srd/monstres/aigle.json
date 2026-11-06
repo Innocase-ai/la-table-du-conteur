@@ -1,0 +1,66 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "id": "aigle",
+  "nom": "Aigle",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 4,
+    "des": "1d6 + 1"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 15,
+    "con": 12,
+    "int": 2,
+    "sag": 14,
+    "cha": 7
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "serres",
+      "nom": "Serres",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

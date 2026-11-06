@@ -1,0 +1,165 @@
+{
+  "id": "balor",
+  "nom": "Balor",
+  "taille": "TG",
+  "type": "Fiélon (Démon)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 19,
+  "pv": {
+    "moyenne": 287,
+    "des": "23d12 + 138"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 26,
+    "dex": 15,
+    "con": 22,
+    "int": 20,
+    "sag": 16,
+    "cha": 22
+  },
+  "sauvegardes": {
+    "for": 8,
+    "con": 12,
+    "sag": 9
+  },
+  "competences": {
+    "perception": 9
+  },
+  "initiative": 14,
+  "resistances": [
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 19
+  },
+  "langues": "abyssal ; télépathie 36 m",
+  "fp": "19",
+  "px": 22000,
+  "bonusMaitrise": 6,
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans les sens du moteur)."
+    },
+    {
+      "id": "aura-de-feu",
+      "nom": "Aura de feu",
+      "resume": "À la fin de chacun des tours du balor, chaque créature dans une Émanation de 1,50 m centrée sur le balor subit 13 (3d8) dégâts de feu."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le balor a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour.) Si le balor rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "spasmes-d-agonie",
+      "nom": "Spasmes d'agonie",
+      "resume": "Le balor explose quand il meurt. JS Dextérité : DD 20, chaque créature dans une Émanation de 9 m centrée sur le balor. Échec : 31 (9d6) dégâts de feu plus 31 (9d6) dégâts de force. Réussite : demi-dégâts. Échec ou réussite : si le balor meurt hors des Abysses, il acquiert aussitôt un nouveau corps et revient à la vie avec tous ses pv quelque part dans les Abysses."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le balor effectue une attaque de Fouet embrasé et une de Lame de foudre.",
+      "multiattaque": [
+        {
+          "action": "fouet-embrase",
+          "nombre": 1
+        },
+        {
+          "action": "lame-de-foudre",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "fouet-embrase",
+      "nom": "Fouet embrasé",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 9 m : 18 (3d6 + 8) dégâts de force plus 17 (5d6) dégâts de feu. Si la cible est une créature de taille TG ou inférieure, le balor la tire directement vers lui d'un maximum de 7,50 m, et la cible subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 9
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 8,
+          "type": "force"
+        },
+        {
+          "des": "5d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    },
+    {
+      "id": "lame-de-foudre",
+      "nom": "Lame de foudre",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 3 m : 21 (3d8 + 8) dégâts de force plus 22 (4d10) dégâts de foudre, et la cible ne peut pas jouer de Réaction jusqu'au début du tour suivant du balor.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 8,
+          "type": "force"
+        },
+        {
+          "des": "4d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ]
+    },
+    {
+      "id": "teleportation",
+      "nom": "Téléportation",
+      "cout": "bonus",
+      "resume": "Le balor téléporte un démon consentant situé dans un rayon de 3 m (ou lui-même) d'un maximum de 18 m vers un espace inoccupé qu'il voit."
+    }
+  ]
+}

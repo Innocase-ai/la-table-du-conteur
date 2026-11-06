@@ -1,0 +1,94 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 7,
+    "survie": 7
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "minotaure-de-baphomet",
+  "nom": "Minotaure de Baphomet",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 14,
+  "pv": {
+    "moyenne": 85,
+    "des": "10d10 + 30"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 11,
+    "con": 16,
+    "int": 6,
+    "sag": 16,
+    "cha": 9
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 17
+  },
+  "langues": "abyssal",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "coup-de-corne",
+      "nom": "Coup de corne",
+      "cout": "action",
+      "resume": "(recharge 5-6) Corps à corps +6, allonge 1,50 m : 18 (4d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si le minotaure s'est déplacé en ligne droite d'un minimum de 3 m juste avant de la toucher, la cible subit 10 (3d6) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "coutille-abyssale",
+      "nom": "Coutille abyssale",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 10 (1d12 + 4) dégâts tranchants plus 10 (3d6) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d12",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

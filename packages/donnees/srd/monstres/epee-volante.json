@@ -1,0 +1,86 @@
+{
+  "id": "epee-volante",
+  "nom": "Épée volante",
+  "taille": "P",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 17,
+  "pv": {
+    "moyenne": 14,
+    "des": "4d6"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 15,
+    "con": 11,
+    "int": 1,
+    "sag": 5,
+    "cha": 1
+  },
+  "sauvegardes": {
+    "dex": 4
+  },
+  "competences": {},
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison",
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 7
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "L'épée volante peut faire du vol stationnaire (vol 15 m)."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "taillade",
+      "nom": "Taillade",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

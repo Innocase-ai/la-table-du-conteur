@@ -1,0 +1,67 @@
+{
+  "id": "arbre-eveille",
+  "nom": "Arbre éveillé",
+  "taille": "TG",
+  "type": "Plante",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 59,
+    "des": "7d12 + 14"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 6,
+    "con": 15,
+    "int": 10,
+    "sag": 10,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -2,
+  "resistances": [
+    "contondant",
+    "perforant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [
+    "feu"
+  ],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun et une autre langue",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 14 (3d6 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ]
+    }
+  ]
+}

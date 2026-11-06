@@ -1,0 +1,72 @@
+{
+  "sauvegardes": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "vautour",
+  "nom": "Vautour",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 5,
+    "des": "1d8 + 1"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 7,
+    "dex": 10,
+    "con": 13,
+    "int": 2,
+    "sag": 12,
+    "cha": 4
+  },
+  "competences": {
+    "perception": 3
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le vautour a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "bec",
+      "nom": "Bec",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 2 (1d4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

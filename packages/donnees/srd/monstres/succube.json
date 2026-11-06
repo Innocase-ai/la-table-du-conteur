@@ -1,0 +1,134 @@
+{
+  "id": "succube",
+  "nom": "Succube",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 71,
+    "des": "13d8 + 13"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 17,
+    "con": 13,
+    "int": 15,
+    "sag": 12,
+    "cha": 20
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "intuition": 5,
+    "perception": 5,
+    "persuasion": 9,
+    "tromperie": 9
+  },
+  "initiative": 3,
+  "resistances": [
+    "feu",
+    "froid",
+    "poison",
+    "psychique"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "abyssal, commun, infernal ; télépathie 18 m",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "forme-d-incube",
+      "nom": "Forme d'incube",
+      "resume": "Lorsque le succube termine un Repos long, il peut se transformer en incube, le profil de celui-ci remplaçant alors le sien."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le succube effectue une attaque de Contact fiélon et recourt à Baiser dévitalisant ou Charme.",
+      "multiattaque": [
+        {
+          "action": "contact-fielon",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "contact-fielon",
+      "nom": "Contact fiélon",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 16 (2d10 + 5) dégâts psychiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 5,
+          "type": "psychique"
+        }
+      ]
+    },
+    {
+      "id": "baiser-devitalisant",
+      "nom": "Baiser dévitalisant",
+      "cout": "action",
+      "resume": "JS Constitution DD 15, une créature dans un rayon de 1,50 m, Charmée par la succube. Échec : 13 (3d8) dégâts psychiques. Réussite : demi-dégâts. Échec ou réussite : le maximum de points de vie de la cible est réduit d'un montant égal aux dégâts subis.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 15,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ]
+    },
+    {
+      "id": "charme",
+      "nom": "Charme",
+      "cout": "action",
+      "resume": "Le succube lance domination de personne (au 8e niveau), sans composantes de sort, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 15).",
+      "portee": {
+        "type": "distance"
+      }
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le succube se transforme en Humanoïde de taille M ou P, ou bien reprend sa forme véritable. En dehors de sa catégorie de taille, son profil de jeu reste le même sous toutes les formes, si ce n'est la Vitesse de vol propre à sa forme véritable. Rien de ce qu'il porte n'est transformé.",
+      "portee": {
+        "type": "personnel"
+      }
+    }
+  ]
+}

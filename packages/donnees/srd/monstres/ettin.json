@@ -1,0 +1,123 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "aveugle",
+    "charme",
+    "effraye",
+    "inconscient"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Étourdi. (Le SRD liste : Assourdi, Aveuglé, Charmé, Effrayé, Étourdi, Inconscient.) Équipement : hache d'armes, morgenstern."
+    }
+  ],
+  "id": "ettin",
+  "nom": "Ettin",
+  "taille": "G",
+  "type": "Géant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 12,
+  "pv": {
+    "moyenne": 85,
+    "des": "10d10 + 30"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 8,
+    "con": 17,
+    "int": 6,
+    "sag": 10,
+    "cha": 8
+  },
+  "initiative": -1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "gigant",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ettin effectue une attaque de Hache d'armes et une de Morgenstern.",
+      "multiattaque": [
+        {
+          "action": "hache-d-armes",
+          "nombre": 1
+        },
+        {
+          "action": "morgenstern",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "hache-d-armes",
+      "nom": "Hache d'armes",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 14 (2d8 + 5) dégâts tranchants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "morgenstern",
+      "nom": "Morgenstern",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 14 (2d8 + 5) dégâts perforants, et la cible subit le Désavantage à son prochain jet d'attaque intervenant avant la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

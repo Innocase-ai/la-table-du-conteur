@@ -1,0 +1,72 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 1
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "Le ptéranodon ne provoque pas d'attaque d'Opportunité lorsqu'il quitte la zone d'allonge d'un ennemi en volant."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête (Dinosaure)",
+  "langues": "aucune",
+  "id": "pteranodon",
+  "nom": "Ptéranodon",
+  "taille": "M",
+  "ca": 13,
+  "pv": {
+    "moyenne": 13,
+    "des": "3d8"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 15,
+    "con": 10,
+    "int": 2,
+    "sag": 9,
+    "cha": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

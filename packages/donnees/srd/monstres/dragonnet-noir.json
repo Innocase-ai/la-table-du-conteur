@@ -1,0 +1,125 @@
+{
+  "id": "dragonnet-noir",
+  "nom": "Dragonnet noir",
+  "taille": "M",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 33,
+    "des": "6d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 14,
+    "con": 13,
+    "int": 10,
+    "sag": 11,
+    "cha": 13
+  },
+  "sauvegardes": {
+    "dex": 4,
+    "sag": 2
+  },
+  "competences": {
+    "discretion": 4,
+    "perception": 4
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "visionAveugle": 3,
+    "perceptionPassive": 14
+  },
+  "langues": "draconique",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts tranchants plus 2 (1d4) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ]
+    },
+    {
+      "id": "souffle-d-acide",
+      "nom": "Souffle d’acide",
+      "cout": "action",
+      "resume": "JS Dextérité : DD 11, chaque créature dans une Ligne de 4.5 m de long sur 1.5 m de large. Échec : 22 (5d8) dégâts de acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 11,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 4.5,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "5d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

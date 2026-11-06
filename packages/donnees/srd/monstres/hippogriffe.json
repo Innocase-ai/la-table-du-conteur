@@ -1,0 +1,83 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "L'hippogriffe ne provoque pas d'attaque d'Opportunité lorsqu'il quitte la zone d'allonge d'un ennemi en volant."
+    }
+  ],
+  "id": "hippogriffe",
+  "nom": "Hippogriffe",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 26,
+    "des": "4d10 + 4"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 13,
+    "con": 13,
+    "int": 2,
+    "sag": 12,
+    "cha": 8
+  },
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'hippogriffe effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ]
+}

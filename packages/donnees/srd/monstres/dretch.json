@@ -1,0 +1,101 @@
+{
+  "id": "dretch",
+  "nom": "Dretch",
+  "taille": "P",
+  "type": "Fiélon (Démon)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 11,
+  "pv": {
+    "moyenne": 18,
+    "des": "4d6 + 4"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 11,
+    "con": 12,
+    "int": 5,
+    "sag": 8,
+    "cha": 3
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 0,
+  "resistances": [
+    "feu",
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "abyssal ; télépathie 18 m (ne fonctionne qu'avec les créatures qui comprennent l'abyssal)",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 4 (1d6 + 1) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "nuage-fetide",
+      "nom": "Nuage fétide",
+      "cout": "action",
+      "resume": "(1/jour.) JS Constitution DD 11, chaque créature dans une Émanation de 3 m centrée sur le dretch. Échec : la cible subit l'état Empoisonné jusqu'à la fin de son tour suivant. Tant qu'elle est ainsi Empoisonnée, la créature ne peut pas jouer de Réaction et n'a droit qu'à une action ou une action Bonus lors de son tour (pas les deux).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 3
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ],
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    }
+  ]
+}

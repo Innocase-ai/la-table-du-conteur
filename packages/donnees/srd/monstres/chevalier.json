@@ -1,0 +1,116 @@
+{
+  "id": "chevalier",
+  "nom": "Chevalier",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 18,
+  "pv": {
+    "moyenne": 52,
+    "des": "8d8 + 16"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 11,
+    "con": 14,
+    "int": 11,
+    "sag": 11,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "con": 4,
+    "sag": 2
+  },
+  "competences": {},
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun et une autre langue",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "resume": "Réaction. Déclencheur : le Chevalier est touché par un jet d'attaque de corps à corps alors qu'il tient une arme. Conséquences : le chevalier ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le chevalier effectue deux attaques, réparties à sa guise entre Épée à deux mains et Arbalète lourde.",
+      "multiattaque": [
+        {
+          "action": "epee-a-deux-mains",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "epee-a-deux-mains",
+      "nom": "Épée à deux mains",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants plus 4 (1d8) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    },
+    {
+      "id": "arbalete-lourde",
+      "nom": "Arbalète lourde",
+      "cout": "action",
+      "resume": "À distance +2, portée 30/120 m : 11 (2d10) dégâts perforants plus 4 (1d8) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 30,
+        "longue": 120
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

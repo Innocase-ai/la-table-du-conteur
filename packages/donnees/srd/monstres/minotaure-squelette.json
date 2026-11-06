@@ -1,0 +1,103 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [
+    "contondant"
+  ],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    }
+  ],
+  "id": "minotaure-squelette",
+  "nom": "Minotaure squelette",
+  "taille": "G",
+  "type": "Mort-vivant",
+  "alignement": "Loyal Mauvais",
+  "ca": 12,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 11,
+    "con": 15,
+    "int": 6,
+    "sag": 8,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "comprend l'abyssal, mais ne parle pas",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 15 (2d10 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "coup-de-corne",
+      "nom": "Coup de corne",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si le squelette s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 9 (2d8) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

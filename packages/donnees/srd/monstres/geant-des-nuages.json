@@ -1,0 +1,139 @@
+{
+  "sauvegardes": {
+    "con": 10,
+    "sag": 7
+  },
+  "competences": {
+    "intuition": 7,
+    "perception": 11
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 6 m (vol stationnaire)."
+    }
+  ],
+  "id": "geant-des-nuages",
+  "nom": "Géant des nuages",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 200,
+    "des": "16d12 + 96"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 6
+  },
+  "caracteristiques": {
+    "for": 27,
+    "dex": 10,
+    "con": 22,
+    "int": 12,
+    "sag": 16,
+    "cha": 16
+  },
+  "initiative": 4,
+  "sens": {
+    "perceptionPassive": 21
+  },
+  "langues": "commun, gigant",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Masse d'armes tonitruante et Nuage de tonnerre (modélisé : deux Masse d'armes tonitruante). Il peut remplacer l'une de ces attaques par une utilisation d'Incantation pour lancer nappe de brouillard.",
+      "multiattaque": [
+        {
+          "action": "masse-d-armes-tonitruante",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "masse-d-armes-tonitruante",
+      "nom": "Masse d'armes tonitruante",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 3 m : 21 (3d8 + 8) dégâts contondants plus 7 (2d6) dégâts de tonnerre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 8,
+          "type": "contondant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "nuage-de-tonnerre",
+      "nom": "Nuage de tonnerre",
+      "cout": "action",
+      "resume": "À distance +12, portée 72 m : 18 (3d6 + 8) dégâts de tonnerre, et la cible subit l'état Neutralisé jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 72
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 8,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le géant lance l'un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 15). À volonté : détection de la magie, lumière, nappe de brouillard. 1/jour chacun : contrôle du climat, forme gazeuse, télékinésie.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "foulee-brumeuse",
+      "nom": "Foulée brumeuse",
+      "cout": "bonus",
+      "resume": "Le géant lance le sort foulée brumeuse avec la même caractéristique d'incantation que pour Incantation.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}
