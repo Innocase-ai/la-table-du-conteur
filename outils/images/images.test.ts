@@ -281,4 +281,24 @@ describe('cartes illustrées', () => {
       expect(e.prompt).toContain(dm.monde.direction.palette[0]!);
     }
   });
+  it("donne en référence la carte d'ensemble et l'image du lieu quand elles existent (cohérence), jamais un portrait de héros", () => {
+    const racine = [...dm.lieux.values()].find((l) => !l.parent)!;
+    const sous = candidatsCartes(dm).find((l) => l.id !== racine.id)!;
+    const existantes = new Set([`carte-${racine.id}`, `lieu-${sous.id}`, 'portrait-bran']);
+    const e = elementsCartes(dm, { charte: chargerCharte(), existe: (id) => existantes.has(id) }, [sous])[0]!;
+    expect(e.references).toEqual([`carte-${racine.id}`, `lieu-${sous.id}`]);
+    expect(e.prompt).toContain('Reference image 1 is the overview map');
+    expect(e.prompt).toContain('Reference image 2 shows this place');
+    expect(elementsCartes(dm, { charte: chargerCharte() }, [sous])[0]!.references).toEqual([]);
+  });
+
+  it("un lieu posé sur la carte d'ensemble prend la découpe de cette carte en première référence", () => {
+    const racine = [...dm.lieux.values()].find((l) => !l.parent)!;
+    const sous = candidatsCartes(dm).find((l) => l.id !== racine.id)!;
+    const existantes = new Set([`carte-${racine.id}`, `recadre-${sous.id}`, `lieu-${sous.id}`]);
+    const e = elementsCartes(dm, { charte: chargerCharte(), existe: (id) => existantes.has(id) }, [sous])[0]!;
+    expect(e.references).toEqual([`recadre-${sous.id}`, `lieu-${sous.id}`]);
+    expect(e.prompt).toContain('Reference image 1 is a cutout of the overview map');
+    expect(e.prompt).toContain('show nothing else');
+  });
 });

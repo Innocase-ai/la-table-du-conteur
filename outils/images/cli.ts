@@ -22,7 +22,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
-import { candidatsCartes, elementsCartes, enfantsDe } from './cartes';
+import { candidatsCartes, elementsCartes, enfantsDe, preparerRecadrages } from './cartes';
 import { elementsParLieu } from './monde';
 import { elementsGalerie } from './galerie';
 import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerrains } from './plateau';
@@ -209,7 +209,8 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
     const cibles = lieu ? [dm.lieux.get(lieu)].filter((l): l is NonNullable<typeof l> => !!l) : candidats;
     if (lieu && !cibles.length) throw new Error(`Lieu inconnu « ${lieu} ».`);
     if (lieu && !enfantsDe(dm, lieu).length) throw new Error(`« ${lieu} » ne contient aucun lieu : pas de carte à dessiner.`);
-    await genererLot(service, elementsCartes(dm, { charte, retouches }, cibles), lireEnv(), args.includes('--go'), Number(option('--max') ?? 6), undefined, dossier);
+    if (args.includes('--go')) preparerRecadrages(dm, dossier, cibles);
+    await genererLot(service, elementsCartes(dm, { charte, retouches, existe: (id) => existsSync(join(dossier, `${id}.png`)) }, cibles), lireEnv(), args.includes('--go'), Number(option('--max') ?? 6), undefined, dossier);
     return;
   }
   if (commande === 'galerie') {

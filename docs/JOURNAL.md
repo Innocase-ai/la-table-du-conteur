@@ -787,3 +787,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Tests** : `carte.test.ts` (10 : départ + voisins, passage caché, `aller` déplace le repère, aucune fuite, ids orphelins, position de l'auteur, les 3 mondes, `positionAuto`), manifeste (`cartes`, `sansPosition`), prompts des cartes, route et gardes d'image de l'atelier. 921+ tests verts, typecheck propre.
 - **Vérifié** dans le navigateur (Citadelle, partie existante) : onglet Carte, plein écran (M), clic sur un lieu, « Y aller » qui déplace le repère et révèle les voisins. **Effet de bord** : ce test a fait avancer d'une étape la partie sauvegardée de l'utilisateur (la route des falaises).
 - **Reste** : aucune image de carte n'est générée (annoncer le coût et attendre l'accord ; qualité de Klein sur une carte vue de dessus non testée : un essai d'abord) ; poser les lieux dans l'atelier ; cartes du Val et de la Dîme ensuite.
+
+## 06/11/2026 — Les trois cartes de détail de la Citadelle, cohérentes avec la carte principale
+
+- **Demande** : générer les cartes de la citadelle, du port et du palais en soignant la cohérence avec les images du jeu et la carte de la Côte de Hautmarée.
+- **Essais** : (1) avec la carte d'ensemble entière en référence, le modèle recopie la région (citadelle, palais et ponton réunis sur chaque carte) ; (2) en précisant « ne montre qu'un lieu », la carte de la citadelle devient un vrai gros plan, mais le port et le palais restaient mélangés. **Solution** : donner en référence la **découpe de la carte d'ensemble autour du lieu** (`recadre-<id>`, `recadrer.py`, d'après `Lieu.position`) plus l'image du lieu vu du sol ; les cartes reprennent alors les mêmes bâtiments, matériaux et couleurs. Les premières versions sont dans `sorties/images/mondes/citadelle-des-marees/essais/`.
+- **Coût** : 7 images de carte au total (4 gardées, 3 essais écartés), ~0,06 $.
+- **Positions** : les 39 lieux enfants posés d'après les images (atelier, API de fiche) ; à corriger dans l'onglet Cartes si un repère est mal placé (les salles intérieures du palais sont placées sur l'extérieur, de façon approximative).
+- **Outil** : `elementsCartes` prend `existe` (références `recadre-`, `carte-`, `lieu-`), `preparerRecadrages` ; test des références. `pnpm images cartes` découpe avant de générer (`--go`, uv et Pillow requis).
