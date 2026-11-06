@@ -179,7 +179,7 @@
     "nom": "Les bandits de l'entrepôt",
     "type": "combat",
     "lieu": "cr-entrepot",
-    "difficulte": "moderee",
+    "difficulte": "faible",
     "intro": "Derrière les caisses, un gobelet roule sur la table et des dés s'arrêtent net. Les hommes du fond se lèvent d'un bloc, couteaux et cimeterres au poing, et d'autres, plus agiles, ont déjà un arc tendu depuis le haut des caisses. « Qui vous a laissés entrer ? » demande l'un d'eux, sans élever la voix.",
     "monstres": [
       {
@@ -189,7 +189,7 @@
       },
       {
         "profil": "eclaireur",
-        "nombre": 6,
+        "nombre": 3,
         "nom": "Guetteur de la crique"
       }
     ],
@@ -404,7 +404,7 @@
           "competence": "persuasion",
           "dd": 13
         },
-        "resume": "Sorel compte, recompte, puis hoche la tête : cent pièces, c'est le sel de l'hiver. Il vous remet le livre et la lettre, vous serre la main d'une poigne rugueuse et dit à ses hommes de ranger leurs lames. Le marquis attendra.",
+        "resume": "Sorel compte, recompte, puis hoche la tête : cent pièces, c'est le sel de l'hiver. Il vous remet le livre et la lettre, vous serre la main d'une poigne rugueuse et dit à ses hommes de ranger leurs lames. L'acheteur attendra.",
         "effets": [
           {
             "pieces": -100
@@ -448,7 +448,7 @@
         ],
         "echec": [
           {
-            "narration": "Sorel rit court : « Cent pièces ? Le marquis en offre mille. » Il ne bouge pas, mais ses hommes dégainent."
+            "narration": "Sorel rit court : « Cent pièces ? L'acheteur en offre mille. » Il ne bouge pas, mais ses hommes dégainent."
           },
           {
             "attitude": {

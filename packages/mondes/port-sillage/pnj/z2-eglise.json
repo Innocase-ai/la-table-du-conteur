@@ -404,7 +404,12 @@
         "reponse": "Elle ne le sait pas, et sa voix tremble : il est parti la nuit de la fête, il n'est pas revenu. Elle le dit « avec ses cloches », comme on dit une bêtise pour se rassurer. Elle le défend sans qu'on l'accuse : un garçon bon, qui s'est toujours privé pour elle. Elle supplie qu'on ne lui fasse pas de mal.",
         "revele": [],
         "effets": [],
-        "unique": false
+        "unique": false,
+        "condition": {
+          "non": {
+            "flag": "tobie-retrouve"
+          }
+        }
       },
       {
         "id": "le-sable",

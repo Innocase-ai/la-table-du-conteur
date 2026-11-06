@@ -316,7 +316,12 @@
       {
         "id": "z1-r-confrontation-d-odile",
         "declencheur": "entree",
-        "unique": true
+        "unique": true,
+        "condition": {
+          "non": {
+            "flag": "choix-la-solde-denoncer"
+          }
+        }
       }
     ],
     "faits": [

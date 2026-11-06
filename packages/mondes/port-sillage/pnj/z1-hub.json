@@ -467,7 +467,7 @@
           "autrefois"
         ],
         "question": "Vous revenez ici depuis longtemps ?",
-        "reponse": "Elle sourit : elle revient à Port-Sillage depuis plus de quarante ans, et l'a vu grandir autour de la place. À l'époque la digue n'existait pas, et la sainte n'était encore qu'une légende de marins, pas une relique.",
+        "reponse": "Elle sourit : elle revient à Port-Sillage depuis plus de quarante ans, et l'a vu grandir autour de la place. À l'époque la digue n'existait pas, et l'église n'avait pas encore son vitrail bleu.",
         "revele": [],
         "effets": [],
         "unique": false
@@ -623,7 +623,12 @@
         "reponse": "Il ment mal : il raccommode des filets, il a perdu le sommeil, il aime le bruit de l'eau. Il garde les yeux sur les tréteaux, comme s'il guettait une sortie, et bégaie en parlant de l'église.",
         "revele": [],
         "effets": [],
-        "unique": false
+        "unique": false,
+        "condition": {
+          "non": {
+            "flag": "tobie-retrouve"
+          }
+        }
       },
       {
         "id": "sa-mere",
@@ -753,6 +758,12 @@
       "neutre": "Je... je ne fais rien de mal. Je répare des filets, c'est tout.",
       "amical": "Merci d'être venus. Je ne sais pas ce que je ferais sans vous.",
       "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-confier"
+          },
+          "texte": "Tobie vous accueille à la sacristie, les mains rangées sur ses genoux : « Le père m'a gardé. Je dois encore tout lui expliquer, et ma mère aussi. »"
+        },
         {
           "condition": {
             "flag": "choix-le-sacristain-livrer"

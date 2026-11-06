@@ -119,5 +119,28 @@
         }
       }
     ]
+  },
+  {
+    "id": "z4-ev-livre-en-main",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "objet": "livre-de-maelle"
+        },
+        {
+          "non": {
+            "flag": "livre-retrouve"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Le livre est lourd et tiède au fond de votre sac. Vous le tenez enfin : il ne reste qu'à décider à qui le confier.",
+    "effets": [
+      {
+        "flag": "livre-retrouve"
+      }
+    ]
   }
 ]

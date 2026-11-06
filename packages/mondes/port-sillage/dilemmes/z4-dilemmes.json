@@ -188,7 +188,7 @@
     "echos": [
       {
         "si": "livrer",
-        "apres": 3,
+        "apres": 1,
         "annonce": "Cyprien, le crieur public, annonce sur la place : « le sacristain est en cellule à la caserne ». Les uns respirent, soulagés, les autres plaignent Hélène, qui raccommode ses filets sans un mot.",
         "effets": [
           {
@@ -201,7 +201,7 @@
       },
       {
         "si": "cacher",
-        "apres": 3,
+        "apres": 1,
         "annonce": "Sur la place, on chuchote qu’on cache le petit sacristain quelque part, et le guet double ses rondes sur le quai. Cyprien crie les nouvelles du jour, mais personne ne lui répond vraiment.",
         "effets": [
           {
@@ -217,7 +217,7 @@
   {
     "id": "la-solde",
     "titre": "La solde",
-    "situation": "Depuis deux ans, les soldats de la garnison n’ont pas touché leur solde. Vous avez appris que la maire Gilda a vidé la caisse pour réparer la digue après la grande tempête. Vous savez aussi que la capitaine Odile a laissé passer la contrebande de la crique, pour que ses hommes aient de quoi manger. Il faut décider, et la garnison murmure déjà.",
+    "situation": "Depuis deux ans, les soldats de la garnison n’ont pas touché leur solde. Vous avez appris que la maire Gilda a vidé la caisse pour réparer la digue après la grande tempête. Il faut décider, et la garnison murmure déjà.",
     "quand": {
       "fait": "f-solde-impayee"
     },
@@ -272,7 +272,7 @@
       },
       {
         "id": "se-taire",
-        "libelle": "Je garde le registre pour moi.",
+        "libelle": "Je garde cela pour moi.",
         "ton": "Paix",
         "couts": [
           "La solde reste impayée et la contrebande continue.",
@@ -310,10 +310,6 @@
           "Le guet retrouvera de quoi vivre.",
           "Odile et le sergent vous devront leur respect."
         ],
-        "jet": {
-          "competence": "persuasion",
-          "dd": 14
-        },
         "effets": [
           {
             "reputation": {
@@ -337,20 +333,6 @@
             "attitude": {
               "pnj": "basile-ecume",
               "delta": 5
-            }
-          }
-        ],
-        "echec": [
-          {
-            "attitude": {
-              "pnj": "gilda-fauvel",
-              "delta": -20
-            }
-          },
-          {
-            "reputation": {
-              "faction": "gens-du-port",
-              "delta": -5
             }
           }
         ],
@@ -382,8 +364,8 @@
     "echos": [
       {
         "si": "se-taire",
-        "apres": 3,
-        "annonce": "Sur la place, le sergent Piotr rappelle d’un ton sec à un soldat que la garnison ne parle pas de ces affaires, et il vous regarde sans sourire. Il sait que vous avez vu le registre, et il choisit de se taire, sans vous remercier.",
+        "apres": 1,
+        "annonce": "Sur la place, le sergent Piotr rappelle d’un ton sec à un soldat que la garnison ne parle pas de ces affaires, et il vous regarde sans sourire. Il devine que vous savez, et il choisit de se taire, sans vous remercier.",
         "effets": [
           {
             "attitude": {
@@ -401,7 +383,7 @@
       },
       {
         "si": "exiger",
-        "apres": 3,
+        "apres": 1,
         "annonce": "Une première part de la solde arrive enfin à la caserne, et tout le village le sait avant le soir. Piotr, bourru comme toujours, détourne les yeux au passage des pièces, la gorge nouée.",
         "effets": [
           {
@@ -423,7 +405,7 @@
   {
     "id": "le-livre",
     "titre": "Le livre",
-    "situation": "Le Livre de Maëlle repose entre vos mains, sur la place de la Criée, où tout le village attend en silence. Le père Aubin, presque aveugle, la voix cassée, tend la main en direction de votre voix. La capitaine Odile attend de l’autre côté du pavé, et Tobie, pâle, n’ose pas lever les yeux vers son vieux prêtre. La lumière dorée s’éteint sur le port, et tout le monde vous regarde.",
+    "situation": "Le Livre de Maëlle est entre vos mains. Le village attend en silence de savoir à qui il sera confié : à l’Église, qui l’a gardé des générations ; au guet, qui promet de le protéger ; ou à ceux que sa disparition a le plus touchés. Il faut trancher, et la lumière dorée s’éteint sur le port.",
     "quand": {
       "flag": "livre-retrouve"
     },

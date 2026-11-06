@@ -330,6 +330,20 @@ describe('Le Grimoire de Port-Sillage : parcours', () => {
     expect(e.fin).toBe('fin-eglise');
   });
 
+  it('le coffre de Sorel reste ouvrable après l’énigme (le drapeau est posé mais pas l’objet) et tenir le livre pose `livre-retrouve`', () => {
+    const e = etatInitial(dm!, 3);
+    const coffre = dm!.tresors.get('z3-t-coffre-de-sorel')!;
+    appliquerEffets([{ flag: 'livre-retrouve' }], e, dm!);
+    expect(evaluerCondition(coffre.condition!, e), 'énigme résolue, livre pas encore pris').toBe(true);
+    e.inventaire['livre-de-maelle'] = 1;
+    expect(evaluerCondition(coffre.condition!, e), 'livre pris').toBe(false);
+    const enMain = dm!.evenements.get('z4-ev-livre-en-main')!;
+    const e2 = etatInitial(dm!, 3);
+    expect(evaluerCondition(enMain.condition!, e2), 'sans le livre').toBe(false);
+    e2.inventaire['livre-de-maelle'] = 1;
+    expect(evaluerCondition(enMain.condition!, e2), 'livre crocheté dans le coffre').toBe(true);
+  });
+
   const finAtteinte = (e: ReturnType<typeof etatInitial>) => [...dm!.fins.values()].find((f) => evaluerCondition(f.condition, e))?.id;
 
   it('la grande marée au maximum sans le livre emporte le livre (fin d’échec, testée avant les autres)', () => {
