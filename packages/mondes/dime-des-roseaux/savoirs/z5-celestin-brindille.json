@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "celestin-brindille",
+  "passe": "Célestin Brindille est un colporteur halfelin qui parcourt les routes du marais depuis trente ans. Il a commencé avec une brouette et deux sacs de sel, et il a fini par connaître tous les péages, tous les passeurs et toutes les portes qui s'ouvrent avec une pièce. Avant le siège, il a fait passer du grain et du fer sans payer tous les droits, et il n'a jamais été pris. Il veut vendre assez pour quitter Mireval avant que la guerre ne ferme la chaussée, mais il a le défaut de croire qu'il peut toujours marchander une sortie. Il parle vite, rit fort et ne fait crédit à personne.",
+  "liens": [
+   {
+    "pnj": "bastien",
+    "nature": "un aubergiste qui lui doit de l'argent",
+    "opinion": "Il lui vend du grain au prix fort et lui laisse la dette courir, parce qu'un aubergiste endetté est un bon client."
+   },
+   {
+    "pnj": "marin",
+    "nature": "le passeur des roseaux",
+    "opinion": "Il le trouve trop cher et trop neutre. Ils se sont déjà volé des clients, et ils se respectent pour cela."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire",
+    "opinion": "Il la croit plus maligne que les autres, et il évite de trop lui parler de ses affaires."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-brouette",
+    "texte": "Il tire sa brouette lui-même et refuse qu'on la touche. Elle contient plus de choses qu'elle n'en montre, et il sait exactement où."
+   },
+   {
+    "id": "les-prix",
+    "texte": "Il annonce ses prix avant de dire bonjour, puis les baisse d'un sourire. Il prétend que tout a un prix, même la pluie."
+   },
+   {
+    "id": "le-chapeau",
+    "texte": "Son chapeau cabossé est plus vieux que sa brouette. Il le soulève quand il ment, puis le remet en place."
+   },
+   {
+    "id": "la-route",
+    "texte": "Il connaît chaque péage entre Mireval et Laelith. Il parle des routes comme d'autres parlent de leur famille."
+   },
+   {
+    "id": "avis-sur-le-siege",
+    "texte": "Il dit que le siège est mauvais pour le commerce, mais excellent pour les prix. Il n'a pas décidé s'il devait s'en réjouir ou partir."
+   },
+   {
+    "id": "la-bourse",
+    "texte": "Il garde sa bourse sous sa chemise, dans une poche de toile cousue à même le tissu. Il la touche quand il parle de départ."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-contrebande",
+    "fait": "f-celestin-contrebande",
+    "version": "Il a fait passer du grain et du fer avant le siège, sans payer tous les péages. Il connaît la route du marais mieux qu'il ne le dit, et il en parle seulement à ceux qui peuvent l'acheter.",
+    "acces": {
+     "attitudeMin": 15
+    },
+    "evasif": "il dit qu'un colporteur paie toujours ses droits, ou qu'il trouve un autre chemin",
+    "tabou": [
+     "contrebande"
+    ]
+   },
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "Le grenier de Mireval est presque vide, et il le sait parce qu'il compte les sacs qu'on lui achète. Il en profite, mais il ne souhaite pas la famine.",
+    "acces": {}
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Varg exige le double du tribut. Célestin l'a appris au péage, en payant le sien, et il a augmenté ses prix en conséquence.",
+    "acces": {}
+   },
+   {
+    "id": "les-passeurs",
+    "fait": "f-passeurs-neutres",
+    "version": "Marin et les passeurs ne prennent parti pour personne. Célestin le sait, et il évite de se retrouver seul avec eux sur l'eau.",
+    "acces": {}
+   }
+  ]
+ }
+]

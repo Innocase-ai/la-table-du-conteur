@@ -1,0 +1,102 @@
+[
+  {
+    "id": "mar-t-cache-de-la-cabane",
+    "nom": "La boîte sous les planches",
+    "lieu": "mar-cabane-des-passeurs",
+    "contenant": "cache",
+    "description": "Sous la troisième planche du plancher, une boîte de fer-blanc bossuée, calée entre deux solives. Elle contient les économies du passeur, un double de sa carte plié en huit et une fiole enveloppée de chiffon.",
+    "contenu": {
+      "pieces": {
+        "po": 9,
+        "pa": 24
+      },
+      "objets": [
+        {
+          "objet": "carte-du-marais",
+          "quantite": 1
+        },
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-mine-de-fer"
+  },
+  {
+    "id": "mar-t-butin-du-sentier",
+    "nom": "Le sac de la patrouille",
+    "lieu": "mar-sentier-des-roseaux",
+    "contenant": "sac",
+    "description": "Un sac de toile graissée pendu bas dans les roseaux, à deux pas des rondins, au bord d’une nappe d’eau claire et immobile. On ne l’atteint qu’en quittant les fascines. La corde qui le tient est neuve ; le fond du sac sent la tourbe et le pain rassis.",
+    "contenu": {
+      "pieces": {
+        "pa": 35,
+        "pc": 20
+      },
+      "objets": [
+        {
+          "objet": "torche",
+          "quantite": 2
+        },
+        {
+          "objet": "couverture",
+          "quantite": 1
+        }
+      ],
+      "tables": [
+        {
+          "table": "z5-butins-gobelins",
+          "jets": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      },
+      "piege": "mar-piege-sables-mouvants"
+    },
+    "gardien": "mar-r-patrouille-de-krik"
+  },
+  {
+    "id": "mar-t-barque-enfouie",
+    "nom": "La barque coulée du vieux passeur",
+    "lieu": "marais",
+    "contenant": "coffre",
+    "description": "Une barque à fond plat, coulée au bord du chenal, à demi emplie de vase. Sous le banc arrière, une caisse de bois cerclée de fer, fermée d’un cadenas rongé que l’eau n’a pas encore ouvert.",
+    "contenu": {
+      "pieces": {
+        "po": 12,
+        "pa": 45
+      },
+      "objets": [
+        {
+          "objet": "corde",
+          "quantite": 1
+        },
+        {
+          "objet": "etui-a-cartes-ou-a-parchemins",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "survie"
+      },
+      "piege": "mar-piege-eau-montante"
+    },
+    "indice": "f-passeurs-neutres"
+  }
+]

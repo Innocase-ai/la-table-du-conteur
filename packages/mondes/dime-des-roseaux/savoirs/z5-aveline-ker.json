@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "aveline-ker",
+  "passe": "Aveline Ker est née à Mireval, dans une famille de bateliers, et elle a quitté le village à dix-huit ans pour apprendre les herbes et les fièvres sur les routes. Elle est revenue il y a six ans, après la mort de son enfant, et elle n'est plus repartie. Elle soigne les villageois, les passeurs et les prisonniers quand on la laisse approcher de la mine. Elle croit en la Dame des Roseaux, une vieille déesse des eaux qui n'a pas de temple, et elle parle plus volontiers des blessés que des dieux. Elle porte une besace de remèdes, un bâton ferré et une patience qui inquiète ceux qui la croient douce.",
+  "liens": [
+   {
+    "pnj": "colin-vasseur",
+    "nature": "un prisonnier qu'elle soigne",
+    "opinion": "Elle le croit vivant et elle veut le sortir de la veine. Elle dit qu'il tousse depuis trois semaines et que personne ne s'en occupe."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire",
+    "opinion": "Elle lui fait confiance pour les vivants, moins pour les comptes. Elle lui reproche de rationner avant de soigner."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine du Péage",
+    "opinion": "Elle ne le hait pas en face : elle compte ses blessés. Mais elle refuse de le soigner, et il ne le lui a jamais demandé."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-mains",
+    "texte": "Ses mains sont rougies par les décoctions et gardent une odeur de menthe et de tourbe. Elle les essuie sur son tablier avant de toucher quelqu'un."
+   },
+   {
+    "id": "la-besace",
+    "texte": "Sa besace contient des fioles sans étiquette, des bandes de toile et un petit couteau. Elle sait où est chaque chose sans regarder."
+   },
+   {
+    "id": "la-dame-des-roseaux",
+    "texte": "Elle prie la Dame des Roseaux dans les granges, pas dans une chapelle. Elle dit que la Dame n'a pas de temple parce qu'elle préfère les fièvres et les accouchements."
+   },
+   {
+    "id": "les-prisonniers",
+    "texte": "Elle parle des prisonniers par leur prénom, pas par leur nombre. Elle connaît leurs blessures et ce que Varg leur fait porter."
+   },
+   {
+    "id": "avis-sur-la-guerre",
+    "texte": "Elle dit qu'une guerre se gagne avec des vivants, et qu'on ne lui en ramène jamais assez. Elle ne croit pas aux victoires qui remplissent les fosses."
+   },
+   {
+    "id": "la-soupe",
+    "texte": "Elle apporte de la soupe aux blessés même quand elle n'a rien pour elle. Elle prétend qu'elle a déjà mangé, et son ventre la contredit."
+   }
+  ],
+  "sait": [
+   {
+    "id": "son-deuil",
+    "fait": "f-aveline-fille",
+    "version": "Elle a perdu une enfant de la fièvre avant de devenir guérisseuse. Elle n'en parle pas volontiers, mais elle soigne les enfants des autres comme si c'était la sienne.",
+    "acces": {}
+   },
+   {
+    "id": "colin",
+    "fait": "f-colin-prisonnier",
+    "version": "Colin est à la veine, prisonnier, et il tousse. Elle le sait parce qu'elle a vu les hommes de Varg l'emmener et parce qu'un mineur lui a décrit ses menottes.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "elle dit qu'elle ne peut pas soigner quelqu'un qu'on ne lui laisse pas voir, et qu'il faut demander à la mine",
+    "tabou": [
+     "menottes"
+    ]
+   },
+   {
+    "id": "la-faim-des-gobelins",
+    "fait": "f-tribu-affamee",
+    "version": "La tribu n'a pas reçu le grain de cette année. Elle a vu des enfants gobelins aux portes de la grotte, et elle sait qu'ils mangent avant les guerriers.",
+    "acces": {}
+   },
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "Le grenier est presque vide, et l'hiver sera dur. Elle soigne déjà des gens qui ne mangent pas assez, et elle craint la fièvre qui vient après la faim.",
+    "acces": {}
+   }
+  ]
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "pnj": "colin-vasseur",
+  "passe": "Colin Vasseur est le frère de Perrine et le charretier du moulin. Leurs parents sont morts dans un incendie quand il était jeune, et il a élevé sa sœur en conduisant des charrettes pour Anselme. Il a été intercepté au pont par les hobgobelins avec la charrette de grain, et il travaille depuis à la veine de fer. Il a vu Varg tuer un déserteur et n'en parle qu'à voix basse. Il tousse, il a froid et il voudrait retrouver Perrine avant qu'elle ne fasse une bêtise. Il plaisante pour ne pas inquiéter, même quand le mensonge empire les choses.",
+  "liens": [
+   {
+    "pnj": "perrine-vasseur",
+    "nature": "sa sœur",
+    "opinion": "Il l'a élevée et il veut la retrouver. Il craint qu'elle ne parte seule dans les roseaux et qu'elle se fasse tuer pour lui."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine qui le retient",
+    "opinion": "Il le craint et le trouve prévisible. Varg ne le bat pas, mais il l'a laissé voir ce qu'il fait aux hommes qui désobéissent."
+   },
+   {
+    "pnj": "anselme-roux",
+    "nature": "le meunier qui l'employait",
+    "opinion": "Il ne lui en veut pas de l'avoir envoyé, mais il sait que son patron savait que la charrette n'allait pas à un marché."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-menottes",
+    "texte": "Il frotte ses poignets quand il parle, même quand les menottes sont parties. La peau est marquée et il dit que ça partira."
+   },
+   {
+    "id": "la-blague",
+    "texte": "Il fait une blague sur la mine, le froid ou sa propre maladresse, puis il change de sujet avant qu'on puisse répondre."
+   },
+   {
+    "id": "perrine",
+    "texte": "Quand on parle de Perrine, sa voix casse. Il demande si elle va bien, puis si elle est encore assez folle pour partir seule dans les roseaux."
+   },
+   {
+    "id": "le-grain-de-la-cour",
+    "texte": "Il sait où le grain est entreposé, combien de sacs il reste et qui les compte. Il l'a vu deux fois par jour depuis trois semaines."
+   },
+   {
+    "id": "varg",
+    "texte": "Il parle de Varg à voix basse, comme si le capitaine pouvait entendre à travers la roche. Il dit qu'il ne bat pas pour le plaisir, et que c'est presque pire."
+   },
+   {
+    "id": "la-toux",
+    "texte": "Il tousse dans son poing et s'excuse. Il dit que c'est la poussière de fer, et que ça passera quand il remontera."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "Il a conduit la charrette jusqu'au pont, puis les hobgobelins l'ont prise. Le grain est dans la cour de la mine, sous des bâches.",
+    "acces": {}
+   },
+   {
+    "id": "sa-prison",
+    "fait": "f-colin-prisonnier",
+    "version": "Il travaille à la veine comme prisonnier. Varg le garde vivant parce qu'il sait où est le grain et parce qu'il sert d'otage au village.",
+    "acces": {},
+    "tabou": [
+     "menottes"
+    ]
+   },
+   {
+    "id": "la-mine",
+    "fait": "f-mine-de-fer",
+    "version": "La mine recèle une veine de fer que Varg exploite avec des prisonniers. Colin y descend chaque jour et sait quel étais craque.",
+    "acces": {}
+   },
+   {
+    "id": "le-grain",
+    "fait": "f-grain-mine",
+    "version": "Le grain de la charrette est entreposé dans la cour de la mine, sous des bâches, et compté deux fois par jour par le quartier-maître.",
+    "acces": {}
+   },
+   {
+    "id": "le-deserteur",
+    "fait": "f-colin-deserteur",
+    "version": "Il a vu Varg tuer un hobgobelin qui voulait déserter. Il n'en parle qu'à ceux qui ont promis de le sortir de la mine.",
+    "acces": {}
+   },
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "Le grenier de Mireval est presque vide. Colin a conduit assez de charrettes pour savoir ce qu'il restait avant que le compte ne soit faussé.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "il dit qu'il ne s'occupait que des chevaux, et que les comptes n'étaient pas son affaire",
+    "tabou": []
+   }
+  ]
+ }
+]

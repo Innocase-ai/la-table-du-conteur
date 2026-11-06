@@ -1,0 +1,286 @@
+[
+  {
+    "id": "gro-r-gardes-de-la-grotte",
+    "nom": "Les gardes de la grotte",
+    "type": "combat",
+    "lieu": "gro-entree",
+    "difficulte": "moderee",
+    "intro": "Trois gobelins en cuir, arcs à la main, et deux lanciers se lèvent du brasero sans un mot. Le plus vieux pose sa lance en travers du passage et dit, dans un commun écorché : « Le porche, c'est le porche. On ne passe pas sans dire pourquoi. » Derrière eux, le couloir descend vers le feu et les voix de la tribu.",
+    "monstres": [
+      {
+        "profil": "sbire-gobelin",
+        "nombre": 3,
+        "nom": "Gobelins du guet"
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 2,
+        "nom": "Lanciers du guet"
+      }
+    ],
+    "carte": [
+      "################",
+      "#.........m....#",
+      "#..H.......m...#",
+      "#..H....~~.m...#",
+      "#..##..........#",
+      "#..##...m......#",
+      "#..HH..m.......#",
+      "#..HH..........#",
+      "################"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Les lanciers tiennent le passage étroit entre les madriers et le wagonnet ; les archers reculent vers le couloir et tirent par-dessus. Aucun ne quitte la salle du porche.",
+      "fuite": "Ils ne fuient pas : ils reculent vers le couloir en criant le nom de Skarn, et la tribu entend.",
+      "renforts": "Si le guet crie, deux gobelins de la salle commune montent avec des sagales au bout de trois rounds."
+    },
+    "alternatives": [
+      {
+        "id": "gro-parler-au-guet",
+        "nom": "Parler au guet",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Expliquer qu'on vient voir Skarn, poser les armes et laisser le plus vieux gobelin décider : il envoie un enfant prévenir le chef et fait asseoir le groupe près du brasero.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": 5
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "gro-payer-le-passage",
+        "nom": "Payer le passage",
+        "resume": "Le guet prend l'argent sans le compter, le met dans un sac de toile et s'écarte du couloir : cinq pièces d'or, le prix d'un porche, dit le vieux.",
+        "effets": [
+          {
+            "pieces": -5
+          }
+        ]
+      },
+      {
+        "id": "gro-offrir-des-rations",
+        "nom": "Offrir des rations",
+        "condition": {
+          "objet": "rations"
+        },
+        "resume": "Les rations passent de main en main ; les archers les sentent, les lanciers les rangent. Le guet laisse passer, et l'un d'eux court prévenir Skarn qu'on a apporté à manger.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "miette",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "gro-reculer-dans-les-roseaux",
+        "nom": "Reculer dans les roseaux",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "resume": "Reculer sans tourner le dos, un pas après l'autre, jusqu'au sentier de tourbe : le guet ne quitte pas son brasero et vous laisse partir.",
+        "effets": [],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "gro-t-cache-du-guet"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "xp": 50
+      },
+      {
+        "attitude": {
+          "pnj": "skarn",
+          "delta": -15
+        }
+      },
+      {
+        "attitude": {
+          "pnj": "nyx",
+          "delta": -10
+        }
+      }
+    ]
+  },
+  {
+    "id": "gro-r-la-faim-devant-le-feu",
+    "nom": "La faim devant le feu",
+    "type": "social",
+    "lieu": "gro-salle-commune",
+    "difficulte": "faible",
+    "intro": "Le feu de tourbe crache, et la salle se tait. Une vieille gobeline retourne la marmite vide ; un guerrier compte les sacs de grain à voix haute, trois fois, comme si le nombre pouvait changer. Une trentaine de paires d'yeux vous suivent jusqu'à la table, et personne ne dit mot.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "gro-promettre-du-grain",
+        "nom": "Promettre du grain",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "resume": "Parler devant toute la salle, sans promettre plus qu'on ne peut tenir : dire d'où viendra le grain, quand, et ce que le village y gagnera. Skarn écoute sans interrompre, puis fait signe qu'on peut s'asseoir.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "nyx",
+              "delta": 5
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "nyx",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "gro-partager-les-rations",
+        "nom": "Partager ses rations",
+        "condition": {
+          "objet": "rations"
+        },
+        "resume": "Vider son sac sur la table : les rations passent de main en main, les enfants d'abord, et la vieille gobeline ajoute de l'eau dans la marmite pour que tout le monde en ait.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "miette",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "gro-se-taquer-et-ecouter",
+        "nom": "Se taire et écouter",
+        "resume": "Ne rien promettre, s'asseoir au bout du banc et laisser la salle reprendre sa vie : les comptes, la soupe, les querelles de voisinage. Au bout d'une heure, plus personne ne surveille vos mains.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "nyx",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "gro-montrer-les-armes",
+        "nom": "Poser les armes sur la table",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "resume": "Poser les armes sur la table, l'une après l'autre, sans un mot : la salle se rappelle qu'elle n'a que des sagales et des couteaux. Skarn ne dit rien, mais les enfants reculent.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "nyx",
+              "delta": -10
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skarn",
+              "delta": -15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "nyx",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "xp": 25
+      }
+    ]
+  }
+]

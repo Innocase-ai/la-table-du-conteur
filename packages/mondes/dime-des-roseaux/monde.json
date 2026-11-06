@@ -1,0 +1,83 @@
+{
+ "id": "dime-des-roseaux",
+ "version": 1,
+ "statut": "brouillon",
+ "nom": "La Dîme des Roseaux",
+ "resume": "Un village de roseaux paie chaque automne une dîme de grain aux gobelins pour acheter la paix. Cette année, la charrette a été saisie par une compagnie hobgobeline, la fille du meunier est otage, et le pont s'est refermé sur trois jours de crue.",
+ "accroche": "Le pont est fermé, la charrette de grain a disparu, et la fille du meunier est partie avec elle. À Mireval, la paix a un prix — et quelqu'un devra le payer.",
+ "ton": [
+  "conte rural et humide",
+  "humour de village",
+  "violence qui monte sans grimdark",
+  "des gens qui ont faim, pas des méchants"
+ ],
+ "niveaux": {
+  "min": 1,
+  "max": 2
+ },
+ "depart": {
+  "lieu": "mireval",
+  "intro": "Le péage du pont vous a coûté trois pièces et une heure. Derrière vous, la chaussée noyée et les hobgobelins qui comptent les charrettes ; devant, la place de Mireval, ses sacs de grain sous l'auvent et l'odeur de tourbe mouillée. Une femme en tablier de cuir vous regarde venir depuis la porte de l'auberge ; un vieux nain assis sur une marche crache dans la boue. Personne ne sourit."
+ },
+ "direction": {
+  "style": "Conte rural peint : roseaux ocre et roux, eau grise, pierre moussue, fer rouillé, lanternes de tourbe et de graisse. Lumière basse d'automne, pluie fine, matières usées (bois mouillé, toile cirée, grain, cuir).",
+  "palette": [
+   "ocre des roseaux",
+   "gris de l'eau",
+   "vert mousse",
+   "rouille",
+   "or des lanternes"
+  ],
+  "motsCles": [
+   "roseaux",
+   "chaussée noyée",
+   "moulin",
+   "grain",
+   "péage",
+   "lanterne",
+   "pluie fine"
+  ],
+  "interdits": [
+   "heroic fantasy éclatante",
+   "noir et blanc manichéen",
+   "créatures caricaturales",
+   "architecture de donjon générique sans eau"
+  ]
+ },
+ "chapitres": [
+  {
+   "id": "ch1-la-dime",
+   "nom": "La Dîme des Roseaux",
+   "niveaux": {
+    "min": 1,
+    "max": 2
+   },
+   "resume": "De la chaussée noyée au camp hobgobelin, le groupe découvre le pacte du meunier, la charrette saisie, la mine de fer et le prix de la paix. Trois voies : marchander, faire la guerre, ou faire partir la tribu par les roseaux.",
+   "lieux": [
+    "dime-des-roseaux"
+   ],
+   "quetes": [
+    "q-la-dime",
+    "q-perrine-colin",
+    "q-mireval-le-grenier",
+    "q-skarn-le-grain",
+    "q-bastien-la-rumeur",
+    "q-marin-le-passage",
+    "q-aveline-les-prisonniers",
+    "q-bram-la-galerie"
+   ]
+  }
+ ],
+ "regles": [
+  "Il n'existe pas de résurrection dans ce monde : la mort est définitive.",
+  "Les gobelins et les hobgobelins sont des peuples, pas des monstres génériques : ils ont des familles, des peurs et des raisons. Le jeu ne valide pas les préjugés.",
+  "Le MJ ne révèle jamais le pacte du meunier, la saisie de la charrette ou le sort de Colin avant que le groupe ait découvert les faits correspondants.",
+  "Chaque antagoniste croit bien faire : Varg met de l'ordre, Skarn veut nourrir les siens, Anselme a sauvé le village une fois.",
+  "La jauge dime monte avec les nuits passées sans agir et les violences inutiles ; elle baisse quand le groupe négocie, paie, livre du grain ou rend un prisonnier.",
+  "Aucune fin n'est entièrement heureuse : chaque voie a un coût pour le village, la tribu ou le groupe.",
+  "Le monde est original : aucun nom, lieu ou texte des univers D&D officiels."
+ ],
+ "auteurs": [
+  "Claude, d'après un pitch validé par l'utilisateur"
+ ]
+}

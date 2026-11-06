@@ -1,0 +1,99 @@
+[
+ {
+  "pnj": "grum",
+  "passe": "Grum est un gobelours au service de Varg. Il a été tiré d'un éboulement par le capitaine, il y a des années, et il le sert depuis par dette plutôt que par goût de la guerre. Il monte la garde, porte les ordres et regarde les hommes de la compagnie vieillir sans solde. Il parle peu, mange beaucoup et pense de plus en plus à rentrer chez lui, dans les collines du sud. Il n'aime pas la cruauté gratuite, mais il n'a jamais désobéi à Varg devant les autres.",
+  "liens": [
+   {
+    "pnj": "varg",
+    "nature": "le capitaine à qui il doit la vie",
+    "opinion": "Il le sert par dette. Il dit que Varg l'a tiré de la pierre et qu'un gobelours ne l'oublie pas, même quand il n'a plus envie de se battre."
+   },
+   {
+    "pnj": "colin-vasseur",
+    "nature": "un prisonnier de la veine",
+    "opinion": "Il le trouve courageux et silencieux. Il lui a déjà laissé une couverture, sans le dire à Varg."
+   },
+   {
+    "pnj": "skarn",
+    "nature": "le chef gobelin",
+    "opinion": "Il ne le craint pas. Il dit qu'un chef qui reste dans sa grotte ne durera pas, mais il respecte qu'il nourrisse ses enfants."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-masse",
+    "texte": "Il porte une masse au manche usé, mais il ne l'a pas levée depuis des semaines. Il la tient comme un outil dont il n'a plus besoin."
+   },
+   {
+    "id": "le-pain",
+    "texte": "Il garde du pain dans une poche de son manteau et le partage avec les prisonniers quand personne ne regarde."
+   },
+   {
+    "id": "les-collines",
+    "texte": "Il parle des collines du sud comme d'un pays où l'on dort sans muraille. Il dit qu'il y retournera quand la dette sera payée."
+   },
+   {
+    "id": "la-paie",
+    "texte": "Il sait que la compagnie n'est pas payée. Il dit que la solde viendra, puis il regarde la mine et ne dit plus rien."
+   },
+   {
+    "id": "le-capitaine",
+    "texte": "Il ne critique jamais Varg devant les hommes. Quand il est seul, il dit que le capitaine devrait dormir plus et compter moins."
+   },
+   {
+    "id": "avis-sur-la-peur",
+    "texte": "Il dit qu'il n'a peur que d'une chose : mourir loin des collines, dans une mine, pour une solde qu'il n'a jamais vue."
+   }
+  ],
+  "sait": [
+   {
+    "id": "colin",
+    "fait": "f-colin-prisonnier",
+    "version": "Colin travaille à la veine. Varg le garde vivant parce qu'il sait où est le grain et parce qu'il sert d'otage au village.",
+    "acces": {},
+    "tabou": [
+     "menottes"
+    ]
+   },
+   {
+    "id": "la-mine",
+    "fait": "f-mine-de-fer",
+    "version": "La mine recèle une veine de fer que Varg exploite avec des prisonniers. Grum y descend chaque matin et compte les hommes qui remontent.",
+    "acces": {}
+   },
+   {
+    "id": "sa-dette",
+    "fait": "f-grum-dette",
+    "version": "Il doit la vie à Varg, qui l'a tiré d'un éboulement. Il le sert par dette, pas par goût de la guerre, et il parle de plus en plus de rentrer chez lui.",
+    "acces": {}
+   },
+   {
+    "id": "le-deserteur",
+    "fait": "f-deserteur-hobgobelin",
+    "version": "Un hobgobelin a tenté de déserter l'hiver dernier. Varg l'a tué devant le camp, sans colère, pour l'exemple ; Grum n'a pas bougé et n'a rien dit.",
+    "acces": {}
+   },
+   {
+    "id": "le-but",
+    "fait": "f-but-de-varg",
+    "version": "Varg veut la veine et la tribu comme main-d'œuvre. Grum le sait, et il sait aussi que le capitaine ne le dira jamais devant les hommes.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "il dit que le capitaine veut la mine, et qu'un soldat ne demande pas pourquoi on lui donne un ordre",
+    "tabou": [
+     "veine"
+    ]
+   },
+   {
+    "id": "la-faim",
+    "fait": "f-tribu-affamee",
+    "version": "La tribu n'a pas reçu le grain de cette année. Grum a vu les enfants gobelins maigrir et il a laissé du pain à Colin pour eux.",
+    "acces": {
+     "attitudeMin": 30
+    },
+    "evasif": "il dit que les gobelins se débrouillent, et qu'il n'est pas leur nourrice"
+   }
+  ]
+ }
+]

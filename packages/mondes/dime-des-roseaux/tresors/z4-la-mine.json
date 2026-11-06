@@ -1,0 +1,184 @@
+[
+ {
+  "id": "min-t-la-caisse-du-porche",
+  "nom": "La caisse du porche",
+  "lieu": "mine-hobgobeline",
+  "contenant": "coffre",
+  "description": "Une caisse de bois clouée au montant du porche, fendue par la pluie : la sentinelle y jette les pièces du passage, les comptes de charrettes et les outils confisqués aux visiteurs.",
+  "contenu": {
+   "pieces": {
+    "po": 8,
+    "pa": 25
+   },
+   "objets": [
+    {
+     "objet": "outils-de-voleur",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 12,
+    "competence": "investigation"
+   }
+  },
+  "gardien": "min-r-la-sentinelle-du-porche"
+ },
+ {
+  "id": "min-t-le-tresor-de-guerre",
+  "nom": "Le trésor de guerre",
+  "lieu": "min-camp-hobgobelin",
+  "contenant": "coffre",
+  "description": "Un coffre de fer à trois serrures, calé sous la couche du quartier-maître : la solde de six semaines, les pièces du tribut et une réserve de potions.",
+  "contenu": {
+   "pieces": {
+    "po": 55,
+    "pa": 120
+   },
+   "objets": [
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 1
+    },
+    {
+     "objet": "epee-longue",
+     "quantite": 1
+    },
+    {
+     "objet": "menottes",
+     "quantite": 1
+    }
+   ],
+   "tables": [
+    {
+     "table": "z5-butins-mine",
+     "jets": 1
+    }
+   ]
+  },
+  "acces": {
+   "cache": {
+    "dd": 14,
+    "competence": "investigation"
+   },
+   "verrou": {
+    "dd": 15
+   }
+  },
+  "gardien": "min-r-le-camp-hobgobelin"
+ },
+ {
+  "id": "min-t-la-charrette-saisie",
+  "nom": "La charrette du moulin",
+  "lieu": "min-camp-hobgobelin",
+  "contenant": "autre",
+  "description": "La charrette de Mireval, bâchée contre la palissade : des sacs marqués à la farine du moulin Roux, une besace sous le siège et des rations pour la route.",
+  "contenu": {
+   "pieces": {
+    "po": 12,
+    "pa": 30
+   },
+   "objets": [
+    {
+     "objet": "rations",
+     "quantite": 4
+    },
+    {
+     "objet": "corde",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {},
+  "indice": "f-charrette-saisie"
+ },
+ {
+  "id": "min-t-le-bureau-du-capitaine",
+  "nom": "Le coffret du capitaine",
+  "lieu": "min-bureau-de-varg",
+  "contenant": "coffre",
+  "description": "Le coffret de paie posé sur la tablette, sous le registre de comptes : la lettre de Varg, les gages des hommes et un double de la carte de la vallée.",
+  "contenu": {
+   "pieces": {
+    "po": 35,
+    "pa": 60
+   },
+   "objets": [
+    {
+     "objet": "lettre-de-varg",
+     "quantite": 1
+    },
+    {
+     "objet": "parchemin",
+     "quantite": 2
+    }
+   ],
+   "tables": []
+  },
+  "acces": {},
+  "gardien": "min-r-varg-et-sa-garde",
+  "indice": "f-double-tribut"
+ },
+ {
+  "id": "min-t-l-echantillon-de-la-veine",
+  "nom": "L'échantillon de la veine",
+  "lieu": "min-veine-de-fer",
+  "contenant": "cache",
+  "description": "Une niche de sondage creusée dans la paroi, derrière un étais fendu : les échantillons du vieux maître de forge, encore étiquetés à la craie.",
+  "contenu": {
+   "pieces": {
+    "po": 6,
+    "pa": 15
+   },
+   "objets": [
+    {
+     "objet": "fer-de-la-mine",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 13,
+    "competence": "investigation"
+   }
+  }
+ },
+ {
+  "id": "min-t-le-ballon-de-colin",
+  "nom": "Le balluchon de Colin",
+  "lieu": "min-veine-de-fer",
+  "contenant": "sac",
+  "description": "Le balluchon de Colin, jeté derrière un wagonnet : une dague, une couverture et deux rations qu'il cache aux gardes.",
+  "contenu": {
+   "pieces": {
+    "pa": 5
+   },
+   "objets": [
+    {
+     "objet": "dague",
+     "quantite": 1
+    },
+    {
+     "objet": "couverture",
+     "quantite": 1
+    },
+    {
+     "objet": "rations",
+     "quantite": 2
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 12,
+    "competence": "perception"
+   }
+  }
+ }
+]

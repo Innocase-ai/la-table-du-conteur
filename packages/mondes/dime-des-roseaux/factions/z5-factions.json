@@ -1,0 +1,197 @@
+[
+ {
+  "id": "gens-de-mireval",
+  "nom": "Les gens de Mireval",
+  "resume": "Le village de roseaux, son moulin, son grenier et sa maire. Quatre ans de pacte secret avec les gobelins ont acheté la paix, mais vidé les réserves. Huguette tient le village debout ; Anselme tient le secret ; Bastien tient les rumeurs.",
+  "objectifs": [
+   "Passer l'hiver sans famine.",
+   "Retrouver Lina et Colin sans livrer le grenier.",
+   "Éviter la guerre avec les hobgobelins.",
+   "Garder le pacte secret, ou choisir la vérité."
+  ],
+  "chef": "huguette",
+  "reputation": 0,
+  "paliers": [
+   {
+    "seuil": -50,
+    "nom": "Indésirables",
+    "effet": "Les portes se ferment, les prix doublent, la milice surveille le groupe. Plus de repos sûr à l'auberge."
+   },
+   {
+    "seuil": 0,
+    "nom": "Étrangers",
+    "effet": "Accueil prudent ; commerce normal ; on répond aux questions sans se confier."
+   },
+   {
+    "seuil": 40,
+    "nom": "Amis du village",
+    "effet": "Huguette parle du grenier et du pacte ; l'auberge offre le gîte ; un guide accompagne le groupe au marais."
+   },
+   {
+    "seuil": 80,
+    "nom": "Sauveurs de Mireval",
+    "effet": "Le village fournit des vivres et une escorte ; Anselme avoue le pacte ; la milice accepte de marcher avec le groupe."
+   }
+  ],
+  "relations": [
+   {
+    "faction": "tribu-de-skarn",
+    "attitude": -20
+   },
+   {
+    "faction": "compagnie-du-peage",
+    "attitude": -40
+   },
+   {
+    "faction": "passeurs-des-roseaux",
+    "attitude": 10
+   }
+  ]
+ },
+ {
+  "id": "tribu-de-skarn",
+  "nom": "La tribu de Skarn",
+  "resume": "Une tribu gobeline chassée de sa mine par la compagnie de Varg. Elle survit dans une grotte humide, affamée, et garde Lina comme otage d'honneur pour garantir le grain du meunier. Skarn veut sauver son peuple ; Nyx se méfie des humains ; Krik veut frapper.",
+  "objectifs": [
+   "Obtenir du grain pour passer le mois.",
+   "Récupérer la mine ou trouver un nouveau refuge.",
+   "Protéger les enfants de la tribu.",
+   "Ne pas être forcés de servir Varg."
+  ],
+  "chef": "skarn",
+  "reputation": 0,
+  "paliers": [
+   {
+    "seuil": -50,
+    "nom": "Ennemis",
+    "effet": "Les gobelins attaquent à vue ; Krik organise des raids ; Lina est déplacée et cachée."
+   },
+   {
+    "seuil": 0,
+    "nom": "Méfiance",
+    "effet": "On parle au groupe derrière une lance ; pas d'accès à la cellule de Lina sans un geste de bonne volonté."
+   },
+   {
+    "seuil": 40,
+    "nom": "Alliés de la tribu",
+    "effet": "Skarn parle librement du tribut et de Varg ; la tribu guide le groupe vers la galerie ; Lina peut négocier avec lui."
+   },
+   {
+    "seuil": 80,
+    "nom": "Frères des roseaux",
+    "effet": "Les guerriers gobelins combattent aux côtés du groupe ; Skarn confie la vérité sur Colin ; la tribu accepte de quitter la grotte avec le groupe."
+   }
+  ],
+  "relations": [
+   {
+    "faction": "gens-de-mireval",
+    "attitude": -20
+   },
+   {
+    "faction": "compagnie-du-peage",
+    "attitude": -60
+   },
+   {
+    "faction": "passeurs-des-roseaux",
+    "attitude": 0
+   }
+  ]
+ },
+ {
+  "id": "compagnie-du-peage",
+  "nom": "La compagnie du Péage",
+  "resume": "Une compagnie hobgobeline disciplinée qui a pris la mine de fer et installé un péage sur la chaussée. Varg veut le fer, l'ordre et le tribut ; il croit civiliser une frontière oubliée. Grum, son gobelours, est fatigué de la guerre.",
+  "objectifs": [
+   "Extraire le fer de la mine.",
+   "Obtenir le tribut du village et de la tribu.",
+   "Tenir la chaussée et le pont.",
+   "Empêcher toute révolte."
+  ],
+  "chef": "varg",
+  "reputation": -10,
+  "paliers": [
+   {
+    "seuil": -50,
+    "nom": "Ennemis de la compagnie",
+    "effet": "Les patrouilles attaquent à vue ; le péage est fermé ; Varg envoie Grum en chasse."
+   },
+   {
+    "seuil": 0,
+    "nom": "Sujets",
+    "effet": "Le péage est ouvert contre paiement ; les hobgobelins ignorent le groupe tant qu'il paie."
+   },
+   {
+    "seuil": 40,
+    "nom": "Respect",
+    "effet": "Varg reçoit le groupe au camp ; il parle du fer et de son peuple ; les patrouilles ne l'attaquent plus en premier."
+   },
+   {
+    "seuil": 80,
+    "nom": "Partenaires",
+    "effet": "Varg accepte un marché ; Grum baisse les armes ; la compagnie laisse passer le groupe vers la veine."
+   }
+  ],
+  "relations": [
+   {
+    "faction": "gens-de-mireval",
+    "attitude": 10
+   },
+   {
+    "faction": "tribu-de-skarn",
+    "attitude": -60
+   },
+   {
+    "faction": "passeurs-des-roseaux",
+    "attitude": -20
+   }
+  ]
+ },
+ {
+  "id": "passeurs-des-roseaux",
+  "nom": "Les Passeurs des roseaux",
+  "resume": "Marin et sa barque connaissent le marais mieux que les hobgobelins. Ils ne prennent parti pour personne, mais tout se paie. Ils vendent le passage, les nouvelles et parfois le silence.",
+  "objectifs": [
+   "Rester neutres et vivants.",
+   "Être payés pour chaque passage.",
+   "Éviter que la guerre ne ferme le marais."
+  ],
+  "chef": "marin",
+  "reputation": 0,
+  "paliers": [
+   {
+    "seuil": -50,
+    "nom": "Refus de passage",
+    "effet": "Marin ne répond plus ; la cabane est fermée ; le chemin du marais reste introuvable."
+   },
+   {
+    "seuil": 0,
+    "nom": "Clients",
+    "effet": "Marin vend le passage au prix fort et ne répond qu'aux questions payées."
+   },
+   {
+    "seuil": 40,
+    "nom": "Bons clients",
+    "effet": "Marin offre la carte du marais et indique le chemin secret vers la mine."
+   },
+   {
+    "seuil": 80,
+    "nom": "Amis du marais",
+    "effet": "Marin conduit le groupe gratuitement et prévient des patrouilles de Varg."
+   }
+  ],
+  "relations": [
+   {
+    "faction": "gens-de-mireval",
+    "attitude": 10
+   },
+   {
+    "faction": "tribu-de-skarn",
+    "attitude": 0
+   },
+   {
+    "faction": "compagnie-du-peage",
+    "attitude": -20
+   }
+  ]
+ }
+]

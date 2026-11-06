@@ -699,6 +699,48 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Tests : 783 verts (dont `heraut.test.ts`, la condition `heros` et les regards, les examens et le codex du Val) ; validation 0 erreur pour les deux mondes ; estimations régénérées. **Aucun essai réel avec le modèle** (payant).
 - **Reste** : regards et salutations d'origine pour le Val ; interjections d'accompagnateurs du Val (Hesta, Kor) ; savoirs des autres PNJ majeurs (Val, palais de la Citadelle) ; synchroniser le champ `savoir` des fiches `pnj/` avec les fiches de savoir ; un essai réel du conteur sur les nouveautés (≈ 0,01 $).
 
+## 05/11/2026 — La Dîme des Roseaux : un monde court original, du pitch au validateur
+
+- **Sources** : trois PDF fournis par l'utilisateur — « À la chasse aux gobs » et « Le collier de Zark » (aventures AideDD sous OGL, mais textes, noms et cartes non désignés Open Game Content) et les Basic Rules 2018 (© WotC, usage personnel). Rangés dans sources/aventures/ (hors git) avec une analyse et des pages rendues. Décision : adaptation 100 % originale, structure seulement inspirée, aucun texte, nom ou carte repris ; le Basic Rules n'est pas intégré.
+- **Pitch** : La Dîme des Roseaux — à Mireval, un village de roseaux, la paix se paie en grain ; la charrette de cette année a été saisie par les hobgobelins de Varg, la fille du meunier est otage d'honneur chez les gobelins, Colin le charretier est prisonnier à la mine, et le pont s'est refermé sur trois jours de crue.
+- **Canon** : secret en couches (pacte du meunier, saisie de la charrette, otage volontaire, vrai but de Varg : le fer), 4 fins qui coûtent (marché, guerre, exode, échec), jauge la Dîme 0-4, 4 factions, registre complet, 3 dilemmes (registre, grain, Grum) plus le dilemme final du prix de la paix.
+- **Écriture** : 4 zones par agents (z1 Mireval et chaussée par un coéquipier, z2 marais, z3 grotte et z4 mine par des sous-agents) + zone centrale écrite par moi (factions, jauge, faits, 6 quêtes, 4 dilemmes, 4 fins, tables, événements). Relecture et corrections : abri sûr dans la mine, condition de libération de Colin, 3 rencontres élevées, échos manquants, 7 examens, coquille hugette.
+- **Contenu** : 20 lieux, 13 PNJ (84 sujets), 11 rencontres, 20 trésors (≈ 462 po), 9 pièges, 10 faits, 6 quêtes (1 principale, 1 personnelle, 2 de faction, 2 secondaires), 4 dilemmes, 4 fins, 3 tables, 4 événements, 7 examens, 1 jauge, 4 factions.
+- **Validation** : 0 erreur, 12 avertissements de richesse (objectifs 30 lieux / 25 PNJ, 3 grottes, 3 énigmes…) — monde court assumé. 789 tests verts (52 fichiers), typecheck propre, doc généré (docs/mondes/dime-des-roseaux.md), estimation 161 tours / ≈ 5 h / 0,1 à 1,6 $ de conteur / 0,1 $ d'images de groupe.
+- **Décisions** : format court (20 lieux, 13 PNJ, 2 à 5 h selon le rythme) plutôt que chapitre complet ; aucune image ni voix générée ; monde laissé en statut brouillon jusqu'à relecture utilisateur. Le lien pont-marais est déclaré des deux côtés, le moteur dédoublonne.
+- **Reste** : accord pour les images (≈ 0,01 $/image) et les voix (≈ 0,003 $/plan) ; 2-3 énigmes si on veut réduire l'avis ; 2 compagnons et 1 marchand si on étend ; essai réel du conteur ; relecture du doc ; puis commit.
+
+## 05/11/2026 — La Dîme des Roseaux, compléments : 2 compagnons, 1 marchand, 3 énigmes
+
+- **Demande utilisateur** : compléter le monde avec 3 énigmes, 2 compagnons et 1 marchand.
+- **Compagnons** : Aveline Ker (clerc humaine niveau 1, guérisseuse, quête q-aveline-les-prisonniers) et Bram Cœur-de-Tourbe (guerrier nain niveau 1, vieux mineur, quête q-bram-la-galerie). Tous deux recrutables par un sujet dédié (drapeaux aveline-recruite et bram-recruite), avec répliques, opinions, désirs, peurs et secrets. Les quêtes personnelles passent de 1 à 3.
+- **Marchand** : Célestin Brindille (halfelin, mir-place-du-marche), boutique de survie (rations, torches, huile, corde, couvertures, potions de guérison), deux services et quatre sujets. Les marchands passent de 2 à 3.
+- **Énigmes** : le compte du moulin (cadran 11/4/3, au moulin), le signal des lanternes (séquence verte/ambre/rouge/blanche, à la cabane des passeurs) et les leviers de la galerie (leviers haut/bas, dans la galerie effondrée). Chacune a 3 indices, un échec qui coûte sans bloquer, et une récompense (fait, xp, trésor). Les énigmes passent de 0 à 3.
+- **Départ déplacé du pont à Mireval** : l'audit des énigmes démarre la partie au lieu de départ ; la rencontre d'entrée du péage faisait rester la scène en « rencontre » et aucun bouton « Répondre » n'apparaissait. L'introduction raconte désormais le péage, et un événement d'entrée à Mireval propose q-la-dime. Le pont garde sa rencontre pour qui y retourne.
+- **Validation** : 0 erreur, 8 avertissements de richesse seulement (20 lieux/30, 16 PNJ/25, 2 secondaires/6, 20 trésors/25, 6 objets/10, 11 rencontres/15, 10 faits/40, 1 grotte/3) ; 789 tests verts ; doc régénéré ; estimation 193 tours, ≈ 6 h, conteur 0,2 à 2 $, images du groupe 0,1 $.
+- **Aucune image ni voix, aucun commit** : accord utilisateur requis avant dépense et commit.
+
+## 05/11/2026 — La Dîme des Roseaux, deuxième complément : grottes, trésors, objets, rencontres, faits
+
+- **Demande utilisateur** : ajouter 2 grottes, 5 trésors, 4 objets, 4 rencontres et 30 faits.
+- **Grottes** : la grotte des Noyés (mar-grotte-des-noyes), refuge de contrebandiers à demi noyé sous le marais, et la veine basse (min-grotte-de-la-veine-basse), galerie naine abandonnée sous la mine. Trois grottes au total avec la grotte des roseaux.
+- **Trésors** : cache des Noyés, autel des roseaux, atelier de la veine basse, reliquaire des mineurs, cache du convoi — 25 trésors au total (≈ 655 po).
+- **Objets** : lanterne des Noyés, marteau de Tourbe, carte des veines, clé de la veine basse — 10 objets propres au monde.
+- **Rencontres** : rats noyés, meute des roseaux, contrebandiers de la veine, patrouille basse — 15 rencontres au total, avec alternatives pour les contrebandiers et la patrouille.
+- **Faits** : 30 faits ajoutés (40 au total), répartis entre PNJ, lieux, factions et rumeurs ; chacun est révélé par un savoir de PNJ, un lieu, un trésor ou un effet pour éviter les avertissements « personne ne le révèle ».
+- **Corrections** : table de butin mal typée dans les nouveaux trésors ; patrouille basse rééquilibrée en difficulté modérée avec une alternative de retraite ; meute des roseaux dotée d'une table de butin ; deux examens ajoutés (9 au total).
+- **Validation** : 0 erreur, 3 avertissements de richesse seulement (22 lieux/30, 16 PNJ/25, 2 secondaires/6) ; 789 tests verts ; doc régénéré ; estimation 208 tours, ≈ 7 h, conteur 0,2 à 2,7 $, images du groupe 0,1 $.
+- **Aucune image ni voix, aucun commit** : accord requis.
+
+## 05/11/2026 — Les savoirs des 16 PNJ de La Dîme des Roseaux
+
+- **Demande utilisateur** : ouvrir les questions libres avec les 16 PNJ.
+- **Écriture** : 16 fiches dans packages/mondes/dime-des-roseaux/savoirs/, une par PNJ. Chacune a un passé de 89 à 121 mots, 3 à 4 liens, 6 souvenirs ou opinions, 4 à 6 faits connus dont au moins un verrouillé avec un evasif, et des mots tabou pour les secrets.
+- **Accès** : les faits verrouillés respectent les secrets des fiches PNJ (Huguette 32, Lina 30, Skarn 40, Varg 25, Grum 20/30, Colin 20, Aveline 20, Bram 25, Perrine 20) ; les autres ont une condition ou une attitude propre.
+- **Test moteur** : trois répliques libres d'Anselme — une acceptée avec un souvenir et un fait libre, une acceptée révélant f-grenier-vide, une refusée pour fait verrouillé et mots tabous pacte / registre. Le module Savoirs refuse et explique, le conteur peut reformuler.
+- **Validation** : 0 erreur, 3 avertissements de richesse (22 lieux/30, 16 PNJ/25, 2 secondaires/6) ; 789 tests verts ; doc dédié docs/SAVOIRS-DIME-DES-ROSEAUX.md.
+- **Aucune image ni voix, aucun commit**.
+
 ## 05/11/2026 — L'atelier d'auteur (apps/atelier) : diagnostics structurés et tableau de santé (phases P0 et P1)
 
 - **Pourquoi** : écrire un monde se fait en conversation, et le validateur ne répond que par des phrases. L'atelier est un **tableau de bord pour l'auteur seul** : Claude Code et les agents continuent d'écrire, l'atelier lit les fichiers, montre ce qui ne va pas et se met à jour dès qu'un fichier change. **Aucun appel d'API, aucun coût.** Plan complet : 6 phases (P0 filet, P1 diagnostics + santé, P2 graphes, P3 simulateur de parcours, P4 éditeur + registre d'ids, P5 revue de cohérence).
@@ -856,3 +898,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Refus de modération** (5 sur 67) : babélien, lamie, mammouth, marilith, succube ; les fiches visuelles de `charte.json` ont été adoucies (« chair » et « belle femme » retirés ; le mammouth ne passait qu'avec le nom anglais « Woolly mammoth »). Pseudodragon refait (la première image avait deux têtes).
 - **Contrôle** : planches d'échantillon relues (dragons de toutes les couleurs et âges, liche, balor, hydre, kraken, solar, vampire…) : style cohérent, créatures conformes. Les 329 n'ont pas été relues une à une.
 - **Outil** : `pnpm images bestiaire --profils a,b,c` (seulement ces monstres).
+
+## 06/11/2026 — Plus d'images de monstres par histoire ; la Dîme sans avis de cartes ; état des catalogues
+
+- **Images de monstres des histoires supprimées** : 25 (Val) et 15 (Citadelle) fichiers `monstre-*.webp` retirés (le jeu ne les lisait pas : aucune scène ne les utilisait) ; manifestes mis à jour (`monstres` vide) ; `pnpm images monde` n'en génère plus ; `installer.py` ne les range plus ; `verifierImages` signale comme inconnue toute entrée `monstres` d'un manifeste (règle du 06/11/2026) ; tests mis à jour ; `docs/M2-IMAGES.md`.
+- **La Dîme (brouillon, non commité)** : 4 cartes tactiques complétées en cases `H` (6) et `m` (un par monstre) selon la règle du moteur ; il ne reste que 3 avis de richesse (22 lieux sur 30, 16 PNJ sur 25, 2 quêtes secondaires sur 6).
+- **Catalogues comparés au SRD** : monstres 329/329 ; armes 38, armures 13, objets 446 dont 318 magiques (potions 31, parchemins 10, baguettes 34, anneaux 22…) : complets pour le périmètre ; **sorts : 181 sur les niveaux 0 à 3 seulement** (le SRD va jusqu'au niveau 9 : environ 160 sorts de niveaux 4 à 9 absents) et **classes limitées aux niveaux 1 à 5**, par décision du PRD (niveaux 1 à 5). Étendre le moteur à tout le SRD (sorts 4 à 9, classes jusqu'au niveau 20, montée de niveau) est un chantier de moteur, à décider.

@@ -197,7 +197,8 @@ describe('textes des prompts de monde', () => {
     const bertille = tous().find((e) => e.id === 'pnj-bertille-dernier-feu')!;
     expect(bertille.prompt).toContain('halfling');
     expect(bertille.prompt).not.toContain('halfelin');
-    expect(tous().find((e) => e.id === 'monstre-bandit')!.prompt).toContain('human bandit');
+    // Plus d'image de monstre par histoire : le bestiaire commun les couvre.
+    expect(tous().filter((e) => e.groupe === 'monstres')).toEqual([]);
   });
 
   it('une retouche remplace le texte de la fiche', () => {

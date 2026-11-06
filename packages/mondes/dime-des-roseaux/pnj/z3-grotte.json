@@ -1,0 +1,727 @@
+[
+ {
+  "id": "lina-roux",
+  "nom": "Lina Roux",
+  "titre": "Fille du meunier, otage d'honneur de la tribu",
+  "espece": "humain",
+  "sexe": "F",
+  "age": "19 ans",
+  "role": "Négociatrice malgré elle : elle tient la parole de Mireval auprès de Skarn",
+  "lieu": "gro-cellule-de-lina",
+  "apparence": "Jeune femme de 19 ans, cheveux roux noués court, vieille veste de meunier trop large pour elle, tablier de toile grise, mains farinées, un bout de charbon passé derrière l'oreille ; elle se tient droite, comme si elle attendait qu'on lui rende son temps.",
+  "personnalite": {
+   "traits": [
+    "tête froide",
+    "fierté de fille de meunier",
+    "bavarde quand elle a peur",
+    "obstinée"
+   ],
+   "voix": "Directe, un peu sèche, avec l'accent des basses-cours ; elle pose des questions au lieu d'y répondre et compte tout haut sur ses doigts.",
+   "valeurs": [
+    "une parole donnée tient",
+    "les comptes doivent être justes",
+    "on ne paie pas avec la vie des autres"
+   ],
+   "desir": "Rentrer à Mireval avec un accord qui tienne, pas avec des excuses.",
+   "peur": "Que son père ait menti au village et que la paix se paie sur son dos.",
+   "defaut": "Elle décide pour les autres en croyant les protéger."
+  },
+  "presences": [
+   {
+    "lieu": "gro-salle-commune",
+    "moment": "soir"
+   }
+  ],
+  "faction": "gens-de-mireval",
+  "attitude": 15,
+  "savoir": [
+   "f-pacte-du-meunier",
+   "f-double-tribut",
+   "f-lina-mere",
+   "f-lina-registre"
+  ],
+  "secrets": [
+   {
+    "fait": "f-lina-otage",
+    "attitudeMin": 30
+   }
+  ],
+  "sujets": [
+   {
+    "id": "le-pacte",
+    "mots": [
+     "pacte",
+     "accord",
+     "dîme",
+     "grain",
+     "quatre ans",
+     "charrette"
+    ],
+    "question": "Que savez-vous du pacte de votre père ?",
+    "reponse": "Elle parle vite, en comptant sur ses doigts : quatre automnes, quatre charrettes parties du moulin, du grain et des outils contre la paix. Elle dit que le grenier s'est vidé à ce prix, qu'elle a vu les comptes et la manière dont son père les rangeait, et que le village entier ignore d'où venait cette tranquillité. Elle ajoute qu'un accord pareil ne se raconte pas au marché.",
+    "revele": [
+     "f-pacte-du-meunier"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "l-exigence-de-varg",
+    "mots": [
+     "Varg",
+     "hobgobelins",
+     "double",
+     "tribut",
+     "ultimatum",
+     "message"
+    ],
+    "question": "Que veut Varg, exactement ?",
+    "reponse": "Elle dit que Varg a fait porter un ordre par un homme à cheval : le double du tribut, du village comme de la tribu, avant les premières gelées. Elle précise que la tribu n'a rien reçu cette année, que la charrette n'est jamais venue, et que Skarn se retrouve à devoir payer pour un grain qu'il n'a pas mangé.",
+    "revele": [
+     "f-double-tribut"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "Colin",
+     "convoi",
+     "roues",
+     "pont"
+    ],
+    "question": "Où est passée la charrette ?",
+    "reponse": "Elle raconte le départ du moulin à la date dite, Colin Vasseur sur le siège et le grain de la part derrière. La charrette n'est jamais arrivée. On a suivi la trace des roues jusqu'au pont, puis plus rien : ni grain, ni charrette, ni Colin. Elle pense qu'on l'a détournée, mais elle ne sait pas par qui, et elle n'aime pas le deviner tout haut.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "rester-ici",
+    "mots": [
+     "otage",
+     "prisonnière",
+     "rester",
+     "partir",
+     "porte",
+     "hospitalité"
+    ],
+    "question": "Pourquoi restez-vous dans cette grotte ?",
+    "reponse": "Elle dit qu'elle mange à la table de Skarn, qu'elle a une porte, une lanterne et de la paille propre, et qu'on ne la touche pas. Elle appelle cela une otage d'honneur : sa présence garantit que Mireval paiera. Puis, plus bas, elle ajoute que partir maintenant ferait croire que le village renonce, et qu'elle ne donnera pas ce plaisir à son père.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-retour",
+    "mots": [
+     "revenir",
+     "rentrer",
+     "Mireval",
+     "accord",
+     "passeurs"
+    ],
+    "question": "Accepteriez-vous de revenir à Mireval ?",
+    "condition": {
+     "et": [
+      {
+       "fait": "f-double-tribut"
+      },
+      {
+       "pnj": {
+        "id": "lina-roux",
+        "attitudeMin": 15
+       }
+      }
+     ]
+    },
+    "reponse": "Elle accepte, mais pas les mains vides : elle veut pouvoir dire au village ce que Varg exige et ce que la tribu risque. Elle demande qu'on prévienne Skarn avant de l'emmener, par respect pour l'hospitalité reçue, et dit qu'elle fera la route avec les passeurs si le groupe doit rester de l'autre côté de la colline.",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "lina-retrouvee"
+     },
+     {
+      "attitude": {
+       "pnj": "skarn",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "miette",
+    "mots": [
+     "Miette",
+     "enfant",
+     "petite",
+     "cailloux"
+    ],
+    "question": "Que fait cette enfant dans la grotte ?",
+    "reponse": "Elle parle de Miette avec une tendresse brusque : l'enfant lui apporte des cailloux, lui apprend des mots gobelins, et dort contre sa porte quand la salle est trop bruyante. Elle demande qu'on ne l'effraie pas avec les armes, et dit que dans cette grotte, la petite est la seule chose qui n'a rien à voir avec le grain.",
+    "revele": [],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "miette",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "hostile": "Si vous êtes envoyés par mon père, dites-lui que je ne reviendrai pas les mains vides.",
+   "neutre": "Vous n'êtes pas du village. Pourtant vous avez la pluie de Mireval sur les épaules.",
+   "amical": "Entrez, il y a de la place sur la caisse. Ne faites pas de bruit, la petite dort mal.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Lina vous regarde comme on regarde des témoins. « Vous savez, pour mon père. Alors ne me parlez pas de mensonge : parlez-moi de ce qu'on peut encore sauver. »"
+    },
+    {
+     "condition": {
+      "flag": "alliance-gobeline"
+     },
+     "texte": "« Skarn vous a serré la main ? » Elle sourit pour la première fois. « Alors asseyez-vous : dans cette grotte, ça veut dire quelque chose. »"
+    },
+    {
+     "condition": {
+      "flag": "lina-retrouvee"
+     },
+     "texte": "Elle a noué son sac et remis sa veste. « Je suis prête. Mais on part par les roseaux, et on ne dit pas au village que je suis partie avec vous : on dit que j'ai négocié. »"
+    }
+   ]
+  },
+  "inventaire": []
+ },
+ {
+  "id": "skarn",
+  "nom": "Skarn",
+  "titre": "Chef de la tribu gobeline de la colline",
+  "espece": "gobelin",
+  "sexe": "M",
+  "age": "environ 58 ans",
+  "role": "Chef de la tribu : il décide du grain, de la paix et des dettes",
+  "lieu": "gro-salle-commune",
+  "apparence": "Gobelin de 58 ans, petit et large d'épaules, peau vert olive couturée de cicatrices anciennes, crâne rasé sauf une natte grise, tunique de laine reprisée, collier de dents de rongeur, une main abîmée qu'il tient serrée ; il s'appuie sur un bâton de bois durci.",
+  "personnalite": {
+   "traits": [
+    "prudent jusqu'à la lenteur",
+    "fier",
+    "compteur-né",
+    "patient avec les enfants"
+   ],
+   "voix": "Grave et lente, il pèse ses mots ; il parle de la faim comme d'une vieille parente et termine souvent ses phrases par un proverbe de mineur.",
+   "valeurs": [
+    "un chef mange après les siens",
+    "la pierre se souvient des promesses",
+    "on ne paie pas deux fois la même dette"
+   ],
+   "desir": "Nourrir sa tribu jusqu'au printemps et ne plus dépendre d'un village qui a déjà manqué une fois.",
+   "peur": "Que Varg prenne la mine et fasse de sa tribu de la main-d'œuvre.",
+   "defaut": "Il attend trop : il laisse pourrir les choses en espérant qu'elles s'arrangent."
+  },
+  "presences": [
+   {
+    "lieu": "gro-entree",
+    "moment": "jour"
+   }
+  ],
+  "faction": "tribu-de-skarn",
+  "attitude": -10,
+  "savoir": [
+   "f-tribu-affamee",
+   "f-double-tribut",
+   "f-skarn-fils"
+  ],
+  "secrets": [
+   {
+    "fait": "f-lina-otage",
+    "attitudeMin": 40
+   }
+  ],
+  "sujets": [
+   {
+    "id": "le-grain",
+    "mots": [
+     "grain",
+     "nourrir",
+     "faim",
+     "récolte",
+     "hiver",
+     "marché"
+    ],
+    "question": "Que vous faut-il pour passer l'hiver ?",
+    "reponse": "Skarn dit qu'il lui faut du grain avant les gelées : trois charrettes, ou deux et du sel, ou une et des outils. Il parle de sa tribu comme d'une maisonnée — quarante bouches, dont quatorze enfants — et ne demande pas l'aumône : il propose un marché, du grain contre la paix sur la route du marais et des bras pour la mine.",
+    "revele": [],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-skarn-le-grain",
+       "statut": "proposee"
+      }
+     }
+    ],
+    "unique": false
+   },
+   {
+    "id": "l-ultimatum",
+    "mots": [
+     "Varg",
+     "hobgobelins",
+     "tribut",
+     "double",
+     "ordre",
+     "gelées"
+    ],
+    "question": "Que vous a dit Varg ?",
+    "reponse": "Il dit que Varg a envoyé un homme, pas un gobelin, avec un ordre écrit : le double du tribut, du village comme de la tribu, sinon la compagnie prendra la mine et la tribu avec. Il montre du menton la dalle gravée près du feu et dit que les bâtons n'iront pas plus loin que cet hiver.",
+    "revele": [
+     "f-double-tribut"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-reserve",
+    "mots": [
+     "réserve",
+     "sacs",
+     "manger",
+     "champignons",
+     "lard"
+    ],
+    "question": "Combien de temps pouvez-vous tenir ?",
+    "reponse": "Il l'avoue sans détour : trois sacs de grain, des champignons secs, un quartier de lard, et les chasseurs rapportent peu depuis que les hobgobelins tiennent les chemins. Il dit que les enfants mangent avant les guerriers, que c'est la règle, et qu'il ne l'a jamais enfreinte, même l'hiver où deux des siens sont restés sous la galerie.",
+    "revele": [
+     "f-tribu-affamee"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "l-alliance",
+    "mots": [
+     "alliance",
+     "accord",
+     "aider",
+     "ensemble",
+     "paix",
+     "serment"
+    ],
+    "question": "Proposer un accord avec la tribu.",
+    "condition": {
+     "et": [
+      {
+       "quete": {
+        "id": "q-skarn-le-grain",
+        "statut": "active"
+       }
+      },
+      {
+       "pnj": {
+        "id": "skarn",
+        "attitudeMin": 10
+       }
+      }
+     ]
+    },
+    "reponse": "Il pose sa main abîmée sur la table. Il jure, au nom de la pierre et des siens, que la tribu ne lèvera pas la lance contre le village et qu'elle tiendra le marais ouvert au groupe. En échange, il veut du grain, et il veut que les hobgobelins ne sachent jamais d'où vient l'aide.",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "alliance-gobeline"
+     },
+     {
+      "attitude": {
+       "pnj": "skarn",
+       "delta": 15
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "nyx",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "l-ancienne-mine",
+    "mots": [
+     "mine",
+     "galerie",
+     "éboulement",
+     "veine",
+     "nains",
+     "passage"
+    ],
+    "question": "Que savez-vous des vieilles galeries ?",
+    "reponse": "Il parle des vieilles galeries avec respect : les nains y ont creusé droit, sa tribu a suivi la veine brune, puis l'éboulement a pris deux des siens. Il dit qu'on n'y va plus, et que pourtant l'air y circule — un courant qui vient de l'autre côté de la colline, vers la mine des hobgobelins, et qui sent le fer.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "lina",
+    "mots": [
+     "Lina",
+     "otage",
+     "fille",
+     "meunier",
+     "hospitalité"
+    ],
+    "question": "Pourquoi gardez-vous la fille du meunier ?",
+    "reponse": "Il dit que la fille du meunier mange à sa table, qu'elle a une porte et une lanterne, et qu'il ne la laissera pas partir avant d'avoir reçu son dû — non par cruauté, parce qu'un otage d'honneur est la seule garantie qu'un chef peut montrer à son peuple. Il ajoute qu'elle négocie mieux que son père, et que c'est un compliment.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "hostile": "Tu es entré sans crier. Les hommes qui entrent sans crier ont une raison de se taire.",
+   "neutre": "Tu sens le roseau et la pluie. Tu viens du village, alors. Pose ton sac et dis ce que tu veux.",
+   "amical": "Assieds-toi près du feu, toi. La place du vieux n'est pas la meilleure, mais elle est chaude.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "« Le meunier a parlé, alors. » Il ne s'étonne pas. « Quatre hivers, quatre charrettes. Il en manque une, et c'est ma tribu qui jeûne. »"
+    },
+    {
+     "condition": {
+      "flag": "alliance-gobeline"
+     },
+     "texte": "Il se lève, ce qu'il ne fait presque jamais, et frappe la table de sa main valide. « Assieds-toi à ma droite, ami du village. Ce soir, on mange ensemble, et pas de soupe claire. »"
+    },
+    {
+     "condition": {
+      "flag": "tribut-paye"
+     },
+     "texte": "« Le grain est arrivé. » Il dit cela simplement, sans joie. « Alors la parole de Mireval tient encore. Dis-moi ce qu'elle coûtera l'an prochain. »"
+    }
+   ]
+  },
+  "inventaire": [],
+  "profilCombat": "chef-gobelin"
+ },
+ {
+  "id": "nyx",
+  "nom": "Nyx",
+  "titre": "Chamane de la tribu",
+  "espece": "gobelin",
+  "sexe": "F",
+  "age": "environ 40 ans",
+  "role": "Chamane : les os, les signes, les morts et la méfiance envers les humains",
+  "lieu": "gro-salle-commune",
+  "apparence": "Gobeline de 40 ans, maigre, peau gris-vert, cheveux coupés au couteau et enduits de suie, collier de vertèbres et de graines, tunique de cuir couverte de plumes noires, doigts tachés d'ocre rouge ; elle regarde sans cligner des yeux.",
+  "personnalite": {
+   "traits": [
+    "méfiante",
+    "observatrice",
+    "superstitieuse",
+    "protectrice avec Miette"
+   ],
+   "voix": "Basse et sifflante, par phrases courtes ; elle parle des humains à la troisième personne quand ils sont devant elle.",
+   "valeurs": [
+    "les os ne mentent pas",
+    "les enfants d'abord",
+    "un cadeau engage celui qui le donne"
+   ],
+   "desir": "Que la tribu quitte la colline avant que les hobgobelins ne l'enferment.",
+   "peur": "Que les humains livrent sa tribu à Varg pour sauver leur grenier.",
+   "defaut": "Elle juge un peuple entier sur ce qu'elle a vu d'un seul homme."
+  },
+  "faction": "tribu-de-skarn",
+  "attitude": -25,
+  "savoir": [
+   "f-nyx-reve",
+   "f-miette-mere"
+  ],
+  "secrets": [
+   {
+    "fait": "f-but-de-varg",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    }
+   },
+   {
+    "fait": "f-but-de-varg",
+    "prix": 15
+   }
+  ],
+  "sujets": [
+   {
+    "id": "les-signes",
+    "mots": [
+     "os",
+     "signes",
+     "augures",
+     "rêves",
+     "présage",
+     "divination"
+    ],
+    "question": "Qu'est-ce que les os vous disent ?",
+    "reponse": "Elle jette des os sur une peau et lit : une charrette qui n'arrive pas, un feu qui monte dans un grenier, un fer qu'on arrache à la pierre. Elle ne traduit pas tout, et dit que les os ne parlent bien que des choses déjà commencées.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-humains",
+    "mots": [
+     "humains",
+     "village",
+     "confiance",
+     "Mireval",
+     "méfiance"
+    ],
+    "question": "Pourquoi nous regardez-vous ainsi ?",
+    "reponse": "Elle dit qu'elle a vu les humains promettre et repartir, qu'un homme du village est venu marchander des peaux l'an dernier et n'est jamais revenu. Elle ne déteste pas le groupe : elle attend de voir. Puis elle compte sur ses doigts les fois où on lui a menti, et il y a plus de doigts que de mains.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-mine",
+    "mots": [
+     "mine",
+     "fer",
+     "hobgobelins",
+     "Varg",
+     "veine"
+    ],
+    "question": "Que cherchent les hobgobelins dans la mine ?",
+    "reponse": "Elle dit que les hobgobelins ne viennent pas pour le grain : ils ont des hommes, des outils et des chariots, et le grain ne se garde pas dans une mine. Elle s'arrête là, les yeux sur les os, et attend qu'on insiste pour dire le reste.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "miette",
+    "mots": [
+     "Miette",
+     "enfant",
+     "petite",
+     "cailloux"
+    ],
+    "question": "Que représente Miette pour vous ?",
+    "condition": {
+     "flag": "miette-rassuree"
+    },
+    "reponse": "Elle se radoucit à peine, mais assez : elle dit que la petite a dormi sans cauchemar pour la première fois depuis un mois. Elle ajoute que si le groupe tient parole, elle lui donnera un nom gobelin, et que ce n'est pas rien : un nom se donne à ceux qui restent.",
+    "revele": [],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "nyx",
+       "delta": 10
+      }
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "partir-par-les-roseaux",
+    "mots": [
+     "partir",
+     "roseaux",
+     "passeurs",
+     "route",
+     "fuir"
+    ],
+    "question": "Que feriez-vous si vous pouviez partir ?",
+    "reponse": "Elle dit que si elle pouvait, elle emmènerait les enfants d'abord, par les roseaux, avec les passeurs, et qu'elle laisserait la mine aux hobgobelins sans un regret. Elle dit aussi que Skarn ne partira pas : un chef qui abandonne sa colline n'est plus chef, et il le sait.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "hostile": "Les humains sourient toujours avant de demander quelque chose. Ne souriez pas.",
+   "neutre": "Vous portez du fer aux ceintures et l'odeur du village sur vous. Qu'est-ce que vous voulez aux os ?",
+   "amical": "Asseyez-vous là, loin du feu. Les étrangers qui se taisent sont les seuls que j'écoute.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "alliance-gobeline"
+     },
+     "texte": "Elle crache dans le feu, puis vous fait signe d'approcher. « Le vieux vous a serré la main. Ça ne veut pas dire que je vous crois. Ça veut dire que je vous laisse essayer. »"
+    },
+    {
+     "condition": {
+      "flag": "miette-rassuree"
+     },
+     "texte": "Elle a vu la ration passer de main en main. « La petite vous a souri. » Elle dit cela comme un fait, pas comme un remerciement, et vous laisse approcher du feu."
+    }
+   ]
+  },
+  "inventaire": [],
+  "profilCombat": "combattant-gobelin"
+ },
+ {
+  "id": "miette",
+  "nom": "Miette",
+  "espece": "gobelin",
+  "sexe": "F",
+  "age": "8 ans",
+  "role": "Enfant de la tribu : elle sait tout ce qui se passe dans la grotte",
+  "lieu": "gro-salle-commune",
+  "apparence": "Enfant gobeline de 8 ans, haute comme trois sacs de grain, oreilles trop grandes, peau vert clair, cheveux en bataille retenus par une ficelle, robe de laine coupée aux genoux, cailloux dans les poches ; elle se cache à moitié derrière une peau quand elle parle.",
+  "personnalite": {
+   "traits": [
+    "curieuse",
+    "bavarde",
+    "fascinée par les humains",
+    "peur du noir"
+   ],
+   "voix": "Une voix claire qui part dans tous les sens ; elle pose trois questions pour une réponse et répète les mots qu'elle ne connaît pas.",
+   "valeurs": [
+    "un caillou donné ne se reprend pas"
+   ],
+   "desir": "Que Lina reste et que personne ne se batte dans la grande salle.",
+   "peur": "Que les grands prennent les couteaux et sortent en criant.",
+   "defaut": "Elle raconte tout, à tout le monde."
+  },
+  "faction": "tribu-de-skarn",
+  "attitude": 25,
+  "savoir": [
+   "f-lina-otage",
+   "f-miette-mere"
+  ],
+  "secrets": [],
+  "sujets": [
+   {
+    "id": "la-dame-rousse",
+    "mots": [
+     "Lina",
+     "dame",
+     "rousse",
+     "humaine",
+     "arrivée"
+    ],
+    "question": "Qui est la dame rousse ?",
+    "reponse": "Miette raconte que la dame rousse est arrivée un matin avec un sac et un bâton, qu'elle a parlé longtemps avec Skarn devant le feu, et qu'elle a posé elle-même son sac dans le réduit. Personne ne l'a poussée ni tirée. Elle dit que la dame compte les jours avec du charbon et lui apprend des mots.",
+    "revele": [
+     "f-lina-otage"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-cailloux",
+    "mots": [
+     "cailloux",
+     "pierres",
+     "collection",
+     "verre"
+    ],
+    "question": "Que faites-vous de ces cailloux ?",
+    "reponse": "Elle montre sa collection : un caillou blanc comme un os, un caillou troué, un morceau de verre de rivière, et une dent qu'elle jure avoir trouvée. Elle dit qu'un caillou donné ne se reprend pas, que c'est la loi, et qu'elle en garde un pour la dame rousse.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-trou-derriere-les-pierres",
+    "mots": [
+     "galerie",
+     "éboulement",
+     "trou",
+     "interdit",
+     "vent"
+    ],
+    "question": "Où avez-vous le droit d'aller ?",
+    "reponse": "Elle baisse la voix : on n'a pas le droit d'aller à la galerie, parce que ça tombe. Mais elle y est allée quand même, et elle dit qu'il y a un trou derrière les grosses pierres, que le vent en sort et que ça sent le fer. Elle croit que c'est par là que les grands passent quand ils ne veulent pas être vus.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-faim",
+    "mots": [
+     "faim",
+     "soupe",
+     "manger",
+     "champignons",
+     "bol"
+    ],
+    "question": "Qu'est-ce qu'on mange, ici ?",
+    "reponse": "Elle dit que la soupe est claire depuis la fin de l'été, qu'il y a des champignons dedans et parfois un os à ronger. Elle dit que les grands se servent après les petits, et que Nyx met sa part dans son bol quand personne ne regarde.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "lui-offrir-une-ration",
+    "mots": [
+     "offrir",
+     "ration",
+     "nourriture",
+     "donner",
+     "manger"
+    ],
+    "question": "Lui offrir une ration.",
+    "condition": {
+     "objet": "rations"
+    },
+    "reponse": "Elle prend la ration à deux mains, la sent, la met dans sa robe sans la manger. Elle dit qu'elle la gardera pour plus tard, pour un jour où la soupe sera trop claire, et court vers le coin de Nyx en parlant très vite.",
+    "revele": [],
+    "effets": [
+     {
+      "objet": {
+       "id": "rations",
+       "retirer": true
+      }
+     },
+     {
+      "flag": "miette-rassuree"
+     },
+     {
+      "attitude": {
+       "pnj": "miette",
+       "delta": 10
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "nyx",
+       "delta": 10
+      }
+     }
+    ],
+    "unique": true
+   }
+  ],
+  "salutations": {
+   "hostile": "Elle recule derrière la peau et ne dit rien.",
+   "neutre": "Tu es grand. Tu viens du village ? Il y a des poules, au village ?",
+   "amical": "Miette arrive en courant, s'arrête à deux pas, repart, revient. « J'ai un caillou pour toi. »",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "miette-rassuree"
+     },
+     "texte": "Elle vous prend la main sans demander et vous tire vers le feu. « Viens, je te montre où est le trou. Enfin, je te montre de loin. »"
+    },
+    {
+     "condition": {
+      "flag": "lina-retrouvee"
+     },
+     "texte": "Elle regarde le sac de Lina, puis Lina, puis vous. « Elle part ? » Elle ne pleure pas. Elle met un caillou dans la main de Lina et referme les doigts dessus."
+    }
+   ]
+  },
+  "inventaire": []
+ }
+]

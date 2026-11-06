@@ -1,0 +1,93 @@
+[
+ {
+  "id": "fin-marche",
+  "nom": "La nouvelle dîme",
+  "condition": {
+   "et": [
+    {
+     "flag": "choix-marche"
+    },
+    {
+     "flag": "colin-libere"
+    }
+   ]
+  },
+  "epilogue": "Varg accepte le marché : Mireval livrera une part fixe de grain, la tribu travaillera la mine, et la compagnie quittera la chaussée. Lina et Colin reviennent au village sous la pluie. La paix tient, mais elle a un prix : chaque automne, une charrette partira encore, et cette fois tout le village saura pourquoi. Anselme est démasqué ; Huguette le garde comme meunier mais lui retire sa voix au conseil. Skarn obtient du grain et perd sa liberté ; Krik parle de partir. Perrine ramène son frère à la maison, et Mireval compte ses sacs en silence.",
+  "consequences": [
+   "Un tribut annuel est instauré ; le village reste dépendant de la compagnie.",
+   "Anselme est démasqué et perd son autorité.",
+   "Les gobelins perdent leur indépendance et travaillent la mine.",
+   "Lina et Colin sont vivants.",
+   "Varg garde la mine et le pont, mais renonce au grenier."
+  ]
+ },
+ {
+  "id": "fin-guerre",
+  "nom": "Le pont coupé",
+  "condition": {
+   "et": [
+    {
+     "flag": "choix-guerre"
+    },
+    {
+     "flag": "varg-vaincu"
+    }
+   ]
+  },
+  "epilogue": "L'alliance tient le temps d'un assaut. Les gobelins de Skarn montent les premiers, la milice de Mireval suit, et le pont de pierre tombe dans la rivière avec la moitié du péage. Varg est chassé ou tué ; Colin sort de la mine en boitant. Le village est libre, mais la route est coupée, le marché est loin, et les morts sont nombreux. Skarn refuse de rendre la mine : la tribu s'y installe. Perrine veille son frère ; Huguette compte les vivants ; Anselme a survécu, mais plus personne ne l'écoute.",
+  "consequences": [
+   "Le pont est détruit et le village coupé du marché.",
+   "Des guerriers gobelins et des miliciens sont morts.",
+   "La compagnie du Péage est chassée mais reviendra.",
+   "La tribu occupe la mine.",
+   "Lina et Colin sont libres."
+  ]
+ },
+ {
+  "id": "fin-exode",
+  "nom": "La route des roseaux",
+  "condition": {
+   "et": [
+    {
+     "flag": "choix-exode"
+    },
+    {
+     "flag": "route-des-roseaux-ouverte"
+    }
+   ]
+  },
+  "epilogue": "La tribu quitte la grotte à la nuit, guidée par Marin à travers les roseaux, avec le grain de la mine et ce qui reste des réserves. Colin marche avec eux jusqu'à la lisière, puis revient vers sa sœur. Varg garde la mine et le pont, mais il n'a plus de main-d'œuvre ; il n'oubliera pas. Mireval passe l'hiver maigre, sans tribut et sans meunier : Anselme, démasqué, quitte le village. Lina revient changée, plus dure, et refuse de reprendre la place de son père. Les gobelins deviennent des errants ; Miette emporte une poignée de grain dans sa poche.",
+  "consequences": [
+   "Le village perd le tribut mais aussi une partie de ses réserves.",
+   "Les gobelins deviennent un peuple errant.",
+   "Varg garde la mine et le pont.",
+   "Anselme quitte Mireval.",
+   "Lina et Colin sont libres."
+  ]
+ },
+ {
+  "id": "fin-echec",
+  "nom": "La dîme payée",
+  "condition": {
+   "ou": [
+    {
+     "jauge": {
+      "id": "dime",
+      "min": 4
+     }
+    },
+    {
+     "flag": "z5-assaut"
+    }
+   ]
+  },
+  "epilogue": "Le grenier brûle avant l'aube. Les hobgobelins entrent dans Mireval sans résistance ; Varg s'installe dans la halle, Huguette signe ce qu'on lui demande, et le village paie la dîme deux fois. Lina reste en gage chez les gobelins, Colin reste à la mine, et la compagnie ouvre la veine de fer pour de bon. Mireval survit, plus petit, plus pauvre, et se souviendra de ceux qui n'ont pas su choisir.",
+  "consequences": [
+   "Le grenier est détruit et le village se soumet.",
+   "Lina et Colin restent prisonniers.",
+   "Varg contrôle la chaussée et la mine.",
+   "La tribu de Skarn est décimée ou asservie.",
+   "Le chapitre s'achève sans victoire."
+  ]
+ }
+]

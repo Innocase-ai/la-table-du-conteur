@@ -1,0 +1,96 @@
+[
+  {
+    "id": "z1-piege-du-coffre-de-farine",
+    "nom": "Le contrepoids du coffre de farine",
+    "lieu": "mir-moulin-roux",
+    "resume": "Le coffre de farine de l'étage est relié par une corde à un sac de meunerie suspendu au crochet de fer ; le déplacer fait basculer le sac et le crochet sur qui se penche.",
+    "detection": {
+      "dd": 13,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage",
+      "outil": "outils de voleur, ou une cale glissée sous le sac avant de déplacer le coffre"
+    },
+    "declenchement": "Pousser le coffre de farine sans caler d'abord le sac libère le crochet de fer, qui bascule et s'abat sur la nuque et les épaules.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "z1-piege-de-la-trappe-du-grenier",
+    "nom": "La planche pourrie du fenil",
+    "lieu": "mir-grenier",
+    "resume": "Une planche du fenil, rongée par l'humidité, cède au-dessus du vide du silo : qui marche dessus tombe de deux mètres sur le grain durci.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 11,
+      "competence": "athletisme",
+      "outil": "un marteau et deux clous, ou une planche posée en travers"
+    },
+    "declenchement": "Poser le pied sur la planche fendue la fait céder ; le bord du plancher reste à hauteur de poitrine et le sol du silo est deux mètres plus bas.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "contondant"
+      }
+    ],
+    "etats": [
+      "à terre"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "z1-piege-du-collet-des-roseaux",
+    "nom": "Le collet des roseaux",
+    "lieu": "pont-de-pierre",
+    "resume": "Un fil de fer tendu entre deux roseaux, au ras de la berge, relève qui le touche et le laisse pendu par la cheville au-dessus de l'eau.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 11,
+      "competence": "escamotage",
+      "outil": "outils de voleur, ou une pince et un bâton pour tendre le fil"
+    },
+    "declenchement": "Le fil se resserre sur la cheville et le contrepoids de roseaux ficelés bascule, emportant le marcheur vers l'eau brune.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 11,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "perforant"
+      }
+    ],
+    "etats": [
+      "entravé"
+    ],
+    "effets": [],
+    "reinitialisation": true
+  }
+]

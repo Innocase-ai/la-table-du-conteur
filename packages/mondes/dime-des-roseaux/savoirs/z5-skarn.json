@@ -1,0 +1,86 @@
+[
+ {
+  "pnj": "skarn",
+  "passe": "Skarn est le chef de la tribu gobeline des roseaux depuis plus de vingt ans. Il a vu la tribu perdre la mine au printemps, les hobgobelins prendre la chaussée et les enfants maigrir. Il a perdu son fils aîné face à la compagnie, et il refuse d'envoyer les autres au combat, même quand Krik le demande. Il garde Lina comme otage d'honneur, mais il la traite comme une invitée et il négocie avec elle. Il parle lentement, pèse chaque mot et préfère un mauvais accord à une guerre qu'il sait perdue.",
+  "liens": [
+   {
+    "pnj": "krik",
+    "nature": "un jeune guerrier de la tribu",
+    "opinion": "Il l'aime comme un fils et il le retient comme on retient un chien trop jeune. Il craint qu'il ne fasse tuer la tribu par courage."
+   },
+   {
+    "pnj": "nyx",
+    "nature": "la chamane",
+    "opinion": "Il la croit, même quand il ne comprend pas ses rêves. Elle est la seule à parler des morts sans trembler."
+   },
+   {
+    "pnj": "lina-roux",
+    "nature": "l'otage d'honneur",
+    "opinion": "Il la respecte. Elle négocie mieux que son père, et elle n'a pas peur de lui."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine hobgobelin",
+    "opinion": "Il le hait sans le sous-estimer. Varg a la force, l'ordre et le fer ; Skarn n'a que quarante bouches et un mois de grain."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-dalle",
+    "texte": "Il montre du menton la dalle gravée près du feu quand il parle du temps. Les bâtons n'iront pas plus loin que cet hiver."
+   },
+   {
+    "id": "les-enfants",
+    "texte": "Il fait manger les enfants avant les guerriers. Il dit que c'est la règle, et qu'il ne l'a jamais enfreinte, même l'hiver où deux des siens sont morts."
+   },
+   {
+    "id": "le-feu",
+    "texte": "Il alimente le feu de tourbe lui-même et regarde les braises avant de répondre. Il dit que le feu dit la vérité des jours."
+   },
+   {
+    "id": "les-humains",
+    "texte": "Il ne déteste pas les humains. Il dit qu'ils oublient vite et qu'ils paient tard, mais que le meunier a tenu parole quatre ans."
+   },
+   {
+    "id": "le-fils",
+    "texte": "Quand on parle de son fils, il se tait, puis il dit que la tribu a assez de morts et qu'il ne veut pas en ajouter."
+   },
+   {
+    "id": "la-grotte",
+    "texte": "Il connaît chaque recoin de la grotte et chaque famille qui y vit. Il dit que la grotte est humide, mais qu'elle est à eux."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-faim",
+    "fait": "f-tribu-affamee",
+    "version": "La tribu n'a pas reçu le grain de cette année. Il tient un mois, pas plus, et les enfants sont les premiers touchés.",
+    "acces": {}
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Varg exige le double du tribut, du village comme de la tribu. Skarn sait qu'il ne peut pas payer et que la compagnie le prendra pour prétexte.",
+    "acces": {}
+   },
+   {
+    "id": "son-fils",
+    "fait": "f-skarn-fils",
+    "version": "Il a perdu son fils aîné face aux hobgobelins. Il garde les enfants au fond de la grotte et refuse de les envoyer au combat.",
+    "acces": {}
+   },
+   {
+    "id": "l-otage",
+    "fait": "f-lina-otage",
+    "version": "Lina n'est pas prisonnière : elle est venue négocier et sert d'otage d'honneur pour garantir le grain. Il la traite bien, mais ne la laissera partir que si la tribu obtient de quoi manger.",
+    "acces": {
+     "attitudeMin": 40
+    },
+    "evasif": "il dit que la fille du meunier est là, qu'elle est vivante, et que le reste regarde la tribu",
+    "tabou": [
+     "otage"
+    ]
+   }
+  ]
+ }
+]

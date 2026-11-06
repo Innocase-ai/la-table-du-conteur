@@ -1,0 +1,427 @@
+[
+  {
+    "id": "z1-le-peage-de-varg",
+    "nom": "Le péage de Varg",
+    "type": "combat",
+    "lieu": "pont-de-pierre",
+    "difficulte": "elevee",
+    "intro": "Un tréteau de planches barre la chaussée entre deux arches. Trois hobgobelins en armure de cuir s'y tiennent, le fer à la ceinture et la lanterne de tourbe entre eux ; le plus grand, une plaque de sergent sur l'épaule — le capitaine du péage, pour les villageois —, tient un registre et ne se lève pas. Derrière eux, la caisse de fer, et plus loin les toits de Mireval qui fument dans la pluie. Le sergent annonce le tarif sans élever la voix : trois pièces d'or pour la troupe, ou le retour par où l'on est venu.",
+    "monstres": [
+      {
+        "profil": "combattant-hobgobelin",
+        "nombre": 3,
+        "nom": "Hobgobelin du péage"
+      }
+    ],
+    "carte": [
+      "################",
+      "#mmmm..........#",
+      "#....~~........#",
+      "#..............#",
+      "#..c...c.......#",
+      "#..............#",
+      "#....~~....~~..#",
+      "#..............#",
+      "#...HH..HH..HH.#",
+      "#..............#",
+      "################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Le sergent reste derrière le tréteau et crie les ordres ; les deux autres avancent ensemble, l'un à la javeline, l'autre à la hallebarde, et cherchent à vous repousser contre le parapet.",
+      "fuite": "À deux blessés, le sergent rompt le combat, abandonne la caisse et se replie vers le village en appelant les siens.",
+      "renforts": "Aucun : le poste suivant est à une heure, et le sergent n'a pas de cor."
+    },
+    "alternatives": [
+      {
+        "id": "payer-le-passage",
+        "nom": "Payer le droit de passage",
+        "condition": {
+          "pieces": {
+            "min": 3
+          }
+        },
+        "resume": "Le sergent encaisse trois pièces d'or, coche son registre et fait tirer le tréteau. Le tarif est cher, mais la chaussée est libre.",
+        "effets": [
+          {
+            "pieces": -3
+          },
+          {
+            "flag": "z1-peage-paye"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-peage",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "marchander-le-passage",
+        "nom": "Marchander le passage",
+        "resume": "Faire valoir qu'on vient pour le grain et non pour la mine, et que le péage a doublé sans qu'on prévienne personne.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "pieces": -1
+          },
+          {
+            "flag": "z1-peage-paye"
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-peage",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Le sergent hausse le tarif et fait avancer ses deux hommes ; il faudra payer le double ou se battre."
+          }
+        ]
+      },
+      {
+        "id": "contourner-par-la-berge",
+        "nom": "Contourner par la berge",
+        "resume": "Suivre la berge sous les roseaux, de l'eau aux genoux, et rejoindre la chaussée cinquante pas plus loin, derrière le tréteau.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "z1-peage-contourne"
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-peage",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Une javeline se plante dans la vase à deux pas ; le sergent vous a vus et rappelle ses hommes."
+          }
+        ]
+      },
+      {
+        "id": "passer-pour-des-colporteurs",
+        "nom": "Se faire passer pour des colporteurs",
+        "resume": "Sortir des échantillons, parler de ballots et de foires, et demander le tarif des marchands, qui n'est pas le même.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "effets": [
+          {
+            "flag": "z1-peage-contourne"
+          },
+          {
+            "pieces": -1
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-peage",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Le sergent regarde vos bottes crottées et sourit sans gaieté : les colporteurs ne viennent pas par la chaussée noyée."
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "z1-t-caisse-du-peage"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "z1-peage-ouvert"
+      },
+      {
+        "jauge": {
+          "id": "dime",
+          "delta": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "z1-les-rats-du-grenier",
+    "nom": "Les rats du grenier",
+    "type": "combat",
+    "lieu": "mir-grenier",
+    "difficulte": "faible",
+    "intro": "Dans le fenil, un sac éventré a répandu son grain sur les planches. Quelque chose y grouille : trois masses de rats gras, qui ne fuient plus depuis que le village rationne. Elles montent le long des sacs, se glissent sous les planches et ne quittent pas l'odeur du grain.",
+    "monstres": [
+      {
+        "profil": "nuee-de-rats",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "##############",
+      "#..mmm.......#",
+      "#....~~......#",
+      "#..c......c..#",
+      "#............#",
+      "#...HHHH.....#",
+      "#...HHHH.....#",
+      "#..~~....~~..#",
+      "##############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les nuées montent le long des sacs, se glissent sous les planches et se jettent sur les chevilles ; elles évitent la lumière et se replient vers la trappe quand on les frappe.",
+      "fuite": "Elles se dispersent dans les sacs dès qu'une nuée tombe et qu'on agite une torche.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "attirer-avec-du-grain",
+        "nom": "Les attirer avec du grain",
+        "resume": "Répandre une poignée de grain en ligne vers la trappe, puis refermer la planche derrière elles.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "z1-rats-attires"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Les rats se jettent sur le grain et sur la main qui le tend ; il faudra revenir avec une torche."
+          },
+          {
+            "attitude": {
+              "pnj": "perrine-vasseur",
+              "delta": -2
+            }
+          }
+        ]
+      },
+      {
+        "id": "frapper-avec-une-torche",
+        "nom": "Frapper avec une torche",
+        "resume": "Agiter une torche enflammée et avancer en frappant les sacs : les nuées refluent vers la trappe et se perdent sous le plancher.",
+        "effets": [
+          {
+            "flag": "z1-rats-attires"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "z1-grenier-debarrasse"
+      }
+    ]
+  },
+  {
+    "id": "z1-le-conseil-de-la-place",
+    "nom": "Le conseil de la place",
+    "type": "social",
+    "lieu": "mir-place-du-marche",
+    "difficulte": "faible",
+    "intro": "Une trentaine de villageois sont réunis autour du puits, sous la pluie. Huguette est debout sur la pierre plate, un papier à la main : le péage a encore augmenté, et le grenier ne tiendra pas si l'hiver est long. Quand vous arrivez, les conversations s'arrêtent ; on vous regarde comme on regarde des étrangers qui savent quelque chose.",
+    "alternatives": [
+      {
+        "id": "prendre-la-parole",
+        "nom": "Prendre la parole devant le village",
+        "resume": "Dire ce qu'on a vu sur la chaussée, sans promettre plus qu'on ne peut tenir, et demander au village ce qu'il est prêt à donner.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "huguette",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "z1-village-ecoute"
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "huguette",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z1-village-mecontent"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "ecouter-les-doleances",
+        "nom": "Écouter les doléances un par un",
+        "resume": "Laisser parler les uns après les autres, retenir les noms et les craintes, et ne rien promettre avant d'avoir tout entendu.",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "huguette",
+              "delta": 3
+            }
+          },
+          {
+            "flag": "z1-doleances-entendues"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Les voix se chevauchent et la réunion se disperse dans la boue avant que vous n'ayez retenu un nom."
+          },
+          {
+            "attitude": {
+              "pnj": "huguette",
+              "delta": -2
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "promettre-de-ramener-le-grain",
+        "nom": "Promettre de ramener le grain",
+        "resume": "Se lever et promettre, devant tout le monde, que le grain de la charrette reviendra au village. Le village applaudit ; Huguette ne dit rien.",
+        "effets": [
+          {
+            "flag": "z1-promesse-grain"
+          },
+          {
+            "attitude": {
+              "pnj": "huguette",
+              "delta": 2
+            }
+          },
+          {
+            "quete": {
+              "id": "q-mireval-le-grenier",
+              "statut": "proposee"
+            }
+          }
+        ]
+      }
+    ],
+    "effetsVictoire": [
+      {
+        "flag": "z1-conseil-tenu"
+      }
+    ]
+  },
+  {
+    "id": "z1-la-roue-du-moulin",
+    "nom": "La roue du moulin",
+    "type": "exploration",
+    "lieu": "mir-moulin-roux",
+    "difficulte": "faible",
+    "intro": "La grande roue tourne à peine, une aube arrachée et coincée contre le bief. L'eau s'accumule derrière les planches et le moulin gémit à chaque tour. Anselme regarde l'eau monter sans rien dire, une hache à la main, et ne vous demande pas de l'aide.",
+    "alternatives": [
+      {
+        "id": "degager-le-bief",
+        "nom": "Dégager le bief à la force des bras",
+        "resume": "Se mettre à trois dans l'eau froide et tirer l'aube coincée jusqu'à la berge, pendant que d'autres retiennent la roue.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "z1-roue-reparee"
+          },
+          {
+            "attitude": {
+              "pnj": "anselme-roux",
+              "delta": 10
+            }
+          }
+        ],
+        "echec": [
+          {
+            "narration": "L'aube se déchire et l'eau emporte les morceaux ; il faudra un charpentier et de nouvelles planches."
+          },
+          {
+            "attitude": {
+              "pnj": "anselme-roux",
+              "delta": -2
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "etudier-le-mecanisme",
+        "nom": "Étudier le mécanisme avant de tirer",
+        "resume": "Repérer la cheville de bois qui bloque le bief et la faire sauter sans casser la roue, en pesant chaque geste.",
+        "jet": {
+          "competence": "investigation",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "flag": "z1-roue-reparee"
+          },
+          {
+            "attitude": {
+              "pnj": "anselme-roux",
+              "delta": 8
+            }
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La cheville casse au mauvais moment et la roue prend du jeu ; le moulin tournera encore plus mal jusqu'au prochain charpentier."
+          },
+          {
+            "attitude": {
+              "pnj": "anselme-roux",
+              "delta": -3
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "laisser-faire",
+        "nom": "Laisser le meunier se débrouiller",
+        "resume": "Le moulin continuera de tourner au ralenti, l'eau montera derrière le bief, et Anselme se souviendra de votre indifférence.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "anselme-roux",
+              "delta": -5
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

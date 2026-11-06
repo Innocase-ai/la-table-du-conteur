@@ -1,0 +1,87 @@
+[
+ {
+  "pnj": "bram-coeur-de-tourbe",
+  "passe": "Bram Cœur-de-Tourbe est un nain de Mireval, fils de mineur et mineur lui-même. Son père a creusé la vieille mine avec les nains du village, il y a deux générations, avant que l'eau ne monte dans les galeries basses. Bram a travaillé trente ans dans les étais et les wagonnets ; il a perdu son frère dans l'éboulement de la galerie, et il n'a jamais pardonné aux hommes qui ont muré le boyau au lieu de le consolider. Depuis, il vit au grenier, boite de la jambe gauche et connaît la mine mieux que la compagnie de Varg. Il veut rouvrir la galerie de son père et prouver que la veine n'appartient à personne.",
+  "liens": [
+   {
+    "pnj": "colin-vasseur",
+    "nature": "un prisonnier de la mine",
+    "opinion": "Il ne le connaît pas, mais il sait ce que c'est que de travailler sous un étais qui craque. Il veut le sortir de là."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine du Péage",
+    "opinion": "Il le méprise sans le sous-estimer. Varg a rouvert la mine, mais il ne sait pas lire la pierre, et cela le rend dangereux."
+   },
+   {
+    "qui": "son frère",
+    "nature": "mort dans l'éboulement de la vieille mine",
+    "opinion": "Il porte encore son marteau et parle de lui comme s'il était dans la galerie voisine."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "le-pic",
+    "texte": "Il garde un vieux pic à la ceinture, même quand il n'y a rien à casser. Il le tient par le manche comme on tient une main."
+   },
+   {
+    "id": "la-jambe",
+    "texte": "Il boite de la jambe gauche et s'appuie sur une canne de pin. Il prétend que c'est la mine qui l'a fait, pas l'âge."
+   },
+   {
+    "id": "la-poutre",
+    "texte": "Il frappe les poutres du plat de la main avant de passer dessous. Il écoute le bois, puis il dit que ça tient."
+   },
+   {
+    "id": "les-morts",
+    "texte": "Il connaît le nom des mineurs morts dans la vieille mine. Il les récite comme une liste de courses, sans s'arrêter."
+   },
+   {
+    "id": "avis-sur-le-fer",
+    "texte": "Il dit que le fer n'appartient pas à ceux qui le vendent, mais à ceux qui l'ont sorti de la pierre. Varg n'a rien sorti."
+   },
+   {
+    "id": "le-grenier",
+    "texte": "Il dort au grenier, près de la réserve, et il compte les sacs sans le dire. Il sait que le grain manque avant que Huguette l'annonce."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-vieille-mine",
+    "fait": "f-mine-ancienne",
+    "version": "La mine a été creusée par les nains de Mireval il y a deux générations. Ils l'ont abandonnée quand l'eau a monté dans les galeries basses.",
+    "acces": {}
+   },
+   {
+    "id": "la-veine-de-fer",
+    "fait": "f-mine-de-fer",
+    "version": "La mine recèle une veine de fer que Varg exploite avec des prisonniers. C'est la vraie richesse de la vallée, et la raison de sa présence.",
+    "acces": {}
+   },
+   {
+    "id": "son-frere",
+    "fait": "f-bram-frere",
+    "version": "Son frère est mort dans l'éboulement, il y a trente ans. Bram a passé sa vie à étayer des galeries pour que cela n'arrive plus.",
+    "acces": {}
+   },
+   {
+    "id": "le-but-de-varg",
+    "fait": "f-but-de-varg",
+    "version": "Varg veut la veine et la tribu comme main-d'œuvre. Le grain n'est qu'un prétexte pour affaiblir Mireval et forcer le grenier.",
+    "acces": {
+     "attitudeMin": 25
+    },
+    "evasif": "il dit que Varg veut ce que tous les capitaines veulent : du fer et des bras, et que le reste ne l'intéresse pas",
+    "tabou": [
+     "veine"
+    ]
+   },
+   {
+    "id": "le-pont",
+    "fait": "f-pont-nain",
+    "version": "Le pont de pierre a été bâti par les nains. Les hobgobelins ont ajouté un tréteau, mais les dalles et les arches sont naines, et elles tiendront plus longtemps qu'eux.",
+    "acces": {}
+   }
+  ]
+ }
+]

@@ -1,0 +1,103 @@
+[
+ {
+  "pnj": "anselme-roux",
+  "passe": "Anselme Roux est né dans le moulin de son père, au bout de la chaussée de Mireval, et il n'en est jamais vraiment parti. Il a hérité du bâtiment, des meules et des dettes, puis d'un village à nourrir. Il y a quatre ans, la récolte a pourri sur pied ; pour éviter la famine, il a commencé à payer les gobelins en grain, sans le dire à personne. Depuis, chaque automne lui coûte une charrette et un peu de courage. Sa femme est morte d'une fièvre il y a six ans, et sa fille Lina tient les comptes qu'il n'ose plus regarder. Il parle peu, s'essuie les mains sur son tablier et regarde la porte quand la conversation devient dangereuse.",
+  "liens": [
+   {
+    "pnj": "lina-roux",
+    "nature": "sa fille",
+    "opinion": "Il l'aime plus que tout, et il a peur qu'elle découvre ce qu'il a signé avec les gobelins. Il la croit partie pour le grain, pas pour le pacte."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire de Mireval",
+    "opinion": "Il la respecte et la craint. Elle tient le village mieux que lui, et il sait qu'elle finira par lui demander des comptes."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine du Péage",
+    "opinion": "Il ne l'a jamais vu en face, mais il paie pour qu'il reste loin. Chaque fois qu'un hobgobelin s'approche du moulin, il rentre et ferme la porte."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "farine-sur-les-mains",
+    "texte": "Il s'essuie les mains sur son tablier avant de parler, puis encore après, comme si la farine revenait toute seule."
+   },
+   {
+    "id": "comptes-a-voix-basse",
+    "texte": "Il compte les sacs à voix basse, en remuant les lèvres, et s'arrête net si quelqu'un entre dans le moulin."
+   },
+   {
+    "id": "la-cle-du-moulin",
+    "texte": "Il porte la clé du moulin à la ceinture, attachée par une ficelle de chanvre. Il la touche quand il ment."
+   },
+   {
+    "id": "avis-sur-les-gobelins",
+    "texte": "Il ne les appelle jamais des monstres. Il dit « ceux des roseaux » ou « la tribu », et il ajoute qu'ils ont tenu parole plus longtemps que certains villageois."
+   },
+   {
+    "id": "peur-du-conseil",
+    "texte": "Il craint moins Varg que le conseil de Mireval : un capitaine peut le ruiner, un village peut le haïr, et il préfère encore la ruine."
+   },
+   {
+    "id": "le-regard-de-lina",
+    "texte": "Quand on parle de Lina, il regarde la meule, puis la porte, puis ses mains. Il répète « elle est enlevée » comme une phrase apprise."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "La charrette est partie avant l'aube avec Colin et onze sacs. Elle n'est jamais revenue. Il dit que les gobelins ont dû la prendre sur la chaussée, mais il ne regarde pas le groupe en le disant.",
+    "acces": {},
+    "tabou": [
+     "charrette"
+    ]
+   },
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "Le grenier est presque vide. Il prétend le contraire devant le village, puis admet qu'il reste à peine un hiver si on rationne.",
+    "acces": {}
+   },
+   {
+    "id": "la-faim-des-gobelins",
+    "fait": "f-tribu-affamee",
+    "version": "Les gobelins n'ont rien reçu cette année. Il le sait parce que la charrette n'est pas arrivée, et il sait aussi que leur faim retombera sur Mireval s'ils n'ont rien.",
+    "acces": {}
+   },
+   {
+    "id": "le-pacte",
+    "fait": "f-pacte-du-meunier",
+    "version": "Quatre ans de grain, une charrette par automne, du grain et des outils contre la paix. Il l'avoue si on lui montre le registre ou si le village est déjà au courant. Sinon, il parle d'un « arrangement » sans jamais dire son nom.",
+    "acces": {
+     "condition": {
+      "ou": [
+       {
+        "objet": "registre-du-moulin"
+       },
+       {
+        "flag": "pacte-revele"
+       }
+      ]
+     }
+    },
+    "evasif": "il dit que le moulin a toujours payé ses dettes, et que les comptes ne regardent que le meunier",
+    "tabou": [
+     "pacte",
+     "registre"
+    ]
+   },
+   {
+    "id": "sa-peur",
+    "fait": "f-anselme-peur",
+    "version": "Il craint plus le jugement de Mireval que Varg. Il a menti pour garder la confiance du village, et il paierait cher pour que la vérité ne sorte pas.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "il dit qu'un homme a le droit de protéger sa fille, et que le reste ne regarde personne"
+   }
+  ]
+ }
+]

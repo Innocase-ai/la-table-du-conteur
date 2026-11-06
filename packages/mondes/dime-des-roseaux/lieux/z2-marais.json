@@ -1,0 +1,202 @@
+[
+ {
+  "id": "marais",
+  "nom": "Le marais des Roseaux",
+  "type": "region",
+  "parent": "dime-des-roseaux",
+  "resume": "Une cuvette d’eau dormante et de roseaux ocre, coupée de chenaux et de chaussées à demi noyées, entre la chaussée de pierre et les collines.",
+  "description": "Une cuvette plate où la rivière s’étale avant les collines. Trois passes la traversent : la chaussée de pierre au sud, le sentier de fascines qui coupe les roseaux d’ouest en est, et un chenal de tourbe qui monte vers la falaise basse du nord. L’eau monte au crépuscule et découvre des bancs de vase au matin. Des ornières profondes, trop larges pour une brouette, marquent encore la rive du chenal. Personne ne s’y attarde la nuit sans barque.",
+  "ambiance": "Clapotis contre les roseaux, grincement des fascines, odeur de vase et de tourbe ; au loin, un sifflet d’oiseau qui n’en est pas un.",
+  "visuel": "une étendue d’eau grise coupée de roseaux ocre, des chaussées de rondins à demi noyées, des chenaux entre des berges de tourbe noire, des bancs de vase luisants, un ciel bas et une pluie fine",
+  "accroche": "Au bout de la chaussée, l’eau s’élargit entre des roseaux ocre ; une ligne de rondins à demi noyés s’enfonce vers l’intérieur.",
+  "niveau": {
+   "min": 1,
+   "max": 1
+  },
+  "liens": [
+   {
+    "vers": "pont-de-pierre",
+    "type": "chemin",
+    "heures": 1,
+    "sens": "double",
+    "description": "La chaussée de pierre descend dans les roseaux par une rampe moussue ; au-delà, l’eau brune clapote contre les bornes du pont.",
+    "retour": "Le chemin de rondins ressort des roseaux et remonte vers la chaussée ; le tréteau du péage se dresse dans la pluie."
+   },
+   {
+    "vers": "grotte-des-roseaux",
+    "type": "chemin",
+    "heures": 2,
+    "sens": "double",
+    "description": "Un chenal s’enfonce vers le nord entre deux berges de tourbe, jusqu’à une falaise basse où l’eau suinte d’une ouverture noire.",
+    "retour": "Le chenal redescend vers les roseaux ; l’eau grise s’élargit et les chaussées de rondins réapparaissent entre les roseaux."
+   },
+   {
+    "vers": "mar-grotte-des-noyes",
+    "type": "passage",
+    "heures": 1,
+    "sens": "double",
+    "description": "Une fente de calcaire sous les roseaux, à demi noyée ; l'eau brune en sort et y rentre au rythme du marais."
+   }
+  ],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-charrette-saisie",
+    "decouverte": {
+     "dd": 12,
+     "competence": "survie"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ },
+ {
+  "id": "mar-sentier-des-roseaux",
+  "nom": "Le sentier des roseaux",
+  "type": "route",
+  "parent": "marais",
+  "resume": "Un sentier de fascines posées sur la vase, large d’un homme, qui coupe le marais d’ouest en est.",
+  "description": "Des bottes de roseaux et des rondins posés sur la vase forment un chemin qui tient à hauteur d’eau. Les roseaux montent plus haut que la tête et se referment derrière chaque pas. À mi-chemin, une butte de tourbe sèche porte les traces d’un bivouac : cercle de pierres noircies, cendres, arêtes de poisson. À droite, une nappe d’eau claire et immobile dort sur le sable. Au bout, une fumée basse marque la cabane.",
+  "ambiance": "Le roseau qui racle le cuir, l’eau qui monte entre les rondins, un sifflement aigu qui répond trop vite pour être un oiseau.",
+  "visuel": "un sentier de rondins et de bottes de roseaux à hauteur d’eau, des roseaux ocre plus hauts qu’un homme, des flaques claires, une butte de tourbe sèche avec un cercle de pierres noircies, une fumée basse au loin",
+  "accroche": "Un sentier de rondins à hauteur d’eau s’enfonce entre des roseaux plus hauts qu’un homme ; des traces fraîches marquent la vase.",
+  "niveau": {
+   "min": 1,
+   "max": 1
+  },
+  "liens": [
+   {
+    "vers": "mar-cabane-des-passeurs",
+    "type": "chemin",
+    "heures": 1,
+    "sens": "double",
+    "description": "Le sentier sort des roseaux et bute sur une passerelle de planches ; une fumée de tourbe monte derrière un toit de roseaux.",
+    "retour": "La passerelle ramène au sentier ; les roseaux se referment derrière vous, plus hauts que la tête."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "mar-r-patrouille-de-krik",
+    "declencheur": "entree",
+    "unique": true
+   },
+   {
+    "id": "mar-r-la-meute-des-roseaux",
+    "declencheur": "aleatoire",
+    "unique": true
+   }
+  ],
+  "faits": [
+   {
+    "fait": "f-tribu-affamee",
+    "decouverte": {
+     "dd": 11,
+     "competence": "perception"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ },
+ {
+  "id": "mar-cabane-des-passeurs",
+  "nom": "La cabane des passeurs",
+  "type": "batiment",
+  "parent": "marais",
+  "resume": "Une cabane de planches goudronnées bâtie sur pilotis au-dessus d’un chenal, avec sa barque à fond plat et ses perches.",
+  "description": "La cabane est posée sur pilotis au-dessus d’un chenal, coiffée de roseaux liés. Une barque à fond plat est amarrée dessous, avec ses perches, ses filets et une gaffe. À l’intérieur : une table, un banc, un poêle de fonte, une paillasse et une planche où des coches comptent les passages payés. Sous le plancher, une boîte de fer-blanc. Le passeur y vit seul, dort au sec et n’aime pas les visiteurs qui ne paient rien.",
+  "ambiance": "La tourbe qui fume, l’eau qui clapote sous les pilotis, la barque qui racle la vase à chaque mouvement.",
+  "visuel": "une cabane de planches goudronnées sur pilotis, un toit de roseaux liés, une cheminée de tourbe qui fume, une barque à fond plat amarrée, des perches et des filets suspendus, des lanternes à capote",
+  "accroche": "Une cabane sur pilotis, coiffée de roseaux, d’où monte une fumée de tourbe ; une barque à fond plat est amarrée dessous.",
+  "niveau": {
+   "min": 1,
+   "max": 1
+  },
+  "liens": [
+   {
+    "vers": "mine-hobgobeline",
+    "type": "passage-secret",
+    "heures": 3,
+    "sens": "double",
+    "condition": {
+     "objet": "carte-du-marais"
+    },
+    "description": "Derrière la cabane, un chenal étroit s’ouvre entre les roseaux ; par endroits, la barque doit être halée à la main.",
+    "retour": "Le chenal se referme derrière la barque ; la fumée de tourbe de la cabane marque le chemin du retour."
+   }
+  ],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-passeurs-neutres",
+    "decouverte": {
+     "auto": true
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [
+   "information"
+  ],
+  "repos": "sur"
+ },
+ {
+  "id": "mar-grotte-des-noyes",
+  "nom": "La grotte des Noyés",
+  "type": "grotte",
+  "parent": "marais",
+  "resume": "Une grotte basse envahie par l'eau brune du marais, avec une margelle de pierre, un autel de roseaux et des cachettes de contrebandiers.",
+  "description": "La grotte s'ouvre au ras de l'eau, sous une voûte de calcaire rongée. La marée du marais y monte deux fois par jour et noie la moitié de la salle ; au fond, une margelle sèche porte un autel de roseaux tressés, des bols de bois et des offrandes moisies. Des planches pourries font un plancher au-dessus de l'eau, et sous ce plancher des caisses de contrebande attendent. Quand l'eau monte, elle claque contre la voûte et l'on n'entend plus que cela.",
+  "ambiance": "L'eau qui claque sous la voûte, l'odeur de vase et de roseau pourri, des gouttes qui tombent dans le noir.",
+  "visuel": "Une grotte basse au ras de l'eau brune, une margelle de calcaire, un autel de roseaux tressés, des bols de bois, des planches pourries et des caisses à demi immergées.",
+  "accroche": "Sous les roseaux, une fente de calcaire laisse passer un courant d'eau brune et une odeur de vase ; au fond, une lueur de bols cirés.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "marais",
+    "type": "passage",
+    "heures": 0,
+    "sens": "double",
+    "description": "Un boyau bas et glissant, à demi noyé, ramène vers les roseaux et la lumière grise du marais."
+   },
+   {
+    "vers": "mar-cabane-des-passeurs",
+    "type": "chemin",
+    "heures": 1,
+    "sens": "double",
+    "description": "Un chenal étroit longe la paroi ; la barque de Marin peut y passer à marée haute."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "mar-r-les-rats-noyes",
+    "declencheur": "exploration",
+    "unique": true
+   }
+  ],
+  "faits": [
+   {
+    "fait": "f-grotte-noyes",
+    "decouverte": {
+     "auto": true
+    }
+   },
+   {
+    "fait": "f-autel-roseaux",
+    "decouverte": {
+     "dd": 12,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ }
+]

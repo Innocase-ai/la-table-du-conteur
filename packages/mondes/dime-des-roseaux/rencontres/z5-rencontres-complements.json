@@ -1,0 +1,255 @@
+[
+ {
+  "id": "mar-r-les-rats-noyes",
+  "nom": "Les rats noyés",
+  "type": "combat",
+  "lieu": "mar-grotte-des-noyes",
+  "difficulte": "moderee",
+  "intro": "L'eau clapote sous la voûte, puis des dos luisants glissent entre les caisses : des rats gros comme des chiens, le poil collé par la vase, et derrière eux une nuée qui monte du plancher pourri.",
+  "monstres": [
+   {
+    "profil": "rat-geant",
+    "nombre": 4
+   },
+   {
+    "profil": "nuee-de-rats",
+    "nombre": 1
+   }
+  ],
+  "carte": [
+   "##############",
+   "#.mmm~~~.....#",
+   "#..m.....m...#",
+   "#.HH.~~~.....#",
+   "#..HHHH......#",
+   "#....~~~.....#",
+   "#............#",
+   "##############"
+  ],
+  "terrain": "caverne",
+  "tactique": {
+   "doctrine": "Les rats géants attaquent par deux, cherchent les jambes et reculent dans l'eau ; la nuée couvre les arrières et profite des personnages entravés par la vase.",
+   "fuite": "Si deux rats géants tombent, les autres se dispersent sous le plancher."
+  },
+  "butin": {
+   "tables": [
+    "z5-butins-mine"
+   ],
+   "tresors": [],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "xp": 120
+   }
+  ]
+ },
+ {
+  "id": "mar-r-la-meute-des-roseaux",
+  "nom": "La meute des roseaux",
+  "type": "combat",
+  "lieu": "mar-sentier-des-roseaux",
+  "difficulte": "moderee",
+  "intro": "Un hurlement court dans les roseaux, repris par deux autres. Trois loups maigres sortent de la brume, le poil plaqué de vase, et coupent le sentier sans se presser.",
+  "monstres": [
+   {
+    "profil": "loup",
+    "nombre": 3
+   }
+  ],
+  "carte": [
+   "##############",
+   "#~~m.......~~#",
+   "#..m......m..#",
+   "#.HH.~~~.....#",
+   "#..HHHH......#",
+   "#....~~~.....#",
+   "#~~........~~#",
+   "##############"
+  ],
+  "terrain": "foret",
+  "tactique": {
+   "doctrine": "Les loups tournent, cherchent un isolé et le renversent ; ils reculent dès qu'un loup tombe.",
+   "fuite": "La meute abandonne le sentier si elle perd deux loups."
+  },
+  "butin": {
+   "tables": [
+    "z5-butins-gobelins"
+   ],
+   "tresors": [],
+   "depouilles": false
+  },
+  "effetsVictoire": [
+   {
+    "xp": 100
+   }
+  ]
+ },
+ {
+  "id": "min-r-les-contrebandiers",
+  "nom": "Les contrebandiers de la veine",
+  "type": "mixte",
+  "lieu": "min-grotte-de-la-veine-basse",
+  "difficulte": "moderee",
+  "intro": "Deux hommes en capuchon tirent une caisse hors de l'eau quand vous entrez ; un troisième, plus grand, tient une lampe et un coutelas. Ils ne sont pas de la compagnie : ils volent le fer de Varg.",
+  "monstres": [
+   {
+    "profil": "bandit",
+    "nombre": 2
+   },
+   {
+    "profil": "chef-de-bande",
+    "nombre": 1
+   }
+  ],
+  "carte": [
+   "##############",
+   "#.m..~~~.....#",
+   "#..m......m..#",
+   "#.HH..~~.....#",
+   "#..HHHH......#",
+   "#.....~~.....#",
+   "#....~~~.....#",
+   "##############"
+  ],
+  "terrain": "caverne",
+  "tactique": {
+   "doctrine": "Ils protègent la caisse avant tout et cherchent à fuir par l'escalier si le combat tourne mal.",
+   "fuite": "Le chef abandonne la caisse et recule vers la galerie haute."
+  },
+  "alternatives": [
+   {
+    "id": "min-parler-aux-contrebandiers",
+    "nom": "Parler aux contrebandiers",
+    "resume": "Leur dire que vous n'êtes pas de la compagnie et proposer de partager le fer au lieu de le voler.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "flag": "z5-contrebandiers-allies"
+     },
+     {
+      "xp": 50
+     }
+    ],
+    "echec": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ],
+    "echecResout": true
+   },
+   {
+    "id": "min-payer-les-contrebandiers",
+    "nom": "Acheter leur silence",
+    "resume": "Leur offrir une bourse pour qu'ils disparaissent avant que la patrouille ne descende.",
+    "condition": {
+     "pieces": {
+      "min": 15
+     }
+    },
+    "effets": [
+     {
+      "pieces": -15
+     },
+     {
+      "flag": "z5-contrebandiers-achetes"
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "z5-butins-hobgobelins"
+   ],
+   "tresors": [],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "xp": 150
+   }
+  ]
+ },
+ {
+  "id": "min-r-la-patrouille-basse",
+  "nom": "La patrouille basse",
+  "type": "combat",
+  "lieu": "min-grotte-de-la-veine-basse",
+  "difficulte": "moderee",
+  "intro": "Des bottes claquent sur l'escalier de bois. Une patrouille hobgobeline descend vérifier la galerie basse : deux combattants en cuir clouté et un éclaireur qui tient une lanterne basse.",
+  "monstres": [
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 2
+   },
+   {
+    "profil": "eclaireur",
+    "nombre": 1
+   }
+  ],
+  "carte": [
+   "##############",
+   "#.m..~~~.....#",
+   "#..m......m..#",
+   "#.HH..~~.....#",
+   "#..HHHH......#",
+   "#.....~~.....#",
+   "#....~~~.....#",
+   "##############"
+  ],
+  "terrain": "souterrain",
+  "tactique": {
+   "doctrine": "L'éclaireur éclaire et crie ; les combattants tiennent l'escalier pour empêcher toute retraite.",
+   "fuite": "Si l'éclaireur tombe, les combattants reculent vers la chambre de taille."
+  },
+  "butin": {
+   "tables": [
+    "z5-butins-hobgobelins"
+   ],
+   "tresors": [],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "xp": 180
+   },
+   {
+    "jauge": {
+     "id": "dime",
+     "delta": 1
+    }
+   }
+  ],
+  "alternatives": [
+   {
+    "id": "min-reculer-devant-la-patrouille",
+    "nom": "Reculer avant d'être vus",
+    "resume": "Éteindre les lanternes et remonter l'escalier sans un bruit, en abandonnant la galerie basse à la patrouille.",
+    "jet": {
+     "competence": "discretion",
+     "dd": 13
+    },
+    "effets": [
+     {
+      "flag": "z5-patrouille-evitee"
+     }
+    ],
+    "echec": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ],
+    "echecResout": true
+   }
+  ]
+ }
+]

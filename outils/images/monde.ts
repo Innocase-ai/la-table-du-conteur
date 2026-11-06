@@ -89,26 +89,8 @@ export function elementsParLieu(dm: DonneesMonde, { charte, racineSrd, retouches
       });
     }
 
-    for (const r of [...dm.rencontres.values()].filter((x) => x.lieu === l.id)) {
-      for (const m of r.monstres) {
-        const fiche = charte.monstres.find((x) => x.id === m.profil);
-        const srd = fiche ? undefined : lireMonstre(racineSrd, m.profil);
-        if (!fiche && !srd) continue;
-        ajouter(l.id, {
-          id: `monstre-${m.profil}`,
-          groupe: 'monstres',
-          nom: fiche?.nom ?? srd!.nom,
-          format: 'carre',
-          references: [],
-          prompt: [
-            charte.style,
-            fiche ? `Creature illustration: ${retouches[`monstre-${m.profil}`] ?? fiche.apparence}.` : `Creature illustration: ${srd!.nom} (French name from a fantasy bestiary${srd!.type ? `, type ${srd!.type}` : ''}).`,
-            'Full body, menacing pose, three-quarter view, dark atmospheric background with a hint of its natural habitat.',
-            charte.contraintes,
-          ].join('\n'),
-        });
-      }
-    }
+    // Les monstres ne sont PAS illustrés par histoire : toutes les histoires puisent dans le catalogue du moteur et utilisent
+    // les illustrations communes du bestiaire (`pnpm images bestiaire`, apps/jeu/src/bestiaire/).
 
     for (const t of [...dm.tresors.values()].filter((x) => x.lieu === l.id)) {
       for (const { objet } of t.contenu.objets) {

@@ -1,0 +1,187 @@
+[
+  {
+    "id": "grotte-des-roseaux",
+    "nom": "La grotte des roseaux",
+    "type": "grotte",
+    "parent": "dime-des-roseaux",
+    "resume": "L'ancienne mine gobeline, rouverte dans le flanc de la colline : un porche de madriers, un terril, et la tribu de Skarn installée dans ses galeries.",
+    "description": "Une ancienne exploitation de fer, creusée par les nains, abandonnée, puis rouverte par la tribu gobeline il y a une génération. Le porche est étayé de madriers neufs ; un terril de gravats gris descend en pente jusqu'aux roseaux, et une voie de wagonnet rouillée sort de l'ombre. Près de l'entrée, un feu de tourbe entretient une fumée bleue, des peaux sèchent sur des perches, et deux guetteurs se relaient sur le terril. La tribu compte une quarantaine de têtes, dont une dizaine de guerriers ; les hobgobelins ne viennent pas jusqu'ici. De l'autre côté de la colline s'ouvre la mine qu'ils occupent.",
+    "ambiance": "Fumée de tourbe, pierre humide, gravats qui roulent sous le pas, et le grincement d'une vieille poulie.",
+    "accroche": "Un porche de madriers noirs dans le flanc de la colline, un terril de gravats, et une fumée de tourbe qui traîne dans les roseaux.",
+    "visuel": "un porche de mine étayé de madriers noirs, un terril de gravats gris, deux rails rouillés qui sortent de l'ombre, des roseaux ocre courbés par la pluie, une fumée de tourbe bleue, des peaux suspendues à des perches, une poulie de bois au-dessus du porche",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "marais",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Un sentier de tourbe monte entre les roseaux, sur des planches à demi pourries, jusqu'au porche où l'air sent la fumée.",
+        "retour": "Le sentier redescend entre les roseaux vers l'eau grise du marais ; des planches cèdent sous le pas et l'on enfonce jusqu'à la cheville."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "gro-entree",
+    "nom": "L'entrée de la mine",
+    "type": "salle",
+    "parent": "grotte-des-roseaux",
+    "resume": "La première salle, sous le porche : un brasero, des rails, des ballots de peaux et les guerriers du guet.",
+    "description": "Une salle haute taillée dans le grès, ouverte au jour par le porche. Un brasero de tourbe éclaire les parois, où la suie dessine des mains. Des rails rouillés courent jusqu'à un wagonnet renversé ; contre la paroi, des ballots de peaux, un faisceau de lances, un tas de chausse-trappes et une réserve de graisse. Un couloir descend au fond de la salle, vers la salle commune. Le sol est couvert de paille et de gravats, et le guet y tient trois à cinq guerriers selon l'heure.",
+    "ambiance": "Le brasero qui souffle, des dés qu'on jette sur une planche, et l'écho du porche derrière.",
+    "accroche": "Sous le porche, un brasero rougeoie sur un sol de gravats ; des rails rouillés s'enfoncent vers le noir et des voix s'arrêtent quand on approche.",
+    "visuel": "une salle voûtée de grès, un brasero de tourbe rougeoyant, de la suie en forme de mains sur la paroi, des rails rouillés, un wagonnet renversé, des ballots de peaux, un faisceau de lances, de la paille sur le sol, le jour gris du porche",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "gro-salle-commune",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un couloir voûté descend en pente douce, éclairé de loin en loin par des lampes de graisse, vers une rumeur de feu et de voix.",
+        "retour": "Le couloir remonte vers le jour du porche ; le brasero du guet rougeoie au bout, et l'air redevient froid."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "gro-r-gardes-de-la-grotte",
+        "declencheur": "entree",
+        "condition": {
+          "non": {
+            "flag": "alliance-gobeline"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "gro-salle-commune",
+    "nom": "La salle commune",
+    "type": "salle",
+    "parent": "grotte-des-roseaux",
+    "resume": "Le cœur de la grotte : une salle ronde où la tribu mange, raccommode et compte ce qui reste.",
+    "description": "Une salle ronde, haute, percée d'une cheminée naturelle qui tire mal : la voûte est noire de suie jusqu'à hauteur d'homme. Au centre, un feu de tourbe dans un cercle de pierres, une marmite de fonte, une longue table de planches et des bancs. Autour, des peaux tendues, des poteries de grès, des champignons qui sèchent sur des claies, un métier à tisser de fortune. Au fond, sur une pierre plus haute, le tabouret de Skarn ; à droite, le coin de Nyx, encombré d'os, de plumes et de petits tas d'ocre. Une peau ferme un renfoncement sec où la tribu garde ses sacs. Une dalle plate, près du feu, est couverte de bâtons gravés au couteau, alignés par quatre.",
+    "ambiance": "Feu de tourbe, graisse rance, paille, et le bruit d'une cuillère qui racle le fond d'une marmite.",
+    "accroche": "Un couloir s'élargit sur une salle ronde où la fumée stagne ; une chaleur de tourbe et une odeur de graisse viennent à la rencontre.",
+    "visuel": "une salle ronde au plafond noirci de suie, un feu de tourbe au centre, une marmite de fonte, une longue table de planches, des bancs, des peaux tendues, des poteries de grès, des champignons sur des claies, une dalle gravée de bâtons",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "gro-cellule-de-lina",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte de planches mal jointe s'ouvre au fond d'un couloir latéral ; une lueur de lanterne passe dessous.",
+        "retour": "Le couloir latéral ramène à la rumeur du feu ; la porte reste ouverte derrière vous."
+      },
+      {
+        "vers": "gro-galerie-effondree",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une galerie s'enfonce à gauche du feu, étayée de bois gris ; l'air y sent la poussière de pierre et le fer mouillé.",
+        "retour": "La galerie ramène vers la salle et son feu ; les étais gris s'espacent à mesure qu'on approche des voix."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "gro-r-la-faim-devant-le-feu",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-tribu-affamee",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "gro-cellule-de-lina",
+    "nom": "La cellule de Lina",
+    "type": "salle",
+    "parent": "grotte-des-roseaux",
+    "resume": "Un réduit de grès, ancien magasin à poudre, où Lina a posé sa paillasse et ses affaires.",
+    "description": "Un réduit carré, taillé dans le grès, deux pas sur trois, fermé d'une porte de planches qui frotte le sol et ne se verrouille pas. C'est l'ancien magasin à poudre de la mine : les murs gardent une odeur de salpêtre. Lina y a installé une paillasse de paille, une caisse retournée en table, une lanterne de tourbe, un pot de grès et son sac de voyage. Le sol est balayé ; des bâtons de charbon comptent les jours sur la paroi. Un judas carré, à hauteur d'œil, donne sur la salle commune, et un banc de pierre sert de siège. La porte s'ouvre des deux côtés.",
+    "ambiance": "Une lanterne basse, de la paille, de la cire chaude, et le feu de la salle qui ronfle derrière la cloison.",
+    "accroche": "Une porte de planches au fond d'un couloir, une lueur de lanterne qui passe dessous, et un courant d'air qui sent la cire et la paille humide.",
+    "visuel": "un réduit de grès bas de plafond, une porte de planches, une paillasse de paille, une caisse retournée, une lanterne de tourbe, un sac de voyage ouvert, des bâtons de charbon sur la paroi, un judas carré, un banc de pierre",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "sur"
+  },
+  {
+    "id": "gro-galerie-effondree",
+    "nom": "La galerie effondrée",
+    "type": "salle",
+    "parent": "grotte-des-roseaux",
+    "resume": "Une galerie de mine à demi comblée, étayée de vieux bois, où les gravats montent jusqu'à la voûte.",
+    "description": "Une galerie large, taillée au pic, étayée de bois gris et fendu. À trente pas, un éboulement de grès et de poussière barre la moitié du passage ; des rails tordus en sortent. Au fond, une poutre de soutènement penche sous un bloc instable, et sous le bloc un trou noir laisse passer un courant d'air froid qui sent le fer et l'eau. Les gobelins n'y viennent plus : deux des leurs y sont restés l'hiver dernier. Sur la paroi, des marques de pic très anciennes, et une veine brune qui affleure la roche.",
+    "ambiance": "De la poussière en suspension, un filet d'air froid, et le craquement lent du bois qui travaille.",
+    "accroche": "Une galerie s'enfonce, étayée de bois gris ; les gravats montent à mi-hauteur et l'air y sent la poussière de pierre et le fer mouillé.",
+    "visuel": "une galerie de mine étayée de bois gris et fendu, des gravats de grès, des rails tordus, une poutre penchée sous un bloc, de la poussière en suspension, des marques de pic sur la paroi, une veine brune dans la roche, un trou noir au fond",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "mine-hobgobeline",
+        "type": "passage-secret",
+        "heures": 1,
+        "sens": "double",
+        "cache": {
+          "dd": 15,
+          "competence": "investigation"
+        },
+        "description": "Derrière la poutre, un boyau s'ouvre dans le remblai ; l'air y sent le fer et l'eau, et l'on entend très loin des coups réguliers.",
+        "retour": "Le boyau remonte dans le remblai et débouche sous une poutre penchée ; des rails tordus sortent des gravats."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-mine-de-fer",
+        "decouverte": {
+          "dd": 14,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "gro-piege-eboulement-de-la-galerie",
+    "nom": "L'éboulement de la galerie",
+    "lieu": "gro-galerie-effondree",
+    "resume": "Une poutre de soutènement penchée sous un bloc de grès, retenue par un coin de bois et par l'établi renversé : bouger l'un ou l'autre fait descendre la voûte.",
+    "detection": {
+      "dd": 14,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "survie"
+    },
+    "declenchement": "Un poids sur la poutre ou sur l'établi : le coin saute, la poutre cède, et le bloc de grès entraîne la voûte sur celui qui est dessous.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 13,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "contondant"
+      }
+    ],
+    "etats": [
+      "enseveli"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "gro-piege-chausse-trappes-du-guet",
+    "nom": "Les chausse-trappes du guet",
+    "lieu": "gro-entree",
+    "resume": "Un lit de pointes de fer rouillées, semé sous la paille devant les ballots de peaux, autour du bien du guet.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage",
+      "outil": "outils-de-voleur"
+    },
+    "declenchement": "Un pas sur la paille : les pointes traversent la semelle et le pied, et il faut s'arrêter pour les retirer une à une.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 11,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "perforant"
+      }
+    ],
+    "etats": [
+      "entrave"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

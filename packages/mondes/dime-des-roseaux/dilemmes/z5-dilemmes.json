@@ -1,0 +1,782 @@
+[
+ {
+  "id": "le-registre",
+  "titre": "Le registre du moulin",
+  "situation": "Le registre d'Anselme prouve quatre ans de pacte avec les gobelins. Le village croit être rançonné ; la vérité peut le sauver ou le briser. Anselme supplie qu'on se taise, Huguette attend, et Lina est encore là-bas.",
+  "quand": {
+   "ou": [
+    {
+     "flag": "pacte-revele"
+    },
+    {
+     "fait": "f-pacte-du-meunier"
+    }
+   ]
+  },
+  "lieu": "mir-moulin-roux",
+  "delai": 3,
+  "options": [
+   {
+    "id": "denoncer",
+    "libelle": "Je porte le registre devant le conseil de Mireval.",
+    "ton": "Vérité",
+    "couts": [
+     "Anselme est humilié et perd la confiance du village.",
+     "Lina apprend que son père a menti et que le pacte la concernait."
+    ],
+    "gains": [
+     "Le village connaît enfin le prix de sa paix.",
+     "Huguette peut organiser la répartition au grand jour."
+    ],
+    "effets": [
+     {
+      "flag": "pacte-revele"
+     },
+     {
+      "attitude": {
+       "pnj": "anselme-roux",
+       "delta": -40
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "huguette",
+       "delta": 10
+      }
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 15
+      }
+     },
+     {
+      "xp": 50
+     }
+    ],
+    "epilogue": "Anselme a été démasqué devant le conseil. Mireval connaît le pacte et ne le pardonne pas."
+   },
+   {
+    "id": "taire",
+    "libelle": "Je rends le registre à Anselme et je garde le silence.",
+    "ton": "Secret",
+    "couts": [
+     "Le village continue de croire à un enlèvement.",
+     "Anselme reste votre obligé, et le pacte continue."
+    ],
+    "gains": [
+     "La paix du village n'est pas troublée.",
+     "Anselme vous doit une faveur et connaît le moulin."
+    ],
+    "effets": [
+     {
+      "flag": "pacte-couvert"
+     },
+     {
+      "attitude": {
+       "pnj": "anselme-roux",
+       "delta": 40
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "huguette",
+       "delta": -5
+      }
+     },
+     {
+      "xp": 25
+     }
+    ],
+    "epilogue": "Le registre a disparu dans le moulin. Anselme vous regarde comme un complice, ou comme une menace."
+   },
+   {
+    "id": "negocier",
+    "libelle": "Je propose au meunier de révéler une partie du pacte, à condition qu'il ouvre son grenier.",
+    "ton": "Marché",
+    "couts": [
+     "Anselme garde sa place mais perd une part de son autorité.",
+     "Le village apprend assez pour douter, pas tout."
+    ],
+    "gains": [
+     "Une partie du grain revient au village.",
+     "Anselme reste un allié utile."
+    ],
+    "jet": {
+     "competence": "persuasion",
+     "dd": 13
+    },
+    "effets": [
+     {
+      "flag": "pacte-revele"
+     },
+     {
+      "flag": "grenier-ouvert"
+     },
+     {
+      "attitude": {
+       "pnj": "anselme-roux",
+       "delta": -10
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "huguette",
+       "delta": 15
+      }
+     },
+     {
+      "xp": 40
+     }
+    ],
+    "echec": [
+     {
+      "attitude": {
+       "pnj": "anselme-roux",
+       "delta": -30
+      }
+     },
+     {
+      "flag": "pacte-revele"
+     },
+     {
+      "xp": 20
+     }
+    ],
+    "epilogue": "Le meunier a cédé une partie de son grenier et de sa dignité."
+   }
+  ],
+  "abstention": {
+   "libelle": "Je ne tranche pas et je rends le registre à Anselme.",
+   "couts": [
+    "Anselme reprend confiance et le village reste dans l'ignorance.",
+    "L'occasion de parler à Huguette se referme."
+   ],
+   "effets": [
+    {
+     "attitude": {
+      "pnj": "anselme-roux",
+      "delta": 10
+     }
+    },
+    {
+     "attitude": {
+      "pnj": "huguette",
+      "delta": -5
+     }
+    }
+   ],
+   "epilogue": "Le registre est retourné au moulin, et personne n'en parle."
+  },
+  "echos": [
+   {
+    "si": "denoncer",
+    "apres": 2,
+    "annonce": "À Mireval, on ne salue plus le meunier ; on lui parle de la dîme comme d'une dette.",
+    "effets": [
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "si": "taire",
+    "apres": 2,
+    "annonce": "Anselme vous évite ; le grenier reste fermé et les rations diminuent.",
+    "effets": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "le-grain",
+  "titre": "Le grain de la tribu",
+  "situation": "Skarn a besoin de grain pour nourrir sa tribu. Le grenier de Mireval suffirait à peine à l'hiver. Les deux peuples ont faim, et le groupe tient la clé.",
+  "quand": {
+   "ou": [
+    {
+     "flag": "lina-retrouvee"
+    },
+    {
+     "lieu": "gro-salle-commune"
+    }
+   ]
+  },
+  "lieu": "gro-salle-commune",
+  "delai": 2,
+  "options": [
+   {
+    "id": "ouvrir",
+    "libelle": "J'ouvre le grenier de Mireval aux gobelins.",
+    "ton": "Générosité",
+    "couts": [
+     "Mireval perd une partie de ses réserves d'hiver.",
+     "Certains villageois parleront de trahison."
+    ],
+    "gains": [
+     "La tribu survit et se souvient de vous.",
+     "Skarn devient un allié."
+    ],
+    "effets": [
+     {
+      "flag": "grenier-ouvert"
+     },
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": -1
+      }
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": 30
+      }
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": -10
+      }
+     },
+     {
+      "xp": 60
+     }
+    ],
+    "epilogue": "Le grain de Mireval a nourri la tribu ; le village s'en souviendra à l'hiver."
+   },
+   {
+    "id": "garder",
+    "libelle": "Je refuse : le grenier est aux villageois, pas aux gobelins.",
+    "ton": "Fermeté",
+    "couts": [
+     "La tribu reste affamée.",
+     "Krik parlera de raid, et les enfants de Skarn vieilliront mal."
+    ],
+    "gains": [
+     "Mireval garde ses réserves.",
+     "Anselme et Huguette vous soutiennent."
+    ],
+    "effets": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": -25
+      }
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 10
+      }
+     },
+     {
+      "xp": 30
+     }
+    ],
+    "epilogue": "Le grenier est resté fermé ; la faim a continué son chemin."
+   },
+   {
+    "id": "partager",
+    "libelle": "Je partage : la moitié du grain pour la tribu, le reste pour l'hiver.",
+    "ton": "Équilibre",
+    "couts": [
+     "Les deux camps trouvent la part trop petite.",
+     "Il faudra trouver une autre source avant la fin de l'hiver."
+    ],
+    "gains": [
+     "Personne ne meurt de faim ce mois-ci.",
+     "Les deux camps restent à la table."
+    ],
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "flag": "grenier-ouvert"
+     },
+     {
+      "flag": "alliance-gobeline"
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": 15
+      }
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 5
+      }
+     },
+     {
+      "xp": 50
+     }
+    ],
+    "echec": [
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": -10
+      }
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": -10
+      }
+     },
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ],
+    "epilogue": "Le grain a été partagé, et chacun a compté sa part deux fois."
+   }
+  ],
+  "abstention": {
+   "libelle": "Je laisse les deux camps régler cela entre eux.",
+   "couts": [
+    "La faim décide à votre place.",
+    "Skarn et Huguette se souviendront de votre silence."
+   ],
+   "effets": [
+    {
+     "jauge": {
+      "id": "dime",
+      "delta": 1
+     }
+    },
+    {
+     "reputation": {
+      "faction": "gens-de-mireval",
+      "delta": -5
+     }
+    }
+   ],
+   "epilogue": "Personne n'a rien partagé, et le grain a manqué."
+  },
+  "echos": [
+   {
+    "si": "ouvrir",
+    "apres": 3,
+    "annonce": "Des villageois rationnent et parlent de la charrette qui n'est pas revenue.",
+    "effets": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ]
+   },
+   {
+    "si": "garder",
+    "apres": 3,
+    "annonce": "Krik et ses guerriers ont attaqué un convoi de grain ; la milice est sur les dents.",
+    "effets": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": -10
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "grum",
+  "titre": "Le gobelours prisonnier",
+  "situation": "Grum, le garde du corps de Varg, est tombé entre vos mains. Il a servi la compagnie par loyauté, pas par cruauté, et il sait où Colin travaille.",
+  "quand": {
+   "flag": "grum-capture"
+  },
+  "lieu": "min-camp-hobgobelin",
+  "options": [
+   {
+    "id": "tuer",
+    "libelle": "Je l'achève : un garde de moins pour Varg.",
+    "ton": "Rigueur",
+    "couts": [
+     "Un prisonnier désarmé est mort de votre main.",
+     "Les gobelins applaudiront ; Perrine détournera le regard."
+    ],
+    "gains": [
+     "La compagnie perd un combattant redoutable.",
+     "Un message clair pour Varg."
+    ],
+    "effets": [
+     {
+      "pnjEtat": {
+       "pnj": "grum",
+       "etat": "mort"
+      }
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": 15
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "perrine-vasseur",
+       "delta": -10
+      }
+     },
+     {
+      "xp": 40
+     }
+    ],
+    "epilogue": "Grum est mort dans le camp, et Varg a perdu son chien de garde."
+   },
+   {
+    "id": "relacher",
+    "libelle": "Je le libère et je lui dis de quitter la compagnie.",
+    "ton": "Clémence",
+    "couts": [
+     "Varg saura que vous l'avez épargné et où vous êtes.",
+     "Grum reste un adversaire tant qu'il porte l'uniforme."
+    ],
+    "gains": [
+     "Grum se souviendra de la dette.",
+     "Un témoin de plus contre Varg."
+    ],
+    "effets": [
+     {
+      "flag": "grum-libere"
+     },
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": 40
+      }
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-peage",
+       "delta": 5
+      }
+     },
+     {
+      "xp": 30
+     }
+    ],
+    "epilogue": "Grum est parti sans un mot, mais il n'a pas repris sa lance."
+   },
+   {
+    "id": "ranconner",
+    "libelle": "Je le rends contre une rançon et des informations.",
+    "ton": "Ruse",
+    "couts": [
+     "Varg est humilié et voudra sa revanche.",
+     "Grum vous méprisera autant que son capitaine."
+    ],
+    "gains": [
+     "De l'or pour le village.",
+     "Des informations sur la veine de fer."
+    ],
+    "jet": {
+     "competence": "intimidation",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "flag": "grum-ranconne"
+     },
+     {
+      "pieces": 50
+     },
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": -20
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -15
+      }
+     },
+     {
+      "xp": 35
+     }
+    ],
+    "echec": [
+     {
+      "pnjEtat": {
+       "pnj": "grum",
+       "etat": "mort"
+      }
+     },
+     {
+      "reputation": {
+       "faction": "compagnie-du-peage",
+       "delta": -20
+      }
+     },
+     {
+      "xp": 10
+     }
+    ],
+    "epilogue": "Grum a été rendu contre de l'or, et Varg a payé en colère."
+   }
+  ],
+  "abstention": {
+   "libelle": "Je le laisse attaché et je continue.",
+   "couts": [
+    "Grum reste un problème derrière vous.",
+    "Varg le retrouvera ou le tuera."
+   ],
+   "effets": [
+    {
+     "flag": "grum-abandonne"
+    }
+   ],
+   "epilogue": "Grum est resté attaché dans le camp, et personne ne sait ce qu'il est devenu."
+  },
+  "echos": [
+   {
+    "si": "tuer",
+    "apres": 2,
+    "annonce": "Au camp, un hobgobelin jette un regard mauvais au groupe : Grum avait des amis.",
+    "effets": [
+     {
+      "reputation": {
+       "faction": "compagnie-du-peage",
+       "delta": -10
+      }
+     }
+    ]
+   },
+   {
+    "si": "relacher",
+    "apres": 2,
+    "annonce": "Grum n'est pas revenu au camp ; on dit qu'il marche vers le nord sans uniforme.",
+    "effets": [
+     {
+      "flag": "grum-a-quitte-la-compagnie"
+     }
+    ]
+   },
+   {
+    "si": "ranconner",
+    "apres": 2,
+    "annonce": "Varg a payé, mais il n'a pas oublié l'affront ; ses patrouilles cherchent le groupe.",
+    "effets": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "le-prix-de-la-paix",
+  "titre": "Le prix de la paix",
+  "situation": "Varg est à votre merci, ou vous êtes à la sienne. La mine, le pont et le grain sont sur la table. Il faut choisir ce que Mireval, la tribu et vous allez payer.",
+  "quand": {
+   "ou": [
+    {
+     "flag": "varg-vaincu"
+    },
+    {
+     "flag": "tribut-paye"
+    },
+    {
+     "flag": "alliance-gobeline"
+    },
+    {
+     "flag": "colin-libere"
+    }
+   ]
+  },
+  "lieu": "min-bureau-de-varg",
+  "delai": 2,
+  "options": [
+   {
+    "id": "marche",
+    "libelle": "Je propose un marché : tribut fixe, travail de la tribu, départ de la compagnie.",
+    "ton": "Marché",
+    "couts": [
+     "Un tribut annuel pèsera sur Mireval.",
+     "Les gobelins perdent leur liberté et un enfant reste en gage."
+    ],
+    "gains": [
+     "Lina et Colin reviennent.",
+     "Le village et la tribu survivent sans bataille."
+    ],
+    "effets": [
+     {
+      "flag": "choix-marche"
+     },
+     {
+      "flag": "tribut-paye"
+     },
+     {
+      "flag": "colin-libere"
+     },
+     {
+      "flag": "lina-retrouvee"
+     },
+     {
+      "fin": "fin-marche"
+     },
+     {
+      "xp": 100
+     }
+    ],
+    "epilogue": "Varg a signé le marché ; la paix a un prix annuel."
+   },
+   {
+    "id": "guerre",
+    "libelle": "Je prends le pont et je coupe la route de la compagnie.",
+    "ton": "Guerre",
+    "couts": [
+     "Des gobelins et des miliciens mourront.",
+     "Le village sera coupé du marché et la compagnie reviendra."
+    ],
+    "gains": [
+     "La mine est libérée.",
+     "La tribu et Mireval sont vengées."
+    ],
+    "effets": [
+     {
+      "flag": "choix-guerre"
+     },
+     {
+      "flag": "varg-vaincu"
+     },
+     {
+      "flag": "colin-libere"
+     },
+     {
+      "flag": "alliance-gobeline"
+     },
+     {
+      "fin": "fin-guerre"
+     },
+     {
+      "xp": 120
+     }
+    ],
+    "epilogue": "Le pont est tombé, et la route avec lui."
+   },
+   {
+    "id": "exode",
+    "libelle": "Je fais partir la tribu par les roseaux avec le grain de la mine.",
+    "ton": "Exode",
+    "couts": [
+     "Mireval passera l'hiver sans réserves.",
+     "Varg garde la mine et le pont."
+    ],
+    "gains": [
+     "Des vies sauvées sans bataille.",
+     "Colin et Lina reviennent."
+    ],
+    "effets": [
+     {
+      "flag": "choix-exode"
+     },
+     {
+      "flag": "route-des-roseaux-ouverte"
+     },
+     {
+      "flag": "colin-libere"
+     },
+     {
+      "flag": "lina-retrouvee"
+     },
+     {
+      "fin": "fin-exode"
+     },
+     {
+      "xp": 100
+     }
+    ],
+    "epilogue": "La tribu a pris la route des roseaux, et Mireval s'est réveillé plus vide."
+   }
+  ],
+  "abstention": {
+   "libelle": "Je laisse Varg décider, et je repars avec ce que je peux.",
+   "couts": [
+    "Varg reprend l'avantage.",
+    "Le village et la tribu paieront votre silence."
+   ],
+   "effets": [
+    {
+     "jauge": {
+      "id": "dime",
+      "delta": 1
+     }
+    },
+    {
+     "fin": "fin-echec"
+    }
+   ],
+   "epilogue": "Vous êtes partis sans trancher ; Varg a tranché pour vous."
+  },
+  "echos": [
+   {
+    "si": "marche",
+    "apres": 3,
+    "annonce": "La première charrette du tribut quitte Mireval sous la pluie ; personne ne chante.",
+    "effets": [
+     {
+      "flag": "epilogue-marche"
+     }
+    ]
+   },
+   {
+    "si": "guerre",
+    "apres": 3,
+    "annonce": "Les blessés de la milice sont rentrés ; deux ne se lèveront plus.",
+    "effets": [
+     {
+      "flag": "epilogue-guerre"
+     }
+    ]
+   },
+   {
+    "si": "exode",
+    "apres": 3,
+    "annonce": "Les roseaux ont gardé des traces de pas ; le village compte ses sacs et ne dit rien.",
+    "effets": [
+     {
+      "flag": "epilogue-exode"
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -18,7 +18,7 @@ from pathlib import Path
 from PIL import Image
 
 RACINE = Path(__file__).resolve().parents[2]
-GROUPES = {"lieu-": "lieux", "pnj-": "pnj", "monstre-": "monstres", "objet-": "objets", "carte-": "cartes"}
+GROUPES = {"lieu-": "lieux", "pnj-": "pnj", "objet-": "objets", "carte-": "cartes"}
 
 
 def reduire(png: Path, cible: Path, cote: int, qualite: int) -> None:

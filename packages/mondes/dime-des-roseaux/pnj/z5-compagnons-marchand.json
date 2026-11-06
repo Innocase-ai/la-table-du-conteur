@@ -1,0 +1,577 @@
+[
+ {
+  "id": "aveline-ker",
+  "nom": "Aveline Ker",
+  "titre": "Sœur des roseaux",
+  "espece": "humain",
+  "sexe": "F",
+  "age": "34 ans",
+  "role": "Guérisseuse itinérante, clerc de la Dame des Roseaux",
+  "lieu": "mir-auberge-des-roseaux",
+  "apparence": "Femme grande et sèche, mains rougies par les décoctions, robe de laine grise sous un tablier de cuir, un pendentif de bois représentant un épi. Elle porte une besace de remèdes et un bâton ferré.",
+  "personnalite": {
+   "traits": [
+    "patiente",
+    "directe",
+    "méfiante envers les seigneurs",
+    "infatigable"
+   ],
+   "voix": "Voix basse et posée ; elle répond aux questions par une autre question, puis soigne sans attendre qu'on la remercie.",
+   "valeurs": [
+    "les vivants",
+    "la dignité des prisonniers",
+    "la dette d'un soin"
+   ],
+   "desir": "Faire sortir les prisonniers de la mine et soigner ceux que personne ne compte.",
+   "peur": "Que la faim et la guerre lui prennent plus de patients qu'elle ne peut en sauver.",
+   "defaut": "Elle juge vite ceux qui parlent de politique avant de parler des blessés."
+  },
+  "faction": "gens-de-mireval",
+  "attitude": 5,
+  "savoir": [
+   "f-tribu-affamee",
+   "f-grenier-vide",
+   "f-aveline-fille"
+  ],
+  "secrets": [
+   {
+    "fait": "f-colin-prisonnier",
+    "attitudeMin": 20
+   }
+  ],
+  "sujets": [
+   {
+    "id": "les-blesses",
+    "mots": [
+     "blessés",
+     "malades",
+     "soins",
+     "faim",
+     "prisonniers"
+    ],
+    "question": "Qui soignez-vous, ici ?",
+    "reponse": "Ceux qui peuvent payer en grain, ceux qui ne peuvent pas, et les prisonniers quand on me laisse approcher de la mine. Colin Vasseur tousse depuis trois semaines ; on l'a mis à la veine parce qu'il connaît le grain, pas parce qu'il sait tenir un pic.",
+    "revele": [
+     "f-colin-prisonnier"
+    ],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "aveline-ker",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "les-prisonniers",
+    "mots": [
+     "prisonniers",
+     "mine",
+     "libérer",
+     "Colin",
+     "Varg"
+    ],
+    "question": "Aidez-nous à sortir les prisonniers de la mine.",
+    "reponse": "Je ne peux pas y entrer seule, et je ne sais pas me battre. Mais je connais leurs blessures, leurs noms et ce que Varg leur fait porter. Si vous y allez, je viens : je soignerai ceux que vous ramènerez.",
+    "effets": [
+     {
+      "quete": {
+       "id": "q-aveline-les-prisonniers",
+       "statut": "proposee"
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "aveline-ker",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "rejoindre",
+    "mots": [
+     "rejoindre",
+     "compagnie",
+     "groupe",
+     "partir avec vous",
+     "aider"
+    ],
+    "question": "Voulez-vous venir avec nous ?",
+    "reponse": "Si vous allez à la mine, oui. Je ne porterai pas d'épée, mais je porterai les blessés. Et si vous fuyez devant Varg, ne comptez pas sur moi pour vous suivre.",
+    "effets": [
+     {
+      "flag": "aveline-recruite"
+     },
+     {
+      "attitude": {
+       "pnj": "aveline-ker",
+       "delta": 15
+      }
+     },
+     {
+      "quete": {
+       "id": "q-aveline-les-prisonniers",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-dame-des-roseaux",
+    "mots": [
+     "Dame des roseaux",
+     "foi",
+     "clerc",
+     "dieux",
+     "prière"
+    ],
+    "question": "En qui croyez-vous ?",
+    "reponse": "La Dame des Roseaux n'a pas de temple : elle a des fièvres, des accouchements et des gens qui n'ont plus rien. Je lui parle dans les granges. Elle ne promet pas de vaincre Varg ; elle promet qu'on ne mourra pas seul.",
+    "effets": []
+   }
+  ],
+  "salutations": {
+   "hostile": "Reculez. J'ai assez de malades sans ajouter des blessés.",
+   "neutre": "Vous êtes les étrangers du pont. Vous avez du sang sur les manches ou seulement de la boue ?",
+   "amical": "Asseyez-vous. Il reste de la soupe, et j'ai deux blessés à voir avant la nuit.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "colin-libere"
+     },
+     "texte": "Vous avez sorti Colin de la mine. Asseyez-vous : je vous dois des soins, et je n'aime pas les dettes."
+    },
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Le village parle du registre. Moi, je regarde les blessés : ils n'ont pas l'air d'un pacte."
+    }
+   ]
+  },
+  "compagnon": {
+   "classe": "clerc",
+   "espece": "humain",
+   "niveau": 1,
+   "recrutement": {
+    "ou": [
+     {
+      "flag": "aveline-recruite"
+     },
+     {
+      "pnj": {
+       "id": "aveline-ker",
+       "attitudeMin": 10
+      }
+     }
+    ]
+   },
+   "quetePersonnelle": "q-aveline-les-prisonniers",
+   "repliques": [
+    {
+     "declencheur": "en arrivant dans un lieu nouveau",
+     "texte": "Montrez-moi les mains et les yeux des gens. On en apprend plus sur un village par ses blessés que par sa place."
+    },
+    {
+     "declencheur": "quand un compagnon tombe",
+     "texte": "Restez avec moi. Je ne promets pas de vous relever, mais je ne vous laisserai pas seul."
+    },
+    {
+     "declencheur": "devant Varg",
+     "texte": "Il parle d'ordre. Demandez-lui combien de prisonniers il a enterrés cet hiver."
+    }
+   ],
+   "opinions": [
+    {
+     "sujet": "le pacte du meunier",
+     "reaction": "Anselme a menti, mais il a nourri le village. Je ne le juge pas avant d'avoir vu les blessés qu'il a évités.",
+     "attitude": 0
+    },
+    {
+     "sujet": "la tribu de Skarn",
+     "reaction": "Ils ont faim. La faim ne rend pas meilleur, mais elle n'excuse pas ceux qui la fabriquent.",
+     "attitude": 5
+    }
+   ]
+  }
+ },
+ {
+  "id": "bram-coeur-de-tourbe",
+  "nom": "Bram Cœur-de-Tourbe",
+  "titre": "Vieux mineur",
+  "espece": "nain",
+  "sexe": "M",
+  "age": "78 ans",
+  "role": "Mineur retraité, connaît la vieille galerie de la mine",
+  "lieu": "mir-grenier",
+  "apparence": "Nain trapu, barbe grise tressée avec des fils de cuivre, veste de toile cirée, bottes ferrées, un vieux pic passé à la ceinture. Il boite de la jambe gauche et parle aux murs quand il croit qu'on ne l'écoute pas.",
+  "personnalite": {
+   "traits": [
+    "bourru",
+    "loyal",
+    "superstitieux",
+    "têtu"
+   ],
+   "valeurs": [
+    "la parole donnée",
+    "les morts de la mine",
+    "le travail bien fait"
+   ],
+   "desir": "Rouvrir la vieille galerie de son père et sortir les prisonniers par le boyau qu'il connaît.",
+   "peur": "Que la mine avale encore un homme qu'il aurait pu sauver.",
+   "defaut": "Il ne demande jamais d'aide et déteste qu'on le plaigne.",
+   "voix": "Voix rauque et lente, comme s'il pesait chaque mot ; il parle aux gens comme on parle à une galerie qui peut céder, et jure en nain quand il est contrarié."
+  },
+  "faction": "gens-de-mireval",
+  "attitude": 0,
+  "savoir": [
+   "f-mine-de-fer",
+   "f-colin-prisonnier",
+   "f-bram-frere",
+   "f-mine-ancienne",
+   "f-pont-nain"
+  ],
+  "secrets": [
+   {
+    "fait": "f-but-de-varg",
+    "attitudeMin": 25
+   }
+  ],
+  "sujets": [
+   {
+    "id": "la-vieille-mine",
+    "mots": [
+     "mine",
+     "galerie",
+     "nains",
+     "père",
+     "boyau"
+    ],
+    "question": "Que savez-vous de la vieille mine ?",
+    "reponse": "Mon père l'a creusée avant que les hommes de Varg y mettent leurs bottes. Il y a un boyau derrière la galerie effondrée, et un abri où les mineurs dormaient. Si quelqu'un veut entrer sans passer par le porche, c'est là qu'il faut chercher.",
+    "revele": [
+     "f-mine-de-fer"
+    ],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "bram-coeur-de-tourbe",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-galerie",
+    "mots": [
+     "galerie",
+     "effondrée",
+     "passage",
+     "abri",
+     "contrepoids"
+    ],
+    "question": "Pouvez-vous nous montrer le passage de la galerie ?",
+    "reponse": "Je peux vous dire où il est, mais mes jambes ne montent plus jusqu'à la grotte. Il y a un contrepoids de bois, derrière l'éboulement : quatre leviers, deux montants et deux traverses. Si vous les bougez dans le bon sens, le boyau s'ouvre.",
+    "effets": [
+     {
+      "quete": {
+       "id": "q-bram-la-galerie",
+       "statut": "proposee"
+      }
+     },
+     {
+      "flag": "bram-indique-galerie"
+     },
+     {
+      "attitude": {
+       "pnj": "bram-coeur-de-tourbe",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "rejoindre",
+    "mots": [
+     "rejoindre",
+     "venir",
+     "compagnie",
+     "guide",
+     "mine"
+    ],
+    "question": "Viendrez-vous avec nous jusqu'à la mine ?",
+    "reponse": "Jusqu'à la galerie, oui. Après, je ne promets rien : je sais frapper, mais je ne sais plus courir. Et si vous trouvez la veine de mon père, ne la laissez pas à Varg.",
+    "effets": [
+     {
+      "flag": "bram-recruite"
+     },
+     {
+      "attitude": {
+       "pnj": "bram-coeur-de-tourbe",
+       "delta": 15
+      }
+     },
+     {
+      "quete": {
+       "id": "q-bram-la-galerie",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "les-morts",
+    "mots": [
+     "morts",
+     "éboulement",
+     "noms",
+     "mine",
+     "père"
+    ],
+    "question": "Avez-vous perdu quelqu'un dans la mine ?",
+    "reponse": "Deux frères, il y a trente ans, dans un éboulement que personne n'a creusé assez vite. Leur nom est gravé sur une poutre de l'abri. Si vous y allez, ne marchez pas sur la paille sans regarder.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "bram-coeur-de-tourbe",
+       "delta": 5
+      }
+     }
+    ]
+   }
+  ],
+  "salutations": {
+   "hostile": "Tu pues le péage, toi. Passe ton chemin.",
+   "neutre": "Un nain, deux humains et des bottes de la ville. Vous montez à la mine ou vous venez compter le grain ?",
+   "amical": "Ah. Vous êtes ceux qui ont parlé à Huguette. Asseyez-vous, mais ne touchez pas à mon pic.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "colin-libere"
+     },
+     "texte": "Vous avez sorti le charretier. La mine n'a pas tout pris, cette fois."
+    }
+   ]
+  },
+  "compagnon": {
+   "classe": "guerrier",
+   "espece": "nain",
+   "niveau": 1,
+   "recrutement": {
+    "ou": [
+     {
+      "flag": "bram-recruite"
+     },
+     {
+      "pnj": {
+       "id": "bram-coeur-de-tourbe",
+       "attitudeMin": 10
+      }
+     }
+    ]
+   },
+   "quetePersonnelle": "q-bram-la-galerie",
+   "repliques": [
+    {
+     "declencheur": "en arrivant dans un lieu nouveau",
+     "texte": "Écoutez la pierre avant de marcher. Une galerie qui craque n'est pas une galerie qui tient."
+    },
+    {
+     "declencheur": "dans la mine",
+     "texte": "Je connais ce boyau. Mon père l'a étayé avec du pin de la vallée ; s'il tient encore, c'est qu'il est bon."
+    },
+    {
+     "declencheur": "devant un hobgobelin",
+     "texte": "Ils tiennent leur lance comme des gens qui n'ont jamais creusé. Profitez-en."
+    }
+   ],
+   "opinions": [
+    {
+     "sujet": "la mine",
+     "reaction": "La mine n'appartient à personne. Elle appartient à ceux qui y ont laissé un frère.",
+     "attitude": 5
+    },
+    {
+     "sujet": "Varg",
+     "reaction": "Ce capitaine parle de fer comme un comptable. Un mineur sait ce que le fer coûte.",
+     "attitude": -5
+    }
+   ]
+  }
+ },
+ {
+  "id": "celestin-brindille",
+  "nom": "Célestin Brindille",
+  "titre": "Colporteur de la place",
+  "espece": "halfelin",
+  "sexe": "M",
+  "age": "52 ans",
+  "role": "Colporteur, marchand d'articles de survie sur la place de Mireval",
+  "lieu": "mir-place-du-marche",
+  "apparence": "Halfelin rondouillard, manteau de toile huilée trop grand, chapeau cabossé, doigts couverts de bagues de cuivre. Il tire une brouette chargée de sacs, de cordes et de fioles, et surveille la route du pont entre deux ventes.",
+  "personnalite": {
+   "traits": [
+    "bavard",
+    "avare",
+    "prudent",
+    "commerçant jusqu'au bout des ongles"
+   ],
+   "voix": "Voix haut perchée, débit rapide, il transforme chaque réponse en occasion de vente ; quand il a peur, il plaisante sur les prix.",
+   "valeurs": [
+    "la marchandise",
+    "la vie",
+    "un bon comptoir"
+   ],
+   "desir": "Vendre assez pour repartir avant que la guerre ne ferme la chaussée.",
+   "peur": "Que les hobgobelins confisquent sa brouette et son fonds de commerce.",
+   "defaut": "Il vendrait de l'eau à un noyé, puis lui proposerait une corde."
+  },
+  "attitude": 0,
+  "savoir": [
+   "f-grenier-vide",
+   "f-double-tribut",
+   "f-celestin-contrebande"
+  ],
+  "sujets": [
+   {
+    "id": "les-prix",
+    "mots": [
+     "prix",
+     "marché",
+     "acheter",
+     "vendre",
+     "cher"
+    ],
+    "question": "Pourquoi vos prix sont-ils si hauts ?",
+    "reponse": "Le pont, les patrouilles, la crue. Chaque sac qui arrive ici a payé trois péages et une peur. Vous voulez du grain ? J'en ai. Vous voulez le prix d'avant le siège ? Allez le chercher à Laelith.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "celestin-brindille",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-route",
+    "mots": [
+     "route",
+     "pont",
+     "péage",
+     "Varg",
+     "partir"
+    ],
+    "question": "Que savez-vous de la route du pont ?",
+    "reponse": "Les hobgobelins comptent les charrettes et taxent les mules. Ils ont laissé passer la mienne parce que j'ai payé en grain, pas en or. Si vous voulez sortir de Mireval, il faudra leur donner quelque chose qu'ils ne comptent pas.",
+    "revele": [
+     "f-double-tribut"
+    ],
+    "effets": []
+   },
+   {
+    "id": "la-brouette",
+    "mots": [
+     "brouette",
+     "marchandise",
+     "stock",
+     "fonds"
+    ],
+    "question": "Qu'avez-vous à vendre ?",
+    "reponse": "Des rations, des torches, de l'huile, de la corde, une potion de guérison et deux couvertures. Pas de fer : le fer, ici, c'est Varg qui le garde. Tout se paie d'avance, sauf si vous m'apportez du grain.",
+    "effets": []
+   },
+   {
+    "id": "les-rumeurs",
+    "mots": [
+     "rumeurs",
+     "nouvelles",
+     "bruit",
+     "mine",
+     "gobelins"
+    ],
+    "question": "Quelles sont les nouvelles ?",
+    "reponse": "On dit que la charrette n'est jamais arrivée chez les gobelins, et que les gobelins n'ont jamais eu aussi faim. On dit aussi que Varg fait travailler des prisonniers à la veine. Moi, je dis que tout le monde a raison et que personne ne paie.",
+    "revele": [
+     "f-charrette-saisie",
+     "f-tribu-affamee"
+    ],
+    "effets": []
+   }
+  ],
+  "salutations": {
+   "hostile": "Passez votre chemin. Je ne vends pas aux gens qui font fuir mes clients.",
+   "neutre": "Approchez, approchez. Enfin, pas trop : la brouette est fragile et la clientèle aussi.",
+   "amical": "Ah, mes meilleurs clients ! J'ai gardé une potion de côté, et un prix d'ami. Enfin, un prix.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Le registre du meunier, hein ? J'aurais pu vous le vendre, si j'avais su qu'il valait autant."
+    }
+   ]
+  },
+  "boutique": {
+   "stock": [
+    {
+     "objet": "rations",
+     "quantite": 10
+    },
+    {
+     "objet": "torche",
+     "quantite": 6
+    },
+    {
+     "objet": "huile",
+     "quantite": 4
+    },
+    {
+     "objet": "corde",
+     "quantite": 2
+    },
+    {
+     "objet": "couverture",
+     "quantite": 2
+    },
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 2
+    }
+   ],
+   "rachat": 0.4,
+   "types": [
+    "nourriture",
+    "materiel",
+    "divers",
+    "potion"
+   ]
+  },
+  "services": [
+   {
+    "id": "rumeurs",
+    "nom": "Les nouvelles de la route",
+    "resume": "Célestin raconte ce qu'il a vu au pont et ce qu'on dit à la place, en vérifiant la pièce avant de commencer.",
+    "prix": 0.5,
+    "effets": [
+     {
+      "flag": "z5-celestin-complice"
+     }
+    ]
+   },
+   {
+    "id": "garde-brouette",
+    "nom": "Garder la brouette",
+    "resume": "Il accepte de laisser sa brouette à l'abri derrière l'auberge pendant que le groupe monte à la mine.",
+    "prix": 1,
+    "effets": [
+     {
+      "flag": "z5-brouette-garde"
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,587 @@
+[
+ {
+  "id": "krik",
+  "nom": "Krik",
+  "titre": "Jeune guerrier de la tribu de Skarn",
+  "espece": "gobelin",
+  "sexe": "M",
+  "age": "19 ans",
+  "role": "Jeune guerrier gobelin qui garde le sentier des roseaux avec une patrouille ; impulsif, il veut prouver sa valeur à Skarn.",
+  "lieu": "mar-sentier-des-roseaux",
+  "apparence": "Gobelin maigre et noueux de 19 ans, peau vert olive, oreilles en feuilles de roseau, mèche noire coupée au couteau, tunique de cuir rapiécée, cimeterre trop grand passé dans une corde, trois dagues à la ceinture, pieds nus dans la vase.",
+  "personnalite": {
+   "traits": [
+    "impulsif",
+    "fier",
+    "curieux"
+   ],
+   "voix": "aiguë et rapide ; il coupe la parole, claque la langue entre deux phrases et passe du rire à la menace sans transition",
+   "valeurs": [
+    "sa tribu",
+    "le courage",
+    "la parole donnée"
+   ],
+   "desir": "être pris pour un guerrier par Skarn et par les siens",
+   "peur": "qu’on le renvoie garder les enfants, et qu’on apprenne qu’il a eu peur au pont",
+   "defaut": "il frappe avant d’avoir compté ses adversaires"
+  },
+  "presences": [
+   {
+    "lieu": "mar-cabane-des-passeurs",
+    "moment": "soir"
+   }
+  ],
+  "faction": "tribu-de-skarn",
+  "attitude": -5,
+  "savoir": [
+   "f-tribu-affamee",
+   "f-double-tribut",
+   "f-krik-raid"
+  ],
+  "secrets": [
+   {
+    "fait": "f-charrette-saisie",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 13
+    }
+   }
+  ],
+  "sujets": [
+   {
+    "id": "sentier",
+    "mots": [
+     "sentier",
+     "passage",
+     "route",
+     "marais",
+     "péage",
+     "garder"
+    ],
+    "question": "Pourquoi barrez-vous le sentier ?",
+    "reponse": "Il ne barre pas le sentier, il le garde : la tribu veut savoir qui entre dans le marais et ce que les humains viennent y chercher. Depuis que les hobgobelins tiennent le pont, personne ne passe sans payer quelqu’un. Il demande ce que le groupe apporte, et son regard descend vers les bourses.",
+    "unique": false
+   },
+   {
+    "id": "faim",
+    "mots": [
+     "faim",
+     "manger",
+     "grain",
+     "tribu",
+     "enfants",
+     "hiver"
+    ],
+    "question": "Votre tribu mange-t-elle à sa faim ?",
+    "reponse": "Il hausse les épaules, puis parle trop vite : le grain du meunier n’est pas venu cette année, les collets du sentier sont vides, et les petits mangent les racines qu’on réservait aux chèvres. Skarn dit qu’ils tiendront un mois. Krik, lui, ne veut pas compter les jours.",
+    "revele": [
+     "f-tribu-affamee"
+    ]
+   },
+   {
+    "id": "rations",
+    "mots": [
+     "rations",
+     "nourriture",
+     "partager",
+     "manger",
+     "donner"
+    ],
+    "condition": {
+     "objet": "rations"
+    },
+    "question": "Offrir une part de vos rations.",
+    "reponse": "Il regarde le paquet sans le prendre, puis l’empoche d’un geste sec et mâche trop vite pour faire semblant. Il dit que les humains ne donnent jamais rien, que c’est peut-être une ruse, et il reste debout entre le groupe et le sentier. Puis il s’écarte d’un demi-pas, ce qui, chez lui, est une faveur.",
+    "effets": [
+     {
+      "objet": {
+       "id": "rations",
+       "retirer": true
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "krik",
+       "delta": 15
+      }
+     }
+    ]
+   },
+   {
+    "id": "charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "meunier",
+     "convoi",
+     "passé",
+     "vue"
+    ],
+    "question": "Avez-vous vu passer la charrette du meunier ?",
+    "reponse": "Il devient prudent d’un coup : les hobgobelins ont barré le pont, le grain n’est pas venu, et ce n’est pas aux gobelins qu’il faut le demander. Il dit qu’il n’était pas là, et il le dit une fois de trop. Sa nuque rougit jusqu’aux oreilles, et il change de sujet."
+   },
+   {
+    "id": "lina",
+    "mots": [
+     "Lina",
+     "fille",
+     "meunier",
+     "otage",
+     "humaine",
+     "grottes"
+    ],
+    "question": "Où est la fille du meunier ?",
+    "attitudeMin": 10,
+    "reponse": "Dans les grottes, avec la tribu. Elle est venue parler à Skarn, pas se faire prendre ; elle a du cran, pour une humaine. Skarn la traite comme une invitée et lui a donné la meilleure couverture. Krik ne sait pas ce qu’elle attend, mais il trouve qu’elle pose trop de questions.",
+    "revele": [
+     "f-lina-otage"
+    ]
+   },
+   {
+    "id": "hobgobelins",
+    "mots": [
+     "hobgobelins",
+     "Varg",
+     "péage",
+     "compagnie",
+     "double",
+     "tribut"
+    ],
+    "question": "Que veulent les hobgobelins ?",
+    "reponse": "Le double, à présent : au village comme à la tribu. Ils ont pris le pont, ils comptent les sacs, ils parlent de la mine comme d’un héritage. Krik dit qu’un jour ils viendront compter les gobelins eux-mêmes, et il tapote le pommeau de son cimeterre.",
+    "revele": [
+     "f-double-tribut"
+    ]
+   },
+   {
+    "id": "mine",
+    "mots": [
+     "mine",
+     "fer",
+     "colline",
+     "minerai",
+     "pierre rouge",
+     "galerie"
+    ],
+    "question": "Que sortent-ils de la colline ?",
+    "reponse": "Des sacs de caillou rouge, la nuit, tirés par des hommes enchaînés. Krik a vu la file passer sous le pont et il a compté les sacs jusqu’à cent avant de se lasser. Il ne comprend pas ce qu’on trouve à cette pierre lourde, mais les hobgobelins la portent comme du grain.",
+    "revele": [
+     "f-mine-de-fer"
+    ]
+   },
+   {
+    "id": "passeur",
+    "mots": [
+     "Marin",
+     "passeur",
+     "cabane",
+     "barque",
+     "chemin"
+    ],
+    "question": "Où trouver le passeur ?",
+    "reponse": "Le vieux Marin vend le passage à tout le monde, aux gobelins comme aux hobgobelins, et cela ne plaît pas à Krik. Il dit qu’un homme sans camp finira par en avoir un, et que ce jour-là il faudra choisir. Puis il indique la cabane d’un mouvement du menton : c’est au bout du sentier, et c’est payant."
+   }
+  ],
+  "salutations": {
+   "neutre": "Une silhouette se dresse dans les roseaux, cimeterre en travers du sentier. « Halte. On paie pour passer, ici. Même les humains. »",
+   "hostile": "« Encore vous. » Il recule d’un pas sans baisser sa lame. « Skarn a dit de ne pas vous tuer. Il n’a pas dit de vous laisser passer. »",
+   "amical": "Il rengaine à moitié et crache dans l’eau. « Bon. Vous avez nourri quelqu’un de ma tribu. Le sentier est à vous jusqu’à la cabane. »",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "alliance-gobeline"
+     },
+     "texte": "Krik accourt, essoufflé, et s’arrête net devant le groupe. « Skarn dit que vous êtes des nôtres. » Il ne sait pas encore s’il doit s’en réjouir, et cela se voit à sa mâchoire."
+    },
+    {
+     "condition": {
+      "fait": "f-charrette-saisie"
+     },
+     "texte": "Il ne lève pas son cimeterre. « Vous savez, alors. Pour la charrette. » Il regarde les roseaux comme s’il y cherchait encore les hobgobelins, puis s’écarte du sentier sans rien demander."
+    },
+    {
+     "condition": {
+      "faction": {
+       "id": "tribu-de-skarn",
+       "max": -30
+      }
+     },
+     "texte": "Sa patrouille se déploie dans les roseaux sans un mot. Krik ne menace pas, ne plaisante pas : il compte les armes du groupe, une à une, et attend qu’on fasse le premier pas."
+    },
+    {
+     "condition": {
+      "heros": {
+       "classe": "rodeur"
+      }
+     },
+     "texte": "Il regarde les bottes de l’éclaireur, puis la ligne des roseaux derrière lui. « Vous marchez sans casser les tiges. C’est bien. Les autres laissent un chemin qu’on suit. »"
+    }
+   ]
+  },
+  "inventaire": [
+   "cimeterre",
+   "dague"
+  ],
+  "profilCombat": "combattant-gobelin"
+ },
+ {
+  "id": "marin",
+  "nom": "Marin",
+  "titre": "Passeur des roseaux",
+  "espece": "humain",
+  "sexe": "M",
+  "age": "52 ans",
+  "role": "Passeur qui loue sa barque et son silence à travers le marais ; il vend le passage, les nouvelles et la carte du marais.",
+  "lieu": "mar-cabane-des-passeurs",
+  "apparence": "Homme sec de 52 ans, visage brûlé par le vent, barbe grise coupée court, chapeau de toile cirée délavé, veste de laine goudronnée, bottes coupées aux chevilles, une main toujours posée sur sa gaffe.",
+  "personnalite": {
+   "traits": [
+    "patient",
+    "économe",
+    "prudent"
+   ],
+   "voix": "lente et basse ; il annonce ses prix avant ses phrases et laisse les silences travailler à sa place",
+   "valeurs": [
+    "sa barque",
+    "la neutralité",
+    "les comptes justes"
+   ],
+   "desir": "finir la saison sans dettes et sans avoir à choisir de camp",
+   "peur": "que la compagnie réquisitionne sa barque et le force à conduire des hobgobelins",
+   "defaut": "il vend le passage à ceux qu’il n’aime pas, tant qu’ils paient"
+  },
+  "faction": "passeurs-des-roseaux",
+  "attitude": 0,
+  "savoir": [
+   "f-passeurs-neutres",
+   "f-mine-de-fer",
+   "f-double-tribut",
+   "f-marin-tarif",
+   "f-rumeur-tresor-noyes",
+   "f-crue-trois-jours"
+  ],
+  "secrets": [
+   {
+    "fait": "f-but-de-varg",
+    "prix": 10,
+    "jet": {
+     "competence": "persuasion",
+     "dd": 11
+    }
+   }
+  ],
+  "sujets": [
+   {
+    "id": "passage",
+    "mots": [
+     "passage",
+     "traverser",
+     "barque",
+     "prix",
+     "combien",
+     "marais"
+    ],
+    "question": "Combien pour traverser le marais ?",
+    "reponse": "Il donne son tarif sans se lever : tant par tête, la barque et lui compris, payés d’avance. Il ne promet ni la lune ni la marée ; il promet d’arriver au sec, et il tient. Il ajoute qu’il ne transporte ni les hobgobelins en armes ni les gens qui mentent sur leur cargaison.",
+    "effets": [
+     {
+      "quete": {
+       "id": "q-marin-le-passage",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "carte",
+    "mots": [
+     "carte",
+     "chemin",
+     "mine",
+     "secret",
+     "plan",
+     "relevé"
+    ],
+    "question": "Avez-vous une carte du marais ?",
+    "condition": {
+     "ou": [
+      {
+       "faction": {
+        "id": "passeurs-des-roseaux",
+        "min": 40
+       }
+      },
+      {
+       "pnj": {
+        "id": "marin",
+        "attitudeMin": 40
+       }
+      }
+     ]
+    },
+    "reponse": "Il a mieux qu’une carte : un relevé des chenaux, copié sur un vieux plan d’archive et corrigé de sa main, où figure le passage qui mène derrière la colline. D’ordinaire il le vend, et cher. Cette fois il le sort de dessous les planches, le déplie sur la table et le pousse vers le groupe sans un mot.",
+    "effets": [
+     {
+      "objet": {
+       "id": "carte-du-marais",
+       "quantite": 1
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "marin",
+       "delta": 5
+      }
+     },
+     {
+      "narration": "Marin vous confie la carte du marais : le chenal derrière la cabane mène à la mine."
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "marais",
+    "mots": [
+     "marais",
+     "eau",
+     "montée",
+     "crépuscule",
+     "sables",
+     "danger",
+     "noyade"
+    ],
+    "question": "Le marais est-il dangereux ?",
+    "reponse": "Il énumère sans s’énerver : l’eau monte au crépuscule par les chenaux et coupe le sentier en deux ; le sable, à droite des rondins, avale un homme en trois pas ; les roseaux cachent des collets qui ne sont pas à lui. Il conseille de marcher avant la nuit et de ne jamais quitter les fascines."
+   },
+   {
+    "id": "hobgobelins",
+    "mots": [
+     "hobgobelins",
+     "Varg",
+     "compagnie",
+     "péage",
+     "neutre",
+     "camp"
+    ],
+    "question": "Traitez-vous avec les hobgobelins ?",
+    "reponse": "Il dit que tout le monde paie, ici : les gobelins en peaux de poisson, les hobgobelins en pièces, le village en grain. Lui ne prend parti pour personne, il prend le prix. Puis il ajoute, plus bas, qu’il n’aime pas leur façon de compter les personnes comme du bétail.",
+    "revele": [
+     "f-passeurs-neutres"
+    ]
+   },
+   {
+    "id": "mine",
+    "mots": [
+     "mine",
+     "fer",
+     "colline",
+     "minerai",
+     "pierre rouge",
+     "galerie"
+    ],
+    "question": "Que savez-vous de la mine ?",
+    "reponse": "Il a descendu des sacs de caillou rouge, l’an dernier, jusqu’à la chaussée ; la pierre pesait plus lourd que le grain et rapportait moins. Depuis, les hobgobelins ont doublé les passages et parlent de la veine comme d’un héritage. Il dit que le fer est la seule chose que Varg n’ait pas volée : il l’a prise.",
+    "revele": [
+     "f-mine-de-fer"
+    ]
+   },
+   {
+    "id": "charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "meunier",
+     "Colin",
+     "convoi",
+     "nuit"
+    ],
+    "question": "Avez-vous vu la charrette du meunier ?",
+    "attitudeMin": 20,
+    "reponse": "Il ne répond pas tout de suite. Il a vu passer, une nuit, une charrette escortée de hobgobelins sur le vieux chemin de halage ; le charretier marchait devant, une corde aux poignets. Il n’a pas bougé de sa barque, et il ne dit pas s’il l’a regretté.",
+    "revele": [
+     "f-charrette-saisie"
+    ]
+   },
+   {
+    "id": "convoi",
+    "mots": [
+     "printemps",
+     "convoi",
+     "Varg",
+     "compagnie",
+     "nuit",
+     "barque"
+    ],
+    "question": "Que faisiez-vous au printemps dernier ?",
+    "condition": {
+     "pnj": {
+      "id": "marin",
+      "attitudeMin": 30
+     }
+    },
+    "reponse": "Il ne nie pas. Au printemps, la compagnie a payé pour deux barques et une nuit sans lune : des outils, des cordes, des sacs de chaux, et des hommes qui ne parlaient pas. Il a conduit jusqu’au chenal de la halde, il a été payé, et il est revenu. Il dit qu’il ne savait pas ce qu’on construisait là-haut, et qu’il ne veut pas le savoir.",
+    "effets": [
+     {
+      "narration": "Marin avoue avoir conduit un convoi de la compagnie jusqu’à la halde, au printemps, sans demander ce qu’il transportait."
+     },
+     {
+      "attitude": {
+       "pnj": "marin",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "cargaison",
+    "mots": [
+     "cargaison",
+     "refuser",
+     "règles",
+     "passagers",
+     "silence"
+    ],
+    "question": "Qu’est-ce que vous refusez de transporter ?",
+    "reponse": "Des armes destinées à un village, des gens enchaînés, et les questionneurs qui ne paient pas. Il a ses règles et il les tient depuis vingt ans ; c’est pour cela qu’on lui confie encore des choses qu’on ne confierait pas à un honnête homme."
+   },
+   {
+    "id": "prix",
+    "mots": [
+     "payer",
+     "prix",
+     "or",
+     "cher",
+     "gratuit"
+    ],
+    "question": "Pourquoi faites-vous payer si cher ?",
+    "reponse": "Parce que la barque prend l’eau, que les roseaux mangent les perches et que personne ne paie un passeur mort. Il dit que la neutralité n’est pas gratuite : chaque pièce qu’il prend est une raison de plus de ne pas choisir de camp."
+   }
+  ],
+  "salutations": {
+   "neutre": "Il ne se lève pas de son banc. « Le passage, la carte ou les nouvelles ? Tout se paie, et je ne fais pas crédit. »",
+   "amical": "Il pousse du pied un tabouret et pose deux gobelets sur la table. « Asseyez-vous. L’eau ne se presse pas, ce soir. »",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "route-des-roseaux-ouverte"
+     },
+     "texte": "Il a sorti la carte et l’a posée entre vous, les quatre coins tenus par des cailloux. « Le chenal est bon jusqu’à la colline. Revenez par le même chemin, ou ne revenez pas. »"
+    },
+    {
+     "condition": {
+      "fait": "f-charrette-saisie"
+     },
+     "texte": "« Vous savez, pour la charrette. » Il essuie un gobelet qui n’en a pas besoin. « Je n’ai rien fait cette nuit-là. Je ne veux pas qu’on me le rappelle, et je ne veux pas qu’on me le reproche. »"
+    },
+    {
+     "condition": {
+      "faction": {
+       "id": "compagnie-du-peage",
+       "min": 40
+      }
+     },
+     "texte": "Il vous regarde comme on regarde une marchandise dont on connaît déjà le prix. « On dit que vous parlez à Varg. Moi, je parle à tout le monde. La différence, c’est que je le dis. »"
+    },
+    {
+     "condition": {
+      "heros": {
+       "classe": "rodeur"
+      }
+     },
+     "texte": "Il jette un œil aux bottes de l’éclaireur, puis à la ligne d’eau sur les pilotis. « Vous avez vu l’eau monter, pas vrai ? Ceux qui la voient une fois ne l’oublient plus. »"
+    }
+   ]
+  },
+  "boutique": {
+   "stock": [
+    {
+     "objet": "corde",
+     "quantite": 2
+    },
+    {
+     "objet": "perche",
+     "quantite": 1
+    },
+    {
+     "objet": "lanterne-a-capote",
+     "quantite": 1
+    },
+    {
+     "objet": "huile",
+     "quantite": 3
+    },
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 1
+    },
+    {
+     "objet": "sac-de-couchage",
+     "quantite": 1
+    }
+   ],
+   "tables": [],
+   "rachat": 0.4,
+   "types": [
+    "materiel",
+    "potion",
+    "nourriture",
+    "divers"
+   ]
+  },
+  "services": [
+   {
+    "id": "mar-service-traversee",
+    "nom": "La traversée du marais",
+    "resume": "Marin vous passe la perche et vous conduit au-delà des chenaux, au sec et sans détour.",
+    "prix": 3,
+    "effets": [
+     {
+      "narration": "La barque à fond plat glisse entre les roseaux ; Marin pousse à la perche sans parler et vous dépose sur la berge de tourbe, au sec."
+     }
+    ]
+   },
+   {
+    "id": "mar-service-carte",
+    "nom": "La carte du marais",
+    "resume": "Marin sort de sous les planches le relevé des chenaux et vous montre le passage qui mène à la mine.",
+    "prix": 20,
+    "condition": {
+     "non": {
+      "objet": "carte-du-marais"
+     }
+    },
+    "effets": [
+     {
+      "objet": {
+       "id": "carte-du-marais",
+       "quantite": 1
+      }
+     }
+    ]
+   },
+   {
+    "id": "mar-service-abri",
+    "nom": "Une nuit sous le toit",
+    "resume": "Une paillasse près du poêle, une couverture de laine et un bol de soupe au matin.",
+    "prix": 1
+   },
+   {
+    "id": "mar-service-nouvelles",
+    "nom": "Les nouvelles du marais",
+    "resume": "Qui est passé cette semaine, ce que paient les hobgobelins, où l’eau monte et où elle baisse.",
+    "prix": 1,
+    "effets": [
+     {
+      "narration": "Marin parle à voix basse : une barque hobgobeline a remonté le chenal avant-hier, chargée de sacs, et le vieux chemin de halage est surveillé."
+     }
+    ]
+   }
+  ],
+  "inventaire": [
+   "corde",
+   "lanterne-a-capote",
+   "perche"
+  ]
+ }
+]

@@ -1,0 +1,90 @@
+[
+ {
+  "pnj": "varg",
+  "passe": "Varg est le capitaine de la compagnie du Péage. Il a servi une compagnie écrasée au sud, rassemblé les survivants et les a menés jusqu'à la mine de Mireval, où il a installé un péage et rouvert la veine. Il ne se croit pas cruel : il croit qu'une frontière sans ordre est une boucherie, et il veut un fief stable pour ses hommes. Il parle poliment, compte tout et ne hausse jamais la voix. Il craint moins les villageois qu'une mutinerie de ses propres soldats, qui ne sont pas payés depuis six semaines.",
+  "liens": [
+   {
+    "pnj": "grum",
+    "nature": "son garde du corps gobelours",
+    "opinion": "Il lui doit la vie et le garde près de lui. Il sait que Grum est fatigué de la guerre et il fait semblant de ne pas le voir."
+   },
+   {
+    "pnj": "skarn",
+    "nature": "le chef gobelin",
+    "opinion": "Il le trouve lent, utile et remplaçable. Il ne comprend pas pourquoi un chef refuse d'envoyer ses guerriers au combat."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire de Mireval",
+    "opinion": "Il la respecte plus que les autres villageois. Elle tient un village sans soldats, et il sait ce que cela coûte."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-plume",
+    "texte": "Il écrit ses ordres à la plume, sur un cahier de comptes, et il les relit avant de les sceller. Il dit qu'un ordre non écrit n'existe pas."
+   },
+   {
+    "id": "le-peage",
+    "texte": "Il tient le péage comme une administration : une caisse, un registre, un tréteau. Il ne crie pas, il compte."
+   },
+   {
+    "id": "la-carte",
+    "texte": "Il déplie une carte de la vallée et désigne la veine du doigt. Il ne parle jamais du grain quand il parle de fer."
+   },
+   {
+    "id": "la-paie",
+    "texte": "Il sait que ses hommes ne sont pas payés depuis six semaines. Il dit que la mine paiera, et il évite de regarder Grum quand il le dit."
+   },
+   {
+    "id": "avis-sur-la-peur",
+    "texte": "Il dit qu'un village qui a peur obéit mieux qu'un village qui espère. Il ne dit pas qu'il préférerait être craint que haï."
+   },
+   {
+    "id": "le-manteau",
+    "texte": "Il porte un manteau sec sous la pluie, boutonné jusqu'au col. Il ne l'enlève jamais devant ses hommes."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-mine",
+    "fait": "f-mine-de-fer",
+    "version": "La mine recèle une veine de fer qu'il exploite avec des prisonniers. C'est la vraie richesse de la vallée, et la raison de sa présence.",
+    "acces": {}
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Il exige le double du tribut, du village comme de la tribu. Il dit que ce n'est pas une punition mais un rappel : personne ne paie les soldats d'une frontière oubliée.",
+    "acces": {}
+   },
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "La charrette a été prise au pont, le grain est dans la cour, le charretier travaille à la veine. Il ne le nie pas : un otage vivant vaut mieux qu'un otage mort.",
+    "acces": {}
+   },
+   {
+    "id": "le-but",
+    "fait": "f-but-de-varg",
+    "version": "Il veut la veine et la tribu comme main-d'œuvre. Le grain n'est qu'un prétexte pour affaiblir Mireval et forcer son grenier.",
+    "acces": {
+     "attitudeMin": 25
+    },
+    "evasif": "il dit qu'il est venu pour le péage et la mine, et que le grain n'est qu'une question de comptabilité",
+    "tabou": [
+     "veine"
+    ]
+   },
+   {
+    "id": "la-compagnie",
+    "fait": "f-compagnie-paie",
+    "version": "La compagnie n'est pas payée depuis six semaines. Les hobgobelins comptent les charrettes et le grain parce que Varg n'a plus d'or à leur donner.",
+    "acces": {
+     "attitudeMin": 15
+    },
+    "evasif": "il dit que ses hommes sont disciplinés et qu'un soldat ne discute pas sa solde"
+   }
+  ]
+ }
+]

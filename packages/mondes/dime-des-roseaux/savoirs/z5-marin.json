@@ -1,0 +1,87 @@
+[
+ {
+  "pnj": "marin",
+  "passe": "Marin est né dans une cabane sur pilotis, au bord du chenal des roseaux, et il n'a jamais vraiment vécu ailleurs. Il connaît les passes, les fonds, les crues et les chemins que les hobgobelins n'ont pas trouvés. Il vend le passage aux villageois, aux colporteurs et parfois à des gens qu'il ne nomme pas ; il ne trahit personne, mais il ne fait crédit à personne. Avant le siège, il a conduit un convoi pour Varg et il n'en parle pas. Il estime que la neutralité est un métier, comme le passage, et que les deux se paient d'avance.",
+  "liens": [
+   {
+    "pnj": "varg",
+    "nature": "un capitaine qui l'a payé pour un passage",
+    "opinion": "Il ne l'aime pas, mais il a tenu parole. Il sait que Varg le retrouverait s'il parlait, et il préfère ne pas savoir ce qu'il ferait ensuite."
+   },
+   {
+    "pnj": "celestin-brindille",
+    "nature": "un colporteur concurrent",
+    "opinion": "Il le trouve trop bavard et trop cher. Ils se sont volé des clients, et Marin respecte ceux qui savent compter."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire de Mireval",
+    "opinion": "Elle le paie sans discuter. Il la trouve plus honnête que la plupart des gens de la terre ferme."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-gaffe",
+    "texte": "Il manie sa gaffe comme une main supplémentaire. Il dit qu'un bon passeur reconnaît un fond à la façon dont l'eau résiste."
+   },
+   {
+    "id": "la-barque",
+    "texte": "Sa barque à fond plat est rafistolée avec des planches de récupération. Il connaît chaque clou et chaque fuite."
+   },
+   {
+    "id": "les-coches",
+    "texte": "Sur une planche de la cabane, il fait une coche pour chaque passage payé. Il ne note pas les noms, seulement les dates et les prix."
+   },
+   {
+    "id": "le-prix",
+    "texte": "Il annonce son prix avant de faire monter qui que ce soit. Il ne discute pas, sauf si on lui offre quelque chose qu'il ne peut pas trouver ailleurs."
+   },
+   {
+    "id": "avis-sur-la-guerre",
+    "texte": "Il dit que la guerre est bonne pour les passeurs et mauvaise pour les passeurs morts. Il compte rester vivant."
+   },
+   {
+    "id": "la-neutralite",
+    "texte": "Il ne prend parti pour personne, et il le rappelle à chaque client. Il dit que l'eau ne choisit pas de côté, et que lui non plus."
+   }
+  ],
+  "sait": [
+   {
+    "id": "les-passeurs",
+    "fait": "f-passeurs-neutres",
+    "version": "Les passeurs ne prennent parti pour personne. Ils vendent le passage, les nouvelles et parfois le silence, et ils connaissent un chemin secret vers la mine.",
+    "acces": {}
+   },
+   {
+    "id": "la-mine",
+    "fait": "f-mine-de-fer",
+    "version": "La mine hobgobeline recèle une veine de fer que Varg exploite avec des prisonniers. Marin connaît un chenal qui mène à la halde, derrière la cabane.",
+    "acces": {}
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Varg exige le double du tribut, du village comme de la tribu. Marin l'a appris en conduisant un homme de Varg et il a augmenté son tarif.",
+    "acces": {}
+   },
+   {
+    "id": "son-tarif",
+    "fait": "f-marin-tarif",
+    "version": "Il fait payer chaque passage, même aux habitants de Mireval. Il ne trahit personne, mais il ne fait crédit à personne non plus.",
+    "acces": {}
+   },
+   {
+    "id": "le-but-de-varg",
+    "fait": "f-but-de-varg",
+    "version": "Varg veut la veine et la tribu comme main-d'œuvre. Marin le sait pour avoir conduit son convoi, et il ne le dira pas gratis.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "il dit qu'un passeur ne répète pas ce qu'il voit sur l'eau, et qu'il faut payer pour en savoir plus",
+    "tabou": [
+     "veine"
+    ]
+   }
+  ]
+ }
+]

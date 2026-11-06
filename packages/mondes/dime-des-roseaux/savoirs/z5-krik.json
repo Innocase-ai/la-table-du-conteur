@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "krik",
+  "passe": "Krik est un jeune guerrier de la tribu de Skarn, né dans la grotte des roseaux. Il a vu son peuple perdre la mine au printemps et les enfants maigrir depuis. Il veut attaquer Mireval, prendre le grain et rendre aux hobgobelins ce qu'ils ont fait à la tribu ; Skarn le retient parce qu'il sait qu'une guerre les tuerait tous. Krik est rapide, colérique et plus intelligent qu'il n'y paraît : il compte les patrouilles, connaît les chemins et n'a pas peur de mourir. Il respecte Skarn comme un père, mais il commence à douter de sa patience.",
+  "liens": [
+   {
+    "pnj": "skarn",
+    "nature": "le chef de la tribu",
+    "opinion": "Il le respecte comme un père, mais il trouve sa prudence humiliante. Il attend qu'il lui donne enfin l'ordre d'attaquer."
+   },
+   {
+    "pnj": "miette",
+    "nature": "une enfant de la tribu",
+    "opinion": "Il lui apporte ce qu'il chasse et lui promet que les hobgobelins ne reviendront pas. Il ne supporte pas de la voir maigrir."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine hobgobelin",
+    "opinion": "Il le hait sans le craindre. Il dit qu'un capitaine qui compte ses hommes ne sait pas se battre."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "le-cimeterre",
+    "texte": "Son cimeterre est trop long pour lui ; il le porte quand même et s'entraîne seul derrière la grotte, en comptant ses coups à voix haute."
+   },
+   {
+    "id": "les-patrouilles",
+    "texte": "Il connaît l'heure et le nombre des patrouilles hobgobelines. Il les récite à Skarn pour prouver qu'une attaque serait facile."
+   },
+   {
+    "id": "la-faim-des-enfants",
+    "texte": "Il chasse dans les roseaux et rapporte peu. Il donne sa part aux enfants et prétend qu'il a déjà mangé."
+   },
+   {
+    "id": "les-humains",
+    "texte": "Il ne déteste pas les humains : il les trouve lents et bavards. Il dit qu'un village qui paie une dîme a déjà accepté d'être faible."
+   },
+   {
+    "id": "la-grotte",
+    "texte": "Il connaît chaque boyau de la grotte et chaque pierre qui roule. Il ne s'y perd jamais, même dans le noir."
+   },
+   {
+    "id": "la-colere",
+    "texte": "Quand il est en colère, il parle vite et frappe le sol du pied. Puis il s'arrête net, comme s'il venait de se souvenir de Skarn."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-faim",
+    "fait": "f-tribu-affamee",
+    "version": "La tribu n'a pas reçu le grain de cette année. Il tient un mois, pas plus, et les enfants sont les premiers touchés.",
+    "acces": {}
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Varg exige le double du tribut, du village comme de la tribu. Krik dit que c'est une déclaration de guerre, pas un impôt.",
+    "acces": {}
+   },
+   {
+    "id": "son-raid",
+    "fait": "f-krik-raid",
+    "version": "Il veut attaquer Mireval pour prendre le grain. Skarn le retient parce que la tribu ne survivrait pas à une guerre contre les hobgobelins.",
+    "acces": {}
+   },
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "Il sait que la charrette n'est jamais arrivée chez les gobelins et que les hobgobelins l'ont prise au pont. Il l'a appris en suivant les traces.",
+    "acces": {
+     "attitudeMin": 10
+    },
+    "evasif": "il dit que les humains racontent ce qu'ils veulent, et que la tribu n'a rien vu",
+    "tabou": [
+     "charrette"
+    ]
+   }
+  ]
+ }
+]
