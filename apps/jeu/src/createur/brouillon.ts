@@ -6,6 +6,7 @@ import {
   creationRapide,
   effetsAcquis,
   manquants,
+  nombreDeChoix,
   personnageComplet,
   recommanderCaracteristiques,
   recommanderCompetences,
@@ -149,7 +150,7 @@ function manquantsEspece(c: Choix, donnees: Donnees): Manquant[] {
   if (espece.tailles.length > 1 && !c.taille) res.push({ etape: 'espece', message: `Choisis une taille (${espece.nom}).` });
   for (const choix of donnees.choix.values()) {
     if (choix.source.type !== 'espece' || choix.source.id !== espece.id) continue;
-    const nombre = choix.nombres[c.niveau - 1] ?? 0;
+    const nombre = nombreDeChoix(choix, c.niveau);
     const fait = c.choix?.[choix.id]?.length ?? 0;
     if (fait < nombre) res.push({ etape: 'espece', message: `${choix.nom} : ${nombre - fait} choix restant(s).` });
   }

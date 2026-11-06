@@ -53,10 +53,15 @@ export function bottesPossibles(classe: Classe, niveau: number, donnees: Donnees
   return { nombre, parmi };
 }
 
+/** Nombre d'options à prendre pour ce choix à ce niveau : la table s'arrête au niveau 5, sa dernière valeur vaut ensuite. */
+export function nombreDeChoix(choix: ChoixCreation, niveau: number): number {
+  return choix.nombres[Math.min(niveau, choix.nombres.length) - 1] ?? 0;
+}
+
 /** Choix de création applicables à une classe et une espèce, avec le nombre d'options à prendre à ce niveau. */
 export function choixRequis(classeId: string, especeId: string, niveau: number, donnees: Donnees): { choix: ChoixCreation; nombre: number }[] {
   return [...donnees.choix.values()]
     .filter((c) => (c.source.type === 'classe' ? c.source.id === classeId : c.source.id === especeId))
-    .map((choix) => ({ choix, nombre: choix.nombres[niveau - 1] ?? 0 }))
+    .map((choix) => ({ choix, nombre: nombreDeChoix(choix, niveau) }))
     .filter((c) => c.nombre > 0);
 }

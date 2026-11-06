@@ -20,12 +20,12 @@ Le jeu peut se dire « compatible avec la cinquième édition » ou « compatibl
 | --- | --- | --- | --- | --- |
 | Comment jouer | 5-19 | Caractéristiques, tests d20, maîtrise, actions, exploration, combat, dégâts et soins | M0-M1 | Règles codées dans `packages/regles` (dés, tests d20, modificateurs) |
 | Création de personnage | 20-29 | Étapes, valeurs de caractéristique, PV, progression, multiclassage, babioles | M0, M3 | Codé dans `fiche.ts` (sans multiclassage) |
-| Classes | 30-86 | 12 classes, **1 sous-classe chacune** | M0 | `donnees/srd/classes/*.json`, niveaux 1 à 5 |
+| Classes | 30-86 | 12 classes, **1 sous-classe chacune** | M0 | `donnees/srd/classes/*.json`, niveaux 1 à 20 |
 | Historiques | 87 | Acolyte, Criminel, Sage, Soldat | M0 | `historiques/historiques.json` |
 | Espèces | 87-91 | Drakéide, elfe, gnome, goliath, halfelin, humain, nain, orc, tieffelin | M0 | `especes/*.json` |
 | Dons | 92-94 | 4 d'origines, 2 généraux, 4 styles de combat, 7 faveurs épiques | M0 | `dons/dons.json` |
 | Équipement | 95-110 | Monnaie, armes (propriétés, bottes), armures, outils, matériel, montures, train de vie, fabrication d'objets, potions, parchemins | M0, M5 | Armes, armures, outils, matériel et paquetages en JSON (`objets/`) ; montures, véhicules et fabrication à faire (M5, artisanat) |
-| Sorts | 111-186 | Règles d'incantation et description des sorts | M1, M3 | 181 sorts de niveaux 0 à 3 en JSON (`sorts/`) ; 25 jouables en combat |
+| Sorts | 111-186 | Règles d'incantation et description des sorts | M1, M3 | 339 sorts de niveaux 0 à 9 en JSON (`sorts/`) ; 25 jouables en combat |
 | Glossaire de règles | 187-202 | Définitions (états, actions, zones…) | M1 | À faire |
 | Boîte à outils ludique | 203-214 | Voyage, conception d'historique, malédictions, environnement, terreur, poisons, **pièges**, **rencontres de combat** | M1, M5 | À faire |
 | Objets magiques | 215-266 | Règles et objets de A à Z | Mondes | 318 objets en JSON (`objets/magiques-*.json`), un par variante |

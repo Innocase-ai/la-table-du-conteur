@@ -9,7 +9,7 @@ import {
   VALEURS_STANDARD,
   type Valeurs,
 } from './caracteristiques';
-import { bottesPossibles, choixRequis, niveauSortMax, regleInitie, sortsEligibles } from './creation/regles-creation';
+import { bottesPossibles, choixRequis, niveauSortMax, nombreDeChoix, regleInitie, sortsEligibles } from './creation/regles-creation';
 import { equipementChoisi, type EquipementResolu } from './creation/equipement';
 import type { Donnees } from './donnees';
 import {
@@ -23,7 +23,7 @@ import {
   type Effet,
 } from './schemas';
 
-export const NIVEAU_MAX = 5;
+export const NIVEAU_MAX = 20;
 
 export interface ChoixPersonnage {
   nom: string;
@@ -288,7 +288,7 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       erreurs.push(`Choix « ${idChoix} » non applicable à ${classe.nom} ${espece.nom}.`);
       continue;
     }
-    if (ids.length > (def.nombres[niveau - 1] ?? 0)) erreurs.push(`${def.nom} : ${def.nombres[niveau - 1] ?? 0} option(s) au plus, ${ids.length} choisie(s).`);
+    if (ids.length > nombreDeChoix(def, niveau)) erreurs.push(`${def.nom} : ${nombreDeChoix(def, niveau)} option(s) au plus, ${ids.length} choisie(s).`);
     if (new Set(ids).size !== ids.length) erreurs.push(`${def.nom} : la même option est choisie deux fois.`);
     for (const id of ids) {
       const option = def.options.find((o) => o.id === id);

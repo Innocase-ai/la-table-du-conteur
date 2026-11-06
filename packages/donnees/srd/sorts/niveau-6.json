@@ -1,0 +1,795 @@
+[
+  {
+    "id": "allie-planaire",
+    "nom": "Allié planaire",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 10 minutes. Le lanceur implore l'assistance d'une entité d'outre-monde qui lui est familière (dieu, prince démon…), laquelle dépêche un Céleste, un Élémentaire ou un Fiélon de ses fidèles ; la créature se matérialise dans un espace inoccupé à portée (le lanceur peut la solliciter nommément, sans garantie). Rien ne la contraint : elle peut accepter un service en contrepartie d'un paiement ou d'une quête, que le lanceur doit négocier en communiquant avec elle. Repère : 100 po par minute de tâche, 1 000 po par heure, 10 000 po par jour (maximum 10 jours) ; le MJ ajuste (moitié ou dispense si la tâche correspond à l'éthique de la créature, moitié pour une tâche sans risque, davantage pour une tâche dangereuse ; aucune créature n'accepte une mission suicidaire). La tâche accomplie ou la durée écoulée, la créature retourne sur son plan d'origine après un rapport ; sans accord de rémunération, elle repart aussitôt."
+  },
+  {
+    "id": "barriere-de-lames",
+    "nom": "Barrière de lames",
+    "niveau": 6,
+    "ecole": "évocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "composantes": "V, S",
+    "duree": "Concentration, jusqu'à 10 minutes",
+    "concentration": true,
+    "resume": "Un mur de lames d'énergie tourbillonnantes apparaît à portée : hauteur maximale 6 m, épaisseur 1,50 m, soit un mur droit de 30 m de long au plus, soit un mur circulaire de 18 m de diamètre au plus. Il octroie un Abri supérieur et son espace est un Terrain difficile. Toute créature dans l'espace du mur (ou qui y pénètre ou y termine son tour, une fois par tour) fait un jet de sauvegarde de Dextérité et subit 6d10 dégâts de force en cas d'échec, moitié en cas de réussite.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "6d10",
+        "bonus": 0,
+        "type": "force"
+      }
+    ]
+  },
+  {
+    "id": "cercle-de-mort",
+    "nom": "Cercle de mort",
+    "niveau": 6,
+    "ecole": "nécromancie",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 45
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 18
+    },
+    "composantes": "V, S, M (une perle noire d'une valeur minimale de 500 po réduite en poudre)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Des ondes d'énergie négative rayonnent dans une sphère de 18 m de rayon centrée sur un point à portée : chaque créature de la zone fait un jet de sauvegarde de Constitution et subit 8d8 dégâts nécrotiques en cas d'échec, moitié en cas de réussite. +2d8 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "8d8",
+        "bonus": 0,
+        "type": "nécrotique"
+      }
+    ],
+    "ameliorationParNiveau": "2d8"
+  },
+  {
+    "id": "chaine-d-eclairs",
+    "nom": "Chaîne d'éclairs",
+    "niveau": 6,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 45
+    },
+    "cibles": 4,
+    "composantes": "V, S, M (trois broches en argent)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Un trait de foudre vise une cible visible à portée, puis trois éclairs jaillissent de cette cible vers un maximum de trois autres cibles de votre choix à 9 m ou moins de la première (créatures ou objets, une seule fois chacune). Chaque cible fait un jet de sauvegarde de Dextérité et subit 10d8 dégâts de foudre en cas d'échec, moitié en cas de réussite. À un emplacement supérieur, un éclair supplémentaire jaillit de la première cible vers une autre par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "10d8",
+        "bonus": 0,
+        "type": "foudre"
+      }
+    ]
+  },
+  {
+    "id": "contamination",
+    "nom": "Contamination",
+    "niveau": 6,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une magie virulente frappe une créature visible à portée, qui fait un jet de sauvegarde de Constitution : en cas d'échec, elle subit 14d6 dégâts nécrotiques et son maximum de points de vie est réduit d'autant que les dégâts nécrotiques subis ; en cas de réussite, moitié de ces dégâts seulement (et pas de réduction). Le maximum de points de vie ne peut tomber sous 1.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "14d6",
+        "bonus": 0,
+        "type": "nécrotique"
+      }
+    ]
+  },
+  {
+    "id": "convocations-instantanees",
+    "nom": "Convocations instantanées",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S, M (un saphir d'une valeur minimale de 1 000 po)",
+    "duree": "jusqu'à dissipation",
+    "concentration": false,
+    "resume": "Incantation d'1 minute ou rituel. Le lanceur touche le saphir et un objet de 5 kg maximum dont la plus grande dimension n'excède pas 1,80 m : le sort laisse une marque Invisible sur l'objet et inscrit son nom sur le saphir (un saphir différent à chaque incantation). Plus tard, par une action Magie, le lanceur prononce le nom de l'objet et broie le saphir : l'objet apparaît dans sa main, quelle que soit la distance (même sur un autre plan), et le sort prend fin. Si une autre créature tient ou porte l'objet, il n'est pas transporté, mais le lanceur sait qui est cette créature et où elle se trouve."
+  },
+  {
+    "id": "creation-de-mort-vivant",
+    "nom": "Création de mort-vivant",
+    "niveau": 6,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S, M (un onyx noir d'une valeur minimale de 150 po pour chaque cadavre)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation d'1 minute, de nuit uniquement. Jusqu'à trois cadavres d'Humanoïdes de taille M ou P à portée deviennent chacun une goule sous le contrôle du lanceur (profil dans « Monstres »). Par une action Bonus à chacun de ses tours, il donne des ordres mentaux aux créatures ainsi créées à 36 m ou moins (même ordre pour plusieurs) ; sans instruction elles entreprennent l'action Esquive. Elles restent sous son contrôle 24 heures ; pour les garder 24 heures de plus il doit relancer le sort avant la fin du délai (jusqu'à trois créatures, au lieu d'en animer de nouvelles). À un emplacement du 7e niveau : quatre goules ; du 8e : cinq goules, ou deux blêmes ou nécrontes ; du 9e : six goules, trois blêmes ou nécrontes, ou deux momies (profils dans « Monstres »)."
+  },
+  {
+    "id": "danse-irresistible",
+    "nom": "Danse irrésistible",
+    "niveau": 6,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "Concentration, jusqu'à 1 minute",
+    "concentration": true,
+    "resume": "Une créature visible à portée fait un jet de sauvegarde de Sagesse. En cas de réussite, elle danse sur place en y consacrant tout son déplacement jusqu'à la fin de son tour suivant. En cas d'échec, elle subit l'état Charmé pour la durée : elle danse sans quitter son espace, a le Désavantage aux jets de sauvegarde de Dextérité et aux jets d'attaque, et les autres créatures ont l'Avantage aux jets d'attaque contre elle. À chacun de ses tours, elle peut consacrer une action à retrouver ses esprits et réitérer le jet de sauvegarde ; en cas de réussite, le sort prend fin sur elle.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme",
+        "sauvegardeFinDeTour": false
+      }
+    ]
+  },
+  {
+    "id": "desintegration",
+    "nom": "Désintégration",
+    "niveau": 6,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une magnétite et de la poussière)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Un rayon vert vise une cible visible à portée : une créature, un objet non magique ou une création de force magique (comme la paroi d'un mur de force). Une créature ciblée fait un jet de sauvegarde de Dextérité et subit 10d6 + 40 dégâts de force en cas d'échec ; si ces dégâts la font tomber à 0 point de vie, elle est désintégrée en poussière grise avec ses objets non magiques portés, et ne peut être ramenée à la vie que par résurrection suprême ou souhait. Un objet non magique de taille G ou inférieure (ou une création de force de cette taille) est désintégré automatiquement ; au-delà, seul un Cube de 3 m est désintégré. +3d6 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "10d6",
+        "bonus": 40,
+        "type": "force"
+      }
+    ],
+    "ameliorationParNiveau": "3d6"
+  },
+  {
+    "id": "festin-des-heros",
+    "nom": "Festin des héros",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (un vase incrusté de gemmes d'une valeur minimale de 1 000 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 10 minutes. Un festin apparaît sur une surface dans un Cube inoccupé de 3 m à côté du lanceur ; il faut 1 heure pour l'ingérer (les plats disparaissent ensuite et les bénéfices n'agissent qu'à la fin de l'heure), jusqu'à douze convives. Chaque convive reçoit pendant 24 heures la Résistance aux dégâts de poison, l'Immunité contre les états Effrayé et Empoisonné, et son maximum de points de vie augmente de 2d10 tout en recevant ce même nombre de points de vie."
+  },
+  {
+    "id": "glissement-de-terrain",
+    "nom": "Glissement de terrain",
+    "niveau": 6,
+    "ecole": "transmutation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (une pelle miniature)",
+    "duree": "Concentration, jusqu'à 2 heures",
+    "concentration": true,
+    "resume": "Le lanceur choisit à portée une zone de terrain d'au plus 12 m de longueur et remodèle terre, sable ou argile à sa guise (hausse ou baisse de hauteur, tranchée creusée ou comblée, mur érigé ou aplani, colonne) ; aucune altération ne peut excéder la moitié de la plus grande dimension de la zone (zone de 12 m de côté : colonne de 6 m, tranchée de 6 m, etc.). Les modifications s'accomplissent en 10 minutes, si lentement que les créatures de la zone ne sont généralement ni piégées ni blessées. À la fin de chaque tranche de 10 minutes de concentration, il peut choisir une nouvelle zone à portée. Le sort ne manipule ni la pierre naturelle ni les bâtiments en pierre (ils s'adaptent au terrain, et un édifice rendu instable peut s'effondrer) et n'affecte pas directement la flore (les plantes suivent la terre déplacée)."
+  },
+  {
+    "id": "globe-d-invulnerabilite",
+    "nom": "Globe d'invulnérabilité",
+    "niveau": 6,
+    "ecole": "abjuration",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "emanation",
+      "taille": 3
+    },
+    "composantes": "V, S, M (une perle en verre)",
+    "duree": "Concentration, jusqu'à 1 minute",
+    "concentration": true,
+    "resume": "Une barrière immobile et chatoyante se matérialise en Émanation de 3 m pour la durée. Tout sort du 5e niveau ou inférieur lancé depuis l'extérieur ne peut affecter ce qui se trouve à l'intérieur : il peut cibler les créatures et objets du globe mais reste sans effet sur eux, et la zone du globe est exclue des zones d'effet de tels sorts. La barrière bloque les sorts d'un niveau de plus par niveau d'emplacement au-delà du 6e."
+  },
+  {
+    "id": "guerison",
+    "nom": "Guérison",
+    "niveau": 6,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une vague d'énergie positive baigne une créature visible à portée, qui récupère 70 points de vie ; le sort met aussi fin aux états Assourdi, Aveuglé et Empoisonné de la cible. Les soins augmentent de 10 par niveau d'emplacement au-delà du 6e.",
+    "soins": {
+      "des": "70",
+      "ajouterModificateur": false
+    },
+    "ameliorationParNiveau": "10"
+  },
+  {
+    "id": "illusion-programmee",
+    "nom": "Illusion programmée",
+    "niveau": 6,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (poudre de jade d'une valeur minimale de 25 po)",
+    "duree": "jusqu'à dissipation",
+    "concentration": false,
+    "resume": "Le lanceur crée l'illusion d'un objet, d'une créature ou d'un autre phénomène visible à portée (dans un Cube de 9 m), qui reste imperceptible jusqu'à ce qu'un déclencheur précis se présente : il décide à l'incantation du comportement et des sons de l'illusion (une performance de 5 minutes maximum). Le déclencheur, général ou détaillé, doit correspondre à des conditions visuelles ou auditives dans un rayon de 9 m de la zone. Une fois son numéro terminé, l'illusion disparaît et reste en veilleuse 10 minutes, après quoi elle peut être réactivée. Toute interaction physique perce l'illusion (non tangible) ; une créature qui entreprend l'action Étude peut comprendre qu'il s'agit d'une illusion en réussissant un test d'Intelligence (Investigation) contre le DD de sauvegarde des sorts du lanceur, et voit alors à travers l'image, les sons sonnant creux."
+  },
+  {
+    "id": "interdiction",
+    "nom": "Interdiction",
+    "niveau": 6,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S, M (poudre de rubis d'une valeur minimale de 1 000 po)",
+    "duree": "1 jour",
+    "concentration": false,
+    "resume": "Incantation de 10 minutes ou rituel. Une barrière contre le voyage magique protège jusqu'à 3 600 m2 d'espace au sol sur 9 m de hauteur : aucune créature ne peut s'y téléporter ni y pénétrer par un accès magique (comme portail), et tout voyage planaire y est proscrit (Plan Astral, Plan Éthéré, Féerie, Gisombre, changement de plan). Le sort inflige en outre des dégâts aux types de créatures désignés à l'incantation parmi Aberrations, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants : à sa première entrée dans la zone d'un tour ou en y terminant son tour, une telle créature subit 5d10 dégâts nécrotiques ou radiants (au choix du lanceur à l'incantation). Le lanceur peut fixer un mot de passe qui épargne les dégâts à qui le prononce en entrant. La zone ne peut chevaucher celle d'un autre sort d'interdiction ; lancé chaque jour au même endroit pendant 30 jours, le sort persiste jusqu'à dissipation (composantes matérielles détruites à la dernière incantation)."
+  },
+  {
+    "id": "invocation-de-fee",
+    "nom": "Invocation de fée",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S",
+    "duree": "Concentration, jusqu'à 10 minutes",
+    "concentration": true,
+    "resume": "Le lanceur invoque un esprit de taille M issu de Féerie, dans un espace inoccupé visible à portée, avec l'aspect de la Fée de son choix, pour la durée. À son apparition, le lanceur peut effectuer une attaque de sort au corps à corps contre une créature à 1,50 m ou moins de l'esprit : si elle touche, la cible subit 3d12 dégâts psychiques plus le modificateur de caractéristique d'incantation du lanceur et l'état Effrayé jusqu'au début de son tour suivant (l'esprit et le lanceur sont sa source de frayeur). Par une action Bonus aux tours suivants, il peut téléporter l'esprit dans un espace inoccupé visible à 9 m ou moins de l'espace quitté et effectuer l'attaque contre une créature à 1,50 m ou moins de lui. +1d12 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "corps-a-corps"
+    },
+    "degats": [
+      {
+        "des": "3d12",
+        "bonus": 0,
+        "type": "psychique"
+      }
+    ],
+    "etats": [
+      {
+        "etat": "effraye",
+        "dureeRounds": 1
+      }
+    ],
+    "ameliorationParNiveau": "1d12"
+  },
+  {
+    "id": "mauvais-oeil",
+    "nom": "Mauvais œil",
+    "niveau": 6,
+    "ecole": "nécromancie",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "Concentration, jusqu'à 1 minute",
+    "concentration": true,
+    "resume": "Les yeux du lanceur deviennent d'un noir d'encre pour la durée. Une créature de son choix visible dans un rayon de 18 m doit réussir un jet de sauvegarde de Sagesse pour ne pas subir l'un des effets suivants (au choix du lanceur), pour la durée. À chacun de ses tours, il peut entreprendre l'action Magie pour cibler une autre créature (pas une qui a réussi son JS contre cette incantation). Endormie : état Inconscient, jusqu'à ce qu'elle subisse des dégâts ou qu'une autre créature consacre une action à la secouer. Nauséeuse : état Empoisonné. Paniquée : état Effrayé ; elle doit à chacun de ses tours entreprendre l'action Pointe et s'éloigner du lanceur par le chemin le plus sûr et le plus court, l'effet prenant fin si elle atteint un espace à plus de 18 m de lui d'où elle ne le voit plus.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "mot-de-retour",
+    "nom": "Mot de retour",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 1.5
+    },
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur et jusqu'à cinq créatures consentantes situées à 1,50 m ou moins se téléportent en un sanctuaire désigné à l'avance, dans les espaces inoccupés les plus proches du point désigné lors de la préparation du sanctuaire. Sans sanctuaire préparé, le sort est sans effet. Le sanctuaire se désigne au préalable en lançant ce sort en un lieu, tel qu'un temple."
+  },
+  {
+    "id": "mur-d-epines",
+    "nom": "Mur d'épines",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (une poignée d'épines)",
+    "duree": "Concentration, jusqu'à 10 minutes",
+    "concentration": true,
+    "resume": "Un mur d'enchevêtrement végétal hérissé d'épines apparaît à portée sur une surface solide : épaisseur maximale 1,50 m, soit un mur droit de 18 m de long au plus et 3 m de haut au plus, soit un mur circulaire de 6 m de diamètre et de hauteur au plus. Il bloque le champ de vision. À son apparition, chaque créature dans sa zone fait un jet de sauvegarde de Dextérité et subit 7d8 dégâts perforants en cas d'échec, moitié en cas de réussite. Traverser le mur coûte le quadruple en déplacement ; la première fois d'un tour qu'une créature y pénètre ou y termine son tour, elle fait un jet de sauvegarde de Dextérité et subit 7d8 dégâts tranchants en cas d'échec, moitié en cas de réussite (une fois par tour au plus). Les dégâts des deux types augmentent de 1d8 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "7d8",
+        "bonus": 0,
+        "type": "perforant"
+      },
+      {
+        "des": "7d8",
+        "bonus": 0,
+        "type": "tranchant"
+      }
+    ],
+    "ameliorationParNiveau": "1d8"
+  },
+  {
+    "id": "mur-de-glace",
+    "nom": "Mur de glace",
+    "niveau": 6,
+    "ecole": "évocation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un morceau de quartz)",
+    "duree": "Concentration, jusqu'à 10 minutes",
+    "concentration": true,
+    "resume": "Un mur de glace épais de 30 cm apparaît sur une surface solide à portée : dôme hémisphérique ou globe de 3 m de rayon maximal, ou surface plane de dix pans contigus de 3 m sur 3. Si le mur traverse l'espace d'une créature, elle est repoussée du côté choisi et fait un jet de sauvegarde de Dextérité : 10d6 dégâts de froid en cas d'échec, moitié en cas de réussite. Le mur est un objet (CA 12, 30 points de vie par section de 3 m de côté, Immunité contre les dégâts de froid, de poison et psychiques, Vulnérabilité aux dégâts de feu). Une section réduite à 0 point de vie est détruite et laisse une nappe d'air glacial : la première fois d'un tour qu'une créature la traverse, jet de sauvegarde de Constitution, 5d6 dégâts de froid en cas d'échec, moitié en cas de réussite. Les dégâts du mur à son apparition augmentent de 2d6 et ceux de la nappe de 1d6 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "10d6",
+        "bonus": 0,
+        "type": "froid"
+      }
+    ],
+    "ameliorationParNiveau": "2d6"
+  },
+  {
+    "id": "orientation",
+    "nom": "Orientation",
+    "niveau": 6,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (des accessoires de divination, comme des cartes ou des runes, d'une valeur minimale de 100 po)",
+    "duree": "Concentration, jusqu'à 1 jour",
+    "concentration": true,
+    "resume": "Incantation d'1 minute. Le lanceur trouve magiquement le chemin le plus direct jusqu'à un lieu nommé qu'il connaît ; le sort échoue si le lieu est sur un autre plan, est une destination mobile (forteresse en mouvement) ou générique (« l'antre d'un dragon vert »). Pour la durée et tant qu'il est sur le même plan que la destination, il connaît la distance et la direction, et sait lequel de plusieurs itinéraires est le plus direct."
+  },
+  {
+    "id": "petrification",
+    "nom": "Pétrification",
+    "niveau": 6,
+    "ecole": "transmutation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une plume de cockatrice)",
+    "duree": "Concentration, jusqu'à 1 minute",
+    "concentration": true,
+    "resume": "Le lanceur tente de transformer en pierre une créature visible à portée, qui fait un jet de sauvegarde de Constitution (les Artificiels réussissent automatiquement) : en cas d'échec, elle subit l'état Entravé pour la durée ; en cas de réussite, sa vitesse tombe à 0 jusqu'au début du tour suivant du lanceur. La créature Entravée réitère le jet de sauvegarde de Constitution à la fin de chacun de ses tours ; trois réussites mettent fin au sort, trois échecs la transforment en pierre (état Pétrifié) pour la durée (réussites et échecs non consécutifs, à décompter). Si le lanceur maintient sa Concentration pendant toute la durée possible, la cible reste Pétrifiée jusqu'à ce que restauration suprême ou une magie équivalente élimine l'état.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "entrave",
+        "sauvegardeFinDeTour": true
+      }
+    ]
+  },
+  {
+    "id": "possession",
+    "nom": "Possession",
+    "niveau": 6,
+    "ecole": "nécromancie",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (gemme, cristal ou reliquaire d'une valeur minimale de 500 po)",
+    "duree": "jusqu'à dissipation",
+    "concentration": false,
+    "resume": "Incantation d'1 minute. Le corps du lanceur sombre en catatonie tandis que son âme pénètre dans le récipient servant de composante matérielle ; il perçoit l'environnement depuis le récipient, ne peut ni se déplacer ni jouer de Réactions, et sa seule action consiste à projeter son âme jusqu'à 30 m du récipient, soit pour reprendre son corps (fin du sort), soit pour tenter de posséder un Humanoïde visible à 30 m (les créatures protégées par cercle magique ou protection contre le mal et le bien ne peuvent l'être). La cible fait un jet de sauvegarde de Charisme : en cas d'échec, l'âme du lanceur gagne son corps et celle de la cible est séquestrée dans le récipient ; en cas de réussite, elle résiste et le lanceur doit attendre 24 heures pour réessayer. Il contrôle alors la créature : ses points de vie, dés de vie, valeurs de Force, Dextérité et Constitution, Vitesse et sens sont remplacés par ceux de la créature (le reste de son profil est conservé). L'âme possédée perçoit depuis le récipient avec ses propres sens, ne peut pas se déplacer et subit l'état Neutralisé. Par une action Magie, le lanceur peut quitter le corps hôte et retourner dans le récipient (à 30 m ou moins), l'âme de l'hôte retrouvant son corps. Si le corps hôte meurt, la créature meurt et le lanceur fait un jet de sauvegarde de Charisme contre son propre DD de sauvegarde des sorts : en cas de réussite, il retourne dans le récipient (à 30 m ou moins), sinon il meurt. Si le récipient est détruit ou si le sort prend fin, l'âme du lanceur retrouve son corps ; si son corps est à plus de 30 m ou « mort », il meurt. Si l'âme d'une autre créature occupe le récipient quand il est détruit, elle retrouve son corps s'il est vivant et à 30 m ou moins, sinon la créature meurt. Le récipient est détruit quand le sort prend fin.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "cha",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "premeditation",
+    "nom": "Préméditation",
+    "niveau": 6,
+    "ecole": "abjuration",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (une statuette en ivoire incrustée de gemmes, à votre image, d'une valeur minimale de 1 500 po)",
+    "duree": "10 jours",
+    "concentration": false,
+    "resume": "Incantation de 10 minutes. Le lanceur choisit un sort du 5e niveau ou inférieur qu'il peut lancer, d'un temps d'incantation d'une action et qui peut le cibler ; il le lance (« sort prémédité ») dans le cadre de la préméditation et acquitte les emplacements des deux sorts. Le sort prémédité n'agit pas aussitôt : il ne prend effet que lorsqu'un déclencheur précis, décrit à l'incantation, se présente (ex. : respiration aquatique quand le lanceur est englouti par un liquide), aussitôt après que les conditions sont réunies pour la première fois, qu'il le veuille ou non, puis la préméditation prend fin. Il ne prend effet que sur le lanceur, même s'il pouvait avoir d'autres cibles. On ne peut recourir qu'à une préméditation à la fois (relancer le sort met fin à la précédente), et elle prend fin si la composante matérielle n'est plus sur le lanceur."
+  },
+  {
+    "id": "protections-et-sceaux",
+    "nom": "Protections et sceaux",
+    "niveau": 6,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S, M (sceptre en argent d'une valeur minimale de 10 po)",
+    "duree": "24 heures",
+    "concentration": false,
+    "resume": "Incantation d'1 heure. Une barrière protège un espace au sol de 225 mètres carrés au plus, sur 6 m de haut maximum (zone carrée de 15 m de côté, cent carrés de 1,50 m ou vingt-cinq carrés contigus de 3 m). À l'incantation, le lanceur peut désigner des individus non affectés et un mot de passe immunisant celui qui le prononce à 1,50 m ou moins de la zone. Dissipation de la magie n'a pas d'effet en soi sur le sort, mais chacun des effets suivants peut être dissipé ; si les quatre le sont, le sort prend fin ; lancé chaque jour sur la même zone pendant 365 jours, il persiste jusqu'à dissipation de tous ses effets. Couloirs : brume (Visibilité nulle) et, à chaque intersection, 50 % de chances pour toute créature autre que le lanceur de croire avoir pris une autre direction. Escaliers : envahis de filandres comme toile d'araignée, reconstituées en 10 minutes si détruites. Portes : magiquement verrouillées comme par verrou magique, et jusqu'à dix portes peuvent passer pour de simples pans de mur par illusion. Autres effets, au choix appliqué à la zone : lumières dansantes dans quatre couloirs (séquence simple répétée) ; bouche magique en deux endroits ; nuage nauséabond en deux endroits (vapeurs reconstituées en 10 minutes) ; bourrasque dans un couloir (vent continu) ; suggestion dans un carré de 1,50 m de côté (toute créature qui y pénètre reçoit mentalement la suggestion)."
+  },
+  {
+    "id": "rayon-de-soleil",
+    "nom": "Rayon de soleil",
+    "niveau": 6,
+    "ecole": "évocation",
+    "classes": [
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "ligne",
+      "taille": 18,
+      "largeur": 1.5
+    },
+    "composantes": "V, S, M (une loupe)",
+    "duree": "Concentration, jusqu'à 1 minute",
+    "concentration": true,
+    "resume": "Le lanceur projette un rayon de soleil en Ligne de 18 m de long et 1,50 m de large : chaque créature dans la Ligne fait un jet de sauvegarde de Constitution et subit 6d8 dégâts radiants et l'état Aveuglé jusqu'au début de son tour suivant en cas d'échec, moitié de ces dégâts en cas de réussite. Jusqu'à la fin du sort, il peut entreprendre l'action Magie pour produire une nouvelle Ligne. Pour la durée, un point de radiance brille au-dessus de lui : Lumière vive sur 9 m et Lumière faible sur 9 m de plus (lumière du soleil).",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "6d8",
+        "bonus": 0,
+        "type": "radiant"
+      }
+    ],
+    "etats": [
+      {
+        "etat": "aveugle",
+        "dureeRounds": 1
+      }
+    ]
+  },
+  {
+    "id": "sphere-glacee",
+    "nom": "Sphère glacée",
+    "niveau": 6,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 90
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 18
+    },
+    "composantes": "V, S, M (une Sphère miniature en cristal)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Un globe glacial jaillit vers un point à portée et explose en Sphère de 18 m de rayon : chaque créature de la zone fait un jet de sauvegarde de Constitution et subit 10d6 dégâts de froid en cas d'échec, moitié en cas de réussite. Si le globe heurte un volume d'eau, il gèle 15 cm de profondeur sur 9 m de côté pendant 1 minute ; les créatures qui nageaient à la surface sont bloquées (état Entravé) et peuvent consacrer une action à un test de Force (Athlétisme) contre le DD de sauvegarde des sorts pour s'extraire. Le lanceur peut retenir le globe (taille d'une bille de fronde, froid au contact) : lui-même ou une créature à qui il le confie peut le projeter (12 m) ou le lancer à la fronde (portée normale de la fronde), et il se brise à l'impact avec les mêmes effets ; il peut aussi le poser, et il explose au bout d'1 minute s'il n'est pas brisé. +1d6 par niveau d'emplacement au-delà du 6e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "10d6",
+        "bonus": 0,
+        "type": "froid"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "suggestion-de-groupe",
+    "nom": "Suggestion de groupe",
+    "niveau": 6,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 12,
+    "composantes": "V, M (une langue de serpent)",
+    "duree": "24 heures",
+    "concentration": false,
+    "resume": "Le lanceur suggère une ligne de conduite en 25 mots ou moins pour influencer jusqu'à douze créatures visibles à portée qui l'entendent et le comprennent ; elle doit paraître raisonnable et ne pas présenter de risque évident de dégâts pour les cibles ou leurs alliés. Chaque cible doit réussir un jet de sauvegarde de Sagesse sous peine de subir l'état Charmé pour la durée ou jusqu'à ce que le lanceur ou un allié lui inflige des dégâts ; elle se soumet à la suggestion de son mieux, et le sort prend fin sur elle dès qu'elle l'a accomplie. La durée passe à 10 jours avec un emplacement du 7e niveau, 30 jours au 8e et 366 jours au 9e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      }
+    ]
+  },
+  {
+    "id": "vent-divin",
+    "nom": "Vent divin",
+    "niveau": 6,
+    "ecole": "transmutation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S, M (une bougie)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Incantation d'1 minute. Le lanceur et jusqu'à dix créatures consentantes de son choix à portée adoptent une forme gazeuse pour la durée : Vitesse de vol de 90 m avec vol stationnaire, Immunité contre l'état À terre et Résistance aux dégâts contondants, perforants et tranchants. Sous cette forme, elles ne peuvent entreprendre que l'action Pointe et commencer à reprendre leur forme normale par l'action Magie (1 minute, durant laquelle elles subissent l'état Étourdi) ; elles peuvent reprendre la forme gazeuse de la même façon (action Magie, 1 minute). Si une cible en forme gazeuse et en vol voit le sort prendre fin, elle redescend de 18 m par round pendant 1 minute jusqu'à atterrir sans heurt, et chute de la distance restante si cette minute ne lui suffit pas."
+  },
+  {
+    "id": "vision-supreme",
+    "nom": "Vision suprême",
+    "niveau": 6,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (poudre de champignon d'une valeur minimale de 25 po, que le sort détruit)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Pour la durée, une créature consentante touchée physiquement acquiert la Vision lucide sur 36 m."
+  },
+  {
+    "id": "voie-vegetale",
+    "nom": "Voie végétale",
+    "niveau": 6,
+    "ecole": "invocation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Ce sort crée un lien magique entre une plante inanimée de taille G ou supérieure à portée et une autre plante du même plan d'existence, sans contrainte de distance, que le lanceur a déjà vue ou touchée au moins une fois. Pour la durée, toutes les créatures peuvent s'avancer dans la plante ciblée et ressortir par la plante de destination en y consacrant 1,50 m de leur déplacement."
+  }
+]

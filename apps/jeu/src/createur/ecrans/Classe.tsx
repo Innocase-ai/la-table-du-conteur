@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Classe } from '@crpg/regles';
+import { NIVEAU_MAX, type Classe } from '@crpg/regles';
 import { changerClasse, changerNiveau } from '../brouillon';
 import { CLASSES_INFO } from '../descriptions';
 import { NOMS_CARAC, NOMS_CATEGORIES_ARMURE, NOMS_COMPETENCES, liste } from '../libelles';
@@ -98,7 +98,7 @@ export function EcranClasse({ b, donnees, maj, rapide }: PropsEcran & { rapide: 
               <p className="aide">Modifier le niveau relance les recommandations des caractéristiques et des choix de classe.</p>
             </div>
             <div className="segments" role="group" aria-label="Niveau de départ">
-              {[1, 2, 3, 4, 5].map((n) => (
+              {Array.from({ length: NIVEAU_MAX }, (_, i) => i + 1).map((n) => (
                 <button key={n} type="button" className={b.choix.niveau === n ? 'actif' : ''} aria-pressed={b.choix.niveau === n} onClick={() => maj((x) => changerNiveau(x, n, donnees))}>
                   {n}
                 </button>

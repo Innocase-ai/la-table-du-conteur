@@ -27,7 +27,7 @@ const chaines = z.array(z.string());
 export const ChoixPersonnageSchema = z.object({
   nom: z.string(),
   classe: z.string(),
-  niveau: z.number().int().min(1).max(5),
+  niveau: z.number().int().min(1).max(20),
   espece: z.string(),
   historique: z.string(),
   taille: z.enum(['P', 'M']).optional(),
@@ -68,7 +68,7 @@ export type PersonnageCree = z.infer<typeof PersonnageCree>;
 export const Groupe = z.object({
   version: z.literal(1),
   /** Niveau de départ de tout le groupe (1 à 5). */
-  niveau: z.number().int().min(1).max(5),
+  niveau: z.number().int().min(1).max(20),
   emplacements: z.array(PersonnageCree.nullable()).length(TAILLE_GROUPE),
 });
 export type Groupe = z.infer<typeof Groupe>;

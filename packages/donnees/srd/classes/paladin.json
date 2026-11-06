@@ -62,6 +62,21 @@
       0,
       0,
       0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
       0
     ],
     "sortsPrepares": [
@@ -69,7 +84,22 @@
       3,
       4,
       5,
-      6
+      6,
+      6,
+      7,
+      7,
+      9,
+      9,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      14,
+      14,
+      15,
+      15
     ],
     "emplacements": [
       [
@@ -86,6 +116,90 @@
       ],
       [
         4,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
         2
       ]
     ]
@@ -144,6 +258,152 @@
       ],
       "colonnes": {
         "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aura de protection"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Abjuration d’ennemis"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aura de courage"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Frappes radiantes"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Toucher réparateur"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Aura étendue"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
       }
     }
   ],
@@ -214,6 +474,88 @@
       "niveau": 5,
       "resume": "Appel de destrier est toujours préparé, et il peut le lancer une fois sans dépenser d’emplacement de sort par Repos long.",
       "effets": []
+    },
+    {
+      "id": "aura-de-protection",
+      "nom": "Aura de protection",
+      "niveau": 6,
+      "resume": "Aura indiscernable en Émanation de 3 m, inactive tant qu’il est Neutralisé. Lui-même et ses alliés dans l’aura reçoivent aux jets de sauvegarde un bonus égal à son modificateur de Charisme (minimum +1). Avec plusieurs Paladins, une créature ne bénéficie que d’une seule Aura de protection à la fois, à son choix.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "abjuration-d-ennemis",
+      "nom": "Abjuration d’ennemis",
+      "niveau": 9,
+      "resume": "Par l’action Magie, dépense une utilisation de Conduit divin : cible un nombre de créatures égal à son modificateur de Charisme (minimum une) vues à 18 m, qui doivent réussir un jet de sauvegarde de Sagesse sous peine d’être Effrayées pendant 1 minute ou jusqu’à ce qu’elles subissent des dégâts. Tant qu’elle est Effrayée, une cible ne peut faire qu’une seule chose à son tour : se déplacer, entreprendre une action ou une action Bonus.",
+      "effets": []
+    },
+    {
+      "id": "aura-de-courage",
+      "nom": "Aura de courage",
+      "niveau": 10,
+      "resume": "Lui-même et ses alliés sont Immunisés contre l’état Effrayé au sein de son Aura de protection. Un allié Effrayé qui y pénètre voit cet état réprimé tant qu’il s’y trouve.",
+      "effets": []
+    },
+    {
+      "id": "frappes-radiantes",
+      "nom": "Frappes radiantes",
+      "niveau": 11,
+      "resume": "Quand il touche une cible avec une attaque d’arme de corps à corps ou à mains nues, elle subit 1d8 dégâts radiants supplémentaires.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "toucher-reparateur",
+      "nom": "Toucher réparateur",
+      "niveau": 14,
+      "resume": "Quand il utilise Imposition des mains sur une créature, il peut aussi lui retirer un ou plusieurs états parmi Assourdi, Aveuglé, Charmé, Effrayé, Étourdi ou Paralysé, en dépensant 5 points de vie de la réserve par état supprimé ; ces points ne rendent pas de pv à la créature.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "aura-etendue",
+      "nom": "Aura étendue",
+      "niveau": 18,
+      "resume": "Son Aura de protection devient une Émanation de 9 m.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Reçoit un don de Faveur épique ou un autre don dont il remplit les conditions. Faveur de Vision lucide est recommandé.",
+      "effets": []
     }
   ],
   "sousClasse": {
@@ -255,6 +597,72 @@
         "nom": "Arme sacrée",
         "niveau": 3,
         "resume": "En prenant l’action Attaque, dépense un Conduit divin pour bénir une arme de corps à corps pendant 10 minutes : + modificateur de Charisme aux jets d’attaque (minimum +1), dégâts normaux ou radiants au choix, Lumière vive sur 6 m et faible sur 6 m de plus.",
+        "effets": []
+      },
+      {
+        "id": "aura-de-devotion",
+        "nom": "Aura de dévotion",
+        "niveau": 7,
+        "resume": "Lui-même et ses alliés sont Immunisés contre l’état Charmé au sein de son Aura de protection. Un allié Charmé qui y pénètre voit cet état réprimé tant qu’il s’y trouve.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-serment-de-devotion-niveau-9",
+        "nom": "Sorts du Serment de Dévotion (niveau 9)",
+        "niveau": 9,
+        "resume": "Sorts toujours préparés au niveau 9 : dissipation de la magie, lueur d’espoir.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "dissipation-de-la-magie",
+              "lueur-d-espoir"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-serment-de-devotion-niveau-13",
+        "nom": "Sorts du Serment de Dévotion (niveau 13)",
+        "niveau": 13,
+        "resume": "Sorts toujours préparés au niveau 13 : gardien de la foi, liberté de mouvement.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "gardien-de-la-foi",
+              "liberte-de-mouvement"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "chatiment-de-protection",
+        "nom": "Châtiment de protection",
+        "niveau": 15,
+        "resume": "Chaque fois qu’il lance châtiment divin, lui-même et ses alliés bénéficient d’un Abri partiel dans son Aura de protection, jusqu’au début de son tour suivant.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-serment-de-devotion-niveau-17",
+        "nom": "Sorts du Serment de Dévotion (niveau 17)",
+        "niveau": 17,
+        "resume": "Sorts toujours préparés au niveau 17 : colonne de flamme, communion.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "colonne-de-flamme",
+              "communion"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "nimbe-sacre",
+        "nom": "Nimbe sacré",
+        "niveau": 20,
+        "resume": "Par une action Bonus, son Aura de protection est renforcée pendant 10 minutes ou jusqu’à ce qu’il y mette fin (pas d’action requise) : tout ennemi qui débute son tour dans l’aura subit des dégâts radiants égaux à son modificateur de Charisme + son bonus de maîtrise ; l’aura est inondée de Lumière vive (lumière du soleil) ; il a l’Avantage aux jets de sauvegarde imposés par un Fiélon ou un Mort-vivant. Utilisable une fois par Repos long, ou de nouveau en dépensant un emplacement de sort du 5e niveau (pas d’action requise).",
         "effets": []
       }
     ]

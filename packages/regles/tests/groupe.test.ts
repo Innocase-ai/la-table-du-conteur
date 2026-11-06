@@ -51,7 +51,7 @@ describe('sorts jouables en combat', () => {
 
 describe('un groupe créé se bat', () => {
   const classes = [...donnees.classes.keys()];
-  for (const niveau of [1, 3, 5]) {
+  for (const niveau of [1, 3, 5, 10, 20]) {
     for (let partie = 0; partie < 2; partie++) {
       it(`classes ${partie * 6 + 1} à ${partie * 6 + 6}, niveau ${niveau}`, () => {
         const heros = classes.slice(partie * 6, partie * 6 + 6).map((classe, i) => {

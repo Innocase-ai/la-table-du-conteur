@@ -54,6 +54,96 @@
       "bonusMaitrise": 3,
       "aptitudes": ["Attaque supplémentaire", "Frappe étourdissante"],
       "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 5, "Déplacement sans armure": "+3 m" }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Aptitude de sous-classe", "Frappes renforcées"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 6, "Déplacement sans armure": "+4,50 m" }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Esquive totale"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 7, "Déplacement sans armure": "+4,50 m" }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 8, "Déplacement sans armure": "+4,50 m" }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": ["Mouvement acrobatique"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 9, "Déplacement sans armure": "+4,50 m" }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": ["Autosubsistance", "Credo accru"],
+      "colonnes": { "Arts martiaux": "1d8", "Points de Credo": 10, "Déplacement sans armure": "+6 m" }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": ["Aptitude de sous-classe"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 11, "Déplacement sans armure": "+6 m" }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 12, "Déplacement sans armure": "+6 m" }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": ["Parade énergétique"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 13, "Déplacement sans armure": "+6 m" }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": ["Survivant discipliné"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 14, "Déplacement sans armure": "+7,50 m" }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": ["Credo parachevé"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 15, "Déplacement sans armure": "+7,50 m" }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": ["Amélioration de caractéristique"],
+      "colonnes": { "Arts martiaux": "1d10", "Points de Credo": 16, "Déplacement sans armure": "+7,50 m" }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": ["Aptitude de sous-classe"],
+      "colonnes": { "Arts martiaux": "1d12", "Points de Credo": 17, "Déplacement sans armure": "+7,50 m" }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": ["Défense supérieure"],
+      "colonnes": { "Arts martiaux": "1d12", "Points de Credo": 18, "Déplacement sans armure": "+9 m" }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": ["Faveur épique"],
+      "colonnes": { "Arts martiaux": "1d12", "Points de Credo": 19, "Déplacement sans armure": "+9 m" }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": ["Esprit et corps"],
+      "colonnes": { "Arts martiaux": "1d12", "Points de Credo": 20, "Déplacement sans armure": "+9 m" }
     }
   ],
   "aptitudes": [
@@ -126,6 +216,104 @@
       "niveau": 5,
       "resume": "Une fois par tour, en touchant avec une arme de Moine ou à mains nues, dépense 1 point de Credo : la cible fait un JS de Constitution ou est Étourdie jusqu’au début du prochain tour du Moine ; en cas de réussite, sa Vitesse est réduite de moitié et la prochaine attaque contre elle a l’Avantage.",
       "effets": []
+    },
+    {
+      "id": "frappes-renforcees",
+      "nom": "Frappes renforcées",
+      "niveau": 6,
+      "resume": "Chaque fois que le Moine inflige des dégâts avec une attaque à mains nues, ceux-ci sont, à sa convenance, des dégâts de force ou du type normal de l’attaque.",
+      "effets": []
+    },
+    {
+      "id": "esquive-totale",
+      "nom": "Esquive totale",
+      "niveau": 7,
+      "resume": "Soumis à un effet qui permet un jet de sauvegarde de Dextérité pour réduire les dégâts de moitié, il ne subit aucun dégât en cas de réussite et seulement la moitié en cas d’échec. Sans effet s’il est Neutralisé.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "mouvement-acrobatique",
+      "nom": "Mouvement acrobatique",
+      "niveau": 9,
+      "resume": "Sans armure ni bouclier, peut se déplacer à son tour le long de surfaces verticales et à travers des liquides sans tomber.",
+      "effets": []
+    },
+    {
+      "id": "autosubsistance",
+      "nom": "Autosubsistance",
+      "niveau": 10,
+      "resume": "À la fin de chacun de ses tours, peut se débarrasser de l’un des états Charmé, Effrayé ou Empoisonné. Se passer de nourriture et d’eau ne lui impose pas de niveaux d’Épuisement.",
+      "effets": []
+    },
+    {
+      "id": "credo-accru",
+      "nom": "Credo accru",
+      "niveau": 10,
+      "resume": "Déluge de coups : pour 1 point de Credo, trois attaques à mains nues au lieu de deux. Patience défensive : en dépensant 1 point de Credo, gagne des points de vie temporaires égaux à deux jets du dé d’Arts martiaux. Porté par le vent : en dépensant 1 point de Credo, peut emmener avec lui une créature consentante de taille G ou inférieure dans un rayon de 1,50 m jusqu’à la fin de son tour, sans attaques d’Opportunité provoquées par ce déplacement.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "parade-energetique",
+      "nom": "Parade énergétique",
+      "niveau": 13,
+      "resume": "Peut recourir à Déviation d’assaut contre les attaques qui infligent tout type de dégâts, et non plus seulement contondants, perforants ou tranchants.",
+      "effets": []
+    },
+    {
+      "id": "survivant-discipline",
+      "nom": "Survivant discipliné",
+      "niveau": 14,
+      "resume": "Maîtrise de tous les jets de sauvegarde. Chaque fois qu’il rate un jet de sauvegarde, il peut dépenser 1 point de Credo pour le rejouer et conserver le nouveau jet.",
+      "effets": []
+    },
+    {
+      "id": "credo-parachevee",
+      "nom": "Credo parachevé",
+      "niveau": 15,
+      "resume": "En jouant l’Initiative, s’il ne recourt pas à Métabolisme surnaturel et qu’il lui reste moins de 4 points de Credo, il en récupère jusqu’à en avoir 4.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [{ "type": "amelioration_caracteristique" }]
+    },
+    {
+      "id": "defense-superieure",
+      "nom": "Défense supérieure",
+      "niveau": 18,
+      "resume": "Au début de son tour, peut dépenser 3 points de Credo pour consolider son corps pendant 1 minute (fin si Neutralisé) : Résistance à tous les dégâts hormis ceux de force.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Reçoit un don de Faveur épique ou un autre don dont il remplit les conditions ; Faveur d’attaque irrésistible est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "esprit-et-corps",
+      "nom": "Esprit et corps",
+      "niveau": 20,
+      "resume": "Les valeurs de Dextérité et de Sagesse augmentent de 4, jusqu’à un maximum de 25.",
+      "effets": []
     }
   ],
   "sousClasse": {
@@ -137,6 +325,27 @@
         "nom": "Technique de la Paume",
         "niveau": 3,
         "resume": "Chaque attaque de Déluge de coups qui touche peut imposer un effet : Hésitation (pas d’attaque d’Opportunité jusqu’à son prochain tour), Bourrade (JS de Force ou repoussée de 4,50 m au plus) ou Renversement (JS de Dextérité ou À terre).",
+        "effets": []
+      },
+      {
+        "id": "plenitude-physique",
+        "nom": "Plénitude physique",
+        "niveau": 6,
+        "resume": "Par une action Bonus, lance le dé d’Arts martiaux et récupère autant de points de vie que le résultat plus son modificateur de Sagesse (minimum 1). Utilisable autant de fois que son modificateur de Sagesse (minimum une fois), quota récupéré au Repos long.",
+        "effets": []
+      },
+      {
+        "id": "foulee-preste",
+        "nom": "Foulée preste",
+        "niveau": 11,
+        "resume": "Après une action Bonus autre que Porté par le vent, il peut aussitôt recourir à Porté par le vent.",
+        "effets": []
+      },
+      {
+        "id": "paume-vibratoire",
+        "nom": "Paume vibratoire",
+        "niveau": 17,
+        "resume": "En touchant une créature avec une attaque à mains nues, peut dépenser 4 points de Credo pour y déclencher des vibrations imperceptibles, inoffensives, qui persistent autant de jours que son niveau de Moine. Une seule créature à la fois. Il peut y mettre fin sans action de façon inoffensive, ou, en renonçant à l’une de ses attaques de l’action Attaque (sur le même plan d’existence), pour imposer un JS de Constitution : 10d12 dégâts de force en cas d’échec, moitié en cas de réussite.",
         "effets": []
       }
     ]

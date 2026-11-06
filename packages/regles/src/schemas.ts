@@ -85,12 +85,12 @@ const OptionEquipement = z.object({
 export const Incantation = z.object({
   type: z.enum(['complet', 'demi', 'pacte']),
   caracteristique: Caracteristique,
-  // Une entrée par niveau de classe 1 à 5.
-  sortsMineurs: z.array(z.number().int()).length(5),
-  sortsPrepares: z.array(z.number().int()).length(5),
+  // Une entrée par niveau de classe (1 à 5 pendant la migration, 20 à terme).
+  sortsMineurs: z.array(z.number().int()).length(20),
+  sortsPrepares: z.array(z.number().int()).length(20),
   // emplacements[niveauClasse - 1][niveauSort - 1] ; pour le pacte, nombre d'emplacements au niveau indiqué.
-  emplacements: z.array(z.array(z.number().int())).length(5),
-  niveauEmplacementPacte: z.array(z.number().int()).length(5).optional(),
+  emplacements: z.array(z.array(z.number().int())).length(20),
+  niveauEmplacementPacte: z.array(z.number().int()).length(20).optional(),
 });
 export type Incantation = z.infer<typeof Incantation>;
 
@@ -106,7 +106,7 @@ export const Classe = z.object({
   outils: z.array(z.string()),
   equipementDepart: z.array(OptionEquipement),
   incantation: Incantation.optional(),
-  // Table « Aptitudes de … » pour les niveaux 1 à 5.
+  // Table « Aptitudes de … » (niveaux 1 à 5 pendant la migration, 1 à 20 à terme).
   progression: z
     .array(
       z.object({
@@ -117,7 +117,7 @@ export const Classe = z.object({
         colonnes: z.record(z.union([z.number(), z.string()])),
       }),
     )
-    .length(5),
+    .length(20),
   aptitudes: z.array(Aptitude),
   sousClasse: z.object({ id: z.string(), nom: z.string(), aptitudes: z.array(Aptitude) }),
 });
@@ -342,8 +342,8 @@ export const ChoixCreation = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   nom: z.string(),
   source: z.object({ type: z.enum(['espece', 'classe']), id: z.string() }),
-  // Nombre d'options à choisir au niveau de personnage 1, 2, 3, 4 et 5 (0 tant que le choix n'est pas disponible).
-  nombres: z.array(z.number().int().min(0)).length(5),
+  // Nombre d'options à choisir aux niveaux de personnage 1, 2, 3… (0 tant que le choix n'est pas disponible) ; au-delà de la dernière entrée, la dernière valeur continue de valoir.
+  nombres: z.array(z.number().int().min(0)).min(5).max(20),
   options: z.array(OptionChoix).min(2),
 });
 export type ChoixCreation = z.infer<typeof ChoixCreation>;

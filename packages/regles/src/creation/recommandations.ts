@@ -7,7 +7,7 @@ import type { ChoixPersonnage } from '../fiche';
 import { CARACTERISTIQUES, type Caracteristique, type Competence } from '../schemas';
 import { equipementChoisi } from './equipement';
 import { effetsAcquis, exigences, type ChoixPartiel } from './exigences';
-import { sortsEligibles } from './regles-creation';
+import { nombreDeChoix, sortsEligibles } from './regles-creation';
 
 /** Valeurs standard par classe, dans l'ordre For, Dex, Con, Int, Sag, Cha (table « Valeurs standard par classe », SRD p. 22). */
 export const VALEURS_PAR_CLASSE: Record<string, number[]> = {
@@ -131,7 +131,7 @@ export function recommanderEspece(c: ChoixPartiel & { niveau: number }, donnees:
   const choix: Record<string, string[]> = { ...(c.choix ?? {}) };
   for (const def of donnees.choix.values()) {
     if (def.source.type !== 'espece' || def.source.id !== espece.id) continue;
-    choix[def.id] = def.options.slice(0, def.nombres[c.niveau - 1] ?? 1).map((o) => o.id);
+    choix[def.id] = def.options.slice(0, nombreDeChoix(def, c.niveau) || 1).map((o) => o.id);
   }
   res.choix = choix;
   if (espece.traits.some((t) => t.id === 'polyvalent')) {

@@ -1,9 +1,18 @@
 {
   "id": "guerrier",
   "nom": "Guerrier",
-  "caracteristiquesPrincipales": { "mode": "ou", "liste": ["for", "dex"] },
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "for",
+      "dex"
+    ]
+  },
   "deVie": 10,
-  "sauvegardes": ["for", "con"],
+  "sauvegardes": [
+    "for",
+    "con"
+  ],
   "competences": {
     "nombre": 2,
     "parmi": [
@@ -18,8 +27,16 @@
       "survie"
     ]
   },
-  "maitrisesArmes": ["courantes", "guerre"],
-  "formationArmures": ["legere", "intermediaire", "lourde", "bouclier"],
+  "maitrisesArmes": [
+    "courantes",
+    "guerre"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "lourde",
+    "bouclier"
+  ],
   "outils": [],
   "equipementDepart": [
     {
@@ -46,38 +63,239 @@
       ],
       "po": 11
     },
-    { "id": "C", "objets": [], "po": 155 }
+    {
+      "id": "C",
+      "objets": [],
+      "po": 155
+    }
   ],
   "progression": [
     {
       "niveau": 1,
       "bonusMaitrise": 2,
-      "aptitudes": ["Bottes d’arme", "Second souffle", "Style de combat"],
-      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+      "aptitudes": [
+        "Bottes d’arme",
+        "Second souffle",
+        "Style de combat"
+      ],
+      "colonnes": {
+        "Second souffle": 2,
+        "Bottes d’arme": 3
+      }
     },
     {
       "niveau": 2,
       "bonusMaitrise": 2,
-      "aptitudes": ["Fougue (une utilisation)", "Sens tactique"],
-      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+      "aptitudes": [
+        "Fougue (une utilisation)",
+        "Sens tactique"
+      ],
+      "colonnes": {
+        "Second souffle": 2,
+        "Bottes d’arme": 3
+      }
     },
     {
       "niveau": 3,
       "bonusMaitrise": 2,
-      "aptitudes": ["Sous-classe de Guerrier"],
-      "colonnes": { "Second souffle": 2, "Bottes d’arme": 3 }
+      "aptitudes": [
+        "Sous-classe de Guerrier"
+      ],
+      "colonnes": {
+        "Second souffle": 2,
+        "Bottes d’arme": 3
+      }
     },
     {
       "niveau": 4,
       "bonusMaitrise": 2,
-      "aptitudes": ["Amélioration de caractéristique"],
-      "colonnes": { "Second souffle": 3, "Bottes d’arme": 4 }
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
     },
     {
       "niveau": 5,
       "bonusMaitrise": 3,
-      "aptitudes": ["Attaque supplémentaire", "Décalage tactique"],
-      "colonnes": { "Second souffle": 3, "Bottes d’arme": 4 }
+      "aptitudes": [
+        "Attaque supplémentaire",
+        "Décalage tactique"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Botte tactique",
+        "Inflexible (une utilisation)"
+      ],
+      "colonnes": {
+        "Second souffle": 3,
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Double attaque supplémentaire"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Attaques avisées",
+        "Inflexible (deux utilisations)"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 5
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 6
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Fougue (deux utilisations)",
+        "Inflexible (trois utilisations)"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 6
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 6
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 6
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Triple attaque supplémentaire"
+      ],
+      "colonnes": {
+        "Second souffle": 4,
+        "Bottes d’arme": 6
+      }
     }
   ],
   "aptitudes": [
@@ -121,7 +339,11 @@
       "nom": "Amélioration de caractéristique",
       "niveau": 4,
       "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 6, 8, 12, 14 et 16.",
-      "effets": [{ "type": "amelioration_caracteristique" }]
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
     },
     {
       "id": "attaque-supplementaire",
@@ -135,6 +357,103 @@
       "nom": "Décalage tactique",
       "niveau": 5,
       "resume": "Quand vous activez Second souffle par une action Bonus, vous pouvez vous déplacer de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-6",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 6,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-14",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 14,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "inflexible",
+      "nom": "Inflexible",
+      "niveau": 9,
+      "resume": "Si vous ratez un jet de sauvegarde, vous pouvez le rejouer avec un bonus égal à votre niveau de Guerrier ; le nouveau jet s’applique obligatoirement. Il faut ensuite terminer un Repos long avant de réutiliser l’aptitude. Deux utilisations avant un Repos long à partir du niveau 13, trois à partir du niveau 17.",
+      "effets": []
+    },
+    {
+      "id": "botte-tactique",
+      "nom": "Botte tactique",
+      "niveau": 9,
+      "resume": "Quand vous attaquez avec une arme dont vous pouvez exploiter la botte, vous pouvez remplacer cette botte par Poussée, Ralentissement ou Sape pour cette attaque.",
+      "effets": []
+    },
+    {
+      "id": "double-attaque-supplementaire",
+      "nom": "Double attaque supplémentaire",
+      "niveau": 11,
+      "resume": "Vous pouvez attaquer trois fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour.",
+      "effets": []
+    },
+    {
+      "id": "attaques-avisees",
+      "nom": "Attaques avisées",
+      "niveau": 13,
+      "resume": "Si vous ratez un jet d’attaque contre une créature, vous avez l’Avantage à votre prochain jet d’attaque contre elle intervenant avant la fin de votre tour suivant.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Vous recevez un don de Faveur épique ou un autre don de votre choix pour lequel vous remplissez les conditions. Faveur de prouesse martiale est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "triple-attaque-supplementaire",
+      "nom": "Triple attaque supplémentaire",
+      "niveau": 20,
+      "resume": "Vous pouvez attaquer quatre fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour.",
       "effets": []
     }
   ],
@@ -154,6 +473,34 @@
         "nom": "Athlète accompli",
         "niveau": 3,
         "resume": "Vous avez l’Avantage aux jets d’Initiative et aux tests de Force (Athlétisme). Juste après un Coup critique, vous pouvez vous déplacer de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité.",
+        "effets": []
+      },
+      {
+        "id": "style-de-combat-supplementaire",
+        "nom": "Style de combat supplémentaire",
+        "niveau": 7,
+        "resume": "Vous recevez un autre don de Style de combat de votre choix.",
+        "effets": []
+      },
+      {
+        "id": "heros-du-champ-d-honneur",
+        "nom": "Héros du champ d’honneur",
+        "niveau": 10,
+        "resume": "En combat, vous pouvez vous octroyer l’Inspiration héroïque chaque fois que vous commencez votre tour sans en disposer.",
+        "effets": []
+      },
+      {
+        "id": "critique-superieur",
+        "nom": "Critique supérieur",
+        "niveau": 15,
+        "resume": "Vos jets d’attaque avec des armes et à mains nues obtiennent un Coup critique sur un résultat de 18, 19 ou 20 au d20.",
+        "effets": []
+      },
+      {
+        "id": "survivant",
+        "nom": "Survivant",
+        "niveau": 18,
+        "resume": "Trompe-la-mort : Avantage aux jets de sauvegarde contre la mort, et un 18 ou 19 à un JS contre la mort a les mêmes bénéfices qu’un 20. Résilience héroïque : au début de chacun de vos tours, si vous êtes En péril et avez au moins 1 point de vie, vous récupérez 5 + votre modificateur de Constitution pv.",
         "effets": []
       }
     ]

@@ -46,7 +46,7 @@ Repos, progression, scène suivante → … → fin du chapitre
 
 - Caractéristiques, compétences, maîtrise, avantage et désavantage, jets de sauvegarde, états préjudiciables.
 - Les 9 espèces, 4 historiques, 12 classes (une sous-classe chacune) et 17 dons du SRD 5.2.1, extraits en JSON en M0.
-- Sorts du SRD jusqu'au niveau 3, équipement, bottes d'armes, repos court et long.
+- **Les 339 sorts du SRD (tours de magie à niveau 9)**, les 12 classes **du niveau 1 au niveau 20** (décision du 06/11/2026, qui remplace la limite des niveaux 1 à 5), équipement, bottes d'armes, repos court et long.
 - Bestiaire SRD adapté aux niveaux 1 à 5, complété par des créatures originales.
 - Rencontres calibrées pour **6 personnages** (le calcul de difficulté de la 5e le permet, mais l'équilibrage sera à surveiller).
 

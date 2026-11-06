@@ -25,7 +25,7 @@ Création de personnage dans l'esprit de Baldur's Gate : des écrans courts, une
 
 ## Ce que le créateur couvre
 
-- **Données** : 12 classes (niveaux 1 à 5, une sous-classe chacune), 9 espèces, 4 historiques, 17 dons, **181 sorts de niveaux 0 à 3** pour les 8 classes lanceuses, armes, armures.
+- **Données** : 12 classes (**niveaux 1 à 20**, une sous-classe chacune), 9 espèces, 4 historiques, 17 dons, **339 sorts de niveaux 0 à 9** (tout le SRD) pour les 8 classes lanceuses, armes, armures.
 - **Choix modélisés** : lignages et ascendances des espèces (résistances, vision, Vitesse, sorts accordés), ordre divin, ordre primitif, manifestations occultes, métamagie, style de combat, expertises (avec liste restreinte pour l'Érudition du Magicien), compétences supplémentaires, bottes d'arme (règles par classe), équipement de départ (options A/B, objets du SRD reconnus comme armes ou armures).
 - **Combat** : les personnages créés se battent avec leurs armes, leurs bottes d'arme et leurs sorts. Arts martiaux du Moine, coup de poing sans arme, Attaque supplémentaire (niveau 5).
 

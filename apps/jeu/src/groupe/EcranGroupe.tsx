@@ -1,6 +1,7 @@
 // Écran du groupe : six emplacements de personnages, création, import et export.
 import { useMemo, useRef, useState } from 'react';
 import {
+  NIVEAU_MAX,
   avertissementsGroupe,
   bilanPersonnage,
   groupeConseille,
@@ -191,7 +192,7 @@ export function EcranGroupe(props: Props) {
           <div className="niveau-groupe">
             <span className="etiquette">Niveau du groupe</span>
             <div className="segments segments-petits" role="group" aria-label="Niveau du groupe">
-              {[1, 2, 3, 4, 5].map((n) => (
+              {Array.from({ length: NIVEAU_MAX }, (_, i) => i + 1).map((n) => (
                 <button key={n} type="button" className={groupe.niveau === n ? 'actif' : ''} aria-pressed={groupe.niveau === n} onClick={() => onChange({ ...groupe, niveau: n })}>
                   {n}
                 </button>

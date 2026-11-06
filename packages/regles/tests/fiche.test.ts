@@ -150,10 +150,10 @@ describe('fiche de personnage', () => {
 });
 
 // Toutes les classes, à tous les niveaux de 1 à 5, avec des choix automatiques valides.
-describe('toutes les classes, niveaux 1 à 5', () => {
+describe('toutes les classes, niveaux 1 à 20', () => {
   const historique = donnees.historiques.get('sage')!;
   for (const classe of donnees.classes.values()) {
-    for (let niveau = 1; niveau <= 5; niveau++) {
+    for (let niveau = 1; niveau <= 20; niveau++) {
       it(`${classe.nom} niveau ${niveau}`, () => {
         const pris = new Set<Competence>([...historique.competences, 'perception']);
         const parmi = classe.competences.parmi === 'toutes' ? (Object.keys(COMPETENCES) as Competence[]) : classe.competences.parmi;
@@ -188,7 +188,7 @@ describe('toutes les classes, niveaux 1 à 5', () => {
           expertises: [...historique.competences, ...competencesClasse].slice(0, nbExpertises),
         });
         expect(f.pvMax).toBeGreaterThanOrEqual(classe.deVie * niveau * 0.5);
-        expect(f.bonusMaitrise).toBe(niveau >= 5 ? 3 : 2);
+        expect(f.bonusMaitrise).toBe(Math.ceil(niveau / 4) + 1);
         if (classe.incantation) expect(f.incantation!.emplacements.length).toBeGreaterThan(0);
       });
     }

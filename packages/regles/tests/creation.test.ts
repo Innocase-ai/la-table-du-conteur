@@ -5,11 +5,11 @@ import { creationRapide, exigences, manquants } from '../src';
 
 const donnees = chargerDonneesSrd();
 
-describe('création rapide : toutes les classes × espèces × niveaux', () => {
+describe('création rapide : toutes les classes × espèces × niveaux 1 à 20', () => {
   for (const classe of donnees.classes.keys()) {
     for (const espece of donnees.especes.keys()) {
       it(`${classe} / ${espece}`, () => {
-        for (let niveau = 1; niveau <= 5; niveau++) {
+        for (let niveau = 1; niveau <= 20; niveau++) {
           const choix = creationRapide({ classe, espece, niveau, nom: 'Test' }, donnees);
           const r = calculerFiche(choix, donnees);
           expect(r.ok, `niveau ${niveau} : ${r.ok ? '' : r.erreurs.join(' | ')}`).toBe(true);
