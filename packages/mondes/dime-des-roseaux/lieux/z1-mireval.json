@@ -1,0 +1,217 @@
+[
+  {
+    "id": "dime-des-roseaux",
+    "nom": "La Dîme des Roseaux",
+    "type": "region",
+    "resume": "Une vallée d'eau grise et de roseaux ocre, traversée par une chaussée que l'automne noie, et gardée par un village de meuniers.",
+    "description": "La vallée s'ouvre au sud sur un marais de roseaux et se referme au nord sur des collines basses où s'est réfugiée une tribu gobeline. Une chaussée de pierre la traverse d'est en ouest ; chaque automne, la crue la recouvre de vingt centimètres d'eau brune. Au bout, le village de Mireval et son moulin. Sous les collines courent d'anciennes galeries gobelines ; plus haut, une mine de fer est tenue par une compagnie hobgobeline. On y vit de grain, de roseaux tressés et de ce que la rivière donne. La pluie ne s'arrête jamais tout à fait.",
+    "ambiance": "Pluie fine, odeur de vase et de chaume mouillé, appels d'oies et clapotis sous les planches.",
+    "visuel": "Une vallée plate noyée de roseaux ocre, une chaussée de pierre à demi submergée qui s'en va vers un village aux toits de tourbe, des collines basses dans la brume et, très loin, un pli de terrain noirci.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pont-de-pierre",
+    "nom": "Le pont de pierre",
+    "type": "lieu-dit",
+    "parent": "dime-des-roseaux",
+    "resume": "Le vieux pont à trois arches qui garde l'entrée de la chaussée, désormais barré d'un tréteau, d'une lanterne et d'une caisse.",
+    "description": "Un pont de pierre moussue à trois arches, large comme deux charrettes, posé sur la chaussée noyée. Côté village, un parapet bas et une borne usée ; côté amont, une berge de roseaux où l'on tire les barques. La compagnie du Péage y a monté un tréteau de planches, une lanterne de tourbe et une caisse de fer : quiconque veut passer paie, ou montre un sauf-conduit. Trois hobgobelins y tiennent le guet, relevés au matin et au soir. En amont, la crue a noyé la chaussée pour trois jours : le pont est la seule route qui reste, et l'on n'en sort pas plus qu'on n'y entre.",
+    "ambiance": "Vent qui pousse la pluie de biais, eau brune qui clapote contre les arches, ferraille qui tinte quand un hobgobelin remue.",
+    "visuel": "Un pont de pierre moussue à trois arches, à demi noyé par une eau brune, un tréteau de planches, une lanterne de tourbe suspendue à un pieu et une caisse de fer ouverte sur des roseaux couchés.",
+    "accroche": "Au bout de la chaussée noyée, un vieux pont de pierre gardé par un tréteau de planches et une lanterne qui fume dans la pluie.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "mireval",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "La chaussée, couverte de vingt centimètres d'eau brune, s'en va droit vers les toits de roseaux et la palissade du village.",
+        "retour": "Depuis la palissade, la chaussée noyée s'en retourne vers le pont de pierre, entre deux rangs de roseaux couchés par la pluie."
+      },
+      {
+        "vers": "marais",
+        "type": "chemin",
+        "heures": 1,
+        "description": "Au sud du pont, un sentier de vase et de roseaux cassés s'enfonce sous la brume, entre des flaques où l'on voit des traces de barque.",
+        "retour": "Depuis les roseaux, le sentier remonte vers la chaussée et le pont, dont la lanterne se voit de loin dans la brume."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z1-le-peage-de-varg",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-charrette-saisie",
+        "decouverte": {
+          "dd": 13,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "mireval",
+    "nom": "Mireval",
+    "type": "village",
+    "parent": "dime-des-roseaux",
+    "resume": "Un village de meuniers au bout de la chaussée : une place, un moulin, un grenier et une auberge, serrés derrière une palissade de roseaux.",
+    "description": "Une soixantaine d'âmes, des maisons de torchis coiffées de roseaux, une palissade de pieux et de bottes tressées qui ne retient que le vent. La place au centre, le moulin en amont sur le Roux, le grenier communal derrière la place, l'auberge à l'entrée. Depuis la saisie de la charrette, on rationne et on regarde la chaussée. La milice compte six hommes et deux vieilles lances ; Huguette tient le village d'une main qui tremble. Les villageois parlent bas, changent de sujet quand on approche, et comptent les sacs plus souvent que les visiteurs.",
+    "ambiance": "Fumée de tourbe, pain qui cuit, roseaux qui sèchent sous les auvents, conversations qui s'arrêtent quand on approche.",
+    "visuel": "Des maisons de torchis aux toits de roseaux, une place de terre battue, un puits de pierre, des barques tirées à sec, des filets et des bottes de roseaux sous la pluie fine.",
+    "accroche": "Au bout de la chaussée, des toits de roseaux fumants, une palissade de pieux et le clocher bas d'une petite chapelle.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "mir-place-du-marche",
+        "type": "chemin",
+        "description": "Un chemin de terre battue s'élargit entre les maisons jusqu'à la place et son puits, où des tréteaux attendent le marché.",
+        "retour": "Depuis la place, le chemin se resserre entre deux murs de torchis jusqu'aux premières maisons et à la palissade du village."
+      },
+      {
+        "vers": "mir-moulin-roux",
+        "type": "chemin",
+        "description": "En amont, un sentier de planches longe le Roux jusqu'à la roue du moulin, entre des saules penchés sur l'eau.",
+        "retour": "Le sentier de planches redescend le long de l'eau, entre les saules, jusqu'aux premières maisons du village."
+      },
+      {
+        "vers": "mir-grenier",
+        "type": "chemin",
+        "description": "Derrière la place, un chemin de cailloux monte vers un long bâtiment coiffé de roseaux neufs et posé sur pilotis.",
+        "retour": "Du grenier, le chemin de cailloux redescend entre les clôtures jusqu'aux toits du village et à la place."
+      },
+      {
+        "vers": "mir-auberge-des-roseaux",
+        "type": "chemin",
+        "description": "À l'entrée du village, une enseigne de fer grince au-dessus d'une porte basse d'où sort une odeur de soupe.",
+        "retour": "La porte basse de l'auberge donne sur la rue du village, où la pluie fait briller les cailloux et les flaques."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "sur"
+  },
+  {
+    "id": "mir-place-du-marche",
+    "nom": "La place du marché",
+    "type": "lieu-dit",
+    "parent": "mireval",
+    "resume": "La place du village : le puits, la halle basse, le mât aux nouvelles et la maison d'Huguette, où tout se sait.",
+    "description": "Une place de terre battue creusée de flaques, un puits de pierre à margelle usée, une halle basse couverte de roseaux où l'on étale le marché deux fois la semaine, et un mât où l'on cloue les nouvelles. La maison de la maire, plus haute, fait l'angle ; derrière la halle s'ouvre le chemin du grenier communal. Une pierre plate, au bord du puits, sert d'estrade quand le village doit parler. On y a planté le mât du péage, avec un clou neuf et un parchemin cloué haut.",
+    "ambiance": "Cris d'oies, balances de bois qui claquent, une chanson à boire qui s'arrête quand on passe.",
+    "visuel": "Une place de terre battue et de flaques, un puits de pierre, une halle basse au toit de roseaux, des tréteaux et des balances de bois, un mât où pendent des lambeaux de parchemin.",
+    "accroche": "Au centre du village, une place de terre battue où des tréteaux, des balances et une halle basse attendent le marché.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-le-conseil-de-la-place",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "mir-moulin-roux",
+    "nom": "Le moulin Roux",
+    "type": "batiment",
+    "parent": "mireval",
+    "resume": "Le moulin d'Anselme Roux, en amont sur le Roux : la roue tourne au ralenti et la porte reste fermée.",
+    "description": "Un moulin de pierre et de bois posé sur le Roux, avec une roue à aubes, un bief de planches et une meule de granit sous un toit de roseaux. En bas, la salle de la meule et les sacs ; en haut, la chambre d'Anselme et le tiroir de ses comptes. L'eau passe sous le plancher avec un bruit qui ne s'arrête jamais. Depuis la saisie de la charrette, une partie du grain ne repart plus vers le village, et le meunier ferme sa porte plus tôt chaque soir.",
+    "ambiance": "Grincement de la roue, eau qui frappe les aubes, farine qui reste dans la gorge.",
+    "visuel": "Un moulin de pierre brune posé sur l'eau, une grande roue à aubes couverte de mousse, un toit de roseaux, des sacs de toile empilés sous l'auvent et une porte basse entrouverte.",
+    "accroche": "En amont, une roue à aubes tourne au ralenti sous un moulin de pierre brune, et des sacs de toile s'empilent sous l'auvent.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-la-roue-du-moulin",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "mir-grenier",
+    "nom": "Le grenier communal",
+    "type": "batiment",
+    "parent": "mireval",
+    "resume": "Le grenier de Mireval : un grand volume de roseaux et de planches, presque vide, dont la réserve est fermée à clé.",
+    "description": "Un bâtiment long, coiffé de roseaux neufs, posé sur des pilotis de pierre pour que l'eau ne monte pas jusqu'au grain. En haut, l'aire de battage et les sacs ; en bas, la réserve fermée d'une porte de chêne et d'un cadenas de fer. Le plancher du fenil est troué en deux endroits, et une trappe donne sur le vide du silo. Perrine y dort depuis le départ de son frère, sur une paillasse près de la trappe.",
+    "ambiance": "Odeur de grain rance et de poussière, paille qui craque, un courant d'air froid qui traverse le fenil.",
+    "visuel": "Un long bâtiment de planches sur pilotis, un toit de roseaux neufs, une grande porte charretière entrouverte sur des sacs vides et, sous le plancher, une porte de chêne fermée d'un cadenas.",
+    "accroche": "Derrière la place, un long bâtiment sur pilotis, coiffé de roseaux neufs, ouvre une porte charretière sur des sacs vides.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-les-rats-du-grenier",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-grenier-vide",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "mir-auberge-des-roseaux",
+    "nom": "L'auberge des Roseaux",
+    "type": "batiment",
+    "parent": "mireval",
+    "resume": "L'auberge de Bastien, seule lumière du village après la tombée du jour, où l'on boit une soupe et beaucoup de nouvelles.",
+    "description": "Une grande salle basse aux poutres noires, six tables, un âtre, un comptoir derrière lequel Bastien essuie des chopes qui ne sont jamais sales. À l'étage, trois chambres sous les combles ; en bas, une cave où l'on garde le cidre, le lard et deux tonneaux de grain. Le village s'y réchauffe le soir ; personne n'y parle des hobgobelins à voix haute. Le banc près du feu est celui des anciens, et il ne se libère pas.",
+    "ambiance": "Feu de tourbe, soupe au lard, chopes de terre, voix basses et rires trop forts quand la porte s'ouvre.",
+    "visuel": "Une salle basse aux poutres noires, un âtre de pierre où couve un feu de tourbe, des tables de bois usées, un comptoir garni de chopes et une lanterne de fer.",
+    "accroche": "À l'entrée du village, une enseigne de fer qui grince, une porte basse et une odeur de soupe au lard sous la pluie.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "repas",
+      "chambre",
+      "rumeurs"
+    ],
+    "repos": "sur"
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "por-e-anneaux-de-la-maree",
+    "nom": "Les trois anneaux de la porte",
+    "lieu": "por-cachette-des-rats",
+    "enonce": "Trois anneaux de bronze sont fixés à la porte, chacun gravé d'un nom de marée : pleine mer, mi-marée, basse mer. Sous eux, à la craie : « Les nôtres passent quand la mer s'en va, pas quand elle revient. » Quel anneau faut-il tirer ?",
+    "solution": {
+      "type": "deduction",
+      "reponses": ["basse mer", "basse-mer", "la basse mer", "marée basse", "maree basse"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les rats fuient la mer qui monte : ils ne passent donc que quand l'eau se retire."
+      },
+      {
+        "niveau": 2,
+        "texte": "Entre la pleine mer et la basse mer, la mer s'en va pendant une demi-marée. Le reflux ne cesse qu'à un seul moment, quand la mer est au plus bas.",
+        "competence": "nature",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "L'anneau à tirer est celui de la basse mer : c'est le seul moment où la mer s'en va encore sans revenir aussitôt.",
+        "competence": "survie",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "por-p-anneau-de-la-porte",
+      "resume": "L'anneau de la pleine mer libère la lame du battant."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "por-cachette-ouverte" },
+        { "fait": "f-por-regle-des-rats" },
+        { "xp": 100 }
+      ],
+      "tresor": "por-t-tresor-des-rats",
+      "resume": "La porte pivote sur ses gonds. Derrière, une pièce sèche, un coffre cerclé de fer et l'odeur de cuir des sacs de la Mère Sorel."
+    }
+  }
+]

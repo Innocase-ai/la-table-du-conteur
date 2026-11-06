@@ -1,0 +1,131 @@
+{
+  "id": "golem-d-argile",
+  "nom": "Golem d'argile",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 123,
+    "des": "13d10 + 52"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 9,
+    "con": 18,
+    "int": 3,
+    "sag": 8,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "acide",
+    "poison",
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "commun et une autre langue",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "absorption-de-l-acide",
+      "nom": "Absorption de l'acide",
+      "resume": "Chaque fois que le golem est soumis à des dégâts d'acide, il ne subit aucun dégât et récupère en fait autant de points de vie que les dégâts d'acide ainsi évités."
+    },
+    {
+      "id": "folie-furieuse",
+      "nom": "Folie furieuse",
+      "resume": "Chaque fois que le golem commence son tour En péril, lancez 1d6. Sur un résultat de 6, il devient fou. À chacun de ses tours tant qu'il est dans cet état, le golem attaque la créature la plus proche qu'il voit. Si aucune créature n'est assez proche pour qu'il puisse se déplacer et l'attaquer, le golem s'en prend à un objet. Une fois le golem devenu fou, il continue à l'être jusqu'à sa destruction ou qu'il ne soit plus En péril."
+    },
+    {
+      "id": "forme-immuable",
+      "nom": "Forme immuable",
+      "resume": "Le golem ne peut pas être métamorphosé."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le golem a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le golem effectue deux attaques de Coup, ou trois attaques de Coup s'il a utilisé Accélération ce tour-ci.",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 1,50 m : 10 (1d10 + 5) dégâts contondants plus 6 (1d12) dégâts d'acide, et le maximum de points de vie de la cible diminue d'un montant égal aux dégâts d'acide subis.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 5,
+          "type": "contondant"
+        },
+        {
+          "des": "1d12",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "acceleration",
+      "nom": "Accélération",
+      "cout": "bonus",
+      "resume": "Le golem entreprend les actions Désengagement et Pointe.",
+      "degats": [],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

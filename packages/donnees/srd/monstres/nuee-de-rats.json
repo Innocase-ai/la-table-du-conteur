@@ -1,0 +1,88 @@
+{
+  "id": "nuee-de-rats",
+  "nom": "Nuée de rats",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 14,
+    "des": "4d8 - 4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 9,
+    "dex": 11,
+    "con": 9,
+    "int": 2,
+    "sag": 10,
+    "cha": 3
+  },
+  "sauvegardes": {
+    "dex": 2
+  },
+  "competences": {},
+  "initiative": 0,
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 9,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "nuee",
+      "nom": "Nuée",
+      "resume": "Nuée de taille M composée de Bêtes de taille TP. Elle peut occuper l'espace d'une autre créature (et inversement) et passer par toute ouverture assez large pour un rat de taille TP. Elle ne peut ni récupérer de pv ni recevoir de pv temporaires."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Étourdi, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsures",
+      "nom": "Morsures",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 5 (2d4) dégâts perforants, ou 2 (1d4) dégâts perforants si la nuée est En péril (la moitié de ses pv ou moins).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

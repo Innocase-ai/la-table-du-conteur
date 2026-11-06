@@ -1,0 +1,106 @@
+{
+  "id": "araignee-geante",
+  "nom": "Araignée géante",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 26,
+    "des": "4d10 + 4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 16,
+    "con": 12,
+    "int": 2,
+    "sag": 11,
+    "cha": 4
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "perception": 4
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "marche-dans-les-toiles",
+      "nom": "Marche dans les toiles",
+      "resume": "L'araignée ignore les contraintes de déplacement des toiles et connaît la position de toute créature en contact avec la même toile qu'elle."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "L'araignée peut escalader les parois difficiles, y compris les plafonds, sans test de caractéristique."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts perforants plus 7 (2d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "toile-d-araignee",
+      "nom": "Toile d'araignée",
+      "cout": "action",
+      "resume": "JS Dextérité DD 13 d'une créature que l'araignée voit à 18 m ou moins. Échec : la cible est Entravée jusqu'à ce que la toile soit détruite (CA 10, 5 pv, Vulnérabilité au feu, Immunité aux dégâts psychiques et de poison).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "etats": [
+        {
+          "etat": "entrave",
+          "evasion": 12
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

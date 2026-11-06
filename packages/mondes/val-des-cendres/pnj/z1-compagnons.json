@@ -1,0 +1,713 @@
+[
+  {
+    "id": "ysolde-rouage",
+    "nom": "Ysolde Rouage",
+    "titre": "Apprentie mécanicienne",
+    "espece": "gnome",
+    "sexe": "F",
+    "age": "environ 80 ans",
+    "role": "Magicienne gnome, apprentie de Fennick, brillante et impatiente",
+    "lieu": "vei-atelier-des-rouages",
+    "apparence": "Jeune gnome au visage rond et pâle, cheveux noirs coupés au carré, lunettes de laiton relevées sur le front, robe grise brodée d'engrenages, sacoche pleine de parchemins, gants sans doigts tachés d'encre.",
+    "personnalite": {
+      "traits": [
+        "studieuse",
+        "impatiente",
+        "drôle",
+        "impulsive"
+      ],
+      "voix": "Rapide et aiguë, truffée de termes techniques qu'elle traduit à moitié ; humour de laboratoire, sarcasmes affectueux, elle compte ses phrases comme des étapes de démonstration.",
+      "valeurs": [
+        "comprendre avant d'agir",
+        "la fidélité à son maître",
+        "ne pas gaspiller un bon mécanisme"
+      ],
+      "desir": "Retrouver l'atelier du maître et finir son œuvre.",
+      "peur": "Être inutile, et voir Fennick s'éteindre avant qu'elle n'ait tout appris.",
+      "defaut": "Elle agit avant de réfléchir quand on la défie."
+    },
+    "presences": [
+      {
+        "lieu": "vei-cadran-de-la-lanterne",
+        "moment": "jour"
+      }
+    ],
+    "attitude": 15,
+    "savoir": [
+      "f-vei-fennick-et-le-cadran",
+      "f-vei-combustible"
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "l-atelier",
+        "mots": [
+          "atelier",
+          "Fennick",
+          "apprentissage",
+          "pièces",
+          "mécanismes"
+        ],
+        "question": "Comment se passe l'apprentissage auprès de Fennick ?",
+        "reponse": "Ysolde fait le tour de l'atelier en gesticulant, nomme chaque pièce, explique que Fennick lui a confié cinq mécanismes cette année et qu'elle en a réparé quatre. Elle répète que Fennick est un génie qui oublie de dormir, et qu'elle le surveille.",
+        "revele": [
+          "f-vei-fennick-et-le-cadran"
+        ]
+      },
+      {
+        "id": "la-magie",
+        "mots": [
+          "magie",
+          "sorts",
+          "arcanes",
+          "grimoire",
+          "formules"
+        ],
+        "question": "Comment fonctionne la magie des gnomes ?",
+        "reponse": "Elle explique que la magie des gnomes est une mécanique : un sort est un engrenage de mots, il suffit que chaque dent trouve la bonne. Elle admet qu'elle est plus douée pour le démontage que pour l'assemblage, ce qui irrite Fennick au plus haut point.",
+        "revele": []
+      },
+      {
+        "id": "l-atelier-du-maitre",
+        "mots": [
+          "atelier du maître",
+          "Ferbillon",
+          "carnet",
+          "plans",
+          "œuvre",
+          "retrouver le maître",
+          "Haute-Forge"
+        ],
+        "attitudeMin": 30,
+        "question": "Parlez-nous de l'atelier du maître Ferbillon.",
+        "reponse": "Ysolde baisse la voix et sort de sa sacoche un carnet à la couverture usée : celui de Ferbillon, mécanicien du roi Thalgrin, l'ancêtre d'atelier de Fennick. Une page parle d'un atelier au deuxième niveau des ateliers de la Haute-Forge, intact peut-être, avec l'œuvre que Ferbillon n'a pas achevée. Fennick refuse d'en parler, et elle est sûre qu'il en connaît le chemin. Elle voudrait le retrouver, quitte à partir sans prévenir, et demande au groupe s'il voudrait bien l'emmener.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-ysolde-l-atelier-du-maitre",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rejoindre",
+        "mots": [
+          "partir avec nous",
+          "rejoindre",
+          "nous accompagner",
+          "venir",
+          "compagnon"
+        ],
+        "attitudeMin": 25,
+        "question": "Lui proposer de nous accompagner.",
+        "reponse": "Ysolde saute sur ses pieds : elle accepte à condition que l'on respecte quelques règles (on ne touche pas à ses affaires, on lui explique les plans, on ne la traite pas en enfant). Elle rappelle que Fennick doit donner son accord et demande qu'on le lui dise avec tact.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "ysolde-rouage",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "la-lanterne",
+        "mots": [
+          "Lanterne",
+          "flamme",
+          "cadran",
+          "veille",
+          "la tour"
+        ],
+        "question": "Qu'avez-vous remarqué sur la flamme de la Lanterne ?",
+        "reponse": "Elle dit que la Lanterne est le plus beau mécanisme qu'elle ait vu, et le plus fragile. Elle a regardé la flamme de près, a mesuré ses oscillations, et elle est certaine qu'elle n'est pas alimentée que par de l'huile. Elle ne sait pas par quoi.",
+        "revele": [
+          "f-vei-combustible"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Ah, des visiteurs ! Ne touchez pas au tableau, il est instable.",
+      "amical": "Vous revoilà ! Je viens de découvrir un truc incroyable et personne n'écoute.",
+      "hostile": "Je suis occupée. Reviens quand tu auras lu quelque chose."
+    },
+    "services": [],
+    "inventaire": [],
+    "compagnon": {
+      "classe": "magicien",
+      "espece": "gnome",
+      "niveau": 3,
+      "historique": "sage",
+      "recrutement": {
+        "et": [
+          {
+            "pnj": {
+              "id": "ysolde-rouage",
+              "attitudeMin": 25
+            }
+          },
+          {
+            "pnj": {
+              "id": "fennick-rouage",
+              "attitudeMin": 15
+            }
+          }
+        ]
+      },
+      "quetePersonnelle": "q-ysolde-l-atelier-du-maitre",
+      "repliques": [
+        {
+          "declencheur": "devant un mort-vivant",
+          "texte": "Intéressant ! Pas de souffle, pas de pouls, et pourtant il se déplace avec un but : on dirait un mécanisme sans clé. Qu'on ne me demande pas de le toucher, mais je veux regarder."
+        },
+        {
+          "declencheur": "à la Lanterne",
+          "texte": "Elle est tiède, tu as senti ? Pas chaude : tiède. Comme une personne endormie. Je n'aime pas ça du tout, et je veux comprendre."
+        },
+        {
+          "declencheur": "devant un mécanisme nain",
+          "texte": "Oh. Oh ! Regardez cette frette, cette tolérance ! Qui a pu tailler un pignon pareil sans loupe ? Ne bougez pas, je dessine."
+        },
+        {
+          "declencheur": "un choix cruel",
+          "texte": "Je déteste quand il n'y a pas de bonne réponse. Un problème sans solution, ça devrait s'appeler une erreur, pas un choix."
+        },
+        {
+          "declencheur": "à l'auberge",
+          "texte": "Ça sent le chou et le feu de bois, et je n'ai jamais été aussi bien. Quelqu'un peut-il me passer le pain ?"
+        },
+        {
+          "declencheur": "quand un allié tombe",
+          "texte": "Ne t'endors pas. Ne t'endors pas ! Je ne sais pas réparer ça. Je ne sais pas encore."
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "Sacrifier un volontaire pour rallumer le Cœur",
+          "reaction": "Elle refuse net : on ne remplace pas un mécanisme par une personne, il doit y avoir un autre moyen, et elle le cherchera jusqu'au bout.",
+          "attitude": -10
+        },
+        {
+          "sujet": "Noyer le Cœur-de-Braise par l'Écluse noire",
+          "reaction": "Elle se mord la lèvre : c'est radical, propre, mais ça tuerait la Lanterne, et tout un travail de deux siècles. Elle y consent si c'est vraiment la dernière solution.",
+          "attitude": 5
+        },
+        {
+          "sujet": "Livrer la Forge au Fer-Gris",
+          "reaction": "Elle est horrifiée : on ne donne pas des plans nains à des gens qui veulent en faire des armes. Elle quitterait le groupe plutôt que de voir ça.",
+          "attitude": -20
+        }
+      ]
+    }
+  },
+  {
+    "id": "korvun-tete-rase",
+    "nom": "Korvun Tête-Rasée",
+    "titre": "Guerrier orc du clan Marteau-Vert",
+    "espece": "orc",
+    "sexe": "M",
+    "age": "22 ans",
+    "role": "Jeune guerrier orc, neveu de Grodak, forgeron et soldat",
+    "lieu": "vei-forge-des-refugies",
+    "apparence": "Jeune orc massif au crâne rasé tatoué de runes vertes, défenses courtes et nettes, brûlure ancienne sur l'avant-bras, cuirasse de cuir clouté, grand marteau de forge à la ceinture, regard qui se détourne quand on parle de son clan.",
+    "personnalite": {
+      "traits": [
+        "loyal",
+        "raide",
+        "honteux",
+        "pince-sans-rire"
+      ],
+      "voix": "Grave et retenue, phrases courtes et formelles ; il se tait quand on touche à l'honneur, puis lâche une plaisanterie sèche qui surprend tout le monde, lui le premier.",
+      "valeurs": [
+        "la parole donnée",
+        "l'honneur du clan",
+        "protéger les faibles"
+      ],
+      "desir": "Laver le nom du clan Marteau-Vert, en retrouvant le marteau du clan.",
+      "peur": "Que l'on apprenne ce que son ancêtre a fait aux nains.",
+      "defaut": "L'orgueil, et le refus d'être aidé."
+    },
+    "presences": [
+      {
+        "lieu": "vei-auberge-dernier-feu",
+        "moment": "soir"
+      }
+    ],
+    "attitude": 10,
+    "savoir": [
+      "f-vei-clan-marteau-vert",
+      "f-vei-gobelins-affames"
+    ],
+    "secrets": [
+      {
+        "fait": "f-orcs-et-nains",
+        "attitudeMin": 60
+      }
+    ],
+    "sujets": [
+      {
+        "id": "le-clan",
+        "mots": [
+          "clan",
+          "Marteau-Vert",
+          "famille",
+          "orcs",
+          "origines"
+        ],
+        "question": "Parlez-nous de votre clan, les Marteau-Vert.",
+        "reponse": "Korvun redresse les épaules et récite : le clan Marteau-Vert a forgé pour les nains de la Haute-Forge pendant trois siècles, des armes que l'on s'arrachait. Il n'en reste que son oncle, quelques cousins et lui. Il ajoute, mi-grave mi-sec, que le clan a perdu son marteau et que cela n'est pas une expression.",
+        "revele": [
+          "f-vei-clan-marteau-vert"
+        ]
+      },
+      {
+        "id": "la-forge-de-grodak",
+        "mots": [
+          "Grodak",
+          "oncle",
+          "forge",
+          "apprentissage",
+          "marteau"
+        ],
+        "question": "Comment Grodak vous a-t-il appris le métier ?",
+        "reponse": "Il dit que son oncle l'a élevé comme un fils, lui a appris à frapper l'acier avant de lui apprendre à tenir une épée. Il le respecte plus qu'il ne saurait l'exprimer, et il redoute de le décevoir. Il précise que Grodak ne parle pas beaucoup, mais qu'il écoute tout.",
+        "revele": []
+      },
+      {
+        "id": "le-marteau-du-clan",
+        "mots": [
+          "marteau du clan",
+          "relique",
+          "perdu",
+          "Haute-Forge",
+          "retrouver",
+          "ancêtre"
+        ],
+        "attitudeMin": 30,
+        "question": "Où est passé le marteau du clan ?",
+        "reponse": "Korvun explique, en regardant ses mains : le marteau du clan, le marteau du premier forgeron, aurait été resté à la Haute-Forge la nuit de la Cendre. Les anciens disent qu'il y repose encore, dans le trésor du roi. Il voudrait le retrouver et le rapporter à son oncle, pour prouver que le nom Marteau-Vert n'est pas maudit. Il ne dit pas pourquoi il croit qu'il l'est.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-korvun-le-marteau-du-clan",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "la-honte",
+        "mots": [
+          "honte",
+          "secret",
+          "ancêtre",
+          "trahison",
+          "nains",
+          "légende",
+          "vendu"
+        ],
+        "attitudeMin": 60,
+        "question": "Y a-t-il un secret qui pèse sur votre famille ?",
+        "reponse": "Korvun ferme les yeux. Il avoue, d'une voix presque inaudible, que la légende dit que Ghorm Marteau-Vert, son ancêtre, a vendu aux nains un secret avant la Nuit de la Cendre, ou aux ennemis des nains, les versions diffèrent. Il n'est pas sûr que ce soit vrai, mais il est sûr que les nains y ont cru. Il demande qu'on n'en parle pas à son oncle ni aux autres orcs.",
+        "revele": [
+          "f-orcs-et-nains"
+        ]
+      },
+      {
+        "id": "rejoindre",
+        "mots": [
+          "rejoindre",
+          "partir avec nous",
+          "compagnon",
+          "nous suivre",
+          "venir"
+        ],
+        "attitudeMin": 30,
+        "question": "Lui proposer de se joindre au groupe.",
+        "reponse": "Il réfléchit longtemps puis dit qu'il viendra si son oncle y consent et si le groupe ne le traite pas en domestique ni en monstre. Il promet d'être un bon bouclier et de dire quand il pense que quelqu'un a tort. Il serre la main avec une poigne qui fait mal.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "korvun-tete-rase",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Je suis Korvun. Si vous cherchez mon oncle, il est derrière l'enclume.",
+      "amical": "Ah, c'est vous. Pas de nouvelles de l'ennemi ? Tant mieux. Restez un peu.",
+      "hostile": "Vous n'avez pas votre place ici.",
+      "variantes": [
+        {
+          "condition": {
+            "quete": {
+              "id": "q-korvun-le-marteau-du-clan",
+              "statut": "terminee"
+            }
+          },
+          "texte": "Le nom du clan Marteau-Vert revient dans la bouche des gens, grâce à vous. Je ne le dis pas souvent : merci. Entrez, mon oncle a de la soupe sur le feu."
+        }
+      ]
+    },
+    "services": [],
+    "inventaire": [],
+    "compagnon": {
+      "classe": "guerrier",
+      "espece": "orc",
+      "niveau": 3,
+      "historique": "soldat",
+      "recrutement": {
+        "et": [
+          {
+            "pnj": {
+              "id": "korvun-tete-rase",
+              "attitudeMin": 30
+            }
+          },
+          {
+            "pnj": {
+              "id": "grodak-marteau-vert",
+              "attitudeMin": 15
+            }
+          }
+        ]
+      },
+      "quetePersonnelle": "q-korvun-le-marteau-du-clan",
+      "repliques": [
+        {
+          "declencheur": "avant un combat",
+          "texte": "Reste derrière moi. Si je tombe, c'est que tu m'as mal protégé le dos."
+        },
+        {
+          "declencheur": "devant un mort-vivant",
+          "texte": "Ils ont la patience des gens qui n'ont plus d'autre chose à faire. Je n'ai pas peur d'eux. Je me méfie de leur nombre."
+        },
+        {
+          "declencheur": "à la Lanterne",
+          "texte": "Le feu est faible. Mon oncle dit qu'un forgeron ne laisse jamais mourir un feu. Je ne sais pas si c'est de la sagesse ou de l'entêtement."
+        },
+        {
+          "declencheur": "devant une forge ou une enclume",
+          "texte": "Le métal se souvient de la main. Celui-ci a été frappé par quelqu'un qui savait ce qu'il faisait. Je le salue."
+        },
+        {
+          "declencheur": "un choix cruel",
+          "texte": "Je ne dirai pas ce qu'il faut faire. Je dirai seulement ce qu'il ne faut pas : ne jamais choisir ce qu'on n'oserait pas regarder en face."
+        },
+        {
+          "declencheur": "devant un nain",
+          "texte": "Ils nous regardent comme s'ils attendaient quelque chose. Je ne sais pas encore ce que c'est. Je le saurai."
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "Sacrifier un volontaire pour rallumer le Cœur",
+          "reaction": "Il approuve en silence : un volontaire sait ce qu'il fait, et ce choix-là est plus honnête que les autres. Il se proposerait lui-même plutôt que de laisser un innocent.",
+          "attitude": 5
+        },
+        {
+          "sujet": "Livrer la Forge au Fer-Gris",
+          "reaction": "Il crache : un foyer pour la guerre, jamais. Les orcs ont déjà payé trop cher le prix de ceux qui forgent pour les autres.",
+          "attitude": -15
+        },
+        {
+          "sujet": "Aider les gobelins affamés plutôt que les combattre",
+          "reaction": "Il hausse les épaules : on ne tue pas un affamé qui cherche du pain, on lui en jette un morceau. Il approuve la pitié, même chez l'ennemi.",
+          "attitude": 5
+        }
+      ]
+    }
+  },
+  {
+    "id": "mireille-vanhaut",
+    "nom": "Mireille Vanhaut",
+    "titre": "Prêtresse de la chapelle grise",
+    "espece": "tieffelin",
+    "sexe": "F",
+    "age": "28 ans",
+    "role": "Clerc tieffeline, ancienne Pèlerine grise, qui veille les mourants à la chapelle",
+    "lieu": "vei-chapelle-grise",
+    "apparence": "Jeune tieffeline à la peau bleu-gris, petites cornes recourbées dissimulées sous un foulard de lin, yeux d'argent cernés, robe de laine grise brodée d'un fil de cendre, chapelet de perles de plomb et mains fines tachées de cendre.",
+    "personnalite": {
+      "traits": [
+        "douce",
+        "observatrice",
+        "meurtrie",
+        "têtue dans la pitié"
+      ],
+      "voix": "Basse et posée, voix de veillée ; elle demande la permission avant de poser une question, laisse des silences, et rit parfois d'un petit rire triste qui s'excuse.",
+      "valeurs": [
+        "la compassion",
+        "la veillée des morts",
+        "le libre choix"
+      ],
+      "desir": "Retrouver son frère, parti chez les Pèlerins, et savoir si elle a eu tort de les quitter.",
+      "peur": "Que les Pèlerins aient raison et que sa pitié soit une faiblesse.",
+      "defaut": "Elle se culpabilise de tout."
+    },
+    "presences": [
+      {
+        "lieu": "vei-quartier-des-refugies",
+        "moment": "soir"
+      },
+      {
+        "lieu": "vei-cimetiere",
+        "moment": "jour"
+      }
+    ],
+    "attitude": 10,
+    "savoir": [
+      "f-pelerins-motif",
+      "f-vei-pelerins-rodent",
+      "f-vei-tieffelins-accuses",
+      "f-vei-les-morts-rentrent"
+    ],
+    "secrets": [
+      {
+        "fait": "f-vei-mireille-pelerine",
+        "attitudeMin": 40
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-chapelle",
+        "mots": [
+          "chapelle",
+          "prière",
+          "veillée",
+          "morts",
+          "culte",
+          "enterrement"
+        ],
+        "question": "Racontez-nous les veillées de la chapelle.",
+        "reponse": "Mireille explique qu'elle veille les mourants et qu'elle prie pour les morts sans les brûler : la cendre est trop précieuse pour le feu, dit-elle, il vaut mieux la rendre à la pierre. Elle accueille tout le monde, orcs, nains, tieffelins, humains, et ne demande rien en retour qu'un peu de silence.",
+        "revele": []
+      },
+      {
+        "id": "les-pelerins",
+        "mots": [
+          "Pèlerins",
+          "pèlerins gris",
+          "paix",
+          "cendre",
+          "rejoindre les morts",
+          "foi"
+        ],
+        "attitudeMin": 25,
+        "question": "Que pensez-vous des Pèlerins gris ?",
+        "reponse": "Elle dit avec précaution que les Pèlerins croient que la cendre est une grâce : se laisser prendre, c'est rejoindre les morts en paix, sans douleur. Ils ne tuent personne, ils proposent seulement. Elle sait qu'ils séduisent parce qu'ils parlent de repos à des gens épuisés. Elle ne les hait pas ; elle les craint.",
+        "revele": [
+          "f-pelerins-motif",
+          "f-vei-pelerins-rodent"
+        ]
+      },
+      {
+        "id": "le-frere",
+        "mots": [
+          "frère",
+          "perdu",
+          "disparu",
+          "cendre",
+          "Pèlerins",
+          "chercher"
+        ],
+        "attitudeMin": 40,
+        "question": "Avez-vous perdu quelqu'un parmi les Pèlerins ?",
+        "reponse": "Mireille se détourne et dit qu'elle avait un frère, qu'ils sont entrés chez les Pèlerins ensemble, et qu'il y est resté quand elle est partie, écœurée, il y a deux ans. Il porte un cordon gris au poignet et ne parle plus que de paix. Elle sait qu'ils campent au champ de cendre gris, au bout du sentier, et elle a peur de ce qu'elle y trouvera. Elle ne l'avoue qu'à ceux en qui elle a confiance.",
+        "revele": [
+          "f-vei-mireille-pelerine"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-mireille-le-frere-perdu",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "les-morts",
+        "mots": [
+          "morts relevés",
+          "apaiser",
+          "cendre bénite",
+          "mort égaré",
+          "comment calmer"
+        ],
+        "question": "Comment apaiser un mort égaré ?",
+        "reponse": "Elle explique qu'on peut apaiser un mort qui ne cherche pas à nuire : une pincée de cendre bénite, une parole de paix, et la permission de partir. Elle conseille de ne jamais lui refuser ce qu'il cherche, sinon il revient. Elle donne volontiers de sa cendre bénite à qui promet de s'en servir sans cruauté.",
+        "revele": [
+          "f-vei-les-morts-rentrent"
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "vei-cendre-benite"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "soupcons",
+        "mots": [
+          "tieffelin",
+          "accusation",
+          "cornes",
+          "regard",
+          "cendre appelée"
+        ],
+        "question": "Pourquoi vous accuse-t-on, à cause de vos cornes ?",
+        "reponse": "Elle sourit tristement : à Veillecendre, on lui rend son salut sans la regarder. On dit que les siens ont appelé la cendre, ce qui est faux, mais la peur n'a pas besoin de vérité. Elle dit qu'elle préfère veiller les morts à répondre aux accusations.",
+        "revele": [
+          "f-vei-tieffelins-accuses"
+        ]
+      },
+      {
+        "id": "rejoindre",
+        "mots": [
+          "rejoindre",
+          "nous suivre",
+          "compagnon",
+          "venir avec nous",
+          "partir"
+        ],
+        "attitudeMin": 25,
+        "condition": {
+          "flag": "lanterne-visitee"
+        },
+        "question": "Lui proposer de venir avec nous.",
+        "reponse": "Mireille réfléchit à voix basse : la chapelle est tenue, d'autres veilleront à sa place, et elle ne sait pas si elle est utile ici. Elle dit qu'elle viendra si le groupe promet de ne pas la contraindre à renier ce qu'elle a appris, ni à le prêcher. Elle demande qu'on lui laisse prier à sa manière.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "mireille-vanhaut",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Entrez doucement. Ici, on ne se presse pas.",
+      "amical": "Je vous attendais. Asseyez-vous, il y a toujours une place pour ceux qui n'ont pas peur du silence.",
+      "hostile": "Vous avez la main lourde sur la porte. Je ne veux pas vous fâcher.",
+      "variantes": [
+        {
+          "condition": {
+            "fait": "f-gro-aubin-au-champ"
+          },
+          "texte": "Vous avez vu le champ. Vous avez vu mon frère, ou son ombre. Je ne vous demanderai rien ce soir. Asseyez-vous, et laissez le silence faire le reste."
+        }
+      ]
+    },
+    "boutique": {
+      "stock": [
+        {
+          "objet": "vei-cendre-benite",
+          "quantite": 5,
+          "prix": 5
+        },
+        {
+          "objet": "eau-benite",
+          "quantite": 2,
+          "prix": 25
+        },
+        {
+          "objet": "symbole-sacre-amulette",
+          "quantite": 3,
+          "prix": 5
+        }
+      ],
+      "tables": [],
+      "rachat": 0.3,
+      "types": [
+        "materiel"
+      ]
+    },
+    "services": [
+      {
+        "id": "veillee-des-morts",
+        "nom": "Veillée des morts",
+        "resume": "Mireille veille un défunt ou un mort égaré, dit les mots de paix et en permet le repos.",
+        "prix": 0,
+        "effets": []
+      },
+      {
+        "id": "benediction",
+        "nom": "Bénédiction",
+        "resume": "Une bénédiction simple pour un voyageur, au nom de la veille : une nuit sans cauchemar.",
+        "prix": 2,
+        "effets": []
+      }
+    ],
+    "inventaire": [],
+    "compagnon": {
+      "classe": "clerc",
+      "espece": "tieffelin",
+      "niveau": 3,
+      "historique": "acolyte",
+      "recrutement": {
+        "et": [
+          {
+            "pnj": {
+              "id": "mireille-vanhaut",
+              "attitudeMin": 25
+            }
+          },
+          {
+            "flag": "lanterne-visitee"
+          }
+        ]
+      },
+      "quetePersonnelle": "q-mireille-le-frere-perdu",
+      "repliques": [
+        {
+          "declencheur": "devant un mort-vivant",
+          "texte": "Il cherche quelque chose. Ne le frappe pas tout de suite. Dis-moi : que veux-tu, toi ? Et si tu ne peux pas répondre, laisse-moi t'aider à partir."
+        },
+        {
+          "declencheur": "à la Lanterne",
+          "texte": "Je sens la chaleur sur ma peau, et je me demande qui paie pour elle. Une lumière comme celle-là ne se donne pas gratuitement, je le sais, j'ai grandi dans une foi qui mentait sur le prix."
+        },
+        {
+          "declencheur": "devant des Pèlerins gris",
+          "texte": "Ne les insulte pas. Ils croient aider. C'est ce qui les rend dangereux. Moi aussi je croyais aider."
+        },
+        {
+          "declencheur": "un choix cruel",
+          "texte": "Quoi que nous choisissions, nous porterons le poids de ceux que nous n'avons pas sauvés. Choisissons en le sachant."
+        },
+        {
+          "declencheur": "au feu du camp",
+          "texte": "Les morts de ma vie ne me quittent pas. Ils ne me font pas peur, ils me font de la compagnie. Parle-moi des tiens, si tu veux."
+        },
+        {
+          "declencheur": "devant un enfant",
+          "texte": "Les enfants voient ce que nous refusons de voir. Écoute-la sans la corriger."
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "Sacrifier un volontaire pour rallumer le Cœur",
+          "reaction": "Elle se tait longtemps : un volontaire, oui, mais seulement s'il choisit en connaissant le prix. Elle refuse qu'on le persuade ou qu'on le trompe.",
+          "attitude": -5
+        },
+        {
+          "sujet": "Noyer le Cœur-de-Braise",
+          "reaction": "Elle y voit une forme de miséricorde : faire reposer les morts, enfin. Elle regrette seulement de condamner la Lanterne et les vivants qui en dépendent.",
+          "attitude": 10
+        },
+        {
+          "sujet": "Chasser les Pèlerins gris par la force",
+          "reaction": "Elle s'y oppose : ce ne sont pas des ennemis mais des gens épuisés qui ont choisi une autre paix. Elle préfère les convaincre.",
+          "attitude": -10
+        }
+      ]
+    }
+  }
+]

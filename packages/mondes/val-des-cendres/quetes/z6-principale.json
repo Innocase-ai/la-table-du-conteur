@@ -1,0 +1,440 @@
+[
+  {
+    "id": "q-la-lanterne-faiblit",
+    "nom": "La Lanterne faiblit",
+    "type": "principale",
+    "donneur": "hesta-cendrebrune",
+    "lieu": "veillecendre",
+    "resume": "La flamme de la Lanterne de Veillecendre n'est plus qu'une braise et la Mère-Gardienne ne sait plus quoi faire. Le col est fermé, la cendre tombe, les morts approchent. Pour comprendre ce qui éteint la Lanterne, il faut aller à sa source : la Haute-Forge, fermée par un sceau nain dont la clé dort dans les cryptes d'Ormgard. Au cœur de la Forge brûle le Cœur-de-Braise, et c'est à vous de décider ce qu'on en fait.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "debut": "veille",
+    "etapes": [
+      {
+        "id": "veille",
+        "texte": "La Lanterne n'est plus qu'une braise sous la cendre. Parlez à Hesta Cendrebrune, la Mère-Gardienne, et allez voir la flamme dans sa tour : il y a plus à comprendre qu'un simple manque de combustible.",
+        "completion": {
+          "et": [
+            {
+              "flag": "a-parle-a-hesta"
+            },
+            {
+              "ou": [
+                {
+                  "flag": "lanterne-visitee"
+                },
+                {
+                  "lieu": "vei-la-lanterne"
+                }
+              ]
+            }
+          ]
+        },
+        "suivantes": [
+          "sceau"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "fait": "z6-braise-protege"
+          },
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "sceau",
+        "texte": "Hesta soupçonne que la Lanterne souffre du mal de la Haute-Forge, la cité naine ensevelie sous la montagne. Il faut y entrer, mais la Forge est scellée. Trouvez ce qui la ferme et qui peut l'ouvrir.",
+        "completion": {
+          "ou": [
+            {
+              "fait": "f-sceau-des-cryptes"
+            },
+            {
+              "flag": "cryptes-ouvertes"
+            },
+            {
+              "lieu": "cryptes-d-ormgard"
+            }
+          ]
+        },
+        "suivantes": [
+          "cryptes",
+          "conduit-de-la-fosse"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "cryptes",
+        "texte": "La clé du sceau de la Forge repose dans les cryptes d'Ormgard. Descendez dans les salles funéraires, franchissez leur gardien et rapportez la clé. (Autre voie : le conduit de ventilation de la Fosse.)",
+        "completion": {
+          "ou": [
+            {
+              "flag": "cryptes-franchies"
+            },
+            {
+              "objet": "cle-du-sceau-de-la-forge"
+            },
+            {
+              "flag": "haute-forge-ouverte"
+            }
+          ]
+        },
+        "suivantes": [
+          "forge"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "fait": "f-sceau-des-cryptes"
+          }
+        ]
+      },
+      {
+        "id": "conduit-de-la-fosse",
+        "texte": "Autre voie vers la Forge : au fond de la mine effondrée de la Fosse, une grille de bronze ouvre sur un conduit de ventilation qui débouche dans les étages bas de la Haute-Forge. La retrouver demande l'œil d'un bon fouilleur ; la Compagnie du Fer-Gris la connaît, et son accord vous épargne la recherche.",
+        "completion": {
+          "ou": [
+            {
+              "lieu": "hf-conduit-des-fumees"
+            },
+            {
+              "flag": "haute-forge-ouverte"
+            }
+          ]
+        },
+        "suivantes": [
+          "forge"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "forge",
+        "texte": "Vous êtes dans la Haute-Forge. Traversez les halles basses et les ateliers que la cendre a figés, et trouvez le moyen de descendre vers le foyer où brûle encore le Cœur. Cherchez aussi, si vous le pouvez, de quoi le noyer : l'Écluse noire.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "hf-ascenseur-actif"
+            },
+            {
+              "lieu": "hf-descente-des-braises"
+            },
+            {
+              "flag": "coeur-atteint"
+            }
+          ]
+        },
+        "suivantes": [
+          "ecluse",
+          "coeur"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 400
+          }
+        ]
+      },
+      {
+        "id": "ecluse",
+        "texte": "Il existe, quelque part au fond de la Forge, une vanne qui noierait le Cœur-de-Braise : l'Écluse noire. Trouvez-la, avec sa clé, pour garder cette issue ouverte.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "ecluse-noire-trouvee"
+            },
+            {
+              "flag": "coeur-atteint"
+            }
+          ]
+        },
+        "suivantes": [],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "coeur",
+        "texte": "Atteignez la forge du Cœur, où le spectre du roi Thalgrin poursuit sa dernière commande sous les yeux d'une enfant de fer. C'est là que tout se décide.",
+        "completion": {
+          "flag": "coeur-atteint"
+        },
+        "suivantes": [
+          "choix"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "fait": "f-roi-forgeron-thalgrin"
+          },
+          {
+            "fait": "f-coeur-de-braise"
+          },
+          {
+            "fait": "f-cendre-reveille-les-morts"
+          },
+          {
+            "fait": "f-derniere-commande"
+          },
+          {
+            "fait": "f-fille-de-fer"
+          },
+          {
+            "fait": "z6-dernier-souffle"
+          },
+          {
+            "fait": "f-rallumer-par-volontaire"
+          },
+          {
+            "xp": 500
+          }
+        ]
+      },
+      {
+        "id": "choix",
+        "texte": "Le Cœur-de-Braise attend. Quatre issues, et chacune coûte : nourrir le Cœur d'un volontaire pour rallumer la Lanterne ; ouvrir l'Écluse noire et noyer la Forge ; donner à Thalgrin le dernier souffle qui éveillera sa fille ; ou livrer la Forge au capitaine du Fer-Gris. Décidez.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "choix-rallumer"
+            },
+            {
+              "flag": "choix-eteindre"
+            },
+            {
+              "flag": "choix-achever"
+            },
+            {
+              "flag": "choix-fer-gris"
+            }
+          ]
+        },
+        "suivantes": [
+          "issue-rallumer",
+          "issue-eteindre",
+          "issue-achever",
+          "issue-fer-gris"
+        ],
+        "echec": {
+          "jauge": {
+            "id": "cendre",
+            "min": 5
+          }
+        },
+        "effets": []
+      },
+      {
+        "id": "issue-rallumer",
+        "texte": "Le Cœur est nourri d'un volontaire. La cendre cesse, la Lanterne revit.",
+        "completion": {
+          "flag": "choix-rallumer"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 1200
+          },
+          {
+            "fin": "fin-rallumer"
+          },
+          {
+            "quete": {
+              "id": "q-la-lanterne-faiblit",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "issue-eteindre",
+        "texte": "L'Écluse noire est ouverte. Le Cœur se noie, les morts reposent, la Lanterne s'éteint.",
+        "completion": {
+          "flag": "choix-eteindre"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 1200
+          },
+          {
+            "fin": "fin-eteindre"
+          },
+          {
+            "quete": {
+              "id": "q-la-lanterne-faiblit",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "issue-achever",
+        "texte": "Le dernier souffle est donné. Thalgrin est délivré, Brunhild s'éveille.",
+        "completion": {
+          "flag": "choix-achever"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 1200
+          },
+          {
+            "fin": "fin-achever"
+          },
+          {
+            "quete": {
+              "id": "q-la-lanterne-faiblit",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "issue-fer-gris",
+        "texte": "La Forge est livrée à Kor Varnak. La Compagnie tient le Cœur.",
+        "completion": {
+          "flag": "choix-fer-gris"
+        },
+        "suivantes": [],
+        "effets": [
+          {
+            "xp": 1200
+          },
+          {
+            "fin": "fin-fer-gris"
+          },
+          {
+            "quete": {
+              "id": "q-la-lanterne-faiblit",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Deux voies pour entrer dans la Haute-Forge : les cryptes d'Ormgard avec la clé du sceau (Z4 : cryptes-franchies puis passage scellé), ou le conduit de ventilation de la Fosse (Z5 : grille cachée, DD 19) que la Compagnie du Fer-Gris connaît (fait z6-fer-gris-connait-la-grille, révélé par q-fer-gris-le-laissez-passer). Les deux posent haute-forge-ouverte (événements Z5). Chaque étape peut échouer (jauge cendre à 5 ou mort de Hesta). L'étape choix se termine selon le flag choix-* posé par la dernière scène de la Forge du Cœur ; les quatre étapes issue-* posent le fin correspondant (une seule se déclenche ; elles ferment la quête elles-mêmes, leurs voisines restant en suspens). XP posés par les effets des étapes (recompenses.xp à 0 pour ne pas les doubler)."
+  }
+]

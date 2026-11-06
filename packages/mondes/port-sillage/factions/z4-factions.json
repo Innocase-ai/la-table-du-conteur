@@ -1,0 +1,174 @@
+[
+  {
+    "id": "gens-du-port",
+    "nom": "Les gens du port",
+    "resume": "Pêcheurs, ménagères, bateliers et commerçants de Port-Sillage : un village qui tient à sa fête, à ses filets et à la paix. La maire Gilda Fauvel le mène d'une main ferme.",
+    "objectifs": [
+      "Sauver la fête de la Mer et la flotte.",
+      "Garder les filets pleins et la paix au village.",
+      "Que personne ne regarde de trop près les comptes de la commune."
+    ],
+    "chef": "gilda-fauvel",
+    "reputation": 0,
+    "paliers": [
+      {
+        "seuil": -50,
+        "nom": "Étrangers louches",
+        "effet": "La place se tait à votre passage ; les rumeurs vous accusent."
+      },
+      {
+        "seuil": 0,
+        "nom": "Enquêteurs de la maire",
+        "effet": "Accueil poli, on parle à demi-mot."
+      },
+      {
+        "seuil": 30,
+        "nom": "Amis du port",
+        "effet": "On vous offre la soupe et les nouvelles de la place."
+      }
+    ],
+    "relations": [
+      {
+        "faction": "eglise-de-la-bonace",
+        "attitude": 40
+      },
+      {
+        "faction": "garnison-du-guet",
+        "attitude": 20
+      },
+      {
+        "faction": "contrebandiers-de-la-crique",
+        "attitude": -10
+      }
+    ]
+  },
+  {
+    "id": "eglise-de-la-bonace",
+    "nom": "L'Église de la Bonace",
+    "resume": "Le culte de sainte Maëlle, qui calmait les tempêtes : le père Aubin garde la crypte et lit chaque année la page de la Bonace pour que la flotte revienne.",
+    "objectifs": [
+      "Retrouver le livre et le remettre à sa place.",
+      "Que la Bonace soit lue chaque année.",
+      "Protéger les siens, Tobie et Hélène en tête."
+    ],
+    "chef": "pere-aubin",
+    "reputation": 0,
+    "paliers": [
+      {
+        "seuil": -50,
+        "nom": "Profanateurs",
+        "effet": "Le prêtre ne reçoit plus le groupe."
+      },
+      {
+        "seuil": 0,
+        "nom": "Visiteurs",
+        "effet": "Accueil doux, des conseils et une tisane."
+      },
+      {
+        "seuil": 30,
+        "nom": "Amis de la sainte",
+        "effet": "Le prêtre confie ce qu'il cache."
+      }
+    ],
+    "relations": [
+      {
+        "faction": "gens-du-port",
+        "attitude": 40
+      },
+      {
+        "faction": "garnison-du-guet",
+        "attitude": -10
+      },
+      {
+        "faction": "contrebandiers-de-la-crique",
+        "attitude": -40
+      }
+    ]
+  },
+  {
+    "id": "garnison-du-guet",
+    "nom": "La garnison du guet",
+    "resume": "Le guet de Port-Sillage, conduit par la capitaine Odile Marsan : une poignée de soldats mal payés qui tiennent la place, le quai et la route de l'est avec ce qu'il leur reste d'honneur.",
+    "objectifs": [
+      "Toucher enfin la solde.",
+      "Tenir le port et l'ordre.",
+      "Sauver l'honneur du guet."
+    ],
+    "chef": "odile-marsan",
+    "reputation": 0,
+    "paliers": [
+      {
+        "seuil": -50,
+        "nom": "Gêneurs",
+        "effet": "La caserne vous ferme sa grille."
+      },
+      {
+        "seuil": 0,
+        "nom": "Civils",
+        "effet": "Réponses sèches et rapports brefs."
+      },
+      {
+        "seuil": 30,
+        "nom": "Alliés du guet",
+        "effet": "La capitaine vous doit un service ; le sergent partage ses doutes."
+      }
+    ],
+    "relations": [
+      {
+        "faction": "gens-du-port",
+        "attitude": 20
+      },
+      {
+        "faction": "eglise-de-la-bonace",
+        "attitude": -10
+      },
+      {
+        "faction": "contrebandiers-de-la-crique",
+        "attitude": -20
+      }
+    ]
+  },
+  {
+    "id": "contrebandiers-de-la-crique",
+    "nom": "Les contrebandiers de la crique",
+    "resume": "Pêcheurs sans bateau et bateliers que Sorel Noirbec emploie et nourrit : ils vivent du sel, des caisses et des barques sans lumière, et ont pris le marché du livre pour passer l'hiver.",
+    "objectifs": [
+      "Vendre le livre au marquis de Verdelune.",
+      "Vivre tranquilles, sans verser le sang.",
+      "Nourrir les familles de la bande."
+    ],
+    "chef": "sorel-noirbec",
+    "reputation": 0,
+    "paliers": [
+      {
+        "seuil": -50,
+        "nom": "Ennemis",
+        "effet": "Les hommes de la crique tirent d'abord."
+      },
+      {
+        "seuil": 0,
+        "nom": "Fouineurs",
+        "effet": "Méfiance, mais on peut parler."
+      },
+      {
+        "seuil": 30,
+        "nom": "Clients",
+        "effet": "Les guetteurs laissent passer."
+      }
+    ],
+    "relations": [
+      {
+        "faction": "garnison-du-guet",
+        "attitude": -20
+      },
+      {
+        "faction": "gens-du-port",
+        "attitude": -10
+      },
+      {
+        "faction": "eglise-de-la-bonace",
+        "attitude": -40
+      }
+    ]
+  }
+]

@@ -1,0 +1,277 @@
+[
+  {
+    "id": "q-vei-le-grain-disparait",
+    "nom": "Le grain disparaît",
+    "type": "secondaire",
+    "donneur": "bertille-dernier-feu",
+    "lieu": "vei-grange-aux-grains",
+    "resume": "Les rations de l'auberge sont coupées de sable, la soupe s'allonge, et Bertille jure que la grange devrait tenir jusqu'au printemps. Quelqu'un vide le grenier du village.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "constat",
+    "etapes": [
+      {
+        "id": "constat",
+        "texte": "Bertille a trouvé du sable dans un sac de grain. Allez voir la grange aux grains, au pied du rempart.",
+        "completion": { "lieu": "vei-grange-aux-grains" },
+        "suivantes": ["indices"]
+      },
+      {
+        "id": "indices",
+        "texte": "La grange est aux deux tiers vide. Où part le grain ? Cherchez chez le bailli, au marché, ou à la porte du nord la nuit.",
+        "completion": { "ou": [{ "fait": "f-vei-sacs-vers-le-pont" }, { "fait": "f-vei-registre-du-bailli" }, { "fait": "f-vei-lettres-du-col" }] },
+        "suivantes": ["confronter"],
+        "echec": { "jauge": { "id": "cendre", "min": 4 } }
+      },
+      {
+        "id": "confronter",
+        "texte": "Le grain part en secret, par la porte du nord, vers Pont-de-Fer. Il faut en avoir le cœur net : le bailli, ou ses hommes, doivent s'expliquer.",
+        "completion": { "fait": "f-tribut-du-bailli" },
+        "suivantes": ["demasque", "marchander"]
+      },
+      {
+        "id": "demasque",
+        "texte": "Le bailli paie un tribut au Fer-Gris sur le dos du village. Révélez-le au capitaine Rolf et à la Mère-Gardienne : le village doit savoir.",
+        "completion": { "flag": "bailli-demasque" },
+        "suivantes": []
+      },
+      {
+        "id": "marchander",
+        "texte": "Le bailli paie un tribut au Fer-Gris. Obtenez de lui, en échange de votre silence, qu'il rouvre la grange et rende le grain.",
+        "completion": { "flag": "vei-grain-rendu" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 250,
+      "pieces": 50,
+      "objets": [],
+      "effets": [{ "attitude": { "pnj": "bertille-dernier-feu", "delta": 15 } }, { "reputation": { "faction": "gardiens-de-la-veille", "delta": 5 } }]
+    },
+    "ramifications": "Trois chemins. 1) Dénoncer : le double registre (cellier du bailli) ou la lettre du Fer-Gris prouvent le tribut ; Rolf et Hesta font le reste, le bailli est discrédité (drapeau bailli-demasque), mais le village perd son administrateur et la peur monte. 2) Marchander : Aurèle accepte de rouvrir la grange si on se tait ; le grain revient, mais le Fer-Gris reste payé et le bailli reste en place. 3) Échec : si la jauge de Cendre atteint 4, le village se vide avant que la vérité soit connue, et la quête échoue. Le groupe peut aussi se taire.",
+    "prerequis": { "non": { "flag": "bailli-demasque" } }
+  },
+  {
+    "id": "q-vei-la-peur-des-enfants",
+    "nom": "La peur des enfants",
+    "type": "secondaire",
+    "donneur": "pervenche-mousseron",
+    "lieu": "vei-puits",
+    "resume": "Les enfants du quartier des réfugiés ne dorment plus. Ils parlent d'un homme gris qui vient au puits chaque nuit. Pervenche voudrait comprendre avant que la peur ne tue plus sûrement que la toux.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "ecouter",
+    "etapes": [
+      {
+        "id": "ecouter",
+        "texte": "Pervenche vous a parlé d'une petite fille, Lise, qui voit l'« homme gris » au puits. Allez lui parler, au quartier des réfugiés.",
+        "completion": { "fait": "f-vei-homme-gris-puits" },
+        "suivantes": ["adieux", "cimetiere", "detruit"],
+        "echec": { "pnj": { "id": "vei-lise-petit-pas", "etat": "parti" } }
+      },
+      {
+        "id": "adieux",
+        "texte": "L'homme gris est le père de Lise. Veillez au puits à la nuit : apaisez-le avec des paroles de paix ou laissez Lise lui dire adieu.",
+        "completion": { "flag": "vei-egare-apaise" },
+        "suivantes": []
+      },
+      {
+        "id": "cimetiere",
+        "texte": "Conduisez le père de Lise jusqu'à sa tombe, au cimetière, comme on guide un somnambule, pour qu'il y reste.",
+        "completion": { "flag": "vei-egare-conduit" },
+        "suivantes": []
+      },
+      {
+        "id": "detruit",
+        "texte": "Vous l'avez détruit. La peur des enfants est finie, mais Lise ne vous le pardonnera peut-être jamais.",
+        "completion": { "flag": "vei-egare-detruit" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 0,
+      "objets": ["vei-onguent-gris-de-pervenche"],
+      "effets": [{ "attitude": { "pnj": "pervenche-mousseron", "delta": 10 } }]
+    },
+    "ramifications": "Trois façons de finir. Les adieux (le plus doux : Lise retrouve le sommeil, Mireille approuve, Odile aussi), le cimetière (le mort repose à sa place, sans éclat), ou la destruction (rapide mais brutale : Lise, Mireille et Odile en gardent rancune). Échec : si le village se vide (Cendre 4), Lise part avec sa mère et la quête échoue. Le groupe peut aussi ignorer la demande : la peur s'étend et la jauge monte un jour."
+  },
+  {
+    "id": "q-vei-le-colporteur-et-la-neige",
+    "nom": "Le colporteur et la neige",
+    "type": "secondaire",
+    "donneur": "vei-hubin-marchepied",
+    "lieu": "vei-chariot-embourbe",
+    "resume": "Hubin Marchepied, colporteur bloqué par la neige, a abandonné son chariot sur la route du col quand les gobelins l'ont attaqué. Il y a laissé de l'huile de roche en tonneaux. Pour lui, c'est sa fortune ; pour la Lanterne, c'est du combustible.",
+    "niveau": { "min": 1, "max": 2 },
+    "debut": "chariot",
+    "etapes": [
+      {
+        "id": "chariot",
+        "texte": "Hubin voudrait qu'on aille chercher son chariot, enfoncé dans une congère sur la route du col, au-delà du défilé des gobelins.",
+        "completion": { "lieu": "vei-chariot-embourbe" },
+        "suivantes": ["huile"]
+      },
+      {
+        "id": "huile",
+        "texte": "Sous la bâche, des tonneaux d'huile de roche. Rapportez-en au moins un à Veillecendre.",
+        "completion": { "objet": "vei-baril-d-huile-de-roche" },
+        "suivantes": ["lanterne", "hubin"],
+        "echec": { "jauge": { "id": "cendre", "min": 4 } }
+      },
+      {
+        "id": "lanterne",
+        "texte": "L'huile de roche peut nourrir la Lanterne. Portez-la au capitaine Rolf ou à la Mère-Gardienne.",
+        "completion": { "flag": "vei-huile-donnee-a-la-lanterne" },
+        "suivantes": []
+      },
+      {
+        "id": "hubin",
+        "texte": "Rendez le baril à Hubin, qui vous en donnera un bon prix. Il compte le vendre au plus offrant.",
+        "completion": { "flag": "vei-huile-rendue-a-hubin" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 250,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "attitude": { "pnj": "vei-hubin-marchepied", "delta": 5 } }]
+    },
+    "ramifications": "Deux fins. Donner l'huile à la Lanterne : la flamme reprend du poil, la jauge de Cendre baisse d'un cran, les Gardiens remercient (Rolf paie soixante pièces au nom de la tour), mais Hubin est furieux. Rendre le baril à Hubin : il paie cent pièces et vend le reste au plus offrant, dont le bailli. Échec : si la Cendre monte à 4, les gobelins pillent le chariot et le colporteur perd tout. Si les gobelins ont été vaincus ou apaisés, le chariot est intact."
+  },
+  {
+    "id": "q-vei-les-lettres-du-col",
+    "nom": "Les lettres du col",
+    "type": "secondaire",
+    "donneur": "rolf-garde-capitaine",
+    "lieu": "vei-relais-du-col",
+    "resume": "Le courrier du bailli, qui apporte les nouvelles des basses terres, n'est pas revenu. Rolf voudrait savoir ce qui lui est arrivé et ce qu'il portait.",
+    "niveau": { "min": 1, "max": 2 },
+    "debut": "trouver",
+    "etapes": [
+      {
+        "id": "trouver",
+        "texte": "Rolf attend un courrier qui n'est pas revenu du col. Cherchez-le sur la route, au relais abandonné.",
+        "completion": { "lieu": "vei-relais-du-col" },
+        "suivantes": ["lire"]
+      },
+      {
+        "id": "lire",
+        "texte": "Le courrier est mort, une lettre cachetée sur lui. Lisez-la : elle concerne le bailli et le Fer-Gris.",
+        "completion": { "fait": "f-vei-lettres-du-col" },
+        "suivantes": ["remettre", "bruler", "vendre"]
+      },
+      {
+        "id": "remettre",
+        "texte": "Remettez la lettre au capitaine Rolf, qui la montrera à la Mère-Gardienne.",
+        "completion": { "flag": "vei-lettres-remises" },
+        "suivantes": []
+      },
+      {
+        "id": "bruler",
+        "texte": "Brûlez la lettre à l'auberge : le village n'a pas besoin de cette discorde de plus.",
+        "completion": { "flag": "vei-lettres-brulees" },
+        "suivantes": []
+      },
+      {
+        "id": "vendre",
+        "texte": "Vendez la lettre au bailli : il saura la payer, et vous aurez sa dette.",
+        "completion": { "flag": "vei-lettres-vendues" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 30,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Remettre la lettre à Rolf : les Gardiens apprennent le tribut du bailli (fait f-tribut-du-bailli) et peuvent agir ; Rolf est reconnaissant. La brûler : le village garde un semblant de paix, mais le tribut continue ; Bertille l'approuve ou non selon le point de vue. La vendre au bailli : cent vingt pièces et la faveur d'Aurèle, mais un fil de plus tiré au profit d'un traître. Dans tous les cas, lire la lettre révèle le tribut."
+  },
+  {
+    "id": "q-vei-une-dette-de-bertille",
+    "nom": "Une dette de Bertille",
+    "type": "secondaire",
+    "donneur": "bertille-dernier-feu",
+    "lieu": "vei-auberge-dernier-feu",
+    "resume": "Bertille a acheté du grain à crédit l'hiver dernier, et le bailli veut être payé avant la fin de la semaine, auberge en gage. Elle fait semblant de sourire.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "dette",
+    "etapes": [
+      {
+        "id": "dette",
+        "texte": "Bertille doit cent vingt pièces au bailli, billet signé, auberge en gage. Il faut payer, négocier ou faire disparaître le billet.",
+        "completion": { "fait": "f-vei-dette-de-bertille" },
+        "suivantes": ["payer", "annuler", "negocier"],
+        "echec": { "flag": "vei-auberge-saisie" }
+      },
+      {
+        "id": "payer",
+        "texte": "Payez les cent vingt pièces au bailli au nom de Bertille.",
+        "completion": { "flag": "vei-dette-payee" },
+        "suivantes": []
+      },
+      {
+        "id": "annuler",
+        "texte": "Le billet est au cellier du bailli, sous le plancher. Faites-le disparaître.",
+        "completion": { "flag": "vei-dette-annulee" },
+        "suivantes": []
+      },
+      {
+        "id": "negocier",
+        "texte": "Obtenez du bailli un délai ou une remise, en échange d'un service ou de votre parole.",
+        "completion": { "flag": "vei-dette-negociee" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 0,
+      "objets": ["vei-cle-de-la-cave"],
+      "effets": [{ "attitude": { "pnj": "bertille-dernier-feu", "delta": 20 } }, { "flag": "vei-chambre-gratuite" }]
+    },
+    "ramifications": "Payer (cent vingt pièces, propre mais coûteux), faire disparaître le billet (le brûler ou le rendre, un cambriolage ou un chantage : Bertille en rit et en pleure), ou négocier un délai avec Aurèle (qui y voit un levier de plus). Échec : le mouchard Bastien propose au groupe une part de la saisie ; si on accepte, Bertille est expulsée de son auberge (drapeau vei-auberge-saisie)."
+  },
+  {
+    "id": "q-vei-la-braise-de-veille",
+    "nom": "Une braise pour veiller",
+    "type": "secondaire",
+    "donneur": "fennick-rouage",
+    "lieu": "vei-atelier-des-rouages",
+    "resume": "Fennick a conservé un boîtier de bronze nain que personne n'a su remonter. Avec une étincelle de la Lanterne, il pourrait donner une braise de veille à qui la mérite : le porteur ne serait plus touché par la cendre.",
+    "niveau": { "min": 1, "max": 4 },
+    "debut": "boitier",
+    "etapes": [
+      {
+        "id": "boitier",
+        "texte": "Remettez en état le mécanisme du boîtier de bronze dans l'atelier de Fennick : trois arbres, trois pignons.",
+        "completion": { "flag": "vei-mecanisme-repare" },
+        "suivantes": ["etincelle-donnee", "etincelle-prise"]
+      },
+      {
+        "id": "etincelle-donnee",
+        "texte": "Il faut une étincelle de la Lanterne. Convainquez la Mère-Gardienne de vous la confier : elle ne donne qu'à qui elle juge digne.",
+        "completion": { "flag": "vei-etincelle-donnee" },
+        "suivantes": ["assembler"]
+      },
+      {
+        "id": "etincelle-prise",
+        "texte": "Si la Mère-Gardienne refuse, il existe une autre voie : le Veilleur lui-même pourrait vous donner l'étincelle, à l'insu des Gardiens.",
+        "completion": { "flag": "vei-etincelle-prise" },
+        "suivantes": ["assembler"]
+      },
+      {
+        "id": "assembler",
+        "texte": "Rapportez à Fennick le boîtier réparé et l'étincelle : il assemblera la braise de veille.",
+        "completion": { "objet": "braise-de-veille" },
+        "suivantes": []
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "fait": "f-vei-etincelle-et-braise" }]
+    },
+    "ramifications": "L'étincelle vient de Hesta (don, attitude 40 et visite de la Lanterne : la Mère-Gardienne le fait la mort dans l'âme, mais en confiance) ou d'Oswin (acte discret : Hesta s'en aperçoit tôt ou tard, et sa colère coûte réputation et attitude). Dans tous les cas la Lanterne en sort un peu plus faible. La braise est « confiée à qui la mérite » : le groupe décide qui la porte."
+  }
+]

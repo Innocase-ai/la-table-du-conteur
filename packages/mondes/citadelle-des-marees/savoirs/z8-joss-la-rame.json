@@ -1,0 +1,125 @@
+[
+  {
+    "pnj": "joss-la-rame",
+    "passe": "Joss la Rame a une quarantaine d'années. Orc né sur le quai de Port-aux-Cordes, il est le fils d'un passeur qui menait les gens d'une rive à l'autre du port. À douze ans, une rame s'est brisée entre ses mains : la cicatrice qu'il porte à la main droite vient de ces années-là, et il ne la montre jamais. Il a ramé à son tour pendant seize ans, puis il a pris le comptoir du Hareng gris, il y a douze ans, chez Garance Bolle. Il y sert la soupe, rit fort et appelle chacun « l'ami ». Il connaît tout le port, les Rats comme la Ligue, et il ne dit jamais tout ce qu'il connaît.",
+    "liens": [
+      {
+        "pnj": "por-garance-bolle",
+        "nature": "sa patronne, et son amie",
+        "opinion": "Elle l'a pris au comptoir du Hareng gris, et il la trouve trop généreuse pour sa propre bourse. Il ne lui parle jamais de ses comptes."
+      },
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "la cheffe des Rats, qu'il craint et qu'il flatte",
+        "opinion": "Elle le tient pour un bavard à surveiller. Il la craint, il la flatte, et il préfère ne jamais s'asseoir à côté d'elle."
+      },
+      {
+        "qui": "la Ligue des Phares",
+        "nature": "les gens de la Ligue, qui tiennent les registres du port",
+        "opinion": "Des gens qui parlent de chiffres, dit-il, et qui oublient les noms quand les chiffres sont justes."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "les-lettres-au-sceau-noir",
+        "texte": "Depuis deux hivers, des lettres au sceau noir arrivent au Hareng gris, glissées sous la porte de la cuisine. Elles promettent une fortune à qui signale les voyageurs pressés qui cherchent une place sur l'eau. Il se répète qu'un passeur qui fait payer ses places n'a pas de raison de refuser, que personne n'y perd, et il ne s'est jamais demandé qui signait.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Il pose la main à plat sur le comptoir, compte la monnaie deux fois à voix basse, et dit qu'un passeur n'a pas de comptes à rendre aux lettres qu'on lui écrit."
+      },
+      {
+        "id": "la-dette-de-garance",
+        "texte": "Garance lui a donné sa première place à terre, quand il ne savait plus quoi faire de ses mains sans rame. Il croit lui devoir plus qu'il ne pourra jamais rendre, et il le lui dit en riant, pour qu'elle ne le prenne pas au sérieux.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il rit, dit que Garance exagère toujours, et se remet à essuyer le comptoir plus fort que nécessaire."
+      },
+      {
+        "id": "rame-cassee",
+        "texte": "À douze ans, une rame de frêne s'est brisée entre ses mains, sur le quai, et le bois lui a ouvert la main droite jusqu'au creux de la paume. Il a appris à ramer de la main gauche, et il dit qu'il rame encore de travers par goût."
+      },
+      {
+        "id": "quai-de-naissance",
+        "texte": "Il est né sur le quai de Port-aux-Cordes, entre les barques de son père et les cris des dockers. Son père passait les gens d'une rive à l'autre du port sur une barque de bois noir, pour quelques pièces, et le petit Joss dormait au fond de la coque sous une bâche."
+      },
+      {
+        "id": "seize-ans-de-rame",
+        "texte": "Il a ramé seize ans entre les quais et les barques du port, jusqu'au jour où il a poussé la porte du Hareng gris, il y a douze ans. Il dit que la taverne lui paraissait moins mouvante que la mer, et il n'est jamais reparti."
+      },
+      {
+        "id": "l-ami",
+        "texte": "Il appelle chacun « l'ami », le marin qui le paie comme le Ligueur qui l'ennuie, sans jamais se souvenir du nom de celui qu'il salue."
+      },
+      {
+        "id": "monnaie-deux-fois",
+        "texte": "Il compte la monnaie deux fois, à voix basse, avant de la poser sur le comptoir, même quand il sait que le compte est juste."
+      },
+      {
+        "id": "pot-de-moutarde",
+        "texte": "Il garde un pot de moutarde forte sous le comptoir pour les gens qui l'ennuient, et le leur offre avec un grand sourire, comme une faveur."
+      },
+      {
+        "id": "opinion-sur-les-rats",
+        "texte": "Les Rats de quai, dit-il, sont de bons clients : ils boivent au fond de la salle, parlent bas, et paient la tournée sans qu'on la leur demande."
+      },
+      {
+        "id": "opinion-sur-la-mer",
+        "texte": "La mer est un fleuve qui paie mal, dit-il : elle prend les barques, les filets et les hommes, et ne rend jamais la monnaie."
+      },
+      {
+        "id": "eau-salee",
+        "texte": "Un soir, Mère Sorel l'a fait boire d'un verre d'eau salée, devant toute la salle, pour le faire taire. Il en tousse encore quand elle entre au Hareng gris, et il le raconte en riant pour que personne ne le plaigne."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-regle-des-anneaux",
+        "fait": "f-por-regle-des-rats",
+        "version": "Il sait que les Rats ne passent jamais quand la mer revient, et qu'il y a une règle gravée à la craie sur le battant de la porte de leur cachette. Il ne dit pas où se trouve cette porte.",
+        "acces": {}
+      },
+      {
+        "id": "la-lanterne-sans-main",
+        "fait": "f-por-lumieres-sous-l-eau",
+        "version": "Il a vu la même lueur que les autres au fond de la chaussée, à marée basse : une lanterne qui marche sans main, et qui s'arrête quand on la vise. Il n'en parle pas devant les clients.",
+        "acces": {}
+      },
+      {
+        "id": "l-homme-sec",
+        "fait": "f-por-heraut-suit-le-groupe",
+        "version": "Un homme blême, à qui la pluie ne touche pas, a demandé quel groupe cherchait une barque pour la chaussée. Il suit les voyageurs depuis la Citadelle, dit-il, et il n'a pas dit à Joss pour qui.",
+        "acces": {},
+        "tabou": [
+          "manteau sec"
+        ]
+      },
+      {
+        "id": "les-fuyards-vendus",
+        "fait": "f-por-joss-vend-les-fuyards",
+        "version": "Il prévient quelqu'un, de l'autre côté de l'eau, de chaque voyageur pressé qu'il fait passer ; les fuyards qui ont payé sont attendus. Il appelle ça un service, et se dit que personne n'y perd.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Il se tait, la main sur sa cicatrice, et dit que les voyageurs pressés finissent toujours par trouver une barque, qu'ils paient ou non.",
+        "tabou": [
+          "prévient la Cour"
+        ]
+      },
+      {
+        "id": "la-lettre-noire",
+        "fait": "f-por-lettre-du-chancelier",
+        "version": "Il a reçu une lettre scellée d'un sceau de haut rang, qui l'envoie conduire à la basse mer la jeune pensionnaire de la Citadelle jusqu'à la cale sèche. Il ne sait pas encore s'il a le droit de refuser.",
+        "acces": {
+          "attitudeMin": 65
+        },
+        "evasif": "Il pose la main à plat sur le comptoir, comme pour retenir quelque chose, et demande qui a bien pu vous parler de ce papier.",
+        "tabou": [
+          "Chancelier",
+          "cire noire"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,129 @@
+{
+  "sauvegardes": {
+    "dex": 3,
+    "con": 10,
+    "cha": 5
+  },
+  "competences": {
+    "athletisme": 11,
+    "perception": 6
+  },
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "geant-du-feu",
+  "nom": "Géant du feu",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Loyal Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 162,
+    "des": "13d12 + 78"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 25,
+    "dex": 9,
+    "con": 23,
+    "int": 10,
+    "sag": 14,
+    "cha": 13
+  },
+  "initiative": 3,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "gigant",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Épée de feu et Lancer de marteau (modélisé : deux Épée de feu).",
+      "multiattaque": [
+        {
+          "action": "epee-de-feu",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "epee-de-feu",
+      "nom": "Épée de feu",
+      "cout": "action",
+      "resume": "Corps à corps +11, allonge 3 m : 21 (4d6 + 7) dégâts tranchants plus 10 (3d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 7,
+          "type": "tranchant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "lancer-de-marteau",
+      "nom": "Lancer de marteau",
+      "cout": "action",
+      "resume": "À distance +11, portée 18/72 m : 23 (3d10 + 7) dégâts contondants plus 4 (1d8) dégâts de feu, et la cible est repoussée d'un maximum de 4,50 m du géant et subit le Désavantage à son prochain jet d'attaque intervenant avant la fin de son propre tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18,
+        "longue": 72
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 7,
+          "type": "contondant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "cri-de-guerre",
+      "nom": "Cri de guerre",
+      "cout": "bonus",
+      "resume": "Le géant ou une créature de son choix parmi celles qui l'entendent ou le voient reçoit 16 (2d10 + 5) points de vie temporaires, ainsi que l'Avantage aux jets d'attaque jusqu'au début du tour suivant du géant.",
+      "recharge": "5-6",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

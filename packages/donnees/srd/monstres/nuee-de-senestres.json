@@ -1,0 +1,97 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "nécrotique",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "empoisonne",
+    "entrave",
+    "neutralise",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "nuee",
+      "nom": "Nuée",
+      "resume": "La nuée peut occuper l'espace d'une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour une créature de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Étourdi, Pétrifié."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "comprend le commun, mais ne parle pas",
+  "id": "nuee-de-senestres",
+  "nom": "Nuée de sénestres",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 12,
+  "pv": {
+    "moyenne": 49,
+    "des": "11d8"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 14,
+    "con": 11,
+    "int": 5,
+    "sag": 10,
+    "cha": 4
+  },
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 10
+  },
+  "fp": "3",
+  "px": 700,
+  "actions": [
+    {
+      "id": "nuee-de-senestres",
+      "nom": "Nuée de sénestres",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 20 (4d8 + 2) dégâts nécrotiques, ou 11 (2d8 + 2) dégâts nécrotiques si la nuée est En péril. Si la cible est une créature de taille M ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 2,
+          "type": "nécrotique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

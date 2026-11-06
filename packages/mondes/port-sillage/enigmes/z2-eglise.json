@@ -1,0 +1,40 @@
+[
+  {
+    "id": "eg-e-cloches-de-maree",
+    "nom": "Les trois cloches de la crypte",
+    "lieu": "eg-crypte",
+    "enonce": "Trois cloches de bronze verdi pendent à la poutre de chêne, à hauteur de tête. Chacune porte, dans un cercle gravé, un signe différent : le disque plein, la coquille ouverte, les trois vagues dressées. Leurs battants pendent au bout de cordelettes de chanvre que l'on peut tirer. Au fond de la salle, l'armoire de la sainte reste fermée par sa barre de fer et sa serrure de bronze à anneau. Dans quel ordre sonnez-vous les cloches ?",
+    "solution": {
+      "type": "sequence",
+      "ordre": ["cloche-aux-trois-vagues", "cloche-au-disque-plein", "cloche-a-la-coquille"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Ces signes, vous les avez déjà vus ailleurs dans l'église : aux pieds de la sainte, sur le vitrail de la nef, et dans la marge d'un registre de la sacristie. Ils parlent de la mer, pas des cloches.",
+        "competence": "religion",
+        "dd": 10
+      },
+      {
+        "niveau": 2,
+        "texte": "Le vitrail dit ce que chaque signe veut dire : la mer qui monte, la mer pleine, la mer qui s'est retirée. La phrase gravée sur l'arc de la niche dit dans quel ordre il faut la sonner, et le père Aubin répète que la sainte ne réveillait jamais la mer à rebours.",
+        "competence": "investigation",
+        "dd": 11
+      },
+      {
+        "niveau": 3,
+        "texte": "La mer arrive, reste, puis s'en va : d'abord les trois vagues dressées, ensuite le disque plein, enfin la coquille ouverte."
+      }
+    ],
+    "echec": {
+      "piege": "z2-p-dalle-de-la-niche",
+      "effets": [],
+      "resume": "Les cloches sonnent faux, et leur tintement s'éteint dans un grincement : sous vos pieds, la plaque de cuivre de la dalle cède."
+    },
+    "recompense": {
+      "effets": [{ "fait": "f-z2-armoire-de-la-sainte" }, { "xp": 25 }],
+      "tresor": "z2-t-armoire-de-la-sainte",
+      "resume": "Les trois cloches se répondent, la dernière se tait, et la barre de fer de l'armoire se soulève d'elle-même avec un bruit de ressac ; les battants s'entrouvrent sur l'odeur de cire ancienne et de papier."
+    }
+  }
+]

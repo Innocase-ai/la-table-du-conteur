@@ -1,0 +1,173 @@
+[
+ {
+  "id": "exa-pont-de-pierre",
+  "lieu": "pont-de-pierre",
+  "nom": "Le pont de pierre",
+  "apercu": "Des dalles moussues, un tréteau de péage et des clous de fer neufs.",
+  "texte": "Le pont est vieux, mais les planches du tréteau sont neuves. Des clous de fer à tête carrée fixent une caisse de péage sur les dalles ; la caisse porte une marque de la compagnie, un fer à cheval barré. Sous l'arche, l'eau brune charrie des roseaux coupés et des éclats de bois. Sur la rambarde, quelqu'un a gravé un compte à la pointe d'un couteau : quatre traits, puis un cinquième, plus profond.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "les-roues-de-la-charrette",
+    "condition": {
+     "fait": "f-charrette-saisie"
+    },
+    "texte": "Sous la mousse, deux ornières profondes tournent vers le nord avant le pont et ne le traversent pas. La charrette n'a jamais pris la chaussée : elle a été détournée ici, vers la mine. Les clous neufs du tréteau, eux, sont hobgobelins.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-moulin-roux",
+  "lieu": "mir-moulin-roux",
+  "nom": "Le moulin Roux",
+  "apercu": "Une roue qui tourne à vide, un sac de farine éventré et un registre fermé.",
+  "texte": "La roue tourne sans grain depuis des jours ; la farine sèche en croûte sur les meules. Sur l'établi, un registre relié de toile cirée attend, fermé par une lanière. Des sacs vides sont empilés contre le mur, marqués à la peinture rouge du moulin. Une odeur de blé moisi et d'huile stagne sous les poutres.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "les-comptes-du-meunier",
+    "condition": {
+     "fait": "f-pacte-du-meunier"
+    },
+    "texte": "Le registre ouvert montre quatre colonnes : la date, le nombre de sacs, le destinataire, et une croix pour les années où le compte n'a pas été payé. Les trois dernières lignes sont vides et datées de cet automne. Anselme n'a pas seulement caché le pacte : il n'a plus rien à payer.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-veine-de-fer",
+  "lieu": "min-veine-de-fer",
+  "nom": "La veine de fer",
+  "apercu": "Une paroi brune, des étais qui chantent, et des menottes accrochées à un clou.",
+  "texte": "La veine affleure en traînées brunes dans le schiste gris. Les étais de pin sont noirs et fendus ; l'un d'eux laisse tomber un filet de sable à chaque coup de masse. Un wagonnet rouillé attend, à demi chargé. À un clou de la paroi pendent deux paires de menottes, l'une encore fermée.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "le-fer-de-guerre",
+    "condition": {
+     "fait": "f-but-de-varg"
+    },
+    "texte": "Le minerai n'est pas du fer de clou : les échantillons de la niche de sondage sont lourds, sombres, et gardent une chaleur de forge. C'est du fer de guerre, celui des lames et des armures. Varg n'exploite pas une mine de village : il fabrique de quoi armer la frontière.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-place-du-marche",
+  "lieu": "mir-place-du-marche",
+  "nom": "La place du marché",
+  "apercu": "Des sacs de grain comptés, un panneau cloué et des dalles mouillées.",
+  "texte": "Sur la place, les sacs de grain sont alignés sous un auvent et comptés deux fois par le même vieil homme. Un panneau de bois neuf est cloué au pilori : une écriture hobgobeline serrée y annonce le péage et le tribut. Les dalles gardent la trace de roues et de sabots ; la pluie efface les plus récentes.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "le-tribut-affiche",
+    "condition": {
+     "fait": "f-double-tribut"
+    },
+    "texte": "Le panneau ne parle plus de péage mais de tribut : la moitié du grenier avant la prochaine lune. Sous l'écriture hobgobeline, une main de Mireval a ajouté au charbon : « et quoi, après ? »",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-salle-commune",
+  "lieu": "gro-salle-commune",
+  "nom": "La salle commune de la grotte",
+  "apercu": "Un feu de tourbe, une dalle gravée et des marques d'enfants sur la roche.",
+  "texte": "Le feu de tourbe fume bas sous la voûte. Une dalle plate sert de table ; des écuelles de bois y sont alignées, certaines fendues. Sur la paroi, à hauteur d'enfant, des traits gravés comptent des jours ou des bêtes. La réserve, derrière une peau tendue, sonne creux quand on frappe.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "les-comptes-de-la-faim",
+    "condition": {
+     "fait": "f-tribu-affamee"
+    },
+    "texte": "Les traits sur la roche ne comptent pas des jours : ce sont des rations. Trois paquets de traits, un par semaine, et le dernier est plus court que les autres. Derrière la peau tendue, la réserve est vide à moitié, et les écuelles sont rangées par taille d'enfant.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-camp-hobgobelin",
+  "lieu": "min-camp-hobgobelin",
+  "nom": "Le camp hobgobelin",
+  "apercu": "Une palissade, une forge de campagne et une charrette bâchée.",
+  "texte": "Le camp est propre, aligné, presque militaire : tentes de toile goudronnée, forge de campagne, tas de minerai trié. Une charrette bâchée est rangée contre la palissade, ses roues encore pleines de boue de roseaux. Les hobgobelins parlent bas et regardent la route plus souvent que la mine.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "la-charrette-du-moulin",
+    "condition": {
+     "fait": "f-charrette-saisie"
+    },
+    "texte": "Sous la bâche, les sacs portent la marque rouge du moulin Roux. La charrette n'a pas été vidée : le grain est là, compté, aligné, et gardé pour le tribut. Ce n'est pas un butin de guerre, c'est une pièce comptable.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-cabane-des-passeurs",
+  "lieu": "mar-cabane-des-passeurs",
+  "nom": "La cabane des passeurs",
+  "apercu": "Une barque retournée, des perches de roseaux et une carte sous verre.",
+  "texte": "La cabane sent la vase et le goudron. Une barque retournée sèche sous l'auvent, des perches de roseaux sont liées en fagots, et une carte du marais est punaisée sous un carreau de verre fêlé. Des marques au fusain indiquent des passes, des fonds et deux cachettes.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "le-chemin-de-la-mine",
+    "condition": {
+     "fait": "f-passeurs-neutres"
+    },
+    "texte": "La carte porte un trait discret vers le nord, hors des passes marquées : un chemin de roseaux couchés qui monte à la mine. À côté, au fusain, une main a écrit un prix et une date. Marin ne vend pas seulement le passage : il vend le silence.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-grotte-des-noyes",
+  "lieu": "mar-grotte-des-noyes",
+  "nom": "La margelle des Noyés",
+  "apercu": "Un autel de roseaux, des bols cirés et des traces de crue sur la roche.",
+  "texte": "La margelle est sèche au-dessus de l'eau brune, couverte de bols de bois et de roseaux tressés. Des traces de crue forment des lignes nettes sur la roche, à hauteur d'homme. Sous les bols, une coquille retient un parchemin plié.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "les-offrandes-des-passeurs",
+    "condition": {
+     "fait": "f-autel-roseaux"
+    },
+    "texte": "Les bols ne sont pas des objets de culte : ce sont des offrandes de passeurs. Chacun y a laissé une pièce ou une ration avant de traverser, et l'eau a noyé les plus basses. L'autel est plus vieux que Mireval.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ },
+ {
+  "id": "exa-veine-basse",
+  "lieu": "min-grotte-de-la-veine-basse",
+  "nom": "L'atelier de la veine basse",
+  "apercu": "Une enclume de campagne, un marteau et des traces de bottes dans la poussière de fer.",
+  "texte": "L'atelier est taillé dans une niche : établi, enclume de campagne, clous rouillés et un marteau accroché au mur. La poussière de fer recouvre tout, sauf deux pistes de bottes récentes qui descendent vers l'eau. Le reliquaire de bois est cloué trop haut pour un homme debout.",
+  "effets": [],
+  "variantes": [
+   {
+    "id": "les-contrebandiers-de-la-veine",
+    "condition": {
+     "fait": "f-veine-basse"
+    },
+    "texte": "Les traces récentes ne sont pas celles de la compagnie : les semelles sont plus étroites, et l'une boite. Des contrebandiers descendent ici voler le fer de Varg, dans la galerie que les nains ont murée après l'éboulement.",
+    "effets": []
+   }
+  ],
+  "regards": []
+ }
+]

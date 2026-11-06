@@ -1,0 +1,137 @@
+{
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 2
+  },
+  "competences": {
+    "discretion": 7,
+    "perception": 4,
+    "persuasion": 4
+  },
+  "resistances": [
+    "nécrotique"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "charme"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "lien-vampirique",
+      "nom": "Lien vampirique",
+      "resume": "Tant que le familier et son maître vampire sont sur le même plan d'existence, le vampire peut communiquer avec son familier par télépathie et percevoir l'environnement du familier par les sens de ce dernier."
+    },
+    {
+      "id": "immunite-charme-maitre",
+      "nom": "Immunité au charme (sauf par le maître)",
+      "resume": "Immunité à l'état Charmé, sauf s'il est infligé par son maître vampire. Taille M ou P selon le SRD (représentée M dans le moteur)."
+    }
+  ],
+  "id": "familier-de-vampire",
+  "nom": "Familier de vampire",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 65,
+    "des": "10d8 + 20"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 16,
+    "con": 15,
+    "int": 10,
+    "sag": 10,
+    "cha": 14
+  },
+  "initiative": 5,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "commun et une autre langue",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le familier effectue deux attaques de Dague des ombres.",
+      "multiattaque": [
+        {
+          "action": "dague-des-ombres-cac",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "dague-des-ombres-cac",
+      "nom": "Dague des ombres (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants plus 7 (3d4) dégâts nécrotiques. Si la cible tombe à 0 point de vie en raison de cette attaque, elle se retrouve Stabilisée mais subit l'état Empoisonné pendant 1 heure ; tant qu'elle a l'état Empoisonné, la cible subit l'état Paralysé.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "3d4",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "dague-des-ombres-distance",
+      "nom": "Dague des ombres (à distance)",
+      "cout": "action",
+      "resume": "À distance +5, portée 6/18 m : 5 (1d4 + 3) dégâts perforants plus 7 (3d4) dégâts nécrotiques. Si la cible tombe à 0 point de vie en raison de cette attaque, elle se retrouve Stabilisée mais subit l'état Empoisonné pendant 1 heure ; tant qu'elle a l'état Empoisonné, la cible subit l'état Paralysé.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "3d4",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "agilite-immortelle",
+      "nom": "Agilité immortelle",
+      "cout": "bonus",
+      "resume": "Le familier effectue l'action Désengagement ou Pointe."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "sauvegardes": {
+    "for": 10,
+    "sag": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "tyrannosaure",
+  "nom": "Tyrannosaure",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 136,
+    "des": "13d12 + 52"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 25,
+    "dex": 10,
+    "con": 19,
+    "int": 2,
+    "sag": 12,
+    "cha": 9
+  },
+  "competences": {
+    "perception": 4
+  },
+  "initiative": 3,
+  "sens": {
+    "perceptionPassive": 14
+  },
+  "langues": "aucune",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le tyrannosaure effectue une attaque de Morsure et une de Queue.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 1
+        },
+        {
+          "action": "queue",
+          "nombre": 1
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 33 (4d12 + 7) dégâts perforants. Si la cible est de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 17). Ainsi Agrippée, la cible subit aussi l'état Entravé et ne peut pas être ciblée par la Queue du tyrannosaure.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "4d12",
+          "bonus": 7,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 17,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 4,50 m : 25 (4d8 + 7) dégâts contondants. Si la cible est de taille TG ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 7,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    }
+  ]
+}

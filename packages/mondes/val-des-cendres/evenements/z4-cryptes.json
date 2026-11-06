@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cry-ev-entree-mausolee",
+    "declencheur": "entree-lieu",
+    "lieu": "cryptes-d-ormgard",
+    "unique": true,
+    "narration": "Le portique du mausolée est plus grand de près. La porte de bronze, verdie, n'est pas verrouillée : elle a été ouverte il y a quelques jours, de l'extérieur. Des traces de bottes dans la cendre mènent à l'escalier. En bas, quelque chose attend de se souvenir de vous.",
+    "effets": [
+      {
+        "flag": "cryptes-ouvertes"
+      }
+    ]
+  },
+  {
+    "id": "cry-ev-souffle-de-la-rotonde",
+    "declencheur": "entree-lieu",
+    "lieu": "cry-rotonde",
+    "unique": true,
+    "narration": "La coupole peinte retient la chaleur qui monte d'en bas. Vous sentez le sol légèrement tiède sous vos bottes. Au bord de votre vision, les huit sarcophages semblent respirer d'un même souffle lent.",
+    "effets": []
+  },
+  {
+    "id": "cry-ev-le-puits-respire",
+    "declencheur": "entree-lieu",
+    "lieu": "cry-puits-de-cendre",
+    "unique": true,
+    "narration": "Le puits inspire, longuement. Une volute de cendre grise monte lentement le long de la paroi, passe devant vos visages et file vers le plafond. Il expire : un grondement lointain, très bas, et le rougeoiement du fond grossit un instant.",
+    "effets": []
+  },
+  {
+    "id": "cry-ev-le-sceau-s-ouvre",
+    "declencheur": "condition",
+    "lieu": "cry-salle-du-sceau",
+    "condition": {
+      "flag": "cryptes-franchies"
+    },
+    "unique": true,
+    "narration": "Le grand disque du Sceau tremble, puis tourne d'un quart de tour avec un bruit de cloche. Derrière, la route funéraire des Forgerons s'ouvre dans un souffle chaud, qui sent le métal et la braise : en haut, quelque part, des marteaux frappent encore.",
+    "effets": []
+  }
+]

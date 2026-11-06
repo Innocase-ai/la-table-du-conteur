@@ -1,0 +1,73 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 5,
+    "discretion": 5,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "torve",
+  "nom": "Torve",
+  "taille": "M",
+  "type": "Aberration",
+  "alignement": "Neutre Mauvaise",
+  "ca": 11,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 12,
+    "con": 12,
+    "int": 9,
+    "sag": 8,
+    "cha": 6
+  },
+  "initiative": 1,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "gourdin-en-os",
+      "nom": "Gourdin en os",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants plus 2 (1d4) dégâts psychiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ]
+    }
+  ]
+}

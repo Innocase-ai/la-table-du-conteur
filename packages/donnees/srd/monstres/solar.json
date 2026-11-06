@@ -1,0 +1,261 @@
+{
+  "id": "solar",
+  "nom": "Solar",
+  "taille": "G",
+  "type": "Céleste (Ange)",
+  "alignement": "Loyal Bon",
+  "ca": 21,
+  "pv": {
+    "moyenne": 297,
+    "des": "22d10 + 176"
+  },
+  "vitesse": {
+    "marche": 15,
+    "vol": 45
+  },
+  "caracteristiques": {
+    "for": 26,
+    "dex": 22,
+    "con": 26,
+    "int": 25,
+    "sag": 25,
+    "cha": 30
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 14
+  },
+  "initiative": 20,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison",
+    "radiant"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 24
+  },
+  "langues": "toutes ; télépathie 36 m",
+  "fp": "21",
+  "px": 33000,
+  "bonusMaitrise": 7,
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans les sens du moteur)."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Le vol de la créature permet le vol stationnaire."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le solar a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(4/jour.) Si le solar rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "restauration-exaltee",
+      "nom": "Restauration exaltée",
+      "resume": "Si le solar meurt hors du Mont Céleste, son corps disparaît et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part sur le Mont Céleste."
+    },
+    {
+      "id": "vigilance-divine",
+      "nom": "Vigilance divine",
+      "resume": "Le solar reconnaît un mensonge quand il en entend un."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3. Aussitôt après le tour d'une autre créature, le solar peut dépenser une utilisation pour entreprendre l'une des actions ci-après (Regard aveuglant ou Téléportation radiante). Il récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "resume": "Le solar effectue deux attaques d'Épée volante. Il peut remplacer l'une de ces attaques par une utilisation d'Arc tueur.",
+      "multiattaque": [
+        {
+          "action": "epee-volante-cac",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 8,
+          "type": "tranchant"
+        },
+        {
+          "des": "8d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "epee-volante-cac",
+      "nom": "Épée volante (corps à corps)",
+      "resume": "Corps à corps +15, allonge 3 m : 22 (4d6 + 8) dégâts tranchants plus 36 (8d8) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 15
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 8,
+          "type": "tranchant"
+        },
+        {
+          "des": "8d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "epee-volante-distance",
+      "nom": "Épée volante (distance)",
+      "resume": "À distance +15, portée 36 m : 22 (4d6 + 8) dégâts tranchants plus 36 (8d8) dégâts radiants. Touché ou raté : aussitôt après une attaque à distance, l'épée retourne magiquement dans la main du solar ou flotte dans un rayon de 1,50 m de lui.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 15
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 6,
+          "type": "perforant"
+        },
+        {
+          "des": "8d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "arc-tueur",
+      "nom": "Arc tueur",
+      "resume": "JS Dextérité DD 21, une créature que le solar voit dans un rayon de 180 m. Échec : si la créature est dotée de 100 points de vie ou moins, elle meurt. Sinon, elle subit 24 (4d8 + 6) dégâts perforants plus 36 (8d8) dégâts radiants.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 21,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 180
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le solar lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 25). À volonté : détection du mal et du bien. 1/jour chacun : communion, contrôle du climat, dissipation du mal et du bien, résurrection."
+    },
+    {
+      "cout": "bonus",
+      "degats": [],
+      "etats": [],
+      "id": "soutien-divin",
+      "nom": "Soutien divin",
+      "resume": "3/jour. Le solar lance délivrance des malédictions, restauration partielle ou soins (au 2e niveau), avec la même caractéristique d'incantation que pour Incantation.",
+      "utilisations": {
+        "nombre": 3,
+        "par": "jour"
+      }
+    },
+    {
+      "cout": "gratuit",
+      "degats": [],
+      "etats": [
+        {
+          "etat": "aveugle",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": false
+        }
+      ],
+      "id": "regard-aveuglant",
+      "nom": "Regard aveuglant",
+      "resume": "Action légendaire. JS Constitution DD 25, une créature que le solar voit dans un rayon de 36 m. Échec : la cible subit l'état Aveuglé pendant 1 minute. Échec ou réussite : le solar ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 25,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      }
+    },
+    {
+      "cout": "gratuit",
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": [],
+      "id": "teleportation-radiante",
+      "nom": "Téléportation radiante",
+      "resume": "Action légendaire. Le solar se téléporte d'un maximum de 18 m vers un espace inoccupé qu'il voit. JS Dextérité DD 25, chaque créature dans une Émanation de 3 m centrée sur le solar à son espace de destination. Échec : 11 (2d10) dégâts radiants. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 25,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 3
+      }
+    }
+  ]
+}

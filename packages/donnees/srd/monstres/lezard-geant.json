@@ -1,0 +1,72 @@
+{
+  "id": "lezard-geant",
+  "nom": "Lézard géant",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d10 + 3"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 13,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "sauvegardes": {
+    "dex": 3
+  },
+  "competences": {},
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "Le lézard peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,150 @@
+[
+  {
+    "id": "q-cry-les-noms-des-defunts",
+    "nom": "Les noms des défunts",
+    "type": "secondaire",
+    "donneur": "cry-orsolf-plume-grise",
+    "lieu": "cry-chambre-des-cartes",
+    "resume": "Maître Orsolf, l'ombre de l'archiviste d'Ormgard, n'arrive pas à finir son grand registre : la cendre a mangé les noms des défunts, et les morts sans nom ne dorment pas. Rendez leurs noms aux morts d'Ormgard.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "debut": "retrouver",
+    "etapes": [
+      {
+        "id": "retrouver",
+        "texte": "Retrouvez les noms perdus : replacez les urnes de la galerie (quatre noms), rapportez la plaque de sépulture du sonneur (crypte du glas) et celle du capitaine de la garde (coffre de la caserne).",
+        "completion": {
+          "et": [
+            {
+              "flag": "cry-urnes-apaisees"
+            },
+            {
+              "objet": "cry-plaque-du-sonneur"
+            },
+            {
+              "objet": "cry-plaque-du-gardien"
+            }
+          ]
+        },
+        "suivantes": [
+          "lire"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "cry-orsolf-plume-grise",
+            "etat": "mort"
+          }
+        },
+        "effets": []
+      },
+      {
+        "id": "lire",
+        "texte": "Retournez voir Maître Orsolf et dites-lui les noms que vous avez rendus.",
+        "completion": {
+          "flag": "cry-noms-rendus"
+        },
+        "suivantes": [
+          "adieux"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "cry-orsolf-plume-grise",
+            "etat": "mort"
+          }
+        },
+        "effets": []
+      },
+      {
+        "id": "adieux",
+        "texte": "Les noms sont rendus. Maître Orsolf voudrait vous dire adieu.",
+        "completion": {
+          "flag": "cry-orsolf-apaise"
+        },
+        "suivantes": [],
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [
+        "cry-lorgnon-de-l-archiviste",
+        "cry-bague-de-cendre-apaisee"
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "gardiens-de-la-veille",
+            "delta": 5
+          }
+        }
+      ]
+    },
+    "ramifications": "Si le groupe garde la plaque du gardien pour la rendre à Brand Garde-Serment (alternative « rendre son nom » de la rencontre finale), il peut encore terminer la quête : Orsolf lit les plaques sans les prendre. Si Orsolf est détruit ou chassé (exorcisme, attaque), la quête échoue, la chambre des cartes cesse d'être un refuge sûr, et la réputation auprès des morts de la Forge baisse. Un groupe pressé peut aussi n'apporter que la moitié des noms : Orsolf s'estompe alors à demi, sans donner ses objets."
+  },
+  {
+    "id": "q-cry-le-fossoyeur-pris-au-piege",
+    "nom": "Le fossoyeur pris au piège",
+    "type": "secondaire",
+    "donneur": "cry-odo-piquepelle",
+    "lieu": "cry-boyau-des-mineurs",
+    "resume": "Odo Piquepelle, fossoyeur de Veillecendre, est coincé depuis trois jours dans un boyau éboulé sous les cryptes. Aidez-le à sortir et ramenez-le au jour.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "debut": "degager",
+    "etapes": [
+      {
+        "id": "degager",
+        "texte": "Dégagez Odo des gravats du boyau des mineurs, au fond du réfectoire.",
+        "completion": {
+          "flag": "cry-fossoyeur-libere"
+        },
+        "suivantes": [
+          "raccompagner"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "cry-odo-piquepelle",
+            "etat": "mort"
+          }
+        },
+        "effets": []
+      },
+      {
+        "id": "raccompagner",
+        "texte": "Raccompagnez Odo jusqu'à la trappe de l'ossuaire, ou jusqu'à la surface, sans qu'il lui arrive malheur.",
+        "completion": {
+          "flag": "cry-fossoyeur-sauf"
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "cry-odo-piquepelle",
+            "etat": "mort"
+          }
+        },
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 30,
+      "objets": [
+        "cry-pelle-du-fossoyeur"
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "gardiens-de-la-veille",
+            "delta": 5
+          }
+        }
+      ]
+    },
+    "ramifications": "Si Odo meurt (goules du réfectoire, chute dans le gouffre), la quête échoue. On peut le laisser sur place avec un sac et de l'eau pour qu'il attende, mais il perd courage. Une fois sauf, il offre sa connaissance de l'entrée secrète de l'ossuaire ; au village, ses récits pèsent sur la rumeur du trésor du roi."
+  }
+]

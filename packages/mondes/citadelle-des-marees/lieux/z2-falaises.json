@@ -1,0 +1,497 @@
+[
+  {
+    "id": "route-des-falaises",
+    "nom": "La route des falaises",
+    "type": "route",
+    "parent": "cote-de-hautmaree",
+    "resume": "Une route de crête, étroite et glissante, qui court au-dessus de la mer retirée.",
+    "description": "La route quitte la Citadelle, descend le cap par des dalles usées, puis suit la crête vers l'est. Des bornes de pierre marquent les distances, et des croix de bois portent des noms effacés. En contrebas, les rochers découverts par la marée basse forment des terrasses noires. Des cairns, élevés par les voyageurs, bordent le chemin.",
+    "ambiance": "Vent du large, pierre mouillée, rares voix de voyageurs qui s'éloignent.",
+    "accroche": "Une route de crête qui court le long du cap, bordée de bornes de pierre, au-dessus d'une mer retirée trop loin.",
+    "visuel": "une route de crête en dalles grises usées, des bornes de pierre couvertes de lichen, des croix de bois aux noms effacés, des rochers noirs découverts au pied de la falaise, un ciel bas couleur d'ardoise",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "citadelle-des-marees",
+        "type": "route",
+        "heures": 2,
+        "sens": "double",
+        "description": "Le sentier de dalles remonte vers la Citadelle, à deux heures de marche : ses tours restent visibles jusqu'au premier virage.",
+        "retour": "La route redescend vers la porte de terre ; la Citadelle s'élève au-dessus des embruns, ses fenêtres encore allumées."
+      },
+      {
+        "vers": "marais-de-sel",
+        "type": "chemin",
+        "heures": 2,
+        "sens": "double",
+        "description": "Un chemin de terre quitte la crête vers l'intérieur, entre des fossés pleins d'eau saumâtre, jusqu'aux marais bas.",
+        "retour": "Le chemin de terre rejoint la crête ; la mer réapparaît, d'un gris d'ardoise, au bout de la route."
+      },
+      {
+        "vers": "fal-brumevoile",
+        "type": "chemin",
+        "heures": 3,
+        "sens": "double",
+        "description": "Un sentier raide descend vers une anse, à flanc de roche, par des éboulis mouillés ; trois heures de descente et de remontée.",
+        "retour": "Le sentier remonte de l'anse par des marches taillées dans la falaise, jusqu'à la route de crête."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "fal-r-naufrages-de-la-route",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 62,
+      "y": 47
+    }
+  },
+  {
+    "id": "fal-relais-des-voyageurs",
+    "nom": "Le relais des voyageurs",
+    "type": "batiment",
+    "parent": "route-des-falaises",
+    "resume": "Une auberge de bord de route, à demi ruinée, où les caravanes s'arrêtent encore.",
+    "description": "Un bâtiment de pierre à toit de lauzes, effondré en partie côté mer, avec une écurie et un puits. La salle commune a gardé sa cheminée, ses bancs et une table de jeu. Le colporteur y a installé ses ballots de toile, et une messagère blessée dort sur une paillasse, près du feu.",
+    "ambiance": "Un feu de bois flotté, des bancs qui craquent et la porte de l'écurie qui bat dans le vent.",
+    "visuel": "un relais de pierre à toit de lauzes en partie effondré, une cheminée de granit, des bancs de chêne, des ballots de toile et de cordage, un feu de bois flotté, une écurie ouverte sur la cour",
+    "accroche": "Un toit de lauzes à moitié effondré, une fumée de bois flotté qui sort de la cheminée et l'odeur de crottin d'une écurie.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [
+      "information"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "fal-pont-des-corbeaux",
+    "nom": "Le pont des Corbeaux",
+    "type": "lieu-dit",
+    "parent": "route-des-falaises",
+    "resume": "Un pont de pierre sur un ravin, où les corbeaux se perchent par dizaines.",
+    "description": "Un pont à deux arches jeté au-dessus d'une gorge étroite, dont le parapet est couvert de fientes blanches. Des pillards guettent les convois dans les rochers du côté nord, et une fosse masquée de branchages barre l'accès au tablier. Au fond du ravin coule un ruisseau gris qui rejoint la mer.",
+    "ambiance": "Le cri des corbeaux qui se répond d'une rive à l'autre.",
+    "visuel": "un pont de pierre à deux arches, un parapet couvert de fientes, un ravin de schiste noir, des corbeaux par dizaines sur les pierres, un ruisseau gris au fond de la gorge",
+    "accroche": "Un pont de pierre au-dessus d'une gorge, son parapet blanchi par les oiseaux, et des rochers qui surplombent la route.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "fal-r-pillards-du-pont",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-fal-meute-de-la-grotte",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 11
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-epave-de-la-perle-grise",
+    "nom": "L'épave de la Perle grise",
+    "type": "ruine",
+    "parent": "route-des-falaises",
+    "resume": "Les restes d'un cotre de cabotage, couché sur les rochers sous la falaise.",
+    "description": "La coque éventrée repose sur un lit de galets, les mâts brisés en travers, la cale inondée à demi. Une voile raidie par le sel pend encore des vergues, et les planches portent la peinture écaillée d'un nom effacé. Un homme, réfugié dans la cabine arrière, ne parle plus que par fragments.",
+    "ambiance": "Une voile qui claque, l'eau qui gargouille dans la cale, le bois qui gémit.",
+    "visuel": "une coque de bois noir couchée sur des galets, des mâts brisés en travers, une voile raidie de sel pendue aux vergues, une cale inondée, des planches couvertes d'algues",
+    "accroche": "Une coque de bois noir couchée sur les galets, ses mâts en travers, et une voile raidie par le sel qui claque au vent.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-fal-perle-grise-coulee",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-phare-du-cap-mort",
+    "nom": "Le phare du Cap-Mort",
+    "type": "batiment",
+    "parent": "route-des-falaises",
+    "resume": "Un phare de pierre éteint depuis des années, à la pointe du cap, dont la lanterne est restée noire.",
+    "description": "Une tour ronde de moellons gris, coiffée d'une galerie de fer rouillé, bâtie à la pointe du cap pour guider les barques vers la baie. Au rez-de-chaussée, le logement du gardien : une table, un poêle, des registres. Un escalier en colimaçon monte jusqu'à la salle de la lampe.",
+    "ambiance": "Un poêle qui ronfle, le vent sous la galerie, les registres qui tournent leurs pages seuls.",
+    "visuel": "une tour ronde de moellons gris, une galerie de fer rouillé, une porte de chêne ferrée, un poêle de fonte, des registres ouverts sur une table, un escalier de pierre en colimaçon, une lanterne noire au sommet",
+    "accroche": "Une tour ronde de moellons gris à la pointe du cap, sa lanterne noire au sommet, et une porte de chêne ferrée entrouverte.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [
+      "information"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-phare-lampe",
+    "nom": "La salle de la lampe",
+    "type": "salle",
+    "parent": "fal-phare-du-cap-mort",
+    "resume": "La salle vitrée au sommet du phare, où une lentille de cristal attend sous ses volets.",
+    "description": "Une salle ronde aux parois de verre, pleine de vent. Au centre, la lentille à échelons repose sur un pivot de laiton ; quatre volets de métal la ferment, gravés chacun d'un état de la mer. Sur le sol, la poussière garde des traces de pas, et une vitrine de cuivre renferme les anciennes cartes du cap.",
+    "ambiance": "Le vent qui siffle entre les carreaux, et la mer sombre qui ne cesse de bouger au-dehors.",
+    "visuel": "une salle ronde aux parois de verre, une lentille de cristal à échelons sur un pivot de laiton, quatre volets de métal gravés, une vitrine de cuivre, des cartes jaunies, la mer sombre à travers les carreaux",
+    "accroche": "Une salle de verre au sommet de la tour, où le vent siffle sous une grande lentille couverte de poussière.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "marais-de-sel",
+    "nom": "Les marais de sel",
+    "type": "lieu-dit",
+    "parent": "cote-de-hautmaree",
+    "resume": "Des bassins de sel gris entre les digues, qui se vident et se remplissent avec la mer.",
+    "description": "Une plaine plate et basse, coupée de digues de terre et de canaux, où l'eau de mer entre à marée haute pour s'évaporer dans des bassins carrés. Les saulniers y ramassent un sel gris, râpeux. Les chemins de planches, sur les digues, sont glissants.",
+    "ambiance": "Plat, humide, silencieux ; des bassins qui se vident et une odeur de sel.",
+    "accroche": "Une plaine plate de bassins carrés et de digues de terre brune, où le sel gris blanchit les bords des canaux.",
+    "visuel": "une plaine plate couverte de bassins carrés et d'eau saumâtre, des digues de terre brune, des tas de sel gris sous des bâches, des canaux étroits, des planches glissantes, un ciel pâle au-dessus des roseaux",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "fal-r-la-maree-qui-monte",
+        "declencheur": "entree",
+        "condition": {
+          "jauge": {
+            "id": "maree",
+            "min": 2
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 38,
+      "y": 62
+    }
+  },
+  {
+    "id": "fal-salines",
+    "nom": "Les salines de Marthe",
+    "type": "batiment",
+    "parent": "marais-de-sel",
+    "resume": "Une cabane de saulniers, avec ses bassins et son séchoir à sel, tenue par une saunière seule.",
+    "description": "Une cabane de planches goudronnées, un séchoir à sel en claies et trois bassins encore pleins. La saunière y garde ses outils, des râteaux de bois, des sacs de toile, et une marmite de soupe sur le poêle. Des cahiers de comptes sont accrochés au mur, avec les noms de ceux qui viennent récolter.",
+    "ambiance": "La marmite qui chante doucement et le grincement des claies sous le vent.",
+    "visuel": "une cabane de planches goudronnées, un séchoir à sel en claies, des râteaux de bois, des sacs de toile, un poêle de fonte avec une marmite, des bassins carrés pleins d'eau grise",
+    "accroche": "Une cabane de planches goudronnées au bord des bassins, avec un séchoir à claies et une fumée de poêle qui s'élève droit.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "fal-digues-du-marais",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Un chemin de planches traverse les bassins jusqu'aux digues, où la terre est molle et grise sous les pieds.",
+        "retour": "Les planches ramènent vers les bassins ; la cabane de goudron se détache sur la plaine, petite et sombre."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [
+      "information"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "fal-digues-du-marais",
+    "nom": "Les digues",
+    "type": "lieu-dit",
+    "parent": "marais-de-sel",
+    "resume": "Des digues de boue où la mer s'engouffre à marée basse, et où rôdent les noyés.",
+    "description": "Une longue digue de terre noire entre deux étangs, à peine plus haute que l'eau. Les saunières disparues y ont été vues pour la dernière fois. Sous la digue de l'Ouest, un passage s'ouvre au ras de l'eau et se referme avec la marée ; il faut un œil attentif pour le voir.",
+    "ambiance": "La boue qui aspire les pas, et le clapotis qui revient toujours du même côté.",
+    "visuel": "une digue de terre noire entre deux étangs gris, des flaques qui brillent, des joncs couchés, des traces de bottes dans la boue, une bande d'écume sur la vase",
+    "accroche": "Une digue de boue noire entre deux étangs, à peine plus haute que l'eau, et des traces de pas qui s'arrêtent net.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "fal-r-noyes-du-marais",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-fal-saunieres-retrouvees",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-brumevoile",
+    "nom": "Brumevoile",
+    "type": "hameau",
+    "parent": "cote-de-hautmaree",
+    "resume": "Un hameau de pêcheurs abandonné, dont les maisons de pierre se sont remplies de sable et d'algues.",
+    "description": "Une dizaine de maisons basses bâties en gradins sur l'anse, leurs toits effondrés ou couverts de goémon séché. Les barques ont été tirées au sec puis laissées là, retournées, la coque fendue. Une cloche de bois pend à la porte de l'église, qui n'a plus de porte. Un seul homme vit encore ici, dans la maison la plus haute.",
+    "ambiance": "Un village qui n'a plus de voix ; un seul pas résonne sur les dalles.",
+    "accroche": "Une dizaine de maisons basses en gradins sur une anse grise, leurs toits effondrés et le goémon séché sur les murs.",
+    "visuel": "des maisons basses de pierre en gradins sur une anse grise, des toits de lauzes effondrés, des barques retournées à coque fendue, du goémon séché sur les murs, une cloche de bois, une falaise de schiste",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [
+      "fal-ev-brumevoile-vide"
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 24,
+      "y": 74
+    }
+  },
+  {
+    "id": "fal-cimetiere-des-naufrages",
+    "nom": "Le cimetière des naufrages",
+    "type": "ruine",
+    "parent": "fal-brumevoile",
+    "resume": "Un cimetière sur la falaise, où l'on enterrait les naufragés recueillis sur la côte.",
+    "description": "Un champ de stèles dressées au-dessus de l'anse, certaines sans inscription, d'autres dont le nom est rongé par le sel. Les tombes basses sont alignées face à la mer, et les sépultures les plus anciennes sont marquées de chaînes d'ancre. Une petite chapelle de moellons ferme le champ, et les tombes les plus récentes n'ont pas de pierre.",
+    "ambiance": "L'herbe couchée par le vent, les chaînes d'ancre qui tintent faiblement.",
+    "visuel": "un champ de stèles grises face à la mer, des inscriptions rongées par le sel, des chaînes d'ancre rouillées autour des tombes, une petite chapelle de moellons, de l'herbe couchée par le vent",
+    "accroche": "Un champ de stèles grises, face à la mer, au bout d'un sentier de falaise où le vent couche l'herbe.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "fal-r-goules-du-cimetiere",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-fal-noyes-ne-remontent-pas",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "fal-grotte-des-marees",
+    "nom": "La grotte des marées",
+    "type": "grotte",
+    "parent": "route-des-falaises",
+    "resume": "Une grotte au pied de la falaise, creusée par la mer, qui se remplit et se vide deux fois par jour.",
+    "description": "Une ouverture basse, ronde, dans le schiste, au pied des rochers noirs. La mer y pénètre à marée haute et laisse des flaques entre les piliers. Les parois portent des lignes de sel, des coquilles et des traces de feux anciens. À l'intérieur, l'air est froid et salé.",
+    "ambiance": "Un goutte-à-goutte régulier, et le bruit de l'eau qui revient dans les galeries.",
+    "visuel": "une ouverture basse dans un schiste noir, des piliers de roche couverts d'algues, des flaques qui brillent, des lignes de sel sur les parois, un sol de galets lisses, une lueur bleue venue du fond",
+    "accroche": "Une ouverture basse dans le schiste noir, au pied des rochers, où des flaques brillent sur des galets lisses.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-grotte-des-marees-entree",
+    "nom": "L'entrée de la grotte",
+    "type": "salle",
+    "parent": "fal-grotte-des-marees",
+    "resume": "Un couloir de pierre humide, au plafond bas, qui descend vers les profondeurs.",
+    "description": "Un couloir qui descend, où il faut baisser la tête. Les flaques sont pleines d'une eau claire, et des coquilles de moules s'accrochent aux parois jusqu'à hauteur d'épaule. Un vieux crochet de fer tient encore une lanterne vide.",
+    "ambiance": "Des gouttes qui tombent du plafond, et la lumière grise de l'entrée qui s'éloigne.",
+    "visuel": "un couloir de schiste bas de plafond, des flaques claires, des coquilles de moules accrochées aux parois, un crochet de fer rouillé, une lumière grise qui vient de l'entrée",
+    "accroche": "Un couloir qui descend et se rétrécit, avec des coquilles de moules accrochées jusqu'à hauteur d'épaule.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "fal-grotte-des-marees-galerie",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un boyau étroit s'enfonce à quatre pattes entre deux blocs, vers une galerie où l'on entend couler de l'eau.",
+        "retour": "Le boyau remonte vers le couloir ; on ressort des blocs la tête la première, les genoux pleins de sable."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "fal-r-meute-de-la-grotte",
+        "declencheur": "entree",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-fal-la-charrette-eventree",
+                "statut": "active"
+              }
+            },
+            {
+              "fait": "f-fal-meute-de-la-grotte"
+            }
+          ]
+        },
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-grotte-des-marees-galerie",
+    "nom": "La galerie des toiles",
+    "type": "salle",
+    "parent": "fal-grotte-des-marees",
+    "resume": "Une galerie où des toiles épaisses tendent les piliers, et où vivent de grosses araignées.",
+    "description": "Une galerie haute, aux piliers de roche, bordée de toiles grises tendues d'un mur à l'autre. Des cocons pendent au plafond, et au fond une fosse de galets retient une eau noire. Des sacs de voyageurs oubliés ont été vidés par les bêtes.",
+    "ambiance": "Un souffle d'air qui fait danser les toiles, et les cocons qui se balancent.",
+    "visuel": "une galerie aux piliers de roche voilés de toiles grises, des cocons suspendus au plafond, une fosse de galets noirs, des sacs de toile éventrés, une lueur bleue sur l'eau",
+    "accroche": "Une galerie de piliers voilés de toiles grises, d'où l'on entend l'eau couler au fond de la roche.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "fal-grotte-des-marees-bassin",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "jauge": {
+            "id": "maree",
+            "max": 2
+          }
+        },
+        "description": "Une fente étroite, au fond de la galerie, ne s'ouvre que lorsque la mer se tient bas ; de l'eau claire et froide suinte dessous.",
+        "retour": "La fente longe le bassin et ramène à la galerie, où les cocons se balancent au courant d'air."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "fal-r-araignees-de-la-grotte",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fal-grotte-des-marees-bassin",
+    "nom": "Le bassin du sel",
+    "type": "salle",
+    "parent": "fal-grotte-des-marees",
+    "resume": "Un bassin de pierre noire, au fond de la grotte, où une ligne de sel marque le niveau d'une mer ancienne.",
+    "description": "Un bassin large et plat, plein d'une eau immobile et claire. Sur la paroi, une ligne de sel blanc court à hauteur d'homme, bien au-dessus de l'eau actuelle. Au fond, sous l'eau, des dalles jointes forment une route qui s'enfonce sous le bassin. Le silence y est total.",
+    "ambiance": "Un silence plein, interrompu par une goutte qui tombe de loin en loin.",
+    "visuel": "un bassin plat de pierre noire plein d'eau immobile, une ligne de sel blanc sur la paroi, des dalles jointes sous l'eau claire, une lumière qui vient d'en bas, des parois polies",
+    "accroche": "Un bassin de pierre noire au fond de la grotte, dont la surface immobile reflète une lueur qui ne vient pas du jour.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-chaussee-des-basses-eaux",
+        "decouverte": {
+          "dd": 14,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "evenements": [
+      "fal-ev-bassin-marque"
+    ],
+    "services": [],
+    "repos": "impossible"
+  }
+]

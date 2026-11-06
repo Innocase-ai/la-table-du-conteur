@@ -1,0 +1,141 @@
+[
+  {
+    "id": "mar-r-patrouille-de-krik",
+    "nom": "La patrouille de Krik",
+    "type": "combat",
+    "lieu": "mar-sentier-des-roseaux",
+    "difficulte": "moderee",
+    "intro": "Cinq gobelins sortent des roseaux sans un bruit et barrent le sentier, arcs bandés. Celui de devant est le plus jeune : cimeterre trop long, mâchoire serrée, il compte les étrangers à voix haute comme s’il récitait une leçon. « Halte. Ici, c’est le sentier de la tribu. »",
+    "monstres": [
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 1,
+        "nom": "Krik",
+        "pnj": "krik"
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 2
+      },
+      {
+        "profil": "sbire-gobelin",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "####################",
+      "#~~~...........~~..#",
+      "#~~..mmm...mm..~~..#",
+      "#.....~~...........#",
+      "#..~~.....~~.......#",
+      "#............~~....#",
+      "#....HHHHHH........#",
+      "#~~~...~~~...~~~...#",
+      "####################"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "Krik charge droit devant en criant pour attirer les coups ; les deux archers montent sur les buttes de tourbe et tirent à couvert des roseaux ; les deux sbires tentent de contourner par l’eau pour prendre le groupe de flanc.",
+      "fuite": "Si Krik tombe, les survivants se dispersent dans les roseaux vers la grotte ; ils ne poursuivent pas au-delà des fascines.",
+      "renforts": "Aucun : la patrouille est seule, et un coup de sifflet n’appelle personne dans ce marais."
+    },
+    "alternatives": [
+      {
+        "id": "mar-parler-de-la-dime",
+        "nom": "Parler de la dîme",
+        "resume": "Dire à Krik que le village n’a pas rompu le pacte : la charrette a été prise par les hobgobelins, et la tribu n’y est pour rien. Il écoute jusqu’au bout, fait passer le groupe et jure d’aller le dire à Skarn.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "krik",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "tribu-de-skarn",
+              "delta": 5
+            }
+          }
+        ],
+        "echec": [
+          {
+            "pieces": -6
+          },
+          {
+            "attitude": {
+              "pnj": "krik",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "mar-payer-le-passage",
+        "nom": "Payer le passage",
+        "resume": "Une bourse de pièces et la patrouille s’écarte du sentier, déçue mais satisfaite ; Krik compte la somme devant vous, lentement, puis vous laisse passer.",
+        "effets": [
+          {
+            "pieces": -8
+          },
+          {
+            "attitude": {
+              "pnj": "krik",
+              "delta": 5
+            }
+          }
+        ],
+        "condition": {
+          "pieces": {
+            "min": 8
+          }
+        }
+      },
+      {
+        "id": "mar-glisser-par-les-roseaux",
+        "nom": "Glisser par les roseaux",
+        "resume": "Quitter les rondins et avancer courbé dans les roseaux, d’une butte de tourbe à l’autre, sans faire claquer l’eau ni plier une tige.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 14
+        },
+        "effets": [],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "krik",
+              "delta": -10
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "z5-butins-gobelins"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "attitude": {
+          "pnj": "krik",
+          "delta": -40
+        }
+      },
+      {
+        "reputation": {
+          "faction": "tribu-de-skarn",
+          "delta": -10
+        }
+      }
+    ]
+  }
+]

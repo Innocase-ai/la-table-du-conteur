@@ -1,0 +1,648 @@
+{
+  "id": "clerc",
+  "nom": "Clerc",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "sag"
+    ]
+  },
+  "deVie": 8,
+  "sauvegardes": [
+    "sag",
+    "cha"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "histoire",
+      "intuition",
+      "medecine",
+      "persuasion",
+      "religion"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "bouclier"
+  ],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Chemise de mailles",
+        "Bouclier",
+        "Masse d’armes",
+        "Symbole sacré",
+        "Paquetage d’ecclésiastique"
+      ],
+      "po": 7
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 110
+    }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "sag",
+    "sortsMineurs": [
+      3,
+      3,
+      3,
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      16,
+      17,
+      17,
+      18,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ]
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Ordre divin"
+      ],
+      "colonnes": {
+        "Conduit divin": "—"
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Conduit divin"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe de Clerc"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Calcination de Mort-vivant"
+      ],
+      "colonnes": {
+        "Conduit divin": 2
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Impacts bénis"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Intervention divine"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Impacts bénis améliorés"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Conduit divin": 3
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [],
+      "colonnes": {
+        "Conduit divin": 4
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Conduit divin": 4
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Intervention divine suprême"
+      ],
+      "colonnes": {
+        "Conduit divin": 4
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts de Clerc avec la Sagesse, en utilisant un symbole sacré comme focaliseur. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer vos sorts préparés à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "ordre-divin",
+      "nom": "Ordre divin",
+      "niveau": 1,
+      "resume": "Choisissez un rôle sacré. Protecteur : maîtrise des armes de guerre et formation aux armures lourdes. Thaumaturge : un sort mineur de Clerc supplémentaire et un bonus égal à votre modificateur de Sagesse (minimum +1) aux tests d’Intelligence (Arcanes et Religion).",
+      "effets": []
+    },
+    {
+      "id": "conduit-divin",
+      "nom": "Conduit divin",
+      "niveau": 2,
+      "resume": "Deux utilisations (colonne Conduit divin), une regagnée au Repos court et toutes au Repos long ; DD égal à votre DD de sauvegarde des sorts. Étincelle divine (action Magie, 9 m) : 1d8 + modificateur de Sagesse en soins, ou en dégâts nécrotiques ou radiants (JS de Constitution pour la moitié). Renvoi des morts-vivants (action Magie, 9 m) : chaque Mort-vivant choisi qui rate un JS de Sagesse est Effrayé et Neutralisé pendant 1 minute ou jusqu’à ce qu’il subisse des dégâts.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "calcination-de-mort-vivant",
+      "nom": "Calcination de Mort-vivant",
+      "niveau": 5,
+      "resume": "Quand vous utilisez Renvoi des morts-vivants, lancez autant de d8 que votre modificateur de Sagesse (minimum 1d8) : chaque Mort-vivant qui rate son JS subit ce total en dégâts radiants, sans que le renvoi prenne fin.",
+      "effets": []
+    },
+    {
+      "id": "impacts-benis",
+      "nom": "Impacts bénis",
+      "niveau": 7,
+      "resume": "Vous recevez l’une des options suivantes de votre choix. Impact divin : une fois par tour, quand vous touchez une créature avec un jet d’attaque d’arme, vous lui infligez 1d8 dégâts supplémentaires nécrotiques ou radiants (au choix). Incantation puissante : ajoutez votre modificateur de Sagesse aux dégâts de tout sort mineur de Clerc.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "intervention-divine",
+      "nom": "Intervention divine",
+      "niveau": 10,
+      "resume": "Par l’action Magie, choisissez un sort de Clerc de niveau 5 ou inférieur dont l’incantation ne demande pas une Réaction ; vous le lancez dans la même action sans dépenser d’emplacement ni composantes matérielles. Utilisable de nouveau après un Repos long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "impacts-benis-ameliores",
+      "nom": "Impacts bénis améliorés",
+      "niveau": 14,
+      "resume": "L’option choisie pour Impacts bénis se renforce. Impact divin : les dégâts supplémentaires passent à 2d8. Incantation puissante : quand vous lancez un sort mineur de Clerc et infligez des dégâts à une créature par son biais, vous pouvez donner à une créature dans un rayon de 18 m ou à vous-même des points de vie temporaires égaux au double de votre modificateur de Sagesse.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Vous recevez un don de Faveur épique ou un autre don dont vous remplissez les conditions. Faveur du destin est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "intervention-divine-supreme",
+      "nom": "Intervention divine suprême",
+      "niveau": 20,
+      "resume": "Quand vous utilisez Intervention divine, vous pouvez choisir souhait comme sort. Vous devez alors terminer 2d4 Repos longs avant de pouvoir réutiliser Intervention divine.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "domaine-de-la-vie",
+    "nom": "Domaine de la Vie",
+    "aptitudes": [
+      {
+        "id": "disciple-de-la-vie",
+        "nom": "Disciple de la Vie",
+        "niveau": 3,
+        "resume": "Quand un sort lancé avec un emplacement rend des points de vie à une créature, elle récupère en plus 2 + le niveau de l’emplacement, au tour de l’incantation.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-domaine-de-la-vie",
+        "nom": "Sorts du Domaine de la Vie",
+        "niveau": 3,
+        "resume": "Sorts toujours préparés : aide, bénédiction, restauration partielle et soins au niveau 3 ; mot de guérison de groupe et retour à la vie au niveau 5 (puis d’autres aux niveaux 7 et 9).",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "aide",
+              "benediction",
+              "restauration-partielle",
+              "soins"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "survivance",
+        "nom": "Survivance",
+        "niveau": 3,
+        "resume": "Par l’action Magie et une utilisation de Conduit divin, vous répartissez un nombre de points de vie égal à 5 fois votre niveau de Clerc entre des créatures En péril dans un rayon de 9 m (vous compris), sans dépasser la moitié de leur maximum de points de vie.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-domaine-de-la-vie-niveau-5",
+        "nom": "Sorts du Domaine de la Vie (niveau 5)",
+        "niveau": 5,
+        "resume": "Sorts toujours préparés au niveau 5 : mot de guerison de groupe, retour a la vie.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "mot-de-guerison-de-groupe",
+              "retour-a-la-vie"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "guerisseur-beni",
+        "nom": "Guérisseur béni",
+        "niveau": 6,
+        "resume": "Aussitôt après avoir lancé par un emplacement un sort qui restitue des points de vie à une ou plusieurs créatures autres que vous, vous récupérez un nombre de points de vie égal à 2 plus le niveau de l’emplacement.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-domaine-de-la-vie-niveau-7",
+        "nom": "Sorts du Domaine de la Vie (niveau 7)",
+        "niveau": 7,
+        "resume": "Sorts toujours préparés au niveau 7 : aura de vie, protection contre la mort.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "aura-de-vie",
+              "protection-contre-la-mort"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-domaine-de-la-vie-niveau-9",
+        "nom": "Sorts du Domaine de la Vie (niveau 9)",
+        "niveau": 9,
+        "resume": "Sorts toujours préparés au niveau 9 : restauration suprême, soins de groupe.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "restauration-supreme",
+              "soins-de-groupe"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "guerison-supreme",
+        "nom": "Guérison suprême",
+        "niveau": 17,
+        "resume": "Quand vous devez lancer des dés pour restituer des points de vie par un sort ou le Conduit divin, ne les lancez pas : prenez la valeur maximale de chaque dé (par exemple 12 au lieu de 2d6).",
+        "effets": []
+      }
+    ]
+  }
+}

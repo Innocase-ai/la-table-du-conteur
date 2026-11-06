@@ -1,0 +1,35 @@
+[
+  {
+    "id": "q-fal-la-charrette-eventree",
+    "nom": "La charrette éventrée",
+    "type": "secondaire",
+    "donneur": "fal-aubin-lacombe",
+    "lieu": "fal-relais-des-voyageurs",
+    "resume": "Cette nuit, quelque chose a éventré la remise du relais : sacs de vivres déchirés, griffes sur les planches, la moitié des salaisons emportée. Aubin Lacombe ne croit pas aux pillards, il parle de loups. Il veut qu'on retrouve leur tanière et qu'on les éloigne avant qu'il perde son stock d'hiver.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "deduire",
+    "etapes": [
+      {
+        "id": "deduire",
+        "texte": "Trouvez où vivent les loups qui ont éventré la remise du relais.",
+        "completion": { "fait": "f-fal-meute-de-la-grotte" },
+        "suivantes": ["affronter"]
+      },
+      {
+        "id": "affronter",
+        "texte": "Éloignez la meute de la grotte des marées.",
+        "completion": { "flag": "fal-meute-reglee" },
+        "suivantes": ["retour"]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Aubin que ses salaisons sont à l'abri.",
+        "completion": { "flag": "fal-meute-retour" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 75, "pieces": 30, "objets": ["potion-de-guerison"], "effets": [] },
+    "ramifications": "Forme : traque. Il faut trois sources pour le fait de la meute (fouille du pont des Corbeaux, Eudes au naufrage, Marthe la saunière) ; un jet raté ne bloque rien. Issues : apaiser la meute (dressage, de la viande à l'entrée) ; la chasser au feu (une torche) ; un dressage raté fait combattre. Si la marée monte sans règlement, Aubin plie bagage (événement z7-relais-abandonne)."
+  }
+]

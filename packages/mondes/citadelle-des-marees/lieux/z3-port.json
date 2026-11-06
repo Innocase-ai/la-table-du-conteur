@@ -1,0 +1,558 @@
+[
+  {
+    "id": "port-aux-cordes",
+    "nom": "Port-aux-Cordes",
+    "type": "ville",
+    "parent": "cote-de-hautmaree",
+    "resume": "Ville de pêche et de cordages au fond d'une anse, qui a vu la mer se retirer trop loin.",
+    "description": "Un port de quais de pierre et de bois goudronné, des entrepôts serrés, une halle et une tour de phare au bout d'une jetée. La Ligue des Phares y tient les registres, les Rats de quai y tiennent les passages, et la garde y tient les portes sans savoir pour qui. Depuis quelques jours, la mer s'est retirée bien au-delà de la jetée, laissant à découvert des rochers couverts d'algues et une chaussée de pierre que personne n'ose suivre. Ici, on cherche une barque pour atteindre le palais englouti.",
+    "ambiance": "Cris de mouettes, claquement de voiles, eau qui goutte des cordages, gens qui parlent bas sur les quais.",
+    "visuel": "Un port de pierre grise et de bois noirci, des quais bordés de cordages enroulés, des entrepôts aux toits d'ardoise mouillée, une jetée qui s'avance dans une eau basse et luisante. Au bout, une tour de phare à demi éteinte.",
+    "accroche": "Au fond de l'anse, la ville serre ses toits d'ardoise autour d'une jetée qui s'avance vers une mer trop basse.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "route-des-falaises",
+        "type": "route",
+        "heures": 5,
+        "description": "La route monte vers les falaises par des lacets de pierre, à cinq heures de marche, au-dessus de la mer basse.",
+        "retour": "La route descend des falaises par des lacets pierreux ; les toits du port apparaissent au fond de l'anse, au bout d'une longue pente."
+      }
+    ],
+    "evenements": [
+      "por-ev-arrivee",
+      "por-ev-ruelles-inondees"
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 56,
+      "y": 70
+    }
+  },
+  {
+    "id": "por-quai-aux-cordes",
+    "nom": "Le quai aux cordes",
+    "type": "quartier",
+    "parent": "port-aux-cordes",
+    "resume": "Le quai principal du port, où l'on amarre, où l'on se dispute et où l'on attend la marée.",
+    "description": "Bornes d'amarrage, piles de cordages goudronnés et caisses de saumure alignées le long des pilotis. Le poste de la garde, une cabane de bois, surveille les passerelles ; les Rats de quai rôdent entre les caisses. Au bout du quai, la mer basse laisse voir les pieux d'une ancienne jetée et des rochers luisants. Piot, le gamin des quais, y court partout, et le capitaine Ottilie Brasse y fait sa ronde.",
+    "ambiance": "Crissement de poulies, claquements de bottes sur les planches, voix basses et rires gras.",
+    "visuel": "Un quai de pierre noire bordé de bornes de fer et de cordages enroulés, des caisses empilées, une cabane de bois à la lanterne jaune, et une eau basse, brune, qui luit au pied des pilotis.",
+    "accroche": "Le quai s'ouvre au bout de la rue, long et bas, bordé de piles de cordages et de caisses goudronnées ; on y crie les prix.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "por-marche-aux-poissons",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Une rue pavée descend vers la halle aux poissons, dont les étals luisent sous une lumière grise.",
+        "retour": "Depuis la halle, une rue pavée remonte vers le quai, les pieds mouillés de saumure et le bruit des cordages au loin."
+      },
+      {
+        "vers": "por-taverne-du-hareng",
+        "type": "porte",
+        "heures": 0,
+        "description": "La porte de la taverne, au coin du quai, laisse passer des voix de matelots et une chaleur de cuisine.",
+        "retour": "Depuis la taverne, la porte donne sur le quai, où les bornes d'amarrage s'alignent jusqu'à la jetée."
+      },
+      {
+        "vers": "por-ruelle-des-voiles",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Une ruelle étroite monte entre deux entrepôts, barrée de voiles sombres tendues d'un toit à l'autre.",
+        "retour": "La ruelle débouche sur le quai entre deux entrepôts, sous des voiles qui claquent au vent de mer."
+      },
+      {
+        "vers": "por-chantier-naval",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Le long du quai, les charpentes du chantier s'ouvrent à ciel ouvert, où des coques retournées attendent d'être réparées.",
+        "retour": "Au bout du quai, le chantier se dresse en charpentes de bois ; des copeaux clairs jonchent la cour."
+      },
+      {
+        "vers": "por-entrepots-des-rats",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 13,
+          "competence": "perception"
+        },
+        "description": "Entre deux caisses de sel, un panneau mal joint laisse passer un courant froid et des pas étouffés.",
+        "retour": "Derrière le panneau, un hangar sombre, bourré de caisses, où le quai n'entre jamais sans permission."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "por-r-brigands-du-quai",
+        "declencheur": "exploration",
+        "unique": true
+      },
+      {
+        "id": "por-r-garde-du-quai",
+        "declencheur": "entree",
+        "unique": true,
+        "condition": {
+          "et": [
+            {
+              "flag": "por-bagarre-au-quai"
+            },
+            {
+              "non": {
+                "flag": "por-amende-payee"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "por-r-le-proces-du-quai",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 55
+    }
+  },
+  {
+    "id": "por-marche-aux-poissons",
+    "nom": "La halle aux poissons",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "La halle aux poissons du port, où l'on vend au matin ce qu'on a pêché la nuit.",
+    "description": "Les pêcheurs déchargent avant l'aube, les marchandes crient les prix, et les balances de cuivre font la loi. Odile Sauvrac tient son étal de salaisons, de rations et de cordes de chanvre ; Gaspard, le pêcheur goliath, y vend le peu qu'il rapporte. Au fond, sous les poutres, un passage mène à la ruelle des voiles.",
+    "ambiance": "Balances qui tintent, eau qui coule des tables, cris de marchandes.",
+    "visuel": "Une halle sans murs, de planches grises et de poutres noircies, des tables couvertes de poissons glacés, des balances de cuivre vert-de-grisé, des filets qui pendent aux poutres.",
+    "accroche": "Une halle de planches ouvertes sur trois côtés, où les étals de poisson brillent sous une lumière grise et froide.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-les-pecheurs-de-gaspard",
+        "declencheur": "entree",
+        "condition": {
+          "quete": {
+            "id": "q-por-la-caisse-de-gaspard",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "position": {
+      "x": 48,
+      "y": 70
+    }
+  },
+  {
+    "id": "por-taverne-du-hareng",
+    "nom": "La taverne du Hareng gris",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "Une taverne de quai où l'on mange, boit et dort une nuit entière, à condition de payer.",
+    "description": "Une salle basse aux poutres noires, un feu de tourbe, des tables de matelots et un escalier qui monte aux chambres. La patronne Garance Bolle sert la soupe et loue les lits ; Joss la Rame, son tavernier et passeur, tient le comptoir et connaît tous les bateaux du port. Les chambres du haut ferment à verrou de l'intérieur.",
+    "ambiance": "Chaleur de tourbe, voix qui montent, tintement de chopes, un air de poisson fumé.",
+    "visuel": "Une salle basse aux poutres noircies, un feu de tourbe dans une cheminée de pierre, des tables de bois usé, des lanternes de cuivre et un escalier de bois qui grimpe dans l'ombre.",
+    "accroche": "Une porte de bois peint, au coin du quai, d'où sortent des éclats de voix, une fumée de tourbe et une chaleur de cuisine.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "services": [
+      "repas",
+      "chambres"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 34,
+      "y": 37
+    }
+  },
+  {
+    "id": "por-ruelle-des-voiles",
+    "nom": "La ruelle des voiles",
+    "type": "quartier",
+    "parent": "port-aux-cordes",
+    "resume": "Une ruelle étroite entre deux entrepôts, où les voiles raidies par le sel sèchent au-dessus des pavés.",
+    "description": "Des voiles tendues entre les toits claquent au vent, les pavés luisent de sel et les portes se referment quand on les regarde. La ruelle relie le quai, la halle et la maison de la Ligue ; une grille rouillée, au ras du pavé, ferme une bouche de drain qui descend vers les égouts. Plus loin, une chapelle basse aux volets clos tient le coin de la rue.",
+    "ambiance": "Voiles qui claquent, pavés qui goutent, portes qui se ferment doucement.",
+    "visuel": "Une ruelle pavée, bordée de hauts entrepôts de bois, des voiles brunes tendues en travers, des fenêtres sans lumière, une grille rouillée au ras du pavé.",
+    "accroche": "Une ruelle étroite qui monte entre les entrepôts, barrée de voiles sombres tendues d'un toit à l'autre.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "por-hall-de-la-ligue",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une porte de fer, haute et ferrée, s'ouvre sur une maison de pierre au blason d'un phare.",
+        "retour": "La porte de la maison de pierre donne sur la ruelle ; un écusson de bronze veille au-dessus du seuil."
+      },
+      {
+        "vers": "por-chapelle-des-noyes",
+        "type": "porte",
+        "heures": 0,
+        "description": "Au bout de la ruelle, une porte basse peinte de bleu fané, d'où filtre la lueur d'une lampe.",
+        "retour": "La porte de la chapelle s'ouvre sur la ruelle, et l'on entend la mer derrière le mur du fond."
+      },
+      {
+        "vers": "por-egouts-a-maree",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "description": "Sous une voile, une grille rouillée cache une bouche de drain qui descend vers l'eau noire.",
+        "retour": "Depuis les galeries, une échelle de fer monte jusqu'à la grille, que l'on soulève par en dessous."
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 52,
+      "y": 12
+    }
+  },
+  {
+    "id": "por-hall-de-la-ligue",
+    "nom": "Le siège de la Ligue des Phares",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "La maison de la Ligue des Phares, où l'on tient les registres des ports, des fanaux et des laissez-passer.",
+    "description": "Une maison de pierre aux volets de fer : registres de marées, cartes des fanaux, comptoir des laissez-passer. Maître Osric Vent y reçoit ceux qu'il juge utiles, et ne reçoit jamais les autres. Un couloir de pierre mène au phare par la jetée ; une cour de service donne sur la ruelle des voiles.",
+    "ambiance": "Plumes qui grattent, horloge de marée qui tic-tac, lampe qui ne fume pas.",
+    "visuel": "Une maison carrée de pierre grise, volets de fer rivetés, un écusson de phare en bronze au-dessus d'une porte haute, une lanterne de garde qui brûle sans fumée.",
+    "accroche": "Une maison de pierre aux volets de fer, avec un écusson de phare cloué au-dessus de la porte, plus haute que ses voisines.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-por-marees-du-registre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-por-ambroise-vu-palais",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 65,
+      "y": 28
+    }
+  },
+  {
+    "id": "por-phare-du-port",
+    "nom": "Le phare du port",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "Le vieux phare de la jetée, à demi éteint depuis que la Ligue l'a fermé aux pilotes.",
+    "description": "Une tour de pierre sur la jetée, un escalier en colimaçon, une lanterne dont les miroirs sont piqués de rouille. Au pied de l'escalier vit Ambroise Carène, vieux pilote, qui a vu le palais sous l'eau et connaît la chaussée. Dans le cabinet de la tour, les cartes de marée du port sont rangées dans des tiroirs de chêne.",
+    "ambiance": "Vent qui siffle dans la lanterne, galets qui roulent sous la jetée, papier qui sent la craie.",
+    "visuel": "Une tour de pierre sur une jetée de galets, une lanterne au sommet dont les miroirs sont piqués de rouille, un escalier de pierre en colimaçon, des cartes et des instruments de cuivre.",
+    "accroche": "Une tour de pierre sur la jetée, dont la lanterne ne brille plus qu'à demi, derrière des planches clouées aux fenêtres.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "evenements": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 80,
+      "y": 18
+    }
+  },
+  {
+    "id": "por-chapelle-des-noyes",
+    "nom": "La chapelle des noyés",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "Une petite chapelle basse, où l'on soigne les blessés et où l'on prie pour les noyés.",
+    "description": "Une nef étroite, des bancs de chêne, une vasque de sel au centre et une lampe de cuivre qui ne s'éteint pas. Soeur Elwyn, gardienne de la chapelle, soigne qui vient sans poser de question et tient un registre des noms des naufragés. Les lits du fond servent de refuge : on y dort une nuit en paix, à condition de la respecter.",
+    "ambiance": "Lampe qui grésille, sel qui craque sous les pas, une voix de femme qui chante bas.",
+    "visuel": "Une chapelle basse de pierre bleue fanée, une vasque de sel au centre de la nef, une lampe de cuivre suspendue, des bancs de chêne, des noms gravés sur les piliers.",
+    "accroche": "Une porte basse, peinte de bleu fané, au bout de la ruelle ; une lampe brûle derrière une vitre salie de sel.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-por-noms-des-noyes",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [
+      "soins",
+      "repos"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 69,
+      "y": 57
+    }
+  },
+  {
+    "id": "por-entrepots-des-rats",
+    "nom": "Les entrepôts des Rats",
+    "type": "batiment",
+    "parent": "port-aux-cordes",
+    "resume": "Les entrepôts de la Mère Sorel, où les Rats de quai troquent, cachent et comptent leurs passages.",
+    "description": "Trois hangars reliés par des passerelles, tenus par les Rats de quai : caisses de sel aux marques fausses, barriques de contrebande, un bureau de planches où l'on compte la monnaie. La Mère Sorel reçoit là, et Lucien Crochemain y revend ce qu'on ne doit pas vendre. Un escalier descend vers les égouts à marée.",
+    "ambiance": "Pas étouffés sur les passerelles, sel qui coule d'un sac, murmures derrière les planches.",
+    "visuel": "Trois hangars de bois noirci serrés contre un mur de pierre, des caisses marquées de faux noms, une passerelle de planches, une lanterne couverte d'un chiffon qui ne laisse passer qu'un filet de lumière.",
+    "accroche": "Trois hangars de bois noir serrés contre le mur d'enceinte, aux portes closes et aux toits bas, sans fenêtre visible.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "por-egouts-a-maree",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier de bois descend dans la cale, puis une voûte de briques mène aux galeries des égouts.",
+        "retour": "L'escalier remonte des égouts jusqu'au hangar, par une trappe où l'eau ruisselle encore."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-por-caisses-faux-noms",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-le-marche-de-sorel",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "position": {
+      "x": 87,
+      "y": 71
+    }
+  },
+  {
+    "id": "por-chantier-naval",
+    "nom": "Le chantier naval",
+    "type": "quartier",
+    "parent": "port-aux-cordes",
+    "resume": "Le chantier des charpentiers du port, une cour à ciel ouvert où l'on répare les barques.",
+    "description": "Des charpentes, des coques retournées, des copeaux qui tapissent le sol et une corderie en longueur. Hennequin Lacet, maître cordier et calfat, y tient son étal et ses outils. Au fond de la cour, une cale sèche creusée dans la roche abrite une barque de pilote sous une bâche. La mer s'est retirée si loin que la cale ouvre désormais sur un fond de galets.",
+    "ambiance": "Maillets qui frappent le bois, odeur de brai qui monte, cordes qui sifflent dans la corderie.",
+    "visuel": "Des coques retournées sur des chantiers de bois, des copeaux clairs jonchant le sol, une corderie en longueur, des cordages qui pendent, et une grande bâche tendue au fond d'une cale creusée dans la roche.",
+    "accroche": "Des charpentes de bois et des coques retournées au bord du quai, un chantier à ciel ouvert où tout sent le brai.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-por-barque-cachee",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "por-r-premiere-vague-du-chantier",
+        "declencheur": "entree",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-por-la-coque-neuve",
+                "statut": "active"
+              }
+            },
+            {
+              "non": {
+                "flag": "por-chantier-defendu"
+              }
+            }
+          ]
+        },
+        "unique": true
+      }
+    ],
+    "position": {
+      "x": 90,
+      "y": 52
+    }
+  },
+  {
+    "id": "por-cale-seche",
+    "nom": "La cale sèche",
+    "type": "lieu-dit",
+    "parent": "por-chantier-naval",
+    "resume": "La cale sèche du chantier, creusée dans la roche, d'où part la barque vers la chaussée.",
+    "description": "Une fosse de roche ouverte vers la mer retirée, avec des marches taillées et une grille de fer au fond : la grille de la chaussée des Basses-Eaux, verrouillée. La barque du pilote est là, sous la bâche, et le fond de galets descend vers une chaussée de pierre qui s'enfonce dans la brume.",
+    "ambiance": "Eau qui goutte des parois, brume qui roule au ras des galets, silence de pierre.",
+    "visuel": "Une cale sèche creusée dans la roche noire, des marches taillées, des galets luisants et une grille de fer au fond, un fond de mer découvert qui s'enfonce vers une chaussée de pierre dans la brume.",
+    "accroche": "Une fosse taillée dans la roche au fond du chantier, avec des marches droites qui descendent vers des galets luisants.",
+    "niveau": {
+      "min": 3,
+      "max": 3
+    },
+    "liens": [],
+    "evenements": [
+      "por-ev-chaussee-ouverte"
+    ],
+    "rencontres": [
+      {
+        "id": "por-r-noye-de-la-cale",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "por-egouts-a-maree",
+    "nom": "Les égouts à marée",
+    "type": "grotte",
+    "parent": "port-aux-cordes",
+    "resume": "Le réseau d'égouts du port, inondé à marée haute, repaire des Rats de quai.",
+    "description": "Des galeries de briques sous la ville, où la marée entre et sort deux fois par jour. Les Rats y ont des passages, des cachettes et des grilles de sûreté. Quand la marée monte, les galeries deviennent impraticables en quelques minutes : il faut sortir à temps, ou ne pas entrer.",
+    "ambiance": "Eau brune qui coule, échos de gouttes, grattements dans les caisses, odeur de plomb mouillé.",
+    "visuel": "Une galerie voûtée de briques noircies, une eau brune qui coule au centre, des marches usées, des grilles de fer rouillé, des anneaux scellés aux murs.",
+    "accroche": "Un escalier humide qui descend sous les pavés, avec un fil d'eau noire qui coule au milieu des marches.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "evenements": [
+      "por-ev-maree-haute-egouts"
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 14,
+      "y": 80
+    }
+  },
+  {
+    "id": "por-egouts-galerie",
+    "nom": "La galerie aux filets",
+    "type": "salle",
+    "parent": "por-egouts-a-maree",
+    "resume": "La grande galerie des égouts, où les Rats entreposent les filets et où les rats géants rôdent.",
+    "description": "Une galerie longue, en pente, avec des caisses de filets tranchés, des cordes et des restes de repas. Des bruits de griffes derrière les caisses. Au bout, un passage bas mène au bassin de tri ; une caisse de la Ligue, éventrée, traîne contre le mur.",
+    "ambiance": "Griffes sur la brique, filets qui traînent, goutte qui tombe dans une flaque.",
+    "visuel": "Une galerie de briques en pente, des caisses ouvertes et des filets emmêlés, des marques de pattes dans la boue, une lanterne accrochée à un crochet de fer.",
+    "accroche": "Une galerie en pente qui file dans le noir sous les pavés, bordée de caisses humides et de filets roulés.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "por-egouts-bassin",
+        "type": "passage",
+        "heures": 0,
+        "description": "Un passage bas, les pieds dans la boue, mène de la galerie au bassin de tri.",
+        "retour": "Le passage remonte de la boue du bassin vers la galerie aux filets et aux caisses."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "por-r-rats-des-egouts",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-por-filets-coupes-par-rats",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "impossible"
+  },
+  {
+    "id": "por-egouts-bassin",
+    "nom": "Le bassin de tri",
+    "type": "salle",
+    "parent": "por-egouts-a-maree",
+    "resume": "Le bassin où la marée entre par une grille et où l'on noie les prises des Rats.",
+    "description": "Un bassin carré où la marée monte par une grille de fer, et qui se vide par une vanne grinçante. Un pont de planches le traverse ; une corniche étroite court au-dessus de l'eau qui monte. La grille est lourde, et la vanne se règle de l'extérieur.",
+    "ambiance": "Eau qui monte par à-coups, vanne qui grince, écho d'un appel lointain.",
+    "visuel": "Un bassin carré de pierre, une grille de fer rouillé au mur du fond, un pont de planches, une eau brune qui monte par à-coups, une corniche étroite, des anneaux scellés.",
+    "accroche": "Une salle plus large que les autres, où l'on entend l'eau monter et descendre deux fois par jour, sous une grille.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "evenements": [
+      "por-ev-gamin-coince"
+    ],
+    "faits": [
+      {
+        "fait": "f-por-lumieres-dans-les-egouts",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
+    ],
+    "repos": "impossible"
+  },
+  {
+    "id": "por-cachette-des-rats",
+    "nom": "La cachette des Rats",
+    "type": "salle",
+    "parent": "por-egouts-a-maree",
+    "resume": "Une pièce basse derrière une porte scellée, où les Rats gardent ce qu'ils ne vendent pas.",
+    "description": "Une cachette sèche, plus haute que le reste des égouts, fermée par une porte de fer à trois anneaux. Un coffre et des sacs de cuir attendent derrière, avec les réserves de la Mère Sorel. La porte porte une inscription à la craie : elle ne s'ouvre qu'à qui sait lire la marée.",
+    "ambiance": "Air sec, odeur de cuir et de craie, silence presque complet.",
+    "visuel": "Une porte de fer noir à trois anneaux de bronze, une inscription à la craie sur le battant, une pièce voûtée au sol sec, des sacs de cuir et un coffre cerclé de fer.",
+    "accroche": "Une porte de fer, à trois anneaux, enfoncée dans le mur d'une galerie sèche, au-dessus de la ligne de l'eau.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [],
+    "repos": "impossible"
+  }
+]

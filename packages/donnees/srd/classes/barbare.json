@@ -1,0 +1,535 @@
+{
+  "id": "barbare",
+  "nom": "Barbare",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "for"
+    ]
+  },
+  "deVie": 12,
+  "sauvegardes": [
+    "for",
+    "con"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "athletisme",
+      "dressage",
+      "intimidation",
+      "nature",
+      "perception",
+      "survie"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes",
+    "guerre"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "bouclier"
+  ],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Hache à deux mains",
+        "4 hachettes",
+        "Paquetage d’explorateur"
+      ],
+      "po": 15
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 75
+    }
+  ],
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Rage",
+        "Bottes d’arme",
+        "Défense sans armure"
+      ],
+      "colonnes": {
+        "Rages": 2,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 2
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sens du danger",
+        "Témérité"
+      ],
+      "colonnes": {
+        "Rages": 2,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 2
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Savoir primal",
+        "Sous-classe de Barbare"
+      ],
+      "colonnes": {
+        "Rages": 3,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 2
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Rages": 3,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Attaque supplémentaire",
+        "Déplacement rapide"
+      ],
+      "colonnes": {
+        "Rages": 3,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Bond instinctif",
+        "Instinct sauvage"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+2",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Coup brutal"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 3
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Rage implacable"
+      ],
+      "colonnes": {
+        "Rages": 4,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Rages": 5,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Coup brutal amélioré"
+      ],
+      "colonnes": {
+        "Rages": 5,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Rages": 5,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Rage persistante"
+      ],
+      "colonnes": {
+        "Rages": 5,
+        "Dégâts de Rage": "+3",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Rages": 5,
+        "Dégâts de Rage": "+4",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Coup brutal amélioré"
+      ],
+      "colonnes": {
+        "Rages": 6,
+        "Dégâts de Rage": "+4",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Puissance indomptable"
+      ],
+      "colonnes": {
+        "Rages": 6,
+        "Dégâts de Rage": "+4",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Rages": 6,
+        "Dégâts de Rage": "+4",
+        "Bottes d’arme": 4
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Champion primitif"
+      ],
+      "colonnes": {
+        "Rages": 6,
+        "Dégâts de Rage": "+4",
+        "Bottes d’arme": 4
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "rage",
+      "nom": "Rage",
+      "niveau": 1,
+      "resume": "Par une action Bonus et sans armure lourde, vous entrez en Rage (nombre d’utilisations selon la colonne Rages ; vous en regagnez une au Repos court et toutes au Repos long). Pendant la Rage : Résistance aux dégâts contondants, perforants et tranchants, bonus de Dégâts de Rage aux attaques basées sur la Force, Avantage aux tests et JS de Force, mais ni Concentration ni sorts. Elle dure jusqu’à la fin de votre tour suivant et se prolonge d’un round si vous attaquez un ennemi, lui imposez un JS ou dépensez une action Bonus, pour 10 minutes au maximum ; elle cesse si vous enfilez une armure lourde ou subissez l’état Neutralisé.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Vous pouvez exploiter la botte de deux types d’arme de corps à corps courante ou de guerre de votre choix (nombre selon la colonne Bottes d’arme). Vous pouvez changer l’un de ces choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "defense-sans-armure",
+      "nom": "Défense sans armure",
+      "niveau": 1,
+      "resume": "Sans armure, votre CA de base est égale à 10 + vos modificateurs de Dextérité et de Constitution. Vous conservez ce bénéfice avec un bouclier.",
+      "effets": [
+        {
+          "type": "ca_sans_armure",
+          "base": 10,
+          "caracteristiques": [
+            "dex",
+            "con"
+          ],
+          "bouclierAutorise": true
+        }
+      ]
+    },
+    {
+      "id": "sens-du-danger",
+      "nom": "Sens du danger",
+      "niveau": 2,
+      "resume": "Vous avez l’Avantage aux jets de sauvegarde de Dextérité, sauf si vous subissez l’état Neutralisé.",
+      "effets": []
+    },
+    {
+      "id": "temerite",
+      "nom": "Témérité",
+      "niveau": 2,
+      "resume": "Lors de votre premier jet d’attaque du tour, vous pouvez attaquer avec témérité : vous avez l’Avantage aux jets d’attaque basés sur la Force jusqu’au début de votre tour suivant, mais les jets d’attaque contre vous ont aussi l’Avantage pendant ce temps.",
+      "effets": []
+    },
+    {
+      "id": "savoir-primal",
+      "nom": "Savoir primal",
+      "niveau": 3,
+      "resume": "Vous recevez la maîtrise d’une compétence supplémentaire de la liste du Barbare de niveau 1. Pendant la Rage, vos tests d’Acrobaties, Discrétion, Intimidation, Perception et Survie peuvent être faits comme des tests de Force.",
+      "effets": [
+        {
+          "type": "maitrise_competences",
+          "nombre": 1,
+          "parmi": [
+            "athletisme",
+            "dressage",
+            "intimidation",
+            "nature",
+            "perception",
+            "survie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Vous attaquez deux fois au lieu d’une lorsque vous entreprenez l’action Attaque à votre tour.",
+      "effets": []
+    },
+    {
+      "id": "deplacement-rapide",
+      "nom": "Déplacement rapide",
+      "niveau": 5,
+      "resume": "Votre Vitesse augmente de 3 m tant que vous ne portez pas d’armure lourde.",
+      "effets": [
+        {
+          "type": "bonus_vitesse",
+          "metres": 3,
+          "condition": "sans_armure_lourde"
+        }
+      ]
+    },
+    {
+      "id": "instinct-sauvage",
+      "nom": "Instinct sauvage",
+      "niveau": 7,
+      "resume": "Votre instinct est si affûté que vous avez l’Avantage aux jets d’Initiative.",
+      "effets": []
+    },
+    {
+      "id": "bond-instinctif",
+      "nom": "Bond instinctif",
+      "niveau": 7,
+      "resume": "Dans le cadre de l’action Bonus entreprise pour entrer en Rage, vous pouvez vous déplacer à concurrence de la moitié de votre Vitesse.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "coup-brutal",
+      "nom": "Coup brutal",
+      "niveau": 9,
+      "resume": "Si vous recourez à Témérité, vous pouvez renoncer à l’Avantage pour un jet d’attaque basé sur la Force de votre choix à votre tour (ce jet ne doit pas avoir le Désavantage). S’il touche, la cible subit 1d10 dégâts supplémentaires du même type que l’arme ou l’attaque à mains nues, et vous pouvez lui imposer un effet au choix : Coup appuyé (la cible est repoussée de 4,50 m en ligne droite, puis vous pouvez vous déplacer en ligne droite vers elle à concurrence de la moitié de votre Vitesse sans provoquer d’attaques d’Opportunité) ou Coup au jarret (la Vitesse de la cible est réduite de 4,50 m jusqu’au début de votre tour suivant ; une même cible ne subit qu’un seul Coup au jarret à la fois, le plus récent).",
+      "effets": []
+    },
+    {
+      "id": "rage-implacable",
+      "nom": "Rage implacable",
+      "niveau": 11,
+      "resume": "Si vous tombez à 0 point de vie pendant votre Rage sans mourir sur le coup, vous pouvez faire un jet de sauvegarde de Constitution DD 10 ; en cas de réussite, vos points de vie passent au double de votre niveau de Barbare. À chaque réutilisation, le DD augmente de 5 ; il retombe à 10 après un Repos court ou long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "coup-brutal-ameliore-13",
+      "nom": "Coup brutal amélioré",
+      "niveau": 13,
+      "resume": "Deux nouveaux effets rejoignent vos options de Coup brutal. Coup stupéfiant : la cible a le Désavantage à son prochain jet de sauvegarde et ne peut pas faire d’attaque d’Opportunité jusqu’au début de votre tour suivant. Coup déchirant : le prochain jet d’attaque effectué avant le début de votre tour suivant par une autre créature contre la cible reçoit un bonus de +5 (un même jet ne bénéficie que d’un seul bonus de Coup déchirant).",
+      "effets": []
+    },
+    {
+      "id": "rage-persistante",
+      "nom": "Rage persistante",
+      "niveau": 15,
+      "resume": "Quand vous jouez l’Initiative, vous pouvez récupérer toutes vos utilisations de Rage ; vous devez ensuite terminer un Repos long pour pouvoir le refaire. De plus, votre Rage dure 10 minutes sans avoir à être prolongée de round en round ; elle prend fin prématurément si vous subissez l’état Inconscient (l’état Neutralisé seul n’y met plus fin) ou si vous enfilez une armure lourde.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "coup-brutal-ameliore-17",
+      "nom": "Coup brutal amélioré",
+      "niveau": 17,
+      "resume": "Les dégâts supplémentaires de Coup brutal passent à 2d10. De plus, vous pouvez appliquer simultanément deux effets différents de Coup brutal.",
+      "effets": []
+    },
+    {
+      "id": "puissance-indomptable",
+      "nom": "Puissance indomptable",
+      "niveau": 18,
+      "resume": "Si le total d’un test ou d’un jet de sauvegarde de Force est inférieur à votre valeur de Force, vous pouvez utiliser celle-ci à la place du total obtenu.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Vous recevez un don de Faveur épique ou un autre don dont vous remplissez les conditions. Faveur d’attaque irrésistible est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "champion-primitif",
+      "nom": "Champion primitif",
+      "niveau": 20,
+      "resume": "Vous incarnez la puissance primitive : vos valeurs de Force et de Constitution augmentent de 4, jusqu’à un maximum de 25.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "voie-du-berserker",
+    "nom": "Voie du Berserker",
+    "aptitudes": [
+      {
+        "id": "frenesie",
+        "nom": "Frénésie",
+        "niveau": 3,
+        "resume": "Si vous recourez à Témérité pendant votre Rage, la première cible que vous touchez à votre tour avec une attaque basée sur la Force subit des dégâts supplémentaires : autant de d6 que votre bonus de Dégâts de Rage, du même type que l’arme ou l’attaque à mains nues.",
+        "effets": []
+      },
+      {
+        "id": "rage-aveugle",
+        "nom": "Rage aveugle",
+        "niveau": 6,
+        "resume": "Vous avez l’Immunité contre les états Charmé et Effrayé tant que votre Rage est active. Si vous subissez déjà l’un de ces états en entrant en Rage, il prend fin sur vous.",
+        "effets": []
+      },
+      {
+        "id": "represailles",
+        "nom": "Représailles",
+        "niveau": 10,
+        "resume": "Quand une créature située dans un rayon de 1,50 m vous inflige des dégâts, vous pouvez utiliser votre Réaction pour l’attaquer au corps à corps avec une arme ou à mains nues.",
+        "effets": []
+      },
+      {
+        "id": "presence-intimidante",
+        "nom": "Présence intimidante",
+        "niveau": 14,
+        "resume": "Par une action Bonus, chaque créature de votre choix dans une Émanation de 9 m centrée sur vous fait un jet de sauvegarde de Sagesse (DD 8 + modificateur de Force + bonus de maîtrise) ; en cas d’échec, elle subit l’état Effrayé pendant 1 minute et réitère le jet à la fin de chacun de ses tours. Pour réutiliser cette aptitude, terminez un Repos long ou dépensez une utilisation de Rage (aucune action requise).",
+        "effets": []
+      }
+    ]
+  }
+}

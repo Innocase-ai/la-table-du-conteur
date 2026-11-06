@@ -1,0 +1,74 @@
+{
+  "id": "epaulard",
+  "nom": "Épaulard",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 90,
+    "des": "12d12 + 12"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 18
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 14,
+    "con": 13,
+    "int": 3,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 3
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 36,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "Le épaulard peut retenir son souffle pendant 30 minutes."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 21 (5d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "5d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

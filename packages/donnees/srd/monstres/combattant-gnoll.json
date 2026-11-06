@@ -1,0 +1,102 @@
+{
+  "id": "combattant-gnoll",
+  "nom": "Combattant gnoll",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Chaotique Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 27,
+    "des": "6d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 12,
+    "con": 11,
+    "int": 6,
+    "sag": 10,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "gnoll",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-en-os",
+      "nom": "Arc en os",
+      "cout": "action",
+      "resume": "À distance +3, portée 45/180 m : 6 (1d10 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "dechainement",
+      "nom": "Déchaînement",
+      "cout": "bonus",
+      "resume": "Aussitôt après avoir infligé des dégâts à une créature déjà En péril (à la moitié de ses pv ou moins), le gnoll se déplace d'au plus la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 1
+        }
+      ],
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

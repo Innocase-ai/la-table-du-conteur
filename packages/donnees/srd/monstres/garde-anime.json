@@ -1,0 +1,115 @@
+{
+  "id": "garde-anime",
+  "nom": "Garde animé",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 17,
+  "pv": {
+    "moyenne": 142,
+    "des": "15d10 + 60"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 8,
+    "con": 18,
+    "int": 7,
+    "sag": 10,
+    "cha": 3
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 3,
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "comprend les ordres qu'on lui donne, quelle que soit la langue, mais ne parle pas",
+  "fp": "7",
+  "px": 2900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "pacte-magique",
+      "nom": "Pacte magique",
+      "resume": "Le garde est lié magiquement à une amulette. Tant qu'ils sont sur le même plan, le porteur peut lui ordonner télépathiquement de le rejoindre. Si le garde est à 18 m ou moins du porteur, la moitié des dégâts subis par le porteur (arrondis au supérieur) sont transférés au garde."
+    },
+    {
+      "id": "regeneration",
+      "nom": "Régénération",
+      "resume": "Le garde récupère 10 points de vie au début de chacun de ses tours s'il lui reste au moins 1 point de vie."
+    },
+    {
+      "id": "stockage-de-sort",
+      "nom": "Stockage de sort",
+      "resume": "Un incantateur porteur de l'amulette peut stocker dans le garde un sort de niveau 4 ou inférieur en le lançant sur lui à 1,50 m ou moins. Le garde peut lancer ce sort (sans composantes, avec la caractéristique d'incantation du lanceur initial), après quoi il est perdu ; un nouveau sort stocké remplace le précédent."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le garde animé effectue deux attaques de Poing.",
+      "multiattaque": [
+        {
+          "action": "poing",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "poing",
+      "nom": "Poing",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 11 (2d6 + 4) dégâts contondants plus 7 (2d6) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "protection",
+      "nom": "Protection",
+      "cout": "reaction",
+      "resume": "Déclencheur : un jet d'attaque touche le porteur de l'amulette alors qu'il est à 1,50 m ou moins du garde. Le porteur reçoit +5 à la CA, y compris contre l'attaque déclenchante (qui peut alors rater), jusqu'au début du prochain tour du garde."
+    }
+  ]
+}

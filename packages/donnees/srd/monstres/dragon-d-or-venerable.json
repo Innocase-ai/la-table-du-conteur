@@ -1,0 +1,222 @@
+{
+  "id": "dragon-d-or-venerable",
+  "nom": "Dragon d’or vénérable",
+  "taille": "Gig",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 22,
+  "pv": {
+    "moyenne": 546,
+    "des": "28d20 + 252"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 30,
+    "dex": 14,
+    "con": 29,
+    "int": 18,
+    "sag": 17,
+    "cha": 28
+  },
+  "sauvegardes": {
+    "for": 10,
+    "dex": 9,
+    "con": 9,
+    "int": 4,
+    "sag": 10,
+    "cha": 9
+  },
+  "competences": {
+    "discretion": 9,
+    "intuition": 10,
+    "perception": 17,
+    "persuasion": 16
+  },
+  "initiative": 16,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 27
+  },
+  "langues": "commun, draconique",
+  "fp": "24",
+  "px": 62000,
+  "bonusMaitrise": 7,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 75 000 PX dans son antre (62 000 PX hors antre)."
+    },
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(4/jour, ou 5/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre Assaut incisif, Bannissement, Lumière traçante. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de (A) Incantation pour lancer rayon traçant (au 4e niveau) ou (B) Souffle affaiblissant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +17, allonge 4,5 m : 19 (2d8 + 10) dégâts tranchants plus 9 (2d8) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 17
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 10,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 24, +16 pour toucher) : À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection de la magie, rayon traçant (au 4e niveau). 1/jour chacun : colonne de flamme (au 6e niveau), mot de retour, zone de vérité.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-affaiblissant",
+      "nom": "Souffle affaiblissant",
+      "cout": "action",
+      "resume": "JS Force DD 24, chaque créature non encore affectée par ce souffle dans un Cône de 27 m. Échec : la cible subit le Désavantage aux Tests d20 basés sur la Force et soustrait 5 (1d10) à ses jets de dégâts. Elle réitère le JS à la fin de chacun de ses tours, et met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 24,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 27
+      },
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "JS Dextérité DD 24, chaque créature dans un Cône de 27 m. Échec : 71 (13d10) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 24,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 27
+      },
+      "degats": [
+        {
+          "des": "13d10",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "bannissement",
+      "nom": "Bannissement",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Charisme DD 24, une créature que le dragon voit dans un rayon de 36 m. Échec : 24 (7d6) dégâts de force ; la cible subit l'état Neutralisé et elle est transportée sur un demi-plan qui ne présente pas de danger jusqu'au début du tour suivant du dragon, puis elle réapparaît en un espace inoccupé au choix du dragon dans un rayon de 36 m de celui-ci. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "cha",
+        "dd": 24,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "7d6",
+          "bonus": 0,
+          "type": "force"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "neutralise"
+        }
+      ]
+    },
+    {
+      "id": "lumiere-tracante",
+      "nom": "Lumière traçante",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer rayon traçant (au 4e niveau).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

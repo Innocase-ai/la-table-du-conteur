@@ -1,0 +1,122 @@
+[
+  {
+    "pnj": "nolwen-brevemer",
+    "passe": "Nolwen Brevemer a seize ans. Ysmène Hautecôte l'a trouvée il y a seize ans, et elle a grandi à la Citadelle, entre les dortoirs et la salle des cartes, sans savoir d'où elle vient. Elle a été l'apprentie d'Ysmène depuis l'âge de douze ans, il y a quatre ans. Aldous Lindenvert lui a appris à copier les colonnes de marées ; Gudrun Lanterne lui laisse allumer la lampe du phare-archive. Le Prieur Anselme la trouve polie et lointaine. Depuis ses douze ans, elle tient un petit carnet où elle note des points qu'elle n'arrive pas à relier, et qu'elle copie à la main, sans jamais les effacer. Elle a le goût des nombres, des cartes et des détours, et elle se méfie de ce qu'on lui tend sans explication.",
+    "liens": [
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "sa maîtresse de cartes, celle qui l'a trouvée et élevée",
+        "opinion": "La seule qu'elle écoute sans discuter. Elle l'appelle « Maîtresse » devant les autres, et « Dame Ysmène » quand elle est fâchée."
+      },
+      {
+        "pnj": "aldous-lindenvert",
+        "nature": "le copiste qui lui a appris les colonnes de marées",
+        "opinion": "Elle corrige en secret ses erreurs de calcul, au crayon, et il fait semblant de ne rien voir."
+      },
+      {
+        "pnj": "gudrun-lanterne",
+        "nature": "la fanalière de la Citadelle, qui la laisse allumer la lampe",
+        "opinion": "Elle la croit plus douce qu'elle n'en a l'air : c'est chez elle, au phare-archive, que Nolwen se réchauffe."
+      },
+      {
+        "pnj": "prieur-anselme-vareuil",
+        "nature": "le Prieur, qui dirige le priorat et les cartographes",
+        "opinion": "Poli et lointain. Il la regarde comme une ligne mal tirée."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "apprentie-depuis-douze-ans",
+        "texte": "Il y a quatre ans, à douze ans, elle est devenue apprentie cartographe d'Ysmène. Elle le raconte comme on donne un chiffre exact, sans y ajouter un mot."
+      },
+      {
+        "id": "aldous-colonnes",
+        "texte": "Aldous Lindenvert lui a appris à copier les colonnes de marées. Elle corrige en secret ses erreurs de calcul, au crayon, et il fait semblant de ne rien voir."
+      },
+      {
+        "id": "lampe-du-phare-archive",
+        "texte": "Gudrun Lanterne la laisse allumer la lampe du phare-archive, seule pièce chaude de la Citadelle, selon elle. Elle ne remercie personne pour la chaleur, mais elle reste près de la flamme."
+      },
+      {
+        "id": "miel-en-cachette",
+        "texte": "Elle déteste la tisane amère d'Ysmène, et y glisse du miel en cachette, quand la maîtresse a le dos tourné."
+      },
+      {
+        "id": "volets-ouverts",
+        "texte": "Elle dort volets ouverts pour entendre la mer, et s'endort au bruit des vagues comme d'autres au bruit d'un poêle."
+      },
+      {
+        "id": "dame-ysmene",
+        "texte": "Elle appelle Ysmène « Maîtresse » devant les autres, et « Dame Ysmène » quand elle est fâchée. Elle ne dit jamais « mère », même quand on le lui demande."
+      },
+      {
+        "id": "pas-dans-les-escaliers",
+        "texte": "Elle compte ses pas dans les escaliers, par habitude, comme on tient un registre. Elle se trompe rarement, et s'en agace quand cela arrive."
+      },
+      {
+        "id": "carnet-depuis-douze-ans",
+        "texte": "Depuis ses douze ans, elle note dans un petit carnet des points qu'elle n'arrive pas à relier. Elle ne le montre à personne, sauf quand on lui tend une carte à commenter."
+      },
+      {
+        "id": "avis-sur-le-prieur",
+        "texte": "Le Prieur Anselme est poli et lointain, dit-elle. Il la regarde comme une ligne mal tirée, et elle ne sait pas si c'est une critique."
+      },
+      {
+        "id": "mes-cauchemars",
+        "texte": "Elle dit que ce rêve ne lui fait jamais peur, seulement de la peine ; c'est faux. Elle se réveille en comptant à voix basse, le cœur en course, le froid des dalles mouillées encore sous les pieds, et elle garde le compte dans la bouche jusqu'à l'aube. Elle n'en a jamais parlé à Ysmène.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle répète que ce rêve ne lui fait que de la peine, jamais peur, et range son carnet sans rien ajouter."
+      },
+      {
+        "id": "la-rancune",
+        "texte": "Elle ne pardonne pas au Prieur de l'avoir regardée, un matin de la salle des cartes, comme une ligne mal tirée, devant les apprentis. Elle lui a répondu par le silence, et le silence a duré. Elle ne le lui a jamais dit.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Elle dit que le Prieur est poli, qu'on ne lui demande pas davantage, et qu'elle n'a rien à lui reprocher."
+      },
+      {
+        "id": "peur-d-etre-seule",
+        "texte": "Une nuit, quand elle était petite, personne n'est venu. Elle s'est assise sur le seuil du dortoir, les genoux serrés, à écouter la mer monter sous les fenêtres, et elle a compris qu'on peut attendre quelqu'un sans qu'il vienne.",
+        "acces": {
+          "attitudeMin": 55
+        },
+        "evasif": "Elle hausse les épaules : les dortoirs sont bruyants, on dort mal partout, et la mer ne laisse personne tranquille."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Elle a copié les colonnes : la mer montera dans trois jours, plus haut que depuis deux siècles, et la côte ne sera plus à l'abri de ses hautes eaux.",
+        "acces": {}
+      },
+      {
+        "id": "les-tables-qui-retardent",
+        "fait": "f-cit-tables-decalees",
+        "version": "Elle a remarqué, en copiant les colonnes, que les tables de l'observatoire retardent de deux heures depuis le printemps. Elle ne sait pas encore si c'est une erreur de copie ou une erreur de calcul, et elle le dit à voix basse.",
+        "acces": {}
+      },
+      {
+        "id": "les-pages-arrachees",
+        "fait": "f-cit-registre-deux-pages",
+        "version": "Elle l'a remarqué, et n'en parle qu'à regret : deux pages du registre des vives-eaux manquent, arrachées il y a peu. La dernière date lisible tombe au printemps.",
+        "acces": {}
+      },
+      {
+        "id": "la-barque",
+        "fait": "f-cit-barque-a-la-derive",
+        "version": "Elle sait seulement qu'Ysmène l'a trouvée dans une barque à la dérive, au pied de la falaise, un soir de tempête. Elle ne sait pas le reste, et ne veut pas le demander.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Elle baisse les yeux sur son carnet, et dit que la maîtresse ne lui a jamais raconté que le strict nécessaire.",
+        "tabou": [
+          "couverture"
+        ]
+      }
+    ]
+  }
+]

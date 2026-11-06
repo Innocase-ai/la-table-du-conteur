@@ -1,0 +1,369 @@
+[
+  {
+    "id": "malefice",
+    "nom": "Maléfice",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "occultiste"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un œil pétrifié de triton)",
+    "duree": "1 heure",
+    "concentration": true,
+    "resume": "Maudit une créature visible à portée : jusqu'à la fin du sort, chaque jet d'attaque du lanceur qui la touche inflige 1d6 dégâts nécrotiques supplémentaires, et la cible a le Désavantage aux tests de la caractéristique choisie à l'incantation. Si la cible tombe à 0 point de vie, le lanceur peut désigner une nouvelle cible par une action Bonus. Avec un emplacement de niveau 2 la Concentration peut durer 4 heures, niveau 3-4 : 8 heures, niveau 5 et plus : 24 heures."
+  },
+  {
+    "id": "murmures-dissonants",
+    "nom": "Murmures dissonants",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature visible à portée fait un jet de sauvegarde de Sagesse : en cas d'échec elle subit 3d6 dégâts psychiques et doit utiliser sa Réaction (si disponible) pour s'éloigner du lanceur autant que possible par le chemin le plus sûr ; en cas de réussite, elle ne subit que la moitié des dégâts. +1d6 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d6",
+        "type": "psychique"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "nappe-de-brouillard",
+    "nom": "Nappe de brouillard",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 6
+    },
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": true,
+    "resume": "Crée une sphère de brouillard de 6 m de rayon centrée sur un point à portée, de Visibilité nulle, qui persiste pendant la durée du sort (Concentration, jusqu'à 1 heure) sauf si un vent fort la disperse. Le rayon augmente de 6 m par niveau d'emplacement au-delà du 1er."
+  },
+  {
+    "id": "orbe-chromatique",
+    "nom": "Orbe chromatique",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un diamant d'une valeur minimale de 50 po)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une cible à portée ; au choix du lanceur, l'orbe est d'acide, de feu, de foudre, de froid, de poison ou de tonnerre et inflige 3d8 dégâts de ce type si l'attaque touche. Si au moins deux des d8 de dégâts donnent le même nombre, l'orbe rebondit vers une autre cible de son choix dans un rayon de 9 m de la première (nouvelle attaque et nouveau jet de dégâts, une créature ne pouvant être ciblée qu'une fois) ; il ne rebondit qu'une fois, sauf avec un emplacement de niveau 2 ou plus (autant de rebonds que le niveau de l'emplacement). +1d8 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "ameliorationParNiveau": "1d8"
+  },
+  {
+    "id": "protection-contre-le-mal-et-le-bien",
+    "nom": "Protection contre le mal et le bien",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "druide",
+      "magicien",
+      "occultiste",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une flasque d'eau bénite d'une valeur minimale de 25 po, que le sort détruit)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Une créature consentante touchée est protégée contre les Aberrations, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants : ils ont le Désavantage à leurs jets d'attaque contre elle, ne peuvent ni la posséder ni lui infliger les états Charmé et Effrayé, et si elle y est déjà soumise elle a l'Avantage à ses nouveaux jets de sauvegarde contre l'effet (Concentration, jusqu'à 10 minutes)."
+  },
+  {
+    "id": "purification-de-la-nourriture-et-de-l-eau",
+    "nom": "Purification de la nourriture et de l'eau",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "clerc",
+      "druide",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 1.5
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Purge de tout poison et de toute pourriture les aliments et boissons non magiques situés dans une sphère de 1,50 m de rayon centrée sur un point à portée. Peut être lancé en rituel."
+  },
+  {
+    "id": "rayon-empoisonne",
+    "nom": "Rayon empoisonné",
+    "niveau": 1,
+    "ecole": "nécromancie",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature à portée : si elle touche, la cible subit 2d8 dégâts de poison et est Empoisonnée jusqu'à la fin du prochain tour du lanceur. +1d8 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "2d8",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      {
+        "etat": "empoisonne",
+        "dureeRounds": 1
+      }
+    ],
+    "ameliorationParNiveau": "1d8"
+  },
+  {
+    "id": "repli-expeditif",
+    "nom": "Repli expéditif",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Le lanceur entreprend l'action Pointe immédiatement et, jusqu'à la fin du sort (Concentration, jusqu'à 10 minutes), peut entreprendre de nouveau l'action Pointe par une action Bonus."
+  },
+  {
+    "id": "represailles-infernales",
+    "nom": "Représailles infernales",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "occultiste"
+    ],
+    "tempsIncantation": "reaction",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Réaction déclenchée quand une créature visible dans un rayon de 18 m inflige des dégâts au lanceur : elle fait un jet de sauvegarde de Dextérité et subit 2d10 dégâts de feu en cas d'échec, la moitié en cas de réussite. +1d10 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "feu"
+      }
+    ],
+    "ameliorationParNiveau": "1d10"
+  },
+  {
+    "id": "sanctuaire",
+    "nom": "Sanctuaire",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un éclat de verre issu d'un miroir)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Protège une créature à portée pendant 1 minute : toute créature qui la cible avec un jet d'attaque ou un sort nuisible doit réussir un jet de sauvegarde de Sagesse, sinon elle doit choisir une autre cible ou perdre l'attaque ou le sort. Sans effet contre les zones d'effet. Le sort prend fin pour la créature protégée si elle effectue un jet d'attaque, lance un sort ou inflige des dégâts."
+  },
+  {
+    "id": "saut",
+    "nom": "Saut",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une patte arrière de sauterelle)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Une créature consentante touchée peut, une fois à chacun de ses tours pendant 1 minute, sauter jusqu'à 9 m en dépensant 3 m de déplacement. +1 créature par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "serviteur-invisible",
+    "nom": "Serviteur invisible",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "barde",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S, M (un bout de ficelle et un morceau de bois)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Crée une force Invisible de taille M qui accomplit des tâches rudimentaires (apporter, nettoyer, réparer, allumer un feu, servir…) pendant 1 heure ; elle a CA 10, 1 point de vie, Force 2 et ne peut pas attaquer. Par une action Bonus, le lanceur lui ordonne de se déplacer de 4,50 m et d'interagir avec un objet ; le sort prend fin si elle tombe à 0 point de vie ou s'éloigne de plus de 18 m du lanceur. Peut être lancé en rituel."
+  },
+  {
+    "id": "simulacre-de-vie",
+    "nom": "Simulacre de vie",
+    "niveau": 1,
+    "ecole": "nécromancie",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (une goutte d'alcool)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur reçoit 2d4 + 4 points de vie temporaires. +5 points de vie temporaires par niveau d'emplacement au-delà du 1er."
+  },
+  {
+    "id": "texte-illusoire",
+    "nom": "Texte illusoire",
+    "niveau": 1,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "S, M (de l'encre d'une valeur minimale de 10 po, que le sort détruit)",
+    "duree": "10 jours",
+    "concentration": false,
+    "resume": "Incantation d'1 minute (ou rituel). Le lanceur écrit un texte sur une surface adaptée qui paraît normal à ses yeux et à ceux des créatures qu'il désigne, mais illisible (alphabet inconnu ou magique) pour les autres ; il peut aussi lui donner un autre sens, comme s'il avait été écrit par quelqu'un d'autre dans une autre langue qu'il maîtrise. Le texte dure 10 jours, disparaît si le sort est dissipé, et une créature dotée de la Vision lucide peut lire le message caché."
+  },
+  {
+    "id": "vague-tonnante",
+    "nom": "Vague tonnante",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "barde",
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 4.5
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Chaque créature dans un cube de 4,50 m émanant du lanceur fait un jet de sauvegarde de Constitution : en cas d'échec elle subit 2d8 dégâts de tonnerre et est repoussée de 3 m, en cas de réussite la moitié des dégâts seulement. Les objets non fixés entièrement dans le cube sont repoussés de 3 m ; le fracas s'entend à 90 m. +1d8 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d8",
+        "type": "tonnerre"
+      }
+    ],
+    "ameliorationParNiveau": "1d8"
+  }
+]

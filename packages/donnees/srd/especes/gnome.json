@@ -1,0 +1,37 @@
+{
+  "id": "gnome",
+  "nom": "Gnome",
+  "type": "Humanoïde",
+  "tailles": [
+    "P"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "lignage-gnome",
+      "nom": "Lignage gnome",
+      "niveau": 1,
+      "resume": "Choisissez un lignage (Int, Sag ou Cha comme caractéristique d'incantation). Gnome des forêts : sort mineur illusion mineure, et communication avec les animaux toujours préparé, lançable sans emplacement autant de fois que votre bonus de maîtrise par Repos long. Gnome des roches : prestidigitation et réparation, et en 10 minutes vous créez un appareil mécanique TP (CA 5, 1 pv) reproduisant un effet de prestidigitation, trois au maximum, durant 8 heures.",
+      "effets": []
+    },
+    {
+      "id": "ruse-gnome",
+      "nom": "Ruse gnome",
+      "niveau": 1,
+      "resume": "Vous avez l'Avantage aux jets de sauvegarde d'Intelligence, de Sagesse et de Charisme.",
+      "effets": []
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 18 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 18
+        }
+      ]
+    }
+  ]
+}

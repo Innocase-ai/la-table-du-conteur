@@ -1,0 +1,7 @@
+[{ "id": "bertrand", "nom": "Bertrand", "espece": "humain", "sexe": "M", "role": "Aubergiste", "lieu": "auberge",
+  "apparence": "aubergiste rond à la barbe grise", "personnalite": { "traits": ["bavard", "inquiet"], "voix": "grave et lente", "desir": "protéger son village" },
+  "attitude": 10, "savoir": ["f-loups"],
+  "sujets": [{ "id": "loups", "mots": ["loups", "montagne"], "reponse": "Ils descendent depuis une semaine.", "revele": ["f-loups"], "effets": [{ "quete": { "id": "q-loups", "statut": "active" } }] }],
+  "salutations": { "neutre": "Bienvenue chez l'Ours rieur." },
+  "boutique": { "stock": [{ "objet": "potion-soins-mini", "quantite": 2 }], "rachat": 0.5 },
+  "services": [{ "id": "chambre", "nom": "Chambre", "resume": "Une nuit.", "prix": 2 }] }]

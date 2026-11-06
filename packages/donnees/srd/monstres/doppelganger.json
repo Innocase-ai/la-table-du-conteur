@@ -1,0 +1,130 @@
+{
+  "id": "doppelganger",
+  "nom": "Doppelganger",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 52,
+    "des": "8d8 + 16"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 18,
+    "con": 14,
+    "int": 11,
+    "sag": 12,
+    "cha": 14
+  },
+  "sauvegardes": {},
+  "competences": {
+    "intuition": 3,
+    "tromperie": 6
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "charme"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun et trois autres langues",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le doppelganger effectue deux attaques de Coup et recourt à Visage déstabilisant si disponible.",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +6 (avec Avantage au premier round de chaque combat), allonge 1,50 m : 11 (2d6 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "lecture-des-pensees",
+      "nom": "Lecture des pensées",
+      "cout": "action",
+      "resume": "Le doppelganger lance détection des pensées sans composantes de sort, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 12).",
+      "degats": [],
+      "etats": [],
+      "portee": {
+        "type": "personnel"
+      }
+    },
+    {
+      "id": "visage-destabilisant",
+      "nom": "Visage déstabilisant",
+      "cout": "action",
+      "resume": "JS Sagesse DD 12, chaque créature dans une Émanation de 4,50 m centrée sur le doppelganger et qui voit celui-ci. Échec : la cible subit l'état Effrayé et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 12,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 4.5
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        }
+      ],
+      "recharge": "6"
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le doppelganger se transforme en Humanoïde de taille M ou P, ou bien reprend sa forme véritable. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

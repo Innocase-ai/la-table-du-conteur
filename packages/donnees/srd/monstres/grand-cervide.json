@@ -1,0 +1,71 @@
+{
+  "id": "grand-cervide",
+  "nom": "Grand cervidé",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d10"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 10,
+    "con": 11,
+    "int": 2,
+    "sag": 10,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 12
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "ramure",
+      "nom": "Ramure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants. Si la cible est une créature de taille G ou inférieure et si le cervidé s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 3 (1d6) dégâts contondants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

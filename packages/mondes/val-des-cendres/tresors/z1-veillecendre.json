@@ -1,0 +1,143 @@
+[
+  {
+    "id": "vei-t-plancher-du-bailli",
+    "nom": "Le coffret sous le plancher du bailli",
+    "lieu": "vei-cellier-du-bailli",
+    "contenant": "coffre",
+    "description": "Un coffret de fer noir encastré dans une niche du cellier, fermé par une serrure à ressort. Il contient le vrai registre de vivres du bailli, un billet signé, et une bourse.",
+    "contenu": { "pieces": { "po": 85 }, "objets": [{ "objet": "vei-double-registre", "quantite": 1 }, { "objet": "vei-billet-de-dette", "quantite": 1 }], "tables": [] },
+    "acces": { "verrou": { "dd": 14 }, "piege": "vei-p-aiguille-du-coffret" },
+    "indice": "f-vei-registre-du-bailli"
+  },
+  {
+    "id": "vei-t-sacs-de-la-grange",
+    "nom": "Les sacs du fond de la grange",
+    "lieu": "vei-grange-aux-grains",
+    "contenant": "cache",
+    "description": "Derrière trois rangées de sacs de sable, une niche de pierre où des veuves ont caché de quoi nourrir leurs enfants si le bailli ferme les portes : quelques rations, une bourse de pièces d'argent.",
+    "contenu": { "pieces": { "po": 8, "pa": 40 }, "objets": [{ "objet": "rations", "quantite": 6 }], "tables": [] },
+    "acces": { "cache": { "dd": 13, "competence": "investigation" } },
+    "indice": "f-vei-greniers-au-tiers"
+  },
+  {
+    "id": "vei-t-tombe-du-veilleur",
+    "nom": "La tombe d'un ancien Veilleur",
+    "lieu": "vei-cimetiere",
+    "contenant": "tombe",
+    "description": "Une dalle de schiste plus soignée que les autres, au nom effacé, marquée d'une flamme. On y a enterré un Veilleur avec sa médaille et une fiole de remède que personne n'a osé reprendre.",
+    "contenu": { "pieces": { "po": 15 }, "objets": [{ "objet": "vei-medaille-des-veilleurs", "quantite": 1 }, { "objet": "potion-de-guerison", "quantite": 1 }], "tables": [] },
+    "acces": { "cache": { "dd": 12, "competence": "investigation" } }
+  },
+  {
+    "id": "vei-t-armoire-des-archives",
+    "nom": "L'armoire de chêne des archives",
+    "lieu": "vei-archives",
+    "contenant": "coffre",
+    "description": "Une armoire de chêne à serrure complexe, dans laquelle l'archiviste range les pièces les plus anciennes : le relevé de la flamme depuis deux siècles, un parchemin, quelques pièces nains.",
+    "contenu": { "pieces": { "po": 30 }, "objets": [{ "objet": "vei-releve-de-la-flamme", "quantite": 1 }, { "objet": "parchemin-de-sort-niveau-1", "quantite": 1 }], "tables": [] },
+    "acces": { "verrou": { "dd": 15 }, "piege": "vei-p-serrure-a-petard" },
+    "indice": "f-vei-registre-de-la-flamme"
+  },
+  {
+    "id": "vei-t-cadavre-du-courrier",
+    "nom": "Le courrier mort au relais",
+    "lieu": "vei-relais-du-col",
+    "contenant": "cadavre",
+    "description": "Un homme en manteau de poste, gelé, une flèche courte dans la nuque. Sa sacoche de cuir est cachée sous son ventre ; quelques pièces et un pli cacheté de gris.",
+    "contenu": { "pieces": { "po": 14, "pa": 20 }, "objets": [{ "objet": "vei-lettre-du-fer-gris", "quantite": 1 }], "tables": [] },
+    "acces": { "cache": { "dd": 10, "competence": "perception" } },
+    "indice": "f-vei-lettres-du-col"
+  },
+  {
+    "id": "vei-t-cadavre-du-convoyeur",
+    "nom": "Le convoyeur du colporteur",
+    "lieu": "vei-chariot-embourbe",
+    "contenant": "cadavre",
+    "description": "Un homme robuste, un arc court à côté de lui, une flèche gobeline dans le dos. Son carquois est presque plein et sa bourse n'a pas été prise.",
+    "contenu": { "pieces": { "po": 9 }, "objets": [{ "objet": "vei-arc-court-du-marche", "quantite": 1 }, { "objet": "fleches", "quantite": 15 }, { "objet": "couverture", "quantite": 1 }], "tables": [] },
+    "acces": {}
+  },
+  {
+    "id": "vei-t-cargaison-du-colporteur",
+    "nom": "La cargaison du chariot",
+    "lieu": "vei-chariot-embourbe",
+    "contenant": "autre",
+    "description": "Sous la bâche déchirée, des tonneaux d'huile de roche, des ballots de laine, des caisses éventrées. Les gobelins n'ont pas su quoi faire des barils, trop lourds ; ils ont pris le reste.",
+    "contenu": { "objets": [{ "objet": "vei-baril-d-huile-de-roche", "quantite": 2 }, { "objet": "lanterne-a-capote", "quantite": 1 }, { "objet": "rations", "quantite": 8 }], "tables": [{ "table": "vei-tb-bagages-du-col", "jets": 1 }] },
+    "acces": {}
+  },
+  {
+    "id": "vei-t-camp-des-gobelins",
+    "nom": "Le butin des gobelins",
+    "lieu": "route-du-col-embuscade",
+    "contenant": "cache",
+    "description": "Dans un creux sous un rocher à l'écart du défilé, les gobelins entassent leur butin : un sac troué de pièces, des restes de rations, des morceaux d'équipement de caravane.",
+    "contenu": { "pieces": { "po": 20, "pa": 30 }, "objets": [{ "objet": "rations", "quantite": 5 }], "tables": [{ "table": "vei-tb-pillage-gobelin", "jets": 3 }] },
+    "acces": { "cache": { "dd": 11, "competence": "survie" } }
+  },
+  {
+    "id": "vei-t-fond-du-puits",
+    "nom": "Le fond du puits",
+    "lieu": "vei-puits",
+    "contenant": "cache",
+    "description": "Au fond du puits, sous un pied d'eau noire, un lit de pièces noircies et de petits bijoux nains jetés par des générations en offrande aux morts de la Haute-Forge. On y descend à la corde.",
+    "contenu": { "pieces": { "po": 40, "pa": 60 }, "objets": [{ "objet": "symbole-sacre-amulette", "quantite": 1 }], "tables": [] },
+    "acces": { "cache": { "dd": 10, "competence": "perception" } },
+    "indice": "f-vei-offrandes-du-puits"
+  },
+  {
+    "id": "vei-t-reserve-de-bertille",
+    "nom": "La réserve de Bertille",
+    "lieu": "vei-cave-de-l-auberge",
+    "contenant": "coffre",
+    "description": "Derrière la grille de la cave, un coffre de chêne où l'aubergiste cache ses économies, trois flasques de sa gnôle et une potion de guérison qu'elle garde pour les grands soirs.",
+    "contenu": { "pieces": { "po": 60 }, "objets": [{ "objet": "potion-de-guerison", "quantite": 1 }, { "objet": "vei-gnole-de-bertille", "quantite": 3 }], "tables": [] },
+    "acces": { "verrou": { "dd": 13, "cle": "vei-cle-de-la-cave" } }
+  },
+  {
+    "id": "vei-t-offrandes-de-la-chapelle",
+    "nom": "Les offrandes de la chapelle grise",
+    "lieu": "vei-chapelle-grise",
+    "contenant": "autel",
+    "description": "Sur l'autel de granit, la coupe de cendre bénite et une boîte de bois où l'on dépose pièces et pochettes de cendre pour les morts. Prendre sans demander serait un affront.",
+    "contenu": { "pieces": { "po": 12 }, "objets": [{ "objet": "vei-cendre-benite", "quantite": 3 }, { "objet": "eau-benite", "quantite": 1 }], "tables": [] },
+    "acces": {}
+  },
+  {
+    "id": "vei-t-coffre-de-fennick",
+    "nom": "Le coffre à tiroirs de Fennick",
+    "lieu": "vei-atelier-des-rouages",
+    "contenant": "etabli",
+    "description": "Un coffre de bronze à quarante tiroirs, qui ne s'ouvrait plus depuis des années. Chaque tiroir contient des pièces d'horlogerie, des loupes, et quelques curiosités.",
+    "contenu": { "pieces": { "po": 40 }, "objets": [{ "objet": "outils-de-bricoleur", "quantite": 1 }, { "objet": "loupe", "quantite": 1 }, { "objet": "potion-de-guerison", "quantite": 1 }], "tables": [] },
+    "acces": { "verrou": { "dd": 15 } }
+  },
+  {
+    "id": "vei-t-niche-du-cadran",
+    "nom": "La niche du cadran",
+    "lieu": "vei-cadran-de-la-lanterne",
+    "contenant": "cache",
+    "description": "Derrière le cadran, une niche scellée par une plaque de bronze s'ouvre quand les couronnes sont bien réglées. Elle contient les dernières réserves d'un ancien Veilleur : un baril d'huile de roche, des fioles d'un cordial chaud et une pochette de pièces nains.",
+    "contenu": { "pieces": { "po": 30 }, "objets": [{ "objet": "vei-baril-d-huile-de-roche", "quantite": 1 }, { "objet": "potion-de-guerison-importante", "quantite": 1 }], "tables": [] },
+    "acces": { "cache": { "dd": 13, "competence": "investigation" } },
+    "indice": "f-vei-combustible"
+  },
+  {
+    "id": "vei-t-etabli-de-grodak",
+    "nom": "L'établi de la forge",
+    "lieu": "vei-forge-des-refugies",
+    "contenant": "etabli",
+    "description": "Sous l'établi principal, un tiroir de fer où Grodak garde ses outils de précision, ses lingots d'acier gris et une lame ancienne, ébréchée, qu'il refuse de réparer.",
+    "contenu": { "pieces": { "po": 25 }, "objets": [{ "objet": "outils-de-forgeron", "quantite": 1 }, { "objet": "vei-hache-d-armes-de-la-forge", "quantite": 1 }], "tables": [] },
+    "acces": { "cache": { "dd": 14, "competence": "perception" } }
+  },
+  {
+    "id": "vei-t-foin-de-l-ecurie",
+    "nom": "La cachette du foin",
+    "lieu": "vei-ecurie",
+    "contenant": "cache",
+    "description": "Dans le grenier à foin, une botte creuse cache une petite fortune de réfugié mort de la toux grise : sa bourse, une corde, un grappin.",
+    "contenu": { "pieces": { "po": 22 }, "objets": [{ "objet": "corde", "quantite": 1 }, { "objet": "grappin", "quantite": 1 }], "tables": [{ "table": "vei-tb-fonds-de-poche", "jets": 2 }] },
+    "acces": { "cache": { "dd": 13, "competence": "perception" } }
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "z2-t-coffre-des-offrandes",
+    "nom": "Le coffre des offrandes",
+    "lieu": "eg-sacristie",
+    "contenant": "coffre",
+    "description": "À gauche de la porte de la nef, un coffre de chêne ferré, long d'un pas, où les fidèles glissent des pièces ; sa serrure de laiton est fermée et personne ne semble en garder la clé. À travers la fente du couvercle, on devine de la monnaie de cuivre et d'argent, et des cierges de cire roulés dans de la toile.",
+    "contenu": {
+      "pieces": { "po": 2, "pa": 18, "pc": 46 },
+      "objets": [{ "objet": "z2-o-cierge-de-veille", "quantite": 3 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 12 }, "piege": "z2-p-aiguille-du-coffre" }
+  },
+  {
+    "id": "z2-t-armoire-de-la-sainte",
+    "nom": "L'armoire de la sainte",
+    "lieu": "eg-crypte",
+    "contenant": "coffre",
+    "description": "Contre le mur sud, près de la lampe, une armoire de chêne noir fermée par une barre de fer et une serrure de bronze à anneau. À travers les fentes des battants, on devine le dos de gros registres et la rondeur d'une fiole.",
+    "contenu": {
+      "pieces": { "po": 6 },
+      "objets": [
+        { "objet": "z2-o-registre-des-lectures", "quantite": 1 },
+        { "objet": "potion-de-guerison", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 16 } },
+    "indice": "f-livre-use-la-voix"
+  }
+]

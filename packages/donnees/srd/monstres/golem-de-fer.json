@@ -1,0 +1,164 @@
+{
+  "id": "golem-de-fer",
+  "nom": "Golem de fer",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 20,
+  "pv": {
+    "moyenne": 252,
+    "des": "24d10 + 120"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 24,
+    "dex": 9,
+    "con": 20,
+    "int": 3,
+    "sag": 11,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 9,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "poison",
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 10
+  },
+  "langues": "comprend le commun et deux autres langues, mais ne parle pas",
+  "fp": "16",
+  "px": 15000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "absorption-du-feu",
+      "nom": "Absorption du feu",
+      "resume": "Chaque fois que le golem est soumis à des dégâts de feu, il récupère en fait autant de points de vie que les dégâts de feu infligés."
+    },
+    {
+      "id": "forme-immuable",
+      "nom": "Forme immuable",
+      "resume": "Le golem ne peut pas être métamorphosé."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le golem a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le golem effectue deux attaques, réparties à sa guise entre Lame brachiale et Trait enflammé.",
+      "multiattaque": [
+        {
+          "action": "lame-brachiale",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "lame-brachiale",
+      "nom": "Lame brachiale",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 3 m : 20 (3d8 + 7) dégâts tranchants plus 10 (3d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 7,
+          "type": "tranchant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "trait-enflamme",
+      "nom": "Trait enflammé",
+      "cout": "action",
+      "resume": "À distance +10, portée 36 m : 36 (8d8) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "8d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-empoisonne",
+      "nom": "Souffle empoisonné",
+      "cout": "action",
+      "resume": "JS Constitution DD 18, chaque créature dans un Cône de 18 m. Échec : 55 (10d10) dégâts de poison. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 18,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "10d10",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": [],
+      "recharge": "6"
+    }
+  ]
+}

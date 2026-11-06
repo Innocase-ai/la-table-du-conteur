@@ -1,0 +1,93 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "arcanes": 4,
+    "discretion": 5,
+    "religion": 4
+  },
+  "resistances": [
+    "nécrotique",
+    "psychique",
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le sphinx a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    }
+  ],
+  "id": "sphinx-merveilleux",
+  "nom": "Sphinx merveilleux",
+  "taille": "TP",
+  "type": "Céleste",
+  "alignement": "Loyal Bon",
+  "ca": 13,
+  "pv": {
+    "moyenne": 24,
+    "des": "7d4 + 7"
+  },
+  "vitesse": {
+    "marche": 6,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 17,
+    "con": 13,
+    "int": 15,
+    "sag": 12,
+    "cha": 11
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "céleste, commun",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts tranchants plus 7 (2d6) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ]
+    },
+    {
+      "id": "acces-d-ingeniosite",
+      "nom": "Accès d'ingéniosité",
+      "cout": "reaction",
+      "resume": "Accès d'ingéniosité (2/jour). Déclencheur : le sphinx ou une autre créature dans un rayon de 9 m effectue un jet de sauvegarde ou un test de caractéristique. Conséquences : le sphinx ajoute 2 au jet.",
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

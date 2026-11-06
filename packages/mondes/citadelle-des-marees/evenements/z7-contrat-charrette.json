@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z7-relais-abandonne",
+    "declencheur": "condition",
+    "unique": true,
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 3 } },
+        { "quete": { "id": "q-fal-la-charrette-eventree", "statut": "active" } },
+        { "non": { "flag": "fal-meute-reglee" } }
+      ]
+    },
+    "narration": "Au matin, la cour du relais est vide : le chariot d'Aubin a quitté les lieux avant l'aube. Sur le comptoir, une ardoise porte encore le compte de ses pertes, et la dernière ligne a été barrée d'un trait net.",
+    "effets": [
+      { "pnjEtat": { "pnj": "fal-aubin-lacombe", "etat": "parti" } },
+      { "quete": { "id": "q-fal-la-charrette-eventree", "statut": "echouee" } },
+      { "flag": "fal-relais-abandonne" }
+    ]
+  }
+]

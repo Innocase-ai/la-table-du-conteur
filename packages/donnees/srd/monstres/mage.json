@@ -1,0 +1,129 @@
+{
+  "id": "mage",
+  "nom": "Mage",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 15,
+  "pv": {
+    "moyenne": 81,
+    "des": "18d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 9,
+    "dex": 14,
+    "con": 11,
+    "int": 17,
+    "sag": 12,
+    "cha": 11
+  },
+  "sauvegardes": {
+    "int": 6,
+    "sag": 4
+  },
+  "competences": {
+    "arcanes": 6,
+    "histoire": 6,
+    "perception": 4
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 14
+  },
+  "langues": "commun et trois autres langues",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le mage lance l'un des sorts suivants, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 14). À volonté : armure du mage (compris dans la CA), détection de la magie, lumière, main du mage, prestidigitation. 2/jour chacun : boule de feu (au 4e niveau), invisibilité. 1/jour chacun : cône de froid, vol."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le mage effectue trois attaques de Jaillissement arcanique.",
+      "multiattaque": [
+        {
+          "action": "jaillissement-arcanique",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "jaillissement-arcanique",
+      "nom": "Jaillissement arcanique (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 16 (3d8 + 3) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 3,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "jaillissement-arcanique-distance",
+      "nom": "Jaillissement arcanique (distance)",
+      "cout": "action",
+      "resume": "À distance +6, portée 36 m : 16 (3d8 + 3) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 3,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "foulee-brumeuse",
+      "nom": "Foulée brumeuse",
+      "cout": "bonus",
+      "resume": "Le mage lance foulée brumeuse, avec la même caractéristique d'incantation que pour Incantation.",
+      "utilisations": {
+        "nombre": 3,
+        "par": "jour"
+      }
+    },
+    {
+      "id": "magie-protectrice",
+      "nom": "Magie protectrice",
+      "cout": "reaction",
+      "resume": "Le mage lance bouclier ou contresort en réponse au déclencheur du sort correspondant, avec la même caractéristique d'incantation que pour Incantation.",
+      "utilisations": {
+        "nombre": 3,
+        "par": "jour"
+      }
+    }
+  ]
+}

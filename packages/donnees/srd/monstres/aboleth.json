@@ -1,0 +1,170 @@
+{
+  "id": "aboleth",
+  "nom": "Aboleth",
+  "taille": "G",
+  "type": "Aberration",
+  "alignement": "Loyale Mauvaise",
+  "ca": 17,
+  "pv": {
+    "moyenne": 150,
+    "des": "20d10 + 40"
+  },
+  "vitesse": {
+    "marche": 3,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 9,
+    "con": 15,
+    "int": 18,
+    "sag": 15,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "dex": 3,
+    "con": 6,
+    "int": 8,
+    "sag": 6
+  },
+  "competences": {
+    "histoire": 12,
+    "perception": 10
+  },
+  "initiative": 7,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 20
+  },
+  "langues": "profond ; télépathie 36 m",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "L'aboleth peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "nuage-de-mucus",
+      "nom": "Nuage de mucus",
+      "resume": "Tant qu'il est sous l'eau, l'aboleth est entouré d'un mucus réactif. JS Constitution DD 14, chaque créature dans une Émanation de 1,50 m centrée sur l'aboleth, à la fin du tour de celui-ci. Échec : la cible est maudite. Jusqu'à la fin de la malédiction, la cible présente une peau visqueuse, peut respirer sous l'eau comme à l'air libre et ne peut récupérer de points de vie que si elle est sous l'eau. Quand la créature maudite n'est pas dans l'eau, elle subit 6 (1d12) dégâts d'acide à la fin de chaque période de 10 minutes, sauf si sa peau est humidifiée dans l'intervalle."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "3/jour, ou 4/jour dans son antre. Si l'aboleth rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "restauration-occulte",
+      "nom": "Restauration occulte",
+      "resume": "S'il est détruit, l'aboleth acquiert un nouveau corps en 5d10 jours et revient à la vie avec tous ses pv dans le Royaume Lointain (ou en un autre lieu choisi par le MJ)."
+    },
+    {
+      "id": "telepathie-inquisitrice",
+      "nom": "Télépathie inquisitrice",
+      "resume": "Si une créature communique par télépathie avec l'aboleth, ce dernier a conscience des désirs profonds de la créature."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, l'aboleth peut dépenser une utilisation pour entreprendre l'une des actions ci-après ; il récupère toutes ses utilisations dépensées au début de chacun de ses tours. Coup de tentacule : l'aboleth effectue une attaque de Tentacule. Succion psychique : si l'aboleth maintient au moins une créature Charmée ou Agrippée, il recourt à Assimilation de mémoire et récupère 5 (1d10) points de vie. (PX 7 200 dans son antre.)"
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'aboleth effectue deux attaques de Tentacule et recourt à Assimilation de mémoire ou Domination d'esprit si disponible.",
+      "multiattaque": [
+        {
+          "action": "tentacule",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "tentacule",
+      "nom": "Tentacule",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 4,50 m : 12 (2d6 + 5) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 14) par l'un des quatre tentacules.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "assimilation-de-memoire",
+      "nom": "Assimilation de mémoire",
+      "cout": "action",
+      "resume": "JS Intelligence DD 16, une créature dans un rayon de 9 m Charmée ou Agrippée par l'aboleth. Échec : 10 (3d6) dégâts psychiques. Réussite : demi-dégâts. Échec ou réussite : l'aboleth acquiert les souvenirs de la cible si elle est Humanoïde et si cette action la fait tomber à 0 point de vie.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "int",
+        "dd": 16,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ]
+    },
+    {
+      "id": "domination-d-esprit",
+      "nom": "Domination d'esprit",
+      "cout": "action",
+      "resume": "2/jour. JS Sagesse DD 16, une créature que l'aboleth voit dans un rayon de 9 m. Échec : la cible subit l'état Charmé jusqu'à ce que l'aboleth meure ou soit sur un autre plan d'existence qu'elle. Ainsi Charmée, la cible se comporte en alliée de l'aboleth ; elle est directement sous son contrôle tant qu'elle reste dans un rayon de 18 m de lui. L'aboleth et la cible peuvent communiquer télépathiquement, quelle que soit la distance. La cible réitère le JS chaque fois qu'elle subit des dégâts, ainsi qu'à la fin de toute période de 24 heures passée à plus de 1,5 km de l'aboleth, et met un terme à l'effet en cas de réussite.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 16,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "etats": [
+        {
+          "etat": "charme"
+        }
+      ],
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

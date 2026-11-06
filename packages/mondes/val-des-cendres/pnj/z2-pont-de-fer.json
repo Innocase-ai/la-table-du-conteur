@@ -1,0 +1,2184 @@
+[
+  {
+    "id": "kor-varnak",
+    "nom": "Kor Varnak",
+    "titre": "Capitaine de la Compagnie du Fer-Gris",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "une cinquantaine d'années",
+    "role": "Capitaine hobgobelin, chef de la Compagnie du Fer-Gris et maître de Pont-de-Fer",
+    "lieu": "pdf-caserne",
+    "apparence": "Hobgobelin grand et sec à la peau brun-roux, cheveux gris tirés en natte de soldat, une cicatrice qui lui mange l'oreille gauche, cuirasse de fer terni sans ornement, un clou de fer gris cousu à l'épaule ; il tousse dans son poing et le cache.",
+    "personnalite": {
+      "traits": [
+        "sincère",
+        "discipliné",
+        "patient",
+        "fatigué"
+      ],
+      "voix": "posée, courte, sans adjectif ; il compte avant de parler ; il tutoie ses soldats et vouvoie les étrangers",
+      "valeurs": [
+        "la parole donnée",
+        "l'ordre",
+        "son peuple"
+      ],
+      "desir": "obtenir pour les siens une terre et un feu qui ne bougent plus",
+      "peur": "voir son peuple chassé une fois encore, et mourir avant d'avoir donné un toit",
+      "defaut": "ne revient jamais sur un ordre donné devant témoins"
+    },
+    "presences": [
+      {
+        "lieu": "pdf-camp-du-fer-gris",
+        "moment": "jour"
+      },
+      {
+        "lieu": "pdf-salle-du-capitaine",
+        "moment": "nuit"
+      }
+    ],
+    "faction": "compagnie-du-fer-gris",
+    "attitude": -5,
+    "profilCombat": "capitaine-hobgobelin",
+    "savoir": [
+      "f-pdf-compagnie-arrivee",
+      "f-pdf-discipline-des-rangs",
+      "f-pdf-foyer-du-fer-gris",
+      "f-fer-gris-veut-la-forge",
+      "f-pdf-le-sceau-bloque-la-compagnie",
+      "f-tribut-du-bailli",
+      "f-pdf-convoi-de-grain",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-toux-de-fer",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-pdf-kor-malade",
+        "attitudeMin": 45
+      }
+    ],
+    "sujets": [
+      {
+        "id": "compagnie",
+        "mots": [
+          "compagnie",
+          "fer-gris",
+          "qui êtes-vous",
+          "soldats",
+          "camp",
+          "armée"
+        ],
+        "question": "Qu'est-ce que la Compagnie du Fer-Gris ?",
+        "reponse": "Kor présente la Compagnie sans vantardise : des hobgobelins chassés du sud, une troupe qui vit sous le Livre des Rangs, des mains de cinq soldats, aucun pillage dans l'enceinte, le fouet pour le vol, la mort pour la désertion. Ils sont là depuis cinq ans et ont pris la ville après un siège de onze jours. Il tient à ce que l'étranger comprenne que la discipline n'est pas de la cruauté.",
+        "revele": [
+          "f-pdf-compagnie-arrivee",
+          "f-pdf-discipline-des-rangs"
+        ]
+      },
+      {
+        "id": "foyer",
+        "mots": [
+          "foyer",
+          "terre",
+          "pourquoi ici",
+          "maison",
+          "rester",
+          "patrie"
+        ],
+        "attitudeMin": 5,
+        "question": "Pourquoi rester ici, dans ce val ?",
+        "reponse": "Kor baisse la voix. Son peuple n'a jamais eu de terre à lui : mercenaire hier, chassé demain. Il ne veut pas de gloire, il veut un feu qui ne bouge plus, des enfants qui naissent dans la même maison que leurs grands-parents. Il dira que tout ce qu'il fait, il le fait pour cela.",
+        "revele": [
+          "f-pdf-foyer-du-fer-gris"
+        ]
+      },
+      {
+        "id": "la-forge",
+        "mots": [
+          "haute-forge",
+          "forge",
+          "cœur",
+          "braise",
+          "nains",
+          "serrure"
+        ],
+        "attitudeMin": 10,
+        "question": "Que cherchez-vous à la Haute-Forge ?",
+        "reponse": "Kor ne cache pas qu'il veut la Haute-Forge et son feu : pour fondre le fer de son peuple, pour chauffer des maisons, pour que la cendre cesse de les étouffer. Ses éclaireurs ont trouvé la porte. Elle est scellée d'une serrure naine dont la clé repose dans des cryptes que la Compagnie n'a pas pu forcer. Il suggère, sans le dire, qu'il a besoin d'aide.",
+        "revele": [
+          "f-fer-gris-veut-la-forge",
+          "f-pdf-le-sceau-bloque-la-compagnie"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fer-gris-le-laissez-passer",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "tribut",
+        "mots": [
+          "bailli",
+          "grain",
+          "tribut",
+          "aurèle",
+          "convoi",
+          "protection"
+        ],
+        "question": "D'où vient le grain que le bailli vous donne ?",
+        "reponse": "Kor affirme que la Compagnie n'a jamais réclamé de tribut : c'est le bailli qui a offert du grain, chaque lune, pour que ses terres soient « protégées ». Il a accepté parce que ses soldats avaient faim. Le dernier convoi est arrivé à moitié plein, avec six jours de retard. Il a gardé les convoyeurs comme garantie, pas comme punition, et il veut le grain promis, pas du sang.",
+        "revele": [
+          "f-tribut-du-bailli",
+          "f-pdf-convoi-de-grain"
+        ]
+      },
+      {
+        "id": "otages",
+        "mots": [
+          "otages",
+          "prisonniers",
+          "anselme",
+          "tiphaine",
+          "prison",
+          "veillecendre"
+        ],
+        "question": "Qui sont les prisonniers dans vos caves ?",
+        "reponse": "Kor reconnaît tenir deux habitants de Veillecendre dans ses caves, un charretier et une jeune herboriste. Ils sont nourris, ils ne souffrent pas, mais ils resteront tant que la dette de grain ne sera pas réglée. Il dit qu'il hésite à les faire exécuter, comme Ruvak le réclame, et qu'il lui faut une raison de ne pas le faire.",
+        "revele": [
+          "f-pdf-otages-a-la-prison"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-les-otages",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "otages-liberation",
+        "mots": [
+          "libérer",
+          "relâcher",
+          "rendre les otages",
+          "échange",
+          "marché"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "gue-bande-vaincue"
+            },
+            {
+              "flag": "gue-bande-dissoute"
+            },
+            {
+              "pnj": {
+                "id": "kor-varnak",
+                "attitudeMin": 30
+              }
+            }
+          ]
+        },
+        "question": "Proposer un marché pour libérer les otages.",
+        "reponse": "Kor pèse longuement l'offre. Si le Gué ne coupe plus ses chemins, ou si l'étranger lui est assez sûr pour que sa parole vaille un sac de grain, il relâchera les deux otages. Il demande seulement que le bailli sache que la Compagnie attend la prochaine lune pleine, sans excuse. Il dicte l'ordre de libération et le fait sceller devant témoins.",
+        "effets": [
+          {
+            "flag": "pdf-otages-libres"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "deserteur",
+        "mots": [
+          "déserteur",
+          "tarn",
+          "loi",
+          "désertion",
+          "fuite"
+        ],
+        "question": "Quel sort réserve la loi au déserteur ?",
+        "reponse": "Kor est formel : la loi de la Compagnie punit la désertion de mort, sans exception, parce qu'une troupe qui laisse partir un homme cesse d'être une troupe. Il dit qu'il y a un mort qui marche encore dans sa ville, et qu'il ne cherche pas à le retrouver. Qui le lui amènerait ferait de lui un juge.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-le-deserteur",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "grace",
+        "mots": [
+          "grâce",
+          "pardon",
+          "épargner tarn",
+          "exil",
+          "clémence"
+        ],
+        "condition": {
+          "quete": {
+            "id": "q-pdf-le-deserteur",
+            "statut": "active"
+          }
+        },
+        "attitudeMin": 20,
+        "question": "Accorderiez-vous votre pardon à Tarn ?",
+        "reponse": "Kor se tait longtemps. Il peut transformer la peine en exil, parce que le Livre des Rangs prévoit que le capitaine commue un arrêt devant témoins. Il demande au déserteur de rendre son brassard et de quitter le Val avant la prochaine lune. C'est une faveur qu'il n'accorde qu'une fois.",
+        "effets": [
+          {
+            "flag": "pdf-deserteur-gracie"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "gaspard",
+        "mots": [
+          "gué",
+          "gaspard",
+          "bande",
+          "brigands",
+          "pillards",
+          "convois"
+        ],
+        "question": "Qui est cette bande du Gué qui pille vos convois ?",
+        "reponse": "Kor accuse la bande du Gué de saigner ses convois : des sacs de grain disparus, des gardes blessés. Il envoie des patrouilles sans résultat. Il serait reconnaissant à qui le débarrasserait du problème sans le contraindre à brûler un hameau de réfugiés.",
+        "revele": [
+          "f-gue-pillages-des-refugies"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gue-la-bande",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "alliance",
+        "mots": [
+          "alliance",
+          "pacte",
+          "s'allier",
+          "accord",
+          "ensemble",
+          "partager"
+        ],
+        "condition": {
+          "fait": "f-pdf-le-sceau-bloque-la-compagnie"
+        },
+        "attitudeMin": 35,
+        "question": "Proposer un pacte à la Compagnie.",
+        "reponse": "Kor propose un pacte : la clé de la Haute-Forge pour la Compagnie, que les étrangers rapportent depuis les cryptes. En échange, le feu du Cœur sera partagé, la cendre n'atteindra plus Veillecendre, et le Fer-Gris ne lèvera plus un fer contre le village. Il tend son propre sceau comme gage et prévient : sa parole se tient jusqu'à la mort.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "fer-gris-allie"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 25
+            }
+          },
+          {
+            "objet": {
+              "id": "sceau-du-fer-gris"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Ton nom, ton affaire. Tu as le temps d'une phrase.",
+      "neutre": "Parle. Les étrangers qui entrent ici parlent d'abord.",
+      "amical": "Assieds-toi. Il y a de la soupe, et elle est chaude.",
+      "variantes": [
+        {
+          "condition": {
+            "faction": {
+              "id": "compagnie-du-fer-gris",
+              "min": 30
+            }
+          },
+          "texte": "Vous avez tenu ce que vous aviez promis, et cela se sait jusqu'au Pont. Mes hommes vous saluent. Parlez, je vous écoute, et cette fois je ne compterai pas vos mots."
+        }
+      ]
+    }
+  },
+  {
+    "id": "pdf-ruvak-main-de-fer",
+    "nom": "Ruvak Main-de-Fer",
+    "titre": "Lieutenant de la Compagnie",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "trente-cinq ans",
+    "role": "Lieutenant belliqueux, chef des exercices et commandant de la garde",
+    "lieu": "pdf-camp-du-fer-gris",
+    "apparence": "Hobgobelin trapu, crâne rasé tatoué de chevrons, avant-bras cerclés de fer, cotte de mailles ouverte sur une poitrine couverte de cicatrices, une hache à deux mains plantée dans le sol à côté de lui.",
+    "personnalite": {
+      "traits": [
+        "belliqueux",
+        "loyal à sa façon",
+        "impatient",
+        "méfiant"
+      ],
+      "voix": "claquante, des images de boucher, crache entre deux phrases",
+      "valeurs": [
+        "la force",
+        "la victoire",
+        "la loyauté au rang"
+      ],
+      "desir": "prendre la Haute-Forge et Veillecendre par la force avant l'hiver",
+      "peur": "finir paysan, ou voir sa troupe affaiblie par la patience du capitaine",
+      "defaut": "méprise tous les humains"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": -25,
+    "profilCombat": "combattant-hobgobelin",
+    "savoir": [
+      "f-pdf-ruvak-veut-la-guerre",
+      "f-pdf-convoi-de-grain",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-kor-malade",
+        "jet": {
+          "competence": "intuition",
+          "dd": 16
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "humains",
+        "mots": [
+          "humains",
+          "villageois",
+          "veillecendre",
+          "village"
+        ],
+        "question": "Que pensez-vous des humains de Veillecendre ?",
+        "reponse": "Ruvak crache. Pour lui, les humains sont des bouches qui s'agitent derrière des murs en attendant que quelqu'un d'autre se batte. Il dit que le village mérite de brûler, et qu'il le ferait de ses mains si le capitaine lui en donnait l'ordre."
+      },
+      {
+        "id": "guerre",
+        "mots": [
+          "guerre",
+          "forge",
+          "attaque",
+          "hiver",
+          "force",
+          "haute-forge"
+        ],
+        "question": "Quand comptez-vous attaquer la Haute-Forge ?",
+        "reponse": "Ruvak veut la Forge avant le premier gel : une colonne, des échelles, deux jours de marche. Le capitaine attend une clé, une alliance, une preuve. Lui n'attend rien. Il laisse entendre qu'il a déjà préparé le départ, et que les otages ne seront bientôt plus un problème.",
+        "revele": [
+          "f-pdf-ruvak-veut-la-guerre"
+        ]
+      },
+      {
+        "id": "kor",
+        "mots": [
+          "kor",
+          "capitaine",
+          "ordres",
+          "commandement"
+        ],
+        "question": "Que pensez-vous de votre capitaine Kor ?",
+        "reponse": "Ruvak jure obéir au capitaine jusqu'à la mort, mais il le trouve lent depuis un an, fatigué, et il ne sait pas pourquoi. Il se dit qu'il veillera sur la Compagnie si Kor tombe. Quand on le pousse, il admet qu'il l'a vu s'appuyer au mur après les revues."
+      },
+      {
+        "id": "otages",
+        "mots": [
+          "otages",
+          "prison",
+          "convoi",
+          "exécution",
+          "prisonniers"
+        ],
+        "question": "Qu'arrivera-t-il aux deux otages ?",
+        "reponse": "Ruvak dit que deux otages pour un convoi à moitié vide, c'est de la clémence. Si le grain ne vient pas à la prochaine lune pleine, il les égorgera lui-même pour que le message soit clair. Il ricane de ceux qui voudraient les libérer.",
+        "revele": [
+          "f-pdf-convoi-de-grain",
+          "f-pdf-otages-a-la-prison"
+        ]
+      },
+      {
+        "id": "epreuve",
+        "mots": [
+          "duel",
+          "défi",
+          "combat",
+          "mérite",
+          "bras de fer",
+          "force"
+        ],
+        "question": "Accepter son défi au bras de fer.",
+        "reponse": "Ruvak respecte ce qu'il peut mesurer. Il propose un bras de fer, une épreuve de lancer ou une bagarre sans arme : celui qui gagne parle, celui qui perd écoute. Qui lui tient tête sans plier gagne son respect, pas son amitié.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pdf-ruvak-main-de-fer",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "livraison-deserteur",
+        "mots": [
+          "déserteur",
+          "tarn",
+          "traître",
+          "le mort",
+          "livrer"
+        ],
+        "condition": {
+          "flag": "pdf-tarn-trouve"
+        },
+        "question": "Livrer le déserteur Tarn à Ruvak.",
+        "reponse": "Ruvak sourit pour la première fois. Il connaît le nom du déserteur et la section dont il s'est enfui. Si on le lui livre, il le fera exécuter à l'aube devant sa main, et il saura s'en souvenir. Il promet une récompense en pièces et un crédit auprès de la Compagnie.",
+        "effets": [
+          {
+            "flag": "pdf-deserteur-livre"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pdf-ruvak-main-de-fer",
+              "delta": 20
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "pdf-tarn-le-deserteur",
+              "etat": "mort"
+            }
+          },
+          {
+            "pieces": 60
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Dégage de ma cour avant que je compte tes dents.",
+      "neutre": "Tu veux quoi ? Et fais court.",
+      "amical": "Toi, au moins, tu tiens debout. Parle."
+    }
+  },
+  {
+    "id": "pdf-sulka-oeil-clair",
+    "nom": "Sulka Œil-clair",
+    "titre": "Éclaireuse de la Compagnie",
+    "espece": "hobgobelin",
+    "sexe": "F",
+    "age": "trente ans",
+    "role": "Éclaireuse et lieutenante au renseignement",
+    "lieu": "pdf-remparts",
+    "apparence": "Hobgobelin mince à la peau olive, capuche de laine grise rabattue, arc court dans le dos, des yeux d'un jaune très clair qui ne se posent jamais deux fois au même endroit.",
+    "personnalite": {
+      "traits": [
+        "pragmatique",
+        "curieuse",
+        "discrète",
+        "ironique"
+      ],
+      "voix": "murmurée, ironique, finit ses phrases par des questions",
+      "valeurs": [
+        "la survie de la Compagnie",
+        "les informations exactes"
+      ],
+      "desir": "que la Compagnie survive, par n'importe quelle alliance",
+      "peur": "que Kor s'aveugle sur son propre sort, et que Ruvak l'emporte",
+      "defaut": "ne dit jamais tout, même à ses amis"
+    },
+    "presences": [
+      {
+        "lieu": "pdf-tour-de-guet",
+        "moment": "nuit"
+      }
+    ],
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 5,
+    "profilCombat": "combattant-hobgobelin",
+    "savoir": [
+      "f-pdf-releve-des-gardes",
+      "f-pdf-breche-nord",
+      "f-pdf-le-sceau-bloque-la-compagnie",
+      "f-pdf-ruvak-veut-la-guerre"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-kor-malade",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-pdf-sulka-et-hilaire",
+        "attitudeMin": 40
+      }
+    ],
+    "sujets": [
+      {
+        "id": "remparts",
+        "mots": [
+          "remparts",
+          "sentinelles",
+          "ronde",
+          "relève",
+          "lanternes",
+          "garde"
+        ],
+        "question": "Comment la Compagnie surveille-t-elle ses remparts ?",
+        "reponse": "Sulka explique, sans en avoir l'air, comment la Compagnie veille : des tours reliées par des lanternes de couleur, une relève à la tombée du jour et une autre à minuit, un signal échangé à chaque fois pour dire que tout va bien. Elle demande ce que l'étranger cherche à surveiller.",
+        "revele": [
+          "f-pdf-releve-des-gardes"
+        ]
+      },
+      {
+        "id": "breche",
+        "mots": [
+          "brèche",
+          "entrer",
+          "discret",
+          "passage",
+          "mur nord"
+        ],
+        "attitudeMin": 15,
+        "question": "Y a-t-il un passage discret dans le mur nord ?",
+        "reponse": "Sulka fait mine de ne rien savoir, puis murmure qu'un mur n'est jamais plus fort que la pierre qui lui manque. Au nord, derrière un grenier tombé, la Compagnie n'a pas assez de pierre taillée pour boucher le trou. Elle se demande pourquoi l'étranger ne l'utiliserait pas.",
+        "revele": [
+          "f-pdf-breche-nord"
+        ]
+      },
+      {
+        "id": "forge",
+        "mots": [
+          "haute-forge",
+          "serrure",
+          "clé",
+          "cryptes",
+          "éclaireurs"
+        ],
+        "attitudeMin": 10,
+        "question": "Que sait-on de la porte de la Haute-Forge ?",
+        "reponse": "Sulka a mené la patrouille qui a trouvé la porte de la Haute-Forge. Elle décrit une serrure naine sans trou apparent, une porte de pierre lisse, un sceau de fer rouge. Elle pense que la clé est dans les cryptes d'Ormgard et que personne de la Compagnie n'est assez fou pour y entrer.",
+        "revele": [
+          "f-pdf-le-sceau-bloque-la-compagnie"
+        ]
+      },
+      {
+        "id": "kor",
+        "mots": [
+          "kor",
+          "capitaine",
+          "santé",
+          "toux",
+          "fatigue"
+        ],
+        "attitudeMin": 30,
+        "question": "Qu'en est-il de la santé du capitaine ?",
+        "reponse": "Sulka détourne les yeux. Le capitaine tousse la nuit, elle le sait, comme elle sait que le médecin le soigne en secret. Elle craint le jour où il ne pourra plus tenir la troupe. Elle demande qu'on ne dise rien à Ruvak.",
+        "revele": [
+          "f-pdf-kor-malade",
+          "f-pdf-toux-de-fer"
+        ]
+      },
+      {
+        "id": "tarn",
+        "mots": [
+          "tarn",
+          "déserteur",
+          "section",
+          "puits"
+        ],
+        "attitudeMin": 20,
+        "question": "Qui est Tarn, ce déserteur de votre section ?",
+        "reponse": "Sulka avoue que Tarn était de sa section, un garçon sérieux qui a refusé de brûler une ferme. Il se cache sous le puits de cendre, croit-elle. Elle ne veut pas qu'on le tue. Si l'étranger peut l'aider à partir, ou arracher une grâce, elle saura s'en souvenir.",
+        "revele": [
+          "f-pdf-egout-du-puits"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-le-deserteur",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sceau",
+        "mots": [
+          "sceau",
+          "laissez-passer",
+          "passer",
+          "récompense",
+          "merci"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "pdf-deserteur-sauve"
+            },
+            {
+              "flag": "pdf-deserteur-gracie"
+            }
+          ]
+        },
+        "question": "Pourriez-vous nous confier un laissez-passer ?",
+        "reponse": "Sulka tire de sa ceinture un disque de fer gris au clou cerclé : un sceau de la Compagnie, qu'elle tenait pour elle. Elle le donne sans cérémonie, en disant que Tarn lui devait la vie et que la Compagnie lui doit un bon souvenir. Le sceau ouvre les portes de Pont-de-Fer.",
+        "effets": [
+          {
+            "objet": {
+              "id": "sceau-du-fer-gris"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "pdf-sceau-donne"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Tu cherches quelqu'un ? Ou tu t'es perdu ?",
+      "amical": "Tiens, un visage qui ne ment pas trop."
+    }
+  },
+  {
+    "id": "pdf-oumak-le-geolier",
+    "nom": "Oumak",
+    "titre": "Sergent geôlier",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "quarante ans",
+    "role": "Sergent chargé de la prison",
+    "lieu": "pdf-prison",
+    "apparence": "Hobgobelin massif et placide, front bas, mains énormes, un trousseau de clés qui pend à son ceinturon, la tunique grise boutonnée jusqu'au cou.",
+    "personnalite": {
+      "traits": [
+        "scrupuleux",
+        "borné",
+        "honnête"
+      ],
+      "voix": "lente, répétitive, récite le règlement de mémoire",
+      "valeurs": [
+        "le règlement",
+        "l'ordre écrit"
+      ],
+      "desir": "faire son devoir sans qu'on lui demande de comprendre",
+      "peur": "désobéir à un ordre revêtu du sceau",
+      "defaut": "ne sait pas lire et le cache"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 0,
+    "profilCombat": "combattant-hobgobelin",
+    "savoir": [
+      "f-pdf-otages-a-la-prison",
+      "f-pdf-discipline-des-rangs"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-oumak-ne-lit-pas",
+        "attitudeMin": 35,
+        "prix": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "regles",
+        "mots": [
+          "règlement",
+          "règles",
+          "prison",
+          "gardes",
+          "livre des rangs"
+        ],
+        "question": "Quel est le règlement de la prison ?",
+        "reponse": "Oumak récite le règlement : une visite à un prisonnier exige un ordre écrit et scellé, aucun prisonnier ne sort sans ordre scellé, les clés restent sur le sergent. Il le répète si on l'interrompt, sans changer un mot.",
+        "revele": [
+          "f-pdf-discipline-des-rangs"
+        ]
+      },
+      {
+        "id": "prisonniers",
+        "mots": [
+          "prisonniers",
+          "otages",
+          "visite",
+          "anselme",
+          "tiphaine"
+        ],
+        "question": "Peut-on voir les prisonniers de Veillecendre ?",
+        "reponse": "Oumak confirme qu'il y a deux habitants de Veillecendre dans la dernière cellule. Ils sont nourris, ils n'ont rien à dire de lui, ils attendent la décision du capitaine. Il ne les laissera voir à personne sans ordre scellé.",
+        "revele": [
+          "f-pdf-otages-a-la-prison"
+        ]
+      },
+      {
+        "id": "liberation-vraie",
+        "mots": [
+          "ordre",
+          "sceau",
+          "libérer",
+          "relâcher",
+          "billet"
+        ],
+        "condition": {
+          "objet": "sceau-du-fer-gris"
+        },
+        "question": "Montrer le sceau et réclamer la libération.",
+        "reponse": "Oumak examine le sceau, le tourne, regarde le clou, la cire, le cordon. Il ne lit pas l'ordre, il en reconnaît la forme. Il dit que c'est en règle, ouvre les cellules et escorte lui-même les prisonniers jusqu'à la porte.",
+        "effets": [
+          {
+            "flag": "pdf-otages-libres"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "liberation-faux",
+        "mots": [
+          "ordre",
+          "sceau",
+          "libérer",
+          "relâcher",
+          "billet",
+          "faux"
+        ],
+        "condition": {
+          "objet": "pdf-faux-sceau"
+        },
+        "question": "Présenter ce billet au sergent Oumak.",
+        "reponse": "Oumak examine longuement le sceau, passe son pouce sur la cire, la renifle. Il ne sait pas lire et il ne cherche pas à comprendre ; un clou cerclé, de la cire grise, c'est en règle. Si la présentation est assez sûre, il ouvre. Mais le faux finira par être découvert, et cela se saura.",
+        "effets": [
+          {
+            "flag": "pdf-otages-libres"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Un ordre scellé. Montre-le, ou passe ton chemin."
+    }
+  },
+  {
+    "id": "pdf-oldric-vasseur",
+    "nom": "Oldric Vasseur",
+    "titre": "Médecin de campagne",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "cinquante-cinq ans",
+    "role": "Médecin de campagne, tenu à Pont-de-Fer depuis le siège",
+    "lieu": "pdf-infirmerie",
+    "apparence": "Humain maigre et courbé, barbe blanche mal taillée, tablier de toile taché de teinture, lorgnons de cuivre sur un nez rouge, des mains tremblantes qui ne tremblent plus quand il soigne.",
+    "personnalite": {
+      "traits": [
+        "sarcastique",
+        "épuisé",
+        "dévoué"
+      ],
+      "voix": "sèche, pleine d'humour noir, toussote entre les phrases",
+      "valeurs": [
+        "le serment",
+        "les malades avant les camps"
+      ],
+      "desir": "sauver assez de monde pour que son séjour ici ait un sens",
+      "peur": "de tomber malade lui aussi, et de laisser l'infirmerie sans médecin",
+      "defaut": "boit un peu trop de vin chaud le soir"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 10,
+    "savoir": [
+      "f-pdf-toux-de-fer",
+      "f-pdf-compagnie-arrivee",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-kor-malade",
+        "attitudeMin": 35
+      }
+    ],
+    "sujets": [
+      {
+        "id": "soins",
+        "mots": [
+          "soins",
+          "blessure",
+          "soigner",
+          "médecin",
+          "infirmerie",
+          "guérir"
+        ],
+        "question": "Combien coûtent vos soins pour une blessure ?",
+        "reponse": "Oldric soigne tout le monde au même tarif, hobgobelin ou humain, camp ou non. Il demande 25 pièces d'or pour des soins de campagne complets, 30 pour un antidote, et dit qu'il ne fait pas crédit parce qu'il en a assez de réclamer des dettes à des morts."
+      },
+      {
+        "id": "toux",
+        "mots": [
+          "toux",
+          "cendre",
+          "malades",
+          "poumons",
+          "fièvre",
+          "maladie"
+        ],
+        "attitudeMin": 10,
+        "question": "Qu'est-ce que cette toux qui frappe vos malades ?",
+        "reponse": "Oldric montre ses lits : vingt malades, tous des anciens, tous à tousser la même toux grise. La cendre, respirée pendant cinq ans, durcit les poumons comme du plâtre. Il appelle ça la toux de fer. Il ne peut que ralentir le mal. Il ajoute que la Compagnie ne le sait pas encore, parce que personne n'ose le lui dire.",
+        "revele": [
+          "f-pdf-toux-de-fer"
+        ]
+      },
+      {
+        "id": "serment",
+        "mots": [
+          "serment",
+          "pourquoi",
+          "hobgobelins",
+          "forcé",
+          "prisonnier",
+          "rester"
+        ],
+        "question": "Pourquoi rester ici, à Pont-de-Fer ?",
+        "reponse": "Oldric dit qu'il n'est ni prisonnier ni volontaire : il est médecin. Le siège l'a trouvé ici, un matin, avec des blessés des deux camps. Il a soigné tout le monde et n'a jamais repris la route. Il en parle avec un humour noir qui dissimule mal une affection pour les hobgobelins qu'il soigne."
+      },
+      {
+        "id": "tiphaine",
+        "mots": [
+          "tiphaine",
+          "apprentie",
+          "herboriste",
+          "otage",
+          "veillecendre"
+        ],
+        "question": "Que devient Tiphaine, l'apprentie de Veillecendre ?",
+        "reponse": "Oldric a eu la jeune herboriste à l'infirmerie deux jours, le temps de la sauver d'une fièvre de prison. Elle l'a aidé comme si elle y avait passé sa vie. Il craint pour elle si Ruvak prend le dessus. Il demande à l'étranger d'agir avant que ce soit trop tard.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-les-otages",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "evasion",
+        "mots": [
+          "évasion",
+          "clé",
+          "aider",
+          "discrètement",
+          "sortir"
+        ],
+        "condition": {
+          "quete": {
+            "id": "q-pdf-les-otages",
+            "statut": "active"
+          }
+        },
+        "attitudeMin": 30,
+        "question": "Proposer de l'aider à sortir discrètement.",
+        "reponse": "Oldric hésite, puis avoue que le sergent Oumak vient chaque soir chercher une tisane pour sa toux, et qu'il s'endort comme une pierre quand la tisane est forte. Il propose de forcer la dose, de prendre la clé sur le trousseau pendant son sommeil et de la remettre à l'étranger. Il ne veut pas de remerciements.",
+        "effets": [
+          {
+            "objet": {
+              "id": "pdf-cle-de-la-prison"
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "pdf-tisane-de-fievrefeu",
+          "quantite": 6
+        },
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 2,
+          "prix": 60
+        },
+        {
+          "objet": "antidote",
+          "quantite": 3,
+          "prix": 30
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "materiel-d-herboriste",
+          "quantite": 1
+        }
+      ],
+      "rachat": 0.3,
+      "types": [
+        "potion",
+        "materiel"
+      ]
+    },
+    "services": [
+      {
+        "id": "soins-de-campagne",
+        "nom": "Soins de campagne",
+        "resume": "Pansements, points de suture, bains de vinaigre : récupération de la moitié des points de vie manquants.",
+        "prix": 25,
+        "effets": [
+          {
+            "narration": "Oldric panse les blessures du groupe : chacun récupère la moitié de ses points de vie manquants."
+          }
+        ]
+      },
+      {
+        "id": "purge-du-poison",
+        "nom": "Antidote et purge",
+        "resume": "Soigne un empoisonnement ou une maladie bénigne.",
+        "prix": 30,
+        "effets": [
+          {
+            "narration": "Oldric purge le poison : l'état d'empoisonnement prend fin."
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Vous toussez ? Non ? Alors vous avez une chance que les autres n'ont pas.",
+      "amical": "Entrez, entrez, pourvu que vous ne rameniez pas de fièvres nouvelles."
+    }
+  },
+  {
+    "id": "pdf-durga-enclume-grise",
+    "nom": "Durga Enclume-Grise",
+    "titre": "Forgeron de guerre",
+    "espece": "hobgobelin",
+    "sexe": "F",
+    "age": "quarante-cinq ans",
+    "role": "Forgeron en chef de la Compagnie",
+    "lieu": "pdf-forge-de-guerre",
+    "apparence": "Hobgobelin massive, bras couverts d'anciennes brûlures comme une écriture, tablier de cuir roussi, cheveux sous un foulard noirci, un marteau de forge accroché à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "exigeante",
+        "bourrue",
+        "fière de son métier"
+      ],
+      "voix": "grave, rythmée par ses coups de marteau, parle du métal comme d'une bête",
+      "valeurs": [
+        "le travail bien fait",
+        "la parole de l'acier"
+      ],
+      "desir": "forger à nouveau au feu de la Veine rouge",
+      "peur": "de voir ses apprentis tousser avant d'avoir fini leur apprentissage",
+      "defaut": "mesure les gens à la solidité de leur poignée de main"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 0,
+    "savoir": [
+      "f-pdf-fer-gris-la-trempe",
+      "f-pdf-histoire-du-pont",
+      "f-pdf-pont-piege"
+    ],
+    "sujets": [
+      {
+        "id": "fer-gris",
+        "mots": [
+          "fer gris",
+          "trempe",
+          "cendre",
+          "métal",
+          "acier"
+        ],
+        "question": "Qu'est-ce que le fer gris, au juste ?",
+        "reponse": "Durga explique le fer gris : la cendre tombée du ciel, recueillie et bouillie, donne un bain de trempe qui durcit le fer au point de ne plus se limer, mais le rend gris et terne. Elle y voit une beauté. Elle admet que les forgerons qui y travaillent toussent tous.",
+        "revele": [
+          "f-pdf-fer-gris-la-trempe"
+        ]
+      },
+      {
+        "id": "charbon",
+        "mots": [
+          "charbon",
+          "veine rouge",
+          "feu",
+          "forge",
+          "haute-forge",
+          "manque"
+        ],
+        "attitudeMin": 5,
+        "question": "Où trouver du charbon pour vos forges ?",
+        "reponse": "Durga ne cache pas que Pont-de-Fer n'a presque plus de charbon, et que le fer gris coûte cher en bois. Les anciens fours nains étaient chauffés par la Veine : à la Haute-Forge, elle sait qu'une lame se trempe d'elle-même. Elle comprend le désir du capitaine et le dit avec une envie presque honteuse.",
+        "revele": [
+          "f-fer-gris-veut-la-forge"
+        ]
+      },
+      {
+        "id": "pont",
+        "mots": [
+          "pont",
+          "nains",
+          "arches",
+          "chaîne",
+          "fer rouge",
+          "barrage"
+        ],
+        "question": "Comment fonctionne le pont des nains ?",
+        "reponse": "Durga a étudié le pont des nains avec respect : les nervures sont en fer rouge de la Veine, aucun forgeron vivant ne saurait les refaire. Elle connaît aussi la chaîne de barrage, un contrepoids que l'on libère d'un coup de maillet sur une cheville. Elle y voit un chef-d'œuvre.",
+        "revele": [
+          "f-pdf-histoire-du-pont",
+          "f-pdf-pont-piege"
+        ]
+      },
+      {
+        "id": "orcs",
+        "mots": [
+          "orcs",
+          "marteau-vert",
+          "grodak",
+          "korvun",
+          "forgerons"
+        ],
+        "attitudeMin": 0,
+        "question": "Que devient le clan Marteau-Vert, ces forgerons orcs ?",
+        "reponse": "Durga demande des nouvelles des forgerons orcs de Veillecendre : le clan Marteau-Vert travaillait déjà avec les nains quand les hobgobelins étaient encore loin. Elle voudrait un jour mesurer son marteau au leur, de forgeron à forgeron.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pdf-durga-enclume-grise",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "commande",
+        "mots": [
+          "lame",
+          "épée",
+          "commande",
+          "armes",
+          "forger"
+        ],
+        "question": "Commander une épée longue de fer gris.",
+        "reponse": "Durga répare et affûte pour tous, mais elle ne vend une lame de sa main qu'à ceux qui ont mangé à la table de la Compagnie ou qu'elle estime digne. Elle demande 450 pièces d'or pour la plus belle, une épée longue de fer gris."
+      }
+    ],
+    "services": [
+      {
+        "id": "reparation",
+        "nom": "Réparation",
+        "resume": "Remet en état armes et armures abîmées.",
+        "prix": 10,
+        "effets": [
+          {
+            "narration": "Durga remet en état l'équipement du groupe."
+          }
+        ]
+      },
+      {
+        "id": "affutage",
+        "nom": "Affûtage au fer gris",
+        "resume": "Une arme gagne +1 aux dégâts jusqu'au prochain repos long.",
+        "prix": 20,
+        "effets": [
+          {
+            "narration": "Durga affûte l'arme choisie : +1 aux dégâts jusqu'au prochain repos long."
+          }
+        ]
+      },
+      {
+        "id": "lame-de-fer-gris",
+        "nom": "Lame de fer gris",
+        "resume": "Une épée longue +1 de la main de Durga, réservée à ceux qu'elle estime.",
+        "prix": 450,
+        "condition": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "pdf-durga-enclume-grise",
+                "attitudeMin": 30
+              }
+            },
+            {
+              "flag": "fer-gris-allie"
+            }
+          ]
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "pdf-lame-de-fer-gris"
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Tu viens pour du fer, ou pour regarder ?",
+      "amical": "Approche, il y a de la chaleur."
+    }
+  },
+  {
+    "id": "pdf-hosk-quartier-maitre",
+    "nom": "Hosk",
+    "titre": "Quartier-maître du Fer-Gris",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "quarante ans",
+    "role": "Quartier-maître : intendant, marchand de la Compagnie et gardien de sa caisse",
+    "lieu": "pdf-intendance",
+    "apparence": "Hobgobelin rond et soigné, tunique grise impeccable, lunettes de corne sur le front, plumier de cuir à la ceinture, des doigts fins qui comptent tout ce qu'ils touchent, une clé de bronze à une chaîne sous la tunique.",
+    "personnalite": {
+      "traits": [
+        "méticuleux",
+        "cupide",
+        "poli"
+      ],
+      "voix": "chuchotée, de comptable, les phrases toujours chiffrées",
+      "valeurs": [
+        "l'exactitude",
+        "le crédit"
+      ],
+      "desir": "vivre un jour de ses rentes dans une ville où personne ne tousse",
+      "peur": "un contrôle qui trouve un déficit",
+      "defaut": "tout a un prix, même la loyauté"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 0,
+    "savoir": [
+      "f-pdf-rationnement",
+      "f-pdf-code-de-la-caisse",
+      "f-pdf-toux-de-fer"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-toux-de-fer",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-pdf-code-de-la-caisse",
+        "attitudeMin": 60,
+        "prix": 200
+      }
+    ],
+    "sujets": [
+      {
+        "id": "marchandises",
+        "mots": [
+          "acheter",
+          "vendre",
+          "marchandises",
+          "stock",
+          "équipement",
+          "fournitures"
+        ],
+        "question": "Qu'avez-vous en stock pour une patrouille ?",
+        "reponse": "Hosk déroule la liste : rations, torches, cordes, huile, carreaux, flèches, de quoi équiper une patrouille, des brassards pour ceux qui travaillent pour la Compagnie. Il vend au prix de la Compagnie majoré de la marge de l'étranger. Il rachète peu, à bas prix."
+      },
+      {
+        "id": "prix",
+        "mots": [
+          "prix",
+          "marchander",
+          "rabais",
+          "réduction",
+          "remise"
+        ],
+        "question": "Pouvez-vous faire un rabais sur un lot complet ?",
+        "reponse": "Hosk marchande par principe : il peut faire un rabais de deux pièces d'or sur un lot complet, pas plus. Il précise que les alliés de la Compagnie paient le prix du livre. Il note chaque rabais dans ses marges avec un soin presque tendre."
+      },
+      {
+        "id": "registre",
+        "mots": [
+          "registre",
+          "rations",
+          "comptes",
+          "marges",
+          "morts"
+        ],
+        "attitudeMin": 15,
+        "question": "Que notez-vous dans ce registre ?",
+        "reponse": "Hosk laisse voir son registre : colonnes de rations par semaine, et dans les marges, au crayon, les noms de ceux qui toussent. Les rations baissent parce que les mangeurs diminuent, pas parce que la Compagnie économise. Il le dit sans lever les yeux.",
+        "revele": [
+          "f-pdf-rationnement"
+        ]
+      },
+      {
+        "id": "caisse",
+        "mots": [
+          "caisse",
+          "coffre",
+          "or",
+          "argent",
+          "coffre-fort"
+        ],
+        "question": "Que contient le coffre de l'intendance ?",
+        "reponse": "Hosk ne parle jamais de la caisse. Il dit que le coffre du fond est en fer de nain, que le cadran est sûr et que la clé de l'intendance ne quitte pas son cou. Il ajoute qu'un vol à la Compagnie se paie des mains."
+      },
+      {
+        "id": "laissez-passer",
+        "mots": [
+          "laissez-passer",
+          "sceau",
+          "passer",
+          "papiers",
+          "autorisation"
+        ],
+        "question": "Acheter un laissez-passer pour la ville.",
+        "reponse": "Hosk sait que le sceau ouvre les portes de la ville. Pour la somme de 250 pièces d'or, soit un mois de solde d'un sergent, il en fait établir un à son nom, enregistré dans son livre. Il dit que son livre ne ment jamais, que son prix est fixe, et qu'il regrette de ne pas pouvoir faire mieux."
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 20,
+          "prix": 1
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "corde",
+          "quantite": 4
+        },
+        {
+          "objet": "torche",
+          "quantite": 10
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 2
+        },
+        {
+          "objet": "carreaux-d-arbalete",
+          "quantite": 20
+        },
+        {
+          "objet": "fleches",
+          "quantite": 30
+        },
+        {
+          "objet": "chausse-trappes",
+          "quantite": 3
+        },
+        {
+          "objet": "piege-a-machoires",
+          "quantite": 2
+        },
+        {
+          "objet": "pied-de-biche",
+          "quantite": 2
+        },
+        {
+          "objet": "grappin",
+          "quantite": 2
+        },
+        {
+          "objet": "sac-de-couchage",
+          "quantite": 4
+        },
+        {
+          "objet": "couverture",
+          "quantite": 6
+        },
+        {
+          "objet": "antidote",
+          "quantite": 2,
+          "prix": 55
+        },
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 3,
+          "prix": 65
+        },
+        {
+          "objet": "pdf-brassard-du-fer-gris",
+          "quantite": 3,
+          "prix": 12
+        }
+      ],
+      "rachat": 0.4,
+      "types": [
+        "materiel",
+        "arme",
+        "armure",
+        "outil",
+        "nourriture"
+      ]
+    },
+    "services": [
+      {
+        "id": "sceau-contre-argent",
+        "nom": "Laissez-passer de la Compagnie",
+        "resume": "Le sceau du Fer-Gris, établi au nom du groupe et consigné dans le livre de Hosk.",
+        "prix": 250,
+        "condition": {
+          "pnj": {
+            "id": "pdf-hosk-quartier-maitre",
+            "attitudeMin": 20
+          }
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "sceau-du-fer-gris"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -3
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Que désirez-vous ? Je précise que je ne fais pas crédit.",
+      "amical": "Tiens, un client sérieux. Asseyez-vous, je sors le bon registre."
+    }
+  },
+  {
+    "id": "pdf-anselme-cordier",
+    "nom": "Anselme Cordier",
+    "titre": "Charretier",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "cinquante-deux ans",
+    "role": "Otage : convoyeur du tribut de Veillecendre",
+    "lieu": "pdf-prison",
+    "apparence": "Humain épais, barbe grise inégale, veste de laine déchirée, mains calleuses, le regard d'un homme qui n'a pas dormi depuis trois semaines.",
+    "personnalite": {
+      "traits": [
+        "têtu",
+        "loyal",
+        "honteux"
+      ],
+      "voix": "lourde, hésitante, s'excuse en parlant",
+      "valeurs": [
+        "sa parole",
+        "son village"
+      ],
+      "desir": "rentrer chez lui et dire la vérité sur le grain",
+      "peur": "de n'avoir servi qu'à nourrir un secret honteux",
+      "defaut": "se croit coupable de tout"
+    },
+    "presences": [
+      {
+        "lieu": "veillecendre",
+        "moment": "jour",
+        "condition": {
+          "flag": "pdf-otages-libres"
+        }
+      }
+    ],
+    "attitude": 20,
+    "savoir": [
+      "f-pdf-convoi-de-grain",
+      "f-tribut-du-bailli",
+      "f-pdf-oumak-ne-lit-pas"
+    ],
+    "sujets": [
+      {
+        "id": "convoi",
+        "mots": [
+          "convoi",
+          "grain",
+          "arrivée",
+          "capturé",
+          "charrette",
+          "retard"
+        ],
+        "question": "Racontez-nous le convoi de grain de Veillecendre.",
+        "reponse": "Anselme raconte le convoi : trois chariots, dont deux à moitié vides, parce que le grenier de Veillecendre est presque à sec. Il a pris la route avec six jours de retard et a été arrêté à la porte. Il dit que les hobgobelins ne l'ont pas frappé, qu'on l'a mis en cellule comme garantie.",
+        "revele": [
+          "f-pdf-convoi-de-grain"
+        ]
+      },
+      {
+        "id": "bailli",
+        "mots": [
+          "bailli",
+          "tribut",
+          "aurèle",
+          "paiement",
+          "protection",
+          "secret"
+        ],
+        "question": "Que sait-on du tribut versé au bailli ?",
+        "reponse": "Anselme se tord les mains, puis avoue que ce n'est pas un impôt : c'est un tribut. Le bailli paie le Fer-Gris pour qu'il ne descende pas sur le village. Il l'a su en voyant les sceaux sur le bâton de compte. Il en a honte comme s'il l'avait signé.",
+        "revele": [
+          "f-tribut-du-bailli"
+        ]
+      },
+      {
+        "id": "prison",
+        "mots": [
+          "prison",
+          "gardes",
+          "oumak",
+          "cellule",
+          "tiphaine"
+        ],
+        "attitudeMin": 15,
+        "question": "Comment est gardée la prison de Pont-de-Fer ?",
+        "reponse": "Anselme décrit la prison : un sergent pesant qui récite son règlement, des gardes qui se relèvent trois fois par jour. Il a remarqué que le sergent ne regarde jamais les papiers qu'on lui tend : il regarde seulement le sceau. Tiphaine et lui se partagent la dernière cellule.",
+        "revele": [
+          "f-pdf-oumak-ne-lit-pas"
+        ]
+      },
+      {
+        "id": "preuve",
+        "mots": [
+          "preuve",
+          "bâton",
+          "compte",
+          "encoches",
+          "bailli"
+        ],
+        "condition": {
+          "flag": "pdf-otages-libres"
+        },
+        "question": "Demander le bâton de compte du bailli.",
+        "reponse": "Anselme sort de sa chemise la moitié du bâton de compte, qu'il a gardée contre toute fouille. Il dit qu'il n'a pas osé le montrer au village, mais que le monde doit savoir ce que coûte la protection du bailli. Il le remet à qui l'a sauvé.",
+        "effets": [
+          {
+            "objet": {
+              "id": "pdf-baton-de-compte-du-tribut"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "retour",
+        "mots": [
+          "retour",
+          "village",
+          "chez soi",
+          "merci",
+          "sauvé"
+        ],
+        "condition": {
+          "flag": "pdf-otages-libres"
+        },
+        "question": "Qu'allez-vous dire au village maintenant ?",
+        "reponse": "Anselme est de retour à Veillecendre, hébété d'avoir revu le toit de sa maison. Il remercie ceux qui l'ont fait sortir, et promet de dire au village qu'il doit la vie à des étrangers, pas au bailli. Il remet une bourse que le village a collectée en son nom.",
+        "effets": [
+          {
+            "flag": "pdf-otages-rentres"
+          },
+          {
+            "pieces": 80
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Vous êtes venus pour nous ? Ou on se trompe de cellule ?",
+      "amical": "Que le feu vous garde, étranger."
+    }
+  },
+  {
+    "id": "pdf-tiphaine-roussel",
+    "nom": "Tiphaine Roussel",
+    "titre": "Apprentie herboriste",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "dix-neuf ans",
+    "role": "Otage : apprentie du dispensaire de Veillecendre",
+    "lieu": "pdf-prison",
+    "apparence": "Jeune humaine maigre aux cheveux roux noués en tresse, tablier de lin taché de vert, mains abîmées par les ronces, un regard vif.",
+    "personnalite": {
+      "traits": [
+        "vive",
+        "curieuse",
+        "courageuse"
+      ],
+      "voix": "rapide, précise, pose des questions",
+      "valeurs": [
+        "le savoir",
+        "les malades"
+      ],
+      "desir": "apprendre un remède à la toux grise",
+      "peur": "d'être oubliée dans une cave",
+      "defaut": "parle quand elle a peur"
+    },
+    "attitude": 25,
+    "savoir": [
+      "f-pdf-toux-de-fer",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "sujets": [
+      {
+        "id": "pervenche",
+        "mots": [
+          "pervenche",
+          "dispensaire",
+          "veillecendre",
+          "maître",
+          "village"
+        ],
+        "question": "Parlez-nous de Pervenche Mousseron.",
+        "reponse": "Tiphaine parle de Pervenche Mousseron, sa maîtresse, avec tendresse : elle a quitté les rives du Val pour apprendre auprès d'elle les plantes qui calment la toux. Elle espère que le village ne les croit pas morts. Elle tient à un message pour Pervenche : « Les feuilles de fièvrefeu marchent. »"
+      },
+      {
+        "id": "toux",
+        "mots": [
+          "toux",
+          "malades",
+          "hobgobelins",
+          "cendre",
+          "infirmerie"
+        ],
+        "question": "Qu'avez-vous vu de cette toux à l'infirmerie ?",
+        "reponse": "Tiphaine a été conduite deux jours à l'infirmerie. Elle a vu des soldats tousser du sang gris. Le médecin lui a montré que la toux touchait surtout les plus anciens. Elle pense que c'est la cendre, qu'elle pourrait être soignée si on trouvait la plante, et que la Compagnie meurt lentement.",
+        "revele": [
+          "f-pdf-toux-de-fer"
+        ]
+      },
+      {
+        "id": "evasion",
+        "mots": [
+          "évasion",
+          "sortir",
+          "partir",
+          "libération",
+          "sauver"
+        ],
+        "question": "Peut-on vous sortir d'ici sans violence ?",
+        "reponse": "Tiphaine dit qu'elle ne veut pas qu'on tue pour elle. Elle a observé le sergent : il ne dort que quand il a bu sa tisane. Elle sait aussi qu'une grille derrière leur cellule donne sur un drain. Elle prie qu'on les sorte sans tuer personne."
+      }
+    ],
+    "salutations": {
+      "neutre": "Vous venez pour nous sortir d'ici ? Dites oui, s'il vous plaît.",
+      "amical": "Je savais qu'on ne nous oublierait pas."
+    }
+  },
+  {
+    "id": "pdf-tarn-le-deserteur",
+    "nom": "Tarn",
+    "titre": "Déserteur du Fer-Gris",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "vingt-deux ans",
+    "role": "Soldat déserteur, caché dans les drains",
+    "lieu": "pdf-egouts",
+    "apparence": "Jeune hobgobelin mince au visage sérieux, cotte déchirée, brassard gris arraché, joue griffée, les yeux rougis par l'insomnie.",
+    "personnalite": {
+      "traits": [
+        "scrupuleux",
+        "honteux",
+        "courageux"
+      ],
+      "voix": "basse, précise, coupe ses phrases",
+      "valeurs": [
+        "l'honneur",
+        "l'obéissance juste"
+      ],
+      "desir": "vivre sans trahir sa conscience ni son capitaine",
+      "peur": "d'être livré à Ruvak",
+      "defaut": "se juge plus sévèrement que quiconque"
+    },
+    "presences": [
+      {
+        "lieu": "pdf-puits-de-cendre",
+        "moment": "nuit"
+      }
+    ],
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 0,
+    "profilCombat": "combattant-hobgobelin",
+    "savoir": [
+      "f-pdf-egout-du-puits",
+      "f-pdf-ruvak-veut-la-guerre",
+      "f-pdf-discipline-des-rangs",
+      "f-pdf-breche-nord"
+    ],
+    "sujets": [
+      {
+        "id": "fuite",
+        "mots": [
+          "pourquoi",
+          "déserter",
+          "fuite",
+          "caché",
+          "qui es-tu",
+          "tarn"
+        ],
+        "question": "Pourquoi avez-vous déserté ?",
+        "reponse": "Tarn raconte qu'il a été envoyé avec sa main pour brûler une ferme isolée au sud, sur l'ordre de Ruvak, parce que le fermier avait refusé du grain. Une femme et un enfant y vivaient encore. Il a baissé son arme, et il a couru. Il se cache depuis onze jours dans les drains.",
+        "effets": [
+          {
+            "flag": "pdf-tarn-trouve"
+          },
+          {
+            "quete": {
+              "id": "q-pdf-le-deserteur",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "egout",
+        "mots": [
+          "égout",
+          "drain",
+          "passage",
+          "sortir",
+          "puits",
+          "tunnels"
+        ],
+        "attitudeMin": 0,
+        "question": "Connaissez-vous les drains et les passages souterrains ?",
+        "reponse": "Tarn connaît le réseau : le tunnel qui monte au puits, celui qui descend à la rivière, un troisième qui aboutit sous la prison. Il a vu le fil d'alarme que la Compagnie a tendu, mais il l'a évité en rampant. Il montre où le sol est piégé.",
+        "revele": [
+          "f-pdf-egout-du-puits",
+          "f-pdf-breche-nord"
+        ]
+      },
+      {
+        "id": "ruvak",
+        "mots": [
+          "ruvak",
+          "lieutenant",
+          "ordres",
+          "guerre",
+          "ferme"
+        ],
+        "question": "Parlez-nous de Ruvak.",
+        "reponse": "Tarn parle de Ruvak avec un frisson : il veut la guerre, et il y pousse. Il dit qu'une nuit prochaine, Ruvak profitera de l'absence du capitaine pour exécuter les otages. Il ne sait pas quand, mais la relève de la caserne en est le moment.",
+        "revele": [
+          "f-pdf-ruvak-veut-la-guerre"
+        ]
+      },
+      {
+        "id": "kor",
+        "mots": [
+          "kor",
+          "capitaine",
+          "loi",
+          "grâce",
+          "lire"
+        ],
+        "question": "Que pensez-vous du capitaine Kor ?",
+        "reponse": "Tarn avoue que c'est Kor qui lui a appris à lire, un soir d'hiver, avec les cartes des nains. Il craint la loi, mais pas le capitaine. Il pense que s'il lui racontait ce qu'il a vu, Kor comprendrait. Mais il sait aussi que Kor ne revient jamais sur un arrêt public."
+      },
+      {
+        "id": "route",
+        "mots": [
+          "partir",
+          "fuir",
+          "aide",
+          "sortir",
+          "emmener",
+          "sauver"
+        ],
+        "attitudeMin": 10,
+        "question": "Proposer de l'emmener hors du Val.",
+        "reponse": "Tarn demande d'être conduit hors du Val : il pense que le batelier du Gué pourrait l'accueillir. Il propose en échange de donner la carte des drains et la clé de la grille du quai. Il ne demande rien d'autre que la route.",
+        "effets": [
+          {
+            "flag": "pdf-deserteur-sauve"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -5
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Ne m'approchez pas !",
+      "neutre": "Vous n'êtes pas de la Compagnie ? Alors parlez bas.",
+      "amical": "Merci d'être venu."
+    }
+  },
+  {
+    "id": "pdf-nibb-petit-gobelin",
+    "nom": "Nibb",
+    "titre": "Enfant gobelin",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "huit ans",
+    "role": "Enfant du camp, rôdeur de gravats",
+    "lieu": "pdf-marche-en-ruine",
+    "apparence": "Petit gobelin aux grandes oreilles, culotte trop large tenue par une ficelle, un bonnet de laine grise enfoncé jusqu'aux yeux, les genoux écorchés et un grand sourire sans dents.",
+    "personnalite": {
+      "traits": [
+        "fouineur",
+        "joueur",
+        "affamé"
+      ],
+      "voix": "aiguë, saute d'un sujet à l'autre, jure sur sa mère",
+      "valeurs": [
+        "les bonbons",
+        "les secrets"
+      ],
+      "desir": "manger du miel",
+      "peur": "du sergent Oumak",
+      "defaut": "ne peut pas garder un secret gratuit"
+    },
+    "presences": [
+      {
+        "lieu": "pdf-grande-halle",
+        "moment": "soir"
+      }
+    ],
+    "attitude": 15,
+    "savoir": [
+      "f-pdf-breche-nord",
+      "f-pdf-egout-du-puits",
+      "f-pdf-oumak-ne-lit-pas",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-code-de-la-caisse",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "jeu",
+        "mots": [
+          "bonjour",
+          "jouer",
+          "qui es-tu",
+          "toi",
+          "gobelin"
+        ],
+        "question": "Tu veux jouer avec nous ?",
+        "reponse": "Nibb se présente avec fanfare : il est le plus rapide du camp, il connaît tous les trous, tous les chats, tous les dessous de table. Il demande ce que l'étranger a dans les poches et si c'est mangeable."
+      },
+      {
+        "id": "bonbons",
+        "mots": [
+          "miel",
+          "bonbon",
+          "sucre",
+          "friandise",
+          "cadeau",
+          "échange"
+        ],
+        "question": "Offrir du miel en échange de ses confidences.",
+        "reponse": "Nibb avoue, avec le plus grand sérieux, qu'il échangerait une montagne de secrets contre un pot de miel. Quiconque lui offre quelque chose de sucré gagne sa confiance et son silence.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pdf-nibb-petit-gobelin",
+              "delta": 15
+            }
+          }
+        ]
+      },
+      {
+        "id": "puits",
+        "mots": [
+          "puits",
+          "fantôme",
+          "bruit",
+          "cendre",
+          "tunnel",
+          "drain"
+        ],
+        "question": "Y a-t-il un fantôme dans ce puits ?",
+        "reponse": "Nibb chuchote que le puits des tisserands hante : la nuit, quelqu'un y descend avec du pain volé à la cuisine. Ce n'est pas un fantôme, c'est un soldat qui pleure. Il demande de ne rien dire à Oumak.",
+        "revele": [
+          "f-pdf-egout-du-puits"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-le-deserteur",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "breche",
+        "mots": [
+          "brèche",
+          "mur",
+          "sortir",
+          "entrer",
+          "trou"
+        ],
+        "attitudeMin": 10,
+        "question": "Où se trouve la brèche dans le mur ?",
+        "reponse": "Nibb montre du doigt le mur nord et dit en hâte qu'il y a un trou, derrière le grenier effondré, où il passe quand il veut aller jouer dehors. Il dit aussi qu'on ne doit jamais y aller à la relève, parce qu'on y croise toujours une sentinelle.",
+        "revele": [
+          "f-pdf-breche-nord"
+        ]
+      },
+      {
+        "id": "oumak",
+        "mots": [
+          "oumak",
+          "sergent",
+          "geôlier",
+          "prison",
+          "prisonniers"
+        ],
+        "attitudeMin": 10,
+        "question": "Comment est le sergent Oumak ?",
+        "reponse": "Nibb dit que le sergent Oumak est un gros qui fait peur, mais qu'il ne sait pas lire : il a vu une fois une sentinelle lui lire l'ordre à voix basse. Il a peur que ça se sache. Il sait aussi qu'il y a deux prisonniers de Veillecendre en cellule.",
+        "revele": [
+          "f-pdf-oumak-ne-lit-pas",
+          "f-pdf-otages-a-la-prison"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Hé ! T'as quelque chose à manger ?",
+      "amical": "C'est toi mon ami ! Viens, je te montre !"
+    }
+  },
+  {
+    "id": "pdf-sabine-aux-fils",
+    "nom": "Sabine Aux-Fils",
+    "titre": "Tisserande et informatrice",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "quarante ans",
+    "role": "Informatrice du quartier des tisserands",
+    "lieu": "pdf-quartier-des-tisserands",
+    "apparence": "Humaine sèche aux cheveux châtains tirés, tablier de laine gris, doigts rougis par la teinture, un fil rouge enroulé au poignet, des yeux qui comptent les secrets comme des mailles.",
+    "personnalite": {
+      "traits": [
+        "rusée",
+        "prudente",
+        "ironique"
+      ],
+      "voix": "basse, lente, les mots comptés comme des points de tissage",
+      "valeurs": [
+        "sa famille",
+        "la survie du quartier"
+      ],
+      "desir": "voir le quartier des tisserands tenir debout jusqu'au printemps",
+      "peur": "qu'on devine qu'elle vend des nouvelles aux deux camps",
+      "defaut": "ne donne rien sans contrepartie"
+    },
+    "attitude": 5,
+    "savoir": [
+      "f-pdf-compagnie-arrivee",
+      "f-pdf-otages-a-la-prison",
+      "f-pdf-rumeur-cannibales"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-egout-du-puits",
+        "attitudeMin": 30,
+        "prix": 40
+      }
+    ],
+    "sujets": [
+      {
+        "id": "tisserands",
+        "mots": [
+          "tisserands",
+          "quartier",
+          "siège",
+          "vie ici",
+          "compagnie"
+        ],
+        "question": "Comment vit-on dans ce quartier depuis le siège ?",
+        "reponse": "Sabine raconte le siège : onze jours de pierriers, un matin de silence, puis des hobgobelins qui ont forcé la porte et n'ont pas touché un fil. Depuis, le quartier tient. Elle dit que le Fer-Gris ne prend que ce qu'il paie, et que c'est plus que ce que le bailli a jamais fait.",
+        "revele": [
+          "f-pdf-compagnie-arrivee"
+        ]
+      },
+      {
+        "id": "rumeurs",
+        "mots": [
+          "rumeurs",
+          "nouvelles",
+          "on dit",
+          "ragots",
+          "bruits"
+        ],
+        "question": "Quelles rumeurs circulent en ce moment ?",
+        "reponse": "Sabine dit ce que tout le monde dit : que les hobgobelins mangent leurs prisonniers, que le capitaine a un trésor, que la Lanterne va s'éteindre. Elle donne l'un comme un fait, l'autre comme une plaisanterie, et ajoute que les rumeurs ne valent que par celui qui les vend.",
+        "revele": [
+          "f-pdf-rumeur-cannibales"
+        ]
+      },
+      {
+        "id": "otages",
+        "mots": [
+          "otages",
+          "veillecendre",
+          "prisonniers",
+          "convoi",
+          "grain"
+        ],
+        "question": "Peut-on voir les prisonniers de Veillecendre ?",
+        "reponse": "Sabine sait qu'il y a deux habitants de Veillecendre dans la prison. Elle dit qu'on peut les voir, à condition d'avoir le bon papier, et que la jeune herboriste a de la chance : elle a plu au médecin. Elle propose de mettre l'étranger en contact avec quelqu'un qui connaît les gardes.",
+        "revele": [
+          "f-pdf-otages-a-la-prison"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pdf-les-otages",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "faux",
+        "mots": [
+          "faux",
+          "sceau",
+          "papiers",
+          "contrefaçon",
+          "laissez-passer"
+        ],
+        "attitudeMin": 15,
+        "question": "Avez-vous un faux sceau à vendre ?",
+        "reponse": "Sabine regarde autour d'elle puis murmure que pendant le siège, les femmes du quartier ont appris à imiter le clou cerclé de la Compagnie pour faire sortir les enfants. Elle en garde un en réserve. Elle le vendrait cher, car si le faux est découvert, elle perd tout."
+      },
+      {
+        "id": "prix",
+        "mots": [
+          "combien",
+          "prix",
+          "payer",
+          "échange",
+          "contrepartie"
+        ],
+        "question": "Combien voulez-vous en échange ?",
+        "reponse": "Sabine ne donne rien sans contrepartie. Elle prend de l'argent, mais préfère une nouvelle fraîche sur ce qui se passe au Gué ou à Veillecendre, qu'elle revendra au capitaine ou à l'éclaireuse. Elle a une règle : jamais de mensonge sur ce qu'elle vend."
+      }
+    ],
+    "services": [
+      {
+        "id": "information",
+        "nom": "Information",
+        "resume": "Sabine livre une confidence précise sur les ruelles de Pont-de-Fer.",
+        "prix": 15,
+        "effets": [
+          {
+            "fait": "f-pdf-breche-nord"
+          }
+        ]
+      },
+      {
+        "id": "faux-sceau",
+        "nom": "Faux sceau du Fer-Gris",
+        "resume": "Un faux soigné qui passe devant des sentinelles pressées ou illettrées.",
+        "prix": 80,
+        "condition": {
+          "pnj": {
+            "id": "pdf-sabine-aux-fils",
+            "attitudeMin": 15
+          }
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "pdf-faux-sceau"
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Une laine ? Une nouvelle ? Ou une mauvaise idée ?",
+      "amical": "Entre, ma porte est fermée aux autres."
+    }
+  },
+  {
+    "id": "pdf-yorga-marmite",
+    "nom": "Yorga Marmite",
+    "titre": "Cuisinière de la Compagnie",
+    "espece": "hobgobelin",
+    "sexe": "F",
+    "age": "soixante ans",
+    "role": "Cuisinière de la grande halle",
+    "lieu": "pdf-grande-halle",
+    "apparence": "Hobgobelin âgée et ronde, tablier de lin couvert de taches, foulard gris sur des cheveux blancs, avant-bras puissants, une grande louche pendue à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "maternelle",
+        "autoritaire",
+        "pragmatique"
+      ],
+      "voix": "forte, chantante, appelle tout le monde « petit »",
+      "valeurs": [
+        "nourrir tout le monde",
+        "la discipline douce"
+      ],
+      "desir": "voir ses enfants adoptifs manger à leur faim",
+      "peur": "que le capitaine tombe malade et que la Compagnie se déchire",
+      "defaut": "ne pardonne pas qu'on gâche la nourriture"
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": 15,
+    "savoir": [
+      "f-pdf-rationnement",
+      "f-pdf-foyer-du-fer-gris",
+      "f-pdf-otages-a-la-prison"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pdf-kor-malade",
+        "attitudeMin": 35
+      }
+    ],
+    "sujets": [
+      {
+        "id": "soupe",
+        "mots": [
+          "soupe",
+          "manger",
+          "faim",
+          "cuisine",
+          "ragoût",
+          "repas"
+        ],
+        "question": "Que mettez-vous dans cette soupe ?",
+        "reponse": "Yorga sert deux services par jour, une soupe épaisse de lentilles et de lard maigre. Elle gronde ceux qui prennent trop. Elle dit que depuis le début de l'automne, il faut compter, que le grain du bailli est tout ce qui sépare ses gars de la famine.",
+        "revele": [
+          "f-pdf-rationnement"
+        ]
+      },
+      {
+        "id": "kor-enfant",
+        "mots": [
+          "kor",
+          "capitaine",
+          "enfance",
+          "autrefois",
+          "orphelin"
+        ],
+        "attitudeMin": 20,
+        "question": "Comment était le capitaine Kor autrefois ?",
+        "reponse": "Yorga a recueilli Kor Varnak quand il avait dix ans, orphelin d'un camp saccagé. Elle dit qu'il parlait peu, comptait tout, et ne demandait qu'une chose : un endroit à lui. Elle jure qu'il serait le dernier à vouloir la guerre pour elle-même.",
+        "revele": [
+          "f-pdf-foyer-du-fer-gris"
+        ]
+      },
+      {
+        "id": "enfants",
+        "mots": [
+          "enfants",
+          "gobelins",
+          "nibb",
+          "orphelins"
+        ],
+        "question": "Parlez-nous des enfants et de Nibb.",
+        "reponse": "Yorga nourrit en cachette les petits gobelins qui traînent dans la halle. Nibb est le pire, et le plus malin. Elle demande à l'étranger de ne pas le laisser se mettre en danger, et de ne jamais abuser de sa confiance."
+      },
+      {
+        "id": "prison",
+        "mots": [
+          "prisonniers",
+          "pain",
+          "otages",
+          "anselme",
+          "tiphaine"
+        ],
+        "question": "Nourrissez-vous les prisonniers et les otages ?",
+        "reponse": "Yorga envoie chaque jour de la soupe aux prisonniers, par un gamin qui passe sous l'œil d'Oumak. Elle dit que ce sont des gens comme les autres et qu'on ne laisse pas crever un homme dans une cave tant qu'il y a de la soupe. Elle redoute que Ruvak ne les fasse taire.",
+        "revele": [
+          "f-pdf-otages-a-la-prison"
+        ]
+      }
+    ],
+    "services": [
+      {
+        "id": "repas",
+        "nom": "Repas chaud",
+        "resume": "Une assiette de soupe épaisse et un pain : repas chaud pour tout le groupe.",
+        "prix": 2,
+        "effets": [
+          {
+            "narration": "Yorga sert une soupe épaisse : le groupe se sent réchauffé et reposé."
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Assieds-toi, petit, tu as une tête de ventre vide.",
+      "amical": "Ah, te voilà ! J'ai gardé le bon morceau."
+    }
+  }
+]

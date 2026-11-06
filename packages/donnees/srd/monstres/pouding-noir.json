@@ -1,0 +1,105 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "acide",
+    "foudre",
+    "froid",
+    "tranchant"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement."
+    },
+    {
+      "id": "informe",
+      "nom": "Informe",
+      "resume": "Le pouding peut se déplacer dans un espace étroit d'une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+    },
+    {
+      "id": "masse-corrosive",
+      "nom": "Masse corrosive",
+      "resume": "Une créature qui touche le pouding par un jet d'attaque de corps à corps subit 4 (1d8) dégâts d'acide. Les projectiles non magiques sont détruits dès qu'ils ont touché le pouding et infligé le moindre dégât. Toute arme non magique qui inflige le moindre dégât au pouding en le touchant physiquement subit aussitôt un malus cumulatif de −1 aux jets d'attaque. L'arme est détruite si ce malus atteint −5. On peut annuler ce malus en lançant le sort réparation sur l'arme. En 1 minute, le pouding peut dévorer une épaisseur de 60 cm de bois ou métal non magique."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "Le pouding peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    }
+  ],
+  "id": "pouding-noir",
+  "nom": "Pouding noir",
+  "taille": "G",
+  "type": "Vase",
+  "alignement": "non aligné",
+  "ca": 7,
+  "pv": {
+    "moyenne": 68,
+    "des": "8d10 + 24"
+  },
+  "vitesse": {
+    "marche": 6,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 5,
+    "con": 16,
+    "int": 1,
+    "sag": 6,
+    "cha": 1
+  },
+  "initiative": -3,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "aucune",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "pseudopode-caustique",
+      "nom": "Pseudopode caustique",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 3 m : 17 (4d6 + 3) dégâts d'acide. Toute armure non magique portée par la cible subit un malus cumulatif de −1 à la CA qu'elle confère. L'armure est détruite si ce malus réduit sa CA à 10. On peut annuler ce malus en lançant le sort réparation sur l'armure.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 3,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "division",
+      "nom": "Division",
+      "cout": "reaction",
+      "resume": "Déclencheur : alors que le pouding est de taille G ou M et dispose d'au moins 10 points de vie, il se retrouve En péril ou subit des dégâts de foudre ou tranchants. Conséquences : le pouding se scinde en deux nouveaux poudings noirs. Chaque nouveau pouding présente une catégorie de taille de moins que le pouding dont il est issu et agit au même rang d'Initiative. Les points de vie du pouding « parent » sont divisés équitablement entre les deux nouveaux poudings (arrondir à l'inférieur).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

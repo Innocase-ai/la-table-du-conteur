@@ -1,0 +1,173 @@
+[
+  {
+    "id": "exa-cendre-dans-les-etals",
+    "lieu": "vei-marche",
+    "nom": "La cendre dans les étals",
+    "apercu": "Une poussière grise sur la laine, malgré les bâches.",
+    "texte": "Les bâches de toile cirée ne suffisent plus. Sur chaque étal, une fine couche de cendre grise, tiède au toucher, s'est déposée sur la laine, entre les pelotes et dans les plis des couvertures. Un marchand la balaie de la main, d'un geste las, sans même regarder la poussière qui retombe aussitôt. Il n'y a plus de laine à vendre depuis longtemps : les dernières pelotes sont gardées dans des caisses fermées. Le frottement de la balayette sur les planches est le seul bruit de la placette.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "cendre-epargnee",
+        "condition": {
+          "fait": "f-vei-lanterne-pas-de-cendre"
+        },
+        "texte": "La cendre grise tombe sur le marché comme partout, tiède, en fine couche sur les bâches et la laine. Mais là-bas, au pied de la tour, la neige grise s'arrête net au seuil de la Lanterne : à l'intérieur de ses murs la cendre ne tombe jamais, et elle épargne aussi quiconque porte une braise de veille. Les marchands le savent. Ils continuent de balayer leurs étals, un œil sur la tour, comme on regarde la seule porte qui reste ouverte.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-registre-de-la-flamme",
+    "lieu": "vei-archives",
+    "nom": "Les registres de la flamme",
+    "apercu": "Une ligne par année, et la hauteur de la flamme notée au pouce.",
+    "texte": "Les registres s'alignent sur les rayonnages, reliés de cuir qui s'effrite. Chaque année occupe une ligne, et dans une colonne étroite, la hauteur de la flamme de la Lanterne est notée au pouce, d'une main après l'autre. Les premiers chiffres sont larges et bien formés. Au fil des pages, l'écriture se resserre et les lignes se rapprochent, comme si le scribe avait de moins en moins de place pour écrire. Les dernières lignes sont à l'encre fraîche, à peine sèche, et la colonne de droite n'a plus assez de place pour son chiffre.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "trois-doigts",
+        "condition": {
+          "fait": "f-vei-registre-de-la-flamme"
+        },
+        "texte": "Les registres de la flamme conservés ici notent que la Lanterne perdait un doigt de hauteur par an, régulièrement, année après année. Dans la dernière marge, l'écart n'est plus d'un doigt : la ligne de cet automne porte un trois, souligné deux fois à l'encre fraîche. Elle s'éteindrait bien avant le printemps, et le scribe a dû le comprendre en la notant. Les lignes précédentes sont calmes ; la dernière dit la fin.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-runes-du-foyer",
+    "lieu": "vei-foyer-de-la-lanterne",
+    "nom": "Les runes autour du foyer",
+    "apercu": "Des signes polis par des siècles de paumes posées dessus.",
+    "texte": "Les runes naines sont creusées en cercle autour du foyer, peu profondes, usées à hauteur de paume par des siècles de mains posées dessus. Les creux sont lisses, polis comme du verre. La flamme, au centre, est basse, d'un blanc de cendre plutôt qu'orange. Une odeur d'huile de roche monte de la pierre, lourde et un peu âcre. De près, les signes les plus usés sont ceux que les mains touchaient le plus souvent, juste au-dessus du sol, là où l'on s'agenouille.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "un-an-un-souffle",
+        "condition": {
+          "fait": "f-vei-runes-du-foyer"
+        },
+        "texte": "Les runes gravées autour du foyer de la Lanterne disent : un veilleur, un souffle, un an. Chaque année, quelqu'un doit donner un peu de sa vie à la flamme. Les signes les plus usés sont ceux qui marquent le souffle : des siècles de paumes ont poli ce mot seul, comme une prière répétée. Une main posée sur le foyer ne réchauffe plus personne ; elle se souvient de ce qu'elle a donné. La flamme basse, blanche de cendre, n'est plus seulement un feu : c'est un compte.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-sacs-de-la-grange",
+    "lieu": "vei-grange-aux-grains",
+    "nom": "Les sacs du fond de la grange",
+    "apercu": "Des rangées jusqu'au toit, et une toile trop neuve au fond.",
+    "texte": "Les sacs montent jusqu'aux chevrons, rangés en files si régulières qu'on dirait un mur. Ceux de devant sont pleins, la toile tendue, et le grain fait un bruit sourd quand on en pousse un du pied. Au fond, la toile est neuve, presque blanche, et les sacs sont tous de la même taille, posés avec le même soin. Entre les planches du sol, une poussière de sable fin s'est glissée, jaune pâle, qui ne vient pas de la grange.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "greniers-au-tiers",
+        "condition": {
+          "fait": "f-vei-greniers-au-tiers"
+        },
+        "texte": "La grange n'est remplie qu'au tiers. Les rangs du fond sont vides, et les sacs qui les bouchent ne contiennent pas de grain : ils sont lestés de sable, remplis pour faire illusion depuis la porte. Le sable jaune entre les planches vient de là, tombé des sacs qu'on déplace. Le village croit tenir l'hiver sur ce mur de toile ; il ne tient que sur sa façade.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-offrandes-du-puits",
+    "lieu": "vei-puits",
+    "nom": "Le fond du puits",
+    "apercu": "Des pièces noircies au fond de l'eau, et deux cordes.",
+    "texte": "La margelle est polie, creusée au milieu par des mains qui s'y sont appuyées des années pour regarder l'eau noire. Au fond, à travers la surface froide, des pièces de cuivre et de petits bijoux brillent, usés par le temps, couverts de vert sur les bords. Une corde neuve pend au treuil, encore raide, à côté d'une autre, pourrie, dont il ne reste qu'un bout effiloché. Quelqu'un descend donc encore au puits, et quelqu'un a cessé de le faire.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "offrandes-aux-morts",
+        "condition": {
+          "fait": "f-vei-offrandes-du-puits"
+        },
+        "texte": "Les nains jetaient dans ce puits des pièces et des petits bijoux en offrande aux morts de la Haute-Forge, et l'usage a survécu. Le fond est tapissé d'argent noirci, couche sur couche, si bien que l'eau semble plus claire qu'elle ne l'est. Ces offrandes n'ont jamais été faites pour un dieu : elles disent à ceux d'en bas qu'on se souvient d'eux. La corde neuve, plus récente que le puits, sert encore à ceux qui descendent y déposer une pièce.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-tombes-ouvertes",
+    "lieu": "vei-cimetiere",
+    "nom": "Les tombes du cimetière",
+    "apercu": "La terre soulevée par-dessous, et une ligne de pas nus.",
+    "texte": "Plusieurs tombes ont la terre retournée, mais elle n'a pas été pelletée de l'extérieur : elle est soulevée, bombée, comme poussée d'en dessous, et les pierres plates ont basculé. Les stèles de bois sont grises de cendre, les noms effacés par la pluie grise. Dans la poussière fine du chemin, une ligne d'empreintes nues s'éloigne vers le village, espacées, régulières, sans un seul pas en arrière.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "la-cendre-qui-marche",
+        "condition": {
+          "fait": "f-cendre-reveille-les-morts"
+        },
+        "texte": "Les tombes soulevées de l'intérieur ne sont pas l'œuvre d'âmes revenues. La terre bombée, les pierres basculées, les empreintes nues : c'est de la cendre qui marche, animée par le Cœur-de-Braise, et que la cendre tombée a rassemblée en forme de corps. Ces corps n'ont pas de sang. Quand on les abat, ils retombent en poussière grise, sans une plaie et sans un cri. Les stèles de bois gris portent encore le nom de ceux qui furent enterrés là.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-deux-registres",
+    "lieu": "vei-halle-du-bailli",
+    "nom": "La table du bailli",
+    "apercu": "Un registre rassurant, ouvert à la bonne page.",
+    "texte": "Une grande table couverte de sacs-échantillons, de mesures et de bols de grain, et au centre un registre relié de cuir, ouvert à la bonne page. Les colonnes sont nettes, les totaux soulignés, les lignes de sacs remis bien rangées, faites pour être lues par un conseil. Sous la fenêtre, une latte de plancher est plus claire que ses voisines, usée moins par les pas que par un poids qu'on pousse et qu'on tire souvent, toujours au même endroit.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "le-plancher",
+        "condition": {
+          "fait": "f-vei-registre-du-bailli"
+        },
+        "texte": "Le bailli tient deux registres de vivres. Celui-ci, ouvert sur la table, est celui qu'on montre au conseil : net, rassurant, bien tenu. L'autre est sous la latte plus claire, près de la fenêtre, et la latte se soulève sans bruit. Il note des sacs remis à la garnison, chaque lune, sans que le conseil ait jamais demandé à le lire. Le registre de table dit ce qu'on veut entendre ; celui du plancher dit où le grain s'en va.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-porte-du-col",
+    "lieu": "vei-porte-du-col",
+    "nom": "La porte du col",
+    "apercu": "Une porte naine couverte de givre, sous une congère immense.",
+    "texte": "Une porte de pierre et de fer, plus haute qu'un homme, verrouillée de l'intérieur. Le givre couvre le métal en couche épaisse et dessine, dans ses creux, des runes dont on ne voit que le contour. Une congère immense l'adosse, si haute qu'elle masque le ciel au-dessus du linteau. Il n'y a ni vent ni bruit de neige. Ce silence est plus lourd que celui de la neige, comme celui d'un lieu où quelque chose attend, derrière la porte, sans bouger.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "fermee-de-l-interieur",
+        "condition": {
+          "fait": "f-vei-col-ferme"
+        },
+        "texte": "Le col est fermé par une congère immense et par la porte naine. Le verrou est intérieur : la porte a été fermée de l'intérieur, par un mécanisme que personne ne sait plus ouvrir, et le givre remplit encore les rainures où il devait jouer. Il ne rouvrira pas avant le printemps. Personne n'a fermé ce passage cette année : on l'a condamné il y a longtemps, de l'intérieur, et la neige n'a fait que confirmer ce choix.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-enclumes-de-la-forge-des-refugies",
+    "lieu": "vei-forge-des-refugies",
+    "nom": "Les marques des outils",
+    "apercu": "Des manches gravés d'une petite marque au fer chaud.",
+    "texte": "Les outils sont rangés sur des crochets avec un soin presque tendre : marteaux, pinces, tranches, poinçons. Les manches portent une petite marque gravée au fer chaud, toujours la même, à peine visible sous la suie. Les enclumes sont de fortune, un fer de charrue fixé sur un billot, une masse de fonte percée de trous. Le soufflet a été réparé cent fois, en cuir différent à chaque fois. Une odeur de braise froide reste dans la pièce, comme si le feu venait d'être éteint pour ne pas être rallumé.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "marteau-vert",
+        "condition": {
+          "fait": "f-vei-clan-marteau-vert"
+        },
+        "texte": "La marque sur les manches est celle du clan orc Marteau-Vert, qui forgeait jadis les armes et les outils des nains de la Haute-Forge. Ces outils ne sont pas des réparations de fortune : ils ont été faits avec le soin qu'on mettait autrefois dans les forges de la vallée. Le clan n'est presque plus là. Il ne reste de sa marque que sur ces manches, et une façon de frapper le métal, lentement, comme pour s'excuser de quelque chose qu'on ne dit pas.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  }
+]

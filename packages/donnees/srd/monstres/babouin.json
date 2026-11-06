@@ -1,0 +1,70 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le babouin a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "id": "babouin",
+  "nom": "Babouin",
+  "taille": "P",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 3,
+    "des": "1d6"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 14,
+    "con": 11,
+    "int": 4,
+    "sag": 12,
+    "cha": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +1, allonge 1,50 m : 1 (1d4 - 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 1
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": -1,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

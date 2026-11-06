@@ -1,0 +1,87 @@
+{
+  "id": "garde",
+  "nom": "Garde",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 16,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 12,
+    "con": 12,
+    "int": 10,
+    "sag": 11,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "lance-cac",
+      "nom": "Lance (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 4 (1d6 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "lance-lancer",
+      "nom": "Lance (lancer)",
+      "cout": "action",
+      "resume": "À distance +3, portée 6/18 m : 4 (1d6 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

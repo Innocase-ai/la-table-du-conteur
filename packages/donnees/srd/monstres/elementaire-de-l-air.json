@@ -1,0 +1,136 @@
+{
+  "id": "elementaire-de-l-air",
+  "nom": "Élémentaire de l’air",
+  "taille": "G",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 15,
+  "pv": {
+    "moyenne": 90,
+    "des": "12d10 + 24"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 27
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 20,
+    "con": 14,
+    "int": 6,
+    "sag": 10,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 5,
+  "resistances": [
+    "contondant",
+    "foudre",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "poison",
+    "tonnerre"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "empoisonne",
+    "entrave",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (aérien)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 27 m (vol stationnaire)."
+    },
+    {
+      "id": "corps-d-air",
+      "nom": "Corps d'air",
+      "resume": "L'élémentaire peut entrer dans l'espace d'une créature et s'y arrêter. Il peut se déplacer dans un espace étroit d'une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'élémentaire effectue deux attaques de Coup tonitruant.",
+      "multiattaque": [
+        {
+          "action": "coup-tonitruant",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup-tonitruant",
+      "nom": "Coup tonitruant",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 14 (2d8 + 5) dégâts de tonnerre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 5,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "tourbillon",
+      "nom": "Tourbillon",
+      "cout": "action",
+      "resume": "JS Force : DD 13, une créature de taille M ou inférieure dans l'espace de l'élémentaire. Échec : 24 (4d10 + 2) dégâts de tonnerre, et la cible est repoussée de l'élémentaire de 6 m en ligne droite et subit l'état À terre. Réussite : demi-dégâts uniquement.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 13,
+        "moitieSiReussite": true
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 2,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "M"
+        }
+      ],
+      "recharge": "4-6"
+    }
+  ]
+}

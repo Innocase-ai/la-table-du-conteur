@@ -1,0 +1,592 @@
+[
+  {
+    "id": "le-tribut-du-bailli",
+    "titre": "Le tribut du bailli",
+    "situation": "Le grain de Veillecendre a un goût de sable depuis des semaines, et le double registre du bailli dort dans un tiroir du cellier. Aurèle Montclar vous reçoit debout, les mains posées sur des listes de charrettes. « Ce tribut achète le silence du Fer-Gris, dit-il. Il n'achète pas le pain de demain. Décidez avant la première neige. »",
+    "quand": {
+      "fait": "f-tribut-du-bailli"
+    },
+    "lieu": "vei-halle-du-bailli",
+    "delai": 3,
+    "options": [
+      {
+        "id": "denoncer",
+        "libelle": "Je porte le double registre à Rolf et à la Mère-Gardienne.",
+        "ton": "Loi",
+        "couts": [
+          "Le bailli sera chassé, et le village perd l'homme qui tenait ses comptes.",
+          "La peur des rues montera avant l'hiver, car personne ne sait plus à qui se fier."
+        ],
+        "gains": [
+          "Le tribut cesse, et la garde vous doit une fière chandelle."
+        ],
+        "effets": [
+          {
+            "flag": "bailli-demasque"
+          },
+          {
+            "attitude": {
+              "pnj": "aurele-montclar",
+              "delta": -20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "rolf-garde-capitaine",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "epilogue": "Aurèle a quitté la halle à la nuit tombée, une valise à la main et les listes sous le bras ; Rolf a fait fermer la grange aux grains."
+      },
+      {
+        "id": "taire",
+        "libelle": "Je me tais, et je demande au bailli de rouvrir la grange.",
+        "ton": "Ruse",
+        "couts": [
+          "Le Fer-Gris reste payé, et ce grain-là ne reviendra jamais à la Mère-Gardienne.",
+          "Les Gardiens apprendront que vous avez traité avec le bailli, et ils le diront."
+        ],
+        "gains": [
+          "La grange rouvre, le grain revient, et le bailli vous glisse de quoi payer la route."
+        ],
+        "effets": [
+          {
+            "flag": "vei-grain-rendu"
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -10
+            }
+          },
+          {
+            "pieces": 40
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "La grange a rouvert une nuit, et le grain a été porté aux fenêtres de l'auberge ; personne n'a demandé d'où il venait."
+      },
+      {
+        "id": "evacuer",
+        "libelle": "J'escorte les chariots du bailli vers la route du sud avant la neige.",
+        "ton": "Devoir",
+        "couts": [
+          "Les Gardiens perdent des bras qui tenaient la Lanterne, et vous ne les reverrez pas.",
+          "Les chariots partent avec le dernier grain du village."
+        ],
+        "gains": [
+          "Des familles sortent du Val avant la nuit des morts."
+        ],
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "aurele-montclar",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "vei-evacuation-aidee"
+          },
+          {
+            "xp": 35
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "La route du sud est couverte de cendre tiède, et le premier chariot s'enlise au pied de la pente. Vous passez la nuit à le dégager, les mains brûlées, avec les mêmes familles qui pleurent."
+          }
+        ],
+        "epilogue": "Les chariots ont franchi le col avant la neige, et quelques familles ont vu la mer sans comprendre ce qu'elles y faisaient."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas, et le bailli décide de ce qu'il cache.",
+      "couts": [
+        "Le village continue de manger du sable, et l'hiver approche sans que personne ne sache combien de jours il tiendra."
+      ],
+      "effets": [
+        {
+          "jauge": {
+            "id": "cendre",
+            "delta": 1
+          }
+        }
+      ],
+      "epilogue": "Le bailli a fait partir ses charrettes une à une, sans un mot pour le village, et la grange est restée vide jusqu'au printemps."
+    },
+    "echos": [
+      {
+        "si": "denoncer",
+        "apres": 2,
+        "annonce": "Une femme de la halle vient vous dire, à voix basse, que son mari a porté trois sacs vers la porte du nord la semaine dernière. « Vous avez bien fait, dit-elle. Ou alors nous sommes tous pareils. »",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 3
+            }
+          }
+        ]
+      },
+      {
+        "si": "taire",
+        "apres": 3,
+        "annonce": "Un chariot quitte Veillecendre la nuit, bâché, escorté par deux hommes du bailli. Le grain qu'il porte n'a pas été pesé par le village, et il ne reviendra pas."
+      },
+      {
+        "si": "abstention",
+        "apres": 4,
+        "annonce": "La grange aux grains n'a plus qu'une porte ouverte. Le bailli ne compte plus les sacs devant vous, comme s'il ne vous voyait plus."
+      }
+    ]
+  },
+  {
+    "id": "le-piege-du-fer-gris",
+    "titre": "Le piège du Fer-Gris",
+    "situation": "Kor Varnak vous fait asseoir devant une carte de la Haute-Forge, ses doigts posés sur la Fosse. « La Compagnie n'a plus besoin de vos bras, dit-il. Elle a besoin d'un passage. Le Cœur doit être à nous, ou à personne. » Sulka Œil-clair se tient à la porte, et l'eau des drains sous la caserne sent le fer chaud.",
+    "quand": {
+      "quete": {
+        "id": "q-fer-gris-le-laissez-passer",
+        "statut": "active"
+      }
+    },
+    "lieu": "pdf-caserne",
+    "delai": 2,
+    "options": [
+      {
+        "id": "alliance",
+        "libelle": "Je jure à Kor Varnak que la Lanterne et la Forge partageront le Cœur.",
+        "ton": "Parole",
+        "couts": [
+          "Les Gardiens vous tiendront pour un traître, et Hesta ne vous parlera plus sans méfiance.",
+          "Si la Forge tombe, la Compagnie vous fera porter le poids de sa victoire."
+        ],
+        "gains": [
+          "La Compagnie vous ouvre la route de la Haute-Forge, et Kor vous donne sa parole."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -10
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "Kor a tenu sa parole jusqu'à la grille de la Forge, et il a fallu une nuit entière pour le convaincre de passer devant vous."
+      },
+      {
+        "id": "piege",
+        "libelle": "J'attire la Compagnie dans les drains nains, là où l'eau monte sans prévenir.",
+        "ton": "Ruse",
+        "couts": [
+          "Ceux qui se noient dans les drains ne restent pas noyés : la cendre les reprend.",
+          "Kor ne vous pardonnera jamais d'avoir pris ses hommes au piège."
+        ],
+        "gains": [
+          "Le Fer-Gris perd ses meilleurs éclaireurs, et la route de la Forge se fera sans lui."
+        ],
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": -20
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Un guetteur entend l'eau trop tôt. La Compagnie se déploie dans les drains sans bruit, et Kor vous fait savoir, d'un geste, que vous êtes désormais surveillés."
+          }
+        ],
+        "epilogue": "Les drains ont gardé ceux qui sont tombés, et la cendre est remontée par les grilles de la caserne pendant trois nuits."
+      },
+      {
+        "id": "fuite",
+        "libelle": "Je prends le passage de nuit, avant que la Compagnie ne ferme la porte du nord.",
+        "ton": "Nécessité",
+        "couts": [
+          "Sabine Aux-Fils, qui vous a renseignés, est emmenée par la Compagnie pour répondre à votre place.",
+          "Le Fer-Gris ferme les portes du nord, et vous ne reviendrez pas par là."
+        ],
+        "gains": [
+          "Sulka vous couvre jusqu'à la sortie, et ne vous demande rien en échange."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "pdf-sabine-aux-fils",
+              "etat": "parti"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pdf-sulka-oeil-clair",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Sulka a refermé la grille des drains derrière vous, et l'on a crié le nom de Sabine toute la nuit dans la caserne."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne réponds pas à Kor ce soir.",
+      "couts": [
+        "Kor attend votre réponse au petit matin, et la porte du passage se referme sans vous."
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "compagnie-du-fer-gris",
+            "delta": -5
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "kor-varnak",
+            "delta": -5
+          }
+        }
+      ],
+      "epilogue": "Kor a fini la nuit devant sa carte, un seul pion posé sur la Fosse, et il ne vous a plus jamais fait appeler."
+    },
+    "echos": [
+      {
+        "si": "alliance",
+        "apres": 3,
+        "annonce": "Un convoi du Fer-Gris passe au pied de la Lanterne, chargé de houille et de planches de la Forge. Un soldat lève la main vers la tour, sans qu'on sache si c'est un salut.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "piege",
+        "apres": 2,
+        "annonce": "Des cris montent des drains à la nuit, puis cessent d'un coup. Une main de cendre est restée accrochée à la grille, et personne ne veut la décrocher."
+      },
+      {
+        "si": "fuite",
+        "apres": 2,
+        "annonce": "Une lettre arrive à Veillecendre, sans nom ni sceau : « Sabine a parlé avant d'être prise. Elle n'a pas dit votre nom. Elle a dit celui de la Lanterne. »",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -3
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-foyer-de-la-lanterne",
+    "titre": "Le foyer de la Lanterne",
+    "situation": "Dans la tour, Oswin ne tient plus debout sans appui. Le conseil des Gardiens a décidé : quelqu'un devra donner un peu de sa vie à la flamme avant la fin de l'hiver, et la Mère-Gardienne ne dit pas son nom. « Il ne reste que des gens comme vous qui ont des hivers devant eux, murmure Oswin. Je ne veux plus compter les nuits. »",
+    "quand": {
+      "et": [
+        {
+          "flag": "vei-conseil-tenu"
+        },
+        {
+          "flag": "lanterne-visitee"
+        }
+      ]
+    },
+    "lieu": "vei-foyer-de-la-lanterne",
+    "delai": 4,
+    "options": [
+      {
+        "id": "volontaire",
+        "libelle": "Je me propose pour veiller le foyer à la place d'Oswin.",
+        "ton": "Serment",
+        "couts": [
+          "Vous vieillirez de plusieurs années en quelques hivers, et le bailli perd un homme qu'il comptait sur ses listes.",
+          "La flamme ne vous laissera jamais tout à fait partir."
+        ],
+        "gains": [
+          "La cendre recule d'un cran sur les murs, et la Mère-Gardienne vous tient pour l'une des siennes."
+        ],
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "bailliage",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "hesta-cendrebrune",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "vei-volontaire-lanterne"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "hesta-cendrebrune",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "La flamme vous repousse comme une porte trop lourde. Oswin relève la tête, et il comprend avant vous que ce n'est pas encore votre heure."
+          }
+        ],
+        "epilogue": "Vous veillez le foyer depuis, les mains tachées d'un noir qui ne part pas, et Hesta ne vous a jamais demandé pourquoi vous avez accepté."
+      },
+      {
+        "id": "oswin-tient",
+        "libelle": "Je demande à Oswin de tenir encore une année, même s'il s'éteint.",
+        "ton": "Nécessité",
+        "couts": [
+          "Oswin meurt à l'aube, la main ouverte sur la pierre froide du foyer.",
+          "Les Gardiens sauront que vous avez choisi le temps plutôt que la vie d'un des vôtres."
+        ],
+        "gains": [
+          "La Lanterne tient une année de plus, et personne n'a besoin de se sacrifier aujourd'hui."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "vei-oswin-le-veilleur",
+              "etat": "mort"
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Oswin est mort à l'aube, et la Lanterne a repris son souffle sans que personne ne sache très bien à quoi il devait le temps qu'elle gagnait."
+      },
+      {
+        "id": "rendre-le-choix",
+        "libelle": "Je rends le choix au conseil, et je quitte la tour sans répondre.",
+        "ton": "Franchise",
+        "couts": [
+          "La Mère-Gardienne vous tient pour lâche, et la tour ne vous fera plus signe.",
+          "Le conseil décidera à votre place, et il ne vous demandera pas votre avis une seconde fois."
+        ],
+        "gains": [
+          "Les Pèlerins gris vous voient partir sans avoir livré personne, et ils vous rendent le geste."
+        ],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "hesta-cendrebrune",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 35
+          }
+        ],
+        "epilogue": "Le conseil a désigné une jeune fille de la rue basse, qui a pleuré dans la tour et n'a rien dit à personne. Vous n'avez jamais su son nom."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne dis rien, et je regarde la flamme baisser.",
+      "couts": [
+        "Oswin tient la flamme sans savoir qu'on l'a laissé seul, et le village le sait."
+      ],
+      "effets": [
+        {
+          "jauge": {
+            "id": "cendre",
+            "delta": 1
+          }
+        }
+      ],
+      "epilogue": "La flamme a baissé pendant trois nuits, puis Oswin a dit qu'elle tenait encore, et personne n'a osé le contredire."
+    },
+    "echos": [
+      {
+        "si": "volontaire",
+        "apres": 1,
+        "annonce": "Hesta vous conduit à la tour avant l'aube. La flamme a changé de couleur, moins grise, et Oswin vous tend le sac de houille comme on passe un relais.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "hesta-cendrebrune",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "oswin-tient",
+        "apres": 1,
+        "annonce": "On a trouvé le registre de la tour ouvert à une page blanche, sauf une ligne au crayon : le nom d'Oswin, barré deux fois."
+      },
+      {
+        "si": "rendre-le-choix",
+        "apres": 2,
+        "annonce": "Un Pèlerin gris attend au bas de l'escalier de la tour. « Vous avez laissé la porte ouverte, dit-il. Ce n'est pas rien, dans le Val. »",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 3
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

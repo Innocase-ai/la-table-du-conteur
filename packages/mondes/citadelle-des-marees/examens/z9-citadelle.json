@@ -1,0 +1,280 @@
+[
+  {
+    "id": "exa-girouette",
+    "lieu": "cit-cour-des-vents",
+    "nom": "La girouette qui grince",
+    "apercu": "Une girouette qui ne s'arrête jamais, même sans vent.",
+    "texte": "Une girouette de bronze, en forme de poisson-vague, est fixée au sommet du mur nord. Le vent la fait grincer sans arrêt, un son sec qui résonne dans toute la cour. À sa base, sur la pierre, trois petites vagues sont sculptées en relief, usées par des siècles de pluie et de doigts qui les ont suivies. Quelqu'un les a frottées jusqu'à faire briller le creux de chacune. Le grincement ne s'arrête jamais, même quand l'air semble immobile, comme si la girouette attendait qu'on lui réponde.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "sceau-aux-trois-vagues",
+        "condition": {
+          "fait": "f-cit-lettres-cire-noire"
+        },
+        "texte": "Une girouette de bronze en forme de poisson-vague grince au-dessus de la cour, et ne se tait jamais. À sa base, les trois vagues en relief, polies par les doigts, reprennent exactement le motif du sceau de cire noire trouvé dans le sac de l'érudit. La Citadelle porte ce dessin depuis toujours, gravé dans sa pierre, sans qu'on sache qui l'a choisi, ni pourquoi une lettre qui parle de « la Cour » le reprend. Les trois vagues ne sont plus un ornement : elles sont une adresse.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous voit que le pivot est de fonte grossière, coulée à la hâte, et que son axe a été refait au fer forgé par un forgeron de métier."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît dans les trois vagues un usage ancien de l'héraldique : la pointe centrale est plus large que les autres, comme sur les armes des maisons de la côte."
+      }
+    ]
+  },
+  {
+    "id": "exa-poutres-du-refectoire",
+    "lieu": "cit-refectoire",
+    "nom": "Les entailles des poutres",
+    "apercu": "Des encoches, année après année, et une plus haute.",
+    "texte": "Les poutres du plafond sont couvertes d'entailles, des rangées d'encoches régulières, noircies par la fumée des soupes. Chaque génération de cuisiniers y a gravé la hauteur des plus fortes marées, d'une ligne à l'autre, sans jamais effacer la précédente. Les traits se suivent comme les marches d'un escalier. Tout en haut, au-dessus de toutes les autres, une encoche plus haute encore a été grattée au couteau, nette, presque propre, comme une marque qu'on n'a pas voulu voir de près.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "la-plus-haute",
+        "condition": {
+          "fait": "f-nuit-haute"
+        },
+        "texte": "Les poutres portent les hauteurs des plus fortes marées, rangée après rangée, noircies par la fumée. Tout en haut, l'encoche grattée au couteau est la plus ancienne de toutes : son bois est plus sombre que la poutre autour, et elle domine d'une longueur de bras les marées que les cuisiniers ont notées après elle. Elle marque la marée d'une nuit qu'on a voulu faire oublier. Quelqu'un a raclé le bois pour que la ligne ne se lise plus qu'à la lumière rasante, et personne n'a jamais osé la refaire.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "Les entailles se suivent à intervalles réguliers, comme les rondes d'une garde : l'un de vous compte dans chaque rangée quatre coups et un cinquième barré, la marque d'un relevé."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "Sous la couche noire, le cœur du chêne est resté clair : l'un de vous juge que la fumée n'a pas plus d'un siècle, et que le bois en a bien plus."
+      }
+    ]
+  },
+  {
+    "id": "exa-lit-sous-la-fenetre",
+    "lieu": "cit-dortoirs",
+    "nom": "Le lit sous la fenêtre",
+    "apercu": "Un lit étroit, des comptes de pas sur le mur.",
+    "texte": "Un lit étroit, au fond de la chambre, sous une fenêtre dont le volet reste ouvert. Le sol y est usé, comme si quelqu'un s'y levait et s'y recouchait chaque matin. Sur le mur, à hauteur d'épaule, des traits de crayon s'alignent par paquets de cinq : des comptes de pas, faits dans l'ombre, un soir après l'autre. Le matelas est défait. Sous le sommier, le bord d'un pot de miel entamé dépasse, à moitié caché par la laine grise.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "apres-ysmene",
+        "condition": {
+          "flag": "ysmene-tombee"
+        },
+        "texte": "Le lit est fait au cordeau, la couverture grise tirée sans un pli. Sur la table de chevet, la tisane d'Ysmène est restée là, froide, une écume jaunâtre au fond de la tasse que personne n'a jetée. Les traits de crayon sur le mur comptent toujours les pas, mais la dernière ligne s'arrête net, à mi-paquet. Sous le sommier, le pot de miel entamé est encore là, intact, comme si on avait oublié de le reprendre avant de partir.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-registre-des-comptes",
+    "lieu": "cit-bureau-du-prieur",
+    "nom": "Le registre des comptes",
+    "apercu": "Des colonnes parfaites, une ligne qui revient.",
+    "texte": "Le registre est ouvert sur la table, ses colonnes d'une régularité parfaite. Chaque page additionne les dépenses de la maison avec une encre pâle et sans rature : le sel, le pain, l'huile des fanaux, les cordes, les cartes. Une ligne revient à la même place, année après année, « encre et vélins de la salle des cartes », et chaque fois elle est comptée deux fois, la seconde dans la marge, d'une écriture un peu plus serrée. Rien n'est jamais déséquilibré dans ce livre, sauf cette ligne, depuis seize ans.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "encre-qui-cache",
+        "condition": {
+          "fait": "f-cartes-cachent-la-marque"
+        },
+        "texte": "Les colonnes sont parfaites, comme toujours. La ligne « encre et vélins de la salle des cartes » revient chaque année, doublée dans la marge, depuis seize ans. Ce que cette encre en trop payait, ce n'étaient pas des cartes de plus : c'étaient les mêmes cartes, recopiées et retouchées chaque année, trait après trait, pour que la côte reste floue. La somme a toujours été payée ; quelqu'un, dans cette maison, a toujours signé en bas de la ligne, et n'a jamais demandé pourquoi il en fallait le double.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous flaire la ligne qui compte double : c'est la seule dont l'encre n'a pas pâli, comme si on la repassait chaque année à la plume pour qu'elle reste lisible."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous voit le papier usé à l'angle de la ligne doublée, comme une page souvent feuilletée, et des chiffres qui ont coulé le long d'un pli."
+      }
+    ]
+  },
+  {
+    "id": "exa-carte-des-marees",
+    "lieu": "cit-salle-des-cartes",
+    "nom": "La grande table des marées",
+    "apercu": "Des heures de pleine mer, tracées à l'encre brune.",
+    "texte": "Une carte murale couvre presque tout le mur, chaque cap tracé d'un trait légèrement flou, comme si la main avait tremblé avant de se décider. Le long de la côte, des heures de pleine mer sont inscrites à l'encre brune, une par case, avec une régularité qui ne laisse aucune place au doute. Les chiffres sont petits et serrés. Au bas du tableau, une dernière colonne a été griffée d'un trait de crayon, puis entièrement effacée, sans qu'on sache ce qu'elle disait.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "les-deux-heures",
+        "condition": {
+          "fait": "f-cit-tables-decalees"
+        },
+        "texte": "Les heures de pleine mer inscrites à l'encre brune retardent de deux heures sur les marées réelles : on le voit à la laisse d'écume de la baie, qui monte bien avant ce que dit la carte. Quelqu'un a tenté de corriger ces chiffres au crayon, en marge, de deux heures exactement, puis a effacé la correction ; le gris du crayon reste visible sous la gomme. Cette carte est juste dans ses traits, et fausse dans ses heures.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît la méthode des anciens copistes : chaque cap a été d'abord tracé au stylet, puis repris à l'encre, ce qui laisse sous le trait une légère empreinte en creux."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "Chaque case a été tracée au compas à pointe fine : l'un de vous voit que l'écart entre deux heures ne dépasse pas la largeur d'un cheveu, une précision d'horloger."
+      }
+    ]
+  },
+  {
+    "id": "exa-lentille-voilee",
+    "lieu": "cit-observatoire",
+    "nom": "La lentille voilée de sel",
+    "apercu": "Un voile gris sur le verre, et des initiales dans le cuivre.",
+    "texte": "La grande lentille de verre est couverte d'un voile de sel gris, si épais qu'il brouille la lumière qui la traverse. Le contrepoids de fonte tient encore, mais le dôme ne tourne plus qu'avec peine. Sur le cuivre du cercle, à hauteur d'homme, des initiales ont été gravées l'une après l'autre, par des observateurs qui se sont succédé, chacun ajoutant les siennes sous les précédentes. Les plus anciennes sont presque effacées, et le sel s'accroche à leurs creux.",
+    "effets": [
+      {
+        "fait": "f-cit-lentille-encrassee"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "trop-de-sel",
+        "condition": {
+          "fait": "f-fal-mer-trop-loin"
+        },
+        "texte": "Depuis que la mer s'éloigne, les embruns ne devraient plus monter jusqu'à ce dôme ; pourtant le voile de sel sur la lentille est frais, et il s'épaissit à chaque jour de vent. Les initiales anciennes sont encore lisibles sous la couche blanche, gravées dans le cuivre par des observateurs qui n'ont jamais vu ça. Quelque chose, dans cette baie, continue d'envoyer la mer jusqu'à cette lentille.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous, versé dans les verres et les lentilles, voit que le voile suit les courbes comme un film régulier, sans une trace de doigt ni de chiffon : personne n'a touché cette lentille depuis longtemps."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "Le cuivre du cercle est gradué d'une finesse d'horloge : l'un de vous compte sous le sel des divisions bien plus serrées que sur n'importe quel instrument de la Citadelle."
+      }
+    ]
+  },
+  {
+    "id": "exa-pages-arrachees",
+    "lieu": "cit-grande-bibliotheque",
+    "nom": "Le registre des vives-eaux",
+    "apercu": "Deux pages manquent, arrachées d'un coup sec.",
+    "texte": "Un grand registre relié de cuir repose sur un pupitre, ouvert à mi-course. Entre deux pages, on ne voit que des talons de papier, arrachés d'un coup sec, nets, sans déchirure. Les pages voisines portent des colonnes de hauteurs de marée, serrées, avec des dates en tête. La dernière date encore lisible tombe au printemps, à la marée la plus haute de l'année. Quelqu'un a voulu que la suite ne se lise pas, et il a pris le temps de bien le faire.",
+    "effets": [
+      {
+        "fait": "f-cit-registre-deux-pages"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "trois-marees",
+        "condition": {
+          "fait": "f-grande-maree-dans-trois-jours"
+        },
+        "texte": "Dans la marge des pages voisines, le même mot revient, « Grande », souligné deux fois à l'encre rouge pâlie, sur les deux feuillets juste avant ceux qu'on a arrachés. Les pages manquantes parlaient de la marée qui arrive dans trois jours : celui qui les a prises savait ce qu'elles annonçaient, et a préféré qu'on ne le lise pas. Les talons de papier sont nets, sans une déchirure, d'une main sûre.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-rubans-des-fanaux",
+    "lieu": "cit-phare-archive",
+    "nom": "Les rubans des fanaux",
+    "apercu": "Des noms de bateaux, brodés, puis délavés.",
+    "texte": "Des dizaines de rubans de lin sont noués aux anses des fanaux de rechange, chacun brodé d'un nom de bateau, en fil rouge ou bleu. Certains sont si délavés qu'on ne lit plus que l'ancre dessinée à côté du nom. Les plus récents sont presque neufs, leurs bords encore raides. Gudrun les garde à portée de main, sans jamais les décrocher. Un nœud de marin, serré, tient chacun d'eux à son fanal, comme pour qu'il reste dans la salle.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "ruban-de-la-perle",
+        "condition": {
+          "fait": "f-fal-perle-grise-coulee"
+        },
+        "texte": "Parmi les rubans, celui de la Perle grise est neuf : le lin est encore clair, les lettres de fil bleu tranchent sur la toile, et le nœud est récent, la boucle encore raide. Les autres sont anciens, délavés, aucun n'a été touché depuis des années. Quelqu'un est venu ici pour nouer ce ruban-là, et se souvient de ce bateau. La Perle grise ne se lit donc pas seulement dans les registres de la côte, elle se lit aussi dans cette salle.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-barreaux-de-la-grille",
+    "lieu": "cit-grille-de-mer",
+    "nom": "Les barreaux de la grille",
+    "apercu": "Un fer rouillé, sauf à un endroit, poli.",
+    "texte": "La grille est rouillée presque partout, une croûte brune qui s'écaille sous le doigt. Mais à un endroit, sur deux barreaux, le fer est poli, brillant, usé comme une rampe d'escalier, à hauteur d'épaule. Des coquilles sont accrochées aux barreaux, à la même hauteur, certaines encore humides, cassées net. L'eau lourde clapote derrière la grille, dans le tunnel noir. On ne sait pas si la grille a été franchie, ou seulement touchée.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "poli-par-qui",
+        "condition": {
+          "fait": "f-cit-coquilles-fraiches"
+        },
+        "texte": "Le fer poli et les coquilles fraîches dessinent le passage de quelqu'un qui entre et sort à marée basse, comme une habitude plutôt qu'une fuite. Les coquilles ont été arrachées au fond du tunnel la veille au soir, et rien ne les a lavées depuis. Le poli se trouve exactement à l'endroit où une main passe, à force d'être passée. Quelqu'un ouvre cette grille sans la forcer, puis la referme derrière lui.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous voit que le poli n'a pas la forme qu'aurait laissée l'eau : il est sur la face intérieure, là où une main tire et pousse, jamais sur la face de mer."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "Dans la vase au pied de la grille, les traces d'une seule personne, légère, reviennent au même endroit : trois passages au moins, sans jamais un pas perdu."
+      }
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "L'araignée peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans test de caractéristique."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "id": "araignee-loup-geante",
+  "nom": "Araignée-loup géante",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 16,
+    "con": 13,
+    "int": 3,
+    "sag": 12,
+    "cha": 4
+  },
+  "initiative": 3,
+  "sens": {
+    "visionAveugle": 3,
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants plus 5 (2d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

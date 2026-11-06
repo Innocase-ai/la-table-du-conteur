@@ -1,0 +1,63 @@
+{
+  "id": "cheval-de-trait",
+  "nom": "Cheval de trait",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 15,
+    "des": "2d10 + 4"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 10,
+    "con": 15,
+    "int": 2,
+    "sag": 11,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 6 (1d4 + 4) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

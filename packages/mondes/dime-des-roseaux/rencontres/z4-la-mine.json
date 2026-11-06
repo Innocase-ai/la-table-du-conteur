@@ -1,0 +1,640 @@
+[
+ {
+  "id": "min-r-la-sentinelle-du-porche",
+  "nom": "La sentinelle du porche",
+  "type": "social",
+  "lieu": "mine-hobgobeline",
+  "difficulte": "faible",
+  "intro": "Au porche, un jeune hobgobelin en cuir rapiécé tient un registre de comptage et une lanterne. Il lève la tête en vous entendant, sans lever sa lance, puis demande, sans méchanceté : « Vous êtes attendus, vous ? »",
+  "monstres": [],
+  "alternatives": [
+   {
+    "id": "payer-le-passage",
+    "nom": "Payer le droit d'entrée",
+    "resume": "Déposer cinq pièces dans la caisse et dire qu'on vient pour le fer : la sentinelle note l'heure et s'écarte.",
+    "effets": [
+     {
+      "pieces": -5
+     },
+     {
+      "xp": 25
+     },
+     {
+      "narration": "La sentinelle encaisse sans compter et vous fait signe de passer entre les rondins."
+     }
+    ]
+   },
+   {
+    "id": "se-faire-passer-pour-une-releve",
+    "nom": "Se faire passer pour la relève",
+    "resume": "Parler comme des hommes attendus, avec l'heure, le nom du capitaine et l'air de ceux qui ont marché toute la nuit.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 13
+    },
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "narration": "La sentinelle vous laisse passer et retourne à son registre, soulagée d'avoir quelqu'un à qui parler."
+     }
+    ],
+    "echec": [
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -5
+      }
+     },
+     {
+      "rencontre": "min-r-le-camp-hobgobelin"
+     },
+     {
+      "narration": "Le garçon ne vous croit pas : il frappe le montant du porche avec sa lance, et la cour se vide de ses hommes."
+     }
+    ],
+    "echecResout": true
+   },
+   {
+    "id": "assommer-la-sentinelle",
+    "nom": "Assommer la sentinelle",
+    "resume": "La frapper avant qu'elle n'appelle : un coup au menton, et le porche est libre.",
+    "jet": {
+     "competence": "athletisme",
+     "dd": 13
+    },
+    "effets": [
+     {
+      "xp": 75
+     },
+     {
+      "narration": "Le garçon s'affaisse contre le montant ; vous le tirez derrière la palissade, et le porche reste silencieux."
+     }
+    ],
+    "echec": [
+     {
+      "rencontre": "min-r-le-camp-hobgobelin"
+     },
+     {
+      "narration": "Il esquive, saisit sa lance et frappe le montant : le camp se vide vers le porche."
+     }
+    ],
+    "echecResout": true
+   },
+   {
+    "id": "acheter-son-silence",
+    "nom": "Acheter son silence",
+    "condition": {
+     "objet": "rations"
+    },
+    "resume": "Lui donner deux rations et une gourde : il a faim, il a froid, et il n'a pas envie d'appeler ses sergents.",
+    "effets": [
+     {
+      "objet": {
+       "id": "rations",
+       "quantite": 2,
+       "retirer": true
+      }
+     },
+     {
+      "xp": 25
+     },
+     {
+      "narration": "Il range les rations sous sa cape et s'écarte du porche sans un mot."
+     }
+    ]
+   },
+   {
+    "id": "montrer-la-lettre",
+    "nom": "Montrer la lettre du capitaine",
+    "condition": {
+     "objet": "lettre-de-varg"
+    },
+    "resume": "Présenter le sceau de cire noire : la sentinelle se raidit, salue et vous ouvre le passage.",
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "narration": "Il reconnaît le sceau, s'incline maladroitement et vous laisse entrer sans vérifier vos noms."
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "z5-butins-hobgobelins"
+   ],
+   "tresors": [
+    "min-t-la-caisse-du-porche"
+   ],
+   "depouilles": true
+  },
+  "effetsVictoire": []
+ },
+ {
+  "id": "min-r-le-camp-hobgobelin",
+  "nom": "Le camp hobgobelin",
+  "type": "combat",
+  "lieu": "min-camp-hobgobelin",
+  "difficulte": "elevee",
+  "intro": "La cour se fige quand vous entrez. Un quartier-maître en tablier de cuir lève la tête au-dessus d'un sac ouvert ; deux hommes posent leur gamelle, un troisième prend son arc. Personne ne crie : ils attendent un ordre qui ne vient pas, et le feu de tourbe crache entre vous.",
+  "monstres": [
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 7
+   },
+   {
+    "profil": "loup",
+    "nombre": 2
+   }
+  ],
+  "carte": [
+   "####################",
+   "#..m.....m....m....#",
+   "#..................#",
+   "#...~~......~~.....#",
+   "#..m.....m....m....#",
+   "#..................#",
+   "#....~~....~~......#",
+   "#.........m........#",
+   "#...m......m.......#",
+   "#..................#",
+   "#......HHHHHH......#",
+   "####################"
+  ],
+  "terrain": "camp",
+  "tactique": {
+   "doctrine": "Les hobgobelins se mettent dos à la palissade pour ne pas être encerclés, les archers montent sur les wagonnets et les loups contournent par les flancs pour prendre les lanceurs de sorts.",
+   "fuite": "Ils ne quittent pas la cour : la mine est leur gagne-pain, et Varg est derrière la porte du fond.",
+   "renforts": "Si le combat dure plus de cinq tours, le quartier-maître envoie un garçon frapper à la porte du bureau : Varg et sa garde arrivent au tour suivant."
+  },
+  "alternatives": [
+   {
+    "id": "parler-au-quartier-maitre",
+    "nom": "Parler au quartier-maître",
+    "resume": "Il n'a pas été payé depuis six semaines : offrir de l'or, du grain ou une excuse à donner à Varg, et il vous laissera passer près des tentes.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "reputation": {
+       "faction": "compagnie-du-peage",
+       "delta": 10
+      }
+     },
+     {
+      "xp": 100
+     },
+     {
+      "narration": "Le quartier-maître referme son sac, dit qu'il n'a rien vu, et détourne les yeux de la porte du capitaine."
+     }
+    ],
+    "echec": [
+     {
+      "reputation": {
+       "faction": "compagnie-du-peage",
+       "delta": -10
+      }
+     },
+     {
+      "narration": "Il vous écoute trop longtemps, puis crache dans la poussière : un homme qui parle trop est un homme qui ment."
+     }
+    ]
+   },
+   {
+    "id": "se-faire-passer-pour-des-charretiers",
+    "nom": "Se faire passer pour les charretiers du grain",
+    "resume": "Arriver en tirant une carriole imaginaire, parler de sacs, de pont et de pluie : le camp attend une livraison, pas des étrangers.",
+    "jet": {
+     "competence": "tromperie",
+     "dd": 15
+    },
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "fait": "f-charrette-saisie"
+     },
+     {
+      "narration": "On vous conduit devant les sacs bâchés pour vérifier la marque ; le quartier-maître râle sur le retard et vous laisse attendre Varg."
+     }
+    ],
+    "echec": [
+     {
+      "narration": "Un des hommes remarque que votre carriole n'existe pas ; les arcs se lèvent d'un coup."
+     }
+    ]
+   },
+   {
+    "id": "renverser-les-wagonnets",
+    "nom": "Renverser les wagonnets",
+    "resume": "Faire rouler les wagonnets dans la pente et profiter du vacarme pour traverser la cour jusqu'à la porte du fond.",
+    "jet": {
+     "competence": "athletisme",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "xp": 75
+     },
+     {
+      "narration": "Le fer roule, les hommes jurent, les loups tirent sur leurs chaînes : vous traversez la cour dans le désordre."
+     }
+    ],
+    "echec": [
+     {
+      "narration": "Un wagonnet se bloque contre un étais ; le bruit attire tout le camp sur vous."
+     }
+    ]
+   },
+   {
+    "id": "montrer-la-lettre-du-capitaine",
+    "nom": "Montrer la lettre du capitaine",
+    "condition": {
+     "objet": "lettre-de-varg"
+    },
+    "resume": "Le sceau de Varg à la main, dire qu'on vient pour le capitaine : le quartier-maître s'écarte et vous fait conduire au bureau.",
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -5
+      }
+     },
+     {
+      "xp": 50
+     },
+     {
+      "narration": "Le quartier-maître reconnaît le sceau, jure entre ses dents et vous ouvre le chemin du bureau."
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "z5-butins-hobgobelins"
+   ],
+   "tresors": [
+    "min-t-le-tresor-de-guerre"
+   ],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "flag": "charrette-retrouvee"
+   },
+   {
+    "fait": "f-charrette-saisie"
+   },
+   {
+    "xp": 150
+   },
+   {
+    "narration": "La cour est à vous. Sous la bâche, les sacs portent bien la marque du moulin Roux."
+   }
+  ]
+ },
+ {
+  "id": "min-r-grum-le-gobelours",
+  "nom": "Grum le gobelours",
+  "type": "combat",
+  "lieu": "min-camp-hobgobelin",
+  "difficulte": "moderee",
+  "intro": "Grum redescend de la veine avec un seau et une lampe. Il voit le camp, les tentes, le désordre, et repose le seau très doucement avant de prendre son maillet. Deux hobgobelins sortent de l'ombre derrière lui, et un loup maigre tire sur sa chaîne.",
+  "monstres": [
+   {
+    "profil": "combattant-gobelours",
+    "nombre": 1,
+    "pnj": "grum"
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 2
+   },
+   {
+    "profil": "loup",
+    "nombre": 1
+   }
+  ],
+  "carte": [
+   "################",
+   "#.....m........#",
+   "#..............#",
+   "#....~~..~~....#",
+   "#..m........m..#",
+   "#..............#",
+   "#.....~~.......#",
+   "#........m.....#",
+   "#....HHHHHH....#",
+   "################"
+  ],
+  "terrain": "camp",
+  "tactique": {
+   "doctrine": "Grum avance droit sur le combattant le plus lourd et frappe pour désarmer, pas pour tuer ; les deux hobgobelins tiennent les flancs et le loup tourne autour des blessés.",
+   "fuite": "Grum ne poursuit pas au-delà de la palissade : son poste est ici.",
+   "renforts": "Si le feu de tourbe est renversé, la fumée attire deux hommes du porche au bout de quatre tours."
+  },
+  "alternatives": [
+   {
+    "id": "lui-parler-de-la-fatigue",
+    "nom": "Lui parler de la fatigue",
+    "resume": "Dire tout haut ce que tout le monde voit : il n'a plus envie de se battre, et personne ici ne le lui reprochera.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 12
+    },
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": 15
+      }
+     },
+     {
+      "fait": "f-colin-prisonnier"
+     },
+     {
+      "xp": 75
+     },
+     {
+      "narration": "Grum baisse son maillet et parle du prisonnier de la veine, puis s'écarte du passage sans regarder ses hommes."
+     }
+    ],
+    "echec": [
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": -5
+      }
+     },
+     {
+      "narration": "Il serre les mâchoires : la fatigue, chez lui, ne se dit pas devant des étrangers."
+     }
+    ]
+   },
+   {
+    "id": "lui-promettre-une-autre-vie",
+    "nom": "Lui promettre une autre vie",
+    "resume": "Lui jurer qu'on parlera pour lui, qu'on lui trouvera une place loin de la compagnie, et qu'il ne repartira pas sans solde.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 15
+    },
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": 20
+      }
+     },
+     {
+      "xp": 100
+     },
+     {
+      "narration": "Il regarde longtemps la route, puis son maillet, puis la route encore ; il finit par reculer d'un pas."
+     }
+    ],
+    "echec": [
+     {
+      "attitude": {
+       "pnj": "grum",
+       "delta": -10
+      }
+     },
+     {
+      "narration": "Il secoue la tête : les promesses des gens de passage, il en a déjà entendu."
+     }
+    ]
+   },
+   {
+    "id": "le-desarmer",
+    "nom": "Le désarmer",
+    "resume": "Profiter de sa lenteur pour lui faire lâcher le maillet et le plaquer contre un wagonnet, sans le tuer.",
+    "jet": {
+     "competence": "athletisme",
+     "dd": 15
+    },
+    "effets": [
+     {
+      "flag": "grum-capture"
+     },
+     {
+      "xp": 100
+     },
+     {
+      "narration": "Le maillet tombe. Grum se laisse faire, à bout de souffle, et demande seulement qu'on ne le frappe pas devant les autres."
+     }
+    ],
+    "echec": [
+     {
+      "narration": "Il vous repousse d'un revers et retrouve son maillet : la lutte reprend."
+     }
+    ]
+   },
+   {
+    "id": "reculer-vers-la-sortie",
+    "nom": "Reculer vers la sortie",
+    "resume": "Retraiter pas à pas vers le porche, sans tourner le dos, et laisser Grum à son camp.",
+    "jet": {
+     "competence": "discretion",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "xp": 25
+     },
+     {
+      "narration": "Vous sortez de la cour sans un mot ; derrière vous, Grum repose son maillet et reprend son seau."
+     }
+    ],
+    "echec": [
+     {
+      "narration": "Un seau roule sous un pied ; Grum lève la tête et le camp se réveille."
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "z5-butins-gobelins"
+   ],
+   "tresors": [],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "flag": "grum-capture"
+   },
+   {
+    "xp": 100
+   },
+   {
+    "narration": "Grum s'assoit par terre, le dos contre le wagonnet, et attend la suite sans lever les yeux."
+   }
+  ]
+ },
+ {
+  "id": "min-r-varg-et-sa-garde",
+  "nom": "Varg et sa garde",
+  "type": "combat",
+  "lieu": "min-bureau-de-varg",
+  "difficulte": "elevee",
+  "intro": "La porte du bureau s'ouvre sur une pièce trop chaude. Varg est debout derrière sa table, une carte de la vallée sous la main, quatre hommes en armes le long du mur. Il ne touche pas à son épée. « Vous auriez dû frapper. »",
+  "monstres": [
+   {
+    "profil": "capitaine-hobgobelin",
+    "nombre": 1,
+    "pnj": "varg"
+   },
+   {
+    "profil": "combattant-hobgobelin",
+    "nombre": 4
+   }
+  ],
+  "carte": [
+   "##################",
+   "#....m.....m.....#",
+   "#................#",
+   "#..##........##..#",
+   "#....m.....m.....#",
+   "#................#",
+   "#.......m........#",
+   "#................#",
+   "#....HHHHHH......#",
+   "#................#",
+   "##################"
+  ],
+  "terrain": "souterrain",
+  "tactique": {
+   "doctrine": "Varg se bat derrière la table pour garder l'avantage du terrain, la garde forme un mur devant la porte et cherche à repousser le groupe dans la cour ; personne ne sort vivant de la pièce.",
+   "fuite": "Varg ne fuit pas : il recule jusqu'à l'escalier de la veine si la pièce est perdue.",
+   "renforts": "Le vacarme attire le quartier-maître et deux hommes du camp au bout de trois tours si la porte reste ouverte."
+  },
+  "alternatives": [
+   {
+    "id": "marchander-la-liberation-de-colin",
+    "nom": "Marchander la libération de Colin",
+    "resume": "Proposer une part fixe à chaque automne et le grain de la charrette contre la vie et la liberté du charretier.",
+    "jet": {
+     "competence": "persuasion",
+     "dd": 15
+    },
+    "effets": [
+     {
+      "flag": "colin-ranconne"
+     },
+     {
+      "flag": "colin-libere"
+     },
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": 10
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "colin-vasseur",
+       "delta": 20
+      }
+     },
+     {
+      "xp": 200
+     },
+     {
+      "narration": "Varg appelle un homme, lui donne l'ordre d'aller détacher le charretier, et repose sa plume : le marché est écrit."
+     }
+    ],
+    "echec": [
+     {
+      "jauge": {
+       "id": "dime",
+       "delta": 1
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -10
+      }
+     },
+     {
+      "narration": "Il déchire la feuille : une promesse sans garantie ne vaut rien, et il exige davantage."
+     }
+    ]
+   },
+   {
+    "id": "poser-la-lettre-sur-la-table",
+    "nom": "Poser la lettre sur la table",
+    "condition": {
+     "objet": "lettre-de-varg"
+    },
+    "resume": "Ne rien dire, poser la lettre au milieu de la carte et attendre que le capitaine s'explique.",
+    "effets": [
+     {
+      "fait": "f-but-de-varg"
+     },
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -5
+      }
+     },
+     {
+      "xp": 75
+     },
+     {
+      "narration": "Il lit, plie, repose. « Le fer, oui. Le grain n'a jamais été qu'un moyen. » Il demande ce que vous voulez en échange du silence."
+     }
+    ]
+   },
+   {
+    "id": "fuir-par-l-escalier-de-la-veine",
+    "nom": "Fuir par l'escalier de la veine",
+    "resume": "Renverser la table pour gagner l'escalier du fond et disparaître dans la galerie avant que la garde ne réagisse.",
+    "jet": {
+     "competence": "discretion",
+     "dd": 14
+    },
+    "effets": [
+     {
+      "xp": 25
+     },
+     {
+      "narration": "La table bascule, les cartes volent, et vous êtes déjà dans l'escalier, dans le noir et la poussière."
+     }
+    ],
+    "echec": [
+     {
+      "narration": "Un garde bloque l'escalier de sa lance ; il faut se battre ou reculer."
+     }
+    ]
+   }
+  ],
+  "butin": {
+   "tables": [
+    "z5-butins-hobgobelins"
+   ],
+   "tresors": [
+    "min-t-le-bureau-du-capitaine"
+   ],
+   "depouilles": true
+  },
+  "effetsVictoire": [
+   {
+    "flag": "varg-vaincu"
+   },
+   {
+    "xp": 250
+   },
+   {
+    "narration": "Varg pose son épée sur la table, essuie une goutte de sang sur sa manche et dit : « Bien. Maintenant, parlez. »"
+   }
+  ]
+ }
+]

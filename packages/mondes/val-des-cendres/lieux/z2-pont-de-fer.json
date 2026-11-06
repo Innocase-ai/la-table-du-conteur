@@ -1,0 +1,771 @@
+[
+  {
+    "id": "pont-de-fer",
+    "nom": "Pont-de-Fer",
+    "type": "ville",
+    "parent": "val-des-cendres",
+    "resume": "L'ancienne ville de péage des nains, occupée depuis cinq ans par la Compagnie du Fer-Gris.",
+    "description": "Une ville de pierre grise bâtie des deux côtés d'une rivière, autour d'un pont fortifié aux arches nervurées de fer rouge. La Compagnie du Fer-Gris l'a transformée en camp retranché : remparts rapiécés, sentinelles par tours, patrouilles aux carrefours, ordre implacable. Les tisserands humains y vivent encore, tolérés, dans un quartier à part. La porte principale est contrôlée ; deux accès clandestins existent (l'égout du puits de cendre, la brèche du rempart nord) pour qui sait les trouver. Le tribut du bailli, les otages, la forge de guerre et le projet de s'emparer de la Haute-Forge font de Pont-de-Fer le cœur du pouvoir hobgobelin du Val.",
+    "ambiance": "Discipline et fatigue : le pas cadencé des patrouilles, la fumée de la forge qui s'étire sous la cendre, une toux qui court dans le camp comme un murmure.",
+    "visuel": "une ville de pierre grise sous la cendre, des remparts rapiécés de poutres neuves, un pont aux arches nervurées de fer rouge, des fanions gris cloutés de noir, des fumées de forge qui rampent sur les toits, des soldats en mailles ternes aux carrefours",
+    "accroche": "Derrière ses remparts rapiécés de bois neuf, une ville grise s’étend sous la cendre ; des fumées de forge rampent sur les toits.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "veillecendre",
+        "type": "route",
+        "heures": 6,
+        "sens": "double",
+        "description": "La route de Veillecendre à Pont-de-Fer descend la vallée par le sentier de la rivière, puis longe les champs de cendre ; six heures de marche."
+      },
+      {
+        "vers": "le-gue",
+        "type": "chemin",
+        "heures": 4,
+        "sens": "double",
+        "description": "Le chemin de berge, quatre heures, longe la rivière et les saules jusqu'au Gué."
+      },
+      {
+        "vers": "pdf-porte-principale",
+        "type": "porte",
+        "heures": 0,
+        "description": "La porte principale, cloutée de fer, flanquée de deux tours et de sentinelles.",
+        "retour": "Sous la herse qui grince, le passage débouche sur la ville ; le pas des patrouilles résonne dans la cour."
+      },
+      {
+        "vers": "pdf-le-pont-de-fer",
+        "type": "pont",
+        "heures": 0,
+        "description": "La tête de pont, devant l'enceinte, où se tient le péage.",
+        "retour": "Au sortir du pont, la chaussée remonte vers les remparts ; le fer rouge des arches s'éloigne derrière, et l'eau gronde sous les piles."
+      },
+      {
+        "vers": "pdf-egouts",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "description": "Une grille rouillée au ras de l'eau, cachée par les joncs, sous les remparts."
+      },
+      {
+        "vers": "pdf-breche",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 13,
+          "competence": "perception"
+        },
+        "description": "Derrière un grenier effondré, une trouée dans le mur nord, à peine masquée par des ronces.",
+        "retour": "Les ronces s'écartent sur la trouée ; derrière, le grenier effondré laisse voir les toits de la ville, plus bas entre les murs."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "pdf-patrouille-du-fer-gris",
+        "declencheur": "aleatoire",
+        "unique": false
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-compagnie-arrivee",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "services": [
+      "information",
+      "laissez-passer"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-porte-principale",
+    "nom": "La Porte-Pont",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "Le poste de garde de la porte principale, contrôle de la Compagnie.",
+    "description": "Une porte cloutée de fer entre deux tours, une herse relevée, une table de contrôle et un registre. Le sergent de garde demande l'objet de la visite, inscrit les noms, prend ou refuse. Un affût de baliste couvre la route. Le sceau du Fer-Gris ouvre la porte sans question ; une tentative de corruption ou un faux sont possibles, mais risqués. Qui veut passer sans papiers doit trouver un autre accès.",
+    "visuel": "une porte cloutée de fer noir entre deux tours basses, une herse de bois cerclée, une table de garde couverte de tablettes de cire, des sentinelles en mailles ternes, une baliste sous un auvent",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-marche-en-ruine",
+        "type": "porte",
+        "heures": 0,
+        "condition": {
+          "ou": [
+            {
+              "objet": "sceau-du-fer-gris"
+            },
+            {
+              "flag": "pdf-passage-accorde"
+            },
+            {
+              "flag": "fer-gris-allie"
+            }
+          ]
+        },
+        "description": "Le passage vers la ville, autorisé aux porteurs du sceau, aux voyageurs enregistrés et aux alliés.",
+        "retour": "Vers la porte, une barrière de bois tenue par des gardes contrôle chaque passage."
+      },
+      {
+        "vers": "pdf-remparts",
+        "type": "escalier",
+        "heures": 0,
+        "condition": {
+          "ou": [
+            {
+              "objet": "sceau-du-fer-gris"
+            },
+            {
+              "flag": "pdf-passage-accorde"
+            },
+            {
+              "flag": "fer-gris-allie"
+            }
+          ]
+        },
+        "description": "L'escalier de la tour ouest, qui monte au chemin de ronde.",
+        "retour": "L'escalier de la tour ouest descend en pierre usée jusqu'à la cour de la porte, et le froid des remparts suit les marches."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "pdf-controle-de-la-porte",
+        "declencheur": "entree",
+        "unique": false
+      }
+    ],
+    "services": [
+      "laissez-passer"
+    ],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-le-pont-de-fer",
+    "nom": "Le Pont de Fer",
+    "type": "lieu-dit",
+    "parent": "pont-de-fer",
+    "resume": "L'ancien pont nain fortifié, qui franchit la rivière.",
+    "description": "Un pont de pierre sur quatre piles, nervuré de fer rouge, encadré de deux barbacanes. Une chaîne de barrage nain dort sous la chaussée, côté amont ; elle jaillit d'un coup de maillet sur une cheville pour fermer le passage. La Compagnie y perçoit le péage, patrouille la nuit et s'en sert pour piéger les convois qu'elle intercepte. Les nains l'ont bâti pour ne jamais tomber ; ils y ont réussi.",
+    "visuel": "un pont de pierre grise sur quatre piles, de longues nervures de fer rouge sous les arches, des barbacanes crénelées, une chaussée pavée luisante d'humidité, l'eau noire de la rivière qui moutonne contre les piles",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-marche-en-ruine",
+        "type": "porte",
+        "heures": 0,
+        "condition": {
+          "ou": [
+            {
+              "objet": "sceau-du-fer-gris"
+            },
+            {
+              "flag": "pdf-passage-accorde"
+            },
+            {
+              "flag": "fer-gris-allie"
+            }
+          ]
+        },
+        "description": "La barbacane intérieure, qui ouvre sur la place du marché.",
+        "retour": "Au fond de la place, la barbacane crénelée donne vers le pont ; on entend l'eau noire qui bat les piles de l'autre côté du mur."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "pdf-embuscade-du-pont",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-histoire-du-pont",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      },
+      {
+        "fait": "f-pdf-pont-piege",
+        "decouverte": {
+          "dd": 13,
+          "competence": "perception"
+        }
+      }
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-marche-en-ruine",
+    "nom": "Le marché en ruine",
+    "type": "quartier",
+    "parent": "pont-de-fer",
+    "resume": "La place du marché, dévastée par le siège, devenue place d'armes et de troc.",
+    "description": "La place centrale, entourée de halles éventrées par les pierriers, où le Fer-Gris a installé ses cantines et ses étals de troc. Des sections s'y exercent à l'aube, des enfants gobelins y courent dans les gravats, des tisserands y vendent du drap. C'est le carrefour de la ville : de là partent toutes les rues vers la halle, l'intendance, le camp, les remparts et le quartier des tisserands.",
+    "ambiance": "Un bourdonnement de troc et de commandements, des odeurs de soupe et de fer chaud.",
+    "visuel": "une grande place pavée, des arcades de halles éventrées, des étals de drap gris et de ferraille, des soldats à l'exercice, des enfants gobelins qui courent dans les gravats, un clocheton éventré",
+    "accroche": "Des éclats de voix et l'odeur de soupe montent d'une grande place pavée, au bout de la rue, entre des façades éventrées.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-grande-halle",
+        "type": "porte",
+        "heures": 0,
+        "description": "Les arcades éventrées ouvrent sur une halle aux piliers noircis ; des marmites fument au fond, posées sur de longues tables.",
+        "retour": "Sorti de la halle, on retrouve la place ouverte, le bruit des étals et la lumière grise qui tombe sur les pavés."
+      },
+      {
+        "vers": "pdf-intendance",
+        "type": "porte",
+        "heures": 0,
+        "description": "Sur le côté de la place, un entrepôt de pierre ; sa porte basse de bois s'ouvre entre deux étals.",
+        "retour": "Une fois ressorti, le bruit des étals revient d'un coup, et la poussière de la place se pose sur les manteaux."
+      },
+      {
+        "vers": "pdf-camp-du-fer-gris",
+        "type": "route",
+        "heures": 0,
+        "description": "Le chemin s'ouvre sur une cour pavée sous le ciel de cendre ; des sifflets de commandement percent entre les tentes grises."
+      },
+      {
+        "vers": "pdf-quartier-des-tisserands",
+        "type": "route",
+        "heures": 0,
+        "description": "Une ruelle étroite, bordée de maisons à pans de bois, mène à la cour des tisserands ; le claquement des métiers s'entend dès l'entrée.",
+        "retour": "La ruelle ramène vers la place ; le claquement des métiers s'éteint peu à peu, et le brouhaha de troc revient."
+      },
+      {
+        "vers": "pdf-infirmerie",
+        "type": "porte",
+        "heures": 0,
+        "description": "Sous une arcade basse, la porte de l'infirmerie laisse filer une odeur d'herbes séchées et de vinaigre ; des toux étouffées viennent du fond.",
+        "retour": "Au sortir de l'arcade basse, la place reprend d'un coup sous le ciel gris, le vinaigre encore accroché aux manches."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-rationnement",
+        "decouverte": {
+          "dd": 11,
+          "competence": "perception"
+        }
+      }
+    ],
+    "services": [
+      "troc",
+      "information"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-grande-halle",
+    "nom": "La grande halle",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "La halle aux grains, devenue réfectoire et cantine de la Compagnie.",
+    "description": "Une immense halle de poutres et de piliers de pierre, où des centaines de soldats mangent leur soupe en deux services. Au fond, les marmites de la cuisinière ; sous la charpente, des enfants gobelins grappillent des croûtes. On y entend toute la ville : disputes de tables, ragots, rumeurs. Les rixes y sont fréquentes entre sections quand le pain manque.",
+    "visuel": "une halle de poutres noircies sur de gros piliers, de longues tables de planches, des marmites de fonte fumantes, des soldats attablés en tuniques grises, des enfants gobelins sous les bancs",
+    "accroche": "Une halle de poutres noircies se dresse sur de gros piliers ; le raclement des bancs porte jusqu'à la rue, et une fumée de cuisine monte au-dessus du toit.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "pdf-rixe-de-la-halle",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-rationnement",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [
+      "repas",
+      "rumeurs"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-intendance",
+    "nom": "L'intendance",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "Les réserves et la caisse du quartier-maître.",
+    "description": "Un entrepôt de pierre massif, aux murs épais, qui abrite les réserves de la Compagnie et le comptoir du quartier-maître. Une ardoise des rations accrochée au mur indique, compagnie par compagnie, le nombre de bouches à nourrir. Dans l'arrière-salle, un coffre-fort à cadran, fermé par trois molettes, contient la caisse du Fer-Gris. La porte des réserves est verrouillée.",
+    "visuel": "un entrepôt de pierre, un comptoir de bois ciré, de hautes étagères de sacs et de caisses, une grande ardoise noire couverte de chiffres à la craie, une arrière-salle grillagée, un coffre-fort de fer noir",
+    "accroche": "Sans une fenêtre sur sa façade de pierre, l’entrepôt garde sa porte close ; de la poussière de grain filtre sous le seuil.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-pdf-code-de-la-caisse",
+        "decouverte": {
+          "dd": 13,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "services": [
+      "commerce",
+      "laissez-passer"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-camp-du-fer-gris",
+    "nom": "La cour d'armes",
+    "type": "camp",
+    "parent": "pont-de-fer",
+    "resume": "Le camp de la Compagnie : tentes, râteliers et cour d'armes devant la caserne.",
+    "description": "La grande cour d'exercices de l'ancien château de péage, couverte de tentes de toile grise alignées au cordeau, de râteliers d'armes et de feux de cuisine. Les sections s'y entraînent, le capitaine y passe en revue ses troupes. Un affrontement ici réveille toute la garnison : un capitaine hobgobelin, ses combattants, son gobelours et sa troupe de gobelins défendent leur camp avec discipline et sans fuir. Ruvak Main-de-Fer y commande les exercices.",
+    "ambiance": "Ordre cadencé, cuirs graissés, sifflets de commandement ; on entend la toux entre les ordres.",
+    "visuel": "une grande cour de pierre ouverte sous un ciel de cendre, des rangées de tentes de toile grise, des râteliers de lances, des soldats en cotte ternie à l'exercice, une caserne massive au fond, des feux de cuisine alignés",
+    "accroche": "Une cour de pierre ouverte, bordée de tentes grises ; un sifflet de commandement répond, par-dessus les ordres qui claquent.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-caserne",
+        "type": "porte",
+        "heures": 0,
+        "description": "Au fond de la cour, la caserne s'ouvre par une lourde porte de chêne ; le pas cadencé résonne sur les dalles jusqu'au seuil.",
+        "retour": "Depuis la porte de chêne, la cour s'étire vers ses tentes grises et ses feux alignés ; le pas cadencé reprend."
+      },
+      {
+        "vers": "pdf-forge-de-guerre",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une porte noircie s'ouvre sur une halle où la chaleur frappe le visage ; des soufflets ronflent et le fer siffle dans l'eau.",
+        "retour": "Une porte de halle basse, cerclée de fer, qui donne sur la cour ; en ressortant, la chaleur retombe d'un coup et la fumée reste derrière."
+      },
+      {
+        "vers": "pdf-marche-en-ruine",
+        "type": "route",
+        "heures": 0,
+        "description": "Une rampe de pavés, assez large pour deux charrettes, descend de la cour vers la place, entre les râteliers de lances et les feux de cuisine."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "pdf-camp-hobgobelin",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-caserne",
+    "nom": "La caserne",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "Le quartier général du capitaine Kor Varnak.",
+    "description": "L'ancien poste de péage des nains, trapu, aux murs épais, transformé en quartier général. Au rez-de-chaussée, la salle des cartes où Kor Varnak reçoit ses lieutenants ; au-dessus, ses appartements ; en dessous, la prison. Les ordres sortent de cette pièce. Les murs sont couverts de cartes du Val, de listes de sections, de plans de la Haute-Forge.",
+    "visuel": "une grande salle voûtée de pierre, des cartes épinglées sur les murs, une longue table de chêne couverte de plans, un poêle de fonte, des lanternes à huile, des râteliers d'épées au mur",
+    "accroche": "Un bloc de pierre aux murs épais, percé de fenêtres étroites d'où filtre une lueur faible ; un pas lent de ronde résonne derrière les murs.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-salle-du-capitaine",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier étroit, sans rampe, monte depuis la grande salle ; à chaque marche, la lueur d'une lampe basse se rapproche.",
+        "retour": "L'escalier redescend vers la salle aux cartes, et le bruit des bottes de la garde remonte jusqu'aux dernières marches."
+      },
+      {
+        "vers": "pdf-prison",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier tournant descend dans les caves, où se trouvent les cellules.",
+        "retour": "L'escalier tournant remonte vers la salle de garde ; l'air moite des caves se refroidit, et le tintement des chaînes s'efface."
+      }
+    ],
+    "services": [
+      "audience"
+    ],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-salle-du-capitaine",
+    "nom": "La chambre du capitaine",
+    "type": "salle",
+    "parent": "pdf-caserne",
+    "resume": "Les appartements austères de Kor Varnak.",
+    "description": "Une pièce nue : une paillasse, un coffre cerclé de fer, un bureau de chêne, un tapis de laine usé, une carte des approches de la Haute-Forge épinglée au mur. Un livre de comptes personnel, un fanion gris plié. Le coffre est verrouillé et piégé. Dans un tiroir du bureau, sous une pile de rapports, repose le sceau du Fer-Gris, ou son pendant.",
+    "visuel": "une chambre nue aux murs de pierre, une paillasse impeccablement tendue, un bureau de chêne encombré de rapports, un coffre cerclé de fer, une carte au mur, une lampe à huile basse",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-pdf-kor-malade",
+        "decouverte": {
+          "dd": 15,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-forge-de-guerre",
+    "nom": "La forge de guerre",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "La forge où la Compagnie fabrique son fer gris.",
+    "description": "Une forge à quatre fours, dans une ancienne halle de péage, où la Compagnie fabrique ses lames, ses pointes et ses cottes. La cendre tombée du ciel y est recueillie dans des cuves pour tremper le métal. L'air est âcre, les forgerons toussent entre deux coups de marteau. Durga Enclume-Grise y règne sur six apprentis. On y voit les dernières armes de la Compagnie, et les manques : plus de charbon, plus de veine rouge.",
+    "visuel": "une grande halle noircie, quatre fours à la gueule rouge sale, des enclumes de fer gris, des cuves de cendre fine, des lames en cours de trempe, des forgerons en tabliers de cuir roussi, une fumée âcre sous la charpente",
+    "accroche": "On entend les enclumes marteler toute la rue, et une fumée âcre s’échappe des toits noircis.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-pdf-fer-gris-la-trempe",
+        "decouverte": {
+          "dd": 12,
+          "competence": "nature"
+        }
+      }
+    ],
+    "services": [
+      "réparation",
+      "affûtage",
+      "forge sur commande"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-infirmerie",
+    "nom": "L'infirmerie",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "L'infirmerie de campagne de la Compagnie, tenue par un médecin humain.",
+    "description": "Une ancienne maison de marchand reconvertie en infirmerie : vingt lits de paille alignés, des herbes qui pendent aux poutres, une odeur de menthe et de vinaigre. Beaucoup de malades toussent sans arrêt. Le médecin soigne les hobgobelins comme les étrangers, au même tarif, et note chaque mort dans un cahier.",
+    "visuel": "une longue salle aux poutres basses, deux rangées de lits de paille, des bouquets d'herbes séchées qui pendent, des soldats pâles qui toussent, un établi chargé de fioles et de bandages",
+    "accroche": "Des fenêtres basses, aux vitres sales ; une toux rauque en sort, avec une odeur d'herbes sèches.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "faits": [
+      {
+        "fait": "f-pdf-toux-de-fer",
+        "decouverte": {
+          "dd": 14,
+          "competence": "medecine"
+        }
+      }
+    ],
+    "services": [
+      "soins de campagne",
+      "poisons et antidotes"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "pdf-prison",
+    "nom": "La prison",
+    "type": "batiment",
+    "parent": "pont-de-fer",
+    "resume": "Les cellules du Fer-Gris, dans les caves de la caserne.",
+    "description": "Quatre cellules voûtées de pierre, séparées par des grilles de fer, éclairées par une lampe. Le sergent Oumak y fait respecter un règlement qu'il récite de mémoire. Deux otages de Veillecendre y sont retenus. Une grille d'évacuation au fond d'une cellule mène aux anciens drains. Les gardes sont relevés trois fois par jour.",
+    "visuel": "une cave voûtée de pierre humide, quatre cellules à barreaux de fer, une table de garde éclairée d'une lampe, des chaînes au mur, une grille d'évacuation au fond d'une cellule",
+    "accroche": "Grillagé au ras du sol, un soupirail laisse filtrer une odeur d’humidité, et parfois le cliquetis d’une chaîne.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-egouts",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "verrou": {
+          "dd": 14
+        },
+        "description": "Une grille d'évacuation, derrière la dernière cellule, donne sur un drain nain."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "pdf-evasion-de-la-prison",
+        "declencheur": "exploration",
+        "unique": true
+      },
+      {
+        "id": "z7-r-prison-des-otages",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-otages-a-la-prison",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-quartier-des-tisserands",
+    "nom": "Le quartier des tisserands",
+    "type": "quartier",
+    "parent": "pont-de-fer",
+    "resume": "Le quartier des civils restés à Pont-de-Fer, tolérés par la Compagnie.",
+    "description": "Une quinzaine de maisons à pans de bois autour d'une cour, où vivent les tisserands qui ont refusé de partir. Les métiers à tisser claquent encore derrière les volets. Les femmes y échangent des nouvelles, les hommes du drap contre du pain. Une informatrice y tient commerce de rumeurs. Le puits de cendre se trouve au fond de la cour.",
+    "ambiance": "Le claquement obstiné des métiers, des regards méfiants et un humour de survivants.",
+    "visuel": "une cour étroite entourée de maisons à pans de bois, des écheveaux de laine grise séchant sur des perches, des métiers à tisser visibles derrière les fenêtres, un puits de pierre margelé au centre",
+    "accroche": "Des maisons à pans de bois bordent un passage étroit ; le claquement des métiers en sort, et des écheveaux de laine grise pendent au-dessus de l'entrée.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-puits-de-cendre",
+        "type": "chemin",
+        "heures": 0,
+        "description": "Au fond de la cour, des dalles disjointes mènent à un puits de pierre ; une poussière grise monte du fond en volutes.",
+        "retour": "En s'éloignant du puits, les dalles redeviennent solides ; une poussière se pose sur les vêtements jusqu'à la cour."
+      }
+    ],
+    "services": [
+      "information",
+      "faux papiers"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-puits-de-cendre",
+    "nom": "Le puits de cendre",
+    "type": "lieu-dit",
+    "parent": "pont-de-fer",
+    "resume": "Un ancien puits nain qui rejette de la cendre fine, au fond du quartier des tisserands.",
+    "description": "Un puits de pierre taillée à large margelle, dont l'eau est depuis longtemps remplacée par une cendre fine qui remonte parfois en poussière. On dit qu'il communique avec un drain nain. Une dalle au bord du puits cache un vide : elle cède sous le poids. C'est ici que s'ouvre, pour qui sait chercher, l'accès clandestin vers les égouts.",
+    "visuel": "un puits de pierre à large margelle, une poussière grise qui monte du fond comme une fumée, des dalles disjointes alentour, une échelle de fer rouillée",
+    "accroche": "Un puits de pierre à large margelle, sans seau, au bord des dalles ; une cendre fine s'en élève et retombe en grains sur la cour.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-egouts",
+        "type": "echelle",
+        "heures": 0,
+        "cache": {
+          "dd": 13,
+          "competence": "perception"
+        },
+        "description": "Une échelle de fer descend au fond du puits, où s'ouvre un drain nain."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-egout-du-puits",
+        "decouverte": {
+          "dd": 13,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-egouts",
+    "nom": "Les drains nains",
+    "type": "salle",
+    "parent": "pont-de-fer",
+    "resume": "Un réseau de drains nains qui relie le puits de cendre, la prison et la rivière.",
+    "description": "Un boyau de pierre taillée, large à y passer à deux de front, où coule un filet d'eau noire. Un tunnel descend du puits, un autre remonte jusqu'aux caves de la prison, un troisième débouche sur le quai, sous les remparts, derrière une grille rouillée. Un fil d'alarme, garni de clochettes, a été tendu par la Compagnie à la hauteur des genoux. Un déserteur s'y cache.",
+    "visuel": "un tunnel de pierre taillée, une eau noire qui coule dans une rigole, des racines blanches au plafond, une grille rouillée au bout, un fil tendu à hauteur de genou garni de clochettes de cuivre",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-puits-de-cendre",
+        "type": "echelle",
+        "heures": 0,
+        "description": "Une échelle de fer rouillée monte vers le puits ; de la cendre sèche tombe d'en haut et fait tousser à chaque échelon."
+      },
+      {
+        "vers": "pdf-prison",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "verrou": {
+          "dd": 14
+        },
+        "description": "Au bout du drain, une grille scellée ferme un conduit qui remonte vers les caves ; la lumière d'une lampe filtre entre ses barreaux."
+      },
+      {
+        "vers": "pont-de-fer",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "description": "Le conduit file jusqu'à une grille basse, au ras de l'eau, cachée par les joncs ; au-delà, sous les remparts, la fumée des forges monte des toits."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-egout-du-puits",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-breche",
+    "nom": "La brèche du rempart nord",
+    "type": "lieu-dit",
+    "parent": "pont-de-fer",
+    "resume": "Une trouée dans le rempart, derrière un grenier effondré.",
+    "description": "Une brèche dans le mur nord, à hauteur d'homme, que les hobgobelins n'ont pas encore bouchée faute de pierre taillée. Des ronces la masquent. Une sentinelle seule la surveille depuis la tour voisine. À la relève du soir, la tour reste sans regard pendant un battement de lanterne : c'est le moment de passer.",
+    "visuel": "une trouée dans un mur de pierre grise, des gravats d'un grenier effondré, des ronces noires, une tour crénelée au-dessus, un chemin de ronde silencieux",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-remparts",
+        "type": "echelle",
+        "heures": 0,
+        "description": "De la brèche, un escalier de fortune gagne le chemin de ronde.",
+        "retour": "Un escalier de fortune, planches clouées sur des madriers, redescend du chemin de ronde vers les gravats, et ses marches branlent sous le pas."
+      },
+      {
+        "vers": "pdf-quartier-des-tisserands",
+        "type": "passage",
+        "heures": 0,
+        "description": "Une ruelle derrière le grenier mène au quartier des tisserands.",
+        "retour": "Une venelle pavée, bordée de murs de torchis, file vers la trouée ; le bruit des métiers s'éteint à mesure qu'on s'éloigne."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-breche-nord",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pdf-remparts",
+    "nom": "Les remparts",
+    "type": "lieu-dit",
+    "parent": "pont-de-fer",
+    "resume": "Le chemin de ronde et les tours de Pont-de-Fer.",
+    "description": "Un chemin de ronde étroit qui fait le tour de la ville, ponctué de tours où les sentinelles échangent des signaux de lanterne. De là-haut on voit la vallée entière : le gris de la cendre, les feux du Gué, la silhouette lointaine de la Lanterne. L'éclaireuse Sulka y passe ses nuits. La relève de garde, à la tombée du jour et à minuit, est un cérémonial réglé.",
+    "visuel": "un chemin de ronde étroit entre créneaux, des tours carrées, des lanternes de verre fumé, une vue sur la vallée grise, des feux lointains, des sentinelles en capuche",
+    "accroche": "Là-haut, sur les tours, des sentinelles en capuche guettent la vallée grise derrière des lanternes de verre fumé.",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "pdf-tour-de-guet",
+        "type": "escalier",
+        "heures": 0,
+        "description": "L'escalier de pierre monte en vrille dans la tour, usé au milieu par des siècles de pas, et sent l'huile brûlée.",
+        "retour": "Les marches descendent en spirale vers le chemin de ronde, et un vent froid remonte de la vallée par la cage d'escalier."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-pdf-releve-des-gardes",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [
+      "pdf-releve-de-garde"
+    ],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "pdf-tour-de-guet",
+    "nom": "La tour de guet nord",
+    "type": "salle",
+    "parent": "pdf-remparts",
+    "resume": "La tour de signaux, où l'on échange les lanternes.",
+    "description": "Une pièce ronde au sommet d'une tour, une rangée de quatre lanternes colorées (rouge, blanc, ambre, bleu) sur une tablette, une ardoise couverte de signes à la craie : le code de la nuit. C'est ici qu'on réalise les signaux d'alarme et de relève. Quiconque connaît la séquence « tout va bien » peut franchir la brèche voisine sans éveiller l'attention.",
+    "visuel": "une petite salle ronde en haut d'une tour, quatre lanternes de verre coloré (rouge, blanc, ambre, bleu) sur une tablette, une ardoise couverte de signes à la craie, une meurtrière sur la vallée",
+    "niveau": {
+      "min": 4,
+      "max": 5
+    },
+    "liens": [],
+    "services": [],
+    "repos": "dangereux"
+  }
+]

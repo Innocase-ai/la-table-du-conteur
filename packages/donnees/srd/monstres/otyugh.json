@@ -1,0 +1,141 @@
+{
+  "sauvegardes": {
+    "con": 7
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "otyugh",
+  "nom": "Otyugh",
+  "taille": "G",
+  "type": "Aberration",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 104,
+    "des": "11d10 + 44"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 11,
+    "con": 19,
+    "int": 6,
+    "sag": 13,
+    "cha": 6
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "otyugh ; télépathie 36 m (ne permet pas à la créature destinataire de répondre télépathiquement)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'otyugh effectue une attaque de Morsure et deux de Tentacule.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 1
+        },
+        {
+          "action": "tentacule",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 12 (2d8 + 3) dégâts perforants, et la cible subit l'état Empoisonné. Chaque fois que la cible Empoisonnée termine un Repos long, elle subit l'effet suivant. JS Constitution DD 15. Échec : le maximum de points de vie de la cible est réduit de 5 (1d10) et ne revient pas à la normale tant que l'état Empoisonné persiste sur la cible. Réussite : l'état Empoisonné prend fin.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne"
+        }
+      ]
+    },
+    {
+      "id": "tentacule",
+      "nom": "Tentacule",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 12 (2d8 + 3) dégâts perforants. Si la cible est une créature de taille M ou inférieure, elle subit l'état Agrippé (évasion DD 13) par l'un des deux tentacules.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "coup-de-tentacule",
+      "nom": "Coup de tentacule",
+      "cout": "action",
+      "resume": "JS Constitution DD 14, chaque créature Agrippée par l'otyugh. Échec : 16 (3d8 + 3) dégâts contondants, et la cible subit l'état Étourdi jusqu'au début du tour suivant de l'otyugh. Réussite : demi-dégâts uniquement. (L'état Étourdi n'est pas représenté dans le moteur.)",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

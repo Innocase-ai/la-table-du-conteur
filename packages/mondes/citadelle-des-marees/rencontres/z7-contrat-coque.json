@@ -1,0 +1,162 @@
+[
+  {
+    "id": "por-r-premiere-vague-du-chantier",
+    "nom": "La première vague du chantier",
+    "type": "mixte",
+    "lieu": "por-chantier-naval",
+    "difficulte": "faible",
+    "intro": "Le reflux a laissé la grève à nu, et des silhouettes sortent de l'écume en traînant leurs jambes. Elles ont les doigts déchirés, les yeux pleins de sable, et une odeur de vase froide monte jusqu'au chantier. Le premier gratte déjà la bâche tendue sur la barque.",
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 2,
+        "nom": "Noyés de la grève"
+      }
+    ],
+    "carte": [
+      "############",
+      "#m.c.....e.#",
+      "#..##....c.#",
+      "#m.....ee..#",
+      "#.c....~~..#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les noyés marchent droit vers la cale, sans se couvrir ; ils frappent le premier qui se tient devant la coque.",
+      "fuite": "Ils ne fuient pas : ils reviennent à la grève quand le reflux finit.",
+      "renforts": "Aucun, mais une seconde vague suit."
+    },
+    "alternatives": [
+      {
+        "id": "allumer-les-braseros",
+        "nom": "J'allume les braseros du chantier pour les tenir à distance.",
+        "condition": {
+          "objet": "huile"
+        },
+        "resume": "Les braseros du chantier, restés froids depuis l'hiver, prennent avec l'huile des lampes. Les noyés reculent devant la flamme et se regroupent au bord de la grève ; la seconde marée arrivera quand même.",
+        "effets": [
+          {
+            "objet": {
+              "id": "huile",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "por-braseros-allumes"
+          },
+          {
+            "rencontre": "por-r-assaut-du-chantier"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "rencontre": "por-r-assaut-du-chantier"
+      }
+    ]
+  },
+  {
+    "id": "por-r-assaut-du-chantier",
+    "nom": "L'assaut du chantier",
+    "type": "mixte",
+    "lieu": "por-chantier-naval",
+    "difficulte": "faible",
+    "intro": "Le reflux est à son plus bas, et la coque craque sur ses cales comme un navire qui sent la tempête. Trois noyés armés de rouille, des crocs de fer et des lames piquées dans le bois descendent de la grève en file, suivis d'un quatrième plus lent. Le chenal, à gauche, n'est plus qu'un fil d'eau entre les galets.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 3,
+        "nom": "Noyés armés de rouille"
+      },
+      {
+        "profil": "zombi",
+        "nombre": 1,
+        "nom": "Noyés armés de rouille"
+      }
+    ],
+    "carte": [
+      "############",
+      "#m.c...e..m#",
+      "#..##..~~..#",
+      "#m.e.c....m#",
+      "#.c....ee..#",
+      "#.HHHHHH...#",
+      "############"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les squelettes avancent en ligne par le chenal, les lames en avant ; le zombi reste derrière eux et pousse la coque pour s'ouvrir un passage.",
+      "fuite": "Quand la moitié d'entre eux est tombée, les survivants se laissent glisser dans le chenal vers la grève.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "fermer-la-vanne",
+        "nom": "Je ferme la vanne du chenal pour que l'eau ne remonte pas jusqu'à la cale.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "La vanne de bois est coincée dans sa glissière, rongée par le sel. Il faut peser sur la barre de tout son poids pour la faire glisser, et l'eau du chenal se coupe d'un coup.",
+        "effets": [
+          {
+            "flag": "por-chantier-defendu"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La vanne résiste, la corde casse sur votre poignet, et le chenal continue de remonter entre les galets."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "sonner-la-cloche-du-quai",
+        "nom": "Je sonne la cloche : la garde du quai viendra.",
+        "resume": "La cloche de bronze du quai porte loin dans le brouillard. Les noyés s'arrêtent, indécis, puis se retirent vers la grève ; une demi-heure plus tard, la garde de la Ligue arrive au chantier avec des lanternes et des questions.",
+        "effets": [
+          {
+            "flag": "por-chantier-defendu"
+          },
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 3
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "por-hennequin-lacet",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 20
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "por-chantier-defendu"
+      },
+      {
+        "xp": 50
+      }
+    ]
+  }
+]

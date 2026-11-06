@@ -1,0 +1,110 @@
+{
+  "id": "chef-de-bande",
+  "nom": "Chef de bande",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 15,
+  "pv": {
+    "moyenne": 52,
+    "des": "8d8 + 16"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 16,
+    "con": 14,
+    "int": 14,
+    "sag": 11,
+    "cha": 14
+  },
+  "sauvegardes": {
+    "for": 4,
+    "dex": 5,
+    "sag": 2
+  },
+  "competences": {
+    "athletisme": 4,
+    "tromperie": 4
+  },
+  "initiative": 3,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "argot des voleurs, commun",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le chef de bande effectue deux attaques, réparties à sa guise entre Cimeterre et Pistolet (par exemple deux tirs de Pistolet à distance).",
+      "multiattaque": [
+        {
+          "action": "cimeterre",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "cimeterre",
+      "nom": "Cimeterre",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "pistolet",
+      "nom": "Pistolet",
+      "cout": "action",
+      "resume": "À distance +5, portée 9/27 m : 8 (1d10 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9,
+        "longue": 27
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "cout": "reaction",
+      "resume": "Déclencheur : le chef de bande est touché par un jet d'attaque de corps à corps alors qu'il tient une arme. Il ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

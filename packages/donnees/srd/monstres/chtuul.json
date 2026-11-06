@@ -1,0 +1,132 @@
+{
+  "id": "chtuul",
+  "nom": "Chtuul",
+  "taille": "G",
+  "type": "Aberration",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 16,
+  "pv": {
+    "moyenne": 76,
+    "des": "9d10 + 27"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 10,
+    "con": 16,
+    "int": 5,
+    "sag": 11,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 4
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "comprend le profond, mais ne parle pas",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le chtuul peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "perception-de-la-magie",
+      "nom": "Perception de la magie",
+      "resume": "Le chtuul perçoit la magie dans un rayon de 36 m. Ce trait fonctionne pour le reste comme le sort détection de la magie, même s'il n'est pas magique en lui-même."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le chtuul effectue deux attaques de Pince et recourt à Tentacules paralysants.",
+      "multiattaque": [
+        {
+          "action": "pince",
+          "nombre": 2
+        },
+        {
+          "action": "tentacules-paralysants",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "pince",
+      "nom": "Pince",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 9 (1d10 + 4) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 14) par l'une des deux pinces.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "tentacules-paralysants",
+      "nom": "Tentacules paralysants",
+      "cout": "action",
+      "resume": "JS Constitution DD 13, une créature Agrippée par le chtuul. Échec : la cible subit l'état Empoisonné et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS. Tant qu'elle est ainsi Empoisonnée, la cible subit l'état Paralysé.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        },
+        {
+          "etat": "paralyse",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "deva",
+  "nom": "Déva",
+  "taille": "M",
+  "type": "Céleste (Ange)",
+  "alignement": "Loyal Bon",
+  "ca": 17,
+  "pv": {
+    "moyenne": 229,
+    "des": "27d8 + 108"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 27
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 18,
+    "con": 18,
+    "int": 17,
+    "sag": 20,
+    "cha": 20
+  },
+  "sauvegardes": {
+    "sag": 9,
+    "cha": 9
+  },
+  "competences": {
+    "intuition": 9,
+    "perception": 9
+  },
+  "initiative": 4,
+  "resistances": [
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 19
+  },
+  "langues": "toutes ; télépathie 36 m",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    },
+    {
+      "id": "vol-stationnaire",
+      "nom": "Vol stationnaire",
+      "resume": "Vitesse de vol 27 m (vol stationnaire)."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le déva a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-exaltee",
+      "nom": "Restauration exaltée",
+      "resume": "Si le déva meurt hors du Mont Céleste, son corps disparaît et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part sur le Mont Céleste."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le déva effectue deux attaques de Masse sainte.",
+      "multiattaque": [
+        {
+          "action": "masse-sainte",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "masse-sainte",
+      "nom": "Masse sainte",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 7 (1d6 + 4) dégâts contondants plus 18 (4d8) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le déva lance l'un des sorts suivants, sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 17). À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), détection du mal et du bien. 1/jour chacun : communion, rappel à la vie.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "soutien-divin",
+      "nom": "Soutien divin",
+      "cout": "bonus",
+      "resume": "Le déva lance délivrance des malédictions, restauration partielle ou soins, avec la même caractéristique d'incantation que pour Incantation.",
+      "degats": [],
+      "etats": [],
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

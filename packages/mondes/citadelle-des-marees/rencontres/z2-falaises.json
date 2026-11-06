@@ -1,0 +1,270 @@
+[
+  {
+    "id": "fal-r-naufrages-de-la-route",
+    "nom": "Les naufragés de la route",
+    "type": "combat",
+    "lieu": "route-des-falaises",
+    "difficulte": "faible",
+    "intro": "Deux silhouettes trempées, debout au milieu de la route, se retournent vers vous. Leurs vêtements dégoulinent d'eau de mer, et chacun de leurs pas laisse une flaque sur les dalles.",
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#..~........~......#",
+      "#...mm.............#",
+      "#..................#",
+      "#.R.........R......#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "####################"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "Ils avancent droit devant eux et frappent ce qui est à portée. Ils ne quittent pas la route.",
+      "fuite": "Aucune : ils ne reculent jamais."
+    },
+    "alternatives": [
+      {
+        "id": "fal-les-appeler",
+        "nom": "Les appeler par leur nom",
+        "resume": "Les naufragés reconnaissent parfois leur nom : ils s'arrêtent, se tournent vers la mer et s'éloignent lentement, sans se battre.",
+        "effets": [],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        }
+      },
+      {
+        "id": "fal-faire-demi-tour",
+        "nom": "Faire demi-tour",
+        "resume": "Reculer pas à pas vers le relais sans leur tourner le dos : ils ne vous suivent pas au-delà du premier virage.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "fal-butin-naufrage"
+      ],
+      "tresors": []
+    }
+  },
+  {
+    "id": "fal-r-pillards-du-pont",
+    "nom": "Le péage du pont",
+    "type": "combat",
+    "lieu": "fal-pont-des-corbeaux",
+    "difficulte": "faible",
+    "intro": "Trois hommes sortent des rochers, arcs tendus, sur un coup de sifflet de corbeau. Le plus grand lève la main : « Le péage, ou la charrette. »",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "####################",
+      "#mmm...............#",
+      "#..cc.........cc...#",
+      "#..................#",
+      "#.......~~.........#",
+      "#..................#",
+      "#..........HHHHHH..#",
+      "#..................#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Deux tireurs restent couverts derrière les rochers, le chef se place au milieu du pont pour bloquer le passage.",
+      "fuite": "Ils se replient vers le ravin dès que le chef tombe.",
+      "renforts": "Aucun, sauf si le bruit fait fuir les corbeaux, qui donnent l'alerte."
+    },
+    "alternatives": [
+      {
+        "id": "payer-le-peage",
+        "nom": "Payer le péage",
+        "resume": "Une bourse de pièces suffit : les trois hommes s'écartent du pont sans un mot, et le chef compte la somme avant de rire.",
+        "effets": [
+          {
+            "pieces": -15
+          }
+        ]
+      },
+      {
+        "id": "fal-passer-sous-le-pont",
+        "nom": "Passer sous les arches",
+        "resume": "Descendre par la berge et longer l'eau sous les arches, sans attirer les tireurs : une course entre les galets.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "fal-butin-pillards"
+      ],
+      "tresors": []
+    }
+  },
+  {
+    "id": "fal-r-noyes-du-marais",
+    "nom": "Les noyés des digues",
+    "type": "combat",
+    "lieu": "fal-digues-du-marais",
+    "difficulte": "faible",
+    "intro": "Dans la boue des digues, des silhouettes se redressent, lentes, une à une. Elles tiennent encore des râteaux de bois, et de l'eau coule de leurs vêtements à chaque mouvement.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 3
+      },
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "####################",
+      "#eeee..bbbb........#",
+      "#eeee.mm.bbbb......#",
+      "#..~..bbbbmm.......#",
+      "#.....~~~..mm......#",
+      "#.....bb...........#",
+      "#......HHHHHH......#",
+      "####################"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "Les squelettes gardent la digue et les zombis passent par la boue pour atteindre les héros isolés.",
+      "fuite": "Ils ne quittent pas l'eau, qui les tient."
+    },
+    "alternatives": [
+      {
+        "id": "fal-attendre-le-flot",
+        "nom": "Attendre le flot",
+        "resume": "Se tenir loin de l'eau : les noyés suivent la mer, et reculent avec elle quand le flot remonte sur les digues.",
+        "effets": [],
+        "jet": {
+          "competence": "survie",
+          "dd": 13
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "fal-butin-naufrage"
+      ],
+      "tresors": []
+    }
+  },
+  {
+    "id": "fal-r-goules-du-cimetiere",
+    "nom": "Les tombes ouvertes",
+    "type": "combat",
+    "lieu": "fal-cimetiere-des-naufrages",
+    "difficulte": "faible",
+    "intro": "Entre les stèles, une forme rampe hors d'une tombe ouverte, griffes de sel, bouche grande ouverte. Deux silhouettes trempées la suivent lentement dans l'herbe couchée.",
+    "monstres": [
+      {
+        "profil": "goule",
+        "nombre": 1
+      },
+      {
+        "profil": "zombi",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..R.....R.........#",
+      "#.T...mm.....T.....#",
+      "#..........mm......#",
+      "#....T.............#",
+      "#..R..........R....#",
+      "#......HHHHHH......#",
+      "####################"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "La goule s'approche par les tombes et frappe ceux qui se penchent pour fouiller ; les zombis la suivent.",
+      "fuite": "Ils restent dans le cimetière."
+    },
+    "alternatives": [
+      {
+        "id": "fal-apaiser-les-tombes",
+        "nom": "Apaiser les tombes",
+        "resume": "Quelques mots de liturgie sur les stèles : les morts se calment et retournent à la terre, comme on le fait pour les naufragés.",
+        "effets": [],
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "fal-butin-cimetiere"
+      ],
+      "tresors": []
+    }
+  },
+  {
+    "id": "fal-r-araignees-de-la-grotte",
+    "nom": "Les toiles de la galerie",
+    "type": "combat",
+    "lieu": "fal-grotte-des-marees-galerie",
+    "difficulte": "faible",
+    "intro": "Les toiles tremblent d'un coup au-dessus de la galerie, et deux bêtes grises aux pattes longues descendent des piliers, lentement, comme pour éprouver l'air autour de vous.",
+    "monstres": [
+      {
+        "profil": "araignee-geante",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "####################",
+      "#RR....~~~.........#",
+      "#.....eeee...mm....#",
+      "#...R..........mm..#",
+      "#.....~~...........#",
+      "#..bb..........RR..#",
+      "#......HHHHHH......#",
+      "####################"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Elles tirent des toiles pour entraver les héros, puis mordent celui qui est pris.",
+      "fuite": "Elles ne quittent pas leurs toiles."
+    },
+    "alternatives": [
+      {
+        "id": "fal-passer-sans-les-reveiller",
+        "nom": "Passer sans les réveiller",
+        "resume": "Longer la paroi sans toucher aux toiles et sans lumière trop vive : les bêtes restent immobiles dans leurs cocons.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "fal-butin-toiles"
+      ],
+      "tresors": [
+        "fal-t-galerie-sac"
+      ]
+    }
+  }
+]

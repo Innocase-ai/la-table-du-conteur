@@ -1,0 +1,115 @@
+{
+  "id": "cube-gelatineux",
+  "nom": "Cube gélatineux",
+  "taille": "G",
+  "type": "Vase",
+  "alignement": "non aligné",
+  "ca": 6,
+  "pv": {
+    "moyenne": 63,
+    "des": "6d10 + 30"
+  },
+  "vitesse": {
+    "marche": 4.5
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 3,
+    "con": 20,
+    "int": 1,
+    "sag": 6,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -4,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "aveugle",
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "cube-de-vase",
+      "nom": "Cube de vase",
+      "resume": "Le cube emplit la totalité de son espace et il est transparent. D'autres créatures peuvent entrer dans cet espace, mais ce faisant, elles se soumettent à l'Enveloppement du cube en subissant le Désavantage au jet de sauvegarde. Les créatures dans le cube bénéficient d'un Abri total, sachant que le cube peut contenir une créature de taille G ou jusqu'à quatre créatures de taille M ou P. Au prix d'une action, une créature dans un rayon de 1,50 m du cube peut en extraire une autre ou un objet à condition de réussir un test de Force (Athlétisme) DD 12, l'opération lui infligeant 10 (3d6) dégâts d'acide."
+    },
+    {
+      "id": "transparent",
+      "nom": "Transparent",
+      "resume": "Même lorsque rien ne cache le cube, une créature doit réussir un test de Sagesse (Perception) DD 15 pour remarquer sa présence si elle ne l'a pas déjà vu se déplacer ni agir."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "id": "pseudopode",
+      "nom": "Pseudopode",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 12 (3d6 + 2) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 2,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "enveloppement",
+      "nom": "Enveloppement",
+      "cout": "action",
+      "resume": "Le cube se déplace dans les limites de sa Vitesse sans provoquer d'attaques d'Opportunité. Il peut se déplacer à travers les espaces de créatures de taille G ou inférieure s'il a encore de la place pour les accueillir dans sa masse (voir le trait Cube de vase). JS Dextérité DD 12, chaque créature dans l'espace de laquelle le cube pénètre pour la première fois de ce déplacement. Échec : 10 (3d6) dégâts d'acide, et la cible est enveloppée. Une cible enveloppée s'asphyxie, ne peut pas lancer de sorts à composante verbale, subit l'état Entravé, ainsi que 10 (3d6) dégâts d'acide au début de chacun des tours du cube. Quand le cube se déplace, la cible enveloppée l'accompagne. Une créature enveloppée peut tenter de s'extraire du cube au prix d'une action et d'un test de Force (Athlétisme) DD 12. En cas de réussite, la cible s'évade dans l'espace inoccupé le plus proche. Réussite : demi-dégâts, et la cible se déplace en un espace inoccupé dans un rayon de 1,50 m du cube. S'il n'y a pas d'espace inoccupé dans ce rayon, la cible rate en fait son JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 12,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "entrave",
+          "evasion": 12
+        }
+      ]
+    }
+  ]
+}

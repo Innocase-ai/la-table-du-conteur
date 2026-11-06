@@ -1,0 +1,118 @@
+{
+  "id": "elementaire-du-feu",
+  "nom": "Élémentaire du feu",
+  "taille": "G",
+  "type": "Élémentaire",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 93,
+    "des": "11d10 + 33"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 17,
+    "con": 16,
+    "int": 6,
+    "sag": 10,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "empoisonne",
+    "entrave",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (igné)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    },
+    {
+      "id": "aura-de-feu",
+      "nom": "Aura de feu",
+      "resume": "À la fin de chacun des tours de l'élémentaire, chaque créature dans une Émanation de 3 m centrée sur lui subit 5 (1d10) dégâts de feu. Les créatures et objets inflammables dans l'Émanation s'embrasent."
+    },
+    {
+      "id": "corps-de-feu",
+      "nom": "Corps de feu",
+      "resume": "L'élémentaire peut se déplacer dans un espace étroit d'une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement, et il peut entrer dans l'espace d'une créature et s'y arrêter. La première fois d'un tour qu'il entre dans l'espace d'une créature donnée, celle-ci subit 5 (1d10) dégâts de feu."
+    },
+    {
+      "id": "illumination",
+      "nom": "Illumination",
+      "resume": "L'élémentaire émet une Lumière vive sur un rayon de 9 m et une Lumière faible sur 9 m de plus."
+    },
+    {
+      "id": "vulnerabilite-a-l-eau",
+      "nom": "Vulnérabilité à l'eau",
+      "resume": "L'élémentaire subit 3 (1d6) dégâts de froid par tranche de 1,50 m qu'il parcourt dans l'eau, ainsi que par tranche de 4 litres d'eau dont on l'asperge."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'élémentaire effectue deux attaques de Brûlure.",
+      "multiattaque": [
+        {
+          "action": "brulure",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "brulure",
+      "nom": "Brûlure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 10 (2d6 + 3) dégâts de feu. Si la cible est une créature ou un objet inflammable, elle s'embrase.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

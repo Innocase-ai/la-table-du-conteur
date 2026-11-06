@@ -1,0 +1,141 @@
+[
+  {
+    "id": "sorel-noirbec",
+    "nom": "Sorel Noirbec",
+    "titre": "Chef des contrebandiers de la crique",
+    "espece": "tieffelin",
+    "sexe": "M",
+    "age": "42 ans",
+    "role": "Chef de la bande de contrebande de la crique, un homme qui n'a jamais tué et qui vit de ce qui passe sous le nez du port.",
+    "lieu": "cr-grotte",
+    "apparence": "Tieffelin de 42 ans, grand et large d'épaules, à la peau rouge sombre, avec deux petites cornes courbes et une queue fine enroulée autour de la cheville, des yeux d'ambre, une barbe courte, un ciré gris usé, un bonnet de laine, des bottes de cuir salé, une boucle d'oreille en forme d'écaille de poisson et un trousseau de clés accroché à la ceinture.",
+    "personnalite": {
+      "traits": ["posé", "malicieux", "loyal envers les siens", "peu rancunier"],
+      "voix": "Posée et rauque, un peu traînante, avec l'humour de quai ; il appelle chacun « matelot » et compte tout à voix haute, les pièces, les hommes, les marées. Il rit court et ne hausse jamais le ton.",
+      "valeurs": ["personne ne reste sur le quai sans pain", "un contrat tenu vaut mieux qu'un serment"],
+      "desir": "Nourrir ses hommes jusqu'au retour des bateaux, sans jamais avoir à lever la main sur qui que ce soit.",
+      "peur": "Que la bande se disperse, et que ses hommes retournent à la pêche sans le sel qui leur sauve l'hiver.",
+      "defaut": "Il croit que ses affaires ne font de mal à personne, et il ne regarde pas toujours ce qu'elles coûtent aux autres."
+    },
+    "presences": [],
+    "faction": "contrebandiers-de-la-crique",
+    "attitude": -10,
+    "savoir": [
+      "f-z3-sorel-sans-sang",
+      "f-z3-sel-de-la-bande",
+      "f-z3-livre-dans-le-coffre",
+      "f-z3-chiffres-du-coffre",
+      "f-z3-fil-de-laiton",
+      "f-z3-lecture-risquee",
+      "f-marche-de-sorel",
+      "f-navire-de-verdelune",
+      "f-cle-de-tobie"
+    ],
+    "secrets": [
+      { "fait": "f-marche-de-sorel", "attitudeMin": 40 },
+      { "fait": "f-marche-de-sorel", "condition": { "ou": [{ "objet": "lettre-de-verdelune" }, { "objet": "bourse-marquee" }] } },
+      { "fait": "f-navire-de-verdelune", "attitudeMin": 35 },
+      { "fait": "f-navire-de-verdelune", "jet": { "competence": "intimidation", "dd": 13 } },
+      { "fait": "f-navire-de-verdelune", "condition": { "objet": "lettre-de-verdelune" } },
+      { "fait": "f-z3-livre-dans-le-coffre", "condition": { "objet": "cle-de-la-crypte" } },
+      { "fait": "f-z3-livre-dans-le-coffre", "jet": { "competence": "persuasion", "dd": 15 } },
+      { "fait": "f-z3-chiffres-du-coffre", "condition": { "flag": "sorel-demasque" }, "attitudeMin": 40 },
+      { "fait": "f-z3-lecture-risquee", "attitudeMin": 30 },
+      { "fait": "f-cle-de-tobie", "condition": { "objet": "cle-de-la-crypte" } }
+    ],
+    "sujets": [
+      {
+        "id": "le-metier",
+        "mots": ["contrebandier", "métier", "hommes", "pêcheurs", "vie"],
+        "question": "Qui êtes-vous, au juste ?",
+        "reponse": "Il se redresse et compte sur ses doigts : vingt ans de contrebande, et jamais une main levée sur personne. Ses hommes sont des pêcheurs sans bateau, que la mer a laissés à terre, et il leur donne du travail et de quoi manger. Il ne se croit pas un brigand, seulement un homme qui fait passer ce que le port ne peut plus faire passer.",
+        "revele": ["f-z3-sorel-sans-sang"],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-sel-de-la-bande",
+        "mots": ["sel", "caisses", "salaison", "hiver", "bande"],
+        "question": "Pourquoi tant de sel dans cette grotte ?",
+        "attitudeMin": 10,
+        "reponse": "La salaison de l'hiver a tout ruiné : le poisson a pourri dans les bacs faute de sel à temps, et la bande n'a plus de quoi en racheter. Il montre les caisses d'un mouvement du menton, comme on montre une dette. Ce sel-là, dit-il, nourrira les familles avant le retour des bateaux.",
+        "revele": ["f-z3-sel-de-la-bande"],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-livre-feint",
+        "mots": ["livre", "grimoire", "Maëlle", "crypte"],
+        "question": "Que savez-vous du Livre de Maëlle ?",
+        "condition": { "non": { "flag": "sorel-demasque" } },
+        "reponse": "Il lève les sourcils et répond qu'il ne lit que les marées, et que les livres ne se mangent pas. Il vous montre le ciel, le vent qui tourne, et se plaint de la pêche mauvaise cette année. Il ne dit rien du coffre ni de la crypte, et vous fait comprendre, avec humour, que la question ne l'intéresse pas.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "confronter-sorel",
+        "mots": ["preuve", "clé", "bourse", "lettre", "marché"],
+        "question": "Lui mettre la preuve sous le nez.",
+        "condition": { "ou": [{ "objet": "cle-de-la-crypte" }, { "objet": "bourse-marquee" }, { "objet": "lettre-de-verdelune" }] },
+        "reponse": "Il soupire, et ce soupir ressemble à du soulagement. Il avoue que c'est lui qui a vendu le livre, et qu'il ne l'a fait que pour nourrir ses hommes. Le livre est dans le coffre de chêne de la grotte, fermé par trois cadrans de laiton, et il vous laisse le soin de l'ouvrir.",
+        "revele": ["f-marche-de-sorel", "f-z3-livre-dans-le-coffre"],
+        "effets": [{ "flag": "sorel-demasque" }, { "attitude": { "pnj": "sorel-noirbec", "delta": 5 } }],
+        "unique": true
+      },
+      {
+        "id": "l-acheteur-et-le-navire",
+        "mots": ["acheteur", "navire", "marquis", "marée", "chaloupe"],
+        "question": "Qui viendra chercher ce qui quitte la crique ?",
+        "attitudeMin": 20,
+        "condition": { "flag": "sorel-demasque" },
+        "reponse": "Il parle d'un marquis étranger, collectionneur, qui a demandé le Livre de Maëlle et ne discute jamais le prix. Son navire mouillera au large à la grande marée, dans trois nuits ; à la pleine mer, la chaloupe viendra prendre la marchandise au ponton de la grotte. Il dit que la somme est déjà réglée d'avance, et qu'il n'a plus rien à compter.",
+        "revele": ["f-marche-de-sorel", "f-navire-de-verdelune"],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-chiffres-du-coffre",
+        "mots": ["coffre", "ouvrir", "cadrans", "chiffres", "combinaison"],
+        "question": "Lui demander d'ouvrir le coffre.",
+        "attitudeMin": 40,
+        "condition": { "flag": "sorel-demasque" },
+        "reponse": "Il marmonne sans vous regarder : les chiffres se lisent sur les marques de marée gravées au mur, à droite du coffre. Haute mer, sept ; basse mer, deux ; mi-marée, cinq. Il prévient qu'une mauvaise combinaison fait sonner une clochette, et que le fil de laiton court du coffre jusqu'à elle.",
+        "revele": ["f-z3-chiffres-du-coffre", "f-z3-fil-de-laiton"],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-lecture-du-livre",
+        "mots": ["lecture", "lire", "page", "voix", "risque"],
+        "question": "Peut-on lire ce livre sans risque ?",
+        "attitudeMin": 30,
+        "reponse": "Il a essayé une fois, à voix basse, de lire une page de ce livre, et sa voix s'est éraillée pour toute la journée. Il pense que le livre prend quelque chose à qui le lit sans y être préparé, et il ne tient pas à savoir quoi. Il le dit avec un sourire de travers, comme on parle d'une vieille mauvaise habitude de mer.",
+        "revele": ["f-z3-lecture-risquee"],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Demi-tour, matelot. Je compte mes hommes, et vous n'en faites pas partie.",
+      "neutre": "Bonsoir, matelot. Je compte ce qui entre dans ma grotte, alors dites-moi vite ce que vous voulez.",
+      "amical": "Ah, un matelot ! Approchez, la lanterne est bonne et le sel aussi, on n'en manque pas pour une fois. Un, deux, trois, nous voilà tous là.",
+      "variantes": [
+        {
+          "condition": { "flag": "sorel-neutralise" },
+          "texte": "Sorel est assis sur une caisse, les mains sur les genoux, et hausse les épaules : « Vous m'avez eu, matelot. Mes hommes rentrent chez eux, c'est tout ce qui compte pour moi. »"
+        },
+        {
+          "condition": { "flag": "livre-retrouve" },
+          "texte": "Sorel vous regarde approcher, les bras croisés, et fait bonne figure : « Il n'est plus dans mon coffre, je le sais. Alors allez-y, matelot, il ne me reste que la mer et mes comptes. »"
+        },
+        {
+          "condition": { "flag": "sorel-demasque" },
+          "texte": "Sorel ne se lève même pas. Il sait qu'on sait : « Vous avez mis le nez dans mes affaires, matelot. Parlez, je vous écoute, et je compte bien les pièces que vous allez me demander. »"
+        }
+      ]
+    },
+    "inventaire": [],
+    "profilCombat": "chef-de-bande"
+  }
+]

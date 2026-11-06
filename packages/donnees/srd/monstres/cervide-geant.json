@@ -1,0 +1,77 @@
+{
+  "id": "cervide-geant",
+  "nom": "Cervidé géant",
+  "taille": "TG",
+  "type": "Céleste",
+  "alignement": "Neutre Bon",
+  "ca": 14,
+  "pv": {
+    "moyenne": 42,
+    "des": "5d12 + 10"
+  },
+  "vitesse": {
+    "marche": 18
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 18,
+    "con": 14,
+    "int": 7,
+    "sag": 14,
+    "cha": 10
+  },
+  "sauvegardes": {
+    "for": 6,
+    "dex": 6
+  },
+  "competences": {
+    "perception": 4
+  },
+  "initiative": 6,
+  "sens": {
+    "visionDansLeNoir": 27,
+    "perceptionPassive": 14
+  },
+  "langues": "céleste ; comprend le commun, l'elfique et le sylvestre, mais ne les parle pas",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "ramure",
+      "nom": "Ramure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 11 (2d6 + 4) dégâts contondants plus 5 (2d4) dégâts radiants. Si la cible est une créature de taille TG ou inférieure et si le cervidé s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 5 (2d4) dégâts contondants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [
+    "nécrotique",
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,111 @@
+{
+  "id": "ame-en-peine",
+  "nom": "Âme-en-peine",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 67,
+    "des": "9d8 + 27"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 16,
+    "con": 16,
+    "int": 12,
+    "sag": 14,
+    "cha": 15
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "resistances": [
+    "acide",
+    "contondant",
+    "feu",
+    "froid",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "nécrotique",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "empoisonne",
+    "entrave",
+    "inconscient",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 12
+  },
+  "langues": "commun et deux autres langues",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "deplacement-intangible",
+      "nom": "Déplacement intangible",
+      "resume": "L'âme-en-peine traverse les créatures et les objets comme un Terrain difficile ; elle subit 5 (1d10) dégâts de force si elle termine son tour à l'intérieur d'un objet. Taille M ou P. Vol stationnaire."
+    },
+    {
+      "id": "sensibilite-au-soleil",
+      "nom": "Sensibilité au soleil",
+      "resume": "Tant qu'elle est exposée à la lumière du soleil, l'âme-en-peine subit le Désavantage aux tests de caractéristique et aux jets d'attaque."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "absorption-de-vie",
+      "nom": "Absorption de vie",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 21 (4d8 + 3) dégâts nécrotiques. Si la cible est une créature, son maximum de points de vie est réduit d'un montant égal aux dégâts subis.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 3,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "creation-de-spectre",
+      "nom": "Création de spectre",
+      "cout": "action",
+      "resume": "L'âme-en-peine cible un Humanoïde mort depuis moins de 1 minute dans un rayon de 3 m. Son esprit émerge sous forme de spectre, sous le contrôle de l'âme-en-peine (maximum sept spectres à la fois).",
+      "portee": {
+        "type": "distance",
+        "normale": 3
+      },
+      "resolution": {
+        "type": "automatique"
+      }
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+[
+  {
+    "id": "q-citadelle-les-fanaux",
+    "nom": "Les fanaux de la côte",
+    "type": "secondaire",
+    "donneur": "gudrun-lanterne",
+    "lieu": "cit-phare-archive",
+    "resume": "Gudrun veut trois fanaux rallumés avant la nuit : celui des jardins de falaise, celui de l'observatoire et celui de la grille de mer.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "falaise",
+    "etapes": [
+      {
+        "id": "falaise",
+        "texte": "Rallumez le fanal des jardins de falaise, malgré le vent qui couche la flamme.",
+        "completion": { "flag": "cit-fanal-falaise" },
+        "suivantes": ["observatoire"]
+      },
+      {
+        "id": "observatoire",
+        "texte": "Rallumez le fanal de l'observatoire, sous le dôme de cuivre.",
+        "completion": { "flag": "cit-fanal-observatoire" },
+        "suivantes": ["grille"]
+      },
+      {
+        "id": "grille",
+        "texte": "Rallumez le fanal de la grille de mer. Les trois fanaux tiennent : Gudrun doit le savoir.",
+        "completion": { "flag": "cit-fanal-grille" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "jauge": { "id": "maree", "delta": -1 } }]
+      }
+    ],
+    "recompenses": { "xp": 100, "pieces": 20, "objets": [], "effets": [] },
+    "ramifications": "Un fanal laissé éteint n'arrête pas la quête, mais la mer reste haute tant que les trois ne brûlent pas ensemble : la jauge ne baisse qu'à l'étape finale."
+  },
+  {
+    "id": "q-cit-les-tables-decalees",
+    "nom": "Les tables décalées",
+    "type": "secondaire",
+    "donneur": "aldous-lindenvert",
+    "lieu": "cit-grande-bibliotheque",
+    "resume": "Les tables de marée retardent de deux heures. Aldous veut savoir pourquoi, avant que le Prieur ne s'en mêle.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "constat",
+    "etapes": [
+      {
+        "id": "constat",
+        "texte": "Aldous vous a confié ses tables décalées : cherchez la cause à l'observatoire, ou du côté des caveaux.",
+        "completion": { "fait": "f-cit-tables-decalees" },
+        "suivantes": ["cause"]
+      },
+      {
+        "id": "cause",
+        "texte": "La cause est peut-être dans la lentille de l'observatoire, couverte de sel. Vérifiez-la.",
+        "completion": { "fait": "f-cit-lentille-encrassee" },
+        "suivantes": ["rapport"]
+      },
+      {
+        "id": "rapport",
+        "texte": "Rapportez à Aldous la cause des tables décalées.",
+        "completion": { "flag": "cit-tables-rapportees" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 75, "pieces": 10, "objets": [], "effets": [] },
+    "ramifications": "Une rumeur accuse la clepsydre des caveaux, qui n'a pourtant pas bougé. La suivre fait perdre un jour aux tables, et le voleur n'a jamais existé."
+  },
+  {
+    "id": "q-cit-la-soupe-des-naufrages",
+    "nom": "La soupe des naufragés",
+    "type": "secondaire",
+    "donneur": "bertrane-mijotee",
+    "lieu": "cit-refectoire",
+    "resume": "Bertrane doit nourrir les voyageurs échoués : il lui faut des herbes de falaise et du bois sec. Partagera-t-on les réserves, ou les gardera-t-on pour l'hiver ?",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "herbes",
+    "etapes": [
+      {
+        "id": "herbes",
+        "texte": "Rapportez des herbes grises des jardins de falaise pour la soupe.",
+        "completion": { "objet": "cit-herbes-de-falaise" },
+        "suivantes": ["bois"]
+      },
+      {
+        "id": "bois",
+        "texte": "Rapportez du bois sec : la réserve de la cuisine est trempée.",
+        "completion": { "objet": "cit-bois-sec" },
+        "suivantes": ["soupe"]
+      },
+      {
+        "id": "soupe",
+        "texte": "Remettez herbes et bois à Bertrane : la soupe chauffe pour les voyageurs.",
+        "completion": { "flag": "cit-soupe-servie" },
+        "suivantes": ["partage", "garde"]
+      },
+      {
+        "id": "partage",
+        "texte": "Partagez les réserves de la cuisine avec les voyageurs échoués.",
+        "completion": { "flag": "cit-reserves-partagees" },
+        "suivantes": [],
+        "termine": true
+      },
+      {
+        "id": "garde",
+        "texte": "Gardez les réserves pour l'hiver, et laissez Bertrane les compter.",
+        "completion": { "flag": "cit-reserves-gardees" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 50, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Garder les réserves rend Bertrane méfiante le reste de la nuit : elle ne sert plus de bol sans qu'on paie. Partager les réserves lui vaut une vraie reconnaissance."
+  },
+  {
+    "id": "q-cit-le-marin-de-la-tempete",
+    "nom": "Le marin de la tempête",
+    "type": "secondaire",
+    "donneur": "cit-lise-ferraud",
+    "lieu": "cit-infirmerie",
+    "resume": "Le marin tiré de l'eau brûle de fièvre. L'infirmière a besoin d'herbes de falaise pour un remède, et d'une oreille pour ce qu'il murmure.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "herbes",
+    "etapes": [
+      {
+        "id": "herbes",
+        "texte": "Trouvez des herbes de falaise pour le remède du marin fiévreux.",
+        "completion": { "objet": "cit-herbes-de-falaise" },
+        "suivantes": ["remede"]
+      },
+      {
+        "id": "remede",
+        "texte": "Faites préparer le remède par l'infirmière, avant que la fièvre ne monte.",
+        "completion": { "objet": "cit-remede-de-falaise" },
+        "suivantes": ["ecouter"],
+        "echec": { "jauge": { "id": "maree", "min": 4 } }
+      },
+      {
+        "id": "ecouter",
+        "texte": "Donnez le remède au marin, et écoutez ce qu'il murmure.",
+        "completion": { "flag": "cit-marin-soigne" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 50, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Si la mer atteint le quatrième palier avant le remède, le marin ne se relève pas : la quête échoue, sans reproche de l'infirmière."
+  },
+  {
+    "id": "q-cit-la-cle-des-caveaux",
+    "nom": "La clé des caveaux",
+    "type": "secondaire",
+    "donneur": "cit-ansgar-mauclerc",
+    "lieu": "cit-intendance",
+    "resume": "L'intendant a perdu la clé des caveaux dans le bassin du quai. Il faut la repêcher à marée basse, ou ouvrir la porte autrement.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "cle",
+    "etapes": [
+      {
+        "id": "cle",
+        "texte": "La clé des caveaux manque : repêchez-la au fond du bassin du quai, à marée basse, ou ouvrez la porte des caveaux.",
+        "completion": { "ou": [{ "objet": "cit-cle-des-caveaux" }, { "lieu": "cit-caveaux" }] },
+        "suivantes": ["rendre"]
+      },
+      {
+        "id": "rendre",
+        "texte": "Rendez la clé à l'intendant, ou avouez-lui que la porte a été ouverte.",
+        "completion": { "flag": "cit-cle-rendue" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 40, "pieces": 10, "objets": [], "effets": [] },
+    "ramifications": "L'intendant tolère une porte ouverte sans permission, mais il se souvient de qui l'a ouverte : son attitude baisse."
+  },
+  {
+    "id": "q-cit-les-cartes-du-cap",
+    "nom": "La route du Cap-Mort",
+    "type": "secondaire",
+    "donneur": "ysmene-hautecote",
+    "lieu": "cit-salle-des-cartes",
+    "resume": "Ysmène veut qu'on compare sa grande carte à celle du Cap-Mort, à la bibliothèque : une route y manque peut-être.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "comparer",
+    "etapes": [
+      {
+        "id": "comparer",
+        "texte": "Lisez la vieille carte du Cap-Mort à la bibliothèque : un passage y est tracé sous la falaise.",
+        "completion": { "fait": "f-cit-carte-du-cap-mort" },
+        "suivantes": ["verifier"]
+      },
+      {
+        "id": "verifier",
+        "texte": "Comparez la carte d'Ysmène avec Aldous : dites-lui où la route s'arrête.",
+        "completion": { "flag": "cit-carte-verifiee" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 75, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Ysmène ne veut pas que la carte quitte la Citadelle. La route marquée peut servir à la Cour si on la montre à la mauvaise personne."
+  }
+]

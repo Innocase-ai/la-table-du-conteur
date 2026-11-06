@@ -1,0 +1,591 @@
+[
+  {
+    "id": "trait-de-feu",
+    "nom": "Trait de feu",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature ou un objet : 1d10 dégâts de feu si elle touche. Un objet inflammable touché qui n'est pas porté s'embrase.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "feu"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "rayon-de-givre",
+    "nom": "Rayon de givre",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature : si elle touche, 1d8 dégâts de froid et la Vitesse de la cible est réduite de 3 m jusqu'au début du prochain tour du lanceur.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "froid"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "poigne-electrique",
+    "nom": "Poigne électrique",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Attaque de sort au corps à corps contre une créature : si elle touche, 1d8 dégâts de foudre et la cible ne peut pas faire d'attaque d'opportunité jusqu'au début de son prochain tour.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "corps-a-corps"
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "foudre"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "flamme-sacree",
+    "nom": "Flamme sacrée",
+    "niveau": 0,
+    "ecole": "évocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature visible à portée fait un jet de sauvegarde de Dextérité ou subit 1d8 dégâts radiants (rien en cas de réussite). Les abris partiels et supérieurs ne donnent aucun bonus à ce jet.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "radiant"
+      }
+    ],
+    "evolutionSortMineur": [
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "id": "projectile-magique",
+    "nom": "Projectile magique",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 3,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Crée 3 projectiles qui touchent automatiquement et simultanément ; chacun inflige 1d4 + 1 dégâts de force à une créature visible à portée, au choix du lanceur (tous sur la même cible ou répartis). +1 projectile par niveau d'emplacement au-delà du 1er. Le sort Bouclier de la cible annule les dégâts de tous les projectiles.",
+    "resolution": {
+      "type": "automatique"
+    },
+    "degats": [
+      {
+        "des": "1d4",
+        "bonus": 1,
+        "type": "force"
+      }
+    ],
+    "ameliorationParNiveau": "1 projectile",
+    "special": "projectile-magique"
+  },
+  {
+    "id": "bouclier",
+    "nom": "Bouclier",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "reaction",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "1 round",
+    "concentration": false,
+    "resume": "Réaction déclenchée quand un jet d'attaque touche le lanceur ou que Projectile magique le cible. Jusqu'au début de son prochain tour, le lanceur gagne +5 à la CA, y compris contre l'attaque déclencheuse (qui peut donc rater rétroactivement), et ne subit aucun dégât de Projectile magique.",
+    "special": "bouclier"
+  },
+  {
+    "id": "mains-brulantes",
+    "nom": "Mains brûlantes",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "cone",
+      "taille": 4.5
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Chaque créature dans un cône de 4,50 m partant du lanceur fait un jet de sauvegarde de Dextérité : 3d6 dégâts de feu en cas d'échec, moitié en cas de réussite. Les objets inflammables non portés dans le cône s'embrasent.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d6",
+        "type": "feu"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "sommeil",
+    "nom": "Sommeil",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 1.5
+    },
+    "composantes": "V, S, M (une pincée de sable ou des pétales de rose)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Chaque créature choisie dans une sphère de 1,50 m de rayon centrée sur un point à portée fait un jet de sauvegarde de Sagesse ; en cas d'échec elle est Neutralisée jusqu'à la fin de son prochain tour, puis refait le JS à ce moment : si elle le rate de nouveau, elle est Inconsciente jusqu'à la fin du sort (concentration, 1 minute). Le sort prend fin pour une cible qui subit des dégâts ou qu'une autre créature à 1,50 m d'elle secoue énergiquement (action). Les créatures qui ne dorment pas (elfes…) et celles immunisées contre l'Épuisement réussissent automatiquement leur JS.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "neutralise",
+        "dureeRounds": 1
+      },
+      {
+        "etat": "inconscient"
+      }
+    ],
+    "special": "sommeil"
+  },
+  {
+    "id": "soins",
+    "nom": "Soins",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "La créature touchée récupère 2d8 + le modificateur de caractéristique d'incantation du lanceur en points de vie. +2d8 par niveau d'emplacement au-delà du 1er.",
+    "soins": {
+      "des": "2d8",
+      "ajouterModificateur": true
+    },
+    "ameliorationParNiveau": "2d8"
+  },
+  {
+    "id": "mot-de-guerison",
+    "nom": "Mot de guérison",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature visible à portée récupère 2d4 + le modificateur de caractéristique d'incantation du lanceur en points de vie. +2d4 par niveau d'emplacement au-delà du 1er.",
+    "soins": {
+      "des": "2d4",
+      "ajouterModificateur": true
+    },
+    "ameliorationParNiveau": "2d4"
+  },
+  {
+    "id": "benediction",
+    "nom": "Bénédiction",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 3,
+    "composantes": "V, S, M (un symbole sacré d'une valeur minimale de 5 po)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Jusqu'à 3 créatures à portée (aucun jet) ajoutent 1d4 à chacun de leurs jets d'attaque et jets de sauvegarde jusqu'à la fin du sort (concentration, 1 minute). +1 cible par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1 cible",
+    "special": "benediction"
+  },
+  {
+    "id": "fleau",
+    "nom": "Imprécation",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "clerc",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 3,
+    "composantes": "V, S, M (une goutte de sang)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Jusqu'à 3 créatures visibles à portée font un jet de sauvegarde de Charisme ; chacune qui échoue soustrait 1d4 à chacun de ses jets d'attaque et jets de sauvegarde jusqu'à la fin du sort (concentration, 1 minute). +1 cible par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "cha",
+      "moitieSiReussite": false
+    },
+    "ameliorationParNiveau": "1 cible",
+    "special": "fleau"
+  },
+  {
+    "id": "eclair-tracant",
+    "nom": "Rayon traçant",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 round",
+    "concentration": false,
+    "resume": "Attaque de sort à distance contre une créature : si elle touche, 4d6 dégâts radiants, et le prochain jet d'attaque effectué contre cette cible (par n'importe qui) avant la fin du prochain tour du lanceur a l'Avantage. +1d6 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "4d6",
+        "type": "radiant"
+      }
+    ],
+    "ameliorationParNiveau": "1d6",
+    "special": "eclair-tracant"
+  },
+  {
+    "id": "bouclier-de-la-foi",
+    "nom": "Bouclier de la foi",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un parchemin de prière)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Une créature au choix à portée (le lanceur compris) gagne un bonus de +2 à la CA jusqu'à la fin du sort (concentration, 10 minutes).",
+    "special": "bouclier-de-la-foi"
+  },
+  {
+    "id": "marque-du-chasseur",
+    "nom": "Marque du chasseur",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "rodeur"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "1 heure",
+    "concentration": true,
+    "resume": "Le lanceur marque une créature visible à portée : jusqu'à la fin du sort (concentration, 1 heure), il lui inflige 1d6 dégâts de force supplémentaires chaque fois qu'il la touche avec un jet d'attaque, et a l'Avantage aux tests de Sagesse (Perception ou Survie) pour la trouver. Si la cible tombe à 0 PV avant la fin du sort, il peut par une action Bonus déplacer la marque sur une autre créature visible à portée. Emplacement de niveau 3-4 : durée jusqu'à 8 heures ; niveau 5+ : 24 heures.",
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "force"
+      }
+    ],
+    "special": "marque-du-chasseur"
+  },
+  {
+    "id": "rayon-ardent",
+    "nom": "Rayon ardent",
+    "niveau": 2,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 3,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur projette 3 rayons de feu, sur une même cible ou répartis entre plusieurs à portée, avec une attaque de sort à distance distincte par rayon ; chaque rayon qui touche inflige 2d6 dégâts de feu. +1 rayon par niveau d'emplacement au-delà du 2e.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "distance"
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "feu"
+      }
+    ],
+    "ameliorationParNiveau": "1 rayon",
+    "special": "rayon-ardent"
+  },
+  {
+    "id": "arme-spirituelle",
+    "nom": "Arme spirituelle",
+    "niveau": 2,
+    "ecole": "évocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Crée une arme spectrale flottante dans un espace à portée, pour la durée (concentration, 1 minute), et fait aussitôt une attaque de sort au corps à corps contre une créature à 1,50 m de l'arme : 1d8 + modificateur de caractéristique d'incantation en dégâts de force si elle touche. À chaque tour suivant, par une action Bonus, le lanceur peut déplacer l'arme de 6 m maximum et répéter l'attaque. +1d8 par niveau d'emplacement au-delà du 2e.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "corps-a-corps"
+    },
+    "degats": [
+      {
+        "des": "1d8",
+        "type": "force"
+      }
+    ],
+    "ameliorationParNiveau": "1d8",
+    "special": "arme-spirituelle"
+  },
+  {
+    "id": "aide",
+    "nom": "Aide",
+    "niveau": 2,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 3,
+    "composantes": "V, S, M (une bandelette de tissu blanc)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Jusqu'à 3 créatures à portée voient leur maximum de points de vie et leurs points de vie actuels augmenter de 5 pendant 8 heures (pas de concentration). +5 PV par cible et par niveau d'emplacement au-delà du 2e.",
+    "ameliorationParNiveau": "5 PV",
+    "special": "aide"
+  },
+  {
+    "id": "immobilisation-de-personne",
+    "nom": "Immobilisation de personne",
+    "niveau": 2,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un brin de fer)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Un Humanoïde visible à portée fait un jet de sauvegarde de Sagesse ou est Paralysé jusqu'à la fin du sort (concentration, 1 minute) ; il refait le JS à la fin de chacun de ses tours et le sort prend fin pour lui en cas de réussite. +1 Humanoïde ciblé par niveau d'emplacement au-delà du 2e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "paralyse",
+        "sauvegardeFinDeTour": true
+      }
+    ],
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "restauration-partielle",
+    "nom": "Restauration partielle",
+    "niveau": 2,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "La créature touchée est libérée d'un état au choix parmi Assourdi, Aveuglé, Empoisonné et Paralysé."
+  }
+]

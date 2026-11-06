@@ -1,0 +1,54 @@
+{
+  "id": "nain",
+  "nom": "Nain",
+  "type": "Humanoïde",
+  "tailles": [
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "connaissance-de-la-pierre",
+      "nom": "Connaissance de la pierre",
+      "niveau": 1,
+      "resume": "Par une action Bonus, vous obtenez la Perception des vibrations sur 18 m pendant 10 minutes, tant que vous touchez une surface de pierre. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "resistance-naine",
+      "nom": "Résistance naine",
+      "niveau": 1,
+      "resume": "Vous avez la Résistance aux dégâts de poison et l'Avantage aux jets de sauvegarde visant à éviter l'état Empoisonné ou à y mettre fin.",
+      "effets": [
+        {
+          "type": "resistance",
+          "degats": "poison"
+        }
+      ]
+    },
+    {
+      "id": "tenacite-naine",
+      "nom": "Ténacité naine",
+      "niveau": 1,
+      "resume": "Votre maximum de points de vie augmente de 1, puis de 1 de plus à chaque niveau gagné.",
+      "effets": [
+        {
+          "type": "pv_par_niveau",
+          "valeur": 1
+        }
+      ]
+    },
+    {
+      "id": "vision-dans-le-noir",
+      "nom": "Vision dans le noir",
+      "niveau": 1,
+      "resume": "Vous disposez de la Vision dans le noir sur 36 m.",
+      "effets": [
+        {
+          "type": "vision_dans_le_noir",
+          "metres": 36
+        }
+      ]
+    }
+  ]
+}

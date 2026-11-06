@@ -1,0 +1,126 @@
+[
+  {
+    "pnj": "por-ambroise-carene",
+    "passe": "Ambroise Carène est pilote de la jetée de Port-aux-Cordes depuis cent cinquante ans, et il en a environ deux cent dix. Il tient le même carnet de sondages depuis le premier jour : le quatrième volume est en cours, et chaque marée y figure, même les jours où il ne sort pas. Une nuit de très basse mer, il y a onze ans, il a vu sous l'eau ce qu'il n'a confié à personne avant l'an dernier. Il vit près du phare du port, où il garde ses cartes, ses lignes de lin à nœuds et son silence. Il a gardé le silence trop longtemps, et il se le reproche.",
+    "liens": [
+      {
+        "pnj": "gudrun-lanterne",
+        "nature": "la fanalière de la Citadelle",
+        "opinion": "Utile, mais mal embouchée : elle a la main sur les lampes et le verbe trop dur pour un pilote qui écoute la mer."
+      },
+      {
+        "pnj": "aldous-lindenvert",
+        "nature": "le bibliothécaire des marées, copiste de la Citadelle",
+        "opinion": "Distrait, mais exact : il a copié les tables de marée pendant quatre-vingts ans sans une rature affichée."
+      },
+      {
+        "pnj": "por-hennequin-lacet",
+        "nature": "le calfat qui répare sa barque à fond plat",
+        "opinion": "Un calfat sérieux, qui ne rend jamais une barque en retard, même quand le client traîne à payer."
+      },
+      {
+        "qui": "la Ligue des Phares",
+        "nature": "l'autorité des ports, qui tient la jetée",
+        "opinion": "Honnête, mais sourde : elle paie ses pilotes et n'entend jamais ce qu'ils lui disent."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "carnet-quatrieme-volume",
+        "texte": "Il tient le même carnet de sondages depuis le premier jour de son métier. Le quatrième volume est en cours, relié de toile, et il y écrit à l'encre l'heure de chaque marée, même les jours où il ne sort pas."
+      },
+      {
+        "id": "pilote-depuis-cent-cinquante-ans",
+        "texte": "Pilote de la jetée depuis cent cinquante ans, il a appris le métier à lire les sondages, sur les bancs de sable que la mer déplace chaque hiver entre les jetées du port."
+      },
+      {
+        "id": "barque-chez-hennequin",
+        "texte": "Il y a un an, il a commandé à Hennequin Lacet une barque à fond plat, qu'il n'a pas encore sortie. Il descend la voir au chantier, sous sa bâche, en pose la main sur la quille, et remonte sans rien dire."
+      },
+      {
+        "id": "manie-ligne-de-lin",
+        "texte": "Il sonde le fond avec une ligne de lin à nœuds. Il compte les nœuds sous le pouce, sent l'eau froide remonter le long du fil, et ne lit jamais le résultat à voix haute avant de l'avoir noté."
+      },
+      {
+        "id": "manie-arret-en-pleine-phrase",
+        "texte": "Il s'arrête en pleine phrase, le regard au large, et ne reprend qu'une fois la mer vue. Il dit alors la fin de sa phrase sans la répéter, comme si elle n'avait jamais été interrompue."
+      },
+      {
+        "id": "manie-lunettes-de-cuivre",
+        "texte": "Il frotte ses lunettes de cuivre sur sa vareuse avant de lire une carte, et ne les pose jamais sur la table. Son odeur de goudron et de lin mouillé arrive dans les couloirs avant lui."
+      },
+      {
+        "id": "avis-sur-la-mer",
+        "texte": "La mer est un créancier : elle prend son dû à la marée et ne fait jamais crédit. Il dit qu'on ne la remercie pas, on la paie, et il n'a jamais trouvé qu'elle comptait mal."
+      },
+      {
+        "id": "avis-sur-la-citadelle",
+        "texte": "La Citadelle est la seule maison qui lise ses cartes. Le reste de la côte les regarde sans les lire, et il le dit sans détour à quiconque entre dans son cabinet."
+      },
+      {
+        "id": "avis-sur-les-rats",
+        "texte": "Les Rats de quai sont de bons fournisseurs de lin. Il leur achète sans poser de questions, et ils n'en posent pas non plus : c'est le seul commerce du port qu'il trouve honnête."
+      },
+      {
+        "id": "anecdote-marees-des-enfants",
+        "texte": "Les enfants du port lui demandent combien de fois il a vu la mer se retirer. Il répond en marées, jamais en années, et compte à voix basse sur ses doigts pendant qu'ils attendent la suite."
+      },
+      {
+        "id": "les-trois-pilotes",
+        "texte": "Il a formé trois des six pilotes que la Ligue a rayés du registre des disparus. Ils parlaient de la chaussée, et il a gardé le silence : il ne l'a dit à personne, et il se le reproche.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "il dit seulement qu'il a vu des pilotes partir un matin et ne pas revenir, et que la Ligue a fermé leur nom sans demander l'avis de personne."
+      },
+      {
+        "id": "la-cle-a-rendre",
+        "texte": "L'ancien Prieur de la Citadelle lui a confié, il y a trente ans, la clé de la grille de la chaussée, pour que nul ne s'y aventure. Il veut la rendre à la Citadelle avant de mourir, et il ne dit pas où il la garde.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "il dit qu'il doit une chose à la Citadelle, qu'il la rendra à qui la mérite, et que la Citadelle n'a pas à savoir d'où elle vient."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-palais-vu",
+        "fait": "f-por-ambroise-vu-palais",
+        "version": "Il dit qu'une nuit de très basse mer, il a vu des toits couverts de coraux et une grille sous l'eau, avec des silhouettes assises sur un banc de pierre qui ne bougeaient pas. Il ne dit pas qui était assis.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-chaussee",
+        "fait": "f-chaussee-des-basses-eaux",
+        "version": "Il dit qu'une ancienne chaussée de pierre noire ne se découvre qu'aux plus grandes basses mers, que la mer la reprend vite, et qu'elle n'attend pas. Il ne sait pas où elle mène.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "il pose sa ligne de lin sur la table, demande qui vous envoie, et refuse de répondre tant que la marée n'a pas tourné."
+      },
+      {
+        "id": "les-pilotes-rayes",
+        "fait": "f-por-ligue-prime-les-pilotes",
+        "version": "Il dit que la Ligue interdit la jetée aux pilotes qui voient trop, et que le registre des disparus compte six noms de pilotes qu'il connaît.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "il dit que les pilotes qui voient trop finissent sur une liste, et s'arrête là, le regard au large."
+      },
+      {
+        "id": "la-cle-cachee",
+        "fait": "f-por-cle-chez-le-pilote",
+        "version": "Il rit sans joie : la clé de la grille est restée chez lui, cachée là où il n'a pas à la montrer, et il ne la rendra qu'à quelqu'un qui la mérite.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Il lit les marées depuis cent cinquante ans et dit que la mer montera dans trois jours, et qu'après elle, elle ne reviendra plus à son niveau d'avant. Il faudra avoir quitté la jetée avant la nuit du troisième jour.",
+        "acces": {}
+      }
+    ]
+  }
+]

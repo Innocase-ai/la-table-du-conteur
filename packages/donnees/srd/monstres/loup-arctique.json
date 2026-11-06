@@ -1,0 +1,106 @@
+{
+  "id": "loup-arctique",
+  "nom": "Loup arctique",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Neutre Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 75,
+    "des": "10d10 + 20"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 13,
+    "con": 14,
+    "int": 7,
+    "sag": 12,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 5
+  },
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'il cible, le loup a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "souffle-glacial",
+      "nom": "Souffle glacial",
+      "cout": "action",
+      "resume": "JS Constitution DD 12, chaque créature dans un Cône de 4,50 m. Échec : 18 (4d8) dégâts de froid. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 12,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

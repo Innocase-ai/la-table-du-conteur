@@ -1,0 +1,858 @@
+[
+  {
+    "id": "marthe-la-saniere",
+    "nom": "Marthe",
+    "titre": "Saunière du marais",
+    "espece": "halfelin",
+    "sexe": "F",
+    "age": "cinquante-huit ans",
+    "role": "Saunière qui récolte le sel gris dans les bassins du marais, seule depuis que ses aides ont disparu.",
+    "lieu": "fal-salines",
+    "apparence": "Petite femme au visage brun et ridé, cheveux gris noués sous un foulard de lin, tablier de toile couvert de sel blanc, bottes de cuir goudronné aux genoux, mains crevassées qu'elle frotte sur sa jupe.",
+    "personnalite": {
+      "traits": [
+        "méticuleuse",
+        "pudique",
+        "tenace"
+      ],
+      "voix": "basse et précise ; elle compte dans ses phrases et dit le prix de chaque chose",
+      "valeurs": [
+        "le travail bien fait",
+        "les siens"
+      ],
+      "desir": "revoir ses trois saunières rentrer au sec avant la nuit",
+      "peur": "que la mer reprenne ses bassins pour toujours",
+      "defaut": "elle garde les dettes en mémoire mieux que les amitiés"
+    },
+    "attitude": 10,
+    "savoir": [
+      "f-fal-saunieres-retrouvees",
+      "f-fal-mer-trop-loin",
+      "f-lothmar-englouti",
+      "f-fal-meute-de-la-grotte"
+    ],
+    "secrets": [
+      {
+        "fait": "f-lothmar-englouti",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "saunieres",
+        "mots": [
+          "saunières",
+          "saunieres",
+          "disparues",
+          "digues",
+          "filles",
+          "marais"
+        ],
+        "question": "Où sont passées vos saunières ?",
+        "reponse": "Marthe pose son râteau et compte sur ses doigts : Oda, Berthe et la petite Nine, parties aux digues au crépuscule pour rapporter les claies. Elle ne les a pas vues revenir. Elle a suivi leurs traces jusqu'à la digue de l'Ouest, où elles s'arrêtaient net dans la boue. Elle demande qu'on les cherche, et elle ne promet pas plus que la nourriture.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fal-saunieres-disparues",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "mer",
+        "mots": [
+          "mer",
+          "marée",
+          "recule",
+          "recul",
+          "eau",
+          "sel",
+          "bassins"
+        ],
+        "question": "Pourquoi la mer s'est-elle retirée si loin ?",
+        "reponse": "Elle a salé trente étés sans voir l'eau si basse. Les bassins se vident en une nuit, les pans blanchissent à sec, et les vieux saulniers ne se souviennent pas d'une marée qui s'attarde si longtemps. Elle ne sait pas ce qui la retient, mais elle dit qu'un retrait pareil n'est jamais innocent.",
+        "revele": [
+          "f-fal-mer-trop-loin"
+        ]
+      },
+      {
+        "id": "saunieres-rentrees",
+        "mots": [
+          "voici",
+          "retrouvées",
+          "retrouvé",
+          "rentrées",
+          "ramenées"
+        ],
+        "question": "Les voici : elles sont saines et sauves.",
+        "condition": {
+          "fait": "f-fal-saunieres-retrouvees"
+        },
+        "reponse": "Marthe les serre une à une, sans rien dire, puis compte ses claies comme si elle comptait les minutes. Elle offre à chacune un bol de soupe et une couverture, et au groupe une parole de remerciement qui coûte visiblement beaucoup à dire.",
+        "effets": [
+          {
+            "flag": "fal-saunieres-rentrees"
+          },
+          {
+            "attitude": {
+              "pnj": "marthe-la-saniere",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "sel-de-lothmar",
+        "mots": [
+          "sel",
+          "ancien",
+          "anciens",
+          "Lothmar",
+          "rois",
+          "saulniers",
+          "secret"
+        ],
+        "attitudeMin": 20,
+        "question": "Les anciens saulniers avaient-ils des secrets ?",
+        "reponse": "Elle baisse la voix : les vieux disaient que les pans de ce marais servaient autrefois aux maisons royales de Lothmar, et que la Cour fit bénir ces bassins. Lothmar, dit-on, est sous l'eau depuis trois siècles, et la mer n'a jamais oublié ce qu'on a pris à ses rois.",
+        "revele": [
+          "f-lothmar-englouti"
+        ]
+      },
+      {
+        "id": "citadelle",
+        "mots": [
+          "citadelle",
+          "cartographes",
+          "Ysmène",
+          "Hautecôte",
+          "cartes",
+          "prieur"
+        ],
+        "question": "Connaissez-vous les cartographes de la Citadelle ?",
+        "reponse": "Marthe leur vend du sel chaque année. Une vieille dame revient toujours en personne, un carnet sous le bras, pour demander les coefficients des marées. Marthe ne sait pas d'où elle tire ses chiffres, mais elle n'a jamais été trompée par eux."
+      }
+    ],
+    "salutations": {
+      "neutre": "Elle lève le nez de ses comptes et vous jauge du regard. « Des voyageurs ? Il n'y a plus rien à acheter ici, sauf du sel. »",
+      "amical": "Elle pose son râteau contre la cabane. « Entrez, vous avez mauvaise mine. Il reste de la soupe. »"
+    }
+  },
+  {
+    "id": "corentin-brumevoile",
+    "nom": "Corentin",
+    "titre": "Dernier pêcheur de Brumevoile",
+    "espece": "goliath",
+    "sexe": "M",
+    "age": "soixante ans",
+    "role": "Seul habitant du hameau abandonné ; il entretient les barques retournées et guette la mer.",
+    "lieu": "fal-brumevoile",
+    "apparence": "Goliath massif à la peau gris-bleu marbrée, crâne rasé couvert de cicatrices de sel, barbe blanche taillée court, cape de toile goudronnée, large ceinture de cuir où pend un couteau à poisson, mains couvertes de cals.",
+    "personnalite": {
+      "traits": [
+        "taciturne",
+        "loyal",
+        "obstiné"
+      ],
+      "voix": "grave et lente, avec des silences pour écouter le vent ; il parle de la mer comme d'une personne",
+      "valeurs": [
+        "la parole donnée aux morts",
+        "les barques"
+      ],
+      "desir": "relever une dernière barque et sortir une fois en mer",
+      "peur": "que la mer vienne le chercher dans son lit",
+      "defaut": "il ne quitte pas son village, même quand il le devrait"
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-fal-brumevoile-deserte",
+      "f-fal-mer-trop-loin",
+      "f-fal-noyes-ne-remontent-pas",
+      "f-nuit-haute"
+    ],
+    "secrets": [
+      {
+        "fait": "f-nuit-haute",
+        "attitudeMin": 35
+      }
+    ],
+    "sujets": [
+      {
+        "id": "village",
+        "mots": [
+          "village",
+          "brumevoile",
+          "vide",
+          "seul",
+          "pêcheurs",
+          "maisons"
+        ],
+        "question": "Qu'est-il arrivé à Brumevoile ?",
+        "reponse": "Il y a dix ans, la mer est montée une nuit sans vent, jusque dans les maisons. Ceux qui ont pu grimper les falaises sont partis ; les autres sont restés sous l'eau. Lui est resté : une barque ne se laisse pas seule. Il montre les toits effondrés sans les regarder.",
+        "revele": [
+          "f-fal-brumevoile-deserte"
+        ]
+      },
+      {
+        "id": "mer",
+        "mots": [
+          "mer",
+          "recule",
+          "marée",
+          "basse",
+          "eau",
+          "barques"
+        ],
+        "question": "Pourquoi la mer s'éloigne-t-elle autant ?",
+        "reponse": "Il a vu les premiers signes au large : des barques posées sur le sable, des bancs de galets à découvert où personne n'a jamais marché. Un retrait pareil ne se passe pas tout seul, dit-il, et il a vu, au fond de la baie, une lueur qui ne vient d'aucun feu.",
+        "revele": [
+          "f-fal-mer-trop-loin"
+        ]
+      },
+      {
+        "id": "lanterne",
+        "mots": [
+          "lanterne",
+          "phare",
+          "cap",
+          "feu",
+          "éteint",
+          "lumière"
+        ],
+        "question": "Pourquoi le phare du Cap-Mort est-il éteint ?",
+        "reponse": "Il dit que le phare s'est éteint la nuit où le village a été pris, et que personne n'est monté le rallumer. Une barque égarée qui cherche la terre n'a plus rien à suivre. Il demande au groupe, si la route les mène au cap, de remonter la lanterne : ses jambes ne tiennent plus la falaise.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fal-la-lanterne-du-cap",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "naufrages",
+        "mots": [
+          "naufrages",
+          "cimetière",
+          "noyés",
+          "morts",
+          "tombes",
+          "enterrer"
+        ],
+        "question": "Que deviennent les noyés des naufrages ?",
+        "reponse": "Il les enterre sur la falaise, là où la terre tient. Les naufragés ne remontent jamais : ni à la côte, ni à la surface. Il l'a vu trois fois, et les tombes qu'il a creusées restent vides sous la pierre. Il n'explique pas davantage.",
+        "revele": [
+          "f-fal-noyes-ne-remontent-pas"
+        ]
+      },
+      {
+        "id": "famille",
+        "mots": [
+          "famille",
+          "fils",
+          "enfant",
+          "femme",
+          "Ilde",
+          "Rollo",
+          "avez-vous"
+        ],
+        "attitudeMin": 35,
+        "question": "Avez-vous eu une famille, ici ?",
+        "reponse": "Il met longtemps à répondre. Il avait un fils, Rollo, et une femme, Ilde, que la mer lui a repris, chacun à sa façon. Sa grand-mère lui racontait déjà la Nuit Haute, quand la mer était montée sur tout un royaume et n'était jamais redescendue. Il ne croyait pas aux contes de vieilles, dit-il, jusqu'à la nuit du village.",
+        "revele": [
+          "f-nuit-haute"
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Le goliath ne se retourne pas tout de suite. « Si vous cherchez une barque, il n'y en a pas de flottante. »",
+      "amical": "Il pousse vers vous un tabouret de bois flotté. « Asseyez-vous. La mer ne se hâte pas ce soir, et moi non plus. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-fanal-ou-le-hameau-fanal"
+          },
+          "texte": "Corentin pousse du pied une barque redressée à la main, derrière sa cabane. « Vous m'avez laissé la lampe, et la mer n'a pas franchi la grève depuis. La barque est à vous. Ne revenez pas par le sud. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "goliath"
+            }
+          },
+          "texte": "Corentin pose son couteau à poisson et regarde le goliath sans rien dire, puis hoche la tête, lentement. « Vous êtes des hauteurs, vous aussi. Ça se voit à la nuque, qui ne baisse jamais. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "classe": "barbare"
+            }
+          },
+          "texte": "Corentin pose son couteau sur la barque et regarde les mains du barbare, marquées plus par les combats que par la mer. « Vous tenez la hache comme un filet lourd, sans le lâcher. C'est rare, sur cette grève. »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "fal-aubin-lacombe",
+    "nom": "Aubin Lacombe",
+    "titre": "Colporteur",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "cinquante ans",
+    "role": "Colporteur bloqué au relais avec un essieu brisé ; il vend vivres, cordages et lampes.",
+    "lieu": "fal-relais-des-voyageurs",
+    "apparence": "Homme replet au crâne dégarni, moustache grise tombante, manteau de voyage couvert de poussière, chapeau de feutre crevé, lunettes de cuivre sur le nez, mains noires de graisse d'essieu.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "avisé",
+        "peureux"
+      ],
+      "voix": "chaleureuse, pleine de chiffres ; il tourne autour du prix avant de le dire",
+      "valeurs": [
+        "le commerce honnête",
+        "sa famille à Port-aux-Cordes"
+      ],
+      "desir": "repartir avant la nuit avec son chariot réparé",
+      "peur": "les pillards, et qu'on le laisse mourir ici",
+      "defaut": "il exagère toujours le prix de ses marchandises"
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-rats-vendent-les-passages",
+      "f-fal-rumeur-femme-du-marais"
+    ],
+    "sujets": [
+      {
+        "id": "commerce",
+        "mots": [
+          "vendez",
+          "acheter",
+          "marchandise",
+          "prix",
+          "boutique",
+          "marché"
+        ],
+        "question": "Que vendez-vous, et à quel prix ?",
+        "reponse": "Vivres, cordages, lampes sourdes et huile, une trousse de soins pour les coupures. Il annonce ses prix d'un air désolé : le sel a triplé depuis que la côte se vide, et les routes sont plus chères qu'avant."
+      },
+      {
+        "id": "essieu",
+        "mots": [
+          "essieu",
+          "roue",
+          "chariot",
+          "charrette",
+          "réparer",
+          "réparation"
+        ],
+        "question": "Votre chariot peut-il repartir ?",
+        "reponse": "Une roue a quitté son axe dans une ornière. Il promet de refaire l'essieu au feu si quelqu'un lui tient le cheval et cale la roue. Il reconnaît sa dette d'un mot, puis passe aux prix.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "fal-aubin-lacombe",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "route",
+        "mots": [
+          "route",
+          "chemin",
+          "pont",
+          "danger",
+          "pillards",
+          "marais",
+          "Brumevoile"
+        ],
+        "question": "Quels dangers sur la route de Brumevoile ?",
+        "reponse": "Il a passé le pont des Corbeaux deux fois dans la semaine, et une bande y guette les charrettes ; il paie toujours, en espèces, sans discuter. Dans le marais, il jure avoir vu une femme en blanc qui marche au bord des digues à marée basse.",
+        "revele": [
+          "f-fal-rumeur-femme-du-marais"
+        ]
+      },
+      {
+        "id": "nouvelles",
+        "mots": [
+          "nouvelles",
+          "rumeurs",
+          "Port-aux-Cordes",
+          "Ligue",
+          "Rats",
+          "quai",
+          "Citadelle"
+        ],
+        "question": "Que dit-on de Port-aux-Cordes ?",
+        "reponse": "La Ligue ferme les portes du port dès qu'on parle de la mer, et les Rats de quai vendent des passages à qui peut payer, par les égouts et les caves. Il ajoute qu'on ne parle pas de la Citadelle sans baisser la voix.",
+        "revele": [
+          "f-rats-vendent-les-passages"
+        ]
+      },
+      {
+        "id": "charrette-eventree",
+        "mots": [
+          "remise",
+          "sacs",
+          "griffes",
+          "salaisons",
+          "éventré",
+          "vivres"
+        ],
+        "question": "Que s'est-il passé à votre remise ?",
+        "reponse": "Il montre la remise du relais : sacs de vivres déchirés, traces de griffes sur les planches, la moitié des salaisons emportée. Il jure que ce ne sont pas des pillards mais des loups, devenus audacieux depuis que la mer a chassé le gibier. Il ne sait pas où ils vivent, et cela le met hors de lui : il a compté ses pertes, pas leurs repaires. Il parle de son essieu, qui attendra, et de la nuit qui tombe. Il veut qu'on retrouve la tanière et qu'on les éloigne avant qu'il perde son stock d'hiver.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fal-la-charrette-eventree",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "quete": {
+              "id": "q-fal-la-charrette-eventree",
+              "statut": "terminee"
+            }
+          }
+        },
+        "unique": false
+      },
+      {
+        "id": "loups-eloignes",
+        "mots": [
+          "loups",
+          "tanière",
+          "meute",
+          "éloignés",
+          "réglé"
+        ],
+        "question": "Dire que les loups sont éloignés.",
+        "reponse": "Il fait le compte à voix haute : dix-huit salaisons sauvées sur trente-six, le chariot tiré hors de la boue, l'essieu qui tient encore. Il le répète trois fois, pour être sûr que vous l'ayez entendu, puis glisse les pièces sur le comptoir sans les compter devant vous. Il ne dira pas merci, mais il reviendra vous saluer au prochain passage.",
+        "effets": [
+          {
+            "flag": "fal-meute-retour"
+          },
+          {
+            "attitude": {
+              "pnj": "fal-aubin-lacombe",
+              "delta": 10
+            }
+          }
+        ],
+        "condition": {
+          "flag": "fal-meute-reglee"
+        },
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 10,
+          "prix": 1
+        },
+        {
+          "objet": "corde",
+          "quantite": 3,
+          "prix": 1
+        },
+        {
+          "objet": "lanterne-sourde",
+          "quantite": 2,
+          "prix": 6
+        },
+        {
+          "objet": "huile",
+          "quantite": 4,
+          "prix": 1
+        },
+        {
+          "objet": "torche",
+          "quantite": 5,
+          "prix": 0.5
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 2,
+          "prix": 12
+        },
+        {
+          "objet": "couverture",
+          "quantite": 2,
+          "prix": 1
+        }
+      ],
+      "tables": [],
+      "rachat": 0.4,
+      "types": [
+        "nourriture",
+        "outil",
+        "materiel",
+        "divers"
+      ]
+    },
+    "services": [
+      {
+        "id": "fal-reparer-essieu",
+        "nom": "Réparer un essieu",
+        "resume": "Caler la roue, refaire la clavette et resserrer les cercles au feu de camp.",
+        "prix": 3
+      }
+    ],
+    "salutations": {
+      "neutre": "Il sursaute, un marteau à la main, puis vous sourit trop largement. « Des clients ? Vous tombez à pic, je n'ai que des prix de malheur. »",
+      "amical": "« Ah, des gens de bonne compagnie ! Asseyez-vous, je vous fais le prix des amis, et je ne vous mens presque pas. »"
+    }
+  },
+  {
+    "id": "fal-lise-morvan",
+    "nom": "Lise Morvan",
+    "titre": "Messagère de la Ligue des Phares",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "vingt-huit ans",
+    "role": "Messagère de la Ligue, blessée par des pillards au pont des Corbeaux ; elle doit porter un pli scellé à Port-aux-Cordes.",
+    "lieu": "fal-relais-des-voyageurs",
+    "apparence": "Jeune femme aux cheveux roux attachés court, visage fin couvert de poussière, veste de cuir de messager aux armes de la Ligue, un bras en écharpe, bandage de toile tachée de brun sous la manche.",
+    "personnalite": {
+      "traits": [
+        "droite",
+        "méfiante",
+        "fière"
+      ],
+      "voix": "nette et brève ; elle ne dit jamais « peut-être »",
+      "valeurs": [
+        "le devoir",
+        "la Ligue, garante des ports"
+      ],
+      "desir": "livrer le pli à son maître avant la marée",
+      "peur": "avoir été suivie jusqu'ici",
+      "defaut": "elle ne demande jamais d'aide, même quand elle en a besoin"
+    },
+    "attitude": -5,
+    "savoir": [
+      "f-ligue-et-phare-cellule",
+      "f-fal-mer-trop-loin"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ligue-et-phare-cellule",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "blessure",
+        "mots": [
+          "blessée",
+          "blessure",
+          "qui êtes-vous",
+          "Ligue",
+          "messagère",
+          "pont"
+        ],
+        "question": "Qui vous a blessée, et qui êtes-vous ?",
+        "reponse": "Elle se présente sans chaleur : messagère de la Ligue des Phares, attaquée au pont des Corbeaux par une bande qui voulait le sac. Elle a gardé le pli et perdu son cheval. Elle n'a pas l'intention de raconter sa route."
+      },
+      {
+        "id": "courrier",
+        "mots": [
+          "lettre",
+          "pli",
+          "courrier",
+          "message",
+          "porter",
+          "Port-aux-Cordes"
+        ],
+        "question": "Voulez-vous que nous portions votre pli ?",
+        "reponse": "Elle hésite, puis tend le pli : une enveloppe de papier épais, scellée d'un disque de cire grise frappé d'un phare, adressée au Maître Osric à Port-aux-Cordes. Il doit arriver scellé, et elle ne veut pas qu'on le lise. Elle demande qu'on le remette en main propre.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-fal-courrier-ligue",
+              "statut": "active"
+            }
+          },
+          {
+            "objet": {
+              "id": "fal-lettre-de-la-ligue"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "contenu",
+        "mots": [
+          "contenu",
+          "lettre",
+          "dedans",
+          "cellule",
+          "ordre",
+          "Osric",
+          "pli"
+        ],
+        "attitudeMin": 30,
+        "question": "Que dit le pli, au fond ?",
+        "reponse": "Elle se tait longtemps, puis dit que le Maître veut qu'on prépare une cellule au phare pour une enfant qu'on a trouvée, et que la Ligue a déjà choisi le phare. Elle n'en sait pas davantage, et elle ne veut pas qu'on lui demande de le redire à la Citadelle.",
+        "revele": [
+          "f-ligue-et-phare-cellule"
+        ]
+      },
+      {
+        "id": "ligue",
+        "mots": [
+          "Ligue",
+          "Phares",
+          "ports",
+          "mer",
+          "recule",
+          "Osric"
+        ],
+        "question": "Que fait la Ligue, face à la mer qui recule ?",
+        "reponse": "Elle répond froidement : la Ligue ferme les ports, allume les lanternes, compte les barques. « On protège ce qui peut l'être. » Elle ajoute que le Maître Osric n'a jamais aimé les histoires de vieilles femmes, et qu'il n'y croit pas non plus."
+      }
+    ],
+    "salutations": {
+      "neutre": "Elle relève la tête de sa paillasse et vous jauge rapidement. « Vous n'êtes pas de la Ligue. Alors laissez-moi tranquille. »",
+      "amical": "Elle se redresse à demi. « Des gens sûrs, à ce qu'on dit. Gardez vos distances avec la porte, et je vous dirai ce que je sais. »"
+    }
+  },
+  {
+    "id": "fal-idrien-tarnel",
+    "nom": "Idrien Tarnel",
+    "titre": "Gardien du Cap-Mort",
+    "espece": "elfe",
+    "sexe": "M",
+    "age": "deux cents ans",
+    "role": "Ancien gardien du phare, resté seul dans la tour éteinte ; il connaît les tables de marée anciennes.",
+    "lieu": "fal-phare-du-cap-mort",
+    "apparence": "Elfe maigre aux longs cheveux gris retenus par une lanière de cuir, visage creusé, yeux pâles et fatigués, manteau de laine usé sur une veste de marin, longue barbe grise, avant-bras couverts de cartes de marée tatouées.",
+    "personnalite": {
+      "traits": [
+        "érudit",
+        "mélancolique",
+        "ironique"
+      ],
+      "voix": "lente, avec des pauses où il consulte un registre en pensée ; il cite des dates",
+      "valeurs": [
+        "la mémoire des marées",
+        "la parole tenue"
+      ],
+      "desir": "voir le feu brûler une dernière fois avant de mourir",
+      "peur": "oublier l'ordre des volets",
+      "defaut": "il ne répond jamais à une question simple par oui ou par non"
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-nuit-haute",
+      "f-lothmar-englouti",
+      "f-la-cour-tient-sous-la-mer",
+      "f-grande-maree-dans-trois-jours",
+      "f-cit-carte-du-cap-mort"
+    ],
+    "secrets": [
+      {
+        "fait": "f-la-cour-tient-sous-la-mer",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "phare",
+        "mots": [
+          "phare",
+          "cap",
+          "lumière",
+          "éteint",
+          "qui êtes-vous",
+          "gardien"
+        ],
+        "question": "Qui veille sur ce phare, désormais ?",
+        "reponse": "Lui-même, seul, depuis que la Ligue a cessé de payer son salaire. Il a gardé les registres et les cartes, et il entretient la lentille à la main, sans jamais l'allumer. Il dit qu'une lampe qui brûle sans personne pour la regarder finit par s'éteindre."
+      },
+      {
+        "id": "nuit-haute",
+        "mots": [
+          "Nuit Haute",
+          "Lothmar",
+          "déluge",
+          "histoire",
+          "passé",
+          "royaume",
+          "engloutie"
+        ],
+        "question": "Que sait-on de la Nuit Haute ?",
+        "reponse": "Il ouvre un registre noirci : il y a trois siècles, la mer est montée sur tout un royaume, Lothmar, et n'a jamais redescendu. La Cour s'est noyée dans ses palais, dit-il, et le pacte qui retenait l'eau a été rompu, sans que personne sache pourquoi.",
+        "revele": [
+          "f-nuit-haute",
+          "f-lothmar-englouti"
+        ]
+      },
+      {
+        "id": "grande-maree",
+        "mots": [
+          "marée",
+          "calendrier",
+          "trois jours",
+          "date",
+          "grande marée",
+          "tables",
+          "quand"
+        ],
+        "question": "Quand la mer reviendra-t-elle ?",
+        "reponse": "Il tire une table de marée de sous son manteau, la lit en silence, et annonce que la Grande Marée est attendue dans trois jours, à la pleine lune montante. Il ne doute pas du calcul ; il doute seulement de la côte qui en réchappera.",
+        "revele": [
+          "f-grande-maree-dans-trois-jours"
+        ]
+      },
+      {
+        "id": "cour",
+        "mots": [
+          "cour",
+          "noyés",
+          "dessous",
+          "tient",
+          "sceau",
+          "retient"
+        ],
+        "attitudeMin": 30,
+        "question": "Qu'est-ce qui retient la mer, au juste ?",
+        "reponse": "Il baisse la voix. Sous les flots, dit-il, il y a une cour qui n'a jamais fini son service : des gens liés, debout, qui tiennent l'eau comme on tient une corde. Ils ne dorment pas, et ne veulent nuire à personne ; ils veulent que cela cesse.",
+        "revele": [
+          "f-la-cour-tient-sous-la-mer"
+        ]
+      },
+      {
+        "id": "lanterne",
+        "mots": [
+          "lampe",
+          "allumer",
+          "lentille",
+          "volets",
+          "feu",
+          "rallumer",
+          "aider"
+        ],
+        "question": "Comment rallumer ce feu ?",
+        "reponse": "La lentille se découvre par quatre volets, et chacun répond à un moment de la marée. Le feu s'ouvre toujours à la pleine mer, dit-il ; il ne se souvient plus de l'ordre complet, et il a peur de le faire fausser. Il espère que quelqu'un qui sait lire les marées le retrouvera."
+      }
+    ],
+    "salutations": {
+      "neutre": "Il lève à peine les yeux de son registre. « Un feu éteint ne s'éteint pas tout seul. Asseyez-vous, vous êtes trempés. »"
+    }
+  },
+  {
+    "id": "fal-eudes-naufrage",
+    "nom": "Eudes",
+    "titre": "Survivant de la Perle grise",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "trente-cinq ans",
+    "role": "Matelot unique survivant du cotre, réfugié dans l'épave, qui ne parle plus que par fragments.",
+    "lieu": "fal-epave-de-la-perle-grise",
+    "apparence": "Homme sec et tendu, cheveux raidis de sel, barbe de plusieurs jours, vareuse de marin déchirée à l'épaule, pieds nus enveloppés de chiffons, regard qui va vers la mer à chaque bruit d'eau.",
+    "personnalite": {
+      "traits": [
+        "hagard",
+        "loyal",
+        "fragmentaire"
+      ],
+      "voix": "phrases coupées, mots répétés, des silences longs ; il finit parfois une pensée bien plus tard",
+      "valeurs": [
+        "l'équipage",
+        "la parole donnée au capitaine"
+      ],
+      "desir": "quitter la côte sans jamais revoir la mer",
+      "peur": "entendre son nom venir de sous la coque",
+      "defaut": "il a honte de n'avoir pas coulé avec les autres"
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-fal-perle-grise-coulee",
+      "f-fal-noyes-ne-remontent-pas",
+      "f-fal-meute-de-la-grotte"
+    ],
+    "secrets": [
+      {
+        "fait": "f-fal-noyes-ne-remontent-pas",
+        "attitudeMin": 40
+      }
+    ],
+    "sujets": [
+      {
+        "id": "fragments",
+        "mots": [
+          "parler",
+          "dire",
+          "qui êtes-vous",
+          "naufrage",
+          "bateau",
+          "marins"
+        ],
+        "question": "Que s'est-il passé sur votre bateau ?",
+        "reponse": "Il répond par fragments : « La Perle. Le vent est tombé. Trop vite. Le capitaine a dit, la barre ne répond pas. Ils sont venus sous la coque, doucement. » Puis il se tait, les yeux fixés sur la cale noyée."
+      },
+      {
+        "id": "perle",
+        "mots": [
+          "Perle",
+          "grise",
+          "cargaison",
+          "sel",
+          "cale",
+          "navire"
+        ],
+        "question": "Que transportait la Perle grise ?",
+        "reponse": "Des sacs de sel, des cartes de la côte, et un coffre qu'on n'a jamais ouvert. Le capitaine disait qu'un cotre de cabotage coule dans une tempête, pas dans un ciel calme. Eudes ne veut pas parler du coffre ; il jure seulement que le couvercle a bougé sous l'eau.",
+        "revele": [
+          "f-fal-perle-grise-coulee"
+        ]
+      },
+      {
+        "id": "noyes",
+        "mots": [
+          "noyés",
+          "eau",
+          "dessous",
+          "voix",
+          "appelle",
+          "morts"
+        ],
+        "question": "Avez-vous vu les noyés ?",
+        "reponse": "Il dit qu'ils ne remontent jamais. Ses compagnons sont restés sous la coque, et la nuit il entend la voix du second qui appelle, sans jamais venir à la surface. Les noyés restent sous l'eau, et l'eau les garde.",
+        "revele": [
+          "f-fal-noyes-ne-remontent-pas"
+        ]
+      },
+      {
+        "id": "cale",
+        "mots": [
+          "coffre",
+          "argent",
+          "cale",
+          "trésor",
+          "ouvrir",
+          "pièces"
+        ],
+        "attitudeMin": 20,
+        "question": "Pouvez-vous indiquer la cale où est le coffre ?",
+        "reponse": "Il hésite, puis désigne du menton la cale inondée à l'arrière. « Sous le plancher, à l'arrière. Faites attention aux chaînes du plafond : elles ont bougé la dernière fois. »"
+      }
+    ],
+    "salutations": {
+      "neutre": "Il sursaute, la main sur un bout de cordage. « Vous êtes là pour la cale ? Non. Non. Personne ne descend. »"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z7-reserves-ravagees",
+    "declencheur": "condition",
+    "unique": true,
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 2 } },
+        { "quete": { "id": "q-cit-les-rats-des-reserves", "statut": "active" } },
+        { "non": { "flag": "cit-rats-regles" } }
+      ]
+    },
+    "narration": "Au réveil, le cellier sent le grain moisi : les sacs d'orge sont éventrés, et une eau sale monte entre les dalles. Bertrane descend seule, regarde longtemps le fond de la réserve, puis remonte sans un mot de reproche, ce qui est pire.",
+    "effets": [
+      { "attitude": { "pnj": "bertrane-mijotee", "delta": -10 } },
+      { "flag": "cit-reserves-ravagees" },
+      { "quete": { "id": "q-cit-les-rats-des-reserves", "statut": "echouee" } }
+    ]
+  }
+]

@@ -1,0 +1,207 @@
+[
+  {
+    "id": "z1-t-jeton-du-pont",
+    "nom": "La flèche au jeton",
+    "lieu": "pont-de-pierre",
+    "contenant": "sol",
+    "description": "Dans les roseaux de la berge, sous le tablier, une flèche gobeline est restée fichée dans la vase, sa plume grise plaquée par l'eau. Un petit disque d'argile pend à sa tige.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "jeton-de-grain",
+          "quantite": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      },
+      "piege": "z1-piege-du-collet-des-roseaux"
+    },
+    "indice": "f-charrette-saisie"
+  },
+  {
+    "id": "z1-t-caisse-du-peage",
+    "nom": "La caisse du péage",
+    "lieu": "pont-de-pierre",
+    "contenant": "coffre",
+    "description": "Une caisse de fer posée sur deux tréteaux, fermée d'un cadenas de laiton, avec un registre de péage glissé dans une fente du couvercle. Dedans, la recette de la semaine et le matériel du poste.",
+    "contenu": {
+      "pieces": {
+        "po": 12,
+        "pa": 30
+      },
+      "objets": [
+        {
+          "objet": "rations",
+          "quantite": 2
+        },
+        {
+          "objet": "torche",
+          "quantite": 2
+        }
+      ]
+    },
+    "acces": {
+      "verrou": {
+        "dd": 12
+      }
+    },
+    "gardien": "z1-le-peage-de-varg"
+  },
+  {
+    "id": "z1-t-registre-du-moulin",
+    "nom": "Le tiroir sous la farine",
+    "lieu": "mir-moulin-roux",
+    "contenant": "cache",
+    "description": "Sous le coffre de farine de l'étage, une planche se soulève : un tiroir plat y est glissé, avec un registre de toile cirée et une petite bourse de cuir.",
+    "contenu": {
+      "pieces": {
+        "po": 6
+      },
+      "objets": [
+        {
+          "objet": "registre-du-moulin",
+          "quantite": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      },
+      "piege": "z1-piege-du-coffre-de-farine"
+    },
+    "indice": "f-pacte-du-meunier"
+  },
+  {
+    "id": "z1-t-cave-du-moulin",
+    "nom": "Le coffre de la cave du moulin",
+    "lieu": "mir-moulin-roux",
+    "contenant": "coffre",
+    "description": "Un coffre de bois cerclé de fer, dans la cave basse du moulin, sous des sacs de son. Il sent la farine rance et le cuir mouillé.",
+    "contenu": {
+      "pieces": {
+        "po": 14,
+        "pa": 20
+      },
+      "objets": [
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 1
+        },
+        {
+          "objet": "huile",
+          "quantite": 1
+        }
+      ]
+    },
+    "acces": {
+      "verrou": {
+        "dd": 12
+      }
+    }
+  },
+  {
+    "id": "z1-t-cle-du-grenier",
+    "nom": "La copie sous la paille",
+    "lieu": "mir-grenier",
+    "contenant": "cache",
+    "description": "Dans le fenil, sous une botte de paille posée contre la poutre maîtresse, un clou rouillé tient une clé de fer et une étiquette de bois. La copie que le meunier d'autrefois avait fait faire pour ne pas dépendre de la maire.",
+    "contenu": {
+      "objets": [
+        {
+          "objet": "cle-du-grenier",
+          "quantite": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      },
+      "piege": "z1-piege-de-la-trappe-du-grenier"
+    },
+    "gardien": "z1-les-rats-du-grenier"
+  },
+  {
+    "id": "z1-t-reserve-du-grenier",
+    "nom": "La réserve du grenier",
+    "lieu": "mir-grenier",
+    "contenant": "autre",
+    "description": "Une pièce basse et sèche, derrière une porte de chêne, où les sacs de grain sont alignés sur des claies. La plupart sont plats ; il reste trois rangées pleines et une caisse de comptes.",
+    "contenu": {
+      "pieces": {
+        "po": 8,
+        "pa": 40
+      },
+      "objets": [
+        {
+          "objet": "rations",
+          "quantite": 4
+        },
+        {
+          "objet": "outre",
+          "quantite": 1
+        }
+      ]
+    },
+    "acces": {
+      "verrou": {
+        "dd": 13,
+        "cle": "cle-du-grenier"
+      }
+    }
+  },
+  {
+    "id": "z1-t-cave-de-l-auberge",
+    "nom": "La cave de l'auberge",
+    "lieu": "mir-auberge-des-roseaux",
+    "contenant": "cache",
+    "description": "Sous l'escalier de la cave, une planche descellée cache une bourse et deux torches, là où Bastien range ce qu'il ne veut pas prêter.",
+    "contenu": {
+      "pieces": {
+        "po": 9,
+        "pc": 30
+      },
+      "objets": [
+        {
+          "objet": "outre",
+          "quantite": 1
+        },
+        {
+          "objet": "torche",
+          "quantite": 2
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "z1-t-tronc-de-la-place",
+    "nom": "Le tronc de la halle",
+    "lieu": "mir-place-du-marche",
+    "contenant": "coffre",
+    "description": "Un tronc de bois ferré, cloué contre le pilier de la halle, où le village met quelques pièces pour les familles sans grain. Une fente étroite, un cadenas de laiton, et un fond qui sonne creux.",
+    "contenu": {
+      "pieces": {
+        "po": 2,
+        "pa": 15
+      }
+    },
+    "acces": {
+      "verrou": {
+        "dd": 12
+      }
+    }
+  }
+]

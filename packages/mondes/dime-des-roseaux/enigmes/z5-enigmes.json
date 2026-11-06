@@ -1,0 +1,173 @@
+[
+ {
+  "id": "z5-e-compte-du-moulin",
+  "nom": "Le compte du moulin",
+  "lieu": "mir-moulin-roux",
+  "enonce": "Sur le coffre du meunier, trois molettes de laiton sont bloquées sur zéro. Une plaque de cuivre dit : « Le nombre des sacs, le nombre des hivers, le nombre des parts. » Autour, le moulin tourne à vide : des sacs vides portent la marque rouge du moulin, et un registre relié de toile cirée attend sur l'établi. Les molettes vont de un à vingt.",
+  "solution": {
+   "type": "cadran",
+   "valeurs": [
+    11,
+    4,
+    3
+   ],
+   "plage": [
+    1,
+    20
+   ],
+   "libelles": [
+    "Sacs par charrette",
+    "Hivers de pacte",
+    "Parts de la dîme"
+   ]
+  },
+  "indices": [
+   {
+    "niveau": 1,
+    "texte": "La plaque ne parle pas de chiffres abstraits : elle demande de compter ce que le moulin transporte, depuis combien de temps, et entre combien de mains."
+   },
+   {
+    "niveau": 2,
+    "texte": "Le registre note onze sacs par charrette et quatre automnes de paiements. La dîme se partage entre le village, les gobelins et le moulin.",
+    "competence": "investigation",
+    "dd": 12
+   },
+   {
+    "niveau": 3,
+    "texte": "Onze sacs, quatre hivers, trois parts : les molettes se règlent sur 11, 4 et 3.",
+    "competence": "investigation",
+    "dd": 13
+   }
+  ],
+  "echec": {
+   "effets": [
+    {
+     "jauge": {
+      "id": "dime",
+      "delta": 1
+     }
+    }
+   ],
+   "resume": "Un mauvais compte bloque le couvercle et fait tinter une cloche dans le moulin ; dehors, quelqu'un s'arrête et écoute."
+  },
+  "recompense": {
+   "effets": [
+    {
+     "fait": "f-pacte-du-meunier"
+    },
+    {
+     "xp": 75
+    }
+   ],
+   "tresor": "z1-t-cave-du-moulin",
+   "resume": "Le couvercle s'ouvre sur la cache du meunier ; le compte du pacte est enfin lisible."
+  }
+ },
+ {
+  "id": "z5-e-signal-des-lanternes",
+  "nom": "Le signal des lanternes",
+  "lieu": "mar-cabane-des-passeurs",
+  "enonce": "Quatre lanternes de verre fumé pendent sous l'auvent de la cabane : rouge, blanche, verte et ambre. Sur la table, une planche gravée montre une barque, un banc de sable, une crue et une nuit sans lune. Marin a laissé un fusain et une phrase : « Pour passer sans être vu, redis le chemin de l'eau. » Les lanternes s'allument une à une, dans l'ordre.",
+  "solution": {
+   "type": "sequence",
+   "ordre": [
+    "verte",
+    "ambre",
+    "rouge",
+    "blanche"
+   ]
+  },
+  "indices": [
+   {
+    "niveau": 1,
+    "texte": "La phrase ne parle pas de couleur mais de chemin : la barque d'abord, puis ce qui arrête l'eau, puis ce qui la fait monter, puis ce qui la cache."
+   },
+   {
+    "niveau": 2,
+    "texte": "Sur la planche, les quatre images sont alignées dans l'ordre du chemin : barque, banc de sable, crue, nuit. Chaque image correspond à une lanterne."
+   },
+   {
+    "niveau": 3,
+    "texte": "La barque s'éclaire en vert, le banc en ambre, la crue en rouge, la nuit en blanc : verte, ambre, rouge, blanche.",
+    "competence": "survie",
+    "dd": 12
+   }
+  ],
+  "echec": {
+   "effets": [
+    {
+     "jauge": {
+      "id": "dime",
+      "delta": 1
+     }
+    }
+   ],
+   "resume": "Le mauvais signal attire une patrouille sur la rive ; des lanternes s'éteignent au loin, une à une."
+  },
+  "recompense": {
+   "effets": [
+    {
+     "fait": "f-passeurs-neutres"
+    },
+    {
+     "xp": 50
+    }
+   ],
+   "resume": "Marin hoche la tête : le passage est ouvert, et les passeurs savent que le groupe a compris leur langue."
+  }
+ },
+ {
+  "id": "z5-e-leviers-de-la-galerie",
+  "nom": "Les leviers de la galerie",
+  "lieu": "gro-galerie-effondree",
+  "enonce": "Derrière l'éboulement, quatre leviers de bois ferré sortent d'un contrepoids. Deux sont gravés d'un montant, deux d'une traverse. Une plaque de fer, à demi rongée, dit : « Pour dégager le boyau, lève les montants et baisse les traverses. » Un levier levé est en haut ; un levier baissé est en bas. Le boyau est encore fermé par une dalle.",
+  "solution": {
+   "type": "leviers",
+   "positions": [
+    true,
+    false,
+    true,
+    false
+   ]
+  },
+  "indices": [
+   {
+    "niveau": 1,
+    "texte": "Les leviers ne se tirent pas au hasard : les deux qui portent un montant doivent être levés, ceux qui portent une traverse doivent rester en bas."
+   },
+   {
+    "niveau": 2,
+    "texte": "En regardant les gravures, on voit que les leviers un et trois sont des montants ; les deux et quatre sont des traverses."
+   },
+   {
+    "niveau": 3,
+    "texte": "Leviers un et trois en haut, deux et quatre en bas : la dalle du boyau peut glisser.",
+    "competence": "investigation",
+    "dd": 13
+   }
+  ],
+  "echec": {
+   "effets": [
+    {
+     "jauge": {
+      "id": "dime",
+      "delta": 1
+     }
+    }
+   ],
+   "resume": "Le contrepoids force et retombe : un grondement roule dans la galerie, et la poussière met longtemps à retomber."
+  },
+  "recompense": {
+   "effets": [
+    {
+     "fait": "f-mine-de-fer"
+    },
+    {
+     "xp": 75
+    }
+   ],
+   "tresor": "gro-t-atelier-du-mineur",
+   "resume": "La dalle glisse sur le boyau ; derrière, l'atelier des vieux mineurs et le passage vers la mine."
+  }
+ }
+]

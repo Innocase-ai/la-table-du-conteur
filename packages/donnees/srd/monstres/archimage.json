@@ -1,0 +1,131 @@
+{
+  "id": "archimage",
+  "nom": "Archimage",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 170,
+    "des": "31d8 + 31"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 14,
+    "con": 12,
+    "int": 20,
+    "sag": 15,
+    "cha": 16
+  },
+  "sauvegardes": {
+    "int": 9,
+    "sag": 6
+  },
+  "competences": {
+    "arcanes": 13,
+    "histoire": 9,
+    "perception": 6
+  },
+  "initiative": 7,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "commun et cinq autres langues",
+  "fp": "12",
+  "px": 8000,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "immunite-charme-conditionnelle",
+      "nom": "Immunité au Charmé (avec esprit impénétrable)",
+      "resume": "L'archimage est immunisé contre l'état Charmé tant que le sort esprit impénétrable est actif sur lui."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "L'archimage a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "L'archimage lance l'un des sorts suivants, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 17) : À volonté : armure du mage (compris dans la CA), déguisement, détection de la magie, détection des pensées, invisibilité, lumière, main du mage, prestidigitation. 2/jour chacun : éclair (au 7e niveau), vol. 1/jour chacun : cône de froid (au 9e niveau), esprit impénétrable (lancé avant un combat), scrutation, téléportation."
+    },
+    {
+      "id": "foulee-brumeuse",
+      "nom": "Foulée brumeuse (3/jour)",
+      "resume": "Action bonus. Le mage lance foulée brumeuse, avec la même caractéristique d'incantation que pour Incantation."
+    },
+    {
+      "id": "magie-protectrice",
+      "nom": "Magie protectrice (3/jour)",
+      "resume": "Réaction. L'archimage lance bouclier ou contresort en réponse au déclencheur du sort correspondant, avec la même caractéristique d'incantation que pour Incantation."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'archimage effectue quatre attaques de Jaillissement arcanique.",
+      "multiattaque": [
+        {
+          "action": "jaillissement-arcanique-distance",
+          "nombre": 4
+        }
+      ]
+    },
+    {
+      "id": "jaillissement-arcanique-cac",
+      "nom": "Jaillissement arcanique (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 1,50 m : 27 (4d10 + 5) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 5,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "jaillissement-arcanique-distance",
+      "nom": "Jaillissement arcanique (distance)",
+      "cout": "action",
+      "resume": "À distance +9, portée 45 m : 27 (4d10 + 5) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 5,
+          "type": "force"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [
+    "psychique"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "cr-e-coffre-de-sorel",
+    "nom": "Le coffre aux trois cadrans",
+    "lieu": "cr-grotte",
+    "enonce": "Le coffre de chêne cerclé de laiton n'a pas de serrure : sa face avant porte trois cadrans de laiton, à régler chacun sur un chiffre de 0 à 9. Chaque cadran est gravé d'un petit carré où ondule une ligne d'eau : en haut du carré sur le cadran de gauche, en bas sur celui du milieu, au milieu sur celui de droite. À droite du coffre, dans la roche du mur nord, trois rangs de traits sont gravés à hauteur d'épaule, chacun à une hauteur différente, suivi de son chiffre : en haut du rang sept traits et un 7 ; plus bas, au milieu, cinq traits et un 5 ; tout en bas, deux traits et un 2. Quel chiffre réglez-vous sur chaque cadran, de gauche à droite ?",
+    "solution": { "type": "cadran", "valeurs": [7, 2, 5], "plage": [0, 9], "libelles": ["Cadran de gauche", "Cadran du milieu", "Cadran de droite"] },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les marques du mur et les cadrans parlent de la même chose : la hauteur de l'eau. Regardez où la ligne d'eau se tient dans chaque carré, puis cherchez le rang du mur qui est à la même hauteur.",
+        "competence": "investigation",
+        "dd": 10
+      },
+      {
+        "niveau": 2,
+        "texte": "Les cadrans ne sont pas dans l'ordre des rangs du mur : le cadran de gauche est celui de la mer haute, celui du milieu celui de la mer basse, celui de droite celui de la mi-marée. Chacun prend le chiffre du rang qui est à sa hauteur.",
+        "competence": "perception",
+        "dd": 11
+      },
+      {
+        "niveau": 3,
+        "texte": "Haute mer, le rang du haut : 7. Basse mer, le rang du bas : 2. Mi-marée, le rang du milieu : 5. De gauche à droite : 7, 2, 5."
+      }
+    ],
+    "echec": {
+      "piege": "z3-p-cloche-d-alarme",
+      "effets": [],
+      "resume": "Les cadrans cliquettent, un fil de laiton se tend sous la corniche, et une clochette se met à sonner à toute volée au-dessus du coffre."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "livre-retrouve" },
+        { "flag": "sorel-demasque" },
+        { "fait": "f-navire-de-verdelune" },
+        { "fait": "f-marche-de-sorel" },
+        { "xp": 40 }
+      ],
+      "tresor": "z3-t-coffre-de-sorel",
+      "resume": "Les trois cadrans s'alignent avec un déclic, la face du coffre bascule d'un bloc, et l'odeur de cuir ancien et de cire monte du fond : un gros livre bleu, une lettre au cachet vert, quelques pièces."
+    }
+  }
+]

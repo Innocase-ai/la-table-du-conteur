@@ -1,0 +1,87 @@
+[
+ {
+  "pnj": "huguette",
+  "passe": "Huguette est maire de Mireval depuis huit ans. Elle a épousé un batelier du marais, qui s'est noyé dans un chenal une nuit de crue, et elle a repris sa barque, ses dettes et le village. Elle tient les comptes de la commune, connaît chaque famille, chaque champ et chaque bouche à nourrir. Elle se méfie d'Anselme depuis deux ans : le moulin paie des choses qu'elle ne voit pas. Elle sait que le grenier ne passera pas l'hiver et que la guerre avec les hobgobelins coûterait plus que la faim. Elle parle comme un rapport, avec des chiffres, et ne hausse jamais la voix.",
+  "liens": [
+   {
+    "pnj": "anselme-roux",
+    "nature": "le meunier",
+    "opinion": "Elle le croit honnête à sa manière, mais elle sait qu'il lui cache quelque chose. Elle attend qu'il parle, ou qu'un étranger le fasse parler."
+   },
+   {
+    "pnj": "bastien",
+    "nature": "l'aubergiste",
+    "opinion": "Elle l'écoute parce qu'il sait tout, et elle ne le croit jamais tout à fait. Une auberge tient le village ensemble, même quand elle le salit."
+   },
+   {
+    "pnj": "marin",
+    "nature": "le passeur",
+    "opinion": "Elle paie Marin comme les autres et ne lui demande pas de prendre parti. C'est le seul homme du marais qui ne lui doit rien."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "le-carnet",
+    "texte": "Elle porte un carnet de toile cirée où elle note les bouches, les sacs et les jours de pluie. Elle l'ouvre avant de répondre, même quand elle connaît la réponse."
+   },
+   {
+    "id": "la-voix-des-chiffres",
+    "texte": "Elle parle en nombres : soixante-deux bouches, six miliciens, trois semaines de rations. Les mots viennent après, comme une conclusion."
+   },
+   {
+    "id": "la-barque-du-mari",
+    "texte": "La barque de son mari est encore retournée sous l'auvent, à l'entrée de la place. Elle ne l'a pas vendue et ne l'a pas réparée."
+   },
+   {
+    "id": "le-conseil",
+    "texte": "Elle tient le conseil debout, sur la place, sous la pluie, pour que personne ne puisse dire qu'elle cache les débats."
+   },
+   {
+    "id": "avis-sur-varg",
+    "texte": "Elle ne hait pas Varg. Elle le trouve cher, prévisible et dangereux, comme une crue qu'on voit venir et qu'on ne peut pas arrêter."
+   },
+   {
+    "id": "les-enfants",
+    "texte": "Elle connaît le nom de tous les enfants du village. Quand elle parle de famine, elle ne dit jamais « le village » : elle dit « les petits des Roux, ceux du lavoir, la fille de Bastien »."
+   }
+  ],
+  "sait": [
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "Le grenier est presque vide. Elle le dit sans détour à qui peut aider, et elle cherche une solution qui ne soit ni la guerre ni la charité.",
+    "acces": {}
+   },
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "La charrette est partie du moulin avec Colin et onze sacs, et elle n'est jamais arrivée au village. Elle ne croit pas à l'enlèvement : un meunier qui crie au loup cache un agneau.",
+    "acces": {}
+   },
+   {
+    "id": "la-crue",
+    "fait": "f-crue-trois-jours",
+    "version": "La crue coupe la chaussée trois jours chaque automne. Personne n'entre ni ne sort, sauf par les roseaux, et c'est pour cela que le village est seul quand Varg frappe.",
+    "acces": {}
+   },
+   {
+    "id": "le-pacte",
+    "fait": "f-pacte-du-meunier",
+    "version": "Anselme paie les gobelins depuis quatre ans. Elle s'en doutait, sans en avoir la preuve ; si on le lui confirme, elle ne s'étonne pas, elle demande combien il reste de grain.",
+    "acces": {
+     "attitudeMin": 32
+    },
+    "evasif": "elle dit qu'un meunier qui ferme son moulin la nuit n'est pas un homme tranquille, et qu'elle a d'autres chats à fouetter",
+    "tabou": [
+     "pacte"
+    ]
+   },
+   {
+    "id": "les-passeurs",
+    "fait": "f-passeurs-neutres",
+    "version": "Marin ne prend parti pour personne. Elle le sait et elle continue de le payer, parce qu'un passeur neutre vaut mieux qu'un passeur acheté.",
+    "acces": {}
+   }
+  ]
+ }
+]

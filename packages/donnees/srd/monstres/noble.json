@@ -1,0 +1,72 @@
+{
+  "id": "noble",
+  "nom": "Noble",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 15,
+  "pv": {
+    "moyenne": 9,
+    "des": "2d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 12,
+    "con": 11,
+    "int": 12,
+    "sag": 14,
+    "cha": 16
+  },
+  "sauvegardes": {},
+  "competences": {
+    "intuition": 4,
+    "persuasion": 5,
+    "tromperie": 5
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun et deux autres langues",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "rapiere",
+      "nom": "Rapière",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 5 (1d8 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "cout": "reaction",
+      "resume": "Déclencheur : le noble est touché par un jet d'attaque de corps à corps alors qu'il tient une arme. Conséquences : il ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ]
+}

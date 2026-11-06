@@ -1,0 +1,923 @@
+[
+ {
+  "id": "q-la-dime",
+  "nom": "La Dîme des Roseaux",
+  "type": "principale",
+  "donneur": "huguette",
+  "lieu": "mireval",
+  "resume": "Mireval paie chaque automne une dîme de grain aux gobelins. Cette année, la charrette a disparu, Lina est otage et une compagnie hobgobeline tient le pont. Retrouvez la charrette, comprenez le pacte, et décidez qui paiera la paix.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "pont",
+  "etapes": [
+   {
+    "id": "pont",
+    "texte": "Franchissez le péage du pont de pierre et gagnez Mireval. Le capitaine hobgobelin vous a laissés passer ; ne lui donnez pas de raison de le regretter.",
+    "completion": {
+     "lieu": "mireval"
+    },
+    "suivantes": [
+     "village"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "village",
+    "texte": "Mireval vous appelle : Lina a disparu avec la charrette de grain. Parlez à Huguette, au meunier, et cherchez ce que les villageois ne disent pas.",
+    "completion": {
+     "ou": [
+      {
+       "objet": "jeton-de-grain"
+      },
+      {
+       "flag": "pacte-revele"
+      },
+      {
+       "fait": "f-charrette-saisie"
+      }
+     ]
+    },
+    "suivantes": [
+     "moulin"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "fait": "f-grenier-vide"
+     }
+    ]
+   },
+   {
+    "id": "moulin",
+    "texte": "Le moulin Roux cache un registre, et le registre cache quatre ans de pacte. Confrontez Anselme, ou fouillez avant qu'il ne brûle ses comptes.",
+    "completion": {
+     "ou": [
+      {
+       "objet": "registre-du-moulin"
+      },
+      {
+       "flag": "pacte-revele"
+      }
+     ]
+    },
+    "suivantes": [
+     "marais"
+    ],
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "fait": "f-pacte-du-meunier"
+     }
+    ]
+   },
+   {
+    "id": "marais",
+    "texte": "La route du marais est le seul chemin vers la grotte et la mine. Trouvez le passage, ou payez les passeurs.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "mar-sentier-des-roseaux"
+      },
+      {
+       "objet": "carte-du-marais"
+      },
+      {
+       "flag": "route-des-roseaux-ouverte"
+      }
+     ]
+    },
+    "suivantes": [
+     "grotte"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "fait": "f-passeurs-neutres"
+     }
+    ]
+   },
+   {
+    "id": "grotte",
+    "texte": "Dans la grotte des roseaux, Lina négocie avec Skarn. Écoutez les deux camps avant de décider qui est l'otage et qui est le geôlier.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "gro-salle-commune"
+      },
+      {
+       "flag": "lina-retrouvee"
+      }
+     ]
+    },
+    "suivantes": [
+     "mine"
+    ],
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "fait": "f-lina-otage"
+     },
+     {
+      "fait": "f-tribu-affamee"
+     }
+    ]
+   },
+   {
+    "id": "mine",
+    "texte": "La mine hobgobeline cache Colin, le grain et le vrai but de Varg. Entrez au camp, ou trouvez la galerie qui y mène.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "min-camp-hobgobelin"
+      },
+      {
+       "flag": "colin-libere"
+      }
+     ]
+    },
+    "suivantes": [
+     "fin"
+    ],
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "fait": "f-colin-prisonnier"
+     },
+     {
+      "fait": "f-but-de-varg"
+     }
+    ]
+   },
+   {
+    "id": "fin",
+    "texte": "Le prix de la paix se décide maintenant : marchander avec Varg, prendre le pont, ou faire partir la tribu par les roseaux.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "choix-marche"
+      },
+      {
+       "flag": "choix-guerre"
+      },
+      {
+       "flag": "choix-exode"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 200
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 300,
+   "pieces": 0,
+   "objets": []
+  },
+  "ramifications": "Le groupe peut sauver Lina sans Colin, Colin sans Lina, les deux, ou aucun. S'il ne découvre pas le pacte, Huguette peut le révéler elle-même s'il lui fait assez confiance. Une fin pacifique exige d'avoir compris que Varg veut le fer, pas le grain."
+ },
+ {
+  "id": "q-perrine-colin",
+  "nom": "Le frère de Perrine",
+  "type": "personnelle",
+  "donneur": "perrine-vasseur",
+  "lieu": "mir-grenier",
+  "resume": "Perrine Vasseur, éclaireuse de Mireval, cherche son frère Colin, le charretier qui a disparu avec la charrette de grain. Elle rejoindra le groupe si on lui promet de le retrouver vivant.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "prerequis": {
+   "pnj": {
+    "id": "perrine-vasseur",
+    "etat": "vivant"
+   }
+  },
+  "debut": "promesse",
+  "etapes": [
+   {
+    "id": "promesse",
+    "texte": "Parlez à Perrine, au grenier. Elle sait que son frère conduisait la charrette et refuse de croire qu'il a fui.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "perrine-recruite"
+      },
+      {
+       "pnj": {
+        "id": "perrine-vasseur",
+        "attitudeMin": 1
+       }
+      },
+      {
+       "lieu": "mir-grenier"
+      }
+     ]
+    },
+    "suivantes": [
+     "charrette"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "charrette",
+    "texte": "Retrouvez la trace de la charrette : le jeton de grain, le témoignage de Bastien, ou le registre du moulin.",
+    "completion": {
+     "ou": [
+      {
+       "fait": "f-charrette-saisie"
+      },
+      {
+       "objet": "registre-du-moulin"
+      }
+     ]
+    },
+    "suivantes": [
+     "mine"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "fait": "f-charrette-saisie"
+     }
+    ]
+   },
+   {
+    "id": "mine",
+    "texte": "Colin est à la veine de fer. Libérez-le, ou prouvez à Perrine qu'il est vivant.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "colin-libere"
+      },
+      {
+       "pnj": {
+        "id": "colin-vasseur",
+        "etat": "vivant"
+       }
+      }
+     ]
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "fait": "f-colin-prisonnier"
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Ramenez Colin à Mireval, ou à Perrine. Elle saura ce que cela vaut.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "mireval"
+      },
+      {
+       "flag": "colin-libere"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 150
+     },
+     {
+      "attitude": {
+       "pnj": "perrine-vasseur",
+       "delta": 30
+      }
+     },
+     {
+      "quete": {
+       "id": "q-perrine-colin",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 250,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-mireval-le-grenier",
+  "nom": "Le grenier de Mireval",
+  "type": "faction",
+  "donneur": "huguette",
+  "lieu": "mireval",
+  "resume": "Huguette doit nourrir Mireval sans livrer le grenier à Varg. Aidez-la à trouver une issue : payer, négocier, ou ouvrir les réserves.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "prerequis": {
+   "faction": {
+    "id": "gens-de-mireval",
+    "min": -20
+   }
+  },
+  "debut": "etat",
+  "etapes": [
+   {
+    "id": "etat",
+    "texte": "Faites le point avec Huguette : combien de grain reste-t-il, et que demande Varg ?",
+    "completion": {
+     "ou": [
+      {
+       "flag": "pacte-revele"
+      },
+      {
+       "fait": "f-grenier-vide"
+      }
+     ]
+    },
+    "suivantes": [
+     "issue"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "issue",
+    "texte": "Tranchez : payer le tribut, négocier une part, ou ouvrir le grenier aux gobelins.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "tribut-paye"
+      },
+      {
+       "flag": "grenier-ouvert"
+      },
+      {
+       "flag": "choix-exode"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 10
+      }
+     },
+     {
+      "quete": {
+       "id": "q-mireval-le-grenier",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-skarn-le-grain",
+  "nom": "Le grain de la tribu",
+  "type": "faction",
+  "donneur": "skarn",
+  "lieu": "gro-salle-commune",
+  "resume": "Skarn doit nourrir sa tribu. Il garde Lina en garantie, mais accepterait un accord si le groupe lui apporte du grain ou une autre solution.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "prerequis": {
+   "faction": {
+    "id": "tribu-de-skarn",
+    "min": -20
+   }
+  },
+  "debut": "ecoute",
+  "etapes": [
+   {
+    "id": "ecoute",
+    "texte": "Écoutez Skarn et Nyx dans la salle commune. La tribu n'a plus rien à manger.",
+    "completion": {
+     "lieu": "gro-salle-commune"
+    },
+    "suivantes": [
+     "preuve"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     },
+     {
+      "fait": "f-tribu-affamee"
+     }
+    ]
+   },
+   {
+    "id": "preuve",
+    "texte": "Prouvez que le village n'a pas rompu le pacte : la charrette a été saisie par Varg, pas retenue par Mireval.",
+    "completion": {
+     "ou": [
+      {
+       "fait": "f-charrette-saisie"
+      },
+      {
+       "flag": "pacte-revele"
+      }
+     ]
+    },
+    "suivantes": [
+     "issue"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "issue",
+    "texte": "Apportez du grain, une autre source de nourriture, ou une route pour la tribu.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "alliance-gobeline"
+      },
+      {
+       "flag": "grenier-ouvert"
+      },
+      {
+       "flag": "choix-exode"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 150
+     },
+     {
+      "reputation": {
+       "faction": "tribu-de-skarn",
+       "delta": 15
+      }
+     },
+     {
+      "quete": {
+       "id": "q-skarn-le-grain",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-bastien-la-rumeur",
+  "nom": "La rumeur de l'auberge",
+  "type": "secondaire",
+  "donneur": "bastien",
+  "lieu": "mir-auberge-des-roseaux",
+  "resume": "Bastien, l'aubergiste, sait tout ce qui se dit à Mireval. Il a vu la charrette partir avant l'aube et se souvient de quelque chose que les autres ont oublié.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "ecouter",
+  "etapes": [
+   {
+    "id": "ecouter",
+    "texte": "Payez une chope à Bastien et laissez-le parler de la charrette et de Lina.",
+    "completion": {
+     "lieu": "mir-auberge-des-roseaux"
+    },
+    "suivantes": [
+     "verifier"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "verifier",
+    "texte": "Vérifiez la rumeur : la charrette a-t-elle quitté le moulin, et qui l'a vue au pont ?",
+    "completion": {
+     "ou": [
+      {
+       "fait": "f-charrette-saisie"
+      },
+      {
+       "objet": "jeton-de-grain"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "fait": "f-charrette-saisie"
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 75,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-marin-le-passage",
+  "nom": "Le passage des roseaux",
+  "type": "secondaire",
+  "donneur": "marin",
+  "lieu": "mar-cabane-des-passeurs",
+  "resume": "Marin connaît un chemin secret à travers le marais jusqu'à la mine. Il ne le donne pas gratuitement.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "contact",
+  "etapes": [
+   {
+    "id": "contact",
+    "texte": "Trouvez la cabane des passeurs et parlez à Marin. Il faut d'abord le convaincre de ne pas rester neutre.",
+    "completion": {
+     "lieu": "mar-cabane-des-passeurs"
+    },
+    "suivantes": [
+     "marche"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "marche",
+    "texte": "Payez Marin, ou rendez-lui un service : la carte du marais et le chemin de la mine sont à ce prix.",
+    "completion": {
+     "ou": [
+      {
+       "objet": "carte-du-marais"
+      },
+      {
+       "flag": "route-des-roseaux-ouverte"
+      },
+      {
+       "pieces": {
+        "min": 10
+       }
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 75
+     },
+     {
+      "flag": "route-des-roseaux-ouverte"
+     },
+     {
+      "objet": {
+       "id": "carte-du-marais",
+       "quantite": 1
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 100,
+   "pieces": 0,
+   "objets": [
+    "carte-du-marais"
+   ]
+  }
+ },
+ {
+  "id": "q-aveline-les-prisonniers",
+  "nom": "Les prisonniers de la veine",
+  "type": "personnelle",
+  "donneur": "aveline-ker",
+  "lieu": "mir-auberge-des-roseaux",
+  "resume": "Aveline Ker, guérisseuse, veut soigner les prisonniers de la mine et ramener ceux que Varg y retient. Elle rejoindra le groupe si on lui promet de l'emmener jusqu'à eux.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "prerequis": {
+   "pnj": {
+    "id": "aveline-ker",
+    "etat": "vivant"
+   }
+  },
+  "debut": "parler",
+  "etapes": [
+   {
+    "id": "parler",
+    "texte": "Parlez à Aveline, à l'auberge des Roseaux. Elle veut savoir qui sont les prisonniers et ce qu'on compte faire d'eux.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "aveline-recruite"
+      },
+      {
+       "pnj": {
+        "id": "aveline-ker",
+        "attitudeMin": 10
+       }
+      }
+     ]
+    },
+    "suivantes": [
+     "mine"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "mine",
+    "texte": "Menez Aveline jusqu'à la veine de fer, ou rapportez-lui des nouvelles des prisonniers.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "min-veine-de-fer"
+      },
+      {
+       "flag": "colin-libere"
+      }
+     ]
+    },
+    "suivantes": [
+     "soigner"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "fait": "f-colin-prisonnier"
+     }
+    ]
+   },
+   {
+    "id": "soigner",
+    "texte": "Aveline veut voir un prisonnier vivant. Libérez Colin ou ramenez-la auprès de lui.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "colin-libere"
+      },
+      {
+       "pnj": {
+        "id": "colin-vasseur",
+        "etat": "vivant"
+       }
+      }
+     ]
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 75
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Ramenez Aveline et ses patients à Mireval. Elle saura ce qu'il lui reste à soigner.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "mireval"
+      },
+      {
+       "flag": "colin-libere"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "attitude": {
+       "pnj": "aveline-ker",
+       "delta": 20
+      }
+     },
+     {
+      "quete": {
+       "id": "q-aveline-les-prisonniers",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 200,
+   "pieces": 0,
+   "objets": []
+  },
+  "ramifications": "Aveline refuse de suivre un groupe qui fuit la mine sans y être entré. Si Colin meurt, elle reste pour soigner les autres et sa quête échoue."
+ },
+ {
+  "id": "q-bram-la-galerie",
+  "nom": "La galerie du père",
+  "type": "personnelle",
+  "donneur": "bram-coeur-de-tourbe",
+  "lieu": "mir-grenier",
+  "resume": "Bram Cœur-de-Tourbe, vieux mineur nain, veut rouvrir le boyau de son père sous la galerie effondrée et prouver que la veine de fer n'appartient pas à Varg. Il guidera le groupe jusqu'à la galerie.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "prerequis": {
+   "pnj": {
+    "id": "bram-coeur-de-tourbe",
+    "etat": "vivant"
+   }
+  },
+  "debut": "parler",
+  "etapes": [
+   {
+    "id": "parler",
+    "texte": "Parlez à Bram, au grenier. Il connaît la vieille mine mieux que personne.",
+    "completion": {
+     "ou": [
+      {
+       "flag": "bram-recruite"
+      },
+      {
+       "pnj": {
+        "id": "bram-coeur-de-tourbe",
+        "attitudeMin": 10
+       }
+      }
+     ]
+    },
+    "suivantes": [
+     "galerie"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "galerie",
+    "texte": "Trouvez l'ancienne galerie effondrée et le contrepoids que Bram a décrit.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "gro-galerie-effondree"
+      },
+      {
+       "flag": "bram-indique-galerie"
+      }
+     ]
+    },
+    "suivantes": [
+     "preuve"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "preuve",
+    "texte": "Rapportez à Bram une preuve que la veine est toujours là : un échantillon de fer ou le récit des mineurs.",
+    "completion": {
+     "ou": [
+      {
+       "objet": "fer-de-la-mine"
+      },
+      {
+       "fait": "f-mine-de-fer"
+      }
+     ]
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 75
+     },
+     {
+      "fait": "f-mine-de-fer"
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Revenez à Mireval avec la preuve. Bram saura ce que son père a laissé dans la mine.",
+    "completion": {
+     "ou": [
+      {
+       "lieu": "mireval"
+      },
+      {
+       "flag": "varg-vaincu"
+      }
+     ]
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 100
+     },
+     {
+      "attitude": {
+       "pnj": "bram-coeur-de-tourbe",
+       "delta": 20
+      }
+     },
+     {
+      "quete": {
+       "id": "q-bram-la-galerie",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 200,
+   "pieces": 0,
+   "objets": []
+  },
+  "ramifications": "Bram refuse de repartir sans avoir vu la galerie. S'il meurt, la quête échoue et la veine reste aux hobgobelins."
+ }
+]

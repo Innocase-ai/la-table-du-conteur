@@ -1,0 +1,109 @@
+[
+  {
+    "id": "por-t-solde-de-piot",
+    "nom": "La bourse de Piot",
+    "lieu": "por-quai-aux-cordes",
+    "contenant": "cache",
+    "description": "Sous une pierre descellée au pied de la cabane de garde, un gamin a caché sa bourse : quelques pièces de cuivre et un sifflet d'os.",
+    "contenu": {
+      "pieces": { "po": 4, "pa": 12 },
+      "objets": [{ "objet": "sifflet", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 12, "competence": "perception" } }
+  },
+  {
+    "id": "por-t-caisse-de-la-ligue",
+    "nom": "La caisse éventrée de la Ligue",
+    "lieu": "por-egouts-galerie",
+    "contenant": "autre",
+    "description": "Une caisse aux sceaux de la Ligue, arrachée à un convoi et éventrée par les rats. Il reste des cartes mouillées, quelques pièces et une lanterne intacte.",
+    "contenu": {
+      "pieces": { "po": 15 },
+      "objets": [{ "objet": "lanterne-sourde", "quantite": 1 }],
+      "tables": [{ "table": "por-butin-egouts", "jets": 1 }]
+    },
+    "acces": {},
+    "gardien": "por-r-rats-des-egouts",
+    "indice": "f-por-lettre-du-chancelier"
+  },
+  {
+    "id": "por-t-cabinet-du-pilote",
+    "nom": "Le tiroir à double fond",
+    "lieu": "por-phare-du-port",
+    "contenant": "etagere",
+    "description": "Dans le cabinet de cartes, le tiroir du bas cache un double fond ; dessous, une clé de bronze enveloppée de cire et quelques pièces oubliées.",
+    "contenu": {
+      "pieces": { "po": 10 },
+      "objets": [{ "objet": "cle-des-eaux-basses", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 13, "competence": "investigation" } },
+    "indice": "f-por-cle-chez-le-pilote"
+  },
+  {
+    "id": "por-t-offrandes-des-noyes",
+    "nom": "La vasque des noyés",
+    "lieu": "por-chapelle-des-noyes",
+    "contenant": "autel",
+    "description": "Une vasque de sel, sous l'autel, où les marins déposent une pièce pour chaque nom gravé. Des pièces ternies, une amulette usée, et le médaillon d'un naufragé.",
+    "contenu": {
+      "pieces": { "po": 6, "pa": 30 },
+      "objets": [{ "objet": "por-medaillon-des-noyes", "quantite": 1 }],
+      "tables": [{ "table": "por-butin-offrandes", "jets": 1 }]
+    },
+    "acces": {}
+  },
+  {
+    "id": "por-t-etabli-du-chantier",
+    "nom": "L'établi du calfat",
+    "lieu": "por-chantier-naval",
+    "contenant": "etabli",
+    "description": "Un établi de charpentier couvert de copeaux, où Hennequin range ses outils et une lanterne de pilote au verre neuf, oubliée là pendant la réparation.",
+    "contenu": {
+      "pieces": { "po": 8 },
+      "objets": [
+        { "objet": "por-lanterne-du-pilote", "quantite": 1 },
+        { "objet": "corde", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "por-t-tresor-des-rats",
+    "nom": "Le coffre des Rats",
+    "lieu": "por-cachette-des-rats",
+    "contenant": "coffre",
+    "description": "Un coffre cerclé de fer, sous un drap de toile, où la Mère Sorel garde les sous de la contrebande et ce qu'elle n'a pas encore vendu.",
+    "contenu": {
+      "pieces": { "po": 40, "pa": 60 },
+      "objets": [
+        { "objet": "potion-de-respiration-aquatique", "quantite": 1 },
+        { "objet": "outils-de-voleur", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "condition": { "flag": "por-cachette-ouverte" }
+  },
+  {
+    "id": "por-t-marchandise-de-lucien",
+    "nom": "La cache sous le bureau",
+    "lieu": "por-entrepots-des-rats",
+    "contenant": "cache",
+    "description": "Sous le plancher du bureau, des flacons enveloppés de paille et une bourse de contrebande, scellée de cire noire.",
+    "contenu": {
+      "pieces": { "po": 20 },
+      "objets": [
+        { "objet": "potion-de-guerison", "quantite": 1 },
+        { "objet": "antidote", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 14, "competence": "investigation" },
+      "piege": "por-p-trappe-des-entrepots"
+    }
+  }
+]

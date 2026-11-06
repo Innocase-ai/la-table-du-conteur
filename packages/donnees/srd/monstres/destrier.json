@@ -1,0 +1,65 @@
+{
+  "id": "destrier",
+  "nom": "Destrier",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d10 + 3"
+  },
+  "vitesse": {
+    "marche": 18
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 12,
+    "con": 13,
+    "int": 2,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {
+    "sag": 3
+  },
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 9 (2d4 + 4) dégâts contondants. Si la cible est une créature de taille G ou inférieure et si le cheval s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit 5 (2d4) dégâts contondants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

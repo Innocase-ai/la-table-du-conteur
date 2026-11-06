@@ -1,0 +1,63 @@
+{
+  "id": "autrache",
+  "nom": "Autrache",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d10 + 3"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 12,
+    "con": 12,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "bec",
+      "nom": "Bec",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

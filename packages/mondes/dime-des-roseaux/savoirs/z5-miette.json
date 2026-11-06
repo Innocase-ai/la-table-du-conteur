@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "miette",
+  "passe": "Miette est une enfant de la tribu des roseaux, née dans la grotte il y a huit ans. Elle a vu arriver les hobgobelins, elle a vu la mine changer de mains et les gamelles se vider. Sa mère ne mange plus assez pour allaiter, et Miette suit Lina partout parce que Lina lui donne une part de sa ration. Elle connaît chaque recoin de la grotte, les noms des enfants et les cachettes où l'on peut pleurer sans être vu. Elle parle vite, pose des questions aux adultes et répète ce qu'elle entend, parfois au mauvais moment.",
+  "liens": [
+   {
+    "pnj": "lina-roux",
+    "nature": "l'otage d'honneur",
+    "opinion": "Elle la suit comme une grande sœur. Lina lui donne à manger et ne lui ment pas sur la faim."
+   },
+   {
+    "pnj": "nyx",
+    "nature": "la chamane",
+    "opinion": "Elle la croit quand elle parle des rêves. Nyx lui a dit que l'eau se souvenait, et Miette regarde souvent la galerie en bas."
+   },
+   {
+    "pnj": "skarn",
+    "nature": "le chef de la tribu",
+    "opinion": "Elle sait qu'il donne à manger aux enfants avant les guerriers. Elle l'aime comme un grand-père qui gronde."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-cachette",
+    "texte": "Elle a une cachette derrière une pierre de la salle commune, avec un caillou blanc, une plume et un quignon de pain sec."
+   },
+   {
+    "id": "les-questions",
+    "texte": "Elle pose des questions aux adultes sans attendre la fin de leurs phrases. Elle dit que les grandes personnes parlent toujours de choses qu'elles ne comprennent pas."
+   },
+   {
+    "id": "la-gamelle",
+    "texte": "Elle porte une gamelle cabossée à la ceinture. Elle la remplit d'eau et la vide lentement pour faire durer le repas."
+   },
+   {
+    "id": "les-enfants",
+    "texte": "Elle connaît le nom de tous les enfants de la tribu et sait lesquels toussent la nuit. Elle les compte avant de dormir."
+   },
+   {
+    "id": "la-lumiere",
+    "texte": "Elle aime la lumière de la galerie basse, celle qui vient de l'eau. Elle dit qu'on y voit des choses que les adultes ne voient pas."
+   },
+   {
+    "id": "avis-sur-les-hobgobelins",
+    "texte": "Elle ne les appelle pas des monstres. Elle dit qu'ils sentent le cuir mouillé et qu'ils comptent tout, même les enfants."
+   }
+  ],
+  "sait": [
+   {
+    "id": "lina",
+    "fait": "f-lina-otage",
+    "version": "Lina n'est pas prisonnière : elle est là pour parler avec Skarn, et elle donne à manger à Miette. Elle a entendu les grands dire qu'elle est un otage d'honneur.",
+    "acces": {
+     "attitudeMin": 10
+    },
+    "evasif": "elle dit que Lina est gentille et qu'elle reste parce qu'elle veut, et que les adultes ne comprennent rien",
+    "tabou": [
+     "otage"
+    ]
+   },
+   {
+    "id": "sa-mere",
+    "fait": "f-miette-mere",
+    "version": "Sa mère ne mange plus assez pour allaiter. Miette suit Lina parce que Lina lui donne une part de sa ration.",
+    "acces": {}
+   },
+   {
+    "id": "la-faim",
+    "fait": "f-tribu-affamee",
+    "version": "La tribu n'a pas reçu le grain de cette année. Miette compte les gamelles et sait que les enfants mangent avant les guerriers.",
+    "acces": {}
+   },
+   {
+    "id": "le-reve-de-nyx",
+    "fait": "f-nyx-reve",
+    "version": "Nyx a rêvé d'une grotte noyée sous les roseaux. Miette répète le rêve à qui veut l'entendre : de l'eau noire, un autel et une lumière en dessous.",
+    "acces": {}
+   }
+  ]
+ }
+]

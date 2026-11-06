@@ -1,0 +1,1032 @@
+[
+  {
+    "id": "animation-des-morts",
+    "nom": "Animation des morts",
+    "niveau": 3,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S, M (une goutte de sang, un morceau de chair et une pincée de poudre d'os)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation d'1 minute. Le lanceur transforme un tas d'os ou un cadavre d'Humanoïde de taille M ou P à portée en squelette ou en zombi. Par une action Bonus à chacun de ses tours, il donne des ordres mentaux aux créatures ainsi créées à 18 m ou moins ; elles lui obéissent 24 heures, après quoi il doit relancer le sort sur elles pour garder le contrôle (jusqu'à 4 créatures à la fois). À un emplacement supérieur, +2 Morts-vivants pris ou prolongés par niveau au-delà du 3e."
+  },
+  {
+    "id": "antidetection",
+    "nom": "Antidétection",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une pincée de poudre de diamant d'une valeur minimale de 25 po, que le sort détruit)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Pendant 8 heures, la créature consentante touchée (ou un lieu ou objet dont aucune dimension n'excède 3 m) ne peut être ciblée par aucun sort de Divination ni perçue par les capteurs de scrutation magique."
+  },
+  {
+    "id": "appel-de-la-foudre",
+    "nom": "Appel de la foudre",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 1.5
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Un nuage d'orage (cylindre de 3 m de haut et 18 m de rayon) se forme au-dessus d'un point à portée. À l'incantation puis par une action Magie à chaque tour, un éclair frappe un point sous le nuage : chaque créature à 1,50 m ou moins fait un jet de sauvegarde de Dextérité et subit 3d10 dégâts de foudre en cas d'échec, moitié en cas de réussite. En extérieur par temps orageux, le lanceur prend le contrôle de l'orage et les dégâts augmentent de 1d10. +1d10 par niveau d'emplacement au-delà du 3e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d10",
+        "type": "foudre"
+      }
+    ],
+    "ameliorationParNiveau": "1d10"
+  },
+  {
+    "id": "boule-de-feu",
+    "nom": "Boule de feu",
+    "niveau": 3,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 45
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 6
+    },
+    "composantes": "V, S, M (une boulette de guano de chauve-souris et de soufre)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une déflagration éclate en un point à portée : chaque créature dans une sphère de 6 m de rayon fait un jet de sauvegarde de Dextérité et subit 8d6 dégâts de feu en cas d'échec, moitié en cas de réussite. Les objets inflammables non portés dans la zone s'embrasent. +1d6 par niveau d'emplacement au-delà du 3e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "8d6",
+        "type": "feu"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "caresse-du-vampire",
+    "nom": "Caresse du vampire",
+    "niveau": 3,
+    "ecole": "nécromancie",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Attaque de sort au corps à corps contre une créature à portée d'allonge : si elle touche, 3d6 dégâts nécrotiques et le lanceur récupère la moitié des dégâts infligés en points de vie. Pendant la durée, il peut répéter l'attaque à chaque tour par une action Magie, sur la même cible ou une autre. +1d6 par niveau d'emplacement au-delà du 3e.",
+    "resolution": {
+      "type": "attaque",
+      "mode": "corps-a-corps"
+    },
+    "degats": [
+      {
+        "des": "3d6",
+        "type": "nécrotique"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "cercle-magique",
+    "nom": "Cercle magique",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "magicien",
+      "occultiste",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "zone": {
+      "forme": "cylindre",
+      "taille": 3
+    },
+    "composantes": "V, S, M (poudre d'argent et sel d'une valeur minimale de 100 po, que le sort détruit)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Incantation d'1 minute. Crée un cylindre de 3 m de rayon et 6 m de haut sur un point du sol. Pour les types de créatures choisis (Célestes, Élémentaires, Fées, Fiélons, Morts-vivants), il interdit d'y entrer de son plein gré (JS de Charisme requis en cas de téléportation ou voyage interplanaire), impose le Désavantage aux attaques contre les cibles à l'intérieur et empêche possession, charme et effroi sur elles. Le lanceur peut inverser l'effet à l'incantation (retenir les créatures à l'intérieur). +1 heure de durée par niveau d'emplacement au-delà du 3e."
+  },
+  {
+    "id": "clairvoyance",
+    "nom": "Clairvoyance",
+    "niveau": 3,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 1500
+    },
+    "composantes": "V, S, M (un focaliseur d'une valeur minimale de 100 po : une corne ornée pour écouter, un œil de verre pour observer)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Incantation de 10 minutes. Crée un capteur Invisible, intangible et invulnérable en un lieu connu ou imaginable à portée ; le lanceur choisit d'écouter ou d'observer par ce capteur comme s'il s'y trouvait, et peut changer de sens par une action Bonus. Une créature qui voit le capteur perçoit un globe lumineux de la taille d'un poing."
+  },
+  {
+    "id": "clignotement",
+    "nom": "Clignotement",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "À la fin de chacun de ses tours, le lanceur lance 1d6 : sur 4 à 6, il disparaît sur le Plan Éthéré (où il perçoit son plan d'origine en gris sur 18 m et peut affecter les autres créatures éthérées), puis revient au début de son tour suivant dans un espace inoccupé à 3 m ou moins de celui qu'il a quitté. Le sort prend fin s'il est déjà sur le Plan Éthéré quand il le fait."
+  },
+  {
+    "id": "communication-a-distance",
+    "nom": "Communication à distance",
+    "niveau": 3,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (du fil de cuivre)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Portée illimitée. Le lanceur envoie un message de 25 mots maximum à une créature qu'il a rencontrée (ou qui lui a été décrite) ; elle le perçoit, le reconnaît comme expéditeur s'il est connu d'elle et peut répondre aussitôt. Sur un autre plan, 5 % de chances d'échec. Le destinataire peut bloquer tout nouveau message pendant 8 heures."
+  },
+  {
+    "id": "communication-avec-les-morts",
+    "nom": "Communication avec les morts",
+    "niveau": 3,
+    "ecole": "nécromancie",
+    "classes": [
+      "barde",
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S, M (de l'encens qui brûle)",
+    "duree": "10 minutes",
+    "concentration": false,
+    "resume": "Le lanceur anime un cadavre (doté d'une bouche, non Mort-vivant, qui n'a pas été ciblé par ce sort depuis 10 jours) à portée pour lui poser jusqu'à 5 questions. Le mort ne sait rien de plus que de son vivant, ses réponses sont souvent brèves ou sibyllines, et il n'a pas à répondre sincèrement à quelqu'un qu'il tient pour un ennemi."
+  },
+  {
+    "id": "communication-avec-les-plantes",
+    "nom": "Communication avec les plantes",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "emanation",
+      "taille": 9
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": false,
+    "resume": "Les plantes dans une émanation immobile de 9 m deviennent capables de communiquer et de suivre des instructions simples : elles renseignent sur ce qui s'est passé dans la zone depuis un jour. Le lanceur peut aussi convertir le Terrain difficile de végétation en terrain ordinaire, ou l'inverse, pour toute la durée, et parler aux créatures de type Plante de la zone."
+  },
+  {
+    "id": "contresort",
+    "nom": "Contresort",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "reaction",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Réaction, quand le lanceur voit dans un rayon de 18 m une créature lancer un sort avec une composante V, S ou M. La créature fait un jet de sauvegarde de Constitution ; en cas d'échec son sort est dissipé sans effet et l'action, action Bonus ou Réaction dépensée est gaspillée. Si le sort était lancé par un emplacement, celui-ci n'est pas dépensé.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "creation-de-nourriture-et-d-eau",
+    "nom": "Création de nourriture et d'eau",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Crée 22,5 kg de nourriture fade mais nourrissante et 120 litres d'eau potable, au sol ou dans des récipients à portée. La nourriture se gâte si elle n'est pas consommée dans les 24 heures."
+  },
+  {
+    "id": "croissance-vegetale",
+    "nom": "Croissance végétale",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 45
+    },
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Deux usages selon la durée d'incantation. Embroussaillement (action) : les plantes normales dans une sphère de 30 m de rayon centrée sur un point à portée grossissent et se déplacer dans la zone coûte le quadruple de déplacement (le lanceur peut exclure des zones). Fertilisation (8 heures) : les plantes dans un rayon de 750 m gagnent en fécondité pendant 365 jours (récoltes doublées, une fois par an)."
+  },
+  {
+    "id": "delivrance-des-maledictions",
+    "nom": "Délivrance des malédictions",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "magicien",
+      "occultiste",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Toutes les malédictions qui affectent la créature ou l'objet touché prennent fin. Pour un objet magique maudit, la malédiction reste mais le propriétaire cesse d'être harmonisé à l'objet et peut s'en défaire."
+  },
+  {
+    "id": "dissipation-de-la-magie",
+    "nom": "Dissipation de la magie",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "occultiste",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Met fin à tout sort du 3e niveau ou inférieur qui affecte une créature, un objet ou un effet magique visé à portée. Pour chaque sort de niveau 4 ou plus, test de caractéristique d'incantation (DD 10 + niveau du sort) ; une réussite y met fin. À un emplacement supérieur, met automatiquement fin aux sorts dont le niveau ne dépasse pas celui de l'emplacement."
+  },
+  {
+    "id": "don-des-langues",
+    "nom": "Don des langues",
+    "niveau": 3,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, M (une ziggourat miniature)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "La créature touchée comprend toute langue parlée qu'elle entend et tout langage des signes qu'elle voit ; de plus, toute créature qui connaît au moins une langue comprend ce que la cible dit ou signe si elle l'entend ou le voit."
+  },
+  {
+    "id": "eclair",
+    "nom": "Éclair",
+    "niveau": 3,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "ligne",
+      "taille": 30,
+      "largeur": 1.5
+    },
+    "composantes": "V, S, M (une touffe de fourrure et une tige de cristal)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Un éclair jaillit du lanceur en ligne de 30 m de long et 1,50 m de large, dans la direction de son choix : chaque créature touchée fait un jet de sauvegarde de Dextérité et subit 8d6 dégâts de foudre en cas d'échec, moitié en cas de réussite. +1d6 par niveau d'emplacement au-delà du 3e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "8d6",
+        "type": "foudre"
+      }
+    ],
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "esprits-gardiens",
+    "nom": "Esprits gardiens",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "emanation",
+      "taille": 4.5
+    },
+    "composantes": "V, S, M (un parchemin de prière)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Des esprits protecteurs forment une émanation de 4,50 m autour du lanceur (qui peut exclure des créatures à l'incantation). Les autres créatures y voient leur Vitesse réduite de moitié ; la première fois d'un tour qu'une créature y entre, y commence ou y termine son tour, elle fait un jet de sauvegarde de Sagesse et subit 3d8 dégâts radiants (lanceur bon ou neutre) ou nécrotiques (lanceur mauvais) en cas d'échec, moitié en cas de réussite. +1d8 par niveau d'emplacement au-delà du 3e."
+  },
+  {
+    "id": "forme-gazeuse",
+    "nom": "Forme gazeuse",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un peu de gaze)",
+    "duree": "1 heure",
+    "concentration": true,
+    "resume": "Une créature consentante touchée devient un nuage de brume avec son équipement : Vitesse de vol 3 m (vol stationnaire), Résistance aux dégâts contondants, perforants et tranchants, Immunité à l'état À terre, Avantage aux JS de Force, Dextérité et Constitution ; elle peut passer par les ouvertures les plus étroites mais ne peut ni parler, ni manipuler d'objets, ni attaquer, ni lancer de sorts. +1 créature par niveau d'emplacement au-delà du 3e.",
+    "ameliorationParNiveau": "1 créature"
+  },
+  {
+    "id": "fusion-dans-la-pierre",
+    "nom": "Fusion dans la pierre",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "clerc",
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Peut être lancé en rituel. Le lanceur et son équipement fusionnent avec un objet ou une surface de pierre assez grande, invisible et indétectable par des moyens non magiques ; il n'y voit plus à l'extérieur, peut lancer des sorts sur lui-même et ne peut se déplacer que de 1,50 m pour ressortir (ce qui met fin au sort). Si la pierre est partiellement détruite ou modifiée, il en est éjecté avec 6d6 dégâts de force ; si elle est totalement détruite, 50 dégâts de force. Dans les deux cas il se retrouve À terre."
+  },
+  {
+    "id": "glyphe-de-garde",
+    "nom": "Glyphe de garde",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S, M (poudre de diamant d'une valeur minimale de 200 po, que le sort détruit)",
+    "duree": "jusqu'à dissipation ou activation",
+    "concentration": false,
+    "resume": "Incantation d'1 heure. Le lanceur inscrit un glyphe quasi imperceptible (diamètre max. 3 m, sur une surface ou dans un objet qui ferme) et choisit son déclencheur. Soit une rune explosive : sphère de 6 m de rayon, JS de Dextérité, 5d8 dégâts d'acide, de feu, de foudre, de froid ou de tonnerre (au choix) en cas d'échec, moitié en cas de réussite ; soit un glyphe à sort : un sort de niveau 3 ou moins ciblant une créature ou une zone y est stocké et prend effet sur l'intrus. +1d8 par niveau d'emplacement au-delà du 3e (rune explosive)."
+  },
+  {
+    "id": "hate",
+    "nom": "Hâte",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un copeau de racine de réglisse)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une créature consentante visible a sa Vitesse doublée, +2 à la CA, l'Avantage aux JS de Dextérité et une action supplémentaire par tour (Attaque avec une seule attaque d'arme, Désengagement, Furtivité, Pointe ou Utilisation). Quand le sort prend fin, la cible est Neutralisée et sa Vitesse tombe à 0 jusqu'à la fin de son tour suivant."
+  },
+  {
+    "id": "image-majeure",
+    "nom": "Image majeure",
+    "niveau": 3,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un peu de laine brute)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Crée l'image d'un objet, d'une créature ou d'un phénomène, avec sons, odeurs et température, qui tient dans un cube de 6 m ; elle ne peut infliger ni dégâts ni états. Le lanceur peut la déplacer et la modifier par une action Magie. Toute interaction physique la perce, et une action Étude réussie (test d'Investigation contre le DD de sauvegarde des sorts) révèle l'illusion. Avec un emplacement du 4e niveau ou plus, le sort dure jusqu'à dissipation sans Concentration."
+  },
+  {
+    "id": "invocation-d-animaux",
+    "nom": "Invocation d'animaux",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Une meute d'esprits animaux intangibles de taille G apparaît à portée et persiste pour la durée. Le lanceur a l'Avantage aux JS de Force à 1,50 m ou moins d'elle et peut la déplacer de 9 m à chacun de ses tours. Quand la meute entre à 3 m d'une créature visible, ou qu'une créature visible entre à 3 m de la meute ou y termine son tour, le lanceur peut lui imposer un JS de Dextérité (une fois par tour) : 3d10 dégâts tranchants en cas d'échec. +1d10 par niveau d'emplacement au-delà du 3e.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "3d10",
+        "type": "tranchant"
+      }
+    ],
+    "ameliorationParNiveau": "1d10"
+  },
+  {
+    "id": "lenteur",
+    "nom": "Lenteur",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 12
+    },
+    "cibles": 6,
+    "composantes": "V, S, M (une goutte de mélasse)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Jusqu'à 6 créatures au choix dans un cube de 12 m à portée font un jet de sauvegarde de Sagesse. En cas d'échec, une cible a sa Vitesse réduite de moitié, -2 à la CA et aux JS de Dextérité, ne peut pas jouer de Réactions, ne peut faire qu'une action ou une action Bonus par tour et qu'une seule attaque avec l'action Attaque ; ses sorts à composante somatique ont 25 % de chances d'échouer. Elle refait le JS à la fin de chacun de ses tours.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "lueur-d-espoir",
+    "nom": "Lueur d'espoir",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Autant de créatures que le lanceur le souhaite à portée ont l'Avantage aux jets de sauvegarde de Sagesse et aux JS contre la mort, et récupèrent le maximum possible de points de vie chaque fois qu'on les soigne."
+  },
+  {
+    "id": "lumiere-du-jour",
+    "nom": "Lumière du jour",
+    "niveau": 3,
+    "ecole": "évocation",
+    "classes": [
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 18
+    },
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "La lumière du soleil emplit une sphère de 18 m de rayon centrée sur un point à portée (Lumière vive, plus Lumière faible sur 18 m de plus). Elle peut aussi être lancée sur un objet non porté, ce qui produit une émanation de 18 m centrée dessus (bloquée si l'objet est recouvert d'une surface opaque). Elle dissipe toute zone de Ténèbres créée par un sort de niveau 3 ou moins avec laquelle elle se chevauche."
+  },
+  {
+    "id": "malediction",
+    "nom": "Malédiction",
+    "niveau": 3,
+    "ecole": "nécromancie",
+    "classes": [
+      "barde",
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une créature touchée fait un jet de sauvegarde de Sagesse ; en cas d'échec elle est maudite et le lanceur choisit un effet : Désavantage aux tests et JS d'une caractéristique, Désavantage aux attaques contre le lanceur, JS de Sagesse en début de tour sous peine de devoir Esquiver, ou +1d8 dégâts nécrotiques quand le lanceur lui inflige des dégâts. Aux niveaux supérieurs, la durée augmente (concentration 10 minutes au 4e niveau ; plus de concentration et 8 heures aux 5e et 6e niveaux, 24 heures aux 7e et 8e, jusqu'à dissipation au 9e).",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "marche-sur-l-onde",
+    "nom": "Marche sur l'onde",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 10,
+    "composantes": "V, S, M (un morceau de liège)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Peut être lancé en rituel. Jusqu'à 10 créatures consentantes à portée peuvent se déplacer sur toute surface liquide (eau, acide, boue, neige, sables mouvants, lave) comme sur un sol solide. Une cible peut s'immerger ou ressortir du liquide par une action Bonus ; une cible qui tombe dans le liquide le traverse et se retrouve immergée."
+  },
+  {
+    "id": "monture-fantome",
+    "nom": "Monture fantôme",
+    "niveau": 3,
+    "ecole": "illusion",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Incantation d'1 minute (ou rituel). Une créature chevaline quasi réelle de taille G, sellée et bridée, apparaît ; le lanceur ou une créature désignée peut la chevaucher. Elle a le profil du cheval de selle avec une Vitesse de 30 m (19,5 km en une heure). Elle s'efface quand le sort prend fin (1 minute pour descendre) ou dès qu'elle subit le moindre dégât, et son équipement disparaît à plus de 3 m d'elle."
+  },
+  {
+    "id": "mot-de-guerison-de-groupe",
+    "nom": "Mot de guérison de groupe",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 6,
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Jusqu'à 6 créatures au choix visibles à portée récupèrent 2d4 + le modificateur de caractéristique d'incantation du lanceur en points de vie. +1d4 par niveau d'emplacement au-delà du 3e.",
+    "soins": {
+      "des": "2d4",
+      "ajouterModificateur": true
+    },
+    "ameliorationParNiveau": "1d4"
+  },
+  {
+    "id": "motif-hypnotique",
+    "nom": "Motif hypnotique",
+    "niveau": 3,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 9
+    },
+    "composantes": "S, M (une pincée de confettis)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Un motif de couleurs apparaît dans un cube de 9 m à portée. Chaque créature de la zone qui le voit fait un jet de sauvegarde de Sagesse ; en cas d'échec elle est Charmée et Neutralisée, avec une Vitesse de 0. L'effet cesse pour une créature qui subit des dégâts ou si quelqu'un consacre une action à la secouer pour la sortir de son hébétude.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      },
+      {
+        "etat": "neutralise"
+      }
+    ]
+  },
+  {
+    "id": "mur-de-vent",
+    "nom": "Mur de vent",
+    "niveau": 3,
+    "ecole": "évocation",
+    "classes": [
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un éventail et une plume)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Un mur de vent fort, haut de 4,50 m au maximum, long de 15 m et épais de 30 cm, jaillit du sol en un point à portée (forme libre, mais au contact du sol). À son apparition, chaque créature dans son espace fait un jet de sauvegarde de Force et subit 4d8 dégâts contondants en cas d'échec, moitié en cas de réussite. Il repousse brouillard et gaz, bloque les créatures et objets volants de taille P ou inférieure, et dévie vers le haut les projectiles ordinaires qui ratent automatiquement.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "for",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "4d8",
+        "type": "contondant"
+      }
+    ]
+  },
+  {
+    "id": "nuage-nauseabond",
+    "nom": "Nuage nauséabond",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 6
+    },
+    "composantes": "V, S, M (un œuf pourri)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une sphère de 6 m de rayon de vapeurs jaunes (Visibilité nulle) se forme en un point à portée et flotte sur place, à moins qu'un vent fort la disperse. Chaque créature qui commence son tour dedans fait un jet de sauvegarde de Constitution ; en cas d'échec elle est Empoisonnée jusqu'à la fin du tour en cours et ne peut entreprendre ni action ni action Bonus.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "empoisonne",
+        "dureeRounds": 1
+      }
+    ]
+  },
+  {
+    "id": "petite-hutte",
+    "nom": "Petite hutte",
+    "niveau": 3,
+    "ecole": "évocation",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "emanation",
+      "taille": 3
+    },
+    "composantes": "V, S, M (une bille de cristal)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Incantation d'1 minute (ou rituel). Une émanation immobile de 3 m apparaît autour du lanceur (le sort échoue si elle n'englobe pas toutes les créatures de sa zone). Les créatures et objets qui s'y trouvent peuvent y circuler librement ; tous les autres ne peuvent la traverser, pas plus que les sorts du 3e niveau ou inférieur. L'intérieur est sec et agréable, au choix faiblement éclairé ou enténébré ; l'émanation est opaque de l'extérieur, transparente de l'intérieur. Le sort prend fin si le lanceur la quitte ou le relance."
+  },
+  {
+    "id": "protection-contre-l-energie",
+    "nom": "Protection contre l'énergie",
+    "niveau": 3,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": true,
+    "resume": "La créature consentante touchée gagne la Résistance à un type de dégâts au choix du lanceur : acide, feu, foudre, froid ou tonnerre."
+  },
+  {
+    "id": "respiration-aquatique",
+    "nom": "Respiration aquatique",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 10,
+    "composantes": "V, S, M (un court roseau)",
+    "duree": "24 heures",
+    "concentration": false,
+    "resume": "Peut être lancé en rituel. Jusqu'à 10 créatures consentantes à portée peuvent respirer sous l'eau pendant 24 heures tout en conservant leurs autres modes respiratoires."
+  },
+  {
+    "id": "retour-a-la-vie",
+    "nom": "Retour à la vie",
+    "niveau": 3,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un diamant d'une valeur minimale de 300 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Ramène à la vie, avec 1 point de vie, une créature morte depuis moins d'une minute. Le sort est sans effet sur une créature morte de vieillesse et ne restitue pas l'anatomie manquante."
+  },
+  {
+    "id": "tempete-de-neige",
+    "nom": "Tempête de neige",
+    "niveau": 3,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 45
+    },
+    "zone": {
+      "forme": "cylindre",
+      "taille": 3
+    },
+    "composantes": "V, S, M (un parapluie miniature)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "De la neige tombe dans un cylindre de 12 m de haut et 6 m de diamètre centré sur un point à portée : Visibilité nulle, flammes nues éteintes, sol en Terrain difficile. Une créature qui y entre pour la première fois d'un tour ou y commence son tour fait un jet de sauvegarde de Dextérité, sous peine d'être À terre et de perdre sa Concentration.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "a-terre"
+      }
+    ]
+  },
+  {
+    "id": "terreur",
+    "nom": "Terreur",
+    "niveau": 3,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "cone",
+      "taille": 9
+    },
+    "composantes": "V, S, M (une plume blanche)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Chaque créature dans un cône de 9 m fait un jet de sauvegarde de Sagesse ; en cas d'échec elle lâche ce qu'elle tient et est Effrayée : elle doit entreprendre l'action Pointe à chaque tour pour s'éloigner du lanceur par le chemin le plus sûr. Si elle termine son tour sans le voir, elle refait le JS et le sort prend fin pour elle en cas de réussite.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "effraye"
+      }
+    ]
+  },
+  {
+    "id": "vol",
+    "nom": "Vol",
+    "niveau": 3,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une plume)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "La créature consentante touchée acquiert une Vitesse de vol de 18 m et le vol stationnaire pour la durée ; quand le sort prend fin, elle tombe si elle est encore dans les airs et ne peut arrêter sa chute. +1 créature par niveau d'emplacement au-delà du 3e.",
+    "ameliorationParNiveau": "1 créature"
+  }
+]

@@ -1,0 +1,94 @@
+{
+  "id": "sbire-gobelin",
+  "nom": "Sbire gobelin",
+  "taille": "P",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Chaotique Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 7,
+    "des": "2d6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 15,
+    "con": 10,
+    "int": 10,
+    "sag": 8,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "commun, gobelin",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "dague-cac",
+      "nom": "Dague (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "dague-lancer",
+      "nom": "Dague (lancer)",
+      "cout": "action",
+      "resume": "À distance +4, portée 6/18 m : 4 (1d4 + 2) dégâts perforants. Le sbire porte 3 dagues.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "Le gobelin entreprend l'action Désengagement ou Furtivité."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

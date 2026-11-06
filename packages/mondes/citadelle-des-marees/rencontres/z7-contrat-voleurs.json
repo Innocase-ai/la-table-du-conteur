@@ -1,0 +1,75 @@
+[
+  {
+    "id": "cit-r-voleurs-d-huile",
+    "nom": "Les voleurs d'huile",
+    "type": "mixte",
+    "lieu": "cit-jardins-de-falaise",
+    "difficulte": "faible",
+    "intro": "La nuit est tombée sur les jardins de falaise, et l'air sent la terre mouillée et le sel. Une lanterne voilée, posée contre un muret, ne montre qu'un cercle de pierre grise. Plus bas sur le chemin, une jarre racle la pierre, puis un sifflement bref répond dans le noir.",
+    "monstres": [
+      { "profil": "bandit", "nombre": 2, "nom": "Pilleurs d'huile" },
+      { "profil": "eclaireur", "nombre": 1, "nom": "Guetteur" }
+    ],
+    "carte": [
+      "############",
+      "#TT.m....eT#",
+      "#HH..R.....#",
+      "#HH.m.~..m.#",
+      "#HH.e.ee..R#",
+      "#..T.....TT#",
+      "############"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "Les pilleurs avancent en file le long du muret, jarre en main ; le guetteur reste en retrait sur le rocher et siffle au moindre mouvement.",
+      "fuite": "Dès qu'un pilleur tombe, les autres lâchent les jarres et filent vers la falaise ; le guetteur part le dernier.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "surprendre-en-silence",
+        "nom": "Je les laisse entrer dans le jardin et je les prends à revers, sans un bruit.",
+        "resume": "Les voleurs gagnent le jardin à pas de loup, sans se douter qu'on les attend derrière les murets. Il suffit de les prendre à revers avant qu'ils n'aient chargé la première jarre.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "effets": [
+          { "flag": "cit-voleurs-regles" },
+          { "xp": 50 },
+          { "narration": "Les jarres restent sur le chemin, et les voleurs s'enfuient vers la falaise sans demander leur reste." }
+        ],
+        "echec": [
+          {
+            "narration": "Une branche craque sous votre pied. Le guetteur siffle, et les voleurs disparaissent dans le noir en laissant la boue de leurs bottes derrière eux."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "racheter-la-nuit",
+        "nom": "Je leur donne de quoi quitter la côte avant l'aube.",
+        "resume": "Les voleurs ne cherchent pas la bagarre : ils acceptent une bourse et promettent de ne plus remettre les pieds sur la côte. L'argent sonne sur la pierre, et le guetteur compte les pièces avant de faire signe.",
+        "condition": {
+          "pieces": { "min": 30 }
+        },
+        "effets": [
+          { "pieces": -30 },
+          { "flag": "cit-voleurs-regles" },
+          { "flag": "cit-voleurs-rachetes" },
+          { "attitude": { "pnj": "gudrun-lanterne", "delta": -5 } },
+          { "xp": 20 },
+          { "narration": "Gudrun l'apprend au matin, et ça ne lui plaît pas : « On ne paie pas les voleurs d'huile. »" }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      { "flag": "cit-voleurs-regles" },
+      { "xp": 40 }
+    ]
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "sauvegardes": {
+    "for": 7,
+    "con": 8,
+    "sag": 4
+  },
+  "competences": {},
+  "resistances": [
+    "feu",
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "puanteur",
+      "nom": "Puanteur",
+      "resume": "JS Constitution DD 16, toute créature qui commence son tour dans une Émanation de 3 m centrée sur le hezrou. Échec : la cible subit l'état Empoisonné jusqu'au début de son tour suivant."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le hezrou a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-demoniaque",
+      "nom": "Restauration démoniaque",
+      "resume": "Si le hezrou meurt hors des Abysses, son corps se dissout en ichor et il en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part dans les Abysses."
+    }
+  ],
+  "id": "hezrou",
+  "nom": "Hezrou",
+  "taille": "G",
+  "type": "Fiélon (Démon)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 157,
+    "des": "15d10 + 75"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 17,
+    "con": 20,
+    "int": 5,
+    "sag": 12,
+    "cha": 13
+  },
+  "initiative": 6,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "abyssal ; télépathie 36 m",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le hezrou effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 6 (1d4 + 4) dégâts tranchants plus 9 (2d8) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "bond",
+      "nom": "Bond",
+      "cout": "bonus",
+      "resume": "Le hezrou effectue un saut d'un maximum de 9 m en dépensant 3 m de déplacement.",
+      "portee": {
+        "type": "personnel"
+      }
+    }
+  ]
+}

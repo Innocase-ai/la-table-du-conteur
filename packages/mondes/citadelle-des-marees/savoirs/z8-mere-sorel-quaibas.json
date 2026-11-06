@@ -1,0 +1,153 @@
+[
+  {
+    "pnj": "mere-sorel-quaibas",
+    "passe": "Mère Sorel Quaibas est née dans le quartier des égouts à marée de Port-aux-Cordes, fille d'une contrebandière. Enfant, elle traînait sur le quai d'Aubert Hautecôte, le cordier, qui lui a appris les nœuds. Elle dirige les Rats de quai depuis dix-huit ans, depuis que le Père Gorge, son prédécesseur, a été arrêté par la Ligue et pendu au phare du port. Le clerc qui signa le mandat, un jeune scribe nommé Osric Vent, est aujourd'hui Maître de la Ligue. Elle ne l'a jamais oublié non plus.",
+    "liens": [
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "une vieille connaissance du quai",
+        "opinion": "Elle lui doit quelque chose et ne l’a pas encore rendu : « la dette se rend », dit-elle."
+      },
+      {
+        "pnj": "maitre-osric-vent",
+        "nature": "le scribe du mandat",
+        "opinion": "Elle reconnaît son écriture entre mille et le tient pour un homme qui écrit proprement les ordres des autres, ce qui ne l'excuse pas d'avoir signé celui du Père Gorge."
+      },
+      {
+        "pnj": "joss-la-rame",
+        "nature": "le tavernier du Hareng",
+        "opinion": "Un bavard à surveiller. Un soir, elle lui a fait boire de l'eau salée pour le faire taire, et il n'a plus parlé de la journée."
+      },
+      {
+        "pnj": "prieur-anselme-vareuil",
+        "nature": "le Prieur de la Citadelle",
+        "opinion": "Elle ne le connaît que par ses effets : il paie toujours le prix annoncé, sans discuter, et elle l'aime bien pour ça."
+      },
+      {
+        "qui": "Père Gorge",
+        "nature": "son prédécesseur chez les Rats",
+        "opinion": "Un homme qui a cru que la Ligue ne pendait pas les Rats. Elle ne prononce son nom qu'à voix basse."
+      },
+      {
+        "pnj": "por-hennequin-lacet",
+        "nature": "l'apprenti qui a repris l'atelier d'Aubert",
+        "opinion": "Il nouait plus lentement qu'elle, et ne l'a jamais admis. Elle lui reconnaît de payer ses dettes au juste prix."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "les-noeuds-du-quai",
+        "texte": "Enfant, sur le quai d'Aubert, elle comptait les nœuds de chanvre plus vite que le cordier lui-même. Il riait, refaisait son compte à voix haute, un bout de cordage à la main, et recommençait pour le plaisir."
+      },
+      {
+        "id": "odeur-du-goudron",
+        "texte": "Depuis cette tombée à l'eau, elle ne se baigne plus. L'odeur du goudron chaud lui serre la gorge, et elle se tient toujours du côté intérieur d'un quai, jamais au bord. Elle n'en parle à personne.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "elle regarde l’eau du quai et change de sujet : les Rats n’ont pas peur de l’eau"
+      },
+      {
+        "id": "nuits-contre-la-porte",
+        "texte": "Les premières semaines où elle a pris les Rats en main, elle dormait assise, le dos contre la porte de l'entrepôt des Rats, un couteau de galerie sur les genoux. Elle ne s'est jamais allongée dans cet entrepôt.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "elle sourit sans répondre et compte la monnaie dans sa poche"
+      },
+      {
+        "id": "cordelette-de-lin",
+        "texte": "Une cordelette de lin brun, grise de poussière, qu'elle noue et dénoue entre le pouce et l'index pendant qu'elle marchande. Un nœud fait une faveur, et un nœud défait la rend."
+      },
+      {
+        "id": "eau-de-vie-de-prune",
+        "texte": "Elle boit de l'eau-de-vie de prune salée, au goulot, debout, jamais assise à la table d'un client. Le goût est âpre, il sent la pierre mouillée et la prune trop mûre, et elle dit que le sel empêche de mentir."
+      },
+      {
+        "id": "cire-des-cornes",
+        "texte": "Chaque soir, elle polit ses cornes avec un chiffon de laine et de la cire d'abeille, en se regardant dans le verre noir de la fenêtre. Elle dit que la cire tient le froid du port mieux que la graisse."
+      },
+      {
+        "id": "avis-sur-la-ligue",
+        "texte": "La Ligue, pour elle, c'est une bande de scribes qui ont trouvé des soldats : les scribes écrivent les lois sur des registres propres, et les soldats les font respecter sur les quais. Elle s'en moque comme d'une averse."
+      },
+      {
+        "id": "avis-sur-le-port",
+        "texte": "Le port est son jardin : elle connaît chaque pavé du quai aux Cordes, chaque grille des égouts à marée, chaque ivrogne de la taverne du Hareng. Un étranger qui crache par terre, elle le voit avant qu'il ait fini."
+      },
+      {
+        "id": "avis-sur-les-nouveaux",
+        "texte": "Les nouveaux, elle les juge à la façon qu'ils ont de poser leur bourse sur la table. Ça se paie, les nouveaux, dit-elle, et elle a toujours raison sur le prix, même quand elle le fixe trop haut."
+      },
+      {
+        "id": "prix-compte-a-rebours",
+        "texte": "Un marin lui a demandé deux fois le prix d'une barque, et elle a répondu deux chiffres différents, avec le même sourire. Il a fini par rire, a payé le second, et jure depuis qu'elle avait compté à rebours."
+      },
+      {
+        "id": "ecriture-reconnue",
+        "texte": "Une lettre écrite à la plume fine, les liaisons droites, les « g » ouverts : elle reconnaîtrait l'écriture d'Osric Vent entre mille, et elle se méfie de toute lettre qui ressemble à celle-là."
+      },
+      {
+        "id": "la-dette-se-rend",
+        "texte": "« La dette se rend », dit-elle souvent, les mains dans les poches. Une dette ne s'oublie pas : elle se rend, à son heure, avec le prix convenu d'avance."
+      },
+      {
+        "id": "la-dette-d-ysmene",
+        "texte": "À neuf ans, elle est tombée à l’eau au bout du quai d’Aubert Hautecôte. Aubert a lancé une corde, et sa fille Ysmène, 24 ans, de passage chez son père, l’a tirée de l’eau. Sorel n’a jamais payé cette dette, et ne l’a jamais oubliée.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "elle noue sa cordelette plus serré et dit qu’une dette, ça ne se raconte pas, ça se rend"
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-filets",
+        "fait": "f-por-filets-coupes-par-rats",
+        "version": "Elle dit que les filets de la halle sont coupés par ceux qui veulent que la halle ait faim, parce que la faim fait monter le prix du sel. Elle ne nie pas qu'il y ait des Rats dans les galeries, mais ne dit pas que ce sont les siens.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Elle hausse les épaules et désigne les galeries du menton, sans un mot de plus.",
+        "tabou": []
+      },
+      {
+        "id": "les-caisses",
+        "fait": "f-por-caisses-faux-noms",
+        "version": "Les caisses des entrepôts portent des noms de sel qui ne sont pas les leurs. La vraie marchandise dort dans la cale, sous le plancher, et il faut sa présence pour ouvrir la trappe.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Elle tapote la caisse la plus proche du pied, et change de sujet : le sel se vend au poids, dit-elle.",
+        "tabou": [
+          "faux noms",
+          "sous le plancher"
+        ]
+      },
+      {
+        "id": "les-passages",
+        "fait": "f-rats-vendent-les-passages",
+        "version": "Les Rats vendent des passages : une barque, une porte, un bout de quai à marée basse, par les chaussées et les égouts. Qui paie pour savoir qui passe, elle ne le dit pas, mais la Ligue paie plus cher que quiconque.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle sourit sans répondre et compte les doigts de sa main gauche, comme on compte une somme qu'on ne dira pas.",
+        "tabou": [
+          "Chancelier"
+        ]
+      },
+      {
+        "id": "la-ligue-et-la-cellule",
+        "fait": "f-ligue-et-phare-cellule",
+        "version": "La Ligue, dit-elle, veut enfermer quelqu'un dans un phare scellé, pour que la mer n'ait plus personne à réclamer. Elle appelle ça de la sagesse.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle serre sa cordelette et répond qu'à la Ligue, les phares ne servent qu'à compter les naufragés.",
+        "tabou": [
+          "phare-cellule"
+        ]
+      }
+    ]
+  }
+]

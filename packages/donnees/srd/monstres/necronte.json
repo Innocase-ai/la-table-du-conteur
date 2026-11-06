@@ -1,0 +1,151 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 3
+  },
+  "resistances": [
+    "nécrotique"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "sensibilite-au-soleil",
+      "nom": "Sensibilité au soleil",
+      "resume": "Tant qu'il est exposé à la lumière du soleil, le nécronte subit le Désavantage aux tests de caractéristique et aux jets d'attaque."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    }
+  ],
+  "id": "necronte",
+  "nom": "Nécronte",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 14,
+  "pv": {
+    "moyenne": 82,
+    "des": "11d8 + 33"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 14,
+    "con": 16,
+    "int": 10,
+    "sag": 13,
+    "cha": 15
+  },
+  "initiative": 4,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "commun et une autre langue",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le nécronte effectue deux attaques, réparties à sa guise entre Épée nécrotique et Arc nécrotique. Il peut remplacer l'une de ces attaques par une utilisation d'Absorption de vie.",
+      "multiattaque": [
+        {
+          "action": "epee-necrotique",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "epee-necrotique",
+      "nom": "Épée nécrotique",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts tranchants plus 4 (1d8) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "arc-necrotique",
+      "nom": "Arc nécrotique",
+      "cout": "action",
+      "resume": "À distance +4, portée 45/180 m : 6 (1d8 + 2) dégâts perforants plus 4 (1d8) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "absorption-de-vie",
+      "nom": "Absorption de vie",
+      "cout": "action",
+      "resume": "JS Constitution DD 13, une créature dans un rayon de 1,50 m. Échec : 6 (1d8 + 2) dégâts nécrotiques, et le maximum de points de vie de la cible est réduit d'un montant égal aux dégâts nécrotiques subis. Un Humanoïde tué par cette attaque se relève 24 heures plus tard comme zombi sous le contrôle du nécronte, sauf si l'Humanoïde est préalablement ramené à la vie ou si son corps est détruit. Le nécronte ne peut ainsi contrôler plus de douze zombis à la fois.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "pseudodragon",
+  "nom": "Pseudodragon",
+  "taille": "TP",
+  "type": "Dragon",
+  "alignement": "Neutre Bon",
+  "ca": 14,
+  "pv": { "moyenne": 10, "des": "3d4 + 3" },
+  "vitesse": { "marche": 4.5, "vol": 18 },
+  "caracteristiques": { "for": 6, "dex": 15, "con": 13, "int": 10, "sag": 12, "cha": 10 },
+  "sauvegardes": {},
+  "competences": { "discretion": 4, "perception": 5 },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": { "visionDansLeNoir": 18, "visionAveugle": 3, "perceptionPassive": 15 },
+  "langues": "comprend le commun et le draconique, mais ne parle pas",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le pseudodragon a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le pseudodragon effectue deux attaques de Morsure (texte du SRD tel quel).",
+      "multiattaque": [{ "action": "morsure", "nombre": 2 }]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants.",
+      "resolution": { "type": "attaque", "mode": "corps-a-corps", "bonus": 4 },
+      "portee": { "type": "contact", "allonge": 1.5 },
+      "degats": [{ "des": "1d4", "bonus": 2, "type": "perforant" }]
+    },
+    {
+      "id": "dard",
+      "nom": "Dard",
+      "cout": "action",
+      "resume": "JS Constitution DD 12, une créature que le pseudodragon voit dans un rayon de 1,50 m. Échec : 5 (2d4) dégâts de poison, et la cible subit l'état Empoisonné pendant 1 heure. Échec de 5 ou plus : tant qu'elle est Empoisonnée, la cible subit en outre l'état Inconscient, qui prend fin prématurément si la cible subit des dégâts ou si une créature dans un rayon de 1,50 m consacre une action à la réveiller.",
+      "resolution": { "type": "sauvegarde", "caracteristique": "con", "dd": 12, "moitieSiReussite": false },
+      "portee": { "type": "distance", "normale": 1.5 },
+      "degats": [{ "des": "2d4", "bonus": 0, "type": "poison" }],
+      "etats": [{ "etat": "empoisonne", "dureeRounds": 600 }]
+    }
+  ]
+}

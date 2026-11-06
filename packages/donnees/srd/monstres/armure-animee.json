@@ -1,0 +1,89 @@
+{
+  "id": "armure-animee",
+  "nom": "Armure animée",
+  "taille": "M",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 18,
+  "pv": {
+    "moyenne": 33,
+    "des": "6d8 + 6"
+  },
+  "vitesse": {
+    "marche": 7.5
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 11,
+    "con": 13,
+    "int": 1,
+    "sag": 3,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "poison",
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 6
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement, Pétrifié."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'armure effectue deux attaques de Coup.",
+      "multiattaque": [
+        {
+          "action": "coup",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "coup",
+      "nom": "Coup",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "id": "salamandre",
+  "nom": "Salamandre",
+  "taille": "G",
+  "type": "Élémentaire",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 90,
+    "des": "12d10 + 24"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 14,
+    "con": 15,
+    "int": 11,
+    "sag": 10,
+    "cha": 12
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [
+    "froid"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (igné)",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "aura-de-feu",
+      "nom": "Aura de feu",
+      "resume": "À la fin de chacun des tours de la salamandre, chaque créature choisie par la salamandre dans une Émanation de 1,50 m centrée sur elle subit 7 (2d6) dégâts de feu."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [],
+      "etats": [],
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "resume": "La salamandre effectue deux attaques de Lance de flammes. Elle peut remplacer l'une de ces attaques par une utilisation de Constriction.",
+      "multiattaque": [
+        {
+          "action": "lance-de-flammes-cac",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "lance-de-flammes-cac",
+      "nom": "Lance de flammes (corps à corps)",
+      "resume": "Corps à corps +7, allonge 1,50 m : 13 (2d8 + 4) dégâts perforants, plus 7 (2d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "lance-de-flammes-lancer",
+      "nom": "Lance de flammes (lancer)",
+      "resume": "À distance +7, portée 6/18 m : 13 (2d8 + 4) dégâts perforants, plus 7 (2d6) dégâts de feu. Touché ou raté : aussitôt après une attaque à distance, la lance retourne magiquement dans la main de la salamandre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14,
+          "sauvegardeFinDeTour": false,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "evasion": 14,
+          "sauvegardeFinDeTour": false,
+          "tailleMax": "G"
+        }
+      ],
+      "id": "constriction",
+      "nom": "Constriction",
+      "resume": "JS Force DD 15, une créature de taille G ou inférieure que la salamandre voit dans un rayon de 3 m. Échec : 11 (2d6 + 4) dégâts contondants plus 7 (2d6) dégâts de feu. La cible subit l'état Agrippé (évasion DD 14), ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5
+  },
+  "resistances": [
+    "feu",
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le quasit a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    }
+  ],
+  "id": "quasit",
+  "nom": "Quasit",
+  "taille": "TP",
+  "type": "Fiélon (Démon)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 25,
+    "des": "10d4"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 5,
+    "dex": 17,
+    "con": 10,
+    "int": 7,
+    "sag": 10,
+    "cha": 10
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 10
+  },
+  "langues": "abyssal, commun",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts tranchants, et la cible subit l'état Empoisonné jusqu'au début du tour suivant du quasit.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "action",
+      "resume": "Le quasit se métamorphose en prenant l'aspect d'une chauve-souris (Vitesse 3 m, vol 12 m), d'un mille-pattes (12 m, escalade 12 m) ou d'un crapaud (12 m, nage 12 m) ou reprend sa forme véritable. Son profil reste le même sous chaque forme, à l'exception de sa Vitesse. Rien de ce qu'il porte n'est transformé.",
+      "portee": {
+        "type": "personnel"
+      }
+    },
+    {
+      "id": "frayeur",
+      "nom": "Frayeur (1/jour)",
+      "cout": "action",
+      "resume": "JS Sagesse DD 10, une créature dans un rayon de 6 m. Échec : la cible subit l'état Effrayé. La cible réitère le JS à la fin de chacun de ses tours et met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 10,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6
+      },
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        }
+      ],
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    },
+    {
+      "id": "invisibilite",
+      "nom": "Invisibilité",
+      "cout": "action",
+      "resume": "Le quasit lance invisibilité sur lui-même, sans composante matérielle, le Charisme étant sa caractéristique d'incantation.",
+      "portee": {
+        "type": "personnel"
+      }
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+[
+ {
+  "id": "mine-hobgobeline",
+  "nom": "La mine hobgobeline",
+  "type": "donjon",
+  "parent": "dime-des-roseaux",
+  "resume": "Une mine de fer rouverte par la compagnie du Péage au-dessus des roseaux : un porche de bois, un camp dans la cour et une veine que Varg compte exploiter pendant des années.",
+  "description": "La mine occupe le flanc nord d'une colline de schiste, à une heure au-dessus du marais. Les nains de Mireval l'ont creusée il y a deux générations pour un fer médiocre mais abondant, puis l'ont abandonnée quand l'eau a monté. La compagnie de Varg l'a rouverte au printemps : elle a remis des étais, dressé une palissade autour du porche et installé son camp dans la cour des haldes. Trois lieux s'y succèdent : le camp, avec ses tentes, sa forge et la charrette de grain saisie ; le bureau du capitaine, dans l'ancienne cabane du maître de forge ; et la veine, au fond, où les prisonniers abattent le minerai. Un boyau condamné, derrière le porche, rejoint la vieille galerie gobeline, et un sentier de roseaux descend vers la cabane des passeurs. La compagnie y vit mal : la paie est en retard, la nourriture se compte, et les hommes regardent la route.",
+  "ambiance": "L'odeur de fer mouillé, de tourbe brûlée et de toile goudronnée ; le goutte-à-goutte de l'eau dans les galeries et, au loin, régulier, le choc d'une masse sur la roche.",
+  "visuel": "Un flanc de colline éventré, étayé de poutres noires, un porche de mine ceint d'une palissade de rondins ; des lanternes de suif pendent aux étais et des haldes grises descendent en pente douce vers les roseaux.",
+  "accroche": "Au-dessus des roseaux, un flanc de colline éventré, des poutres noires et une palissade ; de la fumée monte d'une cour qu'on ne voit pas.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "gro-galerie-effondree",
+    "type": "passage-secret",
+    "heures": 1,
+    "sens": "double",
+    "cache": {
+     "dd": 15,
+     "competence": "perception"
+    },
+    "description": "Sous un amas de poutres pourries, un boyau étayé file vers le nord ; un courant d'air froid sent la pierre mouillée et la vieille grotte.",
+    "retour": "Derrière l'éboulis de la galerie, un boyau de mine descend vers une lueur de lanterne et un bruit régulier de pioche."
+   },
+   {
+    "vers": "mar-cabane-des-passeurs",
+    "type": "chemin",
+    "heures": 3,
+    "sens": "double",
+    "condition": {
+     "objet": "carte-du-marais"
+    },
+    "description": "Un sentier de roseaux couchés longe la halde et descend vers l'eau ; des balises de tourbe marquent un gué à hauteur de botte.",
+    "retour": "Depuis la cabane, une piste de roseaux coupés remonte la rive jusqu'aux haldes grises et au porche de la mine."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "min-r-la-sentinelle-du-porche",
+    "declencheur": "entree",
+    "unique": true
+   }
+  ],
+  "faits": [],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ },
+ {
+  "id": "min-camp-hobgobelin",
+  "nom": "Le camp des haldes",
+  "type": "camp",
+  "parent": "mine-hobgobeline",
+  "resume": "La cour de la mine transformée en camp : tentes de toile, forge de fortune, charrette de grain sous bâche et grand feu de tourbe où Grum veille.",
+  "description": "La cour des haldes est un rectangle de terre battue, fermé par une palissade de rondins et par la falaise. Six tentes de toile goudronnée s'y alignent : celles des hommes, celle du quartier-maître, celle de l'infirmerie. Sous un auvent de planches, la forge utilise une enclume volée à Mireval et du charbon de tourbe ; un apprenti hobgobelin actionne le soufflet. La charrette du moulin est rangée contre la palissade, bâchée, ses sacs encore marqués à la farine du moulin Roux. Un feu de tourbe brûle au centre ; c'est là que Grum s'assoit, le dos à la roche. Une porte de planches mène au bureau du capitaine ; un boyau étayé part derrière la forge vers la veine. La nuit, deux hommes montent la garde ; le jour, le camp vit au rythme des wagonnets.",
+  "ambiance": "La fumée de tourbe pique les yeux ; sous les tentes, des voix basses comptent des sacs, et l'enclume sonne faux sur du fer de récupération.",
+  "visuel": "Une cour de mine battue par la pluie, des tentes de toile goudronnée, une forge abritée sous un auvent, un feu de tourbe, des sacs de grain empilés sous une bâche et des wagonnets renversés.",
+  "accroche": "Entre deux haldes, une palissade de rondins ouvre sur des tentes fumantes ; une odeur de tourbe et de grain mouillé descend de la cour.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "min-bureau-de-varg",
+    "type": "porte",
+    "heures": 0,
+    "sens": "double",
+    "description": "Au fond de la cour, une cabane de planches adossée à la roche, une porte de bois neuf et une lanterne allumée derrière la vitre.",
+    "retour": "De la cabane, un escalier de terre battue descend vers le feu du camp et les tentes de toile."
+   },
+   {
+    "vers": "min-veine-de-fer",
+    "type": "passage",
+    "heures": 0,
+    "sens": "double",
+    "description": "Un boyau étayé part derrière la forge ; l'air y sent la poussière de fer et l'on entend des coups réguliers.",
+    "retour": "Le boyau débouche près de la forge du camp ; la lumière du feu découpe les silhouettes des tentes."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "min-r-le-camp-hobgobelin",
+    "declencheur": "entree",
+    "unique": true
+   },
+   {
+    "id": "min-r-grum-le-gobelours",
+    "declencheur": "exploration",
+    "unique": true
+   }
+  ],
+  "faits": [
+   {
+    "fait": "f-charrette-saisie",
+    "decouverte": {
+     "dd": 13,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ },
+ {
+  "id": "min-bureau-de-varg",
+  "nom": "Le bureau du capitaine",
+  "type": "salle",
+  "parent": "mine-hobgobeline",
+  "resume": "L'ancienne cabane du maître de forge, devenue le poste de commandement de Varg : une table, des cartes, un poêle et une caisse de paie.",
+  "description": "Une pièce de six mètres sur quatre, taillée à moitié dans la roche et lambrissée de planches neuves. Une table de sapin, deux chaises, un poêle de fonte qui ronfle, une carte de la vallée punaisée au mur avec des épingles de laiton. Sur la tablette, un registre de comptes, la correspondance de la compagnie et un coffret de paie. Derrière un rideau de toile, un lit de camp et un coffre d'affaires personnelles. La porte est renforcée de fer ; une arbalète de garde est fixée au chambranle, détendue. Par la fenêtre, on voit la cour et le porche. C'est ici que Varg reçoit, compte et décide.",
+  "ambiance": "Le bois chaud du poêle, l'encre et le cuir ; le silence y est plus épais que dans la cour, et l'on entend Varg poser chaque objet à sa place.",
+  "visuel": "Une petite pièce lambrissée de planches claires, une table couverte de cartes et de registres, un poêle de fonte rougeoyant, des épingles de laiton sur une carte de vallée et une lanterne à capot.",
+  "accroche": "Au fond de la cour, une cabane de planches adossée à la falaise ; une lanterne brûle derrière la vitre et une arbalète pend au chambranle.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "min-veine-de-fer",
+    "type": "escalier",
+    "heures": 0,
+    "sens": "double",
+    "description": "Un escalier de bois descend derrière la cabane jusqu'à la galerie de la veine ; des voix et des coups de pioche montent.",
+    "retour": "L'escalier remonte du fond de la veine jusqu'à une porte de planches, sous le bureau du capitaine."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "min-r-varg-et-sa-garde",
+    "declencheur": "entree",
+    "unique": true
+   }
+  ],
+  "faits": [
+   {
+    "fait": "f-but-de-varg",
+    "decouverte": {
+     "dd": 14,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "impossible"
+ },
+ {
+  "id": "min-veine-de-fer",
+  "nom": "La veine de fer",
+  "type": "salle",
+  "parent": "mine-hobgobeline",
+  "resume": "Le front de taille au fond de la mine : une paroi de minerai rouillé, des étais qui chantent, un wagonnet et les prisonniers au travail.",
+  "description": "Une galerie haute de trois mètres s'enfonce dans le schiste et s'élargit en une chambre de taille. La veine affleure en traînées brunes dans la paroi grise ; des étais de pin soutiennent le toit, certains noirs et fendus. Un wagonnet rouillé attend sur des madriers ; une lampe à huile est accrochée à un clou. Au fond, une niche de sondage abrite les échantillons du vieux maître de forge. Les prisonniers y travaillent enchaînés par groupes de deux, sous la garde d'un hobgobelin ; Colin Vasseur y casse du minerai depuis trois semaines. Le sol garde des traces de purin et de poussière ; un boyau latéral, étayé de neuf, remonte vers le camp. C'est ici que la mine peut ensevelir quelqu'un sans prévenir.",
+  "ambiance": "La poussière de fer grate la gorge ; les étais craquent et l'eau suinte entre les strates, et chaque coup de masse fait tomber un filet de sable.",
+  "visuel": "Une galerie de schiste gris, des étais de pin noircis, une paroi striée de veines de fer brun-rouille, un wagonnet renversé et une lampe à huile qui fume contre la roche.",
+  "accroche": "Derrière la forge, un boyau étayé s'enfonce dans la colline ; l'air en sort chargé de poussière de fer et l'on y entend des coups sourds.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "min-abri-des-mineurs",
+    "type": "passage",
+    "heures": 0,
+    "sens": "double",
+    "description": "Au fond de la chambre de taille, un rideau de toile goudronnée cache une niche sèche où l'on peut s'asseoir à l'abri des regards."
+   },
+   {
+    "vers": "min-grotte-de-la-veine-basse",
+    "type": "escalier",
+    "heures": 0,
+    "sens": "double",
+    "description": "Au fond de la chambre de taille, un escalier de bois trempé descend vers une galerie basse où l'eau clapote."
+   }
+  ],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-mine-de-fer",
+    "decouverte": {
+     "auto": true
+    }
+   },
+   {
+    "fait": "f-colin-prisonnier",
+    "decouverte": {
+     "auto": true
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "impossible"
+ },
+ {
+  "id": "min-abri-des-mineurs",
+  "nom": "L'abri des mineurs",
+  "type": "salle",
+  "parent": "min-veine-de-fer",
+  "resume": "Une niche sèche derrière les wagonnets, avec une paillasse, une cruche et une porte de planches qui ferme de l'intérieur.",
+  "description": "Derrière un rideau de toile goudronnée, un réduit taillé dans le schiste : une paillasse de paille, une cruche d'eau, un coffre de bois sans serrure et une porte de planches qui se barre de l'intérieur. Les mineurs y dormaient à tour de rôle avant que la compagnie ne prenne la mine. L'air y est sec, la roche ne suinte pas, et l'on n'entend la veine que comme un grondement lointain. C'est le seul endroit de la mine où l'on peut souffler sans craindre un coup de pioche dans le dos.",
+  "ambiance": "La paille sèche, la pierre tiède, une lanterne baissée et le grondement étouffé des wagonnets.",
+  "visuel": "Une niche de schiste basse de plafond, une paillasse de paille, une cruche ébréchée, une porte de planches barrée et une lanterne posée à même la roche.",
+  "accroche": "Derrière les wagonnets, une toile goudronnée cache une niche sèche où la poussière de fer ne tombe pas.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "min-veine-de-fer",
+    "type": "passage",
+    "heures": 0,
+    "sens": "double",
+    "description": "Un rideau de toile goudronnée, puis trois pas dans le schiste : la niche des mineurs, sèche et silencieuse."
+   }
+  ],
+  "rencontres": [],
+  "faits": [],
+  "evenements": [],
+  "services": [],
+  "repos": "sur"
+ },
+ {
+  "id": "min-grotte-de-la-veine-basse",
+  "nom": "La veine basse",
+  "type": "grotte",
+  "parent": "min-veine-de-fer",
+  "resume": "Une galerie basse et noyée sous la veine de fer, avec un atelier de mineurs abandonné, un reliquaire et des traces de contrebande.",
+  "description": "Sous la chambre de taille, un escalier de bois descend dans une galerie basse où l'eau suinte de partout. La veine affleure ici en veines noires et lourdes ; des étais neufs voisinent des poutres pourries. Un atelier de mineurs abandonné occupe une niche : établi, enclume de campagne, outils rouillés, et un reliquaire de bois cloué au mur. Des traces de bottes récentes et des caisses à moitié vidées montrent que quelqu'un d'autre y descend.",
+  "ambiance": "L'eau qui suinte, le fer mouillé, les étais qui craquent et le clapotis d'une flaque noire au fond.",
+  "visuel": "Une galerie basse et noyée sous la mine, des veines de fer noir, un atelier de mineurs abandonné, une enclume de campagne, un reliquaire de bois et des caisses à demi vidées.",
+  "accroche": "Sous la veine, un escalier de bois trempé descend vers une lueur de fer et un clapotis qui ne s'arrête pas.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "min-veine-de-fer",
+    "type": "escalier",
+    "heures": 0,
+    "sens": "double",
+    "description": "Un escalier de bois trempé remonte vers la chambre de taille et la lumière des lanternes."
+   }
+  ],
+  "rencontres": [
+   {
+    "id": "min-r-les-contrebandiers",
+    "declencheur": "exploration",
+    "unique": true
+   },
+   {
+    "id": "min-r-la-patrouille-basse",
+    "declencheur": "exploration",
+    "unique": true
+   }
+  ],
+  "faits": [
+   {
+    "fait": "f-veine-basse",
+    "decouverte": {
+     "auto": true
+    }
+   },
+   {
+    "fait": "f-mine-effondrement",
+    "decouverte": {
+     "dd": 13,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "evenements": [],
+  "services": [],
+  "repos": "dangereux"
+ }
+]

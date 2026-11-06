@@ -1,0 +1,113 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "geant-des-collines",
+  "nom": "Géant des collines",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 105,
+    "des": "10d12 + 40"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 8,
+    "con": 19,
+    "int": 5,
+    "sag": 9,
+    "cha": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "gigant",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Arbre-massue et Lancer de détritus (modélisé : deux Arbre-massue).",
+      "multiattaque": [
+        {
+          "action": "arbre-massue",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "arbre-massue",
+      "nom": "Arbre-massue",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 18 (3d8 + 5) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "lancer-de-detritus",
+      "nom": "Lancer de détritus",
+      "cout": "action",
+      "resume": "À distance +8, portée 18/72 m : 16 (2d10 + 5) dégâts contondants, et la cible subit l'état Empoisonné jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18,
+        "longue": 72
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

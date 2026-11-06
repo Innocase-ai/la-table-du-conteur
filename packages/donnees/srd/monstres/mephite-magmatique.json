@@ -1,0 +1,118 @@
+{
+  "id": "mephite-magmatique",
+  "nom": "Méphite magmatique",
+  "taille": "P",
+  "type": "Élémentaire",
+  "alignement": "Neutre Mauvais",
+  "ca": 11,
+  "pv": {
+    "moyenne": 18,
+    "des": "4d6 + 4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 9
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 12,
+    "con": 12,
+    "int": 7,
+    "sag": 10,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 3
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [
+    "froid"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (igné, terreux)",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "explosion-finale",
+      "nom": "Explosion finale",
+      "resume": "Le méphite explose quand il meurt. JS Dextérité DD 11, chaque créature dans une Émanation de 1,50 m centrée sur le méphite. Échec : 7 (2d6) dégâts de feu. Réussite : demi-dégâts."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité à l'état suivant, non représenté dans le moteur : Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 1,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "griffe",
+      "nom": "Griffe",
+      "resume": "Corps à corps +3, allonge 1,50 m : 3 (1d4 + 1) dégâts tranchants plus 3 (1d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "resume": "Recharge 6. JS Dextérité DD 11, chaque créature dans un Cône de 4,50 m. Échec : 7 (2d6) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 11,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "recharge": "6"
+    }
+  ]
+}

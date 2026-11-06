@@ -1,0 +1,68 @@
+{
+  "id": "berserker",
+  "nom": "Berserker",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 13,
+  "pv": {
+    "moyenne": 67,
+    "des": "9d8 + 27"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 12,
+    "con": 17,
+    "int": 9,
+    "sag": 11,
+    "cha": 9
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "frenesie-du-peril",
+      "nom": "Frénésie du péril",
+      "resume": "Tant qu'il est En péril, le berserker a l'Avantage aux jets d'attaque et jets de sauvegarde."
+    }
+  ],
+  "actions": [
+    {
+      "id": "hache-a-deux-mains",
+      "nom": "Hache à deux mains",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 9 (1d12 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d12",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

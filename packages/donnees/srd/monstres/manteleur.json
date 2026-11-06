@@ -1,0 +1,150 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "id": "manteleur",
+  "nom": "Manteleur",
+  "taille": "G",
+  "type": "Aberration",
+  "alignement": "Chaotique Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 91,
+    "des": "14d10 + 14"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 12
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 15,
+    "con": 12,
+    "int": 13,
+    "sag": 14,
+    "cha": 7
+  },
+  "initiative": 5,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 12
+  },
+  "langues": "commun des profondeurs, profond",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "sensibilite-a-la-lumiere",
+      "nom": "Sensibilité à la lumière",
+      "resume": "Exposé à une Lumière vive, le manteleur subit le Désavantage aux jets d'attaque."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le manteleur effectue une attaque d'Enveloppement et deux attaques de Queue.",
+      "multiattaque": [
+        {
+          "action": "enveloppement",
+          "nombre": 1
+        },
+        {
+          "action": "queue",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "enveloppement",
+      "nom": "Enveloppement",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 13 (3d6 + 3) dégâts perforants. Si la cible est une créature de taille G ou inférieure, le manteleur l'enveloppe. Tant que la cible est enveloppée, elle subit l'état Aveuglé et le manteleur ne peut pas effectuer d'attaque d'Enveloppement sur une autre cible. En outre, le manteleur divise par deux les dégâts qu'il subit (arrondis à l'inférieur), et la cible subit le même montant de dégâts. Pour se décrocher, le manteleur doit dépenser 1,50 m de déplacement. La cible ou une créature dans un rayon de 1,50 m peut entreprendre une action pour tenter de décrocher le manteleur, ce qui nécessite de réussir un test de Force (Athlétisme) DD 14.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 8 (1d10 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "fantasmagories",
+      "nom": "Fantasmagories",
+      "cout": "bonus",
+      "resume": "(recharge après un Repos court ou long) Le manteleur lance le sort image miroir, sans composantes matérielles, la Sagesse étant sa caractéristique d'incantation. Le sort prend fin prématurément si le manteleur démarre son tour sous une Lumière vive.",
+      "utilisations": {
+        "nombre": 1,
+        "par": "repos-court"
+      },
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "lamentation",
+      "nom": "Lamentation",
+      "cout": "bonus",
+      "resume": "JS Sagesse DD 13, chaque créature dans une Émanation de 18 m centrée sur le manteleur. Échec : la cible subit l'état Effrayé jusqu'à la fin du tour suivant du manteleur. Réussite : la cible est immunisée contre la Lamentation de ce manteleur pendant 24 heures.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 18
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

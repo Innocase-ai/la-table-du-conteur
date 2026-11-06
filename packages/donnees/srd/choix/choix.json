@@ -1,0 +1,715 @@
+[
+  {
+    "id": "ascendance-draconique",
+    "nom": "Ascendance draconique",
+    "source": {
+      "type": "espece",
+      "id": "drakeide"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "dragon-airain",
+        "nom": "Dragon d'airain",
+        "resume": "Votre ancêtre est un dragon d'airain : votre Souffle inflige des dégâts de type feu et vous avez la Résistance aux dégâts de type feu.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "feu"
+          }
+        ]
+      },
+      {
+        "id": "dragon-cuivre",
+        "nom": "Dragon de cuivre",
+        "resume": "Votre ancêtre est un dragon de cuivre : votre Souffle inflige des dégâts de type acide et vous avez la Résistance aux dégâts de type acide.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "acide"
+          }
+        ]
+      },
+      {
+        "id": "dragon-argent",
+        "nom": "Dragon d'argent",
+        "resume": "Votre ancêtre est un dragon d'argent : votre Souffle inflige des dégâts de type froid et vous avez la Résistance aux dégâts de type froid.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "froid"
+          }
+        ]
+      },
+      {
+        "id": "dragon-noir",
+        "nom": "Dragon noir",
+        "resume": "Votre ancêtre est un dragon noir : votre Souffle inflige des dégâts de type acide et vous avez la Résistance aux dégâts de type acide.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "acide"
+          }
+        ]
+      },
+      {
+        "id": "dragon-blanc",
+        "nom": "Dragon blanc",
+        "resume": "Votre ancêtre est un dragon blanc : votre Souffle inflige des dégâts de type froid et vous avez la Résistance aux dégâts de type froid.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "froid"
+          }
+        ]
+      },
+      {
+        "id": "dragon-or",
+        "nom": "Dragon d'or",
+        "resume": "Votre ancêtre est un dragon d'or : votre Souffle inflige des dégâts de type feu et vous avez la Résistance aux dégâts de type feu.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "feu"
+          }
+        ]
+      },
+      {
+        "id": "dragon-bleu",
+        "nom": "Dragon bleu",
+        "resume": "Votre ancêtre est un dragon bleu : votre Souffle inflige des dégâts de type foudre et vous avez la Résistance aux dégâts de type foudre.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "foudre"
+          }
+        ]
+      },
+      {
+        "id": "dragon-rouge",
+        "nom": "Dragon rouge",
+        "resume": "Votre ancêtre est un dragon rouge : votre Souffle inflige des dégâts de type feu et vous avez la Résistance aux dégâts de type feu.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "feu"
+          }
+        ]
+      },
+      {
+        "id": "dragon-bronze",
+        "nom": "Dragon de bronze",
+        "resume": "Votre ancêtre est un dragon de bronze : votre Souffle inflige des dégâts de type foudre et vous avez la Résistance aux dégâts de type foudre.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "foudre"
+          }
+        ]
+      },
+      {
+        "id": "dragon-vert",
+        "nom": "Dragon vert",
+        "resume": "Votre ancêtre est un dragon vert : votre Souffle inflige des dégâts de type poison et vous avez la Résistance aux dégâts de type poison.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "poison"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lignage-elfique",
+    "nom": "Lignage elfique",
+    "source": {
+      "type": "espece",
+      "id": "elfe"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "drow",
+        "nom": "Drow",
+        "resume": "Votre Vision dans le noir passe à 36 m et vous connaissez le sort mineur lumières dansantes. Au niveau 3 vous apprenez lueurs féeriques, au niveau 5 ténèbres : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "vision_dans_le_noir",
+            "metres": 36
+          },
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "lumieres-dansantes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "elfe-sylvestre",
+        "nom": "Elfe sylvestre",
+        "resume": "Votre Vitesse passe à 10,50 m et vous connaissez le sort mineur druidisme. Au niveau 3 vous apprenez grande foulée, au niveau 5 passage sans trace : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "bonus_vitesse",
+            "metres": 1.5,
+            "condition": "toujours"
+          },
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "druidisme"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "haut-elfe",
+        "nom": "Haut-elfe",
+        "resume": "Vous connaissez le sort mineur prestidigitation, que vous pouvez remplacer par un autre sort mineur de Magicien après chaque Repos long. Au niveau 3 vous apprenez détection de la magie, au niveau 5 foulée brumeuse : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "prestidigitation"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lignage-gnome",
+    "nom": "Lignage gnome",
+    "source": {
+      "type": "espece",
+      "id": "gnome"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "gnome-des-forets",
+        "nom": "Gnome des forêts",
+        "resume": "Vous connaissez le sort mineur illusion mineure. Le sort communication avec les animaux est toujours préparé et vous pouvez le lancer sans emplacement autant de fois que votre bonus de maîtrise par Repos long. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "illusion-mineure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "gnome-des-roches",
+        "nom": "Gnome des roches",
+        "resume": "Vous connaissez les sorts mineurs prestidigitation et réparation. En 10 minutes, vous pouvez créer un petit appareil mécanique (taille TP, CA 5, 1 pv) qui reproduit un effet de prestidigitation quand on l'active par une action Bonus ; vous pouvez en avoir trois à la fois, chacun tombant en morceaux après 8 heures. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "prestidigitation",
+              "reparation"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ascendance-gigante",
+    "nom": "Ascendance gigante",
+    "source": {
+      "type": "espece",
+      "id": "goliath"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "brulure-ignee",
+        "nom": "Brûlure ignée (géants du feu)",
+        "resume": "Quand vous touchez une cible avec une attaque et lui infligez des dégâts, vous pouvez lui infliger 1d10 dégâts de feu supplémentaires. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "endurance-de-la-pierre",
+        "nom": "Endurance de la pierre (géants des pierres)",
+        "resume": "Quand vous subissez des dégâts, vous pouvez utiliser votre Réaction : lancez 1d12, ajoutez votre modificateur de Constitution et réduisez les dégâts de ce total. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "froid-mordant",
+        "nom": "Froid mordant (géants du givre)",
+        "resume": "Quand vous touchez une cible avec une attaque et lui infligez des dégâts, vous pouvez lui infliger 1d6 dégâts de froid supplémentaires et réduire sa Vitesse de 3 m jusqu'au début de votre tour suivant. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "renversement-des-coteaux",
+        "nom": "Renversement des coteaux (géants des collines)",
+        "resume": "Quand vous touchez une créature de taille G ou inférieure avec une attaque et lui infligez des dégâts, vous pouvez la faire tomber À terre. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "saut-des-nuees",
+        "nom": "Saut des nuées (géants des nuages)",
+        "resume": "Par une action Bonus, vous vous téléportez jusqu'à 9 m dans un espace inoccupé que vous voyez. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "tonnerre-des-cieux",
+        "nom": "Tonnerre des cieux (géants des tempêtes)",
+        "resume": "Quand une créature située à 18 m ou moins vous inflige des dégâts, vous pouvez utiliser votre Réaction pour lui infliger 1d8 dégâts de tonnerre. Utilisable autant de fois que votre bonus de maîtrise par Repos long.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "heritage-fielon",
+    "nom": "Héritage fiélon",
+    "source": {
+      "type": "espece",
+      "id": "tieffelin"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "abyssal",
+        "nom": "Abyssal",
+        "resume": "Vous avez la Résistance aux dégâts de poison et vous connaissez le sort mineur bouffée de poison. Au niveau 3 vous apprenez rayon empoisonné, au niveau 5 immobilisation de personne : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "poison"
+          },
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "bouffee-de-poison"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "chtonien",
+        "nom": "Chtonien",
+        "resume": "Vous avez la Résistance aux dégâts nécrotiques et vous connaissez le sort mineur contact glacial. Au niveau 3 vous apprenez simulacre de vie, au niveau 5 rayon affaiblissant : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "nécrotique"
+          },
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "contact-glacial"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "infernal",
+        "nom": "Infernal",
+        "resume": "Vous avez la Résistance aux dégâts de feu et vous connaissez le sort mineur trait de feu. Au niveau 3 vous apprenez représailles infernales, au niveau 5 ténèbres : chacun est toujours préparé et lançable une fois par Repos long sans emplacement. Intelligence, Sagesse ou Charisme au choix comme caractéristique d'incantation.",
+        "effets": [
+          {
+            "type": "resistance",
+            "degats": "feu"
+          },
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "trait-de-feu"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ordre-divin",
+    "nom": "Ordre divin",
+    "source": {
+      "type": "classe",
+      "id": "clerc"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "protecteur",
+        "nom": "Protecteur",
+        "resume": "Vous maîtrisez les armes de guerre et êtes formé au port des armures lourdes : un Clerc de première ligne.",
+        "effets": [
+          {
+            "type": "maitrise_armes",
+            "armes": [
+              "guerre"
+            ]
+          },
+          {
+            "type": "formation_armures",
+            "categories": [
+              "lourde"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thaumaturge",
+        "nom": "Thaumaturge",
+        "resume": "Vous connaissez un sort mineur de Clerc supplémentaire et ajoutez votre modificateur de Sagesse (minimum +1) à vos tests d'Intelligence (Arcanes et Religion).",
+        "effets": [
+          {
+            "type": "sorts_mineurs_supplementaires",
+            "nombre": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ordre-primitif",
+    "nom": "Ordre primitif",
+    "source": {
+      "type": "classe",
+      "id": "druide"
+    },
+    "nombres": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "options": [
+      {
+        "id": "gardien",
+        "nom": "Gardien",
+        "resume": "Vous maîtrisez les armes de guerre et êtes formé au port des armures intermédiaires : un Druide qui protège la nature au combat.",
+        "effets": [
+          {
+            "type": "maitrise_armes",
+            "armes": [
+              "guerre"
+            ]
+          },
+          {
+            "type": "formation_armures",
+            "categories": [
+              "intermediaire"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mage",
+        "nom": "Mage",
+        "resume": "Vous connaissez un sort mineur de Druide supplémentaire et ajoutez votre modificateur de Sagesse (minimum +1) à vos tests d'Intelligence (Arcanes et Nature).",
+        "effets": [
+          {
+            "type": "sorts_mineurs_supplementaires",
+            "nombre": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "manifestations-occultes",
+    "nom": "Manifestations occultes",
+    "source": {
+      "type": "classe",
+      "id": "occultiste"
+    },
+    "nombres": [
+      1,
+      3,
+      3,
+      3,
+      5
+    ],
+    "options": [
+      {
+        "id": "armure-d-ombres",
+        "nom": "Armure d'ombres",
+        "resume": "Vous pouvez lancer armure du mage sur vous-même sans dépenser d'emplacement de sort. Aucun prérequis.",
+        "effets": []
+      },
+      {
+        "id": "buveuse-de-vie",
+        "nom": "Buveuse de vie",
+        "resume": "Prérequis : niveau d'Occultiste 9+ et Pacte de la lame. Une fois par tour, quand vous touchez avec votre arme de pacte, vous infligez 1d6 dégâts nécrotiques, psychiques ou radiants en plus et pouvez dépenser un dé de vie pour regagner le résultat + votre modificateur de Constitution (minimum 1) en points de vie.",
+        "effets": []
+      },
+      {
+        "id": "decharge-dechirante",
+        "nom": "Décharge déchirante",
+        "resume": "Prérequis : niveau d'Occultiste 2+ et un sort mineur d'Occultiste qui inflige des dégâts. Vous ajoutez votre modificateur de Charisme aux dégâts de l'un de ces sorts mineurs. Répétable avec un sort mineur différent à chaque fois.",
+        "effets": []
+      },
+      {
+        "id": "decharge-repulsive",
+        "nom": "Décharge répulsive",
+        "resume": "Prérequis : niveau d'Occultiste 2+ et un sort mineur d'Occultiste à jet d'attaque. Quand ce sort mineur touche une créature de taille G ou inférieure, vous pouvez la repousser en ligne droite de 3 m au maximum. Répétable avec un sort mineur différent à chaque fois.",
+        "effets": []
+      },
+      {
+        "id": "engagement-du-maitre-des-chaines",
+        "nom": "Engagement du maître des chaînes",
+        "resume": "Prérequis : niveau d'Occultiste 5+ et Pacte de la chaîne. Votre familier reçoit une Vitesse de vol ou de nage de 12 m, attaque sur une action Bonus de votre part, peut infliger des dégâts radiants ou nécrotiques, utilise votre DD de sauvegarde et peut obtenir la Résistance contre des dégâts grâce à votre Réaction.",
+        "effets": []
+      },
+      {
+        "id": "enseignement-des-premiers-nes",
+        "nom": "Enseignement des Premiers-Nés",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Vous recevez un don d'origine de votre choix. Répétable avec un don d'origine différent à chaque fois.",
+        "effets": []
+      },
+      {
+        "id": "esprit-occulte",
+        "nom": "Esprit occulte",
+        "resume": "Vous avez l'Avantage aux jets de sauvegarde de Constitution pour maintenir votre Concentration. Aucun prérequis.",
+        "effets": []
+      },
+      {
+        "id": "frappe-occulte",
+        "nom": "Frappe occulte",
+        "resume": "Prérequis : niveau d'Occultiste 5+ et Pacte de la lame. Une fois par tour, quand vous touchez avec votre arme de pacte, vous pouvez dépenser un emplacement de Magie de pacte pour infliger 1d8 dégâts de force + 1d8 par niveau de l'emplacement, et faire tomber À terre une cible de taille TG ou inférieure.",
+        "effets": []
+      },
+      {
+        "id": "lame-assoiffee",
+        "nom": "Lame assoiffée",
+        "resume": "Prérequis : niveau d'Occultiste 5+ et Pacte de la lame. Vous attaquez deux fois au lieu d'une avec votre arme de pacte quand vous entreprenez l'action Attaque.",
+        "effets": []
+      },
+      {
+        "id": "lame-devorante",
+        "nom": "Lame dévorante",
+        "resume": "Prérequis : niveau d'Occultiste 12+ et Lame assoiffée. L'attaque supplémentaire de Lame assoiffée donne deux attaques de plus au lieu d'une.",
+        "effets": []
+      },
+      {
+        "id": "lance-occulte",
+        "nom": "Lance occulte",
+        "resume": "Prérequis : niveau d'Occultiste 2+ et un sort mineur d'Occultiste qui inflige des dégâts et a une portée d'au moins 3 m. La portée de ce sort mineur augmente de 9 m par niveau d'Occultiste. Répétable avec un sort mineur différent à chaque fois.",
+        "effets": []
+      },
+      {
+        "id": "maitre-des-formes",
+        "nom": "Maître des formes",
+        "resume": "Prérequis : niveau d'Occultiste 5+. Vous pouvez lancer modification d'apparence sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "maitre-des-ombres",
+        "nom": "Maître des ombres",
+        "resume": "Prérequis : niveau d'Occultiste 5+. Dans une zone de Lumière faible ou de Ténèbres, vous pouvez lancer invisibilité sur vous-même sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "mille-visages",
+        "nom": "Mille visages",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Vous pouvez lancer déguisement sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "murmures-de-la-tombe",
+        "nom": "Murmures de la tombe",
+        "resume": "Prérequis : niveau d'Occultiste 7+. Vous pouvez lancer communication avec les morts sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "pacte-de-la-chaine",
+        "nom": "Pacte de la chaîne",
+        "resume": "Vous apprenez appel de familier, lançable par l'action Magie sans emplacement, avec des formes spéciales possibles (diablotin, esprit follet, pseudodragon, quasit, sphinx merveilleux, serpent venimeux, squelette). Vous pouvez aussi renoncer à une attaque pour laisser votre familier attaquer avec sa Réaction.",
+        "effets": []
+      },
+      {
+        "id": "pacte-de-la-lame",
+        "nom": "Pacte de la lame",
+        "resume": "Par une action Bonus, vous invoquez une arme de corps à corps (courante ou de guerre) ou liez une arme magique : vous la maîtrisez, l'utilisez comme focaliseur, pouvez attaquer avec votre Charisme et infliger des dégâts nécrotiques, psychiques ou radiants à la place de ses dégâts normaux.",
+        "effets": []
+      },
+      {
+        "id": "pacte-du-grimoire",
+        "nom": "Pacte du grimoire",
+        "resume": "Un grimoire d'ombres apparaît à la fin de chaque Repos court ou long : vous y choisissez trois sorts mineurs et deux sorts de niveau 1 à rituel, de n'importe quelle classe, préparés comme des sorts d'Occultiste. Il sert aussi de focaliseur d'incantation.",
+        "effets": []
+      },
+      {
+        "id": "pas-aerien",
+        "nom": "Pas aérien",
+        "resume": "Prérequis : niveau d'Occultiste 5+. Vous pouvez lancer lévitation sur vous-même sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "perception-transferee",
+        "nom": "Perception transférée",
+        "resume": "Prérequis : niveau d'Occultiste 5+. Par une action Bonus, vous touchez une créature consentante pour percevoir par ses sens (et profiter de ses sens spéciaux) jusqu'à la fin de votre tour suivant, prolongeable chaque tour par une action Bonus ; vous pouvez lancer des sorts depuis son espace si moins de 18 m vous séparent.",
+        "effets": []
+      },
+      {
+        "id": "present-des-profondeurs",
+        "nom": "Présent des profondeurs",
+        "resume": "Prérequis : niveau d'Occultiste 5+. Vous avez une Vitesse de nage égale à votre Vitesse, vous respirez sous l'eau et pouvez lancer respiration aquatique une fois par Repos long sans emplacement.",
+        "effets": []
+      },
+      {
+        "id": "present-des-sauveurs",
+        "nom": "Présent des sauveurs",
+        "resume": "Prérequis : niveau d'Occultiste 9+ et Pacte du grimoire. Des créatures consentantes peuvent écrire leur nom dans votre grimoire (autant que votre modificateur de Charisme, minimum 1) : l'une d'elles tombant à 0 point de vie tombe à la place à 1 point de vie, une seule fois jusqu'à votre prochain Repos long.",
+        "effets": []
+      },
+      {
+        "id": "royaumes-lointains",
+        "nom": "Royaumes lointains",
+        "resume": "Prérequis : niveau d'Occultiste 9+. Vous pouvez lancer œil du mage sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "saut-d-outre-monde",
+        "nom": "Saut d'outre-monde",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Vous pouvez lancer saut sur vous-même sans dépenser d'emplacement de sort.",
+        "effets": []
+      },
+      {
+        "id": "vigueur-fielonne",
+        "nom": "Vigueur fiélonne",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Vous pouvez lancer simulacre de vie sur vous-même sans emplacement, en obtenant automatiquement le résultat maximal du dé de points de vie temporaires.",
+        "effets": []
+      },
+      {
+        "id": "vision-du-diable",
+        "nom": "Vision du diable",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Dans un rayon de 36 m, vous voyez normalement dans la Lumière faible et dans les Ténèbres, magiques ou non.",
+        "effets": []
+      },
+      {
+        "id": "vision-sorciere",
+        "nom": "Vision sorcière",
+        "resume": "Prérequis : niveau d'Occultiste 15+. Vous avez la Vision lucide sur 9 m.",
+        "effets": []
+      },
+      {
+        "id": "visions-embrumees",
+        "nom": "Visions embrumées",
+        "resume": "Prérequis : niveau d'Occultiste 2+. Vous pouvez lancer image silencieuse sans dépenser d'emplacement de sort.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "metamagie",
+    "nom": "Métamagie",
+    "source": {
+      "type": "classe",
+      "id": "ensorceleur"
+    },
+    "nombres": [
+      0,
+      2,
+      2,
+      2,
+      2
+    ],
+    "options": [
+      {
+        "id": "sort-accelere",
+        "nom": "Sort accéléré",
+        "resume": "Coût : 2 points de Sorcellerie. Un sort qui demande 1 action se lance par une action Bonus, sauf si vous avez déjà lancé un sort de niveau 1 ou plus ce tour (et inversement).",
+        "effets": []
+      },
+      {
+        "id": "sort-ample",
+        "nom": "Sort ample",
+        "resume": "Coût : 1 point de Sorcellerie. Double la portée d'un sort de portée 1,50 m ou plus ; un sort de contact passe à une portée de 9 m.",
+        "effets": []
+      },
+      {
+        "id": "sort-chercheur",
+        "nom": "Sort chercheur",
+        "resume": "Coût : 1 point de Sorcellerie. Si votre jet d'attaque de sort échoue, vous relancez le d20 et gardez le nouveau résultat ; cumulable avec une autre option de Métamagie.",
+        "effets": []
+      },
+      {
+        "id": "sort-etendu",
+        "nom": "Sort étendu",
+        "resume": "Coût : 1 point de Sorcellerie. Double la durée d'un sort de 1 minute ou plus (24 heures maximum) ; s'il demande la Concentration, vous avez l'Avantage aux jets de sauvegarde pour la maintenir.",
+        "effets": []
+      },
+      {
+        "id": "sort-intensifie",
+        "nom": "Sort intensifié",
+        "resume": "Coût : 2 points de Sorcellerie. Une cible de votre choix a le Désavantage à son jet de sauvegarde contre ce sort.",
+        "effets": []
+      },
+      {
+        "id": "sort-jumeau",
+        "nom": "Sort jumeau",
+        "resume": "Coût : 1 point de Sorcellerie. Pour un sort qui peut cibler une créature de plus avec un emplacement de niveau supérieur, comme charme-personne, il compte comme lancé avec un niveau de plus.",
+        "effets": []
+      },
+      {
+        "id": "sort-prevenant",
+        "nom": "Sort prévenant",
+        "resume": "Coût : 1 point de Sorcellerie. Un nombre de créatures égal à votre modificateur de Charisme (minimum 1) réussissent automatiquement leur jet de sauvegarde contre ce sort et ne subissent aucun dégât même si elles en auraient subi la moitié.",
+        "effets": []
+      },
+      {
+        "id": "sort-renforce",
+        "nom": "Sort renforcé",
+        "resume": "Coût : 1 point de Sorcellerie. Relancez un nombre de dés de dégâts égal à votre modificateur de Charisme (minimum 1) et gardez les nouveaux résultats ; cumulable avec une autre option de Métamagie.",
+        "effets": []
+      },
+      {
+        "id": "sort-subtil",
+        "nom": "Sort subtil",
+        "resume": "Coût : 1 point de Sorcellerie. Vous lancez le sort sans composantes verbale, somatique ni matérielle, sauf composantes matérielles consommées ou ayant un coût.",
+        "effets": []
+      },
+      {
+        "id": "sort-transmute",
+        "nom": "Sort transmuté",
+        "resume": "Coût : 1 point de Sorcellerie. Vous changez le type de dégâts d'un sort parmi acide, feu, foudre, froid, poison et tonnerre en un autre de cette liste.",
+        "effets": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,168 @@
+{
+  "id": "diable-barbele",
+  "nom": "Diable barbelé",
+  "taille": "M",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 110,
+    "des": "13d8 + 52"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 17,
+    "con": 18,
+    "int": 12,
+    "sag": 14,
+    "cha": 14
+  },
+  "sauvegardes": {
+    "for": 6,
+    "con": 7,
+    "sag": 5,
+    "cha": 5
+  },
+  "competences": {
+    "intuition": 5,
+    "perception": 8,
+    "tromperie": 5
+  },
+  "initiative": 3,
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 18
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "vision-perce-tenebres",
+      "nom": "Vision dans le noir (perce les Ténèbres magiques)",
+      "resume": "La Vision dans le noir de ce fiélon perce les Ténèbres magiques."
+    },
+    {
+      "id": "peau-barbelee",
+      "nom": "Peau barbelée",
+      "resume": "Au début de chacun de ses tours, le diable barbelé inflige 5 (1d10) dégâts perforants à toute créature qui l'agrippe ou que lui-même agrippe."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le diable a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu'il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le diable effectue une attaque de Griffes et une de Queue, ou bien il effectue deux attaques de Jet de flammes.",
+      "multiattaque": [
+        {
+          "action": "griffes",
+          "nombre": 1
+        },
+        {
+          "action": "queue",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "griffes",
+      "nom": "Griffes",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 10 (2d6 + 3) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 13) par les deux griffes.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 14 (2d10 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "jet-de-flammes",
+      "nom": "Jet de flammes",
+      "cout": "action",
+      "resume": "À distance +5, portée 45 m : 17 (5d6) dégâts de feu. Si la cible est un objet inflammable qui n'est porté par personne, elle s'embrase.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45
+      },
+      "degats": [
+        {
+          "des": "5d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ]
+    }
+  ]
+}

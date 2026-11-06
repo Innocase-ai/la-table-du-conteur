@@ -1,0 +1,106 @@
+{
+  "id": "veteran",
+  "nom": "Vétéran",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 65,
+    "des": "10d8 + 20"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 13,
+    "con": 14,
+    "int": 10,
+    "sag": 11,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 5,
+    "perception": 2
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 12
+  },
+  "langues": "commun et une autre langue",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le vétéran effectue deux attaques d'Épée à deux mains ou d'Arbalète lourde.",
+      "multiattaque": [
+        {
+          "action": "epee-a-deux-mains",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "epee-a-deux-mains",
+      "nom": "Épée à deux mains",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "arbalete-lourde",
+      "nom": "Arbalète lourde",
+      "cout": "action",
+      "resume": "À distance +3, portée 30/120 m : 12 (2d10 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 30,
+        "longue": 120
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "cout": "reaction",
+      "resume": "Déclencheur : le vétéran est touché par un jet d'attaque de corps à corps alors qu'il tient une arme. Conséquences : il ajoute 2 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ]
+}

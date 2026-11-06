@@ -1,0 +1,131 @@
+{
+  "id": "demi-dragon",
+  "nom": "Demi-dragon",
+  "taille": "M",
+  "type": "Dragon",
+  "alignement": "Neutre",
+  "ca": 18,
+  "pv": {
+    "moyenne": 105,
+    "des": "14d8 + 42"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 14,
+    "con": 16,
+    "int": 10,
+    "sag": 15,
+    "cha": 14
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 5
+  },
+  "competences": {
+    "athletisme": 7,
+    "discretion": 5,
+    "perception": 5
+  },
+  "initiative": 5,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 3,
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "commun, draconique",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "origine-draconique",
+      "nom": "Origine draconique",
+      "resume": "Le demi-dragon est lié à un type de dragon associé à l'un des types de dégâts suivants (au choix du MJ) : acide, feu, foudre, froid ou poison. Ce choix influe sur d'autres aspects du profil. Le demi-dragon a Résistance au type de dégâts choisi ; ce type est aussi celui des dégâts supplémentaires de Griffe et de Souffle du dragon."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le demi-dragon effectue deux attaques de Griffe.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 6 (1d4 + 4) dégâts tranchants plus 7 (2d6) dégâts du type choisi pour le trait Origine draconique.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "du type de l'Origine draconique"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-du-dragon",
+      "nom": "Souffle du dragon",
+      "cout": "action",
+      "resume": "JS Dextérité DD 14, chaque créature dans un Cône de 9 m. Échec : 28 (8d6) dégâts du type choisi pour le trait Origine draconique. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 14,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "8d6",
+          "bonus": 0,
+          "type": "du type de l'Origine draconique"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "bond",
+      "nom": "Bond",
+      "cout": "bonus",
+      "resume": "Le demi-dragon effectue un saut d'un maximum de 9 m en dépensant 3 m de déplacement.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

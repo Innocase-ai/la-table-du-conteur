@@ -1,0 +1,248 @@
+[
+  {
+    "id": "z5-r-guet-apens-du-quai",
+    "nom": "Le guet-apens du quai",
+    "type": "mixte",
+    "lieu": "pl-quai",
+    "difficulte": "faible",
+    "intro": "La lumière de fin de journée glisse sur les planches goudronnées du quai. La Brise-Lame, retournée sur ses tréteaux, sert de perchoir à une poignée de mouettes, et des barriques attendent près du hangar. Dans l'ombre de celui-ci, des silhouettes se lèvent : des gardes en livrée grise, et quelques spadassins aux manteaux sombres. Octave Lamberte s'avance le premier, sa canne à la main. « Je viens réclamer, de la part du marquis de Verdelune, un livre qui lui revient. Il propose un dédommagement équitable. »",
+    "monstres": [
+      {
+        "profil": "noble",
+        "nombre": 1,
+        "nom": "Octave Lamberte"
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 3,
+        "nom": "Spadassin du marquis"
+      },
+      {
+        "profil": "garde",
+        "nombre": 4,
+        "nom": "Garde en livrée grise"
+      }
+    ],
+    "carte": [
+      "eeeeeeeeeeeeeeee",
+      "e.mm..c.....HHHe",
+      "e.mmm.....c.HHHe",
+      "e.mm..tt.......e",
+      "e.mm..tt.....HHe",
+      "e.....c.....HHHe",
+      "e..c..........ce",
+      "eeeeeeeeeeeeeeee"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Octave reste en retrait, près du hangar, et laisse ses spadassins ouvrir ; les gardes en livrée grise tiennent le milieu du quai autour de la barque retournée. Personne ne cherche à tuer : on veut le sac.",
+      "fuite": "Quand Octave tombe, ou quand la moitié de ses gens est à terre, il fait signe de cesser et embarque.",
+      "renforts": "Écrite pour 6 héros : Octave (noble), 3 spadassins (éclaireurs) puis 4 gardes, soit 425 PX. Pour 4 héros, le moteur garde Octave, ramène les spadassins à 2 et les gardes à 2 (275 PX)."
+    },
+    "alternatives": [
+      {
+        "id": "negocier-avec-octave",
+        "nom": "Je discute avec lui, poliment, et je refuse son offre.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "resume": "Vous tenez bon, et la discussion s'allonge sur le quai. Octave offre trois cents pièces d'or pour le livre, avec le sourire de celui qui sait compter. Vous refusez, calmement. Il incline la tête, sans s'offenser. « Je crains que ce ne soit pas la réponse que mon maître espérait. » D'un geste, il fait reculer ses hommes vers l'ombre du hangar. « Mon maître n'oublie pas. Le prochain navire sera plus patient, mais pas plus doux. » Il repart, et vous gardez le livre.",
+        "effets": [
+          {
+            "flag": "emissaire-neutralise"
+          },
+          {
+            "fait": "f-z5-intendant-du-marquis"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "octave-lamberte",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La discussion tourne mal. Vous répondez sèchement, et Octave se raidit. Il ajuste ses gants et juge votre manière de parler sans indulgence. D'un signe, il fait remballer ses gens. Avant de partir, il lance à voix haute : « La maison de Verdelune se souviendra de cette grossièreté. Le navire en sera averti. »"
+          },
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": 1
+            }
+          },
+          {
+            "flag": "emissaire-neutralise"
+          },
+          {
+            "fait": "f-z5-intendant-du-marquis"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "octave-lamberte",
+              "etat": "parti"
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "tromper-octave",
+        "nom": "Je lui tends un faux paquet pour qu'il croie le livre ailleurs.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "resume": "Vous avez préparé votre ruse avec soin : un paquet ficelé, lourd et bien relié, qui ressemble à s'y méprendre à un grimoire. Octave l'examine longuement, le fait tourner entre ses gants, puis défait la ficelle. Il découvre de vieux annuaires de pêche et une page de chansons à boire. Il reste un instant silencieux, puis sourit franchement. « Une fausse piste bien tenue, je vous l'accorde. » Il rassemble ses hommes et repart vers le large, persuadé que le livre se trouve ailleurs. Son navire perdra du temps, mais personne ne sera blessé.",
+        "effets": [
+          {
+            "flag": "emissaire-neutralise"
+          },
+          {
+            "fait": "f-z5-intendant-du-marquis"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "octave-lamberte",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": -1
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Octave ouvre le paquet, puis relève les yeux vers vous. Il ne se fâche pas. « Je crains que vous ne me meniez en bateau, et je vous en veux à peine. » Il sourit, rassemble ses gens et repart. Des pêcheurs, sur le quai, ont tout vu. On murmurera au village que vous jouez double."
+          },
+          {
+            "reputation": {
+              "faction": "gens-du-port",
+              "delta": -3
+            }
+          },
+          {
+            "flag": "emissaire-neutralise"
+          },
+          {
+            "fait": "f-z5-intendant-du-marquis"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "octave-lamberte",
+              "etat": "parti"
+            }
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "emissaire-neutralise"
+      },
+      {
+        "fait": "f-z5-intendant-du-marquis"
+      },
+      {
+        "pnjEtat": {
+          "pnj": "octave-lamberte",
+          "etat": "parti"
+        }
+      },
+      {
+        "narration": "Le combat dure peu, une rixe confuse entre les barriques et la barque retournée. Personne n'est tué, mais plusieurs spadassins sont à terre, et les gardes en livrée grise reculent pas à pas vers le bout du quai. Octave, le chapeau de travers, ramasse sa canne sans se presser. Il salue d'un air sec, sans un mot de plus. Puis il embarque avec ses hommes dans une barque, qui s'éloigne vers le large. Il n'aura pas le livre."
+      }
+    ]
+  },
+  {
+    "id": "z5-r-aubin-savait",
+    "nom": "Le silence du prêtre",
+    "type": "social",
+    "lieu": "eg-nef",
+    "difficulte": "faible",
+    "intro": "La nef est presque vide. Le père Aubin est assis sur le premier banc, une tisane de thym froide entre les mains. La lumière bleue du vitrail tombe sur la pierre et sur ses épaules voûtées. Il lève vers vous un visage fatigué, et vous comprenez, à sa manière de se taire, qu'il sait ce que vous savez. Il ne se défend pas. Il attend. Pendant un long moment, personne ne parle. C'est à vous de décider quoi faire de ce silence.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "lui-pardonner",
+        "nom": "Je lui dis que nous lui pardonnons.",
+        "resume": "Vous lui dites que vous lui pardonnez. Le père Aubin baisse les yeux, et sa voix se brise un peu. Il serre vos mains entre les siennes, longtemps, sans rien dire, comme on retient quelque chose qui pourrait tomber. « Enfin, dit-il doucement. Voyez-vous, je m'étais préparé à pire. » Il ajoute qu'il parlera lui-même à Tobie, sans détour, parce que c'est à lui de le faire. Il n'a pas l'air consolé, mais il n'a plus peur.",
+        "effets": [
+          {
+            "flag": "aubin-pardonne"
+          },
+          {
+            "flag": "aubin-tranche"
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 25
+            }
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "le-denoncer",
+        "nom": "Je le dénonce devant le village.",
+        "resume": "Vous le conduisez sur le parvis, devant les pêcheurs rassemblés, et vous dites ce que vous avez appris. Des murmures s'élèvent, quelques pêcheurs se détournent, une femme porte la main à sa bouche. Le père Aubin baisse la tête sans nier. Il ne crie pas, ne se défend pas. Il reste debout, blessé mais digne. Personne ne le touche, personne ne le chasse, et le silence qui suit est plus lourd que n'importe quel cri.",
+        "effets": [
+          {
+            "flag": "aubin-denonce"
+          },
+          {
+            "flag": "aubin-tranche"
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": -30
+            }
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "id": "se-taire",
+        "nom": "Je ne dis rien, et je le laisse à sa conscience.",
+        "resume": "Vous ne dites rien. Vous posez un dernier regard sur lui, puis vous vous détournez vers la porte, sans un mot. Le père Aubin reste sur son banc, la tisane entre les mains, et comprend que la décision de se confesser lui revient. Il ne vous rappelle pas. Dehors, la place de la Criée continue sa vie ordinaire.",
+        "effets": [
+          {
+            "flag": "aubin-tranche"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "depouilles": false
+    },
+    "effetsVictoire": []
+  }
+]

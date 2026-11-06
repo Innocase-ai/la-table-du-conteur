@@ -1,0 +1,172 @@
+{
+  "id": "dragon-rouge-adulte",
+  "nom": "Dragon rouge adulte",
+  "taille": "TG",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 19,
+  "pv": {
+    "moyenne": 256,
+    "des": "19d12 + 133"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 27,
+    "dex": 10,
+    "con": 25,
+    "int": 16,
+    "sag": 13,
+    "cha": 23
+  },
+  "sauvegardes": {
+    "for": 8,
+    "dex": 6,
+    "con": 7,
+    "int": 3,
+    "sag": 7,
+    "cha": 6
+  },
+  "competences": {
+    "discretion": 6,
+    "perception": 13
+  },
+  "initiative": 12,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 23
+  },
+  "langues": "commun, draconique",
+  "fp": "17",
+  "px": 18000,
+  "bonusMaitrise": 6,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 20 000 PX dans son antre (18 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après (Assaut incisif, Autorité naturelle, Rayons ignés). Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation d'Incantation pour lancer rayon ardent.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 3 m : 13 (1d10 + 8) dégâts tranchants plus 5 (2d4) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 8,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 20, +12 pour toucher) : À volonté : détection de la magie, injonction (au 2e niveau), rayon ardent. 1/jour : boule de feu.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "JS Dextérité DD 21, chaque créature dans un Cône de 18 m. Échec : 59 (17d6) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 21,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "17d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "autorite-naturelle",
+      "nom": "Autorité naturelle",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer injonction (au 2e niveau). Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "rayons-ignes",
+      "nom": "Rayons ignés",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer rayon ardent. Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+[
+  {
+    "id": "q-fer-gris-le-laissez-passer",
+    "nom": "Le laissez-passer du Fer-Gris",
+    "type": "faction",
+    "donneur": "kor-varnak",
+    "lieu": "pont-de-fer",
+    "resume": "La Compagnie du Fer-Gris tient Pont-de-Fer et connaît mieux que personne la mine de la Fosse, où une grille cachée mène sous la Haute-Forge. Son capitaine, Kor Varnak, ne laisse passer que ceux dont il est sûr. Obtenez son sceau et sa neutralité, par la parole, par un service rendu, ou par un larcin qui vous coûtera cher.",
+    "niveau": {
+      "min": 3,
+      "max": 5
+    },
+    "prerequis": {
+      "faction": {
+        "id": "compagnie-du-fer-gris",
+        "min": -50
+      }
+    },
+    "debut": "contact",
+    "etapes": [
+      {
+        "id": "contact",
+        "texte": "Présentez-vous à la caserne de Pont-de-Fer et demandez audience au capitaine Kor Varnak. Il veut savoir ce que vous venez faire dans son pays.",
+        "completion": {
+          "lieu": "pdf-caserne"
+        },
+        "suivantes": [
+          "voie-parole",
+          "voie-service",
+          "voie-vol",
+          "voie-don"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "kor-varnak",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "fait": "f-fer-gris-veut-la-forge"
+          },
+          {
+            "fait": "z6-fer-gris-origines"
+          },
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "voie-parole",
+        "texte": "Convainquez Kor Varnak par la parole : que vous respectez son peuple, que vous ne contesterez pas son droit à un foyer et que vous ne lèverez pas la main sur sa Compagnie. Il pèse chaque mot.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "fer-gris-allie"
+            },
+            {
+              "et": [
+                {
+                  "faction": {
+                    "id": "compagnie-du-fer-gris",
+                    "min": 25
+                  }
+                },
+                {
+                  "pnj": {
+                    "id": "kor-varnak",
+                    "attitudeMin": 25
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "kor-varnak",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "flag": "fer-gris-allie"
+          },
+          {
+            "objet": {
+              "id": "sceau-du-fer-gris"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 15
+            }
+          },
+          {
+            "fait": "z6-fer-gris-sincerite"
+          },
+          {
+            "fait": "z6-fer-gris-connait-la-grille"
+          },
+          {
+            "xp": 450
+          },
+          {
+            "quete": {
+              "id": "q-fer-gris-le-laissez-passer",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "voie-service",
+        "texte": "Kor Varnak voudrait que les convois du sud cessent d'être pillés. Débarrassez la route de Gaspard le Borgne et de sa bande, et il vous devra un service.",
+        "completion": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "pnj": {
+                    "id": "gaspard-le-borgne",
+                    "etat": "mort"
+                  }
+                },
+                {
+                  "pnj": {
+                    "id": "gaspard-le-borgne",
+                    "etat": "parti"
+                  }
+                },
+                {
+                  "flag": "gue-bande-vaincue"
+                },
+                {
+                  "flag": "gue-bande-dissoute"
+                }
+              ]
+            },
+            {
+              "faction": {
+                "id": "compagnie-du-fer-gris",
+                "min": -20
+              }
+            }
+          ]
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "kor-varnak",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "flag": "fer-gris-allie"
+          },
+          {
+            "objet": {
+              "id": "sceau-du-fer-gris"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 25
+            }
+          },
+          {
+            "fait": "z6-fer-gris-sincerite"
+          },
+          {
+            "fait": "z6-fer-gris-connait-la-grille"
+          },
+          {
+            "xp": 500
+          },
+          {
+            "quete": {
+              "id": "q-fer-gris-le-laissez-passer",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "voie-vol",
+        "texte": "Vous avez le sceau, mais pas la confiance de la Compagnie. Le laissez-passer vous ouvrira les portes de Pont-de-Fer, pas ses secrets : Kor Varnak saura qui l'a pris.",
+        "completion": {
+          "et": [
+            {
+              "objet": "sceau-du-fer-gris"
+            },
+            {
+              "non": {
+                "flag": "fer-gris-allie"
+              }
+            },
+            {
+              "non": {
+                "flag": "pdf-sceau-donne"
+              }
+            },
+            {
+              "faction": {
+                "id": "compagnie-du-fer-gris",
+                "max": 24
+              }
+            }
+          ]
+        },
+        "suivantes": [],
+        "echec": {
+          "pnj": {
+            "id": "kor-varnak",
+            "etat": "mort"
+          }
+        },
+        "effets": [
+          {
+            "flag": "z6-sceau-vole"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -20
+            }
+          },
+          {
+            "xp": 200
+          },
+          {
+            "quete": {
+              "id": "q-fer-gris-le-laissez-passer",
+              "statut": "terminee"
+            }
+          }
+        ],
+        "termine": true
+      },
+      {
+        "id": "voie-don",
+        "texte": "Une main amie de la Compagnie vous a glissé un sceau : vous passerez, sans être pour autant leurs alliés.",
+        "completion": {
+          "flag": "pdf-sceau-donne"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "xp": 350
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          },
+          {
+            "fait": "z6-fer-gris-connait-la-grille"
+          },
+          {
+            "quete": {
+              "id": "q-fer-gris-le-laissez-passer",
+              "statut": "terminee"
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Trois voies exclusives. Parole : attitude de Kor Varnak >= 25 et réputation du Fer-Gris >= 25, pose fer-gris-allie, remet le sceau et révèle la grille de la Fosse (fait z6-fer-gris-connait-la-grille). Service : tuer ou chasser Gaspard le Borgne, mêmes effets. Vol : le sceau est pris sans l'accord de Kor, la Compagnie devient hostile (réputation −20) et fer-gris-allie n'est pas posé : seule la porte de Pont-de-Fer s'ouvre. fer-gris-allie est lu par la Forge du Cœur (Z5) : sans lui, la fin « Livrer la Forge » n'est pas possible. Si Kor Varnak meurt, la quête échoue. Récompenses dans les effets des étapes finales (XP, réputation, objet)."
+  },
+  {
+    "id": "q-gardiens-la-braise",
+    "nom": "La braise des Gardiens",
+    "type": "faction",
+    "donneur": "hesta-cendrebrune",
+    "lieu": "vei-la-lanterne",
+    "resume": "La Lanterne s'affame. Hesta Cendrebrune demande de la houille rouge, le charbon de la Veine, pour nourrir la flamme et faire reculer la Cendre d'un cran. On en trouve dans la Fosse, dans les caches des anciens ou chez les forgerons des réfugiés.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "prerequis": {
+      "et": [
+        {
+          "faction": {
+            "id": "gardiens-de-la-veille",
+            "min": 0
+          }
+        },
+        {
+          "flag": "a-parle-a-hesta"
+        }
+      ]
+    },
+    "debut": "demande",
+    "etapes": [
+      {
+        "id": "demande",
+        "texte": "Hesta explique que la Lanterne ne brûle pas du bois qu'on lui donne : elle a faim de houille rouge, le charbon froid de la Veine. Il en reste un peu dans les mines et dans les caches des anciens.",
+        "completion": {
+          "flag": "a-parle-a-hesta"
+        },
+        "suivantes": [
+          "houille"
+        ],
+        "effets": [
+          {
+            "fait": "f-lanterne-etincelle"
+          },
+          {
+            "fait": "z6-chronologie-lanterne"
+          }
+        ]
+      },
+      {
+        "id": "houille",
+        "texte": "Trouvez de la houille rouge : un filon dans la Fosse, une cache des anciens de la Haute-Forge, ou le butin des morts qui gardent les galeries. Un pain suffit à faire reculer la Cendre d'un cran.",
+        "completion": {
+          "objet": "z6-houille-rouge"
+        },
+        "suivantes": [
+          "livraison"
+        ],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "livraison",
+        "texte": "Portez la houille à la Lanterne et déposez-la au pied de la flamme. Hesta veut voir la braise reprendre.",
+        "completion": {
+          "flag": "z6-lanterne-nourrie"
+        },
+        "suivantes": [],
+        "echec": {
+          "ou": [
+            {
+              "jauge": {
+                "id": "cendre",
+                "min": 5
+              }
+            },
+            {
+              "pnj": {
+                "id": "hesta-cendrebrune",
+                "etat": "mort"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 10
+            }
+          },
+          {
+            "fait": "f-veilleur-se-consume"
+          },
+          {
+            "fait": "z6-veilleur-actuel-mourant"
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 350,
+      "pieces": 20,
+      "objets": [
+        "potion-de-guerison"
+      ],
+      "effets": []
+    },
+    "ramifications": "La livraison est détectée par l'événement d'entrée à la Lanterne (z6-ev-houille-a-la-lanterne), qui retire un pain de houille et pose z6-lanterne-nourrie ; la Cendre baisse alors d'un cran. Une fois la quête terminée, chaque nouveau pain apporté à la Lanterne fait encore baisser la Cendre d'un cran (z6-ev-houille-encore), dans la limite de la houille trouvée. Échec : Cendre à 5 ou mort de Hesta. En remerciement, Hesta confie le secret du Veilleur."
+  }
+]

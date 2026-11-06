@@ -1,0 +1,75 @@
+{
+  "id": "hippocampe-geant",
+  "nom": "Hippocampe géant",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 16,
+    "des": "3d10"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 12,
+    "con": 11,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "L'hippocampe ne peut respirer que sous l'eau."
+    }
+  ],
+  "actions": [
+    {
+      "id": "coup-de-belier",
+      "nom": "Coup de bélier",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 9 (2d6 + 2) dégâts contondants, ou 11 (2d8 + 2) dégâts contondants si l'hippocampe s'est déplacé d'au moins 6 m en ligne droite vers la cible juste avant de la toucher.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "acceleration-bulleuse",
+      "nom": "Accélération bulleuse",
+      "cout": "bonus",
+      "resume": "Alors qu'il est sous l'eau, l'hippocampe se déplace à concurrence de la moitié de sa Vitesse de nage sans provoquer d'attaques d'Opportunité."
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

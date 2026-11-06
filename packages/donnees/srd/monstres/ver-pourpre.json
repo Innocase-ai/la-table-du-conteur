@@ -1,0 +1,159 @@
+{
+  "sauvegardes": {
+    "con": 11,
+    "sag": 4
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "perception-des-vibrations",
+      "nom": "Perception des vibrations",
+      "resume": "Perception des vibrations 18 m (non représentée dans le schéma des sens)."
+    },
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 15 m (non représentée dans le schéma des vitesses)."
+    },
+    {
+      "id": "fouisseur",
+      "nom": "Fouisseur",
+      "resume": "Le ver peut creuser à travers la roche à concurrence de la moitié de sa Vitesse de fouissement, en laissant un tunnel de 3 m de diamètre dans son sillage."
+    }
+  ],
+  "id": "ver-pourpre",
+  "nom": "Ver pourpre",
+  "taille": "Gig",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 18,
+  "pv": {
+    "moyenne": 247,
+    "des": "15d20 + 90"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 28,
+    "dex": 7,
+    "con": 22,
+    "int": 1,
+    "sag": 8,
+    "cha": 4
+  },
+  "initiative": 3,
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 9
+  },
+  "langues": "aucune",
+  "fp": "15",
+  "px": 13000,
+  "bonusMaitrise": 5,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le ver effectue une attaque de Dard caudal et une de Morsure.",
+      "multiattaque": [
+        {
+          "action": "dard-caudal",
+          "nombre": 1
+        },
+        {
+          "action": "morsure",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "dard-caudal",
+      "nom": "Dard caudal",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 3 m : 16 (2d6 + 9) dégâts perforants plus 35 (10d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 9,
+          "type": "perforant"
+        },
+        {
+          "des": "10d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +14, allonge 3 m : 22 (3d8 + 9) dégâts perforants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 19), ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 14
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 9,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 19,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "engloutissement",
+      "nom": "Engloutissement",
+      "cout": "bonus",
+      "resume": "JS Force DD 19, une créature de taille G ou inférieure Agrippée par le ver (qui peut contenir simultanément un maximum de trois créatures). Échec : la cible est engloutie par le ver, et l'état Agrippé prend fin. Une créature engloutie subit les états Aveuglé et Entravé, bénéficie d'un Abri total contre les attaques et effets émanant de l'extérieur du ver et subit 17 (5d6) dégâts d'acide au début de chacun des tours du ver. Si le ver subit 30 dégâts ou plus lors d'un même tour de la part d'une créature engloutie, il doit réussir un jet de sauvegarde de Constitution DD 21 à la fin de ce tour sous peine de régurgiter toutes les créatures englouties, chacune tombant dans un espace situé dans un rayon de 1,50 m du ver et subissant l'état À terre. Si le ver meurt, les créatures englouties ne subissent plus l'état Entravé et peuvent s'extraire du cadavre en dépensant 6 m de déplacement, pour se retrouver avec l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 19,
+        "moitieSiReussite": false
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "aveugle",
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

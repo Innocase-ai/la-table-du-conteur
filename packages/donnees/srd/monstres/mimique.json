@@ -1,0 +1,122 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [
+    "a-terre"
+  ],
+  "vulnerabilites": [],
+  "id": "mimique",
+  "nom": "Mimique",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 58,
+    "des": "9d8 + 18"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 12,
+    "con": 15,
+    "int": 5,
+    "sag": 13,
+    "cha": 8
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "engluage",
+      "nom": "Engluage (forme d'objet uniquement)",
+      "resume": "La mimique adhère à tout ce qui la touche. Une créature de taille TG ou inférieure à laquelle la mimique adhère subit l'état Agrippé (évasion DD 13). Les tests de caractéristique visant à s'extraire de cette prise subissent le Désavantage."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5 (avec Avantage si la cible est Agrippée par la mimique), allonge 1,50 m : 7 (1d8 + 3) dégâts perforants, ou 12 (2d8 + 3) dégâts perforants si la cible est Agrippée par la mimique, plus 4 (1d8) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ]
+    },
+    {
+      "id": "pseudopode",
+      "nom": "Pseudopode",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts contondants plus 4 (1d8) dégâts d'acide. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 13). Les tests de caractéristique visant à s'extraire de cette prise subissent le Désavantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "La mimique se transforme en objet de taille M ou P, tout en conservant son profil de jeu, ou bien retrouve son aspect véritable de masse informe. Rien de ce qu'elle porte n'est transformé.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

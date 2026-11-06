@@ -1,0 +1,84 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 5
+  },
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "ours-polaire",
+  "nom": "Ours polaire",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 42,
+    "des": "5d10 + 15"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 14,
+    "con": 16,
+    "int": 2,
+    "sag": 13,
+    "cha": 7
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ours effectue deux attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 9 (1d8 + 5) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 5,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

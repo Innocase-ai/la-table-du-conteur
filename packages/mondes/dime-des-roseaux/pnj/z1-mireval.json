@@ -1,0 +1,937 @@
+[
+ {
+  "id": "anselme-roux",
+  "nom": "Anselme Roux",
+  "titre": "Meunier de Mireval",
+  "espece": "humain",
+  "sexe": "M",
+  "age": "52 ans",
+  "role": "Meunier de Mireval, gardien du pacte de grain et père de Lina",
+  "lieu": "mir-moulin-roux",
+  "apparence": "Un homme large aux mains farinées, le visage rouge et les yeux cernés, un tablier de toile grise sur une chemise de laine, une barbe courte mal taillée et une bague de fer au petit doigt. Il essuie ses paumes sur son tablier dès qu'on entre.",
+  "personnalite": {
+   "traits": [
+    "patient",
+    "têtu",
+    "menteur par habitude",
+    "généreux à ses heures"
+   ],
+   "voix": "Grave et lente, avec de longs silences ; il répond à côté quand il ment, puis revient sur sa phrase comme s'il se corrigeait.",
+   "valeurs": [
+    "la survie du village",
+    "la parole donnée",
+    "le travail bien fait"
+   ],
+   "desir": "Que la paix tienne jusqu'à la fin de l'hiver et que Lina revienne au moulin.",
+   "peur": "Que le village apprenne le pacte et que Varg vienne réclamer sa part au moulin.",
+   "defaut": "Il ment par habitude, même quand la vérité servirait mieux."
+  },
+  "faction": "gens-de-mireval",
+  "attitude": -5,
+  "savoir": [
+   "f-charrette-saisie",
+   "f-grenier-vide",
+   "f-tribu-affamee",
+   "f-anselme-heritage",
+   "f-tribut-quatre-ans",
+   "f-anselme-peur"
+  ],
+  "secrets": [
+   {
+    "fait": "f-pacte-du-meunier",
+    "jet": {
+     "competence": "intuition",
+     "dd": 15
+    }
+   }
+  ],
+  "sujets": [
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "convoi",
+     "automne",
+     "dîme",
+     "saisie"
+    ],
+    "question": "Où est passée la charrette de l'automne ?",
+    "reponse": "Anselme s'essuie les mains et regarde la porte. La charrette est partie avant l'aube avec Colin Vasseur et onze sacs, comme chaque automne ; elle devait être de retour en deux jours. Elle n'est pas revenue. Il dit que les gobelins l'ont prise sur la chaussée, et il ne vous regarde pas en le disant.",
+    "revele": [
+     "f-charrette-saisie"
+    ]
+   },
+   {
+    "id": "lina",
+    "mots": [
+     "Lina",
+     "fille",
+     "disparue",
+     "enlevée",
+     "otage"
+    ],
+    "question": "Que savez-vous de Lina ?",
+    "reponse": "Sa voix se casse. Lina a suivi la charrette ce matin-là, elle a voulu savoir ce qui était arrivé au grain, et les gobelins l'ont gardée. Il répète le mot « enlevée » comme s'il le tenait entre ses doigts. Il refuse de dire comment il sait où elle est, et sa main tremble sur le rebord de la meule.",
+    "revele": []
+   },
+   {
+    "id": "le-grenier",
+    "mots": [
+     "grenier",
+     "réserve",
+     "hiver",
+     "ration",
+     "famine",
+     "sacs"
+    ],
+    "question": "Le grenier tiendra-t-il l'hiver ?",
+    "reponse": "Il dit que le grenier est plein, que le village s'inquiète pour rien, qu'un hiver est long mais qu'on a vu pire. Puis il se tait, et l'on entend l'eau passer sous le plancher. Si on insiste, il finit par admettre qu'il ne reste pas grand-chose, et que ce qui manque ne s'est pas perdu tout seul.",
+    "revele": [
+     "f-grenier-vide"
+    ]
+   },
+   {
+    "id": "les-comptes",
+    "mots": [
+     "comptes",
+     "registre",
+     "livre",
+     "tiroir",
+     "paiements",
+     "meunier"
+    ],
+    "question": "Tenez-vous un registre des sacs qui partent ?",
+    "reponse": "Il hausse les épaules : un meunier compte par le sac, pas par le livre, et les écritures ne nourrissent personne. Sa main se pose pourtant à plat sur le coffre de farine, tout près de l'échelle de l'étage, et il change de sujet en proposant du pain.",
+    "effets": [
+     {
+      "flag": "z1-anselme-sous-pression"
+     }
+    ]
+   },
+   {
+    "id": "le-pacte",
+    "mots": [
+     "pacte",
+     "accord",
+     "tribut",
+     "gobelins",
+     "Skarn",
+     "quatre ans"
+    ],
+    "condition": {
+     "ou": [
+      {
+       "flag": "z1-anselme-sous-pression"
+      },
+      {
+       "objet": "registre-du-moulin"
+      },
+      {
+       "flag": "pacte-revele"
+      }
+     ]
+    },
+    "question": "Qu'avez-vous promis aux gobelins ?",
+    "reponse": "Il s'assoit sur un sac, soudain très vieux. Il y a quatre ans, la récolte s'est perdue ; il est monté voir Skarn avec du grain, des outils et une promesse : une part chaque automne, et la tribu reste loin du village. Le pacte a tenu, le village a vécu, et le grenier s'est vidé. Cette année, les hobgobelins ont pris la charrette avant les gobelins. Il vous demande de ne rien dire, puis il se tait comme s'il savait que c'était perdu.",
+    "revele": [
+     "f-pacte-du-meunier"
+    ],
+    "effets": [
+     {
+      "flag": "pacte-revele"
+     },
+     {
+      "attitude": {
+       "pnj": "anselme-roux",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "le-moulin",
+    "mots": [
+     "moulin",
+     "meule",
+     "roue",
+     "farine",
+     "bief",
+     "réparer"
+    ],
+    "question": "Le moulin tourne-t-il encore ?",
+    "reponse": "La roue a perdu une aube et le bief s'engorge depuis la dernière crue ; il faudrait trois hommes dans l'eau froide et un charpentier pour la remettre. Il parle de sa meule comme d'une bête malade, avec une tendresse qui ne s'entend pas quand il parle des gens.",
+    "revele": []
+   }
+  ],
+  "salutations": {
+   "neutre": "Le moulin tourne encore. Si c'est le grain que vous cherchez, il n'est pas ici.",
+   "amical": "Vous êtes revenus. Tant mieux : ici, les nouvelles se perdent et les amis sont rares.",
+   "hostile": "Sortez de mon moulin. Je n'ai rien à vous dire, et rien à vous donner.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Vous savez, maintenant. Alors dites-moi ce que vous voulez faire de moi : le village aura besoin d'un coupable, et j'ai déjà le tablier."
+    },
+    {
+     "condition": {
+      "flag": "lina-retrouvee"
+     },
+     "texte": "Elle est revenue. Je lui ai menti pendant quatre ans, et elle est revenue. Je ne sais pas encore comment la regarder."
+    },
+    {
+     "condition": {
+      "objet": "registre-du-moulin"
+     },
+     "texte": "Vous avez le livre. Ne le montrez pas sur la place, je vous en prie : ils me pendraient au mât avant la nuit, et Lina n'aurait plus de père."
+    },
+    {
+     "condition": {
+      "flag": "z1-roue-reparee"
+     },
+     "texte": "Vous avez remis la roue en marche. Ça ne change rien au reste, mais ça fait du bien d'entendre l'eau travailler."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": []
+ },
+ {
+  "id": "huguette",
+  "nom": "Huguette",
+  "titre": "Maire de Mireval",
+  "espece": "humain",
+  "sexe": "F",
+  "age": "58 ans",
+  "role": "Maire de Mireval, la voix du village et sa mémoire",
+  "lieu": "mir-place-du-marche",
+  "apparence": "Une femme courte et large, cheveux gris tirés en chignon, tablier de cuir sur une robe de laine, un trousseau de clés à la ceinture et un regard qui pèse les gens avant de leur parler.",
+  "personnalite": {
+   "traits": [
+    "franche",
+    "énergique",
+    "inquiète",
+    "autoritaire"
+   ],
+   "voix": "Sèche et rapide, avec des mots de maire et des proverbes de roseaux ; elle s'interrompt pour donner un ordre à quelqu'un qui passe.",
+   "valeurs": [
+    "le village avant tout",
+    "les comptes justes",
+    "la parole tenue"
+   ],
+   "desir": "Nourrir Mireval jusqu'au printemps sans ouvrir la réserve aux hobgobelins.",
+   "peur": "Que le village crève l'hiver et que la faim lui prenne ses enfants.",
+   "defaut": "Elle décide seule, et vite, pour ne pas avoir à écouter."
+  },
+  "presences": [
+   {
+    "lieu": "mir-place-du-marche",
+    "moment": "jour"
+   },
+   {
+    "lieu": "mir-auberge-des-roseaux",
+    "moment": "soir"
+   }
+  ],
+  "faction": "gens-de-mireval",
+  "attitude": 5,
+  "savoir": [
+   "f-grenier-vide",
+   "f-passeurs-neutres",
+   "f-charrette-saisie",
+   "f-huguette-veuve",
+   "f-crue-trois-jours"
+  ],
+  "secrets": [
+   {
+    "fait": "f-pacte-du-meunier",
+    "attitudeMin": 32
+   }
+  ],
+  "sujets": [
+   {
+    "id": "le-village",
+    "mots": [
+     "village",
+     "Mireval",
+     "récolte",
+     "hiver",
+     "milice",
+     "gens"
+    ],
+    "question": "Comment va le village ?",
+    "reponse": "Elle dit les choses comme un rapport : soixante-deux bouches, six miliciens, deux lances qui ne valent rien, des rations depuis trois semaines et un hiver qui arrive plus vite que prévu. Elle ajoute que le village tient, parce que c'est son rôle de le dire, et que si quelqu'un a une autre idée, il peut la dire maintenant.",
+    "revele": [],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-la-dime",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "automne",
+     "saisie",
+     "péage"
+    ],
+    "question": "Que savez-vous de la charrette disparue ?",
+    "reponse": "La charrette est partie du moulin avec Colin et onze sacs, et elle n'est jamais arrivée au village. Huguette n'y croit pas à l'enlèvement : un meunier qui crie au loup cache un agneau, dit-elle. Elle a vu Anselme changer de version trois fois en une semaine.",
+    "revele": [
+     "f-charrette-saisie"
+    ]
+   },
+   {
+    "id": "le-grenier",
+    "mots": [
+     "grenier",
+     "réserve",
+     "clé",
+     "ration",
+     "ouvrir",
+     "faim"
+    ],
+    "question": "Peut-on voir la réserve du grenier ?",
+    "reponse": "La réserve est fermée, et elle en garde la clé. Elle ne l'ouvrira pas pour la curiosité d'étrangers : l'hiver est long et les sacs sont comptés. Mais si le groupe veut aider le village, elle veut bien parler de ce qu'il reste, et de ce qu'elle craint d'y trouver.",
+    "revele": [
+     "f-grenier-vide"
+    ],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-mireval-le-grenier",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-cle",
+    "mots": [
+     "clé",
+     "cadenas",
+     "réserve",
+     "ouvrir le grenier",
+     "emprunter"
+    ],
+    "attitudeMin": 20,
+    "question": "Nous confierez-vous la clé de la réserve ?",
+    "reponse": "Elle décroche une clé de fer de son trousseau, la pèse dans sa paume et la tend à contrecœur. Le grain est au village, dit-elle ; elle compte les sacs, et elle saura qui les a pris. Elle sait aussi qu'un sac de grain peut sauver une vie, et que cela ne se refuse pas toujours.",
+    "revele": [],
+    "effets": [
+     {
+      "objet": {
+       "id": "cle-du-grenier"
+      }
+     },
+     {
+      "flag": "z1-cle-du-grenier"
+     }
+    ]
+   },
+   {
+    "id": "le-pacte",
+    "mots": [
+     "pacte",
+     "accord",
+     "gobelins",
+     "tribut",
+     "Anselme",
+     "quatre ans"
+    ],
+    "condition": {
+     "ou": [
+      {
+       "objet": "registre-du-moulin"
+      },
+      {
+       "flag": "pacte-revele"
+      }
+     ]
+    },
+    "question": "Soupçonnez-vous un accord avec les gobelins ?",
+    "reponse": "Elle ne se récrie pas. Elle savait, ou elle s'en doutait, depuis le deuxième automne : les gobelins ne sont pas venus, le village n'a pas brûlé, et le meunier était trop calme. Elle a laissé faire quatre ans parce que la paix nourrissait mieux que la vérité. Maintenant, dit-elle, il faudra choisir ce qu'on avoue.",
+    "revele": [
+     "f-pacte-du-meunier"
+    ],
+    "effets": [
+     {
+      "flag": "pacte-revele"
+     },
+     {
+      "attitude": {
+       "pnj": "huguette",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "perrine",
+    "mots": [
+     "Perrine",
+     "Vasseur",
+     "Colin",
+     "éclaireuse",
+     "sœur"
+    ],
+    "question": "Qui peut nous guider dans les roseaux ?",
+    "reponse": "Perrine Vasseur, la sœur de Colin, connaît les pistes mieux que la milice. Elle dort au grenier depuis que son frère a disparu et elle ne boit plus. Huguette ajoute qu'elle partira seule un de ces matins si personne ne lui promet de le retrouver, et qu'elle préférerait que ce soit vous.",
+    "revele": [],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "perrine-vasseur",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "id": "marin",
+    "mots": [
+     "Marin",
+     "passeur",
+     "barque",
+     "marais",
+     "roseaux"
+    ],
+    "question": "Comment traverse-t-on le marais ?",
+    "reponse": "Marin et sa barque. Il connaît les chenaux mieux que les hobgobelins, mais il ne prend parti pour personne : il vend le passage, les nouvelles et parfois le silence. Il n'aime pas la compagnie du Péage, ce qui ne veut pas dire qu'il vous aidera gratis.",
+    "revele": [
+     "f-passeurs-neutres"
+    ]
+   }
+  ],
+  "salutations": {
+   "neutre": "Vous êtes les étrangers du pont. Ici, on vous écoutera, mais on vous comptera.",
+   "amical": "Asseyez-vous. On m'apporte du pain, et vous me direz ce que vous avez vu sur la chaussée.",
+   "hostile": "Le village n'a rien à vous donner. Vous êtes partis comme les autres : laissez-nous finir l'hiver.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Je savais. Quatre ans que je savais, et je n'ai rien dit. Maintenant que tout le monde le sait, dites-moi ce que je dois faire du meunier."
+    },
+    {
+     "condition": {
+      "flag": "grenier-ouvert"
+     },
+     "texte": "La réserve est ouverte, et le village a vu ce qu'il y avait dedans. Vous avez gagné ma confiance et perdu mon silence."
+    },
+    {
+     "condition": {
+      "flag": "z1-cle-du-grenier"
+     },
+     "texte": "La clé est à vous, mais le grain est au village. Je compte les sacs, et je saurai qui les a pris."
+    },
+    {
+     "condition": {
+      "flag": "z5-ultimatum"
+     },
+     "texte": "Ils demandent la moitié du grenier. La moitié, alors qu'il n'y en a pas la moitié. Dites-moi quoi répondre, parce que je n'ai plus de mots."
+    },
+    {
+     "condition": {
+      "pnj": {
+       "id": "perrine-vasseur",
+       "etat": "parti"
+      }
+     },
+     "texte": "Perrine est partie avec vous. Ramenez-la, et ramenez son frère : je ne veux pas inscrire deux noms sur la porte du grenier."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": []
+ },
+ {
+  "id": "bastien",
+  "nom": "Bastien",
+  "titre": "Aubergiste des Roseaux",
+  "espece": "halfelin",
+  "sexe": "M",
+  "age": "44 ans",
+  "role": "Aubergiste halfelin de Mireval, bavard, comptable de toutes les rumeurs du village",
+  "lieu": "mir-auberge-des-roseaux",
+  "apparence": "Un halfelin rond aux cheveux châtains bouclés, une serviette de toile sur l'épaule, un gilet de laine bordeaux élimé, des anneaux de bois aux doigts et un sourire qui s'élargit à mesure qu'il parle.",
+  "personnalite": {
+   "traits": [
+    "bavard",
+    "curieux",
+    "prudent",
+    "drôle"
+   ],
+   "voix": "Aiguë, rapide et enjôleuse ; il pose deux questions pour une qu'il répond, et baisse d'un ton quand il prononce le mot hobgobelin.",
+   "valeurs": [
+    "son auberge",
+    "les bonnes histoires",
+    "ne pas finir pendu"
+   ],
+   "desir": "Que son auberge reste le dernier endroit du village où l'on rit.",
+   "peur": "Être compromis avec les hobgobelins et perdre tout ce qu'il a.",
+   "defaut": "Il vend tout, même le silence."
+  },
+  "presences": [
+   {
+    "lieu": "mir-place-du-marche",
+    "moment": "jour"
+   }
+  ],
+  "faction": "gens-de-mireval",
+  "attitude": 15,
+  "savoir": [
+   "f-passeurs-neutres",
+   "f-tribu-affamee",
+   "f-bastien-dette",
+   "f-rumeur-tresor-noyes"
+  ],
+  "secrets": [
+   {
+    "fait": "f-charrette-saisie",
+    "prix": 10
+   }
+  ],
+  "sujets": [
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "départ",
+     "automne",
+     "Colin"
+    ],
+    "question": "Avez-vous vu partir la charrette de grain ?",
+    "reponse": "Il l'a vue partir avant l'aube, avec Colin qui sifflait et onze sacs bien sanglés. Puis il a entendu des roues revenir trop vite, sans chanson, et plus rien. Il raconte ça avec des gestes de comptoir, mais il s'arrête pile quand on demande ce qu'il a vu au pont, et se met à essuyer une chope déjà propre.",
+    "effets": [
+     {
+      "quete": {
+       "id": "q-bastien-la-rumeur",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "les-hobgobelins",
+    "mots": [
+     "hobgobelins",
+     "compagnie",
+     "péage",
+     "Varg",
+     "capitaine"
+    ],
+    "question": "Que disent les hobgobelins quand ils boivent ici ?",
+    "reponse": "Ils ne boivent pas ici, et c'est bien le problème : ils boivent au pont, entre eux, et paient en vieilles pièces. Un seul est entré cet hiver, un grand sec avec une plaque de sergent ; il a dit que la compagnie payait la route, que le village devrait être content, et il est reparti sans finir sa chope.",
+    "revele": []
+   },
+   {
+    "id": "les-gobelins",
+    "mots": [
+     "gobelins",
+     "tribu",
+     "Skarn",
+     "grain",
+     "marché"
+    ],
+    "question": "Les gobelins venaient-ils au village ?",
+    "reponse": "Il y a quatre ans, des gobelins venaient encore avec des paniers et des peaux, et ils payaient en grain. Puis ils ont arrêté du jour au lendemain, et personne n'a trouvé ça bizarre. Bastien, lui, a trouvé ça très bizarre, mais il a servi à boire et n'a rien demandé.",
+    "revele": [
+     "f-tribu-affamee"
+    ]
+   },
+   {
+    "id": "marin",
+    "mots": [
+     "Marin",
+     "passeur",
+     "barque",
+     "marais",
+     "roseaux"
+    ],
+    "question": "Qui connaît le chemin du marais ?",
+    "reponse": "Marin, le passeur, et sa barque plate. Il connaît les chenaux, les îles de roseaux et les endroits où l'eau monte sans prévenir. Il ne prend parti pour personne et n'aime pas les hobgobelins ; il vend le passage, et Bastien conseille de payer sans discuter.",
+    "revele": [
+     "f-passeurs-neutres"
+    ]
+   },
+   {
+    "id": "perrine",
+    "mots": [
+     "Perrine",
+     "Colin",
+     "sœur",
+     "éclaireuse"
+    ],
+    "question": "Que savez-vous de Perrine et de Colin ?",
+    "reponse": "Colin était charretier, le meilleur du village pour faire passer une charrette sur une chaussée noyée. Sa sœur Perrine est éclaireuse ; depuis qu'il a disparu, elle dort au grenier, ne boit plus et regarde la route. Bastien dit qu'elle partira seule si personne ne l'aide, et que ce serait dommage.",
+    "revele": []
+   },
+   {
+    "id": "les-rumeurs",
+    "mots": [
+     "rumeur",
+     "nouvelles",
+     "on dit",
+     "bruit",
+     "village"
+    ],
+    "question": "Quelles sont les rumeurs du village ?",
+    "reponse": "Il en connaît trois, et il les déballe comme des cartes : le grenier serait plus plein qu'on ne le dit, le meunier enverrait du grain en amont la nuit, et les hobgobelins attendraient quelque chose. Laquelle est vraie ? Il sourit, pose le coude sur le comptoir, et attend de voir si l'on comprend le prix d'une réponse.",
+    "revele": []
+   }
+  ],
+  "salutations": {
+   "neutre": "Entrez, entrez ! On ferme la porte, pas la bouche.",
+   "amical": "Ah, mes amis de la chaussée ! J'ai gardé du pain et une histoire pour vous.",
+   "hostile": "Je n'ai plus de chambre, et plus rien à dire. Le village se souvient de ceux qui causent.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "z1-bastien-complice"
+     },
+     "texte": "Vous avez payé, alors je parle : mais pas ici, près du feu. Les murs de mon auberge ont des oreilles et le pain a des dents."
+    },
+    {
+     "condition": {
+      "flag": "grenier-ouvert"
+     },
+     "texte": "On dit que la réserve est ouverte. Ce soir, il y aura plus de monde que de soupe, et je ne sais pas si je dois m'en réjouir."
+    },
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Le meunier a menti au village pendant quatre ans, et c'est moi qui ai servi à boire à tout le monde. Je ferme plus tôt, ce soir."
+    }
+   ]
+  },
+  "boutique": {
+   "stock": [
+    {
+     "objet": "rations",
+     "quantite": 6
+    },
+    {
+     "objet": "torche",
+     "quantite": 4
+    },
+    {
+     "objet": "bougie",
+     "quantite": 5
+    },
+    {
+     "objet": "corde",
+     "quantite": 1
+    },
+    {
+     "objet": "outre",
+     "quantite": 2
+    },
+    {
+     "objet": "sac-de-couchage",
+     "quantite": 1
+    }
+   ],
+   "rachat": 0.4,
+   "types": [
+    "nourriture",
+    "materiel",
+    "divers",
+    "outil"
+   ]
+  },
+  "services": [
+   {
+    "id": "chambre",
+    "nom": "Une chambre sous les combles",
+    "resume": "Une paillasse, une couverture de laine et un volet qui ferme : une nuit entière, à l'abri de la pluie.",
+    "prix": 2
+   },
+   {
+    "id": "repas",
+    "nom": "Un bol de soupe et du pain",
+    "resume": "Soupe au lard, pain de seigle et une chope de cidre coupé, servis près du feu.",
+    "prix": 0.2
+   },
+   {
+    "id": "rumeurs",
+    "nom": "Les nouvelles du soir",
+    "resume": "Bastien raconte ce qui se dit à Mireval, en pesant chaque mot et en vérifiant qu'on a payé.",
+    "prix": 0.5,
+    "effets": [
+     {
+      "flag": "z1-bastien-complice"
+     }
+    ]
+   }
+  ],
+  "inventaire": []
+ },
+ {
+  "id": "perrine-vasseur",
+  "nom": "Perrine Vasseur",
+  "titre": "Éclaireuse de Mireval",
+  "espece": "humain",
+  "sexe": "F",
+  "age": "24 ans",
+  "role": "Rôdeuse du village, sœur de Colin, recrutable",
+  "lieu": "mir-grenier",
+  "apparence": "Une jeune femme sèche et nerveuse, cheveux châtains coupés court, une capuche de laine verte, un arc court sur l'épaule, des bottes de cuir couvertes de boue et un regard qui ne tient pas en place.",
+  "personnalite": {
+   "traits": [
+    "méfiante",
+    "tenace",
+    "loyale",
+    "impatiente"
+   ],
+   "voix": "Basse et hachée ; elle répond par des questions, parle des traces et du vent, et se tait dès qu'on parle de Colin.",
+   "valeurs": [
+    "la famille",
+    "tenir parole",
+    "connaître la piste avant de la suivre"
+   ],
+   "desir": "Retrouver Colin vivant et le ramener au village.",
+   "peur": "Qu'on lui mente sur Colin, comme le village se ment à lui-même.",
+   "defaut": "Elle part seule, la nuit, quand on la contredit."
+  },
+  "faction": "gens-de-mireval",
+  "attitude": 5,
+  "savoir": [
+   "f-charrette-saisie",
+   "f-grenier-vide",
+   "f-perrine-colin"
+  ],
+  "secrets": [
+   {
+    "fait": "f-grenier-vide",
+    "attitudeMin": 20
+   }
+  ],
+  "sujets": [
+   {
+    "id": "colin",
+    "mots": [
+     "Colin",
+     "frère",
+     "charretier",
+     "Vasseur",
+     "retrouver"
+    ],
+    "question": "Parlez-nous de votre frère Colin.",
+    "reponse": "Colin conduit la charrette depuis six ans ; il chante aux chevaux dans les mauvais passages et il n'a jamais perdu un sac. Elle a suivi ses traces jusqu'au pont : la charrette a tourné vers les collines, et des bottes de hobgobelins ont piétiné la berge. Son frère ne s'est pas enfui, dit-elle, et elle veut qu'on le lui prouve.",
+    "revele": [
+     "f-charrette-saisie"
+    ],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-perrine-colin",
+       "statut": "proposee"
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "piste",
+     "pont",
+     "traces"
+    ],
+    "question": "Qu'avez-vous vu sur la piste de la charrette ?",
+    "reponse": "Des roues enfoncées jusqu'au moyeu, un demi-tour brutal au sortir du pont, et des empreintes de bottes qui montent vers le nord. Le grain n'est pas allé chez les gobelins par la chaussée : quelqu'un l'a détourné avant. Elle n'a pas dormi depuis deux nuits en cherchant la suite de la piste.",
+    "revele": [
+     "f-charrette-saisie"
+    ]
+   },
+   {
+    "id": "le-grenier",
+    "mots": [
+     "grenier",
+     "réserve",
+     "clé",
+     "nourriture",
+     "vider",
+     "dormir"
+    ],
+    "question": "Pourquoi dormez-vous au grenier ?",
+    "reponse": "Parce qu'elle y garde la réserve, et parce qu'elle n'a pas envie de dormir sous le toit d'un village qui parle trop. Elle finit par avouer que la réserve est presque vide, et qu'elle a trouvé la clé de Huguette sur son clou, derrière la porte, plus d'une fois.",
+    "revele": [
+     "f-grenier-vide"
+    ],
+    "effets": [
+     {
+      "flag": "z1-cle-signalee"
+     }
+    ]
+   },
+   {
+    "id": "ouvrir-la-reserve",
+    "mots": [
+     "ouvrir",
+     "réserve",
+     "clé",
+     "sacs",
+     "compter",
+     "partager"
+    ],
+    "condition": {
+     "objet": "cle-du-grenier"
+    },
+    "question": "Ouvrons-nous la réserve du grenier ?",
+    "reponse": "Elle prend la clé, la tourne deux fois dans le cadenas, et pousse la porte de chêne. Les sacs sont là, alignés, et la plupart sont plats ; il reste de quoi tenir quelques semaines si l'on rationne encore. Elle ne dit rien, mais elle vous laisse compter avec elle.",
+    "revele": [
+     "f-grenier-vide"
+    ],
+    "effets": [
+     {
+      "flag": "grenier-ouvert"
+     }
+    ]
+   },
+   {
+    "id": "rejoindre",
+    "mots": [
+     "partir avec nous",
+     "accompagner",
+     "rejoindre",
+     "aider",
+     "compagnon"
+    ],
+    "attitudeMin": 20,
+    "question": "Nous accompagnerez-vous jusqu'à la mine ?",
+    "reponse": "Elle ajuste son arc et vous regarde bien en face : elle vient, à une condition, que l'on ramène Colin vivant. Elle prévient qu'elle n'est pas une enfant à protéger et qu'elle connaît les roseaux mieux que vous ; puis elle rassemble ses affaires avant que vous ne changiez d'avis.",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "perrine-recruite"
+     },
+     {
+      "attitude": {
+       "pnj": "perrine-vasseur",
+       "delta": 10
+      }
+     }
+    ]
+   },
+   {
+    "id": "la-nuit",
+    "mots": [
+     "nuit",
+     "rôder",
+     "éclaireuse",
+     "piste",
+     "roseaux",
+     "patrouille"
+    ],
+    "question": "Que faites-vous la nuit dans les roseaux ?",
+    "reponse": "Elle compte les hobgobelins du pont : trois en permanence, relevés au matin et au soir, et un sergent qui garde un cor sous son manteau. Elle a vu aussi des traces de gobelins dans les roseaux du sud, maigres, qui ne volent rien. Elle dit que les deux camps cherchent quelque chose, et qu'elle n'aime pas ça.",
+    "revele": []
+   }
+  ],
+  "salutations": {
+   "neutre": "Vous êtes du pont. Vous avez vu les hobgobelins ? Bien. Alors écoutez.",
+   "amical": "Vous êtes revenus. Asseyez-vous, il reste de la paille.",
+   "hostile": "Je n'ai rien à vous dire. Vous êtes comme les autres : vous partez.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "colin-libere"
+     },
+     "texte": "Colin est libre. Je ne sais pas comment vous remercier sans pleurer, alors je vous suis. Où qu'on aille."
+    },
+    {
+     "condition": {
+      "flag": "perrine-recruite"
+     },
+     "texte": "Je suis avec vous, mais je préviens : si on me cache quelque chose sur mon frère, je partirai sans un mot."
+    },
+    {
+     "condition": {
+      "flag": "pacte-revele"
+     },
+     "texte": "Le meunier a vendu le grain du village, et Lina est allée payer sa dette. Mon frère a payé aussi. Ça, je ne l'oublierai pas."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": [
+   "arc-court",
+   "rations"
+  ],
+  "compagnon": {
+   "classe": "rodeur",
+   "espece": "humain",
+   "niveau": 1,
+   "recrutement": {
+    "et": [
+     {
+      "flag": "perrine-recruite"
+     },
+     {
+      "pnj": {
+       "id": "perrine-vasseur",
+       "attitudeMin": 1
+      }
+     }
+    ]
+   },
+   "quetePersonnelle": "q-perrine-colin",
+   "repliques": [
+    {
+     "declencheur": "en arrivant dans un lieu nouveau",
+     "texte": "Attendez. Laissez-moi regarder le sol avant que tout le monde marche dessus : une piste se perd vite quand on a six paires de bottes."
+    },
+    {
+     "declencheur": "devant un hobgobelin",
+     "texte": "Ce sont eux. Les mêmes bottes, le même pas lourd. Ne les laissez pas vous encercler : ils travaillent par deux et ils crient pour se donner du courage."
+    },
+    {
+     "declencheur": "quand on parle de Colin",
+     "texte": "Colin chante faux, il s'endort au premier verre et il n'a jamais perdu un sac. Si quelqu'un me dit qu'il a fui, je veux une preuve, pas une rumeur."
+    },
+    {
+     "declencheur": "la nuit",
+     "texte": "La nuit, les roseaux mentent : ils craquent sous le vent et l'on croit entendre des pas. Je prends le premier tour de garde, je ne dors pas de toute façon."
+    },
+    {
+     "declencheur": "un choix cruel",
+     "texte": "Ne me demandez pas de choisir entre le village et mon frère. Je choisirai mon frère, et je le regretterai plus tard."
+    },
+    {
+     "declencheur": "quand un allié tombe",
+     "texte": "Relevez-le. On ne laisse personne dans les roseaux, jamais, ni les vivants ni les autres."
+    }
+   ],
+   "opinions": [
+    {
+     "sujet": "Ouvrir le grenier aux gobelins",
+     "reaction": "Elle hésite : les gobelins ont faim, elle a vu leurs traces maigres. Mais c'est le grain du village, et son frère est loin. Elle s'abstiendra si on lui demande de trancher.",
+     "attitude": 0
+    },
+    {
+     "sujet": "Payer le tribut à Varg",
+     "reaction": "Elle refuse net : payer une compagnie qui a pris son frère, c'est payer pour qu'on recommence. Elle préfère une piste dans les roseaux à une bourse tendue.",
+     "attitude": -15
+    },
+    {
+     "sujet": "Tuer les hobgobelins du péage",
+     "reaction": "Elle ne reculera pas, mais elle trouve cela inutile : trois morts de plus ne ramèneront pas Colin, et la compagnie en enverra six.",
+     "attitude": -5
+    }
+   ]
+  }
+ }
+]

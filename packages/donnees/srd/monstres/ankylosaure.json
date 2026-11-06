@@ -1,0 +1,84 @@
+{
+  "sauvegardes": {
+    "for": 6
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "id": "ankylosaure",
+  "nom": "Ankylosaure",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 15,
+  "pv": {
+    "moyenne": 68,
+    "des": "8d12 + 16"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 11,
+    "con": 15,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "3",
+  "px": 700,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'ankylosaure effectue deux attaques de Queue.",
+      "multiattaque": [
+        {
+          "action": "queue",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "queue",
+      "nom": "Queue",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 9 (1d10 + 4) dégâts contondants. Si la cible est de taille TG ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    }
+  ]
+}

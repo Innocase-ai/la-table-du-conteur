@@ -1,0 +1,38 @@
+{
+  "id": "humain",
+  "nom": "Humain",
+  "type": "Humanoïde",
+  "tailles": [
+    "P",
+    "M"
+  ],
+  "vitesse": 9,
+  "traits": [
+    {
+      "id": "competent",
+      "nom": "Compétent",
+      "niveau": 1,
+      "resume": "Vous recevez la maîtrise d'une compétence de votre choix.",
+      "effets": [
+        {
+          "type": "maitrise_competences",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "ingenieux",
+      "nom": "Ingénieux",
+      "niveau": 1,
+      "resume": "Vous recevez l'Inspiration héroïque chaque fois que vous terminez un Repos long.",
+      "effets": []
+    },
+    {
+      "id": "polyvalent",
+      "nom": "Polyvalent",
+      "niveau": 1,
+      "resume": "Vous recevez un don d'origines de votre choix ; Doué est recommandé.",
+      "effets": []
+    }
+  ]
+}

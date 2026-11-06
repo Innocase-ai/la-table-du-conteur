@@ -1,0 +1,98 @@
+{
+  "id": "chien-du-trepas",
+  "nom": "Chien du trépas",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Neutre Mauvaise",
+  "ca": 12,
+  "pv": {
+    "moyenne": 39,
+    "des": "6d8 + 12"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 14,
+    "con": 14,
+    "int": 3,
+    "sag": 13,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 5
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "aveugle",
+    "charme",
+    "effraye",
+    "inconscient"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Étourdi."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le chien du trépas effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts perforants. Si la cible est une créature, JS Constitution DD 12. Premier échec : la cible subit l'état Empoisonné. Tant que la cible est Empoisonnée, son maximum de points de vie ne revient pas à la normale quand elle termine un Repos long. La cible réitère le JS toutes les 24 heures et met un terme à l'effet sur elle-même en cas de réussite. Échecs suivants : le maximum de points de vie de la cible Empoisonnée diminue de 5 (1d10).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoisonne",
+          "sauvegarde": {
+            "caracteristique": "con",
+            "dd": 12
+          }
+        }
+      ]
+    }
+  ]
+}

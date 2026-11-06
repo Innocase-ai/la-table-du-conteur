@@ -1,0 +1,934 @@
+[
+  {
+    "id": "cry-r-gardiens-du-vestibule",
+    "nom": "Les gardes du vestibule",
+    "type": "combat",
+    "lieu": "cry-vestibule",
+    "difficulte": "faible",
+    "intro": "Deux squelettes en cotte de mailles, immobiles de part et d'autre de l'arche du fond, tournent la tête quand vous vous éloignez de la porte. Leurs lances s'abaissent ensemble, avec un bruit de vieux cuir.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 2
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "passer-en-silence",
+        "nom": "Passer sans bruit",
+        "resume": "Longer le mur en évitant la dalle : les gardes ne réagissent qu'à ce qu'ils entendent.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        }
+      },
+      {
+        "id": "saluer-la-garde",
+        "nom": "Saluer la garde",
+        "resume": "Un salut de garde en bonne et due forme (poing sur le cœur) les fait redresser leur lance : ils laissent passer qui se présente en relève ordinaire.",
+        "effets": [],
+        "jet": {
+          "competence": "histoire",
+          "dd": 12
+        }
+      },
+      {
+        "id": "dire-le-mot",
+        "nom": "Dire le mot d'ordre",
+        "resume": "Dire « enclume » à voix claire : les squelettes se mettent au garde-à-vous.",
+        "effets": [],
+        "condition": {
+          "flag": "cry-mot-d-ordre-dit"
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-ossements"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.....mm...........#",
+      "#..##.......##.....#",
+      "#..##...~~..##.....#",
+      "#..................#",
+      "#..................#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Ils ne bougent pas tant qu'on reste près de l'entrée ; ils chargent ceux qui franchissent le milieu de la salle sans les saluer. Ils tiennent l'arche.",
+      "fuite": "Ils ne poursuivent pas au-delà du vestibule.",
+      "renforts": "Le bruit attire deux autres squelettes de la caserne au bout de cinq tours si la porte est ouverte."
+    }
+  },
+  {
+    "id": "cry-r-caserne-gardes",
+    "nom": "La relève qui ne vient pas",
+    "type": "combat",
+    "lieu": "cry-caserne",
+    "difficulte": "faible",
+    "intro": "Quatre squelettes en cotte de mailles rouillée, assis à une table de jeu devant un damier, se lèvent d'un seul mouvement, un bruit de tendons et de métal. L'un d'eux frappe le sol de sa lance deux fois, comme pour demander quelque chose.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 4
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "mot-d-ordre",
+        "nom": "Dire le mot d'ordre",
+        "resume": "Dire « enclume » : les gardes se figent, saluent, s'écartent et laissent le passage ; c'est l'énigme du mot d'ordre.",
+        "effets": [
+          {
+            "flag": "cry-mot-d-ordre-dit"
+          }
+        ],
+        "condition": {
+          "fait": "f-cry-mot-d-ordre"
+        }
+      },
+      {
+        "id": "imposer-la-releve",
+        "nom": "Se faire passer pour la relève",
+        "resume": "Parler avec l'autorité d'un officier qui vient les relever : ils obéissent aux ordres, pas aux suppliques.",
+        "effets": [
+          {
+            "flag": "cry-mot-d-ordre-dit"
+          }
+        ],
+        "jet": {
+          "competence": "intimidation",
+          "dd": 15
+        }
+      },
+      {
+        "id": "etouffer-le-bruit",
+        "nom": "Passer par le réfectoire",
+        "resume": "Se glisser vers la porte du fond (vers le réfectoire) sans se faire voir.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-ossements"
+      ],
+      "tresors": [
+        "cry-t-caserne-capitaine"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#.m..#........#..m.#",
+      "#....#........#....#",
+      "#.m......##......m.#",
+      "#........##........#",
+      "#..##..........##..#",
+      "#..##..........##..#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Ils se placent en ligne pour fermer la salle et attaquent à la lance en formation serrée ; ils ne se séparent pas.",
+      "fuite": "Ils ne quittent pas la caserne.",
+      "renforts": "Si le glas de la crypte du sonneur a été sonné, deux zombis de l'ossuaire arrivent au bout de quatre tours."
+    }
+  },
+  {
+    "id": "cry-r-ossuaire-zombis",
+    "nom": "Les fossoyeurs de l'ossuaire",
+    "type": "combat",
+    "lieu": "cry-ossuaire",
+    "difficulte": "faible",
+    "intro": "Des mains sortent du mur d'os : quatre zombis, d'anciens fossoyeurs encore en bleu de travail, se dégagent en grognant, suivis d'un grouillement de rats.",
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 4
+      },
+      {
+        "profil": "nuee-de-rats",
+        "nombre": 2
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "zombis-lents",
+        "nom": "Les distancer",
+        "resume": "Les zombis sont lents : atteindre l'alcôve des leviers sans se faire toucher exige de courir en zigzag.",
+        "effets": [],
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 13
+        }
+      },
+      {
+        "id": "refermer-la-porte",
+        "nom": "Les enfermer",
+        "resume": "Refermer la double porte de pierre sur eux et la bloquer avec un levier ou un coin de fer.",
+        "effets": [],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-ossements"
+      ],
+      "tresors": [
+        "cry-t-ossuaire-cache"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#.mm..~~..~~..mm...#",
+      "#.....~~..~~.......#",
+      "#..#..........#....#",
+      "#..#...~~~~...#.m..#",
+      "#......~~~~........#",
+      "#..m...............#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Les zombis avancent droit, sans stratégie, vers le plus proche ; les nuées de rats contournent par les flancs et visent les archers et les lanceurs de sorts.",
+      "fuite": "Aucune.",
+      "renforts": "Les os s'écroulent en dalle vers la fin du combat : terrain difficile sur la moitié ouest."
+    }
+  },
+  {
+    "id": "cry-r-refectoire-goules",
+    "nom": "Les affamées du réfectoire",
+    "type": "combat",
+    "lieu": "cry-refectoire",
+    "difficulte": "moderee",
+    "intro": "Quatre silhouettes décharnées, accroupies sur les tables, lèvent la tête ensemble. Leurs langues claquent. Elles ont faim, elles ont toujours eu faim, et vous sentez la viande.",
+    "monstres": [
+      {
+        "profil": "goule",
+        "nombre": 4
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "les-nourrir",
+        "nom": "Les nourrir",
+        "resume": "Jeter des rations ou de la viande loin d'elles : elles se battent pour la nourriture un moment et laissent passer.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 2,
+              "retirer": true
+            }
+          }
+        ],
+        "condition": {
+          "objet": "rations"
+        }
+      },
+      {
+        "id": "les-contourner",
+        "nom": "Les contourner",
+        "resume": "Longer le mur sud-est, derrière le pan de voûte tombé, en retenant son souffle.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 15
+        }
+      },
+      {
+        "id": "leur-parler",
+        "nom": "Les apaiser",
+        "resume": "Les goules ne parlent plus ; mais une prière des morts bien dite peut les rendre indécises, le temps de passer.",
+        "effets": [],
+        "jet": {
+          "competence": "religion",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-ossements"
+      ],
+      "tresors": [
+        "cry-t-refectoire-cadavre"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#mm..#..~~~...#..mm#",
+      "#....#..~~~........#",
+      "#.......~~~##......#",
+      "#..##........##....#",
+      "#..##..............#",
+      "#.....~~~~.....##..#",
+      "#.....~~~~.....##..#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Elles bondissent sur le plus vulnérable et paralysent, puis traînent leur proie vers le gouffre ; elles se désintéressent d'un combat qui tourne mal et fuient par le boyau.",
+      "fuite": "Elles se replient dans le boyau des mineurs si deux d'entre elles tombent.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-ombres-de-la-rotonde",
+    "nom": "Les ombres des sarcophages",
+    "type": "combat",
+    "lieu": "cry-rotonde",
+    "difficulte": "moderee",
+    "intro": "Quand le dernier sarcophage grince, les ombres se détachent des couvercles : trois silhouettes plates qui glissent sur le sol et un spectre à la bouche ouverte, qui se tourne vers vous comme vers une porte.",
+    "monstres": [
+      {
+        "profil": "ombre",
+        "nombre": 3
+      },
+      {
+        "profil": "spectre",
+        "nombre": 1
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "rendre-les-noms",
+        "nom": "Leur rendre leur nom",
+        "resume": "Dire à voix haute les noms des quatre défunts de la galerie : les ombres se figent et s'effacent, apaisées.",
+        "effets": [
+          {
+            "flag": "cry-ombres-apaisees"
+          },
+          {
+            "xp": 100
+          }
+        ],
+        "condition": {
+          "flag": "cry-urnes-apaisees"
+        }
+      },
+      {
+        "id": "lumiere-et-eau-benite",
+        "nom": "Lumière et eau bénite",
+        "resume": "Une torche tenue haut et de l'eau bénite aspergée sur les couvercles font reculer les ombres.",
+        "effets": [],
+        "jet": {
+          "competence": "religion",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-ossements"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#....m.......m.....#",
+      "#..##...~~~...##...#",
+      "#..#....~~~....#...#",
+      "#..m...........m...#",
+      "#..#...........#...#",
+      "#..##.........##...#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Les ombres frappent par les murs et sapent la force des plus costauds ; le spectre cible un seul lanceur de sorts pour le drainer.",
+      "fuite": "Elles se fondent dans les sarcophages si la lumière est vive.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-gargouille-de-la-chapelle",
+    "nom": "La sentinelle de bronze",
+    "type": "combat",
+    "lieu": "cry-chapelle-des-forgerons",
+    "difficulte": "faible",
+    "intro": "Une gargouille de bronze, accroupie sur la corniche, tourne lentement la tête et se laisse tomber devant l'autel, les ailes à demi ouvertes, dans un fracas de cloche.",
+    "monstres": [
+      {
+        "profil": "gargouille",
+        "nombre": 1
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "s-incliner",
+        "nom": "S'incliner devant l'autel",
+        "resume": "Un geste de respect devant l'autel-enclume (religion) suffit à la rendormir.",
+        "effets": [],
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        }
+      },
+      {
+        "id": "trouver-la-faille",
+        "nom": "Trouver sa faille",
+        "resume": "Une gargouille de bronze a une faille à la nuque : un jet d'Investigation la révèle et rend la dernière frappe plus facile.",
+        "effets": [],
+        "jet": {
+          "competence": "investigation",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-offrandes"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#........m.........#",
+      "#.##...######...##.#",
+      "#.##...#....#...##.#",
+      "#......#....#......#",
+      "#..................#",
+      "#...~~........~~...#",
+      "#...~~........~~...#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Elle attaque ceux qui touchent à l'autel ou aux runes sans s'être inclinés ; elle vole au plafond pour frapper en piqué et se pose sur un lanceur de sorts.",
+      "fuite": "Elle ne quitte pas la nef.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-veilleurs-de-fer",
+    "nom": "Les veilleurs de fer",
+    "type": "combat",
+    "lieu": "cry-armurerie",
+    "difficulte": "moderee",
+    "intro": "Trois mannequins d'armure, qu'on aurait crus de simples supports, se tournent vers vous avec un grincement de gonds et de gorgerins. Ils tiennent chacun un marteau de guerre.",
+    "monstres": [
+      {
+        "profil": "armure-animee",
+        "nombre": 3
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "passer-le-long-du-mur",
+        "nom": "Se glisser le long du mur",
+        "resume": "Les armures ne réagissent qu'à qui touche aux marteaux : on peut longer le mur et éviter le plafond.",
+        "effets": [],
+        "jet": {
+          "competence": "discretion",
+          "dd": 14
+        }
+      },
+      {
+        "id": "desactiver-les-mannequins",
+        "nom": "Les désactiver",
+        "resume": "Chaque armure a une rune de repos dans la nuque, sous le gorgerin ; l'effacer la fige.",
+        "effets": [],
+        "jet": {
+          "competence": "arcanes",
+          "dd": 14
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-armurerie"
+      ],
+      "tresors": [
+        "cry-t-armurerie-marteaux"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#..m..#......#..m..#",
+      "#.....#......#.....#",
+      "#..#...........#...#",
+      "#..m...##..##...m..#",
+      "#..#............#..#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Elles attaquent en triangle, protégeant la rangée des marteaux ; elles poursuivent jusque dans la rotonde mais n'ont aucune initiative.",
+      "fuite": "Elles reviennent à leur socle si on s'éloigne.",
+      "renforts": "Le fracas du plafond-enclume les éveille à coup sûr."
+    }
+  },
+  {
+    "id": "cry-r-le-tresorier-embaume",
+    "nom": "Le trésorier embaumé",
+    "type": "combat",
+    "lieu": "cry-chambre-du-tresorier",
+    "difficulte": "moderee",
+    "intro": "L'homme assis derrière le pupitre ne bouge pas. Puis ses bandelettes grincent et il se redresse, une main tendue paume ouverte, comme pour percevoir un droit de passage. Deux nuées de rats se déversent de sous les coffres.",
+    "monstres": [
+      {
+        "profil": "momie",
+        "nombre": 1,
+        "nom": "Le trésorier d'Ormgard"
+      },
+      {
+        "profil": "nuee-de-rats",
+        "nombre": 2
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "payer-l-octroi",
+        "nom": "Payer l'octroi",
+        "resume": "Poser dix pièces d'or sur le pupitre et lui présenter un reçu bien tourné : le trésorier compte, fait la moue, les range et rend son salut.",
+        "effets": [
+          {
+            "pieces": -10
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      },
+      {
+        "id": "regler-les-comptes",
+        "nom": "Régler les comptes",
+        "resume": "Lire un des livres de comptes pour y trouver une dette de la corporation envers la trésorerie : un décompte juste le calme.",
+        "effets": [],
+        "jet": {
+          "competence": "histoire",
+          "dd": 15
+        }
+      }
+    ],
+    "butin": {
+      "tables": [
+        "cry-butin-tresorerie"
+      ],
+      "tresors": [
+        "cry-t-tresorier-coffre-fort"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.mm.......m.......#",
+      "#.....####.....##..#",
+      "#.....#..#..m..##..#",
+      "#.....####.........#",
+      "#................~~#",
+      "#....HHHHHH......~~#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "La momie exige un paiement ; si on l'attaque, elle se bat à la poigne et à la malédiction de la pourriture ; les rats grignotent les pieds et se faufilent entre les coffres.",
+      "fuite": "Elle ne quitte pas sa trésorerie.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-gardien-des-cryptes",
+    "nom": "Le gardien des cryptes",
+    "type": "mixte",
+    "lieu": "cry-salle-du-sceau",
+    "difficulte": "elevee",
+    "intro": "Au fond de la salle, devant le Sceau, un nain en cotte rouillée se retourne. Il a un casque à nasal et la barbe tressée de fil de fer. Dans l'ombre de la salle, des armures s'éveillent autour de lui. « Halte, dit-il. Qui vient relever la garde ? Qui parle, et en quel nom ? » Sa voix est celle d'un homme qui n'a pas dormi depuis deux siècles.",
+    "monstres": [
+      {
+        "profil": "fantome",
+        "nombre": 1,
+        "nom": "Brand Garde-Serment",
+        "pnj": "cry-brand-garde-serment"
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 2,
+        "nom": "Veilleurs du Sceau"
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "rendre-son-nom",
+        "nom": "Lui rendre son nom",
+        "resume": "Montrer la plaque de sépulture de Brand et dire son nom : il la prend, la lit à voix haute et tombe à genoux. Son serment est tenu, il est relevé.",
+        "effets": [
+          {
+            "flag": "cry-gardien-apaise"
+          },
+          {
+            "flag": "cryptes-franchies"
+          },
+          {
+            "fait": "f-cry-relever-le-gardien"
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 300
+          }
+        ],
+        "condition": {
+          "objet": "cry-plaque-du-gardien"
+        }
+      },
+      {
+        "id": "parlementer",
+        "nom": "Parlementer : prouver la relève",
+        "resume": "Se présenter comme la relève, dire les noms des défunts, rappeler le serment de Brand ; il sait ce que valent les mots. Plus on lui en dit de vrais, plus il est ouvert.",
+        "effets": [
+          {
+            "flag": "cry-gardien-apaise"
+          },
+          {
+            "flag": "cryptes-franchies"
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 250
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "condition": {
+          "fait": "f-cry-relever-le-gardien"
+        }
+      },
+      {
+        "id": "ruser-avec-le-serment",
+        "nom": "Ruser avec l'inscription du serment",
+        "resume": "L'inscription du Sceau dit : « jusqu'à ce qu'on vienne relever la garde ». Lire le serment à haute voix en se présentant comme la relève trompe sa lettre sans trahir son esprit ; un échec le fâche.",
+        "effets": [
+          {
+            "flag": "cry-gardien-apaise"
+          },
+          {
+            "flag": "cryptes-franchies"
+          },
+          {
+            "xp": 200
+          }
+        ],
+        "jet": {
+          "competence": "tromperie",
+          "dd": 16
+        },
+        "condition": {
+          "fait": "f-cry-sceau-ouverture"
+        }
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "cry-t-sceau-coffre-du-gardien"
+      ]
+    },
+    "effetsVictoire": [
+      {
+        "flag": "cryptes-franchies"
+      },
+      {
+        "flag": "cry-gardien-vaincu"
+      },
+      {
+        "fait": "f-cry-gardien-brand"
+      },
+      {
+        "reputation": {
+          "faction": "morts-de-la-forge",
+          "delta": -10
+        }
+      },
+      {
+        "xp": 300
+      }
+    ],
+    "carte": [
+      "######################",
+      "#....................#",
+      "#..m.....####.....m..#",
+      "#.......#....#.......#",
+      "#....m..#.mm.#..~~...#",
+      "#.......#....#..~~...#",
+      "#.........##.........#",
+      "#.....~~~............#",
+      "#.....~~~...HHHHHH...#",
+      "#....................#",
+      "######################"
+    ],
+    "tactique": {
+      "doctrine": "Phase 1 : les deux armures du Sceau engagent seules, en protégeant le coffre, tandis que Brand parle et demande qui vient. Phase 2 (à la chute d'une armure, ou dès qu'on touche au coffre ou au Sceau) : Brand se manifeste, vole à travers les murs et cible les porteurs de la clé ou de symboles sacrés. Phase 3 (Brand à moitié de ses points de vie) : il offre une dernière occasion de parlementer. Il ne poursuit pas hors de la salle.",
+      "fuite": "Il ne quitte pas sa salle ; il rit parfois, d'un rire sec, quand on lui tourne le dos.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-brisca-rivale",
+    "nom": "Les Fouilleurs de Cendre",
+    "type": "mixte",
+    "lieu": "cry-rotonde",
+    "difficulte": "faible",
+    "intro": "Une femme aux petites cornes de fer se lève d'un feu de camp, arbalète de poing au poing, à côté d'un archer qui tient son arc, à moitié levé. Trois couvertures enveloppent des formes immobiles au pied d'un pilier. « Doucement. Je suis fatiguée, pas aveugle. Qui paie vos pas ? »",
+    "monstres": [
+      {
+        "profil": "eclaireur",
+        "nombre": 1,
+        "nom": "Brisca Ravel",
+        "pnj": "cry-brisca-ravel"
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 1,
+        "nom": "Jorun le Bègue"
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "partage-equitable",
+        "nom": "Proposer un partage",
+        "resume": "Proposer de partager l'or des cryptes et de laisser Brisca partir avec une moitié de la clé en gage : elle y gagne la vie sauve.",
+        "effets": [
+          {
+            "flag": "cry-brisca-alliee"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-brisca-ravel",
+              "delta": 20
+            }
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        }
+      },
+      {
+        "id": "intimider",
+        "nom": "Les faire reculer",
+        "resume": "Une démonstration de force les fait reculer ; Brisca se tait mais garde la rancune.",
+        "effets": [
+          {
+            "flag": "cry-brisca-intimidee"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-brisca-ravel",
+              "delta": -15
+            }
+          }
+        ],
+        "jet": {
+          "competence": "intimidation",
+          "dd": 15
+        }
+      },
+      {
+        "id": "tromper",
+        "nom": "Leur mentir",
+        "resume": "Leur faire croire que la clé est ailleurs que dans la salle du Sceau, pour qu'ils quittent la rotonde.",
+        "effets": [
+          {
+            "flag": "cry-brisca-trompee"
+          }
+        ],
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        }
+      },
+      {
+        "id": "combattre",
+        "nom": "Les chasser",
+        "resume": "Un combat bref et sale, à l'issue incertaine : Brisca fuit à moitié dans la chapelle.",
+        "effets": [
+          {
+            "flag": "cry-brisca-hostile"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -5
+            }
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "cry-t-rotonde-camp"
+      ]
+    },
+    "effetsVictoire": [],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.....mm...........#",
+      "#..#............#..#",
+      "#..#....~~~~....#..#",
+      "#.......~~~~.......#",
+      "#..................#",
+      "#......HHHHHH......#",
+      "#..................#",
+      "####################"
+    ],
+    "tactique": {
+      "doctrine": "Brisca parle d'abord, tire ensuite ; Jorun couvre depuis le sarcophage nord. Ils se replient vers l'escalier si le combat tourne mal.",
+      "fuite": "Ils fuient par la chapelle.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "cry-r-pelerine-du-puits",
+    "nom": "La pèlerine au bord du vide",
+    "type": "social",
+    "lieu": "cry-puits-de-cendre",
+    "difficulte": "faible",
+    "intro": "Une femme en manteau gris, assise au bord du puits, les jambes dans le vide, ne tourne pas la tête. « Elle respire, vous entendez ? Ne faites pas de bruit. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "la-persuader",
+        "nom": "La persuader de remonter",
+        "resume": "Lui parler de ceux qui l'attendent, de ceux qu'on a encore à sauver : la tirer du bord sans l'effrayer.",
+        "effets": [
+          {
+            "flag": "cry-cendrine-convaincue"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": 25
+            }
+          }
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -10
+            }
+          },
+          {
+            "narration": "Vos mots tombent dans le vide ; elle murmure qu'elle entend déjà ceux qui l'attendent, et se penche un peu plus au-dessus du puits."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "la-laisser-ecouter",
+        "nom": "La laisser écouter",
+        "resume": "Respecter son choix, s'asseoir un moment près d'elle : elle parle alors du puits et de ce qu'elle y entend.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": 15
+            }
+          }
+        ],
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Vous vous asseyez trop près du bord : une pierre cède sous vous, vous vous rattrapez de justesse, et elle se détourne, agacée."
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "l-ecarter-de-force",
+        "nom": "L'éloigner de force",
+        "resume": "L'arracher du bord : elle ne résiste pas, mais ne pardonne pas.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -20
+            }
+          }
+        ],
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Vos mains glissent sur la pierre humide ; elle se rattrape au rebord du puits et vous regarde avec le même froid qu'au premier mot."
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  }
+]

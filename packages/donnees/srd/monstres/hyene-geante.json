@@ -1,0 +1,81 @@
+{
+  "id": "hyene-geante",
+  "nom": "Hyène géante",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 2,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 3
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Quand au moins un de ses alliés non Neutralisés se situe dans un rayon de 1,50 m de la créature qu'elle cible, la hyène a l'Avantage au jet d'attaque correspondant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "dechainement",
+      "nom": "Déchaînement",
+      "cout": "bonus",
+      "resume": "Aussitôt après avoir infligé des dégâts à une créature déjà En péril, la hyène se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Morsure.",
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      }
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

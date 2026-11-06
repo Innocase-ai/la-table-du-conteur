@@ -1,0 +1,124 @@
+{
+  "sauvegardes": {
+    "dex": 5,
+    "con": 8,
+    "sag": 4
+  },
+  "competences": {
+    "athletisme": 12,
+    "discretion": 5,
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "geant-des-pierres",
+  "nom": "Géant des pierres",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 126,
+    "des": "11d12 + 55"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 15,
+    "con": 20,
+    "int": 10,
+    "sag": 12,
+    "cha": 9
+  },
+  "initiative": 5,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "gigant",
+  "fp": "7",
+  "px": 2900,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Gourdin de pierre et Rocher (modélisé : deux Gourdin de pierre).",
+      "multiattaque": [
+        {
+          "action": "gourdin-de-pierre",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "gourdin-de-pierre",
+      "nom": "Gourdin de pierre",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 4,50 m : 22 (3d10 + 6) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 4.5
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 6,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "rocher",
+      "nom": "Rocher",
+      "cout": "action",
+      "resume": "À distance +9, portée 18/72 m : 15 (2d8 + 6) dégâts contondants. Si la cible est une créature de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18,
+        "longue": 72
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "parade-de-projectile",
+      "nom": "Parade de projectile",
+      "cout": "reaction",
+      "resume": "Déclencheur : le géant est touché par un jet d'attaque à distance qui lui inflige des dégâts contondants, perforants ou tranchants. Conséquences : le géant réduit les dégâts infligés par l'attaque de 11 (1d10 + 6) ; si ces dégâts sont réduits à 0, le géant peut réorienter une partie de l'impact. JS Dextérité DD 17, une créature que le géant voit dans un rayon de 18 m. Échec : 11 (1d10 + 6) dégâts de force.",
+      "recharge": "5-6",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

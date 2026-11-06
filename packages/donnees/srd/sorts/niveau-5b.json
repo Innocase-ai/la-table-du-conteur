@@ -1,0 +1,361 @@
+[
+  {
+    "id": "main-arcanique",
+    "nom": "Main arcanique",
+    "niveau": 5,
+    "ecole": "évocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (une coquille d'œuf et un gant)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Crée une main de taille G d'énergie magique dans un espace inoccupé visible à portée ; elle reproduit les mouvements de la main du lanceur. C'est un objet de CA 20 et de PV égaux au maximum de PV du lanceur ; à 0 PV, le sort prend fin. Elle n'occupe pas son espace. À l'incantation puis par une action Bonus à chacun de ses tours, le lanceur la déplace de 18 m maximum et lui fait produire un effet. Main agrippeuse : cible de taille TG ou inférieure à 1,50 m, JS de Dextérité ou état Agrippé (DD d'évasion = DD de sauvegarde des sorts) ; tant qu'elle agrippe, une action Bonus la fait broyer la cible pour 4d6 dégâts contondants + modificateur de caractéristique d'incantation. Main impérieuse : cible TG ou inférieure à 1,50 m, JS de Force ou repoussée de 1,50 m + 1,50 m × modificateur de caractéristique d'incantation ; la main la suit. Main interposée : Abri partiel contre les attaques et effets issus de son espace ou le traversant, et son espace est un Terrain difficile pour les ennemis. Poing serré : attaque de sort au corps à corps sur une cible à 1,50 m, 5d8 dégâts de force. À un emplacement supérieur, poing serré +2d8 et main agrippeuse +2d6 par niveau au-delà du 5e."
+  },
+  {
+    "id": "modification-de-memoire",
+    "nom": "Modification de mémoire",
+    "niveau": 5,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une créature visible à portée fait un JS de Sagesse (Avantage si le lanceur l'affronte). En cas d'échec, elle subit les états Charmé et Neutralisé pour la durée, inconsciente de son environnement mais entendant le lanceur. Si elle subit des dégâts ou est ciblée par un autre sort, le sort prend fin sans altérer de souvenir. Pendant le charme, le lanceur peut agir sur un souvenir de moins de 24 heures et de moins de 10 minutes : l'effacer, le rendre parfaitement précis, en altérer des éléments ou en créer un autre. Il doit décrire de vive voix les modifications (la cible doit comprendre la langue) ; si le sort prend fin avant, rien n'est altéré, sinon l'altération prend effet à la fin du sort. La créature ne change pas forcément de comportement si ces souvenirs vont à l'encontre de sa nature, de son alignement ou de ses croyances ; un souvenir absurde passe pour un mauvais rêve, et le MJ peut juger un souvenir trop déraisonnable. Délivrance des malédictions ou restauration suprême lancé sur la cible lui rend sa mémoire d'origine. À un emplacement supérieur : événement remontant à 7 jours (6e niveau), 30 jours (7e), 365 jours (8e) ou à tout moment du passé (9e).",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      },
+      {
+        "etat": "neutralise"
+      }
+    ]
+  },
+  {
+    "id": "mur-de-force",
+    "nom": "Mur de force",
+    "niveau": 5,
+    "ecole": "évocation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un éclat de verre)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Un mur de force invisible se matérialise en un point à portée, horizontal, vertical ou de biais, en suspension ou posé sur une surface solide. Il peut être un dôme hémisphérique ou un globe de 3 m de rayon maximum, ou une surface plane de dix pans de 3 m sur 3 (chaque pan contigu à un autre). Épais de 6 mm, il persiste pour la durée. Une créature dans son espace à l'apparition est repoussée du côté choisi par le lanceur. Rien ne peut le franchir physiquement ; il est immunisé contre tous les dégâts et insensible à dissipation de la magie, mais désintégration le détruit instantanément. Il s'étend sur le Plan Éthéré et bloque le voyage éthéré à travers lui."
+  },
+  {
+    "id": "mur-de-pierre",
+    "nom": "Mur de pierre",
+    "niveau": 5,
+    "ecole": "évocation",
+    "classes": [
+      "druide",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 36
+    },
+    "composantes": "V, S, M (un cube de granit)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Un mur non magique de pierre solide se matérialise en un point à portée : épais de 15 cm, dix pans de 3 m sur 3 (chaque pan contigu à un autre), ou pans de 3 m sur 6 épais de 7,5 cm. Une créature dans son espace à l'apparition est repoussée du côté choisi ; si elle devait être cernée par le mur de tous côtés (ou mur et surface solide), elle fait un JS de Dextérité et, en cas de réussite, peut jouer sa Réaction pour se déplacer (dans sa Vitesse) hors de la zone séquestrée. Le mur peut prendre toute forme, sans occuper l'espace de créatures ou d'objets, n'a pas besoin d'être vertical ni sur des fondations, mais doit fusionner avec de la pierre existante capable de le soutenir (pont, plan incliné ; pour un pont de plus de 6 m, pans réduits de moitié ; remparts possibles). C'est un objet de pierre : CA 15 par pan, 30 PV par tranche de 2,5 cm d'épaisseur, Immunité aux dégâts psychiques et de poison ; un pan à 0 PV est détruit et peut provoquer l'effondrement de pans contigus (MJ). Si la Concentration est maintenue jusqu'au terme de la durée, le mur devient permanent et indissipable ; sinon il disparaît à la fin du sort."
+  },
+  {
+    "id": "mythes-et-legendes",
+    "nom": "Mythes et légendes",
+    "niveau": 5,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (de l'encens d'une valeur minimale de 250 po, que le sort détruit, et quatre lamelles d'ivoire d'une valeur minimale de 50 po chacune)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 10 minutes. Le lanceur nomme ou décrit une personne, un lieu ou un objet notoire ; le sort lui fait prendre brièvement conscience d'un fait important (décrit par le MJ) à son sujet : détails essentiels, révélations cocasses ou secret méconnu. Plus le lanceur en sait déjà, plus l'information est précise et détaillée ; elle est juste mais parfois formulée de manière imagée ou en vers. Si l'élément n'est pas véritablement notoire, le lanceur n'entend que quelques notes tristes de trombone et le sort prend fin."
+  },
+  {
+    "id": "passage-par-les-arbres",
+    "nom": "Passage par les arbres",
+    "niveau": 5,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Le lanceur peut entrer dans un arbre vivant et passer à un autre arbre du même type distant de 150 m maximum ; les deux arbres doivent être vivants et d'une catégorie de taille supérieure ou égale à la sienne. Entrer dans un arbre coûte 1,50 m de déplacement. Il connaît aussitôt la position de tous les arbres de la même essence dans 150 m et, lors du déplacement d'entrée, choisit de passer dans l'un d'eux ou de ressortir par celui où il est entré. Avec 1,50 m de déplacement supplémentaire, il apparaît où il veut dans un rayon de 1,50 m de l'arbre de destination ; sans déplacement restant, il réapparaît dans 1,50 m de l'arbre de départ. Une seule utilisation par tour ; il doit finir chaque tour hors d'un arbre."
+  },
+  {
+    "id": "passe-muraille",
+    "nom": "Passe-muraille",
+    "niveau": 5,
+    "ecole": "transmutation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S, M (une pincée de graines de sésame)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Un passage se forme en un point visible sur une surface de bois, de plâtre ou de pierre (mur, plafond, sol) à portée et persiste pour la durée. Le lanceur choisit ses dimensions : jusqu'à 1,50 m de large, 2,40 m de haut et 6 m de profondeur. Il n'engendre aucune instabilité dans la structure. Quand il disparaît, objets et créatures qui s'y trouvent encore sont éjectés sans heurt dans les espaces inoccupés les plus proches de la surface."
+  },
+  {
+    "id": "quete",
+    "nom": "Quête",
+    "niveau": 5,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "magicien",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "30 jours",
+    "concentration": false,
+    "resume": "Incantation de 1 minute. Le lanceur intime un ordre verbal à une créature visible à portée, pour la contraindre à une tâche ou l'empêcher de certains actes. Elle fait un JS de Sagesse (réussite automatique si elle ne comprend pas l'ordre) ; en cas d'échec, elle subit l'état Charmé pour la durée. Tant qu'elle est Charmée, elle subit 5d10 dégâts psychiques quand elle agit directement contre les instructions (au plus une fois par jour). Tout ordre est permis sauf une tâche forcément fatale ; une instruction suicidaire met fin au sort. Délivrance des malédictions, restauration suprême et souhait y mettent fin. À un emplacement du 7e ou 8e niveau, durée de 365 jours ; au 9e, le sort dure jusqu'à ce qu'un des sorts cités y mette fin.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      }
+    ]
+  },
+  {
+    "id": "rappel-a-la-vie",
+    "nom": "Rappel à la vie",
+    "niveau": 5,
+    "ecole": "nécromancie",
+    "classes": [
+      "barde",
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un diamant d'une valeur minimale de 500 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 1 heure. Au contact, ramène à la vie une créature qui n'était pas un Mort-vivant à sa mort et morte depuis 10 jours maximum. Elle revient avec 1 point de vie et tous les poisons qui l'affectaient sont neutralisés. Le sort referme les blessures mortelles mais ne fait pas repousser l'anatomie manquante ; si la créature a perdu une partie du corps ou un organe essentiel à sa survie (sa tête par exemple), le sort échoue automatiquement. La cible subit un malus de −4 aux Tests d20, qui diminue de 1 à chaque Repos long terminé jusqu'à tomber à 0."
+  },
+  {
+    "id": "reincarnation",
+    "nom": "Réincarnation",
+    "niveau": 5,
+    "ecole": "nécromancie",
+    "classes": [
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (des huiles rares d'une valeur minimale de 1 000 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 1 heure. Le lanceur touche un Humanoïde mort ou l'un de ses restes. Si la créature n'est pas morte depuis plus de 10 jours, le sort forme un nouveau corps et appelle son âme à le posséder. Lancer 1d10 pour l'espèce du nouveau corps (ou le MJ choisit une espèce jouable) : 1 relancer, 2 Drakéide, 3 Elfe, 4 Gnome, 5 Goliath, 6 Halfelin, 7 Humain, 8 Nain, 9 Orc, 10 Tieffelin. La créature réincarnée fait les choix proposés par la description de l'espèce, se souvient de son ancienne vie et conserve ses capacités d'origine, mais perd les traits de l'ancienne forme et acquiert ceux de la nouvelle."
+  },
+  {
+    "id": "restauration-supreme",
+    "nom": "Restauration suprême",
+    "niveau": 5,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (poudre de diamant d'une valeur minimale de 100 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Le lanceur touche une créature pour lui retirer magiquement l'un des effets suivants : 1 niveau d'Épuisement ; l'état Charmé ou Pétrifié ; une malédiction, y compris l'Harmonisation avec un objet magique maudit ; toute réduction d'une valeur de caractéristique ; toute réduction du maximum de points de vie."
+  },
+  {
+    "id": "sanctification",
+    "nom": "Sanctification",
+    "niveau": 5,
+    "ecole": "abjuration",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 18
+    },
+    "composantes": "V, S, M (encens d'une valeur minimale de 1 000 po, que le sort détruit)",
+    "duree": "jusqu'à dissipation",
+    "concentration": false,
+    "resume": "Incantation de 24 heures. Le lanceur touche un point pour investir la zone environnante de pouvoir sacré ou impie, dans un rayon de 18 m maximum ; le sort échoue si ce rayon chevauche une zone déjà affectée par sanctification. Barrière sanctifiée : au choix, un ou plusieurs types parmi Aberrations, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants ; ces créatures ne peuvent pénétrer volontairement dans la zone, et toute créature possédée, Charmée ou Effrayée par elles ne l'est plus tant qu'elle y reste. Effet supplémentaire, un au choix : Courage (les créatures des types retenus ne peuvent être Effrayées dans la zone) ; Don des langues (elles communiquent avec toute créature de la zone) ; Interférence extradimensionnelle (elles ne peuvent entrer dans la zone ni en sortir par téléportation ou voyage interplanaire) ; Lumière du jour (Lumière vive dans la zone ; les Ténèbres magiques créées par des sorts de niveau inférieur ne l'occultent pas) ; Repos paisible (les dépouilles enterrées ne peuvent devenir des Morts-vivants) ; Résistance (elles bénéficient de la Résistance à un type de dégâts au choix) ; Silence (aucun son n'entre ni ne sort) ; Ténèbres (les lumières ordinaires et les lumières magiques de sorts de niveau inférieur n'éclairent pas la zone) ; Terreur (elles subissent l'état Effrayé dans la zone) ; Vulnérabilité (elles subissent la Vulnérabilité à un type de dégâts au choix)."
+  },
+  {
+    "id": "scrutation",
+    "nom": "Scrutation",
+    "niveau": 5,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (un focaliseur d'une valeur minimale de 1 000 po, comme une boule de cristal, un miroir en argent ou une vasque remplie d'eau bénite)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Incantation de 10 minutes. Le lanceur voit et entend une créature de son choix sur le même plan. La cible fait un JS de Sagesse, modifié par la connaissance qu'a le lanceur d'elle (indirecte +5, directe +0, intime −5) et par le lien physique (portrait ou représentation −2, vêtement ou bien personnel −4, élément anatomique −10) ; elle ignore contre quoi elle fait ce JS et ressent juste un malaise. En cas de réussite, elle n'est pas affectée et le lanceur ne peut plus la cibler pendant 24 heures. En cas d'échec, un capteur Invisible et intangible se crée à 3 m ou moins de la cible ; le lanceur voit et entend par son intermédiaire, il suit la cible en restant dans 3 m, et apparaît à qui le perçoit comme un orbe lumineux de la taille d'un poing. Le lanceur peut aussi cibler un lieu déjà vu : le capteur y reste fixe.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    }
+  },
+  {
+    "id": "soins-de-groupe",
+    "nom": "Soins de groupe",
+    "niveau": 5,
+    "ecole": "abjuration",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "sphere",
+      "taille": 9
+    },
+    "cibles": 6,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une vague d'énergie curative déferle depuis un point visible à portée. Le lanceur désigne jusqu'à six créatures dans une Sphère de 9 m de rayon centrée sur ce point ; chacune récupère 5d8 + modificateur de caractéristique d'incantation points de vie. +1d8 par niveau d'emplacement au-delà du 5e.",
+    "soins": {
+      "des": "5d8",
+      "ajouterModificateur": true
+    },
+    "ameliorationParNiveau": "1d8"
+  },
+  {
+    "id": "songe",
+    "nom": "Songe",
+    "niveau": 5,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une poignée de sable)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Incantation de 1 minute. Portée spéciale. Le lanceur cible une créature qu'il connaît sur son plan d'existence. Lui-même ou une créature consentante qu'il touche entre en transe et sert de messager onirique (Neutralisé, Vitesse 0). Si la cible dort, le messager lui apparaît en rêve et converse avec elle tant que le sommeil et le sort durent ; il peut façonner l'environnement du songe (paysages, objets, images) et quitter sa transe à tout moment, ce qui met fin au sort. La cible se souvient parfaitement du songe. Si la cible est éveillée à l'incantation, le messager le sait et peut mettre fin à sa transe (et au sort) ou attendre qu'elle s'endorme. Le messager peut être terrifiant : il livre un message d'au plus dix mots, puis la cible fait un JS de Sagesse ; en cas d'échec, elle ne reçoit aucun bénéfice de son Repos et subit 3d6 dégâts psychiques à son réveil."
+  },
+  {
+    "id": "telekinesie",
+    "nom": "Télékinésie",
+    "niveau": 5,
+    "ecole": "transmutation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Le lanceur déplace ou manipule objets et créatures par la pensée. À l'incantation puis par l'action Magie à ses tours suivants, il exerce sa volonté sur une créature ou un objet visible à portée (même cible round après round, ou nouvelle cible : la précédente n'est plus affectée). Créature : cible de taille TG ou inférieure, JS de Force ; en cas d'échec elle est déplacée de 9 m maximum dans la direction choisie (dans la portée) et subit l'état Entravé jusqu'à la fin du tour suivant du lanceur ; si elle est soulevée, elle reste suspendue et chute à la fin de ce tour sauf nouvelle utilisation de l'option avec JS raté. Objet : de taille TG ou inférieure ; non porté, il est déplacé automatiquement de 9 m maximum ; porté par une créature, celle-ci fait un JS de Force, et en cas d'échec le lanceur lui arrache l'objet et le déplace de 9 m maximum. Contrôle plus précis possible sur les objets (manipuler un outil rudimentaire).",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "for",
+      "moitieSiReussite": false
+    }
+  }
+]

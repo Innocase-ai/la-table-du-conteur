@@ -1,0 +1,106 @@
+{
+  "id": "grand-singe",
+  "nom": "Grand singe",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9,
+    "escalade": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 14,
+    "con": 14,
+    "int": 6,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 5,
+    "perception": 3
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le singe effectue deux attaques de Poing.",
+      "multiattaque": [
+        {
+          "action": "poing",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "poing",
+      "nom": "Poing",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "rocher",
+      "nom": "Rocher",
+      "cout": "action",
+      "resume": "À distance +5, portée 7,50/15 m : 10 (2d6 + 3) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 7.5,
+        "longue": 15
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": [],
+      "recharge": "6"
+    }
+  ]
+}

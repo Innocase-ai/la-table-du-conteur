@@ -1,0 +1,64 @@
+[
+  {
+    "id": "grande-maree",
+    "nom": "La grande marée",
+    "min": 0,
+    "max": 4,
+    "initial": 1,
+    "resume": "Le temps qui reste avant la grande marée. Elle monte d'un cran à chaque repos long, quand l'alarme est donnée à la crique ou qu'on accuse un innocent ; elle baisse quand on prévient la capitaine ou qu'on sabote la barque des contrebandiers. À 4, si le livre n'est pas retrouvé, il part : c'est la fin d'échec.",
+    "paliers": [
+      {
+        "seuil": 0,
+        "nom": "Mer d'huile",
+        "narration": "La mer est d'huile, immobile jusqu'à l'horizon. Le navire tarde, la crique est surveillée de près : vous avez du temps.",
+        "effets": [
+          {
+            "flag": "grande-maree-0"
+          }
+        ]
+      },
+      {
+        "seuil": 1,
+        "nom": "Le vol connu",
+        "narration": "Le village murmure, la fête est gâchée. Chacun guette la maire, le prêtre et la mer.",
+        "effets": []
+      },
+      {
+        "seuil": 2,
+        "nom": "Couvre-feu",
+        "narration": "Le guet est consigné au quartier et les rues se vident à la nuit. À la crique, les hommes de la crique sont nerveux et gardent mieux leur grève.",
+        "effets": [
+          {
+            "flag": "grande-maree-2"
+          }
+        ]
+      },
+      {
+        "seuil": 3,
+        "nom": "Le navire au large",
+        "narration": "Un navire inconnu mouille au large de la baie. Des barques font la navette, et la crique déplace ses hommes : il ne reste plus qu'une nuit.",
+        "effets": [
+          {
+            "flag": "grande-maree-3"
+          }
+        ]
+      },
+      {
+        "seuil": 4,
+        "nom": "Le livre embarque",
+        "narration": "À la pleine mer, le navire de Verdelune lève l'ancre, ses barques ramenées à bord. Pour qui n'a pas le livre en main, c'est fini.",
+        "effets": [
+          {
+            "flag": "grande-maree-4"
+          }
+        ]
+      }
+    ],
+    "evolution": [
+      {
+        "declencheur": "repos-long",
+        "delta": 1
+      }
+    ]
+  }
+]

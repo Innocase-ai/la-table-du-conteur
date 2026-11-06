@@ -1,0 +1,630 @@
+[
+  {
+    "id": "cit-r-le-conseil-du-prieur",
+    "nom": "Le conseil du Prieur",
+    "type": "social",
+    "lieu": "cit-bureau-du-prieur",
+    "difficulte": "moderee",
+    "intro": "Le Prieur Anselme Vareuil vous reçoit debout, les mains jointes au-dessus d'un registre ouvert. Il s'excuse de la tempête, puis pose la question qu'il attendait : qu'avez-vous vu sur la route, et qui est la jeune femme qui marche derrière vous ?",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "dire-ce-qui-a-ete-vu",
+        "nom": "Je lui dis ce que nous avons vu sur la route.",
+        "resume": "Il écoute sans vous interrompre, puis range sa plume. Il sait désormais que la mer parle, et il vous remercie avec une gentillesse qui ressemble à une mise à l'écart.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "prieur-anselme-vareuil",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "z6-prieur-sait-les-signes"
+          }
+        ]
+      },
+      {
+        "id": "mentir-sur-nolwen",
+        "nom": "Je lui affirme que la jeune femme n'est qu'une voyageuse.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "resume": "Il sourit, trempe sa plume et écrit un nom qui n'est pas le sien. Il vous croit, ou fait semblant de vous croire, et la jeune femme cesse d'être une question. Le mensonge reste pourtant dans son registre, à la page du jour.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "prieur-anselme-vareuil",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "z6-prieur-cru"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le Prieur repose sa plume. « Étrange. Les voyageuses ne gardent pas leur capuchon pour parler à un prieur. » Il ne dit rien de plus, mais son regard ne vous quitte plus."
+          },
+          {
+            "attitude": {
+              "pnj": "prieur-anselme-vareuil",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-prieur-mefiant"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "demander-une-chambre",
+        "nom": "Je refuse de répondre et je demande une chambre pour la nuit.",
+        "resume": "Il vous conduit lui-même au dortoir, la lampe à la main, et ferme la porte à clef. Vous dormez. La clef reste dans sa poche, et vous n'êtes plus tout à fait ses hôtes.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "prieur-anselme-vareuil",
+              "delta": -15
+            }
+          },
+          {
+            "flag": "z6-prieur-mefiant"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "fal-r-la-maree-qui-monte",
+    "nom": "La marée qui monte",
+    "type": "exploration",
+    "lieu": "marais-de-sel",
+    "difficulte": "moderee",
+    "intro": "La marée est revenue avant l'heure. Les bassins du marais se remplissent d'une eau trop froide, et une ligne blanche avance entre les digues à la vitesse d'un homme qui marche. Il faut passer avant qu'elle n'ait tout couvert.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "courir-sur-les-digues",
+        "nom": "Je cours sur la crête des digues, sans regarder ce qui remue dessous.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "La crête tient, le groupe passe d'un bloc et atteint les salines avant la ligne blanche. Une digue de moins, et l'eau reste derrière vous.",
+        "effets": [
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La crête cède sous le dernier pas. Vous passez, mais trempés jusqu'à la taille, les vivres gâtés par le sel, et la ligne blanche vous suit de près."
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "suivre-la-ligne-de-sel",
+        "nom": "Je suis la ligne de sel laissée par les anciens saulniers.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "Les anciens saulniers ont planté des balises de bois le long du chemin le plus haut. Vous les suivez une à une, et vous gagnez du temps sur l'eau.",
+        "effets": [
+          {
+            "flag": "z6-marais-balises-suivies"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Une balise manque, puis deux. Vous perdez la piste dans les bassins et traversez à l'estime, l'eau aux genoux, sans rien de sec."
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "attendre-le-reflux",
+        "nom": "J'attends sur un monticule que l'eau recule.",
+        "resume": "L'eau recule, mais lentement, et les heures passent avec elle. Le groupe traverse à demi transi, et la mer a gagné du temps sur le reste de la côte.",
+        "effets": [
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "por-r-le-proces-du-quai",
+    "nom": "Le procès du quai",
+    "type": "social",
+    "lieu": "por-quai-aux-cordes",
+    "difficulte": "moderee",
+    "intro": "Au bout du quai, une foule serrée entoure un marin tieffelin, les poignets liés par un cordage goudronné. « Il a fait venir les noyés ! » crie une femme. Un calfat, improvisé juge, attend votre avis. Sur le seuil du hall de la Ligue, un homme en manteau gris observe et ne dit rien.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "defendre-le-marin",
+        "nom": "Je prends sa défense devant la foule.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "resume": "Vous montrez ses mains sèches, et la marque de sel sur ses chevilles, celle de quelqu'un qui ne se baigne pas. La foule hésite, un docker baisse son crochet, et le calfat ouvre la porte de la cale.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "z6-marin-defendu"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Votre plaidoirie sonne faux, et la foule le sent. Le marin est emmené quand même, et les Rats de quai retiennent que vous avez essayé et échoué devant tout le monde."
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z6-marin-abandonne"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "denoncer-le-marin",
+        "nom": "Je dis ce que la Ligue veut entendre : qu'il a menti sur le quai.",
+        "resume": "La foule se calme d'un coup. Le marin est emmené vers le hall de la Ligue, et l'homme au manteau gris prend note sans vous remercier. Les Rats de quai, eux, retiennent un nom.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ligue-des-phares",
+              "delta": 5
+            }
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-marin-denonce"
+          }
+        ]
+      },
+      {
+        "id": "laisser-le-juge-decider",
+        "nom": "Je recule d'un pas et je laisse la foule décider.",
+        "resume": "La foule décide seule, sans règle ni greffier. Le marin paie pour une nuit qui n'était pas la sienne, et les Rats apprennent que vous regardez ailleurs.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z6-marin-abandonne"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "por-r-le-marche-de-sorel",
+    "nom": "Le marché de Mère Sorel",
+    "type": "social",
+    "lieu": "por-entrepots-des-rats",
+    "difficulte": "moderee",
+    "intro": "Mère Sorel Quaibas vous fait attendre au bout d'une table de caisses marquées de faux noms de sel. Elle ne lève pas les yeux de ses comptes. « Un passage vers la chaussée, ça se vend, dit-elle. Reste à savoir si vous êtes à vendre. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "parler-le-langage-des-rats",
+        "nom": "Je lui réponds dans le langage des contrebandiers.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "resume": "Vous employez les mots qu'elle a appris à reconnaître : un trajet, une cale, une bourse sans nom. Elle sourit pour la première fois et ramène son prix à vingt pièces. Un passage bon marché se vend aussi à quelqu'un d'autre.",
+        "effets": [
+          {
+            "pieces": -20
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 10
+            }
+          },
+          {
+            "flag": "z6-trajet-vendu-a-joss"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Elle vous écoute jusqu'au bout, puis sourit sans chaleur. « Vous parlez comme un notaire déguisé. » Le prix monte, et le passage se vend quand même."
+          },
+          {
+            "pieces": -60
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": -5
+            }
+          },
+          {
+            "flag": "z6-passage-paye"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "payer-le-passage",
+        "nom": "Je pose soixante pièces d'or sur la table, sans discours.",
+        "resume": "Elle les compte deux fois, glisse la bourse sous son tablier et vous indique la porte de la cachette, sans un mot de plus. Le passage est sûr, et il coûte cher.",
+        "effets": [
+          {
+            "pieces": -60
+          },
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "z6-passage-paye"
+          }
+        ],
+        "condition": {
+          "pieces": {
+            "min": 60
+          }
+        }
+      },
+      {
+        "id": "refuser-la-table",
+        "nom": "Je refuse et je prends la halle, sans passage.",
+        "resume": "Elle hausse les épaules. « La halle, c'est la route des gens qu'on ne revoit pas. » Vous quittez les entrepôts sans passage, et la nouvelle court sur le quai avant vous.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "rats-de-quai",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-sorel-refus"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "lot-r-le-conseil-des-noyes",
+    "nom": "Le conseil des noyés",
+    "type": "social",
+    "lieu": "lot-salle-du-conseil",
+    "difficulte": "elevee",
+    "intro": "Le Chancelier Orvald Sel siège au bout d'une table de nacre, la couronne de Lothmar posée devant lui sans être portée. Il ne parle pas comme un spectre mais comme un homme qui a déjà signé le traité. « Vous avez l'enfant, dit-il. Dites-moi ce que vous voulez en échange. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "demander-un-delai",
+        "nom": "Je demande un délai avant de répondre.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        },
+        "resume": "Vous invoquez la coutume des Sceaux : une nuit de réflexion avant qu'un vivant ne se lie. Il connaît cette coutume mieux que vous et la respecte, à regret. La nuit passe, et la marée monte avec elle.",
+        "effets": [
+          {
+            "flag": "z6-delai-du-chancelier"
+          },
+          {
+            "attitude": {
+              "pnj": "chancelier-orvald-sel",
+              "delta": 10
+            }
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le Chancelier lève une main pâle. « La coutume n'est pas pour les inconnus. » Il ne s'emporte pas ; il vous laisse seulement comprendre que la patience de la Cour a une fin."
+          },
+          {
+            "attitude": {
+              "pnj": "chancelier-orvald-sel",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-silence-au-conseil"
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "offrir-le-sauf-conduit",
+        "nom": "Je promets de lui présenter l'enfant dès l'aube.",
+        "resume": "Il se redresse, presque soulagé. Le sauf-conduit est écrit à la main sur un parchemin qui n'est pas sec. Vous avez promis une chose que vous ne pourrez pas reprendre, et la Cour le sait désormais.",
+        "effets": [
+          {
+            "flag": "z6-promesse-au-chancelier"
+          },
+          {
+            "attitude": {
+              "pnj": "chancelier-orvald-sel",
+              "delta": 25
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cour-noyee",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cartographes",
+              "delta": -15
+            }
+          }
+        ]
+      },
+      {
+        "id": "montrer-la-carte",
+        "nom": "Je déploie la carte de marées d'Ysmène.",
+        "condition": {
+          "objet": "carte-des-marees-d-ysmene"
+        },
+        "resume": "Il reconnaît sa propre côte, les lignes qu'il a fait tenir pendant trois siècles. Il roule la carte et la glisse dans sa manche : « Elle m'a toujours appartenu. » Sans elle, plus rien ne brouille la marque de Nolwen.",
+        "effets": [
+          {
+            "objet": {
+              "id": "carte-des-marees-d-ysmene",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "chancelier-orvald-sel",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-carte-au-chancelier"
+          }
+        ]
+      },
+      {
+        "id": "garder-le-silence",
+        "nom": "Je ne réponds pas et je laisse le silence s'installer.",
+        "resume": "Le Chancelier attend, puis reprend seul. Il parle de Lothmar, de ses nobles qui dorment sous les coraux, et du prix qu'ils demanderont. Votre silence lui a donné le ton : il ne vous pose plus aucune question.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "chancelier-orvald-sel",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "z6-silence-au-conseil"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "lot-r-le-heraut-au-parvis",
+    "nom": "Le Héraut au parvis",
+    "type": "mixte",
+    "lieu": "lot-parvis-des-noyes",
+    "difficulte": "elevee",
+    "intro": "Le Héraut Blême se tient au pied de l'escalier du parvis, son armure couverte de coraux, une lance droite devant lui. Autour de lui, trois armures se redressent sans bruit. « Le Sceau doit descendre, dit-il. Il vous reste le choix entre me le remettre et mourir ici. »",
+    "monstres": [
+      {
+        "profil": "spectre",
+        "nombre": 1,
+        "nom": "Le Héraut Blême",
+        "pnj": "le-heraut-bleme"
+      },
+      {
+        "profil": "spectre",
+        "nombre": 1,
+        "nom": "Spectre de la garde royale"
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 3,
+        "nom": "Armure de la garde royale"
+      }
+    ],
+    "carte": [
+      "################",
+      "#m...c...e.....#",
+      "#mm..R.........#",
+      "#..~~.....c..m.#",
+      "#.m.....e......#",
+      "#..........m...#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Le Héraut reste à distance et laisse les armures tenir la ligne ; il frappe le premier héros qui s'approche du Sceau.",
+      "fuite": "Le Héraut se retire vers l'escalier si les armures tombent, et abandonne le parvis.",
+      "renforts": "Le carillon de l'horloge attire les gardes de la grand-salle au bout de quatre tours."
+    },
+    "alternatives": [
+      {
+        "id": "allumer-le-fanal",
+        "nom": "J'allume le fanal de poche face au Héraut.",
+        "condition": {
+          "objet": "fanal-de-poche"
+        },
+        "resume": "La lumière d'un phare tient les noyés à distance : les armures reculent jusqu'à l'escalier, et le Héraut doit parler. Le fanal s'éteint dans votre main, vide.",
+        "effets": [
+          {
+            "objet": {
+              "id": "fanal-de-poche",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "z6-heraut-recule"
+          }
+        ]
+      },
+      {
+        "id": "reciter-les-noms",
+        "nom": "Je récite à voix haute les noms de la bibliothèque.",
+        "jet": {
+          "competence": "religion",
+          "dd": 14
+        },
+        "resume": "Vous citez les noms gravés aux piliers de la chapelle, un à un, comme on appelle des gens à table. Le Héraut s'arrête au milieu d'un pas : personne ne l'a appelé par son nom depuis trois cents ans. Il garde la lance levée, sans frapper.",
+        "effets": [
+          {
+            "flag": "z6-noms-recites"
+          },
+          {
+            "attitude": {
+              "pnj": "le-heraut-bleme",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 75
+          }
+        ]
+      },
+      {
+        "id": "laisser-passer-nolwen",
+        "nom": "Je laisse Nolwen descendre seule vers l'escalier, escortée par les armures.",
+        "resume": "Nolwen marche vers l'escalier sans se retourner, les armures en silence autour d'elle. Le Héraut s'incline. Vous gardez vos armes et votre vie, et vous savez exactement qui vous avez laissé partir.",
+        "effets": [
+          {
+            "flag": "z6-nolwen-conduite"
+          },
+          {
+            "attitude": {
+              "pnj": "nolwen-brevemer",
+              "delta": -25
+            }
+          },
+          {
+            "reputation": {
+              "faction": "cour-noyee",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "courir-vers-la-porte-haute",
+        "nom": "Je fais courir le groupe vers la porte haute, pendant que le Héraut hésite.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 14
+        },
+        "resume": "Vous traversez le parvis par la droite, sous le feu des lances, et franchissez la porte haute avant que les armures ne bloquent l'escalier. La marée suit de près, et la pierre du palais est encore humide.",
+        "effets": [
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          },
+          {
+            "xp": 50
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "lot-butin-heraut",
+        "lot-butin-armurerie"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "z6-heraut-vaincu"
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [
+    "contondant",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "nuee",
+      "nom": "Nuée",
+      "resume": "La nuée peut occuper l'espace d'une autre créature et réciproquement, et elle peut se déplacer par toute ouverture assez large pour un corbeau de taille TP. La nuée ne peut ni récupérer de points de vie ni recevoir de points de vie temporaires."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Étourdi, Pétrifié."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "nuee-de-corbeaux",
+  "nom": "Nuée de corbeaux",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 15
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 14,
+    "con": 12,
+    "int": 5,
+    "sag": 12,
+    "cha": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "becs",
+      "nom": "Becs",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts perforants, ou 2 (1d4) dégâts perforants si la nuée est En péril.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "cacophonie",
+      "nom": "Cacophonie",
+      "cout": "action",
+      "resume": "Recharge 6. JS Sagesse DD 10, une créature dans l'espace de la nuée. Échec : la cible subit l'état Assourdi jusqu'au début du tour suivant de la nuée. Ainsi Assourdie, la cible subit aussi le Désavantage aux tests de caractéristique et aux jets d'attaque (état Assourdi non représenté dans le moteur).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 10,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 0
+      },
+      "degats": [],
+      "etats": [],
+      "recharge": "6"
+    }
+  ]
+}

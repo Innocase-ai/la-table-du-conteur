@@ -1,0 +1,83 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "marche-dans-les-toiles",
+      "nom": "Marche dans les toiles",
+      "resume": "L'araignée n'est pas soumise aux contraintes de déplacement imposées par les toiles et connaît la position de toute autre créature en contact avec la même toile qu'elle."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "L'araignée peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans test de caractéristique."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "id": "araignee",
+  "nom": "Araignée",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 1,
+    "des": "1d4 - 1"
+  },
+  "vitesse": {
+    "marche": 6,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 2,
+    "dex": 14,
+    "con": 8,
+    "int": 1,
+    "sag": 10,
+    "cha": 2
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 9,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 1 dégât perforant plus 2 (1d4) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        },
+        {
+          "des": "1d4",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

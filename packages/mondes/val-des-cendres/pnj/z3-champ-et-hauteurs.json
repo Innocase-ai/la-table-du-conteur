@@ -1,0 +1,2101 @@
+[
+  {
+    "id": "frere-ocre",
+    "nom": "Frère Ocre",
+    "titre": "prophète des Pèlerins gris",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "une cinquantaine d'années",
+    "role": "Prophète et guide des Pèlerins gris : il accueille ceux qui n'ont plus rien et leur offre une fin douce dans la cendre.",
+    "lieu": "champ-de-cendre-gris",
+    "apparence": "Un homme d'une cinquantaine d'années, maigre, rasé de près, au visage creusé de rides douces et aux yeux gris très clairs ; capuche de laine grise toujours baissée, tunique ocre passée sous une cape de cendre, mains nues aux doigts longs qui roulent un caillou gris.",
+    "personnalite": {
+      "traits": [
+        "doux",
+        "convaincant",
+        "jamais violent",
+        "fatigué",
+        "attentif aux silences"
+      ],
+      "voix": "Basse, lente, presque chuchotée ; il dit « mon frère », « ma sœur » sans l'ombre d'ironie, laisse des silences, ne contredit jamais en face et reprend toujours le dernier mot de son interlocuteur avant de répondre.",
+      "valeurs": [
+        "la bonté",
+        "le consentement",
+        "le repos des fatigués"
+      ],
+      "desir": "Que plus personne ne meure dans la peur ni dans la douleur ; que chacun puisse choisir sa fin.",
+      "peur": "Avoir tort : que la douceur de la cendre ne soit qu'un autre mensonge, comme la flamme de la Lanterne.",
+      "defaut": "Il préfère ne pas savoir ce qui contredit sa foi."
+    },
+    "presences": [
+      {
+        "lieu": "gro-champ-tente-du-frere",
+        "moment": "soir"
+      },
+      {
+        "lieu": "gro-champ-allee-des-couches",
+        "moment": "nuit"
+      }
+    ],
+    "faction": "pelerins-gris",
+    "attitude": 5,
+    "savoir": [
+      "f-pelerins-motif",
+      "f-gro-pelerins-ne-forcent-personne",
+      "f-gro-aubin-au-champ"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-les-couches-se-relevent",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-gro-ocre-fut-gardien",
+        "jet": {
+          "competence": "intuition",
+          "dd": 15
+        },
+        "attitudeMin": 45
+      },
+      {
+        "fait": "f-veilleur-se-consume",
+        "attitudeMin": 60,
+        "condition": {
+          "fait": "f-gro-ocre-fut-gardien"
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "pelerins",
+        "mots": [
+          "pèlerins",
+          "qui êtes-vous",
+          "camp",
+          "gris",
+          "bienvenue"
+        ],
+        "question": "Qui sont les Pèlerins gris ?",
+        "reponse": "Les Pèlerins gris sont ceux que le Val a laissés sans rien : veuves, fermiers sans ferme, enfants sans nom. Ocre leur offre un feu, une soupe et une vérité simple : on n'est pas obligé de lutter jusqu'au bout. Il dit « bienvenue » comme on le dit à quelqu'un qui rentre chez lui.",
+        "revele": [
+          "f-pelerins-motif",
+          "f-gro-pelerins-ne-forcent-personne"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-les-pelerins-gris",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "la-grace",
+        "mots": [
+          "grâce",
+          "cendre",
+          "paix",
+          "mourir",
+          "mort douce"
+        ],
+        "question": "Que promet la cendre, selon vous ?",
+        "reponse": "Ocre parle de la cendre avec tendresse : elle tombe sur les vivants comme une couverture, elle éteint la peur, elle ne fait pas mal. Il ne demande rien à personne : on vient ici, on regarde, on décide. Il croit que la mort ne doit pas être une bataille. Il n'ajoute jamais que la cendre relève aussi ceux qu'elle endort."
+      },
+      {
+        "id": "les-morts",
+        "mots": [
+          "morts",
+          "zombis",
+          "marchent",
+          "relevés",
+          "revenants"
+        ],
+        "question": "Pourquoi les morts marchent-ils ici ?",
+        "reponse": "Ocre reste immobile un instant. Il dit que ceux qui marchent ne sont pas damnés : ce sont des endormis qui n'ont pas fini de rentrer chez eux. Il admet, un ton plus bas, que la cendre les relève, et que cela le trouble moins qu'on ne croit : ils sont doux, ils ne sont pas seuls.",
+        "revele": [
+          "f-cendre-reveille-les-morts"
+        ]
+      },
+      {
+        "id": "la-lanterne",
+        "mots": [
+          "Lanterne",
+          "Veillecendre",
+          "Gardiens",
+          "flamme",
+          "Veilleur"
+        ],
+        "question": "Parlez-nous de la Lanterne de Veillecendre.",
+        "reponse": "La Lanterne, dit Ocre, est une belle flamme qui retient la nuit un peu plus longtemps, et qui coûte à ceux qui la nourrissent. Il ne les hait pas, les Gardiens ; il les plaint. Il refuse d'en dire plus, mais ses doigts serrent le caillou plus fort."
+      },
+      {
+        "id": "mireille",
+        "mots": [
+          "Mireille",
+          "sœur",
+          "frère",
+          "Aubin",
+          "tieffelin",
+          "Vanhaut"
+        ],
+        "question": "Connaissiez-vous une certaine Mireille Vanhaut ?",
+        "reponse": "À l'évocation du nom de Mireille, Ocre sourit tristement : il l'a connue, elle est partie un matin sans rien dire, pleine de colère contre lui. Il sait que son frère Aubin est là, au cercle des noms, qu'il recopie ceux qui se couchent. Il ne le retiendra pas, mais il ne le poussera pas non plus à partir.",
+        "revele": [
+          "f-gro-aubin-au-champ"
+        ],
+        "effets": [
+          {
+            "flag": "gro-ocre-a-parle-d-aubin"
+          }
+        ]
+      },
+      {
+        "id": "couches",
+        "mots": [
+          "couchés",
+          "allée",
+          "dormir",
+          "réveil",
+          "se relèvent",
+          "se relever"
+        ],
+        "attitudeMin": 30,
+        "question": "Que se passe-t-il dans l'allée des couchés ?",
+        "reponse": "Ocre ferme les yeux. Il avoue que les couchés se relèvent, parfois, quelques jours après. Il appelle cela « la veille des couchés » : il veut croire qu'ils reviennent pour veiller sur ceux qui restent. Il n'a pas su dire à la vieille Aldegonde que son fils ne la reconnaît pas. Il demande qu'on n'en parle pas au camp.",
+        "revele": [
+          "f-gro-les-couches-se-relevent"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "frere-ocre",
+              "delta": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": "dissuader",
+        "mots": [
+          "arrêtez",
+          "renoncez",
+          "dissuader",
+          "mensonge",
+          "regardez-les",
+          "Tomas"
+        ],
+        "attitudeMin": 25,
+        "condition": {
+          "et": [
+            {
+              "fait": "f-gro-les-couches-se-relevent"
+            },
+            {
+              "fait": "f-gro-fils-d-aldegonde"
+            }
+          ]
+        },
+        "question": "Demander à Ocre de renoncer au camp.",
+        "reponse": "Ocre blêmit. Il dit que ce qu'on lui rapporte, il le sait, et qu'il a refusé de le voir. Il demande à rencontrer Tomas, la nuit, devant sa mère. Après cela, il cesse d'inviter à se coucher, et il promet que quiconque voudra partir sera accompagné, sans reproche. Il ne dissoudra pas le camp : il dit qu'il n'a pas d'autre maison à offrir.",
+        "effets": [
+          {
+            "flag": "gro-ocre-doute"
+          },
+          {
+            "flag": "gro-pelerins-dissuades"
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "frere-ocre",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rejoindre",
+        "mots": [
+          "rejoindre",
+          "venir avec vous",
+          "ruban",
+          "pèlerin",
+          "rester"
+        ],
+        "question": "Demander à rejoindre les Pèlerins gris.",
+        "reponse": "Ocre noue lui-même un ruban gris autour du poignet de celui qui demande, sans cérémonie : le ruban n'oblige à rien, on l'ôte quand on veut. Il propose une place à la veillée et une couverture, et prévient avec douceur que se coucher dans la cendre est un choix qu'on ne devrait jamais faire un jour de tristesse.",
+        "effets": [
+          {
+            "objet": {
+              "id": "gro-ruban-gris"
+            }
+          },
+          {
+            "flag": "gro-pelerins-rejoints"
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "ancien-gardien",
+        "mots": [
+          "Gardien",
+          "insigne",
+          "linge gris",
+          "poste",
+          "tu as été",
+          "avant de venir ici"
+        ],
+        "attitudeMin": 40,
+        "condition": {
+          "ou": [
+            {
+              "fait": "f-gro-ocre-fut-gardien"
+            },
+            {
+              "objet": "gro-insigne-de-gardien-enfoui"
+            }
+          ]
+        },
+        "question": "Vous avez été Gardien, n'est-ce pas ?",
+        "reponse": "Ocre baisse la tête. Il fut Gardien, aide du Veilleur de l'époque, qui s'est éteint dans ses bras, flamme après flamme, en répétant qu'il ne souffrait pas. Il est parti ce jour-là et n'est jamais revenu. Il demande, d'une voix cassée, qu'on ne le dise pas au camp : on a besoin qu'il soit sûr de lui.",
+        "revele": [
+          "f-gro-ocre-fut-gardien"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "frere-ocre",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "veilleur",
+        "mots": [
+          "Veilleur",
+          "volontaire",
+          "se consume",
+          "vie donnée",
+          "la Veille",
+          "sacrifice"
+        ],
+        "attitudeMin": 60,
+        "condition": {
+          "fait": "f-gro-ocre-fut-gardien"
+        },
+        "question": "Pourquoi un Veilleur se consume-t-il ?",
+        "reponse": "Ocre dit à voix très basse que la Lanterne se nourrit de la vie d'un homme, chaque année, en secret : un Veilleur donne un peu de ses jours jusqu'à ce qu'il n'en ait plus. La Mère-Gardienne le cache au village. Il n'a pas supporté de regarder mourir un homme pour une flamme. C'est pour cela qu'il croit à la cendre : elle prend sans demander, au moins elle ne ment pas.",
+        "revele": [
+          "f-veilleur-se-consume"
+        ]
+      },
+      {
+        "id": "respecter",
+        "mots": [
+          "je comprends",
+          "je vous laisse",
+          "chacun son choix",
+          "adieu",
+          "respecter votre choix",
+          "bonne route"
+        ],
+        "question": "Respecter son choix et le laisser partir.",
+        "reponse": "Ocre incline la tête, soulagé qu'on ne cherche ni à le convaincre ni à le combattre. Il remercie, avec une simplicité désarmante, ceux qui lui laissent la liberté de ses gens. Il dit que le camp reste ouvert à qui voudra y revenir, et qu'il n'y aura jamais de reproche pour ceux qui partent.",
+        "effets": [
+          {
+            "flag": "gro-pelerins-laisses"
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": 3
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "frere-ocre",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous êtes inquiets, mes frères. Il n'y a rien à craindre ici.",
+      "neutre": "Asseyez-vous, mes frères. Il y a de la soupe, et il y a du temps.",
+      "amical": "Mon frère, ma sœur, c'est un plaisir de vous revoir."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "taavi-pas-de-nuage",
+    "nom": "Taavi Pas-de-Nuage",
+    "titre": "berger goliath",
+    "espece": "goliath",
+    "sexe": "M",
+    "age": "une soixantaine d'années",
+    "role": "Berger des hauteurs, gardien du cairn et héritier de la mémoire de la première cendre.",
+    "lieu": "cairn-des-hauteurs",
+    "apparence": "Un goliath de plus de deux mètres, épaules voûtées par l'âge, peau gris cendré marquée de motifs de lignes pâles sur les bras et le front, crâne rasé, longue barbe nattée de ficelle ; manteau de peaux de brebis, bâton de berger gravé, bottes de feutre épaisses.",
+    "personnalite": {
+      "traits": [
+        "taciturne",
+        "patient",
+        "têtu",
+        "fidèle à ses morts",
+        "humour très sec"
+      ],
+      "voix": "Grave, lente, phrases courtes ; il parle en comptant sur ses doigts, laisse volontiers un silence répondre à une question idiote, et ponctue de « c'est dit » quand il veut clore.",
+      "valeurs": [
+        "la parole tenue",
+        "le troupeau",
+        "la mémoire des morts"
+      ],
+      "desir": "Tenir sa promesse à son frère Haavi et retrouver son troupeau avant l'hiver.",
+      "peur": "Que la dernière pierre du cairn soit posée sans personne pour la lire.",
+      "defaut": "Il juge les gens des vallées trop vite."
+    },
+    "presences": [
+      {
+        "lieu": "gro-hauteurs-bergerie",
+        "moment": "soir"
+      },
+      {
+        "lieu": "gro-hauteurs-cairn",
+        "moment": "jour"
+      },
+      {
+        "lieu": "gro-hauteurs-replat",
+        "moment": "nuit"
+      }
+    ],
+    "attitude": 0,
+    "savoir": [
+      "f-gro-premiere-cendre",
+      "f-gro-cairn-des-premiers-morts",
+      "f-gro-chevres-sur-la-vire"
+    ],
+    "secrets": [
+      {
+        "fait": "f-nuit-de-la-cendre",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-gro-promesse-de-taavi",
+        "attitudeMin": 10
+      }
+    ],
+    "sujets": [
+      {
+        "id": "premiere-cendre",
+        "mots": [
+          "première cendre",
+          "cendre",
+          "tombée",
+          "nuage",
+          "nom",
+          "pas de nuage"
+        ],
+        "question": "Pourquoi vous appelez-vous Pas-de-Nuage ?",
+        "reponse": "Taavi lève le menton vers l'est, vers la montagne noire. Son nom lui vient de là : la première cendre est tombée par une nuit sans vent et sans nuage, quand ses ancêtres gardaient déjà ces pâturages. La neige des sommets est devenue grise en quelques heures, le ciel a rougi au-dessus de la Haute-Forge, et les troupeaux sont devenus muets. Les anciens n'ont pas bougé de la dalle jusqu'à la troisième nuit, quand les morts se sont levés. Alors ils ont bâti le cairn.",
+        "revele": [
+          "f-gro-premiere-cendre"
+        ]
+      },
+      {
+        "id": "cairn",
+        "mots": [
+          "cairn",
+          "pierres",
+          "offrandes",
+          "niches",
+          "monument"
+        ],
+        "question": "Que représente le cairn et ses pierres ?",
+        "reponse": "Le cairn n'est pas une tombe, c'est une mémoire. Chaque pierre est un mort, chaque niche une offrande, et chaque goliath donne la sienne selon l'heure : on ne place pas une offrande de midi dans la niche du soir. Taavi ne dit pas quelle va où ; il dit seulement qu'on doit regarder où le soleil est, quand on donne, et pourquoi.",
+        "revele": [
+          "f-gro-cairn-des-premiers-morts"
+        ]
+      },
+      {
+        "id": "troupeau",
+        "mots": [
+          "chèvres",
+          "troupeau",
+          "bêtes",
+          "perdu",
+          "brebis"
+        ],
+        "question": "Avez-vous perdu votre troupeau de chèvres ?",
+        "reponse": "Sur trente bêtes, il en reste douze. Les loups en ont pris quatre, la cendre en a effrayé les autres, six se sont enfuies vers la vire, au-dessus du puits ouvert. La chèvre de tête portait la cloche de sa mère. Sans elle, elles ne reviendront pas. Il demande qu'on les ramène ; il ne dit pas combien il paiera, il dit seulement qu'il se souviendra.",
+        "revele": [
+          "f-gro-chevres-sur-la-vire"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-le-berger-goliath",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "promesse",
+        "mots": [
+          "promesse",
+          "Haavi",
+          "frère",
+          "pierre de nom",
+          "niche du crépuscule"
+        ],
+        "attitudeMin": 10,
+        "question": "Qui est Haavi, votre frère ?",
+        "reponse": "Après un long silence, Taavi parle de son frère Haavi, tué par les loups il y a deux ans. Haavi avait demandé qu'on mette sa pierre de nom dans la niche du crépuscule. La pierre n'a pas été retrouvée ; elle est restée sur le corps, et les loups ont emporté le corps. Il ne dort plus depuis, parce qu'une promesse non tenue pèse sur la poitrine comme un caillou.",
+        "revele": [
+          "f-gro-promesse-de-taavi"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-le-berger-goliath",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "loups",
+        "mots": [
+          "loups",
+          "meute",
+          "grotte",
+          "tanière",
+          "crocs"
+        ],
+        "question": "Où se cache la meute de loups ?",
+        "reponse": "Taavi ne hait pas les loups. Ils sont descendus de la haute montagne en même temps que la cendre a gâté les sources, dit-il, et tout ce qui a faim cherche de quoi manger. Il en a tué un l'an dernier, sans plaisir. Il dit que si l'on peut éviter de tuer la louve, il aimerait mieux : elle a des petits.",
+        "revele": [
+          "f-gro-loups-fuient-la-cendre"
+        ]
+      },
+      {
+        "id": "guide",
+        "mots": [
+          "guide",
+          "hauteurs",
+          "sentiers",
+          "passage",
+          "vire",
+          "puits d'aération"
+        ],
+        "question": "Pouvez-vous nous guider sur les hauteurs ?",
+        "reponse": "Pour dix pièces, Taavi ou sa nièce montrent les sentiers de chèvres, la vire qui mène au puits de la mine, et les endroits où l'éboulis est le plus sûr. Il ajoute, très sec, que ça coûte moins cher qu'une jambe cassée."
+      },
+      {
+        "id": "gens-du-val",
+        "mots": [
+          "humains",
+          "Veillecendre",
+          "Gardiens",
+          "Lanterne",
+          "village",
+          "bailli"
+        ],
+        "question": "Que pensez-vous des gens de Veillecendre ?",
+        "reponse": "Les gens du bas viennent depuis deux siècles et ils pensent y avoir toujours été. Taavi trouve la Lanterne sympathique : une flamme qui s'obstine. Il trouve les Pèlerins touchants et idiots : on ne rentre pas chez soi en se couchant par terre. Il dit que le cairn ne ment pas, que les hommes ne sont pas si forts."
+      },
+      {
+        "id": "rendu",
+        "mots": [
+          "promesse tenue",
+          "pierre posée",
+          "cairn",
+          "terminé",
+          "j'ai posé",
+          "c'est fait"
+        ],
+        "condition": {
+          "flag": "gro-cairn-complete"
+        },
+        "question": "Poser la pierre sur le cairn.",
+        "reponse": "Taavi pose la main à plat sur le cairn, et ne dit rien pendant un très long moment. Puis il tend son bâton de berger, gravé de spirales, et dit que c'est dit. Il dit que c'est la première nuit qu'il dormira vraiment. Les goliaths n'oublient pas.",
+        "effets": [
+          {
+            "flag": "gro-taavi-remercie"
+          },
+          {
+            "objet": {
+              "id": "gro-baton-de-berger-grave"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "taavi-pas-de-nuage",
+              "delta": 30
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Les gens du bas font du bruit. Passez votre chemin.",
+      "neutre": "Vous êtes loin de chez vous. Asseyez-vous si vous voulez. Les bêtes ne mordent pas.",
+      "amical": "Les amis sont comme les pierres du cairn : on les compte."
+    },
+    "services": [
+      {
+        "id": "guide-des-hauteurs",
+        "nom": "Guide des hauteurs",
+        "resume": "Taavi ou sa nièce Aila conduit le groupe par les sentiers de chèvres : raccourci vers la vire et le puits d'aération, avantage aux jets de Survie pour traverser les hauteurs pendant un jour.",
+        "prix": 10,
+        "effets": [
+          {
+            "flag": "gro-guide-des-hauteurs"
+          }
+        ]
+      },
+      {
+        "id": "abri-de-la-bergerie",
+        "nom": "Une nuit à la bergerie",
+        "resume": "Une couchette de peaux près du foyer de tourbe et du lait chaud ; un repos long sûr (la cendre n'entre pas dans la bergerie).",
+        "prix": 2,
+        "effets": []
+      }
+    ],
+    "inventaire": []
+  },
+  {
+    "id": "gro-frere-de-mireille",
+    "nom": "Aubin Vanhaut",
+    "titre": "le frère de Mireille",
+    "espece": "tieffelin",
+    "sexe": "M",
+    "age": "vingt-quatre ans",
+    "role": "Pèlerin gris, tient le registre des noms des couchés ; frère cadet de la clerc Mireille Vanhaut.",
+    "lieu": "gro-champ-cercle-des-noms",
+    "apparence": "Un jeune tieffelin mince, peau gris-violet, petites cornes sombres et lisses, yeux ambre fatigués sous des cils longs ; cape de laine grise à capuche, doigts tachés de craie, un registre à couverture de toile serré contre la poitrine.",
+    "personnalite": {
+      "traits": [
+        "méfiant",
+        "scrupuleux",
+        "orgueilleux",
+        "tendre en secret",
+        "ironique quand il a peur"
+      ],
+      "voix": "Voix haute et un peu enrouée ; il pèse ses phrases, les finit par une remarque amère, et se défend par la politesse froide avant d'abandonner et de dire quelque chose de vrai.",
+      "valeurs": [
+        "la justice",
+        "la fidélité",
+        "ne pas déranger"
+      ],
+      "desir": "Qu'on le regarde un jour sans soupçon ; que sa sœur vienne le chercher.",
+      "peur": "Que sa sœur ait raison, et qu'il ait fui pour rien.",
+      "defaut": "Il rumine."
+    },
+    "presences": [
+      {
+        "lieu": "gro-champ-camp",
+        "moment": "soir"
+      }
+    ],
+    "faction": "pelerins-gris",
+    "attitude": 5,
+    "savoir": [
+      "f-gro-aubin-fuyait-les-soupcons"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-les-couches-se-relevent",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-es-tu",
+        "mots": [
+          "Aubin",
+          "Vanhaut",
+          "ton nom",
+          "qui es-tu",
+          "registre"
+        ],
+        "question": "Qui êtes-vous, Aubin Vanhaut ?",
+        "reponse": "Aubin referme son registre d'un geste vif. Oui, c'est lui, et non, il n'a pas besoin qu'on le cherche. Il inscrit les noms, voilà tout : on peut au moins dire à ceux qui s'éteignent que quelqu'un a gardé leur nom.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "pourquoi-ici",
+        "mots": [
+          "pourquoi",
+          "venu",
+          "ici",
+          "Veillecendre",
+          "partir",
+          "tieffelins"
+        ],
+        "question": "Pourquoi êtes-vous venu jusqu'ici ?",
+        "reponse": "Aubin raconte, avec une politesse glacée, que leurs parents sont morts de la toux grise et que, à Veillecendre, on murmurait déjà que les tieffelins avaient appelé la cendre. Lui et Mireille sont entrés ensemble chez les Pèlerins il y a quatre ans : personne, ici, ne leur a jamais demandé d'où venaient leurs cornes. Il y a deux ans il a pris le ruban pour de bon ; elle est partie le jour même, et elle ne l'a jamais compris.",
+        "revele": [
+          "f-gro-aubin-fuyait-les-soupcons"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "mireille",
+        "mots": [
+          "Mireille",
+          "ta sœur",
+          "sœur",
+          "chapelle",
+          "message",
+          "cherche"
+        ],
+        "question": "Votre sœur Mireille vous cherche-t-elle ?",
+        "reponse": "À ce nom, Aubin détourne le regard. Il demande où elle est, si elle va bien, si elle l'a envoyé chercher. Il dit qu'elle l'a laissé seul quand tout a mal tourné, qu'elle n'a pas dit un mot pour lui. Mais il écoute chaque mot qu'on lui donne d'elle comme on écoute un orage lointain.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-couches",
+        "mots": [
+          "couchés",
+          "se relèvent",
+          "registre",
+          "noms",
+          "disparus",
+          "allée"
+        ],
+        "attitudeMin": 20,
+        "question": "Que faites-vous des noms des couchés ?",
+        "reponse": "Aubin ouvre son registre et montre des noms barrés d'un trait de craie : ceux dont le corps n'était plus là au matin. Ils sont onze. Il ne dit pas ce que cela veut dire ; il dit qu'il compte, parce que compter est la seule chose qu'il sait faire. Il demande, très bas, si les morts de la montagne marchent aussi.",
+        "revele": [
+          "f-gro-les-couches-se-relevent"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "partir",
+        "mots": [
+          "viens",
+          "partir",
+          "rentrer",
+          "avec nous",
+          "Veillecendre",
+          "suis-nous"
+        ],
+        "attitudeMin": 50,
+        "question": "Proposer à Aubin de rentrer à Veillecendre.",
+        "reponse": "Aubin referme lentement le registre et ôte le cordon gris de son poignet, avec précaution, comme on pose une main qui dort. Il demande si sa sœur sera à la chapelle. Il dit oui, d'une voix cassée, sans croire à ce qu'il dit : il viendra, parce que quelqu'un est venu le chercher. Il demande seulement qu'on laisse le registre à Ocre.",
+        "effets": [
+          {
+            "flag": "gro-frere-de-mireille-convaincu"
+          },
+          {
+            "deplacer": {
+              "pnj": "gro-frere-de-mireille",
+              "lieu": "vei-chapelle-grise"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -3
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rester",
+        "mots": [
+          "reste",
+          "je comprends",
+          "ton choix",
+          "respecte",
+          "libre",
+          "tu veux rester"
+        ],
+        "question": "Respecter votre choix de rester ici.",
+        "reponse": "Aubin lève enfin les yeux. Il dit qu'on est le premier à lui laisser le choix. Il ne partira pas aujourd'hui ; il demande qu'on dise à Mireille qu'il va bien et qu'il l'attend. La porte reste ouverte des deux côtés.",
+        "effets": [
+          {
+            "flag": "gro-frere-de-mireille-reste"
+          },
+          {
+            "flag": "z6-mireille-respecte-son-choix"
+          },
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "souvenir",
+        "mots": [
+          "souvenir",
+          "enfance",
+          "maman",
+          "chanson",
+          "berceuse",
+          "parents",
+          "la maison"
+        ],
+        "attitudeMin": 15,
+        "question": "Parlez-nous de la berceuse de votre mère.",
+        "reponse": "Quand on lui parle de la berceuse de leur mère, une chanson de lavandière que Mireille chantait en rangeant la chapelle, Aubin cesse un instant d'écrire. Il la fredonne à mi-voix, faux. Il dit qu'il l'a chantée à chaque couché qui s'éteignait, pour ne pas les laisser partir en silence. Il demande qu'on dise à sa sœur qu'il a gardé la deuxième strophe.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "preuve",
+        "mots": [
+          "vérité",
+          "preuve",
+          "menti",
+          "Ocre",
+          "Frère",
+          "ne te retient pas",
+          "la Lanterne",
+          "grâce"
+        ],
+        "attitudeMin": 30,
+        "condition": {
+          "fait": "f-gro-les-couches-se-relevent"
+        },
+        "question": "Ocre vous a-t-il menti sur la grâce ?",
+        "reponse": "Aubin écoute sans bouger. Quand on lui dit que les couchés se relèvent, que ceux qu'il a inscrits ne dorment pas en paix, il serre son registre et dit que c'est faux, puis qu'il le sait, puis qu'il ne sait plus à quoi s'accrocher. Il demande à parler à Ocre. Il dit qu'il ne veut pas être celui qui a recopié les noms d'une illusion.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-frere-de-mireille",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Je n'ai rien à vous dire. Passez votre chemin.",
+      "neutre": "Vous cherchez quelqu'un ? Dites le nom, je l'ai peut-être dans le registre.",
+      "amical": "Vous... vous êtes revenus. Je n'ai pas fait de café, mais il y a de la soupe."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-aldegonde-pierrefeu",
+    "nom": "Aldegonde Pierrefeu",
+    "titre": "la vieille du pain",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "soixante-huit ans",
+    "role": "Pèlerine gris, veille les derniers couchés et attend son fils qui marche la nuit.",
+    "lieu": "gro-champ-allee-des-couches",
+    "apparence": "Une vieille femme petite et droite, cheveux blancs en tresse serrée, visage sec aux yeux bleu pâle, mains noueuses ; cape de laine grise rapiécée, un tabouret pliant sous le bras, un morceau de pain bis dans une poche cousue.",
+    "personnalite": {
+      "traits": [
+        "têtue",
+        "tendre",
+        "pratique",
+        "silencieuse",
+        "obstinée"
+      ],
+      "voix": "Une voix sèche et claire, sans pleurs ; elle appelle tout le monde « petit » et finit chaque phrase par un fait têtu, comme pour fermer une porte.",
+      "valeurs": [
+        "la parole donnée à ses morts",
+        "ne pas déranger",
+        "le pain partagé"
+      ],
+      "desir": "Revoir son fils Tomas encore une fois, et lui dire son nom.",
+      "peur": "Qu'il ne se souvienne plus de rien.",
+      "defaut": "Elle refuse toute aide."
+    },
+    "faction": "pelerins-gris",
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-gro-fils-d-aldegonde",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "fils",
+        "mots": [
+          "fils",
+          "Tomas",
+          "enfant",
+          "perdu",
+          "mort"
+        ],
+        "question": "Que s'est-il passé avec votre fils Tomas ?",
+        "reponse": "Aldegonde ne détourne pas les yeux. Son fils s'appelle Tomas, il avait trente ans, il s'est couché dans l'allée il y a un mois, parce qu'il avait perdu sa femme et sa ferme et qu'il était trop fatigué pour continuer. Elle l'a veillé jusqu'au bout. Elle n'a pas pleuré, dit-elle, parce qu'il ne l'aurait pas voulu."
+      },
+      {
+        "id": "veille",
+        "mots": [
+          "nuit",
+          "marche",
+          "vu",
+          "revenu",
+          "relevé",
+          "bord du champ"
+        ],
+        "attitudeMin": 20,
+        "question": "Avez-vous vu votre fils marcher la nuit ?",
+        "reponse": "Elle dit sans trembler que Tomas est revenu. Chaque nuit, il se relève avec les autres et marche vers le bord du champ. Elle l'a suivi : il ne la regarde pas, il ne la connaît plus, il tient seulement la poche où elle avait glissé du pain. Elle reste donc, assise sur son tabouret, pour qu'il y ait quelqu'un quand il revient. Elle ajoute qu'il n'est pas méchant ; la cendre ne l'est pas non plus, c'est seulement qu'elle ne sait pas ce qu'elle fait.",
+        "revele": [
+          "f-gro-fils-d-aldegonde",
+          "f-cendre-reveille-les-morts"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gro-aldegonde-pierrefeu",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "id": "pain",
+        "mots": [
+          "pain",
+          "poche",
+          "glissé",
+          "donner",
+          "adieu",
+          "lui dire"
+        ],
+        "attitudeMin": 15,
+        "question": "Aider Aldegonde à lui dire adieu.",
+        "reponse": "Aldegonde sort un morceau de pain bis qu'elle renouvelle chaque soir. Elle voudrait lui dire adieu et ne sait pas comment : si elle le touche, il se retourne et la regarde sans rien dans les yeux, et elle ne le supporte pas. Elle dit que, si quelqu'un l'aidait à prononcer son nom sans qu'il la renverse, elle accepterait de le laisser partir."
+      },
+      {
+        "id": "pourquoi-rester",
+        "mots": [
+          "partir",
+          "rester",
+          "pèlerins",
+          "Ocre",
+          "pourquoi"
+        ],
+        "question": "Pourquoi restez-vous ici avec Ocre ?",
+        "reponse": "Elle dit qu'elle n'a pas besoin du Frère, mais qu'il lui a donné un tabouret et de la soupe, et qu'il ne lui a jamais menti sur le fait qu'il ne savait pas. Elle reste pour son fils, pas pour la grâce. Elle ne se couchera jamais dans l'allée : quelqu'un doit être debout quand il vient."
+      }
+    ],
+    "salutations": {
+      "neutre": "Asseyez-vous si vous voulez, petit, mais ne faites pas de bruit : certains dorment.",
+      "amical": "Tenez, du pain. Je le fais encore, par habitude."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-perrin-cendrelin",
+    "nom": "Perrin Cendrelin",
+    "titre": "le jeune Pèlerin hésitant",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "dix-sept ans",
+    "role": "Jeune Pèlerin gris qui doute et voudrait qu'on lui dise qu'il a le droit de partir.",
+    "lieu": "gro-champ-camp",
+    "apparence": "Un adolescent maigre aux cheveux paille en bataille, joues creuses, yeux clairs vite rougis ; veste de laine grise trop grande, pieds enveloppés de chiffons, un ruban gris noué et dénoué à son poignet.",
+    "personnalite": {
+      "traits": [
+        "indécis",
+        "affamé",
+        "honnête",
+        "curieux",
+        "impressionnable"
+      ],
+      "voix": "Rapide et hachée ; il commence ses phrases à voix basse, les termine trop fort, s'excuse tout le temps et pose des questions qu'on lui a déjà répondues.",
+      "valeurs": [
+        "manger chaud",
+        "faire plaisir",
+        "ne pas être seul"
+      ],
+      "desir": "Qu'on lui dise qu'il peut partir sans trahir personne.",
+      "peur": "Se coucher un soir sans l'avoir décidé.",
+      "defaut": "Il n'ose rien décider seul."
+    },
+    "faction": "pelerins-gris",
+    "attitude": 15,
+    "savoir": [
+      "f-gro-pelerins-ne-forcent-personne"
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "pourquoi-venu",
+        "mots": [
+          "pourquoi",
+          "venu",
+          "ferme",
+          "famille",
+          "village"
+        ],
+        "question": "Qu'est-ce qui vous a amené ici, Perrin ?",
+        "reponse": "Sa ferme a brûlé à l'automne. Sa mère est morte de la toux grise, son père a disparu en cherchant du grain. Il a suivi une file de gens en gris sur la route parce qu'on lui a donné un bol de soupe. Il est là depuis trois semaines et il n'a toujours pas décidé s'il restait.",
+        "revele": [
+          "f-gro-pelerins-ne-forcent-personne"
+        ]
+      },
+      {
+        "id": "ocre",
+        "mots": [
+          "Frère Ocre",
+          "Ocre",
+          "prophète",
+          "chef"
+        ],
+        "question": "Que pensez-vous du Frère Ocre ?",
+        "reponse": "Il aime le Frère : c'est le premier à lui avoir dit « tu as le droit de te reposer ». Mais il a remarqué des choses : le Frère évite certaines allées, il ne parle jamais de ce qui arrive aux couchés après, et il serre toujours un caillou. Perrin n'ose pas poser la question."
+      },
+      {
+        "id": "doute",
+        "mots": [
+          "doute",
+          "hésites",
+          "peur",
+          "se coucher",
+          "repos"
+        ],
+        "question": "Qu'est-ce qui vous fait peur, au juste ?",
+        "reponse": "Perrin avoue qu'il a peur de se coucher. Il dit que tout le monde est si calme qu'il se sent coupable de ne pas l'être. Il voit les couchés partir, et le matin certaines couvertures sont vides. Personne ne dit pourquoi. Il voudrait savoir, avant de décider."
+      },
+      {
+        "id": "comprendre",
+        "mots": [
+          "aide",
+          "comprendre",
+          "enquêter",
+          "voir",
+          "vérifier"
+        ],
+        "question": "Peut-on vous aider à comprendre ce qui se passe ?",
+        "reponse": "Perrin demande aux voyageurs de comprendre à sa place : ce qui arrive aux couchés, ce que veut le Frère. Il n'a pas d'argent, mais il montrera où l'on veille la nuit, et il fera passer le mot que vous n'êtes pas là pour faire du mal.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-les-pelerins-gris",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "partir",
+        "mots": [
+          "partir",
+          "viens",
+          "quitter",
+          "avec nous",
+          "Veillecendre"
+        ],
+        "attitudeMin": 25,
+        "question": "Proposer de partir avec nous pour Veillecendre.",
+        "reponse": "Perrin dit « oui » trop vite, puis « non » trop vite, puis « oui » en regardant ses chiffons. Il demande si le village a du travail pour un garçon qui sait traire. Il ne sait pas pourquoi il pleure. Il remet le ruban à la sœur à la soupe, qui l'embrasse et ne dit rien.",
+        "effets": [
+          {
+            "flag": "gro-perrin-parti"
+          },
+          {
+            "deplacer": {
+              "pnj": "gro-perrin-cendrelin",
+              "lieu": "veillecendre"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "pelerins-gris",
+              "delta": -2
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Oh ! Vous venez d'arriver ? Il y a de la soupe, c'est bien chaud, enfin, c'est ce qu'ils disent.",
+      "amical": "Vous êtes revenus ! Je ne savais pas à qui parler."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-soeur-brume",
+    "nom": "Sœur Brume",
+    "titre": "la sœur à la soupe",
+    "espece": "halfelin",
+    "sexe": "F",
+    "age": "une cinquantaine d'années",
+    "role": "Pèlerine gris qui tient la soupe, la literie et les cordes du camp ; elle soigne les couchés avec tendresse et inquiétude.",
+    "lieu": "gro-champ-camp",
+    "apparence": "Une halfeline ronde aux joues rouges, cheveux gris en chignon noyé de cendre, yeux noirs vifs cernés de fatigue ; tablier de toile grise sur une robe de laine, cuillère de bois pendue à la ceinture, un rouleau de corde accroché à l'épaule.",
+    "personnalite": {
+      "traits": [
+        "maternelle",
+        "anxieuse",
+        "pragmatique",
+        "bonne cuisinière",
+        "douce avec les gens, brusque avec les nuages"
+      ],
+      "voix": "Chaude, rapide, pleine de diminutifs ; elle parle en remuant la soupe et ne regarde son interlocuteur que pour dire quelque chose de grave.",
+      "valeurs": [
+        "nourrir",
+        "écouter",
+        "qu'on ne dorme pas seul"
+      ],
+      "desir": "Qu'aucun de ses protégés ne soit seul au moment de se coucher, ni au moment de se relever.",
+      "peur": "Ce qu'elle fait la nuit avec la corde.",
+      "defaut": "Elle ne dit jamais non."
+    },
+    "faction": "pelerins-gris",
+    "attitude": 15,
+    "savoir": [
+      "f-gro-pelerins-ne-forcent-personne"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-les-couches-se-relevent",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "soupe",
+        "mots": [
+          "soupe",
+          "manger",
+          "repas",
+          "couverture",
+          "abri"
+        ],
+        "question": "D'où vient cette soupe ?",
+        "reponse": "Elle sert une écuellée de potage d'orge sans rien demander. Les couvertures sont sur le tas, à côté. Il n'y a pas de prix, mais chacun donne ce qu'il peut : une corde, un chiffon, une histoire."
+      },
+      {
+        "id": "couches",
+        "mots": [
+          "couchés",
+          "nuit",
+          "corde",
+          "relevés",
+          "veille"
+        ],
+        "attitudeMin": 25,
+        "question": "Que faites-vous la nuit avec les couchés ?",
+        "reponse": "Brume pose la cuillère. Elle dit qu'elle reste debout, la nuit, avec une corde de chanvre dans les mains. Quand un couché se relève, elle l'accompagne vers le bord du champ en lui passant doucement la corde à la taille, pour qu'il ne se perde pas. Elle ne l'attache pas, dit-elle, elle le guide. Elle a peur de ce que ça veut dire, et elle ne peut pas le dire à Ocre.",
+        "revele": [
+          "f-gro-les-couches-se-relevent"
+        ]
+      },
+      {
+        "id": "ruban",
+        "mots": [
+          "ruban",
+          "gris",
+          "pèlerin",
+          "accueil"
+        ],
+        "attitudeMin": 20,
+        "question": "Comment obtient-on le ruban gris ?",
+        "reponse": "Elle noue un ruban de laine grise au poignet de qui le demande. Le ruban ouvre les tentes, les allées et les langues, mais il n'oblige à rien. Elle dit que ceux qui l'ôtent, personne ne leur en veut.",
+        "effets": [
+          {
+            "objet": {
+              "id": "gro-ruban-gris"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "ocre",
+        "mots": [
+          "Ocre",
+          "Frère",
+          "prophète",
+          "croit-il"
+        ],
+        "question": "Croyez-vous vraiment au Frère Ocre ?",
+        "reponse": "Le Frère est bon, dit Brume, et il croit sincèrement qu'on est mieux de l'autre côté. Elle ne sait plus si c'est du courage ou de la fatigue. Elle dit qu'il lui a sauvé la vie un hiver où elle n'avait plus de raison de manger, et qu'elle ne lui doit pas de se taire pour autant."
+      }
+    ],
+    "services": [
+      {
+        "id": "hospitalite",
+        "nom": "Soupe et couverture",
+        "resume": "Une écuellée d'orge, une couverture grise et un coin près du feu : repos long sûr au camp, hors de la Lanterne (la jauge de Cendre augmente tout de même d'un cran).",
+        "prix": 0,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Entrez, entrez, mes petits, il y a de la soupe, ça réchauffe.",
+      "amical": "Oh, vous revoilà ! Asseyez-vous, je vous sers."
+    },
+    "inventaire": [
+      "corde"
+    ]
+  },
+  {
+    "id": "gro-aila-bergere",
+    "nom": "Aila Pied-de-Chèvre",
+    "titre": "bergère",
+    "espece": "goliath",
+    "sexe": "F",
+    "age": "dix-sept ans",
+    "role": "Nièce de Taavi, bergère des hauteurs ; elle garde l'enclos, vend fromages et vivres et guide les voyageurs.",
+    "lieu": "gro-hauteurs-enclos",
+    "apparence": "Une jeune goliath d'un mètre quatre-vingt-dix, peau gris-bleu marquée de lignes claires, longues tresses sombres nouées de laine rouge ; gilet de peau de chèvre, bottes de feutre, bâton de bois, un chien noir boiteux à ses pieds.",
+    "personnalite": {
+      "traits": [
+        "franche",
+        "joyeuse malgré tout",
+        "intrépide",
+        "bavarde",
+        "têtue"
+      ],
+      "voix": "Claire et rapide, avec un rire qui part tout seul ; elle parle avec les mains et ponctue de « oh là ! » quand elle s'enflamme.",
+      "valeurs": [
+        "le troupeau",
+        "son oncle",
+        "le plein air"
+      ],
+      "desir": "Retrouver ses chèvres et voir son oncle dormir.",
+      "peur": "Que la cendre atteigne les hauts pâturages.",
+      "defaut": "Elle prend des risques idiots."
+    },
+    "presences": [
+      {
+        "lieu": "gro-hauteurs-bergerie",
+        "moment": "soir"
+      },
+      {
+        "lieu": "gro-hauteurs-vire",
+        "moment": "jour"
+      }
+    ],
+    "attitude": 10,
+    "savoir": [
+      "f-gro-chevres-sur-la-vire"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-pierre-de-haavi-chez-les-loups",
+        "attitudeMin": 15
+      }
+    ],
+    "sujets": [
+      {
+        "id": "chevres",
+        "mots": [
+          "chèvres",
+          "troupeau",
+          "vire",
+          "cloche",
+          "perdues"
+        ],
+        "question": "Où est passé votre troupeau ?",
+        "reponse": "Aila ne s'arrête plus : six chèvres sont coincées sur la vire, au-dessus du puits de la mine, dont Clochette, la chèvre de tête, qui porte la cloche de leur mère. Elles ne bougent plus ni d'un côté ni de l'autre. Elle ne peut pas les faire reculer seule, elle a un sifflet de berger, mais le vent couvre l'air.",
+        "revele": [
+          "f-gro-chevres-sur-la-vire"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-le-berger-goliath",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "pierre",
+        "mots": [
+          "pierre",
+          "Haavi",
+          "oncle",
+          "loups",
+          "tanière"
+        ],
+        "attitudeMin": 15,
+        "question": "Parlez-nous de la pierre de Haavi.",
+        "reponse": "Elle baisse la voix. Elle a suivi la meute il y a un an, de loin, jusqu'à la grotte, et elle a vu, sur un tas d'os, une pierre plate gravée de spirales : la pierre de nom de son oncle Haavi. Elle n'a pas osé la prendre, et elle n'a jamais su comment le dire à Taavi.",
+        "revele": [
+          "f-gro-pierre-de-haavi-chez-les-loups"
+        ]
+      },
+      {
+        "id": "taavi",
+        "mots": [
+          "Taavi",
+          "oncle",
+          "berger",
+          "dormir",
+          "cairn"
+        ],
+        "question": "Comment va votre oncle Taavi ?",
+        "reponse": "Elle l'aime comme on aime un mur : il ne bouge pas, il ne dit rien, mais c'est lui qui tient. Elle dit qu'il ne dort plus depuis la mort de Haavi, qu'il va s'asseoir sur la dalle la nuit, et que si l'on pouvait faire quelque chose pour la promesse, elle donnerait tous ses fromages."
+      },
+      {
+        "id": "hauteurs",
+        "mots": [
+          "guide",
+          "sentier",
+          "vire",
+          "hauteurs",
+          "chemin"
+        ],
+        "question": "Connaissez-vous le chemin des hauteurs ?",
+        "reponse": "Elle connaît la vire par cœur : le long de la falaise, un pas de large, on s'agrippe à la corde, on ne regarde pas en bas. À son extrémité, une échelle de fer descend dans la Fosse. Elle l'a utilisée une fois, en cachette, et elle en est remontée plus vite qu'elle n'était descendue : ça sent le mort, en bas."
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "gro-fromage-de-chevre",
+          "quantite": 6,
+          "prix": 1
+        },
+        {
+          "objet": "gro-viande-seche",
+          "quantite": 6,
+          "prix": 1
+        },
+        {
+          "objet": "sifflet",
+          "quantite": 2,
+          "prix": 1
+        },
+        {
+          "objet": "corde",
+          "quantite": 3,
+          "prix": 1
+        },
+        {
+          "objet": "couverture",
+          "quantite": 2
+        },
+        {
+          "objet": "outre",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "rachat": 0.4,
+      "types": [
+        "nourriture",
+        "materiel"
+      ]
+    },
+    "salutations": {
+      "neutre": "Oh là ! Des gens ! Attention aux chèvres, elles mordent.",
+      "amical": "Ah, vous voilà ! Je savais que vous reviendriez !"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-odilon-trappeur",
+    "nom": "Odilon Rousse-Peau",
+    "titre": "trappeur",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "cinquante ans",
+    "role": "Trappeur et marchand du sentier : il vend peaux, cordes, vivres et pièges, et loue un coin de sa cabane aux voyageurs.",
+    "lieu": "gro-sentier-abri-du-trappeur",
+    "apparence": "Un homme trapu aux cheveux et à la barbe d'un roux fané, visage tanné mangé de rides, cicatrice de griffe en travers de la joue ; veste de peau de loup retournée, ceinture chargée de couteaux et de pièges, mains tordues par le froid.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "rusé",
+        "superstitieux",
+        "attaché à son poêle",
+        "mal à l'aise avec la gratitude"
+      ],
+      "voix": "Une voix rauque, avec des tournures de montagne ; il parle en marchandant même quand ce n'est pas nécessaire, et lâche des proverbes qu'il invente à mesure.",
+      "valeurs": [
+        "sa peau",
+        "un bon prix",
+        "la parole donnée aux voyageurs"
+      ],
+      "desir": "Passer l'hiver au chaud, et que les loups le laissent tranquille.",
+      "peur": "Qu'on découvre ce qu'il a pris au colporteur.",
+      "defaut": "Il ment par réflexe."
+    },
+    "attitude": 5,
+    "savoir": [
+      "f-gro-bornes-de-la-veille",
+      "f-gro-rumeur-loups-garous",
+      "f-gro-rumeur-pelerins-etouffent"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-odilon-a-pille-la-caravane",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        },
+        "attitudeMin": 45
+      }
+    ],
+    "sujets": [
+      {
+        "id": "loups",
+        "mots": [
+          "loups",
+          "meute",
+          "grotte",
+          "descendre",
+          "peaux"
+        ],
+        "question": "Parlez-nous de la meute de loups.",
+        "reponse": "Les loups sont descendus de la montagne il y a un mois. Ils lui ont vidé trois lignes de pièges et un chien. Il n'a rien contre eux, mais ça fait une saison que ça coûte plus cher que ça rapporte. Il murmure que certains, au village, disent que ce sont des garous, mais il n'y croit qu'à moitié. Il paierait pour que quelqu'un règle ça.",
+        "revele": [
+          "f-gro-rumeur-loups-garous"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-les-loups-descendent",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sentier",
+        "mots": [
+          "sentier",
+          "chemin",
+          "danger",
+          "ravine",
+          "bornes",
+          "route"
+        ],
+        "question": "Y a-t-il du danger sur le sentier ?",
+        "reponse": "Le sentier est bon jusqu'à la septième borne. Après, la cendre ensevelit tout. Il y a la ravine à une heure et demie, où les pierres roulent d'elles-mêmes et où quelqu'un a manifestement préparé quelque chose : un soldat étranger, je dirais. À la bifurcation, on prend le carrefour des crânes pour les loups, le lacet pour les araignées, la voie des mineurs pour la Fosse.",
+        "revele": [
+          "f-gro-bornes-de-la-veille"
+        ]
+      },
+      {
+        "id": "caravane",
+        "mots": [
+          "colporteur",
+          "chariot",
+          "caravane",
+          "Mathurin",
+          "coffre"
+        ],
+        "question": "Qu'est-il arrivé au chariot de Mathurin ?",
+        "reponse": "Il dit qu'il est passé après, qu'il n'a rien trouvé, que les loups avaient tout mangé, y compris l'envie d'y retourner. Il détourne un peu les yeux. Il regarde le plancher de sa cabane.",
+        "revele": [
+          "f-gro-caravane-du-colporteur"
+        ]
+      },
+      {
+        "id": "pieges",
+        "mots": [
+          "pièges",
+          "mâchoires",
+          "plaques",
+          "marcher",
+          "attention"
+        ],
+        "question": "Où sont posés vos pièges ?",
+        "reponse": "Il a posé des pièges autour de la cabane, mais il les signale avec des piquets. Les piquets sont rongés par les loups, c'est pour ça. Il promet de vous montrer où ils sont, si vous achetez quelque chose.",
+        "effets": [
+          {
+            "flag": "gro-pieges-signales"
+          }
+        ]
+      },
+      {
+        "id": "pelerins",
+        "mots": [
+          "pèlerins",
+          "champ",
+          "gris",
+          "couchés",
+          "Ocre"
+        ],
+        "question": "Qui sont ces Pèlerins gris qui passent ?",
+        "reponse": "Les Pèlerins ? Une bande de fous qui marchent en file vers la cendre. On raconte au village qu'ils étouffent leurs couchés pour les faire taire. Lui n'en sait rien. Il en voit passer sur le sentier de plus en plus ; ils sont polis, ils paient la soupe, et ils ne repassent jamais.",
+        "revele": [
+          "f-gro-rumeur-pelerins-etouffent"
+        ]
+      },
+      {
+        "id": "rapport-loups",
+        "mots": [
+          "loups",
+          "réglé",
+          "meute",
+          "terminé",
+          "c'est fait"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "gro-meute-apaisee"
+            },
+            {
+              "flag": "gro-meute-chassee"
+            },
+            {
+              "flag": "gro-meute-brisee"
+            }
+          ]
+        },
+        "question": "Lui annoncer que la meute est réglée.",
+        "reponse": "Odilon pose sa pipe. Il veut qu'on lui raconte, et il écoute sans interrompre, ce qui ne lui arrive jamais. Si la meute a été apaisée, il dit qu'il comprend, qu'il restera plus loin de la grotte ; si elle est partie, il se demande où elle ira ; si elle est morte, il se tait. Puis il règle sa dette, en liards et en peaux.",
+        "effets": [
+          {
+            "flag": "gro-odilon-informe-loups"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "gro-peau-de-loup-gris",
+          "quantite": 4,
+          "prix": 8
+        },
+        {
+          "objet": "corde",
+          "quantite": 5,
+          "prix": 1
+        },
+        {
+          "objet": "torche",
+          "quantite": 10,
+          "prix": 1
+        },
+        {
+          "objet": "rations",
+          "quantite": 12,
+          "prix": 1
+        },
+        {
+          "objet": "gro-viande-seche",
+          "quantite": 10,
+          "prix": 1
+        },
+        {
+          "objet": "piege-a-machoires",
+          "quantite": 3,
+          "prix": 6
+        },
+        {
+          "objet": "filet",
+          "quantite": 2
+        },
+        {
+          "objet": "couverture",
+          "quantite": 3
+        },
+        {
+          "objet": "sac-de-couchage",
+          "quantite": 2
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 2
+        },
+        {
+          "objet": "tenue-de-voyage",
+          "quantite": 2
+        },
+        {
+          "objet": "grappin",
+          "quantite": 1
+        },
+        {
+          "objet": "huile",
+          "quantite": 4
+        },
+        {
+          "objet": "arc-court",
+          "quantite": 1
+        },
+        {
+          "objet": "fleches",
+          "quantite": 20
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "materiel",
+        "nourriture",
+        "vetement"
+      ]
+    },
+    "services": [
+      {
+        "id": "abri",
+        "nom": "Un coin de plancher",
+        "resume": "Un coin de plancher près du poêle : repos long sûr (la cendre ne passe pas la porte de bois calfeutrée).",
+        "prix": 3,
+        "effets": []
+      },
+      {
+        "id": "rumeurs",
+        "nom": "Rumeurs du sentier",
+        "resume": "Odilon raconte ce qu'il a vu passer : pèlerins, soldats, loups.",
+        "prix": 1,
+        "effets": [
+          {
+            "fait": "f-gro-bornes-de-la-veille"
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Dehors. Mon poêle est pour ceux qui paient.",
+      "neutre": "Entrez, entrez, vous laissez sortir la chaleur ! Peaux, pièges, cordes, tout est à vendre, sauf les chiens.",
+      "amical": "Ah, mes clients préférés ! Venez vous asseoir, j'ai gardé un peu de ragoût."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-joss-tamisier",
+    "nom": "Joss Tamisier",
+    "titre": "le rescapé de la Fosse",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "trente-quatre ans",
+    "role": "Réfugié de Veillecendre qui s'était engagé comme mineur ; enfermé trois jours dans une poche d'air par l'éboulement de la galerie basse.",
+    "lieu": "gro-fosse-poche",
+    "apparence": "Un homme maigre couvert de poussière de roche, barbe de trois jours, yeux rougis, mains écorchées jusqu'au sang ; veste de toile déchirée, casque de cuir bouilli, un pic au fer ébréché serré contre lui.",
+    "personnalite": {
+      "traits": [
+        "courageux",
+        "épuisé",
+        "reconnaissant",
+        "plein d'humour noir",
+        "obstiné"
+      ],
+      "voix": "Rauque et basse, il économise sa salive ; il plaisante pour ne pas pleurer et appelle ses sauveurs « mes anges de gravats ».",
+      "valeurs": [
+        "ses compagnons",
+        "la parole donnée",
+        "le travail bien fait"
+      ],
+      "desir": "Sortir, revoir le ciel, et dire aux familles de ses compagnons comment ils sont morts.",
+      "peur": "Que le plafond cède avant qu'on arrive.",
+      "defaut": "Il se sent responsable de tout."
+    },
+    "attitude": 30,
+    "savoir": [
+      "f-gro-fosse-mineurs-releves",
+      "f-gro-sigrun-releve",
+      "f-gro-fosse-minerai-de-braise"
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "situation",
+        "mots": [
+          "qui êtes-vous",
+          "depuis quand",
+          "trois jours",
+          "combien",
+          "blessé"
+        ],
+        "question": "Depuis quand êtes-vous enfermé, Joss ?",
+        "reponse": "Joss est ici depuis trois jours, il a de l'eau qui suinte, aucune nourriture, et un pic dont il frappe la paroi toutes les heures pour qu'on l'entende. Il est faible, mais lucide. Il demande si on a entendu les autres ; il sait que non.",
+        "revele": [
+          "f-gro-fosse-mineurs-releves"
+        ]
+      },
+      {
+        "id": "sigrun",
+        "mots": [
+          "Sigrun",
+          "nain",
+          "chef",
+          "équipe",
+          "les autres"
+        ],
+        "question": "Parlez-nous de Sigrun et de son équipe.",
+        "reponse": "Sigrun Basse-Veine menait l'équipe : un nain têtu comme sa roche qui avait fait la promesse à son frère de rouvrir la Fosse. Le premier jour, il est mort dans le dortoir en défendant la porte. Le deuxième, il s'est relevé. Joss l'a vu passer devant la grille, la barbe encore nattée de fil rouge, sans le reconnaître.",
+        "revele": [
+          "f-gro-sigrun-releve"
+        ]
+      },
+      {
+        "id": "minerai",
+        "mots": [
+          "minerai",
+          "braise",
+          "filon",
+          "gaz",
+          "mine"
+        ],
+        "question": "Y a-t-il du minerai de braise dans la mine ?",
+        "reponse": "Le filon est à l'étage du dessous, ça rougeoie comme une forge, et une huile noire y suinte de la roche. C'est de cette huile que vivait la Lanterne, autrefois. Joss en a rempli un baril, tiré trois blocs de minerai, puis tout s'est écroulé. Il prévient : il y a une poche de gaz dans le creux sud, qui sent l'œuf. Il ne faut pas y descendre avec une torche, mais avec une lampe de mineur nain, qui vire au vert dans le gaz.",
+        "revele": [
+          "f-gro-fosse-minerai-de-braise",
+          "f-gro-fosse-huile-de-roche"
+        ]
+      },
+      {
+        "id": "sortir",
+        "mots": [
+          "sortons",
+          "viens",
+          "dehors",
+          "sauvé",
+          "libre",
+          "partir"
+        ],
+        "question": "Proposer de le sortir de là.",
+        "reponse": "Joss rit, pleure, puis se redresse. Il demande qu'on le sorte, qu'on le conduise à Veillecendre, qu'on dise à Bertille qu'il paiera sa dette. Sur le chemin, il propose de montrer le passage sûr dans la galerie.",
+        "effets": [
+          {
+            "flag": "gro-joss-sauve"
+          },
+          {
+            "deplacer": {
+              "pnj": "gro-joss-tamisier",
+              "lieu": "veillecendre"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gro-ulfrik-basse-veine",
+              "delta": 25
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Il y a quelqu'un ? Dites-moi que vous êtes vrais.",
+      "amical": "Mes anges de gravats !"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-ulfrik-basse-veine",
+    "nom": "Ulfrik Basse-Veine",
+    "titre": "nain en deuil",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "quatre-vingt-quatre ans",
+    "role": "Nain de Veillecendre, frère de Sigrun ; assis devant la Fosse, il ne peut ni entrer ni partir.",
+    "lieu": "gro-fosse-parvis",
+    "apparence": "Un nain râblé aux cheveux et à la barbe gris acier tressés de fil rouge, visage taillé à la serpe, yeux noirs creusés de fatigue, mains épaisses croisées sur les genoux ; manteau de laine lourd, tablier de cuir de forgeron, un marteau de maçon à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "digne",
+        "têtu",
+        "taiseux",
+        "rancunier envers lui-même",
+        "attentif aux rites"
+      ],
+      "voix": "Rocailleuse et lente ; il parle comme on frappe une enclume, coupe ses phrases en mots durs, et tutoie les inconnus s'ils ont fait quelque chose pour les siens.",
+      "valeurs": [
+        "les rites des morts",
+        "la parole des frères",
+        "le travail bien fait"
+      ],
+      "desir": "Que son frère repose enfin, et que la Fosse soit fermée ou rouverte à sa façon.",
+      "peur": "Entrer et trouver son frère comme un étranger.",
+      "defaut": "Il se punit."
+    },
+    "faction": "gardiens-de-la-veille",
+    "attitude": 0,
+    "savoir": [
+      "f-gro-fosse-minerai-de-braise",
+      "f-gro-joss-sous-l-eboulis"
+    ],
+    "secrets": [
+      {
+        "fait": "f-gro-fosse-menait-a-la-forge",
+        "attitudeMin": 35
+      }
+    ],
+    "sujets": [
+      {
+        "id": "deuil",
+        "mots": [
+          "deuil",
+          "triste",
+          "pourquoi",
+          "assis",
+          "tu pleures"
+        ],
+        "question": "Pourquoi restez-vous assis là, Ulfrik ?",
+        "reponse": "Ulfrik regarde l'éboulis sans bouger. Il dit que son frère Sigrun est entré il y a trois jours avec une équipe de volontaires pour rouvrir la mine, qu'il aurait dû entrer avec lui, qu'il n'a pas osé. Il ne sait pas qui est mort, il n'a pas voulu savoir, et il sait que la mine contenait déjà quarante hommes avant eux. Il est resté assis pour que, si quelqu'un sort, il y ait un visage connu."
+      },
+      {
+        "id": "sigrun",
+        "mots": [
+          "Sigrun",
+          "frère",
+          "nain",
+          "chef de l'équipe"
+        ],
+        "question": "Parlez-nous de votre frère Sigrun.",
+        "reponse": "Sigrun était le plus têtu des Basse-Veine, ce qui n'est pas peu dire. Il voulait ramener du minerai de braise pour les forges de Veillecendre, parce que les réfugiés n'ont plus de quoi chauffer le fer. Ulfrik avoue qu'il lui a dit que c'était une idée de fou. Il aimerait pouvoir retirer la phrase.",
+        "revele": [
+          "f-gro-sigrun-releve"
+        ]
+      },
+      {
+        "id": "la-fosse",
+        "mots": [
+          "Fosse",
+          "mine",
+          "histoire",
+          "carreau",
+          "wagonnets",
+          "aiguillages"
+        ],
+        "question": "Racontez-nous l'histoire de la Fosse.",
+        "reponse": "La Fosse est la mine d'où venait l'huile de la Lanterne. Elle s'est effondrée il y a vingt ans, sur quarante hommes, et plus personne n'est descendu ; Durgan Pic-Brisé, qui en est remonté borgne, boit à l'auberge de Veillecendre et refuse d'en parler. Ulfrik connaît les lieux par la bouche de son père : le carreau au centre, trois voies, trois wagonnets ; la règle est simple, le plus lourd d'abord, le vide en dernier. Le puits d'aération donne sur les hauteurs. Il y a un drain dans la galerie basse qui rejoint une grotte plus au nord.",
+        "revele": [
+          "f-gro-fosse-minerai-de-braise",
+          "f-gro-fosse-aiguillages",
+          "f-gro-fosse-huile-de-roche"
+        ]
+      },
+      {
+        "id": "quete",
+        "mots": [
+          "aider",
+          "descendre",
+          "retrouver",
+          "survivant",
+          "entrer"
+        ],
+        "question": "Peut-on vous aider à retrouver les survivants ?",
+        "reponse": "Ulfrik demande qu'on entre à sa place. Qu'on retrouve ses compagnons, vivants s'il en reste, et qu'on donne à son frère, s'il est de ceux qui marchent, la mort que les nains accordent : des mots, une main sur le front, et le silence. Il laisse un tabouret pour lui, au retour.",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-gro-la-fosse-aux-morts",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "sceller",
+        "mots": [
+          "sceller",
+          "fermer",
+          "refermer",
+          "murer",
+          "mine"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "gro-sigrun-repose"
+            },
+            {
+              "flag": "gro-joss-sauve"
+            }
+          ]
+        },
+        "question": "Proposer de sceller la mine avec vous.",
+        "reponse": "Ulfrik hoche la tête. Il connaît le rite : on fait tomber les étais du portail, on couche la dalle de scellement, on grave le nom de ceux qui sont dedans. Il le fera lui-même, avec de l'aide. En remerciement, il offre la lanterne de son frère, qui ne s'éteint pas dans le gaz.",
+        "effets": [
+          {
+            "flag": "gro-fosse-scellee"
+          },
+          {
+            "objet": {
+              "id": "gro-lanterne-de-mineur-naine"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gro-ulfrik-basse-veine",
+              "delta": 20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "exploiter",
+        "mots": [
+          "exploiter",
+          "minerai",
+          "forges",
+          "Grodak",
+          "rouvrir",
+          "rapporter"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "gro-sigrun-repose"
+            },
+            {
+              "flag": "gro-joss-sauve"
+            }
+          ]
+        },
+        "question": "Faut-il rouvrir la Fosse pour le minerai ?",
+        "reponse": "Ulfrik se tait longtemps. Il dit que Sigrun aurait voulu qu'on ramène du minerai aux forges, que sa mort n'aurait pas de sens sinon. Mais la Fosse est pleine de morts. S'il faut la rouvrir, il demande qu'on la nettoie et qu'on mette un nain en garde, lui. Il dit qu'il n'aura plus d'autre maison.",
+        "effets": [
+          {
+            "flag": "gro-fosse-exploitee"
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -3
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gro-ulfrik-basse-veine",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "forge",
+        "mots": [
+          "galerie basse",
+          "Haute-Forge",
+          "éboulis",
+          "nord",
+          "au fond"
+        ],
+        "attitudeMin": 35,
+        "question": "Où mène la galerie basse, au nord ?",
+        "reponse": "Ulfrik baisse la voix. Les anciens racontaient que la galerie basse allait jusqu'aux réserves de charbon de la Haute-Forge. L'éboulement du fond, il y a vingt ans, est venu de l'autre côté : les mineurs de ce poste-là avaient entendu un marteau cogner, les derniers jours, puis plus rien.",
+        "revele": [
+          "f-gro-fosse-menait-a-la-forge"
+        ]
+      }
+    ],
+    "services": [
+      {
+        "id": "reparation",
+        "nom": "Réparer une arme ou une armure",
+        "resume": "Ulfrik remet en état une pièce d'équipement à la manière des nains, à l'enclume de campagne.",
+        "prix": 8,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "hostile": "Va-t'en. Ce n'est pas un lieu pour les curieux.",
+      "neutre": "Ne fais pas de bruit. On ne parle pas fort devant les morts.",
+      "amical": "Ah, c'est toi. Assieds-toi, il y a de la place à côté de moi."
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gro-vask-eclaireur",
+    "nom": "Vask",
+    "titre": "éclaireur du Fer-Gris",
+    "espece": "hobgobelin",
+    "sexe": "M",
+    "age": "vingt-huit ans",
+    "role": "Éclaireur de la Compagnie du Fer-Gris perdu dans la ravine, la cheville tordue.",
+    "lieu": "gro-sentier-ravine",
+    "apparence": "Un hobgobelin trapu à la peau orange brûlé, oreilles pointues bagués de fer, yeux jaunes fixes, cheveux noirs tressés court ; uniforme de laine grise sale, plastron de cuir clouté frappé du sceau du Fer-Gris, cheville bandée serrée.",
+    "personnalite": {
+      "traits": [
+        "discipliné",
+        "poli",
+        "méfiant",
+        "loyal",
+        "épuisé"
+      ],
+      "voix": "Brève, correcte, très structurée : il énonce son rang, son nom, puis ses phrases par ordre d'importance. Il dit « monsieur » ou « madame » quelle que soit la situation.",
+      "valeurs": [
+        "l'ordre",
+        "la parole donnée à sa compagnie",
+        "ne pas déranger"
+      ],
+      "desir": "Rentrer à Pont-de-Fer avec sa carte, vivant.",
+      "peur": "Que sa cheville le retarde et qu'on le laisse.",
+      "defaut": "Il préfère mourir plutôt que de trahir un secret militaire."
+    },
+    "faction": "compagnie-du-fer-gris",
+    "attitude": -15,
+    "profilCombat": "combattant-hobgobelin",
+    "savoir": [
+      "f-gro-fer-gris-eclaireurs"
+    ],
+    "secrets": [
+      {
+        "fait": "f-fer-gris-veut-la-forge",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-es-tu",
+        "mots": [
+          "qui",
+          "soldat",
+          "Fer-Gris",
+          "hobgobelin",
+          "nom"
+        ],
+        "question": "Quel est votre nom, et de quelle troupe êtes-vous ?",
+        "reponse": "Il se présente avec raideur : éclaireur Vask, Compagnie du Fer-Gris, détaché de la caserne de Pont-de-Fer. Il ne répond à aucune question sur l'effectif. Sa cheville est foulée depuis deux jours, il s'est blotti à l'abri de la paroi en attendant qu'elle supporte son poids."
+      },
+      {
+        "id": "mission",
+        "mots": [
+          "mission",
+          "pourquoi",
+          "sentier",
+          "carte",
+          "galeries",
+          "mine"
+        ],
+        "question": "Quelle est votre mission dans les galeries ?",
+        "reponse": "Il dit qu'il cartographie les voies d'accès depuis les hauteurs : le sentier, les mines, les puits. Quelqu'un lui a dit que la galerie basse de la Fosse menait au nord, vers la Haute-Forge, et le capitaine veut savoir si elle est praticable. Il ne dit pas ce que fera la Compagnie des renseignements.",
+        "revele": [
+          "f-gro-fer-gris-eclaireurs"
+        ]
+      },
+      {
+        "id": "aide",
+        "mots": [
+          "aide",
+          "soigner",
+          "cheville",
+          "bandage",
+          "médecin",
+          "porter"
+        ],
+        "question": "Proposer de soigner votre cheville.",
+        "reponse": "Vask hésite : accepter de l'aide d'étrangers est une faute, la refuser est une autre. Il finit par dire que, si vous soigniez sa cheville, il vous le rendrait. Il n'oublie pas.",
+        "effets": [
+          {
+            "flag": "gro-vask-aide"
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gro-vask-eclaireur",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "capitaine",
+        "mots": [
+          "capitaine",
+          "Kor Varnak",
+          "Varnak",
+          "Pont-de-Fer",
+          "pourquoi la Forge",
+          "foyer"
+        ],
+        "attitudeMin": 25,
+        "question": "Qui est Kor Varnak, votre capitaine ?",
+        "reponse": "Pour la première fois, Vask relâche ses épaules. Le capitaine, dit-il, n'est pas un seigneur de guerre. Il veut un foyer pour son peuple, une forge qui ne s'éteigne pas, et il croit qu'un feu éternel couve sous la montagne. Vask le suivrait jusqu'à Pont-de-Fer et plus loin.",
+        "revele": [
+          "f-fer-gris-veut-la-forge"
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Reculez. Je suis armé.",
+      "neutre": "Éclaireur Vask, Compagnie du Fer-Gris. Je ne cherche pas d'ennuis.",
+      "amical": "Vous m'avez traité en soldat. Je m'en souviendrai."
+    },
+    "inventaire": []
+  }
+]

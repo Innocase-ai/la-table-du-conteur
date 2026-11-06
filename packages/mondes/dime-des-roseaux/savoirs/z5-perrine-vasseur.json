@@ -1,0 +1,79 @@
+[
+ {
+  "pnj": "perrine-vasseur",
+  "passe": "Perrine Vasseur a perdu ses parents dans l'incendie de leur maison alors qu'elle était enfant. Son frère Colin, plus âgé, l'a élevée en conduisant des charrettes pour le moulin ; elle est devenue éclaireuse pour ne plus dépendre de lui. Elle connaît le marais, les roseaux et les chemins de traverse mieux que la plupart des villageois. Depuis que Colin a disparu avec la charrette, elle dort au grenier, suit les pistes et refuse de croire à une fuite. Elle parle peu aux étrangers, mais elle regarde leurs bottes avant leurs visages.",
+  "liens": [
+   {
+    "pnj": "colin-vasseur",
+    "nature": "son frère",
+    "opinion": "Elle l'aime et le croit vivant. Elle veut une preuve, pas une rumeur, et elle est prête à tout pour le retrouver."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire",
+    "opinion": "Elle la respecte, mais elle lui reproche de compter les sacs avant les gens."
+   },
+   {
+    "pnj": "anselme-roux",
+    "nature": "le meunier",
+    "opinion": "Elle le croit responsable de la disparition de Colin, sans savoir encore comment. Elle ne lui parle pas."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-bottes",
+    "texte": "Elle regarde les bottes avant les visages : une semelle de ville laisse une trace nette, une semelle de village se reconnaît à la boue du marais."
+   },
+   {
+    "id": "le-grenier-la-nuit",
+    "texte": "Elle dort au grenier, sur la paille, avec son arc à portée de main. Elle dit que c'est pour garder le grain, pas pour se cacher."
+   },
+   {
+    "id": "la-piste",
+    "texte": "Elle suit une piste en parlant à voix basse, comme si le sol pouvait répondre. Elle s'arrête tous les dix pas et regarde en arrière."
+   },
+   {
+    "id": "le-frere",
+    "texte": "Quand on parle de Colin, elle ne pleure pas. Elle serre la boucle de son arc et répète qu'il chante faux, qu'il s'endort au premier verre et qu'il n'a jamais perdu un sac."
+   },
+   {
+    "id": "la-piste-de-la-charrette",
+    "texte": "Elle a vu la charrette partir et elle a trouvé ses traces au pont. Depuis, elle ne dort plus que d'un œil."
+   },
+   {
+    "id": "avis-sur-les-hobgobelins",
+    "texte": "Elle ne les sous-estime pas : ils marchent en rang, ils comptent, et ils reviennent. Elle dit qu'il ne faut jamais les affronter dans un endroit où ils peuvent reculer."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "La charrette a tourné vers le nord avant le pont, et des bottes de hobgobelins ont piétiné la berge. Colin n'a pas fui.",
+    "acces": {}
+   },
+   {
+    "id": "le-grenier",
+    "fait": "f-grenier-vide",
+    "version": "La réserve est presque vide. Elle a trouvé la clé de Huguette sur son clou plus d'une fois et sait que le village compte les sacs en secret.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "elle dit que le grenier n'est pas son affaire, et que la paille est assez bonne pour dormir",
+    "tabou": []
+   },
+   {
+    "id": "sa-famille",
+    "fait": "f-perrine-colin",
+    "version": "Colin l'a élevée après l'incendie de leurs parents. Elle est partie éclaireuse pour ne plus dépendre de lui, et elle le regrette aujourd'hui.",
+    "acces": {}
+   },
+   {
+    "id": "la-mine",
+    "fait": "f-mine-de-fer",
+    "version": "Elle sait que les hobgobelins exploitent une veine de fer et que les prisonniers y descendent. Elle n'a pas encore vu la mine, mais elle en connaît l'entrée par les roseaux.",
+    "acces": {}
+   }
+  ]
+ }
+]

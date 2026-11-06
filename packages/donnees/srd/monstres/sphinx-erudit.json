@@ -1,0 +1,162 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "arcanes": 12,
+    "histoire": 12,
+    "perception": 8,
+    "religion": 12
+  },
+  "resistances": [
+    "nécrotique",
+    "radiant"
+  ],
+  "immunitesDegats": [
+    "psychique"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans le moteur). FP 11 (7 200 PX, ou 8 400 dans son antre)."
+    },
+    {
+      "id": "insondable",
+      "nom": "Insondable",
+      "resume": "Nulle magie ne permet d'observer le sphinx à distance ni de détecter ses pensées sans son consentement. Les tests de Sagesse (Intuition) visant à percer ses intentions ou évaluer sa sincérité subissent le Désavantage."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire (3/jour, ou 4/jour dans son antre)",
+      "resume": "Si le sphinx rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le sphinx peut dépenser une utilisation pour entreprendre l'une des actions ci-après. Il récupère toutes ses utilisations dépensées au début de chacun de ses tours. Poids des années : JS Constitution DD 16, une créature que le sphinx voit dans un rayon de 36 m. Échec : la cible reçoit 1 niveau d'Épuisement. Tant que la cible a le moindre niveau d'Épuisement, elle paraît 3d10 ans plus âgée que la réalité. Échec ou réussite : le sphinx ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant. Traque arcanique : le sphinx se téléporte en un espace inoccupé qu'il voit dans un rayon de 9 m, et il effectue une attaque de Griffe."
+    }
+  ],
+  "id": "sphinx-erudit",
+  "nom": "Sphinx érudit",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Loyal Neutre",
+  "ca": 17,
+  "pv": {
+    "moyenne": 170,
+    "des": "20d10 + 60"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 16,
+    "int": 18,
+    "sag": 18,
+    "cha": 18
+  },
+  "initiative": 10,
+  "sens": {
+    "perceptionPassive": 18
+  },
+  "langues": "céleste, commun",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le sphinx effectue trois attaques de Griffe.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 14 (3d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le sphinx lance l'un des sorts suivants sans composantes matérielles, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 16). À volonté : détection de la magie, identification, illusion mineure, main du mage, prestidigitation. 1/jour chacun : changement de plan, délivrance des malédictions, dissipation de la magie, don des langues, localisation d'objet, mythes et légendes.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "rugissement-debilitant",
+      "nom": "Rugissement débilitant",
+      "cout": "action",
+      "resume": "JS Sagesse DD 16, chaque ennemi dans une Émanation de 90 m centrée sur le sphinx. Échec : 35 (10d6) dégâts psychiques, et la cible subit l'état Neutralisé jusqu'au début du tour suivant du sphinx.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 16,
+        "moitieSiReussite": false
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 90
+      },
+      "degats": [
+        {
+          "des": "10d6",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "acces-d-ingeniosite",
+      "nom": "Accès d'ingéniosité",
+      "cout": "reaction",
+      "resume": "Déclencheur : le sphinx ou une autre créature dans un rayon de 9 m effectue un jet de sauvegarde ou un test de caractéristique. Conséquences : le sphinx ajoute 2 au jet.",
+      "degats": [],
+      "etats": [],
+      "utilisations": {
+        "nombre": 2,
+        "par": "jour"
+      }
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "sauvegardes": {
+    "dex": 10,
+    "con": 10,
+    "int": 12,
+    "sag": 9
+  },
+  "competences": {
+    "arcanes": 19,
+    "histoire": 12,
+    "intuition": 9,
+    "perception": 9
+  },
+  "resistances": [
+    "foudre",
+    "froid"
+  ],
+  "immunitesDegats": [
+    "nécrotique",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans le moteur). FP 21 (33 000 PX, ou 41 000 dans son antre)."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    },
+    {
+      "id": "receptacle-spirituel",
+      "nom": "Réceptacle spirituel",
+      "resume": "Si elle est détruite, la liche se reconstitue en 1d10 jours si elle possède un réceptacle spirituel, en récupérant tous ses points de vie. Le nouveau corps apparaît en un espace inoccupé dans l'antre de la liche."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire (4/jour, ou 5/jour dans son antre)",
+      "resume": "Si la liche rate un jet de sauvegarde, elle peut décider de le réussir tout de même."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "La liche lance l'un des sorts suivants, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 20). À volonté : boule de feu (au 5e niveau), détection de la magie, détection des pensées, dissipation de la magie, éclair (au 5e niveau), invisibilité, main du mage, prestidigitation. 2/jour chacun : animation des morts, changement de plan, porte dimensionnelle. 1/jour chacun : chaîne d'éclairs, doigt de mort, mot de pouvoir mortel, scrutation."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, la liche peut dépenser une utilisation pour entreprendre l'une des actions Regard horrifique, Téléportation funeste ou Trouble vital ; elle récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "id": "liche",
+  "nom": "Liche",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 20,
+  "pv": {
+    "moyenne": 315,
+    "des": "42d8 + 126"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 16,
+    "con": 16,
+    "int": 21,
+    "sag": 14,
+    "cha": 16
+  },
+  "initiative": 17,
+  "sens": {
+    "perceptionPassive": 19
+  },
+  "langues": "toutes",
+  "fp": "21",
+  "px": 33000,
+  "bonusMaitrise": 7,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La liche effectue trois attaques, réparties à sa guise entre Contact paralysant et Explosion occulte.",
+      "multiattaque": [
+        {
+          "action": "contact-paralysant",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "contact-paralysant",
+      "nom": "Contact paralysant",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 1,50 m : 15 (3d6 + 5) dégâts de froid, et la cible subit l'état Paralysé jusqu'au début du tour suivant de la liche.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 5,
+          "type": "froid"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "paralyse",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "explosion-occulte-cac",
+      "nom": "Explosion occulte (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 1,50 m : 31 (4d12 + 5) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d12",
+          "bonus": 5,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "explosion-occulte-distance",
+      "nom": "Explosion occulte (à distance)",
+      "cout": "action",
+      "resume": "À distance +12, portée 36 m : 31 (4d12 + 5) dégâts de force.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "4d12",
+          "bonus": 5,
+          "type": "force"
+        }
+      ]
+    },
+    {
+      "id": "magie-protectrice",
+      "nom": "Magie protectrice",
+      "cout": "reaction",
+      "resume": "La liche lance bouclier ou contresort en réponse au déclencheur du sort correspondant, avec la même caractéristique d'incantation que pour Incantation."
+    },
+    {
+      "id": "regard-horrifique",
+      "nom": "Regard horrifique",
+      "cout": "gratuit",
+      "resume": "Action légendaire. La liche lance terreur, avec la même caractéristique d'incantation que pour Incantation. Elle ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant."
+    },
+    {
+      "id": "teleportation-funeste",
+      "nom": "Téléportation funeste",
+      "cout": "gratuit",
+      "resume": "Action légendaire. La liche se téléporte en un espace inoccupé qu'elle voit dans un rayon de 18 m, et chaque créature dans un rayon de 3 m de l'espace qu'elle quitte subit 11 (2d10) dégâts nécrotiques."
+    },
+    {
+      "id": "trouble-vital",
+      "nom": "Trouble vital",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Constitution DD 20, chaque créature autre qu'un Mort-vivant dans une Émanation de 6 m centrée sur la liche. Échec : 31 (9d6) dégâts nécrotiques. Réussite : demi-dégâts. Échec ou réussite : la liche ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 20,
+        "moitieSiReussite": true
+      },
+      "zone": {
+        "forme": "emanation",
+        "taille": 6
+      },
+      "degats": [
+        {
+          "des": "9d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

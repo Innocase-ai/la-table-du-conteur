@@ -1,0 +1,124 @@
+[
+  {
+    "pnj": "aldous-lindenvert",
+    "passe": "Aldous Lindenvert est né à Port-aux-Cordes, dans la ruelle des Voiles, fils d'un libraire de quai qui vendait des almanachs. Il est entré à la Citadelle comme copiste à quarante ans, il y a quatre-vingts ans, et a recopié les tables de marée pendant quatre-vingts ans sans une rature affichée. Pendant les vingt et un ans où Ysmène Hautecôte dirigeait les cartographes, il a travaillé sous ses ordres, et il lui doit sa chaise près de la fenêtre. Il enseigne à Nolwen Brevemer à copier les colonnes de marées depuis qu'elle est apprentie. Il descend à la bibliothèque en comptant quarante et une marches, vend l'encre qu'il fabrique lui-même, et relit chaque colonne trois fois avant de la signer, une habitude qu'il a prise il y a six ans.",
+    "liens": [
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "la Maîtresse, qui dirigeait les cartographes",
+        "opinion": "Elle lui a fait donner la chaise près de la fenêtre, et l'appelle devant les autres sa plus patiente élève de colonnes. Il lui doit tout ce qu'il sait des tables."
+      },
+      {
+        "pnj": "nolwen-brevemer",
+        "nature": "l'apprentie à qui il a appris les colonnes de marées",
+        "opinion": "Une élève exacte, à la main nette, qui lui rend ses colonnes sans une rature. Il lui a enseigné la copie, et elle la pratique avec plus de soin que lui."
+      },
+      {
+        "pnj": "prieur-anselme-vareuil",
+        "nature": "le Prieur, qui dirige la Citadelle",
+        "opinion": "Un chef exact, qui compte les marées au lieu de les regarder ; Aldous le lui a dit une fois, en corrigeant son propre mot."
+      },
+      {
+        "pnj": "gudrun-lanterne",
+        "nature": "la fanalière, avec qui il partage un thé",
+        "opinion": "Un thé de gingembre avec elle chaque jeudi. Il la trouve bavarde et exacte, à peu près comme lui."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "entree-copiste",
+        "texte": "Il y a quatre-vingts ans, à quarante ans, il a franchi la porte de terre de la Citadelle avec une caisse d'encre et deux plumes, pour copier les tables de marée. Il en garde l'odeur de noix de galle sur les doigts."
+      },
+      {
+        "id": "chaise-pres-de-la-fenetre",
+        "texte": "Dans la grande bibliothèque, la chaise près de la fenêtre est la sienne depuis que la Maîtresse la lui a fait donner, pendant les vingt et un ans où elle dirigeait les cartographes. Il n'a jamais voulu la changer de place."
+      },
+      {
+        "id": "ruelle-des-voiles",
+        "texte": "Il est né à Port-aux-Cordes, ruelle des Voiles, dans la boutique de son père, un libraire de quai qui vendait ses almanachs sur un étal dehors. Il se souvient de l'odeur du papier humide quand la brume entrait par la porte."
+      },
+      {
+        "id": "corrige-un-mot",
+        "texte": "Il corrige un mot au milieu de sa propre phrase, revient en arrière d'un souffle, puis reprend là où il s'était arrêté, sans jamais s'excuser de la reprise."
+      },
+      {
+        "id": "encre-noix-de-galle",
+        "texte": "Il vend l'encre qu'il fabrique lui-même, à la noix de galle et au sel, dans de petites fioles qu'il bouche à la cire. Il prétend qu'une bonne encre se reconnaît à la couleur qu'elle prend en séchant, pas à son prix."
+      },
+      {
+        "id": "marches-de-la-bibliotheque",
+        "texte": "Il compte les marches en descendant à la bibliothèque : quarante et une, toujours, et il les compte à voix basse. Si l'une manquait, dit-il, il le saurait avant d'arriver en bas."
+      },
+      {
+        "id": "avis-sur-le-prieur",
+        "texte": "Le Prieur est exact, dit-il, mais il ne regarde plus la mer. Il le répète sans méchanceté, en rangeant ses plumes, comme on énonce un fait de comptabilité."
+      },
+      {
+        "id": "avis-sur-la-ligue",
+        "texte": "La Ligue, il la tient pour un registre sans marées : des noms, des amendes, des sceaux, et aucun calcul de houle. Les clercs y tiennent des cahiers, pas des tables."
+      },
+      {
+        "id": "rumeurs",
+        "texte": "Il n'accorde aucun crédit aux rumeurs : ça ne se vérifie pas, donc ça n'existe pas, répète-t-il. Une table fausse, en revanche, existe très bien, et elle coûte cher."
+      },
+      {
+        "id": "the-du-jeudi",
+        "texte": "Chaque jeudi, il boit un thé de gingembre avec Gudrun Lanterne, et ils parlent de fanaux, de chiffres et de la pluie, dans cet ordre, sans jamais finir la théière."
+      },
+      {
+        "id": "l-heure-de-retard",
+        "texte": "Il y a six ans, pendant l'hiver du Gros Sel, il a recopié la table d'alerte une heure trop tard. Il ne sait pas si c'est son retard ou celui du Prieur qui a coûté les onze pêcheurs, et il n'a jamais osé le demander.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "il pose sa plume, regarde ses colonnes sans les lire, et dit qu'un copiste sérieux relit toujours trois fois, sans expliquer pourquoi"
+      },
+      {
+        "id": "les-crayons-de-nolwen",
+        "texte": "Il garde dans un tiroir de sa table, sous les registres, des centaines de corrections au crayon que Nolwen glisse dans ses tables. Il fait semblant de ne rien voir, et il ne les a montrées à personne.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "il dit qu'un apprenti corrige toujours quelque chose, et qu'il vaut mieux ne pas s'en occuper, en refermant vite son tiroir"
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-tables-decalees",
+        "fait": "f-cit-tables-decalees",
+        "version": "Mes tables retardent de deux heures depuis le printemps, et les barques de la baie le paient. J'ai vérifié mes calculs trois fois, et le retard reste. Il faut trouver l'instrument fautif, pas accuser un copiste.",
+        "acces": {}
+      },
+      {
+        "id": "la-carte-du-cap-mort",
+        "fait": "f-cit-carte-du-cap-mort",
+        "version": "La vieille carte du Cap-Mort marque un passage sous la falaise, là où la carte moderne ne dessine qu'un rocher. Je ne sais pas s'il existe encore, ni si quelqu'un l'a emprunté depuis cent ans.",
+        "acces": {}
+      },
+      {
+        "id": "les-pages-arrachees",
+        "fait": "f-cit-registre-deux-pages",
+        "version": "Deux pages du registre des vives-eaux ont été arrachées d'un coup sec, et la dernière date lisible tombe au printemps, à la marée la plus haute de l'année. Je ne sais pas qui les a prises.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il remonte ses lunettes, regarde ailleurs, et dit que le registre est « parfaitement tenu », puis reprend sa plume.",
+        "tabou": [
+          "arrachées"
+        ]
+      },
+      {
+        "id": "la-lentille",
+        "fait": "f-cit-lentille-encrassee",
+        "version": "La lentille de l'observatoire est couverte d'un voile de sel qui fausse la lecture de la marée. Personne ne l'a nettoyée depuis le départ de l'ancien astronome, et je n'ai pas osé y toucher.",
+        "acces": {}
+      },
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "La Grande Marée arrive dans trois jours. Après elle, la mer ne reviendra pas à son niveau d'avant, et Port-aux-Cordes ne sera plus à l'abri de ses hautes eaux.",
+        "acces": {}
+      }
+    ]
+  }
+]

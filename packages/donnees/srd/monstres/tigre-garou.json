@@ -1,0 +1,141 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "taille-et-vitesse-par-forme",
+      "nom": "Taille et vitesse selon la forme",
+      "resume": "Le SRD donne la taille « M ou P » ; le profil est enregistré en taille M (forme véritable d'Humanoïde ; hybride et tigre : taille G, cf. Changement d'aspect). Vitesse 9 m, 12 m sous forme de tigre uniquement (non représentée dans le schéma des vitesses). Équipement : arc long."
+    }
+  ],
+  "id": "tigre-garou",
+  "nom": "Tigre-garou",
+  "taille": "M",
+  "type": "Monstruosité (Lycanthrope)",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 120,
+    "des": "16d8 + 48"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 15,
+    "con": 16,
+    "int": 10,
+    "sag": 13,
+    "cha": 11
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "commun (ne parle pas sous forme de tigre)",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le tigre-garou effectue deux attaques, réparties à sa guise entre Éraflure et Arc long. Il peut en remplacer une par une attaque de Morsure.",
+      "multiattaque": [
+        {
+          "action": "eraflure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "eraflure",
+      "nom": "Éraflure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Forme de tigre ou hybride uniquement. Corps à corps +5, allonge 1,50 m : 12 (2d8 + 3) dégâts perforants. Si la cible est un Humanoïde, elle est soumise à l'effet suivant. JS Constitution DD 13. Échec : la cible est maudite. Si la cible maudite tombe à 0 point de vie, elle se retrouve en fait à 10 pv et devient un tigre-garou sous le contrôle du MJ. Réussite : la cible est immunisée contre la malédiction de ce tigre-garou pendant 24 heures.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-long",
+      "nom": "Arc long",
+      "cout": "action",
+      "resume": "Forme humanoïde ou hybride uniquement. À distance +4, portée 45/180 m : 11 (2d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "affut",
+      "nom": "Affût",
+      "cout": "bonus",
+      "resume": "Forme de tigre ou hybride uniquement. Le tigre-garou se déplace dans les limites de sa Vitesse sans provoquer d'attaques d'Opportunité. À la fin de ce déplacement, il peut entreprendre l'action Furtivité."
+    },
+    {
+      "id": "changement-d-aspect",
+      "nom": "Changement d'aspect",
+      "cout": "bonus",
+      "resume": "Le tigre-garou se transforme en hybride tigre-humanoïde de taille G ou en tigre de taille G, ou bien retrouve sa forme véritable d'humanoïde. En dehors de sa catégorie de taille, son profil reste le même, quelle que soit la forme. Rien de ce qu'il porte n'est transformé."
+    }
+  ]
+}

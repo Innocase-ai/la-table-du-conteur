@@ -1,0 +1,73 @@
+{
+  "id": "chien-esquiveur",
+  "nom": "Chien esquiveur",
+  "taille": "M",
+  "type": "Fée",
+  "alignement": "Loyal Bon",
+  "ca": 13,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d8 + 4"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 12,
+    "dex": 17,
+    "con": 12,
+    "int": 10,
+    "sag": 13,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "perception": 5
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "chien esquiveur ; comprend l'elfique et le sylvestre, mais ne les parle pas",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "teleportation",
+      "nom": "Téléportation",
+      "cout": "bonus",
+      "resume": "Recharge 4-6. Le chien se téléporte d'un maximum de 12 m dans un espace inoccupé qu'il voit.",
+      "recharge": "4-6"
+    }
+  ]
+}

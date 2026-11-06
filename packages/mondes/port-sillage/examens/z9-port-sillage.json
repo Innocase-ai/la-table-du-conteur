@@ -1,0 +1,227 @@
+[
+  {
+    "id": "exa-ardoise-de-la-criee",
+    "lieu": "ps-place",
+    "nom": "L'ardoise de la criée",
+    "apercu": "Une promesse de fête, à demi effacée sous la pluie.",
+    "texte": "Sur le pignon de la mairie, une ardoise de criée à demi effacée annonce le programme de la fête. Il reste assez de craie pour lire : « chansons dès la marée haute ». Le mot « chansons » a été frotté par la pluie et le sel, et ses lettres s'en vont en poussière bleue sous le doigt. Le reste du programme n'est plus qu'une traînée grise, comme si quelqu'un avait essuyé avec la manche.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "ardoise-telle-quelle",
+        "condition": {
+          "fait": "f-livre-vole"
+        },
+        "texte": "Sur le pignon de la mairie, l'ardoise de criée est restée telle quelle. Le programme de la fête y est à demi effacé, la craie frottée par la pluie et le sel, et le mot « chansons » ne tient plus qu'en traces. Personne n'a eu le cœur d'y écrire autre chose depuis le soir où la fête a tourné mal : les lignes du bas s'effacent doucement, et on les laisse faire, comme on laisse une chose en deuil.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-margelle-du-puits",
+    "lieu": "ps-place",
+    "nom": "La margelle du puits",
+    "apercu": "Des encoches de marée, gravées par des mains patientes.",
+    "texte": "La margelle du puits est de granit, usée par les seaux qui ont frotté la pierre depuis des générations : un creux lisse s'est formé là où les cordes passent. Sur le rebord, une rangée d'encoches de marée, gravées au couteau, la plus basse à peine marquée. Chaque année, quelqu'un a ajouté la sienne. Le couvercle de bois tient à la chaîne, et l'eau qui remonte sent le sel, comme si la mer creusait sous la place.",
+    "effets": [],
+    "variantes": []
+  },
+  {
+    "id": "exa-brise-lame",
+    "lieu": "pl-quai",
+    "nom": "La barque retournée",
+    "apercu": "Une barque sur deux tréteaux, un nom écaillé, et un seau.",
+    "texte": "Au bout du quai, la barque La Brise-Lame repose retournée sur deux tréteaux, la quille vers le ciel. Son nom peint sur le plat-bord est écaillé à moitié, le bleu ardoise pelé en lettres de craquelure. Dessous, l'espace d'un pas sous le bordage, il fait sombre et sent le goudron. Près des bittes, un seau de bois cerclé de fer traîne, à moitié plein d'eau de mer, et les planches du quai luisent autour.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "dormeur-sous-la-barque",
+        "condition": {
+          "fait": "f-z1-tobie-au-quai"
+        },
+        "texte": "Au bout du quai, la barque La Brise-Lame est retournée sur deux tréteaux, la quille vers le ciel, et son nom écaillé se lit encore sur le plat-bord. Mais dessous, l'espace d'un pas sous le bordage n'est pas vide : des croûtes de pain, une couverture pliée, et la trace d'un corps qui a dormi là plusieurs nuits. Le seau d'eau près des bittes a servi à quelqu'un qui se lave en cachette avant l'aube.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-traits-de-craie",
+    "lieu": "ta-salle",
+    "nom": "Les traits de craie",
+    "apercu": "Des comptes de tournées, tracés à la craie.",
+    "texte": "Sous la poutre au-dessus du comptoir, des traits de craie comptent les tournées de la fête. Ils sont groupés par cinq, barres serrées, tracées vite, et certains groupes sont effacés à demi par les coudes des clients. Le dernier n'est tracé qu'à moitié : quatre traits nets, puis la craie s'arrête net, comme si la main avait été appelée ailleurs. Le bois noirci autour garde l'odeur de la bière.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "groupe-inacheve-pieces",
+        "condition": {
+          "fait": "f-z1-pieces-marquees"
+        },
+        "texte": "Sous la poutre au-dessus du comptoir, des traits de craie comptent les tournées de la fête, par groupes de cinq. Le dernier groupe n'est tracé qu'à moitié : c'est la note d'hommes qui paient en pièces à l'écaille, des gens de la crique qu'on ne nomme jamais au comptoir. L'aubergiste a mis une bourse de ces pièces de côté. Le bois noirci garde l'odeur de la bière et du sel, et la craie des traits du haut reste fraîche.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-traits-de-la-cave",
+    "lieu": "ta-cave",
+    "nom": "Les traits de la cave",
+    "apercu": "Trois traits de craie, et le dernier est barré.",
+    "texte": "Sur le mur est, au-dessus de la dalle descellée, trois traits de craie se suivent à hauteur d'épaule. Ils comptent des caisses de sel, un trait par caisse, avec une régularité de comptable. Le troisième est barré d'un seul trait oblique, net, comme on raye une ligne réglée. La craie est sèche et blanche ; la pierre autour a gardé l'humidité, et la lanterne fait trembler les ombres.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "trait-barre-cachette",
+        "condition": {
+          "fait": "f-z1-cave-de-contrebande"
+        },
+        "texte": "Sur le mur est, au-dessus de la dalle descellée, trois traits de craie comptent ce qu'on a glissé sous la pierre : des pièces et un flacon, cachés sous les caisses de sel. Le dernier trait est barré d'un seul coup oblique. Il ne compte pas une caisse de plus : il marque la cachette elle-même, comme on raye une ligne qu'on ne veut plus lire. La craie est fraîche, la pierre humide, et la lanterne fait trembler les ombres au pied de l'escalier.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-gorge-de-cordage",
+    "lieu": "ca-cour",
+    "nom": "La gorge de cordage",
+    "apercu": "Une usure lisse, creusée par des cordages.",
+    "texte": "Sur le montant de la porte de la tour, une gorge de cordage a usé la pierre à hauteur de main. C'est un creux lisse, long comme un doigt et large comme deux, poli par des années de frottements. Le reste du montant est sombre d'humidité, mais le creux brille un peu, comme une poignée. On devine un cordage qui passait là, tendu, à chaque manœuvre. Le goudron de la cour sent fort, et la lumière du soir glisse sur le creux.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "drisses-des-rondes",
+        "condition": {
+          "fait": "f-z1-rondes-de-nuit"
+        },
+        "texte": "Sur le montant de la porte de la tour, une gorge de cordage a usé la pierre à hauteur de main, un creux lisse poli par les frottements. Ces drisses servaient aux rondes : le guet passait de nuit sur la place et sur le quai. La pierre garde la trace de toutes ces nuits prudentes, et le creux brille encore un peu sous le soir. Le goudron de la cour sent fort.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-tache-en-hareng",
+    "lieu": "ca-bureau",
+    "nom": "La tache en hareng",
+    "apercu": "Une tache d'encre qu'on n'a jamais essuyée.",
+    "texte": "Du bord de la table de chêne, une tache d'encre sèche a coulé jusqu'au plancher, en forme de hareng : une queue fine, un corps large, un œil rond. Personne ne l'a essuyée. Les planches ont bu l'encre et l'ont gardée noire, luisante à la lumière de la lampe de cuivre. Autour, le plancher est propre, rangé, presque trop. Cette seule tache dit qu'on a écrit ici à la hâte, et qu'on a préféré laisser couler.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "encre-des-comptes",
+        "condition": {
+          "fait": "f-solde-impayee"
+        },
+        "texte": "Du bord de la table de chêne, une tache d'encre sèche a coulé jusqu'au plancher, en forme de hareng. L'encre est la même que celle des colonnes du registre rangé sous clé : une encre brune, grasse, qu'on n'emploie que pour les comptes. Deux ans de paye ont passé par ces colonnes, et l'on ne retrouve nulle part les sommes dans les bourses des soldats. Personne n'a essuyé la tache, ni voulu la relire ; le plancher autour est propre, presque trop.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-vitrail-de-la-sainte",
+    "lieu": "eg-nef",
+    "nom": "Le vitrail de la sainte",
+    "apercu": "Un vitrail bleu, et une sainte qui ne dit rien.",
+    "texte": "Au fond de la nef, le vitrail bleu tombe sur l'autel en bandes de lumière. La sainte y tient la main levée au-dessus d'une mer calme, dessinée en cercles de verre plus clairs. Le plomb qui cerne le bleu est gris, et une fissure court du coude à l'épaule. Quand le soir arrive, le bleu se pose sur les dalles de galets et les bancs polis, et la nef entière prend la couleur de l'eau.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "bouche-fermee-de-la-sainte",
+        "condition": {
+          "fait": "f-aubin-perd-sa-voix"
+        },
+        "texte": "Au fond de la nef, le vitrail bleu tombe sur l'autel en bandes de lumière. La sainte y tient la main levée au-dessus d'une mer calme, et l'on ne voyait jusqu'ici qu'une image pieuse. Mais sa bouche, petite et fermée sous le verre, paraît maintenant retenir une parole qu'on a cessé de prononcer. Le plomb gris cerne le bleu, une fissure court du coude à l'épaule, et les bancs polis attendent qu'on reprenne la lecture.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-cierges-de-veillee",
+    "lieu": "eg-nef",
+    "nom": "Les cierges de veillée",
+    "apercu": "Des cierges neufs, jamais allumés.",
+    "texte": "Au pied du troisième pilier de gauche, une pile de cierges neufs attend sous une toile cirée. Les cires sont blanches, encore odorantes, et chaque bougie porte la marque du fabricant gravée dans le pied. Aucune mèche n'est brûlée ; les cierges n'ont jamais servi, et la toile a gardé le pli du rangement. Quelqu'un les a apportés, puis les a laissés là, sans jamais revenir les allumer.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "veillee-de-remerciement",
+        "condition": {
+          "fait": "f-livre-vole"
+        },
+        "texte": "Au pied du troisième pilier de gauche, une pile de cierges neufs attend sous une toile cirée. Ils ont été apportés pour une veillée de remerciement, celle qu'on devait tenir le soir de la fête, quand le livre était encore à sa place dans la crypte. Aucune mèche n'est brûlée, et la cire sent encore la boutique. La veillée n'a pas eu lieu, et les cierges attendent toujours qu'on les allume.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-cuvette-de-la-sacristie",
+    "lieu": "eg-sacristie",
+    "nom": "La cuvette de la sacristie",
+    "apercu": "Une cuvette d'eau tiède et une chaise de biais.",
+    "texte": "Sur la table de la sacristie, une cuvette d'eau tiède refroidit lentement. Un linge pend sur le bord, mouillé de tisane à la menthe, et la cire de la bougie coule en larmes sur la toile cirée. Une chaise est tirée en biais, comme si quelqu'un venait de se lever brusquement, puis de s'asseoir de nouveau. L'air sent le sel, la menthe et la pierre humide. La porte de la nef reste close.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "garde-de-la-malade",
+        "condition": {
+          "fait": "f-helene-malade"
+        },
+        "texte": "Sur la table de la sacristie, une cuvette d'eau tiède, et un linge mouillé de tisane à la menthe. Quelqu'un a veillé ici une malade pendant la nuit : la chaise, tirée en biais près du lit de sangle, dit qu'on s'est levé à peine, sans pouvoir rester debout. Hélène Ancre a bu sa tisane en silence, et la cuvette a servi à lui essuyer le front. La bougie a coulé jusqu'au bord, et l'air sent la menthe et la chaux froide.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-cocarde-de-chanvre",
+    "lieu": "eg-crypte",
+    "nom": "Le crâne à la cocarde",
+    "apercu": "Un crâne coiffé d'un ruban bleu.",
+    "texte": "Au pied de l'alcôve la plus proche de l'escalier, un crâne est coiffé d'une cocarde de chanvre bleue, nouée sous la mâchoire avec un soin presque tendre. Le chanvre est sec et s'effiloche. À ses pieds, une bougie de cire est morte, sa mèche noire et tordue. Quelqu'un est venu ici, a posé ce ruban et cette bougie, puis s'en est allé sans un mot. La pierre sent le sel froid.",
+    "effets": [],
+    "variantes": []
+  },
+  {
+    "id": "exa-niche-sans-trace",
+    "lieu": "eg-crypte",
+    "nom": "La niche sans trace",
+    "apercu": "Une niche vide, et sa poussière.",
+    "texte": "Au fond de la salle, la niche creusée en arc est vide. Sur le sol, la poussière est épaisse partout, sauf devant elle, où un rectangle plus clair dessine la place d'un objet plat, de la taille d'un livre. Les bords en sont nets, la poussière lisse, sans trace de pas ni de griffes. Aucun éclat de pierre sur le sol, aucune traînée. Le silence est si complet qu'on entend l'eau qui goutte.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "niche-sans-effraction",
+        "condition": {
+          "fait": "f-z2-niche-sans-effraction"
+        },
+        "texte": "Au fond de la salle, la niche creusée en arc est vide, et le rectangle plus clair dans la poussière est trop net pour un vol précipité : il a la taille d'un livre, des bords droits, une poussière lisse, sans trace de pas. Aucun éclat de pierre, aucune griffe au mur. La serrure de la grille est intacte, et la pierre n'a pas été forcée. Celui qui a pris le livre savait exactement où il se trouvait, et ne cherchait rien d'autre.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-bouee-de-liege",
+    "lieu": "cr-plage",
+    "nom": "La bouée de liège",
+    "apercu": "Une bouée rouge, qui s'écaille au pieu.",
+    "texte": "Une bouée de liège est pendue au pieu de la première épave, au centre de la plage. Elle était rouge ; la peinture s'écaille maintenant en pelures fines qui se détachent au moindre frottement, et le liège dessous est gris, gonflé d'eau. La corde qui la retient est rongée par le sel. Le vent fait tourner la bouée contre le bois, et des fragments rouges tombent sur le sable gris.",
+    "effets": [],
+    "variantes": []
+  },
+  {
+    "id": "exa-vague-a-trois-cretes",
+    "lieu": "cr-entrepot",
+    "nom": "La vague à trois crêtes",
+    "apercu": "Une vague tracée à la hâte sur une caisse.",
+    "texte": "Sur le couvercle d'une caisse neuve, cerclée de fer, une vague à trois crêtes est tracée à la craie. Le trait est pressé, presque cassé par endroits, et la craie a glissé sur le bois. Trois crêtes qui se dressent au même rythme, comme on dessine une mer en hâte. Les autres caisses n'ont pas de marque. Le bois sent la poix et le sel.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "signe-de-reconnaissance",
+        "condition": {
+          "fait": "f-z3-acheteurs-attendus"
+        },
+        "texte": "Sur le couvercle d'une caisse neuve, cerclée de fer, une vague à trois crêtes est tracée à la craie, d'une main pressée. Ce n'est pas un dessin : c'est un signe de reconnaissance. Les hommes de l'entrepôt attendent des acheteurs, et cette vague sert à les reconnaître. Qui parle de marchandise et de prix peut passer pour un acheteur, tant que personne ne sort la bonne bourse. Le bois sent la poix et le sel.",
+        "effets": []
+      }
+    ]
+  }
+]

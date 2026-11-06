@@ -1,0 +1,156 @@
+[
+ {
+  "id": "z5-t-cache-des-noyes",
+  "nom": "La cache des Noyés",
+  "lieu": "mar-grotte-des-noyes",
+  "contenant": "cache",
+  "description": "Sous le plancher pourri, une caisse de contrebande calée sur des pierres, à demi remplie d'eau brune.",
+  "contenu": {
+   "pieces": {
+    "po": 12,
+    "pa": 30
+   },
+   "objets": [
+    {
+     "objet": "z5-o-lanterne-des-noyes",
+     "quantite": 1
+    },
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 13,
+    "competence": "investigation"
+   }
+  }
+ },
+ {
+  "id": "z5-t-autel-des-noyes",
+  "nom": "L'autel des roseaux",
+  "lieu": "mar-grotte-des-noyes",
+  "contenant": "autel",
+  "description": "Un autel de roseaux tressés, couvert de bols de bois, d'offrandes moisies et d'un parchemin plié dans une coquille.",
+  "contenu": {
+   "pieces": {
+    "pc": 45
+   },
+   "objets": [
+    {
+     "objet": "z5-o-carte-des-veines",
+     "quantite": 1
+    },
+    {
+     "objet": "rations",
+     "quantite": 2
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 12,
+    "competence": "perception"
+   }
+  }
+ },
+ {
+  "id": "z5-t-atelier-de-la-veine-basse",
+  "nom": "L'atelier de la veine basse",
+  "lieu": "min-grotte-de-la-veine-basse",
+  "contenant": "etabli",
+  "description": "Un établi de mineur abandonné, couvert de poussière de fer, avec un marteau accroché au-dessus et une boîte de clous.",
+  "contenu": {
+   "pieces": {
+    "pa": 25
+   },
+   "objets": [
+    {
+     "objet": "z5-o-marteau-de-tourbe",
+     "quantite": 1
+    },
+    {
+     "objet": "outils-de-voleur",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 12,
+    "competence": "investigation"
+   }
+  }
+ },
+ {
+  "id": "z5-t-reliquaire-des-mineurs",
+  "nom": "Le reliquaire des mineurs",
+  "lieu": "min-grotte-de-la-veine-basse",
+  "contenant": "coffre",
+  "description": "Un reliquaire de bois cloué au mur, fermé d'une grille de fer ; à l'intérieur, des médailles de mineurs, une clé et un peu d'or.",
+  "contenu": {
+   "pieces": {
+    "po": 15
+   },
+   "objets": [
+    {
+     "objet": "z5-o-cle-de-la-veine-basse",
+     "quantite": 1
+    },
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 1
+    }
+   ],
+   "tables": []
+  },
+  "acces": {
+   "cache": {
+    "dd": 14,
+    "competence": "investigation"
+   },
+   "verrou": {
+    "dd": 12
+   }
+  }
+ },
+ {
+  "id": "z5-t-cache-du-convoi",
+  "nom": "La cache du convoi",
+  "lieu": "mar-sentier-des-roseaux",
+  "contenant": "sac",
+  "description": "Un sac de toile cirée enfoncé sous une racine, à l'endroit où la charrette a versé : des pièces, une corde et un flacon.",
+  "contenu": {
+   "pieces": {
+    "po": 7
+   },
+   "objets": [
+    {
+     "objet": "corde",
+     "quantite": 1
+    },
+    {
+     "objet": "potion-de-guerison",
+     "quantite": 1
+    }
+   ],
+   "tables": [
+    {
+     "table": "z5-butins-gobelins",
+     "jets": 1
+    }
+   ]
+  },
+  "acces": {
+   "cache": {
+    "dd": 12,
+    "competence": "survie"
+   }
+  }
+ }
+]

@@ -1,0 +1,126 @@
+{
+  "id": "incube",
+  "nom": "Incube",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 66,
+    "des": "12d8 + 12"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 8,
+    "dex": 17,
+    "con": 13,
+    "int": 15,
+    "sag": 12,
+    "cha": 20
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "intuition": 5,
+    "perception": 5,
+    "persuasion": 9,
+    "tromperie": 9
+  },
+  "initiative": 3,
+  "resistances": [
+    "feu",
+    "froid",
+    "poison",
+    "psychique"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "abyssal, commun, infernal ; télépathie 18 m",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "forme-de-succube",
+      "nom": "Forme de succube",
+      "resume": "Lorsque l'incube termine un Repos long, il peut se transformer en succube, le profil de celle-ci remplaçant alors le sien. Rien de ce qu'il porte n'est transformé."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'incube effectue deux attaques de Contact fébrile.",
+      "multiattaque": [
+        {
+          "action": "contact-febrile",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "contact-febrile",
+      "nom": "Contact fébrile",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 15 (3d6 + 5) dégâts psychiques, et la cible est maudite pendant 24 heures ou jusqu'à ce que l'incube meure. Tant que persiste la malédiction, la cible ne reçoit aucun bénéfice en terminant un Repos court.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 5,
+          "type": "psychique"
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "L'incube lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 15). À volonté : déguisement, forme éthérée. 1/jour chacun : motif hypnotique, songe.",
+      "portee": {
+        "type": "personnel"
+      }
+    },
+    {
+      "id": "cauchemar",
+      "nom": "Cauchemar",
+      "cout": "bonus",
+      "resume": "(Recharge 6.) JS Sagesse DD 15, une créature que l'incube voit dans un rayon de 18 m. Échec : si la cible a 20 points de vie ou moins, elle subit l'état Inconscient pendant 1 heure, jusqu'à ce qu'elle subisse des dégâts ou qu'une créature dans un rayon de 1,50 m consacre une action à la réveiller. Sinon, la cible subit 18 (4d8) dégâts psychiques.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "4d8",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "recharge": "6"
+    }
+  ]
+}

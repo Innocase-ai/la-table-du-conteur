@@ -1,0 +1,103 @@
+{
+  "id": "combattant-sahuagin",
+  "nom": "Combattant sahuagin",
+  "taille": "M",
+  "type": "Fiélon",
+  "alignement": "Loyal Mauvais",
+  "ca": 12,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d8 + 4"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 11,
+    "con": 12,
+    "int": 12,
+    "sag": 13,
+    "cha": 9
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "initiative": 0,
+  "resistances": [
+    "acide",
+    "froid"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 15
+  },
+  "langues": "sahuagin",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibiose-partielle",
+      "nom": "Amphibiose partielle",
+      "resume": "Capable de respirer aussi bien sous l'eau qu'à l'air libre, le sahuagin doit s'immerger dans l'eau au moins une fois toutes les 4 heures sous peine de s'asphyxier."
+    },
+    {
+      "id": "frenesie-sanguinaire",
+      "nom": "Frénésie sanguinaire",
+      "resume": "Le sahuagin a l'Avantage aux jets d'attaque contre toute créature à laquelle il manque des points de vie."
+    },
+    {
+      "id": "telepathie-avec-les-requins",
+      "nom": "Télépathie avec les requins",
+      "resume": "Le sahuagin peut contrôler magiquement les requins dans un rayon de 36 m, par le biais d'une télépathie spéciale."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le sahuagin effectue deux attaques de Griffe.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 4 (1d6 + 1) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 1,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "charge-aquatique",
+      "nom": "Charge aquatique",
+      "cout": "bonus",
+      "resume": "Le sahuagin nage en ligne droite dans les limites de sa Vitesse de nage vers un ennemi qu'il voit."
+    }
+  ]
+}

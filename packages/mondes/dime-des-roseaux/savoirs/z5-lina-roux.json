@@ -1,0 +1,91 @@
+[
+ {
+  "pnj": "lina-roux",
+  "passe": "Lina Roux est la fille du meunier de Mireval. Sa mère est morte d'une fièvre il y a six ans, et depuis, c'est elle qui tient les comptes du moulin, les sacs, les dettes et les silences de son père. Elle a découvert le registre du pacte et compris que la paix du village se payait en grain. Plutôt que de le dénoncer, elle est allée négocier avec Skarn ; elle est restée comme otage d'honneur pour garantir le paiement. Elle n'a pas peur des gobelins, mais elle a peur de ce que son père a laissé pourrir. Elle parle vite, compte sur ses doigts et regarde les gens dans les yeux.",
+  "liens": [
+   {
+    "pnj": "anselme-roux",
+    "nature": "son père",
+    "opinion": "Elle l'aime et lui en veut. Elle sait qu'il a menti pour la protéger, et elle trouve ce mensonge plus dangereux que le pacte."
+   },
+   {
+    "pnj": "skarn",
+    "nature": "le chef gobelin qui la garde",
+    "opinion": "Elle le croit sincère. Elle négocie avec lui comme avec un créancier, et elle respecte sa patience."
+   },
+   {
+    "pnj": "colin-vasseur",
+    "nature": "le charretier prisonnier",
+    "opinion": "Elle sait qu'il est à la mine et que son père ne l'a pas dit. Elle veut le ramener, parce qu'il conduisait la charrette pour elle."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-doigts",
+    "texte": "Elle compte sur ses doigts quand elle parle d'argent : les sacs, les charrettes, les hivers. Elle s'arrête quand elle arrive à cinq."
+   },
+   {
+    "id": "le-manteau",
+    "texte": "Elle porte un manteau de laine trop grand, avec une doublure qu'elle ne laisse personne toucher. La copie du registre y est cachée."
+   },
+   {
+    "id": "la-grotte",
+    "texte": "Elle n'a pas peur de la grotte. Elle dit que les gobelins sont plus polis que les créanciers de son père."
+   },
+   {
+    "id": "le-registre-de-son-pere",
+    "texte": "Elle connaît le registre par cœur : quatre colonnes, quatre automnes, une croix pour les années impayées. Elle en parle comme d'un livre de comptes, pas d'un secret."
+   },
+   {
+    "id": "avis-sur-son-pere",
+    "texte": "Elle ne le défend pas. Elle dit qu'il a sauvé le village une fois et qu'il n'a jamais su s'arrêter, et que ce n'est pas une excuse."
+   },
+   {
+    "id": "la-paix",
+    "texte": "Elle veut la paix, mais pas à n'importe quel prix. Elle dit qu'un village qui paie chaque année finit par oublier pourquoi il paie."
+   }
+  ],
+  "sait": [
+   {
+    "id": "le-pacte",
+    "fait": "f-pacte-du-meunier",
+    "version": "Son père paie les gobelins depuis quatre ans : du grain et des outils contre la paix. Le pacte a tenu le village en vie, mais il a vidé le grenier.",
+    "acces": {},
+    "tabou": [
+     "pacte",
+     "registre"
+    ]
+   },
+   {
+    "id": "le-double-tribut",
+    "fait": "f-double-tribut",
+    "version": "Varg exige le double du tribut, du village comme de la tribu. Lina l'a appris de Skarn et elle cherche un moyen de payer sans livrer le grenier.",
+    "acces": {}
+   },
+   {
+    "id": "sa-mere",
+    "fait": "f-lina-mere",
+    "version": "Sa mère est morte d'une fièvre il y a six ans. Depuis, Lina tient les comptes du moulin et connaît chaque dette de son père.",
+    "acces": {}
+   },
+   {
+    "id": "le-registre",
+    "fait": "f-lina-registre",
+    "version": "Elle a copié le registre avant de partir. La copie est cachée dans la doublure de son manteau, à la grotte.",
+    "acces": {}
+   },
+   {
+    "id": "l-otage",
+    "fait": "f-lina-otage",
+    "version": "Elle n'est pas prisonnière : elle est venue négocier et sert d'otage d'honneur pour garantir le grain. Skarn la traite bien, mais ne la laissera partir que si la tribu obtient de quoi manger.",
+    "acces": {
+     "attitudeMin": 30
+    },
+    "evasif": "elle dit qu'elle est là de son plein gré, et que les chaînes ne sont pas celles qu'on croit",
+    "tabou": [
+     "otage"
+    ]
+   }
+  ]
+ }
+]

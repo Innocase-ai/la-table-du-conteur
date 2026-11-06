@@ -1,0 +1,64 @@
+[
+  {
+    "id": "mar-piege-sables-mouvants",
+    "nom": "La fosse de sable",
+    "lieu": "mar-sentier-des-roseaux",
+    "resume": "À droite des fascines, une nappe d’eau claire et immobile recouvre un sable qui ne porte pas.",
+    "detection": {
+      "dd": 13,
+      "competence": "survie"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "survie"
+    },
+    "declenchement": "Quitter les rondins pour prendre le sac ou contourner la fosse : la croûte de sable cède, l’eau monte aux cuisses et la vase se referme sur les jambes.",
+    "sauvegarde": {
+      "caracteristique": "for",
+      "dd": 13,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "contondant"
+      }
+    ],
+    "etats": [
+      "entrave"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "mar-piege-eau-montante",
+    "nom": "La crue du soir",
+    "lieu": "marais",
+    "resume": "Au crépuscule, l’eau remonte les chenaux en quelques minutes et noie les chaussées jusqu’aux genoux.",
+    "detection": {
+      "dd": 12,
+      "competence": "survie"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "survie"
+    },
+    "declenchement": "Rester dans le chenal quand la crue arrive : l’eau prend les jambes, puis la taille, et le courant pousse vers les roseaux.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 13,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "contondant"
+      }
+    ],
+    "etats": [
+      "entrave"
+    ],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

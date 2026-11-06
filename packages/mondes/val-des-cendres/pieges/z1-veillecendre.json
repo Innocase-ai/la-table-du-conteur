@@ -1,0 +1,58 @@
+[
+  {
+    "id": "vei-p-aiguille-du-coffret",
+    "nom": "Aiguille empoisonnée du coffret",
+    "lieu": "vei-cellier-du-bailli",
+    "resume": "Le coffret de fer du bailli est équipé d'une aiguille à ressort, au fond de la serrure, enduite d'un poison de grain pourri.",
+    "detection": { "dd": 13, "competence": "investigation" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Quand on force la serrure ou qu'on tourne une clé qui n'est pas la bonne, une aiguille jaillit dans la paume.",
+    "sauvegarde": { "caracteristique": "con", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d8", "type": "poison" }],
+    "etats": ["empoisonné"],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "vei-p-souffle-de-la-flamme",
+    "nom": "Souffle de la flamme",
+    "lieu": "vei-foyer-de-la-lanterne",
+    "resume": "Qui tend la main vers la flamme sans y être invité reçoit un souffle brûlant : la flamme défend son propre cœur.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 14, "competence": "arcanes" },
+    "declenchement": "Une main (ou un outil) qui touche la flamme sans la permission d'un Gardien déclenche une langue de feu orange qui cingle.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d6", "type": "feu" }],
+    "etats": [],
+    "effets": [{ "narration": "La flamme vacille un instant et se rétracte, plus petite qu'avant ; Oswin gémit dans son sommeil." }],
+    "reinitialisation": true
+  },
+  {
+    "id": "vei-p-corde-a-clochettes",
+    "nom": "Corde à clochettes et fosse",
+    "lieu": "route-du-col-embuscade",
+    "resume": "Les gobelins ont tendu à hauteur de cheville une corde à clochettes qui alerte les loups, doublée d'une fosse à demi comblée sous la neige.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 11, "competence": "survie" },
+    "declenchement": "Un pied qui accroche la corde fait sonner les clochettes ; la neige du sol cède sur un pas, dans une fosse à pieux émoussés.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 11, "moitieSiReussite": true },
+    "degats": [{ "des": "1d6", "type": "perforant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  },
+  {
+    "id": "vei-p-serrure-a-petard",
+    "nom": "Serrure à pétard de l'armoire",
+    "lieu": "vei-archives",
+    "resume": "L'armoire de chêne des archives est protégée par une charge de poudre noire sous la serrure, afin d'étourdir les voleurs.",
+    "detection": { "dd": 14, "competence": "investigation" },
+    "desarmement": { "dd": 14, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Une serrure forcée sans la bonne clé fait éclater une charge de poudre noire dans un nuage de fumée et de feu.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "2d6", "type": "feu" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

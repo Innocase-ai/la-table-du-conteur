@@ -1,0 +1,106 @@
+{
+  "id": "elephant",
+  "nom": "Éléphant",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 76,
+    "des": "8d12 + 24"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 9,
+    "con": 17,
+    "int": 3,
+    "sag": 11,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'éléphant effectue deux attaques de Coup de défense.",
+      "multiattaque": [
+        {
+          "action": "coup-de-defense",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup-de-defense",
+      "nom": "Coup de défense",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 15 (2d8 + 6) dégâts perforants. Si la cible est une créature de taille TG ou inférieure et si l'éléphant s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    },
+    {
+      "id": "pietinement",
+      "nom": "Piétinement",
+      "cout": "bonus",
+      "resume": "JS Dextérité DD 16, une créature subissant l'état À terre dans un rayon de 1,50 m. Échec : 17 (2d10 + 6) dégâts contondants. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 16,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 6,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

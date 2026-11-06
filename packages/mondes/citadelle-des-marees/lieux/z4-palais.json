@@ -1,0 +1,622 @@
+[
+  {
+    "id": "palais-basmaree",
+    "nom": "Le Palais-Basmarée",
+    "type": "donjon",
+    "parent": "cote-de-hautmaree",
+    "resume": "Le palais de Lothmar, gris de coquillages et de sel, qui ne paraît que lorsque la mer se retire de la baie.",
+    "description": "Palais royal de Lothmar, bâti sur un éperon de roche à la pointe de la baie. Il n'émerge que pendant les plus grandes basses mers, au bout d'une chaussée de pierre qui se découvre une fois l'an. Ses cours et ses salles restent pleines d'une eau claire et immobile, couverte de coquillages et de noyés. La cour d'honneur ouvre sur le hall ; de là, une aile gagne la galerie du Chancelier, l'autre la chambre de la Régente, et toutes deux convergent vers le sanctuaire du Sceau, au cœur du palais.",
+    "ambiance": "Vent salé qui siffle entre les tours, grondement lointain sous les dalles, odeur de coquillage séché.",
+    "visuel": "Un palais gris, incrusté de coquillages et de sel blanc, des algues figées le long des corniches, des tours trapues, des baies sans vitres, et une porte de corail rose entrouverte au bout d'une chaussée pavée.",
+    "accroche": "Une silhouette grise sort de la mer basse, au bout d'une chaussée de pierre qui s'enfonce dans les flots.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "por-cale-seche",
+        "type": "chemin",
+        "heures": 3,
+        "sens": "double",
+        "condition": {
+          "flag": "chaussee-ouverte"
+        },
+        "description": "Une chaussée de pierre à découvert, pavée de coquillages, descend vers les quais de Port-aux-Cordes ; elle se couvre à chaque marée haute.",
+        "retour": "Au bout de la chaussée qui se dresse hors de l'eau, un palais gris de coquillages, ses portes ouvertes sur le noir."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-palais-hors-des-flots",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 86,
+      "y": 55
+    }
+  },
+  {
+    "id": "lot-chaussee-des-basses-eaux",
+    "nom": "La chaussée des basses eaux",
+    "type": "route",
+    "parent": "palais-basmaree",
+    "resume": "Une chaussée de dalles noires qui relie le palais à sa cour, découverte seulement aux plus basses mers.",
+    "description": "Une longue chaussée pavée de dalles noires, large comme une rue, qui court entre deux murs couverts de coquillages jusqu'à la cour du palais. Des bornes de bronze verdi, rongées par le sel, marquent l'ancienne voie ; de chaque côté, une eau claire et immobile reflète le ciel gris.",
+    "ambiance": "Vent du large, clapotis contre les murs, craquement des coquillages sous les pas.",
+    "visuel": "Une chaussée de dalles noires entre deux murs de coquillages blancs, des bornes de bronze verdi qui s'alignent jusqu'au bout, une eau claire de chaque côté, et au fond, la masse grise du palais.",
+    "accroche": "Une chaussée pavée de dalles noires, entre deux murs de coquillages, qui file droit vers la cour du palais sous une eau basse.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-parvis-des-noyes",
+        "type": "route",
+        "heures": 0,
+        "description": "La chaussée s'achève sur une cour pavée de sel, où des formes immobiles attendent, la tête tournée vers vous.",
+        "retour": "La chaussée file vers le palais entre deux murs de coquillages, bornée de bronze verdi qui s'éloigne jusqu'à la mer."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 12,
+      "y": 50
+    }
+  },
+  {
+    "id": "lot-parvis-des-noyes",
+    "nom": "Le parvis des noyés",
+    "type": "lieu-dit",
+    "parent": "palais-basmaree",
+    "resume": "La cour d'honneur du palais, pavée de sel, où des formes immobiles montent la garde sous une eau basse.",
+    "description": "Cour carrée, pavée de dalles de sel blanc, bordée d'un portique de corail rose. Les gardes de la Cour y tiennent leur poste depuis la Nuit Haute, la tête tournée vers la chaussée ; ils ne quittent pas la cour, mais ils ne laissent pas passer qui ne se présente pas. Au fond, une grande porte de corail donne sur le hall.",
+    "ambiance": "Dalles glissantes, eau basse qui clapote contre les marches, silence qui pèse sur la cour.",
+    "visuel": "Une cour carrée pavée de dalles blanches gravées de vagues, un portique de colonnes couvertes de moules, une eau basse et claire qui luit entre les pavés, et un ciel gris sans oiseau.",
+    "accroche": "La cour d'honneur, pavée de dalles pâles sous une eau basse ; des formes immobiles s'y tiennent, la tête tournée vers la chaussée.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-grande-salle",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une porte de corail, à demi ouverte, mène au grand hall où l'eau a laissé une boue grise.",
+        "retour": "Par la porte de corail, on aperçoit la cour pavée de sel et les silhouettes immobiles du portique."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "lot-r-cour-des-noyes",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "lot-r-le-heraut-au-parvis",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-garde-des-noyes",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 39,
+      "y": 24
+    }
+  },
+  {
+    "id": "lot-grande-salle",
+    "nom": "Le grand hall",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Un hall haut comme une nef, où l'eau a laissé ses traces sur les colonnes et une horloge de bronze au centre.",
+    "description": "Le hall d'accueil de Lothmar : une nef de colonnes torses, des tapisseries de sel pourries, et au centre une horloge à marée de bronze verdi, aux trois cadrans gradués de 0 à 9, arrêtée depuis trois siècles. Une porte de bois à l'est mène à la galerie des portraits ; une porte basse, au sud, ferme l'armurerie. Un escalier monte vers le nord, et un passage plonge vers les cuisines.",
+    "ambiance": "Écho profond, goutte à goutte qui tombe des voûtes, odeur de vase sèche.",
+    "visuel": "Une nef haute de colonnes couvertes de nacre et de sel, un sol de mosaïque bleue craquelée, une horloge de bronze verdi au centre, trois cadrans ronds à peine lisibles sous la rouille, et des pans de tenture pendant du plafond.",
+    "accroche": "Au centre du palais, une lumière grise tombe d'une verrière écaillée sur une nef de colonnes couvertes de sel.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-galerie-des-portraits",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une porte de bois noirci, ouverte, mène à une galerie longue et sombre, tendue de portraits.",
+        "retour": "La galerie revient vers le hall par une porte de bois noirci, dont un battant pend sur ses gonds."
+      },
+      {
+        "vers": "lot-armurerie-rouillee",
+        "type": "porte",
+        "heures": 0,
+        "verrou": {
+          "dd": 12,
+          "cle": "lot-cle-de-l-armurerie"
+        },
+        "description": "Une porte basse, de fer rouillé, ferme l'aile sud du hall ; elle est fermée à clé.",
+        "retour": "De l'armurerie, la porte basse donne sur le hall ; ses gonds grincent à chaque passage."
+      },
+      {
+        "vers": "lot-escalier-des-marees",
+        "type": "escalier",
+        "heures": 0,
+        "condition": {
+          "flag": "lot-horloge-reparee"
+        },
+        "description": "Un escalier de marbre gris monte vers le nord, fermé par une herse de bronze que l'horloge commande.",
+        "retour": "L'escalier descend du nord ; ses marches sont couvertes de sel, et des algues pendent de la rampe."
+      },
+      {
+        "vers": "lot-cuisines-englouties",
+        "type": "passage",
+        "heures": 0,
+        "description": "Un passage bas, sous une arche de coquillage, descend vers des cuisines submergées, où l'eau luit dans les fours.",
+        "retour": "Le passage remonte au hall par une arche de coquillage ; l'eau goutte des voûtes."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-lot-horloge-a-maree",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 68,
+      "y": 36
+    }
+  },
+  {
+    "id": "lot-galerie-des-portraits",
+    "nom": "La galerie des portraits",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une galerie longue et sombre, tendue de portraits de la Cour, dont les cadres de bronze se couvrent de vert-de-gris.",
+    "description": "Une galerie qui relie le hall à l'aile du Chancelier. Les portraits des rois et des nobles de Lothmar tapissent les murs, à peine visibles sous la suie et le sel. Deux armures de parade se dressent au milieu de la galerie, près d'un tapis de mousse ; elles ne sont pas vides. Au fond, une double porte de fer protège la salle du conseil.",
+    "ambiance": "Air sec et froid, bruits de pas amplifiés, poussière de sel qui retombe des cadres.",
+    "visuel": "Une longue galerie aux murs de pierre gris, des cadres de bronze couverts de vert-de-gris, des portraits écaillés, un sol de dalles en damier, et deux armures debout au milieu du passage.",
+    "accroche": "Une galerie étroite, à l'est du hall, dont les fenêtres sont murées de coquillages ; le sol y est sec.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-salle-du-conseil",
+        "type": "porte",
+        "heures": 0,
+        "verrou": {
+          "dd": 14,
+          "cle": "lot-cle-du-conseil"
+        },
+        "description": "Une double porte de fer, fermée d'un verrou, ferme le fond de la galerie sur la salle du conseil.",
+        "retour": "La double porte de fer fait face à une table en arc de cercle, sous une voûte de nacre."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "lot-r-galerie-portraits",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 47,
+      "y": 50
+    }
+  },
+  {
+    "id": "lot-salle-du-conseil",
+    "nom": "La salle du conseil",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une salle en forme de conque, aux sièges de nacre rangés autour d'une table, où la Cour délibérait autrefois.",
+    "description": "Le lieu où le conseil de Lothmar se réunissait. La table est en arc de cercle, les sièges sont de nacre et de bois gonflé, et sur un dais, un fauteuil plus haut que les autres regarde la porte. Un balcon à balustres ouvre à l'ouest sur un jardin pâle. Le Chancelier y tient sa cour, et y garde la couronne du royaume dans un coffre de fer.",
+    "ambiance": "Voix basse qui résonne contre les parois, froid de nacre, lumière verte qui vient de la mer.",
+    "visuel": "Une salle en demi-cercle aux parois de nacre irisée, une table de bois noir en arc, des sièges sculptés couverts de sel, un dais à la place d'honneur, et une lumière verte qui filtre d'un balcon.",
+    "accroche": "Derrière une double porte de fer, au bout de la galerie, une voûte de nacre luit faiblement sous la mer.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-jardin-de-nacre",
+        "type": "passage",
+        "heures": 0,
+        "description": "Un balcon à balustres ouvre à l'ouest sur un jardin de nacre, pâle et silencieux, sous une eau basse.",
+        "retour": "Le jardin de nacre se referme sur la salle du conseil par un balcon à balustres, au ras de l'eau."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "lot-r-le-conseil-des-noyes",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "impossible",
+    "position": {
+      "x": 85,
+      "y": 19
+    }
+  },
+  {
+    "id": "lot-armurerie-rouillee",
+    "nom": "L'armurerie rouillée",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une salle basse de râteliers et de bancs, où les armes de la garde pourrissent sous un voile de rouille.",
+    "description": "L'arsenal de la garde royale, sous le hall. Des râteliers de fer courent le long des murs, pleins de lances, d'épées et de boucliers rongés. Au fond, le capitaine de la garde noyée tient le dernier rang, sans relâche, et les soldats qui le suivent n'ont jamais quitté leur poste. Une dalle, sur le seuil, cache un mécanisme de lames.",
+    "ambiance": "Métal qui crisse sous les pieds, odeur de fer et d'eau stagnante, cliquetis de chaînes lointaines.",
+    "visuel": "Une salle basse aux murs de pierre noire, des râteliers de fer rouillés, des lances et des boucliers couverts de vase, un banc de bois pourri, et une lumière grise qui tombe d'une grille haute.",
+    "accroche": "Une porte basse et fermée à clé, dans le mur sud du hall, où le fer rouille derrière la pierre.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "lot-r-armurerie",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "impossible",
+    "position": {
+      "x": 62,
+      "y": 62
+    }
+  },
+  {
+    "id": "lot-cuisines-englouties",
+    "nom": "Les cuisines englouties",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Les cuisines du palais, sous une eau claire : des fours éteints, des marmites sur les étagères, et un majordome qui range encore.",
+    "description": "Les anciennes cuisines du palais, à demi remplies d'une eau claire et froide. Les fours sont éteints depuis trois siècles, les casseroles sont restées sur les crochets, et le sel a fait monter des croûtes sur les tables. Le majordome noyé y range toujours la vaisselle ; il tient les clés de l'armurerie dans un coffre sous le comptoir. Une trappe au fond mène aux caves, et une porte de fer ferme la réserve.",
+    "ambiance": "Eau tiède qui s'écoule en goutte à goutte, odeur de sel et de viande fumée depuis longtemps.",
+    "visuel": "Une grande salle aux murs de pierre blanche, des fours de briques noircies, des marmites de cuivre sur les étagères, une eau claire qui couvre le sol, et une trappe ronde au fond.",
+    "accroche": "Une arche de coquillage à mi-hauteur du hall, qui s'enfonce vers une eau claire et des fours éteints.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-crypte-des-rois",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier étroit, dans l'angle de la cuisine, plonge vers les caves et les tombeaux du palais.",
+        "retour": "L'escalier remonte vers les cuisines par des marches glissantes, rongées par le sel."
+      },
+      {
+        "vers": "lot-geole-des-noyes",
+        "type": "porte",
+        "heures": 0,
+        "verrou": {
+          "dd": 13
+        },
+        "description": "Une grille de fer ferme le fond de la réserve, derrière une porte de bois gonflé.",
+        "retour": "La grille de la geôle donne sur la réserve des cuisines ; un courant d'air froid passe entre les barreaux."
+      },
+      {
+        "vers": "lot-bibliotheque-des-noms",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "perception"
+        },
+        "description": "Derrière une étagère de jarres vides, un passage étroit monte vers les rayonnages du nord.",
+        "retour": "Le passage secret descend derrière les rayonnages, jusqu'aux fours des cuisines."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-lot-majordome-cuisines",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 70,
+      "y": 68
+    }
+  },
+  {
+    "id": "lot-escalier-des-marees",
+    "nom": "L'escalier des marées",
+    "type": "niveau",
+    "parent": "palais-basmaree",
+    "resume": "Un escalier de marbre gris qui monte du hall vers les bibliothèques, ruisselant de la mer qu'il a gardée.",
+    "description": "Un escalier droit, dans une cage de pierre, dont les marches sont usées au milieu par des siècles de pas. Une herse de bronze le barrait en bas ; la mer a reflué de ses degrés et laissé une eau noire qui luit. En haut, une porte de chêne ouvre sur la bibliothèque.",
+    "ambiance": "Chute d'eau lente le long des murs, marches glissantes, écho des pas qui remonte.",
+    "visuel": "Un escalier de marbre gris, large de trois pas, aux marches creusées par l'usure, une rampe de bronze couverte de sel, une cage de pierre ruisselante et une lumière pâle en haut.",
+    "accroche": "Une cage d'escalier de marbre gris, au nord du hall, dont l'entrée est grillée et ruisselante.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-bibliotheque-des-noms",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Les marches montent encore vers le nord, à travers une cage de pierre ruisselante, jusqu'à une porte de bois.",
+        "retour": "Les marches descendent de la bibliothèque, usées au milieu, jusqu'à une herse de bronze."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 74
+    }
+  },
+  {
+    "id": "lot-bibliotheque-des-noms",
+    "nom": "La bibliothèque humide",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une salle haute aux rayonnages noircis par l'humidité, où les registres de la Cour se défont page après page.",
+    "description": "La bibliothèque des rois de Lothmar. Les rayonnages de chêne montent jusqu'aux voûtes, et les livres qui restent sont gonflés d'eau, leurs pages collées. Un pupitre au centre porte un registre ouvert, la chronique des Sceaux. Un chroniqueur noyé veille encore sur ses rayonnages, et une de ses tablettes est cachée sous le troisième rayonnage.",
+    "ambiance": "Odeur de papier mouillé, goutte à goutte qui marque le temps, silence des livres.",
+    "visuel": "Une salle haute aux rayonnages de chêne noirci, des livres aux reliures gonflées, un pupitre de bois couvert de sel, des vitraux verdâtres et une lumière d'algue qui tombe sur les pages.",
+    "accroche": "Au-dessus de l'escalier, une salle haute aux rayonnages noircis, dont l'air sent le papier mouillé.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-chambre-de-la-regente",
+        "type": "porte",
+        "heures": 0,
+        "description": "Une porte de chêne gonflé, entrebâillée, ouvre sur une chambre aux tentures de lin pourri.",
+        "retour": "Par la porte de chêne, on voit les rayonnages humides et la lumière verdâtre qui y filtre."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "lot-r-bibliotheque",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 70,
+      "y": 24
+    }
+  },
+  {
+    "id": "lot-chambre-de-la-regente",
+    "nom": "La chambre de la Régente",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une chambre haute et claire, aux tentures pourries et au lit à baldaquin, où l'on peut dormir à l'abri de la mer.",
+    "description": "Les appartements de la Régente Aelis Corvane. La chambre est plus sèche que le reste du palais : une fenêtre étroite donne sur la baie, et l'eau n'est jamais montée jusqu'au lit. Une dame de compagnie noyée y veille, et y a fait nettoyer les draps. Un coffre de bois clair, sous le lit, contient des souvenirs de la Régente. Une porte de bronze, au fond, mène à la chapelle royale.",
+    "ambiance": "Air sec et tiède, tissus qui bruissent, lumière pâle qui vient de la fenêtre.",
+    "visuel": "Une chambre haute, au plafond voûté, avec un lit à baldaquin de bois clair, des tentures de lin délavé, une fenêtre étroite qui donne sur la baie, et un coffre sous le lit.",
+    "accroche": "Une porte de chêne, côté est de la bibliothèque, qu'on entrouvre sur une pièce plus claire.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-chapelle-de-la-regente",
+        "type": "porte",
+        "heures": 0,
+        "verrou": {
+          "dd": 14,
+          "cle": "lot-cle-de-la-chapelle"
+        },
+        "description": "Une porte de bronze, cerclée de coquillages, ferme le fond de la chambre sur une chapelle.",
+        "retour": "La porte de bronze de la chapelle est lourde et froide sous la main ; elle donne sur la chambre."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "sur",
+    "position": {
+      "x": 83,
+      "y": 38
+    }
+  },
+  {
+    "id": "lot-chapelle-de-la-regente",
+    "nom": "La chapelle de la Régente",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une petite chapelle aux murs de nacre, où la Dame Noyée attend, assise près de l'autel.",
+    "description": "La chapelle privée de la Régente. Un autel de pierre blanche, ouvert en son centre, porte encore les marques d'une cérémonie ancienne. La Pierre de rupture repose sous l'autel, dans un creux de pierre scellé par le sel. La Dame Noyée, Aelis Corvane, y a élu sa demeure ; elle ne bouge pas, mais elle entend tout ce qui se dit à la porte.",
+    "ambiance": "Silence de cathédrale, lumière d'algue sur les murs, froid qui monte du sol.",
+    "visuel": "Une petite chapelle aux murs de nacre irisée, un autel de pierre blanche orné de coquillages, une lumière verte qui vient d'un vitrail brisé, et des bancs de bois couverts de sel.",
+    "accroche": "Une porte de bronze, cerclée de coquillages, au fond d'une chambre ; la porte est lourde, et le froid y passe.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-sanctuaire-du-sceau",
+        "type": "passage",
+        "heures": 0,
+        "description": "Derrière l'autel, une arche basse mène à une salle plus grande, où la lumière du dehors ne parvient plus.",
+        "retour": "L'arche de l'autel donne sur la chapelle ; une lueur pâle, sans source visible, se répand de l'ouest."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "impossible",
+    "position": {
+      "x": 76,
+      "y": 53
+    }
+  },
+  {
+    "id": "lot-crypte-des-rois",
+    "nom": "La crypte des rois",
+    "type": "niveau",
+    "parent": "palais-basmaree",
+    "resume": "Des caveaux de pierre où reposent les rois de Lothmar, dans des sarcophages de bronze et des niches de sel.",
+    "description": "Les tombeaux des rois de Lothmar, sous les cuisines. L'air y est sec et très froid, et le sel y fait des amas blancs dans les angles. Quatre cloches de bronze pendent d'une traverse au centre, chacune frappée d'un nom de roi ; quatre dalles, à demi rongées, portent une date. Les goules des caveaux gardent les niches du fond, et une cendre de sel fin se déplace dans l'air quand on remue une pierre.",
+    "ambiance": "Froid sec, silence des caveaux, sel qui crisse sous les pas.",
+    "visuel": "Un caveau de pierre ancienne, des voûtes basses, des niches couvertes de sel fin, quatre cloches de bronze suspendues à une traverse, et des sarcophages ouverts aux bords arrondis.",
+    "accroche": "Un escalier étroit qui plonge derrière les cuisines, vers des caves où l'air est sec et très froid.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "lot-r-crypte",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-cendre-de-sel",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-lot-nom-des-rois",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 95,
+      "y": 65
+    }
+  },
+  {
+    "id": "lot-jardin-de-nacre",
+    "nom": "Le jardin de nacre",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Un jardin de coquillages et de nacre, sous une eau basse, qui mène à la voûte du sanctuaire.",
+    "description": "Le jardin privé du Chancelier : des buissons de corail, des allées de nacre et des statues de rois à demi couvertes d'algues. Un escalier de nacre descend au fond, vers une voûte pâle qui luit d'elle-même. L'eau y est plus basse qu'ailleurs, et on y marche presque à sec.",
+    "ambiance": "Murmure de l'eau qui s'écoule entre les coquillages, lumière blanche, vent froid qui passe au-dessus.",
+    "visuel": "Un jardin de coquillages blancs et roses, des buissons de corail, des allées pavées de nacre, des statues de rois aux visages rongés, et une voûte lumineuse au fond.",
+    "accroche": "Un balcon de nacre au bout de la salle du conseil, sur un jardin pâle qui luit sous une eau basse.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [
+      {
+        "vers": "lot-sanctuaire-du-sceau",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier de nacre descend au fond du jardin, vers une voûte pâle qui luit d'elle-même.",
+        "retour": "La voûte du sanctuaire s'ouvre sur un escalier de nacre qui remonte jusqu'à un jardin couvert de vase."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 72,
+      "y": 87
+    }
+  },
+  {
+    "id": "lot-sanctuaire-du-sceau",
+    "nom": "Le sanctuaire du Sceau",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "La salle finale, où l'enfant marquée descendait autrefois tenir la mer : une cuve de sel, une lueur, et un froid qui ne vient de nulle part.",
+    "description": "Le sanctuaire du Sceau : une salle ronde, au centre de laquelle une cuve de pierre blanche est pleine d'un sel fin et luisant. C'est ici que le Sceau descendait à marée basse, et qu'il demeurait, vivant et lié, à tenir les flots. Le sel de la cuve est encore tiède, et une lueur y palpite au rythme d'une respiration lente.",
+    "ambiance": "Froid pénétrant, lueur qui palpite, silence total, comme au fond d'un puits.",
+    "visuel": "Une salle ronde aux murs de nacre, une cuve de pierre blanche pleine de sel luisant, une lumière qui pulse doucement au fond, et des colonnes couvertes de coquillages qui convergent vers le centre.",
+    "accroche": "Une voûte pâle au bout d'un escalier de nacre ; un froid y monte qui ne vient ni de l'eau ni de l'air.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "lot-r-sanctuaire",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-lot-sanctuaire-du-sceau",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 31,
+      "y": 61
+    }
+  },
+  {
+    "id": "lot-geole-des-noyes",
+    "nom": "La geôle",
+    "type": "salle",
+    "parent": "palais-basmaree",
+    "resume": "Une geôle basse, au fond de la réserve, où un pêcheur vivant attend qu'on décide de son sort.",
+    "description": "Une geôle creusée dans la roche, derrière la réserve des cuisines. Trois cellules basses donnent sur un couloir, et une seule est occupée. Les chaînes sont scellées dans la pierre, un seau de sel sert de latrine, et une petite boîte de fer est cachée sous une dalle descellée, près de la porte.",
+    "ambiance": "Eau qui suinte, chaînes qui tintent quand on bouge, odeur de sel et de sueur.",
+    "visuel": "Un couloir de roche noire, trois cellules aux grilles rouillées, une chaîne scellée dans le mur, une dalle descellée au sol, et une petite lumière qui tombe d'un soupirail.",
+    "accroche": "Une grille de fer basse, au fond de la réserve des cuisines, avec une chaîne qui pend du seuil.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "repos": "impossible",
+    "position": {
+      "x": 40,
+      "y": 92
+    }
+  }
+]

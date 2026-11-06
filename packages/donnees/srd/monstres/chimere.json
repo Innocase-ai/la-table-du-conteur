@@ -1,0 +1,163 @@
+{
+  "id": "chimere",
+  "nom": "Chimère",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "Chaotique Mauvaise",
+  "ca": 14,
+  "pv": {
+    "moyenne": 114,
+    "des": "12d10 + 48"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 11,
+    "con": 19,
+    "int": 3,
+    "sag": 14,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 8
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 18
+  },
+  "langues": "comprend le draconique, mais ne parle pas",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La chimère effectue trois attaques : une de Coup de bélier, une de Griffe et une de Morsure. Elle peut remplacer l'attaque de Griffe par une utilisation de son Souffle de feu si disponible.",
+      "multiattaque": [
+        {
+          "action": "coup-de-belier",
+          "nombre": 1
+        },
+        {
+          "action": "griffe",
+          "nombre": 1
+        },
+        {
+          "action": "morsure",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "coup-de-belier",
+      "nom": "Coup de bélier",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 10 (1d12 + 4) dégâts contondants. Si la cible est une créature de taille M ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d12",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 7 (1d6 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 1,50 m : 11 (2d6 + 4) dégâts perforants, ou 18 (4d6 + 4) dégâts perforants si la chimère avait l'Avantage au jet d'attaque.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 15, chaque créature dans un Cône de 4,50 m. Échec : 31 (7d8) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 15,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 4.5
+      },
+      "degats": [
+        {
+          "des": "7d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 6
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "aveugle",
+    "charme",
+    "effraye",
+    "inconscient"
+  ],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "L'hydre peut retenir son souffle pendant 1 heure."
+    },
+    {
+      "id": "tetes-multiples",
+      "nom": "Têtes multiples",
+      "resume": "L'hydre est dotée de cinq têtes. Chaque fois que l'hydre subit au moins 25 dégâts dans un même tour, l'une de ses têtes meurt. L'hydre meurt quand toutes ses têtes sont mortes. À la fin de chacun de ses tours et à condition d'avoir au moins une tête vivante, deux têtes lui repoussent par tête morte depuis son tour précédent, sauf si elle a subi des dégâts de feu entre-temps. L'hydre récupère 20 points de vie quand il lui pousse de nouvelles têtes."
+    },
+    {
+      "id": "tetes-reactives",
+      "nom": "Têtes réactives",
+      "resume": "Chaque tête dont est dotée l'hydre en plus de la première lui octroie une Réaction supplémentaire qu'elle ne peut jouer que pour effectuer une attaque d'Opportunité."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Étourdi."
+    }
+  ],
+  "id": "hydre",
+  "nom": "Hydre",
+  "taille": "TG",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 15,
+  "pv": {
+    "moyenne": 184,
+    "des": "16d12 + 80"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 12,
+    "con": 20,
+    "int": 2,
+    "sag": 10,
+    "cha": 7
+  },
+  "initiative": 4,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 16
+  },
+  "langues": "aucune",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'hydre effectue autant d'attaques de Morsure qu'elle a de têtes (cinq au départ).",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 5
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 10 (1d10 + 5) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ]
+    }
+  ]
+}

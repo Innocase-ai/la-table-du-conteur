@@ -1,0 +1,85 @@
+{
+  "id": "crocodile",
+  "nom": "Crocodile",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 12,
+  "pv": {
+    "moyenne": 13,
+    "des": "2d10 + 2"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 10,
+    "con": 13,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "sauvegardes": {
+    "con": 3
+  },
+  "competences": {
+    "discretion": 2
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "apnee",
+      "nom": "Apnée",
+      "resume": "Le crocodile peut retenir son souffle pendant 1 heure."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 6 (1d8 + 2) dégâts perforants. Si la cible est une créature de taille M ou inférieure, elle subit l'état Agrippé (évasion DD 12). Ainsi Agrippée, la cible subit aussi l'état Entravé.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 12,
+          "tailleMax": "M"
+        },
+        {
+          "etat": "entrave",
+          "evasion": 12,
+          "tailleMax": "M"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "gelee-ocre",
+  "nom": "Gelée ocre",
+  "taille": "G",
+  "type": "Vase",
+  "alignement": "non aligné",
+  "ca": 8,
+  "pv": {
+    "moyenne": 52,
+    "des": "7d10 + 14"
+  },
+  "vitesse": {
+    "marche": 6,
+    "escalade": 6
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 6,
+    "con": 14,
+    "int": 2,
+    "sag": 6,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -2,
+  "resistances": [
+    "acide"
+  ],
+  "immunitesDegats": [
+    "foudre",
+    "tranchant"
+  ],
+  "immunitesEtats": [
+    "a-terre",
+    "empoigne",
+    "charme",
+    "effraye",
+    "entrave"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 8
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "informe",
+      "nom": "Informe",
+      "resume": "La gelée peut se déplacer dans un espace étroit d'une largeur minimale de 2,5 cm sans dépense supplémentaire en déplacement."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "La gelée peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    },
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi, Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "id": "pseudopode",
+      "nom": "Pseudopode",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 12 (3d6 + 2) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 2,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "division",
+      "nom": "Division",
+      "cout": "reaction",
+      "resume": "Déclencheur : alors que la gelée est de taille G ou M et dispose d'au moins 10 points de vie, elle se retrouve En péril ou subit des dégâts de foudre ou tranchants. Conséquences : la gelée se divise en deux nouvelles gelées ocres. Chaque nouvelle gelée présente une catégorie de taille de moins que la gelée dont elle est issue et agit au même rang d'Initiative. Les points de vie de la gelée d'origine sont divisés équitablement entre les deux nouvelles (arrondis à l'inférieur).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

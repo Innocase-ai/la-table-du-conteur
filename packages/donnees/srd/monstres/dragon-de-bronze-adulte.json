@@ -1,0 +1,226 @@
+{
+  "id": "dragon-de-bronze-adulte",
+  "nom": "Dragon de bronze adulte",
+  "taille": "TG",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 18,
+  "pv": {
+    "moyenne": 212,
+    "des": "17d12 + 102"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 25,
+    "dex": 10,
+    "con": 23,
+    "int": 16,
+    "sag": 15,
+    "cha": 20
+  },
+  "sauvegardes": {
+    "for": 7,
+    "dex": 5,
+    "con": 6,
+    "int": 3,
+    "sag": 7,
+    "cha": 5
+  },
+  "competences": {
+    "discretion": 5,
+    "intuition": 7,
+    "perception": 12
+  },
+  "initiative": 10,
+  "resistances": [],
+  "immunitesDegats": [
+    "foudre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 18,
+    "perceptionPassive": 22
+  },
+  "langues": "commun, draconique",
+  "fp": "15",
+  "px": 13000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 15 000 PX dans son antre (13 000 PX hors antre)."
+    },
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre Assaut incisif, Coup de tonnerre, Lumière traçante. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de (A) Incantation pour lancer rayon traçant (au 2e niveau) ou (B) Souffle répulsif.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +12, allonge 3 m : 16 (2d8 + 7) dégâts tranchants plus 5 (1d10) dégâts de foudre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 12
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 7,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 17, +10 pour toucher) : À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), communication avec les animaux, détection de la magie, illusion mineure, rayon traçant (au 2e niveau), thaumaturgie. 1/jour chacun : détection des pensées, respiration aquatique.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-foudre",
+      "nom": "Souffle de foudre",
+      "cout": "action",
+      "resume": "JS Dextérité DD 19, chaque créature dans une Ligne de 27 m de long sur 1,50 m de large. Échec : 55 (10d10) dégâts de foudre. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 19,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 27,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "10d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-repulsif",
+      "nom": "Souffle répulsif",
+      "cout": "action",
+      "resume": "JS Force DD 19, chaque créature dans un Cône de 9 m. Échec : la cible est repoussée du dragon sur 18 m en ligne droite et subit l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 19,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "a-terre"
+        }
+      ]
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup-de-tonnerre",
+      "nom": "Coup de tonnerre",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Constitution DD 17, chaque créature dans une Sphère de 6 m de rayon centrée sur un point que le dragon voit dans un rayon de 27 m. Échec : 10 (3d6) dégâts de tonnerre, et la cible subit l'état Assourdi (absent du schéma) jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 27
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 6
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "tonnerre"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "lumiere-tracante",
+      "nom": "Lumière traçante",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer rayon traçant (au 2e niveau).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

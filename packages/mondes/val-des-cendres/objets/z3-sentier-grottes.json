@@ -1,0 +1,180 @@
+[
+  {
+    "id": "gro-minerai-de-braise",
+    "nom": "Bloc de minerai de braise",
+    "categorie": "materiel",
+    "rarete": "peu-commun",
+    "valeurPo": 30,
+    "poidsKg": 2,
+    "resume": "Un bloc noir veiné de rouge, tiède au toucher : brûlé dans un foyer, il donne une chaleur vive sans fumée pendant huit heures, et ne s'éteint ni à la pluie ni à la cendre.",
+    "lore": "Le minerai de la Veine rouge, extrait par les mineurs de la Fosse. Les forgerons de Veillecendre n'ont plus rien pour tenir leurs fourneaux ; chaque bloc est précieux.",
+    "usage": {
+      "type": "consommable",
+      "resume": "Sert de combustible pendant 8 heures (chauffe une pièce, fait fondre un fer) sans fumée. Un bloc dans un feu de camp donne l'Avantage aux jets de Constitution contre le froid extrême."
+    },
+    "visuel": "Un bloc de roche noire couvert de veines rouge sombre qui pulsent faiblement, tiède à la main."
+  },
+  {
+    "id": "gro-baton-de-berger-grave",
+    "nom": "Bâton de berger gravé",
+    "categorie": "arme",
+    "rarete": "peu-commun",
+    "valeurPo": 300,
+    "poidsKg": 1.8,
+    "resume": "Un bâton de frêne gravé de spirales de berger, d'un bonus de +1 à l'attaque et aux dégâts ; les bêtes (chèvres, chiens, loups) le reconnaissent et s'apaisent à sa vue (Avantage aux jets de Dressage).",
+    "lore": "Taillé par les goliaths pour guider leurs troupeaux dans la brume ; chaque spirale compte une saison de bonne garde. Taavi l'offre à qui lui a rendu sa promesse.",
+    "base": "baton-de-combat",
+    "bonus": {
+      "attaque": 1,
+      "degats": 1
+    },
+    "magique": true,
+    "identification": 12,
+    "inconnu": { "nom": "Bâton de berger gravé", "resume": "Un bâton de frêne gravé de spirales de berger, d'une belle facture. Les bêtes le regardent avec une étrange déférence." },
+    "visuel": "Un bâton de frêne clair gravé de spirales sur toute sa longueur, la poignée enveloppée de cuir tressé, un petit anneau de bronze au sommet."
+  },
+  {
+    "id": "gro-offrande-du-cairn",
+    "nom": "Pierre-à-souffle des goliaths",
+    "categorie": "bijou",
+    "rarete": "peu-commun",
+    "valeurPo": 250,
+    "poidsKg": 0.2,
+    "resume": "Un galet bleu poli, suspendu à un cordon : une fois par repos long, en le serrant, on gagne 1d8 + 3 PV temporaires et on ignore l'état Effrayé pendant 1 minute.",
+    "lore": "Offrande ancienne déposée dans la niche du lever. Les goliaths disent qu'elle contient le premier souffle de qui a bâti le cairn, et qu'on ne la garde que si on s'en sert pour les autres.",
+    "magique": true,
+    "identification": 13,
+    "inconnu": { "nom": "Galet bleu percé", "resume": "Un galet bleu-gris lisse, percé et suspendu à un cordon de laine tressée. Il garde une tiédeur de souffle." },
+    "usage": {
+      "type": "charges",
+      "resume": "1 utilisation par repos long : 1d8 + 3 PV temporaires et immunité à l'état Effrayé pendant 1 minute."
+    },
+    "visuel": "Un galet bleu-gris lisse, grand comme un œuf, percé et suspendu à un cordon de laine tressée."
+  },
+  {
+    "id": "gro-lanterne-de-mineur-naine",
+    "nom": "Lanterne de mineur naine",
+    "categorie": "outil",
+    "rarete": "peu-commun",
+    "valeurPo": 80,
+    "poidsKg": 1.5,
+    "resume": "Une lanterne de fer à verre épais, alimentée par un fragment de minerai de braise : elle éclaire à 9 m (pénombre jusqu'à 18 m), ne craint ni le vent ni la cendre et ne s'éteint pas dans les gaz, et en révèle la présence en virant au vert.",
+    "lore": "Les mineurs de la Fosse la portaient au ceinturon. Son verre est fumé de rouge pour ne pas aveugler dans l'obscurité profonde, et sa flamme change de couleur au contact des gaz lourds.",
+    "visuel": "Une lanterne de fer noirci au verre fumé de rouge, un petit fragment de minerai luisant dans sa cage, une anse de laiton usée."
+  },
+  {
+    "id": "gro-pierre-de-nom-de-haavi",
+    "nom": "Pierre de nom de Haavi",
+    "categorie": "quete",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 1.2,
+    "resume": "Une pierre plate gravée de spirales et du nom d'un berger goliath mort : le gage d'une promesse faite à Taavi.",
+    "lore": "À sa mort, un goliath laisse une pierre gravée de son nom, qui doit être déposée dans la niche du crépuscule du cairn. Haavi est mort sans que la sienne n'y parvienne.",
+    "visuel": "Une pierre plate de granit gris gravée de spirales et de signes goliaths, ternie par la terre et les os."
+  },
+  {
+    "id": "gro-peau-de-loup-gris",
+    "nom": "Peau de loup gris",
+    "categorie": "materiel",
+    "rarete": "commun",
+    "valeurPo": 6,
+    "poidsKg": 3,
+    "resume": "Une peau tannée de loup gris, épaisse, qui sert de manteau ou de couverture ; vaut quelques pièces à qui la revend.",
+    "visuel": "Une peau de loup gris épaisse et soigneusement tannée, la fourrure foncée sur le dessus."
+  },
+  {
+    "id": "gro-outils-de-mineurs-nains",
+    "nom": "Outils de mineur nain",
+    "categorie": "outil",
+    "rarete": "peu-commun",
+    "valeurPo": 45,
+    "poidsKg": 4,
+    "resume": "Un lot de pics, de coins et de ciseaux à pierre en acier noir qui n'ont pas rouillé en vingt ans : donne un bonus de +2 aux jets pour percer un éboulis ou étayer une galerie.",
+    "lore": "L'acier de la Haute-Forge ne rouille pas ; les mineurs avaient l'habitude de laisser leurs outils au dortoir en rentrant. Les nains de Veillecendre les rachèteront volontiers comme reliques.",
+    "visuel": "Un lot de pics, de coins et de ciseaux d'acier noir sans la moindre trace de rouille, aux manches de chêne sombre gravés de runes d'atelier."
+  },
+  {
+    "id": "gro-insigne-de-gardien-enfoui",
+    "nom": "Insigne de Gardien enfoui",
+    "categorie": "curiosite",
+    "rarete": "commun",
+    "valeurPo": 5,
+    "poidsKg": 0.1,
+    "resume": "Un petit disque de laiton gravé d'une flamme, l'insigne d'un Gardien de la Veille, enveloppé dans un linge gris : il appartient à Frère Ocre.",
+    "lore": "Les Gardiens reçoivent leur insigne quand ils prêtent serment à la Lanterne. Celui-ci porte au revers une inscription : « Veillé jusqu'à l'aube ».",
+    "visuel": "Un petit disque de laiton terni gravé d'une flamme, enroulé dans un linge gris, une inscription fine au revers."
+  },
+  {
+    "id": "gro-fil-d-araignee-tresse",
+    "nom": "Corde de soie d'araignée",
+    "categorie": "materiel",
+    "rarete": "peu-commun",
+    "valeurPo": 60,
+    "poidsKg": 1,
+    "resume": "Quinze mètres de fil d'araignée géante tressé, plus fin qu'une corde de chanvre mais qui supporte 300 kg ; donne l'Avantage aux jets d'Athlétisme pour grimper ou traverser un vide.",
+    "visuel": "Une longue corde fine de soie blanche tressée serrée, enroulée en cercles propres, qui brille comme de l'argent sous la lampe."
+  },
+  {
+    "id": "gro-journal-du-contremaitre",
+    "nom": "Journal du contremaître",
+    "categorie": "livre",
+    "rarete": "commun",
+    "valeurPo": 10,
+    "poidsKg": 0.5,
+    "resume": "Un journal en runes naines tenu par le contremaître de la Fosse la dernière semaine avant l'effondrement : il y note des coups entendus au bout de la galerie basse, et des wagons qui roulent seuls vers le nord.",
+    "lore": "Les dernières lignes sont griffonnées : « Les wagons roulent seuls vers le nord. Les mineurs refusent d'y aller. On entend un marteau, de l'autre côté de l'éboulis. Si quelqu'un lit ceci, qu'il ne rouvre pas le fond. »",
+    "visuel": "Un journal à reliure de cuir fendillé rempli de colonnes de chiffres et de runes naines serrées, des taches de suie sur les derniers feuillets."
+  },
+  {
+    "id": "gro-cle-du-contremaitre",
+    "nom": "Clé du contremaître",
+    "categorie": "cle",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 0.1,
+    "resume": "Une clé de fer noir à penne carrée, qui ouvre le coffre du bureau du contremaître de la Fosse.",
+    "visuel": "Une clé de fer noir au panneton carré, suspendue à une chaînette de laiton verdie."
+  },
+  {
+    "id": "gro-ruban-gris",
+    "nom": "Ruban gris des Pèlerins",
+    "categorie": "curiosite",
+    "rarete": "commun",
+    "valeurPo": 0,
+    "poidsKg": 0,
+    "resume": "Un ruban de laine grise noué au poignet : à ceux qui le portent, les Pèlerins gris ouvrent leurs tentes et leurs allées, et répondent sans méfiance.",
+    "lore": "Le ruban n'oblige à rien. Qui veut partir l'ôte sans un mot, et personne ne le retient.",
+    "visuel": "Un ruban de laine grise effilochée, noué en un petit nœud plat."
+  },
+  {
+    "id": "gro-viande-seche",
+    "nom": "Viande séchée des hauteurs",
+    "categorie": "nourriture",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0.5,
+    "resume": "Des lanières de mouton fumé qui se gardent un mois : une portion nourrit un jour de marche.",
+    "visuel": "Des lanières brunes de viande fumée, serrées en ficelle."
+  },
+  {
+    "id": "gro-fromage-de-chevre",
+    "nom": "Fromage de chèvre des hauteurs",
+    "categorie": "nourriture",
+    "rarete": "commun",
+    "valeurPo": 1,
+    "poidsKg": 0.5,
+    "resume": "Une meule de fromage dur et piquant, qui se garde plusieurs semaines : une portion nourrit un jour de marche.",
+    "visuel": "Une petite meule de fromage dur, à la croûte grise et cendrée, enveloppée dans un linge."
+  },
+  {
+    "id": "gro-carnet-du-colporteur",
+    "nom": "Carnet du colporteur",
+    "categorie": "livre",
+    "rarete": "commun",
+    "valeurPo": 2,
+    "poidsKg": 0.2,
+    "resume": "Le carnet de comptes du colporteur Mathurin : ses dernières entrées parlent d'un « coffre refermé à la hâte » et d'un « homme aux pièges » croisé au dernier lacet.",
+    "visuel": "Un petit carnet à couverture de toile cirée taché, rempli de colonnes de comptes à l'encre pâlie."
+  }
+]

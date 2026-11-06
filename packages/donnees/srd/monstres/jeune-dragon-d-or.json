@@ -1,0 +1,146 @@
+{
+  "id": "jeune-dragon-d-or",
+  "nom": "Jeune dragon d’or",
+  "taille": "G",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 18,
+  "pv": {
+    "moyenne": 178,
+    "des": "17d10 + 85"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 14,
+    "con": 21,
+    "int": 16,
+    "sag": 13,
+    "cha": 20
+  },
+  "sauvegardes": {
+    "dex": 6,
+    "sag": 5
+  },
+  "competences": {
+    "discretion": 6,
+    "intuition": 5,
+    "perception": 9,
+    "persuasion": 9
+  },
+  "initiative": 6,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 19
+  },
+  "langues": "commun, draconique",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de Souffle affaiblissant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 17 (2d10 + 6) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 6,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-affaiblissant",
+      "nom": "Souffle affaiblissant",
+      "cout": "action",
+      "resume": "JS Force DD 17, chaque créature non encore affectée par ce souffle dans un Cône de 9 m. Échec : la cible subit le Désavantage aux Tests d20 basés sur la Force et soustrait 3 (1d6) à ses jets de dégâts. Elle réitère le JS à la fin de chacun de ses tours, et met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 17, chaque créature dans un Cône de 9 m. Échec : 55 (10d10) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 17,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "10d10",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

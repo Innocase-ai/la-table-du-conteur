@@ -1,0 +1,4 @@
+[{ "id": "r-loups", "nom": "Meute affamée", "type": "combat", "lieu": "sentier", "difficulte": "moderee", "intro": "Des loups surgissent des fourrés.",
+   "monstres": [{ "profil": "loup", "nombre": 6 }], "carte": ["....", ".Hm.", "...."], "effetsVictoire": [{ "flag": "meute-battue" }] },
+ { "id": "r-alpha", "nom": "Le loup alpha", "type": "combat", "lieu": "grotte", "difficulte": "faible", "intro": "L'alpha défend sa tanière.",
+   "monstres": [{ "profil": "loup-sanguinaire", "nombre": 1 }], "carte": [".Hm."], "effetsVictoire": [{ "objet": { "id": "croc-de-loup" } }] }]

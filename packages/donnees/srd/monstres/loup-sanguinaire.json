@@ -1,0 +1,78 @@
+{
+  "id": "loup-sanguinaire",
+  "nom": "Loup sanguinaire",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 22,
+    "des": "3d10 + 6"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 15,
+    "con": 15,
+    "int": 3,
+    "sag": 12,
+    "cha": 7
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 4,
+    "perception": 5
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "tactique-de-meute",
+      "nom": "Tactique de meute",
+      "resume": "Le loup a l'Avantage à ses jets d'attaque contre une créature si au moins un de ses alliés non Neutralisés se trouve à 1,50 m ou moins de cette créature."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 8 (1d10 + 3) dégâts perforants ; une cible de taille G ou inférieure subit l'état À terre (sans jet de sauvegarde).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

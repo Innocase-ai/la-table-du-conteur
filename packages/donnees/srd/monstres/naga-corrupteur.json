@@ -1,0 +1,127 @@
+{
+  "sauvegardes": {
+    "dex": 6,
+    "con": 5,
+    "sag": 5,
+    "cha": 6
+  },
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "id": "naga-corrupteur",
+  "nom": "Naga corrupteur",
+  "taille": "G",
+  "type": "Fiélon",
+  "alignement": "Chaotique Mauvais",
+  "ca": 17,
+  "pv": {
+    "moyenne": 135,
+    "des": "18d10 + 36"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 17,
+    "con": 14,
+    "int": 16,
+    "sag": 15,
+    "cha": 16
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 12
+  },
+  "langues": "abyssal, commun",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "restauration-fielonne",
+      "nom": "Restauration fiélonne",
+      "resume": "S'il meurt, le naga revient à la vie en 1d6 jours et récupère tous ses points de vie. Seul le sort souhait peut empêcher ce trait de fonctionner."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le naga lance l'un des sorts suivants sans composantes matérielles ni somatiques, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 14). À volonté : détection de la magie, illusion mineure, main du mage, respiration aquatique. 2/jour chacun : détection des pensées, éclair (au 4e niveau), immobilisation de personne (au 3e niveau), porte dimensionnelle."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le naga effectue trois attaques, réparties à sa guise entre Morsure et Rayon nécrotique.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        },
+        {
+          "action": "rayon-necrotique",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 7 (1d6 + 4) dégâts perforants plus 14 (4d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "perforant"
+        },
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "rayon-necrotique",
+      "nom": "Rayon nécrotique",
+      "cout": "action",
+      "resume": "À distance +6, portée 18 m : 21 (6d6) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "6d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

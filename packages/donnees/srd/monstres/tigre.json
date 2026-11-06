@@ -1,0 +1,80 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "tigre",
+  "nom": "Tigre",
+  "taille": "G",
+  "ca": 13,
+  "pv": {
+    "moyenne": 30,
+    "des": "4d10 + 8"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 16,
+    "con": 14,
+    "int": 3,
+    "sag": 12,
+    "cha": 8
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "fp": "1",
+  "px": 200,
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants. Si la cible est de taille G ou inférieure, elle subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "Le tigre entreprend l'action Désengagement ou Furtivité.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

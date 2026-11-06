@@ -1,0 +1,128 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 7
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement, Pétrifié."
+    }
+  ],
+  "id": "gorgone",
+  "nom": "Gorgone",
+  "taille": "G",
+  "type": "Artificiel",
+  "alignement": "non aligné",
+  "ca": 19,
+  "pv": {
+    "moyenne": 114,
+    "des": "12d10 + 48"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 20,
+    "dex": 11,
+    "con": 18,
+    "int": 2,
+    "sag": 12,
+    "cha": 7
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 17
+  },
+  "langues": "aucune",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "coup-de-corne",
+      "nom": "Coup de corne",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 18 (2d12 + 5) dégâts perforants. Si la cible est une créature de taille G ou inférieure et si la gorgone s'est déplacée en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 5,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G",
+          "sauvegardeFinDeTour": false
+        }
+      ]
+    },
+    {
+      "id": "souffle-petrifiant",
+      "nom": "Souffle pétrifiant",
+      "cout": "action",
+      "resume": "JS Constitution DD 15, chaque créature dans un Cône de 9 m. Premier échec : la cible subit l'état Entravé et réitère le JS à la fin de son tour suivant si elle est toujours Entravée ; elle met un terme à l'effet sur elle-même en cas de réussite. Deuxième échec : la cible subit l'état Pétrifié qui remplace l'état Entravé (Pétrifié non représenté dans le moteur).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "entrave",
+          "sauvegardeFinDeTour": true
+        }
+      ],
+      "recharge": "5-6"
+    },
+    {
+      "id": "pietinement",
+      "nom": "Piétinement",
+      "cout": "bonus",
+      "resume": "JS Dextérité DD 16, une créature subissant l'état À terre dans un rayon de 1,50 m. Échec : 16 (2d10 + 5) dégâts contondants. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 16,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 5,
+          "type": "contondant"
+        }
+      ]
+    }
+  ]
+}

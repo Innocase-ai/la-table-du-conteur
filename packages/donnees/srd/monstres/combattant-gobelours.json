@@ -1,0 +1,124 @@
+{
+  "id": "combattant-gobelours",
+  "nom": "Combattant gobelours",
+  "taille": "M",
+  "type": "Fée (Gobelinoïde)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 14,
+  "pv": {
+    "moyenne": 33,
+    "des": "6d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 14,
+    "con": 13,
+    "int": 8,
+    "sag": 11,
+    "cha": 9
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 6,
+    "survie": 2
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "commun, gobelin",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "rapt",
+      "nom": "Rapt",
+      "resume": "Le gobelours ne dépense pas de déplacement supplémentaire pour déplacer une créature qu'il agrippe."
+    }
+  ],
+  "actions": [
+    {
+      "id": "empoignade",
+      "nom": "Empoignade",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 3 m : 9 (2d6 + 2) dégâts contondants ; une cible de taille M ou inférieure subit l'état Agrippé (évasion DD 12).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 12,
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "marteau-leger-cac",
+      "nom": "Marteau léger (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +4 (avec Avantage si la cible est Agrippée par le gobelours), allonge 3 m : 9 (3d4 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d4",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "marteau-leger-lancer",
+      "nom": "Marteau léger (lancer)",
+      "cout": "action",
+      "resume": "À distance +4 (avec Avantage si la cible est Agrippée par le gobelours), portée 6/18 m : 9 (3d4 + 2) dégâts contondants. Le gobelours porte 3 marteaux légers.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "3d4",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

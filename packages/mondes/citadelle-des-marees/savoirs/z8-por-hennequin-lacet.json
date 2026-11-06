@@ -1,0 +1,124 @@
+[
+  {
+    "pnj": "por-hennequin-lacet",
+    "passe": "Hennequin Lacet est né à Port-aux-Cordes, dans une famille de nains calfats. À quatorze ans, il y a quarante-six ans, il est entré en apprentissage chez Aubert Hautecôte, le cordier, dans l'atelier de cordes du port. Il y a appris les cordages, les grappins, les lanternes à capote, puis le calfatage des coques. Quand Aubert est mort, il y a trente ans, il a repris l'atelier et ses outils sans rien dire de ce qu'il perdait. Il ne revoit plus Ysmène Hautecôte, la fille de son maître, depuis un an, mais elle lui envoie encore ses cartes à relier. Il y a un an, Ambroise Carène lui a commandé une barque à fond plat pour la chaussée. Il la répare sous une bâche, la quille à refaire, et il n'a pas encore fini.",
+    "liens": [
+      {
+        "pnj": "ysmene-hautecote",
+        "nature": "fille de son maître, grande-sœur de l'atelier",
+        "opinion": "Il l'a connue entre les bobines de l'atelier d'Aubert. Elle lui envoie des cartes à relier, et il les relie sans compter. Il ne l'a pas revue depuis un an, et ne le dit à personne."
+      },
+      {
+        "pnj": "por-ambroise-carene",
+        "nature": "pilote, son client pour la barque",
+        "opinion": "Il compte les sondes comme on compte les cordes, et lui a commandé il y a un an la barque à fond plat pour la chaussée. Il le trouve trop méthodique pour ne pas savoir ce qu'il y cherche."
+      },
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "cheffe des Rats de quai",
+        "opinion": "Il la connaît depuis l'atelier d'Aubert, et la tient pour une cliente qui marchande chaque corde. Il lui vend quand même, par habitude, et compte ce qu'elle doit."
+      },
+      {
+        "qui": "Aubert Hautecôte, son maître cordier, mort il y a trente ans",
+        "nature": "maître d'apprentissage (disparu)",
+        "opinion": "Il lui doit son métier et ses premiers nœuds, et il n'a jamais su le lui dire. Il fait encore les cordes comme Aubert les faisait, tendues et goudronnées à la main."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "apprentissage-chez-aubert",
+        "texte": "Il y a quarante-six ans, à quatorze ans, il est entré dans l'atelier de cordes d'Aubert Hautecôte, à Port-aux-Cordes. Son premier travail a été de tordre des fils de chanvre sous les yeux du maître, qui défaisait d'un doigt tout ce qui penchait."
+      },
+      {
+        "id": "reprise-de-l-atelier",
+        "texte": "Il y a trente ans, à la mort d'Aubert, il a pris la clé de l'atelier et gardé les vieux maillets du maître. Il les range encore par taille, du plus gros au plus fin, avant de toucher à une corde."
+      },
+      {
+        "id": "la-petite-quaibas",
+        "texte": "Quand il est arrivé à l'atelier d'Aubert, il y avait déjà la petite Quaibas, qui nouait plus vite que lui. Il ne l'a jamais admis devant elle, et il y repense chaque fois qu'on lui demande un nœud de mouillage.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Il hausse les épaules et dit que les nœuds se font à la main, pas à coups de souvenirs, puis il retourne à son maillet."
+      },
+      {
+        "id": "cartes-a-relier",
+        "texte": "Ysmène lui envoie encore ses cartes à relier, roulées et ficelées, avec une étiquette à l'encre verte. Il les relie en une nuit, sans un mot, et les renvoie comme on rend un service entre gens de l'atelier."
+      },
+      {
+        "id": "ficelle-dans-la-barbe",
+        "texte": "Il enroule la ficelle de chanvre dans sa barbe grise, en tresse les bouts entre deux doigts pendant qu'il réfléchit, et oublie souvent de la défaire avant de se lever."
+      },
+      {
+        "id": "gout-du-goudron",
+        "texte": "Il goûte le goudron du bout de la langue, comme un cuisinier goûte sa sauce, pour savoir si la coque tiendra une marée de plus. Il grimace toujours, et ne dit jamais ce qu'il a trouvé."
+      },
+      {
+        "id": "mes-enfants",
+        "texte": "Il appelle ses cordages « mes enfants » et ne supporte pas qu'on les jette au sol. Une corde posée à même les pavés suffit à le faire grogner pendant une heure."
+      },
+      {
+        "id": "opinion-sur-la-ligue",
+        "texte": "La Ligue des Phares est arrogante, dit-il, mais elle paie à la livraison, et c'est tout ce qu'il lui demande. Il ne lui pardonne pas de le regarder comme un simple fournisseur."
+      },
+      {
+        "id": "opinion-sur-les-rats",
+        "texte": "Les Rats de quai sont de bons clients et de mauvais payeurs, dit-il. Ils achètent des cordes par brassées et promettent le reste pour la prochaine marée, et il finit toujours par céder."
+      },
+      {
+        "id": "opinion-sur-la-mer",
+        "texte": "La mer est un mauvais payeur, dit-il : elle prend le bois neuf et rend le vieux. Il tient pourtant ses coques à flot contre elle, parce que c'est son métier et qu'il ne sait rien faire d'autre."
+      },
+      {
+        "id": "la-barque-d-ambroise",
+        "texte": "La barque à fond plat qu'il répare depuis un an appartient à Ambroise Carène, le pilote de la jetée, qui la lui a commandée pour la chaussée. Il ne promet aucune date : elle sera prête quand la quille tiendra."
+      },
+      {
+        "id": "la-rancune",
+        "texte": "Il n'a pas pardonné à Joss la Rame d'avoir ri de sa barbe devant un client, un soir de marée haute, sur le quai. Il le salue encore, mais ne lui vend plus rien à crédit.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Il tord sa ficelle entre ses doigts et dit que certains rient trop tôt, sur un quai où l'on n'a pas fini de compter."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-barque-a-fond-plat",
+        "fait": "f-por-barque-cachee",
+        "version": "Il dit qu'une barque de pilote dort sous sa bâche, à fond plat, la quille à refaire, et qu'elle n'a pas pris la mer depuis la dernière haute mer.",
+        "acces": {}
+      },
+      {
+        "id": "les-pilotes-rayes",
+        "fait": "f-por-ligue-prime-les-pilotes",
+        "version": "Il dit que la Ligue ne veut pas de pilotes qui parlent de la chaussée, et que ceux qui voient trop finissent sur le registre des disparus. Il ne compte pas les noms devant vous.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il tord la ficelle de sa barbe et répond que la jetée n'est pas un endroit où l'on parle de ce qu'on voit.",
+        "tabou": [
+          "registre des disparus"
+        ]
+      },
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "Il dit que la mer montera dans trois jours, la plus haute depuis deux siècles, et qu'après elle elle ne reviendra pas à son niveau d'avant.",
+        "acces": {}
+      },
+      {
+        "id": "la-bourse-des-gardes",
+        "fait": "f-por-garde-touchee-par-les-rats",
+        "version": "Les gardes du quai touchent une bourse des Rats pour fermer les yeux sur les entrepôts, et la Ligue paie en double pour qu'ils les ferment sur le reste. Il le sait parce qu'il a vu qui sort du chantier la nuit.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il enroule une ficelle dans sa barbe et dit qu'un chantier ne regarde pas qui passe sur le quai.",
+        "tabou": [
+          "bourse"
+        ]
+      }
+    ]
+  }
+]

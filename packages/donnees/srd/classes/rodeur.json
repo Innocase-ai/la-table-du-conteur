@@ -1,0 +1,623 @@
+{
+  "id": "rodeur",
+  "nom": "Rôdeur",
+  "caracteristiquesPrincipales": {
+    "mode": "et",
+    "liste": [
+      "dex",
+      "sag"
+    ]
+  },
+  "deVie": 10,
+  "sauvegardes": [
+    "for",
+    "dex"
+  ],
+  "competences": {
+    "nombre": 3,
+    "parmi": [
+      "athletisme",
+      "discretion",
+      "dressage",
+      "intuition",
+      "investigation",
+      "nature",
+      "perception",
+      "survie"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes",
+    "guerre"
+  ],
+  "formationArmures": [
+    "legere",
+    "intermediaire",
+    "bouclier"
+  ],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "armure de cuir clouté",
+        "cimeterre",
+        "épée courte",
+        "arc long",
+        "20 flèches",
+        "carquois",
+        "focaliseur druidique (branche de gui)",
+        "paquetage d’explorateur"
+      ],
+      "po": 7
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 150
+    }
+  ],
+  "incantation": {
+    "type": "demi",
+    "caracteristique": "sag",
+    "sortsMineurs": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "sortsPrepares": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      6,
+      7,
+      7,
+      9,
+      9,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      14,
+      14,
+      15,
+      15
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ]
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Ennemi juré",
+        "Bottes d’arme"
+      ],
+      "colonnes": {
+        "Ennemi juré": 2
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Fin explorateur",
+        "Style de combat"
+      ],
+      "colonnes": {
+        "Ennemi juré": 2
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe de Rôdeur"
+      ],
+      "colonnes": {
+        "Ennemi juré": 2
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Ennemi juré": 2
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Attaque supplémentaire"
+      ],
+      "colonnes": {
+        "Ennemi juré": 3
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Arpenteur"
+      ],
+      "colonnes": {
+        "Ennemi juré": 3
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Ennemi juré": 3
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Ennemi juré": 3
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Expertise"
+      ],
+      "colonnes": {
+        "Ennemi juré": 4
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Infatigable"
+      ],
+      "colonnes": {
+        "Ennemi juré": 4
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Ennemi juré": 4
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Ennemi juré": 4
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Chasseur implacable"
+      ],
+      "colonnes": {
+        "Ennemi juré": 5
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Voile de la nature"
+      ],
+      "colonnes": {
+        "Ennemi juré": 5
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Ennemi juré": 5
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Ennemi juré": 5
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Chasseur précis"
+      ],
+      "colonnes": {
+        "Ennemi juré": 6
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Sens sauvages"
+      ],
+      "colonnes": {
+        "Ennemi juré": 6
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Ennemi juré": 6
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Tueur implacable"
+      ],
+      "colonnes": {
+        "Ennemi juré": 6
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Lance des sorts de Rôdeur avec la Sagesse, via un focaliseur druidique. Emplacements récupérés au Repos long ; après un Repos long, peut remplacer un sort préparé.",
+      "effets": []
+    },
+    {
+      "id": "ennemi-jure",
+      "nom": "Ennemi juré",
+      "niveau": 1,
+      "resume": "Marque du chasseur est toujours préparé ; il peut le lancer sans emplacement de sort autant de fois qu’indiqué dans la colonne Ennemi juré (2, puis 3 au niveau 5), toutes ces utilisations revenant au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "bottes-d-arme",
+      "nom": "Bottes d’arme",
+      "niveau": 1,
+      "resume": "Peut utiliser la propriété Botte de deux types d’arme maîtrisés au choix ; il peut changer ce choix à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "fin-explorateur",
+      "nom": "Fin explorateur",
+      "niveau": 2,
+      "resume": "Reçoit l’Expertise dans une compétence maîtrisée et apprend deux langues au choix.",
+      "effets": [
+        {
+          "type": "expertise",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "style-de-combat",
+      "nom": "Style de combat",
+      "niveau": 2,
+      "resume": "Reçoit un don de Style de combat au choix, ou l’option Combattant druidique : deux sorts mineurs de Druide (assistance et poussière d’étoile recommandés), lancés avec la Sagesse comme sorts de Rôdeur.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "attaque-supplementaire",
+      "nom": "Attaque supplémentaire",
+      "niveau": 5,
+      "resume": "Attaque deux fois au lieu d’une lorsqu’il entreprend l’action Attaque.",
+      "effets": []
+    },
+    {
+      "id": "arpenteur",
+      "nom": "Arpenteur",
+      "niveau": 6,
+      "resume": "La Vitesse augmente de 3 m tant que le Rôdeur ne porte pas d’armure lourde. Il dispose en outre d’une Vitesse d’escalade et de nage égales à sa Vitesse.",
+      "effets": [
+        {
+          "type": "bonus_vitesse",
+          "metres": 3,
+          "condition": "sans_armure_lourde"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "expertise",
+      "nom": "Expertise",
+      "niveau": 9,
+      "resume": "Reçoit l’Expertise dans deux maîtrises de compétence au choix ne bénéficiant pas encore de l’Expertise.",
+      "effets": [
+        {
+          "type": "expertise",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "infatigable",
+      "nom": "Infatigable",
+      "niveau": 10,
+      "resume": "Points de vie temporaires : au prix de l’action Magie, obtient 1d8 + modificateur de Sagesse (minimum +1) points de vie temporaires, autant de fois que son modificateur de Sagesse (minimum une fois), quota récupéré au Repos long. Diminuer l’Épuisement : chaque Repos court réduit de 1 le niveau d’Épuisement éventuel.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "chasseur-implacable",
+      "nom": "Chasseur implacable",
+      "niveau": 13,
+      "resume": "Subir des dégâts ne peut pas briser la Concentration du Rôdeur sur marque du chasseur.",
+      "effets": []
+    },
+    {
+      "id": "voile-de-la-nature",
+      "nom": "Voile de la nature",
+      "niveau": 14,
+      "resume": "Par une action Bonus, le Rôdeur s’octroie l’état Invisible jusqu’à la fin de son tour suivant. Utilisable autant de fois que son modificateur de Sagesse (minimum une fois), quota récupéré au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "chasseur-precis",
+      "nom": "Chasseur précis",
+      "niveau": 17,
+      "resume": "Reçoit l’Avantage à ses jets d’attaque contre la créature affectée par sa marque du chasseur.",
+      "effets": []
+    },
+    {
+      "id": "sens-sauvages",
+      "nom": "Sens sauvages",
+      "niveau": 18,
+      "resume": "Fort d’un lien étroit avec les forces de la nature, le Rôdeur jouit de la Vision aveugle dans un rayon de 9 m.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Reçoit un don de Faveur épique ou un autre don dont il remplit les conditions. Faveur de Déplacement dimensionnel est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "tueur-implacable",
+      "nom": "Tueur implacable",
+      "niveau": 20,
+      "resume": "Le dé de dégâts de la marque du chasseur passe de d6 à d10.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "chasseur",
+    "nom": "Chasseur",
+    "aptitudes": [
+      {
+        "id": "savoir-du-chasseur",
+        "nom": "Savoir du Chasseur",
+        "niveau": 3,
+        "resume": "Connaît les Immunités, Résistances et Vulnérabilités de la créature marquée par sa marque du chasseur.",
+        "effets": []
+      },
+      {
+        "id": "proie-du-chasseur",
+        "nom": "Proie du chasseur",
+        "niveau": 3,
+        "resume": "Choisit une option, modifiable à chaque Repos court ou long : Briseur de hordes (une fois par tour, attaque supplémentaire avec la même arme contre une autre créature à 1,50 m de la cible) ou Goût du sang (une fois par tour, +1d8 dégâts contre une créature qui a perdu des points de vie).",
+        "effets": []
+      },
+      {
+        "id": "tactiques-defensives",
+        "nom": "Tactiques défensives",
+        "niveau": 7,
+        "resume": "Choisit une option, modifiable à chaque Repos court ou long : Cauchemar de la horde (les attaques d’Opportunité contre lui subissent le Désavantage) ou Défense contre les attaques multiples (quand une créature le touche avec un jet d’attaque, elle subit le Désavantage à tous ses autres jets d’attaque contre lui pendant ce tour).",
+        "effets": []
+      },
+      {
+        "id": "proie-du-chasseur-superieure",
+        "nom": "Proie du chasseur supérieure",
+        "niveau": 11,
+        "resume": "Une fois par tour, quand il inflige des dégâts à une créature marquée par sa marque du chasseur, il peut infliger aussi les dégâts supplémentaires de ce sort à une autre créature qu’il voit dans un rayon de 9 m de la première.",
+        "effets": []
+      },
+      {
+        "id": "defense-de-chasseur-superieure",
+        "nom": "Défense de chasseur supérieure",
+        "niveau": 15,
+        "resume": "Quand il subit des dégâts, il peut jouer sa Réaction pour obtenir la Résistance aux éventuels autres dégâts du même type jusqu’à la fin de ce tour.",
+        "effets": []
+      }
+    ]
+  }
+}

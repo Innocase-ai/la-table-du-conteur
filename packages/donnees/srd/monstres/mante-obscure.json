@@ -1,0 +1,78 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "mante-obscure",
+  "nom": "Mante obscure",
+  "taille": "P",
+  "type": "Aberration",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 22,
+    "des": "5d6 + 5"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 12,
+    "con": 13,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "initiative": 3,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "ecrasement",
+      "nom": "Écrasement",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants, et la mante obscure se fixe à la cible. Si la cible est une créature de taille M ou inférieure et si la mante obscure avait l'Avantage au jet d'attaque, elle recouvre la cible qui subit l'état Aveuglé et s'asphyxie tant que la mante obscure reste ainsi fixée à elle. Tant qu'elle est fixée à une cible, la mante obscure ne peut attaquer que cette cible mais elle a l'Avantage à ses jets d'attaque contre elle ; sa Vitesse passe à 0, elle ne peut profiter d'aucun bonus de Vitesse et suit les déplacements de sa cible. Une créature peut entreprendre une action pour tenter de détacher la mante obscure, ce qui nécessite de réussir un test de Force (Athlétisme) DD 13. À son tour, la mante obscure peut se détacher en y consacrant 1,50 m de déplacement.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ]
+    },
+    {
+      "id": "aura-de-tenebres",
+      "nom": "Aura de ténèbres",
+      "cout": "action",
+      "resume": "Des ténèbres magiques emplissent une Émanation de 4,50 m centrée sur la mante obscure. Cet effet persiste tant que la mante obscure maintient sa Concentration, à concurrence de 10 minutes. La Vision dans le noir échoue à percer cette zone, qu'aucune source de lumière ne parvient à éclairer.",
+      "utilisations": {
+        "nombre": 1,
+        "par": "jour"
+      },
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

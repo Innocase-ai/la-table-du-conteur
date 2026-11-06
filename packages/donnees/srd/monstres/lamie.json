@@ -1,0 +1,131 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 5,
+    "intuition": 4,
+    "tromperie": 7
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "lamie",
+  "nom": "Lamie",
+  "taille": "G",
+  "type": "Fiélon",
+  "alignement": "Chaotique Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 97,
+    "des": "13d10 + 26"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 13,
+    "con": 15,
+    "int": 14,
+    "sag": 15,
+    "cha": 16
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 12
+  },
+  "langues": "abyssal, commun",
+  "fp": "4",
+  "px": 1100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "La lamie lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 13). À volonté : déguisement (comme bipède de taille M ou G), illusion mineure. 1/jour chacun : image majeure, quête, scrutation."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La lamie effectue deux attaques de Griffe. Elle peut remplacer l'une de ces attaques par une utilisation de Contact corrupteur.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts tranchants plus 7 (2d6) dégâts psychiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ]
+    },
+    {
+      "id": "contact-corrupteur",
+      "nom": "Contact corrupteur",
+      "cout": "action",
+      "resume": "JS Sagesse DD 13, une créature que la lamie voit à 1,50 m ou moins. Échec : 13 (3d8) dégâts psychiques, et la cible est maudite pendant 1 heure ; tant que persiste la malédiction, elle subit les états Charmé et Empoisonné.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d8",
+          "bonus": 0,
+          "type": "psychique"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "charme",
+          "dureeRounds": 600
+        },
+        {
+          "etat": "empoisonne",
+          "dureeRounds": 600
+        }
+      ]
+    },
+    {
+      "id": "bond",
+      "nom": "Bond",
+      "cout": "bonus",
+      "resume": "La lamie effectue un saut d'un maximum de 9 m en dépensant 3 m de déplacement.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

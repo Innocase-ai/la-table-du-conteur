@@ -1,0 +1,59 @@
+{
+  "id": "criard",
+  "nom": "Criard",
+  "taille": "M",
+  "type": "Plante",
+  "alignement": "non aligné",
+  "ca": 5,
+  "pv": {
+    "moyenne": 13,
+    "des": "3d8"
+  },
+  "vitesse": {
+    "marche": 1.5
+  },
+  "caracteristiques": {
+    "for": 1,
+    "dex": 1,
+    "con": 10,
+    "int": 1,
+    "sag": 3,
+    "cha": 1
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": -5,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [
+    "aveugle",
+    "charme",
+    "effraye"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 6
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 0,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Assourdi."
+    }
+  ],
+  "actions": [
+    {
+      "id": "hurlement",
+      "nom": "Hurlement",
+      "cout": "reaction",
+      "resume": "Déclencheur : une créature ou une source de Lumière vive se déplace dans un rayon de 9 m du criard. Conséquences : le criard émet un hurlement audible dans un rayon de 90 m pendant 1 minute (le cri cesse s'il meurt).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

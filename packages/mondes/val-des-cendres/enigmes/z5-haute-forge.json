@@ -1,0 +1,303 @@
+[
+  {
+    "id": "hf-enigme-pont-basculant",
+    "nom": "Le pont basculant",
+    "lieu": "hf-pont-basculant",
+    "enonce": "Cinq leviers de bronze, numérotés de 1 à 5 en chiffres nains, sont alignés sous une plaque gravée. Le pont est relevé contre la paroi. Le gouffre en dessous est plein de fonte morte. La plaque dit : « Pour baisser le tablier, il faut libérer les rangs impairs. Pour retenir le contrepoids, il faut tenir les rangs pairs. Le cinquième ne s'ouvre qu'au retour des ouvriers : à l'aller, on le laisse en repos. » (Levier en haut = levé, en bas = repos.)",
+    "solution": {
+      "type": "leviers",
+      "positions": [
+        true,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les leviers 1, 3 et 5 portent un marteau gravé, les leviers 2 et 4 une enclume : le marteau lève, l'enclume pèse."
+      },
+      {
+        "niveau": 2,
+        "texte": "Les ouvriers n'ont jamais levé l'enclume : les rangs pairs restent en bas, et les impairs sont levés.",
+        "competence": "investigation",
+        "dd": 13
+      },
+      {
+        "niveau": 3,
+        "texte": "Reste le cinquième : la plaque dit qu'on le laisse « en repos » à l'aller. Levés : 1 et 3. En bas : 2, 4, 5.",
+        "competence": "intuition",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "piege": "hf-p-tablier-basculant",
+      "resume": "Le tablier bascule."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "hf-pont-baisse"
+        },
+        {
+          "xp": 200
+        }
+      ],
+      "resume": "Le pont se baisse : l'atelier du maître-mécanicien est accessible."
+    }
+  },
+  {
+    "id": "hf-enigme-table-des-plans",
+    "nom": "La table des plans",
+    "lieu": "hf-bibliotheque-des-plans",
+    "enonce": "Une grande table de dessin porte quatre empreintes de bronze, gravées chacune d'un symbole : l'eau (trois vagues), le mouvement (trois roues dentées), la fusion (une cuve) et le feu (une braise). Quatre maquettes de bronze manquent : une cuve ronde, trois roues dentées, un bassin à marches, une rotonde à braise. Le plan, au mur, dit : « Chaque force a son lieu. Posez le lieu sous sa force, et la voûte du roi s'ouvrira. »",
+    "solution": {
+      "type": "placement",
+      "emplacements": {
+        "empreinte-de-l-eau": "hf-jeton-de-citerne",
+        "empreinte-du-mouvement": "hf-jeton-d-engrenages",
+        "empreinte-de-la-fusion": "hf-jeton-de-fonderie",
+        "empreinte-du-feu": "hf-jeton-du-coeur"
+      }
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chacune des quatre maquettes représente un lieu de la Haute-Forge que le groupe a vu, ou verra : citerne, engrenages, fonderie, Cœur."
+      },
+      {
+        "niveau": 2,
+        "texte": "L'eau se garde dans un bassin, le mouvement vient de roues, la fusion se fait dans une cuve, et le feu vit au Cœur.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Eau : la citerne (bassin à marches). Mouvement : les engrenages. Fusion : la fonderie (cuve ronde). Feu : le Cœur (rotonde à braise).",
+        "competence": "investigation",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "resume": "Les maquettes retombent avec un petit bruit de cloche, rien ne se passe."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "hf-voute-ouverte"
+        },
+        {
+          "fait": "f-hf-plan-de-la-forge"
+        },
+        {
+          "xp": 250
+        }
+      ],
+      "tresor": "hf-tr-tiroir-secret-des-plans",
+      "resume": "Un tiroir secret s'ouvre, et au loin, la voûte du trésor royal s'ouvre avec un bruit de cloche."
+    }
+  },
+  {
+    "id": "hf-enigme-cadran-fonderie",
+    "nom": "Le cadran de la grande fonderie",
+    "lieu": "hf-grande-fonderie",
+    "enonce": "Un grand cadran de cuivre porte quatre aiguilles mobiles, chacune sur un cercle gradué de 0 à 9, marquées de glyphes : une pièce de cuivre, une pièce d'étain, une flamme et une cuve d'eau. Sur le flanc d'un moule de cloche, une recette gravée : « Un bon bronze se coule en neuf parts de cuivre pour une d'étain ; on le chauffe à sept degrés de rouge ; on le trempe en cinq bains. » Quand le cadran est réglé, la pression monte dans les canalisations de l'étage.",
+    "solution": {
+      "type": "cadran",
+      "valeurs": [
+        9,
+        1,
+        7,
+        5
+      ],
+      "plage": [
+        0,
+        9
+      ],
+      "libelles": [
+        "Pièce de cuivre",
+        "Pièce d'étain",
+        "Flamme",
+        "Cuve d'eau"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les glyphes du cadran sont ceux de la recette du moule : cuivre, étain, flamme (chaleur), cuve (bains)."
+      },
+      {
+        "niveau": 2,
+        "texte": "Cuivre et étain se lisent « neuf pour un ». La chaleur se compte en degrés de rouge, les bains en cuves.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "La cloche de la chapelle porte la même recette : neuf, un, sept, cinq.",
+        "competence": "histoire",
+        "dd": 11
+      }
+    ],
+    "echec": {
+      "piege": "hf-p-coulee-de-fonderie",
+      "resume": "La cuve bascule et déverse un flot de bronze."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "hf-ascenseur-actif"
+        },
+        {
+          "xp": 250
+        }
+      ],
+      "resume": "La pression monte : l'ascenseur de forge se remet en marche."
+    }
+  },
+  {
+    "id": "hf-enigme-grille-des-runes",
+    "nom": "La grille des runes de l'écluse",
+    "lieu": "hf-ecluse-noire",
+    "enonce": "Une grille de fer porte quatre runes en relief, à presser une à une : la Pierre, le Fer, l'Eau, la Braise. Une inscription dit : « Qui veut éteindre doit nommer d'abord ce qui retient, puis ce qui lie, puis ce qui coule, enfin ce qui brûle. » Si l'ordre est bon, la vanne se déverrouille ; il faut ensuite la clé pour la tourner.",
+    "solution": {
+      "type": "sequence",
+      "ordre": [
+        "pierre",
+        "fer",
+        "eau",
+        "braise"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "L'inscription décrit quatre états : retenir, lier, couler, brûler. Chacun correspond à une rune."
+      },
+      {
+        "niveau": 2,
+        "texte": "Ce qui retient, c'est la pierre ; ce qui lie, le fer ; ce qui coule, l'eau ; ce qui brûle, la braise.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Le registre de la scribe et le plan de l'écluse, rangé à la bibliothèque, donnent le même ordre : Pierre, Fer, Eau, Braise.",
+        "competence": "investigation",
+        "dd": 13
+      }
+    ],
+    "echec": {
+      "piege": "hf-p-coup-de-belier",
+      "resume": "Le bélier d'eau balaie la salle."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "hf-runes-alignees"
+        },
+        {
+          "fait": "f-ecluse-noire"
+        },
+        {
+          "xp": 300
+        }
+      ],
+      "resume": "La vanne se déverrouille, il ne manque que la clé."
+    }
+  },
+  {
+    "id": "hf-enigme-coffre-du-maitre",
+    "nom": "Le coffre du maître-mécanicien",
+    "lieu": "hf-atelier-du-maitre-mecanicien",
+    "enonce": "Un coffre de fonte, dans l'angle de l'atelier, ferme par un cadran à lettres et une plaque : « Dis-moi le nom que la petite m'a donné, et je m'ouvre. » Il y a un mot de passe à composer en lettres (sans accent ni espace).",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": [
+        "tic-tac",
+        "tictac",
+        "tic tac"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le coffre parle d'une « petite » : l'enfant du roi, dont l'atelier est tout proche. Il faut y chercher un surnom."
+      },
+      {
+        "niveau": 2,
+        "texte": "Sur le tableau noir de l'atelier de Brunhild, une horloge à visage de gnome est dessinée à la craie, avec le mot « TIC-TAC » en grosses lettres.",
+        "competence": "investigation",
+        "dd": 13
+      },
+      {
+        "niveau": 3,
+        "texte": "Le journal de Brunhild : « J'appelle Ferbillon Tic-Tac parce qu'il fait des horloges et qu'il parle toujours en comptant. »",
+        "competence": "perception",
+        "dd": 12
+      }
+    ],
+    "echec": {
+      "resume": "Le coffre se verrouille pour une heure, des clochettes tintent au loin et les gardes de l'étage se mettent en route."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "fait": "f-hf-mot-du-maitre"
+        },
+        {
+          "xp": 250
+        }
+      ],
+      "tresor": "hf-tr-coffre-du-maitre",
+      "resume": "Le coffre s'ouvre : la clé de l'Écluse noire y repose."
+    }
+  },
+  {
+    "id": "hf-enigme-onzieme-socle",
+    "nom": "Le onzième socle",
+    "lieu": "hf-grande-galerie",
+    "enonce": "Dix statues de rois, chacune avec son nom sur le socle ; le onzième socle est nu, mais une inscription à demi effacée dit : « ... le onzième des Rois-Forgerons, le dernier de la lignée, dont le nom est le plus mal gardé. » Une petite trappe est cachée au pied du socle : elle ne s'ouvre qu'à qui la nomme. Qui manque ?",
+    "solution": {
+      "type": "deduction",
+      "reponses": [
+        "thalgrin",
+        "thalgrin coeur-d-enclume",
+        "thalgrin coeur d'enclume",
+        "thalgrin cœur-d'enclume"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le onzième roi est celui qui n'a pas de statue : on n'a pas eu le temps de la sculpter."
+      },
+      {
+        "niveau": 2,
+        "texte": "Les cloches de la chapelle et le diadème des onze rois parlent d'un onzième roi dont la fille est morte.",
+        "competence": "histoire",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Son nom commence par « Thal... ». Un nain de Veillecendre doit connaître la fin.",
+        "competence": "histoire",
+        "dd": 14
+      }
+    ],
+    "recompense": {
+      "effets": [
+        {
+          "fait": "f-hf-onzieme-socle"
+        },
+        {
+          "xp": 150
+        }
+      ],
+      "tresor": "hf-tr-niche-des-rois",
+      "resume": "La trappe s'ouvre sur une niche d'offrandes."
+    }
+  }
+]

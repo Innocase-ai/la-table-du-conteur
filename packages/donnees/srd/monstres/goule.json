@@ -1,0 +1,117 @@
+{
+  "id": "goule",
+  "nom": "Goule",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Chaotique Mauvais",
+  "ca": 12,
+  "pv": {
+    "moyenne": 22,
+    "des": "5d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 15,
+    "con": 10,
+    "int": 7,
+    "sag": 10,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "empoisonne"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "commun",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La goule effectue deux attaques de Morsure.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts tranchants. Si la cible n'est ni un Mort-vivant ni un elfe, elle fait un JS de Constitution DD 10 ; en cas d'échec, elle subit l'état Paralysé jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "paralyse",
+          "dureeRounds": 1,
+          "sauvegarde": {
+            "caracteristique": "con",
+            "dd": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 5 (1d6 + 2) dégâts perforants plus 3 (1d6) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 2,
+          "type": "perforant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "vulnerabilites": []
+}

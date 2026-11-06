@@ -1,0 +1,65 @@
+{
+  "id": "worg",
+  "nom": "Worg",
+  "taille": "G",
+  "type": "Fée",
+  "alignement": "Neutre Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 26,
+    "des": "4d10 + 4"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 13,
+    "con": 13,
+    "int": 7,
+    "sag": 11,
+    "cha": 8
+  },
+  "sauvegardes": {},
+  "competences": {
+    "perception": 4
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "gobelin, worg",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts perforants, et le prochain jet d'attaque effectué contre la cible avant le début du tour suivant du worg a l'Avantage.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

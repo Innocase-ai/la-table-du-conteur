@@ -1,0 +1,85 @@
+[
+ {
+  "id": "dime",
+  "nom": "La Dîme",
+  "resume": "La pression que la compagnie du Péage fait peser sur Mireval et la tribu. Elle monte à chaque nuit passée sans agir et à chaque violence inutile ; elle baisse quand le groupe paie, négocie, livre du grain ou rend un prisonnier. À 4, le village plie et le chapitre s'achève sans victoire.",
+  "min": 0,
+  "max": 4,
+  "initial": 1,
+  "paliers": [
+   {
+    "seuil": 1,
+    "nom": "La patrouille",
+    "narration": "Les hobgobelins doublent le péage et comptent les charrettes. Personne ne dit rien, mais tout le monde regarde la route.",
+    "effets": [
+     {
+      "flag": "z5-dime-patrouille"
+     }
+    ]
+   },
+   {
+    "seuil": 2,
+    "nom": "Le grenier scellé",
+    "narration": "Huguette fait poser les scellés sur le grenier. Les rations diminuent, les enfants quémandent, et les éclaireurs gobelins s'approchent des roseaux.",
+    "effets": [
+     {
+      "flag": "z5-grenier-scelle"
+     },
+     {
+      "attitude": {
+       "pnj": "huguette",
+       "delta": -5
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "skarn",
+       "delta": 5
+      }
+     }
+    ]
+   },
+   {
+    "seuil": 3,
+    "nom": "L'ultimatum",
+    "narration": "Varg envoie un cavalier : la moitié du grenier avant la prochaine lune, ou la compagnie le prendra. La milice se forme sur la place ; Skarn, lui, parle de frapper le premier.",
+    "effets": [
+     {
+      "flag": "z5-ultimatum"
+     },
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": -10
+      }
+     },
+     {
+      "attitude": {
+       "pnj": "skarn",
+       "delta": -10
+      }
+     }
+    ]
+   },
+   {
+    "seuil": 4,
+    "nom": "L'assaut",
+    "narration": "Le grenier brûle. Les hobgobelins entrent dans Mireval avant l'aube, les portes cèdent, et le village se soumet. Lina et Colin restent aux mains de Varg. Le chapitre s'achève sans victoire.",
+    "effets": [
+     {
+      "flag": "z5-assaut"
+     },
+     {
+      "fin": "fin-echec"
+     }
+    ]
+   }
+  ],
+  "evolution": [
+   {
+    "declencheur": "repos-long",
+    "delta": 1
+   }
+  ]
+ }
+]

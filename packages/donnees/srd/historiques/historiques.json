@@ -1,0 +1,50 @@
+[
+  {
+    "id": "acolyte",
+    "nom": "Acolyte",
+    "caracteristiques": ["int", "sag", "cha"],
+    "don": "initie-a-la-magie",
+    "competences": ["intuition", "religion"],
+    "outils": "matériel de calligraphe",
+    "equipementDepart": [
+      { "id": "A", "objets": ["matériel de calligraphe", "livre (de prières)", "symbole sacré", "parchemin (10 feuilles)", "robe"], "po": 8 },
+      { "id": "B", "objets": [], "po": 50 }
+    ]
+  },
+  {
+    "id": "criminel",
+    "nom": "Criminel",
+    "caracteristiques": ["dex", "con", "int"],
+    "don": "vigilant",
+    "competences": ["discretion", "escamotage"],
+    "outils": "outils de voleur",
+    "equipementDepart": [
+      { "id": "A", "objets": ["2 dagues", "outils de voleur", "2 bourses", "pied-de-biche", "tenue de voyage"], "po": 16 },
+      { "id": "B", "objets": [], "po": 50 }
+    ]
+  },
+  {
+    "id": "sage",
+    "nom": "Sage",
+    "caracteristiques": ["con", "int", "sag"],
+    "don": "initie-a-la-magie",
+    "competences": ["arcanes", "histoire"],
+    "outils": "matériel de calligraphe",
+    "equipementDepart": [
+      { "id": "A", "objets": ["bâton de combat", "matériel de calligraphe", "livre (d'histoire)", "parchemin (8 feuilles)", "robe"], "po": 8 },
+      { "id": "B", "objets": [], "po": 50 }
+    ]
+  },
+  {
+    "id": "soldat",
+    "nom": "Soldat",
+    "caracteristiques": ["for", "dex", "con"],
+    "don": "sauvagerie-martiale",
+    "competences": ["athletisme", "intimidation"],
+    "outils": "un type de boîte de jeux au choix",
+    "equipementDepart": [
+      { "id": "A", "objets": ["arc court", "20 flèches", "carquois", "lance", "boîte de jeux (du même type)", "trousse de soins", "tenue de voyage"], "po": 14 },
+      { "id": "B", "objets": [], "po": 50 }
+    ]
+  }
+]

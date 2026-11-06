@@ -1,0 +1,571 @@
+[
+  {
+    "id": "pere-aubin",
+    "nom": "Père Aubin",
+    "titre": "Prêtre de Sainte-Maëlle",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "71 ans",
+    "role": "Prêtre de l'église Sainte-Maëlle depuis quarante ans, lecteur de la Bonace : il perd la vue et la voix en silence et prie pour le retour du livre",
+    "lieu": "eg-nef",
+    "apparence": "Vieil homme humain de 71 ans, maigre et voûté, cheveux blancs clairsemés, joues creuses, yeux d'un bleu pâle voilé qui se plissent pour voir de près, soutane grise rapiécée, étole bleue ardoise sur les épaules, un foulard de laine autour du cou, une tasse de tisane entre les mains.",
+    "personnalite": {
+      "traits": [
+        "doux",
+        "têtu",
+        "discret sur ses maux",
+        "humour sec"
+      ],
+      "voix": "Rauque et basse, presque un souffle ; il parle par phrases courtes, s'arrête pour reprendre sa respiration et finit souvent par « enfin » ou « voyez-vous » ; quand il se croit seul, il fredonne un cantique.",
+      "valeurs": [
+        "on ne laisse pas un noyé sans veillée",
+        "la foi se tient debout même quand la voix s'en va"
+      ],
+      "desir": "Que le livre revienne à sa place, que la Bonace soit lue une dernière fois, et que son sacristain sache enfin qu'il comptait pour lui.",
+      "peur": "Se taire avant d'avoir transmis la Bonace, et que le village découvre qu'il n'est plus bon à rien.",
+      "defaut": "L'orgueil du silence : il préfère mentir par omission que d'avouer sa faiblesse."
+    },
+    "presences": [],
+    "faction": "eglise-de-la-bonace",
+    "attitude": 10,
+    "savoir": [
+      "f-z2-bonace",
+      "f-z2-noyes-agites",
+      "f-z2-ordre-de-la-mer",
+      "f-aubin-perd-sa-voix",
+      "f-livre-use-la-voix",
+      "f-page-de-soin",
+      "f-z2-aubin-voulait-tobie",
+      "f-aubin-savait"
+    ],
+    "secrets": [
+      {
+        "fait": "f-aubin-perd-sa-voix",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-livre-use-la-voix",
+        "attitudeMin": 45
+      },
+      {
+        "fait": "f-page-de-soin",
+        "condition": {
+          "flag": "z2-bonace-lue"
+        },
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-z2-aubin-voulait-tobie",
+        "attitudeMin": 45
+      },
+      {
+        "fait": "f-z2-aubin-voulait-tobie",
+        "condition": {
+          "flag": "tobie-retrouve"
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-aubin-savait",
+        "attitudeMin": 60
+      },
+      {
+        "fait": "f-aubin-savait",
+        "condition": {
+          "ou": [
+            {
+              "objet": "cle-de-la-crypte"
+            },
+            {
+              "fait": "f-cle-de-tobie"
+            }
+          ]
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-bonace-et-la-fete",
+        "mots": [
+          "Bonace",
+          "fête",
+          "livre",
+          "Maëlle",
+          "lecture",
+          "flotte"
+        ],
+        "question": "Que lit-on à la fête de la Mer ?",
+        "reponse": "Chaque année, au soir de la fête, il lit la Bonace, la page du Livre de Maëlle qui calme la mer, pour que la flotte revienne saine et sauve. Il la lit depuis trente et un ans. Le livre repose en temps normal dans la niche de la crypte ; sans lui, la fête est gâchée et le village a peur. Il parle de la sainte avec une tendresse presque embarrassée.",
+        "revele": [
+          "f-z2-bonace"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-crypte",
+        "mots": [
+          "crypte",
+          "noyés",
+          "niche",
+          "cloches",
+          "murmures",
+          "grille"
+        ],
+        "question": "Que s'est-il passé dans la crypte ?",
+        "reponse": "La grille n'a pas été forcée, la niche est vide, et depuis la nuit du vol les noyés murmurent. Il n'ose plus descendre seul : sa vue lui joue des tours dans l'escalier. Il évoque les trois cloches de la crypte, que la sainte sonnait comme on sonne la mer : dans l'ordre où elle vient, où elle reste, puis où elle s'en va, jamais à rebours. Il cite les signes gravés sur chaque cloche, qu'on retrouve au vitrail. L'armoire de la sainte s'ouvre à cette sonnerie, dit-on, et il n'a jamais eu le cœur d'essayer.",
+        "revele": [
+          "f-z2-noyes-agites",
+          "f-z2-ordre-de-la-mer"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "dire-la-bonace",
+        "mots": [
+          "Bonace",
+          "dire",
+          "prière",
+          "réciter",
+          "apprendre"
+        ],
+        "question": "Pourriez-vous nous dire la Bonace ?",
+        "attitudeMin": 20,
+        "reponse": "Il hésite, puis ferme les yeux et récite, à voix presque basse, la Bonace de mémoire : une longue litanie calme comme une mer d'huile. Sa voix se casse deux fois sur le même mot, et il la reprend sans commentaire. Quand il a fini, il vous dit que vous la connaissez maintenant, et qu'un lecteur n'est pas celui qui lit, mais celui qui a entendu.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "z2-bonace-lue"
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-page-de-soin",
+        "mots": [
+          "page",
+          "soin",
+          "guérir",
+          "fièvre",
+          "remède",
+          "malade"
+        ],
+        "question": "Existe-t-il une page pour guérir les malades ?",
+        "condition": {
+          "flag": "z2-bonace-lue"
+        },
+        "attitudeMin": 25,
+        "reponse": "Il baisse la voix : la sainte aurait écrit, derrière la Bonace, une page de soin, qui guérit ceux que les remèdes ne guérissent pas. Elle ne s'ouvre que pour un lecteur de la Bonace, quelqu'un qui l'a entendue et portée. Il l'a toujours regardée avec crainte, car il sait ce que coûte chaque lecture, et il pense à Hélène en disant cela.",
+        "revele": [
+          "f-page-de-soin"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "sa-voix-et-sa-vue",
+        "mots": [
+          "voix",
+          "vue",
+          "yeux",
+          "fatigue",
+          "santé",
+          "toux"
+        ],
+        "question": "Vous semblez épuisé, mon père.",
+        "attitudeMin": 40,
+        "reponse": "Il pose sa tasse. Sa vue baisse depuis trois ans, sa voix depuis deux, et il n'a rien dit à personne. Le livre prend un peu de la voix de celui qui lit la Bonace : c'est le prix, que la sainte avait voulu, et que chaque prêtre paie. Il n'a pas voulu l'avouer à son village, qui a besoin d'un prêtre debout. Il demande, d'un ton presque suppliant, qu'on garde cela pour soi.",
+        "revele": [
+          "f-aubin-perd-sa-voix",
+          "f-livre-use-la-voix"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-sacristain",
+        "mots": [
+          "Tobie",
+          "sacristain",
+          "successeur",
+          "cloches",
+          "garçon"
+        ],
+        "question": "Parlez-nous de votre sacristain.",
+        "reponse": "Il sourit pour la première fois : Tobie sonne les cloches mieux que personne, il le sait, et il l'a vu grandir dans l'église, après la mort de son père. Depuis la fête, plus de nouvelles ; il s'inquiète, il se tait sur le reste.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-registre-des-lectures",
+        "mots": [
+          "registre",
+          "lectures",
+          "armoire",
+          "cuir",
+          "notes"
+        ],
+        "question": "Lui montrer le registre des lectures.",
+        "condition": {
+          "objet": "z2-o-registre-des-lectures"
+        },
+        "reponse": "Il tâte la couverture du bout des doigts, la reconnaît, et ses épaules s'affaissent. Il ne peut plus nier : les notes de voix, d'une main à l'autre, finissent par sa propre écriture, de plus en plus tremblée. Il avoue le prix de la lecture, et remercie, du bout des lèvres, d'avoir ouvert l'armoire sans le lui reprocher.",
+        "revele": [
+          "f-aubin-perd-sa-voix",
+          "f-livre-use-la-voix"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-nuit-de-la-fete",
+        "mots": [
+          "nuit",
+          "clé",
+          "fête",
+          "silence",
+          "confidence"
+        ],
+        "question": "Où étiez-vous la nuit de la fête, mon père ?",
+        "condition": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "pere-aubin",
+                "attitudeMin": 60
+              }
+            },
+            {
+              "objet": "cle-de-la-crypte"
+            },
+            {
+              "fait": "f-cle-de-tobie"
+            }
+          ]
+        },
+        "reponse": "Le père Aubin parle bas, par phrases courtes, sans chercher à se faire plaindre. Cette nuit-là, depuis l'allée, il a vu Tobie Ancre prendre la clé de la crypte. Il ne l'a pas arrêté. Il n'a rien dit, ni ce soir-là ni après. « J'ai eu peur, voyez-vous, d'être remplacé auprès de la Bonace, et auprès du village. » Il avoue que l'orgueil a fait le reste, ce silence qu'il croyait être de la sagesse. Il en a honte et ne cherche pas à s'en laver. « Soyez justes avec le garçon avant de l'être avec moi. Il a voulu payer le remède de sa mère, et moi j'ai voulu sauver ma place. »",
+        "revele": [
+          "f-aubin-savait"
+        ],
+        "effets": [
+          {
+            "rencontre": "z5-r-aubin-savait"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "L'église est ouverte à tous, mais je préférerais que vous n'y fassiez pas de bruit.",
+      "neutre": "Entrez, entrez. L'église est ouverte à tous, et le banc devant l'autel est libre. Que puis-je pour vous ?",
+      "amical": "Ah, vous voilà ! Asseyez-vous près de moi. Ma tisane est encore chaude, enfin, presque.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "aubin-pardonne"
+          },
+          "texte": "« Enfin. Vous êtes revenus. Je ne vois plus guère, mais je devine dans votre voix que vous m'avez pardonné. Voyez-vous, je vais parler à Tobie moi-même. Merci d'avoir été justes avec un vieil homme. Je n'oublierai pas cette nuit. »"
+        },
+        {
+          "condition": {
+            "flag": "aubin-denonce"
+          },
+          "texte": "« Bonjour. Je vois que le village a déjà la nouvelle. Vous avez fait ce que vous jugiez juste, je ne vous le reprocherai pas. Maintenant, laissez-moi, s'il vous plaît, avec ma tisane. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-livrer"
+          },
+          "texte": "Aubin tourne vers vous un visage fermé, la voix rauque : « Vous l'avez livré à la caserne. Que la sainte vous pardonne, moi je ne le peux pas encore. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-confier"
+          },
+          "texte": "Aubin vous serre les mains longuement : « Mon garçon dort sous mon toit. Je n'ai pas de mots pour cela. »"
+        },
+        {
+          "condition": {
+            "flag": "livre-retrouve"
+          },
+          "texte": "Aubin se lève à votre entrée, les deux mains tendues, la voix cassée de bonheur : « Le livre est revenu. Je le sens à la pierre. Les noyés se sont tus, voyez-vous, enfin. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Aubin pose sa tasse avec soin : « On dit au village que l'homme de la crique a été démasqué. Que la sainte pardonne à ceux qui ont ouvert ma crypte, et qu'elle vous garde, vous. »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Aubin vous attend sur son banc, très droit : « Vous avez retrouvé mon garçon, il paraît. Dites-moi seulement s'il mange, enfin. Le reste, je le sais déjà. »"
+        },
+        {
+          "condition": {
+            "flag": "z2-crypte-calmee"
+          },
+          "texte": "Aubin sourit, les yeux humides : « Les noyés se sont tus cette nuit. Je ne sais pas ce que vous avez fait en bas, mais le silence est revenu dans mes murs. »"
+        },
+        {
+          "condition": {
+            "flag": "vol-connu"
+          },
+          "texte": "Aubin tourne vers vous son visage voilé : « Vous êtes ceux que la maire a envoyés. Que la sainte vous guide. Parlez, mes enfants, je vous écoute, enfin, je fais de mon mieux. »"
+        }
+      ]
+    },
+    "services": [
+      {
+        "id": "hospitalite-du-pretre",
+        "nom": "Passer la nuit à la sacristie",
+        "resume": "Le prêtre ouvre la sacristie pour la nuit : un banc de chêne, une couverture de laine grise, une tisane à la menthe, et le calme de la pierre.",
+        "prix": 0,
+        "effets": []
+      }
+    ],
+    "inventaire": []
+  },
+  {
+    "id": "helene-ancre",
+    "nom": "Hélène Ancre",
+    "titre": "Raccommodeuse de filets",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "44 ans",
+    "role": "Raccommodeuse de filets, mère du sacristain Tobie, malade de la fièvre des marais, hébergée dans la sacristie par le père Aubin",
+    "lieu": "eg-sacristie",
+    "apparence": "Femme humaine de 44 ans, très pâle, les joues rouges de fièvre, cheveux châtains tressés et défaits sur l'épaule, couverte d'une laine grise, mains calleuses de raccommodeuse de filets qui tiennent une navette et un morceau de filet, cernes profonds, sourire fatigué.",
+    "personnalite": {
+      "traits": [
+        "pudique",
+        "courageuse",
+        "taquine malgré la fièvre",
+        "têtue"
+      ],
+      "voix": "Douce et basse, un peu essoufflée ; elle coupe ses phrases pour tousser, plaisante en raccommodant (« une maille, un mot ») et esquive les questions sur son fils par une anecdote de pêcheur.",
+      "valeurs": [
+        "on ne laisse pas sa famille",
+        "une maille tenue vaut mieux qu'une plainte"
+      ],
+      "desir": "Que son fils revienne, qu'on le retrouve sain et sauf, et qu'on ne le juge pas avant de l'écouter.",
+      "peur": "Que son fils ait fait quelque chose d'irréparable à cause d'elle.",
+      "defaut": "Elle préfère ne pas savoir plutôt que de savoir ce qu'elle devine."
+    },
+    "presences": [],
+    "faction": "gens-du-port",
+    "attitude": 0,
+    "savoir": [
+      "f-helene-malade",
+      "f-z2-sable-dans-les-chaussures",
+      "f-z2-remedes-payes",
+      "f-z2-crochet-de-la-crypte",
+      "f-cle-de-tobie"
+    ],
+    "secrets": [
+      {
+        "fait": "f-z2-sable-dans-les-chaussures",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-z2-sable-dans-les-chaussures",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-cle-de-tobie",
+        "attitudeMin": 50
+      },
+      {
+        "fait": "f-cle-de-tobie",
+        "condition": {
+          "objet": "cle-de-la-crypte"
+        }
+      },
+      {
+        "fait": "f-cle-de-tobie",
+        "condition": {
+          "flag": "tobie-retrouve"
+        },
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "sa-fievre",
+        "mots": [
+          "fièvre",
+          "malade",
+          "santé",
+          "toux",
+          "marais"
+        ],
+        "question": "Comment allez-vous, madame Ancre ?",
+        "reponse": "Elle rit pour ne pas tousser : la fièvre des marais la tient depuis deux mois, elle va, elle vient, la nuit elle claque des dents. Les tisanes du père Aubin aident à tenir, mais pas à guérir. Elle ne se plaint pas, elle constate, et s'excuse presque d'occuper un lit qu'un autre aurait pu avoir.",
+        "revele": [
+          "f-helene-malade"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-tobie-sa-mere",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "le-pere-aubin",
+        "mots": [
+          "Aubin",
+          "prêtre",
+          "hébergement",
+          "recueillie",
+          "église"
+        ],
+        "question": "Le père Aubin prend-il soin de vous ?",
+        "reponse": "Elle s'adoucit : il les a recueillis, son fils et elle, après la noyade de son mari, il y a neuf ans, sans rien demander. Il lui apporte lui-même sa tisane, même si ses mains tremblent, et il parle de moins en moins. Elle trouve qu'il tousse trop, qu'il ne mange pas assez, et ne dit pas à qui.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "son-fils",
+        "mots": [
+          "fils",
+          "Tobie",
+          "sacristain",
+          "garçon",
+          "famille"
+        ],
+        "question": "Où est votre fils ?",
+        "reponse": "Elle ne le sait pas, et sa voix tremble : il est parti la nuit de la fête, il n'est pas revenu. Elle le dit « avec ses cloches », comme on dit une bêtise pour se rassurer. Elle le défend sans qu'on l'accuse : un garçon bon, qui s'est toujours privé pour elle. Elle supplie qu'on ne lui fasse pas de mal.",
+        "revele": [],
+        "effets": [],
+        "unique": false,
+        "condition": {
+          "non": {
+            "flag": "tobie-retrouve"
+          }
+        }
+      },
+      {
+        "id": "le-sable",
+        "mots": [
+          "sable",
+          "chaussures",
+          "nuit",
+          "tard",
+          "rentré",
+          "crique"
+        ],
+        "question": "Tobie vous a-t-il paru étrange, cette nuit-là ?",
+        "attitudeMin": 25,
+        "reponse": "Elle hésite longtemps, puis raconte à demi-mot : il est rentré tard, la nuit de la fête, sur la pointe des pieds, les chaussures pleines d'un sable gris et fin qui n'était pas celui de la place. Elle ne l'a pas questionné. Elle a posé les chaussures près du feu et n'a pas dormi. Elle ne l'accuse de rien, elle veut qu'on le retrouve, c'est tout.",
+        "revele": [
+          "f-z2-sable-dans-les-chaussures"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-remedes",
+        "mots": [
+          "remède",
+          "apothicaire",
+          "argent",
+          "pièces",
+          "payé",
+          "médicament"
+        ],
+        "question": "Qui paie vos remèdes ?",
+        "attitudeMin": 15,
+        "reponse": "L'apothicaire est cher, et elle n'a pas un sou : le sacristain gagne à peine de quoi manger. Pourtant, peu avant la fête, Tobie a payé d'un coup, en pièces d'or, et lui a dit qu'il avait « trouvé un arrangement ». Elle n'a pas demandé lequel. Elle s'en veut déjà de n'avoir pas posé la question.",
+        "revele": [
+          "f-z2-remedes-payes"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-crochet-vide",
+        "mots": [
+          "clé",
+          "crochet",
+          "crypte",
+          "coffre",
+          "étiquette"
+        ],
+        "question": "Savez-vous ce qu'est devenue la clé de la crypte ?",
+        "reponse": "Elle suit votre regard vers le crochet vide au-dessus du coffre : la clé y pendait, sous l'étiquette « crypte », que Tobie avait écrite à la craie pour ne pas se tromper. Elle l'a vue manquer au matin de la fête et s'est dit qu'il l'avait emportée pour la veillée. Elle avertit, par habitude, de ne pas forcer le coffre des offrandes : le sacristain d'autrefois y avait mis une aiguille.",
+        "revele": [
+          "f-z2-crochet-de-la-crypte"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Je n'ai pas la force de recevoir des gens qui me jugent. Laissez-moi, s'il vous plaît.",
+      "neutre": "Pardon de ne pas me lever. Entrez, asseyez-vous sur la chaise, elle est un peu de travers, comme moi.",
+      "amical": "Ah, c'est vous ! Venez, que je vous raconte ce que le père Aubin a encore dit de travers.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "livre-retrouve"
+          },
+          "texte": "Hélène lève la tête d'un coup, les yeux brillants de fièvre et d'espoir : « On dit que le livre est revenu. Alors, peut-être que... Dites-moi que mon fils n'est pas loin. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Hélène serre son filet à deux mains : « On parle d'un homme de la crique, d'un marché. Je ne veux pas savoir. Dites-moi seulement si mon fils est mêlé à ça, et s'il est en vie. »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Hélène vous cherche du regard sur le seuil, la voix serrée : « Vous l'avez retrouvé, n'est-ce pas ? On me l'a dit à demi-mot. Comment va-t-il ? A-t-il mangé ? »"
+        },
+        {
+          "condition": {
+            "flag": "vol-connu"
+          },
+          "texte": "Hélène pose sa navette : « Le village ne parle que du livre. Moi, je n'ai que mon fils en tête. Vous qui cherchez, dites-moi si vous avez entendu parler de lui. »"
+        }
+      ]
+    },
+    "services": [],
+    "inventaire": []
+  }
+]

@@ -1,0 +1,70 @@
+[
+ {
+  "id": "min-piege-effondrement-de-la-veine",
+  "nom": "L'effondrement de la veine",
+  "lieu": "min-veine-de-fer",
+  "resume": "Les étais de la chambre de taille cèdent sous les coups : le toit lâche une masse de schiste et de poussière sur la moitié de la galerie.",
+  "detection": {
+   "dd": 13,
+   "competence": "perception"
+  },
+  "desarmement": {
+   "dd": 14,
+   "competence": "survie",
+   "outil": "étais de bois, coins de fer et une bonne lampe"
+  },
+  "declenchement": "Frapper la veine à l'aplomb d'un étais fendu, ou bousculer la pile de madriers, fait glisser la dalle de schiste.",
+  "sauvegarde": {
+   "caracteristique": "dex",
+   "dd": 13,
+   "moitieSiReussite": true
+  },
+  "degats": [
+   {
+    "des": "2d10",
+    "type": "contondant"
+   }
+  ],
+  "etats": [],
+  "effets": [
+   {
+    "narration": "La poussière retombe longtemps. La galerie est à moitié comblée ; il faudra déblayer pour passer."
+   }
+  ],
+  "reinitialisation": false
+ },
+ {
+  "id": "min-piege-arbalete-du-bureau",
+  "nom": "L'arbalète du chambranle",
+  "lieu": "min-bureau-de-varg",
+  "resume": "Une arbalète de chasse est fixée au chambranle, détendue en apparence : ouvrir la porte sans lever la targette envoie un carreau dans la pièce.",
+  "detection": {
+   "dd": 14,
+   "competence": "investigation"
+  },
+  "desarmement": {
+   "dd": 14,
+   "competence": "escamotage",
+   "outil": "outils-de-voleur ou un tournevis de fortune"
+  },
+  "declenchement": "Pousser la porte sans lever d'abord la petite targette de fer bande la détente sous le chambranle.",
+  "sauvegarde": {
+   "caracteristique": "dex",
+   "dd": 14,
+   "moitieSiReussite": true
+  },
+  "degats": [
+   {
+    "des": "2d10",
+    "type": "perforant"
+   }
+  ],
+  "etats": [],
+  "effets": [
+   {
+    "narration": "Le carreau claque contre le mur et vibre dans les planches ; dans la cour, un hobgobelin lève la tête."
+   }
+  ],
+  "reinitialisation": false
+ }
+]

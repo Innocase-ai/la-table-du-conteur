@@ -1,0 +1,69 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "bete-de-somme",
+      "nom": "Bête de somme",
+      "resume": "La mule est considérée comme d'une catégorie de taille de plus que la réalité lorsqu'il s'agit de déterminer sa capacité de charge."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "mule",
+  "nom": "Mule",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 10,
+  "pv": {
+    "moyenne": 11,
+    "des": "2d8 + 2"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 10,
+    "con": 13,
+    "int": 2,
+    "sag": 10,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "fp": "1/8",
+  "px": 25,
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 4 (1d4 + 2) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 2,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

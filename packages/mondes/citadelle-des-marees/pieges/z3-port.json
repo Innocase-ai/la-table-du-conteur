@@ -1,0 +1,44 @@
+[
+  {
+    "id": "por-p-trappe-des-entrepots",
+    "nom": "Le sac de plomb du bureau",
+    "lieu": "por-entrepots-des-rats",
+    "resume": "Un tiroir du bureau, tiré d'un coup, décroche un sac de plomb suspendu au-dessus de la porte.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Un tiroir tiré sans précaution libère la corde qui tient un sac de plomb au plafond : il tombe droit sur la tête de qui se penche.",
+    "degats": [{ "des": "2d8", "type": "contondant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true }
+  },
+  {
+    "id": "por-p-grille-a-maree",
+    "nom": "La vanne du bassin",
+    "lieu": "por-egouts-bassin",
+    "resume": "La vanne du bassin, tirée sans caler la grille, ouvre le bassin à la marée qui se précipite par la rainure.",
+    "detection": { "dd": 14, "competence": "investigation" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "un coin de fer glissé dans la vanne" },
+    "declenchement": "Tirer la vanne d'un coup libère la grille : l'eau brune du bassin se rue sur la corniche et renverse qui se tient debout.",
+    "degats": [{ "des": "2d6", "type": "contondant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": true,
+    "sauvegarde": { "caracteristique": "for", "dd": 13, "moitieSiReussite": true }
+  },
+  {
+    "id": "por-p-anneau-de-la-porte",
+    "nom": "L'anneau de la pleine mer",
+    "lieu": "por-cachette-des-rats",
+    "resume": "Un anneau de fer tiré au mauvais moment libère une lame de ressort, cachée dans le battant.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "L'anneau de la pleine mer, tiré à la main, fait jaillir du battant une lame courte, à hauteur de poignet.",
+    "degats": [{ "des": "1d10", "type": "perforant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true }
+  }
+]

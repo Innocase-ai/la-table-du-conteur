@@ -1,0 +1,187 @@
+[
+  {
+    "id": "octave-lamberte",
+    "nom": "Octave Lamberte",
+    "titre": "Intendant",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "50 ans",
+    "role": "Voyageur élégant qui attend un navire sur le quai et se dit intendant d'une maison lointaine : patient, poli, il guette ce que le village a de précieux",
+    "lieu": "pl-quai",
+    "apparence": "Homme humain de 50 ans, grand et mince, cheveux gris plaqués, moustache soignée, redingote gris perle boutonnée jusqu'au col, gants de chevreau, chapeau haut, canne à pommeau d'argent, bottes cirées malgré le goudron du quai.",
+    "personnalite": {
+      "traits": [
+        "poli",
+        "patient",
+        "observateur",
+        "jamais pressé"
+      ],
+      "voix": "Posée et soignée, par phrases complètes ; il vouvoie tout le monde, dit « je crains que… » et « permettez » avant de contredire, et ne hausse jamais le ton.",
+      "valeurs": [
+        "une affaire se conclut avec courtoisie",
+        "tout se négocie, même un refus"
+      ],
+      "desir": "Rapporter le livre au marquis de Verdelune sans avoir à lever la main.",
+      "peur": "Revenir les mains vides devant son maître.",
+      "defaut": "Il croit que tout s'achète, même un scrupule."
+    },
+    "presences": [],
+    "attitude": 5,
+    "savoir": [
+      "f-marche-de-sorel",
+      "f-navire-de-verdelune",
+      "f-z5-intendant-du-marquis"
+    ],
+    "secrets": [
+      {
+        "fait": "f-marche-de-sorel",
+        "condition": {
+          "ou": [
+            {
+              "objet": "lettre-de-verdelune"
+            },
+            {
+              "objet": "bourse-marquee"
+            }
+          ]
+        }
+      },
+      {
+        "fait": "f-marche-de-sorel",
+        "jet": {
+          "competence": "intuition",
+          "dd": 15
+        }
+      },
+      {
+        "fait": "f-navire-de-verdelune",
+        "condition": {
+          "objet": "lettre-de-verdelune"
+        }
+      },
+      {
+        "fait": "f-navire-de-verdelune",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-z5-intendant-du-marquis",
+        "condition": {
+          "fait": "f-marche-de-sorel"
+        }
+      },
+      {
+        "fait": "f-z5-intendant-du-marquis",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "un-voyageur",
+        "mots": [
+          "voyageur",
+          "qui",
+          "intendant",
+          "quai"
+        ],
+        "question": "Qui êtes-vous, monsieur ?",
+        "reponse": "Octave Lamberte se présente avec une politesse de salon : il est intendant d'une maison lointaine, de passage à Port-Sillage, et il attend un navire qui doit le conduire plus loin. Il dit, en inclinant la tête : « Un voyageur sans prétention, je vous assure. » Il apprécie le calme de ce quai, où l'on n'entend que le clapotis et les mouettes, et il promène sa canne sur les planches comme on flâne.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-fete-gachee",
+        "mots": [
+          "fête",
+          "village",
+          "vol",
+          "maire"
+        ],
+        "question": "Que pensez-vous de cette fête de la Mer ?",
+        "reponse": "Octave secoue doucement la tête quand on lui parle de la fête de la Mer gâchée. « Je crains que vos gens n'aient eu une mauvaise soirée, et c'est bien dommage. » Il trouve Port-Sillage charmant, ses barques, ses lanternes, la franchise de ses habitants, et il le dit sans flatterie. Il remarque aussi, en levant son chapeau vers la place, que la maire a l'air épuisée.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-beaux-livres",
+        "mots": [
+          "livre",
+          "reliure",
+          "bibliothèque",
+          "collection"
+        ],
+        "question": "Aimez-vous les livres, monsieur ?",
+        "reponse": "Octave sourit, visiblement heureux de changer de sujet. Il avoue une passion pour les belles reliures : le cuir souple, les dorures qui accrochent la lumière, les signets de soie. « Un livre bien relié, croyez-moi, se tient comme un homme de bonne compagnie. » Quand on lui demande quel ouvrage précis il aimerait voir, il esquive avec grâce, parle du prix du papier et revient à la vue de la baie.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-navire-attendu",
+        "mots": [
+          "navire",
+          "mer",
+          "marée",
+          "voyage"
+        ],
+        "question": "Votre navire tarde-t-il ?",
+        "reponse": "« On attend toujours un navire sur un quai, n'est-ce pas ? » Octave tourne les yeux vers l'horizon, là où la baie s'ouvre sur le large. « C'est l'une des rares choses qu'on puisse faire sans se presser. » Il ne donne ni nom, ni date, ni port d'attache. Il reste un moment immobile, les mains croisées sur le pommeau de sa canne, comme s'il comptait des voiles qui n'existent pas encore.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-homme-du-marquis",
+        "mots": [
+          "marquis",
+          "Verdelune",
+          "démasqué",
+          "preuve"
+        ],
+        "question": "Lui montrer que nous savons.",
+        "condition": {
+          "ou": [
+            {
+              "fait": "f-marche-de-sorel"
+            },
+            {
+              "objet": "lettre-de-verdelune"
+            },
+            {
+              "objet": "bourse-marquee"
+            }
+          ]
+        },
+        "reponse": "Octave prend le temps de poser sa canne contre une barrique, puis retire lentement ses gants, un à un. Il ne nie rien. « Vous avez raison, je le crains, et je ne vais pas vous faire perdre votre soirée. Je suis l'intendant du marquis de Verdelune. Mon maître collectionne les livres rares et veut celui-ci pour sa bibliothèque. » Il marque une pause, sans menace. « La Bonace, comme le livre, a un prix, et mon maître est un homme patient. Je le suis aussi. »",
+        "revele": [
+          "f-z5-intendant-du-marquis"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "« Je vous conseille de ne pas me faire perdre mon temps. Je n'ai guère de patience pour les gens sans manières, et le quai est assez large pour que chacun garde son bout. »",
+      "neutre": "« Bonjour à vous, et bienvenue sur le quai. Belle journée pour la mer, n'est-ce pas ? Le vent tombe, les barques vont pouvoir sortir demain. Je vous souhaite un bon après-midi, et que la marée vous soit favorable. »",
+      "amical": "« Ah, bonjour ! Quel plaisir de vous revoir sur ce quai. Le temps est doux, la mer est calme, et la conversation est meilleure en bonne compagnie. Permettez que je vous salue comme il se doit. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "livre-retrouve"
+          },
+          "texte": "Octave sourit en vous voyant approcher, avec la politesse d'un homme qui a attendu longtemps. Son regard glisse un instant vers votre sac, puis revient à vos visages. « Bonjour à vous. Je vous souhaite de ne pas trop vous fatiguer sur ce quai. Certaines choses sont lourdes à porter. »"
+        }
+      ]
+    },
+    "services": [],
+    "inventaire": [],
+    "profilCombat": "noble"
+  }
+]

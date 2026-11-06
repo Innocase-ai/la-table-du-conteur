@@ -1,0 +1,114 @@
+{
+  "id": "ankheg",
+  "nom": "Ankheg",
+  "taille": "G",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 17,
+    "dex": 11,
+    "con": 14,
+    "int": 1,
+    "sag": 13,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "fouisseur",
+      "nom": "Fouisseur",
+      "resume": "Vitesse de fouissement 3 m. L'ankheg peut creuser à travers la roche à concurrence de la moitié de sa Vitesse de fouissement en laissant un tunnel de 3 m de diamètre dans son sillage."
+    },
+    {
+      "id": "perception-des-vibrations",
+      "nom": "Perception des vibrations",
+      "resume": "Sens : Perception des vibrations 18 m (non représentée dans le moteur)."
+    }
+  ],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5 (avec Avantage si la cible est Agrippée par l'ankheg), allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants plus 3 (1d6) dégâts d'acide. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 13).",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "aspersion-acide",
+      "nom": "Aspersion acide",
+      "cout": "action",
+      "resume": "Recharge 6. JS Dextérité DD 12, chaque créature dans une Ligne de 9 m de long sur 1,50 m de large. Échec : 14 (4d6) dégâts d'acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 12,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 9,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "recharge": "6"
+    }
+  ]
+}

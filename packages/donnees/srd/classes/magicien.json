@@ -1,0 +1,557 @@
+{
+  "id": "magicien",
+  "nom": "Magicien",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "int"
+    ]
+  },
+  "deVie": 6,
+  "sauvegardes": [
+    "int",
+    "sag"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "arcanes",
+      "histoire",
+      "intuition",
+      "investigation",
+      "medecine",
+      "nature",
+      "religion"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "2 dagues",
+        "focaliseur arcanique (bâton de combat)",
+        "robe",
+        "grimoire",
+        "paquetage d’érudit"
+      ],
+      "po": 5
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 55
+    }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "int",
+    "sortsMineurs": [
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ]
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Savoir rituel",
+        "Restauration magique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Érudition"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe de Magicien"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Mémorisation de sort"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [],
+      "colonnes": {}
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Maîtrise des sorts"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {}
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Sorts de prédilection"
+      ],
+      "colonnes": {}
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Lance des sorts de Magicien avec l’Intelligence, via un focaliseur arcanique ou le grimoire. Le grimoire débute avec six sorts du 1er niveau et en reçoit deux de plus à chaque niveau de Magicien ; les sorts préparés sont choisis dans le grimoire et peuvent être changés après un Repos long, les emplacements se récupèrent au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "savoir-rituel",
+      "nom": "Savoir rituel",
+      "niveau": 1,
+      "resume": "Peut lancer comme rituel tout sort à mention « rituel » inscrit dans son grimoire, même non préparé, en le lisant dans le grimoire.",
+      "effets": []
+    },
+    {
+      "id": "restauration-magique",
+      "nom": "Restauration magique",
+      "niveau": 1,
+      "resume": "En terminant un Repos court, récupère des emplacements de sort dépensés dont la somme des niveaux ne dépasse pas la moitié du niveau de Magicien (arrondie au supérieur), aucun du 6e niveau ou plus. Une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "erudition",
+      "nom": "Érudition",
+      "niveau": 2,
+      "resume": "Reçoit l’Expertise dans une compétence maîtrisée parmi Arcanes, Histoire, Intuition, Investigation, Médecine, Nature ou Religion.",
+      "effets": [
+        {
+          "type": "expertise",
+          "nombre": 1,
+          "parmi": [
+            "arcanes",
+            "histoire",
+            "intuition",
+            "investigation",
+            "medecine",
+            "nature",
+            "religion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "memorisation-de-sort",
+      "nom": "Mémorisation de sort",
+      "niveau": 5,
+      "resume": "En terminant un Repos court, peut étudier son grimoire pour remplacer un sort préparé du 1er niveau ou plus par un autre sort du grimoire.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niv-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niv-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niv-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "maitrise-des-sorts",
+      "nom": "Maîtrise des sorts",
+      "niveau": 18,
+      "resume": "Choisit un sort du 1er niveau et un sort du 2e niveau de son grimoire, dont le temps d’incantation est d’une action : ils sont toujours préparés et peuvent être lancés à leur niveau le plus bas sans dépenser d’emplacement (un emplacement est dépensé pour les lancer à un niveau supérieur). Après un Repos long, peut remplacer l’un de ces sorts par un sort conforme du même niveau tiré du grimoire.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Reçoit un don de Faveur épique ou un autre don dont il remplit les conditions. Faveur de mémoire magique est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "sorts-de-predilection",
+      "nom": "Sorts de prédilection",
+      "niveau": 20,
+      "resume": "Choisit deux sorts de Magicien du 3e niveau de son grimoire comme sorts de prédilection : toujours préparés, ils peuvent être lancés une fois chacun au 3e niveau sans emplacement. Il faut ensuite terminer un Repos court ou long pour les relancer sans emplacement ; un emplacement est dépensé pour les lancer à un niveau supérieur.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "evocateur",
+    "nom": "Évocateur",
+    "aptitudes": [
+      {
+        "id": "evocateur-erudit",
+        "nom": "Évocateur érudit",
+        "niveau": 3,
+        "resume": "Ajoute gratuitement à son grimoire deux sorts de Magicien d’Évocation du 2e niveau au plus, puis un sort d’Évocation gratuit chaque fois qu’il accède à un nouveau niveau d’emplacements de sort.",
+        "effets": []
+      },
+      {
+        "id": "sort-mineur-appuye",
+        "nom": "Sort mineur appuyé",
+        "niveau": 3,
+        "resume": "Quand un de ses sorts mineurs rate son jet d’attaque ou que la cible réussit son jet de sauvegarde, la cible subit quand même la moitié des dégâts du sort mineur, sans ses effets supplémentaires.",
+        "effets": []
+      },
+      {
+        "id": "faconneur-de-sorts",
+        "nom": "Façonneur de sorts",
+        "niveau": 6,
+        "resume": "Quand il lance un sort d’Évocation qui affecte d’autres créatures qu’il voit, peut en désigner un nombre n’excédant pas 1 + le niveau du sort : elles réussissent automatiquement leur jet de sauvegarde contre le sort et ne subissent aucun dégât si elles devaient les réduire de moitié en cas de réussite.",
+        "effets": []
+      },
+      {
+        "id": "evocation-amelioree",
+        "nom": "Évocation améliorée",
+        "niveau": 10,
+        "resume": "Chaque fois qu’il lance un sort de Magicien de l’école d’Évocation, peut ajouter son modificateur d’Intelligence à un jet de dégâts de ce sort.",
+        "effets": []
+      },
+      {
+        "id": "surcharge-magique",
+        "nom": "Surcharge magique",
+        "niveau": 14,
+        "resume": "Lorsqu’il lance un sort de Magicien infligeant des dégâts avec un emplacement du 1er au 5e niveau, peut infliger le maximum de dégâts au tour où il le lance. La première fois, aucun effet indésirable ; en réutilisant l’aptitude avant un Repos long, il subit 2d12 dégâts nécrotiques par niveau de l’emplacement, juste après l’incantation (non affectés par la Résistance ni l’Immunité), +1d12 par niveau de sort à chaque nouvelle utilisation avant un Repos long.",
+        "effets": []
+      }
+    ]
+  }
+}

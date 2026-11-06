@@ -1,0 +1,89 @@
+[
+ {
+  "id": "z5-accueil-mireval",
+  "declencheur": "entree-lieu",
+  "lieu": "mireval",
+  "unique": true,
+  "narration": "Sur la place, les conversations s'arrêtent quand vous passez. Une femme en tablier de cuir s'approche : Huguette, la maire. « Vous venez du pont. Vous avez vu le capitaine ? » Derrière elle, un homme en tablier de meunier détourne le regard.",
+  "effets": [
+   {
+    "quete": {
+     "id": "q-la-dime",
+     "statut": "proposee"
+    }
+   },
+   {
+    "flag": "z5-mireval-accueil"
+   }
+  ]
+ },
+ {
+  "id": "z5-arrivee-mireval",
+  "declencheur": "entree-lieu",
+  "lieu": "mireval",
+  "unique": true,
+  "narration": "Le village sent la tourbe mouillée et le grain humide. Sur la place, on compte les sacs plus souvent qu'on ne compte les visiteurs.",
+  "effets": [
+   {
+    "flag": "z5-mireval-vu"
+   }
+  ]
+ },
+ {
+  "id": "z5-ultimatum",
+  "declencheur": "condition",
+  "condition": {
+   "jauge": {
+    "id": "dime",
+    "min": 3
+   }
+  },
+  "unique": true,
+  "narration": "Un cavalier hobgobelin traverse la place au pas. Il ne crie pas : il dépose une lettre sur la halle et repart. La moitié du grenier avant la prochaine lune.",
+  "effets": [
+   {
+    "flag": "z5-ultimatum"
+   },
+   {
+    "attitude": {
+     "pnj": "huguette",
+     "delta": -5
+    }
+   }
+  ]
+ },
+ {
+  "id": "z5-varg-tombe",
+  "declencheur": "condition",
+  "condition": {
+   "pnj": {
+    "id": "varg",
+    "etat": "mort"
+   }
+  },
+  "unique": true,
+  "narration": "Le capitaine ne se relèvera pas. Les hobgobelins restés debout hésitent, puis reculent ; la compagnie n'a plus de tête.",
+  "effets": [
+   {
+    "flag": "varg-vaincu"
+   }
+  ]
+ },
+ {
+  "id": "z5-colin-libere",
+  "declencheur": "condition",
+  "condition": {
+   "flag": "colin-libere"
+  },
+  "unique": true,
+  "narration": "Colin sort de la veine en clignant des yeux, les mains noires de poussière de fer. Il demande d'abord si sa sœur est vivante.",
+  "effets": [
+   {
+    "attitude": {
+     "pnj": "perrine-vasseur",
+     "delta": 20
+    }
+   }
+  ]
+ }
+]

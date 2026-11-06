@@ -1,0 +1,110 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "arcanes": 5,
+    "discretion": 3,
+    "perception": 4,
+    "tromperie": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "La guenaude peut respirer sous l'eau comme à l'air libre."
+    },
+    {
+      "id": "imitation",
+      "nom": "Imitation",
+      "resume": "La guenaude imite à merveille les bruits des animaux et les voix humanoïdes. Une créature qui l'entend se rend compte qu'il s'agit d'une imitation si elle réussit un test de Sagesse (Intuition) DD 14."
+    },
+    {
+      "id": "magie-d-assemblee",
+      "nom": "Magie d'assemblée",
+      "resume": "Tant qu'elle se trouve dans un rayon de 9 m d'au moins deux alliées guenaudes, la guenaude peut lancer l'un des sorts suivants sans composantes matérielles, avec le temps d'incantation normal, l'Intelligence étant sa caractéristique d'incantation (DD de sauvegarde 11) : appel de familier, augure, identification, localisation d'objet, scrutation, serviteur invisible. La guenaude doit terminer un Repos long avant de pouvoir relancer ce sort par ce trait."
+    }
+  ],
+  "id": "guenaude-verte",
+  "nom": "Guenaude verte",
+  "taille": "M",
+  "type": "Fée",
+  "alignement": "Neutre Mauvaise",
+  "ca": 17,
+  "pv": {
+    "moyenne": 82,
+    "des": "11d8 + 33"
+  },
+  "vitesse": {
+    "marche": 9,
+    "nage": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 12,
+    "con": 16,
+    "int": 13,
+    "sag": 14,
+    "cha": 14
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "langues": "commun, elfique, sylvestre",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La guenaude effectue deux attaques de Griffe.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 8 (1d8 + 4) dégâts tranchants plus 3 (1d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "cout": "action",
+      "resume": "La guenaude lance l'un des sorts suivants sans composantes matérielles, la Sagesse étant sa caractéristique d'incantation (DD de sauvegarde 12, +4 pour toucher). À volonté : déguisement (durée : 24 heures), illusion mineure, invisibilité (soi-même uniquement ; la guenaude ne laisse aucune trace tant qu'elle est Invisible), lumières dansantes, rayon empoisonné (au 3e niveau).",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

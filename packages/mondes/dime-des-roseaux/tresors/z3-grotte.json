@@ -1,0 +1,114 @@
+[
+  {
+    "id": "gro-t-reserves-de-la-tribu",
+    "nom": "Les réserves de la tribu",
+    "lieu": "gro-salle-commune",
+    "contenant": "cache",
+    "description": "Derrière une peau tendue, un renfoncement sec où la tribu garde ses sacs : trois sacs de grain debout, un tas de champignons secs, un pot de graisse et, sous la paille, une caisse de planches où Skarn serre ce qui reste du tribut — des pièces et deux dagues prises à des hobgobelins.",
+    "contenu": {
+      "pieces": {
+        "po": 18,
+        "pa": 40
+      },
+      "objets": [
+        {
+          "objet": "rations",
+          "quantite": 2
+        },
+        {
+          "objet": "outre",
+          "quantite": 1
+        },
+        {
+          "objet": "dague",
+          "quantite": 2
+        },
+        {
+          "objet": "huile",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "gro-t-cache-du-guet",
+    "nom": "Le bien du guet",
+    "lieu": "gro-entree",
+    "contenant": "sac",
+    "description": "Deux sacs de toile et un coffre de planches calés entre deux madriers derrière le brasero : les rations du guet, de la graisse de lampe, une poignée de pièces et des flèches empennées à la main.",
+    "contenu": {
+      "pieces": {
+        "po": 6,
+        "pa": 25
+      },
+      "objets": [
+        {
+          "objet": "rations",
+          "quantite": 2
+        },
+        {
+          "objet": "torche",
+          "quantite": 1
+        },
+        {
+          "objet": "fleches",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "perception"
+      },
+      "piege": "gro-piege-chausse-trappes-du-guet"
+    }
+  },
+  {
+    "id": "gro-t-atelier-du-mineur",
+    "nom": "L'établi du mineur",
+    "lieu": "gro-galerie-effondree",
+    "contenant": "etabli",
+    "description": "Un établi de mineur renversé sous l'éboulement, couvert de poussière de pierre : une pelle, un pied-de-biche, un grappin de fer, et dans un coffret de bois gonflé d'humidité, un peu d'argent et une lanterne encore bonne.",
+    "contenu": {
+      "pieces": {
+        "po": 12,
+        "pa": 30
+      },
+      "objets": [
+        {
+          "objet": "pelle",
+          "quantite": 1
+        },
+        {
+          "objet": "pied-de-biche",
+          "quantite": 1
+        },
+        {
+          "objet": "grappin",
+          "quantite": 1
+        },
+        {
+          "objet": "lanterne-sourde",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      },
+      "piege": "gro-piege-eboulement-de-la-galerie"
+    }
+  }
+]

@@ -1,0 +1,314 @@
+[
+  {
+    "id": "por-r-brigands-du-quai",
+    "nom": "Le péage du quai",
+    "type": "mixte",
+    "lieu": "por-quai-aux-cordes",
+    "difficulte": "faible",
+    "intro": "Trois hommes en cirés goudronnés sortent d'entre les caisses, couteau en main. Un quatrième, plus gros, siffle entre ses dents : « Le péage du quai, c'est nous. »",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3
+      },
+      {
+        "profil": "chef-de-bande",
+        "nombre": 1
+      }
+    ],
+    "carte": [
+      "################",
+      "#m.c.......c...#",
+      "#mmm...........#",
+      "#...~~.........#",
+      "#e.e.........e.#",
+      "#..............#",
+      "#..............#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Ils restent entre les caisses et tirent sur qui approche du quai ; le chef reste à couvert et attend qu'un héros tombe.",
+      "fuite": "Ils s'enfuient vers la ruelle quand le chef tombe.",
+      "renforts": "Aucun, mais la garde du quai entend le bruit au bout de cinq tours."
+    },
+    "alternatives": [
+      {
+        "id": "payer-le-peage",
+        "nom": "Payer le péage",
+        "resume": "Le chef accepte une bourse de trente pièces d'or et laisse le quai à ses hommes.",
+        "effets": [
+          {
+            "pieces": -30
+          }
+        ]
+      },
+      {
+        "id": "intimider-le-chef",
+        "nom": "Intimider le chef",
+        "resume": "Un regard, une main sur la lame : les brigands doutent, et leur chef recule d'un pas.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "effets": []
+      },
+      {
+        "id": "fuir-par-les-cordages",
+        "nom": "Fuir par les cordages",
+        "resume": "Grimper sur les caisses et filer par les passerelles avant que les couteaux ne sortent.",
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 12
+        },
+        "effets": []
+      }
+    ],
+    "butin": {
+      "tables": [
+        "por-butin-quai"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "por-bagarre-au-quai"
+      }
+    ]
+  },
+  {
+    "id": "por-r-rats-des-egouts",
+    "nom": "La nuée des galeries",
+    "type": "combat",
+    "lieu": "por-egouts-galerie",
+    "difficulte": "faible",
+    "intro": "Des grattements dans les caisses, puis trois bêtes grosses comme des chiens se dressent dans la boue, et une nuée sombre se répand du plafond. Une lanterne tombe et roule à vos pieds.",
+    "monstres": [
+      {
+        "profil": "rat-geant",
+        "nombre": 3
+      },
+      {
+        "profil": "nuee-de-rats",
+        "nombre": 1
+      }
+    ],
+    "carte": [
+      "################",
+      "#mm...bb.......#",
+      "#.cm..bbb..e...#",
+      "#..c.......c.m.#",
+      "#.....b.e......#",
+      "#..............#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les rats attaquent par vagues depuis les caisses ; la nuée se disperse et revient sur les blessés.",
+      "fuite": "Les rats géants fuient vers le bassin quand la nuée est dispersée.",
+      "renforts": "Les grattements derrière les caisses attirent une autre nuée si la galerie reste ouverte."
+    },
+    "alternatives": [
+      {
+        "id": "chasser-au-feu",
+        "nom": "Chasser les rats au feu",
+        "resume": "Une torche agitée et des cris font refluer la nuée ; les rats géants suivent la fumée vers le bassin.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "effets": []
+      }
+    ],
+    "butin": {
+      "tables": [
+        "por-butin-egouts"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": [
+      {
+        "flag": "por-egouts-nettoyes"
+      }
+    ]
+  },
+  {
+    "id": "por-r-noye-de-la-cale",
+    "nom": "Le noyé de la cale",
+    "type": "combat",
+    "lieu": "por-cale-seche",
+    "difficulte": "faible",
+    "intro": "Une silhouette couverte de sel et d'algues est couchée sur les galets, à côté d'une grille de fer. Elle se redresse, une armure couverte de coraux luisant sur la poitrine. Le squelette qui la suit tend une lame rouillée.",
+    "monstres": [
+      {
+        "profil": "zombi",
+        "nombre": 1
+      },
+      {
+        "profil": "squelette",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "################",
+      "#eeRR.........m#",
+      "#e..r.........m#",
+      "#..........m...#",
+      "#...~~.........#",
+      "#.....rr....e.e#",
+      "#..............#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Le zombi avance droit devant, sans détour ; les squelettes se placent à ses côtés pour couper la retraite vers la cale.",
+      "fuite": "Ils ne sortent pas de la cale sèche.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "reciter-les-noms",
+        "nom": "Réciter les noms gravés",
+        "resume": "Réciter à voix basse les noms de la chapelle ; le noyé baisse sa lame et retourne au fond des galets.",
+        "jet": {
+          "competence": "religion",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "flag": "por-noye-apaise"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "por-butin-offrandes"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "por-r-embuscade-de-joss",
+    "nom": "La porte de cave",
+    "type": "combat",
+    "lieu": "por-ruelle-des-voiles",
+    "difficulte": "faible",
+    "intro": "Trois hommes sortent d'une porte de cave, des couteaux à la main. Joss n'est pas avec eux : il a dû leur indiquer le chemin, et ils savent exactement où vous passez.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "################",
+      "#...##.....##..#",
+      "#..m.....m.....#",
+      "#..m.........m.#",
+      "#..............#",
+      "#..c.....c.....#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Ils s'éparpillent entre les voiles et cherchent à isoler un héros du groupe.",
+      "fuite": "Ils s'enfuient par la cave quand deux d'entre eux tombent.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "parler-a-leur-tete",
+        "nom": "Parler à leur chef",
+        "resume": "Le plus vieux des trois accepte de parler : Joss leur a promis une bourse, il ne leur a pas dit pour qui.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": []
+      }
+    ],
+    "butin": {
+      "tables": [
+        "por-butin-quai"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "por-r-garde-du-quai",
+    "nom": "L'arrestation du quai",
+    "type": "mixte",
+    "lieu": "por-quai-aux-cordes",
+    "difficulte": "faible",
+    "intro": "Le capitaine Ottilie Brasse n'a pas l'air d'avoir dormi. Ses trois gardes avancent d'un pas, les piques basses. « Vous avez cassé le quai, dit-elle. Le quai se paie. »",
+    "monstres": [
+      {
+        "profil": "garde",
+        "nombre": 3
+      }
+    ],
+    "carte": [
+      "################",
+      "#..c.....c.....#",
+      "#m.............#",
+      "#mm....~~......#",
+      "#..............#",
+      "#.....HHHHHH...#",
+      "################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les gardes ne frappent qu'après un avertissement ; ils veulent des prisonniers, pas des morts.",
+      "fuite": "Ils se replient vers le poste si la capitaine tombe.",
+      "renforts": "La garde de la ruelle arrive au bout de trois tours."
+    },
+    "alternatives": [
+      {
+        "id": "plaider",
+        "nom": "Plaider la bonne foi",
+        "resume": "Expliquer que le péage a commencé sans vous : la capitaine n'a pas envie de paperasse.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": []
+      },
+      {
+        "id": "montrer-le-sceau",
+        "nom": "Montrer le sceau de la Ligue",
+        "resume": "Le disque de bronze suffit : les gardes se mettent au garde-à-vous et laissent passer le groupe.",
+        "condition": {
+          "objet": "sceau-de-la-ligue"
+        },
+        "effets": []
+      },
+      {
+        "id": "payer-l-amende",
+        "nom": "Payer l'amende",
+        "resume": "Vingt pièces d'or, sans un mot : la capitaine les glisse dans sa poche et ferme les yeux.",
+        "effets": [
+          {
+            "pieces": -20
+          },
+          {
+            "flag": "por-amende-payee"
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "por-butin-garde"
+      ],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  }
+]

@@ -1,0 +1,239 @@
+[
+  {
+    "id": "ps-eglise",
+    "nom": "Église Sainte-Maëlle",
+    "type": "batiment",
+    "parent": "port-sillage",
+    "resume": "Église de granit au bout des cent marches, avec sa nef, sa sacristie et sa crypte.",
+    "accroche": "Au bout des cent marches, un clocher-lanterne de granit se dresse sur le promontoire, et une lueur bleue brille à la nef.",
+    "description": "L'église Sainte-Maëlle se dresse au bout des cent marches, sur le promontoire de granit gris qui ferme la baie au nord-ouest. Son clocher-lanterne, ajouré de baies rondes, se voit de toute la place ; le portail de chêne bleu, sous un linteau usé par le sel, s'ouvre sur une nef de bancs polis. Au fond, un vitrail bleu représente la sainte ; à côté, une porte mène à la sacristie, petite pièce de chaux et d'armoires. Sous le chœur, une grille de fer ouverte descend vers la crypte, où les marins noyés de la paroisse reposent dans des alcôves de pierre, à côté d'une niche vide et d'une armoire de chêne noir. L'église est celle du village : on y vient pour les mariages, les deuils et les veillées de tempête, et l'on y entre sans frapper. Le prêtre y reçoit chacun sur son banc. Le vent de mer fait tinter les cloches de bronze du clocher quand il tourne, et l'odeur de cire et de sel marque l'entrée. Le jour, la lumière bleue du vitrail ; la nuit, une bougie et des murmures qui montent de la crypte.",
+    "ambiance": "Pierre froide, cire et sel.",
+    "visuel": "Au sommet des cent marches, une église de granit gris s'appuie sur la falaise, son clocher-lanterne ajouré dressé au-dessus de la nef. Un portail de chêne bleu écaillé, sous un linteau de pierre usé par le sel, s'ouvre côté escalier ; le petit bloc de la sacristie se colle au flanc nord. La lumière dorée de fin d'après-midi glisse sur le granit et fait briller au fond le vitrail bleu. La porte est ouverte sur la nef.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ps-place",
+        "type": "escalier",
+        "heures": 0.25,
+        "description": "Du haut des cent marches, la place se voit tout entière : un trapèze de galets pâles bordé de pignons d'ardoise et de guirlandes, loin en contrebas.",
+        "retour": "L'escalier des cent marches monte depuis l'angle nord-ouest de la place ; ses degrés de granit sont usés au milieu, et une rampe de corde goudronnée longe la falaise."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [
+      "z2-ev-cloches-seules"
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 25
+    }
+  },
+  {
+    "id": "eg-nef",
+    "nom": "La nef",
+    "type": "salle",
+    "parent": "ps-eglise",
+    "resume": "Une nef de chêne et de granit, sous un vitrail bleu, où la fête de la Mer s'est arrêtée.",
+    "accroche": "Sous le clocher-lanterne, le portail de chêne bleu reste entrouvert ; on entend des voix basses et le craquement des bancs.",
+    "description": "La nef est une salle longue et simple, de granit gris sous une charpente de chêne : seize pas de long sur sept de large. Deux files de bancs polis par les mains des fidèles encadrent une allée centrale de galets sciés ; la chaire de chêne est à droite, contre le mur, et l'autel occupe le fond, sous le vitrail bleu qui représente la sainte, la main levée sur une mer calme. Aux pieds de la sainte, trois cartouches de verre montrent la mer sous trois aspects. Le portail est à l'opposé de l'autel, côté place : on y entre depuis le parvis en haut des cent marches. Au pied du troisième pilier de gauche, une pile de cierges neufs attend sur une toile cirée, sans mèche brûlée : quelqu'un les a apportés pour une veillée qui n'a pas eu lieu. À gauche de l'autel, une porte de chêne mène à la sacristie ; derrière l'autel, la grille de fer ouverte laisse descendre l'escalier de la crypte. Le père Aubin s'installe d'ordinaire sur le premier banc, devant l'autel, et reçoit ceux qui viennent demander conseil. Rien dans la nef n'est cassé ni fermé : l'église est ouverte depuis le matin, et le prêtre parle à voix basse, comme on le fait dans une église. Le jour, la lumière bleue du vitrail tombe en bandes sur les bancs ; la nuit, seule une bougie brûle sur l'autel.",
+    "ambiance": "Cire, bancs polis, bleu de vitrail.",
+    "visuel": "Une nef étroite de granit gris, aux bancs de chêne polis disposés en deux files que sépare une allée de galets. Au fond, un vitrail bleu tombe sur l'autel en bandes de lumière, et à droite une chaire de chêne se détache contre le mur. Une grille de fer ouverte, au pied de l'autel, laisse voir les premières marches de la crypte ; la lumière dorée du soir entre par deux fenêtres étroites à gauche.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "eg-sacristie",
+        "type": "porte",
+        "heures": 0,
+        "description": "Porte de chêne à deux panneaux, peinte en bleu écaillé, dans le mur nord près de l'autel ; elle reste close.",
+        "retour": "Même porte vue de l'intérieur : planche de chêne nue, verrou de fer, et la lumière de la nef qui filtre sous le seuil."
+      },
+      {
+        "vers": "eg-crypte",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Grille de fer ouverte au pied de l'autel ; au-delà, douze marches usées descendent dans une lueur jaune et une odeur de sel froid.",
+        "retour": "Depuis la crypte, les douze marches remontent vers un rectangle de jour gris, cadré par la grille ouverte."
+      },
+      {
+        "vers": "ps-place",
+        "type": "porte",
+        "heures": 0.25,
+        "sens": "simple",
+        "description": "Double portail de chêne bleu, ouvert sur le parvis et l'escalier des cent marches ; en plein jour, la lumière entre en bande sur les dalles."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z2-r-conseil-d-aubin",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "z2-r-confidence-d-aubin",
+        "declencheur": "exploration",
+        "condition": {
+          "pnj": {
+            "id": "pere-aubin",
+            "attitudeMin": 20
+          }
+        },
+        "unique": true
+      },
+      {
+        "id": "z5-r-aubin-savait",
+        "declencheur": "exploration",
+        "condition": {
+          "et": [
+            {
+              "fait": "f-aubin-savait"
+            },
+            {
+              "non": {
+                "flag": "aubin-tranche"
+              }
+            }
+          ]
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z2-vitrail-des-trois-eaux",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-aubin-perd-sa-voix",
+        "decouverte": {
+          "dd": 14,
+          "competence": "intuition"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 45,
+      "y": 42
+    }
+  },
+  {
+    "id": "eg-sacristie",
+    "nom": "La sacristie",
+    "type": "salle",
+    "parent": "ps-eglise",
+    "resume": "Une petite pièce de chêne et de chaux, où l'on range les ornements et où l'on soigne ceux qui ne peuvent pas rentrer chez eux.",
+    "accroche": "Au flanc nord de l'église, un petit bâtiment bas, une fenêtre étroite au ras de la pierre, et une lueur de bougie qui filtre.",
+    "description": "La sacristie est une pièce basse et carrée de six pas sur cinq, accolée au flanc nord de l'église, où l'on range les ornements et où l'on soigne ceux qui ne peuvent pas rentrer chez eux. Le long du mur est, une armoire de chêne noir contient des aubes et des chasubles pliées, et le registre des offrandes est posé sur le dessus. Contre le mur nord, sous l'unique fenêtre étroite, un lit de sangle est couvert de laine grise. Hélène Ancre y est installée, malade depuis plusieurs semaines ; elle reçoit les visites sans se lever, et la conversation tourne vite vers la fièvre. À gauche de la porte de la nef se trouve le coffre des offrandes, coffre de chêne ferré où les fidèles glissent des pièces ; sa serrure de laiton n'a pas de clé visible. Au-dessus du coffre, un crochet de fer vide pend au panneau de bois, sous une étiquette à la craie qui porte le mot « crypte ». Sur la table, une cuvette d'eau tiède et un linge plié, mouillé de tisane à la menthe ; une chaise est tirée en biais, comme si quelqu'un venait de se lever. Le seau à eau est à portée du lit, et une goutte y tombe de temps en temps. Le prêtre y héberge qui le demande : on peut passer la nuit sur un banc de la pièce, à l'abri du vent.",
+    "ambiance": "Chaux, tisane, cire froide.",
+    "visuel": "Une pièce basse de moellons enduits de chaux, avec une armoire de chêne noir contre le mur est, couverte d'aubes pliées. Un lit de sangle étroit, couvert de laine grise, occupe le mur nord sous une fenêtre étroite ; un coffre de chêne ferré, long d'un pas, est posé à gauche de la porte. Une bougie sur la table éclaire un linge et une cuvette ; la lumière grise de la fenêtre n'atteint pas le fond.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z2-r-fievre-d-helene",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z2-crochet-de-la-crypte",
+        "decouverte": {
+          "dd": 11,
+          "competence": "perception"
+        }
+      },
+      {
+        "fait": "f-z2-registre-des-offrandes",
+        "decouverte": {
+          "dd": 10,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-z2-aiguille-empoisonnee",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [
+      "hospitalité du prêtre"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 28,
+      "y": 56
+    }
+  },
+  {
+    "id": "eg-crypte",
+    "nom": "La crypte",
+    "type": "salle",
+    "parent": "ps-eglise",
+    "resume": "Une crypte basse sous le chœur, ossuaire de marins noyés, avec une niche vide et trois cloches.",
+    "accroche": "Sous le chœur, une grille de fer ouverte laisse monter une odeur de sel froid et une lueur jaune.",
+    "description": "La crypte s'étend sous le chœur, dix pas d'est en ouest et sept du nord au sud, sous une voûte de granit qui ne dépasse pas deux pas et demi. Les marins noyés de la paroisse y sont rangés depuis des siècles : les alcôves de pierre du mur nord, sur trois rangs, portent des crânes et des os. Au pied de l'alcôve la plus proche de l'escalier, un crâne porte une couronne de fil de chanvre tressé, nouée en cocarde bleue, avec une bougie de cire morte à ses pieds. Au centre de la salle, une poutre de chêne traverse la pièce d'un mur à l'autre ; trois cloches de bronze verdi y pendent, de tailles différentes, à hauteur de tête, et chacune porte un cercle gravé d'un motif différent : trois vagues dressées, un disque plein, une coquille ouverte. Le long du mur sud, l'armoire de la sainte, en chêne noir, est fermée par une barre de fer et une serrure de bronze à anneau ; une lampe à huile sur une console voisine est la seule lumière. Au fond, à l'ouest, la niche creuse est vide : elle a la taille d'un livre, et la poussière autour est lisse sur un rectangle plus clair. Devant la niche, la dalle de granit est cerclée de cuivre, et une plaque du même métal est encastrée en son centre. L'escalier de douze marches arrive au milieu du mur est. Il fait froid, et l'air sent le sel et la pierre mouillée ; la nuit, des murmures montent du fond.",
+    "ambiance": "Pierre humide, sel froid, bronze verdi.",
+    "visuel": "Une salle longue et basse, voûtée de granit à deux pas et demi du sol, creusée sous le chœur. Des alcôves de pierre rangent des crânes et des ossements le long du mur nord ; au fond du mur ouest, une niche creuse garde un rectangle plus clair dans la poussière, devant une dalle cerclée de cuivre. Trois cloches de bronze verdi pendent à une poutre de chêne au centre de la salle, à hauteur de tête, et une armoire noire se dresse près d'une lampe à huile posée sur une console. Seule la lampe éclaire la pierre humide ; le jour de l'escalier n'atteint que le tiers de la salle.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z2-r-noyes-de-l-ossuaire",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z2-niche-sans-effraction",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z2-gravure-de-la-niche",
+        "decouverte": {
+          "dd": 11,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-z2-dalle-de-la-niche",
+        "decouverte": {
+          "dd": 13,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 45,
+      "y": 68
+    }
+  }
+]

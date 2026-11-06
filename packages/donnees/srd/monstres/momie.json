@@ -1,0 +1,124 @@
+{
+  "id": "momie",
+  "nom": "Momie",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Loyal Mauvais",
+  "ca": 11,
+  "pv": {
+    "moyenne": 58,
+    "des": "9d8 + 18"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 8,
+    "con": 15,
+    "int": 6,
+    "sag": 12,
+    "cha": 12
+  },
+  "sauvegardes": {
+    "sag": 3
+  },
+  "competences": {},
+  "initiative": -1,
+  "resistances": [],
+  "immunitesDegats": [
+    "nécrotique",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "charme",
+    "effraye",
+    "empoisonne",
+    "paralyse"
+  ],
+  "vulnerabilites": [
+    "feu"
+  ],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "commun et deux autres langues",
+  "fp": "3",
+  "px": 700,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La momie effectue deux attaques de Poing putréfié et recourt à Regard effroyable.",
+      "multiattaque": [
+        {
+          "action": "poing-putrefie",
+          "nombre": 2
+        },
+        {
+          "action": "regard-effroyable",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "poing-putrefie",
+      "nom": "Poing putréfié",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 8 (1d10 + 3) dégâts contondants plus 10 (3d6) dégâts nécrotiques. Si la cible est une créature, elle est maudite : elle ne peut pas récupérer de pv, son maximum de pv ne revient pas à la normale après un Repos long et diminue de 10 (3d6) toutes les 24 heures. Une créature réduite à 0 pv par cette attaque meurt et tombe en poussière.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 3,
+          "type": "contondant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "regard-effroyable",
+      "nom": "Regard effroyable",
+      "cout": "action",
+      "resume": "JS Sagesse DD 11, une créature que la momie voit à 18 m ou moins. Échec : Effrayée jusqu'à la fin du prochain tour de la momie. Réussite : immunité 24 h contre le Regard effroyable de cette momie.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

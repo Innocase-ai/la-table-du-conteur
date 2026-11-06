@@ -1,0 +1,1051 @@
+[
+  {
+    "id": "cry-orsolf-plume-grise",
+    "nom": "Orsolf Plume-Grise",
+    "titre": "archiviste d'Ormgard",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "mort depuis deux siècles ; paraît soixante-dix ans",
+    "role": "Ombre de l'archiviste d'Ormgard, chargée d'un registre qu'elle ne finit jamais",
+    "lieu": "cry-chambre-des-cartes",
+    "apparence": "Ombre translucide d'un nain trapu à barbe grise tressée de rubans d'encre, en robe d'archiviste aux manches tachées, un lorgnon manquant sur le nez, une plume d'oie spectrale à la main ; ses contours s'effilochent comme de la fumée de bougie.",
+    "personnalite": {
+      "traits": [
+        "méticuleux",
+        "distrait",
+        "d'une politesse excessive",
+        "bavard quand on l'écoute"
+      ],
+      "voix": "Phrases longues et précises, hachées de corrections (« … en l'an quatre cent douze, non, treize ») ; s'excuse souvent, tutoie par erreur les gens qu'il prend pour des élèves.",
+      "valeurs": [
+        "l'exactitude",
+        "la mémoire des morts",
+        "la dette envers les défunts"
+      ],
+      "desir": "Terminer le grand registre : rendre à chaque défunt son nom avant que la dernière page ne s'efface.",
+      "peur": "Qu'un nom soit perdu pour toujours, et d'apprendre qu'il est lui-même un nom de plus.",
+      "defaut": "Corrige poliment ceux qui disent qu'il est mort, au point de ne plus entendre ce qu'ils disent."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": 15,
+    "savoir": [
+      "f-sceau-des-cryptes",
+      "f-cry-origine-ormgard",
+      "f-cry-route-funeraire",
+      "f-cry-scelles-de-l-archiviste",
+      "f-cry-noms-des-defunts"
+    ],
+    "secrets": [
+      {
+        "fait": "f-nuit-de-la-cendre",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-orcs-et-nains",
+        "jet": {
+          "competence": "histoire",
+          "dd": 13
+        }
+      },
+      {
+        "fait": "f-cry-relever-le-gardien",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-cry-sceau-ouverture",
+        "attitudeMin": 20
+      },
+      {
+        "fait": "f-cry-puits-de-cendre",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-cry-toux-grise",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-etes-vous",
+        "mots": [
+          "qui êtes-vous",
+          "archiviste",
+          "registre",
+          "vous",
+          "présentation"
+        ],
+        "question": "Présentez-vous donc, archiviste, et dites-nous à quoi sert ce registre.",
+        "reponse": "Il se présente avec une courbette : Orsolf Plume-Grise, archiviste d'Ormgard, chargé des registres des défunts et des titres de sépulture. Il s'excuse du désordre (les cendres, vous comprenez), prend le groupe pour de nouveaux apprentis et demande s'ils ont pensé à apporter de l'encre. Il ne sait pas où est son lorgnon.",
+        "revele": [
+          "f-cry-origine-ormgard"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "cryptes",
+        "mots": [
+          "cryptes",
+          "ormgard",
+          "lieu",
+          "ici",
+          "catacombes"
+        ],
+        "question": "Qu'est-ce qu'Ormgard, au juste ?",
+        "reponse": "Ormgard, la garde des urnes : le quartier des morts de la Haute-Forge, creusé sous le cimetière d'en haut pour que la fumée des forges ne dérange pas les défunts. Il décrit les deux étages avec fierté, la galerie, l'ossuaire, la caserne de la garde, la chapelle, la rotonde, et la route funéraire tout au fond, qui descend vers la Haute-Forge.",
+        "revele": [
+          "f-cry-origine-ormgard",
+          "f-cry-route-funeraire"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "sceau",
+        "mots": [
+          "sceau",
+          "forge",
+          "porte",
+          "haute-forge",
+          "route",
+          "clé"
+        ],
+        "question": "Que ferme le sceau de la route de la Haute-Forge ?",
+        "reponse": "Le Sceau de la Forge. Orsolf baisse la voix : après la Nuit, trois vivants ont scellé la route funéraire de l'intérieur : lui-même, le sonneur Torvald et le capitaine Brand de la garde. Le Sceau ferme la route qui monte à la Haute-Forge ; le capitaine l'a gardé, avec la clé, et n'est jamais remonté. Il demande si on est venus le relever, puis si on est venus pour les archives.",
+        "revele": [
+          "f-sceau-des-cryptes",
+          "f-cry-scelles-de-l-archiviste",
+          "f-cry-route-funeraire"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "nuit",
+        "mots": [
+          "nuit",
+          "cendre",
+          "glas",
+          "cloche",
+          "nuit de la cendre"
+        ],
+        "question": "Racontez-nous la nuit de la cendre.",
+        "reponse": "Il se trouble. Il se souvient d'un grand bruit de cloche (Torvald qui sonnait le glas jusqu'à ce que le bronze se fende), d'une chaleur montant de la route funéraire, d'une cendre grise qui descendait du puits central et d'un froid inattendu. Il ne sait plus si c'était il y a une nuit ou deux siècles. Il note, quand même : en bas, quelque chose a débordé.",
+        "revele": [
+          "f-nuit-de-la-cendre",
+          "f-cry-glas-de-la-nuit"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 30
+      },
+      {
+        "id": "noms",
+        "mots": [
+          "noms",
+          "défunts",
+          "morts",
+          "apaiser",
+          "registre perdu",
+          "pages"
+        ],
+        "question": "Que faut-il pour apaiser les défunts ?",
+        "reponse": "Sa grande peine : le grand registre d'Ormgard est incomplet. La cendre a mangé les pages des noms, et un défunt sans nom ne trouve pas le repos : c'est de ceux-là que viennent les ombres. Il demande qu'on lui ramène les noms (les urnes de la galerie sont à replacer, la plaque du sonneur est dans la crypte du glas, celle du capitaine dans sa caserne).",
+        "revele": [
+          "f-cry-noms-des-defunts"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cry-les-noms-des-defunts",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "gardien",
+        "mots": [
+          "gardien",
+          "capitaine",
+          "brand",
+          "serment",
+          "relève"
+        ],
+        "question": "Qui est Brand, le capitaine de la garde ?",
+        "reponse": "Brand Garde-Serment, capitaine de la garde, neuvième du nom. Il a juré de tenir la route fermée « jusqu'à ce qu'on vienne nous relever ». Orsolf avoue ne pas savoir ce qui vaut pour une relève : des noms rendus, une plaque, des mots justes devant témoins. Il suggère d'essayer de la parole avant de la force : un serment ne se brise pas à coups de marteau.",
+        "revele": [
+          "f-cry-gardien-brand",
+          "f-cry-relever-le-gardien"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 20
+      },
+      {
+        "id": "marteau",
+        "mots": [
+          "marteau",
+          "enclume",
+          "clé",
+          "sceau cérémonie",
+          "ouvrir"
+        ],
+        "question": "Le marteau sert-il à ouvrir le sceau ?",
+        "reponse": "Le Sceau ne s'ouvre pas qu'avec la clé : il faut le marteau cérémoniel d'Ormgard, qui dit la formule sur l'enclume du seuil. Le marteau fut rangé dans une niche de la galerie des urnes, avec les offrandes de la famille du sonneur ; la niche ne s'ouvre qu'aux urnes bien placées.",
+        "revele": [
+          "f-cry-sceau-ouverture"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 20
+      },
+      {
+        "id": "orcs",
+        "mots": [
+          "orc",
+          "marteau-vert",
+          "alliés",
+          "plaque des alliés",
+          "clan"
+        ],
+        "question": "Y a-t-il des orcs parmi les morts d'Ormgard ?",
+        "reponse": "Il retrouve avec plaisir la plaque que les Marteau-Vert avaient fait poser : les orcs enterraient leurs morts à Ormgard, avec les nains, comme frères de forge. Il y a aussi, en bas de plaque, une ligne d'une autre main qu'il n'a jamais réussi à interpréter (celle qui parle de quelqu'un qui « a parlé pour sauver »).",
+        "revele": [
+          "f-orcs-et-nains"
+        ],
+        "effets": [],
+        "unique": false,
+        "condition": {
+          "objet": "cry-plaque-des-allies"
+        }
+      },
+      {
+        "id": "noms-rendus",
+        "mots": [
+          "noms rendus",
+          "j'ai les noms",
+          "plaques",
+          "les noms retrouvés"
+        ],
+        "question": "Lui rendre les noms retrouvés.",
+        "reponse": "Il lit les plaques à voix haute, le doigt posé sur chaque nom comme sur une ligne de registre. Ses contours se resserrent, comme ceux d'une écriture quand l'encre sèche. Il murmure les quatre noms de la galerie, celui du sonneur, celui du capitaine. « C'est fait, dit-il. C'est… fait ? » Il rit, soulagé et un peu effrayé.",
+        "revele": [
+          "f-cry-noms-des-defunts"
+        ],
+        "effets": [
+          {
+            "flag": "cry-noms-rendus"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-orsolf-plume-grise",
+              "delta": 30
+            }
+          }
+        ],
+        "unique": true,
+        "condition": {
+          "et": [
+            {
+              "flag": "cry-urnes-apaisees"
+            },
+            {
+              "objet": "cry-plaque-du-sonneur"
+            },
+            {
+              "objet": "cry-plaque-du-gardien"
+            }
+          ]
+        }
+      },
+      {
+        "id": "adieux",
+        "mots": [
+          "adieu",
+          "repos",
+          "partir",
+          "se reposer",
+          "dernier mot"
+        ],
+        "question": "Lui dire adieu et le laisser se reposer.",
+        "reponse": "Il dépose enfin sa plume. Il remercie, tend au groupe son lorgnon (qu'il dit avoir retrouvé dans une manche) et une bague de cendre que lui avaient donnée ses morts. Puis il s'efface pas à pas, en finissant sa phrase.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "cry-orsolf-apaise"
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 5
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "cry-orsolf-plume-grise",
+              "etat": "parti"
+            }
+          }
+        ],
+        "unique": true,
+        "condition": {
+          "flag": "cry-noms-rendus"
+        }
+      },
+      {
+        "id": "mort",
+        "mots": [
+          "mort",
+          "fantôme",
+          "décédé",
+          "ombre",
+          "mourir",
+          "vivant"
+        ],
+        "question": "Êtes-vous vraiment mort, Orsolf ?",
+        "reponse": "Il fronce les sourcils, corrige : il est occupé, pas mort. Mais ses mains ne tournent plus les pages, et il le sait un peu. Si on insiste avec douceur, il admet qu'il a l'impression d'avoir attendu longtemps, qu'il ne sait pas quoi, et que chaque fois qu'il finit une phrase, elle recommence.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-orsolf-plume-grise",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "repos",
+        "mots": [
+          "repos",
+          "dormir",
+          "camper",
+          "sûr"
+        ],
+        "question": "Peut-on dormir ici en sécurité ?",
+        "reponse": "Il invite le groupe à s'asseoir : les runes de repos sont encore actives dans la chambre des cartes, rien ne s'y lève. Il demande seulement de ne pas toucher à l'ordre des cartes.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous êtes très mal élevés. On ne s'introduit pas dans les archives sans se présenter.",
+      "neutre": "Ah ! Vous voilà. Vous êtes les nouveaux ? Il me manque une encre rouge, pour les corrections… vous n'en auriez pas ?",
+      "amical": "Mes chers amis ! Asseyez-vous, ne touchez pas aux cartes, et dites-moi tout."
+    },
+    "services": [
+      {
+        "id": "lire-les-cartes",
+        "nom": "Consulter les cartes d'Ormgard",
+        "resume": "Orsolf déroule les cartes et montre les passages secrets des deux niveaux (révèle l'escalier de la galerie et le passage de la chapelle).",
+        "prix": 0,
+        "effets": [
+          {
+            "objet": {
+              "id": "cry-carte-des-cryptes"
+            }
+          }
+        ]
+      }
+    ],
+    "inventaire": []
+  },
+  {
+    "id": "cry-odo-piquepelle",
+    "nom": "Odo Piquepelle",
+    "titre": "fossoyeur de Veillecendre",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "52 ans",
+    "role": "Fossoyeur pris au piège dans un boyau éboulé",
+    "lieu": "cry-boyau-des-mineurs",
+    "apparence": "Homme maigre aux joues creusées, barbe de trois jours grise de poussière, bonnet de laine et veste de toile de fossoyeur raidie de terre, mains calleuses entaillées de petites coupures, un œil rougi par la poussière.",
+    "personnalite": {
+      "traits": [
+        "pince-sans-rire",
+        "têtu",
+        "superstitieux",
+        "courageux par habitude"
+      ],
+      "voix": "Rauque, phrases courtes, humour de cimetière (« Ça fait trois jours que je creuse. D'habitude, c'est dans l'autre sens ») ; fait le signe de la main sur le cœur avant de dire un mot sérieux.",
+      "valeurs": [
+        "les morts doivent avoir leur place",
+        "ne pas laisser un voisin sans tombe"
+      ],
+      "desir": "Sortir vivant, retourner enterrer ses voisins avec les honneurs et ne plus jamais descendre sous terre.",
+      "peur": "D'être enterré avant d'être mort ; il en a vu, des cercueils griffés de l'intérieur.",
+      "defaut": "Refuse de lâcher sa pelle, même pour courir."
+    },
+    "presences": [],
+    "attitude": 20,
+    "savoir": [
+      "f-cry-entree-secrete",
+      "f-cry-origine-ormgard",
+      "f-cry-rumeur-tresor-du-roi"
+    ],
+    "secrets": [
+      {
+        "fait": "f-cry-pelerins-au-puits",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-cry-toux-grise",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "aide",
+        "mots": [
+          "aide",
+          "coincé",
+          "éboulement",
+          "pierres",
+          "sortir",
+          "bloqué",
+          "secours"
+        ],
+        "question": "Comment vous sortir de ces pierres ?",
+        "reponse": "Il lève la main dans la lueur de sa lanterne : coincé depuis trois jours, il est entré par le vieux puits d'aération pour réparer une trappe (les morts remontaient dans le cimetière), et le boyau lui est tombé dessus. Il a de l'eau pour un jour encore. Il demande, la gorge sèche, de l'aide pour dégager les pierres.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-cry-le-fossoyeur-pris-au-piege",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "liberer",
+        "mots": [
+          "dégager",
+          "déblayer",
+          "libérer",
+          "enlever les pierres",
+          "creuser"
+        ],
+        "question": "Proposer de déblayer la pierre qui vous bloque.",
+        "reponse": "Il explique la manœuvre : prendre la grosse pierre du haut, laisser glisser celle du bas ; il guide, le groupe pousse (le MJ demande un jet d'Athlétisme DD 12, avec avantage si on utilise sa pelle). Il sort en tremblant, en blaguant.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "cry-fossoyeur-libere"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-odo-piquepelle",
+              "delta": 20
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "cryptes",
+        "mots": [
+          "cryptes",
+          "entrée",
+          "puits",
+          "secret",
+          "trappe",
+          "passage"
+        ],
+        "question": "Où se trouve l'entrée des cryptes ?",
+        "reponse": "L'entrée ? Il y en a deux : la porte de bronze du mausolée, que tout le monde connaît, et le vieux puits d'aération au nord du cimetière, qui donne dans l'ossuaire par une trappe de pierre. C'est par là que les fossoyeurs descendent chercher les morts qui remontent. Il ajoute que l'ossuaire communique avec le réfectoire (où ça mord) et avec la galerie des urnes.",
+        "revele": [
+          "f-cry-entree-secrete",
+          "f-cry-origine-ormgard"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "gravats",
+        "mots": [
+          "gravats",
+          "échelle",
+          "armurerie",
+          "boyau",
+          "tunnel"
+        ],
+        "question": "D'où vient ce boyau ?",
+        "reponse": "Le boyau n'est pas de lui : des mineurs ou des pillards l'ont percé il y a longtemps, avec une échelle de corde qui descend dans le second étage, jusqu'à une salle pleine d'armures. Il ne l'a pas osée : un mannequin l'a regardé. À sa place, il prendrait la grille de l'escalier ; il y a une clé dans la caserne.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "tresor",
+        "mots": [
+          "trésor",
+          "roi",
+          "or",
+          "richesses",
+          "rumeur"
+        ],
+        "question": "Y a-t-il vraiment un trésor ici ?",
+        "reponse": "Tout le village dit que le trésor du roi-forgeron dort ici. Il en rit : « Le roi est enterré à la Forge, pas chez les petits. Ici, y a des urnes, des os, et des gens qui ont perdu leurs noms. » Mais il reconnaît que les nains d'ici avaient une trésorerie, et que les trésoriers sont des gens qu'on n'oublie pas.",
+        "revele": [
+          "f-cry-rumeur-tresor-du-roi"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "pelerins",
+        "mots": [
+          "pèlerins",
+          "gris",
+          "puits",
+          "cendre",
+          "prières"
+        ],
+        "question": "Que pensez-vous des Pèlerins gris au puits ?",
+        "reponse": "Il a croisé des Pèlerins gris au puits de cendre, deux fois, assis au bord à écouter. Ils ne lui ont rien fait. Il ne les aime pas, parce qu'ils lui ont dit qu'il avait de la chance d'être fossoyeur : « Tu les envoies au repos. » Il ne voit pas ce que ça a de chanceux.",
+        "revele": [
+          "f-cry-pelerins-au-puits"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 25
+      },
+      {
+        "id": "sortie",
+        "mots": [
+          "remonter",
+          "partir",
+          "sortir",
+          "raccompagner",
+          "chez moi"
+        ],
+        "question": "Proposer de vous raccompagner chez vous.",
+        "reponse": "Il demande à être raccompagné jusqu'à l'ossuaire et à la trappe : de là, il connaît la route. Il promet une tournée et le meilleur creusement de tombe de la vallée. Il repart d'un pas raide, sa pelle sur l'épaule.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "cry-fossoyeur-sauf"
+          },
+          {
+            "deplacer": {
+              "pnj": "cry-odo-piquepelle",
+              "lieu": "veillecendre"
+            }
+          }
+        ],
+        "unique": true,
+        "condition": {
+          "flag": "cry-fossoyeur-libere"
+        }
+      }
+    ],
+    "salutations": {
+      "hostile": "Écartez-vous de mon trou. Je me suis assez fait taper dessus par des morts.",
+      "neutre": "Hé ! Vous êtes bien vivants ? Dites-moi que vous êtes vivants.",
+      "amical": "Voilà mes sauveurs. Je vous offre mon dernier croûton."
+    },
+    "services": [],
+    "inventaire": [
+      "cry-pelle-du-fossoyeur"
+    ]
+  },
+  {
+    "id": "cry-brisca-ravel",
+    "nom": "Brisca Ravel",
+    "titre": "chef des Fouilleurs de Cendre",
+    "espece": "tieffelin",
+    "sexe": "F",
+    "age": "34 ans",
+    "role": "Chasseuse de reliques, rivale (ou alliée) du groupe",
+    "lieu": "cry-rotonde",
+    "apparence": "Tieffeline mince à la peau lie-de-vin, petites cornes courbes cerclées de fer, cheveux noirs rasés d'un côté, manteau de cuir gris cendre rapiécé, arbalète de poing au côté, une cicatrice sur la lèvre ; le regard las de qui n'a pas dormi dans un vrai lit depuis un mois.",
+    "personnalite": {
+      "traits": [
+        "sardonique",
+        "pragmatique",
+        "épuisée",
+        "loyale à ses morts"
+      ],
+      "voix": "Basse, ironique, phrases coupées ; dit « mon ami » quand elle ment et « toi » quand elle dit vrai.",
+      "valeurs": [
+        "payer ses dettes",
+        "ne jamais laisser un compagnon sans sépulture"
+      ],
+      "desir": "Sortir des cryptes avec la clé et assez d'or pour payer les familles de ses trois compagnons morts, puis plaquer ce métier.",
+      "peur": "Que les cryptes la gardent comme elles ont gardé les siens, et que son contrat ne vaille rien.",
+      "defaut": "S'accroche à un contrat qu'elle sait mauvais, par orgueil."
+    },
+    "presences": [],
+    "attitude": 0,
+    "profilCombat": "eclaireur",
+    "savoir": [
+      "f-cry-rumeur-tresor-du-roi",
+      "f-cry-route-funeraire"
+    ],
+    "secrets": [
+      {
+        "fait": "f-cry-compagnie-des-fosses",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-fer-gris-veut-la-forge",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-cry-compagnie-des-fosses",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui",
+        "mots": [
+          "qui êtes-vous",
+          "fouilleurs",
+          "bande",
+          "qui paie",
+          "présentation"
+        ],
+        "question": "Qui êtes-vous, et qui vous paie ?",
+        "reponse": "Brisca Ravel, chef des Fouilleurs de Cendre : « On vend des choses qu'on sort des trous. » Il y avait quatre compagnons ; elle ne dit pas combien sont encore debout. Elle est méfiante, mais accepte de parler tant qu'on ne touche pas à ses affaires.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "morts",
+        "mots": [
+          "compagnons",
+          "morts",
+          "pièges",
+          "couvertures",
+          "perdu"
+        ],
+        "question": "Qu'est-il arrivé à vos compagnons ?",
+        "reponse": "Trois couvertures au pied du pilier : un tué par la dalle du vestibule (une faucille dans les jambes), un par l'aiguille d'un sarcophage (« il a eu l'air content avant de tomber »), un par les goules du réfectoire. Elle donne volontiers un conseil sur les pièges si on lui demande, par fierté : ne pas toucher au sarcophage au centre, ni marcher au milieu du vestibule.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-brisca-ravel",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "cryptes",
+        "mots": [
+          "cryptes",
+          "plan",
+          "chemin",
+          "grille",
+          "escalier"
+        ],
+        "question": "Connaissez-vous le chemin des cryptes ?",
+        "reponse": "Elle a trouvé l'escalier et sa grille par la clé du capitaine, ouverte à force de patience ; elle avertit que la salle de gauche, avec les urnes, est un piège de poussière, et que le fond des cryptes est fermé par un Sceau qu'elle n'a pas pu approcher. Sa carte approximative est faite à la craie sur la couverture d'un des morts.",
+        "revele": [
+          "f-cry-route-funeraire"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 10
+      },
+      {
+        "id": "contrat",
+        "mots": [
+          "contrat",
+          "employeur",
+          "paie",
+          "fer-gris",
+          "émissaire",
+          "commanditaire"
+        ],
+        "question": "Qui est votre employeur, au juste ?",
+        "reponse": "À contrecœur : un hobgobelin à l'œil de cuivre, de la Compagnie du Fer-Gris, lui a promis cent pièces d'or pour la clé du Sceau de la Forge, livrée à Pont-de-Fer. Elle n'a plus la certitude que la Compagnie paie ce qu'elle promet, ni de vouloir donner à une armée la clé de la route d'un royaume.",
+        "revele": [
+          "f-cry-compagnie-des-fosses",
+          "f-fer-gris-veut-la-forge"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 30
+      },
+      {
+        "id": "partage",
+        "mots": [
+          "partage",
+          "clé",
+          "association",
+          "alliance",
+          "ensemble",
+          "marché"
+        ],
+        "question": "Proposer un partage et une alliance.",
+        "reponse": "Elle propose un marché : on l'aide à ouvrir le Sceau (ou à faire sortir ses morts), on partage l'or des cryptes à parts égales, et elle renonce au contrat du Fer-Gris. Elle exige de garder sa dernière flèche de bonne foi.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "cry-brisca-alliee"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-brisca-ravel",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": false,
+        "attitudeMin": 10
+      },
+      {
+        "id": "tresor",
+        "mots": [
+          "trésor",
+          "roi",
+          "forgeron",
+          "richesses"
+        ],
+        "question": "Parlez-nous du trésor du roi.",
+        "reponse": "Elle a cru à la rumeur du trésor du roi : « On nous l'a dit au village. » Elle a vu une trésorerie dont elle n'a pas trouvé la clé, et des coffres vides ; elle commence à comprendre qu'on l'a envoyée dans un trou sans fond.",
+        "revele": [
+          "f-cry-rumeur-tresor-du-roi"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "sepulture",
+        "mots": [
+          "sépulture",
+          "enterrer",
+          "funérailles",
+          "morts du camp"
+        ],
+        "question": "Proposer d'aider à enterrer vos morts.",
+        "reponse": "Elle demande, sans lever les yeux, qu'on aide à porter ses trois morts jusqu'à la lumière du jour. Elle paiera ce qu'elle peut, ce qui n'est pas grand-chose.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-brisca-ravel",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": false,
+        "attitudeMin": 15
+      }
+    ],
+    "salutations": {
+      "hostile": "Un pas de plus et je vous ouvre la gorge, mon ami.",
+      "neutre": "Doucement. Je suis fatiguée, pas aveugle. Qui paie vos pas ?",
+      "amical": "Toi. Assieds-toi, tu as la tête de quelqu'un qui n'a pas encore vu le plus laid."
+    },
+    "services": [],
+    "inventaire": [
+      "cry-contrat-du-fer-gris"
+    ]
+  },
+  {
+    "id": "cry-brand-garde-serment",
+    "nom": "Brand Garde-Serment",
+    "titre": "gardien des cryptes",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "mort depuis deux siècles",
+    "role": "Capitaine de la garde d'Ormgard, devenu l'ombre qui tient le Sceau",
+    "lieu": "cry-salle-du-sceau",
+    "apparence": "Ombre d'un nain massif en cotte de mailles rouillée et casque à nasal, barbe noire tressée de fil de fer, un marteau de garde pendu à la hanche ; la lueur orange du Sceau brille dans ses orbites, ses contours se brouillent quand il s'agite.",
+    "personnalite": {
+      "traits": [
+        "obstiné",
+        "loyal",
+        "sec",
+        "solennel"
+      ],
+      "voix": "Brève, formelle, avec la lenteur d'un homme qui garde ses forces ; répète les formules du serment, n'élève jamais la voix et ne rit que d'un rire sec.",
+      "valeurs": [
+        "tenir sa parole",
+        "la hiérarchie",
+        "la mémoire de la garde"
+      ],
+      "desir": "Être relevé de son poste en bonne et due forme, et pouvoir enfin se reposer.",
+      "peur": "Que la relève soit un voleur et que le Sceau soit forcé ; que le serment lui survive.",
+      "defaut": "Prend tout à la lettre et ne distingue pas un mot d'un geste."
+    },
+    "presences": [],
+    "faction": "morts-de-la-forge",
+    "attitude": -10,
+    "profilCombat": "fantome",
+    "savoir": [
+      "f-cry-gardien-brand",
+      "f-sceau-des-cryptes",
+      "f-cry-sceau-ouverture",
+      "f-cry-relever-le-gardien",
+      "f-cry-route-funeraire"
+    ],
+    "secrets": [
+      {
+        "fait": "f-nuit-de-la-cendre",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-cry-puits-de-cendre",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "serment",
+        "mots": [
+          "serment",
+          "qui êtes-vous",
+          "gardien",
+          "halte"
+        ],
+        "question": "Qui êtes-vous, gardien de cette halte ?",
+        "reponse": "« Brand Garde-Serment, capitaine de la garde d'Ormgard. J'ai juré de tenir cette porte jusqu'à ce qu'on vienne nous relever. Vous n'êtes pas de la relève, et vous n'avez pas la clé. » Il ne menace pas : il constate.",
+        "revele": [
+          "f-cry-gardien-brand"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "releve",
+        "mots": [
+          "relève",
+          "relever",
+          "remplacer",
+          "venir",
+          "libérer"
+        ],
+        "question": "Peut-on vous relever de votre serment ?",
+        "reponse": "Il explique les règles de la relève : un serment prononcé devant témoins ne s'éteint que devant témoins, et ne s'éteint qu'en présence de la relève ou du nom de celui qui le tient. Il demande qui est le témoin et quel nom on lui apporte. À défaut de relève, il se laisserait délier par qui lui rend son nom et ceux de ses hommes.",
+        "revele": [
+          "f-cry-relever-le-gardien"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "cle",
+        "mots": [
+          "clé",
+          "coffre",
+          "sceau",
+          "ouvrir"
+        ],
+        "question": "Où se trouve la clé du coffre ?",
+        "reponse": "La clé est dans le coffre de bronze, avec son casque de parade ; il ne l'a jamais rendue. Mais la clé seule ne sert à rien : il faut le marteau cérémoniel pour frapper la formule sur l'enclume du seuil. Il le dit parce qu'un voleur qui ne sait pas cela peut rester sagement dehors.",
+        "revele": [
+          "f-cry-sceau-ouverture"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "nom",
+        "mots": [
+          "nom",
+          "plaque",
+          "mon nom",
+          "brand garde-serment",
+          "sépulture"
+        ],
+        "question": "Montrer la plaque de sépulture.",
+        "reponse": "Si on lui montre sa plaque de sépulture, il la prend d'une main qui tremble. Il n'en avait pas : on ne fait pas de plaque à qui n'est pas enterré, et il n'avait plus personne pour la poser. Il la lit à voix haute, lentement, et sa voix change.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cry-brand-garde-serment",
+              "delta": 40
+            }
+          }
+        ],
+        "unique": false,
+        "condition": {
+          "objet": "cry-plaque-du-gardien"
+        }
+      },
+      {
+        "id": "forge",
+        "mots": [
+          "haute-forge",
+          "roi",
+          "forge",
+          "cendre",
+          "puits",
+          "nuit"
+        ],
+        "question": "Que s'est-il passé à la Haute-Forge ?",
+        "reponse": "Il parle seulement quand on l'a un peu apaisé : la nuit de la Cendre, le feu a débordé de la Forge, les grandes portes d'en bas ont rougi, la cendre a monté par le puits et les morts se sont levés ; ils ont scellé la route pour que ce qui montait ne monte pas plus haut, et que ce qui descendait ne descende pas. « Le roi n'est jamais remonté. Ne cherchez pas à savoir pourquoi. »",
+        "revele": [
+          "f-nuit-de-la-cendre",
+          "f-cry-puits-de-cendre"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 30
+      }
+    ],
+    "salutations": {
+      "hostile": "Retirez-vous, ou je vous retire à la garde.",
+      "neutre": "Halte. Qui vient relever la garde ? Qui parle, et en quel nom ?",
+      "amical": "Vous avez été longs. Je tiens depuis longtemps."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "cry-soeur-cendrine",
+    "nom": "Sœur Cendrine",
+    "titre": "pèlerine grise",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "41 ans",
+    "role": "Pèlerine venue écouter le puits de cendre",
+    "lieu": "cry-puits-de-cendre",
+    "apparence": "Femme menue en manteau gris sali, capuche rabattue, visage poudré de cendre jusqu'aux sourcils, mains jointes sur ses genoux, paupières mi-closes, des perles de cendre dans les cheveux.",
+    "personnalite": {
+      "traits": [
+        "sereine",
+        "têtue",
+        "douce",
+        "fatiguée de tout"
+      ],
+      "voix": "Murmurée, lente, finit ses phrases en soupirs ; s'interrompt pour tendre l'oreille vers le puits.",
+      "valeurs": [
+        "le repos",
+        "ne jamais contraindre"
+      ],
+      "desir": "Entendre le puits lui dire qu'elle peut enfin s'arrêter.",
+      "peur": "D'avoir attendu pour rien ; de ne pas entendre et de devoir recommencer à vivre.",
+      "defaut": "Prend la lassitude pour de la sagesse."
+    },
+    "presences": [],
+    "faction": "pelerins-gris",
+    "attitude": 10,
+    "savoir": [
+      "f-cry-puits-de-cendre",
+      "f-cry-pelerins-au-puits"
+    ],
+    "secrets": [
+      {
+        "fait": "f-pelerins-motif",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "puits",
+        "mots": [
+          "puits",
+          "cendre",
+          "souffle",
+          "respire",
+          "écouter"
+        ],
+        "question": "Qu'entendez-vous en écoutant le puits ?",
+        "reponse": "Elle fait signe de se taire et de tendre l'oreille : le puits respire, lent. Elle dit que, depuis qu'elle l'écoute, elle entend un rythme (de forge, pense-t-elle) très loin. Les Pèlerins l'appellent « le souffle de paix ». Elle ajoute, sans y penser, que la cendre qui monte est tiède, comme celle d'un foyer qu'on n'a jamais éteint.",
+        "revele": [
+          "f-cry-puits-de-cendre",
+          "f-cry-pelerins-au-puits"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "pelerins",
+        "mots": [
+          "pèlerins",
+          "gris",
+          "frère ocre",
+          "grâce",
+          "prophète"
+        ],
+        "question": "Qui sont ces pèlerins gris ?",
+        "reponse": "Pour elle, la cendre n'est pas une malédiction : c'est une grâce, une manière de rejoindre les morts sans douleur. Le Frère Ocre, dit-elle, prêche dans le champ de cendre, au nord, à ceux qui sont las. Elle n'a jamais forcé personne et ne le fera pas.",
+        "revele": [
+          "f-pelerins-motif"
+        ],
+        "effets": [],
+        "unique": false,
+        "attitudeMin": 25
+      },
+      {
+        "id": "morts",
+        "mots": [
+          "morts",
+          "cryptes",
+          "dormir",
+          "fantômes",
+          "ombres"
+        ],
+        "question": "Que pensez-vous des morts des cryptes ?",
+        "reponse": "Les morts d'ici ne l'ont pas touchée : « Ils savent que je ne leur veux rien. » Elle dit sentir, derrière une grande porte au fond, quelque chose de patient qui l'observe, et plus haut un vieux nain qui relit sans fin. Ils ne lui paraissent pas méchants. Seulement fatigués.",
+        "revele": [
+          "f-cry-pelerins-au-puits"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "partir",
+        "mots": [
+          "partir",
+          "remonter",
+          "sortir",
+          "vivre",
+          "rester",
+          "village"
+        ],
+        "question": "Accepteriez-vous de remonter au village ?",
+        "reponse": "Si on lui parle de ceux qui l'attendent (même si elle jure qu'il n'y en a plus), de ceux qu'on a encore à sauver et du fait qu'une fatigue guérit, elle écoute. Elle ne promet rien. Mais si l'on ne la brusque pas, elle accepte de remonter jusqu'à la lumière et d'attendre une nuit avant de revenir.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "cry-cendrine-convaincue"
+          },
+          {
+            "attitude": {
+              "pnj": "cry-soeur-cendrine",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": false,
+        "attitudeMin": 20
+      }
+    ],
+    "salutations": {
+      "hostile": "Allez-vous-en. Vous faites trop de bruit.",
+      "neutre": "Chut. Elle parle. Vous l'entendez ?",
+      "amical": "Tu as marché longtemps pour me trouver. Assieds-toi."
+    },
+    "services": [],
+    "inventaire": []
+  }
+]

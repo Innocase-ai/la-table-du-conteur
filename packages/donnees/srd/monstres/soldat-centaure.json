@@ -1,0 +1,128 @@
+{
+  "id": "soldat-centaure",
+  "nom": "Soldat centaure",
+  "taille": "G",
+  "type": "Fée",
+  "alignement": "Neutre Bonne",
+  "ca": 16,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 14,
+    "con": 14,
+    "int": 9,
+    "sag": 13,
+    "cha": 11
+  },
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 6,
+    "perception": 3
+  },
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "elfique, sylvestre",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le centaure effectue deux attaques, réparties à sa guise entre Pique et Arc long.",
+      "multiattaque": [
+        {
+          "action": "pique",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "pique",
+      "nom": "Pique",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 3 m : 9 (1d10 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "arc-long",
+      "nom": "Arc long",
+      "cout": "action",
+      "resume": "À distance +4, portée 45/180 m : 6 (1d8 + 2) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 2,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "charge-ecrasante",
+      "nom": "Charge écrasante",
+      "cout": "bonus",
+      "resume": "Le centaure se déplace dans les limites de sa Vitesse sans provoquer d'attaques d'Opportunité et peut traverser les espaces des créatures de taille M ou inférieure. Chaque créature dont l'espace est traversé est la cible de l'effet suivant. JS Force DD 14. Échec : 7 (1d6 + 4) dégâts contondants, et la cible subit l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre"
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

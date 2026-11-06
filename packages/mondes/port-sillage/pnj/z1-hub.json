@@ -1,0 +1,1746 @@
+[
+  {
+    "id": "gilda-fauvel",
+    "nom": "Gilda Fauvel",
+    "titre": "Maire de Port-Sillage",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "58 ans",
+    "role": "Maire du village, ancienne patronne de barque : elle confie l'enquête au groupe et tient les comptes de la commune",
+    "lieu": "ps-place",
+    "apparence": "Femme humaine de 58 ans, large d'épaules, visage hâlé et ridé par le sel, cheveux gris tirés sous une casquette de toile cirée, long ciré jaune râpé aux coudes, mains calleuses de patronne de barque, une bourse de cuir à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "autoritaire",
+        "protectrice",
+        "pragmatique",
+        "mauvaise perdante"
+      ],
+      "voix": "Franche, rapide, des ordres jetés comme des amarres ; elle dit « mes amis » aux inconnus qu'elle veut utiles, coupe les phrases des autres et parle de la mer comme d'une voisine têtue.",
+      "valeurs": [
+        "le village d'abord",
+        "la mer ne pardonne pas l'imprévoyance"
+      ],
+      "desir": "Sauver la fête, le village et la digue, sans que la fête et la digue s'effondrent.",
+      "peur": "Qu'on ouvre les comptes de la commune et qu'on voie ce qu'elle a fait de l'argent.",
+      "defaut": "Elle décide pour les autres et supporte mal qu'on lui demande des comptes."
+    },
+    "presences": [],
+    "faction": "gens-du-port",
+    "attitude": 10,
+    "savoir": [
+      "f-livre-vole",
+      "f-z1-prime-de-gilda"
+    ],
+    "secrets": [
+      {
+        "fait": "f-solde-impayee",
+        "condition": {
+          "objet": "registre-de-la-solde"
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        }
+      },
+      {
+        "fait": "f-solde-impayee",
+        "attitudeMin": 60
+      },
+      {
+        "fait": "f-solde-impayee",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 15
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "le-livre-disparu",
+        "mots": [
+          "livre",
+          "vol",
+          "crypte",
+          "Maëlle",
+          "disparu"
+        ],
+        "question": "Que s'est-il passé à la crypte ?",
+        "reponse": "Elle baisse la voix : le Livre de Maëlle a disparu de la crypte pendant la fête, sans que personne ait forcé la grille. Sans lui, le prêtre ne peut pas lire la page de la Bonace pour la flotte, et dans trois nuits la grande marée viendra sans protection. Elle demande au groupe d'enquêter discrètement, car elle craint la panique, et lui confie la mission.",
+        "revele": [
+          "f-livre-vole"
+        ],
+        "effets": [
+          {
+            "flag": "vol-connu"
+          },
+          {
+            "quete": {
+              "id": "q-le-grimoire",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "la-prime",
+        "mots": [
+          "prime",
+          "récompense",
+          "payer",
+          "argent",
+          "salaire"
+        ],
+        "question": "Que paiera le village pour ce livre ?",
+        "reponse": "Elle promet 50 po de prime à la fin de l'enquête si le livre revient à Port-Sillage, pas avant : la caisse est mince cette année. Elle glisse que la digue a coûté cher, et change de sujet.",
+        "revele": [
+          "f-z1-prime-de-gilda"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-digue",
+        "mots": [
+          "digue",
+          "tempête",
+          "hiver",
+          "travaux",
+          "pierres"
+        ],
+        "question": "Vous parliez d'une digue ?",
+        "reponse": "Fière et nerveuse, elle raconte la grande tempête d'il y a deux hivers qui a éventré le môle, et la digue neuve qu'elle a fait monter pierre par pierre pour que les barques dorment à l'abri. Elle ne dit pas d'où est venu l'argent, ni pourquoi elle y tient tant.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-fete",
+        "mots": [
+          "fête",
+          "Mer",
+          "guirlandes",
+          "chansons",
+          "village"
+        ],
+        "question": "La fête ne s'est donc pas terminée ?",
+        "reponse": "Elle désigne les fanions pendants avec un rire sans joie : la fête de la Mer s'est arrêtée net quand on a vu la crypte ouverte. Les barriques sont encore pleines, les chansons à moitié écrites. Elle voudrait que tout reprenne dès le livre retrouvé.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-pere-aubin",
+        "mots": [
+          "Aubin",
+          "prêtre",
+          "marches",
+          "escalier",
+          "église"
+        ],
+        "question": "Comment va le père Aubin ?",
+        "reponse": "Elle jette un regard vers les marches où le vieux prêtre est assis, la tête dans les mains. Il ne mange plus, il parle bas, et il s'enroue depuis des mois ; elle l'a toujours connu avec une voix de cloche. Elle espère qu'il tiendra jusqu'à la grande marée.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-comptes-de-la-garde",
+        "mots": [
+          "registre",
+          "solde",
+          "garnison",
+          "comptes",
+          "caisse"
+        ],
+        "question": "Lui montrer le registre de la solde du guet.",
+        "condition": {
+          "objet": "registre-de-la-solde"
+        },
+        "reponse": "Elle pâlit en reconnaissant la couverture bleue, puis se redresse : oui, la caisse de la paie du guet est vide depuis deux ans, elle l'a fait vider pour que la digue tienne, et elle comptait remplacer l'argent avant que quelqu'un s'en aperçoive. Elle supplie de ne pas la ruiner devant tout le village.",
+        "revele": [
+          "f-solde-impayee"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": -10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-lettre-de-l-acheteur",
+        "mots": [
+          "lettre",
+          "acheteur",
+          "navire",
+          "port",
+          "chaîne"
+        ],
+        "question": "Lui montrer la lettre trouvée à la crique.",
+        "condition": {
+          "objet": "lettre-de-verdelune"
+        },
+        "reponse": "Gilda lit la lettre, blêmit, puis hurle un ordre : on tendra une chaîne en travers de la passe et le port sera fermé aux barques inconnues. Le navire de l'acheteur devra attendre, ou repartir.",
+        "revele": [
+          "f-navire-de-verdelune"
+        ],
+        "effets": [
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": -1
+            }
+          },
+          {
+            "flag": "navire-retarde"
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous n'avez rien à faire sur mon estrade, passez votre chemin.",
+      "neutre": "Ah, des gens qui ne sont pas d'ici. Montez, mes amis, j'ai du travail pour vous.",
+      "amical": "Les voilà, nos enquêteurs ! Dites-moi que vous avez du neuf.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-la-solde-exiger"
+          },
+          "texte": "Gilda vous toise, les bras croisés : « Vous m'avez fait payer devant tout le monde. On se reparlera. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-cacher"
+          },
+          "texte": "Gilda baisse la voix : « On dit que vous cachez le sacristain. Je ne veux pas le savoir, mais je ne suis pas contente. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "La maire vous prend les deux mains : « On dit que vous avez démasqué les contrebandiers de la crique. Je n'osais pas y croire. Dites-moi tout, mes amis. »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Gilda vous guette depuis l'estrade, l'air sombre : « Il paraît que vous avez retrouvé le petit sacristain. Qu'est-ce qu'il dit ? Qu'est-ce qu'on va en faire ? »"
+        },
+        {
+          "condition": {
+            "flag": "vol-connu"
+          },
+          "texte": "La maire se redresse sur l'estrade : « Vous revoilà. Le village a tout su en une heure ; Cyprien y a veillé. Alors, où en êtes-vous ? »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cyprien-crieur",
+    "nom": "Cyprien",
+    "titre": "Crieur public",
+    "espece": "gnome",
+    "sexe": "M",
+    "age": "30 ans",
+    "role": "Crieur public de la place : il annonce les nouvelles, les amplifie et en invente quand il en manque",
+    "lieu": "ps-place",
+    "apparence": "Gnome de 30 ans, haut comme un tonneau, oreilles rouges, large sourire édenté, bonnet de laine bleu à pompon, veste ocre trop grande avec des galons de tissu, clochette de cuivre à la main, debout sur une barrique renversée.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "inventif",
+        "bon cœur",
+        "vaniteux"
+      ],
+      "voix": "Haut perché, théâtral, il scande ses phrases comme une annonce et s'interrompt pour agiter sa clochette ; il commence souvent par « Oyez ! » et finit par « de source sûre ».",
+      "valeurs": [
+        "un village qui sait ce qui se passe est un village vivant",
+        "une bonne nouvelle vaut mieux qu'une vraie"
+      ],
+      "desir": "Être le premier à annoncer la bonne nouvelle : que le livre est revenu.",
+      "peur": "Qu'on découvre qu'il invente la moitié de ce qu'il crie, et qu'on cesse de l'écouter.",
+      "defaut": "Il préfère une histoire frappante à la vérité."
+    },
+    "presences": [],
+    "faction": "gens-du-port",
+    "attitude": 10,
+    "savoir": [
+      "f-livre-vole",
+      "f-z1-rumeur-fantome"
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "la-nouvelle",
+        "mots": [
+          "nouvelle",
+          "annonce",
+          "crier",
+          "livre",
+          "vol"
+        ],
+        "question": "Qu'annoncez-vous à la criée ?",
+        "reponse": "Il agite sa clochette : le Livre de Maëlle a disparu de la crypte pendant la fête, c'est la nouvelle du jour, et tout le village la répète. Il jure que la maire cherche des gens de confiance, puis ajoute, plus bas, que le prêtre est resté assis des heures sur les marches de l'escalier.",
+        "revele": [
+          "f-livre-vole"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-fantome-de-maelle",
+        "mots": [
+          "fantôme",
+          "sainte",
+          "hante",
+          "rumeur",
+          "revenue"
+        ],
+        "question": "On dit que la sainte hante le village ?",
+        "reponse": "Il baisse la voix, ravi : il tient de source sûre que le fantôme de la sainte Maëlle est revenu dans la nuit reprendre son livre, qu'on l'a vue glisser sur l'eau dans une lumière bleue. Si on le presse, il admet qu'il l'a plus ou moins imaginé : le village avait besoin d'une explication.",
+        "revele": [
+          "f-z1-rumeur-fantome"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "un-navire-au-large",
+        "mots": [
+          "navire",
+          "mer",
+          "large",
+          "voile",
+          "mouillage"
+        ],
+        "question": "Quelles nouvelles de la mer ?",
+        "condition": {
+          "jauge": {
+            "id": "grande-maree",
+            "min": 3
+          }
+        },
+        "reponse": "Il se penche, sans clochette cette fois : un grand navire a jeté l'ancre au large hier soir, sans pavillon connu, et des barques font la navette entre lui et le quai à la nuit tombée. Ce n'est pas de l'invention, cette fois : il l'a vu de ses yeux depuis le clocher.",
+        "revele": [
+          "f-navire-de-verdelune"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "qui-dit-quoi",
+        "mots": [
+          "gens",
+          "bruits",
+          "parler",
+          "taverne",
+          "témoin"
+        ],
+        "question": "Qui parle de quoi, sur la place ?",
+        "reponse": "Il se rengorge : tout passe par lui. Gaspard, le vieux pêcheur, jure avoir vu quelque chose sur l'eau la nuit dernière et le raconte chaque soir au Hareng Rouillé, à qui lui paie un verre ; la petite aubergiste sait tout et ne dit que la moitié ; la marchande à bâche bleue vient de passer la route de l'est. Quant au petit sacristain, on ne l'a plus vu sonner une cloche depuis la fête.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-metier-de-crieur",
+        "mots": [
+          "métier",
+          "cloche",
+          "gnome",
+          "horloge",
+          "crier"
+        ],
+        "question": "Depuis quand criez-vous les nouvelles ?",
+        "reponse": "Il redresse son pompon : sa famille a toujours réglé les cloches et les horloges, mais lui préférait les crier plutôt que les réparer. Il a repris la barrique de son oncle il y a huit ans et n'a plus jamais voulu en descendre.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Oyez, oyez ! Des visages nouveaux sur la place ! Une nouvelle, une rumeur, un conseil ?",
+      "amical": "Mes amis ! Venez, venez, j'ai gardé les meilleures nouvelles pour vous !",
+      "variantes": []
+    }
+  },
+  {
+    "id": "mirande-sel",
+    "nom": "Mirande Sel",
+    "titre": "Marchande ambulante",
+    "espece": "elfe",
+    "sexe": "F",
+    "age": "120 ans",
+    "role": "Marchande ambulante de passage : cordes, lanternes, potions et menues curiosités, et quelqu'un qui sait étudier un objet",
+    "lieu": "ps-place",
+    "apparence": "Elfe de 120 ans, grande et mince, peau mate, longs cheveux argentés tressés avec des fils de couleur, yeux gris très clairs, châle de laine ocre sur une robe de voyage, une dizaine de petites sacoches à la ceinture, installée sous une bâche bleue.",
+    "personnalite": {
+      "traits": [
+        "avenante",
+        "rusée",
+        "discrète",
+        "curieuse"
+      ],
+      "voix": "Douce et mesurée, avec le rythme d'une ancienne qui a tout vu passer ; elle appelle les clients « petits » sans condescendance et finit souvent ses phrases en souriant, comme une promesse.",
+      "valeurs": [
+        "on ne demande jamais d'où vient l'argent",
+        "une bonne corde sauve plus de vies que de longs discours"
+      ],
+      "desir": "Vendre sa marchandise sans histoire et repartir sur la route de l'est avant que le village ne s'agite trop.",
+      "peur": "Qu'on découvre qu'elle a fourni sans poser de questions des gens qui n'auraient pas dû l'être.",
+      "defaut": "Elle préfère ne pas savoir, par commodité."
+    },
+    "presences": [],
+    "attitude": 5,
+    "savoir": [
+      "f-z1-corde-de-sorel"
+    ],
+    "secrets": [
+      {
+        "fait": "f-marche-de-sorel",
+        "attitudeMin": 40
+      },
+      {
+        "fait": "f-marche-de-sorel",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-marche-de-sorel",
+        "prix": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-marchandise",
+        "mots": [
+          "vendre",
+          "acheter",
+          "marchandise",
+          "corde",
+          "lanterne",
+          "potion"
+        ],
+        "question": "Que vendez-vous sur votre étal ?",
+        "reponse": "Elle déploie ses sacoches avec un sourire : de la corde de chanvre, des lanternes à capote, de l'huile, des trousses de soins, quelques potions de guérison à cinquante pièces d'or, de quoi s'équiper sans se ruiner pour une expédition. Elle rachète aussi, à moitié prix, ce qui peut se revendre sur la route.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-identification",
+        "mots": [
+          "identifier",
+          "étudier",
+          "objet",
+          "magique",
+          "inconnu"
+        ],
+        "question": "Pouvez-vous étudier un objet étrange ?",
+        "reponse": "Elle rit doucement : cent vingt ans de routes lui ont appris à lire un objet comme un visage. Contre vingt pièces d'or, elle l'examine à la loupe et à la lumière et dit ce qu'il fait, si elle le peut.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-routes-de-l-est",
+        "mots": [
+          "route",
+          "passage",
+          "voyage",
+          "est",
+          "nouvelles"
+        ],
+        "question": "Quelles nouvelles de la route ?",
+        "reponse": "Elle passe chaque année à Port-Sillage avant les premières brumes ; cette fois, la route de l'est était calme et les routiers pressés, mais le village a l'air d'une fête qu'on a rangée trop vite. Elle a vu des barques sans pavillon passer au loin, mais il n'y a pas là de quoi s'inquiéter, dit-elle.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "une-corde-pour-un-contrebandier",
+        "mots": [
+          "corde",
+          "grappin",
+          "sacs",
+          "tieffelin",
+          "crique"
+        ],
+        "question": "À qui avez-vous vendu de la corde, ces jours-ci ?",
+        "attitudeMin": 30,
+        "reponse": "Elle hésite, puis avoue : un tieffelin de la crique, poli et pressé, lui a pris plusieurs longueurs de corde, des sacs cirés et un grappin, payés comptant, et les a fait charger sur une barque pour le sud. Elle n'a pas posé de questions : on ne demande jamais d'où vient l'argent. Mais elle sait où se trouve la crique des Gueux.",
+        "revele": [
+          "f-z1-corde-de-sorel"
+        ],
+        "effets": [
+          {
+            "flag": "crique-trouvee"
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "les-passages-d-hier",
+        "mots": [
+          "elfe",
+          "ans",
+          "âge",
+          "mémoire",
+          "autrefois"
+        ],
+        "question": "Vous revenez ici depuis longtemps ?",
+        "reponse": "Elle sourit : elle revient à Port-Sillage depuis plus de quarante ans, et l'a vu grandir autour de la place. À l'époque la digue n'existait pas, et l'église n'avait pas encore son vitrail bleu.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Approchez, petits. Cordes, lanternes, potions : tout ce qu'il faut pour un voyage, et un peu plus.",
+      "amical": "Ah, mes chalands favoris. Je vous ai gardé quelque chose de joli sous la bâche.",
+      "variantes": []
+    },
+    "boutique": {
+      "stock": [
+        {
+          "objet": "corde",
+          "quantite": 6
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 3
+        },
+        {
+          "objet": "lanterne-sourde",
+          "quantite": 1
+        },
+        {
+          "objet": "huile",
+          "quantite": 10
+        },
+        {
+          "objet": "torche",
+          "quantite": 10
+        },
+        {
+          "objet": "rations",
+          "quantite": 10
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 3,
+          "prix": 50
+        },
+        {
+          "objet": "grappin",
+          "quantite": 2
+        },
+        {
+          "objet": "outre",
+          "quantite": 4
+        },
+        {
+          "objet": "filet",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "materiel",
+        "outil",
+        "potion",
+        "nourriture",
+        "divers"
+      ]
+    },
+    "services": [
+      {
+        "id": "identification-de-mirande",
+        "nom": "Faire étudier un objet par Mirande",
+        "resume": "Mirande examine l'objet à la loupe et à la lumière, le tourne entre ses doigts et dit ce qu'elle en comprend.",
+        "prix": 20,
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "tobie-ancre",
+    "nom": "Tobie Ancre",
+    "titre": "Sacristain",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "17 ans",
+    "role": "Sacristain de l'église Sainte-Maëlle : il se cache sous une barque du quai depuis la nuit du vol",
+    "lieu": "pl-quai",
+    "apparence": "Jeune homme humain de 17 ans, maigre, joues creuses, cheveux bruns en bataille, yeux rouges de fatigue, tunique de sacristain grise froissée et salie de goudron, un cordon de cloche enroulé autour du poignet, sandales usées.",
+    "personnalite": {
+      "traits": [
+        "timide",
+        "scrupuleux",
+        "rongé de remords",
+        "doué pour les cloches"
+      ],
+      "voix": "Basse, hésitante, avec des phrases qui s'arrêtent au milieu ; il dit « pardon » trop souvent et regarde ses mains quand il ment ; quand il parle des cloches, sa voix s'éclaire.",
+      "valeurs": [
+        "on ne laisse pas sa mère",
+        "une promesse de cloche est une promesse"
+      ],
+      "desir": "Sauver sa mère de la fièvre, et réparer ce qu'il a fait sans que personne ne le sache.",
+      "peur": "Qu'on l'arrête, qu'on le chasse, et que sa mère reste seule.",
+      "defaut": "Il se laisse acheter par ceux qu'il croit sauver."
+    },
+    "presences": [],
+    "faction": "eglise-de-la-bonace",
+    "attitude": -10,
+    "savoir": [
+      "f-cle-de-tobie",
+      "f-helene-malade"
+    ],
+    "secrets": [
+      {
+        "fait": "f-cle-de-tobie",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-cle-de-tobie",
+        "condition": {
+          "ou": [
+            {
+              "objet": "bourse-marquee"
+            },
+            {
+              "objet": "cle-de-la-crypte"
+            }
+          ]
+        }
+      },
+      {
+        "fait": "f-cle-de-tobie",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        }
+      },
+      {
+        "fait": "f-helene-malade",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "qui-etes-vous",
+        "mots": [
+          "barque",
+          "caché",
+          "sous",
+          "qui",
+          "quai"
+        ],
+        "question": "Que faites-vous sous cette barque ?",
+        "reponse": "Il ment mal : il raccommode des filets, il a perdu le sommeil, il aime le bruit de l'eau. Il garde les yeux sur les tréteaux, comme s'il guettait une sortie, et bégaie en parlant de l'église.",
+        "revele": [],
+        "effets": [],
+        "unique": false,
+        "condition": {
+          "non": {
+            "flag": "tobie-retrouve"
+          }
+        }
+      },
+      {
+        "id": "sa-mere",
+        "mots": [
+          "mère",
+          "Hélène",
+          "famille",
+          "maison",
+          "sacristie"
+        ],
+        "question": "Comment va votre mère ?",
+        "attitudeMin": 10,
+        "reponse": "Il a un frisson. Elle raccommode des filets, elle est logée à la sacristie, chez le père Aubin, depuis que son père s'est noyé. Il ne dit pas que la fièvre la ronge depuis deux mois, mais sa voix se brise quand il prononce son nom.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-cloches",
+        "mots": [
+          "cloche",
+          "sonner",
+          "clocher",
+          "carillon",
+          "Aubin"
+        ],
+        "question": "Vous sonnez toujours les cloches ?",
+        "reponse": "Son visage s'éclaire un instant : il sonne mieux que personne, il le sait, et les cloches de Port-Sillage lui ont appris à compter. Puis il se rembrunit : le père Aubin ne le juge pas digne de lire la Bonace, il le croit simplement bon à tirer des cordes.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "se-confesser-rassure",
+        "mots": [
+          "rassurer",
+          "confiance",
+          "avouer",
+          "clé",
+          "pardon"
+        ],
+        "question": "Le rassurer : on ne lui veut pas de mal.",
+        "attitudeMin": 30,
+        "reponse": "Il s'effondre à moitié sur le plat-bord. Il a remis la clé de la crypte à un tieffelin de la crique, Sorel Noirbec, contre de l'argent pour l'apothicaire de sa mère, malade de la fièvre des marais ; il croyait qu'on ne voulait que l'argenterie. Il a compris trop tard que c'était le livre. Il supplie qu'on ne dise rien à sa mère.",
+        "revele": [
+          "f-cle-de-tobie",
+          "f-helene-malade"
+        ],
+        "effets": [
+          {
+            "flag": "tobie-retrouve"
+          },
+          {
+            "quete": {
+              "id": "q-tobie-sa-mere",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "se-confesser-preuve",
+        "mots": [
+          "preuve",
+          "pièces",
+          "écaille",
+          "clé",
+          "confession"
+        ],
+        "question": "Lui montrer ce que nous avons trouvé.",
+        "condition": {
+          "ou": [
+            {
+              "objet": "bourse-marquee"
+            },
+            {
+              "objet": "cle-de-la-crypte"
+            }
+          ]
+        },
+        "reponse": "Il regarde la preuve, blême, puis laisse tomber ses défenses : oui, c'est lui qui a ouvert la porte au contrebandier, pour payer les remèdes de sa mère. Il parle en pleurant à moitié. Il ne demande qu'une chose : qu'on la soigne.",
+        "revele": [
+          "f-cle-de-tobie",
+          "f-helene-malade"
+        ],
+        "effets": [
+          {
+            "flag": "tobie-retrouve"
+          },
+          {
+            "quete": {
+              "id": "q-tobie-sa-mere",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "ou-est-sorel",
+        "mots": [
+          "Sorel",
+          "tieffelin",
+          "crique",
+          "contrebandier",
+          "où"
+        ],
+        "question": "Où trouver celui qui a la clé ?",
+        "condition": {
+          "flag": "tobie-retrouve"
+        },
+        "reponse": "Il baisse les yeux : l'homme vit dans une anse cachée au sud, la crique des Gueux, qu'on atteint par le sentier des Goémons depuis le quai. Il y a une grotte, et la marée noie le sentier, alors il faut y aller à basse mer.",
+        "revele": [
+          "f-z1-sentier-des-goemons"
+        ],
+        "effets": [
+          {
+            "flag": "crique-trouvee"
+          }
+        ],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Laissez-moi tranquille, je vous en prie !",
+      "neutre": "Je... je ne fais rien de mal. Je répare des filets, c'est tout.",
+      "amical": "Merci d'être venus. Je ne sais pas ce que je ferais sans vous.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-confier"
+          },
+          "texte": "Tobie vous accueille à la sacristie, les mains rangées sur ses genoux : « Le père m'a gardé. Je dois encore tout lui expliquer, et ma mère aussi. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-livrer"
+          },
+          "texte": "Tobie vous regarde à travers la grille, sans colère : « Vous avez fait ce qu'il fallait. Dites à ma mère que je pense à elle. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-cacher"
+          },
+          "texte": "Tobie vous accueille à voix basse : « Personne ne m'a trouvé. Merci de ne pas m'avoir livré. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Tobie lève la tête, plein d'un espoir qu'il n'ose pas croire : « On m'a dit que vous aviez parlé à l'homme de la crique. Ma mère... est-ce que vous... »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Tobie vous accueille d'un hochement de tête fatigué : « Vous savez tout, maintenant. Je ne me cache plus. Qu'est-ce qu'on fait de moi ? »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "maeva-brisant",
+    "nom": "Maëva Brisant",
+    "titre": "Aubergiste du Hareng Rouillé",
+    "espece": "halfelin",
+    "sexe": "F",
+    "age": "45 ans",
+    "role": "Aubergiste du Hareng Rouillé : elle sait tout ce qui se dit dans le village et n'en dit que la moitié",
+    "lieu": "ta-salle",
+    "apparence": "Halfeline de 45 ans, ronde et vive, cheveux roux noués en chignon sous un fichu à carreaux bleus, joues rougies par le feu, tablier de lin taché de sauce sur une robe brune, manches retroussées, un torchon à l'épaule.",
+    "personnalite": {
+      "traits": [
+        "chaleureuse",
+        "curieuse",
+        "rusée",
+        "pragmatique"
+      ],
+      "voix": "Chantante et rapide, avec des diminutifs pour tout le monde (« mon chou », « petit mousse ») ; elle parle en essuyant une chope et baisse la voix quand elle approche d'un secret.",
+      "valeurs": [
+        "une taverne ne juge pas ses clients",
+        "un bon fournisseur se ménage"
+      ],
+      "desir": "Que sa cave soit vidée de ses rats et que la fête reprenne, parce qu'une taverne vide ne rapporte rien.",
+      "peur": "Que ses fournisseurs apprennent qu'elle a parlé, et qu'ils lui ferment le robinet.",
+      "defaut": "Elle préfère se taire que perdre un client."
+    },
+    "presences": [],
+    "faction": "gens-du-port",
+    "attitude": 5,
+    "savoir": [
+      "f-z1-cave-aux-rats",
+      "f-z1-pieces-marquees",
+      "f-z1-biere-de-la-crique"
+    ],
+    "secrets": [
+      {
+        "fait": "f-z1-pieces-marquees",
+        "attitudeMin": 20
+      },
+      {
+        "fait": "f-z1-pieces-marquees",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        }
+      },
+      {
+        "fait": "f-z1-biere-de-la-crique",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "les-clients",
+        "mots": [
+          "clients",
+          "habitués",
+          "fête",
+          "qui",
+          "boit"
+        ],
+        "question": "Qui est passé chez vous pendant la fête ?",
+        "reponse": "Elle compte sur ses doigts, sans jamais finir : les pêcheurs, le guet à la fin de service, Gaspard qui ne s'en va jamais, deux marins étrangers qui ne parlaient pas beaucoup, et, comme chaque année, ceux de la crique qui descendent boire, payent comptant et ne laissent pas de nom.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-cave-aux-rats",
+        "mots": [
+          "cave",
+          "rats",
+          "tonneaux",
+          "descendre",
+          "bruit"
+        ],
+        "question": "Un souci avec votre cave ?",
+        "reponse": "Elle lève les yeux au ciel : sa cave est infestée, des rats gros comme des chats sortent du mur sud, et la nuée emporte tout ce qui est mangeable. Elle n'ose plus descendre chercher les tonneaux. Elle promet de la reconnaissance, et une bonne place près du feu, à qui la débarrasse.",
+        "revele": [
+          "f-z1-cave-aux-rats"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-maeva-la-cave",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "les-pieces-marquees",
+        "mots": [
+          "pièces",
+          "argent",
+          "écaille",
+          "payer",
+          "monnaie"
+        ],
+        "question": "Vos clients paient-ils tous en bonnes pièces ?",
+        "attitudeMin": 20,
+        "reponse": "Elle jette un regard vers le comptoir, puis baisse la voix : certains hommes de la crique paient leur vin en pièces d'argent frappées d'une écaille de poisson, une monnaie qu'elle ne connaît pas. Elle n'en a rien dit à personne, car ce sont de bons clients.",
+        "revele": [
+          "f-z1-pieces-marquees"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-bourse",
+        "mots": [
+          "bourse",
+          "pièces",
+          "tiroir",
+          "preuve",
+          "montrer"
+        ],
+        "question": "Lui demander de montrer ce qu'elle a mis de côté.",
+        "attitudeMin": 40,
+        "reponse": "Elle soupire, ouvre le tiroir de la caisse et pose une bourse de cuir sur le comptoir : des pièces à l'écaille, qu'elle a gardées de côté. Elle les confie en murmurant que ceux qui les ont données n'étaient pas des pêcheurs, et qu'ils ne parlaient que de sel et de marées.",
+        "revele": [
+          "f-z1-pieces-marquees"
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "bourse-marquee",
+              "quantite": 1
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-biere-du-hareng",
+        "mots": [
+          "bière",
+          "fournisseur",
+          "sel",
+          "tonneaux",
+          "livraison"
+        ],
+        "question": "D'où vient votre bière ?",
+        "attitudeMin": 30,
+        "reponse": "Elle hésite, puis avoue : la bière et le sel viennent de la crique, à prix d'ami, et ce prix tient à son silence sur les clients qui l'apportent. Elle ne veut pas s'y mettre en travers, mais ça la ronge depuis que le livre a disparu.",
+        "revele": [
+          "f-z1-biere-de-la-crique"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-vieux-gaspard",
+        "mots": [
+          "Gaspard",
+          "pêcheur",
+          "feu",
+          "table",
+          "vieux"
+        ],
+        "question": "Que dit-on du vieux Gaspard ?",
+        "reponse": "Elle sourit : il est là depuis la fermeture des étals, comme chaque soir. Il raconte toujours la même histoire de barque sans lumière, mais il se trompe parfois de nuit, surtout après la quatrième chope. Elle précise qu'il est honnête, simplement flou sur le calendrier.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "hostile": "Votre argent est bon, mais votre mine ne me plaît pas. Buvez et ne cassez rien.",
+      "neutre": "Entrez, entrez ! Une chope, une soupe, une chambre ? Dites-moi ce qu'il vous faut, mon chou.",
+      "amical": "Ah, les voilà ! Asseyez-vous près du feu, la première chope est pour la maison.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-cacher"
+          },
+          "texte": "Maëva se penche sur son comptoir : « On chuchote sur la place qu'on cache quelqu'un. Moi, je n'ai rien entendu. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Maëva laisse tomber son torchon : « Alors c'est vrai, pour ceux de la crique ? Eh bien, tant pis pour la bière. Asseyez-vous, je vous dois bien une soupe. »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Maëva se penche sur le comptoir : « Il paraît que le petit sacristain est retrouvé. Pauvre garçon. Alors vous savez ce qui s'est passé ? »"
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "grande-maree",
+              "min": 2
+            }
+          },
+          "texte": "La salle est vide ; Maëva range les chaises sur les tables, l'air las : « Depuis que le guet est consigné, plus personne ne sort. Asseyez-vous, ça fait toujours de la compagnie. »"
+        },
+        {
+          "condition": {
+            "flag": "vol-connu"
+          },
+          "texte": "Maëva essuie une chope avec un air entendu : « Alors c'est vous, les enquêteurs de la maire ? Venez près du feu, mes chous. On cause mieux au chaud. »"
+        }
+      ]
+    },
+    "services": [
+      {
+        "id": "chambre-du-hareng",
+        "nom": "Une chambre à l'étage",
+        "resume": "Maëva vous donne une chambre à l'étage, aux draps rêches mais propres, et une soupe de poisson chaude le soir. Vous dormez au son du ressac.",
+        "prix": 5,
+        "effets": []
+      },
+      {
+        "id": "repas-du-hareng",
+        "nom": "Une soupe de poisson et un pain",
+        "resume": "Une soupe de poisson fumante, un gros pain bis et une chope de bière coupée d'eau : un repas de pêcheur, servi sans façon.",
+        "prix": 1,
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "gaspard-vent",
+    "nom": "Gaspard Vent",
+    "titre": "Vieux pêcheur",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "68 ans",
+    "role": "Pêcheur à la retraite, bavard et un peu flou sur les dates, qui a vu une barque sans lumière filer vers la crique",
+    "lieu": "ta-salle",
+    "apparence": "Homme humain de 68 ans, maigre et noueux, barbe blanche jaunie par la pipe, visage tanné, bonnet de laine rouge délavé, vareuse de pêcheur rapiécée, mains épaisses aux doigts déformés par les nœuds, une pipe d'écume éteinte entre les dents.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "nostalgique",
+        "honnête",
+        "distrait"
+      ],
+      "voix": "Traînante, rocailleuse, avec des digressions interminables et des « vous comprenez » ; il revient toujours à sa phrase de départ, et finit par dire « enfin, c'est ce que je crois ».",
+      "valeurs": [
+        "la mer est la mer",
+        "un homme se juge à ses filets"
+      ],
+      "desir": "Qu'on l'écoute enfin, et qu'on le croie.",
+      "peur": "Qu'on le prenne pour un vieux fou qui ne sait plus ce qu'il a vu.",
+      "defaut": "Il mélange les nuits, surtout après quelques chopes."
+    },
+    "presences": [],
+    "faction": "gens-du-port",
+    "attitude": 15,
+    "savoir": [
+      "f-z1-barque-sans-lumiere",
+      "f-z1-gaspard-se-trompe-de-nuit",
+      "f-z1-tobie-au-quai"
+    ],
+    "secrets": [
+      {
+        "fait": "f-z1-gaspard-se-trompe-de-nuit",
+        "attitudeMin": 35
+      },
+      {
+        "fait": "f-z1-gaspard-se-trompe-de-nuit",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        }
+      },
+      {
+        "fait": "f-z1-tobie-au-quai",
+        "attitudeMin": 25
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-barque-sans-lumiere",
+        "mots": [
+          "barque",
+          "lumière",
+          "crique",
+          "nuit",
+          "eau",
+          "rame"
+        ],
+        "question": "Avez-vous vu passer quelque chose sur l'eau ?",
+        "reponse": "Il se redresse, enchanté : une barque sans lumière, pas un coup de rame bruyant, filait vers la crique des Gueux, tout au sud, en pleine nuit. Il jure que c'était la nuit de la fête, puis hésite, puis ajoute qu'il avait peut-être bu. Dans tous les cas, ce n'était pas une barque de pêcheur honnête.",
+        "revele": [
+          "f-z1-barque-sans-lumiere"
+        ],
+        "effets": [
+          {
+            "flag": "crique-trouvee"
+          }
+        ],
+        "unique": false
+      },
+      {
+        "id": "la-mer-d-autrefois",
+        "mots": [
+          "jeunesse",
+          "mer",
+          "autrefois",
+          "pêche",
+          "baie"
+        ],
+        "question": "Comment était la baie dans votre jeunesse ?",
+        "reponse": "Il ferme les yeux : la baie était pleine de harengs, la place n'avait pas d'estrade, et les cloches sonnaient pour chaque barque qui rentrait. Il a perdu deux frères en mer. Il aime encore la sainte, qui calmait les tempêtes, et il croit que sans elle, le village aura peur.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "un-gamin-au-quai",
+        "mots": [
+          "garçon",
+          "gamin",
+          "sacristain",
+          "quai",
+          "barque"
+        ],
+        "question": "Avez-vous remarqué quelqu'un au quai ?",
+        "attitudeMin": 25,
+        "reponse": "Il plisse les yeux : la nuit, quand il rentre de sa pipe sur le môle, il lui est arrivé de voir un jeune homme maigre sortir de dessous la vieille Brise-Lame, manger des croûtes et regarder la mer. Il n'a rien dit, car on a le droit d'être triste.",
+        "revele": [
+          "f-z1-tobie-au-quai"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-nuit-de-quoi",
+        "mots": [
+          "nuit",
+          "sûr",
+          "date",
+          "avant",
+          "fête"
+        ],
+        "question": "Êtes-vous bien sûr de la nuit ?",
+        "reponse": "Il se gratte la barbe, vexé, puis réfléchit : à y repenser, la marée était basse et la lune encore pleine, donc c'était sans doute la nuit d'avant la fête, pas celle du vol. La barque préparait peut-être le coup avant qu'il ne se produise. Il ajoute que ça fait un drôle d'effet de se corriger devant témoins.",
+        "revele": [
+          "f-z1-gaspard-se-trompe-de-nuit"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "offrir-un-verre",
+        "mots": [
+          "verre",
+          "boire",
+          "chope",
+          "offrir",
+          "tournée"
+        ],
+        "question": "Lui offrir un verre.",
+        "reponse": "Il lève sa chope avec la solennité d'un homme qu'on respecte enfin, et jure que ce verre-là lui délie la mémoire mieux que les autres. Il vous remercie à la façon des vieux pêcheurs : en vous racontant deux fois la même histoire.",
+        "revele": [],
+        "effets": [
+          {
+            "pieces": -2
+          },
+          {
+            "attitude": {
+              "pnj": "gaspard-vent",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "Hé, vous ! Asseyez-vous, j'ai des choses à raconter, si vous avez le temps.",
+      "amical": "Ah, voilà du monde qui m'écoute ! Prenez le banc, mes enfants, il y en a pour la soirée.",
+      "variantes": []
+    }
+  },
+  {
+    "id": "odile-marsan",
+    "nom": "Odile Marsan",
+    "titre": "Capitaine du guet",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "38 ans",
+    "role": "Capitaine du guet de Port-Sillage, ancienne soldate de Hautmont : fière, épuisée, et prise entre le devoir de sa garnison et ses soupçons",
+    "lieu": "ca-bureau",
+    "apparence": "Femme humaine de 38 ans, droite, maigre, cheveux châtains coupés court, cernes profonds, visage anguleux, justaucorps bleu délavé d'officier aux boutons ternis, un baudrier de cuir usé, des gants de peau serrés dans une main.",
+    "personnalite": {
+      "traits": [
+        "fière",
+        "loyale",
+        "épuisée",
+        "droite malgré tout"
+      ],
+      "voix": "Sèche et posée, des phrases courtes, un ton militaire qu'elle adoucit rarement ; quand elle se tait, c'est qu'elle pèse ses mots.",
+      "valeurs": [
+        "on ne laisse pas ses hommes",
+        "l'honneur n'est pas un luxe"
+      ],
+      "desir": "Que ses soldats soient payés, que le port soit tenu, et que sa garnison tienne bon jusqu'à l'hiver.",
+      "peur": "Qu'on la juge pour deux ans de silence, et que ses hommes en paient le prix.",
+      "defaut": "Elle préfère se taire à demander de l'aide."
+    },
+    "presences": [],
+    "faction": "garnison-du-guet",
+    "attitude": -5,
+    "savoir": [
+      "f-contrebande-toleree",
+      "f-solde-impayee",
+      "f-z1-rondes-de-nuit"
+    ],
+    "secrets": [
+      {
+        "fait": "f-contrebande-toleree",
+        "attitudeMin": 45
+      },
+      {
+        "fait": "f-contrebande-toleree",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        }
+      },
+      {
+        "fait": "f-solde-impayee",
+        "condition": {
+          "objet": "registre-de-la-solde"
+        }
+      },
+      {
+        "fait": "f-solde-impayee",
+        "attitudeMin": 55
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-garnison",
+        "mots": [
+          "garnison",
+          "guet",
+          "soldats",
+          "hommes",
+          "caserne"
+        ],
+        "question": "Comment tient votre garnison ?",
+        "reponse": "Elle redresse le menton : le guet tient la place, le quai et la route de l'est, avec des hommes qui n'ont pas été payés comme ils le devraient. Elle ne se plaint pas, elle constate. Elle laisse entendre que le moral est plus fragile que les uniformes ne le laissent paraître.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-vol",
+        "mots": [
+          "livre",
+          "vol",
+          "crypte",
+          "voleur",
+          "enquête"
+        ],
+        "question": "Que pensez-vous du vol du livre ?",
+        "reponse": "Elle fixe la carte de la baie, sans la voir : la grille de la crypte n'a pas été forcée, donc quelqu'un a ouvert de l'intérieur, ou a eu la clé. Elle refuse d'en dire plus, et change de sujet. Pourtant, ses mains se crispent dès qu'elle parle de la crique.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-rondes",
+        "mots": [
+          "ronde",
+          "nuit",
+          "garde",
+          "patrouille",
+          "couvre-feu"
+        ],
+        "question": "Comment le guet surveille-t-il le village la nuit ?",
+        "reponse": "Elle répond comme à un rapport : deux rondes par nuit, sur la place et le quai, deux gardes à la grille. Le sentier des Goémons n'est jamais parcouru, car la marée le noie. C'est le sergent Piotr qui règle tout cela.",
+        "revele": [
+          "f-z1-rondes-de-nuit"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-preuve-de-sorel",
+        "mots": [
+          "pièces",
+          "écaille",
+          "preuve",
+          "contrebandiers",
+          "crique"
+        ],
+        "question": "Lui remettre la preuve que nous avons trouvée.",
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "objet": "bourse-marquee"
+                },
+                {
+                  "objet": "lettre-de-verdelune"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "odile-prevenue"
+              }
+            }
+          ]
+        },
+        "reponse": "Elle examine la preuve, longtemps, puis lâche entre ses dents qu'elle avait compris, sans vouloir comprendre. Elle se lève : elle double la garde du port, fait marquer la crique sur sa carte, et ordonne qu'aucune barque ne sorte sans son accord. Elle ajoute que ce service-là, elle ne l'oubliera pas.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "odile-prevenue"
+          },
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": -1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": 20
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-registre-de-la-solde",
+        "mots": [
+          "registre",
+          "solde",
+          "paie",
+          "comptes",
+          "tiroir"
+        ],
+        "question": "Lui montrer le registre de la solde.",
+        "condition": {
+          "objet": "registre-de-la-solde"
+        },
+        "reponse": "Elle ne dit rien pendant de longues secondes, puis son visage se défait. Oui, la solde est impayée depuis deux ans ; oui, elle a laissé passer les barques de la crique pour que ses hommes mangent. Elle demande qu'on ne la juge pas avant d'avoir vu le fond de la caisse du village.",
+        "revele": [
+          "f-solde-impayee",
+          "f-contrebande-toleree"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-odile-la-solde",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "Sortez. Je n'ai pas de temps pour des curieux.",
+      "neutre": "Capitaine Marsan. Si vous avez un rapport, faites-le bref.",
+      "amical": "Vous voilà. Asseyez-vous, je vous dois peut-être plus que je ne le dis.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-livrer"
+          },
+          "texte": "Odile hoche la tête, sans sourire : « Vous m'avez amené le garçon. La loi est la loi, et je ne l'oublierai pas. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-le-sacristain-confier"
+          },
+          "texte": "Odile ne se lève pas : « Vous avez remis mon voleur au curé. Le guet n'a plus qu'à regarder. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Odile se lève à votre entrée, ce qu'elle ne fait jamais : « On m'a rapporté la nouvelle pour la crique. Je vous devais mon silence, je vous dois maintenant bien davantage. »"
+        },
+        {
+          "condition": {
+            "flag": "tobie-retrouve"
+          },
+          "texte": "Odile referme son registre : « Le garçon est retrouvé, il paraît. Je ne sais pas encore s'il faut l'arrêter ou le plaindre. Dites-moi ce que vous avez appris. »"
+        },
+        {
+          "condition": {
+            "flag": "vol-connu"
+          },
+          "texte": "Odile lève à peine les yeux de sa carte : « Vous travaillez pour la maire. Je le sais, tout le village le sait. Dites-moi ce que vous voulez, et sans détour. »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "piotr-lenoir",
+    "nom": "Piotr Lenoir",
+    "titre": "Sergent du guet",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "52 ans",
+    "role": "Sergent du guet, ancien charpentier de marine : il dirige l'exercice et règle les rondes de nuit",
+    "lieu": "ca-cour",
+    "apparence": "Nain de 52 ans, trapu, barbe brune tressée de fils gris, nez cassé, avant-bras noueux de charpentier, veste de cuir bleu du guet, ceinturon à large boucle de laiton, un bâton d'exercice à la main.",
+    "personnalite": {
+      "traits": [
+        "droit",
+        "bourru",
+        "attaché à ses recrues",
+        "méthodique"
+      ],
+      "voix": "Grave, brève, avec des phrases qui sonnent comme des ordres ; il compte sur ses doigts, grogne avant de sourire, et dit « gamin » ou « petit » aux plus jeunes.",
+      "valeurs": [
+        "la parole donnée",
+        "un bon travail se fait deux fois ou pas du tout"
+      ],
+      "desir": "Que la garnison reste debout, et comprendre pourquoi sa capitaine ne dort plus.",
+      "peur": "Que la capitaine cache quelque chose qui ruinerait le guet.",
+      "defaut": "Il obéit avant de douter, et doute trop tard."
+    },
+    "presences": [],
+    "faction": "garnison-du-guet",
+    "attitude": 0,
+    "savoir": [
+      "f-z1-rondes-de-nuit",
+      "f-z1-piotr-doute"
+    ],
+    "secrets": [
+      {
+        "fait": "f-z1-piotr-doute",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-z1-piotr-doute",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "les-rondes",
+        "mots": [
+          "ronde",
+          "nuit",
+          "garde",
+          "patrouille",
+          "horaires"
+        ],
+        "question": "Quand le guet fait-il ses rondes ?",
+        "reponse": "Il compte sur ses doigts : une ronde à la tombée du jour, une avant l'aube, sur la place et le long du quai ; deux gardes à la grille, jamais moins. Le sentier des Goémons n'est pas dans sa ronde, car la mer le noie, et les hommes n'y voient pas de raison d'aller.",
+        "revele": [
+          "f-z1-rondes-de-nuit"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-exercice",
+        "mots": [
+          "exercice",
+          "épreuve",
+          "bâton",
+          "combat",
+          "mannequin"
+        ],
+        "question": "Proposer de s'essayer à l'exercice.",
+        "reponse": "Il sourit pour la première fois : un exercice, c'est le meilleur moyen de savoir qui on a devant soi. Il pose un bâton à vos pieds et désigne le mannequin du centre.",
+        "revele": [],
+        "effets": [
+          {
+            "rencontre": "z1-r-exercice-de-piotr"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-capitaine",
+        "mots": [
+          "capitaine",
+          "Odile",
+          "chef",
+          "ordre",
+          "doute"
+        ],
+        "question": "Que pensez-vous de la capitaine ?",
+        "attitudeMin": 20,
+        "reponse": "Il se taille la barbe du pouce, mal à l'aise : la capitaine est la meilleure qu'il ait servie, mais elle ne dort plus, ferme parfois les yeux sur des barques qu'elle devrait arrêter, et garde un tiroir verrouillé dont il n'a jamais vu l'intérieur. Il ne dit pas qu'il la soupçonne, il dit qu'il s'inquiète.",
+        "revele": [
+          "f-z1-piotr-doute"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-charpentier",
+        "mots": [
+          "charpentier",
+          "bateau",
+          "marine",
+          "bois",
+          "nain"
+        ],
+        "question": "Vous étiez charpentier de marine ?",
+        "reponse": "Il grogne d'aise : quinze ans de coques et de quilles avant le guet, et il peut encore dire à l'œil quelle barque de la baie a été calfatée à la va-vite. Il a gardé du métier le respect des nœuds et des joints : rien ne tient sans méthode.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-recrue",
+        "mots": [
+          "Basile",
+          "recrue",
+          "jeune",
+          "apprenti",
+          "rondes"
+        ],
+        "question": "Que vaut votre jeune recrue ?",
+        "reponse": "Il baisse la voix : Basile a l'étoffe d'un bon garde, droit, courageux quand on compte sur lui, fils de pêcheur donc à l'aise sur le quai. Mais il évite les ruelles sans lanterne et trouve toujours un prétexte pour ne pas être de la ronde de nuit. Il ne l'a jamais forcé.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Sergent Lenoir. Si vous êtes là pour le guet, parlez ; sinon, ne gênez pas l'exercice.",
+      "amical": "Tiens, les enquêteurs. Venez, venez, il y a toujours une place pour ceux qui ne se dérobent pas.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "choix-la-solde-se-taire"
+          },
+          "texte": "Piotr vous regarde de côté : « Vous saviez pour la solde et vous avez gardé ça pour vous. Je m'en souviendrai. »"
+        },
+        {
+          "condition": {
+            "flag": "choix-la-solde-exiger"
+          },
+          "texte": "Piotr se racle la gorge : « La maire a payé un peu. Je ne remercie pas souvent. Je le fais. »"
+        },
+        {
+          "condition": {
+            "flag": "sorel-demasque"
+          },
+          "texte": "Piotr pose son bâton et vous tend la main : « Vous avez fait en trois jours ce que mes hommes n'ont pas fait en deux ans. Je vous dois une chope, et un secret. »"
+        }
+      ]
+    }
+  },
+  {
+    "id": "basile-ecume",
+    "nom": "Basile Écume",
+    "titre": "Recrue du guet",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "19 ans",
+    "role": "Recrue du guet depuis six mois, fils de pêcheur : brave quand on compte sur lui, et futur compagnon de route",
+    "lieu": "ca-cour",
+    "apparence": "Jeune homme humain de 19 ans, grand et dégingandé, cheveux blonds en bataille, joues piquetées de taches de rousseur, veste bleue du guet trop courte aux poignets, ceinture de cuir neuve, une petite lanterne de poisson éteinte qu'il tient dans ses deux mains.",
+    "personnalite": {
+      "traits": [
+        "loyal",
+        "maladroit",
+        "courageux quand on compte sur lui",
+        "pudique"
+      ],
+      "voix": "Hésitante et polie, il dit « monsieur » ou « madame » à tout le monde et rougit quand on le félicite ; sa voix gagne en assurance quand il parle de pêche ou d'un devoir à remplir.",
+      "valeurs": [
+        "un garde tient son poste",
+        "on ne laisse personne dans le noir"
+      ],
+      "desir": "Prouver qu'il est digne de l'uniforme, et venir à bout de sa peur.",
+      "peur": "Le noir : les ruelles sans lanterne, les caves, la nuit sans lune.",
+      "defaut": "Il se tait par honte au lieu de demander de l'aide."
+    },
+    "presences": [],
+    "faction": "garnison-du-guet",
+    "attitude": 10,
+    "savoir": [
+      "f-z1-rondes-de-nuit",
+      "f-z1-basile-peur-du-noir"
+    ],
+    "secrets": [
+      {
+        "fait": "f-z1-basile-peur-du-noir",
+        "attitudeMin": 25
+      },
+      {
+        "fait": "f-z1-basile-peur-du-noir",
+        "jet": {
+          "competence": "intuition",
+          "dd": 11
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-premiere-ronde",
+        "mots": [
+          "ronde",
+          "garde",
+          "nuit",
+          "recrue",
+          "service"
+        ],
+        "question": "Que fait une recrue du guet ?",
+        "reponse": "Il compte avec application : porter la lanterne, tenir la grille, suivre le sergent sur la place et le quai, deux rondes par nuit. On ne lui a pas encore confié le sentier des Goémons, car personne n'y va. Il avoue que les rondes de nuit sont les plus longues.",
+        "revele": [
+          "f-z1-rondes-de-nuit"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-premier-service",
+        "mots": [
+          "aide",
+          "service",
+          "besoin",
+          "demander",
+          "mission"
+        ],
+        "question": "Lui demander s'il a besoin d'aide.",
+        "attitudeMin": 10,
+        "reponse": "Il rougit jusqu'aux oreilles, serre sa lanterne, puis lâche : il doit faire sa première ronde seul ce soir, sur le quai et la place, et il n'ose pas dire qu'il aimerait quelqu'un à ses côtés. Il demande, très vite, si l'on voudrait bien l'accompagner.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-basile-premier-service",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "partir-ensemble",
+        "mots": [
+          "accompagner",
+          "venir",
+          "suivre",
+          "escorte",
+          "ensemble",
+          "ronde"
+        ],
+        "question": "Lui proposer de nous accompagner.",
+        "condition": {
+          "quete": {
+            "id": "q-basile-premier-service",
+            "statut": "active"
+          }
+        },
+        "attitudeMin": 10,
+        "reponse": "Il ouvre la bouche, la referme, puis serre sa lanterne contre sa veste : oui, bien sûr, oui. Une recrue peut bien faire sa première ronde en bonne compagnie, et il ne demande qu'une chose, c'est qu'on lui laisse la lanterne. Il ferme la grille derrière lui et vous emboîte le pas.",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "basile-ecume"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-noir",
+        "mots": [
+          "noir",
+          "peur",
+          "obscurité",
+          "lanterne",
+          "nuit"
+        ],
+        "question": "Vous tenez votre lanterne d'une drôle de façon.",
+        "attitudeMin": 25,
+        "reponse": "Il baisse les yeux : il n'aime pas le noir, il n'a jamais aimé, et le guet ne le sait pas. Il tient la lanterne allumée jusqu'à la dernière minute, et se force à avancer quand même. Il supplie qu'on ne le dise pas au sergent, parce qu'il a peur qu'on le renvoie.",
+        "revele": [
+          "f-z1-basile-peur-du-noir"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "son-pere-pecheur",
+        "mots": [
+          "père",
+          "pêcheur",
+          "famille",
+          "mer",
+          "bateau"
+        ],
+        "question": "Vous êtes fils de pêcheur ?",
+        "reponse": "Il retrouve son sourire : son père a une barque sur la grève, il a appris à raccommoder les filets avant de savoir lire, et il connaît la baie comme le fond de sa poche. Il a rejoint le guet pour que son père soit fier, même si la mer lui manque.",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "Bonjour, madame, monsieur... Je suis Basile, du guet. Je peux vous aider ?",
+      "amical": "Oh, c'est vous ! Je suis content de vous voir.",
+      "variantes": []
+    }
+  }
+]

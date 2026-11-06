@@ -1,0 +1,29 @@
+[
+  {
+    "id": "q-cit-les-voleurs-d-huile",
+    "nom": "Les voleurs d'huile",
+    "type": "secondaire",
+    "donneur": "gudrun-lanterne",
+    "lieu": "cit-phare-archive",
+    "resume": "Gudrun Lanterne a trouvé ses jarres d'huile vidées dans les réserves des fanaux. Des traces de bottes boueuses partent vers les jardins de falaise, où quelqu'un siphonne l'huile la nuit. Sans elle, trois fanaux s'éteindront. Elle demande qu'on passe la nuit aux jardins de falaise et qu'on attende les voleurs.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "veiller",
+    "etapes": [
+      {
+        "id": "veiller",
+        "texte": "Passez la nuit aux jardins de falaise et attendez les voleurs d'huile.",
+        "completion": { "flag": "cit-voleurs-regles" },
+        "suivantes": ["retour"]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Gudrun que ses fanaux auront leur huile.",
+        "completion": { "flag": "cit-voleurs-retour" },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": { "xp": 75, "pieces": 20, "objets": ["huile", "huile", "huile"], "effets": [] },
+    "ramifications": "Forme : embuscade de nuit. Issues : surprendre les voleurs en silence dans le jardin (discrétion, sans combat s'ils s'enfuient) ; racheter la nuit (30 pièces, les voleurs quittent la côte, Gudrun le prend mal). Si personne ne veille, les réserves sont vides et un fanal s'éteint (événement z7-huile-perdue)."
+  }
+]

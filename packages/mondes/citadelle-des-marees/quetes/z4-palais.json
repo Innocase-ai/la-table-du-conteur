@@ -1,0 +1,107 @@
+[
+  {
+    "id": "q-lot-journal-du-chroniqueur",
+    "nom": "La chronique retrouvée",
+    "type": "secondaire",
+    "donneur": "lot-galdric-vennel",
+    "lieu": "lot-bibliotheque-des-noms",
+    "resume": "Galdric Vennel a caché sa chronique de la Cour sous un rayonnage, avant que l'eau ne monte. Il voudrait la reprendre, et la lire une dernière fois.",
+    "niveau": { "min": 3, "max": 4 },
+    "debut": "trouver",
+    "etapes": [
+      {
+        "id": "trouver",
+        "texte": "Retrouver la chronique que le chroniqueur a cachée sous un rayonnage de la bibliothèque.",
+        "completion": { "objet": "lot-journal-du-chroniqueur" },
+        "suivantes": ["rendre"],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "rendre",
+        "texte": "Rendre la chronique à Galdric Vennel, qui veut la tenir une dernière fois entre ses mains.",
+        "completion": { "flag": "lot-journal-rendu" },
+        "suivantes": [],
+        "termine": true,
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 20,
+      "objets": [],
+      "effets": [{ "fait": "f-lot-nom-des-rois" }]
+    },
+    "ramifications": "La chronique peut être lue sans être rendue : le chroniqueur le saura, et il ne répondra plus à aucune question. S'il n'est pas retrouvé, sa dernière page reste à jamais effacée, et son récit se perd avec la mer."
+  },
+  {
+    "id": "q-lot-prisonnier",
+    "nom": "Le pêcheur de la geôle",
+    "type": "secondaire",
+    "donneur": "lot-tam-roisel",
+    "lieu": "lot-geole-des-noyes",
+    "resume": "Un pêcheur de la côte est enfermé dans la geôle du palais. Il a vu des barques de la Ligue au large, et il demande qu'on décide de son sort.",
+    "niveau": { "min": 3, "max": 4 },
+    "debut": "parler",
+    "etapes": [
+      {
+        "id": "parler",
+        "texte": "Parler au prisonnier de la geôle, et savoir qui il est et ce qu'il a vu.",
+        "completion": { "flag": "lot-prisonnier-ecoute" },
+        "suivantes": ["liberer"],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "liberer",
+        "texte": "Décider du sort du pêcheur : le libérer, ou le laisser enfermé dans la geôle.",
+        "completion": { "flag": "lot-prisonnier-libre" },
+        "suivantes": [],
+        "termine": true,
+        "echec": { "flag": "lot-prisonnier-abandonne" },
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "fait": "f-lot-prisonnier-voit-les-barques" }]
+    },
+    "ramifications": "Libéré, le pêcheur prend la chaussée de nuit vers le port et ne revient plus au palais. S'il est laissé enfermé, il ne dit plus rien, et le groupe perd ce qu'il savait sur la Ligue."
+  },
+  {
+    "id": "q-lot-l-horloge",
+    "nom": "L'horloge du hall",
+    "type": "secondaire",
+    "lieu": "lot-grande-salle",
+    "resume": "L'horloge de bronze du hall est arrêtée depuis trois siècles. Ses trois cadrans commandent la herse de l'escalier des marées, et il faut la remettre en marche pour passer.",
+    "niveau": { "min": 3, "max": 4 },
+    "debut": "comprendre",
+    "etapes": [
+      {
+        "id": "comprendre",
+        "texte": "Comprendre le mécanisme de l'horloge : ses trois cadrans obéissent à un ordre, qu'un tableau du mur donne.",
+        "completion": { "fait": "f-lot-horloge-a-maree" },
+        "suivantes": ["reparer"],
+        "termine": false,
+        "effets": []
+      },
+      {
+        "id": "reparer",
+        "texte": "Régler les trois cadrans sur les signes du tableau, pour que la herse de l'escalier se relève.",
+        "completion": { "flag": "lot-horloge-reparee" },
+        "suivantes": [],
+        "termine": true,
+        "effets": []
+      }
+    ],
+    "recompenses": {
+      "xp": 100,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Le mécanisme peut aussi être arraché à la barre, mais la herse ne se relève pas alors, et l'escalier des marées reste fermé jusqu'à la fin du palais."
+  }
+]

@@ -1,0 +1,824 @@
+[
+  {
+    "id": "val-des-cendres",
+    "nom": "Le Val des Cendres",
+    "type": "region",
+    "resume": "Une haute vallée enclavée où retombe, depuis deux siècles, une cendre grise qui relève les morts.",
+    "description": "Un long val entre des parois de schiste noir, fermé au nord par un col que la neige vient de sceller. Il y a deux siècles, le royaume nain de la Haute-Forge s'est effondré à son extrémité, et depuis une cendre grise, tiède, qui ne fond pas sur la neige, retombe lentement sur les pentes, les champs et les tombes. Là où elle tombe, les morts se relèvent : non des âmes revenues, de la cendre qui marche. Le dernier village, Veillecendre, tient autour de la Lanterne, un phare de garde nain dont la flamme repousse la cendre. Cette flamme faiblit. Au-delà du village, la route du col, le sentier des cendres vers les hauteurs, le Gué et son brigandage, Pont-de-Fer occupé, les cryptes d'Ormgard, et tout au fond, la Haute-Forge.",
+    "ambiance": "Silence ouaté, odeur de métal froid et de suie humide, flocons gris qui ne fondent pas.",
+    "visuel": "Une haute vallée encaissée entre des parois de schiste sombre, couverte d'une neige salie de cendre grise qui tombe en flocons lents. Brume froide au fond du val, ombres bleutées, et tout au loin, une petite lueur orange timide au sommet d'une tour de pierre.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "faits": [
+      {
+        "fait": "f-vei-cendre-grise",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "veillecendre",
+    "nom": "Veillecendre",
+    "type": "village",
+    "parent": "val-des-cendres",
+    "resume": "Le dernier village du Val, serré autour de la Lanterne, plein de réfugiés et de peur.",
+    "description": "Une centaine de toits de lauzes serrés derrière une palissade de rondins et un rempart de pierre sèche, autour d'une tour de garde naine, la Lanterne. Un puits sur la place, une halle, un marché de planches, une auberge, une forge improvisée par les réfugiés, une chapelle grise où l'on prie en silence. Le col est fermé : plus de caravane avant le printemps, les vivres comptent, les nerfs aussi. Le soir, la cloche sonne le couvre-feu et chacun ferme sa porte. Le village est le hub du chapitre : tout part d'ici et tout y revient.",
+    "ambiance": "Fumées basses, pas étouffés dans la neige grise, odeur de soupe de choux et de fer chaud ; on parle bas.",
+    "visuel": "Un village de toits de lauzes noirs de cendre blottis autour d'une tour de pierre naine gravée de runes, dont le sommet jette une lueur orangée faible. Une palissade de rondins, des ruelles étroites pleines de neige grise, des fenêtres éclairées de chandelles, de la fumée qui rampe.",
+    "accroche": "Au fond du val, le village se serre autour d'une tour trapue, ses toits de lauzes noires pressés les uns contre les autres ; une fumée basse traîne entre eux.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "route-du-col",
+        "type": "route",
+        "heures": 1,
+        "description": "La route du col monte vers le nord entre les congères, jusqu'à la porte de la vallée.",
+        "retour": "La route redescend entre les congères vers Veillecendre ; le col s'éloigne derrière, et les premiers toits noirs se dessinent plus bas."
+      },
+      {
+        "vers": "sentier-des-cendres",
+        "type": "chemin",
+        "heures": 1,
+        "description": "Un sentier de chèvres part vers l'est, vers les grottes et les hauteurs."
+      },
+      {
+        "vers": "pont-de-fer",
+        "type": "route",
+        "heures": 6,
+        "description": "La vieille route du sud descend vers Pont-de-Fer, longue et exposée."
+      },
+      {
+        "vers": "le-gue",
+        "type": "chemin",
+        "heures": 3,
+        "description": "Un chemin boueux descend au Gué, à trois heures de marche."
+      },
+      {
+        "vers": "cryptes-d-ormgard",
+        "type": "chemin",
+        "heures": 2,
+        "description": "Un chemin de pierres plates mène aux cryptes d'Ormgard, enfouies sous la colline."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-couvre-feu",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-vei-les-morts-rentrent",
+        "decouverte": {
+          "dd": 13,
+          "competence": "perception"
+        }
+      }
+    ],
+    "services": [
+      "auberge",
+      "forge",
+      "dispensaire",
+      "marché",
+      "archives"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-la-lanterne",
+    "nom": "La Lanterne",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "La tour de garde naine dont la flamme faiblit ; la cendre n'y tombe pas.",
+    "description": "Une tour de pierre grise haute de vingt mètres, bâtie par les nains en fuite, couverte de runes de bronze. Au pied, une salle de garde où veille le capitaine Rolf avec ses hommes ; un escalier tournant monte au foyer, puis au cadran qui règle le tirage de la flamme. À l'intérieur des murs, la cendre ne tombe pas : l'air y est tiède, et la neige grise s'arrête net au seuil. La flamme au sommet n'est plus qu'une braise orange.",
+    "ambiance": "Chaleur sourde, bourdonnement grave de la pierre, odeur d'huile chaude ; les gardes parlent à voix basse comme dans un lieu saint.",
+    "visuel": "Une tour de pierre grise couverte de runes de bronze, un escalier tournant, une salle de garde basse avec des râteliers et un poêle rougeoyant. Au sommet, une flamme orange pâle à l'abri de vitres épaisses. Aucune cendre ne tombe sous la voûte ; la neige grise s'arrête au seuil.",
+    "accroche": "La tour de pierre grise, aux plaques de bronze, garde une flamme pâle derrière ses vitres ; la neige s'arrête net au seuil.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "vei-foyer-de-la-lanterne",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Un escalier tournant, aux marches grises usées par les pas, monte jusqu'au foyer dans le fût de la tour ; l'air se réchauffe à chaque palier.",
+        "retour": "Les marches tournent et redescendent jusqu'à la salle de garde et son poêle ; la lumière orange recule marche après marche."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-lanterne-pas-de-cendre",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [
+      "garde"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "vei-foyer-de-la-lanterne",
+    "nom": "Le foyer de la Lanterne",
+    "type": "salle",
+    "parent": "vei-la-lanterne",
+    "resume": "La salle de la flamme, au sommet : on se tient à l'intérieur de la lumière.",
+    "description": "Une salle ronde au sommet de la tour, dont le centre est occupé par la flamme : une braise orange épaisse qui flotte sans mèche ni coupe, comme une braise gonflée d'un souffle. Quatre meurtrières regardent les quatre vents. Autour du foyer, des plaques de bronze portent les noms des Veilleurs passés et des runes du feu. Un lit de camp, une écuelle intacte et une couverture de laine disent qu'on vit ici. L'escalier continue vers le cadran.",
+    "ambiance": "Chaleur douce, lumière orange qui bat comme un pouls, silence ; la flamme semble écouter.",
+    "visuel": "Une salle ronde de pierre naine. Au centre, une flamme orange pâle et épaisse flotte au-dessus d'une dalle de basalte. Quatre meurtrières étroites, des plaques de bronze gravées de runes sur les murs, un lit de camp et une couverture grise près du foyer. Les ombres bleutées reculent devant la lueur.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "vei-cadran-de-la-lanterne",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Une échelle de fer descend dans un conduit étroit jusqu'au cadran, d'où monte un tintement de bronze régulier.",
+        "retour": "Une échelle de fer remonte vers la salle de la flamme ; dans l'ombre, des chaînes rouillées pendent du plafond, et une clarté pâle filtre par le haut."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-runes-du-foyer",
+        "decouverte": {
+          "dd": 12,
+          "competence": "histoire"
+        }
+      },
+      {
+        "fait": "f-vei-veilleur-visage",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-vei-etincelle-et-braise",
+        "decouverte": {
+          "dd": 14,
+          "competence": "arcanes"
+        }
+      }
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "vei-cadran-de-la-lanterne",
+    "nom": "Le cadran de la Lanterne",
+    "type": "salle",
+    "parent": "vei-la-lanterne",
+    "resume": "Un petit réduit de bronze où trois cadrans règlent le tirage de la flamme.",
+    "description": "Sous la lanterne, une calotte de verre épais faite de trois panneaux, un réduit étroit où des chaînes de bronze descendent du plafond vers un grand cadran à trois couronnes. C'est le régulateur nain qui règle le tirage de la flamme. Il est déréglé depuis des mois ; une niche scellée, derrière lui, attend son bon réglage.",
+    "ambiance": "Cliquetis de chaînes, chaleur lourde, vertige.",
+    "visuel": "Un réduit étroit sous une calotte de verre épais. Un cadran de bronze à trois couronnes gravées de chiffres nains, des chaînes qui montent dans l'ombre, une niche scellée par une plaque. La flamme brûle juste au-dessus, lumière orange sur le métal.",
+    "accroche": "Un réduit étroit de bronze s'ouvre au-dessus de l'escalier ; une chaîne en sort et disparaît dans l'ombre.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "faits": [
+      {
+        "fait": "f-vei-combustible",
+        "decouverte": {
+          "dd": 11,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "vei-auberge-dernier-feu",
+    "nom": "L'auberge du Dernier Feu",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "La grande salle chaude où tout le village vient se parler.",
+    "description": "Une grande salle basse à poutres noircies, une cheminée à tirage dont le feu ne s'éteint jamais, une quinzaine de tables, une cuisine fumante où l'on fait la soupe aux choux gris. Quelques chambres à l'étage, un dortoir sous les combles pour les réfugiés qui peuvent payer. Les gens s'y retrouvent pour se plaindre, jouer aux dés et chuchoter des rumeurs. L'auberge est un lieu sûr : le feu est entretenu jour et nuit.",
+    "ambiance": "Fumée, chaleur humaine, odeur de choux, de bière tiède et de laine mouillée ; les conversations s'arrêtent un instant quand un inconnu entre.",
+    "visuel": "Une salle basse aux poutres noircies, une grande cheminée où brûle un feu constant, tables de bois sombre usées, lanternes de fer, silhouettes en manteaux gris attablées sous des bols fumants. Un escalier de bois mène à l'étage.",
+    "accroche": "Les fenêtres basses laissent filtrer des éclats de voix et une lumière jaune ; une odeur de chou bouilli passe sur la neige.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "vei-cave-de-l-auberge",
+        "type": "porte",
+        "heures": 0,
+        "description": "Derrière le comptoir, une trappe de chêne ouvre sur la cave ; un froid de pierre mouillée remonte par l'interstice du plancher.",
+        "retour": "La trappe au-dessus de la tête laisse filtrer le bruit des tables et des bols."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "vei-r-rixe-du-dernier-feu",
+        "declencheur": "aleatoire",
+        "unique": true
+      }
+    ],
+    "services": [
+      "repos",
+      "rumeurs",
+      "repas"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "vei-cave-de-l-auberge",
+    "nom": "La cave de l'auberge",
+    "type": "salle",
+    "parent": "vei-auberge-dernier-feu",
+    "resume": "Une cave voûtée aux tonneaux presque vides.",
+    "description": "Une cave de pierre froide qui sent la bière aigre. Quelques tonneaux, des sacs de navets, une niche scellée par une grille. La réserve personnelle de l'aubergiste, fermée à clé.",
+    "visuel": "Une cave voûtée de pierre brute, tonneaux alignés sous une lampe fumeuse, sacs de toile, une grille de fer verrouillée dans un angle. Gouttes d'humidité sur les murs.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "repos": "sur"
+  },
+  {
+    "id": "vei-forge-des-refugies",
+    "nom": "La forge des réfugiés",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Une forge improvisée dans une ancienne grange, tenue par un clan orc.",
+    "description": "Une grange de pierre où deux enclumes et un soufflet de peau fument jour et nuit. Les forgerons orcs, venus avec la dernière vague de réfugiés, y battent les clous, les fers et les lames de la garde. L'orc Grodak y règne, son aide Korvun aussi, silencieux et rigide. On y répare, on y achète des armes simples, on s'y fait servir à la vitesse du fer.",
+    "ambiance": "Coups de marteau réguliers, étincelles, chaleur sèche, odeur de charbon et de cuir brûlé.",
+    "visuel": "Une grange de pierre au toit de lauzes, ouverte sur l'avant. Une forge rougeoyante, deux enclumes massives, un soufflet de cuir noir, des outils suspendus aux poutres, des lames à refroidir dans un baquet. Étincelles orange contre la neige grise.",
+    "accroche": "Les coups de marteau résonnent jusque sur la route, et des étincelles orange volent par-dessus la neige grise.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "forge",
+      "réparation"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-dispensaire",
+    "nom": "Le dispensaire",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Une maison de bois aux fenêtres de papier, pleine d'herbes séchées et de toux.",
+    "description": "Une maison basse aux murs tapissés de fagots d'herbes, de racines pendues et de fioles. Une salle commune avec huit paillasses pour les malades, une arrière-boutique où l'on prépare onguents et teintures. Les réfugiés y affluent : toux grise, gelures, engelures, pieds en sang. L'herboriste y vit seule depuis la mort de son mari.",
+    "ambiance": "Odeur d'herbes amères et de camphre, chuchotements, une toux sèche quelque part.",
+    "visuel": "Une maison basse au toit de lauzes, intérieur de bois sombre tapissé de bouquets d'herbes séchées, de fioles de verre ambré alignées sur des étagères, de huit paillasses. Une marmite fume sur un petit poêle, une fenêtre de papier huilé diffuse une lumière jaune.",
+    "accroche": "Le papier huilé d'une fenêtre laisse passer une lueur pâle ; une odeur d'herbes amères flotte sur le seuil, avec une toux sèche.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "soins",
+      "herboristerie"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-atelier-des-rouages",
+    "nom": "L'atelier des rouages",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "L'atelier d'un mécanicien gnome, entre horloges, serrures et mécanismes nains.",
+    "description": "Un atelier encombré où tictaquent des dizaines de pendules, de serrures à combinaison et de mécanismes à engrenages, tous réparés ou à demi démontés. Le maître gnome entretient depuis trente ans les mécanismes de la Lanterne et du village (pompe du puits, cloche, portes). Une cave sert d'archive de pièces ; un atelier plus petit dans l'arrière-boutique abrite ses recherches. Sur l'établi, un coffre à tiroirs refuse de s'ouvrir.",
+    "ambiance": "Cliquetis permanent, huile chaude, cuivre, bonne humeur excentrique.",
+    "visuel": "Un atelier encombré aux poutres couvertes d'horloges et d'engrenages de cuivre, des établis chargés de pignons, de ressorts et de loupes, une lampe à huile suspendue, un coffre à tiroirs de bronze et un petit automate au regard de verre.",
+    "accroche": "Par les volets entrouverts sortent un tintement de rouages sans fin et une odeur d'huile chaude.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "identification",
+      "mécanique"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-halle-du-bailli",
+    "nom": "La halle du bailli",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Le bâtiment de l'administration du village : registres, sceaux, lourdes portes.",
+    "description": "La plus grande maison de Veillecendre, à étage, aux murs épais et à la façade peinte d'un blason effacé. Au rez-de-chaussée, la salle des audiences et des comptes ; à l'étage, le bureau du bailli. Les registres de vivres, les rôles de taxes et les rôles de garde y sont tenus. Une trappe discrète mène à un cellier privé.",
+    "ambiance": "Cire, encre, parquet qui craque, une odeur d'argent propre et de peur bien rangée.",
+    "visuel": "Une grande maison de pierre et de bois à étage, façade peinte d'un blason effacé, fenêtres à petits carreaux, intérieur de parquet ciré, lourde table de chêne couverte de registres et de bougies, tapis usés, étagère de dossiers.",
+    "accroche": "Sa façade de pierre garde les traces d'un blason effacé, et ses fenêtres à petits carreaux restent closes, sans une seule lumière.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "vei-cellier-du-bailli",
+        "type": "passage-secret",
+        "heures": 0,
+        "cache": {
+          "dd": 14,
+          "competence": "investigation"
+        },
+        "description": "Une latte de parquet de la grande table dissimule une trappe vers un cellier.",
+        "retour": "Au bout d’un étroit escalier de bois, les lattes du parquet ciré craquent encore au-dessus."
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-cellier-du-bailli",
+    "nom": "Le cellier du bailli",
+    "type": "salle",
+    "parent": "vei-halle-du-bailli",
+    "resume": "Une cave privée sous le parquet de la halle.",
+    "description": "Une petite cave de pierre sèche, creusée sous la table du bailli. Des étagères de sacs bien remplis, de vin fin, de fromages ; un coffret de fer clos dans une niche.",
+    "visuel": "Une petite cave voûtée de pierre sèche, étagères de jambons, bouteilles de verre vert, sacs de toile pleins, un coffret de fer dans une niche, une lanterne posée au sol.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-maison-des-gardiens",
+    "nom": "La maison des Gardiens",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "La maison de la Mère-Gardienne et de ses lieutenants, au pied de la Lanterne.",
+    "description": "Une maison de pierre naine basse, appuyée contre la Lanterne, qui ressemble à un petit fort. Au rez-de-chaussée, une salle de conseil avec une table longue et un râtelier de lances ; à l'étage, la chambre de la Mère-Gardienne, ouverte sur le feu. Des bannières de laine grise portent la lampe stylisée des Gardiens. On y reçoit les volontaires pour la garde, on y tient les comptes de la flamme.",
+    "ambiance": "Ordre austère, odeur de laine et de cire, murmures de conseil.",
+    "visuel": "Une maison de pierre naine basse et trapue, bannières grises portant une lampe brodée, une longue table de chêne, un râtelier de lances, un poêle de fonte, des murs de pierre gravés de runes. Lumière chaude de bougeoirs de bronze.",
+    "accroche": "Contre la Lanterne, une maison trapue de pierre ; des bannières grises pendent à sa porte basse, brodées d'une lampe.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-chapelle-grise",
+    "nom": "La chapelle grise",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Une petite chapelle de pierre nue où l'on prie pour les morts, sans les brûler.",
+    "description": "Une chapelle étroite aux murs de pierre nus et à la nef minuscule, bâtie avant la Lanterne. On y veille les mourants, on y prie les morts ; elle appartenait aux Pèlerins gris avant qu'ils ne quittent le village. Aujourd'hui une jeune prêtresse tieffeline la tient, entre des bancs presque vides. Sur l'autel de granit, une coupe de cendre bénite.",
+    "ambiance": "Silence profond, froid de pierre, odeur de cire d'abeille et d'encens pâle.",
+    "visuel": "Une petite chapelle de pierre nue, nef étroite, bancs de bois pâle, cierges gris dans des chandeliers de fer, un autel de granit portant une coupe de cendre, un vitrail terni qui filtre une lumière bleutée.",
+    "accroche": "La porte basse de la chapelle reste entrouverte ; un filet de lumière bleue, venu du vitrail, passe sur le seuil.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "culte",
+      "veillée des morts"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-marche",
+    "nom": "Le marché",
+    "type": "quartier",
+    "parent": "veillecendre",
+    "resume": "Quelques étals de planches sous des bâches, à l'abri des congères.",
+    "description": "Une placette où des étals de planches sous des bâches de toile cirée proposent ce qui reste : vivres, matériel de voyage, munitions, outils, chandelles. Les prix montent chaque semaine. Des colporteurs, des paysans, des réfugiés échangent de petites choses. On y croise les mouchards du bailli, qui écoutent.",
+    "ambiance": "Murmures, marchandages à voix basse, odeur de navets et de cuir.",
+    "visuel": "Une placette entourée de maisons, étals de planches sous des bâches grises, paniers de navets, rouleaux de corde, lanternes à capote, flèches en bottes, vendeurs emmitouflés de laine, neige grise tassée sous les pieds.",
+    "accroche": "Sur la placette, les étals de planches s'abritent sous des bâches grises ; des voix basses qui marchandent portent jusqu'aux ruelles.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "marché"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-archives",
+    "nom": "Les archives",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Une bibliothèque tenue par une elfe venue des basses terres, pleine de rouleaux nains.",
+    "description": "Un bâtiment de pierre à étroite façade, dont chaque pièce est tapissée de rayonnages : rouleaux nains, registres de la flamme, cartes, chroniques, notes de passage. L'archiviste elfe y trie et recopie depuis dix ans. Une armoire de chêne à serrure complexe renferme les pièces les plus anciennes. On peut y consulter des ouvrages, identifier des objets d'érudit, demander de l'aide pour lire les runes.",
+    "ambiance": "Poussière douce, odeur de vélin et de cire, silence studieux.",
+    "visuel": "Un bâtiment étroit tapissé de rayonnages de bois sombre, rouleaux de parchemin, livres reliés de cuir, cartes épinglées, une grande table de lecture sous une lampe, une armoire de chêne verrouillée, lumière dorée et poussière en suspension.",
+    "accroche": "Derrière des vitres sales, une lumière dorée éclaire des rayonnages qui montent jusqu'au plafond ; une odeur de vélin passe sur le seuil.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "identification",
+      "recherche"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-enclos",
+    "nom": "L'enclos",
+    "type": "lieu-dit",
+    "parent": "veillecendre",
+    "resume": "L'enclos aux bêtes, où les chèvres se tiennent trop immobiles.",
+    "description": "Un enclos de pierre sèche accolé au rempart, où l'on garde les dernières chèvres et quelques moutons. Depuis quelques jours les bêtes ne bêlent plus et se serrent vers le mur de la Lanterne. Une grande mangeoire de bois, un abri de paille, un coin où le sol est noirci par la cendre.",
+    "ambiance": "Odeur de foin et de laine mouillée, souffles de bêtes, un silence anormal.",
+    "visuel": "Un enclos de pierre sèche, chèvres et moutons gris serrés les uns contre les autres, une mangeoire de bois, un abri de paille, de la neige grise tassée et un coin de sol noirci de cendre.",
+    "accroche": "Le muret de pierre sèche laisse passer des souffles de bêtes et une odeur de foin ; les chèvres restent presque immobiles.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "faits": [
+      {
+        "fait": "f-vei-les-morts-rentrent",
+        "decouverte": {
+          "dd": 12,
+          "competence": "nature"
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-puits",
+    "nom": "Le puits de la place",
+    "type": "lieu-dit",
+    "parent": "veillecendre",
+    "resume": "Le puits au cœur du village, avec sa pompe naine.",
+    "description": "Une margelle de pierre naine gravée de runes, surmontée d'une pompe à levier de bronze entretenue par le mécanicien gnome. Une eau noire et froide, bonne à boire. Les gens y viennent le matin ; la nuit, il est vide, sauf pour une silhouette grise qui y revient. Au fond, des pièces brillent : l'usage veut qu'on y jette un sou en demandant pardon aux morts.",
+    "ambiance": "Grincement de pompe, eau qui tombe en gouttes, froid humide.",
+    "visuel": "Une margelle ronde de pierre naine gravée de runes, une pompe à levier de bronze patinée, un seau de bois, des traînées de cendre sur la neige piétinée. Au fond du puits, des éclats de pièces dans l'eau noire.",
+    "accroche": "Au milieu de la place, une margelle de pierre runique et une pompe de bronze qui grince ; l'eau goutte au fond du puits.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "rencontres": [
+      {
+        "id": "vei-r-mort-egare",
+        "declencheur": "exploration",
+        "condition": {
+          "quete": {
+            "id": "q-vei-la-peur-des-enfants",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-offrandes-du-puits",
+        "decouverte": {
+          "dd": 10,
+          "competence": "perception"
+        }
+      },
+      {
+        "fait": "f-vei-homme-gris-puits",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 11
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-remparts",
+    "nom": "Les remparts",
+    "type": "lieu-dit",
+    "parent": "veillecendre",
+    "resume": "La palissade et le chemin de ronde, le seul rempart contre les morts.",
+    "description": "Une enceinte de rondins épaulée de pierre sèche, un chemin de ronde où se relaient les sentinelles. Des braseros éclairent les plates-formes ; la nuit, les gardes surveillent la cendre qui s'amasse hors des murs et les silhouettes qui rôdent. Depuis la jauge de cendre, les alertes se multiplient. Une guérite au nord garde la porte du village.",
+    "ambiance": "Vent froid, torches sifflantes, bruit de bottes sur le bois.",
+    "visuel": "Une palissade de rondins noircis épaulée de pierre sèche, un chemin de ronde de planches, des braseros qui rougeoient sur les plates-formes, la nuit grise au-delà, des silhouettes vagues qui bougent dans la cendre.",
+    "accroche": "Au-dessus de la palissade noircie, une plate-forme de guet se détache sur la nuit grise, et des braseros y brûlent.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "liens": [
+      {
+        "vers": "vei-guerite-du-nord",
+        "type": "chemin",
+        "heures": 0,
+        "description": "Le chemin de ronde mène à la guérite du nord.",
+        "retour": "Le chemin de ronde file vers le sud, de planche en planche, et les braseros pâlissent dans le vent."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "vei-r-morts-aux-remparts",
+        "declencheur": "repos",
+        "condition": {
+          "jauge": {
+            "id": "cendre",
+            "min": 2
+          }
+        },
+        "unique": false
+      },
+      {
+        "id": "vei-r-pelerins-au-portail",
+        "declencheur": "aleatoire",
+        "condition": {
+          "jauge": {
+            "id": "cendre",
+            "min": 2
+          }
+        },
+        "unique": true
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-guerite-du-nord",
+    "nom": "La guérite du nord",
+    "type": "lieu-dit",
+    "parent": "veillecendre",
+    "resume": "La porte du village et sa guérite, face à la route du col.",
+    "description": "Une porte de chêne cerclée de fer, flanquée d'une guérite de pierre et d'une cloche d'alarme. Un guichet permet de parler sans ouvrir. Les sentinelles y notent les allées et venues ; la nuit, elles n'ouvrent à personne, même à une voix aimée.",
+    "visuel": "Une lourde porte de chêne cerclée de fer au milieu d'une palissade, une guérite de pierre avec une meurtrière et un brasero, une cloche de bronze accrochée à une potence, une route blanche qui s'éloigne dans la brume.",
+    "accroche": "Au nord, la palissade s'arrête sur une porte de chêne cerclée de fer ; au-delà, la route blanche s'en va vers le col.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "repos": "dangereux",
+    "faits": [
+      {
+        "fait": "f-vei-lettres-du-col",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 11
+        }
+      }
+    ]
+  },
+  {
+    "id": "vei-grange-aux-grains",
+    "nom": "La grange aux grains",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "Le grenier commun du village, dont les sacs sont moins pleins qu'ils n'en ont l'air.",
+    "description": "Une longue grange de pierre à toit de lauzes, cadenassée, où les sacs de grain sont empilés jusqu'aux chevrons. À voir, de quoi tenir l'hiver. En y regardant de près, beaucoup de sacs sont lestés de sable, et les rangs du fond sont presque vides. Le bailli en a seul les clés ; le capitaine de la garde en possède un double.",
+    "ambiance": "Odeur de poussière de grain et de souris, craquements du bois.",
+    "visuel": "Une longue grange de pierre à toit de lauzes, portes de chêne cadenassées, intérieur de piles de sacs de toile écrue jusqu'aux chevrons, poussière de grain dans des rais de lumière grise, souris qui détalent.",
+    "accroche": "Une longue grange de pierre à toit de lauzes, aux portes de chêne cadenassées ; un bruit de souris traverse parfois le bois.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "faits": [
+      {
+        "fait": "f-vei-greniers-au-tiers",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "rencontres": [
+      {
+        "id": "z7-r-grange-du-comptage",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ]
+  },
+  {
+    "id": "vei-cimetiere",
+    "nom": "Le cimetière",
+    "type": "lieu-dit",
+    "parent": "veillecendre",
+    "resume": "Un petit cimetière sous la neige grise, où les tombes se creusent de l'intérieur.",
+    "description": "Un enclos de pierres plates derrière la chapelle. Plusieurs tombes sont éventrées vers l'extérieur, la terre repoussée. Des traces de pieds nus dans la cendre mènent vers le village. Les veuves y entretiennent les tombes qui restent, plantent des fleurs de papier et parlent à ceux d'en dessous.",
+    "ambiance": "Silence, craquements de glace, vent léger ; on a l'impression d'être observé.",
+    "visuel": "Un enclos de pierres plates sous la neige grise, croix de bois et dalles de schiste, plusieurs tombes éventrées, des empreintes de pieds nus qui s'éloignent dans la cendre, des fleurs de papier gelées.",
+    "accroche": "Derrière un muret bas, un enclos de dalles de schiste sous la neige grise ; des croix de bois penchent, et plusieurs tombes sont éventrées.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "faits": [
+      {
+        "fait": "f-vei-les-morts-rentrent",
+        "decouverte": {
+          "dd": 11,
+          "competence": "perception"
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-quartier-des-refugies",
+    "nom": "Le quartier des réfugiés",
+    "type": "quartier",
+    "parent": "veillecendre",
+    "resume": "Un lacis d'abris de planches et de bâches, aux portes du rempart.",
+    "description": "Entre le rempart et les maisons des anciens, des abris de planches, de bâches et de charrettes retournées abritent plusieurs centaines de réfugiés venus des hautes fermes et des basses terres. On y fait la soupe à tour de rôle, on y partage les couvertures. La faim, la peur et les rumeurs y circulent plus vite que les ordres. Quelques anciens racontent encore le temps d'avant.",
+    "ambiance": "Fumée de bois humide, enfants qui toussent, murmures, quelqu'un qui chante bas.",
+    "visuel": "Un lacis d'abris de planches et de bâches grises adossés à un rempart, feux de camp sous des marmites, linge gelé sur des cordes, enfants emmitouflés, visages creusés, neige piétinée noire de suie.",
+    "accroche": "Fumée de bois humide au ras de la neige, linge gelé tendu entre les abris de planches, et quelqu'un qui chante bas.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-ecurie",
+    "nom": "L'écurie",
+    "type": "batiment",
+    "parent": "veillecendre",
+    "resume": "L'écurie du relais, presque vide, où les chevaux ont peur de la nuit.",
+    "description": "Une longue écurie de pierre et de bois, dont la plupart des stalles sont vides : les chevaux ont été mangés ou vendus. Reste une poignée de bêtes de trait qui tremblent à la tombée du soir. Un grenier à foin, un râtelier, une forge à ferrer. On y met les montures des voyageurs, quand il y en a.",
+    "ambiance": "Odeur de foin et de crottin, hennissements anxieux.",
+    "visuel": "Une longue écurie de pierre et de bois sombre, stalles ouvertes, quelques chevaux gris aux flancs agités, bottes de foin, un râtelier de licous, une lanterne accrochée à une poutre.",
+    "accroche": "Une bâtisse basse de pierre et de bois sombre, au bout de la ruelle ; odeur de foin et hennissements passent par les volets.",
+    "niveau": {
+      "min": 1,
+      "max": 5
+    },
+    "services": [
+      "écurie"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "route-du-col",
+    "nom": "La route du col",
+    "type": "route",
+    "parent": "val-des-cendres",
+    "resume": "La route du nord, qui monte entre les congères jusqu'à un col fermé par la neige.",
+    "description": "Une route empierrée large de trois chariots, qui serpente depuis Veillecendre vers le col du nord. Elle est déjà enneigée par endroits, bordée de bornes naines gravées de runes et de bois sombres où rôdent des gobelins affamés. À une heure du village, une embuscade guette les voyageurs. Plus haut, un relais abandonné, un chariot embourbé, et enfin la porte du col, fermée pour l'hiver.",
+    "ambiance": "Vent glacial, craquement de gel, silence de neige ; l'impression d'être suivi.",
+    "visuel": "Une route empierrée bordée de bornes naines gravées de runes qui monte entre des congères grises et des sapins noirs. Au loin, une brume bleutée et des parois de schiste. Des traces de roues et de pas dans la neige, des corbeaux immobiles sur un rocher.",
+    "accroche": "La route empierrée monte entre les sapins noirs et les congères, bordée de bornes runiques, jusqu'au col fermé par la neige.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "route-du-col-embuscade",
+        "type": "route",
+        "heures": 0.5,
+        "description": "Une demi-heure de marche dans la neige, la route se resserre entre des talus de sapins noirs et de roches grises, jusqu'au défilé boisé.",
+        "retour": "Le défilé s'éclaircit derrière soi, et la route revient vers les bornes gravées, dans la brume bleutée."
+      },
+      {
+        "vers": "vei-relais-du-col",
+        "type": "route",
+        "heures": 1,
+        "description": "À mi-pente, un relais de pierre se dresse au bord de la route, son toit à demi effondré ; la neige grise s'amasse contre le seuil.",
+        "retour": "La pente descend vers la route, entre les congères grises, et les traces de bottes s'effacent sous la neige."
+      },
+      {
+        "vers": "vei-porte-du-col",
+        "type": "route",
+        "heures": 2,
+        "description": "La route monte jusqu'à la porte du col, qui barre le passage, bronze noirci sous une congère ; le vent s'engouffre entre les battants.",
+        "retour": "Le chemin dévale entre les parois de schiste ; la congère et la porte de bronze restent dans le dos."
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "route-du-col-embuscade",
+    "nom": "Le défilé de l'embuscade",
+    "type": "lieu-dit",
+    "parent": "route-du-col",
+    "resume": "Un défilé boisé où les gobelins attendent les voyageurs.",
+    "description": "La route se resserre entre deux talus couverts de sapins noirs et de roches grises. Un bosquet de broussailles et de congères offre mille cachettes. Les gobelins y ont tendu des cordes à clochettes, creusé des fosses à demi comblées et dissimulé leurs loups. Leur chef, Nez-Fendu, guette depuis un rocher.",
+    "ambiance": "Craquement de branches, haleine blanche des loups, silence tendu.",
+    "visuel": "Un défilé étroit entre des talus de sapins noirs et de roches grises, congères hautes, broussailles givrées, une corde tendue à hauteur de cheville, des traces de pattes de loup dans la neige. Une brume bleutée flotte entre les troncs.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "vei-relais-du-col",
+        "type": "route",
+        "heures": 0.5,
+        "description": "La route reprend sa montée entre les bas-côtés enneigés, ses ornières gelées craquant sous les pas, jusqu'au toit affaissé du relais.",
+        "retour": "En contrebas, les sapins du défilé cachent la route ; une branche craque parfois sous le poids de la neige."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "vei-r-embuscade-gobeline",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-gobelins-affames",
+        "decouverte": {
+          "dd": 11,
+          "competence": "survie"
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-relais-du-col",
+    "nom": "Le relais abandonné",
+    "type": "ruine",
+    "parent": "route-du-col",
+    "resume": "Un relais de poste à demi enneigé, où un courrier est mort.",
+    "description": "Un relais de pierre à toit effondré, qui abritait jadis les courriers et les caravaniers. Il reste quatre murs, un foyer, une mangeoire. Un cadavre gelé repose près du feu éteint, le courrier du bailli, une sacoche de cuir sous le ventre. Des bottes de cuir et des cendres au sol : on est venu l'achever.",
+    "ambiance": "Vent qui siffle dans les gouttières, froid de tombe.",
+    "visuel": "Un relais de pierre au toit à demi effondré, neige grise amassée dans les coins, un foyer éteint, une mangeoire fendue. Un corps gelé enveloppé d'un manteau, une sacoche de cuir sombre, des traces de bottes dans la cendre.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "vei-chariot-embourbe",
+        "type": "route",
+        "heures": 0.5,
+        "description": "La route se hisse vers un chariot embourbé, sa bâche déchirée visible au loin dans la neige ; l'odeur d'huile et de bois mouillé monte à mesure.",
+        "retour": "Les traces de roues filent entre les congères vers des murs de pierre, et la neige les recouvre."
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-lettres-du-col",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-chariot-embourbe",
+    "nom": "Le chariot embourbé",
+    "type": "lieu-dit",
+    "parent": "route-du-col",
+    "resume": "Le chariot d'un colporteur, abandonné dans une congère.",
+    "description": "Un grand chariot bâché, une roue brisée, enfoncé dans une congère en bordure de route. Les mules ont été emmenées ou mangées. Sous la bâche, des tonneaux d'huile de roche, des ballots de laine, des caisses éventrées. Le convoyeur du colporteur gît à côté, une flèche dans le dos.",
+    "ambiance": "Silence blanc, odeur d'huile, craquements de glace.",
+    "visuel": "Un grand chariot à bâche déchirée, une roue brisée, enfoncé dans une congère grise au bord de la route. Tonneaux de bois, ballots de laine, caisses éventrées, un corps gelé à côté, une flèche brisée dans la neige.",
+    "accroche": "Au bord de la route, un grand chariot à bâche déchirée est enfoncé dans une congère grise, la roue brisée.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "repos": "dangereux"
+  },
+  {
+    "id": "vei-porte-du-col",
+    "nom": "La porte du col",
+    "type": "ruine",
+    "parent": "route-du-col",
+    "resume": "La porte naine qui ferme le col pour l'hiver, sous une congère.",
+    "description": "Au sommet du col, une double porte de bronze noirci, haute de six mètres, gravée de runes de garde, a été refermée par les nains il y a des siècles pour clore la vallée. Une congère immense la bloque. On l'a rouverte chaque printemps ; cette année, la neige est tombée avant les caravanes. Les rainures de la porte portent encore la trace d'un mécanisme que seuls les nains connaissaient.",
+    "ambiance": "Vent hurlant, éclats de glace, silence minéral ; on se sent seul au bout du monde.",
+    "visuel": "Une double porte de bronze noirci haute de six mètres, gravée de runes de garde, bloquée par une congère grise immense. Corniche de glace, parois de schiste noir, ciel bas et sombre, flocons gris qui tournoient dans le vent.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "rencontres": [
+      {
+        "id": "vei-r-porte-du-col",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-vei-col-ferme",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux"
+  }
+]

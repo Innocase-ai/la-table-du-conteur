@@ -1,0 +1,439 @@
+{
+  "meta": {
+    "titre": "La Table du Conteur",
+    "sousTitre": "Un jeu de rôle narratif illustré, en français, sur les règles du SRD 5.2.1",
+    "description": "Un jeu de rôle narratif illustré en français : menez de 1 à 6 aventuriers dans des histoires complètes, avec un conteur qui propose et des règles qui décident."
+  },
+  "hero": {
+    "accroche": "Racontez l'histoire, mais laissez les dés décider.",
+    "paragraphe": "La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires complètes. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence."
+  },
+  "chiffres": [
+    {
+      "valeur": "1 à 6",
+      "libelle": "héros dans votre groupe"
+    },
+    {
+      "valeur": "9",
+      "libelle": "espèces à choisir, de la drakéide au tieffelin"
+    },
+    {
+      "valeur": "12",
+      "libelle": "classes, du niveau 1 au niveau 20"
+    },
+    {
+      "valeur": "339",
+      "libelle": "sorts du SRD, du tour de magie au niveau 9"
+    },
+    {
+      "valeur": "329",
+      "libelle": "monstres du bestiaire, tous illustrés"
+    },
+    {
+      "valeur": "502",
+      "libelle": "objets illustrés"
+    },
+    {
+      "valeur": "3",
+      "libelle": "histoires complètes livrées"
+    },
+    {
+      "valeur": "54",
+      "libelle": "portraits à choisir pour vos héros"
+    }
+  ],
+  "sections": [
+    {
+      "id": "conteur",
+      "titre": "Un conteur qui improvise, mais ne triche pas",
+      "accroche": "Le conteur est une intelligence artificielle qui raconte la scène et répond à vos idées libres.",
+      "paragraphes": [
+        "Vous écrivez ce que votre personnage veut faire ou dire, et le conteur répond avec ses mots et son ton. Il ne lance jamais les dés lui-même.",
+        "Le conteur propose, le jeu décide. Les règles, les combats, les trésors et les conséquences sont calculés par le jeu, et l'IA ne peut ni tricher ni inventer un secret.",
+        "Vous pouvez aussi jouer sans lui. Le mode livre suit les textes écrits par les auteurs et les boutons proposés."
+      ],
+      "points": [
+        "Le conteur raconte et répond à vos idées libres",
+        "Le jeu calcule tous les dés et toutes les règles",
+        "L'IA ne peut ni tricher ni inventer un secret",
+        "Mode livre : les textes des auteurs, sans clé d'API",
+        "Conteur IA : écrivez librement ce que vous voulez faire ou dire",
+        "Des personnages qui ne révèlent un secret que si le jeu le permet",
+        "Un récit plus vivant, sur demande, pour une scène",
+        "Seuls les moments racontés par le conteur coûtent"
+      ],
+      "images": [
+        {
+          "id": "titre",
+          "legende": "L'écran d'accueil, avec une table de jeu, un grimoire ouvert et des dés. Le menu permet de choisir une histoire, de gérer son groupe, de lancer une escarmouche ou d'ouvrir l'aide au jeu."
+        }
+      ]
+    },
+    {
+      "id": "groupe",
+      "titre": "Créez vos aventuriers",
+      "accroche": "Créez vos héros pas à pas, puis formez un groupe de 1 à 6 aventuriers.",
+      "paragraphes": [
+        "Le créateur compte huit écrans, dans l'esprit de Baldur's Gate : une liste à gauche, la description à droite. Un bouton « Recommandé » vous guide partout, et « Création rapide » vous lance en un clic.",
+        "Vous choisissez l'espèce, la classe, l'historique, les caractéristiques, l'alignement, le nom et le portrait. Le jeu vérifie que chaque choix respecte les règles.",
+        "Pour le groupe, de 1 à 6 héros suffisent, et beaucoup de joueurs en préfèrent 1, 4, 5 ou 6. Vous pouvez exporter votre groupe, l'importer ou dupliquer un héros."
+      ],
+      "points": [
+        "9 espèces, de la drakéide au tieffelin",
+        "12 classes, du guerrier au barde",
+        "Caractéristiques : valeurs standard, achat de points ou tirage 4d6",
+        "54 portraits à choisir dans une galerie",
+        "Un groupe conseillé, prêt à jouer",
+        "Export, import et duplication des héros",
+        "Niveau du groupe réglable de 1 à 20",
+        "Des conseils de composition, jamais bloquants"
+      ],
+      "images": [
+        {
+          "id": "groupe",
+          "legende": "L'écran « Mon groupe » : six héros, un niveau de groupe réglable de 1 à 20, un groupe conseillé prêt à jouer, et les boutons pour exporter, importer ou dupliquer."
+        },
+        {
+          "id": "feuille",
+          "legende": "La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes."
+        }
+      ]
+    },
+    {
+      "id": "histoires",
+      "titre": "Trois histoires à vivre",
+      "accroche": "Chaque histoire est complète, avec sa carte, ses lieux illustrés et ses fins différentes.",
+      "paragraphes": [
+        "Le Val des Cendres (niveaux 1 à 5, environ 30 h) raconte un village de réfugiés autour d'une Lanterne qui faiblit sous la neige. La Citadelle des Marées (niveaux 1 à 4, environ 16 h) vous mène dans un monastère de cartographes, face à une marée qui s'éloigne trop.",
+        "Le Grimoire de Port-Sillage (niveaux 1 à 3, environ 6 h) est une histoire facile pour 4 héros. Le grimoire de la sainte qui calmait les tempêtes a disparu de la crypte pendant la fête de la Mer.",
+        "Une histoire s'ouvre sur un film d'ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés, et chaque fin a sa propre scène."
+      ],
+      "points": [
+        "3 histoires complètes, livrées avec le jeu",
+        "Le Val des Cendres : environ 30 h, niveaux 1 à 5",
+        "La Citadelle des Marées : environ 16 h, niveaux 1 à 4",
+        "Le Grimoire de Port-Sillage : environ 6 h, niveaux 1 à 3",
+        "Un film d'ouverture, avec des images en fondu et une voix",
+        "Une jauge qui rend le temps précieux",
+        "Des choix qui coûtent, et des fins différentes",
+        "Port-Sillage : 4 fins, 13 personnages et 6 combats"
+      ],
+      "images": [
+        {
+          "id": "histoires",
+          "legende": "La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre."
+        },
+        {
+          "id": "film-titre",
+          "legende": "Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village."
+        },
+        {
+          "id": "film-plan",
+          "legende": "Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur."
+        },
+        {
+          "id": "val",
+          "legende": "Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu."
+        }
+      ]
+    },
+    {
+      "id": "explorer",
+      "titre": "Explorer, fouiller, examiner",
+      "accroche": "On se déplace de lieu en lieu, en lisant des descriptions illustrées et en choisissant ses actions.",
+      "paragraphes": [
+        "Chaque lieu propose ses actions : fouiller, ouvrir, crocheter, forcer, désamorcer un piège, examiner un détail du décor, prendre, faire une halte ou dormir. Ses personnages attendent aussi qu'on leur parle.",
+        "La carte du monde se dévoile au fil de vos pas. Les lieux connus apparaissent, on voit où l'on est, et l'on sait ce qui a déjà été visité. Vous pouvez l'ouvrir en plein écran.",
+        "Le journal garde la trace de tout : quêtes en cours, mystères et scènes à revoir. Le sac du groupe réunit les objets, la charge portée et l'or."
+      ],
+      "points": [
+        "Actions de lieu : fouiller, ouvrir, crocheter, forcer",
+        "Désamorcer un piège, examiner un détail du décor",
+        "Chaque sortie expliquée en une phrase avant le clic",
+        "Carte du monde avec brouillard, en plein écran",
+        "Journal : quêtes, mystères, scènes à revoir",
+        "Inventaire du groupe : objets illustrés, par héros, avec recherche, tri et filtres",
+        "Grimoire et fiche complète de chaque héros",
+        "Les jets de dés sont visibles : « Ambrine — Investigation 9 (DD 14) »",
+        "Tous les boutons sont proposés, sans rien écrire",
+        "Boutiques : acheter, revendre, faire étudier un objet"
+      ],
+      "images": [
+        {
+          "id": "aventure",
+          "legende": "L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée »."
+        },
+        {
+          "id": "inventaire",
+          "legende": "L'inventaire du groupe : tous les objets illustrés, rangés par héros, avec la recherche, le tri, les filtres par type, l'or et la charge portée par le groupe."
+        },
+        {
+          "id": "inventaire-objet",
+          "legende": "Un objet choisi dans l'inventaire : son illustration, sa rareté, sa valeur, son poids et ce qu'il permet de faire. Ici, une huile, avec ses usages."
+        },
+        {
+          "id": "boutique",
+          "legende": "Chez la marchande : la boutique, le rachat de vos objets et les services (faire étudier un objet), avec la bourse du groupe affichée."
+        },
+        {
+          "id": "fouille-examen",
+          "legende": "Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné."
+        },
+        {
+          "id": "carte-monde",
+          "legende": "La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve."
+        },
+        {
+          "id": "journal",
+          "legende": "L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir."
+        }
+      ]
+    },
+    {
+      "id": "parler",
+      "titre": "Parler, convaincre, mentir",
+      "accroche": "Les personnages ont une voix, des désirs et des peurs. On leur parle, on les convainc, parfois on les trompe.",
+      "paragraphes": [
+        "Les dialogues se font par sujets : on clique sur ce qu'on veut demander. Pour convaincre, intimider ou tromper, on tente une approche sociale avec un jet de Persuader, d'Intimider ou de Tromper.",
+        "Chaque personnage a sa confiance, appelée attitude. Un secret se gagne par la confiance, un jet, un prix ou une preuve. Une rencontre sociale offre plusieurs issues, et un échec fait avancer l'histoire.",
+        "Les salutations changent selon ce que vous avez fait. Certains personnages deviennent compagnons de voyage et commentent vos choix."
+      ],
+      "points": [
+        "Dialogues par sujets, à cliquer",
+        "Approches : Persuader, Intimider, Tromper",
+        "La confiance des personnages, appelée attitude",
+        "Secrets gagnés par la confiance, un jet, un prix ou une preuve",
+        "Rencontres sociales avec plusieurs issues",
+        "Un échec qui fait avancer l'histoire",
+        "Salutations qui changent selon vos actes",
+        "Compagnons de voyage qui commentent vos choix"
+      ],
+      "images": [
+        {
+          "id": "dialogue",
+          "legende": "Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper]."
+        },
+        {
+          "id": "rencontre",
+          "legende": "Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition."
+        },
+        {
+          "id": "rencontre-resultat",
+          "legende": "Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… »."
+        }
+      ]
+    },
+    {
+      "id": "choix",
+      "titre": "Des choix qui coûtent",
+      "accroche": "Chaque option annonce ce qu'elle coûte et ce qu'elle rapporte, avant que vous ne cliquiez.",
+      "paragraphes": [
+        "Les dilemmes vous obligent à trancher. Une horloge monte avec le temps et change le monde autour de vous, et des personnages peuvent partir, ou mourir.",
+        "Quelques jours plus tard, des échos rappellent ce que vous avez fait. Chaque choix a son épilogue.",
+        "Il n'y a pas de fin entièrement heureuse : plusieurs fins sont possibles, et chacune a son prix."
+      ],
+      "points": [
+        "Dilemmes : chaque option annonce son coût et son gain",
+        "Une horloge qui monte avec le temps",
+        "Des choix qui changent le monde",
+        "Des personnages qui peuvent partir ou mourir",
+        "Des échos quelques jours après vos décisions",
+        "Un épilogue pour chaque choix",
+        "Plusieurs fins, aucune entièrement heureuse",
+        "Port-Sillage : 3 dilemmes, dont la remise finale du livre"
+      ],
+      "images": [
+        {
+          "id": "rencontre-combat",
+          "legende": "Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence."
+        }
+      ]
+    },
+    {
+      "id": "combat",
+      "titre": "Le combat de cartes",
+      "accroche": "Un combat tactique au tour par tour, sur une grille de cases de 1,5 m, fidèle aux règles de la 5e.",
+      "paragraphes": [
+        "Vos héros et leurs ennemis se disputent la grille case par case. On suit l'initiative, on se déplace, on agit et l'on utilise sa réaction. Les attaques d'opportunité, l'avantage, le désavantage et la concentration suivent les règles de la 5e.",
+        "Chaque carte est une vraie option de jeu : une attaque avec chaque arme, un sort préparé, une aptitude comme la rage ou le second souffle, ou une action de base comme foncer, esquiver, se désengager ou boire une potion.",
+        "Le deck d'élan vous offre une carte gratuite : à chaque tour, on pioche deux cartes tactiques et l'on peut en jouer une sans frais. Vous pouvez désactiver cette option."
+      ],
+      "points": [
+        "Grille de cases de 1,5 m, au tour par tour",
+        "Initiative, mouvement, action, action bonus et réaction",
+        "Attaques d'opportunité, avantage et désavantage",
+        "États comme à terre ou effrayé, et concentration",
+        "Jets de sauvegarde contre la mort",
+        "Deck d'élan : deux cartes piochées à chaque tour",
+        "Terrains : souterrain, forêt, caverne, camp, neige",
+        "Couvert (+2 à la CA), eau qui ralentit, murs qui bloquent la vue",
+        "Mode « Héros auto », vitesse réglable, journal de chaque jet",
+        "Escarmouche : un combat d'entraînement hors histoire"
+      ],
+      "images": [
+        {
+          "id": "combat-debut",
+          "legende": "Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas."
+        },
+        {
+          "id": "combat-milieu",
+          "legende": "Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée."
+        },
+        {
+          "id": "combat-victoire",
+          "legende": "L'écran « Victoire » : le nombre de rounds, les PV des héros et les ennemis vaincus."
+        },
+        {
+          "id": "escarmouche",
+          "legende": "L'écran Escarmouche : six rencontres d'entraînement, de faible à élevée, avec la difficulté de l'IA et le choix de vos héros."
+        }
+      ]
+    },
+    {
+      "id": "monstres",
+      "titre": "Des adversaires qui réfléchissent",
+      "accroche": "Les monstres évaluent leurs options avant de frapper, et ils ont leur propre moral.",
+      "paragraphes": [
+        "L'IA des monstres simule des suites de coups avant de choisir. Elle vise les lanceurs de sorts, se met à couvert, prend vos héros à revers et garde ses ressources pour le moment décisif.",
+        "Elle a du moral : un chef qui tombe peut faire fuir ses troupes, ou les pousser à se rendre. Elle ne triche jamais, et ne sait de vos héros que ce qu'un joueur verrait.",
+        "Le bestiaire contient les 329 monstres du SRD, tous illustrés, des gobelins aux dragons de toutes les couleurs, en passant par les liches, les krakens et les golems."
+      ],
+      "points": [
+        "Simulation de suites de coups avant chaque choix",
+        "Vise les lanceurs de sorts en priorité",
+        "Se met à couvert et prend à revers",
+        "Garde ses ressources pour le bon moment",
+        "Du moral : un chef qui tombe peut faire fuir",
+        "Peut se rendre quand le combat tourne mal",
+        "Ne triche jamais : ne voit que ce qu'un joueur verrait",
+        "329 monstres du SRD, tous illustrés",
+        "Des gobelins aux dragons, des liches aux golems"
+      ],
+      "images": [
+        {
+          "id": "combat-sorts",
+          "legende": "La crypte : la magicienne Ambrine et ses cartes de sorts, face à un spectre, une momie, une goule et un ogre zombi."
+        }
+      ]
+    },
+    {
+      "id": "monde",
+      "titre": "Un monde qui se voit et s'entend",
+      "accroche": "Chaque lieu, personnage, objet et monstre a son image peinte, dans un style commun.",
+      "paragraphes": [
+        "Les images suivent un style peint cohérent. Vos héros ne reprennent jamais les images des héros pré-tirés : ils se construisent à partir de vos choix.",
+        "Le maître de jeu a une seule voix de conteur, naturelle et retenue, pour les scènes racontées. Des musiques d'ambiance accompagnent l'exploration, et d'autres les combats.",
+        "Les bruitages marquent les coups et les sorts, et chaque espèce et chaque genre de héros a ses cris de combat. Des pictogrammes indiquent la famille des dégâts, qu'il s'agisse de tranchant, de feu ou de foudre."
+      ],
+      "points": [
+        "Images peintes pour lieux, personnages, objets et monstres",
+        "Une seule voix de conteur, naturelle et retenue",
+        "Musiques d'ambiance et musiques de combat",
+        "Bruitages de combat et de sorts",
+        "Cris de combat : une voix par espèce et par genre",
+        "13 familles de dégâts, chacune avec son pictogramme",
+        "Un effet visuel pour chaque sort",
+        "Une icône pour chaque sort du SRD",
+        "Une jauge de PV sur chaque jeton"
+      ],
+      "images": [
+        {
+          "id": "citadelle",
+          "legende": "La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu."
+        },
+        {
+          "id": "val",
+          "legende": "Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte."
+        },
+        {
+          "id": "aide-magie",
+          "legende": "L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil."
+        }
+      ]
+    },
+    {
+      "id": "cout",
+      "titre": "Le conteur IA et son coût",
+      "accroche": "Le mode livre est gratuit. Le conteur IA utilise votre propre clé d'API, et seuls les moments qu'il raconte coûtent.",
+      "paragraphes": [
+        "En mode livre, on joue avec les textes écrits par les auteurs et les boutons proposés. Aucune clé d'API n'est nécessaire, et cela ne coûte rien.",
+        "Avec le conteur IA, vous écrivez librement ce que vous voulez faire ou dire, tenez de vraies conversations avec les personnages et demandez un récit plus vivant d'une scène.",
+        "Seuls les moments racontés par le conteur coûtent : l'exploration, les combats et les images restent gratuits. Une estimation s'affiche avant de commencer."
+      ],
+      "points": [
+        "Mode livre : gratuit, sans clé d'API",
+        "Conteur IA : votre propre clé d'API",
+        "Écrivez librement ce que vous voulez faire ou dire",
+        "Conversations avec les personnages",
+        "Un récit plus vivant, sur demande",
+        "Exploration, combats et images : gratuits",
+        "Estimation affichée avant de commencer",
+        "Port-Sillage : environ 6 heures, de 0,2 $ à 2,4 $ selon le modèle"
+      ],
+      "images": [
+        {
+          "id": "histoire-detail",
+          "legende": "La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer."
+        }
+      ]
+    }
+  ],
+  "etat": {
+    "titre": "Où en est le jeu",
+    "paragraphes": [
+      "La Table du Conteur est un prototype jouable, encore en cours de développement. Les trois histoires sont livrées complètes, mais le jeu continue d'évoluer.",
+      "Le conteur IA est à l'essai. L'écran de réglage de votre clé d'API n'est pas encore là.",
+      "Une application de bureau est en préparation. Elle gardera la clé d'API du joueur dans le trousseau du système."
+    ],
+    "points": [
+      "Prototype jouable, en cours de développement",
+      "Trois histoires complètes livrées",
+      "Le conteur IA est à l'essai",
+      "L'écran de réglage de la clé d'API n'est pas encore là",
+      "Application de bureau en préparation",
+      "Clé d'API gardée dans le trousseau du système, sur le bureau"
+    ]
+  },
+  "pied": "Cette œuvre inclut du matériel issu du System Reference Document 5.2.1 de Wizards of the Coast LLC, publié sous licence Creative Commons Attribution 4.0. Le monde du jeu est original.",
+  "claude": {
+    "titre": "Fait par une IA, de bout en bout",
+    "accroche": "La Table du Conteur a été entièrement créée par Claude, l'intelligence artificielle d'Anthropic.",
+    "paragraphes": [
+      "Le jeu, ses règles, ses combats, l'intelligence des monstres, le créateur de personnage et ce site lui-même : Claude les a conçus et écrits, étape par étape, en dialoguant avec son auteur humain. C'est lui qui décide de la direction et qui valide chaque choix ; Claude propose, construit, vérifie et corrige.",
+      "Les histoires aussi. Les mondes, les personnages, les énigmes, les dilemmes et les fins ont été imaginés et écrits par Claude, avec des assistants Claude spécialisés qui se relisent entre eux et un joueur automatique qui prouve que chaque fin est atteignable.",
+      "Pour les images, les voix, les musiques et les bruitages, Claude a dirigé des modèles de création spécialisés : il a écrit les consignes, choisi, relu et installé chaque résultat."
+    ],
+    "points": [
+      "Code du jeu, règles et combats : écrits par Claude",
+      "Histoires, personnages, énigmes et dialogues : écrits par Claude",
+      "Images, voix et sons : dirigés et sélectionnés par Claude",
+      "Ce site : conçu, rédigé et mis en page par Claude",
+      "Un humain garde la main : il décide, Claude exécute"
+    ],
+    "mention": "Claude est une IA développée par Anthropic. Ce projet est indépendant et n'est pas un produit d'Anthropic."
+  },
+  "intro": {
+    "surtitre": "Le principe",
+    "titre": "Un RPG textuel illustré",
+    "accroche": "Un livre dont vous êtes le héros, avec toute la mécanique de Donjons & Dragons.",
+    "paragraphes": [
+      "La Table du Conteur est un jeu de rôle textuel, avec des images. Vous lisez la scène, vous voyez le lieu, puis vous choisissez : parler, fouiller, négocier, fuir ou combattre. Comme dans un livre dont vous êtes le héros, chaque décision ouvre une suite et laisse une trace dans l'histoire.",
+      "Mais ici, ce n'est pas qu'un paragraphe de plus à tourner : le jeu s'appuie sur les règles libres de Donjons & Dragons 5e (le SRD 5.2.1, sous licence libre) et sur toutes leurs mécaniques. Vos héros ont des caractéristiques, des compétences, des jets de dés, des points de vie, des sorts, des repos, et leurs actions réussissent ou échouent vraiment."
+    ],
+    "piliers": [
+      {
+        "titre": "Un livre dont vous êtes le héros",
+        "texte": "Du texte à lire, des choix à faire, des conséquences qui comptent, plusieurs fins."
+      },
+      {
+        "titre": "Les règles libres de D&D 5e",
+        "texte": "12 classes, 9 espèces, 339 sorts, jets de dés, états, repos, combat tactique : la mécanique est là."
+      },
+      {
+        "titre": "Des images à chaque pas",
+        "texte": "Chaque lieu, personnage, objet et monstre est illustré, pour que le récit se voie."
+      }
+    ],
+    "mention": "Jeu indépendant, fondé sur le System Reference Document 5.2.1 de Wizards of the Coast (licence Creative Commons Attribution 4.0). Ce n'est pas un produit officiel de Donjons & Dragons."
+  }
+}

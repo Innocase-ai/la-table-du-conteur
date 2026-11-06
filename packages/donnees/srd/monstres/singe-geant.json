@@ -1,0 +1,124 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "athletisme": 9,
+    "perception": 4,
+    "survie": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 3,
+  "id": "singe-geant",
+  "nom": "Singe géant",
+  "taille": "TG",
+  "ca": 12,
+  "pv": {
+    "moyenne": 168,
+    "des": "16d12 + 64"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 14,
+    "con": 18,
+    "int": 5,
+    "sag": 12,
+    "cha": 7
+  },
+  "initiative": 5,
+  "sens": {
+    "perceptionPassive": 14
+  },
+  "fp": "7",
+  "px": 2900,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le singe effectue deux attaques de Poing.",
+      "multiattaque": [
+        {
+          "action": "poing",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "poing",
+      "nom": "Poing",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 3 m : 22 (3d10 + 6) dégâts contondants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d10",
+          "bonus": 6,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "jet-de-rocher",
+      "nom": "Jet de rocher",
+      "cout": "action",
+      "resume": "Le singe projette un rocher en un point qu'il voit à 27 m ou moins. JS Dextérité DD 17, chaque créature dans une Sphère de 1,50 m centrée sur ce point. Échec : 24 (7d6) dégâts contondants ; si la cible est de taille G ou inférieure, elle subit l'état À terre. Réussite : demi-dégâts uniquement.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 17,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 27
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 1.5
+      },
+      "degats": [
+        {
+          "des": "7d6",
+          "bonus": 0,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ],
+      "recharge": "6"
+    },
+    {
+      "id": "bond",
+      "nom": "Bond",
+      "cout": "bonus",
+      "resume": "Le singe effectue un saut d'un maximum de 9 m en dépensant 3 m de déplacement.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

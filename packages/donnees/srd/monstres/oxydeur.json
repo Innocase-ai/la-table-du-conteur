@@ -1,0 +1,122 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "perception-du-fer",
+      "nom": "Perception du fer",
+      "resume": "L'oxydeur perçoit précisément la position de tout métal ferreux dans un rayon de 9 m."
+    }
+  ],
+  "id": "oxydeur",
+  "nom": "Oxydeur",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 14,
+  "pv": {
+    "moyenne": 33,
+    "des": "6d8 + 6"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 12,
+    "con": 13,
+    "int": 2,
+    "sag": 13,
+    "cha": 6
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'oxydeur effectue une attaque de Morsure et recourt deux fois à Antennes.",
+      "multiattaque": [
+        {
+          "action": "morsure",
+          "nombre": 1
+        },
+        {
+          "action": "antennes",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 5 (1d8 + 1) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 1,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "antennes",
+      "nom": "Antennes",
+      "cout": "action",
+      "resume": "L'oxydeur cible un objet en métal non magique, armure ou arme, porté par une créature dans un rayon de 1,50 m. JS Dextérité DD 11, la créature porteuse de l'objet. Échec : l'objet subit un malus de −1 à la CA qu'il octroie (armure) ou à ses jets d'attaque (arme). L'armure est détruite si ce malus réduit sa CA à 10, et l'arme est détruite quand le malus cumulé atteint −5. On peut annuler ce malus en lançant le sort réparation sur l'arme ou l'armure concernée.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 11,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "destruction-du-metal",
+      "nom": "Destruction du métal",
+      "cout": "action",
+      "resume": "L'oxydeur touche un objet en métal non magique dans un rayon de 1,50 m qui n'est porté par personne. Ce contact détruit un Cube de 30 cm de l'objet.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "antennes-reactives",
+      "nom": "Antennes réactives",
+      "cout": "reaction",
+      "resume": "Déclencheur : un jet d'attaque touche l'oxydeur. Conséquences : l'oxydeur recourt à Antennes.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

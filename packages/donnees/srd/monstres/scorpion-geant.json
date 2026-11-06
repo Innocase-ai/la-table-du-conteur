@@ -1,0 +1,116 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête",
+  "bonusMaitrise": 2,
+  "id": "scorpion-geant",
+  "nom": "Scorpion géant",
+  "taille": "G",
+  "ca": 15,
+  "pv": {
+    "moyenne": 52,
+    "des": "7d10 + 14"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 13,
+    "con": 15,
+    "int": 1,
+    "sag": 9,
+    "cha": 3
+  },
+  "initiative": 1,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 9
+  },
+  "fp": "3",
+  "px": 700,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le scorpion effectue une attaque de Dard et deux de Pince.",
+      "multiattaque": [
+        {
+          "action": "dard",
+          "nombre": 1
+        },
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "dard",
+      "nom": "Dard",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 7 (1d8 + 3) dégâts perforants plus 11 (2d10) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "2d10",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts contondants. Si la cible est de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 13) par l'une des deux pinces.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

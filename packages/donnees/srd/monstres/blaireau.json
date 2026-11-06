@@ -1,0 +1,74 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 3
+  },
+  "resistances": [
+    "poison"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 1,50 m (non représentée dans le moteur)."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "id": "blaireau",
+  "nom": "Blaireau",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 5,
+    "des": "1d4 + 3"
+  },
+  "vitesse": {
+    "marche": 6
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 11,
+    "con": 16,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 0,
+  "sens": {
+    "visionDansLeNoir": 9,
+    "perceptionPassive": 13
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 1 dégât perforant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

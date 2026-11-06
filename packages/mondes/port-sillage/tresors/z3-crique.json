@@ -1,0 +1,98 @@
+[
+  {
+    "id": "z3-t-caisse-de-tete",
+    "nom": "La caisse de tête",
+    "lieu": "cr-entrepot",
+    "contenant": "coffre",
+    "description": "Au fond, contre le mur est, une caisse de bois clair couverte d'une bâche ; en soulevant la toile, un fond de paille et, glissé dedans, un objet de fer.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "cle-de-la-crypte",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-z3-cle-a-l-entrepot",
+    "condition": {
+      "non": {
+        "objet": "cle-de-la-crypte"
+      }
+    }
+  },
+  {
+    "id": "z3-t-caisses-de-contrebande",
+    "nom": "Les caisses de contrebande",
+    "lieu": "cr-entrepot",
+    "contenant": "autre",
+    "description": "Deux piles de caisses neuves, cerclées de fer, dont les couvercles à demi cloués laissent voir des sacs de sel, des rouleaux de toile cirée, des bouteilles de verre vert et un fond de pièces.",
+    "contenu": {
+      "pieces": {
+        "po": 14
+      },
+      "objets": [
+        {
+          "objet": "z3-o-sac-de-sel-gris",
+          "quantite": 2
+        },
+        {
+          "objet": "z3-o-toile-ciree",
+          "quantite": 1
+        },
+        {
+          "objet": "z3-o-prune-de-contrebande",
+          "quantite": 3
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-z3-caisses-neuves"
+  },
+  {
+    "id": "z3-t-coffre-de-sorel",
+    "nom": "Le coffre de Sorel",
+    "lieu": "cr-grotte",
+    "contenant": "coffre",
+    "description": "Contre le mur nord, un coffre de chêne cerclé de laiton verdi aux charnières, fixé à la roche ; sur sa face avant, trois cadrans de laiton remplacent la serrure.",
+    "contenu": {
+      "pieces": {
+        "po": 40
+      },
+      "objets": [
+        {
+          "objet": "livre-de-maelle",
+          "quantite": 1
+        },
+        {
+          "objet": "lettre-de-verdelune",
+          "quantite": 1
+        },
+        {
+          "objet": "ambre",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": {
+        "dd": 20
+      }
+    },
+    "indice": "f-navire-de-verdelune",
+    "condition": {
+      "non": {
+        "objet": "livre-de-maelle"
+      }
+    }
+  }
+]

@@ -1,0 +1,73 @@
+{
+  "id": "crabe",
+  "nom": "Crabe",
+  "taille": "TP",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 11,
+  "pv": {
+    "moyenne": 3,
+    "des": "1d4 + 1"
+  },
+  "vitesse": {
+    "marche": 6,
+    "nage": 6
+  },
+  "caracteristiques": {
+    "for": 6,
+    "dex": 11,
+    "con": 12,
+    "int": 1,
+    "sag": 8,
+    "cha": 2
+  },
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 2
+  },
+  "initiative": 0,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "perceptionPassive": 9
+  },
+  "langues": "aucune",
+  "fp": "0",
+  "px": 10,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le crabe peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +2, allonge 1,50 m : 1 dégât contondant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 2
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "contondant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "id": "druide",
+  "nom": "Druide",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "sag"
+    ]
+  },
+  "deVie": 8,
+  "sauvegardes": [
+    "int",
+    "sag"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "arcanes",
+      "dressage",
+      "intuition",
+      "medecine",
+      "nature",
+      "perception",
+      "religion",
+      "survie"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [
+    "legere",
+    "bouclier"
+  ],
+  "outils": [
+    "Matériel d’herboriste"
+  ],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Armure de cuir",
+        "Bouclier",
+        "Serpe",
+        "Focaliseur druidique (bâton de combat)",
+        "Paquetage d’explorateur",
+        "Matériel d’herboriste"
+      ],
+      "po": 9
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 50
+    }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "sag",
+    "sortsMineurs": [
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "sortsPrepares": [
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      16,
+      17,
+      17,
+      18,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ]
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Druidique",
+        "Ordre primitif"
+      ],
+      "colonnes": {
+        "Forme sauvage": "—"
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Compagnon sauvage",
+        "Forme sauvage"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe de Druide"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Regain sauvage"
+      ],
+      "colonnes": {
+        "Forme sauvage": 2
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Fureur élémentaire"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Fureur élémentaire améliorée"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 3
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [],
+      "colonnes": {
+        "Forme sauvage": 4
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Incantation animale"
+      ],
+      "colonnes": {
+        "Forme sauvage": 4
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Forme sauvage": 4
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Archidruide"
+      ],
+      "colonnes": {
+        "Forme sauvage": 4
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts de Druide avec la Sagesse, en utilisant un focaliseur druidique. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer vos sorts préparés à chaque Repos long.",
+      "effets": []
+    },
+    {
+      "id": "druidique",
+      "nom": "Druidique",
+      "niveau": 1,
+      "resume": "Vous connaissez le druidique, langue secrète des Druides, et le sort communication avec les animaux est toujours préparé. Vous pouvez laisser des messages cachés, repérables par d’autres sur un test d’Intelligence (Investigation) DD 15 mais indéchiffrables pour eux.",
+      "effets": []
+    },
+    {
+      "id": "ordre-primitif",
+      "nom": "Ordre primitif",
+      "niveau": 1,
+      "resume": "Choisissez un rôle. Mage : un sort mineur de Druide supplémentaire et un bonus égal à votre modificateur de Sagesse (minimum +1) aux tests d’Intelligence (Arcanes et Nature). Gardien : maîtrise des armes de guerre et formation aux armures intermédiaires.",
+      "effets": []
+    },
+    {
+      "id": "compagnon-sauvage",
+      "nom": "Compagnon sauvage",
+      "niveau": 2,
+      "resume": "Par l’action Magie, vous dépensez un emplacement de sort ou une utilisation de Forme sauvage pour lancer appel de familier sans composantes matérielles ; le familier est une Fée et disparaît à votre prochain Repos long.",
+      "effets": []
+    },
+    {
+      "id": "forme-sauvage",
+      "nom": "Forme sauvage",
+      "niveau": 2,
+      "resume": "Par une action Bonus, vous prenez la forme d’une Bête connue (4 formes, FP 1/4 max., sans vol ; 6 formes FP 1/2 au niveau 4) pendant un nombre d’heures égal à la moitié de votre niveau de Druide, en gagnant autant de points de vie temporaires que votre niveau de Druide ; vous ne pouvez pas lancer de sorts sous cette forme. Deux utilisations (colonne Forme sauvage), une regagnée au Repos court et toutes au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "regain-sauvage",
+      "nom": "Regain sauvage",
+      "niveau": 5,
+      "resume": "Une fois par tour, si vous n’avez plus d’utilisation de Forme sauvage, vous pouvez en regagner une en dépensant un emplacement de sort. Vous pouvez aussi dépenser une utilisation de Forme sauvage pour obtenir un emplacement du 1er niveau, une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "fureur-elementaire",
+      "nom": "Fureur élémentaire",
+      "niveau": 7,
+      "resume": "Choisissez une option. Incantation puissante : ajoutez votre modificateur de Sagesse aux dégâts de tout sort mineur de Druide. Attaques primitives : une fois par tour, quand vous touchez une créature avec une arme ou une attaque de Bête sous Forme sauvage, vous infligez 1d8 dégâts de feu, foudre, froid ou tonnerre (choisis au moment du coup).",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "fureur-elementaire-amelioree",
+      "nom": "Fureur élémentaire améliorée",
+      "niveau": 15,
+      "resume": "Votre option de Fureur élémentaire se renforce. Incantation puissante : la portée d’un sort mineur de Druide de 3 m ou plus augmente de 90 m. Attaques primitives : les dégâts supplémentaires passent à 2d8.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "incantation-animale",
+      "nom": "Incantation animale",
+      "niveau": 18,
+      "resume": "Sous Forme sauvage, vous pouvez lancer des sorts, sauf ceux dont une composante matérielle a un coût spécifié ou est détruite par l’incantation.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Vous recevez un don de Faveur épique ou un autre don dont vous remplissez les conditions. Faveur de Déplacement dimensionnel est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "archidruide",
+      "nom": "Archidruide",
+      "niveau": 20,
+      "resume": "Forme sauvage immarcescible : quand vous jouez l’Initiative sans utilisation de Forme sauvage, vous en récupérez une. Mage de dame Nature : sans action, vous convertissez des utilisations non dépensées de Forme sauvage en un seul emplacement de sort (chaque utilisation compte pour 2 niveaux d’emplacement ; deux utilisations donnent un emplacement du 4e niveau), une fois par Repos long. Longévité : votre corps ne vieillit que d’un an par décennie.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "cercle-de-la-terre",
+    "nom": "Cercle de la Terre",
+    "aptitudes": [
+      {
+        "id": "sorts-du-cercle-de-la-terre",
+        "nom": "Sorts du Cercle de la Terre",
+        "niveau": 3,
+        "resume": "À chaque Repos long, choisissez un environnement (aride, polaire, tempéré ou tropical) : les sorts de cercle correspondants à votre niveau sont préparés. Niveau 3 — aride : flou, mains brûlantes, trait de feu ; polaire : immobilisation de personne, nappe de brouillard, rayon de givre ; tempéré : foulée brumeuse, poigne électrique, sommeil ; tropical : aspersion acide, rayon empoisonné, toile d’araignée. Niveau 5 : boule de feu, tempête de neige, éclair ou nuage nauséabond respectivement. Le jeu prépare pour l'instant les sorts de l'environnement tempéré.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "foulee-brumeuse",
+              "poigne-electrique",
+              "sommeil"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-cercle-de-la-terre-niveau-5",
+        "nom": "Sorts du Cercle de la Terre (niveau 5)",
+        "niveau": 5,
+        "resume": "Sort de cercle du niveau 5 (environnement tempéré, choisi par défaut) : éclair.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "eclair"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "aval-de-la-terre",
+        "nom": "Aval de la terre",
+        "niveau": 3,
+        "resume": "Par l’action Magie et une utilisation de Forme sauvage, vous ciblez une Sphère de 3 m de rayon à 18 m : les créatures choisies font un JS de Constitution contre votre DD des sorts et subissent 2d6 dégâts nécrotiques (moitié en cas de réussite), et une créature choisie récupère 2d6 points de vie (3d6 au niveau 10, 4d6 au niveau 14).",
+        "effets": []
+      },
+      {
+        "id": "ressourcement",
+        "nom": "Ressourcement",
+        "niveau": 6,
+        "resume": "Vous pouvez lancer l’un des sorts du 1er niveau ou supérieur préparés par Sorts de cercle sans emplacement, une fois par Repos long. De plus, à la fin d’un Repos court, vous récupérez des emplacements dépensés dont la somme des niveaux n’excède pas la moitié de votre niveau de Druide (arrondie au supérieur), aucun de niveau 6 ou plus, une fois par Repos long.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-cercle-de-la-terre-niveau-7",
+        "nom": "Sorts du Cercle de la Terre (niveau 7)",
+        "niveau": 7,
+        "resume": "Sort de cercle du niveau 7 selon l’environnement : aride, flétrissement ; polaire, tempête de grêle ; tempéré, liberté de mouvement ; tropical, métamorphose.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-cercle-de-la-terre-niveau-9",
+        "nom": "Sorts du Cercle de la Terre (niveau 9)",
+        "niveau": 9,
+        "resume": "Sort de cercle du niveau 9 selon l’environnement : aride, mur de pierre ; polaire, cône de froid ; tempéré, passage par les arbres ; tropical, fléau d’insectes.",
+        "effets": []
+      },
+      {
+        "id": "protege-de-dame-nature",
+        "nom": "Protégé de dame Nature",
+        "niveau": 10,
+        "resume": "Vous êtes immunisé contre l’état Empoisonné et résistant au type de dégâts lié à votre environnement actuel : aride, feu ; polaire, froid ; tempéré, foudre ; tropical, poison.",
+        "effets": []
+      },
+      {
+        "id": "sanctuaire-de-dame-nature",
+        "nom": "Sanctuaire de dame Nature",
+        "niveau": 14,
+        "resume": "Par l’action Magie et une utilisation de Forme sauvage, vous faites apparaître des plantes et arbres spectraux dans un Cube de 4,50 m à 36 m, pendant 1 minute (fin si vous êtes Neutralisé ou mourez). Vous et vos alliés avez un Abri partiel dans la zone ; vos alliés y reçoivent la Résistance de Protégé de dame Nature. Par une action Bonus, vous déplacez le Cube de 18 m maximum, à moins de 36 m de vous.",
+        "effets": []
+      }
+    ]
+  }
+}

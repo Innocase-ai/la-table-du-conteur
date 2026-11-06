@@ -1,0 +1,144 @@
+{
+  "sauvegardes": {
+    "dex": 6,
+    "sag": 3
+  },
+  "competences": {
+    "discretion": 6,
+    "perception": 3
+  },
+  "resistances": [
+    "nécrotique"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "taille",
+      "nom": "Taille",
+      "resume": "Le SRD donne la taille « M ou P » ; le profil est enregistré en taille M."
+    },
+    {
+      "id": "faiblesses-des-vampires",
+      "nom": "Faiblesses des vampires",
+      "resume": "Défense d'entrer : le vampire ne peut pas entrer dans une habitation sans y avoir été invité par l'un de ses occupants. Eau vive : il subit 20 dégâts d'acide s'il termine son tour dans l'eau vive. Pieu dans le cœur : il est détruit si une arme infligeant des dégâts perforants est fichée dans son cœur alors qu'il subit l'état Neutralisé. Lumière du soleil : il subit 20 dégâts radiants lorsqu'il commence son tour exposé au soleil ; exposé à la lumière du soleil, il subit le Désavantage aux jets d'attaque ainsi qu'aux tests de caractéristique."
+    },
+    {
+      "id": "pattes-d-araignee",
+      "nom": "Pattes d'araignée",
+      "resume": "Le vampire peut parcourir les parois les plus difficiles à escalader, y compris les plafonds, sans passer par un test de caractéristique."
+    }
+  ],
+  "id": "vampirien",
+  "nom": "Vampirien",
+  "taille": "M",
+  "type": "Mort-vivant",
+  "alignement": "Neutre Mauvais",
+  "ca": 16,
+  "pv": {
+    "moyenne": 90,
+    "des": "12d8 + 36"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 16,
+    "dex": 16,
+    "con": 16,
+    "int": 11,
+    "sag": 10,
+    "cha": 12
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 13
+  },
+  "langues": "commun et une autre langue",
+  "fp": "5",
+  "px": 1800,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le vampire effectue deux attaques de Griffe et recourt à Morsure.",
+      "multiattaque": [
+        {
+          "action": "griffe",
+          "nombre": 2
+        },
+        {
+          "action": "morsure",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 8 (2d4 + 3) dégâts tranchants. Si la cible est une créature de taille M ou inférieure, elle subit l'état Agrippé (évasion DD 13) par l'une des deux griffes.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 13,
+          "tailleMax": "M"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "JS Constitution DD 14, une créature dans un rayon de 1,50 m, consentante ou subissant l'état Agrippé, Entravé ou Neutralisé. Échec : 5 (1d4 + 3) dégâts perforants plus 10 (3d6) dégâts nécrotiques. Le maximum de points de vie de la cible est réduit d'un montant égal aux dégâts nécrotiques subis et le vampire récupère autant de points de vie que ce même montant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "3d6",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ],
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "id": "agilite-immortelle",
+      "nom": "Agilité immortelle",
+      "cout": "bonus",
+      "resume": "Le vampire effectue l'action Désengagement ou Pointe."
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "sauvegardes": {
+    "con": 8,
+    "sag": 3,
+    "cha": 4
+  },
+  "competences": {
+    "athletisme": 9,
+    "perception": 3
+  },
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "geant-du-givre",
+  "nom": "Géant du givre",
+  "taille": "TG",
+  "type": "Géant",
+  "alignement": "Neutre Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 149,
+    "des": "13d12 + 65"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 9,
+    "con": 21,
+    "int": 9,
+    "sag": 10,
+    "cha": 12
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 13
+  },
+  "langues": "gigant",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le géant effectue deux attaques, réparties à sa guise entre Hache de givre et Grand arc (modélisé : deux Hache de givre).",
+      "multiattaque": [
+        {
+          "action": "hache-de-givre",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "hache-de-givre",
+      "nom": "Hache de givre",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 3 m : 19 (2d12 + 6) dégâts tranchants plus 9 (2d8) dégâts de froid.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "grand-arc",
+      "nom": "Grand arc",
+      "cout": "action",
+      "resume": "À distance +9, portée 45/180 m : 17 (2d10 + 6) dégâts perforants plus 7 (2d6) dégâts de froid, et la Vitesse de la cible est réduite de 3 m jusqu'à la fin de son tour suivant.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45,
+        "longue": 180
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 6,
+          "type": "perforant"
+        },
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

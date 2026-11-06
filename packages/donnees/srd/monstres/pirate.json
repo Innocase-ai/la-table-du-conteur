@@ -1,0 +1,122 @@
+{
+  "id": "pirate",
+  "nom": "Pirate",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 33,
+    "des": "6d8 + 6"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 16,
+    "con": 12,
+    "int": 8,
+    "sag": 12,
+    "cha": 14
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "cha": 4
+  },
+  "competences": {},
+  "initiative": 5,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 11
+  },
+  "langues": "commun et une autre langue",
+  "fp": "1",
+  "px": 200,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le pirate effectue deux attaques de Dague. Il peut remplacer l'une de ces attaques par une utilisation de Panache envoûtant.",
+      "multiattaque": [
+        {
+          "action": "dague",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "dague",
+      "nom": "Dague (corps à corps)",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "dague-lancer",
+      "nom": "Dague (lancer)",
+      "cout": "action",
+      "resume": "À distance +5, portée 6/18 m : 5 (1d4 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 6,
+        "longue": 18
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ]
+    },
+    {
+      "id": "panache-envoutant",
+      "nom": "Panache envoûtant",
+      "cout": "action",
+      "resume": "JS Sagesse DD 12, une créature que le pirate voit dans un rayon de 9 m. Échec : la cible subit l'état Charmé jusqu'au début du tour suivant du pirate.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 12,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "etats": [
+        {
+          "etat": "charme",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

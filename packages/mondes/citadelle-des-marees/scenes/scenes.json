@@ -1,0 +1,292 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "La Citadelle des Marées",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cote-de-hautmaree"
+        },
+        "mouvement": "recul",
+        "texte": "Autrefois, au large de cette côte, il y avait un royaume de mer, avec ses ports, ses cloches et ses palais de coquillages. Les marins n'en parlent plus qu'à voix basse."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cote-de-hautmaree"
+        },
+        "mouvement": "gauche",
+        "texte": "Depuis des siècles, les pêcheurs lisent la mer comme un livre. Cette nuit, elle se retire trop loin, et ne revient pas. Les mouettes se taisent sur les rochers."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "citadelle-des-marees"
+        },
+        "mouvement": "approche",
+        "texte": "Au bout du cap, la Citadelle des Marées dresse ses murs de pierre mouillée. C'est un monastère de cartographes, qui dessinent la mer depuis des siècles."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "route-des-falaises"
+        },
+        "mouvement": "droite",
+        "texte": "La tempête vous a pris sur la route des falaises. Le vent couche l'herbe, la pluie pique le visage, et la mer gronde contre le pied du cap, très bas, très loin."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cit-porte-de-terre"
+        },
+        "mouvement": "approche",
+        "texte": "Une porte de pierre, des lampes de cuivre derrière des vitres couvertes de sel. Vous frappez. Le battant s'ouvre avant la fin de votre phrase, sans une question."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cit-cour-des-vents"
+        },
+        "mouvement": "recul",
+        "texte": "Dans la cour, le vent tombe d'un coup. La lumière des phares tremble sur les dalles, et l'odeur de cire et de sel vous entoure. Au loin, l'eau se tient immobile, comme si elle retenait son souffle."
+      }
+    ]
+  },
+  {
+    "id": "la-grande-maree",
+    "nom": "La Grande Marée",
+    "declencheur": {
+      "quete": "q-la-grande-maree",
+      "statut": "active"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "ysmene-hautecote"
+        },
+        "mouvement": "approche",
+        "texte": "Dame Ysmène Hautecôte, la plus vieille des cartographes, a les doigts tachés d'encre. Elle ne dort plus depuis plusieurs nuits, et elle pose sur la table une carte pliée en quatre."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cote-de-hautmaree"
+        },
+        "mouvement": "recul",
+        "texte": "En bas, la mer recule encore. Elle découvre des rochers noirs, des cordages pourris et des barques couchées sur le sable. Personne ne s'approche de l'eau."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cit-salle-des-cartes"
+        },
+        "mouvement": "droite",
+        "texte": "Sur la carte, la date de la Grande Marée est tracée en rouge. Elle arrive dans trois jours, la plus haute depuis des générations. Les cartographes ont cessé de dormir."
+      }
+    ]
+  },
+  {
+    "id": "le-palais-de-basmaree",
+    "nom": "Le palais de Basmarée",
+    "declencheur": {
+      "lieu": "palais-basmaree"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lot-chaussee-des-basses-eaux"
+        },
+        "mouvement": "approche",
+        "texte": "La chaussée s'ouvre sous vos pas. Des pierres luisantes, couvertes d'algues, sortent de l'eau basse et mènent vers une silhouette sombre au loin. Le sel brûle les yeux."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "palais-basmaree"
+        },
+        "mouvement": "recul",
+        "texte": "Le palais est fait de coquillages et de sel. Ses colonnes blanches se perdent dans la brume, et ses fenêtres sont des trous d'eau noire, sans lampe ni bruit."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lot-grande-salle"
+        },
+        "mouvement": "droite",
+        "texte": "Dans la grande salle, des silhouettes pâles se tiennent debout le long des murs. Elles sont immobiles, et elles attendent. Aucune ne vous regarde, mais toutes savent que vous êtes là."
+      }
+    ]
+  },
+  {
+    "id": "fin-renouer",
+    "nom": "Le Sceau renoué",
+    "declencheur": {
+      "fin": "fin-renouer"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lot-sanctuaire-du-sceau"
+        },
+        "mouvement": "recul",
+        "texte": "Nolwen descend seule à marée basse, par la chaussée des Basses-Eaux. Elle n'appelle personne. Elle pose la main sur la marque, et le pacte se referme avec un bruit de porte de cale."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cote-de-hautmaree"
+        },
+        "mouvement": "approche",
+        "texte": "La mer se retire de la côte, et la Cour s'endort enfin sous les flots. La Grande Marée s'éloigne vers le large. Mais le Sceau ne remonte pas : Nolwen tient la mer, vivante et liée."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "citadelle-des-marees"
+        },
+        "mouvement": "gauche",
+        "texte": "À la Citadelle, les cartographes reprennent leurs registres et ne parlent plus de l'apprentie. Le groupe reste sur la grève, avec la carte d'Ysmène et la mer calme. Personne ne dit que Nolwen ne reviendra pas."
+      }
+    ]
+  },
+  {
+    "id": "fin-briser",
+    "nom": "Le Sceau brisé",
+    "declencheur": {
+      "fin": "fin-briser"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lot-chapelle-de-la-regente"
+        },
+        "mouvement": "recul",
+        "texte": "La Pierre de rupture touche la marque, et le bruit est celui d'une cloche fêlée. Les noyés s'assoient, puis se couchent sur le sable, comme des gens qui rentrent d'une longue marche."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "dame-aelis-corvane"
+        },
+        "mouvement": "approche",
+        "texte": "La Dame Noyée passe la main sur le front de Nolwen, puis s'efface. Nolwen se réveille libre, sur les galets, sans marque sur l'épaule. Elle vit, enfin."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "citadelle-des-marees"
+        },
+        "mouvement": "gauche",
+        "texte": "Mais la mer n'est plus tenue. Elle reviendra aux grandes marées, de plus en plus haut. La Ligue recule ses digues, les cartographes emportent leurs registres, et la Citadelle sera abandonnée avant l'hiver."
+      }
+    ]
+  },
+  {
+    "id": "fin-relever",
+    "nom": "Lothmar relevée",
+    "declencheur": {
+      "fin": "fin-relever"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "chancelier-orvald-sel"
+        },
+        "mouvement": "recul",
+        "texte": "Le Chancelier Orvald pose la couronne sur la tête de Nolwen, dans une salle du Palais qui n'a plus de murs. Les nobles se lèvent un à un, pâles, couverts de coraux qui tombent comme des feuilles."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "port-aux-cordes"
+        },
+        "mouvement": "approche",
+        "texte": "Lothmar remonte, des toits de marbre sortent du fond, et la mer, docile, recule. Mais Port-aux-Cordes disparaît à sa place. Ses quais, ses entrepôts et la chapelle des noyés sont engloutis."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "citadelle-des-marees"
+        },
+        "mouvement": "droite",
+        "texte": "Nolwen règne, jeune et seule, sur une ville qui a payé pour elle. Les cartographes ferment la Citadelle sur des cartes qui ne disent plus rien de vrai. Le groupe a choisi, et il porte sa part du prix."
+      }
+    ]
+  },
+  {
+    "id": "fin-livrer",
+    "nom": "L'enfant à la Ligue",
+    "declencheur": {
+      "fin": "fin-livrer"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "por-phare-du-port"
+        },
+        "mouvement": "recul",
+        "texte": "Maître Osric attend au pied du phare-cellule, la lanterne haute, le registre ouvert. Nolwen ne pleure pas. Elle demande qu'on la laisse garder la carte. La porte de fer se ferme à double tour."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "port-aux-cordes"
+        },
+        "mouvement": "approche",
+        "texte": "Les bourses de la Ligue sont pleines : les digues tiennent, les navires rentrent au port, les villages de la baie gardent leurs toits. Pour un temps."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "maitre-osric-vent"
+        },
+        "mouvement": "gauche",
+        "texte": "La mer ronge la cellule goutte à goutte, et les noyés frappent parfois la coque du phare. Osric dort mal, et il le sait. Nolwen vieillira dans une pièce où l'on entend la mer, sans revoir la côte."
+      }
+    ]
+  },
+  {
+    "id": "fin-maree-haute",
+    "nom": "La marée sans fin",
+    "declencheur": {
+      "fin": "fin-maree-haute"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "port-aux-cordes"
+        },
+        "mouvement": "recul",
+        "texte": "La mer ne se retire plus. Elle monte cette nuit même, en une seule vague grise qui prend Port-aux-Cordes avant le lever du jour. Les quais disparaissent, et la Ligue ferme ses dernières lanternes."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cote-de-hautmaree"
+        },
+        "mouvement": "approche",
+        "texte": "Les noyés marchent dans les rues, en rangs serrés, sans bruit. Le groupe survit, au sommet d'un rocher de la falaise, avec Nolwen à ses côtés. Personne n'a décidé de ce qui est arrivé à Nolwen."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "citadelle-des-marees"
+        },
+        "mouvement": "gauche",
+        "texte": "Le pacte reste entier, et la Cour continue de tenir la mer, sans vainqueur ni vaincu. La Citadelle tient quelques saisons, puis les cartographes la quittent. Au matin, la côte a reculé de deux lieues."
+      }
+    ]
+  }
+]

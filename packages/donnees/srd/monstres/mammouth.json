@@ -1,0 +1,106 @@
+{
+  "id": "mammouth",
+  "nom": "Mammouth",
+  "taille": "TG",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 126,
+    "des": "11d12 + 55"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 24,
+    "dex": 9,
+    "con": 21,
+    "int": 3,
+    "sag": 11,
+    "cha": 6
+  },
+  "sauvegardes": {
+    "for": 10,
+    "con": 8
+  },
+  "competences": {},
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le mammouth effectue deux attaques de Coup de défense.",
+      "multiattaque": [
+        {
+          "action": "coup-de-defense",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "coup-de-defense",
+      "nom": "Coup de défense",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 18 (2d10 + 7) dégâts perforants. Si la cible est une créature de taille TG ou inférieure et si le mammouth s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 7,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    },
+    {
+      "id": "pietinement",
+      "nom": "Piétinement",
+      "cout": "bonus",
+      "resume": "JS Dextérité DD 18, une créature À terre dans un rayon de 1,50 m. Échec : 29 (4d10 + 7) dégâts contondants. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 18,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d10",
+          "bonus": 7,
+          "type": "contondant"
+        }
+      ]
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

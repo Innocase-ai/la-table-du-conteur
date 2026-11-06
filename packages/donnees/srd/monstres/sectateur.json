@@ -1,0 +1,72 @@
+{
+  "id": "sectateur",
+  "nom": "Sectateur",
+  "taille": "M",
+  "type": "Humanoïde",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 9,
+    "des": "2d8"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 11,
+    "dex": 12,
+    "con": 10,
+    "int": 10,
+    "sag": 11,
+    "cha": 10
+  },
+  "sauvegardes": {
+    "sag": 2
+  },
+  "competences": {
+    "religion": 2,
+    "tromperie": 2
+  },
+  "initiative": 1,
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "langues": "commun",
+  "fp": "1/8",
+  "px": 25,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "serpe-rituelle",
+      "nom": "Serpe rituelle",
+      "cout": "action",
+      "resume": "Corps à corps +3, allonge 1,50 m : 3 (1d4 + 1) dégâts tranchants plus 1 dégât nécrotique.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 3
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 1,
+          "type": "tranchant"
+        },
+        {
+          "des": "1",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    }
+  ]
+}

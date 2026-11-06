@@ -1,0 +1,152 @@
+{
+  "id": "jeune-dragon-d-argent",
+  "nom": "Jeune dragon d’argent",
+  "taille": "G",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 18,
+  "pv": {
+    "moyenne": 168,
+    "des": "16d10 + 80"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 10,
+    "con": 21,
+    "int": 14,
+    "sag": 11,
+    "cha": 19
+  },
+  "sauvegardes": {
+    "for": 6,
+    "dex": 4,
+    "con": 5,
+    "int": 2,
+    "sag": 4,
+    "cha": 4
+  },
+  "competences": {
+    "discretion": 4,
+    "histoire": 6,
+    "perception": 8
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 9,
+    "perceptionPassive": 18
+  },
+  "langues": "commun, draconique",
+  "fp": "9",
+  "px": 5000,
+  "bonusMaitrise": 4,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de Souffle paralysant.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 15 (2d8 + 6) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 6,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-glacial",
+      "nom": "Souffle glacial",
+      "cout": "action",
+      "resume": "Souffle glacial (recharge 5-6). JS Constitution DD 17, chaque créature dans un Cône de 9 m. Échec : 49 (11d8) dégâts de froid. Réussite : 1/2 dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 17,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "11d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-paralysant",
+      "nom": "Souffle paralysant",
+      "cout": "action",
+      "resume": "JS Constitution DD 17, chaque créature dans un Cône de 9 m. Premier échec : la cible subit l'état Neutralisé jusqu'à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l'état Paralysé et réitère le JS à la fin de chacun de ses tours ; elle met un terme à l'effet sur elle-même en cas de réussite. Au bout de 1 minute, elle réussit automatiquement ce JS.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 17,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1
+        },
+        {
+          "etat": "paralyse",
+          "dureeRounds": 10,
+          "sauvegardeFinDeTour": true
+        }
+      ]
+    }
+  ]
+}

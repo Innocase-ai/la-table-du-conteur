@@ -1,0 +1,652 @@
+{
+  "id": "ensorceleur",
+  "nom": "Ensorceleur",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "cha"
+    ]
+  },
+  "deVie": 6,
+  "sauvegardes": [
+    "con",
+    "cha"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "arcanes",
+      "intimidation",
+      "intuition",
+      "persuasion",
+      "religion",
+      "tromperie"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "Lance",
+        "2 dagues",
+        "Focaliseur arcanique (cristal)",
+        "Paquetage d’exploration souterraine"
+      ],
+      "po": 28
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 50
+    }
+  ],
+  "incantation": {
+    "type": "complet",
+    "caracteristique": "cha",
+    "sortsMineurs": [
+      4,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "sortsPrepares": [
+      2,
+      4,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      14,
+      15,
+      16,
+      16,
+      17,
+      17,
+      18,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "emplacements": [
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        4,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3
+      ],
+      [
+        4,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      [
+        4,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1
+      ]
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sorts",
+        "Sorcellerie innée"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": "—"
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Réserve arcanique",
+        "Métamagie"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 2
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe d’Ensorceleur"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 3
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 4
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Restauration ensorcelée"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 5
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 6
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Sorcellerie incarnée"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 7
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 8
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Points de sorcellerie": 9
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Métamagie"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 10
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [],
+      "colonnes": {
+        "Points de sorcellerie": 11
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 12
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Points de sorcellerie": 13
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 14
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [],
+      "colonnes": {
+        "Points de sorcellerie": 15
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 16
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Métamagie"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 17
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 18
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 19
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Apothéose arcanique"
+      ],
+      "colonnes": {
+        "Points de sorcellerie": 20
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "sorts",
+      "nom": "Sorts",
+      "niveau": 1,
+      "resume": "Vous lancez des sorts d’Ensorceleur avec le Charisme, en utilisant un focaliseur arcanique. Sorts mineurs, sorts préparés et emplacements suivent la table ; les emplacements reviennent au Repos long et vous pouvez changer un sort préparé à chaque niveau gagné.",
+      "effets": []
+    },
+    {
+      "id": "sorcellerie-innee",
+      "nom": "Sorcellerie innée",
+      "niveau": 1,
+      "resume": "Par une action Bonus, vous libérez votre magie pendant 1 minute : le DD de sauvegarde de vos sorts d’Ensorceleur augmente de 1 et vous avez l’Avantage à leurs jets d’attaque. Deux utilisations, récupérées au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "reserve-arcanique",
+      "nom": "Réserve arcanique",
+      "niveau": 2,
+      "resume": "Vous disposez de points de Sorcellerie (colonne Points de sorcellerie), tous récupérés au Repos long. Vous pouvez dépenser un emplacement pour gagner autant de points que son niveau, ou, par une action Bonus, convertir des points en emplacement (1er niveau : 2 points ; 2e : 3 points ; 3e : 5 points, à partir du niveau 5 ; 4e : 6 ; 5e : 7) qui disparaît au Repos long.",
+      "effets": []
+    },
+    {
+      "id": "metamagie",
+      "nom": "Métamagie",
+      "niveau": 2,
+      "resume": "Vous apprenez deux options de Métamagie, payées en points de Sorcellerie, pour modifier vos sorts (une seule option par sort sauf mention contraire). Vous pouvez en remplacer une à chaque niveau ; deux de plus aux niveaux 10 et 17.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions. Vous recevez de nouveau cette aptitude aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "restauration-ensorcelee",
+      "nom": "Restauration ensorcelée",
+      "niveau": 5,
+      "resume": "En terminant un Repos court, vous récupérez des points de Sorcellerie dépensés à concurrence de la moitié de votre niveau d’Ensorceleur (arrondie à l’inférieur), une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "sorcellerie-incarnee",
+      "nom": "Sorcellerie incarnée",
+      "niveau": 7,
+      "resume": "S’il ne vous reste aucune utilisation de Sorcellerie innée, vous pouvez y recourir en dépensant 2 points de Sorcellerie (action Bonus). Tant que Sorcellerie innée est active, vous pouvez utiliser jusqu’à deux options de Métamagie pour chaque sort lancé.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Vous recevez le don Amélioration de caractéristique ou un autre don dont vous remplissez les conditions.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "metamagie-niveau-10",
+      "nom": "Métamagie (niveau 10)",
+      "niveau": 10,
+      "resume": "Vous recevez deux options de Métamagie supplémentaires.",
+      "effets": []
+    },
+    {
+      "id": "metamagie-niveau-17",
+      "nom": "Métamagie (niveau 17)",
+      "niveau": 17,
+      "resume": "Vous recevez deux options de Métamagie supplémentaires.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Vous recevez un don de Faveur épique ou un autre don dont vous remplissez les conditions. Faveur de Déplacement dimensionnel est recommandé.",
+      "effets": []
+    },
+    {
+      "id": "apotheose-arcanique",
+      "nom": "Apothéose arcanique",
+      "niveau": 20,
+      "resume": "Tant que Sorcellerie innée est active, vous pouvez recourir à une option de Métamagie à chacun de vos tours sans dépenser de points de Sorcellerie.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "sorcellerie-draconique",
+    "nom": "Sorcellerie draconique",
+    "aptitudes": [
+      {
+        "id": "resistance-draconique",
+        "nom": "Résistance draconique",
+        "niveau": 3,
+        "resume": "Votre maximum de points de vie augmente de 3, puis de 1 à chaque niveau d’Ensorceleur suivant. Sans armure, votre CA de base est égale à 10 + vos modificateurs de Dextérité et de Charisme.",
+        "effets": [
+          {
+            "type": "ca_sans_armure",
+            "base": 10,
+            "caracteristiques": [
+              "dex",
+              "cha"
+            ],
+            "bouclierAutorise": true
+          },
+          {
+            "type": "pv_par_niveau",
+            "valeur": 1
+          }
+        ]
+      },
+      {
+        "id": "sorts-draconiques",
+        "nom": "Sorts draconiques",
+        "niveau": 3,
+        "resume": "Sorts toujours préparés : injonction, modification d’apparence, orbe chromatique et souffle du dragon au niveau 3 ; terreur et vol au niveau 5 (puis d’autres aux niveaux 7 et 9).",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "injonction",
+              "modification-d-apparence",
+              "orbe-chromatique",
+              "souffle-du-dragon"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-draconiques-niveau-5",
+        "nom": "Sorts draconiques (niveau 5)",
+        "niveau": 5,
+        "resume": "Sorts toujours préparés au niveau 5 : terreur, vol.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "terreur",
+              "vol"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "affinite-elementaire",
+        "nom": "Affinité élémentaire",
+        "niveau": 6,
+        "resume": "Choisissez un type de dégâts : acide, feu, foudre, froid ou poison. Vous avez la Résistance à ce type de dégâts, et quand vous lancez un sort qui inflige de tels dégâts, vous pouvez ajouter votre modificateur de Charisme à un jet de dégâts de ce sort.",
+        "effets": []
+      },
+      {
+        "id": "sorts-draconiques-niveau-7",
+        "nom": "Sorts draconiques (niveau 7)",
+        "niveau": 7,
+        "resume": "Sorts toujours préparés au niveau 7 : charme-monstre, œil du mage.",
+        "effets": []
+      },
+      {
+        "id": "sorts-draconiques-niveau-9",
+        "nom": "Sorts draconiques (niveau 9)",
+        "niveau": 9,
+        "resume": "Sorts toujours préparés au niveau 9 : convocation de dragon, mythes et légendes.",
+        "effets": []
+      },
+      {
+        "id": "ailes-draconiques",
+        "nom": "Ailes draconiques",
+        "niveau": 14,
+        "resume": "Par une action Bonus, vous faites apparaître des ailes draconiques pendant 1 heure ou jusqu’à révocation (pas d’action) : Vitesse de vol de 18 m. Après usage, il faut un Repos long ou dépenser 3 points de Sorcellerie (pas d’action) pour la récupérer.",
+        "effets": []
+      },
+      {
+        "id": "compagnon-draconique",
+        "nom": "Compagnon draconique",
+        "niveau": 18,
+        "resume": "Vous lancez convocation de dragon sans composante matérielle, et une fois sans emplacement de sort (récupéré au Repos long). En commençant l’incantation, vous pouvez la modifier pour qu’elle ne nécessite pas la Concentration ; la durée passe alors à 1 minute.",
+        "effets": []
+      }
+    ]
+  }
+}

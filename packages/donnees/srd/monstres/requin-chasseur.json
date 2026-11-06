@@ -1,0 +1,73 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 2
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "respiration-aquatique",
+      "nom": "Respiration aquatique",
+      "resume": "Le requin ne peut respirer que sous l'eau."
+    }
+  ],
+  "bonusMaitrise": 2,
+  "alignement": "non aligné",
+  "type": "Bête",
+  "langues": "aucune",
+  "id": "requin-chasseur",
+  "nom": "Requin-chasseur",
+  "taille": "G",
+  "ca": 12,
+  "pv": {
+    "moyenne": 45,
+    "des": "6d10 + 12"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "nage": 12
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 14,
+    "con": 15,
+    "int": 1,
+    "sag": 10,
+    "cha": 4
+  },
+  "initiative": 2,
+  "sens": {
+    "visionAveugle": 18,
+    "perceptionPassive": 12
+  },
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6 (avec Avantage si la cible n'a pas tous ses pv), allonge 1,50 m : 14 (3d6 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "3d6",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

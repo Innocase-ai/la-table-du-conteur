@@ -1,0 +1,662 @@
+[
+ {
+  "id": "varg",
+  "nom": "Varg",
+  "titre": "capitaine de la compagnie du Péage",
+  "espece": "hobgobelin",
+  "sexe": "M",
+  "age": "38 ans",
+  "role": "Capitaine hobgobelin, maître du péage et de la mine",
+  "lieu": "min-bureau-de-varg",
+  "apparence": "Hobgobelin de 38 ans, large d'épaules, peau rouge-brique, favoris gris taillés court, uniforme de cuir noir et plastron de fer battu ; une main gantée, un registre sous le bras, et la raideur d'un homme qui ne sait pas se détendre.",
+  "personnalite": {
+   "traits": [
+    "discipliné",
+    "orgueilleux",
+    "patient",
+    "presque courtois"
+   ],
+   "voix": "Brève et basse, des phrases comptées comme des ordres ; il vouvoie, ne hausse jamais le ton et corrige les mots approximatifs d'un léger haussement de sourcil.",
+   "valeurs": [
+    "l'ordre",
+    "la parole donnée",
+    "la paie de ses hommes"
+   ],
+   "desir": "Faire de la mine une place forte et de sa compagnie une maison qui compte, au lieu d'une bande de pillards oubliée sur une frontière.",
+   "peur": "Une révolte de ses propres hommes, et qu'on le prenne pour ce qu'il méprise : un voleur de grain.",
+   "defaut": "Il confond l'ordre avec la peur qu'il inspire, et croit qu'un homme bien rangé est un homme fidèle."
+  },
+  "presences": [],
+  "faction": "compagnie-du-peage",
+  "attitude": -15,
+  "savoir": [
+   "f-mine-de-fer",
+   "f-double-tribut",
+   "f-charrette-saisie",
+   "f-colin-prisonnier",
+   "f-grenier-vide",
+   "f-varg-compagnie-perdue",
+   "f-compagnie-paie",
+   "f-deserteur-hobgobelin"
+  ],
+  "secrets": [
+   {
+    "fait": "f-but-de-varg",
+    "attitudeMin": 25
+   },
+   {
+    "fait": "f-tribu-affamee",
+    "jet": {
+     "competence": "intimidation",
+     "dd": 14
+    }
+   }
+  ],
+  "sujets": [
+   {
+    "id": "le-peage",
+    "mots": [
+     "péage",
+     "dîme",
+     "tribut",
+     "pont",
+     "chaussée"
+    ],
+    "question": "Que prélevez-vous, au juste, sur la chaussée ?",
+    "reponse": "Il explique sans se cacher : un droit de passage sur les charrettes, une part du grain, et cette année le double. La compagnie mange, personne ne paie les soldats d'une frontière oubliée, et Mireval a vécu quatre ans sans rien voir venir. Le double n'est pas une punition : c'est un rappel.",
+    "revele": [
+     "f-double-tribut"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-mine",
+    "mots": [
+     "mine",
+     "fer",
+     "veine",
+     "minerai",
+     "galerie"
+    ],
+    "question": "Pourquoi tenir une vieille mine de fer ?",
+    "reponse": "Il déplie une carte et désigne la veine du doigt : du fer, du vrai, en quantité, à deux jours de route. Des outils, des fers à cheval, des lames pour ceux qui paieront. La vallée est riche et personne ne l'a jamais comptée. Il ne dit pas un mot du grain.",
+    "revele": [
+     "f-mine-de-fer"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "Colin",
+     "charretier",
+     "saisie",
+     "moulin"
+    ],
+    "question": "Où est passée la charrette du moulin ?",
+    "reponse": "Il ne nie pas : la charrette a été prise au pont, le grain est sous une bâche dans la cour, le charretier travaille à la veine. Le garçon est vivant parce qu'il est utile, et un otage vivant vaut mieux qu'un otage mort. Le village devrait le remercier de ne pas avoir tout pris.",
+    "revele": [
+     "f-charrette-saisie",
+     "f-colin-prisonnier"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-lettre",
+    "mots": [
+     "lettre",
+     "ordre",
+     "sceau",
+     "cachet",
+     "courrier"
+    ],
+    "condition": {
+     "objet": "lettre-de-varg"
+    },
+    "question": "Reconnaissez-vous cette lettre ?",
+    "reponse": "Il la lit sans hâte, la plie exactement comme elle était et la repose. Oui, c'est son écriture : saisir la prochaine charrette, compter les sacs, garder le charretier. Un ordre est un ordre, et le village a rompu la parole en ne payant pas. Puis il regarde le groupe et demande ce qu'il veut en échange du silence.",
+    "revele": [
+     "f-but-de-varg",
+     "f-double-tribut"
+    ],
+    "effets": [],
+    "unique": true
+   },
+   {
+    "id": "colin",
+    "mots": [
+     "Colin",
+     "prisonnier",
+     "libérer",
+     "otage",
+     "frère",
+     "rançon"
+    ],
+    "question": "Que voulez-vous pour rendre Colin ?",
+    "reponse": "Il a un prix et il le dit sans détour : le grain de la charrette et une part fixe chaque automne, comptée devant lui. Ou la tribu au travail dans la veine. Il ne rendra pas le garçon pour des mots ; il le rendra contre une garantie. Il précise qu'il ne veut pas le tuer, et que ce serait dommage pour tout le monde.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "ses-hommes",
+    "mots": [
+     "hommes",
+     "compagnie",
+     "solde",
+     "révolte",
+     "garde",
+     "soldats"
+    ],
+    "attitudeMin": 20,
+    "question": "Vos hommes vous suivent-ils encore ?",
+    "reponse": "Il hésite, puis parle plus bas : la solde a six semaines de retard, les hommes comptent les sacs, et Grum n'est plus le même depuis l'hiver. Un capitaine qui ne paie pas n'est qu'un homme avec une épée. Il demande, sans en avoir l'air, si le groupe a du grain à vendre.",
+    "revele": [
+     "f-grenier-vide"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "grum",
+    "mots": [
+     "Grum",
+     "gobelours",
+     "garde",
+     "corps",
+     "ombre"
+    ],
+    "question": "Que vaut votre gobelours ?",
+    "reponse": "Grum vaut deux hommes et la moitié d'un cerveau : le bras lourd, le sommeil léger, et plus lent depuis le printemps. Il l'appelle « mon ombre » sans ironie. Il ne le renverra pas : un capitaine ne jette pas un chien qui a mordu pour lui.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-paix",
+    "mots": [
+     "paix",
+     "marché",
+     "accord",
+     "trêve",
+     "négocier",
+     "traité"
+    ],
+    "question": "Peut-on encore marchander avec vous ?",
+    "reponse": "Oui, si le village paie une part fixe et si la tribu travaille la veine. Il préfère une mine qui tourne à un village brûlé : le feu ne produit rien. Mais il veut une parole tenue, écrite, et un gage. Les précédents ont trop parlé et trop peu payé.",
+    "revele": [],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "varg",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "neutre": "Vous êtes sur mes terres. Dites ce que vous voulez, et vite : la mine n'attend pas.",
+   "hostile": "Vous avez du sang sur les mains et de la boue sur les bottes. Un seul mot de travers et mes hommes vous reconduisent au pont.",
+   "amical": "Asseyez-vous. Le poêle est chaud, et j'ai moins d'hommes que de travail.",
+   "variantes": [
+    {
+     "condition": {
+      "objet": "lettre-de-varg"
+     },
+     "texte": "Vous avez mon courrier dans la poche. Posez-le sur la table, et parlons comme deux hommes qui savent lire."
+    },
+    {
+     "condition": {
+      "flag": "tribut-paye"
+     },
+     "texte": "Le tribut est payé. Vous êtes les premiers depuis quatre ans à ne pas marchander deux fois."
+    },
+    {
+     "condition": {
+      "faction": {
+       "id": "compagnie-du-peage",
+       "min": 40
+      }
+     },
+     "texte": "Un capitaine reçoit ceux qui tiennent parole. Prenez une chaise, et parlons du tribut."
+    },
+    {
+     "condition": {
+      "flag": "varg-vaincu"
+     },
+     "texte": "Vous m'avez battu dans ma propre cour. Dites ce que vous voulez, et faites vite : mes hommes écoutent."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": [
+   "epee-longue"
+  ],
+  "profilCombat": "capitaine-hobgobelin"
+ },
+ {
+  "id": "grum",
+  "nom": "Grum",
+  "titre": "garde du corps de Varg",
+  "espece": "gobelours",
+  "sexe": "M",
+  "age": "31 ans",
+  "role": "Garde du corps de Varg, fatigué de la guerre",
+  "lieu": "min-camp-hobgobelin",
+  "apparence": "Gobelours de 31 ans, haut comme une porte, fourrure brun-gris emmêlée, un croc cassé, un manteau d'uniforme trop petit et une besace de toile ; il tient un maillet comme on tient une canne.",
+  "personnalite": {
+   "traits": [
+    "laconique",
+    "patient",
+    "superstitieux",
+    "fatigué"
+   ],
+   "voix": "Un grondement lent, des mots rares et de longues pauses ; il parle aux bêtes avant de parler aux gens, et répète la fin des phrases des autres comme pour les comprendre.",
+   "valeurs": [
+    "les siens",
+    "la parole donnée",
+    "la soupe chaude"
+   ],
+   "desir": "Rentrer chez lui, dans les collines, et ne plus porter d'uniforme.",
+   "peur": "Que Varg le juge inutile et le renvoie sans solde, ou pire, qu'il le charge encore une fois.",
+   "defaut": "Il obéit par habitude, même quand il n'y croit plus, et ne sait pas dire non à un ordre."
+  },
+  "presences": [],
+  "faction": "compagnie-du-peage",
+  "attitude": -5,
+  "savoir": [
+   "f-colin-prisonnier",
+   "f-mine-de-fer",
+   "f-grum-dette",
+   "f-deserteur-hobgobelin"
+  ],
+  "secrets": [
+   {
+    "fait": "f-but-de-varg",
+    "attitudeMin": 20
+   },
+   {
+    "fait": "f-tribu-affamee",
+    "attitudeMin": 30
+   }
+  ],
+  "sujets": [
+   {
+    "id": "la-guerre",
+    "mots": [
+     "guerre",
+     "fatigue",
+     "battre",
+     "combat",
+     "soldat"
+    ],
+    "question": "Pourquoi vous battez-vous encore ?",
+    "reponse": "Il hausse une épaule. Il est soldat depuis qu'il sait tenir un maillet, il a vu trois capitaines et deux camps, et la paie arrive quand elle arrive. Il compte les jours comme on compte des cailloux. Il ne déteste personne dans ce camp, et c'est bien ça le problème.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "varg",
+    "mots": [
+     "Varg",
+     "capitaine",
+     "chef",
+     "ordre",
+     "officier"
+    ],
+    "question": "Que pensez-vous de votre capitaine ?",
+    "reponse": "Il choisit ses mots avec soin : Varg est juste quand la paie arrive, dur quand elle n'arrive pas, et il n'a jamais laissé un homme derrière. Grum le craint et le respecte, et il ne dit pas lequel des deux pèse le plus. Il ajoute que le capitaine ne dort plus beaucoup.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-veine",
+    "mots": [
+     "veine",
+     "fer",
+     "mine",
+     "minerai",
+     "roche"
+    ],
+    "question": "Que sortez-vous de cette veine ?",
+    "reponse": "Du fer, bon pour les outils et les fers à cheval. Les prisonniers cassent la roche, les hobgobelins charrient les wagonnets, et Varg compte les charges chaque soir avant la soupe. Grum dit que la montagne ne rend rien sans qu'on lui prenne, et qu'elle se souvient de ceux qui prennent trop.",
+    "revele": [
+     "f-mine-de-fer"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "colin",
+    "mots": [
+     "Colin",
+     "prisonnier",
+     "charretier",
+     "homme",
+     "chaînes"
+    ],
+    "question": "Que fait le prisonnier à la veine ?",
+    "reponse": "Le charretier travaille, mange, et dort enchaîné avec les autres. Grum lui donne sa soupe quand les gardes oublient, et l'a entendu parler tout seul de sa sœur. Il dit que le garçon ne fuira pas : il a trop peur de ce qu'on ferait à Mireval.",
+    "revele": [
+     "f-colin-prisonnier"
+    ],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "colin-vasseur",
+       "delta": 5
+      }
+     }
+    ],
+    "unique": false
+   },
+   {
+    "id": "chez-lui",
+    "mots": [
+     "chez vous",
+     "collines",
+     "famille",
+     "rentrer",
+     "maison"
+    ],
+    "question": "Où est votre chez-vous ?",
+    "reponse": "Dans une vallée de pierres grises, à six jours d'ici, avec une sœur qui tient une auberge et un chien qu'il n'a pas vu grandir. Il envoie sa solde quand il y pense. Il dit qu'il rentrera quand la compagnie sera payée, et il le dit comme on récite une leçon.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-loup",
+    "mots": [
+     "loup",
+     "bête",
+     "chien",
+     "chaîne",
+     "animal"
+    ],
+    "question": "Pourquoi gardez-vous ce loup ?",
+    "reponse": "Ce n'est pas le sien : c'est celui de la compagnie, dressé pour la garde, et il tire sur sa chaîne quand il a faim. Grum lui parle bas et lui donne les os de la soupe. S'il pouvait, il le détacherait et le laisserait courir vers les roseaux.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "but-de-varg",
+    "mots": [
+     "pourquoi",
+     "but",
+     "fer",
+     "grain",
+     "veine",
+     "Varg veut"
+    ],
+    "attitudeMin": 20,
+    "question": "Pourquoi votre capitaine tient-il tant à cette mine ?",
+    "reponse": "Il regarde la porte du bureau, puis parle bas : le fer, pas le grain. Varg veut la veine et des bras pour la creuser ; le grain, c'est pour faire venir les bras. Il dit que les gobelins de la grotte feront l'affaire, et qu'ils n'auront pas le choix.",
+    "revele": [
+     "f-but-de-varg"
+    ],
+    "effets": [],
+    "unique": true
+   }
+  ],
+  "salutations": {
+   "neutre": "Passez votre chemin. Je ne veux de mal à personne.",
+   "hostile": "Un pas de plus et je frappe. Je n'aime pas ça, mais je le ferai.",
+   "amical": "Asseyez-vous près du feu. Il reste de la soupe, et j'ai deux mots à vous dire.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "grum-capture"
+     },
+     "texte": "Vous m'avez eu. Je ne demande rien. Faites ce que vous avez à faire."
+    },
+    {
+     "condition": {
+      "flag": "grum-libere"
+     },
+     "texte": "Vous m'avez laissé partir. Je n'oublie pas ces choses-là."
+    },
+    {
+     "condition": {
+      "pnj": {
+       "id": "grum",
+       "attitudeMin": 25
+      }
+     },
+     "texte": "Vous êtes revenus. Je commençais à croire que les gens de passage ne revenaient jamais."
+    },
+    {
+     "condition": {
+      "flag": "varg-vaincu"
+     },
+     "texte": "Le capitaine est tombé. Je n'ai plus de solde, ni de raison de lever mon maillet."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": [
+   "marteau-de-guerre"
+  ],
+  "profilCombat": "combattant-gobelours"
+ },
+ {
+  "id": "colin-vasseur",
+  "nom": "Colin Vasseur",
+  "titre": "charretier du moulin",
+  "espece": "humain",
+  "sexe": "M",
+  "age": "27 ans",
+  "role": "Charretier de Mireval, prisonnier à la veine de fer",
+  "lieu": "min-veine-de-fer",
+  "apparence": "Humain de 27 ans, maigre, chemise de toile grise, cheveux collés par la poussière de fer, menottes aux poignets et bandeau de cuir au front ; il cligne des yeux comme s'il sortait d'un puits.",
+  "personnalite": {
+   "traits": [
+    "têtu",
+    "drôle quand il a peur",
+    "honteux",
+    "loyal"
+   ],
+   "voix": "La blague à tout propos, une voix qui casse quand il parle de sa sœur ; il vouvoie les étrangers et tutoie les gens du village.",
+   "valeurs": [
+    "sa sœur",
+    "sa parole",
+    "rentrer à la maison"
+   ],
+   "desir": "Sortir de la mine et retrouver Perrine avant qu'elle ne fasse une bêtise.",
+   "peur": "Que Varg tue un autre homme devant lui, et que sa sœur le croie mort ou enfui.",
+   "defaut": "Il ment pour ne pas inquiéter, même quand le mensonge empire les choses."
+  },
+  "presences": [],
+  "faction": "gens-de-mireval",
+  "attitude": 10,
+  "savoir": [
+   "f-charrette-saisie",
+   "f-colin-prisonnier",
+   "f-mine-de-fer",
+   "f-grain-mine",
+   "f-colin-deserteur",
+   "f-perrine-colin"
+  ],
+  "secrets": [
+   {
+    "fait": "f-grenier-vide",
+    "attitudeMin": 20
+   }
+  ],
+  "sujets": [
+   {
+    "id": "la-charrette",
+    "mots": [
+     "charrette",
+     "grain",
+     "moulin",
+     "sacs",
+     "farine"
+    ],
+    "question": "Où est passé le grain de la charrette ?",
+    "reponse": "Sous les bâches, dans la cour, contre la palissade. Les sacs portent encore la marque du moulin Roux, et le quartier-maître les compte deux fois par jour. Colin dit qu'il a conduit la charrette jusqu'au pont et qu'après, on ne lui a plus demandé son avis.",
+    "revele": [
+     "f-charrette-saisie"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "varg",
+    "mots": [
+     "Varg",
+     "capitaine",
+     "déserteur",
+     "peur",
+     "punition"
+    ],
+    "question": "Que fait Varg de ses prisonniers ?",
+    "reponse": "Il travaille, il nourrit mal, et il ne bat pas pour le plaisir. L'hiver dernier, un hobgobelin a voulu partir : Varg l'a tué devant le camp, sans colère, comme on abat un cheval qui boite. Colin dit qu'il n'a pas dormi pendant trois nuits après ça.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "perrine",
+    "mots": [
+     "Perrine",
+     "sœur",
+     "Mireval",
+     "famille",
+     "grenier"
+    ],
+    "question": "Avez-vous des nouvelles de Mireval ?",
+    "reponse": "Il demande d'abord si Perrine va bien, puis si elle est encore assez folle pour partir seule dans les roseaux. Il décrit sa sœur : éclaireuse, têtue, meilleure que lui avec un arc. Il demande qu'on lui dise qu'il n'a pas fui, et qu'il tient bon.",
+    "revele": [],
+    "effets": [
+     {
+      "attitude": {
+       "pnj": "colin-vasseur",
+       "delta": 10
+      }
+     }
+    ],
+    "unique": false
+   },
+   {
+    "id": "la-veine",
+    "mots": [
+     "veine",
+     "fer",
+     "galerie",
+     "effondrement",
+     "étais"
+    ],
+    "question": "Comment travaille-t-on la veine ?",
+    "reponse": "Il montre les étais du menton : le bois chante avant de céder, et la roche laisse tomber un filet de sable quand elle va lâcher. Il a vu un éboulement ensevelir un wagonnet la première semaine. On frappe, on écoute, et on ne reste jamais sous un étais noir.",
+    "revele": [
+     "f-mine-de-fer"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-voyage",
+    "mots": [
+     "voyage",
+     "route",
+     "charrette",
+     "ordre",
+     "meunier"
+    ],
+    "question": "Pourquoi conduisiez-vous une charrette vers les roseaux ?",
+    "reponse": "On lui dit où mener, il mène. Le meunier payait, il ne posait pas de questions, et la route du marais était mauvaise mais connue. Il ajoute, plus bas, qu'il se doutait bien que ce grain n'allait pas à un marché, et qu'il aurait dû demander.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-menottes",
+    "mots": [
+     "menottes",
+     "libérer",
+     "sortir",
+     "clé",
+     "évasion"
+    ],
+    "condition": {
+     "ou": [
+      {
+       "flag": "varg-vaincu"
+      },
+      {
+       "flag": "alliance-gobeline"
+      }
+     ]
+    },
+    "question": "Le libérer de ses menottes.",
+    "reponse": "Les menottes cèdent ; Colin frotte ses poignets et se lève trop vite. Il dit qu'il connaît la galerie, le rythme des gardes et le chemin du camp, et qu'il ne sera pas un fardeau. Il demande seulement qu'on ne le ramène pas à Mireval avant qu'il ait retrouvé sa sœur.",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "colin-libere"
+     },
+     {
+      "attitude": {
+       "pnj": "colin-vasseur",
+       "delta": 25
+      }
+     },
+     {
+      "xp": 100
+     },
+     {
+      "narration": "Colin est libre. Il masse ses poignets et jure de ne pas ralentir le groupe."
+     }
+    ],
+    "unique": true
+   }
+  ],
+  "salutations": {
+   "neutre": "Vous n'êtes pas des hobgobelins. Ça change.",
+   "hostile": "Reculez. Je ne suis pas une bête qu'on vient voir à la chaîne.",
+   "amical": "Vous avez l'air de gens qui ont marché. Il reste de l'eau, si vous voulez.",
+   "variantes": [
+    {
+     "condition": {
+      "flag": "colin-libere"
+     },
+     "texte": "Je marche. Laissez-moi juste retrouver mes jambes et boire autre chose que de l'eau de roche."
+    },
+    {
+     "condition": {
+      "flag": "varg-vaincu"
+     },
+     "texte": "Ils sont partis ? Alors sortez-moi de là avant qu'ils changent d'avis."
+    },
+    {
+     "condition": {
+      "objet": "lettre-de-varg"
+     },
+     "texte": "Vous avez son écriture dans la poche. Ça me fait froid aux mains."
+    },
+    {
+     "condition": {
+      "pnj": {
+       "id": "colin-vasseur",
+       "attitudeMin": 25
+      }
+     },
+     "texte": "Perrine ? Vous l'avez vue ? Dites-moi qu'elle va bien, même si c'est un mensonge."
+    }
+   ]
+  },
+  "services": [],
+  "inventaire": []
+ }
+]

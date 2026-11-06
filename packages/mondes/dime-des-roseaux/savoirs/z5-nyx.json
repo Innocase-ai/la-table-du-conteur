@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "nyx",
+  "passe": "Nyx est la chamane de la tribu des roseaux. Elle a vu le jour dans une grotte du marais, comme sa mère et sa grand-mère, et elle connaît les herbes, les os et les rêves qui annoncent l'eau. Avant l'arrivée des hobgobelins, elle a rêvé d'une grotte noyée sous les roseaux, et elle croit que l'eau cache quelque chose que la tribu doit retrouver. Elle se méfie des humains, mais elle soigne les enfants et les vieux sans demander leur espèce. Elle parle par images, rarement en face, et elle n'aime pas qu'on la contredise sur les rêves.",
+  "liens": [
+   {
+    "pnj": "skarn",
+    "nature": "le chef de la tribu",
+    "opinion": "Elle le croit fatigué mais juste. Elle lui dit ses rêves et il les écoute, même quand il n'y comprend rien."
+   },
+   {
+    "pnj": "miette",
+    "nature": "une enfant de la tribu",
+    "opinion": "Elle veille sur elle parce que sa mère ne mange plus assez. Elle dit que Miette a le don de voir ce que les autres oublient."
+   },
+   {
+    "pnj": "lina-roux",
+    "nature": "l'otage d'honneur",
+    "opinion": "Elle ne la croit pas dangereuse, mais elle ne la croit pas non plus des leurs. Elle attend de voir ce qu'elle fera quand la faim sera plus forte."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-os",
+    "texte": "Elle porte des os d'oiseaux noués dans ses cheveux et les fait cliqueter quand elle réfléchit. Elle dit qu'ils savent des choses qu'elle ne sait pas encore."
+   },
+   {
+    "id": "le-reve",
+    "texte": "Elle a rêvé d'une grotte noyée avant l'arrivée des hobgobelins. Elle décrit l'eau noire, l'autel de roseaux et une lumière sous la surface."
+   },
+   {
+    "id": "les-herbes",
+    "texte": "Elle connaît les herbes du marais et leurs doses. Elle prépare des décoctions amères que les enfants boivent en grimaçant."
+   },
+   {
+    "id": "les-humains",
+    "texte": "Elle se méfie des humains, mais elle dit qu'un enfant qui a faim est un enfant, quelle que soit sa peau."
+   },
+   {
+    "id": "le-feu",
+    "texte": "Elle ne touche pas le feu de tourbe : elle dit que le feu de Skarn est le feu de la tribu, et qu'elle a le sien dans les rêves."
+   },
+   {
+    "id": "la-grotte-basse",
+    "texte": "Elle évite la galerie effondrée, mais elle regarde souvent vers le nord. Elle dit que l'eau qui monte a une mémoire."
+   }
+  ],
+  "sait": [
+   {
+    "id": "son-reve",
+    "fait": "f-nyx-reve",
+    "version": "Elle a rêvé d'une grotte noyée sous les roseaux avant l'arrivée des hobgobelins. Elle croit que l'eau cache quelque chose que la tribu doit retrouver.",
+    "acces": {}
+   },
+   {
+    "id": "la-mere-de-miette",
+    "fait": "f-miette-mere",
+    "version": "La mère de Miette ne mange plus assez pour allaiter. Miette suit Lina parce que Lina lui donne une part de sa ration.",
+    "acces": {}
+   },
+   {
+    "id": "le-but-de-varg",
+    "fait": "f-but-de-varg",
+    "version": "Varg veut la veine et la tribu comme main-d'œuvre. Nyx l'a compris dans un rêve et dans les comptes de Skarn, et elle en parle comme d'une évidence.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "elle dit que l'eau lui a montré du fer et des chaînes, et que les rêves ne se racontent pas à table",
+    "tabou": [
+     "veine"
+    ]
+   },
+   {
+    "id": "la-grotte-des-noyes",
+    "fait": "f-grotte-noyes",
+    "version": "La grotte des Noyés servait de refuge aux contrebandiers avant le siège. L'eau y monte deux fois par jour et noie les cachettes les plus basses ; Nyx dit que c'est là que la Dame des eaux parle.",
+    "acces": {}
+   }
+  ]
+ }
+]

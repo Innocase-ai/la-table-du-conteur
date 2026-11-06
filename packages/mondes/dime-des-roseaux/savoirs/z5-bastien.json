@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "bastien",
+  "passe": "Bastien est halfelin, aubergiste de l'Auberge des Roseaux depuis assez longtemps pour avoir vu deux maires et trois meuniers. Il est né à Mireval, dans la cuisine de l'auberge, et il n'a jamais voulu partir. Il sait tout ce qui se dit au village, parce qu'il sert à boire à ceux qui parlent et qu'il écoute ceux qui se taisent. Il doit de l'argent à Célestin Brindille pour du grain acheté au prix fort, et il parle beaucoup pour ne pas parler de sa dette. Il aime les histoires, la soupe au lard et les soirs où personne ne demande rien.",
+  "liens": [
+   {
+    "pnj": "celestin-brindille",
+    "nature": "le colporteur à qui il doit de l'argent",
+    "opinion": "Il l'évite ou lui offre une chope pour retarder l'échéance. Il admire son commerce et méprise sa façon de compter."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire",
+    "opinion": "Il la sert en premier et lui raconte ce qu'elle veut entendre. Il sait qu'elle sait qu'il exagère, et cela fait partie du jeu."
+   },
+   {
+    "pnj": "perrine-vasseur",
+    "nature": "une habituée du grenier",
+    "opinion": "Il lui garde du pain quand elle rentre tard. Il la trouve trop seule et trop armée pour son âge."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-chope",
+    "texte": "Il essuie une chope avec un torchon qu'il ne lave jamais, puis la repose et la reprend, comme si elle n'était pas propre."
+   },
+   {
+    "id": "les-nouvelles",
+    "texte": "Il commence toujours par une nouvelle qu'il tient d'un autre, et il jure que la source est sûre. La source est souvent lui-même."
+   },
+   {
+    "id": "la-soupe",
+    "texte": "Sa soupe au lard est trop salée et tout le village la mange. Il prétend que c'est la tourbe qui donne ce goût, et personne ne le contredit."
+   },
+   {
+    "id": "la-dette-cachee",
+    "texte": "Quand on parle d'argent, il rit plus fort, remplit les chopes et change de sujet. La dette de Célestin est le seul sujet qu'il ne raconte pas."
+   },
+   {
+    "id": "avis-sur-les-gobelins",
+    "texte": "Il ne les craint pas plus que la pluie. Il dit qu'un gobelin affamé vole un sac, tandis qu'un hobgobelin en uniforme vole le grenier."
+   },
+   {
+    "id": "la-porte",
+    "texte": "Il laisse toujours la porte de l'auberge entrouverte, même la nuit. Il prétend que c'est pour le chat, mais il écoute les pas sur la place."
+   }
+  ],
+  "sait": [
+   {
+    "id": "la-dette",
+    "fait": "f-bastien-dette",
+    "version": "Il doit de l'argent à Célestin pour du grain acheté au prix fort. Il parle de tout le reste pour ne pas parler de cela.",
+    "acces": {}
+   },
+   {
+    "id": "la-rumeur-du-tresor",
+    "fait": "f-rumeur-tresor-noyes",
+    "version": "On dit qu'un trésor de contrebandiers dort dans la grotte des Noyés. Il le raconte volontiers, en ajoutant qu'il n'y croit qu'à moitié.",
+    "acces": {}
+   },
+   {
+    "id": "la-charrette",
+    "fait": "f-charrette-saisie",
+    "version": "Il a vu la charrette quitter le moulin avant l'aube. Il peut dire qui était dessus, à quelle heure, et que le grain était couvert d'une bâche qui ne venait pas du moulin.",
+    "acces": {
+     "attitudeMin": 10
+    },
+    "evasif": "il dit qu'à l'aube, il ne voyait rien, et qu'il ne faut pas lui faire dire ce qu'il n'a pas vu",
+    "tabou": [
+     "charrette"
+    ]
+   },
+   {
+    "id": "la-faim-des-gobelins",
+    "fait": "f-tribu-affamee",
+    "version": "Il sait que les gobelins n'ont rien reçu, parce que les colporteurs qui passent par le marais le disent. Il en parle comme d'une mauvaise affaire pour tout le monde.",
+    "acces": {}
+   }
+  ]
+ }
+]

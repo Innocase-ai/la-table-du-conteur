@@ -1,0 +1,98 @@
+[
+  {
+    "id": "cartographes",
+    "nom": "Les cartographes de la Citadelle",
+    "resume": "Ordre de savants-moines installé dans la Citadelle des Marées depuis des siècles. Ils dressent et tiennent les cartes de marée de toute la côte, et gardent depuis seize ans une apprentie qu'ils savent différente, sans connaître le coût du pacte qu'elle porte. Dame Ysmène Hautecôte les menait ; le Prieur Anselme Vareuil leur succède.",
+    "objectifs": [
+      "Protéger Nolwen et garder le pacte secret.",
+      "Tenir les cartes de marée exactes, seul savoir qui permette à la côte de lire la mer.",
+      "Ne pas laisser la Ligue des Phares fouiller la Citadelle ni ses registres."
+    ],
+    "chef": "ysmene-hautecote",
+    "reputation": 30,
+    "paliers": [
+      { "seuil": -100, "nom": "Bannis", "effet": "Les portes de la Citadelle se ferment. Plus de repos dans l'enceinte, plus de cartes ni de conseils ; le Prieur fait suivre le groupe jusqu'au pied de la falaise." },
+      { "seuil": -50, "nom": "Suspects", "effet": "Accueil froid : pas de copie des cartes de marée, pas d'accès à la grande bibliothèque. Les dortoirs restent ouverts, mais sans soins à l'infirmerie." },
+      { "seuil": 0, "nom": "Hôtes", "effet": "Accueil poli : un lit à l'infirmerie, des renseignements sur les marées, la salle des cartes ouverte sous le regard d'un frère." },
+      { "seuil": 40, "nom": "Frères de la carte", "effet": "Accès aux registres de marée et à la carte maîtresse. Le Prieur confie une part des secrets de la Citadelle. Repos garanti dans l'enceinte." },
+      { "seuil": 80, "nom": "Gardiens du pacte", "effet": "Le groupe est admis dans les caveaux. Le Prieur dit une partie de la vérité sur le pacte, et les cartographes ne refusent plus de partager la carte d'Ysmène." }
+    ],
+    "relations": [
+      { "faction": "ligue-des-phares", "attitude": -40 },
+      { "faction": "rats-de-quai", "attitude": -30 },
+      { "faction": "cour-noyee", "attitude": -60 }
+    ]
+  },
+  {
+    "id": "ligue-des-phares",
+    "nom": "La Ligue des Phares",
+    "resume": "Autorité des ports et des fanaux de la côte : elle tient les digues, les registres des naufrages et la police des quais. Elle connaît la légende du Sceau et veut qu'il ne reste personne à réclamer : un phare-cellule scellé, où l'enfant serait gardée à jamais. Elle se croit pragmatique, et ses lois ont sauvé plus de navires qu'elles n'ont épargné de vies.",
+    "objectifs": [
+      "Tenir les ports et les routes de la côte.",
+      "Enfermer le Sceau dans un phare-cellule scellé.",
+      "Empêcher la Cour de réclamer la côte, sans jamais avouer la légende."
+    ],
+    "chef": "maitre-osric-vent",
+    "reputation": -5,
+    "paliers": [
+      { "seuil": -100, "nom": "Ennemis de la Ligue", "effet": "Les gardes arrêtent le groupe aux portes de Port-aux-Cordes. Le port lui est fermé, ses navires comme ses hommes." },
+      { "seuil": -50, "nom": "Surveillés", "effet": "Le groupe passe les digues sous escorte, paie une taxe de passage double et n'entre pas dans le hall de la Ligue." },
+      { "seuil": 0, "nom": "Passants", "effet": "Passage permis par le port, contre la taxe ordinaire. Pas d'accès au hall ni aux archives des naufrages." },
+      { "seuil": 40, "nom": "Alliés", "effet": "Le sceau de la Ligue ouvre les quais et les digues sans fouille. Osric parle du phare-cellule comme d'une solution, et propose un logement au port." },
+      { "seuil": 80, "nom": "Frères du phare", "effet": "La Ligue offre une escorte armée et l'accès aux archives des naufrages. Osric avoue la légende du phare-cellule et ne cache plus qu'il doute de son propre plan." }
+    ],
+    "relations": [
+      { "faction": "cartographes", "attitude": -40 },
+      { "faction": "rats-de-quai", "attitude": -50 },
+      { "faction": "cour-noyee", "attitude": -80 }
+    ]
+  },
+  {
+    "id": "rats-de-quai",
+    "nom": "Les Rats de quai",
+    "resume": "Contrebandiers et passeurs de Port-aux-Cordes. Ils vivent du passage et du secret, et ne doivent rien à la Ligue. Ils connaissent les chaussées, les égouts à marée et les caches des quais mieux que personne. L'un d'eux est payé par le Chancelier pour signaler toute jeune fille marquée, et personne ne sait lequel.",
+    "objectifs": [
+      "Vivre du passage et du secret.",
+      "Ne rien devoir à la Ligue des Phares.",
+      "Garder les chaussées et les égouts à marée sous leur contrôle."
+    ],
+    "chef": "mere-sorel-quaibas",
+    "reputation": 0,
+    "paliers": [
+      { "seuil": -100, "nom": "Vendus", "effet": "Les Rats livrent le groupe à la Ligue ou au Héraut. Aucune porte de service ne s'ouvre, aucun passage ne se vend." },
+      { "seuil": -50, "nom": "Méfiés", "effet": "Les prix doublent. Les Rats ne vendent que des passages courts, sans les chaussées." },
+      { "seuil": 0, "nom": "Clients", "effet": "Passages et renseignements à prix raisonnable. Pas de lit chez les Rats : on y reste le temps d'un marché." },
+      { "seuil": 40, "nom": "Associés", "effet": "Mère Sorel ouvre les égouts à marée et les caches des quais. Le passage de la chaussée des Basses-Eaux se négocie." },
+      { "seuil": 80, "nom": "Gens de la ruelle", "effet": "Les Rats couvrent la fuite du groupe et prennent sur eux la poursuite de la Ligue. Ils ne réclament jamais leur dû." }
+    ],
+    "relations": [
+      { "faction": "cartographes", "attitude": -30 },
+      { "faction": "ligue-des-phares", "attitude": -50 },
+      { "faction": "cour-noyee", "attitude": -20 }
+    ]
+  },
+  {
+    "id": "cour-noyee",
+    "nom": "Les noyés de Lothmar",
+    "resume": "Les noyés du royaume englouti de Lothmar, liés sous la mer et sans sommeil. Ils ne sont pas cruels : ils sont fidèles, épuisés, et veulent cesser de tenir. Ils se divisent entre le Chancelier Orvald, qui veut relever Lothmar avec un Sceau couronné, et la Dame Noyée, qui veut rompre le pacte. Ils ne reconnaissent que l'offre et le verdict.",
+    "objectifs": [
+      "Cesser de tenir la mer.",
+      "Relever Lothmar (Orvald) ou laisser la Cour reposer (la Dame Noyée).",
+      "Obtenir un Sceau, couronné ou prisonnier, pour que le pacte se referme."
+    ],
+    "chef": "chancelier-orvald-sel",
+    "reputation": -20,
+    "paliers": [
+      { "seuil": -100, "nom": "Ennemis du pacte", "effet": "Les noyés attaquent le groupe au premier pas sur la chaussée. Le Héraut le traque sans trêve." },
+      { "seuil": -50, "nom": "Suspects", "effet": "Le Héraut parle sans écouter. Les noyés se détournent, mais laissent passer." },
+      { "seuil": 0, "nom": "Témoins", "effet": "Les noyés répondent à voix basse. Le Héraut tolère le groupe ; la Dame reçoit ceux qui ont vu la mer de près." },
+      { "seuil": 40, "nom": "Interlocuteurs", "effet": "Le Chancelier et la Dame acceptent de parler des conditions du pacte. Des pans du Palais deviennent accessibles." },
+      { "seuil": 80, "nom": "Juges du verdict", "effet": "Les deux parties acceptent que le groupe tranche. La Dame indique où dort la Pierre de rupture ; Orvald propose la couronne." }
+    ],
+    "relations": [
+      { "faction": "cartographes", "attitude": -60 },
+      { "faction": "ligue-des-phares", "attitude": -80 },
+      { "faction": "rats-de-quai", "attitude": -20 }
+    ]
+  }
+]

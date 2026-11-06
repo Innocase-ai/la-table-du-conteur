@@ -1,0 +1,76 @@
+{
+  "id": "port-sillage",
+  "version": 1,
+  "statut": "publie",
+  "nom": "Le Grimoire de Port-Sillage",
+  "resume": "À Port-Sillage, village de pêcheurs, le grimoire de la sainte qui calmait les tempêtes a disparu de la crypte pendant la fête de la Mer. Trois nuits avant qu'un navire vienne le chercher, le groupe enquête entre la taverne, l'église, la caserne et la crique des contrebandiers.",
+  "accroche": "Le Livre de Maëlle a disparu de la crypte, la fête de la Mer est gâchée, et le navire acheteur arrive dans trois nuits. À qui confier le pouvoir de la mer ?",
+  "ton": [
+    "conte marin cosy",
+    "humour de village",
+    "aucune cruauté gratuite",
+    "des gens qui ont des raisons"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 3
+  },
+  "depart": {
+    "lieu": "ps-place",
+    "intro": "La fête de la Mer devait finir en chansons. Sur la place de la Criée, les guirlandes pendent, les barriques sont fermées, et le crieur répète la même nouvelle à voix basse : le Livre de Maëlle a disparu de la crypte. Une femme en ciré, la maire, vous fait signe depuis l'estrade ; au fond de la place, le prêtre est assis sur les marches de l'église, la tête dans les mains."
+  },
+  "direction": {
+    "style": "Conte marin peint : pierre grise et bois goudronné, filets, cordages, lanternes de poisson, lumière dorée de fin d'après-midi sur un petit port, embruns, matières salées et usées.",
+    "palette": [
+      "gris pierre",
+      "bleu ardoise",
+      "ocre doré",
+      "vert-de-gris",
+      "blanc d'écume"
+    ],
+    "motsCles": [
+      "port",
+      "filets",
+      "cloche",
+      "crypte",
+      "crique",
+      "marée",
+      "lanterne"
+    ],
+    "interdits": [
+      "noir et blanc manichéen",
+      "pirates caricaturaux",
+      "architecture de donjon générique"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1-le-grimoire",
+      "nom": "Le Grimoire de Port-Sillage",
+      "niveaux": {
+        "min": 1,
+        "max": 3
+      },
+      "resume": "De la place de la Criée à la grotte de la crique, le groupe retrouve le voleur, le marché des contrebandiers et le livre, puis décide à qui le confier : l'Église, la garnison ou le jeune sacristain.",
+      "lieux": [
+        "port-sillage"
+      ],
+      "quetes": [
+        "q-le-grimoire",
+        "q-maeva-la-cave",
+        "q-odile-la-solde",
+        "q-tobie-sa-mere",
+        "q-basile-premier-service"
+      ]
+    }
+  ],
+  "regles": [
+    "Il n'existe pas de résurrection dans ce monde : la mort est définitive.",
+    "Le MJ ne révèle jamais l'identité du voleur, le marché de Sorel ou le détournement de la solde avant que le groupe ait découvert les faits correspondants.",
+    "Chaque antagoniste croit bien faire : Tobie sauve sa mère, Odile nourrit ses soldats, Sorel vit de contrebande sans cruauté.",
+    "L'histoire est facile : les combats sont courts, les erreurs se rattrapent, aucune mort de PNJ n'est imposée.",
+    "Aucune fin n'est entièrement heureuse : chaque voie a un coût.",
+    "Le monde est original : aucun nom, lieu ou texte des univers D&D officiels."
+  ],
+  "auteurs": []
+}

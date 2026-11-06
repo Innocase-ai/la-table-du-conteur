@@ -1,0 +1,93 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "perception": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "id": "allosaure",
+  "nom": "Allosaure",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 51,
+    "des": "6d10 + 18"
+  },
+  "vitesse": {
+    "marche": 18
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 13,
+    "con": 17,
+    "int": 2,
+    "sag": 12,
+    "cha": 5
+  },
+  "initiative": 1,
+  "sens": {
+    "perceptionPassive": 15
+  },
+  "langues": "aucune",
+  "fp": "2",
+  "px": 450,
+  "actions": [
+    {
+      "id": "griffes",
+      "nom": "Griffes",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 8 (1d8 + 4) dégâts tranchants. Si la cible est de taille G ou inférieure et si l'allosaure s'est déplacé en ligne droite d'au moins 9 m juste avant de la toucher, la cible subit l'état À terre et l'allosaure peut effectuer contre elle une attaque de Morsure.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d8",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 15 (2d10 + 4) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

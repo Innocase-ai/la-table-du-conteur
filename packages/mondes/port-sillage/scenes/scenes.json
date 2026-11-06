@@ -1,0 +1,247 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "Le Grimoire de Port-Sillage",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "port-sillage"
+        },
+        "mouvement": "recul",
+        "texte": "Port-Sillage tient au creux d'une baie, entre deux bras de falaise. Les maisons de pierre grise serrent leurs toits d'ardoise, et le bois goudronné des barques sent le sel au soleil couchant."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-eglise"
+        },
+        "mouvement": "approche",
+        "texte": "Chaque année, à la fête de la Mer, le prêtre lit dans l'église la page de la Bonace. Ainsi la flotte rentre au port, et les cloches sonnent au-dessus des filets."
+      },
+      {
+        "image": {
+          "groupe": "objets",
+          "id": "livre-de-maelle"
+        },
+        "mouvement": "fixe",
+        "texte": "Le Livre de Maëlle repose dans la crypte depuis des générations. Il raconte la sainte qui calmait les tempêtes, d'une main posée sur la houle, et ses pages sentent le sel."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "eg-crypte"
+        },
+        "mouvement": "approche",
+        "texte": "La nuit de la fête, la crypte fut ouverte, et le matin on trouva la niche vide. Pas de fracas, rien de cassé, seulement une porte refermée à clé, et la poussière lisse là où dormait le livre."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-place"
+        },
+        "mouvement": "gauche",
+        "texte": "Sur la place de la Criée, les guirlandes pendent encore, déchirées par le vent. Les barriques sont closes, et personne ne chante. Le crieur répète la même nouvelle à voix basse."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "gilda-fauvel"
+        },
+        "mouvement": "fixe",
+        "texte": "La maire, Gilda Fauvel, en ciré luisant, vous fait signe depuis l'estrade. Il reste trois nuits avant la grande marée. Le temps presse, et la fête attend encore son dénouement."
+      }
+    ]
+  },
+  {
+    "id": "la-mission",
+    "nom": "La mission",
+    "declencheur": {
+      "quete": "q-le-grimoire",
+      "statut": "active"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "gilda-fauvel"
+        },
+        "mouvement": "approche",
+        "texte": "Gilda Fauvel vous prend à part, au pied de l'estrade. Retrouvez le livre, dit-elle, et la commune vous paiera une belle prime. Commencez par la taverne, l'église ou la caserne."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-place"
+        },
+        "mouvement": "recul",
+        "texte": "La place de la Criée bourdonne de murmures. Chacun soupçonne son voisin, et les mouettes volent bas au-dessus des tables vides. Il faudra fouiller, écouter, et ne croire personne d'emblée."
+      }
+    ]
+  },
+  {
+    "id": "la-crique",
+    "nom": "La crique des Gueux",
+    "declencheur": {
+      "lieu": "ps-crique"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-crique"
+        },
+        "mouvement": "approche",
+        "texte": "Au bout du chemin, la crique des Gueux se cache derrière des rochers noirs. L'eau y est verte, et des épaves de barques dorment sur le sable gris."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cr-entrepot"
+        },
+        "mouvement": "recul",
+        "texte": "Le hangar est couvert de goudron, ses planches grises craquent au vent. L'odeur de poisson et de goudron vous prend à la gorge, et des caisses fermées s'entassent dans l'ombre."
+      }
+    ]
+  },
+  {
+    "id": "fin-eglise",
+    "nom": "Retour à la crypte",
+    "declencheur": {
+      "fin": "fin-eglise"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "eg-crypte"
+        },
+        "mouvement": "recul",
+        "texte": "Le soir même, le Livre de Maëlle redescend enfin à la crypte. Les lampes sentent l'huile et l'humidité, et les noyés de la crypte semblent écouter en silence."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "pere-aubin"
+        },
+        "mouvement": "fixe",
+        "texte": "Le père Aubin ouvre la page intitulée la Bonace et commence à lire. Sa voix passe entre les murs, lente et claire, jusqu'au bout de la dernière ligne. Il y laisse un peu de sa voix, pour toujours."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-eglise"
+        },
+        "mouvement": "recul",
+        "texte": "Dehors, les barques rentrent une à une dans le port, et les cloches sonnent sur la baie. Tobie ne touchera plus au livre, et Hélène reste malade, sous sa fièvre des marais."
+      }
+    ]
+  },
+  {
+    "id": "fin-caserne",
+    "nom": "À la caserne",
+    "declencheur": {
+      "fin": "fin-caserne"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-caserne"
+        },
+        "mouvement": "recul",
+        "texte": "Vous portez le Livre de Maëlle à la caserne, par la lumière dorée du soir. Le bois goudronné sent fort, et les filets pendent aux murs de la salle, immobiles."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ca-bureau"
+        },
+        "mouvement": "approche",
+        "texte": "Au bureau, le guet range le livre dans une armoire de chêne, derrière une grille. On l'inscrit dans un registre, puis on ferme à clé. La garnison touche enfin sa solde, et les soldats sourient."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "odile-marsan"
+        },
+        "mouvement": "fixe",
+        "texte": "Odile Marsan, capitaine du guet, referme le registre d'un geste sec. L'Église perd son autorité sur la Bonace, qui devient un service facturé aux familles de marins. Le village paie, et le prêtre se tait."
+      }
+    ]
+  },
+  {
+    "id": "fin-tobie",
+    "nom": "Tobie, nouveau lecteur",
+    "declencheur": {
+      "fin": "fin-tobie"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "tobie-ancre"
+        },
+        "mouvement": "approche",
+        "texte": "Tobie Ancre, les mains encore grises de corde, reçoit le livre sans un mot. Il l'ouvre à la page de soin et lit à voix basse, en se trompant une fois sur un mot ancien."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "eg-sacristie"
+        },
+        "mouvement": "recul",
+        "texte": "Dans la sacristie, sa mère entend la voix de son fils et sourit, pour la première fois depuis des semaines. Hélène guérit doucement, et le soir tombe sur le port, tiède et doré."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "helene-ancre"
+        },
+        "mouvement": "fixe",
+        "texte": "Hélène Ancre, pâle encore, se redresse sur sa couche. Le village la voit déjà comme la mère du futur lecteur. Mais cet hiver, la mer sera capricieuse : quelques barques rentreront à la rame, et Aubin, vexé, garde son banc."
+      }
+    ]
+  },
+  {
+    "id": "fin-echec",
+    "nom": "Le navire part",
+    "declencheur": {
+      "fin": "fin-echec"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ps-crique"
+        },
+        "mouvement": "recul",
+        "texte": "Le navire de Verdelune mouille au large, ses feux allumés dans le brouillard. La chaloupe a emporté le livre depuis la crique, et le quai reste vide, sans une lanterne."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cr-grotte"
+        },
+        "mouvement": "gauche",
+        "texte": "Dans la grotte, la place du livre est vide, et l'écho répète chaque pas. La mer monte jusqu'aux premières maisons, et la flotte reste à terre, les filets immobiles sur les quais."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "port-sillage"
+        },
+        "mouvement": "recul",
+        "texte": "Plus de Bonace au village. Le prêtre n'a plus de livre, et le village a peur de la mer. Gilda fait réparer sa digue avant l'hiver, et les barques restent au sec, tirées sur les galets."
+      }
+    ]
+  }
+]

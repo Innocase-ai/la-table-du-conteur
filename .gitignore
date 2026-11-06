@@ -1,0 +1,23 @@
+# Dépendances et constructions
+node_modules/
+dist/
+.vite/
+apps/bureau/src-tauri/target/
+apps/bureau/src-tauri/gen/
+
+# Secrets : ne jamais publier une clé d'API
+.env
+.env.*
+!.env.example
+
+# Fichiers produits par les outils (hors dépôt) : sources brutes du SRD, images, voix et sons d'origine
+sources/
+sorties/
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+*.local

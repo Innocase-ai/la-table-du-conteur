@@ -1,0 +1,118 @@
+[
+  {
+    "pnj": "soeur-elwyn",
+    "passe": "Elwyn est née sur la côte nord et elle est arrivée à Port-aux-Cordes il y a quatre-vingts ans. Depuis soixante ans, elle garde la chapelle des noyés, au bord du port, où elle soigne les blessés à l'eau-de-vie et au sel, sans rien demander pour le premier soin. Elle tient le registre de sa main : trois cent quarante et un noms gravés sur les piliers, un par repêché, et elle refuse qu'un noyé reste sans nom. Elle porte tout seule, et se reproche chaque nom qu'elle n'a pas pu sauver. Ses silences durent longtemps, et l'on entend alors la mer.",
+    "liens": [
+      {
+        "pnj": "mere-sorel-quaibas",
+        "nature": "voisine de quai, les Rats",
+        "opinion": "Des voisins, dit-elle des Rats de quai : ils vivent sur le même port qu'elle, et elle ne leur demande rien."
+      },
+      {
+        "pnj": "maitre-osric-vent",
+        "nature": "la Ligue des Phares, qu'elle ne tutoie pas",
+        "opinion": "La Ligue est efficace et sans cœur : aux Ligueurs, elle ne dit jamais « mon enfant »."
+      },
+      {
+        "qui": "les cartographes de la Citadelle",
+        "nature": "la maison qui compte les marées",
+        "opinion": "La Citadelle est, selon elle, la seule maison qui compte les marées pour de bon."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "arrivee-au-port",
+        "texte": "Quand elle est arrivée à Port-aux-Cordes il y a quatre-vingts ans, venue de la côte nord, le port sentait le goudron des entrepôts et le sel qui séchait sur les cordes. Elle n'a jamais oublié cette odeur, et elle la reconnaît encore quand le vent tourne au quai.",
+        "acces": {}
+      },
+      {
+        "id": "soupe-de-la-nef",
+        "texte": "Une marmite de soupe reste toujours au fond de la nef, et elle sert les naufragés avant de leur demander leur nom : un bol d'abord, le registre ensuite. Elle dit que personne ne sort de l'eau à jeun.",
+        "acces": {}
+      },
+      {
+        "id": "dernier-nom-ligueur",
+        "texte": "Le dernier nom gravé sur les piliers est celui d'un marin de la Ligue, repêché il y a peu. Elle l'a écrit sans un mot, la brosse encore humide, puis elle s'est assise devant le pilier jusqu'à la cloche du soir.",
+        "acces": {}
+      },
+      {
+        "id": "gardienne-depuis-soixante-ans",
+        "texte": "Il y a soixante ans, elle a pris la garde de la chapelle des noyés, et elle ne l'a plus quittée, même pour une nuit. Le premier registre est usé à la tranche, à force d'avoir été ouvert.",
+        "acces": {}
+      },
+      {
+        "id": "brosse-de-crin",
+        "texte": "Elle frotte chaque lettre gravée avec une brosse de crin, une fois, puis une seconde fois, jusqu'à ce que la pierre soit claire et que le nom se lise depuis la porte. Elle souffle ensuite la poussière, sans jamais se presser.",
+        "acces": {}
+      },
+      {
+        "id": "mon-enfant",
+        "texte": "Elle dit « mon enfant » à presque tout le monde, noyés, marins ou gens du port. Aux Ligueurs, elle ne le dit jamais, et elle dit « vous » d'une voix plus sèche.",
+        "acces": {}
+      },
+      {
+        "id": "silences-de-mer",
+        "texte": "Elle parle peu et laisse de longs silences entre les phrases, où l'on entend la mer battre les pieux du quai. Ses mains tachées de sel et de cire ne bougent presque pas pendant ces silences.",
+        "acces": {}
+      },
+      {
+        "id": "ligue-sans-coeur",
+        "texte": "La Ligue est efficace, dit-elle, et sans cœur : ses hommes savent compter les coffres et les cordes du port, mais ils ne demandent jamais le nom de ceux qu'ils sortent de l'eau.",
+        "acces": {}
+      },
+      {
+        "id": "citadelle-compte-les-marees",
+        "texte": "La Citadelle est la seule maison, selon elle, qui compte les marées pour de bon. Elle en parle comme d'une voisine exacte et froide, qu'on respecte sans l'aimer, et qui a toujours raison.",
+        "acces": {}
+      },
+      {
+        "id": "la-mer-chagrin",
+        "texte": "La mer est une cause de chagrin, pas un ennemi : elle ne lui reproche rien. Elle la regarde monter le soir sans haine, comme on regarde quelqu'un qui n'a pas le choix de ce qu'il fait.",
+        "acces": {}
+      },
+      {
+        "id": "ilse",
+        "texte": "Sa sœur cadette, Ilse, était pêcheuse. Le premier nom gravé sur les piliers est le sien, et elle a passé soixante ans à veiller la chapelle depuis sa mort. Un coquillage du chapelet ne ressemble pas aux autres : c'est celui d'Ilse, et elle ne l'explique pas.",
+        "acces": { "attitudeMin": 35 },
+        "evasif": "Elle touche un coquillage de son chapelet, le seul qui ne ressemble pas aux autres, et change de sujet sur la mer."
+      },
+      {
+        "id": "l-enfant-du-quai",
+        "texte": "Il y a trente ans, un enfant a été repêché au bout du quai, et personne ne l'a réclamé. Elle l'a gravé « l'enfant du quai », faute de nom, et prie pour lui chaque soir, avant de fermer la porte de la nef.",
+        "acces": { "attitudeMin": 50 },
+        "evasif": "Elle regarde le dernier pilier sans répondre, et les mots s'arrêtent net sur la date."
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-noms-graves",
+        "fait": "f-por-noms-des-noyes",
+        "version": "Les noms gravés aux piliers sont ceux de naufragés repêchés ces derniers mois, un nom par repêché. Elle a demandé le nom de chacun avant qu'il ne parte : « La mer ne garde pas les noms, alors ce sont les vivants qui les gardent. »",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-noyes-gardes",
+        "fait": "f-fal-noyes-ne-remontent-pas",
+        "version": "Les noyés des naufrages ne remontent jamais : la mer les garde, et rien ne revient des falaises. Elle le dit doucement, comme une chose qu'on sait sans l'avoir vue.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-fosses-vides",
+        "fait": "f-por-fosses-vides",
+        "version": "Les repêchés n'ont jamais été mis en terre : la mer reprenait les corps avant la pelle, et elle a gravé leurs noms à la place. Le cimetière du port n'a plus rien à enterrer depuis deux mois.",
+        "acces": { "attitudeMin": 25 },
+        "evasif": "Elle ferme les yeux, la main sur le chapelet, et laisse la question sans réponse : on n'entend que la mer.",
+        "tabou": ["fosses vides", "vides depuis deux mois"]
+      },
+      {
+        "id": "la-grande-maree",
+        "fait": "f-grande-maree-dans-trois-jours",
+        "version": "La Grande Marée arrive dans trois jours. Elle dit que la mer attend quelque chose, et qu'après elle, elle ne reviendra pas à son niveau d'avant : Port-aux-Cordes ne sera plus à l'abri de ses hautes eaux.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

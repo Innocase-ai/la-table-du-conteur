@@ -1,0 +1,150 @@
+{
+  "id": "jeune-dragon-de-bronze",
+  "nom": "Jeune dragon de bronze",
+  "taille": "G",
+  "type": "Dragon (Métallique)",
+  "alignement": "Loyal Bon",
+  "ca": 17,
+  "pv": {
+    "moyenne": 142,
+    "des": "15d10 + 60"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 21,
+    "dex": 10,
+    "con": 19,
+    "int": 14,
+    "sag": 13,
+    "cha": 17
+  },
+  "sauvegardes": {
+    "dex": 3,
+    "sag": 4
+  },
+  "competences": {
+    "discretion": 3,
+    "intuition": 4,
+    "perception": 7
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [
+    "foudre"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 17
+  },
+  "langues": "commun, draconique",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de Souffle répulsif.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 3 m : 16 (2d10 + 5) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 5,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-foudre",
+      "nom": "Souffle de foudre",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 15, chaque créature dans une Ligne de 18 m de long sur 1,50 m de large. Échec : 49 (9d10) dégâts de foudre. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 15,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 18,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "9d10",
+          "bonus": 0,
+          "type": "foudre"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-repulsif",
+      "nom": "Souffle répulsif",
+      "cout": "action",
+      "resume": "JS Force DD 15, chaque créature dans un Cône de 9 m. Échec : la cible est repoussée du dragon sur 12 m en ligne droite et subit l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "a-terre"
+        }
+      ]
+    }
+  ]
+}

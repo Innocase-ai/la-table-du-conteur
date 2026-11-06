@@ -1,0 +1,190 @@
+{
+  "id": "dragon-blanc-adulte",
+  "nom": "Dragon blanc adulte",
+  "taille": "TG",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 200,
+    "des": "16d12 + 96"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 10,
+    "con": 22,
+    "int": 8,
+    "sag": 12,
+    "cha": 12
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 6
+  },
+  "competences": {
+    "discretion": 5,
+    "perception": 11
+  },
+  "initiative": 10,
+  "resistances": [],
+  "immunitesDegats": [
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 21
+  },
+  "langues": "commun, draconique",
+  "fp": "13",
+  "px": 10000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "marche-sur-la-glace",
+      "nom": "Marche sur la glace",
+      "resume": "Le dragon peut parcourir et gravir toute surface gelée sans passer par le moindre test de caractéristique. En outre, tout Terrain difficile composé de glace ou de neige ne lui demande aucune dépense de déplacement supplémentaire."
+    },
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 9 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 11 500 PX dans son antre (10 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours. Assaut incisif : le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée. Décharge de gel : JS Constitution DD 14, chaque créature dans une Sphère de 9 m de rayon centrée sur un point que le dragon voit dans un rayon de 36 m. Échec : 7 (2d6) dégâts de froid, et la Vitesse de la cible est de 0 jusqu'à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant. Présence terrifiante : Le dragon lance terreur sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 14). Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +11, allonge 3 m : 13 (2d6 + 6) dégâts tranchants plus 4 (1d8) dégâts de froid.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-glacial",
+      "nom": "Souffle glacial",
+      "cout": "action",
+      "resume": "JS Constitution DD 19, chaque créature dans un Cône de 18 m. Échec : 54 (12d8) dégâts de froid. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 19,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [
+        {
+          "des": "12d8",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "decharge-de-gel",
+      "nom": "Décharge de gel",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Constitution DD 14, chaque créature dans une Sphère de 9 m de rayon centrée sur un point que le dragon voit dans un rayon de 36 m. Échec : 7 (2d6) dégâts de froid, et la Vitesse de la cible est de 0 jusqu'à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "zone": {
+        "forme": "sphere",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 0,
+          "type": "froid"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "presence-terrifiante",
+      "nom": "Présence terrifiante",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon lance terreur sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 14). Le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

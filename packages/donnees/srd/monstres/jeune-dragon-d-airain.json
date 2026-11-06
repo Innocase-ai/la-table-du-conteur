@@ -1,0 +1,158 @@
+{
+  "id": "jeune-dragon-d-airain",
+  "nom": "Jeune dragon d’airain",
+  "taille": "G",
+  "type": "Dragon (Métallique)",
+  "alignement": "Chaotique Bon",
+  "ca": 17,
+  "pv": {
+    "moyenne": 110,
+    "des": "13d10 + 39"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 10,
+    "con": 17,
+    "int": 12,
+    "sag": 11,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "for": 4,
+    "dex": 3,
+    "con": 3,
+    "int": 1,
+    "sag": 3,
+    "cha": 2
+  },
+  "competences": {
+    "discretion": 3,
+    "perception": 6,
+    "persuasion": 5
+  },
+  "initiative": 3,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "visionAveugle": 9,
+    "perceptionPassive": 16
+  },
+  "langues": "commun, draconique",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Fouissement",
+      "resume": "Vitesse de fouissement 6 m (non représentée dans les vitesses du moteur)."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer deux de ces attaques par une utilisation de Souffle soporifique.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 15 (2d10 + 4) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "Souffle de feu (recharge 5-6). JS Dextérité DD 14, chaque créature dans une Ligne de 12 m de long sur 1,50 m de large. Échec : 38 (11d6) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 14,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 12,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "11d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-soporifique",
+      "nom": "Souffle soporifique",
+      "cout": "action",
+      "resume": "JS Constitution DD 14, chaque créature dans un Cône de 9 m. Échec : la cible subit l'état Neutralisé jusqu'à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l'état Inconscient pendant 1 minute. Cet effet prend fin pour la cible si celle-ci subit des dégâts ou si une créature dans un rayon de 1,50 m consacre une action à la réveiller.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 14,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1
+        },
+        {
+          "etat": "inconscient",
+          "dureeRounds": 10
+        }
+      ]
+    }
+  ]
+}

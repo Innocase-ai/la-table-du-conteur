@@ -1,0 +1,123 @@
+[
+  {
+    "id": "cit-t-reserve-de-l-intendant",
+    "nom": "La réserve de l'intendant",
+    "lieu": "cit-intendance",
+    "contenant": "coffre",
+    "description": "Un petit coffre de chêne sous le comptoir, cerclé de fer, dont la serrure est usée par les clés qu'on y a essayées. Il contient la réserve de secours de la maison.",
+    "contenu": {
+      "pieces": { "po": 25 },
+      "objets": [
+        { "objet": "trousse-de-soins", "quantite": 1 },
+        { "objet": "rations", "quantite": 2 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 12 }
+    }
+  },
+  {
+    "id": "cit-t-cle-du-bassin",
+    "nom": "La clé au fond du bassin",
+    "lieu": "cit-quai-des-basses-eaux",
+    "contenant": "sol",
+    "description": "Au fond du bassin de pierre, à marée basse, une clé de fer tient entre les algues, accrochée à un anneau rouillé. Elle n'est visible que quand l'eau du bassin recule.",
+    "contenu": {
+      "objets": [{ "objet": "cit-cle-des-caveaux", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 11, "competence": "perception" }
+    },
+    "condition": { "jauge": { "id": "maree", "max": 2 } }
+  },
+  {
+    "id": "cit-t-coffre-des-caveaux",
+    "nom": "Le coffre des caveaux",
+    "lieu": "cit-caveaux",
+    "contenant": "coffre",
+    "description": "Un coffre de fer scellé au fond des caveaux, couvert de la poussière de trois siècles. Les dons des anciens prieurs y sont restés, en pièces et en petits objets.",
+    "contenu": {
+      "pieces": { "po": 40, "pa": 30 },
+      "objets": [],
+      "tables": [{ "table": "cit-butin-du-caveau", "jets": 1 }]
+    },
+    "acces": {
+      "verrou": { "dd": 12 },
+      "piege": "cit-piege-caveaux"
+    }
+  },
+  {
+    "id": "cit-t-tiroir-de-l-astronome",
+    "nom": "Le tiroir de l'astronome",
+    "lieu": "cit-observatoire",
+    "contenant": "etabli",
+    "description": "Un tiroir caché sous le plan de travail, dont la poignée de cuivre ne sert qu'en apparence. Dedans, une lentille de rechange et quelques pièces.",
+    "contenu": {
+      "pieces": { "po": 5 },
+      "objets": [{ "objet": "cit-lentille-de-l-observatoire", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 12, "competence": "investigation" },
+      "piege": "cit-piege-observatoire"
+    }
+  },
+  {
+    "id": "cit-t-herbes-de-falaise",
+    "nom": "Les herbes des terrasses",
+    "lieu": "cit-jardins-de-falaise",
+    "contenant": "sol",
+    "description": "Une touffe d'herbes grises poussant entre deux dalles de la terrasse haute, à l'abri du vent. Les jardiniers les laissent pousser pour les infusions.",
+    "contenu": {
+      "objets": [{ "objet": "cit-herbes-de-falaise", "quantite": 3 }],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "cit-t-registre-des-marees",
+    "nom": "Le registre des vives-eaux",
+    "lieu": "cit-salle-des-cartes",
+    "contenant": "etagere",
+    "description": "Le registre ouvert sur l'étagère basse, marqué de traits rouges, dont deux pages manquent à la tranche. C'est le livre que les cartographes consultent avant de relever une marée.",
+    "contenu": {
+      "objets": [{ "objet": "cit-registre-des-marees", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-cit-registre-deux-pages"
+  },
+  {
+    "id": "cit-t-sac-de-l-erudit",
+    "nom": "Le sac de l'érudit",
+    "lieu": "cit-dortoirs",
+    "contenant": "sac",
+    "description": "Un sac de cuir fermé par une sangle, glissé sous le lit du fond. Il renferme des notes de voyage, une bourse et une liasse de lettres dont le sceau a été levé puis refermé.",
+    "contenu": {
+      "pieces": { "po": 18 },
+      "objets": [],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "investigation" }
+    },
+    "indice": "f-cit-lettres-cire-noire"
+  },
+  {
+    "id": "cit-t-tiroir-scelle",
+    "nom": "Le tiroir scellé",
+    "lieu": "cit-salle-des-cartes",
+    "contenant": "autre",
+    "description": "Le tiroir de chêne aux plaques de cuivre, dont la serrure ne s'ouvre qu'à un mot. À l'intérieur, quelques pièces et un compas, rangés avec soin par une main qui comptait chaque objet.",
+    "contenu": {
+      "pieces": { "po": 15 },
+      "objets": [{ "objet": "cit-compas-de-marees", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 14 }
+    }
+  }
+]

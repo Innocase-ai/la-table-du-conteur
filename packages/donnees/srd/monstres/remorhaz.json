@@ -1,0 +1,119 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "feu",
+    "froid"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [
+    {
+      "id": "fouissement-et-vibrations",
+      "nom": "Fouissement et perception des vibrations",
+      "resume": "Vitesse de fouissement 9 m. Perception des vibrations 18 m (non représentées dans le moteur)."
+    },
+    {
+      "id": "aura-de-chaleur",
+      "nom": "Aura de chaleur",
+      "resume": "À la fin de chacun des tours du remorhaz, chaque créature dans une Émanation de 1,50 m centrée sur lui subit 16 (3d10) dégâts de feu."
+    }
+  ],
+  "id": "remorhaz",
+  "nom": "Remorhaz",
+  "taille": "TG",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 17,
+  "pv": {
+    "moyenne": 195,
+    "des": "17d12 + 85"
+  },
+  "vitesse": {
+    "marche": 12
+  },
+  "caracteristiques": {
+    "for": 24,
+    "dex": 13,
+    "con": 21,
+    "int": 4,
+    "sag": 10,
+    "cha": 5
+  },
+  "initiative": 5,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "aucune",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +11, allonge 3 m : 18 (2d10 + 7) dégâts perforants plus 14 (4d6) dégâts de feu. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 17), ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 7,
+          "type": "perforant"
+        },
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 17,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "evasion": 17,
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "engloutissement",
+      "nom": "Engloutissement",
+      "cout": "bonus",
+      "resume": "JS Force DD 19, une créature de taille G ou inférieure Agrippée par le remorhaz (qui peut contenir simultanément un maximum de deux créatures englouties). Échec : la cible est engloutie par le remorhaz, et l'état Agrippé prend fin. Une créature engloutie subit les états Aveuglé et Entravé, bénéficie d'un Abri total contre les attaques et effets émanant de l'extérieur du remorhaz et subit 10 (3d6) dégâts d'acide plus 10 (3d6) dégâts de feu au début de chacun des tours du monstre. Si le remorhaz subit 30 dégâts ou plus lors d'un même tour de la part d'une créature engloutie, il doit réussir un jet de sauvegarde de Constitution DD 15 à la fin de ce tour sous peine de régurgiter toutes les créatures englouties, chacune tombant dans un espace situé dans un rayon de 1,50 m et subissant l'état À terre. Si le remorhaz meurt, les créatures englouties ne subissent plus l'état Entravé et peuvent s'extraire du cadavre en dépensant 4,50 m de déplacement, pour se retrouver avec l'état À terre.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 19,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "aveugle"
+        },
+        {
+          "etat": "entrave"
+        }
+      ]
+    }
+  ]
+}

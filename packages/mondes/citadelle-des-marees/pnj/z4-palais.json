@@ -1,0 +1,1029 @@
+[
+  {
+    "id": "le-heraut-bleme",
+    "nom": "Le Héraut Blême",
+    "titre": "Héraut du Chancelier",
+    "espece": "spectre, en armure de corail",
+    "sexe": "M",
+    "age": "40 ans",
+    "role": "Émissaire du Chancelier, venu chercher le Sceau avant que la mer ne se retire tout à fait.",
+    "lieu": "lot-parvis-des-noyes",
+    "apparence": "Spectre d'homme en armure de corail blanc, couverte de sel et d'algues, le visage blême, les cheveux en filaments d'algue, un tabard aux armes de Lothmar déchiré aux épaules.",
+    "personnalite": {
+      "traits": [
+        "froid",
+        "loyal",
+        "lassé"
+      ],
+      "voix": "Phrases courtes, formulées comme des ordres de cérémonie ; il ne hausse jamais le ton, même quand il menace.",
+      "valeurs": [
+        "le devoir",
+        "la parole donnée"
+      ],
+      "desir": "Rendre au Chancelier ce qu'on lui a promis : le Sceau, avant que la mer ne s'éloigne pour toujours.",
+      "peur": "Que la Dame ait raison et que la Cour ne puisse jamais reposer.",
+      "defaut": "Il ne voit pas la souffrance de ceux qu'il sert."
+    },
+    "faction": "cour-noyee",
+    "attitude": -40,
+    "savoir": [
+      "f-lot-garde-des-noyes"
+    ],
+    "secrets": [
+      {
+        "fait": "f-deux-cours",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "lot-heraut-mission",
+        "mots": [
+          "mission",
+          "pourquoi",
+          "venu",
+          "chercher"
+        ],
+        "question": "Pourquoi êtes-vous venu au palais ?",
+        "reponse": "Il est venu chercher le Sceau pour le Chancelier : une enfant marquée, que la mer réclame avant la Grande Marée. Il dit qu'il n'a pas le choix et que la mer n'attend pas.",
+        "revele": [
+          "f-pacte-des-marees"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-heraut-cour",
+        "mots": [
+          "noyés",
+          "cour",
+          "soldats",
+          "garde",
+          "immobiles"
+        ],
+        "question": "Qui sont ces soldats immobiles ?",
+        "reponse": "Les gardes de Lothmar, noyés depuis la Nuit Haute. Ils tiennent la cour parce qu'on le leur a ordonné, et ils ne savent plus pourquoi.",
+        "revele": [
+          "f-lot-garde-des-noyes"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-heraut-enfant",
+        "mots": [
+          "enfant",
+          "fille",
+          "marque",
+          "Sceau"
+        ],
+        "question": "Que savez-vous de l'enfant marquée ?",
+        "reponse": "Il ne connaît pas son nom. Il sait seulement que la Cour l'a cherchée seize ans, et qu'elle a été trouvée dans un lieu que la mer n'a pas su atteindre.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-heraut-chancelier",
+        "mots": [
+          "chancelier",
+          "Orvald",
+          "maître",
+          "couronne"
+        ],
+        "question": "Qui est le Chancelier pour vous ?",
+        "reponse": "Le Chancelier est le seul à se souvenir de ce que Lothmar était. Il veut que le royaume se relève, et il a promis une couronne à qui lui rendra le Sceau.",
+        "revele": [
+          "f-lot-chancelier-couronne"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-heraut-passage",
+        "mots": [
+          "passer",
+          "laisser",
+          "partir",
+          "passage",
+          "libre"
+        ],
+        "question": "Peut-on passer sans combattre ?",
+        "reponse": "Il s'écarte pour ceux qui lui rendent le Sceau, mais il ne laisse pas un groupe emmener l'enfant sans un ordre de la Cour.",
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "le-heraut-bleme",
+              "delta": 10
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous emportez ce qui ne vous appartient pas. La mer le sait déjà.",
+      "neutre": "Vous êtes au palais de Lothmar, et la Cour vous attend. Dites ce que vous voulez.",
+      "amical": "Vous n'êtes pas de ceux qui tiennent les flots, et c'est un soulagement."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "dame-aelis-corvane",
+    "nom": "Dame Aelis Corvane",
+    "titre": "La Régente, la Dame Noyée",
+    "espece": "humaine, fantôme noyé",
+    "sexe": "F",
+    "age": "60 ans",
+    "role": "Ancienne régente de Lothmar, fantôme conscient, qui veut rompre le Pacte des Marées.",
+    "lieu": "lot-chapelle-de-la-regente",
+    "apparence": "Femme noyée de 60 ans, robe de cour verdie par les algues, cheveux flottant autour d'un visage pâle et fier, une couronne de nacre posée sur le front.",
+    "personnalite": {
+      "traits": [
+        "fière",
+        "lucide",
+        "pressée"
+      ],
+      "voix": "Parle lentement, par phrases complètes, avec des silences entre les idées. Elle ne ment pas, mais elle choisit ce qu'elle dit.",
+      "valeurs": [
+        "la vérité",
+        "le repos des siens"
+      ],
+      "desir": "Que la Cour cesse de tenir la mer, et qu'on lui rende enfin le droit de dormir.",
+      "peur": "Qu'un enfant soit encore sacrifié pour elle, comme son propre fils a failli l'être.",
+      "defaut": "Elle a fait partir son fils et ne se le pardonne pas."
+    },
+    "faction": "cour-noyee",
+    "attitude": 0,
+    "savoir": [
+      "f-lot-aelis-fait-partir-l-enfant",
+      "f-pierre-de-rupture"
+    ],
+    "secrets": [
+      {
+        "fait": "f-le-sceau-est-prisonnier",
+        "attitudeMin": 30
+      },
+      {
+        "fait": "f-regente-a-cache-l-enfant",
+        "attitudeMin": 40
+      }
+    ],
+    "sujets": [
+      {
+        "id": "lot-aelis-qui",
+        "mots": [
+          "qui",
+          "vous",
+          "régente",
+          "Dame"
+        ],
+        "question": "Qui êtes-vous, Dame ?",
+        "reponse": "Aelis Corvane, régente de Lothmar avant la Nuit Haute. Elle se présente sans fierté : la couronne est tombée avec le royaume, et elle n'a plus rien à défendre que son silence.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "regente-rencontree"
+          }
+        ]
+      },
+      {
+        "id": "lot-aelis-pierre",
+        "mots": [
+          "pierre",
+          "rupture",
+          "briser",
+          "cachée"
+        ],
+        "question": "Où se trouve la Pierre de rupture ?",
+        "reponse": "Elle est ici, sous l'autel, dans le creux que le sel a scellé. Elle sait qu'elle peut briser le Sceau, et elle l'a gardée pour le jour où quelqu'un viendrait sans la craindre.",
+        "revele": [
+          "f-lot-pierre-cachee-chapelle",
+          "f-pierre-de-rupture"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-regente-la-pierre",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "lot-aelis-cour",
+        "mots": [
+          "cour",
+          "tient",
+          "mer",
+          "tenir",
+          "sommeil"
+        ],
+        "question": "Pourquoi les noyés ne peuvent-ils pas dormir ?",
+        "reponse": "Elle explique que la Cour tient la mer, liée, sans sommeil, tant qu'un Sceau n'a pas pris sa place. Ce ne sont pas des monstres, dit-elle, ce sont des gens épuisés.",
+        "revele": [
+          "f-la-cour-tient-sous-la-mer"
+        ],
+        "attitudeMin": 0,
+        "effets": []
+      },
+      {
+        "id": "lot-aelis-deux-cours",
+        "mots": [
+          "Chancelier",
+          "Orvald",
+          "relever",
+          "divisée"
+        ],
+        "question": "Que pense-t-elle du Chancelier ?",
+        "reponse": "Elle dit qu'il veut relever Lothmar avec un Sceau consentant et couronné, sans voir qu'il s'agit encore de tenir. Les deux cours se disputent la mer.",
+        "revele": [
+          "f-deux-cours"
+        ],
+        "attitudeMin": 0,
+        "effets": []
+      },
+      {
+        "id": "lot-aelis-marque",
+        "mots": [
+          "marque",
+          "enfant",
+          "sceau",
+          "épaule"
+        ],
+        "question": "Que savez-vous de la marque de l'enfant ?",
+        "reponse": "Elle décrit une tache pâle en forme de vague, sur l'épaule : la marque de basse-mer. Puis son regard se pose sur Nolwen, longtemps. « Tu l'as, toi aussi. Tu es le Sceau de ce temps. » Elle n'en dit pas davantage tant qu'on ne l'a pas vraiment écoutée.",
+        "revele": [
+          "f-marque-de-basse-mer",
+          "f-nolwen-est-le-sceau"
+        ],
+        "attitudeMin": 35,
+        "effets": []
+      },
+      {
+        "id": "lot-aelis-fils",
+        "mots": [
+          "fils",
+          "barque",
+          "fuite",
+          "partir",
+          "fait"
+        ],
+        "question": "Avez-vous fait partir votre enfant ?",
+        "reponse": "Elle répond que oui : elle a donné son fils à une barque vers le nord, plutôt que de le livrer à la mer. Elle s'en veut encore, et veut que le groupe le sache.",
+        "revele": [
+          "f-regente-a-cache-l-enfant"
+        ],
+        "attitudeMin": 40,
+        "effets": []
+      },
+      {
+        "id": "lot-aelis-briser",
+        "mots": [
+          "briser",
+          "rompre",
+          "pacte",
+          "pierre",
+          "fin"
+        ],
+        "question": "Proposer de briser le Pacte.",
+        "condition": {
+          "ou": [
+            {
+              "objet": "pierre-de-rupture"
+            },
+            {
+              "lieu": "lot-crypte-des-rois"
+            }
+          ]
+        },
+        "reponse": "Elle sourit pour la première fois. Briser la pierre rompt le Sceau : les noyés reposeraient, et la mer ne serait plus tenue, si bien que la côte reculerait. Elle a choisi, et demande qu'on choisisse aussi.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "choix-briser"
+          },
+          {
+            "etape": {
+              "quete": "q-la-grande-maree",
+              "etape": "choix"
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous n'avez rien à faire ici. Partez, ou la mer vous retiendra.",
+      "neutre": "Vous êtes entrés dans ma chapelle. Vous avez le droit de parler.",
+      "amical": "Peu de vivants viennent jusqu'à moi. Asseyez-vous, si vous le voulez bien."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "chancelier-orvald-sel",
+    "nom": "Chancelier Orvald Sel",
+    "titre": "Chancelier de Lothmar",
+    "espece": "drakéide noyé, en spectre",
+    "sexe": "M",
+    "age": "55 ans",
+    "role": "Chef de la Cour noyée : veut relever Lothmar avec un Sceau consentant et couronné.",
+    "lieu": "lot-salle-du-conseil",
+    "apparence": "Noyé de 55 ans, robe de cour noire brodée de nacre, écailles bleu-gris visibles sous le col, port très droit, main posée sur le pommeau d'une épée sans lame.",
+    "personnalite": {
+      "traits": [
+        "ambitieux",
+        "courtois",
+        "impatient"
+      ],
+      "voix": "Ton de cour, phrases longues et polies, qui se durcissent dès qu'on le contredit.",
+      "valeurs": [
+        "le royaume",
+        "l'ordre",
+        "l'honneur de sa lignée"
+      ],
+      "desir": "Voir Lothmar se relever, les nobles revenir à la table du conseil, et une couronne posée sur une tête vivante.",
+      "peur": "Que la mer ne lui laisse qu'un royaume de morts, et qu'il soit le dernier à le savoir.",
+      "defaut": "Il prend le silence pour un accord."
+    },
+    "faction": "cour-noyee",
+    "attitude": -20,
+    "savoir": [
+      "f-deux-cours",
+      "f-lot-chancelier-couronne"
+    ],
+    "secrets": [
+      {
+        "fait": "f-le-sceau-est-prisonnier",
+        "attitudeMin": 50
+      },
+      {
+        "fait": "f-lot-chancelier-couronne",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "lot-orvald-qui",
+        "mots": [
+          "qui",
+          "chancelier",
+          "titre",
+          "Lothmar"
+        ],
+        "question": "Qui êtes-vous, Chancelier ?",
+        "reponse": "Orvald Sel, chancelier de Lothmar. Il se présente comme si la salle attendait encore sa cour : le royaume n'est pas tombé, dit-il, il dort, et il entend le réveiller.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-couronne",
+        "mots": [
+          "couronne",
+          "royaume",
+          "relever",
+          "trône"
+        ],
+        "question": "Que veut-il pour Lothmar ?",
+        "reponse": "Une couronne posée sur un Sceau vivant et consentant : le royaume remonterait, et la côte paierait ce qu'il faudrait. Il ne cache pas que la côte aura son prix.",
+        "revele": [
+          "f-lot-chancelier-couronne"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-regente",
+        "mots": [
+          "Aelis",
+          "régente",
+          "Dame",
+          "noyée"
+        ],
+        "question": "Que pensez-vous de la Régente ?",
+        "reponse": "Il la nomme avec respect et colère : elle a fait fuir le Sceau et condamné la Cour à tenir. Il dit qu'elle a rompu la lignée, et qu'on ne rompt pas un royaume.",
+        "revele": [
+          "f-deux-cours"
+        ],
+        "attitudeMin": 0,
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-pacte",
+        "mots": [
+          "pacte",
+          "marée",
+          "pourquoi",
+          "mer"
+        ],
+        "question": "Pourquoi faut-il que la mer soit tenue ?",
+        "reponse": "Il raconte le Pacte des Marées : à chaque génération, un enfant du sang royal descend tenir la mer. Il parle de ce service comme d'un honneur, et il ne dit pas ce qu'il coûte à l'enfant.",
+        "revele": [
+          "f-pacte-des-marees"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-prisonnier",
+        "mots": [
+          "prisonnier",
+          "sceau",
+          "sous la mer",
+          "devient",
+          "coût"
+        ],
+        "question": "Que devient le Sceau sous la mer ?",
+        "reponse": "Il avoue, à regret, que le Sceau ne repose pas. Il demeure vivant sous les flots, lié, sans retour, et c'est le prix que le royaume exige.",
+        "revele": [
+          "f-le-sceau-est-prisonnier"
+        ],
+        "attitudeMin": 50,
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-pierre",
+        "mots": [
+          "pierre",
+          "rupture",
+          "briser",
+          "Aelis"
+        ],
+        "question": "Demander ce qu'il pense de la Pierre.",
+        "reponse": "Il s'emporte : la pierre ne doit pas exister, elle est une trahison de la Cour. Il ne dit pas où on la range, et il change de sujet.",
+        "revele": [
+          "f-pierre-de-rupture"
+        ],
+        "attitudeMin": 0,
+        "effets": []
+      },
+      {
+        "id": "lot-orvald-relever",
+        "mots": [
+          "relever",
+          "accepter",
+          "choisir",
+          "trône"
+        ],
+        "question": "Accepter de relever Lothmar avec lui.",
+        "condition": {
+          "fait": "f-pacte-des-marees"
+        },
+        "reponse": "Il lui offre pouvoir, gloire et la couronne de Lothmar, avec la place de sa lignée au conseil. Il attend une parole, et il ne doute pas de l'avoir.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "choix-relever"
+          },
+          {
+            "etape": {
+              "quete": "q-la-grande-maree",
+              "etape": "choix"
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous osez entrer dans la salle du conseil ? Vous paierez cette insolence.",
+      "neutre": "Vous êtes admis devant la Cour de Lothmar. Parlez, et soyez bref.",
+      "amical": "Enfin des gens raisonnables. Approchez, la salle est à vous."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "lot-osvin-brasse",
+    "nom": "Osvin Brasse",
+    "titre": "Majordome du palais",
+    "espece": "humain, noyé",
+    "sexe": "M",
+    "age": "60 ans",
+    "role": "Majordome noyé des cuisines, qui garde les clés de l'armurerie dans son coffre.",
+    "lieu": "lot-cuisines-englouties",
+    "apparence": "Noyé de 60 ans, tablier de cuir durci par le sel, trousseau de clés pendu à la ceinture, cheveux gris collés au front.",
+    "personnalite": {
+      "traits": [
+        "méticuleux",
+        "triste",
+        "poli"
+      ],
+      "voix": "Parle comme on sert à table : propre, lent, sans un mot de trop, et il revient toujours au travail.",
+      "valeurs": [
+        "l'ordre",
+        "la maison"
+      ],
+      "desir": "Que quelqu'un reprenne enfin la maison en main, et que chaque clé retrouve son bon usage.",
+      "peur": "Que la garde le fasse arrêter pour une clé qu'il a donnée sans ordre.",
+      "defaut": "Il ne voit que les tâches, jamais les personnes."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-lot-majordome-cuisines"
+    ],
+    "sujets": [
+      {
+        "id": "lot-osvin-cles",
+        "mots": [
+          "clé",
+          "clés",
+          "armurerie",
+          "garde",
+          "coffre"
+        ],
+        "question": "Avez-vous la clé de l'armurerie ?",
+        "reponse": "Oui : il garde la dernière clé de la garde dans son coffre, sous le comptoir. Il la donnerait à qui prouve qu'elle doit servir à quelque chose.",
+        "revele": [
+          "f-lot-majordome-cuisines"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-osvin-cuisine",
+        "mots": [
+          "cuisine",
+          "repas",
+          "cuisinier",
+          "faim",
+          "fours"
+        ],
+        "question": "Y a-t-il encore de quoi manger ?",
+        "reponse": "Il répond qu'il ne sert plus rien, et qu'on ne lui a laissé que le sel à la place des plats. Il montre les fours éteints sans un mot de plus.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-osvin-geole",
+        "mots": [
+          "prisonnier",
+          "geôle",
+          "grille",
+          "enfermé",
+          "homme"
+        ],
+        "question": "Qui est enfermé dans la geôle ?",
+        "reponse": "Un vivant, dit-il à voix basse : un pêcheur de la côte, pris dans les filets du palais une nuit de marée basse. Il ne dit pas qui l'a enfermé.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-prisonnier-connu"
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "neutre": "Bienvenue au palais. La cuisine est fermée, mais la maison vous accueille.",
+      "amical": "Vous semblez en peine de quelque chose. Asseyez-vous, je vous prie."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "lot-ysolde-marrec",
+    "nom": "Ysolde Marrec",
+    "titre": "Dame de compagnie de la Régente",
+    "espece": "drakéide, noyée",
+    "sexe": "F",
+    "age": "35 ans",
+    "role": "Dame de compagnie noyée, gardienne de la chambre où la Régente a laissé un refuge.",
+    "lieu": "lot-chambre-de-la-regente",
+    "apparence": "Noyée de 35 ans, robe de lin couleur d'algue, écailles grises au poignet, un peigne de nacre dans les cheveux flottants.",
+    "personnalite": {
+      "traits": [
+        "douce",
+        "craintive",
+        "obstinée"
+      ],
+      "voix": "Murmure, phrases laissées en suspens, qu'elle reprend avec un petit rire triste.",
+      "valeurs": [
+        "la fidélité",
+        "la maîtresse"
+      ],
+      "desir": "Veiller la Régente jusqu'à ce qu'elle puisse enfin dormir.",
+      "peur": "Que la Dame ne retrouve jamais son repos.",
+      "defaut": "Elle croit encore à la promesse faite au fils."
+    },
+    "attitude": 10,
+    "savoir": [
+      "f-regente-a-cache-l-enfant"
+    ],
+    "sujets": [
+      {
+        "id": "lot-ysolde-chambre",
+        "mots": [
+          "chambre",
+          "repos",
+          "dormir",
+          "lit",
+          "nuit"
+        ],
+        "question": "Peut-on se reposer ici ?",
+        "reponse": "Elle dit qu'on peut dormir dans la chambre, que le lit est propre, et que la Dame ne vient jamais la nuit. Elle propose une couverture de laine, usée mais sèche.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-ysolde-dame",
+        "mots": [
+          "Dame",
+          "Aelis",
+          "régente",
+          "maîtresse",
+          "chapelle"
+        ],
+        "question": "Que dit-elle de la Régente ?",
+        "reponse": "Elle parle de la Dame avec amour et crainte. Elle dit que la Régente a sauvé l'enfant de la mer, et qu'elle s'en veut d'avoir tenu la porte ouverte pour elle.",
+        "revele": [
+          "f-regente-a-cache-l-enfant"
+        ],
+        "attitudeMin": 20,
+        "effets": []
+      },
+      {
+        "id": "lot-ysolde-medaillon",
+        "mots": [
+          "médaillon",
+          "bijou",
+          "coffre",
+          "or"
+        ],
+        "question": "Savez-vous ce qu'il y a dans le coffre ?",
+        "reponse": "Elle évoque un médaillon de la Régente, rangé dans le coffre sous le lit, qu'elle n'a jamais osé ouvrir. Elle le laisse à qui le réclame avec respect.",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "neutre": "Vous êtes dans les appartements de la Régente. Parlez doucement, elle dort peut-être.",
+      "amical": "Vous êtes les bienvenus. Il y a un peu de lumière ici, c'est rare."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "lot-galdric-vennel",
+    "nom": "Galdric Vennel",
+    "titre": "Chroniqueur de la Cour",
+    "espece": "gnome, noyé",
+    "sexe": "M",
+    "age": "70 ans",
+    "role": "Chroniqueur noyé qui a tenu le registre des rois et de la Nuit Haute.",
+    "lieu": "lot-bibliotheque-des-noms",
+    "apparence": "Noyé de 70 ans, longue robe couleur d'encre, lunettes de cristal fêlé, mains tachées d'encre noire et de sel.",
+    "personnalite": {
+      "traits": [
+        "méthodique",
+        "amer",
+        "curieux"
+      ],
+      "voix": "Phrases de savant : précises, qualifiées, avec des dates ; il corrige les autres et s'en excuse aussitôt.",
+      "valeurs": [
+        "la mémoire",
+        "la vérité écrite"
+      ],
+      "desir": "Que son journal soit lu jusqu'au bout, pour que la Cour se souvienne de ce qu'elle a fait.",
+      "peur": "Que son registre soit détruit et qu'on oublie la barque.",
+      "defaut": "Il préfère les faits aux personnes."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-lot-nom-des-rois"
+    ],
+    "secrets": [
+      {
+        "fait": "f-la-cour-tient-sous-la-mer",
+        "attitudeMin": 20
+      }
+    ],
+    "sujets": [
+      {
+        "id": "lot-galdric-journal",
+        "mots": [
+          "journal",
+          "registre",
+          "chronique",
+          "livre"
+        ],
+        "question": "Avez-vous tenu un journal ?",
+        "reponse": "Il a tenu la chronique de la Cour, jour après jour, mais il l'a perdue quand l'eau est montée. Il l'a cachée sous le troisième rayonnage, et ne peut plus se pencher pour la reprendre.",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-lot-journal-du-chroniqueur",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "lot-galdric-pacte",
+        "mots": [
+          "Nuit Haute",
+          "Lothmar",
+          "passé",
+          "histoire",
+          "pacte"
+        ],
+        "question": "Que s'est-il passé à Lothmar ?",
+        "reponse": "Il raconte la Nuit Haute : la mer montée en une seule nuit, la Cour engloutie, et le Pacte des Marées, cet accord où chaque génération donne un enfant à la mer. Il ne dit pas qui a donné le dernier.",
+        "revele": [
+          "f-nuit-haute",
+          "f-lothmar-englouti",
+          "f-pacte-des-marees"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-galdric-rumeur",
+        "mots": [
+          "pierre",
+          "rupture",
+          "brisée",
+          "rumeur"
+        ],
+        "question": "Que dit-on de la Pierre ?",
+        "reponse": "Un matelot a juré l'avoir vue brisée il y a cent ans. Le chroniqueur n'y croit pas, faute de date, et il pense que la pierre se trouve là où la Dame prie.",
+        "revele": [
+          "f-lot-rumeur-pierre-brisee"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-galdric-barque",
+        "mots": [
+          "barque",
+          "nord",
+          "régente",
+          "dernière ligne"
+        ],
+        "question": "Que dit la dernière ligne de la chronique ?",
+        "reponse": "Il cite sa dernière phrase, incomplète : une barque vers le nord, et une signature qu'il ne veut pas prononcer. Il dit que la page appartient à celui qui sait lire les sceaux.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-galdric-cour",
+        "mots": [
+          "cour",
+          "tient",
+          "sous la mer",
+          "noyés",
+          "tenir"
+        ],
+        "question": "Pourquoi les noyés ne dorment-ils pas ?",
+        "attitudeMin": 20,
+        "reponse": "Il dit, prudemment, que la Cour tient la mer sous les flots, liée et sans sommeil, parce qu'un Sceau n'a pas pris sa place. Il croit qu'elle veut seulement cesser de tenir.",
+        "revele": [
+          "f-la-cour-tient-sous-la-mer"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-galdric-rendre",
+        "mots": [
+          "rendre",
+          "journal",
+          "voici",
+          "retrouvé",
+          "rapporte"
+        ],
+        "question": "Rendre le journal retrouvé.",
+        "condition": {
+          "objet": "lot-journal-du-chroniqueur"
+        },
+        "reponse": "Il serre le registre contre lui, sans rien dire pendant un long moment. Puis il dit qu'il tient sa parole, et qu'il ne l'oubliera pas.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-journal-rendu"
+          },
+          {
+            "objet": {
+              "id": "lot-journal-du-chroniqueur",
+              "retirer": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "lot-galdric-vennel",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Ne touchez pas à mes rayonnages. Ce sont des faits, et les faits ne se vendent pas.",
+      "neutre": "Vous dérangez une chronique qui n'attendait que vous. Asseyez-vous, et ne vous appuyez pas sur le pupitre.",
+      "amical": "Ah ! Un lecteur. Cela fait trois cents ans qu'on ne m'a pas posé de question."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "lot-tam-roisel",
+    "nom": "Tam Roisel",
+    "titre": "Pêcheur capturé",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "40 ans",
+    "role": "Pêcheur vivant, pris par la Cour, qui a vu les barques de la Ligue au large.",
+    "lieu": "lot-geole-des-noyes",
+    "apparence": "Homme de 40 ans, barbe de sel, vareuse de pêcheur déchirée, poignets rougis par les chaînes, regard fatigué mais vif.",
+    "personnalite": {
+      "traits": [
+        "réaliste",
+        "fatigué",
+        "rusé"
+      ],
+      "voix": "Parle court, comme un marin ; il plaisante quand il a peur, et se tait quand il a vraiment peur.",
+      "valeurs": [
+        "la famille",
+        "le travail honnête"
+      ],
+      "desir": "Sortir d'ici et rentrer au port avant que la marée ne le reprenne.",
+      "peur": "Devenir un noyé à son tour, sans que personne ne sache où il est.",
+      "defaut": "Il vend tout, même ce qu'il ne possède pas."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-lot-prisonnier-voit-les-barques"
+    ],
+    "sujets": [
+      {
+        "id": "lot-tam-pourquoi",
+        "mots": [
+          "pourquoi",
+          "enfermé",
+          "prison",
+          "chaînes"
+        ],
+        "question": "Pourquoi êtes-vous enfermé ici ?",
+        "reponse": "Il a pêché trop près de la chaussée une nuit de marée basse. Les gardes l'ont pris pour un espion. Il ne l'est pas, dit-il, mais il a vu ce qu'il ne fallait pas.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-prisonnier-ecoute"
+          },
+          {
+            "quete": {
+              "id": "q-lot-prisonnier",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "lot-tam-barques",
+        "mots": [
+          "barques",
+          "Ligue",
+          "phare",
+          "bateaux",
+          "vu"
+        ],
+        "question": "Qu'avez-vous vu au large ?",
+        "reponse": "Des barques de la Ligue, de nuit, qui sondent la côte. Elles transportent des cages de plomb et des hommes en gris, vers un phare du cap, comme on mène une bête au marché.",
+        "revele": [
+          "f-lot-prisonnier-voit-les-barques"
+        ],
+        "effets": []
+      },
+      {
+        "id": "lot-tam-liberer",
+        "mots": [
+          "libérer",
+          "libre",
+          "sortir",
+          "aider",
+          "chaîne"
+        ],
+        "question": "Proposer de le libérer.",
+        "reponse": "Il promet un passage de nuit vers le port, par la grille de la chaussée, s'il sort d'ici. Il ne demande rien de plus que la vie, et il tiendra parole.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-prisonnier-libre"
+          }
+        ]
+      },
+      {
+        "id": "lot-tam-laisser",
+        "mots": [
+          "laisser",
+          "abandonner",
+          "rester",
+          "ici"
+        ],
+        "question": "Le laisser enfermé ici.",
+        "reponse": "Il hausse les épaules, sans colère. Il ne répond plus, et ce silence pèse plus lourd qu'un reproche.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-prisonnier-abandonne"
+          }
+        ]
+      }
+    ],
+    "salutations": {
+      "hostile": "Vous êtes de la Cour ? Alors passez votre chemin, et laissez-moi mourir tranquille.",
+      "neutre": "Encore une visite. Vous voulez quelque chose, ou vous êtes perdus ?",
+      "amical": "Des vivants ! Vous ne savez pas combien ça me fait plaisir."
+    },
+    "services": [],
+    "inventaire": []
+  },
+  {
+    "id": "lot-oswy-tarn",
+    "nom": "Oswy Tarn",
+    "titre": "Capitaine de la garde noyée",
+    "espece": "nain, noyé",
+    "sexe": "M",
+    "age": "60 ans",
+    "role": "Capitaine noyé de la garde du palais, qui tient l'armurerie depuis la Nuit Haute.",
+    "lieu": "lot-armurerie-rouillee",
+    "apparence": "Noyé de 60 ans, cotte de mailles couverte de coquillages, barbe tressée de fils d'algue, un sceau de cire noire pendu au cou.",
+    "personnalite": {
+      "traits": [
+        "droit",
+        "obstiné",
+        "honnête"
+      ],
+      "voix": "Ordres courts, mots de caserne ; il appelle chacun « soldat », même les enfants, et il ne plaisante jamais.",
+      "valeurs": [
+        "le serment",
+        "la consigne"
+      ],
+      "desir": "Être relevé de sa consigne par quelqu'un qui en ait le droit.",
+      "peur": "Ouvrir la porte à des gens qui ne tiendraient pas leur parole.",
+      "defaut": "Il obéit trop bien."
+    },
+    "faction": "cour-noyee",
+    "attitude": -10,
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-lot-garde-des-noyes",
+        "jet": {
+          "competence": "intuition",
+          "dd": 13
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "lot-oswy-consigne",
+        "mots": [
+          "consigne",
+          "ordre",
+          "garde",
+          "armurerie",
+          "pourquoi"
+        ],
+        "question": "Qui vous a donné votre consigne ?",
+        "reponse": "Le Chancelier, qui l'a transmise à la Cour il y a des siècles. Il dit que personne n'est venu la relever depuis, et il ne sait plus à qui il la doit.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lot-oswy-relever",
+        "mots": [
+          "relever",
+          "relève",
+          "libérer",
+          "serment"
+        ],
+        "question": "Proposer de le relever de son serment.",
+        "attitudeMin": 10,
+        "reponse": "Il réfléchit longtemps, puis dit que la consigne n'est plus la sienne, et qu'il laissera passer ceux qui l'ont relevé. Il pose sa lance contre le mur.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lot-garde-relevee"
+          }
+        ]
+      },
+      {
+        "id": "lot-oswy-armes",
+        "mots": [
+          "armes",
+          "équipement",
+          "épée",
+          "bouclier",
+          "vendre"
+        ],
+        "question": "Peut-on prendre des armes ici ?",
+        "reponse": "Il dit qu'on peut prendre ce qui reste, mais que chaque arme appartient à quelqu'un de la garde. Il ne vend rien, et il ne donne rien sans ordre.",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "hostile": "Halte ! Vous ne passerez pas cette porte. Posez vos armes.",
+      "neutre": "Qui va là ? Déclinez votre nom et votre consigne, soldat.",
+      "amical": "Vous avez l'air de gens qui savent porter un serment. Entrez."
+    },
+    "services": [],
+    "inventaire": []
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "id": "chouette-geante",
+  "nom": "Chouette géante",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Neutre",
+  "ca": 12,
+  "pv": {
+    "moyenne": 19,
+    "des": "3d10 + 3"
+  },
+  "vitesse": {
+    "marche": 1.5,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 13,
+    "dex": 15,
+    "con": 12,
+    "int": 10,
+    "sag": 14,
+    "cha": 10
+  },
+  "sauvegardes": {
+    "sag": 4
+  },
+  "competences": {
+    "discretion": 6,
+    "perception": 6
+  },
+  "initiative": 2,
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 16
+  },
+  "langues": "céleste ; comprend le commun, l'elfique et le sylvestre, mais ne les parle pas",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "repli-aerien",
+      "nom": "Repli aérien",
+      "resume": "La chouette ne provoque pas d'attaque d'Opportunité lorsqu'elle quitte la zone d'allonge d'un ennemi en volant."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "La chouette lance l'un des sorts suivants sans composantes, la Sagesse étant sa caractéristique d'incantation : À volonté : détection de la magie, détection du mal et du bien. 1/jour : clairvoyance."
+    }
+  ],
+  "actions": [
+    {
+      "id": "serres",
+      "nom": "Serres",
+      "cout": "action",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (1d10 + 2) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d10",
+          "bonus": 2,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [
+    "nécrotique",
+    "radiant"
+  ],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

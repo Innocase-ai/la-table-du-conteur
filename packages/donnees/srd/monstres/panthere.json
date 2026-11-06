@@ -1,0 +1,76 @@
+{
+  "sauvegardes": {},
+  "competences": {
+    "discretion": 7,
+    "perception": 4
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "bonusMaitrise": 2,
+  "langues": "aucune",
+  "id": "panthere",
+  "nom": "Panthère",
+  "taille": "M",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 13,
+    "des": "3d8"
+  },
+  "vitesse": {
+    "marche": 15,
+    "escalade": 12
+  },
+  "caracteristiques": {
+    "for": 14,
+    "dex": 16,
+    "con": 10,
+    "int": 3,
+    "sag": 14,
+    "cha": 7
+  },
+  "initiative": 3,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 14
+  },
+  "fp": "1/4",
+  "px": 50,
+  "actions": [
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "fuite-agile",
+      "nom": "Fuite agile",
+      "cout": "bonus",
+      "resume": "La panthère entreprend l'action Désengagement ou Furtivité.",
+      "degats": [],
+      "etats": []
+    }
+  ]
+}

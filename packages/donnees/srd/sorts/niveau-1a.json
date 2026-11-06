@@ -1,0 +1,703 @@
+[
+  {
+    "id": "alarme",
+    "nom": "Alarme",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 6
+    },
+    "composantes": "V, S, M (une cloche et du fil d'argent)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Incantation de 1 minute (ou rituel). Protège une porte, une fenêtre ou une zone à portée tenant dans un cube de 6 m d'arête : le lanceur est alerté dès qu'une créature la touche ou y entre (il peut exclure des créatures à l'incantation). Alarme mentale (signal psychique, réveille le lanceur, à moins de 1,5 km) ou sonore (son de clochette pendant 10 secondes, audible à 18 m)."
+  },
+  {
+    "id": "amitie-avec-les-animaux",
+    "nom": "Amitié avec les animaux",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un peu de nourriture)",
+    "duree": "24 heures",
+    "concentration": false,
+    "resume": "Une Bête visible à portée fait un jet de sauvegarde de Sagesse ; en cas d'échec elle est Charmée pour 24 heures. Le sort prend fin si le lanceur ou un allié lui inflige des dégâts. +1 Bête ciblée par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      }
+    ],
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "appel-de-familier",
+    "nom": "Appel de familier",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 3
+    },
+    "composantes": "V, S, M (de l'encens qui brûle d'une valeur minimale de 10 po, que le sort détruit)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 1 heure (ou rituel). Le lanceur obtient un familier : un esprit (Céleste, Fée ou Fiélon au choix) qui prend la forme d'une Bête de FP 0 (chat, corbeau, chouette, rat, etc.). Il obéit au lanceur, joue sa propre Initiative et ne peut pas attaquer, mais peut aider d'autres façons. Télépathie à 30 m, possibilité de voir et d'entendre par ses sens (action Bonus) et de lui faire délivrer les sorts de contact (sa Réaction). Il disparaît à 0 PV et se révoque ou se rappelle par l'action Magie ; un seul familier à la fois."
+  },
+  {
+    "id": "armure-du-mage",
+    "nom": "Armure du mage",
+    "niveau": 1,
+    "ecole": "abjuration",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (un morceau de cuir traité)",
+    "duree": "8 heures",
+    "concentration": false,
+    "resume": "Une créature consentante touchée qui ne porte pas d'armure a une CA de base de 13 + son modificateur de Dextérité pendant 8 heures. Le sort prend fin si la cible enfile une armure."
+  },
+  {
+    "id": "baies-nourricieres",
+    "nom": "Baies nourricières",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (une branche de gui)",
+    "duree": "24 heures",
+    "concentration": false,
+    "resume": "Dix baies magiques apparaissent dans la main du lanceur. Une créature peut en manger une par action Bonus : elle récupère 1 point de vie et obtient l'équivalent d'une journée de nourriture. Les baies non mangées disparaissent à la fin du sort."
+  },
+  {
+    "id": "blessure",
+    "nom": "Blessure",
+    "niveau": 1,
+    "ecole": "nécromancie",
+    "classes": [
+      "clerc"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "La créature touchée fait un jet de sauvegarde de Constitution : 2d10 dégâts nécrotiques en cas d'échec, moitié en cas de réussite. +1d10 par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "nécrotique"
+      }
+    ],
+    "ameliorationParNiveau": "1d10"
+  },
+  {
+    "id": "charme-personne",
+    "nom": "Charme-personne",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Un Humanoïde visible à portée fait un jet de sauvegarde de Sagesse (avec Avantage si le lanceur ou ses alliés le combattent) ; en cas d'échec il est Charmé pendant 1 heure, ou jusqu'à ce que le lanceur ou ses alliés lui infligent des dégâts, et il considère le lanceur comme Amical. À la fin du sort, la cible sait qu'elle a été charmée. +1 créature ciblée par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "charme"
+      }
+    ],
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "chatiment-de-fournaise",
+    "nom": "Châtiment de fournaise",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "paladin"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Action Bonus lancée juste après avoir touché une cible avec une arme de corps à corps ou à mains nues : la cible subit 1d6 dégâts de feu supplémentaires. Ensuite, au début de chacun de ses tours pendant 1 minute, elle subit 1d6 dégâts de feu et fait un jet de sauvegarde de Constitution ; en cas de réussite, le sort prend fin. Tous les dégâts augmentent de 1d6 par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "chatiment-divin",
+    "nom": "Châtiment divin",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "paladin"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Action Bonus lancée juste après avoir touché une cible avec une arme de corps à corps ou à mains nues : l'attaque inflige 2d8 dégâts radiants supplémentaires, +1d8 si la cible est un Fiélon ou un Mort-vivant. +1d8 par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1d8"
+  },
+  {
+    "id": "communication-avec-les-animaux",
+    "nom": "Communication avec les animaux",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "druide",
+      "occultiste",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": false,
+    "resume": "Peut aussi être lancé comme rituel. Pendant 10 minutes, le lanceur comprend les Bêtes et communique verbalement avec elles, et peut utiliser toutes les options de compétence de l'action Influence sur elles. Elles peuvent renseigner sur les environs et les monstres locaux, notamment ce qu'elles ont perçu pendant la dernière journée."
+  },
+  {
+    "id": "comprehension-des-langues",
+    "nom": "Compréhension des langues",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (une pincée de suie et de sel)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Peut aussi être lancé comme rituel. Pendant 1 heure, le lanceur comprend le sens littéral de toute langue parlée qu'il entend, et de tout écrit qu'il voit à condition de toucher sa surface (environ 1 minute par page). Le sort ne décrypte pas les symboles ni les messages secrets."
+  },
+  {
+    "id": "couleurs-dansantes",
+    "nom": "Couleurs dansantes",
+    "niveau": 1,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "zone": {
+      "forme": "cone",
+      "taille": 4.5
+    },
+    "composantes": "V, S, M (une pincée de sable coloré)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Gerbe de lumière colorée dans un cône de 4,50 m partant du lanceur : chaque créature prise dedans fait un jet de sauvegarde de Constitution ou est Aveuglée jusqu'à la fin du prochain tour du lanceur.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "con",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "aveugle",
+        "dureeRounds": 1
+      }
+    ]
+  },
+  {
+    "id": "creation-ou-destruction-d-eau",
+    "nom": "Création ou destruction d'eau",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "clerc",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S, M (un mélange d'eau et de sable)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Au choix : créer jusqu'à 40 litres d'eau propre dans un récipient ouvert à portée, ou la faire pleuvoir dans un cube de 9 m (ce qui éteint les flammes nues) ; ou détruire jusqu'à 40 litres d'eau dans un récipient ouvert, ou chasser le brouillard d'un cube de 9 m. +40 litres par niveau d'emplacement au-delà du 1er (ou +1,50 m d'arête du cube).",
+    "ameliorationParNiveau": "40 litres"
+  },
+  {
+    "id": "deguisement",
+    "nom": "Déguisement",
+    "niveau": 1,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Pendant 1 heure, le lanceur change son apparence et celle de ses vêtements, armure, armes et biens portés : jusqu'à 30 cm plus grand ou plus petit, plus léger ou plus lourd, avec la même répartition de membres. L'illusion ne résiste pas au toucher. Une créature qui consacre l'action Étude à l'examiner perce le déguisement par un test d'Intelligence (Investigation) contre le DD de sauvegarde des sorts du lanceur."
+  },
+  {
+    "id": "detection-de-la-magie",
+    "nom": "Détection de la magie",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "clerc",
+      "druide",
+      "ensorceleur",
+      "magicien",
+      "occultiste",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Peut aussi être lancé comme rituel. Pendant 10 minutes (concentration), le lanceur perçoit les effets magiques dans un rayon de 9 m ; avec l'action Magie il voit une faible aura autour des créatures et objets magiques visibles et apprend l'école de magie de l'effet. Bloqué par 30 cm de pierre, de terre ou de bois, ou 2,5 cm de métal."
+  },
+  {
+    "id": "detection-du-mal-et-du-bien",
+    "nom": "Détection du mal et du bien",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Pendant 10 minutes (concentration), le lanceur perçoit la position des Aberrations, Célestes, Élémentaires, Fées, Fiélons et Morts-vivants dans un rayon de 9 m, ainsi que la présence d'un sort sanctification. Bloqué par 30 cm de pierre, de terre ou de bois, ou 2,5 cm de métal."
+  },
+  {
+    "id": "detection-du-poison-et-des-maladies",
+    "nom": "Détection du poison et des maladies",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "clerc",
+      "druide",
+      "paladin",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S, M (une feuille d'if)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Peut aussi être lancé comme rituel. Pendant 10 minutes (concentration), le lanceur perçoit la position des poisons, créatures venimeuses ou vénéneuses et maladies magiques dans un rayon de 9 m, et la nature de chacun. Bloqué par 30 cm de pierre, de terre ou de bois, ou 2,5 cm de métal."
+  },
+  {
+    "id": "disque-flottant",
+    "nom": "Disque flottant",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "composantes": "V, S, M (une goutte de mercure)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "Peut aussi être lancé comme rituel. Crée un disque de force de 90 cm de diamètre qui flotte à 90 cm du sol et supporte 250 kg (le sort prend fin en cas de surcharge). Il reste immobile tant que le lanceur est à 6 m ou moins, sinon le suit ; il franchit les terrains difficiles et les pentes mais pas une dénivellation de 3 m ou plus. Le sort prend fin si le disque se retrouve à plus de 30 m du lanceur."
+  },
+  {
+    "id": "enchevetrement",
+    "nom": "Enchevêtrement",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "druide",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 27
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 6
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Des plantes grimpantes couvrent un carré de 6 m de côté à portée et en font un terrain difficile pendant 1 minute (concentration). Chaque créature autre que le lanceur dans la zone à l'incantation fait un jet de sauvegarde de Force ou est Entravée jusqu'à la fin du sort ; une créature Entravée peut, par une action, réussir un test de Force (Athlétisme) contre le DD de sauvegarde des sorts du lanceur pour se libérer.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "for",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "entrave"
+      }
+    ]
+  },
+  {
+    "id": "faveur-divine",
+    "nom": "Faveur divine",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "paladin"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Pendant 1 minute, les attaques d'arme du lanceur qui touchent infligent 1d4 dégâts radiants supplémentaires."
+  },
+  {
+    "id": "feuille-morte",
+    "nom": "Feuille morte",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "reaction",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 5,
+    "composantes": "V, M (une petite plume ou un peu de duvet)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "Réaction lancée quand le lanceur ou une créature à 18 m ou moins chute. Jusqu'à 5 créatures qui chutent à portée voient leur vitesse de chute réduite à 18 m par round pendant 1 minute ; une créature qui atterrit avant la fin du sort ne subit aucun dégât de chute et le sort prend fin pour elle."
+  },
+  {
+    "id": "fou-rire",
+    "nom": "Fou rire",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "magicien",
+      "occultiste"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 9
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une tartelette et une plume)",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une créature visible à portée fait un jet de sauvegarde de Sagesse ; en cas d'échec elle est À terre et Neutralisée pendant 1 minute (concentration), prise de fou rire, et ne peut pas se relever d'elle-même. À la fin de chacun de ses tours et chaque fois qu'elle subit des dégâts, elle refait le jet (avec Avantage si c'est à cause de dégâts) ; une réussite met fin au sort. +1 créature ciblée par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "a-terre",
+        "sauvegardeFinDeTour": true
+      },
+      {
+        "etat": "neutralise",
+        "sauvegardeFinDeTour": true
+      }
+    ],
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "frappe-piegeuse",
+    "nom": "Frappe piégeuse",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "rodeur"
+    ],
+    "tempsIncantation": "bonus",
+    "portee": {
+      "type": "personnel"
+    },
+    "composantes": "V",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Action Bonus lancée juste après avoir touché une créature avec une arme : des plantes grimpantes apparaissent sur la cible, qui fait un jet de sauvegarde de Force (Avantage si elle est de taille G ou plus). En cas d'échec elle est Entravée pendant 1 minute (concentration) ; en cas de réussite le sort prend fin. Tant qu'elle est Entravée, elle subit 1d6 dégâts perforants au début de chacun de ses tours ; elle ou une créature à son contact peut réussir un test de Force (Athlétisme) contre le DD de sauvegarde des sorts pour mettre fin au sort. Les dégâts augmentent de 1d6 par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1d6"
+  },
+  {
+    "id": "graisse",
+    "nom": "Graisse",
+    "niveau": 1,
+    "ecole": "invocation",
+    "classes": [
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 3
+    },
+    "composantes": "V, S, M (un peu de couenne de porc ou de beurre)",
+    "duree": "1 minute",
+    "concentration": false,
+    "resume": "De la graisse glissante recouvre un carré de 3 m de côté centré sur un point à portée, qui devient un terrain difficile pendant 1 minute. Toute créature debout dans la zone à l'apparition de la graisse, ou qui y entre ou y termine son tour, fait un jet de sauvegarde de Dextérité ou tombe À terre.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    },
+    "etats": [
+      {
+        "etat": "a-terre"
+      }
+    ]
+  },
+  {
+    "id": "grande-foulee",
+    "nom": "Grande foulée",
+    "niveau": 1,
+    "ecole": "transmutation",
+    "classes": [
+      "barde",
+      "druide",
+      "magicien",
+      "rodeur"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S, M (une pincée de terre)",
+    "duree": "1 heure",
+    "concentration": false,
+    "resume": "La Vitesse de la créature touchée augmente de 3 m pendant 1 heure. +1 créature ciblée par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "heroisme",
+    "nom": "Héroïsme",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "cibles": 1,
+    "composantes": "V, S",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Une créature consentante touchée est immunisée contre l'état Effrayé et gagne, au début de chacun de ses tours pendant 1 minute (concentration), un nombre de points de vie temporaires égal au modificateur de caractéristique d'incantation du lanceur. +1 créature ciblée par niveau d'emplacement au-delà du 1er.",
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "identification",
+    "nom": "Identification",
+    "niveau": 1,
+    "ecole": "divination",
+    "classes": [
+      "barde",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "contact"
+    },
+    "composantes": "V, S, M (une perle d'une valeur minimale de 100 po)",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Incantation de 1 minute (ou rituel). En touchant un objet magique, le lanceur en apprend les propriétés et le mode d'emploi, si l'Harmonisation est requise, le nombre de charges et les sorts qui l'affectent (et le sort qui l'a créé, le cas échéant). En touchant une créature, il apprend quels sorts l'affectent."
+  },
+  {
+    "id": "image-silencieuse",
+    "nom": "Image silencieuse",
+    "niveau": 1,
+    "ecole": "illusion",
+    "classes": [
+      "barde",
+      "ensorceleur",
+      "magicien"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 4.5
+    },
+    "composantes": "V, S, M (un peu de laine brute)",
+    "duree": "10 minutes",
+    "concentration": true,
+    "resume": "Crée l'image purement visuelle (sans son, odeur ni autre effet) d'un objet, d'une créature ou d'un phénomène tenant dans un cube de 4,50 m, pendant 10 minutes (concentration). L'action Magie permet de la déplacer et de modifier son aspect. Toute interaction physique la perce ; une créature qui consacre l'action Étude à l'examiner la perce par un test d'Intelligence (Investigation) contre le DD de sauvegarde des sorts."
+  },
+  {
+    "id": "injonction",
+    "nom": "Injonction",
+    "niveau": 1,
+    "ecole": "enchantement",
+    "classes": [
+      "barde",
+      "clerc",
+      "paladin"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "cibles": 1,
+    "composantes": "V",
+    "duree": "instantanée",
+    "concentration": false,
+    "resume": "Une créature visible à portée fait un jet de sauvegarde de Sagesse ; en cas d'échec elle obéit à son prochain tour à un mot de commande au choix : Approche (se rapproche à 1,50 m par le chemin le plus direct), Fuis (s'éloigne au plus vite), Halte (ne bouge pas et n'agit pas), Lâche (lâche ce qu'elle tient) ou Rampe (tombe À terre). +1 créature affectée par niveau d'emplacement au-delà du 1er.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "sag",
+      "moitieSiReussite": false
+    },
+    "ameliorationParNiveau": "1 cible"
+  },
+  {
+    "id": "lueurs-feeriques",
+    "nom": "Lueurs féeriques",
+    "niveau": 1,
+    "ecole": "évocation",
+    "classes": [
+      "barde",
+      "druide"
+    ],
+    "tempsIncantation": "action",
+    "portee": {
+      "type": "distance",
+      "normale": 18
+    },
+    "zone": {
+      "forme": "cube",
+      "taille": 6
+    },
+    "composantes": "V",
+    "duree": "1 minute",
+    "concentration": true,
+    "resume": "Les objets d'un cube de 6 m à portée luisent de bleu, de vert ou de violet, et chaque créature du cube qui rate un jet de sauvegarde de Dextérité est aussi nimbée. Pendant 1 minute (concentration), objets et créatures affectés éclairent d'une Lumière faible sur 3 m, ne peuvent pas bénéficier de l'état Invisible, et les jets d'attaque contre eux ont l'Avantage si l'assaillant les voit.",
+    "resolution": {
+      "type": "sauvegarde",
+      "caracteristique": "dex",
+      "moitieSiReussite": false
+    }
+  }
+]

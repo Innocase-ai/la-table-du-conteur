@@ -1,0 +1,226 @@
+[
+  {
+    "id": "z4-basile-eglise",
+    "pnj": "basile-ecume",
+    "quand": {
+      "lieu": "ps-eglise"
+    },
+    "texte": "Ça sent la cire et le thym, et la pierre est froide, madame, monsieur. Je parlerai bas : le père prie pour le livre perdu, il ne faut pas le déranger.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-crypte",
+    "pnj": "basile-ecume",
+    "quand": {
+      "lieu": "eg-crypte"
+    },
+    "texte": "Il n’y a pas une lueur ici, et ces alcôves gardent des marins noyés. Je serre ma lanterne de poisson fort, très fort, et j’avance quand même, je vous promets.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-crique",
+    "pnj": "basile-ecume",
+    "quand": {
+      "lieu": "ps-crique"
+    },
+    "texte": "Ici, c’est la crique des Gueux, et le sentier des Goémons, que le guet ne patrouille jamais. Mon père m’a appris la marée et les courants, et je sais où l’eau tire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-grotte",
+    "pnj": "basile-ecume",
+    "quand": {
+      "lieu": "cr-grotte"
+    },
+    "texte": "L’écho double chaque pas, madame, monsieur, on dirait qu’un autre pas répond au nôtre. Je ne flancherai pas, parce que vous comptez sur moi, et je me redresse.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-tobie",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "tobie-retrouve"
+    },
+    "texte": "Je me rappelle l’avoir entendu sonner les cloches, madame, monsieur, un matin de brume. Il les faisait chanter mieux que personne, et ça m’a serré le cœur, ce pauvre garçon.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-solde",
+    "pnj": "basile-ecume",
+    "quand": {
+      "fait": "f-solde-impayee"
+    },
+    "texte": "On m’a dit que c’était « un retard », monsieur, et je n’ai jamais osé demander. Je ne dirai pas du mal de mes chefs, je ne suis qu’une recrue, je me tais et je fais mon tour.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-livrer",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-le-sacristain-livrer"
+    },
+    "texte": "Justice doit se faire, madame, monsieur, c’est la règle du guet. Mais je n’en suis pas fier, et je pense à sa mère, qui va attendre son garçon sans savoir.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-cacher",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-le-sacristain-cacher"
+    },
+    "texte": "Je suis garde, je devrais le dire à la capitaine, et pourtant je ne laisse personne dans le noir. Vous avez bien fait de le cacher, alors je ne dirai rien à personne.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 6
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-confier",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-le-sacristain-confier"
+    },
+    "texte": "Le père Aubin l’a recueilli, monsieur, et ça me soulage. Un toit et un vieil homme valent mieux qu’une cellule froide, je crois, et je suis content pour lui, madame.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-denoncer",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-la-solde-denoncer"
+    },
+    "texte": "C’était ma capitaine, madame, monsieur, et je reste sans voix un moment. Pourtant un garde tient son poste, même quand le cœur lui pèse comme une ancre mouillée.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": -8
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-taire",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-la-solde-se-taire"
+    },
+    "texte": "Je ne sais pas exactement ce que vous avez gardé pour vous, monsieur, et je ne demande rien. Mais je devine qu’on protège la capitaine, et je vous en suis reconnaissant, sans oser le dire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-exiger",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "choix-la-solde-exiger"
+    },
+    "texte": "Vous avez osé dire à Madame la maire qu’elle paie la solde ! Je rougis jusqu’aux oreilles, monsieur, c’est fier et effaré à la fois. Jamais je n’oserai parler ainsi à Madame la maire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 8
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-couvre-feu",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "grande-maree-2"
+    },
+    "texte": "Les rues sont vides le soir, et la nuit sans lanterne me serre le ventre, je ne vous le cache pas. Je tiendrai quand même, mais je n’aime pas ce silence, madame, monsieur.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-basile-navire",
+    "pnj": "basile-ecume",
+    "quand": {
+      "flag": "grande-maree-3"
+    },
+    "texte": "Un navire inconnu a mouillé au large, et ces barques font la navette sans arrêt, monsieur. Je vois à leur ancrage que ces gens ne sont pas du pays, il faut se dépêcher.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "basile-ecume",
+          "delta": 2
+        }
+      }
+    ]
+  }
+]

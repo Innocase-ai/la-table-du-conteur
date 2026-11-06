@@ -1,0 +1,122 @@
+{
+  "id": "jeune-dragon-rouge",
+  "nom": "Jeune dragon rouge",
+  "taille": "G",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 178,
+    "des": "17d10 + 85"
+  },
+  "vitesse": {
+    "marche": 12,
+    "escalade": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 10,
+    "con": 21,
+    "int": 14,
+    "sag": 11,
+    "cha": 19
+  },
+  "sauvegardes": {
+    "dex": 4,
+    "sag": 4
+  },
+  "competences": {
+    "discretion": 4,
+    "perception": 8
+  },
+  "initiative": 4,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 18
+  },
+  "langues": "commun, draconique",
+  "fp": "10",
+  "px": 5900,
+  "bonusMaitrise": 4,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +10, allonge 3 m : 13 (2d6 + 6) dégâts tranchants plus 3 (1d6) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 10
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 17, chaque créature dans un Cône de 9 m. Échec : 56 (16d6) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 17,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [
+        {
+          "des": "16d6",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

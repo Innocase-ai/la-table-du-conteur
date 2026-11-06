@@ -1,0 +1,149 @@
+{
+  "id": "erinye",
+  "nom": "Érinye",
+  "taille": "M",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 178,
+    "des": "21d8 + 84"
+  },
+  "vitesse": {
+    "marche": 9,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 16,
+    "con": 18,
+    "int": 14,
+    "sag": 14,
+    "cha": 18
+  },
+  "sauvegardes": {
+    "dex": 7,
+    "con": 8,
+    "cha": 8
+  },
+  "competences": {
+    "perception": 6,
+    "persuasion": 8
+  },
+  "initiative": 7,
+  "resistances": [
+    "froid"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "12",
+  "px": 8400,
+  "bonusMaitrise": 4,
+  "traits": [
+    {
+      "id": "vision-lucide",
+      "nom": "Vision lucide",
+      "resume": "Vision lucide 36 m (non représentée dans les sens du moteur)."
+    },
+    {
+      "id": "corde-magique",
+      "nom": "Corde magique",
+      "resume": "L'érinye possède une corde magique. Tant qu'elle la porte sur elle, elle peut recourir à l'action Rets implacables. La corde présente le profil suivant : CA 20, 90 pv, Immunité contre les dégâts psychiques et de poison. La corde est réduite en poussière si elle tombe à 0 point de vie, se trouve à 1,50 m ou plus de l'érinye pendant au moins 1 heure ou si l'érinye meurt. Si la corde subit des dégâts ou est détruite, l'érinye peut la restaurer entièrement en terminant un Repos court ou long."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "L'érinye a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si l'érinye meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse et elle en acquiert aussitôt un nouveau en revenant à la vie avec tous ses pv, quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "L'érinye effectue trois attaques d'Épée flétrissante et peut recourir à Rets implacables.",
+      "multiattaque": [
+        {
+          "action": "epee-fletrissante",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "epee-fletrissante",
+      "nom": "Épée flétrissante",
+      "cout": "action",
+      "resume": "Corps à corps +8, allonge 1,50 m : 13 (2d8 + 4) dégâts tranchants plus 11 (2d10) dégâts nécrotiques.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 8
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "2d10",
+          "bonus": 0,
+          "type": "nécrotique"
+        }
+      ]
+    },
+    {
+      "id": "rets-implacables",
+      "nom": "Rets implacables",
+      "cout": "action",
+      "resume": "(Corde magique requise.) JS Force DD 16, une créature que l'érinye voit dans un rayon de 36 m. Échec : 14 (4d6) dégâts de force, et la cible subit l'état Entravé jusqu'à ce que la corde soit détruite, que l'érinye la libère par une action Bonus ou que l'érinye recoure de nouveau à Rets implacables.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "for",
+        "dd": 16,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "force"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "entrave"
+        }
+      ]
+    },
+    {
+      "id": "parade",
+      "nom": "Parade",
+      "cout": "reaction",
+      "resume": "Déclencheur : l'érinye est touchée par un jet d'attaque de corps à corps alors qu'elle tient une arme. Conséquences : l'érinye ajoute 4 à sa CA contre cette attaque, ce qui peut la faire rater."
+    }
+  ]
+}

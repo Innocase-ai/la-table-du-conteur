@@ -1,0 +1,571 @@
+[
+  {
+    "id": "z3-r-crabes-des-mares",
+    "nom": "Les crabes des mares",
+    "type": "combat",
+    "lieu": "cr-plage",
+    "difficulte": "faible",
+    "intro": "Le sable gris crisse sous les bottes, et entre les épaves, les mares luisent d'algues. Puis les pierres se mettent à bouger : des carapaces grises aussi larges qu'un bouclier se hissent hors de l'eau, pinces levées, et cliquettent toutes ensemble en vous voyant venir. La plage est à eux, et ils ne semblent pas disposés à la partager.",
+    "monstres": [
+      {
+        "profil": "crabe-geant",
+        "nombre": 12,
+        "nom": "Crabe des mares"
+      }
+    ],
+    "carte": [
+      "################",
+      "#..............#",
+      "#HHH..rr.....c.#",
+      "#HHH...........#",
+      "#..............#",
+      "#..mmmmm.mmmmm.#",
+      "#...eee...eee..#",
+      "#...eee...eee..#",
+      "#.m..rr.....m..#",
+      "################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les crabes sortent des mares en ligne et se jettent sur le héros le plus proche, pinces en avant ; ils ne poursuivent pas au-delà du sable humide.",
+      "fuite": "Ils regagnent leurs mares quand on s'éloigne du bord de l'eau ou quand le premier d'entre eux tombe.",
+      "renforts": "Écrite pour 6 héros : 12 crabes géants (300 PX). Pour 4 héros, le moteur ramène le combat à 8 crabes (200 PX)."
+    },
+    "alternatives": [
+      {
+        "id": "passer-par-les-rochers",
+        "nom": "Je mène le groupe par la passe de rochers, à marée basse.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "À marée basse, la passe du sud-ouest découvre un chemin de rochers plats : vous le suivez à la file, pieds secs, en laissant les mares et leurs pinces à votre droite. Les crabes cliquettent un moment, puis se désintéressent de vous.",
+        "effets": [
+          {
+            "flag": "z3-plage-contournee"
+          },
+          {
+            "fait": "f-z3-passe-des-rochers"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Une vague de reflux vous prend au milieu de la passe, les rochers glissent sous les bottes, et le bruit réveille les mares : les crabes foncent."
+          }
+        ]
+      },
+      {
+        "id": "detourner-les-crabes",
+        "nom": "Je lance des restes de poisson au bout de la plage pour les attirer.",
+        "jet": {
+          "competence": "nature",
+          "dd": 11
+        },
+        "resume": "Une poignée de têtes de poisson jetée vers l'épave de l'est, et la carapace après carapace, les crabes s'y précipitent en se disputant leur butin. Vous longez les mares sans bruit.",
+        "effets": [
+          {
+            "flag": "z3-plage-contournee"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Les restes tombent trop près : les crabes, excités par l'odeur, se retournent d'un bloc vers vous."
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "z3-plage-contournee"
+      }
+    ]
+  },
+  {
+    "id": "z3-r-guetteur-bavard",
+    "nom": "Le guetteur bavard",
+    "type": "social",
+    "lieu": "cr-entrepot",
+    "difficulte": "faible",
+    "intro": "Un homme maigre, assis sur un tonneau près de la porte, un bonnet de laine rabattu sur les oreilles, vous regarde entrer comme on regarde une marée qui monte. Il n'a pas l'air pressé de crier. « Ah ! De la visite ! Moi qui n'avais personne à qui parler depuis la fête... Posez donc vos affaires, il y a de la place sur le sable. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "le-laisser-parler",
+        "nom": "Je m'assois sur un tonneau et je le laisse parler.",
+        "resume": "Il parle de la fête ratée, du sel qui a manqué, de la marée qui change et de caisses qu'il ne faut pas toucher : il a l'air de s'ennuyer ferme. Il laisse échapper que les gars jouent aux dés au fond et que la grande marée sera haute en pleine nuit.",
+        "effets": [
+          {
+            "fait": "f-z3-horaire-des-marees"
+          },
+          {
+            "fait": "f-z3-caisses-neuves"
+          }
+        ]
+      },
+      {
+        "id": "lui-offrir-un-verre",
+        "nom": "Je lui offre une gorgée d'alcool de prune pour lui délier la langue.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Il boit, claque la langue et se confie : le sel part avec la marée, les caisses à la vague à trois crêtes sont pour le navire, et il vous conseille, en riant, de ne pas déranger les hommes de la table.",
+        "effets": [
+          {
+            "fait": "f-z3-horaire-des-marees"
+          },
+          {
+            "fait": "f-z3-vague-a-trois-cretes"
+          },
+          {
+            "fait": "f-z3-acheteurs-attendus"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Il vous prend la bouteille, la vide en trois gorgées, et vous réclame un droit de passage en vous toisant. Vous lâchez quelques pièces pour avoir la paix."
+          },
+          {
+            "pieces": -5
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "le-faire-parler-fermement",
+        "nom": "Je lui fais comprendre qu'il vaut mieux qu'il parle.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 14
+        },
+        "resume": "Il pâlit sous son bonnet, bégaie, et lâche tout d'un trait : les caisses, la marée, les hommes de la table, les acheteurs que Sorel attend. Il vous supplie de ne pas dire qu'il a parlé.",
+        "effets": [
+          {
+            "fait": "f-z3-horaire-des-marees"
+          },
+          {
+            "fait": "f-z3-vague-a-trois-cretes"
+          },
+          {
+            "fait": "f-z3-acheteurs-attendus"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Il hurle un nom et siffle entre ses doigts ; un sifflet lui répond dans la grotte. Vous avez réveillé la crique."
+          },
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": 1
+            }
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "depouilles": false
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z3-r-bandits-de-l-entrepot",
+    "nom": "Les bandits de l'entrepôt",
+    "type": "combat",
+    "lieu": "cr-entrepot",
+    "difficulte": "faible",
+    "intro": "Derrière les caisses, un gobelet roule sur la table et des dés s'arrêtent net. Les hommes du fond se lèvent d'un bloc, couteaux et cimeterres au poing, et d'autres, plus agiles, ont déjà un arc tendu depuis le haut des caisses. « Qui vous a laissés entrer ? » demande l'un d'eux, sans élever la voix.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 6,
+        "nom": "Bandit de la crique"
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 3,
+        "nom": "Guetteur de la crique"
+      }
+    ],
+    "carte": [
+      "##############",
+      "#cccccc....cc#",
+      "#.....m.mm.cc#",
+      "#.....mmm....#",
+      "HHH...mm.mm..#",
+      "HHH...ccc.mm.#",
+      "#.....ccc...c#",
+      "#cc.........c#",
+      "#...rrrrrrr.c#",
+      "##############"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les bandits tiennent la table et les caisses ; les guetteurs, plus mobiles, tirent depuis le haut des piles. Ils concentrent leurs coups sur le héros le plus exposé.",
+      "fuite": "Les survivants se replient vers la porte basse du fond et filent vers la grotte pour donner l'alerte.",
+      "renforts": "Écrite pour 6 héros : 6 bandits (groupe principal) et 6 guetteurs (éclaireurs, en dernier), soit 750 PX. Pour 4 héros, le moteur ramène le combat à 4 bandits et 4 guetteurs (500 PX)."
+    },
+    "alternatives": [
+      {
+        "id": "passer-pour-des-acheteurs",
+        "nom": "Je me présente en acheteur, bourse en main, pour discuter du prix des caisses.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "resume": "Vous parlez de marchandise, de prix et de marée avec l'assurance d'un homme qui a l'habitude ; les bandits échangent des regards, baissent leurs lames, et vous laissent circuler entre les caisses en attendant le patron.",
+        "effets": [
+          {
+            "flag": "z3-acheteurs-crus"
+          },
+          {
+            "fait": "f-z3-acheteurs-attendus"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Une phrase de trop, un mot qui sonne faux : le plus vieux des bandits fronce les sourcils et crache sur le sol. « Pas des acheteurs. Des fouineurs. » Les lames sortent."
+          }
+        ]
+      },
+      {
+        "id": "montrer-une-piece-a-l-ecaille",
+        "nom": "Je montre une pièce frappée d'une écaille de poisson.",
+        "condition": {
+          "objet": "bourse-marquee"
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "resume": "La pièce à l'écaille tourne entre vos doigts, et les mines des bandits changent : c'est la monnaie de la bande. Ils vous prennent pour un messager du patron et vous laissent passer sans demander votre nom.",
+        "effets": [
+          {
+            "flag": "z3-acheteurs-crus"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le plus méfiant des bandits vous saisit le poignet et retourne la pièce : « Où l'avez-vous eue ? » Il n'attend pas la réponse."
+          }
+        ]
+      },
+      {
+        "id": "saboter-la-barque",
+        "nom": "Je me glisse le long du mur sud et je défais les coutures de la barque pendant qu'ils jouent aux dés.",
+        "jet": {
+          "competence": "escamotage",
+          "dd": 13
+        },
+        "resume": "À genoux sous la proue, un couteau et un peu de patience : les coutures cèdent l'une après l'autre sans un bruit. La barque ne prendra pas la mer sans une journée de calfatage, et personne ne s'aperçoit de rien.",
+        "effets": [
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": -1
+            }
+          },
+          {
+            "flag": "navire-retarde"
+          },
+          {
+            "fait": "f-z3-barque-sabotee"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Un clou saute et claque contre la quille. Les têtes se tournent, les dés s'arrêtent, et les bandits bondissent sur leurs lames."
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "z4-tb-contrebande"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z3-r-sorel-et-ses-hommes",
+    "nom": "Sorel et ses hommes",
+    "type": "mixte",
+    "lieu": "cr-grotte",
+    "difficulte": "moderee",
+    "intro": "Le couloir débouche sur une grotte où l'écho double chaque pas. Devant le coffre de chêne, un grand tieffelin en ciré gris compte à voix haute des pièces sur le couvercle, ses hommes alignés sur la plate-forme de rocher. Il lève les yeux, ne bouge pas, et dit avec calme : « Matelots. Vous êtes en avance sur la marée, et en retard sur mon livre. »",
+    "monstres": [
+      {
+        "profil": "chef-de-bande",
+        "nombre": 1,
+        "nom": "Sorel Noirbec",
+        "pnj": "sorel-noirbec"
+      },
+      {
+        "profil": "bandit",
+        "nombre": 9,
+        "nom": "Homme de Sorel"
+      }
+    ],
+    "carte": [
+      "#.......cc.#",
+      "#.....mmm..#",
+      "#HH...mm...#",
+      "#HH..m...m.#",
+      "#HH......mm#",
+      "#...mmm....#",
+      "#..........#",
+      "#eeeeeeeeee#"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Sorel reste près du coffre et laisse ses hommes tenir la plate-forme ; il ne vise que ce qui menace le coffre ou ses gens, et préfère parler dès que le combat tourne mal.",
+      "fuite": "Si Sorel tombe à moins du quart de ses forces, il tend les mains et demande à négocier ; ses hommes s'arrêtent avec lui.",
+      "renforts": "Écrite pour 6 héros : Sorel (chef de bande, seul, jamais réduit) et 9 bandits, soit 675 PX. Pour 4 héros, le moteur garde Sorel et ramène les bandits à 6 (600 PX)."
+    },
+    "alternatives": [
+      {
+        "id": "negocier-le-livre-contre-la-fuite",
+        "nom": "Je lui propose de partir libre avec ses hommes s'il nous remet le livre.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "resume": "Sorel pèse l'offre, regarde ses hommes, regarde la mer. « Mes gars ont faim, mais ils ne veulent pas finir au cachot. Prenez-le. » Il règle lui-même les cadrans, vous tend le livre et la lettre, et file avec sa bande par la mer avant la marée.",
+        "effets": [
+          {
+            "objet": {
+              "id": "livre-de-maelle",
+              "quantite": 1
+            }
+          },
+          {
+            "objet": {
+              "id": "lettre-de-verdelune",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "livre-retrouve"
+          },
+          {
+            "flag": "sorel-demasque"
+          },
+          {
+            "flag": "sorel-neutralise"
+          },
+          {
+            "fait": "f-marche-de-sorel"
+          },
+          {
+            "fait": "f-navire-de-verdelune"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "sorel-noirbec",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Sorel secoue la tête : « Vous voulez trop pour trop peu, matelots. » Ses hommes se resserrent autour de lui."
+          },
+          {
+            "attitude": {
+              "pnj": "sorel-noirbec",
+              "delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "id": "negocier-contre-une-somme",
+        "nom": "Je lui offre cent pièces d'or pour le livre : de quoi payer son sel.",
+        "condition": {
+          "pieces": {
+            "min": 100
+          }
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "resume": "Sorel compte, recompte, puis hoche la tête : cent pièces, c'est le sel de l'hiver. Il vous remet le livre et la lettre, vous serre la main d'une poigne rugueuse et dit à ses hommes de ranger leurs lames. L'acheteur attendra.",
+        "effets": [
+          {
+            "pieces": -100
+          },
+          {
+            "objet": {
+              "id": "livre-de-maelle",
+              "quantite": 1
+            }
+          },
+          {
+            "objet": {
+              "id": "lettre-de-verdelune",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "livre-retrouve"
+          },
+          {
+            "flag": "sorel-demasque"
+          },
+          {
+            "flag": "sorel-neutralise"
+          },
+          {
+            "fait": "f-marche-de-sorel"
+          },
+          {
+            "fait": "f-navire-de-verdelune"
+          },
+          {
+            "attitude": {
+              "pnj": "sorel-noirbec",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Sorel rit court : « Cent pièces ? L'acheteur en offre mille. » Il ne bouge pas, mais ses hommes dégainent."
+          },
+          {
+            "attitude": {
+              "pnj": "sorel-noirbec",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "id": "le-laisser-fuir",
+        "nom": "Je lui dis de partir avec ses hommes avant la marée, sans rien exiger.",
+        "resume": "Sorel vous regarde un long moment, soupçonneux, puis rassemble ses hommes d'un geste. Ils embarquent sur la chaloupe, un à un, sans un mot, et s'éloignent sur l'eau noire. Le coffre, lui, reste fermé derrière eux.",
+        "effets": [
+          {
+            "flag": "sorel-demasque"
+          },
+          {
+            "flag": "sorel-neutralise"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "sorel-noirbec",
+              "etat": "parti"
+            }
+          },
+          {
+            "fait": "f-z3-sorel-sans-sang"
+          },
+          {
+            "xp": 40
+          },
+          {
+            "jauge": {
+              "id": "grande-maree",
+              "delta": 1
+            }
+          },
+          {
+            "narration": "Sorel file droit vers le large : il ira prévenir l'acheteur que la crique n'est plus sûre, et la grande marée n'en sera que plus proche."
+          }
+        ]
+      },
+      {
+        "id": "l-arreter",
+        "nom": "Je le somme de se rendre, preuves à l'appui, et je le livre au guet.",
+        "condition": {
+          "ou": [
+            {
+              "objet": "cle-de-la-crypte"
+            },
+            {
+              "objet": "bourse-marquee"
+            },
+            {
+              "objet": "lettre-de-verdelune"
+            }
+          ]
+        },
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "resume": "Vous posez la preuve sur le coffre, et Sorel comprend. Il soupire, lève les mains, et demande seulement qu'on laisse ses hommes partir. Ils déposent leurs lames. Il vous donne les chiffres du coffre avant de vous suivre vers la caserne.",
+        "effets": [
+          {
+            "flag": "sorel-demasque"
+          },
+          {
+            "flag": "sorel-neutralise"
+          },
+          {
+            "fait": "f-marche-de-sorel"
+          },
+          {
+            "fait": "f-z3-chiffres-du-coffre"
+          },
+          {
+            "deplacer": {
+              "pnj": "sorel-noirbec",
+              "lieu": "ca-cour"
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "narration": "« Vous me prenez pour un homme qu'on arrête, matelots ? » Sorel sourit sans joie, et ses hommes se ruent en avant."
+          },
+          {
+            "attitude": {
+              "pnj": "sorel-noirbec",
+              "delta": -10
+            }
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [
+        "z4-tb-contrebande"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "sorel-neutralise"
+      },
+      {
+        "flag": "sorel-demasque"
+      },
+      {
+        "fait": "f-marche-de-sorel"
+      }
+    ]
+  }
+]

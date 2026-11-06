@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z7-coque-rongee",
+    "declencheur": "condition",
+    "unique": true,
+    "condition": {
+      "et": [
+        { "jauge": { "id": "maree", "min": 3 } },
+        { "quete": { "id": "q-por-la-coque-neuve", "statut": "active" } },
+        { "non": { "flag": "por-chantier-defendu" } }
+      ]
+    },
+    "narration": "Au petit matin, la barque de Hennequin a été grattée à nu : la coque neuve porte des sillons pâles jusqu'à la quille, et des doigts ont laissé leur marque dans le goudron. Le cordier ne parle pas. Il pose son maillet sur l'établi, retourne la bâche, et se met à compter les planches perdues.",
+    "effets": [
+      { "attitude": { "pnj": "por-hennequin-lacet", "delta": -15 } },
+      { "flag": "por-coque-rongee" },
+      { "quete": { "id": "q-por-la-coque-neuve", "statut": "echouee" } }
+    ]
+  }
+]

@@ -1,0 +1,292 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "Le Val des Cendres",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "haute-forge"
+        },
+        "mouvement": "recul",
+        "texte": "Il y a deux siècles, sous la montagne, le royaume nain de la Haute-Forge s'est éteint en une seule nuit. Ses forges se sont tues, et personne n'est jamais revenu dire pourquoi."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-des-cendres"
+        },
+        "mouvement": "gauche",
+        "texte": "Depuis, une cendre grise retombe sur le Val, doucement, comme une neige qui ne fond pas. Les bergers des hauteurs l'ont vue tomber les premiers. Elle n'a jamais cessé."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "champ-de-cendre-gris"
+        },
+        "mouvement": "droite",
+        "texte": "Là où elle se pose, les morts se relèvent. Ce ne sont pas des âmes revenues : c'est la cendre qui marche, et qui refait les gestes d'une vie."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "vei-la-lanterne"
+        },
+        "mouvement": "approche",
+        "texte": "Le dernier village, Veillecendre, tient autour d'une tour de pierre naine, la Lanterne, dont la flamme repousse la cendre. Cet automne, pour la première fois, la flamme faiblit."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "route-du-col"
+        },
+        "mouvement": "gauche",
+        "texte": "Vous êtes arrivés avec la dernière caravane de l'année. Derrière vous, la neige a fermé le col : il n'y aura plus de route avant le printemps."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "veillecendre"
+        },
+        "mouvement": "approche",
+        "texte": "Devant vous : des toits gris, une flamme timide, et des gens qui ont peur. Quelqu'un, ici, devra décider de ce qu'on fait de la cendre. Peut-être vous."
+      }
+    ]
+  },
+  {
+    "id": "la-lanterne-faiblit",
+    "nom": "La Lanterne faiblit",
+    "declencheur": {
+      "quete": "q-la-lanterne-faiblit",
+      "statut": "active"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "hesta-cendrebrune"
+        },
+        "mouvement": "approche",
+        "texte": "Hesta Cendrebrune, la Mère-Gardienne, veille la flamme de Veillecendre. Ce soir, pour la première fois, elle ne sait plus quoi faire."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "vei-la-lanterne"
+        },
+        "mouvement": "recul",
+        "texte": "La Lanterne ne brûle ni bois ni huile. Elle a été allumée à une étincelle venue de très loin sous la montagne, et c'est là-bas que quelque chose s'épuise."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "cryptes-d-ormgard"
+        },
+        "mouvement": "gauche",
+        "texte": "Le chemin passe par les cryptes d'Ormgard, où dort la clé d'un sceau que personne n'a ouvert depuis deux siècles. Le col est fermé. Il n'y a pas d'autre route."
+      }
+    ]
+  },
+  {
+    "id": "la-haute-forge",
+    "nom": "Le hall du sceau",
+    "declencheur": {
+      "lieu": "hf-hall-du-sceau"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-hall-du-sceau"
+        },
+        "mouvement": "approche",
+        "texte": "La dalle s'abaisse en grondant. Derrière elle, l'air est lourd et tiède : ici, la cendre ne tombe pas."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "haute-forge"
+        },
+        "mouvement": "recul",
+        "texte": "Une montagne creuse, des galeries d'une symétrie parfaite, des canaux de fonte figés depuis deux siècles. Rien ne bouge qui soit vivant."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-grande-galerie"
+        },
+        "mouvement": "droite",
+        "texte": "Puis, une à une, les lampes des gardes se rallument. Tout le royaume sait qu'on est entré."
+      }
+    ]
+  },
+  {
+    "id": "fin-rallumer",
+    "nom": "La veille reprise",
+    "declencheur": {
+      "fin": "fin-rallumer"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-forge-du-coeur"
+        },
+        "mouvement": "recul",
+        "texte": "Le Cœur-de-Braise boit le feu du volontaire et s'apaise : la cendre cesse de tomber, les morts s'effondrent en poussière tiède, et la Lanterne de Veillecendre brûle plus claire qu'elle ne l'a fait depuis deux siècles. Le village est sauvé, mais celui qui est resté à la Forge ne reviendra pas : il veillera désormais le Cœur comme le Veilleur veillait la flamme, et Hesta Cendrebrune, la dernière Mère-Gardienne, montera chaque printemps lui porter du pain jusqu'à ce que ses jambes cèdent."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "vei-la-lanterne"
+        },
+        "mouvement": "approche",
+        "texte": "Le bailli Aurèle Montclar garde ses toits mais perd son évacuation, et doit enfin avouer au village ce que le grain a coûté. Les Pèlerins gris perdent leur grâce et se dispersent autour de Frère Ocre, qui s'assoit à la porte de la Forge pour tenir compagnie à l'absent."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "hesta-cendrebrune"
+        },
+        "mouvement": "gauche",
+        "texte": "La Compagnie du Fer-Gris, privée du Cœur, se retire sur Pont-de-Fer, patiente et dangereuse, et Kor Varnak rêve encore à voix basse. Ysolde reste à Veillecendre pour entretenir les rouages de la Lanterne, Korvun forge pour les réfugiés qui peuvent enfin rester, et Mireille reprend la chapelle grise pour les vivants."
+      }
+    ]
+  },
+  {
+    "id": "fin-eteindre",
+    "nom": "L'Écluse noire",
+    "declencheur": {
+      "fin": "fin-eteindre"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-ecluse-noire"
+        },
+        "mouvement": "recul",
+        "texte": "L'Écluse noire s'ouvre et l'eau de la montagne noie le Cœur-de-Braise en une nuit. Les morts de la Haute-Forge s'allongent enfin, la cendre cesse, et le roi Thalgrin, dans un dernier éclat, se tait."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-forge-du-coeur"
+        },
+        "mouvement": "approche",
+        "texte": "Mais la Lanterne s'éteint avec le Cœur, et au printemps le Val est abandonné : Hesta Cendrebrune ferme elle-même la porte de la tour et mène le dernier convoi par le col dégelé, sans se retourner. Le bailli voit son évacuation s'accomplir et ne s'en réjouit pas ; le Fer-Gris, privé de son foyer, repart vers le sud, et Kor Varnak vous regarde passer sans un mot."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "veillecendre"
+        },
+        "mouvement": "gauche",
+        "texte": "Les Pèlerins gris s'assoient dans la cendre qui ne tombe plus, silencieux : certains parlent de trahison, d'autres de grâce. Ysolde garde les plans de son maître et la vanne qu'il avait dessinée, Korvun emporte son clan vers les basses terres, et Mireille quitte la chapelle grise en emportant la dernière lampe."
+      }
+    ]
+  },
+  {
+    "id": "fin-achever",
+    "nom": "La Fille de fer",
+    "declencheur": {
+      "fin": "fin-achever"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "brunhild"
+        },
+        "mouvement": "recul",
+        "texte": "Le dernier souffle est donné : la braise de veille, ou la chaleur de celui qui la portait, passe à la Fille de fer, et le froid qui s'installe en lui ne le quittera plus. Brunhild s'éveille, mi-enfant mi-forge, ses yeux de braise levés vers un père qui se défait doucement en cendre tiède, délivré."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "hf-forge-du-coeur"
+        },
+        "mouvement": "approche",
+        "texte": "La cendre cesse de tomber, mais la Haute-Forge ne dort plus : la Fille de fer garde désormais le Val et ses morts apaisés, et vous êtes ses hôtes, sans qu'on sache si c'est un honneur ou une garde. Veillecendre vit à l'ombre de son pas lent ; Hesta Cendrebrune cède la tour à une enfant de deux siècles et se tait, le bailli fait inscrire son nom parmi les titres du village, et les Pèlerins gris la regardent comme un miracle ou comme une profanation."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "veillecendre"
+        },
+        "mouvement": "gauche",
+        "texte": "Le Fer-Gris, tenu à distance par une garde que rien n'effraie, se replie sur Pont-de-Fer. Ysolde ne quitte plus les ateliers de la Forge, Korvun se tient à la porte de l'enfant comme à celle d'un clan, et Mireille prie pour celui qui a donné son feu."
+      }
+    ]
+  },
+  {
+    "id": "fin-fer-gris",
+    "nom": "Le fief de guerre",
+    "declencheur": {
+      "fin": "fin-fer-gris"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "kor-varnak"
+        },
+        "mouvement": "recul",
+        "texte": "Kor Varnak franchit la porte de la forge du Cœur à la tête de ses sapeurs et reçoit le Cœur-de-Braise de vos mains, sans cris, avec une gravité presque triste. Les forges de guerre s'allument, la Compagnie s'installe, et le Val devient un fief : ordre brutal, rations comptées, patrouilles aux portes."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "pont-de-fer"
+        },
+        "mouvement": "approche",
+        "texte": "La cendre cesse dans le Val mais pas ailleurs, car le Cœur n'est pas apaisé, seulement déplacé, et le grain des basses terres commence à se couvrir de gris. Hesta Cendrebrune est contrainte d'entretenir la Lanterne sous la garde de la Compagnie, le bailli Aurèle Montclar devient son intendant, et les Pèlerins gris sont chassés vers le sud."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-des-cendres"
+        },
+        "mouvement": "gauche",
+        "texte": "Ysolde est conscrite pour les mécanismes, Korvun forge pour la Compagnie ou rompt avec vous, et Mireille s'en va avec les Pèlerins expulsés. Le col dégelé s'ouvre sous escorte hobgobeline, et chacun sait ce que ce passage vous a coûté."
+      }
+    ]
+  },
+  {
+    "id": "fin-la-cendre-submerge",
+    "nom": "La cendre submerge Veillecendre",
+    "declencheur": {
+      "fin": "fin-la-cendre-submerge"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "veillecendre"
+        },
+        "mouvement": "recul",
+        "texte": "La Lanterne s'éteint avant que vous ayez rien décidé. La cendre tombe sur Veillecendre comme une neige de suie, et là où elle se pose les morts se lèvent : dans les rues, dans les maisons, dans la tour où Hesta Cendrebrune tient jusqu'au bout la dernière braise."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "vei-la-lanterne"
+        },
+        "mouvement": "approche",
+        "texte": "Le bailli ordonne une évacuation que personne n'a plus la force de mener, le col reste fermé, les Pèlerins gris attendent sur leurs genoux. Le Fer-Gris, retranché derrière les murs de Pont-de-Fer, tient quelques semaines de plus, mais sa chute n'est qu'une question d'hiver."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-des-cendres"
+        },
+        "mouvement": "gauche",
+        "texte": "Ceux d'entre vous qui sont vivants se terrent dans une cave du village, entendent monter le gris, et savent qu'ils ont perdu le Val. Aucune victoire à raconter : le chapitre s'achève sans elle."
+      }
+    ]
+  }
+]

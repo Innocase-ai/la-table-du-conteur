@@ -1,0 +1,519 @@
+[
+  {
+    "id": "cote-de-hautmaree",
+    "nom": "La Côte de Hautmarée",
+    "type": "region",
+    "resume": "Une côte de falaises pâles où la mer se laisse mesurer depuis des siècles.",
+    "description": "Des falaises de schiste et de craie, battues par le vent du large, bordent une baie où les pêcheurs n'osent plus sortir à marée basse. Au sud, le marais de sel ; au nord, le cap Mort. Au large, une chaussée découverte à marée basse s'enfonce vers des ruines. La Citadelle des Marées domine le tout depuis son cap.",
+    "ambiance": "Vent froid et embruns, cris de goélands qui se taisent au crépuscule.",
+    "visuel": "Une côte de falaises pâles sous un ciel bas, une grève luisante de flaques où la mer s'est retirée très loin, et sur un promontoire une tour coiffée de cuivre.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "citadelle-des-marees",
+    "nom": "La Citadelle des Marées",
+    "type": "batiment",
+    "parent": "cote-de-hautmaree",
+    "resume": "Monastère-observatoire sur le cap, où des cartographes relèvent les marées et accueillent qui la tempête chasse.",
+    "description": "Une enceinte de pierre grise autour d'une cour, avec une tour d'observatoire, une bibliothèque, des dortoirs, un réfectoire et un quai taillé dans le pied de la falaise. Le groupe y passe la nuit. Le registre des marées y est tenu sans faute depuis cinq siècles.",
+    "ambiance": "Cire, sel et bois mouillé ; des pas feutrés sur les dalles, une cloche qui sonne les heures.",
+    "visuel": "Une enceinte de pierre grise sur un cap battu, une tour à la coiffe de cuivre vert-de-gris, des fenêtres basses où brillent des lampes ambrées et un toit d'ardoise luisant de pluie.",
+    "accroche": "Au bout de la route, le cap porte une enceinte de pierre grise, une tour au toit de cuivre et des fenêtres allumées dans la brume.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 26,
+      "y": 30
+    }
+  },
+  {
+    "id": "cit-porte-de-terre",
+    "nom": "La porte de terre",
+    "type": "lieu-dit",
+    "parent": "citadelle-des-marees",
+    "resume": "La porte de la muraille, où le frère portier tient le verrou et le registre des entrées.",
+    "description": "Une arche basse percée dans l'enceinte, fermée d'un battant de chêne cerclé de fer. Une guérite de pierre, une lampe de cuivre qui se balance, et un registre où l'on note les noms de ceux qui entrent par la tempête.",
+    "visuel": "Une arche de pierre noire sous une voûte basse, un battant de chêne cerclé de fer, une lampe de cuivre suspendue qui oscille dans le vent et une guérite de pierre.",
+    "accroche": "Au bout du chemin, une arche basse creusée dans le mur gris ; un battant de chêne cerclé de fer, et une lampe qui se balance.",
+    "liens": [
+      {
+        "vers": "cit-cour-des-vents",
+        "type": "passage",
+        "description": "Une voûte courte traverse l'épaisseur du mur et débouche sur une cour pavée, balayée par le vent du large.",
+        "retour": "La voûte ramène à la porte de terre ; on y entend le battant grincer contre sa gâche."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 32,
+      "y": 46
+    }
+  },
+  {
+    "id": "cit-cour-des-vents",
+    "nom": "La cour des vents",
+    "type": "lieu-dit",
+    "parent": "citadelle-des-marees",
+    "resume": "La cour centrale, où tout le monastère se croise, et où la girouette ne se tait jamais.",
+    "description": "Une cour de dalles usées, bordée d'arcades, avec un puits au centre et une girouette de cuivre au sommet du mur nord. Des portes s'ouvrent sur les ailes du monastère ; un escalier monte vers la tour, un chemin étroit vers les jardins suspendus.",
+    "visuel": "Une cour de dalles polies, des arcades basses, un puits de pierre couronné de fer et une girouette de cuivre vert-de-gris qui grince au-dessus d'un mur.",
+    "accroche": "Au cœur du monastère, une cour ouverte au vent, où une girouette de cuivre grince au-dessus d'un puits.",
+    "liens": [
+      {
+        "vers": "cit-refectoire",
+        "type": "porte",
+        "description": "Une porte basse à linteau de chêne, d'où montent le bruit des bols et une voix de cuisine.",
+        "retour": "La porte du réfectoire donne sur la cour ; à peine la franchit-on que le vent tombe et que la lumière s'adoucit."
+      },
+      {
+        "vers": "cit-grande-bibliotheque",
+        "type": "porte",
+        "description": "Un double battant de chêne, barré de fer, ouvre sur les rayonnages ; une raie de lampe passe sous le seuil.",
+        "retour": "La porte de la bibliothèque donne sur la cour, et le vent fait claquer les feuillets posés sur les tables."
+      },
+      {
+        "vers": "cit-observatoire",
+        "type": "escalier",
+        "description": "Un escalier de pierre monte en vis le long de la tour, usé au milieu par des siècles de pas.",
+        "retour": "L'escalier de la tour redescend en vis vers la cour, où le puits est le seul bruit d'eau."
+      },
+      {
+        "vers": "cit-bureau-du-prieur",
+        "type": "porte",
+        "description": "Une porte de chêne sombre, près du puits, cerclée d'une bande de cuivre et souvent fermée.",
+        "retour": "De derrière la porte du bureau, on ne voit que la cour, le puits et la girouette qui tourne."
+      },
+      {
+        "vers": "cit-intendance",
+        "type": "porte",
+        "description": "Sous une arcade, une porte de planches ouvre sur un magasin où l'on sent le cuir et le goudron.",
+        "retour": "La porte de l'intendance donne sous l'arcade ; ses planches sont gonflées par l'humidité venue du quai."
+      },
+      {
+        "vers": "cit-jardins-de-falaise",
+        "type": "passage",
+        "description": "Un escalier étroit longe le mur est jusqu'à un jardin suspendu au-dessus de la mer, face au vent.",
+        "retour": "Le chemin des jardins redescend entre des pots de thym gris jusqu'à la cour, à l'abri du mur."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 47,
+      "y": 52
+    }
+  },
+  {
+    "id": "cit-refectoire",
+    "nom": "Le réfectoire",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Le réfectoire, où l'on mange en silence sous des poutres noircies par la fumée des soupes.",
+    "description": "Une longue salle aux tables de chêne et aux bancs usés, avec une grande cheminée. C'est aussi là qu'on sert les voyageurs échoués. La cuisine est au fond, derrière un rideau de toile, et l'escalier des dortoirs part du coin de la cheminée.",
+    "visuel": "Une salle aux poutres noires de fumée, de longues tables de chêne, une cheminée basse où couve un feu, des bols de terre alignés et une lumière jaune qui tombe des fenêtres étroites.",
+    "accroche": "Derrière la porte basse, une salle aux bancs usés, où les bols s'empilent près d'une cheminée qui ronfle.",
+    "liens": [
+      {
+        "vers": "cit-dortoirs",
+        "type": "escalier",
+        "description": "Un escalier de bois à marches étroites monte vers les dortoirs, le long de la cheminée.",
+        "retour": "Les marches de bois descendent vers le réfectoire ; la chaleur du foyer monte jusqu'aux paliers."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "repas"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 60,
+      "y": 37
+    }
+  },
+  {
+    "id": "cit-dortoirs",
+    "nom": "Les dortoirs",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Une longue chambre sous les combles, bordée de lits étroits où l'on dort une nuit entière.",
+    "description": "Une chambre sous les combles, bordée de lits étroits, chacun avec une couverture de laine grise et une malle. Un volet ferme la fenêtre du fond. C'est un lieu sûr pour dormir ; un érudit de passage y a posé son sac, au pied du lit du fond.",
+    "visuel": "Une longue chambre sous des combles de chêne, des lits étroits alignés contre les murs, des couvertures grises, une fenêtre étroite qui laisse entrer le vent de mer.",
+    "accroche": "Par l'escalier de bois, on monte sous les combles : une chambre longue, pleine de lits étroits et de couvertures grises.",
+    "liens": [
+      {
+        "vers": "cit-infirmerie",
+        "type": "passage",
+        "description": "Un couloir voûté, bordé de portes basses, mène à l'infirmerie au bout d'une dizaine de pas.",
+        "retour": "Le couloir ramène vers les lits par une porte basse qui claque doucement sur son loquet."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "repos": "sur",
+    "position": {
+      "x": 44,
+      "y": 64
+    }
+  },
+  {
+    "id": "cit-infirmerie",
+    "nom": "L'infirmerie",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "L'infirmerie, où les malades reposent sous une lampe basse, près d'un poêle de fonte.",
+    "description": "Une salle étroite à quatre lits, un poêle de fonte, une armoire de simples séchés et une table de travail couverte de mortiers. L'infirmière y soigne ceux que la tempête a blessés ou pris de fièvre.",
+    "visuel": "Une salle étroite aux murs chaulés, quatre lits de toile, un poêle de fonte noire, des bouquets de plantes séchées pendus à des crochets et une lampe basse sur une table de bois.",
+    "accroche": "Au bout du couloir voûté, une porte entrouverte laisse voir un poêle de fonte et des plantes séchées pendues au mur.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cit-herbes-de-falaise",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "services": [
+      "soins"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 72,
+      "y": 48
+    }
+  },
+  {
+    "id": "cit-bureau-du-prieur",
+    "nom": "Le bureau du Prieur",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Le bureau du Prieur, une pièce sobre où l'on signe les comptes de la maison et les lettres de départ.",
+    "description": "Une pièce nue, une table couverte de dossiers, une fenêtre sur la cour et un symbole de cuivre sur le mur. Le Prieur y reçoit les visites. Un coffre de fer est scellé dans le mur derrière lui, et il n'en parle jamais.",
+    "visuel": "Une pièce nue, lambrissée de chêne sombre, une grande table couverte de dossiers et de cire, une fenêtre sur la cour et un blason de cuivre fixé au mur.",
+    "accroche": "Sur le côté de la cour, une porte de chêne sombre, close, dont la bande de cuivre a été fraîchement polie.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "cit-r-le-conseil-du-prieur",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 42,
+      "y": 24
+    }
+  },
+  {
+    "id": "cit-intendance",
+    "nom": "L'intendance",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "L'intendance, un magasin de planches où l'on vend, prête et compte le matériel de la maison.",
+    "description": "Un magasin en longueur, rempli d'étagères, de sacs de toile, de cordes et de caisses. C'est là que les voyageurs s'équipent. L'intendant tient un registre des prêts et un coffre de réserve, fermé au verrou, sous son comptoir.",
+    "visuel": "Un magasin en longueur aux étagères de planches, des sacs de toile suspendus, des caisses de bois empilées, des bobines de corde et des armes rangées en faisceaux contre un mur.",
+    "accroche": "Sous une arcade de la cour, une porte de planches donne sur un magasin plein de sacs de toile et de cordes.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "cit-r-rats-des-reserves",
+        "declencheur": "entree",
+        "condition": {
+          "quete": {
+            "id": "q-cit-les-rats-des-reserves",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "services": [
+      "equipement"
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 60,
+      "y": 68
+    }
+  },
+  {
+    "id": "cit-grande-bibliotheque",
+    "nom": "La grande bibliothèque",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Des rayonnages de chêne jusqu'au plafond, où l'on copie les cartes et les tables de marée.",
+    "description": "Une salle haute aux rayonnages de chêne, de longues tables couvertes de parchemins, des cartes épinglées entre les piliers. Aldous y tient ses tables de marée, et Nolwen y copie avec lui. Une porte au fond mène à la salle des cartes ; un escalier descend aux caveaux, fermé d'une grille.",
+    "visuel": "Une salle haute aux rayonnages de chêne qui montent jusqu'au plafond, de longues tables couvertes de parchemins, des cartes épinglées entre les piliers et une lumière de lampe qui glisse sur les pages.",
+    "accroche": "Derrière un double battant, une salle haute : les rayonnages montent si haut que la lumière des lampes n'atteint pas le plafond.",
+    "liens": [
+      {
+        "vers": "cit-caveaux",
+        "type": "escalier",
+        "description": "Un escalier étroit descend sous le dallage, fermé par une grille de fer dont le verrou est ancien.",
+        "retour": "L'escalier remonte vers la bibliothèque, usé au centre des marches par les pas des copistes.",
+        "verrou": {
+          "dd": 13,
+          "cle": "cit-cle-des-caveaux"
+        }
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cit-r-l-infiltre",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cit-carte-du-cap-mort",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
+    ],
+    "services": [
+      "identification"
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 90,
+      "y": 52
+    }
+  },
+  {
+    "id": "cit-salle-des-cartes",
+    "nom": "La salle des cartes",
+    "type": "salle",
+    "parent": "cit-grande-bibliotheque",
+    "resume": "Une petite pièce tapissée de cartes marines, où l'on tient la carte des marées de la Citadelle.",
+    "description": "Une pièce étroite aux murs couverts de cartes de marée anciennes, une table inclinée, un pupitre où le registre des vives-eaux est ouvert, et un tiroir de chêne fermé par une plaque de cuivre gravée. Les deux pages arrachées du registre ne sont plus là.",
+    "visuel": "Une pièce étroite tapissée de cartes marines jaunies, une table inclinée couverte de règles et de compas, un pupitre de bois et une plaque de cuivre gravée sur un tiroir.",
+    "accroche": "Au fond de la bibliothèque, une porte de chêne entrouverte sur une table couverte de cartes aux bords frangés.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cit-registre-deux-pages",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-cit-tables-decalees",
+        "decouverte": {
+          "competence": "investigation",
+          "dd": 12
+        }
+      }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "cit-observatoire",
+    "nom": "L'observatoire",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Une salle ronde sous le dôme de cuivre, où l'on suit les marées par une grande lentille de verre.",
+    "description": "Une salle ronde sous un dôme de cuivre, avec une grande lentille de verre sur un axe, des cadrans de marée et des tables rangées dans des tiroirs. Un contrepoids de fonte joue dans le mécanisme du dôme. La lentille est couverte d'un voile gris qu'on ne nettoie plus.",
+    "visuel": "Une salle ronde sous un dôme de cuivre vert-de-gris, une grande lentille de verre sur un axe de bronze, des cadrans gravés de lignes de marée et un fin dépôt de sel sur le sol.",
+    "accroche": "Au-dessus de la cour, la tour se termine par un dôme de cuivre vert-de-gris, percé d'une lucarne qui ne s'éteint jamais.",
+    "liens": [
+      {
+        "vers": "cit-phare-archive",
+        "type": "escalier",
+        "description": "Un escalier de fer tourne sous le dôme jusqu'à une porte basse, d'où sort une lumière jaune.",
+        "retour": "L'escalier de fer redescend du dôme ; la lumière de la veille s'éloigne peu à peu dans la tour."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cit-lentille-encrassee",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 38,
+      "y": 83
+    }
+  },
+  {
+    "id": "cit-phare-archive",
+    "nom": "Le phare-archive",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Une salle de veille où Gudrun garde les lampes, les mèches et les fanaux de la côte.",
+    "description": "Une salle de veille sous la lanterne, avec une grande lampe de cuivre sur un socle de fonte, des fanaux de rechange sur des étagères, des mèches et des registres de feux. Gudrun entretient la flamme et lit les signaux des phares de la côte. La veille ne s'arrête jamais ici.",
+    "visuel": "Une salle de veille sous une lanterne de verre, une grande lampe de cuivre sur un socle de fonte, des fanaux rangés sur des étagères, des mèches et des registres de feux.",
+    "accroche": "Dans le haut de la tour, une lucarne de verre laisse filtrer une lumière de lampe ; la veille ne s'arrête jamais.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "repos-de-veille"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 83,
+      "y": 62
+    }
+  },
+  {
+    "id": "cit-jardins-de-falaise",
+    "nom": "Les jardins de falaise",
+    "type": "lieu-dit",
+    "parent": "citadelle-des-marees",
+    "resume": "Un jardin suspendu au bord de la falaise, où poussent des herbes grises que le sel a marquées.",
+    "description": "Des terrasses de pierre sèche, des pots de thym gris et de lavande de falaise, une grille de bois, un vieux fanal de fer sur un piquet. Le vent y est très fort ; de là on voit toute la baie et la chaussée au loin.",
+    "visuel": "Des terrasses de pierre sèche accrochées à la falaise, des touffes d'herbes grises et de lavande de falaise, un fanal de fer sur un piquet et, au loin, une mer gris ardoise.",
+    "accroche": "Au bord de la falaise, un jardin de terrasses accroché au vide, où les herbes grises tiennent malgré le vent.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "cit-r-voleurs-d-huile",
+        "declencheur": "repos",
+        "condition": {
+          "quete": {
+            "id": "q-cit-les-voleurs-d-huile",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-cit-cercles-de-sel",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 15,
+      "y": 57
+    }
+  },
+  {
+    "id": "cit-quai-des-basses-eaux",
+    "nom": "Le quai des basses eaux",
+    "type": "lieu-dit",
+    "parent": "citadelle-des-marees",
+    "resume": "Le quai taillé dans le pied de la falaise, où l'on accostait les barques quand la mer était haute.",
+    "description": "Un quai de pierre sous le cap, des anneaux de fer, des bornes et un bassin où l'eau reste prise entre les rochers à marée basse. La mer a reculé très loin : on marche sur les algues là où les barques flottaient. Des pieux noircis sortent de la vase.",
+    "visuel": "Un quai de pierre rongé, des anneaux de fer couverts de rouille, un bassin de pierre rempli d'eau claire entre des rochers, et au loin une grève luisante de vase.",
+    "accroche": "En contrebas du cap, un quai de pierre rongée s'avance dans une grève luisante où la mer s'est retirée.",
+    "liens": [
+      {
+        "vers": "cit-grille-de-mer",
+        "type": "passage",
+        "description": "Un escalier de pierre glissante descend au ras de l'eau jusqu'à une grille de fer rouillé.",
+        "retour": "Les marches remontent vers le quai, où la vase luit entre les pieux et les anneaux de fer."
+      },
+      {
+        "vers": "cit-jardins-de-falaise",
+        "type": "chemin",
+        "description": "Un sentier de galets remonte le long de la falaise jusqu'aux jardins suspendus, glissant de mousse.",
+        "retour": "Le sentier descend des jardins par des galets glissants jusqu'au quai, au ras des rochers."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "cit-r-les-noyes-du-quai",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 68,
+      "y": 78
+    }
+  },
+  {
+    "id": "cit-grille-de-mer",
+    "nom": "La grille de mer",
+    "type": "lieu-dit",
+    "parent": "citadelle-des-marees",
+    "resume": "Une grille de fer au ras de l'eau, qui ferme l'ancienne entrée des bateaux quand la mer est haute.",
+    "description": "Une grille de fer forgé scellée dans la roche, entre deux murs couverts de coquillages. Derrière elle, un tunnel mène à la mer ; la grille est censée rester close. Des coquilles fraîches couvrent ses barreaux, comme si quelqu'un les avait arrachées au fond.",
+    "visuel": "Une grille de fer forgé rouillé, scellée dans une roche noire couverte de coquillages, un tunnel sombre derrière les barreaux et une eau lourde qui clapote au pied.",
+    "accroche": "Plus bas que le quai, une grille de fer rouillé se dresse au ras d'une eau sombre, entre deux murs couverts de coquillages.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cit-coquilles-fraiches",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 81,
+      "y": 87
+    }
+  },
+  {
+    "id": "cit-caveaux",
+    "nom": "Les caveaux",
+    "type": "salle",
+    "parent": "citadelle-des-marees",
+    "resume": "Les caveaux du monastère, où reposent les anciens prieurs et où une clepsydre mesure les heures.",
+    "description": "Des caves voûtées sous le dallage, où les anciens prieurs reposent dans des niches. Un coffre de fer est scellé au fond, et une clepsydre de verre mesure les heures depuis trois siècles. Un passage secret, derrière un pilier fendu, descend vers le quai.",
+    "visuel": "Des caves voûtées de pierre froide, des niches creusées dans le mur, un coffre de fer au fond, une clepsydre de verre sur un socle et des dalles humides, luisantes.",
+    "accroche": "Sous le dallage de la bibliothèque, un escalier étroit descend vers des voûtes de pierre froide et des niches.",
+    "liens": [
+      {
+        "vers": "cit-quai-des-basses-eaux",
+        "type": "passage-secret",
+        "cache": {
+          "dd": 12,
+          "competence": "perception"
+        },
+        "description": "Derrière un pilier fendu, une dalle descellée laisse passer un souffle froid et un escalier mouillé qui descend.",
+        "retour": "Une dalle cachée dans le mur du quai ouvre sur un escalier qui monte vers les voûtes sèches."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-cit-clepsydre-faussee",
+        "decouverte": {
+          "auto": true
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 48,
+      "y": 89
+    }
+  }
+]

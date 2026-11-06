@@ -1,0 +1,65 @@
+{
+  "id": "chauve-souris-geante",
+  "nom": "Chauve-souris géante",
+  "taille": "G",
+  "type": "Bête",
+  "alignement": "non aligné",
+  "ca": 13,
+  "pv": {
+    "moyenne": 22,
+    "des": "4d10"
+  },
+  "vitesse": {
+    "marche": 3,
+    "vol": 18
+  },
+  "caracteristiques": {
+    "for": 15,
+    "dex": 16,
+    "con": 11,
+    "int": 2,
+    "sag": 12,
+    "cha": 6
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 3,
+  "sens": {
+    "visionAveugle": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "aucune",
+  "fp": "1/4",
+  "px": 50,
+  "bonusMaitrise": 2,
+  "traits": [],
+  "actions": [
+    {
+      "id": "morsure",
+      "nom": "Morsure",
+      "cout": "action",
+      "resume": "Corps à corps +5, allonge 1,50 m : 6 (1d6 + 3) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 3,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    }
+  ],
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": []
+}

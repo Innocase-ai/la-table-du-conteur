@@ -1,0 +1,81 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [
+    "contondant"
+  ],
+  "traits": [
+    {
+      "id": "immunites-etats-hors-schema",
+      "nom": "Immunités d'états supplémentaires",
+      "resume": "Immunité aux états suivants, non représentés dans le moteur : Épuisement."
+    }
+  ],
+  "id": "destrier-squelette",
+  "nom": "Destrier squelette",
+  "taille": "G",
+  "type": "Mort-vivant",
+  "alignement": "Loyal Mauvais",
+  "ca": 13,
+  "pv": {
+    "moyenne": 22,
+    "des": "3d10 + 6"
+  },
+  "vitesse": {
+    "marche": 18
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 12,
+    "con": 15,
+    "int": 2,
+    "sag": 8,
+    "cha": 5
+  },
+  "initiative": 1,
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 9
+  },
+  "langues": "aucune",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 7 (1d6 + 4) dégâts contondants. Si la cible est une créature de taille G ou inférieure et si le squelette s'est déplacé en ligne droite d'un minimum de 6 m juste avant de la toucher, la cible subit l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "contondant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "G"
+        }
+      ]
+    }
+  ]
+}

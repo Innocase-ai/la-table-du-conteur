@@ -1,0 +1,165 @@
+[
+  {
+    "id": "table-butin-gobelinoides",
+    "nom": "Butin de gobelinoïdes",
+    "palier": 1,
+    "entrees": [
+      { "poids": 22, "pieces": { "des": "3d6", "unite": "pa" } },
+      { "poids": 16, "pieces": { "des": "1d6", "unite": "po" } },
+      { "poids": 8, "objet": "torche", "quantite": 2 },
+      { "poids": 6, "objet": "huile" },
+      { "poids": 6, "objet": "billes" },
+      { "poids": 5, "objet": "chausse-trappes" },
+      { "poids": 4, "objet": "piege-a-machoires" },
+      { "poids": 6, "objet": "z6-sac-de-grain" },
+      { "poids": 3, "objet": "potion-de-guerison" },
+      { "poids": 6, "table": "table-butin-consommables-communs" },
+      { "poids": 18, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-morts",
+    "nom": "Butin des morts de cendre",
+    "palier": 1,
+    "entrees": [
+      { "poids": 20, "pieces": { "des": "1d8", "unite": "pa" } },
+      { "poids": 10, "pieces": { "des": "1d4", "unite": "po" } },
+      { "poids": 8, "objet": "z6-cendre-en-fiole" },
+      { "poids": 10, "objet": "z6-piece-de-la-haute-forge" },
+      { "poids": 5, "objet": "z6-rune-de-pierre-gravee" },
+      { "poids": 5, "objet": "symbole-sacre-amulette" },
+      { "poids": 4, "objet": "bougie", "quantite": 3 },
+      { "poids": 3, "objet": "eau-benite" },
+      { "poids": 30, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-bandits",
+    "nom": "Butin de bandits du Gué",
+    "palier": 1,
+    "entrees": [
+      { "poids": 22, "pieces": { "des": "2d6", "unite": "po" } },
+      { "poids": 18, "pieces": { "des": "4d6", "unite": "pa" } },
+      { "poids": 10, "objet": "rations", "quantite": 2 },
+      { "poids": 8, "objet": "z6-sac-de-grain" },
+      { "poids": 6, "objet": "corde" },
+      { "poids": 5, "objet": "outils-de-voleur" },
+      { "poids": 4, "objet": "cadenas" },
+      { "poids": 3, "objet": "poison-standard" },
+      { "poids": 5, "objet": "potion-de-guerison" },
+      { "poids": 5, "objet": "trousse-de-soins" },
+      { "poids": 2, "objet": "parchemin-de-sort-sort-mineur" },
+      { "poids": 6, "table": "table-butin-consommables-communs" },
+      { "poids": 12, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-nains-anciens",
+    "nom": "Butin des anciens de la Haute-Forge",
+    "palier": 2,
+    "entrees": [
+      { "poids": 20, "pieces": { "des": "3d6", "unite": "po" } },
+      { "poids": 10, "pieces": { "des": "2d10", "unite": "po" } },
+      { "poids": 18, "objet": "z6-piece-de-la-haute-forge", "quantite": 2 },
+      { "poids": 10, "objet": "z6-lingot-de-fer-noir" },
+      { "poids": 8, "objet": "z6-rune-de-pierre-gravee" },
+      { "poids": 12, "objet": "z6-houille-rouge" },
+      { "poids": 3, "objet": "outils-de-forgeron" },
+      { "poids": 3, "objet": "outils-de-macon" },
+      { "poids": 6, "objet": "potion-de-guerison-importante" },
+      { "poids": 2, "objet": "lanterne-de-revelation" },
+      { "poids": 2, "objet": "lunettes-du-nyctalope" },
+      { "poids": 4, "table": "table-butin-reliques-naines" },
+      { "poids": 10, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-reliques-naines",
+    "nom": "Reliques de la Haute-Forge",
+    "palier": 2,
+    "entrees": [
+      { "poids": 8, "objet": "arme-magique-plus-1" },
+      { "poids": 6, "objet": "bouclier-magique-plus-1" },
+      { "poids": 4, "objet": "armure-de-mithral" },
+      { "poids": 2, "objet": "ceinturon-des-nains" },
+      { "poids": 10, "objet": "potion-de-guerison-superieure" },
+      { "poids": 8, "objet": "parchemin-de-sort-niveau-2" },
+      { "poids": 4, "objet": "parchemin-de-sort-niveau-3" },
+      { "poids": 4, "objet": "pierre-porte-bonheur" },
+      { "poids": 6, "objet": "baguette-de-detection-de-la-magie" },
+      { "poids": 20, "pieces": { "des": "4d10", "unite": "po" } }
+    ]
+  },
+  {
+    "id": "table-butin-voyageurs",
+    "nom": "Affaires de voyageurs",
+    "palier": 1,
+    "entrees": [
+      { "poids": 20, "pieces": { "des": "1d10", "unite": "po" } },
+      { "poids": 16, "pieces": { "des": "2d8", "unite": "pa" } },
+      { "poids": 12, "objet": "rations", "quantite": 3 },
+      { "poids": 6, "objet": "outre" },
+      { "poids": 5, "objet": "couverture" },
+      { "poids": 5, "objet": "sac-de-couchage" },
+      { "poids": 6, "objet": "torche", "quantite": 2 },
+      { "poids": 6, "objet": "boite-a-amadou" },
+      { "poids": 3, "objet": "carte" },
+      { "poids": 4, "objet": "z6-sac-de-grain" },
+      { "poids": 3, "objet": "potion-de-guerison" },
+      { "poids": 3, "objet": "flute" },
+      { "poids": 10, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-hobgobelins",
+    "nom": "Butin de soldats du Fer-Gris",
+    "palier": 2,
+    "entrees": [
+      { "poids": 22, "pieces": { "des": "3d6", "unite": "po" } },
+      { "poids": 20, "objet": "z6-insigne-du-fer-gris" },
+      { "poids": 10, "objet": "trousse-de-soins" },
+      { "poids": 8, "objet": "potion-de-guerison" },
+      { "poids": 5, "objet": "feu-gregeois" },
+      { "poids": 4, "objet": "acide" },
+      { "poids": 5, "objet": "antidote" },
+      { "poids": 10, "objet": "rations", "quantite": 2 },
+      { "poids": 2, "objet": "outils-de-forgeron" },
+      { "poids": 6, "table": "table-butin-consommables-communs" },
+      { "poids": 10, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-pelerins",
+    "nom": "Affaires de Pèlerins gris",
+    "palier": 1,
+    "entrees": [
+      { "poids": 25, "objet": "z6-talisman-de-pelerin" },
+      { "poids": 15, "pieces": { "des": "1d8", "unite": "pa" } },
+      { "poids": 10, "objet": "rations" },
+      { "poids": 6, "objet": "couverture" },
+      { "poids": 5, "objet": "symbole-sacre-amulette" },
+      { "poids": 4, "objet": "materiel-d-herboriste" },
+      { "poids": 3, "objet": "potion-de-guerison" },
+      { "poids": 2, "objet": "z6-cendre-en-fiole" },
+      { "poids": 25, "rien": true }
+    ]
+  },
+  {
+    "id": "table-butin-consommables-communs",
+    "nom": "Consommables communs",
+    "palier": 1,
+    "entrees": [
+      { "poids": 30, "objet": "potion-de-guerison" },
+      { "poids": 15, "objet": "antidote" },
+      { "poids": 12, "objet": "eau-benite" },
+      { "poids": 15, "objet": "trousse-de-soins" },
+      { "poids": 10, "objet": "huile", "quantite": 2 },
+      { "poids": 8, "objet": "acide" },
+      { "poids": 4, "objet": "feu-gregeois" },
+      { "poids": 4, "objet": "parchemin-de-sort-sort-mineur" },
+      { "poids": 4, "objet": "parchemin-de-sort-niveau-1" },
+      { "poids": 3, "objet": "potion-d-escalade" },
+      { "poids": 2, "objet": "perle-nutritive" }
+    ]
+  }
+]

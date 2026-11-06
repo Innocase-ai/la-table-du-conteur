@@ -1,0 +1,126 @@
+{
+  "sauvegardes": {
+    "dex": 4,
+    "sag": 4
+  },
+  "competences": {
+    "perception": 8
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "rukh",
+  "nom": "Rukh",
+  "taille": "Gig",
+  "type": "Monstruosité",
+  "alignement": "non aligné",
+  "ca": 15,
+  "pv": {
+    "moyenne": 248,
+    "des": "16d20 + 80"
+  },
+  "vitesse": {
+    "marche": 6,
+    "vol": 36
+  },
+  "caracteristiques": {
+    "for": 28,
+    "dex": 10,
+    "con": 20,
+    "int": 3,
+    "sag": 10,
+    "cha": 9
+  },
+  "initiative": 8,
+  "sens": {
+    "perceptionPassive": 18
+  },
+  "langues": "aucune",
+  "fp": "11",
+  "px": 7200,
+  "bonusMaitrise": 4,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le rukh effectue deux attaques de Bec. Il peut en remplacer une par une attaque de Serres.",
+      "multiattaque": [
+        {
+          "action": "bec",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "bec",
+      "nom": "Bec",
+      "cout": "action",
+      "resume": "Corps à corps +13, allonge 3 m : 28 (3d12 + 9) dégâts perforants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 13
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "3d12",
+          "bonus": 9,
+          "type": "perforant"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "serres",
+      "nom": "Serres",
+      "cout": "action",
+      "resume": "Corps à corps +13, allonge 1,50 m : 23 (4d6 + 9) dégâts tranchants. Si la cible est une créature de taille TG ou inférieure, elle subit l'état Agrippé (évasion DD 19), ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 13
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "4d6",
+          "bonus": 9,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 19,
+          "tailleMax": "TG"
+        },
+        {
+          "etat": "entrave",
+          "evasion": 19,
+          "tailleMax": "TG"
+        }
+      ]
+    },
+    {
+      "id": "pique",
+      "nom": "Piqué",
+      "cout": "bonus",
+      "resume": "Si le rukh tient une créature Agrippée, il vole à concurrence de la moitié de sa Vitesse de vol sans provoquer d'attaques d'Opportunité et lâche cette créature.",
+      "degats": [],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

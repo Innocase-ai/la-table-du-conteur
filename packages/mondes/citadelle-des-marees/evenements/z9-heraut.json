@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cit-ev-homme-bleme-cour",
+    "declencheur": "entree-lieu",
+    "lieu": "cit-cour-des-vents",
+    "condition": { "non": { "flag": "cit-nuit-du-depart" } },
+    "unique": true,
+    "narration": "Sous la pluie qui bat les dalles, un homme blême traverse la cour des vents sans se presser. Il porte un long manteau, et son manteau est sec : la pluie glisse dessus à un doigt de lui sans jamais le toucher. Il s'arrête devant la fenêtre éclairée de la salle des cartes, lève la tête comme pour compter les vitres, puis disparaît sous une arcade. Ni Pim Tassel ni Jabez Roux ne semblent l'avoir remarqué.",
+    "effets": [{ "fait": "f-cit-homme-bleme-vu" }]
+  },
+  {
+    "id": "fal-ev-homme-bleme-marais",
+    "declencheur": "entree-lieu",
+    "lieu": "marais-de-sel",
+    "condition": { "flag": "cit-nuit-du-depart" },
+    "unique": true,
+    "narration": "Sur la digue, à marée montante, un homme au manteau sec se tient debout face au groupe, à vingt pas. L'eau arrive en lames grises, puis s'arrête à un pas de ses bottes, comme contre une vitre invisible. La boue autour de lui ne garde aucune empreinte. Il tourne la tête vers Nolwen, qui se tient parmi vous, et la regarde longtemps. Puis la brume monte de la baie et l'efface, sans bruit.",
+    "effets": [{ "fait": "f-fal-homme-bleme-marais" }]
+  }
+]

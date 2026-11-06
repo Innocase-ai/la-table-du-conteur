@@ -1,0 +1,80 @@
+{
+  "id": "magmatique",
+  "nom": "Magmatique",
+  "taille": "P",
+  "type": "Élémentaire",
+  "alignement": "Chaotique Neutre",
+  "ca": 14,
+  "pv": {
+    "moyenne": 13,
+    "des": "3d6 + 3"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 7,
+    "dex": 15,
+    "con": 12,
+    "int": 8,
+    "sag": 11,
+    "cha": 10
+  },
+  "sauvegardes": {},
+  "competences": {},
+  "initiative": 2,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 18,
+    "perceptionPassive": 10
+  },
+  "langues": "primordial (igné)",
+  "fp": "1/2",
+  "px": 100,
+  "bonusMaitrise": 2,
+  "traits": [
+    {
+      "id": "explosion-finale",
+      "nom": "Explosion finale",
+      "resume": "Le magmatique explose quand il meurt. JS Dextérité DD 11, chaque créature dans une Émanation de 3 m centrée sur le magmatique. Échec : 7 (2d6) dégâts de feu. Réussite : demi-dégâts."
+    }
+  ],
+  "actions": [
+    {
+      "cout": "action",
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 2,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "id": "contact",
+      "nom": "Contact",
+      "resume": "Corps à corps +4, allonge 1,50 m : 7 (2d4 + 2) dégâts de feu. Si la cible est une créature ou un objet inflammable qui n'est porté par personne, elle s'embrase.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 4
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      }
+    },
+    {
+      "cout": "bonus",
+      "degats": [],
+      "etats": [],
+      "id": "illumination-embrasee",
+      "nom": "Illumination embrasée",
+      "resume": "Le magmatique s'embrase ou éteint ses flammes. Embrasé, le magmatique produit une Lumière vive sur un rayon de 3 m et une Lumière faible sur 3 m de plus."
+    }
+  ]
+}

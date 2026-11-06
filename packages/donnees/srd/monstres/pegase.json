@@ -1,0 +1,76 @@
+{
+  "sauvegardes": {
+    "dex": 4,
+    "con": 5,
+    "sag": 4,
+    "cha": 3
+  },
+  "competences": {
+    "perception": 6
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "id": "pegase",
+  "nom": "Pégase",
+  "taille": "G",
+  "type": "Céleste",
+  "alignement": "Chaotique Bon",
+  "ca": 12,
+  "pv": {
+    "moyenne": 59,
+    "des": "7d10 + 21"
+  },
+  "vitesse": {
+    "marche": 18,
+    "vol": 27
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 16,
+    "int": 10,
+    "sag": 15,
+    "cha": 13
+  },
+  "initiative": 2,
+  "sens": {
+    "perceptionPassive": 16
+  },
+  "langues": "comprend le céleste, le commun, l'elfique et le sylvestre, mais ne parle pas",
+  "fp": "2",
+  "px": 450,
+  "bonusMaitrise": 2,
+  "actions": [
+    {
+      "id": "sabots",
+      "nom": "Sabots",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 7 (1d6 + 4) dégâts contondants plus 5 (2d4) dégâts radiants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d6",
+          "bonus": 4,
+          "type": "contondant"
+        },
+        {
+          "des": "2d4",
+          "bonus": 0,
+          "type": "radiant"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}

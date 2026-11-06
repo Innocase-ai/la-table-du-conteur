@@ -1,0 +1,170 @@
+{
+  "id": "diable-des-chaines",
+  "nom": "Diable des chaînes",
+  "taille": "M",
+  "type": "Fiélon (Diable)",
+  "alignement": "Loyal Mauvais",
+  "ca": 15,
+  "pv": {
+    "moyenne": 85,
+    "des": "10d8 + 40"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 18,
+    "dex": 15,
+    "con": 18,
+    "int": 11,
+    "sag": 12,
+    "cha": 14
+  },
+  "sauvegardes": {
+    "con": 7,
+    "sag": 4
+  },
+  "competences": {},
+  "initiative": 5,
+  "resistances": [
+    "contondant",
+    "froid",
+    "perforant",
+    "tranchant"
+  ],
+  "immunitesDegats": [
+    "feu",
+    "poison"
+  ],
+  "immunitesEtats": [
+    "empoisonne"
+  ],
+  "vulnerabilites": [],
+  "sens": {
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 11
+  },
+  "langues": "infernal ; télépathie 36 m",
+  "fp": "8",
+  "px": 3900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "vision-perce-tenebres",
+      "nom": "Vision dans le noir (perce les Ténèbres magiques)",
+      "resume": "La Vision dans le noir de ce fiélon perce les Ténèbres magiques."
+    },
+    {
+      "id": "resistance-a-la-magie",
+      "nom": "Résistance à la magie",
+      "resume": "Le diable a l'Avantage aux jets de sauvegarde contre les sorts et autres effets magiques."
+    },
+    {
+      "id": "restauration-diabolique",
+      "nom": "Restauration diabolique",
+      "resume": "Si le diable meurt hors des Neuf Enfers, son corps disparaît dans un nuage de fumée sulfureuse, tandis qu'il en acquiert aussitôt un nouveau et revient à la vie avec tous ses pv quelque part dans les Neuf Enfers."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le diable effectue deux attaques de Chaîne et recourt à Invocation de chaîne infernale.",
+      "multiattaque": [
+        {
+          "action": "chaine",
+          "nombre": 2
+        },
+        {
+          "action": "invocation-de-chaine-infernale",
+          "nombre": 1
+        }
+      ]
+    },
+    {
+      "id": "chaine",
+      "nom": "Chaîne",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 11 (2d6 + 4) dégâts tranchants. Si la cible est une créature de taille G ou inférieure, elle subit l'état Agrippé (évasion DD 14) par l'une des deux chaînes, ainsi que l'état Entravé tant qu'elle est Agrippée.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 4,
+          "type": "tranchant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "empoigne",
+          "evasion": 14,
+          "tailleMax": "G"
+        },
+        {
+          "etat": "entrave",
+          "tailleMax": "G"
+        }
+      ]
+    },
+    {
+      "id": "invocation-de-chaine-infernale",
+      "nom": "Invocation de chaîne infernale",
+      "cout": "action",
+      "resume": "Le diable invoque une chaîne de feu afin d'entraver une créature. JS Dextérité DD 15, une créature que le diable voit dans un rayon de 18 m. Échec : 9 (2d4 + 4) dégâts de feu et la cible subit l'état Entravé jusqu'à la fin du tour suivant du diable, stade auquel la chaîne disparaît. Si la cible est de taille G ou inférieure, le diable la déplace vers lui d'un maximum de 9 m en ligne droite. Réussite : la chaîne disparaît.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 18
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "feu"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "entrave",
+          "dureeRounds": 1
+        }
+      ]
+    },
+    {
+      "id": "regard-derangeant",
+      "nom": "Regard dérangeant",
+      "cout": "reaction",
+      "resume": "Déclencheur : une créature que le diable voit commence son tour dans un rayon de 9 m du diable et peut le voir. Conséquences : JS Sagesse DD 15, la créature ayant déclenché la Réaction. Échec : la cible subit l'état Effrayé jusqu'à la fin de son tour suivant. Réussite : la cible est immunisée contre le Regard dérangeant de ce diable pendant 24 heures.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "sag",
+        "dd": 15,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 9
+      },
+      "etats": [
+        {
+          "etat": "effraye",
+          "dureeRounds": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "sauvegardes": {
+    "sag": 4
+  },
+  "competences": {
+    "discretion": 6,
+    "perception": 4,
+    "tromperie": 5
+  },
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "id": "meduse",
+  "nom": "Méduse",
+  "taille": "M",
+  "type": "Monstruosité",
+  "alignement": "Loyale Mauvaise",
+  "ca": 15,
+  "pv": {
+    "moyenne": 127,
+    "des": "17d8 + 51"
+  },
+  "vitesse": {
+    "marche": 9
+  },
+  "caracteristiques": {
+    "for": 10,
+    "dex": 17,
+    "con": 16,
+    "int": 12,
+    "sag": 13,
+    "cha": 15
+  },
+  "initiative": 6,
+  "sens": {
+    "visionDansLeNoir": 45,
+    "perceptionPassive": 14
+  },
+  "langues": "commun et une autre langue",
+  "fp": "6",
+  "px": 2300,
+  "bonusMaitrise": 3,
+  "traits": [],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "La méduse effectue une attaque de Chevelure de serpents et deux de Griffe, ou bien elle effectue trois attaques de Rayon toxique.",
+      "multiattaque": [
+        {
+          "action": "chevelure-de-serpents",
+          "nombre": 1
+        },
+        {
+          "action": "griffe",
+          "nombre": 2
+        }
+      ]
+    },
+    {
+      "id": "chevelure-de-serpents",
+      "nom": "Chevelure de serpents",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 5 (1d4 + 3) dégâts perforants plus 14 (4d6) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "1d4",
+          "bonus": 3,
+          "type": "perforant"
+        },
+        {
+          "des": "4d6",
+          "bonus": 0,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "griffe",
+      "nom": "Griffe",
+      "cout": "action",
+      "resume": "Corps à corps +6, allonge 1,50 m : 10 (2d6 + 3) dégâts tranchants.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 6
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d6",
+          "bonus": 3,
+          "type": "tranchant"
+        }
+      ]
+    },
+    {
+      "id": "rayon-toxique",
+      "nom": "Rayon toxique",
+      "cout": "action",
+      "resume": "À distance +5, portée 45 m : 11 (2d8 + 2) dégâts de poison.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "distance",
+        "bonus": 5
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 45
+      },
+      "degats": [
+        {
+          "des": "2d8",
+          "bonus": 2,
+          "type": "poison"
+        }
+      ]
+    },
+    {
+      "id": "regard-petrifiant",
+      "nom": "Regard pétrifiant",
+      "cout": "bonus",
+      "resume": "(recharge 5-6) JS Constitution DD 13, chaque créature dans un Cône de 9 m. Si la méduse voit son reflet dans le Cône, elle effectue ce JS. Premier échec : la cible subit l'état Entravé et réitère le JS à la fin de son tour suivant si elle est toujours Entravée ; elle met un terme à l'effet sur elle-même en cas de réussite. Deuxième échec : la cible subit l'état Pétrifié qui remplace l'état Entravé (Pétrifié n'est pas représenté dans le moteur).",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 13,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 9
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "entrave",
+          "sauvegardeFinDeTour": true
+        }
+      ],
+      "recharge": "5-6"
+    }
+  ]
+}

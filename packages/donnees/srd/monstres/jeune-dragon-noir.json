@@ -1,0 +1,129 @@
+{
+  "id": "jeune-dragon-noir",
+  "nom": "Jeune dragon noir",
+  "taille": "G",
+  "type": "Dragon (Chromatique)",
+  "alignement": "Chaotique Mauvais",
+  "ca": 18,
+  "pv": {
+    "moyenne": 127,
+    "des": "15d10 + 45"
+  },
+  "vitesse": {
+    "marche": 12,
+    "nage": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 19,
+    "dex": 14,
+    "con": 17,
+    "int": 12,
+    "sag": 11,
+    "cha": 15
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 3
+  },
+  "competences": {
+    "discretion": 5,
+    "perception": 6
+  },
+  "initiative": 5,
+  "resistances": [],
+  "immunitesDegats": [
+    "acide"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 9,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 16
+  },
+  "langues": "commun, draconique",
+  "fp": "7",
+  "px": 2900,
+  "bonusMaitrise": 3,
+  "traits": [
+    {
+      "id": "amphibie",
+      "nom": "Amphibie",
+      "resume": "Le dragon peut respirer sous l'eau comme à l'air libre."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +7, allonge 3 m : 9 (2d4 + 4) dégâts tranchants plus 3 (1d6) dégâts d'acide.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 7
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d4",
+          "bonus": 4,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d6",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-d-acide",
+      "nom": "Souffle d'acide",
+      "cout": "action",
+      "resume": "Recharge 5-6. JS Dextérité DD 14, chaque créature dans une Ligne de 9 m de long sur 1,50 m de large. Échec : 49 (14d6) dégâts d'acide. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 14,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 9,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "14d6",
+          "bonus": 0,
+          "type": "acide"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    }
+  ]
+}

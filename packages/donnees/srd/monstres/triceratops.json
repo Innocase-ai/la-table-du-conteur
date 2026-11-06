@@ -1,0 +1,82 @@
+{
+  "sauvegardes": {},
+  "competences": {},
+  "resistances": [],
+  "immunitesDegats": [],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "traits": [],
+  "langues": "aucune",
+  "alignement": "non aligné",
+  "type": "Bête (Dinosaure)",
+  "bonusMaitrise": 3,
+  "id": "triceratops",
+  "nom": "Tricératops",
+  "taille": "TG",
+  "ca": 14,
+  "pv": {
+    "moyenne": 114,
+    "des": "12d12 + 36"
+  },
+  "vitesse": {
+    "marche": 15
+  },
+  "caracteristiques": {
+    "for": 22,
+    "dex": 9,
+    "con": 17,
+    "int": 2,
+    "sag": 11,
+    "cha": 5
+  },
+  "initiative": -1,
+  "sens": {
+    "perceptionPassive": 10
+  },
+  "fp": "5",
+  "px": 1800,
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le tricératops effectue deux attaques de Coup de corne.",
+      "multiattaque": [
+        {
+          "action": "coup-de-corne",
+          "nombre": 2
+        }
+      ],
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "coup-de-corne",
+      "nom": "Coup de corne",
+      "cout": "action",
+      "resume": "Corps à corps +9, allonge 1,50 m : 19 (2d12 + 6) dégâts perforants. Si la cible est de taille TG ou inférieure et si le tricératops s'est déplacé en ligne droite d'au moins 6 m juste avant de la toucher, la cible subit 9 (2d8) dégâts perforants supplémentaires, ainsi que l'état À terre.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 9
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 1.5
+      },
+      "degats": [
+        {
+          "des": "2d12",
+          "bonus": 6,
+          "type": "perforant"
+        }
+      ],
+      "etats": [
+        {
+          "etat": "a-terre",
+          "tailleMax": "TG"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+[
+  {
+    "id": "ps-crique",
+    "nom": "Crique des Gueux",
+    "type": "lieu-dit",
+    "parent": "port-sillage",
+    "resume": "Une anse de sable gris, à quarante minutes de la place par la falaise, avec des épaves de barques, un entrepôt de bois goudronné et une grotte sous la falaise.",
+    "accroche": "Au bout du sentier, la falaise s'ouvre sur une anse de sable gris ; un hangar de bois goudronné et des épaves de barques au bord de l'eau.",
+    "description": "La crique des Gueux est une anse de sable gris d'une trentaine de mètres, fermée au nord et au sud par des murs de granit. On y descend par le sentier des Goémons, qui part de la place de la Criée et longe la falaise sud : quarante minutes de marche, avec un passage noyé aux fortes marées. À marée basse, la plage est large et praticable ; à marée haute, la crique ne se joint plus que par la mer. Sur le sable, deux épaves de barques échouées, des mares où vivent des crabes, des cordes salées qui pourrissent sur des pieux et des algues sèches. À l'est, un entrepôt de bois goudronné est adossé à la falaise, avec ses caisses, ses tonneaux et une barque légère sur des rouleaux. Une grotte creusée sous la falaise s'ouvre au fond de l'entrepôt, par un couloir de roche ; à l'intérieur, un ponton de planches longe une eau de mer calme et un coffre de chêne est fixé au mur. Le lieu ne se trouve que par le sentier, ou par la mer.",
+    "ambiance": "Ressac, goélands, bois qui craque.",
+    "visuel": "Une anse de sable gris fermée à gauche et à droite par des murs de granit gris, vue du haut du sentier. Au premier plan, deux épaves de barques échouées, leur bordé bleu ardoise écaillé, et des mares qui brillent entre les pierres. Au fond, à droite, un hangar de bois goudronné adossé à la falaise, et plus haut une fente sombre dans la roche, l'entrée d'une grotte. La lumière dorée tombe de biais sur le sable, et la mer, à marée basse, est loin à l'ouest.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "pl-quai",
+        "type": "chemin",
+        "heures": 0.7,
+        "sens": "double",
+        "description": "Depuis la crique, le sentier remonte la grève ; le quai et les barques tirées au sec se voient en premier, loin au nord. Noyé aux fortes marées.",
+        "retour": "Au sud du quai, le sentier des Goémons quitte le bois et longe la falaise par la grève, environ quarante minutes de marche ; noyé aux fortes marées."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 20,
+      "y": 64
+    }
+  },
+  {
+    "id": "cr-plage",
+    "nom": "La plage et ses mares",
+    "type": "lieu-dit",
+    "parent": "ps-crique",
+    "resume": "Une plage de sable gris semée de mares et d'épaves, où la marée décide du passage.",
+    "accroche": "Au pied de la falaise, une plage de sable gris où brillent des mares et deux épaves de barques échouées.",
+    "description": "La plage occupe le centre de l'anse : 24 cases sur 14, soit environ 36 sur 21 mètres. Le sable gris monte doucement depuis la mer, au sud-ouest, jusqu'à la falaise au nord. Le sentier de falaise arrive par le nord-ouest, entre deux rochers. À marée basse, une passe de rochers au sud-ouest permet de contourner le sable par la mer. Quatre mares peu profondes s'étendent au sud, pleines d'algues et de crabes qui se cachent sous les pierres. Deux épaves de barques sont échouées : la première, au centre-nord, a son bordé bleu écaillé et un mât brisé ; la seconde, à l'est, repose sur sa quille. Une bouée de liège rouge est pendue au pieu de la première. À l'est, la porte double de l'entrepôt ouvre sur le sable. Il n'y a rien à prendre sur la plage.",
+    "ambiance": "Ressac, goélands, craquements de bois mouillé.",
+    "visuel": "Une plage de sable gris en pente douce, fermée au nord par une falaise de granit et au sud-ouest par une passe de rochers. Trois éléments remarquables : deux épaves de barques échouées, l'une au centre-nord, l'autre à l'est, leur bordé bleu ardoise écaillé ; quatre mares peu profondes au sud, luisantes d'algues ; une bouée de liège rouge pendue au pieu de la première épave. La lumière dorée vient de l'ouest, au-dessus de la mer, et allonge les ombres des épaves vers l'est.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "cr-entrepot",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un mur de planches goudronnées percé d'une porte double, à l'est, ouverte sur la lueur d'une lanterne.",
+        "retour": "Une porte double de planches, ouverte sur le sable gris et la lueur du jour."
+      },
+      {
+        "vers": "pl-quai",
+        "type": "chemin",
+        "heures": 0.7,
+        "sens": "simple",
+        "description": "Un sentier de falaise, marqué de piquets, remonte vers le nord-ouest entre les rochers ; il est noyé à marée haute."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z3-r-crabes-des-mares",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z3-mares-a-crabes",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z3-passe-des-rochers",
+        "decouverte": {
+          "dd": 11,
+          "competence": "survie"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 40,
+      "y": 50
+    }
+  },
+  {
+    "id": "cr-entrepot",
+    "nom": "L'entrepôt",
+    "type": "batiment",
+    "parent": "ps-crique",
+    "resume": "Un entrepôt de bois goudronné, adossé à la falaise, plein de caisses et de toile cirée.",
+    "accroche": "Sous la falaise, un long hangar de bois goudronné, une porte ouverte sur la plage et deux lanternes qui brûlent.",
+    "description": "L'entrepôt est un hangar de 14 sur 10 cases, aux planches de bois goudronné posées à la verticale. Le mur nord est la falaise elle-même. Contre ce mur, deux piles de caisses neuves cerclées de fer ; plus loin, un tas de toile cirée roulée. La caisse de tête, couverte d'une bâche, est au fond, contre le mur est : c'est là que la clé est rangée. Au centre, une table de travail porte une balance, des couteaux et des rouleaux de corde. Au sud, une barque légère repose sur des rouleaux, la proue tournée vers la porte ouest. Trois tonneaux sont alignés le long du mur est. Au fond, dans le mur de falaise, une porte basse mène au couloir de la grotte. Deux lanternes de poisson pendent aux poutres, l'une près de la porte ouest, l'autre au centre-nord. Le jour n'entre que par la porte ouverte ; l'odeur de goudron reste dans les vêtements.",
+    "ambiance": "Planches qui grincent, goudron, lanternes qui sifflent.",
+    "visuel": "Un hangar de planches goudronnées, brun presque noir, adossé à une falaise de granit gris ; une porte double ouverte à l'ouest, sur le sable. Trois éléments remarquables : deux piles de caisses neuves cerclées de fer contre le mur nord, une table de travail au centre, une barque légère sur des rouleaux au sud. Deux lanternes de poisson, ambre, éclairent la pièce, et le jour entre par la porte ouverte.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "liens": [
+      {
+        "vers": "cr-grotte",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au fond, une porte basse de planches s'ouvre sur un couloir de roche qui sent le sel et l'huile ; une lanterne y brûle.",
+        "retour": "Le couloir sort de la roche sous la falaise ; la porte de planches donne sur les caisses de l'entrepôt."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z3-r-guetteur-bavard",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "z3-r-bandits-de-l-entrepot",
+        "declencheur": "exploration",
+        "condition": {
+          "jauge": {
+            "id": "grande-maree",
+            "max": 2
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z3-caisses-neuves",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z3-vague-a-trois-cretes",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      },
+      {
+        "fait": "f-z3-barque-de-l-entrepot",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [
+      "z3-ev-bandits-a-la-grotte"
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 65,
+      "y": 22
+    }
+  },
+  {
+    "id": "cr-grotte",
+    "nom": "La grotte sous la falaise",
+    "type": "grotte",
+    "parent": "ps-crique",
+    "resume": "Une grotte creusée sous la falaise, un ponton sur une eau calme et un coffre de chêne contre le mur.",
+    "accroche": "Dans la falaise, au-dessus de l'entrepôt, une fente sombre ; un souffle d'air frais sort de la roche et sent le sel.",
+    "description": "La grotte s'ouvre au bout d'un couloir de roche de six cases, qui part de la porte basse de l'entrepôt. La chambre fait douze cases sur huit, soit environ dix-huit mètres sur douze, et son plafond laisse passer un homme debout. La moitié ouest est une plate-forme de rocher sec, où l'on peut se tenir à l'aise. À l'est, un ponton de planches goudronnées avance sur une eau de mer calme et profonde ; une chaloupe est amarrée à son bout, et une ancre rouillée retient sa chaîne. Une fente dans le plafond laisse tomber une lumière pâle au-dessus du ponton. Le coffre de chêne, cerclé de laiton, est fixé au mur nord : trois cadrans de laiton sont sur sa face avant, chacun gravé d'un petit carré où ondule une ligne d'eau, en haut du carré sur le premier, en bas sur le deuxième, au milieu sur le troisième. À sa droite, des marques de marée sont gravées dans la roche, à hauteur d'épaule : trois rangs de traits à trois hauteurs différentes, chacun avec son chiffre ; en haut sept traits et un 7, au milieu cinq traits et un 5, en bas deux traits et un 2. Le coffre renferme un livre relié de cuir et une lettre scellée. Le lieu est humide et frais, et chaque bruit revient deux fois.",
+    "ambiance": "Eau calme, écho, lanterne qui crépite.",
+    "visuel": "Une grotte de granit gris, basse à l'entrée puis plus haute au fond, qui se prolonge par un couloir de roche venu de l'entrepôt. Trois éléments remarquables : un coffre de chêne cerclé de laiton contre le mur nord, avec trois cadrans de laiton sur sa face ; un ponton de planches goudronnées qui avance sur une eau calme, une chaloupe amarrée au bout ; une fente au plafond, au-dessus du bout du ponton. Une lanterne de poisson accrochée à un crochet de fer éclaire les lieux d'un ambre chaud, et la lumière pâle de la fente tombe sur l'eau.",
+    "niveau": {
+      "min": 3,
+      "max": 3
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z3-r-sorel-et-ses-hommes",
+        "declencheur": "entree",
+        "condition": {
+          "non": {
+            "flag": "sorel-neutralise"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z3-cadrans-du-coffre",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z3-marques-de-maree",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z3-livre-dans-le-coffre",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-z3-fil-de-laiton",
+        "decouverte": {
+          "dd": 13,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [
+      "z3-ev-coffre-vide"
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": {
+      "x": 80,
+      "y": 42
+    }
+  }
+]

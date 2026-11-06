@@ -1,0 +1,582 @@
+{
+  "id": "occultiste",
+  "nom": "Occultiste",
+  "caracteristiquesPrincipales": {
+    "mode": "ou",
+    "liste": [
+      "cha"
+    ]
+  },
+  "deVie": 8,
+  "sauvegardes": [
+    "sag",
+    "cha"
+  ],
+  "competences": {
+    "nombre": 2,
+    "parmi": [
+      "arcanes",
+      "histoire",
+      "intimidation",
+      "investigation",
+      "nature",
+      "religion",
+      "tromperie"
+    ]
+  },
+  "maitrisesArmes": [
+    "courantes"
+  ],
+  "formationArmures": [
+    "legere"
+  ],
+  "outils": [],
+  "equipementDepart": [
+    {
+      "id": "A",
+      "objets": [
+        "armure de cuir",
+        "serpe",
+        "2 dagues",
+        "focaliseur arcanique (orbe)",
+        "livre (savoir occulte)",
+        "paquetage d’érudit"
+      ],
+      "po": 15
+    },
+    {
+      "id": "B",
+      "objets": [],
+      "po": 100
+    }
+  ],
+  "incantation": {
+    "type": "pacte",
+    "caracteristique": "cha",
+    "sortsMineurs": [
+      2,
+      2,
+      2,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "sortsPrepares": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      10,
+      11,
+      11,
+      12,
+      12,
+      13,
+      13,
+      14,
+      14,
+      15,
+      15
+    ],
+    "emplacements": [
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ],
+      [
+        4
+      ]
+    ],
+    "niveauEmplacementPacte": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "progression": [
+    {
+      "niveau": 1,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Manifestations occultes",
+        "Magie de pacte"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 1
+      }
+    },
+    {
+      "niveau": 2,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Rouerie magique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 3
+      }
+    },
+    {
+      "niveau": 3,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Sous-classe d’Occultiste"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 3
+      }
+    },
+    {
+      "niveau": 4,
+      "bonusMaitrise": 2,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 3
+      }
+    },
+    {
+      "niveau": 5,
+      "bonusMaitrise": 3,
+      "aptitudes": [],
+      "colonnes": {
+        "Manifestations occultes": 5
+      }
+    },
+    {
+      "niveau": 6,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 5
+      }
+    },
+    {
+      "niveau": 7,
+      "bonusMaitrise": 3,
+      "aptitudes": [],
+      "colonnes": {
+        "Manifestations occultes": 6
+      }
+    },
+    {
+      "niveau": 8,
+      "bonusMaitrise": 3,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 6
+      }
+    },
+    {
+      "niveau": 9,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Communication avec le protecteur"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 7
+      }
+    },
+    {
+      "niveau": 10,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 7
+      }
+    },
+    {
+      "niveau": 11,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Arcanum mystique (sort du 6e niveau)"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 7
+      }
+    },
+    {
+      "niveau": 12,
+      "bonusMaitrise": 4,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 8
+      }
+    },
+    {
+      "niveau": 13,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Arcanum mystique (sort du 7e niveau)"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 8
+      }
+    },
+    {
+      "niveau": 14,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Aptitude de sous-classe"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 8
+      }
+    },
+    {
+      "niveau": 15,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Arcanum mystique (sort du 8e niveau)"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 9
+      }
+    },
+    {
+      "niveau": 16,
+      "bonusMaitrise": 5,
+      "aptitudes": [
+        "Amélioration de caractéristique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 9
+      }
+    },
+    {
+      "niveau": 17,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Arcanum mystique (sort du 9e niveau)"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 9
+      }
+    },
+    {
+      "niveau": 18,
+      "bonusMaitrise": 6,
+      "aptitudes": [],
+      "colonnes": {
+        "Manifestations occultes": 10
+      }
+    },
+    {
+      "niveau": 19,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Faveur épique"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 10
+      }
+    },
+    {
+      "niveau": 20,
+      "bonusMaitrise": 6,
+      "aptitudes": [
+        "Maître de l’occulte"
+      ],
+      "colonnes": {
+        "Manifestations occultes": 10
+      }
+    }
+  ],
+  "aptitudes": [
+    {
+      "id": "manifestations-occultes",
+      "nom": "Manifestations occultes",
+      "niveau": 1,
+      "resume": "Reçoit une Manifestation occulte au choix (par exemple Pacte du grimoire), puis d’autres selon la colonne Manifestations occultes (3 au niveau 2, 5 au niveau 5). Certaines ont des prérequis ; à chaque niveau d’Occultiste, il peut en remplacer une.",
+      "effets": []
+    },
+    {
+      "id": "magie-de-pacte",
+      "nom": "Magie de pacte",
+      "niveau": 1,
+      "resume": "Lance des sorts d’Occultiste avec le Charisme, via un focaliseur arcanique. Ses emplacements de Magie de pacte sont tous du même niveau (table) et se récupèrent au Repos court ou long ; à chaque niveau d’Occultiste, il peut changer un sort mineur et un sort préparé.",
+      "effets": []
+    },
+    {
+      "id": "rouerie-magique",
+      "nom": "Rouerie magique",
+      "niveau": 2,
+      "resume": "Par un rite de 1 minute, regagne des emplacements de Magie de pacte dépensés à concurrence de la moitié de son maximum (arrondie au supérieur). Une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 4,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions. Se répète aux niveaux 8, 12 et 16.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-8",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 8,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions (même aptitude qu’au niveau 4).",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "communication-avec-le-protecteur",
+      "nom": "Communication avec le protecteur",
+      "niveau": 9,
+      "resume": "Le sort contact avec les plans est toujours préparé ; il le lance sans emplacement de sort et réussit automatiquement le jet de sauvegarde du sort. Il doit terminer un Repos long avant de le relancer ainsi.",
+      "effets": []
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-12",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 12,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions (même aptitude qu’au niveau 4).",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "amelioration-de-caracteristique-niveau-16",
+      "nom": "Amélioration de caractéristique",
+      "niveau": 16,
+      "resume": "Reçoit le don Amélioration de caractéristique ou un autre don dont il remplit les conditions (même aptitude qu’au niveau 4).",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "arcanum-mystique-6",
+      "nom": "Arcanum mystique (sort du 6e niveau)",
+      "niveau": 11,
+      "resume": "Choisit un sort d’Occultiste du 6e niveau comme arcanum, qu’il lance sans emplacement de sort ; il doit ensuite terminer un Repos long pour le relancer ainsi. À chaque niveau d’Occultiste, il peut remplacer un arcanum par un autre sort d’Occultiste du même niveau.",
+      "effets": []
+    },
+    {
+      "id": "arcanum-mystique-7",
+      "nom": "Arcanum mystique (sort du 7e niveau)",
+      "niveau": 13,
+      "resume": "Choisit un sort d’Occultiste du 7e niveau comme arcanum, lancé sans emplacement de sort, une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "arcanum-mystique-8",
+      "nom": "Arcanum mystique (sort du 8e niveau)",
+      "niveau": 15,
+      "resume": "Choisit un sort d’Occultiste du 8e niveau comme arcanum, lancé sans emplacement de sort, une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "arcanum-mystique-9",
+      "nom": "Arcanum mystique (sort du 9e niveau)",
+      "niveau": 17,
+      "resume": "Choisit un sort d’Occultiste du 9e niveau comme arcanum, lancé sans emplacement de sort, une fois par Repos long.",
+      "effets": []
+    },
+    {
+      "id": "faveur-epique",
+      "nom": "Faveur épique",
+      "niveau": 19,
+      "resume": "Reçoit un don de Faveur épique ou un autre don dont il remplit les conditions. Faveur du destin est recommandé.",
+      "effets": [
+        {
+          "type": "amelioration_caracteristique"
+        }
+      ]
+    },
+    {
+      "id": "maitre-de-l-occulte",
+      "nom": "Maître de l’occulte",
+      "niveau": 20,
+      "resume": "Quand il utilise Rouerie magique, il récupère tous ses emplacements de sort de Magie de pacte dépensés.",
+      "effets": []
+    }
+  ],
+  "sousClasse": {
+    "id": "protecteur-fielon",
+    "nom": "Protecteur Fiélon",
+    "aptitudes": [
+      {
+        "id": "benediction-du-tenebreux",
+        "nom": "Bénédiction du ténébreux",
+        "niveau": 3,
+        "resume": "Quand il réduit un adversaire à 0 point de vie, ou qu’autrui le fait dans un rayon de 3 m, il reçoit des points de vie temporaires égaux à son modificateur de Charisme + son niveau d’Occultiste (1 au minimum).",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-fielon",
+        "nom": "Sorts du Fiélon",
+        "niveau": 3,
+        "resume": "Sorts toujours préparés : au niveau 3 injonction, mains brûlantes, rayon ardent et suggestion ; au niveau 5 boule de feu et nuage nauséabond.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "injonction",
+              "mains-brulantes",
+              "rayon-ardent",
+              "suggestion"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sorts-du-fielon-niveau-5",
+        "nom": "Sorts du Fiélon (niveau 5)",
+        "niveau": 5,
+        "resume": "Sorts toujours préparés au niveau 5 : boule de feu, nuage nauseabond.",
+        "effets": [
+          {
+            "type": "sorts_accordes",
+            "sorts": [
+              "boule-de-feu",
+              "nuage-nauseabond"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "chance-du-tenebreux",
+        "nom": "Chance du ténébreux",
+        "niveau": 6,
+        "resume": "Lors d’un test de caractéristique ou d’un jet de sauvegarde, il peut ajouter 1d10 au jet, après l’avoir effectué mais avant ses effets (une fois par jet). Utilisations : un nombre égal à son modificateur de Charisme (1 minimum), récupérées au Repos long.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-fielon-niveau-7",
+        "nom": "Sorts du Fiélon (niveau 7)",
+        "niveau": 7,
+        "resume": "Sorts toujours préparés au niveau 7 : bouclier de feu, mur de feu.",
+        "effets": []
+      },
+      {
+        "id": "sorts-du-fielon-niveau-9",
+        "nom": "Sorts du Fiélon (niveau 9)",
+        "niveau": 9,
+        "resume": "Sorts toujours préparés au niveau 9 : fléau d’insectes, quête.",
+        "effets": []
+      },
+      {
+        "id": "resistance-fielonne",
+        "nom": "Résistance fiélonne",
+        "niveau": 10,
+        "resume": "À chaque Repos court ou long, il choisit un type de dégâts autre que Force et y a la Résistance jusqu’à ce qu’il en choisisse un autre.",
+        "effets": []
+      },
+      {
+        "id": "traversee-des-enfers",
+        "nom": "Traversée des enfers",
+        "niveau": 14,
+        "resume": "Une fois par tour, quand il touche une créature avec un jet d’attaque, il peut tenter de la projeter dans les Plans Inférieurs : jet de sauvegarde de Charisme (DD de sauvegarde des sorts), sinon la cible subit 8d10 dégâts psychiques (si elle n’est pas un Fiélon) et l’état Neutralisé jusqu’à la fin de son tour suivant, puis revient. Ensuite, il doit terminer un Repos long ou dépenser un emplacement de Magie de pacte (sans action) pour la réutiliser.",
+        "effets": []
+      }
+    ]
+  }
+}

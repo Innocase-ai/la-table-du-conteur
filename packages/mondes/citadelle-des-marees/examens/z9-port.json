@@ -1,0 +1,118 @@
+[
+  {
+    "id": "exa-registre-de-la-ligue",
+    "lieu": "por-hall-de-la-ligue",
+    "nom": "Le grand registre de la Ligue",
+    "apercu": "Trois colonnes par navire, une seule pour les marées.",
+    "texte": "Le registre repose sur un pupitre de chêne, épais comme une brique et relié de cuir sombre. Chaque navire y occupe trois colonnes, dont une seule sert aux marées : une écriture serrée qui tremble davantage à mesure qu'on tourne les pages. Les premières lignes s'alignent sans une rature. Plus loin, les heures se bousculent dans la marge, l'encre pâlit, les mots raccourcissent. Le papier sent la craie humide et le sel.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "un-siecle-de-retards",
+        "condition": {
+          "fait": "f-por-marees-du-registre"
+        },
+        "texte": "En tournant les pages, on suit les retards depuis un siècle. Une marée basse notée à l'heure, puis une autre avec une heure de retard, puis deux. Chaque mention est plus courte et plus pressée que la précédente, comme si le clerc n'avait plus le temps d'écrire. La dernière ligne est rayée d'un trait net, puis réécrite dessous d'une main plus ferme. Les trois colonnes des navires, elles, restent parfaitement droites.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-piliers-de-la-chapelle",
+    "lieu": "por-chapelle-des-noyes",
+    "nom": "Les piliers gravés",
+    "apercu": "Des noms neufs, et quelques-uns sans date.",
+    "texte": "Les noms sont gravés dans la pierre bleue des piliers, en lettres droites encore claires : la poussière de taille n'a pas eu le temps de s'assombrir au fond des creux. Certains portent une date d'hiver, d'autres seulement un prénom et un port d'attache. Quelqu'un a frotté chaque lettre à la brosse, avec soin. Au pied d'un pilier, une coulure de cire a fondu sur la dalle, et personne ne l'a grattée.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "noms-d-hier",
+        "condition": {
+          "fait": "f-por-noms-des-noyes"
+        },
+        "texte": "Ces noms sont ceux de naufragés repêchés ces derniers mois, et leurs dates d'hiver sont récentes. Pourtant la dalle sous les piliers est sèche, sans une trace de boue ni de pas, comme si aucun corps n'était jamais passé par là. Les lettres ont été gravées une à une, avec la patience de quelqu'un qui tient un registre. Quelques noms n'ont pas de date : on les a ajoutés sans savoir quand. La coulure de cire au pied du pilier est la seule trace qu'on soit venu prier ici.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-caisses-de-sel",
+    "lieu": "por-entrepots-des-rats",
+    "nom": "Les caisses de sel",
+    "apercu": "Des caisses trop lourdes, qui sonnent creux.",
+    "texte": "Des dizaines de caisses de bois clair, estampillées « sel gris » au fer rouge, s'entassent jusqu'aux poutres. Elles sont trop lourdes pour du sel : on les soulève à deux. Quand on frappe le couvercle de l'une d'elles, le bois sonne creux. Les estampilles sont fraîches et nettes. Sur une seule caisse, la marque a été grattée au couteau, puis repeinte par-dessus, à la hâte.",
+    "effets": [
+      {
+        "fait": "f-por-caisses-faux-noms"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "faux-noms-connus",
+        "condition": {
+          "fait": "f-rats-vendent-les-passages"
+        },
+        "texte": "Sous les estampilles « sel gris », on devine à présent des numéros de passage, peints puis grattés. Chaque caisse est une place vendue : une sortie de la côte, payée d'avance, par la chaussée ou par les égouts. Les caisses qui sonnent creux attendent leur passager, et le sel n'y est pour rien. Les estampilles sont fraîches : le commerce se fait encore, et le quai en vit.",
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "exa-porte-du-phare-du-port",
+    "lieu": "por-phare-du-port",
+    "nom": "La porte enchaînée",
+    "apercu": "Une chaîne neuve, un cachet, des égratignures.",
+    "texte": "Une porte de chêne, ceinte d'une chaîne neuve dont les maillons luisent encore de graisse. Sur le cadenas, un cachet de cire noire porte trois vagues en relief, nettes et récentes. Au bas du battant, de longues égratignures courent à la hauteur d'un pied, comme si des pilotes avaient cherché une prise sur le bois. La lanterne au-dessus de la porte ne brille plus, et la jetée est déserte.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "cellule-de-la-ligue",
+        "condition": {
+          "fait": "f-ligue-et-phare-cellule"
+        },
+        "texte": "Le phare n'est pas fermé pour être gardé : il est apprêté pour garder. Le cachet de cire noire scelle un verrou qui ne s'ouvre que de l'extérieur, et les égratignures ont été faites du côté du port, par des pilotes qui ne pouvaient pas entrer. La chaîne neuve est là pour que la porte ne cède jamais, de l'intérieur comme de l'extérieur. Cette cellule attend quelqu'un. La Ligue appelle cela de la sagesse.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous examine le cadenas : un modèle de la Ligue, à trois goupilles, dont le ressort est neuf et le cuivre sans une rayure de crochet. La serrure n'a jamais servi."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous, nain de forge, voit que les maillons sont soudés à chaud, sans rivet, d'un fer qu'on n'emploie plus sur la côte : une chaîne faite pour durer."
+      }
+    ]
+  },
+  {
+    "id": "exa-coque-sous-la-bache",
+    "lieu": "por-cale-seche",
+    "nom": "La barque sous la bâche",
+    "apercu": "Une barque prête, sous une bâche récente.",
+    "texte": "Une barque de pilote, à fond plat, dort sous une bâche récente aux cordes neuves. Sa coque est calfatée avec soin, le brai brille encore, et des rames neuves sont rangées dessous, dans un râtelier de bois. La quille attend pourtant un dernier coup de maillet. Au pied du chantier, les galets de la cale luisent de sel, et une grille de fer ferme le fond de la fosse.",
+    "effets": [
+      {
+        "fait": "f-por-barque-cachee"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "barque-de-la-chaussee",
+        "condition": {
+          "fait": "f-chaussee-des-basses-eaux"
+        },
+        "texte": "Le fond plat n'est pas fait pour la haute mer : il est fait pour glisser sur la chaussée des Basses-Eaux, quand la pierre découverte luit sous la brume. La coque a été préparée pour ça, les lisses poncées, les rames neuves rangées pour un passage court. Pourtant personne ne l'a utilisée. La bâche est récente, le brai frais, et la barque attend le jour où quelqu'un osera suivre la pierre.",
+        "effets": []
+      }
+    ]
+  }
+]

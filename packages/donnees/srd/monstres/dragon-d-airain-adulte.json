@@ -1,0 +1,219 @@
+{
+  "id": "dragon-d-airain-adulte",
+  "nom": "Dragon d’airain adulte",
+  "taille": "TG",
+  "type": "Dragon (Métallique)",
+  "alignement": "Chaotique Bon",
+  "ca": 18,
+  "pv": {
+    "moyenne": 172,
+    "des": "15d12 + 75"
+  },
+  "vitesse": {
+    "marche": 12,
+    "vol": 24
+  },
+  "caracteristiques": {
+    "for": 23,
+    "dex": 10,
+    "con": 21,
+    "int": 14,
+    "sag": 13,
+    "cha": 17
+  },
+  "sauvegardes": {
+    "dex": 5,
+    "sag": 6
+  },
+  "competences": {
+    "discretion": 5,
+    "histoire": 7,
+    "perception": 11,
+    "persuasion": 8
+  },
+  "initiative": 10,
+  "resistances": [],
+  "immunitesDegats": [
+    "feu"
+  ],
+  "immunitesEtats": [],
+  "vulnerabilites": [],
+  "sens": {
+    "visionAveugle": 18,
+    "visionDansLeNoir": 36,
+    "perceptionPassive": 21
+  },
+  "langues": "commun, draconique",
+  "fp": "13",
+  "px": 10000,
+  "bonusMaitrise": 5,
+  "traits": [
+    {
+      "id": "fouissement",
+      "nom": "Vitesse de fouissement",
+      "resume": "Vitesse de fouissement 9 m (non représentée dans le moteur)."
+    },
+    {
+      "id": "px-dans-son-antre",
+      "nom": "PX dans son antre",
+      "resume": "Le dragon vaut 11 500 PX dans son antre (10 000 PX hors antre)."
+    },
+    {
+      "id": "resistance-legendaire",
+      "nom": "Résistance légendaire",
+      "resume": "(3/jour, ou 4/jour dans son antre.) Si le dragon rate un jet de sauvegarde, il peut décider de le réussir tout de même."
+    },
+    {
+      "id": "incantation",
+      "nom": "Incantation",
+      "resume": "Le dragon lance l'un des sorts suivants sans composantes matérielles, le Charisme étant sa caractéristique d'incantation (DD de sauvegarde 16) : À volonté : changement de forme (Bête ou Humanoïde uniquement, le sort ne fait pas gagner de points de vie temporaires, ni Concentration ni points de vie temporaires nécessaires pour maintenir le sort), communication avec les animaux, détection de la magie, illusion mineure, rayon ardent. 1/jour chacun : contrôle du climat, détection des pensées."
+    },
+    {
+      "id": "actions-legendaires",
+      "nom": "Actions légendaires",
+      "resume": "Utilisations d'action Légendaire : 3 (4 dans son antre). Aussitôt après le tour d'une autre créature, le dragon peut dépenser une utilisation pour entreprendre l'une des actions ci-après. Le dragon récupère toutes ses utilisations dépensées au début de chacun de ses tours. Assaut incisif : le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée. Lumière aveuglante : le dragon recourt à Incantation pour lancer rayon ardent. Sables brûlants : JS Dextérité DD 16, une créature que le dragon voit dans un rayon de 36 m. Échec : 27 (6d8) dégâts de feu, et la Vitesse de la cible est réduite de moitié jusqu'à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant."
+    }
+  ],
+  "actions": [
+    {
+      "id": "attaques-multiples",
+      "nom": "Attaques multiples",
+      "cout": "action",
+      "resume": "Le dragon effectue trois attaques de Saignée. Il peut remplacer l'une de ces attaques par une utilisation de (A) Incantation pour lancer rayon ardent ou (B) Souffle soporifique.",
+      "multiattaque": [
+        {
+          "action": "saignee",
+          "nombre": 3
+        }
+      ]
+    },
+    {
+      "id": "saignee",
+      "nom": "Saignée",
+      "cout": "action",
+      "resume": "Corps à corps +11, allonge 3 m : 17 (2d10 + 6) dégâts tranchants plus 4 (1d8) dégâts de feu.",
+      "resolution": {
+        "type": "attaque",
+        "mode": "corps-a-corps",
+        "bonus": 11
+      },
+      "portee": {
+        "type": "contact",
+        "allonge": 3
+      },
+      "degats": [
+        {
+          "des": "2d10",
+          "bonus": 6,
+          "type": "tranchant"
+        },
+        {
+          "des": "1d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    },
+    {
+      "id": "souffle-de-feu",
+      "nom": "Souffle de feu",
+      "cout": "action",
+      "resume": "JS Dextérité DD 18, chaque créature dans une Ligne de 18 m de long sur 1,50 m de large. Échec : 45 (10d8) dégâts de feu. Réussite : demi-dégâts.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 18,
+        "moitieSiReussite": true
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "ligne",
+        "taille": 18,
+        "largeur": 1.5
+      },
+      "degats": [
+        {
+          "des": "10d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": [],
+      "recharge": "5-6"
+    },
+    {
+      "id": "souffle-soporifique",
+      "nom": "Souffle soporifique",
+      "cout": "action",
+      "resume": "JS Constitution DD 18, chaque créature dans un Cône de 18 m. Échec : la cible subit l'état Neutralisé jusqu'à la fin de son tour suivant, et réitère alors son JS. Deuxième échec : la cible subit l'état Inconscient pendant 10 minutes. Cet effet prend fin pour la cible si celle-ci subit des dégâts ou si une créature dans un rayon de 1,50 m consacre une action à la réveiller.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "con",
+        "dd": 18,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "personnel"
+      },
+      "zone": {
+        "forme": "cone",
+        "taille": 18
+      },
+      "degats": [],
+      "etats": [
+        {
+          "etat": "neutralise",
+          "dureeRounds": 1,
+          "sauvegardeFinDeTour": false
+        },
+        {
+          "etat": "inconscient",
+          "dureeRounds": 100
+        }
+      ]
+    },
+    {
+      "id": "assaut-incisif",
+      "nom": "Assaut incisif",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon se déplace à concurrence de la moitié de sa Vitesse et effectue une attaque de Saignée.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "lumiere-aveuglante",
+      "nom": "Lumière aveuglante",
+      "cout": "gratuit",
+      "resume": "Action légendaire. Le dragon recourt à Incantation pour lancer rayon ardent.",
+      "degats": [],
+      "etats": []
+    },
+    {
+      "id": "sables-brulants",
+      "nom": "Sables brûlants",
+      "cout": "gratuit",
+      "resume": "Action légendaire. JS Dextérité DD 16, une créature que le dragon voit dans un rayon de 36 m. Échec : 27 (6d8) dégâts de feu, et la Vitesse de la cible est réduite de moitié jusqu'à la fin de son tour suivant. Échec ou réussite : le dragon ne peut alors plus entreprendre cette action jusqu'au début de son tour suivant.",
+      "resolution": {
+        "type": "sauvegarde",
+        "caracteristique": "dex",
+        "dd": 16,
+        "moitieSiReussite": false
+      },
+      "portee": {
+        "type": "distance",
+        "normale": 36
+      },
+      "degats": [
+        {
+          "des": "6d8",
+          "bonus": 0,
+          "type": "feu"
+        }
+      ],
+      "etats": []
+    }
+  ]
+}
