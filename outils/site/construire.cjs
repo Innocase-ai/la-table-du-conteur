@@ -10,7 +10,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const img = (id) => `images/ecrans/${id}.webp`;
 for (const s of c.sections) for (const i of s.images || []) if (!fs.existsSync(path.join(dossier, img(i.id)))) throw new Error(`image absente : ${i.id}`);
 
-const court = { conteur: 'Le conteur', groupe: 'Groupe', histoires: 'Histoires', explorer: 'Explorer', parler: 'Parler', choix: 'Choix', combat: 'Combat', monstres: 'Monstres', monde: 'Image et son', auteurs: 'Auteurs', cout: 'Coût' };
+const court = { conteur: 'Le conteur', groupe: 'Groupe', histoires: 'Histoires', explorer: 'Explorer', parler: 'Parler', choix: 'Choix', combat: 'Combat', monstres: 'Monstres', monde: 'Image et son', cout: 'Coût' };
 const figure = (i, gros = false) =>
   `<figure class="${gros ? 'gros' : ''}"><button class="zoom" data-src="${img(i.id)}" data-leg="${esc(i.legende)}" aria-label="Agrandir : ${esc(i.legende)}"><img src="${img(i.id)}" alt="${esc(i.legende)}" loading="lazy"></button><figcaption>${esc(i.legende)}</figcaption></figure>`;
 
