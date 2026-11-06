@@ -1,0 +1,611 @@
+[
+  {
+    "id": "le-sacristain",
+    "titre": "Le sacristain",
+    "situation": "Tobie Ancre est recroquevillé sous la barque La Brise-Lame, les mains pleines de goudron. Il a remis la clé de la crypte à un contrebandier de la crique, croyant qu’on voulait seulement l’argenterie de l’église. Il supplie qu’on ne dise rien à sa mère, Hélène, car les trente pièces d’or ont payé le remède de l’apothicaire pour sa fièvre. Il attend votre décision, les yeux rouges.",
+    "quand": {
+      "flag": "tobie-retrouve"
+    },
+    "lieu": "pl-quai",
+    "delai": 2,
+    "options": [
+      {
+        "id": "livrer",
+        "libelle": "Je livre Tobie à la capitaine Odile.",
+        "ton": "Justice",
+        "couts": [
+          "Tobie est arrêté et enfermé à la caserne.",
+          "Le père Aubin et Hélène vous en voudront."
+        ],
+        "gains": [
+          "Odile vous sera redevable.",
+          "Le vol ne reste pas impuni."
+        ],
+        "effets": [
+          {
+            "deplacer": {
+              "pnj": "tobie-ancre",
+              "lieu": "ca-cour"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": -20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": -5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "helene-ancre",
+              "delta": -20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "tobie-ancre",
+              "delta": -30
+            }
+          }
+        ],
+        "epilogue": "Tobie est resté enfermé à la caserne, Odile y a vu la justice faite, et Hélène et le père Aubin ont longtemps porté ce chagrin."
+      },
+      {
+        "id": "cacher",
+        "libelle": "Je cache Tobie, il a eu assez de peur.",
+        "ton": "Compassion",
+        "couts": [
+          "La maire Gilda s'en offusquera.",
+          "La place en parlera, et le guet s’en méfiera."
+        ],
+        "gains": [
+          "Tobie reste libre et en sûreté.",
+          "Il vous fera confiance."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "tobie-ancre",
+              "delta": 20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": -15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gens-du-port",
+              "delta": -5
+            }
+          }
+        ],
+        "epilogue": "Tobie est resté libre mais caché, la maire Gilda ne lui a jamais pardonné cette désobéissance, et la place en a parlé longtemps."
+      },
+      {
+        "id": "confier",
+        "libelle": "Je le confie au père Aubin.",
+        "ton": "Pardon",
+        "couts": [
+          "Odile se sentira bafouée.",
+          "Tobie reste sous la tutelle du prêtre."
+        ],
+        "gains": [
+          "Aubin retrouve son sacristain, Hélène son fils.",
+          "L'Église vous devra sa reconnaissance."
+        ],
+        "effets": [
+          {
+            "deplacer": {
+              "pnj": "tobie-ancre",
+              "lieu": "eg-sacristie"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": -15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": -5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "tobie-ancre",
+              "delta": 10
+            }
+          }
+        ],
+        "epilogue": "Tobie a été placé sous la tutelle du père Aubin, qui l’a gardé à l’église, et Odile s’est sentie bafouée par ce pardon."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas : je le laisse sous sa barque.",
+      "couts": [
+        "Une ronde du guet le trouvera et l'arrêtera sans vous.",
+        "Tobie et Hélène vous en voudront de n'avoir rien fait."
+      ],
+      "effets": [
+        {
+          "deplacer": {
+            "pnj": "tobie-ancre",
+            "lieu": "ca-cour"
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "tobie-ancre",
+            "delta": -25
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "helene-ancre",
+            "delta": -15
+          }
+        },
+        {
+          "flag": "tobie-au-guet"
+        }
+      ],
+      "epilogue": "Une ronde du guet a trouvé Tobie sous la barque deux jours plus tard, et il a été conduit à la caserne sans que personne n’ait rien décidé."
+    },
+    "echos": [
+      {
+        "si": "livrer",
+        "apres": 3,
+        "annonce": "Cyprien, le crieur public, annonce sur la place : « le sacristain est en cellule à la caserne ». Les uns respirent, soulagés, les autres plaignent Hélène, qui raccommode ses filets sans un mot.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "cyprien-crieur",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "cacher",
+        "apres": 3,
+        "annonce": "Sur la place, on chuchote qu’on cache le petit sacristain quelque part, et le guet double ses rondes sur le quai. Cyprien crie les nouvelles du jour, mais personne ne lui répond vraiment.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": -10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "la-solde",
+    "titre": "La solde",
+    "situation": "Depuis deux ans, les soldats de la garnison n’ont pas touché leur solde. Vous avez appris que la maire Gilda a vidé la caisse pour réparer la digue après la grande tempête. Vous savez aussi que la capitaine Odile a laissé passer la contrebande de la crique, pour que ses hommes aient de quoi manger. Il faut décider, et la garnison murmure déjà.",
+    "quand": {
+      "fait": "f-solde-impayee"
+    },
+    "lieu": "ps-place",
+    "delai": 3,
+    "options": [
+      {
+        "id": "denoncer",
+        "libelle": "Je dénonce Odile à la maire Gilda.",
+        "ton": "Justice",
+        "couts": [
+          "Odile est destituée et quitte le village.",
+          "La garnison est mise à l'amende."
+        ],
+        "gains": [
+          "Gilda vous devra une faveur.",
+          "La contrebande de la crique perd son appui."
+        ],
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "odile-marsan",
+              "etat": "parti"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": -20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "piotr-lenoir",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gens-du-port",
+              "delta": 5
+            }
+          }
+        ],
+        "epilogue": "Gilda a destitué la capitaine Odile, qui a quitté le village avec ses affaires, et la garnison a dû payer une amende qui pèse encore sur les soldats."
+      },
+      {
+        "id": "se-taire",
+        "libelle": "Je garde le registre pour moi.",
+        "ton": "Paix",
+        "couts": [
+          "La solde reste impayée et la contrebande continue.",
+          "Piotr finira par savoir que vous saviez."
+        ],
+        "gains": [
+          "Odile vous en saura gré.",
+          "Pas de scandale au village."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": 15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": 5
+            }
+          }
+        ],
+        "epilogue": "La solde est restée impayée, la contrebande a continué sur la crique, et le sergent Piotr a fini par découvrir ce que vous aviez vu."
+      },
+      {
+        "id": "exiger",
+        "libelle": "J'exige que Gilda paie la solde.",
+        "ton": "Fermeté",
+        "couts": [
+          "La maire vous en voudra.",
+          "La solde ne sera rétablie qu'en partie."
+        ],
+        "gains": [
+          "Le guet retrouvera de quoi vivre.",
+          "Odile et le sergent vous devront leur respect."
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "effets": [
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": 20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "basile-ecume",
+              "delta": 5
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "gilda-fauvel",
+              "delta": -20
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gens-du-port",
+              "delta": -5
+            }
+          }
+        ],
+        "epilogue": "Gilda a fini par payer une partie de la solde, les relations sont restées froides, et la garnison a retrouvé peu à peu de quoi vivre dignement."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas.",
+      "couts": [
+        "La garnison murmure et la solde reste impayée.",
+        "Le sergent perd patience."
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "garnison-du-guet",
+            "delta": -10
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "piotr-lenoir",
+            "delta": -10
+          }
+        }
+      ],
+      "epilogue": "Les trois jours ont passé sans décision, la garnison a continué de murmurer dans la caserne, et la solde est restée impayée."
+    },
+    "echos": [
+      {
+        "si": "se-taire",
+        "apres": 3,
+        "annonce": "Sur la place, le sergent Piotr rappelle d’un ton sec à un soldat que la garnison ne parle pas de ces affaires, et il vous regarde sans sourire. Il sait que vous avez vu le registre, et il choisit de se taire, sans vous remercier.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "piotr-lenoir",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "si": "exiger",
+        "apres": 3,
+        "annonce": "Une première part de la solde arrive enfin à la caserne, et tout le village le sait avant le soir. Piotr, bourru comme toujours, détourne les yeux au passage des pièces, la gorge nouée.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "piotr-lenoir",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-livre",
+    "titre": "Le livre",
+    "situation": "Le Livre de Maëlle repose entre vos mains, sur la place de la Criée, où tout le village attend en silence. Le père Aubin, presque aveugle, la voix cassée, tend la main en direction de votre voix. La capitaine Odile attend de l’autre côté du pavé, et Tobie, pâle, n’ose pas lever les yeux vers son vieux prêtre. La lumière dorée s’éteint sur le port, et tout le monde vous regarde.",
+    "quand": {
+      "flag": "livre-retrouve"
+    },
+    "lieu": "ps-place",
+    "options": [
+      {
+        "id": "a-aubin",
+        "libelle": "Je rends le livre au père Aubin.",
+        "ton": "Foi",
+        "couts": [
+          "Aubin y laissera sa voix.",
+          "Tobie sera puni, et Hélène restera malade."
+        ],
+        "gains": [
+          "La fête est sauvée.",
+          "La flotte est en sûreté."
+        ],
+        "effets": [
+          {
+            "flag": "choix-eglise"
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": 15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": -5
+            }
+          }
+        ],
+        "epilogue": "Le livre repose dans la crypte, où l’on vient le consulter le soir, et la page de la Bonace y est lue chaque année à la fête de la Mer."
+      },
+      {
+        "id": "a-odile",
+        "libelle": "Je confie le livre à la capitaine Odile.",
+        "ton": "Ordre",
+        "couts": [
+          "L'Église perd son autorité.",
+          "La Bonace devient un service qu'on facture."
+        ],
+        "gains": [
+          "Le livre est en sûreté.",
+          "La garnison est payée."
+        ],
+        "condition": {
+          "non": {
+            "flag": "choix-la-solde-denoncer"
+          }
+        },
+        "effets": [
+          {
+            "flag": "choix-caserne"
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": 15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "odile-marsan",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "eglise-de-la-bonace",
+              "delta": -15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": -15
+            }
+          }
+        ],
+        "epilogue": "Le livre repose à la caserne, dans une armoire fermée à clé, et c’est la capitaine Odile qui décide qui peut en consulter la page de la Bonace."
+      },
+      {
+        "id": "a-tobie",
+        "libelle": "Je remets le livre à Tobie.",
+        "ton": "Confiance",
+        "couts": [
+          "Un lecteur novice : une mer capricieuse cet hiver.",
+          "Aubin sera vexé et le guet se méfiera."
+        ],
+        "gains": [
+          "La page de soin guérira Hélène.",
+          "L'Église et le garçon se réconcilieront."
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "tobie-retrouve"
+            },
+            {
+              "non": {
+                "flag": "choix-le-sacristain-livrer"
+              }
+            },
+            {
+              "non": {
+                "flag": "tobie-au-guet"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "flag": "choix-tobie"
+          },
+          {
+            "attitude": {
+              "pnj": "tobie-ancre",
+              "delta": 30
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "helene-ancre",
+              "delta": 20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pere-aubin",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": -10
+            }
+          }
+        ],
+        "epilogue": "Le livre repose désormais dans la crypte, et c’est Tobie Ancre qui en lit la page de soin, à la lumière d’une bougie, le matin."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas : que la maire décide.",
+      "couts": [
+        "Personne ne vous devra plus rien.",
+        "Aubin, Odile et Tobie vous en voudront un peu."
+      ],
+      "effets": [
+        {
+          "flag": "choix-eglise"
+        },
+        {
+          "attitude": {
+            "pnj": "pere-aubin",
+            "delta": -5
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "odile-marsan",
+            "delta": -5
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "tobie-ancre",
+            "delta": -5
+          }
+        }
+      ],
+      "epilogue": "La maire Gilda a porté elle-même le livre à l’église, et il repose depuis dans la crypte, où l’on continue de le lire comme avant."
+    },
+    "echos": []
+  }
+]

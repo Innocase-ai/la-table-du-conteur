@@ -213,6 +213,7 @@ Un monde en cours d'écriture porte `"statut": "brouillon"` dans `monde.json` : 
 
 - [Le Val des Cendres](mondes/val-des-cendres.md) (niveaux 1 à 5) : 1 région, 1 village, 1 ville, 1 hameau, 3 grottes, 2 donjons ; 63 PNJ (378 sujets), 93 trésors, 56 rencontres, 23 quêtes, 18 énigmes, 33 pièges, 176 faits, 4 fins. Canon et registre d'identifiants : `packages/mondes/val-des-cendres/BIBLE.md` ; guide d'écriture d'une zone : `GUIDE-ZONE.md`.
 - [La Citadelle des Marées](mondes/citadelle-des-marees.md) (niveaux 1 à 4, ≈ 13 h) : 1 région, 1 ville, 1 donjon ; 40 PNJ (181 sujets), 31 trésors, 19 rencontres, 19 quêtes, 6 énigmes, 62 faits, 5 fins. Un PNJ escorté (effet `escorte`). Canon : `packages/mondes/citadelle-des-marees/BIBLE.md`.
+- **Le Grimoire de Port-Sillage** (brouillon, `packages/mondes/port-sillage/`, niveaux 1 à 3, histoire facile pour 4 héros) : un village de pêcheurs (place, taverne, église et crypte, caserne, crique des contrebandiers) ; 12 PNJ, 5 combats, 3 pièges, 2 énigmes, 3 dilemmes, 4 fins, un compagnon (Basile). Canon : `packages/mondes/port-sillage/BIBLE.md`.
 
 ## Données des modules : les interjections (accompagnateurs)
 

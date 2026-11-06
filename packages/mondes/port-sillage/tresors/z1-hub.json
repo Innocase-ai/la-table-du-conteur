@@ -1,0 +1,71 @@
+[
+  {
+    "id": "z1-t-cachette-du-hangar",
+    "nom": "La cachette du pêcheur",
+    "lieu": "pl-quai",
+    "contenant": "cache",
+    "description": "Sous une planche descellée, au fond du hangar à filets, à droite de la porte, un vieux pot de grès bouché à la cire : l'épargne d'un pêcheur.",
+    "contenu": {
+      "pieces": { "po": 20 },
+      "objets": [],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 12, "competence": "perception" } }
+  },
+  {
+    "id": "z1-t-tiroir-de-la-caisse",
+    "nom": "Le tiroir de la caisse",
+    "lieu": "ta-salle",
+    "contenant": "etagere",
+    "description": "Sous le comptoir, le tiroir de la caisse a un double fond de bois où l'aubergiste range ce qu'elle ne veut pas voir traîner : une petite bourse de cuir graissé.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "bourse-marquee", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 13 } },
+    "indice": "f-z1-pieces-marquees",
+    "condition": { "non": { "objet": "bourse-marquee" } }
+  },
+  {
+    "id": "z1-t-cachette-de-la-cave",
+    "nom": "La dalle descellée de la cave",
+    "lieu": "ta-cave",
+    "contenant": "cache",
+    "description": "Sous la pile de caisses du coin sud-est, une dalle bouge sous le doigt ; dessous, un trou sec, tapissé de toile cirée, où brille une bourse et un flacon rouge.",
+    "contenu": {
+      "pieces": { "po": 15 },
+      "objets": [{ "objet": "potion-de-guerison", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "cache": { "dd": 13, "competence": "perception" } },
+    "indice": "f-z1-cave-de-contrebande"
+  },
+  {
+    "id": "z1-t-ratelier-de-la-cour",
+    "nom": "Le râtelier d'armes de la cour",
+    "lieu": "ca-cour",
+    "contenant": "etagere",
+    "description": "Au mur nord, parmi les bâtons et les lances du guet, un bouclier de rechange en bon état, marqué d'un hareng à la peinture, que le sergent laisse à qui sait s'en servir.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "bouclier", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "z1-t-tiroir-d-odile",
+    "nom": "Le tiroir du bas du bureau",
+    "lieu": "ca-bureau",
+    "contenant": "coffre",
+    "description": "Le tiroir du bas du bureau est fermé à clé ; une serrure de laiton neuve, des rayures de clé autour du trou, et dedans, serré contre le fond, un gros registre à couverture bleue.",
+    "contenu": {
+      "pieces": {},
+      "objets": [{ "objet": "registre-de-la-solde", "quantite": 1 }],
+      "tables": []
+    },
+    "acces": { "verrou": { "dd": 13 } },
+    "indice": "f-solde-impayee"
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "z4-ev-mer-d-huile",
+    "declencheur": "entree-lieu",
+    "lieu": "pl-quai",
+    "condition": {
+      "jauge": {
+        "id": "grande-maree",
+        "max": 0
+      }
+    },
+    "unique": true,
+    "narration": "La baie est d'huile, pas une ride jusqu'au large. Les barques dorment au bout de leurs amarres, et les guetteurs du guet bâillent : le navire dont on parlait ne vient pas, et la crique semble retenir son souffle."
+  },
+  {
+    "id": "z4-ev-le-navire-part",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "jauge": {
+            "id": "grande-maree",
+            "min": 4
+          }
+        },
+        {
+          "non": {
+            "flag": "livre-retrouve"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Au large, le navire de Verdelune appareille à la pleine mer. Ses barques sont remontées à bord, la chaloupe aussi, et le livre avec elles.",
+    "effets": [
+      {
+        "fait": "f-fin-echec"
+      }
+    ]
+  },
+  {
+    "id": "z4-ev-caserne-sans-capitaine",
+    "declencheur": "entree-lieu",
+    "lieu": "ca-cour",
+    "condition": {
+      "flag": "choix-la-solde-denoncer"
+    },
+    "unique": true,
+    "narration": "Le fanion de la capitaine a été descendu du mât. Dans la cour, le sergent Piotr tient le rang d'une voix rauque, et plus personne ne rit : le guet attend l'amende en regardant ses bottes."
+  },
+  {
+    "id": "z4-ev-basile-rapport",
+    "declencheur": "entree-lieu",
+    "lieu": "ca-cour",
+    "condition": {
+      "etape": {
+        "quete": "q-basile-premier-service",
+        "etape": "le-retour"
+      }
+    },
+    "unique": true,
+    "narration": "Basile se met au garde-à-vous devant le sergent Piotr, sa lanterne bien droite, et fait son rapport d'une traite, sans respirer. Le nain l'écoute jusqu'au bout, puis grogne quelque chose qui ressemble à un compliment. La recrue en rougit jusqu'aux oreilles.",
+    "effets": [
+      {
+        "flag": "basile-service-rendu"
+      },
+      {
+        "attitude": {
+          "pnj": "piotr-lenoir",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "z4-ev-helene-soulagee",
+    "declencheur": "entree-lieu",
+    "lieu": "eg-sacristie",
+    "condition": {
+      "et": [
+        {
+          "quete": {
+            "id": "q-tobie-sa-mere",
+            "statut": "active"
+          }
+        },
+        {
+          "objet": "potion-de-guerison"
+        },
+        {
+          "non": {
+            "flag": "helene-soulagee"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Vous posez la fiole dans la main d'Hélène. Elle la boit d'un trait, grimace, puis ferme les yeux. La fièvre recule comme une marée basse et ses joues reprennent un peu de couleur. Elle sourit, mais elle sait que ce n'est pas fini : la fièvre reviendra, plus douce.",
+    "effets": [
+      {
+        "objet": {
+          "id": "potion-de-guerison",
+          "retirer": true
+        }
+      },
+      {
+        "flag": "helene-soulagee"
+      },
+      {
+        "attitude": {
+          "pnj": "helene-ancre",
+          "delta": 25
+        }
+      },
+      {
+        "reputation": {
+          "faction": "eglise-de-la-bonace",
+          "delta": 5
+        }
+      }
+    ]
+  }
+]

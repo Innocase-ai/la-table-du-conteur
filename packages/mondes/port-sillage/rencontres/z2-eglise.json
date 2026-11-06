@@ -1,0 +1,219 @@
+[
+  {
+    "id": "z2-r-conseil-d-aubin",
+    "nom": "Le conseil du père Aubin",
+    "type": "social",
+    "lieu": "eg-nef",
+    "difficulte": "faible",
+    "intro": "Sur le premier banc, devant l'autel, un vieil homme en étole bleue tient entre les mains une tasse fumante qui sent le thym. Il tourne la tête vers vous sans bien vous voir, plisse les yeux, puis sourit : « Entrez, entrez. L'église est ouverte à tous. Le village m'a dit que vous cherchiez le livre. Moi, je ne fais plus que prier pour qu'il revienne. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "ecouter-aubin",
+        "nom": "Je m'assois près de lui et je l'écoute, sans l'interrompre.",
+        "resume": "Aubin parle de la fête manquée, de la Bonace qu'il lit depuis trente et un ans, de sa tasse de thym qui refroidit. Il dit à mi-voix que le livre doit revenir à sa place, et vous donne sa bénédiction avant de vous laisser aller.",
+        "effets": [
+          { "fait": "f-z2-bonace" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 10 } }
+        ]
+      },
+      {
+        "id": "questionner-sur-la-bonace",
+        "nom": "Je lui demande ce que la Bonace protège, au juste.",
+        "jet": { "competence": "religion", "dd": 11 },
+        "resume": "Vous posez les bonnes questions, dans les bons mots : Aubin s'anime, et explique comment la lecture de la Bonace fait revenir la flotte chaque année, et pourquoi sans elle le village n'ose plus fermer l'œil.",
+        "effets": [
+          { "fait": "f-z2-bonace" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 10 } }
+        ],
+        "echec": [
+          { "fait": "f-z2-bonace" },
+          { "attitude": { "pnj": "pere-aubin", "delta": -5 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "promettre-de-rapporter-le-livre",
+        "nom": "Je lui promets de rapporter le livre, et de le rapporter ici.",
+        "resume": "Aubin vous serre le poignet à deux mains ; sa paume est sèche et légère. Il vous remercie de sa voix rauque, et vous laisse libre de parcourir l'église : la crypte surtout, dit-il, a besoin qu'on s'y intéresse.",
+        "effets": [
+          { "fait": "f-z2-noyes-agites" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 15 } }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z2-r-confidence-d-aubin",
+    "nom": "Ce que le prêtre ne dit pas",
+    "type": "social",
+    "lieu": "eg-nef",
+    "difficulte": "faible",
+    "intro": "Le père Aubin s'est arrêté au milieu d'une phrase. Il pose sa tasse, cherche un mot qui ne vient pas, et une quinte de toux sèche lui plie les épaules. Quand elle passe, il lève vers vous des yeux voilés de bleu pâle, et sa voix n'est plus qu'un fil : « Vous avez vu, n'est-ce pas ? Vous êtes les premiers à avoir pris le temps de regarder. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "lui-offrir-sa-tisane",
+        "nom": "Je lui tends sa tasse de thym au miel et j'attends qu'il parle.",
+        "resume": "Aubin boit lentement, puis avoue : sa vue baisse depuis trois ans, sa voix depuis deux. Le livre prend un peu de la voix de celui qui lit la Bonace, et il l'a lue trente et une fois. Il ne l'a dit à personne, pas même à sa paroisse.",
+        "effets": [
+          { "fait": "f-aubin-perd-sa-voix" },
+          { "fait": "f-livre-use-la-voix" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 15 } }
+        ]
+      },
+      {
+        "id": "le-questionner-doucement",
+        "nom": "Je lui demande, avec douceur, depuis quand sa voix le quitte.",
+        "jet": { "competence": "intuition", "dd": 12 },
+        "resume": "Vous trouvez les mots : Aubin, soulagé qu'on nomme enfin la chose, confie que sa vue et sa voix s'en vont, et que le Livre de Maëlle est la cause de l'une comme de l'autre.",
+        "effets": [
+          { "fait": "f-aubin-perd-sa-voix" },
+          { "fait": "f-livre-use-la-voix" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 10 } }
+        ],
+        "echec": [
+          { "fait": "f-aubin-perd-sa-voix" },
+          { "attitude": { "pnj": "pere-aubin", "delta": -5 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "ne-rien-dire",
+        "nom": "Je pose ma main sur la sienne, sans dire un mot.",
+        "resume": "Aubin laisse faire. Après un long silence, il murmure qu'il n'a pas besoin d'être plaint, seulement de n'être plus seul à le savoir ; il a tenu le secret trois ans, et il vous le laisse en confiance.",
+        "effets": [
+          { "fait": "f-aubin-perd-sa-voix" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 20 } }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z2-r-fievre-d-helene",
+    "nom": "La malade de la sacristie",
+    "type": "social",
+    "lieu": "eg-sacristie",
+    "difficulte": "faible",
+    "intro": "Sur le lit de sangle, sous la fenêtre, une femme aux joues rouges de fièvre raccommode un filet d'une main lente. Elle lève la tête quand la porte s'ouvre, et son sourire ressemble à une excuse : « Pardon de ne pas me lever. Les visites, je les reçois assise, ou pas du tout. Le père Aubin m'a dit que vous cherchiez le livre. Moi, je cherche mon fils. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "renouveler-l-eau",
+        "nom": "Je change l'eau de la cuvette et je rince son linge.",
+        "resume": "Hélène se laisse faire, avec un petit rire essoufflé. Tout en parlant, elle raconte la fièvre des marais qui la tient depuis deux mois, la tisane à la menthe, le père Aubin qui l'a recueillie après la mort de son mari, et son fils, le sacristain, qu'elle n'a pas vu depuis la fête.",
+        "effets": [
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "helene-ancre", "delta": 15 } },
+          { "quete": { "id": "q-tobie-sa-mere", "statut": "proposee" } }
+        ]
+      },
+      {
+        "id": "demander-ou-est-son-fils",
+        "nom": "Je lui demande, doucement, où est son fils.",
+        "jet": { "competence": "intuition", "dd": 13 },
+        "resume": "Hélène se tait, noue son fil, puis laisse tomber qu'il est rentré tard, la nuit de la fête, les chaussures pleines d'un sable gris qui n'était pas celui de la place. Elle ajoute aussitôt qu'il n'a rien fait de mal, et qu'on se trompe sûrement.",
+        "effets": [
+          { "fait": "f-helene-malade" },
+          { "fait": "f-z2-sable-dans-les-chaussures" },
+          { "attitude": { "pnj": "helene-ancre", "delta": 5 } }
+        ],
+        "echec": [
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "helene-ancre", "delta": -10 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "examiner-la-fievre",
+        "nom": "Je lui prends le poignet et j'examine sa fièvre.",
+        "jet": { "competence": "medecine", "dd": 12 },
+        "resume": "Le pouls est rapide, la peau brûlante, les ongles bleutés : c'est bien la fièvre des marais, qui ne cède qu'à des remèdes chers que Tobie a payés. Hélène vous remercie d'un regard, et se confie un peu plus.",
+        "effets": [
+          { "fait": "f-helene-malade" },
+          { "fait": "f-z2-remedes-payes" },
+          { "attitude": { "pnj": "helene-ancre", "delta": 10 } },
+          { "quete": { "id": "q-tobie-sa-mere", "statut": "proposee" } }
+        ],
+        "echec": [
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "helene-ancre", "delta": -5 } }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z2-r-noyes-de-l-ossuaire",
+    "nom": "Les noyés de l'ossuaire",
+    "type": "mixte",
+    "lieu": "eg-crypte",
+    "difficulte": "faible",
+    "intro": "Au bas des douze marches, la lampe tremble et l'air se fait plus froid. Dans les alcôves du mur nord, des os craquent, des crânes pivotent, et des silhouettes de marins en haillons de varech se détachent de la pierre, une à une, les orbites tournées vers vous. Ils ne vous cherchent pas : ils cherchent le livre qui devrait être dans la niche. Leur murmure monte, comme un ressac qui ne trouve plus la plage.",
+    "monstres": [
+      { "profil": "squelette", "nombre": 9, "nom": "Noyé de l'ossuaire" },
+      { "profil": "zombi", "nombre": 3, "nom": "Noyé du dernier rang" }
+    ],
+    "carte": [
+      "##############",
+      "#mmmmmmmmmm..#",
+      "#mm..........#",
+      "#............#",
+      "#~~~.......HH#",
+      "#~~~.......HH#",
+      "#..........HH#",
+      "#............#",
+      "#.cc......c..#",
+      "##############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les noyés sortent des alcôves du mur nord en bloc, sans ordre, et se jettent sur le héros le plus proche ; les derniers, plus lents, restent au pied de l'ossuaire et ferment la retraite vers les alcôves.",
+      "fuite": "Ils ne fuient pas : si on leur offre un cierge ou une prière, ils s'immobilisent d'eux-mêmes et regagnent leurs alcôves.",
+      "renforts": "Écrite pour 6 héros : 9 squelettes (groupe principal) et 3 zombis (renforts, en dernier). Pour 4 héros, le moteur ramène le combat à 6 squelettes et 2 zombis (400 PX)."
+    },
+    "alternatives": [
+      {
+        "id": "apaiser-par-une-priere",
+        "nom": "Je m'agenouille et je dis la prière des noyés à voix haute.",
+        "jet": { "competence": "religion", "dd": 12 },
+        "resume": "Les mots viennent, simples, ceux qu'on dit pour un marin qui n'est pas rentré. Les silhouettes ralentissent, s'arrêtent, et regagnent leurs alcôves une à une dans un froissement d'os. Le murmure s'éteint.",
+        "effets": [
+          { "flag": "z2-crypte-calmee" },
+          { "attitude": { "pnj": "pere-aubin", "delta": 10 } },
+          { "reputation": { "faction": "eglise-de-la-bonace", "delta": 5 } }
+        ],
+        "echec": [
+          { "flag": "z2-crypte-calmee" },
+          { "narration": "Les mots s'embrouillent, mais la sincérité compte : les noyés s'apaisent à moitié et se retirent, le temps que vous leur laissiez une offrande. Vous glissez quelques pièces dans l'alcôve la plus proche." },
+          { "pieces": -5 },
+          { "attitude": { "pnj": "pere-aubin", "delta": -5 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "allumer-un-cierge-de-veille",
+        "nom": "J'allume un cierge de veille devant le crâne à la cocarde bleue.",
+        "condition": { "objet": "z2-o-cierge-de-veille" },
+        "resume": "La mèche prend à la flamme de la lampe. Au pied de l'alcôve, le crâne à la couronne de chanvre semble regarder la lumière ; les autres noyés se tournent vers lui, puis rentrent un à un dans la pierre. Quelqu'un, ici, pensait à eux : ils le savent maintenant.",
+        "effets": [
+          { "flag": "z2-crypte-calmee" },
+          { "objet": { "id": "z2-o-cierge-de-veille", "quantite": 1, "retirer": true } },
+          { "attitude": { "pnj": "pere-aubin", "delta": 10 } },
+          { "reputation": { "faction": "eglise-de-la-bonace", "delta": 5 } }
+        ]
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "effetsVictoire": [
+      { "flag": "z2-crypte-calmee" },
+      { "attitude": { "pnj": "pere-aubin", "delta": -5 } }
+    ]
+  }
+]

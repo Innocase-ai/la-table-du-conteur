@@ -1,0 +1,323 @@
+[
+  {
+    "id": "port-sillage",
+    "nom": "Port-Sillage",
+    "type": "region",
+    "resume": "Village de pêcheurs au creux d'une baie en demi-lune, où la fête de la Mer s'est arrêtée net.",
+    "description": "Port-Sillage occupe le fond d'une baie en demi-lune ouverte à l'ouest, entre deux avancées de falaise basse : le promontoire de l'église au nord, une côte de rochers et de sable gris au sud. Il faut environ une heure de marche pour aller d'un bout à l'autre du village. Le cœur est la place de la Criée, sur la grève, avec son quai ; la rue du Quai court vers l'est jusqu'à la taverne puis à la caserne du guet, et la route de terre part au-delà vers l'intérieur. Un escalier de cent marches monte de la place au clocher-lanterne du promontoire. Le sentier des Goémons longe la falaise sud vers une anse cachée derrière un chapelet de rochers ; la mer le noie aux fortes marées. C'est la fin de l'été : embruns, brume légère le matin, vent de mer régulier, lumière dorée et basse en fin d'après-midi.",
+    "ambiance": "Cloches, goélands, drisses qui claquent, ressac ; algues, goudron et poisson grillé.",
+    "visuel": "Une baie en demi-lune ouverte à l'ouest, bordée de falaises basses de granit gris et de grèves de galets. Au creux, un village de pignons d'ardoise bleue serrés autour d'une place, de barques tirées au sec et de fumées de poisson grillé ; au nord, un clocher-lanterne couronne un promontoire. La lumière dorée et basse de fin d'après-midi vient de la mer, dans les embruns.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "liens": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "ps-place",
+    "nom": "Place de la Criée",
+    "type": "quartier",
+    "parent": "port-sillage",
+    "resume": "Place de galets où l'on vend le poisson et où la fête de la Mer devait finir, au cœur du village.",
+    "accroche": "Au bout de la rue du Quai, des guirlandes bleues et ocre pendent entre les pignons ; l'odeur du goudron et du poisson grillé monte de la place.",
+    "description": "La place de la Criée est le cœur de Port-Sillage : une aire de galets de rivière polis par les pas, en trapèze d'environ trente pas du nord au sud sur vingt-cinq d'est en ouest, ouverte à l'ouest sur le quai. Les maisons qui la bordent ont des pignons d'ardoise bleue, au sud et à l'est ; au nord, la falaise du promontoire porte le pied de l'escalier des cent marches, rampe de corde goudronnée contre la roche. Au centre se dresse le puits de granit, margelle usée par les seaux et couvercle de bois tenu par une chaîne. Au nord-centre, l'estrade est une plateforme de planches grises sur trois marches, où l'on lit les annonces et où le village se réunit. Au sud, cinq étals de la criée alignent leurs tréteaux sous des bâches de toile cirée : le poisson s'y vend tôt le matin. Les guirlandes de fête, fanions bleus et ocre, sont tendues entre les pignons et n'ont jamais été redescendues. Sur le pignon de la mairie, une ardoise de criée à demi effacée annonce « chansons dès la marée haute » ; la craie du mot « chansons » a été frottée par la pluie et le sel. Sorties : la rue du Quai à l'est, qui mène à la taverne puis à la caserne ; l'escalier des cent marches au nord-ouest ; le quai à l'ouest, d'où part le sentier des Goémons. On y trouve surtout des gens : pêcheurs, marchande, crieur, et la maire sur son estrade. Le jour, étals et goélands ; la nuit, quelques lanternes de poisson et un quai désert.",
+    "ambiance": "Fête interrompue, vent de mer, lumière dorée.",
+    "visuel": "Une place pavée de galets polis, en trapèze, ouverte à l'ouest sur le quai. Trois repères : une estrade de bois gris au nord, un puits de granit au centre, une rangée d'étals sous bâches de toile cirée au sud ; des guirlandes de fanions bleus et ocre pendent entre les pignons d'ardoise. Le soleil bas de fin d'après-midi entre par l'ouest, au-dessus de la mer, et allonge les ombres des pignons sur les pavés.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "ps-taverne",
+        "type": "chemin",
+        "heures": 0.1,
+        "description": "La rue du Quai part vers l'est ; au pignon sud-est, la façade basse d'une taverne, une enseigne de fer en forme de hareng, la porte ouverte sur la rue.",
+        "retour": "Depuis la porte de la taverne, la place se voit au bout de la rue : le puits et l'estrade au centre, les étals sur la gauche."
+      },
+      {
+        "vers": "ps-caserne",
+        "type": "chemin",
+        "heures": 0.15,
+        "description": "Plus loin vers l'est, la rue du Quai longe la grille d'une cour ; une tour carrée de granit se dresse, un drapeau bleu délavé au sommet.",
+        "retour": "Depuis la tour, la place se découpe en contrebas vers l'ouest, les guirlandes visibles au-dessus des toits d'ardoise."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z1-r-mission-de-gilda",
+        "declencheur": "exploration",
+        "unique": true
+      },
+      {
+        "id": "z1-r-rumeur-de-cyprien",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [
+      "z1-ev-place-deserte"
+    ],
+    "services": [
+      "marché ambulant"
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "pl-quai",
+    "nom": "Le quai et son hangar à filets",
+    "type": "lieu-dit",
+    "parent": "ps-place",
+    "resume": "Long quai de planches goudronnées où dorment les barques, au bord de la mer, avec un hangar à filets au bout.",
+    "accroche": "Une pente douce de galets descend vers l'ouest ; les pavés cèdent aux planches goudronnées du quai, entre deux barriques et un tas de filets.",
+    "description": "Le quai est un ponton de planches d'environ vingt pas de long sur cinq de large, le long de la grève, à l'ouest de la place. Le goudron noircit les planches et colle aux semelles ; des bittes de granit se dressent au bord, une tous les trois pas, et un madrier cassé cerclé de fer marque le bout du quai. Des barques sont tirées au sec sur la grève, côté nord, quille sur des rondins. Au bout, la barque La Brise-Lame repose retournée sur deux tréteaux, quille vers le ciel, avec un pas de jour sous son bordage ; son nom, peint en bleu ardoise, est à moitié écaillé, et un seau de bois cerclé de fer, à moitié plein d'eau de mer, traîne près des bittes. Au bout sud du quai, un hangar à filets en bois goudronné, toit d'ardoise, porte à loquet de bois, des filets suspendus à des crochets de fer. C'est de là que part, vers le sud, le sentier des Goémons, qui longe la falaise par la grève et qu'engloutissent les fortes marées. La nuit, des lanternes de poisson sont accrochées au hangar et le quai est désert.",
+    "ambiance": "Ressac contre les pilotis, coques qui tapent, goudron et algues.",
+    "visuel": "Un long quai de planches goudronnées, noircies et luisantes d'humidité, bordé de bittes de granit, avec des barques tirées au sec sur la grève. À l'extrémité, un hangar à filets de bois goudronné sous un toit d'ardoise, et une barque retournée sur deux tréteaux dont le nom bleu s'écaille. La lumière dorée et basse vient de la mer, jette des reflets sur l'eau et allonge l'ombre du hangar.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-r-tobie-sous-la-barque",
+        "declencheur": "exploration",
+        "condition": {
+          "non": {
+            "flag": "tobie-retrouve"
+          }
+        },
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z1-sentier-des-goemons",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-z1-tobie-au-quai",
+        "decouverte": {
+          "dd": 12,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [
+      "z1-ev-quai-navette"
+    ],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "ps-taverne",
+    "nom": "Taverne Le Hareng Rouillé",
+    "type": "batiment",
+    "parent": "port-sillage",
+    "resume": "Taverne de port au comptoir de chêne et à la cave humide, où les rumeurs de la fête circulent plus vite que les chopes.",
+    "accroche": "L'enseigne de fer en forme de hareng grince au-dessus d'une porte basse ; fumée de bois et chants sortent par la fenêtre.",
+    "description": "Bâtiment bas à pignon d'ardoise, bâti en granit gris, sur la rue du Quai, à quelques minutes de la place de la Criée. La porte nord, basse et large, est en chêne gris usé par les bottes ; au-dessus, l'enseigne de fer forgée en forme de hareng grince au vent du quai. Deux fenêtres à petits carreaux éclairent la salle commune, et des volets bleus les ferment la nuit. À l'intérieur, la salle commune occupe le rez-de-chaussée et une trappe derrière le comptoir mène à la cave, où la taverne garde ses tonneaux et son sel ; un escalier monte vers les chambres du service de nuit. À midi, les pêcheurs ; le soir, la salle est bondée et on chante ; la nuit, le silence (quand la jauge de la grande marée atteint 2, la salle est presque vide).",
+    "ambiance": "Chaleur de foyer, sel et fumée de bois.",
+    "visuel": "Bâtiment bas à pignon d'ardoise bleue, en granit gris, avec un seuil de pierre arrondi par le sel. L'enseigne de fer en forme de hareng pend au-dessus de la porte nord, et deux fenêtres basses laissent voir une lueur ambrée. Un filet de pêche mouillé sèche sur la barre d'appui de la fenêtre est.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur"
+  },
+  {
+    "id": "ta-salle",
+    "nom": "La salle commune du Hareng Rouillé",
+    "type": "salle",
+    "parent": "ps-taverne",
+    "resume": "Salle commune de la taverne, où le comptoir, la cheminée et les rumeurs se partagent la soirée.",
+    "accroche": "Par les petits carreaux de la façade, une lueur ambrée, une odeur de poisson fumé et le bruit des chopes sur le bois.",
+    "description": "La salle occupe tout le rez-de-chaussée, douze pas d'est en ouest sur huit du nord au sud, sous des poutres noircies à trois pas du sol. On entre par la porte nord et la pièce s'ouvre vers le sud. Le comptoir de chêne ciré ferme le mur est sur six pas ; derrière lui, l'aubergiste garde la caisse, les bouteilles et un tiroir où elle range ce qu'elle ne montre pas ; une trappe carrée, au pied sud du comptoir, mène à la cave. La cheminée de granit ouvre le mur ouest, avec deux bancs ; à sa droite, la table du vieux pêcheur, dos au mur. Cinq tables de planches : deux près du feu, trois au centre, sous des filets de pêche tendus entre les poutres. Les planches portent les cercles des chopes. Un escalier raide, contre le mur sud, monte vers les chambres du service de nuit. Sous la poutre du comptoir, des traits de craie groupés par cinq comptent les tournées ; le dernier groupe n'est tracé qu'à moitié. L'air sent la fumée de bois, le poisson fumé, la bière et le sel. À jauge 2, la salle est presque vide, une table occupée au plus.",
+    "ambiance": "Chaleur de foyer, chopes et filets secs.",
+    "visuel": "Une salle longue, au sol de dalles grises couvertes de sable, sous des poutres noircies par la fumée. Le comptoir de chêne ciré occupe le mur est, la cheminée de granit le mur ouest, et cinq tables de planches se répartissent au centre. Des filets de pêche pendent entre les poutres ; la lumière principale vient du foyer, ambrée, avec le jour gris de la porte nord.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [
+      {
+        "vers": "ta-cave",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Trappe carrée de chêne au ras du plancher, derrière le comptoir, ouverte par un anneau de fer ; une odeur de sel monte de l'escalier raide.",
+        "retour": "Escalier de bois de cinq marches, sous une trappe carrée qui s'ouvre au plafond du coin nord-est ; la lumière de la salle tombe en carré."
+      },
+      {
+        "vers": "ps-place",
+        "type": "porte",
+        "heures": 0.1,
+        "sens": "simple",
+        "description": "Porte nord en chêne gris, large de deux pas, qui donne sur la rue du Quai ; son seuil est usé en creux par les bottes."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z1-r-gaspard-le-temoin",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "z1-r-pieces-marquees",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [
+      "chambre",
+      "repas"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "ta-cave",
+    "nom": "La cave du Hareng Rouillé",
+    "type": "salle",
+    "parent": "ps-taverne",
+    "resume": "Cave humide sous la taverne, où les tonneaux et le sel attendent au fond des moellons.",
+    "accroche": "Derrière le comptoir, une trappe de chêne ouverte sur une odeur de sel froid, de goudron et de terre humide, et un bruit d'eau qui goutte.",
+    "description": "La cave s'étend sous toute la salle, en un rectangle d'environ sept mètres sur quatre et demi. On y descend par l'escalier de bois de cinq marches, raide, qui arrive dans le coin nord-est. La voûte de moellons est basse : il faut se courber le long des murs, et la lanterne à huile suspendue à son crochet est la seule lumière, avec le carré pâle de la trappe quand elle est ouverte. Quatre tonneaux de chêne, cerclés de fer et gonflés par l'humidité, sont debout contre le mur ouest. Au centre, une pile de deux caisses de sel ; dans le coin sud-est, une pile de trois, près d'une dalle descellée au pied du mur est. Sur le mur est, au-dessus de la dalle, trois traits de craie comptent les caisses de sel ; le dernier est barré d'un seul trait. Devant les tonneaux, une flaque de deux pas s'étale sur la terre battue, glissante. Dans le mur sud, une ouverture au ras du sol, haute d'un demi-pas, a été rongée dans les joints de chaux. Au-delà de deux pas de la lanterne, l'ombre est complète, et la salle au-dessus fait entendre ses chopes.",
+    "ambiance": "Froid humide, sel et silence troublé.",
+    "visuel": "Une cave basse et voûtée de moellons de granit gris, luisante d'humidité, que n'éclaire qu'une lanterne à huile au pied d'un escalier de bois. Quatre tonneaux de chêne cerclés de fer alignent le mur ouest ; deux piles de caisses de sel occupent le centre et le coin sud-est. Une flaque luit devant les tonneaux, et une ouverture basse et sombre s'ouvre au ras du sol dans le mur sud.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-r-rats-de-la-cave",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z1-cave-de-contrebande",
+        "decouverte": {
+          "dd": 13,
+          "competence": "perception"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "ps-caserne",
+    "nom": "La caserne du guet",
+    "type": "batiment",
+    "parent": "port-sillage",
+    "resume": "Tour de granit où le guet garde ses râteliers, sa cour d'exercice et ses registres, à deux pas de la place.",
+    "accroche": "Au bout de la rue du Quai, une tour carrée de granit gris, un drapeau bleu délavé, et le bruit sec de bâtons qui frappent du bois.",
+    "description": "La caserne du guet est une tour carrée de granit gris, à l'est de la place de la Criée, entourée d'une cour. Les pierres sont sombres d'humidité jusqu'à la hauteur d'un homme. Au sommet, un drapeau bleu délavé flotte au-dessus d'un toit d'ardoise, visible depuis le quai. Une grille de fer ferme la cour du côté de la rue du Quai, qui mène à la place en dix minutes de marche. Dans la cour, des râteliers de bois longent le mur nord, des mannequins de bois servent aux exercices, et un abreuvoir de pierre reçoit l'eau de pluie. Au pied de la tour, une porte de chêne donne sur trois marches et sur le bureau du capitaine. Le guet garde la place et le port : les rondes partent à la nuit tombée, les exercices résonnent le jour. Les gardes de la grille connaissent les gens du quartier et laissent entrer ceux qui ont une raison. De nuit, deux gardes restent à la grille ; quand le couvre-feu tombe (jauge de la grande marée à 2), la garnison reste consignée au quartier et le port est fermé.",
+    "ambiance": "Granit humide, goudron, coups de bâton, drisses.",
+    "visuel": "Une tour carrée de granit gris, aux pierres sombres d'humidité, se dresse à l'est de la place, sa cour fermée d'un mur et d'une grille côté rue du Quai. Au sommet, un drapeau bleu délavé flotte au-dessus d'un toit d'ardoise bleue. Dans la cour, des râteliers de bois longent le mur nord, des mannequins de bois se dressent au centre, et un abreuvoir de pierre reçoit la pluie ; la lumière dorée et basse vient de l'ouest, par-dessus le port.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "ca-cour",
+    "nom": "La cour d'exercice",
+    "type": "lieu-dit",
+    "parent": "ps-caserne",
+    "resume": "Une cour de dalles où le guet s'exerce au bâton, entre les mannequins et les râteliers.",
+    "accroche": "Par la grille de fer, on entend des coups secs sur le bois et des voix qui comptent les pas ; l'odeur du goudron monte de la cour.",
+    "description": "La cour d'exercice occupe tout le devant de la tour, un carré d'environ dix-huit pas sur douze, pavé de dalles de granit usées au milieu par les pas. Le mur nord porte une rangée de râteliers de bois où sont rangées les armes de la garnison, en bon état. Au centre, deux mannequins de bois servent aux exercices de frappe. L'abreuvoir de pierre, contre le mur ouest, reçoit l'eau qui coule du toit de la tour. La grille est au sud, sur la rue du Quai ; elle reste ouverte le jour et deux gardes restent devant la nuit. Les recrues s'y entraînent le matin, et le sergent dirige l'exercice. Au fond, trois marches de pierre usées montent à la porte de chêne du bureau, au pied de la tour ; sur son montant, une gorge de cordage a usé la pierre à hauteur de main : les drisses ont servi là pendant des années. À jauge 2 (couvre-feu), la garnison est consignée : la cour est vide, la grille reste fermée à clé, deux gardes y restent.",
+    "ambiance": "Dalles, coups secs, goudron, vent du port.",
+    "visuel": "Une cour carrée de dalles usées, bordée de murs de granit gris, où la lumière dorée du soir arrive par-dessus le mur ouest. Des râteliers de bois couvrent le mur nord, deux mannequins de bois se dressent au centre, et un abreuvoir de pierre luit contre le mur ouest. Au fond, à l'est, la tour a une porte basse de chêne au haut de trois marches, et le drapeau bleu délavé flotte au-dessus.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ca-bureau",
+        "type": "porte",
+        "heures": 0,
+        "description": "Au fond de la cour, une porte basse de chêne cerclé de fer, au haut de trois marches de pierre usées, ferme le pied de la tour.",
+        "retour": "Une porte de chêne ouverte sur la cour : on y voit les râteliers et la lumière du couchant par la grille, trois marches plus bas."
+      },
+      {
+        "vers": "ps-place",
+        "type": "porte",
+        "heures": 0.15,
+        "sens": "simple",
+        "description": "Une grille de fer sur le côté sud, ouverte de jour sur la rue du Quai ; une chaîne pend contre le montant."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "z1-r-exercice-de-piotr",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "z1-r-recrutement-de-basile",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ],
+    "faits": [],
+    "evenements": [],
+    "services": [],
+    "repos": "impossible"
+  },
+  {
+    "id": "ca-bureau",
+    "nom": "Le bureau du capitaine",
+    "type": "salle",
+    "parent": "ps-caserne",
+    "resume": "Le bureau du capitaine, au pied de la tour, où s'empilent les cartes de la baie et les registres du guet.",
+    "accroche": "Trois marches de pierre usées montent vers une porte de chêne ; une lampe de cuivre brille derrière la fenêtre étroite de la tour.",
+    "description": "Le bureau du capitaine tient dans la base de la tour : une pièce carrée d'environ cinq pas sur quatre, au plafond bas à poutres goudronnées. Une table de chêne occupe le centre, couverte d'une carte de la baie punaisée aux quatre coins ; un registre des rondes y est ouvert. Contre le mur ouest, sous la fenêtre étroite tournée vers le port, un bureau à deux tiroirs ; le tiroir du bas ferme à clé, et c'est là que sont rangés les comptes de la paie du guet. Une lampe de cuivre à huile éclaire la table, et une chaise de bois à dossier droit fait face à la porte. La fenêtre laisse entrer le ressac, les drisses des barques et la lumière du couchant. Une tache d'encre sèche a coulé du bord de la table jusqu'au plancher, en forme de hareng ; personne ne l'a essuyée. Trois marches descendent vers la cour. La pièce sent l'encre, la cire et l'huile de lampe ; le granit des murs garde la fraîcheur de la nuit. Si le groupe prévient Odile (drapeau odile-prevenue), des traits au crayon apparaissent sur la carte, autour de la crique.",
+    "ambiance": "Papier, huile de lampe, ressac par la fenêtre.",
+    "visuel": "Une pièce carrée à plafond bas, aux poutres goudronnées, éclairée par une fenêtre étroite ouverte sur le port, où entre la lumière dorée du soir. Au centre, une table de chêne couverte d'une carte de la baie, et une lampe de cuivre à huile dont la flamme tremble. Contre le mur ouest, un bureau à deux tiroirs, dont le tiroir du bas est fermé à clé.",
+    "niveau": {
+      "min": 2,
+      "max": 2
+    },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "z1-r-confrontation-d-odile",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "faits": [
+      {
+        "fait": "f-z1-rondes-de-nuit",
+        "decouverte": {
+          "dd": 11,
+          "competence": "investigation"
+        }
+      }
+    ],
+    "evenements": [],
+    "services": [],
+    "repos": "impossible"
+  }
+]

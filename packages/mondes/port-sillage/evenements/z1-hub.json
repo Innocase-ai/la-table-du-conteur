@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z1-ev-place-deserte",
+    "declencheur": "entree-lieu",
+    "lieu": "ps-place",
+    "condition": { "jauge": { "id": "grande-maree", "min": 2 } },
+    "unique": true,
+    "narration": "Le guet est consigné, et la place s'en ressent : les étals sont bâchés, les guirlandes pendent sans personne dessous, et les volets se ferment dès que la lumière baisse. Seul le vent de mer fait encore claquer les fanions.",
+    "effets": [{ "fait": "f-z1-couvre-feu" }]
+  },
+  {
+    "id": "z1-ev-quai-navette",
+    "declencheur": "entree-lieu",
+    "lieu": "pl-quai",
+    "condition": { "jauge": { "id": "grande-maree", "min": 3 } },
+    "unique": true,
+    "narration": "Au large, un navire inconnu a mouillé, toutes lanternes éteintes sauf une. Des barques vont et viennent entre lui et le quai, lourdes de caisses, et les rameurs se taisent quand vous passez.",
+    "effets": [{ "fait": "f-z1-barques-navette" }]
+  }
+]

@@ -1,0 +1,640 @@
+[
+  {
+    "id": "q-le-grimoire",
+    "nom": "Le Livre de Maëlle",
+    "type": "principale",
+    "donneur": "gilda-fauvel",
+    "lieu": "ps-place",
+    "resume": "Le Livre de Maëlle a disparu de la crypte pendant la fête de la Mer. Vous avez trois nuits pour le retrouver avant que le navire d'un collectionneur ne l'emporte, et décider à qui le confier.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "le-vol",
+    "etapes": [
+      {
+        "id": "le-vol",
+        "texte": "Apprenez de la maire ce qui a disparu de la crypte, et ce que le village attend de vous.",
+        "completion": {
+          "flag": "vol-connu"
+        },
+        "suivantes": [
+          "le-voleur"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "le-voleur",
+        "texte": "Quelqu'un avait la clé de la crypte. Retrouvez le sacristain, qui se cache depuis la fête.",
+        "completion": {
+          "flag": "tobie-retrouve"
+        },
+        "suivantes": [
+          "la-crique"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "la-crique",
+        "texte": "Les pas mènent à la crique des Gueux, au sud du village. Trouvez le chemin jusque-là.",
+        "completion": {
+          "flag": "crique-trouvee"
+        },
+        "suivantes": [
+          "le-livre"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "le-livre",
+        "texte": "Le livre est caché quelque part sous la crique. Reprenez-le avant la grande marée.",
+        "completion": {
+          "flag": "livre-retrouve"
+        },
+        "suivantes": [
+          "le-choix"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      },
+      {
+        "id": "le-choix",
+        "texte": "Le livre est entre vos mains. À qui le confier : au père Aubin, à la capitaine Odile, ou à Tobie ?",
+        "completion": {
+          "ou": [
+            {
+              "flag": "choix-eglise"
+            },
+            {
+              "flag": "choix-caserne"
+            },
+            {
+              "flag": "choix-tobie"
+            }
+          ]
+        },
+        "suivantes": [
+          "issue-eglise",
+          "issue-caserne",
+          "issue-tobie"
+        ],
+        "effets": [
+          {
+            "xp": 100
+          }
+        ]
+      },
+      {
+        "id": "issue-eglise",
+        "texte": "Le livre retourne à la crypte et Aubin lit la Bonace.",
+        "completion": {
+          "flag": "choix-eglise"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "xp": 300
+          },
+          {
+            "fait": "f-fin-eglise"
+          },
+          {
+            "fin": "fin-eglise"
+          }
+        ]
+      },
+      {
+        "id": "issue-caserne",
+        "texte": "Le livre repose à la caserne, sous la garde du guet.",
+        "completion": {
+          "flag": "choix-caserne"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "xp": 300
+          },
+          {
+            "fait": "f-fin-caserne"
+          },
+          {
+            "fin": "fin-caserne"
+          }
+        ]
+      },
+      {
+        "id": "issue-tobie",
+        "texte": "Tobie devient le lecteur du livre.",
+        "completion": {
+          "flag": "choix-tobie"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "xp": 300
+          },
+          {
+            "fait": "f-fin-tobie"
+          },
+          {
+            "fait": "f-page-de-soin"
+          },
+          {
+            "fin": "fin-tobie"
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 50,
+      "objets": [],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "gens-du-port",
+            "delta": 10
+          }
+        }
+      ]
+    },
+    "ramifications": "Le groupe peut retrouver la crique par Mirande, Gaspard ou Tobie, et le livre par la négociation, la ruse ou le combat ; les étapes s'achèvent d'elles-mêmes dès que leur drapeau est posé. Si la jauge atteint 4 avant que le livre soit retrouvé, le navire de Verdelune l'emporte (échec). Une fois le livre repris, trois issues : Aubin (flag choix-eglise), Odile (choix-caserne, impossible si elle a été destituée), Tobie (choix-tobie, impossible s'il a été livré au guet)."
+  },
+  {
+    "id": "q-maeva-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "secondaire",
+    "donneur": "maeva-brisant",
+    "lieu": "ta-cave",
+    "resume": "Des rats géants sortent d'un trou du mur sud de la cave du Hareng Rouillé, et Maëva n'ose plus descendre chercher ses tonneaux.",
+    "niveau": {
+      "min": 1,
+      "max": 1
+    },
+    "debut": "descendre",
+    "etapes": [
+      {
+        "id": "descendre",
+        "texte": "Descendez à la cave du Hareng Rouillé, où gratte quelque chose dans le mur sud.",
+        "completion": {
+          "lieu": "ta-cave"
+        },
+        "suivantes": [
+          "chasser"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": []
+      },
+      {
+        "id": "chasser",
+        "texte": "Débarrassez la cave de ses rats, par le feu, le piège, la pierre ou l'épée.",
+        "completion": {
+          "flag": "z1-cave-nettoyee"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 50,
+      "pieces": 40,
+      "objets": [],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "gens-du-port",
+            "delta": 5
+          }
+        }
+      ]
+    },
+    "ramifications": "Quatre façons de nettoyer la cave (combat, enfumer, piéger la nuée, murer le trou), toutes posent le même drapeau. Maëva remercie en pièces et en soupe."
+  },
+  {
+    "id": "q-odile-la-solde",
+    "nom": "La solde du guet",
+    "type": "faction",
+    "donneur": "odile-marsan",
+    "lieu": "ps-caserne",
+    "resume": "La solde de la garnison est impayée depuis deux ans. La capitaine Odile ne veut pas qu'on la juge avant d'avoir vu le fond de la caisse du village.",
+    "niveau": {
+      "min": 2,
+      "max": 3
+    },
+    "debut": "le-registre",
+    "etapes": [
+      {
+        "id": "le-registre",
+        "texte": "Trouvez le registre de la solde, rangé dans le tiroir fermé de la capitaine.",
+        "completion": {
+          "objet": "registre-de-la-solde"
+        },
+        "suivantes": [
+          "trancher"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "trancher",
+        "texte": "La solde est impayée depuis deux ans. Décidez ce que vous faites de ce que vous savez.",
+        "completion": {
+          "flag": "choix-la-solde"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 100
+          },
+          {
+            "reputation": {
+              "faction": "garnison-du-guet",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Le dilemme « la solde » (dénoncer Odile, se taire, exiger que Gilda paie) clôt la quête quel que soit le choix ; chaque issue a un prix auprès de la garnison, de la maire ou du sergent."
+  },
+  {
+    "id": "q-tobie-sa-mere",
+    "nom": "La mère de Tobie",
+    "type": "secondaire",
+    "donneur": "tobie-ancre",
+    "lieu": "eg-sacristie",
+    "resume": "Hélène, la mère de Tobie, est malade de la fièvre des marais, et les tisanes du père Aubin ne la guérissent pas.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "un-remede",
+    "etapes": [
+      {
+        "id": "un-remede",
+        "texte": "Hélène ne guérira pas par les tisanes seules. Une potion de guérison la soulagera ; seule la page de soin du livre la guérira.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "potion-de-guerison"
+            },
+            {
+              "fait": "f-page-de-soin"
+            }
+          ]
+        },
+        "suivantes": [
+          "la-potion",
+          "la-page"
+        ],
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "la-potion",
+        "texte": "Portez la potion de guérison à Hélène, à la sacristie : elle apaisera sa fièvre, sans la guérir.",
+        "completion": {
+          "flag": "helene-soulagee"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 60
+          },
+          {
+            "attitude": {
+              "pnj": "tobie-ancre",
+              "delta": 20
+            }
+          }
+        ]
+      },
+      {
+        "id": "la-page",
+        "texte": "La page de soin guérira Hélène, mais seul un lecteur de la Bonace peut l'ouvrir.",
+        "completion": {
+          "flag": "choix-tobie"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "xp": 150
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "eglise-de-la-bonace",
+            "delta": 5
+          }
+        }
+      ]
+    },
+    "ramifications": "Deux voies : une potion de guérison (trouvée dans la crypte ou achetée), qui soulage Hélène sans la guérir, ou la page de soin du livre, que seul Tobie, devenu lecteur, ouvrira (fin Tobie). Si la jauge atteint 4 avant, Hélène meurt."
+  },
+  {
+    "id": "q-basile-premier-service",
+    "nom": "Le premier service de Basile",
+    "type": "personnelle",
+    "donneur": "basile-ecume",
+    "lieu": "ca-cour",
+    "resume": "Basile, recrue du guet, doit faire sa première ronde. Il n'ose pas dire qu'il aimerait quelqu'un à ses côtés.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "le-quai",
+    "etapes": [
+      {
+        "id": "le-quai",
+        "texte": "Faites la ronde du quai avec Basile, lanterne allumée.",
+        "completion": {
+          "lieu": "pl-quai"
+        },
+        "suivantes": [
+          "la-crique"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "basile-ecume",
+            "etat": "parti"
+          }
+        },
+        "effets": [
+          {
+            "xp": 25
+          }
+        ]
+      },
+      {
+        "id": "la-crique",
+        "texte": "Basile n'a jamais osé le sentier des Goémons, où le guet ne va pas. Allez jusqu'à la crique avec lui.",
+        "completion": {
+          "lieu": "ps-crique"
+        },
+        "suivantes": [
+          "le-retour"
+        ],
+        "echec": {
+          "pnj": {
+            "id": "basile-ecume",
+            "etat": "parti"
+          }
+        },
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "le-retour",
+        "texte": "Ramenez Basile à la caserne pour qu'il fasse son rapport au sergent.",
+        "completion": {
+          "flag": "basile-service-rendu"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "pnj": {
+            "id": "basile-ecume",
+            "etat": "parti"
+          }
+        },
+        "effets": [
+          {
+            "xp": 50
+          },
+          {
+            "attitude": {
+              "pnj": "basile-ecume",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 0,
+      "pieces": 0,
+      "objets": [],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "garnison-du-guet",
+            "delta": 5
+          }
+        }
+      ]
+    },
+    "ramifications": "Basile se fait escorter dès que la quête est active. Les trois étapes se complètent par les lieux visités puis par un événement à la caserne. Sa peur du noir se confie à qui gagne sa confiance."
+  }
+]

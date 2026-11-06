@@ -1,0 +1,69 @@
+[
+  {
+    "id": "fin-echec",
+    "nom": "La grande marée",
+    "condition": {
+      "et": [
+        {
+          "jauge": {
+            "id": "grande-maree",
+            "min": 4
+          }
+        },
+        {
+          "non": {
+            "flag": "livre-retrouve"
+          }
+        }
+      ]
+    },
+    "epilogue": "La nuit de la grande marée, le ciel reste clair sur la baie et la mer monte jusqu'aux premières maisons. Au large, le navire du marquis de Verdelune est mouillé, ses feux allumés. Vous arrivez sur le quai trop tard. Le livre a quitté la grotte de la crique avec la chaloupe, et il part avec le navire. Sur le pont, des lanternes se balancent dans le brouillard.\n\nIl n'y a plus de Bonace, et la flotte reste à terre, les filets immobiles sur les quais. Tobie s'enfuit sur le navire, et Hélène meurt de sa fièvre. Aubin n'est plus qu'un prêtre sans livre, et le village a peur de la mer. De Sorel, on ne dit plus qu'une chose : il ne vend plus rien à personne. Du guet, on ne dit rien de plus. Gilda fait réparer sa digue avant l'hiver.",
+    "consequences": [
+      "Le navire de Verdelune emporte le livre : plus de Bonace, la flotte reste à terre.",
+      "Tobie s'enfuit sur le navire.",
+      "Hélène meurt de sa fièvre.",
+      "Aubin n'est plus qu'un prêtre sans livre."
+    ]
+  },
+  {
+    "id": "fin-eglise",
+    "nom": "Retour à la crypte",
+    "condition": {
+      "flag": "choix-eglise"
+    },
+    "epilogue": "Le soir de la fête de la Mer, le Livre de Maëlle est redescendu à la crypte, et le père Aubin le serre contre sa poitrine. Les lampes sentent l'huile et l'humidité. Aubin ouvre la page intitulée « la Bonace » et commence à lire. Sa voix passe entre les murs, lente et claire, jusqu'au bout de la dernière ligne. Dehors, les barques rentrent une à une, et les noyés de la crypte se taisent.\n\nAubin ne lira plus à voix haute ; sa voix reste dans la crypte, et plus tard il ne parlera qu'à peine. Tobie reçoit une pénitence au service de l'église et n'approchera plus du livre. Hélène reste malade de sa fièvre des marais. Du guet, on dit seulement qu'il monte la garde. De Sorel, on ne dit plus qu'une chose : il ne vend plus rien à personne. Gilda fait refaire les comptes de sa digue.",
+    "consequences": [
+      "La fête est sauvée et la flotte en sûreté.",
+      "Aubin y laisse sa voix.",
+      "Tobie est puni.",
+      "Hélène reste malade."
+    ]
+  },
+  {
+    "id": "fin-caserne",
+    "nom": "À la caserne",
+    "condition": {
+      "flag": "choix-caserne"
+    },
+    "epilogue": "Vous portez le Livre de Maëlle à la caserne, par la lumière basse de la fin d'après-midi. Dans la salle, les filets pendent au mur et le bois goudronné sent fort. Vous remettez le livre au guet, qui le range dans une armoire de chêne, derrière une grille. On inscrit le livre dans un registre, puis on ferme à clé. La page de la Bonace ne sera plus lue au pied de l'autel.\n\nLe livre est sous les verrous, et la garnison est payée. Mais l'Église perd son autorité sur « la Bonace », qui devient un service facturé aux familles de marins. Aubin garde sa voix, mais n'est plus qu'un vieil homme à son banc. Hélène reste malade, et Tobie n'a plus sa place à l'église. De Sorel, on ne dit plus qu'une chose : il ne vend plus rien à personne. Gilda parle toujours de sa digue.",
+    "consequences": [
+      "Le livre est en sûreté et la garnison est payée.",
+      "L'Église perd son autorité.",
+      "La Bonace devient un service qu'on facture."
+    ]
+  },
+  {
+    "id": "fin-tobie",
+    "nom": "Tobie, nouveau lecteur",
+    "condition": {
+      "flag": "choix-tobie"
+    },
+    "epilogue": "Vous retrouvez Tobie au clocher, les mains encore grises de corde. Vous lui tendez le Livre de Maëlle sans un mot de plus. Il l'ouvre à la page de soin et lit à voix basse, en se trompant une fois sur un mot ancien. Dans la sacristie, sa mère entend la voix de son fils et sourit pour la première fois depuis des semaines. Dehors, le soir tombe doucement sur le port.\n\nHélène guérit de sa fièvre, l'Église et Tobie se réconcilient, et le village le voit déjà comme le successeur d'Aubin. Mais un « lecteur novice » fait une mer capricieuse cet hiver : la flotte sort moins, et quelques barques rentrent à la rame. Aubin est vexé, mais il reste à son banc. Le guet se méfie du garçon. Gilda s'occupe de sa digue, comme chaque hiver.",
+    "consequences": [
+      "Hélène est guérie par la page de soin.",
+      "L'Église et le garçon sont réconciliés.",
+      "Un lecteur novice : une mer capricieuse cet hiver.",
+      "Aubin vexé, le guet méfiant."
+    ]
+  }
+]

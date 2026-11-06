@@ -1,0 +1,11 @@
+[
+  {
+    "id": "z2-ev-cloches-seules",
+    "declencheur": "entree-lieu",
+    "lieu": "ps-eglise",
+    "condition": { "jauge": { "id": "grande-maree", "min": 3 } },
+    "unique": true,
+    "narration": "Au sommet des marches, comme vous arrivez, les cloches du clocher se mettent à sonner toutes seules, trois coups lents, à l'heure où la marée est pleine. Aucune corde ne bouge. Au large, un navire inconnu a mouillé, et le vent de mer porte le dernier coup jusqu'à la grève.",
+    "effets": [{ "fait": "f-z2-cloches-seules" }]
+  }
+]

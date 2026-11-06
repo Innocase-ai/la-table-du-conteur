@@ -1,0 +1,30 @@
+[
+  {
+    "id": "z2-p-aiguille-du-coffre",
+    "nom": "L'aiguille de la serrure",
+    "lieu": "eg-sacristie",
+    "resume": "Au creux de la serrure de laiton du coffre des offrandes, une aiguille fine est tendue sur un ressort et brille d'un enduit brun : elle pique la main qui force la serrure sans connaître la manœuvre.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Au moment où la serrure cède, un déclic sec : une aiguille de laiton jaillit du trou et vous pique le bout du doigt. Un goût amer de poison monte dans votre main, et dans le lit contre le mur, Hélène sursaute.",
+    "sauvegarde": { "caracteristique": "con", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "2d4", "type": "poison" }],
+    "etats": ["empoisonne"],
+    "effets": [{ "fait": "f-z2-aiguille-empoisonnee" }, { "attitude": { "pnj": "helene-ancre", "delta": -5 } }],
+    "reinitialisation": false
+  },
+  {
+    "id": "z2-p-dalle-de-la-niche",
+    "nom": "La dalle à plaque de la niche",
+    "lieu": "eg-crypte",
+    "resume": "La dalle de granit devant la niche est cerclée de cuivre verdi, et sa plaque centrale, encastrée sur un ressort, cède sous un pas ; sous le joint, on devine un conduit qui descend vers la mer.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "La plaque de cuivre s'enfonce dans un claquement. Un battant de pierre bascule au fond de la niche, et une gerbe d'eau de mer glacée, retenue sous la crypte depuis des siècles, jaillit et vous jette contre le mur. Les cloches tintent de travers dans l'écho.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [{ "des": "2d6", "type": "contondant" }],
+    "etats": [],
+    "effets": [{ "fait": "f-z2-dalle-de-la-niche" }],
+    "reinitialisation": false
+  }
+]

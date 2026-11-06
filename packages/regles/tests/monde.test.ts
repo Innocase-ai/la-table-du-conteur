@@ -286,3 +286,62 @@ describe('estimation de campagne', () => {
     });
   }
 });
+
+describe('Le Grimoire de Port-Sillage : parcours', () => {
+  const r = chargerMonde(join(RACINE_MONDES, 'port-sillage'));
+  const dm = r.ok ? r.monde : undefined;
+  const enquete = ['vol-connu', 'tobie-retrouve', 'crique-trouvee', 'livre-retrouve'];
+  const dilemmeLivre = () => (dm!.extensions as { dilemmes: { id: string; options: { id: string; effets: never[] }[] }[] }).dilemmes.find((d) => d.id === 'le-livre')!;
+
+  for (const [option, fin] of [['a-aubin', 'fin-eglise'], ['a-odile', 'fin-caserne'], ['a-tobie', 'fin-tobie']] as const) {
+    it(`remettre le livre (« ${option} ») mène à la fin « ${fin} »`, () => {
+      expect(dm).toBeDefined();
+      const e = etatInitial(dm!, 3);
+      appliquerEffets([{ quete: { id: 'q-le-grimoire', statut: 'active' } }, ...enquete.map((flag) => ({ flag }))], e, dm!);
+      expect(e.fin, 'aucune fin avant le choix').toBeUndefined();
+      appliquerEffets(dilemmeLivre().options.find((o) => o.id === option)!.effets, e, dm!);
+      expect(e.quetes['q-le-grimoire']).toMatchObject({ statut: 'terminee', actives: [] });
+      expect(e.fin).toBe(fin);
+    });
+  }
+
+  const option = (id: string, opt: string) => (dm!.extensions as { dilemmes: { id: string; options: { id: string; condition?: never; effets: never[] }[]; abstention: { effets: never[] } }[] }).dilemmes.find((d) => d.id === id)!.options.find((o) => o.id === opt)!;
+  const dispo = (id: string, opt: string, e: ReturnType<typeof etatInitial>) => { const c = option(id, opt).condition; return c === undefined || evaluerCondition(c, e); };
+
+  it('livrer Tobie à la caserne ou le laisser au guet empêche de lui remettre le livre ; dénoncer Odile empêche de lui remettre le livre', () => {
+    for (const flag of ['choix-le-sacristain-livrer', 'tobie-au-guet']) {
+      const e = etatInitial(dm!, 3);
+      appliquerEffets([{ flag: 'tobie-retrouve' }], e, dm!);
+      expect(dispo('le-livre', 'a-tobie', e), 'avant').toBe(true);
+      appliquerEffets([{ flag }], e, dm!);
+      expect(dispo('le-livre', 'a-tobie', e), flag).toBe(false);
+    }
+    const e = etatInitial(dm!, 3);
+    expect(dispo('le-livre', 'a-odile', e)).toBe(true);
+    appliquerEffets([{ flag: 'choix-la-solde-denoncer' }], e, dm!);
+    expect(dispo('le-livre', 'a-odile', e)).toBe(false);
+  });
+
+  it('ne pas trancher la remise du livre mène à la fin « Église »', () => {
+    const e = etatInitial(dm!, 3);
+    const abstention = (dm!.extensions as { dilemmes: { id: string; abstention: { effets: never[] } }[] }).dilemmes.find((d) => d.id === 'le-livre')!.abstention;
+    appliquerEffets([{ quete: { id: 'q-le-grimoire', statut: 'active' } }, ...enquete.map((flag) => ({ flag }))], e, dm!);
+    appliquerEffets(abstention.effets, e, dm!);
+    expect(e.fin).toBe('fin-eglise');
+  });
+
+  const finAtteinte = (e: ReturnType<typeof etatInitial>) => [...dm!.fins.values()].find((f) => evaluerCondition(f.condition, e))?.id;
+
+  it('la grande marée au maximum sans le livre emporte le livre (fin d’échec, testée avant les autres)', () => {
+    const e = etatInitial(dm!, 2);
+    appliquerEffets([{ jauge: { id: 'grande-maree', delta: 10 } }], e, dm!);
+    expect(e.jauges['grande-maree']).toBe(4);
+    expect(finAtteinte(e)).toBe('fin-echec');
+  });
+
+  it('la jauge au maximum n’emporte plus le livre une fois retrouvé, et aucune fin n’arrive avant le choix', () => {
+    const e = etatInitial(dm!, 2);
+    appliquerEffets([{ flag: 'livre-retrouve' }, { jauge: { id: 'grande-maree', delta: 10 } }], e, dm!);
+    expect(finAtteinte(e)).toBeUndefined();
+  });
+});

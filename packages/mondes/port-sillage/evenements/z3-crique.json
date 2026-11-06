@@ -1,0 +1,20 @@
+[
+  {
+    "id": "z3-ev-bandits-a-la-grotte",
+    "declencheur": "entree-lieu",
+    "lieu": "cr-entrepot",
+    "condition": { "jauge": { "id": "grande-maree", "min": 3 } },
+    "unique": true,
+    "narration": "L'entrepôt est presque vide : des gobelets abandonnés sur la table, des dés qui n'ont pas fini de rouler, et, de la porte basse du fond, des pas lourds et des voix qui descendent vers la grotte. Au large, un navire a mouillé. Il ne reste qu'un guetteur, adossé à son tonneau, et les caisses.",
+    "effets": [{ "fait": "f-z3-sorel-deplace-ses-hommes" }]
+  },
+  {
+    "id": "z3-ev-coffre-vide",
+    "declencheur": "entree-lieu",
+    "lieu": "cr-grotte",
+    "condition": { "jauge": { "id": "grande-maree", "min": 4 } },
+    "unique": true,
+    "narration": "Le ponton est désert, la chaloupe a disparu, et la chaîne d'ancre pend dans le vide. Le coffre de chêne bâille, ses cadrans tournés au hasard : il ne contient plus ni livre ni lettre. Ce que vous cherchiez est parti avec la marée.",
+    "effets": [{ "fait": "f-z3-coffre-vide" }]
+  }
+]

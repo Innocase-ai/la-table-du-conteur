@@ -1,0 +1,486 @@
+[
+  {
+    "id": "z1-r-mission-de-gilda",
+    "nom": "La mission de la maire",
+    "type": "social",
+    "lieu": "ps-place",
+    "difficulte": "faible",
+    "intro": "Sur l'estrade, la maire en ciré vous fait signe de monter. Elle parle bas, pour que la place n'entende pas : le Livre de Maëlle a disparu de la crypte pendant la fête, le prêtre n'a plus de quoi lire la Bonace, et dans trois nuits un navire inconnu viendra sans doute le chercher. Elle a besoin de gens que le village ne connaît pas.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "accepter-la-mission",
+        "nom": "J'accepte de retrouver le livre.",
+        "resume": "Gilda soupire de soulagement et promet 50 po de prime, versés à la fin de l'enquête si le livre revient à Port-Sillage.",
+        "effets": [
+          { "flag": "vol-connu" },
+          { "quete": { "id": "q-le-grimoire", "statut": "active" } },
+          { "fait": "f-livre-vole" },
+          { "fait": "f-z1-prime-de-gilda" }
+        ]
+      },
+      {
+        "id": "demander-une-avance",
+        "nom": "Je demande des frais d'avance avant de me mettre en route.",
+        "jet": { "competence": "persuasion", "dd": 12 },
+        "resume": "La maire hésite, regarde le sac de cuir à sa ceinture, puis en tire quelques pièces. La caisse du village a l'air bien légère.",
+        "effets": [
+          { "flag": "vol-connu" },
+          { "quete": { "id": "q-le-grimoire", "statut": "active" } },
+          { "fait": "f-livre-vole" },
+          { "fait": "f-z1-prime-de-gilda" },
+          { "pieces": 10 }
+        ],
+        "echec": [
+          { "flag": "vol-connu" },
+          { "quete": { "id": "q-le-grimoire", "statut": "active" } },
+          { "fait": "f-livre-vole" },
+          { "fait": "f-z1-prime-de-gilda" },
+          { "attitude": { "pnj": "gilda-fauvel", "delta": -10 } }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-rumeur-de-cyprien",
+    "nom": "Le fantôme de la sainte",
+    "type": "social",
+    "lieu": "ps-place",
+    "difficulte": "faible",
+    "intro": "Debout sur une barrique renversée devant l'étal de la criée, le crieur gnome agite sa clochette : « Le fantôme de la sainte a repris son livre ! Je l'ai su de source sûre ! » Autour de lui, des pêcheurs hochent la tête, mi-effrayés, mi-ravis d'avoir une histoire.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "demander-la-source",
+        "nom": "Je lui demande d'où il tient cette histoire.",
+        "jet": { "competence": "intuition", "dd": 11 },
+        "resume": "Le crieur se dégonfle, rougit jusqu'aux oreilles et avoue qu'il n'a rien vu : quand il n'y a pas de nouvelles, il en fait.",
+        "effets": [
+          { "fait": "f-z1-rumeur-fantome" },
+          { "fait": "f-livre-vole" },
+          { "attitude": { "pnj": "cyprien-crieur", "delta": 10 } }
+        ],
+        "echec": [
+          { "fait": "f-z1-rumeur-fantome" },
+          { "pieces": -3 }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "payer-une-tournee",
+        "nom": "Je lui offre une tournée contre ses vraies nouvelles.",
+        "condition": { "pieces": { "min": 3 } },
+        "resume": "Entre deux gorgées, le crieur raconte tout ce qu'il sait vraiment, et glisse que le fantôme est de sa composition.",
+        "effets": [
+          { "pieces": -3 },
+          { "fait": "f-z1-rumeur-fantome" },
+          { "fait": "f-livre-vole" },
+          { "attitude": { "pnj": "cyprien-crieur", "delta": 10 } }
+        ]
+      },
+      {
+        "id": "demander-le-navire",
+        "nom": "Je lui demande s'il a vu un navire inconnu au large.",
+        "condition": { "jauge": { "id": "grande-maree", "min": 3 } },
+        "resume": "Le crieur baisse la voix : oui, un grand navire sans pavillon connu a mouillé au large, et des barques vont vers lui à la nuit tombée.",
+        "effets": [
+          { "fait": "f-navire-de-verdelune" },
+          { "fait": "f-z1-rumeur-fantome" }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-tobie-sous-la-barque",
+    "nom": "Sous la barque La Brise-Lame",
+    "type": "social",
+    "lieu": "pl-quai",
+    "difficulte": "faible",
+    "intro": "Sous la coque retournée de La Brise-Lame, entre les tréteaux, une couverture roulée, des croûtes de pain, et deux yeux rouges qui vous fixent. Un jeune homme en tunique de sacristain, maigre, la main crispée sur un cordon, recule contre le bordage : « Je n'ai rien fait. Laissez-moi. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "le-rassurer",
+        "nom": "Je m'accroupis et je le rassure : personne ne lui veut de mal.",
+        "jet": { "competence": "persuasion", "dd": 12 },
+        "resume": "Tobie finit par lâcher la barque. Il parle d'une traite, en pleurant à moitié : il a livré la clé, pour sa mère malade, et il le regrette à chaque cloche.",
+        "effets": [
+          { "flag": "tobie-retrouve" },
+          { "fait": "f-cle-de-tobie" },
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "tobie-ancre", "delta": 30 } },
+          { "quete": { "id": "q-tobie-sa-mere", "statut": "proposee" } }
+        ],
+        "echec": [
+          { "flag": "tobie-retrouve" },
+          { "fait": "f-cle-de-tobie" },
+          { "attitude": { "pnj": "tobie-ancre", "delta": -15 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "le-presser",
+        "nom": "Je lui barre la route et je le presse de parler.",
+        "jet": { "competence": "intimidation", "dd": 13 },
+        "resume": "Acculé, Tobie craque et lâche le nom de ceux à qui il a ouvert la porte, avant de se laisser glisser contre le bordage.",
+        "effets": [
+          { "flag": "tobie-retrouve" },
+          { "fait": "f-cle-de-tobie" },
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "tobie-ancre", "delta": -10 } }
+        ],
+        "echec": [
+          { "flag": "tobie-retrouve" },
+          { "fait": "f-cle-de-tobie" },
+          { "attitude": { "pnj": "tobie-ancre", "delta": -25 } },
+          { "reputation": { "faction": "eglise-de-la-bonace", "delta": -5 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "montrer-la-preuve",
+        "nom": "Je lui montre ce que nous avons trouvé sur les hommes de la crique.",
+        "condition": { "ou": [{ "objet": "bourse-marquee" }, { "objet": "cle-de-la-crypte" }] },
+        "resume": "À la vue de la preuve, Tobie comprend qu'il est inutile de mentir. Il avoue, soulagé presque, et supplie qu'on épargne sa mère.",
+        "effets": [
+          { "flag": "tobie-retrouve" },
+          { "fait": "f-cle-de-tobie" },
+          { "fait": "f-helene-malade" },
+          { "attitude": { "pnj": "tobie-ancre", "delta": 10 } },
+          { "quete": { "id": "q-tobie-sa-mere", "statut": "proposee" } }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-pieces-marquees",
+    "nom": "Les pièces d'écaille",
+    "type": "social",
+    "lieu": "ta-salle",
+    "difficulte": "faible",
+    "intro": "Derrière le comptoir, la petite aubergiste essuie la même chope depuis un moment. Quand vous parlez des clients de la fête, elle jette un coup d'œil au tiroir de la caisse, puis aux filets, puis à vous : elle sait quelque chose, et n'a pas décidé de le dire.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "gagner-sa-confiance",
+        "nom": "Je lui parle franchement et je gagne sa confiance.",
+        "jet": { "competence": "persuasion", "dd": 13 },
+        "resume": "Maëva soupire, ouvre le tiroir et pose devant vous une bourse de cuir : des pièces d'argent à l'écaille de poisson, que certains clients de la crique lui ont laissées.",
+        "effets": [
+          { "objet": { "id": "bourse-marquee", "quantite": 1 } },
+          { "fait": "f-z1-pieces-marquees" },
+          { "fait": "f-marche-de-sorel" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 15 } }
+        ],
+        "echec": [
+          { "objet": { "id": "bourse-marquee", "quantite": 1 } },
+          { "fait": "f-z1-pieces-marquees" },
+          { "fait": "f-marche-de-sorel" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": -5 } },
+          { "quete": { "id": "q-maeva-la-cave", "statut": "active" } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "offrir-la-tournee",
+        "nom": "Je lui offre une tournée de la maison pour la mettre à l'aise.",
+        "condition": { "pieces": { "min": 5 } },
+        "resume": "Maëva trinque et dit sans nommer personne que des hommes de la crique paient en pièces d'argent à l'écaille, qu'elle garde de côté.",
+        "effets": [
+          { "pieces": -5 },
+          { "fait": "f-z1-pieces-marquees" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 10 } }
+        ]
+      },
+      {
+        "id": "promettre-de-nettoyer-la-cave",
+        "nom": "Je lui propose de vider sa cave de ses rats, en échange.",
+        "resume": "L'aubergiste accepte tout de suite : sa cave est infestée, et la confiance se gagne avec un bâton. Elle vous en parle plus longuement, et vous regarde déjà autrement.",
+        "effets": [
+          { "quete": { "id": "q-maeva-la-cave", "statut": "active" } },
+          { "fait": "f-z1-cave-aux-rats" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 20 } }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-gaspard-le-temoin",
+    "nom": "Le témoin de la table du feu",
+    "type": "social",
+    "lieu": "ta-salle",
+    "difficulte": "faible",
+    "intro": "Près de la cheminée, dos au mur, un vieux pêcheur à la barbe jaunie par la pipe remue sa chope en parlant tout seul : « …et pas une rame qui grince, je vous dis, pas un feu ! » Voyant que vous écoutez, il se tourne vers vous, ravi d'avoir un public.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "trier-le-vrai-du-faux",
+        "nom": "Je l'écoute et je démêle ce qu'il a réellement vu.",
+        "jet": { "competence": "intuition", "dd": 12 },
+        "resume": "Entre deux digressions, le vieux Gaspard décrit une barque sans lumière filant vers la crique ; en le questionnant, vous comprenez qu'il parle de la nuit d'avant la fête, pas de celle du vol.",
+        "effets": [
+          { "fait": "f-z1-barque-sans-lumiere" },
+          { "fait": "f-z1-gaspard-se-trompe-de-nuit" },
+          { "flag": "crique-trouvee" },
+          { "attitude": { "pnj": "gaspard-vent", "delta": 10 } }
+        ],
+        "echec": [
+          { "fait": "f-z1-barque-sans-lumiere" },
+          { "flag": "crique-trouvee" },
+          { "pieces": -2 }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "offrir-un-verre",
+        "nom": "Je lui offre un verre pour lui délier la langue.",
+        "condition": { "pieces": { "min": 2 } },
+        "resume": "Le vieux boit, raconte la barque sans lumière filant vers la crique, et jure que c'était la nuit de la fête. Il a l'air tout à fait sûr de lui.",
+        "effets": [
+          { "pieces": -2 },
+          { "fait": "f-z1-barque-sans-lumiere" },
+          { "flag": "crique-trouvee" },
+          { "attitude": { "pnj": "gaspard-vent", "delta": 15 } }
+        ]
+      },
+      {
+        "id": "le-laisser-raconter",
+        "nom": "Je le laisse raconter à son rythme, sans l'interrompre.",
+        "resume": "Gaspard raconte tout, dans le désordre : la mer d'autrefois, sa pipe, une barque sans lumière vers la crique. Vous en retenez l'essentiel, sans savoir s'il l'a vue la bonne nuit.",
+        "effets": [
+          { "fait": "f-z1-barque-sans-lumiere" },
+          { "flag": "crique-trouvee" }
+        ]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-rats-de-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "combat",
+    "lieu": "ta-cave",
+    "difficulte": "faible",
+    "intro": "L'escalier craque, la lanterne grésille, et dans le mur sud, au ras du sol, quelque chose gratte. Puis des yeux luisent dans le trou rongé : des rats gros comme des chiens se glissent entre les caisses de sel, et une nuée sombre ruisselle des tonneaux. Maëva a dit vrai : ils ont fait de la cave leur maison.",
+    "monstres": [
+      { "profil": "rat-geant", "nombre": 6 },
+      { "profil": "nuee-de-rats", "nombre": 3 }
+    ],
+    "carte": [
+      "############",
+      "#.......HHH#",
+      "#c......HHH#",
+      "#c~~..cc...#",
+      "#c~~.......#",
+      "#cmmmm....c#",
+      "#mmmmm...cc#",
+      "############"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les rats géants jaillissent du trou en meute et se jettent sur le héros le plus proche ; la nuée reste au pied des tonneaux et revient sur les blessés.",
+      "fuite": "Les rats refluent dans le trou du mur sud quand la nuée est dispersée.",
+      "renforts": "Écrite pour 6 héros : 6 rats géants (groupe principal) et 3 nuées (renforts, en dernier). Pour 4 héros, le moteur ramène le combat à 4 rats géants et 2 nuées."
+    },
+    "alternatives": [
+      {
+        "id": "enfumer-la-cave",
+        "nom": "J'enfume la cave avec de la paille humide et du sel.",
+        "jet": { "competence": "survie", "dd": 11 },
+        "resume": "Une fumée âcre monte dans la cave ; les rats détalent par leur trou et la nuée se disperse dans les murs. Maëva pourra remonter ses tonneaux.",
+        "effets": [
+          { "flag": "z1-cave-nettoyee" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 10 } }
+        ],
+        "echec": [
+          { "narration": "La paille prend mal, la fumée vous pique les yeux, et les rats, alertés, foncent." }
+        ]
+      },
+      {
+        "id": "pieger-la-nuee",
+        "nom": "Je piège la nuée avec un tonneau percé et des appâts.",
+        "jet": { "competence": "investigation", "dd": 12 },
+        "resume": "Un tonneau défoncé, un peu de lard, une planche en pente : la nuée s'y engouffre et les rats la suivent, vous laissant le temps de refermer le couvercle.",
+        "effets": [
+          { "flag": "z1-cave-nettoyee" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 10 } }
+        ],
+        "echec": [
+          { "narration": "Le tonneau bascule avec fracas : les rats comprennent qu'on les attend." }
+        ]
+      },
+      {
+        "id": "murer-le-trou",
+        "nom": "Je bouche le trou du mur sud avec une caisse de sel et des moellons.",
+        "jet": { "competence": "athletisme", "dd": 13 },
+        "resume": "Une caisse de sel poussée à l'épaule, des moellons empilés en hâte : le trou est condamné, les rats pris dans la cave filent chercher un autre chemin.",
+        "effets": [
+          { "flag": "z1-cave-nettoyee" },
+          { "attitude": { "pnj": "maeva-brisant", "delta": 10 } }
+        ],
+        "echec": [
+          { "narration": "La caisse glisse sur la flaque, le fracas résonne, et les rats surgissent par le trou que vous vouliez fermer." }
+        ]
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "effetsVictoire": [
+      { "flag": "z1-cave-nettoyee" },
+      { "attitude": { "pnj": "maeva-brisant", "delta": 15 } }
+    ]
+  },
+  {
+    "id": "z1-r-exercice-de-piotr",
+    "nom": "L'exercice du sergent",
+    "type": "social",
+    "lieu": "ca-cour",
+    "difficulte": "faible",
+    "intro": "Au centre de la cour, le sergent nain tape sur un mannequin de bois avec la régularité d'une horloge ; une recrue pâle compte les coups. Il vous voit et grogne : « Si vous voulez des réponses sur mes rondes, montrez d'abord que vous tenez debout. » Il pose un bâton d'exercice à vos pieds.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "relever-l-epreuve",
+        "nom": "Je relève l'épreuve du sergent au bâton d'exercice.",
+        "jet": { "competence": "athletisme", "dd": 12 },
+        "resume": "Après trois échanges, le bâton du sergent cogne le mannequin et non vous. Il hoche la tête, essoufflé et content, et vous dicte l'ordre des rondes.",
+        "effets": [
+          { "fait": "f-z1-rondes-de-nuit" },
+          { "attitude": { "pnj": "piotr-lenoir", "delta": 15 } },
+          { "xp": 25 }
+        ],
+        "echec": [
+          { "fait": "f-z1-rondes-de-nuit" },
+          { "attitude": { "pnj": "piotr-lenoir", "delta": -5 } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "parler-des-rondes",
+        "nom": "Je lui parle franchement du guet et de ses rondes.",
+        "jet": { "competence": "persuasion", "dd": 12 },
+        "resume": "Piotr écoute, la mâchoire serrée, puis pose son bâton : il n'a pas l'habitude qu'on s'intéresse à sa ronde. Il vous la détaille pas à pas.",
+        "effets": [
+          { "fait": "f-z1-rondes-de-nuit" },
+          { "attitude": { "pnj": "piotr-lenoir", "delta": 10 } }
+        ],
+        "echec": [
+          { "fait": "f-z1-rondes-de-nuit" },
+          { "attitude": { "pnj": "piotr-lenoir", "delta": -5 } }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-recrutement-de-basile",
+    "nom": "La recrue à l'abreuvoir",
+    "type": "social",
+    "lieu": "ca-cour",
+    "difficulte": "faible",
+    "intro": "Contre l'abreuvoir de pierre, une jeune recrue en veste bleue trop grande fait semblant de nettoyer sa lanterne éteinte. Elle lève les yeux vers vous, puis vers le ciel qui rougit : le soir approche, et c'est visiblement son tour de ronde.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "lui-donner-confiance",
+        "nom": "Je lui dis que le guet compte sur lui, et moi aussi.",
+        "jet": { "competence": "persuasion", "dd": 12 },
+        "resume": "Basile se redresse. On lui parle rarement ainsi ; il serre sa lanterne et dit qu'il y a bien un service qu'il n'ose demander à personne.",
+        "effets": [
+          { "attitude": { "pnj": "basile-ecume", "delta": 25 } },
+          { "quete": { "id": "q-basile-premier-service", "statut": "active" } }
+        ],
+        "echec": [
+          { "attitude": { "pnj": "basile-ecume", "delta": -5 } },
+          { "quete": { "id": "q-basile-premier-service", "statut": "active" } }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "deviner-ce-qui-le-trouble",
+        "nom": "J'observe sa lanterne et je devine ce qui le trouble.",
+        "jet": { "competence": "intuition", "dd": 13 },
+        "resume": "Une lanterne qu'on tient allumée en plein jour : Basile n'aime pas le noir, et ses mains le disent avant lui. Vous le lui dites doucement, sans rire.",
+        "effets": [
+          { "fait": "f-z1-basile-peur-du-noir" },
+          { "attitude": { "pnj": "basile-ecume", "delta": 20 } },
+          { "quete": { "id": "q-basile-premier-service", "statut": "active" } }
+        ],
+        "echec": [
+          { "attitude": { "pnj": "basile-ecume", "delta": -5 } },
+          { "quete": { "id": "q-basile-premier-service", "statut": "active" } }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "z1-r-confrontation-d-odile",
+    "nom": "Face à la capitaine",
+    "type": "social",
+    "lieu": "ca-bureau",
+    "difficulte": "faible",
+    "intro": "La capitaine Odile Marsan ne s'est pas levée. Elle a posé les mains à plat sur la carte de la baie et vous regarde entrer comme on regarde venir une vague. Elle n'a pas dormi, et ça se voit. « Si vous êtes ici pour le livre, je vous écoute. Si c'est pour autre chose, soyez brefs. »",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "presenter-le-registre",
+        "nom": "Je pose devant elle le registre de la paie du guet.",
+        "condition": { "objet": "registre-de-la-solde" },
+        "resume": "Odile fixe le registre, puis vous. Sa main tremble un instant, puis se referme. Elle avoue ce qu'elle taisait : la paie n'est plus versée, et elle a laissé passer des barques pour nourrir ses hommes.",
+        "effets": [
+          { "fait": "f-solde-impayee" },
+          { "fait": "f-contrebande-toleree" },
+          { "attitude": { "pnj": "odile-marsan", "delta": 10 } },
+          { "quete": { "id": "q-odile-la-solde", "statut": "proposee" } }
+        ]
+      },
+      {
+        "id": "remettre-la-preuve-de-sorel",
+        "nom": "Je lui remets les pièces marquées des hommes de la crique.",
+        "condition": {
+          "et": [
+            { "ou": [{ "objet": "bourse-marquee" }, { "objet": "lettre-de-verdelune" }] },
+            { "non": { "flag": "odile-prevenue" } }
+          ]
+        },
+        "resume": "Odile retourne une pièce entre ses doigts, puis se lève d'un bloc : elle fait doubler la garde du port et marque la crique sur sa carte, au crayon.",
+        "effets": [
+          { "flag": "odile-prevenue" },
+          { "jauge": { "id": "grande-maree", "delta": -1 } },
+          { "attitude": { "pnj": "odile-marsan", "delta": 20 } }
+        ]
+      },
+      {
+        "id": "lui-parler-franchement",
+        "nom": "Je lui dis que je sais qu'elle ferme les yeux sur la contrebande.",
+        "jet": { "competence": "persuasion", "dd": 14 },
+        "resume": "Odile se tait longtemps, puis admet d'une voix sourde qu'elle tolère les barques de la crique depuis deux ans, et qu'elle n'en est pas fière.",
+        "effets": [
+          { "fait": "f-contrebande-toleree" },
+          { "attitude": { "pnj": "odile-marsan", "delta": 10 } }
+        ],
+        "echec": [
+          { "attitude": { "pnj": "odile-marsan", "delta": -15 } },
+          { "reputation": { "faction": "garnison-du-guet", "delta": -5 } }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": []
+  }
+]

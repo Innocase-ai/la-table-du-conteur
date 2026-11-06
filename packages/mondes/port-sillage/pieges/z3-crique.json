@@ -1,0 +1,15 @@
+[
+  {
+    "id": "z3-p-cloche-d-alarme",
+    "nom": "La clochette d'alarme",
+    "lieu": "cr-grotte",
+    "resume": "Un fil fin de laiton relie la serrure à cadrans du coffre à une clochette fixée sous le plafond : toute combinaison fausse la fera sonner.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "Un cliquetis sec dans le coffre, un fil qui se tend : sous le plafond, la clochette de laiton se met à sonner à toute volée, et son tintement court sur l'eau, résonne dans le couloir et file jusqu'à la plage.",
+    "degats": [],
+    "etats": [],
+    "effets": [{ "jauge": { "id": "grande-maree", "delta": 1 } }, { "narration": "Tout ce qui vit dans la crique a entendu l'alarme, et le navire acheteur le saura avant l'aube." }],
+    "reinitialisation": false
+  }
+]

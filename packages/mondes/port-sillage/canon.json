@@ -1,0 +1,47 @@
+{
+  "secrets": [
+    {
+      "id": "secret-cle-de-tobie",
+      "texte": "Tobie Ancre, sacristain, a donné la clé de la crypte à Sorel Noirbec contre 30 po pour payer l'apothicaire de sa mère.",
+      "fait": "f-cle-de-tobie",
+      "motsTabou": ["sacristain a donné la clé", "30 po", "trente pièces"],
+      "autorise": ["pnj:tobie-ancre", "pnj:helene-ancre", "dilemmes"]
+    },
+    {
+      "id": "secret-marche-de-sorel",
+      "texte": "Sorel a vendu le livre au marquis de Verdelune, dont le navire mouille à la grande marée.",
+      "fait": "f-marche-de-sorel",
+      "motsTabou": ["Verdelune", "marquis"],
+      "autorise": ["pnj:sorel-noirbec", "pnj:mirande-sel", "dilemmes"]
+    },
+    {
+      "id": "secret-solde-detournee",
+      "texte": "La maire a détourné la solde de la garnison vers la digue ; Odile tolère la contrebande en échange du silence.",
+      "fait": "f-solde-impayee",
+      "motsTabou": ["détourné", "solde impayée"],
+      "autorise": ["pnj:odile-marsan", "pnj:gilda-fauvel", "pnj:piotr-lenoir", "dilemmes"]
+    },
+    {
+      "id": "secret-voix-du-lecteur",
+      "texte": "Le livre use la voix de son lecteur ; Aubin perd la sienne et voulait Tobie pour successeur.",
+      "fait": "f-aubin-perd-sa-voix",
+      "motsTabou": ["perd sa voix", "use la voix", "successeur"],
+      "autorise": ["pnj:pere-aubin", "dilemmes"]
+    }
+  ],
+  "noms": { "lexique": ["Maëlle", "Sainte-Maëlle", "Bonace", "Verdelune"] },
+  "personnages": [
+    { "id": "pere-aubin", "nom": "Père Aubin", "age": 71, "espece": "humain" },
+    { "id": "tobie-ancre", "nom": "Tobie Ancre", "age": 17, "espece": "humain" },
+    { "id": "helene-ancre", "nom": "Hélène Ancre", "age": 44, "espece": "humain" },
+    { "id": "odile-marsan", "nom": "Odile Marsan", "age": 38, "espece": "humain" },
+    { "id": "piotr-lenoir", "nom": "Piotr Lenoir", "age": 52, "espece": "nain" },
+    { "id": "gilda-fauvel", "nom": "Gilda Fauvel", "age": 58, "espece": "humain" },
+    { "id": "maeva-brisant", "nom": "Maëva Brisant", "age": 45, "espece": "halfelin" },
+    { "id": "gaspard-vent", "nom": "Gaspard Vent", "age": 68, "espece": "humain" },
+    { "id": "sorel-noirbec", "nom": "Sorel Noirbec", "age": 42, "espece": "tieffelin" },
+    { "id": "cyprien-crieur", "nom": "Cyprien", "age": 30, "espece": "gnome" },
+    { "id": "mirande-sel", "nom": "Mirande Sel", "age": 120, "espece": "elfe" },
+    { "id": "basile-ecume", "nom": "Basile Écume", "age": 19, "espece": "humain" }
+  ]
+}
