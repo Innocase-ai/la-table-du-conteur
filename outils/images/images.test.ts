@@ -179,10 +179,10 @@ describe('images d’un monde, lieu par lieu', () => {
     for (const e of tous.filter((x) => x.groupe === 'lieux')) expect(e.prompt).toContain('No people and no creatures');
   });
 
-  it('les objets illustrés sont les objets notables seulement', () => {
+  it('les objets illustrés sont les objets notables, les objets de quête et les clés', () => {
     for (const e of tous.filter((x) => x.groupe === 'objets')) {
       const o = charge.monde.objets.get(e.id.replace('objet-', ''))!;
-      expect(o.rarete !== 'commun' || o.magique).toBe(true);
+      expect(o.rarete !== 'commun' || o.magique || o.categorie === 'quete' || o.categorie === 'cle').toBe(true);
     }
   });
 });

@@ -95,7 +95,8 @@ export function elementsParLieu(dm: DonneesMonde, { charte, racineSrd, retouches
     for (const t of [...dm.tresors.values()].filter((x) => x.lieu === l.id)) {
       for (const { objet } of t.contenu.objets) {
         const o = dm.objets.get(objet);
-        if (!o || (o.rarete === 'commun' && !o.magique)) continue;
+        // Les objets de quête et les clés sont toujours illustrés, même communs : le joueur les voit dans son sac.
+        if (!o || (o.rarete === 'commun' && !o.magique && o.categorie !== 'quete' && o.categorie !== 'cle')) continue;
         ajouter(l.id, {
           id: `objet-${o.id}`,
           groupe: 'objets',
