@@ -8,7 +8,7 @@ Défauts rencontrés en écrivant le premier monde, et leur remède. À relire a
 - **Boutiques** : elles citent aussi les armes et armures du SRD par leur id (les agents ne le savent pas toujours : dis-le dans la mission).
 - **Un fait que personne ne révèle** : avertissement. Soit un PNJ ou un lieu le révèle, soit un effet.
 - **Lieux isolés** : chaque zone déclare un lien double sens vers le hub, sinon l'accessibilité dépend d'une autre zone.
-- **Rencontres** : cartes avec au moins 6 `H` et autant de `m` que de monstres (**compte-les toi-même** : le validateur n'exige qu'un `H` et un `m`, mais le combat a besoin d'une case par héros et par monstre et s'arrête sinon) ; difficulté cohérente avec le budget de PX d'un groupe de 6.
+- **Rencontres** : cartes avec au moins 6 `H` et autant de `m` que de monstres (sinon le combat prend les cases manquantes sur le sol le plus proche des cases marquées, et le placement t'échappe ; le validateur le signale) ; difficulté cohérente avec le budget de PX d'un groupe de 6.
 
 ## À l'intégration
 - **Drapeau lu mais jamais posé** (le validateur l'avertit) : trouver quelle zone doit le poser (souvent une conséquence naturelle : une jauge, une mort, une entrée de lieu) et l'ajouter. Dans le Val : le Veilleur ne mourait jamais.

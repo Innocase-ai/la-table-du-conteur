@@ -52,6 +52,19 @@ describe('format de monde', () => {
     expect(a).toMatch(/Rencontre « r-loups »/);
   });
 
+  it('signale une carte tactique sans assez de cases de départ, et une fin déjà vraie au départ', () => {
+    const dm = charger();
+    const r = dm.rencontres.get('r-loups')!;
+    r.monstres = [{ profil: 'loup', nombre: 3 }];
+    r.carte = ['H.H.....', '........', '.....m..'];
+    const a = validerMonde(dm, srd).avertissements.join('\n');
+    expect(a).toMatch(/Rencontre « r-loups » : 2 case\(s\) de départ des héros \(H\) pour un groupe de 6/);
+    expect(a).toMatch(/Rencontre « r-loups » : 1 case\(s\) de départ \(m\) pour 3 monstres/);
+    const fin = [...dm.fins.values()][0]!;
+    fin.condition = { non: { flag: 'jamais-pose' } };
+    expect(validerMonde(dm, srd).erreurs.join('\n')).toMatch(new RegExp(`Fin « ${fin.id} » : sa condition est déjà vraie au départ`));
+  });
+
   it('refuse un fichier qui ne respecte pas le schéma, avec un message lisible', () => {
     const r = chargerMonde(join(import.meta.dirname, 'fixtures'));
     expect(r.ok).toBe(false);

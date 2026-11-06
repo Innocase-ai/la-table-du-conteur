@@ -57,7 +57,7 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 
 ## 5. Les cartes tactiques (combat, mixte)
 
-`carte` : lignes de texte de même longueur. `.` sol, `#` mur, `~` terrain difficile, `H` départ des héros (au moins 6), `m` départ des monstres (au moins autant que de monstres), éléments : `e` eau, `b` boue, `T` arbre, `R` rocher, `r` rocher bas, `t` tronc, `c` caisse (couvert : +2 CA). `terrain` : `foret`, `souterrain`, `caverne` ou `camp` (ambiance du plateau). `tactique` (doctrine, fuite, renforts) **n'est pas encore lu par le moteur** (`docs/MONDES.md`) : c'est une note pour le MJ, pas un réglage de l'IA. Compte toi-même les `H` et les `m` : le validateur n'en exige qu'un de chaque, mais le combat s'arrête s'il manque une case. Voir `docs/PLATEAUX.md`.
+`carte` : lignes de texte de même longueur. `.` sol, `#` mur, `~` terrain difficile, `H` départ des héros (au moins 6), `m` départ des monstres (au moins autant que de monstres), éléments : `e` eau, `b` boue, `T` arbre, `R` rocher, `r` rocher bas, `t` tronc, `c` caisse (couvert : +2 CA). `terrain` : `foret`, `souterrain`, `caverne` ou `camp` (ambiance du plateau). `tactique` (doctrine, fuite, renforts) **n'est pas encore lu par le moteur** (`docs/MONDES.md`) : c'est une note pour le MJ, pas un réglage de l'IA. Il faut un `H` par héros (6) et un `m` par monstre : sinon le combat prend les cases manquantes sur le sol le plus proche des cases marquées (le validateur le signale par un avis). Voir `docs/PLATEAUX.md`.
 
 ## 6. Écrire le texte
 

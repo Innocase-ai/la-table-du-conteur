@@ -32,4 +32,4 @@ Chiffres visés : <récapitulatif>.
 - Rapport final attendu : fichiers, chiffres, ids du registre créés, ids d'autres zones référencés, drapeaux posés et lus, incohérences avec le canon.
 
 ## Extraction de monstres SRD (si le thème l'exige)
-Avant les zones, un agent extrait les profils manquants (modèle : l'agent « monstres supplémentaires » du Val : liste de monstres, pages de l'index du SRD, schéma `Monstre`, exemples de fichiers existants, `pnpm test`).
+Avant les zones, un agent extrait les profils manquants : brief `brief-monstres.md` (il reprend la méthode de l'agent « monstres supplémentaires » du Val : liste de monstres, pages de l'index du SRD, schéma `Monstre`, exemples de fichiers existants, `pnpm test`).

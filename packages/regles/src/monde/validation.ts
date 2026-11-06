@@ -9,6 +9,7 @@ import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
 import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
 import { refsCondition, refsEffet } from './references';
+import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
 export interface BilanMonde {
@@ -318,6 +319,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       const nb = r.monstres.reduce((n, m) => n + m.nombre, 0);
       if (compte('H') < 1) err(`${ou} : la carte n'a aucune case de départ des héros (H).`);
       if (compte('m') < 1 && nb) avis(`${ou} : la carte n'a aucune case de départ des monstres (m).`);
+      // Le combat place chaque héros (6) et chaque monstre sur sa case ; celles qui manquent sont prises sur le sol le plus proche des cases marquées.
+      else if (compte('m') < nb) avis(`${ou} : ${compte('m')} case(s) de départ (m) pour ${nb} monstres : les autres partent du sol le plus proche.`);
+      if (compte('H') >= 1 && compte('H') < 6) avis(`${ou} : ${compte('H')} case(s) de départ des héros (H) pour un groupe de 6 : les autres partent du sol le plus proche.`);
     }
     // Difficulté déclarée contre le budget de PX d'un groupe de 6.
     if (r.type === 'combat' || r.type === 'mixte') {
@@ -387,6 +391,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     effets(`Événement « ${ev.id} »`, ev.effets);
   }
   for (const f of dm.fins.values()) cond(`Fin « ${f.id} »`, f.condition);
+  // Le moteur pose la première fin dont la condition est vraie, après chaque action : vraie dès le départ, l'histoire s'arrêterait aussitôt.
+  const depart = etatInitial(dm);
+  for (const f of dm.fins.values()) if (evaluerCondition(f.condition, depart)) err(`Fin « ${f.id} » : sa condition est déjà vraie au départ ; l'histoire se terminerait dès la première action.`);
   const { dilemmes } = dilemmesDe(dm);
   for (const d of dilemmes) {
     const ou = `Dilemme « ${d.id} »`;
