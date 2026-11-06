@@ -20,6 +20,7 @@ Les deux mondes livrés sont les références : **le Val des Cendres** et **La C
 | Donner du **lore au décor** : détails à examiner par lieu (inscriptions, objets, traces) qui se relisent selon ce que le groupe sait ; dossier `examens/`, format dans `docs/MONDES.md`, brief type `references/brief-examens.md` | ce skill (agents Haiku, relecture par Claude) |
 | Faire **réagir le monde aux héros** (condition `heros` : regards d'origine sur les examens, salutations de PNJ ; brief `references/brief-origines.md`) et **faire hanter le début par l'antagoniste** (apparitions qui montent en étrangeté, un fait chacune ; brief `references/brief-antagoniste.md`) | ce skill (agents Haiku, relecture par Claude : aucun lore inventé) |
 | Poser des **mystères au joueur** : questions du codex (dossier `codex/`, 10 à 15 par monde), chacune ouverte par un fait connu, avec une piste et fermée par le fait qui répond ; brief type `references/brief-codex.md` | ce skill (un agent Haiku, relecture par Claude ; **vérifier que `quand` est le fait que le groupe sait déjà et `resolue` celui qui répond**) |
+| Décrire **tous les lieux en détail**, de la carte du monde à chaque salle (atlas `LIEUX.md` : source des descriptions du MJ, des `visuel` des images et des cartes illustrées) ; **après le canon, avant les zones** | `decrire-lieux` |
 | Écrire et vérifier des **énigmes** | `enigmes` |
 | Toucher au **conteur IA** | `conteur` ; nouvelle mécanique de jeu : `ajouter-module` |
 
@@ -62,6 +63,8 @@ Décide ensuite avec lui (propose des défauts) : le ton, les niveaux (1 à 5 pa
 10. **Un ton par scène** : alterner grave, léger, étrange ; une quête secondaire tient en dix minutes et finit sur une chute.
 
 Fais valider un **résumé** du canon à l'utilisateur (pas le document entier) avant d'écrire les zones : changer un secret après coup coûte tout le travail des agents.
+
+**Décrire les lieux avant d'écrire les zones** (skill `decrire-lieux`) : l'atlas `LIEUX.md` (carte du monde, puis chaque lieu, puis chaque point à visiter) fixe une fois pour toutes matériaux, plans, positions et descriptions ; les agents de zone recopient ses champs (`visuel`, `description`, `accroche`, `liens`) au lieu de les inventer, et les images et cartes en découlent.
 
 ## Étape 3 — Découper en zones
 

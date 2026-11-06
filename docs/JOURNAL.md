@@ -788,6 +788,13 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Vérifié** dans le navigateur (Citadelle, partie existante) : onglet Carte, plein écran (M), clic sur un lieu, « Y aller » qui déplace le repère et révèle les voisins. **Effet de bord** : ce test a fait avancer d'une étape la partie sauvegardée de l'utilisateur (la route des falaises).
 - **Reste** : aucune image de carte n'est générée (annoncer le coût et attendre l'accord ; qualité de Klein sur une carte vue de dessus non testée : un essai d'abord) ; poser les lieux dans l'atelier ; cartes du Val et de la Dîme ensuite.
 
+## 06/11/2026 — Skill `decrire-lieux` : l'atlas des lieux, du monde à la salle
+
+- **Demande** : pour une prochaine histoire, un skill qui donne une description très détaillée de chaque lieu, utile à l'histoire, aux images et aux cartes ; on part de la carte du monde, puis chaque lieu de cette carte, puis chaque point à visiter.
+- **Contenu** : `.claude/skills/decrire-lieux/` : `SKILL.md` (trois niveaux, règle d'héritage par bloc recopié, dérivation vers `visuel` / `description` / `resume` / `ambiance` / `accroche` / `position` / passages, ordre carte principale puis positions puis cartes de détail, contrôle de cohérence, pièges), `assets/ATLAS.modele.md` (modèle de `LIEUX.md`), `references/brief-agent-lieu.md` (brief des agents du niveau 2). Niveaux 0 et 1 : Claude avec l'utilisateur ; niveau 2 : un agent par lieu (Haiku, relu par Claude ; Sonnet 5.5 si les fiches restent génériques).
+- **Liens** : `creer-monde` (ligne dans le tableau des skills, et étape « décrire les lieux avant les zones »), `CLAUDE.md` du projet.
+- **Pas encore essayé** sur un vrai monde : il se rôdera sur la prochaine histoire.
+
 ## 06/11/2026 — Les trois cartes de détail de la Citadelle, cohérentes avec la carte principale
 
 - **Demande** : générer les cartes de la citadelle, du port et du palais en soignant la cohérence avec les images du jeu et la carte de la Côte de Hautmarée.
