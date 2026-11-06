@@ -118,10 +118,12 @@ ${galerie('Des mondes qui se dessinent', 'Cartes, lieux, personnages et objets d
 <section id="inscription" class="bloc inscription">
   <h2>Soyez prévenu de la sortie</h2>
   <p>Laissez votre adresse e-mail pour être averti quand le jeu sortira.</p>
-  <!-- Formulaire volontairement NON relié pour l'instant : aucune action, aucun envoi. À brancher plus tard (Netlify Forms, service d'envoi de courriels…). -->
-  <form id="formulaire-sortie" class="formulaire" novalidate data-non-branche>
+  <!-- Relié à la fonction Netlify netlify/functions/inscription.mjs (écrit dans une feuille AITable). -->
+  <form id="formulaire-sortie" class="formulaire" method="post" action="/api/inscription" novalidate>
     <label for="courriel">Votre adresse e-mail</label>
-    <div class="champ"><input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom@exemple.fr" required><button class="bouton" type="submit">Me prévenir</button></div>
+    <div class="champ"><input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom@exemple.fr" required maxlength="254"><button class="bouton" type="submit">Me prévenir</button></div>
+    <p class="piege" aria-hidden="true"><label>Ne pas remplir <input name="site_web" type="text" tabindex="-1" autocomplete="off"></label></p>
+    <label class="consentement"><input id="consentement" name="consentement" type="checkbox" required> J'accepte que mon adresse e-mail soit utilisée uniquement pour m'avertir de la sortie du jeu. Je peux demander sa suppression à tout moment.</label>
     <p id="retour-sortie" class="retour" role="status" aria-live="polite" hidden></p>
   </form>
 </section>

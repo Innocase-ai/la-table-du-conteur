@@ -172,3 +172,9 @@ figcaption { padding: 12px 16px 14px; color: var(--doux); font-size: 14px; line-
 .pilier p { margin: 0; color: var(--doux); font-size: 15px; line-height: 1.55; }
 .intro .mention { margin: 24px auto 0; max-width: 760px; font-size: 13px; color: var(--doux); }
 @media (max-width: 900px) { .piliers { grid-template-columns: 1fr; } }
+
+/* formulaire d'inscription : consentement et champ-piège */
+.consentement { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 0; font-size: 13.5px; color: var(--doux); line-height: 1.5; cursor: pointer; }
+.consentement input { margin-top: 3px; accent-color: var(--or); flex: none; }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bouton[disabled] { opacity: .6; cursor: wait; }
