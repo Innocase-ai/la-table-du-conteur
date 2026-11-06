@@ -152,7 +152,11 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   const ressources: Record<string, number> = { reaction: 1, ...durable.ressources };
   const traits = fiche.aptitudes.map((a) => a.id).filter((t) => TRAITS_COMBAT.includes(t));
   if (traits.includes('rage')) ressources.degatsRage = nombreColonne(fiche.colonnes['Dégâts de Rage']);
-  if (fiche.aptitudes.some((a) => a.id === 'attaque-supplementaire')) ressources.attaquesParAction = 2;
+  // Attaque supplémentaire (2 attaques), puis le Guerrier : double (niveau 11, 3 attaques) et triple (niveau 20, 4 attaques).
+  const ids = new Set(fiche.aptitudes.map((x) => x.id));
+  if (ids.has('triple-attaque-supplementaire')) ressources.attaquesParAction = 4;
+  else if (ids.has('double-attaque-supplementaire')) ressources.attaquesParAction = 3;
+  else if (ids.has('attaque-supplementaire')) ressources.attaquesParAction = 2;
   let incantation: Combattant['incantation'];
   if (fiche.incantation) {
     const i = fiche.incantation;

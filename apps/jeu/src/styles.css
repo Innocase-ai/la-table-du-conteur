@@ -401,6 +401,17 @@ button:disabled {
   overflow: hidden;
 }
 
+/* Les 20 niveaux : deux rangées de dix. */
+.segments-niveaux {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(30px, 1fr));
+  min-width: 340px;
+}
+
+.segments.segments-niveaux button {
+  padding: 6px 2px;
+}
+
 .segments button {
   flex: 1;
   padding: 6px;

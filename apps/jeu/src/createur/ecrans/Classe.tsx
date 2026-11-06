@@ -97,7 +97,7 @@ export function EcranClasse({ b, donnees, maj, rapide }: PropsEcran & { rapide: 
               <h2>Niveau de départ</h2>
               <p className="aide">Modifier le niveau relance les recommandations des caractéristiques et des choix de classe.</p>
             </div>
-            <div className="segments" role="group" aria-label="Niveau de départ">
+            <div className="segments segments-niveaux" role="group" aria-label="Niveau de départ">
               {Array.from({ length: NIVEAU_MAX }, (_, i) => i + 1).map((n) => (
                 <button key={n} type="button" className={b.choix.niveau === n ? 'actif' : ''} aria-pressed={b.choix.niveau === n} onClick={() => maj((x) => changerNiveau(x, n, donnees))}>
                   {n}

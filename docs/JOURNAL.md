@@ -922,3 +922,10 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 
 - **Choix** : plutôt que 158 dessins à la main, des **motifs déduits des données** : un sort sans dessin propre prend le motif de son premier type de dégâts (feu, froid, foudre, tonnerre, acide, poison, nécrotique, radiant, force, psychique, physique), sinon un motif de soin, sinon le symbole de son école. 12 motifs et 7 sorts emblématiques dessinés (Boule de feu, Téléportation, Souhait, Arrêt du temps, Nuée de météores, Résurrection, Désintégration), tous en SVG original, sans coût d'API.
 - `cleDeSort` (pur, testé : aucun sort du catalogue ne tombe sur le dessin par défaut) ; icône affichée dans les cartes de combat et dans les listes de sorts du créateur ; banc d'essai `/?icones&prefixe=motif:`.
+
+## 06/11/2026 — Relecture des sorts, attaques du Guerrier, sélecteur de niveau
+
+- **Relecture** des 158 sorts ajoutés contre le texte du SRD par 5 agents Haiku (lecture seule), puis arbitrage : écarts certains corrigés (Métamorphose suprême, Dissimulation suprême, Manoir somptueux, Champ antimagie : résumés complétés ; Apparence trompeuse, Entrave planaire, Invocation d'élémentaire, Contagion : jets de sauvegarde et états typés). Niveaux 4 et 6 : aucun écart certain. Laissés tels quels : champs que le schéma ne sait pas exprimer (modificateur d'incantation dans les dégâts, dégâts différés, modes multiples, rituel, durée en jours) ; ils sont fidèles dans le `resume`.
+- **Combat** : 3 attaques par action au niveau 11 du Guerrier, 4 au niveau 20 (`niveaux-eleves.test.ts` : attaques, dégâts de rage, emplacements de niveau 20).
+- **Créateur** : le sélecteur de niveau (1 à 20) s'affiche sur deux rangées de dix ; fiche d'une Magicienne de niveau 20 vérifiée à l'écran (102 PV, +6, emplacements 4-3-3-3-3-2-2-1-1).
+- **Reste** : aptitudes de haut niveau et sorts de niveaux 4 à 9 en texte pour le moteur de combat ; équilibrage du bestiaire et des rencontres au-delà du niveau 5.
