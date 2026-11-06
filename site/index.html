@@ -16,7 +16,7 @@
 <body>
 <header class="barre">
   <a class="marque" href="#haut">La Table du Conteur</a>
-  <nav><a href="#conteur">Le conteur</a><a href="#groupe">Groupe</a><a href="#createur">Créateur</a><a href="#histoires">Histoires</a><a href="#explorer">Explorer</a><a href="#parler">Parler</a><a href="#choix">Choix</a><a href="#combat">Combat</a><a href="#monstres">Monstres</a><a href="#monde">Image et son</a><a href="#auteurs">Auteurs</a><a href="#cout">Coût</a><a href="#etat">État du jeu</a></nav>
+  <nav><a href="#conteur">Le conteur</a><a href="#groupe">Groupe</a><a href="#createur">Créateur</a><a href="#histoires">Histoires</a><a href="#explorer">Explorer</a><a href="#parler">Parler</a><a href="#choix">Choix</a><a href="#combat">Combat</a><a href="#monstres">Monstres</a><a href="#monde">Image et son</a><a href="#auteurs">Auteurs</a><a href="#cout">Coût</a><a href="#etat">État du jeu</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
@@ -26,7 +26,7 @@
     <h1>La Table du Conteur</h1>
     <p class="accroche-hero">Racontez l'histoire, mais laissez les dés décider.</p>
     <p class="para-hero">La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires complètes. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence.</p>
-    <p class="actions"><a class="bouton" href="#conteur">Découvrir le jeu</a><a class="bouton second" href="#etat">Où en est-il ?</a></p>
+    <p class="actions"><a class="bouton" href="#conteur">Découvrir le jeu</a><a class="bouton second" href="#inscription">Être prévenu de la sortie</a></p>
   </div>
 </section>
 
@@ -229,6 +229,17 @@
 <section class="bloc art mondes-galerie">
   <div class="entete"><h2>Des mondes qui se dessinent</h2><p>Cartes, lieux, personnages et objets des histoires livrées.</p></div>
   <div class="mosaique"><figure><img src="images/art/carte-citadelle.webp" alt="La Citadelle des Marées" loading="lazy"><figcaption>La Citadelle des Marées</figcaption></figure><figure><img src="images/art/carte-cote.webp" alt="La côte de Hautmarée" loading="lazy"><figcaption>La côte de Hautmarée</figcaption></figure><figure><img src="images/art/carte-port-sillage.webp" alt="Port-Sillage" loading="lazy"><figcaption>Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-crypte.webp" alt="La crypte de Port-Sillage" loading="lazy"><figcaption>La crypte de Port-Sillage</figcaption></figure><figure><img src="images/art/lieu-place.webp" alt="La place de la Criée" loading="lazy"><figcaption>La place de la Criée</figcaption></figure><figure><img src="images/art/pnj-octave.webp" alt="Octave Lamberte" loading="lazy"><figcaption>Octave Lamberte</figcaption></figure><figure><img src="images/art/pnj-sorel.webp" alt="Sorel Noirbec" loading="lazy"><figcaption>Sorel Noirbec</figcaption></figure><figure><img src="images/art/pnj-aubin.webp" alt="Père Aubin" loading="lazy"><figcaption>Père Aubin</figcaption></figure><figure><img src="images/art/objet-livre.webp" alt="Le Livre de Maëlle" loading="lazy"><figcaption>Le Livre de Maëlle</figcaption></figure></div>
+</section>
+
+<section id="inscription" class="bloc inscription">
+  <h2>Soyez prévenu de la sortie</h2>
+  <p>Laissez votre adresse e-mail pour être averti quand le jeu sortira.</p>
+  <!-- Formulaire volontairement NON relié pour l'instant : aucune action, aucun envoi. À brancher plus tard (Netlify Forms, service d'envoi de courriels…). -->
+  <form id="formulaire-sortie" class="formulaire" novalidate data-non-branche>
+    <label for="courriel">Votre adresse e-mail</label>
+    <div class="champ"><input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom@exemple.fr" required><button class="bouton" type="submit">Me prévenir</button></div>
+    <p id="retour-sortie" class="retour" role="status" aria-live="polite" hidden></p>
+  </form>
 </section>
 
 <section id="etat" class="bloc etat">

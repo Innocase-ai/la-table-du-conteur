@@ -25,4 +25,18 @@
     }, { rootMargin: '-40% 0px -55% 0px' });
     Object.keys(liens).forEach(function (id) { var s = document.getElementById(id); if (s) obs.observe(s); });
   }
+
+  // Formulaire de sortie : pas encore relié à un service, rien n'est envoyé ni enregistré.
+  var f = document.getElementById('formulaire-sortie');
+  if (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var champ = document.getElementById('courriel');
+      var msg = document.getElementById('retour-sortie');
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(champ.value.trim());
+      msg.hidden = false;
+      msg.className = ok ? 'retour' : 'retour erreur';
+      msg.textContent = ok ? 'Les inscriptions ne sont pas encore ouvertes : votre adresse n’a pas été enregistrée. Revenez bientôt.' : 'Cette adresse e-mail ne semble pas valide.';
+    });
+  }
 })();

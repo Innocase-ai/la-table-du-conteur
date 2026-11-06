@@ -68,7 +68,7 @@ const html = `<!doctype html>
 <body>
 <header class="barre">
   <a class="marque" href="#haut">${esc(c.meta.titre)}</a>
-  <nav>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a></nav>
+  <nav>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
@@ -78,7 +78,7 @@ const html = `<!doctype html>
     <h1>${esc(c.meta.titre)}</h1>
     <p class="accroche-hero">${esc(c.hero.accroche)}</p>
     <p class="para-hero">${esc(c.hero.paragraphe)}</p>
-    <p class="actions"><a class="bouton" href="#conteur">Découvrir le jeu</a><a class="bouton second" href="#etat">Où en est-il ?</a></p>
+    <p class="actions"><a class="bouton" href="#conteur">Découvrir le jeu</a><a class="bouton second" href="#inscription">Être prévenu de la sortie</a></p>
   </div>
 </section>
 
@@ -91,6 +91,17 @@ ${c.sections.map((s, n) => section(s, n) + (s.id === 'groupe' ? createur : '')).
 ${galerie('Un bestiaire complet', 'Les 329 monstres du SRD ont leur illustration, dans un même style peint. En voici quelques-uns.', monstres, 'monstres-galerie')}
 ${galerie('Des héros qui vous ressemblent', 'Neuf espèces, deux silhouettes, trois visages chacune : 54 portraits à choisir.', portraits, 'portraits-galerie')}
 ${galerie('Des mondes qui se dessinent', 'Cartes, lieux, personnages et objets des histoires livrées.', histoires, 'mondes-galerie')}
+
+<section id="inscription" class="bloc inscription">
+  <h2>Soyez prévenu de la sortie</h2>
+  <p>Laissez votre adresse e-mail pour être averti quand le jeu sortira.</p>
+  <!-- Formulaire volontairement NON relié pour l'instant : aucune action, aucun envoi. À brancher plus tard (Netlify Forms, service d'envoi de courriels…). -->
+  <form id="formulaire-sortie" class="formulaire" novalidate data-non-branche>
+    <label for="courriel">Votre adresse e-mail</label>
+    <div class="champ"><input id="courriel" name="courriel" type="email" autocomplete="email" placeholder="prenom@exemple.fr" required><button class="bouton" type="submit">Me prévenir</button></div>
+    <p id="retour-sortie" class="retour" role="status" aria-live="polite" hidden></p>
+  </form>
+</section>
 
 <section id="etat" class="bloc etat">
   <h2>${esc(c.etat.titre)}</h2>
