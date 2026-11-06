@@ -48,6 +48,7 @@ Un lieu qui contient d'autres lieux (au moins ~5 enfants, ou un niveau de donjon
 - **Le bloc d'héritage** du niveau 0 + **les nuances propres** à ce lieu (ce qui le distingue des autres régions : un matériau, une couleur, une odeur).
 - **Le plan vu de dessus** : forme générale, limites (mur, falaise, rivière), orientation, voies d'accès et où elles arrivent, éléments naturels, quartiers ou ailes. C'est ce qu'on verra sur sa carte.
 - **Les points à visiter** : la liste exhaustive des enfants directs (leur `id`, leur type, leur fonction dramatique : combat, rencontre, énigme, repos, trésor, secret), avec leur **position approximative** sur le plan (x, y en %), leur **taille** (grande, moyenne, petite) et leurs **voisins directs** (ce qui devient les `liens`).
+- **Le budget de contenu du lieu** (décidé avec l'utilisateur) : combien de combats, de rencontres sociales, de PNJ, d'énigmes, de pièges, de trésors, et sur quels points (« 2 combats et 4 rencontres de PNJ dans la citadelle : la cour, le réfectoire… »). Ce budget est une intention, pas encore des fiches.
 - **L'histoire du lieu** en quelques lignes (qui l'a bâti, ce qui s'y est passé) et son **état actuel**.
 - **Le jour, la nuit, le mauvais temps** : trois ambiances brèves.
 - **Ce que le joueur voit en y arrivant**, et **ce qu'il ne voit pas** (les secrets du lieu, **dans une section séparée** « Secret du MJ »).
@@ -65,7 +66,7 @@ Un agent par lieu du niveau 1, **tous lancés dans le même message**, avec `ref
 - **lumière** (d'où vient-elle, sa couleur, sa force, ses ombres), **sons**, **odeurs**, **température** ;
 - **éléments remarquables**, chacun avec sa **place** (« au fond à gauche », « contre le mur nord ») : mobilier, décor, traces, objets ; ce sont les futurs détails à examiner (`examens/`) ;
 - **issues** : chaque porte, escalier, passage ; où il mène, comment il se présente de chaque côté (les `liens` avec leur `description` et leur `retour`, 12 à 30 mots) ;
-- **ce qu'on y trouve** : références (id) aux PNJ, trésors, pièges, énigmes, rencontres déjà prévus dans le canon ; aucune nouvelle entité inventée ici ;
+- **le contenu prévu** : pour chaque PNJ, monstre, rencontre, piège, trésor, énigme ou objet de ce point, son **emplacement** (à quel élément décrit il est lié : le piège sous la dalle devant le coffre, le PNJ derrière le comptoir), son **rôle**, et son id s'il existe déjà dans le canon (sinon « à créer »). C'est un **emplacement**, pas la fiche de l'entité : voir « Le contenu des lieux » plus bas ;
 - **avant / après** : ce qui change selon l'avancée de l'histoire (une salle propre puis dévastée, une porte close puis ouverte) ;
 - les **champs dérivés**, rédigés à la fin de la fiche : `visuel` (voir ci-dessous), `description` (pour le MJ : factuelle, détaillée, 100 à 250 mots), `resume` (une phrase qui ne spoile rien), `ambiance` (3 à 8 mots), `accroche` (12 à 30 mots, vue du dehors).
 
@@ -89,6 +90,24 @@ C'est ce champ, tel quel, qui fabrique l'image du lieu **et** nourrit la carte d
 
 Interdits : nommer un personnage ou une créature (ce qui est nommé apparaît à l'image), les mots refusés par le service d'images (corps, cadavre, enfant près d'un danger, brûlures sur la peau, silhouettes couchées), le vocabulaire abstrait (« inquiétant », « mystérieux » : on décrit ce qui inquiète), tout secret (le `visuel` est vu par le joueur). Les matériaux et couleurs viennent **du bloc d'héritage** : pas de nouvelle teinte sans la justifier plus haut.
 
+## Le contenu des lieux (PNJ, monstres, objets, pièges, énigmes)
+
+L'atlas décrit **où** et **dans quel décor** ; il ne crée pas les entités. Chaque PNJ, rencontre, piège, trésor, énigme ou objet est une fiche du monde, écrite après l'atlas par le skill ou l'agent qui en est responsable, et rattachée à son lieu par son champ `lieu`. Le contenu se décide à trois endroits :
+
+1. **Au niveau 1** : le budget du lieu (combien de chaque sorte, sur quels points), avec l'utilisateur.
+2. **À chaque point, dès le niveau 2 et à chaque sous-niveau** (la taverne, sa cave, son cellier, ses chambres) : le contenu prévu, avec son emplacement dans le décor. Une entité se place **au lieu le plus précis** : le piège de la cave est un contenu de la cave (niveau 3), pas de la taverne ; son champ `lieu` sera l'id de la cave.
+3. **Ensuite, par les skills spécialisés**, qui lisent la fiche du point pour rester cohérents avec son décor :
+
+| Contenu | Qui l'écrit | Ce qu'il tire de la fiche du point |
+| --- | --- | --- |
+| PNJ et leur profondeur | `creer-personnages` (et les agents de zone pour les PNJ simples) | l'endroit où ils se tiennent, la lumière, les sons, ce qu'ils ont sous la main |
+| Rencontres et monstres, contrats | `creer-rencontres`, `creer-contrats` | les dimensions et le mobilier pour la carte tactique, les issues pour la fuite, la lumière pour l'ambiance du plateau |
+| Énigmes | `enigmes` | seulement ce que le groupe peut **voir** : inscriptions, objets, traces des éléments remarquables |
+| Pièges, trésors, objets | agents de zone (voir `GUIDE-ZONE.md`) | l'élément auquel ils sont liés (la dalle, le coffre), pour que la détection et la description collent |
+| Détails à examiner | agents Haiku (`brief-examens.md` de `creer-monde`) | les éléments remarquables, un examen par élément |
+
+Quand les entités existent, **reporte leurs ids** dans le « Contenu prévu » de chaque point de l'atlas (l'atelier, onglets Registre et Graphes, donne la liste) : l'atlas redevient fidèle, et l'écart avec le budget du niveau 1 se voit. Rien de ce que l'atlas dit d'un décor ne doit être contredit par une entité (un piège qui se déclenche dans une pièce que l'atlas décrit sans dalle, un PNJ dans un lieu sans place pour lui).
+
 ## Du document au monde
 
 1. **Dérive les champs** de l'atlas vers les fichiers de zone (`lieux/z*.json`) : les agents de zone du skill `creer-monde` **recopient** `visuel`, `description`, `resume`, `ambiance`, `accroche`, `liens` depuis l'atlas au lieu de les inventer (ajoute-le à leur mission ; le `GUIDE-ZONE.md` renvoie à `LIEUX.md`). Si l'atlas est fait **avant** les zones, c'est l'ordre idéal : les agents n'ont plus qu'à structurer.
@@ -108,6 +127,8 @@ Interdits : nommer un personnage ou une créature (ce qui est nommé apparaît �
 - [ ] L'**image du lieu** montre ce que dit le `visuel` ; la **carte du parent** montre le lieu comme le `visuel` le dit (même matière, même couleur, même silhouette) ; la carte de détail reprend les bâtiments de la carte d'ensemble.
 - [ ] Les distances en **heures** des liens entre grands lieux correspondent à l'échelle de la carte du monde.
 - [ ] Chaque **avant / après** a un déclencheur dans le canon (un drapeau, un fait) : sinon l'état « après » n'arrivera jamais.
+- [ ] Chaque **contenu prévu** a un emplacement dans le décor décrit, au **lieu le plus précis** (la cave, pas la taverne) ; le total par lieu correspond au **budget** du niveau 1.
+- [ ] Une fois les entités écrites, leurs `lieu` et leurs ids sont **reportés dans l'atlas**, et aucune ne contredit le décor (piège sans dalle, PNJ sans place).
 - [ ] Rien n'est **inventé** hors du canon : pas de nouveau PNJ, de nouveau secret ou de nouvelle relique dans une description.
 
 ## Les pièges connus

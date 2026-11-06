@@ -62,6 +62,10 @@ Positions : `(x, y)` en % de la carte du parent (x : 0 à gauche, 100 à droite 
 | --- | --- | --- | --- | --- | --- | --- |
 |  |  |  | combat / rencontre / énigme / repos / trésor / secret | (  ,  ) | grande / moyenne / petite |  |
 
+### Budget de contenu (décidé avec l'utilisateur)
+- Combats :   · Rencontres sociales :   · PNJ :   · Énigmes :   · Pièges :   · Trésors :
+- Répartition par point (ex. « 2 combats : cour des vents, réfectoire ; 4 PNJ : ... ») :
+
 ### Histoire et état actuel
 -
 
@@ -105,7 +109,12 @@ Positions : `(x, y)` en % de la carte du parent (x : 0 à gauche, 100 à droite 
   -
 - **Issues** (où elles mènent, aspect vu de chaque côté) :
   - vers `id` : description (12 à 30 mots) ; retour (12 à 30 mots)
-- **Ce qu'on y trouve** (ids du canon seulement : PNJ, trésors, pièges, énigmes, rencontres) :
+- **Contenu prévu** (un emplacement par entité ; id s'il existe déjà, sinon « à créer » ; au lieu le plus précis) :
+
+  | sorte (PNJ, monstre, piège, trésor, énigme, objet) | rôle | lié à quel élément du décor | id | skill |
+  | --- | --- | --- | --- | --- |
+  |  |  |  | à créer |  |
+
 - **Avant / après** (avec le drapeau ou le fait qui déclenche le changement) :
 - **Un détail propre à ce lieu** (inscription, odeur, objet cassé : ce qui empêche cette fiche d'être échangeable) :
 - **Intérieur** (seulement si ce point contient d'autres lieux : cave, cellier, chambres, étages) :
