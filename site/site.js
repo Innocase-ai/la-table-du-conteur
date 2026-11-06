@@ -26,17 +26,32 @@
     Object.keys(liens).forEach(function (id) { var s = document.getElementById(id); if (s) obs.observe(s); });
   }
 
-  // Formulaire de sortie : pas encore relié à un service, rien n'est envoyé ni enregistré.
+  // Formulaire de sortie : envoyé à la fonction serveur /api/inscription (qui écrit dans AITable).
   var f = document.getElementById('formulaire-sortie');
   if (f) {
+    var msg = document.getElementById('retour-sortie');
+    var afficher = function (texte, erreur) { msg.hidden = false; msg.className = erreur ? 'retour erreur' : 'retour'; msg.textContent = texte; };
     f.addEventListener('submit', function (e) {
       e.preventDefault();
       var champ = document.getElementById('courriel');
-      var msg = document.getElementById('retour-sortie');
-      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(champ.value.trim());
-      msg.hidden = false;
-      msg.className = ok ? 'retour' : 'retour erreur';
-      msg.textContent = ok ? 'Les inscriptions ne sont pas encore ouvertes : votre adresse n’a pas été enregistrée. Revenez bientôt.' : 'Cette adresse e-mail ne semble pas valide.';
+      var coche = document.getElementById('consentement');
+      var bouton = f.querySelector('button[type=submit]');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(champ.value.trim())) { afficher('Cette adresse e-mail ne semble pas valide.', true); return; }
+      if (!coche.checked) { afficher('Veuillez cocher la case de consentement.', true); return; }
+      bouton.disabled = true;
+      afficher('Envoi en cours…', false);
+      fetch(f.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courriel: champ.value.trim(), consentement: true, site_web: f.elements.site_web.value }),
+      })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, message: j.message }; }); })
+        .then(function (res) {
+          if (res.ok) { afficher('Merci ! Votre adresse est enregistrée : vous serez prévenu à la sortie du jeu.', false); f.reset(); }
+          else afficher(res.message || 'L’inscription n’a pas pu être enregistrée. Réessayez dans un moment.', true);
+        })
+        .catch(function () { afficher('L’inscription n’a pas pu être envoyée. Réessayez dans un moment.', true); })
+        .then(function () { bouton.disabled = false; });
     });
   }
 })();

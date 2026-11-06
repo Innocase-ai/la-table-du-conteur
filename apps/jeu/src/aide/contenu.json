@@ -1,0 +1,692 @@
+{
+  "sections": [
+    {
+      "id": "histoires",
+      "titre": "Choisir une histoire",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Le menu « Choisir une histoire » présente les trois histoires du jeu. Chacune est un monde complet, avec ses lieux, ses personnages, ses quêtes et plusieurs fins. Prenez le temps de comparer avant de vous lancer."
+        },
+        {
+          "t": "h3",
+          "texte": "Comparer les histoires"
+        },
+        {
+          "t": "p",
+          "texte": "À gauche, une carte par histoire : illustration, titre, accroche, niveaux, durée et coût d'API estimé. Cliquez une carte pour afficher sa fiche à droite. La fiche présente la grande illustration, le titre, l'accroche en italique, des étiquettes de ton, un résumé et la liste des « Chapitres », avec les niveaux de chacun."
+        },
+        {
+          "t": "capture",
+          "nom": "histoires",
+          "alt": "La liste des trois histoires, une carte par histoire avec son illustration et son titre",
+          "legende": "La liste des trois histoires. Chaque carte donne l'illustration, le titre, l'accroche, les niveaux et la durée. Cliquez-en une pour ouvrir sa fiche."
+        },
+        {
+          "t": "capture",
+          "nom": "histoire-detail",
+          "alt": "La fiche d'une histoire : grande illustration, titre, accroche, étiquettes de ton et chapitres",
+          "legende": "La fiche d'une histoire. L'accroche est en italique sous le titre, les étiquettes de ton viennent juste dessous. Plus bas, le résumé et les chapitres avec leurs niveaux."
+        },
+        {
+          "t": "h3",
+          "texte": "Durée et coût"
+        },
+        {
+          "t": "p",
+          "texte": "Le bloc « Durée et coût » indique la durée estimée en heures d'exploration et de dialogues, en heures de combats, et le nombre de moments racontés par le conteur. Un tableau donne le coût d'API estimé pour Claude Opus, Sonnet et Haiku, et une ligne précise les images du groupe."
+        },
+        {
+          "t": "note",
+          "texte": "On paie avec sa propre clé d'API. Seuls les moments racontés par le conteur coûtent : l'exploration, les combats et les images du monde sont gratuits."
+        },
+        {
+          "t": "h3",
+          "texte": "Pour commencer"
+        },
+        {
+          "t": "ol",
+          "items": [
+            "Créez un groupe de 1 à 6 personnages complets avec le bouton « créer mon groupe ».",
+            "Lisez le niveau conseillé, par exemple « Niveau du groupe : 3 (histoire écrite pour les niveaux 1 à 4) ».",
+            "Cliquez sur « Commencer l'aventure »."
+          ]
+        },
+        {
+          "t": "p",
+          "texte": "Vous pouvez aussi jouer en mode « livre » : vous avancez avec les actions proposées et les textes de l'histoire, sans clé d'API et sans frais."
+        },
+        {
+          "t": "h3",
+          "texte": "Le film d'ouverture"
+        },
+        {
+          "t": "p",
+          "texte": "Au début d'une histoire, un film d'ouverture se lance : un carton de titre, des images en fondu et un texte lu par une voix. Les boutons « Voix : oui » ou « Voix : non » règlent la voix, et « Passer › » saute le film. Des scènes narrées reviennent ensuite à des moments clés, et une scène de fin accompagne chaque fin. Vous pouvez les revoir depuis l'onglet Journal."
+        },
+        {
+          "t": "capture",
+          "nom": "film-plan",
+          "alt": "Un plan du film d'ouverture : une image et le texte lu par la voix",
+          "legende": "Un plan du film d'ouverture : l'image en fondu et le texte que lit la voix. Les boutons « Voix : oui / non » et « Passer › » servent à régler le son et à sauter le film."
+        }
+      ]
+    },
+    {
+      "id": "explorer",
+      "titre": "Explorer un lieu",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Une fois l'aventure lancée, l'écran d'exploration sert de tableau de bord. Vous y lisez le lieu, le temps qui passe et l'avancement de l'histoire, puis vous choisissez ce que fait le groupe."
+        },
+        {
+          "t": "h3",
+          "texte": "Le haut de l'écran et le centre"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**En haut** : le titre de l'histoire et du lieu, le jour et le moment (par exemple « Jour 1 · matin »), la **jauge** de l'histoire et l'or du groupe.",
+            "**La jauge** est une horloge : elle monte avec le temps et change le monde. Elle affiche son palier, par exemple « La grande marée ●○○○ · Le vol connu ».",
+            "**Au centre** : l'illustration du lieu et sa description, puis le récit de ce qui arrive, avec le texte, les jets de dés et les lignes « Vous apprenez : … »."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "aventure",
+          "alt": "L'écran d'exploration sur la Place de la Criée, avec ses cinq onglets, les personnes, les actions, les sorties et le bandeau des héros",
+          "legende": "L'écran d'exploration. En haut, le titre, le jour et la jauge ; au centre, l'illustration du lieu ; à droite, les cinq onglets (Actions, Sac, Grimoire, Carte, Journal) ; en bas, le bandeau des héros."
+        },
+        {
+          "t": "h3",
+          "texte": "L'onglet Actions"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Personnes** : « Parler à… » ouvre la conversation avec quelqu'un du lieu.",
+            "**Ici** : **Fouiller** cherche trésors cachés, passages secrets et pièges ; **Halte** est un repos court ; **Dormir** passe la nuit, seulement dans un lieu sûr.",
+            "**À portée de main** : les objets et les éléments du lieu. **Examiner** lit un détail du décor, **Prendre** le ramasse, **Crocheter** ouvre une serrure avec des outils de voleur, **Forcer** tente de la faire céder, et un piège peut être désarmé.",
+            "**Partir** : chaque sortie, avec sa durée en heures. « inexploré » signale un endroit où vous n'êtes jamais allé. Une phrase décrit le passage avant que vous ne cliquiez."
+          ]
+        },
+        {
+          "t": "h3",
+          "texte": "Fouiller et examiner"
+        },
+        {
+          "t": "p",
+          "texte": "Pour fouiller, un héros fait un jet d'Investigation ou de Perception contre la difficulté du lieu. On ne trouve un piège qu'en fouillant. En entrant, les héros remarquent aussi certains détails tout seuls. Examiner un détail du décor affiche un texte qui peut changer selon ce que le groupe a appris."
+        },
+        {
+          "t": "p",
+          "texte": "Un héros qui crochète ou force une serrure peut déclencher un piège s'il échoue."
+        },
+        {
+          "t": "capture",
+          "nom": "fouille-examen",
+          "alt": "Après une fouille : le jet d'Investigation et le détail du décor examiné",
+          "legende": "Après une fouille, le jet s'affiche, par exemple « Ambrine — Investigation 9 (DD 14) — rien ». Le détail examiné apparaît dessous, avec le texte du décor."
+        }
+      ]
+    },
+    {
+      "id": "parler",
+      "titre": "Parler, convaincre, mentir",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Parler est la façon la plus directe d'obtenir des informations. Une conversation s'ouvre par-dessus l'illustration du lieu, et chaque réponse vous fait avancer ou reculer."
+        },
+        {
+          "t": "h3",
+          "texte": "La boîte de dialogue"
+        },
+        {
+          "t": "p",
+          "texte": "« Parler à… » ouvre une boîte de dialogue avec le portrait et le rôle du personnage, sa réplique, puis des réponses numérotées. Appuyez sur les touches 1 à 9 pour choisir. « Fin du dialogue » ou Échap termine la conversation. Les salutations changent selon ce que vous avez déjà fait."
+        },
+        {
+          "t": "capture",
+          "nom": "dialogue",
+          "alt": "Une conversation avec la maire : réponses numérotées dont Persuader, Intimider et Tromper",
+          "legende": "Une conversation avec la maire. Son portrait et son rôle sont en haut, sa réplique au-dessus des réponses numérotées. Les approches entre crochets sont [Persuader], [Intimider] et [Tromper]."
+        },
+        {
+          "t": "h3",
+          "texte": "Sujets et approches sociales"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Les sujets** : ce que vous voulez demander au personnage.",
+            "**Les approches sociales**, entre crochets : [Persuader], [Intimider], [Tromper]. Un héros fait alors un jet de compétence, et la réussite dépend de l'attitude du personnage, c'est-à-dire sa confiance envers vous."
+          ]
+        },
+        {
+          "t": "p",
+          "texte": "Certains secrets ne se disent qu'avec assez de confiance : un jet réussi, un prix à payer, ou une preuve, comme un objet ou un fait appris. Si une porte reste fermée, il manque sans doute l'un de ces éléments."
+        },
+        {
+          "t": "h3",
+          "texte": "Les rencontres à choix"
+        },
+        {
+          "t": "p",
+          "texte": "Une rencontre à choix pose une situation, par exemple un vieux pêcheur qui bredouille. Elle propose plusieurs approches, chacune avec sa compétence (« — Intuition »), ou bien « Passer son chemin »."
+        },
+        {
+          "t": "capture",
+          "nom": "rencontre",
+          "alt": "Une rencontre à choix avec un vieux pêcheur : trois approches et Passer son chemin",
+          "legende": "Une rencontre à choix : le vieux pêcheur bredouille. Trois approches sont proposées, chacune avec sa compétence entre tirets ; « Passer son chemin » vient en dernier."
+        },
+        {
+          "t": "p",
+          "texte": "Le résultat s'affiche avec son jet, par exemple « Hilda — Intuition : 17 (DD 12) — réussi », puis la ligne « Vous apprenez : … ». Un jet raté ne bloque jamais l'histoire : il a seulement un prix."
+        },
+        {
+          "t": "capture",
+          "nom": "rencontre-resultat",
+          "alt": "Le résultat d'un jet de Hilda, suivi de la ligne Vous apprenez",
+          "legende": "Le résultat : le jet de Hilda, sa compétence et la difficulté, puis la ligne « Vous apprenez : … » qui résume ce que le groupe a gagné."
+        },
+        {
+          "t": "p",
+          "texte": "Certains personnages deviennent compagnons de voyage et commentent vos choix. Écoutez-les : leurs remarques en disent souvent long sur ce qu'ils pensent de vous."
+        }
+      ]
+    },
+    {
+      "id": "carte-journal",
+      "titre": "La carte et le journal",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "La carte et le journal vous disent où vous êtes, où vous pouvez aller, et ce qui reste à découvrir."
+        },
+        {
+          "t": "h3",
+          "texte": "L'onglet Carte"
+        },
+        {
+          "t": "p",
+          "texte": "L'onglet Carte montre une miniature de la carte du monde, avec le bouton « Ouvrir en plein écran (M) ». La touche M ouvre la même carte en grand."
+        },
+        {
+          "t": "capture",
+          "nom": "carte-panneau",
+          "alt": "L'onglet Carte, avec sa miniature de la carte du monde et le bouton Ouvrir en plein écran",
+          "legende": "L'onglet Carte : la miniature de la carte du monde occupe l'onglet, et le bouton « Ouvrir en plein écran (M) » l'ouvre en grand."
+        },
+        {
+          "t": "h3",
+          "texte": "La carte du monde"
+        },
+        {
+          "t": "p",
+          "texte": "Le brouillard cache ce que vous ne connaissez pas encore. Cliquez un lieu pour y aller : la phrase « Choisissez un lieu » vous invite à le faire. Les lieux qui en contiennent d'autres, comme un village, une église ou une caverne, ont leur propre carte de détail."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Rond doré** : vous êtes ici.",
+            "**Rond orange** : lieu déjà visité.",
+            "**Cercle pointillé** : lieu connu, pas encore visité."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "carte-monde",
+          "alt": "La carte du monde en plein écran, avec le brouillard et les lieux",
+          "legende": "La carte du monde en plein écran. Le brouillard couvre les zones inconnues ; la légende explique le rond doré, le rond orange et le cercle pointillé."
+        },
+        {
+          "t": "h3",
+          "texte": "Le journal"
+        },
+        {
+          "t": "p",
+          "texte": "Le journal rassemble trois rubriques : « Quêtes en cours », « Questions en suspens » (les mystères que le jeu vous pose), et « Scènes », où l'on revoit le film d'ouverture et les scènes narrées. Une chronique de vos choix garde la trace de ce que vous avez décidé."
+        },
+        {
+          "t": "p",
+          "texte": "Si vous ne savez plus où aller, commencez par la carte : les lieux en pointillés sont connus mais jamais visités, et la sortie choisie dans l'onglet Actions indique sa durée en heures. Ensuite, ouvrez « Quêtes en cours » et « Questions en suspens » pour retrouver le fil de l'histoire. Ce que vous découvrez reste sur la carte : le brouillard ne couvre que ce que vous ne connaissez pas encore."
+        },
+        {
+          "t": "capture",
+          "nom": "journal",
+          "alt": "L'onglet Journal : quêtes en cours, questions en suspens et scènes",
+          "legende": "L'onglet Journal : les quêtes en cours, les questions en suspens et les scènes à revoir."
+        }
+      ]
+    },
+    {
+      "id": "sac-boutiques",
+      "titre": "Le sac, les boutiques et le grimoire",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Le sac, les boutiques et le grimoire regroupent tout ce que le groupe possède, achète et peut lancer. Chacun s'ouvre depuis l'écran d'aventure."
+        },
+        {
+          "t": "h3",
+          "texte": "Le sac du groupe"
+        },
+        {
+          "t": "p",
+          "texte": "Le bouton « Sac : N objet(s) » en bas à droite de l'écran d'aventure ouvre « Le sac du groupe » (touche I). Vous y voyez les pièces d'or du groupe et la charge portée, en kilos sur 600. Les objets sont rangés par héros, avec leur quantité, par exemple ×3."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Recherche** : tapez le nom d'un objet.",
+            "**Tri** : Par type, Par nom, Derniers arrivés, Valeur ou Poids.",
+            "**Filtres** : Tout, Porté par chaque héros, ou une catégorie comme « Outils et matériel ». Les autres catégories sont les objets de quête, les consommables, les livres et clés, les divers, les armes et les armures."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "inventaire",
+          "alt": "Le sac du groupe : objets par héros, recherche, tri, filtres, or et charge",
+          "legende": "Le sac du groupe. En haut : la recherche, le tri, les filtres, l'or et la charge ; dessous, les objets rangés par héros avec leur quantité."
+        },
+        {
+          "t": "h3",
+          "texte": "Une fiche d'objet"
+        },
+        {
+          "t": "p",
+          "texte": "Cliquez un objet pour afficher sa fiche à droite : grande illustration, nom, rareté (Commun, par exemple), catégorie, valeur, poids et description. Le bouton « Jeter » se trouve dans cette fiche. Les potions de guérison portées par chaque héros y sont aussi listées."
+        },
+        {
+          "t": "capture",
+          "nom": "inventaire-objet",
+          "alt": "Un objet sélectionné, une huile, avec sa fiche à droite",
+          "legende": "Une huile sélectionnée. Sa fiche, à droite, donne l'illustration, le nom, la rareté, la valeur, le poids et la description ; le bouton « Jeter » est dans la même fiche."
+        },
+        {
+          "t": "h3",
+          "texte": "Boutiques et services"
+        },
+        {
+          "t": "p",
+          "texte": "« Parler à » un marchand ouvre sa boutique : « Boutique de … (bourse : … po) », la liste des objets avec la quantité en stock, et un bouton « Acheter — 5 po ». Les prix sont en pièces d'or (po), d'argent (pa) ou de cuivre (pc)."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Acheter** : le bouton indique le prix de chaque objet en stock.",
+            "**Vendre** : la partie « … rachète » reprend vos objets, par exemple « Vendre — 2,5 po ».",
+            "**Services** : par exemple « Faire étudier un objet par Mirande — 20 po ». Ailleurs, on trouve une chambre pour la nuit ou des soins."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "boutique",
+          "alt": "La boutique d'une marchande : achat, rachat et services",
+          "legende": "La boutique d'une marchande : la liste des objets en stock avec leur prix, les achats, le rachat de vos objets et les services."
+        },
+        {
+          "t": "h3",
+          "texte": "Le grimoire et la feuille"
+        },
+        {
+          "t": "p",
+          "texte": "L'onglet Grimoire liste les sorts du héros choisi : niveau, emplacements restants, description, et la mention « jouable en combat » quand le sort peut servir pendant un combat. La feuille de personnage ouvre la fiche complète d'un héros : PV, CA, caractéristiques, compétences, jets de sauvegarde, attaques, sorts, équipement porté (avec « Retirer ») et traits."
+        },
+        {
+          "t": "p",
+          "texte": "Pour ouvrir la feuille, cliquez un héros du bandeau ou appuyez sur C. Les flèches ← → passent d'un héros à l'autre."
+        },
+        {
+          "t": "captures",
+          "liste": [
+            {
+              "nom": "grimoire",
+              "alt": "L'onglet Grimoire : les sorts d'une clerc, avec leur niveau et les emplacements restants",
+              "legende": "Le grimoire : les sorts du héros, leur niveau et les emplacements restants. La mention « jouable en combat » signale ceux qui servent au combat."
+            },
+            {
+              "nom": "feuille",
+              "alt": "La feuille de personnage de Hilda, fiche complète",
+              "legende": "La feuille de Hilda : PV, CA, caractéristiques, sorts et équipement. Les flèches ← → permettent de passer au héros suivant."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rencontres",
+      "titre": "Les rencontres et les combats d'histoire",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Une rencontre se déclenche quand vous entrez dans un lieu, quand vous fouillez, ou selon ce que raconte l'histoire. Le combat n'est jamais la seule issue : souvent, une autre façon de faire existe."
+        },
+        {
+          "t": "h3",
+          "texte": "Combattre ou trouver une autre issue"
+        },
+        {
+          "t": "p",
+          "texte": "Une rencontre propose « Combattre », des alternatives sans combat et souvent « Se replier ». Chaque alternative demande un jet de compétence. Dans une cave infestée de rats, par exemple, vous pouvez enfumer la nuée avec de la paille humide (Survie), la piéger (Investigation) ou boucher le trou (Athlétisme)."
+        },
+        {
+          "t": "capture",
+          "nom": "rencontre-combat",
+          "alt": "Avant un combat dans une cave : Combattre, trois alternatives avec jet et Se replier",
+          "legende": "Une rencontre dans une cave. « Combattre » vient en tête ; en dessous, les trois alternatives avec leur compétence, puis « Se replier »."
+        },
+        {
+          "t": "h3",
+          "texte": "Des combats adaptés au groupe"
+        },
+        {
+          "t": "p",
+          "texte": "Les combats d'histoire sont adaptés au nombre de héros : moins de monstres si le groupe est petit. Un groupe d'un seul héros affronte donc une troupe plus réduite qu'un groupe complet de six."
+        },
+        {
+          "t": "p",
+          "texte": "Le combat se joue ensuite sur le plateau, au tour par tour. Les règles sont expliquées dans la section « Le combat »."
+        },
+        {
+          "t": "p",
+          "texte": "Pour choisir entre les alternatives, pensez à votre groupe. Un héros fort en Athlétisme ou en Survie aura plus de chances avec l'approche qui correspond à sa compétence. Appuyez sur C pour ouvrir la feuille d'un héros : ses compétences y sont listées."
+        },
+        {
+          "t": "h3",
+          "texte": "Après le combat"
+        },
+        {
+          "t": "p",
+          "texte": "L'écran « Victoire » résume le combat : nombre de rounds, PV des héros, ennemis vaincus et héros tombés. Il propose « Reprendre le récit » ou « Voir le plateau »."
+        },
+        {
+          "t": "capture",
+          "nom": "apres-combat",
+          "alt": "Le récit après un combat : Victoire, les rats de la cave, 300 PX",
+          "legende": "Le récit après le combat. La ligne « Victoire : Les rats de la cave (300 PX) » donne l'expérience gagnée ; le butin suit dans le texte."
+        },
+        {
+          "t": "p",
+          "texte": "Les PX font monter le niveau du groupe quand ils atteignent le seuil suivant."
+        }
+      ]
+    },
+    {
+      "id": "repos-niveaux",
+      "titre": "Repos, temps et niveaux",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Le temps compte : chaque déplacement prend des heures, et le repos permet de reprendre des forces. Voici comment se règlent le repos, le temps qui passe et la montée de niveau."
+        },
+        {
+          "t": "h3",
+          "texte": "Halte et nuit"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Halte** : un repos court, presque partout. Pendant une halte, un héros peut dépenser des dés de vie pour regagner des PV.",
+            "**Dormir** : une nuit complète, seulement dans un lieu sûr, comme une auberge, un camp ou un refuge. Ailleurs, vous ne pouvez faire qu'une halte."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "aventure",
+          "alt": "L'écran d'exploration : le jour, le moment et le bandeau des héros",
+          "legende": "Le haut de l'écran indique le jour et le moment (« Jour 1 · matin »). Le bandeau du bas montre, pour chaque héros, la barre de PV, les potions et les sorts restants."
+        },
+        {
+          "t": "h3",
+          "texte": "Le temps qui passe"
+        },
+        {
+          "t": "p",
+          "texte": "Le jour et le moment de la journée sont affichés en haut de l'écran. Chaque sortie indique sa durée en heures, et le déplacement fait avancer l'horloge. La jauge de l'histoire peut monter avec le temps, ou à cause de certains de vos actes. Surveillez-la : c'est une horloge qui change le monde."
+        },
+        {
+          "t": "p",
+          "texte": "Le repos a un prix, et ce prix se lit en temps. Une halte est vite faite, mais une nuit fait avancer l'horloge bien davantage. Avant de dormir, regardez donc la jauge en haut de l'écran, et demandez-vous si l'histoire peut attendre."
+        },
+        {
+          "t": "h3",
+          "texte": "Monter de niveau"
+        },
+        {
+          "t": "p",
+          "texte": "Le groupe monte de niveau quand l'expérience franchit un seuil du SRD : 300, 900, 2 700 et 6 500 PX. Tout le groupe monte en même temps, et vos choix sont gardés."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Les nouveautés (amélioration de caractéristiques, sorts, aptitudes) sont complétées pour vous.",
+            "Les PV, les emplacements de sorts et les aptitudes gagnés s'ajoutent à ce que vous aviez déjà.",
+            "Le niveau ne dépasse jamais le niveau maximum de l'histoire, indiqué sur sa fiche."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conteur",
+      "titre": "Le conteur et le mode livre",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Vous pouvez jouer de deux façons. Les boutons suffisent pour avancer, gratuitement. La ligne « Que faites-vous ? » laisse le conteur IA répondre à ce que vous écrivez."
+        },
+        {
+          "t": "h3",
+          "texte": "Le mode livre"
+        },
+        {
+          "t": "p",
+          "texte": "Avec les boutons, vous jouez en mode « livre » : vous choisissez parmi les actions proposées et vous lisez les textes de l'histoire. Ce mode ne demande ni clé d'API, ni frais."
+        },
+        {
+          "t": "h3",
+          "texte": "La ligne « Que faites-vous ? »"
+        },
+        {
+          "t": "p",
+          "texte": "En bas de l'écran d'exploration, la ligne « Que faites-vous ? (le conteur vous répond) » accepte un texte libre. Par exemple, écrivez : « je lui dis que nous venons de la part du bailli ». Le conteur répond et tient de vraies conversations avec les personnages. Le bouton « Raconter › » demande un récit plus vivant de la scène."
+        },
+        {
+          "t": "p",
+          "texte": "Un personnage ne révèle un secret que si le jeu le permet."
+        },
+        {
+          "t": "h3",
+          "texte": "Ce que le conteur ne fait pas"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "Il ne lance jamais les dés : les jets sont faits par le jeu.",
+            "Il ne tranche pas les choix à votre place.",
+            "Il ne peut ni inventer un secret, ni modifier l'état du jeu."
+          ]
+        },
+        {
+          "t": "p",
+          "texte": "Le conteur utilise votre propre clé d'API. Seuls les moments racontés coûtent : l'exploration, les combats et les images sont gratuits. Une estimation est affichée avant de commencer, et un compteur indicatif en dollars, en bas de l'écran, suit la dépense."
+        },
+        {
+          "t": "note",
+          "texte": "Le conteur IA est encore à l'essai : l'écran de réglage de la clé n'est pas encore là."
+        }
+      ]
+    },
+    {
+      "id": "groupe-plus",
+      "titre": "Mon groupe : le détail",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "L'écran « Mon groupe » rassemble vos six emplacements. Cette section détaille ce que vous y voyez, ce que vous pouvez y faire, puis le créateur de personnage, qui compte huit écrans."
+        },
+        {
+          "t": "h3",
+          "texte": "Les six emplacements"
+        },
+        {
+          "t": "p",
+          "texte": "Chaque héros occupe un emplacement, avec son portrait, son espèce, sa classe, son niveau, ses PV, sa CA, sa vitesse et son alignement. Le badge « Complet » indique qu'il est prêt à jouer."
+        },
+        {
+          "t": "p",
+          "texte": "Un bon groupe mêle des combattants au contact, des tireurs, un soigneur et un lanceur de sorts. Les conseils de composition vous aident à l'équilibrer, mais ils ne vous empêchent jamais de jouer."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Modifier** ouvre le créateur pour changer ce héros.",
+            "**Dupliquer** copie le héros.",
+            "**Supprimer** le retire, après une confirmation.",
+            "**Les flèches ↑ et ↓** changent l'ordre des héros."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "groupe",
+          "alt": "L'écran Mon groupe avec six héros",
+          "legende": "L'écran « Mon groupe » avec six héros. Chaque héros affiche son portrait, sa classe, ses PV et sa CA ; Modifier, Dupliquer et Supprimer servent à le gérer."
+        },
+        {
+          "t": "h3",
+          "texte": "Niveau, conseils et import"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Niveau du groupe** : réglable de 1 à 20.",
+            "**Groupe conseillé** crée six héros équilibrés, prêts à jouer. Utilisez-le quand le groupe est vide.",
+            "**Exporter** et **Importer** : sauvegardez un groupe ou chargez-en un autre.",
+            "**Conseils de composition** : ils ne bloquent jamais. Exemple : « Groupe de 1 : les combats des histoires auront moins de monstres »."
+          ]
+        },
+        {
+          "t": "h3",
+          "texte": "Le créateur en huit écrans"
+        },
+        {
+          "t": "p",
+          "texte": "Les huit écrans sont affichés en haut : Espèce, Classe, Historique, Caractéristiques, Choix de classe, Alignement, Nom et portrait, Récapitulatif. La liste des choix est à gauche, et la description à droite."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Recommandé** remplit le choix conseillé à l'écran en cours.",
+            "**Suivant ›** avance, **‹ Retour** revient en arrière.",
+            "**Création rapide** est proposée à l'écran Classe. Le niveau de départ se règle de 1 à 20.",
+            "Les caractéristiques se fixent par valeurs standard, achat de points ou tirage 4d6."
+          ]
+        },
+        {
+          "t": "captures",
+          "liste": [
+            {
+              "nom": "createur-espece",
+              "alt": "Le créateur, écran Espèce : la liste des espèces et des lignages elfes",
+              "legende": "L'écran Espèce : la liste à gauche, la description de l'espèce à droite, ici les elfes et leur lignage."
+            },
+            {
+              "nom": "createur-classe",
+              "alt": "Le créateur, écran Classe : douze classes et le niveau de départ",
+              "legende": "L'écran Classe : les douze classes, et le niveau de départ à régler de 1 à 20."
+            },
+            {
+              "nom": "createur-caracteristiques",
+              "alt": "Le créateur, écran Caractéristiques",
+              "legende": "L'écran Caractéristiques : valeurs standard, achat de points ou tirage 4d6, selon votre choix."
+            }
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "createur-recap",
+          "alt": "Le récapitulatif du créateur : la fiche complète du héros",
+          "legende": "Le récapitulatif montre la fiche complète du héros. Le jeu vérifie que tout est valide : quand c'est bon, il affiche « Prêt à être enregistré »."
+        }
+      ]
+    },
+    {
+      "id": "combat-plus",
+      "titre": "Le combat en images",
+      "blocs": [
+        {
+          "t": "p",
+          "texte": "Le combat se lit à l'écran : l'ordre des tours, les jets et les cartes disent ce qui se passe à chaque instant. Cette section montre où regarder, puis comment lancer une escarmouche, un combat d'entraînement hors histoire."
+        },
+        {
+          "t": "h3",
+          "texte": "Lire l'écran de combat"
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**En haut** : la barre d'initiative, avec les jetons dans l'ordre, et le numéro de round.",
+            "**Au centre** : la grille, où se déplacent les jetons.",
+            "**À droite** : la fiche du héros dont c'est le tour, avec ses actions, son bonus, sa réaction et son élan, ses cartes, et les boutons « Tour auto », « Héros auto », « Normal/Rapide », le son et « Fin du tour ».",
+            "**En bas à gauche** : le portrait et la fiche du combattant survolé, avec le journal détaillé des jets."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "combat-debut",
+          "alt": "Le début d'un combat de six héros contre des rats",
+          "legende": "Le début d'un combat : la barre d'initiative en haut, la grille au centre, la fiche du héros actif à droite et le journal des jets en bas à gauche."
+        },
+        {
+          "t": "h3",
+          "texte": "Les jets sur le plateau"
+        },
+        {
+          "t": "p",
+          "texte": "Chaque jet s'affiche sur le plateau, par exemple « 13 + 2 = 15 contre CA 17 ». Le journal le redit en phrase : « Nuée de rats 3 attaque Bran (Morsures) : 13 → 15, raté. » Relisez-le quand un coup vous échappe."
+        },
+        {
+          "t": "capture",
+          "nom": "combat-sorts",
+          "alt": "Le tour d'une magicienne avec ses cartes de sorts, dans une crypte",
+          "legende": "Le tour d'une magicienne dans une crypte : ses cartes de sorts sont rangées à droite de l'écran, prêtes à être jouées sur le plateau."
+        },
+        {
+          "t": "h3",
+          "texte": "Victoire et escarmouches"
+        },
+        {
+          "t": "p",
+          "texte": "À la fin du combat, l'écran « Victoire » présente les rounds, les PV des héros, les ennemis vaincus et les héros tombés. Il propose « Reprendre le récit » ou « Voir le plateau »."
+        },
+        {
+          "t": "capture",
+          "nom": "combat-victoire",
+          "alt": "L'écran Victoire après un combat",
+          "legende": "L'écran « Victoire » : rounds, PV, ennemis vaincus et héros tombés. « Reprendre le récit » ramène à l'histoire ; « Voir le plateau » garde le combat à l'écran."
+        },
+        {
+          "t": "p",
+          "texte": "L'escarmouche se lance depuis le menu. Choisissez une rencontre parmi six : Embuscade gobeline, La crypte, La bande et ses ogres, Le camp hobgobelin, Le gué des brigands et Le col gelé. Chacune se joue en faible, modérée ou élevée."
+        },
+        {
+          "t": "ul",
+          "items": [
+            "**Deck d'élan** : active les cartes d'élan, décrites dans la section « Les cartes ».",
+            "**Difficulté de l'IA** : Normale ou Facile.",
+            "**Héros** : pré-tirés, ou « Mon groupe » pour jouer avec vos propres personnages."
+          ]
+        },
+        {
+          "t": "capture",
+          "nom": "escarmouche",
+          "alt": "L'écran Escarmouche : le choix d'une rencontre et ses options",
+          "legende": "L'écran Escarmouche : le choix de la rencontre et de sa force, puis les options (deck d'élan, difficulté de l'IA, héros pré-tirés ou Mon groupe)."
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { NOM_JEU } from '../jeu';
 import { IconeClasse } from '../createur/ui';
 import { Pictogramme } from '../composants/Pictogramme';
 import { COULEURS_FAMILLES, FAMILLES, LIBELLES_FAMILLES, type Famille } from '../effets-visuels';
+import contenuAide from '../aide/contenu.json';
 
 interface Section {
   id: string;
@@ -14,7 +15,7 @@ interface Section {
 
 /** Captures d'écran de l'aide (dossier `aide/`), par nom de fichier sans extension. */
 const IMAGES_AIDE = new Map(
-  Object.entries(import.meta.glob<string>('../aide/*.{png,jpg}', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
+  Object.entries(import.meta.glob<string>('../aide/*.{png,jpg,webp}', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
     chemin.replace(/^.*\/(.+)\.[a-z]+$/, '$1'),
     url,
   ]),
@@ -29,6 +30,87 @@ function Capture({ nom, alt, legende }: { nom: string; alt: string; legende: Rea
       <figcaption>{legende}</figcaption>
     </figure>
   );
+}
+
+/** Un texte avec du **gras** (marqué par deux astérisques). */
+function Gras({ texte }: { texte: string }) {
+  return (
+    <>
+      {texte.split('**').map((morceau, i) => (i % 2 === 1 ? <strong key={i}>{morceau}</strong> : morceau))}
+    </>
+  );
+}
+
+/** Un bloc de contenu de l'aide, écrit en données (`aide/contenu.json`) : paragraphe, sous-titre, listes, remarque, capture(s). */
+type Bloc =
+  | { t: 'p' | 'h3' | 'note'; texte: string }
+  | { t: 'ul' | 'ol'; items: string[] }
+  | { t: 'capture'; nom: string; alt: string; legende: string }
+  | { t: 'captures'; liste: { nom: string; alt: string; legende: string }[] };
+
+function Blocs({ blocs }: { blocs: Bloc[] }) {
+  return (
+    <>
+      {blocs.map((b, i) => {
+        switch (b.t) {
+          case 'p':
+            return (
+              <p key={i}>
+                <Gras texte={b.texte} />
+              </p>
+            );
+          case 'h3':
+            return <h3 key={i}>{b.texte}</h3>;
+          case 'note':
+            return (
+              <p key={i} className="aide-note">
+                <Gras texte={b.texte} />
+              </p>
+            );
+          case 'ul':
+            return (
+              <ul key={i}>
+                {b.items.map((x, k) => (
+                  <li key={k}>
+                    <Gras texte={x} />
+                  </li>
+                ))}
+              </ul>
+            );
+          case 'ol':
+            return (
+              <ol key={i}>
+                {b.items.map((x, k) => (
+                  <li key={k}>
+                    <Gras texte={x} />
+                  </li>
+                ))}
+              </ol>
+            );
+          case 'capture':
+            return <Capture key={i} nom={b.nom} alt={b.alt} legende={b.legende} />;
+          case 'captures':
+            return (
+              <div key={i} className="aide-captures">
+                {b.liste.map((c) => (
+                  <Capture key={c.nom} nom={c.nom} alt={c.alt} legende={c.legende} />
+                ))}
+              </div>
+            );
+        }
+      })}
+    </>
+  );
+}
+
+/** Les sections écrites en données (`aide/contenu.json`), par identifiant. */
+const SECTIONS_DONNEES = new Map((contenuAide.sections as { id: string; titre: string; blocs: Bloc[] }[]).map((s) => [s.id, s]));
+
+/** Une section dont le contenu vient de `aide/contenu.json`. */
+function sectionDonnees(id: string): Section {
+  const s = SECTIONS_DONNEES.get(id);
+  if (!s) throw new Error(`Aide : section « ${id} » absente de contenu.json`);
+  return { id: s.id, titre: s.titre, contenu: <Blocs blocs={s.blocs} /> };
 }
 
 /** Les classes jouables : identifiant, nom et rôle en une phrase. */
@@ -64,7 +146,7 @@ const IMPACTS_AIDE: Record<Famille, string> = {
   tonnerre: 'une onde de choc épaisse qui secoue le plateau',
 };
 
-const SECTIONS: Section[] = [
+const SECTIONS_ECRITES: Section[] = [
   {
     id: 'principe',
     titre: 'Le principe',
@@ -83,7 +165,7 @@ const SECTIONS: Section[] = [
           <li>Choisissez une histoire : chacune est un monde complet, avec ses lieux, ses personnages, ses quêtes et plusieurs fins.</li>
           <li>Explorez, parlez, combattez : vos décisions changent le monde et la fin de l'histoire.</li>
         </ol>
-        <p className="aide-note">Prototype : la création du groupe et le combat sont jouables ; le conteur arrive à l'étape suivante.</p>
+        <p className="aide-note">Le jeu est un prototype jouable, en cours de développement. Le mode « livre » (boutons et textes des auteurs) est complet ; le conteur IA est encore à l'essai (voir « Le conteur et le mode livre »).</p>
       </>
     ),
   },
@@ -561,7 +643,7 @@ const SECTIONS: Section[] = [
           <kbd>Survol</kbd> d'un jeton ou de la barre d'initiative : fiche et illustration du combattant.
         </li>
         <li>
-          <kbd>I</kbd> : le sac du groupe (en aventure). <kbd>C</kbd>, ou un clic sur un héros du bandeau : sa feuille de personnage (flèches ← → pour changer de héros).
+          <kbd>I</kbd> : le sac du groupe (en aventure). <kbd>M</kbd> : la carte du monde en plein écran. <kbd>C</kbd>, ou un clic sur un héros du bandeau : sa feuille de personnage (flèches ← → pour changer de héros).
         </li>
         <li>
           <kbd>1</kbd> à <kbd>9</kbd> : choisir une réplique dans une conversation ; <kbd>Échap</kbd> y met fin.
@@ -599,7 +681,33 @@ const SECTIONS: Section[] = [
   },
 ];
 
-/** Aide au jeu : principe, groupe, classes, combat, effets, cartes, états, auras, commandes, glossaire. */
+/** Les sections dans l'ordre du sommaire : le parcours du joueur (groupe, histoire, exploration, dialogues…), puis le combat en détail. */
+const ORDRE: string[] = [
+  'principe',
+  'groupe',
+  'groupe-plus',
+  'histoires',
+  'explorer',
+  'parler',
+  'carte-journal',
+  'sac-boutiques',
+  'rencontres',
+  'repos-niveaux',
+  'conteur',
+  'classes',
+  'combat',
+  'combat-plus',
+  'terrain',
+  'effets',
+  'cartes',
+  'etats',
+  'auras',
+  'raccourcis',
+  'glossaire',
+];
+const SECTIONS: Section[] = ORDRE.map((id) => SECTIONS_ECRITES.find((s) => s.id === id) ?? sectionDonnees(id));
+
+/** Aide au jeu : principe, groupe, histoires, exploration, dialogues, carte, sac, rencontres, repos, conteur, classes, combat, effets, cartes, états, auras, commandes, glossaire. */
 export function EcranAide({ onRetour }: { onRetour: () => void }) {
   const [active, setActive] = useState(SECTIONS[0]!.id);
   const section = SECTIONS.find((s) => s.id === active) ?? SECTIONS[0]!;

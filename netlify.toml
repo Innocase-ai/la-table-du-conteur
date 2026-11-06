@@ -1,0 +1,19 @@
+# Déploiement Netlify depuis le dépôt (nécessaire pour la fonction d'inscription) :
+# le site statique est dans site/, la fonction dans netlify/functions/.
+# Variables à définir dans Netlify (jamais dans le dépôt) : AITABLE_TOKEN, AITABLE_INSCRIPTIONS_DATASHEET_ID.
+[build]
+  publish = "site"
+
+[functions]
+  directory = "netlify/functions"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
