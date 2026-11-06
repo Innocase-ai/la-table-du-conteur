@@ -5,6 +5,7 @@ import type { ZodTypeAny, z } from 'zod';
 import type { Donnees } from '../donnees';
 import type { EtatMonde, StatutQuete } from '../monde/etat';
 import type { EtatExploration } from '../monde/exploration';
+import type { CarteMonde } from '../monde/carte';
 import type { FormulaireReponse } from '../monde/reponses';
 import type { Personnage } from '../personnage';
 import type { DonneesMonde } from '../monde/schemas';
@@ -155,6 +156,8 @@ export interface Encart {
   lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger'; fiche?: FicheInfo }[];
   /** Une grille d'éléments (objets d'un sac, sorts d'un livre…) : l'écran la montre en vignettes triables, avec une page plein écran. */
   grille?: GrilleElements;
+  /** La carte du monde (lieux visités, repère du groupe) : l'écran la dessine sur l'image de la carte s'il y en a une. */
+  carte?: CarteMonde;
 }
 
 /**

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { chargerCharte, construireElements, RACINE } from './charte';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
+import { candidatsCartes, elementsCartes, SEUIL_CARTE } from './cartes';
 import { chargerGalerie, elementsGalerie } from './galerie';
 import { chargerReliefs, chargerTerrains, elementsBestiaire, elementsTerrains, profilsSrd } from './plateau';
 import { INFO_RELIEFS, RELIEFS, RENCONTRES, TERRAINS } from '../../packages/regles/src';
@@ -255,5 +256,29 @@ describe('plateau de combat (commun à tous les mondes)', () => {
     const plaques = RELIEFS.filter((r) => INFO_RELIEFS[r].type === 'difficile');
     expect(Object.keys(chargerReliefs()).sort()).toEqual([...plaques].sort());
     expect(elementsTerrains(charte).filter((e) => e.id.startsWith('relief-')).map((e) => e.id).sort()).toEqual(plaques.map((r) => `relief-${r}`).sort());
+  });
+});
+
+describe('cartes illustrées', () => {
+  const charge = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  if (!charge.ok) throw new Error('monde invalide');
+  const dm = charge.monde;
+  const cartes = elementsCartes(dm, { charte: chargerCharte() });
+
+  it('une carte par lieu qui contient au moins 5 lieux, sous le préfixe carte-', () => {
+    const attendus = [...dm.lieux.values()].filter((l) => [...dm.lieux.values()].filter((e) => e.parent === l.id).length >= SEUIL_CARTE).map((l) => `carte-${l.id}`);
+    expect(attendus.length).toBeGreaterThan(0);
+    expect(cartes.map((e) => e.id).sort()).toEqual(attendus.sort());
+    expect(candidatsCartes(dm).map((l) => `carte-${l.id}`).sort()).toEqual(attendus);
+  });
+
+  it('ni héros, ni personnage, ni texte dans l\'image ; la palette du monde est dans le prompt', () => {
+    for (const e of cartes) {
+      expect(e.groupe).toBe('cartes');
+      expect(e.references).toEqual([]);
+      expect(e.prompt).toContain('No people and no creatures');
+      expect(e.prompt).toMatch(/no labels/i);
+      expect(e.prompt).toContain(dm.monde.direction.palette[0]!);
+    }
   });
 });

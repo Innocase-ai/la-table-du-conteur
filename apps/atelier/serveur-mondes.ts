@@ -3,6 +3,7 @@
 // (Claude Code et les agents écrivent en parallèle).
 //   GET /api/atelier/mondes        les mondes (brouillons compris) : id, nom, statut
 //   GET /api/atelier/monde/<id>    monde.json, ses fichiers de données (contenu JSON + empreinte), BIBLE.md et CANON-PERSONNAGES.md
+//   GET /api/atelier/image/<id>/<fichier>   une image du dossier images/ du monde (la carte à poser les lieux dessus), en lecture seule
 //   PUT /api/atelier/fiche         remplace ou ajoute UNE fiche dans un fichier (voir ecriture.ts : empreinte, schéma, écriture atomique)
 // Le navigateur assemble et valide lui-même (le moteur est du TypeScript pur). Les gardes de chemins sont dans chemins.ts.
 import { createHash } from 'node:crypto';
@@ -10,7 +11,7 @@ import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
 import type { ServerResponse } from 'node:http';
 import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
-import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre } from './chemins';
+import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre, resoudreImage } from './chemins';
 import { ecrireDocument, ecrireFiche, empreinteDe, type DemandeDocument, type DemandeEcriture } from './ecriture';
 
 interface FichierLu {
@@ -47,6 +48,15 @@ function lireDocument(chemin: string): { contenu: unknown; empreinte: string } |
   } catch {
     return null;
   }
+}
+
+const TYPES_IMAGE: Record<string, string> = { webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg' };
+
+/** Une image du monde (jamais un lien symbolique), ou `null`. */
+export function lireImage(racine: string, id: string, fichier: string): { octets: Buffer; type: string } | null {
+  const chemin = resoudreImage(racine, id, fichier);
+  if (!chemin || !existsSync(chemin) || !lstatSync(chemin).isFile()) return null;
+  return { octets: readFileSync(chemin), type: TYPES_IMAGE[fichier.split('.').pop()!] ?? 'application/octet-stream' };
 }
 
 export function lireMondes(racine: string): { id: string; nom: string; statut: string }[] {
@@ -93,6 +103,7 @@ export function lireMonde(racine: string, id: string) {
     fichiers,
     erreursLecture,
     docs: { bible: lireTexte(join(dossier, 'BIBLE.md')), canonPersonnages: lireTexte(join(dossier, 'CANON-PERSONNAGES.md')) },
+    manifeste: lireDocument(join(dossier, 'images', 'manifeste.json'))?.contenu ?? null,
     canon: lireDocument(join(dossier, 'canon.json')),
     revue: lireDocument(join(dossier, 'revue.json')),
   };
@@ -121,6 +132,17 @@ export function serveurMondes(dossierMondes: string): Plugin {
         const monde = lireMonde(racine, id);
         if (!monde) return repondre(res, 404, { erreur: `Monde introuvable : « ${id} ».` });
         repondre(res, 200, monde);
+      });
+
+      serveur.middlewares.use('/api/atelier/image', (req, res) => {
+        if (!garde(req, res)) return;
+        const [id = '', fichier = ''] = decodeURIComponent((req.url ?? '').split('?')[0]!.replace(/^\//, '')).split('/');
+        const image = lireImage(racine, id, fichier);
+        if (!image) return repondre(res, 404, { erreur: 'Image introuvable.' });
+        res.statusCode = 200;
+        res.setHeader('Content-Type', image.type);
+        res.setHeader('Cache-Control', 'no-store');
+        res.end(image.octets);
       });
 
       // Écrire UNE fiche, ou un document de revue (canon.json, revue.json) : une requête à la fois (deux écritures simultanées ne se

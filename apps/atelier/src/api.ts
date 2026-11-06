@@ -11,6 +11,8 @@ export interface MondeLu {
   fichiers: { chemin: string; contenu: unknown; empreinte: string }[];
   erreursLecture: { fichier: string; message: string }[];
   docs: { bible?: string; canonPersonnages?: string };
+  /** `images/manifeste.json` du monde (`null` : pas d'image installée) : les cartes y sont sous `cartes.<id du lieu>`. */
+  manifeste: { cartes?: Record<string, string> } | null;
   /** canon.json et revue.json de la racine du monde (`null` : absents). */
   canon: { contenu: unknown; empreinte: string } | null;
   revue: { contenu: unknown; empreinte: string } | null;

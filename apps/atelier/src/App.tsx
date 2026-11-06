@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { assemblerMonde, diagnostiquerMonde, type DiagnosticMonde, type DonneesMonde } from '@crpg/regles';
 import { lireMonde, listerMondes, type MondeLu, type ResumeMonde } from './api';
 import { chargerDonnees } from './donnees';
+import { Cartes } from './vues/Cartes';
 import { Fiches } from './vues/Fiches';
 import { Graphes } from './vues/Graphes';
 import { Parcours } from './vues/Parcours';
@@ -16,7 +17,7 @@ type Etat =
   | { etat: 'illisible'; erreurs: { fichier: string; message: string }[] }
   | { etat: 'ok'; lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; duree: number };
 
-const VUES = ['graphes', 'parcours', 'fiches', 'registre', 'revue'] as const;
+const VUES = ['graphes', 'parcours', 'fiches', 'cartes', 'registre', 'revue'] as const;
 
 /** Le monde et la vue choisis : `#/<monde>` (santé), `#/<monde>/graphes`, `#/<monde>/fiches/<dossier>/<id>`… */
 const lireHash = () => {
@@ -95,6 +96,9 @@ export function App() {
             <a href={`#/${id}/fiches`} className={h.vue === 'fiches' ? 'actif' : ''}>
               Fiches
             </a>
+            <a href={`#/${id}/cartes`} className={h.vue === 'cartes' ? 'actif' : ''}>
+              Cartes
+            </a>
             <a href={`#/${id}/registre`} className={h.vue === 'registre' ? 'actif' : ''}>
               Registre
             </a>
@@ -126,6 +130,7 @@ export function App() {
         {etat.etat === 'ok' && h.vue === 'graphes' && <Graphes lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
         {etat.etat === 'ok' && h.vue === 'parcours' && <Parcours lu={etat.lu} dm={etat.dm} />}
         {etat.etat === 'ok' && h.vue === 'fiches' && <Fiches lu={etat.lu} dm={etat.dm} diag={etat.diag} dossier={h.dossier} ident={h.ident} recharger={() => charger(id)} />}
+        {etat.etat === 'ok' && h.vue === 'cartes' && <Cartes lu={etat.lu} dm={etat.dm} recharger={() => charger(id)} />}
         {etat.etat === 'ok' && h.vue === 'registre' && <Registre lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
         {etat.etat === 'ok' && h.vue === 'revue' && <Revue lu={etat.lu} dm={etat.dm} diag={etat.diag} recharger={() => charger(id)} />}
       </main>

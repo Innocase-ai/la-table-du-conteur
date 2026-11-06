@@ -9,7 +9,7 @@
   python3 outils/images/installer.py interface        → apps/jeu/src/interface/<id>.webp (écran titre…, 1600 px)
 
 Les PNG d'origine restent dans sorties/ (ignoré par git). Le manifeste d'un monde range chaque image par groupe
-(lieux, pnj, monstres, objets) sous l'identifiant de l'élément du monde ; le moteur le lit et le vérifie
+(lieux, pnj, monstres, objets, cartes) sous l'identifiant de l'élément du monde ; le moteur le lit et le vérifie
 (packages/regles/src/monde/images.ts). Nécessite Pillow.
 """
 import json
@@ -18,7 +18,7 @@ from pathlib import Path
 from PIL import Image
 
 RACINE = Path(__file__).resolve().parents[2]
-GROUPES = {"lieu-": "lieux", "pnj-": "pnj", "monstre-": "monstres", "objet-": "objets"}
+GROUPES = {"lieu-": "lieux", "pnj-": "pnj", "monstre-": "monstres", "objet-": "objets", "carte-": "cartes"}
 
 
 def reduire(png: Path, cible: Path, cote: int, qualite: int) -> None:
@@ -105,8 +105,8 @@ def monde(id_monde: str) -> None:
         prefixe = next((p for p in GROUPES if png.stem.startswith(p)), None)
         if not prefixe:
             continue
-        # Lieux : 960 px de large (plein écran du récit), qualité 75 ; portraits, monstres, objets : 512 px.
-        reduire(png, cible / f"{png.stem}.webp", *((960, 75) if prefixe == "lieu-" else (512, 80)))
+        # Lieux : 960 px de large (plein écran du récit), qualité 75 ; cartes : 1248 px (on y pose des repères), qualité 80 ; portraits, monstres, objets : 512 px.
+        reduire(png, cible / f"{png.stem}.webp", *{"lieu-": (960, 75), "carte-": (1248, 80)}.get(prefixe, (512, 80)))
         manifeste[GROUPES[prefixe]][png.stem[len(prefixe):]] = f"{png.stem}.webp"
     (cible / "manifeste.json").write_text(json.dumps(manifeste, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
     total = sum(len(v) for v in manifeste.values())

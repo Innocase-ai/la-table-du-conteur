@@ -1,6 +1,6 @@
 // Écran d'aventure, mode « livre » : chaque bouton envoie une commande au moteur ; le récit se lit dans le journal
 // d'événements de la partie. Le conteur (IA) viendra s'ajouter pour la saisie libre (M4b).
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   type DonneesMonde,
   type EvenementJeu,
@@ -20,10 +20,12 @@ import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import type { Aventure } from './partie';
 import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
+import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage } from './FeuillePersonnage';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
+import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
 /** Le moment de la journée, pour l'en-tête (les présences des PNJ, elles, ne distinguent que jour, soir et nuit). */
@@ -143,7 +145,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
   const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
   const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
-  const encarts = moteur.encarts(partie);
+  // Les encarts se recalculent quand la partie change, pas à chaque frappe dans la saisie du conteur.
+  const encarts = useMemo(() => moteur.encarts(partie), [moteur, partie]);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
   const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])];
   const [onglet, setOnglet] = useState('Actions');
@@ -152,6 +155,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const [page, setPage] = useState<{ onglet: string; selection?: string }>();
   // La feuille de personnage d'un héros (touche C, ou un clic sur le bandeau).
   const [feuille, setFeuille] = useState<string>();
+  // La carte du monde en plein écran (touche M).
+  const [carteOuverte, setCarteOuverte] = useState(false);
   const encartsDe = (o: string) => encarts.filter((e) => e.onglet === o);
   const pageOuverte = page && encartsDe(page.onglet).some((e) => e.grille) ? page : undefined;
   const nouveautes = (o: string) => encartsDe(o).reduce((n, e) => n + (e.grille?.elements.filter((x) => x.nouveau).length ?? 0), 0);
@@ -170,6 +175,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
+      if (ev.key === 'Escape' && carteOuverte) return setCarteOuverte(false);
       if (ev.key.toLowerCase() === 'c' && partie.groupe.length) return setFeuille(partie.groupe.find((h) => h.pv > 0)?.id ?? partie.groupe[0]!.id);
       if (ev.key === 'Escape' && pageOuverte) return setPage(undefined);
       const e = encarts.find((x) => x.grille?.touche === ev.key.toLowerCase());
@@ -177,7 +184,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     };
     window.addEventListener('keydown', surTouche);
     return () => window.removeEventListener('keydown', surTouche);
-  }, [encarts, pageOuverte, sceneNarree, feuille, partie.groupe]);
+  }, [encarts, pageOuverte, sceneNarree, feuille, partie.groupe, carteOuverte]);
 
   /** Un tour du conteur : le joueur écrit, le conteur agit par les commandes du moteur et raconte. */
   const raconter = async (texte: string) => {
@@ -220,7 +227,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -346,7 +353,15 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         {ongletActif !== 'Actions' ? (
           <>
             {encartsDe(ongletActif).map((e) =>
-              e.grille ? (
+              e.carte ? (
+                <section key={e.id} className="panneau-action encart">
+                  <h3>{e.titre}</h3>
+                  <CarteMonde monde={dm.monde.id} carte={e.carte} jouer={jouer} />
+                  <button type="button" className="bouton" onClick={() => setCarteOuverte(true)}>
+                    Ouvrir en plein écran (M)
+                  </button>
+                </section>
+              ) : e.grille ? (
                 <section key={e.id} className="panneau-action encart">
                   <h3>{e.titre}</h3>
                   <GrilleElements monde={dm.monde.id} grille={e.grille} cle={e.id} compact heros={partie.groupe} onChoisir={(x) => setPage({ onglet: e.onglet, selection: x.id })} />
@@ -417,6 +432,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
         />
+      )}
+      {carteOuverte && !sceneNarree && !feuille && encarts.find((e) => e.carte)?.carte && (
+        <PageCarte monde={dm.monde.id} carte={encarts.find((e) => e.carte)!.carte!} groupe={partie.groupe} jouer={jouer} onFermer={() => setCarteOuverte(false)} />
       )}
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} />

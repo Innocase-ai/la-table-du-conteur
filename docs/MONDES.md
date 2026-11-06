@@ -185,6 +185,15 @@ Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté
 8. **Plusieurs façons de résoudre** : les rencontres importantes ont une alternative (négocier, ruser, fuir) ; les quêtes ont des ramifications.
 9. **Richesse minimale par chapitre** (niveaux 1 à 5) : 30 lieux dont au moins un village ou une ville, 3 grottes et 1 donjon ; 25 PNJ (75 sujets), 3 marchands, 3 compagnons ; 1 quête principale, 6 secondaires, 3 personnelles ; 25 trésors, 10 objets propres au monde, 3 tables de butin ; 3 énigmes, 5 pièges, 15 rencontres ; 40 faits, 4 factions, 2 fins. En dessous, `pnpm monde valider` avertit.
 
+## Les cartes du monde (06/11/2026)
+
+Le jeu dessine une carte par lieu qui en contient d'autres, avec le repère du groupe et un brouillard (seuls les lieux visités ou connus par un passage non caché apparaissent). Rien n'est à écrire pour qu'elle fonctionne : sans image ni position, les lieux sont en anneau. Pour une vraie carte illustrée :
+
+- l'image de la carte d'un lieu parent s'ajoute au manifeste d'images, groupe `cartes`, clé = id du **parent** (`pnpm images cartes <monde>`, voir `docs/M2-IMAGES.md`) ;
+- chaque lieu enfant porte `position: { "x": 42, "y": 18 }` (en % de l'image de son parent ; atelier, onglet Cartes). Un lieu sans position est placé en anneau, deux frères au même endroit sont signalés, une position sans `parent` est une erreur ;
+- ne pas confondre avec `carte` d'un lieu (grille tactique de combat) ;
+- la carte ne montre jamais le résumé, la description ni le visuel d'un lieu non visité.
+
 ## Créer un nouveau monde
 
 Le skill **`creer-monde`** (`.claude/skills/creer-monde/`) guide Claude pas à pas : cadrage avec l'utilisateur, canon, échafaudage (`pnpm monde nouveau <id> "<Nom>"`), agents de zone en parallèle, raccordement et validation. Résumé :

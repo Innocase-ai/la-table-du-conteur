@@ -188,3 +188,12 @@ Tous les objets du catalogue SRD ont une image **commune à tous les mondes** : 
 - **Prompts** : `packages/donnees/visuel/objets-communs.json` (id d'image → description anglaise de l'objet), écrits par 5 agents Haiku d'après un guide (un seul objet, pas de personne ni de texte, mots refusés évités : bone, wound, blood, child…). Un test exige un prompt par image attendue et un fichier installé par image.
 - **Génération** : `pnpm images equipement --max 500 --partie 1/4 --go` (puis 2/4, 3/4, 4/4, en parallèle) ; les images déjà faites sont sautées ; `python3 outils/images/installer.py equipement`. Coût réel : ≈ 3,9 $ (0,009 $ l'image), **aucun refus de modération** sur 433.
 - **Relu** sur 11 planches de 24 (264 images) : cohérentes (fond sombre, objet seul, sans texte). Défauts mineurs : armures complètes (demi-plate, harnois, armure démoniaque) montrées sur un mannequin ; une image de famille (ceinture de géant, pierre de Ioun) illustre une seule variante.
+
+## Cartes illustrées du monde (06/11/2026)
+
+Une carte par lieu qui en contient d'autres (région, ville, donjon, niveau…) ; le jeu y pose les lieux enfants, le repère du groupe et le brouillard (voir `docs/JOURNAL.md`, 06/11/2026).
+
+- `pnpm images cartes <monde>` : liste les lieux qui ont au moins 5 enfants (`SEUIL_CARTE` dans `outils/images/cartes.ts`) avec ✓ pour les cartes déjà faites. `--lieu <id>` en génère une (n'importe quel lieu qui en contient d'autres), `--tous` génère les candidats ; sans `--go`, simulation. Sorties : `sorties/images/mondes/<monde>/carte-<id>.png` (comme les images de lieux, ~0,009 $ pièce avec Klein ; pas de plafond en dollars : seul `--max`, 6 par défaut, borne le nombre).
+- Installation : `uv run --with pillow python outils/images/installer.py monde <monde>` (1248 px, qualité 80, groupe `cartes` du manifeste, clé = id du lieu parent). **Garder `sorties/images/mondes/<monde>/` intact** : le manifeste est réécrit d'après les PNG présents.
+- Le prompt ne contient **ni texte, ni personnage** : le service d'images ne place pas les lieux où on le demande, et les noms sont écrits par le jeu. Les positions se posent ensuite dans l'atelier (onglet Cartes) : si une carte est régénérée, ses positions sont à refaire.
+- Retouche possible dans `images.json` du monde : `"carte-<id>": "texte"` remplace la description du lieu dans le prompt.

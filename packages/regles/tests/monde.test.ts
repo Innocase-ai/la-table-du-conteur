@@ -152,10 +152,22 @@ describe('images d\'un monde', () => {
   it('signale les entrées inconnues et les lieux / PNJ sans image', () => {
     const dm = charger();
     const lieu = [...dm.lieux.keys()][0]!;
-    const bilan = verifierImages(dm, { lieux: { [lieu]: `lieu-${lieu}.webp`, fantome: 'lieu-fantome.webp' }, pnj: {}, monstres: { 'dragon-inexistant': 'x.webp' }, objets: {} });
+    const bilan = verifierImages(dm, { lieux: { [lieu]: `lieu-${lieu}.webp`, fantome: 'lieu-fantome.webp' }, pnj: {}, monstres: { 'dragon-inexistant': 'x.webp' }, objets: {}, cartes: {} });
     expect(bilan.inconnues).toEqual(['lieux/fantome', 'monstres/dragon-inexistant']);
     expect(bilan.manquantes).toContain('pnj/bertrand');
     expect(bilan.manquantes).not.toContain(`lieux/${lieu}`);
+  });
+
+  it('cartes : la clé est un lieu parent, et les enfants non posés sont signalés', () => {
+    const dm = charger();
+    const parent = [...dm.lieux.values()].find((l) => [...dm.lieux.values()].some((e) => e.parent === l.id))!;
+    const enfants = [...dm.lieux.values()].filter((l) => l.parent === parent.id).map((l) => l.id);
+    const base = { lieux: {}, pnj: {}, monstres: {}, objets: {} };
+    expect(verifierImages(dm, { ...base, cartes: { [parent.id]: `carte-${parent.id}.webp` } }).inconnues).toEqual([]);
+    expect(verifierImages(dm, { ...base, cartes: { [parent.id]: `carte-${parent.id}.webp` } }).sansPosition).toEqual(enfants);
+    expect(verifierImages(dm, { ...base, cartes: {} }).sansPosition).toEqual([]);
+    const feuille = [...dm.lieux.values()].find((l) => !enfants.includes(l.id) && ![...dm.lieux.values()].some((e) => e.parent === l.id))!;
+    expect(verifierImages(dm, { ...base, cartes: { [feuille.id]: 'x.webp' } }).inconnues).toEqual([`cartes/${feuille.id}`]);
   });
 
   it('Val des Cendres : tout est illustré (151 lieux, 63 PNJ, 25 monstres, 16 objets)', () => {

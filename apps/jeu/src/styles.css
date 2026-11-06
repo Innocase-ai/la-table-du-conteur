@@ -8164,3 +8164,31 @@ kbd {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* --- Carte du monde (onglet Carte et plein écran) --- */
+.carte-monde { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.carte-titre { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-family: var(--titre); }
+.carte-titre strong { color: var(--or); }
+.carte-titre small { color: var(--texte-faible); }
+.carte-svg { width: 100%; height: auto; aspect-ratio: 3 / 2; background: var(--fond-2); border: 1px solid var(--bord); border-radius: 6px; display: block; }
+.carte-lieu { cursor: pointer; outline: none; }
+.carte-zone { fill: transparent; }
+.carte-point { fill: var(--or); stroke: #0e0c0a; stroke-width: 3; }
+.carte-connu .carte-point { fill: transparent; stroke: var(--texte-doux); stroke-width: 4; stroke-dasharray: 8 6; }
+.carte-visite .carte-point { fill: var(--cuivre); }
+.carte-ici .carte-point { fill: var(--or-vif); }
+.carte-repere { fill: none; stroke: var(--or-vif); stroke-width: 5; transform-box: fill-box; transform-origin: center; animation: carte-pulse 2.2s ease-out infinite; }
+.carte-nom { fill: var(--texte); paint-order: stroke; stroke: #0e0c0a; stroke-width: 6px; stroke-linejoin: round; font-family: var(--titre); pointer-events: none; }
+.carte-connu .carte-nom { fill: var(--texte-doux); }
+.carte-lieu:hover .carte-point, .carte-lieu:focus-visible .carte-point, .carte-choisi .carte-point { stroke: var(--or-vif); stroke-width: 5; filter: drop-shadow(0 0 6px var(--or)); }
+.carte-volet { min-height: 4.5em; padding: 8px 10px; background: var(--panneau); border: 1px solid var(--bord); border-radius: 6px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.carte-volet p { margin: 0; }
+.carte-aide { color: var(--texte-faible); font-size: 0.85em; }
+.carte-legende { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 2px; }
+.carte-legende.ici { background: var(--or-vif); }
+.carte-legende.visite { background: var(--cuivre); }
+.carte-legende.connu { border: 2px dashed var(--texte-doux); box-sizing: border-box; }
+.page-carte-corps { flex: 1; min-height: 0; overflow: auto; padding: 12px 20px; display: flex; justify-content: center; }
+.carte-grande { width: min(100%, 1180px); }
+@keyframes carte-pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.7); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .carte-repere { animation: none; } }

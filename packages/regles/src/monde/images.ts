@@ -13,6 +13,8 @@ export const ManifesteImages = z.object({
   /** Clé : profil de monstre (SRD), partagé par toutes les rencontres qui l'utilisent. */
   monstres: Fichiers.default({}),
   objets: Fichiers.default({}),
+  /** Clé : id du lieu parent (région, ville, donjon, niveau…) dont l'image est la carte ; les positions sont sur les lieux enfants. */
+  cartes: Fichiers.default({}),
 });
 export type ManifesteImages = z.infer<typeof ManifesteImages>;
 export type GroupeImage = keyof ManifesteImages;
@@ -27,6 +29,8 @@ export interface BilanImages {
   inconnues: string[];
   /** Lieux et PNJ du monde sans image (avertissement : le jeu reste jouable). */
   manquantes: string[];
+  /** Enfants directs d'un lieu qui a une carte illustrée mais qu'on n'a pas encore posés dessus (avertissement). */
+  sansPosition: string[];
 }
 
 export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): BilanImages {
@@ -36,6 +40,7 @@ export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): Bi
     pnj: new Set(dm.pnj.keys()),
     monstres: profils,
     objets: new Set(dm.objets.keys()),
+    cartes: new Set([...dm.lieux.values()].flatMap((l) => (l.parent ? [l.parent] : []))),
   };
   const inconnues: string[] = [];
   for (const groupe of Object.keys(connus) as GroupeImage[]) {
@@ -45,5 +50,6 @@ export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): Bi
     ...[...dm.lieux.keys()].filter((id) => !manifeste.lieux[id]).map((id) => `lieux/${id}`),
     ...[...dm.pnj.keys()].filter((id) => !manifeste.pnj[id]).map((id) => `pnj/${id}`),
   ];
-  return { inconnues, manquantes };
+  const sansPosition = [...dm.lieux.values()].filter((l) => l.parent && manifeste.cartes[l.parent] && !l.position).map((l) => l.id);
+  return { inconnues, manquantes, sansPosition };
 }

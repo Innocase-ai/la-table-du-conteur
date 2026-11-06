@@ -11,6 +11,9 @@ export const idMondeValide = (id: unknown): id is string => typeof id === 'strin
 export const cheminFichierValide = (chemin: unknown): chemin is string =>
   typeof chemin === 'string' && (/^(?:monde|canon|revue)\.json$/.test(chemin) || /^[a-z0-9][a-z0-9-]*\/[A-Za-z0-9][A-Za-z0-9._-]*\.json$/.test(chemin));
 
+/** Une image d'un monde (`images/<fichier>`) que l'atelier a le droit de montrer : nom simple, extension d'image, pas de sous-dossier. */
+export const fichierImageValide = (nom: unknown): nom is string => typeof nom === 'string' && /^[a-z0-9][a-z0-9-]*\.(webp|png|jpg)$/.test(nom);
+
 /** Les dossiers de médias d'un monde (images, voix) : ce ne sont pas des données de jeu et l'atelier n'y touche pas. */
 export const DOSSIERS_IGNORES = ['images', 'voix'];
 
@@ -23,6 +26,16 @@ export function resoudre(racine: string, id: string, chemin?: string): string | 
   if (chemin !== undefined && (!cheminFichierValide(chemin) || chemin.includes('..') || isAbsolute(chemin))) return null;
   const base = resolve(racine);
   const cible = resolve(base, id, ...(chemin ? chemin.split('/') : []));
+  const rel = relative(base, cible);
+  if (!rel || rel.startsWith('..') || isAbsolute(rel)) return null;
+  return cible;
+}
+
+/** Le chemin absolu d'une image du monde (`images/<fichier>`), ou `null` si l'id ou le nom ne sont pas permis. */
+export function resoudreImage(racine: string, id: string, fichier: string): string | null {
+  if (!idMondeValide(id) || !fichierImageValide(fichier)) return null;
+  const base = resolve(racine, id, 'images');
+  const cible = resolve(base, fichier);
   const rel = relative(base, cible);
   if (!rel || rel.startsWith('..') || isAbsolute(rel)) return null;
   return cible;

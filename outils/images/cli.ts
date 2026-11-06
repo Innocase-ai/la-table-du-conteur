@@ -6,6 +6,8 @@
 //   pnpm images comparer                    construit sorties/images/comparaison.html
 //   pnpm images monde <monde>               lieux du monde, dans l'ordre, avec les images faites / à faire
 //   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
+//   pnpm images cartes <monde>              lieux qui méritent une carte illustrée (≥ 5 enfants), avec les cartes faites / à faire
+//   pnpm images cartes <monde> --lieu <id> | --tous [--service klein] [--go]   génère la carte d'un lieu (ou de tous les candidats ; sans --go : simulation)
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--go]           une image par profil de monstre du SRD (combat, tous mondes)
 //   pnpm images equipement [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
@@ -20,6 +22,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { candidatsCartes, elementsCartes, enfantsDe } from './cartes';
 import { elementsParLieu } from './monde';
 import { elementsGalerie } from './galerie';
 import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerrains } from './plateau';
@@ -184,6 +187,31 @@ async function main(): Promise<void> {
     await genererLot(service, elements, lireEnv(), args.includes('--go'), Number(option('--max') ?? 20), undefined, dossier);
     return;
   }
+  if (commande === 'cartes') {
+    const idMonde = args[0]?.startsWith('--') ? undefined : args[0];
+    if (!idMonde) throw new Error('Usage : pnpm images cartes <monde> [--lieu <id> | --tous] [--service klein] [--max N] [--go]');
+    const charge = chargerMonde(join(RACINE_MONDES, idMonde));
+    if (!charge.ok) throw new Error(`Monde « ${idMonde} » invalide : ${charge.erreurs[0]?.message ?? ''}`);
+    const dm = charge.monde;
+    const fichierRetouches = join(RACINE_MONDES, idMonde, 'images.json');
+    const retouches = existsSync(fichierRetouches) ? (JSON.parse(readFileSync(fichierRetouches, 'utf8')) as Record<string, string>) : {};
+    const service = trouverService(option('--service') ?? 'klein');
+    if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
+    const dossier = join(SORTIES, 'mondes', idMonde);
+    const lieu = option('--lieu');
+    const candidats = candidatsCartes(dm);
+    if (!lieu && !args.includes('--tous')) {
+      for (const l of candidats) console.log(`${existsSync(join(dossier, `carte-${l.id}.png`)) ? '✓' : ' '} ${l.id.padEnd(40)} ${enfantsDe(dm, l.id).length} lieux`);
+      console.log(`
+${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'importe quel lieu qui en contient d'autres), ou toutes avec --tous.`);
+      return;
+    }
+    const cibles = lieu ? [dm.lieux.get(lieu)].filter((l): l is NonNullable<typeof l> => !!l) : candidats;
+    if (lieu && !cibles.length) throw new Error(`Lieu inconnu « ${lieu} ».`);
+    if (lieu && !enfantsDe(dm, lieu).length) throw new Error(`« ${lieu} » ne contient aucun lieu : pas de carte à dessiner.`);
+    await genererLot(service, elementsCartes(dm, { charte, retouches }, cibles), lireEnv(), args.includes('--go'), Number(option('--max') ?? 6), undefined, dossier);
+    return;
+  }
   if (commande === 'galerie') {
     const service = trouverService(option('--service') ?? 'klein');
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
@@ -216,7 +244,7 @@ async function main(): Promise<void> {
     console.log(`Page écrite : ${page}`);
     return;
   }
-  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | galerie | bestiaire | equipement | terrains | interface | comparer | depense');
+  console.log('Usage : pnpm images lister | generer <service|tous> [--lot portraits|scenes|tout] [--id élément] [--refs service] [--max N] [--go] | monde <monde> | cartes <monde> | galerie | bestiaire | equipement | terrains | interface | comparer | depense');
 }
 
 // Seulement quand ce fichier est le programme lancé (pas quand un autre outil l'importe, comme outils/voix).

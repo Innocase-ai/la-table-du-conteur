@@ -935,3 +935,17 @@ mark {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- Cartes : poser les lieux sur l'image --- */
+.cartes { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 16px; margin-top: 12px; align-items: start; }
+.cartes-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; max-height: 70vh; overflow: auto; }
+.cartes-liste li { display: flex; gap: 4px; }
+.cartes-liste li button:first-child { flex: 1; text-align: left; }
+.cartes-liste li.choisi button:first-child { outline: 2px solid currentColor; }
+.cartes-image { position: relative; line-height: 0; border: 1px solid #444; border-radius: 6px; overflow: hidden; }
+.cartes-image img { width: 100%; height: auto; display: block; user-select: none; }
+.cartes-repere { position: absolute; transform: translate(-50%, -50%); pointer-events: none; display: flex; flex-direction: column; align-items: center; }
+.cartes-repere i { width: 14px; height: 14px; border-radius: 50%; background: #d4ae66; border: 2px solid #0e0c0a; }
+.cartes-repere.choisi i { background: #fff; box-shadow: 0 0 0 3px #d4ae66; }
+.cartes-repere b { font: 600 12px/1.2 sans-serif; color: #fff; text-shadow: 0 0 3px #000, 0 0 3px #000; margin-top: 2px; white-space: nowrap; }
+@media (max-width: 800px) { .cartes { grid-template-columns: 1fr; } }

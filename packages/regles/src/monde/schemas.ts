@@ -419,6 +419,9 @@ export const Lieu = z.object({
   // seulement (repos court), on n'y dort pas ; `impossible` : aucun repos (repaire, caserne, prison…).
   repos: z.enum(['sur', 'dangereux', 'impossible']).default('dangereux'),
   carte: z.array(z.string()).optional(),
+  // Où ce lieu se trouve sur la carte illustrée de son parent (`images/manifeste.json`, groupe `cartes`), en pourcentage de
+  // l'image (0 = bord gauche / haut, 100 = bord droit / bas). Sans position, la carte du jeu place le lieu en anneau.
+  position: z.object({ x: z.number().min(0).max(100), y: z.number().min(0).max(100) }).optional(),
 });
 export type Lieu = z.infer<typeof Lieu>;
 

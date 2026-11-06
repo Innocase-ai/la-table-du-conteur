@@ -108,6 +108,16 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       verifierRef(`${ou}, fait`, 'fait', f.fait);
       cond(`${ou}, fait « ${f.fait} »`, f.decouverte.condition);
     }
+    if (l.position && !l.parent) err(`${ou} : a une position sur la carte mais pas de parent (la position se lit sur la carte du parent).`);
+  }
+  // Deux frères posés au même endroit de la carte se cachent l'un l'autre.
+  const placesSurCarte = new Map<string, string>();
+  for (const l of dm.lieux.values()) {
+    if (!l.position || !l.parent) continue;
+    const cle = `${l.parent}@${Math.round(l.position.x)},${Math.round(l.position.y)}`;
+    const autre = placesSurCarte.get(cle);
+    if (autre) avis(`Carte : « ${l.id} » et « ${autre} » sont au même endroit de la carte de « ${l.parent} ».`);
+    else placesSurCarte.set(cle, l.id);
   }
   verifierRef('Monde (départ)', 'lieu', dm.monde.depart.lieu);
 

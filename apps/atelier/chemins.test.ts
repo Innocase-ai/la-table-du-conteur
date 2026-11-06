@@ -3,8 +3,8 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { assemblerMonde } from '@crpg/regles';
-import { cheminFichierValide, idMondeValide, origineAutorisee, resoudre } from './chemins';
-import { lireMonde, lireMondes } from './serveur-mondes';
+import { cheminFichierValide, fichierImageValide, idMondeValide, origineAutorisee, resoudre, resoudreImage } from './chemins';
+import { lireImage, lireMonde, lireMondes } from './serveur-mondes';
 
 const RACINE = resolve(import.meta.dirname, '../../packages/mondes');
 
@@ -78,5 +78,27 @@ describe('lecture des mondes par le serveur', () => {
     } catch {
       // création de lien refusée par le système : le garde-fou n'est pas testable ici
     }
+  });
+});
+
+describe('images des cartes (lecture seule)', () => {
+  it('n\'accepte qu\'un nom d\'image simple dans le dossier images/ d\'un monde', () => {
+    for (const bon of ['carte-cote-de-hautmaree.webp', 'lieu-x.png', 'a.jpg']) expect(fichierImageValide(bon), bon).toBe(true);
+    for (const mauvais of ['../monde.json', 'images/x.webp', '..\\x.webp', 'x.json', 'x.svg', '.webp', 'X.webp', '', undefined]) expect(fichierImageValide(mauvais), String(mauvais)).toBe(false);
+    expect(resoudreImage(RACINE, 'citadelle-des-marees', 'carte-x.webp')).toBe(resolve(RACINE, 'citadelle-des-marees', 'images', 'carte-x.webp'));
+    expect(resoudreImage(RACINE, '..', 'x.webp')).toBeNull();
+    expect(resoudreImage(RACINE, 'citadelle-des-marees', '../../monde.json')).toBeNull();
+  });
+
+  it('sert une image du monde avec son type, refuse le reste, et le manifeste est lu avec le monde', () => {
+    const racine = mkdtempSync(join(tmpdir(), 'atelier-img-'));
+    mkdirSync(join(racine, 'm', 'images'), { recursive: true });
+    writeFileSync(join(racine, 'm', 'monde.json'), '{"id":"m"}');
+    writeFileSync(join(racine, 'm', 'images', 'carte-a.webp'), Buffer.from([1, 2, 3]));
+    writeFileSync(join(racine, 'm', 'images', 'manifeste.json'), '{"cartes":{"a":"carte-a.webp"}}');
+    expect(lireImage(racine, 'm', 'carte-a.webp')).toEqual({ octets: Buffer.from([1, 2, 3]), type: 'image/webp' });
+    expect(lireImage(racine, 'm', 'absente.webp')).toBeNull();
+    expect(lireImage(racine, 'm', '../monde.json')).toBeNull();
+    expect(lireMonde(racine, 'm')!.manifeste).toEqual({ cartes: { a: 'carte-a.webp' } });
   });
 });

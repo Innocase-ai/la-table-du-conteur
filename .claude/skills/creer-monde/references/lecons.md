@@ -71,3 +71,9 @@ Le moteur d'exploration (docs/M4-CONTEUR.md § 10) applique tes données à la l
 - Le moteur ne pose `fin` que par un **effet `{"fin":"<id>"}`**, jamais d'après la `condition` d'une fin. Dans la quête principale : une étape `choix` (complétion `ou` des drapeaux de choix) suivie d'une étape `issue-<x>` par fin (complétion = son drapeau, `termine: true`, effets `{xp}` + `{fin}`). Une jauge qui échoue met `{fin}` dans l'effet de son dernier palier. Une fin atteignable avant l'étape `choix` (livrer, fuir) met `{fin}` et `{quete … terminee}` dans l'effet du sujet.
 - Les agents de zone suivent la liste des faits du registre (BIBLE) plutôt que les ids cités dans les missions : écrire les ids exacts du BIBLE dans les missions, ou les faits propres à une zone dans son propre fichier.
 - Toujours ajouter le test de parcours (`monde.test.ts`) : une fin qui ne se déclenche jamais passe le validateur.
+
+## La carte du monde (06/11/2026)
+
+- Le jeu dessine tout seul une carte par lieu qui en contient d'autres (repère « vous êtes ici », brouillard) : rien à écrire. Une image de carte et des `position` (en % de l'image du parent) sont facultatives ; voir `docs/MONDES.md`.
+- Pour une carte illustrée : `pnpm images cartes <monde>` (annoncer le coût, accord avant `--go`), installer, puis poser les lieux dans l'atelier (onglet Cartes). Le prompt de la carte n'a ni texte ni personnage : les noms sont écrits par le jeu.
+- Le `visuel` des lieux enfants nourrit le prompt de la carte du parent : un `visuel` concret (matières, forme générale) donne une carte plus lisible.

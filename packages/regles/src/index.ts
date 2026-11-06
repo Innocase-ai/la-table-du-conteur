@@ -37,6 +37,7 @@ export * from './monde/ecriture-json';
 export * from './monde/controles';
 export * from './monde/diagnostiquer';
 export * from './monde/images';
+export * from './monde/carte';
 export * from './monde/estimation';
 export * from './monde/exploration';
 export * from './monde/reponses';
