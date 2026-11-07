@@ -531,7 +531,8 @@ const SECTIONS_ECRITES: Section[] = [
           </li>
           <li>
             <span className="badge">{SYMBOLES_ETATS.effraye}</span> Effrayé, <span className="badge">{SYMBOLES_ETATS.paralyse}</span> paralysé,{' '}
-            <span className="badge">{SYMBOLES_ETATS.neutralise}</span> neutralisé…
+            <span className="badge">{SYMBOLES_ETATS.neutralise}</span> neutralisé,{' '}
+            <span className="badge">{SYMBOLES_ETATS.etourdi}</span> étourdi…
           </li>
           <li>
             <span className="badge b-conc">◎</span> Concentration : le personnage maintient un sort ; une blessure peut la rompre.

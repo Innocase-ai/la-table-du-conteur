@@ -255,6 +255,7 @@ export const FX_ETATS: Partial<Record<Etat, { glyphe: string; n: number }>> = {
   inconscient: { glyphe: 'z', n: 3 },
   neutralise: { glyphe: 'z', n: 3 },
   paralyse: { glyphe: '⚡', n: 3 },
+  etourdi: { glyphe: '✺', n: 3 },
   charme: { glyphe: '♥', n: 3 },
   effraye: { glyphe: '!', n: 2 },
   aveugle: { glyphe: '?', n: 2 },

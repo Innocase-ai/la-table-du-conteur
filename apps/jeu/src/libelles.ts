@@ -46,6 +46,7 @@ export const SYMBOLES_ETATS: Record<Etat, string> = {
   neutralise: '⊘',
   paralyse: '✶',
   empoisonne: '☣',
+  etourdi: '✺',
 };
 
 export const ORDRE_CATEGORIES: Carte['categorie'][] = ['elan', 'attaque', 'monstre', 'sort', 'aptitude', 'base'];
@@ -87,6 +88,7 @@ const NOMS_MODIFICATEURS: Record<string, string> = {
   'marque-du-chasseur': 'Marque du chasseur',
   'rayon-de-givre': 'Rayon de givre',
   'visee-appliquee': 'Visée appliquée',
+  'inspiration-bardique': 'Inspiration bardique',
   bouclier: 'Bouclier',
   sape: 'Botte : sape',
   ouverture: 'Botte : ouverture',
@@ -100,6 +102,7 @@ export function libelleModificateur(m: Modificateur): string {
     bonus_ca: `${v >= 0 ? '+' : ''}${v} CA`,
     de_attaque: `${m.de ?? ''} aux attaques`,
     de_sauvegarde: `${m.de ?? ''} aux sauvegardes`,
+    de_inspiration: `${m.de ?? ''} sur un jet raté (une fois)`,
     avantage_attaque: 'avantage à la prochaine attaque',
     desavantage_attaque: 'désavantage à la prochaine attaque',
     avantage_contre: 'prochaine attaque contre lui avec avantage',
@@ -119,6 +122,9 @@ export function ressourcesLisibles(c: Combattant): { nom: string; valeur: string
     ['secondSouffle', 'Second souffle'],
     ['fougue', 'Fougue'],
     ['conduit', 'Conduit divin'],
+    ['inspiration', 'Inspiration bardique'],
+    ['chatimentGratuit', 'Châtiment divin gratuit'],
+    ['credo', 'Points de Credo'],
     ['potions', 'Potions de soins'],
   ];
   for (const [cle, nom] of simples) if (r[cle] !== undefined) res.push({ nom, valeur: String(r[cle]) });

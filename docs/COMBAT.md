@@ -25,7 +25,7 @@ Prototype du cœur du jeu, **sans LLM ni images**. Le but est de savoir si le co
 | Se désengager | Pas d'attaque d'opportunité ce tour-ci. |
 | Esquiver | Jusqu'au prochain tour : les attaques contre soi ont le désavantage, avantage aux sauvegardes de Dex. |
 | Utiliser un objet | Potion de soins (2d4 + 2). |
-| Aptitudes | Rage, Témérité, Second souffle, Fougue, Action rusée, Attaque sournoise, Critique amélioré… selon la fiche. |
+| Aptitudes | Rage, Témérité, Second souffle, Fougue, Action rusée, Attaque sournoise, Critique amélioré, Inspiration bardique, Châtiment divin, Credo du Moine… selon la fiche. |
 
 **Attaque d'opportunité** (réaction) : quand un ennemi sort de l'allonge sans s'être désengagé.
 
@@ -67,7 +67,7 @@ Les cartes sont l'interface ; chaque carte correspond à une option de jeu réel
 
 Code : `packages/regles/src/combat/` — `grille.ts` (distances, ligne de vue, chemins, zones), `etat.ts` (état sérialisable, dés à graine, dés imposés pour les tests), `moteur.ts` (tours, déplacement et attaques d'opportunité, attaques, bottes, dégâts, sauvegardes, états, mort, concentration), `sorts.ts` (résolution générique + sorts spéciaux), `cartes.ts` (main et exécution des commandes), `creation.ts` (héros depuis une fiche, monstres depuis un profil), `ia.ts` (IA par simulation, doctrine, moral et fuite), `prototype.ts` (héros pré-tirés et rencontres).
 
-**Couvert** : tout le §2 et le §3 ; Rage, Témérité, Frénésie, Sens du danger, Second souffle, Fougue, Critique amélioré, Attaque sournoise, Ruse, Visée appliquée, Mains lestes, Proie du chasseur (Tueur de colosses), Disciple de la vie, Préservation de la vie, Sort mineur appuyé ; bottes Sape, Ouverture, Renversement, Ralentissement, Poussée, Écorchure, Enchaînement ; 20 sorts (Bouclier en réaction automatique) ; Tactique de meute ; recharges ; empoignade et évasion.
+**Couvert** : tout le §2 et le §3 ; Rage, Témérité, Frénésie, Sens du danger, Second souffle, Fougue, Critique amélioré, Attaque sournoise, Ruse, Visée appliquée, Mains lestes, Proie du chasseur (Tueur de colosses), Disciple de la vie, Préservation de la vie, Sort mineur appuyé, **Inspiration bardique, Châtiment divin, Arts martiaux et Credo du Moine (Frappe bonus, Déluge de coups, Patience défensive, Porté par le vent, Frappe étourdissante, Métabolisme surnaturel)** ; état Étourdi ; bottes Sape, Ouverture, Renversement, Ralentissement, Poussée, Écorchure, Enchaînement ; 20 sorts (Bouclier en réaction automatique) ; Tactique de meute ; recharges ; empoignade et évasion.
 
 **Simplifications** : pas de couvert ; Arme spirituelle sans jeton sur la grille ; Projectile magique et Rayon ardent répartis cycliquement sur les cibles choisies ; réactions des héros automatiques (attaque d'opportunité, Bouclier) ; les attaques multiples au choix des monstres prennent la première option ; Coup double non géré .
 
@@ -91,3 +91,13 @@ Les escarmouches n'étaient que quatre rencontres fixes, calibrées pour six hé
 ## Groupe de 1 à 6 héros
 
 Le joueur compose un groupe de **1 à 6 personnages**. Les rencontres des histoires sont écrites pour 6 ; `adapterRencontre(rencontre, nbHéros)` (`packages/regles/src/combat/echelle.ts`) les réduit au prorata du nombre de héros (le budget de PX du SRD est une somme par héros) : chaque groupe de monstres est réduit (au moins un), puis les derniers groupes (les renforts) sont retirés d'abord ; le premier groupe, le principal, reste toujours. À 6 héros la rencontre est inchangée. Les PX viennent des monstres vaincus, donc ils suivent. Limite : un monstre unique très fort (un chef seul) ne peut pas être réduit, il reste dur pour un héros seul. Les escarmouches composaient déjà leur rencontre pour le nombre de héros.
+
+## 10. Aptitudes de classe des niveaux 1 à 5 (07/11/2026)
+
+Trois classes ont leurs aptitudes de combat jouables (cartes `aptitude:…`, ressources durables rendues au repos par `recuperer`) :
+
+- **Barde, Inspiration bardique** : action Bonus, un allié à 18 m reçoit un dé (d6, d8 au niveau 5, colonne « Dé bardique ») ; autant d'utilisations que le Charisme (min 1), rendues au repos long (et court dès le niveau 5). Le dé, un modificateur `de_inspiration`, se dépense **tout seul sur le premier jet d'attaque ou de sauvegarde raté qu'il peut rattraper** (le manque ne dépasse pas la face du dé ; jamais sur un 1 naturel).
+- **Paladin, Châtiment divin** (niveau 2) : action Bonus juste après un coup au corps à corps (`tour.dernierCoup`) ; 2d8 radiants, +1d8 par niveau d'emplacement au-dessus du 1er, +1d8 contre un Fiélon ou un Mort-vivant, dés doublés sur critique ; un lancer gratuit par repos long, sinon un emplacement (un seul sort à emplacement par tour).
+- **Moine** : points de Credo (colonne de la fiche, rendus au repos court ou long). Frappe bonus (après l'action Attaque), Déluge de coups (1 point : deux attaques à mains nues, une ou deux cibles), Patience défensive et Porté par le vent (gratuits, ou avec 1 point pour la version double), Frappe étourdissante (niveau 5, 1 point, une fois par tour après un coup : JS de Constitution, raté = **Étourdi** jusqu'au début du prochain tour du Moine, réussi = Vitesse /2 et Avantage à la prochaine attaque), Métabolisme surnaturel (à l'Initiative, rend le Credo et des PV, une fois par repos long, automatique et seulement s'il sert).
+- **État Étourdi** : comme Neutralisé, plus l'échec automatique aux JS de Force et de Dextérité et l'Avantage aux attaques contre lui ; la créature passe son tour.
+- **Limites connues** : le Châtiment n'existe qu'à partir du niveau 2 (le sort du catalogue n'est pas joué) ; la Frappe étourdissante accepte tout coup au corps à corps (le moteur ne distingue pas les armes de Moine) ; Déviation d'assaut, Chute ralentie, Source d'inspiration par emplacement et les sous-classes du niveau 3 ne sont pas jouées. L'IA des simulations choisit ces cartes comme les autres cartes offensives (le groupe conseillé des escarmouches n'a ni Barde, ni Paladin, ni Moine : le calage de difficulté ne change pas).

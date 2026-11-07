@@ -1,16 +1,19 @@
 // Les cartes : la main d'un combattant à son tour, et l'exécution des commandes.
 // Une carte est une option de jeu réelle du SRD (attaque, sort, aptitude…) ou une carte d'élan.
 import type { Sort } from '../schemas';
-import { actif, allies, combattant, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
+import { actif, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, type Position } from './grille';
 import {
   aPortee,
   aTrait,
+  ajouterEtat,
+  sauvegarde,
   attaqueArme,
   attaqueMonstre,
   deplacer,
   emplacementDisponible,
   finTour,
+  infligerDegats,
   portee,
   soigner,
   vitesse,
@@ -201,6 +204,71 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const k = carte({ id: 'aptitude:visee-appliquee', nom: 'Visée appliquée', description: 'Si vous n\'avez pas bougé : avantage à votre prochaine attaque, mais Vitesse 0 ce tour-ci.', categorie: 'aptitude', cout: 'bonus', ciblage: 'soi' });
     res.push(t.aBouge ? refuser(k, 'Vous avez déjà bougé.') : verifier(k, 'bonus'));
   }
+  if (aTrait(c, 'inspiration-bardique')) {
+    const faces = r.deInspiration ?? 6;
+    const cibles = allies(etat, c)
+      .filter((x) => distanceMetres(x.position, c.position) <= 18 && !x.modificateurs.some((m) => m.type === 'de_inspiration'))
+      .map((x) => x.id);
+    const k = carte({ id: 'aptitude:inspiration-bardique', nom: 'Inspiration bardique', description: `Un allié à 18 m reçoit un d${faces} : une fois, il l'ajoute à un jet d'attaque ou de sauvegarde raté, ce qui peut le transformer en réussite.`, categorie: 'aptitude', cout: 'bonus', ciblage: 'allie', portee: 18, cibles, ressource: `${r.inspiration ?? 0} utilisation(s)` });
+    res.push(r.inspiration ? verifier(k, 'bonus') : refuser(k, "Plus d'inspiration."));
+  }
+  if (aTrait(c, 'chatiment-de-paladin')) {
+    // Châtiment divin : action Bonus juste après avoir touché au corps à corps ; 2d8 radiants (+1d8 par niveau d'emplacement
+    // au-dessus du 1er, +1d8 contre un Fiélon ou un Mort-vivant). Un lancer par repos long sans emplacement.
+    const coup = t.dernierCoup;
+    const cible = coup?.corpsACorps ? etat.combattants.find((x) => x.id === coup.cible && !horsCombat(x)) : undefined;
+    const emplacement = emplacementDisponible(c, 1);
+    const k = carte({
+      id: 'aptitude:chatiment-divin',
+      nom: 'Châtiment divin',
+      description: "Juste après avoir touché au corps à corps : 2d8 dégâts radiants en plus (+1d8 par niveau d'emplacement au-dessus du 1er ; +1d8 contre un Fiélon ou un Mort-vivant).",
+      categorie: 'aptitude',
+      cout: 'bonus',
+      ciblage: 'ennemi',
+      portee: 1.5,
+      cibles: cible ? [cible.id] : [],
+      ressource: `${r.chatimentGratuit ? '1 gratuit' : 'sans lancer gratuit'} · ${c.incantation?.emplacements.reduce((s, n) => s + n, 0) ?? 0} emplacement(s)`,
+    });
+    if (!cible) res.push(refuser(k, 'Il faut avoir touché au corps à corps ce tour-ci.'));
+    else if (!r.chatimentGratuit && !emplacement) res.push(refuser(k, "Plus de lancer gratuit ni d'emplacement."));
+    else if (!r.chatimentGratuit && t.sortEmplacementLance) res.push(refuser(k, 'Un seul sort à emplacement par tour.'));
+    else res.push(verifier(k, 'bonus'));
+  }
+  // Moine : Arts martiaux (Frappe bonus), Credo (Déluge de coups, Patience défensive, Porté par le vent), Frappe étourdissante.
+  const mainsNues = c.attaques.find((a) => a.id === 'arts-martiaux');
+  if (aTrait(c, 'arts-martiaux') && mainsNues) {
+    const k = carte({ id: 'aptitude:frappe-bonus', nom: 'Frappe bonus', description: "Après l'action Attaque : une attaque à mains nues (Arts martiaux) en action Bonus.", categorie: 'aptitude', cout: 'bonus', ciblage: 'ennemi', portee: 1.5, cibles: ciblesAttaque(etat, c, 1.5) });
+    res.push(t.attaqueEntreprise ? verifier(k, 'bonus') : refuser(k, "Il faut d'abord entreprendre l'action Attaque."));
+  }
+  if (aTrait(c, 'credo-du-moine')) {
+    const credo = `${r.credo ?? 0}/${r.credoMax ?? 0} point(s) de Credo`;
+    const avecCredo = (k: Carte): Carte => (r.credo ? verifier(k, 'bonus') : refuser(k, 'Plus de point de Credo.'));
+    if (mainsNues) {
+      res.push(avecCredo(carte({ id: 'aptitude:deluge-de-coups', nom: 'Déluge de coups', description: '1 point de Credo : deux attaques à mains nues en action Bonus (sur une ou deux cibles).', categorie: 'aptitude', cout: 'bonus', ciblage: 'ennemi', portee: 1.5, nbCibles: 2, cibles: ciblesAttaque(etat, c, 1.5), ressource: credo })));
+    }
+    res.push(verifier(carte({ id: 'aptitude:patience-defensive', nom: 'Patience défensive', description: 'Se désengager en action Bonus.', categorie: 'aptitude', cout: 'bonus', ciblage: 'soi' }), 'bonus'));
+    res.push(avecCredo(carte({ id: 'aptitude:patience-defensive-credo', nom: 'Patience défensive (Credo)', description: '1 point de Credo : se désengager et esquiver, en action Bonus.', categorie: 'aptitude', cout: 'bonus', ciblage: 'soi', ressource: credo })));
+    res.push(verifier(carte({ id: 'aptitude:porte-par-le-vent', nom: 'Porté par le vent', description: 'Foncer en action Bonus.', categorie: 'aptitude', cout: 'bonus', ciblage: 'soi' }), 'bonus'));
+    res.push(avecCredo(carte({ id: 'aptitude:porte-par-le-vent-credo', nom: 'Porté par le vent (Credo)', description: '1 point de Credo : se désengager et foncer, en action Bonus.', categorie: 'aptitude', cout: 'bonus', ciblage: 'soi', ressource: credo })));
+  }
+  if (aTrait(c, 'frappe-etourdissante')) {
+    const coup = t.dernierCoup;
+    const cible = coup?.corpsACorps ? etat.combattants.find((x) => x.id === coup.cible && !horsCombat(x)) : undefined;
+    const k = carte({
+      id: 'aptitude:frappe-etourdissante',
+      nom: 'Frappe étourdissante',
+      description: `Après avoir touché : 1 point de Credo. Sauvegarde de Constitution (DD ${8 + c.mods.sag + c.bonusMaitrise}) : raté, Étourdi jusqu'au début de votre prochain tour ; réussi, Vitesse réduite de moitié et prochaine attaque contre lui avec Avantage.`,
+      categorie: 'aptitude',
+      cout: 'gratuit',
+      ciblage: 'ennemi',
+      portee: 1.5,
+      cibles: cible ? [cible.id] : [],
+      ressource: `${r.credo ?? 0}/${r.credoMax ?? 0} point(s) de Credo`,
+    });
+    if (t.etourdissanteUtilisee) res.push(refuser(k, 'Une fois par tour.'));
+    else if (!cible) res.push(refuser(k, 'Il faut avoir touché au corps à corps ce tour-ci.'));
+    else res.push(r.credo ? k : refuser(k, 'Plus de point de Credo.'));
+  }
   if (aTrait(c, 'survivance')) {
     const k = carte({ id: 'aptitude:preservation', nom: 'Préservation de la vie', description: `Répartissez ${5 * c.niveau} PV entre les alliés à 9 m (jusqu'à la moitié de leurs PV max).`, categorie: 'aptitude', cout: 'action', ciblage: 'soi', ressource: `${r.conduit ?? 0} conduit(s) divin(s)` });
     res.push(r.conduit ? verifier(k, 'action') : refuser(k, 'Plus de conduit divin.'));
@@ -280,6 +348,7 @@ export function executer(etat: EtatCombat, ctx: Contexte, cmd: Commande): Result
         c.tour.attaquesRestantes = c.ressources.attaquesParAction ?? 1;
       }
       c.tour.attaquesRestantes -= 1;
+      c.tour.attaqueEntreprise = true;
       attaqueArme(etat, c, cibles[0]!, arme);
       break;
     }
@@ -380,6 +449,84 @@ function executerAptitude(etat: EtatCombat, ctx: Contexte, c: Combattant, id: st
           soigner(etat, x, don, c);
           reserve -= don;
         }
+      }
+      break;
+    }
+    case 'inspiration-bardique': {
+      r.inspiration! -= 1;
+      const faces = r.deInspiration ?? 6;
+      const allie = cibles[0]!;
+      allie.modificateurs.push({ id: 'inspiration-bardique', type: 'de_inspiration', de: `1d${faces}`, source: c.id });
+      journaliser(etat, { type: 'info', texte: `${c.nom} inspire ${allie.nom} (dé d'Inspiration bardique : d${faces}).`, acteur: c.id, cible: allie.id });
+      break;
+    }
+    case 'chatiment-divin': {
+      const coup = c.tour.dernierCoup!;
+      const cible = cibles[0]!;
+      let niveau = 1;
+      if (r.chatimentGratuit) r.chatimentGratuit -= 1;
+      else {
+        niveau = emplacementDisponible(c, 1)!;
+        c.incantation!.emplacements[niveau - 1]! -= 1;
+        c.tour.sortEmplacementLance = true;
+      }
+      c.tour.sortBonusLance = true;
+      const impie = /Fiélon|Mort-vivant/i.test(cible.type);
+      const nbDes = 2 + (niveau - 1) + (impie ? 1 : 0);
+      const montant = lancerDes(etat, `${nbDes}d8`, coup.critique ? 2 : 1);
+      journaliser(etat, { type: 'sort', texte: `${c.nom} lance Châtiment divin${niveau > 1 ? ` (emplacement du niveau ${niveau})` : ''} sur ${cible.nom} : ${nbDes}d8 dégâts radiants.`, acteur: c.id, cible: cible.id, details: { sort: 'chatiment-divin' } });
+      infligerDegats(etat, cible, [{ montant, type: 'radiant' }], c, coup.critique);
+      break;
+    }
+    case 'frappe-bonus': {
+      const arme = c.attaques.find((a) => a.id === 'arts-martiaux')!;
+      attaqueArme(etat, c, cibles[0]!, arme);
+      break;
+    }
+    case 'deluge-de-coups': {
+      r.credo! -= 1;
+      const arme = c.attaques.find((a) => a.id === 'arts-martiaux')!;
+      journaliser(etat, { type: 'info', texte: `${c.nom} déchaîne un Déluge de coups.`, acteur: c.id });
+      for (let i = 0; i < 2; i++) {
+        const cible = cibles[Math.min(i, cibles.length - 1)]!;
+        if (cible.mort || cible.pv <= 0) continue;
+        attaqueArme(etat, c, cible, arme);
+      }
+      break;
+    }
+    case 'patience-defensive':
+      c.tour.desengage = true;
+      journaliser(etat, { type: 'info', texte: `${c.nom} se désengage (Patience défensive).`, acteur: c.id });
+      break;
+    case 'patience-defensive-credo':
+      r.credo! -= 1;
+      c.tour.desengage = true;
+      c.tour.esquive = true;
+      journaliser(etat, { type: 'info', texte: `${c.nom} se désengage et esquive (Patience défensive, 1 point de Credo).`, acteur: c.id });
+      break;
+    case 'porte-par-le-vent':
+      c.tour.mouvement += vitesse(c);
+      journaliser(etat, { type: 'info', texte: `${c.nom} fonce, porté par le vent.`, acteur: c.id });
+      break;
+    case 'porte-par-le-vent-credo':
+      r.credo! -= 1;
+      c.tour.desengage = true;
+      c.tour.mouvement += vitesse(c);
+      journaliser(etat, { type: 'info', texte: `${c.nom} se désengage et fonce, porté par le vent (1 point de Credo).`, acteur: c.id });
+      break;
+    case 'frappe-etourdissante': {
+      r.credo! -= 1;
+      c.tour.etourdissanteUtilisee = true;
+      const cible = cibles[0]!;
+      const dd = 8 + c.mods.sag + c.bonusMaitrise;
+      if (!sauvegarde(etat, cible, 'con', dd)) {
+        journaliser(etat, { type: 'info', texte: `${cible.nom} rate sa sauvegarde de Constitution (DD ${dd}) contre la Frappe étourdissante de ${c.nom}.`, acteur: c.id, cible: cible.id });
+        ajouterEtat(etat, cible, { etat: 'etourdi', source: c.id, jusquAuDebutDe: c.id });
+      } else {
+        const fin = { moment: 'debut_tour' as const, de: c.id };
+        cible.modificateurs.push({ id: 'frappe-etourdissante-vitesse', type: 'vitesse', valeur: -Math.floor(vitesse(cible) / 2), source: c.id, expire: fin });
+        cible.modificateurs.push({ id: 'frappe-etourdissante-avantage', type: 'avantage_contre', source: c.id, usageUnique: true, expire: fin });
+        journaliser(etat, { type: 'info', texte: `${cible.nom} réussit sa sauvegarde (DD ${dd}) : Vitesse réduite de moitié, la prochaine attaque contre lui a l'Avantage.`, acteur: c.id, cible: cible.id });
       }
       break;
     }

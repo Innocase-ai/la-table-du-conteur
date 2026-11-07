@@ -44,7 +44,7 @@ export function equipementDe(p: Personnage): Equipement {
   return { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
 }
 
-const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains' };
+const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains', inspiration: 'inspiration bardique', chatimentGratuit: 'châtiment divin gratuit', credo: 'points de Credo', metabolisme: 'métabolisme surnaturel' };
 
 /** Ressources dont l'état dure d'un combat à l'autre (les autres, comme la réaction, ne servent qu'en combat). */
 export const RESSOURCES_DURABLES = Object.keys(RECUPERATION);
@@ -102,6 +102,8 @@ export function recuperer(p: Personnage, duree: 'court' | 'long', gen: Generateu
     if (r === 'toutes') p.ressources[cle] = m;
     else if (r === 'une') p.ressources[cle] = Math.min(m, (p.ressources[cle] ?? 0) + 1);
   }
+  // Source d'inspiration (Barde niveau 5) : le repos court rend aussi toute l'Inspiration bardique.
+  if (duree === 'court' && max.ressources.inspiration !== undefined && p.fiche.aptitudes.some((a) => a.id === 'source-d-inspiration')) p.ressources.inspiration = max.ressources.inspiration;
   const changes: string[] = [];
   if (p.pv !== avant.pv) changes.push(`${p.pv - avant.pv} PV (${p.pv}/${p.fiche.pvMax})`);
   for (const k of Object.keys(p.ressources)) {

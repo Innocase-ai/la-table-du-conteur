@@ -31,10 +31,10 @@ Les écarts marqués **✔ vérifié** ont été contrôlés dans le code et le 
 **Combat**
 - Grandes créatures sur une seule case (le SRD : G = 2×2, TG = 3×3, Gig = 4×4).
 - 105 actions de monstre à zone (souffles de dragon…) ne touchent qu'une cible ; 186 actions de monstre sans résolution (la carte consomme l'action et ne fait rien) ; résistance à la magie, actions et résistances légendaires, régénération non gérées.
-- États manquants : Étourdi, Pétrifié, Assourdi, Invisible, Épuisement.
+- États manquants : Pétrifié, Assourdi, Invisible, Épuisement (Étourdi ajouté le 07/11/2026).
 - Armes Légère (attaque à deux armes) et Polyvalente (dégâts à deux mains) ignorées ; botte Coup double déclarée mais jamais appliquée ; styles Armes à deux mains et Combat à deux armes ignorés.
 - Actions manquantes : Aider (dont stabiliser par Médecine DD 10), Se cacher, Préparer, Lutte et Bousculade ; pas de surprise à l'initiative ; couvert limité au demi-couvert.
-- Aptitudes non jouables : Châtiment divin, Imposition des mains, Ki et frappe bonus du Moine, Inspiration bardique, Métamagie, Forme sauvage.
+- Aptitudes non jouables : ~~Châtiment divin~~, Imposition des mains, ~~Ki (Credo) et frappe bonus du Moine~~, ~~Inspiration bardique~~ (**jouables depuis le 07/11/2026**, voir `docs/COMBAT.md` §10), Métamagie, Sorcellerie innée, Forme sauvage.
 
 **Personnage**
 - Sorts de lignage des niveaux 3 et 5 (elfe, tieffelin) absents ; don Initié à la magie limité (pas de liste Druide, pas d'humain par Polyvalent) ; grimoire du Magicien, Arcanum mystique de l'Occultiste (sorts 6-9) absents ; Cercle de la Terre limité au climat tempéré ; multiclassage absent ; plafond 20 même pour les Faveurs épiques.
