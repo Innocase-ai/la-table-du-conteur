@@ -75,6 +75,44 @@ describe('la revue', () => {
     expect(noms).toEqual(expect.arrayContaining(['savoirs:bertrand:passe', 'savoirs:bertrand:liens.0.opinion', 'savoirs:bertrand:couleur.0.texte', 'pnj:bertrand:salutations.neutre']));
   });
 
+  it('surveille aussi les sujets ouverts, les salutations amicale et hostile, les ambiances, les visuels, les introductions de rencontre et les narrations d’événement ; jamais la description (pour le MJ) ni un sujet verrouillé', () => {
+    const dm = charger(MINI);
+    const pnj = dm.pnj.get('bertrand')!;
+    pnj.salutations.amical = 'Bonjour, ami.';
+    pnj.salutations.hostile = 'Dehors.';
+    pnj.sujets = [
+      { id: 'ouvert', mots: ['x'], question: 'Que faites-vous ?', reponse: 'Je sers à boire.', revele: [], effets: [], unique: false },
+      { id: 'garde', mots: ['y'], condition: { flag: 'confiance' }, reponse: 'Le vrai secret.', revele: [], effets: [], unique: false },
+      { id: 'garde-attitude', mots: ['z'], attitudeMin: 40, reponse: 'Un autre secret.', revele: [], effets: [], unique: false },
+    ] as typeof pnj.sujets;
+    const lieu = [...dm.lieux.values()][0]!;
+    lieu.ambiance = 'Une ambiance.';
+    const noms = champsLibres(dm).map((c) => `${c.entite.type}:${c.entite.id}:${c.chemin.join('.')}`);
+    expect(noms).toEqual(
+      expect.arrayContaining([
+        'pnj:bertrand:salutations.amical',
+        'pnj:bertrand:salutations.hostile',
+        'pnj:bertrand:sujets.0.question',
+        'pnj:bertrand:sujets.0.reponse',
+        `lieux:${lieu.id}:ambiance`,
+        `lieux:${lieu.id}:visuel`,
+        ...[...dm.rencontres.keys()].map((id) => `rencontres:${id}:intro`),
+      ]),
+    );
+    expect(noms).not.toContain('pnj:bertrand:sujets.1.reponse'); // verrouillé par une condition : c'est là que le secret se dit
+    expect(noms).not.toContain('pnj:bertrand:sujets.2.reponse'); // verrouillé par l'attitude
+    expect(noms.some((n) => n.endsWith(':description') && n.startsWith('lieux:'))).toBe(false);
+  });
+
+  it('un mot tabou dans une réponse de sujet ouvert est signalé', () => {
+    const dm = charger(MINI);
+    const pnj = dm.pnj.get('bertrand')!;
+    pnj.sujets = [{ id: 'ouvert', mots: ['x'], reponse: 'Le pacte du meunier, on n’en parle pas.', revele: [], effets: [], unique: false }] as typeof pnj.sujets;
+    const canon = Canon.parse({ secrets: [{ id: 'pacte', texte: 'Le meunier a signé un pacte.', motsTabou: ['pacte'] }] });
+    const alertes = revoirMonde(dm, canon).filter((a) => a.code === 'revue.secret');
+    expect(alertes.some((a) => a.entite?.id === 'bertrand' && (a.chemin ?? []).join('.') === 'sujets.0.reponse')).toBe(true);
+  });
+
   it('un secret qui fuit est signalé avec son extrait, sauf pour une fiche autorisée ; sans mot tabou, rien', () => {
     const dm = miniAvecSavoirs();
     const canon = Canon.parse({ secrets: [{ id: 'pacte', texte: 'Le meunier a signé un pacte.', motsTabou: ['pacte'] }] });

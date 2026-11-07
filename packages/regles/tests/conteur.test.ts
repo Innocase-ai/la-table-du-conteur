@@ -8,6 +8,7 @@ import {
   creerMoteur,
   ErreurService,
   evenementsEnTexte,
+  FAITS_RECENTS,
   ficheDeTour,
   groupeConseille,
   jouerTour,
@@ -370,6 +371,26 @@ describe('le conteur comprend la scène : fiche enrichie, tri des demandes, mém
     expect(fiche).toContain('Quêtes closes : ');
     expect(fiche).toContain(`${dm.quetes.get(q)!.nom} (accomplie)`);
     expect(fiche).toMatch(/Disparus : Hesta Cendrebrune \(mort\)/);
+  });
+
+  it('les faits majeurs (importance 3) restent dans la fiche même noyés sous des faits plus récents ; les ordinaires sont limités', () => {
+    const p = depart();
+    const faits = [...dm.faits.values()].filter((f) => f.fiable);
+    const majeur = faits.find((f) => f.importance >= 3)!;
+    const ordinaires = faits.filter((f) => f.importance < 3).slice(0, 25);
+    expect(ordinaires.length).toBeGreaterThan(FAITS_RECENTS);
+    // Le fait majeur est appris en premier, puis 25 faits ordinaires : avec l'ancienne fenêtre de 12, il aurait disparu.
+    p.etat.faits.push(majeur.id, ...ordinaires.map((f) => f.id));
+    const fiche = ficheDeTour(moteur, p);
+    expect(fiche).toContain('Faits majeurs appris');
+    expect(fiche).toContain(majeur.texte.slice(0, 40));
+    const dernier = ordinaires.at(-1)!;
+    const plusAncien = ordinaires[0]!;
+    expect(fiche).toContain(dernier.texte.slice(0, 40)); // le plus récent est là
+    expect(fiche).not.toContain(plusAncien.texte.slice(0, 60)); // un ordinaire trop ancien est tombé
+    const m = /Faits appris \(les plus récents d'abord, (\d+) sur (\d+)\)/.exec(fiche);
+    expect(Number(m?.[1])).toBe(FAITS_RECENTS);
+    expect(Number(m?.[2])).toBeGreaterThanOrEqual(25);
   });
 
   it('le prompt prend le ton du monde et apprend à trier les demandes (action, parole, question, hors jeu)', () => {

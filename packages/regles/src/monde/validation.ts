@@ -39,6 +39,12 @@ export interface StatsMonde {
 
 export { BUDGET_PX } from '../budget';
 
+/** Une réponse de PNJ qui commence par « Il dit que », « Elle explique que »… : du style indirect, pas une parole (« Il dit : « … » » en est une). */
+export const STYLE_INDIRECT = /^\s*(il|elle|ils|elles)\s+(dit|disent|explique|expliquent|raconte|racontent|demande|demandent|répond|répondent|repond|avoue|avouent|confie|confient|murmure|ajoute|admet|affirme|prévient|previent|propose|rappelle|jure|précise|précisent|souligne|insiste)\b(?!\s*[:«"“])/i;
+
+/** Longueur minimale (en mots) d'une réponse de PNJ avant l'avis « le PNJ n'a pas de voix ». */
+export const MOTS_REPONSE_MIN = 35;
+
 /** Objectifs de richesse par chapitre (niveaux 1 à 5) : en dessous, le validateur avertit. */
 export const MINIMA_PAR_CHAPITRE = {
   lieux: 30, pnj: 25, sujets: 75, marchands: 3, compagnons: 3, secondaires: 6, personnelles: 3, tresors: 25, objets: 10,
@@ -149,6 +155,16 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const sansQuestion = [...dm.pnj.values()].flatMap((n) => n.sujets.filter((s) => !s.question?.trim()).map((s) => `${n.id}:${s.id}`));
   if (sansQuestion.length)
     avis(`Dialogues : ${sansQuestion.length} sujets n'ont pas de « question » (le joueur ne verra que leurs mots-clés) : ${sansQuestion.slice(0, 5).join(', ')}${sansQuestion.length > 5 ? '…' : ''}`);
+
+  // Le jeu montre la réponse d'un sujet telle quelle, sous le nom du PNJ : écrite au style indirect (« Elle dit que… »), elle se lit comme un
+  // compte rendu froid (« Ysmène Hautecôte Elle dit que la mer s'est retirée »). Une réponse très courte laisse aussi un PNJ sans voix.
+  const reponses = [...dm.pnj.values()].flatMap((n) => n.sujets.map((s) => ({ ref: `${n.id}:${s.id}`, texte: s.reponse })));
+  const indirectes = reponses.filter((r) => STYLE_INDIRECT.test(r.texte)).map((r) => r.ref);
+  if (indirectes.length)
+    avis(`Dialogues : ${indirectes.length} réponses sur ${reponses.length} sont au style indirect (« Il dit que… », « Elle explique que… ») : le jeu les affiche telles quelles, sous le nom du PNJ. Écrivez-les au discours direct, avec un geste (${indirectes.slice(0, 5).join(', ')}${indirectes.length > 5 ? '…' : ''}).`);
+  const courtes = reponses.filter((r) => r.texte.split(/\s+/).filter(Boolean).length < MOTS_REPONSE_MIN).map((r) => r.ref);
+  if (courtes.length)
+    avis(`Dialogues : ${courtes.length} réponses sur ${reponses.length} font moins de ${MOTS_REPONSE_MIN} mots (le PNJ n'a pas de voix) : ${courtes.slice(0, 5).join(', ')}${courtes.length > 5 ? '…' : ''}`);
 
   // Les lieux enfants (bâtiments, salles) sans lien propre vers leur parent s'expliquent par leur `accroche`.
   const lienPropre = new Set<string>();

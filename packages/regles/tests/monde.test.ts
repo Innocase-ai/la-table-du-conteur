@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
-import { adapterRencontre, appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
+import { adapterRencontre, appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, STYLE_INDIRECT, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
 import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -19,6 +19,26 @@ describe('format de monde', () => {
     const bilan = validerMonde(charger(), srd);
     expect(bilan.erreurs).toEqual([]);
     expect(bilan.stats).toMatchObject({ pnj: 1, tresors: 1, rencontres: 2, quetes: { principale: 1 } });
+  });
+
+  it('avertit des réponses de PNJ au style indirect ou trop courtes, sans en faire une erreur', () => {
+    const dm = charger();
+    const pnj = dm.pnj.get('bertrand')!;
+    const long = 'Il se penche sur le comptoir, essuie une chope qui n’en a pas besoin, puis baisse la voix pour que personne d’autre ne l’entende : « Le pacte, c’est une vieille histoire. Les gens d’ici préfèrent la laisser dormir, et moi aussi, jusqu’au jour où vous reviendrez avec quelque chose à me proposer. »';
+    pnj.sujets = [
+      { id: 'indirect', mots: ['a'], question: 'Q1', reponse: 'Il dit que la récolte a été mauvaise et que les gens ont faim cette année, mais il n’en dira pas plus devant des étrangers.', revele: [], effets: [], unique: false },
+      { id: 'court', mots: ['b'], question: 'Q2', reponse: 'Il hausse les épaules.', revele: [], effets: [], unique: false },
+      { id: 'bon', mots: ['c'], question: 'Q3', reponse: long, revele: [], effets: [], unique: false },
+    ] as typeof pnj.sujets;
+    const bilan = validerMonde(dm, srd);
+    expect(bilan.erreurs).toEqual([]);
+    const a = bilan.avertissements.join('\n');
+    expect(a).toMatch(/Dialogues : 1 réponses sur 3 sont au style indirect[^\n]*bertrand:indirect/);
+    expect(a).toMatch(/Dialogues : 2 réponses sur 3 font moins de 35 mots[^\n]*bertrand:court/);
+    expect(a).not.toMatch(/bertrand:bon/);
+    expect(STYLE_INDIRECT.test('Elle explique que la mer s’est retirée.')).toBe(true);
+    expect(STYLE_INDIRECT.test('« Elle explique que… » est une réplique, pas un style. Il dit : bonjour')).toBe(false);
+    expect(STYLE_INDIRECT.test('Il dit : « Bonjour. »')).toBe(false);
   });
 
   it('signale une référence cassée, un lieu inaccessible et une quête incohérente', () => {

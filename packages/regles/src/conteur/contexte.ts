@@ -54,6 +54,9 @@ ${JSON.stringify(monde.monde)}
 ${bible}`;
 }
 
+/** Combien de faits ordinaires (importance 1 ou 2) le conteur reçoit à chaque tour, les plus récents ; les faits majeurs sont tous donnés. */
+export const FAITS_RECENTS = 10;
+
 const signe = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
 const court = (t: string, n = 220) => (t.length > n ? `${t.slice(0, n - 1)}…` : t);
 
@@ -203,13 +206,18 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
     .filter(([, q]) => q.statut === 'terminee' || q.statut === 'echouee')
     .map(([id, q]) => `${dm.quetes.get(id)?.nom ?? id} (${q.statut === 'terminee' ? 'accomplie' : 'échouée'})`);
   if (closes.length) l.push(`Quêtes closes : ${closes.join(' ; ')}`);
-  const faits = [...partie.etat.faits]
+  // Les faits majeurs (importance 3 : les piliers de l'intrigue) sont toujours rappelés, tous ; les autres, seulement les plus récents :
+  // sans cela, une dizaine de détails de décor effaceraient du contexte les révélations fondatrices.
+  const connus = [...partie.etat.faits]
     .reverse()
     .map((id) => dm.faits.get(id))
-    .filter((x) => x?.fiable)
-    .map((x) => court(x!.texte, 160));
-  if (faits.length) l.push(`Faits appris (les plus récents d'abord${faits.length > 12 ? `, 12 sur ${faits.length}` : ''}) : ${faits.slice(0, 12).join(' | ')}`);
-  else l.push('Faits appris : aucun pour l’instant.');
+    .filter((x): x is NonNullable<typeof x> => !!x?.fiable);
+  const majeurs = connus.filter((x) => x.importance >= 3).map((x) => court(x.texte, 160));
+  const autres = connus.filter((x) => x.importance < 3).map((x) => court(x.texte, 160));
+  const derniers = autres.slice(0, FAITS_RECENTS);
+  if (majeurs.length) l.push(`Faits majeurs appris (les piliers de l'intrigue : ne les contredis jamais) : ${majeurs.join(' | ')}`);
+  if (derniers.length) l.push(`Faits appris (les plus récents d'abord${autres.length > derniers.length ? `, ${derniers.length} sur ${autres.length}` : ''}) : ${derniers.join(' | ')}`);
+  if (!connus.length) l.push('Faits appris : aucun pour l’instant.');
   const qs = questionsDuCodex(moteur.ctx, partie);
   if (qs.ouvertes.length) l.push(`Questions en suspens (celles que le groupe se pose, à rappeler si on demande quoi chercher ; ne donne jamais la réponse) : ${qs.ouvertes.map((q) => `${q.texte}${q.piste ? ` (piste : ${q.piste})` : ''}`).join(' | ')}`);
   if (qs.eclaircies.length) l.push(`Questions éclaircies : ${qs.eclaircies.map((q) => `${q.texte} → ${q.reponse}`).join(' | ')}`);

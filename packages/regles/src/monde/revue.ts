@@ -19,7 +19,10 @@ export interface ChampLibre {
   texte: string;
 }
 
-/** Tous les champs de texte libres d'un monde : passé, liens et couleur des PNJ, salutations, accroches, passages, examens, énoncés… */
+/**
+ * Tous les champs de texte libres d'un monde : passé, liens et couleur des PNJ, salutations, sujets ouverts, accroches, ambiances,
+ * visuels, passages, introductions de rencontres, narrations d'événements, examens, énoncés…
+ */
 export function champsLibres(dm: DonneesMonde): ChampLibre[] {
   const res: ChampLibre[] = [];
   const ajouter = (type: string, id: string, chemin: (string | number)[], champ: string, texte: string | undefined) => {
@@ -38,15 +41,33 @@ export function champsLibres(dm: DonneesMonde): ChampLibre[] {
     });
     s.sait.forEach((x, i) => ajouter('savoirs', s.pnj, ['sait', i, 'evasif'], `esquive de « ${x.id} »`, x.evasif));
   }
-  for (const p of dm.pnj.values()) ajouter('pnj', p.id, ['salutations', 'neutre'], 'salutation', p.salutations.neutre);
+  for (const p of dm.pnj.values()) {
+    ajouter('pnj', p.id, ['salutations', 'neutre'], 'salutation', p.salutations.neutre);
+    ajouter('pnj', p.id, ['salutations', 'amical'], 'salutation amicale', p.salutations.amical);
+    ajouter('pnj', p.id, ['salutations', 'hostile'], 'salutation hostile', p.salutations.hostile);
+    // Un sujet ouvert (ni condition ni attitude minimale) est lu par tout joueur qui parle au PNJ : un secret n'a rien à y faire. Un sujet
+    // verrouillé est justement l'endroit où le secret se dit.
+    p.sujets.forEach((s, i) => {
+      if (s.condition || s.attitudeMin !== undefined) return;
+      ajouter('pnj', p.id, ['sujets', i, 'question'], `question « ${s.id} »`, s.question);
+      ajouter('pnj', p.id, ['sujets', i, 'reponse'], `réponse « ${s.id} »`, s.reponse);
+    });
+  }
   for (const l of dm.lieux.values()) {
     ajouter('lieux', l.id, ['resume'], 'résumé', l.resume);
     ajouter('lieux', l.id, ['accroche'], 'accroche', l.accroche);
+    ajouter('lieux', l.id, ['ambiance'], 'ambiance', l.ambiance);
+    // Le texte qui sert à dessiner l'image du lieu : ce qu'on y voit, donc ce que le joueur verra. (`description`, elle, est pour le
+    // MJ : elle peut dire ce qu'on y trouve, donc elle n'est pas surveillée.)
+    ajouter('lieux', l.id, ['visuel'], 'visuel (image)', l.visuel);
     l.liens.forEach((k, i) => {
       ajouter('lieux', l.id, ['liens', i, 'description'], `passage vers « ${k.vers} »`, k.description);
       ajouter('lieux', l.id, ['liens', i, 'retour'], `retour depuis « ${k.vers} »`, k.retour);
     });
   }
+  // Les mises en scène et narrations que le jeu raconte telles quelles quand la rencontre ou l'événement se déclenche.
+  for (const r of dm.rencontres.values()) ajouter('rencontres', r.id, ['intro'], 'introduction', r.intro);
+  for (const e of dm.evenements.values()) ajouter('evenements', e.id, ['narration'], 'narration', e.narration);
   for (const x of examensDe(dm).examens) {
     ajouter('examens', x.id, ['texte'], 'texte', x.texte);
     ajouter('examens', x.id, ['apercu'], 'aperçu', x.apercu);
