@@ -11,6 +11,12 @@ interface Props {
 }
 
 const nombre = (x: number) => x.toLocaleString('fr-FR', { maximumFractionDigits: 1 });
+
+/** Ce que veut dire la taille de groupe pour laquelle une histoire est écrite. */
+function texteGroupe(conseille: number): string {
+  if (conseille <= 4) return `Écrite pour un groupe de ${conseille} héros. À 5 ou 6 héros, des renforts s'ajoutent aux combats ; à moins de ${conseille}, ils sont allégés.`;
+  return `Écrite pour un groupe de ${conseille} héros. Avec moins de héros, les combats comptent moins de monstres (tout reste jouable de 1 à ${conseille} héros).`;
+}
 const dollars = (x: number) => `${nombre(x)} $`;
 
 /** Coût d'API estimé pour finir l'histoire, par modèle du conteur (le joueur paie avec sa propre clé). */
@@ -93,7 +99,7 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                     <strong>{h.monde.nom}</strong>
                     <span>{h.monde.accroche}</span>
                     <small>
-                      Niveaux {h.monde.niveaux.min} à {h.monde.niveaux.max} · {h.monde.chapitres.length} chapitre{h.monde.chapitres.length > 1 ? 's' : ''}
+                      Niveaux {h.monde.niveaux.min} à {h.monde.niveaux.max} · pour {h.monde.groupe.conseille} héros · {h.monde.chapitres.length} chapitre{h.monde.chapitres.length > 1 ? 's' : ''}
                       {h.estimation && ` · ≈ ${h.estimation.heures.total} h · API ${dollars(Math.min(...h.estimation.couts.map((c) => c.usd)))} à ${dollars(Math.max(...h.estimation.couts.map((c) => c.usd)))}`}
                     </small>
                   </span>
@@ -113,6 +119,9 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                     <li key={t}>{t}</li>
                   ))}
                 </ul>
+                <p className="histoire-groupe">
+                  <strong>Groupe conseillé : {choisie.monde.groupe.conseille} héros.</strong> {texteGroupe(choisie.monde.groupe.conseille)}
+                </p>
                 <p>{choisie.monde.resume}</p>
                 <h3>Chapitres</h3>
                 <ol className="histoire-chapitres">
@@ -129,9 +138,9 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                 <h3>Pour commencer</h3>
                 <ul className="histoire-conditions">
                   <li className={complets >= TAILLE_GROUPE_MIN ? 'ok' : 'manque'}>
-                    Un groupe de {TAILLE_GROUPE_MIN} à {TAILLE_GROUPE} personnages complets : {complets} prêt{complets > 1 ? 's' : ''}
-                    {complets > 0 && complets < TAILLE_GROUPE && ` (les combats seront adaptés à ${complets} héros)`}
-                    {(complets < TAILLE_GROUPE_MIN || complets < TAILLE_GROUPE) && (
+                    Un groupe de {TAILLE_GROUPE_MIN} à {TAILLE_GROUPE} personnages complets (conseillé : {choisie.monde.groupe.conseille}) : {complets} prêt{complets > 1 ? 's' : ''}
+                    {complets > 0 && complets !== choisie.monde.groupe.conseille && ` (les combats seront adaptés à ${complets} héros)`}
+                    {(complets < TAILLE_GROUPE_MIN || complets < choisie.monde.groupe.conseille) && (
                       <button type="button" className="lien" onClick={onGroupe}>
                         {complets < TAILLE_GROUPE_MIN ? 'créer mon groupe' : 'modifier mon groupe'}
                       </button>

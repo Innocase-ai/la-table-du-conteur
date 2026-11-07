@@ -47,7 +47,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 ## Décisions prises avec l'utilisateur (à ne pas rouvrir sans raison)
 
-- SRD 5.2.1 (licence CC-BY), web en TypeScript, combat avec des cartes, groupe de 1 à 6 personnages créé par le joueur (rencontres adaptées au nombre de héros).
+- SRD 5.2.1 (licence CC-BY), web en TypeScript, combat avec des cartes, groupe de 1 à 6 personnages créé par le joueur, sur **4 ou 6 emplacements au choix** (rencontres adaptées au nombre de héros ; chaque histoire annonce sa taille de groupe, `groupe.conseille` de `monde.json`).
 - Le moteur accueille des dizaines de mondes (premier : Le Val des Cendres). Les objets communs viennent du catalogue SRD partagé, pas de chaque monde.
 - Coût : cible inférieure à 5 $ d'API par histoire. Le moteur et les textes écrits portent le jeu ; le conteur n'intervient que pour la saisie libre, les dialogues et les imprévus. Modèle par défaut : Claude Haiku 5.5 via OpenRouter.
 - Distribution : on développe dans le navigateur, on **vend une application de bureau Tauri** (`apps/bureau`, voir `docs/BUREAU.md`) : poids des contenus sans contrainte, clé du joueur dans le trousseau du système.
@@ -71,4 +71,4 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 ## Ce qui reste à faire
 
-Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; glisser-déposer d'objets ; 6 avis de l'audit des énigmes du Val ; monstres puissants pour les escarmouches de niveau 5.
+Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; glisser-déposer d'objets ; 6 avis de l'audit des énigmes du Val ; monstres puissants pour les escarmouches de niveau 5 ; **règles SRD : voir `docs/AUDIT-REGLES-SRD.md` §7** (aptitudes de l'Ensorceleur et du Druide, actions de monstre sans effet, états manquants, armes Légère et Polyvalente, grandes créatures).

@@ -1046,3 +1046,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Tests** : `aptitudes-classes.test.ts` (28 : cartes, coûts, refus, effets avec dés imposés, récupération, Étourdi, trois combats entiers joués par l'IA). 1615 tests, les deux typechecks.
 - **Vérifié dans le navigateur** : un groupe Moine, Barde, Paladin de niveau 5 en escarmouche : les cartes apparaissent avec leurs compteurs (5/5 Credo) et leurs raisons de refus, l'IA joue le Déluge de coups, aucune erreur de console. Pas rejoué à la main : Frappe étourdissante, Châtiment (couverts par les tests).
 - **Hors périmètre / suite** : Ensorceleur (Sorcellerie innée, Métamagie), Forme sauvage du Druide, Conduit divin, Déviation d'assaut, pictogrammes dédiés (repli sur le dessin par défaut).
+
+## 07/11/2026 — Groupe de 4 ou 6 emplacements, et taille de groupe annoncée par chaque histoire
+
+- **Demande** : au moment de créer son groupe, choisir entre 4 et 6 personnages ; et indiquer dans les histoires pour combien de héros elles sont écrites.
+- **Groupe** (`creation/groupe.ts`) : `TAILLES_GROUPE = [4, 6]` ; un groupe a 4 ou 6 emplacements (5 refusé), `groupeVide(niveau, taille)`, `redimensionner`, `herosRetires`, `groupeConseille(niveau, donnees, taille)` (à 4 : guerrier, clerc, roublard, magicien) ; les conseils de composition tiennent compte de la taille. On peut toujours laisser des emplacements vides et jouer de 1 à 6 héros ; les anciens groupes et fichiers à 6 emplacements restent valides.
+- **Écran Mon groupe** : sélecteur « 4 héros / 6 héros » ; passer à 4 avec des héros dans les emplacements 5 et 6 demande confirmation (« Hilda, Ambrine seront retirés… », avec l'invitation à exporter avant) ; repasser à 6 rend deux emplacements vides.
+- **Histoires** : champ `groupe.conseille` (4 ou 6, 6 par défaut) dans `monde.json` (Port-Sillage : 4 ; Val des Cendres, Citadelle des Marées, Dîme des roseaux : 6) ; la fiche de chaque histoire affiche « pour N héros » dans la liste, « Groupe conseillé : N héros » avec une phrase d'explication, et la ligne « Pour commencer » rappelle le conseillé. Gabarit `pnpm monde nouveau`, skill `creer-monde` et `docs/MONDES.md` à jour.
+- **Vérifié** : 1621 tests (nouveaux dans `groupe.test.ts`), les deux typechecks, `pnpm monde valider` ; dans le navigateur : sélecteur, fenêtre de confirmation, retour à 6, fiche des histoires.
+- **Limite** : l'indication est déclarative (aucune simulation ne confirme l'équilibre à 4 des trois histoires écrites pour 6) ; les combats s'adaptent toujours par `adapterRencontre` (référence 6).
