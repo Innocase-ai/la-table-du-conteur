@@ -170,12 +170,13 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     const nouvelles = partie.journal.length >= avant.journal ? partie.journal.slice(avant.journal) : partie.journal.slice(-12);
     avantSommeil.current = { jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length };
     const nuit = detecterSommeil(nouvelles);
-    if (!nuit || partie.etat.jour <= avant.jour) return;
+    // Une nuit entière change de jour ; une nuit interrompue s'arrête au milieu (souvent le même jour).
+    if (!nuit || (!nuit.interrompue && partie.etat.jour <= avant.jour)) return;
     setSommeil({
       decor: decorSommeil(dm.lieux.get(partie.etat.lieu)?.type, nuit.nuitPayee),
       heureDebut: avant.heure,
       heures: heuresDormies(avant, { jour: partie.etat.jour, heure: partie.etat.heure ?? 8 }),
-      interrompu: partie.scene.type === 'rencontre',
+      interrompu: nuit.interrompue || partie.scene.type === 'rencontre',
     });
   }, [partie, dm]);
   const finSommeil = useCallback(() => setSommeil(undefined), []);

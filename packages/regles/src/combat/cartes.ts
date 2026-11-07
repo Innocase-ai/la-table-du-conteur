@@ -211,7 +211,8 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   res.push(verifier(carte({ id: 'base:desengager', nom: 'Se désengager', description: 'Pas d\'attaque d\'opportunité ce tour-ci.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   res.push(verifier(carte({ id: 'base:esquiver', nom: 'Esquiver', description: 'Les attaques contre vous ont le désavantage ; avantage aux sauvegardes de Dex.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   if ((r.potions ?? 0) > 0) {
-    const cout: CoutCarte = aTrait(c, 'mains-lestes') ? 'bonus' : 'action';
+    // Boire une potion ou l'administrer à un allié au contact : une action Bonus (SRD 5.2.1, potion de guérison).
+    const cout: CoutCarte = 'bonus';
     const cibles = [c, ...allies(etat, c)].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
     res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
   }

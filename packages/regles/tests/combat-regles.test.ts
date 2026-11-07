@@ -128,6 +128,33 @@ describe('règles de combat', () => {
     expect(aEtat(ambrine, 'inconscient')).toBe(false);
   });
 
+  it('trois réussites contre la mort stabilisent le héros et remettent ses jets à zéro (SRD 5.2.1)', () => {
+    etat = combat([monstre('ogre', 9, 4, 'ogre'), hero('Hilda', 1, 1), hero('Ambrine', 2, 1)], [15]); // ordre : ogre, Hilda, Ambrine
+    const ambrine = combattant(etat, 'ambrine');
+    ambrine.pv = 0;
+    ambrine.jetsMort = { succes: 2, echecs: 2 };
+    finTour(etat); // fin du tour de l'ogre
+    finTour(etat); // fin du tour de Hilda : le tour d'Ambrine commence par son jet contre la mort
+    expect(ambrine.stable).toBe(true);
+    expect(ambrine.jetsMort).toEqual({ succes: 0, echecs: 0 });
+    expect(ambrine.mort).toBeFalsy();
+  });
+
+  it('boire une potion de soins coûte une action Bonus et laisse l’action (SRD 5.2.1)', () => {
+    etat = combat([hero('Hilda', 1, 1), hero('Bran', 2, 1), monstre('ogre', 9, 4, 'ogre')]);
+    const hilda = combattant(etat, 'hilda');
+    hilda.ressources.potions = 1;
+    hilda.pv = 1;
+    const carte = cartesDisponibles(etat, ctx, 'hilda').find((k) => k.id === 'base:potion')!;
+    expect(carte.cout).toBe('bonus');
+    expect(carte.raison).toBeUndefined();
+    etat.desImposes = [4, 4];
+    executer(etat, ctx, { type: 'jouer', carte: 'base:potion', cibles: ['hilda'] });
+    expect(hilda.pv).toBeGreaterThan(1);
+    expect(hilda.tour.bonus).toBe(false);
+    expect(hilda.tour.action).toBe(true);
+  });
+
   it('la concentration se perd sur une sauvegarde de Constitution ratée', () => {
     etat = combat([hero('Hilda', 1, 1), hero('Bran', 2, 1), monstre('ogre', 6, 1, 'ogre')]);
     executer(etat, ctx, { type: 'jouer', carte: 'sort:benediction', cibles: ['hilda', 'bran'] });

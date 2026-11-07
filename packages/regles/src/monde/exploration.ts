@@ -796,24 +796,49 @@ export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, per
 export const MESSAGE_PAS_DE_NUIT = (lieu: string) => `On ne dort pas ici (${lieu}) : trop exposé. Une halte est possible ; pour une nuit entière, il faut un abri sûr (auberge, camp, refuge).`;
 
 /** `abri` : une nuit payée à un PNJ (chambre, refuge) se passe chez lui, quel que soit le lieu. */
+/** Le début du constat d'une nuit qu'une rencontre interrompt (l'écran de sommeil le reconnaît : voir `sommeil-regles.ts`). */
+export const PHRASE_NUIT_INTERROMPUE = 'Le groupe s’endort, mais la nuit est interrompue';
+
 export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { abri?: boolean } = {}): CompteRendu {
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
   if (lieu.repos === 'impossible' && !options.abri) return refus(`Impossible de se reposer ici (${lieu.nom}).`);
   // Une halte (repos court) se fait presque partout ; une nuit entière demande un abri sûr : auberge, camp, refuge.
   if (duree === 'long' && lieu.repos !== 'sur' && !options.abri) return refus(MESSAGE_PAS_DE_NUIT(lieu.nom));
   const r = resultat();
-  // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
-  for (const a of p.groupe) {
-    const changes = recuperer(a, duree, p.gen);
-    if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
-  }
-  if (duree === 'long') {
+  // La rencontre du repos se tire d'abord : un combat l'interrompt (SRD 5.2.1). Une halte interrompue ne rapporte rien ;
+  // une nuit interrompue s'arrête au milieu et ne donne que les bénéfices d'un repos court (au moins une heure de repos).
+  const rencontre = resultat();
+  declencherRencontre(p, rencontre, lieu, 'repos');
+  const interrompu = !!rencontre.combat;
+  const recuperation = (sorte: 'court' | 'long') => {
+    // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
+    for (const a of p.groupe) {
+      const changes = recuperer(a, sorte, p.gen);
+      if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
+    }
+  };
+  if (duree === 'long' && interrompu) {
+    const nuit = (24 - (p.etat.heure ?? 8)) + 8;
+    const heures = Math.max(1, Math.floor(nuit / 2));
+    r.constats.push(`${PHRASE_NUIT_INTERROMPUE} au bout de ${heures} h : le repos ne vaut qu'une halte.`);
+    recuperation('court');
+    avancerHeures(p, r, heures);
+  } else if (duree === 'long') {
+    recuperation('long');
     p.etat.jour += 1;
     p.etat.heure = 8;
     r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
     nouveauJour(p, r, true);
-  } else if (!r.constats.length) r.constats.push('Une courte halte.');
-  declencherRencontre(p, r, lieu, 'repos');
+  } else if (interrompu) {
+    r.constats.push('La halte est interrompue : personne ne récupère.');
+  } else {
+    recuperation('court');
+    if (!r.constats.length) r.constats.push('Une courte halte.');
+  }
+  // La rencontre se raconte après le repos (ou ce qu'il en reste).
+  r.constats.push(...rencontre.constats);
+  r.narrations.push(...rencontre.narrations);
+  if (rencontre.combat) r.combat = rencontre.combat;
   suites(p, r);
   return r;
 }

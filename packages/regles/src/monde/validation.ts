@@ -328,7 +328,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       const px = r.monstres.reduce((n, m) => n + (srd.monstres.get(m.profil)?.px ?? 0) * m.nombre, 0);
       const lieu = r.lieu ? dm.lieux.get(r.lieu) : undefined;
       const niv = lieu?.niveau ?? dm.monde.niveaux;
-      const niveaux = Array.from({ length: Math.min(niv.max, 10) - niv.min + 1 }, (_, i) => niv.min + i).filter((n) => BUDGET_PX[n]);
+      const niveaux = Array.from({ length: Math.min(niv.max, 20) - niv.min + 1 }, (_, i) => niv.min + i).filter((n) => BUDGET_PX[n]);
       if (niveaux.length && px > 0) {
         const idx = { faible: 0, moderee: 1, elevee: 2 }[r.difficulte];
         const coherent = niveaux.some((n) => {

@@ -25,6 +25,13 @@ import {
 
 export const NIVEAU_MAX = 20;
 
+/** « +4,50 m » → 4,5 ; une colonne vide ou « — » → rien. */
+export function metresDeColonne(valeur: string | number | undefined): number | undefined {
+  if (typeof valeur === 'number') return valeur;
+  const m = /([\d]+(?:[.,]\d+)?)\s*m/.exec(valeur ?? '');
+  return m ? Number(m[1]!.replace(',', '.')) : undefined;
+}
+
 export interface ChoixPersonnage {
   nom: string;
   classe: string;
@@ -410,9 +417,12 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
   let vitesse = espece.vitesse;
   const armureLourde = armure?.categorie === 'lourde';
   for (const e of de('bonus_vitesse')) {
-    if (e.condition === 'toujours') vitesse += e.metres;
-    else if (e.condition === 'sans_armure_lourde' && !armureLourde) vitesse += e.metres;
-    else if (e.condition === 'sans_armure_ni_bouclier' && !armure && !bouclier) vitesse += e.metres;
+    // Un bonus qui grandit avec le niveau (Déplacement sans armure du Moine) se lit dans la colonne de la progression.
+    const lu = e.colonne ? metresDeColonne(classe.progression[niveau - 1]?.colonnes[e.colonne]) : undefined;
+    const metres = lu ?? e.metres;
+    if (e.condition === 'toujours') vitesse += metres;
+    else if (e.condition === 'sans_armure_lourde' && !armureLourde) vitesse += metres;
+    else if (e.condition === 'sans_armure_ni_bouclier' && !armure && !bouclier) vitesse += metres;
   }
   if (armure?.forceMin && valeurs.for < armure.forceMin) {
     vitesse -= 3;

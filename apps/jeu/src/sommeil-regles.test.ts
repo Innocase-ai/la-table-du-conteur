@@ -81,7 +81,7 @@ describe('repérer une nuit dans le journal du vrai moteur', () => {
     const res = moteur.executer(avant, { type: 'seReposer', duree: 'long' });
     expect(res.refus).toBeUndefined();
     expect(res.partie.etat.jour).toBe(avant.etat.jour + 1);
-    expect(detecterSommeil(nouvelles(avant, res.partie))).toEqual({ nuitPayee: false });
+    expect(detecterSommeil(nouvelles(avant, res.partie))).toEqual({ nuitPayee: false, interrompue: false });
   });
 
   it('une halte (repos court) n’ouvre pas l’écran de sommeil', () => {
@@ -99,6 +99,11 @@ describe('repérer une nuit dans le journal du vrai moteur', () => {
     const avant = ailleurs({ ...depart, etat: { ...depart.etat, pieces: 10_000 } }, hote.lieu);
     const res = moteur.executer(avant, { type: 'payerService', pnj: hote.id, service: service.id });
     expect(res.refus).toBeUndefined();
-    expect(detecterSommeil(nouvelles(avant, res.partie))).toEqual({ nuitPayee: true });
+    expect(detecterSommeil(nouvelles(avant, res.partie))).toEqual({ nuitPayee: true, interrompue: false });
+  });
+
+  it('une nuit interrompue par une rencontre est repérée comme interrompue', () => {
+    const constats = [{ type: 'constat', texte: 'Le groupe s’endort, mais la nuit est interrompue au bout de 4 h : le repos ne vaut qu’une halte.' }] as unknown as Parameters<typeof detecterSommeil>[0];
+    expect(detecterSommeil(constats)).toEqual({ nuitPayee: false, interrompue: true });
   });
 });

@@ -561,6 +561,8 @@ function jetContreLaMort(etat: EtatCombat, c: Combattant): void {
   if (c.jetsMort.echecs >= 3) mourir(etat, c);
   else if (c.jetsMort.succes >= 3) {
     c.stable = true;
+    // Stabilisé, la créature remet ses jets contre la mort à zéro (SRD 5.2.1) : un coup suivant repart d'un échec.
+    c.jetsMort = { succes: 0, echecs: 0 };
     journaliser(etat, { type: 'info', texte: `${c.nom} est stabilisé.`, cible: c.id });
   }
 }

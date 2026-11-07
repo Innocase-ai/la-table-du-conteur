@@ -48,6 +48,8 @@ export const Effet = z.discriminatedUnion('type', [
     type: z.literal('bonus_vitesse'),
     metres: z.number(),
     condition: z.enum(['toujours', 'sans_armure_lourde', 'sans_armure_ni_bouclier']),
+    // Le bonus lu dans une colonne de la progression de la classe au niveau du personnage (« +4,50 m ») ; `metres` vaut s'il n'y a rien.
+    colonne: z.string().optional(),
   }),
   z.object({ type: z.literal('vision_dans_le_noir'), metres: z.number() }),
   z.object({ type: z.literal('resistance'), degats: z.string() }),

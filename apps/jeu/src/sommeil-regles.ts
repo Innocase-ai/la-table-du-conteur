@@ -18,14 +18,17 @@ export function decorSommeil(typeLieu: string | undefined, nuitPayee: boolean): 
 
 /** Le texte que le moteur écrit après une nuit entière (`seReposer`, repos long). */
 const NUIT_ENTIERE = /^Le groupe se repose une nuit entière/;
+/** Une nuit qu'une rencontre interrompt au milieu (`PHRASE_NUIT_INTERROMPUE` du moteur). */
+const NUIT_INTERROMPUE = /^Le groupe s’endort, mais la nuit est interrompue/;
 /** Le texte d'un service payé (`payerService`) : une chambre payée précède la nuit dans la même commande. */
 const SERVICE_PAYE = / payés à /;
 
 /** Une nuit vient-elle d'être dormie dans ces nouvelles entrées du journal ? Et était-elle payée (chambre) ? */
-export function detecterSommeil(nouvelles: readonly EvenementJeu[]): { nuitPayee: boolean } | undefined {
+export function detecterSommeil(nouvelles: readonly EvenementJeu[]): { nuitPayee: boolean; interrompue: boolean } | undefined {
   const constats = nouvelles.flatMap((e) => (e.type === 'constat' ? [e.texte] : []));
-  if (!constats.some((t) => NUIT_ENTIERE.test(t))) return undefined;
-  return { nuitPayee: constats.some((t) => SERVICE_PAYE.test(t)) };
+  const interrompue = constats.some((t) => NUIT_INTERROMPUE.test(t));
+  if (!interrompue && !constats.some((t) => NUIT_ENTIERE.test(t))) return undefined;
+  return { nuitPayee: constats.some((t) => SERVICE_PAYE.test(t)), interrompue };
 }
 
 /**

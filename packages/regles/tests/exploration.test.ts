@@ -338,6 +338,38 @@ describe('énigmes, repos, tests, fiche de scène', () => {
     expect(rp.constats.join(' ')).toMatch(/Les morts rôdent/);
   });
 
+  describe('un repos interrompu par un combat (SRD 5.2.1)', () => {
+    /** L'auberge reçoit une rencontre de combat qui surgit à coup sûr pendant le repos. */
+    function aubergeAgitee(): ReturnType<typeof partie> {
+      const p = partie();
+      p.etat.lieu = 'vei-auberge-dernier-feu';
+      const lieu = p.dm.lieux.get(p.etat.lieu)!;
+      const combat = [...p.dm.rencontres.values()].find((r) => r.type === 'combat')!;
+      lieu.rencontres = [{ id: combat.id, declencheur: 'repos', unique: false } as (typeof lieu.rencontres)[number]];
+      p.groupe[0]!.pv = 1;
+      return p;
+    }
+
+    it('une nuit interrompue ne donne que les bénéfices d’un repos court : pas de nouveau jour', () => {
+      const p = aubergeAgitee();
+      const jour = p.etat.jour;
+      const rp = seReposer(p, 'long');
+      expect(rp.combat).toBeDefined();
+      expect(p.etat.jour).toBe(jour); // pas de nuit entière, pas de nouveau jour
+      expect(rp.constats.join(' ')).toMatch(/la nuit est interrompue/);
+      expect(rp.constats.join(' ')).not.toMatch(/nuit entière/);
+      expect(p.groupe[0]!.pv).toBeGreaterThan(1); // les bénéfices d'une halte sont bien là
+    });
+
+    it('une halte interrompue ne rapporte rien', () => {
+      const p = aubergeAgitee();
+      const rp = seReposer(p, 'court');
+      expect(rp.combat).toBeDefined();
+      expect(p.groupe[0]!.pv).toBe(1);
+      expect(rp.constats.join(' ')).toMatch(/La halte est interrompue/);
+    });
+  });
+
   it('un test libre refuse un DD hors bornes', () => {
     const p = partie();
     expect(testLibre(p, 'athletisme', 40).ok).toBe(false);

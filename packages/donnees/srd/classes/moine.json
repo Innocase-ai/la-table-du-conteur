@@ -166,7 +166,7 @@
       "nom": "Déplacement sans armure",
       "niveau": 2,
       "resume": "La Vitesse augmente de 3 m tant que le Moine ne porte ni armure ni bouclier ; le bonus augmente avec le niveau (colonne Déplacement sans armure).",
-      "effets": [{ "type": "bonus_vitesse", "metres": 3, "condition": "sans_armure_ni_bouclier" }]
+      "effets": [{ "type": "bonus_vitesse", "metres": 3, "condition": "sans_armure_ni_bouclier", "colonne": "Déplacement sans armure" }]
     },
     {
       "id": "credo-du-moine",

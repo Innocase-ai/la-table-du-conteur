@@ -3,7 +3,7 @@
 // Échap ou Espace passent. Une nuit interrompue (rencontre) s'arrête au milieu sur une alerte.
 import { useEffect, useRef, useState } from 'react';
 import { baisserMusique } from '../musique';
-import { heureDuCadran, heureDuReveilBrutal, MS_PAR_HEURE, obscurite, type DecorSommeil } from '../sommeil-regles';
+import { heureDuCadran, MS_PAR_HEURE, obscurite, type DecorSommeil } from '../sommeil-regles';
 import { imageInterface } from '../visuels';
 
 interface Props {
@@ -23,7 +23,8 @@ const DUREE_MESSAGE = 1600;
 export function EcranSommeil({ decor, heureDebut, heures, interrompu, onFin }: Props) {
   // Des heures pleines, quoi qu'on reçoive : jamais de virgule à l'écran.
   const heuresPleines = Math.max(1, Math.round(heures));
-  const arret = useRef(interrompu ? heureDuReveilBrutal(heuresPleines, Math.random()) : heuresPleines);
+  // Le moteur a déjà arrêté une nuit interrompue au bon moment : l'horloge va au bout des heures dormies, puis l'alerte.
+  const arret = useRef(heuresPleines);
   const [ecoulees, setEcoulees] = useState(0);
   const fini = ecoulees >= arret.current;
   const image = imageInterface(decor === 'chambre' ? 'sommeil-chambre' : 'sommeil-camp');
