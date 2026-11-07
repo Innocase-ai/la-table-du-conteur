@@ -8977,3 +8977,21 @@ kbd {
   flex: 1;
   min-width: 0;
 }
+
+/* Depuis la feuille d'un héros : ce qu'il porte passe en tête, mais le sac du groupe reste visible dessous. */
+.grille-rubrique-focus h4 {
+  color: var(--or-vif);
+  border-bottom-color: var(--or);
+}
+
+.grille-separateur {
+  margin: 26px 0 0;
+  padding: 6px 10px;
+  font-family: var(--titre);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--texte);
+  border-left: 3px solid var(--or);
+  background: rgba(212, 174, 102, 0.1);
+}

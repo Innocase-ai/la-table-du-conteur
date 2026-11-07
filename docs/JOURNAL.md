@@ -1088,3 +1088,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Demande** : dans l'onglet Grimoire, afficher l'icône associée à chaque sort.
 - **Fait** : une ligne d'encart peut porter un `sort` (id) ; le module Grimoire le renseigne pour chaque sort connu, et `FicheEncart` (`aventure/fiches.tsx`) met à gauche de la ligne le médaillon de `cleDeSort` (le dessin du sort, sinon le motif de ses dégâts, sinon le symbole de son école : jamais le dessin par défaut, voir `docs/PICTOGRAMMES.md`). Les sorts viennent du catalogue SRD du moteur, passé à l'encart. Aucun nouveau dessin : ce sont ceux des cartes de combat et du créateur. Le clic sur une ligne ouvre toujours la fiche du sort.
 - **Vérifié** : typecheck ; dans le navigateur, un Clerc de niveau 3 : 22 sorts, 22 pictogrammes, la fiche s'ouvre.
+
+## 07/11/2026 — Inventaire : le sac non porté redevient visible
+
+- **Constat** : le bouton « 🎒 Inventaire » de la feuille d'un héros ouvrait la page du sac **filtrée sur « Porté par ce héros »** : on ne voyait que ce qu'il porte, le reste du sac n'apparaissait qu'en cliquant sur « Tout ».
+- **Corrigé** (`GrilleElements.tsx`, `PagePleine.tsx`) : la page s'ouvre sur « Tout » ; le groupe du héros (`focus`) passe en tête et son titre ressort en or, sans rien masquer. Un séparateur « Dans le sac du groupe, non porté » marque le début des objets du sac, après ce que portent les héros.
+- **Vérifié** dans le navigateur (deux héros équipés, corde, torches, rations, épée dans le sac) : filtre « Tout » actif, Porté par Bran (en tête), Porté par Hilda, séparateur, puis Consommables, Armes, Outils.

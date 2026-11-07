@@ -64,7 +64,7 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, fi
             grille={grille}
             cle={principal.id}
             selection={choisi?.id}
-            filtreInitial={filtre}
+            focus={filtre}
             heros={partie.groupe}
             onChoisir={(e) => {
               onChoisir(e.id);
