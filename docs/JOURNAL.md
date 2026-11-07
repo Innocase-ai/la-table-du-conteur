@@ -1082,3 +1082,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Bug corrigé au passage** : l'expression régulière qui coupe le rôle du PNJ avant les deux points avait perdu ses antislashs (`/s*:s*/`) et mangeait un « s » collé aux deux points ; remise en `/\s*:\s*/`.
 - **Vérifié** : 7 tests (`quete-regles.test.ts`), typecheck ; navigateur : la quête « Les rats de la cave » menée à son terme affiche le parchemin accomplie avec 50 PX et 40 po, « Poursuivre » le ferme.
 - **Pas fait** : les étapes accomplies d'une quête restent une simple ligne du récit (possible : une petite bannière) ; aucun son ; pas de scène de remerciement du PNJ (c'est un texte d'auteur à écrire par quête).
+
+## 07/11/2026 — Les pictogrammes de sort dans le grimoire
+
+- **Demande** : dans l'onglet Grimoire, afficher l'icône associée à chaque sort.
+- **Fait** : une ligne d'encart peut porter un `sort` (id) ; le module Grimoire le renseigne pour chaque sort connu, et `FicheEncart` (`aventure/fiches.tsx`) met à gauche de la ligne le médaillon de `cleDeSort` (le dessin du sort, sinon le motif de ses dégâts, sinon le symbole de son école : jamais le dessin par défaut, voir `docs/PICTOGRAMMES.md`). Les sorts viennent du catalogue SRD du moteur, passé à l'encart. Aucun nouveau dessin : ce sont ceux des cartes de combat et du créateur. Le clic sur une ligne ouvre toujours la fiche du sort.
+- **Vérifié** : typecheck ; dans le navigateur, un Clerc de niveau 3 : 22 sorts, 22 pictogrammes, la fiche s'ouvre.

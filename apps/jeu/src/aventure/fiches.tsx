@@ -1,8 +1,10 @@
 // Les morceaux d'écran que partagent l'écran d'aventure et les pages plein écran : la fiche d'information d'un module
 // et la bande des héros.
 import { useState } from 'react';
-import { etatDurableMax, type Encart, type FicheInfo, type Personnage } from '@crpg/regles';
+import { etatDurableMax, type Encart, type FicheInfo, type Personnage, type Sort } from '@crpg/regles';
 import { Parchemin } from '../composants/Parchemin';
+import { Pictogramme } from '../composants/Pictogramme';
+import { cleDeSort } from '../pictogrammes-regles';
 import { Portrait } from '../createur/ui';
 
 const NOMS_RESSOURCES: Record<string, string> = {
@@ -66,7 +68,7 @@ export function BandeauHeros({ groupe, onChoisir, onMontee }: { groupe: Personna
 }
 
 /** Une fiche d'information d'un module (potions portées, livre de sorts, quêtes…). */
-export function FicheEncart({ e }: { e: Encart }) {
+export function FicheEncart({ e, sorts }: { e: Encart; /** Les sorts du catalogue : une ligne qui porte un sort montre son pictogramme. */ sorts?: ReadonlyMap<string, Sort> }) {
   // Une ligne qui porte une fiche s'ouvre en fenêtre de parchemin (un sort, une quête).
   const [fiche, setFiche] = useState<FicheInfo>();
   return (
@@ -74,7 +76,8 @@ export function FicheEncart({ e }: { e: Encart }) {
       <h3>{e.titre}</h3>
       {e.texte && <p className="encart-texte">{e.texte}</p>}
       {e.lignes?.map((l, i) => {
-        const contenu = (
+        const sort = l.sort ? sorts?.get(l.sort) : undefined;
+        const texte = (
           <>
             <div className="encart-tete">
               <span>
@@ -89,6 +92,15 @@ export function FicheEncart({ e }: { e: Encart }) {
             </div>
             {l.detail && <p className="encart-detail">{l.detail}</p>}
           </>
+        );
+        // Un sort : son pictogramme (dessin du sort, sinon motif de ses dégâts, sinon symbole de son école) à gauche du texte.
+        const contenu = sort ? (
+          <div className="encart-ligne-sort">
+            <Pictogramme cle={cleDeSort(sort)} taille={34} medaillon />
+            <div className="encart-ligne-sort-texte">{texte}</div>
+          </div>
+        ) : (
+          texte
         );
         const classe = `encart-ligne ${l.ton ? `ton-${l.ton}` : ''}`;
         return l.fiche ? (

@@ -486,7 +486,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                   </button>
                 </section>
               ) : (
-                <FicheEncart key={e.id} e={e} />
+                <FicheEncart key={e.id} e={e} sorts={moteur.ctx.srd?.sorts} />
               ),
             )}
             {/* Les actions d'un élément de la grille sont dans sa fiche (page plein écran), pas ici. */}
@@ -548,6 +548,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           jouer={jouer}
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
+          sorts={moteur.ctx.srd?.sorts}
           onFeuille={(id) => {
             setPage(undefined);
             setFeuille(id);

@@ -8960,3 +8960,20 @@ kbd {
     animation: none;
   }
 }
+
+/* Le grimoire : chaque sort porte son pictogramme à gauche de son nom. */
+.encart-ligne-sort {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.encart-ligne-sort > :first-child {
+  flex: none;
+  margin-top: 2px;
+}
+
+.encart-ligne-sort-texte {
+  flex: 1;
+  min-width: 0;
+}

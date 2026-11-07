@@ -1,7 +1,7 @@
 // La page plein écran d'un onglet qui a une grille (le sac, touche I) : la grille à gauche, la fiche de l'élément
 // choisi et ses actions à droite, les héros en bas. Elle ne connaît aucune commande : les actions sont les propositions
 // de l'onglet qui portent sur l'élément choisi.
-import type { Encart, Ordre, Partie, Proposition } from '@crpg/regles';
+import type { Encart, Ordre, Partie, Proposition, Sort } from '@crpg/regles';
 import { BoutonProposition } from './BoutonProposition';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { FicheElement, GrilleElements } from './GrilleElements';
@@ -21,9 +21,11 @@ interface Props {
   onFermer: () => void;
   /** Ouvre la feuille de personnage d'un héros (le porteur de l'objet choisi, sinon celui du filtre, sinon le premier debout). */
   onFeuille?: (heros: string) => void;
+  /** Les sorts du catalogue, pour les pictogrammes des lignes de sort. */
+  sorts?: ReadonlyMap<string, Sort>;
 }
 
-export function PagePleine({ monde, encarts, propositions, partie, selection, filtre, onChoisir, jouer, onCombat, onFermer, onFeuille }: Props) {
+export function PagePleine({ monde, encarts, propositions, partie, selection, filtre, onChoisir, jouer, onCombat, onFermer, onFeuille, sorts }: Props) {
   const principal = encarts.find((e) => e.grille)!;
   const grille = principal.grille!;
   const autres = encarts.filter((e) => e !== principal);
@@ -84,7 +86,7 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, fi
             <p className="encart-texte">Choisis un élément pour voir sa fiche et ce que tu peux en faire.</p>
           )}
           {autres.map((e) => (
-            <FicheEncart key={e.id} e={e} />
+            <FicheEncart key={e.id} e={e} sorts={sorts} />
           ))}
         </aside>
       </div>
