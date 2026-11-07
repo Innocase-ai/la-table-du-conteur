@@ -19,12 +19,12 @@ Les écarts marqués **✔ vérifié** ont été contrôlés dans le code et le 
 | 9 | Économie | **Objets magiques à 50-75 % de la table du SRD** (potion de guérison 37,5 po au lieu de 50 ; peu courant 300 au lieu de 400 ; rare 2 500 au lieu de 4 000 ; légendaire 100 000 au lieu de 200 000). ✔ vérifié | « Rareté et valeur » (flux l. 38281) | `donnees/srd/objets/*.json` (`valeurPo`) | notable (prix des boutiques, valeur des trésors) · **Corrigé : table du SRD (100 / 400 / 4 000 / 40 000 / 200 000 po, moitié pour l'usage unique) ; le prix de l'arme ou de l'armure de base n'est pas ajouté.** |
 | 10 | Rencontres | **Budget de PX limité aux niveaux 1-10** (le SRD va à 20) ; un groupe de niveau 15 reçoit le budget du 10. ✔ vérifié | rencontres de combat (flux l. 37741) | `budget.ts`, `combat/escarmouche.ts`, `monde/validation.ts` | notable (niv. 11+) · **Corrigé : budget 1-20, plafonds de 10 levés.** |
 
-## 2. Décisions à prendre (écart réel, mais le corriger change l'équilibre)
+## 2. Décisions à prendre (écart réel, mais le corriger change l'équilibre) : **tranchées et traitées le 07/11/2026**
 
-- **PX de départ à 0 quel que soit le niveau de départ** ✔ vérifié (`monde/etat.ts`) : une histoire qui commence au niveau 3 demande 2 700 PX pour le niveau 4 au lieu de 1 800 de plus. Les histoires ont peut-être été calibrées ainsi (validateur et estimations) : corriger demande de revoir leurs PX.
-- **Influence** : le jeu fait varier le DD (5 à 25) selon l'attitude ; le SRD garde le DD et donne Avantage (amical) ou Désavantage (hostile), avec 24 h d'attente après un échec. Aujourd'hui on peut répéter « Persuader » sans limite.
-- **Héros relevés à 1 PV après un combat d'histoire, même morts** (`apps/jeu/src/App.tsx`) : voulu (pas de mort définitive) ou à revoir ?
-- **Niveau 19** : la Faveur épique ne donne une amélioration qu'au Roublard et à l'Occultiste, rien aux 10 autres classes ; les dons généraux et de faveur épique ne sont pas choisissables.
+- **Corrigé** : **PX de départ à 0 quel que soit le niveau de départ** ✔ vérifié (`monde/etat.ts`) ; le groupe démarre maintenant avec les PX de son niveau (aucune histoire n'est touchée : toutes démarrent au niveau 1) : une histoire qui commence au niveau 3 demande 2 700 PX pour le niveau 4 au lieu de 1 800 de plus. Les histoires ont peut-être été calibrées ainsi (validateur et estimations) : corriger demande de revoir leurs PX.
+- **Corrigé (SRD complet)** : **Influence** : le jeu faisait varier le DD (5 à 25) selon l'attitude ; le SRD garde le DD et donne Avantage (amical) ou Désavantage (hostile), avec 24 h d'attente après un échec. Désormais : DD 15, Avantage si amical (attitude ≥ 30), Désavantage si hostile (≤ -30), 24 h d'attente avant de retenter la même manière avec le même PNJ (`influenceRatee`). La jauge d'attitude reste.
+- **Gardé, documenté** : **héros relevés à 1 PV après un combat d'histoire, même morts** (`apps/jeu/src/App.tsx`) : pas de mort définitive en histoire (décision de l'utilisateur, 07/11/2026).
+- **Corrigé** : **niveau 19** : les 12 classes reçoivent une Faveur épique (don de faveur + caractéristique relevée de 1, max 30) ; l'amélioration en trop du Roublard et de l'Occultiste est retirée. Reste : les effets en combat des faveurs et les dons généraux à la place d'une amélioration.
 
 ## 3. Mécaniques absentes ou simplifiées (gros chantiers)
 
@@ -50,7 +50,7 @@ Hors combat : crochetage sans maîtrise de l'outil (ni Avantage compétence + ou
 
 ## 5. Choix assumés du jeu (pas des erreurs)
 
-Cartes et élan en combat ; égalités d'initiative par la Dextérité puis héros d'abord ; réactions automatiques ; monstres morts à 0 PV ; emplacement de sort le plus bas ; une fouille par lieu et par jour ; désamorçage raté de 5 ou plus qui déclenche le piège ; crocheter devant témoins (jet de Discrétion, arrêt, alerte) ; défaite = 1 PV, moitié de l'or, 8 h ; identification par Arcanes ; budget des escarmouches calé par simulation ; kit de départ allégé.
+Cartes et élan en combat ; pas de mort définitive en histoire (héros relevés à 1 PV après un combat) ; égalités d'initiative par la Dextérité puis héros d'abord ; réactions automatiques ; monstres morts à 0 PV ; emplacement de sort le plus bas ; une fouille par lieu et par jour ; désamorçage raté de 5 ou plus qui déclenche le piège ; crocheter devant témoins (jet de Discrétion, arrêt, alerte) ; défaite = 1 PV, moitié de l'or, 8 h ; identification par Arcanes ; budget des escarmouches calé par simulation ; kit de départ allégé.
 
 ## 6. Ce qui est conforme (vérifié par les relectures)
 

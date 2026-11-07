@@ -636,7 +636,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     [...dm.evenements.values()].reduce((s, e) => s + xp(e.effets), 0) +
     [...dm.pnj.values()].reduce((s, p) => s + p.sujets.reduce((a, x) => a + xp(x.effets), 0), 0);
   const niveauMax = dm.monde.niveaux.max;
-  if (total < SEUILS_PX[niveauMax - 1]!) avis(`PX : le monde rapporte ${total} PX au groupe, pas assez pour atteindre le niveau ${niveauMax} (seuil : ${SEUILS_PX[niveauMax - 1]}).`);
+  // Le groupe arrive déjà avec les PX de son niveau de départ.
+  const pxDepart = SEUILS_PX[dm.monde.niveaux.min - 1] ?? 0;
+  if (pxDepart + total < SEUILS_PX[niveauMax - 1]!) avis(`PX : le monde rapporte ${total} PX au groupe (plus ${pxDepart} au départ), pas assez pour atteindre le niveau ${niveauMax} (seuil : ${SEUILS_PX[niveauMax - 1]}).`);
   // 3. une issue autre que la fuite pour les combats difficiles (négocier, se rendre), sinon le groupe n'a que deux choix.
   for (const r of dm.rencontres.values()) {
     if ((r.type === 'combat' || r.type === 'mixte') && r.difficulte === 'elevee' && !r.alternatives.length) {

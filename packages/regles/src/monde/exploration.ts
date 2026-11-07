@@ -40,6 +40,11 @@ export interface EtatExploration {
    * la journée), ce qu'ils ont vu, et s'ils l'ont déjà dit au groupe en conversation (`confronte`). Absent des sauvegardes anciennes.
    */
   vus?: Record<string, { jour: number; objet: string; methode: 'crocheter' | 'forcer'; confronte?: boolean }>;
+  /**
+   * Les tentatives d'influence ratées : `<pnj>:<manière>` → l'heure de jeu absolue (`jour × 24 + heure`) de l'échec. Le SRD
+   * demande d'attendre 24 h avant d'exhorter de nouveau de la même manière. Absent des sauvegardes anciennes.
+   */
+  influenceRatee?: Record<string, number>;
 }
 
 export interface PartieMonde {

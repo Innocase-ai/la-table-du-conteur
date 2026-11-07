@@ -17,6 +17,7 @@ export * from './combat/escarmouche';
 export * from './combat/echelle';
 export * from './creation/equipement';
 export * from './creation/exigences';
+export * from './creation/faveurs';
 export * from './creation/regles-creation';
 export * from './creation/texte';
 export * from './creation/recommandations';

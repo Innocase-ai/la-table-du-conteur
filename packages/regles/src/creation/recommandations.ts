@@ -7,6 +7,7 @@ import type { ChoixPersonnage } from '../fiche';
 import { CARACTERISTIQUES, type Caracteristique, type Competence } from '../schemas';
 import { equipementChoisi } from './equipement';
 import { effetsAcquis, exigences, type ChoixPartiel } from './exigences';
+import { caracteristiquesDeFaveur, FAVEUR_RECOMMANDEE } from './faveurs';
 import { nombreDeChoix, sortsEligibles } from './regles-creation';
 
 /** Valeurs standard par classe, dans l'ordre For, Dex, Con, Int, Sag, Cha (table « Valeurs standard par classe », SRD p. 22). */
@@ -220,6 +221,18 @@ export function recommanderCompetences(c: ChoixPartiel & { niveau: number }, don
   // Style de combat : don en plus de ceux déjà choisis (l'humain garde son don d'origine).
   const dons = (c.dons ?? []).filter((id) => donnees.dons.get(id)?.categorie !== 'style-de-combat');
   if (ex.donsStyle) dons.push(STYLE_PAR_CLASSE[c.classe] ?? 'defense');
+  // Faveur épique (niveau 19) : celle qui est choisie, sinon la recommandée du SRD pour la classe, et la caractéristique qu'elle relève.
+  if (ex.faveursEpiques) {
+    let faveur = dons.find((id) => donnees.dons.get(id)?.categorie === 'faveur-epique');
+    if (!faveur) {
+      faveur = FAVEUR_RECOMMANDEE[c.classe] ?? 'faveur-du-destin';
+      if (faveur === 'faveur-de-memoire-magique' && !donnees.classes.get(c.classe)?.incantation) faveur = 'faveur-du-destin';
+      dons.push(faveur);
+    }
+    const permises = caracteristiquesDeFaveur(faveur);
+    const gardee = c.faveurCaracteristique?.[0];
+    res.faveurCaracteristique = [gardee && permises.includes(gardee) ? gardee : (prioriteCaracteristiques(c.classe).find((k) => permises.includes(k)) ?? permises[0]!)];
+  }
   res.dons = dons;
 
   // Options de classe (ordre divin, manifestations occultes, métamagie).

@@ -61,6 +61,8 @@ export const Effet = z.discriminatedUnion('type', [
   z.object({ type: z.literal('maitrise_armes'), armes: z.array(z.string()) }),
   // Amélioration de caractéristique (niveau 4, etc.) : +2 à une ou +1 à deux.
   z.object({ type: z.literal('amelioration_caracteristique') }),
+  // Faveur épique (niveau 19) : un don de faveur, +1 à une caractéristique (max 30).
+  z.object({ type: z.literal('faveur_epique') }),
   // Sorts mineurs en plus de ceux de la classe (Thaumaturge, Mage primitif) : le joueur les choisit.
   z.object({ type: z.literal('sorts_mineurs_supplementaires'), nombre: z.number().int() }),
   // Sorts toujours connus, accordés par l'espèce ou une option (ids des données de sorts).

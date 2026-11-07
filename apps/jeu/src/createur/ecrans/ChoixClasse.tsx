@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { COMPETENCES, effetsAcquis, exigences, sortsEligibles, type Competence, type Sort } from '@crpg/regles';
+import { CARACTERISTIQUES, COMPETENCES, caracteristiquesDeFaveur, effetsAcquis, exigences, sortsEligibles, type Competence, type Sort } from '@crpg/regles';
 import { ficheApercu, tousLesManquants, type Brouillon } from '../brouillon';
 import { NOMS_CARAC, NOMS_COMPETENCES, liste } from '../libelles';
 import { BadgeJouable, ListeNav, ListeSorts, Option, Section } from '../ui';
@@ -133,6 +133,11 @@ export function EcranChoixClasse({ b, donnees, maj, aller }: PropsEcran & { alle
   const donsStyle = [...donnees.dons.values()].filter((d) => d.categorie === 'style-de-combat');
   const styleChoisi = (c.dons ?? []).find((id) => donnees.dons.get(id)?.categorie === 'style-de-combat');
 
+  // --- Faveur épique (niveau 19) ---
+  const faveurs = [...donnees.dons.values()].filter((d) => d.categorie === 'faveur-epique' && (d.id !== 'faveur-de-memoire-magique' || !!classe.incantation));
+  const faveurChoisie = (c.dons ?? []).find((id) => donnees.dons.get(id)?.categorie === 'faveur-epique');
+  const caracPermises = faveurChoisie ? caracteristiquesDeFaveur(faveurChoisie) : [];
+
   // --- Bottes d'arme ---
   const bottes = c.bottes ?? [];
 
@@ -223,6 +228,51 @@ export function EcranChoixClasse({ b, donnees, maj, aller }: PropsEcran & { alle
                 />
               ))}
             </ListeNav>
+          </Section>
+        )}
+
+        {ex.faveursEpiques > 0 && (
+          <Section
+            titre="Faveur épique"
+            aide="Niveau 19 : une faveur donne +1 à une caractéristique (jusqu'à 30) et un pouvoir. Ses effets en combat ne sont pas encore joués."
+            etat={faveurChoisie && c.faveurCaracteristique?.[0] ? 'ok' : 'manque'}
+          >
+            <ListeNav className="liste-options" aria-label="Faveur épique">
+              {faveurs.map((d) => (
+                <Option
+                  key={d.id}
+                  compact
+                  selectionne={faveurChoisie === d.id}
+                  titre={d.nom}
+                  sous={d.resume}
+                  onSurvol={survol({ titre: d.nom, texte: d.resume })}
+                  onChoisir={() =>
+                    poser((x) => {
+                      const permises = caracteristiquesDeFaveur(d.id);
+                      const gardee = x.faveurCaracteristique?.[0];
+                      return {
+                        ...x,
+                        dons: [...(x.dons ?? []).filter((id) => donnees.dons.get(id)?.categorie !== 'faveur-epique'), d.id],
+                        faveurCaracteristique: gardee && permises.includes(gardee) ? [gardee] : undefined,
+                      };
+                    })
+                  }
+                />
+              ))}
+            </ListeNav>
+            {faveurChoisie && (
+              <ListeNav className="liste-options" aria-label="Caractéristique relevée par la faveur">
+                {CARACTERISTIQUES.filter((k) => caracPermises.includes(k)).map((k) => (
+                  <Option
+                    key={k}
+                    compact
+                    selectionne={c.faveurCaracteristique?.[0] === k}
+                    titre={`+1 ${NOMS_CARAC[k]}`}
+                    onChoisir={() => poser((x) => ({ ...x, faveurCaracteristique: [k] }))}
+                  />
+                ))}
+              </ListeNav>
+            )}
           </Section>
         )}
 

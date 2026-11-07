@@ -31,6 +31,7 @@ export function monterAuNiveau(choix: ChoixPersonnage, niveau: number, donnees: 
     expertises: completer(choix.expertises, comp.expertises, comp.expertises?.length ?? 0),
     competencesSupplementaires: completer(choix.competencesSupplementaires, comp.competencesSupplementaires, comp.competencesSupplementaires?.length ?? 0),
     dons: completer(choix.dons, comp.dons, comp.dons?.length ?? 0),
+    faveurCaracteristique: completer(choix.faveurCaracteristique, comp.faveurCaracteristique, comp.faveurCaracteristique?.length ?? 0),
     bottes: completer(choix.bottes, comp.bottes, comp.bottes?.length ?? 0),
     sortsMineurs: completer(choix.sortsMineurs, comp.sortsMineurs, comp.sortsMineurs?.length ?? 0),
     sortsPrepares: completer(choix.sortsPrepares, comp.sortsPrepares, comp.sortsPrepares?.length ?? 0),

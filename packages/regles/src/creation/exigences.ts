@@ -30,6 +30,8 @@ export interface Exigences {
   competencesSupplementaires: { nombre: number; restrictions: (Competence[] | undefined)[] };
   expertises: { nombre: number; libres: number; restreintes: Competence[][] };
   ameliorations: number;
+  /** Faveurs épiques à choisir (une au niveau 19), chacune avec la caractéristique qu'elle relève. */
+  faveursEpiques: number;
   donsStyle: number;
   donsOrigine: number;
   tailles: ('P' | 'M')[];
@@ -96,6 +98,7 @@ export function exigences(c: ChoixPartiel & { niveau: number }, donnees: Donnees
       restreintes: exp.filter((e) => e.parmi).map((e) => e.parmi!),
     },
     ameliorations: de('amelioration_caracteristique').length,
+    faveursEpiques: de('faveur_epique').length,
     donsStyle: Math.min(1, styles),
     donsOrigine: espece.traits.some((t) => t.id === 'polyvalent') ? 1 : 0,
     tailles: espece.tailles,
@@ -168,6 +171,9 @@ export function manquants(c: ChoixPartiel & { niveau: number }, donnees: Donnees
   if ((c.competencesSupplementaires?.length ?? 0) < ex.competencesSupplementaires.nombre) ajouter('competences', `${ex.competencesSupplementaires.nombre - (c.competencesSupplementaires?.length ?? 0)} compétence(s) supplémentaire(s) à choisir.`);
   if ((c.expertises?.length ?? 0) < ex.expertises.nombre) ajouter('competences', `${ex.expertises.nombre - (c.expertises?.length ?? 0)} expertise(s) à choisir.`);
   if (dons.filter((d) => d?.categorie === 'style-de-combat').length < ex.donsStyle) ajouter('competences', 'Choisis un style de combat.');
+  const faveurs = dons.filter((d) => d?.categorie === 'faveur-epique').length;
+  if (faveurs < ex.faveursEpiques) ajouter('competences', 'Choisis une Faveur épique.');
+  else if ((c.faveurCaracteristique?.length ?? 0) < ex.faveursEpiques) ajouter('competences', 'Choisis la caractéristique que relève ta Faveur épique.');
   for (const { choix, nombre } of ex.choixClasse) if (compte(choix) < nombre) ajouter('competences', `${choix.nom} : ${nombre - compte(choix)} choix restant(s).`);
   if (ex.bottes && (c.bottes?.length ?? 0) < ex.bottes.nombre) ajouter('competences', `Bottes d'arme : ${ex.bottes.nombre - (c.bottes?.length ?? 0)} arme(s) à choisir.`);
   if (ex.sorts) {
