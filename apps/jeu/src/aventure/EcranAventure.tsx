@@ -24,7 +24,7 @@ import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage } from './FeuillePersonnage';
 import { EcranMontee } from './EcranMontee';
 import { EcranQuete } from './EcranQuete';
-import { nouvellesQuetes, parcheminDeQuete } from '../quete-regles';
+import { changementsDeQuetes, parcheminDeQuete, type ChangementQuete } from '../quete-regles';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
@@ -294,16 +294,17 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const plafond = conteur?.plafond ?? 0.5;
   const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
-  // Les quêtes qui commencent : un parchemin raconte chacune (nom, qui la donne, explication, premier objectif, récompenses). On
-  // compare les quêtes en cours avant et après chaque changement de la partie (bouton « Accepter », parole de PNJ, événement).
-  const [parchemins, setParchemins] = useState<string[]>([]);
+  // Les quêtes qui commencent, se terminent ou échouent : un parchemin raconte chacune (nom, qui la donne, explication, premier
+  // objectif ou récompenses reçues). On compare les quêtes avant et après chaque changement de la partie (bouton « Accepter »,
+  // parole de PNJ, événement, étape qui clôt la quête).
+  const [parchemins, setParchemins] = useState<ChangementQuete[]>([]);
   const avantQuetes = useRef(partie.etat.quetes);
   useEffect(() => {
-    const nouvelles = nouvellesQuetes(avantQuetes.current, partie.etat.quetes);
+    const nouvelles = changementsDeQuetes(avantQuetes.current, partie.etat.quetes);
     avantQuetes.current = partie.etat.quetes;
-    if (nouvelles.length) setParchemins((f) => [...f, ...nouvelles.filter((id) => !f.includes(id))]);
+    if (nouvelles.length) setParchemins((f) => [...f, ...nouvelles.filter((n) => !f.some((x) => x.id === n.id && x.genre === n.genre))]);
   }, [partie.etat.quetes]);
-  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0]) : undefined;
+  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0].id, parchemins[0].genre) : undefined;
   const imageDonneur = useImage(dm.monde.id, 'pnj', parchemin?.donneur);
   const finParchemin = useCallback(() => setParchemins((f) => f.slice(1)), []);
   const parcheminOuvert = !!parchemin && !sceneNarree;
@@ -485,7 +486,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                   </button>
                 </section>
               ) : (
-                <FicheEncart key={e.id} e={e} />
+                <FicheEncart key={e.id} e={e} sorts={moteur.ctx.srd?.sorts} />
               ),
             )}
             {/* Les actions d'un élément de la grille sont dans sa fiche (page plein écran), pas ici. */}
@@ -547,6 +548,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           jouer={jouer}
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
+          sorts={moteur.ctx.srd?.sorts}
           onFeuille={(id) => {
             setPage(undefined);
             setFeuille(id);
@@ -559,7 +561,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
-      {parcheminOuvert && !sommeil && !crochetage && <EcranQuete key={parchemin!.id} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
+      {parcheminOuvert && !sommeil && !crochetage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
       {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}

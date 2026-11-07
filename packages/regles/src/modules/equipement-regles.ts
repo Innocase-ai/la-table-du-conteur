@@ -69,7 +69,8 @@ export function appliquerEquipement(ctx: ContexteJeu, p: Personnage): void {
 }
 
 /** Ce que pèse ce qu'un héros porte. */
-export const poidsPorte = (ctx: ContexteJeu, p: Personnage): number => objetsPortes(equipementDe(p)).reduce((s, id) => s + (objetDe(ctx, id).poidsKg ?? 0), 0);
+export const poidsPorte = (ctx: ContexteJeu, p: Personnage): number =>
+  objetsPortes(equipementDe(p)).reduce((s, id) => s + (objetDe(ctx, id).poidsKg ?? 0), 0) + (p.ressources.potions ?? 0) * (objetDe(ctx, 'potion-de-guerison').poidsKg ?? 0);
 
 /** Ce que le groupe peut porter, et ce qu'il porte (le sac et ce que portent les héros). */
 export function chargeDuGroupe(ctx: ContexteJeu, groupe: Personnage[], sac: Record<string, number>): { poids: number; capacite: number } {

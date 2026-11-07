@@ -153,7 +153,7 @@ export interface Encart {
   ordre: number;
   texte?: string;
   /** Une ligne qui porte une `fiche` s'ouvre en fenêtre de parchemin quand le joueur la choisit. */
-  lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger'; fiche?: FicheInfo }[];
+  lignes?: { libelle: string; valeur?: string; detail?: string; ton?: 'faible' | 'fort' | 'succes' | 'danger'; fiche?: FicheInfo; /** Id d'un sort : l'écran met à gauche le pictogramme de ce sort. */ sort?: string }[];
   /** Une grille d'éléments (objets d'un sac, sorts d'un livre…) : l'écran la montre en vignettes triables, avec une page plein écran. */
   grille?: GrilleElements;
   /** La carte du monde (lieux visités, repère du groupe) : l'écran la dessine sur l'image de la carte s'il y en a une. */

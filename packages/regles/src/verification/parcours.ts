@@ -79,7 +79,7 @@ export const HYPOTHESES = [
 
 /** Les commandes qui ne font pas avancer l'histoire : l'explorateur ne les joue pas. */
 const BRUIT = new Set([
-  'commencer', 'retirerEquipement', 'equiper', 'lancerSort', 'imposerLesMains', 'utiliserObjet', 'confierPotion', 'identifierObjet', 'voirObjet',
+  'commencer', 'retirerEquipement', 'equiper', 'lancerSort', 'imposerLesMains', 'utiliserObjet', 'confierPotion', 'rendrePotion', 'identifierObjet', 'voirObjet',
   'jeterObjet', 'acheter', 'vendre', 'revoirScene', 'saisie', 'raconter', 'testLibre', 'indiceEnigme', 'repondreEnPersonnage',
 ]);
 

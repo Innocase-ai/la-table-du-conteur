@@ -201,6 +201,30 @@ export const moduleInventaire: Module = {
         t.emettre({ type: 'constat', texte: `${a.nom} prend une potion de guérison (${a.ressources.potions} en tout).` });
       },
     }),
+    rendrePotion: commande({
+      description: 'Rendre au sac du groupe une potion de guérison que portait un héros.',
+      entree: z.object({ personnage: z.string() }),
+      disponible: libre,
+      executer: (t, e) => {
+        const a = t.partie.groupe.find((x) => x.id === e.personnage);
+        if (!a) return { refus: 'Aucun héros de ce nom.' };
+        if (!(a.ressources.potions ?? 0)) return { refus: `${a.nom} ne porte aucune potion de guérison.` };
+        a.ressources.potions = (a.ressources.potions ?? 0) - 1;
+        t.partie.etat.inventaire[POTION_DE_COMBAT] = (t.partie.etat.inventaire[POTION_DE_COMBAT] ?? 0) + 1;
+        t.emettre({ type: 'constat', texte: `${a.nom} range une potion de guérison dans le sac (${a.ressources.potions} gardée(s)).` });
+      },
+      propositions: (ctx, p) =>
+        p.groupe
+          .filter((a) => (a.ressources.potions ?? 0) > 0)
+          .map((a) => ({
+            groupe: PANNEAU_SAC,
+            element: { id: idElementPorte(a.id, POTION_DE_COMBAT), titre: `${objetDe(ctx, POTION_DE_COMBAT).nom} (${a.nom})` },
+            libelle: 'Rendre au sac',
+            style: 'discret' as const,
+            aide: 'La potion revient dans le sac du groupe.',
+            ordre: { type: 'rendrePotion', personnage: a.id },
+          })),
+    }),
     identifierObjet: commande({
       description: "Étudier un objet du sac pour en connaître l'histoire et les propriétés (jet d'Arcanes contre son DD).",
       entree: z.object({ objet: z.string(), personnage: z.string().optional() }),
@@ -273,7 +297,20 @@ export const moduleInventaire: Module = {
         porteur: { id: h.id, nom: h.nom },
       })),
     );
-    const elements = [...dansLeSac, ...portes];
+    // Les potions de guérison confiées à un héros sont dans ses ressources, pas dans le sac : elles apparaissent aussi parmi ce qu'il porte.
+    const potions = p.groupe.flatMap((h, i) =>
+      (h.ressources.potions ?? 0) > 0
+        ? [
+            {
+              ...elementDuSac(ctx, objetDe(ctx, POTION_DE_COMBAT), h.ressources.potions!, identifies, []),
+              id: idElementPorte(h.id, POTION_DE_COMBAT),
+              groupe: { id: `porte:${h.id}`, titre: `Porté par ${h.nom}`, ordre: -100 + i },
+              porteur: { id: h.id, nom: h.nom },
+            },
+          ]
+        : [],
+    );
+    const elements = [...dansLeSac, ...portes, ...potions];
     const { poids, capacite } = chargeDuGroupe(ctx, p.groupe, p.etat.inventaire);
     return [
       {

@@ -134,21 +134,23 @@ interface PropsGrille {
   /** Version réduite (colonne de l'écran d'aventure) : pas de barre d'outils, vignettes plus petites. */
   compact?: boolean;
   selection?: string;
-  /** Le groupe (filtre) montré à l'ouverture, par exemple « Porté par Ambrine » ; l'utilisateur peut ensuite en changer. */
+  /** Le groupe (filtre) montré à l'ouverture ; l'utilisateur peut ensuite en changer. */
   filtreInitial?: string;
+  /** Un groupe mis en avant, par exemple « Porté par Ambrine » : il passe en tête et ressort, mais tout le reste (le sac) reste visible. */
+  focus?: string;
   onChoisir: (e: ElementGrille) => void;
   /** Les héros du groupe, pour montrer qui porte un élément. */
   heros?: Personnage[];
 }
 
-export function GrilleElements({ monde, grille, cle, compact, selection, filtreInitial, onChoisir, heros }: PropsGrille) {
+export function GrilleElements({ monde, grille, cle, compact, selection, filtreInitial, focus, onChoisir, heros }: PropsGrille) {
   const [critere, setCritere] = usePreference(`tri:${cle}`, 'rangement');
   const [filtre, setFiltre] = useState<string | undefined>(filtreInitial);
   const [recherche, setRecherche] = useState('');
   const options = useMemo(() => criteres(grille.elements), [grille.elements]);
   const groupes = useMemo(
-    () => [...new Map(grille.elements.map((e) => [e.groupe.id, e.groupe])).values()].sort((a, b) => a.ordre - b.ordre),
-    [grille.elements],
+    () => [...new Map(grille.elements.map((e) => [e.groupe.id, e.groupe])).values()].sort((a, b) => Number(b.id === focus) - Number(a.id === focus) || a.ordre - b.ordre),
+    [grille.elements, focus],
   );
   const tri = compact || !options.some((o) => o.id === critere) ? 'rangement' : critere;
   const q = normaliser(recherche.trim());
@@ -161,13 +163,19 @@ export function GrilleElements({ monde, grille, cle, compact, selection, filtreI
   if (!grille.elements.length) contenu = <p className="encart-texte">{grille.vide ?? 'Rien ici.'}</p>;
   else if (!visibles.length) contenu = <p className="encart-texte">Aucun résultat.</p>;
   else if (tri === 'rangement') {
+    // Ce que portent les héros d'abord, puis le sac : un séparateur dit où commence ce qui n'est pas porté.
+    const porte = (g: (typeof groupes)[number]) => visibles.some((e) => e.groupe.id === g.id && e.porteur);
+    const vus = groupes.filter((g) => visibles.some((e) => e.groupe.id === g.id));
+    const debutSac = vus.find((g) => !porte(g));
+    const dejaPorte = vus.some(porte);
     contenu = groupes.map((g) => {
       const membres = trier(
         visibles.filter((e) => e.groupe.id === g.id),
         'nom',
       );
       return membres.length ? (
-        <section key={g.id} className="grille-rubrique">
+        <section key={g.id} className={`grille-rubrique${g.id === focus ? ' grille-rubrique-focus' : ''}`}>
+          {dejaPorte && g === debutSac && !compact && <h3 className="grille-separateur">Dans le sac du groupe, non porté</h3>}
           <h4>
             {g.titre} <small>{membres.length}</small>
           </h4>

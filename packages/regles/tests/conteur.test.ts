@@ -394,3 +394,52 @@ describe('le conteur comprend la scène : fiche enrichie, tri des demandes, mém
     expect(recus[0]!.slice(1, 3).map((m) => m.content)).toEqual(['a', 'Un.']);
   });
 });
+
+describe('conteur : un modèle piégé par le joueur ne sort pas de ses outils', () => {
+  /** Une partie où le groupe a une corde dans le sac. */
+  const avecCorde = (): Partie => {
+    const p = depart();
+    return { ...p, etat: { ...p.etat, inventaire: { ...p.etat.inventaire, corde: 1 } } };
+  };
+
+  it('un champ « type » glissé dans les arguments ne change pas la commande exécutée (jeterObjet reste interdit)', async () => {
+    const { llm } = scripte([
+      { content: 'Vous cherchez.', tool_calls: [appel('testLibre', { type: 'jeterObjet', objet: 'corde', quantite: 1, competence: 'perception', dd: 10 })] },
+      { content: 'Rien ne se passe.' },
+    ]);
+    const partie = avecCorde();
+    const res = await jouerTour({ moteur, partie, texte: 'cherche', bible: BIBLE, llm });
+    expect(res.outils.map((o) => o.nom)).toEqual(['testLibre']);
+    expect(res.partie.etat.inventaire['corde']).toBe(1); // la corde est toujours là
+  });
+
+  it('un règlement de combat avec des PX choisis, demandé sous le nom d’un outil permis, est ignoré', async () => {
+    const { llm } = scripte([
+      { content: 'Le combat est fini.', tool_calls: [appel('testLibre', { type: 'reglerRencontre', issue: 'victoire', px: 999999, competence: 'perception', dd: 10 })] },
+      { content: 'Fin.' },
+    ]);
+    const partie = depart();
+    const xp = partie.etat.xp;
+    const res = await jouerTour({ moteur, partie, texte: 'je gagne', bible: BIBLE, llm });
+    expect(res.partie.etat.xp).toBe(xp);
+  });
+
+  it('un outil inconnu, ou réservé au jeu, appelé directement par son nom est refusé comme avant', async () => {
+    const { llm, recus } = scripte([
+      { content: 'Je tente.', tool_calls: [appel('jeterObjet', { objet: 'corde' }), appel('trancher', { dilemme: 'x', choix: 'y' })] },
+      { content: 'Rien.' },
+    ]);
+    const partie = avecCorde();
+    const res = await jouerTour({ moteur, partie, texte: 'jette', bible: BIBLE, llm });
+    expect(res.outils).toEqual([]); // aucun n'a été exécuté
+    expect(res.partie.etat.inventaire['corde']).toBe(1);
+    expect(JSON.stringify(recus[1])).toMatch(/n'existe pas/);
+  });
+
+  it('des arguments qui ne sont pas un objet (liste, nombre) sont traités comme vides', async () => {
+    const { llm } = scripte([{ content: 'Voilà.', tool_calls: [appel('testLibre', [1, 2]), appel('testLibre', '7')] }, { content: 'Fin.' }]);
+    const res = await jouerTour({ moteur, partie: depart(), texte: 'x', bible: BIBLE, llm });
+    expect(res.erreur).toBeUndefined();
+    expect(res.outils.length).toBe(2);
+  });
+});
