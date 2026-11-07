@@ -49,7 +49,7 @@ export function BoiteDialogue({ nom, role, portrait, children, nombreEntrees, ch
             <button
               type="button"
               className={`boite-choix-bouton${p.detail === 'déjà abordé' ? ' vu' : ''}${p.etiquette ? ' avec-ton' : ''}`}
-              title={p.aide}
+              title={p.desactivee ?? p.aide}
               disabled={!!p.desactivee}
               onClick={() => p.ordre && jouer(p.ordre)}
             >
