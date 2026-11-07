@@ -13,13 +13,15 @@ interface Props {
   propositions: Proposition[];
   partie: Partie;
   selection?: string;
+  /** Le groupe d'éléments montré à l'ouverture (voir `GrilleElements`). */
+  filtre?: string;
   onChoisir: (id: string | undefined) => void;
   jouer: (o: Ordre) => void;
   onCombat: () => void;
   onFermer: () => void;
 }
 
-export function PagePleine({ monde, encarts, propositions, partie, selection, onChoisir, jouer, onCombat, onFermer }: Props) {
+export function PagePleine({ monde, encarts, propositions, partie, selection, filtre, onChoisir, jouer, onCombat, onFermer }: Props) {
   const principal = encarts.find((e) => e.grille)!;
   const grille = principal.grille!;
   const autres = encarts.filter((e) => e !== principal);
@@ -48,6 +50,7 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, on
             grille={grille}
             cle={principal.id}
             selection={choisi?.id}
+            filtreInitial={filtre}
             heros={partie.groupe}
             onChoisir={(e) => {
               onChoisir(e.id);

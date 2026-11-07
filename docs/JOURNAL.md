@@ -992,3 +992,7 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Vérifié** dans le navigateur (la Citadelle, le réfectoire) : chambre, horloge de 8 h au lendemain 8 h, fermeture à l'aube, scène narrée et rencontre ensuite. Le décor « camp » et l'alerte de réveil brutal sont vérifiés par les tests, pas à l'écran.
 - **Remarque** : le moteur fait dormir jusqu'au lendemain 8 h quelle que soit l'heure du coucher : dormir le matin donne une nuit de 24 h (24 s à l'écran, le bouton passe). La halte (repos court) ne fait pas passer de temps et n'a pas d'écran.
 - **Correctif (heures entières)** : le temps du moteur avance parfois par fractions d'heure (22,1 h), et le compte affichait « Encore 7,8999999 h ». `heuresDormies` arrondit maintenant à l'heure pleine (au moins une), l'écran de sommeil ne manipule que des heures entières, et deux tests vérifient qu'il n'y a jamais de virgule (durée et cadran).
+
+## 07/11/2026 — Un bouton « Inventaire » sur la feuille de personnage
+
+- La feuille de personnage (touche C ou clic sur un héros) a un bouton **Inventaire** à droite de l'identité (avec « N objets portés ») : il ferme la feuille et ouvre le sac du groupe **filtré sur ce que porte ce héros** (« Porté par Ambrine »), son premier objet déjà choisi ; un héros sans objet porté ouvre le sac entier. `idElementPorte` est exporté par le moteur ; `GrilleElements` et `PagePleine` acceptent un filtre initial. Vérifié dans le navigateur avec Bran (3 objets) et Ambrine (la dague).

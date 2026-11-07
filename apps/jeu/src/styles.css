@@ -8306,3 +8306,20 @@ kbd {
     transition: none;
   }
 }
+
+/* Le bouton « Inventaire » de la feuille de personnage, à droite de l'identité. */
+.feuille-inventaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  align-self: center;
+  margin-left: auto;
+  padding: 10px 18px;
+  white-space: nowrap;
+}
+
+.feuille-inventaire small {
+  font-size: 11px;
+  opacity: 0.75;
+}

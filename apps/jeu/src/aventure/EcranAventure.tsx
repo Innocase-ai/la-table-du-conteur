@@ -199,7 +199,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const [onglet, setOnglet] = useState('Actions');
   const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
   // La page plein écran d'un onglet qui a une grille (le sac : touche I).
-  const [page, setPage] = useState<{ onglet: string; selection?: string }>();
+  const [page, setPage] = useState<{ onglet: string; selection?: string; filtre?: string }>();
   // La feuille de personnage d'un héros (touche C, ou un clic sur le bandeau).
   const [feuille, setFeuille] = useState<string>();
   // La carte du monde en plein écran (touche M).
@@ -480,7 +480,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           propositions={propositions.filter((x) => x.groupe.onglet === pageOuverte.onglet)}
           partie={partie}
           selection={pageOuverte.selection}
-          onChoisir={(id) => setPage({ onglet: pageOuverte.onglet, selection: id })}
+          filtre={pageOuverte.filtre}
+          onChoisir={(id) => setPage({ onglet: pageOuverte.onglet, selection: id, filtre: pageOuverte.filtre })}
           jouer={jouer}
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
@@ -490,7 +491,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         <PageCarte monde={dm.monde.id} carte={encarts.find((e) => e.carte)!.carte!} groupe={partie.groupe} jouer={jouer} onFermer={() => setCarteOuverte(false)} />
       )}
       {feuille && !sceneNarree && (
-        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} />
+        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {sceneNarree && !sommeil && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}

@@ -3,7 +3,7 @@
 // du héros (caractéristiques, compétences, attaques, sorts, aptitudes). Les actions sont des propositions du moteur : cette
 // page ne connaît aucune règle d'équipement.
 import { useEffect } from 'react';
-import { equipementDe, objetDe, type ContexteJeu, type Ordre, type Partie, type Personnage, type Proposition } from '@crpg/regles';
+import { equipementDe, idElementPorte, objetDe, type ContexteJeu, type Ordre, type Partie, type Personnage, type Proposition } from '@crpg/regles';
 import { Portrait } from '../createur/ui';
 import { FichePerso } from '../createur/FichePerso';
 import { resumeRessources } from './fiches';
@@ -17,6 +17,8 @@ interface Props {
   propositions: Proposition[];
   jouer: (o: Ordre) => void;
   onFermer: () => void;
+  /** Ouvre l'inventaire (le sac du groupe) : filtré sur ce que porte ce héros (`filtre`), avec son premier objet choisi (`selection`). */
+  onInventaire: (selection?: string, filtre?: string) => void;
 }
 
 /** Ce que porte un héros : (genre, objet) dans l'ordre armure, bouclier, armes, parures. */
@@ -30,7 +32,7 @@ function portes(h: Personnage): { genre: string; objet: string }[] {
   ];
 }
 
-export function FeuillePersonnage({ ctx, partie, heros, onChoisir, propositions, jouer, onFermer }: Props) {
+export function FeuillePersonnage({ ctx, partie, heros, onChoisir, propositions, jouer, onFermer, onInventaire }: Props) {
   const groupe = partie.groupe;
   const index = Math.max(0, groupe.findIndex((h) => h.id === heros));
   const h = groupe[index]!;
@@ -97,6 +99,15 @@ export function FeuillePersonnage({ ctx, partie, heros, onChoisir, propositions,
             </div>
             {res.detail && <p className="feuille-ressources">{res.detail}</p>}
           </div>
+          <button
+            type="button"
+            className="bouton feuille-inventaire"
+            onClick={() => onInventaire(porte[0] ? idElementPorte(h.id, porte[0].objet) : undefined, porte.length ? `porte:${h.id}` : undefined)}
+            title={`Ouvre l'inventaire : ce que porte ${h.nom} et le sac du groupe (touche I)`}
+          >
+            🎒 Inventaire
+            <small>{porte.length ? `${porte.length} objet${porte.length > 1 ? 's' : ''} porté${porte.length > 1 ? 's' : ''}` : 'rien de porté'}</small>
+          </button>
         </section>
 
         <section className="fp-bloc feuille-equipement">
