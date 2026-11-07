@@ -2,7 +2,7 @@
 import { z } from 'zod';
 import type { Donnees } from '../donnees';
 import { calculerFiche, type ChoixPersonnage, type Fiche } from '../fiche';
-import { Competence } from '../schemas';
+import { CARACTERISTIQUES, Competence } from '../schemas';
 import { manquants, type Manquant } from './exigences';
 import { creationRapide } from './recommandations';
 
@@ -44,6 +44,7 @@ export const ChoixPersonnageSchema = z.object({
   bonusHistorique: valeurs.partial(),
   ameliorations: z.array(valeurs.partial()).optional(),
   dons: chaines.optional(),
+  faveurCaracteristique: z.array(z.enum(CARACTERISTIQUES)).optional(),
   competencesClasse: z.array(Competence),
   competencesSupplementaires: z.array(Competence).optional(),
   expertises: z.array(Competence).optional(),

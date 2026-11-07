@@ -22,6 +22,7 @@ import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage } from './FeuillePersonnage';
+import { EcranMontee } from './EcranMontee';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
@@ -246,7 +247,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || monteeOuverte) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -291,6 +292,24 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const plafond = conteur?.plafond ?? 0.5;
   const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
+  // La montée de niveau : le moteur a déjà fait monter les héros avec les choix conseillés ; l'écran laisse revoir les nouveaux choix.
+  // Il s'ouvre dès que des héros en attendent (aussi au retour d'un combat gagné), et se rouvre depuis le bandeau des héros.
+  const enAttenteMontee = partie.groupe.filter((h) => h.monteeEnAttente).length;
+  const [montee, setMontee] = useState(enAttenteMontee > 0);
+  const avantMontee = useRef(enAttenteMontee);
+  useEffect(() => {
+    if (enAttenteMontee > avantMontee.current) setMontee(true);
+    avantMontee.current = enAttenteMontee;
+  }, [enAttenteMontee]);
+  const monteeOuverte = montee && enAttenteMontee > 0 && !sceneNarree;
+  const fermerMontee = useCallback(() => setMontee(false), []);
+  /** Une commande envoyée par l'écran de montée de niveau : le refus éventuel lui revient, il l'affiche lui-même. */
+  const envoyer = (ordre: Ordre): string | undefined => {
+    const r = moteur.executer(partie, ordre);
+    if (!r.refus) onPartie(r.partie);
+    return r.refus;
+  };
+
   /** Envoie une commande au moteur ; un refus s'affiche sans changer la partie. */
   const jouer = (ordre: Ordre) => {
     const r = moteur.executer(partie, ordre);
@@ -301,7 +320,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || monteeOuverte) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -489,7 +508,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} />
+        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} onMontee={() => setMontee(true)} />
         <button
           type="button"
           className="aventure-sac"
@@ -524,6 +543,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
+      {monteeOuverte && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}

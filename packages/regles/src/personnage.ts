@@ -35,6 +35,8 @@ export interface Personnage extends EtatDurable {
   equipe?: Equipement;
   /** Ses choix de création, pour le faire monter de niveau en gardant ce que le joueur a choisi. */
   choix?: ChoixPersonnage;
+  /** Le niveau qu'il vient d'atteindre, tant que ses nouveaux choix (amélioration, sorts…) n'ont pas été revus par le joueur. */
+  monteeEnAttente?: number;
 }
 
 /** L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ. */

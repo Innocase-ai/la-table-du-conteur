@@ -28,7 +28,7 @@ export function resumeRessources(a: Personnage): { court: string; detail: string
 }
 
 /** Les héros du groupe : portrait, points de vie et ressources. */
-export function BandeauHeros({ groupe, onChoisir }: { groupe: Personnage[]; onChoisir?: (id: string) => void }) {
+export function BandeauHeros({ groupe, onChoisir, onMontee }: { groupe: Personnage[]; onChoisir?: (id: string) => void; onMontee?: () => void }) {
   return (
     <>
       {groupe.map((a) => {
@@ -45,6 +45,11 @@ export function BandeauHeros({ groupe, onChoisir }: { groupe: Personnage[]; onCh
             <Portrait id={a.portrait} espece={a.fiche.espece} classe={a.fiche.classe} taille={40} />
             <div>
               <strong>{a.nom}</strong>
+              {a.monteeEnAttente && onMontee && (
+                <button type="button" className="badge-montee" title="Choisir mes nouveautés du niveau" onClick={(ev) => { ev.stopPropagation(); onMontee(); }}>
+                  ⬆ Niveau {a.monteeEnAttente}
+                </button>
+              )}
               <div className="barre">
                 <div
                   className={`barre-remplie ${a.pv / a.fiche.pvMax > 0.5 ? 'pv-haut' : a.pv / a.fiche.pvMax > 0.25 ? 'pv-moyen' : 'pv-bas'}`}

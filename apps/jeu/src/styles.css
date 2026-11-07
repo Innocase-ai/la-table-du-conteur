@@ -8513,3 +8513,97 @@ kbd {
     animation: none;
   }
 }
+
+/* L'écran de montée de niveau : les nouveaux choix de chaque héros, après la montée automatique. */
+.ecran-montee {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 6, 10, 0.86);
+  padding: 16px;
+}
+
+.montee-fenetre {
+  width: min(900px, 100%);
+  max-height: 100%;
+  overflow-y: auto;
+  background: var(--fond-panneau, #14161d);
+  border: 1px solid var(--bord-clair);
+  border-radius: 12px;
+  padding: 16px 20px 20px;
+}
+
+.montee-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.montee-entete h2 {
+  margin: 0;
+  color: var(--or);
+}
+
+.montee-onglets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.montee-onglets button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px 4px 6px;
+  border-radius: 99px;
+  border: 1px solid var(--bord-clair);
+  background: transparent;
+  color: var(--texte);
+  cursor: pointer;
+}
+
+.montee-onglets button.actif {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+.montee-amelioration {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 8px;
+}
+
+.montee-amelioration label {
+  display: grid;
+  gap: 4px;
+}
+
+.montee-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.montee-erreur {
+  color: #e08a7a;
+  font-size: 13px;
+}
+
+.badge-montee {
+  display: inline-block;
+  margin: 2px 0;
+  padding: 1px 8px;
+  font-size: 11px;
+  border-radius: 99px;
+  border: 1px solid var(--or);
+  background: transparent;
+  color: var(--or);
+  cursor: pointer;
+}

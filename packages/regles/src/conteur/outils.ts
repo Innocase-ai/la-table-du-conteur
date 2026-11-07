@@ -16,6 +16,9 @@ export const COMMANDES_HORS_CONTEUR = new Set([
   'commencer',
   'reglerRencontre',
   'terminerScene',
+  // Les nouveaux choix d'une montée de niveau sont ceux du joueur.
+  'reviserMontee',
+  'garderMontee',
   'revoirScene',
   'voirObjet',
   'jeterObjet',

@@ -26,6 +26,14 @@ describe('groupe', () => {
     expect(lireGroupe(JSON.stringify(casse)).ok).toBe(false);
   });
 
+  it('tous les choix survivent à la sauvegarde, dont la caractéristique de la Faveur épique (niveau 19)', () => {
+    const g = groupeVide(19);
+    g.emplacements[0] = personnage('guerrier', 'humain', 19);
+    expect(g.emplacements[0]!.choix.faveurCaracteristique).toHaveLength(1);
+    const relu = lireGroupe(serialiser(g));
+    expect(relu.ok && relu.groupe.emplacements[0]!.choix).toEqual(g.emplacements[0]!.choix);
+  });
+
   it('un personnage de création rapide, avec nom et portrait, est complet', () => {
     expect(personnageComplet(bilanPersonnage(personnage('clerc', 'nain'), donnees))).toBe(true);
     const sansNom = personnage('clerc', 'nain');
