@@ -54,3 +54,7 @@ Le lecteur (`musique.ts`) ne reçoit pas d'ordres : il calcule ce qui doit jouer
 ## Serrures (écran de crochetage)
 
 Deux bruitages joués au résultat de l'écran de crochetage quand l'ouverture réussit (`sonDuResultat`, `crochetage-regles.ts`) : `serrure-ouverte` (on a crocheté) et `porte-forcee` (on a forcé). Un échec ne fait pas de bruit supplémentaire. Générés avec ElevenLabs le 07/11/2026 (dix prises à 17 crédits, deux par son, une gardée par son). **Pas encore faits** : le grattement du crochet pendant le compte à rebours, le déclic de goupille et le grincement de l'effort (les prises existent dans `scratchpad` de la séance, non retenues par l'utilisateur) : l'écran est muet pendant l'effort.
+
+## Pièges (écran de désamorçage)
+
+Aucun son nouveau : `sonDuResultat` (`desamorcage-regles.ts`) réutilise l'existant. Piège neutralisé : `serrure-ouverte`. Piège déclenché : le bruit du premier type de dégâts subi (`perforant`, `epee` pour tranchant, `contondant`, `poison`, `feu-1`, `necrotique`, `acide`, `foudre`, `tonnerre`, `radiant`, `glace` pour le froid) ; rien si le piège ne fait pas de dégâts (une alarme). Échec sans suite : silence. **Pas encore faits** : le déclic d'une plaque qui s'enfonce, le sifflement d'un gaz, le cliquetis des rouages.

@@ -30,7 +30,9 @@ import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
 import { EcranSommeil } from './EcranSommeil';
 import { EcranCrochetage } from './EcranCrochetage';
+import { EcranDesamorcage } from './EcranDesamorcage';
 import { detecterOuverture, type Ouverture } from '../crochetage-regles';
+import { detecterDesamorcage, type Desamorcage } from '../desamorcage-regles';
 import { decorSommeil, detecterSommeil, heuresDormies, type DecorSommeil } from '../sommeil-regles';
 import { ControleSon } from '../composants/ControleSon';
 import { OUVERTURES } from '../ouvertures';
@@ -197,6 +199,19 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   }, [partie]);
   const finCrochetage = useCallback(() => setCrochetage(undefined), []);
 
+  // Le désamorçage : quand le groupe vient de désamorcer un piège (réussi, raté, ou déclenché), l'écran de désamorçage s'ouvre.
+  // Le moteur a tout réglé : jets, dégâts et états sont dans les nouvelles entrées du journal ; rien de caché n'y passe.
+  const [desamorcage, setDesamorcage] = useState<Desamorcage>();
+  const avantDesamorcage = useRef(partie.journal.length);
+  useEffect(() => {
+    const avant = avantDesamorcage.current;
+    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : partie.journal.slice(-12);
+    avantDesamorcage.current = partie.journal.length;
+    const d = detecterDesamorcage(nouvelles, dm.pieges.values());
+    if (d) setDesamorcage(d);
+  }, [partie, dm]);
+  const finDesamorcage = useCallback(() => setDesamorcage(undefined), []);
+
   // L'ouverture : à chaque début de conversation, le PNJ lance d'abord une phrase tirée d'un fonds commun, dite avec la voix
   // d'homme ou de femme qui est la sienne (toujours la même), puis vient sa salutation propre.
   const [ouverture, setOuverture] = useState<{ pnj: string; texte: string }>();
@@ -249,7 +264,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -337,7 +352,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -561,11 +576,12 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
-      {parcheminOuvert && !sommeil && !crochetage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
-      {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
+      {parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
+      {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
-      {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
+      {desamorcage && !sommeil && !crochetage && <EcranDesamorcage desamorcage={desamorcage} onFin={finDesamorcage} />}
+      {sceneNarree && !sommeil && !crochetage && !desamorcage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }

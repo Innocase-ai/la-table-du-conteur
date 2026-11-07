@@ -12,9 +12,17 @@ const banc = BancEffets && new URLSearchParams(window.location.search).has('effe
 const BancIcones = import.meta.env.DEV ? lazy(() => import('./composants/BancIcones').then((m) => ({ default: m.BancIcones }))) : null;
 const bancIcones = BancIcones && new URLSearchParams(window.location.search).has('icones');
 
+// `?pieges` : le banc d'essai de l'écran de désamorçage (chaque mécanisme, chaque issue), de même en développement seulement.
+const BancPieges = import.meta.env.DEV ? lazy(() => import('./composants/BancPieges').then((m) => ({ default: m.BancPieges }))) : null;
+const bancPieges = BancPieges && new URLSearchParams(window.location.search).has('pieges');
+
 createRoot(document.getElementById('racine')!).render(
   <StrictMode>
-    {bancIcones && BancIcones ? (
+    {bancPieges && BancPieges ? (
+      <Suspense fallback={null}>
+        <BancPieges />
+      </Suspense>
+    ) : bancIcones && BancIcones ? (
       <Suspense fallback={null}>
         <BancIcones />
       </Suspense>
