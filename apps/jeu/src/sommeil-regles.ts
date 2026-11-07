@@ -28,9 +28,12 @@ export function detecterSommeil(nouvelles: readonly EvenementJeu[]): { nuitPayee
   return { nuitPayee: constats.some((t) => SERVICE_PAYE.test(t)) };
 }
 
-/** Le nombre d'heures dormies, d'après le jour et l'heure avant et après (au moins une). */
+/**
+ * Le nombre d'heures dormies, d'après le jour et l'heure avant et après (au moins une), toujours entier : le temps du moteur
+ * avance parfois par fractions d'heure (8,1 h), l'écran ne compte que des heures pleines.
+ */
 export function heuresDormies(avant: { jour: number; heure: number }, apres: { jour: number; heure: number }): number {
-  return Math.max(1, (apres.jour - avant.jour) * 24 + (apres.heure - avant.heure));
+  return Math.max(1, Math.round((apres.jour - avant.jour) * 24 + (apres.heure - avant.heure)));
 }
 
 /** L'heure qu'affiche le cadran après `ecoulees` heures de sommeil commencé à `debut` heures : « 23 h », « minuit », « 1 h »… */

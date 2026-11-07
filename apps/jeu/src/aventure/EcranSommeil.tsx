@@ -21,7 +21,9 @@ interface Props {
 const DUREE_MESSAGE = 1600;
 
 export function EcranSommeil({ decor, heureDebut, heures, interrompu, onFin }: Props) {
-  const arret = useRef(interrompu ? heureDuReveilBrutal(heures, Math.random()) : heures);
+  // Des heures pleines, quoi qu'on reçoive : jamais de virgule à l'écran.
+  const heuresPleines = Math.max(1, Math.round(heures));
+  const arret = useRef(interrompu ? heureDuReveilBrutal(heuresPleines, Math.random()) : heuresPleines);
   const [ecoulees, setEcoulees] = useState(0);
   const fini = ecoulees >= arret.current;
   const image = imageInterface(decor === 'chambre' ? 'sommeil-chambre' : 'sommeil-camp');
@@ -53,11 +55,11 @@ export function EcranSommeil({ decor, heureDebut, heures, interrompu, onFin }: P
     return () => window.removeEventListener('keydown', surTouche);
   }, [onFin]);
 
-  const restant = Math.max(0, heures - ecoulees);
+  const restant = Math.max(0, heuresPleines - ecoulees);
   return (
     <div className={`ecran-sommeil${interrompu && fini ? ' alerte' : ''}`} role="dialog" aria-modal="true" aria-label="Le groupe dort">
       <div className="sommeil-image" style={image ? { backgroundImage: `url(${image})` } : undefined} />
-      <div className="sommeil-voile" style={{ opacity: interrompu && fini ? 0.2 : obscurite(ecoulees, heures) }} />
+      <div className="sommeil-voile" style={{ opacity: interrompu && fini ? 0.2 : obscurite(ecoulees, heuresPleines) }} />
       <div className="sommeil-contenu" aria-live="polite">
         <p className="sommeil-titre">{decor === 'chambre' ? 'Une nuit à l’abri' : 'Une nuit au coin du feu'}</p>
         <p className="sommeil-heure">{heureDuCadran(heureDebut, ecoulees)}</p>

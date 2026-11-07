@@ -23,6 +23,19 @@ describe('la durée et l’horloge', () => {
     expect(heuresDormies({ jour: 2, heure: 8 }, { jour: 2, heure: 8 })).toBe(1);
   });
 
+  it('compte toujours des heures entières, même quand le temps du moteur a des décimales', () => {
+    for (const [avant, apres] of [[22.1, 8], [14.6, 8], [20.25, 8], [8.1, 8], [23.9, 8]] as const) {
+      const h = heuresDormies({ jour: 1, heure: avant }, { jour: 2, heure: apres });
+      expect(Number.isInteger(h), String(avant)).toBe(true);
+      expect(h).toBeGreaterThanOrEqual(1);
+    }
+    expect(heuresDormies({ jour: 1, heure: 22.1 }, { jour: 2, heure: 8 })).toBe(10);
+  });
+
+  it('le cadran n’affiche jamais de virgule', () => {
+    for (const debut of [22.1, 8.5, 23.99, 0.3]) for (let e = 0; e <= 25; e++) expect(heureDuCadran(debut, e), `${debut}+${e}`).toMatch(/^(minuit|midi|\d{1,2} h)$/);
+  });
+
   it('le cadran passe minuit et midi', () => {
     expect(heureDuCadran(22, 0)).toBe('22 h');
     expect(heureDuCadran(22, 2)).toBe('minuit');
