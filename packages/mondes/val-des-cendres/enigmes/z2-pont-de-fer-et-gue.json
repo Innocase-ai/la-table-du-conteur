@@ -10,7 +10,7 @@
     "echec": { "effets": [ { "reputation": { "faction": "compagnie-du-fer-gris", "delta": -5 } } ], "resume": "Une fausse combinaison fait tinter une cloche dans l'arrière-salle : Hosk va monter vérifier ce qui se passe." },
     "recompense": { "effets": [ { "fait": "f-pdf-code-de-la-caisse" } ], "tresor": "pdf-tresor-caisse-du-quartier-maitre", "resume": "Le coffre s'ouvre avec un déclic : la caisse de la Compagnie, ses fonds, son registre." } },
   { "id": "pdf-enigme-lanternes-des-sentinelles", "nom": "Le signal des sentinelles", "lieu": "pdf-tour-de-guet",
-    "enonce": "Sur la tablette de la tour de guet, quatre lanternes de verre fumé (rouge, blanc, ambre, bleu) attendent leur tour. À chaque relève, la sentinelle les découvre une à une en direction de la tour voisine pour dire que tout va bien. Pour franchir la brèche voisine sans éveiller l'attention, il faut reproduire le signal exact, dans l'ordre.",
+    "enonce": "Sur la tablette de la tour de guet, quatre lanternes de verre fumé (ambre, blanc, bleu, rouge) attendent leur tour. À chaque relève, la sentinelle les découvre une à une en direction de la tour voisine pour dire que tout va bien. Pour franchir la brèche voisine sans éveiller l'attention, il faut reproduire le signal exact, dans l'ordre.",
     "solution": { "type": "sequence", "ordre": ["rouge", "blanc", "ambre", "bleu"] },
     "indices": [
       { "niveau": 1, "texte": "À la relève, la sentinelle découvre les quatre lanternes l'une après l'autre : il y a un ordre, jamais le même hasard." },

@@ -3,7 +3,7 @@
     "id": "gro-e-aiguillages-de-la-fosse",
     "nom": "Les aiguillages du carreau",
     "lieu": "gro-fosse-carreau",
-    "enonce": "Sur le carreau, trois wagonnets attendent chacun sur sa voie, face à trois leviers peints de couleurs passées. Le premier est plein de minerai noir veiné de rouge : ses roues mordent profondément les rails et ses ressorts sont écrasés. Le deuxième est plein de roche grise : il pèse, mais ses ressorts ne sont qu'à demi affaissés. Le troisième est vide. Une plaque de fer rongée est vissée au mur : « Pour descendre au bas, lancer le plus lourd d'abord, le vide en dernier. » Les wagonnets doivent être poussés dans le bon ordre pour ouvrir la voie descendante sans la faire rouler.",
+    "enonce": "Sur le carreau, trois wagonnets attendent chacun sur sa voie, face à trois leviers peints de couleurs passées. Le premier est vide. Le deuxième est plein de roche grise : il pèse, mais ses ressorts ne sont qu'à demi affaissés. Le troisième est plein de minerai noir veiné de rouge : ses roues mordent profondément les rails et ses ressorts sont écrasés. Une plaque de fer rongée est vissée au mur : « Pour descendre au bas, lancer le plus lourd d'abord, le vide en dernier. » Les wagonnets doivent être poussés dans le bon ordre pour ouvrir la voie descendante sans la faire rouler.",
     "solution": { "type": "sequence", "ordre": ["wagonnet-de-minerai", "wagonnet-de-roche", "wagonnet-vide"] },
     "indices": [
       { "niveau": 1, "texte": "La plaque ne parle pas de couleur mais de poids : il suffit de regarder comment chaque wagonnet charge ses ressorts.", "competence": "investigation", "dd": 10 },

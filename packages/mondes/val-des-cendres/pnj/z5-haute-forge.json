@@ -190,7 +190,7 @@
           "animer"
         ],
         "question": "Que manque-t-il pour l'éveiller ?",
-        "reponse": "Il dit, comme une évidence : pour qu'elle s'éveille il faut un feu donné de bon gré, un souffle de vie qui ne soit pas arraché, qui vienne d'une main ouverte. Il a essayé, avec la braise de son peuple, et la braise de son peuple était prise, non donnée. Il lève vers les visiteurs un regard plein d'espoir terrible : une braise de la Lanterne ferait l'affaire.",
+        "reponse": "Il incline sa couronne de bronze, d’une courtoisie presque trop parfaite. « Artisans, pour qu’elle s’éveille, il faut un feu donné de bon gré, un souffle de vie qui ne soit pas arraché, venu d’une main ouverte. J’ai essayé avec la braise de mon peuple, mais elle était prise, non donnée. » Il vous regarde, plein d’un espoir terrible. « Une braise de la Lanterne ferait l’affaire. La commande n’est pas finie. »",
         "attitudeMin": 10,
         "revele": [
           "f-hf-dernier-souffle"
@@ -210,7 +210,7 @@
         ],
         "question": "Faut-il un volontaire pour rester ?",
         "reponse": "Il écoute en silence. Il dit que le Cœur accepte qui reste : un vivant qui se tient près de la braise de bon gré et qui lui donne sa chaleur, jour après jour. Il l'a su trop tard, et trop tard aussi qu'il aurait fallu le demander à un seul au lieu de le prendre à tous. Il ajoute, doucement, que celui qui reste ne repartira pas.",
-        "attitudeMin": 20,
+        "attitudeMin": -25,
         "condition": {
           "fait": "f-coeur-de-braise"
         },
@@ -257,7 +257,7 @@
           "contre"
         ],
         "question": "Négocier le prix de son marché.",
-        "reponse": "Il propose un marché de roi : si les visiteurs jurent de lui ramener le dernier souffle, il ouvrira la voûte de son trésor et leur donnera le marteau du premier forgeron, qui n'a pas de maître. Il ne triche pas : il tient sa parole, mais il attend qu'on tienne la sienne. Il insiste que le serment est un contrat d'ouvrier : on ne l'oublie pas.",
+        "reponse": "Il se redresse, couronne droite. « Un marché de roi : jurez-moi de ramener le dernier souffle, et j’ouvrirai la voûte de mon trésor. Je vous donnerai le marteau du premier forgeron, celui qui n’a pas de maître. Je ne triche pas, je tiens ma parole. J’attends seulement que vous teniez la vôtre. » Il frappe l’air du plat de la main. « Un serment est un contrat d’ouvrier : on ne l’oublie pas. »",
         "attitudeMin": 15,
         "revele": [],
         "effets": [
@@ -439,7 +439,7 @@
         ],
         "question": "Se porter volontaire pour nourrir le Cœur.",
         "reponse": "Il détaille les conditions sans fard : rester près de la braise, de bon gré, sans rien reprendre. Ni lui ni le Cœur ne peuvent promettre un retour. Il demande trois fois si c'est bien librement que le volontaire se tient là, puis s'efface devant le puits de feu. Le Cœur bat plus calmement, comme un animal nourri.",
-        "attitudeMin": 10,
+        "attitudeMin": -25,
         "condition": {
           "et": [
             {
@@ -606,7 +606,7 @@
           "mère"
         ],
         "question": "Pourquoi tousses-tu toujours ainsi ?",
-        "reponse": "« La neige est sale... maman a dit de ne pas ouvrir la fenêtre. Père a dit qu'il allait arranger ça. Père arrange tout. » Elle tousse sec, un son de métal.",
+        "reponse": "La petite ne regarde pas celui qui parle. Elle fixe le plafond, la tresse de fil de laiton entre ses doigts. « La neige est sale… maman a dit de ne pas ouvrir la fenêtre. Père a dit qu’il allait arranger ça. Père arrange tout. » Un toussotement sec, un son de métal, puis elle reprend sa phrase depuis le début.",
         "revele": [
           "f-hf-toux-grise"
         ],
@@ -622,7 +622,7 @@
           "tresse"
         ],
         "question": "Lui montrer le ruban de ses cheveux.",
-        "reponse": "Si on lui présente le ruban rouge, la braise sous sa poitrine rougit un instant et le murmure devient un chant de berceuse à trois notes. Elle ne dit plus rien d'autre cette nuit.",
+        "reponse": "Elle tourne doucement la tête vers le ruban, les yeux vides. « Rouge… je le vois, le ruban est rouge… » Sous sa poitrine entrouverte, la braise rougit un instant, et son murmure devient un chant de berceuse à trois notes. Elle ne dira plus rien d’autre cette nuit.",
         "condition": {
           "objet": "hf-ruban-de-brunhild"
         },
@@ -647,7 +647,7 @@
           "oiseau"
         ],
         "question": "Chanter une berceuse avec toi.",
-        "reponse": "Elle fredonne un petit air à trois notes que l'automate-jouet de l'atelier répète à l'infini. La salle entière se calme un instant, et Thalgrin, de l'autre côté, se tait pour écouter.",
+        "reponse": "Brunhild relève à peine la tête, et fredonne dans la vapeur. « Je… hm-hm… je chante, hm… » L’automate-jouet de l’atelier reprend le même petit air à trois notes, sans fin. Toute la salle se calme un instant, et de l’autre côté, Thalgrin se tait pour écouter.",
         "revele": [],
         "effets": [
           {
@@ -774,7 +774,7 @@
           "retrouver"
         ],
         "question": "Que voulez-vous de nous, au juste ?",
-        "reponse": "Il demande qu'on lui rapporte son plan-maître, rangé dans un tube de cuivre au rayon R de la bibliothèque des plans, et qu'on le lise devant lui, pour qu'il sache que quelqu'un l'a lu. Il promet en retour des secrets d'atelier et son petit instrument de poche.",
+        "reponse": "Il compte sur ses doigts, un, deux, sans s’arrêter. « Un : vous me rapportez mon plan-maître. Il est rangé dans un tube de cuivre, au rayon R de la bibliothèque des plans. Deux : vous le lisez devant moi, pour que je sache que quelqu’un l’a lu. » Il claque la langue. « En échange, je vous donne des secrets d’atelier et mon petit instrument de poche. »",
         "revele": [],
         "effets": [
           {
@@ -842,7 +842,7 @@
           "serrure"
         ],
         "question": "Où est rangée la clé de l'écluse ?",
-        "reponse": "Il avoue qu'il a retiré la clé de l'Écluse noire de la vanne pour qu'aucun roi, dans un jour de folie, ne puisse noyer son peuple. Il l'a enfermée dans son coffre, dont le mot est le nom que la petite lui a donné. Il le sait par cœur, il ne le dira pas devant le roi, mais à qui lui a lu le journal de la petite, il rendra un petit sourire.",
+        "reponse": "Il tapote son monocle. « J’ai retiré la clé de l’Écluse noire de la vanne, pour qu’aucun roi, dans un jour de folie, ne puisse noyer son peuple. Je l’ai enfermée dans mon coffre. Le mot du coffre, c’est le nom que la petite lui a donné. Je le sais par cœur, mais je ne le dirai pas devant le roi. » À qui a lu le journal de la petite, il rendra un petit sourire.",
         "revele": [
           "f-hf-ecluse-cle"
         ],
@@ -1229,7 +1229,7 @@
           "comment"
         ],
         "question": "Peut-on survivre à la cendre sans masque ?",
-        "reponse": "Elle explique le filtre à charbon et lin dont elle a pris l'habitude, et en donne un à qui lui a montré de la bonté : un petit masque, confectionné avec patience, qui protège des gaz de cendre et de la vapeur.",
+        "reponse": "Elle tapote le crayon planté dans ses cheveux blancs. « Ah, la cendre… moi, j’ai pris l’habitude d’un filtre de charbon et de lin, non, pardon, de lin et de charbon. Celui qui m’a montré de la bonté en reçoit un, petit, cousu patiemment, qui protège des gaz de cendre et de la vapeur. » Elle chuchote à son registre, qui n’a rien demandé.",
         "attitudeMin": 30,
         "revele": [],
         "effets": [
@@ -1258,7 +1258,7 @@
           "soigner"
         ],
         "question": "Pourriez-vous nous offrir un abri pour la nuit ?",
-        "reponse": "Elle offre sans manière un coin de refuge : il est filtré, il est sec, et personne ne vient la déranger. Elle prétend ne pas aimer la compagnie mais prépare déjà une couverture.",
+        "reponse": "« Le coin du fond est filtré, pardon, filtré par les conduits, et il est sec. » Elle tapote ses registres du bout d’un doigt noirci d’encre. « Personne ne vient jusqu’ici, personne ne vous dérangera. Je n’aime pas la compagnie, à vrai dire. Enfin… » Elle se tait, puis tire déjà une couverture de sous une pile de papiers.",
         "attitudeMin": 0,
         "revele": [],
         "effets": [],
@@ -1393,7 +1393,7 @@
           "marchandise"
         ],
         "question": "Combien prenez-vous pour vos marchandises ?",
-        "reponse": "Il explique qu'il rachète tout ce qui vient de la Forge : outils, armes, curiosités, à soixante pour cent du juste prix, et qu'il n'accepte pas les pièces ternies. Il vend ce que la Forge a laissé aux étals et un peu plus. Il ajoute qu'il vend aussi des nouvelles, à bon prix, parce qu'une nouvelle ne rouille pas.",
+        "reponse": "Il ondule dans l’air. « Mon bon seigneur, tout ce qui sort de la Forge, je le rachète : outils, armes, curiosités, à soixante pour cent du juste prix ! Pas de pièces ternies, jamais. » Il tapote sa balance de cuivre. « Ce que la Forge laisse aux étals, je le vends, et un peu plus. Quant aux nouvelles, c’est à bon prix, car une nouvelle ne rouille pas. »",
         "revele": [],
         "effets": [],
         "unique": false
@@ -1460,7 +1460,7 @@
           "sonner"
         ],
         "question": "Faut-il sonner la cloche de fermeture ?",
-        "reponse": "Il blêmit. Il dit que ceux qui sonnent la cloche du marché sonnent aussi le rappel de tous les clients, et que les clients n'ont plus de bourse mais ont toujours de la faim.",
+        "reponse": "Il serre sa balance de cuivre contre sa poitrine et blêmit. « Celui qui sonne la cloche du marché sonne aussi le rappel de tous les clients, mon bon seigneur. Les clients n’ont plus de bourse, à la pièce, à la pièce… mais ils ont toujours de la faim. » Il baisse la voix, presque en chuchotant, et essuie sa barbe en broussaille du revers de la main.",
         "attitudeMin": 0,
         "revele": [],
         "effets": [],
@@ -1671,7 +1671,7 @@
           "feu"
         ],
         "question": "Quel est le mot d'usage pour entrer ?",
-        "reponse": "Il avoue, à demi-mot, que l'ordre du roi est de laisser passer quiconque porte le feu du royaume, une braise du Cœur ou de la Lanterne, et de refuser quiconque vient les mains vides. Il ne sait plus ce que c'est qu'un feu du royaume : il reconnaît seulement la lueur.",
+        "reponse": "« Portier du sceau, à votre service. » Ses braises grises se figent un instant. « L’ordre du roi est clair : quiconque porte le feu du royaume passe, une braise du Cœur ou de la Lanterne. Quiconque vient les mains vides est refusé. » Il baisse la visière d’un cran, à demi-mot. « Le feu du royaume… je ne sais plus ce que c’est. Je reconnais seulement la lueur. »",
         "attitudeMin": 0,
         "revele": [
           "f-hf-gardes-obeissent"
@@ -1717,7 +1717,7 @@
           "quitter votre poste"
         ],
         "question": "Proposer de vous relever de votre poste.",
-        "reponse": "Il demande, avec une dignité de plomb, qu'un membre de la maison du roi le relève en bonne et due forme. Il dit qu'il tient depuis deux siècles et que le poste est un peu lourd.",
+        "reponse": "Le heaume se tourne lentement vers vous. « Je demande, avec la dignité qui convient, qu’un membre de la maison du roi me relève en bonne et due forme. Je tiens ce poste depuis deux siècles. » Il pousse un soupir de fonte. « Le poste est un peu lourd, je le confesse. »",
         "attitudeMin": 10,
         "revele": [],
         "effets": [],
@@ -1983,7 +1983,7 @@
           "audience"
         ],
         "question": "Le roi se repose-t-il vraiment ?",
-        "reponse": "Avec onction, il assure que Sa Majesté se repose, qu'il ne faut pas le déranger, que les audiences reprendront à la prochaine lune. (Faux : le roi ne dort pas, il travaille.)",
+        "reponse": "Il toussote, poliment, avant de répondre. « Sa Majesté se repose, si Sa Grâce le permet, et il ne faut pas le déranger en aucune façon. Les audiences reprendront à la prochaine lune. » Il ajuste ses gants blancs, qu’il ne retire jamais.",
         "revele": [
           "f-hf-rumeur-roi-dort"
         ],
@@ -2001,7 +2001,7 @@
           "protocole"
         ],
         "question": "Comment se présenter pour une audience ?",
-        "reponse": "Il explique comment se présenter : annoncé par lui, les mains visibles, un présent à la main. Les gardes honorent celui qui porte une braise de la Lanterne, le roi honore celui qui lui rapporte un ruban ou un nom de sa fille. Il offre de les annoncer, mais personne n'est annoncé en bas des marches.",
+        "reponse": "« Qu’on se présente, si Sa Grâce le permet : annoncé par moi, les mains bien visibles, un présent à la main. » « Les gardes honorent celui qui porte une braise de la Lanterne. Le roi, lui, honore celui qui lui rapporte un ruban ou le nom de sa fille. » Il lisse sa barbe tressée. « Je propose d’annoncer Sa Grâce, bien sûr. Mais hélas, nul n’est annoncé en bas des marches. »",
         "revele": [
           "f-hf-gardes-obeissent"
         ],

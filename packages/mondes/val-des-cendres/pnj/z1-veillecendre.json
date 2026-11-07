@@ -106,7 +106,7 @@
           "d'où vient"
         ],
         "question": "D'où vient cette cendre qui relève les morts ?",
-        "reponse": "Elle répond sèchement que la cendre relève les morts, que c'est ainsi depuis deux siècles, et que ce ne sont pas des âmes revenues : de la cendre qui marche. Elle recommande de ne jamais discuter avec eux, de ne jamais leur ouvrir, et d'enterrer les siens sous de la pierre plate. Elle ajoute qu'elle ne sait pas d'où vient la cendre, seulement qu'elle vient d'en haut, du fond de la vallée, là où les nains sont morts.",
+        "reponse": "Hesta ne lève pas les yeux de sa canne de fer. « La cendre relève les morts depuis deux siècles. Ce ne sont pas des âmes revenues, c’est de la cendre qui marche. Ne leur parlez jamais, ne leur ouvrez jamais. Enterrez les vôtres sous de la pierre plate. » « D’où elle vient ? Je n’en sais rien, seulement qu’elle vient d’en haut, du fond de la vallée, là où les nains sont morts. »",
         "revele": [
           "f-cendre-reveille-les-morts",
           "f-vei-les-morts-rentrent"
@@ -164,7 +164,7 @@
           "évacuation"
         ],
         "question": "Que pensez-vous d'Aurèle, le bailli ?",
-        "reponse": "Elle dit qu'Aurèle pense en comptes et qu'elle pense en nuits : ils ne se comprennent pas, mais ils ont besoin l'un de l'autre. Elle soupçonne que le bailli lui cache quelque chose sur les vivres et que le village ne tiendra pas aussi bien qu'il le prétend, mais elle n'a pas de preuve. Elle demande qu'on lui apporte des faits plutôt que des soupçons.",
+        "reponse": "Un long moment, Hesta regarde la lampe brodée sur son manteau. « Aurèle pense en comptes, moi je pense en nuits. Nous ne nous comprenons pas. Mais nous avons besoin l’un de l’autre. » Elle baisse la voix. « Je le soupçonne de me cacher quelque chose sur les vivres, et que le village ne tiendra pas aussi bien qu’il le prétend. Je n’ai pas de preuve. Apportez-moi des faits, pas des soupçons. »",
         "revele": [
           "f-vei-greniers-au-tiers"
         ],
@@ -323,6 +323,12 @@
       "variantes": [
         {
           "condition": {
+            "flag": "z6-village-se-vide"
+          },
+          "texte": "Hesta regarde la colonne de charrettes qui s’étire vers le col, bâches claquant dans le vent. Elle ne dit rien pendant un long moment. « Laisse-les partir. Ceux qui restent ont besoin de toi plus qu’ils ne le croient. » Son regard ne quitte pas la neige du col."
+        },
+        {
+          "condition": {
             "quete": {
               "id": "q-gardiens-la-braise",
               "statut": "terminee"
@@ -338,6 +344,12 @@
             }
           },
           "texte": "La cendre est à trois pas de la porte et vous rentrez quand même. Entrez vite. Les morts n'attendent pas la cloche du soir."
+        },
+        {
+          "condition": {
+            "flag": "z6-cendre-rodeurs"
+          },
+          "texte": "Hesta ne lève pas les yeux de la Lanterne, dont la flamme s’affaisse à chaque souffle. « Tu vois ces empreintes grises au bord des champs ? Elles étaient là avant l’aube. Ne marche pas dedans. »"
         }
       ]
     },
@@ -438,7 +450,7 @@
           "stocks"
         ],
         "question": "Y a-t-il assez de vivres dans la grange ?",
-        "reponse": "Il affirme avec aplomb que la grange est pleine et qu'on a de quoi tenir jusqu'au printemps en rationnant. Il propose de montrer le registre rassurant. Si le groupe doute, il se raidit légèrement et dit que les rumeurs de pénurie font plus de morts que la faim.",
+        "reponse": "Ses mains blanches se croisent sur le pourpoint. « La grange est pleine, et nous tiendrons jusqu’au printemps, à condition de rationner avec sagesse. Le registre en fait foi, et les registres ne mentent pas. Si vous doutez, je vous le montrerai volontiers. Mais les rumeurs de pénurie font plus de morts que la faim, et je vous prie de ne pas les alimenter. »",
         "revele": []
       },
       {
@@ -692,6 +704,12 @@
       "variantes": [
         {
           "condition": {
+            "flag": "z6-village-se-vide"
+          },
+          "texte": "Aurèle tient une liste de noms dont il raye méthodiquement chaque ligne. « Quarante-deux foyers ont demandé leur laissez-passer pour le col, ce qui représente une baisse sensible de notre population. Nous ne les retenons pas. Nous enregistrons simplement leur départ. » Sa plume s’arrête un instant."
+        },
+        {
+          "condition": {
             "fait": "f-tribut-du-bailli"
           },
           "texte": "Vous savez ce que je paie, et à qui. Je n'ai pas le droit de vous le reprocher, puisque vous savez compter. Asseyez-vous : mieux vaut parler de grain que de honte."
@@ -704,6 +722,12 @@
             }
           },
           "texte": "Vous arrivez à l'heure où les gens se taisent. Le couvre-feu est tombé ; je vous demande de ne pas le faire tomber plus bas. Entrez, je vous en prie."
+        },
+        {
+          "condition": {
+            "flag": "z6-cendre-rodeurs"
+          },
+          "texte": "Aurèle consulte son registre, la plume suspendue au-dessus d’une colonne de chiffres. « Nous avons relevé onze moutons ensevelis de poussière ce matin, soit deux de plus que la semaine passée. Nous prions pour que cela reste une tendance modérée. » Il ne lève pas les yeux vers les champs."
         }
       ]
     },
@@ -909,7 +933,7 @@
           "objet": "vei-billet-de-dette"
         },
         "question": "Annuler la dette en brûlant le billet.",
-        "reponse": "Elle reconnaît sa propre écriture sur le billet et reste muette. Puis elle le glisse dans la cheminée, les doigts tremblants, et le regarde brûler. Elle rit, pleure, et sert un verre de sa meilleure gnôle au groupe, gratuitement, pour la première fois depuis la neige.",
+        "reponse": "Elle reconnaît sa propre écriture et reste muette un long moment. Puis elle glisse le billet dans la cheminée, les doigts tremblants. « Voilà, mes poulets, il brûle, le sacré bout de papier ! Par ma marmite, je ne m’attendais pas à rire comme ça. » Elle rit, d’un rire qui sonne faux, pleure un peu, puis sert sa meilleure gnôle au groupe, gratuitement, pour la première fois depuis la neige.",
         "effets": [
           {
             "objet": {
@@ -937,12 +961,30 @@
       "variantes": [
         {
           "condition": {
+            "flag": "z6-village-se-vide"
+          },
+          "texte": "Bertille se tient devant sa porte ouverte, un panier vide sous le bras. Elle regarde les charrettes s’éloigner vers le col. « Tenez, prenez ce pain, il est encore tiède. Ne pleurez pas, mes poulets, je ne pleure pas non plus. » Elle ricane, et le rire s’étrangle dans sa gorge."
+        },
+        {
+          "condition": {
             "quete": {
               "id": "q-vei-une-dette-de-bertille",
               "statut": "terminee"
             }
           },
           "texte": "Mes poulets ! Ma dette est réglée et je ne sais plus quoi faire de mes mains. La soupe est offerte, le vin aussi. Ne le répétez pas au bailli."
+        },
+        {
+          "condition": {
+            "flag": "z6-couvre-feu"
+          },
+          "texte": "Bertille tire les volets de l’auberge à toute vitesse, le souffle court. Elle pousse les derniers clients vers la porte. « Allez, allez, mes poulets, rentrez chez vous avant la nuit ! Les silhouettes tapent déjà aux palissades. Plus de soupe ce soir, je ferme à clé. »"
+        },
+        {
+          "condition": {
+            "flag": "z6-cendre-rodeurs"
+          },
+          "texte": "Bertille essuie un verre du plat de la main, la voix basse. Elle ricane sans raison. « Par ma marmite, mes poulets, ce matin mon mouton était couvert de cendre, la laine grise comme un linceul. Vous avez vu la route, mon grand ? »"
         }
       ]
     },
@@ -1334,7 +1376,7 @@
           "puits"
         ],
         "question": "Pourquoi les enfants font-ils des cauchemars la nuit ?",
-        "reponse": "Elle raconte que depuis une semaine les enfants du quartier des réfugiés ne dorment plus. Ils parlent d'un « homme gris » qui vient au puits la nuit. Elle craint que la peur ne les tue plus sûrement que la toux, et demande qu'on aille voir ce qui se passe, doucement, sans effrayer personne. Elle précise qu'une petite fille, Lise, est celle qui en parle le plus.",
+        "reponse": "Elle tourne une fiole entre ses doigts tachés de vert. « Depuis une semaine, mon petit, les enfants du quartier des réfugiés ne dorment plus. Ils parlent d’un homme gris qui vient au puits la nuit. Oh, toi, ne pousse pas comme ça… Je crains que la peur ne les tue plus sûrement que la toux. Allez voir ce qui se passe, doucement, sans effrayer personne. Lise est celle qui en parle le plus. »",
         "effets": [
           {
             "quete": {
@@ -1546,7 +1588,7 @@
           "chaînes"
         ],
         "question": "Comment fonctionne le cadran de la Lanterne ?",
-        "reponse": "Il dit que le cadran de la Lanterne règle le tirage de la flamme : trois couronnes, trois chiffres, une niche derrière. Chaque automne il le remet à l'heure, mais cette année ses mains ne s'y retrouvent plus et il soupçonne qu'un grain de cendre s'est glissé dans le régulateur. Il ajoute, comme un secret de métier, que la plaque dit de compter ce que l'on voit dans la tour, du bas vers le haut.",
+        "reponse": "Il tapote sa poche gauche, d’où vient le tic-tac. « Voyez-vous, le cadran règle le tirage de la flamme ! Trois couronnes, trois chiffres, et une niche derrière. Chaque automne je le remets à l’heure, mais cette année mes mains ne s’y retrouvent plus. Je soupçonne un grain de cendre glissé dans le régulateur. Et un secret de métier : la plaque dit de compter ce que l’on voit dans la tour, du bas vers le haut. »",
         "revele": [
           "f-vei-fennick-et-le-cadran"
         ]
@@ -1879,7 +1921,7 @@
         ],
         "attitudeMin": 15,
         "question": "Qu'est-ce que le Cœur-de-Braise ?",
-        "reponse": "Elle explique que le Cœur-de-Braise était le foyer sacré du royaume, le point de la Veine rouge qui alimentait les forges. Elle ne sait pas s'il brûle encore. Elle remarque que la cendre tombe toujours, et que les chroniques disent que la braise ne s'éteint jamais seule.",
+        "reponse": "Elle ajuste ses lunettes de cuivre. « Le Cœur-de-Braise était le foyer sacré du royaume, le point de la Veine rouge qui alimentait les forges, sauf erreur de ma part. Je ne sais pas s’il brûle encore. Je remarque seulement que la cendre tombe toujours. Les chroniques disent que la braise ne s’éteint jamais seule. »",
         "revele": [
           "f-coeur-de-braise"
         ]
@@ -2274,7 +2316,7 @@
           "règles"
         ],
         "question": "Quelles sont les règles du couvre-feu ?",
-        "reponse": "Il rappelle le règlement : à la cloche, tout le monde rentre, on ferme, on n'ouvre à personne, même si une voix connue appelle. Les morts imitent ceux qu'ils ont connus, dit-il. Il raconte qu'un de ses sergents a ouvert la porte à son frère mort, une nuit, et qu'on a retrouvé sa famille au matin.",
+        "reponse": "Il appuie sa lance contre le mur. « À la cloche, tout le monde rentre ! On ferme, et on n’ouvre à personne, même si une voix connue appelle. Les morts imitent ceux qu’ils ont connus. Un de mes sergents a ouvert la porte à son frère mort, une nuit. On a retrouvé sa famille au matin. Alors on ferme, c’est compris ? »",
         "revele": [
           "f-vei-couvre-feu",
           "f-vei-les-morts-rentrent"
@@ -2291,7 +2333,7 @@
           "embuscade"
         ],
         "question": "Qui rôde sur la route et dans le défilé ?",
-        "reponse": "Il dit que les gobelins du défilé sont chassés des hauteurs et pillent par désespoir. La garde a perdu trois hommes en les affrontant au dernier combat. Il ne peut pas se permettre de recommencer. Il offre une récompense à quiconque rouvre la route.",
+        "reponse": "Il serre la hampe de sa lance. « Les gobelins du défilé ont été chassés des hauteurs, et ils pillent par désespoir. Mais la garde a perdu trois hommes au dernier combat, et je ne peux pas me permettre de recommencer. Alors, écoutez bien : quiconque rouvre la route aura sa récompense. »",
         "revele": [
           "f-vei-gobelins-affames"
         ]
@@ -2318,12 +2360,30 @@
       "variantes": [
         {
           "condition": {
+            "flag": "z6-village-se-vide"
+          },
+          "texte": "Rolf descend de son poste, la lanterne basse, et regarde la file de charrettes qui gravit la route du col. Il pousse un soupir rauque. « Ce n’est pas une retraite, c’est une bande de gens qui ont peur. On vous ouvre la barrière. Allez. »"
+        },
+        {
+          "condition": {
             "quete": {
               "id": "q-vei-les-lettres-du-col",
               "statut": "terminee"
             }
           },
           "texte": "Halte. Ah, c'est vous. Les lettres ont fait leur chemin, à ce qu'on m'a dit. Entrez dans la lumière, et ne parlez pas trop fort de ce que vous avez lu."
+        },
+        {
+          "condition": {
+            "flag": "z6-couvre-feu"
+          },
+          "texte": "Rolf frappe du plat de la main sur la palissade, deux coups secs. Une silhouette grise cogne de l’autre côté, lentement. « Volets clos, tout le monde ! Le soleil est couché depuis un quart d’heure, on ne sort plus. Gardez le feu, et ne regardez pas par la fente. »"
+        },
+        {
+          "condition": {
+            "flag": "z6-cendre-rodeurs"
+          },
+          "texte": "Rolf se tient sur le chemin, la lanterne levée, et crache dans la poussière. « Halte ! Tout le monde reste dans la lumière. Vous voyez ces empreintes grises au bord des champs ? Elles ne sont pas là hier. Si l’une d’elles bouge, vous me prévenez, pas de héros ici. »"
         }
       ]
     },
@@ -2427,7 +2487,7 @@
         ],
         "attitudeMin": 15,
         "question": "Pourquoi la Mère-Gardienne se tait-elle ?",
-        "reponse": "Il dit qu'elle l'a supplié d'être le Veilleur il y a neuf ans, qu'elle ne s'est jamais pardonné de lui avoir demandé, et qu'elle pleure la nuit, dans la pièce du dessous. Elle se tait parce que si le village apprenait ce que coûte la flamme, personne n'oserait plus dormir sous son toit. Il demande qu'on ne lui en veuille pas trop.",
+        "reponse": "Il s’arrête pour reprendre son souffle, les mains serrées dans la couverture. « Elle m’a supplié d’être le Veilleur, il y a neuf ans. Elle ne s’est jamais pardonné de me l’avoir demandé, et elle pleure la nuit, dans la pièce du dessous. Si elle se tait, c’est que, si le village apprenait ce que coûte la flamme, personne n’oserait plus dormir sous son toit. Ne lui en veuillez pas trop, je vous prie. »",
         "revele": [
           "f-vei-veilleur-visage"
         ],
@@ -2500,7 +2560,15 @@
     "salutations": {
       "neutre": "Entrez doucement, la flamme n'aime pas les bruits brusques.",
       "amical": "Ah, vous voilà. Venez vous asseoir près de moi, il y a de la place pour deux.",
-      "hostile": "Partez, je vous en prie. Je n'ai pas la force pour les disputes."
+      "hostile": "Partez, je vous en prie. Je n'ai pas la force pour les disputes.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "vei-cadran-regle"
+          },
+          "texte": "Le vieux Veilleur lève les yeux vers la lanterne, puis vers vous. « La flamme tire plus droit depuis que quelqu’un a touché au cadran. Je ne demande pas qui. Merci quand même. »"
+        }
+      ]
     },
     "services": [],
     "inventaire": []

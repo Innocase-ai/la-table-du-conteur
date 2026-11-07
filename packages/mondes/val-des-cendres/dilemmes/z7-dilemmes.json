@@ -588,5 +588,415 @@
         ]
       }
     ]
+  },
+  {
+    "id": "la-houille-et-la-toux",
+    "titre": "La houille rouge et la toux de fer",
+    "situation": "Dans l'infirmerie de Pont-de-Fer, l'air sent l'alcool et la cendre grise, et le sac de houille rouge repose sur la table entre vous et Oldric Vasseur, le médecin de la Compagnie. « Ce charbon brûle propre, dit-il. Avec lui, je soulagerais les poumons de mes hommes. » À Veillecendre, la Lanterne s'éteint un peu plus chaque jour et réclame la même houille. Dehors, des soldats toussent dans la cendre.",
+    "quand": {
+      "et": [
+        {
+          "fait": "f-pdf-toux-de-fer"
+        },
+        {
+          "objet": "z6-houille-rouge"
+        }
+      ]
+    },
+    "lieu": "pdf-infirmerie",
+    "delai": 3,
+    "options": [
+      {
+        "id": "lanterne",
+        "libelle": "Je rapporte la houille rouge à la Lanterne.",
+        "ton": "Devoir",
+        "couts": [
+          "Les soldats toussent toujours, et Oldric ne peut rien pour eux.",
+          "Kor Varnak n'oubliera pas ce refus."
+        ],
+        "gains": [
+          "La flamme de la Lanterne tire plus droit.",
+          "La cendre recule un peu autour du village."
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "z6-houille-rouge",
+              "retirer": true
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": -10
+            }
+          },
+          {
+            "xp": 35
+          }
+        ],
+        "epilogue": "Vous avez porté la houille rouge à la Lanterne, et elle a tenu l'hiver."
+      },
+      {
+        "id": "infirmerie",
+        "libelle": "Je donne la houille à Oldric pour soigner la Compagnie.",
+        "ton": "Pitié",
+        "couts": [
+          "La Lanterne reste affamée, et la cendre gagne du terrain.",
+          "Les Gardiens y verront une trahison."
+        ],
+        "gains": [
+          "Oldric soulage les plus atteints de la toux.",
+          "Kor Varnak s'en souviendra."
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "z6-houille-rouge",
+              "retirer": true
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "kor-varnak",
+              "delta": 15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pdf-oldric-vasseur",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 35
+          }
+        ],
+        "epilogue": "Vous avez donné la houille à Oldric, et la Lanterne a pâli pendant tout l'hiver."
+      },
+      {
+        "id": "partager",
+        "libelle": "Je partage la houille entre la Lanterne et l'infirmerie, au risque que cela ne suffise à personne.",
+        "ton": "Équité",
+        "couts": [
+          "Un partage mal dosé peut ne sauver personne."
+        ],
+        "gains": [
+          "Les deux camps reçoivent un peu, et aucun ne se sent trahi."
+        ],
+        "jet": {
+          "competence": "medecine",
+          "dd": 14
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "z6-houille-rouge",
+              "retirer": true
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 5
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "pdf-oldric-vasseur",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": -5
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": -5
+            }
+          },
+          {
+            "narration": "Le dosage est faux : la houille brûle vite, sans chauffer assez ni la Lanterne ni l'infirmerie."
+          }
+        ],
+        "epilogue": "Vous avez partagé la houille, et chacun a reçu un peu, sans que personne soit comblé."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je garde le sac, je ne tranche pas.",
+      "couts": [
+        "Le sac reste dans le paquetage pendant que la toux continue et que la flamme baisse, et chacun finira par apprendre que vous l'aviez."
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "gardiens-de-la-veille",
+            "delta": -3
+          }
+        },
+        {
+          "reputation": {
+            "faction": "compagnie-du-fer-gris",
+            "delta": -3
+          }
+        }
+      ],
+      "epilogue": "Vous avez gardé le sac jusqu'au bout, et la flamme de la Lanterne a continué de baisser."
+    },
+    "echos": [
+      {
+        "si": "lanterne",
+        "apres": 3,
+        "annonce": "Trois jours après, la flamme de la Lanterne reprend un peu de couleur, et des habitants le remarquent.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 3
+            }
+          }
+        ]
+      },
+      {
+        "si": "infirmerie",
+        "apres": 2,
+        "annonce": "Deux jours après, un messager du Fer-Gris vous apporte un sac de remerciement ou une simple parole, sans qu'on sache si c'est un salut ou un marché.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "compagnie-du-fer-gris",
+              "delta": 3
+            }
+          }
+        ]
+      },
+      {
+        "si": "partager",
+        "apres": 3,
+        "annonce": "Trois jours après, Oldric envoie dire que la moitié a suffi pour quelques-uns, mais pas pour tous.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "pdf-oldric-vasseur",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "le-serment-d-ormgard",
+    "titre": "Le serment d'Ormgard",
+    "situation": "Dans l’armurerie d’Ormgard, les reliques de guerre de la garde reposent encore sur leurs râteliers, scellées de cire grise. Sur un pupitre, un registre mangé par la cendre ne livre plus que quelques noms, et des morts sans nom s’agitent dans la poussière. Plus bas, Brand Garde-Serment tient toujours la route fermée « jusqu’à ce qu’on vienne nous relever ».",
+    "quand": {
+      "et": [
+        {
+          "fait": "f-cry-gardien-brand"
+        },
+        {
+          "non": {
+            "flag": "cryptes-franchies"
+          }
+        }
+      ]
+    },
+    "lieu": "cry-armurerie",
+    "delai": 3,
+    "options": [
+      {
+        "id": "relever",
+        "libelle": "Je lis à voix haute les noms du registre, celui de Brand et ceux de ses hommes en premier.",
+        "ton": "Respect",
+        "couts": [
+          "La lecture est lente et solennelle, et elle coûte une nuit de veille.",
+          "La Forge saura que la garde n’est plus tout à fait seule."
+        ],
+        "gains": [
+          "Les morts sans nom s’apaisent.",
+          "Brand saura qui vous êtes avant de lever la main."
+        ],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "gardiens-de-la-veille",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "epilogue": "Vous avez prononcé les noms, et Brand a rendu sa clé sans un mot."
+      },
+      {
+        "id": "forcer",
+        "libelle": "Je brise les scellés des râteliers et je prends les reliques de guerre.",
+        "ton": "Force",
+        "couts": [
+          "C’est une profanation, et les morts de la Forge ne vous le pardonneront pas.",
+          "La cendre se lève plus volontiers."
+        ],
+        "gains": [
+          "Des armes et de l’or sont à vous sans attendre."
+        ],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": -20
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": 1
+            }
+          },
+          {
+            "pieces": 150
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "epilogue": "Vous avez brisé le sceau et emporté les reliques, et le passage s'est ouvert sous vos pas."
+      },
+      {
+        "id": "promettre",
+        "libelle": "Je jure sur le registre de revenir relever la garde quand le Cœur sera réglé.",
+        "ton": "Parole",
+        "couts": [
+          "Une parole donnée aux morts ne s’oublie pas, et il faudra la tenir."
+        ],
+        "gains": [
+          "Les morts vous laissent passer sans vous barrer la route."
+        ],
+        "effets": [
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 5
+            }
+          },
+          {
+            "flag": "serment-d-ormgard-promis"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "epilogue": "Vous avez tenu votre parole et êtes revenu relever Brand, qui a enfin pu se reposer."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je referme le registre sans rien décider.",
+      "couts": [
+        "Les reliques restent sous leur cire, les noms restent perdus, et les morts sans nom s’agitent un peu plus."
+      ],
+      "effets": [
+        {
+          "reputation": {
+            "faction": "morts-de-la-forge",
+            "delta": -3
+          }
+        }
+      ],
+      "epilogue": "Vous avez quitté la salle sans trancher, et la route est restée fermée derrière vous."
+    },
+    "echos": [
+      {
+        "si": "relever",
+        "apres": 2,
+        "annonce": "Deux jours après, très loin sous la pierre, on entend le glas de la garde sonner une dernière fois."
+      },
+      {
+        "si": "forcer",
+        "apres": 2,
+        "annonce": "Deux jours après, de la cendre froide s'infiltre dans le camp ou dans les galeries, avec une odeur de métal chauffé, et des pas sourds répondent."
+      },
+      {
+        "si": "promettre",
+        "apres": 3,
+        "annonce": "Trois jours après, vous sentez la promesse peser sur vous, un froid sur l'épaule, comme un regard qui compte les jours.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": -2
+            }
+          }
+        ]
+      }
+    ]
   }
 ]

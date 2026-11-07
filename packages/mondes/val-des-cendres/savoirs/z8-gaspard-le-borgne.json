@@ -1,0 +1,181 @@
+[
+  {
+    "pnj": "gaspard-le-borgne",
+    "passe": "Gaspard a quarante-cinq ans. Il a grandi au moulin du Gué et en est devenu le meunier, le meilleur du Val : toute la vallée achetait sa farine, et les marchands la préféraient à toute autre. L'automne dernier, dans une bagarre, il a perdu l'œil gauche, et il porte depuis un cache-œil de cuir. Il n'a jamais voulu être un chef. Aujourd'hui il tient une bande de pillards sur les chemins du Gué. Elle n'existe que depuis moins d'un an, et il ne parle jamais de ce qu'il était avant.",
+    "liens": [
+    {
+      "pnj": "kor-varnak",
+      "nature": "le capitaine des hobgobelins de Pont-de-Fer",
+      "opinion": "Il ne touche pas à ses convois : ces gens-là rendent coup pour coup et lui n'a pas d'hommes à perdre. Il le sait patient et sait qu'un jour la patience s'use."
+    },
+      {
+        "pnj": "gue-ysabeau-la-louve",
+        "nature": "sa lieutenante, la seule qui ne l'a jamais trahi",
+        "opinion": "Elle ne l'a jamais trahi, et il ne sait pas quoi répondre quand elle le regarde en silence. Il lui parle peu, toujours avec politesse."
+      },
+      {
+        "pnj": "gue-jeannot-la-mouche",
+        "nature": "le lieutenant qu'il craint et qu'il soupçonne",
+        "opinion": "Il le trouve prompt à frapper, sans pitié pour les bêtes comme pour les gens. Gaspard ne lui dit pas ce qu'il pense, pas encore."
+      },
+      {
+        "pnj": "gue-glum-l-ogre",
+        "nature": "un des deux ogres qu'il a loués contre de la viande, qu'il craint plus qu'il ne l'avoue",
+        "opinion": "Glum obéit à la louche et guère à la voix. Gaspard le surveille du coin de son œil valide, et ne dit jamais qu'il a peur de lui."
+      },
+      {
+        "pnj": "gue-hilaire-passeur",
+        "nature": "le passeur qui lui rachète le butin à vil prix",
+        "opinion": "Hilaire donne peu et sourit beaucoup. Gaspard prend la monnaie sans la compter, par fierté ou par faim, il ne sait plus lequel."
+      },
+      {
+        "qui": "sa meunière",
+        "nature": "sa femme, morte l'hiver dernier",
+        "opinion": "Il ne parle d'elle qu'en baissant la voix, et jamais devant ses hommes."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-meuniere",
+        "texte": "Sa femme est morte l'hiver dernier, de faim, pendant qu'il cherchait encore de quoi moudre. Il n'a jamais osé vendre l'alliance qu'elle lui a laissée, et il le sait : c'est la seule chose qu'il ne vendrait pas.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Il pose les mains à plat sur la table, dit qu'il n'a plus de meule à faire tourner, et que les morts ne demandent rien à personne."
+      },
+      {
+        "id": "le-mepris-de-lui-meme",
+        "texte": "Il ne se pardonne rien, et il ne pardonne rien aux autres. Le premier convoi qu'il a pillé, il s'en souvient mot pour mot, et il se répète chaque nuit qu'il aurait pu rentrer les mains vides.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il s'essuie la bouche du revers de la main et dit que les remords sont un luxe de meunier. Il ne va pas plus loin."
+      },
+      {
+        "id": "gilet-de-mouton",
+        "texte": "Il porte un gilet de peau de mouton sur une chemise de meunier devenue trop large depuis qu'il a maigri. Quand il réfléchit, il tire sur le col du gilet sans s'en rendre compte."
+      },
+      {
+        "id": "mains-enfarinees",
+        "texte": "Ses mains sont encore enfarinées, d'une poussière grise qui ne part pas au lavage. Il la frotte entre le pouce et l'index, comme s'il cherchait encore le grain."
+      },
+      {
+        "id": "voix-et-pauses",
+        "texte": "Sa voix est rauque et basse. Il fait de longues pauses avant chaque réponse, le temps de compter ce qu'il va dire, et une question posée trop vite le laisse muet pendant une bonne minute."
+      },
+      {
+        "id": "politesse-du-peage",
+        "texte": "Il appelle le péage « une petite participation » et sourit en la réclamant, comme on offre un verre. Plus il menace, plus il vouvoie, et il dit « monsieur » ou « madame », jamais un nom."
+      },
+      {
+        "id": "meule-du-gue",
+        "texte": "Il a appris le métier au moulin du Gué, dès l'enfance, à monter les sacs sur l'épaule. Il reconnaît encore, les yeux fermés, le grincement aigu d'une meule qui chauffe, comme une porte qui ne ferme plus."
+      },
+      {
+        "id": "farine-du-val",
+        "texte": "Quand il était meunier, sa farine remontait le Gué jusqu'aux marchés de la vallée, et Veillecendre en prenait plus que les autres hameaux. Il le rappelle sans fierté, comme on rappelle une dette."
+      },
+      {
+        "id": "avis-sur-le-fer-gris",
+        "texte": "Le Fer-Gris rend coup pour coup, et Gaspard le respecte pour ça : il dit qu'il n'a pas d'hommes à perdre, et il tient ses bandes à l'écart des convois gris, du moins à l'entendre."
+      },
+      {
+        "id": "avis-sur-les-promesses",
+        "texte": "Un toit promis en automne doit être posé avant la neige, dit-il, sinon ce n'est qu'une promesse de bailli. Il n'en a jamais cru une."
+      },
+      {
+        "id": "avis-sur-les-registres",
+        "texte": "Les hommes qui tiennent des registres, selon lui, ne savent jamais combien pèse un sac. Ils comptent les lignes, pas les bouches."
+      },
+      {
+        "id": "anecdote-le-marchand-de-sel",
+        "texte": "Un marchand de sel a voulu payer le péage en pièces d'or, en riant. Gaspard a mordu une pièce, l'a glissée dans sa poche, puis lui a rendu un sac de sel en disant qu'il ne mangeait pas l'or."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-bande-du-gue",
+        "fait": "f-gue-pillages-des-refugies",
+        "version": "La bande prend ce qui passe, nourriture, couvertures, chevaux, et laisse vivre ceux qui se tiennent tranquilles. Il dit qu'on ne fait pas de principes avec des enfants qui ont faim."
+      },
+      {
+        "id": "les-ogres-loues",
+        "fait": "f-gue-ogres-loues",
+        "version": "Les ogres ne sont pas à lui : ils sont descendus des hauteurs pendant la dernière neige. Il les a loués contre de la viande à chaque pillage, et il sait que Jeannot les frappe."
+      },
+      {
+        "id": "le-moulin-d-avant",
+        "fait": "f-gue-origine-de-la-bande",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "Il devient muet, puis dit qu'il était meunier, le meilleur du Val, et qu'il n'avait plus rien à moudre.",
+        "version": "Il était meunier au Gué. Il a perdu un œil dans la bagarre de l'automne, et il n'avait plus rien à moudre : il a pris les routes pour nourrir les siens, et il n'a plus su s'arrêter."
+      },
+      {
+        "id": "la-requisition",
+        "fait": "f-gue-greniers-du-bailli",
+        "acces": {
+          "attitudeMin": 0
+        },
+        "evasif": "Il crache dans le feu et parle des chariots du bailli, de leur papier et de leur « salut de tous ».",
+        "version": "Les hommes du bailli sont venus à l'automne avec des chariots et un papier, et ils ont pris tout le grain du hameau. Le Gué a nourri Veillecendre, et personne n'a demandé l'avis du Gué.",
+        "tabou": [
+          "réquisitionné",
+          "pour payer le tribut"
+        ]
+      },
+      {
+        "id": "le-grain-pour-les-gris",
+        "fait": "f-tribut-du-bailli",
+        "acces": {
+          "attitudeMin": 0
+        },
+        "evasif": "Il hausse les épaules et dit qu'il ne comprend pas les comptes des gens qui ont des registres.",
+        "version": "Il ne l'a compris que bien après, en voyant les chariots repartir vers le camp gris : le grain servait à acheter la paix des hommes de fer. Il ne sait pas à combien, ni pour combien de temps.",
+        "tabou": [
+          "payer le Fer-Gris",
+          "payer les hobgobelins"
+        ]
+      },
+      {
+        "id": "le-soupcon-sur-jeannot",
+        "fait": "f-gue-jeannot-pille-en-secret",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il regarde la porte, dit qu'il n'a pas de preuves, et que les gens qui parlent trop finissent dans l'eau.",
+        "version": "Un soupçon seulement, sans preuve : il croit que Jeannot prend des choses en douce sur les convois, mais il ne l'a jamais vu faire, et il n'ose pas l'affronter en face.",
+        "tabou": [
+          "Jeannot pille"
+        ]
+      },
+      {
+        "id": "la-petite",
+        "fait": "f-gue-melie",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il ne répond pas tout de suite, puis dit seulement qu'il ne faut pas parler des enfants au Gué.",
+        "version": "Sa petite, huit ans, tousse la toux grise dans une cabane que soigne Ysabeau. Tout ce qu'il fait, il le fait pour qu'elle mange, et il est prêt à se rendre pour elle.",
+        "tabou": [
+          "Mélie",
+          "sa fille malade"
+        ]
+      },
+      {
+        "id": "le-moulin-noye",
+        "fait": "f-gue-butin-au-moulin",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il serre les poings et répond qu'un homme ne vend pas ce qu'il a caché, et qu'on ne fouille pas la maison d'un vivant.",
+        "version": "Il a caché sous le moulin ses économies d'avant la bande, et un anneau de sa femme. Ce n'est pas du butin : c'est tout ce qui reste de sa vie d'avant.",
+        "tabou": [
+          "fondations du moulin",
+          "l'alliance"
+        ]
+      }
+    ]
+  }
+]

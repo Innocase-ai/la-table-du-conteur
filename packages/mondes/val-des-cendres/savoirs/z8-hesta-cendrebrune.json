@@ -1,0 +1,168 @@
+[
+  {
+    "pnj": "hesta-cendrebrune",
+    "passe": "Hesta Cendrebrune est née à Veillecendre, dans une famille de nains descendus des fugitifs de la Haute-Forge. Gardienne dès sa jeunesse, elle est Mère-Gardienne depuis vingt-huit ans et tient la Lanterne, le phare dont la flamme repousse la cendre sur le Val. Il y a neuf ans, le Veilleur d'avant s'est éteint, et la flamme est passée au fournier du village, qui en est aujourd'hui le Veilleur. Hesta compte les nuits qui restent, pas les jours, et fait sonner le couvre-feu à la cloche du soir. Avec le col fermé sous la neige, elle garde la flamme jusqu'au printemps, quoi qu'il en coûte.",
+    "liens": [
+    {
+      "pnj": "ysolde-rouage",
+      "nature": "l'apprentie de Fennick, qui regarde la flamme de trop près",
+      "opinion": "Elle la juge impatiente et brillante, et la laisse mesurer les oscillations de la flamme à travers la vitre, à condition qu'elle ne touche à rien."
+    },
+      {
+        "pnj": "vei-oswin-le-veilleur",
+        "nature": "le Veilleur de la Lanterne, qu'elle garde sous son toit",
+        "opinion": "« Un homme brave, fatigué. » Elle le dit sans tendresse visible, et se tait quand il tousse au foyer."
+      },
+      {
+        "pnj": "aurele-montclar",
+        "nature": "le bailli, qui tient les comptes du village",
+        "opinion": "Il pense en comptes, elle en nuits. Il dit « nous » pour « moi », et elle ne le croit qu'à moitié."
+      },
+      {
+        "pnj": "fennick-rouage",
+        "nature": "le maître mécanicien, qu'elle attend",
+        "opinion": "« Il fait des plans quand il faut faire des gestes. » Elle l'attend pourtant, la Lanterne réglée par ses mains, et ne lui demande jamais le temps qu'il lui faut."
+      },
+      {
+        "pnj": "rolf-garde-capitaine",
+        "nature": "le capitaine de la garde",
+        "opinion": "Le seul qui ne baisse pas les yeux devant elle. Elle le respecte pour ça, et ne lui dit jamais plus que la garde doit savoir."
+      },
+      {
+        "qui": "le Veilleur d'avant, mort il y a neuf ans",
+        "nature": "prédécesseur, dont la flamme est restée sur le foyer",
+        "opinion": "Elle en parle comme d'une lampe qu'on n'a pas remplacée, sans un mot de plus, et jamais de la manière dont il s'est éteint."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-supplication",
+        "texte": "Il y a neuf ans, dans la tour, elle a supplié Oswin, alors fournier du village, de prendre la flamme du Veilleur d'avant. Elle ne s'est jamais pardonné de le lui avoir demandé, et pleure la nuit dans la pièce du dessous, où il l'entend.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "elle serre la canne de fer et dit qu'il y a des demandes qu'on ne répète pas, même à soi-même"
+      },
+      {
+        "id": "le-gardien-parti",
+        "texte": "Dans le prophète des Pèlerins gris, elle a reconnu de loin l'ancien aide du Veilleur d'avant, parti le jour où celui-ci s'est éteint. Elle ne l'a jamais dit à personne et ne l'a jamais cherché.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "elle tourne la tête vers la fenêtre et dit que les Pèlerins parlent de repos à des gens qui n'en ont pas"
+      },
+      {
+        "id": "souvenir-mere-gardienne",
+        "texte": "Il y a vingt-huit ans, le jour où elle a reçu la garde du foyer, elle a refusé la chaise du chef des gardes et s'est tenue debout dans la tour jusqu'au soir, sans un mot pour personne."
+      },
+      {
+        "id": "souvenir-nuit-du-veilleur-d-avant",
+        "texte": "Il y a neuf ans, la nuit où le Veilleur d'avant s'est éteint, elle a compté les marches de la tour jusqu'à l'aube, la lampe brodée serrée dans le poing, sans poser la canne."
+      },
+      {
+        "id": "souvenir-fennick-monte",
+        "texte": "Il y a trente ans, un gnome au tablier couvert de poches est monté à la Lanterne avec une caisse d'outils sur l'épaule. Elle l'a laissé monter sans un mot, et il ne l'a jamais oublié."
+      },
+      {
+        "id": "manie-canne-de-fer",
+        "texte": "Elle tient une canne de fer qu'elle ne pose jamais contre un mur : le poing dessus, elle la frappe deux fois sur les dalles avant de répondre à une question difficile."
+      },
+      {
+        "id": "manie-fil-de-bronze",
+        "texte": "Un fil de bronze est tressé dans ses cheveux gris. Elle le fait glisser entre ses doigts quand quelqu'un ment devant elle, et le laisse tranquille quand elle décide de se taire."
+      },
+      {
+        "id": "manie-lampe-brodee",
+        "texte": "Une petite lampe brodée orne son manteau de laine grise. Elle en suit le contour du pouce quand elle compte les nuits, et ne laisse personne la toucher."
+      },
+      {
+        "id": "opinion-sur-aurele",
+        "texte": "Aurèle pense en comptes, elle en nuits. Elle dit que les registres ne tiennent pas un village debout, seulement une liste de morts qu'on peut rayer d'un trait de plume."
+      },
+      {
+        "id": "opinion-sur-les-etrangers",
+        "texte": "Les étrangers sont des mains en plus, dit-elle : on les nourrit une semaine, on les compte le reste du temps. Elle n'y voit pas d'autre intérêt, et ne se donne pas la peine de le cacher."
+      },
+      {
+        "id": "opinion-sur-les-pelerins",
+        "texte": "Les Pèlerins gris sont des gens qu'elle ne peut pas haïr et ne peut pas écouter. Elle baisse la voix quand ils passent sous la tour, comme devant une maison en deuil."
+      },
+      {
+        "id": "anecdote-marchand-remercie",
+        "texte": "Quand un marchand de passage l'a remerciée au seuil de la tour, elle n'a pas répondu, et lui a seulement fait un signe de tête. Il a passé la journée à en être fier."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-flamme-des-nains",
+        "fait": "f-lanterne-etincelle",
+        "version": "Elle dit que les nains en fuite ont allumé la Lanterne à une étincelle de leur Cœur, et que la flamme repousse la cendre tant que le Cœur brûle. Si le Cœur s'éteint, la flamme suit.",
+        "acces": {},
+        "tabou": ["étincelle du Cœur", "dépend du Cœur"]
+      },
+      {
+        "id": "la-cendre-qui-marche",
+        "fait": "f-cendre-reveille-les-morts",
+        "version": "« La cendre marche, c'est tout. » Elle sait que les morts qui rôdent aux abords ne sont pas des âmes : ils n'ont pas de sang et retombent en poussière grise quand on les abat.",
+        "acces": {}
+      },
+      {
+        "id": "le-seuil-de-la-tour",
+        "fait": "f-vei-lanterne-pas-de-cendre",
+        "version": "« Dans la tour, la neige s'arrête au seuil. » Elle le tient pour acquis, comme la pierre du seuil, et sait qu'une braise de veille fait la même chose pour qui la porte.",
+        "acces": {}
+      },
+      {
+        "id": "l-huile-de-roche",
+        "fait": "f-vei-combustible",
+        "version": "« Le dernier tonneau d'huile de roche est presque vide, et la Fosse ne donne plus rien. » Elle chiffre la baisse de la flamme au nombre de nuits qu'il reste.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "elle répond que le tonneau tiendra jusqu'au printemps, et qu'il n'est pas question de la Fosse ce soir"
+      },
+      {
+        "id": "les-runes-du-foyer",
+        "fait": "f-vei-runes-du-foyer",
+        "version": "« Il faut apprendre à les lire, et on ne les lit pas en une nuit. » Elle connaît les runes autour du foyer par cœur, mais ne les récite jamais à voix haute devant la flamme.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "elle dit que les runes sont vieilles, que le foyer n'a pas besoin de lecteurs, et tourne la tête vers la flamme"
+      },
+      {
+        "id": "la-braise-et-son-prix",
+        "fait": "f-vei-etincelle-et-braise",
+        "version": "« Une braise de veille, ça se fait avec une étincelle de la Lanterne, logée dans un boîtier nain. » Elle sait que la braise protège qui la porte, et sait aussi qu'elle prend un peu de la flamme pour la faire.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "elle répond qu'une braise se donne à qui la mérite, et qu'elle n'en a qu'une à donner"
+      },
+      {
+        "id": "les-greniers-du-bailli",
+        "fait": "f-vei-greniers-au-tiers",
+        "version": "« Il me cache quelque chose sur les vivres. » Elle n'a pas compté les rangs du fond de la grange, et n'a pas envie de le faire ; elle se contente de le savoir.",
+        "acces": {
+          "attitudeMin": 15
+        },
+        "evasif": "elle dit que les vivres se comptent en hiver et que le bailli compte mieux qu'elle, sans rien ajouter"
+      },
+      {
+        "id": "ce-que-coute-la-flamme",
+        "fait": "f-veilleur-se-consume",
+        "version": "Elle sait que la flamme prend chaque année la vie d'un volontaire, et que le Veilleur actuel n'a presque plus rien à lui donner. Elle ne l'a dit qu'au conseil des Gardiens, et ne le répétera pas de bon gré.",
+        "acces": {
+          "attitudeMin": 55
+        },
+        "evasif": "elle répond que la Lanterne ne demande rien à personne, et qu'il vaut mieux ne pas compter ce qu'elle coûte",
+        "tabou": [
+          "donne un peu de sa vie",
+          "un peu de ma vie",
+          "Un veilleur, un souffle, un an",
+          "se consume"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "pnj": "kor-varnak",
+    "passe": "Kor Varnak est un hobgobelin d'une cinquantaine d'années, capitaine de la Compagnie du Fer-Gris. Il a mené sa troupe de pays en pays, chassée de chaque endroit où elle campait, avant de descendre battue au sud. Il y a cinq ans, la Compagnie est arrivée dans le Val et a pris Pont-de-Fer après un siège de onze jours. Il a épargné les tisserands qui ont accepté de rester. Depuis, il tient ses hommes sous le Livre des Rangs : des mains de cinq soldats, le fouet pour le vol, la mort pour la désertion. Il dirige la Compagnie, c'est tout ce qu'il laisse voir de lui.",
+    "liens": [
+      {
+        "pnj": "pdf-yorga-marmite",
+        "nature": "la cuisinière de la grande halle, qui l'a recueilli enfant",
+        "opinion": "Il lui doit un endroit à lui, et ne le dit à personne ; il s'arrête à sa cuisine avant de rentrer."
+      },
+      {
+        "pnj": "pdf-ruvak-main-de-fer",
+        "nature": "son lieutenant",
+        "opinion": "Ruvak obéit au Livre et guette ses silences. Kor sait qu'il prendrait la guerre sans attendre l'hiver."
+      },
+      {
+        "pnj": "pdf-tarn-le-deserteur",
+        "nature": "le déserteur de la caserne",
+        "opinion": "Selon le Livre, sa désertion se paie de la mort. Kor peut commuer la peine en exil, une fois, et n'a pas encore décidé."
+      },
+      {
+        "pnj": "gaspard-le-borgne",
+        "nature": "le chef de la bande du Gué, qui saigne ses convois",
+        "opinion": "Un homme à qui il ne veut pas brûler un hameau, même si la bande lui coûte des hommes."
+      },
+      {
+        "qui": "son peuple",
+        "nature": "la Compagnie du Fer-Gris, qu'il tient sous le Livre",
+        "opinion": "Il veut pour eux une terre et un feu, et ne lèvera plus le camp. C'est tout ce qu'il désire."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "yorga-et-le-camp-saccage",
+        "texte": "Enfant de dix ans, il a vu son camp saccagé. C'est Yorga Marmite, la cuisinière de la grande halle, qui l'a pris avec elle et lui a donné un coin de table. Il n'en parle jamais devant ses soldats.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "il compte les marmites de la halle sans répondre, et dit qu'un camp se défait toujours de la même façon"
+      },
+      {
+        "id": "les-cartes-des-nains",
+        "texte": "Un soir d'hiver, il a appris à lire à Tarn avec les cartes des nains, à la lueur d'une lampe à huile. Le déserteur apprenait vite, et Kor a gardé les cartes depuis.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "il dit qu'un homme qui sait lire peut déserter plus loin, et ne dit pas qui a eu envie d'apprendre"
+      },
+      {
+        "id": "ce-que-voit-ruvak",
+        "texte": "Depuis un an, son lieutenant Ruvak l'observe sans un mot et le trouve lent. Kor le sait, et ne lui donne pas raison, ni tort.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "il compte jusqu'à trois avant de répondre, et dit que Ruvak a le droit de penser ce qu'il veut tant qu'il obéit"
+      },
+      {
+        "id": "siege-pont-de-fer",
+        "texte": "Il y a cinq ans, la Compagnie a investi Pont-de-Fer. Onze jours de siège, puis les portes se sont ouvertes, et les tisserands qui ont voulu rester ont gardé leurs métiers."
+      },
+      {
+        "id": "fouet-sur-la-place",
+        "texte": "Un soldat qui a volé du pain dans l'enceinte a reçu le fouet sur la place, devant tout le camp. Kor est resté jusqu'au dernier coup, les bras croisés, sans cligner des yeux."
+      },
+      {
+        "id": "compte-avant-de-parler",
+        "texte": "Il compte avant de parler, les lèvres à peine bougées, et le silence qu'il laisse dure plus longtemps que chez les autres. Ses soldats savent attendre sa réponse."
+      },
+      {
+        "id": "clou-de-fer-gris",
+        "texte": "Un clou de fer gris est cousu à son épaule, rivé dans la cuirasse. Quand il réfléchit, il y pose le pouce et le fait tourner à peine."
+      },
+      {
+        "id": "cicatrice-oreille",
+        "texte": "Une cicatrice lui mange l'oreille gauche jusqu'au lobe. Il tourne la tête de biais pour entendre ceux qui parlent à gauche, et ne le remarque plus."
+      },
+      {
+        "id": "toux-dans-le-poing",
+        "texte": "Il tousse dans son poing, une fois, puis reprend sa phrase au même mot, comme si de rien n'était."
+      },
+      {
+        "id": "opinion-sur-aurele",
+        "texte": "Aurèle a offert le grain, dit-il, et il ne l'a jamais exigé. Le bailli a gagné du temps pour sa ville ; Kor n'en tire aucune dette."
+      },
+      {
+        "id": "opinion-sur-thalgrin",
+        "texte": "Thalgrin, le roi des forges, qu'il n'a jamais vu, est pour Kor un roi qui a perdu parce qu'il n'écoutait personne."
+      },
+      {
+        "id": "opinion-sur-gaspard",
+        "texte": "Gaspard le Borgne est un homme qui a perdu un œil et son moulin. Kor le respecte, et ne lui brûlera pas son hameau."
+      }
+    ],
+    "sait": [
+      {
+        "id": "l-arrivee-de-la-compagnie",
+        "fait": "f-pdf-compagnie-arrivee",
+        "version": "« On nous a chassés de chaque pays, alors on a pris un pont. » Il ne revient pas sur les années au sud, ni sur la façon dont la Compagnie est née.",
+        "acces": {}
+      },
+      {
+        "id": "le-livre-des-rangs",
+        "fait": "f-pdf-discipline-des-rangs",
+        "version": "Il récite le Livre comme un contrat : des mains de cinq, un sergent par trois mains, un capitaine. Un ordre donné devant témoins ne se retire pas. « C'est ce qui nous tient debout. »",
+        "acces": {}
+      },
+      {
+        "id": "un-feu-qui-ne-bouge-plus",
+        "fait": "f-pdf-foyer-du-fer-gris",
+        "version": "Il parle d'une terre où les enfants naîtraient dans la maison de leurs grands-parents. « Un feu qui ne bouge plus. » Il le dit à mi-voix, comme une chose qu'il n'a pas encore le droit de vouloir tout haut.",
+        "acces": {
+          "attitudeMin": 5
+        },
+        "evasif": "il dit que la Compagnie cherche à s'installer, et que les gens du Val feraient bien de ne pas s'en inquiéter"
+      },
+      {
+        "id": "la-haute-forge",
+        "fait": "f-fer-gris-veut-la-forge",
+        "version": "Il sait que la Compagnie a besoin du feu de la Veine pour forger, et que la Haute-Forge en a. Il veut le Cœur-de-Braise pour ses forges de guerre et pour son peuple, sincèrement, sans mesurer ce qu'il ferait du Val.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "il répond qu'un capitaine ne dit pas ce qu'il compte prendre avant d'avoir compté ses hommes"
+      },
+      {
+        "id": "la-porte-scellee",
+        "fait": "f-pdf-le-sceau-bloque-la-compagnie",
+        "version": "La porte de la Haute-Forge est retrouvée, mais une serrure naine la tient fermée. La clé est dans les cryptes d'Ormgard. « Sans elle, ni la ruse ni la force ne passent. »",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "il regarde la carte des cryptes sans répondre, et demande qui, dans le Val, sait franchir une porte scellée"
+      },
+      {
+        "id": "le-grain-du-bailli",
+        "fait": "f-tribut-du-bailli",
+        "version": "Le bailli a offert du grain chaque lune, de lui-même : la Compagnie n'a jamais rien réclamé. « Il a gagné du temps, pas une dette. » Il tient ce grain pour une parole, non pour un tribut.",
+        "acces": {},
+        "tabou": [
+          "dix sacs"
+        ]
+      },
+      {
+        "id": "le-convoi-en-retard",
+        "fait": "f-pdf-convoi-de-grain",
+        "version": "Le dernier convoi est arrivé à moitié plein, avec six jours de retard. Il a gardé les convoyeurs comme garantie, pas comme punition. « Je veux le grain promis, pas du sang. »",
+        "acces": {}
+      },
+      {
+        "id": "les-deux-otages",
+        "fait": "f-pdf-otages-a-la-prison",
+        "version": "Anselme Cordier, charretier, et Tiphaine Roussel, apprentie herboriste, sont en prison depuis trois semaines. Ils mangent la même soupe que ses soldats. Il les garde comme garantie, rien de plus.",
+        "acces": {}
+      },
+      {
+        "id": "la-toux-des-vieux-soldats",
+        "fait": "f-pdf-toux-de-fer",
+        "version": "Les plus anciens crachent une cendre fine qui ne part pas. « Ça vient de l'air de la vallée basse, pas d'un homme. » Il ne prononce pas le nom du mal, et ceux qui le savent ne le répètent pas.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "il dit que l'air du Val n'est pas bon pour les vieux, et change de sujet",
+        "tabou": [
+          "toux de fer"
+        ]
+      },
+      {
+        "id": "ce-qui-reste-au-capitaine",
+        "fait": "f-pdf-kor-malade",
+        "version": "Il connaît le compte de ce qui lui reste, et il le garde pour lui. Il ne le confie ni à Ruvak, ni à ses hommes, ni à celui qui pose des questions.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "il tousse dans son poing et répond que la nuit est trop longue pour les questions",
+        "tabou": [
+          "je suis malade",
+          "il me reste un an"
+        ]
+      }
+    ]
+  }
+]

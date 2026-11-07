@@ -1064,6 +1064,19 @@
         "echecResout": true
       },
       {
+        "id": "passer-a-la-releve",
+        "nom": "Passer pendant la relève, au signal des sentinelles",
+        "resume": "Le signal des lanternes est connu : on se glisse sous la herse à l’instant où la relève détourne les yeux, sans rien dire à personne.",
+        "effets": [
+          {
+            "flag": "pdf-passage-accorde"
+          }
+        ],
+        "condition": {
+          "flag": "pdf-signal-connu"
+        }
+      },
+      {
         "id": "autre-chemin",
         "nom": "Renoncer à la porte",
         "resume": "On quitte la file et on cherche un autre accès : la brèche du nord ou les drains.",

@@ -1,0 +1,143 @@
+[
+  {
+    "pnj": "fennick-rouage",
+    "passe": "Fennick Rouage est un gnome des basses terres, âgé d'environ cent vingt ans. Il a appris le métier à l'atelier, puis il est arrivé à Veillecendre il y a trente ans, le jour où le maître d'atelier d'avant est mort. Depuis, il entretient les mécanismes du village : la pompe du puits, la cloche, les portes à contrepoids, le cadran de la Lanterne qu'il règle chaque automne. Cette année, les couronnes du cadran ne tournent plus comme le décrit la notice, et ses mains ne s'y retrouvent plus. Il la cherche pièce à pièce, persuadé qu'il s'agit d'une panne mécanique. Il a formé Ysolde, arrivée à l'atelier il y a vingt ans, qu'il tient pour la plus brillante élève qu'il ait eue. Il oublie parfois l'essentiel dans les détails, mais il ne laisse jamais un mécanisme sans le réparer.",
+    "liens": [
+      {
+        "pnj": "ysolde-rouage",
+        "nature": "son apprentie depuis vingt ans, la plus brillante qu'il ait eue",
+        "opinion": "Il veut la former à temps, et craint qu'elle ne s'enferme dans l'atelier comme il s'est enfermé dans le sien. Il lui a donné la permission de partir, à condition qu'on la lui rende vivante."
+      },
+      {
+        "pnj": "hesta-cendrebrune",
+        "nature": "la Mère-Gardienne, qui garde la flamme de la Lanterne",
+        "opinion": "Il sait qu'elle garde la flamme, et il la respecte sans l'approuver : elle la garde comme un trésor qu'on ne peut pas regarder, et lui a besoin de regarder les pièces pour les réparer."
+      },
+      {
+        "pnj": "aurele-montclar",
+        "nature": "le bailli de Veillecendre, qui tient les registres du village",
+        "opinion": "Un homme qui oublie que les registres s'usent, dit-il, et qui compte les sacs de grain comme on compte des dents. Il lui parle sans hausser le ton, par politesse plus que par confiance."
+      },
+      {
+        "pnj": "rolf-garde-capitaine",
+        "nature": "le capitaine de la garde, qui tient la tour où le cadran veille",
+        "opinion": "Il lui demande de ne toucher à rien dans la tour, et le capitaine lui obéit mieux qu'à personne. Il le tient pour un homme qui préfère garder ses hommes que de compter les pièces."
+      },
+      {
+        "pnj": "hf-ferbillon",
+        "nature": "le maître d'atelier dont il se réclame, mort il y a deux siècles",
+        "opinion": "Il lui doit ses gestes de métier, et il lui parle à voix basse, comme à un homme qui pourrait encore l'entendre. Il ne le nomme jamais devant les autres."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-peur-de-ses-mains",
+        "texte": "Cette année, ses mains tremblent quand elles tiennent une vis trop fine, et il les cache dans les poches de son tablier. Il a peur de perdre la mémoire de ses plans avant d'avoir tout transmis à Ysolde, et il le dit à voix si basse qu'on doit se pencher pour l'entendre.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Il pose les mains à plat sur l'établi, les regarde comme des pièces qui ont perdu leur ressort, et dit que l'huile fige en hiver."
+      },
+      {
+        "id": "le-carnet-qu-il-ne-relit-pas",
+        "texte": "Il connaît le chemin de l'atelier d'origine de Ferbillon, dans la Haute-Forge, sous la montagne. Il garde quelques plans de cet atelier et n'ose plus les relire. Il refuse d'en parler à Ysolde : il a peur qu'elle y descende et qu'elle s'y enferme.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il dit que les vieux plans s'usent comme les registres, qu'on ne les relit pas sans les déchirer, et il se remet à régler un mécanisme."
+      },
+      {
+        "id": "le-soupcon",
+        "texte": "La nuit, il se demande si la panne n'arrange pas quelqu'un : un cadran qui ne tourne plus, un village qui n'ose plus rien toucher. Il ne veut pas le dire, pas même au conseil, et il n'a aucun nom à offrir pour cette idée.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il dit qu'une panne n'a jamais de coupable, seulement des mains fatiguées, et il demande qu'on ne le presse pas."
+      },
+      {
+        "id": "arrivee-a-veillecendre",
+        "texte": "Il est arrivé à Veillecendre il y a trente ans, le jour où le maître d'atelier d'avant est mort. Il a réglé le cadran de la Lanterne dès le premier automne, les yeux fatigués, avec une seule lampe sur l'établi."
+      },
+      {
+        "id": "ysolde-a-l-atelier",
+        "texte": "Ysolde est entrée à l'atelier il y a vingt ans, à soixante ans, et il a vu tout de suite qu'elle démontait plus vite qu'elle n'assemblait. Il s'en amuse encore, et il lui laisse toujours le dernier tournevis."
+      },
+      {
+        "id": "boitier-de-bronze",
+        "texte": "Il garde depuis des années un boîtier de bronze nain, fait pour loger une étincelle, qu'il n'a jamais osé remplir. Il le tapote du pouce quand il réfléchit, et il dit qu'il le fera « un jour, voyez-vous ».",
+        "acces": {}
+      },
+      {
+        "id": "tic-tac-de-poche",
+        "texte": "Un tic-tac permanent vient de sa poche gauche, qu'il ne remarque plus. Il l'arrête pour écouter les autres, les yeux fermés, puis le laisse repartir sans rien dire."
+      },
+      {
+        "id": "tablier-a-mille-poches",
+        "texte": "Son tablier a mille poches pleines d'outils, de vis et de petits ressorts. Il y trouve toujours la pièce qu'il cherche, sauf l'essentiel, qu'il a oublié dans une autre poche."
+      },
+      {
+        "id": "reparer-plutot-que-remplacer",
+        "texte": "Il tient qu'une pièce usée se répare avant de se jeter, et qu'on ne remplace pas un homme comme une pièce. Il le répète à chaque visiteur qui parle de jeter un vieux mécanisme, sans même le regarder."
+      },
+      {
+        "id": "avis-sur-hesta",
+        "texte": "Hesta garde la flamme comme un trésor qu'on ne peut pas regarder, dit-il, et il la respecte pour cela. Il lui reproche seulement de ne jamais expliquer ce qu'elle garde, alors qu'un bon mécanisme s'explique."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-cadran-qui-resiste",
+        "fait": "f-vei-fennick-et-le-cadran",
+        "version": "Il règle le cadran chaque automne depuis trente ans, mais cette année ses couronnes ne tournent plus comme la notice. Il soupçonne un grain de cendre glissé dans le régulateur, et il n'est sûr de rien d'autre.",
+        "acces": {}
+      },
+      {
+        "id": "la-braise-de-veille",
+        "fait": "f-vei-etincelle-et-braise",
+        "version": "Il sait qu'une étincelle logée dans un boîtier nain fait une braise qui écarte la cendre. Il dit que la Mère-Gardienne ne la donne qu'à ceux qui la méritent, et il ne dit pas ce que la flamme y perd.",
+        "acces": {}
+      },
+      {
+        "id": "le-fond-du-puits",
+        "fait": "f-vei-offrandes-du-puits",
+        "version": "Il sait que les anciens jetaient des pièces et des bijoux dans le puits pour les morts de la Haute-Forge, et que le fond en est tapissé d'argent noirci. Il trouve cela plus propre que de jeter de l'or aux chiens.",
+        "acces": {}
+      },
+      {
+        "id": "l-huile-qui-baisse",
+        "fait": "f-vei-combustible",
+        "version": "Il sait que la flamme se nourrit d'huile de roche, tirée autrefois de la Fosse, et que le dernier tonneau est presque vide. Il compte les mesures au matin, et il dit que la flamme baisse plus vite quand personne ne la regarde.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "Il tapote sa poche gauche, dit que l'huile de roche se fait rare dans le tonneau, et qu'il faut trop de bras pour remonter ce qu'on descend."
+      },
+      {
+        "id": "la-flamme-branchee-plus-grand",
+        "fait": "f-lanterne-etincelle",
+        "version": "Il sait que la Lanterne est branchée sur plus grand qu'elle, comme une lampe sur un réservoir que personne n'a jamais vu. Il l'a dit une fois, à voix basse, et il regrette déjà de l'avoir dit.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Il tourne la molette de son cadran de poche sans le regarder, et dit que la Lanterne ne tient qu'à ses cadrans et à de la patience.",
+        "tabou": [
+          "étincelle du Cœur",
+          "dépend du Cœur"
+        ]
+      },
+      {
+        "id": "ce-qui-bat-sous-la-montagne",
+        "fait": "f-coeur-de-braise",
+        "version": "Il devine, d'après les plans qu'il n'ose plus relire, qu'il y a sous la montagne une chose qui bat comme le cœur d'une machine et qui tient la Lanterne par un fil. Il ne voit pas encore ce qu'elle nourrit.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Il range ses plans d'un geste, comme on referme une porte, et répond qu'il faut lui laisser régler la machine avant de parler de la montagne.",
+        "tabou": [
+          "entretient les morts",
+          "reste de sa flamme"
+        ]
+      }
+    ]
+  }
+]

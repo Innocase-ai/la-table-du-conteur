@@ -1,0 +1,238 @@
+[
+  {
+    "pnj": "thalgrin-coeur-d-enclume",
+    "passe": "Thalgrin Cœur-d'Enclume fut le onzième Roi-Forgeron de la Haute-Forge, fils de la Veine rouge, à la tête d'une dynastie de quatre siècles. Il épousa Aldis, la reine, et ils eurent une fille, Brunhild, qui riait fort et faisait des automates avec le maître-mécanicien Ferbillon, qu'elle appelait « Tic-Tac ». Brunhild mourut de la toux grise à huit ans. Son père consacra ses dernières années à une commande, qu'il n'a jamais achevée. Il est mort la nuit de la Cendre, il y a deux siècles, et il est resté dans sa salle, entre ses gardes et l'enfant qu'il n'a pas su garder.",
+    "liens": [
+      {
+        "pnj": "brunhild",
+        "nature": "sa fille, morte de la toux grise à huit ans",
+        "opinion": "Il l'appelle sa petite étincelle et la décrit comme une enfant qui riait fort, avec un ruban rouge aux trois perles de fer. Il parle d'elle au présent, et sa voix se brise."
+      },
+      {
+        "pnj": "hf-ferbillon",
+        "nature": "son maître-mécanicien, un cousin brillant et agaçant",
+        "opinion": "Brunhild l'appelait Tic-Tac, et Thalgrin s'agace de sa manie de compter à voix haute. Il trouve ses plans trop bavards pour un mécanicien et les écarte d'un geste."
+      },
+      {
+        "pnj": "hf-chambellan-harek",
+        "nature": "le maître-chambellan qui annonce les visiteurs",
+        "opinion": "Il laisse Harek parler de l'étiquette sans l'interrompre, mais il évite de regarder le socle vide qu'on n'a jamais sculpté pour lui."
+      },
+      {
+        "qui": "Aldis, la reine",
+        "nature": "son épouse",
+        "opinion": "Elle lui demandait de cesser de nourrir le Cœur, et il a refusé de l'entendre. Il dit qu'elle avait raison sur tout, et qu'il ne le lui a jamais dit."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-derniere-page",
+        "texte": "Le journal de sa fille est resté ouvert sur la table, et il le feuillette souvent, en sautant les dernières pages sans jamais les nommer. Il dit qu'il l'a lu en entier, et qu'il a tout compris, d'une voix trop rapide pour être sûre.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il referme le journal avec soin, comme on referme un coffret, et dit qu'un père connaît les pages de sa fille sans avoir besoin de les relire."
+      },
+      {
+        "id": "commande-pas-finie",
+        "texte": "« La commande n'est pas finie » : il répète cette phrase à chaque visiteur, comme une formule de bienvenue, et il l'ajoute quand on lui demande l'heure. Un artisan, dit-il, ne rend jamais une pièce avant qu'elle soit trempée."
+      },
+      {
+        "id": "artisans",
+        "texte": "Il appelle les visiteurs « artisans », même les voleurs et les soldats. Il leur demande ce qu'ils savent faire de leurs mains, et il écoute la réponse avec le même sérieux qu'un maître de guilde qui reçoit un apprenti."
+      },
+      {
+        "id": "pas-encore",
+        "texte": "Il ne sait pas dire non. Quand on lui refuse quelque chose, il répond « pas encore », sur un ton si poli qu'on le croit. Il l'a dit aux gardes, aux visiteurs, et même à la reine, qui n'a jamais cru ce mot-là."
+      },
+      {
+        "id": "tablier-de-cuir",
+        "texte": "Son tablier de cuir brûle sans se consumer : on sent la chaleur monter, l'odeur du cuir qui chauffe, mais le bord ne noircit jamais. Quand il s'approche, l'air devient sec et les lèvres craquent."
+      },
+      {
+        "id": "table-interdite",
+        "texte": "Il ne laisse personne poser la main sur la table où dort sa fille. Il se place devant, les mains croisées dans le dos, et il écarte d'une paume ouverte ceux qui approchent trop près, sans un mot de colère."
+      },
+      {
+        "id": "houille-rouge",
+        "texte": "Il sent la houille rouge avant de la voir : un charbon froid au toucher, qui brûle sans fumée. Il dit pourtant qu'elle sent le pain chaud des matins de fête, et il ferme les yeux pour mieux le sentir."
+      },
+      {
+        "id": "ruban-rouge",
+        "texte": "Brunhild avait un ruban rouge noué aux trois perles de fer, qu'elle tirait de sa tresse pour le montrer à chaque visiteur, en riant. Il se souvient de ce rire plus que de n'importe quel ordre de bataille."
+      },
+      {
+        "id": "automates-de-l-atelier",
+        "texte": "Dans l'atelier de la Haute-Forge, Brunhild et Ferbillon montaient des automates sur la table de travail : elle tenait les pièces, il comptait tout à voix haute. Les éclats de rire montaient jusqu'à la Grande Galerie, et les gardes faisaient semblant de ne pas les entendre."
+      },
+      {
+        "id": "la-veille-de-la-nuit",
+        "texte": "Dans ses dernières années, Thalgrin a cessé de recevoir ses ministres et s'est enfermé dans ses forges. Il dit qu'un roi qui reçoit encore n'a rien à finir, et qu'un homme qui part avant la fin n'a jamais été un artisan."
+      },
+      {
+        "id": "gardes-de-fer",
+        "texte": "Les gardes de fer sont ses fils, dit-il, et les autres sont ses hôtes. Il ne comprend pas qu'on trouve effrayants les hommes immobiles au pied de l'escalier, et il les salue chacun par son grade, à voix haute."
+      },
+      {
+        "id": "marche-de-roi",
+        "texte": "Un marché de roi se tient, dit-il, et il ne se défait pas. Il frappe l'air du plat de la main pour le sceller, et il pense que les étrangers qui hésitent n'ont pas encore compris la valeur d'une parole donnée."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-roi-forgeron",
+        "fait": "f-roi-forgeron-thalgrin",
+        "version": "Il se dit onzième Roi-Forgeron, fils de la Veine, et il le dit avec la fierté d'un homme qui ne s'est jamais demandé ce que devient un royaume sans roi. Il parle de sa dynastie comme de quatre siècles de feu.",
+        "acces": {}
+      },
+      {
+        "id": "la-veine",
+        "fait": "f-veine-rouge",
+        "version": "La Veine rouge est pour lui la source de tout, une coulée de feu sous la montagne. Il parle de la houille rouge comme d'un bon métal, froid au toucher, et il tient que ses gardes la respectent mieux que les gens du dehors.",
+        "acces": {}
+      },
+      {
+        "id": "le-feu-du-royaume",
+        "fait": "f-coeur-de-braise",
+        "version": "Le foyer sacré, il le décrit comme un vieil ami capricieux : « il bat, il a faim, il est généreux avec qui le sert ». Il ne se demande jamais pourquoi il ne peut pas quitter la salle qui le garde.",
+        "acces": {},
+        "tabou": ["entretient les morts", "reste de sa flamme"]
+      },
+      {
+        "id": "mes-gardes",
+        "fait": "f-hf-garde-du-roi",
+        "version": "Ses gardes sont des nains morts la nuit de la Cendre, restés à leur poste. Pour lui ce sont ses fils, et il les appelle encore par leurs grades, sans jamais se demander s'ils dorment.",
+        "acces": {}
+      },
+      {
+        "id": "les-apprentis-presses",
+        "fait": "f-fer-gris-veut-la-forge",
+        "version": "Il a vu les éclaireurs du Fer-Gris aux portes du Val et les juge comme on juge un apprenti pressé : des forgerons sans maître qui veulent le feu sans en comprendre le prix.",
+        "acces": {}
+      },
+      {
+        "id": "la-petite-etincelle",
+        "fait": "f-fille-de-fer",
+        "version": "Il parle de sa petite étincelle comme d'une enfant endormie, et sa voix se brise. Il dit qu'elle dort, qu'il lui manque seulement de quoi la réveiller, et il est tendre, et terriblement sûr de lui.",
+        "acces": {
+          "attitudeMin": 5
+        },
+        "evasif": "Il baisse la voix et tourne le regard vers la table, comme si quelqu'un y dormait sous un drap.",
+        "tabou": ["Fille de fer"]
+      },
+      {
+        "id": "la-commande",
+        "fait": "f-derniere-commande",
+        "version": "Ce qu'il croit : le Cœur a eu faim, et il lui a donné de la chaleur, puis davantage, pour que la fonte tienne. Il parle de sa commande comme d'un ouvrage de trempe, avec ses proportions et ses fontes.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "Il ne dit pas d'abord pour qui est la commande, et répète qu'elle n'est pas finie, comme on répète une règle de métier.",
+        "tabou": ["surnourri", "feu de son peuple"]
+      },
+      {
+        "id": "le-souffle-donne",
+        "fait": "f-hf-dernier-souffle",
+        "version": "Il croit qu'il faut un feu donné de bon gré, d'une main ouverte, et non une braise arrachée. Il a essayé avec celle de son peuple, mais elle était prise, non donnée.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "Il incline sa couronne de bronze et parle d'un feu qui doit être offert, sans dire à qui il revient de l'offrir.",
+        "tabou": ["braise de veille"]
+      },
+      {
+        "id": "la-lanterne-d-aldis",
+        "fait": "f-lanterne-etincelle",
+        "version": "Il apprend, avec stupeur, que sa reine a réussi là où il avait refusé : une lanterne allumée au jour. Il est fier d'elle, malgré lui, et plus fatigué encore.",
+        "acces": {
+          "attitudeMin": 10
+        },
+        "evasif": "Il dit que le village a des lanternes et des veilleurs, et demande d'un ton trop neutre si l'on y dort bien.",
+        "tabou": ["étincelle du Cœur"]
+      },
+      {
+        "id": "la-nuit-du-feu",
+        "fait": "f-nuit-de-la-cendre",
+        "version": "Il dit que son peuple dormait quand la braise a débordé, et que c'est une forme de fidélité qu'ils soient encore là, à l'attendre dans les salles. Il ne parle pas de la nuit elle-même.",
+        "acces": {
+          "attitudeMin": 15
+        },
+        "evasif": "Il détourne les yeux et dit que la nuit de la Cendre n'est pas une nuit dont on parle à des hôtes."
+      },
+      {
+        "id": "le-regulateur-refuse",
+        "fait": "f-hf-regulateur",
+        "version": "Il répète « on ne bride pas la main qui sert » chaque fois qu'on lui parle de mesure. Il se souvient du gnome qui lui proposait un mécanisme pour plafonner la chaleur, et il le juge plein de précautions.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Il pose la main sur son tablier et dit qu'un roi n'écoute pas les gnomes qui vendent de la prudence.",
+        "tabou": ["Régulateur du Cœur"]
+      },
+      {
+        "id": "la-vanne-de-secours",
+        "fait": "f-ecluse-noire",
+        "version": "Il confirme qu'une vanne de secours existe, pensée par son maître-mécanicien pour qu'aucun roi n'ait à choisir entre son peuple et son feu. Il dit « Pas avant qu'elle soit éveillée. », puis compte ses morts du regard.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "Il ne lève pas la main pour l'empêcher, et fait le tour de la salle des yeux, comme un homme qui compte ses morts."
+      },
+      {
+        "id": "la-reine",
+        "fait": "f-hf-aldis",
+        "version": "Aldis, sa reine, a conduit l'exode des survivants avant la fin, et il ne l'a pas retenue. Il dit qu'elle avait raison de le supplier, et qu'il ne le lui a jamais dit. Elle est revenue mourir ici, près de l'escalier du Cœur.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Il se tait longtemps, puis dit qu'une reine ne se rappelle pas à un roi, et qu'il n'a plus de siège à offrir."
+      },
+      {
+        "id": "le-roi-qui-est-tenu",
+        "fait": "f-hf-thalgrin-est-tenu",
+        "version": "Il dit qu'il est las, et qu'il ne sait plus s'il attend la fin de la commande ou la fin de lui-même. Il ne voit pas la différence, et il s'en étonne à voix haute, comme d'une pièce mal ajustée.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il laisse retomber la main sur son tablier, qui brûle sans se consumer, et dit qu'il est fatigué de tenir son royaume.",
+        "tabou": ["le Cœur me tient", "le Cœur le tient"]
+      },
+      {
+        "id": "le-vivant-qui-reste",
+        "fait": "f-rallumer-par-volontaire",
+        "version": "Il dit que le Cœur accepte qui reste : un vivant qui se tient près de la braise de bon gré et lui donne sa chaleur, jour après jour. Il l'a su trop tard, et trop tard aussi qu'il aurait fallu le demander à un seul.",
+        "acces": {
+          "attitudeMin": -25,
+          "condition": {
+            "fait": "f-coeur-de-braise"
+          }
+        },
+        "evasif": "Il dit que le feu a besoin de quelqu'un qui reste, et ne dit ni combien de temps, ni pour quoi.",
+        "tabou": ["volontaire"]
+      },
+      {
+        "id": "celui-qui-ne-repart-pas",
+        "fait": "f-hf-volontaire-reste",
+        "version": "Celui qui reste, il l'a dit doucement, ne repartira pas : il demeure près de la braise tant que le feu dure, et le feu ne s'éteint pas. Il n'y voit pas une perte, seulement un ouvrage bien fait.",
+        "acces": {
+          "attitudeMin": -25,
+          "condition": {
+            "fait": "f-coeur-de-braise"
+          }
+        },
+        "evasif": "Il parle d'un gardien qui ne serait pas un combustible, et change de sujet dès qu'on lui demande ce qu'il veut dire.",
+        "tabou": ["ne reverra pas le jour"]
+      },
+      {
+        "id": "ce-qu-elle-murmure",
+        "fait": "f-hf-brunhild-ne-veut-pas",
+        "version": "Il entend le murmure de sa fille dans son sommeil de fer, et il refuse de l'entendre. Il dit qu'un enfant qui parle en dormant n'a pas encore appris à demander, et qu'il sait ce qu'elle veut.",
+        "acces": {
+          "attitudeMin": 65
+        },
+        "evasif": "Il ferme les yeux un instant, puis dit que les enfants parlent dans leur sommeil, et qu'il ne faut pas les croire.",
+        "tabou": ["ne veut pas être réveillée", "laisser reposer"]
+      }
+    ]
+  }
+]

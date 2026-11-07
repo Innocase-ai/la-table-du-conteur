@@ -1134,6 +1134,9 @@
               "faction": "compagnie-du-fer-gris",
               "delta": -30
             }
+          },
+          {
+            "flag": "hf-fer-gris-regle"
           }
         ],
         "jet": {
@@ -1145,7 +1148,11 @@
         "id": "mediation-du-roi",
         "nom": "Laisser le roi répondre",
         "resume": "Laisser Thalgrin répondre au capitaine : la garde du roi attaque les hobgobelins.",
-        "effets": [],
+        "effets": [
+          {
+            "flag": "hf-fer-gris-regle"
+          }
+        ],
         "jet": {
           "competence": "persuasion",
           "dd": 16
@@ -1158,7 +1165,11 @@
       ],
       "tresors": []
     },
-    "effetsVictoire": []
+    "effetsVictoire": [
+      {
+        "flag": "hf-fer-gris-regle"
+      }
+    ]
   },
   {
     "id": "hf-r-le-choix-du-coeur",
@@ -1166,7 +1177,7 @@
     "type": "social",
     "lieu": "hf-forge-du-coeur",
     "difficulte": "faible",
-    "intro": "La garde s'est rangée, le roi a baissé la tête. Il ne reste que le battement du Cœur, la petite silhouette de fer sur la table, et une décision à prendre. Le Cœur se tait un instant, comme s'il écoutait.",
+    "intro": "Le calme revient sur la rotonde. Il ne reste que le battement du Cœur, la petite silhouette de fer sur la table, et une décision à prendre. Le Cœur se tait un instant, comme s’il écoutait.",
     "monstres": [],
     "alternatives": [
       {
@@ -1268,6 +1279,70 @@
             },
             {
               "objet": "braise-de-veille"
+            },
+            {
+              "non": {
+                "flag": "choix-rallumer"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-eteindre"
+              }
+            },
+            {
+              "non": {
+                "flag": "choix-fer-gris"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "achever-souffle",
+        "nom": "Donner son propre souffle",
+        "resume": "Sans braise de veille, un membre du groupe donne de bon gré son souffle à la Fille de fer, par la volonté de Thalgrin. La cendre cesse, Brunhild s’éveille, mais celui qui donne garde un froid durable.",
+        "effets": [
+          {
+            "flag": "choix-achever"
+          },
+          {
+            "fait": "f-derniere-commande"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "thalgrin-coeur-d-enclume",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "cendre",
+              "delta": -4
+            }
+          },
+          {
+            "reputation": {
+              "faction": "morts-de-la-forge",
+              "delta": 30
+            }
+          },
+          {
+            "narration": "Un membre du groupe pose la main sur la poitrine de fer, et la chaleur de son souffle passe dans la Fille de fer. Elle ouvre les yeux. Thalgrin sourit pour la première fois depuis deux siècles, puis ne se voit plus."
+          }
+        ],
+        "condition": {
+          "et": [
+            {
+              "fait": "f-derniere-commande"
+            },
+            {
+              "non": {
+                "objet": "braise-de-veille"
+              }
+            },
+            {
+              "flag": "coeur-atteint"
             },
             {
               "non": {

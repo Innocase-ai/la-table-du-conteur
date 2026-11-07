@@ -85,5 +85,116 @@
         "fait": "f-hf-brunhild-enfant"
       }
     ]
+  },
+  {
+    "id": "hf-ev-fer-gris-descend",
+    "declencheur": "condition",
+    "lieu": "hf-forge-du-coeur",
+    "condition": {
+      "et": [
+        {
+          "flag": "coeur-atteint"
+        },
+        {
+          "ou": [
+            {
+              "flag": "hf-garde-apaisee"
+            },
+            {
+              "flag": "hf-garde-vaincue"
+            }
+          ]
+        },
+        {
+          "flag": "fer-gris-allie"
+        },
+        {
+          "non": {
+            "flag": "choix-fer-gris"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Au-dessus du ravin, un pas cadencé fait trembler le pont de la Veine.",
+    "effets": [
+      {
+        "rencontre": "hf-r-le-fer-gris-arrive"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-choix-du-coeur-libre",
+    "declencheur": "condition",
+    "lieu": "hf-forge-du-coeur",
+    "condition": {
+      "et": [
+        {
+          "flag": "coeur-atteint"
+        },
+        {
+          "ou": [
+            {
+              "flag": "hf-garde-apaisee"
+            },
+            {
+              "flag": "hf-garde-vaincue"
+            }
+          ]
+        },
+        {
+          "non": {
+            "flag": "fer-gris-allie"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "La rotonde se calme. Le Cœur bat plus bas, comme s’il attendait quelque chose de vous.",
+    "effets": [
+      {
+        "rencontre": "hf-r-le-choix-du-coeur"
+      }
+    ]
+  },
+  {
+    "id": "hf-ev-choix-du-coeur-apres-fer-gris",
+    "declencheur": "condition",
+    "lieu": "hf-forge-du-coeur",
+    "condition": {
+      "et": [
+        {
+          "flag": "coeur-atteint"
+        },
+        {
+          "ou": [
+            {
+              "flag": "hf-garde-apaisee"
+            },
+            {
+              "flag": "hf-garde-vaincue"
+            }
+          ]
+        },
+        {
+          "flag": "fer-gris-allie"
+        },
+        {
+          "flag": "hf-fer-gris-regle"
+        },
+        {
+          "non": {
+            "flag": "choix-fer-gris"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Le bruit des bottes s’éloigne sur le pont. Dans la rotonde, le Cœur bat plus bas, comme s’il attendait quelque chose de vous.",
+    "effets": [
+      {
+        "rencontre": "hf-r-le-choix-du-coeur"
+      }
+    ]
   }
 ]

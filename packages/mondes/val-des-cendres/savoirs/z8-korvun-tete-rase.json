@@ -1,0 +1,131 @@
+[
+  {
+    "pnj": "korvun-tete-rase",
+    "passe": "Korvun Tête-Rasée a vingt-deux ans. Il est orc, du clan Marteau-Vert, et neveu de Grodak : son père était le frère de son oncle, et ses parents ne sont plus. Grodak l'a élevé comme un fils, à la forge des réfugiés de Veillecendre, et lui a appris à frapper l'acier avant de lui apprendre à tenir une épée. Le clan forgeait pendant trois siècles pour les nains de la Haute-Forge ; il n'en reste aujourd'hui que son oncle, quelques cousins et lui. Le clan a perdu son marteau, et il ne dit rien de plus là-dessus. Il porte une vieille brûlure à l'avant-bras et un grand marteau de forge à la ceinture, et il forge avec son oncle chaque jour.",
+    "liens": [
+      {
+        "pnj": "grodak-marteau-vert",
+        "nature": "son oncle, qui l'a élevé",
+        "opinion": "Il le respecte plus qu'il ne saurait dire. Grodak parle peu, mais il écoute tout, et Korvun le sait."
+      },
+      {
+        "pnj": "ysolde-rouage",
+        "nature": "sa compagne de route, une gnome qui refait les mécanismes",
+        "opinion": "Un cerveau qui parle trop vite : elle a fini sa phrase quand il commence la sienne. Il la trouve utile, et ne le lui dit pas."
+      },
+      {
+        "pnj": "mireille-vanhaut",
+        "nature": "sa compagne de route, une tieffeline",
+        "opinion": "On la regarde de travers, comme on le regarde lui. Il se sent proche d'elle sans le dire, et il ne le dira pas."
+      },
+      {
+        "qui": "le clan Marteau-Vert",
+        "nature": "ses cousins, et ses morts à Ormgard",
+        "opinion": "Il n'en reste que quelques cousins et lui. Il dit « le clan » comme on dit une maison en deuil, et son regard se détourne quand on le nomme."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "crane-rase-runes",
+        "texte": "Il a le crâne rasé, couvert de runes vertes tatouées. Quand il ôte son casque, les gens de la forge le regardent un moment, puis détournent les yeux, et il les laisse faire sans un mot."
+      },
+      {
+        "id": "brulure-avant-bras",
+        "texte": "Une vieille brûlure marque son avant-bras, lisse et luisante. Il ne dit jamais d'où elle vient ; il frotte la cicatrice du pouce quand on la regarde trop longtemps."
+      },
+      {
+        "id": "poigne",
+        "texte": "Il serre la main à faire mal, sans y penser. Il s'en excuse d'un mot sec, et ajoute que les hommes de l'acier ne savent pas se saluer autrement."
+      },
+      {
+        "id": "plaisanterie-seche",
+        "texte": "Quand il se tait trop longtemps, il lâche une plaisanterie sèche qui fait rire la salle, lui le premier. Il ne prépare jamais ses blagues, et il regrette aussitôt quand personne ne rit."
+      },
+      {
+        "id": "forgeron-attend",
+        "texte": "Un forgeron attend toujours qu'on revienne chercher son travail, dit-il. Il garde chaque lame, chaque fer, sur l'étagère du fond, jusqu'à ce que le client revienne ou qu'il l'oublie."
+      },
+      {
+        "id": "premiere-lame",
+        "texte": "Il a frappé sa première lame à la forge des réfugiés, Grodak derrière lui, sa grosse main posée sur la sienne. La lame s'est tordue dans l'eau ; son oncle l'a regardée longtemps, puis l'a remise au feu sans un mot."
+      },
+      {
+        "id": "marteau-de-ceinture",
+        "texte": "Il tapote le manche de son grand marteau quand il réfléchit, trois coups brefs, un rythme que ses cousins reconnaissent de loin, et qui les fait rire ou se taire selon l'humeur."
+      },
+      {
+        "id": "nains-freres-de-forge",
+        "texte": "Les nains morts restent des frères de forge, dit-il, et il ne veut pas qu'on s'en moque devant lui, même en plaisantant."
+      },
+      {
+        "id": "arme-reparee-d-abord",
+        "texte": "Une arme cassée se répare avant d'en fabriquer une neuve, dit-il : c'est le premier réflexe de la forge, et il ne l'a jamais vu manquer, même quand il fallait veiller toute la nuit."
+      },
+      {
+        "id": "biere-tiede",
+        "texte": "À la veillée, il ne boit qu'une chope de bière et la laisse tiédir devant lui, par respect pour ceux qui n'en ont plus."
+      },
+      {
+        "id": "la-peur-de-decevoir",
+        "texte": "Il redoute de décevoir Grodak. Il ne le dit à personne : il serre la mâchoire quand son oncle le regarde travailler, et il reprend une soudure qui tenait déjà, pour que rien ne puisse lui être reproché.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "Il serre la mâchoire, dit que Grodak n'a jamais eu à se plaindre de lui, et retourne à son enclume sans finir sa phrase."
+      },
+      {
+        "id": "le-regard-des-refugies",
+        "texte": "Il voit les réfugiés regarder les orcs comme des brutes, et il ne répond pas : il rentre la tête dans les épaules, comme s'il recevait un coup qui n'était pas pour lui.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "Il hausse les épaules et dit que les gens ont peur de ce qu'ils ne connaissent pas, ce qui est une façon de ne pas répondre."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-clan-marteau-vert",
+        "fait": "f-vei-clan-marteau-vert",
+        "version": "Le clan forgeait pour les nains de la Haute-Forge, des armes qu'on s'arrachait. Il n'en reste que son oncle, quelques cousins et lui, et il le dit droit, sans se plaindre.",
+        "acces": {}
+      },
+      {
+        "id": "les-gobelins-affames",
+        "fait": "f-vei-gobelins-affames",
+        "version": "Il a vu les gobelins de l'embuscade : chassés des hauteurs par la cendre, ils pillent les caravanes parce qu'ils ont faim. Leur chef, Nez-Fendu, parlemente pour du sel et du pain, et Korvun trouve que c'est le prix d'un homme qui a faim.",
+        "acces": {}
+      },
+      {
+        "id": "les-morts-d-ormgard",
+        "fait": "f-cry-origine-ormgard",
+        "version": "Il sait qu'Ormgard était le quartier des morts de la Haute-Forge, sous le cimetière nord de Veillecendre, où l'on déposait les urnes à l'écart des forges. Ses morts à lui y reposent, et il dit « la garde des urnes » comme on récite un nom de famille.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Il baisse la voix et dit qu'il y a des tombes, là-bas, qu'il ne veut pas nommer devant tout le monde."
+      },
+      {
+        "id": "le-marteau-perdu",
+        "fait": "f-hf-marteau-du-premier",
+        "version": "Il sait seulement ce que disent les anciens : le marteau du premier forgeron « repose dans le trésor du roi ». Il voudrait le rapporter à son oncle, pour prouver que le nom Marteau-Vert n'est pas maudit, et il ne dit pas pourquoi il croit qu'il l'est.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Il regarde ses mains et dit que le clan a perdu son marteau, et que ce n'est pas une expression."
+      },
+      {
+        "id": "la-legende-de-l-ancetre",
+        "fait": "f-orcs-et-nains",
+        "version": "Il connaît la légende, et rien d'autre : un de ses ancêtres aurait trahi les nains en parlant, avant la Nuit de la Cendre, à eux ou à leurs ennemis, les versions diffèrent. Il ne sait pas pourquoi l'ancêtre a parlé, et il n'a jamais voulu demander.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Il ferme les yeux, dit qu'il n'a rien à ajouter sur son ancêtre, et demande qu'on n'en parle ni à son oncle ni aux autres orcs.",
+        "tabou": [
+          "Ghorm",
+          "vendu un secret"
+        ]
+      }
+    ]
+  }
+]

@@ -231,9 +231,26 @@ describe("audit des énigmes d'un monde", () => {
   });
 
   it('l’audit signale en avis une énigme sans échec, une récompense jamais lue et un énoncé qui donne l’ordre', () => {
-    const avis = auditerEnigmes(dm, srd).flatMap((rap) => rap.verifications.filter((x) => !x.ok).map((x) => `${rap.id}:${x.id}`));
+    // Le Val a corrigé ces défauts : on les fabrique ici, sur des copies des énigmes.
+    const socle = enigme('hf-enigme-onzieme-socle');
+    const { echec: _echec, ...sansEchec } = socle;
+    const aiguillages = enigme('gro-e-aiguillages-de-la-fosse');
+    const cadran = enigme('vei-e-cadran-de-la-lanterne');
+    const casse = {
+      ...dm,
+      enigmes: new Map(dm.enigmes)
+        .set(socle.id, sansEchec as Enigme)
+        .set(aiguillages.id, { ...aiguillages, enonce: 'Trois wagonnets : minerai, roche, vide. Poussez-les dans le bon ordre.' } as Enigme)
+        .set(cadran.id, { ...cadran, recompense: { ...cadran.recompense, effets: [{ flag: 'drapeau-que-personne-ne-lit' }] } } as Enigme),
+    };
+    const avis = auditerEnigmes(casse, srd).flatMap((rap) => rap.verifications.filter((x) => !x.ok).map((x) => `${rap.id}:${x.id}`));
     expect(avis).toContain('hf-enigme-onzieme-socle:echec-defini');
     expect(avis).toContain('gro-e-aiguillages-de-la-fosse:enonce-ordre');
     expect(avis).toContain('vei-e-cadran-de-la-lanterne:recompense-lue');
+  });
+
+  it('les énigmes du Val n’ont plus d’avis (échec défini, énoncé sans l’ordre, récompense lue)', () => {
+    const avis = auditerEnigmes(dm, srd).flatMap((rap) => rap.verifications.filter((x) => !x.ok).map((x) => `${rap.id}:${x.id}`));
+    expect(avis).toEqual([]);
   });
 });

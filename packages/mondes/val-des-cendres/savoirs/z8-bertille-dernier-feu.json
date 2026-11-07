@@ -1,0 +1,139 @@
+[
+  {
+    "pnj": "bertille-dernier-feu",
+    "passe": "Bertille Dernier-Feu est née à Veillecendre, dans l'auberge du Dernier Feu, bâtie par des nains avant la Lanterne. Le feu de sa cheminée est celui de sa mère, qui le tenait de sa propre grand-mère, et Bertille a grandi entre les marmites et les voyageurs de la vallée. Il y a dix-huit ans, à trente ans, elle a repris l'auberge à son tour. Elle y tient la table ouverte : colporteurs, réfugiés, et Nerio, son cuisinier tieffelin, qu'elle défend contre tout le village. Son mari, Bram, est mort de la toux grise au printemps ; depuis, l'auberge tourne avec moins de bras et plus de comptes. Elle nourrit encore tout le monde jusqu'au printemps, et son fait marquant tient en peu de mots : le feu que sa mère lui a laissé ne s'éteindra pas tant qu'elle tiendra la louche.",
+    "liens": [
+      {
+        "pnj": "aurele-montclar",
+        "nature": "le bailli de Veillecendre, qui tient les registres",
+        "opinion": "Elle dit qu'il compte juste, mais pas bien, et qu'il tourne sa bague au sceau quand il parle de « nous » au lieu de « moi »."
+      },
+      {
+        "pnj": "vei-nerio-braisemolle",
+        "nature": "son cuisinier, qu'elle défend contre tout le village",
+        "opinion": "Le meilleur cuisinier de la vallée, dit-elle, et elle jette dehors le premier qui l'accuse d'avoir appelé la cendre devant elle."
+      },
+      {
+        "pnj": "mireille-vanhaut",
+        "nature": "une tieffeline qui vient en aide aux mourants",
+        "opinion": "Elle la trouve trop douce pour le métier qu'elle fait : elle s'excuse de tout, comme si elle devait quelque chose à chacun."
+      },
+      {
+        "pnj": "gro-joss-tamisier",
+        "nature": "un homme enfermé dans la Fosse, qui lui doit un peu d'argent",
+        "opinion": "Il a promis de payer, et elle attend qu'il tienne sa parole sans avoir besoin de le lui rappeler."
+      },
+      {
+        "qui": "Bram",
+        "nature": "son mari, mort au printemps",
+        "opinion": "Elle en parle à demi-mot, en ricanant pour ne pas pleurer, et n'aime pas qu'on le plaigne devant la salle."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "il-y-a-dix-huit-ans",
+        "texte": "Il y a dix-huit ans, à trente ans, elle a repris l'auberge du Dernier Feu des mains de sa mère. Elle a gardé le même tablier taché de suie, et la même louche qu'elle n'a jamais posée."
+      },
+      {
+        "id": "cave-du-sel",
+        "texte": "Dans la cave de l'auberge, bâtie par des nains avant la Lanterne, elle compte chaque sac de grain à voix haute, depuis que les siens arrivent sablés. Elle ne dit à personne combien il en reste."
+      },
+      {
+        "id": "louche-a-la-ceinture",
+        "texte": "Elle porte sa louche passée à la ceinture comme une épée, et la brandit pour ponctuer chaque phrase. Quand un client s'énerve, elle la pose doucement sur le comptoir, sans jamais frapper personne."
+      },
+      {
+        "id": "mes-poulets",
+        "texte": "Elle appelle tout le monde « mes poulets », les enfants comme les colporteurs, et « mon grand » quand elle veut calmer un homme. Elle jure « par ma marmite ! » dès qu'une casserole brûle."
+      },
+      {
+        "id": "ricane-pour-ne-pas-pleurer",
+        "texte": "Quand une larme monte, elle ricane fort, tourne le dos à la salle et frotte la table avec un torchon déjà propre. Personne ne lui fait remarquer le torchon."
+      },
+      {
+        "id": "opinion-sur-le-feu",
+        "texte": "On ne laisse jamais mourir un feu que d'autres ont entretenu avant soi, dit-elle. La cheminée a vu trois générations de voyageurs, et elle ne la laissera pas s'éteindre pour une mauvaise année."
+      },
+      {
+        "id": "opinion-sur-aurele",
+        "texte": "Aurèle compte juste, dit-elle, mais pas bien : il sait combien pèse un sac et oublie ce qu'il vaut pour ceux qui le mangent. Elle le dit sans le regarder, en essuyant un verre."
+      },
+      {
+        "id": "opinion-sur-les-pelerins",
+        "texte": "Les Pèlerins gris, dit-elle, sont des gens qui ont fini de mettre du bois. Ils parlent de paix à des gens qui ont froid, et elle ne les écoute pas plus d'une phrase."
+      },
+      {
+        "id": "anecdote-dent-cassee",
+        "texte": "Un matin de la semaine dernière, elle a cassé une dent sur son propre pain, et elle en rit en montrant la brèche. Elle dit que c'est le prix du grain sablé, et que la cuisine n'a jamais eu de pire."
+      },
+      {
+        "id": "la-soupe-sur-le-seuil",
+        "texte": "Chaque soir, elle pose une soupe chaude sur le seuil de la cuisine. Chaque matin, elle la retrouve renversée, mais vide. Elle n'a pas ouvert à la porte, et elle ne dit pas qui elle attend.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "elle hausse les épaules, dit qu'il y a toujours quelqu'un qui a faim à la porte, et change de sujet"
+      },
+      {
+        "id": "la-nuit-de-bram",
+        "texte": "Au printemps, la toux grise a emporté Bram. C'est Mireille, la tieffeline qui veille les mourants, qui l'a veillé jusqu'au bout. Bertille ne l'a jamais remerciée comme il faut.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "elle dit que le printemps a été long et que les veillées ne se comptent pas, puis sert une autre tournée"
+      },
+      {
+        "id": "la-peur-du-dernier-feu",
+        "texte": "Ce qui lui fait peur, ce n'est ni la faim ni la neige : c'est de perdre l'auberge et le feu de sa mère, et de rester seule au milieu des réfugiés qui dorment dans sa salle.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "elle dit qu'un feu ne s'éteint pas en une nuit, et qu'elle a des assiettes à laver"
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-cloche-du-soir",
+        "fait": "f-vei-couvre-feu",
+        "version": "Elle dit qu'à la cloche du soir on ferme la porte, et qu'on n'ouvre à personne, pas même à une voix qu'on connaît : les morts ont appris à imiter les voix de ceux qu'ils ont aimés.",
+        "acces": {}
+      },
+      {
+        "id": "les-gris-a-l-oree",
+        "fait": "f-vei-pelerins-rodent",
+        "version": "Elle dit que des Pèlerins gris, vêtus de linge couleur cendre, rôdent la nuit à l'orée du village et proposent « la paix » à qui veut partir. Elle sait que plusieurs réfugiés les ont suivis.",
+        "acces": {}
+      },
+      {
+        "id": "la-betise-sur-nerio",
+        "fait": "f-vei-tieffelins-accuses",
+        "version": "Elle appelle ça une bêtise : on murmure que Nerio a « appelé » la cendre parce qu'il a des cornes, alors que la cendre tombait des siècles avant qu'il naisse.",
+        "acces": {}
+      },
+      {
+        "id": "le-grain-sable",
+        "fait": "f-vei-greniers-au-tiers",
+        "version": "Elle sait que ses sacs contiennent du sable : elle a cassé une dent sur son propre pain. Elle soupçonne la grange, et demande qu'on compte discrètement, sans accuser personne.",
+        "acces": {}
+      },
+      {
+        "id": "ma-dette",
+        "fait": "f-vei-dette-de-bertille",
+        "version": "Elle doit cent vingt pièces d'or au bailli pour du grain acheté à crédit l'hiver dernier ; le billet est signé, et l'auberge sert de gage. Elle n'a pas la somme, et n'ose pas le demander.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "elle serre le torchon, dit que les comptes de l'hiver ne regardent que sa cuisine, et change de sujet"
+      },
+      {
+        "id": "bram-a-la-porte",
+        "fait": "f-vei-les-morts-rentrent",
+        "version": "Elle dit que Bram est revenu frapper à la porte de la cuisine il y a une semaine, à l'heure où il rentrait du marché. Elle n'a pas ouvert, et elle ne se le pardonne pas.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "elle serre la louche, dit qu'un mort ne frappe pas à une porte qu'on a fermée, et qu'elle n'en parlera pas ce soir"
+      }
+    ]
+  }
+]

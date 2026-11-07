@@ -1,0 +1,144 @@
+[
+  {
+    "pnj": "vei-oswin-le-veilleur",
+    "passe": "Oswin a 68 ans. Pendant des années, il a tenu le four commun de Veillecendre, jusqu'à ses cinquante-neuf ans : il pétrissait avant l'aube, et le pain sortait tiède quand les premiers clients passaient la porte. Il y a neuf ans, il a quitté le four pour le foyer de la Lanterne, où il se tient jour et nuit, sauf pour une soupe. Il parle bas, sourit peu et s'arrête souvent pour reprendre son souffle. Les enfants du quartier lui apportent du pain en cachette, et une petite fille, Lise, lui a appris une chanson pour s'endormir. Il dit « je vous prie » à qui vient le voir, et il attend la réponse avant de reprendre sa phrase.",
+    "liens": [
+      {
+        "pnj": "hesta-cendrebrune",
+        "nature": "la Mère-Gardienne, qui le garde au village",
+        "opinion": "Il ne lui en veut pas, et le lui fait sentir sans le dire. Il garde le silence pour elle, pas pour lui."
+      },
+      {
+        "pnj": "vei-lise-petit-pas",
+        "nature": "la petite qui voit l'homme gris du puits",
+        "opinion": "Elle a neuf ans, elle lui a appris sa chanson et lui apporte du pain en cachette de sa mère. Il la laisse parler sans jamais la gronder."
+      },
+      {
+        "pnj": "fennick-rouage",
+        "nature": "le gnome de l'atelier, qui règle le cadran de la Lanterne",
+        "opinion": "Il ne l'accuse pas de la panne du cadran. Il ne tient pas à ce qu'on la répare vite, et il ne dit pas pourquoi."
+      },
+      {
+        "pnj": "aurele-montclar",
+        "nature": "le bailli, qui compte les tonneaux",
+        "opinion": "Il le trouve froid et ne se fait aucune illusion sur lui. Quand on prononce son nom devant lui, il répond d'un ton sec et change de sujet."
+      },
+      {
+        "qui": "le Veilleur d'avant",
+        "nature": "celui qui tenait le foyer avant lui",
+        "opinion": "Il en parle à voix basse, comme d'un homme qui a tenu la flamme plus longtemps qu'on ne le lui demandait."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "le-four-commun",
+        "texte": "Jusqu'à ses cinquante-neuf ans, il a tenu le four commun de Veillecendre. Il pétrissait avant l'aube, la farine collée aux manches, et le pain sortait tiède quand les premiers rentraient du marché. Il y a neuf ans, il a quitté le four pour le foyer."
+      },
+      {
+        "id": "le-visage-qui-change",
+        "texte": "Ses cheveux sont devenus blancs en trois hivers, et il évite les miroirs. Il a surtout peur de faire peur aux enfants qui viennent le voir en cachette, et il ne le dit qu'une fois.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "il remonte la couverture sur ses épaules et dit qu'un vieil homme n'a pas grand-chose à montrer, puis il change de sujet"
+      },
+      {
+        "id": "les-larmes-d-en-bas",
+        "texte": "La nuit, à travers le plancher, il entend Hesta pleurer dans la pièce du dessous. Il ne monte pas, il ne descend pas. Il reste assis sous sa couverture grise et ne lui en veut pas.",
+        "acces": {
+          "attitudeMin": 15
+        },
+        "evasif": "il dit que les vieilles maisons ne dorment pas, que le plancher de la tour grince, et qu'il vaut mieux ne pas écouter les murs"
+      },
+      {
+        "id": "couverture-de-laine",
+        "texte": "Une couverture de laine grise sur les épaules, qu'il ne quitte jamais, même pour la soupe. Elle sent la fumée du foyer et la cendre fine qui entre par les fentes de la tour."
+      },
+      {
+        "id": "souffle-court",
+        "texte": "Il s'arrête au milieu d'une phrase, ferme les yeux, reprend son souffle par petites gorgées, puis reprend là où il s'était arrêté, sans s'excuser ni demander qu'on attende."
+      },
+      {
+        "id": "je-vous-prie",
+        "texte": "Il dit « je vous prie » à tout le monde, aux enfants comme aux soldats, et il attend la réponse avant de continuer. Un garde qui répond « oui, Veilleur » le fait sourire."
+      },
+      {
+        "id": "fredonne",
+        "texte": "Quand il croit être seul, il fredonne un air sans paroles qui finit toujours sur la même note basse. Il ne sait pas toujours qu'on l'entend depuis l'escalier."
+      },
+      {
+        "id": "chanson-de-lise",
+        "texte": "Lise, neuf ans, qui voit l'homme gris du puits, lui a appris une chanson pour s'endormir. Il la fredonne à voix basse près de la flamme, et il retrouve les paroles quand elle se trompe."
+      },
+      {
+        "id": "enfants-au-pain",
+        "texte": "Les enfants du quartier viennent parfois le voir en cachette de leurs mères, un morceau de pain à la main, et repartent sans un mot. Il ne leur demande jamais pourquoi ils reviennent."
+      },
+      {
+        "id": "flamme-bete-gentille",
+        "texte": "Pour lui, la flamme est une grosse bête gentille, tiède comme un enfant qui dort. Il dit qu'on ne regarde pas la flamme : on se tient dedans, jour et nuit, comme on se tient dans une maison."
+      },
+      {
+        "id": "runes-du-foyer",
+        "texte": "Il montre du doigt les runes gravées autour du foyer et demande à chaque visiteur s'il sait les lire. Il n'attend pas vraiment la réponse ; il veut seulement qu'on les regarde une fois."
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-runes-du-foyer",
+        "fait": "f-vei-runes-du-foyer",
+        "version": "Il connaît les runes par cœur et les récite à voix basse, comme une prière qu'on n'a pas choisie. Pour lui, elles disent ce qui se passe au foyer, et il n'y ajoute rien.",
+        "acces": {}
+      },
+      {
+        "id": "mes-mains-qui-tremblent",
+        "fait": "f-vei-veilleur-visage",
+        "version": "Il sait ce que la flamme lui prend au corps : le sommeil léger, l'appétit, les cheveux, les mains. Il croit que ses mains tremblent par temps froid, et il ne dit pas le reste.",
+        "acces": {
+          "attitudeMin": 15
+        },
+        "evasif": "il serre les mains sous la couverture et dit que les vieux tremblent par temps froid, rien de plus"
+      },
+      {
+        "id": "ce-que-prend-la-flamme",
+        "fait": "f-veilleur-se-consume",
+        "version": "Il sait que la flamme ne vit pas d'huile seule, et que chaque année elle prend une part de celui qui la tient. Il le dit comme on parle du temps : elle prend ce qu'elle prend.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "il dit que la flamme est tiède et que chacun paie quelque chose pour sa place, puis il se tait",
+        "tabou": [
+          "donne un peu de sa vie",
+          "un peu de ma vie",
+          "Un veilleur, un souffle, un an",
+          "se consume"
+        ]
+      },
+      {
+        "id": "l-etincelle-detachee",
+        "fait": "f-vei-etincelle-et-braise",
+        "version": "Il sait qu'une étincelle peut se détacher de la flamme et se loger dans un boîtier de nain. Il croit que cela ne coûtera qu'un peu à une flamme qui n'a plus beaucoup à donner.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "il regarde la flamme longtemps et dit qu'une braise se fait comme du pain : avec de la patience et sans trop regarder"
+      },
+      {
+        "id": "celui-qui-resterait",
+        "fait": "f-rallumer-par-volontaire",
+        "version": "Il rêve de la Haute-Forge, là où la flamme est née. Il croit qu'un vivant qui resterait sur place suffirait à réveiller ce qui s'éteint, et il connaît quelqu'un qui n'aurait pas peur. Il ne dit pas son nom.",
+        "acces": {
+          "attitudeMin": 25,
+          "condition": {
+            "fait": "f-coeur-de-braise"
+          }
+        },
+        "evasif": "il dit qu'il est trop vieux pour les routes de la Haute-Forge, et qu'il vaut mieux parler d'autre chose",
+        "tabou": [
+          "volontaire",
+          "rallumer"
+        ]
+      }
+    ]
+  }
+]

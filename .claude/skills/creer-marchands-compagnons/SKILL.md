@@ -61,5 +61,7 @@ Un PNJ est dans son `lieu`. `presences` l'ajoute ailleurs selon le **moment** (`
 - **Service sans effet** : un id `lit-a-l-etage` ne fait pas dormir ; renomme-le `chambre-…`.
 - **`rachat: 0` oublié** : le temple qui rachète des haches ; mets `types` ou `rachat: 0`.
 - **Compagnon qui n'existe pas** : un bloc `compagnon` sans `escorte` ne fait rien en jeu.
+- **Interjections écrites sans spécification** : les conditions (lieux, faits, quêtes, `choix-<dilemme>-<option>`, jauge) doivent être choisies par Claude et données à Haiku avec l'intention ; un agent qui invente ses conditions casse des ids. Modèle : Val des Cendres (`interjections/z8-compagnons.json`, 47 interjections).
+- **Dilemme dans une salle qui a déjà sa rencontre** : les boutons du choix restent cachés tant qu'une scène de rencontre est ouverte ; pose le dilemme avant la salle, ou fais-en une issue de la rencontre.
 - **Escorte sans fin** : prévois quand et comment il quitte le groupe (fin de sa quête, choix, danger).
 - Avant de commiter : `docs/JOURNAL.md`, et l'accord de l'utilisateur.

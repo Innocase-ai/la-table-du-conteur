@@ -16,7 +16,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L’un de vous compte d’un coup d’œil les pieux serrés autour du mur : un cordon si régulier ne se dresse jamais pour rien, et un ancien soldat sait qu’il faut tenir ce genre de ligne."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L’un de vous étudie les initiales du seuil : quelqu’un les a frottées de la paume pour qu’elles restent lisibles, et un voleur sait qu’on ne prend pas ce soin sans prévoir de revenir."
+      }
+    ]
   },
   {
     "id": "exa-nervures-du-pont",
@@ -35,7 +52,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "Votre nain pose la paume sur la nervure et reconnaît le fer d’origine : des rivets alignés avec cette régularité, c’est le travail d’un maître que l’on ne refait pas à la légère."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L’un de vous sent sous la paume une chaleur qui ne semble pas naturelle : le fer garde une énergie que la pierre n’a pas, et un mage y pressent une source qu’il ne saurait nommer."
+      }
+    ]
   },
   {
     "id": "exa-toux-de-pont-de-fer",
@@ -54,7 +88,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L’un de vous remarque la bouillie grise figée dans les gamelles et murmure, presque sans y penser, une courte formule de protection, comme le veut la coutume de son ordre."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L’un de vous juge la garde d’un coup d’œil : les sentinelles relèvent sans un mot, un chiffon serré sur la bouche, et un ancien soldat reconnaît dans ce silence une consigne, non une fatalité."
+      }
+    ]
   },
   {
     "id": "exa-noms-du-cairn",
@@ -73,7 +124,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "goliath"
+          }
+        },
+        "texte": "Votre goliath effleure les pierres plates du cairn et reconnaît un empilement fait par des mains habituées à porter lourd sans rien briser. Les bandelettes neuves lui disent qu’on revient ici souvent."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L’un de vous devine, dans les creux usés des noms, une écriture très ancienne, aux formes dont il a vu l’équivalent dans les textes les plus vieux qu’il ait copiés."
+      }
+    ]
   },
   {
     "id": "exa-allee-des-couches",
@@ -92,7 +160,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L’un de vous reconnaît la pose des mains croisées sur la poitrine, celle qu’on donne aux défunts dans les rites funèbres ; la cendre posée sur les visages lui paraît un soin, non une négligence."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L’un de vous remarque qu’aucune trace de pas ne troue la cendre, pas même sur les pierres balayées, et un rôdeur sait que ce vide se lit comme une piste qu’il faut apprendre."
+      }
+    ]
   },
   {
     "id": "exa-tente-du-frere",
@@ -111,7 +196,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L’un de vous reconnaît dans la lampe de veille une facture ancienne, et le silence réglé du camp lui rappelle une liturgie : chacun sait quand se taire et quand bouger."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L’un de vous repère le livre de comptes ouvert sur le coffre et ses colonnes trop nettes ; un roublard sait que ce soin de la plume cache souvent quelqu’un qui compte chaque sou."
+      }
+    ]
   },
   {
     "id": "exa-dortoir-des-mineurs",
@@ -130,7 +232,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "Votre nain examine les chaussures cloutées, lacets rentrés, et reconnaît le travail d’un cordonnier de mineurs : des clous serrés pour des pieds qui passent leurs journées sur la pierre."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L’un de vous compte les couchettes alignées et les chaussures au pied de chacune : une caserne ne range pas autrement ses hommes, et un ancien soldat croit presque entendre le pas de celui qui se lève."
+      }
+    ]
   },
   {
     "id": "exa-filon-de-braise",
@@ -149,7 +268,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L’un de vous sent la lueur sans fumée et perçoit dans la veine une énergie qui brûle sans rien consumer ; un mage sait qu’une telle flamme n’a rien de naturel, et qu’il vaut mieux ne pas la toucher."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "Votre nain pose la main sur la roche tiède, flaire le soufre doux et reconnaît un filon qu’aucun mineur ne touche sans précaution, la roche étant trop chaude pour une veine ordinaire."
+      }
+    ]
   },
   {
     "id": "exa-ossuaire-des-loups",
@@ -168,7 +304,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L’un de vous repère les traces de crocs sur les os rongés, puis constate que les rangs sont trop réguliers pour une meute ; un rôdeur sait qu’aucun animal ne range ainsi sa proie."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L’un de vous sent la fourrure mouillée et la grotte tiède, et reconnaît dans les crânes d’herbivores disposés en couronne un geste de respect pour la vie ; un druide voit que rien n’a été gâché ici."
+      }
+    ]
   },
   {
     "id": "exa-glas-fendu",
@@ -187,7 +340,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "texte": "L’un de vous tend l’oreille vers la cloche fendue et imagine le son qu’elle rendait, un accord brisé net, comme une corde de luth coupée en pleine mélodie."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "Votre acolyte devine une formule funèbre dans les derniers mots lisibles de la spirale et reconnaît l’usage des tombes de son temple, où l’on grave le nom avant la prière."
+      }
+    ]
   },
   {
     "id": "exa-porte-du-sceau",
@@ -206,7 +376,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "Votre nain examine les dents de la serrure, les rouages de bronze et les encoches, et reconnaît un ouvrage de maître, qu’aucun crocheteur ne forcerait sans l’avoir étudié longtemps."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L’un de vous sent le métal tiède de la serrure et voit que les runes blanches forment des cercles emboîtés ; un mage reconnaît le signe d’un sceau conçu pour résister à la force brute."
+      }
+    ]
   },
   {
     "id": "exa-statues-des-rois",
@@ -225,7 +412,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "Votre nain reconnaît les outils tenus par les statues, ceux d’un tailleur de pierre, et juge le rubis serti avec une précision qu’aucun artisan négligent n’atteindrait."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L’un de vous compte les socles et remarque le vide au bout de la rangée ; un érudit sait qu’une lacune dans une suite de rois n’est jamais anodine, et qu’il faut la noter."
+      }
+    ]
   },
   {
     "id": "exa-marche-fige",
@@ -244,7 +448,24 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L’un de vous repère les pièces de cuivre rangées en piles et les balances en équilibre ; un voleur voit une fortune laissée là, intacte, et comprend que personne n’a pris le temps de la ramasser."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L’un de vous juge la cloche de clôture, pendue à son crochet et prête à sonner ; un ancien soldat y reconnaît une alerte jamais donnée, et comprend qu’on a été surpris en pleine journée."
+      }
+    ]
   },
   {
     "id": "exa-atelier-de-brunhild",
@@ -263,6 +484,23 @@
         "effets": []
       }
     ],
-    "regards": []
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "Votre gnome se glisse à l’établi sans peine, reconnaît les engrenages de bois et juge le dessin de forge : ces traits trop épais trahissent un apprenti, et non un maître de la forge."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L’un de vous voit la poupée de fer briller seule dans la cendre et y devine un objet qu’on entretient comme une offrande ; un clerc reconnaît ce soin patient, celui qu’on réserve aux choses sacrées."
+      }
+    ]
   }
 ]

@@ -64,7 +64,7 @@
           "formules"
         ],
         "question": "Comment fonctionne la magie des gnomes ?",
-        "reponse": "Elle explique que la magie des gnomes est une mécanique : un sort est un engrenage de mots, il suffit que chaque dent trouve la bonne. Elle admet qu'elle est plus douée pour le démontage que pour l'assemblage, ce qui irrite Fennick au plus haut point.",
+        "reponse": "Ysolde pousse ses lunettes de laiton sur le front et se lance. « La magie gnome, c’est de la mécanique, point final. Un sort est un engrenage de mots : il suffit que chaque dent trouve la bonne. » Elle compte sur ses doigts. « Deuxième point : je suis bien plus douée pour démonter que pour assembler, et Fennick en est hors de lui. »",
         "revele": []
       },
       {
@@ -108,8 +108,36 @@
               "pnj": "ysolde-rouage",
               "delta": 5
             }
+          },
+          {
+            "escorte": {
+              "pnj": "ysolde-rouage",
+              "actif": true
+            }
           }
         ]
+      },
+      {
+        "id": "se-separer",
+        "mots": [
+          "se séparer",
+          "rester ici",
+          "attendre ici",
+          "reste ici"
+        ],
+        "attitudeMin": 25,
+        "question": "Lui demander de rester ici.",
+        "reponse": "Ysolde remonte ses lunettes sur son front et serre la sacoche contre elle. « D’accord. Je reste ici, je range mes notes, je compte les jours. Mais reviens me chercher avant que je me mette à démonter quelque chose d’important. »",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "ysolde-rouage",
+              "actif": false
+            }
+          }
+        ],
+        "unique": false
       },
       {
         "id": "la-lanterne",
@@ -121,7 +149,7 @@
           "la tour"
         ],
         "question": "Qu'avez-vous remarqué sur la flamme de la Lanterne ?",
-        "reponse": "Elle dit que la Lanterne est le plus beau mécanisme qu'elle ait vu, et le plus fragile. Elle a regardé la flamme de près, a mesuré ses oscillations, et elle est certaine qu'elle n'est pas alimentée que par de l'huile. Elle ne sait pas par quoi.",
+        "reponse": "Ysolde s’approche de la vitre sans la toucher. « Le plus beau mécanisme que j’aie jamais vu, et le plus fragile. J’ai regardé la flamme de près, j’ai mesuré ses oscillations. Je suis certaine qu’elle n’est pas alimentée que par de l’huile. Par quoi ? Je n’en ai aucune idée, et ça me ronge. »",
         "revele": [
           "f-vei-combustible"
         ]
@@ -271,7 +299,7 @@
           "marteau"
         ],
         "question": "Comment Grodak vous a-t-il appris le métier ?",
-        "reponse": "Il dit que son oncle l'a élevé comme un fils, lui a appris à frapper l'acier avant de lui apprendre à tenir une épée. Il le respecte plus qu'il ne saurait l'exprimer, et il redoute de le décevoir. Il précise que Grodak ne parle pas beaucoup, mais qu'il écoute tout.",
+        "reponse": "Son regard glisse vers le marteau à sa ceinture. « Mon oncle m’a élevé comme un fils. Il m’a appris à frapper l’acier avant de m’apprendre à tenir une épée. » Il serre la mâchoire. « Je le respecte plus que je ne saurais l’exprimer, et je redoute de le décevoir. Grodak ne parle pas beaucoup, mais il écoute tout. »",
         "revele": []
       },
       {
@@ -332,8 +360,36 @@
               "pnj": "korvun-tete-rase",
               "delta": 5
             }
+          },
+          {
+            "escorte": {
+              "pnj": "korvun-tete-rase",
+              "actif": true
+            }
           }
         ]
+      },
+      {
+        "id": "se-separer",
+        "mots": [
+          "se séparer",
+          "rester ici",
+          "attendre ici",
+          "reste ici"
+        ],
+        "attitudeMin": 25,
+        "question": "Lui demander de rester ici.",
+        "reponse": "Korvun hoche la tête, une fois, sans discuter. « Compris. Je garde l’endroit, et je ne bouge pas d’ici. Mon oncle dit qu’un forgeron attend toujours qu’on revienne chercher son travail. » Il serre le manche de son marteau. « Ne tarde pas trop. Je n’ai pas la patience des statues. »",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "korvun-tete-rase",
+              "actif": false
+            }
+          }
+        ],
+        "unique": false
       }
     ],
     "salutations": {
@@ -498,7 +554,7 @@
         ],
         "attitudeMin": 25,
         "question": "Que pensez-vous des Pèlerins gris ?",
-        "reponse": "Elle dit avec précaution que les Pèlerins croient que la cendre est une grâce : se laisser prendre, c'est rejoindre les morts en paix, sans douleur. Ils ne tuent personne, ils proposent seulement. Elle sait qu'ils séduisent parce qu'ils parlent de repos à des gens épuisés. Elle ne les hait pas ; elle les craint.",
+        "reponse": "Mireille fait glisser un grain de son chapelet entre ses doigts, longtemps. « Ils croient que la cendre est une grâce. Se laisser prendre, c’est rejoindre les morts en paix, sans douleur. Ils ne tuent personne. Ils proposent, seulement. Ils séduisent parce qu’ils parlent de repos à des gens épuisés. Je ne les hais pas. Je les crains. »",
         "revele": [
           "f-pelerins-motif",
           "f-vei-pelerins-rodent"
@@ -539,7 +595,7 @@
           "comment calmer"
         ],
         "question": "Comment apaiser un mort égaré ?",
-        "reponse": "Elle explique qu'on peut apaiser un mort qui ne cherche pas à nuire : une pincée de cendre bénite, une parole de paix, et la permission de partir. Elle conseille de ne jamais lui refuser ce qu'il cherche, sinon il revient. Elle donne volontiers de sa cendre bénite à qui promet de s'en servir sans cruauté.",
+        "reponse": "Sans se presser, Mireille pose la paume à plat sur la table. « Un mort qui ne cherche pas à nuire peut s’apaiser : une pincée de cendre bénite, une parole de paix, et la permission de partir. Ne lui refusez jamais ce qu’il cherche, sinon il revient. Je donne volontiers de ma cendre bénite à qui promet de s’en servir sans cruauté. »",
         "revele": [
           "f-vei-les-morts-rentrent"
         ],
@@ -588,8 +644,36 @@
               "pnj": "mireille-vanhaut",
               "delta": 5
             }
+          },
+          {
+            "escorte": {
+              "pnj": "mireille-vanhaut",
+              "actif": true
+            }
           }
         ]
+      },
+      {
+        "id": "se-separer",
+        "mots": [
+          "se séparer",
+          "rester ici",
+          "attendre ici",
+          "reste ici"
+        ],
+        "attitudeMin": 25,
+        "question": "Lui demander de rester ici.",
+        "reponse": "Mireille incline la tête avec douceur. « Je comprends. Je resterai ici, avec ceux qui ont besoin d’une veillée, et je garderai une place près du feu. » Elle sourit, d’un petit rire triste qui s’excuse. « Reviens quand tu veux. Et reviens entier, si tu peux. »",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "mireille-vanhaut",
+              "actif": false
+            }
+          }
+        ],
+        "unique": false
       }
     ],
     "salutations": {

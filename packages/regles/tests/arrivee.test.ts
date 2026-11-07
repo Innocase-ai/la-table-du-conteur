@@ -29,6 +29,11 @@ const SUCCES: Generateur = () => 0.999;
 function monde(): DonneesMonde {
   const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
+  // Le Val a désormais ses récits : on les retire pour tester un monde qui n'en a pas (chaque test ajoute les siens).
+  for (const l of r.monde.lieux.values()) {
+    l.arrivee = undefined;
+    l.arriveeVariantes = [];
+  }
   return r.monde;
 }
 const groupe = () => herosPreTires(srd).map((h) => personnageDepuisFiche(h.fiche, { id: h.fiche.nom.toLowerCase() }));

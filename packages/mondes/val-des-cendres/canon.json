@@ -1,0 +1,283 @@
+{
+  "secrets": [
+    {
+      "id": "secret-la-flamme-prend-une-vie",
+      "texte": "Chaque année, le Veilleur donne un peu de sa vie à la Lanterne (« Un veilleur, un souffle, un an ») ; Oswin le fait depuis neuf hivers et se consume ; la Mère-Gardienne le cache au village.",
+      "fait": "f-veilleur-se-consume",
+      "motsTabou": [
+        "donne un peu de sa vie",
+        "un peu de sa vie",
+        "un peu de ma vie",
+        "se consume"
+      ],
+      "autorise": [
+        "pnj:hesta-cendrebrune",
+        "pnj:vei-oswin-le-veilleur",
+        "pnj:frere-ocre",
+        "evenements",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-tribut-du-bailli",
+      "texte": "Le bailli Aurèle Montclar paie en secret dix sacs de grain par lune à la Compagnie du Fer-Gris ; les greniers sont vides ; il veut évacuer les notables.",
+      "fait": "f-tribut-du-bailli",
+      "motsTabou": [
+        "tribut",
+        "dix sacs"
+      ],
+      "autorise": [
+        "pnj:aurele-montclar",
+        "pnj:kor-varnak",
+        "pnj:gaspard-le-borgne",
+        "pnj:hesta-cendrebrune",
+        "evenements",
+        "dilemmes",
+        "pnj:pdf-anselme-cordier"
+      ]
+    },
+    {
+      "id": "secret-melie",
+      "texte": "Mélie, huit ans, fille de Gaspard, est malade de la toux grise ; il est prêt à tout, même à se rendre, pour elle.",
+      "fait": "f-gue-melie",
+      "motsTabou": [
+        "Mélie"
+      ],
+      "autorise": [
+        "pnj:gaspard-le-borgne",
+        "pnj:gue-ysabeau-la-louve",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-kor-malade",
+      "texte": "Kor Varnak est atteint de la toux de fer qui ronge la Compagnie ; il le cache ; il lui reste un an ou deux.",
+      "fait": "f-pdf-kor-malade",
+      "motsTabou": [
+        "toux de fer"
+      ],
+      "autorise": [
+        "pnj:kor-varnak",
+        "pnj:pdf-oldric-vasseur",
+        "pnj:pdf-yorga-marmite",
+        "pnj:pdf-sulka-oeil-clair",
+        "pnj:pdf-ruvak-main-de-fer",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-ocre-gardien",
+      "texte": "Le Frère Ocre fut Gardien de la Veille, aide du Veilleur d'avant, mort dans ses bras il y a neuf ans ; il a enterré son insigne dans le poste enseveli du champ de cendre gris.",
+      "fait": "f-gro-ocre-fut-gardien",
+      "motsTabou": [
+        "ancien Gardien",
+        "fut Gardien",
+        "fut jadis un Gardien"
+      ],
+      "autorise": [
+        "pnj:frere-ocre",
+        "pnj:hesta-cendrebrune"
+      ]
+    },
+    {
+      "id": "secret-mireille-pelerine",
+      "texte": "Mireille Vanhaut a vécu deux ans chez les Pèlerins gris ; son frère Aubin y est resté.",
+      "fait": "f-vei-mireille-pelerine",
+      "motsTabou": [
+        "ancienne Pèlerine",
+        "vécu chez les Pèlerins"
+      ],
+      "autorise": [
+        "pnj:mireille-vanhaut",
+        "pnj:frere-ocre",
+        "pnj:gro-frere-de-mireille",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-les-couches-se-relevent",
+      "texte": "Les Pèlerins qui s'éteignent dans l'allée des couchés se relèvent quelques jours plus tard : ce sont des morts de cendre, pas des endormis en paix.",
+      "fait": "f-gro-les-couches-se-relevent",
+      "motsTabou": [
+        "veille des couchés",
+        "couchés se relèvent"
+      ],
+      "autorise": [
+        "pnj:frere-ocre",
+        "pnj:gro-aldegonde-pierrefeu",
+        "pnj:gro-soeur-brume",
+        "pnj:gro-frere-de-mireille",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-orcs-et-nains",
+      "texte": "Ghorm Marteau-Vert, chef orc, a refusé de forger le corps de la Dernière Commande et confié à son clan le secret de l'Écluse noire : accusé d'avoir « vendu un secret », il avait parlé pour sauver.",
+      "fait": "f-orcs-et-nains",
+      "motsTabou": [
+        "Ghorm"
+      ],
+      "autorise": [
+        "pnj:korvun-tete-rase",
+        "pnj:grodak-marteau-vert",
+        "dilemmes",
+        "evenements",
+        "codex"
+      ]
+    },
+    {
+      "id": "secret-coeur-de-braise",
+      "texte": "Le Cœur-de-Braise ne s'est pas éteint : il entretient les morts, qui sont le reste de sa flamme, et rejette la cendre.",
+      "fait": "f-coeur-de-braise",
+      "motsTabou": [
+        "entretient les morts",
+        "reste de sa flamme"
+      ],
+      "autorise": [
+        "pnj:thalgrin-coeur-d-enclume",
+        "pnj:fennick-rouage",
+        "pnj:brunhild",
+        "evenements",
+        "dilemmes",
+        "codex"
+      ]
+    },
+    {
+      "id": "secret-la-commande",
+      "texte": "Thalgrin a surnourri le Cœur du feu de ses forges, puis du feu de son peuple, pour animer le corps de sa fille.",
+      "fait": "f-derniere-commande",
+      "motsTabou": [
+        "feu de son peuple",
+        "surnourri"
+      ],
+      "autorise": [
+        "pnj:thalgrin-coeur-d-enclume",
+        "pnj:brunhild",
+        "pnj:hf-dagna-plume-de-plomb",
+        "evenements",
+        "dilemmes",
+        "codex"
+      ]
+    },
+    {
+      "id": "secret-brunhild-ne-veut-pas",
+      "texte": "Brunhild, dans son sommeil de fer, murmure qu'elle ne veut pas être réveillée ; Thalgrin l'a entendue et refuse de l'entendre.",
+      "fait": "f-hf-brunhild-ne-veut-pas",
+      "motsTabou": [
+        "ne veut pas être réveillée",
+        "laisser reposer"
+      ],
+      "autorise": [
+        "pnj:thalgrin-coeur-d-enclume",
+        "pnj:brunhild",
+        "evenements",
+        "dilemmes",
+        "codex"
+      ]
+    },
+    {
+      "id": "secret-thalgrin-est-tenu",
+      "texte": "Thalgrin n'est pas le maître du Cœur : le Cœur le tient comme il tient ses morts.",
+      "fait": "f-hf-thalgrin-est-tenu",
+      "motsTabou": [
+        "le Cœur me tient",
+        "le Cœur le tient"
+      ],
+      "autorise": [
+        "pnj:thalgrin-coeur-d-enclume",
+        "evenements",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-regulateur",
+      "texte": "Ferbillon avait conçu un Régulateur du Cœur que le roi a refusé (« on ne bride pas la main qui sert »).",
+      "fait": "f-hf-regulateur",
+      "motsTabou": [
+        "Régulateur du Cœur"
+      ],
+      "autorise": [
+        "pnj:thalgrin-coeur-d-enclume",
+        "pnj:hf-ferbillon",
+        "pnj:fennick-rouage",
+        "pnj:ysolde-rouage",
+        "evenements",
+        "dilemmes"
+      ]
+    }
+  ],
+  "noms": {
+    "lexique": [
+      "Bram"
+    ]
+  },
+  "personnages": [
+    {
+      "id": "hesta-cendrebrune",
+      "nom": "Hesta Cendrebrune",
+      "age": 70,
+      "espece": "nain"
+    },
+    {
+      "id": "aurele-montclar",
+      "nom": "Aurèle Montclar",
+      "age": 52,
+      "espece": "humain"
+    },
+    {
+      "id": "bertille-dernier-feu",
+      "nom": "Bertille Dernier-Feu",
+      "age": 48,
+      "espece": "halfelin"
+    },
+    {
+      "id": "fennick-rouage",
+      "nom": "Fennick Rouage",
+      "age": 120,
+      "espece": "gnome"
+    },
+    {
+      "id": "vei-oswin-le-veilleur",
+      "nom": "Oswin",
+      "age": 68,
+      "espece": "humain"
+    },
+    {
+      "id": "kor-varnak",
+      "nom": "Kor Varnak",
+      "espece": "hobgobelin"
+    },
+    {
+      "id": "gaspard-le-borgne",
+      "nom": "Gaspard le Borgne",
+      "espece": "humain"
+    },
+    {
+      "id": "frere-ocre",
+      "nom": "Frère Ocre",
+      "espece": "humain"
+    },
+    {
+      "id": "thalgrin-coeur-d-enclume",
+      "nom": "Thalgrin Cœur-d'Enclume"
+    },
+    {
+      "id": "ysolde-rouage",
+      "nom": "Ysolde Rouage",
+      "age": 80,
+      "espece": "gnome"
+    },
+    {
+      "id": "korvun-tete-rase",
+      "nom": "Korvun Tête-Rasée",
+      "age": 22,
+      "espece": "orc"
+    },
+    {
+      "id": "mireille-vanhaut",
+      "nom": "Mireille Vanhaut",
+      "age": 28,
+      "espece": "tieffelin"
+    }
+  ]
+}

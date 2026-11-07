@@ -1,0 +1,126 @@
+[
+  {
+    "pnj": "ysolde-rouage",
+    "passe": "Ysolde Rouage est une gnome d'environ quatre-vingts ans, apprentie mécanicienne de Veillecendre. Elle est arrivée à l'atelier des Rouages il y a vingt ans, à soixante ans passés, et Fennick, le maître mécanicien, l'a prise pour la plus brillante qu'il ait eue. Elle parle vite, truffe ses phrases de termes techniques qu'elle traduit à moitié, et compte ses phrases comme des étapes de démonstration. Cette année, Fennick lui a confié cinq mécanismes ; elle en a réparé quatre. Elle a aussi mesuré de près les oscillations de la flamme de la Lanterne, et sait qu'elle n'est pas nourrie seulement d'huile. Ses lunettes de laiton restent relevées sur son front, et elle démonte toujours plus vite qu'elle n'assemble.",
+    "liens": [
+      {
+        "pnj": "fennick-rouage",
+        "nature": "maître et mentor, qu'elle surveille sans relâche",
+        "opinion": "Un génie qui oublie de dormir : elle le surveille, et craint de le voir s'éteindre avant d'avoir tout appris."
+      },
+      {
+        "pnj": "hf-ferbillon",
+        "nature": "ancêtre d'atelier, mécanicien du roi Thalgrin",
+        "opinion": "Elle parle de lui comme d'un maître qu'elle n'a pas connu, et dont la trace se lit encore dans les mécanismes du Val."
+      },
+      {
+        "pnj": "korvun-tete-rase",
+        "nature": "compagnon de route",
+        "opinion": "Raide mais fiable : elle le juge tel qu'il est, sans chercher à le changer."
+      },
+      {
+        "pnj": "mireille-vanhaut",
+        "nature": "compagne de route",
+        "opinion": "Trop douce, à son goût : elle la trouve trop tendre avec les gens, et le dit sans détour."
+      },
+      {
+        "pnj": "hesta-cendrebrune",
+        "nature": "la Mère-Gardienne du village",
+        "opinion": "Une femme qui cache des plans : elle sent qu'Hesta garde quelque chose sur la Lanterne, sans savoir quoi."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "arrivee-a-l-atelier",
+        "texte": "Il y a vingt ans, à soixante ans passés, elle a poussé la porte de l'atelier des Rouages, à Veillecendre, pour y apprendre la mécanique auprès de Fennick. Elle raconte ce jour-là comme on raconte un examen réussi, sans jamais se vanter."
+      },
+      {
+        "id": "cinq-mecanismes",
+        "texte": "Cette année, Fennick lui a confié cinq mécanismes. Elle en a réparé quatre, et elle compte encore le cinquième à voix haute, comme on compte une dette qu'on ne veut pas oublier."
+      },
+      {
+        "id": "oscillations-de-la-flamme",
+        "texte": "Elle s'est tenue devant la vitre de la Lanterne, sans la toucher, et a mesuré les oscillations de la flamme avec une patience de gnome. Elle en parle avec plus d'excitation que de peur."
+      },
+      {
+        "id": "lunettes-de-laiton",
+        "texte": "Ses lunettes de laiton sont relevées sur son front. Elle les rabat sur les yeux pour regarder de près un pignon, puis les repousse dès qu'elle se met à parler, en laissant une trace de graisse au-dessus du sourcil."
+      },
+      {
+        "id": "gants-taches-d-encre",
+        "texte": "Ses gants sans doigts sont tachés d'encre jusqu'aux phalanges. Elle s'essuie les doigts sur sa robe grise, brodée d'engrenages, et laisse une marque à chaque page qu'elle touche."
+      },
+      {
+        "id": "magie-gnome",
+        "texte": "« La magie gnome, c'est de la mécanique, point final. » Pour elle, un sort est un engrenage de mots : il suffit que chaque dent trouve la bonne, et tout le reste n'est que bavardage."
+      },
+      {
+        "id": "on-ne-gaspille-pas",
+        "texte": "On ne gaspille pas un bon mécanisme : elle démonte une pièce pour la comprendre avant de penser à la remplacer, et s'indigne qu'on jette un ressort encore souple."
+      },
+      {
+        "id": "demonter-plus-vite",
+        "texte": "Elle démonte plus vite qu'elle n'assemble, et Fennick en est hors de lui. Elle le sait, et s'en amuse, les doigts déjà plongés dans le rouage suivant."
+      },
+      {
+        "id": "ce-que-fennick-cache",
+        "texte": "Elle est sûre que Fennick connaît le chemin de l'atelier du maître, et qu'il refuse d'en parler. Elle le surveille pour ça, et guette le moment où il lâchera un mot de trop.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "elle remonte ses lunettes sur le front et dit que Fennick a ses raisons, et qu'il faut lui laisser le temps"
+      },
+      {
+        "id": "le-carnet-de-ferbillon",
+        "texte": "Le carnet de Ferbillon, à la couverture usée, ne quitte jamais sa sacoche. Une page parle d'un atelier au deuxième niveau de la Haute-Forge, peut-être intact, avec une œuvre que le maître n'a jamais achevée.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "elle serre la sacoche contre elle et dit que ce sont des notes de famille, sans regarder personne"
+      },
+      {
+        "id": "la-peur-d-etre-inutile",
+        "texte": "Elle a peur d'être inutile, et plus encore de voir Fennick s'éteindre avant qu'elle n'ait tout appris de lui. Ses mains ne vont jamais assez vite pour cette peur-là.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "elle dit qu'elle démonte les choses pour s'ennuyer moins, et change de sujet"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-cadran-de-fennick",
+        "fait": "f-vei-fennick-et-le-cadran",
+        "version": "Elle dit que Fennick règle le cadran de la Lanterne chaque automne depuis trente ans, et que cette année les couronnes ne tournent plus comme la notice le décrit. Il soupçonne un grain de cendre dans le régulateur ; elle n'en est pas sûre.",
+        "acces": {}
+      },
+      {
+        "id": "la-flamme-pas-qu-d-huile",
+        "fait": "f-vei-combustible",
+        "version": "Elle a mesuré les oscillations de la flamme de près, et jure qu'elle n'est pas nourrie que d'huile. Par quoi ? Elle n'en a aucune idée, et ça la ronge.",
+        "acces": {}
+      },
+      {
+        "id": "le-seuil-de-la-tour",
+        "fait": "f-vei-lanterne-pas-de-cendre",
+        "version": "Elle a vu la neige grise s'arrêter net au seuil de la tour, et s'en tient à la mesure : à l'intérieur des murs de la Lanterne, la cendre ne tombe pas, et elle ne tombe pas non plus sur qui porte une braise de veille.",
+        "acces": {}
+      },
+      {
+        "id": "la-braise-de-fennick",
+        "fait": "f-vei-etincelle-et-braise",
+        "version": "Elle sait qu'une braise de veille se forme en logeant une étincelle de la Lanterne dans un boîtier nain à mécanisme. La braise protège de la cendre, mais elle prend sa part de la flamme, qui en sort un peu plus faible.",
+        "acces": {}
+      },
+      {
+        "id": "les-gnomes-du-roi",
+        "fait": "f-hf-gnomes-ingenieurs",
+        "version": "Elle dit que Ferbillon était mécanicien du roi, et que les Rouage de Veillecendre en descendent de maître à apprenti. Elle a son carnet, et le dit à voix basse, comme une évidence.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "elle hausse les épaules et dit que les vieux plans de la Forge ne se discutent pas à table"
+      }
+    ]
+  }
+]

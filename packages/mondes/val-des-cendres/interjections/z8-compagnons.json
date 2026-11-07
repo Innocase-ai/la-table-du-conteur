@@ -1,0 +1,657 @@
+[
+  {
+    "id": "ysolde-la-lanterne",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "vei-la-lanterne"
+    },
+    "texte": "Drôle de feu, il ne brûle pas, il somnole : je le sens à peine, et ça me dérange. Donnez-moi un instant, je veux savoir ce qui le retient.",
+    "effets": []
+  },
+  {
+    "id": "ysolde-le-cadran",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "vei-cadran-de-la-lanterne"
+    },
+    "texte": "Quelle précision, ces trois couronnes ! Chaque trait est net comme un calcul ; promis, je ne touche pas… pas tout de suite.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-l-auberge",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "vei-auberge-dernier-feu"
+    },
+    "texte": "Chou bouilli, bois qui crépite, et je me sens enfin bien ; passez-moi le pain, je ne fais pas la difficile.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-le-pont",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "pdf-le-pont-de-fer"
+    },
+    "texte": "Quelle audace, ce pont de fer, avec ses nervures qui se répondent et ses frettes qui ne grincent pas ; je me retiens de sortir mon carnet, à peine.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-la-toux-de-fer",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "fait": "f-pdf-toux-de-fer"
+    },
+    "texte": "Alors la toux de fer ronge aussi la Compagnie. Je pense à celle de Fennick, et je me tais un instant, parce que les mots me manquent.",
+    "effets": []
+  },
+  {
+    "id": "ysolde-les-aiguillages",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "gro-fosse-carreau"
+    },
+    "texte": "Des contrepoids qui se répondent, des wagonnets qui changent de voie sans personne : c’est un raisonnement en fer, presque une phrase. Je veux le comprendre avant d’y toucher.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-la-chapelle-des-forgerons",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "cry-chapelle-des-forgerons"
+    },
+    "texte": "Trois piliers de rune, et une logique qui les relie : une étape, puis la suivante, comme une démonstration bien menée. Je suis presque tentée de prendre des notes.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-la-galerie-des-rois",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "hf-grande-galerie"
+    },
+    "texte": "Dix statues, et un socle vide au bout de la rangée. Je recompte deux fois : comment peut-on oublier quelqu’un d’aussi visible ?",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-l-atelier-du-maitre",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "hf-atelier-du-maitre-mecanicien"
+    },
+    "texte": "Un établi bien rangé, des outils à leur place : ça ressemble tant à l’atelier de Fennick que ma voix me trahit un peu. Je n’en dis rien de plus.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-l-atelier-de-brunhild",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "hf-atelier-de-brunhild"
+    },
+    "texte": "Des jouets d’acier, si petits, et des rouages minuscules d’un soin fou. Je me tais un moment, puis je dis que c’est très beau, et très triste.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-le-plan-de-la-forge",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "fait": "f-hf-plan-de-la-forge"
+    },
+    "texte": "Chaque cote de ce plan est à sa place, rien n’est laissé au hasard. J’en ai le vertige, et déjà l’envie de tout recopier, cote après cote.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-le-coeur",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "lieu": "hf-forge-du-coeur"
+    },
+    "texte": "Mes mots techniques me quittent devant ça. Un cœur de braise qui bat, une petite silhouette de fer à côté : ce n’est pas un diagramme, c’est trop grand pour tenir sur une feuille.",
+    "effets": []
+  },
+  {
+    "id": "ysolde-la-cendre-monte",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "jauge": {
+        "id": "cendre",
+        "min": 3
+      }
+    },
+    "texte": "La cendre gagne du terrain, et chaque jour compte comme une étape : nous sommes déjà en retard sur le calendrier, il faut avancer.",
+    "effets": []
+  },
+  {
+    "id": "ysolde-le-tribut-denonce",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "flag": "choix-le-tribut-du-bailli-denoncer"
+    },
+    "texte": "Un registre faux, voilà une erreur à corriger, et vite. Je n’aime pas la façon dont le village baisse la tête, pourtant : il faudra le leur dire avec douceur.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-l-alliance-du-fer-gris",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "flag": "choix-le-piege-du-fer-gris-alliance"
+    },
+    "texte": "Confier nos plans à des gens qui rêvent d’armes ? Très bien, parlons-en, avec le sourire qu’il faut. Je ne crie pas, je fais juste remarquer que la prudence ne coûte rien.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": -10
+        }
+      }
+    ]
+  },
+  {
+    "id": "ysolde-le-volontaire-de-la-lanterne",
+    "pnj": "ysolde-rouage",
+    "quand": {
+      "flag": "choix-le-foyer-de-la-lanterne-volontaire"
+    },
+    "texte": "Mettre une personne à la place d’une flamme, comme on bouche un trou, ça je refuse : il doit exister un autre moyen.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "ysolde-rouage",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-la-forge-des-refugies",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "vei-forge-des-refugies"
+    },
+    "texte": "Le feu tient, et des mains tapent le fer sans relâche. Au moins, le marteau, lui, ne demande jamais si j’ai fini.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-la-lanterne",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "vei-la-lanterne"
+    },
+    "texte": "Cette flamme tremble comme un vieux soldat à qui l’on demande trop, et mon oncle répète qu’un forgeron ne la laisse jamais s’éteindre. Sagesse ou entêtement, je n’en sais rien.",
+    "effets": []
+  },
+  {
+    "id": "korvun-le-camp-du-fer-gris",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "pdf-camp-du-fer-gris"
+    },
+    "texte": "Voilà une cour bien rangée, chaque lance à sa place. J’aime l’ordre, je le reconnais ; mais un camp si propre cache souvent quelque chose sous les dalles.",
+    "effets": []
+  },
+  {
+    "id": "korvun-la-forge-de-guerre",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "pdf-forge-de-guerre"
+    },
+    "texte": "Cette lame a été frappée par une main patiente, ça se voit au fil. Je salue l’ouvrier, même s’il est de l’autre côté du mur.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-les-gobelins-affames",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "fait": "f-vei-gobelins-affames"
+    },
+    "texte": "Affamés, donc ; alors on ne chasse pas ce qui cherche du pain. Jetons-leur un morceau, et qu’ils passent leur chemin en paix.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-le-cairn-des-goliaths",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "gro-hauteurs-cairn"
+    },
+    "texte": "Pas un mot trop fort devant ce tertre. Des pierres pour les premiers morts, empilées par des mains qui savaient ce que ça coûte ; je découvre ma tête, à ma façon, devant les anciens.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-les-mineurs",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "gro-fosse-dortoir"
+    },
+    "texte": "Des lits de pierre, des gamelles encore posées. Ils sont partis au travail un matin ordinaire, et je pense à ceux qui ne sont jamais rentrés.",
+    "effets": []
+  },
+  {
+    "id": "korvun-la-caserne-d-ormgard",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "cry-caserne"
+    },
+    "texte": "Ici, quelqu’un a tenu son poste jusqu’au bout. Je le reconnais, peu de soldats savent encore faire ça.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-les-nains-de-pierre",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "hf-grande-galerie"
+    },
+    "texte": "Ces statues me regardent comme si elles attendaient quelque chose de moi, un orc dans un royaume de nains. Je ne sais pas encore ce qu’elles veulent, mais je le saurai.",
+    "effets": []
+  },
+  {
+    "id": "korvun-l-armurerie-royale",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "hf-armurerie-royale"
+    },
+    "texte": "Aucune rouille ne ronge ces armes. Le soin qu’on y a mis, un forgeron le reconnaît tout de suite, et je le respecte.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-le-marteau-du-clan",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "quete": {
+        "id": "q-korvun-le-marteau-du-clan",
+        "statut": "active"
+      }
+    },
+    "texte": "Le marteau de mon clan, je le cherche seul, et je ne demande l’aide de personne. Pourtant, si une main honnête se tend, je ne la refuserai peut-être pas.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-devant-le-roi",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "lieu": "hf-forge-du-coeur"
+    },
+    "texte": "Le roi se tient là, immobile : un souverain, un vieux forgeron, peut-être un père. Je me tais un instant, puis je dis qu’on ne tutoie pas un roi, même mort.",
+    "effets": []
+  },
+  {
+    "id": "korvun-la-cendre-monte",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "jauge": {
+        "id": "cendre",
+        "min": 4
+      }
+    },
+    "texte": "La cendre est presque au sommet. Je n’ai pas peur, je me méfie seulement du nombre, et je resterai devant, comme je l’ai promis.",
+    "effets": []
+  },
+  {
+    "id": "korvun-l-alliance-du-fer-gris",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "flag": "choix-le-piege-du-fer-gris-alliance"
+    },
+    "texte": "Je ne crierai pas, mais les orcs ont déjà payé le prix de ceux qui forgent pour les autres. Je reste, et j’ai les yeux ouverts.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "korvun-le-volontaire-de-la-lanterne",
+    "pnj": "korvun-tete-rase",
+    "quand": {
+      "flag": "choix-le-foyer-de-la-lanterne-volontaire"
+    },
+    "texte": "Je n’ajouterai rien : celui qui se propose pour nourrir la flamme sait ce qu’il fait, et c’est plus honnête que bien des solutions.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "korvun-tete-rase",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-la-chapelle-grise",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "vei-chapelle-grise"
+    },
+    "texte": "Je suis chez moi, ici, dans cette chapelle grise. Enfin, chez moi… c'est un mot qui ne tient plus tout à fait, mais je ne vais pas me plaindre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-la-lanterne",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "vei-la-lanterne"
+    },
+    "texte": "Cette clarté-là a sûrement un prix. Dans la foi où j'ai grandi, on mentait toujours sur le prix. Alors je me demande qui le paie, ici.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-cimetiere",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "vei-cimetiere"
+    },
+    "texte": "Je ne crains pas ces tombes. Les morts y tiennent compagnie, c'est tout. Attends, laisse-moi m'arrêter un instant avant de passer.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-les-tieffelins-accuses",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "fait": "f-vei-tieffelins-accuses"
+    },
+    "texte": "Je suis habituée, tu sais, et je ne réponds plus à ça. Mais je n'y croirai jamais, quoi qu'ils disent de nous.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-moulin-noye",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "gue-moulin-noye"
+    },
+    "texte": "Ces gens-là se cachent parce qu'on les a jugés sans leur parler. Allons leur parler d'abord, s'il te plaît, n'agissons pas à la hâte.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-le-camp-des-pelerins",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "gro-champ-camp"
+    },
+    "texte": "Pas d'insultes, je t'en prie. Ils croient sincèrement aider, et c'est ce qui les rend dangereux. Moi aussi, j'ai longtemps cru aider.",
+    "effets": []
+  },
+  {
+    "id": "mireille-l-allee-des-couches",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "gro-champ-allee-des-couches"
+    },
+    "texte": "Parle plus bas, je t'en prie. Ils sont calmes, c'est déjà beaucoup. Ici, on ne force personne à se relever.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-cercle-des-noms",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "gro-champ-cercle-des-noms"
+    },
+    "texte": "Je pose la main sur la pierre. Une prière commence toujours par un nom, tu sais. Celui-ci mérite qu'on le prononce.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-la-crypte-du-glas",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "cry-crypte-du-sonneur"
+    },
+    "texte": "Écoute-la, cette cloche. Elle ne sonne plus, et pourtant elle pleure à sa façon, fendue et muette. Je trouve ça juste, presque tendre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-la-galerie-des-urnes",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "cry-galerie-des-urnes"
+    },
+    "texte": "Lisons-les un par un, à voix basse, sans nous presser. Chacun de ces noms a mérité ce temps-là.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-l-atelier-de-brunhild",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "hf-atelier-de-brunhild"
+    },
+    "texte": "Les petits remarquent tout, eux. Quelqu'un a noué ce ruban avec soin, et mon cœur se serre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-le-coeur",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "lieu": "hf-forge-du-coeur"
+    },
+    "texte": "Peu importe ce qu'on décide ici, on portera ceux qu'on n'aura pas sauvés. Décidons-le donc en le sachant, au moins.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-frere-perdu",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "quete": {
+        "id": "q-mireille-le-frere-perdu",
+        "statut": "active"
+      }
+    },
+    "texte": "Mon frère est parti chez eux, et je l'ai mal quitté. J'ai peur, tu sais, de découvrir qu'il avait raison.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-la-cendre-monte",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "jauge": {
+        "id": "cendre",
+        "min": 4
+      }
+    },
+    "texte": "Je ne tremble pas. Une prière courte pour les vivants, puis on avance. Et personne ne reste derrière nous, je t'en fais la promesse.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-volontaire-de-la-lanterne",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "flag": "choix-le-foyer-de-la-lanterne-volontaire"
+    },
+    "texte": "Quelqu'un s'est offert à la flamme, de son plein gré. Je ne dirai rien, pas tout de suite. Mais l'a-t-on prévenu de ce qu'elle coûte ?",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-rendre-le-choix",
+    "pnj": "mireille-vanhaut",
+    "quand": {
+      "flag": "choix-le-foyer-de-la-lanterne-rendre-le-choix"
+    },
+    "texte": "Vous avez rendu le choix à celui qui veille, c'est juste. Je respire un peu mieux. On reste prudents, mais c'est un bon signe.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-vanhaut",
+          "delta": 5
+        }
+      }
+    ]
+  }
+]
