@@ -3459,6 +3459,24 @@ button:disabled {
   color: var(--or);
 }
 
+/* Les crédits en petit, au pied de l'écran titre. */
+.titre-credits-court {
+  margin: 6px 0 0;
+  pointer-events: auto;
+}
+
+.titre-credits-court .lien-credits {
+  font-size: 11px;
+  opacity: 0.75;
+  text-decoration: none;
+  text-align: left;
+}
+
+.titre-credits-court .lien-credits:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 .credits-fond {
   position: fixed;
   inset: 0;
