@@ -19,14 +19,20 @@ interface Props {
   jouer: (o: Ordre) => void;
   onCombat: () => void;
   onFermer: () => void;
+  /** Ouvre la feuille de personnage d'un héros (le porteur de l'objet choisi, sinon celui du filtre, sinon le premier debout). */
+  onFeuille?: (heros: string) => void;
 }
 
-export function PagePleine({ monde, encarts, propositions, partie, selection, filtre, onChoisir, jouer, onCombat, onFermer }: Props) {
+export function PagePleine({ monde, encarts, propositions, partie, selection, filtre, onChoisir, jouer, onCombat, onFermer, onFeuille }: Props) {
   const principal = encarts.find((e) => e.grille)!;
   const grille = principal.grille!;
   const autres = encarts.filter((e) => e !== principal);
   const choisi = grille.elements.find((e) => e.id === selection);
   const actions = choisi ? propositions.filter((p) => p.element?.id === choisi.id) : [];
+  // La feuille qu'ouvre le bouton : celle du porteur de l'objet choisi, sinon du héros du filtre (« Porté par X »), sinon du premier héros debout.
+  const idFiltre = filtre?.startsWith('porte:') ? filtre.slice('porte:'.length) : undefined;
+  const pourFeuille =
+    partie.groupe.find((h) => h.id === choisi?.porteur?.id) ?? partie.groupe.find((h) => h.id === idFiltre) ?? partie.groupe.find((h) => h.pv > 0) ?? partie.groupe[0];
 
   return (
     <div className="page-pleine" role="dialog" aria-label={principal.titre}>
@@ -39,6 +45,12 @@ export function PagePleine({ monde, encarts, propositions, partie, selection, fi
             </span>
           ))}
         </div>
+        {onFeuille && pourFeuille && (
+          <button type="button" className="bouton-discret" onClick={() => onFeuille(pourFeuille.id)} title={`Ouvre la feuille de personnage de ${pourFeuille.nom} (touche C)`}>
+            📋 Feuille {/^[AEIOUÀÂÉÈÊÎÔÛ]/i.test(pourFeuille.nom) ? 'd’' : 'de '}
+            {pourFeuille.nom}
+          </button>
+        )}
         <button type="button" className="bouton-discret" onClick={onFermer} autoFocus>
           Fermer ✕ <small>(Échap)</small>
         </button>

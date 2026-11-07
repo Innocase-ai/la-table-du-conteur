@@ -485,6 +485,10 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           jouer={jouer}
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
+          onFeuille={(id) => {
+            setPage(undefined);
+            setFeuille(id);
+          }}
         />
       )}
       {carteOuverte && !sceneNarree && !feuille && encarts.find((e) => e.carte)?.carte && (
