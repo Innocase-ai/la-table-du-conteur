@@ -23,6 +23,8 @@ import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage } from './FeuillePersonnage';
 import { EcranMontee } from './EcranMontee';
+import { EcranQuete } from './EcranQuete';
+import { nouvellesQuetes, parcheminDeQuete } from '../quete-regles';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
@@ -247,7 +249,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || monteeOuverte) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -292,6 +294,20 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const plafond = conteur?.plafond ?? 0.5;
   const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
+  // Les quêtes qui commencent : un parchemin raconte chacune (nom, qui la donne, explication, premier objectif, récompenses). On
+  // compare les quêtes en cours avant et après chaque changement de la partie (bouton « Accepter », parole de PNJ, événement).
+  const [parchemins, setParchemins] = useState<string[]>([]);
+  const avantQuetes = useRef(partie.etat.quetes);
+  useEffect(() => {
+    const nouvelles = nouvellesQuetes(avantQuetes.current, partie.etat.quetes);
+    avantQuetes.current = partie.etat.quetes;
+    if (nouvelles.length) setParchemins((f) => [...f, ...nouvelles.filter((id) => !f.includes(id))]);
+  }, [partie.etat.quetes]);
+  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0]) : undefined;
+  const imageDonneur = useImage(dm.monde.id, 'pnj', parchemin?.donneur);
+  const finParchemin = useCallback(() => setParchemins((f) => f.slice(1)), []);
+  const parcheminOuvert = !!parchemin && !sceneNarree;
+
   // La montée de niveau : le moteur a déjà fait monter les héros avec les choix conseillés ; l'écran laisse revoir les nouveaux choix.
   // Il s'ouvre dès que des héros en attendent (aussi au retour d'un combat gagné), et se rouvre depuis le bandeau des héros.
   const enAttenteMontee = partie.groupe.filter((h) => h.monteeEnAttente).length;
@@ -320,7 +336,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || monteeOuverte) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -543,7 +559,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
-      {monteeOuverte && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
+      {parcheminOuvert && !sommeil && !crochetage && <EcranQuete key={parchemin!.id} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
+      {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
