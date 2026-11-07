@@ -26,6 +26,9 @@ import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
 import { ControleSon } from '../composants/ControleSon';
+import { OUVERTURES } from '../ouvertures';
+import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voixDuPnj } from '../ouvertures-regles';
+import { direOuverture } from '../voix';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
@@ -146,6 +149,28 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
   const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
   const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
+  // L'ouverture : à chaque début de conversation, le PNJ lance d'abord une phrase tirée d'un fonds commun, dite avec la voix
+  // d'homme ou de femme qui est la sienne (toujours la même), puis vient sa salutation propre.
+  const [ouverture, setOuverture] = useState<{ pnj: string; texte: string }>();
+  const derniereOuverture = useRef<string>();
+  const idInterlocuteur = interlocuteur?.id;
+  useEffect(() => {
+    if (!idInterlocuteur) {
+      setOuverture(undefined);
+      return;
+    }
+    const pnj = dm.pnj.get(idInterlocuteur);
+    const donnees = OUVERTURES;
+    if (!pnj || !donnees?.voix) return;
+    const attitude = moteur.vue<{ attitude: number } | undefined>('interlocuteur', partie)?.attitude ?? 0;
+    const o = choisirOuverture(donnees.ouvertures, tonDeLAttitude(attitude, Math.random()), derniereOuverture.current, Math.random());
+    const voix = voixDuPnj(donnees.voix, pnj.sexe, pnj.id, ageApproximatif(pnj.age));
+    derniereOuverture.current = o.id;
+    setOuverture({ pnj: pnj.id, texte: texteOuverture(o, voix.id.startsWith('f-') ? 'f' : 'm') });
+    direOuverture(voix.id, o.id);
+    // Une seule fois par conversation : seul le changement d'interlocuteur la relance.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idInterlocuteur]);
   // Les encarts se recalculent quand la partie change, pas à chaque frappe dans la saisie du conteur.
   const encarts = useMemo(() => moteur.encarts(partie), [moteur, partie]);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
@@ -279,6 +304,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               fin={finDialogue}
               jouer={jouer}
             >
+              {ouverture && ouverture.pnj === interlocuteur.id && (
+                <p className="recit-parole">
+                  <strong>{interlocuteur.nom}</strong> « {ouverture.texte} »
+                </p>
+              )}
               {entreesDialogue.map((e, i) => (
                 <EntreeRecit key={i} e={e} dm={dm} />
               ))}
