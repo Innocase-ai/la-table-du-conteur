@@ -62,6 +62,34 @@ describe('module Inventaire', () => {
     expect(moteur.executer(p, { type: 'confierPotion' }).refus).toMatch(/plus de potion/);
   });
 
+  it('une potion confiée à un héros se voit dans ce que porte le héros, et peut être rendue au sac', () => {
+    let p = depart();
+    p.etat.inventaire[POTION_DE_COMBAT] = 1;
+    const avant = perso(p, 'grukk').ressources.potions ?? 0;
+    const charge = (q: Partie) => (sac(q).resume?.find((l) => l.libelle === 'Charge du groupe')?.valeur ?? '');
+    const chargeAvant = charge(p);
+    p = moteur.executer(p, { type: 'confierPotion', personnage: 'grukk' }).partie;
+    expect(charge(p)).toBe(chargeAvant); // la potion change de main : la charge du groupe ne bouge pas
+    const porte = element(p, 'porte:grukk:' + POTION_DE_COMBAT);
+    expect(porte).toBeDefined();
+    expect(porte.quantite).toBe(avant + 1);
+    expect(porte.porteur).toMatchObject({ id: 'grukk' });
+    expect(porte.groupe.id).toBe('porte:grukk'); // avec le reste de ce que porte Grukk
+    expect(sac(p).elements.find((e) => e.id === POTION_DE_COMBAT)).toBeUndefined(); // plus dans le sac
+    // Le bouton « Rendre au sac » est proposé pour cet élément, et le joue.
+    const rendre = moteur.propositions(p).find((x) => x.ordre?.type === 'rendrePotion' && x.ordre.personnage === 'grukk');
+    expect(rendre?.element?.id).toBe('porte:grukk:' + POTION_DE_COMBAT);
+    const retour = moteur.executer(p, rendre!.ordre!);
+    expect(retour.refus).toBeUndefined();
+    expect(perso(retour.partie, 'grukk').ressources.potions).toBe(avant);
+    expect(retour.partie.etat.inventaire[POTION_DE_COMBAT]).toBe(1);
+    expect(charge(retour.partie)).toBe(chargeAvant);
+    // Sans potion portée : refusé, et plus de ligne dans la grille.
+    perso(retour.partie, 'grukk').ressources.potions = 0;
+    expect(moteur.executer(retour.partie, { type: 'rendrePotion', personnage: 'grukk' }).refus).toMatch(/aucune potion/);
+    expect(sac(retour.partie).elements.find((e) => e.id === 'porte:grukk:' + POTION_DE_COMBAT)).toBeUndefined();
+  });
+
   it("refuse ce qui n'a pas de sens : objet absent, personne blessé, objet de quête jeté", () => {
     const p = depart();
     expect(moteur.executer(p, { type: 'utiliserObjet', objet: POTION_DE_COMBAT }).refus).toMatch(/pas cet objet/);

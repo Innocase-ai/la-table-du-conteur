@@ -42,7 +42,12 @@ export const moduleDialogue: Module = {
         const r = verser(t, parler(partieMonde(t), e.pnj, e.sujet), { voix: nom, sansConstats: !e.sujet });
         if (r) return r;
         // Une fin ou une rencontre déclenchée par la conversation l'emporte sur la conversation.
-        if (t.partie.scene.type !== 'fin' && t.partie.scene.type !== 'rencontre') t.partie.scene = { type: 'dialogue', pnj: e.pnj };
+        // Un sujet dont l'effet éloigne ou fait disparaître le PNJ (« sortir », « s'enfuir ») clôt la conversation : sinon le joueur resterait
+        // face à un interlocuteur parti, sans réplique ni « Fin du dialogue ».
+        if (t.partie.scene.type !== 'fin' && t.partie.scene.type !== 'rencontre') {
+          const present = pnjPresents(pm(t.ctx, t.partie)).some((n) => n.id === e.pnj);
+          t.partie.scene = present ? { type: 'dialogue', pnj: e.pnj } : { type: 'exploration' };
+        }
       },
       propositions: (ctx, p) => {
         // En exploration : les personnes présentes ; en conversation : les sujets que le PNJ accepte d'aborder.
