@@ -43,6 +43,7 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
     accroche: 'À écrire : la phrase qui donne envie de jouer.',
     ton: ['à définir'],
     niveaux: { min: 1, max: 5 },
+    groupe: { conseille: 6 },
     depart: { lieu: `${id}-hub`, intro: "À écrire : l'arrivée du groupe, en quelques phrases concrètes." },
     direction: { style: 'À écrire : le style visuel (matières, lumière, ambiance).', palette: ['à définir', 'à définir'], motsCles: [], interdits: [] },
     chapitres: [{ id: 'ch1', nom: 'Chapitre 1', niveaux: { min: 1, max: 5 }, resume: 'À écrire.', lieux: [id], quetes: [] }],

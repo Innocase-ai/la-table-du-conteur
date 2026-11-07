@@ -31,6 +31,8 @@ export interface EtatActif {
   sauvegarde?: { caracteristique: Caracteristique; dd: number };
   // Fin automatique à la fin du prochain tour de ce combattant.
   finTourDe?: string;
+  // Fin automatique au début du prochain tour de ce combattant (« jusqu'au début de votre tour suivant »).
+  jusquAuDebutDe?: string;
   // Prend fin si la créature subit des dégâts (Sommeil).
   finSurDegats?: boolean;
   // DD pour s'échapper (empoignade, toile).
@@ -40,6 +42,7 @@ export interface EtatActif {
 export type TypeModificateur =
   | 'bonus_ca'
   | 'de_attaque' // ajoute un dé aux jets d'attaque (Bénédiction : 1d4 ; Fléau : -1d4)
+  | 'de_inspiration' // dé d'Inspiration bardique : ajouté une fois à un jet d'attaque ou de sauvegarde raté, s'il peut le rattraper
   | 'de_sauvegarde'
   | 'avantage_attaque' // avantage à la prochaine attaque de ce combattant
   | 'desavantage_attaque' // désavantage à la prochaine attaque de ce combattant
@@ -79,6 +82,12 @@ export interface TourCourant {
   frenesieUtilisee: boolean;
   temeraire: boolean;
   elanJoue: boolean;
+  /** L'action Attaque a été entreprise ce tour-ci (Frappe bonus des Arts martiaux). */
+  attaqueEntreprise: boolean;
+  /** Frappe étourdissante déjà tentée ce tour-ci (une fois par tour). */
+  etourdissanteUtilisee: boolean;
+  /** La dernière attaque d'arme qui a touché ce tour-ci (Châtiment divin, Frappe étourdissante). */
+  dernierCoup?: { cible: string; corpsACorps: boolean; critique: boolean; mainsNues: boolean };
 }
 
 export interface Combattant {
@@ -204,7 +213,7 @@ export function horsCombat(c: Combattant): boolean {
 
 /** Peut agir à son tour (ni hors de combat, ni neutralisé). */
 export function peutAgir(c: Combattant): boolean {
-  return !horsCombat(c) && !c.etats.some((e) => ['inconscient', 'neutralise', 'paralyse'].includes(e.etat));
+  return !horsCombat(c) && !c.etats.some((e) => ['inconscient', 'neutralise', 'paralyse', 'etourdi'].includes(e.etat));
 }
 
 export function ennemis(etat: EtatCombat, c: Combattant): Combattant[] {

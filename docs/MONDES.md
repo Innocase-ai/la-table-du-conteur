@@ -15,7 +15,7 @@ Référence du format : [packages/regles/src/monde/schemas.ts](../packages/regle
 
 ```
 packages/mondes/<id>/
-  monde.json        identité, ton, niveaux, départ, direction artistique, chapitres, règles pour le MJ
+  monde.json        identité, ton, niveaux, groupe conseillé (`groupe.conseille` : 4 ou 6 héros, 6 par défaut), départ, direction artistique, chapitres, règles pour le MJ
   lieux/            régions, villes, villages, hameaux, camps, routes, grottes, donjons, salles, bâtiments
   pnj/              personnages, marchands, compagnons
   objets/           objets propres au monde (uniques, reliques, objets de quête)

@@ -62,6 +62,14 @@ export function Credits({ onFermer }: { onFermer: () => void }) {
             ))}
           </tbody>
         </table>
+        <h3>Musiques</h3>
+        <p>
+          Musiques d'accueil, de fond et de bataille issues de{' '}
+          <a href="https://pixabay.com" target="_blank" rel="noreferrer">
+            Pixabay
+          </a>{' '}
+          (Pixabay Content License), notamment par Leberch, Menieldm et The_Mountain. Les autres ambiances de combat ont été générées avec une IA (Google Lyria 3).
+        </p>
         <h3>Règles</h3>
         <p>{avecLiens(mentionSrd())}</p>
         <div className="fin-boutons">

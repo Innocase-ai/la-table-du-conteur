@@ -115,7 +115,7 @@ export interface RencontreComposee extends Rencontre {
   px: number;
 }
 
-const plafonner = (niveau: number) => Math.min(10, Math.max(1, Math.round(niveau)));
+const plafonner = (niveau: number) => Math.min(20, Math.max(1, Math.round(niveau)));
 
 /**
  * Les trois difficultés, en multiples du budget « faible » du SRD. Le SRD donne 1, 1,5 et 2,7 fois ce budget au niveau 3 ;

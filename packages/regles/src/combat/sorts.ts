@@ -94,8 +94,11 @@ function ciblesDeZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, point: 
 function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
   const cibles = sort.zone && cible.point ? ciblesDeZone(etat, lanceur, sort, cible.point) : (cible.cibles ?? []);
   const inc = lanceur.incantation!;
+  const des = sort.degats.map((d) => ({ des: desAmeliores(sort, desSortMineur(sort, lanceur, d.des), niveau), bonus: d.bonus, type: d.type }));
+  // Une zone d'effet ne jette ses dés qu'une fois pour toutes les cibles (SRD 5.2.1) : chacune fait sa sauvegarde, mais le
+  // montant est le même (la moitié pour qui réussit). Sans zone, chaque cible a son propre jet.
+  const tirageZone = sort.zone && sort.resolution?.type === 'sauvegarde' ? des.map((d) => lancerDes(etat, d.des)) : undefined;
   for (const c of cibles) {
-    const des = sort.degats.map((d) => ({ des: desAmeliores(sort, desSortMineur(sort, lanceur, d.des), niveau), bonus: d.bonus, type: d.type }));
     const r = sort.resolution;
     if (r?.type === 'attaque') {
       const jet = jetAttaque(etat, lanceur, c, inc.bonusAttaque, r.mode);
@@ -118,7 +121,7 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
       const appuye = sort.niveau === 0 && lanceur.traits.includes('sort-mineur-appuye');
       const facteur = reussite ? (r.moitieSiReussite || appuye ? 0.5 : 0) : 1;
       if (facteur > 0 && des.length) {
-        infligerDegats(etat, c, des.map((d) => ({ montant: Math.floor((lancerDes(etat, d.des) + d.bonus) * facteur), type: d.type })), lanceur);
+        infligerDegats(etat, c, des.map((d, i) => ({ montant: Math.floor(((tirageZone?.[i] ?? lancerDes(etat, d.des)) + d.bonus) * facteur), type: d.type })), lanceur);
       }
       if (!reussite && sort.id === 'vague-tonnante') repousser(etat, lanceur.position, c, 2);
       if (!reussite) {

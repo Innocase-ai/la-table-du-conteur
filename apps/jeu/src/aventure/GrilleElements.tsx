@@ -134,14 +134,16 @@ interface PropsGrille {
   /** Version réduite (colonne de l'écran d'aventure) : pas de barre d'outils, vignettes plus petites. */
   compact?: boolean;
   selection?: string;
+  /** Le groupe (filtre) montré à l'ouverture, par exemple « Porté par Ambrine » ; l'utilisateur peut ensuite en changer. */
+  filtreInitial?: string;
   onChoisir: (e: ElementGrille) => void;
   /** Les héros du groupe, pour montrer qui porte un élément. */
   heros?: Personnage[];
 }
 
-export function GrilleElements({ monde, grille, cle, compact, selection, onChoisir, heros }: PropsGrille) {
+export function GrilleElements({ monde, grille, cle, compact, selection, filtreInitial, onChoisir, heros }: PropsGrille) {
   const [critere, setCritere] = usePreference(`tri:${cle}`, 'rangement');
-  const [filtre, setFiltre] = useState<string>();
+  const [filtre, setFiltre] = useState<string | undefined>(filtreInitial);
   const [recherche, setRecherche] = useState('');
   const options = useMemo(() => criteres(grille.elements), [grille.elements]);
   const groupes = useMemo(

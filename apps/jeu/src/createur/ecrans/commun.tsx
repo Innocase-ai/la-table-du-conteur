@@ -48,6 +48,7 @@ export function SelecteurChoix({
   niveau,
   onChange,
   onSurvol,
+  figes = [],
 }: {
   def: ChoixCreation;
   nombre: number;
@@ -55,6 +56,8 @@ export function SelecteurChoix({
   niveau: number;
   onChange: (v: string[]) => void;
   onSurvol?: (id: string | null) => void;
+  /** Options prises aux niveaux précédents : affichées choisies, mais qu'on ne peut plus changer (montée de niveau). */
+  figes?: string[];
 }) {
   const unique = nombre === 1;
   return (
@@ -62,7 +65,8 @@ export function SelecteurChoix({
       {def.options.map((o) => {
         const choisi = valeur.includes(o.id);
         const requis = niveauRequis(o.resume);
-        const bloque = requis > niveau;
+        const fige = figes.includes(o.id);
+        const bloque = requis > niveau || fige;
         const plein = !unique && valeur.length >= nombre && !choisi;
         return (
           <Option
@@ -70,7 +74,7 @@ export function SelecteurChoix({
             selectionne={choisi}
             compact
             desactive={bloque || plein}
-            raison={bloque ? `Réservé aux personnages de niveau ${requis} ou plus.` : `Vous avez déjà choisi ${nombre} option(s) : retirez-en une d'abord.`}
+            raison={fige ? 'Choisie aux niveaux précédents.' : bloque ? `Réservé aux personnages de niveau ${requis} ou plus.` : `Vous avez déjà choisi ${nombre} option(s) : retirez-en une d'abord.`}
             titre={o.nom}
             sous={o.resume}
             onSurvol={(a) => onSurvol?.(a ? o.id : null)}

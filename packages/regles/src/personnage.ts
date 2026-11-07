@@ -35,6 +35,8 @@ export interface Personnage extends EtatDurable {
   equipe?: Equipement;
   /** Ses choix de création, pour le faire monter de niveau en gardant ce que le joueur a choisi. */
   choix?: ChoixPersonnage;
+  /** Le niveau qu'il vient d'atteindre, tant que ses nouveaux choix (amélioration, sorts…) n'ont pas été revus par le joueur. */
+  monteeEnAttente?: number;
 }
 
 /** L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ. */
@@ -44,7 +46,7 @@ export function equipementDe(p: Personnage): Equipement {
   return { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
 }
 
-const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains' };
+const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains', inspiration: 'inspiration bardique', chatimentGratuit: 'châtiment divin gratuit', credo: 'points de Credo', metabolisme: 'métabolisme surnaturel' };
 
 /** Ressources dont l'état dure d'un combat à l'autre (les autres, comme la réaction, ne servent qu'en combat). */
 export const RESSOURCES_DURABLES = Object.keys(RECUPERATION);
@@ -102,6 +104,8 @@ export function recuperer(p: Personnage, duree: 'court' | 'long', gen: Generateu
     if (r === 'toutes') p.ressources[cle] = m;
     else if (r === 'une') p.ressources[cle] = Math.min(m, (p.ressources[cle] ?? 0) + 1);
   }
+  // Source d'inspiration (Barde niveau 5) : le repos court rend aussi toute l'Inspiration bardique.
+  if (duree === 'court' && max.ressources.inspiration !== undefined && p.fiche.aptitudes.some((a) => a.id === 'source-d-inspiration')) p.ressources.inspiration = max.ressources.inspiration;
   const changes: string[] = [];
   if (p.pv !== avant.pv) changes.push(`${p.pv - avant.pv} PV (${p.pv}/${p.fiche.pvMax})`);
   for (const k of Object.keys(p.ressources)) {

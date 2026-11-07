@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { validerMonde, articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { rachats } from '../src/modules/commerce';
 
 const srd = chargerDonneesSrd();
 const mondes: Record<string, DonneesMonde> = {};
@@ -121,6 +122,17 @@ describe('audit : boutiques et services', () => {
     q = m.moteur.executer(q, vente!.ordre!).partie;
     expect(q.etat.inventaire[objet]).toBe(1);
     expect(q.etat.pieces).toBeGreaterThan(0);
+  });
+
+  it('vendre : gemmes et objets d’art gardent toute leur valeur (SRD), le reste est racheté à la moitié', () => {
+    const m = partie('val-des-cendres');
+    const q = parlerA(m, [...m.dm.pnj.values()].find((n) => n.boutique && n.boutique.rachat > 0)!.id, 0);
+    const marchand = { boutique: { rachat: 0.5, types: [], stock: [], tables: [] } } as unknown as Parameters<typeof rachats>[2];
+    q.etat.inventaire = { 'agate-rubanee': 1, 'chandelier-d-argent': 1, corde: 1 };
+    const prix = Object.fromEntries(rachats(m.moteur.ctx, q, marchand).map((x) => [x.objet, x.prix]));
+    expect(prix['agate-rubanee']).toBe(objetDe(m.moteur.ctx, 'agate-rubanee').valeurPo);
+    expect(prix['chandelier-d-argent']).toBe(objetDe(m.moteur.ctx, 'chandelier-d-argent').valeurPo);
+    expect(prix['corde']).toBe(Math.floor(objetDe(m.moteur.ctx, 'corde').valeurPo! * 50) / 100);
   });
 
   it('une chambre payée donne une nuit de repos ; des soins rendent tous les PV', () => {

@@ -10,6 +10,8 @@ import { EcranAide } from './menu/EcranAide';
 import { EcranAventure } from './aventure/EcranAventure';
 import { demarrerAventure, partieSauvegardee, rencontreDeMonde, reprendreAventure, sauverPartie, type Aventure } from './aventure/partie';
 import { chargerHistoire } from './mondes';
+import { definirSceneMusique } from './musique';
+import type { SceneMusique } from './musique-regles';
 import { EcranHistoires } from './menu/EcranHistoires';
 import { EcranTitre } from './menu/EcranTitre';
 
@@ -71,6 +73,11 @@ export function App() {
 
   // Sauvegarde automatique du groupe.
   useEffect(() => sauverGroupe(groupe), [groupe]);
+
+  // La musique suit la scène : celle des menus, ou le fond d'une histoire en cours (un combat de l'histoire en garde la musique
+  // de combat, puis le fond reprend). Une escarmouche libre n'a que la musique de son combat.
+  const sceneMusique: SceneMusique = partie ? undefined : (combatHistoire && aventure) || vue.nom === 'aventure' ? 'histoire' : 'accueil';
+  useEffect(() => definirSceneMusique(sceneMusique), [sceneMusique]);
 
   if (!donnees.ok) {
     return (

@@ -1,5 +1,6 @@
 // État d'une partie dans un monde : tout ce qui change (drapeaux, faits connus, jauges, réputations, quêtes…).
 // C'est un objet JSON simple, sauvegardable tel quel. Les conditions et effets du format de monde s'évaluent ici.
+import { SEUILS_PX } from '../caracteristiques';
 import type { Condition, DonneesMonde, EffetMonde, Enigme } from './schemas';
 
 export type StatutQuete = 'proposee' | 'active' | 'terminee' | 'echouee';
@@ -61,7 +62,8 @@ export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.mi
     pnjLieux: {},
     inventaire: {},
     pieces: 0,
-    xp: 0,
+    // Un groupe qui commence au niveau N a déjà les PX de ce niveau (SRD 5.2.1) : le suivant demande l'écart, pas le total.
+    xp: SEUILS_PX[Math.min(Math.max(niveauGroupe, 1), SEUILS_PX.length) - 1] ?? 0,
     quetes: {},
     lieuxVisites: [dm.monde.depart.lieu],
     debloques: [],

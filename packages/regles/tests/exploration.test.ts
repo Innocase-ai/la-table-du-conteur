@@ -24,6 +24,7 @@ import {
   type Generateur,
   type PartieMonde,
 } from '../src';
+import { attenteInfluence, modeInfluence } from '../src/monde/dialogue';
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
@@ -288,8 +289,70 @@ describe('dialogue', () => {
     p.gen = ECHEC;
     influencer(p, 'vei-nerio-braisemolle', 'tromperie');
     expect(p.etat.attitudes['vei-nerio-braisemolle']).toBe(avant - 5);
-    expect(ddInfluence(0)).toBe(15);
-    expect(ddInfluence(100)).toBe(5);
+    expect(ddInfluence()).toBe(15); // le DD ne bouge plus avec l'attitude (SRD 5.2.1)
+  });
+});
+
+describe('influence selon le SRD : Avantage, Désavantage, attente de 24 h', () => {
+  const NERIO = 'vei-nerio-braisemolle';
+  /** Un générateur qui rend ces valeurs dans l'ordre, puis boucle : `0` donne 1 au d20, `0.999` donne 20. */
+  const suite = (...valeurs: number[]): Generateur => {
+    let i = 0;
+    return () => valeurs[i++ % valeurs.length]!;
+  };
+  function chezNerio(gen: Generateur) {
+    const p = partie(gen);
+    aller(p, 'vei-auberge-dernier-feu');
+    return p;
+  }
+
+  it("un PNJ amical donne l'Avantage, un hostile le Désavantage, un indifférent rien", () => {
+    expect(modeInfluence(0)).toBeUndefined();
+    expect(modeInfluence(29)).toBeUndefined();
+    expect(modeInfluence(30)).toBe('avantage');
+    expect(modeInfluence(-30)).toBe('desavantage');
+    expect(modeInfluence(-29)).toBeUndefined();
+  });
+
+  it("amical : le 2e dé sauve un 1 (Avantage) ; hostile : le 2e dé gâche un 20 (Désavantage)", () => {
+    const amical = chezNerio(suite(0, 0.999));
+    amical.etat.attitudes[NERIO] = 50;
+    const a = influencer(amical, NERIO, 'persuasion');
+    expect(a.jets[0]).toMatchObject({ avantage: true, reussite: true });
+    expect(a.jets[0]!.des).toHaveLength(2);
+
+    const hostile = chezNerio(suite(0.999, 0));
+    hostile.etat.attitudes[NERIO] = -50;
+    const h = influencer(hostile, NERIO, 'persuasion');
+    expect(h.jets[0]).toMatchObject({ desavantage: true });
+    expect(h.jets[0]!.des).toHaveLength(2);
+    expect(h.jets[0]!.dd).toBe(15); // le DD ne bouge pas
+  });
+
+  it('après un échec, la même manière attend 24 h ; une autre manière reste libre ; une nuit libère', () => {
+    const p = chezNerio(ECHEC);
+    expect(influencer(p, NERIO, 'persuasion').jets).toHaveLength(1);
+    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(24);
+    const refus = influencer(p, NERIO, 'persuasion');
+    expect(refus.ok).toBe(false);
+    expect(refus.refus).toMatch(/réessayez dans 24 h/);
+    expect(refus.jets).toHaveLength(0); // aucun jet pendant l'attente
+    expect(influencer(p, NERIO, 'tromperie').jets).toHaveLength(1); // une autre manière
+    // Quelques heures passent, puis une nuit entière.
+    p.etat.heure = (p.etat.heure ?? 8) + 5;
+    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(19);
+    p.etat.jour += 1;
+    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(0);
+    p.gen = SUCCES;
+    expect(influencer(p, NERIO, 'persuasion').jets).toHaveLength(1);
+  });
+
+  it("une réussite n'impose aucune attente, et les sauvegardes sans le champ restent jouables", () => {
+    const p = chezNerio(SUCCES);
+    delete p.etat.exploration.influenceRatee;
+    influencer(p, NERIO, 'persuasion');
+    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(0);
+    expect(influencer(p, NERIO, 'persuasion').ok).toBe(true);
   });
 });
 
@@ -297,10 +360,11 @@ describe('énigmes, repos, tests, fiche de scène', () => {
   it("le mot d'ordre de la caserne des cryptes : bonne réponse, fait, XP, trésor accessible", () => {
     const p = partie();
     p.etat.lieu = 'cry-caserne';
+    const depart = p.etat.xp; // le groupe de niveau 3 arrive avec les PX de son niveau
     const rep = repondreEnigme(p, 'cry-e-le-mot-d-ordre', "L'Enclume");
     expect(rep.ok).toBe(true);
     expect(p.etat.faits).toContain('f-cry-mot-d-ordre');
-    expect(p.etat.xp).toBe(75);
+    expect(p.etat.xp - depart).toBe(75);
     expect(p.etat.exploration.ouverts).toContain('tresor:cry-t-caserne-capitaine');
     expect(repondreEnigme(p, 'cry-e-le-mot-d-ordre', 'enclume').ok).toBe(false); // déjà résolue
   });
@@ -336,6 +400,38 @@ describe('énigmes, repos, tests, fiche de scène', () => {
     expect(p.etat.jour).toBe(2);
     expect(p.etat.jauges['cendre']).toBe(avant + 1);
     expect(rp.constats.join(' ')).toMatch(/Les morts rôdent/);
+  });
+
+  describe('un repos interrompu par un combat (SRD 5.2.1)', () => {
+    /** L'auberge reçoit une rencontre de combat qui surgit à coup sûr pendant le repos. */
+    function aubergeAgitee(): ReturnType<typeof partie> {
+      const p = partie();
+      p.etat.lieu = 'vei-auberge-dernier-feu';
+      const lieu = p.dm.lieux.get(p.etat.lieu)!;
+      const combat = [...p.dm.rencontres.values()].find((r) => r.type === 'combat')!;
+      lieu.rencontres = [{ id: combat.id, declencheur: 'repos', unique: false } as (typeof lieu.rencontres)[number]];
+      p.groupe[0]!.pv = 1;
+      return p;
+    }
+
+    it('une nuit interrompue ne donne que les bénéfices d’un repos court : pas de nouveau jour', () => {
+      const p = aubergeAgitee();
+      const jour = p.etat.jour;
+      const rp = seReposer(p, 'long');
+      expect(rp.combat).toBeDefined();
+      expect(p.etat.jour).toBe(jour); // pas de nuit entière, pas de nouveau jour
+      expect(rp.constats.join(' ')).toMatch(/la nuit est interrompue/);
+      expect(rp.constats.join(' ')).not.toMatch(/nuit entière/);
+      expect(p.groupe[0]!.pv).toBeGreaterThan(1); // les bénéfices d'une halte sont bien là
+    });
+
+    it('une halte interrompue ne rapporte rien', () => {
+      const p = aubergeAgitee();
+      const rp = seReposer(p, 'court');
+      expect(rp.combat).toBeDefined();
+      expect(p.groupe[0]!.pv).toBe(1);
+      expect(rp.constats.join(' ')).toMatch(/La halte est interrompue/);
+    });
   });
 
   it('un test libre refuse un DD hors bornes', () => {

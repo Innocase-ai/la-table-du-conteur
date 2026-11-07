@@ -1,5 +1,6 @@
 import { useState, type KeyboardEvent } from 'react';
 import { bilanPersonnage, personnageComplet, TAILLE_GROUPE, type Donnees, type Groupe } from '@crpg/regles';
+import { ControleSon } from '../composants/ControleSon';
 import { Credits } from '../composants/Credits';
 import { NOM_JEU, SOUS_TITRE_JEU } from '../jeu';
 import { histoires } from '../mondes';
@@ -115,11 +116,17 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
           ))}
         </nav>
         <footer className="titre-pied">
+          <ControleSon />
           <button type="button" className="lien-credits" onClick={() => setCredits(true)}>
             Crédits
           </button>
           <span>Les objets de la table s'ouvrent aussi d'un clic. Prototype : le conteur (maître de jeu) n'est pas encore branché.</span>
         </footer>
+        <p className="titre-credits-court">
+          <button type="button" className="lien-credits" onClick={() => setCredits(true)}>
+            Musiques Pixabay (Leberch, Menieldm, The_Mountain…) · pictogrammes game-icons.net · règles SRD 5.2.1 (CC-BY 4.0) · crédits complets
+          </button>
+        </p>
       </main>
       {credits && <Credits onFermer={() => setCredits(false)} />}
     </div>

@@ -1,14 +1,20 @@
-// Le groupe de 6 personnages créés par le joueur : format de sauvegarde, validation et conseils de composition.
+// Le groupe de 4 ou 6 personnages créés par le joueur : format de sauvegarde, validation et conseils de composition.
 import { z } from 'zod';
 import type { Donnees } from '../donnees';
 import { calculerFiche, type ChoixPersonnage, type Fiche } from '../fiche';
-import { Competence } from '../schemas';
+import { CARACTERISTIQUES, Competence } from '../schemas';
 import { manquants, type Manquant } from './exigences';
 import { creationRapide } from './recommandations';
 
-/** Un groupe compte de 1 à 6 personnages (le joueur choisit) ; les rencontres des histoires sont écrites pour 6 et adaptées au nombre de héros (`adapterRencontre`). */
+/**
+ * Un groupe a 4 ou 6 emplacements (le joueur choisit) et compte de 1 à 6 personnages : on peut en laisser de vides. Les rencontres
+ * des histoires sont écrites pour 6 et adaptées au nombre de héros (`adapterRencontre`).
+ */
 export const TAILLE_GROUPE = 6;
 export const TAILLE_GROUPE_MIN = 1;
+/** Les tailles de groupe proposées : le nombre d'emplacements. */
+export const TAILLES_GROUPE = [4, 6] as const;
+export type TailleGroupe = (typeof TAILLES_GROUPE)[number];
 
 export const ALIGNEMENTS = [
   { id: 'LB', nom: 'Loyal bon' },
@@ -38,6 +44,7 @@ export const ChoixPersonnageSchema = z.object({
   bonusHistorique: valeurs.partial(),
   ameliorations: z.array(valeurs.partial()).optional(),
   dons: chaines.optional(),
+  faveurCaracteristique: z.array(z.enum(CARACTERISTIQUES)).optional(),
   competencesClasse: z.array(Competence),
   competencesSupplementaires: z.array(Competence).optional(),
   expertises: z.array(Competence).optional(),
@@ -71,12 +78,24 @@ export const Groupe = z.object({
   version: z.literal(1),
   /** Niveau de départ de tout le groupe (1 à 5). */
   niveau: z.number().int().min(1).max(20),
-  emplacements: z.array(PersonnageCree.nullable()).length(TAILLE_GROUPE),
+  emplacements: z.array(PersonnageCree.nullable()).refine((e) => (TAILLES_GROUPE as readonly number[]).includes(e.length), { message: 'Un groupe compte 4 ou 6 emplacements.' }),
 });
 export type Groupe = z.infer<typeof Groupe>;
 
-export function groupeVide(niveau = 1): Groupe {
-  return { version: 1, niveau, emplacements: Array.from({ length: TAILLE_GROUPE }, () => null) };
+export function groupeVide(niveau = 1, taille: TailleGroupe = TAILLE_GROUPE): Groupe {
+  return { version: 1, niveau, emplacements: Array.from({ length: taille }, () => null) };
+}
+
+/** Les héros qui seraient retirés en passant à `taille` emplacements (ceux qui occupent les emplacements en trop). */
+export function herosRetires(groupe: Groupe, taille: TailleGroupe): PersonnageCree[] {
+  return groupe.emplacements.slice(taille).filter((p): p is PersonnageCree => !!p);
+}
+
+/** Le même groupe avec `taille` emplacements : des emplacements vides en plus, ou les derniers retirés (voir `herosRetires`). */
+export function redimensionner(groupe: Groupe, taille: TailleGroupe): Groupe {
+  const emplacements = groupe.emplacements.slice(0, taille);
+  while (emplacements.length < taille) emplacements.push(null);
+  return { ...groupe, emplacements };
 }
 
 export function nouvelId(): string {
@@ -124,11 +143,12 @@ const CLASSES_SOIGNEUSES = ['clerc', 'druide', 'barde', 'paladin'];
 const CLASSES_PREMIERE_LIGNE = ['barbare', 'guerrier', 'paladin', 'moine'];
 
 /** Conseils de composition (jamais bloquants). */
-export function avertissementsGroupe(fiches: Fiche[], donnees: Donnees): string[] {
+export function avertissementsGroupe(fiches: Fiche[], donnees: Donnees, taille: TailleGroupe = TAILLE_GROUPE): string[] {
   const avis: string[] = [];
   if (!fiches.length) return ['Aucun personnage complet : créez au moins un aventurier.'];
   const n = fiches.length;
-  if (n < TAILLE_GROUPE) avis.push(`Groupe de ${n} : les combats des histoires auront moins de monstres (calculés pour ${n} héros au lieu de ${TAILLE_GROUPE}).`);
+  if (n < taille) avis.push(`Groupe de ${n} sur ${taille} emplacements : les combats des histoires auront moins de monstres (calculés pour ${n} héros au lieu de ${taille}).`);
+  else if (n < TAILLE_GROUPE) avis.push(`Groupe de ${n} : les combats des histoires seront un peu moins chargés qu'à ${TAILLE_GROUPE} héros (ils s'adaptent au nombre de héros).`);
   const soigne = (f: Fiche) =>
     CLASSES_SOIGNEUSES.includes(f.classe) || [...f.sortsMineurs, ...f.sortsPrepares, ...f.sortsAccordes].some((id) => !!donnees.sorts.get(id)?.soins);
   // Les conseils de composition ne valent que pour un groupe qui peut se répartir les rôles : un héros seul ou en duo se débrouille.
@@ -156,11 +176,15 @@ export const GROUPE_CONSEILLE: { nom: string; classe: string; espece: string; se
   { nom: 'Grukk', classe: 'barbare', espece: 'orc', sexe: 'M', alignement: 'CN' },
 ];
 
-export function groupeConseille(niveau: number, donnees: Donnees): Groupe {
+/** Les quatre héros du groupe conseillé à 4 : première ligne, soigneur, roublard et lanceur de sorts. */
+const CLASSES_GROUPE_DE_4 = ['guerrier', 'clerc', 'roublard', 'magicien'];
+
+export function groupeConseille(niveau: number, donnees: Donnees, taille: TailleGroupe = TAILLE_GROUPE): Groupe {
+  const heros = taille === 4 ? GROUPE_CONSEILLE.filter((h) => CLASSES_GROUPE_DE_4.includes(h.classe)) : GROUPE_CONSEILLE;
   return {
     version: 1,
     niveau,
-    emplacements: GROUPE_CONSEILLE.map((h) => ({
+    emplacements: heros.map((h) => ({
       id: nouvelId(),
       sexe: h.sexe,
       alignement: h.alignement,

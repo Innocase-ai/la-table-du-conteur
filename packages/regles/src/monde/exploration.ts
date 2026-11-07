@@ -10,6 +10,7 @@ import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets, avancerQuetes, evaluerCondition, verifierEnigme, type EtatMonde } from './etat';
+import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
 
@@ -34,6 +35,16 @@ export interface EtatExploration {
   indices?: Record<string, number>;
   /** Autres issues de rencontre tentées sans succès : `<rencontre>:<alternative>` (on ne retente pas la même). */
   essais?: string[];
+  /**
+   * Les PNJ qui ont surpris le groupe en train de crocheter ou de forcer, par identifiant : le jour (ils restent en alerte toute
+   * la journée), ce qu'ils ont vu, et s'ils l'ont déjà dit au groupe en conversation (`confronte`). Absent des sauvegardes anciennes.
+   */
+  vus?: Record<string, { jour: number; objet: string; methode: 'crocheter' | 'forcer'; confronte?: boolean }>;
+  /**
+   * Les tentatives d'influence ratées : `<pnj>:<manière>` → l'heure de jeu absolue (`jour × 24 + heure`) de l'échec. Le SRD
+   * demande d'attendre 24 h avant d'exhorter de nouveau de la même manière. Absent des sauvegardes anciennes.
+   */
+  influenceRatee?: Record<string, number>;
 }
 
 export interface PartieMonde {
@@ -47,10 +58,7 @@ export interface PartieMonde {
 
 export type { Jet };
 
-/** Le moment de la journée : jour de 6 h à 17 h, soir de 18 h à 21 h, nuit ensuite (présences des PNJ). */
-export function momentDe(heure = 8): 'jour' | 'soir' | 'nuit' {
-  return heure >= 6 && heure < 18 ? 'jour' : heure >= 18 && heure < 22 ? 'soir' : 'nuit';
-}
+export { momentDe };
 
 /** Compte rendu d'un verbe : ce que le conteur doit raconter, rien de plus. */
 export interface CompteRendu {
@@ -105,10 +113,12 @@ function bonusTest(a: Personnage, test: Competence | Caracteristique): number {
 }
 
 /** Le personnage désigné, ou celui du groupe qui a le meilleur bonus (« le groupe fouille »). */
-function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string): Personnage | undefined {
+function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string, qualifie?: (a: Personnage) => boolean): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
-  return [...vivants].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
+  // Quand l'action demande un équipement (crocheter : les outils de voleur), on préfère ceux qui l'ont, même au bonus plus faible.
+  const equipes = qualifie ? vivants.filter(qualifie) : [];
+  return [...(equipes.length ? equipes : vivants)].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
 }
 
 /** Un test d20 du personnage, consigné dans le compte rendu. */
@@ -476,7 +486,8 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     verrou = tresor.acces.verrou;
     cle = `tresor:${tresor.id}`;
     if (!verrou || ex.ouverts.includes(cle)) return refus(`${tresor.nom} n'est pas fermé.`);
-    nom = tresor.nom;
+    // Dans une phrase (« Bran force le tiroir de la caisse »), l'article du nom perd sa majuscule.
+    nom = tresor.nom.replace(/^(Le|La|Les|L’|L') ?/, (m) => m.toLowerCase());
   }
   const r = resultat();
   if (methode === 'cle') {
@@ -488,9 +499,14 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     return r;
   }
   const test: Competence = methode === 'crocheter' ? 'escamotage' : 'athletisme';
-  const a = choisir(p, test, personnage);
+  const a = choisir(p, test, personnage, methode === 'crocheter' ? (x) => aOutils(p, x) : undefined);
   if (!a) return refus('Personne ne peut le faire.');
   if (methode === 'crocheter' && !aOutils(p, a)) return refus(`${a.nom} n'a pas d'outils de voleur pour crocheter.`);
+  // Des témoins qui voient le groupe l'arrêtent net : pas de jet d'ouverture, pas de piège, et ils restent en alerte.
+  if (repererTemoins(p, r, a, methode, nom)) {
+    suites(p, r);
+    return r;
+  }
   const jet = tester(p, r, a, test, verrou.dd);
   if (jet.reussite) {
     ex.ouverts.push(cle);
@@ -501,6 +517,41 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
   declencherPiegeLibre(p, r, a);
   suites(p, r);
   return r;
+}
+
+/** Les verbes du constat quand des témoins surprennent le groupe (l'écran de crochetage les reconnaît : voir `crochetage-regles.ts`). */
+export const VERBES_OUVRIR = { crocheter: 'crocheter', forcer: 'forcer' } as const;
+
+/**
+ * Qui regarde ? Les PNJ présents dans le lieu (les compagnons qui suivent le groupe ne comptent pas) ont une chance de voir le
+ * groupe s'attaquer à la serrure : un jet de Discrétion du héros contre un DD que le joueur ne voit pas, `10 + 2` par témoin en
+ * plus du premier (au plus 18), et `+5` pour forcer, qui fait du bruit. Sans témoin, personne ne regarde : pas de jet.
+ *
+ * Repéré, **le groupe est arrêté net** : l'ouverture n'a pas lieu (ni jet, ni piège), chaque témoin perd de l'attitude envers le
+ * groupe (−10 pour crocheter, −15 pour forcer) et reste **en alerte toute la journée** : s'ils sont encore là, impossible de
+ * retenter sous leur nez (sans jet). Au prochain dialogue, le PNJ en parle (voir `parler`) ; une persuasion, une tromperie ou une
+ * intimidation réussie le calme (voir `influencer`). Renvoie `true` quand l'action est arrêtée.
+ */
+function repererTemoins(p: PartieMonde, r: CompteRendu, a: Personnage, methode: 'crocheter' | 'forcer', nom: string): boolean {
+  const temoins = pnjPresents(p).filter((n) => !p.etat.escortes?.includes(n.id));
+  if (!temoins.length) return false;
+  const verbe = VERBES_OUVRIR[methode];
+  const liste = (l: { nom: string }[]) => (l.length === 1 ? l[0]!.nom : `${l.slice(0, -1).map((n) => n.nom).join(', ')} et ${l[l.length - 1]!.nom}`);
+  // Déjà surpris aujourd'hui : ceux qui sont là gardent le groupe à l'œil.
+  const alertes = temoins.filter((n) => p.etat.exploration.vus?.[n.id]?.jour === p.etat.jour);
+  if (alertes.length) {
+    r.constats.push(`${liste(alertes)} ${alertes.length === 1 ? 'vous surveille' : 'vous surveillent'} de près : impossible de ${verbe} ${nom} sous ${alertes.length === 1 ? 'son' : 'leur'} nez.`);
+    return true;
+  }
+  const dd = Math.min(18, 10 + 2 * (temoins.length - 1)) + (methode === 'forcer' ? 5 : 0);
+  const jet = tester(p, r, a, 'discretion', dd);
+  jet.ddSecret = true;
+  if (jet.reussite) return false;
+  r.constats.push(`${liste(temoins)} ${temoins.length === 1 ? 'vous a' : 'vous ont'} vus ${verbe} ${nom} et ${temoins.length === 1 ? 'vous arrête' : 'vous arrêtent'} net.`);
+  const vus = (p.etat.exploration.vus ??= {});
+  for (const n of temoins) vus[n.id] = { jour: p.etat.jour, objet: nom, methode };
+  appliquer(p, r, temoins.map((n) => ({ attitude: { pnj: n.id, delta: methode === 'forcer' ? -15 : -10 } })));
+  return true;
 }
 
 function aOutils(p: PartieMonde, a: Personnage): boolean {
@@ -750,24 +801,49 @@ export function indiceEnigme(p: PartieMonde, enigme: string, niveau: number, per
 export const MESSAGE_PAS_DE_NUIT = (lieu: string) => `On ne dort pas ici (${lieu}) : trop exposé. Une halte est possible ; pour une nuit entière, il faut un abri sûr (auberge, camp, refuge).`;
 
 /** `abri` : une nuit payée à un PNJ (chambre, refuge) se passe chez lui, quel que soit le lieu. */
+/** Le début du constat d'une nuit qu'une rencontre interrompt (l'écran de sommeil le reconnaît : voir `sommeil-regles.ts`). */
+export const PHRASE_NUIT_INTERROMPUE = 'Le groupe s’endort, mais la nuit est interrompue';
+
 export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { abri?: boolean } = {}): CompteRendu {
   const lieu = p.dm.lieux.get(p.etat.lieu)!;
   if (lieu.repos === 'impossible' && !options.abri) return refus(`Impossible de se reposer ici (${lieu.nom}).`);
   // Une halte (repos court) se fait presque partout ; une nuit entière demande un abri sûr : auberge, camp, refuge.
   if (duree === 'long' && lieu.repos !== 'sur' && !options.abri) return refus(MESSAGE_PAS_DE_NUIT(lieu.nom));
   const r = resultat();
-  // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
-  for (const a of p.groupe) {
-    const changes = recuperer(a, duree, p.gen);
-    if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
-  }
-  if (duree === 'long') {
+  // La rencontre du repos se tire d'abord : un combat l'interrompt (SRD 5.2.1). Une halte interrompue ne rapporte rien ;
+  // une nuit interrompue s'arrête au milieu et ne donne que les bénéfices d'un repos court (au moins une heure de repos).
+  const rencontre = resultat();
+  declencherRencontre(p, rencontre, lieu, 'repos');
+  const interrompu = !!rencontre.combat;
+  const recuperation = (sorte: 'court' | 'long') => {
+    // Chaque héros récupère selon les règles du repos (PV, usages d'aptitudes, emplacements ; jamais les potions).
+    for (const a of p.groupe) {
+      const changes = recuperer(a, sorte, p.gen);
+      if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
+    }
+  };
+  if (duree === 'long' && interrompu) {
+    const nuit = (24 - (p.etat.heure ?? 8)) + 8;
+    const heures = Math.max(1, Math.floor(nuit / 2));
+    r.constats.push(`${PHRASE_NUIT_INTERROMPUE} au bout de ${heures} h : le repos ne vaut qu'une halte.`);
+    recuperation('court');
+    avancerHeures(p, r, heures);
+  } else if (duree === 'long') {
+    recuperation('long');
     p.etat.jour += 1;
     p.etat.heure = 8;
     r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
     nouveauJour(p, r, true);
-  } else if (!r.constats.length) r.constats.push('Une courte halte.');
-  declencherRencontre(p, r, lieu, 'repos');
+  } else if (interrompu) {
+    r.constats.push('La halte est interrompue : personne ne récupère.');
+  } else {
+    recuperation('court');
+    if (!r.constats.length) r.constats.push('Une courte halte.');
+  }
+  // La rencontre se raconte après le repos (ou ce qu'il en reste).
+  r.constats.push(...rencontre.constats);
+  r.narrations.push(...rencontre.narrations);
+  if (rencontre.combat) r.combat = rencontre.combat;
   suites(p, r);
   return r;
 }

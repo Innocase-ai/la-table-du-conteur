@@ -11,6 +11,7 @@ import {
 } from './caracteristiques';
 import { bottesPossibles, choixRequis, niveauSortMax, nombreDeChoix, regleInitie, sortsEligibles } from './creation/regles-creation';
 import { equipementChoisi, type EquipementResolu } from './creation/equipement';
+import { caracteristiquesDeFaveur, VALEUR_MAX_FAVEUR } from './creation/faveurs';
 import type { Donnees } from './donnees';
 import {
   CARACTERISTIQUES,
@@ -25,6 +26,13 @@ import {
 
 export const NIVEAU_MAX = 20;
 
+/** « +4,50 m » → 4,5 ; une colonne vide ou « — » → rien. */
+export function metresDeColonne(valeur: string | number | undefined): number | undefined {
+  if (typeof valeur === 'number') return valeur;
+  const m = /([\d]+(?:[.,]\d+)?)\s*m/.exec(valeur ?? '');
+  return m ? Number(m[1]!.replace(',', '.')) : undefined;
+}
+
 export interface ChoixPersonnage {
   nom: string;
   classe: string;
@@ -38,8 +46,10 @@ export interface ChoixPersonnage {
   bonusHistorique: Partial<Valeurs>;
   /** Une entrée par Amélioration de caractéristique obtenue : +2 à une, ou +1 à deux. */
   ameliorations?: Partial<Valeurs>[];
-  /** Dons choisis en plus de celui de l'historique (Style de combat, etc.). */
+  /** Dons choisis en plus de celui de l'historique (Style de combat, Faveur épique, etc.). */
   dons?: string[];
+  /** La caractéristique que relève chaque Faveur épique (+1, max 30), dans l'ordre des faveurs choisies. */
+  faveurCaracteristique?: Caracteristique[];
   competencesClasse: Competence[];
   /** Compétences accordées par l'espèce ou un don (Sens aiguisés, Doué…). */
   competencesSupplementaires?: Competence[];
@@ -250,7 +260,7 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       origines: espece.traits.some((t) => t.id === 'polyvalent' && t.niveau <= niveau) ? 1 : 0,
       'style-de-combat': Math.min(1, classe.aptitudes.filter((a) => a.id === 'style-de-combat' && a.niveau <= niveau).length),
       general: 0,
-      'faveur-epique': 0,
+      'faveur-epique': classe.aptitudes.filter((a) => a.id === 'faveur-epique' && a.niveau <= niveau).length,
     };
     const pris: Record<string, number> = {};
     for (const id of choix.dons ?? []) {
@@ -261,6 +271,10 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       }
       if (!d.repetable && (id === historique.don || donsRetenus.includes(id))) {
         avertissements.push(`Don « ${d.nom} » en double : ignoré (il ne se prend qu'une fois).`);
+        continue;
+      }
+      if (d.id === 'faveur-de-memoire-magique' && !classe.incantation) {
+        avertissements.push(`Don « ${d.nom} » : il faut l'aptitude Sorts, ignoré.`);
         continue;
       }
       if ((pris[d.categorie] ?? 0) >= (permis[d.categorie] ?? Infinity)) {
@@ -315,6 +329,17 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       choix.valeursBase[c] + (choix.bonusHistorique[c] ?? 0) + ameliorations.reduce((s, a) => s + (a[c] ?? 0), 0);
     if (valeurs[c] > VALEUR_MAX) erreurs.push(`${c} dépasse ${VALEUR_MAX} (${valeurs[c]}).`);
   }
+  // Chaque Faveur épique relève une caractéristique de 1 (max 30) : la seule façon de dépasser 20.
+  const faveurs = donsRetenus.filter((id) => donnees.dons.get(id)?.categorie === 'faveur-epique');
+  faveurs.forEach((id, i) => {
+    const c = choix.faveurCaracteristique?.[i];
+    if (!c) {
+      avertissements.push(`Faveur épique « ${donnees.dons.get(id)!.nom} » : aucune caractéristique relevée.`);
+      return;
+    }
+    if (!caracteristiquesDeFaveur(id).includes(c)) erreurs.push(`${donnees.dons.get(id)!.nom} ne relève pas cette caractéristique (${c}).`);
+    else valeurs[c] = Math.min(VALEUR_MAX_FAVEUR, valeurs[c] + 1);
+  });
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, modificateur(valeurs[c])])) as Record<
     Caracteristique,
     number
@@ -410,9 +435,12 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
   let vitesse = espece.vitesse;
   const armureLourde = armure?.categorie === 'lourde';
   for (const e of de('bonus_vitesse')) {
-    if (e.condition === 'toujours') vitesse += e.metres;
-    else if (e.condition === 'sans_armure_lourde' && !armureLourde) vitesse += e.metres;
-    else if (e.condition === 'sans_armure_ni_bouclier' && !armure && !bouclier) vitesse += e.metres;
+    // Un bonus qui grandit avec le niveau (Déplacement sans armure du Moine) se lit dans la colonne de la progression.
+    const lu = e.colonne ? metresDeColonne(classe.progression[niveau - 1]?.colonnes[e.colonne]) : undefined;
+    const metres = lu ?? e.metres;
+    if (e.condition === 'toujours') vitesse += metres;
+    else if (e.condition === 'sans_armure_lourde' && !armureLourde) vitesse += metres;
+    else if (e.condition === 'sans_armure_ni_bouclier' && !armure && !bouclier) vitesse += metres;
   }
   if (armure?.forceMin && valeurs.for < armure.forceMin) {
     vitesse -= 3;

@@ -81,6 +81,8 @@ function tourVierge(c: Combattant): Combattant['tour'] {
     frenesieUtilisee: false,
     temeraire: false,
     elanJoue: false,
+    attaqueEntreprise: false,
+    etourdissanteUtilisee: false,
   };
 }
 
@@ -114,6 +116,17 @@ export function creerCombat(
     type: 'info',
     texte: `Initiative : ${etat.ordre.map((id) => `${combattant(etat, id).nom} (${combattant(etat, id).initiative})`).join(', ')}.`,
   });
+  // Métabolisme surnaturel (Moine) : à l'Initiative, il récupère son Credo dépensé et des PV, une fois par repos long.
+  for (const c of etat.combattants) {
+    const r = c.ressources;
+    if (!aTrait(c, 'metabolisme-surnaturel') || !r.metabolisme || c.pv <= 0) continue;
+    if ((r.credo ?? 0) >= (r.credoMax ?? 0) && c.pv >= c.pvMax) continue;
+    r.metabolisme -= 1;
+    r.credo = r.credoMax ?? r.credo ?? 0;
+    const soins = c.niveau + lancerDes(etat, `1d${r.deArtsMartiaux ?? 6}`);
+    journaliser(etat, { type: 'info', texte: `${c.nom} puise dans son Métabolisme surnaturel : Credo rendu, ${soins} PV.`, acteur: c.id });
+    soigner(etat, c, soins, c);
+  }
   debutTour(etat);
   return etat;
 }
@@ -134,6 +147,7 @@ function expirer(etat: EtatCombat, moment: 'debut_tour' | 'fin_tour', de: string
 function debutTour(etat: EtatCombat): void {
   const c = actif(etat);
   expirer(etat, 'debut_tour', c.id);
+  for (const x of etat.combattants) x.etats = x.etats.filter((e) => e.jusquAuDebutDe !== c.id);
   c.tour = tourVierge(c);
   c.ressources.reaction = 1;
   journaliser(etat, { type: 'tour', texte: `Tour de ${c.nom}.`, acteur: c.id });
@@ -244,7 +258,7 @@ export function ajouterEtat(etat: EtatCombat, c: Combattant, e: EtatActif): bool
   }
   c.etats.push(e);
   journaliser(etat, { type: 'etat', texte: `${c.nom} : ${libelleEtat(e.etat)}.`, cible: c.id });
-  if (e.etat === 'inconscient' || e.etat === 'paralyse' || e.etat === 'neutralise') {
+  if (e.etat === 'inconscient' || e.etat === 'paralyse' || e.etat === 'neutralise' || e.etat === 'etourdi') {
     if (c.concentration) finConcentration(etat, c);
   }
   return true;
@@ -265,6 +279,7 @@ const LIBELLES_ETATS: Record<Etat, string> = {
   neutralise: 'neutralisé',
   paralyse: 'paralysé',
   empoisonne: 'empoisonné',
+  etourdi: 'étourdi',
 };
 
 export function libelleEtat(e: Etat): string {
@@ -291,13 +306,30 @@ function desModificateurs(etat: EtatCombat, c: Combattant, type: 'de_attaque' | 
 }
 
 /** Jet de sauvegarde ; `bonus` s'ajoute au total (le demi-couvert, +2 en Dextérité, voir `couvertSauvegarde`). */
+/**
+ * Dé d'Inspiration bardique (SRD 5.2.1) : quand le test d'un allié inspiré est raté, il peut lancer le dé et l'ajouter.
+ * On ne le dépense que s'il peut vraiment rattraper l'échec (le manque ne dépasse pas la face maximale). Renvoie le dé obtenu.
+ */
+function inspirationRattrape(etat: EtatCombat, c: Combattant, manque: number): number {
+  const m = c.modificateurs.find((x) => x.type === 'de_inspiration' && x.de);
+  if (!m) return 0;
+  const faces = Number(/d(\d+)$/.exec(m.de!)?.[1] ?? 0);
+  if (!faces || manque > faces) return 0;
+  c.modificateurs = c.modificateurs.filter((x) => x !== m);
+  const jet = lancerDes(etat, m.de!);
+  journaliser(etat, { type: 'info', texte: `${c.nom} utilise son dé d'Inspiration bardique : +${jet}.`, acteur: c.id });
+  return jet;
+}
+
 export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristique, dd: number, bonus = 0): boolean {
-  if ((carac === 'for' || carac === 'dex') && c.etats.some((e) => ['paralyse', 'inconscient'].includes(e.etat))) return false;
+  // Paralysé, inconscient ou étourdi : échec automatique aux jets de Force et de Dextérité.
+  if ((carac === 'for' || carac === 'dex') && c.etats.some((e) => ['paralyse', 'inconscient', 'etourdi'].includes(e.etat))) return false;
   const avantage =
     carac === 'dex' && (c.tour.esquive || (aTrait(c, 'sens-du-danger') && !aEtat(c, 'neutralise')));
   const d1 = de(etat, 20);
   const d = avantage ? Math.max(d1, de(etat, 20)) : d1;
-  const total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
+  let total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
+  if (total < dd) total += inspirationRattrape(etat, c, dd - total);
   return total >= dd;
 }
 
@@ -333,7 +365,7 @@ export function situationAttaque(
     if (dist <= TAILLE_CASE) avantage = true;
     else desavantage = true;
   }
-  if (cible.etats.some((e) => ['paralyse', 'inconscient', 'entrave', 'aveugle'].includes(e.etat))) avantage = true;
+  if (cible.etats.some((e) => ['paralyse', 'inconscient', 'entrave', 'aveugle', 'etourdi'].includes(e.etat))) avantage = true;
   if (attaquant.etats.some((e) => ['a-terre', 'entrave', 'aveugle', 'effraye', 'empoisonne'].includes(e.etat))) desavantage = true;
   if (cible.tour.esquive && peutAgir(cible)) desavantage = true;
   if (mode === 'distance') {
@@ -379,7 +411,7 @@ export function jetAttaque(
     .filter((m) => m.type === 'bonus_attaque' && (!m.contre || m.contre === cible.id))
     .reduce((s2, m) => s2 + (m.valeur ?? 0), 0);
   consommerModificateursAttaque(attaquant, cible);
-  const total = d + bonus + bonusTemp + desModificateurs(etat, attaquant, 'de_attaque');
+  let total = d + bonus + bonusTemp + desModificateurs(etat, attaquant, 'de_attaque');
   const seuilCritique = aTrait(attaquant, 'critique-ameliore') ? 19 : 20;
   // Toute attaque qui touche, à 1,5 m ou moins, une cible paralysée ou inconsciente est un critique (SRD 5.2.1).
   const critiqueAuto =
@@ -388,6 +420,11 @@ export function jetAttaque(
   const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
   let caCible = ca(cible) + bonusCouvert;
   let touche = d !== 1 && (d >= seuilCritique || total >= caCible);
+  // Inspiration bardique : un coup raté (hors 1 naturel) peut être rattrapé par le dé.
+  if (!touche && d !== 1) {
+    total += inspirationRattrape(etat, attaquant, caCible - total);
+    touche = total >= caCible;
+  }
   // Réaction Bouclier : +5 CA si cela transforme le coup en échec.
   if (touche && d < seuilCritique && cible.sorts.includes('bouclier') && cible.ressources.reaction && total < caCible + 5) {
     const niveau = emplacementDisponible(cible, 1);
@@ -561,6 +598,8 @@ function jetContreLaMort(etat: EtatCombat, c: Combattant): void {
   if (c.jetsMort.echecs >= 3) mourir(etat, c);
   else if (c.jetsMort.succes >= 3) {
     c.stable = true;
+    // Stabilisé, la créature remet ses jets contre la mort à zéro (SRD 5.2.1) : un coup suivant repart d'un échec.
+    c.jetsMort = { succes: 0, echecs: 0 };
     journaliser(etat, { type: 'info', texte: `${c.nom} est stabilisé.`, cible: c.id });
   }
 }
@@ -680,6 +719,9 @@ export function attaqueArme(
     details: detailsJet(jet, arme.mode === 'distance', undefined, arme.id),
   });
   const mult = jet.critique ? 2 : 1;
+  if (jet.touche && !options.opportunite) {
+    attaquant.tour.dernierCoup = { cible: cible.id, corpsACorps: arme.mode === 'corps-a-corps', critique: jet.critique, mainsNues: arme.id === 'arts-martiaux' || arme.id === 'mains-nues' };
+  }
   if (!jet.touche) {
     // Écorchure : dégâts égaux au modificateur même en cas d'échec.
     if (arme.botte === 'ecorchure' && attaquant.mods[arme.caracteristique] > 0) {

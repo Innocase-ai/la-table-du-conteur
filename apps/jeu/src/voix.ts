@@ -11,6 +11,19 @@ const FICHIERS: Record<string, string> = Object.fromEntries(
   ]),
 );
 
+const FICHIERS_OUVERTURES: Record<string, string> = Object.fromEntries(
+  Object.entries(import.meta.glob<string>('./voix/ouvertures/*/*.mp3', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
+    chemin.replace(/^\.\/voix\/ouvertures\/(.+)\.mp3$/, '$1'),
+    url,
+  ]),
+);
+
+/** Le nom du fichier d'une ouverture de conversation (`m-charon/neutre-1`). */
+export const cleOuverture = (voix: string, ouverture: string) => `${voix}/${ouverture}`;
+
+/** Tous les fichiers d'ouverture déclarés (pour les tests). */
+export const CLES_OUVERTURES: readonly string[] = Object.keys(FICHIERS_OUVERTURES);
+
 /** Le nom du fichier d'une réplique (`nain-m/grievement-blesse-1`). */
 export const cleVoix = (r: Pick<Replique, 'voix' | 'situation' | 'numero'>) => `${r.voix}/${r.situation}-${r.numero}`;
 
@@ -23,7 +36,15 @@ let enCours: HTMLAudioElement | undefined;
 
 /** Dit la réplique à voix haute, si elle a une voix et que le joueur n'a pas coupé le son. Une seule voix à la fois. */
 export function direReplique(r: Pick<Replique, 'voix' | 'situation' | 'numero'>): void {
-  const url = FICHIERS[cleVoix(r)];
+  jouerVoix(FICHIERS[cleVoix(r)]);
+}
+
+/** Dit l'ouverture d'un PNJ (la voix `m-charon`, l'ouverture `neutre-1`), si elle a un fichier et que le joueur n'a pas coupé le son. */
+export function direOuverture(voix: string, ouverture: string): void {
+  jouerVoix(FICHIERS_OUVERTURES[cleOuverture(voix, ouverture)]);
+}
+
+function jouerVoix(url: string | undefined): void {
   const reglages = reglagesSon();
   if (!url || !reglages.actif || reglages.volume <= 0 || typeof Audio === 'undefined') return;
   enCours?.pause();

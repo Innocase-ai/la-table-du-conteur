@@ -3,14 +3,56 @@
 // usages et les emplacements gagnés s'ajoutent à ce qui reste ; l'équipement porté est gardé.
 import { etatDurableMax } from '../combat/creation';
 import { niveauPourPx } from '../caracteristiques';
-import { monterAuNiveau } from '../creation/progression';
+import { ChoixPersonnageSchema } from '../creation/groupe';
+import { choixDeMontee, monterAuNiveau, reviserChoixDeMontee } from '../creation/progression';
 import { NIVEAU_MAX } from '../fiche';
-import type { Module } from '../noyau/types';
+import { z } from 'zod';
+import { commande, type Module } from '../noyau/types';
 import { appliquerEquipement } from './equipement-regles';
 
 export const moduleProgression: Module = {
   id: 'progression',
   dependances: ['equipement'],
+  commandes: {
+    reviserMontee: commande({
+      description: "Le joueur revoit les nouveaux choix de son héros après une montée de niveau (amélioration de caractéristique, sorts, options de classe, expertises) ; le reste de sa fiche ne change pas.",
+      entree: z.object({ personnage: z.string(), choix: ChoixPersonnageSchema }),
+      disponible: () => true,
+      executer: (t, e) => {
+        const h = t.partie.groupe.find((a) => a.id === e.personnage);
+        if (!h || !h.choix) return { refus: 'Aucun héros de ce nom.' };
+        if (!h.monteeEnAttente) return { refus: `${h.nom} n'a pas de nouveau choix à faire.` };
+        if (!t.ctx.srd) return { refus: 'Les règles ne sont pas chargées.' };
+        const r = reviserChoixDeMontee(h.choix, e.choix, t.ctx.srd);
+        if (!r.ok) return { refus: r.erreur };
+        const avant = etatDurableMax(h.fiche);
+        const pvMaxAvant = h.fiche.pvMax;
+        h.fiche = r.fiche;
+        h.choix = r.choix;
+        const apres = etatDurableMax(h.fiche);
+        // Les maximums peuvent changer (Constitution : PV ; Charisme : Inspiration…) : l'écart s'applique à ce qui reste.
+        if (h.pv > 0) h.pv = Math.max(1, Math.min(h.fiche.pvMax, h.pv + h.fiche.pvMax - pvMaxAvant));
+        for (const [k, m] of Object.entries(apres.ressources)) {
+          if (k === 'potions') continue;
+          h.ressources[k] = Math.max(0, Math.min(m, (h.ressources[k] ?? m) + m - (avant.ressources[k] ?? m)));
+        }
+        h.emplacements = apres.emplacements.map((m, i) => Math.max(0, Math.min(m, (h.emplacements[i] ?? 0) + m - (avant.emplacements[i] ?? 0))));
+        appliquerEquipement(t.ctx, h);
+        h.monteeEnAttente = undefined;
+        t.emettre({ type: 'constat', texte: `${h.nom} a choisi ses nouveautés du niveau ${h.choix.niveau}.` });
+      },
+    }),
+    garderMontee: commande({
+      description: 'Le joueur garde les choix conseillés de la montée de niveau de son héros.',
+      entree: z.object({ personnage: z.string() }),
+      disponible: () => true,
+      executer: (t, e) => {
+        const h = t.partie.groupe.find((a) => a.id === e.personnage);
+        if (!h) return { refus: 'Aucun héros de ce nom.' };
+        h.monteeEnAttente = undefined;
+      },
+    }),
+  },
   reactions: {
     xp: (t) => {
       const etat = t.partie.etat;
@@ -36,6 +78,9 @@ export const moduleProgression: Module = {
           appliquerEquipement(t.ctx, h);
           t.emettre({ type: 'constat', texte: `${h.nom} passe au niveau ${niveau} : ${h.fiche.pvMax} PV, CA ${h.fiche.ca}.` });
         }
+        // Des choix nouveaux à ce niveau (amélioration, sorts, options, expertises) : le joueur pourra les revoir.
+        const nouveaux = h.choix ? choixDeMontee(h.choix, t.ctx.srd) : undefined;
+        if (nouveaux && !nouveaux.aucun && h.choix!.niveau === cible) h.monteeEnAttente = cible;
       }
       etat.niveauGroupe = cible;
       t.emettre({ type: 'constat', texte: `Le groupe atteint le niveau ${cible}.` });

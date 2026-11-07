@@ -38,8 +38,18 @@ const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: 
 function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: string }, element: Proposition['element'], groupe: Proposition['groupe'], cle?: string): Proposition[] {
   const res: Proposition[] = [];
   if (cle && (p.etat.inventaire[cle] ?? 0) > 0) res.push({ groupe, element, libelle: 'Clé', icone: 'base:cle', ordre: { type: 'ouvrir', cible, methode: 'cle' } });
-  res.push({ groupe, element, libelle: 'Crocheter', icone: 'base:crocheter', style: 'discret', aide: 'Escamotage, avec des outils de voleur', ordre: { type: 'ouvrir', cible, methode: 'crocheter' } });
-  res.push({ groupe, element, libelle: 'Forcer', icone: 'base:forcer', style: 'discret', aide: 'Athlétisme', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
+  const outils = (p.etat.inventaire['outils-de-voleur'] ?? 0) > 0 || p.groupe.some((h) => h.pv > 0 && h.outils.includes('outils-de-voleur'));
+  res.push({
+    groupe,
+    element,
+    libelle: 'Crocheter',
+    icone: 'base:crocheter',
+    style: 'discret',
+    aide: 'Escamotage, avec des outils de voleur. Silencieux : seuls des témoins attentifs vous verraient.',
+    desactivee: outils ? undefined : 'Il faut des outils de voleur (aucun héros n’en a).',
+    ordre: { type: 'ouvrir', cible, methode: 'crocheter' },
+  });
+  res.push({ groupe, element, libelle: 'Forcer', icone: 'base:forcer', style: 'discret', aide: 'Athlétisme. Bruyant : les témoins vous repèrent plus facilement.', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
   return res;
 }
 

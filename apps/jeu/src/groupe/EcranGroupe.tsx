@@ -1,18 +1,21 @@
-// Écran du groupe : six emplacements de personnages, création, import et export.
+// Écran du groupe : quatre ou six emplacements de personnages, création, import et export.
 import { useMemo, useRef, useState } from 'react';
 import {
   NIVEAU_MAX,
   avertissementsGroupe,
   bilanPersonnage,
   groupeConseille,
+  herosRetires,
   nouvelId,
   personnageComplet,
+  redimensionner,
   serialiser,
-  TAILLE_GROUPE,
+  TAILLES_GROUPE,
   type BilanPersonnage,
   type Donnees,
   type Groupe,
   type PersonnageCree,
+  type TailleGroupe,
 } from '@crpg/regles';
 import { formatMetres } from '../libelles';
 import { Modale, Portrait } from '../createur/ui';
@@ -28,7 +31,7 @@ interface Props {
   onRetour: () => void;
 }
 
-type Action = { type: 'supprimer'; index: number } | { type: 'conseille' } | { type: 'importer'; groupe: Groupe };
+type Action = { type: 'supprimer'; index: number } | { type: 'conseille' } | { type: 'importer'; groupe: Groupe } | { type: 'taille'; taille: TailleGroupe };
 
 function resume(p: PersonnageCree, donnees: Donnees): string {
   const espece = donnees.especes.get(p.choix.espece)?.nom ?? p.choix.espece;
@@ -98,7 +101,7 @@ function Emplacement({
           <button type="button" className="bouton-rond" aria-label={`Monter ${p.choix.nom}`} disabled={index === 0} onClick={() => actions.deplacer(-1)}>
             ↑
           </button>
-          <button type="button" className="bouton-rond" aria-label={`Descendre ${p.choix.nom}`} disabled={index === TAILLE_GROUPE - 1} onClick={() => actions.deplacer(1)}>
+          <button type="button" className="bouton-rond" aria-label={`Descendre ${p.choix.nom}`} disabled={index === props.groupe.emplacements.length - 1} onClick={() => actions.deplacer(1)}>
             ↓
           </button>
         </span>
@@ -116,9 +119,10 @@ export function EcranGroupe(props: Props) {
 
   const bilans = useMemo(() => groupe.emplacements.map((p) => (p ? bilanPersonnage(p, donnees) : null)), [groupe, donnees]);
   const fiches = bilans.flatMap((b) => (b && personnageComplet(b) && b.fiche ? [b.fiche] : []));
-  const avertissements = useMemo(() => avertissementsGroupe(fiches, donnees), [fiches, donnees]);
+  const taille = groupe.emplacements.length as TailleGroupe;
+  const avertissements = useMemo(() => avertissementsGroupe(fiches, donnees, taille), [fiches, donnees, taille]);
   const nombre = groupe.emplacements.filter(Boolean).length;
-  const videDispo = nombre < TAILLE_GROUPE;
+  const videDispo = nombre < taille;
 
   const remplacer = (i: number, p: PersonnageCree | null) => onChange({ ...groupe, emplacements: groupe.emplacements.map((x, j) => (j === i ? p : x)) });
 
@@ -167,13 +171,23 @@ export function EcranGroupe(props: Props) {
     setAction(null);
     setErreur(null);
     if (a.type === 'supprimer') remplacer(a.index, null);
-    else if (a.type === 'conseille') {
-      onChange(groupeConseille(groupe.niveau, donnees));
+    else if (a.type === 'taille') {
+      onChange(redimensionner(groupe, a.taille));
+      setInfo(`Le groupe a maintenant ${a.taille} emplacements.`);
+    } else if (a.type === 'conseille') {
+      onChange(groupeConseille(groupe.niveau, donnees, taille));
       setInfo('Groupe conseillé créé.');
     } else {
       onChange(a.groupe);
       setInfo('Groupe importé.');
     }
+  };
+
+  /** Changer le nombre d'emplacements ; en retirer avec des héros dedans demande confirmation. */
+  const demanderTaille = (n: TailleGroupe) => {
+    if (n === taille) return;
+    if (herosRetires(groupe, n).length) setAction({ type: 'taille', taille: n });
+    else appliquer({ type: 'taille', taille: n });
   };
 
   const demanderConseille = () => (nombre === 0 ? appliquer({ type: 'conseille' }) : setAction({ type: 'conseille' }));
@@ -186,9 +200,19 @@ export function EcranGroupe(props: Props) {
         </button>
         <div>
           <h1>Mon groupe</h1>
-          <p className="sous-titre">{nombre} personnage(s) (de 1 à {TAILLE_GROUPE}) · {fiches.length} complet(s)</p>
+          <p className="sous-titre">{nombre} personnage(s) sur {taille} emplacements (on peut en laisser de vides) · {fiches.length} complet(s)</p>
         </div>
         <div className="groupe-outils">
+          <div className="niveau-groupe">
+            <span className="etiquette">Taille du groupe</span>
+            <div className="segments segments-petits" role="group" aria-label="Taille du groupe">
+              {TAILLES_GROUPE.map((n) => (
+                <button key={n} type="button" className={taille === n ? 'actif' : ''} aria-pressed={taille === n} onClick={() => demanderTaille(n)}>
+                  {n} héros
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="niveau-groupe">
             <span className="etiquette">Niveau du groupe</span>
             <div className="segments segments-petits" role="group" aria-label="Niveau du groupe">
@@ -260,8 +284,18 @@ export function EcranGroupe(props: Props) {
       {action?.type === 'conseille' && (
         <Modale
           titre="Remplacer le groupe ?"
-          texte="Le groupe conseillé remplit les six emplacements : les personnages actuels seront remplacés."
+          texte={`Le groupe conseillé remplit les ${taille} emplacements : les personnages actuels seront remplacés.`}
           confirmer="Remplacer"
+          dangereux
+          onConfirmer={() => appliquer(action)}
+          onAnnuler={() => setAction(null)}
+        />
+      )}
+      {action?.type === 'taille' && (
+        <Modale
+          titre={`Passer à ${action.taille} héros ?`}
+          texte={`${herosRetires(groupe, action.taille).map((p) => `« ${p.choix.nom || 'Sans nom'} »`).join(', ')} ${herosRetires(groupe, action.taille).length > 1 ? 'seront retirés' : 'sera retiré'} du groupe (emplacements en trop). Vous pouvez exporter le groupe avant pour le garder.`}
+          confirmer="Retirer"
           dangereux
           onConfirmer={() => appliquer(action)}
           onAnnuler={() => setAction(null)}

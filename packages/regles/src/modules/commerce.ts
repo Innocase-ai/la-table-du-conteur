@@ -3,7 +3,8 @@
 //
 // - Stock : `boutique.stock` (quantités limitées, prix donné ou valeur de l'objet) plus les objets des tables de butin de
 //   la boutique (un de chaque). Ce qui a été acheté est retenu dans `partie.modules.commerce.achats`.
-// - Rachat : un objet du sac, au prix `valeur × boutique.rachat` (arrondi à l'inférieur, au moins 1 pc), si la boutique
+// - Rachat : un objet du sac, au prix `valeur × boutique.rachat` (arrondi à l'inférieur, au moins 1 pc ; gemmes et objets
+//   d'art à pleine valeur, comme le SRD), si la boutique
 //   rachète ce genre d'objet (`types` ; vide = tout) et jamais un objet de quête. `rachat` à 0 : la boutique n'achète rien.
 // - Services : le prix est payé, le résumé raconté, les effets appliqués. Quelques services ont un sens dans les règles,
 //   d'après leur identifiant : soins (les PV du groupe au maximum), chambre ou abri (une nuit de repos, même là où l'on ne
@@ -60,7 +61,9 @@ export function rachats(ctx: ContexteJeu, p: Partie, pnj: Pnj): { objet: string;
     const o = objetDe(ctx, objet);
     if (o.categorie === 'quete' || !o.valeurPo) return [];
     if (b.types.length && !b.types.includes(o.categorie as never)) return [];
-    return [{ objet, nom: o.nom, prix: Math.max(0.01, Math.floor(o.valeurPo * b.rachat * 100) / 100), quantite }];
+    // Pierres précieuses et objets d'art gardent toute leur valeur sur le marché (SRD 5.2.1, « Vente d'équipement »).
+    const taux = o.categorie === 'gemme' || o.categorie === 'objet-d-art' ? 1 : b.rachat;
+    return [{ objet, nom: o.nom, prix: Math.max(0.01, Math.floor(o.valeurPo * taux * 100) / 100), quantite }];
   });
 }
 

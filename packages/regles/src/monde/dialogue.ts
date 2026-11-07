@@ -2,7 +2,8 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { appliquer, momentDe, suites, type CompteRendu, type PartieMonde } from './exploration';
+import { appliquer, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
+import { lieuDuPnj, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
@@ -11,22 +12,8 @@ import { testD20 } from '../tests-d20';
 export const SEUIL_HOSTILE = -30;
 export const SEUIL_AMICAL = 30;
 
-export function lieuDuPnj(p: PartieMonde, pnj: Pnj): string {
-  return p.etat.pnjLieux[pnj.id] ?? pnj.lieu;
-}
-
-/** PNJ présents dans le lieu courant, vivants et toujours là. */
-export function pnjPresents(p: PartieMonde): Pnj[] {
-  return [...p.dm.pnj.values()].filter((n) => {
-    if ((p.etat.pnjEtats[n.id] ?? 'vivant') !== 'vivant') return false;
-    // Un PNJ escorté suit le groupe : il est présent partout.
-    if (p.etat.escortes?.includes(n.id)) return true;
-    if (lieuDuPnj(p, n) === p.etat.lieu) return true;
-    // Une présence ailleurs ne compte que si le PNJ n'a pas été déplacé, et au bon moment de la journée (jour, soir, nuit).
-    const moment = momentDe(p.etat.heure);
-    return !p.etat.pnjLieux[n.id] && n.presences.some((x) => x.lieu === p.etat.lieu && x.moment === moment && (!x.condition || evaluerCondition(x.condition, p.etat)));
-  });
-}
+// La présence des PNJ vit dans `presence.ts` (partagée avec l'ouverture des serrures) ; réexportée ici pour les appelants.
+export { lieuDuPnj, pnjPresents };
 
 export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
@@ -65,7 +52,11 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   const a = attitude(p, pnj);
   if (!sujet) {
     const variante = pnj.salutations.variantes.find((v) => evaluerCondition(v.condition, p.etat));
-    const salut = variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre;
+    // Un PNJ qui a surpris le groupe à crocheter ou à forcer le lui dit d'abord, une seule fois, avant toute autre salutation.
+    const vu = p.etat.exploration.vus?.[pnj.id];
+    const confrontation = vu && !vu.confronte ? `« Je vous ai vus ${VERBES_OUVRIR[vu.methode]} ${vu.objet}. Vous croyez que je n'ai rien vu ? Expliquez-vous, et vite. »` : undefined;
+    if (vu && confrontation) vu.confronte = true;
+    const salut = confrontation ?? (variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre);
     r.narrations.push(salut);
     r.paroles = 1;
     const dispo = sujetsDisponibles(p, pnj);
@@ -91,9 +82,27 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
 
 export type Influence = 'persuasion' | 'intimidation' | 'tromperie';
 
-/** DD d'une tentative d'influence : 15 pour un PNJ neutre, plus facile s'il vous apprécie, plus dur s'il vous déteste. */
-export function ddInfluence(attitudePnj: number): number {
-  return Math.max(5, Math.min(25, Math.round(15 - attitudePnj / 10)));
+/** DD d'une tentative d'influence (SRD 5.2.1 : 15 par défaut). L'attitude ne le change pas : elle donne Avantage ou Désavantage. */
+export const DD_INFLUENCE = 15;
+export function ddInfluence(): number {
+  return DD_INFLUENCE;
+}
+
+/** Attitude amicale : Avantage au test d'Influence ; hostile : Désavantage ; indifférente : rien (SRD 5.2.1, action Influence). */
+export function modeInfluence(attitudePnj: number): 'avantage' | 'desavantage' | undefined {
+  return attitudePnj >= SEUIL_AMICAL ? 'avantage' : attitudePnj <= SEUIL_HOSTILE ? 'desavantage' : undefined;
+}
+
+/** Après un échec, on attend 24 h avant d'exhorter de nouveau le même PNJ de la même manière. */
+export const ATTENTE_INFLUENCE_HEURES = 24;
+
+const heureAbsolue = (p: Pick<PartieMonde, 'etat'>) => p.etat.jour * 24 + (p.etat.heure ?? 8);
+
+/** Heures (entières, par excès) qu'il reste à attendre avant de retenter cette manière avec ce PNJ ; 0 si c'est possible. */
+export function attenteInfluence(p: Pick<PartieMonde, 'etat'>, pnjId: string, maniere: Influence): number {
+  const ratee = p.etat.exploration.influenceRatee?.[`${pnjId}:${maniere}`];
+  if (ratee === undefined) return 0;
+  return Math.max(0, Math.ceil(ratee + ATTENTE_INFLUENCE_HEURES - heureAbsolue(p)));
 }
 
 /**
@@ -108,6 +117,10 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   const a = attitude(p, pnj);
   const acteur = choisirOrateur(p, maniere, options.personnage);
   if (!acteur) return { ...vide(), ok: false, refus: 'Personne ne peut le tenter.' };
+  const attente = attenteInfluence(p, pnj.id, maniere);
+  if (attente > 0) return { ...vide(), ok: false, refus: `${pnj.nom} n'écoutera pas deux fois les mêmes arguments : réessayez dans ${attente} h, ou autrement.` };
+  const mode = modeInfluence(a);
+  const rate = () => ((p.etat.exploration.influenceRatee ??= {})[`${pnj.id}:${maniere}`] = heureAbsolue(p));
 
   if (options.secret) {
     const sec = pnj.secrets.find((x) => x.fait === options.secret);
@@ -119,9 +132,10 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
       p.etat.pieces -= sec.prix;
       r.constats.push(`Le groupe paie ${sec.prix} po.`);
     }
-    const dd = sec.jet?.dd ?? ddInfluence(a);
+    const dd = sec.jet?.dd ?? ddInfluence();
     const comp = sec.jet?.competence ?? maniere;
-    if (!jet(p, r, acteur, comp, dd)) {
+    if (!jet(p, r, acteur, comp, dd, mode)) {
+      rate();
       r.ok = true;
       r.constats.push(`${pnj.nom} ne dit rien.`);
       appliquer(p, r, [{ attitude: { pnj: pnj.id, delta: maniere === 'intimidation' ? -10 : -5 } }]);
@@ -134,11 +148,17 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
     return r;
   }
 
-  const reussi = jet(p, r, acteur, maniere, ddInfluence(a));
+  const reussi = jet(p, r, acteur, maniere, ddInfluence(), mode);
+  if (!reussi) rate();
   // L'intimidation fait obéir mais n'attire pas la sympathie ; la tromperie découverte coûte cher.
   const delta = reussi ? (maniere === 'intimidation' ? -5 : 10) : maniere === 'tromperie' ? -15 : maniere === 'intimidation' ? -10 : -5;
   appliquer(p, r, [{ attitude: { pnj: pnj.id, delta } }]);
   r.constats.push(`${acteur.nom} ${reussi ? 'convainc' : 'ne convainc pas'} ${pnj.nom} (attitude ${attitude(p, pnj)}).`);
+  // Un PNJ qui avait surpris le groupe et qui se laisse convaincre (ou intimider) cesse de le surveiller.
+  if (reussi && p.etat.exploration.vus?.[pnj.id]) {
+    delete p.etat.exploration.vus[pnj.id];
+    r.constats.push(`${pnj.nom} se calme : ${pnj.sexe === 'F' ? 'elle' : 'il'} ne vous surveille plus.`);
+  }
   suites(p, r);
   return r;
 }
@@ -149,9 +169,9 @@ function choisirOrateur(p: PartieMonde, comp: Influence, id?: string): Personnag
   return [...vivants].sort((x, y) => y.fiche.competences[comp].bonus - x.fiche.competences[comp].bonus)[0];
 }
 
-function jet(p: PartieMonde, r: CompteRendu, a: Personnage, comp: keyof Personnage['fiche']['competences'], dd: number): boolean {
+function jet(p: PartieMonde, r: CompteRendu, a: Personnage, comp: keyof Personnage['fiche']['competences'], dd: number, mode?: 'avantage' | 'desavantage'): boolean {
   const bonus = a.fiche.competences[comp].bonus;
-  const t = testD20({ bonus, dd }, p.gen);
-  r.jets.push({ qui: a.id, nom: a.nom, test: comp, dd, des: t.des, bonus, total: t.total, reussite: t.reussite });
+  const t = testD20({ bonus, dd, avantage: mode === 'avantage', desavantage: mode === 'desavantage' }, p.gen);
+  r.jets.push({ qui: a.id, nom: a.nom, test: comp, dd, des: t.des, bonus, total: t.total, reussite: t.reussite, ...(mode === 'avantage' ? { avantage: true } : mode === 'desavantage' ? { desavantage: true } : {}) });
   return t.reussite;
 }

@@ -6,6 +6,7 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import type { SceneNarree } from '@crpg/regles';
 import { manifesteDe, urlImage, urlVoix } from '../mondes';
+import { baisserMusique } from '../musique';
 
 const CLE_VOIX = 'table-du-conteur:voix-systeme';
 
@@ -104,6 +105,11 @@ interface Props {
 
 export function LecteurScene(props: Props) {
   const [voixActive, setVoixActive] = useState(voixSystemeActive);
+  // Pendant une scène narrée, la musique de fond baisse pour que la voix du Maître de jeu reste claire.
+  useEffect(() => {
+    baisserMusique(voixActive);
+    return () => baisserMusique(false);
+  }, [voixActive]);
   const basculerVoix = () => {
     const v = !voixActive;
     setVoixActive(v);

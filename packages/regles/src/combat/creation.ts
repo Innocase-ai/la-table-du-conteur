@@ -22,6 +22,7 @@ const BOTTES: Record<string, Botte> = {
 const TRAITS_COMBAT = [
   'rage', 'temerite', 'sens-du-danger', 'frenesie', 'attaque-sournoise', 'ruse', 'visee-appliquee', 'mains-lestes',
   'second-souffle', 'fougue', 'critique-ameliore', 'proie-du-chasseur', 'disciple-de-la-vie', 'survivance', 'sort-mineur-appuye',
+  'inspiration-bardique', 'chatiment-de-paladin', 'credo-du-moine', 'frappe-etourdissante', 'arts-martiaux', 'metabolisme-surnaturel',
 ];
 
 const CLASSES_LANCEUSES = ['barde', 'clerc', 'druide', 'ensorceleur', 'magicien', 'occultiste'];
@@ -40,7 +41,7 @@ function vierge(): Combattant['tour'] {
   return {
     mouvement: 0, action: true, bonus: true, attaquesRestantes: 0, desengage: false, esquive: false, aBouge: false,
     sortEmplacementLance: false, sortBonusLance: false, sournoiseUtilisee: false, proieUtilisee: false,
-    enchainementUtilise: false, frenesieUtilisee: false, temeraire: false, elanJoue: false,
+    enchainementUtilise: false, frenesieUtilisee: false, temeraire: false, elanJoue: false, attaqueEntreprise: false, etourdissanteUtilisee: false,
   };
 }
 
@@ -94,6 +95,13 @@ export const RECUPERATION: Record<string, { court: 'une' | 'toutes' | 'aucune'; 
   desVie: { court: 'aucune', long: 'toutes' },
   // Imposition des mains (paladin) : une réserve de PV, reconstituée au repos long.
   impositionDesMains: { court: 'aucune', long: 'toutes' },
+  // Inspiration bardique : au repos long ; dès le niveau 5 (Source d'inspiration), aussi au repos court (voir `recuperer`).
+  inspiration: { court: 'aucune', long: 'toutes' },
+  // Châtiment divin lancé sans emplacement (Paladin, niveau 2) : une fois par repos long.
+  chatimentGratuit: { court: 'aucune', long: 'toutes' },
+  // Points de Credo du Moine : tous rendus au repos court ou long. Métabolisme surnaturel : une fois par repos long.
+  credo: { court: 'toutes', long: 'toutes' },
+  metabolisme: { court: 'aucune', long: 'toutes' },
 };
 
 /** Les ressources durables d'une fiche, à leur maximum (avec `potions` potions de départ). */
@@ -106,6 +114,11 @@ export function etatDurableMax(fiche: Fiche, potions = 0): EtatDurable {
   if (traits.includes('fougue')) ressources.fougue = 1;
   if (traits.includes('survivance')) ressources.conduit = nombreColonne(col['Conduit divin']);
   if (fiche.aptitudes.some((a) => a.id === 'imposition-des-mains')) ressources.impositionDesMains = 5 * fiche.niveau;
+  if (traits.includes('chatiment-de-paladin')) ressources.chatimentGratuit = 1;
+  if (traits.includes('credo-du-moine')) ressources.credo = nombreColonne(col['Points de Credo']);
+  if (traits.includes('metabolisme-surnaturel')) ressources.metabolisme = 1;
+  // Autant d'inspirations que le modificateur de Charisme (au moins une).
+  if (traits.includes('inspiration-bardique')) ressources.inspiration = Math.max(1, fiche.caracteristiques.cha.modificateur);
   let emplacements: number[] = [];
   const i = fiche.incantation;
   if (i) {
@@ -152,6 +165,13 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   const ressources: Record<string, number> = { reaction: 1, ...durable.ressources };
   const traits = fiche.aptitudes.map((a) => a.id).filter((t) => TRAITS_COMBAT.includes(t));
   if (traits.includes('rage')) ressources.degatsRage = nombreColonne(fiche.colonnes['Dégâts de Rage']);
+  // Moine : le maximum de Credo et le dé d'Arts martiaux (Métabolisme surnaturel, Frappe étourdissante).
+  if (traits.includes('credo-du-moine')) {
+    ressources.credoMax = nombreColonne(fiche.colonnes['Points de Credo']);
+    ressources.deArtsMartiaux = Number(/d(\d+)/.exec(String(colArts ?? '1d6'))?.[1] ?? 6);
+  }
+  // Le dé d'Inspiration bardique (colonne « Dé bardique » : d6, d8, d10, d12).
+  if (traits.includes('inspiration-bardique')) ressources.deInspiration = Number(/d(\d+)/.exec(String(fiche.colonnes['Dé bardique'] ?? 'd6'))?.[1] ?? 6);
   // Attaque supplémentaire (2 attaques), puis le Guerrier : double (niveau 11, 3 attaques) et triple (niveau 20, 4 attaques).
   const ids = new Set(fiche.aptitudes.map((x) => x.id));
   if (ids.has('triple-attaque-supplementaire')) ressources.attaquesParAction = 4;

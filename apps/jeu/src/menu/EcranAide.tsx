@@ -174,7 +174,7 @@ const SECTIONS_ECRITES: Section[] = [
     titre: 'Créer son groupe',
     contenu: (
       <>
-        <p>Un groupe compte de 1 à {TAILLE_GROUPE} personnages, tous du même niveau ; les combats des histoires s'adaptent au nombre de héros. Le créateur vous guide étape par étape :</p>
+        <p>Un groupe a 4 ou 6 emplacements (au choix, en haut de l'écran Mon groupe) et compte de 1 à {TAILLE_GROUPE} personnages, tous du même niveau ; on peut laisser des emplacements vides. Les combats des histoires s'adaptent au nombre de héros, et chaque histoire annonce la taille de groupe pour laquelle elle est écrite. Le créateur vous guide étape par étape :</p>
         <ol>
           <li>
             <strong>Espèce</strong> (humain, elfe, nain, halfelin, gnome, orc, tieffelin, goliath, drakéide) et <strong>classe</strong> (guerrier, magicien,
@@ -531,7 +531,8 @@ const SECTIONS_ECRITES: Section[] = [
           </li>
           <li>
             <span className="badge">{SYMBOLES_ETATS.effraye}</span> Effrayé, <span className="badge">{SYMBOLES_ETATS.paralyse}</span> paralysé,{' '}
-            <span className="badge">{SYMBOLES_ETATS.neutralise}</span> neutralisé…
+            <span className="badge">{SYMBOLES_ETATS.neutralise}</span> neutralisé,{' '}
+            <span className="badge">{SYMBOLES_ETATS.etourdi}</span> étourdi…
           </li>
           <li>
             <span className="badge b-conc">◎</span> Concentration : le personnage maintient un sort ; une blessure peut la rompre.

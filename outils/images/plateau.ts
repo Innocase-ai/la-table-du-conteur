@@ -101,6 +101,32 @@ export function elementsInterface(charte: Charte): Element[] {
         charte.contraintes,
       ].join('\n'),
     },
+    // L'écran de sommeil : le groupe dort à l'auberge (chambre) ou dehors (camp autour d'un feu). Personne à l'image : le
+    // groupe est celui du joueur, il ne se dessine pas.
+    {
+      id: 'sommeil-chambre',
+      groupe: 'scenes',
+      nom: 'Sommeil : chambre d’auberge',
+      format: 'paysage',
+      references: [],
+      prompt: [
+        charte.style,
+        'A cosy room at a medieval fantasy inn, late at night: several simple wooden beds with rumpled wool blankets and straw pillows, travel packs, a sheathed sword and a cloak hanging on pegs, a single candle burning low on a small table, closed wooden shutters with a thin line of moonlight, rough plaster walls and dark ceiling beams. Calm, warm and safe, deep peaceful shadows. No people, no faces, no creatures.',
+        charte.contraintes,
+      ].join('\n'),
+    },
+    {
+      id: 'sommeil-camp',
+      groupe: 'scenes',
+      nom: 'Sommeil : camp de nuit',
+      format: 'paysage',
+      references: [],
+      prompt: [
+        charte.style,
+        'A small travellers camp in the wilderness at night: a crackling wood campfire ringed with stones, glowing embers and rising sparks, bedrolls and wool blankets laid around the fire, travel packs, a small canvas tent, a cooking pot on a tripod, dark pine trees around, a vast starry sky with a pale moon. Calm and safe, warm firelight against cool blue night. No people, no faces, no creatures.',
+        charte.contraintes,
+      ].join('\n'),
+    },
   ];
 }
 

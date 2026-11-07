@@ -205,6 +205,7 @@ function sansChoixDeClasse(c: Choix, donnees: Donnees): Choix {
     competencesSupplementaires: undefined,
     expertises: undefined,
     dons: donsOrigine(c, donnees).length ? donsOrigine(c, donnees) : undefined,
+    faveurCaracteristique: undefined,
     choix: choixEspece(c, donnees),
     bottes: undefined,
     sortsMineurs: undefined,

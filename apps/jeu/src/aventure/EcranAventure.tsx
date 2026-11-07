@@ -1,6 +1,6 @@
 // Écran d'aventure, mode « livre » : chaque bouton envoie une commande au moteur ; le récit se lit dans le journal
 // d'événements de la partie. Le conteur (IA) viendra s'ajouter pour la saisie libre (M4b).
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   type DonneesMonde,
   type EvenementJeu,
@@ -22,9 +22,20 @@ import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage } from './FeuillePersonnage';
+import { EcranMontee } from './EcranMontee';
+import { EcranQuete } from './EcranQuete';
+import { nouvellesQuetes, parcheminDeQuete } from '../quete-regles';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
+import { EcranSommeil } from './EcranSommeil';
+import { EcranCrochetage } from './EcranCrochetage';
+import { detecterOuverture, type Ouverture } from '../crochetage-regles';
+import { decorSommeil, detecterSommeil, heuresDormies, type DecorSommeil } from '../sommeil-regles';
+import { ControleSon } from '../composants/ControleSon';
+import { OUVERTURES } from '../ouvertures';
+import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voixDuPnj } from '../ouvertures-regles';
+import { direOuverture } from '../voix';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
@@ -54,7 +65,15 @@ function TexteJet({ j }: { j: Jet }) {
       <small>
         (d20 {des} {j.bonus >= 0 ? '+' : '−'} {Math.abs(j.bonus)})
       </small>
-      {j.ddSecret ? (j.reussite ? ' — trouve quelque chose' : ' — rien') : ` contre DD ${j.dd} — ${j.reussite ? 'réussi' : 'raté'}`}
+      {j.ddSecret
+        ? j.test === 'discretion'
+          ? j.reussite
+            ? ' — personne ne vous remarque'
+            : ' — repéré !'
+          : j.reussite
+            ? ' — trouve quelque chose'
+            : ' — rien'
+        : ` contre DD ${j.dd} — ${j.reussite ? 'réussi' : 'raté'}`}
     </>
   );
 }
@@ -145,6 +164,64 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
   const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
   const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
+  // Le sommeil : quand une nuit vient d'être dormie (bouton « Dormir », chambre payée, conteur), l'écran de sommeil s'ouvre.
+  // On le repère dans les nouvelles entrées du journal (le moteur écrit « Le groupe se repose une nuit entière »).
+  const [sommeil, setSommeil] = useState<{ decor: DecorSommeil; heureDebut: number; heures: number; interrompu: boolean }>();
+  const avantSommeil = useRef({ jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length });
+  useEffect(() => {
+    const avant = avantSommeil.current;
+    const nouvelles = partie.journal.length >= avant.journal ? partie.journal.slice(avant.journal) : partie.journal.slice(-12);
+    avantSommeil.current = { jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length };
+    const nuit = detecterSommeil(nouvelles);
+    // Une nuit entière change de jour ; une nuit interrompue s'arrête au milieu (souvent le même jour).
+    if (!nuit || (!nuit.interrompue && partie.etat.jour <= avant.jour)) return;
+    setSommeil({
+      decor: decorSommeil(dm.lieux.get(partie.etat.lieu)?.type, nuit.nuitPayee),
+      heureDebut: avant.heure,
+      heures: heuresDormies(avant, { jour: partie.etat.jour, heure: partie.etat.heure ?? 8 }),
+      interrompu: nuit.interrompue || partie.scene.type === 'rencontre',
+    });
+  }, [partie, dm]);
+  const finSommeil = useCallback(() => setSommeil(undefined), []);
+
+  // Le crochetage : quand le groupe vient de crocheter ou de forcer, l'écran de crochetage s'ouvre (le moteur a déjà tout réglé :
+  // les jets sont dans les nouvelles entrées du journal).
+  const [crochetage, setCrochetage] = useState<Ouverture>();
+  const avantCrochetage = useRef(partie.journal.length);
+  useEffect(() => {
+    const avant = avantCrochetage.current;
+    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : partie.journal.slice(-12);
+    avantCrochetage.current = partie.journal.length;
+    const o = detecterOuverture(nouvelles);
+    if (o) setCrochetage(o);
+  }, [partie]);
+  const finCrochetage = useCallback(() => setCrochetage(undefined), []);
+
+  // L'ouverture : à chaque début de conversation, le PNJ lance d'abord une phrase tirée d'un fonds commun, dite avec la voix
+  // d'homme ou de femme qui est la sienne (toujours la même), puis vient sa salutation propre.
+  const [ouverture, setOuverture] = useState<{ pnj: string; texte: string }>();
+  const derniereOuverture = useRef<string>();
+  const idInterlocuteur = interlocuteur?.id;
+  useEffect(() => {
+    if (!idInterlocuteur) {
+      setOuverture(undefined);
+      return;
+    }
+    const pnj = dm.pnj.get(idInterlocuteur);
+    const donnees = OUVERTURES;
+    if (!pnj || !donnees?.voix) return;
+    const attitude = moteur.vue<{ attitude: number } | undefined>('interlocuteur', partie)?.attitude ?? 0;
+    // Un PNJ qui a surpris le groupe aujourd'hui (crocheter, forcer) est méfiant, quelle que soit son attitude.
+    const enAlerte = partie.etat.exploration.vus?.[pnj.id]?.jour === partie.etat.jour;
+    const ton = enAlerte ? 'mefiant' : tonDeLAttitude(attitude, Math.random());
+    const o = choisirOuverture(donnees.ouvertures, ton, derniereOuverture.current, Math.random());
+    const voix = voixDuPnj(donnees.voix, pnj.sexe, pnj.id, ageApproximatif(pnj.age));
+    derniereOuverture.current = o.id;
+    setOuverture({ pnj: pnj.id, texte: texteOuverture(o, voix.id.startsWith('f-') ? 'f' : 'm') });
+    direOuverture(voix.id, o.id);
+    // Une seule fois par conversation : seul le changement d'interlocuteur la relance.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idInterlocuteur]);
   // Les encarts se recalculent quand la partie change, pas à chaque frappe dans la saisie du conteur.
   const encarts = useMemo(() => moteur.encarts(partie), [moteur, partie]);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
@@ -152,7 +229,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const [onglet, setOnglet] = useState('Actions');
   const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
   // La page plein écran d'un onglet qui a une grille (le sac : touche I).
-  const [page, setPage] = useState<{ onglet: string; selection?: string }>();
+  const [page, setPage] = useState<{ onglet: string; selection?: string; filtre?: string }>();
   // La feuille de personnage d'un héros (touche C, ou un clic sur le bandeau).
   const [feuille, setFeuille] = useState<string>();
   // La carte du monde en plein écran (touche M).
@@ -172,7 +249,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -217,6 +294,38 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const plafond = conteur?.plafond ?? 0.5;
   const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
+  // Les quêtes qui commencent : un parchemin raconte chacune (nom, qui la donne, explication, premier objectif, récompenses). On
+  // compare les quêtes en cours avant et après chaque changement de la partie (bouton « Accepter », parole de PNJ, événement).
+  const [parchemins, setParchemins] = useState<string[]>([]);
+  const avantQuetes = useRef(partie.etat.quetes);
+  useEffect(() => {
+    const nouvelles = nouvellesQuetes(avantQuetes.current, partie.etat.quetes);
+    avantQuetes.current = partie.etat.quetes;
+    if (nouvelles.length) setParchemins((f) => [...f, ...nouvelles.filter((id) => !f.includes(id))]);
+  }, [partie.etat.quetes]);
+  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0]) : undefined;
+  const imageDonneur = useImage(dm.monde.id, 'pnj', parchemin?.donneur);
+  const finParchemin = useCallback(() => setParchemins((f) => f.slice(1)), []);
+  const parcheminOuvert = !!parchemin && !sceneNarree;
+
+  // La montée de niveau : le moteur a déjà fait monter les héros avec les choix conseillés ; l'écran laisse revoir les nouveaux choix.
+  // Il s'ouvre dès que des héros en attendent (aussi au retour d'un combat gagné), et se rouvre depuis le bandeau des héros.
+  const enAttenteMontee = partie.groupe.filter((h) => h.monteeEnAttente).length;
+  const [montee, setMontee] = useState(enAttenteMontee > 0);
+  const avantMontee = useRef(enAttenteMontee);
+  useEffect(() => {
+    if (enAttenteMontee > avantMontee.current) setMontee(true);
+    avantMontee.current = enAttenteMontee;
+  }, [enAttenteMontee]);
+  const monteeOuverte = montee && enAttenteMontee > 0 && !sceneNarree;
+  const fermerMontee = useCallback(() => setMontee(false), []);
+  /** Une commande envoyée par l'écran de montée de niveau : le refus éventuel lui revient, il l'affiche lui-même. */
+  const envoyer = (ordre: Ordre): string | undefined => {
+    const r = moteur.executer(partie, ordre);
+    if (!r.refus) onPartie(r.partie);
+    return r.refus;
+  };
+
   /** Envoie une commande au moteur ; un refus s'affiche sans changer la partie. */
   const jouer = (ordre: Ordre) => {
     const r = moteur.executer(partie, ordre);
@@ -227,7 +336,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || monteeOuverte || parcheminOuvert) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -262,6 +371,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             </span>
           ))}
           <span>{scene.pieces.toLocaleString('fr-FR')} po</span>
+          <ControleSon />
         </div>
       </header>
 
@@ -277,6 +387,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               fin={finDialogue}
               jouer={jouer}
             >
+              {ouverture && ouverture.pnj === interlocuteur.id && (
+                <p className="recit-parole">
+                  <strong>{interlocuteur.nom}</strong> « {ouverture.texte} »
+                </p>
+              )}
               {entreesDialogue.map((e, i) => (
                 <EntreeRecit key={i} e={e} dm={dm} />
               ))}
@@ -409,7 +524,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} />
+        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} onMontee={() => setMontee(true)} />
         <button
           type="button"
           className="aventure-sac"
@@ -427,19 +542,28 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           propositions={propositions.filter((x) => x.groupe.onglet === pageOuverte.onglet)}
           partie={partie}
           selection={pageOuverte.selection}
-          onChoisir={(id) => setPage({ onglet: pageOuverte.onglet, selection: id })}
+          filtre={pageOuverte.filtre}
+          onChoisir={(id) => setPage({ onglet: pageOuverte.onglet, selection: id, filtre: pageOuverte.filtre })}
           jouer={jouer}
           onCombat={onCombat}
           onFermer={() => setPage(undefined)}
+          onFeuille={(id) => {
+            setPage(undefined);
+            setFeuille(id);
+          }}
         />
       )}
       {carteOuverte && !sceneNarree && !feuille && encarts.find((e) => e.carte)?.carte && (
         <PageCarte monde={dm.monde.id} carte={encarts.find((e) => e.carte)!.carte!} groupe={partie.groupe} jouer={jouer} onFermer={() => setCarteOuverte(false)} />
       )}
       {feuille && !sceneNarree && (
-        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} />
+        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
-      {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
+      {parcheminOuvert && !sommeil && !crochetage && <EcranQuete key={parchemin!.id} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
+      {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
+      {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
+      {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
+      {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }

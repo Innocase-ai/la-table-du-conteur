@@ -179,6 +179,8 @@ Demande : un plateau plus beau, des cases lisibles, des personnages plus grands.
 
 Illustration `ecran-titre` (table du conteur, sans personnage) : `pnpm images interface --go` puis `python3 outils/images/installer.py interface`. Ses objets sont cliquables : les zones sont des polygones **dans le repère de l'image (1248 × 832)**, dans `apps/jeu/src/menu/EcranTitre.tsx`. **Si l'illustration est régénérée, il faut redessiner ces zones** (les tracer sur l'image avec Pillow pour vérifier le calage).
 
+Illustrations de l'**écran de sommeil** (même commande, même installation, sans personnage) : `sommeil-chambre` (chambre d'auberge à la bougie) et `sommeil-camp` (camp de nuit autour d'un feu de bois), générées le 07/11/2026 (FLUX 3 Image Klein, 2 × 0,009 $). Le jeu choisit l'une ou l'autre selon le lieu (voir `apps/jeu/src/sommeil-regles.ts`).
+
 
 ## Images communes du catalogue SRD (05/11/2026)
 

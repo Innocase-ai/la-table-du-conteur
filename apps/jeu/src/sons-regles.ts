@@ -44,6 +44,9 @@ export const SONS = [
   'malediction',
   'sommeil',
   'immobilisation',
+  // Serrures (écran de crochetage)
+  'serrure-ouverte',
+  'porte-forcee',
 ] as const;
 
 export type Son = (typeof SONS)[number];
@@ -83,6 +86,8 @@ export const LIBELLES_SONS: Record<Son, string> = {
   malediction: 'Malédiction',
   sommeil: 'Sommeil',
   immobilisation: 'Immobilisation',
+  'serrure-ouverte': 'Serrure crochetée qui s’ouvre',
+  'porte-forcee': 'Verrou forcé qui cède',
 };
 
 /** Sons propres à certains sorts, quand ils partent (projectile, rayon, zone, contact ou jet de sauvegarde). */
