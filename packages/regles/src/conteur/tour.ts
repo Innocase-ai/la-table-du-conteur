@@ -183,7 +183,10 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
           messages.push({ role: 'tool', tool_call_id: appel.id, content: `ERREUR : l'outil « ${nom} » n'existe pas.` });
           continue;
         }
-        const res = moteur.executer(partie, { type: nom, ...(typeof args === 'object' && args !== null ? args : {}) });
+        // Le nom de l'outil vient en dernier : un champ « type » glissé dans les arguments (par un modèle que le joueur a piégé)
+        // ne doit jamais changer la commande exécutée, ni atteindre celles que le conteur n'a pas le droit d'appeler.
+        const entree = typeof args === 'object' && args !== null && !Array.isArray(args) ? args : {};
+        const res = moteur.executer(partie, { ...entree, type: nom });
         resultat.outils.push({ nom, args, refus: res.refus });
         p.surOutil?.({ nom, args, refus: res.refus });
         if (res.refus) messages.push({ role: 'tool', tool_call_id: appel.id, content: `IMPOSSIBLE POUR L'INSTANT : ${res.refus} (à raconter comme un fait du monde, sans parler de refus ni de règles)` });

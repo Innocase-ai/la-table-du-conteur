@@ -1094,3 +1094,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Constat** : le bouton « 🎒 Inventaire » de la feuille d'un héros ouvrait la page du sac **filtrée sur « Porté par ce héros »** : on ne voyait que ce qu'il porte, le reste du sac n'apparaissait qu'en cliquant sur « Tout ».
 - **Corrigé** (`GrilleElements.tsx`, `PagePleine.tsx`) : la page s'ouvre sur « Tout » ; le groupe du héros (`focus`) passe en tête et son titre ressort en or, sans rien masquer. Un séparateur « Dans le sac du groupe, non porté » marque le début des objets du sac, après ce que portent les héros.
 - **Vérifié** dans le navigateur (deux héros équipés, corde, torches, rations, épée dans le sac) : filtre « Tout » actif, Porté par Bran (en tête), Porté par Hilda, séparateur, puis Consommables, Armes, Outils.
+
+## 07/11/2026 — Sécurité du conteur : le nom de l'outil ne peut plus être écrasé
+
+- **Question** : le jeu est-il sûr face à une injection de prompt (le joueur écrit un texte qui piège le modèle) ?
+- **Faille trouvée et vérifiée** : `jouerTour` exécutait `{ type: nom, ...args }` ; un champ `type` dans les arguments d'un outil permis remplaçait la commande. Un modèle piégé pouvait ainsi lancer les commandes interdites au conteur (`COMMANDES_HORS_CONTEUR` : `jeterObjet`, `trancher`, `reglerRencontre`, `commencer`…). Reproduit avec un modèle scripté : `testLibre` + `{ "type": "jeterObjet" }` jetait la corde du sac.
+- **Corrigé** (`conteur/tour.ts`) : `{ ...entree, type: nom }` (le nom de l'outil vient en dernier) et des arguments qui ne sont pas un objet simple (liste, nombre) sont traités comme vides.
+- **Tests** (`conteur.test.ts`, 4 nouveaux) : le champ `type` est ignoré (rouge sans le correctif, vert avec), règlement de combat sous un faux nom, outil réservé appelé par son nom, arguments mal formés.
+- **Ce qui tenait déjà** : le moteur décide de tout (prix, accès, conditions, dés tirés de l'état de la partie), réplique des PNJ vérifiée contre leur fiche, saisie bornée (1000 caractères), 6 appels par tour, texte du modèle affiché sans HTML, relais de développement (modèle unique, origine, plafond de dépense, clé jamais au navigateur).
+- **Limites connues, non traitées** : la bible secrète est dans le prompt, donc un joueur peut tenter d'en tirer des spoilers (le seul filtre de sortie vise le vocabulaire de machine) ; si des histoires de tiers sont un jour vendues, leurs textes seront un vecteur d'injection indirecte à examiner.
