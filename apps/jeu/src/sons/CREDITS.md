@@ -10,3 +10,9 @@ Fichiers rognés et égalisés par `pnpm sons rogner` (voir `outils/sons/`), jou
 | `perforant` | `knifeSlice.ogg`, Kenney RPG Audio (https://kenney.nl/assets/rpg-audio) | CC0 |
 
 Attribution facultative pour les deux sons de Kenney : « Sons : Kenney (kenney.nl), CC0 ».
+
+## Serrures (écran de crochetage, 07/11/2026)
+
+| Fichier | Origine | Licence |
+| --- | --- | --- |
+| `serrure-ouverte`, `porte-forcee` | Générés avec ElevenLabs (modèle d'effets sonores `eleven_text_to_sound_v2`, abonnement de l'auteur du jeu), 17 crédits chacun ; prises choisies à l'oreille parmi deux ; rognés par `pnpm sons rogner` | **À confirmer** : conditions d'usage commercial des sons générés selon le forfait ElevenLabs, à vérifier avant la vente du jeu |

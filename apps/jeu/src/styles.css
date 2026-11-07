@@ -8323,3 +8323,159 @@ kbd {
   font-size: 11px;
   opacity: 0.75;
 }
+
+/* L'écran de crochetage : le crochet (ou le pied-de-biche) en grand, un anneau qui se vide, puis le résultat. */
+.ecran-crochetage {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #1b1610 0%, #07070a 85%);
+  animation: sommeil-entree 0.5s ease-out;
+}
+
+.crochetage-contenu {
+  text-align: center;
+  color: var(--texte);
+  padding: 16px;
+  max-width: 560px;
+}
+
+.crochetage-titre {
+  margin: 0 0 14px;
+  font-family: var(--police-titre, serif);
+  font-size: 20px;
+  color: var(--or);
+}
+
+.crochetage-scene {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+}
+
+.crochetage-anneau {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.crochetage-anneau-fond {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 6;
+}
+
+.crochetage-anneau-reste {
+  fill: none;
+  stroke: var(--or-vif);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.ecran-crochetage.reussi .crochetage-anneau-reste {
+  stroke: #74e6a4;
+}
+
+.ecran-crochetage.rate .crochetage-anneau-reste {
+  stroke: #ff8f80;
+}
+
+.crochetage-pic {
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.8));
+  margin-bottom: 26px;
+}
+
+.crochetage-pic.crochet {
+  animation: crochetage-gratte 0.9s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+.crochetage-pic.pied-de-biche {
+  animation: crochetage-secoue 0.35s linear infinite;
+}
+
+.crochetage-pic.immobile {
+  animation: none;
+}
+
+.crochetage-compte {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: end center;
+  margin: 0;
+  padding-bottom: 22px;
+  font-size: 34px;
+  pointer-events: none;
+  font-family: var(--police-titre, serif);
+  color: var(--or-vif);
+  font-variant-numeric: tabular-nums;
+}
+
+.crochetage-reste,
+.crochetage-phrase {
+  margin: 8px 0;
+  font-size: 17px;
+}
+
+.crochetage-phrase {
+  font-weight: 600;
+}
+
+.ecran-crochetage.reussi .crochetage-phrase {
+  color: #8df0b4;
+}
+
+.ecran-crochetage.rate .crochetage-phrase {
+  color: #ffb3a6;
+}
+
+.crochetage-jet {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.crochetage-repere {
+  margin: 10px 0 0;
+  padding: 8px 12px;
+  border: 1px solid #7a2a1e;
+  border-radius: 8px;
+  background: rgba(120, 30, 18, 0.35);
+  color: #ffd0c6;
+}
+
+.crochetage-passer {
+  margin-top: 16px;
+  opacity: 0.8;
+}
+
+@keyframes crochetage-gratte {
+  0%, 100% { transform: rotate(-4deg) translate(0, 0); }
+  25% { transform: rotate(5deg) translate(2px, -2px); }
+  50% { transform: rotate(-2deg) translate(-1px, 1px); }
+  75% { transform: rotate(6deg) translate(2px, 0); }
+}
+
+@keyframes crochetage-secoue {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-3px, 1px) rotate(-3deg); }
+  75% { transform: translate(3px, -1px) rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecran-crochetage,
+  .crochetage-pic.crochet,
+  .crochetage-pic.pied-de-biche {
+    animation: none;
+  }
+  .crochetage-anneau-reste {
+    transition: none;
+  }
+}

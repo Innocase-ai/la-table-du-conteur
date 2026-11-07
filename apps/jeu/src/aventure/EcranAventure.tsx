@@ -26,6 +26,8 @@ import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
 import { EcranSommeil } from './EcranSommeil';
+import { EcranCrochetage } from './EcranCrochetage';
+import { detecterOuverture, type Ouverture } from '../crochetage-regles';
 import { decorSommeil, detecterSommeil, heuresDormies, type DecorSommeil } from '../sommeil-regles';
 import { ControleSon } from '../composants/ControleSon';
 import { OUVERTURES } from '../ouvertures';
@@ -60,7 +62,15 @@ function TexteJet({ j }: { j: Jet }) {
       <small>
         (d20 {des} {j.bonus >= 0 ? '+' : '−'} {Math.abs(j.bonus)})
       </small>
-      {j.ddSecret ? (j.reussite ? ' — trouve quelque chose' : ' — rien') : ` contre DD ${j.dd} — ${j.reussite ? 'réussi' : 'raté'}`}
+      {j.ddSecret
+        ? j.test === 'discretion'
+          ? j.reussite
+            ? ' — personne ne vous remarque'
+            : ' — repéré !'
+          : j.reussite
+            ? ' — trouve quelque chose'
+            : ' — rien'
+        : ` contre DD ${j.dd} — ${j.reussite ? 'réussi' : 'raté'}`}
     </>
   );
 }
@@ -170,6 +180,19 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   }, [partie, dm]);
   const finSommeil = useCallback(() => setSommeil(undefined), []);
 
+  // Le crochetage : quand le groupe vient de crocheter ou de forcer, l'écran de crochetage s'ouvre (le moteur a déjà tout réglé :
+  // les jets sont dans les nouvelles entrées du journal).
+  const [crochetage, setCrochetage] = useState<Ouverture>();
+  const avantCrochetage = useRef(partie.journal.length);
+  useEffect(() => {
+    const avant = avantCrochetage.current;
+    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : partie.journal.slice(-12);
+    avantCrochetage.current = partie.journal.length;
+    const o = detecterOuverture(nouvelles);
+    if (o) setCrochetage(o);
+  }, [partie]);
+  const finCrochetage = useCallback(() => setCrochetage(undefined), []);
+
   // L'ouverture : à chaque début de conversation, le PNJ lance d'abord une phrase tirée d'un fonds commun, dite avec la voix
   // d'homme ou de femme qui est la sienne (toujours la même), puis vient sa salutation propre.
   const [ouverture, setOuverture] = useState<{ pnj: string; texte: string }>();
@@ -219,7 +242,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -274,7 +297,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -498,7 +521,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
-      {sceneNarree && !sommeil && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
+      {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet.nom} onFin={finCrochetage} />}
+      {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }

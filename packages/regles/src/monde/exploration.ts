@@ -10,6 +10,7 @@ import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
 import { appliquerEffets, avancerQuetes, evaluerCondition, verifierEnigme, type EtatMonde } from './etat';
+import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
 
@@ -47,10 +48,7 @@ export interface PartieMonde {
 
 export type { Jet };
 
-/** Le moment de la journée : jour de 6 h à 17 h, soir de 18 h à 21 h, nuit ensuite (présences des PNJ). */
-export function momentDe(heure = 8): 'jour' | 'soir' | 'nuit' {
-  return heure >= 6 && heure < 18 ? 'jour' : heure >= 18 && heure < 22 ? 'soir' : 'nuit';
-}
+export { momentDe };
 
 /** Compte rendu d'un verbe : ce que le conteur doit raconter, rien de plus. */
 export interface CompteRendu {
@@ -105,10 +103,12 @@ function bonusTest(a: Personnage, test: Competence | Caracteristique): number {
 }
 
 /** Le personnage désigné, ou celui du groupe qui a le meilleur bonus (« le groupe fouille »). */
-function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string): Personnage | undefined {
+function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string, qualifie?: (a: Personnage) => boolean): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
-  return [...vivants].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
+  // Quand l'action demande un équipement (crocheter : les outils de voleur), on préfère ceux qui l'ont, même au bonus plus faible.
+  const equipes = qualifie ? vivants.filter(qualifie) : [];
+  return [...(equipes.length ? equipes : vivants)].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
 }
 
 /** Un test d20 du personnage, consigné dans le compte rendu. */
@@ -476,7 +476,8 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     verrou = tresor.acces.verrou;
     cle = `tresor:${tresor.id}`;
     if (!verrou || ex.ouverts.includes(cle)) return refus(`${tresor.nom} n'est pas fermé.`);
-    nom = tresor.nom;
+    // Dans une phrase (« Bran force le tiroir de la caisse »), l'article du nom perd sa majuscule.
+    nom = tresor.nom.replace(/^(Le|La|Les|L’|L') ?/, (m) => m.toLowerCase());
   }
   const r = resultat();
   if (methode === 'cle') {
@@ -488,9 +489,10 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
     return r;
   }
   const test: Competence = methode === 'crocheter' ? 'escamotage' : 'athletisme';
-  const a = choisir(p, test, personnage);
+  const a = choisir(p, test, personnage, methode === 'crocheter' ? (x) => aOutils(p, x) : undefined);
   if (!a) return refus('Personne ne peut le faire.');
   if (methode === 'crocheter' && !aOutils(p, a)) return refus(`${a.nom} n'a pas d'outils de voleur pour crocheter.`);
+  repererTemoins(p, r, a, methode, nom);
   const jet = tester(p, r, a, test, verrou.dd);
   if (jet.reussite) {
     ex.ouverts.push(cle);
@@ -501,6 +503,29 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
   declencherPiegeLibre(p, r, a);
   suites(p, r);
   return r;
+}
+
+/** Les verbes du constat quand des témoins surprennent le groupe (l'écran de crochetage les reconnaît : voir `crochetage-regles.ts`). */
+export const VERBES_OUVRIR = { crocheter: 'crocheter', forcer: 'forcer' } as const;
+
+/**
+ * Qui regarde ? Les PNJ présents dans le lieu (les compagnons qui suivent le groupe ne comptent pas) ont une chance de voir le
+ * groupe s'attaquer à la serrure : un jet de Discrétion du héros contre un DD que le joueur ne voit pas, `10 + 2` par témoin en
+ * plus du premier (au plus 18), et `+5` pour forcer, qui fait du bruit. Sans témoin, personne ne regarde : pas de jet. Repéré,
+ * chaque témoin perd de l'attitude envers le groupe (−10 pour crocheter, −15 pour forcer) ; rien d'autre ne change : l'ouverture
+ * se résout ensuite normalement.
+ */
+function repererTemoins(p: PartieMonde, r: CompteRendu, a: Personnage, methode: 'crocheter' | 'forcer', nom: string): void {
+  const temoins = pnjPresents(p).filter((n) => !p.etat.escortes?.includes(n.id));
+  if (!temoins.length) return;
+  const dd = Math.min(18, 10 + 2 * (temoins.length - 1)) + (methode === 'forcer' ? 5 : 0);
+  const jet = tester(p, r, a, 'discretion', dd);
+  jet.ddSecret = true;
+  if (jet.reussite) return;
+  const noms = temoins.map((n) => n.nom);
+  const qui = noms.length === 1 ? noms[0]! : `${noms.slice(0, -1).join(', ')} et ${noms[noms.length - 1]}`;
+  r.constats.push(`${qui} ${noms.length === 1 ? 'vous a' : 'vous ont'} vus ${VERBES_OUVRIR[methode]} ${nom}.`);
+  appliquer(p, r, temoins.map((n) => ({ attitude: { pnj: n.id, delta: methode === 'forcer' ? -15 : -10 } })));
 }
 
 function aOutils(p: PartieMonde, a: Personnage): boolean {

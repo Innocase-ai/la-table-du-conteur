@@ -50,3 +50,7 @@ Les musiques sont dans `apps/jeu/src/musique/` (crédits et réserves de licence
 | Combat (d'histoire ou escarmouche) | `combat/` (6) | une boucle tirée au hasard, jamais la même deux fois de suite ; elle prend la place de la musique de la scène, qui reprend ensuite **là où elle s'était arrêtée** | −26 dB |
 
 Le lecteur (`musique.ts`) ne reçoit pas d'ordres : il calcule ce qui doit jouer d'après la scène, le combat en cours et les réglages (`musiqueVoulue`, dans `musique-regles.ts`, pur et testé). Le contrôle du son (🔊, ♪, ⏭) est sur l'écran titre, dans l'aventure et en combat. Les fichiers sont chargés à la demande (seule la musique voulue est téléchargée). Poids : 34 Mo (mp3 192 kbps).
+
+## Serrures (écran de crochetage)
+
+Deux bruitages joués au résultat de l'écran de crochetage quand l'ouverture réussit (`sonDuResultat`, `crochetage-regles.ts`) : `serrure-ouverte` (on a crocheté) et `porte-forcee` (on a forcé). Un échec ne fait pas de bruit supplémentaire. Générés avec ElevenLabs le 07/11/2026 (dix prises à 17 crédits, deux par son, une gardée par son). **Pas encore faits** : le grattement du crochet pendant le compte à rebours, le déclic de goupille et le grincement de l'effort (les prises existent dans `scratchpad` de la séance, non retenues par l'utilisateur) : l'écran est muet pendant l'effort.

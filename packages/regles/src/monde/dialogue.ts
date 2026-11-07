@@ -2,7 +2,8 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { appliquer, momentDe, suites, type CompteRendu, type PartieMonde } from './exploration';
+import { appliquer, suites, type CompteRendu, type PartieMonde } from './exploration';
+import { lieuDuPnj, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
@@ -11,22 +12,8 @@ import { testD20 } from '../tests-d20';
 export const SEUIL_HOSTILE = -30;
 export const SEUIL_AMICAL = 30;
 
-export function lieuDuPnj(p: PartieMonde, pnj: Pnj): string {
-  return p.etat.pnjLieux[pnj.id] ?? pnj.lieu;
-}
-
-/** PNJ présents dans le lieu courant, vivants et toujours là. */
-export function pnjPresents(p: PartieMonde): Pnj[] {
-  return [...p.dm.pnj.values()].filter((n) => {
-    if ((p.etat.pnjEtats[n.id] ?? 'vivant') !== 'vivant') return false;
-    // Un PNJ escorté suit le groupe : il est présent partout.
-    if (p.etat.escortes?.includes(n.id)) return true;
-    if (lieuDuPnj(p, n) === p.etat.lieu) return true;
-    // Une présence ailleurs ne compte que si le PNJ n'a pas été déplacé, et au bon moment de la journée (jour, soir, nuit).
-    const moment = momentDe(p.etat.heure);
-    return !p.etat.pnjLieux[n.id] && n.presences.some((x) => x.lieu === p.etat.lieu && x.moment === moment && (!x.condition || evaluerCondition(x.condition, p.etat)));
-  });
-}
+// La présence des PNJ vit dans `presence.ts` (partagée avec l'ouverture des serrures) ; réexportée ici pour les appelants.
+export { lieuDuPnj, pnjPresents };
 
 export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
