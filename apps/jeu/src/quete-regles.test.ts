@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
 import { chargerMonde, RACINE_MONDES } from '../../../packages/regles/src/monde/chargeur';
-import { nouvellesQuetes, parcheminDeQuete } from './quete-regles';
+import { changementsDeQuetes, nouvellesQuetes, parcheminDeQuete } from './quete-regles';
 
 const srd = chargerDonneesSrd();
 const r = chargerMonde(join(RACINE_MONDES, 'port-sillage'));
@@ -57,5 +57,38 @@ describe('le texte du parchemin', () => {
     const p = parcheminDeQuete(dm, q.id)!;
     expect(p.recompenses).toContain(`${q.recompenses.xp} PX`);
     expect(p.recompenses).toContain(`${q.recompenses.pieces} po`);
+  });
+});
+
+describe('la fin et l’échec d’une quête', () => {
+  const etat = (statut: 'proposee' | 'active' | 'terminee' | 'echouee') => ({ statut, actives: [], accomplies: [] });
+
+  it('active → terminée = fin ; active → échouée = échec ; une quête déjà close ne se répète pas', () => {
+    expect(changementsDeQuetes({ a: etat('active') }, { a: etat('terminee') })).toEqual([{ id: 'a', genre: 'fin' }]);
+    expect(changementsDeQuetes({ a: etat('active') }, { a: etat('echouee') })).toEqual([{ id: 'a', genre: 'echec' }]);
+    expect(changementsDeQuetes({ a: etat('terminee') }, { a: etat('terminee') })).toEqual([]);
+    expect(changementsDeQuetes({ a: etat('echouee') }, { a: etat('echouee') })).toEqual([]);
+    expect(changementsDeQuetes({ a: etat('active') }, { a: etat('active') })).toEqual([]);
+  });
+
+  it('une quête lancée et finie dans la même action n’est annoncée que comme terminée', () => {
+    expect(changementsDeQuetes({}, { a: etat('terminee') })).toEqual([{ id: 'a', genre: 'fin' }]);
+    expect(changementsDeQuetes({ a: etat('proposee') }, { a: etat('terminee') })).toEqual([{ id: 'a', genre: 'fin' }]);
+  });
+
+  it('une quête menée à son terme dans le vrai moteur est repérée comme finie, avec ses récompenses', () => {
+    const q = [...dm.quetes.values()].find((x) => !x.prerequis && x.recompenses.xp > 0)!;
+    const actif = { ...depart, etat: { ...depart.etat, quetes: { ...depart.etat.quetes, [q.id]: { statut: 'active' as const, actives: [q.debut], accomplies: [] } } } };
+    const fini = moteur.executer({ ...actif, scene: { type: 'exploration' } }, { type: 'accepterQuete', quete: q.id }); // sans effet : la quête est déjà en cours
+    expect(fini.refus).toBeDefined();
+    const termine = { ...actif, etat: { ...actif.etat, quetes: { ...actif.etat.quetes, [q.id]: { statut: 'terminee' as const, actives: [], accomplies: [q.debut] } } } };
+    expect(changementsDeQuetes(actif.etat.quetes, termine.etat.quetes)).toEqual([{ id: q.id, genre: 'fin' }]);
+    const p = parcheminDeQuete(dm, q.id, 'fin')!;
+    expect(p.rubrique).toBe('Quête accomplie');
+    expect(p.recompenses).toContain(`${q.recompenses.xp} PX`);
+    expect(p.objectif).toBeUndefined(); // le premier objectif n'a plus de sens à la fin
+    const echec = parcheminDeQuete(dm, q.id, 'echec')!;
+    expect(echec.rubrique).toBe('Quête échouée');
+    expect(echec.recompenses).toEqual([]);
   });
 });
