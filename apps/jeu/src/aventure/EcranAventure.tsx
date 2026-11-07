@@ -25,6 +25,7 @@ import { FeuillePersonnage } from './FeuillePersonnage';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
+import { ControleSon } from '../composants/ControleSon';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
@@ -262,6 +263,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             </span>
           ))}
           <span>{scene.pieces.toLocaleString('fr-FR')} po</span>
+          <ControleSon />
         </div>
       </header>
 

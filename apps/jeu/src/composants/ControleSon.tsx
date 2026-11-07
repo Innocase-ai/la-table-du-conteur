@@ -1,5 +1,6 @@
 import { jouerSon, regler, useReglagesSon } from '../sons';
-import { reglerMusique, useReglagesMusique } from '../musique';
+import { reglerMusique, suivant, usePisteEnCours, useReglagesMusique } from '../musique';
+import { LIBELLES_FOND, type MusiqueFond } from '../musique-regles';
 
 /**
  * Sourdine et volume des bruitages (🔊), puis de la musique d'ambiance (♪) : deux canaux séparés, mémorisés dans le
@@ -8,6 +9,9 @@ import { reglerMusique, useReglagesMusique } from '../musique';
 export function ControleSon() {
   const son = useReglagesSon();
   const musique = useReglagesMusique();
+  const piste = usePisteEnCours();
+  // Pendant une histoire, un bouton passe au fond suivant (l'ordre est aléatoire, sans répétition).
+  const fond = piste?.startsWith('fond-') ? (piste as MusiqueFond) : undefined;
   return (
     <span className="controle-son">
       <button
@@ -53,6 +57,11 @@ export function ControleSon() {
         title={`Musique : ${Math.round(musique.volume * 100)} %`}
         onChange={(e) => reglerMusique({ volume: Number(e.target.value) / 100 })}
       />
+      {fond && (
+        <button type="button" className="bouton-discret" onClick={() => void suivant()} title={`Musique suivante (en cours : ${LIBELLES_FOND[fond]})`} aria-label="Musique suivante">
+          ⏭
+        </button>
+      )}
     </span>
   );
 }

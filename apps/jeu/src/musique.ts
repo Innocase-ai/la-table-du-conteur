@@ -1,13 +1,31 @@
-// Lecture des musiques d'ambiance de combat : une boucle sans blanc (Web Audio), avec fondu à l'entrée et à la sortie, sur
-// un canal de volume à part des bruitages (réglage mémorisé dans le navigateur). Le choix de l'ambiance est dans
-// `musique-regles.ts`.
+// Lecture des musiques du jeu (Web Audio), sur un canal de volume à part des bruitages (réglage mémorisé dans le navigateur).
+// Trois usages : l'ambiance d'un combat (une boucle sans blanc), la musique des menus (une boucle) et les musiques de fond des
+// histoires (enchaînées dans un ordre aléatoire, avec un fondu entre deux). Le choix de ce qui joue est dans `musique-regles.ts`.
+//
+// Le lecteur ne « reçoit pas d'ordres » : il tient trois informations (la scène du jeu, le combat en cours, les réglages),
+// calcule ce qui doit jouer (`musiqueVoulue`) et ajuste. Un combat prend la place de la musique de la scène, qui reprend
+// ensuite à l'endroit où elle s'était arrêtée.
 import { useSyncExternalStore } from 'react';
 import { audio, deverrouiller } from './sons';
-import { AMBIANCES_MUSIQUE, choisirAmbiance, type AmbianceMusique } from './musique-regles';
+import {
+  AMBIANCES_MUSIQUE,
+  choisirAmbiance,
+  choisirParmi,
+  DUREE_FONDU_ENTRE_FONDS,
+  melangerFond,
+  MUSIQUES_ACCUEIL,
+  musiqueVoulue,
+  type AmbianceMusique,
+  type MusiqueAccueil,
+  type MusiqueFond,
+  type NomMusique,
+  type SceneMusique,
+  type Voulue,
+} from './musique-regles';
 
 export interface ReglagesMusique {
   actif: boolean;
-  /** Entre 0 et 1. Les fichiers sont déjà à −26 dB (fond sonore) : à 50 %, la musique reste bien sous les bruitages. */
+  /** Entre 0 et 1. Les fichiers sont déjà bas (−26 dB, −30 dB pour le fond des histoires) : à 50 %, la musique reste bien sous les bruitages. */
   volume: number;
 }
 
@@ -15,13 +33,15 @@ const CLE = 'crpg.musique';
 const PAR_DEFAUT: ReglagesMusique = { actif: true, volume: 0.5 };
 /** Durée du fondu à l'entrée, en secondes. */
 const FONDU_ENTREE = 2;
+/** Fondu quand un combat prend la place de la musique de la scène. */
+const FONDU_COMBAT = 0.8;
 
 const FICHIERS = Object.fromEntries(
-  Object.entries(import.meta.glob<string>('./musique/*.mp3', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
+  Object.entries(import.meta.glob<string>('./musique/**/*.mp3', { eager: true, query: '?url', import: 'default' })).map(([chemin, url]) => [
     chemin.replace(/^.*\/(.+)\.mp3$/, '$1'),
     url,
   ]),
-) as Partial<Record<AmbianceMusique, string>>;
+) as Partial<Record<NomMusique, string>>;
 
 function lire(): ReglagesMusique {
   try {
@@ -37,12 +57,13 @@ function lire(): ReglagesMusique {
 
 let reglages: ReglagesMusique = lire();
 const abonnes = new Set<() => void>();
+const abonnesPiste = new Set<() => void>();
 
 export function reglagesMusique(): ReglagesMusique {
   return reglages;
 }
 
-/** Change le réglage de la musique : le volume suit en douceur, la sourdine éteint ou rallume la musique du combat en cours. */
+/** Change le réglage de la musique : le volume suit en douceur, la sourdine éteint ou rallume la musique en cours. */
 export function reglerMusique(changement: Partial<ReglagesMusique>): void {
   reglages = { ...reglages, ...changement, volume: Math.min(1, Math.max(0, changement.volume ?? reglages.volume)) };
   try {
@@ -50,7 +71,7 @@ export function reglerMusique(changement: Partial<ReglagesMusique>): void {
   } catch {
     // Stockage indisponible (navigation privée…) : le réglage vaut pour cette visite seulement.
   }
-  appliquer();
+  synchroniser();
   for (const a of abonnes) a();
 }
 
@@ -67,11 +88,11 @@ export function useReglagesMusique(): ReglagesMusique {
 
 // --- Lecture ---------------------------------------------------------------------------------------------------------
 
-const tampons = new Map<AmbianceMusique, AudioBuffer>();
-const chargements = new Map<AmbianceMusique, Promise<AudioBuffer | undefined>>();
+const tampons = new Map<NomMusique, AudioBuffer>();
+const chargements = new Map<NomMusique, Promise<AudioBuffer | undefined>>();
 
-/** Télécharge et décode une boucle (une seule fois). Seule l'ambiance tirée est chargée : le jeu démarre vite. */
-function charger(id: AmbianceMusique): Promise<AudioBuffer | undefined> {
+/** Télécharge et décode une musique (une seule fois). Seule la musique voulue est chargée : le jeu démarre vite. */
+function charger(id: NomMusique): Promise<AudioBuffer | undefined> {
   const deja = chargements.get(id);
   if (deja) return deja;
   const url = FICHIERS[id];
@@ -92,25 +113,51 @@ function charger(id: AmbianceMusique): Promise<AudioBuffer | undefined> {
   return p;
 }
 
+type Famille = 'combat' | 'accueil' | 'fond';
+
 interface Lecture {
-  id: AmbianceMusique;
+  id: NomMusique;
+  famille: Famille;
   source: AudioBufferSourceNode;
   gain: GainNode;
+  /** Heure du contexte audio où la lecture a commencé, et position (en secondes) du fichier à ce moment. */
+  debut: number;
+  decalage: number;
+  duree: number;
+  minuteur?: ReturnType<typeof setTimeout>;
 }
 
 let lecture: Lecture | undefined;
-/** L'ambiance voulue pour le combat en cours (même quand la musique est coupée : on la rallume au bon endroit). */
-let voulue: AmbianceMusique | undefined;
-let derniere: AmbianceMusique | undefined;
+/** La scène du jeu (menus, histoire en cours), et l'ambiance du combat en cours s'il y en a un. */
+let scene: SceneMusique;
+let combat: AmbianceMusique | undefined;
+let derniereAmbiance: AmbianceMusique | undefined;
+/** Le choix de la musique d'accueil, gardé tant qu'on reste dans les menus. */
+let choixAccueil: MusiqueAccueil | undefined;
+let derniereAccueil: MusiqueAccueil | undefined;
+/** Le fond en cours, ceux qui restent à jouer dans ce tour, et le dernier joué (pour ne pas le rejouer en premier). */
+let fondCourant: MusiqueFond | undefined;
+let resteFond: MusiqueFond[] = [];
+let dernierFond: MusiqueFond | undefined;
+/** Où reprendre une musique que le combat a interrompue (secondes). */
+const reprises = new Map<NomMusique, number>();
+/** Baisse temporaire (voix du Maître de jeu) : le volume est multiplié par ce facteur. */
+let facteurBaisse = 1;
+const BAISSE_VOIX = 0.3;
 
 function niveau(): number {
-  return reglages.actif ? reglages.volume : 0;
+  return reglages.actif ? reglages.volume * facteurBaisse : 0;
 }
 
-/** Éteint la lecture en cours avec un fondu, puis libère ses nœuds. */
+function prevenirPiste(): void {
+  for (const a of abonnesPiste) a();
+}
+
+/** Éteint la lecture donnée avec un fondu, puis libère ses nœuds. */
 function eteindre(l: Lecture, fondu: number): void {
   const ctx = audio();
   if (!ctx) return;
+  if (l.minuteur) clearTimeout(l.minuteur);
   const t = ctx.currentTime;
   l.gain.gain.cancelScheduledValues(t);
   l.gain.gain.setValueAtTime(l.gain.gain.value, t);
@@ -126,43 +173,147 @@ function eteindre(l: Lecture, fondu: number): void {
   };
 }
 
-/** Applique les réglages à la lecture en cours : volume, sourdine, ou reprise après une sourdine. */
-function appliquer(): void {
+/** Où en est la lecture dans son fichier (secondes). */
+function position(l: Lecture): number {
   const ctx = audio();
-  if (!ctx) return;
-  if (lecture) {
-    if (!reglages.actif) {
-      eteindre(lecture, 0.4);
-      lecture = undefined;
-    } else {
-      lecture.gain.gain.cancelScheduledValues(ctx.currentTime);
-      lecture.gain.gain.setTargetAtTime(niveau(), ctx.currentTime, 0.15);
-    }
-  } else if (reglages.actif && voulue) {
-    void lancer(voulue);
-  }
+  if (!ctx) return 0;
+  return (l.decalage + Math.max(0, ctx.currentTime - l.debut)) % l.duree;
 }
 
-async function lancer(id: AmbianceMusique): Promise<void> {
+function famille(v: NonNullable<Voulue>): Famille {
+  return v.type;
+}
+
+/** Cette lecture est-elle déjà celle qu'on veut ? */
+function correspond(l: Lecture, v: NonNullable<Voulue>): boolean {
+  if (v.type === 'combat') return l.famille === 'combat' && l.id === v.id;
+  return l.famille === famille(v);
+}
+
+/** Amène la lecture à ce qui doit jouer : rien ne change si c'est déjà bon, sinon un fondu vers la nouvelle musique. */
+function synchroniser(fondu = FONDU_COMBAT): void {
   const ctx = audio();
   if (!ctx) return;
+  const v = reglages.actif ? musiqueVoulue(scene, combat) : undefined;
+  if (lecture && v && correspond(lecture, v)) {
+    lecture.gain.gain.cancelScheduledValues(ctx.currentTime);
+    lecture.gain.gain.setTargetAtTime(niveau(), ctx.currentTime, 0.15);
+    return;
+  }
+  if (lecture) {
+    // La musique de la scène (accueil, fond) qu'un combat ou la sourdine interrompt reprendra là où elle était.
+    if (lecture.famille !== 'combat') reprises.set(lecture.id, position(lecture));
+    eteindre(lecture, fondu);
+    lecture = undefined;
+    prevenirPiste();
+  }
+  if (v) void lancer(v);
+}
+
+/** Le fichier à jouer pour ce qui est voulu (en le choisissant au hasard s'il n'est pas encore choisi). */
+function choisir(v: NonNullable<Voulue>): NomMusique {
+  if (v.type === 'combat') return v.id;
+  if (v.type === 'accueil') {
+    choixAccueil ??= choisirParmi(MUSIQUES_ACCUEIL, derniereAccueil, Math.random());
+    return choixAccueil;
+  }
+  if (!fondCourant) {
+    if (!resteFond.length) resteFond = melangerFond(dernierFond, Math.random);
+    fondCourant = resteFond.shift();
+  }
+  return fondCourant!;
+}
+
+async function lancer(v: NonNullable<Voulue>): Promise<void> {
+  const ctx = audio();
+  if (!ctx) return;
+  const id = choisir(v);
   const tampon = await charger(id);
-  // Pendant le chargement, le combat a pu finir, ou une autre ambiance être demandée : on n'écrase rien.
-  if (!tampon || voulue !== id || lecture || !reglages.actif) return;
+  // Pendant le chargement, la scène ou le combat a pu changer : on n'écrase rien.
+  const encore = reglages.actif ? musiqueVoulue(scene, combat) : undefined;
+  if (!tampon || lecture || !encore || encore.type !== v.type || (encore.type === 'combat' && v.type === 'combat' && encore.id !== v.id)) return;
+  demarrer(id, v.type, tampon, FONDU_ENTREE);
+}
+
+/** Lance la lecture d'un fichier, avec un fondu d'entrée, et arme l'enchaînement s'il s'agit d'un fond. */
+function demarrer(id: NomMusique, fam: Famille, tampon: AudioBuffer, fondu: number): void {
+  const ctx = audio();
+  if (!ctx) return;
   if (ctx.state === 'suspended') void ctx.resume();
   const source = ctx.createBufferSource();
   source.buffer = tampon;
-  // La boucle est montée pour se raccorder à elle-même (fondu enchaîné fin → début, voir `pnpm musique boucler`) :
-  // on la lit en entier, sans blanc.
-  source.loop = true;
-  source.loopStart = 0;
-  source.loopEnd = tampon.duration;
+  if (fam === 'fond') {
+    // Un fond se joue une fois, puis le suivant prend le relais (fondu enchaîné).
+    source.loop = false;
+  } else {
+    // La boucle est montée pour se raccorder à elle-même (fondu enchaîné fin → début, voir `pnpm musique boucler`) :
+    // on la lit en entier, sans blanc.
+    source.loop = true;
+    source.loopStart = 0;
+    source.loopEnd = tampon.duration;
+  }
   const gain = ctx.createGain();
   gain.gain.setValueAtTime(0, ctx.currentTime);
-  gain.gain.linearRampToValueAtTime(niveau(), ctx.currentTime + FONDU_ENTREE);
+  gain.gain.linearRampToValueAtTime(niveau(), ctx.currentTime + fondu);
   source.connect(gain).connect(ctx.destination);
-  source.start();
-  lecture = { id, source, gain };
+  const decalage = (reprises.get(id) ?? 0) % tampon.duration;
+  reprises.delete(id);
+  source.start(0, decalage);
+  const l: Lecture = { id, famille: fam, source, gain, debut: ctx.currentTime, decalage, duree: tampon.duration };
+  lecture = l;
+  if (fam === 'fond') armerSuite(l);
+  prevenirPiste();
+}
+
+/** Programme le passage au fond suivant un peu avant la fin de celui-ci (se recale si le son était en veille). */
+function armerSuite(l: Lecture): void {
+  const ctx = audio();
+  if (!ctx) return;
+  const restant = l.duree - position(l) - DUREE_FONDU_ENTRE_FONDS;
+  l.minuteur = setTimeout(() => {
+    if (lecture !== l) return;
+    // Le contexte peut être resté en veille (pas encore de geste du joueur) : le temps du fichier n'a alors pas avancé.
+    if (l.duree - position(l) - DUREE_FONDU_ENTRE_FONDS > 0.5) armerSuite(l);
+    else void suivant();
+  }, Math.max(1, restant) * 1000);
+}
+
+/** Passe au fond suivant (fin du morceau, ou bouton « suivante »). Sans effet hors d'une histoire. */
+export async function suivant(): Promise<void> {
+  const actuelle = lecture;
+  if (!actuelle || actuelle.famille !== 'fond' || scene !== 'histoire' || combat) return;
+  dernierFond = actuelle.id as MusiqueFond;
+  if (!resteFond.length) resteFond = melangerFond(dernierFond, Math.random);
+  const prochain = resteFond.shift()!;
+  fondCourant = prochain;
+  const tampon = await charger(prochain);
+  if (!tampon || lecture !== actuelle || scene !== 'histoire' || combat) return;
+  eteindre(actuelle, DUREE_FONDU_ENTRE_FONDS);
+  lecture = undefined;
+  demarrer(prochain, 'fond', tampon, DUREE_FONDU_ENTRE_FONDS);
+}
+
+/**
+ * Dit au lecteur dans quelle scène on est : les menus (musique d'accueil), une histoire en cours (musiques de fond), ou
+ * aucune (silence). Un combat en cours garde la main jusqu'à sa fin.
+ */
+export function definirSceneMusique(s: SceneMusique): void {
+  if (s === scene) return;
+  deverrouiller();
+  const avant = scene;
+  scene = s;
+  if (avant === 'accueil') {
+    derniereAccueil = choixAccueil;
+    choixAccueil = undefined;
+  }
+  if (avant === 'histoire') {
+    // Une nouvelle partie commence par un autre fond, tiré au hasard.
+    dernierFond = fondCourant ?? dernierFond;
+    fondCourant = undefined;
+    resteFond = [];
+    for (const f of [...reprises.keys()]) if (f.startsWith('fond-')) reprises.delete(f);
+  }
+  synchroniser(avant ? 1.5 : 0.5);
 }
 
 /**
@@ -171,32 +322,48 @@ async function lancer(id: AmbianceMusique): Promise<void> {
  */
 export function demarrerMusique(ambiance?: AmbianceMusique): AmbianceMusique {
   deverrouiller();
-  if (lecture) {
-    eteindre(lecture, 0.5);
-    lecture = undefined;
-  }
-  const id = ambiance ?? choisirAmbiance(derniere, Math.random());
-  voulue = id;
-  derniere = id;
-  void lancer(id);
+  const id = ambiance ?? choisirAmbiance(derniereAmbiance, Math.random());
+  combat = id;
+  derniereAmbiance = id;
+  synchroniser();
   return id;
 }
 
-/** Arrête la musique en cours avec un fondu de sortie (fin du combat, retour au menu). */
+/** Arrête la musique du combat avec un fondu de sortie ; la musique de la scène (fond, accueil) reprend. */
 export function arreterMusique(fondu = 1.5): void {
-  voulue = undefined;
-  if (lecture) {
-    eteindre(lecture, fondu);
-    lecture = undefined;
+  combat = undefined;
+  synchroniser(fondu);
+}
+
+/** Baisse la musique pendant que le Maître de jeu parle (voix, scène narrée), puis la rend. */
+export function baisserMusique(baisse: boolean): void {
+  facteurBaisse = baisse ? BAISSE_VOIX : 1;
+  const ctx = audio();
+  if (lecture && ctx) {
+    lecture.gain.gain.cancelScheduledValues(ctx.currentTime);
+    lecture.gain.gain.setTargetAtTime(niveau(), ctx.currentTime, 0.4);
   }
 }
 
-/** L'ambiance qui joue (ou qui va jouer) en ce moment. */
+/** L'ambiance de combat qui joue (ou va jouer) en ce moment. */
 export function ambianceEnCours(): AmbianceMusique | undefined {
-  return voulue;
+  return combat;
 }
 
-/** Charge d'avance les cinq boucles (utile au banc d'essai, pas au jeu). */
+/** La musique qui joue en ce moment (pour afficher son nom), ou rien. */
+export function pisteEnCours(): NomMusique | undefined {
+  return lecture?.id;
+}
+
+/** La musique qui joue, pour un composant React. */
+export function usePisteEnCours(): NomMusique | undefined {
+  return useSyncExternalStore((rappel) => {
+    abonnesPiste.add(rappel);
+    return () => abonnesPiste.delete(rappel);
+  }, pisteEnCours);
+}
+
+/** Charge d'avance les ambiances de combat (utile au banc d'essai, pas au jeu). */
 export function precharger(): void {
   for (const id of AMBIANCES_MUSIQUE) void charger(id);
 }

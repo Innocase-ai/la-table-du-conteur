@@ -38,3 +38,15 @@ Trois paires de fichiers ont exactement le même contenu : `lance` = `lancer`, `
 
 - Plusieurs variantes d'un même effet (`epee-1`, `epee-2`, `epee-3`) évitent la répétition : le jeu pourra en tirer une au hasard.
 - Licence : conserver l'origine de chaque fichier (voir `apps/jeu/src/sons/CREDITS.md`).
+
+## Musiques (accueil, histoires, combats)
+
+Les musiques sont dans `apps/jeu/src/musique/` (crédits et réserves de licence : `musique/CREDITS.md`), sur un **canal et un curseur à part des bruitages** (`crpg.musique`, défaut 50 %). Un fichier de musique entre toujours dans le projet par `pnpm musique boucler`.
+
+| Usage | Dossier | Comportement | Niveau |
+| --- | --- | --- | --- |
+| Menus (accueil, histoires, groupe, aide, créateur) | `accueil/` (2) | une boucle tirée au hasard, gardée tant qu'on reste dans les menus | −26 dB |
+| Histoire en cours | `fond/` (6) | un morceau tiré au hasard au début de la partie, puis les autres dans un ordre mélangé sans répétition, fondu de 3 s ; bouton ⏭ ; baisse de 70 % pendant une scène narrée | **−30 dB** (très bas) |
+| Combat (d'histoire ou escarmouche) | `combat/` (6) | une boucle tirée au hasard, jamais la même deux fois de suite ; elle prend la place de la musique de la scène, qui reprend ensuite **là où elle s'était arrêtée** | −26 dB |
+
+Le lecteur (`musique.ts`) ne reçoit pas d'ordres : il calcule ce qui doit jouer d'après la scène, le combat en cours et les réglages (`musiqueVoulue`, dans `musique-regles.ts`, pur et testé). Le contrôle du son (🔊, ♪, ⏭) est sur l'écran titre, dans l'aventure et en combat. Les fichiers sont chargés à la demande (seule la musique voulue est téléchargée). Poids : 34 Mo (mp3 192 kbps).

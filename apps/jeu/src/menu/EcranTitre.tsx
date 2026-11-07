@@ -1,5 +1,6 @@
 import { useState, type KeyboardEvent } from 'react';
 import { bilanPersonnage, personnageComplet, TAILLE_GROUPE, type Donnees, type Groupe } from '@crpg/regles';
+import { ControleSon } from '../composants/ControleSon';
 import { Credits } from '../composants/Credits';
 import { NOM_JEU, SOUS_TITRE_JEU } from '../jeu';
 import { histoires } from '../mondes';
@@ -115,6 +116,7 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
           ))}
         </nav>
         <footer className="titre-pied">
+          <ControleSon />
           <button type="button" className="lien-credits" onClick={() => setCredits(true)}>
             Crédits
           </button>
