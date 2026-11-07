@@ -1,6 +1,6 @@
 // Écran d'aventure, mode « livre » : chaque bouton envoie une commande au moteur ; le récit se lit dans le journal
 // d'événements de la partie. Le conteur (IA) viendra s'ajouter pour la saisie libre (M4b).
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   type DonneesMonde,
   type EvenementJeu,
@@ -25,6 +25,8 @@ import { FeuillePersonnage } from './FeuillePersonnage';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
+import { EcranSommeil } from './EcranSommeil';
+import { decorSommeil, detecterSommeil, heuresDormies, type DecorSommeil } from '../sommeil-regles';
 import { ControleSon } from '../composants/ControleSon';
 import { OUVERTURES } from '../ouvertures';
 import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voixDuPnj } from '../ouvertures-regles';
@@ -149,6 +151,25 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
   const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
   const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
+  // Le sommeil : quand une nuit vient d'être dormie (bouton « Dormir », chambre payée, conteur), l'écran de sommeil s'ouvre.
+  // On le repère dans les nouvelles entrées du journal (le moteur écrit « Le groupe se repose une nuit entière »).
+  const [sommeil, setSommeil] = useState<{ decor: DecorSommeil; heureDebut: number; heures: number; interrompu: boolean }>();
+  const avantSommeil = useRef({ jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length });
+  useEffect(() => {
+    const avant = avantSommeil.current;
+    const nouvelles = partie.journal.length >= avant.journal ? partie.journal.slice(avant.journal) : partie.journal.slice(-12);
+    avantSommeil.current = { jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length };
+    const nuit = detecterSommeil(nouvelles);
+    if (!nuit || partie.etat.jour <= avant.jour) return;
+    setSommeil({
+      decor: decorSommeil(dm.lieux.get(partie.etat.lieu)?.type, nuit.nuitPayee),
+      heureDebut: avant.heure,
+      heures: heuresDormies(avant, { jour: partie.etat.jour, heure: partie.etat.heure ?? 8 }),
+      interrompu: partie.scene.type === 'rencontre',
+    });
+  }, [partie, dm]);
+  const finSommeil = useCallback(() => setSommeil(undefined), []);
+
   // L'ouverture : à chaque début de conversation, le PNJ lance d'abord une phrase tirée d'un fonds commun, dite avec la voix
   // d'homme ou de femme qui est la sienne (toujours la même), puis vient sa salutation propre.
   const [ouverture, setOuverture] = useState<{ pnj: string; texte: string }>();
@@ -198,7 +219,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -253,7 +274,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte) return;
+    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;
@@ -471,7 +492,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {feuille && !sceneNarree && (
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} />
       )}
-      {sceneNarree && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
+      {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
+      {sceneNarree && !sommeil && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
 }
