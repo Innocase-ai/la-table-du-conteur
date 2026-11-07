@@ -40,6 +40,7 @@ describe('les messages de fin', () => {
     expect(messageFinal({ methode: 'forcer', reussie: true })).toMatch(/craquement/);
     expect(messageFinal({ methode: 'crocheter', reussie: false })).toMatch(/crochet glisse/);
     expect(messageFinal({ methode: 'forcer', reussie: false })).toMatch(/tient bon/);
+    expect(messageFinal({ methode: 'crocheter', reussie: false, interrompue: true })).toMatch(/On vous a vus/);
   });
 });
 
@@ -49,6 +50,7 @@ describe('le bruitage du résultat', () => {
     expect(sonDuResultat({ methode: 'forcer', reussie: true })).toBe('porte-forcee');
     expect(sonDuResultat({ methode: 'crocheter', reussie: false })).toBeUndefined();
     expect(sonDuResultat({ methode: 'forcer', reussie: false })).toBeUndefined();
+    expect(sonDuResultat({ methode: 'forcer', reussie: true, interrompue: true })).toBeUndefined();
   });
 });
 
@@ -72,10 +74,10 @@ describe('repérer une ouverture dans le journal du vrai moteur', () => {
   }
   const nouvelles = (avant: Partie, apres: Partie): EvenementJeu[] => apres.journal.slice(avant.journal.length);
 
-  it('à la taverne : le jet de Discrétion des témoins, le jet d’ouverture et le repérage vont ensemble', () => {
+  it('à la taverne : vu, le groupe est arrêté (aucun jet d’ouverture) ; pas vu, l’ouverture a lieu', () => {
     const port = charger('port-sillage');
-    let repere = 0;
-    let passe = 0;
+    let arretes = 0;
+    let passes = 0;
     for (let graine = 1; graine <= 40; graine++) {
       for (const methode of ['crocheter', 'forcer'] as const) {
         const { moteur, ici } = jeu(port, graine);
@@ -85,19 +87,45 @@ describe('repérer une ouverture dans le journal du vrai moteur', () => {
         const o = detecterOuverture(nouvelles(avant, res.partie));
         expect(o, `${methode} ${graine}`).toBeDefined();
         expect(o!.methode).toBe(methode);
-        expect(o!.jet.test).toBe(methode === 'crocheter' ? 'escamotage' : 'athletisme');
-        expect(o!.reussie).toBe(o!.jet.reussite);
         expect(o!.objet).toMatch(/tiroir de la caisse/i);
         expect(o!.guet?.test).toBe('discretion');
-        // Repéré si et seulement si le jet de Discrétion a raté.
-        expect(!!o!.repere).toBe(!o!.guet!.reussite);
-        if (o!.repere) repere++;
-        else passe++;
+        if (o!.interrompue) {
+          // Vu : le jet de Discrétion a raté, il n'y a pas de jet d'ouverture, les témoins parlent.
+          expect(o!.guet!.reussite).toBe(false);
+          expect(o!.jet).toBeUndefined();
+          expect(o!.reussie).toBe(false);
+          expect(o!.repere).toMatch(/vous ont vus .* et vous arrêtent net/);
+          arretes++;
+        } else {
+          expect(o!.guet!.reussite).toBe(true);
+          expect(o!.jet!.test).toBe(methode === 'crocheter' ? 'escamotage' : 'athletisme');
+          expect(o!.reussie).toBe(o!.jet!.reussite);
+          expect(o!.repere).toBeUndefined();
+          passes++;
+        }
       }
     }
     // Sur quarante graines, les deux issues se produisent (le repérage n'est ni systématique ni impossible).
-    expect(repere).toBeGreaterThan(0);
-    expect(passe).toBeGreaterThan(0);
+    expect(arretes).toBeGreaterThan(0);
+    expect(passes).toBeGreaterThan(0);
+  });
+
+  it('des témoins déjà en alerte (aucun jet) : le détecteur reconnaît « vous surveillent de près »', () => {
+    const port = charger('port-sillage');
+    // Une graine où le groupe est vu une première fois, puis une seconde tentative sous leur nez.
+    for (let graine = 1; graine <= 40; graine++) {
+      const { moteur, ici } = jeu(port, graine);
+      const premiere = moteur.executer(ici('ta-salle'), { type: 'ouvrir', cible: { tresor: 'z1-t-tiroir-de-la-caisse' }, methode: 'crocheter' });
+      if (!detecterOuverture(nouvelles(ici('ta-salle'), premiere.partie))?.interrompue) continue;
+      const seconde = moteur.executer(premiere.partie, { type: 'ouvrir', cible: { tresor: 'z1-t-tiroir-de-la-caisse' }, methode: 'forcer' });
+      const o = detecterOuverture(nouvelles(premiere.partie, seconde.partie));
+      expect(o?.interrompue).toBe(true);
+      expect(o?.methode).toBe('forcer');
+      expect(o?.guet).toBeUndefined();
+      expect(o?.repere).toMatch(/vous surveillent de près/);
+      return;
+    }
+    throw new Error('aucune graine ne fait repérer le groupe');
   });
 
   it('dans un lieu désert : pas de jet de Discrétion, donc ni guet ni repérage', () => {
@@ -107,6 +135,7 @@ describe('repérer une ouverture dans le journal du vrai moteur', () => {
     const res = moteur.executer(avant, { type: 'ouvrir', cible: { tresor: 'vei-t-plancher-du-bailli' }, methode: 'crocheter' });
     const o = detecterOuverture(nouvelles(avant, res.partie));
     expect(o).toBeDefined();
+    expect(o!.interrompue).toBe(false);
     expect(o!.guet).toBeUndefined();
     expect(o!.repere).toBeUndefined();
   });

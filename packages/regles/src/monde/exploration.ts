@@ -35,6 +35,11 @@ export interface EtatExploration {
   indices?: Record<string, number>;
   /** Autres issues de rencontre tentées sans succès : `<rencontre>:<alternative>` (on ne retente pas la même). */
   essais?: string[];
+  /**
+   * Les PNJ qui ont surpris le groupe en train de crocheter ou de forcer, par identifiant : le jour (ils restent en alerte toute
+   * la journée), ce qu'ils ont vu, et s'ils l'ont déjà dit au groupe en conversation (`confronte`). Absent des sauvegardes anciennes.
+   */
+  vus?: Record<string, { jour: number; objet: string; methode: 'crocheter' | 'forcer'; confronte?: boolean }>;
 }
 
 export interface PartieMonde {
@@ -492,7 +497,11 @@ export function ouvrir(p: PartieMonde, cible: CibleOuvrir, methode: 'cle' | 'cro
   const a = choisir(p, test, personnage, methode === 'crocheter' ? (x) => aOutils(p, x) : undefined);
   if (!a) return refus('Personne ne peut le faire.');
   if (methode === 'crocheter' && !aOutils(p, a)) return refus(`${a.nom} n'a pas d'outils de voleur pour crocheter.`);
-  repererTemoins(p, r, a, methode, nom);
+  // Des témoins qui voient le groupe l'arrêtent net : pas de jet d'ouverture, pas de piège, et ils restent en alerte.
+  if (repererTemoins(p, r, a, methode, nom)) {
+    suites(p, r);
+    return r;
+  }
   const jet = tester(p, r, a, test, verrou.dd);
   if (jet.reussite) {
     ex.ouverts.push(cle);
@@ -511,21 +520,33 @@ export const VERBES_OUVRIR = { crocheter: 'crocheter', forcer: 'forcer' } as con
 /**
  * Qui regarde ? Les PNJ présents dans le lieu (les compagnons qui suivent le groupe ne comptent pas) ont une chance de voir le
  * groupe s'attaquer à la serrure : un jet de Discrétion du héros contre un DD que le joueur ne voit pas, `10 + 2` par témoin en
- * plus du premier (au plus 18), et `+5` pour forcer, qui fait du bruit. Sans témoin, personne ne regarde : pas de jet. Repéré,
- * chaque témoin perd de l'attitude envers le groupe (−10 pour crocheter, −15 pour forcer) ; rien d'autre ne change : l'ouverture
- * se résout ensuite normalement.
+ * plus du premier (au plus 18), et `+5` pour forcer, qui fait du bruit. Sans témoin, personne ne regarde : pas de jet.
+ *
+ * Repéré, **le groupe est arrêté net** : l'ouverture n'a pas lieu (ni jet, ni piège), chaque témoin perd de l'attitude envers le
+ * groupe (−10 pour crocheter, −15 pour forcer) et reste **en alerte toute la journée** : s'ils sont encore là, impossible de
+ * retenter sous leur nez (sans jet). Au prochain dialogue, le PNJ en parle (voir `parler`) ; une persuasion, une tromperie ou une
+ * intimidation réussie le calme (voir `influencer`). Renvoie `true` quand l'action est arrêtée.
  */
-function repererTemoins(p: PartieMonde, r: CompteRendu, a: Personnage, methode: 'crocheter' | 'forcer', nom: string): void {
+function repererTemoins(p: PartieMonde, r: CompteRendu, a: Personnage, methode: 'crocheter' | 'forcer', nom: string): boolean {
   const temoins = pnjPresents(p).filter((n) => !p.etat.escortes?.includes(n.id));
-  if (!temoins.length) return;
+  if (!temoins.length) return false;
+  const verbe = VERBES_OUVRIR[methode];
+  const liste = (l: { nom: string }[]) => (l.length === 1 ? l[0]!.nom : `${l.slice(0, -1).map((n) => n.nom).join(', ')} et ${l[l.length - 1]!.nom}`);
+  // Déjà surpris aujourd'hui : ceux qui sont là gardent le groupe à l'œil.
+  const alertes = temoins.filter((n) => p.etat.exploration.vus?.[n.id]?.jour === p.etat.jour);
+  if (alertes.length) {
+    r.constats.push(`${liste(alertes)} ${alertes.length === 1 ? 'vous surveille' : 'vous surveillent'} de près : impossible de ${verbe} ${nom} sous ${alertes.length === 1 ? 'son' : 'leur'} nez.`);
+    return true;
+  }
   const dd = Math.min(18, 10 + 2 * (temoins.length - 1)) + (methode === 'forcer' ? 5 : 0);
   const jet = tester(p, r, a, 'discretion', dd);
   jet.ddSecret = true;
-  if (jet.reussite) return;
-  const noms = temoins.map((n) => n.nom);
-  const qui = noms.length === 1 ? noms[0]! : `${noms.slice(0, -1).join(', ')} et ${noms[noms.length - 1]}`;
-  r.constats.push(`${qui} ${noms.length === 1 ? 'vous a' : 'vous ont'} vus ${VERBES_OUVRIR[methode]} ${nom}.`);
+  if (jet.reussite) return false;
+  r.constats.push(`${liste(temoins)} ${temoins.length === 1 ? 'vous a' : 'vous ont'} vus ${verbe} ${nom} et ${temoins.length === 1 ? 'vous arrête' : 'vous arrêtent'} net.`);
+  const vus = (p.etat.exploration.vus ??= {});
+  for (const n of temoins) vus[n.id] = { jour: p.etat.jour, objet: nom, methode };
   appliquer(p, r, temoins.map((n) => ({ attitude: { pnj: n.id, delta: methode === 'forcer' ? -15 : -10 } })));
+  return true;
 }
 
 function aOutils(p: PartieMonde, a: Personnage): boolean {

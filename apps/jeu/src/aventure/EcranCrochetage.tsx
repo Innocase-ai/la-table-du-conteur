@@ -3,7 +3,7 @@
 // La musique de fond baisse. Échap, Espace ou Entrée passent. Le moteur a déjà tout décidé : ce n'est qu'un habillage.
 import { useEffect, useState } from 'react';
 import { Pictogramme } from '../composants/Pictogramme';
-import { dureeCrochetage, messageFinal, MS_PAR_SECONDE, sonDuResultat, type Ouverture } from '../crochetage-regles';
+import { dureeCrochetage, dureeInterrompue, messageFinal, MS_PAR_SECONDE, sonDuResultat, type Ouverture } from '../crochetage-regles';
 import { baisserMusique } from '../musique';
 import { jouerSon } from '../sons';
 
@@ -20,10 +20,12 @@ const RAYON = 54;
 const CIRCONFERENCE = 2 * Math.PI * RAYON;
 
 export function EcranCrochetage({ ouverture, nomHeros, onFin }: Props) {
-  const duree = dureeCrochetage(ouverture.jet.bonus, ouverture.jet.dd, ouverture.methode);
+  const { jet, interrompue } = ouverture;
+  // Arrêtés par des témoins : le compte à rebours s'interrompt à la moitié ; sinon il court jusqu'au bout (selon le bonus du héros).
+  const duree = interrompue || !jet ? dureeInterrompue(ouverture.methode) : dureeCrochetage(jet.bonus, jet.dd, ouverture.methode);
+  const arret = interrompue ? Math.max(1, Math.floor(duree / 2)) : duree;
   const [ecoulees, setEcoulees] = useState(0);
-  const fini = ecoulees >= duree;
-  const { jet } = ouverture;
+  const fini = ecoulees >= arret;
 
   // La musique de fond se fait discrète pendant l'effort.
   useEffect(() => {
@@ -58,7 +60,7 @@ export function EcranCrochetage({ ouverture, nomHeros, onFin }: Props) {
   const restant = Math.max(0, duree - ecoulees);
   const crochet = ouverture.methode === 'crocheter';
   return (
-    <div className={`ecran-crochetage${fini ? (ouverture.reussie ? ' reussi' : ' rate') : ''}`} role="dialog" aria-modal="true" aria-label={crochet ? 'Le crochetage' : 'Le forçage'}>
+    <div className={`ecran-crochetage${fini ? (interrompue ? ' interrompu' : ouverture.reussie ? ' reussi' : ' rate') : ''}`} role="dialog" aria-modal="true" aria-label={crochet ? 'Le crochetage' : 'Le forçage'}>
       <div className="crochetage-contenu" aria-live="polite">
         <p className="crochetage-titre">
           {nomHeros} {crochet ? 'crochète' : 'force'} {ouverture.objet.replace(/^L[ea]s? /, (m) => m.toLowerCase())}
@@ -84,9 +86,11 @@ export function EcranCrochetage({ ouverture, nomHeros, onFin }: Props) {
         {fini ? (
           <div className="crochetage-resultat">
             <p className="crochetage-phrase">{messageFinal(ouverture)}</p>
-            <p className={`crochetage-jet ${ouverture.reussie ? 'jet-reussi' : 'jet-rate'}`}>
-              d20 {jet.des.join(' / ')} {jet.bonus >= 0 ? '+' : '−'} {Math.abs(jet.bonus)} = <strong>{jet.total}</strong> contre DD {jet.dd}
-            </p>
+            {jet && (
+              <p className={`crochetage-jet ${ouverture.reussie ? 'jet-reussi' : 'jet-rate'}`}>
+                d20 {jet.des.join(' / ')} {jet.bonus >= 0 ? '+' : '−'} {Math.abs(jet.bonus)} = <strong>{jet.total}</strong> contre DD {jet.dd}
+              </p>
+            )}
             {ouverture.repere && <p className="crochetage-repere">{ouverture.repere}</p>}
           </div>
         ) : (

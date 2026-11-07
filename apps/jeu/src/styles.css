@@ -8479,3 +8479,27 @@ kbd {
     transition: none;
   }
 }
+
+/* Les témoins arrêtent le groupe : l'anneau et le message passent au rouge d'alerte, l'image tremble une fois. */
+.ecran-crochetage.interrompu .crochetage-anneau-reste {
+  stroke: #ff8f80;
+}
+
+.ecran-crochetage.interrompu .crochetage-phrase {
+  color: #ffb3a6;
+}
+
+.ecran-crochetage.interrompu {
+  animation: crochetage-alerte 0.45s ease-out;
+}
+
+@keyframes crochetage-alerte {
+  0% { background: radial-gradient(ellipse at center, #5a1a10 0%, #07070a 85%); }
+  100% { background: radial-gradient(ellipse at center, #1b1610 0%, #07070a 85%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecran-crochetage.interrompu {
+    animation: none;
+  }
+}

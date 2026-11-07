@@ -11,14 +11,16 @@ export interface Ouverture {
   methode: MethodeOuverture;
   /** Le héros qui a agi. */
   heros: string;
-  /** Le jet d'ouverture (Escamotage pour crocheter, Athlétisme pour forcer). */
-  jet: Jet;
+  /** Le jet d'ouverture (Escamotage pour crocheter, Athlétisme pour forcer) ; absent quand des témoins ont arrêté le groupe avant. */
+  jet?: Jet;
   reussie: boolean;
+  /** Des témoins ont vu le groupe et l'ont arrêté net : pas d'ouverture. */
+  interrompue: boolean;
   /** L'objet ou le passage visé, tel que le moteur le nomme (« Le tiroir de la caisse », « le passage vers … »). */
   objet: string;
   /** Le jet de Discrétion contre les témoins, s'il y en avait. */
   guet?: Jet;
-  /** Le constat des témoins qui ont vu le groupe, s'ils l'ont vu. */
+  /** Le constat des témoins qui ont arrêté le groupe (« X vous a vus forcer … et vous arrête net. »). */
   repere?: string;
 }
 
@@ -50,10 +52,11 @@ function lireConstat(nom: string, texte: string): { methode: MethodeOuverture; r
   return undefined;
 }
 
-/** Les témoins qui ont vu le groupe : « X vous a vus crocheter … » ou « X et Y vous ont vus forcer … ». */
-const REPERE = / vous (?:a|ont) vus (?:crocheter|forcer) /;
+/** Les témoins qui arrêtent le groupe : « X vous a vus forcer … et vous arrête net. » ou, déjà en alerte, « X vous surveille de près : impossible de … ». */
+const ARRET = /^(.+?) vous (?:a|ont) vus (crocheter|forcer) (.+) et vous arrête(?:nt)? net\.$/;
+const ALERTE = /^(.+?) vous surveille(?:nt)? de près : impossible de (crocheter|forcer) (.+) sous (?:son|leur) nez\.$/;
 
-/** Une ouverture vient-elle d'être tentée dans ces nouvelles entrées du journal ? (La dernière, s'il y en a plusieurs.) */
+/** Une ouverture vient-elle d'être tentée (ou arrêtée) dans ces nouvelles entrées du journal ? (La dernière, s'il y en a plusieurs.) */
 export function detecterOuverture(nouvelles: readonly EvenementJeu[]): Ouverture | undefined {
   const constats = nouvelles.flatMap((e) => (e.type === 'constat' ? [e.texte] : []));
   const jets = nouvelles.flatMap((e) => (e.type === 'jet' ? [e.jet] : []));
@@ -62,17 +65,28 @@ export function detecterOuverture(nouvelles: readonly EvenementJeu[]): Ouverture
     if (jet.test !== 'escamotage' && jet.test !== 'athletisme') continue;
     for (const texte of constats) {
       const c = lireConstat(jet.nom, texte);
-      if (!c) continue;
-      // Le jet de Discrétion qui précède le jet d'ouverture du même héros, quand des témoins regardaient.
-      const guet = jets.find((x) => x.test === 'discretion' && x.qui === jet.qui);
-      trouvee = { ...c, heros: jet.qui, jet, guet, repere: constats.find((t) => REPERE.test(t)) };
+      if (c) trouvee = { ...c, heros: jet.qui, jet, interrompue: false, guet: jets.find((x) => x.test === 'discretion' && x.qui === jet.qui) };
     }
+  }
+  if (trouvee) return trouvee;
+  // Pas d'ouverture : des témoins ont arrêté le groupe (jet de Discrétion raté) ou le surveillaient déjà (aucun jet).
+  for (const texte of constats) {
+    const m = ARRET.exec(texte) ?? ALERTE.exec(texte);
+    if (!m) continue;
+    const guet = jets.find((x) => x.test === 'discretion');
+    trouvee = { methode: m[2] as MethodeOuverture, heros: guet?.qui ?? '', reussie: false, interrompue: true, objet: m[3]!, guet, repere: texte };
   }
   return trouvee;
 }
 
+/** Le temps du compte à rebours avant que des témoins n'arrêtent le groupe : il est interrompu à la moitié. */
+export function dureeInterrompue(methode: MethodeOuverture): number {
+  return methode === 'crocheter' ? 6 : 4;
+}
+
 /** Le message qui conclut l'écran : le verrou cède ou résiste (le crochet glisse, le bois tient). */
-export function messageFinal(o: Pick<Ouverture, 'methode' | 'reussie'>): string {
+export function messageFinal(o: Pick<Ouverture, 'methode' | 'reussie'> & { interrompue?: boolean }): string {
+  if (o.interrompue) return 'Stop ! On vous a vus : l’action est interrompue.';
   if (o.reussie) return o.methode === 'crocheter' ? 'Le verrou cède dans un déclic.' : 'Le verrou cède dans un craquement.';
   return o.methode === 'crocheter' ? 'Le crochet glisse : la serrure résiste.' : 'Le verrou tient bon.';
 }
@@ -81,7 +95,7 @@ export function messageFinal(o: Pick<Ouverture, 'methode' | 'reussie'>): string 
  * Le bruitage du résultat : le déclic de la serrure qui s'ouvre (crocheter) ou le craquement du verrou qui cède (forcer).
  * Un échec ne fait pas de bruit de plus : le récit et l'encadré des témoins parlent d'eux-mêmes.
  */
-export function sonDuResultat(o: Pick<Ouverture, 'methode' | 'reussie'>): 'serrure-ouverte' | 'porte-forcee' | undefined {
-  if (!o.reussie) return undefined;
+export function sonDuResultat(o: Pick<Ouverture, 'methode' | 'reussie'> & { interrompue?: boolean }): 'serrure-ouverte' | 'porte-forcee' | undefined {
+  if (!o.reussie || o.interrompue) return undefined;
   return o.methode === 'crocheter' ? 'serrure-ouverte' : 'porte-forcee';
 }

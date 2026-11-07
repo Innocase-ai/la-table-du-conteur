@@ -2,7 +2,7 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { appliquer, suites, type CompteRendu, type PartieMonde } from './exploration';
+import { appliquer, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
 import { lieuDuPnj, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
@@ -52,7 +52,11 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   const a = attitude(p, pnj);
   if (!sujet) {
     const variante = pnj.salutations.variantes.find((v) => evaluerCondition(v.condition, p.etat));
-    const salut = variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre;
+    // Un PNJ qui a surpris le groupe à crocheter ou à forcer le lui dit d'abord, une seule fois, avant toute autre salutation.
+    const vu = p.etat.exploration.vus?.[pnj.id];
+    const confrontation = vu && !vu.confronte ? `« Je vous ai vus ${VERBES_OUVRIR[vu.methode]} ${vu.objet}. Vous croyez que je n'ai rien vu ? Expliquez-vous, et vite. »` : undefined;
+    if (vu && confrontation) vu.confronte = true;
+    const salut = confrontation ?? (variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre);
     r.narrations.push(salut);
     r.paroles = 1;
     const dispo = sujetsDisponibles(p, pnj);
@@ -126,6 +130,11 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   const delta = reussi ? (maniere === 'intimidation' ? -5 : 10) : maniere === 'tromperie' ? -15 : maniere === 'intimidation' ? -10 : -5;
   appliquer(p, r, [{ attitude: { pnj: pnj.id, delta } }]);
   r.constats.push(`${acteur.nom} ${reussi ? 'convainc' : 'ne convainc pas'} ${pnj.nom} (attitude ${attitude(p, pnj)}).`);
+  // Un PNJ qui avait surpris le groupe et qui se laisse convaincre (ou intimider) cesse de le surveiller.
+  if (reussi && p.etat.exploration.vus?.[pnj.id]) {
+    delete p.etat.exploration.vus[pnj.id];
+    r.constats.push(`${pnj.nom} se calme : ${pnj.sexe === 'F' ? 'elle' : 'il'} ne vous surveille plus.`);
+  }
   suites(p, r);
   return r;
 }

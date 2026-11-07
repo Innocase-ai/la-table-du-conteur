@@ -207,7 +207,10 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     const donnees = OUVERTURES;
     if (!pnj || !donnees?.voix) return;
     const attitude = moteur.vue<{ attitude: number } | undefined>('interlocuteur', partie)?.attitude ?? 0;
-    const o = choisirOuverture(donnees.ouvertures, tonDeLAttitude(attitude, Math.random()), derniereOuverture.current, Math.random());
+    // Un PNJ qui a surpris le groupe aujourd'hui (crocheter, forcer) est méfiant, quelle que soit son attitude.
+    const enAlerte = partie.etat.exploration.vus?.[pnj.id]?.jour === partie.etat.jour;
+    const ton = enAlerte ? 'mefiant' : tonDeLAttitude(attitude, Math.random());
+    const o = choisirOuverture(donnees.ouvertures, ton, derniereOuverture.current, Math.random());
     const voix = voixDuPnj(donnees.voix, pnj.sexe, pnj.id, ageApproximatif(pnj.age));
     derniereOuverture.current = o.id;
     setOuverture({ pnj: pnj.id, texte: texteOuverture(o, voix.id.startsWith('f-') ? 'f' : 'm') });
@@ -521,7 +524,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
       )}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
-      {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet.nom} onFin={finCrochetage} />}
+      {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {sceneNarree && !sommeil && !crochetage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );
