@@ -40,6 +40,8 @@ export interface EtatExploration {
    * la journée), ce qu'ils ont vu, et s'ils l'ont déjà dit au groupe en conversation (`confronte`). Absent des sauvegardes anciennes.
    */
   vus?: Record<string, { jour: number; objet: string; methode: 'crocheter' | 'forcer'; confronte?: boolean }>;
+  /** Le récit d'arrivée déjà lu, par lieu : `base` ou `v<n>` (la variante). Il se relit quand la variante active change. Absent des sauvegardes anciennes. */
+  arrivees?: Record<string, string>;
   /**
    * Les tentatives d'influence ratées : `<pnj>:<manière>` → l'heure de jeu absolue (`jour × 24 + heure`) de l'échec. Le SRD
    * demande d'attendre 24 h avant d'exhorter de nouveau de la même manière. Absent des sauvegardes anciennes.
@@ -327,9 +329,24 @@ function perceptionPassive(p: PartieMonde, r: CompteRendu): void {
 }
 
 /** Entrée dans un lieu : visite, faits évidents, jauges du lieu, événements d'entrée, rencontres. */
+/** Le récit d'arrivée en vigueur dans ce lieu (la première variante vraie, sinon le récit de base) et sa clé. */
+export function arriveeDe(p: PartieMonde, lieu: Lieu): { cle: string; texte: string } | undefined {
+  const v = lieu.arriveeVariantes.findIndex((x) => evaluerCondition(x.condition, p.etat));
+  if (v >= 0) return { cle: `v${v}`, texte: lieu.arriveeVariantes[v]!.texte };
+  const base = lieu.arrivee?.trim();
+  return base ? { cle: 'base', texte: base } : undefined;
+}
+
 function entrer(p: PartieMonde, r: CompteRendu, lieu: Lieu): void {
   p.etat.lieu = lieu.id;
   if (!p.etat.lieuxVisites.includes(lieu.id)) p.etat.lieuxVisites.push(lieu.id);
+  // Le récit d'arrivée vient avant tout le reste de ce que l'entrée déclenche : à la première visite, et quand une variante a pris le relais.
+  const arrivee = arriveeDe(p, lieu);
+  const vues = (p.etat.exploration.arrivees ??= {});
+  if (arrivee && vues[lieu.id] !== arrivee.cle) {
+    vues[lieu.id] = arrivee.cle;
+    r.narrations.unshift(arrivee.texte);
+  }
   for (const f of lieu.faits) {
     const d = f.decouverte;
     if ((d.auto ?? !d.dd) && (!d.condition || evaluerCondition(d.condition, p.etat)) && !p.etat.faits.includes(f.fait)) {
@@ -436,6 +453,15 @@ function nouveauJour(p: PartieMonde, r: CompteRendu, repos: boolean): void {
  * Fouille du lieu : un jet par compétence utile, contre chaque chose cachée. Une seule fouille par lieu et par jour :
  * on ne relance pas les dés jusqu'à réussir (on revient après un repos long).
  */
+/** Regarder autour de soi : relire le récit du lieu (sans temps ni jet). Sans récit d'arrivée, le résumé du lieu. */
+export function regarder(p: PartieMonde): CompteRendu {
+  const lieu = p.dm.lieux.get(p.etat.lieu);
+  const r = resultat();
+  if (!lieu) return refus('Aucun lieu ici.');
+  r.narrations.push(arriveeDe(p, lieu)?.texte ?? lieu.resume);
+  return r;
+}
+
 export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
   const fouille = `${p.etat.lieu}:${p.etat.jour}`;
   if (p.etat.exploration.fouilles.includes(fouille)) return refus('Le groupe a déjà fouillé ce lieu aujourd\'hui : il faudra revenir après un repos.');

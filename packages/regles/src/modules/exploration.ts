@@ -7,6 +7,7 @@ import {
   commencer,
   desarmer,
   fouiller,
+  regarder,
   indiceEnigme,
   issueRencontre,
   ouvrir,
@@ -95,6 +96,16 @@ export const moduleExploration: Module = {
             desactivee: x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
           }));
       },
+    }),
+    regarder: commande({
+      description: "Regarder autour de soi : relire la description du lieu où est le groupe (sans coût ni jet).",
+      entree: z.object({}),
+      disponible: libre,
+      executer: (t) => verser(t, regarder(partieMonde(t))),
+      propositions: (ctx, p) =>
+        enExploration(p) && (ctx.dm.lieux.get(p.etat.lieu)?.arrivee || ctx.dm.lieux.get(p.etat.lieu)?.arriveeVariantes.length)
+          ? [{ groupe: PANNEAUX.ici, libelle: 'Regarder autour de soi', icone: 'base:revoir', style: 'discret' as const, aide: 'Relire la description du lieu.', ordre: { type: 'regarder' } }]
+          : [],
     }),
     fouiller: commande({
       description: 'Fouiller le lieu (passages secrets, trésors cachés, pièges, indices). Une fois par lieu et par jour.',

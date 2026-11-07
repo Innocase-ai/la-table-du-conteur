@@ -400,6 +400,13 @@ export const Lieu = z.object({
   // Pour le MJ : ce qu'on y trouve, factuel.
   description: Texte,
   ambiance: z.string().optional(),
+  // Le récit d'arrivée : ce que le JOUEUR lit en entrant ici (à la première visite, puis quand une variante change). Sensoriel, au
+  // présent, 60 à 150 mots, sans secret ni mécanique (jamais « jauge », DD…) ni ce qu'on peut y trouver (c'est le rôle de `description`,
+  // qui est pour le MJ). Sans lui, le joueur ne lit que le résumé.
+  arrivee: z.string().optional(),
+  // Avant / Après : le lieu change avec l'histoire. La première variante dont la condition est vraie remplace `arrivee` ; le récit est
+  // relu une fois, à la prochaine arrivée, quand la variante active change.
+  arriveeVariantes: z.array(z.object({ condition: Condition, texte: Texte })).default([]),
   // Pour l'illustrateur : décrire ce qu'on voit, sans nommer les personnages.
   visuel: Texte,
   // La phrase que le joueur lit sous le bouton qui mène ici depuis le lieu parent (entrer dans un bâtiment, descendre

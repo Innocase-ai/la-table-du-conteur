@@ -42,6 +42,12 @@ export { BUDGET_PX } from '../budget';
 /** Une réponse de PNJ qui commence par « Il dit que », « Elle explique que »… : du style indirect, pas une parole (« Il dit : « … » » en est une). */
 export const STYLE_INDIRECT = /^\s*(il|elle|ils|elles)\s+(dit|disent|explique|expliquent|raconte|racontent|demande|demandent|répond|répondent|repond|avoue|avouent|confie|confient|murmure|ajoute|admet|affirme|prévient|previent|propose|rappelle|jure|précise|précisent|souligne|insiste)\b(?!\s*[:«"“])/i;
 
+/** Longueur d'un récit d'arrivée avant l'avis (la cible est de 60 à 150 mots). */
+export const ARRIVEE_MOTS = { min: 40, max: 220 };
+
+/** Les mots de la mécanique, qui n'ont rien à faire dans un texte que le joueur lit. */
+export const MOTS_MECANIQUE = /\b(jauge|DD|jet de (dés|sauvegarde|perception)|points? de vie|PV|emplacements? de sort|test de)\b/;
+
 /** Longueur minimale (en mots) d'une réponse de PNJ avant l'avis « le PNJ n'a pas de voix ». */
 export const MOTS_REPONSE_MIN = 35;
 
@@ -165,6 +171,27 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const courtes = reponses.filter((r) => r.texte.split(/\s+/).filter(Boolean).length < MOTS_REPONSE_MIN).map((r) => r.ref);
   if (courtes.length)
     avis(`Dialogues : ${courtes.length} réponses sur ${reponses.length} font moins de ${MOTS_REPONSE_MIN} mots (le PNJ n'a pas de voix) : ${courtes.slice(0, 5).join(', ')}${courtes.length > 5 ? '…' : ''}`);
+
+  // Le récit d'arrivée est lu tel quel par le joueur : de la bonne longueur, et sans vocabulaire de mécanique.
+  const arrivees = [...dm.lieux.values()].flatMap((l) => [
+    ...(l.arrivee?.trim() ? [{ ref: l.id, texte: l.arrivee }] : []),
+    ...l.arriveeVariantes.map((v, i) => ({ ref: `${l.id} (variante ${i + 1})`, texte: v.texte })),
+  ]);
+  const horsLongueur = arrivees.filter((a) => {
+    const n = a.texte.split(/\s+/).filter(Boolean).length;
+    return n < ARRIVEE_MOTS.min || n > ARRIVEE_MOTS.max;
+  });
+  if (horsLongueur.length)
+    avis(`Arrivée : ${horsLongueur.length} récit(s) d'arrivée hors de ${ARRIVEE_MOTS.min} à ${ARRIVEE_MOTS.max} mots (visé : 60 à 150) : ${horsLongueur.slice(0, 5).map((a) => a.ref).join(', ')}${horsLongueur.length > 5 ? '…' : ''}`);
+  const mecanique = arrivees.filter((a) => MOTS_MECANIQUE.test(a.texte));
+  if (mecanique.length)
+    avis(`Arrivée : ${mecanique.length} récit(s) d'arrivée parlent de mécanique (jauge, DD, jet…) : le joueur le lit tel quel : ${mecanique.slice(0, 5).map((a) => a.ref).join(', ')}${mecanique.length > 5 ? '…' : ''}`);
+  // Un monde qui a commencé à écrire ses récits d'arrivée doit les finir : sinon le joueur passe d'un lieu riche à un résumé de 15 mots.
+  if (arrivees.length) {
+    const sans = [...dm.lieux.values()].filter((l) => !l.arrivee?.trim() && !['region', 'route'].includes(l.type)).map((l) => l.id);
+    if (sans.length)
+      avis(`Arrivée : ${sans.length} lieux sur ${dm.lieux.size} n'ont pas de récit d'arrivée (champ « arrivee ») : ${sans.slice(0, 6).join(', ')}${sans.length > 6 ? '…' : ''}`);
+  }
 
   // Les lieux enfants (bâtiments, salles) sans lien propre vers leur parent s'expliquent par leur `accroche`.
   const lienPropre = new Set<string>();

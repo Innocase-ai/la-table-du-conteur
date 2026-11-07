@@ -57,6 +57,9 @@ export function champsLibres(dm: DonneesMonde): ChampLibre[] {
     ajouter('lieux', l.id, ['resume'], 'résumé', l.resume);
     ajouter('lieux', l.id, ['accroche'], 'accroche', l.accroche);
     ajouter('lieux', l.id, ['ambiance'], 'ambiance', l.ambiance);
+    // Le récit d'arrivée est lu tel quel par le joueur : c'est là qu'un secret ne doit pas fuir.
+    ajouter('lieux', l.id, ['arrivee'], "récit d'arrivée", l.arrivee);
+    l.arriveeVariantes.forEach((v, i) => ajouter('lieux', l.id, ['arriveeVariantes', i, 'texte'], `récit d'arrivée (variante ${i + 1})`, v.texte));
     // Le texte qui sert à dessiner l'image du lieu : ce qu'on y voit, donc ce que le joueur verra. (`description`, elle, est pour le
     // MJ : elle peut dire ce qu'on y trouve, donc elle n'est pas surveillée.)
     ajouter('lieux', l.id, ['visuel'], 'visuel (image)', l.visuel);
