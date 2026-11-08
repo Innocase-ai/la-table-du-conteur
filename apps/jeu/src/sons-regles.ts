@@ -113,6 +113,8 @@ const SONS_SORTS: Record<string, Son> = {
   'murmures-dissonants': 'sommeil',
   'epine-mentale': 'sommeil',
   'couteau-de-glace': 'glace',
+  // La meute d'esprits griffe : le son d'une lame qui tranche (faute de mieux).
+  'invocation-d-animaux': 'perforant',
 };
 
 /**

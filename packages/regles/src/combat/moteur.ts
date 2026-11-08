@@ -18,12 +18,14 @@ import {
   type EtatActif,
   type EtatCombat,
   type Modificateur,
+  type ZonePersistante,
   TAILLES,
 } from './etat';
 import {
   cheminsAtteignables,
   cle,
   couvert,
+  distanceCases,
   distanceMetres,
   franchissable,
   ligneDeVue,
@@ -196,6 +198,26 @@ function piocherElan(etat: EtatCombat, c: Combattant, n: number): void {
   }
 }
 
+/** Cette case est-elle dans la zone ? */
+export function dansZone(z: ZonePersistante, p: Position): boolean {
+  return distanceCases(p, z.centre) <= z.rayon;
+}
+
+/**
+ * Une créature déclenche une zone persistante : sauvegarde, puis dégâts (la moitié si elle réussit et que le sort le permet).
+ * Au plus une fois par tour de table pour une même zone.
+ */
+export function declencherZone(etat: EtatCombat, z: ZonePersistante, c: Combattant): void {
+  const d = z.degats;
+  if (!d || c.mort || c.enFuite || z.declenches[c.id] === etat.round) return;
+  z.declenches[c.id] = etat.round;
+  const lanceur = etat.combattants.find((x) => x.id === z.lanceur);
+  const reussite = sauvegarde(etat, c, d.caracteristique, d.dd);
+  journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, acteur: z.lanceur, cible: c.id, details: { sort: z.sort, sauvegarde: reussite ? 'reussie' : 'ratee', distance: false } });
+  const facteur = reussite ? (d.moitie ? 0.5 : 0) : 1;
+  if (facteur > 0) infligerDegats(etat, c, [{ montant: Math.floor(lancerDes(etat, d.des) * facteur), type: d.type }], lanceur);
+}
+
 export function finTour(etat: EtatCombat): void {
   const c = actif(etat);
   // Sauvegardes de fin de tour contre les états.
@@ -210,6 +232,10 @@ export function finTour(etat: EtatCombat): void {
         ajouterEtat(etat, c, { etat: 'inconscient', source: e.source, sort: 'sommeil', finSurDegats: true });
       }
     }
+  }
+  // Zones qui durent : qui finit son tour dedans en subit l'effet.
+  for (const z of etat.zones ?? []) {
+    if (z.declencheurs.includes('fin_tour') && !c.mort && dansZone(z, c.position)) declencherZone(etat, z, c);
   }
   for (const x of etat.combattants) {
     x.etats = x.etats.filter((e) => {
@@ -307,6 +333,7 @@ export function finConcentration(etat: EtatCombat, c: Combattant): void {
   const conc = c.concentration;
   if (!conc) return;
   c.concentration = undefined;
+  if (etat.zones) etat.zones = etat.zones.filter((z) => !(z.sort === conc.sort && z.lanceur === c.id));
   for (const x of etat.combattants) {
     x.etats = x.etats.filter((e) => !(e.sort === conc.sort && e.source === c.id));
     x.modificateurs = x.modificateurs.filter((m) => !(m.sort === conc.sort && m.source === c.id));
@@ -651,6 +678,7 @@ export function allonge(c: Combattant): number {
 export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boolean {
   const chemin = deplacementsPossibles(etat, c).get(cle(vers));
   if (!chemin) return false;
+  const depart = { ...c.position };
   // Le chemin est journalisé par segments : une attaque d'opportunité s'intercale au bon moment.
   let segment: Position[] = [];
   const publierSegment = () => {
@@ -686,6 +714,10 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
   if (segment.length === chemin.etapes.length) {
     journaliser(etat, { type: 'deplacement', texte: `${c.nom} se déplace de ${chemin.cout} m.`, acteur: c.id, details: { chemin: segment } });
   } else publierSegment();
+  // Zones qui durent : qui y entre en subit l'effet.
+  for (const z of etat.zones ?? []) {
+    if (z.declencheurs.includes('entree') && !c.mort && dansZone(z, c.position) && !dansZone(z, depart)) declencherZone(etat, z, c);
+  }
   // Ralentissement : la vitesse réduite ne s'applique qu'au tour suivant ; rien à faire ici.
   return true;
 }

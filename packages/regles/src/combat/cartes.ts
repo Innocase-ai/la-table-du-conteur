@@ -18,7 +18,7 @@ import {
   soigner,
   vitesse,
 } from './moteur';
-import { attaqueArmeSpirituelle, ciblesPossibles, lancerSort, nombreCibles, porteeSort, preparerIncantation } from './sorts';
+import { attaqueArmeSpirituelle, attaqueCaresse, attaqueLameDeFeu, ciblesPossibles, lancerSort, nombreCibles, porteeSort, preparerIncantation, SORTS_AU_CONTACT, SUIVI_ZONES, suiviZone, ZONES_SUPPLEMENTAIRES } from './sorts';
 
 export type CoutCarte = 'action' | 'bonus' | 'reaction' | 'gratuit' | 'elan';
 export type Ciblage = 'aucun' | 'ennemi' | 'allie' | 'creature' | 'point' | 'soi';
@@ -33,6 +33,8 @@ export interface Carte {
   nbCibles: number;
   portee?: number; // mètres
   zone?: { forme: string; taille: number };
+  /** D'où se mesure la portée (par défaut, le lanceur) : le centre d'une zone qui dure. */
+  origine?: Position;
   ressource?: string; // texte : « 2/3 rages », « emplacement niv. 1 »
   jouable: boolean;
   raison?: string;
@@ -153,8 +155,8 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const sort = ctx.sorts.get(sid);
     if (!sort || sort.tempsIncantation === 'reaction') continue;
     const cout: CoutCarte = sort.tempsIncantation === 'bonus' ? 'bonus' : 'action';
-    const zone = sort.zone ? { forme: sort.zone.forme, taille: sort.zone.taille } : undefined;
-    const ciblage: Ciblage = sort.zone ? 'point' : sort.portee.type === 'personnel' ? 'soi' : sort.resolution || sort.special === 'marque-du-chasseur' || sort.degats.length ? 'ennemi' : 'allie';
+    const zone = sort.zone ? { forme: sort.zone.forme, taille: sort.zone.taille } : ZONES_SUPPLEMENTAIRES[sid];
+    const ciblage: Ciblage = zone ? 'point' : sort.portee.type === 'personnel' && !SORTS_AU_CONTACT.has(sid) ? 'soi' : sort.resolution || sort.special === 'marque-du-chasseur' || sort.degats.length ? 'ennemi' : 'allie';
     const niveau = sort.niveau === 0 ? 0 : emplacementDisponible(c, sort.niveau);
     let k = carte({
       id: `sort:${sid}`,
@@ -174,6 +176,19 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     else if (c.rage) k = refuser(k, 'Impossible en rage.');
     else k = verifier(k, cout);
     res.push(k);
+  }
+  // Effets qui durent : déplacer une zone, faire tomber la foudre, frapper de nouveau avec la lame ou la caresse.
+  for (const z of etat.zones ?? []) {
+    const def = SUIVI_ZONES[z.sort];
+    if (!def || z.lanceur !== c.id || c.concentration?.sort !== z.sort) continue;
+    const k = carte({ id: `aptitude:zone-${z.sort}`, nom: def.nom, description: def.description, categorie: 'aptitude', cout: def.cout, ciblage: 'point', nbCibles: 0, portee: def.cases * 1.5, origine: z.centre, zone: def.zone });
+    res.push(def.cout === 'gratuit' ? k : verifier(k, def.cout));
+  }
+  if (c.ressources.lameDeFeu && c.concentration?.sort === 'lame-de-feu') {
+    res.push(verifier(carte({ id: 'aptitude:lame-de-feu', nom: 'Lame de feu', description: 'Attaque de sort au corps à corps avec la lame ardente : 3d6 dégâts de feu.', categorie: 'aptitude', cout: 'action', ciblage: 'ennemi', portee: 1.5, cibles: ciblesAttaque(etat, c, 1.5) }), 'action'));
+  }
+  if (c.ressources.caresse && c.concentration?.sort === 'caresse-du-vampire') {
+    res.push(verifier(carte({ id: 'aptitude:caresse-du-vampire', nom: 'Caresse du vampire', description: 'Attaque de sort au corps à corps : 3d6 nécrotiques, vous récupérez la moitié en PV.', categorie: 'aptitude', cout: 'action', ciblage: 'ennemi', portee: 1.5, cibles: ciblesAttaque(etat, c, 1.5) }), 'action'));
   }
   if (c.ressources.armeSpirituelle && c.concentration?.sort === 'arme-spirituelle') {
     res.push(verifier(carte({ id: 'aptitude:arme-spirituelle', nom: 'Arme spirituelle', description: 'L\'arme spectrale frappe une cible à 18 m.', categorie: 'aptitude', cout: 'bonus', ciblage: 'ennemi', portee: 18, cibles: ciblesAttaque(etat, c, 18) }), 'bonus'));
@@ -334,7 +349,7 @@ export function executer(etat: EtatCombat, ctx: Contexte, cmd: Commande): Result
     return { ok: false, erreur: 'Cible invalide.' };
   }
   if (k.ciblage === 'point' && !cmd.point) return { ok: false, erreur: 'Choisissez un point.' };
-  if (k.ciblage === 'point' && cmd.point && k.portee && distanceMetres(c.position, cmd.point) > Math.max(k.portee, 1.5)) {
+  if (k.ciblage === 'point' && cmd.point && k.portee && distanceMetres(k.origine ?? c.position, cmd.point) > Math.max(k.portee, 1.5)) {
     return { ok: false, erreur: 'Point hors de portée.' };
   }
   const cibles = ids.map((x) => combattant(etat, x));
@@ -384,7 +399,9 @@ export function executer(etat: EtatCombat, ctx: Contexte, cmd: Commande): Result
     }
     case 'aptitude':
       depenser(c, k.cout);
-      executerAptitude(etat, ctx, c, sid, cibles);
+      if (sid.startsWith('zone-')) {
+        if (!suiviZone(etat, c, sid.slice(5), cmd.point!)) return { ok: false, erreur: 'Point invalide.' };
+      } else executerAptitude(etat, ctx, c, sid, cibles);
       break;
     case 'base':
       depenser(c, k.cout);
@@ -532,6 +549,12 @@ function executerAptitude(etat: EtatCombat, ctx: Contexte, c: Combattant, id: st
     }
     case 'arme-spirituelle':
       attaqueArmeSpirituelle(etat, c, ctx.sorts.get('arme-spirituelle')!, cibles[0]);
+      break;
+    case 'lame-de-feu':
+      attaqueLameDeFeu(etat, c, ctx.sorts.get('lame-de-feu')!, cibles[0]);
+      break;
+    case 'caresse-du-vampire':
+      attaqueCaresse(etat, c, ctx.sorts.get('caresse-du-vampire')!, cibles[0]);
       break;
   }
 }

@@ -1,9 +1,9 @@
 // Lancer un sort : résolution générique d'après les données (attaque, sauvegarde, soins)
 // et gestionnaires dédiés pour les sorts marqués `special`.
 import type { Sort } from '../schemas';
-import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
-import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
-import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible, vitesse } from './moteur';
+import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat, type ZonePersistante } from './etat';
+import { casesZone, cle, distanceCases, distanceMetres, ligneDeVue, typeCase, type Position } from './grille';
+import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible, vitesse, declencherZone, dansZone } from './moteur';
 import { franchissable, TAILLE_CASE } from './grille';
 
 /** Sorts que le moteur de combat sait jouer fidèlement (les autres figurent sur la fiche, marqués « non jouable en combat »). */
@@ -15,7 +15,57 @@ export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
   // Sorts de dégâts jusqu'au niveau 3 (08/11/2026)
   'boule-de-feu', 'eclair', 'fracassement', 'epine-mentale', 'poussiere-d-etoile', 'rayon-empoisonne', 'moquerie-cruelle', 'murmures-dissonants',
   'decharge-occulte', 'couteau-de-glace', 'fleche-acide',
+  // Effets qui durent (zones et attaques répétées)
+  'sphere-de-feu', 'rayon-de-lune', 'appel-de-la-foudre', 'invocation-d-animaux', 'lame-de-feu', 'caresse-du-vampire',
 ]);
+
+/** Sorts qui se visent sur un point alors que leurs données n'ont pas de zone (la zone posée dure ensuite). */
+export const ZONES_SUPPLEMENTAIRES: Record<string, { forme: string; taille: number }> = {
+  'sphere-de-feu': { forme: 'sphere', taille: 1.5 },
+  'invocation-d-animaux': { forme: 'sphere', taille: 3 },
+};
+
+/** Sorts de portée « personnel » qui visent pourtant une créature à portée d'allonge. */
+export const SORTS_AU_CONTACT: ReadonlySet<string> = new Set(['caresse-du-vampire']);
+
+/** Ce que le lanceur peut faire d'une zone qui dure, à ses tours (carte `aptitude:zone-<sort>`). */
+export const SUIVI_ZONES: Record<
+  string,
+  { nom: string; description: string; cout: 'action' | 'bonus' | 'gratuit'; cases: number; effet: 'deplacer' | 'frapper'; zone: { forme: string; taille: number } }
+> = {
+  'sphere-de-feu': {
+    nom: 'Faire rouler la sphère',
+    description: "Déplace la sphère de 9 m ; elle s'arrête sur la première créature qu'elle rencontre, qui fait le jet.",
+    cout: 'bonus',
+    cases: 6,
+    effet: 'deplacer',
+    zone: { forme: 'sphere', taille: 1.5 },
+  },
+  'rayon-de-lune': {
+    nom: 'Déplacer le rayon',
+    description: "Déplace le rayon de 18 m ; les créatures qu'il rejoint font le jet.",
+    cout: 'action',
+    cases: 12,
+    effet: 'deplacer',
+    zone: { forme: 'cylindre', taille: 1.5 },
+  },
+  'invocation-d-animaux': {
+    nom: 'Déplacer la meute',
+    description: "Déplace la meute de 9 m ; les créatures qu'elle approche à moins de 3 m font le jet.",
+    cout: 'gratuit',
+    cases: 6,
+    effet: 'deplacer',
+    zone: { forme: 'sphere', taille: 3 },
+  },
+  'appel-de-la-foudre': {
+    nom: 'Faire tomber la foudre',
+    description: 'Un éclair frappe un point sous le nuage (18 m de rayon).',
+    cout: 'action',
+    cases: 12,
+    effet: 'frapper',
+    zone: { forme: 'sphere', taille: 1.5 },
+  },
+};
 
 export interface CibleSort {
   cibles?: Combattant[];
@@ -269,6 +319,37 @@ const SPECIAUX: Record<string, Gestionnaire> = {
       if (!reussite) infligerDegats(etat, c, [{ montant, type: 'froid' }], lanceur);
     }
   },
+  // --- Effets qui durent -------------------------------------------------------------------------------------------
+  'sphere-de-feu': (etat, lanceur, sort, niveau, cible) => {
+    if (!cible.point) return;
+    poserZone(etat, lanceur, sort, niveau, cible.point, 1, ['fin_tour']);
+    journaliser(etat, { type: 'sort', texte: 'Une sphère de flammes apparaît.', acteur: lanceur.id });
+  },
+  'invocation-d-animaux': (etat, lanceur, sort, niveau, cible) => {
+    if (!cible.point) return;
+    poserZone(etat, lanceur, sort, niveau, cible.point, 2, ['fin_tour', 'entree']);
+    journaliser(etat, { type: 'sort', texte: "Une meute d'esprits animaux apparaît.", acteur: lanceur.id });
+  },
+  'rayon-de-lune': (etat, lanceur, sort, niveau, cible) => {
+    if (!cible.point) return;
+    const z = poserZone(etat, lanceur, sort, niveau, cible.point, 1, ['fin_tour', 'entree']);
+    // Toute créature présente à l'apparition du rayon fait le jet.
+    for (const c of etat.combattants) if (!c.mort && !c.enFuite && dansZone(z, c.position)) declencherZone(etat, z, c);
+  },
+  'appel-de-la-foudre': (etat, lanceur, sort, niveau, cible) => {
+    if (!cible.point) return;
+    // Le nuage ne fait rien tout seul : il donne la zone où l'éclair peut tomber, d'abord à l'incantation puis à chaque tour.
+    const nuage = poserZone(etat, lanceur, sort, niveau, cible.point, 12, []);
+    frapperPoint(etat, lanceur, nuage, cible.point);
+  },
+  'lame-de-feu': (etat, lanceur, _sort, niveau) => {
+    lanceur.ressources.lameDeFeu = niveau;
+    journaliser(etat, { type: 'sort', texte: `Une lame de feu apparaît dans la main de ${lanceur.nom}.`, acteur: lanceur.id });
+  },
+  'caresse-du-vampire': (etat, lanceur, sort, niveau, cible) => {
+    lanceur.ressources.caresse = niveau;
+    attaqueCaresse(etat, lanceur, sort, cible.cibles?.[0]);
+  },
   bouclier: () => {
     // Géré comme réaction dans jetAttaque.
   },
@@ -337,6 +418,95 @@ const SPECIAUX: Record<string, Gestionnaire> = {
 };
 
 /** Attaque de l'arme spirituelle (au lancement, puis en action bonus les tours suivants). */
+/** Pose (ou remplace) la zone qui dure d'un sort ; ses dés viennent du sort, relevés selon l'emplacement. */
+function poserZone(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, centre: Position, rayon: number, declencheurs: ZonePersistante['declencheurs']): ZonePersistante {
+  const d = sort.degats[0];
+  const r = sort.resolution;
+  const zone: ZonePersistante = {
+    id: `${sort.id}:${lanceur.id}`,
+    sort: sort.id,
+    lanceur: lanceur.id,
+    centre,
+    rayon,
+    degats: d && r?.type === 'sauvegarde' ? { des: desAmeliores(sort, d.des, niveau), type: d.type, caracteristique: r.caracteristique, dd: lanceur.incantation!.dd, moitie: r.moitieSiReussite } : undefined,
+    declencheurs,
+    declenches: {},
+    niveau,
+  };
+  etat.zones = [...(etat.zones ?? []).filter((z) => z.id !== zone.id), zone];
+  return zone;
+}
+
+/** Un éclair tombe sur un point : les créatures à 1,5 m ou moins font le jet ; le tirage est commun (zone d'effet). */
+function frapperPoint(etat: EtatCombat, lanceur: Combattant, nuage: ZonePersistante, point: Position): void {
+  const d = nuage.degats;
+  if (!d) return;
+  journaliser(etat, { type: 'sort', texte: 'Un éclair frappe.', acteur: lanceur.id, details: { sort: nuage.sort, point, cases: casesZone(etat.grille, 'sphere', 1.5, point, point) } });
+  const montant = lancerDes(etat, d.des);
+  for (const c of etat.combattants) {
+    if (c.mort || c.enFuite || distanceCases(c.position, point) > 1) continue;
+    const reussite = sauvegarde(etat, c, d.caracteristique, d.dd, couvertSauvegarde(etat, c, d.caracteristique, point));
+    journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}.`, acteur: lanceur.id, cible: c.id, details: { sort: nuage.sort, sauvegarde: reussite ? 'reussie' : 'ratee', distance: false } });
+    const facteur = reussite ? (d.moitie ? 0.5 : 0) : 1;
+    if (facteur > 0) infligerDegats(etat, c, [{ montant: Math.floor(montant * facteur), type: d.type }], lanceur);
+  }
+}
+
+/** Le suivi d'une zone qui dure : la déplacer, ou y faire tomber un éclair. Renvoie faux si le point n'est pas valide. */
+export function suiviZone(etat: EtatCombat, lanceur: Combattant, sortId: string, point: Position): boolean {
+  const z = (etat.zones ?? []).find((x) => x.sort === sortId && x.lanceur === lanceur.id);
+  const def = SUIVI_ZONES[sortId];
+  if (!z || !def) return false;
+  if (typeCase(etat.grille, point) === 'mur' || distanceCases(z.centre, point) > def.cases) return false;
+  if (def.effet === 'frapper') {
+    frapperPoint(etat, lanceur, z, point);
+    return true;
+  }
+  let arrivee = point;
+  if (sortId === 'sphere-de-feu') {
+    // La sphère roule en ligne droite et s'arrête sur la première créature qu'elle rencontre.
+    const n = distanceCases(z.centre, point);
+    for (let i = 1; i <= n; i++) {
+      const p = { x: Math.round(z.centre.x + ((point.x - z.centre.x) * i) / n), y: Math.round(z.centre.y + ((point.y - z.centre.y) * i) / n) };
+      arrivee = p;
+      if (etat.combattants.some((c) => !c.mort && !c.enFuite && c.position.x === p.x && c.position.y === p.y)) break;
+    }
+  }
+  z.centre = arrivee;
+  journaliser(etat, { type: 'sort', texte: sortId === 'sphere-de-feu' ? 'La sphère roule.' : sortId === 'rayon-de-lune' ? 'Le rayon se déplace.' : 'La meute se déplace.', acteur: lanceur.id, details: { sort: sortId, point: arrivee } });
+  for (const c of etat.combattants) {
+    if (c.mort || c.enFuite) continue;
+    if (sortId === 'sphere-de-feu') {
+      if (c.position.x === arrivee.x && c.position.y === arrivee.y) declencherZone(etat, z, c);
+    } else if (z.declencheurs.includes('entree') && dansZone(z, c.position)) declencherZone(etat, z, c);
+  }
+  return true;
+}
+
+/** Lame de feu : une attaque de sort au corps à corps avec la lame (3d6 de feu + modificateur d'incantation). */
+export function attaqueLameDeFeu(etat: EtatCombat, lanceur: Combattant, sort: Sort, c: Combattant | undefined): void {
+  if (!c || c.mort) return;
+  const niveau = lanceur.ressources.lameDeFeu ?? sort.niveau;
+  const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'corps-a-corps');
+  journaliser(etat, { type: 'attaque', texte: `La lame de feu frappe ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, false, sort.id) });
+  if (jet.touche) {
+    const des = desAmeliores(sort, '3d6', niveau);
+    infligerDegats(etat, c, [{ montant: lancerDes(etat, des, jet.critique ? 2 : 1) + lanceur.incantation!.modificateur, type: 'feu' }], lanceur, jet.critique);
+  }
+}
+
+/** Caresse du vampire : attaque de sort au corps à corps (3d6 nécrotiques) ; le lanceur récupère la moitié des dégâts infligés. */
+export function attaqueCaresse(etat: EtatCombat, lanceur: Combattant, sort: Sort, c: Combattant | undefined): void {
+  if (!c || c.mort) return;
+  const niveau = lanceur.ressources.caresse ?? sort.niveau;
+  const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'corps-a-corps');
+  journaliser(etat, { type: 'attaque', texte: `La caresse du vampire touche ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, false, sort.id) });
+  if (!jet.touche) return;
+  const des = desAmeliores(sort, '3d6', niveau);
+  const infliges = infligerDegats(etat, c, [{ montant: lancerDes(etat, des, jet.critique ? 2 : 1), type: 'nécrotique' }], lanceur, jet.critique);
+  if (infliges > 0 && !lanceur.mort) soigner(etat, lanceur, Math.floor(infliges / 2), lanceur);
+}
+
 export function attaqueArmeSpirituelle(etat: EtatCombat, lanceur: Combattant, sort: Sort, c: Combattant | undefined): void {
   if (!c || c.mort) return;
   const niveau = lanceur.ressources.armeSpirituelle ?? 2;
@@ -356,7 +526,7 @@ export function ciblesPossibles(etat: EtatCombat, lanceur: Combattant, sort: Sor
   return pool.filter((c) => {
     if (sort.id === 'immobilisation-de-personne' && !c.type.toLowerCase().includes('humanoïde')) return false;
     if (sort.soins && c.pv >= c.pvMax) return false;
-    if (sort.portee.type === 'personnel') return c.id === lanceur.id;
+    if (sort.portee.type === 'personnel') return SORTS_AU_CONTACT.has(sort.id) ? distanceMetres(lanceur.position, c.position) <= 1.5 : c.id === lanceur.id;
     return distanceMetres(lanceur.position, c.position) <= portee && ligneDeVue(etat.grille, lanceur.position, c.position);
   });
 }

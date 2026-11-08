@@ -146,6 +146,10 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
       if (surcouches.chemin.has(k)) classes.push('case-chemin');
       if (surcouches.portee.has(k)) classes.push('case-portee');
       if (surcouches.zone.has(k)) classes.push('case-zone');
+      // Zone de sort qui dure (sphère de feu, rayon de lune, meute) : visible tant que le sort dure ; le nuage d'orage reste discret.
+      for (const z of etat.zones ?? []) {
+        if (Math.max(Math.abs(p.x - z.centre.x), Math.abs(p.y - z.centre.y)) <= z.rayon) classes.push(z.declencheurs.length ? `case-zone-durable case-zone-${z.sort}` : 'case-zone-nuage');
+      }
       const texture = (t: 'sol' | 'difficile' | 'mur') => {
         const url = textureTerrain(terrain, t);
         return url

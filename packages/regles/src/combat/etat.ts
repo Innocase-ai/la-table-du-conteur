@@ -183,6 +183,25 @@ export interface DetailsEvenement {
   reaction?: 'resiste' | 'vulnerable' | 'immunise';
 }
 
+/**
+ * Zone qui reste sur le plateau tant que le sort dure (Sphère de feu, Rayon de lune, Invocation d'animaux, Appel de la foudre).
+ * Elle disparaît quand le lanceur perd sa concentration.
+ */
+export interface ZonePersistante {
+  id: string;
+  sort: string;
+  lanceur: string;
+  centre: Position;
+  rayon: number; // en cases (distance de Chebyshev depuis le centre)
+  /** Ce qu'elle inflige à qui la déclenche ; ses dés viennent du sort et du niveau d'emplacement. */
+  degats?: { des: string; type: string; caracteristique: Caracteristique; dd: number; moitie: boolean };
+  /** Quand une créature la déclenche : en finissant son tour dedans, ou en y entrant. Vide : elle ne sert que de repère (nuage d'orage). */
+  declencheurs: ('fin_tour' | 'entree')[];
+  /** Créature → round du dernier déclenchement (au plus une fois par tour de table). */
+  declenches: Record<string, number>;
+  niveau: number;
+}
+
 export interface EtatCombat {
   grille: Grille;
   combattants: Combattant[];
@@ -195,6 +214,8 @@ export interface EtatCombat {
   options: { elan: boolean };
   /** Résultats de dés imposés, consommés avant le générateur (tests, scènes scriptées). */
   desImposes?: number[];
+  /** Zones de sorts qui durent (absent : aucune). */
+  zones?: ZonePersistante[];
 }
 
 export function combattant(etat: EtatCombat, id: string): Combattant {
@@ -247,7 +268,7 @@ function clonerCombattant(c: Combattant): Combattant {
 
 /** Copie pour simulation : la grille est partagée (immuable) et le journal repart vide. */
 export function cloner(etat: EtatCombat): EtatCombat {
-  return { ...etat, combattants: etat.combattants.map(clonerCombattant), ordre: [...etat.ordre], journal: [], desImposes: undefined };
+  return { ...etat, combattants: etat.combattants.map(clonerCombattant), ordre: [...etat.ordre], journal: [], desImposes: undefined, zones: etat.zones ? structuredClone(etat.zones) : undefined };
 }
 
 /** Tirage déterministe à partir de l'état (mulberry32), pour que les clones rejouent à l'identique. */

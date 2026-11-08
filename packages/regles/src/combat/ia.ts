@@ -203,7 +203,7 @@ function choixCibles(etat: EtatCombat, c: Combattant, k: Carte): string[][] {
 
 function pointsZone(etat: EtatCombat, c: Combattant, k: Carte): Position[] {
   return ennemis(etat, c)
-    .filter((e) => distanceMetres(c.position, e.position) <= Math.max(k.portee ?? 0, k.zone?.taille ?? 0) && ligneDeVue(etat.grille, c.position, e.position))
+    .filter((e) => distanceMetres(k.origine ?? c.position, e.position) <= Math.max(k.portee ?? 0, k.zone?.taille ?? 0) && ligneDeVue(etat.grille, c.position, e.position))
     .slice(0, 4)
     .map((e) => e.position);
 }
