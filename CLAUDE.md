@@ -61,6 +61,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - Demander l'accord avant chaque commit, puis le faire soi-même. Ne jamais pousser sans accord.
 - Demander l'accord avant toute dépense (images, voix, appels d'API) et en annoncer le coût d'abord. Ne pas créer de compte, ne rien télécharger sans permission.
 - Après chaque chantier : mettre à jour `docs/JOURNAL.md` et les skills concernés, puis proposer le commit.
+- **Histoires d'Ombresang : audit de cohérence avant chaque page.** Avant de présenter une fiche, un pitch ou du contenu d'histoire (V1 à V8), lancer le sous-agent `auditeur-coherence-histoire` (Haiku, lecture seule), corriger ce qu'il trouve dans le non validé, signaler à l'utilisateur tout écart avec le gelé, vérifier soi-même chaque anomalie. Ne jamais annoncer qu'un fichier est écrit, gelé ou corrigé avant d'avoir relu le résultat de la commande.
 
 ## Pièges connus
 

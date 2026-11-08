@@ -64,6 +64,7 @@ Si la jauge de **Fièvre de Fer** atteint son maximum (4), les oxydeurs rongent 
 - **2 — La Morsure de Rouille :** Les oxydeurs ont attaqué les soubassements du pont ; les outils en fer des héros risquent la corrosion s'ils s'attardent.
 - **3 — La Panique au Village :** Les villageois s'enferment dans l'auberge ; les lames s'écrasent contre les volets de bois ; les câbles du pont-levis menacent de rompre.
 - **4 — L'Effondrement :** Rupture du viaduc, bascule en fin d'échec.
+- **Ralentir la jauge :** la Reine des Rouilles abattue ou détournée (Grotte des Rouilles) fait baisser la Fièvre de Fer d'un palier.
 
 ---
 

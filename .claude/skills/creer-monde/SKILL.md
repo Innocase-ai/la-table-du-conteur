@@ -29,6 +29,7 @@ Règles :
 - **Lieu par lieu** : les agents travaillent sur un lieu (ou une zone) à la fois, dans l'ordre que l'utilisateur choisit ; plusieurs en parallèle seulement s'il le demande.
 - **Les dépenses** (images, voix, API) gardent leur propre accord, coût annoncé d'abord.
 - Les présentations sont courtes, concrètes, en tableau quand c'est possible ; les choix que Claude recommande sont dits comme tels, avec la raison.
+- **Audit avant chaque page (obligatoire, décision du 08/11/2026)** : avant de présenter à l'utilisateur un pitch, une fiche de lieu ou du contenu (V1 à V8), Claude lance le sous-agent `auditeur-coherence-histoire` (`.claude/agents/auditeur-coherence-histoire.md`, modèle Haiku, lecture seule) sur ce qu'il a écrit, **corrige** ce qui est signalé dans ce qui n'est pas encore validé, **signale** à l'utilisateur tout écart avec ce qui est gelé (jamais de correction silencieuse), et ne présente la page qu'avec le verdict de l'audit. Après chaque correction, l'audit est relancé.
 
 ## Les skills de la famille (à appeler au bon moment)
 

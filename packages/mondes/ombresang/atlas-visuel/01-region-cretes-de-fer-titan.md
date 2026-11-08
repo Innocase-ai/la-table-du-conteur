@@ -12,7 +12,7 @@
 | :--- | :--- | :--- | :---: | :--- |
 | **BOSS DE RÉGION (1A)** | Le Heaume du Titan (SR 1.8) | **`golem-de-fer`** *(+ Maréchal Kael `chevalier` FP 3)* | **FP 16** | **Le Colosse Primordial de Vael-Khor** — Enveloppe mécanique géante animée dans la Forge Crânienne par le Seigneur-Maréchal Draven Kael. |
 | **BOSS DE RÉGION (1B)** | Le Heaume du Titan (SR 1.8) | **`diantrefosse`** | **FP 20** | **Le Forge-Sang Ignirax** — Émissaire infernal lié au Concile des Cendres Blanches qui alimente la Forge Crânienne. |
-| **Sous-Boss SR 1.1** | La Vallée des Mille Épées | **`oxydeur`** *(Alpha + `armure-animee` FP 1 & `epee-volante` FP 1/4)* | **FP 1/2 (Chef : FP 3)** | **La Reine des Rouilles & Le Maître d'Armes Sans Corps** — Menacent d'effondrer le Pont-Viaduc de Lame-Rousse. |
+| **Sous-Boss SR 1.1** | La Vallée des Mille Épées | **`oxydeur`** *(Alpha + `armure-animee` FP 1 & `epee-volante` FP 1/4)* | **FP 1/2** | **La Reine des Rouilles & Le Maître d'Armes Sans Corps** — Menacent d'effondrer le Pont-Viaduc de Lame-Rousse. |
 | **Sous-Boss SR 1.2** | Le Gantelet d'Airain | **`diable-des-chaines`** *(Escorte : `diable-barbu` FP 3 & `sentinelle-azer` FP 2)* | **FP 8** | **Kardok le Contremaître** — Dirige la fonderie clandestine d'armes maudites au fond des Mines de Moelle-Fer. |
 | **Sous-Boss SR 1.3** | Le Col des Géants Écorchés | **`geant-du-feu`** *(+ `geant-des-pierres` FP 7 & `ogre` FP 2)* | **FP 9** | **Thrym Barbe-de-Braise** — Chef de clan géant assiégeant Fort-Verrou pour récupérer le marteau brisé de Vael-Khor. |
 | **Sous-Boss SR 1.4** | La Cuirasse Fendue | **`golem-de-pierre`** *(ou `golem-de-fer` FP 16 + `mage` FP 6)* | **FP 10** | **Le Prévôt Mécanique Ferrus** — Gardien des cuves de transfert d'âmes dans les Galeries de Scories sous Égide. |
@@ -90,7 +90,7 @@ flowchart TD
   - 🕳️ **La Grotte des Rouilles** : Réseau de cavernes rouge-ocre sous le pilier nord du viaduc, nid de la Reine des `oxydeur`.
   - ⛩️ **Le Temple du Glaive Brisé** : Ancien sanctuaire martial bâti dans la garde cruciforme d'une épée géante couchée au sol.
   - 🗿 **La Forêt d'Acier** : Champ de bataille pétrifié où plus de cent épées, hallebardes et lances géantes (de 50 à 250 mètres de haut) sont plantées de biais dans le roc.
-- **Boss de Sous-Région** : **La Reine des Rouilles (`oxydeur` alpha, FP 1/2 — variante FP 3)** & **Le Maître d'Armes Sans Corps (`armure-animee` FP 1 + 4 `epee-volante` FP 1/4)**.
+- **Boss de Sous-Région** : **La Reine des Rouilles (`oxydeur`, FP 1/2)** & **Le Maître d'Armes Sans Corps (`armure-animee` FP 1 + 4 `epee-volante` FP 1/4)**.
 
 ---
 
