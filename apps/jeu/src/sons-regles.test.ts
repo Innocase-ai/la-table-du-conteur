@@ -195,3 +195,10 @@ describe('les sons déclarés', () => {
     for (const s of SONS) expect(LIBELLES_SONS[s].length).toBeGreaterThan(3);
   });
 });
+
+describe('sons des sorts de dégâts jusqu’au niveau 3', () => {
+  it('chacun fait du bruit', () => {
+    const familles: Record<string, string> = { 'boule-de-feu': 'feu', eclair: 'foudre', fracassement: 'tonnerre', 'epine-mentale': 'psychique', 'poussiere-d-etoile': 'radiant', 'rayon-empoisonne': 'poison', 'moquerie-cruelle': 'psychique', 'murmures-dissonants': 'psychique', 'decharge-occulte': 'force', 'couteau-de-glace': 'froid', 'fleche-acide': 'acide' };
+    for (const [id, famille] of Object.entries(familles)) expect(sonDeSort(id, famille as never), id).toBeDefined();
+  });
+});

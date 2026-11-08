@@ -31,6 +31,8 @@ export interface EtatActif {
   sauvegarde?: { caracteristique: Caracteristique; dd: number };
   // Fin automatique à la fin du prochain tour de ce combattant.
   finTourDe?: string;
+  // Laisse passer la prochaine fin de tour de `finTourDe` (l'état est posé pendant ce tour : « jusqu'à la fin de votre prochain tour »).
+  passerFin?: boolean;
   // Fin automatique au début du prochain tour de ce combattant (« jusqu'au début de votre tour suivant »).
   jusquAuDebutDe?: string;
   // Prend fin si la créature subit des dégâts (Sommeil).
@@ -50,6 +52,7 @@ export type TypeModificateur =
   | 'vitesse'
   | 'bonus_attaque'
   | 'de_degats' // dés de dégâts en plus à la prochaine attaque touchée
+  | 'degats_differes' // dégâts infligés à la fin du tour du porteur, une seule fois (Flèche acide)
   | 'repere'; // sans effet sur les jets : sert seulement à montrer un état en cours (aura d'Aide)
 
 export interface Modificateur {
@@ -63,6 +66,7 @@ export interface Modificateur {
   // `apres` : nombre de ces moments à laisser passer avant d'expirer (1 : « jusqu'à la fin de votre prochain tour »).
   expire?: { moment: 'debut_tour' | 'fin_tour'; de: string; apres?: number };
   usageUnique?: boolean;
+  typeDegats?: string; // pour `degats_differes`
   // Restreint à des attaques contre une cible donnée (Ouverture).
   contre?: string;
 }

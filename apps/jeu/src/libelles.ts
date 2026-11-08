@@ -111,6 +111,7 @@ export function libelleModificateur(m: Modificateur): string {
     bonus_attaque: v ? `${v >= 0 ? '+' : ''}${v} à la prochaine attaque` : 'marqué',
     de_degats: `+${m.de ?? ''} dégâts à la prochaine attaque`,
     repere: 'points de vie maximum accrus',
+    degats_differes: 'dégâts à la fin de son tour',
   };
   return `${nom} : ${effet[m.type]}`;
 }

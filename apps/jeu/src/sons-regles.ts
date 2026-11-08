@@ -108,6 +108,11 @@ const SONS_SORTS: Record<string, Son> = {
   'immobilisation-de-personne': 'immobilisation',
   'projectile-magique': 'projectile-magique',
   'arme-spirituelle': 'arme-spirituelle',
+  // Sorts psychiques : la famille n'a pas encore de son, on prend celui de l'esprit qu'on endort.
+  'moquerie-cruelle': 'sommeil',
+  'murmures-dissonants': 'sommeil',
+  'epine-mentale': 'sommeil',
+  'couteau-de-glace': 'glace',
 };
 
 /**

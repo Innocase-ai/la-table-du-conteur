@@ -183,6 +183,7 @@ export type FormeSort = 'boule' | 'glace' | 'dard' | 'lob' | 'volute' | 'zigzag'
 const FORMES_SORTS: Record<string, FormeSort> = {
   'trait-de-feu': 'boule',
   'rayon-de-givre': 'glace',
+  'couteau-de-glace': 'glace',
   'flamme-sacree': 'rayon',
   'eclair-tracant': 'zigzag',
   'rayon-ardent': 'rayon',

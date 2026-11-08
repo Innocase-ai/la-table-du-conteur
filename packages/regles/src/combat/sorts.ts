@@ -3,8 +3,8 @@
 import type { Sort } from '../schemas';
 import { aEtat, ennemis, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { casesZone, cle, distanceMetres, ligneDeVue, type Position } from './grille';
-import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible } from './moteur';
-import { franchissable } from './grille';
+import { ajouterEtat, couvertSauvegarde, detailsJet, finConcentration, infligerDegats, jetAttaque, occupation, retirerEtat, sauvegarde, soigner, emplacementDisponible, vitesse } from './moteur';
+import { franchissable, TAILLE_CASE } from './grille';
 
 /** Sorts que le moteur de combat sait jouer fidèlement (les autres figurent sur la fiche, marqués « non jouable en combat »). */
 export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
@@ -12,6 +12,9 @@ export const SORTS_JOUABLES_EN_COMBAT: ReadonlySet<string> = new Set([
   'projectile-magique', 'bouclier', 'mains-brulantes', 'sommeil', 'soins', 'mot-de-guerison', 'benediction', 'fleau', 'eclair-tracant',
   'bouclier-de-la-foi', 'marque-du-chasseur', 'blessure', 'vague-tonnante',
   'rayon-ardent', 'arme-spirituelle', 'aide', 'immobilisation-de-personne', 'restauration-partielle',
+  // Sorts de dégâts jusqu'au niveau 3 (08/11/2026)
+  'boule-de-feu', 'eclair', 'fracassement', 'epine-mentale', 'poussiere-d-etoile', 'rayon-empoisonne', 'moquerie-cruelle', 'murmures-dissonants',
+  'decharge-occulte', 'couteau-de-glace', 'fleche-acide',
 ]);
 
 export interface CibleSort {
@@ -105,8 +108,11 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
       journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}${jet.couvert ? ' (cible à couvert, +2 CA)' : ''}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, r.mode === 'distance', sort.id) });
       if (jet.touche) {
         infligerDegats(etat, c, des.map((d) => ({ montant: lancerDes(etat, d.des, jet.critique ? 2 : 1) + d.bonus, type: d.type })), lanceur, jet.critique);
-        effetsSecondaires(etat, lanceur, sort, c);
+        effetsSecondaires(etat, lanceur, sort, c, niveau);
         if (sort.id === 'poigne-electrique') c.ressources.reaction = 0;
+      } else if (sort.id === 'fleche-acide') {
+        // Flèche acide : un raté asperge quand même la cible, pour la moitié des dégâts initiaux, sans dégâts consécutifs.
+        infligerDegats(etat, c, des.map((d) => ({ montant: Math.floor((lancerDes(etat, d.des) + d.bonus) / 2), type: d.type })), lanceur);
       } else if (sort.niveau === 0 && lanceur.traits.includes('sort-mineur-appuye')) {
         // Sort mineur appuyé (Évocateur) : moitié des dégâts en cas d'échec.
         infligerDegats(etat, c, des.map((d) => ({ montant: Math.floor(lancerDes(etat, d.des) / 2), type: d.type })), lanceur);
@@ -124,6 +130,15 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
         infligerDegats(etat, c, des.map((d, i) => ({ montant: Math.floor(((tirageZone?.[i] ?? lancerDes(etat, d.des)) + d.bonus) * facteur), type: d.type })), lanceur);
       }
       if (!reussite && sort.id === 'vague-tonnante') repousser(etat, lanceur.position, c, 2);
+      if (!reussite && sort.id === 'moquerie-cruelle') {
+        // Désavantage au prochain jet d'attaque, avant la fin de son prochain tour.
+        c.modificateurs.push({ id: 'moquerie-cruelle', type: 'desavantage_attaque', source: lanceur.id, usageUnique: true, expire: { moment: 'fin_tour', de: c.id } });
+      }
+      if (!reussite && sort.id === 'murmures-dissonants' && c.ressources.reaction && !c.mort) {
+        // La cible doit employer sa Réaction pour s'éloigner du lanceur autant que sa Vitesse le permet.
+        c.ressources.reaction = 0;
+        repousser(etat, lanceur.position, c, Math.floor(vitesse(c) / TAILLE_CASE));
+      }
       if (!reussite) {
         for (const e of sort.etats) {
           ajouterEtat(etat, c, {
@@ -144,7 +159,15 @@ function resolutionGenerique(etat: EtatCombat, lanceur: Combattant, sort: Sort, 
   }
 }
 
-function effetsSecondaires(etat: EtatCombat, lanceur: Combattant, sort: Sort, c: Combattant): void {
+function effetsSecondaires(etat: EtatCombat, lanceur: Combattant, sort: Sort, c: Combattant, niveau = sort.niveau): void {
+  if (sort.id === 'rayon-empoisonne') {
+    ajouterEtat(etat, c, { etat: 'empoisonne', source: lanceur.id, finTourDe: lanceur.id, passerFin: true });
+  }
+  if (sort.id === 'fleche-acide') {
+    // 2d4 de plus à la fin de son tour suivant (+1d4 par niveau d'emplacement au-delà du 2e).
+    const sup = Math.max(0, niveau - sort.niveau);
+    c.modificateurs.push({ id: 'fleche-acide', type: 'degats_differes', de: `${2 + sup}d4`, typeDegats: 'acide', source: lanceur.id, sort: sort.id });
+  }
   if (sort.id === 'rayon-de-givre') {
     c.modificateurs.push({ id: 'rayon-de-givre', type: 'vitesse', valeur: -3, source: lanceur.id, expire: { moment: 'debut_tour', de: lanceur.id } });
   }
@@ -209,6 +232,41 @@ const SPECIAUX: Record<string, Gestionnaire> = {
       const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'distance');
       journaliser(etat, { type: 'attaque', texte: `Rayon contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? 'touché' : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, true, sort.id) });
       if (jet.touche) infligerDegats(etat, c, [{ montant: lancerDes(etat, '2d6', jet.critique ? 2 : 1), type: 'feu' }], lanceur, jet.critique);
+    }
+  },
+  // Décharge occulte : un rayon de plus aux niveaux 5, 11 et 17, chacun avec son jet d'attaque.
+  'decharge-occulte': (etat, lanceur, sort, _niveau, cible) => {
+    const rayons = lanceur.niveau >= 17 ? 4 : lanceur.niveau >= 11 ? 3 : lanceur.niveau >= 5 ? 2 : 1;
+    const cibles = cible.cibles ?? [];
+    for (let i = 0; i < rayons && cibles.length; i++) {
+      const c = cibles[i % cibles.length]!;
+      if (c.mort) continue;
+      const jet = jetAttaque(etat, lanceur, c, lanceur.incantation!.bonusAttaque, 'distance');
+      journaliser(etat, { type: 'attaque', texte: `Rayon contre ${c.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: c.id, details: detailsJet(jet, true, sort.id) });
+      if (jet.touche) infligerDegats(etat, c, [{ montant: lancerDes(etat, '1d10', jet.critique ? 2 : 1), type: 'force' }], lanceur, jet.critique);
+    }
+  },
+  // Couteau de glace : une attaque (1d10 perforants) sur la créature visée, puis une explosion de froid autour d'elle
+  // (rayon 1,5 m) que la cible touchée ou ratée subit aussi : Dextérité, rien en cas de réussite.
+  'couteau-de-glace': (etat, lanceur, sort, niveau, cible) => {
+    const point = cible.point;
+    if (!point) return;
+    const inc = lanceur.incantation!;
+    const visee = etat.combattants.find((c) => !c.mort && !c.enFuite && c.position.x === point.x && c.position.y === point.y);
+    if (visee) {
+      const jet = jetAttaque(etat, lanceur, visee, inc.bonusAttaque, 'distance');
+      journaliser(etat, { type: 'attaque', texte: `${sort.nom} contre ${visee.nom} : ${jet.de} → ${jet.total}, ${jet.touche ? (jet.critique ? 'critique !' : 'touché') : 'raté'}.`, acteur: lanceur.id, cible: visee.id, details: detailsJet(jet, true, sort.id) });
+      if (jet.touche) infligerDegats(etat, visee, [{ montant: lancerDes(etat, '1d10', jet.critique ? 2 : 1), type: 'perforant' }], lanceur, jet.critique);
+    }
+    const cases = new Set(casesZone(etat.grille, 'sphere', TAILLE_CASE, point, point).map(cle));
+    const des = desAmeliores(sort, sort.degats[0]!.des, niveau);
+    const montant = lancerDes(etat, des);
+    for (const c of etat.combattants) {
+      if (c.mort || c.enFuite || !cases.has(cle(c.position))) continue;
+      const bonusCouvert = couvertSauvegarde(etat, c, 'dex', point);
+      const reussite = sauvegarde(etat, c, 'dex', inc.dd, bonusCouvert);
+      journaliser(etat, { type: 'sort', texte: `${c.nom} : sauvegarde ${reussite ? 'réussie' : 'ratée'}${bonusCouvert ? ' (à couvert, +2)' : ''}.`, acteur: lanceur.id, cible: c.id, details: { sort: sort.id, sauvegarde: reussite ? 'reussie' : 'ratee', distance: false } });
+      if (!reussite) infligerDegats(etat, c, [{ montant, type: 'froid' }], lanceur);
     }
   },
   bouclier: () => {

@@ -73,7 +73,7 @@ Code : `packages/regles/src/combat/` — `grille.ts` (distances, ligne de vue, c
 
 **Outils** : `pnpm simuler [parties] [rapide|normale] [rencontre]` fait jouer l'IA dans les deux camps et mesure taux de victoire, durée et pertes.
 
-**Ajouts depuis** : retours graphiques (file d'animations pilotée par le journal d'événements : déplacements, élans, projectiles, dégâts flottants, zones, morts ; 20 pictogrammes CC BY 3.0) ; combat avec un **groupe créé** (`docs/CREATION.md` : armes, bottes d'arme, sorts jouables, arts martiaux du Moine, Attaque supplémentaire) ; **30 monstres** du SRD disponibles (spectres, ombres, armures animées… pour les mondes) ; 25 sorts jouables sur 181. Les rencontres des mondes (`docs/MONDES.md`) réutilisent les cartes tactiques et les compositions du prototype.
+**Ajouts depuis** : retours graphiques (file d'animations pilotée par le journal d'événements : déplacements, élans, projectiles, dégâts flottants, zones, morts ; 20 pictogrammes CC BY 3.0) ; combat avec un **groupe créé** (`docs/CREATION.md` : armes, bottes d'arme, sorts jouables, arts martiaux du Moine, Attaque supplémentaire) ; **30 monstres** du SRD disponibles (spectres, ombres, armures animées… pour les mondes) ; 36 sorts jouables (dont 11 sorts de dégâts jusqu’au niveau 3 ajoutés le 08/11/2026). Les rencontres des mondes (`docs/MONDES.md`) réutilisent les cartes tactiques et les compositions du prototype.
 
 ## 9. Escarmouches adaptées au groupe (03/11/2026)
 

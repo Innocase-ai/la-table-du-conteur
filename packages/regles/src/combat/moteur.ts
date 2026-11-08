@@ -211,7 +211,24 @@ export function finTour(etat: EtatCombat): void {
       }
     }
   }
-  for (const x of etat.combattants) x.etats = x.etats.filter((e) => e.finTourDe !== c.id);
+  for (const x of etat.combattants) {
+    x.etats = x.etats.filter((e) => {
+      if (e.finTourDe !== c.id) return true;
+      if (e.passerFin) {
+        e.passerFin = false;
+        return true;
+      }
+      return false;
+    });
+  }
+  // Dégâts différés (Flèche acide) : au moment où le porteur finit son tour.
+  for (const m of c.modificateurs.filter((x) => x.type === 'degats_differes')) {
+    c.modificateurs = c.modificateurs.filter((x) => x !== m);
+    if (c.mort || !m.de) continue;
+    const source = etat.combattants.find((x) => x.id === m.source) ?? c;
+    journaliser(etat, { type: 'sort', texte: `${c.nom} est de nouveau rongé (${m.typeDegats}).`, cible: c.id, details: { sort: m.sort } });
+    infligerDegats(etat, c, [{ montant: lancerDes(etat, m.de), type: m.typeDegats ?? 'acide' }], source);
+  }
   expirer(etat, 'fin_tour', c.id);
   if (c.elan) {
     c.elan.defausse.push(...c.elan.main);
