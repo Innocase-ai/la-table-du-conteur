@@ -693,6 +693,76 @@
         "effets": [],
         "unique": true,
         "reponse": "« Des ferrailleurs qui veulent leur dû, et deux mercenaires de passage qui ont dormi ici trois nuits. Ceux qui partent ne disent pas où, et ceux qui reviennent ne disent pas ce qu'ils ont vu. Je tiens la salle, pas les comptes de la chasse. »"
+      },
+      {
+        "id": "feuille-de-gorm",
+        "mots": [
+          "feuille",
+          "Gorm",
+          "tableau",
+          "charrette",
+          "mercenaires",
+          "campement"
+        ],
+        "question": "Et la feuille signée Gorm Meule ?",
+        "condition": {
+          "flag": "lr-d-odile-braise-contrats"
+        },
+        "reponse": "« La feuille de gauche est de Gorm Meule, et il y réclame des charrettes au campement des ferrailleurs. Deux mercenaires l'ont lue trois soirs de suite sans rien dire, une bière à la main. Ils ont fini par partir avant l'aube, et ils ne m'ont pas dit où. Si vous voulez ces charrettes, allez voir Gorm aux forges : il tient ses comptes, pas moi. »",
+        "revele": [],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "feuille-de-l-allee",
+        "mots": [
+          "feuille",
+          "allée",
+          "lame fendue",
+          "rouille",
+          "prime",
+          "ferrailleurs"
+        ],
+        "question": "Et la seconde feuille, qui la signe ?",
+        "condition": {
+          "flag": "lr-d-odile-braise-contrats"
+        },
+        "reponse": "« La feuille ? C'est le dû des ferrailleurs du torrent. Je la garde dans la caisse du comptoir, et je paie en pièces, parce que ce sont mes clients. La lame fendue de l'allée s'effrite : chaque matin, une poignée de rouille au pied de la fente. Ils ont vu à la tombée de la nuit une bête basse, à deux antennes. Si la lame tombe, la piste est coupée, et ma salle reste vide. Quarante pièces, au retour. »",
+        "revele": [
+          "f-lr-rouille-de-nuit"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "la-lame-fendue",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "feuille-de-l-allee-retour",
+        "mots": [
+          "lame",
+          "fendue",
+          "rongeur",
+          "bête",
+          "allée",
+          "retour"
+        ],
+        "question": "La lame fendue ne s'effrite plus.",
+        "condition": {
+          "flag": "lr-rongeur-regle"
+        },
+        "reponse": "« Elle ne s'effrite plus, et les ferrailleurs vont remonter demain. Asseyez-vous, la soupe est chaude. » Elle compte les pièces du dû sur le comptoir, une à une, sans regarder le verre. « Quarante, comme promis. Les volets tiennent encore une nuit, je crois. Si la salle se remplit demain, c'est vous qui me l'aurez rendue. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-rongeur-retour"
+          }
+        ],
+        "unique": true
       }
     ],
     "services": [
@@ -929,6 +999,53 @@
         ],
         "unique": true,
         "effets": []
+      },
+      {
+        "id": "chargement",
+        "mots": [
+          "charrettes",
+          "ferrailleurs",
+          "campement",
+          "leviers",
+          "cordes",
+          "outils",
+          "chargement",
+          "contrat"
+        ],
+        "question": "Vous cherchez quelqu'un pour la Forêt d'Acier ?",
+        "reponse": "« Trois charrettes, des leviers, des cordes, des meules de campagne, une caisse d'outils : j'ai avancé l'argent, et j'ai compté chaque pièce de fer. Mes ferrailleurs ont fui la Forêt d'Acier et laissé le tout au campement. Sans leurs leviers, ils ne reprendront pas la lisière avant l'hiver, et ma fournée rouille sur l'étagère. Deux hommes ont dormi trois nuits chez Odile et ont regardé mes charrettes. Je ne répète pas le prix. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "le-chargement-de-gorm",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "chargement-retour",
+        "mots": [
+          "charrette",
+          "libre",
+          "campement",
+          "ferrailleurs",
+          "retour"
+        ],
+        "question": "La charrette du campement est libre.",
+        "condition": {
+          "flag": "lr-chargement-recupere"
+        },
+        "reponse": "« Libre, dites-vous. Alors la charrette de l'est repart sur mes comptes, et je note le retour au sou près. Mes ferrailleurs reviendront au bord de la forêt dès que les lames se taisent, avec leurs leviers et leurs cordes. Pour ce fer rendu, je paie ce qui est écrit sur la feuille, et ce compte-là, je le règle. Ne me demandez pas de sourire. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-chargement-retour"
+          }
+        ],
+        "unique": true
       }
     ],
     "services": [

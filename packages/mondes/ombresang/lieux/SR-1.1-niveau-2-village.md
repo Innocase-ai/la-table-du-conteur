@@ -79,7 +79,7 @@ Fiches détaillées des points à visiter de `lr-village`, au modèle de `decrir
   | sorte (PNJ, monstre, piège, trésor, énigme, objet) | rôle | lié à quel élément du décor | id | skill |
   | --- | --- | --- | --- | --- |
   | PNJ (rencontre sociale) | aubergiste : connaît les rumeurs sur les lames, le tableau des contrats et le repos | comptoir, au centre du mur est | `odile-braise` | Persuasion |
-  | contrat (hors budget) | tableau de deux contrats de chasse, dont les cibles sont dans la Forêt d'Acier ; écrits plus tard avec `creer-contrats` | planche de tôle près de la porte | à créer | — |
+  | contrat (hors budget) | tableau de deux contrats de chasse, dont les cibles sont dans la Forêt d'Acier : « Le chargement de Gorm » et « La lame fendue » | planche de tôle près de la porte | `le-chargement-de-gorm`, `la-lame-fendue` | `creer-contrats` |
   | service (repos) | une chambre à l'étage, une couverture de cuir bouilli | escalier de planches, coin nord-ouest | à créer | — |
 
 - **Avant / après** (avec le drapeau ou le fait qui déclenche le changement) : à Fièvre de Fer 3 (les villageois s'enferment à l'auberge, les lames s'écrasent contre les volets), la salle devient refuge pour ceux qui y trouvent place (les autres restent chez eux, volets clos) : les volets tiennent sous les coups, les bancs se remplissent.

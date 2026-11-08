@@ -40,8 +40,8 @@
     "rencontres": [],
     "faits": [],
     "position": {
-      "x": 50,
-      "y": 40
+      "x": 46,
+      "y": 30
     }
   },
   {
@@ -59,8 +59,8 @@
     "rencontres": [],
     "faits": [],
     "position": {
-      "x": 72,
-      "y": 22
+      "x": 75,
+      "y": 24
     }
   },
   {
@@ -79,7 +79,7 @@
     "faits": [],
     "position": {
       "x": 24,
-      "y": 34
+      "y": 30
     }
   },
   {
@@ -141,8 +141,8 @@
     ],
     "faits": [],
     "position": {
-      "x": 50,
-      "y": 62
+      "x": 56,
+      "y": 74
     }
   },
   {
@@ -189,8 +189,8 @@
       }
     ],
     "position": {
-      "x": 50,
-      "y": 82
+      "x": 80,
+      "y": 62
     }
   },
   {
@@ -199,7 +199,7 @@
     "type": "camp",
     "parent": "lr-bastion",
     "resume": "Le camp des réfugiés de la rive sud, où l'on attend des nouvelles du pont et de ceux qui le traversent.",
-    "description": "Le camp est installé sur la rive sud, au bout du tablier. Une soixantaine de tentes en bâches de convoi déchirées, plus d'une centaine de personnes, des charrettes, des foyers de charbon. Ce sont des pèlerins et des ouvriers du viaduc qui ont trouvé refuge ici en fuyant les lames. C'est aussi ici que la route se sépare : la Voie Royale de Fer file au sud-est vers la capitale, quatorze heures de marche, et le Défilé des Forges part vers l'ouest, dix heures jusqu'au Gantelet d'Airain. Le camp est le site d'un contrat, écrit plus tard. Mira Sorel, la sœur de Joran, a dressé sa tente au nord, face au tablier, et elle attend depuis que le pont est fermé. Son frère est aux fers de l'autre côté du pont, et elle n'a aucun moyen de le voir. Elle parle franchement à qui la respecte, et demande qu'on le sorte de là. Elle raconte ce qu'elle a vu des lames la nuit, passer au-dessus de l'eau ; elle n'a pas vu le poste de près, et ne sait pas ce qui s'y passe. La rencontre se joue par la Persuasion, et Mira en dit plus à qui promet de rapporter une nouvelle. La bâche marquée du sceau impérial, tendue à l'envers entre deux charrettes, est le seul signe d'autorité qu'on voit ici.",
+    "description": "Le camp est installé sur la rive sud, au bout du tablier. Une soixantaine de tentes en bâches de convoi déchirées, plus d'une centaine de personnes, des charrettes, des foyers de charbon. Ce sont des pèlerins et des ouvriers du viaduc qui ont trouvé refuge ici en fuyant les lames. C'est aussi ici que la route se sépare : la Voie Royale de Fer file au sud-est vers la capitale, quatorze heures de marche, et le Défilé des Forges part vers l'ouest, dix heures jusqu'au Gantelet d'Airain. Le camp est le site d'un contrat de défense : Mira Sorel demande qu'on veille avec le camp à la tombée de la nuit, car les lames visent le fer des charrettes et des foyers et reviennent par vagues. Mira Sorel, la sœur de Joran, a dressé sa tente au nord, face au tablier, et elle attend depuis que le pont est fermé. Son frère est aux fers de l'autre côté du pont, et elle n'a aucun moyen de le voir. Elle parle franchement à qui la respecte, et demande qu'on le sorte de là. Elle raconte ce qu'elle a vu des lames la nuit, passer au-dessus de l'eau ; elle n'a pas vu le poste de près, et ne sait pas ce qui s'y passe. La rencontre se joue par la Persuasion, et Mira en dit plus à qui promet de rapporter une nouvelle. La bâche marquée du sceau impérial, tendue à l'envers entre deux charrettes, est le seul signe d'autorité qu'on voit ici.",
     "ambiance": "Bâches, fumée de charbon, route qui se sépare.",
     "arrivee": "Les tentes apparaissent les premières, de bâches grises et déchirées, collées à la terre rouge. L'odeur de fumée de charbon vous prend à la gorge, mêlée à l'humidité de l'eau de pluie sur la toile. Des voix basses passent entre les tentes, une toux, le bruit d'un seau, et quelque part une femme chante très bas, sans s'arrêter. Au centre, un foyer de charbon ronfle entre des pierres noires, et sa fumée remonte vers les charrettes. Derrière vous, le tablier franchit le torrent, et ses câbles claquent dans le vent.",
     "visuel": "Un camp de tentes faites de bâches de convoi déchirées, tendues sur des perches en rangs irréguliers, sur une terre rouge piétinée. Au centre, des foyers de charbon entourés de pierres noires laissent monter une fumée que le vent du nord pousse vers les tentes ; au sud, des charrettes à roues cerclées de fer encadrent une borne de pierre gravée de deux flèches, à la fourche des deux routes. Le jour gris tombe sans ombre franche, et la lueur des foyers, le soir, se voit de loin depuis le pont.",
@@ -228,11 +228,23 @@
         }
       }
     ],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "veille-du-camp-premiere-volee",
+        "declencheur": "repos",
+        "condition": {
+          "quete": {
+            "id": "la-veille-du-camp",
+            "statut": "active"
+          }
+        },
+        "unique": true
+      }
+    ],
     "faits": [],
     "position": {
-      "x": 50,
-      "y": 95
+      "x": 26,
+      "y": 86
     }
   }
 ]

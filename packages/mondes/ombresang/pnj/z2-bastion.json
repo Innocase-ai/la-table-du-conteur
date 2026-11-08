@@ -930,6 +930,53 @@
         "unique": true,
         "revele": [],
         "effets": []
+      },
+      {
+        "id": "veille-du-camp",
+        "mots": [
+          "veiller",
+          "nuit",
+          "tentes",
+          "lames",
+          "camp",
+          "protéger",
+          "halte"
+        ],
+        "question": "Que faut-il pour protéger le camp cette nuit ?",
+        "reponse": "« La nuit dernière, une volée s'est détachée de la file. Elle a déchiré trois tentes de l'ouest, là où dorment les enfants et les vieux. Elles visent le fer, et le camp en est plein : cerclages des roues, chaudrons, pointes des piquets. Faites halte près des foyers, à la tombée de la nuit ; elles viendront. Si personne ne veille, ces gens iront dormir sur le tablier, et je ne les retiendrai pas. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "la-veille-du-camp",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "veille-du-camp-retour",
+        "mots": [
+          "nuit",
+          "lames",
+          "aube",
+          "camp",
+          "tentes",
+          "retour"
+        ],
+        "question": "J'ai tenu le camp cette nuit.",
+        "condition": {
+          "flag": "lr-camp-defendu"
+        },
+        "reponse": "« Une, deux, trois… » Elle compte les tentes debout, du doigt, sans se retourner. « Trois de l'ouest sont à reprendre. » Elle touche le vieux bracelet de cuir à son poignet, puis le chaudron commun qui fume encore sur son trépied. « Vous avez veillé comme on veille chez soi. Ça, je ne l'oublierai pas. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-camp-retour"
+          }
+        ],
+        "unique": true
       }
     ],
     "salutations": {

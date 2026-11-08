@@ -179,11 +179,10 @@ describe('images d’un monde, lieu par lieu', () => {
     for (const e of tous.filter((x) => x.groupe === 'lieux')) expect(e.prompt).toContain('No people and no creatures');
   });
 
-  it('les objets illustrés sont les objets notables, les objets de quête et les clés', () => {
-    for (const e of tous.filter((x) => x.groupe === 'objets')) {
-      const o = charge.monde.objets.get(e.id.replace('objet-', ''))!;
-      expect(o.rarete !== 'commun' || o.magique || o.categorie === 'quete' || o.categorie === 'cle').toBe(true);
-    }
+  it('tout objet défini par le monde est illustré, une seule fois : le joueur le voit dans son sac', () => {
+    const illustres = tous.filter((x) => x.groupe === 'objets').map((e) => e.id.replace('objet-', ''));
+    expect(new Set(illustres).size).toBe(illustres.length);
+    expect([...illustres].sort()).toEqual([...charge.monde.objets.keys()].sort());
   });
 });
 

@@ -95,23 +95,30 @@ export function elementsParLieu(dm: DonneesMonde, { charte, racineSrd, retouches
     for (const t of [...dm.tresors.values()].filter((x) => x.lieu === l.id)) {
       for (const { objet } of t.contenu.objets) {
         const o = dm.objets.get(objet);
-        // Les objets de quête et les clés sont toujours illustrés, même communs : le joueur les voit dans son sac.
-        if (!o || (o.rarete === 'commun' && !o.magique && o.categorie !== 'quete' && o.categorie !== 'cle')) continue;
-        ajouter(l.id, {
-          id: `objet-${o.id}`,
-          groupe: 'objets',
-          nom: o.nom,
-          format: 'carre',
-          references: [],
-          prompt: [
-            charte.style,
-            `Item illustration: ${o.nom}. Appearance (in French): ${retouches[`objet-${o.id}`] ?? o.visuel ?? o.resume}`,
-            'A single object centred in the frame, resting on a dark worn surface, soft warm side light, fine detail, shallow depth of field.',
-            charte.contraintes,
-          ].join('\n'),
-        });
+        if (o) ajouter(l.id, elementObjet(o));
       }
     }
   }
+  // Tout objet défini par l'histoire est illustré : le joueur le voit dans son sac, qu'il vienne d'un trésor, de l'inventaire d'un PNJ
+  // ou d'un effet (la clé de Brisk, le fragment d'enclume). Sans image, le sac affiche l'icône de sa catégorie.
+  const premier = resultat.keys().next().value as string | undefined;
+  const lieuDe = (id: string) => [...dm.pnj.values()].find((p) => p.inventaire.includes(id))?.lieu ?? premier;
+  if (premier) for (const o of dm.objets.values()) ajouter(lieuDe(o.id)!, elementObjet(o));
   return resultat;
+
+  function elementObjet(o: DonneesMonde['objets'] extends Map<string, infer O> ? O : never): Element {
+    return {
+      id: `objet-${o.id}`,
+      groupe: 'objets',
+      nom: o.nom,
+      format: 'carre',
+      references: [],
+      prompt: [
+        charte.style,
+        `Item illustration: ${o.nom}. Appearance (in French): ${retouches[`objet-${o.id}`] ?? o.visuel ?? o.resume}`,
+        'A single object centred in the frame, resting on a dark worn surface, soft warm side light, fine detail, shallow depth of field.',
+        charte.contraintes,
+      ].join('\n'),
+    };
+  }
 }

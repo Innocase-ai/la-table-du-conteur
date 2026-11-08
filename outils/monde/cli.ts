@@ -4,16 +4,21 @@
 //   pnpm monde enigmes [monde]        audit des énigmes : chacune est JOUÉE dans le moteur (bonne, mauvaise, mal formée) ; code 1 s'il y a des erreurs
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
 //   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
+//   pnpm monde manque [monde]         ce qui MANQUE : images (lieux, PNJ, objets), cartes, positions, scènes, voix, estimation ; code 1 s'il manque quelque chose
 //   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]
 //                                     un joueur automatique joue le VRAI moteur pour atteindre chaque fin (combats supposés gagnés) ;
 //                                     code 1 si une fin n'est pas atteinte (avec ce budget : ce n'est pas une preuve d'impossibilité)
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
+import { resumerCompletude, verifierCompletude } from '../../packages/regles/src/monde/completude';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
+import { ManifesteImages } from '../../packages/regles/src/monde/images';
+import { idImageCommune } from '../../packages/regles/src/modules/image-commune';
+import { scenesDu } from '../../packages/regles/src/modules/scenes';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { genererDocMonde } from './doc';
@@ -71,6 +76,28 @@ for (const id of mondes) {
     console.log(`${id} : ${e.tours} tours dont ${e.toursConteur} racontés par le conteur, ≈ ${e.heures.total} h (${e.heures.recit} h de récit, ${e.heures.combats} h de combats)`);
     for (const c of e.couts) console.log(`  ${c.nom.padEnd(18)} ≈ ${c.usd} $ (${c.min} à ${c.max} $)`);
     console.log(`  images du groupe   ≈ ${e.imagesUsd} $`);
+    continue;
+  }
+  if (commande === 'manque') {
+    const dossier = join(RACINE_MONDES, id);
+    const lireJson = (f: string) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : undefined);
+    const manifeste = ManifesteImages.safeParse(lireJson(join(dossier, 'images/manifeste.json')) ?? {});
+    const equipement = join(RACINE_MONDES, '../../apps/jeu/src/equipement');
+    const noms = (d: string, ext: string) => new Set(existsSync(d) ? readdirSync(d).filter((f) => f.endsWith(ext)).map((f) => f.slice(0, -ext.length)) : []);
+    const ecarts = verifierCompletude({
+      dm: r.monde,
+      manifeste: manifeste.success ? manifeste.data : undefined,
+      imagesCommunes: noms(equipement, '.webp'),
+      idImageCommune,
+      scenes: scenesDu(r.monde).scenes,
+      voix: noms(join(dossier, 'voix'), '.mp3'),
+      estimationPresente: existsSync(join(dossier, 'estimation.json')),
+    });
+    const manques = ecarts.filter((x) => x.gravite === 'manque');
+    console.log(`\n${manques.length ? '⚠️ ' : '✅'} ${id} — ${manques.length} manque(s), ${ecarts.length - manques.length} avis`);
+    for (const [rubrique, n] of resumerCompletude(ecarts)) console.log(`  ${rubrique.padEnd(12)} ${n.manque} manque(s), ${n.avis} avis`);
+    for (const x of ecarts) console.log(`  ${x.gravite === 'manque' ? 'MANQUE' : 'avis  '}  [${x.categorie}] ${x.cible} : ${x.detail}`);
+    if (manques.length) echec = true;
     continue;
   }
   if (commande === 'parcours') {

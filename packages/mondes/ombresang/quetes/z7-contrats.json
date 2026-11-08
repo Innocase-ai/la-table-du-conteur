@@ -1,0 +1,148 @@
+[
+  {
+    "id": "le-chargement-de-gorm",
+    "nom": "Le chargement de Gorm",
+    "type": "secondaire",
+    "donneur": "gorm-meule",
+    "lieu": "lr-foret-campement",
+    "resume": "Gorm Meule, forgeron de la rangée, a financé trois charrettes de ferrailleurs qui travaillaient à la lisière de la Forêt d'Acier. Ses ferrailleurs ont fui en abandonnant leurs charrettes au campement. Sans leurs leviers et leurs cordes, la fournée de Gorm ne se paiera plus. Il demande qu'on récupère la charrette de l'est, et qu'on le prévienne.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "recuperer",
+    "etapes": [
+      {
+        "id": "recuperer",
+        "texte": "Rendez-vous au campement abandonné de la Forêt d'Acier et récupérez la charrette de l'est avant qu'elle ne parte chez un autre acheteur.",
+        "completion": {
+          "flag": "lr-chargement-recupere"
+        },
+        "suivantes": [
+          "retour"
+        ]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Gorm que la charrette de l'est est libre, aux forges de la rangée.",
+        "completion": {
+          "flag": "lr-chargement-retour"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 75,
+      "pieces": 30,
+      "objets": [
+        "outils-de-forgeron"
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "gorm-meule",
+            "delta": 10
+          }
+        }
+      ]
+    },
+    "ramifications": "Forme : rival (embuscade au campement). Les deux mercenaires de passage et leur guetteur chargent la charrette de l'est pour la revendre. Issues : les persuader de lâcher la charrette (persuasion DD 12) ; leur payer 25 pièces pour qu'ils repartent, ce que Gorm apprendra et n'aimera pas (attitude -5) ; ou les combattre, Gorm récupérant alors sa charrette sans rien payer. Si le groupe refuse, la charrette part chez un autre acheteur et Gorm ne reverra pas ses ferrailleurs avant l'hiver."
+  },
+  {
+    "id": "la-lame-fendue",
+    "nom": "La lame fendue",
+    "type": "secondaire",
+    "donneur": "odile-braise",
+    "lieu": "lr-foret-allee",
+    "resume": "La seconde feuille de l'auberge est le dû des ferrailleurs du torrent. Leur piste passe par l'allée des épées géantes, où la lame fendue s'effrite chaque matin en poudre rouge. Odile Braise paie quarante pièces au retour de ceux qui arrêteront ce qui ronge l'acier, car sans cette piste, sa salle restera vide.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "traquer",
+    "etapes": [
+      {
+        "id": "traquer",
+        "texte": "Allez à l'allée des épées géantes et cherchez ce qui ronge la lame fendue : traces, poudre, ou vieux fer laissé sur place.",
+        "completion": {
+          "flag": "lr-rongeur-regle"
+        },
+        "suivantes": [
+          "retour"
+        ]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez à Odile que la lame fendue ne s'effrite plus, et que la piste des ferrailleurs est libre.",
+        "completion": {
+          "flag": "lr-rongeur-retour"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 75,
+      "pieces": 40,
+      "objets": [],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "odile-braise",
+            "delta": 10
+          }
+        }
+      ]
+    },
+    "ramifications": "Forme : traque légère. Trois sources d'indice : Odile (le fait f-lr-rouille-de-nuit, qui ouvre la rencontre), l'allée (Survie DD 10 : f-lr-lame-fendue-rongee) et le campement abandonné (pioche rongée, découverte automatique : f-lr-pioche-rongee). Les faits 2 ou 3 ouvrent l'issue sans combat : détourner l'oxydeur avec de la ferraille (Survie DD 12). Sans cette issue, le groupe combat le rongeur. S'il refuse la piste, la lame cède, l'allée se barre, la piste des ferrailleurs est coupée et la salle de l'auberge reste vide."
+  },
+  {
+    "id": "la-veille-du-camp",
+    "nom": "La veille du camp",
+    "type": "secondaire",
+    "donneur": "mira-sorel",
+    "lieu": "lr-camp-refugies",
+    "resume": "Mira Sorel, sœur de Joran, demande qu'on veille au camp des réfugiés de la rive sud. La nuit dernière, une volée de lames a déchiré trois tentes de l'ouest. Les lames visent le métal, et le camp en est plein : cerclages, chaudrons, piquets. Elle demande qu'on fasse halte à la tombée de la nuit.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "veiller",
+    "etapes": [
+      {
+        "id": "veiller",
+        "texte": "Faites halte près des foyers du camp à la tombée de la nuit, et tenez le camp contre les lames qui reviendront par vagues.",
+        "completion": {
+          "flag": "lr-camp-defendu"
+        },
+        "suivantes": [
+          "retour"
+        ]
+      },
+      {
+        "id": "retour",
+        "texte": "Revenez voir Mira au matin et dites-lui combien de tentes sont restées debout.",
+        "completion": {
+          "flag": "lr-camp-retour"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 100,
+      "pieces": 0,
+      "objets": [],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "mira-sorel",
+            "delta": 15
+          }
+        }
+      ]
+    },
+    "ramifications": "Forme : défense en deux vagues. Issue sans combat : à la première volée, rassembler le fer du camp sous une bâche (Athlétisme DD 12). Le tas attire les lames, la seconde vague tourne autour sans mordre les tentes, et le drapeau lr-camp-fortifie permet de la finir sans combat. Si le groupe refuse de veiller, les tentes de l'ouest sont déchirées de nouveau, les gens dorment sur le tablier et Mira se ferme. Ce que gagne le groupe : la confiance de Mira."
+  }
+]

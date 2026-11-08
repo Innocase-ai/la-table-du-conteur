@@ -54,4 +54,8 @@ Retirez la récompense : le PNJ a-t-il encore une raison de demander ? Sinon, c'
 - Une alternative qui règle la rencontre mais **ne pose pas le drapeau** de la quête : le joueur a réussi et la quête reste bloquée. Tester chaque issue.
 - Un contrat rattaché à un lieu **sans condition** se déclenche même sans la quête : toujours conditionner sur la quête (`active`).
 - Le hub trop riche en contrats « va tuer » : voir les règles de variété.
-- Une rencontre `repos` n'arrive que si le groupe se repose dans le lieu : dire au joueur **où** dormir (le PNJ l'indique dans son sujet).
+- Une rencontre `repos` n'arrive que si le groupe se repose dans le lieu : dire au joueur **où** dormir (le PNJ l'indique dans son sujet). Une simple **halte** (repos court) la déclenche aussi, même dans un lieu `dangereux` : pas besoin de rendre le lieu sûr.
+- **Un contrat accepté dans le lieu même du combat** (le donneur est sur place) ne peut pas se déclencher à `entree` : le groupe y est déjà. Utiliser `repos` (veille, défense) ou une rencontre dans un autre lieu.
+- **Contrat de l'auberge, du tableau, du camp** : le contrôle `pnpm monde manque` reconnaît un contrat à son nom ou à `ramifications` qui commence par « Forme : … » : toujours l'écrire ainsi.
+- **Tester le contrat** : l'histoire s'ouvre sur un combat (la place de Lame-Rousse) ; un test doit d'abord le résoudre (`reglerRencontre`, issue `victoire`) pour retrouver l'exploration. Modèle : `packages/regles/tests/contrats-ombresang.test.ts`.
+- Une défense en deux vagues enchaîne par l'effet `{ "rencontre": "<id>" }` (victoire **et** alternative de la première) ; la seconde rencontre n'est **pas** rattachée au lieu.

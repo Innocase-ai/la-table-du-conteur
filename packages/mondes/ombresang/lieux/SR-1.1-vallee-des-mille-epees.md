@@ -44,7 +44,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 ### Budget de contenu (proposé, à décider avec l'utilisateur)
 - **Combats : 2** · **Rencontres sociales : 5** · **PNJ : 5** · **Énigmes : 0** · **Pièges : 1** · **Trésors : 2**
 - **Répartition :**
-  - Combats : la place (3 `epee-volante`, avec la milice : ouverture) ; la forge de Vorn (3 `epee-volante` qui défendent le foyer, si on le force ou si on l'éteint) ; 2 **contrats** affichés à l'auberge, **hors budget** (cibles dans la Forêt d'Acier, écrits plus tard avec `creer-contrats`).
+  - Combats : la place (3 `epee-volante`, avec la milice : ouverture) ; la forge de Vorn (3 `epee-volante` qui défendent le foyer, si on le force ou si on l'éteint) ; 2 **contrats** affichés à l'auberge, **hors budget** (cibles dans la Forêt d'Acier, écrits avec `creer-contrats` : « Le chargement de Gorm » (campement) et « La lame fendue » (allée)).
   - PNJ : `vorn-bras-de-laiton` (forge), `soeur-martha` (apothicairerie), `joran-deserteur` (place, pilori), `odile-braise` (aubergiste), `gorm-meule` (forgeron-marchand des forges à aubes).
   - Rencontres sociales : Joran qui plaide sa cause ; Sœur Martha et ses blessés ; Odile et les rumeurs ; Gorm et les lames de sa dernière fournée ; Vorn et le choix. La Baillie Élinor Vane paraît sur l'estrade de la place (scène de l'ouverture), puis se retire au Bastion (lieu 2).
   - Piège : la serrure du bureau de la Baillie (villa).
@@ -278,7 +278,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 - **Combats : 2** · **Rencontres sociales : 0** · **PNJ : 0** · **Énigmes : 0** · **Pièges : 1** · **Trésors : 2**
 - **Répartition :**
   - Combats : la lisière (**lames errantes** : **3 `epee-volante` pour 4 héros, 5 pour 6 héros**, d'autant plus nombreuses que la Fièvre de Fer monte) ; l'antre (**1 `loup-sanguinaire` pour 4 héros, 2 pour 6 héros**). Difficulté d'après le budget de PX du moteur (niveau 1) : lisière **sous le seuil faible** (150 PX pour 4 héros, 250 pour 6 ; seuils 200 et 300) : une patrouille, qui grossit avec la Fièvre de Fer ; antre faible pour 4 héros (200 PX), entre faible et modérée pour 6 (400 PX). **Alternative** pour les loups : leur jeter de la viande ou les détourner (Dressage, Discrétion).
-  - Contrats : les **2 contrats** affichés à l'auberge (hors budget) ont pour sites l'allée des épées géantes et le campement abandonné ; ils sont écrits plus tard avec `creer-contrats`.
+  - Contrats : les **2 contrats** affichés à l'auberge (hors budget) ont pour sites l'allée des épées géantes et le campement abandonné ; ils sont écrits avec `creer-contrats` : « Le chargement de Gorm » (campement) et « La lame fendue » (allée).
   - Piège : le sol du cratère, saturé d'Ichor tiède (brûlure et vertige) autour du Menhir Brisé.
   - Trésors : la bourse d'un ferrailleur tué par les loups (antre, 25 po) ; la cache de lames de qualité dans le campement (60 po, armes du catalogue).
   - Objet de quête : l'**éclat de la pierre sacrée** (cratère), preuve que Vorn a profané le Menhir ; il est distinct du fragment d'enclume, qui reste à la forge de Vorn.

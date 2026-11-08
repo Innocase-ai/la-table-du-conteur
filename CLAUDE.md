@@ -40,6 +40,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `creer-marchands-compagnons` : boutiques, services qui agissent en jeu (nuit, soins, identification), présences, compagnon qui voyage (escorte, interjections).
 - `creer-pieges-tresors` : pièges, trésors, objets propres au monde, tables de butin (cachettes, clés, gardiens, détection par la fouille, rattachement des pièges, valeur et rareté par niveau).
 - `creer-contrats` : mini-quêtes de combat variées, ancrées dans la fiction (jamais une heure sans combat).
+- `verifier-completude-histoire` : ce qui MANQUE dans une histoire (images de lieux, PNJ et objets, cartes, positions, scènes, voix, contrats, estimation) ; `pnpm monde manque <monde>` ; à lancer à la fin de chaque lieu et avant tout bilan ou publication.
 - `creer-dilemmes` : choix difficiles, échos, épilogues (dossier `dilemmes/`).
 - `creer-personnages` : profondeur des PNJ (canon des personnages, fiches de savoir, confidences verrouillées, conversations libres vérifiées).
 - `enigmes` : dès qu'une énigme est créée, modifiée ou relue ; les énigmes se vérifient toujours en les jouant (`pnpm monde enigmes <monde>`, puis dans le jeu).

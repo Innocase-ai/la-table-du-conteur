@@ -1,0 +1,345 @@
+[
+  {
+    "id": "les-mercenaires-du-campement",
+    "nom": "Les mercenaires du campement",
+    "type": "mixte",
+    "lieu": "lr-foret-campement",
+    "difficulte": "faible",
+    "intro": "La clairière de terre rouge s'ouvre entre les tentes grises, et le foyer est éteint. Deux hommes chargent des outils dans la charrette de l'est, pendant qu'un troisième, posté sur un rocher au bord de la clairière, surveille le sentier. Le guetteur siffle bref dès qu'il vous voit. Les deux hommes lâchent les outils et posent la main sur leurs armes, sans encore les tirer. La charrette grince sous le poids du fer.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 2,
+        "nom": "Mercenaires de passage"
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 1,
+        "nom": "Mercenaire de guet"
+      }
+    ],
+    "carte": [
+      "####################",
+      "#R....TT......c...R#",
+      "#.....TT...m..cc..m#",
+      "#..................#",
+      "#...c.......m..~~..#",
+      "#..................#",
+      "#.TT...........R...#",
+      "#.TT...............#",
+      "#.....HHHHHH.......#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les deux mercenaires se placent devant la charrette de l'est, et le guetteur harcèle depuis son rocher.",
+      "fuite": "Quand le premier tombe, les autres lâchent la charrette et filent vers le sentier de la forêt ; le guetteur part le dernier.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "parler-d-abord",
+        "nom": "Je leur dis que ces outils ont un propriétaire.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Le guetteur compte les jours de marche perdus à voix haute, et les deux hommes grommellent en lâchant la charrette de l'est. Ils ne cherchent pas la bagarre : ils veulent juste un chemin sans témoin.",
+        "effets": [
+          {
+            "flag": "lr-chargement-recupere"
+          },
+          {
+            "xp": 40
+          },
+          {
+            "narration": "Les deux hommes s'éloignent vers le sentier de la forêt, sans se retourner, et le guetteur ferme la marche."
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Ils rient, et le plus grand dégaine sa lame. Le guetteur siffle, et la bagarre devient inévitable."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer-leur-part",
+        "nom": "Je leur paie de quoi repartir.",
+        "condition": {
+          "pieces": {
+            "min": 25
+          }
+        },
+        "resume": "Ils comptent la bourse deux fois, sans un mot, puis laissent la charrette de l'est et partent vers la forêt. Le guetteur hoche la tête et range ses pièces. Le marché est clair : ils n'ont rien vu, et rien à rendre.",
+        "effets": [
+          {
+            "pieces": -25
+          },
+          {
+            "flag": "lr-chargement-recupere"
+          },
+          {
+            "flag": "lr-mercenaires-payes"
+          },
+          {
+            "attitude": {
+              "pnj": "gorm-meule",
+              "delta": -5
+            }
+          },
+          {
+            "xp": 20
+          },
+          {
+            "narration": "Gorm l'apprendra, et il n'aimera pas payer deux fois le même fer."
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "lr-chargement-recupere"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  },
+  {
+    "id": "le-rongeur-de-l-allee",
+    "nom": "Le rongeur de l'allée",
+    "type": "mixte",
+    "lieu": "lr-foret-allee",
+    "difficulte": "faible",
+    "intro": "Vous débouchez dans la clairière, où le vent siffle entre les épées géantes. Au pied de la lame fendue, une poudre rouge s'étale en couche fine, et l'on entend un crissement de dents sur l'acier. Au bord de cette poudre, une bête basse, à deux antennes, lève la tête. Elle tourne son museau vers vous, flaire longuement l'air, puis fixe la ferraille que portent vos mains. Le tranchant de la lame fendue est rongé d'un côté, et des sillons profonds courent dans la roche rouge.",
+    "monstres": [
+      {
+        "profil": "oxydeur",
+        "nombre": 1,
+        "nom": "Le rongeur de rouille"
+      }
+    ],
+    "carte": [
+      "####################",
+      "#RR..R.........R..R#",
+      "#R.......m.....t...#",
+      "#....tt.......R....#",
+      "#..................#",
+      "#.R..........rr....#",
+      "#..................#",
+      "#R...r.........R...#",
+      "#....HHHHHH........#",
+      "####################"
+    ],
+    "terrain": "foret",
+    "tactique": {
+      "doctrine": "Il fonce sur l'arme ou l'armure de fer la plus proche et rogne ce qu'il touche.",
+      "fuite": "Blessé, il se replie vers la fente de la lame fendue, puis fuit vers le nord.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "detourner-avec-de-la-ferraille",
+        "nom": "Je lui jette la ferraille pour l'éloigner de la lame.",
+        "condition": {
+          "ou": [
+            {
+              "fait": "f-lr-lame-fendue-rongee"
+            },
+            {
+              "fait": "f-lr-pioche-rongee"
+            }
+          ]
+        },
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "La bête renifle la pioche et la ferraille du campement, les emporte d'une dent vers le nord, et s'éloigne de la lame fendue. Les ferrailleurs n'auront plus qu'à calfater la fente, et l'allée restera ouverte à leurs charrettes.",
+        "effets": [
+          {
+            "flag": "lr-rongeur-regle"
+          },
+          {
+            "flag": "lr-rongeur-detourne"
+          },
+          {
+            "xp": 40
+          },
+          {
+            "narration": "La bête s'éloigne vers le nord en laissant une traînée de poudre rouge."
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La ferraille tombe trop près de la lame, et la bête se retourne vers vous, les antennes dressées."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "lr-rongeur-regle"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  },
+  {
+    "id": "veille-du-camp-premiere-volee",
+    "nom": "La première volée",
+    "type": "mixte",
+    "lieu": "lr-camp-refugies",
+    "difficulte": "faible",
+    "intro": "À la tombée, le vent du nord rabat la fumée des foyers sur les tentes. Un sifflement fin court dans les câbles de l'arche, au-dessus du torrent, puis trois lames se détachent de la file et piquent vers le camp. Elles frappent les cerclages des charrettes et les chaudrons pendus aux foyers, dans un bruit de fer contre fer. Mira crie aux gens de rentrer sous les bâches, et les enfants s'engouffrent dans les tentes de l'ouest.",
+    "monstres": [
+      {
+        "profil": "epee-volante",
+        "nombre": 3,
+        "nom": "Lames détachées"
+      }
+    ],
+    "carte": [
+      "####################",
+      "#TT.TT..m..m.TT.TT.#",
+      "#TT.TT.........TT.m#",
+      "#..................#",
+      "#...RR....cc..~~...#",
+      "#...RR....cc..~~...#",
+      "#..................#",
+      "#TT.TT.......c.TT..#",
+      "#....HHHHHH........#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Elles visent d'abord le fer des charrettes et des foyers, puis l'arme et l'armure du héros le plus proche.",
+      "fuite": "Aucune : elles se battent jusqu'à leur chute.",
+      "renforts": "Une seconde volée suit : l'assaut de l'aube."
+    },
+    "alternatives": [
+      {
+        "id": "rassembler-le-fer",
+        "nom": "Je rassemble le fer du camp sous une bâche, loin des tentes.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "resume": "Cerclages, chaudrons et pointes de piquets sont amassés en tas sous une bâche de convoi, à l'est, loin des enfants. Les lames tournent sur le tas sans mordre les tentes. Mira vous regarde faire sans rien dire. La seconde volée viendra quand même.",
+        "effets": [
+          {
+            "flag": "lr-camp-fortifie"
+          },
+          {
+            "xp": 30
+          },
+          {
+            "narration": "Les lames cognent le tas de fer comme de la grêle sur un toit."
+          },
+          {
+            "rencontre": "veille-du-camp-assaut"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Un chaudron roule sur la terre rouge, le tas s'éboule, et une lame vous tombe dessus ; il faudra se battre."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "xp": 30
+      },
+      {
+        "rencontre": "veille-du-camp-assaut"
+      }
+    ]
+  },
+  {
+    "id": "veille-du-camp-assaut",
+    "nom": "L'assaut de l'aube",
+    "type": "mixte",
+    "lieu": "lr-camp-refugies",
+    "difficulte": "faible",
+    "intro": "Juste avant l'aube, le gris monte au-dessus de l'arche et les foyers ronflent encore. Puis quatre lames reviennent d'un seul bloc, plus bas et plus vite que la nuit, et fendent l'air au-dessus des charrettes. Si le fer est rassemblé, elles tournent autour du tas sous sa bâche ; sinon, elles fondent sur les roues cerclées. Les derniers veilleurs se redressent, les mains serrées sur les piquets.",
+    "monstres": [
+      {
+        "profil": "epee-volante",
+        "nombre": 4,
+        "nom": "Lames de l'aube"
+      }
+    ],
+    "carte": [
+      "####################",
+      "#TT.TT..m..m.TT.TT.#",
+      "#TT.TT.........TT.m#",
+      "#..m...............#",
+      "#...RR....cc..~~...#",
+      "#...RR....cc..~~...#",
+      "#..................#",
+      "#TT.TT.......c.TT..#",
+      "#....HHHHHH........#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Elles reviennent groupées et plongent toutes sur le même fer, sans se disperser.",
+      "fuite": "Aucune : elles se battent jusqu'à leur chute.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "laisser-les-lames-sur-le-tas",
+        "nom": "Je laisse les lames s'user sur le tas de fer.",
+        "condition": {
+          "flag": "lr-camp-fortifie"
+        },
+        "resume": "Le tas de fer sous sa bâche retient les lames comme un aimant. Elles cognent, s'émoussent, tombent ou se dispersent vers la file, et pas un piquet de tente ne bouge. Quand la dernière lame s'éloigne au-dessus de l'eau, le camp reste debout.",
+        "effets": [
+          {
+            "flag": "lr-camp-defendu"
+          },
+          {
+            "xp": 40
+          },
+          {
+            "narration": "Le silence revient avec le jour, et Mira se tient debout devant les tentes de l'ouest."
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "lr-camp-defendu"
+      },
+      {
+        "xp": 40
+      }
+    ]
+  }
+]

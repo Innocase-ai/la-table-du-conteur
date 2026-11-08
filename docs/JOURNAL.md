@@ -1449,3 +1449,24 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 ## 08/11/2026 — Ombresang : conversations enrichies validées
 
 - Les conversations des 11 PNJ de Lame-Rousse sont **validées et gelées** (suivi : `lieux/SR-1.1-contenu-V6.md`).
+
+## 08/11/2026 — Complétude des histoires : contrôle « ce qui manque », cartes et objets de Lame-Rousse
+
+- À la demande de l'utilisateur (icône vide dans le sac, carte du village en pastilles) : nouveau contrôle `pnpm monde manque <monde>` (`packages/regles/src/monde/completude.ts`, 3 tests) et skill `verifier-completude-histoire`. Rubriques : images de lieux, de PNJ et d'objets, cartes illustrées, positions, scènes, voix, contrats annoncés, publication. Référencé dans `CLAUDE.md` et dans `creer-monde` (étape 12 bis).
+- Correction de l'outil d'images (`outils/images/monde.ts`) : tout objet défini par l'histoire est illustré (clé d'un PNJ, objet donné par un effet, minerai commun), pas seulement ceux des trésors. Test adapté.
+- Lame-Rousse : 6 objets (fragment d'enclume, minerai de Vorn, clé des cellules, ferraille divine, cœur de rouille, laissez-passer impérial) et 6 cartes (vallée, village, bastion, grotte, temple, forêt d'Acier) générés avec FLUX Klein, relus un à un contre leur fiche. Carte du bastion refaite une fois (la première recopiait la vallée ; prompt resserré en vue rapprochée). 13 images, ≈ 0,12 $.
+- 19 positions de lieux posées ou replacées d'après les images réelles (`lieux/z0` à `z5`). Les prompts de cartes viennent des fiches gelées ; seule la carte du bastion a un cadrage ajouté.
+- Reste au bilan `manque` : 2 contrats de l'auberge à écrire (avis), et à la publication V8 : `estimation.json`, `chapitres[].quetes`, statut `publie` (le statut actuel est provisoire, le test d'estimation échoue tant que c'est le cas).
+
+## 08/11/2026 — Ombresang : trois contrats et préparation de la publication
+
+- **Trois contrats** pour Lame-Rousse (skill `creer-contrats`), conçus par Claude, textes écrits par trois agents Haiku, relus et retouchés (`quetes|rencontres|faits/z7-contrats.json`) :
+  - **Le chargement de Gorm** (feuille de l'auberge, donneur Gorm Meule ; forme : rival) : deux mercenaires de passage chargent la charrette de l'est au campement abandonné ; combat, Persuasion DD 12 ou 25 po. Récompense : 75 PX, 30 po, outils de forgeron, confiance de Gorm.
+  - **La lame fendue** (seconde feuille, donneuse Odile Braise ; forme : traque légère) : un oxydeur égaré ronge l'épée fendue de l'allée ; trois sources d'indice (Odile, l'allée en Survie DD 10, la pioche du campement), issue sans combat : le détourner avec de la ferraille (Survie DD 12). Récompense : 75 PX, 40 po, confiance d'Odile.
+  - **La veille du camp** (donneuse Mira Sorel, au camp des réfugiés ; forme : défense en deux vagues) : la halte au camp déclenche une première volée de 3 lames, puis un assaut de 4 ; issue sans combat : rassembler le fer sous une bâche (Athlétisme DD 12). Récompense : 100 PX et la confiance de Mira (de quoi débloquer son secret).
+- Ajouts aux fiches de PNJ gelées (sujets ajoutés en fin de liste, rien d'existant modifié) : Gorm 2, Odile 3, Mira 2. Phrases « écrit plus tard » remplacées dans les descriptions du camp, du campement et de l'allée ; fiches `SR-1.1-niveau-2-*.md` et atlas : « à créer » devient l'id des entités.
+- `pnpm monde manque` reconnaît désormais un contrat à « Forme : … » dans les ramifications. Test `contrats-ombresang.test.ts` (12 tests : acceptation, déclenchement, chaque issue, retour, récompenses). Skill `creer-contrats` : 4 pièges ajoutés.
+- **Publication** : `chapitres[].quetes` remplie (10 quêtes), `estimation.json` écrit (≈ 8 h, 222 tours, Sonnet ≈ 1,2 $), statut `publie`. Bilan : 0 manque, 0 avis ; 90 fichiers de tests verts, 1 775 tests.
+- À savoir : l'estimation (≈ 8 h) dépasse la durée visée du pitch (2 à 3 h) ; la remise en `brouillon` reste à décider quand l'utilisateur a fini de jouer.
+- Audit de cohérence (Haiku, lecture seule) : 1 contradiction réelle corrigée (la fiche du campement disait « ni combat ni piège » ; désormais « aucun combat en dehors du contrat de Gorm Meule », JSON et fiche gelée). Non retenu : effectifs « pour 6 héros » (le moteur adapte au groupe, `combat/echelle.ts`). À trancher : le camp des réfugiés est placé en haut à droite de la carte du bastion (là où l'image le dessine), alors que la fiche gelée le met au sud (50, 95).
+- Carte du bastion refaite à la demande de l'utilisateur : le camp des réfugiés est maintenant au sud de l'image (prompt `carte-lr-bastion` précisé : poste en haut, chaussée du viaduc vers le bas, camp en bas ; 0,009 $). Six lieux replacés d'après la nouvelle image (`lieux/z2-bastion.json`). L'ancienne carte (camp en haut) est gardée hors git dans `sorties/images/mondes/ombresang/_anciennes/`.
