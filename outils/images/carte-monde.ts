@@ -40,12 +40,11 @@ async function main(): Promise<void> {
 
   const dossier = join(SORTIES, 'mondes', monde, 'essais-carte-monde');
   const env = lireEnv();
-  const ref = option('--ref');
-  const idRef = ref ? `ref-${prefixe}` : undefined;
-  if (ref && idRef) {
-    mkdirSync(dossier, { recursive: true });
-    copyFileSync(ref, join(dossier, `${idRef}.png`));
-  }
+  // --ref : une ou plusieurs images de référence séparées par des virgules, transmises dans cet ordre (le prompt peut s'y référer : « image 1 », « image 2 »…).
+  const fichiersRef = option('--ref')?.split(',') ?? [];
+  const idsRef = fichiersRef.map((_f, i) => `ref-${prefixe}-${i + 1}`);
+  if (fichiersRef.length) mkdirSync(dossier, { recursive: true });
+  fichiersRef.forEach((f, i) => copyFileSync(f, join(dossier, `${idsRef[i]}.png`)));
   for (let i = 1; i <= Number(nombre); i += 1) {
     const deja = depenseDejaFaite(dossier);
     if (deja + COUT_PAR_DEFAUT > plafond) {
@@ -54,7 +53,7 @@ async function main(): Promise<void> {
     }
     let numero = 1;
     while (existsSync(join(dossier, `${prefixe}-${numero}.png`))) numero += 1;
-    const element: Element = { id: `${prefixe}-${numero}`, groupe: 'cartes', nom: `Essai ${prefixe} ${numero}`, format: 'paysage', prompt: fichierPrompt ? prompt : prompt + SANS_TEXTE, references: idRef ? [idRef] : [] };
+    const element: Element = { id: `${prefixe}-${numero}`, groupe: 'cartes', nom: `Essai ${prefixe} ${numero}`, format: 'paysage', prompt: fichierPrompt ? prompt : prompt + SANS_TEXTE, references: idsRef };
     await genererLot(service, [element], env, go, 1, undefined, dossier);
     if (!go) return;
   }

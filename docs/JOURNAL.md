@@ -1224,3 +1224,84 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Carte du monde régénérée** (`cartes/carte-monde-ombresang.png|jpg`, 1248×832) : FLUX 3 Image, ancienne carte comme référence de style, prompt enrichi avec les descriptions visuelles des régions de l'atlas (prompt dans `images.json`). 7 essais, **0,402 $** au total. L'ancienne carte est gardée dans `images/carte-monde-ombresang-ancienne-disposition.jpg`. Réserve : le quartier Est de la capitale y est écrit « Côtes Éternelles » (Bible : « Côtes Forgées »).
 - **Outil** : `outils/images/carte-monde.ts` (essais plafonnés en dollars, options `--ref`, `--prompt`, `--prefixe`) ; les essais vont dans `sorties/images/mondes/ombresang/essais-carte-monde/`.
 - **Constat à traiter** : les 8 cartes régionales (`cartes/carte-region-0N-*`) portent des noms de sous-régions inventés qui ne suivent pas l'atlas (région 1 : seule la Vallée des Mille Épées correspond). Les prompts exacts existent dans l'atlas (§5 de chaque région). Refaire les 8 cartes coûterait environ 0,4 à 0,5 $ ; non lancé. La carte de la capitale n'a pas été vérifiée.
+
+## 08/11/2026 — Ombresang : les 8 cartes régionales refaites depuis l'atlas
+
+- **Constat** : les anciennes cartes régionales portaient des noms de sous-régions inventés (région 1 : seule la Vallée des Mille Épées correspondait à l'atlas).
+- **Fait** : `outils/images/cartes-regions.ts` construit le prompt de chaque région depuis son atlas (§5 : repères visuels, avec chaque `SR n.m` remplacé par le nom exact de la sous-région à écrire) et prend la carte du monde comme référence de style. FLUX 3 Image, 13 images, **0,624 $** (plafond relevé à 0,63 $ avec l'accord de l'utilisateur). Options : `--regions`, `--version`, `--plafond`, `--afficher`.
+- **Vérifié carte par carte** (noms lus un à un) : régions 1, 2, 5, 6, 7 et 8 sans faute au final. Région 4 : « Somere-Vigne » corrigé par un second essai (sans faute). Région 3 : « Strènes » et « Nees » au 1er essai, texte parasite au 2e, **3e essai sans faute** (seul détail : tourbillon sans la forteresse sur son bord).
+- **Installées** dans `cartes/` (PNG et JPG, 1248×832) ; les anciennes sont dans `sorties/images/mondes/ombresang/anciennes-cartes-regions/` (hors git). `images.json` contient le prompt réellement utilisé pour chaque carte ; le tableau de `cartes/README.md` donne les vrais points clés.
+- **Restent** : la carte de la capitale n'a pas été vérifiée (« Côtes Éternelles » sur la carte du monde, « Côtes Forgées » dans la Bible) ; format 3:2 au lieu de 16:9.
+
+## 08/11/2026 — Ombresang : essais de carte du monde assemblée depuis les cartes régionales
+
+- **Idée de l'utilisateur** : composer la carte du monde à partir des 8 cartes régionales. `outils/images/carte-monde.ts` accepte maintenant plusieurs références (`--ref a.png,b.png,…`, transmises dans l'ordre ; le prompt peut parler de « image 1 », « image 2 »…).
+- **Essai 1** (8 régions + carte du monde actuelle en 9e référence) : recopie la carte actuelle, les régions ne servent presque pas.
+- **Essai 2** (8 régions seules, capitale décrite dans le prompt) : la meilleure assemblée (reliefs de chaque région repris, provinces raccordées, « Côtes Forgées » correct) mais ~10 petits noms de sous-régions illisibles recopiés des cartes, « Per-Titan » au lieu de Fer-Titan, deux compas.
+- **Essai 3** (même chose, sans aucun texte) : pire. Péché d'Or et caldeira perdus, capitale en « araignée », mer à l'Ouest ; le modèle varie beaucoup d'un tirage à l'autre.
+- **Décision** : la carte officielle reste celle du 08/11 (`style1-3`, déjà cohérente avec l'atlas) ; les essais sont dans `sorties/images/mondes/ombresang/essais-carte-monde/` (`assemble2-1` est la piste la plus prometteuse). Dépense des essais de carte du monde : **0,546 $** au total.
+
+## 08/11/2026 — Ombresang : `cartes/` allégé (une carte par région)
+
+- Les 10 PNG de `packages/mondes/ombresang/cartes/` sont supprimés : il reste un JPG (≈ 0,5 Mo) par carte (monde, capitale, 8 régions), 5,7 Mo au lieu de ≈ 25 Mo. Les PNG d'origine des nouvelles cartes sont dans `sorties/images/mondes/ombresang/` (`essais-carte-monde/style1-3.png`, `cartes-regions/…`), hors git. Le README du dossier ne parle plus que des JPG.
+
+## 08/11/2026 — Ombresang : pitch de Lame-Rousse recalé sur l'atlas (§6 et §7)
+
+- `packages/mondes/ombresang/PITCH-LAME-ROUSSE.md` : les parties 6 (lieux et rencontres) et 7 (emplacement) sont réécrites d'après l'atlas SR 1.1 : les 5 lieux de l'atlas (Village de Lame-Rousse en hub, Bastion du Pont-Viaduc, Grotte des Rouilles, Temple du Glaive Brisé, Forêt d'Acier), les deux boss de l'atlas (la Reine des Rouilles, le Maître d'Armes Sans Corps : 2 `epee-volante` pour un groupe de 4, 4 pour un groupe de 6), la position (45, 82), les routes (Voie Royale de Fer 14 h, Défilé des Forges 10 h, Chaussée des Scories 8 h, Piste de Poussière 9 h) et le lien vers la carte régionale. Les noms inventés de l'ancienne carte (Forêt de Lames-Mortes, Défilé du Plastron Brisé…) disparaissent de ces parties. La copie de `apps/jeu/src/histoires/ombresang/` est resynchronisée.
+- **À trancher en V1** (parties 1 à 5, non modifiées) : (1) rôle du viaduc (l'atlas le place sur la Voie Royale de Fer et le Défilé des Forges ; `monde.json` dit « l'unique pont vers la capitale ») ; (2) homonymes : *Kael* le déserteur du pitch et le Seigneur-Maréchal Draven Kael de la région 1, *Élinor Vane* et le Haut-Artificier Malthus Vane ; (3) la « Rivière d'Argent » de la fin B (l'atlas dit rivière d'Oxyde) ; (4) le « Défilé du Plastron Brisé » de la fin d'échec, qui n'existe pas dans l'atlas.
+
+## 08/11/2026 — Ombresang : un seul grand jeu façon Baldur's Gate 1 ; page « fil rouge »
+
+- **Décision de l'utilisateur** : Ombresang est le monde d'un jeu complet (centaines de petites histoires, une par lieu, groupe persistant, niveaux 1 à 20), sur le modèle de Baldur's Gate 1 en texte et images ; Lame-Rousse (SR 1.1) en est le premier module. Enregistrée dans la mémoire du projet.
+- **Constats sur le moteur** (lus, pas testés) : le schéma d'un monde a déjà un arbre de lieux, des quêtes avec XP, des factions, des jauges, des chapitres ; les mondes actuels font 55 à 128 fichiers JSON (trop pour 340 lieux : il faut un module de lieu léger) ; les `fins` terminent l'aventure (à vérifier pour des lieux qui se résolvent sans finir le jeu) ; les mondes sont lus à la fabrication (chargement à la demande à prévoir) ; la cible de 5 $ par histoire est à repenser.
+- **Écrit** : `packages/mondes/ombresang/FIL-ROUGE.md` (proposition à valider) : trois actes, un chapitre par région avec ce que le groupe apprend du plan du Concile, trois obligations par module de lieu, cinq questions ouvertes. Prochaine étape prévue : V1 de Lame-Rousse (parties 1 à 5 du pitch, quatre points ouverts, lien avec le fil rouge, sortie), puis audit du moteur à l'échelle.
+
+## 08/11/2026 — Ombresang : fil rouge validé
+
+- `packages/mondes/ombresang/FIL-ROUGE.md` est **validé par l'utilisateur** et gelé. Décisions : le Concile est à la source de chaque crise régionale ; sceaux de confinement (un par région) comme objectifs récurrents ; jauge mondiale « Battement du Cœur » ; ordre libre dans les paliers de niveau ; fins du jeu au point V7. Mémoire du projet mise à jour. Prochaine étape : V1 de Lame-Rousse.
+
+## 08/11/2026 — Ombresang : V1 de Lame-Rousse validé
+
+- `packages/mondes/ombresang/PITCH-LAME-ROUSSE.md` est **validé et gelé** (copie de `apps/jeu/src/histoires/ombresang/` resynchronisée). Corrections appliquées : le viaduc est le seul pont des convois lourds (Voie Royale de Fer et Défilé des Forges), les pistes à pied restent ouvertes ; *Kael le Déserteur* devient **Joran** (Draven Kael est un boss de la région 1) ; Élinor Vane devient cousine éloignée en disgrâce de Malthus Vane (lien avec le Consortium) ; « Rivière d'Argent » → torrent d'Oxyde ; fin d'échec sans « Défilé du Plastron Brisé » (la Voie Royale est coupée, détour à définir en SR 1.4).
+- **Ajouts** : §8 (lien avec le fil rouge : le fragment d'enclume bat comme un pouls ; registre de livraisons de scories vers la Forge Crânienne ; Élinor Vane liée au Consortium) et §9 (sortie : niveau 2, trois routes en ordre libre). `monde.json` : l'intro dit « le seul pont des convois lourds vers Sépulcre-d'Or ».
+- **Constat** : `pnpm monde valider ombresang` échoue (« monde.json — chapitres — Required ») : le manifeste d'Ombresang est un brouillon sans chapitres, quêtes, jauges ni fins ; ce n'est pas nouveau (HEAD n'a pas non plus `chapitres`). À traiter dans l'audit du moteur à l'échelle, avant la production en masse.
+- **Prochain point** : V4 (niveau 1, lieu par lieu) pour les 5 lieux de Lame-Rousse, en commençant par le village (hub).
+
+## 08/11/2026 — Ombresang : V4 du village de Lame-Rousse validé (lieu 1/5)
+
+- `packages/mondes/ombresang/lieux/SR-1.1-vallee-des-mille-epees.md` : fiche du **village de Lame-Rousse validée et gelée** (6 points à visiter : place, auberge *La Lame Émoussée*, apothicairerie *Les Mains Tendues*, forges à aubes, villa de la Baillie, forge de Vorn ; budget : 2 combats, 5 rencontres sociales, 5 PNJ, 0 énigme, 1 piège, 2 trésors ; secret du MJ). Décisions : Joran au pilori de la place (emmené au Bastion si le groupe tarde) ; la Baillie paraît sur l'estrade puis se retire au Bastion.
+- **Proposition suivante** : fiche du Bastion du Pont-Viaduc (lieu 2/5), en attente de validation.
+
+## 08/11/2026 — Ombresang : partie unique (décisions)
+
+- `docs/PARTIE-UNIQUE.md` : six décisions validées (une partie pour tout le monde, entrée à bon niveau, récompenses par palier, inventaire avec coffre et poids, packs sans casser les sauvegardes, drapeaux globaux et locaux) et un ordre de travail ; aucun code. Pas de recrutement de PNJ dans le groupe.
+
+## 08/11/2026 — Ombresang : audit de la partie unique
+
+- Audit lu dans le code (voir `docs/PARTIE-UNIQUE.md`) : la partie unique existe déjà pour un monde unique (XP, niveau, or, inventaire dans `Partie`, sauvegarde versionnée avec migrations). **Risque n°1** : un seul emplacement `localStorage` et un `journal` qui grossit, donc trop petit pour une longue campagne. Ensuite : chargement par région et chargeur de packs, complétion de l'état quand un pack s'ajoute, `chapitres` du monde, convention « pas de `fins` dans une sous-région », vérification de la montée de niveau 1 à 20, coffre des hubs. Rien n'est modifié dans le code.
+
+## 08/11/2026 — Moteur : sauvegarde bornée (partie unique, étape 1)
+
+- `packages/regles/src/noyau/sauvegarde.ts` : journal borné à 600 événements à l'écriture, réessai avec un journal plus court si le stockage est plein ; `sauverPartie` renvoie un booléen. Test `packages/regles/tests/sauvegarde.test.ts` (4). Typecheck vert (regles, outils, atelier, jeu). Suite complète : 1687 réussis, 7 en échec, tous sur le monde `ombresang` (brouillon sans `chapitres` ni lieux), antérieurs à ce changement. Reste : emplacements multiples, stockage fichier Tauri, avertissement au joueur en cas d'échec.
+
+## 08/11/2026 — Moteur : une sauvegarde retrouve les entités d'un pack ajouté (partie unique, étape 2)
+
+- `completerEtat` (`packages/regles/src/monde/etat.ts`) + appel dans `moteur.charger` ; test `completer-etat.test.ts` (2). `assemblerMonde` accepte déjà une liste de fichiers : un pack de région est une liste de fichiers du même format. Reste : chargeur de packs à l'exécution (Tauri) et découpage d'Ombresang en packs.
+
+## 08/11/2026 — Ombresang : sous-agent d'audit de cohérence des histoires + Bastion proposé (V4, lieu 2/5)
+
+- **Nouveau** : `.claude/agents/auditeur-coherence-histoire.md` (Haiku, lecture seule) compare un pitch ou une fiche de lieu à la sous-région, à la région et au monde (Bible, fil rouge, atlas, `monde.json`, profils du SRD). Règle écrite dans `CLAUDE.md`, les skills `creer-monde` et `auditer-coherence-monde`, et la mémoire : **audit avant chaque page présentée (V1 à V8)**, anomalies vérifiées par Claude, gelé jamais corrigé en silence.
+- **Premier audit** (pitch, village gelé, Bastion) : NON CONFORME, 16 anomalies ; une classée « bloquante » (Reine des Rouilles FP 3) rejetée après vérification ; corrigés dans le non gelé : trésors du Bastion, Joran, caisse/recette du péage, id de voisin `lr-place`, effectifs pour 4 et 6 héros, géométrie du torrent, un seul piège, embranchement de la rive sud. Contre-audits : conforme avec remarques.
+- **Restent à valider par l'utilisateur** (écarts dans le gelé) : Fin A (« pièces de rechange de la garnison » ↔ treuil de rechange au Temple), « écharde d'enclume » → « fragment d'enclume » (pitch §6), « feint l'affolement » dans le texte vu du joueur (village), id `lr-bastion-cour` dans les voisins de `lr-place`, précision du budget du village (contrats hors budget ; trésors), phrase « trois nuits / hier » (monde.json ↔ pitch).
+- Coût des audits Haiku : ~110 000 à 166 000 jetons chacun ; proposé : audit complet pour les pages importantes, ciblé pour les fiches de lieux.
+
+## 08/11/2026 — Ombresang : page de conception du chargeur de packs
+
+- `docs/CHARGEUR-DE-PACKS.md` (proposition, aucun code) : mémoire (JSON mesuré sur les mondes existants : 0,35 à 1,6 Mo ; extrapolation 60 à 120 Mo pour 64 sous-régions, donc chargement par région avec budgets), format d'un pack (manifeste, index léger, règle « un pack ne cite que lui-même et la base »), API moteur (`assemblerPack`, `fusionnerPack`, `decharger`, gestionnaire de packs), `SourceDePacks` (Vite en développement, Tauri en bureau), distribution par la boutique, ordre de travail en 8 étapes, trois décisions à prendre.
+
+## 08/11/2026 — Ombresang : Bastion validé (V4, lieu 2/5), six corrections du gelé, Grotte proposée
+
+- **Bastion du Pont-Viaduc validé et gelé** (`lieux/SR-1.1-vallee-des-mille-epees.md`) après trois passes d'audit.
+- **Six corrections validées par l'utilisateur dans le gelé** : Fin A du pitch (treuil de rechange du Temple), « fragment d'enclume » (pitch §6), « feint l'affolement » retiré du texte vu du joueur (village), id `lr-bastion-cour` dans les voisins de la place, budget du village précisé (contrats hors budget ; registre objet de quête), « trois nuits / hier » (pitch §1 et état actuel du village). Copie de l'app resynchronisée.
+- **Grotte des Rouilles proposée** (V4, lieu 3/5) : 6 points (corniche et échelle, galerie des poutres rongées, vieux drains vers la villa, cavernes et salle des mues, veine de scories, nid de la Reine) ; budget : 2 combats, 1 rencontre sociale (Haldor Pique, apprenti de Gorm), 1 PNJ, 0 énigme, 2 pièges, 2 trésors ; la Reine est un `oxydeur` de FP 1/2 (alternative sans combat : le minerai de Vorn) ; indice du fil rouge : fûts de scories scellés au sceau de la Forge Crânienne. Audit en cours au moment de l'écriture.
+- **Grotte des Rouilles (lieu 3/5)** : auditée deux fois (Haiku) ; corrections après audit : l'échelle part du tablier du viaduc (`lr-viaduc-tablier`), les vieux drains vont vers la villa au nord-est, Haldor Pique devient **Ansel Pique** (homonyme dans le Val des Cendres), deux détails marqués « à valider » (baisse de la Fièvre de Fer d'un palier si la Reine est abattue ou détournée ; Élinor connaissait les drains). Verdict final : conforme ; reste à signaler dans le gelé : réciprocité des voisins (`lr-grotte-entree` côté Bastion, `lr-grotte-drains` côté villa), règle de baisse de la jauge (pitch §4), Reine des Rouilles FP 1/2 dans l'atlas SR 1.1.

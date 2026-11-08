@@ -13,6 +13,7 @@
 | :--- | :--- |
 | [`BIBLE.md`](./BIBLE.md) | **La Grande Bible du Monde** : cosmologie, Nuit des Sept Lances, cycle de l'Ichor divin, intrigue globale (*Le Réveil des Carcasses*), 4 factions mondiales, 4 PNJ globaux, détail des 4 districts de la capitale et des 64 sous-régions réparties dans les 8 provinces (avec lieux, conflits et monstres SRD). |
 | [`monde.json`](./monde.json) | Manifeste racine du monde (nom, accroche, niveaux 1 à 20, direction artistique, palette de couleurs, mots-clés et interdits). |
+| [`FIL-ROUGE.md`](./FIL-ROUGE.md) | **Le fil rouge de la campagne** (proposition à valider) : trois actes, un chapitre par région, ce que le groupe apprend du plan du Concile à chaque étape, trois obligations pour chaque module de lieu. |
 | [`atlas-visuel/`](./atlas-visuel) | Dossier des 9 fichiers de description détaillée de la capitale et des 8 régions provinciales avec leurs sous-régions, routes et POIs typés. |
 | [`PITCH-LAME-ROUSSE.md`](./PITCH-LAME-ROUSSE.md) | Pitch du module d'introduction (niveau 1). |
 | [`cartes/`](./cartes) | **Dossier officiel des 10 cartes harmonisées en Style 1 (Parchemin & Encre D&D / Mike Schley)** :<br>• `carte-monde-ombresang` (Carte Maîtresse Continentale corrigée avec fleuve, port et Crâne d'Ivoire)<br>• `carte-capitale-sepulcre-d-or` (Plan urbain détaillé de Sépulcre-d'Or et ses 4 districts)<br>• `carte-region-01` à `08` (Les 8 cartes régionales haute définition). |

@@ -1,5 +1,5 @@
 // Une aventure dans le client : le moteur (monde chargé + modules) et la partie en cours, sauvegardée telle quelle.
-import { bilanPersonnage, creerMoteur, MODULES_STANDARD, personnageComplet, personnageDepuisFiche, type Personnage, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain } from '@crpg/regles';
+import { bilanPersonnage, creerMoteur, MODULES_STANDARD, personnageComplet, personnageDepuisFiche, type Personnage, type DonneesMonde, type Donnees, type Groupe, type Moteur, type Partie, type Rencontre, type Terrain, sauvegarderPartie } from '@crpg/regles';
 import { herosDuGroupe } from '../groupe/stockage';
 
 export interface Aventure {
@@ -85,12 +85,12 @@ export function rencontreDeMonde(dm: DonneesMonde, id: string): Rencontre {
 
 const CLE_SAUVEGARDE = 'table-du-conteur:partie';
 
-export function sauverPartie(p: Partie): void {
-  try {
-    localStorage.setItem(CLE_SAUVEGARDE, JSON.stringify(p));
-  } catch {
-    // Stockage indisponible (navigation privée…) : la partie continue sans sauvegarde.
-  }
+/**
+ * Écrit la partie (journal borné, réduit encore si le stockage est plein). Renvoie `false` si rien n'a pu être écrit
+ * (navigation privée, stockage plein) : la partie continue alors sans sauvegarde.
+ */
+export function sauverPartie(p: Partie): boolean {
+  return sauvegarderPartie(p, (json) => localStorage.setItem(CLE_SAUVEGARDE, json));
 }
 
 /** Monde et lieu de la partie sauvegardée, s'il y en a une. */

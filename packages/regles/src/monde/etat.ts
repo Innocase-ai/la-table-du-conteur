@@ -46,6 +46,19 @@ export interface EtatMonde {
   narrations: string[];
 }
 
+/**
+ * Complète l'état d'une partie existante avec les entités que le monde a gagnées depuis (un pack de région ajouté après coup) :
+ * jauges, réputations de factions et attitudes de PNJ inconnues reçoivent leur valeur de départ ; rien de ce que la partie connaît
+ * déjà n'est touché. Renvoie le nombre d'entrées ajoutées.
+ */
+export function completerEtat(e: EtatMonde, dm: DonneesMonde): number {
+  let ajoutees = 0;
+  for (const j of dm.jauges.values()) if (!(j.id in e.jauges)) { e.jauges[j.id] = j.initial; ajoutees++; }
+  for (const f of dm.factions.values()) if (!(f.id in e.reputations)) { e.reputations[f.id] = f.reputation; ajoutees++; }
+  for (const p of dm.pnj.values()) if (!(p.id in e.attitudes)) { e.attitudes[p.id] = p.attitude; ajoutees++; }
+  return ajoutees;
+}
+
 export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.min): EtatMonde {
   return {
     monde: dm.monde.id,
