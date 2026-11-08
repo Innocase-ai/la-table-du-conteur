@@ -1377,3 +1377,45 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 ## 08/11/2026 — Ombresang : V6 du Bastion validé (lieu 2/5)
 
 - Données du Bastion **validées et gelées** (`z2-bastion.json`, suivi : `lieux/SR-1.1-contenu-V6.md`). La caisse du péage de la villa passe à 55 po avec l'accord de l'utilisateur.
+
+## 08/11/2026 — Sorts jouables : inventaire et retouches
+
+- Inventaire (lecture du code) : les 25 sorts jouables en combat ont tous une icône, une animation et un son. Retouches : aura verte « renforcé » pour Aide (modificateur sans effet sur les jets, type `repere`) ; Restauration partielle avait un cercle doré et aucun son, elle prend maintenant la couleur et le son du soin. Non fait : les trois paires de sons identiques (il faudrait de nouveaux fichiers audio). Le gros écart reste ailleurs : le moteur ne joue que 25 sorts sur 339.
+
+## 08/11/2026 — Ombresang : V6 de la Grotte validé (lieu 3/5), piège de passage au moteur
+
+- Données de la Grotte **validées et gelées** (`z3-grotte.json`). Gorm Meule annonce désormais la disparition d'Ansel.
+- Moteur : nouveau champ `passage` des pièges (`schemas.ts`, `exploration.ts`, test dans `exploration.test.ts`, skill `creer-pieges-tresors`) : le piège part quand le groupe quitte le lieu sans l'avoir trouvé. Tests d'exploration verts ; 7 tests restent rouges tant que `monde.json` d'Ombresang n'a pas de `chapitres`.
+
+## 08/11/2026 — Sons : trois doublons remplacés (ElevenLabs)
+
+- `lancer`, `rate-arme` et `renforcement` remplacés par trois sons générés (Sound Effects v2, 1 s, environ 13 crédits en tout, un essai refait pour le coup dans le vide). Les anciens fichiers sont gardés hors du projet. Licence commerciale de l'offre ElevenLabs encore à vérifier (CREDITS.md).
+
+## 08/11/2026 — Combat : 11 sorts de dégâts jusqu'au niveau 3 jouables (36 en tout)
+
+- Ajoutés : Boule de feu, Éclair, Fracassement, Épine mentale, Poussière d'étoile, Rayon empoisonné, Moquerie cruelle, Murmures dissonants, Décharge occulte, Couteau de glace, Flèche acide. Nouveautés moteur : état qui dure « jusqu'à la fin de votre prochain tour » (`passerFin`), dégâts différés à la fin du tour de la cible (modificateur `degats_differes`), rayons multiples d'un sort mineur selon le niveau. Test : `sorts-degats-n3.test.ts` (12) ; suite complète : 7 échecs connus d'Ombresang seulement.
+- Pas faits (10 sur 21), parce qu'ils demandent des fonctions que le moteur n'a pas encore : zone ou objet qui reste sur le plateau (Sphère de feu, Rayon de lune, Appel de la foudre, Mur de vent, Invocation d'animaux, Métal brûlant), attaque répétée d'un tour à l'autre (Lame de feu, Caresse du vampire), réaction déclenchée par des dégâts (Représailles infernales), supplément après une attaque (Châtiment de révélation).
+
+## 08/11/2026 — Ombresang : V6 du Temple validé (lieu 4/5)
+
+- Données du Temple **validées et gelées** (`z4-temple.json`, suivi : `lieux/SR-1.1-contenu-V6.md`). La lame solaire ternie est une épée longue +1.
+
+## 08/11/2026 — Ombresang : V6 de la Forêt validé, contenu de la vallée terminé
+
+- Données de la Forêt **validées et gelées** (`z5-foret.json`). Les cinq lieux de la SR 1.1 ont leur contenu en données (suivi : `lieux/SR-1.1-contenu-V6.md`).
+- Reste pour rendre Lame-Rousse jouable : les lieux en JSON et `chapitres` de `monde.json`, le V7 (quête principale, jauge, dilemmes, fins, environ 500 PX), le V8.
+
+## 08/11/2026 — Ombresang : Lame-Rousse branché (lieux JSON, V7), à valider
+
+- 36 lieux en JSON (30 convertis par script depuis les fiches gelées, 6 parents écrits), `monde.json` (chapitre du prologue, départ `lr-place`), registre §7 de la Bible.
+- V7 écrit : quête principale à quatre issues (A, B, C, rupture), 6 quêtes secondaires (500 PX au total), jauges Fièvre de Fer et Battement du Cœur, 7 événements, 3 rencontres (choix de Vorn, herse, démasquer la Baillie).
+- Contrôle d'énigme : `auLieuDe` sort d'une rencontre d'arrivée du lieu de départ (`verification/enigmes.ts`).
+- `pnpm monde valider ombresang` : 0 erreur ; `pnpm monde enigmes` : 0 erreur ; suite du moteur verte (1 451 tests) ; les quatre issues et la montée de la jauge simulées avec le moteur. Pas encore joué dans le jeu ; ni images, ni voix ; rien de validé par l'utilisateur sur ce bloc.
+
+## 08/11/2026 — Ombresang : V7 de Lame-Rousse validé
+
+- Le bloc lieux JSON et intrigue est **validé et gelé** avec ses quatre choix (Fièvre de Fer +1 par nuit, parlementer avec l'Ichor, ajouts au contenu gelé, fin C sans la pièce du Temple). Reste : essai dans le jeu, images, voix, contrats de l'auberge, publication (V8).
+
+## 08/11/2026 — Combat : 6 sorts qui durent jouables (42 en tout)
+
+- Sphère de feu, Rayon de lune, Appel de la foudre, Invocation d'animaux, Lame de feu, Caresse du vampire. Moteur : zones persistantes déclenchées en fin de tour ou à l'entrée, cartes de suivi (déplacer, frapper), portée mesurée depuis l'origine de la zone, affichage des zones sur le plateau. Test : `sorts-durables.test.ts` (10). Restent 4 sorts : Mur de vent, Métal brûlant, Représailles infernales, Châtiment de révélation (voir `docs/COMBAT.md`).
