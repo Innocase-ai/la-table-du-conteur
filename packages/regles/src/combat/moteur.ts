@@ -370,8 +370,9 @@ export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristiq
   if ((carac === 'for' || carac === 'dex') && c.etats.some((e) => ['paralyse', 'inconscient', 'etourdi'].includes(e.etat))) return false;
   const avantage =
     carac === 'dex' && (c.tour.esquive || (aTrait(c, 'sens-du-danger') && !aEtat(c, 'neutralise')));
+  const desavantage = !avantage && !!c.sansFormation && (carac === 'for' || carac === 'dex');
   const d1 = de(etat, 20);
-  const d = avantage ? Math.max(d1, de(etat, 20)) : d1;
+  const d = avantage ? Math.max(d1, de(etat, 20)) : desavantage ? Math.min(d1, de(etat, 20)) : d1;
   let total = d + c.sauvegardes[carac] + desModificateurs(etat, c, 'de_sauvegarde') + bonus;
   if (total < dd) total += inspirationRattrape(etat, c, dd - total);
   return total >= dd;
@@ -425,6 +426,7 @@ export function situationAttaque(
   }
   if (attaquant.modificateurs.some((m) => m.type === 'avantage_attaque' && (!m.contre || m.contre === cible.id))) avantage = true;
   if (attaquant.modificateurs.some((m) => m.type === 'desavantage_attaque')) desavantage = true;
+  if (attaquant.sansFormation) desavantage = true;
   if (cible.modificateurs.some((m) => m.type === 'avantage_contre')) avantage = true;
   return { avantage, desavantage };
 }

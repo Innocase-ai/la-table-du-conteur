@@ -108,6 +108,7 @@ export function nombreCibles(sort: Sort, niveauEmplacement: number): number {
 /** Vérifie et consomme les ressources ; renvoie le niveau d'emplacement utilisé (0 pour un sort mineur). */
 export function preparerIncantation(lanceur: Combattant, sort: Sort): number | string {
   if (!lanceur.sorts.includes(sort.id)) return `${lanceur.nom} ne connaît pas ${sort.nom}.`;
+  if (lanceur.sansFormation) return `${lanceur.nom} porte une armure ou un bouclier sans formation : impossible de lancer un sort.`;
   if (sort.niveau === 0) return 0;
   const niveau = emplacementDisponible(lanceur, sort.niveau);
   if (!niveau) return `Plus d'emplacement de niveau ${sort.niveau} ou plus.`;

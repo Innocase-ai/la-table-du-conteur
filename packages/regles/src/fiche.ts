@@ -103,6 +103,10 @@ export interface Fiche {
   competences: Record<Competence, { bonus: number; maitrise: NiveauMaitrise }>;
   formationArmures: CategorieArmure[];
   maitrisesArmes: string[];
+  /** Porte une armure ou un bouclier sans formation : désavantage (attaques, Force, Dextérité) et pas d'incantation (SRD 5.2.1). */
+  sansFormation?: boolean;
+  /** Mètres retirés à la vitesse faute de la Force minimale de l'armure portée (3 m ou 0). */
+  penaliteForce?: number;
   incantation?: {
     caracteristique: Caracteristique;
     ddSauvegarde: number;
@@ -546,6 +550,8 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       competences,
       formationArmures,
       maitrisesArmes,
+      penaliteForce: armure?.forceMin && valeurs.for < armure.forceMin ? 3 : 0,
+      sansFormation: (!!armure && !formationArmures.includes(armure.categorie)) || (bouclier && !formationArmures.includes('bouclier')),
       incantation,
       colonnes: classe.progression[niveau - 1]!.colonnes,
       dons: idsDons,

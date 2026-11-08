@@ -70,6 +70,12 @@ export function appliquerEquipement(ctx: ContexteJeu, p: Personnage): void {
   const avant = p.fiche.equipement;
   p.fiche.equipement = { autres: avant?.autres ?? [], po: avant?.po ?? 0, armure: e.armure ? base(e.armure) : undefined, bouclier: !!e.bouclier, armes };
   p.fiche.ca = caAvecEquipement(ctx, p, p.equipe);
+  const armureSrd = e.armure ? ctx.srd?.armures.get(base(e.armure)) : undefined;
+  const formation = p.fiche.formationArmures;
+  const penalite = armureSrd?.forceMin && p.fiche.caracteristiques.for.valeur < armureSrd.forceMin ? 3 : 0;
+  p.fiche.vitesse += (p.fiche.penaliteForce ?? 0) - penalite;
+  p.fiche.penaliteForce = penalite;
+  p.fiche.sansFormation = (!!armureSrd && !formation.includes(armureSrd.categorie)) || (!!e.bouclier && !formation.includes('bouclier'));
 }
 
 /** Ce que pèse ce qu'un héros porte. */

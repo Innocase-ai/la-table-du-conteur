@@ -137,6 +137,8 @@ export interface Combattant {
   tour: TourCourant;
   elan?: { pioche: string[]; main: string[]; defausse: string[] };
   px: number;
+  /** Armure ou bouclier porté sans formation : désavantage aux attaques et aux jets de Force et de Dextérité, pas d'incantation. */
+  sansFormation?: boolean;
 }
 
 export interface Evenement {

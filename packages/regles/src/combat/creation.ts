@@ -45,11 +45,26 @@ function vierge(): Combattant['tour'] {
   };
 }
 
+/** Maîtrise d'une arme (SRD 5.2.1) : par catégorie, par id, ou par propriété (« armes de guerre dotées de la propriété Finesse ou Légère »). */
+export function maitriseArme(fiche: Pick<Fiche, 'maitrisesArmes'>, arme: Arme): boolean {
+  const norm = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const proprietes = arme.proprietes.map((p) => norm(p.replace(/\s*\(.*\)$/, '')));
+  return fiche.maitrisesArmes.some((m) => {
+    const t = norm(m);
+    if (t === arme.id) return true;
+    const categorie = arme.categorie === 'courante' ? /^courante/ : /^(guerre|armes? de guerre)/;
+    if (!categorie.test(t)) return false;
+    const avec = t.match(/propriete\s+(.+)$/);
+    return !avec || avec[1]!.split(/\s+ou\s+/).some((x) => proprietes.includes(x.trim()));
+  });
+}
+
 function attaquesArme(fiche: Fiche, arme: Arme, botte: boolean): AttaqueArme[] {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.caracteristiques[c].modificateur])) as Record<Caracteristique, number>;
   const finesse = arme.proprietes.includes('Finesse');
   const archerie = fiche.dons.includes('archerie') ? 2 : 0;
-  const pb = fiche.bonusMaitrise;
+  // Sans maîtrise de l'arme, pas de bonus de maîtrise à l'attaque (SRD 5.2.1).
+  const pb = maitriseArme(fiche, arme) ? fiche.bonusMaitrise : 0;
   const b = botte ? BOTTES[arme.botte] : undefined;
   const res: AttaqueArme[] = [];
   if (arme.portee === 'distance') {
@@ -227,6 +242,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
     tour: vierge(),
     elan: { pioche: [...(lanceur ? DECK_ELAN_LANCEUR : DECK_ELAN_MARTIAL)], main: [], defausse: [] },
     px: 0,
+    sansFormation: fiche.sansFormation,
   };
 }
 

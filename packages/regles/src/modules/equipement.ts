@@ -70,8 +70,8 @@ function mises(ctx: ContexteJeu, h: Personnage, objet: string): string[] {
     if (a && !h.fiche.formationArmures.includes(a.categorie))
       res.push(
         info.genre === 'bouclier'
-          ? `${h.nom} n'a pas la formation au bouclier : il n'apporte pas de bonus de CA.`
-          : `${h.nom} n'a pas la formation à cette armure : désavantage et pas d'incantation.`,
+          ? `${h.nom} n'a pas la formation au bouclier : pas de bonus de CA, désavantage aux attaques et aux jets de Force et de Dextérité, aucun sort possible.`
+          : `${h.nom} n'a pas la formation à cette armure : désavantage aux attaques et aux jets de Force et de Dextérité, et il ne pourra lancer aucun sort.`,
       );
     if (a?.forceMin && h.fiche.caracteristiques.for.valeur < a.forceMin)
       res.push(`Force ${a.forceMin} requise pour cette armure : ${h.nom} serait ralenti de 3 m.`);
