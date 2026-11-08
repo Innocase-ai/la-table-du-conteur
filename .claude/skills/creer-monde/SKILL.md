@@ -30,6 +30,14 @@ Règles :
 - **Les dépenses** (images, voix, API) gardent leur propre accord, coût annoncé d'abord.
 - Les présentations sont courtes, concrètes, en tableau quand c'est possible ; les choix que Claude recommande sont dits comme tels, avec la raison.
 - **Audit avant chaque page (obligatoire, décision du 08/11/2026)** : avant de présenter à l'utilisateur un pitch, une fiche de lieu ou du contenu (V1 à V8), Claude lance le sous-agent `auditeur-coherence-histoire` (`.claude/agents/auditeur-coherence-histoire.md`, modèle Haiku, lecture seule) sur ce qu'il a écrit, **corrige** ce qui est signalé dans ce qui n'est pas encore validé, **signale** à l'utilisateur tout écart avec ce qui est gelé (jamais de correction silencieuse), et ne présente la page qu'avec le verdict de l'audit. Après chaque correction, l'audit est relancé.
+- **Sous-régions d'Ombresang (décision du 08/11/2026)** : l'arc unique sur toute une sous-région (un secret, une jauge, des fins, cinq lieux comme étapes) ne vaut **que pour Lame-Rousse** (SR 1.1, prologue et hub). **Pour toutes les autres** : un pitch léger et un fil conducteur de sous-région, sans secret, jauge ni fins propres à la sous-région ; **chacun des 5 lieux a sa propre mini-histoire autonome** (un début, un dilemme, une fin, 20 à 40 minutes), jouable dans n'importe quel ordre, avec un lien vers le fil rouge (`FIL-ROUGE.md`) et une sortie.
+- **Six règles de gameplay (décision du 08/11/2026, recherche dans `docs/GAMEPLAY-REFERENCES.md`)**, pour tout nouveau lieu ; ce qui est déjà gelé ne change qu'avec l'accord de l'utilisateur :
+  1. **Accroches par rencontre** : chaque lieu confie sa mini-histoire par un PNJ ou un événement visible, jamais en obligeant à tout fouiller.
+  2. **Un lieu-vitrine mémorable par sous-région** (un moment fort), les autres plus modestes.
+  3. **Deux voies différentes** pour toute rencontre sans combat (deux compétences, un objet, une parole). Le validateur avertit d'une « voie unique ».
+  4. **Cas limites « n+1 » par lieu**, une ligne par cas : que se passe-t-il si le PNJ clé meurt, si l'objet est perdu, si le groupe tue la mauvaise personne ?
+  5. **Lame-Rousse uniquement** : un test à échec amusant tôt, avant la première vraie punition, pour apprendre au joueur que rater est sans danger.
+  6. **Conséquences visibles vite** : chaque dilemme montre un premier effet dans le lieu ou le suivant ; l'écho tardif vient ensuite.
 
 ## Les skills de la famille (à appeler au bon moment)
 

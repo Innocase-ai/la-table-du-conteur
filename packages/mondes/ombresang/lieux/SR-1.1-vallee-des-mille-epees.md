@@ -10,8 +10,8 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 | 1 | 🏘️ Village de Lame-Rousse | **validé le 08/11/2026 (V4, lieu 1/5), gelé** |
 | 2 | 🏰 Bastion du Pont-Viaduc | **validé le 08/11/2026 (V4, lieu 2/5), gelé** |
 | 3 | 🕳️ Grotte des Rouilles | **validé le 08/11/2026 (V4, lieu 3/5), gelé** |
-| 4 | ⛩️ Temple du Glaive Brisé | **proposition (V4, lieu 4/5)** |
-| 5 | 🗿 Forêt d'Acier | à venir |
+| 4 | ⛩️ Temple du Glaive Brisé | **validé le 08/11/2026 (V4, lieu 4/5), gelé** |
+| 5 | 🗿 Forêt d'Acier | **validé le 08/11/2026 (V4, lieu 5/5), gelé** |
 
 ---
 
@@ -34,12 +34,12 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 
 | id | nom | type | fonction dramatique | position | taille | voisins directs |
 | --- | --- | --- | --- | --- | --- | --- |
-| lr-place | la place des Ferrailleurs | place | **ouverture** (combat), Joran au pilori, annonces | (50, 50) | grande | lr-auberge, lr-apothicairerie, lr-forges, lr-villa, lr-forge-vorn, lr-bastion-cour (sud) |
+| lr-place | la place des Ferrailleurs | place | **ouverture** (combat), Joran au pilori, annonces | (50, 50) | grande | lr-auberge, lr-apothicairerie, lr-forges, lr-villa, lr-forge-vorn, lr-bastion-cour (sud), lr-temple-parvis (par le sentier des Gardiens, à l'ouest) |
 | lr-auberge | l'auberge *La Lame Émoussée* | auberge | repos, rumeurs, tableau des contrats, refuge (Fièvre de Fer 3) | (33, 62) | moyenne | lr-place |
 | lr-apothicairerie | l'apothicairerie *Les Mains Tendues* | boutique-soins | soins, piste des oxydeurs, quête de Sœur Martha | (64, 64) | petite | lr-place |
 | lr-forges | la rangée des forges à aubes | atelier | **commerce** (armes, armures), réparation, rumeurs des lames | (80, 46) | grande | lr-place |
 | lr-villa | la villa de la Baillie (colline) | maison | **infiltration** : piège, trésor, le registre de scories, les drains | (72, 20) | moyenne | lr-place, lr-grotte-drains (par les vieux drains) |
-| lr-forge-vorn | la forge de Vorn | atelier | **dénouement** (choix moral), fragment d'enclume | (16, 20) | moyenne | lr-place |
+| lr-forge-vorn | la forge de Vorn | atelier | **dénouement** (choix moral), fragment d'enclume | (16, 20) | moyenne | lr-place, lr-foret-lisiere (par la piste des ferrailleurs) |
 
 ### Budget de contenu (proposé, à décider avec l'utilisateur)
 - **Combats : 2** · **Rencontres sociales : 5** · **PNJ : 5** · **Énigmes : 0** · **Pièges : 1** · **Trésors : 2**
@@ -123,7 +123,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 
 ### Secret du MJ (jamais dans `visuel`, `resume`, `accroche`)
 - Élinor sait que les piles s'effondrent et refuse de payer les réparations : elle veut qu'on lui rachète ses stocks de minerai à prix d'or, puis fuir avec la grosse caisse du péage, qu'elle garde dans sa villa. Elle a enfermé **Aldric Ponts** et ses ingénieurs sous prétexte de « quarantaine » pour qu'ils ne réparent pas le pont ni n'envoient leur rapport au Sénat.
-- La herse est coincée parce que **Joran** a tenté de l'abaisser pour sauver une caravane de pèlerins poursuivie par des lames : les engrenages ont été fondus par l'acide d'un oxydeur. Aldric sait qu'un treuil de rechange est conservé au **Temple du Glaive Brisé** ; il en connaît la garde.
+- La herse est coincée parce que **Joran** a tenté de l'abaisser pour sauver une caravane de pèlerins poursuivie par des lames : les engrenages ont été fondus par l'acide d'un oxydeur. Aldric sait qu'un treuil de rechange est conservé au **Temple du Glaive Brisé** ; il en connaît la garde et le **serment des Gardiens** qui la fait céder.
 - Les oxydeurs rongent le viaduc parce qu'ils fuient les scories toxiques (voir le registre de la villa) ; la **Reine des Rouilles** a son nid sous la pile nord (Grotte, lieu 3), accessible par l'échelle de fer.
 
 ### Composition de la carte (`carte-lr-bastion`, pour `images.json`)
@@ -192,7 +192,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 
 ## Niveau 1 : lr-temple (Temple du Glaive Brisé, sanctuaire martial dans la garde d'une épée géante)
 
-> **Statut :** proposition, en attente de validation (V4, lieu 4/5).
+> **Validé par l'utilisateur le 08/11/2026** (V4, lieu 4/5). Gelé : toute modification passe par lui. Passé à l'audit de cohérence (conforme après corrections).
 
 ### Héritage et nuances propres à ce lieu
 - Héritage : charte de la région 1. Nuances : acier gris-bleu poli par le vent, statues de chevaliers brisées, bronze verdi des portes, inscriptions de serment gravées dans la lame, mousse rouille, silence que seul trouble le chant du vent dans le fil de l'épée.
@@ -210,7 +210,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 | id | nom | type | fonction dramatique | position | taille | voisins directs |
 | --- | --- | --- | --- | --- | --- | --- |
 | lr-temple-parvis | le parvis des chevaliers brisés | cour | entrée, **piège** (dalles à lames), indice du serment | (80, 35) | moyenne | lr-place (par le sentier des Gardiens), lr-temple-nef |
-| lr-temple-chapelle | la chapelle des serments | chapelle | **énigme** (le serment), **rencontre sociale** (la voix du Maître d'Armes) | (20, 35) | moyenne | lr-temple-nef |
+| lr-temple-chapelle | la chapelle des serments | chapelle | **énigme** (le serment), **rencontre sociale** (la voix du Maître d'Armes) | (20, 35) | moyenne | lr-temple-nef, lr-foret-campement (par le sentier de l'ouest) |
 | lr-temple-nef | la nef de la garde | nef | carrefour, statues, accès à tout le sanctuaire | (50, 48) | grande | lr-temple-parvis, lr-temple-chapelle, lr-temple-cellules, lr-temple-arsenal |
 | lr-temple-cellules | les cellules des gardiens | cellules | **trésor**, journal du dernier gardien (le battement de la lame) | (50, 15) | petite | lr-temple-nef |
 | lr-temple-arsenal | l'arsenal du pont | crypte | **combat** (le Maître d'Armes), le **treuil de rechange**, trésor | (50, 82) | moyenne | lr-temple-nef |
@@ -246,3 +246,61 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 ### Composition de la carte (`carte-lr-temple`, pour `images.json`)
 
 > Une épée géante d'acier gris-bleu couchée sur un replat de roche rouge vue de dessus, pointe vers le bas ; sa garde en croix forme un sanctuaire de pierre et de bronze verdi avec un parvis dallé orné de statues brisées à l'est, côté sentier, et une chapelle à l'ouest ; un pommeau rond au nord, des cellules sous lui ; dans la gorge de la lame, une crypte ; au nord et à l'ouest, des épées géantes plantées de biais ; un sentier qui monte de l'est.
+
+---
+
+## Niveau 1 : lr-foret (Forêt d'Acier, champ des épées géantes)
+
+> **Validé par l'utilisateur le 08/11/2026** (V4, lieu 5/5). Gelé : toute modification passe par lui. Passé à l'audit de cohérence (conforme après corrections).
+
+### Héritage et nuances propres à ce lieu
+- Héritage : charte de la région 1. Nuances : acier gris-bleu des lames géantes, rouille rouge sur le sol, fumerolles d'Ichor tiède par endroits, vent qui siffle dans des fils d'acier de cinquante à deux cent cinquante mètres, étincelles d'éclairs magnétiques, ombres rayées par les épées.
+
+### Plan vu de dessus
+- **Forme générale** : un vaste champ de bataille pétrifié au nord et à l'ouest du village, où plus de cent épées, hallebardes et lances géantes sont plantées de biais dans le roc ; une allée centrale que le vent a dégagée, des clairières entre les lames.
+- **Limites** : le village et sa forge de Vorn au sud-est ; le replat du Temple du Glaive Brisé au sud, entre le champ et le village (la Forêt borde le Temple à l'ouest et au nord) ; au nord, la roche nue des Crêtes ; le torrent d'Oxyde loin à l'est.
+- **Orientation** : nord en haut ; la piste des ferrailleurs entre par le sud-est (depuis la forge de Vorn) ; le Menhir Brisé et son cratère au nord-est du champ ; le campement abandonné au sud-ouest, à l'ouest du replat du Temple.
+- **Voies d'accès** : la piste des ferrailleurs (depuis la forge de Vorn et le village), le sentier de l'ouest (qui part du Temple, côté chapelle, vers le campement).
+- **Éléments naturels** : roche rouge, lames géantes inclinées, poches d'Ichor tiède, rouille.
+- **Quartiers** : la lisière (sud-est), l'allée des épées géantes (centre), le campement des ferrailleurs (sud-ouest), le Menhir Brisé et son cratère (nord-est), l'antre des loups sous une garde géante (est).
+
+### Points à visiter
+
+| id | nom | type | fonction dramatique | position | taille | voisins directs |
+| --- | --- | --- | --- | --- | --- | --- |
+| lr-foret-lisiere | la lisière et la piste des ferrailleurs | piste | entrée, **combat** (les lames errantes), repères | (72, 90) | moyenne | lr-forge-vorn (par la piste), lr-foret-allee |
+| lr-foret-allee | l'allée des épées géantes | allée | exploration, **codex** (inscriptions de la dernière bataille), site de contrat | (50, 62) | grande | lr-foret-lisiere, lr-foret-campement, lr-foret-menhir, lr-foret-antre |
+| lr-foret-campement | le campement abandonné des ferrailleurs | camp | indices, **trésor**, site de contrat | (22, 78) | moyenne | lr-foret-allee, lr-temple-chapelle (par le sentier de l'ouest) |
+| lr-foret-menhir | le Menhir Brisé et le cratère de la relique | cratère | **le secret du module** : l'origine du fragment d'enclume, **piège** (le sol d'Ichor), objet de quête | (60, 25) | moyenne | lr-foret-allee |
+| lr-foret-antre | l'antre des loups sous une garde géante | antre | **combat** (les loups), **trésor** | (88, 42) | petite | lr-foret-allee |
+
+### Budget de contenu (proposé, à décider avec l'utilisateur)
+- **Combats : 2** · **Rencontres sociales : 0** · **PNJ : 0** · **Énigmes : 0** · **Pièges : 1** · **Trésors : 2**
+- **Répartition :**
+  - Combats : la lisière (**lames errantes** : **3 `epee-volante` pour 4 héros, 5 pour 6 héros**, d'autant plus nombreuses que la Fièvre de Fer monte) ; l'antre (**1 `loup-sanguinaire` pour 4 héros, 2 pour 6 héros**). Difficulté d'après le budget de PX du moteur (niveau 1) : lisière **sous le seuil faible** (150 PX pour 4 héros, 250 pour 6 ; seuils 200 et 300) : une patrouille, qui grossit avec la Fièvre de Fer ; antre faible pour 4 héros (200 PX), entre faible et modérée pour 6 (400 PX). **Alternative** pour les loups : leur jeter de la viande ou les détourner (Dressage, Discrétion).
+  - Contrats : les **2 contrats** affichés à l'auberge (hors budget) ont pour sites l'allée des épées géantes et le campement abandonné ; ils sont écrits plus tard avec `creer-contrats`.
+  - Piège : le sol du cratère, saturé d'Ichor tiède (brûlure et vertige) autour du Menhir Brisé.
+  - Trésors : la bourse d'un ferrailleur tué par les loups (antre, 25 po) ; la cache de lames de qualité dans le campement (60 po, armes du catalogue).
+  - Objet de quête : l'**éclat de la pierre sacrée** (cratère), preuve que Vorn a profané le Menhir ; il est distinct du fragment d'enclume, qui reste à la forge de Vorn.
+  - Codex : les **inscriptions de la dernière bataille** de Vael-Khor, gravées sur les épées géantes de l'allée.
+
+### Histoire et état actuel
+- Le champ où le Dieu de la Guerre est tombé et où ses armes se sont fichées dans le roc. Les ferrailleurs y prélevaient des lames depuis trois siècles. Depuis hier à l'aube, les lames s'y arrachent d'elles-mêmes ; les loups, chassés de leurs terriers, rôdent aux abords.
+
+### Jour, nuit, mauvais temps
+- **Jour** : les lames géantes luisent et sifflent, des lames errantes tournent comme des rapaces.
+- **Nuit** : les lames errantes sont plus nombreuses, le cratère rougeoie par endroits.
+- **Mauvais temps** : des éclairs magnétiques frappent les épées géantes, les lames errantes se déchaînent.
+
+### Ce que le joueur voit en arrivant
+- Une forêt d'épées, de hallebardes et de lances immenses plantées de biais, une allée de roche rouge où le vent siffle, des lames plus petites qui flottent et pivotent au loin comme des oiseaux de proie.
+
+### Secret du MJ (jamais dans `visuel`, `resume`, `accroche`)
+- Le **Menhir Brisé** est la **pierre sacrée** des Gardiens du Pont : un bloc de pommeau tombé d'une autre épée du dieu que celle du Temple. **Vorn** l'a brisée pour en tirer le fragment d'enclume suintant d'Ichor divin ; le cratère est encore tiède et **bat**, plus fort la nuit.
+- Les traces de pas et de traîneau dans la rouille mènent du cratère à **la forge de Vorn** : la preuve que le foyer maudit vient d'ici.
+- Les **loups sanguinaires** ont fui leurs terriers, chassés par les lames ; la femelle protège une portée.
+- Les ferrailleurs ont déserté le campement en le laissant plein : ils ont vu les lames s'arracher.
+
+### Composition de la carte (`carte-lr-foret`, pour `images.json`)
+
+> Un champ de bataille pétrifié vu de dessus : plus de cent épées, hallebardes et lances géantes d'acier gris-bleu plantées de biais dans une roche rouge, laissant une allée centrale ; un cratère tiède à fumerolles autour d'un bloc de pierre brisé au nord-est ; un campement de tentes et de charrettes abandonné au sud-ouest ; une grande garde d'épée couchée formant un abri sombre à l'est ; une piste qui entre par le sud-est.

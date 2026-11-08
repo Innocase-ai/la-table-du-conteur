@@ -1316,3 +1316,39 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Question : que fait le moteur quand le lieu suivant n'existe pas (en développement ou pack non acheté) ? Avant : la sortie était **cachée sans message** et le validateur la refusait en erreur.
 - Ajout : `Lien.absent { nom, motif: bientot | pack, texte }` (`monde/schemas.ts`). La sortie reste visible et grisée (« Bientôt disponible. » / « Fait partie d'un autre pack. ») avec le texte de l'auteur ; `aller` refuse avec ce texte ; le validateur, le contrôle d'accessibilité et les graphes acceptent ou ignorent un lieu inconnu portant `absent` ; sans `absent`, un lieu inconnu reste une erreur. Documenté dans `docs/MONDES.md`. Test `lien-absent.test.ts` (5). Typecheck vert (regles, outils, atelier, jeu) ; suite : 1694 réussis, 7 en échec, tous sur `ombresang` comme avant.
 - À faire côté histoires : les trois sorties de Lame-Rousse (Chaussée des Scories, Voie Royale de Fer, Défilé des Forges) utiliseront `absent`.
+
+## 08/11/2026 — Ombresang : Temple validé (V4, lieu 4/5), Forêt d'Acier proposée (lieu 5/5)
+
+- **Temple du Glaive Brisé validé et gelé.** Trois ajouts validés dans le gelé : `lr-temple-parvis` parmi les voisins de `lr-place` ; Aldric Ponts connaît le serment des Gardiens (Bastion) ; atlas SR 1.1 : le Maître d'Armes a 2 `epee-volante` (4 pour un groupe de 6).
+- **Forêt d'Acier proposée** : 5 points (lisière, allée des épées géantes, campement abandonné, Menhir Brisé et cratère, antre des loups) ; budget : 2 combats, 0 rencontre sociale, 0 PNJ, 0 énigme, 1 piège, 2 trésors ; sites des 2 contrats de l'auberge. Audit puis micro-vérification : conforme après corrections (Temple au sud du champ, `loup-sanguinaire` seul, classes de difficulté d'après `budget.ts`). Restent à valider dans le gelé : `lr-foret-lisiere` chez `lr-forge-vorn`, `lr-foret-campement` chez `lr-temple-chapelle`.
+
+## 08/11/2026 — Ombresang : les cinq lieux de la SR 1.1 validés (V4)
+
+- **Forêt d'Acier validée et gelée** ; deux voisins réciproques ajoutés dans le gelé (`lr-foret-lisiere` chez `lr-forge-vorn`, `lr-foret-campement` chez `lr-temple-chapelle`). Les cinq fiches de niveau 1 de la Vallée des Mille Épées sont gelées.
+
+## 08/11/2026 — Moteur : rythme de progression (plafond par chapitre, XP unique)
+
+- Plan d'XP validé (`docs/PROGRESSION-XP.md`) : niveau 3 après le prologue, niveau 20 seulement à la finale, courbe SRD.
+- `plafondDeNiveau` (`monde/etat.ts`) : le niveau est plafonné par le chapitre le plus avancé atteint ; l'XP en trop reste en réserve ; le module `progression` réagit aussi au déplacement. Une rencontre ne rapporte ses PX qu'une fois. Tests `rythme-xp.test.ts` (4). Typecheck vert ; suite : 7 échecs, tous sur `ombresang` comme avant.
+- Constats non traités : `px` fourni par le client ; outil `pnpm monde xp` à écrire ; pitch de Lame-Rousse à passer au niveau 3 avec l'accord de l'utilisateur.
+
+## 08/11/2026 — Recherche : ce qui fait un bon gameplay de CRPG
+
+- `docs/GAMEPLAY-REFERENCES.md` : synthèse de recherches web (sources secondaires, à lire comme des pistes) sur BG1, les choix et conséquences, l'échec (Disco Elysium), la réactivité (BG3), la fiction interactive et la progression ; ce que le projet a déjà ; six ajouts proposés (accroches par rencontre, lieu-vitrine par sous-région, règle de validateur « chemin critique », liste de cas limites n+1, échec amusant tôt, conséquences visibles vite). Rien n'est codé ni appliqué aux skills.
+
+## 08/11/2026 — Les six ajouts de gameplay retenus ; règle « chemin critique » dans le validateur
+
+- L'utilisateur retient les six ajouts de `docs/GAMEPLAY-REFERENCES.md`. Fait : avis du validateur « voie unique » (`monde/validation.ts`) pour une rencontre sans combat qui n'a qu'une issue ou dont toutes les issues reposent sur la même compétence ; test `chemin-critique.test.ts` (5) ; typecheck vert ; suite : 7 échecs, tous sur `ombresang` comme avant. Premier constat réel : `gro-r-sentier-pelerins-passants` (Val des Cendres), toutes issues en persuasion. Reste aux écritures de lieux (autre session) : accroches par rencontre, lieu-vitrine, cas limites n+1, échec amusant tôt à Lame-Rousse, conséquences visibles vite.
+
+## 08/11/2026 — Ombresang : V5 du village proposé (8 fiches détaillées)
+
+- `lieux/SR-1.1-niveau-2-village.md` : place, auberge, apothicairerie, forges à aubes, villa (avec bureau et cave en sous-lieux), forge de Vorn. Rédaction Haiku, relecture de Claude, auditeur Haiku et vérificateur Sonnet (deux passages) : verdict final sans défaut restant. En attente de validation.
+- Skill `creer-monde` : règle des sous-régions (arc unique réservé à Lame-Rousse ; ailleurs cinq mini-histoires autonomes) et six règles de gameplay, inscrites avec l'accord de l'utilisateur.
+
+## 08/11/2026 — Ombresang : V5 du village validé (lieu 1/5)
+
+- Les 8 fiches de `lieux/SR-1.1-niveau-2-village.md` sont **validées et gelées**. Ajouts validés : test à échec amusant sur la place (retenir la charrette) et cas limites du village. Pitch : la fin du module mène au **niveau 3** (900 PX, `docs/PROGRESSION-XP.md`), et quatre routes de sortie (Piste de Poussière ajoutée au §9).
+
+## 08/11/2026 — Ombresang : V5 du Bastion validé (lieu 2/5)
+
+- Les 6 fiches de `lieux/SR-1.1-niveau-2-bastion.md` sont **validées et gelées**, avec leurs cas limites. À retenir : à pied on passe sous la herse coincée, pas les convois ; Élinor propose une prime ; la clé de Brisk ouvre le cadenas et les grilles.

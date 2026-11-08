@@ -4,7 +4,7 @@
 **Statut :** **V1 validé par l'utilisateur le 08/11/2026** (gelé : toute modification passe par lui). §6 et §7 recalés sur l'atlas, §8 et §9 ajoutés (lien avec le fil rouge, sortie). Les secrets, fins, jauge et PNJ des §2 à §5 valent canon local du module (V2)  
 **Monde :** `ombresang` · **Zone :** Région 1 (*Crêtes de Fer-Titan*), Sous-région 1.1 (*La Vallée des Mille Épées*)  
 **Point de départ :** *Village de Lame-Rousse* (🏘️)  
-**Niveaux :** 1 (passage au niveau 2 à la fin du module)  
+**Niveaux :** 1 (mène au niveau 3 à la fin du module, soit 900 PX par héros : plan `docs/PROGRESSION-XP.md`)  
 **Durée visée :** 2 à 3 heures de jeu  
 **Inspirations :** *A Fistful of Dollars* (frontière sous tension), *Dark Souls* (le métal maudit qui s'éveille), *The Witcher* (dilemmes moraux ruraux sans gentils évidents).
 
@@ -146,8 +146,9 @@ Ce module est le **prologue** du fil rouge (voir [`FIL-ROUGE.md`](./FIL-ROUGE.md
 
 ## 9. Sortie
 
-Fin du module : niveau 1 → **niveau 2**. Trois routes s'ouvrent (ordre libre, comme dans le reste du jeu : le niveau dissuade, il n'interdit pas) :
+Fin du module : niveau 1 → **niveau 3**. Quatre routes s'ouvrent (ordre libre, comme dans le reste du jeu : le niveau dissuade, il n'interdit pas) :
 
 1. **Chaussée des Scories** (8 h) vers la Cuirasse Fendue, SR 1.4 : la suite naturelle du fil rouge (niveaux 2-3).
 2. **Voie Royale de Fer** (14 h) vers la capitale Sépulcre-d'Or, si le viaduc est rouvert.
 3. **Défilé des Forges** (10 h, par le Pont-Viaduc) vers le Gantelet d'Airain, SR 1.2 (niveaux 1-2).
+4. **Piste de Poussière** (9 h) vers les Landes de Limaille, SR 1.5 (niveaux 2-3).

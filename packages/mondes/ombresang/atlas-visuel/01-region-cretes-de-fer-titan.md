@@ -90,7 +90,7 @@ flowchart TD
   - 🕳️ **La Grotte des Rouilles** : Réseau de cavernes rouge-ocre sous le pilier nord du viaduc, nid de la Reine des `oxydeur`.
   - ⛩️ **Le Temple du Glaive Brisé** : Ancien sanctuaire martial bâti dans la garde cruciforme d'une épée géante couchée au sol.
   - 🗿 **La Forêt d'Acier** : Champ de bataille pétrifié où plus de cent épées, hallebardes et lances géantes (de 50 à 250 mètres de haut) sont plantées de biais dans le roc.
-- **Boss de Sous-Région** : **La Reine des Rouilles (`oxydeur`, FP 1/2)** & **Le Maître d'Armes Sans Corps (`armure-animee` FP 1 + 4 `epee-volante` FP 1/4)**.
+- **Boss de Sous-Région** : **La Reine des Rouilles (`oxydeur`, FP 1/2)** & **Le Maître d'Armes Sans Corps (`armure-animee` FP 1 + 2 `epee-volante` FP 1/4, 4 pour un groupe de 6)**.
 
 ---
 
