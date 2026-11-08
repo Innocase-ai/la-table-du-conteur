@@ -1179,3 +1179,48 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Sons** : aucun nouveau (déclic de serrure à la réussite, bruit du type de dégâts au déclenchement) : voir `docs/SONS.md`. **Aide en jeu** mise à jour (`aide/contenu.json`).
 - **Tests** (`desamorcage-regles.test.ts`, 13) : mécanisme de tous les pièges des quatre mondes (les huit sortes se rencontrent), durée entière 3 à 7, messages, bruitage, et le **vrai moteur** (80 graines : réussite, échec, déclenchement avec leurs champs, rien du déclenchement sinon ; sauvegarde de la victime ; piège non repéré refusé).
 - **Vérifié dans le jeu** (Port-Sillage, la dalle de la niche, partie sauvegardée adaptée puis restaurée) : réussite et déclenchement réels (texte, sauvegarde, dégâts, Échap) ; les huit mécanismes revus au banc d'essai. Le raté sans suite n'a été vu qu'au banc (les captures arrivaient après la fermeture).
+
+## 07/11/2026 — Combat bloqué : un monstre « fantôme » vivant empêchait la victoire
+
+- **Signalé** : combat contre le camp hobgobelin, le dernier adversaire était donné pour mort, mais le plateau l'affichait vivant et la victoire n'arrivait jamais.
+- **Cause** (`combat/prototype.ts`, `preparerRencontre`) : l'identifiant d'un monstre était `profil-n` avec `n` repartant de 1 à **chaque ligne** de la rencontre. Le camp hobgobelin liste `combattant-hobgobelin` deux fois (Ruvak ×1, puis ×3) : deux combattants **de même identifiant**. Le moteur retrouve un combattant par son identifiant (premier trouvé) : tous les coups, la mort et l'ordre d'initiative visaient le premier, le second restait vivant et intouchable, donc `verifierFin` ne trouvait jamais le camp des monstres vaincu. Même risque pour 7 rencontres des mondes : spectres de la Citadelle, patrouille de Krik, bande et ogres, évasion de la prison, zombis (×2), éclaireurs de Brisca.
+- **Corrigé** : la numérotation court sur toutes les lignes d'un même monstre (identifiants et noms « Combattant hobgobelin 1 » à « 4 » uniques) ; un monstre seul garde son nom sans numéro.
+- **Test** (`rencontre-ids.test.ts`) : identifiants uniques et noms qui se suivent avec un monstre sur deux lignes, rencontre jouée jusqu'au bout. Le test échouait avant la correction (10 identifiants pour 11 combattants).
+- **Partie en cours** : l'état d'un combat n'est pas sauvegardé ; recharger la page et reprendre l'aventure relance la rencontre, avec la correction.
+
+
+## 07/11/2026 — Monde 1 : L'Échiquier d'Ombresang (Bible, Atlas, Auditeur, et Charte Cartographique Style 1)
+
+- **Conception du Monde 1 (*L'Échiquier d'Ombresang*)** :
+  - Métropole centrale *Sépulcre-d'Or* bâtie sous la cage thoracique d'un dieu solaire déchu (4 quartiers).
+  - 8 régions provinciales majeures (chacune 8 sous-régions, soit 64 sous-régions au total, 68 zones de jeu).
+  - 340 points d'intérêt typés (🏘️, 🏰, 🕳️, ⛩️, 🗿) et 68 boss SRD 5.2.1 rigoureusement associés.
+  - Bible complète dans `docs/BIBLE-MONDE-1-OMBRESANG.md` et `packages/mondes/ombresang/BIBLE.md`.
+  - Atlas visuel exhaustif en 9 fichiers dans `packages/mondes/ombresang/atlas-visuel/`.
+- **Création du sous-agent et skill d'audit** :
+  - Sous-agent `auditeur-coherence-monde` (`.agents/agents/auditeur-coherence-monde/agent.md`).
+  - Skill `auditer-coherence-monde` (`.claude/skills/auditer-coherence-monde/SKILL.md`).
+  - Audit initial a révélé 94 anomalies (glissements mythologiques, slugs de monstres invalides, 5e POI manquants) ; toutes corrigées et certifiées : **100% CONFORME (0 anomalie)**.
+- **Point de départ officiel fixé** :
+  - **Région 1** : *Les Crêtes de Fer-Titan* -> **Sous-région 1.1** : *La Vallée des Mille Épées* -> **Village de Lame-Rousse** (Niveau 1, zone de tutoriel et d'ouverture avec viaduc effondré, épées animées et oxydeurs).
+- **Refonte graphique des cartes (Alignement sur le Style 1)** :
+  - Constat utilisateur : manque total de cohérence entre les 9 premières images (styles 3D, isométriques, concept art mélangés).
+  - Choix utilisateur : **Style 1 — Parchemin & Encre D&D (Mike Schley / Faerûn)**.
+  - Charte formelle rédigée : `docs/CHARTE-CARTOGRAPHIQUE-OMBRESANG.md` (vue 2D zénithale orthogonale 90°, parchemin vieilli chaud, tracé plume fine, hachures pour le relief, lavis d'aquarelle désaturé, symbolique D&D traditionnelle, exclusion stricte du CGI/satellite/3D/néon).
+  - Deux premières cartes générées en Style 1 pour validation visuelle :
+    1. `carte-monde-ombresang` (Macro continentale).
+    2. `carte-region-01-cretes-de-fer-titan` (Région 1 de départ).
+  - Galerie comparative mise à jour dans l'artefact `galerie_cartes_regionales.md`.
+- **Rappel pour demain** :
+  1. Valider le rendu des deux cartes Style 1 avec l'utilisateur.
+  2. Régénérer la Capitale (*Sépulcre-d'Or*) et les 7 régions restantes (Régions 2 à 8) avec la formule exacte du Style 1.
+  3. Développer le module narratif et les quêtes d'introduction au **Village de Lame-Rousse** (Niveau 1).
+
+## 08/11/2026 — Ombresang : cohérence du monde et nouvelle carte maîtresse
+
+- **Analyse du dossier** `packages/mondes/ombresang` : 64 sous-régions présentes et complètes dans la Bible et l'atlas (aucun champ manquant, noms concordants).
+- **Disposition qui fait foi : celle de la Bible** (décision de l'utilisateur) : Crêtes de Fer-Titan au Nord-Ouest, Aétheria au Nord-Est, Péché d'Or au Centre-Ouest, Mer de Vif-Argent au Sud-Ouest, Os-Blanc au Sud, Caldeira au Sud-Est, Sylve à l'Est, Cicatrice au Nord. Le réseau de routes entre régions (atlas + schéma de la Bible) suit déjà cette disposition. Le schéma du `README` de la racine du monde a été remis d'accord.
+- **Doublons retirés** : `pitch/` et `histoire/` (copies identiques du pitch de Lame-Rousse) et 20 images de `images/` identiques à `cartes/` (56 Mo → 33 Mo).
+- **Carte du monde régénérée** (`cartes/carte-monde-ombresang.png|jpg`, 1248×832) : FLUX 3 Image, ancienne carte comme référence de style, prompt enrichi avec les descriptions visuelles des régions de l'atlas (prompt dans `images.json`). 7 essais, **0,402 $** au total. L'ancienne carte est gardée dans `images/carte-monde-ombresang-ancienne-disposition.jpg`. Réserve : le quartier Est de la capitale y est écrit « Côtes Éternelles » (Bible : « Côtes Forgées »).
+- **Outil** : `outils/images/carte-monde.ts` (essais plafonnés en dollars, options `--ref`, `--prompt`, `--prefixe`) ; les essais vont dans `sorties/images/mondes/ombresang/essais-carte-monde/`.
+- **Constat à traiter** : les 8 cartes régionales (`cartes/carte-region-0N-*`) portent des noms de sous-régions inventés qui ne suivent pas l'atlas (région 1 : seule la Vallée des Mille Épées correspond). Les prompts exacts existent dans l'atlas (§5 de chaque région). Refaire les 8 cartes coûterait environ 0,4 à 0,5 $ ; non lancé. La carte de la capitale n'a pas été vérifiée.
