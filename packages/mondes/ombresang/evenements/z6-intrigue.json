@@ -1,0 +1,170 @@
+[
+  {
+    "id": "ev-lr-ouverture",
+    "declencheur": "entree-lieu",
+    "lieu": "lr-place",
+    "unique": true,
+    "narration": "Sur l'estrade, la Baillie Élinor Vane, en robe impériale, hurle qu'on garde son calme. Puis elle se retire vers le Bastion, sans attendre la réponse de personne.",
+    "effets": [
+      {
+        "quete": {
+          "id": "le-sang-sur-la-lame",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-lr-cratere-vu",
+    "declencheur": "entree-lieu",
+    "lieu": "lr-foret-menhir",
+    "unique": true,
+    "narration": "Au pied du menhir brisé, un cratère lisse et encore tiède s'ouvre dans la roche. L'odeur de métal chauffé ne vient pas de la pierre.",
+    "effets": [
+      {
+        "flag": "lr-cratere-vu"
+      }
+    ]
+  },
+  {
+    "id": "ev-lr-joran-transfere",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "jauge": {
+            "id": "fievre-de-fer",
+            "min": 2
+          }
+        },
+        {
+          "non": {
+            "flag": "lr-joran-libere"
+          }
+        },
+        {
+          "non": {
+            "flag": "lr-joran-livre"
+          }
+        },
+        {
+          "pnj": {
+            "id": "joran-deserteur",
+            "etat": "vivant"
+          }
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Au matin, on apprend que la Baillie a fait emmener Joran au Bastion, les poignets liés, sous les yeux du village.",
+    "effets": [
+      {
+        "deplacer": {
+          "pnj": "joran-deserteur",
+          "lieu": "lr-bastion-cellules"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-lr-reine-calmee",
+    "declencheur": "condition",
+    "condition": {
+      "ou": [
+        {
+          "flag": "lr-reine-abattue"
+        },
+        {
+          "flag": "lr-reine-detournee"
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Sous la pile nord, les oxydeurs cessent de ronger les soubassements. La nuée se disperse vers les drains, et le grincement des piles se tait un moment.",
+    "effets": [
+      {
+        "jauge": {
+          "id": "fievre-de-fer",
+          "delta": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-lr-futs-compris",
+    "declencheur": "condition",
+    "condition": {
+      "et": [
+        {
+          "objet": "couvercle-du-fut"
+        },
+        {
+          "objet": "registre-de-scories"
+        }
+      ]
+    },
+    "unique": true,
+    "narration": "Le même cercle à trois traits est frappé sur le couvercle du fût et dans le registre.",
+    "effets": [
+      {
+        "fait": "f-lr-futs-scelles-sceau-forge-cranienne"
+      }
+    ]
+  },
+  {
+    "id": "ev-lr-ansel-rentre",
+    "declencheur": "entree-lieu",
+    "condition": {
+      "flag": "lr-ansel-sauve"
+    },
+    "unique": true,
+    "narration": "Ansel Pique rentre à l'atelier de Gorm, la tête basse, et se remet au soufflet sans un mot.",
+    "effets": [
+      {
+        "deplacer": {
+          "pnj": "ansel-pique",
+          "lieu": "lr-forges"
+        }
+      }
+    ],
+    "lieu": "lr-forges"
+  },
+  {
+    "id": "ev-lr-fievre-monte",
+    "declencheur": "repos",
+    "unique": false,
+    "condition": {
+      "et": [
+        {
+          "non": {
+            "flag": "camp-lame-rousse-fer"
+          }
+        },
+        {
+          "non": {
+            "flag": "camp-lame-rousse-foyer"
+          }
+        },
+        {
+          "non": {
+            "flag": "camp-lame-rousse-parias"
+          }
+        },
+        {
+          "non": {
+            "flag": "camp-lame-rousse-rupture"
+          }
+        }
+      ]
+    },
+    "narration": "Au réveil, les piles du viaduc grincent plus fort que la veille.",
+    "effets": [
+      {
+        "jauge": {
+          "id": "fievre-de-fer",
+          "delta": 1
+        }
+      }
+    ]
+  }
+]

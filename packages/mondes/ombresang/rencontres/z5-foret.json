@@ -1,0 +1,100 @@
+[
+  {
+    "id": "lames-errantes",
+    "nom": "Les lames errantes de la piste",
+    "type": "combat",
+    "lieu": "lr-foret-lisiere",
+    "difficulte": "faible",
+    "intro": "Dès que vous vous engagez sur la piste, de petites lames se détachent des grandes, pivotent au-dessus de la terre rouge, puis fondent sur vous en sifflant. D'autres tournent plus loin, au-dessus du champ, comme des oiseaux de proie. Elles visent le métal : l'arme qu'on tient, l'armure qu'on porte.",
+    "monstres": [{ "profil": "epee-volante", "nombre": 5 }],
+    "carte": [
+      "#.###################",
+      "............R......R#",
+      "#.........R......R..#",
+      "#.......R......R....#",
+      "#...mm.......R......#",
+      "#...m.m....R......R.#",
+      "#....m..........R...#",
+      "#.............R.....#",
+      "#..................R#",
+      "#..R.............R..#",
+      "#R.............R....#",
+      "#.....R.............#",
+      "#...R.............R.#",
+      "#.R.................#",
+      "#......R............#",
+      "#....R..............#",
+      "#..R......R......H..#",
+      "#R......R.......HHH.#",
+      "#.....R......R...HH.#",
+      "#...R......R.........",
+      "###################.#"
+    ],
+    "tactique": {
+      "doctrine": "Les lames fondent sur l'arme ou l'armure la plus proche, en tournant autour d'elle. Elles restent au-dessus de la piste, entre les lames plantées.",
+      "fuite": "Aucune : elles se battent jusqu'à leur chute.",
+      "renforts": "Aucun."
+    },
+    "terrain": "camp",
+    "butin": { "depouilles": false },
+    "effetsVictoire": [{ "flag": "lr-lisiere-degagee" }]
+  },
+  {
+    "id": "loups-de-l-antre",
+    "nom": "Les loups de l'antre",
+    "type": "combat",
+    "lieu": "lr-foret-antre",
+    "difficulte": "faible",
+    "intro": "Un souffle lent sort du fond de la salle, et des poils gris couvrent le seuil. Dans l'ombre, des yeux s'allument au fond. Un grondement bas monte de la terre battue : rien n'approchera du creux du fond.",
+    "monstres": [{ "profil": "loup-sanguinaire", "nombre": 2 }],
+    "carte": [
+      "############",
+      "#..........#",
+      "#H.......m.#",
+      "#HH.....~~~#",
+      ".HH...m.~~~#",
+      "#H......~~~#",
+      "#..........#",
+      "#..........#",
+      "#..........#",
+      "############"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Les loups tiennent l'entrée et le creux du fond, où dorment les petits. Ils grondent, puis mordent ce qui approche, sans quitter le creux.",
+      "fuite": "Aucune tant que la portée est en danger : la femelle ne recule pas.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "jeter-la-viande",
+        "nom": "Leur jeter de quoi manger",
+        "jet": { "competence": "dressage", "dd": 12 },
+        "resume": "Vous lancez ce que vous avez à manger vers le seuil, puis vous reculez lentement, les mains ouvertes.",
+        "effets": [
+          { "narration": "Ce que vous avez lancé est dévoré au seuil de la salle, en grondant. Pendant ce temps, vous pouvez traverser la salle sans déranger personne." },
+          { "flag": "lr-loups-detournes" }
+        ],
+        "echec": [
+          { "narration": "La viande roule trop près du creux. Un grondement monte, et les yeux restent fixés sur vous." },
+          { "flag": "lr-loups-alertes" }
+        ]
+      },
+      {
+        "id": "detourner-sans-bruit",
+        "nom": "Les détourner sans bruit",
+        "jet": { "competence": "discretion", "dd": 13 },
+        "resume": "Vous longez la paroi pas à pas, sans un mot ni un geste brusque, et vous laissez les bêtes à leur creux.",
+        "effets": [
+          { "narration": "Vous longez la paroi, lentement. Une pierre qui roule au fond de la salle attire l'attention, loin de vous, et le passage reste libre." },
+          { "flag": "lr-loups-detournes" }
+        ],
+        "echec": [
+          { "narration": "Une pierre roule sous votre pied. Le grondement reprend, plus bas, et le creux reste gardé." },
+          { "flag": "lr-loups-alertes" }
+        ]
+      }
+    ],
+    "effetsVictoire": [{ "flag": "lr-loups-tues" }]
+  }
+]

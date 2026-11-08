@@ -1,0 +1,779 @@
+[
+  {
+    "id": "elinor-vane",
+    "nom": "Élinor Vane",
+    "titre": "Baillie impériale du péage",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 45 ans",
+    "role": "Baillie impériale du péage du Bastion",
+    "lieu": "lr-bastion-tour",
+    "apparence": "Femme d'une quarantaine d'années, robe impériale sombre et serrée au col, cheveux tirés sans un fil de travers, gants de cuir fin. Son regard évalue avant de répondre.",
+    "personnalite": {
+      "traits": [
+        "froide",
+        "hautaine",
+        "calculatrice"
+      ],
+      "voix": "Basse et posée, sans jamais élever le ton. Elle tapote un coupe-papier de nacre sur la table entre deux phrases, et ne s'excuse jamais.",
+      "valeurs": [
+        "l'ordre et les comptes",
+        "ne jamais reconnaître une faute devant un inconnu"
+      ],
+      "desir": "Amasser cinq cents pièces d'or de pots-de-vin et filer à la capitale avant que l'effondrement du viaduc ne lui soit imputé.",
+      "peur": "Qu'un rapport officiel sur l'état réel des piles parvienne au Sénat avant son départ.",
+      "defaut": "Elle se croit plus maligne que ceux à qui elle parle, et le laisse voir."
+    },
+    "attitude": -5,
+    "savoir": [
+      "f-lr-elinor-refuse-de-payer",
+      "f-lr-elinor-cousine-de-malthus",
+      "f-lr-quarantaine-fausse",
+      "f-lr-stocks-minerai-plan-fuite",
+      "f-lr-engrenages-fondus-par-l-acide"
+    ],
+    "secrets": [
+      {
+        "fait": "f-lr-elinor-refuse-de-payer",
+        "condition": {
+          "ou": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "pnj": {
+                "id": "elinor-vane",
+                "attitudeMin": 20
+              }
+            }
+          ]
+        }
+      },
+      {
+        "fait": "f-lr-elinor-cousine-de-malthus",
+        "attitudeMin": 20
+      },
+      {
+        "fait": "f-lr-stocks-minerai-plan-fuite",
+        "condition": {
+          "ou": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "pnj": {
+                "id": "elinor-vane",
+                "attitudeMin": 20
+              }
+            }
+          ]
+        }
+      },
+      {
+        "fait": "f-lr-quarantaine-fausse",
+        "condition": {
+          "ou": [
+            {
+              "objet": "rapport-des-ingenieurs"
+            },
+            {
+              "fait": "f-lr-piles-s-effondrent"
+            }
+          ]
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "prime",
+        "mots": [
+          "prime",
+          "oxydeurs",
+          "chasser",
+          "récompense",
+          "payer",
+          "prisonnier"
+        ],
+        "question": "Quelle prime offrez-vous pour les oxydeurs ?",
+        "reponse": "« Une prime en pièces d'or pour ce nid nettoyé, et une autre si le prisonnier reste aux fers jusqu'à la réouverture de la route. Vous n'aurez rien d'autre de moi. »",
+        "effets": [
+          {
+            "quete": {
+              "id": "le-nid-des-rouilles",
+              "statut": "active"
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "quete": {
+              "id": "le-nid-des-rouilles",
+              "statut": "terminee"
+            }
+          }
+        }
+      },
+      {
+        "id": "route",
+        "mots": [
+          "route",
+          "fermée",
+          "viaduc",
+          "sécurité",
+          "convois",
+          "pont",
+          "fermer"
+        ],
+        "question": "Pourquoi avoir fermé la route ?",
+        "reponse": "« Pour la sécurité de tous. Un pont qui se fissure ne se répare pas en un jour, et je ne laisse pas passer des convois vers la mort. »"
+      },
+      {
+        "id": "herse",
+        "mots": [
+          "herse",
+          "treuil",
+          "engrenages",
+          "acide",
+          "coincée",
+          "rouillée"
+        ],
+        "question": "Pourquoi la herse ne se relève-t-elle pas ?",
+        "reponse": "« Le treuil est rongé, et mes péagers ont tiré sur la chaîne toute une journée. Si vous savez réparer un treuil, dites-le-moi, sinon ne perdez pas mon temps. »"
+      },
+      {
+        "id": "preuve",
+        "mots": [
+          "registre",
+          "rapport",
+          "livraisons",
+          "scories",
+          "preuve",
+          "papiers"
+        ],
+        "question": "Je vous montre ce que nous avons trouvé.",
+        "condition": {
+          "ou": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "objet": "rapport-des-ingenieurs"
+            }
+          ]
+        },
+        "reponse": "Elle prend la page sans la toucher des doigts, la lit jusqu'au bout, puis la retourne face contre la table. « Ce papier ne prouve que ce que vous voulez y lire. Le Sénat en fera ce qu'il voudra, et moi, je cherche des bras pour chasser les oxydeurs. »",
+        "effets": [
+          {
+            "flag": "lr-elinor-confrontee"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "refus-de-payer",
+        "mots": [
+          "piles",
+          "réparations",
+          "payer",
+          "effondrer",
+          "tenir",
+          "fissures"
+        ],
+        "question": "Vous savez que ces piles ne tiendront pas ?",
+        "condition": {
+          "ou": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "pnj": {
+                "id": "elinor-vane",
+                "attitudeMin": 20
+              }
+            }
+          ]
+        },
+        "reponse": "Elle pose le coupe-papier bien droit sur la table. « Je sais ce que coûte une pile, et je sais ce que rapporte une route fermée. Le trésor impérial paiera, ou personne. »",
+        "revele": [
+          "f-lr-elinor-refuse-de-payer"
+        ],
+        "unique": true
+      },
+      {
+        "id": "famille",
+        "mots": [
+          "Malthus",
+          "Vane",
+          "famille",
+          "cousine",
+          "Haut-Artificier",
+          "parente"
+        ],
+        "question": "Êtes-vous parente du Haut-Artificier Malthus Vane ?",
+        "attitudeMin": 20,
+        "reponse": "Elle cesse de tapoter le coupe-papier. « Cousine. Éloignée, et tombée en disgrâce, si vous voulez tout savoir. Ce nom ne m'a rien rapporté, et il ne vous rapportera rien. »",
+        "revele": [
+          "f-lr-elinor-cousine-de-malthus"
+        ],
+        "unique": true
+      },
+      {
+        "id": "quarantaine",
+        "mots": [
+          "quarantaine",
+          "ingénieurs",
+          "cellules",
+          "enfermés",
+          "Aldric",
+          "prison"
+        ],
+        "question": "Pourquoi les ingénieurs sont-ils enfermés ?",
+        "condition": {
+          "ou": [
+            {
+              "objet": "rapport-des-ingenieurs"
+            },
+            {
+              "fait": "f-lr-piles-s-effondrent"
+            }
+          ]
+        },
+        "reponse": "« Quarantaine. Le mot était commode, et il tient encore. Des hommes qui ont touché au métal rongé ne sortent pas tant que je suis ici. »",
+        "revele": [
+          "f-lr-quarantaine-fausse"
+        ],
+        "unique": true
+      },
+      {
+        "id": "minerai",
+        "mots": [
+          "minerai",
+          "stocks",
+          "fuite",
+          "caisse",
+          "partir",
+          "capitale",
+          "marchands",
+          "vendre"
+        ],
+        "question": "Que comptez-vous faire du minerai et de la recette ?",
+        "condition": {
+          "ou": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "pnj": {
+                "id": "elinor-vane",
+                "attitudeMin": 20
+              }
+            }
+          ]
+        },
+        "reponse": "« Je vends le minerai à prix d'or aux marchands de la capitale, dès qu'ils comprennent que la route ne rouvrira pas. Ensuite je pars, avec la caisse, et vous me regarderez partir. »",
+        "revele": [
+          "f-lr-stocks-minerai-plan-fuite"
+        ],
+        "unique": true
+      },
+      {
+        "id": "garder-le-prisonnier",
+        "mots": [
+          "garder",
+          "prisonnier",
+          "livrer",
+          "aux fers",
+          "votre prime"
+        ],
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "flag": "lr-joran-libere"
+              }
+            },
+            {
+              "non": {
+                "flag": "lr-joran-livre"
+              }
+            }
+          ]
+        },
+        "question": "Nous gardons le prisonnier, pour votre prime.",
+        "reponse": "« Bien. Trente pièces d'or, et le prisonnier reste aux fers. Ne me demandez rien d'autre. »",
+        "effets": [
+          {
+            "flag": "lr-joran-livre"
+          },
+          {
+            "pieces": 30
+          },
+          {
+            "attitude": {
+              "pnj": "elinor-vane",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« Le sergent vous raccompagnera à la porte. Ne revenez pas. »",
+      "neutre": "« Entrez, et refermez la porte derrière vous. Je n'ai pas de temps pour les courants d'air. »",
+      "amical": "« Depuis trois jours, personne ne s'était assis ici sans me menacer. Parlez, je vous écoute. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "aldric-ponts",
+    "nom": "Aldric Ponts",
+    "titre": "Ingénieur en chef du viaduc",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 55 ans",
+    "role": "Ingénieur en chef des piles du viaduc, enfermé dans les cellules du Bastion",
+    "lieu": "lr-bastion-cellules",
+    "apparence": "Homme d'une cinquantaine d'années, maigre, barbe grise taillée court, mains marquées de brûlures d'acide, veste de cuir d'ingénieur usée aux coudes, yeux cernés.",
+    "personnalite": {
+      "traits": [
+        "méthodique",
+        "prudent",
+        "tenace"
+      ],
+      "voix": "Posée, peu de mots, des phrases complètes. Il compte ce qu'il dit comme il compte les jours sur le mur.",
+      "valeurs": [
+        "dire ce qui est mesuré, pas ce qu'on craint",
+        "tenir la parole donnée à la garde"
+      ],
+      "desir": "Que le pont tienne, et que son rapport arrive à Sépulcre-d'Or.",
+      "peur": "Que le pont cède avant que quelqu'un lise ce qu'il a mesuré.",
+      "defaut": "Il refuse de parler tant qu'il ne sait pas à qui il parle."
+    },
+    "attitude": 15,
+    "savoir": [
+      "f-lr-piles-s-effondrent",
+      "f-lr-rapport-au-senat",
+      "f-lr-treuil-au-temple",
+      "f-lr-serment-des-gardiens"
+    ],
+    "secrets": [
+      {
+        "fait": "f-lr-treuil-au-temple",
+        "attitudeMin": 20
+      },
+      {
+        "fait": "f-lr-serment-des-gardiens",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "quarantaine",
+        "mots": [
+          "quarantaine",
+          "enfermé",
+          "pourquoi",
+          "cellule",
+          "prisonnier",
+          "fers"
+        ],
+        "question": "Pourquoi êtes-vous enfermé ici ?",
+        "reponse": "« On dit quarantaine. J'ai touché à des piles qui ne tiennent plus, et l'on m'a fermé la bouche avec une porte de planches ferrées. »",
+        "condition": {
+          "non": {
+            "flag": "lr-aldric-libere"
+          }
+        }
+      },
+      {
+        "id": "piles",
+        "mots": [
+          "piles",
+          "pont",
+          "mesures",
+          "viaduc",
+          "tenir",
+          "fissures",
+          "base"
+        ],
+        "question": "Que vous ont appris vos mesures sur le pont ?",
+        "reponse": "« Les piles ne tiennent plus comme elles devraient. La base de la pile centrale est rongée en creux, et ce n'est pas la fatigue du fer, c'est l'acide. Je l'ai écrit, avec les chiffres. »",
+        "revele": [
+          "f-lr-piles-s-effondrent",
+          "f-lr-rapport-au-senat"
+        ]
+      },
+      {
+        "id": "treuil",
+        "mots": [
+          "treuil",
+          "herse",
+          "rechange",
+          "pièce",
+          "roue",
+          "réparer",
+          "relever"
+        ],
+        "question": "Comment relever la herse ?",
+        "attitudeMin": 20,
+        "reponse": "« Il faut une pièce neuve, et il en existe une de rechange, gardée au Temple du Glaive Brisé, par le sentier des Gardiens. Quelle garde la protège, je ne vous le dirai qu'une fois que je saurai qui me demande. »",
+        "revele": [
+          "f-lr-treuil-au-temple"
+        ],
+        "unique": true,
+        "effets": [
+          {
+            "quete": {
+              "id": "le-treuil-du-temple",
+              "statut": "active"
+            }
+          },
+          {
+            "quete": {
+              "id": "la-herse-du-bastion",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "serment",
+        "mots": [
+          "serment",
+          "gardiens",
+          "garde",
+          "temple",
+          "gardien",
+          "jurer",
+          "Glaive"
+        ],
+        "question": "Qui garde ce treuil, au Temple ?",
+        "attitudeMin": 30,
+        "reponse": "Il baisse la voix. Les Gardiens du Pont juraient devant la pierre, et leur garde obéit encore à ce serment : « Je jure de ne jamais laisser tomber le pont. » « Tant que je tiendrai debout, la garde tiendra. » « Je protégerai le pont et ceux qui le franchissent. »",
+        "revele": [
+          "f-lr-serment-des-gardiens"
+        ],
+        "unique": true
+      },
+      {
+        "id": "liberer-aldric",
+        "mots": [
+          "libérer",
+          "sortir",
+          "cadenas",
+          "ouvrir",
+          "cellule",
+          "libre"
+        ],
+        "question": "Nous ouvrons la cellule, et nous vous sortons.",
+        "reponse": "« Vous avez ouvert cette porte, et vous ne me demandez rien en échange. Je vous suis, et je vous montrerai mes mesures à la lumière du jour. »",
+        "effets": [
+          {
+            "flag": "lr-aldric-libere"
+          },
+          {
+            "attitude": {
+              "pnj": "aldric-ponts",
+              "delta": 20
+            }
+          },
+          {
+            "deplacer": {
+              "pnj": "aldric-ponts",
+              "lieu": "lr-bastion-cour"
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« Retournez à la tour. Je n'ai rien à dire à ceux qui tiennent les clés. »",
+      "neutre": "« Vous ne ressemblez ni aux péagers ni aux hommes de la Baillie. Dites-moi ce que vous voulez. »",
+      "amical": "« Vous ne m'avez pas demandé de me taire. C'est déjà beaucoup, ici. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "mira-sorel",
+    "nom": "Mira Sorel",
+    "titre": "Sœur de Joran",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 17 ans",
+    "role": "Sœur de Joran, réfugiée sur la rive sud depuis que le pont est fermé",
+    "lieu": "lr-camp-refugies",
+    "apparence": "Jeune femme maigre, cheveux roux coupés court, cape de laine grise trop grande pour elle, pieds nus dans la terre rouge, un vieux bracelet de cuir au poignet.",
+    "personnalite": {
+      "traits": [
+        "franche",
+        "inquiète",
+        "obstinée"
+      ],
+      "voix": "Rapide et directe. Elle coupe ses phrases quand elle s'inquiète, et ne quitte pas le pont des yeux.",
+      "valeurs": [
+        "dire ce qu'on a vu",
+        "ne pas attendre qu'on décide à sa place"
+      ],
+      "desir": "Faire sortir Joran des fers et le ramener au camp.",
+      "peur": "Qu'on le pende sur la place avant qu'elle n'arrive.",
+      "defaut": "Elle s'emporte contre ceux qui parlent de patience."
+    },
+    "attitude": 15,
+    "savoir": [
+      "f-lr-mira-a-vu-les-lames"
+    ],
+    "secrets": [
+      {
+        "fait": "f-lr-mira-a-vu-les-lames",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "frere",
+        "mots": [
+          "Joran",
+          "frère",
+          "famille",
+          "sœur",
+          "nouvelles"
+        ],
+        "question": "Avez-vous des nouvelles de Joran ?",
+        "reponse": "« Rien depuis que le pont est fermé. On dit qu'il est aux fers, de l'autre côté de l'arche. Dites-moi s'il tient debout. »"
+      },
+      {
+        "id": "pont",
+        "mots": [
+          "pont",
+          "fermé",
+          "passer",
+          "traverser",
+          "passage",
+          "route"
+        ],
+        "question": "Pourquoi personne ne traverse-t-il le pont ?",
+        "reponse": "« La Baillie a fermé la route pour la sécurité, disent ses péagers. Les convois n'avancent plus, les pèlerins non plus, et les lames font le reste. »"
+      },
+      {
+        "id": "lames",
+        "mots": [
+          "lames",
+          "nuit",
+          "vu",
+          "voler",
+          "eau",
+          "épées"
+        ],
+        "question": "Qu'avez-vous vu des lames, la nuit ?",
+        "reponse": "« Depuis hier, les épées qui dormaient dans la roche sortent du sol et passent au-dessus de l'eau en files serrées. Je n'ai pas vu la fin de leur route. »"
+      },
+      {
+        "id": "lames-village",
+        "mots": [
+          "village",
+          "forge",
+          "pile",
+          "bêtes",
+          "grimper",
+          "câbles",
+          "rouille"
+        ],
+        "question": "Où vont ces épées, et que font les bêtes ?",
+        "attitudeMin": 30,
+        "reponse": "« Elles filent vers le village, sans jamais s'arrêter au pont. Et une nuit, j'ai vu des bêtes de rouille grimper dans les câbles de l'arche. Je n'en ai parlé à personne : on m'aurait prise pour folle. »",
+        "revele": [
+          "f-lr-mira-a-vu-les-lames"
+        ],
+        "unique": true
+      },
+      {
+        "id": "joran-nouvelles",
+        "mots": [
+          "vivant",
+          "bien portant",
+          "tient le coup",
+          "mange"
+        ],
+        "question": "J'ai vu votre frère.",
+        "condition": {
+          "flag": "lr-nouvelles-de-joran"
+        },
+        "reponse": "« Il est vivant, alors. Dites-moi qu'il mange, et qu'il ne s'est pas laissé briser par les gardes. Je vous dois ça. »",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "mira-sorel",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« Ne m'approchez pas avec ces armes. J'ai assez vu de lames. »",
+      "neutre": "« Vous venez du pont, ou de la rive ? Parlez vite, je n'ai pas le temps de m'asseoir. »",
+      "amical": "« Vous venez de la place. Vous savez quelque chose de Joran ? »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "brisk-sergent",
+    "nom": "Brisk",
+    "titre": "Sergent des péagers",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 40 ans",
+    "role": "Sergent des péagers du Bastion ; commande les hommes de la porte et porte la clé des cellules",
+    "lieu": "lr-bastion-cour",
+    "apparence": "Homme trapu, cheveux gris coupés ras, cuir de garde noirci à la poitrine, bâton ferré à la ceinture, une grosse clé de fer pendue à un anneau.",
+    "personnalite": {
+      "traits": [
+        "bourru",
+        "loyal à l'ordre",
+        "dépassé"
+      ],
+      "voix": "Brève et grave, en ordres qui n'arrivent jamais au bout. Il répète la même phrase quand il doute.",
+      "valeurs": [
+        "tenir son poste",
+        "ne pas lever une lame contre un blessé"
+      ],
+      "desir": "Que la route rouvre et que ses hommes rentrent chez eux.",
+      "peur": "Qu'un de ses hommes tire le premier et que la cour tourne au massacre.",
+      "defaut": "Il attend qu'on lui donne un ordre, et il lui faut toujours un ordre."
+    },
+    "attitude": 0,
+    "savoir": [
+      "f-lr-brisk-plie"
+    ],
+    "secrets": [
+      {
+        "fait": "f-lr-brisk-plie",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "peagers",
+        "mots": [
+          "péagers",
+          "hommes",
+          "hésitent",
+          "ordre",
+          "commande",
+          "troupe"
+        ],
+        "question": "Pourquoi vos hommes n'avancent-ils pas ?",
+        "reponse": "« Parce qu'ils ne savent plus qui leur donne l'ordre. La Baillie veut la herse fermée, moi je voudrais la route ouverte, et eux veulent rentrer chez eux. »"
+      },
+      {
+        "id": "cle",
+        "mots": [
+          "clé",
+          "cellules",
+          "cadenas",
+          "prisonniers",
+          "ouvrir",
+          "ceinture"
+        ],
+        "question": "Qui garde la clé des cellules ?",
+        "reponse": "« Moi. Elle reste à ma ceinture, et elle y restera tant que la Baillie ne me dira pas le contraire. Ne touchez pas à ma ceinture. »"
+      },
+      {
+        "id": "ceder-la-cle",
+        "mots": [
+          "donner",
+          "céder",
+          "remettre",
+          "clé",
+          "ouvrir"
+        ],
+        "question": "Donnez-nous la clé des cellules.",
+        "condition": {
+          "ou": [
+            {
+              "pnj": {
+                "id": "brisk-sergent",
+                "attitudeMin": 20
+              }
+            },
+            {
+              "fait": "f-lr-brisk-plie"
+            }
+          ]
+        },
+        "reponse": "Il regarde ses hommes, puis décroche l'anneau de sa ceinture. « Je n'ai rien vu. Et si la Baillie demande, vous me l'avez prise. »",
+        "effets": [
+          {
+            "objet": {
+              "id": "cle-des-cellules"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "herse",
+        "mots": [
+          "herse",
+          "treuil",
+          "rouillée",
+          "réparer",
+          "chaîne",
+          "pièce"
+        ],
+        "question": "Pourquoi la herse ne bouge-t-elle plus ?",
+        "reponse": "« Le treuil est mort. On a tiré sur la chaîne toute une journée, et l'acide a mangé les dents. Il faudrait une pièce neuve, et on n'en trouve pas dans le poste. »"
+      },
+      {
+        "id": "forcer-le-poste",
+        "mots": [
+          "forcer",
+          "passer en force",
+          "attaquer",
+          "charger",
+          "poste"
+        ],
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "flag": "lr-poste-force"
+              }
+            },
+            {
+              "non": {
+                "flag": "lr-hommes-de-la-baillie-battus"
+              }
+            }
+          ]
+        },
+        "question": "On passe en force.",
+        "reponse": "« Halte. Halte. Si vous forcez le poste, mes hommes se battront, et la Baillie fera le reste. »",
+        "effets": [
+          {
+            "flag": "lr-poste-force"
+          },
+          {
+            "rencontre": "hommes-de-la-baillie"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« Posez ces armes, ou mes hommes décideront pour vous. »",
+      "neutre": "« Halte. La route est fermée. Dites-moi ce que vous voulez, et vite. »",
+      "amical": "« Vous ne sortez pas les lames tout de suite. Ça change des autres. »"
+    },
+    "inventaire": [
+      "cle-des-cellules"
+    ],
+    "profilCombat": "garde"
+  }
+]

@@ -1,0 +1,144 @@
+[
+  {
+    "id": "sauver-ansel",
+    "nom": "Sauver Ansel de la vire",
+    "type": "social",
+    "lieu": "lr-grotte-cavernes",
+    "difficulte": "faible",
+    "intro": "Assis sur sa vire, à six mètres du sol, Ansel vous suit du regard sans bouger : il ne peut plus descendre seul. Une escalade ou une corde suffisent à le sortir de là.",
+    "alternatives": [
+      {
+        "id": "grimper-jusqu-a-la-vire",
+        "nom": "Grimper jusqu'à la vire",
+        "resume": "La paroi est rongée, les prises tiennent à peine, et la vire n'est qu'à six mètres.",
+        "jet": { "competence": "athletisme", "dd": 12 },
+        "effets": [
+          { "narration": "Vous prenez pied sur la vire. Ansel recule contre la pierre, puis se laisse conduire jusqu'au bord. Il descend le premier, sans un mot." },
+          { "flag": "lr-ansel-sauve" },
+          { "attitude": { "pnj": "ansel-pique", "delta": 30 } }
+        ],
+        "echec": [
+          { "narration": "Une prise cède sous vos doigts, et vous retombez sur le sol des cavernes, sans gravité. Il reste la corde." }
+        ]
+      },
+      {
+        "id": "jeter-une-corde",
+        "nom": "Jeter une corde depuis le sol",
+        "resume": "Vous lancez une corde jusqu'à la vire ; Ansel la saisit, et descend par ses propres mains.",
+        "effets": [
+          { "narration": "La corde tombe à côté de lui. Il la saisit après un long moment, la noue à la pierre, et descend lentement, sans regarder personne." },
+          { "flag": "lr-ansel-sauve" },
+          { "attitude": { "pnj": "ansel-pique", "delta": 30 } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "oxydeurs-de-la-galerie",
+    "nom": "Les oxydeurs de la galerie",
+    "type": "combat",
+    "lieu": "lr-grotte-galerie",
+    "difficulte": "faible",
+    "intro": "Les oxydeurs sont au travail sur les poutres maîtresses, au centre de la galerie. Dès qu'on entre, ils se retournent d'une seule masse et se jettent sur le métal le plus proche, arme ou armure.",
+    "monstres": [{ "profil": "oxydeur", "nombre": 3 }],
+    "carte": [
+      "###########..###########",
+      "#..~~..................#",
+      "#.......HHHHHH.....~....",
+      "#......................#",
+      "#..........tt..........#",
+      "#.........mttm.........#",
+      "#..........tt..........#",
+      "#..........m...........#",
+      "#......................#",
+      "#......................#",
+      "###########..###########"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Les oxydeurs rampent sur les poutres et rongent le fer, puis se jettent sur l'arme ou l'armure la plus proche. Ils ne fuient pas l'approche.",
+      "fuite": "Ils se réfugient dans les tas de rouille au pied des poutres quand l'un des leurs tombe.",
+      "renforts": "Aucun."
+    }
+  },
+  {
+    "id": "reine-des-rouilles",
+    "nom": "La Reine des Rouilles",
+    "type": "combat",
+    "lieu": "lr-grotte-nid",
+    "difficulte": "faible",
+    "intro": "Au centre de la cuvette, la Reine des Rouilles se dresse, plus grosse que les autres. D'autres formes, plus petites, tiennent le bord ouest. Le raclement s'arrête d'un coup : les bêtes ont senti le fer.",
+    "monstres": [
+      { "profil": "oxydeur", "nombre": 1, "nom": "La Reine des Rouilles" },
+      { "profil": "oxydeur", "nombre": 2 }
+    ],
+    "carte": [
+      "########....########",
+      "#.......HHHHHH.....#",
+      "#..................#",
+      "#...~~~~~~~~~~~~...#",
+      "#...~~~~~~~~~~~~...#",
+      "#..m~~........~~...#",
+      "#...~~...m....~~...#",
+      "#...~~........~~...#",
+      "#..m~~........~~...#",
+      "#...~~~~~~~~~~~~...#",
+      "#...~~~~~~~~~~~~...#",
+      "#.........R........#",
+      "####################"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "La Reine reste au centre de la cuvette et s'y défend en mordant. Les autres tiennent le bord ouest, et toutes rongent l'arme la plus proche.",
+      "fuite": "Aucune : les bêtes se battent jusqu'à la dernière.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "lancer-le-leurre",
+        "nom": "Lancer le leurre loin de la cuvette",
+        "condition": { "ou": [{ "objet": "minerai-de-vorn" }, { "objet": "ferraille-divine" }] },
+        "jet": { "competence": "escamotage", "dd": 12 },
+        "resume": "Vous lancez le minerai ou la ferraille loin de la cuvette, vers le coin est ; la Reine suit le bruit, hors de la cuvette.",
+        "effets": [
+          { "narration": "Le métal roule sur la ferraille. La Reine se tourne vers le bruit et s'éloigne de la cuvette, sans un cri, suivie des autres. Le bloc de rouille reste à portée." },
+          { "flag": "lr-reine-detournee" }
+        ],
+        "echec": [
+          { "narration": "Le leurre ricoche contre la paroi et tombe près de vous. La Reine vous fixe, et ne quitte pas la cuvette." },
+          { "flag": "lr-reine-alertee" }
+        ]
+      },
+      {
+        "id": "deposer-le-leurre",
+        "nom": "Déposer le leurre au bord de la pente",
+        "condition": { "ou": [{ "objet": "minerai-de-vorn" }, { "objet": "ferraille-divine" }] },
+        "jet": { "competence": "discretion", "dd": 12 },
+        "resume": "Vous posez le minerai ou la ferraille au bord de la pente nord, sans bruit, et reculez pas à pas.",
+        "effets": [
+          { "narration": "Le métal reste au bord de la pente. La Reine le sent, monte doucement jusqu'à lui, suivie des autres, et s'y arrête, loin de la cuvette." },
+          { "flag": "lr-reine-detournee" }
+        ],
+        "echec": [
+          { "narration": "Le métal racle la pierre à votre passage. La Reine tourne la tête vers vous, et reste dans la cuvette." },
+          { "flag": "lr-reine-alertee" }
+        ]
+      },
+      {
+        "id": "apaiser-la-bete",
+        "nom": "Apaiser la bête d'une voix calme",
+        "jet": { "competence": "dressage", "dd": 14 },
+        "resume": "Vous parlez bas, sans bouger, et la forme trapue cesse de se tendre.",
+        "effets": [
+          { "narration": "Votre voix la calme. La Reine recule dans la cuvette, lentement, et les autres s'écartent : le bord est libre." },
+          { "flag": "lr-reine-detournee" }
+        ],
+        "echec": [
+          { "narration": "Le grondement reprend, plus bas et plus long. La Reine ne vous quitte plus des yeux." },
+          { "flag": "lr-reine-alertee" }
+        ]
+      }
+    ],
+    "effetsVictoire": [{ "flag": "lr-reine-abattue" }]
+  }
+]

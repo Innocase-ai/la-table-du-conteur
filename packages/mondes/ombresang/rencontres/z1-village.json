@@ -11,15 +11,28 @@
         "id": "retenir-la-charrette",
         "nom": "Retenir la charrette à deux mains",
         "resume": "Vous vous arc-boutez contre les ridelles, le temps que la foule s'écarte.",
-        "jet": { "competence": "athletisme", "dd": 12 },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
         "effets": [
-          { "narration": "La charrette tient le temps qu'il faut : la foule s'écarte, personne n'est écrasé, et des mains vous tapent sur l'épaule. Puis elle verse, doucement, et les tôles frémissent." },
-          { "flag": "lr-foule-reconnaissante" },
-          { "rencontre": "lames-de-la-place" }
+          {
+            "narration": "La charrette tient le temps qu'il faut : la foule s'écarte, personne n'est écrasé, et des mains vous tapent sur l'épaule. Puis elle verse, doucement, et les tôles frémissent."
+          },
+          {
+            "flag": "lr-foule-reconnaissante"
+          },
+          {
+            "rencontre": "lames-de-la-place"
+          }
         ],
         "echec": [
-          { "narration": "Vous finissez par terre, dans la ferraille, sous les rires des badauds. La charrette a versé, et rien ne vous a touché." },
-          { "rencontre": "lames-de-la-place" }
+          {
+            "narration": "Vous finissez par terre, dans la ferraille, sous les rires des badauds. La charrette a versé, et rien ne vous a touché."
+          },
+          {
+            "rencontre": "lames-de-la-place"
+          }
         ],
         "echecResout": true
       },
@@ -27,7 +40,11 @@
         "id": "laisser-verser",
         "nom": "Laisser la charrette verser",
         "resume": "Vous reculez d'un pas, et la charrette s'écrase devant vous dans un vacarme de tôle.",
-        "effets": [{ "rencontre": "lames-de-la-place" }]
+        "effets": [
+          {
+            "rencontre": "lames-de-la-place"
+          }
+        ]
       }
     ]
   },
@@ -38,7 +55,12 @@
     "lieu": "lr-place",
     "difficulte": "faible",
     "intro": "Des tôles de la charrette, les épées se redressent une à une et fondent sur la foule. La milice tire ses piques, et vous combattez à ses côtés, au milieu de la poussière rouge.",
-    "monstres": [{ "profil": "epee-volante", "nombre": 4 }],
+    "monstres": [
+      {
+        "profil": "epee-volante",
+        "nombre": 4
+      }
+    ],
     "carte": [
       "############",
       "#...rrrr...#",
@@ -61,7 +83,11 @@
       "fuite": "Aucune : elles se battent jusqu'à la dernière.",
       "renforts": "Aucun."
     },
-    "effetsVictoire": [{ "flag": "lr-place-sauvee" }]
+    "effetsVictoire": [
+      {
+        "flag": "lr-place-sauvee"
+      }
+    ]
   },
   {
     "id": "lames-du-foyer",
@@ -70,7 +96,12 @@
     "lieu": "lr-forge-vorn",
     "difficulte": "faible",
     "intro": "Le sifflement du soufflet s'arrête. Dans la lueur orange, les épées se détachent du mur et se rangent autour des braises, pointes tournées vers la porte.",
-    "monstres": [{ "profil": "epee-volante", "nombre": 4 }],
+    "monstres": [
+      {
+        "profil": "epee-volante",
+        "nombre": 4
+      }
+    ],
     "carte": [
       "######.##",
       "#m..cc..#",
@@ -85,6 +116,16 @@
       "doctrine": "Elles protègent le foyer : elles restent entre les braises et les héros, et ne quittent pas la forge.",
       "fuite": "Aucune : elles se battent jusqu'à la dernière.",
       "renforts": "Aucun."
-    }
+    },
+    "effetsVictoire": [
+      {
+        "flag": "lr-foyer-eteint"
+      },
+      {
+        "objet": {
+          "id": "fragment-d-enclume"
+        }
+      }
+    ]
   }
 ]

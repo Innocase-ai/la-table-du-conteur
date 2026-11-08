@@ -1,0 +1,196 @@
+[
+  {
+    "id": "le-choix-de-vorn",
+    "nom": "Le choix de Vorn",
+    "type": "social",
+    "lieu": "lr-forge-vorn",
+    "difficulte": "faible",
+    "intro": "La forge de Vorn est pleine de braises rouges. Le sifflement du soufflet se mêle au tintement des lames accrochées aux murs. Vorn se tient entre le foyer et vous, la main à plat sur son tablier.",
+    "alternatives": [
+      {
+        "id": "eteindre-le-foyer",
+        "nom": "Éteindre le foyer",
+        "resume": "Jeter l'eau du torrent d'Oxyde sur les braises, sans demander la permission à Vorn.",
+        "effets": [
+          {
+            "flag": "lr-foyer-force"
+          },
+          {
+            "rencontre": "lames-du-foyer"
+          }
+        ]
+      },
+      {
+        "id": "parlementer-avec-l-ichor",
+        "nom": "Parlementer avec l'Ichor",
+        "resume": "Parler à l'Ichor qui habite la braise, avant que la forge ne s'emballe, et lui proposer de se taire.",
+        "jet": {
+          "competence": "religion",
+          "dd": 15
+        },
+        "effets": [
+          {
+            "flag": "lr-ichor-apaise"
+          },
+          {
+            "jauge": {
+              "id": "fievre-de-fer",
+              "delta": -1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "vorn-bras-de-laiton",
+              "delta": 20
+            }
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "vorn-bras-de-laiton",
+              "delta": -5
+            }
+          }
+        ],
+        "condition": {
+          "non": {
+            "flag": "lr-ichor-apaise"
+          }
+        }
+      },
+      {
+        "id": "denoncer-la-baillie",
+        "nom": "Dénoncer la Baillie",
+        "resume": "Montrer au forgeron le registre de livraisons de scories, et nommer la Baillie, dont le bureau cachait ce registre.",
+        "condition": {
+          "et": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "non": {
+                "flag": "lr-vorn-temoigne"
+              }
+            }
+          ]
+        },
+        "effets": [
+          {
+            "flag": "lr-vorn-temoigne"
+          },
+          {
+            "attitude": {
+              "pnj": "vorn-bras-de-laiton",
+              "delta": 20
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reparer-la-herse",
+    "nom": "Réparer la herse",
+    "type": "exploration",
+    "lieu": "lr-bastion-herse",
+    "difficulte": "faible",
+    "intro": "La herse reste coincée aux trois quarts. Dans la niche à l'est, les roues du treuil attendent, rongées par l'acide.",
+    "alternatives": [
+      {
+        "id": "monter-le-treuil",
+        "nom": "Monter le treuil de rechange",
+        "resume": "Remplacer l'arbre usé par la pièce de rechange, et remonter la herse d'un coup sec.",
+        "effets": [
+          {
+            "flag": "lr-herse-reparee"
+          },
+          {
+            "objet": {
+              "id": "treuil-de-rechange",
+              "retirer": true
+            }
+          },
+          {
+            "narration": "La herse grince, se décroche de sa butée, et remonte d'un coup sec. Le passage se dégage, et la chaussée s'ouvre vers le tablier."
+          }
+        ],
+        "condition": {
+          "objet": "treuil-de-rechange"
+        }
+      }
+    ]
+  },
+  {
+    "id": "demasquer-la-baillie",
+    "nom": "Démasquer la Baillie",
+    "type": "social",
+    "lieu": "lr-place",
+    "difficulte": "faible",
+    "intro": "Les ferrailleurs se pressent sur la place, et la Baillie n'est pas là pour les calmer. Un murmure monte, qui n'attend qu'une parole.",
+    "alternatives": [
+      {
+        "id": "lire-devant-les-ferrailleurs",
+        "nom": "Lire devant les ferrailleurs",
+        "resume": "Lire à voix haute ce que vous avez vu, chiffres à l'appui, et demander aux ferrailleurs de témoigner.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "flag": "lr-elinor-demasquee"
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Les ferrailleurs écoutent, puis se dispersent sans un mot : personne n'ose parler contre la Baillie devant ses hommes."
+          }
+        ]
+      },
+      {
+        "id": "montrer-les-deux-preuves",
+        "nom": "Montrer le registre et le rapport",
+        "condition": {
+          "et": [
+            {
+              "objet": "registre-de-scories"
+            },
+            {
+              "objet": "rapport-des-ingenieurs"
+            }
+          ]
+        },
+        "resume": "Vous posez les deux documents sur le pilori, et les ferrailleurs lisent eux-mêmes les chiffres et les sceaux.",
+        "effets": [
+          {
+            "flag": "lr-elinor-demasquee"
+          }
+        ]
+      },
+      {
+        "id": "vorn-temoigne",
+        "nom": "Le témoignage de Vorn",
+        "resume": "Pour la première fois depuis des jours, Vorn quitte son atelier, monte sur l'estrade et dit ce qu'il sait de la Baillie.",
+        "condition": {
+          "flag": "lr-vorn-temoigne"
+        },
+        "effets": [
+          {
+            "flag": "lr-elinor-demasquee"
+          }
+        ]
+      },
+      {
+        "id": "garder-le-silence",
+        "nom": "Garder le silence",
+        "resume": "Ne rien dire, et laisser la place se disperser.",
+        "effets": [
+          {
+            "narration": "Vous gardez le silence. La place se vide peu à peu, et la Baillie reste maîtresse de son récit."
+          }
+        ]
+      }
+    ]
+  }
+]

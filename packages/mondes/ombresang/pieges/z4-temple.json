@@ -1,0 +1,17 @@
+[
+  {
+    "id": "dalles-a-lames",
+    "nom": "Les dalles à lames du parvis",
+    "lieu": "lr-temple-parvis",
+    "resume": "Une bande de dalles neuves, sans mousse, au centre du parvis. Sous la pierre, des lames d'acier attendent qu'un pied s'y pose.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "La dalle s'enfonce sous le pied, et une lame d'acier jaillit du sol dans un claquement sec, qui fend le cuir et la chair de la jambe.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d10", "type": "tranchant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  }
+]

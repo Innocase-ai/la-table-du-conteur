@@ -1,0 +1,36 @@
+[
+  {
+    "id": "roues-du-treuil",
+    "nom": "Les roues du treuil",
+    "lieu": "lr-bastion-herse",
+    "enonce": "Quatre roues dentées sortent de la niche du treuil : une roue fendue, une roue large, une roue noircie, une roue aux dents fines. Chacune portait une encoche numérotée de 1 à 4, mais l'acide en a effacé deux : on lit encore 1 sur la roue large et 4 sur la roue noircie. Sur les deux autres, quelques dents restent saines : celles de la roue aux dents fines ont le même pas que la roue large, celles de la roue fendue s'engrènent avec la roue noircie. Remettez les roues dans l'ordre de l'arbre, de la première à la dernière.",
+    "solution": {
+      "type": "sequence",
+      "ordre": ["Roue large", "Roue aux dents fines", "Roue fendue", "Roue noircie"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les deux roues dont l'encoche se lit encore fixent les deux bouts de l'arbre. Il reste deux roues à placer entre elles.",
+        "competence": "investigation",
+        "dd": 10
+      },
+      {
+        "niveau": 2,
+        "texte": "Une roue s'engrène avec celle qui la touche : la roue aux dents fines va juste après la roue large.",
+        "competence": "investigation",
+        "dd": 13
+      },
+      {
+        "niveau": 3,
+        "texte": "Dans l'ordre de l'arbre : la roue large, puis la roue aux dents fines, puis la roue fendue, et enfin la roue noircie.",
+        "competence": "investigation",
+        "dd": 15
+      }
+    ],
+    "recompense": {
+      "effets": [{ "flag": "lr-roues-ordonnees" }],
+      "resume": "Les roues sont en ordre sur l'arbre, mais leurs dents rongées ne tiendront pas la charge : il faut des pièces neuves, et les péagers n'en ont pas."
+    }
+  }
+]

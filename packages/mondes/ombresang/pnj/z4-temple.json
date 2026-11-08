@@ -1,0 +1,62 @@
+[
+  {
+    "id": "maitre-d-armes-sans-corps",
+    "nom": "Le Maître d'Armes Sans Corps",
+    "titre": "Voix du casque de la chapelle",
+    "espece": "voix sans corps",
+    "sexe": "M",
+    "role": "Voix qui sort du casque posé sur l'autel de la chapelle du Temple du Glaive Brisé.",
+    "lieu": "lr-temple-chapelle",
+    "apparence": "Un casque d'acier gris-bleu, posé sur l'autel, à la visière fendue d'une seule ligne droite, sans ornement ni plumet. Rien ne se tient sous lui : ni tête, ni épaules, ni mains. Seule la voix sort de la fente.",
+    "personnalite": {
+      "traits": ["solennel", "inflexible", "sensible au mensonge"],
+      "voix": "Voix creuse et lente, qui vient du fond du casque comme d'un puits. Chaque mot tombe seul, sans écho, et elle ne hausse jamais le ton.",
+      "valeurs": ["le serment avant tout", "la parole donnée, tenue jusqu'au bout"],
+      "desir": "Que le pont ne tombe pas, et que personne ne passe sans avoir juré.",
+      "peur": "Que la garde finisse sans personne pour la tenir.",
+      "defaut": "Il n'accepte que ce qui est juré, et ne pardonne pas le mensonge."
+    },
+    "attitude": 0,
+    "savoir": [],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "armure",
+        "mots": ["casque", "voix", "armure", "parler", "qui parle"],
+        "question": "Qui parle par ce casque ?",
+        "reponse": "« Une voix qui n'a plus de corps, et qui garde ce que la garde a laissé. Je ne dis rien à ceux qui n'ont pas juré. »"
+      },
+      {
+        "id": "passage",
+        "mots": ["passer", "entrer", "duel", "serment", "jurer"],
+        "question": "Que faut-il pour passer ?",
+        "reponse": "« Un serment, ou un duel. Choisissez, et dites-le sans détour. »"
+      },
+      {
+        "id": "mensonge",
+        "mots": ["mentir", "mensonge", "vérité", "croire", "sentir"],
+        "question": "Pouvez-vous reconnaître un mensonge ?",
+        "reponse": "« Chaque mensonge fait trembler la voix. Je le sens comme on sent le froid du fer avant de le toucher. »"
+      },
+      {
+        "id": "gardiens",
+        "mots": ["Gardiens", "temple", "histoire", "passé", "jadis"],
+        "question": "Qui étaient les Gardiens du Pont ?",
+        "reponse": "« Des hommes et des femmes qui juraient devant la pierre, et tenaient le pont sans attendre de salaire. Il ne reste d'eux que ce serment, et ces murs. »"
+      },
+      {
+        "id": "arsenal",
+        "mots": ["arsenal", "garder", "pièce", "trésor", "gardez"],
+        "question": "Que garde l'arsenal ?",
+        "reponse": "« Une pièce du pont, que je garde pour ceux qui jurent. Au-delà, rien ne vous regarde. »"
+      }
+    ],
+    "salutations": {
+      "hostile": "« Pas un pas de plus sans serment, ou sans épée levée. Vos paroles ne valent rien, je les sens déjà fausses. »",
+      "neutre": "« Parlez, et ne mentez pas : je le sentirais. »",
+      "amical": "« Vous venez sans lame levée, et vous attendez. Peu de gens ont attendu ainsi devant cette armure. »"
+    },
+    "inventaire": [],
+    "profilCombat": "armure-animee"
+  }
+]

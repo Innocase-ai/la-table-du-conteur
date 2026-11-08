@@ -1,0 +1,128 @@
+[
+  {
+    "id": "serment-du-maitre",
+    "nom": "La voix du Maître d'Armes",
+    "type": "social",
+    "lieu": "lr-temple-chapelle",
+    "difficulte": "faible",
+    "intro": "Le casque posé sur l'autel s'anime, et une voix creuse, lente, sort de sa visière fendue. Elle exige un serment ou un duel, et elle dit qu'elle sent le mensonge. Elle attend, sans un souffle de plus.",
+    "alternatives": [
+      {
+        "id": "reciter-le-serment",
+        "nom": "Je récite le serment des Gardiens, dans l'ordre.",
+        "condition": { "et": [{ "ou": [{ "fait": "f-lr-serment-des-gardiens" }, { "flag": "lr-plaques-ordonnees" }] }, { "non": { "flag": "lr-maitre-refuse" } }] },
+        "resume": "Le casque se tait un instant, puis la voix reprend, plus basse : « Le serment est entendu. On m'appelait Ser Osbern, dernier Maître d'Armes des Gardiens, et je n'ai jamais laissé tomber le pont. » Ensuite, le casque ne dit plus rien.",
+        "effets": [{ "flag": "lr-serment-prete" }, { "fait": "f-lr-ser-osbern-serment" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
+      },
+      {
+        "id": "jurer-avec-ses-mots",
+        "nom": "Je parle franchement, et je jure avec mes propres mots.",
+        "condition": { "non": { "flag": "lr-maitre-refuse" } },
+        "jet": { "competence": "persuasion", "dd": 13 },
+        "resume": "La voix écoute jusqu'au bout sans rien interrompre, puis répond : « Ce serment-là suffit. On m'appelait Ser Osbern, dernier Maître d'Armes des Gardiens, et je n'ai jamais laissé tomber le pont. » Le casque se tait.",
+        "effets": [{ "flag": "lr-serment-prete" }, { "fait": "f-lr-ser-osbern-serment" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }],
+        "echec": [{ "narration": "La voix ne répond rien. Le casque attend encore un serment, ou un duel." }]
+      },
+      {
+        "id": "mentir",
+        "nom": "Je mens sur mes intentions.",
+        "resume": "La voix se tait longtemps, puis répond : « Vous mentez. Je le sens comme on sent le froid du fer avant de le toucher. Il ne reste que le duel. »",
+        "effets": [{ "flag": "lr-maitre-refuse" }]
+      }
+    ]
+  },
+  {
+    "id": "maitre-d-armes",
+    "nom": "Le Maître d'Armes de l'arsenal",
+    "type": "combat",
+    "lieu": "lr-temple-arsenal",
+    "difficulte": "moderee",
+    "intro": "Les pièces d'une armure sans casque quittent le râtelier du mur est et volent s'assembler sur le piédestal. Des lames se détachent des râteliers, une à une, pointes tournées vers les visiteurs. Rien ne parle : l'armure répond par gestes, et ses gestes sont ceux d'une garde qui attend qu'on jure ou qu'on se batte.",
+    "monstres": [
+      { "profil": "armure-animee", "nombre": 1, "nom": "Le Maître d'Armes Sans Corps", "pnj": "maitre-d-armes-sans-corps" },
+      { "profil": "epee-volante", "nombre": 4 }
+    ],
+    "carte": [
+      "#######..#######",
+      "#.....HHHHHH...#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#.......m......#",
+      "#......rr......#",
+      "#m.....rr.....m#",
+      "#..............#",
+      "#m............m#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#...cc.........#",
+      "################"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "L'armure reste près du piédestal et frappe ce qui s'en approche. Les épées volantes sortent des râteliers et attaquent les héros les plus proches.",
+      "fuite": "Aucune : l'armure se bat jusqu'à sa destruction, et ses épées tombent avec elle.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "reciter-le-serment",
+        "nom": "Je récite le serment des Gardiens, dans l'ordre.",
+        "condition": { "et": [{ "ou": [{ "fait": "f-lr-serment-des-gardiens" }, { "flag": "lr-plaques-ordonnees" }] }, { "non": { "flag": "lr-maitre-refuse" } }] },
+        "resume": "Le Maître s'incline, les épées retombent sur leurs râteliers, et la lame solaire ternie se pose au pied du piédestal.",
+        "effets": [{ "flag": "lr-serment-prete" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
+      },
+      {
+        "id": "accepter-le-duel",
+        "nom": "J'accepte le duel contre l'armure seule.",
+        "resume": "Les épées restent sur leurs râteliers. Seule l'armure se détache du piédestal, et se place au centre de la crypte.",
+        "effets": [{ "rencontre": "duel-du-maitre" }]
+      }
+    ],
+    "butin": { "depouilles": false },
+    "effetsVictoire": [{ "flag": "lr-maitre-vaincu" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
+  },
+  {
+    "id": "duel-du-maitre",
+    "nom": "Le duel contre l'armure seule",
+    "type": "combat",
+    "lieu": "lr-temple-arsenal",
+    "difficulte": "faible",
+    "intro": "Les épées restent immobiles sur leurs râteliers. L'armure, sans casque, se détache seule du piédestal et se place au centre de la crypte. Elle attend un duel, sans un mot.",
+    "monstres": [
+      { "profil": "armure-animee", "nombre": 1, "nom": "Le Maître d'Armes Sans Corps", "pnj": "maitre-d-armes-sans-corps" }
+    ],
+    "carte": [
+      "#######..#######",
+      "#.....HHHHHH...#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#.......m......#",
+      "#......rr......#",
+      "#......rr......#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#..............#",
+      "#...cc.........#",
+      "################"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "L'armure seule frappe ce qui s'approche d'elle, et ne quitte pas le centre de la crypte.",
+      "fuite": "Aucune : le duel se termine à la destruction de l'armure.",
+      "renforts": "Aucun."
+    },
+    "butin": { "depouilles": false },
+    "effetsVictoire": [{ "flag": "lr-maitre-vaincu" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
+  }
+]

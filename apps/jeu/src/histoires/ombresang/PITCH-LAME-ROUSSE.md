@@ -27,7 +27,7 @@ Le viaduc est fermé. La garnison impériale a déserté ou a été massacrée. 
 
 ## 2. Le Secret (à plat)
 
-1. **Le Cœur de Bronze réveillé.** Ce n'est pas un accident si les armes s'animent : le vieux forgeron du village, **Vorn Bras-de-Laiton**, a trouvé dans les gravats une relique du dieu tombé — un fragment d'enclume suintant d'Ichor divin — et l'a plongé dans son foyer pour forger un acier indestructible. C'est la chaleur de ce foyer maudit qui réveille les lames de toute la vallée.
+1. **Le Cœur de Bronze réveillé.** Ce n'est pas un accident si les armes s'animent : le vieux forgeron du village, **Vorn Bras-de-Laiton**, a brisé la pierre sacrée des Gardiens du Pont, dans la Forêt d'Acier, pour en tirer une relique du dieu tombé — un fragment d'enclume suintant d'Ichor divin — et l'a plongé dans son foyer pour forger un acier indestructible. C'est la chaleur de ce foyer maudit qui réveille les lames de toute la vallée.
 2. **Le Marché de la Baillie.** La baillie impériale, **Élinor Vane**, sait que le viaduc s'effondre mais refuse délibérément de payer les réparations : elle veut forcer les marchands de la capitale à lui racheter ses stocks de minerai brut à prix d'or avant de déclarer la route condamnée et de fuir avec la caisse du péage.
 3. **Le Réfugié accusé à tort.** Un jeune soldat déserteur enchaîné sur la place, **Joran**, est accusé d'avoir saboté le pont-levis du viaduc. En vérité, il a tenté d'abaisser la herse pour sauver une caravane de pèlerins pourchassée par les épées volantes, mais les engrenages ont été fondus par l'acide d'un oxydeur géant.
 4. **La vérité sur les Oxydeurs.** Les bêtes dévoreuses de métal ne sont pas là par hasard : elles fuient la crevasse nord où les forges impériales secrètes déversent des scories toxiques. Elles ont faim et la seule source de fer accessible est l'ossature du viaduc. Les scories viennent de la **Forge Crânienne** du Seigneur-Maréchal Draven Kael (région 1) : un **registre de livraisons de scories**, caché à la baillie, en porte la trace.
@@ -112,7 +112,7 @@ Les cinq lieux sont ceux de l'atlas (SR 1.1) ; Lame-Rousse est le **hub** : on y
 4. **⛩️ Le Temple du Glaive Brisé** (sanctuaire martial bâti dans la garde cruciforme d'une épée géante couchée) :
    - *Le boss d'introduction :* le treuil de rechange y est stocké. Gardé par **le Maître d'Armes Sans Corps**, une `armure-animee` (FP 1) armée d'une lame solaire ternie, escortée d'`epee-volante` : **2 pour un groupe de 4, 4 pour un groupe de 6**.
 5. **🗿 La Forêt d'Acier** (champ de bataille pétrifié : plus de cent épées, hallebardes et lances géantes de 50 à 250 mètres plantées de biais dans le roc) :
-   - *Exploration :* c'est ici que Vorn a trouvé le fragment d'enclume, au pied d'une épée géante brisée (**le Menhir Brisé**). Les lames errantes y patrouillent : `epee-volante` en petits groupes et `loup-sanguinaire` qui fuient les lames.
+   - *Exploration :* c'est ici que Vorn a tiré le fragment d'enclume du **Menhir Brisé**, la pierre sacrée des Gardiens. Les lames errantes y patrouillent : `epee-volante` en petits groupes et `loup-sanguinaire` qui fuient les lames.
    - *Le secret se découvre ici* : le cratère de la relique, encore tiède d'Ichor, et les traces qui mènent à la forge de Vorn.
 
 ---

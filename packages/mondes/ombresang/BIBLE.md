@@ -510,3 +510,17 @@ flowchart TB
 | **Région 7 : Terres du Péché d'Or** | Main de *Sol-Invictus* & *Balance* | **8 Sous-Régions** | L'expiration du Bail Infernale des Sept Barons | Légat Malphas (`diable-cornu`), `erinye`, `marilith` & `diantrefosse` |
 | **Région 8 : La Cicatrice Blême** | Cratère de *La Lance Sans Nom* | **8 Sous-Régions** | Le dégel de la Lance Cosmique, de la Tarasque & l'Apothéose | L'Apôtre Voilé (`liche`), `solar` déchu & `tarasque` |
 | **TOTAL DU MONDE 1** | **Panthéon d'Ombresang** | **68 Modules d'Aventures** *(4 Districts + 64 Sous-Régions)* | **Le Réveil des Carcasses** | **Plus de 130 profils du SRD D&D 5e** |
+
+## 7. Registre des identifiants (SR 1.1, Vallée des Mille Épées)
+
+Identifiants réels du module de Lame-Rousse, relevés dans les données. Les ids des autres sous-régions s'y ajouteront.
+
+**Lieux** : `lr-vallee`, `lr-village`, `lr-bastion`, `lr-grotte`, `lr-temple`, `lr-foret`, `lr-place`, `lr-auberge`, `lr-apothicairerie`, `lr-forges`, `lr-villa`, `lr-villa-bureau`, `lr-villa-cave`, `lr-forge-vorn`, `lr-bastion-cour`, `lr-bastion-tour`, `lr-bastion-cellules`, `lr-bastion-herse`, `lr-viaduc-tablier`, `lr-camp-refugies`, `lr-grotte-entree`, `lr-grotte-galerie`, `lr-grotte-drains`, `lr-grotte-cavernes`, `lr-grotte-veine`, `lr-grotte-nid`, `lr-temple-parvis`, `lr-temple-nef`, `lr-temple-chapelle`, `lr-temple-cellules`, `lr-temple-arsenal`, `lr-foret-lisiere`, `lr-foret-allee`, `lr-foret-campement`, `lr-foret-menhir`, `lr-foret-antre`.
+
+**PNJ** : `joran-deserteur`, `soeur-martha`, `odile-braise`, `gorm-meule`, `vorn-bras-de-laiton`, `elinor-vane`, `aldric-ponts`, `mira-sorel`, `brisk-sergent`, `ansel-pique`, `maitre-d-armes-sans-corps`.
+
+**Quêtes** : `le-sang-sur-la-lame`, `la-verite-de-joran`, `le-treuil-du-temple`, `la-herse-du-bastion`, `le-nid-des-rouilles`, `le-suif-de-martha`, `l-apprenti-de-gorm`.
+
+**Jauges** : `battement-du-coeur`, `fievre-de-fer`.
+
+**Objets** : `registre-de-scories`, `fragment-d-enclume`, `minerai-de-vorn`, `cle-des-cellules`, `rapport-des-ingenieurs`, `suif-d-oxydeur`, `couvercle-du-fut`, `ferraille-divine`, `coeur-de-rouille`, `treuil-de-rechange`, `lame-solaire-ternie`, `eclat-de-la-pierre-sacree`, `laissez-passer-imperial`.

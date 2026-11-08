@@ -1,0 +1,72 @@
+[
+  {
+    "id": "lr-vallee",
+    "nom": "La Vallée des Mille Épées",
+    "type": "region",
+    "resume": "Une vallée hérissée de lames géantes, au pied des Crêtes de Fer-Titan, où l'on vit de la ferraille.",
+    "description": "La Vallée des Mille Épées est la porte méridionale de la région des Crêtes de Fer-Titan. Ses lames plantées dans la tourbe, plus de cent épées géantes dans la Forêt d'Acier et des milliers de lames plus petites dans les champs, sont la ferraille divine dont vit Lame-Rousse depuis trois siècles. Le torrent d'Oxyde, rouge rouille, coule d'est en ouest et passe sous le Pont-Viaduc, seul pont des convois lourds, qui porte la Voie Royale de Fer vers la capitale Sépulcre-d'Or, à quatorze heures de marche au sud-est. Les autres routes : le Défilé des Forges, à l'ouest, par le viaduc ; la Chaussée des Scories, au nord ; la Piste de Poussière, à l'est. Depuis trois nuits, les lames forgées au village s'animent ; depuis hier, celles de la vallée se soulèvent. La cause est dans la forge de Vorn, et derrière elle, dans les scories venues de l'Empire.",
+    "ambiance": "Lames, rouille, vent de limaille",
+    "visuel": "Une vallée de roche rouge et de tourbe, bordée au nord par des crêtes nues. Des épées géantes sont plantées pointe dans le sol, gardes dressées vers le ciel, en forêts serrées au nord et à l'ouest d'un bourg de toits de tôle, et une rivière rouge rouille file vers un grand viaduc de fer et de pierre.",
+    "arrivee": "Le vent vient de partout à la fois, chargé de poussière rouge qui pique les yeux. Autour de vous, les gardes des épées géantes se dressent sur le ciel gris, et des lames plus petites tournent dans l'air, au loin, sans un bruit. Le sol de tourbe s'enfonce sous les pas. Dans le lointain, un grondement régulier de marteaux-pilons et une odeur de suie froide disent qu'il y a des hommes par ici. La lumière grise tombe de partout, sans ombre franche."
+  },
+  {
+    "id": "lr-village",
+    "nom": "Lame-Rousse",
+    "type": "village",
+    "parent": "lr-vallee",
+    "resume": "Un bourg de ferrailleurs au fond d'une vallée de lames, où l'on revend ce qu'on arrache à la terre.",
+    "description": "Lame-Rousse compte 800 âmes et une vingtaine de forges à aubes alignées le long du torrent d'Oxyde, à l'est. Le bourg fait un fer à cheval ouvert au sud, autour de la place des Ferrailleurs, et vit depuis trois siècles de l'arrachage et de la revente des lames antiques plantées dans la vallée. C'est le hub de la sous-région : on y ouvre l'histoire, on y revient. La villa de la Baillie occupe la colline au nord-est ; la forge de Vorn, isolée, se dresse au nord-ouest face à la Forêt d'Acier ; l'auberge et l'apothicairerie sont au centre-sud. Depuis trois nuits, les lames forgées au village s'animent, et le village s'enferme et se querelle. Le viaduc, au sud, est fermé. Le secret est dans la forge de Vorn, dans la villa et dans les vieux drains qui relient celle-ci à la Grotte des Rouilles.",
+    "ambiance": "Forges, suie froide, lames qui frémissent",
+    "visuel": "Un bourg bâti en fer à cheval autour d'une place de terre rouge, aux toits de tôle rapiécée et de bardeaux noircis. Une rangée de forges à roues à aubes longe le torrent rouge rouille à l'est, et des fumées de suif montent des cheminées. Au nord-ouest, une forge isolée brille d'une lueur orange face à un champ d'immenses épées plantées, et au sud, le grand viaduc de fer et de pierre franchit le torrent.",
+    "accroche": "Au fond d'une vallée hérissée de lames, un bourg de toits de tôle et de forges à aubes, où les épées se dressent contre les murs.",
+    "arrivee": "Les toits de tôle apparaissent d'abord, puis le bourg tout entier, serré dans sa cuvette de terre rouge. L'air est froid et sent la limaille et le suif. Partout, des gerbes de lames sont dressées contre les murs, pointes vers le ciel, et des roues à aubes grincent sur l'eau. Des voix s'élèvent, basses et tendues, comme si l'on craignait quelque chose de proche. Au-dessus des maisons, une colline couronnée de murs de pierre grise. Le vent ne s'arrête jamais."
+  },
+  {
+    "id": "lr-bastion",
+    "nom": "Bastion du Pont-Viaduc",
+    "type": "batiment",
+    "parent": "lr-vallee",
+    "resume": "Un poste de péage au pied d'un viaduc de fer, barré par une herse rouillée.",
+    "description": "Le Bastion du Pont-Viaduc est un poste fortifié carré sur la rive nord du torrent d'Oxyde, au pied de l'arche de fer. Une tour de péage de pierre noire le domine à l'angle nord-est ; une cour pavée occupe le centre, un corps de garde et ses cellules l'ouest, et une herse rouillée barre la chaussée au sud. La Baillie Élinor Vane tient le poste avec ses péagers. Elle refuse de payer les réparations, veut revendre ses stocks de minerai à prix d'or, puis fuir avec la grosse caisse du péage, gardée dans sa villa. Elle a enfermé l'ingénieur Aldric Ponts et ses hommes dans les cellules, sous prétexte de quarantaine. La herse est coincée parce que Joran, le déserteur, a tenté de l'abaisser pour sauver une caravane : l'acide d'un oxydeur a fondu les engrenages. Le treuil de rechange est au Temple du Glaive Brisé.",
+    "ambiance": "Pierre noire, herse rouillée, métal mouillé",
+    "visuel": "Une tour de pierre noire, couverte de coulures de rouille, domine une cour pavée close de murs. Une herse de fer rouillé barre la chaussée, et des câbles et des chaînes pendent du pont-levis au-dessus du vide. Au-delà, la grande arche de fer du viaduc s'élance au-dessus du torrent rouge rouille.",
+    "accroche": "Une tour de pierre noire et une herse rouillée barrent la route, et derrière elles, l'arche de fer d'un pont que personne ne franchit plus.",
+    "arrivee": "Un bruit de chaînes vous parvient avant la pierre. La herse rouillée barre la chaussée, ses barreaux couverts d'une croûte orange, et des gouttes d'acide tombent des câbles en sifflant sur les pavés. Derrière une fenêtre de la tour noire, une femme en robe impériale compte des pièces. Des péagers armés vous regardent, hésitent, et ne font aucun geste. Le vent siffle dans l'arche de fer, et l'odeur de métal mouillé est forte."
+  },
+  {
+    "id": "lr-grotte",
+    "nom": "Grotte des Rouilles",
+    "type": "grotte",
+    "parent": "lr-vallee",
+    "resume": "Des cavernes rouge-ocre creusées sous un pilier du viaduc, où le métal se rouille à vue d'œil.",
+    "description": "La Grotte des Rouilles s'ouvre sous la pile nord du viaduc : une échelle de fer descend le long du pilier vers un réseau de cavernes rongées d'acide. Les oxydeurs y dévorent les poutres maîtresses. Au fond, dans le nid, la Reine des Rouilles, plus grosse que les autres, protège sa couvée ; on peut aussi la détourner avec le minerai de Vorn. Les oxydeurs ne sont pas méchants : ils fuient les scories toxiques qui suintent d'une crevasse nord, et l'ossature du viaduc est leur seule source de fer. Une veine de scories noires, à l'est, est bouchée par des fûts scellés au sceau de la Forge Crânienne de Draven Kael : la preuve que les scories viennent de l'Empire. Les vieux drains relient la grotte à la villa de la Baillie, et c'est par là que les monstres remontent vers le village. L'apprenti de Gorm Meule, Ansel, disparu depuis trois jours, est coincé sur une corniche.",
+    "ambiance": "Roche ocre, acide qui goutte, métal chaud",
+    "visuel": "Une échelle de fer rongée descend le long d'un pilier de pierre et de métal, vers une caverne de roche rouge-ocre. Des poutres percées comme du fromage soutiennent la voûte, et l'acide jaune suinte en flaques luisantes sur un sol de rouille. Au fond, la pierre s'ouvre sur des galeries sombres, et une lumière gris clair tombe par les fissures du viaduc.",
+    "accroche": "Sous une pile du viaduc, une échelle de fer rongée descend vers des cavernes de roche rouge, d'où monte une odeur de métal chaud.",
+    "arrivee": "Le jour gris disparaît vite autour de vous. L'air est chaud, lourd de métal et de sang séché, et chaque souffle laisse un goût de rouille. Vos pas résonnent sur une roche rongée en dentelle, et des gouttes d'acide jaune tombent en sifflant près de vos bottes. Des griffures fraîches zèbrent les parois. Des bruits lointains, grattements et claquements sourds, montent des galeries sans qu'on en voie l'origine."
+  },
+  {
+    "id": "lr-temple",
+    "nom": "Temple du Glaive Brisé",
+    "type": "ruine",
+    "parent": "lr-vallee",
+    "resume": "Un sanctuaire de chevaliers bâti dans la garde d'une épée géante, au bord de la forêt de lames.",
+    "description": "Le Temple du Glaive Brisé est bâti dans la garde en croix d'une épée géante couchée sur un replat de roche rouge, pointe vers le sud. C'était le sanctuaire des Gardiens du Pont, chevaliers qui juraient de ne jamais laisser tomber le viaduc ; il est aujourd'hui abandonné. Le parvis porte des statues de chevaliers brisées et des dalles à lames ; la chapelle des serments, à l'ouest, garde une énigme : trois inscriptions à remettre dans l'ordre du serment. Dans l'arsenal, au sud, dans la gorge de la lame, est stocké le treuil de rechange du pont, gardé par le Maître d'Armes Sans Corps, l'esprit de Ser Osbern lié à une armure animée. Il cède le treuil à qui jure de protéger le pont et ceux qui le franchissent, et il sent le mensonge. Le journal du dernier gardien dit que la lame bat comme un cœur de forge depuis que le Dieu de la Guerre est tombé.",
+    "ambiance": "Acier gris-bleu, bronze verdi, vent dans la lame",
+    "visuel": "Une épée géante d'acier gris-bleu est couchée sur un replat de roche rouge, sa garde en croix formant la façade d'un sanctuaire de pierre et de bronze verdi. Des statues de chevaliers brisées bordent un parvis dallé, et au nord, un pommeau rond domine l'ensemble. Plus loin, au nord et à l'ouest, des lames géantes plantées pointe dans le sol dressent leurs gardes vers le ciel.",
+    "accroche": "Une épée géante couchée sur le roc, sa garde en croix formant un sanctuaire de pierre et de bronze, entourée de statues brisées.",
+    "arrivee": "Un son long et pur monte du fil d'une lame immense, avant même la pierre. Des statues de chevaliers brisées bordent un parvis dallé, et une porte de bronze verdi est entrebâillée. L'acier brille dans la lumière grise, et la mousse de rouille recouvre les marches. Tout ici paraît figé dans une attente ancienne. Un froid sec monte de la pierre et vous serre les épaules."
+  },
+  {
+    "id": "lr-foret",
+    "nom": "Forêt d'Acier",
+    "type": "lieu-dit",
+    "parent": "lr-vallee",
+    "resume": "Un champ de lames géantes plantées dans le sol, où le vent siffle entre les gardes.",
+    "description": "La Forêt d'Acier, au nord et à l'ouest du village, est un champ de bataille pétrifié : plus de cent épées, hallebardes et lances géantes, de 50 à 250 mètres, plantées pointe dans le sol, gardes dressées. Une allée centrale, dégagée par le vent, traverse le champ. Au nord-est, le Menhir Brisé, bloc de pierre noire, est la pierre sacrée des Gardiens du Pont ; c'est de là que Vorn a tiré le fragment d'enclume suintant d'Ichor. Le cratère, encore tiède, bat plus fort la nuit, et ses traces mènent jusqu'à la forge de Vorn. Dans le campement abandonné au sud-ouest, les ferrailleurs ont fui en laissant leurs tentes. Les lames errantes patrouillent en petits groupes, et des loups sanguinaires, chassés de leurs terriers, rôdent à l'est.",
+    "ambiance": "Lames géantes, rouille, sifflement d'acier",
+    "visuel": "Plus de cent épées géantes, hallebardes et lances se dressent dans un champ de roche rouge, plantées pointe dans le sol, gardes en haut, les plus hautes plus grandes que des tours. Une allée centrale, dégagée par le vent, file entre les lames, et au nord-est, un bloc de pierre noire se dresse, brisé.",
+    "accroche": "Au nord et à l'ouest du village, un champ de lames géantes plantées dans le sol, leurs gardes dressées contre le ciel gris.",
+    "arrivee": "Les lames apparaissent les premières : des gardes immenses qui dépassent les crêtes et se détachent sur le ciel. Le sol rouge est tassé, et le vent siffle entre les fils d'acier. Plus petites, des épées volent au loin, pivotant lentement, sans un bruit. Un grondement sourd vient de la terre, comme une cloche fêlée. L'air sent la suie froide, et la lumière grise coule sur l'acier."
+  }
+]

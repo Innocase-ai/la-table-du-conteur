@@ -1419,3 +1419,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 ## 08/11/2026 — Combat : 6 sorts qui durent jouables (42 en tout)
 
 - Sphère de feu, Rayon de lune, Appel de la foudre, Invocation d'animaux, Lame de feu, Caresse du vampire. Moteur : zones persistantes déclenchées en fin de tour ou à l'entrée, cartes de suivi (déplacer, frapper), portée mesurée depuis l'origine de la zone, affichage des zones sur le plateau. Test : `sorts-durables.test.ts` (10). Restent 4 sorts : Mur de vent, Métal brûlant, Représailles infernales, Châtiment de révélation (voir `docs/COMBAT.md`).
+
+## 08/11/2026 — Corrections issues de l'audit du moteur
+
+- Niveau par défaut du groupe à 1 ; « Commencer l'aventure » bloqué si le niveau du groupe sort de la fourchette de l'histoire.
+- Entrer en Rage termine proprement une concentration (`finConcentration`).
+- Plus de plantage quand un piège se déclenche alors que tout le groupe est à 0 PV (`prendre`, `repondreEnigme`).
+- Deux armes de même base gardent chacune leurs bonus (`bonusEmplacements`) et leur propre attaque en combat (`epee-longue-2`).
+
+- Suite de l'audit : une nuitée payée relance les quêtes et événements après ses effets ; le combat reprend l'identifiant du personnage (`HeroCombat.id`), noms sans accents dans les identifiants ; le moteur refuse une même cible deux fois, sauf projectiles et rayons.

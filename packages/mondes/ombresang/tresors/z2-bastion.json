@@ -1,0 +1,39 @@
+[
+  {
+    "id": "recette-du-jour",
+    "nom": "La recette du jour",
+    "lieu": "lr-bastion-tour",
+    "contenant": "coffre",
+    "description": "Un coffre de fer sous le comptoir de la salle de recette, côté nord. Il pèse lourd, et l'on entend glisser des pièces quand on le secoue.",
+    "contenu": {
+      "pieces": { "po": 10, "pa": 200, "pc": 1000 }
+    },
+    "acces": {
+      "verrou": { "dd": 13 }
+    }
+  },
+  {
+    "id": "tiroir-du-rapport",
+    "nom": "Le tiroir du milieu",
+    "lieu": "lr-bastion-tour",
+    "contenant": "cache",
+    "description": "Le tiroir du milieu du bureau, sous une liasse de reçus de péage : un papier scellé de cire y est glissé, à plat.",
+    "contenu": {
+      "objets": [{ "objet": "rapport-des-ingenieurs", "quantite": 1 }]
+    },
+    "acces": {
+      "cache": { "dd": 12, "competence": "investigation" }
+    },
+    "indice": "f-lr-treuil-au-temple"
+  },
+  {
+    "id": "gamelle-de-la-cellule",
+    "nom": "Une gamelle dans la paille",
+    "lieu": "lr-bastion-cellules",
+    "contenant": "sol",
+    "description": "Au centre de la cellule de l'est, une gamelle de fer renversée dans la paille moisie, avec quelques pièces de cuivre dedans.",
+    "contenu": {
+      "pieces": { "pc": 12 }
+    }
+  }
+]

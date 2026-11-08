@@ -1,0 +1,69 @@
+[
+  {
+    "id": "ansel-pique",
+    "nom": "Ansel Pique",
+    "titre": "Apprenti de Gorm Meule",
+    "espece": "humain",
+    "sexe": "M",
+    "role": "Apprenti de Gorm Meule, disparu depuis trois jours, coincé sur la vire de la paroi ouest",
+    "lieu": "lr-grotte-cavernes",
+    "apparence": "Jeune homme maigre, veste de cuir de ferrailleur tachée de rouille, mains écorchées par la pierre, jambes repliées contre la paroi, yeux cernés par trois jours sans sommeil.",
+    "personnalite": {
+      "traits": ["méfiant", "épuisé mais observateur"],
+      "voix": "Basse et sèche, phrases courtes ; il parle peu, et se tait quand la question le touche de trop près.",
+      "valeurs": ["ne rien promettre qu'on ne peut tenir", "rentrer à l'atelier"],
+      "desir": "Redescendre de la vire et retrouver l'atelier de Gorm Meule.",
+      "peur": "Que ce qu'il a vu dans la fissure ne le laisse jamais partir.",
+      "defaut": "Il ne se fie à personne, et il attend qu'on lui prouve le contraire."
+    },
+    "attitude": 0,
+    "savoir": ["f-lr-sceau-cercle-trois-traits"],
+    "secrets": [
+      { "fait": "f-lr-sceau-cercle-trois-traits", "condition": { "flag": "lr-ansel-sauve" } }
+    ],
+    "sujets": [
+      {
+        "id": "vire",
+        "mots": ["vire", "monté", "coincé", "descendre", "trois jours", "jours"],
+        "question": "Comment êtes-vous monté jusque-là ?",
+        "condition": { "non": { "flag": "lr-ansel-sauve" } },
+        "reponse": "« J'ai grimpé pour fuir, et je n'ai pas pu redescendre. Trois jours que je suis assis là, le dos à la pierre. Je ne peux pas descendre seul. »"
+      },
+      {
+        "id": "gorm",
+        "mots": ["Gorm", "maître", "meule", "atelier", "apprenti", "village"],
+        "question": "Vous êtes l'apprenti de Gorm Meule ?",
+        "reponse": "« Oui. Il m'a dit de rester à l'atelier, et je suis parti sans rien dire. Dites-lui que je suis vivant, si vous le voyez. »"
+      },
+      {
+        "id": "fissure",
+        "mots": ["fissure", "fuir", "peur", "voix"],
+        "question": "Qu'est-ce qui vous a fait fuir ?",
+        "condition": { "non": { "flag": "lr-ansel-sauve" } },
+        "reponse": "« Quelque chose dans la fissure de l'est. Pas une bête, ou pas seulement une bête. Je n'en dis pas plus sur cette pierre. »"
+      },
+      {
+        "id": "chaleur",
+        "mots": ["chaud", "odeur", "métal", "boyau", "veine", "lueur"],
+        "question": "Pourquoi la fissure est-elle si chaude ?",
+        "reponse": "« Elle luit au fond, et l'air qui en sort sent le métal chauffé. Je n'y retournerai pas. »"
+      },
+      {
+        "id": "ce-qu-il-a-vu",
+        "mots": ["fûts", "fût", "scellé", "sceau", "fissure", "dedans", "cercle"],
+        "question": "Qu'avez-vous vu au fond de la fissure ?",
+        "condition": { "flag": "lr-ansel-sauve" },
+        "reponse": "« Trois fûts de fer, cerclés, empilés au fond, qui bouchent la suite de la fissure. Le dessus est tiède. Sur le couvercle, un sceau frappé : un cercle à trois traits. Je ne sais pas qui les a scellés. »",
+        "revele": ["f-lr-sceau-cercle-trois-traits"],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« N'approchez pas. Je ne sais pas qui vous envoie. »",
+      "neutre": "« Vous êtes là pour me sortir d'ici, ou pour me regarder ? »",
+      "amical": "« Vous êtes là. Je n'osais plus y croire. »",
+      "variantes": [{ "condition": { "flag": "lr-ansel-sauve" }, "texte": "« Vous m'avez sorti de là. Demandez ce que vous voulez, je dirai ce que j'ai vu. »" }]
+    },
+    "inventaire": []
+  }
+]

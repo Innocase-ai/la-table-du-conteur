@@ -1,0 +1,32 @@
+[
+  {
+    "id": "corniche-rongee",
+    "nom": "La corniche rongée",
+    "lieu": "lr-grotte-entree",
+    "resume": "Sous les poutres, la partie centrale de la corniche n'est plus qu'une pellicule de roche : l'acide l'a creusée par-dessous.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "athletisme" },
+    "declenchement": "La pellicule de roche cède sous le pas de qui s'avance au centre sans l'avoir sondée. Trois mètres de vide, puis l'éboulis.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d6", "type": "contondant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  },
+  {
+    "id": "poche-d-acide",
+    "nom": "La poche d'acide",
+    "lieu": "lr-grotte-drains",
+    "resume": "Une bosse de roche jaunie au plafond, qui suinte de l'acide en gouttes lentes et régulières.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "athletisme" },
+    "declenchement": "Qui passe dessous sans la sonder, ou la frappe, la fait crever : l'acide tombe sur la tête et les épaules, et brûle.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "2d4", "type": "acide" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  }
+]

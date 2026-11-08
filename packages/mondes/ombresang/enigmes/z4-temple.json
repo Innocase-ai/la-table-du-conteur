@@ -1,0 +1,40 @@
+[
+  {
+    "id": "plaques-du-serment",
+    "nom": "Les plaques du serment",
+    "lieu": "lr-temple-chapelle",
+    "enonce": "Trois plaques d'acier gris-bleu, taillées dans la lame, sont appuyées l'une contre l'autre contre le mur nord. Chacune porte une phrase gravée, mais elles ne sont pas dans l'ordre. De gauche à droite : « Tant que je tiendrai debout, la garde tiendra. » ; « Je protégerai le pont et ceux qui le franchissent. » ; « Je jure de ne jamais laisser tomber le pont. » La phrase qui termine le serment se lit aussi sur la face de l'autel, sous le casque. Remettez les trois phrases dans l'ordre du serment, de la première à la dernière.",
+    "solution": {
+      "type": "sequence",
+      "ordre": [
+        "Je jure de ne jamais laisser tomber le pont.",
+        "Tant que je tiendrai debout, la garde tiendra.",
+        "Je protégerai le pont et ceux qui le franchissent."
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Le début du serment est gravé sur le socle de la statue la plus à l'ouest du mur nord, dans le parvis. C'est par là que l'ordre commence.",
+        "competence": "religion",
+        "dd": 10
+      },
+      {
+        "niveau": 2,
+        "texte": "Le début se lit au parvis, la fin sur l'autel : il ne reste qu'une place pour l'autre phrase.",
+        "competence": "religion",
+        "dd": 13
+      },
+      {
+        "niveau": 3,
+        "texte": "Dans l'ordre du serment : « Je jure de ne jamais laisser tomber le pont. », puis « Tant que je tiendrai debout, la garde tiendra. », puis « Je protégerai le pont et ceux qui le franchissent. »",
+        "competence": "religion",
+        "dd": 15
+      }
+    ],
+    "recompense": {
+      "effets": [{ "fait": "f-lr-serment-des-gardiens" }, { "flag": "lr-plaques-ordonnees" }],
+      "resume": "Les trois phrases sont en ordre, et le serment se lit d'une traite, de la première phrase à la dernière."
+    }
+  }
+]

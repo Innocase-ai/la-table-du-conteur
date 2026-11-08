@@ -1,0 +1,45 @@
+[
+  {
+    "id": "cache-de-lames",
+    "nom": "La cache de lames",
+    "lieu": "lr-foret-campement",
+    "contenant": "coffre",
+    "description": "Sous la bâche de la plus grande charrette, une caisse ferrée, cerclée de bandes de fer, renferme des armes de bonne facture, graissées et prêtes à servir : une rapière fine, une épée longue, une épée courte et une hache d'armes. Toutes se portent à la main.",
+    "contenu": {
+      "objets": [
+        { "objet": "rapiere", "quantite": 1 },
+        { "objet": "epee-longue", "quantite": 1 },
+        { "objet": "epee-courte", "quantite": 1 },
+        { "objet": "hache-d-armes", "quantite": 1 }
+      ]
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    }
+  },
+  {
+    "id": "bourse-du-ferrailleur",
+    "nom": "La bourse du ferrailleur",
+    "lieu": "lr-foret-antre",
+    "contenant": "sac",
+    "description": "Dans le sac de cuir déchiré, une bourse de toile, tachée de sang séché. Elle sonne lourd.",
+    "contenu": {
+      "pieces": { "po": 25 }
+    },
+    "acces": {
+      "cache": { "dd": 12, "competence": "perception" }
+    },
+    "condition": { "ou": [{ "flag": "lr-loups-tues" }, { "flag": "lr-loups-detournes" }] }
+  },
+  {
+    "id": "eclat-au-pied-du-menhir",
+    "nom": "L'éclat au pied du Menhir",
+    "lieu": "lr-foret-menhir",
+    "contenant": "sol",
+    "description": "Au pied du Menhir, sur l'arête de roche sèche, un petit éclat de pierre noire accroche le jour. Il se prend d'une main.",
+    "contenu": {
+      "objets": [{ "objet": "eclat-de-la-pierre-sacree", "quantite": 1 }]
+    },
+    "acces": {}
+  }
+]

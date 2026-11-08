@@ -1,0 +1,34 @@
+[
+  {
+    "id": "reliquaire-des-gardiens",
+    "nom": "Le reliquaire des gardiens",
+    "lieu": "lr-temple-cellules",
+    "contenant": "coffre",
+    "description": "Dans l'alcôve du fond, sous le pommeau, un coffret plaqué d'argent terni repose sur une tablette de pierre. Son couvercle se soulève à la main, sans clé ni piège. Un tissu qui tombe en poussière enveloppe ce qu'il renferme.",
+    "contenu": {
+      "pieces": { "po": 50 }
+    }
+  },
+  {
+    "id": "lame-du-maitre",
+    "nom": "La lame du Maître d'Armes",
+    "lieu": "lr-temple-arsenal",
+    "contenant": "sol",
+    "description": "Au pied du piédestal, la lame solaire ternie repose, pointe vers le sol.",
+    "contenu": {
+      "objets": [{ "objet": "lame-solaire-ternie", "quantite": 1 }]
+    },
+    "condition": { "ou": [{ "flag": "lr-serment-prete" }, { "flag": "lr-maitre-vaincu" }] }
+  },
+  {
+    "id": "caisse-du-treuil",
+    "nom": "La caisse du treuil",
+    "lieu": "lr-temple-arsenal",
+    "contenant": "coffre",
+    "description": "Contre le mur sud, une caisse de bois cerclé de fer, à deux poignées de fer. Elle se porte à deux, par ses poignées, et se traîne plus lentement seule.",
+    "contenu": {
+      "objets": [{ "objet": "treuil-de-rechange", "quantite": 1 }]
+    },
+    "condition": { "ou": [{ "flag": "lr-serment-prete" }, { "flag": "lr-maitre-vaincu" }] }
+  }
+]

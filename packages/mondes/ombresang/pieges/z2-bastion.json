@@ -1,0 +1,16 @@
+[
+  {
+    "id": "dalle-de-la-cellule",
+    "nom": "La dalle de la cellule de l'est",
+    "lieu": "lr-bastion-cellules",
+    "resume": "Une dalle plate au centre du sol, qui sonne creux sous la pointe d'une arme. Elle s'ouvre sur la fosse d'une ancienne citerne, et ce qui se tient dessus tombe.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "athletisme" },
+    "declenchement": "La dalle bascule sans un bruit sous le pied de qui s'approche : trois mètres de chute dans une fosse d'eau croupie, un choc qui coupe le souffle, et la lumière de la torche qui ne descend pas jusqu'au fond.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d6", "type": "contondant" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

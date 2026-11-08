@@ -21,7 +21,7 @@
   "depart": {
     "region": "cretes-de-fer-titan",
     "sousRegion": "la-vallee-des-mille-epees",
-    "lieu": "lame-rousse",
+    "lieu": "lr-place",
     "intro": "Le convoi d'Ichor que vous escortiez vers la capitale vient d'être immobilisé à l'entrée de la Vallée des Mille Épées, au pied de l'immense Pont-Viaduc de Lame-Rousse. Autour du village de forgerons, plus de cent épées titanesques de deux cents mètres de haut — les armes brisées du dieu déchu Vael-Khor — sont fichées dans la roche et vibrent d'un bourdonnement sourd à chaque battement venu du cœur du continent. Depuis trois nuits, les lames forgées au village s'animent toutes seules pour attaquer leurs porteurs, tandis que sous le viaduc, le grattement vorace d'une colonie d'Oxydeurs menace de faire s'effondrer le seul pont des convois lourds vers Sépulcre-d'Or."
   },
   "direction": {
@@ -53,5 +53,15 @@
       "anachronismes modernes",
       "personnages manichéens simplistes"
     ]
-  }
+  },
+  "chapitres": [
+    {
+      "id": "prologue-lame-rousse",
+      "nom": "Prologue — Lame-Rousse",
+      "niveaux": { "min": 1, "max": 3 },
+      "resume": "Dans la Vallée des Mille Épées, les lames forgées s'animent, le viaduc est rongé, et un premier battement monte de la forge de Vorn.",
+      "lieux": ["lr-vallee"],
+      "quetes": []
+    }
+  ]
 }

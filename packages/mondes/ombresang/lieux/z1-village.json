@@ -1,0 +1,369 @@
+[
+  {
+    "id": "lr-place",
+    "nom": "La place des Ferrailleurs",
+    "type": "quartier",
+    "parent": "lr-village",
+    "resume": "La place des Ferrailleurs, cœur du bourg, où une charrette de ferraille attend au milieu des gerbes de lames.",
+    "description": "La place est le cœur du bourg : une cour de terre rouge, ouverte au sud par la route du viaduc, bordée de façades basses. Contre le mur nord, l'estrade de planches de caisse domine le centre ; c'est de là que la Baillie parle au village, et c'est là qu'elle se tient à l'ouverture, avant de se retirer au Bastion. Au centre, le pilori : Joran y est enchaîné au début de l'aventure, sous la surveillance de la milice. Si le groupe tarde, la Baillie l'emmène au Bastion (Fièvre de Fer 2). À l'est, la charrette de ferraille vient de verser quand les héros arrivent, et les gerbes de lames dressent leurs pointes contre le mur. La scène d'ouverture : trois épées volantes s'élèvent de la ferraille et attaquent la foule ; la milice se bat avec les héros. Six sorties : l'auberge au sud-ouest, l'apothicairerie au sud-est, les forges à l'est, la ruelle de la villa au nord-est, la piste de la forge de Vorn au nord-ouest, la route du viaduc au sud. Le sentier des Gardiens part vers l'ouest. La Chaussée des Scories, au nord, mène à la Cuirasse Fendue (8 h, lien absent) ; la Piste de Poussière, à l'est, aux Landes de Limaille (9 h, lien absent).",
+    "ambiance": "Terre rouge, ferraille, vent de limaille.",
+    "arrivee": "Vous débouchez sur la place dans un fracas de ferraille. À l'est du pilori, une charrette vient de verser, une roue en l'air, et ses tôles glissent encore sur la terre rouge. La foule recule d'un seul mouvement, on vous bouscule en passant, et l'air sent la limaille et le suif. Sur l'estrade, une femme en robe impériale hurle qu'on garde son calme. Au pilori, un jeune soldat aux fers relève la tête. Contre le mur, les gerbes de lames frémissent toutes ensemble, comme des cordes qu'on vient de pincer.",
+    "visuel": "Une place de terre rouge tassée, creusée d'ornières, entourée de façades de terre et de tôle rapiécée. Contre le mur nord, une estrade de planches de caisse, trois marches de haut ; au centre, un pilori d'acier de la hauteur d'un homme. À l'est, une charrette de ferraille chargée de tôles, et des gerbes de lames dressées contre le mur, pointes vers le ciel. Le jour gris tombe de partout, sans ombre franche, et la poussière d'ocre flotte dans l'air.",
+    "accroche": "Au cœur du bourg, une place de terre rouge ouverte entre les toits de tôle ; une charrette de ferraille, des gerbes de lames et un pilori.",
+    "liens": [
+      {
+        "vers": "la-cuirasse-fendue",
+        "type": "route",
+        "heures": 8,
+        "description": "Chaussée des Scories, route large de terre rouge qui passe derrière l'estrade, au nord de la place, et file vers les crêtes.",
+        "absent": {
+          "nom": "La Cuirasse Fendue",
+          "motif": "bientot",
+          "texte": "Cette route n'est pas encore ouverte."
+        }
+      },
+      {
+        "vers": "les-landes-de-limaille",
+        "type": "passage",
+        "heures": 9,
+        "description": "Au bout de la trouée du mur est, un passage de poussière rouge entre la dernière forge et le torrent file vers des dunes de limaille.",
+        "absent": {
+          "nom": "Les Landes de Limaille",
+          "motif": "bientot",
+          "texte": "Cette route n'est pas encore ouverte."
+        }
+      },
+      {
+        "vers": "lr-auberge",
+        "type": "porte",
+        "heures": 0,
+        "description": "Porte basse au sud-ouest, sous une enseigne de tôle peinte d'une lame émoussée, ouverte sur une salle qu'on devine chaude.",
+        "retour": "Porte basse de planches noircies, au nord-est de la salle, seuil usé en creux ; par les fentes, la lumière grise de la place."
+      },
+      {
+        "vers": "lr-apothicairerie",
+        "type": "porte",
+        "heures": 0,
+        "description": "Petite porte de planches au sud-est, sous un linteau de tôle où pend un fil de cuir ; l'odeur de vinaigre sort par l'entrebâillement.",
+        "retour": "Porte basse au nord-ouest de la pièce, ouverte sur la place : on voit les toits de tôle et les gerbes de lames contre le mur est."
+      },
+      {
+        "vers": "lr-forges",
+        "type": "passage",
+        "heures": 0,
+        "description": "Par une trouée du mur est, au sud des gerbes, on voit les arcades des forges, leurs foyers rouges, et l'on entend grincer les roues.",
+        "retour": "Passage ouvert à l'ouest sur la place : terre rouge, un pilori au loin, et le jour gris qui ne réchauffe rien."
+      },
+      {
+        "vers": "lr-villa",
+        "type": "porte",
+        "heures": 0,
+        "description": "Ruelle en pente au nord-est, bordée de murs de terre et fermée par une grille d'acier scellée dans la pierre grise.",
+        "retour": "Grille d'acier à deux battants, au bas de la pente ; au-delà, la place et le ciel gris entre les toits de tôle.",
+        "verrou": {
+          "dd": 13
+        }
+      },
+      {
+        "vers": "lr-forge-vorn",
+        "type": "chemin",
+        "heures": 0,
+        "description": "Piste de terre rouge au nord-ouest, entre deux murets, qui monte vers une forge dont la lueur orange se voit sous le toit.",
+        "retour": "Porte basse au sud-est, sur une piste de terre rouge ; en bas, la place et le pilori, petits sous le ciel gris."
+      },
+      {
+        "vers": "lr-bastion-cour",
+        "type": "route",
+        "heures": 0.5,
+        "description": "Route de terre battue au sud, qui descend entre les dernières maisons vers la porte du poste, avec l'arche de fer du viaduc derrière.",
+        "retour": "Porte nord du poste, large, ouverte sur la route du village ; au nord, les toits de tôle et les lames plantées."
+      },
+      {
+        "vers": "lr-temple-parvis",
+        "type": "chemin",
+        "heures": 0.5,
+        "description": "Sentier qui quitte la place par l'ouest, entre deux murets de terre rouge, et monte vers un replat où luit, au loin, la garde d'une épée immense.",
+        "retour": "Sentier qui descend vers le village depuis le parvis, bordé de murets de terre rouge, jusqu'à la place visible en contrebas."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "charrette-qui-verse",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "demasquer-la-baillie",
+        "declencheur": "entree",
+        "unique": false,
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "objet": "registre-de-scories"
+                },
+                {
+                  "objet": "rapport-des-ingenieurs"
+                },
+                {
+                  "flag": "lr-vorn-temoigne"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "lr-elinor-demasquee"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "faits": [],
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  {
+    "id": "lr-auberge",
+    "nom": "L'auberge La Lame Émoussée",
+    "type": "batiment",
+    "parent": "lr-village",
+    "resume": "L'auberge La Lame Émoussée, où l'on mange, dort et entend les rumeurs.",
+    "description": "La Lame Émoussée est la seule auberge du bourg, tenue par Odile Braise, qui sert la soupe, la bière et les chambres de l'étage. Elle connaît tout le monde et tout ce qui se dit sur la place : les rumeurs sur les lames qui volent passent par elle, et elle les répète sans les croire. Le tableau de la porte affiche deux contrats de chasse, payés en pièces, dont les cibles sont dans la Forêt d'Acier. Le repos se paie au comptoir : une chambre, une couverture de cuir bouilli, une porte qui ferme. Depuis les premières nuits, les volets restent clos ; la salle se remplit vite et se vide plus vite encore. Une étagère de cruches derrière le comptoir tient les réserves, et la porte basse de la cuisine ne laisse passer que la chaleur.",
+    "ambiance": "Suif, bière aigre, volets clos.",
+    "arrivee": "Vous poussez la porte basse, et la chaleur vous prend au visage, avec une odeur de suif et de bière aigre. La salle est presque vide ; les lanternes brûlent jaune au-dessus des tables, et les volets clos ne laissent passer aucun jour. Une marmite ronronne sur l'âtre, dans le mur sud, et la terre battue sous vos pieds garde une paille rouge et sèche. Au plafond, une poutre plus sombre que les autres attire le regard : une lame ancienne, fixée par des crampons, rouillée d'un seul côté, qui grince quand le vent tape contre les volets.",
+    "visuel": "Une salle basse aux murs d'ossature de lames garnies de terre rouge, la plupart des lames encore visibles. Le comptoir de planches de caisse ferme le mur est ; l'âtre ouvert dans le mur sud rougeoie sous une marmite noire. Quatre tables à bancs occupent le centre et le mur ouest, et une planche de tôle clouée près de la porte porte deux feuilles de cuir bouilli. Quatre lanternes à suif, accrochées aux poutres, donnent une lumière jaune et basse ; le jour ne passe que par la porte et les volets.",
+    "accroche": "Une façade de lames et de terre rouge sous des bardeaux noircis, au sud-ouest de la place, une enseigne de tôle peinte, et la lueur jaune des volets fermés.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "auberge"
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 33,
+      "y": 62
+    }
+  },
+  {
+    "id": "lr-apothicairerie",
+    "nom": "L'apothicairerie Les Mains Tendues",
+    "type": "batiment",
+    "parent": "lr-village",
+    "resume": "La boutique de soins des Mains Tendues, où l'on bande les blessures sans regarder l'uniforme.",
+    "description": "Les Mains Tendues sont la seule boutique de soins du village. Sœur Martha y soigne les blessés des épées volantes, sans distinction d'uniforme : elle ne lève jamais les yeux de ses pansements et parle vite et doucement, sans cesser de bander. Elle vend des bandes de toile, du vinaigre et des simples ; le service de soins se paie selon la gravité de la plaie. Une pommade grise, sans étiquette, est rangée à part sur l'étagère du haut, et Martha ne répond pas quand on la lui demande. Les éclats du fil de cuir sont ceux qu'elle a sortis des plaies, un par un, et elle les garde comme une liste. Les rumeurs de la place passent par elle : les blessés parlent de lames qui frappent sans prévenir, et de volets qui claquent toute la nuit.",
+    "ambiance": "Vinaigre, thym, charbon tiède.",
+    "arrivee": "L'odeur arrive la première, vinaigre et thym, avec une chaleur de charbon qui tient le froid du dehors. Vous poussez la porte basse, et la pièce se découvre peu à peu : une table au centre, couverte d'une toile propre, un pilon et un mortier de terre cuite posés à côté. Sur les étagères, des pots alignés, certains couverts d'un chiffon, et des bouquets de thym séché qui pendent aux poutres. Au-dessus de la porte, un fil de cuir tendu porte des éclats d'acier : vous les remarquez en levant les yeux, et ils tintent à peine quand la porte se referme. La lumière est jaune et vient de deux lampes à huile.",
+    "visuel": "Une pièce basse en terre rouge, sous un plafond de poutres noircies, avec une table couverte d'une toile propre au centre. Des étagères de tôle clouées contre le mur ouest portent des pots de terre cuite et des bouquets de thym séché ; un brasero de charbon chauffe l'angle sud. Au-dessus de la porte, un fil de cuir tendu porte des éclats d'acier, noués l'un après l'autre. La lumière vient de deux lampes à huile posées sur l'étagère, et du jour gris qui passe par le volet nord-est.",
+    "accroche": "Une porte basse sur la place, un fil de cuir qui pend sous le linteau, et une odeur de vinaigre et de thym qui passe les volets.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "soins"
+    ],
+    "position": {
+      "x": 64,
+      "y": 64
+    }
+  },
+  {
+    "id": "lr-forges",
+    "nom": "La rangée des forges à aubes",
+    "type": "quartier",
+    "parent": "lr-village",
+    "resume": "La rangée des forges à aubes, où l'on répare et vend armes et armures.",
+    "description": "Vingt forges à aubes s'alignent le long du torrent, et chacune a sa roue de fer posée dans l'eau. La plupart travaillent pour le village : on arrache, polit et refond les lames trouvées dans la vallée. La forge la plus propre, au centre de la rangée, appartient à Gorm Meule : c'est lui qui vend, à qui le demande, des armes et des armures. Il les range sur des râteliers d'acier et fait aussi la réparation, à l'enclume de sa forge. Il tient une réserve sous l'établi du fond, dans un coffre de fer, avec une potion de soins dans un flacon bouché de cuir. Gorm parle du métal comme d'un prix, et des lames qui se vendent cher depuis trois nuits. Les autres forges sont tenues par des ferrailleurs ; beaucoup ont fermé leur porte.",
+    "ambiance": "Marteaux, roues, foyers, eau rouge.",
+    "arrivee": "Le bruit arrive avant les foyers : des marteaux lourds, un grincement de roue, l'eau qui file. Vous passez l'arcade, et la chaleur vous prend d'un coup, avec une odeur de charbon et d'huile. La rangée s'étire le long du torrent, des foyers rouges sous les toits de tôle, et des étincelles jaunes qui sautent d'une meule à l'autre. Le sol est trempé près de l'eau, et la rouille tache vos bottes. Au centre, une roue huilée tourne plus vite que les autres, et le râtelier d'acier luit à la lueur d'un foyer.",
+    "visuel": "Une rangée d'arcades basses, de terre rouge et de tôle, le long d'un torrent rouge rouille, avec vingt roues à aubes de fer qui tournent lentement dans l'eau. Dans chaque arcade, un foyer rouge, une enclume et une meule. Au centre de la rangée, la forge la plus propre : une roue huilée, un étal de planches, des râteliers d'acier contre le mur du fond. Le jour gris entre par les arcades de l'ouest ; les foyers donnent une lumière orange, et les meules des étincelles jaunes.",
+    "accroche": "Une bande de forges le long du torrent rouge, leurs roues à aubes grinçant dans l'eau, des foyers orange sous les arcades.",
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "forge"
+    ],
+    "position": {
+      "x": 80,
+      "y": 46
+    }
+  },
+  {
+    "id": "lr-villa",
+    "nom": "La villa de la Baillie",
+    "type": "batiment",
+    "parent": "lr-village",
+    "resume": "La maison de pierre grise de la Baillie, sur la colline, la seule taillée du bourg.",
+    "description": "La villa occupe le haut de la colline, au nord-est du bourg. Elle est bâtie en pierre payée au convoi impérial. Une grille d'acier, scellée dans un muret de la même pierre, ferme la ruelle au bas de la pente, à vingt pas de la maison. Une porte à deux battants ouvre sur un hall dallé ; deux lampes à huile sont posées sur une console de pierre contre le mur sud. Le bureau de la Baillie occupe l'est du hall, derrière une porte de planches, et l'escalier de la cave descend du coin sud-ouest. Les volets sont clos, et la maison paraît vide : la Baillie se retire au Bastion dès l'ouverture, et rien dans le hall ne dit qu'elle compte revenir. Le bureau et la cave se fouillent séparément ; le hall, lui, n'a rien à offrir au premier regard.",
+    "ambiance": "Pierre froide, volets clos, silence épais.",
+    "arrivee": "La ruelle monte en pente sous vos pas, et la grille, à hauteur de poitrine, grince quand vous la poussez. Devant vous, la pierre grise est froide sous la main et garde une odeur de poussière et de lampe éteinte. Le silence est épais : pas d'eau, pas de voix, seulement le vent qui traîne sur la colline. Entre les deux battants renforcés d'acier de la porte, un fil de lumière jaune vient du hall.",
+    "visuel": "Une maison de pierre grise, au toit de bardeaux noircis, dont la porte à deux battants, de planches noircies renforcées d'acier, fait face à la ruelle. Deux meurtrières étroites sous des volets clos éclairent la façade, et une gouttière de tôle rapiécée descend le long du mur nord. Le pied des murs, rongé d'une rouille claire, reste la seule tache de couleur sur la pierre, sous un jour gris qui tombe sans ombre.",
+    "accroche": "Au-dessus des toits de tôle, une maison de pierre grise, la seule taillée du bourg, sur la colline de la Baillie.",
+    "liens": [
+      {
+        "vers": "lr-villa-bureau",
+        "type": "porte",
+        "heures": 0,
+        "description": "Porte de planches noircies au fond du hall, à l'est, ornée d'une serrure d'acier ; le bois a gardé la trace d'un coup de pied.",
+        "retour": "Porte de planches noircies, dans le mur ouest, à serrure d'acier ; un filet de lumière venu du hall passe dessous.",
+        "verrou": {
+          "dd": 13
+        }
+      },
+      {
+        "vers": "lr-villa-cave",
+        "type": "escalier",
+        "heures": 0,
+        "description": "Dans le coin sud-ouest du hall, un escalier de pierre grise plonge vers la cave ; une odeur de terre humide et de rouille monte.",
+        "retour": "Escalier de pierre raide qui monte vers le hall ; la lumière de la pièce du haut descend en biais."
+      }
+    ],
+    "rencontres": [],
+    "faits": [],
+    "position": {
+      "x": 72,
+      "y": 20
+    }
+  },
+  {
+    "id": "lr-villa-bureau",
+    "nom": "Le bureau de la Baillie",
+    "type": "salle",
+    "parent": "lr-villa",
+    "resume": "Le bureau de la Baillie, où l'on tient les comptes du péage.",
+    "description": "Le bureau de la Baillie est une pièce de travail, sans luxe : la table, la chaise de cuir bouilli, les papiers de l'administration du péage. Le tiroir central est fermé par une serrure d'acier qui se défend : elle est piégée, et son aiguille vise la main de qui force le tiroir sans la clé. La caisse du péage, sous la table, est fermée par un cadenas et pèse lourd : c'est la recette, en pièces de cuivre et d'argent, avec quelques pièces d'or. Les tiroirs du bas renferment des cahiers de comptes et de la correspondance, sans rien de particulier au premier regard. L'étui du coupe-papier de nacre est resté en travers du bureau, vide : la Baillie a emporté l'objet avec elle.",
+    "ambiance": "Lanterne, planches, papier froid.",
+    "arrivee": "La porte de planches s'ouvre, et l'air de la pièce arrive frais, avec une odeur de poussière et de cuir. Une seule lanterne brûle sur un bureau de planches, et son cercle jaune s'arrête avant les murs. Le vent tire sur le volet clos, à petits coups réguliers. Le papier pèse dans les étagères de tôle, et la lumière de la lanterne accroche un reflet pâle sur un étui vide posé en travers du bureau.",
+    "visuel": "Une petite pièce aux planches de caisse, sous un plafond bas de pierre grise. Un bureau de planches occupe le mur est, avec trois tiroirs et une serrure d'acier au centre ; une caisse de fer, de la hauteur d'un genou, est calée sous la table. Une étagère de tôle contre le mur nord porte des liasses de papier ; un étui fin doublé de nacre, vide, est posé en travers du bureau. Une seule lanterne à huile, posée sur le bureau, éclaire la pièce d'un cercle jaune.",
+    "accroche": "Derrière une porte de planches, à l'est du hall, une pièce que la lanterne éclaire d'un seul cercle jaune.",
+    "liens": [],
+    "rencontres": [],
+    "faits": []
+  },
+  {
+    "id": "lr-villa-cave",
+    "nom": "La cave",
+    "type": "salle",
+    "parent": "lr-villa",
+    "resume": "La cave de la villa, avec ses caisses vides et un vieux drain au fond.",
+    "description": "La cave est une pièce de service, sous la villa, qui servait autrefois à stocker les caisses de convoi. Elle est presque vide : des caisses, des étagères de tôle, et au fond une grille de fer rouillée posée sur un vieux drain. Le conduit est assez large pour un homme accroupi, et un souffle tiède en sort, avec une odeur de métal. Il est ancien : la grille est rongée, mais la pierre est propre autour, et la terre battue entre la grille et l'escalier porte des traces qui vont et viennent sur le même chemin. Aucune autre sortie n'est visible, et la cave ne se fouille pas : on n'y trouve que ce qu'on voit.",
+    "ambiance": "Terre humide, rouille, jour gris.",
+    "arrivee": "Vous descendez neuf marches raides, et la pierre froide vous retient à la main. En bas, un filet de jour gris tombe d'un soupirail sur une voûte basse, et le reste de la cave s'enfonce dans un noir terreux. L'air sent la terre humide et la rouille. Quelque part au fond, l'eau goutte lentement dans un conduit, et un souffle tiède, chargé d'une odeur de métal, monte du sol par une grille.",
+    "visuel": "Une cave basse sous voûte de pierre grise, aux joints rongés de rouille, dont le sol de terre rouge est battu et humide en pied de mur. Un escalier raide descend de l'angle sud-ouest ; un soupirail étroit laisse tomber un jour gris sur les marches et laisse le reste dans l'ombre. Contre le mur sud, une grille de fer rouillée repose au ras du sol, sur un vieux drain qui s'enfonce dans le noir. Des caisses vides s'empilent contre le mur est.",
+    "accroche": "Par l'escalier de pierre du hall, une odeur de terre humide et de rouille, et un peu de jour gris qui tombe sur les dernières marches.",
+    "liens": [
+      {
+        "vers": "lr-grotte-drains",
+        "type": "porte",
+        "heures": 0.5,
+        "description": "Grille de fer rouillée au ras du sol, contre le mur sud, sur un conduit de pierre et de tôle qui s'enfonce vers le sud-ouest.",
+        "retour": "Boyau étroit, à hauteur d'épaule, qui remonte vers le nord-est ; au bout, une grille de fer rouillée et le noir d'une cave.",
+        "verrou": {
+          "dd": 12
+        }
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      {
+        "fait": "f-lr-vieux-drains-relient-la-villa",
+        "decouverte": {
+          "auto": true
+        }
+      },
+      {
+        "fait": "f-lr-elinor-savait-les-drains",
+        "decouverte": {
+          "dd": 15,
+          "competence": "investigation"
+        }
+      },
+      {
+        "fait": "f-lr-monstres-sortent-des-drains",
+        "decouverte": {
+          "dd": 12,
+          "competence": "investigation"
+        }
+      }
+    ]
+  },
+  {
+    "id": "lr-forge-vorn",
+    "nom": "La forge de Vorn",
+    "type": "batiment",
+    "parent": "lr-village",
+    "resume": "La forge isolée du nord-ouest, où un vieux forgeron garde son foyer allumé.",
+    "description": "La forge de Vorn Bras-de-Laiton est la plus isolée du bourg, au nord-ouest, face au champ d'épées. Vorn est vieux, peu bavard, et sa respiration siffle comme un soufflet percé ; il tape toujours du plat de la main sur son tablier de cuir. Il veut garder le foyer allumé pour achever son chef-d'œuvre, et craint que les inquisiteurs solaires de Sépulcre-d'Or ne viennent confisquer son atelier. Le foyer ne s'éteint pas : il tient la forge seule allumée depuis trois nuits. Dans les braises, le bloc noir et lisse est trop chaud pour la main nue (une pince de forge suffit, ou l'accord de Vorn), et Vorn le surveille du coin de l'œil. Le dénouement se joue ici : éteindre le foyer, parlementer, ou dénoncer la Baillie. Si l'on force le foyer, ou si on l'éteint, trois épées volantes défendent les braises. La piste des ferrailleurs part de la porte arrière, vers la Forêt d'Acier.",
+    "ambiance": "Foyer, soufflet, enclume, suie.",
+    "arrivee": "Le chemin de terre rouge monte entre deux murets, et la chaleur arrive avant la forge, avec le sifflement d'un soufflet. Par la porte, la lumière orange d'un foyer vous frappe au visage. L'air sent le charbon, l'huile et la suie froide ; sur l'enclume, un marteau attend, posé en travers. Au fond de la pièce, près du foyer, un homme se tient de dos, immobile, et le sifflement de son souffle semble suivre celui du soufflet.",
+    "visuel": "Une forge basse aux murs de terre rouge cuite au feu, sous un toit de tôle rapiécée soutenu par des poutres de lames. Le foyer ouvert, contre le mur ouest, jette une lueur orange et dure sur l'enclume d'acier sombre posée au centre. Le soufflet de cuir bouilli, troué à une couture, siffle à côté du foyer ; dans les braises, un bloc noir et lisse, de la taille d'une tête, n'a pas la couleur du charbon. Hors le jour gris de la porte, seule la lueur du foyer éclaire la pièce.",
+    "accroche": "Au bout d'une piste de terre rouge, une forge isolée face aux lames géantes, son foyer orange visible à travers la porte.",
+    "liens": [
+      {
+        "vers": "lr-foret-lisiere",
+        "type": "porte",
+        "heures": 0.5,
+        "description": "Porte arrière au nord, sur une piste de ferrailleurs qui s'enfonce entre les lames plantées de biais.",
+        "retour": "Piste de terre rouge entre les lames géantes ; au bas de la pente, la forge se voit comme une lueur orange."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "le-choix-de-vorn",
+        "declencheur": "entree",
+        "unique": false,
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "fait": "f-lr-fragment-qui-bat"
+                },
+                {
+                  "flag": "lr-cratere-vu"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "lr-foyer-force"
+              }
+            },
+            {
+              "non": {
+                "flag": "lr-foyer-eteint"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "lames-du-foyer",
+        "declencheur": "entree",
+        "unique": false,
+        "condition": {
+          "et": [
+            {
+              "flag": "lr-foyer-force"
+            },
+            {
+              "non": {
+                "flag": "lr-foyer-eteint"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "faits": [],
+    "position": {
+      "x": 16,
+      "y": 20
+    }
+  }
+]

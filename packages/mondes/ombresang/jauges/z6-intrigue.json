@@ -1,0 +1,41 @@
+[
+  {
+    "id": "fievre-de-fer",
+    "nom": "Fièvre de Fer",
+    "resume": "Les oxydeurs rongent les piles du viaduc. Elle monte à chaque nuit de repos. À 4, l'arche tombe.",
+    "min": 0,
+    "max": 4,
+    "initial": 0,
+    "paliers": [
+      {
+        "seuil": 1,
+        "nom": "Les Lames Errantes",
+        "narration": "Des groupes de deux ou trois épées flottantes patrouillent la route, au-dessus des charrettes. Les premiers marchands sont blessés, et le péage ne rapporte plus rien.",
+        "effets": []
+      },
+      {
+        "seuil": 2,
+        "nom": "La Morsure de Rouille",
+        "narration": "Les oxydeurs ont attaqué les soubassements du pont. Tout outil de fer qui traîne au bord du torrent commence à rouiller, et l'air de la vallée pique les lames.",
+        "effets": []
+      },
+      {
+        "seuil": 3,
+        "nom": "La Panique au Village",
+        "narration": "Les villageois s'enferment dans l'auberge, et les lames s'écrasent contre les volets de bois. Les câbles du pont-levis grincent, et menacent de rompre à la prochaine rafale.",
+        "effets": []
+      },
+      {
+        "seuil": 4,
+        "nom": "L'Effondrement",
+        "narration": "La pile centrale cède sous la rouille, et l'arche de fer s'effondre dans le torrent dans un vacarme qui roule jusqu'aux crêtes. La Voie Royale de Fer est coupée, et les nuées d'épées se répandent sur le village.",
+        "effets": [
+          {
+            "flag": "camp-viaduc-rompu"
+          }
+        ]
+      }
+    ],
+    "evolution": []
+  }
+]

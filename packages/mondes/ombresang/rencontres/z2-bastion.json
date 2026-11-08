@@ -1,0 +1,109 @@
+[
+  {
+    "id": "hommes-de-la-baillie",
+    "nom": "Les hommes de la Baillie",
+    "type": "combat",
+    "lieu": "lr-bastion-cour",
+    "difficulte": "faible",
+    "intro": "Les hommes de main de la Baillie accourent, lames au clair. Ils n'obéissent qu'à elle, et les péagers, derrière eux, hésitent encore à lever la main.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 3
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "##.......######",
+      "#..HHHHHH.....#",
+      "#.............#",
+      "#mm.......~...#",
+      "#.m......~....#",
+      "#mm.....~.....#",
+      "#......~......#",
+      "#.....~.......#",
+      "#....~........#",
+      "###############"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les bandits frappent les héros isolés, près du corps de garde ; les éclaireurs tirent depuis l'auvent du corps de garde. Ils gardent la porte nord.",
+      "fuite": "Ils se replient vers le corps de garde quand deux des leurs tombent.",
+      "renforts": "Aucun."
+    },
+    "alternatives": [
+      {
+        "id": "intimider-les-peagers",
+        "nom": "Je somme les péagers de rendre les armes, devant leurs camarades.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "resume": "Les péagers posent leurs armes, un à un ; les hommes de main, restés seuls, reculent vers le corps de garde sans frapper.",
+        "effets": [
+          {
+            "flag": "lr-hommes-de-main-isoles"
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "brisk-sergent",
+              "delta": -10
+            }
+          },
+          {
+            "flag": "lr-peagers-alertes"
+          }
+        ]
+      }
+    ],
+    "effetsVictoire": [
+      {
+        "flag": "lr-hommes-de-la-baillie-battus"
+      }
+    ]
+  },
+  {
+    "id": "oxydeurs-des-cables",
+    "nom": "Les oxydeurs des câbles",
+    "type": "combat",
+    "lieu": "lr-viaduc-tablier",
+    "difficulte": "faible",
+    "intro": "Deux oxydeurs sont accrochés aux câbles de l'arche, au-dessus de la pile centrale. Ils rongent les attaches maillon après maillon, et dès qu'ils sentent le fer, ils descendent sur la chaussée.",
+    "monstres": [
+      {
+        "profil": "oxydeur",
+        "nombre": 2
+      }
+    ],
+    "carte": [
+      "HHHH",
+      "HH..",
+      "....",
+      "....",
+      "~..~",
+      "....",
+      "m~~m",
+      "....",
+      "~...",
+      "....",
+      "..~.",
+      "...."
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Ils rongent les câbles tant qu'on ne les dérange pas, puis attaquent ce qui porte du fer. Ils restent près de la pile centrale.",
+      "fuite": "Ils se réfugient sous la chaussée quand l'un des deux tombe.",
+      "renforts": "Aucun."
+    },
+    "effetsVictoire": [
+      {
+        "flag": "lr-cables-sauves"
+      }
+    ]
+  }
+]

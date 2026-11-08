@@ -1,0 +1,445 @@
+[
+  {
+    "id": "le-sang-sur-la-lame",
+    "nom": "Le sang sur la lame",
+    "type": "principale",
+    "lieu": "lr-place",
+    "resume": "Les épées de la vallée se soulèvent depuis hier, et les lames forgées au village s'animent depuis trois nuits. Il faut arrêter ce qui les réveille avant que le viaduc ne cède.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-attaque",
+    "etapes": [
+      {
+        "id": "e-attaque",
+        "texte": "Des épées volantes frappent la place. Repoussez-les avec la milice, et soignez les blessés.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "lr-place-sauvee"
+            },
+            {
+              "fait": "f-lr-fournee-de-vorn"
+            },
+            {
+              "fait": "f-lr-monstres-sortent-des-drains"
+            },
+            {
+              "fait": "f-lr-piles-s-effondrent"
+            },
+            {
+              "fait": "f-lr-fragment-qui-bat"
+            },
+            {
+              "flag": "lr-cratere-vu"
+            },
+            {
+              "jauge": {
+                "id": "fievre-de-fer",
+                "min": 4
+              }
+            }
+          ]
+        },
+        "suivantes": [
+          "e-enquete"
+        ]
+      },
+      {
+        "id": "e-enquete",
+        "texte": "Les lames ne s'animent pas seules. Trouvez ce qui les réveille, et d'où viennent les bêtes de rouille qui rongent le viaduc.",
+        "completion": {
+          "ou": [
+            {
+              "fait": "f-lr-fournee-de-vorn"
+            },
+            {
+              "fait": "f-lr-monstres-sortent-des-drains"
+            },
+            {
+              "fait": "f-lr-piles-s-effondrent"
+            },
+            {
+              "fait": "f-lr-fragment-qui-bat"
+            },
+            {
+              "flag": "lr-cratere-vu"
+            },
+            {
+              "jauge": {
+                "id": "fievre-de-fer",
+                "min": 4
+              }
+            }
+          ]
+        },
+        "suivantes": [
+          "e-fer",
+          "e-foyer",
+          "e-parias",
+          "e-rupture"
+        ],
+        "effets": [
+          {
+            "xp": 50
+          }
+        ]
+      },
+      {
+        "id": "e-fer",
+        "texte": "On peut rouvrir la route par l'autorité : réparer la herse, nettoyer ce qui ronge le pont, et laisser la justice de la Baillie suivre son cours.",
+        "completion": {
+          "et": [
+            {
+              "flag": "lr-herse-reparee"
+            },
+            {
+              "flag": "lr-reine-abattue"
+            },
+            {
+              "flag": "lr-joran-livre"
+            }
+          ]
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "narration": "Le treuil tourne enfin, et la herse remonte dans un grincement de fer. Au pied de la pile, le nid des oxydeurs brûle, et la Voie Royale de Fer rouvre aux convois. Vorn continue de battre le fer dans son atelier, et la vallée continue de trembler à bas bruit. Joran part pour les galères du Port des Brumes, enchaîné sur un chariot, pendant que la Baillie compte son or."
+          },
+          {
+            "flag": "camp-lame-rousse-fer"
+          },
+          {
+            "flag": "camp-viaduc-rouvert"
+          },
+          {
+            "pieces": 100
+          },
+          {
+            "objet": {
+              "id": "laissez-passer-imperial"
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "joran-deserteur",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "battement-du-coeur",
+              "delta": 2
+            }
+          }
+        ]
+      },
+      {
+        "id": "e-foyer",
+        "texte": "Si ce qui réveille les lames a une source, il faudra peut-être l'éteindre, quel qu'en soit le prix.",
+        "completion": {
+          "flag": "lr-foyer-eteint"
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "narration": "Le foyer s'éteint sous l'eau du torrent d'Oxyde, et les épées volantes retombent inertes sur la place. Vorn ne se relève pas : son souffle siffle une dernière fois, puis se tait, la main à plat sur son tablier. La Baillie, furieuse, refuse toute récompense, et le viaduc devra être réparé à la main : il faudra des jours à pied, par les sentiers escarpés, pour quitter la vallée. Les ferrailleurs ramassent les lames comme de la ferraille, et se demandent de quoi ils vivront cet hiver."
+          },
+          {
+            "flag": "camp-lame-rousse-foyer"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "vorn-bras-de-laiton",
+              "etat": "mort"
+            }
+          }
+        ]
+      },
+      {
+        "id": "e-parias",
+        "texte": "Les ferrailleurs n'attendent qu'une preuve pour se dresser contre la Baillie, et le prisonnier du pilori a des choses à dire.",
+        "completion": {
+          "et": [
+            {
+              "flag": "lr-joran-libere"
+            },
+            {
+              "flag": "lr-elinor-demasquee"
+            },
+            {
+              "flag": "lr-reine-detournee"
+            }
+          ]
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "narration": "La Baillie est destituée, ou s'enfuit de nuit vers la capitale. Joran prend le commandement du poste de péage, et les forgerons de Lame-Rousse consolident les piles de leurs propres mains. Dans sa forge, Vorn garde son foyer allumé, et les lames de la vallée frémissent encore. Votre nom entre désormais dans les registres de la prévôté de Sépulcre-d'Or, pour rébellion de frontière, et les patrouilles impériales guettent la route."
+          },
+          {
+            "flag": "camp-lame-rousse-parias"
+          },
+          {
+            "flag": "camp-viaduc-rouvert"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "elinor-vane",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "battement-du-coeur",
+              "delta": 1
+            }
+          },
+          {
+            "deplacer": {
+              "pnj": "joran-deserteur",
+              "lieu": "lr-bastion-tour"
+            }
+          }
+        ]
+      },
+      {
+        "id": "e-rupture",
+        "texte": "Les oxydeurs rongent les piles du viaduc. Si rien ne les arrête, l'arche tombera.",
+        "completion": {
+          "jauge": {
+            "id": "fievre-de-fer",
+            "min": 4
+          }
+        },
+        "suivantes": [],
+        "termine": true,
+        "effets": [
+          {
+            "narration": "Il ne reste que les pistes à pied, par les sentiers escarpés, pour quitter la vallée. Le groupe repart affaibli, et sans appuis."
+          },
+          {
+            "flag": "camp-lame-rousse-rupture"
+          },
+          {
+            "jauge": {
+              "id": "battement-du-coeur",
+              "delta": 3
+            }
+          }
+        ]
+      }
+    ],
+    "recompenses": {
+      "xp": 200,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Quatre issues, qui ne se refont pas : la voie du fer (herse, Reine, Joran livré) rouvre la route sans reconnaissance ; le foyer éteint tue Vorn et laisse la Baillie sans récompense ; le pacte des parias (Joran libéré, Baillie démasquée, Reine détournée) destitue la Baillie mais expose le groupe à la prévôté ; la rupture arrive dès que la Fièvre de Fer atteint 4, avant toute issue. Pour le MJ : la fin d'échec coupe les autres étapes en cours."
+  },
+  {
+    "id": "la-verite-de-joran",
+    "nom": "La vérité de Joran",
+    "type": "secondaire",
+    "donneur": "joran-deserteur",
+    "lieu": "lr-place",
+    "resume": "Joran jure qu'il n'a pas saboté la herse. Ce qu'il dit peut être vérifié.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-drains",
+    "etapes": [
+      {
+        "id": "e-drains",
+        "texte": "Joran jure avoir été accusé à tort. Vérifiez ce qu'il raconte avant de le croire.",
+        "completion": {
+          "fait": "f-lr-monstres-sortent-des-drains"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 50,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Le fait se découvre en gagnant la confiance de Joran (attitude 30), ou en allant voir les canaux sur place. Sans lui, la quête principale garde ses autres voies."
+  },
+  {
+    "id": "le-treuil-du-temple",
+    "nom": "Le treuil du Temple",
+    "type": "secondaire",
+    "donneur": "aldric-ponts",
+    "lieu": "lr-temple-arsenal",
+    "resume": "Aldric Ponts, ingénieur du viaduc, sait où trouver une pièce de rechange pour le treuil : elle est gardée au Temple du Glaive Brisé.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-treuil",
+    "etapes": [
+      {
+        "id": "e-treuil",
+        "texte": "Trouvez le treuil de rechange, gardé au Temple du Glaive Brisé, par le sentier des Gardiens.",
+        "completion": {
+          "ou": [
+            {
+              "objet": "treuil-de-rechange"
+            },
+            {
+              "flag": "lr-herse-reparee"
+            }
+          ]
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 25,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "La pièce est gardée au Temple par le Maître d'Armes : on ne la rapporte qu'en la prenant. Si elle est perdue, la herse du Bastion reste coincée, mais la quête principale peut tout de même avancer par d'autres voies."
+  },
+  {
+    "id": "la-herse-du-bastion",
+    "nom": "La herse du Bastion",
+    "type": "secondaire",
+    "donneur": "aldric-ponts",
+    "lieu": "lr-bastion-herse",
+    "resume": "La herse du Bastion reste coincée aux trois quarts, et le viaduc avec elle. Les roues du treuil doivent être remontées dans le bon ordre.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-herse",
+    "etapes": [
+      {
+        "id": "e-herse",
+        "texte": "Remettez la herse en marche avec la pièce de rechange du treuil.",
+        "completion": {
+          "flag": "lr-herse-reparee"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 75,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "La herse se répare avec la pièce de rechange du Temple, une fois les roues remises dans l'ordre de l'arbre."
+  },
+  {
+    "id": "le-nid-des-rouilles",
+    "nom": "Le nid des Rouilles",
+    "type": "secondaire",
+    "donneur": "elinor-vane",
+    "lieu": "lr-grotte-nid",
+    "resume": "La Baillie veut que les oxydeurs cessent de ronger le viaduc, et paiera pour cela.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-nid",
+    "etapes": [
+      {
+        "id": "e-nid",
+        "texte": "Descendez dans la grotte sous le viaduc, et faites cesser ce qui ronge les piles, par la force ou autrement.",
+        "completion": {
+          "ou": [
+            {
+              "flag": "lr-reine-abattue"
+            },
+            {
+              "flag": "lr-reine-detournee"
+            }
+          ]
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 50,
+      "pieces": 40,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Abattre la Reine ou la détourner posent deux flags différents : la voie du fer exige qu'elle soit abattue, la voie des parias qu'elle soit détournée. La quête se termine dès que l'une des deux est accomplie."
+  },
+  {
+    "id": "le-suif-de-martha",
+    "nom": "Le suif de Martha",
+    "type": "secondaire",
+    "donneur": "soeur-martha",
+    "lieu": "lr-grotte-cavernes",
+    "resume": "Sœur Martha a besoin d'une matière qu'on ne trouve plus au village. Elle se prend dans les cavernes sous le viaduc.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-suif",
+    "etapes": [
+      {
+        "id": "e-suif",
+        "texte": "Trouvez pour Sœur Martha la matière qui manque à ses soins, dans les cavernes sous le viaduc.",
+        "completion": {
+          "objet": "suif-d-oxydeur"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 25,
+      "pieces": 15,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Le suif se prend dans les cavernes. Martha ne le vend pas : la quête se rend, elle ne s'achète pas."
+  },
+  {
+    "id": "l-apprenti-de-gorm",
+    "nom": "L'apprenti de Gorm",
+    "type": "secondaire",
+    "donneur": "gorm-meule",
+    "lieu": "lr-grotte-cavernes",
+    "resume": "Gorm Meule a perdu son apprenti, Ansel Pique, parti sans un mot vers le viaduc. Il veut qu'on le ramène vivant.",
+    "niveau": {
+      "min": 1,
+      "max": 3
+    },
+    "debut": "e-ansel",
+    "etapes": [
+      {
+        "id": "e-ansel",
+        "texte": "Retrouvez Ansel Pique, l'apprenti de Gorm Meule, parti sans un mot du côté du viaduc.",
+        "completion": {
+          "flag": "lr-ansel-sauve"
+        },
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 25,
+      "pieces": 0,
+      "objets": [],
+      "effets": []
+    },
+    "ramifications": "Ansel ne peut pas redescendre seul : il faut l'aider à quitter la vire. Une fois sauvé, il rentre à l'atelier de Gorm."
+  }
+]

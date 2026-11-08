@@ -1,0 +1,16 @@
+[
+  {
+    "id": "sol-du-cratere",
+    "nom": "Le sol du cratère",
+    "lieu": "lr-foret-menhir",
+    "resume": "Le fond du cratère est un sol saturé d'Ichor tiède, qui fume et brûle, hors de l'arête de roche sèche qui mène au Menhir.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 13, "competence": "athletisme" },
+    "declenchement": "Le premier pas posé hors de l'arête enfonce une jambe jusqu'au genou dans un sol tiède et spongieux. Les fumerolles brûlent la peau, et le monde tangue.",
+    "sauvegarde": { "caracteristique": "con", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d6", "type": "feu" }],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

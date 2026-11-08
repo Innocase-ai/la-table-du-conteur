@@ -1,0 +1,52 @@
+[
+  {
+    "id": "cache-de-ferraille",
+    "nom": "La cache de ferraille",
+    "lieu": "lr-grotte-cavernes",
+    "contenant": "cache",
+    "description": "Une niche de la paroi est, cachée derrière un tas de lames rongées. Au fond, un lot de lames tordues et de pièces mêlées, d'un métal qui n'a pas la couleur de la rouille.",
+    "contenu": {
+      "objets": [{ "objet": "ferraille-divine", "quantite": 1 }]
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    }
+  },
+  {
+    "id": "plaques-de-suif",
+    "nom": "Les plaques de suif",
+    "lieu": "lr-grotte-cavernes",
+    "contenant": "autre",
+    "description": "Entre les plaques creuses, au centre de la salle, le suif gris est figé en épaisseur. Un couteau suffit à en détacher des morceaux.",
+    "contenu": {
+      "objets": [{ "objet": "suif-d-oxydeur", "quantite": 1 }]
+    },
+    "acces": {}
+  },
+  {
+    "id": "futs-scelles",
+    "nom": "Les fûts scellés",
+    "lieu": "lr-grotte-veine",
+    "contenant": "autre",
+    "description": "Trois fûts de fer, cerclés de bandes, empilés au fond de la fissure. Le fût du dessus est trop lourd pour être remonté ; son couvercle se force à la lame, et se porte sous le bras.",
+    "contenu": {
+      "objets": [{ "objet": "couvercle-du-fut", "quantite": 1 }]
+    },
+    "acces": {
+      "verrou": { "dd": 12 }
+    },
+    "indice": "f-lr-sceau-cercle-trois-traits"
+  },
+  {
+    "id": "coeur-de-la-rouille",
+    "nom": "Le cœur de rouille",
+    "lieu": "lr-grotte-nid",
+    "contenant": "autre",
+    "description": "Un bloc compact de rouille, sur le bord sud de la cuvette, côté paroi. Il sonne clair au choc, et ne tient pas au reste de la croûte.",
+    "contenu": {
+      "objets": [{ "objet": "coeur-de-rouille", "quantite": 1 }]
+    },
+    "acces": {},
+    "condition": { "ou": [{ "flag": "lr-reine-abattue" }, { "flag": "lr-reine-detournee" }] }
+  }
+]
