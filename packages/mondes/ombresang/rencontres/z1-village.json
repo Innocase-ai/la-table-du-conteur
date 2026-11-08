@@ -1,0 +1,90 @@
+[
+  {
+    "id": "charrette-qui-verse",
+    "nom": "La charrette qui verse",
+    "type": "exploration",
+    "lieu": "lr-place",
+    "difficulte": "faible",
+    "intro": "La charrette de ferraille bascule à l'est du pilori, une roue en l'air, et ses tôles glissent vers la foule qui recule. Un héros peut tenter de la retenir, le temps que la foule s'écarte ; dans tous les cas, elle finit par verser, et ce qu'elle porte se relève.",
+    "alternatives": [
+      {
+        "id": "retenir-la-charrette",
+        "nom": "Retenir la charrette à deux mains",
+        "resume": "Vous vous arc-boutez contre les ridelles, le temps que la foule s'écarte.",
+        "jet": { "competence": "athletisme", "dd": 12 },
+        "effets": [
+          { "narration": "La charrette tient le temps qu'il faut : la foule s'écarte, personne n'est écrasé, et des mains vous tapent sur l'épaule. Puis elle verse, doucement, et les tôles frémissent." },
+          { "flag": "lr-foule-reconnaissante" },
+          { "rencontre": "lames-de-la-place" }
+        ],
+        "echec": [
+          { "narration": "Vous finissez par terre, dans la ferraille, sous les rires des badauds. La charrette a versé, et rien ne vous a touché." },
+          { "rencontre": "lames-de-la-place" }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "laisser-verser",
+        "nom": "Laisser la charrette verser",
+        "resume": "Vous reculez d'un pas, et la charrette s'écrase devant vous dans un vacarme de tôle.",
+        "effets": [{ "rencontre": "lames-de-la-place" }]
+      }
+    ]
+  },
+  {
+    "id": "lames-de-la-place",
+    "nom": "Les épées de la place",
+    "type": "combat",
+    "lieu": "lr-place",
+    "difficulte": "faible",
+    "intro": "Des tôles de la charrette, les épées se redressent une à une et fondent sur la foule. La milice tire ses piques, et vous combattez à ses côtés, au milieu de la poussière rouge.",
+    "monstres": [{ "profil": "epee-volante", "nombre": 4 }],
+    "carte": [
+      "############",
+      "#...rrrr...#",
+      "#..........#",
+      "#.........c#",
+      "#.........c#",
+      "#.......mm.#",
+      "#....R..cc.#",
+      "#.......mm.#",
+      "#..........#",
+      "#..........#",
+      "#.....~~...#",
+      "#..........#",
+      "#..HHHHHH..#",
+      "#####..#####"
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Les épées frappent d'abord les badauds et les miliciens isolés. La milice tient la place avec les héros et ne recule pas d'un pas ; la charrette renversée sert de rempart.",
+      "fuite": "Aucune : elles se battent jusqu'à la dernière.",
+      "renforts": "Aucun."
+    },
+    "effetsVictoire": [{ "flag": "lr-place-sauvee" }]
+  },
+  {
+    "id": "lames-du-foyer",
+    "nom": "Les épées du foyer",
+    "type": "combat",
+    "lieu": "lr-forge-vorn",
+    "difficulte": "faible",
+    "intro": "Le sifflement du soufflet s'arrête. Dans la lueur orange, les épées se détachent du mur et se rangent autour des braises, pointes tournées vers la porte.",
+    "monstres": [{ "profil": "epee-volante", "nombre": 4 }],
+    "carte": [
+      "######.##",
+      "#m..cc..#",
+      "#mm.....#",
+      "#Rm.r...#",
+      "#.......#",
+      "#HHHHHH.#",
+      "#######.#"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Elles protègent le foyer : elles restent entre les braises et les héros, et ne quittent pas la forge.",
+      "fuite": "Aucune : elles se battent jusqu'à la dernière.",
+      "renforts": "Aucun."
+    }
+  }
+]

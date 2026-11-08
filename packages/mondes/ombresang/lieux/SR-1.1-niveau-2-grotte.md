@@ -1,6 +1,6 @@
 # Grotte des Rouilles (lr-grotte) : points à visiter, niveau 2
 
-> **Brouillon, non validé** (V5, lieu 3/5). Fiches détaillées des points à visiter de `lr-grotte`, au modèle de `SR-1.1-niveau-2-bastion.md`. Sources : la fiche Niveau 1 de `lr-grotte` (gelée) dans `SR-1.1-vallee-des-mille-epees.md`, `../PITCH-LAME-ROUSSE.md` (§2, §3, §4, §5, §6 lieu 3), et les textes d'issues repris du Bastion (`SR-1.1-niveau-2-bastion.md`, issue vers `lr-grotte-entree`) et du village (`SR-1.1-niveau-2-village.md`, issue vers `lr-grotte-drains`). Dans les blocs d'héritage, « charte de la région 1 » renvoie à l'en-tête de `SR-1.1-vallee-des-mille-epees.md`.
+> **Validé par l'utilisateur le 08/11/2026** (V5, lieu 3/5). Gelé : toute modification passe par lui. Fiches détaillées des points à visiter de `lr-grotte`, au modèle de `SR-1.1-niveau-2-bastion.md`. Sources : la fiche Niveau 1 de `lr-grotte` (gelée) dans `SR-1.1-vallee-des-mille-epees.md`, `../PITCH-LAME-ROUSSE.md` (§2, §3, §4, §5, §6 lieu 3), et les textes d'issues repris du Bastion (`SR-1.1-niveau-2-bastion.md`, issue vers `lr-grotte-entree`) et du village (`SR-1.1-niveau-2-village.md`, issue vers `lr-grotte-drains`). Dans les blocs d'héritage, « charte de la région 1 » renvoie à l'en-tête de `SR-1.1-vallee-des-mille-epees.md`.
 
 **Plan de référence** (mètres, nord en haut, origine au coin nord-ouest de la grotte ; profondeur comptée sous le tablier du viaduc, qui est à vingt mètres au-dessus du torrent d'Oxyde) :
 - Ensemble : 60 m (ouest-est) sur 90 m (nord-sud). Le torrent coule au sud, au-delà de la paroi du nid.
@@ -278,7 +278,7 @@
 
 ---
 
-## Cas limites de la Grotte (règle n+1, proposition)
+## Cas limites de la Grotte (règle n+1)
 
 - **Ansel Pique meurt ou reste sur sa vire** : Gorm Meule l'apprend au village ; les fûts scellés restent à découvrir sans lui.
 - **Le couvercle scellé est perdu** : le registre de livraisons de la villa sert de preuve de rechange.

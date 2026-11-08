@@ -1,0 +1,19 @@
+[
+  {
+    "id": "aiguille-du-bureau",
+    "nom": "L'aiguille de la serrure",
+    "lieu": "lr-villa-bureau",
+    "resume": "Une aiguille d'acier logée dans la serrure du tiroir : elle se détend quand on force le tiroir sans la clé.",
+    "detection": { "dd": 12, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils-de-voleur" },
+    "declenchement": "L'aiguille jaillit de la serrure et pique la main de qui force le tiroir. Une piqûre froide, puis une brûlure qui monte jusqu'au poignet.",
+    "sauvegarde": { "caracteristique": "con", "dd": 11, "moitieSiReussite": true },
+    "degats": [
+      { "des": "1d4", "type": "perforant" },
+      { "des": "1d4", "type": "poison" }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false
+  }
+]

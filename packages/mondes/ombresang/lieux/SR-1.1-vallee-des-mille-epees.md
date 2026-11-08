@@ -161,7 +161,7 @@ Les cinq lieux de la sous-région, dans l'ordre choisi avec l'utilisateur :
 ### Budget de contenu (proposé, à décider avec l'utilisateur)
 - **Combats : 2** · **Rencontres sociales : 1** · **PNJ : 1** · **Énigmes : 0** · **Pièges : 2** · **Trésors : 2**
 - **Répartition :**
-  - Combats : la galerie (`oxydeur` : **2 pour 4 héros, 3 pour 6 héros**) ; le nid (**la Reine des Rouilles, un `oxydeur` de FP 1/2** — c'est le profil du catalogue, avec un nom et une fiche de texte propres, et **non** la variante de FP 3 de l'atlas — plus **1 `oxydeur` pour 4 héros, 2 pour 6 héros**). **Alternative sans combat pour la Reine** : la détourner avec le minerai de Vorn (lancer, discrétion, ou parole d'un compagnon) ; c'est la voie de la fin C du pitch.
+  - Combats : la galerie (`oxydeur` : **2 pour 4 héros, 3 pour 6 héros**) ; le nid (**la Reine des Rouilles, un `oxydeur` de FP 1/2** — c'est le profil du catalogue, avec un nom et une fiche de texte propres — plus **1 `oxydeur` pour 4 héros, 2 pour 6 héros**). **Alternative sans combat pour la Reine** : la détourner avec le minerai de Vorn (lancer, discrétion, ou une voix calme : Dressage) ; c'est la voie de la fin C du pitch.
   - PNJ : `ansel-pique` (apprenti de Gorm Meule, disparu depuis trois jours, coincé sur une corniche des cavernes). Rencontre sociale : le sauver, apprendre ce qu'il a vu (les fûts scellés).
   - Pièges : la corniche d'entrée rongée qui cède ; la poche d'acide dans les vieux drains.
   - Trésors : la cache de ferraille de qualité dans les cavernes (40 po de métal divin) ; le « cœur de rouille » du nid (50 po).

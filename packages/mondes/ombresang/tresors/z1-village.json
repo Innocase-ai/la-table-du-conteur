@@ -1,0 +1,54 @@
+[
+  {
+    "id": "caisse-du-peage",
+    "nom": "La caisse du péage",
+    "lieu": "lr-villa-bureau",
+    "contenant": "coffre",
+    "description": "Une caisse de fer calée sous la table, fermée par un cadenas à gros anneau. Elle pèse lourd quand on la bouge.",
+    "contenu": {
+      "pieces": { "po": 15, "pa": 60, "pc": 120 }
+    },
+    "acces": {
+      "verrou": { "dd": 13 }
+    }
+  },
+  {
+    "id": "reserve-de-gorm",
+    "nom": "La réserve de Gorm",
+    "lieu": "lr-forges",
+    "contenant": "coffre",
+    "description": "Un coffre de fer sous l'établi du fond de la forge centrale, fermé par un cadenas à clé.",
+    "contenu": {
+      "objets": [{ "objet": "potion-de-guerison", "quantite": 1 }]
+    },
+    "acces": {
+      "verrou": { "dd": 12 }
+    }
+  },
+  {
+    "id": "double-fond-du-bureau",
+    "nom": "Le double fond du bureau",
+    "lieu": "lr-villa-bureau",
+    "contenant": "cache",
+    "description": "La serrure du tiroir central commande les trois tiroirs : il faut la passer pour ouvrir celui du bas. Sous ses cahiers de comptes, une plaque de bois ne tient pas à plat : elle se soulève.",
+    "contenu": {
+      "objets": [{ "objet": "registre-de-scories", "quantite": 1 }]
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "investigation" },
+      "verrou": { "dd": 13 },
+      "piege": "aiguille-du-bureau"
+    },
+    "indice": "f-lr-registre-scories"
+  },
+  {
+    "id": "caisse-de-minerai",
+    "nom": "La caisse de minerai",
+    "lieu": "lr-forge-vorn",
+    "contenant": "autre",
+    "description": "Une caisse basse sous l'établi, contre le mur nord, pleine d'un minerai sombre, veiné de rouille.",
+    "contenu": {
+      "objets": [{ "objet": "minerai-de-vorn", "quantite": 1 }]
+    }
+  }
+]

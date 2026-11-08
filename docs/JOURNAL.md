@@ -1352,3 +1352,20 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 ## 08/11/2026 — Ombresang : V5 du Bastion validé (lieu 2/5)
 
 - Les 6 fiches de `lieux/SR-1.1-niveau-2-bastion.md` sont **validées et gelées**, avec leurs cas limites. À retenir : à pied on passe sous la herse coincée, pas les convois ; Élinor propose une prime ; la clé de Brisk ouvre le cadenas et les grilles.
+
+## 08/11/2026 — Ombresang : V5 de la Grotte des Rouilles validé (lieu 3/5)
+
+- Les 6 fiches de `lieux/SR-1.1-niveau-2-grotte.md` sont **validées et gelées**, avec leurs cas limites. Décisions : la preuve à rapporter est le couvercle scellé du fût (le fût est trop lourd pour l'échelle) ; emblème de la Forge Crânienne : un cercle à trois traits ; un lot de ferraille peut remplacer le minerai de Vorn. Ajouts dans le gelé : caisse de minerai à la forge de Vorn ; fiche de niveau 1 de la Grotte sans « compagnon » ni variante FP 3.
+
+## 08/11/2026 — Ombresang : V5 du Temple du Glaive Brisé validé (lieu 4/5)
+
+- Les 5 fiches de `lieux/SR-1.1-niveau-2-temple.md` sont **validées et gelées**, avec leurs cas limites. Décisions : serment en trois phrases ; trois plaques d'acier taillées dans la lame pour l'énigme ; casque sur l'autel de la chapelle, armure sans casque qui s'assemble à l'arsenal ; parler franchement et jurer avec ses mots vaut le serment ; la dernière page du journal est de la main de l'armure.
+
+## 08/11/2026 — Ombresang : V5 de la Forêt d'Acier validé, V5 de la SR 1.1 terminé
+
+- Les 5 fiches de `lieux/SR-1.1-niveau-2-foret.md` sont **validées et gelées**, avec leurs cas limites. Les cinq lieux de la Vallée des Mille Épées (30 points à visiter) sont désormais décrits au niveau 2. Décisions : Menhir = bloc de pierre noire, pommeau d'une autre épée du dieu ; une arête de roche sèche mène à l'éclat ; foyer de Vorn éteint = lames errantes retombées. Pitch §7 corrigé avec l'accord de l'utilisateur : la Forêt est au nord et à l'ouest du village.
+- Prochaine étape : V6 (contenu en données JSON), avec la convention de drapeaux convenue avec la séance moteur et environ 500 PX à fournir par les quêtes pour atteindre 900 PX.
+
+## 08/11/2026 — Ombresang : V6 du village écrit, en brouillon (lieu 1/5)
+
+- Données du village dans `packages/mondes/ombresang/` (`pnj`, `rencontres`, `pieges`, `tresors`, `objets`, `faits`, fichiers `z1-village.json`) : relues, conformes aux schémas, **pas encore validées par l'utilisateur**. Les lieux en JSON, la quête principale, la jauge et les `chapitres` de `monde.json` restent à écrire.

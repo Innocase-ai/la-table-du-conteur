@@ -125,7 +125,7 @@ Les cinq lieux sont ceux de l'atlas (SR 1.1) ; Lame-Rousse est le **hub** : on y
 - **Éléments géographiques visibles :**
   - **La rivière d'Oxyde :** torrent rouge rouille qui descend vers le sud ; le viaduc l'enjambe au sortir du village.
   - **Le Pont-Viaduc de Lame-Rousse :** arche de fer et de pierre, point névralgique de l'aventure.
-  - **La Forêt d'Acier :** le champ des épées géantes, de part et d'autre de la rivière.
+  - **La Forêt d'Acier :** le champ des épées géantes, au nord et à l'ouest du village.
   - **Les voisines :** le Gantelet d'Airain (SR 1.2) à l'Ouest, la Cuirasse Fendue (SR 1.4) au Nord, les Landes de Limaille (SR 1.5) à l'Est ; la capitale à l'horizon Sud-Est.
 - **Connexions et voies de communication :**
   - **Vers la Capitale (Sud-Est, hors carte) :** la **Voie Royale de Fer** (14 heures de marche).

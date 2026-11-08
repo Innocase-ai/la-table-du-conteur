@@ -313,6 +313,7 @@ Fiches détaillées des points à visiter de `lr-village`, au modèle de `decrir
   - tablier de cuir pendu à un clou près de la porte sud-est.
   - pile de lames déjà forgées contre le mur sud, pointes vers le haut.
   - porte arrière de planches, dans le mur nord, au bout de l'établi.
+  - caisse de minerai sous l'établi, contre le mur nord.
 - **Issues** (où elles mènent, aspect vu de chaque côté) :
   - vers `lr-place` : description (vue de la forge) : « Porte basse au sud-est, sur une piste de terre rouge ; en bas, la place et le pilori, petits sous le ciel gris. » ; retour (vue de la place) : « Piste de terre rouge au nord-ouest, entre deux murets, qui monte vers une forge dont la lueur orange se voit sous le toit. »
   - vers `lr-foret-lisiere` (piste des ferrailleurs) : description (vue de la forge) : « Porte arrière au nord, sur une piste de ferrailleurs qui s'enfonce entre les lames plantées de biais. » ; retour (vue de la lisière) : « Piste de terre rouge entre les lames géantes ; au bas de la pente, la forge se voit comme une lueur orange. »
@@ -321,6 +322,7 @@ Fiches détaillées des points à visiter de `lr-village`, au modèle de `decrir
   | sorte (PNJ, monstre, piège, trésor, énigme, objet) | rôle | lié à quel élément du décor | id | skill |
   | --- | --- | --- | --- | --- |
   | PNJ (rencontre sociale, dénouement) | Vorn Bras-de-Laiton garde son foyer allumé ; le choix moral se joue ici (éteindre le foyer, parlementer, dénoncer la Baillie) | près du foyer, contre le mur ouest | `vorn-bras-de-laiton` | Persuasion |
+  | objet | le minerai de Vorn, à emporter : il attire les oxydeurs (fin C du pitch ; leurre du nid de la Grotte) | caisse sous l'établi, mur nord | à créer | — |
   | objet de quête | le fragment d'enclume : un bloc noir et lisse, de la taille d'une tête, trop chaud pour la main nue | foyer, contre le mur ouest | à créer | Perspicacité |
   | combat (conditionnel) | trois épées volantes défendent le foyer, si l'on force le foyer ou si on l'éteint | foyer | `epee-volante` (x3) | combat |
 

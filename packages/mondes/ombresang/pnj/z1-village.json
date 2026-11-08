@@ -1,0 +1,353 @@
+[
+  {
+    "id": "joran-deserteur",
+    "nom": "Joran",
+    "titre": "Déserteur de la garnison impériale",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 19 ans",
+    "role": "Jeune soldat déserteur, enchaîné au pilori de la place",
+    "lieu": "lr-place",
+    "apparence": "Jeune homme de 19 ans, maigre, cheveux plaqués de sueur et de poussière rouge, visage creusé, uniforme impérial déchiré aux coudes, poignets à vif sous les fers, lèvres gercées.",
+    "personnalite": {
+      "traits": ["franc", "désespéré mais têtu", "loyal envers les siens"],
+      "voix": "Hachée, phrases courtes, lèvres gercées ; il s'interrompt quand il en a trop dit, et regarde le groupe droit dans les yeux.",
+      "valeurs": ["dire la vérité même quand elle ne sert à rien", "ne jamais abandonner les siens"],
+      "desir": "Prouver son innocence et sauver sa jeune sœur, restée bloquée de l'autre côté du viaduc, dans le camp des réfugiés.",
+      "peur": "Être exécuté sur la place avant d'avoir pu parler.",
+      "defaut": "Il s'emporte vite quand on doute de lui."
+    },
+    "attitude": 10,
+    "savoir": ["f-lr-joran-innocent", "f-lr-engrenages-fondus-par-l-acide", "f-lr-monstres-sortent-des-drains"],
+    "secrets": [{ "fait": "f-lr-monstres-sortent-des-drains", "attitudeMin": 30 }],
+    "sujets": [
+      {
+        "id": "innocence",
+        "mots": ["sabotage", "pont-levis", "herse", "accusé", "innocent", "pourquoi"],
+        "question": "Qu'est-ce qu'on vous reproche, au juste ?",
+        "reponse": "« Je n'ai pas saboté la herse. J'ai voulu l'abaisser pour arrêter les lames qui suivaient une caravane de pèlerins. Les engrenages ont fondu sous mes mains, et un oxydeur était dans la fosse. Personne ne m'a écouté. »",
+        "revele": ["f-lr-joran-innocent", "f-lr-engrenages-fondus-par-l-acide"]
+      },
+      {
+        "id": "soeur",
+        "mots": ["sœur", "famille", "camp", "réfugiés", "viaduc", "petite"],
+        "question": "Qui vous attend de l'autre côté du viaduc ?",
+        "reponse": "« Ma petite sœur. Elle est restée dans le camp des réfugiés, de l'autre côté du pont, avec les pèlerins. Si le viaduc reste fermé, je ne la reverrai pas. »"
+      },
+      {
+        "id": "drains",
+        "mots": ["drains", "cave", "villa", "monstres", "sortir", "canaux", "rouille"],
+        "question": "Avez-vous vu d'où sortent ces bêtes de rouille ?",
+        "attitudeMin": 30,
+        "reponse": "Il baisse la voix. « Elles sortent des canaux de la villa, sous la cave. Je montais la garde de nuit, et j'ai vu les grilles bouger. Ne le répétez pas sur la place. »",
+        "revele": ["f-lr-monstres-sortent-des-drains"],
+        "unique": true
+      },
+      {
+        "id": "la-baillie",
+        "mots": ["Baillie", "Élinor", "Vane", "pilori", "enchaîné", "Bastion", "estrade"],
+        "question": "Que vous veut la Baillie ?",
+        "reponse": "« Elle a crié sur l'estrade qu'on garde son calme, puis elle m'a désigné à la milice comme le saboteur. Si vous tardez, elle m'emmène au Bastion, et là-bas, personne ne parle. »"
+      }
+    ],
+    "salutations": {
+      "hostile": "« Passez votre chemin. Vous êtes du côté de ceux qui m'ont enchaîné. »",
+      "neutre": "« Vous êtes là pour me regarder, ou pour m'écouter ? »",
+      "amical": "« Vous m'écoutez. Personne ne m'a écouté depuis hier. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "soeur-martha",
+    "nom": "Sœur Martha",
+    "titre": "Apothicaire et prêtresse des Mains Tendues",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 50 ans",
+    "role": "Apothicaire des Mains Tendues : soins, pansements et simples",
+    "lieu": "lr-apothicairerie",
+    "apparence": "Femme mince de 50 ans, cheveux gris noués sous un voile de toile, tablier taché de vinaigre, mains rougies et fines, regard toujours baissé sur ses pansements.",
+    "personnalite": {
+      "traits": ["douce", "rapide", "ne se confie jamais à demi"],
+      "voix": "Douce et rapide, elle parle sans lever les yeux, entre deux gestes ; quand elle ne veut pas répondre, elle recommence à bander.",
+      "valeurs": ["soigner sans regarder l'uniforme", "une plaie ne ment pas"],
+      "desir": "Soigner les blessés des épées volantes, sans distinction d'uniforme.",
+      "peur": "Que la fièvre du fer ne transforme les blessés en automates possédés.",
+      "defaut": "Elle ne refuse jamais un blessé, même quand elle n'a plus de bandes."
+    },
+    "attitude": 20,
+    "savoir": ["f-lr-martha-eclats-du-linteau", "f-lr-pommade-au-suif"],
+    "secrets": [{ "fait": "f-lr-pommade-au-suif", "attitudeMin": 25 }],
+    "sujets": [
+      {
+        "id": "soins",
+        "mots": ["blessé", "soigner", "soins", "plaie", "fièvre", "bander"],
+        "question": "Pouvez-vous soigner nos blessures ?",
+        "reponse": "« Asseyez-vous et montrez la plaie. Je bande d'abord et je compte après : deux pièces d'or pour tout le groupe, et je ne demande pas d'où viennent les plaies. »"
+      },
+      {
+        "id": "eclats",
+        "mots": ["éclats", "acier", "fil", "linteau", "porte", "liste"],
+        "question": "Que sont ces éclats, au-dessus de la porte ?",
+        "reponse": "« Ceux que j'ai sortis des plaies, un par un. Je les garde sur le fil, comme une liste. Il y en a plus chaque nuit. »",
+        "revele": ["f-lr-martha-eclats-du-linteau"]
+      },
+      {
+        "id": "blessures-de-la-place",
+        "mots": ["blessés", "place", "épées", "volantes", "lames", "frappent", "taillade"],
+        "question": "Que voyez-vous sur les blessés de la place ?",
+        "reponse": "« Des taillades nettes, faites par des lames qui frappent sans prévenir, et une plaie qui refuse de se refermer, qui sent le métal chaud. Ce n'est pas une blessure d'homme. »"
+      },
+      {
+        "id": "pommade",
+        "mots": ["pommade", "grise", "suif", "oxydeur", "étagère", "graisse"],
+        "question": "Qu'est-ce que la pommade grise, sur l'étagère du haut ?",
+        "attitudeMin": 25,
+        "reponse": "Elle ne répond pas tout de suite, puis : « Du suif d'oxydeur, pris dans les cavernes sous le viaduc. Il dissout l'acier logé dans la chair, mieux que ma pince. Je n'en parle pas aux blessés, ils ont peur de ce qu'ils ont dans le corps. »",
+        "revele": ["f-lr-pommade-au-suif"],
+        "unique": true
+      },
+      {
+        "id": "fievre-du-fer",
+        "mots": ["fièvre", "fer", "possédé", "automate", "délire", "malade"],
+        "question": "Que fait la fièvre du fer aux blessés ?",
+        "reponse": "« Je ne l'ai encore vue sur personne, et je prie pour que ça dure. Mais un blessé qui ne sent plus sa plaie, je le veille toute la nuit. »"
+      }
+    ],
+    "services": [
+      {
+        "id": "soins-de-blessures",
+        "nom": "Soins de blessures",
+        "resume": "Elle nettoie et bande les plaies, ôte les éclats d'acier et referme ce qui peut l'être.",
+        "prix": 2,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "hostile": "« Je ne vous soignerai pas tant que vous aurez la main sur votre arme. »",
+      "neutre": "« Entrez, et ne touchez pas au mortier. »",
+      "amical": "« Vous voilà. Asseyez-vous, je vous fais une tisane de thym. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "odile-braise",
+    "nom": "Odile Braise",
+    "titre": "Aubergiste de La Lame Émoussée",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "environ 50 ans",
+    "role": "Aubergiste : repas, chambres, rumeurs de la place",
+    "lieu": "lr-auberge",
+    "apparence": "Femme de 50 ans, carrure de portefaix, cheveux blancs tirés en chignon, tablier de toile noircie, grosse bague de fer au pouce, cicatrice blanche au menton.",
+    "personnalite": {
+      "traits": ["bavarde quand elle le veut", "pratique", "méfiante envers les étrangers"],
+      "voix": "Franche et brève ; elle sert la bière en parlant, sans regarder le verre.",
+      "valeurs": ["on ne laisse pas dormir un voyageur dehors", "la bière se paie"],
+      "desir": "Garder l'auberge ouverte jusqu'à ce que la place se calme.",
+      "peur": "Que les volets ne tiennent pas une nuit de plus.",
+      "defaut": "Elle répète les rumeurs sans y croire, puis finit par y croire."
+    },
+    "attitude": 10,
+    "savoir": ["f-lr-rumeur-lames-maudites", "f-lr-contrats-affiches"],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "rumeurs",
+        "mots": ["rumeurs", "lames", "volent", "nouvelles", "dieu", "vivantes"],
+        "question": "Quelles rumeurs circulent sur les lames ?",
+        "reponse": "« Que les lames ont des yeux, et que le sang du dieu n'a jamais fini de sécher dans cette vallée. Je n'y crois pas. Presque. »",
+        "revele": ["f-lr-rumeur-lames-maudites"]
+      },
+      {
+        "id": "chambre",
+        "mots": ["chambre", "dormir", "lit", "nuit", "repos"],
+        "question": "Avez-vous une chambre pour la nuit ?",
+        "reponse": "« Une chambre à l'étage, sous les bardeaux. Une couverture de cuir bouilli et une porte qui ferme. Cinq pièces d'argent, payées d'avance. Les volets restent clos, alors ne cherchez pas le jour. »"
+      },
+      {
+        "id": "contrats",
+        "mots": ["contrat", "tableau", "chasse", "payer", "cibles", "affiche"],
+        "question": "Que dit le tableau, près de la porte ?",
+        "reponse": "« Des contrats de chasse, payés en pièces, cloués là depuis la première nuit. Qui les prend, je ne le dis pas à qui pose trop de questions. »",
+        "revele": ["f-lr-contrats-affiches"]
+      },
+      {
+        "id": "volets",
+        "mots": ["volets", "fenêtres", "dehors", "claquer", "clos"],
+        "question": "Pourquoi les volets restent-ils toujours clos ?",
+        "reponse": "« Parce que les lames claquent dessus toute la nuit, et qu'un volet ouvert, c'est une lame dans la salle. Ceux qui restent dehors ferment leur porte. Moi, je sers ceux qui entrent. »"
+      }
+    ],
+    "services": [
+      {
+        "id": "chambre-a-l-etage",
+        "nom": "Chambre à l'étage",
+        "resume": "Une nuit dans une chambre sous les bardeaux, une couverture de cuir bouilli et une porte qui ferme : un repos long.",
+        "prix": 0.5,
+        "effets": []
+      }
+    ],
+    "salutations": {
+      "hostile": "« Ici, on paie d'abord. Asseyez-vous, ou sortez. »",
+      "neutre": "« Entrez, et refermez vite la porte. »",
+      "amical": "« Ah, vous voilà ! La soupe est chaude, et la chambre est prête. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "gorm-meule",
+    "nom": "Gorm Meule",
+    "titre": "Forgeron et marchand des forges à aubes",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 55 ans",
+    "role": "Forgeron-marchand : armes et armures, réparation, réserve de la forge centrale",
+    "lieu": "lr-forges",
+    "apparence": "Homme de 55 ans, épaules larges, tablier de cuir gras, bras couverts de petites brûlures, moustache grise, regard qui pèse chaque pièce avant de la prendre.",
+    "personnalite": {
+      "traits": ["pragmatique", "attaché à son métier", "cupide sans cruauté"],
+      "voix": "Parle du métal comme d'un prix, en chiffres et en poids ; il ne hausse jamais le ton et ne répète un prix qu'une fois.",
+      "valeurs": ["le métal se vend à son poids", "une lame bien réparée vaut son prix"],
+      "desir": "Vendre sa fournée avant que la vallée ne ferme ses routes.",
+      "peur": "Que les lames de sa forge se retournent contre lui.",
+      "defaut": "Il garde ses secrets de métier comme des pièces dans une bourse."
+    },
+    "attitude": 0,
+    "savoir": ["f-lr-fournee-de-vorn", "f-lr-rumeur-lames-vendues"],
+    "secrets": [{ "fait": "f-lr-fournee-de-vorn", "attitudeMin": 20 }],
+    "sujets": [
+      {
+        "id": "lames-cheres",
+        "mots": ["prix", "cher", "vendre", "lames", "acheter", "marché"],
+        "question": "Pourquoi les lames se vendent-elles si cher ?",
+        "reponse": "« Parce que personne ne veut plus les ramasser, et que celles qui restent sont meilleures. Depuis trois nuits, on m'en demande le double, et je ne refuse pas. Le métal se vend à son poids, pas à sa peur. »",
+        "revele": ["f-lr-rumeur-lames-vendues"]
+      },
+      {
+        "id": "fournee",
+        "mots": ["fournée", "Vorn", "forge", "vivantes", "animées", "réveillées"],
+        "question": "D'où viennent les lames qui se réveillent ?",
+        "attitudeMin": 20,
+        "reponse": "Il pose son marteau et ne répond pas tout de suite. « De la fournée de Vorn. Toutes, pas une de moins. Il les a chauffées ensemble dans son foyer, et depuis, elles ne dorment plus. Je ne vous ai rien dit. »",
+        "revele": ["f-lr-fournee-de-vorn"],
+        "unique": true
+      },
+      {
+        "id": "reparation",
+        "mots": ["réparer", "réparation", "arme", "armure", "lame", "ébréché", "casser"],
+        "question": "Pouvez-vous réparer mon arme ?",
+        "reponse": "« Posez-la sur l'enclume. Je remets le fil, je redresse la lame, et je retends la courroie. Une pièce d'or, et elle repart. »"
+      },
+      {
+        "id": "vorn",
+        "mots": ["Vorn", "voisin", "forgeron", "foyer", "feu", "allumé"],
+        "question": "Qu'est-ce que vous pensez de Vorn ?",
+        "reponse": "« Un vieux têtu, qui garde son foyer allumé trois nuits de suite, quand la rangée couvre les siens à la tombée du jour. Il a toujours fait les meilleures lames du torrent. Je les vends, et il ne demande pas de comptes. »"
+      }
+    ],
+    "services": [
+      {
+        "id": "reparation-des-lames",
+        "nom": "Réparation",
+        "resume": "Il remet le fil, redresse la lame ou retend la courroie, à l'enclume de sa forge.",
+        "prix": 1,
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "stock": [
+        { "objet": "epee-longue", "quantite": 2 },
+        { "objet": "epee-courte", "quantite": 2 },
+        { "objet": "hache-d-armes", "quantite": 2 },
+        { "objet": "lance", "quantite": 2 },
+        { "objet": "dague", "quantite": 4 },
+        { "objet": "arbalete-legere", "quantite": 1 },
+        { "objet": "cotte-de-mailles", "quantite": 1 },
+        { "objet": "armure-de-cuir", "quantite": 2 },
+        { "objet": "bouclier", "quantite": 2 }
+      ],
+      "rachat": 0.5,
+      "types": ["arme", "armure", "bouclier"]
+    },
+    "salutations": {
+      "hostile": "« Vous, je vous ai vendu une lame de trop. Ne revenez pas la réclamer. »",
+      "neutre": "« Entrez. Le métal se vend au poids. Regardez ce que vous voulez. »",
+      "amical": "« Ah, vous voilà ! J'ai gardé la meilleure dague au fond du râtelier. »"
+    },
+    "inventaire": []
+  },
+  {
+    "id": "vorn-bras-de-laiton",
+    "nom": "Vorn Bras-de-Laiton",
+    "titre": "Forgeron de la forge du nord-ouest",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "environ 70 ans",
+    "role": "Forgeron isolé, garde son foyer allumé",
+    "lieu": "lr-forge-vorn",
+    "apparence": "Vieil homme trapu, dos voûté, barbe grise roussie au bout par la suie, avant-bras droit gainé de laiton martelé, tablier de cuir noirci, bras couverts de brûlures anciennes. Il se tient de dos près du foyer, immobile.",
+    "personnalite": {
+      "traits": ["taciturne", "obstiné", "fier de son ouvrage"],
+      "voix": "Rocailleuse et lente, entrecoupée d'un sifflement de souffle ; il dit peu, et tape le plat de la main sur son tablier quand on le presse.",
+      "valeurs": ["un foyer ne s'éteint pas", "l'ouvrage passe avant le nom"],
+      "desir": "Garder sa forge allumée pour achever son chef-d'œuvre avant de mourir.",
+      "peur": "Que les inquisiteurs solaires de Sépulcre-d'Or viennent confisquer son foyer et brûler son atelier.",
+      "defaut": "Il ne dit jamais d'où viennent ses matières."
+    },
+    "attitude": -10,
+    "savoir": ["f-lr-fournee-de-vorn", "f-lr-fragment-qui-bat", "f-lr-echarde-de-vorn", "f-lr-pierre-sacree-brisee"],
+    "secrets": [
+      { "fait": "f-lr-fragment-qui-bat", "attitudeMin": 10 },
+      { "fait": "f-lr-echarde-de-vorn", "attitudeMin": 20 },
+      { "fait": "f-lr-pierre-sacree-brisee", "condition": { "flag": "lr-cratere-vu" } }
+    ],
+    "sujets": [
+      {
+        "id": "foyer",
+        "mots": ["foyer", "feu", "allumé", "braises", "chaleur", "pourquoi"],
+        "question": "Pourquoi gardez-vous le foyer allumé ?",
+        "reponse": "« Mon chef-d'œuvre n'est pas fini. Un foyer qui s'éteint, c'est trois nuits de travail perdues, et l'acier ne reprend pas la chaleur comme on veut. »"
+      },
+      {
+        "id": "inquisiteurs",
+        "mots": ["inquisiteurs", "Sépulcre", "solaires", "confisquer", "atelier", "capitale"],
+        "question": "Qui voudrait éteindre votre foyer ?",
+        "reponse": "« Ceux de Sépulcre-d'Or, avec leurs registres et leurs chariots. Ils viendront avec une lettre du Sénat et brûleront tout ce que je n'ai pas fini. Je les attends, et je ne sors pas de mon atelier. »"
+      },
+      {
+        "id": "fragment",
+        "mots": ["fragment", "enclume", "bloc", "noir", "braises", "bat", "pouls"],
+        "question": "Qu'est-ce qui repose dans les braises ?",
+        "attitudeMin": 10,
+        "reponse": "Il se tait longtemps, la main à plat sur son tablier. « Une pièce d'enclume, qui n'est pas à vous. Elle bat, et ça ne vous regarde pas. Si vous la prenez, prenez-la avec une pince. »",
+        "revele": ["f-lr-fragment-qui-bat"],
+        "unique": true
+      },
+      {
+        "id": "poitrine",
+        "mots": ["poitrine", "souffle", "sifflement", "écharde", "malade", "respiration"],
+        "question": "Pourquoi votre souffle siffle-t-il ainsi ?",
+        "attitudeMin": 20,
+        "reponse": "« Une écharde, plantée là depuis que j'ai touché à la pierre. Elle est d'un métal qui n'est pas de la terre, et elle me garde debout. N'essayez pas de l'arracher, vous me tueriez. »",
+        "revele": ["f-lr-echarde-de-vorn"],
+        "unique": true
+      },
+      {
+        "id": "pierre",
+        "mots": ["pierre", "sacrée", "brisée", "Gardiens", "Forêt", "cratère", "fragment"],
+        "question": "D'où vient ce fragment, Vorn ?",
+        "condition": { "flag": "lr-cratere-vu" },
+        "reponse": "Il ferme les yeux. « J'ai brisé la pierre sacrée des Gardiens, dans la Forêt d'Acier. Ce fragment était dedans, et il a fallu la briser pour l'avoir. Vous ne répéterez rien à ceux de Sépulcre-d'Or. »",
+        "revele": ["f-lr-pierre-sacree-brisee"],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "hostile": "« Sortez de mon atelier. Le foyer n'est pas pour vous. »",
+      "neutre": "« Vous êtes dans ma forge. Dites ce que vous voulez, et tenez-vous loin du foyer. »",
+      "amical": "« Ah. Approchez, mais restez à distance du foyer. Vous avez le visage de quelqu'un qui a vu quelque chose. »"
+    },
+    "inventaire": []
+  }
+]
