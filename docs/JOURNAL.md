@@ -1428,3 +1428,24 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - Deux armes de même base gardent chacune leurs bonus (`bonusEmplacements`) et leur propre attaque en combat (`epee-longue-2`).
 
 - Suite de l'audit : une nuitée payée relance les quêtes et événements après ses effets ; le combat reprend l'identifiant du personnage (`HeroCombat.id`), noms sans accents dans les identifiants ; le moteur refuse une même cible deux fois, sauf projectiles et rayons.
+
+## 08/11/2026 — Ombresang : images de Lame-Rousse installées
+
+- 54 images générées avec FLUX 3 Klein (36 lieux, 11 PNJ, 7 objets), relues une à une et installées en WebP dans `packages/mondes/ombresang/images/` avec leur manifeste ; 0,56 $ au total, essais compris. Retouches de prompt dans `images.json` (fiches gelées inchangées). Le treuil de rechange est montré en caisse fermée : le modèle ne sait pas compter quatre roues.
+- Restent : cartes détaillées de la vallée, scènes narrées (ouverture, remise de quête, fins) et leurs voix, contrats de l'auberge, essai dans le jeu, publication.
+
+## 08/11/2026 — Ombresang : scènes et voix de Lame-Rousse
+
+- 7 scènes narrées (24 plans) dans `scenes/scenes.json`, sur les images déjà installées ; voix officielle du Maître de jeu générée pour les 24 plans. Chaque issue pose un fait (`f-lr-issue-*`, dans `faits/z6-intrigue.json`) qui déclenche sa vidéo ; l'épilogue n'est plus en narration dans la quête. Restent : cartes détaillées, contrats de l'auberge, essai dans le jeu, publication.
+
+## 08/11/2026 — Ombresang : essai de Lame-Rousse dans le jeu
+
+- Essai dans le navigateur : vidéo d'ouverture, charrette, combat de la place, dialogue avec Joran, quêtes et trajet vers le Bastion fonctionnent, sans erreur console. Monde remis en `brouillon` après l'essai.
+
+## 08/11/2026 — Ombresang : conversations des 11 PNJ de Lame-Rousse enrichies
+
+- À la demande de l'utilisateur : réponses plus riches dans la voix de chaque PNJ (40 à 80 mots), 52 questions nouvelles dont des chaînes (drapeaux `lr-d-...`) et des questions sur le lieu, la vallée et la région, 19 faits nouveaux (`faits/z7-dialogues.json`). Avis « Dialogues » du validateur : de 41 réponses courtes sur 59 à 5 sur 111. Règle inscrite dans le skill `creer-personnages`. Contenu des fiches de PNJ gelées modifié avec l'accord de l'utilisateur ; les secrets, verrous et prix sont inchangés.
+
+## 08/11/2026 — Ombresang : conversations enrichies validées
+
+- Les conversations des 11 PNJ de Lame-Rousse sont **validées et gelées** (suivi : `lieux/SR-1.1-contenu-V6.md`).

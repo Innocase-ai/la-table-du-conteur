@@ -10,6 +10,10 @@ Les données sont des fichiers JSON sans champ de statut : ce suivi dit ce qui e
 | 4 | Temple du Glaive Brisé | les mêmes, plus `enigmes` : `z4-temple.json` | **validé le 08/11/2026, gelé** |
 | 5 | Forêt d'Acier | `faits`, `objets`, `pieges`, `tresors`, `rencontres` : `z5-foret.json` | **validé le 08/11/2026, gelé** |
 
+## Conversations enrichies : validées le 08/11/2026 (gelées)
+
+Les 11 PNJ de la vallée : réponses de 40 à 80 mots, 52 questions nouvelles (chaînes par drapeaux `lr-d-...`, questions sur le lieu, la vallée, la région), 19 faits nouveaux dans `faits/z7-dialogues.json`. Secrets, verrous, prix et texte du serment inchangés. Neuf sujets existants ont reçu un drapeau de déblocage supplémentaire.
+
 ## V7 : intrigue branchée, validée le 08/11/2026 (gelée)
 
 Écrit en un bloc, à la demande de l'utilisateur, **validé et gelé** : `lieux/z0 à z5` (36 lieux), `quetes`, `jauges`, `evenements` et `rencontres/z6-intrigue.json`, `objets/z6-intrigue.json`, `monde.json` (chapitre du prologue, départ `lr-place`), `BIBLE.md` §7 (registre des identifiants).

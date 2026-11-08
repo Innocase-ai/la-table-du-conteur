@@ -106,9 +106,6 @@
         "termine": true,
         "effets": [
           {
-            "narration": "Le treuil tourne enfin, et la herse remonte dans un grincement de fer. Au pied de la pile, le nid des oxydeurs brûle, et la Voie Royale de Fer rouvre aux convois. Vorn continue de battre le fer dans son atelier, et la vallée continue de trembler à bas bruit. Joran part pour les galères du Port des Brumes, enchaîné sur un chariot, pendant que la Baillie compte son or."
-          },
-          {
             "flag": "camp-lame-rousse-fer"
           },
           {
@@ -133,6 +130,9 @@
               "id": "battement-du-coeur",
               "delta": 2
             }
+          },
+          {
+            "fait": "f-lr-issue-fer"
           }
         ]
       },
@@ -146,9 +146,6 @@
         "termine": true,
         "effets": [
           {
-            "narration": "Le foyer s'éteint sous l'eau du torrent d'Oxyde, et les épées volantes retombent inertes sur la place. Vorn ne se relève pas : son souffle siffle une dernière fois, puis se tait, la main à plat sur son tablier. La Baillie, furieuse, refuse toute récompense, et le viaduc devra être réparé à la main : il faudra des jours à pied, par les sentiers escarpés, pour quitter la vallée. Les ferrailleurs ramassent les lames comme de la ferraille, et se demandent de quoi ils vivront cet hiver."
-          },
-          {
             "flag": "camp-lame-rousse-foyer"
           },
           {
@@ -156,6 +153,9 @@
               "pnj": "vorn-bras-de-laiton",
               "etat": "mort"
             }
+          },
+          {
+            "fait": "f-lr-issue-foyer"
           }
         ]
       },
@@ -179,9 +179,6 @@
         "termine": true,
         "effets": [
           {
-            "narration": "La Baillie est destituée, ou s'enfuit de nuit vers la capitale. Joran prend le commandement du poste de péage, et les forgerons de Lame-Rousse consolident les piles de leurs propres mains. Dans sa forge, Vorn garde son foyer allumé, et les lames de la vallée frémissent encore. Votre nom entre désormais dans les registres de la prévôté de Sépulcre-d'Or, pour rébellion de frontière, et les patrouilles impériales guettent la route."
-          },
-          {
             "flag": "camp-lame-rousse-parias"
           },
           {
@@ -204,6 +201,9 @@
               "pnj": "joran-deserteur",
               "lieu": "lr-bastion-tour"
             }
+          },
+          {
+            "fait": "f-lr-issue-parias"
           }
         ]
       },
@@ -220,9 +220,6 @@
         "termine": true,
         "effets": [
           {
-            "narration": "Il ne reste que les pistes à pied, par les sentiers escarpés, pour quitter la vallée. Le groupe repart affaibli, et sans appuis."
-          },
-          {
             "flag": "camp-lame-rousse-rupture"
           },
           {
@@ -230,6 +227,9 @@
               "id": "battement-du-coeur",
               "delta": 3
             }
+          },
+          {
+            "fait": "f-lr-issue-rupture"
           }
         ]
       }

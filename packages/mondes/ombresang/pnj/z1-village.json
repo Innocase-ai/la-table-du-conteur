@@ -28,7 +28,10 @@
     "savoir": [
       "f-lr-joran-innocent",
       "f-lr-engrenages-fondus-par-l-acide",
-      "f-lr-monstres-sortent-des-drains"
+      "f-lr-monstres-sortent-des-drains",
+      "f-lr-mon-camp-refugies-rive-sud",
+      "f-lr-mon-pelerins-aile-de-plomb",
+      "f-lr-mon-garnison-du-bastion"
     ],
     "secrets": [
       {
@@ -81,7 +84,7 @@
           "petite"
         ],
         "question": "Qui vous attend de l'autre côté du viaduc ?",
-        "reponse": "« Ma petite sœur. Elle est restée dans le camp des réfugiés, de l'autre côté du pont, avec les pèlerins. Si le viaduc reste fermé, je ne la reverrai pas. »",
+        "reponse": "« Ma petite sœur. Elle est restée dans le camp des réfugiés, de l'autre côté du pont, avec les pèlerins de la caravane. Je l'ai vue pour la dernière fois le jour de la herse, quand j'ai couru vers la chaîne sans savoir si je pourrais la tenir. Si le viaduc reste fermé, je ne la reverrai pas. »",
         "effets": [
           {
             "flag": "lr-nouvelles-de-joran"
@@ -119,7 +122,7 @@
           "estrade"
         ],
         "question": "Que vous veut la Baillie ?",
-        "reponse": "« Elle a crié sur l'estrade qu'on garde son calme, puis elle m'a désigné à la milice comme le saboteur. Si vous tardez, elle m'emmène au Bastion, et là-bas, personne ne parle. »",
+        "reponse": "« Elle a crié sur l'estrade qu'on garde son calme, puis elle m'a désigné à la milice comme le saboteur, devant tout le monde. Elle n'a même pas cillé. Il lui faut un coupable pour la herse, et j'ai la tête qu'il faut. Si vous tardez, elle m'emmène au Bastion, et là-bas, personne ne parle. »",
         "condition": {
           "non": {
             "flag": "lr-joran-libere"
@@ -167,6 +170,89 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "camp",
+        "mots": [
+          "camp",
+          "réfugiés",
+          "rive",
+          "pèlerins",
+          "tentes",
+          "pont"
+        ],
+        "question": "Comment vit-on au camp des réfugiés ?",
+        "reponse": "« Des tentes de toile sur la rive sud, des pèlerins et des ouvriers du viaduc qui ont perdu leur route. La caravane qui les menait vers le sanctuaire d'Aile-de-Plomb a été attaquée par les lames sur le chemin. Ils n'ont plus que l'eau du torrent et leur peur, et chaque nuit, un peu plus de gens se mettent à compter les coups sur la toile. »",
+        "condition": {
+          "flag": "lr-nouvelles-de-joran"
+        },
+        "revele": [
+          "f-lr-mon-camp-refugies-rive-sud",
+          "f-lr-mon-pelerins-aile-de-plomb"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "garnison",
+        "mots": [
+          "garnison",
+          "Bastion",
+          "officiers",
+          "soldats",
+          "caserne",
+          "quotidien"
+        ],
+        "question": "Comment vit-on à la garnison du Bastion ?",
+        "reponse": "« Vivait, plutôt. Avant que la garnison ne se débande : levé avant le jour, la herse à graisser, la ronde du tablier, et une soupe qui sent le fer. Les sergents comptaient les sous, personne ne demandait ce qu'on pensait. Il n'en reste que les péagers de la Baillie, et eux non plus ne disent rien. »",
+        "revele": [
+          "f-lr-mon-garnison-du-bastion"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-joran-deserteur-garnison"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "desertion",
+        "mots": [
+          "déserté",
+          "désertion",
+          "pourquoi",
+          "ordre",
+          "refus",
+          "fuir"
+        ],
+        "question": "Pourquoi avez-vous déserté ?",
+        "reponse": "« J'ai quitté mon poste pour courir à la chaîne de la herse, quand la caravane est arrivée avec les lames sur les talons. Pour le règlement, c'est abandonner son poste. Pour moi, c'était la seule chose à faire. Je le referais. Ça n'a pas suffi, et c'est moi qu'on a enchaîné. »",
+        "condition": {
+          "flag": "lr-d-joran-deserteur-garnison"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-d-joran-deserteur-desertion"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "capitale",
+        "mots": [
+          "Sépulcre-d'Or",
+          "capitale",
+          "Voie Royale",
+          "Sénat",
+          "ville",
+          "impériale"
+        ],
+        "question": "Qu'avez-vous entendu dire de Sépulcre-d'Or ?",
+        "reponse": "« Je ne l'ai jamais vue. Quatorze heures de Voie Royale de Fer, et on dit qu'on aperçoit ses murs de très loin. Les soldats en parlent comme d'une ville qui ne dort jamais, avec des lanternes sur chaque pont. Un officier m'a dit que le Sénat y tient ses registres, et que les registres ne se trompent jamais. Moi, j'en ai vu se tromper. »",
+        "revele": [],
+        "effets": [],
+        "unique": true
       }
     ],
     "salutations": {
@@ -204,7 +290,9 @@
     "attitude": 20,
     "savoir": [
       "f-lr-martha-eclats-du-linteau",
-      "f-lr-pommade-au-suif"
+      "f-lr-pommade-au-suif",
+      "f-lr-mon-mineurs-gantelet",
+      "f-lr-mon-fonderie-gantelet"
     ],
     "secrets": [
       {
@@ -224,7 +312,12 @@
           "bander"
         ],
         "question": "Pouvez-vous soigner nos blessures ?",
-        "reponse": "« Asseyez-vous et montrez la plaie. Je bande d'abord et je compte après : deux pièces d'or pour tout le groupe, et je ne demande pas d'où viennent les plaies. »"
+        "reponse": "« Asseyez-vous et montrez la plaie. Je bande d'abord et je compte après : deux pièces d'or pour tout le groupe, et je ne demande pas d'où viennent les plaies. Ceux qui ont la plaie ouverte depuis la place, je les lave à l'eau bouillie, même quand ils ont les mains tachées de rouille. Dites-moi ce qui vous manque, toile ou simples, je m'occupe du reste. »",
+        "effets": [
+          {
+            "flag": "lr-d-soeur-martha-soins"
+          }
+        ]
       },
       {
         "id": "eclats",
@@ -237,7 +330,7 @@
           "liste"
         ],
         "question": "Que sont ces éclats, au-dessus de la porte ?",
-        "reponse": "« Ceux que j'ai sortis des plaies, un par un. Je les garde sur le fil, comme une liste. Il y en a plus chaque nuit. »",
+        "reponse": "« Ceux que j'ai sortis des plaies, un par un, à la pince et à l'eau bouillie. Je les garde enfilés sur le fil de cuir, chacun noué à part, comme une liste. Il y en a plus chaque nuit, et je ne connais pas le nom de la moitié de ceux qui les ont portés. »",
         "revele": [
           "f-lr-martha-eclats-du-linteau"
         ]
@@ -254,7 +347,7 @@
           "taillade"
         ],
         "question": "Que voyez-vous sur les blessés de la place ?",
-        "reponse": "« Des taillades nettes, faites par des lames qui frappent sans prévenir, et une plaie qui refuse de se refermer, qui sent le métal chaud. Ce n'est pas une blessure d'homme. »"
+        "reponse": "« Des taillades nettes, faites par des lames qui frappent sans prévenir, et une plaie qui refuse de se refermer, qui sent le métal chaud. Ce n'est pas une blessure d'homme. Un forgeron frappe là où sa main le mène ; ces lames frappent toujours à la même cadence, comme si quelqu'un comptait pour elles, et je ne sais pas qui. »"
       },
       {
         "id": "pommade",
@@ -285,7 +378,7 @@
           "malade"
         ],
         "question": "Que fait la fièvre du fer aux blessés ?",
-        "reponse": "« Je ne l'ai encore vue sur personne, et je prie pour que ça dure. Mais un blessé qui ne sent plus sa plaie, je le veille toute la nuit. »"
+        "reponse": "« Je ne l'ai encore vue sur personne, et je prie pour que ça dure. Mais un blessé qui ne sent plus sa plaie, je le veille toute la nuit. Il fixe le plafond, il compte les pas des lames dehors, il ne sent plus l'aiguille. Quand il commence à demander son arme, je sais que la nuit sera longue. »"
       },
       {
         "id": "proposer-son-aide",
@@ -306,6 +399,101 @@
             }
           }
         ],
+        "unique": true
+      },
+      {
+        "id": "plantes",
+        "mots": [
+          "plantes",
+          "simples",
+          "thym",
+          "talus",
+          "herbes",
+          "sauge"
+        ],
+        "question": "Quelles plantes poussent encore sur ces talus ?",
+        "reponse": "« Du thym sauvage, de la sauge des rochers, un peu d'ortie que je fais bouillir pour les fièvres. Tout pousse sur les talus du torrent d'Oxyde, là où la terre n'a pas encore pris la rouille. Plus haut, vers la Forêt d'Acier, rien ne pousse : les épées ont pris toute la lumière. Le thym, c'est pour le vinaigre, la sauge pour les plaies qui suintent. »",
+        "revele": [],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "gantelet",
+        "mots": [
+          "ouest",
+          "Gantelet",
+          "mineurs",
+          "Défilé",
+          "scories",
+          "brûlures"
+        ],
+        "question": "Avez-vous soigné des gens venus de l'ouest ?",
+        "reponse": "« Des mineurs du Gantelet d'Airain, à dix heures de marche d'ici, qui passaient le Défilé des Forges avant que le pont ne ferme. Les mains brûlées par le métal chaud, les ongles noircis. Ils parlent d'une fonderie cachée sous les mines, où l'on martèle des lames qui ne refroidissent jamais. Je ne sais pas ce qu'ils ont vu. Je leur bande les mains, et ils ne regardent pas dans ma direction. »",
+        "revele": [
+          "f-lr-mon-mineurs-gantelet"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-soeur-martha-gantelet"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "fonderie",
+        "mots": [
+          "fonderie",
+          "cachée",
+          "mines",
+          "marteau",
+          "lames",
+          "refroidir"
+        ],
+        "question": "Cette fonderie, où se trouve-t-elle exactement ?",
+        "attitudeMin": 20,
+        "reponse": "« Un foyer creusé sous Moelle-Fer, que les contremaîtres ne montrent à personne, à ce qu'on dit. Les mineurs n'en parlent qu'à voix basse, les mains encore noires. Je ne vous dis pas ça pour que vous y alliez. Ce que j'ai vu sur leurs mains, c'est le métal, pas le feu. »",
+        "condition": {
+          "flag": "lr-d-soeur-martha-gantelet"
+        },
+        "revele": [
+          "f-lr-mon-fonderie-gantelet"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "bandes",
+        "mots": [
+          "bandes",
+          "manque",
+          "toile",
+          "draps",
+          "linge",
+          "stock"
+        ],
+        "question": "Vous manquez de bandes, n'est-ce pas ?",
+        "condition": {
+          "flag": "lr-d-soeur-martha-soins"
+        },
+        "revele": [],
+        "effets": [],
+        "unique": true,
+        "reponse": "« Je n'en ai plus que pour une nuit. J'ai pris des draps à l'auberge, et Odile fait semblant de ne pas les compter. Si vous avez de la toile propre, apportez-la-moi : je n'ai jamais refusé un blessé pour une bande. Maintenant, tenez ce bras, et ne bougez plus. »"
+      },
+      {
+        "id": "priere",
+        "mots": [
+          "prière",
+          "épées",
+          "dieu",
+          "Mains Tendues",
+          "foi",
+          "morts"
+        ],
+        "question": "Que disent les Mains Tendues de ces épées plantées dans le roc ?",
+        "reponse": "« On raconte que ces lames sont tombées de la main d'un dieu. Les Mains Tendues ne prient pas pour les dieux morts. On prie pour ceux qui saignent, et pour les mains qui ramassent la ferraille sans savoir ce qu'elles touchent. Ma prière, c'est une bande propre, et une pince bien lavée. »",
+        "revele": [],
+        "effets": [],
         "unique": true
       }
     ],
@@ -353,7 +541,10 @@
     "attitude": 10,
     "savoir": [
       "f-lr-rumeur-lames-maudites",
-      "f-lr-contrats-affiches"
+      "f-lr-contrats-affiches",
+      "f-lr-epees-de-vael-khor",
+      "f-lr-mon-convois-bloques",
+      "f-lr-mon-marchands-ouest"
     ],
     "secrets": [],
     "sujets": [
@@ -368,7 +559,7 @@
           "vivantes"
         ],
         "question": "Quelles rumeurs circulent sur les lames ?",
-        "reponse": "« Que les lames ont des yeux, et que le sang du dieu n'a jamais fini de sécher dans cette vallée. Je n'y crois pas. Presque. »",
+        "reponse": "« Que les lames ont des yeux, et que le sang du dieu n'a jamais fini de sécher dans cette vallée. Je n'y crois pas. Presque. Les ferrailleurs disent qu'elles suivent le métal chaud, les bergers disent qu'elles suivent les voix. Moi, je sers la bière, et j'écoute quand même. »",
         "revele": [
           "f-lr-rumeur-lames-maudites"
         ]
@@ -383,7 +574,7 @@
           "repos"
         ],
         "question": "Avez-vous une chambre pour la nuit ?",
-        "reponse": "« Une chambre à l'étage, sous les bardeaux. Une couverture de cuir bouilli et une porte qui ferme. Cinq pièces d'argent, payées d'avance. Les volets restent clos, alors ne cherchez pas le jour. »"
+        "reponse": "« Une chambre à l'étage, sous les bardeaux. Une couverture de cuir bouilli et une porte qui ferme. Cinq pièces d'argent, payées d'avance, avant de monter. Le seau est vidé à l'aube, et les volets restent clos, alors ne cherchez pas le jour. Dormez tant que vous voulez, personne ne frappera à votre porte avant le matin. »"
       },
       {
         "id": "contrats",
@@ -396,9 +587,14 @@
           "affiche"
         ],
         "question": "Que dit le tableau, près de la porte ?",
-        "reponse": "« Des contrats de chasse, payés en pièces, cloués là depuis la première nuit. Qui les prend, je ne le dis pas à qui pose trop de questions. »",
+        "reponse": "« Des contrats de chasse, payés en pièces, cloués là depuis la première nuit. Les cibles sont dans la Forêt d'Acier, pas dans le village, et ce n'est pas moi qui les ai écrits. Qui les prend, je ne le dis pas à qui pose trop de questions. Certains reviennent le soir, les mains vides et la mine grise. »",
         "revele": [
           "f-lr-contrats-affiches"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-odile-braise-contrats"
+          }
         ]
       },
       {
@@ -411,7 +607,92 @@
           "clos"
         ],
         "question": "Pourquoi les volets restent-ils toujours clos ?",
-        "reponse": "« Parce que les lames claquent dessus toute la nuit, et qu'un volet ouvert, c'est une lame dans la salle. Ceux qui restent dehors ferment leur porte. Moi, je sers ceux qui entrent. »"
+        "reponse": "« Parce que les lames claquent dessus toute la nuit, et qu'un volet ouvert, c'est une lame dans la salle. Ceux qui restent dehors ferment leur porte. Moi, je sers ceux qui entrent. Le premier soir, j'ai compté quatorze coups sur les bois de la façade, puis j'ai arrêté, parce que compter ne change rien. »"
+      },
+      {
+        "id": "legende",
+        "mots": [
+          "épées géantes",
+          "légende",
+          "Forêt",
+          "dieu",
+          "anciens",
+          "lames"
+        ],
+        "question": "Que dit-on des épées géantes de la Forêt d'Acier ?",
+        "reponse": "« Les anciens disent que le dieu de la guerre a tenu ces épées dans ses mains, et qu'il les a lâchées en tombant, plantées de biais dans le roc. Il y en a une qui dépasse toutes les autres, et l'on dit qu'on y voit encore la trace de ses doigts sur la garde. Moi, je n'ai jamais voulu poser la main dessus. »",
+        "revele": [
+          "f-lr-epees-de-vael-khor"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-odile-braise-legende"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "convois",
+        "mots": [
+          "convois",
+          "route",
+          "marchands",
+          "passaient",
+          "viaduc",
+          "fermé"
+        ],
+        "question": "Qui passait par ici avant la fermeture du viaduc ?",
+        "reponse": "« Les convois lourds de la Voie Royale de Fer, venus de la capitale par quatorze heures de route, et tout le fer du Défilé des Forges. Des charrettes de scories, des chariots de planches, des soldats qui ne restaient jamais longtemps. Depuis que le pont est fermé, les convois attendent sur la rive sud, à regarder la rivière, et mes clients sont des ferrailleurs et des péagers. »",
+        "revele": [
+          "f-lr-mon-convois-bloques"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-odile-braise-convois"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "marchand",
+        "mots": [
+          "marchands",
+          "ouest",
+          "Défilé",
+          "Gantelet",
+          "minerai",
+          "farine"
+        ],
+        "question": "Et les marchands venus de l'ouest, qu'est-il arrivé ?",
+        "condition": {
+          "flag": "lr-d-odile-braise-convois"
+        },
+        "revele": [
+          "f-lr-mon-marchands-ouest"
+        ],
+        "effets": [],
+        "unique": true,
+        "reponse": "« Ils attendent de l'autre côté, avec leurs mules et leurs sacs. Le Gantelet envoie encore du minerai par le Défilé des Forges, mais tout s'arrête au tablier. Un marchand qui a pu traverser avant-hier m'a dit que le sac de farine vaut le double ici, parce que le blé vient de l'autre rive. Il a bu deux bières et il a payé en pièces d'argent neuves. »"
+      },
+      {
+        "id": "cibles",
+        "mots": [
+          "contrats",
+          "cibles",
+          "Forêt",
+          "chasse",
+          "prendre",
+          "lames"
+        ],
+        "question": "Qui prend ces contrats, et contre quoi ?",
+        "attitudeMin": 20,
+        "condition": {
+          "flag": "lr-d-odile-braise-contrats"
+        },
+        "revele": [],
+        "effets": [],
+        "unique": true,
+        "reponse": "« Des ferrailleurs qui veulent leur dû, et deux mercenaires de passage qui ont dormi ici trois nuits. Ceux qui partent ne disent pas où, et ceux qui reviennent ne disent pas ce qu'ils ont vu. Je tiens la salle, pas les comptes de la chasse. »"
       }
     ],
     "services": [
@@ -458,7 +739,10 @@
     "attitude": 0,
     "savoir": [
       "f-lr-fournee-de-vorn",
-      "f-lr-rumeur-lames-vendues"
+      "f-lr-rumeur-lames-vendues",
+      "f-lr-acheteurs-capitale",
+      "f-lr-ferrailleurs-foret-acier",
+      "f-lr-rangee-metal-refondu"
     ],
     "secrets": [
       {
@@ -478,9 +762,14 @@
           "marché"
         ],
         "question": "Pourquoi les lames se vendent-elles si cher ?",
-        "reponse": "« Parce que personne ne veut plus les ramasser, et que celles qui restent sont meilleures. Depuis trois nuits, on m'en demande le double, et je ne refuse pas. Le métal se vend à son poids, pas à sa peur. »",
+        "reponse": "« Parce que personne ne veut plus les ramasser, et que celles qui restent sont meilleures. Depuis trois nuits, on m'en demande le double, et je ne refuse pas. Le métal se vend à son poids, pas à sa peur. Si vous voulez savoir pourquoi les prix montent, regardez qui achète, pas qui vend. »",
         "revele": [
           "f-lr-rumeur-lames-vendues"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-gorm-prix"
+          }
         ]
       },
       {
@@ -554,6 +843,92 @@
         ],
         "question": "Qu'est-ce que vous pensez de Vorn ?",
         "reponse": "« Un vieux têtu, qui garde son foyer allumé trois nuits de suite, quand la rangée couvre les siens à la tombée du jour. Il a toujours fait les meilleures lames du torrent. Je les vends, et il ne demande pas de comptes. »"
+      },
+      {
+        "id": "acheteurs",
+        "mots": [
+          "acheteurs",
+          "capitale",
+          "vendre",
+          "marchands",
+          "Sépulcre",
+          "poids"
+        ],
+        "question": "Qui achète vos lames, et où partent-elles ?",
+        "reponse": "« Les marchands de la capitale, pour les forges de Sépulcre-d'Or, et quelques acheteurs du Consortium quand ils passent. Une lame part à son poids : on la pèse sur ma balance, et l'on ne discute pas le prix. Ensuite, c'est leur affaire. Je ne demande pas où elle finit, et je ne regarde pas la main qui la prend. »",
+        "condition": {
+          "flag": "lr-d-gorm-prix"
+        },
+        "revele": [
+          "f-lr-acheteurs-capitale"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-gorm-acheteurs"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "consortium",
+        "mots": [
+          "Consortium",
+          "acheteurs",
+          "gris",
+          "pièces",
+          "payer",
+          "pèsent"
+        ],
+        "question": "Le Consortium achète-t-il aussi, dans la vallée ?",
+        "reponse": "« Des hommes en manteau gris, deux fois par mois, qui pèsent les lames sans même les regarder. Ils paient en pièces de la capitale, jamais en bons de péage. Ils ne demandent pas d'où vient le métal, ni pourquoi il vibre la nuit. Je prends leur or, et je ne pose pas leurs questions. »",
+        "condition": {
+          "flag": "lr-d-gorm-acheteurs"
+        },
+        "attitudeMin": 10,
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "ferrailleurs",
+        "mots": [
+          "ferrailleurs",
+          "Forêt",
+          "Acier",
+          "lames",
+          "arracher",
+          "cordes"
+        ],
+        "question": "Qui va ramasser les lames dans la Forêt d'Acier ?",
+        "reponse": "« Les ferrailleurs du torrent, avec leurs leviers et leurs cordes. On descend au bord de la forêt, là où les lames sont petites et brisées, et l'on arrache ce qui sort du roc en une matinée. Les grandes, plantées dans la roche, ne se laissent pas toucher : personne ne sait ce qu'il faudrait pour en bouger une. »",
+        "revele": [
+          "f-lr-ferrailleurs-foret-acier"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-gorm-ferrailleurs"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rangee-forges",
+        "mots": [
+          "rangée",
+          "roues",
+          "forges",
+          "aubes",
+          "torrent",
+          "métier",
+          "meule"
+        ],
+        "question": "Comment travaille la rangée des forges à aubes ?",
+        "reponse": "« Chaque forge a sa roue dans l'eau, et chaque roue fait jouer le soufflet, le marteau et la meule. On arrache, on polit, on refond. Le métal sort de la rangée pesé et refondu, et les roues grincent parce que la rouille les mange entre deux saisons. Un ferrailleur qui graisse sa roue garde ses clients, et celui qui la laisse rouiller les perd. »",
+        "revele": [
+          "f-lr-rangee-metal-refondu"
+        ],
+        "unique": true,
+        "effets": []
       }
     ],
     "services": [
@@ -648,7 +1023,10 @@
       "f-lr-fournee-de-vorn",
       "f-lr-fragment-qui-bat",
       "f-lr-echarde-de-vorn",
-      "f-lr-pierre-sacree-brisee"
+      "f-lr-pierre-sacree-brisee",
+      "f-lr-epees-de-vael-khor",
+      "f-lr-gardiens-du-pont",
+      "f-lr-sentier-vers-le-temple"
     ],
     "secrets": [
       {
@@ -678,7 +1056,12 @@
           "pourquoi"
         ],
         "question": "Pourquoi gardez-vous le foyer allumé ?",
-        "reponse": "« Mon chef-d'œuvre n'est pas fini. Un foyer qui s'éteint, c'est trois nuits de travail perdues, et l'acier ne reprend pas la chaleur comme on veut. »"
+        "reponse": "« Mon chef-d'œuvre n'est pas fini. Un foyer qui s'éteint, c'est trois nuits de travail perdues, et l'acier ne reprend pas la chaleur comme on veut. J'entretiens la braise au charbon et à la limaille, nuit après nuit, et je ne la laisserai pas s'éteindre, quoi qu'en disent les gens de la place. Restez près de la porte, si vous voulez. »",
+        "effets": [
+          {
+            "flag": "lr-d-vorn-foyer"
+          }
+        ]
       },
       {
         "id": "inquisiteurs",
@@ -750,6 +1133,112 @@
           "f-lr-pierre-sacree-brisee"
         ],
         "unique": true
+      },
+      {
+        "id": "metier",
+        "mots": [
+          "métier",
+          "acier",
+          "trempe",
+          "lame",
+          "bonne",
+          "forge",
+          "travail"
+        ],
+        "question": "Qu'est-ce qui fait une bonne lame, pour vous ?",
+        "reponse": "Il tape le plat de la main sur son tablier, une fois. « La trempe, et le temps. On chauffe, on frappe, on replonge, et l'on recommence jusqu'à ce que le métal se taise. Une lame qui chante sous le marteau est une lame qui tiendra. Les autres, on les refond, et le métal ne garde rien de ce qu'on lui a fait. »",
+        "condition": {
+          "flag": "lr-d-vorn-foyer"
+        },
+        "effets": [
+          {
+            "flag": "lr-d-vorn-metier"
+          }
+        ],
+        "unique": true,
+        "revele": []
+      },
+      {
+        "id": "chef-d-oeuvre",
+        "mots": [
+          "chef-d'œuvre",
+          "œuvre",
+          "achever",
+          "ouvrage",
+          "fini",
+          "trempe"
+        ],
+        "question": "Qu'est-ce que votre chef-d'œuvre, au juste ?",
+        "reponse": "« Une épée à deux mains, que je refais depuis des années. Elle ploie et elle revient, et sa lame ne garde pas la marque du marteau. Il me manque la dernière trempe, et l'acier refuse de la prendre quand le foyer baisse. C'est pour elle que le feu reste allumé. Ne me faites pas répéter. »",
+        "condition": {
+          "flag": "lr-d-vorn-foyer"
+        },
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "epees-geantes",
+        "mots": [
+          "épées",
+          "géantes",
+          "Vael-Khor",
+          "dieu",
+          "vallée",
+          "plantées",
+          "tombées"
+        ],
+        "question": "Qui a planté les grandes épées dans la vallée ?",
+        "reponse": "« Personne ne les a plantées, elles sont tombées avec le dieu. Ce sont les armes de Vael-Khor, le dieu de la guerre, tombé il y a longtemps. Elles ont percé la roche en tombant, et les gens de la vallée ont bâti leurs murs entre elles. Mon grand-père disait que les lames dormiraient toujours dans la terre. Il se trompait. »",
+        "revele": [
+          "f-lr-epees-de-vael-khor"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "gardiens",
+        "mots": [
+          "Gardiens",
+          "pont",
+          "garde",
+          "serment",
+          "Forêt",
+          "passage"
+        ],
+        "question": "Que sont ces ruines, sur le sentier de l'ouest ?",
+        "reponse": "Il regarde le feu un moment. « Le sanctuaire des Gardiens du Pont. Ils veillaient sur le passage du torrent, et ils tenaient leurs règles et leurs prières mieux que le viaduc ne tient ses piles. Il n'en reste qu'un temple muet, des statues brisées et un sentier. Je n'ai pas le droit de les oublier. »",
+        "revele": [
+          "f-lr-gardiens-du-pont"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-vorn-gardiens"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "sentier-des-gardiens",
+        "mots": [
+          "sentier",
+          "temple",
+          "Glaive",
+          "ouest",
+          "monte",
+          "épée",
+          "couchée"
+        ],
+        "question": "Où mène le sentier des Gardiens ?",
+        "condition": {
+          "flag": "lr-d-vorn-gardiens"
+        },
+        "reponse": "« Il part à l'ouest du village, entre les lames plantées de biais, et il monte jusqu'au Temple du Glaive Brisé. Le temple est bâti dans la garde d'une épée couchée, et le vent y porte la limaille des lames tombées. Par temps clair, on voit le viaduc en bas, petit comme une arête de poisson. Ne prenez pas ce sentier de nuit : les lames y volent bas. »",
+        "revele": [
+          "f-lr-sentier-vers-le-temple"
+        ],
+        "unique": true,
+        "effets": []
       }
     ],
     "salutations": {

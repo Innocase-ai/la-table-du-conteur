@@ -1,0 +1,262 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "Le Sang sur la Lame",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-vallee"
+        },
+        "mouvement": "recul",
+        "texte": "Dans la vallée, des épées grandes comme des tours sont fichées dans la roche, leurs gardes dressées vers le ciel. Elles vibrent doucement, comme des cordes de harpe oubliées. On dit qu'elles sont tombées de la main d'un dieu."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-viaduc-tablier"
+        },
+        "mouvement": "gauche",
+        "texte": "Au-dessus de la rivière rouge, le viaduc de fer enjambe la vallée sur ses arches rongées. Chaque pilier porte la rouille comme une cicatrice. C'est le seul pont où passent les convois lourds vers la capitale."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-village"
+        },
+        "mouvement": "approche",
+        "texte": "Lame-Rousse tient sur les contreforts, bourg de ferrailleurs aux toits de tôle noircie. Les forges fument depuis l'aube, et les enfants comptent les lames qui tremblent sur la colline. On y vit de ce que la vallée rend."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-bastion-herse"
+        },
+        "mouvement": "droite",
+        "texte": "Au pied du pont, le convoi d'Ichor est immobilisé. Les chariots scellés attendent, leurs bâches tendues, et les gardes regardent la herse coincée à mi-hauteur. Personne n'ose ouvrir les caisses."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-forges"
+        },
+        "mouvement": "approche",
+        "texte": "Dans les forges, les lames sont posées sur l'enclume, et la chaleur monte des foyers. Un marteau tombe, puis un autre, sans qu'on sache qui frappe. Les ouvriers reculent d'un pas et se taisent."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-place"
+        },
+        "mouvement": "fixe",
+        "texte": "Sur la place, une charrette de ferraille penche, et la foule s'écarte en criant. Puis le silence tombe d'un coup. Dans les tôles, une lame frémit doucement, et tout le monde la regarde."
+      }
+    ]
+  },
+  {
+    "id": "le-premier-battement",
+    "nom": "Le Premier Battement",
+    "declencheur": {
+      "fait": "f-lr-fragment-qui-bat"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-forge-vorn"
+        },
+        "mouvement": "approche",
+        "texte": "Le feu ne baisse jamais dans cette forge, et la braise garde une couleur qu'on ne voit pas ailleurs. Le soufflet siffle, percé, et l'air sent le métal chaud."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-forge-vorn"
+        },
+        "mouvement": "gauche",
+        "texte": "Dans les braises repose un bloc noir et lisse, de la taille d'une tête. Il ne fond pas, il ne refroidit pas, et le feu semble s'écarter de lui."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "vorn-bras-de-laiton"
+        },
+        "mouvement": "recul",
+        "texte": "Quelque chose bat. Un coup lent, puis un silence, puis un autre coup. On le sent dans les mains avant de l'entendre, et personne ne sait dire d'où il vient."
+      }
+    ]
+  },
+  {
+    "id": "le-nid",
+    "nom": "Le Nid des Rouilles",
+    "declencheur": {
+      "lieu": "lr-grotte-nid"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-grotte-entree"
+        },
+        "mouvement": "approche",
+        "texte": "La descente commence le long des piliers, sur une échelle glissante. L'air devient lourd et piquant, et la rouille coule en filets sur la pierre. Chaque barreau grince sous la main, comme si quelqu'un venait de le lâcher."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-grotte-nid"
+        },
+        "mouvement": "recul",
+        "texte": "Au fond, une cuvette de ferraille couvre le sol, bosselée de lames tordues et de chaînes mortes. Elle sent l'odeur âcre de l'acide et le fer chaud. Au centre, quelque chose remue sous la carcasse, et la ferraille tinte."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-grotte-nid"
+        },
+        "mouvement": "gauche",
+        "texte": "Un raclement monte des parois, lent et régulier, comme une lime qui mord le métal. Il s'arrête, puis reprend plus près, et les ombres bougent avec lui. Vous ne savez pas encore combien ils sont."
+      }
+    ]
+  },
+  {
+    "id": "fin-du-fer",
+    "nom": "La Voie du Fer Impérial",
+    "declencheur": {
+      "fait": "f-lr-issue-fer"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-viaduc-tablier"
+        },
+        "mouvement": "approche",
+        "texte": "La herse remonte dans un grincement de chaînes, et la Voie Royale de Fer est dégagée. Les convois s'étirent à nouveau vers Sépulcre-d'Or, lourds et lents."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "elinor-vane"
+        },
+        "mouvement": "droite",
+        "texte": "Élinor Vane vous tend un laissez-passer impérial et une bourse de couronnes d'or. « Le sceau est encore chaud », dit-elle, et son sourire ne l'atteint pas."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "joran-deserteur"
+        },
+        "mouvement": "recul",
+        "texte": "Joran est conduit aux galères du Port des Brumes, sans un mot pour vous. La forge continue de brûler à bas bruit, et les villageois restent sous la coupe de la Baillie."
+      }
+    ]
+  },
+  {
+    "id": "fin-du-foyer",
+    "nom": "Le Foyer Éteint",
+    "declencheur": {
+      "fait": "f-lr-issue-foyer"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-forge-vorn"
+        },
+        "mouvement": "recul",
+        "texte": "Le foyer s'éteint, et la chaleur quitte la forge d'un coup. Dans la vallée, les épées retombent l'une après l'autre, inertes, et le battement cesse. Le silence revient sur la vallée."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-village"
+        },
+        "mouvement": "approche",
+        "texte": "Les habitants sortent de leurs maisons et ramassent la ferraille sans crainte. Les lames ne mordent plus, mais beaucoup se demandent déjà de quoi ils vivront cet hiver."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-forge-vorn"
+        },
+        "mouvement": "fixe",
+        "texte": "Vorn succombe à sa blessure divine. La Baillie refuse toute récompense, et le viaduc doit être réparé à la main. Vous repartez à pied, par les sentiers escarpés, plus lentement que prévu."
+      }
+    ]
+  },
+  {
+    "id": "fin-des-parias",
+    "nom": "Le Pacte des Parias",
+    "declencheur": {
+      "fait": "f-lr-issue-parias"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-bastion-cour"
+        },
+        "mouvement": "recul",
+        "texte": "Les ferrailleurs ont pris la place, et la Baillie a quitté le péage par la porte de derrière. Ses coffres sont vides, et le poste de péage a changé de mains. Les cris de la foule ne s'arrêtent pas."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "joran-deserteur"
+        },
+        "mouvement": "approche",
+        "texte": "Joran commande désormais le poste de péage, la main sur la chaîne du pont-levis. Il ne demande pas de remerciement. Les forgerons, eux, apportent des poutres neuves pour consolider le viaduc."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-viaduc-tablier"
+        },
+        "mouvement": "gauche",
+        "texte": "Mais à Sépulcre-d'Or, la prévôté a déjà votre nom sur une liste de rébellion de frontière. Les routes restent ouvertes, mais des patrouilles hostiles les surveillent, et vous marchez désormais sous leurs yeux."
+      }
+    ]
+  },
+  {
+    "id": "fin-de-la-rupture",
+    "nom": "La Rupture du Viaduc",
+    "declencheur": {
+      "fait": "f-lr-issue-rupture"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-viaduc-tablier"
+        },
+        "mouvement": "recul",
+        "texte": "Les piles cèdent une à une, rongées jusqu'à l'os de fer. L'arche se tord, puis tombe dans la rivière rouge avec un vacarme de fin du monde. Le bruit roule jusqu'aux crêtes."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-village"
+        },
+        "mouvement": "approche",
+        "texte": "Dans le village, les épées en folie entrent par les toits et les volets. Les habitants se barricadent comme ils peuvent, et la milice ne tient plus la place. La Voie Royale de Fer est coupée pour les convois."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "lr-camp-refugies"
+        },
+        "mouvement": "droite",
+        "texte": "Il ne reste plus que les pistes à pied, escarpées et longues, vers le nord et l'est. Vous repartez sans appuis, et tout ce qui était facile est derrière vous."
+      }
+    ]
+  }
+]

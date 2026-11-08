@@ -9,60 +9,239 @@
     "lieu": "lr-grotte-cavernes",
     "apparence": "Jeune homme maigre, veste de cuir de ferrailleur tachée de rouille, mains écorchées par la pierre, jambes repliées contre la paroi, yeux cernés par trois jours sans sommeil.",
     "personnalite": {
-      "traits": ["méfiant", "épuisé mais observateur"],
+      "traits": [
+        "méfiant",
+        "épuisé mais observateur"
+      ],
       "voix": "Basse et sèche, phrases courtes ; il parle peu, et se tait quand la question le touche de trop près.",
-      "valeurs": ["ne rien promettre qu'on ne peut tenir", "rentrer à l'atelier"],
+      "valeurs": [
+        "ne rien promettre qu'on ne peut tenir",
+        "rentrer à l'atelier"
+      ],
       "desir": "Redescendre de la vire et retrouver l'atelier de Gorm Meule.",
       "peur": "Que ce qu'il a vu dans la fissure ne le laisse jamais partir.",
       "defaut": "Il ne se fie à personne, et il attend qu'on lui prouve le contraire."
     },
     "attitude": 0,
-    "savoir": ["f-lr-sceau-cercle-trois-traits"],
+    "savoir": [
+      "f-lr-sceau-cercle-trois-traits",
+      "f-lr-inscriptions-derniere-bataille",
+      "f-lr-traces-des-drains"
+    ],
     "secrets": [
-      { "fait": "f-lr-sceau-cercle-trois-traits", "condition": { "flag": "lr-ansel-sauve" } }
+      {
+        "fait": "f-lr-sceau-cercle-trois-traits",
+        "condition": {
+          "flag": "lr-ansel-sauve"
+        }
+      }
     ],
     "sujets": [
       {
         "id": "vire",
-        "mots": ["vire", "monté", "coincé", "descendre", "trois jours", "jours"],
+        "mots": [
+          "vire",
+          "monté",
+          "coincé",
+          "descendre",
+          "trois jours",
+          "jours"
+        ],
         "question": "Comment êtes-vous monté jusque-là ?",
-        "condition": { "non": { "flag": "lr-ansel-sauve" } },
-        "reponse": "« J'ai grimpé pour fuir, et je n'ai pas pu redescendre. Trois jours que je suis assis là, le dos à la pierre. Je ne peux pas descendre seul. »"
+        "condition": {
+          "non": {
+            "flag": "lr-ansel-sauve"
+          }
+        },
+        "reponse": "« J'ai grimpé pour fuir, et je n'ai pas pu redescendre. Trois jours que je suis assis là, le dos à la pierre. Mes mains sont écorchées, la paroi est rongée, et les prises tiennent à peine. Je ne peux pas descendre seul. »"
       },
       {
         "id": "gorm",
-        "mots": ["Gorm", "maître", "meule", "atelier", "apprenti", "village"],
+        "mots": [
+          "Gorm",
+          "maître",
+          "meule",
+          "atelier",
+          "apprenti",
+          "village"
+        ],
         "question": "Vous êtes l'apprenti de Gorm Meule ?",
-        "reponse": "« Oui. Il m'a dit de rester à l'atelier, et je suis parti sans rien dire. Dites-lui que je suis vivant, si vous le voyez. »"
+        "reponse": "« Oui, je suis son apprenti, depuis que je sais tenir un marteau. Il m'a dit de rester à l'atelier, ce soir-là. Je suis parti sans rien dire, la veste sur le dos. Gorm ne crie jamais. Il se tait, et c'est pire. Dites-lui que je suis vivant, si vous le voyez. »"
       },
       {
         "id": "fissure",
-        "mots": ["fissure", "fuir", "peur", "voix"],
+        "mots": [
+          "fissure",
+          "fuir",
+          "peur",
+          "voix"
+        ],
         "question": "Qu'est-ce qui vous a fait fuir ?",
-        "condition": { "non": { "flag": "lr-ansel-sauve" } },
-        "reponse": "« Quelque chose dans la fissure de l'est. Pas une bête, ou pas seulement une bête. Je n'en dis pas plus sur cette pierre. »"
+        "condition": {
+          "non": {
+            "flag": "lr-ansel-sauve"
+          }
+        },
+        "reponse": "« Quelque chose, au fond de la fissure de l'est. Pas une bête, ou pas seulement une bête. J'ai entendu que ça bougeait, puis plus rien. Je n'en dis pas plus sur cette pierre. Pas tant que je suis coincé ici. »"
       },
       {
         "id": "chaleur",
-        "mots": ["chaud", "odeur", "métal", "boyau", "veine", "lueur"],
+        "mots": [
+          "chaud",
+          "odeur",
+          "métal",
+          "boyau",
+          "veine",
+          "lueur"
+        ],
         "question": "Pourquoi la fissure est-elle si chaude ?",
-        "reponse": "« Elle luit au fond, et l'air qui en sort sent le métal chauffé. Je n'y retournerai pas. »"
+        "reponse": "« Elle luit au fond, d'une lueur sombre qui ne vient pas du jour. L'air qui en sort est chaud, et il sent le métal qu'on vient de chauffer. Les pierres sont tièdes sous la main. Les scories craquent à chaque pas. Je n'y retournerai pas. »"
       },
       {
         "id": "ce-qu-il-a-vu",
-        "mots": ["fûts", "fût", "scellé", "sceau", "fissure", "dedans", "cercle"],
+        "mots": [
+          "fûts",
+          "fût",
+          "scellé",
+          "sceau",
+          "fissure",
+          "dedans",
+          "cercle"
+        ],
         "question": "Qu'avez-vous vu au fond de la fissure ?",
-        "condition": { "flag": "lr-ansel-sauve" },
-        "reponse": "« Trois fûts de fer, cerclés, empilés au fond, qui bouchent la suite de la fissure. Le dessus est tiède. Sur le couvercle, un sceau frappé : un cercle à trois traits. Je ne sais pas qui les a scellés. »",
-        "revele": ["f-lr-sceau-cercle-trois-traits"],
+        "condition": {
+          "flag": "lr-ansel-sauve"
+        },
+        "reponse": "« Trois fûts de fer, cerclés, empilés au fond, qui bouchent la suite de la fissure. Ils sont scellés. Celui du dessus est tiède, les deux autres sont froids. Sur son couvercle, un sceau frappé : un cercle à trois traits, sans nom ni devise. Je ne sais pas qui les a scellés. Je ne veux pas savoir. »",
+        "revele": [
+          "f-lr-sceau-cercle-trois-traits"
+        ],
         "unique": true
+      },
+      {
+        "id": "ferraille",
+        "mots": [
+          "ferraille",
+          "ferrailleur",
+          "métier",
+          "arracher",
+          "vendre",
+          "lames",
+          "métal"
+        ],
+        "question": "Comment vit-on de la ferraille, à Lame-Rousse ?",
+        "condition": {
+          "flag": "lr-ansel-sauve"
+        },
+        "reponse": "« On arrache les lames à la terre avec des leviers et des cordes, à trois ou quatre à chaque fois. Ensuite, on les porte aux meules des forges à aubes. On les polit jusqu'à y voir son reflet. Gorm dit qu'une lame bien polie se vend mieux qu'un sac de blé. Le métier nourrit le village, mais il ne se fait qu'en plein jour. »",
+        "effets": [
+          {
+            "flag": "lr-d-ansel-ferraille"
+          }
+        ],
+        "unique": true,
+        "revele": []
+      },
+      {
+        "id": "foret",
+        "mots": [
+          "forêt",
+          "Forêt d'Acier",
+          "épées géantes",
+          "champ",
+          "inscriptions",
+          "lames géantes"
+        ],
+        "question": "Que sait-on de la Forêt d'Acier ?",
+        "condition": {
+          "flag": "lr-d-ansel-ferraille"
+        },
+        "reponse": "« Plus de cent lames, plantées pointe en bas dans la roche. Certaines sont plus hautes que tout le bourg empilé. Le vent siffle entre les gardes. Sur le flanc sud de la plus haute, il y a des lettres gravées, plus grandes que moi. Gorm en a lu quelques-unes : une bataille livrée jusqu'à la nuit, et une garde qu'il fallait tenir jusqu'au bout. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-d-ansel-foret"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "oxydeurs",
+        "mots": [
+          "oxydeurs",
+          "bêtes",
+          "rouille",
+          "mordre",
+          "pourquoi",
+          "fuir",
+          "viaduc"
+        ],
+        "question": "Pourquoi ces bêtes de rouille mordent-elles le viaduc ?",
+        "condition": {
+          "flag": "lr-d-ansel-foret"
+        },
+        "reponse": "« Elles ne sont pas venues pour nous. Elles fuient quelque chose, là-haut, et elles ont trouvé le fer du viaduc. Il y en a trop pour les poutres. Une nuit, je les ai vues ronger un tirant entier. Elles ne mordent pas par cruauté : elles ont faim, et c'est tout ce qu'elles savent faire. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lr-d-ansel-oxydeurs"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "boyau",
+        "mots": [
+          "boyau",
+          "chemin",
+          "venu",
+          "passage",
+          "boue",
+          "traces",
+          "lampe"
+        ],
+        "question": "Par où êtes-vous venu jusqu'à la vire ?",
+        "condition": {
+          "flag": "lr-ansel-sauve"
+        },
+        "reponse": "« Par un boyau, au nord-est, où il faut ramper. La boue y garde les traces : une seule rangée de pas et de griffes de fer, qui monte sans jamais tourner. Ce qui est passé par là est revenu par le même chemin. Ne l'empruntez pas sans lampe. »",
+        "revele": [
+          "f-lr-traces-des-drains"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "cretes",
+        "mots": [
+          "crêtes",
+          "nord",
+          "col",
+          "Cuirasse",
+          "Égide",
+          "Fort-Verrou",
+          "passes",
+          "montagne"
+        ],
+        "question": "Que dit-on des crêtes, au nord ?",
+        "reponse": "« Je ne suis jamais monté là-haut. On dit que les soldats du Maréchal tiennent les cols, au nord. Chez nous, on n'en parle pas. »",
+        "revele": [],
+        "unique": true,
+        "effets": []
       }
     ],
     "salutations": {
       "hostile": "« N'approchez pas. Je ne sais pas qui vous envoie. »",
       "neutre": "« Vous êtes là pour me sortir d'ici, ou pour me regarder ? »",
       "amical": "« Vous êtes là. Je n'osais plus y croire. »",
-      "variantes": [{ "condition": { "flag": "lr-ansel-sauve" }, "texte": "« Vous m'avez sorti de là. Demandez ce que vous voulez, je dirai ce que j'ai vu. »" }]
+      "variantes": [
+        {
+          "condition": {
+            "flag": "lr-ansel-sauve"
+          },
+          "texte": "« Vous m'avez sorti de là. Demandez ce que vous voulez, je dirai ce que j'ai vu. »"
+        }
+      ]
     },
     "inventaire": []
   }

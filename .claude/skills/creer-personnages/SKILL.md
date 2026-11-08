@@ -26,6 +26,13 @@ Pour un PNJ escorté (effet `escorte`), ajouter en plus de sa fiche : **10 à 16
 - Aucun secret de la bible, aucun fait d'intrigue dans `passe`, `liens` ou une `couleur` libre.
 - Un souvenir ne change rien à l'intrigue ; ce qui la change est un fait du canon (`faits/`), verrouillé dans `sait`.
 
+## Des conversations riches (décision du 08/11/2026, à appliquer à tout PNJ d'Ombresang)
+- **Réponses de 40 à 80 mots** dans la voix de la fiche (`personnalite.voix`), avec un détail concret (nom, chiffre, geste, souvenir) ; un PNJ de 5 réponses de 30 mots n'a pas de voix (avis « Dialogues » du validateur).
+- **Questions en chaîne** : un sujet parent pose un drapeau `lr-d-<pnj>-<mot>` (dans ses `effets`), le sujet suivant le lit (`condition: { "flag": ... }`). Les suites sont `unique: true` pour que la liste visible reste courte (6 à 8 questions au départ ; touches 1 à 9). Une suite doit avoir un sens même si le joueur a sauté l'étape : relier sa condition à ce qui rend la question naturelle (un fait connu, un objet, le sujet qui l'introduit).
+- **Questions sur le monde** : au moins 2 par PNJ, qui font découvrir le lieu, la sous-région ou la région (routes, métiers, légendes, la capitale vue de loin), chacune avec un fait nouveau (`faits/`, catégorie `lieu`, `histoire` ou `rumeur`, importance 1 ou 2, `fiable: false` si douteux). Un PNJ ne dit que ce qu'il peut savoir.
+- **Rester cohérent** : Bible, atlas, niveau de révélation du chapitre (au prologue : jamais le Concile ni « les dieux vivent »), aucune invention qui crée une obligation dans un module gelé, jamais de secret hors de son verrou. Un même fait de monde dit par plusieurs PNJ garde un seul id.
+- **Méthode** : rédacteurs Haiku sur des fichiers de propositions (un par groupe de PNJ), relecture et fusion par script avec contrôles (drapeaux lus et posés, `revele` inclus dans `savoir`), puis vérificateur et auditeur.
+
 ## Pièges connus
 - Une scène de rencontre ouverte bloque la parole libre (« Une rencontre attend ») : le joueur la règle par ses boutons d'abord.
 - Le LLM ne cite pas toujours l'élément ouvert qui répond à la question : le prompt (règle 10) lui demande de le chercher d'abord ; relire les essais.

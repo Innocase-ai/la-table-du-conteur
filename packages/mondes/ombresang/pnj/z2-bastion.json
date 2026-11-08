@@ -30,7 +30,10 @@
       "f-lr-elinor-cousine-de-malthus",
       "f-lr-quarantaine-fausse",
       "f-lr-stocks-minerai-plan-fuite",
-      "f-lr-engrenages-fondus-par-l-acide"
+      "f-lr-engrenages-fondus-par-l-acide",
+      "f-lr-mon-senat-hemicycle",
+      "f-lr-epees-de-vael-khor",
+      "f-lr-rangee-metal-refondu"
     ],
     "secrets": [
       {
@@ -95,7 +98,7 @@
           "prisonnier"
         ],
         "question": "Quelle prime offrez-vous pour les oxydeurs ?",
-        "reponse": "« Une prime en pièces d'or pour ce nid nettoyé, et une autre si le prisonnier reste aux fers jusqu'à la réouverture de la route. Vous n'aurez rien d'autre de moi. »",
+        "reponse": "« Une prime en pièces d'or pour ce nid nettoyé, et une autre si le prisonnier reste aux fers jusqu'à la réouverture de la route. Les oxydeurs se cachent sous le pont, dans la grotte, et ce sont vos mains qui iront les chercher. Ne comptez pas sur mes péagers pour descendre avec vous. Vous n'aurez rien d'autre de moi. »",
         "effets": [
           {
             "quete": {
@@ -125,7 +128,7 @@
           "fermer"
         ],
         "question": "Pourquoi avoir fermé la route ?",
-        "reponse": "« Pour la sécurité de tous. Un pont qui se fissure ne se répare pas en un jour, et je ne laisse pas passer des convois vers la mort. »"
+        "reponse": "« Pour la sécurité de tous. Un pont qui se fissure ne se répare pas en un jour, et je ne laisse pas passer des convois vers la mort. La route rouvrira quand le pont aura été examiné, et pas une heure avant. Vous n'avez pas à la juger : vous ne payez pas la route, vous. »"
       },
       {
         "id": "herse",
@@ -138,7 +141,7 @@
           "rouillée"
         ],
         "question": "Pourquoi la herse ne se relève-t-elle pas ?",
-        "reponse": "« Le treuil est rongé, et mes péagers ont tiré sur la chaîne toute une journée. Si vous savez réparer un treuil, dites-le-moi, sinon ne perdez pas mon temps. »"
+        "reponse": "« Le treuil est rongé, et mes péagers ont tiré sur la chaîne toute une journée sans que la herse bouge d'un pouce. Je ne fais pas de mécanique, je fais des comptes. Si vous savez réparer un treuil, dites-le-moi, et je regarderai ce que vous proposez. Sinon, ne perdez pas mon temps avec la rouille des autres. »"
       },
       {
         "id": "preuve",
@@ -193,7 +196,7 @@
             }
           ]
         },
-        "reponse": "Elle pose le coupe-papier bien droit sur la table. « Je sais ce que coûte une pile, et je sais ce que rapporte une route fermée. Le trésor impérial paiera, ou personne. »",
+        "reponse": "Elle pose le coupe-papier bien droit sur la table. « Je sais ce que coûte une pile, et je sais ce que rapporte une route fermée. Une réparation se paie sur le budget de l'Empire, par une ligne signée à Sépulcre-d'Or, et une baillie de péage n'a pas de ligne à signer. Le trésor impérial paiera, ou personne. »",
         "revele": [
           "f-lr-elinor-refuse-de-payer"
         ],
@@ -211,7 +214,7 @@
         ],
         "question": "Êtes-vous parente du Haut-Artificier Malthus Vane ?",
         "attitudeMin": 20,
-        "reponse": "Elle cesse de tapoter le coupe-papier. « Cousine. Éloignée, et tombée en disgrâce, si vous voulez tout savoir. Ce nom ne m'a rien rapporté, et il ne vous rapportera rien. »",
+        "reponse": "Elle cesse de tapoter le coupe-papier, et ne le reprend qu'après un silence. « Cousine. Éloignée, et tombée en disgrâce, si vous voulez tout savoir. Il a préféré les ateliers de la capitale aux comptes d'un péage, et l'on m'a laissée ici pour cette raison. Ce nom ne m'a rien rapporté, et il ne vous rapportera rien. »",
         "revele": [
           "f-lr-elinor-cousine-de-malthus"
         ],
@@ -238,7 +241,7 @@
             }
           ]
         },
-        "reponse": "« Quarantaine. Le mot était commode, et il tient encore. Des hommes qui ont touché au métal rongé ne sortent pas tant que je suis ici. »",
+        "reponse": "« Quarantaine. Le mot était commode, et il tient encore. Des hommes qui ont touché au métal rongé ne sortent pas tant que je suis ici, et ils ne sortiront pas parce que vous me le demandez. Les registres de cette quarantaine sont dans ma tour, et personne d'autre n'y touche. »",
         "revele": [
           "f-lr-quarantaine-fausse"
         ],
@@ -270,7 +273,7 @@
             }
           ]
         },
-        "reponse": "« Je vends le minerai à prix d'or aux marchands de la capitale, dès qu'ils comprennent que la route ne rouvrira pas. Ensuite je pars, avec la caisse, et vous me regarderez partir. »",
+        "reponse": "« Je vends le minerai à prix d'or aux marchands de la capitale, dès qu'ils comprennent que la route ne rouvrira pas. Les entrepôts sont pleins, et le fer vaut davantage à Sépulcre-d'Or qu'au bord d'une rivière rouillée. Ensuite je pars, avec la caisse, et vous me regarderez partir sans rien pouvoir dire. »",
         "revele": [
           "f-lr-stocks-minerai-plan-fuite"
         ],
@@ -300,7 +303,7 @@
           ]
         },
         "question": "Nous gardons le prisonnier, pour votre prime.",
-        "reponse": "« Bien. Trente pièces d'or, et le prisonnier reste aux fers. Ne me demandez rien d'autre. »",
+        "reponse": "Elle note le montant sans lever les yeux. « Bien. Trente pièces d'or, et le prisonnier reste aux fers, jusqu'à la réouverture de la route, comme je l'ai dit. La somme vous sera comptée ici même, et je ne veux plus voir vos visages dans ce bureau. Ne me demandez rien d'autre. »",
         "effets": [
           {
             "flag": "lr-joran-livre"
@@ -316,6 +319,108 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "peage",
+        "mots": [
+          "péage",
+          "taxes",
+          "droit",
+          "recette",
+          "tour",
+          "métier"
+        ],
+        "question": "Que fait une baillie de péage, au juste ?",
+        "reponse": "« On compte. Chaque charrette, chaque tonneau et chaque sac qui passe sous cette arche paie son droit, et chaque droit est écrit dans un registre que je signe moi-même. Le Trésor ne confie pas un péage à qui s'émeut des bruits de la nuit ; il le confie à qui sait lire un bordereau. La recette de cette tour est la seule chose que l'Empire vienne encore compter ici. »",
+        "effets": [
+          {
+            "flag": "lr-d-elinor-peage"
+          }
+        ],
+        "unique": true,
+        "revele": []
+      },
+      {
+        "id": "senat",
+        "mots": [
+          "Sénat",
+          "Sépulcre",
+          "rapport",
+          "écrire",
+          "comptes",
+          "capitale"
+        ],
+        "question": "Écrivez-vous au Sénat, de temps en temps ?",
+        "condition": {
+          "flag": "lr-d-elinor-peage"
+        },
+        "reponse": "« Je dresse mes comptes à la fin de chaque mois, et je les envoie à Sépulcre-d'Or, à l'Hémicycle de la Mâchoire, où les représentants des huit régions les lisent, ou les rangent. Mes comptes sont justes. Le reste ne regarde ni les comptables ni les sénateurs qui n'ont jamais mis le pied dans la vallée. »",
+        "revele": [
+          "f-lr-mon-senat-hemicycle"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "vael-khor",
+        "mots": [
+          "épées",
+          "vallée",
+          "dieu",
+          "Vael-Khor",
+          "plantées",
+          "guerre",
+          "origine"
+        ],
+        "question": "D'où viennent toutes ces épées plantées dans la vallée ?",
+        "reponse": "« Des armes du dieu de la guerre, Vael-Khor, qui est tombé il y a longtemps, plus loin que la mémoire des ferrailleurs. L'Empire les a portées sur ses cartes, une à une, et les ferrailleurs ont fait le reste : ils les arrachent, les polissent et les vendent au poids. Ne me demandez pas de les plaindre, ils ont appris à vivre de ce qu'ils déterrent. »",
+        "revele": [
+          "f-lr-epees-de-vael-khor"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-elinor-vael-khor"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "forge-cranienne",
+        "mots": [
+          "Forge",
+          "Crânienne",
+          "fûts",
+          "scories",
+          "bordereaux",
+          "registre",
+          "Nord"
+        ],
+        "question": "Les fûts de scories du registre, ils viennent de quelle forge ?",
+        "condition": {
+          "objet": "registre-de-scories"
+        },
+        "reponse": "« De la Forge Crânienne, là-haut dans le Nord, où le Maréchal passe ses commandes. Les bordereaux disent ce qu'ils disent : des fûts, une date, un poids, un convoi, un sceau. Ce qui se passe ensuite ne regarde pas mes comptes, et je n'ai pas à m'en charger. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "vallee-mepris",
+        "mots": [
+          "vallée",
+          "village",
+          "Lame-Rousse",
+          "habitants",
+          "ferrailleurs",
+          "forges"
+        ],
+        "question": "Que pensez-vous des gens de cette vallée ?",
+        "reponse": "« Des ferrailleurs. Huit cents âmes à Lame-Rousse, et vingt forges à aubes qui refondent ce qu'elles raclent sur les épées plantées dans le sol. Ils se croient utiles parce qu'ils font du bruit. Je ne leur dois rien, et ils oublient toujours de payer leurs droits de passage, comme si la route était à eux. Voilà ce que je pense d'eux. »",
+        "revele": [
+          "f-lr-rangee-metal-refondu"
+        ],
+        "unique": true,
+        "effets": []
       }
     ],
     "salutations": {
@@ -355,7 +460,10 @@
       "f-lr-piles-s-effondrent",
       "f-lr-rapport-au-senat",
       "f-lr-treuil-au-temple",
-      "f-lr-serment-des-gardiens"
+      "f-lr-serment-des-gardiens",
+      "f-lr-mon-viaduc-pierre-et-fer",
+      "f-lr-routes-de-la-vallee",
+      "f-lr-mon-temple-glaive"
     ],
     "secrets": [
       {
@@ -379,7 +487,7 @@
           "fers"
         ],
         "question": "Pourquoi êtes-vous enfermé ici ?",
-        "reponse": "« On dit quarantaine. J'ai touché à des piles qui ne tiennent plus, et l'on m'a fermé la bouche avec une porte de planches ferrées. »",
+        "reponse": "« On dit quarantaine. J'ai touché à des piles qui ne tiennent plus, et j'ai écrit ce que j'ai mesuré. Alors l'on m'a fermé la bouche avec une porte de planches ferrées, et l'on a donné un nom de médecin à ma cellule. Il n'y a ni malade ni remède ici, seulement de l'eau qui goutte et de la rouille. »",
         "condition": {
           "non": {
             "flag": "lr-aldric-libere"
@@ -398,10 +506,15 @@
           "base"
         ],
         "question": "Que vous ont appris vos mesures sur le pont ?",
-        "reponse": "« Les piles ne tiennent plus comme elles devraient. La base de la pile centrale est rongée en creux, et ce n'est pas la fatigue du fer, c'est l'acide. Je l'ai écrit, avec les chiffres. »",
+        "reponse": "« Les piles ne tiennent plus comme elles devraient. La base de la pile centrale est rongée en creux, et ce n'est pas la fatigue du fer, c'est l'acide : on y voit encore les coulures, grises et figées. Je l'ai écrit, avec les chiffres, sur trois pages, et le rapport est scellé. Je ne sais pas s'il a quitté la tour. »",
         "revele": [
           "f-lr-piles-s-effondrent",
           "f-lr-rapport-au-senat"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-aldric-piles"
+          }
         ]
       },
       {
@@ -417,7 +530,7 @@
         ],
         "question": "Comment relever la herse ?",
         "attitudeMin": 20,
-        "reponse": "« Il faut une pièce neuve, et il en existe une de rechange, gardée au Temple du Glaive Brisé, par le sentier des Gardiens. Quelle garde la protège, je ne vous le dirai qu'une fois que je saurai qui me demande. »",
+        "reponse": "« Il faut une pièce neuve, et il en existe une de rechange, gardée au Temple du Glaive Brisé, par le sentier des Gardiens, dans l'arsenal où l'on range les vieilles armures. Le treuil en a besoin pour que les roues mordent de nouveau. Quelle garde la protège, je ne vous le dirai qu'une fois que je saurai qui me demande. »",
         "revele": [
           "f-lr-treuil-au-temple"
         ],
@@ -434,6 +547,9 @@
               "id": "la-herse-du-bastion",
               "statut": "active"
             }
+          },
+          {
+            "flag": "lr-d-aldric-treuil"
           }
         ]
       },
@@ -467,7 +583,7 @@
           "libre"
         ],
         "question": "Nous ouvrons la cellule, et nous vous sortons.",
-        "reponse": "« Vous avez ouvert cette porte, et vous ne me demandez rien en échange. Je vous suis, et je vous montrerai mes mesures à la lumière du jour. »",
+        "reponse": "Il se lève, lentement, en s'appuyant au mur. « Vous avez ouvert cette porte, et vous ne me demandez rien en échange. Je vous suis, et je vous montrerai mes mesures à la lumière du jour, sur la pierre et non sur le papier. Montrez-moi le chemin de la cour, et ne courez pas : mes jambes ont passé trop de jours dans le noir. »",
         "effets": [
           {
             "flag": "lr-aldric-libere"
@@ -486,6 +602,106 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "construction",
+        "mots": [
+          "pont",
+          "viaduc",
+          "construit",
+          "bâti",
+          "pierre",
+          "fer",
+          "arche",
+          "ingénieurs"
+        ],
+        "question": "Comment a-t-on bâti ce viaduc ?",
+        "reponse": "« De la pierre noire pour les piles, posées sur le roc du torrent d'Oxyde, et une arche de fer qui relie les deux rives. Les ingénieurs de l'Empire l'ont dessinée pour les convois lourds, parce que c'est le seul passage qui porte un chariot chargé de fonte au-dessus de l'eau. Chaque pile porte son numéro gravé dans la pierre, et chaque rivet se compte encore à la main. »",
+        "revele": [
+          "f-lr-mon-viaduc-pierre-et-fer"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-aldric-construction"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "ingenieurs",
+        "mots": [
+          "ingénieurs",
+          "collègues",
+          "cellules",
+          "équipe",
+          "enfermés",
+          "ouest"
+        ],
+        "question": "Où sont vos collègues, les autres ingénieurs ?",
+        "reponse": "« Dans les deux cellules de l'ouest, derrière les grilles, à quelques pas de la mienne. Je ne connais leurs visages que par la torche qui passe, et leurs noms par les appels du matin. L'un tousse depuis trois jours, l'autre compte à voix basse les pierres du mur. Ils ont fait leur devoir, et on les paie d'une porte fermée. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "routes",
+        "mots": [
+          "routes",
+          "voie",
+          "chaussée",
+          "piste",
+          "défilé",
+          "heures",
+          "vallée"
+        ],
+        "question": "Par où part-on de cette vallée, et combien de temps faut-il ?",
+        "reponse": "« Quatre routes partent de cette vallée, et chacune se mesure en heures de marche. La Voie Royale de Fer, quatorze heures jusqu'à Sépulcre-d'Or. Le Défilé des Forges, dix heures vers le Gantelet d'Airain. La Chaussée des Scories, huit heures vers la Cuirasse Fendue. La Piste de Poussière, neuf heures vers les Landes de Limaille, où la limaille ronge les essieux. »",
+        "revele": [
+          "f-lr-routes-de-la-vallee"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "mesures",
+        "mots": [
+          "mesures",
+          "creux",
+          "base",
+          "pile",
+          "combien",
+          "temps",
+          "tiendra"
+        ],
+        "question": "Combien de temps tient encore cette pile ?",
+        "condition": {
+          "flag": "lr-d-aldric-piles"
+        },
+        "reponse": "« Je ne compte pas en jours, je compte en creux. Le creux de la base a gagné une main de profondeur depuis le dernier relevé, et il grignote encore. Je ne peux pas dire quand la pierre cédera, mais je peux dire qu'un convoi lourd qui passera dessus ne le fera pas deux fois. Ne demandez pas davantage à un homme qui n'a plus d'outils. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "temple",
+        "mots": [
+          "temple",
+          "glaive",
+          "brisé",
+          "sentier",
+          "gardiens",
+          "arsenal"
+        ],
+        "question": "Parlez-moi de ce Temple du Glaive Brisé.",
+        "condition": {
+          "flag": "lr-d-aldric-treuil"
+        },
+        "reponse": "« Une épée géante couchée dans le sol, dont la garde en croix sert de nef. Le sanctuaire est bâti dans cette garde, à l'écart de la route, et l'arsenal descend sous la gorge de la lame. On y monte par un sentier de cailloux, et les gens du pays n'y vont plus guère. »",
+        "revele": [
+          "f-lr-mon-temple-glaive"
+        ],
+        "unique": true,
+        "effets": []
       }
     ],
     "salutations": {
@@ -522,7 +738,9 @@
     },
     "attitude": 15,
     "savoir": [
-      "f-lr-mira-a-vu-les-lames"
+      "f-lr-mira-a-vu-les-lames",
+      "f-lr-mon-camp-refugies-rive-sud",
+      "f-lr-mon-fourche-camp"
     ],
     "secrets": [
       {
@@ -554,7 +772,7 @@
           "route"
         ],
         "question": "Pourquoi personne ne traverse-t-il le pont ?",
-        "reponse": "« La Baillie a fermé la route pour la sécurité, disent ses péagers. Les convois n'avancent plus, les pèlerins non plus, et les lames font le reste. »"
+        "reponse": "« La Baillie a fermé la route pour la sécurité, disent ses péagers, et ils le répètent comme une prière. Les convois n'avancent plus, les pèlerins non plus, et les lames font le reste. Les gens d'ici dorment sur la terre rouge, et ils attendent qu'une voix leur dise quand rentrer. Personne ne la dit. »"
       },
       {
         "id": "lames",
@@ -567,7 +785,12 @@
           "épées"
         ],
         "question": "Qu'avez-vous vu des lames, la nuit ?",
-        "reponse": "« Depuis hier, les épées qui dormaient dans la roche sortent du sol et passent au-dessus de l'eau en files serrées. Je n'ai pas vu la fin de leur route. »"
+        "reponse": "« Depuis hier, les épées qui dormaient dans la roche sortent du sol et passent au-dessus de l'eau en files serrées. Je n'ai pas vu la fin de leur route. »",
+        "effets": [
+          {
+            "flag": "lr-d-mira-lames"
+          }
+        ]
       },
       {
         "id": "lames-village",
@@ -610,6 +833,103 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "camp",
+        "mots": [
+          "camp",
+          "tentes",
+          "bâches",
+          "pèlerins",
+          "combien",
+          "rive",
+          "monde"
+        ],
+        "question": "Qui sont tous ces gens, au camp ?",
+        "reponse": "« Des pèlerins qui fuyaient les lames, et des ouvriers du viaduc qui n'ont plus de chantier. On compte plus d'une centaine de personnes, dans des tentes de bâches de convoi déchirées, et personne ne dort tout à fait. Les foyers de charbon ne s'éteignent jamais : quelqu'un veille toujours, et ce quelqu'un change de visage chaque nuit. »",
+        "revele": [
+          "f-lr-mon-camp-refugies-rive-sud"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-mira-camp"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "route-sud",
+        "mots": [
+          "route",
+          "fourche",
+          "sud",
+          "Voie",
+          "Défilé",
+          "borne",
+          "où mène"
+        ],
+        "question": "Où mènent les routes, de l'autre côté du camp ?",
+        "reponse": "« À la fourche, une borne de pierre noire gravée de deux flèches. Le Défilé des Forges file vers l'ouest, dix heures de marche jusqu'au Gantelet d'Airain, où l'on dit que les mineurs travaillent encore. La Voie Royale de Fer file vers le sud-est, quatorze heures jusqu'à Sépulcre-d'Or. Personne ici ne sait laquelle de ces routes on aura le droit de prendre. »",
+        "revele": [
+          "f-lr-mon-fourche-camp"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "vivres",
+        "mots": [
+          "vivres",
+          "manger",
+          "nourriture",
+          "farine",
+          "eau",
+          "faim"
+        ],
+        "question": "Comment nourrissez-vous tout ce monde ?",
+        "condition": {
+          "flag": "lr-d-mira-camp"
+        },
+        "reponse": "« Chacun met ce qu'il a dans le chaudron commun, et les convois ne viennent plus compléter. Le pain se fait avec la farine sauvée des charrettes, et l'eau vient du torrent, qu'on laisse décanter avant de la faire bouillir sur le charbon. Les enfants mangent en premier. Personne ne l'a décidé : c'est ainsi depuis trois jours. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "veille",
+        "mots": [
+          "veille",
+          "nuit",
+          "compte",
+          "battement",
+          "cloche",
+          "guet"
+        ],
+        "question": "Vous veillez, la nuit ? Que comptez-vous ?",
+        "condition": {
+          "flag": "lr-d-mira-camp"
+        },
+        "reponse": "« Je compte les lames qui passent, et je compte les lanternes qui s'éteignent au poste. Hier à l'aube, la roche a vibré sous nos pieds, et j'ai réveillé tout le camp. Je n'ai rien dit à la Baillie. Je ne parle pas aux péagers. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "joran-avant",
+        "mots": [
+          "Joran",
+          "avant",
+          "enfance",
+          "garnison",
+          "déserté",
+          "vie"
+        ],
+        "question": "Parlez-moi de Joran, avant tout ça.",
+        "attitudeMin": 20,
+        "reponse": "« Joran voulait être soldat pour qu'on mange à la maison. Il m'a donné ce bracelet de cuir le jour de son départ, et il a promis de revenir par le pont. Je ne sais pas ce qu'on lui reproche, mais il n'a jamais abandonné quelqu'un. Il ne partirait pas sans moi, jamais. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
       }
     ],
     "salutations": {
@@ -646,7 +966,8 @@
     },
     "attitude": 0,
     "savoir": [
-      "f-lr-brisk-plie"
+      "f-lr-brisk-plie",
+      "f-lr-mon-hommes-baillie"
     ],
     "secrets": [
       {
@@ -669,7 +990,12 @@
           "troupe"
         ],
         "question": "Pourquoi vos hommes n'avancent-ils pas ?",
-        "reponse": "« Parce qu'ils ne savent plus qui leur donne l'ordre. La Baillie veut la herse fermée, moi je voudrais la route ouverte, et eux veulent rentrer chez eux. »"
+        "reponse": "« Parce qu'ils ne savent plus qui leur donne l'ordre. La Baillie veut la herse fermée, moi je voudrais la route ouverte, et eux veulent rentrer chez eux. Ordre, contre-ordre : ils n'y comprennent plus rien, et ils restent plantés là, la main sur leur bâton. »",
+        "effets": [
+          {
+            "flag": "lr-d-brisk-peagers"
+          }
+        ]
       },
       {
         "id": "cle",
@@ -682,7 +1008,7 @@
           "ceinture"
         ],
         "question": "Qui garde la clé des cellules ?",
-        "reponse": "« Moi. Elle reste à ma ceinture, et elle y restera tant que la Baillie ne me dira pas le contraire. Ne touchez pas à ma ceinture. »"
+        "reponse": "« Moi. Elle reste à ma ceinture, à côté du bâton ferré, et elle y restera tant que la Baillie ne me dira pas le contraire. Personne ne la touche, pas même mes hommes. Ne touchez pas à ma ceinture. »"
       },
       {
         "id": "ceder-la-cle",
@@ -707,7 +1033,7 @@
             }
           ]
         },
-        "reponse": "Il regarde ses hommes, puis décroche l'anneau de sa ceinture. « Je n'ai rien vu. Et si la Baillie demande, vous me l'avez prise. »",
+        "reponse": "Il regarde ses hommes, un par un, puis décroche l'anneau de sa ceinture et le pose sur la table du corps de garde, sans un mot. « Je n'ai rien vu. Et si la Baillie demande, vous me l'avez prise. Ne me remerciez pas, je n'ai pas aimé le faire. »",
         "effets": [
           {
             "objet": {
@@ -728,7 +1054,7 @@
           "pièce"
         ],
         "question": "Pourquoi la herse ne bouge-t-elle plus ?",
-        "reponse": "« Le treuil est mort. On a tiré sur la chaîne toute une journée, et l'acide a mangé les dents. Il faudrait une pièce neuve, et on n'en trouve pas dans le poste. »"
+        "reponse": "« Le treuil est mort. On a tiré sur la chaîne toute une journée, à quatre hommes sur les barres, et l'acide a mangé les dents des roues. Il faudrait une pièce neuve, et on n'en trouve ni dans le poste ni dans les caisses. Je n'ai pas de forgeron ici, je n'ai que des péagers. »"
       },
       {
         "id": "forcer-le-poste",
@@ -754,7 +1080,7 @@
           ]
         },
         "question": "On passe en force.",
-        "reponse": "« Halte. Halte. Si vous forcez le poste, mes hommes se battront, et la Baillie fera le reste. »",
+        "reponse": "« Si vous forcez le poste, mes hommes se battront, et la Baillie fera le reste. Ils ont des femmes et des enfants au village, et ils ne comprendront pas pourquoi l'on tire sur des gens qui veulent passer. Posez les armes, et parlez-moi. »",
         "effets": [
           {
             "flag": "lr-poste-force"
@@ -764,6 +1090,100 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "patrouilles",
+        "mots": [
+          "patrouilles",
+          "hommes",
+          "dehors",
+          "piste",
+          "sortir",
+          "landes",
+          "route"
+        ],
+        "question": "Vos patrouilles, elles vont jusqu'où ?",
+        "reponse": "« Jusqu'à la fourche, de l'autre côté du pont, et quelques heures au-delà sur la Voie Royale de Fer. Plus loin, c'est l'affaire de la capitale. Mes hommes n'y vont plus seuls : depuis que les lames se lèvent, je ne laisse plus partir un homme sans compagnon. Un homme seul sur la route, on ne le retrouve pas. »",
+        "effets": [
+          {
+            "flag": "lr-d-brisk-patrouilles"
+          }
+        ],
+        "unique": true,
+        "revele": []
+      },
+      {
+        "id": "lames-nuit",
+        "mots": [
+          "lames",
+          "nuit",
+          "tirer",
+          "flèches",
+          "hommes",
+          "cour"
+        ],
+        "question": "Vos hommes ont-ils affronté les lames ?",
+        "condition": {
+          "flag": "lr-d-brisk-patrouilles"
+        },
+        "reponse": "« Depuis hier à l'aube, elles passent au-dessus de la cour, en files serrées, et elles ne s'arrêtent pas pour nous. Deux de mes hommes ont tiré sur une, et les carreaux ont glissé sur le métal sans la ralentir. Depuis, personne ne tire plus, et personne ne sait quoi faire d'autre. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "soldats-region",
+        "mots": [
+          "Maréchal",
+          "soldats",
+          "région",
+          "gouverneur",
+          "commandement",
+          "garnison",
+          "armée"
+        ],
+        "question": "Qui commande les soldats de la région ?",
+        "reponse": "« Le Maréchal. Draven Kael, le gouverneur militaire de la région. Il ne vient jamais jusqu'ici : ses ordres descendent par les relais de poste. Ses hommes tiennent les mines, les cols, partout où il y a du métal à garder. Moi, je n'ai qu'un poste, une herse et des péagers. Je n'ai pas d'autre nom à vous donner. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "hommes-baillie",
+        "mots": [
+          "hommes de main",
+          "Baillie",
+          "payés",
+          "tour",
+          "uniforme",
+          "qui paie"
+        ],
+        "question": "Les hommes de la Baillie, ce ne sont pas vos péagers ?",
+        "condition": {
+          "flag": "lr-d-brisk-peagers"
+        },
+        "reponse": "« Des gens de la Baillie, sans uniforme, loués à la journée, et payés sur la recette de la tour. Ils ne sont pas péagers, ils ne rendent compte qu'à elle. Ils ont les lames, et moi les ordres. Halte. Quand ils s'avancent, mes hommes reculent, et c'est pour cela que la cour va mal. »",
+        "revele": [
+          "f-lr-mon-hommes-baillie"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "ordre-ecrit",
+        "mots": [
+          "ordre",
+          "écrit",
+          "consigne",
+          "Baillie",
+          "tirer",
+          "commandement"
+        ],
+        "question": "Que ferez-vous si la Baillie vous ordonne de tirer ?",
+        "reponse": "« Il n'y a pas d'ordre écrit, et je ne tirerai pas sans. Je ne lèverai pas une lame contre un homme à terre, même si la Baillie le demande, et je le lui ai dit en face. Si elle me le met par écrit, je n'aurai plus le choix, et c'est ce qui me fait peur. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
       }
     ],
     "salutations": {

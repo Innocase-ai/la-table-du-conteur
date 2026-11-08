@@ -9,46 +9,195 @@
     "lieu": "lr-temple-chapelle",
     "apparence": "Un casque d'acier gris-bleu, posé sur l'autel, à la visière fendue d'une seule ligne droite, sans ornement ni plumet. Rien ne se tient sous lui : ni tête, ni épaules, ni mains. Seule la voix sort de la fente.",
     "personnalite": {
-      "traits": ["solennel", "inflexible", "sensible au mensonge"],
+      "traits": [
+        "solennel",
+        "inflexible",
+        "sensible au mensonge"
+      ],
       "voix": "Voix creuse et lente, qui vient du fond du casque comme d'un puits. Chaque mot tombe seul, sans écho, et elle ne hausse jamais le ton.",
-      "valeurs": ["le serment avant tout", "la parole donnée, tenue jusqu'au bout"],
+      "valeurs": [
+        "le serment avant tout",
+        "la parole donnée, tenue jusqu'au bout"
+      ],
       "desir": "Que le pont ne tombe pas, et que personne ne passe sans avoir juré.",
       "peur": "Que la garde finisse sans personne pour la tenir.",
       "defaut": "Il n'accepte que ce qui est juré, et ne pardonne pas le mensonge."
     },
     "attitude": 0,
-    "savoir": [],
+    "savoir": [
+      "f-lr-mon-viaduc-pierre-et-fer",
+      "f-lr-inscriptions-derniere-bataille"
+    ],
     "secrets": [],
     "sujets": [
       {
         "id": "armure",
-        "mots": ["casque", "voix", "armure", "parler", "qui parle"],
+        "mots": [
+          "casque",
+          "voix",
+          "armure",
+          "parler",
+          "qui parle"
+        ],
         "question": "Qui parle par ce casque ?",
-        "reponse": "« Une voix qui n'a plus de corps, et qui garde ce que la garde a laissé. Je ne dis rien à ceux qui n'ont pas juré. »"
+        "reponse": "« Une voix qui n'a plus de corps. Elle garde ce que la garde a laissé derrière elle : une lame, un pont, un serment. Il n'y a plus d'homme dans cette armure, et il n'y a plus de tête à lever. Je ne parle pas à ceux qui n'ont pas juré. »"
       },
       {
         "id": "passage",
-        "mots": ["passer", "entrer", "duel", "serment", "jurer"],
+        "mots": [
+          "passer",
+          "entrer",
+          "duel",
+          "serment",
+          "jurer"
+        ],
         "question": "Que faut-il pour passer ?",
-        "reponse": "« Un serment, ou un duel. Choisissez, et dites-le sans détour. »"
+        "reponse": "« Un serment, ou un duel. Le serment se dit à voix haute, sans détour, dans l'ordre de la garde ou avec vos propres mots. Le duel se fait contre l'armure, seul à seul, et il n'y a rien à y gagner que le passage. Choisissez, et dites-le. »"
       },
       {
         "id": "mensonge",
-        "mots": ["mentir", "mensonge", "vérité", "croire", "sentir"],
+        "mots": [
+          "mentir",
+          "mensonge",
+          "vérité",
+          "croire",
+          "sentir"
+        ],
         "question": "Pouvez-vous reconnaître un mensonge ?",
-        "reponse": "« Chaque mensonge fait trembler la voix. Je le sens comme on sent le froid du fer avant de le toucher. »"
+        "reponse": "« Chaque mensonge fait trembler la voix, avant même que le mot soit achevé. Je le sens comme on sent le froid du fer avant de le toucher. Ne tournez pas autour de la vérité. Je ne la confonds pas avec une parole habile. Dites ce que vous avez dans le cœur. »"
       },
       {
         "id": "gardiens",
-        "mots": ["Gardiens", "temple", "histoire", "passé", "jadis"],
+        "mots": [
+          "Gardiens",
+          "temple",
+          "histoire",
+          "passé",
+          "jadis"
+        ],
         "question": "Qui étaient les Gardiens du Pont ?",
-        "reponse": "« Des hommes et des femmes qui juraient devant la pierre, et tenaient le pont sans attendre de salaire. Il ne reste d'eux que ce serment, et ces murs. »"
+        "reponse": "« Des hommes et des femmes qui juraient devant la pierre, et tenaient le pont sans attendre de salaire. Ils se relevaient pour la garde, la nuit comme le jour. Leurs noms ne sont plus gravés nulle part. Il ne reste d'eux que ce serment, et ces murs. »",
+        "effets": [
+          {
+            "flag": "lr-d-maitre-gardiens"
+          }
+        ]
       },
       {
         "id": "arsenal",
-        "mots": ["arsenal", "garder", "pièce", "trésor", "gardez"],
+        "mots": [
+          "arsenal",
+          "garder",
+          "pièce",
+          "trésor",
+          "gardez"
+        ],
         "question": "Que garde l'arsenal ?",
-        "reponse": "« Une pièce du pont, que je garde pour ceux qui jurent. Au-delà, rien ne vous regarde. »"
+        "reponse": "« Une pièce du pont, que je garde pour ceux qui jurent. Elle sert à relever la grille du pont quand elle tombe, et elle voyage dans une caisse à deux poignées. Au-delà de cette pièce, rien ne vous regarde. Ne cherchez pas à la prendre sans avoir juré. »"
+      },
+      {
+        "id": "pont",
+        "mots": [
+          "pont",
+          "viaduc",
+          "tenir",
+          "garde",
+          "tomber",
+          "arches"
+        ],
+        "question": "Quel pont tenaient donc les Gardiens ?",
+        "condition": {
+          "flag": "lr-d-maitre-gardiens"
+        },
+        "reponse": "« Le pont que vous appelez viaduc : des piles de pierre noire sur le roc du torrent, et une arche de fer. Les convois lourds l'ont traversé pendant des siècles. Les Gardiens le tenaient depuis leur sanctuaire, et veillaient sur ses piles. Quand ils sont partis, personne n'a plus veillé sur lui. »",
+        "revele": [
+          "f-lr-mon-viaduc-pierre-et-fer"
+        ],
+        "effets": [
+          {
+            "flag": "lr-d-maitre-pont"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "garde-epee",
+        "mots": [
+          "temple",
+          "épée",
+          "garde",
+          "pourquoi",
+          "bâti",
+          "lame",
+          "pommeau"
+        ],
+        "question": "Pourquoi bâtir un temple dans une épée ?",
+        "condition": {
+          "flag": "lr-d-maitre-pont"
+        },
+        "reponse": "« La garde de l'épée fait une barrière, et l'on monte la garde derrière une barrière. Le pommeau domine le sentier, et les cellules sont sous lui, au creux de la poignée. La lame repose vers le sud, longue comme une grand-rue. Il fallait une lame pour tenir un pont. Il fallait des hommes pour tenir la lame. »",
+        "effets": [
+          {
+            "flag": "lr-d-maitre-garde"
+          }
+        ],
+        "unique": true,
+        "revele": []
+      },
+      {
+        "id": "journal",
+        "mots": [
+          "journal",
+          "écrit",
+          "trace",
+          "cellules",
+          "livre",
+          "dernier gardien",
+          "lire"
+        ],
+        "question": "Y a-t-il une trace écrite de la garde ?",
+        "condition": {
+          "flag": "lr-d-maitre-gardiens"
+        },
+        "reponse": "« Le dernier gardien tenait un journal, dans les cellules sous le pommeau. Il y raconte les derniers jours de la garde, et comment le pont fut laissé sans personne. Lisez-le avant de juger ce que vous entendez ici. Il dit ce que ma voix ne dit pas. »",
+        "revele": [],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "vael-khor",
+        "mots": [
+          "dieu",
+          "Vael-Khor",
+          "épées",
+          "guerre",
+          "tombé",
+          "titan",
+          "lames"
+        ],
+        "question": "Quel dieu a laissé ces épées derrière lui ?",
+        "reponse": "« Vael-Khor, le dieu de la guerre et de la forge. Il a combattu jusqu'à la nuit, debout au milieu de ses armes. Puis il est tombé, et il s'est brisé sur le champ. Ses lames sont restées plantées dans la terre. Les dernières lignes gravées sur la plus haute épée parlent d'une garde qu'il fallait tenir jusqu'au bout. »",
+        "revele": [
+          "f-lr-inscriptions-derniere-bataille"
+        ],
+        "unique": true,
+        "effets": []
+      },
+      {
+        "id": "salaire",
+        "mots": [
+          "or",
+          "salaire",
+          "payer",
+          "pourquoi",
+          "sans rien",
+          "récompense"
+        ],
+        "question": "Pourquoi tenir un pont sans être payé ?",
+        "reponse": "« Les Gardiens ne prenaient ni or ni terre. Ils juraient devant la pierre, et leur parole leur servait de solde. Un homme qui tient sa parole n'a pas besoin qu'on le paie. Celui qui la rompt n'a plus rien à offrir, ni à la pierre, ni au pont. »",
+        "unique": true,
+        "revele": [],
+        "effets": []
       }
     ],
     "salutations": {
