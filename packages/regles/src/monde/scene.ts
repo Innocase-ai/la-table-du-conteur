@@ -9,7 +9,7 @@ export interface FicheScene {
   jour: number;
   heure: number;
   lieu: { id: string; nom: string; type: string; resume: string; description: string; ambiance?: string; services: string[]; repos: string; parent?: string };
-  sorties: { vers: string; nom: string; type: string; description?: string; apercu: string; visite: boolean; heures: number; etat: 'libre' | 'verrouille' | 'bloque'; dd?: number }[];
+  sorties: { vers: string; nom: string; type: string; description?: string; apercu: string; visite: boolean; heures: number; etat: 'libre' | 'verrouille' | 'bloque' | 'absent'; dd?: number; absent?: 'bientot' | 'pack' }[];
   pnj: { id: string; nom: string; role: string; attitude: number; sujets: number }[];
   tresors: { id: string; nom: string; contenant: string; description: string; etat: 'ferme' | 'ouvert' | 'garde' }[];
   pieges: { id: string; nom: string; resume: string; etat: 'repere' | 'desarme' | 'declenche' }[];
@@ -47,8 +47,9 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
         apercu: s.apercu,
         visite: s.visite,
         heures: s.heures,
-        etat: s.bloque ? 'bloque' : s.verrou && !s.verrou.ouvert ? 'verrouille' : 'libre',
+        etat: s.absent ? 'absent' : s.bloque ? 'bloque' : s.verrou && !s.verrou.ouvert ? 'verrouille' : 'libre',
         dd: s.verrou && !s.verrou.ouvert ? s.verrou.dd : undefined,
+        absent: s.absent?.motif,
       })),
     pnj: presents.map((n) => ({ id: n.id, nom: n.nom, role: n.role, attitude: attitude(p, n), sujets: sujetsDisponibles(p, n).length })),
     tresors: tresors.map((t) => ({

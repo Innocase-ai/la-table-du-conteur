@@ -234,6 +234,8 @@ export interface Sortie {
   /** Condition du monde non remplie (passage bloqué, éboulé, scellé…). */
   bloque: boolean;
   verrou?: { dd: number; cle?: string; ouvert: boolean };
+  /** La destination n'existe pas (encore) dans ce monde : le passage est montré, grisé, avec le texte de l'auteur. */
+  absent?: { motif: 'bientot' | 'pack'; texte: string };
 }
 
 type Lien = Lieu['liens'][number];
@@ -247,7 +249,13 @@ function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }
   // `parDefaut` : texte d'un lien automatique (parent / enfant), qui n'a pas de définition propre.
   const ajouter = (vers: string, cle: string, lien?: Lien, retour = false, parDefaut?: string) => {
     const dest = p.dm.lieux.get(vers);
-    if (!dest || res.some((x) => x.sortie.vers === vers)) return;
+    if (res.some((x) => x.sortie.vers === vers)) return;
+    if (!dest) {
+      // Suite pas encore écrite, ou d'un pack absent : le passage reste visible, fermé, avec ce que l'auteur en dit.
+      if (lien?.absent && !retour)
+        res.push({ lien, sortie: { vers, nom: lien.absent.nom, type: lien.type, description: lien.absent.texte, apercu: lien.absent.texte, visite: false, heures: lien.heures, cle, cache: false, bloque: false, absent: { motif: lien.absent.motif, texte: lien.absent.texte } } });
+      return;
+    }
     const debloque = p.etat.debloques.includes(vers);
     const description = (retour ? (lien?.retour ?? lien?.description) : lien?.description) || parDefaut || undefined;
     res.push({
@@ -416,6 +424,7 @@ export function commencer(p: PartieMonde): CompteRendu {
 export function aller(p: PartieMonde, vers: string): CompteRendu {
   const s = sortiesDe(p, p.etat.lieu).find((x) => x.vers === vers);
   if (!s || s.cache) return refus(`Aucun passage connu ne mène d'ici à « ${p.dm.lieux.get(vers)?.nom ?? vers} ».`);
+  if (s.absent) return refus(s.absent.texte);
   if (s.bloque) return refus(`Le passage vers ${s.nom} est infranchissable pour l'instant${s.description ? ` (${s.description})` : ''}.`);
   if (s.verrou && !s.verrou.ouvert) {
     return refus(`Le passage vers ${s.nom} est verrouillé (DD ${s.verrou.dd}${s.verrou.cle ? `, clé : ${p.dm.objets.get(s.verrou.cle)?.nom ?? s.verrou.cle}` : ''}).`);

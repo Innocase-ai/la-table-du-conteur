@@ -47,6 +47,7 @@ export function lieuxAtteints(dm: DonneesMonde): Set<string> {
   for (const l of dm.lieux.values()) {
     if (l.parent) (relier(l.id, l.parent), relier(l.parent, l.id));
     for (const k of l.liens) {
+      if (k.absent && !dm.lieux.has(k.vers)) continue;
       relier(l.id, k.vers);
       if (k.sens === 'double') relier(k.vers, l.id);
     }
@@ -111,6 +112,7 @@ export function grapheLieux(dm: DonneesMonde, racine?: string): Graphe {
   };
   for (const l of dm.lieux.values()) {
     for (const k of l.liens) {
+      if (k.absent && !dm.lieux.has(k.vers)) continue;
       const marques: MarqueArete[] = [];
       if (k.sens === 'simple') marques.push('sens-unique');
       if (k.verrou) marques.push('verrou');

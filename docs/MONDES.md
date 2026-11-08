@@ -186,6 +186,16 @@ Le moteur vérifie la solution ; le joueur répond par un **formulaire** adapté
 8. **Plusieurs façons de résoudre** : les rencontres importantes ont une alternative (négocier, ruser, fuir) ; les quêtes ont des ramifications.
 9. **Richesse minimale par chapitre** (niveaux 1 à 5) : 30 lieux dont au moins un village ou une ville, 3 grottes et 1 donjon ; 25 PNJ (75 sujets), 3 marchands, 3 compagnons ; 1 quête principale, 6 secondaires, 3 personnelles ; 25 trésors, 10 objets propres au monde, 3 tables de butin ; 3 énigmes, 5 pièges, 15 rencontres ; 40 faits, 4 factions, 2 fins. En dessous, `pnpm monde valider` avertit.
 
+## Passage vers une suite absente (08/11/2026)
+
+Dans un monde découpé en histoires publiées l'une après l'autre (Ombresang), la sortie d'un lieu peut mener à un lieu qui **n'existe pas encore** (suite en préparation) ou qui fait partie d'un **pack que la partie n'a pas**. Le lien porte alors `absent: { nom, motif, texte }` :
+
+- `nom` : ce que le bouton affiche ; `texte` : ce que le joueur lit sous le bouton et en réponse s'il essaie d'y aller ; `motif` : `bientot` (suite en préparation) ou `pack` (contenu d'un autre pack).
+- Le passage reste **visible et grisé** (« Bientôt disponible. » ou « Fait partie d'un autre pack. »), jamais caché ; `aller` refuse avec le texte de l'auteur.
+- Le validateur accepte alors un lieu inconnu (sans `absent`, c'est toujours une erreur) ; les liens absents sont ignorés par le contrôle d'accessibilité et les graphes.
+- Dès que le lieu existe dans le monde chargé, le lien fonctionne normalement et `absent` est ignoré : on peut le laisser en place.
+- Convention d'écriture : le `texte` dit pourquoi la route est fermée *dans la fiction*, sans promettre de date.
+
 ## Les cartes du monde (06/11/2026)
 
 Le jeu dessine une carte par lieu qui en contient d'autres, avec le repère du groupe et un brouillard (seuls les lieux visités ou connus par un passage non caché apparaissent). Rien n'est à écrire pour qu'elle fonctionne : sans image ni position, les lieux sont en anneau. Pour une vraie carte illustrée :

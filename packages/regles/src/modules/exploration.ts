@@ -93,7 +93,7 @@ export const moduleExploration: Module = {
             detail: [x.visite ? undefined : 'inexploré', x.heures > 0 ? `${x.heures} h` : undefined].filter(Boolean).join(', ') || undefined,
             apercu: x.apercu,
             ordre: { type: 'aller', vers: x.vers },
-            desactivee: x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
+            desactivee: x.etat === 'absent' ? (x.absent === 'pack' ? 'Fait partie d’un autre pack.' : 'Bientôt disponible.') : x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
           }));
       },
     }),

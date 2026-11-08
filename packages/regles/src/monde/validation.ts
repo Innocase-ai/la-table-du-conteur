@@ -109,7 +109,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     for (let i = 0; courant && i < 30; i++) courant = dm.lieux.get(courant)?.parent;
     if (courant) err(`${ou} : le parent forme une boucle.`);
     for (const lien of l.liens) {
-      verifierRef(`${ou}, lien`, 'lieu', lien.vers);
+      if (!lien.absent) verifierRef(`${ou}, lien`, 'lieu', lien.vers);
       if (lien.verrou?.cle) verifierRef(`${ou}, lien vers « ${lien.vers} » (clé)`, 'objet', lien.verrou.cle);
       cond(`${ou}, lien vers « ${lien.vers} »`, lien.condition);
     }
@@ -217,6 +217,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       relier(l.parent, l.id);
     }
     for (const lien of l.liens) {
+      if (lien.absent && !dm.lieux.has(lien.vers)) continue;
       relier(l.id, lien.vers);
       if (lien.sens === 'double') relier(lien.vers, l.id);
     }

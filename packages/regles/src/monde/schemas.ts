@@ -389,6 +389,10 @@ export const Lien = z.object({
   description: z.string().optional(),
   // La même chose vue depuis l'autre côté (lien à double sens). Sans elle, `description` sert aussi au retour.
   retour: z.string().optional(),
+  // Destination qui n'existe pas (encore) dans le monde chargé : suite en préparation (`bientot`) ou contenu d'un pack que la partie n'a pas
+  // (`pack`). Le passage reste visible, grisé, avec ce texte ; le validateur accepte alors un lieu inconnu. Dès que le lieu existe, le lien
+  // fonctionne normalement et ce champ est ignoré.
+  absent: z.object({ nom: z.string().min(1), motif: z.enum(['bientot', 'pack']), texte: z.string().min(1) }).strict().optional(),
 });
 
 export const Lieu = z.object({
