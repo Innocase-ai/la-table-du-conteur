@@ -292,3 +292,7 @@ Chaque héros du groupe a une **espèce**, une **classe** et un **historique** ;
 ## L'antagoniste présent dès le début
 
 Un antagoniste qui n'apparaît qu'à la fin du prologue n'existe pas pour le joueur. Pour le faire hanter le début sans rien révéler : **deux ou trois apparitions** qui montent en étrangeté (événements `entree-lieu` avec condition sur le prologue), un **fait par apparition** (catégorie `indice`), un **sujet** d'un PNJ qui l'a croisé, une **interjection** d'un accompagnateur, et une **question du codex** qui part de la première apparition. Exemple : « l'homme au manteau sec » de la Citadelle (`evenements/z9-heraut.json`, brief : `.claude/skills/creer-monde/references/brief-antagoniste.md`).
+
+## Rythme de progression (08/11/2026)
+
+Le niveau du groupe est plafonné par le chapitre le plus avancé où il est allé (`chapitres[].niveaux.max`) ; l'XP en trop reste en réserve. Une rencontre ne rapporte des PX qu'une fois. Voir `docs/PROGRESSION-XP.md`.

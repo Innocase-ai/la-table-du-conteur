@@ -51,6 +51,22 @@ export interface EtatMonde {
  * jauges, réputations de factions et attitudes de PNJ inconnues reçoivent leur valeur de départ ; rien de ce que la partie connaît
  * déjà n'est touché. Renvoie le nombre d'entrées ajoutées.
  */
+/**
+ * Le niveau que le groupe peut atteindre : celui du palier le plus avancé parmi les chapitres où il est déjà allé (un lieu appartient
+ * à un chapitre si lui ou l'un de ses ancêtres figure dans `chapitre.lieux`). L'XP en trop reste en réserve et se convertit en
+ * niveaux en entrant dans un chapitre plus avancé. Sans chapitre correspondant : le niveau maximal du monde.
+ */
+export function plafondDeNiveau(e: EtatMonde, dm: DonneesMonde): number {
+  const appartient = (lieu: string, racines: string[]): boolean => {
+    for (let id: string | undefined = lieu, i = 0; id && i < 30; i++, id = dm.lieux.get(id)?.parent) if (racines.includes(id)) return true;
+    return false;
+  };
+  const visites = [...new Set([...e.lieuxVisites, e.lieu])];
+  let plafond = 0;
+  for (const c of dm.monde.chapitres) if (visites.some((l) => appartient(l, c.lieux))) plafond = Math.max(plafond, c.niveaux.max);
+  return plafond > 0 ? Math.min(plafond, dm.monde.niveaux.max) : dm.monde.niveaux.max;
+}
+
 export function completerEtat(e: EtatMonde, dm: DonneesMonde): number {
   let ajoutees = 0;
   for (const j of dm.jauges.values()) if (!(j.id in e.jauges)) { e.jauges[j.id] = j.initial; ajoutees++; }

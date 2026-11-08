@@ -939,7 +939,8 @@ export function issueRencontre(
   } else {
     r.constats.push(`Victoire : ${def.nom}${issue.px ? ` (${issue.px} PX)` : ''}.`);
     // L'XP d'un combat se partage entre les héros (SRD 5.2.1) ; l'XP du monde (quêtes, effets) est celle de chacun.
-    if (issue.px) p.etat.xp += Math.floor(issue.px / Math.max(1, p.groupe.length));
+    // Une rencontre qui revient (aléatoire, répétable) ne rapporte pas de PX une seconde fois : pas de farm.
+    if (issue.px && !p.etat.rencontresFaites.includes(rencontre)) p.etat.xp += Math.floor(issue.px / Math.max(1, p.groupe.length));
     appliquer(p, r, def.effetsVictoire);
     for (const tb of def.butin.tables) r.constats.push(`Butin : ${tirerTable(p, tb).join(', ') || 'rien'}.`);
     butinFixe(p, r, rencontre);

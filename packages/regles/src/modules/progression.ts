@@ -9,6 +9,7 @@ import { NIVEAU_MAX } from '../fiche';
 import { z } from 'zod';
 import { commande, type Module } from '../noyau/types';
 import { appliquerEquipement } from './equipement-regles';
+import { plafondDeNiveau } from '../monde/etat';
 
 export const moduleProgression: Module = {
   id: 'progression',
@@ -54,9 +55,17 @@ export const moduleProgression: Module = {
     }),
   },
   reactions: {
-    xp: (t) => {
+    xp: (t) => monterSiBesoin(t),
+    // Entrer dans un chapitre plus avancé relève le plafond : l'XP gardée en réserve devient des niveaux.
+    deplacement: (t) => monterSiBesoin(t),
+  },
+};
+
+type TransactionProgression = Parameters<NonNullable<NonNullable<Module['reactions']>['xp']>>[0];
+
+function monterSiBesoin(t: TransactionProgression): void {
       const etat = t.partie.etat;
-      const plafond = Math.min(NIVEAU_MAX, t.ctx.dm.monde.niveaux.max);
+      const plafond = Math.min(NIVEAU_MAX, plafondDeNiveau(etat, t.ctx.dm));
       const cible = Math.min(plafond, niveauPourPx(etat.xp));
       if (cible <= etat.niveauGroupe || !t.ctx.srd) return;
       for (const h of t.partie.groupe) {
@@ -84,6 +93,4 @@ export const moduleProgression: Module = {
       }
       etat.niveauGroupe = cible;
       t.emettre({ type: 'constat', texte: `Le groupe atteint le niveau ${cible}.` });
-    },
-  },
-};
+}

@@ -690,6 +690,17 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     }
   }
 
+  // 3 bis. Chemin critique (08/11/2026) : une rencontre sans combat qui n'a qu'une issue, ou dont toutes les issues reposent sur la même
+  // compétence, bloque le groupe au premier jet raté. Il faut au moins deux voies différentes (deux compétences, un objet, une parole).
+  for (const r of dm.rencontres.values()) {
+    if (r.type === 'combat' || r.monstres.length) continue;
+    if (r.alternatives.length < 2) {
+      avis(`Rencontre « ${r.id} » : voie unique (${r.alternatives.length} issue) pour une rencontre sans combat : prévoyez au moins deux façons de s'en sortir (deux compétences, un objet, une parole), sinon un jet raté bloque.`);
+    } else if (r.alternatives.every((a) => a.jet) && new Set(r.alternatives.map((a) => a.jet!.competence)).size === 1) {
+      avis(`Rencontre « ${r.id} » : voie unique : toutes les issues reposent sur la même compétence (${r.alternatives[0]!.jet!.competence}) ; variez-les (autre compétence, objet, parole).`);
+    }
+  }
+
   // Conseils pour que l'histoire ne soit jamais ennuyeuse (rythme, tension, choix qui coûtent, monde qui réagit) :
   // 4. du rythme : des rencontres qui ne sont pas toutes des combats, et des pics de tension ;
   const rencontres = [...dm.rencontres.values()];

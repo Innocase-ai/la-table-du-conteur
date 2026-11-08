@@ -1369,3 +1369,11 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 ## 08/11/2026 — Ombresang : V6 du village écrit, en brouillon (lieu 1/5)
 
 - Données du village dans `packages/mondes/ombresang/` (`pnj`, `rencontres`, `pieges`, `tresors`, `objets`, `faits`, fichiers `z1-village.json`) : relues, conformes aux schémas, **pas encore validées par l'utilisateur**. Les lieux en JSON, la quête principale, la jauge et les `chapitres` de `monde.json` restent à écrire.
+
+## 08/11/2026 — Ombresang : V6 du village validé (lieu 1/5)
+
+- Données du village **validées et gelées** (suivi : `lieux/SR-1.1-contenu-V6.md`). Pitch §2 et §6 corrigés avec l'accord de l'utilisateur : Vorn a brisé la pierre sacrée pour en tirer le fragment d'enclume.
+
+## 08/11/2026 — Ombresang : V6 du Bastion validé (lieu 2/5)
+
+- Données du Bastion **validées et gelées** (`z2-bastion.json`, suivi : `lieux/SR-1.1-contenu-V6.md`). La caisse du péage de la villa passe à 55 po avec l'accord de l'utilisateur.
