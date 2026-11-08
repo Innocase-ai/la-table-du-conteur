@@ -132,10 +132,15 @@ export function etatDurableMax(fiche: Fiche, potions = 0): EtatDurable {
 export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, position: Position, id = fiche.nom.toLowerCase()): Combattant {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.caracteristiques[c].modificateur])) as Record<Caracteristique, number>;
   const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.sauvegardes[c].bonus])) as Record<Caracteristique, number>;
+  const deja = new Map<string, number>();
   const attaques = kit.armes.flatMap((a) => {
+    // La même arme portée deux fois : deux attaques distinctes, sinon la carte jouée serait toujours la première.
+    const rang = (deja.get(a.id) ?? 0) + 1;
+    deja.set(a.id, rang);
     const arme = donnees.armes.get(a.id);
     if (!arme) throw new Error(`Arme inconnue : ${a.id}`);
-    return attaquesArme(fiche, arme, !!a.botte).map((atq) => {
+    return attaquesArme(fiche, arme, !!a.botte).map((brute) => {
+      const atq = rang > 1 ? { ...brute, id: `${brute.id}-${rang}` } : brute;
       if (!a.bonus && !a.nom) return atq;
       return {
         ...atq,

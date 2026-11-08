@@ -12,6 +12,7 @@ import {
   attaqueMonstre,
   deplacer,
   emplacementDisponible,
+  finConcentration,
   finTour,
   infligerDegats,
   portee,
@@ -81,6 +82,8 @@ export const DECK_ELAN_LANCEUR = [
 function peutAttaquer(c: Combattant): boolean {
   return c.tour.attaquesRestantes > 0 || c.tour.action;
 }
+
+const SORTS_CIBLES_REPETABLES = new Set(['sort:projectile-magique', 'sort:rayon-ardent', 'sort:decharge-occulte']);
 
 function carte(partiel: Omit<Carte, 'jouable' | 'cibles' | 'nbCibles'> & Partial<Pick<Carte, 'jouable' | 'cibles' | 'nbCibles'>>): Carte {
   return { jouable: true, cibles: [], nbCibles: partiel.ciblage === 'aucun' || partiel.ciblage === 'soi' ? 0 : 1, ...partiel };
@@ -352,6 +355,10 @@ export function executer(etat: EtatCombat, ctx: Contexte, cmd: Commande): Result
   if (k.ciblage === 'point' && cmd.point && k.portee && distanceMetres(k.origine ?? c.position, cmd.point) > Math.max(k.portee, 1.5)) {
     return { ok: false, erreur: 'Point hors de portée.' };
   }
+  // Seuls les projectiles et les rayons peuvent viser plusieurs fois la même créature.
+  if (cmd.carte.startsWith('sort:') && !SORTS_CIBLES_REPETABLES.has(cmd.carte) && new Set(ids).size < ids.length) {
+    return { ok: false, erreur: 'Une même créature ne peut pas être visée deux fois.' };
+  }
   const cibles = ids.map((x) => combattant(etat, x));
   const [famille, sid] = cmd.carte.split(':') as [string, string];
 
@@ -427,7 +434,7 @@ function executerAptitude(etat: EtatCombat, ctx: Contexte, c: Combattant, id: st
     case 'rage':
       r.rages! -= 1;
       c.rage = true;
-      if (c.concentration) c.concentration = undefined;
+      finConcentration(etat, c);
       journaliser(etat, { type: 'info', texte: `${c.nom} entre en rage !`, acteur: c.id });
       break;
     case 'temerite':

@@ -26,7 +26,7 @@ declare module '../noyau/types' {
 
 const PANNEAU_SAC = { id: 'sac', titre: 'Objets', ordre: 10, onglet: 'Sac' };
 
-const copie = (e: Equipement): Equipement => ({ armure: e.armure, bouclier: e.bouclier, armes: [...e.armes], portes: [...e.portes], bonusArmes: e.bonusArmes });
+const copie = (e: Equipement): Equipement => ({ armure: e.armure, bouclier: e.bouclier, armes: [...e.armes], portes: [...e.portes], bonusArmes: e.bonusArmes, bonusEmplacements: e.bonusEmplacements });
 
 const harmonises = (ctx: ContexteJeu, e: Equipement) => e.portes.filter((id) => objetDe(ctx, id).attunement).length;
 

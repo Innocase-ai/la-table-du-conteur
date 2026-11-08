@@ -215,6 +215,41 @@ describe('les pièges ne se repèrent qu’en fouillant', () => {
       expect(p.groupe.reduce((s, a) => s + a.pv, 0)).toBe(apres);
     });
 
+    it('un piège de contenant ne plante pas si tout le groupe est à 0 PV', () => {
+      const t = dm.tresors.get(BUTIN)!;
+      const avant = t.acces.piege;
+      t.acces.piege = LIBRE;
+      try {
+        const p = surLePlace();
+        for (const h of p.groupe) h.pv = 0;
+        expect(() => prendre(p, BUTIN)).not.toThrow();
+      } finally {
+        t.acces.piege = avant;
+      }
+    });
+
+    it('un piège de passage part quand le groupe s’en va sans l’avoir trouvé, pas quand on prend quelque chose', () => {
+      const pg = dm.pieges.get(LIBRE)!;
+      pg.passage = true;
+      try {
+        const p = surLePlace();
+        p.gen = ECHEC;
+        prendre(p, BUTIN);
+        expect(p.etat.exploration.pieges[LIBRE]).toBeUndefined();
+        const sortie = sortiesDe(p, LIEU).find((s) => !s.cache && !s.bloque && !s.verrou && !s.absent)!.vers;
+        const r = aller(p, sortie);
+        expect(r.ok).toBe(true);
+        expect(r.narrations).toContain(pg.declenchement);
+        expect(p.etat.exploration.pieges[LIBRE]).toBe('declenche');
+        const trouve = surLePlace();
+        trouve.etat.exploration.decouverts.push(`piege:${LIBRE}`);
+        aller(trouve, sortie);
+        expect(trouve.etat.exploration.pieges[LIBRE]).toBeUndefined();
+      } finally {
+        pg.passage = false;
+      }
+    });
+
     it('trouvé en fouillant, il ne se déclenche pas ; désamorcé non plus', () => {
       const trouve = surLePlace();
       for (const a of trouve.groupe) a.fiche.perceptionPassive = 40;

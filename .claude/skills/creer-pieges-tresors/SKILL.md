@@ -44,12 +44,13 @@ Le format est dans `packages/regles/src/monde/schemas.ts` (`Tresor`, `Piege`, `O
 - **Déclenchement** : le texte `declenchement` est **narré au joueur** ; puis une **sauvegarde** éventuelle (`sauvegarde` : caractéristique, DD, `moitieSiReussite`), des **dégâts** (`degats` : dés et type), puis les **`effets`** du monde. Le moteur **ne tue pas** : 0 PV = inconscient. `etats` est affiché mais **n'est pas appliqué mécaniquement** : décris l'état dans `declenchement` si tu y tiens. `reinitialisation: true` : le piège se redéclenche à chaque fois.
 - **Qui le subit** : un seul héros, jamais le groupe : celui qui ouvre la serrure (crocheter, forcer) ou rate le désamorçage ; quand on prend un objet piégé, rate une énigme ou déclenche un piège libre, c'est le héros qui a la meilleure Perception (il est en tête).
 
-### Les trois rattachements (choisis-le consciemment)
+### Les quatre rattachements (choisis-le consciemment)
 | Rattachement | Quand il se déclenche | À utiliser pour |
 | --- | --- | --- |
 | **Un contenant** (`tresor.acces.piege`) | quand on ouvre le trésor sans la clé | l'aiguille dans la serrure, la fiole sous le couvercle : un piège **équitable**, lié à un geste que le joueur choisit |
 | **Une énigme** (`enigme.echec.piege`) | quand l'énigme est ratée | la salle qui réagit à une mauvaise réponse |
 | **Libre** (aucun des deux) | dès que le groupe **prend ou ouvre quelque chose dans le lieu** sans l'avoir trouvé (un seul à la fois) | la dalle, le fil : une menace d'ambiance. Un lieu **sans rien à prendre ni à ouvrir** n'en déclenchera jamais : c'est du contenu mort |
+| **De passage** (`passage: true`) | quand le groupe **quitte le lieu** sans l'avoir trouvé | la corniche rongée, les dalles au sol, ce qu'on déclenche en marchant : qui fouille d'abord l'évite |
 
 ### Concevoir un piège
 1. **Un indice dans le décor** : le piège est lié à un **élément remarquable** de la fiche du point (la dalle d'une autre couleur, la poussière absente devant la porte, la rainure de la serrure). Le `visuel` et la `description` du lieu en parlent **sans le dire** ; c'est ce qui rend le piège juste.

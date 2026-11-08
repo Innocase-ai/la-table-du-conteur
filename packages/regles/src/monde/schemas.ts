@@ -220,6 +220,8 @@ export const Piege = z.object({
   etats: z.array(z.string()).default([]),
   effets: Effets.default([]),
   reinitialisation: z.boolean().default(false),
+  // Piège de passage (corniche rongée, dalles au sol) : il part quand le groupe quitte le lieu sans l'avoir trouvé, au lieu d'attendre qu'on y prenne quelque chose.
+  passage: z.boolean().default(false),
 });
 export type Piege = z.infer<typeof Piege>;
 

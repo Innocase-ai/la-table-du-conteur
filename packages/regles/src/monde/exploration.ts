@@ -430,6 +430,7 @@ export function aller(p: PartieMonde, vers: string): CompteRendu {
     return refus(`Le passage vers ${s.nom} est verrouillé (DD ${s.verrou.dd}${s.verrou.cle ? `, clé : ${p.dm.objets.get(s.verrou.cle)?.nom ?? s.verrou.cle}` : ''}).`);
   }
   const r = resultat();
+  declencherPiegeDePassage(p, r);
   if (s.heures) avancerHeures(p, r, s.heures);
   entrer(p, r, p.dm.lieux.get(vers)!);
   suites(p, r);
@@ -665,8 +666,16 @@ function rattaches(dm: DonneesMonde): Set<string> {
 function declencherPiegeLibre(p: PartieMonde, r: CompteRendu, victime: Personnage | undefined): void {
   const ex = p.etat.exploration;
   const garde = rattaches(p.dm);
-  const pg = [...p.dm.pieges.values()].find((x) => x.lieu === p.etat.lieu && !garde.has(x.id) && !ex.pieges[x.id] && !ex.decouverts.includes(`piege:${x.id}`));
+  const pg = [...p.dm.pieges.values()].find((x) => x.lieu === p.etat.lieu && !x.passage && !garde.has(x.id) && !ex.pieges[x.id] && !ex.decouverts.includes(`piege:${x.id}`));
   const cible = victime ?? choisir(p, 'perception');
+  if (pg && cible) declencher(p, r, pg, cible);
+}
+
+/** Un piège de passage de ce lieu, ni trouvé ni déjà déclenché, part quand le groupe s'en va : qui fouille d'abord l'évite. */
+function declencherPiegeDePassage(p: PartieMonde, r: CompteRendu): void {
+  const ex = p.etat.exploration;
+  const pg = [...p.dm.pieges.values()].find((x) => x.passage && x.lieu === p.etat.lieu && !ex.pieges[x.id] && !ex.decouverts.includes(`piege:${x.id}`));
+  const cible = choisir(p, 'perception');
   if (pg && cible) declencher(p, r, pg, cible);
 }
 
@@ -722,7 +731,8 @@ export function prendre(p: PartieMonde, tresor: string): CompteRendu {
   if (t.gardien && !p.etat.rencontresFaites.includes(t.gardien)) return refus(`${t.nom} est gardé : ${p.dm.rencontres.get(t.gardien)?.nom ?? t.gardien}.`);
   const r = resultat();
   // Un piège encore armé se déclenche sur qui se sert (sauf trésor ouvert à la clé, déjà déclenché dans ouvrir sinon).
-  if (t.acces.piege && !ex.pieges[t.acces.piege] && !t.acces.verrou) declencher(p, r, p.dm.pieges.get(t.acces.piege)!, choisir(p, 'perception')!);
+  const victime = choisir(p, 'perception');
+  if (victime && t.acces.piege && !ex.pieges[t.acces.piege] && !t.acces.verrou) declencher(p, r, p.dm.pieges.get(t.acces.piege)!, victime);
   declencherPiegeLibre(p, r, undefined);
   viderTresor(p, r, t);
   suites(p, r);
@@ -807,7 +817,8 @@ export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown)
     r.constats.push(`Mauvaise réponse à ${e.nom}.`);
     if (e.echec?.piege) {
       const pg = p.dm.pieges.get(e.echec.piege);
-      if (pg && !ex.pieges[pg.id]) declencher(p, r, pg, choisir(p, 'perception')!);
+      const victime = choisir(p, 'perception');
+      if (pg && victime && !ex.pieges[pg.id]) declencher(p, r, pg, victime);
     }
     appliquer(p, r, e.echec?.effets ?? []);
   }

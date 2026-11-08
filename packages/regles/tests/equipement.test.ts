@@ -126,6 +126,11 @@ describe('module Équipement', () => {
     const lame = heroDepuisFiche(bran.fiche, heroCombatDe(bran).kit, srd, { x: 1, y: 1 }).attaques.find((a) => a.id === 'epee-longue')!;
     const ordinaire = heroDepuisFiche(sansLame.fiche, { armes: [{ id: 'epee-longue' }] }, srd, { x: 1, y: 1 }).attaques.find((a) => a.id === 'epee-longue')!;
     expect(lame.nom).toContain(dm.objets.get('pdf-lame-de-fer-gris')!.nom);
+    // Lame magique et épée ordinaire de même base : chacune garde ses propres valeurs.
+    const deux = heroCombatDe({ ...bran, fiche: { ...bran.fiche, equipement: { ...bran.fiche.equipement!, armes: ['epee-longue', 'epee-longue'] } }, equipe: { ...bran.equipe!, bonusEmplacements: [bran.equipe!.bonusArmes!['epee-longue']!, null] } });
+    const attaques = heroDepuisFiche(bran.fiche, deux.kit, srd, { x: 1, y: 1 }).attaques.filter((a) => a.id.startsWith('epee-longue'));
+    expect(attaques.map((a) => a.id)).toEqual(['epee-longue', 'epee-longue-2']);
+    expect(attaques[0]!.bonusAttaque).toBe(attaques[1]!.bonusAttaque + 1);
     expect(lame.bonusAttaque).toBe(ordinaire.bonusAttaque + 1);
     expect(lame.degats[0]!.bonus).toBe(ordinaire.degats[0]!.bonus + 1);
   });

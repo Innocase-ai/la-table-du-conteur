@@ -2,7 +2,7 @@
 import { bilanPersonnage, groupeVide, kitDepuisFiche, lireGroupe, personnageComplet, serialiser, type Donnees, type Groupe, type HeroCombat } from '@crpg/regles';
 
 export const CLE_GROUPE = 'crpg.groupe.v1';
-export const NIVEAU_PAR_DEFAUT = 3;
+export const NIVEAU_PAR_DEFAUT = 1;
 
 export function chargerGroupe(): Groupe {
   try {

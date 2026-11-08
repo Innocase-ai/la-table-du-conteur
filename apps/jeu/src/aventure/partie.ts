@@ -9,7 +9,7 @@ export interface Aventure {
 
 /** Même identifiant que le combat (`preparerRencontre`) : le nom en minuscules, sans accents ni espaces. */
 export function idAventurier(nom: string, i: number, pris: Set<string>): string {
-  let id = nom.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `heros-${i + 1}`;
+  let id = nom.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `heros-${i + 1}`;
   if (pris.has(id)) id = `${id}-${i + 1}`;
   pris.add(id);
   return id;

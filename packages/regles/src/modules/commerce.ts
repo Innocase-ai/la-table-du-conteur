@@ -142,6 +142,7 @@ export const moduleCommerce: Module = {
           if (s.prix) t.partie.etat.pieces = Math.max(0, t.partie.etat.pieces - s.prix);
           r.constats.unshift(`${s.nom} : ${prixLisible(s.prix)} payés à ${pnj.nom}.`);
           appliquer(pm, r, s.effets);
+          suites(pm, r);
           return verser(t, r);
         }
         const r = vide();

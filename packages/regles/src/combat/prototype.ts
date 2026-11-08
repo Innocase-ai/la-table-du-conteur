@@ -264,6 +264,8 @@ function departs(carte: string[], marque: string): Position[] {
 
 /** Un héros prêt pour le combat : sa fiche calculée et son équipement de combat. */
 export interface HeroCombat {
+  /** Dans une histoire : l'identifiant du personnage, repris tel quel par le combat. */
+  id?: string;
   fiche: Fiche;
   kit: Kit;
   /** Portrait de la galerie choisi par le joueur (`elfe-f-2`) : il sert de figurine sur le plateau. */
@@ -287,7 +289,7 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
   const casesMonstres = departs(rencontre.carte, 'm');
   const ids = new Set<string>();
   const combattants: Combattant[] = (heros ?? herosPreTires(donnees)).map((h, i) => {
-    let id = h.fiche.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-') || `heros-${i + 1}`;
+    let id = h.id ?? (h.fiche.nom.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `heros-${i + 1}`);
     if (ids.has(id)) id = `${id}-${i + 1}`;
     ids.add(id);
     const c = { ...heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id), portrait: h.portrait };

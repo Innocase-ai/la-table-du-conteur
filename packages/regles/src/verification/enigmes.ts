@@ -33,7 +33,8 @@ export interface RapportEnigme {
 /** La partie, au lieu de l'énigme. */
 export function auLieuDe(moteur: Moteur, groupe: ReturnType<typeof groupeDeTest>, e: Enigme, graine = 21): Partie {
   const p = moteur.executer(moteur.nouvellePartie(groupe, { graine, niveau: 3 }), { type: 'commencer' }).partie;
-  return { ...p, etat: { ...p.etat, lieu: e.lieu } };
+  // Le lieu de départ d'un monde peut ouvrir sur une rencontre d'arrivée : l'énigme se teste hors de cette scène.
+  return { ...p, scene: { type: 'exploration' }, etat: { ...p.etat, lieu: e.lieu } };
 }
 
 /** Le groupe conseillé du créateur, de vrais personnages. */

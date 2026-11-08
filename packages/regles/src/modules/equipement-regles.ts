@@ -56,13 +56,17 @@ export function appliquerEquipement(ctx: ContexteJeu, p: Personnage): void {
   const base = (id: string) => infoEquipement(ctx, id)?.base ?? id;
   const armes = e.armes.map(base);
   const bonusArmes: NonNullable<Equipement['bonusArmes']> = {};
+  const bonusEmplacements: NonNullable<Equipement['bonusEmplacements']> = e.armes.map(() => null);
   e.armes.forEach((id, i) => {
     const o = objetDe(ctx, id);
     const srd = ctx.srd?.armes.get(armes[i]!);
-    if (o.bonus?.attaque || o.bonus?.degats || (srd && o.nom !== srd.nom))
-      bonusArmes[armes[i]!] = { attaque: o.bonus?.attaque ?? 0, degats: o.bonus?.degats ?? 0, nom: srd && o.nom !== srd.nom ? o.nom : undefined };
+    if (o.bonus?.attaque || o.bonus?.degats || (srd && o.nom !== srd.nom)) {
+      const bonus = { attaque: o.bonus?.attaque ?? 0, degats: o.bonus?.degats ?? 0, nom: srd && o.nom !== srd.nom ? o.nom : undefined };
+      bonusArmes[armes[i]!] = bonus;
+      bonusEmplacements[i] = bonus;
+    }
   });
-  p.equipe = { ...e, bonusArmes };
+  p.equipe = { ...e, bonusArmes, bonusEmplacements };
   const avant = p.fiche.equipement;
   p.fiche.equipement = { autres: avant?.autres ?? [], po: avant?.po ?? 0, armure: e.armure ? base(e.armure) : undefined, bouclier: !!e.bouclier, armes };
   p.fiche.ca = caAvecEquipement(ctx, p, p.equipe);

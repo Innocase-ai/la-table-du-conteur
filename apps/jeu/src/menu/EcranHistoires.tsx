@@ -148,9 +148,14 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                   </li>
                   <li className={groupe.niveau >= choisie.monde.niveaux.min && groupe.niveau <= choisie.monde.niveaux.max ? 'ok' : 'manque'}>
                     Niveau du groupe : {groupe.niveau} (histoire écrite pour les niveaux {choisie.monde.niveaux.min} à {choisie.monde.niveaux.max})
+                    {(groupe.niveau < choisie.monde.niveaux.min || groupe.niveau > choisie.monde.niveaux.max) && (
+                      <button type="button" className="lien" onClick={onGroupe}>
+                        changer le niveau
+                      </button>
+                    )}
                   </li>
                 </ul>
-                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE_MIN} onClick={() => onCommencer(choisie.monde.id)}>
+                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE_MIN || groupe.niveau < choisie.monde.niveaux.min || groupe.niveau > choisie.monde.niveaux.max} onClick={() => onCommencer(choisie.monde.id)}>
                   Commencer l'aventure
                 </button>
                 <p className="histoire-bientot">

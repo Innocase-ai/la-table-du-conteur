@@ -20,6 +20,8 @@ export interface Equipement {
   portes: string[];
   /** Bonus des armes magiques portées, par arme du SRD sur laquelle elles reposent ; recalculé quand on équipe. */
   bonusArmes?: Record<string, { attaque: number; degats: number; nom?: string }>;
+  /** Les mêmes bonus, arme par arme (dans l'ordre de `armes`) : deux armes de même base ne se confondent pas. */
+  bonusEmplacements?: ({ attaque: number; degats: number; nom?: string } | null)[];
 }
 
 export interface Personnage extends EtatDurable {
@@ -60,8 +62,12 @@ export function personnageDepuisFiche(fiche: Fiche, options: { id: string; portr
 export function heroCombatDe(p: Personnage): HeroCombat {
   const kit = kitDepuisFiche(p.fiche);
   // Les armes magiques gardent leur nom et leurs bonus.
-  const armes = kit.armes.map((a) => ({ ...a, ...(p.equipe?.bonusArmes?.[a.id] ? { bonus: p.equipe.bonusArmes[a.id], nom: p.equipe.bonusArmes[a.id]!.nom } : {}) }));
-  return { fiche: p.fiche, kit: { ...kit, armes, potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
+  const armes = kit.armes.map((a, i) => {
+    // Une sauvegarde ancienne n'a que les bonus par arme de base.
+    const bonus = p.equipe?.bonusEmplacements ? p.equipe.bonusEmplacements[i] : p.equipe?.bonusArmes?.[a.id];
+    return { ...a, ...(bonus ? { bonus, nom: bonus.nom } : {}) };
+  });
+  return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
 }
 
 /** Reprend l'état durable laissé par un combat (borné par les maximums de la fiche). */
