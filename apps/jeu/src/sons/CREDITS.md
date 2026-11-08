@@ -5,7 +5,8 @@ Fichiers rognés et égalisés par `pnpm sons rogner` (voir `outils/sons/`), jou
 | Fichier | Origine | Licence |
 | --- | --- | --- |
 | `epee`, `hache`, `arc`, `feu-1`, `feu-2`, `glace`, `foudre`, `projectile-magique`, `soin`, `protection` | Fournis par l'auteur du jeu (dossier « effet sonor », 04/11/2026) | **À confirmer** : origine non précisée à ce jour ; à lever avant la vente du jeu |
-| `fouet`, `lance`, `rapiere`, `masse`, `massue`, `rate-arme`, `arbalete`, `fronde`, `arme-a-feu`, `sarbacane`, `lancer`, `radiant`, `acide`, `poison`, `necrotique`, `tonnerre`, `arme-spirituelle`, `renforcement`, `marque`, `malediction`, `sommeil`, `immobilisation` | Fournis par l'auteur du jeu (même dossier, 04/11/2026) | **À confirmer** (idem) |
+| `fouet`, `lance`, `rapiere`, `masse`, `massue`, `arbalete`, `fronde`, `arme-a-feu`, `sarbacane`, `radiant`, `acide`, `poison`, `necrotique`, `tonnerre`, `arme-spirituelle`, `marque`, `malediction`, `sommeil`, `immobilisation` | Fournis par l'auteur du jeu (même dossier, 04/11/2026) | **À confirmer** (idem) |
+| `lancer`, `rate-arme`, `renforcement` | Générés le 08/11/2026 avec ElevenLabs Sound Effects v2 (`eleven_text_to_sound_v2`, 1 s chacun, formule payante de l'auteur) ; remplacent les fichiers d'origine, identiques à `lance`, `rapiere` et `necrotique` | **À confirmer** : licence commerciale de l'offre ElevenLabs à vérifier avant la vente |
 | `contondant` | `impactPunch_heavy_000.ogg`, Kenney Impact Sounds (https://kenney.nl/assets/impact-sounds) | CC0 |
 | `perforant` | `knifeSlice.ogg`, Kenney RPG Audio (https://kenney.nl/assets/rpg-audio) | CC0 |
 

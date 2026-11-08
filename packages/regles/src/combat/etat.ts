@@ -49,7 +49,8 @@ export type TypeModificateur =
   | 'avantage_contre' // la prochaine attaque contre ce combattant a l'avantage
   | 'vitesse'
   | 'bonus_attaque'
-  | 'de_degats'; // dés de dégâts en plus à la prochaine attaque touchée
+  | 'de_degats' // dés de dégâts en plus à la prochaine attaque touchée
+  | 'repere'; // sans effet sur les jets : sert seulement à montrer un état en cours (aura d'Aide)
 
 export interface Modificateur {
   id: string;

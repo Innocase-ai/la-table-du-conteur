@@ -38,6 +38,7 @@ const MODIFICATEURS_AURAS: Record<Exclude<Aura, 'concentration' | 'pvtemp'>, Mod
   marque: { id: 'marque-du-chasseur', type: 'bonus_attaque', valeur: 0, source: 'x' },
   givre: { id: 'rayon-de-givre', type: 'vitesse', valeur: -3, source: 'x' },
   trace: { id: 'eclair-tracant', type: 'avantage_contre', source: 'x', usageUnique: true },
+  renfort: { id: 'aide-a', type: 'repere', source: 'x' },
 };
 
 /** Un combattant minimal pour afficher un jeton d'essai (seuls les champs lus par le jeton comptent). */

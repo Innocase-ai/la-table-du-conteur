@@ -252,6 +252,7 @@ const SPECIAUX: Record<string, Gestionnaire> = {
     const bonus = 5 * (niveau - 1);
     for (const c of (cible.cibles ?? []).slice(0, 3)) {
       c.pvMax += bonus;
+      if (!c.modificateurs.some((m) => m.id === 'aide-a')) c.modificateurs.push({ id: 'aide-a', type: 'repere', source: lanceur.id, sort: sort.id });
       if (c.pv > 0 || bonus > 0) soigner(etat, c, bonus, lanceur);
     }
   },

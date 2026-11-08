@@ -13,7 +13,7 @@ Un sort sans son propre prend celui de la famille de ses dégâts (feu, froid, f
 
 ## À revoir dans les fichiers fournis (04/11/2026)
 
-Trois paires de fichiers ont exactement le même contenu : `lance` = `lancer`, `rapiere` = `rate-arme`, `necrotique` = `renforcement`. Ils fonctionnent, mais un estoc, un jet, un coup de rapière et un sifflement dans le vide ne devraient pas sonner pareil, pas plus qu'un sort nécrotique et un renforcement : à remplacer quand on aura mieux.
+Les trois paires de fichiers identiques (`lance`/`lancer`, `rapiere`/`rate-arme`, `necrotique`/`renforcement`) ont été séparées le 08/11/2026 : `lancer`, `rate-arme` et `renforcement` sont de nouveaux sons générés avec ElevenLabs (voir `apps/jeu/src/sons/CREDITS.md`).
 
 ## Manque encore
 

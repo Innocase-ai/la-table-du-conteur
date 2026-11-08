@@ -159,6 +159,7 @@ describe('sonAuLancement', () => {
     expect(sonAuLancement('aide')).toBe('renforcement');
     expect(sonAuLancement('marque-du-chasseur')).toBe('marque');
     expect(sonAuLancement('fleau')).toBe('malediction');
+    expect(sonAuLancement('restauration-partielle')).toBe('soin');
   });
 
   it('les sorts qui partent ne jouent pas deux fois (au lancement et au départ)', () => {

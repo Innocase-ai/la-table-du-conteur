@@ -219,7 +219,7 @@ export function estRayon(forme: FormeSort): forme is 'zigzag' | 'rayon' {
 // Auras et états : ce qui reste visible sur le jeton tant que l'effet dure
 // ---------------------------------------------------------------------------
 
-export type Aura = 'benediction' | 'bouclier' | 'fleau' | 'marque' | 'givre' | 'trace' | 'concentration' | 'pvtemp';
+export type Aura = 'benediction' | 'bouclier' | 'fleau' | 'marque' | 'givre' | 'trace' | 'concentration' | 'pvtemp' | 'renfort';
 
 export const LIBELLES_AURAS: Record<Aura, string> = {
   benediction: 'béni',
@@ -230,9 +230,10 @@ export const LIBELLES_AURAS: Record<Aura, string> = {
   trace: 'illuminé (avantage contre lui)',
   concentration: 'concentré',
   pvtemp: 'points de vie temporaires',
+  renfort: 'renforcé (points de vie maximum accrus)',
 };
 
-const ORDRE_AURAS: Aura[] = ['benediction', 'bouclier', 'fleau', 'marque', 'givre', 'trace', 'concentration', 'pvtemp'];
+const ORDRE_AURAS: Aura[] = ['benediction', 'bouclier', 'fleau', 'marque', 'givre', 'trace', 'concentration', 'pvtemp', 'renfort'];
 
 /** Les auras d'un combattant, d'après ses modificateurs en cours (trois au plus, les plus parlantes d'abord). */
 export function aurasDe(c: Pick<Combattant, 'modificateurs' | 'concentration' | 'pvTemp'>): Aura[] {
@@ -246,6 +247,7 @@ export function aurasDe(c: Pick<Combattant, 'modificateurs' | 'concentration' | 
     trace: ids.has('eclair-tracant'),
     concentration: !!c.concentration,
     pvtemp: c.pvTemp > 0,
+    renfort: ids.has('aide-a'),
   };
   return ORDRE_AURAS.filter((a) => presentes[a]).slice(0, 3);
 }

@@ -121,6 +121,7 @@ const SONS_AU_LANCEMENT: Record<string, Son> = {
   aide: 'renforcement',
   'marque-du-chasseur': 'marque',
   fleau: 'malediction',
+  'restauration-partielle': 'soin',
 };
 
 /** À défaut d'un son propre, un sort prend le son de la famille de ses dégâts (quand elle en a un). */

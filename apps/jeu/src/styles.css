@@ -2180,6 +2180,13 @@ button:disabled {
   animation: aura-pose 0.5s ease-out;
 }
 
+/* Renforcé (Aide) : un anneau vert qui respire. */
+.aura-renfort {
+  border: 2px solid rgba(127, 224, 160, 0.85);
+  box-shadow: 0 0 7px 1px rgba(127, 224, 160, 0.6), inset 0 0 6px rgba(127, 224, 160, 0.4);
+  animation: aura-pose 0.5s ease-out, aura-miroite 2.4s ease-in-out 0.5s infinite;
+}
+
 /* Signes qui montent au-dessus d'un jeton atteint par un état (z, cœurs, éclairs…). */
 .etat-signes {
   position: absolute;

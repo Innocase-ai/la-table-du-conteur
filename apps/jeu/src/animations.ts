@@ -155,6 +155,7 @@ const COULEURS_SORTS: Record<string, string> = {
   soins: '#7fe0a0',
   'mot-de-guerison': '#7fe0a0',
   aide: '#7fe0a0',
+  'restauration-partielle': '#7fe0a0',
   benediction: '#f0cd84',
   'bouclier-de-la-foi': '#f0cd84',
   fleau: '#6fdc8c',
