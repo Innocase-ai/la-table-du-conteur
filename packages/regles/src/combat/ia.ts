@@ -7,20 +7,10 @@
 import { cartesDisponibles, executer, type Carte, type Commande, type Contexte } from './cartes';
 import { actif, aEtat, cloner, combattant, ennemis, horsCombat, journaliser, peutAgir, type Camp, type Combattant, type EtatCombat } from './etat';
 import { cle, couvert, distanceCases, distanceMetres, ligneDeVue, type Position } from './grille';
+import { DOCTRINE_PAR_DEFAUT, doctrineDe, type Doctrine } from './doctrine';
 import { deplacementsPossibles, deplacer, etatApparent, finTour } from './moteur';
 
-export interface Doctrine {
-  /** Poids des dégâts infligés à l'adversaire. */
-  agressivite: number;
-  /** Poids des dégâts subis et de l'exposition. */
-  prudence: number;
-  /** Cibles prioritaires. */
-  focus: 'aucun' | 'lanceurs' | 'soigneurs' | 'blesses';
-  /** Part des PX du groupe perdue au-delà de laquelle le groupe fuit (1 = jamais). */
-  seuilFuite: number;
-}
-
-export const DOCTRINE_PAR_DEFAUT: Doctrine = { agressivite: 1, prudence: 0.6, focus: 'aucun', seuilFuite: 0.7 };
+export { DOCTRINE_PAR_DEFAUT, doctrineDe, type Doctrine };
 
 export interface OptionsIA {
   /** Nombre de candidates départagées par simulation. */
@@ -258,9 +248,21 @@ function simulerRound(etat: EtatCombat, ctx: Contexte, id: string): void {
   for (let n = 0; n < etat.ordre.length && !etat.vainqueur && actif(etat).id !== id; n++) jouerTourSimple(etat, ctx);
 }
 
+/** Distance (m) où un tireur se sent hors de portée : au-delà, il ne recule plus (un tireur qui fuit trop loin sort du combat, mesuré en simulation). */
+const DISTANCE_DE_CONFORT = 6;
+
+/** Ce que vaut sa position pour un combattant qui garde ses distances : mieux vaut que l'ennemi le plus proche soit loin. */
+function valeurDistance(etat: EtatCombat, id: string, d: Doctrine): number {
+  if (!d.garderDistance) return 0;
+  const c = combattant(etat, id);
+  if (horsCombat(c)) return 0;
+  const proche = Math.min(DISTANCE_DE_CONFORT, ...ennemis(etat, c).map((e) => distanceMetres(c.position, e.position)));
+  return (d.garderDistance * proche) / DISTANCE_DE_CONFORT;
+}
+
 export function choisirEtape(etat: EtatCombat, ctx: Contexte, options: OptionsIA): Etape {
   const c = actif(etat);
-  const doctrine = options.doctrines?.[c.camp] ?? DOCTRINE_PAR_DEFAUT;
+  const doctrine = doctrineDe(c, options.doctrines);
   const vue = vueDe(etat, c.camp);
   const etapes = genererEtapes(vue, ctx, combattant(vue, c.id));
   // Tri rapide : effet immédiat moyen sur deux tirages.
@@ -271,7 +273,7 @@ export function choisirEtape(etat: EtatCombat, ctx: Contexte, options: OptionsIA
         const essai = cloner(vue);
         essai.rng = graine(etat.rng, i);
         if (!appliquerEtape(essai, ctx, e)) return { e, note: -Infinity };
-        total += evaluer(essai, c.camp, doctrine);
+        total += evaluer(essai, c.camp, doctrine) + valeurDistance(essai, c.id, doctrine);
       }
       return { e, note: total / 2 };
     })
@@ -288,8 +290,10 @@ export function choisirEtape(etat: EtatCombat, ctx: Contexte, options: OptionsIA
       const essai = cloner(vue);
       essai.rng = graine(etat.rng, 100 + i);
       appliquerEtape(essai, ctx, cand.e);
+      // La position se juge là où il finit son action, avant que l'ennemi ne vienne à lui.
+      const position = valeurDistance(essai, c.id, doctrine);
       simulerRound(essai, ctx, c.id);
-      total += evaluer(essai, c.camp, doctrine);
+      total += evaluer(essai, c.camp, doctrine) + position;
     }
     const note = total / options.simulations;
     if (note > meilleureNote) {
@@ -304,9 +308,14 @@ export function choisirEtape(etat: EtatCombat, ctx: Contexte, options: OptionsIA
 // Moral et fuite
 // ---------------------------------------------------------------------------
 
-/** Moral : le groupe de monstres fuit quand il a perdu trop de PX (les morts-vivants ne fuient jamais). */
-export function doitFuir(etat: EtatCombat, c: Combattant, d: Doctrine = DOCTRINE_PAR_DEFAUT): boolean {
-  if (c.camp !== 'monstres' || d.seuilFuite >= 1 || c.type.toLowerCase().includes('mort-vivant')) return false;
+/**
+ * Moral : un monstre fuit quand il est lui-même trop blessé (si sa doctrine le prévoit), ou quand son groupe a perdu
+ * trop de PX. Les morts-vivants ne fuient jamais.
+ */
+export function doitFuir(etat: EtatCombat, c: Combattant, d: Doctrine = doctrineDe(c)): boolean {
+  if (c.camp !== 'monstres' || c.type.toLowerCase().includes('mort-vivant')) return false;
+  if (d.seuilFuitePv !== undefined && c.pv / c.pvMax <= d.seuilFuitePv) return true;
+  if (d.seuilFuite >= 1) return false;
   const groupe = etat.combattants.filter((x) => x.camp === c.camp);
   const total = groupe.reduce((s, x) => s + x.px, 0);
   const perdu = groupe.filter((x) => x.mort || x.enFuite).reduce((s, x) => s + x.px, 0);
@@ -329,7 +338,7 @@ function fuir(etat: EtatCombat, ctx: Contexte, c: Combattant): void {
 /** Joue entièrement le tour du combattant actif ; renvoie les libellés des étapes choisies. */
 export function jouerTourIA(etat: EtatCombat, ctx: Contexte, options: OptionsIA = IA_NORMALE): string[] {
   const c = actif(etat);
-  const doctrine = options.doctrines?.[c.camp] ?? DOCTRINE_PAR_DEFAUT;
+  const doctrine = doctrineDe(c, options.doctrines);
   if (!peutAgir(c)) {
     finTour(etat);
     return ['passe son tour'];

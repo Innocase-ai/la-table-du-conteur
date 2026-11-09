@@ -4,6 +4,7 @@ import type { Donnees } from '../donnees';
 import type { Fiche } from '../fiche';
 import { CARACTERISTIQUES, type Arme, type Caracteristique, type Monstre } from '../schemas';
 import { DECK_ELAN_LANCEUR, DECK_ELAN_MARTIAL } from './cartes';
+import { doctrineDeProfil } from './doctrine';
 import type { AttaqueArme, Botte, Combattant } from './etat';
 import type { Position } from './grille';
 
@@ -249,6 +250,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
 export function monstreDepuisProfil(m: Monstre, id: string, position: Position, nom = m.nom): Combattant {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, modificateur(m.caracteristiques[c] ?? 10)])) as Record<Caracteristique, number>;
   const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, m.sauvegardes[c] ?? mods[c]])) as Record<Caracteristique, number>;
+  const doctrine = doctrineDeProfil(m);
   return {
     id,
     nom,
@@ -286,5 +288,6 @@ export function monstreDepuisProfil(m: Monstre, id: string, position: Position, 
     enFuite: false,
     tour: vierge(),
     px: m.px,
+    ...(doctrine ? { doctrine } : {}),
   };
 }

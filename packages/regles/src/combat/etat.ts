@@ -1,6 +1,7 @@
 // État d'un combat. Tout est sérialisable (pas de fonctions ni de Map), pour que l'IA
 // puisse cloner l'état et simuler la suite, et pour les sauvegardes.
 import type { ActionMonstre, Caracteristique, Degats, Etat } from '../schemas';
+import type { Doctrine } from './doctrine';
 import type { Grille, Position } from './grille';
 
 export type Camp = 'heros' | 'monstres';
@@ -139,6 +140,8 @@ export interface Combattant {
   px: number;
   /** Armure ou bouclier porté sans formation : désavantage aux attaques et aux jets de Force et de Dextérité, pas d'incantation. */
   sansFormation?: boolean;
+  /** Ce qui distingue sa conduite au combat de celle de son camp (absent : il suit la doctrine de son camp). */
+  doctrine?: Partial<Doctrine>;
 }
 
 export interface Evenement {

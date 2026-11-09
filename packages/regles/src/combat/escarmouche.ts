@@ -44,7 +44,8 @@ export const THEMES: ThemeEscarmouche[] = [
       { profil: 'loup-sanguinaire', poids: 2, max: 4 },
       { profil: 'combattant-gobelours', poids: 1, max: 2 },
     ],
-    danger: 1,
+    // Recalé le 09/11/2026 après les doctrines par type de monstre (8 parties par cas, niveaux 1 à 5).
+    danger: 0.9,
   },
   {
     ...base('crypte'),
@@ -78,7 +79,8 @@ export const THEMES: ThemeEscarmouche[] = [
       { profil: 'combattant-gobelours', poids: 1, max: 2 },
       { profil: 'sbire-gobelin', poids: 2, max: 4 },
     ],
-    danger: 1.1,
+    // Recalé le 09/11/2026 après les doctrines par type de monstre (8 parties par cas, niveaux 1 à 5).
+    danger: 1,
   },
   {
     ...base('gue-des-brigands'),
@@ -88,8 +90,8 @@ export const THEMES: ThemeEscarmouche[] = [
       { profil: 'eclaireur', poids: 2, max: 6 },
       { profil: 'loup', poids: 2, max: 6 },
     ],
-    // Calé par simulation le 04/11/2026 (16 parties, niveaux 2 à 4) : faible 100 %, modérée 88 à 100 %, élevée 56 à 63 %.
-    danger: 1.4,
+    // Recalé le 09/11/2026 après les doctrines par type de monstre (8 parties par cas, niveaux 1 à 5).
+    danger: 1.25,
   },
   {
     ...base('col-gele'),

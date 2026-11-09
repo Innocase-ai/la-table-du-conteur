@@ -88,6 +88,25 @@ Les escarmouches n'étaient que quatre rencontres fixes, calibrées pour six hé
 - **Tests** : `tests/escarmouche.test.ts` (budget, validité de chaque niveau × nombre de héros × difficulté, PX qui montent avec la difficulté et le niveau, déterminisme).
 
 
+## La conduite des monstres (doctrines)
+
+L'IA (`combat/ia.ts`) note ses choix selon une **doctrine** (`combat/doctrine.ts`) : agressivité, prudence, cible prioritaire, seuil de fuite du groupe, et, en option, seuil de fuite individuel (`seuilFuitePv`) et goût pour la distance (`garderDistance`). Chaque monstre créé depuis son profil SRD reçoit sa conduite (`conduitesDe`, `doctrineDeProfil`), cumulable :
+
+| Conduite | Qui | Effet |
+| --- | --- | --- |
+| `sans-peur` | morts-vivants, artificiels, vases, plantes d'Intelligence ≤ 8 | avance sans se protéger, ne fuit jamais |
+| `bete` | bêtes d'Intelligence ≤ 3 | pas de moral de groupe ; détale seule sous 25 % de ses PV |
+| `brute` | Force ≥ 16, Intelligence ≤ 8, ni tireur ni lanceur | frappe sans se protéger, tient presque jusqu'au bout |
+| `lanceur` | trait d'incantation, taille M au plus, une attaque à 18 m ou plus | prudent, vise les lanceurs, garde ses distances |
+| `tireur` | attaque à 18 m ou plus au moins égale à son attaque de contact, Dextérité ≥ Force | prudent, garde ses distances |
+| `lache` | gobelinoïdes et kobolds de taille P, FP inférieur à 1 | fuit seul sous 30 % de ses PV |
+
+Sans conduite (environ 160 profils : soldats, dragons, démons intelligents…), un monstre suit la doctrine de son camp. Les morts-vivants ne fuient jamais et les héros non plus, quelle que soit leur doctrine. Il n'y a pas de conduite « soigneur » : les monstres ne lancent pas leurs sorts de soin dans le moteur (`sorts: []`), acolytes et prêtres sont des lanceurs.
+
+- **Distance** : un tireur est récompensé d'être loin de l'ennemi le plus proche, jusqu'à **6 m** (`DISTANCE_DE_CONFORT`). Mesuré en simulation : au-delà, il sort du combat sans gain ; le poids exact change peu de chose, c'est surtout de ne plus charger qui compte.
+- **Mesure** (IA contre IA, mêmes graines) : les doctrines rendent certains combats plus faciles pour les héros, surtout parce que les tireurs ne chargent plus. Coefficients de danger recalés le 09/11/2026 : embuscade 0,9, camp hobgobelin 1, gué 1,25. Le texte `tactique.doctrine` des rencontres reste de la mise en scène pour le conteur.
+- **Tests** : `tests/doctrine.test.ts`.
+
 ## Groupe de 1 à 6 héros
 
 Le joueur compose un groupe de **1 à 6 personnages**. Les rencontres des histoires sont écrites pour 6 ; `adapterRencontre(rencontre, nbHéros)` (`packages/regles/src/combat/echelle.ts`) les réduit au prorata du nombre de héros (le budget de PX du SRD est une somme par héros) : chaque groupe de monstres est réduit (au moins un), puis les derniers groupes (les renforts) sont retirés d'abord ; le premier groupe, le principal, reste toujours. À 6 héros la rencontre est inchangée. Les PX viennent des monstres vaincus, donc ils suivent. Limite : un monstre unique très fort (un chef seul) ne peut pas être réduit, il reste dur pour un héros seul. Les escarmouches composaient déjà leur rencontre pour le nombre de héros.
