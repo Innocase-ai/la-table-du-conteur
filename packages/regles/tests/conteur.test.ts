@@ -14,6 +14,7 @@ import {
   jouerTour,
   MACHINE,
   memoireDuJournal,
+  motsDejaDecrits,
   MODULES_STANDARD,
   outilsDuConteur,
   personnageDepuisFiche,
@@ -462,5 +463,112 @@ describe('conteur : un modèle piégé par le joueur ne sort pas de ses outils',
     const res = await jouerTour({ moteur, partie: depart(), texte: 'x', bible: BIBLE, llm });
     expect(res.erreur).toBeUndefined();
     expect(res.outils.length).toBe(2);
+  });
+});
+
+describe('détails déjà décrits : le conteur ne répète pas ses gestes', () => {
+  const journal = (...recits: string[]) => ({ journal: recits.map((texte) => ({ type: 'recitConteur', texte })) }) as unknown as Pick<Partie, 'journal'>;
+
+  it('signale les mots d’image employés dans au moins deux récits récents', () => {
+    const mots = motsDejaDecrits(
+      journal(
+        'Hesta frappe les dalles de sa canne de fer. La cendre glisse sur les carreaux.',
+        'Elle ne quitte pas la fenêtre. Sa canne de fer résonne, la cendre tombe encore aux carreaux.',
+        'Un chien aboie dehors, la canne reste immobile.',
+      ),
+    );
+    expect(mots).toEqual(expect.arrayContaining(['canne', 'cendre', 'carreaux']));
+    // Un mot qui n'apparaît que dans un seul récit n'est pas signalé.
+    expect(mots).not.toContain('chien');
+    expect(mots).not.toContain('fenetre');
+  });
+
+  it('ignore les mots courants, les accents et la casse, et plafonne la liste', () => {
+    const r = 'Pendant ce temps, comme toujours, elle reste là. Cendre, CENDRE, cendré.';
+    expect(motsDejaDecrits(journal(r, r))).toEqual(['cendre']);
+    const beaucoup = 'argent bronze canne carreaux dalles flamme fenetre foyer lances lampe manteau poing sabre table verre';
+    expect(motsDejaDecrits(journal(beaucoup, beaucoup)).length).toBe(10);
+  });
+
+  it('ne dit rien avec moins de deux récits, et ne regarde que les quatre derniers', () => {
+    expect(motsDejaDecrits(journal('La canne de fer.'))).toEqual([]);
+    expect(motsDejaDecrits(journal('canne canne', 'ciel ciel', 'vent vent', 'pluie pluie', 'brume brume'))).toEqual([]);
+  });
+
+  it('un personnage qui revient n’est pas une répétition', () => {
+    const r = ['Hesta lève la tête.', 'Hesta se tait.'];
+    expect(motsDejaDecrits(journal(...r))).toEqual(['hesta']);
+    expect(motsDejaDecrits(journal(...r), ['Hesta Cendrebrune'])).toEqual([]);
+  });
+
+  it('la fiche de tour porte la liste, et la consigne de ne pas se répéter est dans le prompt', () => {
+    expect(promptSysteme(dm, BIBLE)).toContain('Ne te répète pas');
+    expect(promptSysteme(dm, BIBLE)).toContain('ni sous une autre forme');
+    const p = depart();
+    p.journal.push(
+      { type: 'saisieJoueur', texte: 'a' } as never,
+      { type: 'recitConteur', texte: 'Le fil de bronze glisse entre ses doigts gris.' } as never,
+      { type: 'saisieJoueur', texte: 'b' } as never,
+      { type: 'recitConteur', texte: 'Elle fait glisser le fil de bronze, lentement.' } as never,
+    );
+    expect(ficheDeTour(moteur, p)).toMatch(/## Détails déjà décrits dans tes derniers récits .* : .*bronze/);
+  });
+});
+
+describe('garde-fou : les paroles de PNJ passent par l’outil', () => {
+  const chezBertille = (): Partie => {
+    let p = depart();
+    p = moteur.executer(p, { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
+    return moteur.executer(p, { type: 'parler', pnj: 'bertille-dernier-feu' }).partie;
+  };
+  const REPLIQUE = 'Bertille reprend sa louche. « La Haute-Forge ? Mes poulets, la seule chose que je connaisse de la Haute-Forge, c’est qu’elle a laissé ses cendres sur mon seuil. » Dans la cuisine, une marmite cogne le fourneau.';
+
+  it('une réplique entre guillemets sans l’outil est reprise une fois', async () => {
+    const { llm, recus } = scripte([{ content: REPLIQUE }, { content: 'Bertille reprend sa louche et ne répond pas. Dans la cuisine, une marmite cogne le fourneau.' }]);
+    const res = await jouerTour({ moteur, partie: chezBertille(), texte: 'Dis-moi la vérité sur la Haute-Forge.', bible: BIBLE, llm });
+    expect(recus.length).toBe(2);
+    expect(res.appels).toBe(2);
+    expect(res.recit).not.toContain('«');
+  });
+
+  it('même quand le récit arrive avec l’appel proposer_actions (le cas normal), la réplique sans outil est reprise', async () => {
+    const actions = appel(PROPOSER_ACTIONS, { actions: ['Demander à Bertille ce qu’elle sert', 'Quitter l’auberge'] });
+    const { llm, recus } = scripte([
+      { content: REPLIQUE, tool_calls: [actions] },
+      { content: 'Bertille reprend sa louche et ne répond pas. Dans la cuisine, une marmite cogne le fourneau.', tool_calls: [actions] },
+    ]);
+    const res = await jouerTour({ moteur, partie: chezBertille(), texte: 'Dis-moi la vérité sur la Haute-Forge.', bible: BIBLE, llm });
+    expect(recus.length).toBe(2);
+    expect(res.recit).not.toContain('«');
+    expect(res.actions.length).toBe(2);
+  });
+
+  it('une action proposée qui contient un mot tabou d’un fait ignoré du groupe est écartée', async () => {
+    const tabou = [...dm.faits.values()].find((f) => f.fiable)!;
+    const savoir = {
+      pnj: 'bertille-dernier-feu',
+      passe: 'Bertille tient l’auberge du Dernier Feu depuis dix-huit ans, héritée de sa mère. '.repeat(6),
+      liens: [{ qui: 'Bram', nature: 'mari', opinion: 'Il rentrait toujours du marché à la même heure.' }],
+      couleur: [],
+      sait: [{ id: 'le-secret', fait: tabou.id, version: 'Elle sait tout.', acces: { attitudeMin: 90 }, evasif: 'Elle esquive.', tabou: ['pierre philosophale'] }],
+    };
+    const m = creerMoteur({ dm: { ...dm, extensions: { ...(dm.extensions ?? {}), savoirs: [savoir] } }, srd }, MODULES_STANDARD);
+    let p = m.executer(m.nouvellePartie(groupe(), { graine: 9, niveau: 3 }), { type: 'commencer' }).partie;
+    p = m.executer(p, { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
+    const actions = appel(PROPOSER_ACTIONS, { actions: ['Demander à Bertille où est la pierre philosophale', 'Quitter l’auberge', 'Demander à Bertille ce qu’elle sert'] });
+    const { llm } = scripte([{ content: 'Bertille essuie une table.', tool_calls: [actions] }]);
+    const res = await jouerTour({ moteur: m, partie: p, texte: 'Je regarde autour de moi.', bible: BIBLE, llm });
+    expect(res.actions).toEqual(['Quitter l’auberge', 'Demander à Bertille ce qu’elle sert']);
+  });
+
+  it('le vocabulaire de machine est repris aussi quand le récit arrive avec proposer_actions', async () => {
+    const actions = appel(PROPOSER_ACTIONS, { actions: ['Quitter l’auberge', 'Parler à Bertille'] });
+    const { llm, recus } = scripte([
+      { content: 'Le moteur refuse votre demande : le système ne le permet pas.', tool_calls: [actions] },
+      { content: 'Bertille hausse les épaules et reprend son service.', tool_calls: [actions] },
+    ]);
+    const res = await jouerTour({ moteur, partie: chezBertille(), texte: 'Fais quelque chose d’impossible.', bible: BIBLE, llm });
+    expect(recus.length).toBe(2);
+    expect(res.recit).not.toMatch(MACHINE);
   });
 });

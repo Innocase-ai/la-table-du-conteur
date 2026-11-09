@@ -26,7 +26,7 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 ## Ce que reçoit le conteur (à tenir à jour)
 
 - Préfixe en cache : rôle, 11 règles (dont 9 : aucun mot des coulisses ; 10 : trier la demande ; 11 : cohérence), `monde.json`, la bible.
-- Fiche de tour (`ficheDeTour`) : lieu, heure et moment, sorties, **portraits des PNJ présents** (voix, traits, désir, peur, déjà dit, sujets ouverts ; jamais les secrets), conversation, objets, pièges, énigmes, jauges ; **« Ce que le groupe sait et a fait »** (quêtes, faits appris, choix, disparus) ; le groupe ; derniers événements raccourcis.
+- Fiche de tour (`ficheDeTour`) : lieu, heure et moment, sorties, **portraits des PNJ présents** (voix, traits, désir, peur, déjà dit, sujets ouverts avec les faits qu’ils révèlent, faits révélables marqués « aucun sujet écrit ne le dit » quand seule la parole vérifiée peut les donner ; jamais les secrets), conversation, objets, pièges, énigmes, jauges ; **« Ce que le groupe sait et a fait »** (quêtes, faits appris, choix, disparus) ; le groupe ; derniers événements raccourcis.
 - Mémoire : `memoireDuJournal` (12 échanges par défaut, tirés du journal sauvegardé).
 - **Savoir des PNJ** (`savoirs/`, skill `creer-personnages`) : l'outil `repondreEnPersonnage` (réplique + ids utilisés + faits révélés) est **vérifié par le jeu** ; ne jamais le contourner dans le prompt. Les essais réels se préparent avec `!lieu`, `!attitude`, `!fait`, `!fuite` dans `--essai`.
 
@@ -36,5 +36,7 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 - Une commande ajoutée au jeu devient un outil du conteur **automatiquement** : décris-la pour un modèle ; sinon `COMMANDES_HORS_CONTEUR`.
 - Une panne du service avant tout outil ne change rien (le joueur réécrit) ; après un outil, on garde ce que les règles ont appliqué.
 - **Coût** : mesure-le (`usage.cout` de chaque tour). Haiku 5.5 ≈ 0,0015 $ par tour ; si un changement le double, cherche pourquoi (outils en plus, fiche de tour trop longue, cache cassé : `cache` à 0 dans le compte rendu du tour).
+- **Longueur de sortie** : `max_tokens` vaut 1200 (client et défaut du relais, plafond 1500). À 700, Haiku 5.5 coupait ses récits ou revenait vide ; si « produits » vaut exactement la limite dans un compte rendu, la réponse est tronquée.
+- **Garde-fous de récit** (`defautDeRecit` : coulisses, parole de PNJ sans l’outil, secret recopié) : ils doivent aussi s’appliquer quand le récit arrive avec `proposer_actions`, qui est le cas normal ; les actions proposées sont filtrées par les mots tabou.
 - Ne dépense pas sans que l'utilisateur l'ait demandé : les essais réels d'un conteur qu'il a demandé sont couverts, pas une comparaison de plusieurs modèles ni des centaines de tours.
 - Jamais de clé dans un fichier versionné, dans un message ou dans le navigateur.

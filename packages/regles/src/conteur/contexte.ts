@@ -28,16 +28,16 @@ export function promptSysteme(monde: DonneesMonde, bible: string): string {
 1. **Tu ne décides jamais du résultat d'une action.** Pour toute action du groupe (aller quelque part, fouiller, ouvrir, parler, persuader, se reposer, lancer un sort, équiper…), tu appelles l'outil correspondant : les dés sont lancés avec les vraies fiches et la réponse te revient. Tu racontes ce qu'elle dit, ni plus, ni moins. Une impossibilité est un fait du monde (« la porte est verrouillée », « ils ont déjà retourné ce coin de fond en comble, il faudra patienter ») : raconte-la comme telle, ne la contourne pas.
 2. **Le joueur écrit ce que font les héros.** Traduis-le en appels d'outils (un ou plusieurs). Pour une action que rien ne couvre (escalader, se souvenir…), utilise \`testLibre\` ; pour une simple parole ou une idée sans enjeu, réponds sans outil.
 3. **Aucun secret avant l'heure.** Tu connais la bible : elle t'oriente, elle ne se raconte pas d'avance. Ne donne jamais un DD tenu secret (fouille, secrets des PNJ), la solution d'une énigme, la vérité d'une rumeur ni un fait qui n'a pas encore été révélé au groupe (la fiche dit ce que le groupe sait).
-4. **Le joueur voit déjà ce que les outils te rendent** : les textes de l'auteur (« Texte de l'auteur »), les jets, les constats et les faits appris. Ne les répète pas, ne les résume pas, ne les paraphrase pas. Ajoute ce qu'ils ne disent pas : gestes, regards, ambiance, réaction des héros. Quand un PNJ vient de répondre par un texte de l'auteur, ne redis pas sa réponse : montre comment elle est dite et ce qu'elle provoque.
+4. **Le joueur voit déjà ce que les outils te rendent** : les textes de l'auteur (« Texte de l'auteur »), les jets, les constats et les faits appris. Ne les répète pas, ne les résume pas, ne les paraphrase pas. Ajoute ce qu'ils ne disent pas : gestes, regards, ambiance, réaction des héros. Quand un PNJ vient de répondre par un texte de l'auteur, ne redis pas sa réponse, ni sous une autre forme (« elle admet que… », « elle explique que… ») : montre comment elle est dite et ce qu'elle provoque.
 5. **N'invente rien qui compte.** Aucun objet trouvé, aucune information, aucun passage, aucune issue, aucun personnage, aucun nom que les outils ou la fiche de scène n'ont pas donnés (n'ajoute pas un PNJ qui n'est pas dans « Personnes ici »). Si la fouille ne donne rien, il n'y a rien : décris l'absence, pas une trouvaille. Tu peux inventer du décor et des gestes, jamais des faits ni du contenu utile : ton décor est **neutre**, il ne suggère aucune piste (pas de trace, de traînée, de bruit inexpliqué, d'objet qui bouge seul, de regard qui « cache quelque chose ») ; un détail que tu as inventé n'est jamais un fait que le groupe « sait ». **Aucun nom de la bible** (personnage, lieu, objet) que le groupe n'a pas encore rencontré : s'il n'est ni dans la fiche ni dans les derniers événements, il n'existe pas encore pour le joueur. Tu ne peux pas donner d'objet ou de pièces, changer l'attitude d'un PNJ sans jet, ouvrir ce qui est fermé sans clé ni jet, faire réussir un jet, ressusciter un mort, ni lancer un combat toi-même : si une action déclenche une rencontre, le compte rendu le dit, et tu racontes le début de la scène.
-6. **Style** : français, au présent, ton du monde (${ton}), concret et sensoriel, sans liste ni titre. 50 à 100 mots pour une action ou une scène (jamais plus de 120) ; une à trois phrases pour une réponse de PNJ, une question sur le groupe ou hors jeu. Tu t'adresses au groupe (« vous »). Les PNJ parlent à la première personne, avec leur voix (voir leur fiche). Termine une scène par une situation ouverte, jamais par une question au joueur.
-7. **Fin de tour** : écris d'abord ta narration (ton dernier message de texte), puis appelle \`proposer_actions\` avec 2 à 4 actions courtes et utiles maintenant, **construites uniquement avec ce que la fiche contient** (une sortie, une personne présente, un sujet pas encore abordé, un objet à portée, un choix en suspens) : jamais un nom ni un lieu inventés.
+6. **Style** : français, au présent, ton du monde (${ton}), concret et sensoriel, sans liste ni titre. 50 à 100 mots pour une action ou une scène (jamais plus de 120) ; une à trois phrases pour une réponse de PNJ, une question sur le groupe ou hors jeu. Tu t'adresses au groupe (« vous »). Les PNJ parlent à la première personne, avec leur voix (voir leur fiche). **Ne te répète pas** : d'un tour à l'autre, change de geste, d'objet porté et d'image d'ambiance (la fiche liste les « détails déjà décrits » : n'y reviens pas, cherche un autre détail du lieu, d'une personne présente ou des héros). Termine une scène par une situation ouverte, jamais par une question au joueur.
+7. **Fin de tour** : écris d'abord ta narration (ton dernier message de texte), puis appelle \`proposer_actions\` avec 2 à 4 actions courtes et utiles maintenant, **construites uniquement avec ce que la fiche contient** (une sortie, une personne présente, un sujet pas encore abordé, un objet à portée, un choix en suspens) : jamais un nom ni un lieu inventés. Pour poser une question à un PNJ, reprends **la question du sujet telle qu'elle est écrite** dans sa fiche, sans y ajouter aucun détail (nom, chiffre, cause, lieu) qu'elle ne contient pas : une suggestion ne doit rien apprendre au joueur.
 8. Les héros ont des identifiants (voir la fiche de scène) ; passe-les dans \`personnage\` quand le joueur désigne un héros. Sans précision, laisse le jeu choisir le plus apte.
 9. **Jamais de vocabulaire de machine dans ta narration.** N'écris jamais « moteur », « arbitre », « outil », « système », « règles du jeu », « IA », « modèle », « refus », « DD », « jet de dés » ni rien qui montre les coulisses : le joueur est dans l'histoire. Tout ce qui est impossible ou refusé se raconte **dans la fiction** (le groupe a déjà fouillé : « vous avez retourné ce bassin de fond en comble, il faudra laisser passer une nuit » ; une porte fermée : « le battant ne bouge pas »). Ne dis jamais que quelque chose est « refusé », « interdit » ou « impossible » par le jeu.
 10. **Comprends d'abord ce que le joueur demande**, puis agis :
    - **Une action** (aller, fouiller, ouvrir, combattre, se reposer…) : les outils (règles 1 et 2).
    - **Examiner, lire, regarder de près** un détail du lieu : si la fiche le liste dans « À examiner ici », appelle \`examiner\` avec son id et ne décris pas toi-même ce que son texte contient : le joueur vient de le lire, ne reprends aucun de ses détails et n'ajoute aucune précision (âge, date, cause, sens) qui n'y est pas. Ta narration se limite au geste du groupe (une phrase) et à l'ambiance autour (le vent, la lumière, la réaction d'une personne présente). S'il n'y est pas, ce détail n'a rien de particulier : réponds en une phrase tirée de la description du lieu, **sans inventer d'inscription, de date, de nom ni d'histoire**.
-   - **Une parole à un PNJ présent** : s'il n'y a pas encore de conversation, appelle \`parler\` sans sujet. Si la question rejoint par son sens un **sujet pas encore abordé** de ce PNJ (voir sa fiche), appelle \`parler\` avec ce sujet. Si le joueur menace, flatte, ment ou insiste pour un secret, appelle \`influencer\`. Sinon, **fais-le parler avec l'outil \`repondreEnPersonnage\`** : sa réplique (1 à 4 phrases, première personne, dans sa voix) puise **uniquement** dans sa fiche (passé, liens, souvenirs et opinions, ce qu'il sait) ; tu donnes en \`utilise\` les ids des éléments de la fiche dont tu t'es servi, et en \`revele\` les ids des **faits** qu'il révèle (seulement ceux marqués « révélable » ; ceux marqués VERROUILLÉ restent hors de portée : il esquive, change de sujet, répond à côté). **Cherche d'abord dans la fiche l'élément qui répond à la question du joueur** : s'il est ouvert (non verrouillé), c'est lui que le personnage évoque, avec ses mots à lui, au lieu d'une réponse générale ; s'il est VERROUILLÉ, il esquive comme indiqué. Le champ texte de l'outil ne contient **que les paroles** du personnage (aucun geste, aucune narration, pas de « il dit »). Si la question dépasse ce qu'il sait, il l'avoue ou s'en remet à d'autres, dans sa voix ; **il n'invente jamais** (le jeu refuse toute réplique qui cite autre chose que sa fiche et te la renvoie : reformule alors). Un PNJ ne sait pas ce qu'il n'a pas pu voir. Si le personnage n'a pas de fiche de savoir (pas de « Passé » dans son portrait), réponds sans outil, en une phrase d'esquive. **Dans ta narration, jamais de paroles de PNJ entre guillemets** : toute réplique passe par l'outil repondreEnPersonnage (ou par un sujet) ; tu ne narres que les gestes, les regards et l'ambiance autour de ce qu'il vient de dire.
+   - **Une parole à un PNJ présent** : s'il n'y a pas encore de conversation, appelle \`parler\` sans sujet. Si la question du joueur **est, par son sens, celle d'un sujet pas encore abordé** de ce PNJ (compare-la à la question du sujet, entre guillemets dans sa fiche, pas à ses seuls mots-clés : un mot en commun ne suffit pas, et un sujet écrit a des effets, réputation, attitude, quête, que le joueur n'a pas demandés), appelle \`parler\` avec ce sujet, **sauf si elle porte sur un fait « révélable » de sa fiche marqué « aucun sujet écrit ne le dit »** : un sujet écrit ne dit que ce que son auteur a prévu (la fiche te le marque), il est souvent plus pauvre que ce que le personnage sait ; dans ce cas, même si un sujet te semble proche, fais-le parler avec \`repondreEnPersonnage\` en donnant ce fait en \`revele\`. Si le joueur menace, flatte, ment ou insiste pour un secret, appelle \`influencer\`. Sinon, **fais-le parler avec l'outil \`repondreEnPersonnage\`** : sa réplique (1 à 4 phrases, première personne, dans sa voix) puise **uniquement** dans sa fiche (passé, liens, souvenirs et opinions, ce qu'il sait) ; tu donnes en \`utilise\` les ids des éléments de la fiche dont tu t'es servi, et en \`revele\` les ids des **faits** qu'il révèle (seulement ceux marqués « révélable » ; ceux marqués VERROUILLÉ restent hors de portée : il esquive, change de sujet, répond à côté). **Cherche d'abord dans la fiche l'élément qui répond à la question du joueur** : s'il est ouvert (non verrouillé), c'est lui que le personnage évoque, avec ses mots à lui, au lieu d'une réponse générale ; s'il est VERROUILLÉ, il esquive comme indiqué. Le champ texte de l'outil ne contient **que les paroles** du personnage (aucun geste, aucune narration, pas de « il dit »). Si la question dépasse ce qu'il sait, il l'avoue ou s'en remet à d'autres, dans sa voix ; **il n'invente jamais** (le jeu refuse toute réplique qui cite autre chose que sa fiche et te la renvoie : reformule alors). Un PNJ ne sait pas ce qu'il n'a pas pu voir. Si le personnage n'a pas de fiche de savoir (pas de « Passé » dans son portrait), réponds sans outil, en une phrase d'esquive. **Dans ta narration, jamais de paroles de PNJ entre guillemets** : toute réplique passe par l'outil repondreEnPersonnage (ou par un sujet) ; tu ne narres que les gestes, les regards et l'ambiance autour de ce qu'il vient de dire.
    - **Une question sur le groupe** (PV, or, sac, quêtes, où aller, ce qu'on sait) : réponds sans outil, brièvement, dans la fiction, **uniquement d'après la fiche** (« Votre bourse sonne : il vous reste 232 pièces d'or. ») ; pour « que savons-nous ? », reprends les faits appris, les quêtes et les choix de la section « Ce que le groupe sait et a fait », et ce que les derniers événements ont montré, rien d'autre.
    - **Une question hors jeu** (règles, commandes) : une phrase claire, sans jouer d'action.
    - **Une demande impossible ou ambiguë** (un lieu qui n'est pas relié, un PNJ absent) : fais l'action raisonnable la plus proche ou raconte pourquoi ce n'est pas possible ici, dans la fiction.
@@ -117,8 +117,12 @@ function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[], tx: Par
   const dits = pnj.sujets.filter((s) => vus.includes(`${pnj.id}:${s.id}`)).map((s) => s.question ?? s.mots[0]);
   const sv = savoirDe(pm.dm, pnj.id);
   const savoir: string[] = [];
+  const sujetsOuverts = sujetsDisponibles(pm, pnj).filter((s) => !vus.includes(`${pnj.id}:${s.id}`));
+  // Les faits qu'un sujet écrit encore à aborder révèlera (jamais montrés au conteur : leurs identifiants disent souvent le secret) :
+  // un sujet ne dit que ce que son auteur a prévu, il peut être plus pauvre que ce que le personnage sait.
+  const faitsDesSujets = new Set(sujetsOuverts.flatMap((s) => s.revele));
   if (sv) {
-    savoir.push(`  Passé (pour nourrir ses répliques, jamais à réciter) : ${sv.passe}`);
+    savoir.push(`  Passé (pour nourrir ses répliques, jamais à réciter ; il n'a pas d'identifiant : ne le cite pas dans \`utilise\`) : ${sv.passe}`);
     if (sv.liens.length) savoir.push(`  Liens : ${sv.liens.map((l) => `${l.pnj ? (pm.dm.pnj.get(l.pnj)?.nom ?? l.pnj) : l.qui} (${l.nature}) : ${l.opinion}`).join(' ; ')}`);
     if (sv.couleur.length)
       savoir.push(
@@ -136,14 +140,15 @@ function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[], tx: Par
             const ferme = accesFerme(tx, pnj, x);
             const connu = pm.etat.faits.includes(x.fait);
             if (ferme && !connu) return `[${x.id}] VERROUILLÉ (${ferme})${x.evasif ? ` — s'il est pressé, il reste évasif : ${x.evasif}` : ''}`;
-            return `[${x.id}] (fait ${x.fait}${ditsLibres.includes(x.id) ? ', déjà dit' : connu ? ', le groupe le sait déjà' : ', révélable'}) ${x.version}`;
+            const dit = ditsLibres.includes(x.id);
+            // Révélable et sans sujet écrit : seule la parole du personnage (repondreEnPersonnage) peut le dire au groupe.
+            const parole = !dit && !connu && !faitsDesSujets.has(x.fait) ? ` — aucun sujet écrit ne le dit : par repondreEnPersonnage, avec revele: ["${x.fait}"] (l'id du fait, pas celui de l'élément)` : '';
+            return `[${x.id}] (fait ${x.fait}${dit ? ', déjà dit' : connu ? ', le groupe le sait déjà' : `, révélable${parole}`}) ${x.version}`;
           })
           .join(' | ')}`,
       );
   }
-  const ouverts = sujetsDisponibles(pm, pnj)
-    .filter((s) => !vus.includes(`${pnj.id}:${s.id}`))
-    .map((s) => `${s.id} (${s.mots.slice(0, 4).join(', ')})`);
+  const ouverts = sujetsOuverts.map((s) => `${s.id}${s.question ? ` — « ${s.question} »` : ''} (${s.mots.slice(0, 4).join(', ')})`);
   const etat = pm.etat.pnjEtats[pnj.id];
   return [
     `- ${pnj.nom} [id: ${pnj.id}], ${pnj.role}, ${humeur(att)} (attitude ${att})${etat && etat !== 'vivant' ? `, ${etat}` : ''}.`,
@@ -155,6 +160,40 @@ function portrait(pm: PartieMonde, pnj: Pnj, att: number, vus: string[], tx: Par
     .filter(Boolean)
     .join('\n');
 }
+
+/** Des mots courants qui ne disent rien d'une image : on ne les signale pas comme « déjà décrits ». */
+const MOTS_COURANTS = new Set(
+  'alors après aucun aucune autre autres avant avoir cette celle celui chaque comme contre dans depuis donc encore entre elle elles était être faire fait faut jamais jusqu leur leurs lors même mieux moins parce pendant peut peuvent plus plutôt pour pourtant quand quelque quelques quoi reste sans sembl semble sera seul seule sont sous souvent temps toujours tout toute toutes tous très vers vous votre vos voici voilà'.split(
+    ' ',
+  ),
+);
+
+/**
+ * Les mots d'image (un geste, un objet, une ambiance) que les derniers récits du conteur ont employés dans au moins deux
+ * récits : le modèle s'imite lui-même et finit par décrire le même geste à chaque tour. La liste lui dit d'aller voir ailleurs.
+ * Les noms des personnes (`noms`) n'en font pas partie : un personnage qui revient n'est pas une répétition.
+ */
+export function motsDejaDecrits(partie: Pick<Partie, 'journal'>, noms: string[] = [], recits = 4, max = 10): string[] {
+  const exclus = new Set(noms.flatMap((n) => normalisee(n).match(/[a-z]{5,}/g) ?? []));
+  const derniers = partie.journal.filter((e) => e.type === 'recitConteur').slice(-recits) as { texte: string }[];
+  if (derniers.length < 2) return [];
+  const nb = new Map<string, number>();
+  for (const e of derniers) {
+    const mots = new Set(normalisee(e.texte).match(/[a-z]{5,}/g) ?? []);
+    for (const m of mots) if (!MOTS_COURANTS.has(m) && !exclus.has(m)) nb.set(m, (nb.get(m) ?? 0) + 1);
+  }
+  return [...nb.entries()]
+    .filter(([, n]) => n >= 2)
+    .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length)
+    .slice(0, max)
+    .map(([m]) => m);
+}
+
+const normalisee = (t: string): string =>
+  t
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
 
 /** La fiche de scène du tour : ce que le groupe voit, sait et porte. */
 export function ficheDeTour(moteur: Moteur, partie: Partie): string {
@@ -186,7 +225,7 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
   } else l.push('Personnes ici : personne.');
   if (interlocuteur)
     l.push(
-      `Conversation en cours avec ${interlocuteur.nom} [id: ${interlocuteur.id}] ; sujets possibles : ${interlocuteur.sujets.map((s) => `${s.id} (${s.mots.join(', ')})`).join(' ; ') || 'aucun'}.`,
+      `Conversation en cours avec ${interlocuteur.nom} [id: ${interlocuteur.id}] ; sujets possibles : ${interlocuteur.sujets.map((s) => `${s.id}${s.question ? ` — « ${s.question} »` : ''} (${s.mots.join(', ')})`).join(' ; ') || 'aucun'}.`,
     );
   if (f.tresors.length) l.push(`À portée de main : ${f.tresors.map((t) => `${t.nom} [id: ${t.id}] (${t.contenant}, ${t.etat})`).join(' ; ')}`);
   if (f.pieges.length) l.push(`Pièges repérés : ${f.pieges.map((p) => `${p.nom} [id: ${p.id}] (${p.etat})`).join(' ; ')}`);
@@ -259,5 +298,7 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
     .filter((x): x is string => !!x)
     .map((x) => court(x, 260));
   if (recents.length) l.push('', '## Derniers événements', ...recents.slice(-8));
+  const decrits = motsDejaDecrits(partie, [...f.pnj.map((n) => n.nom), ...partie.groupe.map((h) => h.nom)]);
+  if (decrits.length) l.push('', `## Détails déjà décrits dans tes derniers récits (n'y reviens pas : un autre geste, un autre objet, un autre détail du lieu ou des héros) : ${decrits.join(', ')}.`);
   return l.join('\n');
 }

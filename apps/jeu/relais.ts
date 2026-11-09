@@ -5,7 +5,7 @@
 /** Plafond de dépense du relais par défaut, en dollars, quand `CONTEUR_PLAFOND_USD` est absent ou invalide. */
 export const PLAFOND_PAR_DEFAUT = 0.5;
 /** Longueur de réponse par défaut et maximale demandée au modèle, en tokens. */
-export const MAX_TOKENS_PAR_DEFAUT = 700;
+export const MAX_TOKENS_PAR_DEFAUT = 1200;
 export const MAX_TOKENS_PLAFOND = 1500;
 
 /**

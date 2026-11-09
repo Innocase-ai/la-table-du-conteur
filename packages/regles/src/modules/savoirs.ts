@@ -40,7 +40,7 @@ export function motsTabous(t: { partie: Partie; ctx: Transaction['ctx'] }, revel
   return res;
 }
 
-function contient(texte: string, mot: string): boolean {
+export function contient(texte: string, mot: string): boolean {
   const m = normaliser(mot).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`(^|[^a-z0-9])${m}([^a-z0-9]|$)`).test(normaliser(texte));
 }
@@ -55,7 +55,12 @@ export function verifierReplique(t: { partie: Partie; ctx: Transaction['ctx'] },
   for (const f of e.revele) {
     const s = faitsPossibles.get(f);
     if (!s) {
-      defauts.push(`${pnj.nom} ne connaît pas le fait « ${f} » : il ne peut pas le révéler`);
+      const element = sv.sait.find((x) => x.id === f);
+      defauts.push(
+        element
+          ? `« ${f} » est l’identifiant d’un élément de sa fiche, pas d’un fait : dans \`revele\`, mets l’identifiant du fait (« ${element.fait} »), dans \`utilise\` celui de l’élément`
+          : `${pnj.nom} ne connaît pas le fait « ${f} » : il ne peut pas le révéler`,
+      );
       continue;
     }
     const ferme = accesFerme(t, pnj, s);

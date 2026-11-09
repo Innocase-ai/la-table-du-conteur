@@ -46,7 +46,7 @@ export function creerLLM(config: ConfigLLM = {}): LLM {
       messages,
       tools,
       tool_choice: 'auto',
-      max_tokens: config.maxTokens ?? 700,
+      max_tokens: config.maxTokens ?? 1200,
       temperature: config.temperature ?? 0.8,
       usage: { include: true },
     });

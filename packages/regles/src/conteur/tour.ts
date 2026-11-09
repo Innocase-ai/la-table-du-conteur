@@ -4,6 +4,7 @@
 import type { Moteur } from '../noyau/moteur';
 import type { Partie } from '../noyau/types';
 import { evenementsEnTexte, ficheDeTour, promptSysteme } from './contexte';
+import { contient, motsTabous } from '../modules/savoirs';
 import { outilsDuConteur, PROPOSER_ACTIONS, type OutilLLM } from './outils';
 import { fuiteDeSecret, RECIT_SANS_SECRET } from './secrets';
 
@@ -189,10 +190,13 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
         }
         if (nom === PROPOSER_ACTIONS) {
           const liste = (args as { actions?: unknown }).actions;
+          // Une suggestion ne doit rien apprendre au joueur : ni un mot tabou d'un fait qu'il ignore, ni un secret recopié.
+          const tabous = motsTabous({ partie, ctx: moteur.ctx }, new Set());
           resultat.actions = Array.isArray(liste)
             ? liste
                 .filter((a): a is string => typeof a === 'string' && !!a.trim())
                 .map((a) => a.trim())
+                .filter((a) => !fuit(a) && !tabous.some((t) => contient(a, t.mot)))
                 .slice(0, 4)
             : [];
           messages.push({ role: 'tool', tool_call_id: appel.id, content: 'Actions proposées au joueur.' });
@@ -223,7 +227,18 @@ export async function jouerTour(p: ParamsTour): Promise<ResultatTour> {
           messages.push({ role: 'tool', tool_call_id: appel.id, content: evenementsEnTexte(moteur.ctx.dm, res.evenements) });
         }
       }
-      if (fini) break;
+      if (fini) {
+        // Le récit arrive avec `proposer_actions` (le cas normal) : il doit passer le même garde-fou que sans outil, sinon
+        // une parole de PNJ non vérifiée ou un mot de coulisses passerait toujours. Les appels déjà répondus restent dans la conversation.
+        const defaut = defautDeRecit(recit);
+        if (defaut && !corrige && i < maxAppels - 1) {
+          corrige = true;
+          recitAvant = recit;
+          messages.push({ role: 'user', content: CORRECTION[defaut] });
+          continue;
+        }
+        break;
+      }
     }
   } catch (e) {
     // Rien n'a changé : le joueur peut réécrire. Sinon, on garde ce que les règles ont déjà appliqué.

@@ -100,14 +100,42 @@ describe('module Savoirs : un PNJ parle librement, le jeu vérifie chaque répli
 
   it('le portrait du PNJ présent donne au LLM le passé, les liens, les souvenirs et ce qu’il sait (verrouillé ou révélable)', () => {
     const fiche = ficheDeTour(moteur, chezHesta(10));
-    expect(fiche).toContain('Passé (pour nourrir ses répliques, jamais à réciter)');
+    expect(fiche).toContain('Passé (pour nourrir ses répliques, jamais à réciter');
     expect(fiche).toMatch(/Liens : .*\(ami de la veille\)/);
     expect(fiche).toContain('[tisane-de-braise]');
-    expect(fiche).toContain('[ce-qu-elle-dit] (fait ' + FAIT_LIBRE + ', révélable)');
+    expect(fiche).toContain('[ce-qu-elle-dit] (fait ' + FAIT_LIBRE + ', révélable');
     expect(fiche).toMatch(/\[ce-qu-elle-cache\] VERROUILLÉ \(il ne fait pas assez confiance au groupe\) — s'il est pressé, il reste évasif : elle serre sa tasse/);
     // Le texte du secret n'est pas donné tant qu'il est verrouillé.
     expect(fiche).not.toContain('Elle sait la vérité depuis des années et se tait.');
     expect(ficheDeTour(moteur, chezHesta(70))).toContain('Elle sait la vérité depuis des années et se tait.');
+  });
+
+  it('un fait révélable qu’aucun sujet écrit ne dit est marqué : seule la parole du PNJ peut le donner', () => {
+    const fiche = ficheDeTour(moteur, chezHesta(10));
+    expect(fiche).toContain('[ce-qu-elle-dit] (fait ' + FAIT_LIBRE + ', révélable — aucun sujet écrit ne le dit : par repondreEnPersonnage, avec revele: ["' + FAIT_LIBRE + '"] (l\'id du fait, pas celui de l\'élément))');
+  });
+
+  it('un fait que dira un sujet écrit encore à aborder n’est pas marqué, et le sujet annonce ce qu’il révèle', () => {
+    // « la-lanterne » (Hesta) révèle f-lanterne-etincelle, et n’est pas encore abordé.
+    const avecSujet = { ...dm0, extensions: { ...(dm0.extensions ?? {}), savoirs: [{ ...SAVOIR, sait: [{ id: 'la-flamme', fait: 'f-lanterne-etincelle', version: 'Elle sait d’où vient la flamme.', acces: {}, tabou: [] }] }] } };
+    const m = creerMoteur({ dm: avecSujet, srd }, MODULES_STANDARD);
+    let p = m.executer(m.nouvellePartie(groupe(), { graine: 9, niveau: 3 }), { type: 'commencer' }).partie;
+    p = m.executer(p, { type: 'aller', vers: 'vei-maison-des-gardiens' }).partie;
+    p = m.executer(p, { type: 'parler', pnj: 'hesta-cendrebrune' }).partie;
+    const fiche = ficheDeTour(m, p);
+    expect(fiche).toContain('[la-flamme] (fait f-lanterne-etincelle, révélable)');
+    // Le sujet montre sa question (de quoi juger si le joueur la pose) et ce qu'il révèle.
+    expect(fiche).toMatch(/la-lanterne — « [^»]+ » \([^)]*\)/);
+    // Les identifiants des faits qu'un sujet révèle ne sont jamais montrés au conteur : ils disent souvent le secret.
+    expect(fiche).not.toMatch(/révèle f-/);
+  });
+
+  it('un refus dit quoi mettre dans revele quand le modèle donne l’id d’un élément à la place de celui du fait', () => {
+    const res = repondre(chezHesta(10), { texte: 'Je le dis sans détour.', utilise: ['ce-qu-elle-dit'], revele: ['ce-qu-elle-dit'] });
+    expect(res.refus).toContain('est l’identifiant d’un élément de sa fiche, pas d’un fait');
+    expect(res.refus).toContain('« ' + FAIT_LIBRE + ' »');
+    // Un identifiant qui n'existe nulle part reste un refus sec.
+    expect(repondre(chezHesta(10), { texte: 'Oui.', revele: ['n-importe-quoi'] }).refus).toMatch(/ne connaît pas le fait « n-importe-quoi »/);
   });
 
   it('un souvenir déjà dit est signalé, pour que le PNJ ne se répète pas', () => {
