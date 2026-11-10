@@ -35,7 +35,7 @@ describe('format de monde', () => {
     const a = bilan.avertissements.join('\n');
     expect(a).toMatch(/Dialogues : 1 réponses sur 3 sont au style indirect[^\n]*bertrand:indirect/);
     expect(a).toMatch(/Dialogues : 2 réponses sur 3 font moins de 35 mots[^\n]*bertrand:court/);
-    expect(a).not.toMatch(/bertrand:bon/);
+    expect(a).not.toMatch(/Dialogues[^\n]*bertrand:bon/);
     expect(STYLE_INDIRECT.test('Elle explique que la mer s’est retirée.')).toBe(true);
     expect(STYLE_INDIRECT.test('« Elle explique que… » est une réplique, pas un style. Il dit : bonjour')).toBe(false);
     expect(STYLE_INDIRECT.test('Il dit : « Bonjour. »')).toBe(false);

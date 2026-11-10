@@ -37,6 +37,7 @@ Un **dilemme** est un choix où chaque option **sert une valeur que le joueur ai
 - Chaque choix pose les drapeaux `choix-<dilemme>` et `choix-<dilemme>-<option>`, lisibles partout (conditions de sujet, de rencontre, de fin, **variantes de salutation**).
 
 ## Quoi écrire autour
+- **Les conditions de mémoire** : **La mémoire du groupe** : `{ "rencontre": { "id", "issue", "alternative" } }` (comment une rencontre s'est dénouée : victoire, alternative, fuite, défaite), `{ "parle": "<pnj>" }` (le groupe lui a déjà parlé), `{ "temoin": { "pnj", "genre" } }` (ce PNJ était présent quand elle s'est dénouée) et `{ "lieu": "<lieu>" }` (le groupe est déjà passé par là). Aucun drapeau à poser à la main ; un PNJ ne doit réagir qu'à ce qu'il a pu voir (utilise `temoin`).
 - **Salutations variables** des PNJ concernés (`salutations.variantes`, première condition vraie gagne) : le monde se souvient.
 - **Événements de conséquence** (`evenements/`, déclencheur `condition`) qui frappent selon le choix ou la jauge.
 - **Fins** (`fins/`) qui lisent un drapeau de choix.

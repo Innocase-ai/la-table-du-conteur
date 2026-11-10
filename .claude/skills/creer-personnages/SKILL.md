@@ -26,6 +26,9 @@ Pour un PNJ escorté (effet `escorte`), ajouter en plus de sa fiche : **10 à 16
 - **Clarté** : la voix assaisonne, elle ne cache pas le sens ; présenter en quelques mots ce que le joueur ne connaît pas encore (« Fennick, son maître »).
 - **Une esquive est franche** : « je n'en parlerai pas à des inconnus » avec la raison du personnage (pudeur, prudence, loyauté), pas une réponse à côté. Le texte `evasif` d'une confidence verrouillée suit la même règle.
 
+## Faire réagir un PNJ à ce que le groupe a fait
+Les salutations (`salutations.variantes`), les sujets (`condition`) et les secrets peuvent lire **La mémoire du groupe** : `{ "rencontre": { "id", "issue", "alternative" } }` (comment une rencontre s'est dénouée : victoire, alternative, fuite, défaite), `{ "parle": "<pnj>" }` (le groupe lui a déjà parlé), `{ "temoin": { "pnj", "genre" } }` (ce PNJ était présent quand elle s'est dénouée) et `{ "lieu": "<lieu>" }` (le groupe est déjà passé par là). Aucun drapeau à poser à la main ; un PNJ ne doit réagir qu'à ce qu'il a pu voir (utilise `temoin`). Exemples : une variante de salutation « vous avez tué mes hommes » avec `{ "rencontre": { "id": "...", "issue": "victoire" } }` ; un sujet « vous êtes déjà venu hier » avec `{ "parle": "<pnj>" }`. En parole libre, le conteur reçoit déjà « Ce que le groupe a vécu » et la ligne « Ce qu'il sait du groupe » (skill `conteur`) : écris les textes fixes pour les moments forts, le conteur fait le reste.
+
 ## Règles d'écriture (spécificité)
 - Des noms propres, des dates, des chiffres, des gestes, des matières ; pas de « mystérieux » ou « ancien » sans détail.
 - Chaque élément de `couleur` doit pouvoir nourrir une réplique de 1 à 3 phrases ; deux éléments ne disent pas la même chose.

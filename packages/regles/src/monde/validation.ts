@@ -51,6 +51,11 @@ export const MOTS_MECANIQUE = /\b(jauge|DD|jet de (dés|sauvegarde|perception)|p
 
 /** Longueur minimale (en mots) d'une réponse de PNJ avant l'avis « le PNJ n'a pas de voix ». */
 export const MOTS_REPONSE_MIN = 35;
+/**
+ * Les textes « secs » : le jeu se lit comme un RPG textuel, des textes courts sonnent pauvres. Cibles validées le 10/11/2026 (récit
+ * d'arrivée 130-170 mots, réponse de PNJ 75-115, introduction de rencontre 70-110) ; l'avis ne se déclenche qu'en dessous de ces seuils.
+ */
+export const TEXTES_SECS = { arrivee: 110, reponse: 60, introRencontre: 60 };
 
 /** Objectifs de richesse par chapitre (niveaux 1 à 5) : en dessous, le validateur avertit. */
 export const MINIMA_PAR_CHAPITRE = {
@@ -183,7 +188,22 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     return n < ARRIVEE_MOTS.min || n > ARRIVEE_MOTS.max;
   });
   if (horsLongueur.length)
-    avis(`Arrivée : ${horsLongueur.length} récit(s) d'arrivée hors de ${ARRIVEE_MOTS.min} à ${ARRIVEE_MOTS.max} mots (visé : 60 à 150) : ${horsLongueur.slice(0, 5).map((a) => a.ref).join(', ')}${horsLongueur.length > 5 ? '…' : ''}`);
+    avis(`Arrivée : ${horsLongueur.length} récit(s) d'arrivée hors de ${ARRIVEE_MOTS.min} à ${ARRIVEE_MOTS.max} mots (visé : 130 à 170) : ${horsLongueur.slice(0, 5).map((a) => a.ref).join(', ')}${horsLongueur.length > 5 ? '…' : ''}`);
+  const secsArrivee = arrivees.filter((a) => {
+    const n = a.texte.split(/\s+/).filter(Boolean).length;
+    return n >= ARRIVEE_MOTS.min && n < TEXTES_SECS.arrivee;
+  });
+  if (secsArrivee.length)
+    avis(`Textes secs : ${secsArrivee.length} récits d'arrivée sur ${arrivees.length} font moins de ${TEXTES_SECS.arrivee} mots (RPG textuel : le joueur lit beaucoup, visez 130 à 170) : ${secsArrivee.slice(0, 4).map((a) => a.ref).join(', ')}${secsArrivee.length > 4 ? '…' : ''}`);
+  const secsReponses = reponses.filter((x) => {
+    const n = x.texte.split(/\s+/).filter(Boolean).length;
+    return n >= MOTS_REPONSE_MIN && n < TEXTES_SECS.reponse;
+  });
+  if (secsReponses.length)
+    avis(`Textes secs : ${secsReponses.length} réponses de PNJ sur ${reponses.length} font moins de ${TEXTES_SECS.reponse} mots (visez 75 à 115 : une réponse franche, un détail concret, une piste) : ${secsReponses.slice(0, 4).map((x) => x.ref).join(', ')}${secsReponses.length > 4 ? '…' : ''}`);
+  const secsIntros = [...dm.rencontres.values()].filter((x) => x.intro.split(/\s+/).filter(Boolean).length < TEXTES_SECS.introRencontre);
+  if (secsIntros.length)
+    avis(`Textes secs : ${secsIntros.length} introductions de rencontre sur ${dm.rencontres.size} font moins de ${TEXTES_SECS.introRencontre} mots (visez 70 à 110) : ${secsIntros.slice(0, 4).map((x) => x.id).join(', ')}${secsIntros.length > 4 ? '…' : ''}`);
   const mecanique = arrivees.filter((a) => MOTS_MECANIQUE.test(a.texte));
   if (mecanique.length)
     avis(`Arrivée : ${mecanique.length} récit(s) d'arrivée parlent de mécanique (jauge, DD, jet…) : le joueur le lit tel quel : ${mecanique.slice(0, 5).map((a) => a.ref).join(', ')}${mecanique.length > 5 ? '…' : ''}`);
