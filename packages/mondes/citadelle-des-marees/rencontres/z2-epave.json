@@ -1,0 +1,121 @@
+[
+  {
+    "id": "fal-r-le-cotre-qui-penche",
+    "nom": "Le cotre qui penche",
+    "type": "exploration",
+    "lieu": "fal-epave-de-la-perle-grise",
+    "difficulte": "faible",
+    "intro": "La marée a tourné. Sous la falaise, le cotre couché sur les galets travaille à chaque ressac : les planches gémissent, la cabine arrière s'incline d'un cran, et l'homme qui s'y est terré ne répond pas. Dans la cale, l'eau s'écoule en gargouillant, puis s'arrête, et l'on devine qu'elle reviendra d'un coup. Il reste peu de temps avant que la coque ne bascule.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "parler-a-eudes",
+        "nom": "Je frappe à la cloison et je lui parle doucement, pour qu'il sorte avant la bascule.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Il sort à quatre pattes, tremblant, les mains à plat sur le bois comme pour s'assurer qu'il tient encore. « Ne me demandez pas de regarder en bas. » Il recule jusqu'à la lisse et se laisse guider hors du cotre sans se retourner.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "fal-eudes-naufrage",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Il refuse de répondre, puis crie qu'on l'a laissé seul. Il faut le tirer hors de la cabine par les bras ; il se débat, évite votre regard et ne vous adresse plus la parole. Il vous en veut, et ne le cache pas."
+          },
+          {
+            "attitude": {
+              "pnj": "fal-eudes-naufrage",
+              "delta": -10
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "etayer-la-coque",
+        "nom": "J'étaie la coque avec le mât brisé.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "Vous enfoncez un mât brisé sous le bordage, à force de bras. Le bois cesse de gémir, la cabine ne bouge plus, et l'eau de la cale reste là où elle est : vous pouvez fouiller sans compter les minutes.",
+        "effets": [
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Le mât glisse sur le bordage, la coque lâche un cran, et un sac tombe dans la cale qui se remplit. Vous remontez ce que vous pouvez, mais l'eau a pris sa part."
+          },
+          {
+            "pieces": -10
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "lire-la-coque",
+        "nom": "J'examine la quille et les cordages avant tout le reste.",
+        "jet": {
+          "competence": "investigation",
+          "dd": 12
+        },
+        "resume": "Les haubans et les cordages sont tendus vers le bas, vers la quille, comme si le cotre avait été tiré par-dessous. C'est une impression, pas une explication : rien dans le bois ne dit pourquoi.",
+        "effets": [
+          {
+            "fait": "f-fal-perle-grise-coulee"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Vous ne trouvez rien de net dans la quille ni dans les cordages, qui pendent mollement. Eudes vous voit fouiller là-dessous, pâlit, et demande ce que vous cherchez."
+          },
+          {
+            "attitude": {
+              "pnj": "fal-eudes-naufrage",
+              "delta": -10
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "partir-sans-attendre",
+        "nom": "Je laisse l'homme et la coque, et je m'éloigne.",
+        "resume": "Vous vous éloignez sur les galets sans vous retourner tout de suite. Derrière vous, la coque bascule dans un craquement long, et l'eau s'engouffre dans la cabine. Un cri, peut-être, s'arrête net. Vous continuez à marcher, et le poids de l'avoir laissé vous suit plus longtemps que les galets.",
+        "effets": [
+          {
+            "pnjEtat": {
+              "pnj": "fal-eudes-naufrage",
+              "etat": "parti"
+            }
+          },
+          {
+            "jauge": {
+              "id": "maree",
+              "delta": 1
+            }
+          }
+        ]
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": []
+    },
+    "effetsVictoire": []
+  }
+]
