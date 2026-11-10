@@ -1,0 +1,364 @@
+[
+  {
+    "id": "la-lame-de-la-poutre",
+    "titre": "La lame de la poutre",
+    "lieu": "lr-auberge",
+    "ouverture": "bouton",
+    "image": {
+      "groupe": "lieux",
+      "id": "lr-auberge"
+    },
+    "narration": "Vous levez les yeux, et la lame se montre de près : plus longue que vous ne l’imaginiez, elle court d’un bout à l’autre de la poutre. Les crampons qui la tiennent sont de gros clous noircis par la fumée des lanternes, et l’un d’eux a fendu le bois. La rouille ne touche qu’un flanc. Elle forme une croûte brun-orangé, écaillée, qui s’arrête net au milieu du fil. L’autre face reste sombre, presque nette. Au comptoir, Odile Braise a cessé d’essuyer. Son linge pend entre ses doigts. Elle ne dit rien, et ses yeux vont de la poutre à vous, puis reviennent à la poutre.",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "gratter",
+        "libelle": "Montez sur un banc et grattez la rouille.",
+        "jet": {
+          "competence": "perception",
+          "dd": 10
+        },
+        "effets": [
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Vous montez sur un banc et grattez la croûte avec la pointe d’un couteau. Sous la rouille, le métal apparaît : un acier gris-bleu, lisse et froid sous l’ongle, qu’aucune main n’a touché depuis longtemps. Le grain est fin, presque soyeux, et les crampons, vus de si près, portent encore des traces de martelage nettes.",
+        "echec": [
+          {
+            "pieces": -2
+          }
+        ],
+        "resultatEchec": "Le banc bascule sous votre pied. Vous vous rattrapez à la poutre, la main crispée sur le bois, et une chope tombe d’une table voisine pour se briser sur la terre battue. Le bruit fait taire la salle. Odile Braise ne dit rien. Elle tend la main, paume ouverte, et attend. Deux pièces suffisent à payer la chope, et le geste ne laisse pas de place à la discussion."
+      },
+      {
+        "id": "nain",
+        "libelle": "« Je voudrais toucher le fil de cette lame. »",
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le regard du métier se pose sur le fil avant que la main ne bouge. Ce métal ne sonne pas comme le fer des forges du torrent : un coup d’ongle en tire une note plus mate et plus dense. Sa froideur se sent jusque dans le poids de la lame, et la rouille n’y est qu’une peau, une pellicule qu’un souffle suffirait à écarter."
+      },
+      {
+        "id": "clerc",
+        "libelle": "« Cette poutre me met mal à l’aise. »",
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Une gêne passe dans la salle, sans bruit. Les voix se taisent d’un coup, comme devant un autel qu’on aurait scié. Personne ne vous regarde vraiment, et tout le monde regarde la poutre. Odile reprend son linge, mais son geste s’arrête à mi-course. La lame reste là-haut, immobile, et le silence qu’elle laisse traîne jusqu’à la marmite."
+      },
+      {
+        "id": "guerrier",
+        "libelle": "« Cette lame n’est pas faite pour une main comme la mienne. »",
+        "condition": {
+          "heros": {
+            "classe": "guerrier"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "L’œil exercé descend le long de la lame, de la pointe jusqu’à la garde. La longueur est excessive pour un bras ordinaire, et l’équilibre semble impossible : le centre tombe trop loin du poignet. La garde, large et plate, demande une prise que seule une autre main saurait tenir sans se blesser."
+      }
+    ],
+    "partir": "Laissez la poutre et retournez à votre table."
+  },
+  {
+    "id": "le-cable-qui-chante",
+    "titre": "Le câble qui chante",
+    "lieu": "lr-viaduc-tablier",
+    "quand": {
+      "rencontre": {
+        "id": "oxydeurs-des-cables",
+        "issue": "victoire"
+      }
+    },
+    "ouverture": "entree",
+    "image": {
+      "groupe": "lieux",
+      "id": "lr-viaduc-tablier"
+    },
+    "narration": "Le combat se tait. Il ne reste que le vent dans l’arche et le grondement du torrent, toujours sous vous. Puis un son monte des câbles, grave et faux, pareil à une corde de harpe qu’on aurait tordue. Le câble le plus proche gémit, puis chante. En vous approchant, vous voyez l’attache, le métal rongé jusqu’à l’os, et la plaie luit d’un vert sale qui goutte sur les plaques. Sous vos semelles, le tablier vibre à chaque souffle, et la vibration remonte dans les genoux, sourde et régulière, jusque dans les dents.",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "tendre",
+        "libelle": "Tendre un cordage pour soulager le câble.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "fait": "f-lr-piles-s-effondrent"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "Le cordage s’enroule autour du câble et prend la tension. Le métal cesse de gémir, la note se pose, et l’attache, délestée, ronge moins vite. Vous mesurez alors ce que le viaduc porte depuis des années : rongé jusque dans ses piles et ses attaches, il ne tiendra pas éternellement, et cette journée ne fait que le confirmer.",
+        "echec": [
+          {
+            "pieces": -1
+          }
+        ],
+        "resultatEchec": "Le cordage claque sous la traction, brûle les paumes, puis file par-dessus le bord. Vous le regardez tomber vers le torrent rouge, qui le happe sans un bruit. Les paumes gardent une odeur de fer chauffé, et les mains restent longtemps tremblantes. Il faudra une pièce pour racheter une corde, et le câble continue de chanter, un peu plus faux qu’avant."
+      },
+      {
+        "id": "nain",
+        "libelle": "« Ce bruit, je le connais : un fer qui fatigue. »",
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "La note du câble ressemble à un grincement qui monte, puis retombe, comme un fer usé à force de travailler. Le métier reconnaît ce chant. L’ancrage, à son extrémité, bouge d’un souffle à chaque rafale, et l’acide a creusé sous le collier, là où le fer ne devrait plus avoir à tenir seul. Rien d’autre ne se voit, mais tout ce qui touche l’attache semble dire la même chose."
+      },
+      {
+        "id": "roublard",
+        "libelle": "« Je vérifie les ancrages un à un, on ne sait jamais. »",
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Chaque ancrage passe sous le regard, un par un. La plupart tiennent, leurs boulons serrés. Mais à la soudure de l’attache, près de la pile, une perle de métal a disparu, rongée jusqu’au cœur, et le boulon voisin n’a plus que la moitié de son collet. De loin, personne ne l’aurait remarqué."
+      },
+      {
+        "id": "rodeur",
+        "libelle": "« Je descends le long de la pile, j’ai le pied sûr. »",
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le regard glisse le long de la pile de pierre et de fer, jusqu’à la corniche d’ombre en contrebas. Les flancs sont couverts de suie et de coulures. Depuis ce bord, l’arche se déploie entière, avec ses courbes et ses câbles qui pendent, et le poste paraît loin derrière, minuscule. On voit enfin comment tout le viaduc tient encore."
+      }
+    ],
+    "partir": "Gagnez l’autre rive d’un pas sûr, sans effleurer le métal."
+  },
+  {
+    "id": "au-creux-du-nid",
+    "titre": "Au creux du nid",
+    "lieu": "lr-grotte-nid",
+    "quand": {
+      "ou": [
+        {
+          "rencontre": {
+            "id": "reine-des-rouilles",
+            "issue": "victoire"
+          }
+        },
+        {
+          "rencontre": {
+            "id": "reine-des-rouilles",
+            "issue": "alternative"
+          }
+        }
+      ]
+    },
+    "ouverture": "entree",
+    "image": {
+      "groupe": "lieux",
+      "id": "lr-grotte-nid"
+    },
+    "narration": "La cuvette de ferraille se tait. Le dernier craquement de la Reine s’éteint contre la paroi, et la poussière retombe lentement sur la croûte rouge. Vous restez immobiles, la lampe tremblant encore dans votre main, à attendre un bruit qui ne vient pas. Puis vos yeux descendent vers le centre de la cuvette, là où la rouille est lisse et polie. Au creux de la croûte, sous une couche plus mince, des formes petites et immobiles reposent, serrées les unes contre les autres. Elles ne bougent pas. Elles ne ressemblent à rien de connu, et pourtant elles semblent attendre quelque chose.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "lr-reine-detournee"
+        },
+        "narration": "La cuvette de ferraille est redevenue silencieuse, mais la Reine n’est pas partie : elle est toujours là, tout près, et ne s’occupe plus de vous. Vous entendez ses raclements par à-coups. Au centre de la cuvette, la croûte de rouille garde pourtant sa forme. Au creux de la couche plus mince, de petites formes immobiles sont serrées les unes contre les autres. Elles n’ont pas bougé. Elles ne semblent pas avoir remarqué qu’on les regarde."
+      }
+    ],
+    "choix": [
+      {
+        "id": "detruire",
+        "libelle": "Détruire ces formes.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "Vous agissez vite et sans vous attarder. Le métal craque sous les coups, la croûte se brise et ce qui se tient au creux de la cuvette cède dans un bruit mou, puis plus rien. Vous recommencez jusqu’à ce que la rouille soit plate et froide. Aucune bête n’a mordu, personne n’a crié. Le silence qui suit est lourd, et un poids léger, qui ne s’en ira pas tout de suite, reste au fond de la poitrine.",
+        "echec": [
+          {
+            "flag": "nid-forme-fuite"
+          }
+        ],
+        "resultatEchec": "L’acte est mal fait. Votre coup glisse sur la croûte, la lame ripe, et une petite bête s’échappe du creux en glissant vers l’ombre du fond de la salle. Vous n’avez pas le temps de la rattraper. On entend un grattement qui décroît, de plus en plus faible, jusqu’à disparaître dans la pierre. Les petites formes sont entamées, éparpillées, et ce qui reste n’a pas bougé."
+      },
+      {
+        "id": "laisser",
+        "libelle": "Laisser ces formes intactes et partir.",
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Vous reculez sans bruit, pas après pas, en gardant la lampe basse. Les petites formes ne bougent pas, serrées au creux de la rouille, et rien dans la salle ne vous suit. Vous quittez la cuvette sans rien emporter, et le raclement ne reprend pas. Il reste une sensation étrange, comme une dette qu’on n’a pas réglée, ou un pari qu’on a fait sans le vouloir. Vous ne savez pas lequel des deux vous pèse le plus."
+      },
+      {
+        "id": "druide",
+        "libelle": "« Laissez-moi les approcher, doucement. »",
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "effets": [
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "L’attention s’attarde sur les petites formes, celle de qui connaît le vivant. Leur façon de se tenir, repliées sur elles-mêmes, la tête basse, n’a rien de la peur ni de la menace. Une chaleur faible monte du creux de la cuvette, à peine sensible, comme celle d’un corps qui dort. Rien ne permet encore de dire ce qu’elles sont. On les observe pourtant comme on regarderait quelque chose qui respire."
+      },
+      {
+        "id": "magicien",
+        "libelle": "« Regardez comme elles se tiennent, contre le métal et non contre vous. »",
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "effets": [
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Un détail retient l’œil, puis un autre. Les petites formes ne se tournent pas vers les vivants : elles se serrent contre la ferraille, le dos collé à la croûte. Aucune n’a la tête levée vers la lumière. Quand l’une d’elles bouge, c’est pour s’enfoncer davantage dans la rouille, jamais pour se rapprocher des vivants. Elles s’y tiennent, simplement."
+      },
+      {
+        "id": "guerrier",
+        "libelle": "« Cela se garde ; mettons-nous entre ces formes et l’entrée de la salle. »",
+        "condition": {
+          "heros": {
+            "classe": "guerrier"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "La salle se lit comme une position à tenir. La cuvette est basse, ses bords sont rugueux, et la croûte de rouille offre un appui solide sous les pieds. Les accès se lisent d’un coup d’œil : l’entrée par la pente, et tout le reste n’est que paroi nue. Se placer entre les petites formes et la pente laisse un seul passage à surveiller. Une fois la position choisie, la salle paraît défendable."
+      }
+    ],
+    "partir": "Vous reculez vers la pente, sans quitter la cuvette des yeux."
+  },
+  {
+    "id": "le-chant-de-la-lame",
+    "titre": "Le chant de la lame",
+    "lieu": "lr-temple-parvis",
+    "ouverture": "bouton",
+    "image": {
+      "groupe": "lieux",
+      "id": "lr-temple-parvis"
+    },
+    "narration": "Vous vous arrêtez, et tout le groupe se tait avec vous. Le vent glisse dans le fil de l’acier et en tire une note longue, pure, qui ne ressemble à rien de ce que vous avez entendu jusqu’ici. Elle tient sans faiblir. Un pas vers la porte, et elle s’élève d’un souffle ; un pas vers les socles brisés, et elle s’alourdit, presque grave. Les éclats de pierre tombés au pied des statues renvoient parfois un claquement sec, net, qui se perd aussitôt. La mousse de rouille étouffe les joints et adoucit chaque bruit. Attendez encore : la note ne revient jamais tout à fait pareille.",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "ecouter",
+        "libelle": "Écouter en silence.",
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Vous restez immobiles et vous laissez la note venir à vous. Plusieurs notes se distinguent : une qui monte lentement, presque timidement, puis une autre qui retombe, comme si elle se défaisait sous le vent. Elles ne se mêlent pas tout à fait. Vous comprenez où la lame semble creuse et où elle paraît pleine, sans savoir dire pourquoi. Le silence qui suit a quelque chose d’apaisant, et rien autour de vous ne presse."
+      },
+      {
+        "id": "barde",
+        "libelle": "« Je reprends la note. »",
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "jet": {
+          "competence": "representation",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "La note se pose sur le chant du vent et s’y accorde avec une justesse qui surprend. Pendant un instant, l’acier vibre jusqu’à sa garde. La note s’allonge, se tient longtemps au-dessus de la cour, plus haute et plus large qu’elle ne l’était. Puis elle s’éteint doucement, comme une porte refermée sans bruit. Le parvis retrouve son silence, plus léger qu’avant, et personne ne bouge.",
+        "echec": [
+          {
+            "flag": "chant-note-fausse"
+          }
+        ],
+        "resultatEchec": "La note sort fausse, trop basse, et la lame grince comme une porte qu’on force. Des éclats de pierre et une poussière grise tombent des flancs d’acier, roulent sur la pierre et se figent près de vos pieds. Personne n’est blessé, mais le silence qui suit est lourd, presque coupable, et chacun attend que la cour reprenne sa respiration."
+      },
+      {
+        "id": "paladin",
+        "libelle": "« Salut à vous, Gardiens du Pont. »",
+        "condition": {
+          "heros": {
+            "classe": "paladin"
+          }
+        },
+        "effets": [
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Un salut de guerre, sobre et ferme, s’adresse à ceux qui ont veillé ici. Le parvis tout entier garde un silence de respect. La note baisse d’un ton, longtemps, puis se stabilise. Le geste dure à peine, et il laisse derrière lui une dignité qu’on n’attendait pas d’un tel endroit."
+      },
+      {
+        "id": "clerc",
+        "libelle": "« Je prie pour ceux qui ont veillé ici. »",
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "effets": [
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Une prière murmurée, à peine audible, monte entre les statues et se perd sous le ciel ouvert. Les mots restent simples, sans éclat. Aucun signe ne vient ; pourtant le vent reprend sa note, plus lente, et une paix difficile à nommer se glisse dans la poitrine de chacun. Le calme s’installe sur le parvis et ne cherche rien de plus."
+      }
+    ],
+    "partir": "Reprendre le sentier."
+  }
+]
