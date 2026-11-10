@@ -37,6 +37,7 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 - `difficulte` : `faible`, `moderee`, `elevee`, d'après le budget de PX du SRD **pour 6 héros** (`BUDGET_PX` dans `packages/regles/src/budget.ts` : par personnage, niveau 1 : 50/75/100 ; niveau 2 : 100/150/200 ; niveau 3 : 150/225/400 ; niveau 4 : 250/375/500 ; niveau 5 : 500/750/1100 ; multiplier par 6). Le validateur compare.
 - Début de partie : « faible » ou « modérée », 2 à 3 monstres au plus. Une rencontre « élevée » est un moment fort (boss, embuscade, finale).
 - **Monstres** : **obligatoirement** les profils du moteur, `packages/donnees/srd/monstres/` (329 : tout le SRD) ; une histoire n'invente aucun monstre ni aucune image de monstre (un boss est un profil du catalogue avec un nom et des textes propres). Liste dans la BIBLE du monde, §9.
+- **Ce que le joueur voit d'une rencontre à monstres** : une ligne par type (image du bestiaire commun, nom, ×nombre, description du profil), au-dessus des boutons (`presentationMonstres`, `packages/regles/src/monde/presentation.ts`). Un monstre au `nom` propre (boss, PNJ à profil) n'affiche **pas** la description de l'espèce, qui pourrait contredire l'histoire : lui donner sa propre `description` dans l'entrée de `monstres` de la rencontre (apparence seulement, ni chiffre ni secret).
 - **Défaite** : l'histoire continue. Huit heures plus tard, les héros tombés se relèvent à 1 PV (les autres gardent les leurs), délestés de la moitié de l'or ; la rencontre les attend toujours.
 - **PX** : ceux d'un combat se partagent entre les héros ; l'XP des quêtes et effets est celle de chacun. Le monde entier doit rapporter assez de PX pour atteindre son niveau maximum (avis « PX »).
 
@@ -61,7 +62,7 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 
 ## 6. Écrire le texte
 
-`intro` : la mise en scène lue par le joueur (2 à 4 phrases, au présent, sans révéler ce qu'il n'a pas appris). Libellés des alternatives à la 1re personne. Sobre, concret, dans le ton du monde. Pour beaucoup de rencontres, confier le texte à des agents **Haiku** avec un brief précis (voir `creer-monde/references/textes-en-serie.md`) et relire.
+`intro` : la mise en scène lue par le joueur (**70 à 110 mots**, au présent, sans révéler ce qu'il n'a pas appris) ; l'`effet` ou le `resume` d'une issue : **50 à 80 mots**. Libellés des alternatives à la 1re personne. Sobre, concret, dans le ton du monde. Pour beaucoup de rencontres, confier le texte à des agents **Haiku** avec un brief précis (voir `creer-monde/references/textes-en-serie.md`) et relire.
 
 ## 7. Vérifier
 

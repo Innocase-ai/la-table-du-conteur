@@ -7,3 +7,16 @@ Pour un grand nombre de petits textes (une phrase par lien, par lieu…), **touj
 4. **Contrôle automatique** (JSON valide, tout couvert, 9 à 36 mots, mots interdits, quotas) puis **critique** par des agents Haiku (`references/consignes-critique-textes.md` : cohérence des deux sens d'un passage, fait d'abord, contradiction avec les fiches, secret ou indice inventé, langue, doublons).
 5. **Le directeur arbitre** : il applique les propositions des critiques sauf celles qui introduisent un défaut, retouche à la main (fichier de corrections qui prime), recompte les quotas, compile par script, valide et teste.
 Même méthode pour les `question` des sujets de conversation (382 du Val des Cendres, 8 paquets par PNJ, contrôle de la variété des débuts et des noms déjà visibles dans les mots-clés, relecture des sujets conditionnels pour les spoilers). Piège : un `retour` est mort quand le lieu d'arrivée déclare son propre lien ; le résumé d'un lieu jamais visité peut divulguer, on ne s'en sert pas comme repli. Modèle complet : passages et accroches du Val des Cendres (journal du 04/11/2026).
+
+## Textes riches (RPG textuel) : cibles et méthode validées le 10/11/2026
+
+Le joueur lit beaucoup : **tout texte qu'il lit doit être vivant, détaillé et très bien écrit**. Après un pilote de 4 textes par catégorie, l'utilisateur a validé (« c'est vraiment mieux »). **Cibles** (mots) : récit d'arrivée **130-170** ; description de lieu **100-150** ; intro de rencontre **70-110** ; issue de rencontre **50-80** ; réponse de PNJ (sujet) **75-115**. Les textes courts de moins de 40 mots sonnent secs.
+
+**Méthode** (modèle : la Citadelle des Marées, 203 textes de lieux et de rencontres et 199 réponses de PNJ) :
+1. **Un pilote de 4 textes par catégorie**, montré **avant / après** à l'utilisateur, **validé avant tout lot**.
+2. **Des lots écrits par des agents Haiku**, en lecture seule, qui rendent des **patches** `{ dossier, id, champ, nouveau }` (jamais d'écriture directe dans le monde), avec les données du lieu ou du PNJ en entrée et la consigne de **garder toutes les informations de l'ancien texte**.
+3. **Contrôle automatique** (JSON valide, tout couvert, longueur, aucun nom propre ni nombre perdu, texte qui ne raccourcit pas).
+4. **Relecture par d'autres agents Haiku** qui comparent à l'ancien texte et aux données (jets, effets, secrets, canon) : sur la Citadelle, 84 textes de lieux et de rencontres et 64 réponses ont été corrigés (détails qui révélaient un secret ou un piège, contresens avec un effet, faits inventés, accents perdus, tics répétés : « sel », « odeur », « on », « vent »).
+5. **Le directeur lit les cas bloquants lui-même**, fusionne, puis applique avec un outil qui **remplace le texte dans le fichier sans le reformater** (diff minimal) ; valider le monde, lancer les tests.
+
+**Ne pas toucher** : les scènes narrées et les épilogues de fin dont l'audio existe déjà (changer le texte le désynchroniserait : prévoir de régénérer la voix), le `visuel` des lieux et des PNJ (les images existent). **Vérifier les accents** (Haiku en perd parfois). Les données contradictoires que les relecteurs relèvent (une porte enchaînée de l'extérieur, un fait révélé à deux niveaux d'attitude) sont **à trancher avec l'utilisateur**, pas à corriger en douce.
