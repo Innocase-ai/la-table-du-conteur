@@ -61,3 +61,21 @@ export async function ecrireDocument(d: { monde: string; nom: 'canon' | 'revue';
   if (!rep.ok) throw new ErreurEcriture(corps.erreur ?? `Erreur ${rep.status}`, rep.status);
   return { empreinte: corps.empreinte! };
 }
+
+/** L'assistant d'écriture (relais-ia.ts) : clé présente sur le serveur ?, modèle, dépense de la session et plafond, en dollars. */
+export interface EtatAssistant {
+  disponible: boolean;
+  modele: string;
+  depense: number;
+  plafond: number;
+}
+
+export const etatAssistant = () => obtenir<EtatAssistant>('/api/atelier/ia-etat');
+
+/** Une demande à l'assistant (appel payant, plafonné par le serveur) : sa proposition, le coût de l'appel et la dépense totale. */
+export async function demanderAssistant(messages: { role: string; content: string }[]): Promise<{ texte: string; cout: number; depense: number; plafond: number }> {
+  const rep = await fetch('/api/atelier/ia', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages }) });
+  const corps = (await rep.json().catch(() => ({}))) as { erreur?: string; texte?: string; cout?: number; depense?: number; plafond?: number };
+  if (!rep.ok) throw new Error(corps.erreur ?? `Erreur ${rep.status}`);
+  return { texte: corps.texte!, cout: corps.cout ?? 0, depense: corps.depense ?? 0, plafond: corps.plafond ?? 0 };
+}

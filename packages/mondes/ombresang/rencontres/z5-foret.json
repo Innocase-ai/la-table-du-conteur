@@ -5,7 +5,7 @@
     "type": "combat",
     "lieu": "lr-foret-lisiere",
     "difficulte": "faible",
-    "intro": "Dès que vous vous engagez sur la piste, de petites lames se détachent des grandes, pivotent au-dessus de la terre rouge, puis fondent sur vous en sifflant. D'autres tournent plus loin, au-dessus du champ, comme des oiseaux de proie. Elles visent le métal : l'arme qu'on tient, l'armure qu'on porte.",
+    "intro": "Dès que vous posez le pied sur la piste, de petites lames se détachent du pied des grandes, pivotent au-dessus de la terre rouge, puis filent vers vous en sifflant. D’autres tournent plus loin, au-dessus du champ, en cercles lents, entre les lames plantées. Elles visent le métal : l’arme que vous tenez, l’armure que vous portez. Le jour gris glisse sur leurs bords, et leurs ombres rayent le sol en longues bandes sombres. Le sifflement se fait plus aigu à chaque tour.",
     "monstres": [{ "profil": "epee-volante", "nombre": 5 }],
     "carte": [
       "#.###################",
@@ -45,7 +45,7 @@
     "type": "combat",
     "lieu": "lr-foret-antre",
     "difficulte": "faible",
-    "intro": "Un souffle lent sort du fond de la salle, et des poils gris couvrent le seuil. Dans l'ombre, des yeux s'allument au fond. Un grondement bas monte de la terre battue : rien n'approchera du creux du fond.",
+    "intro": "Un souffle lent sort du fond de la salle, et des poils gris couvrent le seuil de terre battue. Dans l’ombre, deux yeux s’allument, puis deux autres plus loin, près d’un creux plus sombre que le reste. Un grondement bas monte du sol et s’étire jusqu’à l’entrée. Au-delà du jour gris, la lueur de lampe accroche le rouge de la paroi, et une fourche de fer, pliée en V, se dresse contre la roche. Rien n’approchera du creux du fond.",
     "monstres": [{ "profil": "loup-sanguinaire", "nombre": 2 }],
     "carte": [
       "############",
@@ -70,7 +70,7 @@
         "id": "jeter-la-viande",
         "nom": "Leur jeter de quoi manger",
         "jet": { "competence": "dressage", "dd": 12 },
-        "resume": "Vous lancez ce que vous avez à manger vers le seuil, puis vous reculez lentement, les mains ouvertes.",
+        "resume": "Vous sortez ce qui vous reste à manger et le lancez vers le seuil, d’un geste ample, en veillant à ne pas viser le creux. Une odeur de nourriture se répand aussitôt. Vous reculez lentement, les mains ouvertes, les épaules basses, pour que rien dans votre geste ne ressemble à une menace. Au fond, le grondement hésite.",
         "effets": [
           { "narration": "Ce que vous avez lancé est dévoré au seuil de la salle, en grondant. Pendant ce temps, vous pouvez traverser la salle sans déranger personne." },
           { "flag": "lr-loups-detournes" }
@@ -84,7 +84,7 @@
         "id": "detourner-sans-bruit",
         "nom": "Les détourner sans bruit",
         "jet": { "competence": "discretion", "dd": 13 },
-        "resume": "Vous longez la paroi pas à pas, sans un mot ni un geste brusque, et vous laissez les bêtes à leur creux.",
+        "resume": "Vous posez le pied sans bruit sur la terre battue, et vous vous tenez à distance des poils gris qui couvrent le seuil. Chaque pas est pesé, le genou souple, le souffle retenu. Le grondement du fond ne cesse pas, mais il ne se rapproche pas non plus. Vous ne dites rien, vous ne faites aucun geste brusque, et vous laissez les bêtes à leur creux.",
         "effets": [
           { "narration": "Vous longez la paroi, lentement. Une pierre qui roule au fond de la salle attire l'attention, loin de vous, et le passage reste libre." },
           { "flag": "lr-loups-detournes" }

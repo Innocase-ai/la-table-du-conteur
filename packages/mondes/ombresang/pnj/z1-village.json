@@ -51,7 +51,7 @@
           "pourquoi"
         ],
         "question": "Qu'est-ce qu'on vous reproche, au juste ?",
-        "reponse": "« Je n'ai pas saboté la herse. J'ai voulu l'abaisser pour arrêter les lames qui suivaient une caravane de pèlerins. Les engrenages ont fondu sous mes mains, et un oxydeur était dans la fosse. Personne ne m'a écouté. »",
+        "reponse": "Joran tire sur sa chaîne et vous fixe droit dans les yeux. « On m’accuse d’avoir saboté la herse du pont-levis, et c’est faux. J’ai voulu l’abaisser pour arrêter les lames qui suivaient une caravane de pèlerins. Les engrenages ont fondu sous mes mains, et un oxydeur était dans la fosse. Personne ne m’a écouté. Je suis un soldat, pas un saboteur. Si vous cherchez la vérité, regardez les engrenages de la herse. Et ne me jugez pas sur mes fers. »",
         "revele": [
           "f-lr-joran-innocent",
           "f-lr-engrenages-fondus-par-l-acide"
@@ -84,7 +84,7 @@
           "petite"
         ],
         "question": "Qui vous attend de l'autre côté du viaduc ?",
-        "reponse": "« Ma petite sœur. Elle est restée dans le camp des réfugiés, de l'autre côté du pont, avec les pèlerins de la caravane. Je l'ai vue pour la dernière fois le jour de la herse, quand j'ai couru vers la chaîne sans savoir si je pourrais la tenir. Si le viaduc reste fermé, je ne la reverrai pas. »",
+        "reponse": "Il redresse la tête et regarde le groupe droit dans les yeux. « Ma petite sœur. Elle est restée. Dans le camp des réfugiés, de l’autre côté du pont, avec les pèlerins de la caravane. Je l’ai vue pour la dernière fois le jour de la herse. J’ai couru vers la chaîne sans savoir si je pourrais la tenir. Si le viaduc reste fermé, je ne la reverrai pas. Alors il faut que quelqu’un passe, et vite. Je ne veux pas la perdre. »",
         "effets": [
           {
             "flag": "lr-nouvelles-de-joran"
@@ -104,7 +104,7 @@
         ],
         "question": "Avez-vous vu d'où sortent ces bêtes de rouille ?",
         "attitudeMin": 30,
-        "reponse": "Il baisse la voix. « Elles sortent des canaux de la villa, sous la cave. Je montais la garde de nuit, et j'ai vu les grilles bouger. Ne le répétez pas sur la place. »",
+        "reponse": "Il baisse la voix et jette un regard vers la place. « Elles sortent des canaux de la villa, sous la cave. Je montais la garde de nuit, et j’ai vu les grilles bouger, une à une, sans que personne ne les touche. Ce n’était ni le vent ni un rat, j’en suis sûr, et je n’ai pas osé descendre voir. Ne le répétez pas sur la place. Je n’ai pas eu le temps de compter. »",
         "revele": [
           "f-lr-monstres-sortent-des-drains"
         ],
@@ -122,7 +122,7 @@
           "estrade"
         ],
         "question": "Que vous veut la Baillie ?",
-        "reponse": "« Elle a crié sur l'estrade qu'on garde son calme, puis elle m'a désigné à la milice comme le saboteur, devant tout le monde. Elle n'a même pas cillé. Il lui faut un coupable pour la herse, et j'ai la tête qu'il faut. Si vous tardez, elle m'emmène au Bastion, et là-bas, personne ne parle. »",
+        "reponse": "Il tire sur ses fers, qui raclent le pilori. « Elle a crié sur l’estrade qu’on garde son calme. Puis elle m’a désigné à la milice comme le saboteur, devant tout le monde. Elle n’a même pas cillé. Il lui faut un coupable pour la herse, et j’ai la tête qu’il faut. Si vous tardez, elle m’emmène au Bastion, et là-bas, personne ne parle. Vous l’avez entendue sur l’estrade, vous savez de quoi elle est capable. Alors, faites vite. »",
         "condition": {
           "non": {
             "flag": "lr-joran-libere"
@@ -154,7 +154,7 @@
           ]
         },
         "question": "Et si on vous sortait de là ?",
-        "reponse": "« Vous feriez ça ? Alors vite. Les hommes de la Baillie ne vont pas rester les bras croisés. »",
+        "reponse": "Il se redresse d’un coup, les fers tendus à craquer. « Vous feriez ça ? Alors vite. Détachez-moi, et faites-le sans bruit. Les hommes de la Baillie ne vont pas rester les bras croisés, je le sais. Je ne vous demande rien d’autre que ça. Si vous me sortez de là, je tiendrai parole, et je m’en souviendrai. Regardez mes poignets, et comprenez pourquoi je ne peux pas attendre. Ne perdez pas de temps à discuter. Chaque minute compte. »",
         "effets": [
           {
             "flag": "lr-joran-libere"
@@ -182,7 +182,7 @@
           "pont"
         ],
         "question": "Comment vit-on au camp des réfugiés ?",
-        "reponse": "« Des tentes de toile sur la rive sud, des pèlerins et des ouvriers du viaduc qui ont perdu leur route. La caravane qui les menait vers le sanctuaire d'Aile-de-Plomb a été attaquée par les lames sur le chemin. Ils n'ont plus que l'eau du torrent et leur peur, et chaque nuit, un peu plus de gens se mettent à compter les coups sur la toile. »",
+        "reponse": "Il regarde vers le pont. « Des tentes de toile sur la rive sud. Il y a des pèlerins et des ouvriers du viaduc qui ont perdu leur route. La caravane qui les menait vers le sanctuaire d’Aile-de-Plomb a été attaquée par les lames sur le chemin. Ils n’ont plus que l’eau du torrent et leur peur. Chaque nuit, un peu plus de gens se mettent à compter les coups sur la toile. Allez-y, parlez à ma sœur, elle saura vous dire qui est qui. »",
         "condition": {
           "flag": "lr-nouvelles-de-joran"
         },
@@ -204,7 +204,7 @@
           "quotidien"
         ],
         "question": "Comment vit-on à la garnison du Bastion ?",
-        "reponse": "« Vivait, plutôt. Avant que la garnison ne se débande : levé avant le jour, la herse à graisser, la ronde du tablier, et une soupe qui sent le fer. Les sergents comptaient les sous, personne ne demandait ce qu'on pensait. Il n'en reste que les péagers de la Baillie, et eux non plus ne disent rien. »",
+        "reponse": "Il rit sans joie, un son court et sec. « Vivait, plutôt. Avant que la garnison ne se débande, on était levé avant le jour. Il fallait graisser la herse, faire la ronde du tablier, et avaler une soupe qui sent le fer. Les sergents comptaient les sous, et personne ne demandait ce qu’on pensait. Il n’en reste que les péagers de la Baillie, et eux non plus ne disent rien. Ne me demandez pas le reste, et ne comptez pas sur moi pour le dire. »",
         "revele": [
           "f-lr-mon-garnison-du-bastion"
         ],
@@ -226,7 +226,7 @@
           "fuir"
         ],
         "question": "Pourquoi avez-vous déserté ?",
-        "reponse": "« J'ai quitté mon poste pour courir à la chaîne de la herse, quand la caravane est arrivée avec les lames sur les talons. Pour le règlement, c'est abandonner son poste. Pour moi, c'était la seule chose à faire. Je le referais. Ça n'a pas suffi, et c'est moi qu'on a enchaîné. »",
+        "reponse": "Il baisse les yeux sur ses poignets à vif. « J’ai quitté mon poste pour courir à la chaîne de la herse, quand la caravane est arrivée avec les lames sur les talons. Pour le règlement, c’est abandonner son poste. Pour moi, c’était la seule chose à faire. Je le referais, sans hésiter une seconde. Ça n’a pas suffi, et c’est moi qu’on a enchaîné. Je ne regrette pas d’avoir couru, je regrette seulement d’avoir été trop lent. Vous, à ma place, vous auriez fait pareil. »",
         "condition": {
           "flag": "lr-d-joran-deserteur-garnison"
         },
@@ -249,7 +249,7 @@
           "impériale"
         ],
         "question": "Qu'avez-vous entendu dire de Sépulcre-d'Or ?",
-        "reponse": "« Je ne l'ai jamais vue. Quatorze heures de Voie Royale de Fer, et on dit qu'on aperçoit ses murs de très loin. Les soldats en parlent comme d'une ville qui ne dort jamais, avec des lanternes sur chaque pont. Un officier m'a dit que le Sénat y tient ses registres, et que les registres ne se trompent jamais. Moi, j'en ai vu se tromper. »",
+        "reponse": "Il secoue la tête, sans quitter le groupe des yeux. « Je ne l’ai jamais vue. Quatorze heures de Voie Royale de Fer, et on dit qu’on aperçoit ses murs de très loin. Les soldats en parlent comme d’une ville qui ne dort jamais, avec des lanternes sur chaque pont. Un officier m’a dit que le Sénat y tient ses registres, et que les registres ne se trompent jamais. Moi, j’en ai vu se tromper. »",
         "revele": [],
         "effets": [],
         "unique": true
@@ -312,7 +312,7 @@
           "bander"
         ],
         "question": "Pouvez-vous soigner nos blessures ?",
-        "reponse": "« Asseyez-vous et montrez la plaie. Je bande d'abord et je compte après : deux pièces d'or pour tout le groupe, et je ne demande pas d'où viennent les plaies. Ceux qui ont la plaie ouverte depuis la place, je les lave à l'eau bouillie, même quand ils ont les mains tachées de rouille. Dites-moi ce qui vous manque, toile ou simples, je m'occupe du reste. »",
+        "reponse": "Sœur Martha lave déjà ses pinces dans un bol d’eau. « Oui, je peux soigner vos blessures, et je ne refuse personne. Asseyez-vous et montrez-moi la plaie. Je bande d’abord et je compte après : deux pièces d’or pour tout le groupe. Je ne demande pas d’où viennent les plaies. Ceux qui ont la plaie ouverte depuis la place, je les lave à l’eau bouillie, même quand leurs mains sont tachées de rouille. Manque-t-il quelque chose ? Dites-moi si c’est de la toile ou des simples, et je m’occupe du reste. »",
         "effets": [
           {
             "flag": "lr-d-soeur-martha-soins"
@@ -330,7 +330,7 @@
           "liste"
         ],
         "question": "Que sont ces éclats, au-dessus de la porte ?",
-        "reponse": "« Ceux que j'ai sortis des plaies, un par un, à la pince et à l'eau bouillie. Je les garde enfilés sur le fil de cuir, chacun noué à part, comme une liste. Il y en a plus chaque nuit, et je ne connais pas le nom de la moitié de ceux qui les ont portés. »",
+        "reponse": "Elle jette un coup d'œil au linteau, sans relever la tête de ses pansements. « Ce sont des éclats d’acier, ceux que j’ai sortis des plaies, un par un, à la pince et à l’eau bouillie. Je les garde enfilés sur le fil de cuir, chacun noué à part, comme une liste. Il y en a plus chaque nuit. Je ne connais pas le nom de la moitié de ceux qui les ont portés, et je ne veux pas les oublier. Approchez-vous de la porte pour les voir de plus près, mais ne touchez à rien. »",
         "revele": [
           "f-lr-martha-eclats-du-linteau"
         ]
@@ -347,7 +347,7 @@
           "taillade"
         ],
         "question": "Que voyez-vous sur les blessés de la place ?",
-        "reponse": "« Des taillades nettes, faites par des lames qui frappent sans prévenir, et une plaie qui refuse de se refermer, qui sent le métal chaud. Ce n'est pas une blessure d'homme. Un forgeron frappe là où sa main le mène ; ces lames frappent toujours à la même cadence, comme si quelqu'un comptait pour elles, et je ne sais pas qui. »"
+        "reponse": "Elle pose son linge et penche la lampe. « Des taillades nettes, faites par des lames qui frappent sans prévenir. Certaines plaies refusent de se refermer, et elles sentent le métal chaud. Ce n’est pas une blessure d’homme. Un forgeron frappe là où sa main le mène, mais ces lames frappent toujours à la même cadence, comme si quelqu’un comptait pour elles. Je ne sais pas qui compte. Un doute sur moi ? Allez voir les blessés sur la place : vous verrez la même chose. »"
       },
       {
         "id": "pommade",
@@ -361,7 +361,7 @@
         ],
         "question": "Qu'est-ce que la pommade grise, sur l'étagère du haut ?",
         "attitudeMin": 25,
-        "reponse": "Elle ne répond pas tout de suite, puis : « Du suif d'oxydeur, pris dans les cavernes sous le viaduc. Il dissout l'acier logé dans la chair, mieux que ma pince. Je n'en parle pas aux blessés, ils ont peur de ce qu'ils ont dans le corps. »",
+        "reponse": "Elle essuie ses doigts sur son tablier avant de répondre. « Du suif d’oxydeur, pris dans les cavernes sous le viaduc. Il dissout l’acier logé dans la chair, bien mieux que ma pince. Je n’en parle pas aux blessés. Ils ont peur de ce qu’ils ont dans le corps, et je les comprends. Si vous tenez à en voir, allez le chercher vous-même dans les cavernes, et prenez de la lumière. Ne le mettez pas sur une plaie ouverte sans me demander. »",
         "revele": [
           "f-lr-pommade-au-suif"
         ],
@@ -378,7 +378,7 @@
           "malade"
         ],
         "question": "Que fait la fièvre du fer aux blessés ?",
-        "reponse": "« Je ne l'ai encore vue sur personne, et je prie pour que ça dure. Mais un blessé qui ne sent plus sa plaie, je le veille toute la nuit. Il fixe le plafond, il compte les pas des lames dehors, il ne sent plus l'aiguille. Quand il commence à demander son arme, je sais que la nuit sera longue. »"
+        "reponse": "Elle s’arrête un instant, la main sur le front d’un blessé. « Je ne l’ai encore vue sur personne, et je prie pour que ça dure. Mais un blessé qui ne sent plus sa plaie, je le veille toute la nuit. Il fixe le plafond, il compte les pas des lames dehors, et il ne sent plus l’aiguille. Quand il commence à demander son arme, je sais que la nuit sera longue. Si vous voyez quelqu’un changer comme ça, ne le laissez pas seul avec sa lame. Venez me chercher, je viendrai tout de suite. »"
       },
       {
         "id": "proposer-son-aide",
@@ -390,7 +390,7 @@
           "tâche"
         ],
         "question": "Je peux vous aider, si vous avez besoin de bras.",
-        "reponse": "« Vous avez des mains, c'est déjà ça. Il me manque une matière que je ne trouve plus ici. Elle se prend dans les cavernes sous le viaduc, et elle ne vient pas toute seule. »",
+        "reponse": "Elle répond sans relever la tête de ses pansements. « Vous avez des mains, c’est déjà ça. Il me manque une matière que je ne trouve plus ici. Elle se prend dans les cavernes sous le viaduc, et elle ne vient pas toute seule. Je ne vous demande pas de risquer votre peau pour rien. Si vous voulez m’aider, allez voir là-bas, et dites-moi ce que vous rapportez. Je saurai le reconnaître dès que je le verrai. Revenez me voir quand vous aurez quelque chose à me montrer. »",
         "effets": [
           {
             "quete": {
@@ -412,7 +412,7 @@
           "sauge"
         ],
         "question": "Quelles plantes poussent encore sur ces talus ?",
-        "reponse": "« Du thym sauvage, de la sauge des rochers, un peu d'ortie que je fais bouillir pour les fièvres. Tout pousse sur les talus du torrent d'Oxyde, là où la terre n'a pas encore pris la rouille. Plus haut, vers la Forêt d'Acier, rien ne pousse : les épées ont pris toute la lumière. Le thym, c'est pour le vinaigre, la sauge pour les plaies qui suintent. »",
+        "reponse": "Elle désigne la fenêtre d’un doigt sale, sans vraiment regarder. « Du thym sauvage, de la sauge des rochers, et un peu d’ortie que je fais bouillir pour les fièvres. Tout pousse sur les talus du torrent d’Oxyde, là où la terre n’a pas encore pris la rouille. Plus haut, vers la Forêt d’Acier, rien ne pousse : les épées ont pris toute la lumière. Le thym sert au vinaigre, et la sauge aux plaies qui suintent. Les cueillir ? Ne descendez pas trop près de la rouille, ni trop près des épées. »",
         "revele": [],
         "effets": [],
         "unique": true
@@ -428,7 +428,7 @@
           "brûlures"
         ],
         "question": "Avez-vous soigné des gens venus de l'ouest ?",
-        "reponse": "« Des mineurs du Gantelet d'Airain, à dix heures de marche d'ici, qui passaient le Défilé des Forges avant que le pont ne ferme. Les mains brûlées par le métal chaud, les ongles noircis. Ils parlent d'une fonderie cachée sous les mines, où l'on martèle des lames qui ne refroidissent jamais. Je ne sais pas ce qu'ils ont vu. Je leur bande les mains, et ils ne regardent pas dans ma direction. »",
+        "reponse": "Elle s’essuie les mains et répond sans se retourner. « Oui. Des mineurs du Gantelet d’Airain, à dix heures de marche d’ici, qui passaient le Défilé des Forges avant que le pont ne ferme. Ils avaient les mains brûlées par le métal chaud et les ongles noircis. Ils parlent d’une fonderie cachée sous les mines, où l’on martèle des lames qui ne refroidissent jamais. Je ne sais pas ce qu’ils ont vu. Je leur bande les mains, et ils ne regardent pas dans ma direction. Pour les entendre, parlez-leur doucement. »",
         "revele": [
           "f-lr-mon-mineurs-gantelet"
         ],
@@ -451,7 +451,7 @@
         ],
         "question": "Cette fonderie, où se trouve-t-elle exactement ?",
         "attitudeMin": 20,
-        "reponse": "« Un foyer creusé sous Moelle-Fer, que les contremaîtres ne montrent à personne, à ce qu'on dit. Les mineurs n'en parlent qu'à voix basse, les mains encore noires. Je ne vous dis pas ça pour que vous y alliez. Ce que j'ai vu sur leurs mains, c'est le métal, pas le feu. »",
+        "reponse": "Elle se tait longtemps, puis baisse la voix. « Un foyer creusé sous Moelle-Fer, que les contremaîtres ne montrent à personne, à ce qu’on dit. Les mineurs n’en parlent qu’à voix basse, les mains encore noires. Je ne vous dis pas ça pour que vous y alliez. Ce que j’ai vu sur leurs mains, c’est le métal, pas le feu. Je n’en sais pas plus, et je ne veux pas en savoir davantage. Demandez le reste aux mineurs eux-mêmes, mais attendez qu’ils soient seuls. »",
         "condition": {
           "flag": "lr-d-soeur-martha-gantelet"
         },
@@ -478,7 +478,7 @@
         "revele": [],
         "effets": [],
         "unique": true,
-        "reponse": "« Je n'en ai plus que pour une nuit. J'ai pris des draps à l'auberge, et Odile fait semblant de ne pas les compter. Si vous avez de la toile propre, apportez-la-moi : je n'ai jamais refusé un blessé pour une bande. Maintenant, tenez ce bras, et ne bougez plus. »"
+        "reponse": "Elle rit à peine, sans lever la tête du bras qu’elle bande. « Oui, et je n’en ai plus que pour une nuit. J’ai pris des draps à l’auberge, et Odile fait semblant de ne pas les compter. Si vous avez de la toile propre, apportez-la-moi : je n’ai jamais refusé un blessé pour une bande, et je ne commencerai pas maintenant. Tenez ce bras, et ne bougez plus. Vous me rapporterez la toile quand vous pourrez. Les draps ne tiendront pas longtemps. »"
       },
       {
         "id": "priere",
@@ -491,7 +491,7 @@
           "morts"
         ],
         "question": "Que disent les Mains Tendues de ces épées plantées dans le roc ?",
-        "reponse": "« On raconte que ces lames sont tombées de la main d'un dieu. Les Mains Tendues ne prient pas pour les dieux morts. On prie pour ceux qui saignent, et pour les mains qui ramassent la ferraille sans savoir ce qu'elles touchent. Ma prière, c'est une bande propre, et une pince bien lavée. »",
+        "reponse": "Elle plie une bande et la pose sur la table. « On raconte que ces lames sont tombées de la main d’un dieu. Les Mains Tendues ne prient pas pour les dieux morts, jamais. On prie pour ceux qui saignent, et pour les mains qui ramassent la ferraille sans savoir ce qu’elles touchent. Ma prière, c’est une bande propre et une pince bien lavée. Si vous voulez une autre réponse, cherchez-la ailleurs. Moi, je n’ai que mes pinces et mes bandes. »",
         "revele": [],
         "effets": [],
         "unique": true
@@ -559,7 +559,7 @@
           "vivantes"
         ],
         "question": "Quelles rumeurs circulent sur les lames ?",
-        "reponse": "« Que les lames ont des yeux, et que le sang du dieu n'a jamais fini de sécher dans cette vallée. Je n'y crois pas. Presque. Les ferrailleurs disent qu'elles suivent le métal chaud, les bergers disent qu'elles suivent les voix. Moi, je sers la bière, et j'écoute quand même. »",
+        "reponse": "Odile essuie le comptoir d’un geste lent. « Des rumeurs, il y en a plus que de clients, et je les répète sans y croire. Que les lames ont des yeux, et que le sang du dieu n’a jamais fini de sécher dans cette vallée. Je n’y crois pas. Presque. Les ferrailleurs disent qu’elles suivent le métal chaud, les bergers disent qu’elles suivent les voix. Moi, je sers la bière, et j’écoute quand même. Payez la bière, asseyez-vous, et vous aurez les vraies. »",
         "revele": [
           "f-lr-rumeur-lames-maudites"
         ]
@@ -574,7 +574,7 @@
           "repos"
         ],
         "question": "Avez-vous une chambre pour la nuit ?",
-        "reponse": "« Une chambre à l'étage, sous les bardeaux. Une couverture de cuir bouilli et une porte qui ferme. Cinq pièces d'argent, payées d'avance, avant de monter. Le seau est vidé à l'aube, et les volets restent clos, alors ne cherchez pas le jour. Dormez tant que vous voulez, personne ne frappera à votre porte avant le matin. »"
+        "reponse": "Odile essuie ses mains sur son tablier. « Oui, une chambre à l’étage, sous les bardeaux. Une couverture de cuir bouilli et une porte qui ferme, rien de plus, mais c’est propre. Cinq pièces d’argent, payées d’avance, avant de monter. Le seau est vidé à l’aube, et les volets restent clos, alors ne cherchez pas le jour. Dormez tant que vous voulez, personne ne frappera à votre porte avant le matin. Qui veut savoir ce qui se dit en bas reste à la table : la chambre est en haut, et le bruit reste en bas. »"
       },
       {
         "id": "contrats",
@@ -587,7 +587,7 @@
           "affiche"
         ],
         "question": "Que dit le tableau, près de la porte ?",
-        "reponse": "« Des contrats de chasse, payés en pièces, cloués là depuis la première nuit. Les cibles sont dans la Forêt d'Acier, pas dans le village, et ce n'est pas moi qui les ai écrits. Qui les prend, je ne le dis pas à qui pose trop de questions. Certains reviennent le soir, les mains vides et la mine grise. »",
+        "reponse": "Odile lève les yeux vers la porte, puis les rabaisse. « Des contrats de chasse, payés en pièces, cloués là depuis la première nuit. Les cibles sont dans la Forêt d’Acier, pas dans le village, et ce n’est pas moi qui les ai écrits. Qui les prend, je ne le dis pas à qui pose trop de questions. Certains reviennent le soir, les mains vides et la mine grise. Lisez-les vous-même, debout près de la porte, et gardez vos mains dans vos poches. Parler de ce qui est écrit ? Faites-le dehors, à voix basse, pas devant la salle. »",
         "revele": [
           "f-lr-contrats-affiches"
         ],
@@ -607,7 +607,7 @@
           "clos"
         ],
         "question": "Pourquoi les volets restent-ils toujours clos ?",
-        "reponse": "« Parce que les lames claquent dessus toute la nuit, et qu'un volet ouvert, c'est une lame dans la salle. Ceux qui restent dehors ferment leur porte. Moi, je sers ceux qui entrent. Le premier soir, j'ai compté quatorze coups sur les bois de la façade, puis j'ai arrêté, parce que compter ne change rien. »"
+        "reponse": "Odile jette un coup d’œil vers les volets clos. « Parce que les lames claquent dessus toute la nuit, et qu’un volet ouvert, c’est une lame dans la salle. Ceux qui restent dehors ferment leur porte. Moi, je sers ceux qui entrent. Le premier soir, j’ai compté quatorze coups sur les bois de la façade, puis j’ai arrêté, parce que compter ne change rien. Les volets tiennent, mais pas éternellement. Passez la nuit ici, et ne touchez pas aux volets, même pour regarder dehors. »"
       },
       {
         "id": "legende",
@@ -620,7 +620,7 @@
           "lames"
         ],
         "question": "Que dit-on des épées géantes de la Forêt d'Acier ?",
-        "reponse": "« Les anciens disent que le dieu de la guerre a tenu ces épées dans ses mains, et qu'il les a lâchées en tombant, plantées de biais dans le roc. Il y en a une qui dépasse toutes les autres, et l'on dit qu'on y voit encore la trace de ses doigts sur la garde. Moi, je n'ai jamais voulu poser la main dessus. »",
+        "reponse": "Odile tourne son verre vide entre ses doigts. « Les anciens disent que le dieu de la guerre a tenu ces épées dans ses mains, et qu’il les a lâchées en tombant, plantées de biais dans le roc. Il y en a une qui dépasse toutes les autres, et l’on dit qu’on y voit encore la trace de ses doigts sur la garde. Moi, je n’ai jamais voulu poser la main dessus. Je ne l’ai pas inventée, moi. Allez-y de jour pour la voir de près, et ne posez pas la main sur la garde, même pour vérifier. »",
         "revele": [
           "f-lr-epees-de-vael-khor"
         ],
@@ -642,7 +642,7 @@
           "fermé"
         ],
         "question": "Qui passait par ici avant la fermeture du viaduc ?",
-        "reponse": "« Les convois lourds de la Voie Royale de Fer, venus de la capitale par quatorze heures de route, et tout le fer du Défilé des Forges. Des charrettes de scories, des chariots de planches, des soldats qui ne restaient jamais longtemps. Depuis que le pont est fermé, les convois attendent sur la rive sud, à regarder la rivière, et mes clients sont des ferrailleurs et des péagers. »",
+        "reponse": "Odile compte sur ses doigts, en regardant la porte. « Les convois lourds de la Voie Royale de Fer, venus de la capitale par quatorze heures de route, et tout le fer du Défilé des Forges. Des charrettes de scories, des chariots de planches, des soldats qui ne restaient jamais longtemps. Depuis que le pont est fermé, les convois attendent sur la rive sud, à regarder la rivière. Mes clients sont des ferrailleurs et des péagers. Gagnez la rive sud avant la nuit pour les voir. »",
         "revele": [
           "f-lr-mon-convois-bloques"
         ],
@@ -672,7 +672,7 @@
         ],
         "effets": [],
         "unique": true,
-        "reponse": "« Ils attendent de l'autre côté, avec leurs mules et leurs sacs. Le Gantelet envoie encore du minerai par le Défilé des Forges, mais tout s'arrête au tablier. Un marchand qui a pu traverser avant-hier m'a dit que le sac de farine vaut le double ici, parce que le blé vient de l'autre rive. Il a bu deux bières et il a payé en pièces d'argent neuves. »"
+        "reponse": "Odile fait glisser une bière vers le bord du comptoir. « Ils sont bloqués de l’autre côté du pont, avec leurs mules et leurs sacs. Le Gantelet envoie encore du minerai par le Défilé des Forges, mais tout s’arrête au tablier. Un marchand qui a pu traverser avant-hier m’a dit que le sac de farine vaut le double ici, parce que le blé vient de l’autre rive. Il a bu deux bières et il a payé en pièces d’argent neuves. Ce qui se vend là-bas ? Demandez à ceux qui ont traversé, pas à ceux qui attendent. »"
       },
       {
         "id": "cibles",
@@ -692,7 +692,7 @@
         "revele": [],
         "effets": [],
         "unique": true,
-        "reponse": "« Des ferrailleurs qui veulent leur dû, et deux mercenaires de passage qui ont dormi ici trois nuits. Ceux qui partent ne disent pas où, et ceux qui reviennent ne disent pas ce qu'ils ont vu. Je tiens la salle, pas les comptes de la chasse. »"
+        "reponse": "Odile essuie un verre à peine sec. « Des ferrailleurs qui veulent leur dû, et deux mercenaires de passage qui ont dormi ici trois nuits. Ceux qui partent ne disent pas où, et ceux qui reviennent ne disent pas ce qu’ils ont vu. Je tiens la salle, pas les comptes de la chasse. Contre quoi ils partent, c’est à eux de le dire, et ils ne le disent pas. Si vous voulez savoir, asseyez-vous près d’eux et payez-leur une bière. La bière se paie, ici. »"
       },
       {
         "id": "feuille-de-gorm",
@@ -708,7 +708,7 @@
         "condition": {
           "flag": "lr-d-odile-braise-contrats"
         },
-        "reponse": "« La feuille de gauche est de Gorm Meule, et il y réclame des charrettes au campement des ferrailleurs. Deux mercenaires l'ont lue trois soirs de suite sans rien dire, une bière à la main. Ils ont fini par partir avant l'aube, et ils ne m'ont pas dit où. Si vous voulez ces charrettes, allez voir Gorm aux forges : il tient ses comptes, pas moi. »",
+        "reponse": "Odile fronce les sourcils et désigne le tableau du menton. « La feuille de gauche est de Gorm Meule, et il y réclame des charrettes au campement des ferrailleurs. Deux mercenaires l’ont lue trois soirs de suite sans rien dire, une bière à la main. Ils ont fini par partir avant l’aube, et ils ne m’ont pas dit où. Si vous voulez ces charrettes, allez voir Gorm aux forges : il tient ses comptes, pas moi. Et ne comptez pas sur les mercenaires pour vous en parler. »",
         "revele": [],
         "effets": [],
         "unique": true
@@ -755,7 +755,7 @@
         "condition": {
           "flag": "lr-rongeur-regle"
         },
-        "reponse": "« Elle ne s'effrite plus, et les ferrailleurs vont remonter demain. Asseyez-vous, la soupe est chaude. » Elle compte les pièces du dû sur le comptoir, une à une, sans regarder le verre. « Quarante, comme promis. Les volets tiennent encore une nuit, je crois. Si la salle se remplit demain, c'est vous qui me l'aurez rendue. »",
+        "reponse": "Odile compte les pièces du dû sur le comptoir, une à une. « Oui, elle ne s’effrite plus, et les ferrailleurs vont remonter demain. Asseyez-vous, la soupe est chaude. Quarante, comme promis, et pas une de moins. Les volets tiennent encore une nuit, je crois. Si la salle se remplit demain, c’est vous qui me l’aurez rendue, alors ne faites pas l’idiot devant les ferrailleurs. Vous avez fait ce qu’il fallait, et je ne le dis pas souvent. Mais ne vous réjouissez pas trop : la nuit est longue, et les volets ne sont pas des murs. »",
         "revele": [],
         "effets": [
           {
@@ -832,7 +832,7 @@
           "marché"
         ],
         "question": "Pourquoi les lames se vendent-elles si cher ?",
-        "reponse": "« Parce que personne ne veut plus les ramasser, et que celles qui restent sont meilleures. Depuis trois nuits, on m'en demande le double, et je ne refuse pas. Le métal se vend à son poids, pas à sa peur. Si vous voulez savoir pourquoi les prix montent, regardez qui achète, pas qui vend. »",
+        "reponse": "Il pose une lame sur sa balance sans la regarder. « Parce que personne ne veut plus les ramasser, et que celles qui restent sont meilleures. Depuis trois nuits, on m’en demande le double, et je ne refuse pas. Le métal se vend à son poids, pas à sa peur. Si vous voulez savoir pourquoi les prix montent, regardez qui achète, pas qui vend. Je ne le répéterai pas deux fois. Le prix est sur la feuille, prenez-le ou laissez-le. »",
         "revele": [
           "f-lr-rumeur-lames-vendues"
         ],
@@ -854,7 +854,7 @@
         ],
         "question": "D'où viennent les lames qui se réveillent ?",
         "attitudeMin": 20,
-        "reponse": "Il pose son marteau et ne répond pas tout de suite. « De la fournée de Vorn. Toutes, pas une de moins. Il les a chauffées ensemble dans son foyer, et depuis, elles ne dorment plus. Je ne vous ai rien dit. »",
+        "reponse": "Il pose son marteau et ne répond pas tout de suite. « De la fournée de Vorn. Toutes, pas une de moins. Il les a chauffées ensemble dans son foyer, et depuis, elles ne dorment plus. Je ne vous ai rien dit. Si vous voulez en savoir davantage, ce n'est pas à moi de le dire. Et ne revenez pas ici avec une lame de Vorn à la main : je ne veux pas savoir d’où elle vient. »",
         "revele": [
           "f-lr-fournee-de-vorn"
         ],
@@ -872,7 +872,7 @@
           "casser"
         ],
         "question": "Pouvez-vous réparer mon arme ?",
-        "reponse": "« Posez-la sur l'enclume. Je remets le fil, je redresse la lame, et je retends la courroie. Une pièce d'or, et elle repart. »"
+        "reponse": "Gorm Meule pèse votre arme dans sa main, sans un mot. « Oui, je la répare. Posez-la sur l’enclume. Je remets le fil, je redresse la lame, et je retends la courroie. Une pièce d’or, et elle repart. Le métal se vend à son poids, mais un bon travail se paie juste, et je ne laisse rien sortir d’ici qui ne tienne pas. Ici, une lame réparée repart avec son fil d’origine, et vous le sentirez au premier coup. »"
       },
       {
         "id": "apprenti",
@@ -883,7 +883,7 @@
           "aide"
         ],
         "question": "Vous n'aviez pas un apprenti ?",
-        "reponse": "« Mon apprenti, Ansel. Il est parti sans un mot il y a trois jours, du côté du viaduc. Je ne cours pas après lui, mais si vous le croisez, dites-lui que l'atelier l'attend. »",
+        "reponse": "Il s’essuie la moustache du dos de la main. « Mon apprenti, Ansel. Il est parti sans un mot il y a trois jours, du côté du viaduc. Je ne cours pas après lui. Un garçon qui veut partir, il part, et je n’ai pas le temps de le retenir. Mais si vous le croisez, dites-lui que l’atelier l’attend encore, et qu’il y a du travail pour lui. Je ne pose pas de questions sur le reste. Il sait où me trouver. »",
         "effets": [
           {
             "quete": {
@@ -912,7 +912,7 @@
           "allumé"
         ],
         "question": "Qu'est-ce que vous pensez de Vorn ?",
-        "reponse": "« Un vieux têtu, qui garde son foyer allumé trois nuits de suite, quand la rangée couvre les siens à la tombée du jour. Il a toujours fait les meilleures lames du torrent. Je les vends, et il ne demande pas de comptes. »"
+        "reponse": "Il crache dans l’eau de la roue, puis reprend sa meule. « Un vieux têtu. Il garde son foyer allumé trois nuits de suite, quand la rangée couvre les siens à la tombée du jour. Il a toujours fait les meilleures lames du torrent, et ça, personne ne peut le nier. Je les vends, et il ne demande pas de comptes. Moi non plus, je ne lui en demande pas. Son avis sur ses lames, demandez-le-lui vous-même. »"
       },
       {
         "id": "acheteurs",
@@ -925,7 +925,7 @@
           "poids"
         ],
         "question": "Qui achète vos lames, et où partent-elles ?",
-        "reponse": "« Les marchands de la capitale, pour les forges de Sépulcre-d'Or, et quelques acheteurs du Consortium quand ils passent. Une lame part à son poids : on la pèse sur ma balance, et l'on ne discute pas le prix. Ensuite, c'est leur affaire. Je ne demande pas où elle finit, et je ne regarde pas la main qui la prend. »",
+        "reponse": "Il tapote la balance du doigt, sans lever les yeux. « Les marchands de la capitale, pour les forges de Sépulcre-d’Or, et quelques acheteurs du Consortium quand ils passent. Une lame part à son poids : on la pèse sur ma balance, et l’on ne discute pas le prix. Ensuite, c’est leur affaire. Je ne demande pas où elle finit, et je ne regarde pas la main qui la prend. En savoir plus ? Demandez-leur vous-même quand ils viendront. »",
         "condition": {
           "flag": "lr-d-gorm-prix"
         },
@@ -950,7 +950,7 @@
           "pèsent"
         ],
         "question": "Le Consortium achète-t-il aussi, dans la vallée ?",
-        "reponse": "« Des hommes en manteau gris, deux fois par mois, qui pèsent les lames sans même les regarder. Ils paient en pièces de la capitale, jamais en bons de péage. Ils ne demandent pas d'où vient le métal, ni pourquoi il vibre la nuit. Je prends leur or, et je ne pose pas leurs questions. »",
+        "reponse": "Il sourit à peine, en serrant sa bourse. « Des hommes en manteau gris, deux fois par mois, qui pèsent les lames sans même les regarder. Ils paient en pièces de la capitale, jamais en bons de péage. Ils ne demandent pas d’où vient le métal, ni pourquoi il vibre la nuit. Je prends leur or, et je ne pose pas leurs questions. Si cela vous gêne, c’est vous qui leur poserez, pas moi. Moi, je veux ma pièce avant la tombée du jour. »",
         "condition": {
           "flag": "lr-d-gorm-acheteurs"
         },
@@ -970,7 +970,7 @@
           "cordes"
         ],
         "question": "Qui va ramasser les lames dans la Forêt d'Acier ?",
-        "reponse": "« Les ferrailleurs du torrent, avec leurs leviers et leurs cordes. On descend au bord de la forêt, là où les lames sont petites et brisées, et l'on arrache ce qui sort du roc en une matinée. Les grandes, plantées dans la roche, ne se laissent pas toucher : personne ne sait ce qu'il faudrait pour en bouger une. »",
+        "reponse": "Il désigne le torrent d'un mouvement du menton. « Les ferrailleurs du torrent, avec leurs leviers et leurs cordes. On descend au bord de la forêt, là où les lames sont petites et brisées, et l’on arrache ce qui sort du roc en une matinée. Les grandes, plantées dans la roche, ne se laissent pas toucher. Personne ne sait ce qu’il faudrait pour en bouger une. Si vous voulez vous en charger, prenez un levier, et ne tirez pas sur les grandes. Je paierai au poids, comme toujours, et sans discuter. »",
         "revele": [
           "f-lr-ferrailleurs-foret-acier"
         ],
@@ -993,7 +993,7 @@
           "meule"
         ],
         "question": "Comment travaille la rangée des forges à aubes ?",
-        "reponse": "« Chaque forge a sa roue dans l'eau, et chaque roue fait jouer le soufflet, le marteau et la meule. On arrache, on polit, on refond. Le métal sort de la rangée pesé et refondu, et les roues grincent parce que la rouille les mange entre deux saisons. Un ferrailleur qui graisse sa roue garde ses clients, et celui qui la laisse rouiller les perd. »",
+        "reponse": "Il actionne la meule du pied. « Chaque forge a sa roue dans l’eau, et chaque roue fait jouer le soufflet, le marteau et la meule. On arrache, on polit, on refond. Le métal sort de la rangée pesé et refondu. Les roues grincent, parce que la rouille les mange entre deux saisons. Un ferrailleur qui graisse sa roue garde ses clients, et celui qui la laisse rouiller les perd. Venez voir une roue au petit matin, avant que les marteaux ne reprennent. »",
         "revele": [
           "f-lr-rangee-metal-refondu"
         ],
@@ -1038,7 +1038,7 @@
         "condition": {
           "flag": "lr-chargement-recupere"
         },
-        "reponse": "« Libre, dites-vous. Alors la charrette de l'est repart sur mes comptes, et je note le retour au sou près. Mes ferrailleurs reviendront au bord de la forêt dès que les lames se taisent, avec leurs leviers et leurs cordes. Pour ce fer rendu, je paie ce qui est écrit sur la feuille, et ce compte-là, je le règle. Ne me demandez pas de sourire. »",
+        "reponse": "Il ouvre un registre sur l’établi. « Libre, dites-vous. Alors la charrette de l’est repart sur mes comptes, et je note le retour au sou près. Mes ferrailleurs reviendront au bord de la forêt dès que les lames se taisent, avec leurs leviers et leurs cordes. Pour ce fer rendu, je paie ce qui est écrit sur la feuille. Ce compte-là, je le règle, et je ne fais pas de cadeau. Ne me demandez pas de sourire. Revenez me voir quand le fer sera pesé. »",
         "revele": [],
         "effets": [
           {
@@ -1173,7 +1173,7 @@
           "pourquoi"
         ],
         "question": "Pourquoi gardez-vous le foyer allumé ?",
-        "reponse": "« Mon chef-d'œuvre n'est pas fini. Un foyer qui s'éteint, c'est trois nuits de travail perdues, et l'acier ne reprend pas la chaleur comme on veut. J'entretiens la braise au charbon et à la limaille, nuit après nuit, et je ne la laisserai pas s'éteindre, quoi qu'en disent les gens de la place. Restez près de la porte, si vous voulez. »",
+        "reponse": "Vorn ne se retourne pas, et ajoute du charbon dans le foyer. « Mon chef-d’œuvre n’est pas fini. Un foyer qui s’éteint, c’est trois nuits de travail perdues, et l’acier ne reprend pas la chaleur comme on veut. J’entretiens la braise au charbon et à la limaille, nuit après nuit, et je ne la laisserai pas s’éteindre, quoi qu’en disent les gens de la place. Restez près de la porte, si vous voulez. Redemandez-moi pourquoi, et la réponse ne changera pas. »",
         "effets": [
           {
             "flag": "lr-d-vorn-foyer"
@@ -1191,7 +1191,7 @@
           "capitale"
         ],
         "question": "Qui voudrait éteindre votre foyer ?",
-        "reponse": "« Ceux de Sépulcre-d'Or, avec leurs registres et leurs chariots. Ils viendront avec une lettre du Sénat et brûleront tout ce que je n'ai pas fini. Je les attends, et je ne sors pas de mon atelier. »"
+        "reponse": "Vorn ne se retourne pas. Il tape le plat de la main sur son tablier. « Ceux de Sépulcre-d’Or. Des inquisiteurs solaires, avec leurs registres et leurs chariots. Ils viendront avec une lettre du Sénat et brûleront tout ce que je n’ai pas fini. Un foyer ne s’éteint pas. Ils ne toucheront pas à mon foyer avant d’avoir passé cette porte. Si vous les voyez arriver, dites-le-moi. Je les attends ici, et je ne sors pas de mon atelier. »"
       },
       {
         "id": "fragment",
@@ -1206,7 +1206,7 @@
         ],
         "question": "Qu'est-ce qui repose dans les braises ?",
         "attitudeMin": 10,
-        "reponse": "Il se tait longtemps, la main à plat sur son tablier. « Une pièce d'enclume, qui n'est pas à vous. Elle bat, et ça ne vous regarde pas. Si vous la prenez, prenez-la avec une pince. »",
+        "reponse": "Vorn pose la main à plat sur son tablier, et se tait longtemps. « Une pièce d’enclume, qui n’est pas à vous. Elle bat, et ça ne vous regarde pas. Si vous la prenez, prenez-la avec une pince. Je ne dis jamais d’où viennent mes matières. Une chose est sûre : elle n’a pas sa place dans une poche. Si vous voulez la garder, gardez-la loin de mon foyer. Demandez-moi autre chose, je répondrai peut-être. Le reste, vous le trouverez seul, si vous êtes patient. »",
         "revele": [
           "f-lr-fragment-qui-bat"
         ],
@@ -1224,7 +1224,7 @@
         ],
         "question": "Pourquoi votre souffle siffle-t-il ainsi ?",
         "attitudeMin": 20,
-        "reponse": "« Une écharde, plantée là depuis que j'ai touché à la pierre. Elle est d'un métal qui n'est pas de la terre, et elle me garde debout. N'essayez pas de l'arracher, vous me tueriez. »",
+        "reponse": "Vorn tape du doigt sur sa poitrine. « Une écharde, plantée là depuis que j’ai touché à la pierre. Elle est d’un métal qui n’est pas de la terre, et elle me garde debout. N’essayez pas de l’arracher, vous me tueriez. Je n’ai jamais demandé à personne de l’enlever, et je ne le ferai pas. Ne vous inquiétez pas pour moi, j’ai assez de travail pour tenir encore. Ce qu’elle fait exactement, demandez-le à la pierre, pas à moi. »",
         "revele": [
           "f-lr-echarde-de-vorn"
         ],
@@ -1245,7 +1245,7 @@
         "condition": {
           "flag": "lr-cratere-vu"
         },
-        "reponse": "Il ferme les yeux. « J'ai brisé la pierre sacrée des Gardiens, dans la Forêt d'Acier. Ce fragment était dedans, et il a fallu la briser pour l'avoir. Vous ne répéterez rien à ceux de Sépulcre-d'Or. »",
+        "reponse": "Vorn ferme les yeux, la main crispée sur son tablier. « J’ai brisé la pierre sacrée des Gardiens, dans la Forêt d’Acier. Ce fragment était dedans, et il a fallu la briser pour l’avoir. Vous avez vu le cratère, alors vous savez ce que ça coûte. Je ne sais pas ce qu’il en reste là-bas, et je n’y retournerai pas. Vous ne répéterez rien à ceux de Sépulcre-d’Or. Si l’on vous pose la question, dites que vous ne savez rien. »",
         "revele": [
           "f-lr-pierre-sacree-brisee"
         ],
@@ -1263,7 +1263,7 @@
           "travail"
         ],
         "question": "Qu'est-ce qui fait une bonne lame, pour vous ?",
-        "reponse": "Il tape le plat de la main sur son tablier, une fois. « La trempe, et le temps. On chauffe, on frappe, on replonge, et l'on recommence jusqu'à ce que le métal se taise. Une lame qui chante sous le marteau est une lame qui tiendra. Les autres, on les refond, et le métal ne garde rien de ce qu'on lui a fait. »",
+        "reponse": "Vorn frappe une fois l’enclume du bout du doigt. « La trempe, et le temps. On chauffe, on frappe, on replonge, et l’on recommence jusqu’à ce que le métal se taise. Une lame qui chante sous le marteau est une lame qui tiendra. Les autres, on les refond, et le métal ne garde rien de ce qu’on lui a fait. Le reste, c’est de la patience, et je n’en ai pas à revendre. Apprendre ? Regardez-moi travailler, et tenez-vous à distance du feu. »",
         "condition": {
           "flag": "lr-d-vorn-foyer"
         },
@@ -1286,7 +1286,7 @@
           "trempe"
         ],
         "question": "Qu'est-ce que votre chef-d'œuvre, au juste ?",
-        "reponse": "« Une épée à deux mains, que je refais depuis des années. Elle ploie et elle revient, et sa lame ne garde pas la marque du marteau. Il me manque la dernière trempe, et l'acier refuse de la prendre quand le foyer baisse. C'est pour elle que le feu reste allumé. Ne me faites pas répéter. »",
+        "reponse": "Vorn se tourne enfin vers l’établi, sans rien toucher. « Une épée à deux mains, que je refais depuis des années. Elle ploie et elle revient, et sa lame ne garde pas la marque du marteau. Il me manque la dernière trempe, et l’acier refuse de la prendre quand le foyer baisse. C’est pour elle que le feu reste allumé. Je ne la montre à personne avant qu’elle soit finie. Je ne la montre à personne avant qu'elle soit finie. Ne me faites pas répéter. »",
         "condition": {
           "flag": "lr-d-vorn-foyer"
         },
@@ -1306,7 +1306,7 @@
           "tombées"
         ],
         "question": "Qui a planté les grandes épées dans la vallée ?",
-        "reponse": "« Personne ne les a plantées, elles sont tombées avec le dieu. Ce sont les armes de Vael-Khor, le dieu de la guerre, tombé il y a longtemps. Elles ont percé la roche en tombant, et les gens de la vallée ont bâti leurs murs entre elles. Mon grand-père disait que les lames dormiraient toujours dans la terre. Il se trompait. »",
+        "reponse": "Vorn regarde la porte, et la vallée derrière. « Personne ne les a plantées, elles sont tombées avec le dieu. Ce sont les armes de Vael-Khor, le dieu de la guerre, tombé il y a longtemps. Elles ont percé la roche en tombant, et les gens de la vallée ont bâti leurs murs entre elles. Mon grand-père disait que les lames dormiraient toujours dans la terre. Il se trompait. Sortez, et suivez le chemin de la vallée pour les voir de près. »",
         "revele": [
           "f-lr-epees-de-vael-khor"
         ],
@@ -1324,7 +1324,7 @@
           "passage"
         ],
         "question": "Que sont ces ruines, sur le sentier de l'ouest ?",
-        "reponse": "Il regarde le feu un moment. « Le sanctuaire des Gardiens du Pont. Ils veillaient sur le passage du torrent, et ils tenaient leurs règles et leurs prières mieux que le viaduc ne tient ses piles. Il n'en reste qu'un temple muet, des statues brisées et un sentier. Je n'ai pas le droit de les oublier. »",
+        "reponse": "Vorn reprend un tisonnier et remue les braises. « Le sanctuaire des Gardiens du Pont. Ils veillaient sur le passage du torrent, et ils tenaient leurs règles et leurs prières mieux que le viaduc ne tient ses piles. Il n’en reste qu’un temple muet, des statues brisées et un sentier. Je n’ai pas le droit de les oublier. Ce n’est pas un endroit pour les curieux. Le sentier de l’ouest vous mènera à ce qu’il en reste. »",
         "revele": [
           "f-lr-gardiens-du-pont"
         ],
@@ -1350,7 +1350,7 @@
         "condition": {
           "flag": "lr-d-vorn-gardiens"
         },
-        "reponse": "« Il part à l'ouest du village, entre les lames plantées de biais, et il monte jusqu'au Temple du Glaive Brisé. Le temple est bâti dans la garde d'une épée couchée, et le vent y porte la limaille des lames tombées. Par temps clair, on voit le viaduc en bas, petit comme une arête de poisson. Ne prenez pas ce sentier de nuit : les lames y volent bas. »",
+        "reponse": "Vorn tend le bras vers la porte. « Il part à l’ouest du village, entre les lames plantées de biais, et il monte jusqu’au Temple du Glaive Brisé. Le temple est bâti dans la garde d’une épée couchée, et le vent y porte la limaille des lames tombées. Par temps clair, on voit le viaduc en bas, petit comme une arête de poisson. Ne prenez pas ce sentier de nuit : les lames y volent bas. Partez tôt, et ne traînez pas en route. »",
         "revele": [
           "f-lr-sentier-vers-le-temple"
         ],

@@ -5,12 +5,12 @@
     "type": "social",
     "lieu": "lr-grotte-cavernes",
     "difficulte": "faible",
-    "intro": "Assis sur sa vire, à six mètres du sol, Ansel vous suit du regard sans bouger : il ne peut plus descendre seul. Une escalade ou une corde suffisent à le sortir de là.",
+    "intro": "Ansel est assis sur sa vire, à six mètres au-dessus du sol. Il vous suit du regard sans bouger, les doigts crispés sur la pierre : il ne peut plus descendre seul. Autour de lui, la grande salle s’ouvre dans un noir presque complet. Des concrétions de rouille montent du sol, et des plaques creuses et sèches jonchent la terre, avec du suif gris figé entre elles. Seule une lueur rouge sombre vient du boyau, et elle ne porte guère au-delà de son seuil.",
     "alternatives": [
       {
         "id": "grimper-jusqu-a-la-vire",
         "nom": "Grimper jusqu'à la vire",
-        "resume": "La paroi est rongée, les prises tiennent à peine, et la vire n'est qu'à six mètres.",
+        "resume": "La paroi est rongée par la rouille, et les prises tiennent à peine sous vos doigts. Vous posez le pied sur la première saillie, puis vous levez les yeux : la vire n’est qu’à six mètres, et Ansel vous attend, immobile. La rouille laisse une trace rouge sur vos doigts. Vous calculez chaque appui, un à un, le souffle court, la pierre froide et poudreuse sous la paume.",
         "jet": { "competence": "athletisme", "dd": 12 },
         "effets": [
           { "narration": "Vous prenez pied sur la vire. Ansel recule contre la pierre, puis se laisse conduire jusqu'au bord. Il descend le premier, sans un mot." },
@@ -24,7 +24,7 @@
       {
         "id": "jeter-une-corde",
         "nom": "Jeter une corde depuis le sol",
-        "resume": "Vous lancez une corde jusqu'à la vire ; Ansel la saisit, et descend par ses propres mains.",
+        "resume": "Vous défaites le cordage rugueux sous vos doigts. Vous en gardez une boucle dans la main, puis vous faites tourner le reste au-dessus de votre tête, lentement, en calculant la distance. L’air sec de la salle sent la poussière et le suif. Ansel suit le mouvement des yeux, sans parler, les mains serrées sur la pierre de la vire. Vous visez la vire, et vous lâchez le cordage.",
         "effets": [
           { "narration": "La corde tombe à côté de lui. Il la saisit après un long moment, la noue à la pierre, et descend lentement, sans regarder personne." },
           { "flag": "lr-ansel-sauve" },
@@ -39,7 +39,7 @@
     "type": "combat",
     "lieu": "lr-grotte-galerie",
     "difficulte": "faible",
-    "intro": "Les oxydeurs sont au travail sur les poutres maîtresses, au centre de la galerie. Dès qu'on entre, ils se retournent d'une seule masse et se jettent sur le métal le plus proche, arme ou armure.",
+    "intro": "Au centre de la galerie, les poutres maîtresses sont rongées jusqu’à mi-épaisseur, et la rouille s’amasse en tas rouges au pied de chacune. Là-haut, les oxydeurs travaillent sans relâche. Le bruit est continu, un grignotement fin qui fait vibrer le fer. Dès que vous entrez, il s’interrompt. Les bêtes se retournent d’une seule masse et flairent le fer que vous portez. Autour de vous, le plafond bas suinte, et le jour gris ne tombe que par les fissures.",
     "monstres": [{ "profil": "oxydeur", "nombre": 3 }],
     "carte": [
       "###########..###########",
@@ -67,7 +67,7 @@
     "type": "combat",
     "lieu": "lr-grotte-nid",
     "difficulte": "faible",
-    "intro": "Au centre de la cuvette, la Reine des Rouilles se dresse, plus grosse que les autres. D'autres formes, plus petites, tiennent le bord ouest. Le raclement s'arrête d'un coup : les bêtes ont senti le fer.",
+    "intro": "Au fond de la salle basse, la cuvette de ferraille est couverte d’une croûte de rouille épaisse. Au centre, la Reine des Rouilles se dresse, plus grosse que les autres, sur une rouille lisse et polie que la lampe fait briller. D’autres formes, plus petites, tiennent le bord de gauche, là où la lumière ne porte plus. Le raclement s’arrête d’un coup. Les bêtes ont senti le fer, et toutes les têtes se tournent vers vous, pendant que la poussière retombe lentement dans la ferraille.",
     "monstres": [
       { "profil": "oxydeur", "nombre": 1, "nom": "La Reine des Rouilles" },
       { "profil": "oxydeur", "nombre": 2 }
@@ -99,7 +99,7 @@
         "nom": "Lancer le leurre loin de la cuvette",
         "condition": { "ou": [{ "objet": "minerai-de-vorn" }, { "objet": "ferraille-divine" }] },
         "jet": { "competence": "escamotage", "dd": 12 },
-        "resume": "Vous lancez le minerai ou la ferraille loin de la cuvette, vers le coin est ; la Reine suit le bruit, hors de la cuvette.",
+        "resume": "Vous ramassez une poignée de minerai et de ferraille, la plus lourde que vous trouvez ; la rouille s’effrite sous vos doigts et laisse une poudre rouge sur la paume. Vous visez le coin le plus éloigné de la cuvette, celui qui se perd dans l’ombre. Vous prenez votre élan, sans quitter les bêtes des yeux, les épaules tendues, puis vous tendez le bras.",
         "effets": [
           { "narration": "Le métal roule sur la ferraille. La Reine se tourne vers le bruit et s'éloigne de la cuvette, sans un cri, suivie des autres. Le bloc de rouille reste à portée." },
           { "flag": "lr-reine-detournee" }
@@ -114,7 +114,7 @@
         "nom": "Déposer le leurre au bord de la pente",
         "condition": { "ou": [{ "objet": "minerai-de-vorn" }, { "objet": "ferraille-divine" }] },
         "jet": { "competence": "discretion", "dd": 12 },
-        "resume": "Vous posez le minerai ou la ferraille au bord de la pente nord, sans bruit, et reculez pas à pas.",
+        "resume": "Vous longez la paroi jusqu’à la pente, à bonne distance de la cuvette, en gardant le souffle court. La ferraille est froide et lourde entre vos doigts. Vous vous accroupissez, vous la posez doucement sur la pierre, sans un bruit, et vous commencez à reculer pas à pas, les yeux sur la masse rouge qui ne bouge pas encore.",
         "effets": [
           { "narration": "Le métal reste au bord de la pente. La Reine le sent, monte doucement jusqu'à lui, suivie des autres, et s'y arrête, loin de la cuvette." },
           { "flag": "lr-reine-detournee" }
@@ -128,7 +128,7 @@
         "id": "apaiser-la-bete",
         "nom": "Apaiser la bête d'une voix calme",
         "jet": { "competence": "dressage", "dd": 14 },
-        "resume": "Vous parlez bas, sans bouger, et la forme trapue cesse de se tendre.",
+        "resume": "Vous ouvrez la bouche, le souffle lent, et vous parlez bas, d’un ton égal, sans un geste. Chaque mot vient après le précédent, sans hâte, et la voix porte jusqu’au fond de la salle. Votre main reste ouverte le long du corps, et vos pieds ne quittent pas la pierre. Au centre de la cuvette, la forme trapue cesse de se tendre, la tête encore tournée vers vous.",
         "effets": [
           { "narration": "Votre voix la calme. La Reine recule dans la cuvette, lentement, et les autres s'écartent : le bord est libre." },
           { "flag": "lr-reine-detournee" }

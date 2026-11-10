@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { champIdentifiant, champsDuSchema, DOSSIERS_EDITABLES, prefixeProbable, problemeIdentifiant, proposerIdentifiant, schemaDuDossier, type DiagnosticMonde, type DonneesMonde } from '@crpg/regles';
 import { ecrireFiche, ErreurEcriture, lireMonde, type MondeLu } from '../api';
+import { cibleDuTexte, ecrireChemin, textesDeLaFiche, type Chemin } from '../assistant';
+import { Assistant } from './Assistant';
 
 interface Fiche {
   id: string;
@@ -75,7 +77,7 @@ export function Fiches({ lu, dm, diag, dossier, ident, recharger }: { lu: MondeL
   );
 }
 
-function Editeur({ lu, diag, dossier, fiche, fiches, recharger, aller }: { lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; dossier: string; fiche: Fiche; fiches: Fiche[]; recharger: () => Promise<void>; aller: (d: string, id?: string) => void }) {
+function Editeur({ lu, dm, diag, dossier, fiche, fiches, recharger, aller }: { lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; dossier: string; fiche: Fiche; fiches: Fiche[]; recharger: () => Promise<void>; aller: (d: string, id?: string) => void }) {
   const origine = useMemo(() => json(fiche.objet), [fiche]);
   const [brouillon, setBrouillon] = useState<Record<string, unknown>>(() => structuredClone(fiche.objet));
   const [depart, setDepart] = useState(origine);
@@ -83,6 +85,8 @@ function Editeur({ lu, diag, dossier, fiche, fiches, recharger, aller }: { lu: M
   const [message, setMessage] = useState<{ ton: 'ok' | 'erreur'; texte: string } | null>(null);
   const [enCours, setEnCours] = useState(false);
   const [copie, setCopie] = useState<string | null>(null);
+  /** Le texte ouvert dans l'assistant d'écriture (`null` : fermé). */
+  const [assistant, setAssistant] = useState<Chemin | null>(null);
 
   const modifie = json(brouillon) !== depart;
   const externe = origine !== depart; // la fiche a changé sur le disque pendant qu'on l'avait ouverte
@@ -104,6 +108,18 @@ function Editeur({ lu, diag, dossier, fiche, fiches, recharger, aller }: { lu: M
   const diagnostics = diag.diagnostics.filter((d) => d.entite?.type === dossier && d.entite.id === fiche.id);
 
   const changer = (cle: string, valeur: unknown) => setBrouillon((b) => ({ ...b, [cle]: valeur }));
+  // Une proposition de l'assistant appliquée au brouillon : les champs se réaffichent (un texte imbriqué vit dans l'éditeur JSON).
+  const appliquer = (chemin: Chemin, texte: string) => {
+    setBrouillon((b) => ecrireChemin(b, chemin, texte));
+    setVersion((v) => v + 1);
+  };
+  /** Le texte qu'ouvre l'assistant pour un champ : le champ lui-même s'il est du texte, sinon le premier texte à cible (une réponse de PNJ…) qu'il contient, ou `null`. */
+  const texteDuChamp = (cle: string, valeur: unknown): Chemin | null => {
+    if (cle === champIdentifiant(dossier)) return null;
+    if (typeof valeur === 'string') return [cle];
+    const textes = textesDeLaFiche({ [cle]: valeur });
+    return (textes.find((t) => cibleDuTexte(dossier, t.chemin)) ?? textes[0])?.chemin ?? null;
+  };
   const retirer = (cle: string) =>
     setBrouillon((b) => {
       const { [cle]: _, ...reste } = b;
@@ -183,9 +199,16 @@ function Editeur({ lu, diag, dossier, fiche, fiches, recharger, aller }: { lu: M
       )}
 
       <div className="champs">
-        {Object.entries(brouillon).map(([cle, valeur]) => (
-          <Champ key={`${cle}-${version}`} cle={cle} valeur={valeur} identifiant={cle === champIdentifiant(dossier)} onChange={(v) => changer(cle, v)} onRetirer={() => retirer(cle)} />
-        ))}
+        {Object.entries(brouillon).map(([cle, valeur]) => {
+          const texte = texteDuChamp(cle, valeur);
+          return (
+            // L'assistant reste monté quand on applique une proposition (le champ, lui, se réaffiche) : la conversation continue.
+            <Fragment key={cle}>
+              <Champ key={`${cle}-${version}`} cle={cle} valeur={valeur} identifiant={cle === champIdentifiant(dossier)} onChange={(v) => changer(cle, v)} onRetirer={() => retirer(cle)} onAssistant={texte ? () => setAssistant(texte) : undefined} />
+              {assistant && assistant[0] === cle && <Assistant lu={lu} dm={dm} dossier={dossier} id={fiche.id} brouillon={brouillon} cheminInitial={assistant} appliquer={appliquer} fermer={() => setAssistant(null)} />}
+            </Fragment>
+          );
+        })}
       </div>
       {manquants.length > 0 && (
         <label className="ajoutChamp">
@@ -251,11 +274,16 @@ function Editeur({ lu, diag, dossier, fiche, fiches, recharger, aller }: { lu: M
   );
 }
 
-function Champ({ cle, valeur, identifiant, onChange, onRetirer }: { cle: string; valeur: unknown; identifiant: boolean; onChange: (v: unknown) => void; onRetirer: () => void }) {
+function Champ({ cle, valeur, identifiant, onChange, onRetirer, onAssistant }: { cle: string; valeur: unknown; identifiant: boolean; onChange: (v: unknown) => void; onRetirer: () => void; onAssistant: (() => void) | undefined }) {
   return (
     <div className="champ">
       <label>
         <code>{cle}</code>
+        {onAssistant && (
+          <button className="lien assistantOuvrir" onClick={onAssistant} title="Rédiger, améliorer ou clarifier ce texte avec l’assistant (appel payant)">
+            assistant
+          </button>
+        )}
         {!identifiant && (
           <button className="lien retirer" onClick={onRetirer} title="Retirer ce champ de la fiche">
             retirer

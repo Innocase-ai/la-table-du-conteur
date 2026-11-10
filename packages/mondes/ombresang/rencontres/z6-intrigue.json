@@ -5,12 +5,12 @@
     "type": "social",
     "lieu": "lr-forge-vorn",
     "difficulte": "faible",
-    "intro": "La forge de Vorn est pleine de braises rouges. Le sifflement du soufflet se mêle au tintement des lames accrochées aux murs. Vorn se tient entre le foyer et vous, la main à plat sur son tablier.",
+    "intro": "La forge de Vorn est pleine de braises rouges, et le soufflet siffle à intervalles réguliers. Le tintement des lames accrochées aux murs accompagne chaque souffle. Vorn se tient entre le foyer et vous, la main à plat sur son tablier de cuir, et il ne la retire pas. La chaleur serre la gorge et vous fait cligner des yeux. La lueur orange glisse sur l’enclume d’acier sombre posée au centre de la pièce.",
     "alternatives": [
       {
         "id": "eteindre-le-foyer",
         "nom": "Éteindre le foyer",
-        "resume": "Jeter l'eau du torrent d'Oxyde sur les braises, sans demander la permission à Vorn.",
+        "resume": "Vous jetez l’eau du torrent d’Oxyde sur les braises, sans demander la permission à Vorn. Le foyer répond par un sifflement, et une vapeur âcre emplit la forge d’un coup, si dense que la lueur orange se noie dans le blanc. Vous reculez d’un pas, les yeux qui piquent, et la chaleur vous monte le long des bras. Le grésillement des braises s’étouffe par à-coups.",
         "effets": [
           {
             "flag": "lr-foyer-force"
@@ -23,7 +23,7 @@
       {
         "id": "parlementer-avec-l-ichor",
         "nom": "Parlementer avec l'Ichor",
-        "resume": "Parler à l'Ichor qui habite la braise, avant que la forge ne s'emballe, et lui proposer de se taire.",
+        "resume": "Vous vous penchez au-dessus des braises et vous parlez à voix basse, les mains ouvertes, pour ne rien brusquer. Vous proposez à l’Ichor qui habite la braise de se taire, avant que la forge ne s’emballe. Le ronflement du foyer baisse d’un ton, et les étincelles retombent une à une sur la pierre. Vous sentez la sueur couler dans votre dos, et vous attendez.",
         "jet": {
           "competence": "religion",
           "dd": 15
@@ -62,7 +62,7 @@
       {
         "id": "denoncer-la-baillie",
         "nom": "Dénoncer la Baillie",
-        "resume": "Montrer au forgeron le registre de livraisons de scories, et nommer la Baillie, dont le bureau cachait ce registre.",
+        "resume": "Vous sortez le registre de livraisons de scories et le posez sur l’enclume, à côté des braises. Vous suivez les lignes du doigt, une à une, sans vous presser. Puis vous nommez la Baillie, et vous dites que son bureau cachait ce registre. Vorn ne quitte pas les pages des yeux, la main toujours à plat sur son tablier, et il se penche enfin vers le papier.",
         "condition": {
           "et": [
             {
@@ -95,12 +95,12 @@
     "type": "exploration",
     "lieu": "lr-bastion-herse",
     "difficulte": "faible",
-    "intro": "La herse reste coincée aux trois quarts. Dans la niche à l'est, les roues du treuil attendent, rongées par l'acide.",
+    "intro": "Un grincement de métal monte du passage voûté. La herse, plus loin, reste coincée aux trois quarts de sa course, pendue à deux rails, ses barreaux piqués de rouille. De l’autre côté, les convois sont à l’arrêt, et chaque heure perdue allonge leur file. À côté de la herse, dans une niche à deux mètres du sol, les roues du treuil attendent, rongées par l’acide, et personne n’a encore touché au mécanisme.",
     "alternatives": [
       {
         "id": "monter-le-treuil",
         "nom": "Monter le treuil de rechange",
-        "resume": "Remplacer l'arbre usé par la pièce de rechange, et remonter la herse d'un coup sec.",
+        "resume": "Vous sortez la pièce de rechange de sa caisse cerclée de fer, et son métal neuf tranche sur les roues noircies. Vous extrayez l’arbre usé de son support et glissez la pièce à sa place. Les dents s’engrènent une à une, la mécanique se tend avec un chuintement sourd, et sous vos mains le treuil cesse enfin de tourner à vide.",
         "effets": [
           {
             "flag": "lr-herse-reparee"
@@ -127,12 +127,12 @@
     "type": "social",
     "lieu": "lr-place",
     "difficulte": "faible",
-    "intro": "Les ferrailleurs se pressent sur la place, et la Baillie n'est pas là pour les calmer. Un murmure monte, qui n'attend qu'une parole.",
+    "intro": "Les ferrailleurs affluent sur la place par petits groupes, les mains noires de graisse et les épaules couvertes de poussière rouge. La Baillie n’est pas là pour les calmer. Un murmure gronde contre les façades de tôle, grave et serré, et il n’attend qu’une parole pour déborder. Au milieu de la place, le pilori luit d’un gris froid. Le vent apporte une odeur de fer chaud, et la poussière d’ocre retombe sur les visages qui se tournent déjà vers vous.",
     "alternatives": [
       {
         "id": "lire-devant-les-ferrailleurs",
         "nom": "Lire devant les ferrailleurs",
-        "resume": "Lire à voix haute ce que vous avez vu, chiffres à l'appui, et demander aux ferrailleurs de témoigner.",
+        "resume": "Vous montez sur l’estrade et lisez à voix haute ce que vous avez vu, ligne après ligne : des fûts de scories comptés et recomptés, des dates, des chiffres à l’appui. Votre voix porte mal dans la poussière, alors vous ralentissez, et la place se tait peu à peu. Puis vous regardez les visages tournés vers vous et demandez qui, parmi eux, a vu la même chose.",
         "jet": {
           "competence": "persuasion",
           "dd": 13
@@ -161,7 +161,7 @@
             }
           ]
         },
-        "resume": "Vous posez les deux documents sur le pilori, et les ferrailleurs lisent eux-mêmes les chiffres et les sceaux.",
+        "resume": "Vous posez le registre et le rapport sur le pilori, les pages ouvertes et les sceaux tournés vers la foule. La poussière d’ocre s’y dépose en fine couche rouge, et vous l’essuyez du revers de la main. Les ferrailleurs approchent, penchés sur les colonnes. Personne ne vous demande rien : ils lisent eux-mêmes, un doigt sur chaque ligne, et le silence s’étire autour des documents.",
         "effets": [
           {
             "flag": "lr-elinor-demasquee"
@@ -171,7 +171,7 @@
       {
         "id": "vorn-temoigne",
         "nom": "Le témoignage de Vorn",
-        "resume": "Pour la première fois depuis des jours, Vorn quitte son atelier, monte sur l'estrade et dit ce qu'il sait de la Baillie.",
+        "resume": "Vous levez la main vers la forge isolée, là-haut, et vous attendez, sans un mot de plus. Pour la première fois depuis des jours, Vorn quitte son atelier, les mains encore marquées de suie. Il gravit les trois marches de planches, lentement, puis se tourne vers la foule. Un long moment, il reste silencieux, le regard posé sur les visages, puis il ouvre la bouche.",
         "condition": {
           "flag": "lr-vorn-temoigne"
         },
@@ -184,7 +184,7 @@
       {
         "id": "garder-le-silence",
         "nom": "Garder le silence",
-        "resume": "Ne rien dire, et laisser la place se disperser.",
+        "resume": "Vous refermez la bouche, et vous restez là, les bras le long du corps, à regarder la charrette et les gerbes de lames. Le murmure retombe par endroits, puis reprend. Les regards glissent sur vous sans qu’aucun ne s’arrête longtemps. Vous ne bougez plus. Une tôle claque quelque part dans le vent, et la poussière d’ocre se pose sur vos épaules.",
         "effets": [
           {
             "narration": "Vous gardez le silence. La place se vide peu à peu, et la Baillie reste maîtresse de son récit."

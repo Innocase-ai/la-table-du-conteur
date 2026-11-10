@@ -5,13 +5,13 @@
     "type": "social",
     "lieu": "lr-temple-chapelle",
     "difficulte": "faible",
-    "intro": "Le casque posé sur l'autel s'anime, et une voix creuse, lente, sort de sa visière fendue. Elle exige un serment ou un duel, et elle dit qu'elle sent le mensonge. Elle attend, sans un souffle de plus.",
+    "intro": "Le casque posé sur l’autel s’anime, et une voix creuse, lente, sort de sa visière fendue d’un trait droit. Elle exige un serment ou un duel, et elle dit qu’elle sent le mensonge. La chapelle est basse, couverte d’acier gris-bleu, et le jour entre de biais par la grande arche pour venir se poser sur l’autel de pierre. Une inscription court sur le devant de l’autel. Vous voyez le casque tourné vers vous, immobile, qui attend sans un souffle de plus.",
     "alternatives": [
       {
         "id": "reciter-le-serment",
         "nom": "Je récite le serment des Gardiens, dans l'ordre.",
         "condition": { "et": [{ "ou": [{ "fait": "f-lr-serment-des-gardiens" }, { "flag": "lr-plaques-ordonnees" }] }, { "non": { "flag": "lr-maitre-refuse" } }] },
-        "resume": "Le casque se tait un instant, puis la voix reprend, plus basse : « Le serment est entendu. On m'appelait Ser Osbern, dernier Maître d'Armes des Gardiens, et je n'ai jamais laissé tomber le pont. » Ensuite, le casque ne dit plus rien.",
+        "resume": "Vous récitez le serment des Gardiens d’une voix claire, du début à la fin. Le casque se tait un instant, puis la voix reprend, plus basse : « Le serment est entendu. On m’appelait Ser Osbern, dernier Maître d’Armes des Gardiens, et je n’ai jamais laissé tomber le pont. » Ensuite, le casque ne dit plus rien, et la chapelle reprend son silence.",
         "effets": [{ "flag": "lr-serment-prete" }, { "fait": "f-lr-ser-osbern-serment" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
       },
       {
@@ -19,14 +19,14 @@
         "nom": "Je parle franchement, et je jure avec mes propres mots.",
         "condition": { "non": { "flag": "lr-maitre-refuse" } },
         "jet": { "competence": "persuasion", "dd": 13 },
-        "resume": "La voix écoute jusqu'au bout sans rien interrompre, puis répond : « Ce serment-là suffit. On m'appelait Ser Osbern, dernier Maître d'Armes des Gardiens, et je n'ai jamais laissé tomber le pont. » Le casque se tait.",
+        "resume": "Vous parlez franchement, sans formule apprise, et vous jurez avec vos propres mots en regardant la visière fendue. Vous dites ce qui vous amène sur le pont, sans rien détourner. La voix écoute jusqu’au bout sans rien interrompre, puis répond : « Ce serment-là suffit. On m’appelait Ser Osbern, dernier Maître d’Armes des Gardiens, et je n’ai jamais laissé tomber le pont. » Le casque se tait.",
         "effets": [{ "flag": "lr-serment-prete" }, { "fait": "f-lr-ser-osbern-serment" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }],
         "echec": [{ "narration": "La voix ne répond rien. Le casque attend encore un serment, ou un duel." }]
       },
       {
         "id": "mentir",
         "nom": "Je mens sur mes intentions.",
-        "resume": "La voix se tait longtemps, puis répond : « Vous mentez. Je le sens comme on sent le froid du fer avant de le toucher. Il ne reste que le duel. »",
+        "resume": "Vous donnez de fausses intentions, d’une voix tranquille, en espérant qu’elles passent. Rien dans votre ton ne trahit l’hésitation. Le casque ne réagit pas tout de suite. Au fond de la chapelle, la poussière retombe sur le sol. La voix se tait longtemps, puis répond : « Vous mentez. Je le sens comme on sent le froid du fer avant de le toucher. Il ne reste que le duel. »",
         "effets": [{ "flag": "lr-maitre-refuse" }]
       }
     ]
@@ -37,7 +37,7 @@
     "type": "combat",
     "lieu": "lr-temple-arsenal",
     "difficulte": "moderee",
-    "intro": "Les pièces d'une armure sans casque quittent le râtelier du mur est et volent s'assembler sur le piédestal. Des lames se détachent des râteliers, une à une, pointes tournées vers les visiteurs. Rien ne parle : l'armure répond par gestes, et ses gestes sont ceux d'une garde qui attend qu'on jure ou qu'on se batte.",
+    "intro": "Les pièces d’une armure sans casque quittent un râtelier et volent vers le piédestal de pierre, où elles s’assemblent avec un bruit de charnières qui se referment. Une à une, les lames se détachent des murs, pointes tournées vers vous, et la lumière de la lampe glisse sur leur fer piqué de vert. Rien ne parle. L’armure répond par gestes, lents et précis, ceux d’une garde qui attend une parole ou un coup. Dans l’air sec flotte une odeur de graisse froide et de métal.",
     "monstres": [
       { "profil": "armure-animee", "nombre": 1, "nom": "Le Maître d'Armes Sans Corps", "pnj": "maitre-d-armes-sans-corps" },
       { "profil": "epee-volante", "nombre": 4 }
@@ -73,13 +73,13 @@
         "id": "reciter-le-serment",
         "nom": "Je récite le serment des Gardiens, dans l'ordre.",
         "condition": { "et": [{ "ou": [{ "fait": "f-lr-serment-des-gardiens" }, { "flag": "lr-plaques-ordonnees" }] }, { "non": { "flag": "lr-maitre-refuse" } }] },
-        "resume": "Le Maître s'incline, les épées retombent sur leurs râteliers, et la lame solaire ternie se pose au pied du piédestal.",
+        "resume": "Vous récitez le serment des Gardiens, dans l’ordre, lentement, sans vous tromper d’un mot. Le Maître s’incline, d’un mouvement raide qui fait grincer ses jointures. Un à un, les lames retombent sur leurs râteliers, pointes baissées, et la lame solaire, ternie, se pose au pied du piédestal, sur la poussière grise. Le grincement se tait, et la crypte n’a plus d’autre bruit que votre souffle.",
         "effets": [{ "flag": "lr-serment-prete" }, { "pnjEtat": { "pnj": "maitre-d-armes-sans-corps", "etat": "parti" } }]
       },
       {
         "id": "accepter-le-duel",
         "nom": "J'accepte le duel contre l'armure seule.",
-        "resume": "Les épées restent sur leurs râteliers. Seule l'armure se détache du piédestal, et se place au centre de la crypte.",
+        "resume": "Vous répondez d’une voix ferme, et le mot se perd entre les murs d’acier. Les épées restent sur leurs râteliers, immobiles. Seule l’armure se détache du piédestal : ses plaques glissent les unes sur les autres avec un claquement sec, puis elle avance pesamment sur la poussière jusqu’au centre de la crypte, et elle se tourne vers vous. Vous entendez ses articulations se refermer une à une.",
         "effets": [{ "rencontre": "duel-du-maitre" }]
       }
     ],
@@ -92,7 +92,7 @@
     "type": "combat",
     "lieu": "lr-temple-arsenal",
     "difficulte": "faible",
-    "intro": "Les épées restent immobiles sur leurs râteliers. L'armure, sans casque, se détache seule du piédestal et se place au centre de la crypte. Elle attend un duel, sans un mot.",
+    "intro": "Les épées restent immobiles sur leurs râteliers de fer, pointes levées vers la voûte. Le jour gris s’arrête à trois pas de l’entrée, et plus loin une lampe basse fait luire l’acier en longues traînées. Dans le silence, une armure sans casque se détache du piédestal, et ses jointures grincent. Elle descend du socle et vient se placer au centre de la crypte. Elle attend un duel, sans un mot, et l’air sent la poussière froide et le vieux métal.",
     "monstres": [
       { "profil": "armure-animee", "nombre": 1, "nom": "Le Maître d'Armes Sans Corps", "pnj": "maitre-d-armes-sans-corps" }
     ],

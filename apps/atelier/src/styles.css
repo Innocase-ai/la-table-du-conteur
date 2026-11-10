@@ -949,3 +949,40 @@ mark {
 .cartes-repere.choisi i { background: #fff; box-shadow: 0 0 0 3px #d4ae66; }
 .cartes-repere b { font: 600 12px/1.2 sans-serif; color: #fff; text-shadow: 0 0 3px #000, 0 0 3px #000; margin-top: 2px; white-space: nowrap; }
 @media (max-width: 800px) { .cartes { grid-template-columns: 1fr; } }
+
+/* --- Vue en arbre --- */
+.arbre { display: flex; flex-direction: column; gap: 4px; }
+.arbreLieu { border-left: 1px solid var(--bord); padding-left: 12px; margin: 2px 0; }
+.arbreLieu > summary { cursor: pointer; padding: 3px 0; }
+.arbreLieu > summary a { color: var(--or); font-weight: 600; text-decoration: none; }
+.arbreLieu > summary a:hover { text-decoration: underline; }
+.arbreEnfants { margin-left: 8px; }
+.arbreEntites { list-style: none; margin: 2px 0 6px 18px; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.arbreEntites a { color: var(--texte); }
+.arbreDossier { display: inline-block; min-width: 92px; font-size: 12px; color: var(--muet); margin-right: 8px; }
+.arbreDossier.d-pnj { color: #b9a3e3; }
+.arbreDossier.d-rencontres { color: var(--erreur); }
+.arbreDossier.d-tresors { color: var(--or); }
+.arbreDossier.d-pieges, .arbreDossier.d-enigmes { color: var(--conseil); }
+.arbreDiag { font-size: 11px; margin-left: 6px; padding: 0 6px; border-radius: 99px; border: 1px solid currentColor; }
+.arbreDiag.erreur { color: var(--erreur); }
+.arbreDiag.avis { color: var(--avis); }
+
+/* --- Assistant d'écriture --- */
+.champ .assistantOuvrir { font-size: 12px; color: var(--or); }
+.assistant { border: 1px solid var(--or); border-radius: 8px; padding: 10px 12px; margin: 6px 0 4px; background: #1a1b1f; display: flex; flex-direction: column; gap: 8px; }
+.assistantTete { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.assistantTete b { color: var(--or); }
+.assistantCout { font-size: 12px; margin-left: auto; }
+.assistantFil { display: flex; flex-direction: column; gap: 8px; max-height: 480px; overflow-y: auto; }
+.assistantDemande { margin: 0; align-self: flex-end; max-width: 80%; background: var(--carte); border: 1px solid var(--bord); border-radius: 8px; padding: 6px 10px; color: var(--muet); white-space: pre-wrap; }
+.assistantProposition { border-left: 3px solid var(--bord); padding: 2px 0 2px 10px; }
+.assistantProposition.derniere { border-left-color: var(--or); }
+.assistantProposition p { margin: 0 0 6px; white-space: pre-wrap; }
+.assistantVerif { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; }
+.assistantVerif .bouton { margin-left: auto; padding: 4px 12px; }
+.assistantActions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.assistantLibre { display: flex; gap: 8px; align-items: flex-end; }
+.assistantLibre textarea { flex: 1; background: var(--carte); color: var(--texte); border: 1px solid var(--bord); border-radius: 6px; padding: 6px 8px; font: inherit; }
+.assistant .petit { font-size: 12px; margin: 0; }
+@media (max-width: 700px) { .assistantLibre { flex-direction: column; align-items: stretch; } .assistantCout { margin-left: 0; } }

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { assemblerMonde, diagnostiquerMonde, type DiagnosticMonde, type DonneesMonde } from '@crpg/regles';
 import { lireMonde, listerMondes, type MondeLu, type ResumeMonde } from './api';
 import { chargerDonnees } from './donnees';
+import { Arbre } from './vues/Arbre';
 import { Cartes } from './vues/Cartes';
 import { Fiches } from './vues/Fiches';
 import { Graphes } from './vues/Graphes';
@@ -17,7 +18,7 @@ type Etat =
   | { etat: 'illisible'; erreurs: { fichier: string; message: string }[] }
   | { etat: 'ok'; lu: MondeLu; dm: DonneesMonde; diag: DiagnosticMonde; duree: number };
 
-const VUES = ['graphes', 'parcours', 'fiches', 'cartes', 'registre', 'revue'] as const;
+const VUES = ['arbre', 'graphes', 'parcours', 'fiches', 'cartes', 'registre', 'revue'] as const;
 
 /** Le monde et la vue choisis : `#/<monde>` (santé), `#/<monde>/graphes`, `#/<monde>/fiches/<dossier>/<id>`… */
 const lireHash = () => {
@@ -87,6 +88,9 @@ export function App() {
             <a href={`#/${id}`} className={h.vue === 'sante' ? 'actif' : ''}>
               Santé
             </a>
+            <a href={`#/${id}/arbre`} className={h.vue === 'arbre' ? 'actif' : ''}>
+              Arbre
+            </a>
             <a href={`#/${id}/graphes`} className={h.vue === 'graphes' ? 'actif' : ''}>
               Graphes
             </a>
@@ -127,6 +131,7 @@ export function App() {
           </section>
         )}
         {etat.etat === 'ok' && h.vue === 'sante' && <Sante nom={courant?.nom ?? id} statut={courant?.statut ?? ''} dm={etat.dm} diag={etat.diag} duree={etat.duree} />}
+        {etat.etat === 'ok' && h.vue === 'arbre' && <Arbre lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
         {etat.etat === 'ok' && h.vue === 'graphes' && <Graphes lu={etat.lu} dm={etat.dm} diag={etat.diag} />}
         {etat.etat === 'ok' && h.vue === 'parcours' && <Parcours lu={etat.lu} dm={etat.dm} />}
         {etat.etat === 'ok' && h.vue === 'fiches' && <Fiches lu={etat.lu} dm={etat.dm} diag={etat.diag} dossier={h.dossier} ident={h.ident} recharger={() => charger(id)} />}

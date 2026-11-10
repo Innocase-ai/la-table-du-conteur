@@ -53,7 +53,7 @@
             "flag": "lr-ansel-sauve"
           }
         },
-        "reponse": "« J'ai grimpé pour fuir, et je n'ai pas pu redescendre. Trois jours que je suis assis là, le dos à la pierre. Mes mains sont écorchées, la paroi est rongée, et les prises tiennent à peine. Je ne peux pas descendre seul. »"
+        "reponse": "Il ne bouge pas, le dos collé à la pierre, les bras serrés contre les genoux. « J’ai grimpé pour fuir, et je n’ai pas pu redescendre. Trois jours que je suis assis là. Mes mains sont écorchées, la paroi est rongée, et les prises tiennent à peine. Je ne peux pas descendre seul. Ce n’est pas une plainte, c’est un fait. Si vous voulez m’aider, dites-moi d’abord ce que vous êtes venu chercher, et pour qui. Je ne promets rien que je ne puisse tenir. »"
       },
       {
         "id": "gorm",
@@ -66,7 +66,7 @@
           "village"
         ],
         "question": "Vous êtes l'apprenti de Gorm Meule ?",
-        "reponse": "« Oui, je suis son apprenti, depuis que je sais tenir un marteau. Il m'a dit de rester à l'atelier, ce soir-là. Je suis parti sans rien dire, la veste sur le dos. Gorm ne crie jamais. Il se tait, et c'est pire. Dites-lui que je suis vivant, si vous le voyez. »"
+        "reponse": "Il frotte ses paumes écorchées contre son pantalon, sans regarder le visage de l’étranger. « Oui, je suis son apprenti, depuis que je sais tenir un marteau. Il m’a dit de rester à l’atelier, ce soir-là. Je suis parti sans rien dire, la veste sur le dos, et je n’ai plus pu revenir. Gorm ne crie jamais. Il se tait, et c’est pire. Si vous rentrez au village, cherchez-le à l’atelier. Dites-lui seulement que je suis vivant, si vous le voyez. »"
       },
       {
         "id": "fissure",
@@ -82,7 +82,7 @@
             "flag": "lr-ansel-sauve"
           }
         },
-        "reponse": "« Quelque chose, au fond de la fissure de l'est. Pas une bête, ou pas seulement une bête. J'ai entendu que ça bougeait, puis plus rien. Je n'en dis pas plus sur cette pierre. Pas tant que je suis coincé ici. »"
+        "reponse": "Il serre les genoux contre sa poitrine et détourne les yeux vers l’est. « Quelque chose, au fond de la fissure de l’est. Pas une bête, ou pas seulement une bête. J’ai entendu que ça bougeait, puis plus rien. Je suis ici depuis trois jours, et personne ne m’a entendu crier. Ce silence m’a fait plus peur que le bruit. Je n’en dis pas plus sur cette pierre. Pas tant que je suis coincé ici. »"
       },
       {
         "id": "chaleur",
@@ -95,7 +95,7 @@
           "lueur"
         ],
         "question": "Pourquoi la fissure est-elle si chaude ?",
-        "reponse": "« Elle luit au fond, d'une lueur sombre qui ne vient pas du jour. L'air qui en sort est chaud, et il sent le métal qu'on vient de chauffer. Les pierres sont tièdes sous la main. Les scories craquent à chaque pas. Je n'y retournerai pas. »"
+        "reponse": "Il passe la paume sur le mur, comme pour vérifier ce qu’il dit. « Je ne sais pas pourquoi, mais elle est chaude. Elle luit au fond, d’une lueur sombre qui ne vient pas du jour. L’air qui en sort est chaud, et il sent le métal qu’on vient de chauffer. Les pierres sont tièdes sous la main, et les scories craquent à chaque pas. Si vous descendez voir, faites-le lentement, et gardez une main sur la paroi. Moi, je n’y retournerai pas. »"
       },
       {
         "id": "ce-qu-il-a-vu",
@@ -112,7 +112,7 @@
         "condition": {
           "flag": "lr-ansel-sauve"
         },
-        "reponse": "« Trois fûts de fer, cerclés, empilés au fond, qui bouchent la suite de la fissure. Ils sont scellés. Celui du dessus est tiède, les deux autres sont froids. Sur son couvercle, un sceau frappé : un cercle à trois traits, sans nom ni devise. Je ne sais pas qui les a scellés. Je ne veux pas savoir. »",
+        "reponse": "Il cherche un point sur le sol, puis le montre du doigt sans le toucher. « Trois fûts de fer, cerclés, empilés au fond, et ils bouchent la suite de la fissure. Ils sont scellés. Celui du dessus est tiède, les deux autres sont froids. Sur son couvercle, un sceau frappé : un cercle à trois traits, sans nom ni devise. Je ne sais pas qui les a scellés. Je ne veux pas savoir. Quand vous y retournerez, ne touchez pas au couvercle du dessus, il est tiède. »",
         "revele": [
           "f-lr-sceau-cercle-trois-traits"
         ],
@@ -133,7 +133,7 @@
         "condition": {
           "flag": "lr-ansel-sauve"
         },
-        "reponse": "« On arrache les lames à la terre avec des leviers et des cordes, à trois ou quatre à chaque fois. Ensuite, on les porte aux meules des forges à aubes. On les polit jusqu'à y voir son reflet. Gorm dit qu'une lame bien polie se vend mieux qu'un sac de blé. Le métier nourrit le village, mais il ne se fait qu'en plein jour. »",
+        "reponse": "Il penche la tête, un peu surpris qu’on lui pose une question aussi simple. « On arrache les lames à la terre avec des leviers et des cordes, à trois ou quatre à chaque fois. Ensuite, on les porte aux meules des forges à aubes. On les polit jusqu’à y voir son reflet. Gorm dit qu’une lame bien polie se vend mieux qu’un sac de blé. Le métier nourrit le village, mais il ne se fait qu’en plein jour. Allez aux forges à l’aube pour le voir, et restez loin des lames après la nuit. »",
         "effets": [
           {
             "flag": "lr-d-ansel-ferraille"
@@ -156,7 +156,7 @@
         "condition": {
           "flag": "lr-d-ansel-ferraille"
         },
-        "reponse": "« Plus de cent lames, plantées pointe en bas dans la roche. Certaines sont plus hautes que tout le bourg empilé. Le vent siffle entre les gardes. Sur le flanc sud de la plus haute, il y a des lettres gravées, plus grandes que moi. Gorm en a lu quelques-unes : une bataille livrée jusqu'à la nuit, et une garde qu'il fallait tenir jusqu'au bout. »",
+        "reponse": "Il lève les yeux vers le haut de la paroi, comme si la forêt était là, au-dessus. « Plus de cent lames, plantées pointe en bas dans la roche. Certaines sont plus hautes que tout le bourg empilé. Le vent siffle entre les gardes. Sur le flanc sud de la plus haute, il y a des lettres gravées, plus grandes que moi. Gorm en a lu quelques-unes : une bataille livrée jusqu’à la nuit, et une garde qu’il fallait tenir jusqu’au bout. Si vous y allez, demandez-lui de vous lire le reste. Gorm connaît mieux ces lettres que moi. »",
         "revele": [],
         "effets": [
           {
@@ -180,7 +180,7 @@
         "condition": {
           "flag": "lr-d-ansel-foret"
         },
-        "reponse": "« Elles ne sont pas venues pour nous. Elles fuient quelque chose, là-haut, et elles ont trouvé le fer du viaduc. Il y en a trop pour les poutres. Une nuit, je les ai vues ronger un tirant entier. Elles ne mordent pas par cruauté : elles ont faim, et c'est tout ce qu'elles savent faire. »",
+        "reponse": "Il secoue lentement la tête, et ses mains se resserrent sur ses coudes. « Elles ne sont pas venues pour nous. Elles fuient quelque chose, là-haut, et elles ont trouvé le fer du viaduc. Il y en a trop pour les poutres. Une nuit, je les ai vues ronger un tirant entier. Elles ne mordent pas par cruauté : elles ont faim, et c’est tout ce qu’elles savent faire. Ce qui les chasse, je ne le sais pas. »",
         "revele": [],
         "effets": [
           {
@@ -204,7 +204,7 @@
         "condition": {
           "flag": "lr-ansel-sauve"
         },
-        "reponse": "« Par un boyau, au nord-est, où il faut ramper. La boue y garde les traces : une seule rangée de pas et de griffes de fer, qui monte sans jamais tourner. Ce qui est passé par là est revenu par le même chemin. Ne l'empruntez pas sans lampe. »",
+        "reponse": "Il tend le bras vers le coin de la paroi, à peine dégagé de l’ombre. « Par un boyau, au nord-est, où il faut ramper. La boue y garde les traces : une seule rangée de pas et de griffes de fer, qui monte sans jamais tourner. Ce qui est passé par là est revenu par le même chemin. Ne l’empruntez pas sans lampe, et pas seul. Et en y allant, gardez toujours un œil sur le chemin du retour. »",
         "revele": [
           "f-lr-traces-des-drains"
         ],
@@ -224,7 +224,7 @@
           "montagne"
         ],
         "question": "Que dit-on des crêtes, au nord ?",
-        "reponse": "« Je ne suis jamais monté là-haut. On dit que les soldats du Maréchal tiennent les cols, au nord. Chez nous, on n'en parle pas. »",
+        "reponse": "Il hausse les épaules sans répondre tout de suite, puis regarde le ciel qui s’assombrit. « Je ne suis jamais monté là-haut. On dit que les soldats du Maréchal tiennent les cols, au nord. On en dit peu, et souvent tard le soir, en rentrant de la ferraille. Chez nous, on n’en parle pas. Si vous voulez savoir ce qui se passe là-haut, interrogez quelqu’un qui a marché jusqu’aux passes. Moi, je ne vous dirai rien de plus sur les crêtes. »",
         "revele": [],
         "unique": true,
         "effets": []

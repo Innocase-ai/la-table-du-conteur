@@ -44,7 +44,7 @@
           "competence": "persuasion",
           "dd": 12
         },
-        "resume": "Le guetteur compte les jours de marche perdus à voix haute, et les deux hommes grommellent en lâchant la charrette de l'est. Ils ne cherchent pas la bagarre : ils veulent juste un chemin sans témoin.",
+        "resume": "Vous dites que ces outils ont un propriétaire, calmement, sans lever la voix, et vous regardez tour à tour les deux hommes. Le guetteur, depuis son rocher, compte à voix haute les jours de marche perdus. Les deux autres grommellent, puis lâchent la charrette qu’ils chargeaient, les doigts ouverts. La poussière rouge retombe sur les roues. Ils ne cherchent pas la bagarre : ils veulent un chemin sans témoin, et personne ne le leur refuse.",
         "effets": [
           {
             "flag": "lr-chargement-recupere"
@@ -71,7 +71,7 @@
             "min": 25
           }
         },
-        "resume": "Ils comptent la bourse deux fois, sans un mot, puis laissent la charrette de l'est et partent vers la forêt. Le guetteur hoche la tête et range ses pièces. Le marché est clair : ils n'ont rien vu, et rien à rendre.",
+        "resume": "Vous sortez la bourse et alignez les pièces dans votre paume, une à une, sous les yeux des deux hommes. Ils les comptent deux fois, sans un mot, puis lâchent la charrette qu’ils chargeaient. Le guetteur hoche la tête depuis son rocher et range ses propres pièces. Le marché est clair : ils n’ont rien vu, et il n’y a rien à rendre.",
         "effets": [
           {
             "pieces": -25
@@ -161,7 +161,7 @@
           "competence": "survie",
           "dd": 12
         },
-        "resume": "La bête renifle la pioche et la ferraille du campement, les emporte d'une dent vers le nord, et s'éloigne de la lame fendue. Les ferrailleurs n'auront plus qu'à calfater la fente, et l'allée restera ouverte à leurs charrettes.",
+        "resume": "Le museau au ras du sol, la bête renifle la pioche, puis la ferraille du campement. Ses dents se referment sur le fer dans un crissement qui vous hérisse la peau, et elle les emporte d’une dent. Une odeur de rouille âcre flotte encore dans l’air. Les ferrailleurs n’auront plus qu’à calfater la fente, et l’allée restera ouverte à leurs charrettes.",
         "effets": [
           {
             "flag": "lr-rongeur-regle"
@@ -238,7 +238,7 @@
           "competence": "athletisme",
           "dd": 12
         },
-        "resume": "Cerclages, chaudrons et pointes de piquets sont amassés en tas sous une bâche de convoi, à l'est, loin des enfants. Les lames tournent sur le tas sans mordre les tentes. Mira vous regarde faire sans rien dire. La seconde volée viendra quand même.",
+        "resume": "Vous ramassez les cerclages, les chaudrons et les pointes de piquets, et vous les amassez en tas sous une bâche de convoi, loin des tentes et des enfants. Le fer est lourd, il râpe les paumes, et la bâche glisse sous vos doigts. Mira vous regarde faire sans un mot. Là-haut, les lames tournent au-dessus du camp, et leur sifflement ne s’éloigne pas.",
         "effets": [
           {
             "flag": "lr-camp-fortifie"
@@ -281,7 +281,7 @@
     "type": "mixte",
     "lieu": "lr-camp-refugies",
     "difficulte": "faible",
-    "intro": "Juste avant l'aube, le gris monte au-dessus de l'arche et les foyers ronflent encore. Puis quatre lames reviennent d'un seul bloc, plus bas et plus vite que la nuit, et fendent l'air au-dessus des charrettes. Si le fer est rassemblé, elles tournent autour du tas sous sa bâche ; sinon, elles fondent sur les roues cerclées. Les derniers veilleurs se redressent, les mains serrées sur les piquets.",
+    "intro": "Juste avant l’aube, le gris monte au-dessus de l’arche, et les foyers ronflent encore. Les derniers veilleurs se redressent, les mains serrées sur les piquets. Puis quatre lames reviennent d’un seul bloc, plus bas et plus vite que pendant la nuit, et fendent l’air au-dessus des charrettes. Les cerclages de fer des roues et les chaudrons pendus aux foyers accrochent la lueur pâle du jour. Si le fer est rassemblé, elles tournent autour du tas sous sa bâche ; sinon, elles fondent sur les roues cerclées. La fumée rabattue par le vent brouille les tentes.",
     "monstres": [
       {
         "profil": "epee-volante",
@@ -314,7 +314,7 @@
         "condition": {
           "flag": "lr-camp-fortifie"
         },
-        "resume": "Le tas de fer sous sa bâche retient les lames comme un aimant. Elles cognent, s'émoussent, tombent ou se dispersent vers la file, et pas un piquet de tente ne bouge. Quand la dernière lame s'éloigne au-dessus de l'eau, le camp reste debout.",
+        "resume": "Vous reculez d’un pas et vous laissez le tas de fer, sous sa bâche, faire son travail. Il retient les lames, et elles frappent le métal sans trouver de prise. Elles cognent, s’émoussent, tombent ou se dispersent vers la file qui flotte au-dessus du torrent. Pas un piquet de tente ne bouge. Quand la dernière lame s’éloigne au-dessus de l’eau, le camp tient encore.",
         "effets": [
           {
             "flag": "lr-camp-defendu"
