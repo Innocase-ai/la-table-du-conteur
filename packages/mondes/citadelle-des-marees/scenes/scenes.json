@@ -125,6 +125,39 @@
     ]
   },
   {
+    "id": "les-salines-de-marthe",
+    "nom": "Les salines de Marthe",
+    "declencheur": {
+      "lieu": "fal-salines"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "marais-de-sel"
+        },
+        "mouvement": "recul",
+        "texte": "Une plaine plate, coupée de digues de terre brune et de canaux. Les bassins carrés reflètent un ciel pâle. Le vent froisse les roseaux, et l'eau glisse dans les canaux avec un bruit de tissu."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fal-digues-du-marais"
+        },
+        "mouvement": "gauche",
+        "texte": "Une digue de terre noire trace une ligne droite entre deux étangs gris. La boue retient vos pas. Des joncs couchés, des flaques luisantes, une bande d'écume sale. Le clapotis revient toujours du même côté, régulier, presque patient."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fal-salines"
+        },
+        "mouvement": "approche",
+        "texte": "Une cabane de planches goudronnées, un séchoir en claies qui grince au vent. Dans la fumée d'un poêle, une marmite chante doucement. Des râteaux de bois pendent aux poutres, et des cahiers de comptes attendent au mur."
+      }
+    ]
+  },
+  {
     "id": "fin-renouer",
     "nom": "Le Sceau renoué",
     "declencheur": {
