@@ -4,7 +4,8 @@
 //   pnpm conteur [monde] [--essai "texte" "texte"…] [--modele anthropic/claude-haiku-5.5] [--plafond 0.25] [--go]
 //
 // Dans --essai, une ligne qui commence par ! prépare la scène sans appeler le modèle (gratuit) : !fuite (le groupe se
-// replie d'une rencontre), !lieu <id>, !attitude <pnj> <n>, !fait <id>, !drapeau <id>.
+// replie d'une rencontre), !lieu <id>, !attitude <pnj> <n>, !fait <id>, !drapeau <id>, !issue <rencontre> <victoire|alternative|fuite|defaite>
+// [alternative] (la rencontre s'est dénouée ainsi, sous les yeux des PNJ du lieu courant), !parle <pnj> (le groupe lui a parlé).
 //
 // Sans --go : simulation (aucun appel, aucun coût). Avec --essai : les tours sont joués dans l'ordre ; sinon, chaque ligne
 // tapée est un tour. La clé OpenRouter est lue dans `.env` (jamais affichée).
@@ -15,6 +16,8 @@ import { bilanPersonnage, groupeConseille } from '../../packages/regles/src/crea
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { creerLLM, evenementsEnTexte, jouerTour, MODELE_CONTEUR, outilsDuConteur, promptSysteme, type Echange } from '../../packages/regles/src/conteur';
 import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { consignerIssue, consignerParole, type PartieMonde } from '../../packages/regles/src/monde/exploration';
+import { TYPES_ISSUE, type TypeIssue } from '../../packages/regles/src/monde/schemas';
 import { MODULES_STANDARD } from '../../packages/regles/src/modules';
 import { creerMoteur } from '../../packages/regles/src/noyau/moteur';
 import { personnageDepuisFiche } from '../../packages/regles/src/personnage';
@@ -113,6 +116,8 @@ async function main(): Promise<void> {
       else if (cmd === 'attitude' && a) partie.etat.attitudes[a] = Number(b ?? 0);
       else if (cmd === 'fait' && a && !partie.etat.faits.includes(a)) partie.etat.faits.push(a);
       else if (cmd === 'drapeau' && a) partie.etat.flags[a] = true;
+      else if (cmd === 'issue' && a && (TYPES_ISSUE as readonly string[]).includes(b ?? '')) consignerIssue({ dm: r.monde, etat: partie.etat as PartieMonde['etat'], groupe: partie.groupe, gen: () => 0 }, a, b as TypeIssue, t.slice(1).trim().split(/s+/)[3]);
+      else if (cmd === 'parle' && a) consignerParole({ dm: r.monde, etat: partie.etat as PartieMonde['etat'], groupe: partie.groupe, gen: () => 0 }, a);
       else console.log(`  (préparation inconnue : ${t})`);
       console.log(`  [préparation] ${t.slice(1)}`);
     };

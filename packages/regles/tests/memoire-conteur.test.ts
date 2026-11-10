@@ -77,7 +77,7 @@ describe('le dossier du groupe', () => {
     const texte = dossierDuGroupe(dm, e).join('\n');
     expect(texte).toMatch(/Lieux déjà parcourus \(3 au total.*: L'auberge du Dernier Feu, Veillecendre\./);
     expect(texte).not.toContain('La halle du bailli'); // le lieu actuel n'est pas « déjà parcouru »
-    expect(texte).toContain('La garde de Thalgrin (vaincue, jour 3)');
+    expect(texte).toContain('La garde de Thalgrin (combat gagné par le groupe, jour 3)');
     expect(texte).toMatch(/L'arrivée du Fer-Gris \(réglée sans combat : refuser, jour 4\)/);
     expect(texte.indexOf('Fer-Gris')).toBeLessThan(texte.indexOf('garde de Thalgrin')); // la plus récente d'abord
     expect(texte).toMatch(/Personnes à qui le groupe a parlé.*: Rolf.*, Hesta/);
@@ -99,7 +99,7 @@ describe('le dossier du groupe', () => {
     expect(l.join('\n').length).toBeLessThanOrEqual(DOSSIER_MAX);
     // La rencontre la plus récente (jour 60) est présente, la plus ancienne (jour 1) non.
     const texte = l.join('\n');
-    expect(texte).toContain(`${dm.rencontres.get(rencontres[59]!)!.nom} (vaincue, jour 60)`);
+    expect(texte).toContain(`${dm.rencontres.get(rencontres[59]!)!.nom} (combat gagné par le groupe, jour 60)`);
     expect(texte).not.toContain('jour 1)');
     expect(dossierDuGroupe(dm, e, 400).join('\n').length).toBeLessThanOrEqual(400);
   });
@@ -125,7 +125,7 @@ describe('ce qu’un PNJ sait du groupe', () => {
     };
     expect(ceQueSaitLePnj(dm, e, HESTA)).toBe('a déjà parlé au groupe (la première fois le jour 1, 2 fois).');
     // Thalgrin, lui, était là.
-    expect(ceQueSaitLePnj(dm, e, THALGRIN)).toContain('était présent quand : La garde de Thalgrin (vaincue, jour 3)');
+    expect(ceQueSaitLePnj(dm, e, THALGRIN)).toContain('était présent quand : La garde de Thalgrin (combat gagné par le groupe, jour 3)');
     expect(ceQueSaitLePnj(dm, e, HESTA)).not.toContain('était présent');
   });
 
@@ -144,7 +144,7 @@ describe('dans la fiche du conteur', () => {
   it('le dossier et la ligne de chaque PNJ présent y figurent ; un PNJ qui n’était pas là n’a rien vu du combat', () => {
     const fiche = ficheDeTour(moteur, aprèsLeCombat());
     expect(fiche).toContain('## Ce que le groupe a vécu');
-    expect(fiche).toContain('La garde de Thalgrin (vaincue, jour 3)');
+    expect(fiche).toContain('La garde de Thalgrin (combat gagné par le groupe, jour 3)');
     // Hesta est présente et n'a pas vu le combat ; sa ligne ne le mentionne pas.
     const ligneHesta = fiche.split('\n').find((x) => x.includes('Ce qu\'il sait du groupe')) ?? '';
     expect(ligneHesta).toMatch(/ne connaît pas encore le groupe|a déjà parlé au groupe/);

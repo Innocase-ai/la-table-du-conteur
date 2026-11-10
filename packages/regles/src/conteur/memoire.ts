@@ -11,7 +11,8 @@ export const DOSSIER_MAX = 1200;
 /** Combien de témoignages d'un PNJ sont rappelés au conteur. */
 export const TEMOIGNAGES_PAR_PNJ = 3;
 
-const ISSUE: Record<TypeIssue, string> = { victoire: 'vaincue', alternative: 'réglée sans combat', fuite: 'fuie', defaite: 'perdue' };
+// Dits du point de vue du groupe : « vaincue » prêtait à croire que c'était le groupe qui avait perdu.
+const ISSUE: Record<TypeIssue, string> = { victoire: 'combat gagné par le groupe', alternative: 'réglée sans combat', fuite: 'le groupe a fui', defaite: 'combat perdu par le groupe' };
 
 /** Ce que pense une faction du groupe, en mots (rien à dire entre -25 et 25). */
 export function opinionDeFaction(reputation: number): string | undefined {
@@ -24,7 +25,7 @@ export function opinionDeFaction(reputation: number): string | undefined {
 
 const nomDeRencontre = (dm: DonneesMonde, id: string) => dm.rencontres.get(id)?.nom ?? id;
 
-/** Un item de rencontre : « La garde de Thalgrin (vaincue, jour 3) ». */
+/** Un item de rencontre : « La garde de Thalgrin (combat gagné par le groupe, jour 3) ». */
 function itemRencontre(dm: DonneesMonde, id: string, type: TypeIssue, jour: number, alternative?: string): string {
   const alt = type === 'alternative' && alternative ? dm.rencontres.get(id)?.alternatives.find((a) => a.id === alternative)?.nom : undefined;
   return `${nomDeRencontre(dm, id)} (${ISSUE[type]}${alt ? ` : ${alt.toLowerCase()}` : ''}, jour ${jour})`;

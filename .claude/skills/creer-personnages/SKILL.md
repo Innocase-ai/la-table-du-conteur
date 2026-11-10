@@ -20,6 +20,12 @@ Un PNJ n'est profond que s'il **sait beaucoup de choses concrètes et les dit se
 ## Un compagnon qui voyage : interjections et quête personnelle
 Pour un PNJ escorté (effet `escorte`), ajouter en plus de sa fiche : **10 à 16 interjections** (dossier `interjections/`, doc `docs/MONDES.md`) déclenchées par les lieux, les faits, les choix de dilemmes (`choix-<dilemme>-<option>`, une interjection par issue) et la jauge, avec des effets `attitude` pour l'approbation ; et **une quête personnelle en 3 étapes**, proposée par un sujet dont la condition est `attitudeMin` (modèle : Nolwen, `quetes/z9-nolwen.json`). Brief type : `references/brief-compagnon.md` (celui de Nolwen). Vérifier que chaque interjection colle au sens réel de l'issue du dilemme (relire ses options).
 
+## Écrire la réponse d'un sujet (`reponse`) : claire, directe, assez longue
+- **Discours direct** : l'essentiel dit entre « » à la première personne, avec un geste ; jamais « Il dit que… » (le validateur avertit du style indirect et des réponses de moins de 35 mots).
+- **Trois temps, 60 à 100 mots** : une phrase qui répond franchement à la question ; un détail concret (un lieu, un objet, un chiffre) ; si possible une piste (une personne à voir, un endroit, une question à poser). C'est aussi la consigne donnée au conteur pour la parole libre (règle 10).
+- **Clarté** : la voix assaisonne, elle ne cache pas le sens ; présenter en quelques mots ce que le joueur ne connaît pas encore (« Fennick, son maître »).
+- **Une esquive est franche** : « je n'en parlerai pas à des inconnus » avec la raison du personnage (pudeur, prudence, loyauté), pas une réponse à côté. Le texte `evasif` d'une confidence verrouillée suit la même règle.
+
 ## Règles d'écriture (spécificité)
 - Des noms propres, des dates, des chiffres, des gestes, des matières ; pas de « mystérieux » ou « ancien » sans détail.
 - Chaque élément de `couleur` doit pouvoir nourrir une réplique de 1 à 3 phrases ; deux éléments ne disent pas la même chose.

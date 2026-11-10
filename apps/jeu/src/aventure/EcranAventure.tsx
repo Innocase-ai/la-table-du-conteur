@@ -113,6 +113,9 @@ function useImage(monde: string, groupe: 'lieux' | 'pnj', id: string | undefined
   return url;
 }
 
+/** Ce que dit le joueur quand il demande au personnage de redire plus simplement sa dernière réplique (un tour du conteur). */
+export const DEMANDE_PLUS_SIMPLE = 'Pouvez-vous me le redire plus simplement, avec des mots plus courts ?';
+
 /** Ce que l'écran affiche pendant que le conteur agit : jamais le nom d'une commande, toujours un geste du groupe. */
 const PENDANT_OUTIL: Record<string, string> = {
   aller: 'En route…',
@@ -402,6 +405,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               choix={choixDialogue}
               fin={finDialogue}
               jouer={jouer}
+              plusSimple={conteur?.disponible && !enCours && !plafondAtteint && entreesDialogue.some((e) => e.type === 'texte' && e.voix) ? () => void raconter(DEMANDE_PLUS_SIMPLE) : undefined}
             >
               {ouverture && ouverture.pnj === interlocuteur.id && (
                 <p className="recit-parole">

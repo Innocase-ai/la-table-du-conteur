@@ -86,7 +86,7 @@ export const moduleSavoirs: Module = {
   commandes: {
     repondreEnPersonnage: commande({
       description:
-        'Fait parler librement un personnage présent, dans sa voix, à la première personne (1 à 4 phrases), d’après sa fiche de savoir : passé, liens, souvenirs et opinions, faits qu’il connaît. Donne le texte de sa réplique, les ids des éléments de la fiche utilisés, et les ids des faits qu’il révèle au groupe (seulement ceux dont l’accès est ouvert). Une réplique qui cite autre chose est refusée.',
+        'Fait parler librement un personnage présent, dans sa voix, à la première personne (3 à 6 phrases, 60 à 100 mots : une réponse franche, un détail concret, si possible une piste), d’après sa fiche de savoir : passé, liens, souvenirs et opinions, faits qu’il connaît. Donne le texte de sa réplique, les ids des éléments de la fiche utilisés, et les ids des faits qu’il révèle au groupe (seulement ceux dont l’accès est ouvert). Une réplique qui cite autre chose est refusée.',
       entree: z.object({
         pnj: z.string(),
         texte: z.string().trim().min(1),

@@ -221,3 +221,18 @@ Le moteur consigne ce que le groupe fait (issue des rencontres, PNJ à qui il a 
 - **Règle 13 du prompt** : le monde se souvient, mais chacun ne sait que ce qu'il a pu savoir ; un souvenir précis s'évoque au présent, dans la voix du PNJ, en une phrase ; aucun souvenir inventé.
 - Coût : quelques centaines de jetons de plus par tour (la fiche est dans le message du tour, pas dans le préfixe en cache). À mesurer par un essai réel (`pnpm conteur --essai`, payant : à annoncer à l'utilisateur avant).
 - Pas encore : un résumé des événements anciens au-delà des 14 derniers (le dossier en tient lieu pour les rencontres, les lieux et les paroles), les souvenirs de portée « région » (Ombresang : `docs/PLAN-MEMOIRE-DU-GROUPE.md` §10).
+
+## 17. Des répliques plus claires et plus étoffées (10/11/2026)
+
+Retour du joueur : ce que dit le PNJ est parfois obscur et court. Réponse (phase 4 du plan de mémoire) :
+
+- **Longueur** : la réplique libre (`repondreEnPersonnage`) passe de « 1 à 4 phrases » à **3 à 6 phrases, 60 à 100 mots** ; le plafond dur reste `MOTS_MAX = 130` ; les récits restent à 50-100 mots, et une question sur le groupe ou hors jeu à 1 à 3 phrases.
+- **Structure** (règle 10) : une phrase qui répond franchement, un détail concret tiré de la fiche, si possible une piste (une personne, un lieu, une question).
+- **Clarté** : phrases simples, la voix assaisonne ; une personne, un lieu ou une chose que le groupe n'a pas encore rencontrés (ni dans « Ce que le groupe a vécu », ni dans ses faits appris) est présentée en quelques mots.
+- **Esquive franche** : le PNJ dit qu'il n'en parlera pas (ou pas à des inconnus), avec sa raison, au lieu de répondre à côté.
+- **Bouton « Dis-le plus simplement »** dans la boîte de dialogue (`BoiteDialogue`, visible quand le conteur est disponible et que le PNJ vient de parler) : un tour du conteur avec la demande fixe `DEMANDE_PLUS_SIMPLE` ; la règle 10 demande de reprendre la dernière réplique avec des mots plus simples, sans rien ajouter. Un tour est facturé comme les autres.
+- Déjà en place, et gardé : après une réplique, « Vous apprenez : … » (le texte du fait révélé) tient lieu de rappel de ce qu'on retient.
+- Les textes écrits : skill `creer-personnages` (« Écrire la réponse d'un sujet »). Le seuil du validateur reste à 35 mots : un seuil plus haut signalerait plus de la moitié des réponses sans que cela les améliore ; la structure se juge à la relecture.
+- **À juger par un essai réel** (payant, à annoncer) : les répliques libres sont-elles plus claires et assez longues ? Rien n'a été essayé avec un vrai modèle.
+
+Essai réel du 10/11/2026 (7 tours, 0,019 $) : voir `docs/JOURNAL.md`. Les répliques libres suivent les trois temps et présentent les noms nouveaux ; « redire plus simplement » fonctionne ; un PNJ qui n'a rien vu ignore le combat. Faiblesse restante : une question sur le passé du groupe peut être routée vers un sujet écrit qui ignore la mémoire (consigne ajoutée à la règle 13, à reverifier) ; les textes écrits ne liront la mémoire qu'avec `Sujet.variantes` (phase 3).

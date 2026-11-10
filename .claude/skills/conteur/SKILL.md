@@ -13,7 +13,7 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 - `packages/regles/src/modules/conteur.ts` : les commandes `saisie` et `raconter` (le journal du joueur et du conteur).
 - `apps/jeu/serveur-conteur.ts` : le **relais** du serveur de développement ; il garde la clé OpenRouter (`.env`), n'accepte que le modèle du conteur et coupe à 0,50 $ par session (`CONTEUR_PLAFOND_USD`). La clé n'est jamais dans le navigateur ni dans le chat.
 - `apps/jeu/src/aventure/EcranAventure.tsx` + `conteur.ts` : la saisie libre, le récit, les suggestions, le compteur.
-- `pnpm conteur [monde] --go --essai "texte" "texte"…` : joue dans le terminal avec le vrai modèle (sans `--go` : simulation, aucun appel).
+- `pnpm conteur [monde] --go --essai "texte" "texte"…` : joue dans le terminal avec le vrai modèle (sans `--go` : simulation, aucun appel). Préparation gratuite dans `--essai` : `!lieu`, `!attitude`, `!fait`, `!drapeau`, `!fuite`, **`!issue <rencontre> <victoire|alternative|fuite|defaite> [alternative]`** (une rencontre s'est dénouée sous les yeux des PNJ du lieu courant) et **`!parle <pnj>`** (pour tester la mémoire du groupe).
 
 ## Quand tu changes le conteur
 

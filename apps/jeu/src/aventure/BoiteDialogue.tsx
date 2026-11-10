@@ -16,9 +16,11 @@ interface Props {
   choix: Proposition[];
   fin?: Proposition;
   jouer: (o: Ordre) => void;
+  /** Demande au conteur de redire la dernière réplique plus simplement ; absent quand le conteur n'est pas disponible. */
+  plusSimple?: () => void;
 }
 
-export function BoiteDialogue({ nom, role, portrait, children, nombreEntrees, choix, fin, jouer }: Props) {
+export function BoiteDialogue({ nom, role, portrait, children, nombreEntrees, choix, fin, jouer, plusSimple }: Props) {
   const texte = useRef<HTMLDivElement>(null);
   useEffect(() => {
     texte.current?.scrollTo({ top: texte.current.scrollHeight, behavior: 'smooth' });
@@ -34,6 +36,11 @@ export function BoiteDialogue({ nom, role, portrait, children, nombreEntrees, ch
           <h3>{nom}</h3>
           <small>{role}</small>
         </div>
+        {plusSimple && (
+          <button type="button" className="boite-fin boite-simple" title="Le personnage redit sa dernière réplique avec des mots plus simples (un tour du conteur)" onClick={plusSimple}>
+            Dis-le plus simplement
+          </button>
+        )}
         {fin?.ordre && (
           <button type="button" className="boite-fin" title="Échap" onClick={() => jouer(fin.ordre!)}>
             {fin.libelle}

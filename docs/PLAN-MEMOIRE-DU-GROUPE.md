@@ -77,7 +77,7 @@ Fichiers : `monde/schemas.ts` (`Sujet`), `monde/dialogue.ts`, `monde/validation.
 2. **Validation** : conditions valides, variantes de longueur ≥ 35 mots, pas de style indirect (avis existants étendus) ; **revue de secrets** (`champsLibres`) sur les nouvelles réponses.
 3. **Passe d'écriture par monde**, comme pour les interjections : Claude choisit les conditions (qui a vaincu quoi, quels lieux), Haiku écrit les textes, Claude relit. Départ proposé : **le Val des Cendres** (Fer-Gris, Brand, Hesta, Aurèle, Gaspard), 2 à 4 variantes sur les sujets les plus visibles de 8 à 10 PNJ ; puis la Citadelle, Port-Sillage, la Dîme.
 
-## 6. Phase 4 — Clarté et longueur des réponses (la discussion d'avant)
+## 6. Phase 4 — Clarté et longueur des réponses (faite le 10/11/2026 : consignes du conteur, outil de parole libre, bouton « Dis-le plus simplement », skill `creer-personnages` ; `docs/M4-CONTEUR.md` §17 ; seuil de 50 mots abandonné, voir §17 ; essai réel à faire)
 
 Indépendante de la mémoire mais complémentaire :
 
