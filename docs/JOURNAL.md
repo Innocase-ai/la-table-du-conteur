@@ -1572,3 +1572,18 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Relecture** (5 planches, 105 images) : style cohérent avec chaque histoire, objets lisibles, aucune image fausse. Lettres brouillées sur quatre images (médaille des veilleurs, médaillon de Brumevoile, sceau de la Ligue, contrat du Fer-Gris), jugées acceptables.
 - **Installation** : WebP dans `packages/mondes/<monde>/images/` (≈ 4 Mo), manifestes mis à jour ; objets illustrés : Val 101/101, Citadelle 25/25, Port-Sillage 10/10. 1815 tests, validation des 5 mondes.
 - **Reste** : la Dîme des Roseaux (48 images manquantes, histoire entièrement sans image) et 15 cartes (14 au Val, 1 à la Citadelle) ; la clé OpenRouter est partagée avec d'autres sessions, son compteur cumulé (12,62 → 14,03 $) ne reflète donc pas ma seule dépense.
+
+## 10/11/2026 — La Dîme des Roseaux illustrée : 48 images (lieux, PNJ, objets)
+
+- **Avant** : l'histoire n'avait aucune image (48 manquantes, pas de dossier `images/`). Quatre objets de `z5-objets-complements.json` n'avaient pas de texte de génération (`visuel`) : écrits par un agent Haiku dans le style des six autres, insérés dans le fichier.
+- **Génération** (accord de l'utilisateur, ≈ 0,43 $) : 22 lieux, 48 images FLUX Klein, **aucun échec ni refus de modération**. Une boucle shell lieu par lieu (`pnpm images monde <monde> --lieu <id> --max 45 --go < /dev/null`) prend une douzaine de minutes : chaque lieu relance l'outil (≈ 15 s de démarrage).
+- **Relecture** (2 planches) : lieux, PNJ (16 portraits) et objets (10) cohérents avec le ton « conte rural et humide » ; aucune image fausse. Installées en WebP (2,7 Mo, 22 lieux, 16 PNJ, 10 objets), manifeste créé.
+- **Vérifié** : 1815 tests, validation des 5 mondes. `pnpm monde manque dime-des-roseaux` : plus d'image manquante ; reste **une carte illustrée** (la Dîme contient 5 lieux) et **une scène d'ouverture** (déclencheur `debut`).
+- **Reste côté images** : 16 cartes illustrées (Val 14, Citadelle 1, Dîme 1) ; elles demandent aussi la pose des positions des lieux enfants (voir `docs/M2-IMAGES.md`, « Cartes illustrées »), donc plus qu'une simple génération.
+
+## 10/11/2026 — La Dîme des Roseaux : scène d'ouverture écrite et lue
+
+- **Demande** : « génère la scène » (le seul vrai manque de scène de la Dîme ; les quatre fins sans scène narrée restent des avis).
+- **Texte** (agent Haiku, arbitré) : prologue `film` de 6 plans et 179 mots, images de lieux déjà illustrés (la vallée, le marais, la place du marché, la mine, le pont de pierre, Mireval), sans aucun nom de personnage ni secret. **Corrigé après relecture contre la bible** : « le grenier est presque vide » retiré (fait que le joueur découvre, que l'image du grenier aurait aussi montré ; plan 2 passé sur le marais), « depuis le printemps », palissades et feux inventés retirés, moulin « dont la roue ne tourne plus » remis en « tourne au ralenti » comme sa fiche.
+- **Voix** : voix officielle du Maître de jeu (Gemini Flash TTS, Algieba ×1,15), 6 plans, **57,8 s au total**, 0,015 $ au compteur, 0 échec ; chaque transcription reprend exactement le texte du plan.
+- **Fichiers** : `packages/mondes/dime-des-roseaux/scenes/scenes.json`, `voix/ouverture-1` à `6` (mp3 et json). `pnpm monde manque dime-des-roseaux` : il ne reste que la **carte illustrée** ; 1815 tests, validation des 5 mondes. Non écouté par moi (je ne peux pas lire un fichier audio) : à écouter dans le jeu après relance du serveur de développement.
