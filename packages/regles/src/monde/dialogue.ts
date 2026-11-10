@@ -2,7 +2,7 @@
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
-import { appliquer, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
+import { appliquer, consignerParole, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
 import { lieuDuPnj, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
 import type { Pnj } from './schemas';
@@ -59,6 +59,7 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
     const salut = confrontation ?? (variante ? variante.texte : a <= SEUIL_HOSTILE ? (pnj.salutations.hostile ?? pnj.salutations.neutre) : a >= SEUIL_AMICAL ? (pnj.salutations.amical ?? pnj.salutations.neutre) : pnj.salutations.neutre);
     r.narrations.push(salut);
     r.paroles = 1;
+    consignerParole(p, pnj.id);
     const dispo = sujetsDisponibles(p, pnj);
     r.constats.push(
       `${pnj.nom} (${pnj.role}, attitude ${a}). Sujets qu'il accepte d'aborder : ${dispo.map((s) => `${s.id} [${s.mots.join(', ')}]`).join(' ; ') || 'aucun pour l\'instant'}.`,
@@ -74,6 +75,7 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   if (!p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`)) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
   r.narrations.push(s.reponse);
   r.paroles = 1;
+  consignerParole(p, pnj.id);
   // Les effets d'un sujet passent par le même chemin qu'une action : paliers de jauge, événements, quêtes, rencontres, fin.
   appliquer(p, r, [...s.revele.map((f) => ({ fait: f })), ...s.effets]);
   suites(p, r);

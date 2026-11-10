@@ -20,6 +20,9 @@ export function refsCondition(c: Condition, f: (genre: string, id: string, extra
   else if ('objet' in c) f('objet', c.objet);
   else if ('pnj' in c) f('pnj', c.pnj.id);
   else if ('lieu' in c) f('lieu', c.lieu);
+  else if ('rencontre' in c) f('rencontre', c.rencontre.id);
+  else if ('parle' in c) f('pnj', c.parle);
+  else if ('temoin' in c) f('pnj', c.temoin.pnj);
   else if ('heros' in c) {
     if (c.heros.classe) f('classe', c.heros.classe);
     if (c.heros.espece) f('espece', c.heros.espece);

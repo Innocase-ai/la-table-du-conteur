@@ -16,6 +16,10 @@ const Texte = z.string().min(1);
 // Conditions et effets : le langage commun à tout le monde (lieux, PNJ, quêtes, événements)
 // ---------------------------------------------------------------------------
 
+/** Comment une rencontre s'est dénouée : combat gagné, autre issue (négocier, ruser…), fuite, défaite. */
+export const TYPES_ISSUE = ['victoire', 'alternative', 'fuite', 'defaite'] as const;
+export type TypeIssue = (typeof TYPES_ISSUE)[number];
+
 export type Condition =
   | { flag: string }
   | { fait: string }
@@ -25,7 +29,14 @@ export type Condition =
   | { jauge: { id: string; min?: number; max?: number } }
   | { objet: string }
   | { pnj: { id: string; attitudeMin?: number; attitudeMax?: number; etat?: 'vivant' | 'mort' | 'parti' } }
+  /** Le groupe est déjà passé par ce lieu (et non : il s'y trouve maintenant). */
   | { lieu: string }
+  /** La rencontre a été jouée ; avec `issue` (et `alternative`), elle s'est dénouée ainsi. */
+  | { rencontre: { id: string; issue?: TypeIssue; alternative?: string } }
+  /** Le groupe a déjà parlé à ce PNJ (sujet, salutation ou parole libre). */
+  | { parle: string }
+  /** Ce PNJ était présent quand une rencontre s'est dénouée (de cette façon, si `genre` est donné). */
+  | { temoin: { pnj: string; genre?: TypeIssue } }
   | { pieces: { min?: number; max?: number } }
   | { niveauGroupe: { min?: number; max?: number } }
   | { heros: { classe?: string; espece?: string; historique?: string } }
@@ -48,6 +59,9 @@ export const Condition: z.ZodType<Condition> = z.lazy(() =>
       })
       .strict(),
     z.object({ lieu: Id }).strict(),
+    z.object({ rencontre: z.object({ id: Id, issue: z.enum(TYPES_ISSUE).optional(), alternative: Id.optional() }) }).strict(),
+    z.object({ parle: Id }).strict(),
+    z.object({ temoin: z.object({ pnj: Id, genre: z.enum(TYPES_ISSUE).optional() }) }).strict(),
     z.object({ pieces: z.object({ min: z.number().optional(), max: z.number().optional() }) }).strict(),
     z.object({ niveauGroupe: z.object({ min: z.number().int().optional(), max: z.number().int().optional() }) }).strict(),
     // Au moins un héros du groupe a cette classe, cette espèce et cet historique (ceux qui sont donnés) : les origines du groupe.

@@ -5,7 +5,7 @@
 import { z } from 'zod';
 import { attitude, pnjPresents } from '../monde/dialogue';
 import { evaluerCondition } from '../monde/etat';
-import { jouerEffets } from '../monde/exploration';
+import { consignerParole, jouerEffets } from '../monde/exploration';
 import type { Pnj } from '../monde/schemas';
 import { nbMots, normaliser, savoirDe, savoirsDe, type Sait, type Savoir } from '../monde/savoirs-donnees';
 import { commande, type Module, type Partie, type Transaction } from '../noyau/types';
@@ -105,6 +105,7 @@ export const moduleSavoirs: Module = {
         // Acceptée : la réplique est dite, les faits révélés sont appris, le PNJ s'en souvient.
         const dits = (etat(t.partie).dits[pnj.id] ??= []);
         for (const id of [...e.utilise, ...e.revele.map((f) => sv.sait.find((s) => s.fait === f)!.id)]) if (!dits.includes(id)) dits.push(id);
+        consignerParole(partieMonde(t), pnj.id);
         const cr = jouerEffets(partieMonde(t), [], e.revele.map((fait) => ({ fait })));
         cr.narrations.unshift(e.texte);
         cr.paroles = 1;

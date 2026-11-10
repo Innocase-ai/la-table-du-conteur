@@ -9,7 +9,7 @@ import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
-import { appliquerEffets, avancerQuetes, evaluerCondition, verifierEnigme, type EtatMonde } from './etat';
+import { appliquerEffets, avancerQuetes, evaluerCondition, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
 import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
@@ -47,6 +47,34 @@ export interface EtatExploration {
    * demande d'attendre 24 h avant d'exhorter de nouveau de la même manière. Absent des sauvegardes anciennes.
    */
   influenceRatee?: Record<string, number>;
+  // La mémoire du groupe (voir `MemoireGroupe` dans etat.ts) : tout est facultatif, les anciennes sauvegardes n'ont rien de cela.
+  /** Comment chaque rencontre s'est dénouée (la dernière issue l'emporte). */
+  issues?: Record<string, IssueRencontre>;
+  /** Les PNJ à qui le groupe a parlé. */
+  pnjVus?: Record<string, PnjVu>;
+  /** Les rencontres dénouées sous les yeux de PNJ présents (les plus récentes, plafonnées). */
+  temoignages?: Temoignage[];
+}
+
+/** Consigne comment une rencontre s'est dénouée, avec les PNJ présents à ce moment (ils en sont les témoins). */
+export function consignerIssue(p: PartieMonde, rencontre: string, type: IssueRencontre['type'], alternative?: string): void {
+  const x = p.etat.exploration;
+  const jour = p.etat.jour;
+  const lieu = p.etat.lieu;
+  (x.issues ??= {})[rencontre] = { type, ...(alternative ? { alternative } : {}), jour, lieu };
+  const liste = (x.temoignages ??= []);
+  liste.push({ genre: type, ref: rencontre, lieu, jour, presents: pnjPresents(p).map((n) => n.id) });
+  if (liste.length > TEMOIGNAGES_MAX) liste.splice(0, liste.length - TEMOIGNAGES_MAX);
+}
+
+/** Consigne que le groupe parle à un PNJ (salutation, sujet ou parole libre). */
+export function consignerParole(p: PartieMonde, pnj: string): void {
+  const vus = (p.etat.exploration.pnjVus ??= {});
+  const v = vus[pnj];
+  if (v) {
+    v.dernierJour = p.etat.jour;
+    v.paroles += 1;
+  } else vus[pnj] = { premierJour: p.etat.jour, dernierJour: p.etat.jour, paroles: 1 };
 }
 
 export interface PartieMonde {
@@ -909,12 +937,14 @@ export function issueRencontre(
     for (const a of p.groupe) a.pv = Math.max(1, a.pv);
     const perte = Math.floor(p.etat.pieces / 2);
     p.etat.pieces -= perte;
+    consignerIssue(p, rencontre, 'defaite');
     r.constats.push(`Défaite : ${def.nom}. Le groupe reprend connaissance bien plus tard, meurtri${perte ? `, et délesté de ${perte} po` : ''}.`);
     avancerHeures(p, r, 8);
     suites(p, r);
     return r;
   }
   if (issue.type === 'fuite') {
+    consignerIssue(p, rencontre, 'fuite');
     r.constats.push(`Le groupe se dérobe à ${def.nom}.`);
     return r;
   }
@@ -933,6 +963,7 @@ export function issueRencontre(
         if (alt.echec?.length) appliquer(p, r, alt.echec);
         if (alt.echecResout) {
           // Fail forward : la rencontre se dénoue quand même, autrement et plus cher.
+          consignerIssue(p, rencontre, 'alternative', alt.id);
           if (!p.etat.rencontresFaites.includes(rencontre)) p.etat.rencontresFaites.push(rencontre);
           suites(p, r);
           return r;
@@ -946,8 +977,10 @@ export function issueRencontre(
       }
     }
     r.constats.push(`${alt.nom} : ${alt.resume}`);
+    consignerIssue(p, rencontre, 'alternative', alt.id);
     appliquer(p, r, alt.effets);
   } else {
+    consignerIssue(p, rencontre, 'victoire');
     r.constats.push(`Victoire : ${def.nom}${issue.px ? ` (${issue.px} PX)` : ''}.`);
     // L'XP d'un combat se partage entre les héros (SRD 5.2.1) ; l'XP du monde (quêtes, effets) est celle de chacun.
     // Une rencontre qui revient (aléatoire, répétable) ne rapporte pas de PX une seconde fois : pas de farm.

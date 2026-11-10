@@ -132,7 +132,7 @@ Le troisième dossier d'extension est **`savoirs/`** (module Savoirs, `modules/s
 
 ## Conditions et effets
 
-Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `niveauGroupe`.
+Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `rencontre` (jouée, et comment), `parle` (a parlé à ce PNJ), `temoin` (ce PNJ était présent quand une rencontre s'est dénouée), `niveauGroupe`, `heros` ; voir « La mémoire du groupe » plus bas.
 
 Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (donner/retirer), `pieces`, `xp`, `quete` (proposée, active, terminée, échouée), `etape`, `pnjEtat`, `deplacer`, `escorte` (le PNJ suit le groupe et est présent partout ; `actif: false` l'arrête), `debloquer`, `rencontre`, `fin`, `narration`. L'effet `rencontre` **déclenche** la rencontre (combat compris) à la fin de l'action en cours ; une rencontre que son lieu déclare `unique` et qui a déjà été jouée ne se relance pas. C'est ainsi qu'un échec d'énigme ou un piège lance un combat.
 
@@ -280,6 +280,17 @@ Le sixième dossier d'extension est **`codex/`** (module Codex, `modules/codex.t
   Une question **apparaît** quand sa condition `quand` devient vraie, reste en suspens avec sa **piste** (où chercher, jamais la réponse), puis passe dans « Questions éclaircies » avec sa **réponse** quand `resolue` est vraie. La réponse peut n'être que partielle : elle ouvre la suite.
 - **Le conteur** voit « Questions en suspens (avec leur piste) » et « Questions éclaircies » dans sa fiche : il peut répondre à « qu'est-ce qu'on cherche ? » sans rien inventer, et ne donne jamais la réponse d'une question en suspens.
 - **Validation** : erreurs (id en double, références des conditions) ; conseil (moins de 10 questions, question sans piste ou de plus de 20 mots).
+
+## La mémoire du groupe (conditions `rencontre`, `parle`, `temoin`)
+
+Le moteur garde ce que le groupe a fait (`etat.exploration`, facultatif : les anciennes sauvegardes n'ont rien de cela) et les conditions le lisent, sans qu'il faille poser un drapeau à la main :
+
+- `{ "lieu": "<lieu>" }` : le groupe **est déjà passé** par ce lieu (et non : il s'y trouve).
+- `{ "rencontre": { "id": "<rencontre>" } }` : la rencontre a été jouée. Avec `"issue": "victoire" | "alternative" | "fuite" | "defaite"` : elle s'est dénouée ainsi ; avec `"alternative": "<id>"` : par cette issue-là (`"issue": "alternative"` est sous-entendu par l'usage). La **dernière** issue consignée l'emporte (fuir puis vaincre vaut victoire). Sur une ancienne sauvegarde, « jouée » est vrai si la rencontre est faite, mais aucune issue n'est connue.
+- `{ "parle": "<pnj>" }` : le groupe a déjà parlé à ce PNJ (salutation, sujet ou parole libre).
+- `{ "temoin": { "pnj": "<pnj>", "genre": "victoire" } }` : ce PNJ était présent quand une rencontre s'est dénouée (de cette façon, si `genre` est donné). Les 60 derniers témoignages sont gardés. Un PNJ qui n'était pas là ne « sait » pas : à utiliser pour qu'un habitant ne réagisse qu'à ce qu'il a pu voir.
+
+L'issue est consignée **avant** les effets de la rencontre : un événement ou un sujet qui la lit la voit tout de suite. Elles s'écrivent partout où une `Condition` est permise (sujets, salutations, événements, interjections, dilemmes…). Le validateur vérifie que la rencontre et le PNJ existent. Plan complet de la mémoire (dossier du conteur, mini-histoires d'Ombresang) : `docs/PLAN-MEMOIRE-DU-GROUPE.md`.
 
 ## Les origines des héros (condition `heros`)
 

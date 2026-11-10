@@ -1,10 +1,52 @@
 // État d'une partie dans un monde : tout ce qui change (drapeaux, faits connus, jauges, réputations, quêtes…).
 // C'est un objet JSON simple, sauvegardable tel quel. Les conditions et effets du format de monde s'évaluent ici.
 import { SEUILS_PX } from '../caracteristiques';
-import type { Condition, DonneesMonde, EffetMonde, Enigme } from './schemas';
+import type { Condition, DonneesMonde, EffetMonde, Enigme, TypeIssue } from './schemas';
 
 export type StatutQuete = 'proposee' | 'active' | 'terminee' | 'echouee';
 export type EtatPnj = 'vivant' | 'mort' | 'parti';
+
+// La mémoire du groupe (ce qu'il a fait), lue par les conditions `rencontre`, `parle` et `temoin` et par le dossier du conteur.
+// Elle vit dans l'état d'exploration de la partie ; toujours facultative (les anciennes sauvegardes n'en ont pas).
+
+/** Comment une rencontre s'est dénouée, où et quand. */
+export interface IssueRencontre {
+  type: TypeIssue;
+  /** L'issue choisie quand `type` vaut `alternative`. */
+  alternative?: string;
+  jour: number;
+  lieu: string;
+}
+
+/** Un PNJ à qui le groupe a parlé : premier et dernier jour, nombre de prises de parole. */
+export interface PnjVu {
+  premierJour: number;
+  dernierJour: number;
+  paroles: number;
+}
+
+/** Ce qui s'est passé sous les yeux de certains PNJ : une rencontre dénouée, avec les PNJ présents à ce moment. */
+export interface Temoignage {
+  genre: TypeIssue;
+  /** La rencontre. */
+  ref: string;
+  lieu: string;
+  jour: number;
+  presents: string[];
+}
+
+/** Le plafond des témoignages gardés (les plus récents). */
+export const TEMOIGNAGES_MAX = 60;
+
+export interface MemoireGroupe {
+  issues?: Record<string, IssueRencontre>;
+  pnjVus?: Record<string, PnjVu>;
+  temoignages?: Temoignage[];
+  sujetsVus?: string[];
+}
+
+/** La mémoire d'un état (celle de l'exploration ; vide pour un état sans exploration ou une ancienne sauvegarde). */
+export const memoireDe = (e: EtatMonde): MemoireGroupe => (e as EtatMonde & { exploration?: MemoireGroupe }).exploration ?? {};
 
 export interface EtatQuete {
   statut: StatutQuete;
@@ -125,6 +167,17 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
     return (c.pnj.etat === undefined || etat === c.pnj.etat) && (c.pnj.attitudeMin === undefined || a >= c.pnj.attitudeMin) && (c.pnj.attitudeMax === undefined || a <= c.pnj.attitudeMax);
   }
   if ('lieu' in c) return e.lieuxVisites.includes(c.lieu);
+  if ('rencontre' in c) {
+    const i = memoireDe(e).issues?.[c.rencontre.id];
+    if (c.rencontre.issue === undefined && c.rencontre.alternative === undefined) return !!i || e.rencontresFaites.includes(c.rencontre.id);
+    return !!i && (c.rencontre.issue === undefined || i.type === c.rencontre.issue) && (c.rencontre.alternative === undefined || i.alternative === c.rencontre.alternative);
+  }
+  if ('parle' in c) {
+    const m = memoireDe(e);
+    // Les sauvegardes d'avant la mémoire n'ont que les sujets abordés : on s'en sert faute de mieux.
+    return (m.pnjVus?.[c.parle]?.paroles ?? 0) > 0 || (m.sujetsVus ?? []).some((s) => s.startsWith(`${c.parle}:`));
+  }
+  if ('temoin' in c) return (memoireDe(e).temoignages ?? []).some((t) => t.presents.includes(c.temoin.pnj) && (c.temoin.genre === undefined || t.genre === c.temoin.genre));
   if ('pieces' in c) return (c.pieces.min === undefined || e.pieces >= c.pieces.min) && (c.pieces.max === undefined || e.pieces <= c.pieces.max);
   if ('niveauGroupe' in c) return (c.niveauGroupe.min === undefined || e.niveauGroupe >= c.niveauGroupe.min) && (c.niveauGroupe.max === undefined || e.niveauGroupe <= c.niveauGroupe.max);
   if ('heros' in c) return (e.heros ?? []).some((h) => (!c.heros.classe || h.classe === c.heros.classe) && (!c.heros.espece || h.espece === c.heros.espece) && (!c.heros.historique || h.historique === c.heros.historique));
