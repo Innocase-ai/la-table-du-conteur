@@ -3,6 +3,7 @@
 // garde les sites eux-mêmes, avec l'entité et le chemin dans l'entité.
 import { dilemmesDe, drapeauxChoix } from './dilemmes-donnees';
 import { questionsDe } from './codex-donnees';
+import { drapeauxEvenement, evenementsChoixDe } from './evenements-choix-donnees';
 import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
 import { savoirsDe } from './savoirs-donnees';
@@ -184,6 +185,19 @@ export function indexerReferences(dm: DonneesMonde): IndexReferences {
   for (const f of dm.fins.values()) condition({ type: 'fins', id: f.id }, ['condition'], f.condition);
 
   // Données des modules (dossiers d'extension).
+  for (const ev of evenementsChoixDe(dm).evenements) {
+    const e = { type: 'evenements-choix', id: ev.id };
+    condition(e, ['quand'], ev.quand);
+    ev.variantes.forEach((va, i) => condition(e, ['variantes', i, 'condition'], va.condition));
+    ev.choix.forEach((c, i) => {
+      condition(e, ['choix', i, 'condition'], c.condition);
+      condition(e, ['choix', i, 'requis'], c.requis);
+      effets(e, ['choix', i, 'effets'], c.effets);
+      effets(e, ['choix', i, 'echec'], c.echec);
+      // Choisir pose `evt-<événement>` et `evt-<événement>-<choix>` (voir drapeauxEvenement).
+      drapeauxEvenement(ev.id, c.id).forEach((fl) => structure(produit, e, ['choix', i], 'flag', fl));
+    });
+  }
   for (const d of dilemmesDe(dm).dilemmes) {
     const e = { type: 'dilemmes', id: d.id };
     condition(e, ['quand'], d.quand);

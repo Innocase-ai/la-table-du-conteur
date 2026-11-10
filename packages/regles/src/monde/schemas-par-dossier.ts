@@ -2,6 +2,7 @@
 import type { ZodTypeAny } from 'zod';
 import { Examen } from './examens-donnees';
 import { Dilemme } from './dilemmes-donnees';
+import { EvenementChoix } from './evenements-choix-donnees';
 import { Interjection } from './interjections-donnees';
 import { Question } from './codex-donnees';
 import { Savoir } from './savoirs-donnees';
@@ -23,6 +24,7 @@ const SCHEMAS: Record<string, ZodTypeAny> = {
   fins: Fin,
   faits: Fait,
   dilemmes: Dilemme,
+  'evenements-choix': EvenementChoix,
   examens: Examen,
   codex: Question,
   interjections: Interjection,

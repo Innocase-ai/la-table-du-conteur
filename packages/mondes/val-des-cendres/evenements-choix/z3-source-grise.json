@@ -1,0 +1,127 @@
+[
+  {
+    "id": "la-source-grise",
+    "titre": "La source grise",
+    "lieu": "gro-loups-source",
+    "quand": {
+      "ou": [
+        {
+          "rencontre": {
+            "id": "gro-r-loups-salle-de-la-meute",
+            "alternative": "apaiser"
+          }
+        },
+        {
+          "rencontre": {
+            "id": "gro-r-loups-salle-de-la-meute",
+            "alternative": "pister-la-cause"
+          }
+        }
+      ]
+    },
+    "ouverture": "entree",
+    "image": {
+      "groupe": "lieux",
+      "id": "gro-loups-source"
+    },
+    "narration": "Le murmure d'une eau vous guide jusqu'au fond de la grotte, et la chaleur monte à chaque pas. Une source tiède sourd d'une fente basse. Son eau est claire, mais des filaments gris flottent dedans, lents, comme de la cendre qui n'en finit pas de se dissoudre. L'odeur est celle de la pierre mouillée. Dans un creux de la roche, une couche de fourrure épaisse abrite quatre petits corps qui se soulèvent, se rendorment, couinent doucement. Une fissure claire s'ouvre dans la voûte, et un filet d'air frais descend jusqu'à vos visages. Qu'est-ce qui a poussé cette portée à se cacher si près de l'eau ?",
+    "variantes": [
+      {
+        "condition": {
+          "fait": "f-gro-loups-fuient-la-cendre"
+        },
+        "narration": "Vous savez déjà ce que la meute a fui : les hauts, où les sources ont tourné au gris. Ici, l'eau est tiède et claire, et pourtant elle porte le même voile, ces filaments qui se défont entre les doigts. Vous vous demandez d'où elle vient, et la réponse est déjà là, dans le bassin. Les louveteaux dorment sur leur fourrure, sans savoir ce que porte l'eau qu'ils boivent. La fissure claire laisse descendre un filet d'air froid, qui ne fait pas frémir la surface."
+      }
+    ],
+    "choix": [
+      {
+        "id": "boire",
+        "libelle": "Buvez à la source.",
+        "jet": {
+          "competence": "medecine",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "fait": "f-gro-loups-fuient-la-cendre"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "L'eau est tiède, presque douce, et elle ne brûle pas. Elle laisse dans la bouche un goût de pierre et une fine poussière qui crisse sous la langue. Rien d'autre ne se passe, mais vous comprenez : cette eau porte la cendre des hauts, en quantité si faible qu'elle ne fait pas mal. C'est pour cela que la meute a quitté ses pâturages. Vous reprenez votre souffle, avec une question de plus.",
+        "echec": [
+          {
+            "flag": "source-grise-toux"
+          }
+        ],
+        "resultatEchec": "La cendre accroche la gorge dès la première gorgée. Une toux longue vous plie en deux, grise, qui ne veut pas s'arrêter, et les louveteaux relèvent la tête un instant. Un goût de braise éteinte reste sur la langue, âcre, et persiste bien après que la toux s'est tue. Vous crachez contre la pierre, et la salive reste grise. On n'en tire rien d'autre."
+      },
+      {
+        "id": "nain",
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "libelle": "« Laissez-moi goûter la pierre autour de l'eau. »",
+        "effets": [
+          {
+            "flag": "source-grise-cendre-de-forge"
+          },
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Une paume posée sur la pierre mouillée, le front appuyé contre elle, comme on écoute une porte. Une pincée de poussière grise frottée entre les doigts : froide, dense, avec une odeur de métal trop chauffé. C'est une cendre de forge, ni de foyer ni de bois, et le métier connaît ce goût. D'où elle vient, rien ne le dit, et l'on se tait ; mais la pierre de cette caverne reste gravée dans la mémoire."
+      },
+      {
+        "id": "magicien",
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "libelle": "« Je cherche des traces magiques dans l'eau. »",
+        "jet": {
+          "competence": "arcanes",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "flag": "source-grise-chaleur-sous-la-roche"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "Vous tendez la main au-dessus du bassin et laissez le silence faire son travail. Aucun enchantement n'a laissé de trace ici, aucune marque de sort, aucune vibration. Pourtant, quelque chose de chaud remonte lentement du fond, une chaleur régulière qui ne varie pas avec le courant. Elle ressemble à un feu couvert, très loin sous la roche, qui brûle sans se montrer. Vous ne pouvez rien dire de plus précis.",
+        "echec": [
+          {
+            "flag": "source-grise-vertige"
+          }
+        ],
+        "resultatEchec": "Vous vous concentrez jusqu'à sentir votre tête tourner. L'eau ne répond à rien : pas de lueur, pas de chaleur, seulement le bruit d'une goutte qui tombe. Un vertige vous prend, bref mais réel, et il vous faut un moment pour retrouver votre équilibre. Quand vous ouvrez les yeux, vous ne savez plus rien, pas même si vous avez senti quelque chose plus tôt. Mieux vaut ne pas insister."
+      },
+      {
+        "id": "druide",
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "libelle": "« Je m'accroupis près des louveteaux, la paume ouverte. »",
+        "effets": [
+          {
+            "flag": "louveteaux-confiants"
+          },
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Vous vous accroupissez doucement au bord du creux, la main ouverte, sans la lever. Un louveteau s'approche à pas hésitants, renifle vos doigts, puis se recouche sans bruit, comme s'il avait décidé quelque chose. La portée ne s'inquiète pas. Au loin, dans l'ombre, la louve adulte vous observe et ne gronde pas. Un instant, la confiance tient, fragile. Vous sentez que ces bêtes ont faim et peur, mais qu'aucune méchanceté ne les habite."
+      }
+    ],
+    "partir": "Laisser les louveteaux dormir et repartir."
+  }
+]

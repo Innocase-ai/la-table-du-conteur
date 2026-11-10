@@ -1,0 +1,174 @@
+/* L'écran d'un événement à choix illustré : une grande image, une boîte de texte sombre en dessous (cadre cuivre, comme la
+   boîte de dialogue). Posé au-dessus de l'aventure, sous les scènes narrées. */
+.evt {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 14px;
+  background: rgba(5, 4, 3, 0.94);
+  animation: evt-apparition 0.45s ease;
+}
+
+@keyframes evt-apparition {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.evt-cadre {
+  width: min(100%, 980px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.evt-image {
+  flex: 1 1 auto;
+  min-height: 160px;
+  border-radius: 8px;
+  border: 2px solid var(--cuivre);
+  background: linear-gradient(135deg, #2a221a, #15120f) center / cover no-repeat;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(240, 205, 132, 0.12);
+}
+
+.evt-boite {
+  flex: 0 1 auto;
+  max-height: 52%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 16px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--cuivre);
+  background: linear-gradient(180deg, rgba(24, 18, 12, 0.96), rgba(10, 8, 6, 0.98));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(240, 205, 132, 0.12);
+}
+
+.evt-titre {
+  margin: 0;
+  font-family: var(--titre);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  color: var(--or-vif);
+}
+
+.evt-texte {
+  flex: 1 1 auto;
+  min-height: 5.4em;
+  overflow-y: auto;
+  padding-right: 6px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--texte);
+  scrollbar-width: thin;
+  scrollbar-color: var(--cuivre) transparent;
+}
+
+.evt-texte p {
+  margin: 0 0 8px;
+}
+
+.evt-choisi {
+  color: var(--texte-doux);
+  font-style: italic;
+}
+
+.evt-jet {
+  font-size: 14px;
+  color: var(--texte-doux);
+}
+
+.evt-jet-reussi {
+  color: var(--vert);
+}
+
+.evt-jet-rate {
+  color: var(--rouge);
+}
+
+.evt-constat {
+  font-size: 14.5px;
+  color: var(--or);
+}
+
+.evt-choix {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0 0;
+  border-top: 1px solid rgba(184, 116, 60, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow-y: auto;
+  flex: 0 1 auto;
+}
+
+.evt-choix-bouton {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding: 4px 8px;
+  text-align: left;
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #e8c98a;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Un choix propre à l'origine d'un héros du groupe : une autre couleur, l'origine en or. */
+.evt-choix-bouton.evt-origine {
+  color: #c9b3ee;
+}
+
+.evt-choix-bouton:hover:not(:disabled),
+.evt-choix-bouton:focus-visible {
+  color: #fff3d6;
+  background: rgba(184, 116, 60, 0.2);
+  outline: none;
+}
+
+.evt-choix-bouton:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.evt-choix-num {
+  flex: none;
+  min-width: 1.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+.evt-choix-origine {
+  font-weight: 700;
+  color: var(--or);
+}
+
+.evt-choix-jet {
+  color: var(--texte-faible);
+}
+
+.evt-partir {
+  color: var(--or);
+  font-family: var(--titre);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 700px) {
+  .evt {
+    padding: 8px;
+  }
+  .evt-boite {
+    max-height: 62%;
+  }
+}

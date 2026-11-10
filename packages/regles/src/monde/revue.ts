@@ -5,6 +5,7 @@ import type { Canon, Revue } from './canon';
 import type { Diagnostic, RefEntite } from './diagnostics';
 import { examensDe } from './examens-donnees';
 import { dilemmesDe } from './dilemmes-donnees';
+import { evenementsChoixDe } from './evenements-choix-donnees';
 import { questionsDe } from './codex-donnees';
 import { normaliser, savoirsDe } from './savoirs-donnees';
 import type { DonneesMonde } from './schemas';
@@ -77,6 +78,14 @@ export function champsLibres(dm: DonneesMonde): ChampLibre[] {
     x.regards.forEach((r, i) => ajouter('examens', x.id, ['regards', i, 'texte'], `regard ${i + 1}`, r.texte));
   }
   for (const d of dilemmesDe(dm).dilemmes) ajouter('dilemmes', d.id, ['situation'], 'situation', d.situation);
+  for (const ev of evenementsChoixDe(dm).evenements) {
+    ajouter('evenements-choix', ev.id, ['narration'], 'narration', ev.narration);
+    ev.variantes.forEach((va, i) => ajouter('evenements-choix', ev.id, ['variantes', i, 'narration'], `narration (variante ${i + 1})`, va.narration));
+    ev.choix.forEach((c, i) => {
+      ajouter('evenements-choix', ev.id, ['choix', i, 'resultat'], `résultat « ${c.id} »`, c.resultat);
+      ajouter('evenements-choix', ev.id, ['choix', i, 'resultatEchec'], `résultat de l'échec « ${c.id} »`, c.resultatEchec);
+    });
+  }
   for (const q of questionsDe(dm).questions) ajouter('codex', q.id, ['piste'], 'piste', q.piste);
   for (const e of dm.enigmes.values()) ajouter('enigmes', e.id, ['enonce'], 'énoncé', e.enonce);
   return res;

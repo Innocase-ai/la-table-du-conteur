@@ -46,6 +46,7 @@ Règles :
 | Écrire ou régler des **rencontres** (combat, social, exploration), leurs déclencheurs, difficulté, alternatives, prix d'échec, rythme | `creer-rencontres` |
 | Écrire des **contrats de combat** : mini-quêtes variées dont le but est un petit combat, avec un PNJ qui a un vrai problème | `creer-contrats` |
 | Écrire des **choix difficiles** (dossier `dilemmes/`), échos, épilogues, pertes | `creer-dilemmes` |
+| Écrire des **événements à choix illustrés** (dossier `evenements-choix/` : une découverte, des choix dont certains propres à l'espèce ou à la classe d'un héros) | `creer-evenements-choix` |
 | Donner de la **profondeur aux PNJ** (passé, liens, confidences, savoir vérifié ; dossier `savoirs/`) | `creer-personnages` |
 | Donner du **lore au décor** : détails à examiner par lieu (inscriptions, objets, traces) qui se relisent selon ce que le groupe sait ; dossier `examens/`, format dans `docs/MONDES.md`, brief type `references/brief-examens.md` | ce skill (agents Haiku, relecture par Claude) |
 | Faire **réagir le monde aux héros** (condition `heros` : regards d'origine sur les examens, salutations de PNJ ; brief `references/brief-origines.md`) et **faire hanter le début par l'antagoniste** (apparitions qui montent en étrangeté, un fait chacune ; brief `references/brief-antagoniste.md`) | ce skill (agents Haiku, relecture par Claude : aucun lore inventé) |

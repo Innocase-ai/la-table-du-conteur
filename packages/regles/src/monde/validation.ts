@@ -5,6 +5,7 @@ import { BUDGET_PX } from '../budget';
 import type { Donnees } from '../donnees';
 import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-donnees';
 import { questionsDe } from './codex-donnees';
+import { drapeauxDesEvenements, effetsDeLEvenement, evenementsChoixDe } from './evenements-choix-donnees';
 import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
 import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
@@ -456,6 +457,18 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     cond(`Question « ${q.id} »`, q.quand);
     cond(`Question « ${q.id} »`, q.resolue);
   }
+  const { evenements: evtsChoix } = evenementsChoixDe(dm);
+  for (const ev of evtsChoix) {
+    const ou = `Événement à choix « ${ev.id} »`;
+    cond(ou, ev.quand);
+    verifierRef(ou, 'lieu', ev.lieu);
+    ev.variantes.forEach((va, k) => cond(`${ou}, variante ${k + 1}`, va.condition));
+    ev.choix.forEach((c) => {
+      cond(`${ou}, choix « ${c.id} »`, c.condition);
+      cond(`${ou}, choix « ${c.id} »`, c.requis);
+    });
+    effets(ou, effetsDeLEvenement(ev));
+  }
   const { examens } = examensDe(dm);
   for (const x of examens) {
     const ou = `Examen « ${x.id} »`;
@@ -478,6 +491,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   const viaEffet = new Set<string>();
   const collecter = (es: EffetMonde[] | undefined) => es?.forEach((e) => 'fait' in e && viaEffet.add(e.fait));
   for (const d of dilemmes) collecter(effetsDuDilemme(d));
+  for (const ev of evtsChoix) collecter(effetsDeLEvenement(ev));
   for (const i of interjections) collecter(i.effets);
   for (const x of examens) {
     collecter(x.effets);
@@ -530,12 +544,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const p of dm.pieges.values()) collecterEffets(p.effets);
   for (const j of dm.jauges.values()) j.paliers.forEach((x) => collecterEffets(x.effets));
   for (const d of dilemmes) collecterEffets(effetsDuDilemme(d));
+  for (const ev of evtsChoix) collecterEffets(effetsDeLEvenement(ev));
   for (const i of interjections) collecterEffets(i.effets);
   for (const x of examens) {
     collecterEffets(x.effets);
     x.variantes.forEach((va) => collecterEffets(va.effets));
   }
   for (const flag of drapeauxDesDilemmes(dm)) poses.add(flag);
+  for (const flag of drapeauxDesEvenements(dm)) poses.add(flag);
   for (const t of dm.tresors.values()) {
     t.contenu.objets.forEach((o) => objetsObtenables.add(o.objet));
     t.contenu.tables.forEach((x) => dm.tables.get(x.table)?.entrees.forEach((en) => en.objet && objetsObtenables.add(en.objet)));
@@ -590,6 +606,14 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const x of examens) {
     toutes(`Examen « ${x.id} »`, x.visible);
     for (const va of x.variantes) toutes(`Examen « ${x.id} », variante « ${va.id} »`, va.condition);
+  }
+  for (const ev of evtsChoix) {
+    toutes(`Événement à choix « ${ev.id} »`, ev.quand);
+    ev.variantes.forEach((va) => toutes(`Événement à choix « ${ev.id} »`, va.condition));
+    ev.choix.forEach((c) => {
+      toutes(`Événement à choix « ${ev.id} », choix « ${c.id} »`, c.condition);
+      toutes(`Événement à choix « ${ev.id} », choix « ${c.id} »`, c.requis);
+    });
   }
   for (const d of dilemmes) {
     toutes(`Dilemme « ${d.id} »`, d.quand);

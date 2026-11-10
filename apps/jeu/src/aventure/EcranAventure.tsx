@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   type DonneesMonde,
   type EvenementJeu,
+  type FicheEvenement,
   type FicheScene,
   type Proposition,
   type SceneNarree,
@@ -31,6 +32,7 @@ import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
 import { EcranSommeil } from './EcranSommeil';
 import { EcranCrochetage } from './EcranCrochetage';
+import { EcranEvenement } from './EcranEvenement';
 import { EcranDesamorcage } from './EcranDesamorcage';
 import { detecterOuverture, type Ouverture } from '../crochetage-regles';
 import { detecterDesamorcage, type Desamorcage } from '../desamorcage-regles';
@@ -164,6 +166,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
   const sceneNarree = moteur.vue<SceneNarree | undefined>('sceneEnCours', partie);
+  // L'événement à choix illustré ouvert (image, narration, choix, résultat) : un écran posé sur l'aventure.
+  const evenement = moteur.vue<FicheEvenement | undefined>('evenementEnCours', partie);
   const sceneRevue = !!sceneNarree && ((partie.modules['scenes'] as { vues?: string[] } | undefined)?.vues ?? []).includes(sceneNarree.id);
   const propositions = moteur.propositions(partie);
   // La conversation : les répliques du joueur (touches 1 à 9) et « Fin du dialogue » vont dans la boîte posée sur la scène.
@@ -269,7 +273,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || evenement || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -281,7 +285,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     };
     window.addEventListener('keydown', surTouche);
     return () => window.removeEventListener('keydown', surTouche);
-  }, [encarts, pageOuverte, sceneNarree, feuille, partie.groupe, carteOuverte]);
+  }, [encarts, pageOuverte, evenement, sceneNarree, feuille, partie.groupe, carteOuverte]);
 
   /** Un tour du conteur : le joueur écrit, le conteur agit par les commandes du moteur et raconte. */
   const raconter = async (texte: string) => {
@@ -587,6 +591,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {desamorcage && !sommeil && !crochetage && <EcranDesamorcage desamorcage={desamorcage} onFin={finDesamorcage} />}
+      {evenement && !sceneNarree && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte && <EcranEvenement key={evenement.id} dm={dm} fiche={evenement} jouer={jouer} />}
       {sceneNarree && !sommeil && !crochetage && !desamorcage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );

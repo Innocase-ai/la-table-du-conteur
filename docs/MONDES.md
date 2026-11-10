@@ -102,6 +102,30 @@ Le second dossier d'extension est **`dilemmes/`** (module Dilemmes, `packages/re
 - **Mémoire** : un choix pose les drapeaux `choix-<dilemme>` et `choix-<dilemme>-<option>`, lisibles partout (variantes de salutation, conditions de sujet, de rencontre, de fin). Le journal tient une **Chronique des choix** (et les « Choix en suspens ») ; à la fin de l'histoire, les `epilogue` des choix faits sont racontés.
 - **Validation** : erreurs (référence inconnue, jet sans `echec`, écho sur une option inconnue) et conseils `[dilemmes]` (option sans effet ou seulement narrative, aucun écho, épilogue manquant, deux options aux effets identiques). Le validateur du monde connaît les drapeaux de choix.
 
+## Données des modules : les événements à choix illustrés
+
+Le dossier **`evenements-choix/`** (module `evenementsChoix`, `modules/evenements-choix.ts`, format dans `monde/evenements-choix-donnees.ts`, écran `apps/jeu/src/aventure/EcranEvenement.tsx`, conception : `docs/PLAN-EVENEMENTS-A-CHOIX.md`) porte des **tableaux** : une grande image du lieu, une boîte de texte sombre avec la narration, des choix numérotés (touches 1 à 9, Échap), puis le résultat et le seul bouton « Partir ». Ce n'est pas un dilemme (pas de coût et gain affichés, d'abstention, de délai ni d'échos) : une découverte à enjeu petit ou moyen, avec un texte de résultat.
+
+```json
+{
+  "id": "la-source-grise", "titre": "La source grise", "lieu": "gro-loups-source",
+  "quand": { "rencontre": { "id": "gro-r-loups-salle-de-la-meute", "alternative": "apaiser" } },
+  "ouverture": "entree", "image": { "groupe": "lieux", "id": "gro-loups-source" },
+  "narration": "70 à 110 mots.", "variantes": [ { "condition": { "fait": "f-…" }, "narration": "…" } ],
+  "choix": [
+    { "id": "boire", "libelle": "Buvez à la source.", "jet": { "competence": "medecine", "dd": 11 }, "effets": [ ], "resultat": "50 à 80 mots.", "echec": [ ], "resultatEchec": "…" },
+    { "id": "nain", "condition": { "heros": { "espece": "nain" } }, "libelle": "« Laissez-moi goûter la pierre. »", "effets": [ ], "resultat": "…" }
+  ],
+  "partir": "Laisser les louveteaux dormir et repartir."
+}
+```
+
+- **Ouverture** : `entree` (défaut) : l'écran s'ouvre tout seul dès que le groupe est dans le lieu, en exploration, et que `quand` (une `Condition` : fait, quête, drapeau, mémoire du groupe `rencontre` / `parle` / `temoin`, `heros`…) est vrai ; `bouton` : une action « Regarder de plus près » du panneau Ici. Partir sans choisir ne perd rien : « Revenir à ce moment » le rouvre. Il ne se joue qu'une fois (pas de rejouable pour l'instant).
+- **Image** : `image` (groupe `lieux`, `pnj`, `monstres` ou `objets` du manifeste), par défaut l'image du lieu ; `visuel` garde le prompt d'une illustration propre pour plus tard (jamais de héros pré-tirés). Le groupe `evenements` du manifeste n'existe pas encore.
+- **Choix** (2 à 6, « Partir » s'ajoute) : général (sans `heros`) ou **réservé à une origine** (`condition` contenant `heros`) : le jeu préfixe le libellé de l'origine d'après le SRD, `(Nain)`, `(Magicien)`, `(Nain Magicien)` (`origine` pour dire autre chose), le cache sans héros vivant correspondant, et **fait agir ce héros** (jet, nom dans le résultat). Une autre `condition` cache le choix sans préfixe ; `requis` + `requisTexte` le grise. Un `jet` impose `echec` et `resultatEchec` : un jet raté ne bloque jamais.
+- **Mémoire** : choisir pose les drapeaux `evt-<id>` et `evt-<id>-<choix>` (lisibles partout), consigne la narration, le choix et le résultat au journal, et ajoute « Événements vécus » au Journal. Le conteur ne choisit jamais (`ouvrirEvenement`, `choisirEvenement`, `quitterEvenement` sont hors conteur).
+- **Validation** : erreurs (lieu, image, référence inconnue, id ou choix en double, jet sans `echec` et `resultatEchec`, tous les choix réservés à une origine) ; conseils (narration hors 40 à 150 mots, résultat hors 30 à 110, aucun choix d'origine, choix sans effet, `quand` jamais vrai). Skill : `creer-evenements-choix`.
+
 ## Données des modules : le savoir des PNJ
 
 Le troisième dossier d'extension est **`savoirs/`** (module Savoirs, `modules/savoirs.ts`, format dans `monde/savoirs-donnees.ts`). Une fiche de savoir donne à un personnage **de la profondeur** : de quoi parler librement de lui-même, de ses proches et de ce qu'il sait, **sans rien inventer**. Le LLM du jeu s'en sert quand le joueur sort des sujets écrits ; le jeu **vérifie chaque réplique**.

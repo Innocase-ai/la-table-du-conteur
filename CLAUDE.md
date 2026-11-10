@@ -42,6 +42,7 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 - `creer-contrats` : mini-quêtes de combat variées, ancrées dans la fiction (jamais une heure sans combat).
 - `verifier-completude-histoire` : ce qui MANQUE dans une histoire (images de lieux, PNJ et objets, cartes, positions, scènes, voix, contrats, estimation) ; `pnpm monde manque <monde>` ; à lancer à la fin de chaque lieu et avant tout bilan ou publication.
 - `creer-dilemmes` : choix difficiles, échos, épilogues (dossier `dilemmes/`).
+- `creer-evenements-choix` : événements à choix illustrés (grande image, narration, choix généraux et choix propres à l'origine d'un héros du groupe, résultat ; dossier `evenements-choix/`).
 - `creer-personnages` : profondeur des PNJ (canon des personnages, fiches de savoir, confidences verrouillées, conversations libres vérifiées).
 - `enigmes` : dès qu'une énigme est créée, modifiée ou relue ; les énigmes se vérifient toujours en les jouant (`pnpm monde enigmes <monde>`, puis dans le jeu).
 - `conteur` : le MJ IA (outils, prompt, essais réels).

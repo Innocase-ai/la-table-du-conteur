@@ -12,7 +12,7 @@ export interface Modeles {
 }
 
 /** Dossiers des modules que les étapes suivantes remplissent (dilemmes, savoirs, examens, codex, interjections, scènes). */
-export const DOSSIERS_MODULES = ['dilemmes', 'savoirs', 'examens', 'codex', 'interjections', 'scenes'] as const;
+export const DOSSIERS_MODULES = ['dilemmes', 'savoirs', 'examens', 'codex', 'interjections', 'evenements-choix', 'scenes'] as const;
 
 function remplacer(texte: string, id: string, nom: string): string {
   return texte.replaceAll('{{ID}}', id).replaceAll('{{NOM}}', nom);

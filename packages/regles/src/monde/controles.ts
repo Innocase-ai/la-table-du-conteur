@@ -3,6 +3,7 @@
 import type { Diagnostic } from './diagnostics';
 import { conditionSatisfiable, produitPar, type IndexReferences } from './references';
 import { dilemmesDe } from './dilemmes-donnees';
+import { evenementsChoixDe } from './evenements-choix-donnees';
 import type { DonneesMonde } from './schemas';
 
 export function controlerMonde(dm: DonneesMonde, idx: IndexReferences): Diagnostic[] {
@@ -18,6 +19,10 @@ export function controlerMonde(dm: DonneesMonde, idx: IndexReferences): Diagnost
   // Un dilemme dont la condition `quand` ne peut jamais être vraie ne s'ouvre jamais.
   for (const d of dilemmesDe(dm).dilemmes) {
     if (!conditionSatisfiable(d.quand, idx, dm)) noter('dilemme.quand-impossible', 'avis', `Dilemme « ${d.id} » : sa condition « quand » ne peut jamais être vraie (un drapeau, un fait ou un objet exigé n'est produit nulle part) : il ne s'ouvrira jamais.`, 'dilemmes', d.id, ['quand']);
+  }
+  // Un événement à choix dont la condition `quand` ne peut jamais être vraie ne s'ouvrira jamais.
+  for (const ev of evenementsChoixDe(dm).evenements) {
+    if (ev.quand && !conditionSatisfiable(ev.quand, idx, dm)) noter('evenement-choix.quand-impossible', 'avis', `Événement à choix « ${ev.id} » : sa condition « quand » ne peut jamais être vraie : il ne s'ouvrira jamais.`, 'evenements-choix', ev.id, ['quand']);
   }
   // Un passage à sens unique sans aucun autre chemin de retour : le groupe ne pourra pas revenir par là.
   for (const l of dm.lieux.values()) {

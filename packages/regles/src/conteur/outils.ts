@@ -26,6 +26,10 @@ export const COMMANDES_HORS_CONTEUR = new Set([
   'raconter',
   // Un grand choix (dilemme) est celui du joueur : le conteur le raconte, il ne tranche jamais à sa place.
   'trancher',
+  // Un événement à choix illustré : le choix est celui du joueur (écran dédié), le conteur ne le tranche pas.
+  'ouvrirEvenement',
+  'choisirEvenement',
+  'quitterEvenement',
 ]);
 
 /** L'outil qui termine un tour : les actions que le joueur peut tenter ensuite. */

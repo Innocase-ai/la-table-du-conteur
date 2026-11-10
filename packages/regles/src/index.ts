@@ -33,6 +33,7 @@ export * from './monde/references';
 export * from './monde/graphes';
 export * from './monde/identifiants';
 export * from './monde/schemas-par-dossier';
+export * from './monde/evenements-choix-donnees';
 export * from './monde/registre';
 export * from './monde/canon';
 export * from './monde/revue';

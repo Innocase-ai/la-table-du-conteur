@@ -42,6 +42,7 @@ const PREFIXES: [RegExp, string][] = [
   [/^Fait(?: clé)? « ([^»]+) »/, 'faits'],
   [/^Chapitre « ([^»]+) »/, 'chapitres'],
   [/^Dilemme « ([^»]+) »/, 'dilemmes'],
+  [/^Événement à choix « ([^»]+) »/, 'evenements-choix'],
   [/^Interjection « ([^»]+) »/, 'interjections'],
   [/^Question « ([^»]+) »/, 'codex'],
   [/^Examen « ([^»]+) »/, 'examens'],
