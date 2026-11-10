@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "por-quai-aux-cordes",
     "difficulte": "faible",
-    "intro": "Trois hommes en cirés goudronnés sortent d'entre les caisses, couteau en main. Un quatrième, plus gros, siffle entre ses dents : « Le péage du quai, c'est nous. »",
+    "intro": "Entre les caisses de saumure, une toile cirée bruit, et trois hommes en cirés goudronnés se glissent au jour, couteau en main. L'odeur de poix les suit ; leurs bottes frappent les planches, puis s'arrêtent d'un coup, à l'ombre des cordages. Derrière une pile de caisses, un quatrième homme, plus gros, s'appuie sur une amarre et vous observe sans hâte. Il siffle entre ses dents, et le bruit de l'eau contre les pilotis semble soudain plus fort. « Le péage du quai, c'est nous. »",
     "monstres": [
       {
         "profil": "bandit",
@@ -37,7 +37,7 @@
       {
         "id": "payer-le-peage",
         "nom": "Payer le péage",
-        "resume": "Le chef accepte une bourse de trente pièces d'or et laisse le quai à ses hommes.",
+        "resume": "Vous posez la bourse sur une caisse, et le gros homme la fait sauter dans sa paume, pesant chaque pièce du bout des doigts. Il compte à voix haute jusqu'à trente, puis fait signe à ses hommes de rengainer. Les trois couteaux disparaissent entre les caisses, et le quai reprend son silence. « Le quai reste à ses hommes », dit-il avec un sourire, sans la moindre rancune.",
         "effets": [
           {
             "pieces": -30
@@ -47,7 +47,7 @@
       {
         "id": "intimider-le-chef",
         "nom": "Intimider le chef",
-        "resume": "Un regard, une main sur la lame : les brigands doutent, et leur chef recule d'un pas.",
+        "resume": "Vous ne bougez pas, la main posée sur votre lame, et vous fixez le chef sans cligner des yeux. Ses hommes échangent des regards, et leurs couteaux oscillent, hésitants. Le gros homme recule d'un pas, puis d'un second, et sa voix perd son assurance : « On verra ça plus tard. » Ses hommes reculent avec lui vers les caisses, et la tension retombe sur le quai, lourde comme une corde mouillée.",
         "jet": {
           "competence": "intimidation",
           "dd": 13
@@ -57,7 +57,7 @@
       {
         "id": "fuir-par-les-cordages",
         "nom": "Fuir par les cordages",
-        "resume": "Grimper sur les caisses et filer par les passerelles avant que les couteaux ne sortent.",
+        "resume": "Vous empoignez un cordage et grimpez sur les caisses, les mains serrées sur le chanvre humide, avant que les couteaux ne se lèvent. Une passerelle étroite vous mène d'un toit à l'autre, sous les voiles qui claquent, et les cris d'en bas se perdent dans le vent. Derrière vous, une lame siffle dans le vide sans vous atteindre, et le bruit des bottes s'éloigne sur les planches.",
         "jet": {
           "competence": "acrobaties",
           "dd": 12
@@ -83,7 +83,7 @@
     "type": "combat",
     "lieu": "por-egouts-galerie",
     "difficulte": "faible",
-    "intro": "Des grattements dans les caisses, puis trois bêtes grosses comme des chiens se dressent dans la boue, et une nuée sombre se répand du plafond. Une lanterne tombe et roule à vos pieds.",
+    "intro": "Des grattements s'élèvent derrière les caisses, d'abord un seul, puis dix, puis tout un chœur de griffes sur la brique humide. Trois rats géants, gros comme des chiens, se dressent dans la boue, gueule ouverte sur des dents jaunes. Des marques de pattes creusent la boue, petites et nombreuses, et une odeur de vieux pain flotte autour de vous. Au plafond, une nuée sombre se détache d'une fissure et se répand comme une fumée vivante. Une lanterne lâchée roule à vos pieds, toujours allumée, et sa lumière jaune glisse sur la boue.",
     "monstres": [
       {
         "profil": "rat-geant",
@@ -114,7 +114,7 @@
       {
         "id": "chasser-au-feu",
         "nom": "Chasser les rats au feu",
-        "resume": "Une torche agitée et des cris font refluer la nuée ; les rats géants suivent la fumée vers le bassin.",
+        "resume": "Vous ramassez la lanterne tombée à vos pieds et l'agitez devant vous, en criant à pleine voix. La flamme claque, la fumée monte, et la nuée reflue vers le plafond en tourbillonnant. Les rats géants reculent d'abord, les oreilles couchées, puis suivent la fumée à travers la galerie vers le bassin, en se bousculant sur les caisses renversées.",
         "jet": {
           "competence": "survie",
           "dd": 12
@@ -140,7 +140,7 @@
     "type": "combat",
     "lieu": "por-cale-seche",
     "difficulte": "faible",
-    "intro": "Une silhouette couverte de sel et d'algues est couchée sur les galets, à côté d'une grille de fer. Elle se redresse, une armure couverte de coraux luisant sur la poitrine. Le squelette qui la suit tend une lame rouillée.",
+    "intro": "Près d'une grille de fer, sur les galets, un noyé gît couvert de sel, le visage tourné vers la pierre. Il se redresse lentement, et une armure couverte de coraux luisants se découvre sur sa poitrine, d'une lueur pâle. Deux squelettes le suivent, une lame rouillée à la main, et leurs pas résonnent dans la cale creuse. Le froid de la pierre monte dans les bottes. L'eau goutte des parois, à intervalles réguliers, et chaque goutte tombe avec un son clair, presque métallique.",
     "monstres": [
       {
         "profil": "zombi",
@@ -172,7 +172,7 @@
       {
         "id": "reciter-les-noms",
         "nom": "Réciter les noms gravés",
-        "resume": "Réciter à voix basse les noms de la chapelle ; le noyé baisse sa lame et retourne au fond des galets.",
+        "resume": "Vous récitez à voix basse les noms gravés dans la chapelle, un à un, sans hésiter. Le noyé s'immobilise, la tête penchée, et les deux squelettes baissent leurs lames. Tous reculent vers le fond des galets, à pas lents, tandis que les coraux de la poitrine pâlissent à mesure qu'ils s'éloignent, jusqu'à se perdre dans la pénombre.",
         "jet": {
           "competence": "religion",
           "dd": 12
@@ -198,7 +198,7 @@
     "type": "combat",
     "lieu": "por-ruelle-des-voiles",
     "difficulte": "faible",
-    "intro": "Trois hommes sortent d'une porte de cave, des couteaux à la main. Joss n'est pas avec eux : il a dû leur indiquer le chemin, et ils savent exactement où vous passez.",
+    "intro": "Dans la ruelle, les voiles claquent au-dessus de vous, puis un grincement de gonds fait tourner la tête. Une porte de cave s'ouvre au ras des pavés, et trois hommes en sortent l'un après l'autre, chacun un couteau à la main, avec la démarche lente de gens qui ont déjà compté vos pas. L'air sent la cave humide et le goudron. Joss n'est pas avec eux, et vous ne le voyez nulle part dans la ruelle : il a dû leur indiquer le chemin, et ils savent exactement où vous passez. Un volet claque quelque part au-dessus de vous.",
     "monstres": [
       {
         "profil": "bandit",
@@ -225,7 +225,7 @@
       {
         "id": "parler-a-leur-tete",
         "nom": "Parler à leur chef",
-        "resume": "Le plus vieux des trois accepte de parler : Joss leur a promis une bourse, il ne leur a pas dit pour qui.",
+        "resume": "Le plus vieux des trois lève la main et abaisse son couteau d'un cran, sans quitter la ruelle des yeux. Il parle à voix basse, les épaules rentrées : Joss leur a promis une bourse, et il ne leur a pas dit pour qui. Vous voyez qu'il n'en est pas fier. Sur son signal, les deux autres rangent leurs lames et s'éloignent par la ruelle, et le claquement des voiles reprend seul entre les murs.",
         "jet": {
           "competence": "persuasion",
           "dd": 13
@@ -247,7 +247,7 @@
     "type": "mixte",
     "lieu": "por-quai-aux-cordes",
     "difficulte": "faible",
-    "intro": "Le capitaine Ottilie Brasse n'a pas l'air d'avoir dormi. Ses trois gardes avancent d'un pas, les piques basses. « Vous avez cassé le quai, dit-elle. Le quai se paie. »",
+    "intro": "Des bottes claquent sur les planches du quai, en cadence, et trois piques s'abaissent d'un même geste. Le capitaine Ottilie Brasse marche en tête, grande, les cheveux noirs tirés en chignon serré, un bâton d'if à la main. Elle n'a pas l'air d'avoir dormi : des cernes creusent son visage, et un sourire bref s'éteint avant d'être fini. Derrière elle, la cabane de la garde laisse filtrer une lanterne jaune. « Vous avez cassé le quai, dit-elle. Le quai se paie. »",
     "monstres": [
       {
         "profil": "garde",
@@ -273,7 +273,7 @@
       {
         "id": "plaider",
         "nom": "Plaider la bonne foi",
-        "resume": "Expliquer que le péage a commencé sans vous : la capitaine n'a pas envie de paperasse.",
+        "resume": "Vous expliquez que le péage a commencé sans vous, que des hommes vous ont barré le passage avant même que vous ne touchiez une caisse. Vous parlez posément, les mains ouvertes, sans jurer ni menacer. Elle écoute en tapotant son bâton sur les planches, puis lève la main : elle n'a pas envie de paperasse, ni de rapport, ni de greffier. Elle vous laisse passer, et ses gardes reprennent leur rang sans un mot.",
         "jet": {
           "competence": "persuasion",
           "dd": 13
@@ -283,7 +283,7 @@
       {
         "id": "montrer-le-sceau",
         "nom": "Montrer le sceau de la Ligue",
-        "resume": "Le disque de bronze suffit : les gardes se mettent au garde-à-vous et laissent passer le groupe.",
+        "resume": "Vous posez le disque de bronze sur le plat de sa main, sans un mot. Le blason du phare brille sous la lanterne. Les trois gardes se figent au garde-à-vous, les piques redressées d'un seul mouvement, et la capitaine lit l'écusson deux fois avant de rendre la pièce. Elle s'écarte et vous laisse passer, sans un regard pour les caisses. Le disque retrouve sa place à votre ceinture.",
         "condition": {
           "objet": "sceau-de-la-ligue"
         },
@@ -292,7 +292,7 @@
       {
         "id": "payer-l-amende",
         "nom": "Payer l'amende",
-        "resume": "Vingt pièces d'or, sans un mot : la capitaine les glisse dans sa poche et ferme les yeux.",
+        "resume": "Vous comptez vingt pièces d'or dans sa paume, une à une, sous les yeux des trois gardes. Elle ne les recompte pas. Elle les glisse dans la poche de son manteau, sans un remerciement ni une menace, et ferme les yeux un instant, comme on fait une concession que l'on n'a jamais annoncée. Le quai reprend ses bruits de bottes et de cordages, et personne ne vous regarde plus.",
         "effets": [
           {
             "pieces": -20

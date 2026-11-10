@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "cit-intendance",
     "difficulte": "faible",
-    "intro": "Dans la pénombre, des yeux ronds s'allument entre les sacs éventrés, et une odeur de moisi monte de l'eau qui luit au fond de la réserve. Trois rats gros comme des chats se dressent sur les caisses, moustaches frémissantes, sans reculer d'un pouce. Dans le magasin, quelqu'un a oublié de fermer la trappe de la cave.",
+    "intro": "Une eau noire luit au fond de la réserve, et son odeur de moisi monte jusqu'aux étagères. Entre les sacs éventrés, des yeux ronds s'allument l'un après l'autre. Trois rats gros comme des chats se dressent sur les caisses, moustaches frémissantes, sans reculer d'un pouce. Leurs pattes glissent sur le bois humide, et leurs queues fouettent la poussière de grain. Dans le magasin, quelqu'un a oublié de fermer la trappe de la cave, et la fraîcheur qui en sort vous frôle les chevilles.",
     "monstres": [
       {
         "profil": "rat-geant",
@@ -32,7 +32,7 @@
       {
         "id": "colmater-la-breche",
         "nom": "Je cherche la fissure par où l'eau entre et je la bouche avec des sacs et du mortier.",
-        "resume": "Une fente ancienne court dans la paroi, à hauteur du genou, et l'eau remonte par ce trou noir. En la bouchant avec des sacs de sable et du mortier, on prive les rats de leur chemin et de leur eau.",
+        "resume": "Vous suivez le suintement le long de la paroi jusqu'à une fente ancienne, à hauteur du genou, d'où l'eau remonte par un trou noir et froid. Vous bourrez la brèche de sacs de sable, puis de mortier, en serrant chaque poignée contre la pierre. Ainsi les rats perdent leur chemin, et leur eau avec. Le mur ne suinte plus qu'à peine, et la cave se tait.",
         "jet": {
           "competence": "investigation",
           "dd": 12
@@ -50,7 +50,7 @@
         ],
         "echec": [
           {
-            "narration": "Vous suivez les suintements jusqu'à la paroi, mais le mortier se délite sous vos doigts. Les rats se jettent par la fente, et la mer répond en remontant d'un cran dans la cave."
+            "narration": "Vous suivez les suintements jusqu'à la paroi, mais le mortier se délite sous vos doigts comme de la craie mouillée. Deux rats se jettent par la fente et vous frôlent les jambes, les dents découvertes, pendant que l'eau continue de suinter. Vous reculez, les mains couvertes de poussière blanche, et le troisième rat vous garde les yeux fixés depuis le haut des caisses."
           }
         ],
         "echecResout": false
@@ -58,7 +58,7 @@
       {
         "id": "chasser-au-grain",
         "nom": "J'ouvre la porte de service sur la cour et je les chasse avec un sac de rations.",
-        "resume": "Les rats se ruent vers la lumière de la cour à l'odeur du pain, et se dispersent entre les pavés mouillés. Un sac de rations y passe ; les rats reviendront peut-être, tant que l'eau suinte.",
+        "resume": "Vous ouvrez la porte de service sur la cour, et les rats se ruent vers la lumière, attirés par l'odeur du pain. Ils se dispersent entre les pavés mouillés, les moustaches collées par la pluie fine, dans un concert de cris aigus. Vous jetez le sac de rations au milieu d'eux ; il s'éventre, et le grain se répand sur les pavés. Les rats reviendront peut-être, tant que l'eau suinte dans la cave.",
         "condition": {
           "objet": "rations"
         },

@@ -5,7 +5,7 @@
     "type": "combat",
     "lieu": "route-des-falaises",
     "difficulte": "faible",
-    "intro": "Deux silhouettes trempées, debout au milieu de la route, se retournent vers vous. Leurs vêtements dégoulinent d'eau de mer, et chacun de leurs pas laisse une flaque sur les dalles.",
+    "intro": "Deux silhouettes trempées se tiennent au milieu de la route de crête, dans une brume qui efface le bord de la falaise. Leurs vêtements dégoulinent d'eau de mer, et chacun de leurs pas laisse une flaque noire sur les dalles usées. Rien à entendre que ce clapotis ; le vent pousse vers vous une odeur d'algues et de sel. Quand elles se retournent ensemble, l'eau continue de couler de leurs manches.",
     "monstres": [
       {
         "profil": "zombi",
@@ -32,7 +32,7 @@
       {
         "id": "fal-les-appeler",
         "nom": "Les appeler par leur nom",
-        "resume": "Les naufragés reconnaissent parfois leur nom : ils s'arrêtent, se tournent vers la mer et s'éloignent lentement, sans se battre.",
+        "resume": "Vous les appelez par leur nom, comme on appelle quelqu'un rentré trop tard de la pêche. L'une relève la tête, cherche la mer des yeux, puis se tourne vers le bord de la falaise. Elles s'éloignent lentement, sans se battre, et l'eau de leurs vêtements laisse une traînée sombre sur les dalles jusqu'au premier virage.",
         "effets": [],
         "jet": {
           "competence": "persuasion",
@@ -42,7 +42,7 @@
       {
         "id": "fal-faire-demi-tour",
         "nom": "Faire demi-tour",
-        "resume": "Reculer pas à pas vers le relais sans leur tourner le dos : ils ne vous suivent pas au-delà du premier virage.",
+        "resume": "Vous reculez pas à pas vers le relais, sans leur tourner le dos, les yeux sur leurs visages pâles. Elles avancent encore un peu, puis s'arrêtent au premier virage et ne vont pas plus loin. Il ne reste sur les dalles qu'une trace d'eau, et la brume referme la route derrière vous.",
         "effets": [],
         "jet": {
           "competence": "discretion",
@@ -63,7 +63,7 @@
     "type": "combat",
     "lieu": "fal-pont-des-corbeaux",
     "difficulte": "faible",
-    "intro": "Trois hommes sortent des rochers, arcs tendus, sur un coup de sifflet de corbeau. Le plus grand lève la main : « Le péage, ou la charrette. »",
+    "intro": "Un sifflet bref monte des rochers, aussitôt couvert par le cri des corbeaux. Trois hommes se dressent entre les pierres du côté nord, arcs tendus, et leurs flèches suivent chacun de vos pas sur le pont. Un courant froid descend la gorge et apporte une odeur de schiste mouillé. Le parapet, blanchi de fientes, renvoie le moindre bruit, et le ruisseau, tout au fond, ne fait qu'un murmure. Le plus grand descend au milieu du pont et lève la main. « Le péage, ou la charrette. »",
     "monstres": [
       {
         "profil": "bandit",
@@ -91,7 +91,7 @@
       {
         "id": "payer-le-peage",
         "nom": "Payer le péage",
-        "resume": "Une bourse de pièces suffit : les trois hommes s'écartent du pont sans un mot, et le chef compte la somme avant de rire.",
+        "resume": "Vous posez une bourse sur le parapet, et le chef la soupèse sans l'ouvrir. Il ne lève pas les yeux vers la route derrière vous. Les trois hommes s'écartent du pont d'un même mouvement, arcs baissés, sans un mot. Le plus grand compte les pièces à voix basse, puis part d'un rire bref qui roule jusqu'au fond du ravin : « Bonne route. »",
         "effets": [
           {
             "pieces": -15
@@ -101,7 +101,7 @@
       {
         "id": "fal-passer-sous-le-pont",
         "nom": "Passer sous les arches",
-        "resume": "Descendre par la berge et longer l'eau sous les arches, sans attirer les tireurs : une course entre les galets.",
+        "resume": "Vous descendez par la berge, les bottes enfoncées dans les galets qui roulent à chaque pas. Sous les arches, l'eau glisse presque noire, et la pierre suinte au-dessus de vos têtes. Les tireurs guettent la route là-haut, et leurs voix ne vous parviennent qu'à demi. Il faut avancer vite et sans bruit, en se tenant aux piliers, jusqu'à ce que le pont ne soit plus qu'une ombre derrière vous.",
         "effets": [],
         "jet": {
           "competence": "discretion",
@@ -122,7 +122,7 @@
     "type": "combat",
     "lieu": "fal-digues-du-marais",
     "difficulte": "faible",
-    "intro": "Dans la boue des digues, des silhouettes se redressent, lentes, une à une. Elles tiennent encore des râteaux de bois, et de l'eau coule de leurs vêtements à chaque mouvement.",
+    "intro": "La boue des digues cède d'un coup, et des formes sombres se redressent entre les joncs, une à une, sans hâte. Certains tiennent encore des râteaux de bois, dont les dents raclent la vase, et d'autres n'ont plus que leurs mains. Une eau grise coule de leurs vêtements à chaque mouvement, goutte après goutte sur la digue, et ce ruissellement est le seul bruit qui s'élève. Une odeur de limon froid monte des flaques. Leurs têtes restent penchées, comme pour écouter la boue.",
     "monstres": [
       {
         "profil": "squelette",
@@ -152,7 +152,7 @@
       {
         "id": "fal-attendre-le-flot",
         "nom": "Attendre le flot",
-        "resume": "Se tenir loin de l'eau : les noyés suivent la mer, et reculent avec elle quand le flot remonte sur les digues.",
+        "resume": "Vous reculez jusqu'au sec, loin des étangs, et vous attendez en surveillant l'eau qui gagne les flaques. Quand le flot remonte enfin sur les digues, les noyés le suivent sans un cri : ils reculent avec la mer, les râteaux traînant dans la boue, et leurs pas se perdent dans le bruit du ressac. Il ne reste bientôt sur la digue que des traces qui s'effacent peu à peu.",
         "effets": [],
         "jet": {
           "competence": "survie",
@@ -173,7 +173,7 @@
     "type": "combat",
     "lieu": "fal-cimetiere-des-naufrages",
     "difficulte": "faible",
-    "intro": "Entre les stèles, une forme rampe hors d'une tombe ouverte, griffes de sel, bouche grande ouverte. Deux silhouettes trempées la suivent lentement dans l'herbe couchée.",
+    "intro": "Entre les stèles grises, la terre d'une tombe ouverte se soulève, et une forme rampe au dehors, les doigts crochus enfoncés dans l'herbe. Sa bouche reste grande ouverte, et un souffle sec monte de sa gorge à chaque traction. Deux noyés trempés la suivent dans l'herbe couchée, lentement, en laissant des traînées sombres sur les pierres. Le vent couche l'herbe d'un seul côté, et une odeur de terre humide monte jusqu'à vous. Des chaînes d'ancre tintent faiblement au pied des tombes les plus anciennes, comme pour annoncer leur arrivée.",
     "monstres": [
       {
         "profil": "goule",
@@ -203,7 +203,7 @@
       {
         "id": "fal-apaiser-les-tombes",
         "nom": "Apaiser les tombes",
-        "resume": "Quelques mots de liturgie sur les stèles : les morts se calment et retournent à la terre, comme on le fait pour les naufragés.",
+        "resume": "Vous posez la main sur une stèle et prononcez quelques mots de liturgie, à voix basse, comme pour les naufragés recueillis sur la côte. Les tombes s'apaisent l'une après l'autre, la terre cesse de bouger, et la forme rampante s'affaisse dans son trou, les doigts ouverts. Les deux noyés s'arrêtent au milieu de l'herbe, puis redescendent lentement vers leurs sépultures, sans un mot.",
         "effets": [],
         "jet": {
           "competence": "religion",
@@ -224,7 +224,7 @@
     "type": "combat",
     "lieu": "fal-grotte-des-marees-galerie",
     "difficulte": "faible",
-    "intro": "Les toiles tremblent d'un coup au-dessus de la galerie, et deux bêtes grises aux pattes longues descendent des piliers, lentement, comme pour éprouver l'air autour de vous.",
+    "intro": "Les toiles frémissent d'un coup au-dessus de la galerie, et le fil sec qui les relie vibre jusqu'au sol. Deux bêtes grises, aux pattes longues et maigres, se dressent sur les piliers, lentement, comme pour éprouver l'air autour de vous. Des cocons se balancent au plafond, légers, et l'odeur de laine moisie s'épaissit à chaque souffle. Quelque part, très loin, l'eau coule dans la roche, sans que l'on distingue ses mots.",
     "monstres": [
       {
         "profil": "araignee-geante",
@@ -250,7 +250,7 @@
       {
         "id": "fal-passer-sans-les-reveiller",
         "nom": "Passer sans les réveiller",
-        "resume": "Longer la paroi sans toucher aux toiles et sans lumière trop vive : les bêtes restent immobiles dans leurs cocons.",
+        "resume": "Vous longez la paroi à pas comptés, sans effleurer une seule toile et sans élever une lanterne trop vive. Elles restent immobiles dans leurs cocons, les pattes repliées sous le ventre, et seul le courant d'air qui passe entre les piliers fait osciller les fils au-dessus de vous. Il faut avancer lentement, en détournant les yeux de leurs formes longues, jusqu'à ce que la galerie s'ouvre et que le silence retombe derrière vous.",
         "effets": [],
         "jet": {
           "competence": "discretion",

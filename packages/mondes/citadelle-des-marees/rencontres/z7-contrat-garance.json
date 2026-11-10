@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "por-marche-aux-poissons",
     "difficulte": "faible",
-    "intro": "L'odeur de poisson saumâtre vous prend à la gorge avant les lanternes. Entre les étals vides, trois hommes en tabliers de cuir sortent les couteaux à écailler de leur ceinture, sans un mot. Le plus grand porte la veste de Gaspard Filet, trop large pour lui.",
+    "intro": "Une odeur de poisson saumâtre, de glace fondue et de vieux filets vous arrive avant même les lanternes. Entre les étals vides de la halle, trois hommes en tabliers de cuir se redressent, les couteaux à écailler sortis de leur ceinture, lames luisantes, sans un mot. Leurs bottes raclent les dalles mouillées. Au pied d'un étal, une caisse de sel est ouverte, et personne ne la regarde. Le plus grand porte la veste de Gaspard Filet, trop large pour lui, et ses manches pendent sur des mains qui ne tremblent pas.",
     "monstres": [
       {
         "profil": "bandit",
@@ -32,7 +32,7 @@
       {
         "id": "parler-a-gaspard",
         "nom": "Je demande à Gaspard de me dire ce qu'il a vu cette nuit-là.",
-        "resume": "Gaspard reconnaît un groupe qui ne vient pas pour sa tête. Ses hommes attendent son signe, et il hésite : il faut le convaincre qu'on veut la vérité, pas la caisse seule.",
+        "resume": "Gaspard vous dévisage longuement, comme un pêcheur jauge une maille usée. Il reconnaît un groupe qui ne vient pas pour sa tête ni pour la caisse. Son regard passe de vous à la mer, puis revient, sans rien dire. Ses hommes attendent son signe, et il hésite, les mots lents, comme des pierres posées une à une. Il lui faut la certitude que vous cherchez la vérité, et non seulement le sel.",
         "jet": {
           "competence": "persuasion",
           "dd": 12
@@ -50,7 +50,7 @@
         ],
         "echec": [
           {
-            "narration": "Gaspard se renferme, sa main se referme sur le manche de son couteau, et ses hommes se rapprochent d'un pas."
+            "narration": "Gaspard se renferme. Il n'élève pas la voix, mais sa main se referme sur le manche de son couteau, et ses hommes se rapprochent d'un pas, en silence. Un filet glisse d'une épaule et tombe sur les dalles avec un bruit mat, et personne ne se baisse pour le ramasser."
           }
         ],
         "echecResout": false
@@ -58,7 +58,7 @@
       {
         "id": "payer-la-caisse",
         "nom": "Je paie la caisse de ma poche et je ferme l'affaire.",
-        "resume": "Trente pièces d'or suffisent à faire baisser les couteaux. Gaspard n'a pas l'air content, mais il n'a pas non plus l'air surpris ; la vérité reste sur le quai.",
+        "resume": "Vous comptez trente pièces d'or dans la paume calleuse de l'homme le plus proche, et les couteaux à écailler retombent un à un, sans un mot. Gaspard n'a pas l'air content, mais il n'a pas non plus l'air surpris. Il glisse la bourse dans sa poche sans la regarder, et détourne les yeux vers le large. La vérité reste sur le quai, avec les étals vides et la caisse de sel.",
         "condition": {
           "pieces": {
             "min": 30

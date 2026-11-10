@@ -49,7 +49,7 @@
           "marais"
         ],
         "question": "Où sont passées vos saunières ?",
-        "reponse": "Marthe pose son râteau et compte sur ses doigts : Oda, Berthe et la petite Nine, parties aux digues au crépuscule pour rapporter les claies. Elle ne les a pas vues revenir. Elle a suivi leurs traces jusqu'à la digue de l'Ouest, où elles s'arrêtaient net dans la boue. Elle demande qu'on les cherche, et elle ne promet pas plus que la nourriture.",
+        "reponse": "Marthe pose son râteau et compte sur ses doigts, sans se tromper d'une seule : « Oda, Berthe et la petite Nine. » Elles sont parties aux digues au crépuscule pour rapporter les claies. Elle ne les a pas vues revenir, et leurs traces se perdent au bord de la vase, là où le marais finit. Elle jette un coup d'œil aux bassins à sec, puis revient à vous. Ses lèvres se pincent. « Cherchez-les. Je ne promets pas plus que la nourriture. »",
         "effets": [
           {
             "quete": {
@@ -72,7 +72,7 @@
           "bassins"
         ],
         "question": "Pourquoi la mer s'est-elle retirée si loin ?",
-        "reponse": "Elle a salé trente étés sans voir l'eau si basse. Les bassins se vident en une nuit, les pans blanchissent à sec, et les vieux saulniers ne se souviennent pas d'une marée qui s'attarde si longtemps. Elle ne sait pas ce qui la retient, mais elle dit qu'un retrait pareil n'est jamais innocent.",
+        "reponse": "Elle a salé trente étés sans voir l'eau si basse. Elle repose son râteau, les mains crevassées serrées sur le manche. « Les bassins se vident en une nuit, les pans blanchissent à sec. » Les vieux saulniers ne se souviennent pas d'une marée qui s'attarde si longtemps. Elle ne sait pas ce qui la retient, et elle n'aime guère qu'on le lui demande. « Un retrait pareil n'est jamais innocent. » Elle pointe du menton la ligne du large, plus loin que jamais.",
         "revele": [
           "f-fal-mer-trop-loin"
         ]
@@ -90,7 +90,7 @@
         "condition": {
           "fait": "f-fal-saunieres-retrouvees"
         },
-        "reponse": "Marthe les serre une à une, sans rien dire, puis compte ses claies comme si elle comptait les minutes. Elle offre à chacune un bol de soupe et une couverture, et au groupe une parole de remerciement qui coûte visiblement beaucoup à dire.",
+        "reponse": "Marthe les serre une à une, sans rien dire, et ses mains restent longtemps sur leurs épaules. Derrière elle, le marais s'assombrit, et les bassins sont à peine visibles. Puis elle compte ses claies, de bout en bout du séchoir, pour s'occuper les mains. Elle sert à chacune un bol de soupe fumante et une couverture, puis se tourne vers le groupe. « Merci », dit-elle enfin, et le mot semble lui coûter plus que la soupe. Elle s'essuie les mains sur son tablier, longtemps, sans vous regarder.",
         "effets": [
           {
             "flag": "fal-saunieres-rentrees"
@@ -117,7 +117,7 @@
         ],
         "attitudeMin": 20,
         "question": "Les anciens saulniers avaient-ils des secrets ?",
-        "reponse": "Elle baisse la voix : les vieux disaient que les pans de ce marais servaient autrefois aux maisons royales de Lothmar, et que la Cour fit bénir ces bassins. Lothmar, dit-on, est sous l'eau depuis trois siècles, et la mer n'a jamais oublié ce qu'on a pris à ses rois.",
+        "reponse": "Elle baisse la voix et jette un regard vers la porte de la cabane. « Les vieux disaient que les pans de ce marais servaient autrefois aux maisons royales de Lothmar, et que la Cour fit bénir ces bassins. » Elle lisse son tablier de la paume. « Lothmar, dit-on, est sous l'eau depuis trois siècles. La mer n'a jamais oublié ce qu'on a pris à ses rois. » Elle se tait, les mains sur les genoux, comme pour se reprendre.",
         "revele": [
           "f-lothmar-englouti"
         ]
@@ -133,7 +133,7 @@
           "prieur"
         ],
         "question": "Connaissez-vous les cartographes de la Citadelle ?",
-        "reponse": "Marthe leur vend du sel chaque année. Une vieille dame revient toujours en personne, un carnet sous le bras, pour demander les coefficients des marées. Marthe ne sait pas d'où elle tire ses chiffres, mais elle n'a jamais été trompée par eux."
+        "reponse": "Marthe pèse les sacs sur sa balance de cuivre, sans lever les yeux. « Je leur vends du sel chaque année. Une vieille dame vient toujours en personne, un carnet sous le bras, pour demander les coefficients des marées. » Elle tapote le plateau de la balance d'un ongle, puis glisse la pesée dans un sac de toile. « Je ne sais pas d'où elle tire ses chiffres, et je ne les vérifie pas. Ce que je pèse, en revanche, je le pèse deux fois. »"
       }
     ],
     "salutations": {
@@ -191,7 +191,7 @@
           "maisons"
         ],
         "question": "Qu'est-il arrivé à Brumevoile ?",
-        "reponse": "Il y a dix ans, la mer est montée une nuit sans vent, jusque dans les maisons. Ceux qui ont pu grimper les falaises sont partis ; les autres sont restés sous l'eau. Lui est resté : une barque ne se laisse pas seule. Il montre les toits effondrés sans les regarder.",
+        "reponse": "Il pose son couteau à poisson sur la barque, sans se presser, et regarde les toits. « Il y a dix ans, la mer est montée une nuit sans vent, jusque dans les maisons. Elle n'a pas fait de bruit. » Sa voix reste basse, presque douce. « Ceux qui ont pu grimper les falaises sont partis ; les autres sont restés sous l'eau. » Il montre les toits effondrés du menton, sans les regarder. « Moi, je suis resté : une barque ne se laisse pas seule. »",
         "revele": [
           "f-fal-brumevoile-deserte"
         ]
@@ -207,7 +207,7 @@
           "barques"
         ],
         "question": "Pourquoi la mer s'éloigne-t-elle autant ?",
-        "reponse": "Il a vu les premiers signes au large : des barques posées sur le sable, des bancs de galets à découvert où personne n'a jamais marché. Un retrait pareil ne se passe pas tout seul, dit-il, et il a vu, au fond de la baie, une lueur qui ne vient d'aucun feu.",
+        "reponse": "Il a vu les premiers signes au large, et il les décrit sans se retourner, les yeux sur la baie. « Des barques posées sur le sable. Des bancs de galets à découvert, où personne n'a jamais marché. » Il frotte ses cals l'un contre l'autre, un bruit sec. « Un retrait pareil ne se passe pas tout seul. Et au fond de la baie, j'ai vu une lueur qui ne vient d'aucun feu. » Il se tait un moment, les yeux sur les galets.",
         "revele": [
           "f-fal-mer-trop-loin"
         ]
@@ -223,7 +223,7 @@
           "lumière"
         ],
         "question": "Pourquoi le phare du Cap-Mort est-il éteint ?",
-        "reponse": "Il regarde longtemps le large avant de répondre, la main de cals posée sur le couteau à sa ceinture. « Notre phare s’est éteint la nuit où le village a été pris. Personne n’est monté le rallumer. Une barque égarée qui cherche la terre n’a plus rien à suivre. » Il se tait, puis reprend. « Si votre route vous mène au cap, remontez la lanterne. Mes jambes ne tiennent plus la falaise. »",
+        "reponse": "Il regarde longtemps le large avant de répondre, la main de cals posée sur le couteau à sa ceinture. « Notre phare s’est éteint la nuit où le village a été pris. Personne n’est monté le rallumer. Une barque égarée qui cherche la terre n’a plus rien à suivre. » Le vent du large lui plaque sa cape contre les jambes. Il se tait, puis reprend. « Si votre route vous mène au cap, remontez la lanterne. Mes jambes ne tiennent plus la falaise. »",
         "effets": [
           {
             "quete": {
@@ -245,7 +245,7 @@
           "enterrer"
         ],
         "question": "Que deviennent les noyés des naufrages ?",
-        "reponse": "Il les enterre sur la falaise, là où la terre tient. Les naufragés ne remontent jamais : ni à la côte, ni à la surface. Il l'a vu trois fois, et les tombes qu'il a creusées restent vides sous la pierre. Il n'explique pas davantage.",
+        "reponse": "Il ne répond pas tout de suite, et pose la paume à plat sur la pierre du parapet, comme pour la sentir. « Je les enterre sur la falaise, là où la terre tient. Les naufragés ne remontent jamais : ni à la côte, ni à la surface. » Il secoue la tête, lentement. « Je l'ai vu trois fois. Les tombes que j'ai creusées restent vides sous la pierre. » Il ne dit rien de plus, et ses mains restent immobiles sur le parapet.",
         "revele": [
           "f-fal-noyes-ne-remontent-pas"
         ]
@@ -263,7 +263,7 @@
         ],
         "attitudeMin": 35,
         "question": "Avez-vous eu une famille, ici ?",
-        "reponse": "Il met longtemps à répondre. Il avait un fils, Rollo, et une femme, Ilde, que la mer lui a repris, chacun à sa façon. Sa grand-mère lui racontait déjà la Nuit Haute, quand la mer était montée sur tout un royaume et n'était jamais redescendue. Il ne croyait pas aux contes de vieilles, dit-il, jusqu'à la nuit du village.",
+        "reponse": "Il met longtemps à répondre, la main enfoncée dans sa poche. « J'avais une femme et un fils. La mer me les a repris, chacun à sa façon, et je n'en dis pas davantage. » Il se tait, puis regarde la falaise. « Ma grand-mère me racontait déjà la Nuit Haute, quand la mer était montée sur tout un royaume et n'était jamais redescendue. Je ne croyais pas aux contes de vieilles. Jusqu'à la nuit du village. » Il ne dit rien de plus, la main toujours dans sa poche.",
         "revele": [
           "f-nuit-haute"
         ]
@@ -340,7 +340,7 @@
           "marché"
         ],
         "question": "Que vendez-vous, et à quel prix ?",
-        "reponse": "Vivres, cordages, lampes sourdes et huile, une trousse de soins pour les coupures. Il annonce ses prix d'un air désolé : le sel a triplé depuis que la côte se vide, et les routes sont plus chères qu'avant."
+        "reponse": "Il tapote le comptoir de ses mains noires de graisse, comme pour y compter ses prix. « Vivres, cordages, lampes sourdes et huile, une trousse de soins pour les coupures. » Il tourne autour du prix, puis le lâche d'un coup, d'un air désolé. « Le sel a triplé depuis que la côte se vide, et les routes sont plus chères qu'avant. » Il sourit trop largement. « Mais pour vous, on peut toujours discuter. »"
       },
       {
         "id": "essieu",
@@ -353,7 +353,7 @@
           "réparation"
         ],
         "question": "Votre chariot peut-il repartir ?",
-        "reponse": "Une roue a quitté son axe dans une ornière. Il promet de refaire l'essieu au feu si quelqu'un lui tient le cheval et cale la roue. Il reconnaît sa dette d'un mot, puis passe aux prix.",
+        "reponse": "Il se baisse sous le chariot et secoue la roue, qui vacille dans son ornière. « Une roue a quitté son axe, voyez. » Il promet de refaire l'essieu au feu, si quelqu'un lui tient le cheval et cale la roue pendant ce temps. « Je ne demande que des bras et un peu de patience. » Il reconnaît sa dette d'un mot bref, puis, sans transition, passe aux prix. Le moyeu grince sous son pied, et il jure à voix basse.",
         "effets": [
           {
             "attitude": {
@@ -375,7 +375,7 @@
           "Brumevoile"
         ],
         "question": "Quels dangers sur la route de Brumevoile ?",
-        "reponse": "Il a passé le pont des Corbeaux deux fois dans la semaine, et une bande y guette les charrettes ; il paie toujours, en espèces, sans discuter. Dans le marais, il jure avoir vu une femme en blanc qui marche au bord des digues à marée basse.",
+        "reponse": "Il pose les coudes sur le comptoir et baisse le ton, comme on confie un mauvais souvenir. « J'ai passé le pont des Corbeaux deux fois cette semaine. Une bande y guette les charrettes, et je leur paie leur part, toujours, en espèces, sans discuter. » Il se gratte la moustache. Sa voix devient un souffle. « Et dans le marais, j'ai juré avoir vu une femme en blanc qui marche au bord des digues, à marée basse. Je le jure. »",
         "revele": [
           "f-fal-rumeur-femme-du-marais"
         ]
@@ -392,7 +392,7 @@
           "Citadelle"
         ],
         "question": "Que dit-on de Port-aux-Cordes ?",
-        "reponse": "La Ligue ferme les portes du port dès qu'on parle de la mer, et les Rats de quai vendent des passages à qui peut payer, par les égouts et les caves. Il ajoute qu'on ne parle pas de la Citadelle sans baisser la voix.",
+        "reponse": "Il range une lampe sur l'étagère, puis parle bas, d'un ton de confidence. « La Ligue ferme les portes du port dès qu'on parle de la mer. » Il fait tinter une lampe contre l'autre. « Et les Rats de quai vendent des passages à qui peut payer, par les chaussées et les égouts. » Il jette un regard vers la porte du relais avant d'ajouter : « On ne parle pas de la Citadelle sans baisser la voix. Moi, je baisse. »",
         "revele": [
           "f-rats-vendent-les-passages"
         ]
@@ -437,7 +437,7 @@
           "réglé"
         ],
         "question": "Dire que les loups sont éloignés.",
-        "reponse": "Il fait le compte à voix haute : dix-huit salaisons sauvées sur trente-six, le chariot tiré hors de la boue, l'essieu qui tient encore. Il le répète trois fois, pour être sûr que vous l'ayez entendu, puis glisse les pièces sur le comptoir sans les compter devant vous. Il ne dira pas merci, mais il reviendra vous saluer au prochain passage.",
+        "reponse": "Il fait le compte à voix haute, un doigt levé pour chaque chiffre : dix-huit salaisons sauvées sur trente-six, le chariot tiré hors de la boue, l'essieu qui tient encore. Il répète le compte trois fois, pour être sûr que vous l'ayez entendu. Puis il glisse les pièces sur le comptoir, sans les compter devant vous. « Le compte est bon. » Il ne dira pas merci, mais il reviendra vous saluer au prochain passage. Il s'essuie les mains sur sa veste de travail.",
         "effets": [
           {
             "flag": "fal-meute-retour"
@@ -563,7 +563,7 @@
           "pont"
         ],
         "question": "Qui vous a blessée, et qui êtes-vous ?",
-        "reponse": "Elle se présente sans chaleur : messagère de la Ligue des Phares, attaquée au pont des Corbeaux par une bande qui voulait le sac. Elle a gardé le pli et perdu son cheval. Elle n'a pas l'intention de raconter sa route."
+        "reponse": "Elle ne se redresse pas tout à fait et répond d'une voix sans chaleur, le bras en écharpe serré contre elle. « Messagère de la Ligue des Phares. Attaquée au pont des Corbeaux par une bande qui voulait le sac. » Elle tape du plat de la main sur sa veste de cuir, à l'endroit où le pli est caché. « J'ai gardé le pli, et perdu mon cheval. » Elle ferme la bouche d'un coup. « Je ne raconterai pas ma route. »"
       },
       {
         "id": "courrier",
@@ -576,7 +576,7 @@
           "Port-aux-Cordes"
         ],
         "question": "Voulez-vous que nous portions votre pli ?",
-        "reponse": "Elle hésite, puis tend le pli : une enveloppe de papier épais, scellée d'un disque de cire grise frappé d'un phare, adressée au Maître Osric à Port-aux-Cordes. Il doit arriver scellé, et elle ne veut pas qu'on le lise. Elle demande qu'on le remette en main propre.",
+        "reponse": "Elle marque un temps, puis tire de sa veste une enveloppe de papier épais, qu'elle tend du bout des doigts. Un disque de cire grise la scelle, frappé d'un phare. Elle regarde le sceau un instant, comme pour s'assurer qu'il tient encore. « Pour le Maître Osric, à Port-aux-Cordes. » Elle serre les lèvres. « Il doit arriver scellé. Personne ne doit le lire en chemin. Ne le lisez pas, et remettez-le en main propre. » Son bras en écharpe tremble légèrement quand elle le tend.",
         "effets": [
           {
             "quete": {
@@ -605,7 +605,7 @@
         ],
         "attitudeMin": 30,
         "question": "Que dit le pli, au fond ?",
-        "reponse": "Elle se tait longtemps, puis dit que le Maître veut qu'on prépare une cellule au phare pour une enfant qu'on a trouvée, et que la Ligue a déjà choisi le phare. Elle n'en sait pas davantage, et elle ne veut pas qu'on lui demande de le redire à la Citadelle.",
+        "reponse": "Elle se tait longtemps, les yeux fixés sur la porte, puis parle à voix basse. « Le Maître veut qu'on prépare une cellule au phare, pour une enfant qu'on a trouvée. La Ligue a déjà choisi le phare. » Elle resserre les doigts sur son bras en écharpe. « Je n'en sais pas davantage. Et je ne veux pas qu'on me demande de le redire à la Citadelle. » Elle se tait encore, un temps, et regarde vos mains comme pour juger si vous savez vous taire aussi.",
         "revele": [
           "f-ligue-et-phare-cellule"
         ]
@@ -621,7 +621,7 @@
           "Osric"
         ],
         "question": "Que fait la Ligue, face à la mer qui recule ?",
-        "reponse": "Elle ajuste son bras en écharpe, sans quitter des yeux son interlocuteur. « Nous fermons les ports, nous allumons les lanternes, nous comptons les barques. On protège ce qui peut l’être. » Elle marque un silence sec. « Le Maître Osric n’a jamais aimé les histoires de vieilles femmes. Il n’y croit pas non plus. »"
+        "reponse": "Elle lève le menton vers la fenêtre, où les quais se vident. « Nous fermons les ports, nous allumons les lanternes, nous comptons les barques. On protège ce qui peut l'être. » Son ton ne varie pas, même quand elle parle de la mer. « Le Maître Osric n'aime pas les histoires de vieilles femmes. Il croit aux registres, et ce qui n'est pas inscrit ne compte pas pour lui. » Elle redresse sa veste, sans baisser les yeux, et reste sur sa paillasse."
       }
     ],
     "salutations": {
@@ -680,7 +680,7 @@
           "gardien"
         ],
         "question": "Qui veille sur ce phare, désormais ?",
-        "reponse": "Lui-même, seul, depuis que la Ligue a cessé de payer son salaire. Il a gardé les registres et les cartes, et il entretient la lentille à la main, sans jamais l'allumer. Il dit qu'une lampe qui brûle sans personne pour la regarder finit par s'éteindre."
+        "reponse": "Il ferme son registre d'un geste lent, et ses doigts restent posés dessus. « Moi-même, seul, depuis que la Ligue a cessé de payer mon salaire. » Il indique du menton la lentille, derrière lui. « J'ai gardé les registres et les cartes, et j'entretiens la lentille à la main, sans jamais l'allumer. Une lampe qui brûle sans personne pour la regarder finit par s'éteindre. » Il sourit à peine, sans joie. Il tapote du doigt le registre, comme pour le rassurer."
       },
       {
         "id": "nuit-haute",
@@ -694,7 +694,7 @@
           "engloutie"
         ],
         "question": "Que sait-on de la Nuit Haute ?",
-        "reponse": "Il ouvre un registre noirci : il y a trois siècles, la mer est montée sur tout un royaume, Lothmar, et n'a jamais redescendu. La Cour s'est noyée dans ses palais, dit-il, et le pacte qui retenait l'eau a été rompu, sans que personne sache pourquoi.",
+        "reponse": "Il ouvre un registre noirci, aux pages cornées, et pose le doigt sur une date. « Il y a trois siècles, la mer est montée sur tout un royaume, Lothmar, et n'a jamais redescendu. » Sa voix reste lente. « La Cour s'est noyée dans ses palais en une seule nuit. Le registre parle d'une faute ancienne, et d'une mer qui n'a pas oublié, rien de plus. » Il referme le registre doucement, comme on ferme la porte d'une pièce qu'on ne veut plus voir.",
         "revele": [
           "f-nuit-haute",
           "f-lothmar-englouti"
@@ -712,7 +712,7 @@
           "quand"
         ],
         "question": "Quand la mer reviendra-t-elle ?",
-        "reponse": "Il tire une table de marée de sous son manteau, la lit en silence, et annonce que la Grande Marée est attendue dans trois jours, à la pleine lune montante. Il ne doute pas du calcul ; il doute seulement de la côte qui en réchappera.",
+        "reponse": "Il tire une table de marée de sous son manteau, la déplie avec précaution, page après page. Son doigt glisse sur les colonnes, sans hâte, et il lit en silence. « La Grande Marée est attendue dans trois jours, à la pleine lune montante. » Il lève les yeux sans trembler. « Je ne doute pas du calcul. Je doute seulement de la côte qui en réchappera. » Il replie la table et la range sous son manteau, à l'endroit même où il l'a prise.",
         "revele": [
           "f-grande-maree-dans-trois-jours"
         ]
@@ -729,7 +729,7 @@
         ],
         "attitudeMin": 30,
         "question": "Qu'est-ce qui retient la mer, au juste ?",
-        "reponse": "Il baisse la voix. Sous les flots, dit-il, il y a une cour qui n'a jamais fini son service : des gens liés, debout, qui tiennent l'eau comme on tient une corde. Ils ne dorment pas, et ne veulent nuire à personne ; ils veulent que cela cesse.",
+        "reponse": "Il baisse la voix, et son regard glisse vers le plancher, comme pour voir à travers les dalles. « Sous les flots, il y a une cour qui n'a jamais fini son service. » Il joint les mains sur le registre. « Des gens liés, debout, qui tiennent l'eau comme on tient une corde. Ils ne dorment pas, et ne veulent nuire à personne. Ils veulent que cela cesse. » Sa voix reste sans pitié, mais sans colère non plus.",
         "revele": [
           "f-la-cour-tient-sous-la-mer"
         ]
@@ -746,7 +746,7 @@
           "aider"
         ],
         "question": "Comment rallumer ce feu ?",
-        "reponse": "La lentille se découvre par quatre volets, et chacun répond à un moment de la marée. Le feu s'ouvre toujours à la pleine mer, dit-il ; il ne se souvient plus de l'ordre complet, et il a peur de le faire fausser. Il espère que quelqu'un qui sait lire les marées le retrouvera."
+        "reponse": "Il déplie une feuille où quatre volets sont dessinés, en cercles reliés par des traits. « La lentille se découvre par ces quatre volets, et chacun répond à un moment de la marée. » Il pose le doigt sur le premier, puis le retire. « Le feu s'ouvre toujours à la pleine mer. Je ne me souviens plus de l'ordre complet, et j'ai peur de le faire fausser. » Il replie la feuille avec le soin de quelqu'un qui n'a plus le droit de se tromper. « J'espère que quelqu'un qui sait lire les marées le retrouvera. »"
       }
     ],
     "salutations": {
@@ -802,7 +802,7 @@
           "marins"
         ],
         "question": "Que s'est-il passé sur votre bateau ?",
-        "reponse": "Son regard file vers la mer, puis revient. « La Perle… Le vent est tombé. Trop vite… Le capitaine a dit… la barre… ne répond pas. » Sa main s’agite, comme pour tenir une barre absente. « Ils sont venus. Sous la coque. Doucement… doucement. » Puis plus rien. Ses yeux restent fixés sur la cale noyée."
+        "reponse": "Son regard file vers la mer, puis revient, comme on rattrape une corde qui glisse. « La Perle… Le vent est tombé. Trop vite… Le capitaine a dit… la barre… ne répond plus. » Sa main s'agite, serre une barre absente, puis la lâche. « Ils sont venus. Sous la coque. Doucement… doucement. » Un long silence, les dents serrées, la respiration courte. Il ne reprend pas. Ses yeux restent fixés sur la cale noyée, là-bas, et il ne cligne plus pendant un temps que vous ne savez pas mesurer."
       },
       {
         "id": "perle",
@@ -815,7 +815,7 @@
           "navire"
         ],
         "question": "Que transportait la Perle grise ?",
-        "reponse": "Des sacs de sel, des cartes de la côte, et un coffre qu'on n'a jamais ouvert. Le capitaine disait qu'un cotre de cabotage coule dans une tempête, pas dans un ciel calme. Eudes ne veut pas parler du coffre ; il jure seulement que le couvercle a bougé sous l'eau.",
+        "reponse": "Il rit d'un rire court, sans joie, et frotte ses pieds enveloppés de chiffons. « Des sacs… de sel. Des cartes de la côte, roulées, mouillées. » Il lève un doigt, puis le laisse retomber sur sa cuisse. « Et un coffre. Jamais ouvert. Le capitaine disait : un cotre de cabotage coule dans la tempête, pas dans un ciel calme… » Il s'arrête, avale sa salive. Il ne veut pas parler du coffre. Il jure seulement, les yeux durs, que le couvercle a bougé sous l'eau. Un craquement dans la coque, net. Il sursaute, et ne regarde plus que la porte.",
         "revele": [
           "f-fal-perle-grise-coulee"
         ]
@@ -831,7 +831,7 @@
           "morts"
         ],
         "question": "Avez-vous vu les noyés ?",
-        "reponse": "Il secoue la tête, lentement, sans quitter le plancher des yeux. « Ils ne remontent jamais. Mes camarades sont restés sous la coque. La nuit, j’entends le second qui appelle… et lui ne vient jamais à la surface. » Il tire sur les chiffons de ses pieds. « Les noyés restent sous l’eau. Et l’eau les garde. »",
+        "reponse": "Il secoue la tête, lentement, sans quitter le plancher des yeux. « Ils ne remontent jamais… Mes camarades sont restés sous la coque. » Un coup de vent cogne contre la paroi, et il rentre les épaules. « La nuit, j'entends le second qui appelle… et lui ne vient jamais à la surface. » Sa voix baisse, presque un souffle. Il tire sur les chiffons de ses pieds, un par un, comme pour les serrer mieux. « Les noyés restent sous l'eau. Et l'eau les garde. » Il ne lève pas les yeux quand vous bougez, et le silence reste lourd entre vous.",
         "revele": [
           "f-fal-noyes-ne-remontent-pas"
         ]
@@ -848,7 +848,7 @@
         ],
         "attitudeMin": 20,
         "question": "Pouvez-vous indiquer la cale où est le coffre ?",
-        "reponse": "Il hésite longtemps, la mâchoire serrée, puis désigne du menton la cale inondée, à l’arrière, sans vraiment la regarder. « Sous le plancher, à l’arrière. Faites attention aux chaînes du plafond : elles ont bougé la dernière fois, je ne vous mens pas. »"
+        "reponse": "Il hésite si longtemps que vous croyez qu'il ne répondra pas. La mâchoire serrée, il désigne du menton la cale inondée, à l'arrière, sans vraiment la regarder. « Sous le plancher, à l'arrière… » Il déglutit, et sa main retombe sur sa cuisse. « Faites attention aux chaînes du plafond. Elles ont bougé la dernière fois. Je ne vous mens pas, je vous le jure. » Il recule d'un pas dans l'ombre de la coque, comme pour fuir l'endroit qu'il vient de montrer. « Personne ne descend, hein ? »"
       }
     ],
     "salutations": {

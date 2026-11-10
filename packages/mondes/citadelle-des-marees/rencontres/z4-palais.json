@@ -5,7 +5,7 @@
     "type": "combat",
     "lieu": "lot-parvis-des-noyes",
     "difficulte": "elevee",
-    "intro": "Dès que le groupe franchit le seuil de la cour, les silhouettes du portique se retournent ensemble, lentes comme des marées. Une eau noire goutte de leurs armures, et l'une d'elles, plus haute que les autres, lève une lance rouillée vers la porte de corail.",
+    "intro": "Le pavé de la cour renvoie vos pas, et chacun d'eux résonne sous le portique de colonnes roses. Les silhouettes qui s'y tenaient se retournent ensemble, lentement, avec un craquement de jointures qui ressemble à celui d'une vieille porte. Elles portent des armures ternies, et de l'eau noire goutte de leurs gorgerins sur les dalles blanches. L'une d'elles, plus haute que les autres, lève une lance rouillée vers la porte de corail, et les autres la suivent du regard, immobiles, comme on attend un ordre qui n'arrive pas. Le silence qui suit est pire que le bruit.",
     "monstres": [
       {
         "profil": "zombi",
@@ -23,7 +23,7 @@
         "condition": {
           "objet": "fanal-de-poche"
         },
-        "resume": "La flamme du fanal de phare fait reculer les noyés, qui s'écartent de la chaussée en grinçant et laissent passer le groupe.",
+        "resume": "Vous levez le fanal de poche, et sa lumière blanche frappe les armures en plein visage. Les noyés reculent d'un pas, puis de deux, en grinçant comme des portes rouillées, et s'écartent de la chaussée sans jamais tourner le dos au fanal. Vous passez au milieu d'eux, à quelques pas à peine, et vous entendez l'eau couler des manches. La lueur tremble, et il faut avancer avant qu'elle ne baisse.",
         "effets": []
       },
       {
@@ -33,7 +33,7 @@
           "competence": "discretion",
           "dd": 14
         },
-        "resume": "En longeant les colonnes de corail, le groupe évite le regard des gardes, qui ne réagissent qu'au bruit des pas dans la cour.",
+        "resume": "Vous longez le portique par son ombre, en posant chaque pied sur le bord des dalles, là où le sel fait craquer le moins. Les colonnes de corail vous dérobent aux regards, et les gardes restent figés, la tête tournée vers la porte, sans voir le groupe passer. Ils ne réagissent qu'au bruit des pas sur la cour centrale, et vous n'en faites aucun. Vous avancez ainsi, serrés contre les colonnes, jusqu'à la porte de corail.",
         "effets": []
       }
     ],
@@ -66,7 +66,7 @@
     "type": "combat",
     "lieu": "lot-galerie-des-portraits",
     "difficulte": "moderee",
-    "intro": "Les armures de parade, rangées le long de la galerie, tournent la tête ensemble vers le groupe. Leurs gantelets s'ouvrent, et de la poussière de sel tombe des jointures.",
+    "intro": "Le couloir renvoie chaque pas un peu trop fort, et les portraits des rois, à peine visibles sous la suie, semblent vous suivre du regard. Deux armures de parade se dressent au milieu, visières baissées, puis les autres, le long des murs, tournent la tête ensemble vers vous. Un bruit de métal sec les accompagne. Leurs gantelets s'ouvrent lentement, et une poussière grise, fine comme de la farine, tombe de leurs jointures sur le tapis de mousse. Au fond, la double porte de fer attend, fermée.",
     "monstres": [
       {
         "profil": "armure-animee",
@@ -81,7 +81,7 @@
           "competence": "discretion",
           "dd": 13
         },
-        "resume": "Le groupe longe les murs et franchit la galerie sur la pointe des pieds ; les armures restent figées, la tête baissée.",
+        "resume": "Vous longez les murs, sous les portraits, en posant chaque pied sur le bord des dalles, là où la poussière ne crisse pas. Personne ne parle. Vous avancez ainsi, pas à pas, entre les deux armures du milieu, si près que le froid de leurs cuirasses vous effleure. Les visières restent baissées, les gantelets immobiles, et la tête de chaque armure reste penchée vers le sol, comme si elle écoutait les pierres.",
         "effets": []
       }
     ],
@@ -110,7 +110,7 @@
     "type": "mixte",
     "lieu": "lot-armurerie-rouillee",
     "difficulte": "faible",
-    "intro": "Trois armures de la garde se tiennent entre les râteliers, lance au poing, et quatre squelettes en cuir pourri sortent des coffres à leur suite. Derrière eux, un capitaine à la barbe tressée d'algues lève la main, et la garde reste droite, attendant son ordre.",
+    "intro": "Trois armures de la garde se dressent entre les râteliers, lance au poing, leurs jointures couvertes d'une croûte blanche de sel. Quatre squelettes en cuir pourri sortent des coffres à leur suite, et le métal craque à chacun de leurs mouvements. Derrière eux, un capitaine à la barbe tressée d'algues lève la main ; la garde reste droite, immobile, et attend son ordre. L'odeur de fer et de vase monte des coffres ouverts.",
     "monstres": [
       {
         "profil": "armure-animee",
@@ -128,7 +128,7 @@
         "condition": {
           "flag": "lot-garde-relevee"
         },
-        "resume": "Le capitaine a relevé sa garde ; les soldats déposent leurs lances et s'écartent des râteliers sans un mot.",
+        "resume": "Le capitaine a déjà relevé sa garde : les soldats posent leurs lances contre les râteliers, l'une après l'autre, et s'écartent sans un mot. Le métal ne craque plus. Il ne reste dans la salle que l'eau qui goutte le long des murs et le souffle froid qui descend de la grille.",
         "effets": []
       },
       {
@@ -138,7 +138,7 @@
           "competence": "persuasion",
           "dd": 14
         },
-        "resume": "Le groupe lui parle d'une consigne qui n'a plus de sens. Le capitaine réfléchit, puis fait signe à la garde de se tenir en retrait.",
+        "resume": "Vous lui parlez d'une consigne qui n'a plus de sens, de trois siècles passés sans relève. Il baisse les yeux vers sa lance, longtemps, sans répondre. Puis il fait signe à la garde de se tenir en retrait, et les armures reculent d'un pas, dans un bruit de sel et de fer.",
         "effets": [
           {
             "flag": "lot-garde-relevee"
@@ -176,7 +176,7 @@
     "type": "mixte",
     "lieu": "lot-bibliotheque-des-noms",
     "difficulte": "faible",
-    "intro": "Un spectre en robe d'encre se dresse entre les rayonnages, une page détrempée dans une main décharnée. Trois ombres se détachent des livres derrière lui, et il ne quitte pas des yeux le tiroir où se cache le registre.",
+    "intro": "L'odeur de papier mouillé vous arrête au seuil, et une goutte tombe quelque part dans le silence des rayonnages. Entre les livres gonflés, un spectre en robe d'encre se dresse, une page détrempée dans sa main décharnée. Des filets d'eau sombre coulent des feuillets et s'étalent sur le plancher. Trois ombres se détachent des reliures derrière lui, lentes, sans bruit, et il ne quitte pas des yeux le tiroir où se cache le registre. Le pupitre, poudré de sel, luit faiblement sous la lumière verdâtre.",
     "monstres": [
       {
         "profil": "spectre",
@@ -195,7 +195,7 @@
           "competence": "histoire",
           "dd": 12
         },
-        "resume": "Le groupe cite la première page de la chronique ; le spectre s'arrête, comme s'il reconnaissait sa propre écriture, puis rend la page.",
+        "resume": "Vous récitez la première page de la chronique, d'une voix qui porte entre les rayonnages. Le spectre s'arrête au milieu d'un geste, la page détrempée figée dans sa main. Il regarde les lettres comme s'il reconnaissait sa propre écriture, puis, lentement, rend la page. Les ombres restent immobiles derrière les livres, et le silence retombe sur les rayonnages.",
         "effets": []
       }
     ],
@@ -225,7 +225,7 @@
     "type": "combat",
     "lieu": "lot-crypte-des-rois",
     "difficulte": "elevee",
-    "intro": "Une ombre couronnée de nacre se lève près de la traverse des cloches. Deux goules se redressent entre les sarcophages, le menton tourné vers vos pas, et trois squelettes en armure de cuir se détachent des niches, à pas comptés.",
+    "intro": "Le froid sec vous saisit dès la dernière marche, et chaque bruit de pas revient des voûtes basses avec un écho trop net. Près de la traverse des cloches, une ombre couronnée de nacre se lève sans bruit, la tête penchée. Deux goules se redressent entre les sarcophages, le menton tourné vers vos pas, et trois squelettes en armure de cuir sortent des niches, à pas comptés. Une cloche oscille sur sa traverse, sans sonner. Le sel crisse sous vos semelles à chaque pas.",
     "monstres": [
       {
         "profil": "ame-en-peine",
@@ -247,7 +247,7 @@
         "condition": {
           "fait": "f-lot-nom-des-rois"
         },
-        "resume": "Les goules s'arrêtent à chaque nom du registre, puis retournent à leur niche, la tête baissée. L'ombre couronnée se tait.",
+        "resume": "Vous lisez les noms du registre un à un, d'une voix égale, comme on lit une liste de morts, et chaque nom suspend une goule dans son mouvement. Elles s'arrêtent, écoutent jusqu'au bout, puis retournent entre les sarcophages, la tête baissée, comme des gens qui reconnaissent une voix de famille. Les squelettes restent figés dans leurs niches. L'ombre couronnée se tait, et ses doigts cessent de tourner une bague de nacre.",
         "effets": []
       },
       {
@@ -257,7 +257,7 @@
           "competence": "religion",
           "dd": 13
         },
-        "resume": "Une prière lente, au pied des cloches, calme les squelettes : ils se figent contre les niches, sans reprendre les armes.",
+        "resume": "Vous vous agenouillez au pied des cloches et prononcez une prière lente, en laissant chaque mot durer. Le sel fin tourbillonne dans l'air au rythme de votre voix. Les squelettes se tournent vers vous, puis se figent contre les niches, les mains posées sur leurs armes sans les reprendre. Les trois baissent la tête, l'une après l'autre, pendant que les goules restent à leur place, sans avancer.",
         "effets": []
       }
     ],
@@ -294,7 +294,7 @@
     "type": "mixte",
     "lieu": "lot-sanctuaire-du-sceau",
     "difficulte": "moderee",
-    "intro": "Deux ombres se détachent des colonnes couvertes de coquillages, et un fantôme en couronne de nacre s'avance entre elles, les mains tendues. La lueur de la cuve palpite, et l'air devient aussi froid que le fond de la mer.",
+    "intro": "La lueur de la cuve palpite avant même que vous ne voyiez les ombres, et l'air s'épaissit d'un froid qui entre par les os. Deux ombres se détachent des colonnes couvertes de coquillages, lentes, la tête penchée vers la cuve. Entre elles, un fantôme en couronne de nacre s'avance, les mains tendues, la voix sans souffle. Ses doigts sont couverts d'un sel fin qui tombe à chaque geste et ne touche jamais le sol. Au-dessus de la cuve, la lumière monte et retombe, comme une respiration que personne n'ose troubler.",
     "monstres": [
       {
         "profil": "ombre",
@@ -312,7 +312,7 @@
         "condition": {
           "flag": "regente-rencontree"
         },
-        "resume": "La Dame Noyée lève la main : les ombres reculent, et elle laisse le groupe approcher la cuve, à condition de choisir ce qu'il fera du Sceau.",
+        "resume": "La Dame Noyée lève la main, et les deux ombres reculent jusqu'aux colonnes sans cesser de vous regarder. Elle s'approche à son tour, sa robe verdie traînant sur le sel, et sa voix vous parvient à peine, lente, avec des silences entre les mots. Elle ne ment pas, mais elle choisit ses mots. Elle vous laisse approcher la cuve, à condition de choisir ce que vous ferez du Sceau.",
         "effets": []
       },
       {
@@ -321,7 +321,7 @@
         "condition": {
           "objet": "pierre-de-rupture"
         },
-        "resume": "La pierre brise la lueur d'un coup ; les ombres se dissolvent dans l'eau, et la mer n'est plus tenue. Le choix est fait.",
+        "resume": "Vous posez la Pierre de rupture sur le rebord de la cuve, et elle brise la lueur d'un coup. Les deux ombres se dissolvent dans l'eau, et le fantôme s'efface avec elles, sans un mot. La respiration du lieu s'arrête, et la cuve n'est plus qu'un bassin de sel blanc. La mer n'est plus tenue. Le choix est fait.",
         "effets": [
           {
             "flag": "choix-briser"
@@ -341,7 +341,7 @@
           "competence": "persuasion",
           "dd": 15
         },
-        "resume": "Le groupe leur parle de la fatigue et du repos ; les ombres s'écartent, sans cesser de regarder la cuve.",
+        "resume": "Vous leur parlez de la fatigue, du repos, des nuits sans fin qu'elles passent à tenir la mer. Votre voix reste basse et posée, et vous laissez chaque mot prendre son temps. Les ombres écoutent sans répondre, les yeux toujours tournés vers la cuve, puis s'écartent d'un pas, lentement, comme on cède une place à quelqu'un qui n'a rien demandé. Elles ne cessent pas de regarder la cuve.",
         "effets": []
       }
     ],

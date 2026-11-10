@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "cit-grande-bibliotheque",
     "difficulte": "faible",
-    "intro": "Deux hommes en manteau sombre sont penchés sur les rayonnages du fond, une lampe posée à terre. L'un d'eux a une lettre à la main, et se retourne d'un coup en entendant vos pas. Quentin Salmier se tient près de la porte de la salle des cartes, la main sur la sangle de son sac, et ne fait pas un geste.",
+    "intro": "Au fond de la grande bibliothèque, une lampe posée à même le sol étire deux ombres sur les rayonnages. Les deux hommes en manteau sombre s'arrêtent net au bruit de vos bottes sur le chêne. L'un tient une lettre pliée, et se retourne d'un coup, sans la cacher. L'air sent la poussière de parchemin et l'huile chaude. Près de la porte de la salle des cartes, Quentin Salmier ne bouge pas, la main posée sur la sangle de son sac ; son sourire est resté en place, mais son regard, lui, ne vous quitte pas.",
     "monstres": [
       {
         "profil": "eclaireur",
@@ -34,7 +34,7 @@
       {
         "id": "demasquer-en-public",
         "nom": "Le démasquer devant tout le monde",
-        "resume": "Montrer la lettre à la lampe, à voix haute, devant les acolytes : l'érudit blêmit, et ses hommes hésitent à frapper.",
+        "resume": "Vous désignez la lettre que tient encore l'acolyte, et vous la lisez à voix haute sous la lampe, pour que les deux hommes l'entendent. L'érudit blêmit d'un coup, la main crispée sur sa sangle. Les hommes se regardent, la lame à mi-hauteur, puis baissent les yeux sur l'écriture. Personne ne frappe : la lettre tremble doucement dans la main de l'acolyte, et le silence des rayonnages devient lourd.",
         "jet": {
           "competence": "perception",
           "dd": 12
@@ -48,7 +48,7 @@
       {
         "id": "negocier-la-sortie",
         "nom": "Leur proposer de sortir par la porte de terre",
-        "resume": "Ils acceptent de partir sans bruit, à condition qu'on ne dise rien à l'érudit, et ils rentrent par la porte de terre.",
+        "resume": "Vous proposez une sortie sans bruit, à condition que personne ne dise rien à l'érudit. Les deux hommes échangent un regard, puis acceptent d'un signe de tête, ramassent leur lampe et filent vers la porte de terre. Le verrou grince une fois, et la voix de l'érudit ne s'élève pas derrière eux. Quentin suit leur départ du coin de l'œil, sans un mot, et ses doigts restent sur la sangle de son sac.",
         "jet": {
           "competence": "persuasion",
           "dd": 13
@@ -78,7 +78,7 @@
     "type": "combat",
     "lieu": "cit-grille-de-mer",
     "difficulte": "moderee",
-    "intro": "Les barreaux de la grille de mer s'ébranlent sous des mains froides. Trois silhouettes trempées se hissent par le tunnel, et derrière elles, plus sombre que l'eau, une ombre glisse le long de la roche. Là-haut, dans la cour, une voix grave parle encore avec Ysmène.",
+    "intro": "Les barreaux de la grille de mer s'ébranlent sous des mains froides, et la rouille tombe en poussière rousse sur les dalles. Trois silhouettes trempées se hissent par le tunnel, l'eau gouttant de leurs manches, et derrière elles une ombre plus sombre que l'eau glisse le long de la roche. Des coquilles fraîches couvrent les barreaux. Là-haut, dans la cour, une voix grave parle encore avec Ysmène.",
     "monstres": [
       {
         "profil": "zombi",
@@ -113,7 +113,7 @@
       {
         "id": "refermer-la-grille",
         "nom": "Refermer la grille et la bloquer",
-        "resume": "Pousser la grille contre les mains tendues et la caler avec une barre : il faut peser de tout son poids, et les barreaux tiennent.",
+        "resume": "Vous poussez la grille contre les mains tendues, les épaules collées au fer, puis vous la calez avec une barre. Il faut peser de tout son poids, sentir la rouille mordre les paumes et le métal gémir. Les barreaux tiennent. De l'autre côté, les doigts se retirent un à un, lentement, et l'eau reprend son clapotis.",
         "jet": {
           "competence": "athletisme",
           "dd": 13
@@ -123,7 +123,7 @@
       {
         "id": "fuir-par-le-quai",
         "nom": "Fuir par le quai",
-        "resume": "Remonter les marches glissantes avant qu'ils ne vous rattrapent ; ils restent au pied de la grille, comme s'ils attendaient quelque chose.",
+        "resume": "Vous remontez les marches glissantes, les mains sur la pierre couverte d'algues, et les embruns vous mouillent jusqu'à la nuque. Derrière vous, les pas traînent sur le sel, puis ralentissent. Au pied de la grille, les silhouettes restent immobiles, l'eau coulant de leurs épaules, et elles attendent quelque chose, sans bouger.",
         "effets": []
       }
     ],
@@ -141,7 +141,7 @@
     "type": "combat",
     "lieu": "cit-quai-des-basses-eaux",
     "difficulte": "faible",
-    "intro": "Deux squelettes en armure de cuir couverte d'algues sortent de l'eau du bassin, lentement, sans un bruit. Leurs mâchoires sont serrées sur un sel gris, et leurs mains ne tiennent rien. Ils se tournent vers vous comme on se tourne vers une porte qu'on attend.",
+    "intro": "Le bassin de pierre se trouble sans un bruit, et deux squelettes en armure de cuir se hissent sur son bord, ruisselants de vase. Des algues pendent de leurs épaulières et se balancent à chaque pas. Leurs mâchoires sont serrées sur une poudre grise, et leurs doigts raides ne tiennent rien. Ils ne courent pas : ils avancent vers le quai comme des hommes qui rentrent chez eux après une longue veille. Quand ils vous aperçoivent, ils s'arrêtent ensemble et tournent la tête, lentement, vers vous, comme vers une porte attendue depuis longtemps.",
     "monstres": [
       {
         "profil": "squelette",
@@ -171,7 +171,7 @@
       {
         "id": "les-renvoyer",
         "nom": "Leur ordonner de rentrer",
-        "resume": "Un ton de commandement, et quelques mots de la liturgie des marées : les squelettes hésitent, puis reculent lentement vers le bassin.",
+        "resume": "Vous lancez l'ordre d'une voix ferme, puis récitez les mots de la liturgie des marées, ceux des barques qui rentrent au port. Les squelettes restent figés une seconde, la tête penchée comme pour écouter. Le premier fait un pas en arrière, puis l'autre le suit. Ils regagnent le bassin à reculons, sans vous quitter des yeux, et l'eau les reprend un à un sans une éclaboussure.",
         "jet": {
           "competence": "religion",
           "dd": 12

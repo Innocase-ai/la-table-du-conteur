@@ -129,3 +129,33 @@ Mêmes règles que plus haut. Repères supplémentaires : Brumevoile a été dé
 - **La blessure** : il y a **30 ans**, un enfant repêché au bout du quai n'a jamais été réclamé ; elle l'a gravé « l'enfant du quai » et prie pour lui chaque soir.
 - **Manies** : elle dit « mon enfant » à presque tous (sauf aux Ligueurs) ; elle frotte chaque lettre gravée à la brosse ; un chapelet de coquillages au cou, dont un coquillage ne ressemble pas aux autres (celui d'Ilse).
 - **Opinions** : la Ligue (efficace, sans cœur) ; la Citadelle (la seule qui compte les marées) ; les Rats (des voisins) ; la mer (une cause de chagrin, pas un ennemi).
+
+
+---
+
+# Suite du canon : les PNJ de la Citadelle, du port et du palais (chantier « textes plus vivants », 10/11/2026)
+
+Mêmes règles que plus haut. Aucun de ces détails ne touche l'intrigue centrale ni ne révèle un secret de la bible.
+
+## Pim Tassel (17 ans, halfelin, novice)
+- **Origine** : né à Port-aux-Cordes, dans le quartier des lingères, fils d'une lingère qui voulait qu'il couse des voiles (il perdait l'aiguille avant le fil). Entré novice à **14 ans** (il y a **3 ans**) par la porte de terre, avec trois phrases apprises par cœur ; il s'occupe du quai et des grilles depuis **2 ans**.
+- **Liens** : **Frère Halvard** lui fait rendre compte de chaque seau (c'est lui qui l'a reçu à la porte et n'a pas barré sa réponse) ; **Ysmène Hautecôte** est son rêve : partir avec les cartographes sur la chaussée ; elle ne l'a jamais regardé deux fois.
+- **Manies** : il compte ses seaux à voix basse, toujours trois ; il retrousse trois fois ses manches de bure et les laisse retomber ; il garde un morceau de bois flotté dans sa poche ; il s'excuse après chaque pensée dite à voix haute.
+- **Opinions** : la Ligue (« des gens qui tamponnent tout et ne rincent rien ») ; le quai (« à nous, même quand il sent le poisson ») ; les grilles (« elles écoutent »).
+
+## Jabez Roux (45 ans, humain, colporteur)
+- **Origine** : fils d'un colporteur de Port-aux-Cordes, qui lui a donné sa hotte et un mulet qui mordait ; il fait la route des falaises depuis **26 ans** (il en avait 19). Il vend ce qui manque aux voyageurs, plus cher qu'il ne l'a acheté. Échoué à la Citadelle par la tempête, il y a perdu son mulet actuel dans les congères.
+- **Manies** : il tapote ses poches pour vérifier ses pièces ; il vante sa marchandise avant de dire bonjour ; il rit trop fort quand il ment sur un prix ; son chapeau de feutre est cabossé à force d'être jeté sur la table.
+- **Opinions** : la Citadelle (« une auberge qui ne fait pas payer, donc suspecte ») ; les marchands de Port (« des voleurs de quai, mais honnêtes ») ; la route (« un mauvais créancier, qui paie toujours en neige »).
+
+## Odile Sauvrac (environ 45 ans, humaine, poissonnière de la halle)
+- **Origine** : née à Port-aux-Cordes, dans la halle où son père vendait le hareng au matin ; elle a repris l'étal de salaisons il y a **15 ans**, quand les mains de son père ne tenaient plus le couteau. Elle sent le poisson à l'odeur, jamais au prix.
+- **Liens** : **Gaspard Filet** vend chez elle ce qu'il rapporte, et elle le paie en sel ; **Ottilie Brasse**, capitaine de la garde, qu'elle appelle toujours trop tard quand on lui vole ; **Mère Sorel** lui fournit le sel de contrebande qu'elle déteste acheter et qu'elle achète.
+- **Manies** : elle pèse chaque panier deux fois, la seconde à voix haute ; elle essuie son couteau sur son tablier avant de parler ; elle ouvre une caisse de hareng pour la montrer à qui l'accuse ; elle crie le prix trois fois, puis le baisse d'un tiers.
+- **Opinions** : les Rats (« des fournisseurs qu'on ne remercie pas ») ; la Ligue (« trop de papier, pas assez de sel ») ; les pêcheurs (« les seuls vrais gens du port, et les plus mal payés »).
+
+## Oswy Tarn (60 ans à sa mort, nain, capitaine de la garde noyée)
+- **Origine** : entré dans la garde royale de Lothmar à **20 ans**. La Nuit Haute, il y a **trois cents ans**, il tenait la porte de l'armurerie, lance au poing, et n'a pas quitté son poste ; la mer l'a pris debout, sans qu'il ait reçu d'ordre de partir.
+- **Liens** : le **Chancelier Orvald Sel**, dont il tient une consigne transmise de bouche en bouche, sans savoir qui l'a donnée en premier ; le **Héraut Blême**, qu'il laisse passer sans salut ; la **Régente**, dont il n'a vu que le manteau, au bout d'un couloir.
+- **Manies** : il redresse le dos au moindre pas ; il pose la main sur une lame ébréchée sans la soulever ; il frotte la médaille de sa garde avant de répondre.
+- **Opinions** : le Chancelier (« il donne des ordres comme on tient une lance, sans regarder l'autre bout ») ; le Héraut (« un messager qui ne salue pas, un bon défaut ») ; les vivants (« ils ferment les portes trop tard »).

@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "por-chantier-naval",
     "difficulte": "faible",
-    "intro": "Le reflux a laissé la grève à nu, et des silhouettes sortent de l'écume en traînant leurs jambes. Elles ont les doigts déchirés, les yeux pleins de sable, et une odeur de vase froide monte jusqu'au chantier. Le premier gratte déjà la bâche tendue sur la barque.",
+    "intro": "Les galets luisent sous une lumière grise, et la grève, à nu, s'étend jusqu'au chantier. Deux silhouettes trempées émergent de l'écume, lentement, en traînant leurs jambes lourdes. Elles ont les doigts déchirés, les yeux pleins de sable, et une odeur de vase froide monte jusqu'aux charpentes. La première gratte déjà la bâche tendue sur la barque, d'un geste régulier, sans jamais lever la tête. Chaque coup résonne sourdement dans la coque. Au loin, l'écume reste d'un blanc sale, et d'autres ombres attendent peut-être dans le ressac.",
     "monstres": [
       {
         "profil": "zombi",
@@ -35,7 +35,7 @@
         "condition": {
           "objet": "huile"
         },
-        "resume": "Les braseros du chantier, restés froids depuis l'hiver, prennent avec l'huile des lampes. Les noyés reculent devant la flamme et se regroupent au bord de la grève ; la seconde marée arrivera quand même.",
+        "resume": "Vous versez l'huile des lampes sur les braseros du chantier, restés froids depuis l'hiver, et une gerbe de flammes jaunes éclate d'un coup, avec une odeur de suie et de graisse. Les noyés reculent devant la chaleur, à petits pas, et se regroupent au bord de la grève, les bras devant le visage. Le reflux suivant ramènera pourtant la seconde vague, et il ne tardera guère.",
         "effets": [
           {
             "objet": {
@@ -68,7 +68,7 @@
     "type": "mixte",
     "lieu": "por-chantier-naval",
     "difficulte": "faible",
-    "intro": "Le reflux est à son plus bas, et la coque craque sur ses cales comme un navire qui sent la tempête. Trois noyés armés de rouille, des crocs de fer et des lames piquées dans le bois descendent de la grève en file, suivis d'un quatrième plus lent. Le chenal, à gauche, n'est plus qu'un fil d'eau entre les galets.",
+    "intro": "Le reflux est à son plus bas, et une plainte de bois monte de la coque, qui craque sur ses cales comme un navire qui sent venir la tempête. Trois noyés armés de rouille, de crocs de fer et de lames piquées dans le bois descendent de la grève en file serrée. Leurs os cliquettent à chaque pas, et la rouille de leurs armes laisse des traînées orange sur les galets. Derrière eux, un quatrième avance plus lentement, les épaules lourdes, en poussant du poing le bois pour s'ouvrir un passage. Le chenal, à gauche, n'est plus qu'un fil d'eau entre les galets.",
     "monstres": [
       {
         "profil": "squelette",
@@ -104,7 +104,7 @@
           "competence": "athletisme",
           "dd": 13
         },
-        "resume": "La vanne de bois est coincée dans sa glissière, rongée par le sel. Il faut peser sur la barre de tout son poids pour la faire glisser, et l'eau du chenal se coupe d'un coup.",
+        "resume": "La vanne de bois est coincée dans sa glissière, rongée par le sel et gonflée d'algues vertes. Vous posez les deux mains sur la barre, les pieds calés sur les galets, et vous poussez de tout votre poids ; le bois gémit, cède d'un coup, et l'eau du chenal se coupe net. Le clapotis décroît, puis s'arrête.",
         "effets": [
           {
             "flag": "por-chantier-defendu"
@@ -115,7 +115,7 @@
         ],
         "echec": [
           {
-            "narration": "La vanne résiste, la corde casse sur votre poignet, et le chenal continue de remonter entre les galets."
+            "narration": "La vanne résiste, rouillée jusqu'au cœur de sa glissière, et la corde qui la tire se rompt dans un claquement sec, vous laissant les mains vides. Vous reculez d'un pas, pendant que le chenal continue de remonter entre les galets, lentement, sans un bruit. Les noyés, eux, n'ont pas ralenti."
           }
         ],
         "echecResout": false
@@ -123,7 +123,7 @@
       {
         "id": "sonner-la-cloche-du-quai",
         "nom": "Je sonne la cloche : la garde du quai viendra.",
-        "resume": "La cloche de bronze du quai porte loin dans le brouillard. Les noyés s'arrêtent, indécis, puis se retirent vers la grève ; une demi-heure plus tard, la garde de la Ligue arrive au chantier avec des lanternes et des questions.",
+        "resume": "Vous tirez la corde de la cloche de bronze, et son tintement grave porte loin dans le brouillard, jusqu'aux maisons du port. Les noyés s'arrêtent net, la tête penchée, comme à l'écoute d'un ordre ancien ; indécis, ils refluent vers la grève, un par un. Une demi-heure plus tard, la garde de la Ligue arrive au chantier avec des lanternes et des questions.",
         "effets": [
           {
             "flag": "por-chantier-defendu"

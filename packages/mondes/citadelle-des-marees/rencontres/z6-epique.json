@@ -5,13 +5,13 @@
     "type": "social",
     "lieu": "cit-bureau-du-prieur",
     "difficulte": "moderee",
-    "intro": "Le Prieur Anselme Vareuil vous reçoit debout, les mains jointes au-dessus d'un registre ouvert. Il s'excuse de la tempête, puis pose la question qu'il attendait : qu'avez-vous vu sur la route, et qui est la jeune femme qui marche derrière vous ?",
+    "intro": "La porte de chêne se referme derrière vous avec un bruit mat, et la cire fondue dégage une odeur de miel tiède. Le Prieur Anselme Vareuil vous reçoit debout, les mains jointes au-dessus d'un registre ouvert, une chaîne de cuivre pendue au col. Une plume d'oie repose en travers d'une lettre, encore humide d'encre. Il s'excuse de la tempête, avec la politesse d'un homme qui s'excuse toujours, puis pose la question qu'il attendait : qu'avez-vous vu sur la route, et qui est la jeune femme qui marche derrière vous ?",
     "monstres": [],
     "alternatives": [
       {
         "id": "dire-ce-qui-a-ete-vu",
         "nom": "Je lui dis ce que nous avons vu sur la route.",
-        "resume": "Il écoute sans vous interrompre, puis range sa plume. Il sait désormais que la mer parle, et il vous remercie avec une gentillesse qui ressemble à une mise à l'écart.",
+        "resume": "Il écoute sans vous interrompre, la plume suspendue au-dessus de la page. Vous lui racontez la route, les pas trempés qui ne laissaient derrière eux qu'une eau noire, et les signes que la mer a faits cette nuit. Il ne note rien : il savait déjà. Il range sa plume avec soin et vous remercie d'une voix si douce qu'elle ressemble à une mise à l'écart.",
         "effets": [
           {
             "attitude": {
@@ -31,7 +31,7 @@
           "competence": "tromperie",
           "dd": 14
         },
-        "resume": "Il sourit, trempe sa plume et écrit un nom qui n'est pas le sien. Il vous croit, ou fait semblant de vous croire, et la jeune femme cesse d'être une question. Le mensonge reste pourtant dans son registre, à la page du jour.",
+        "resume": "Vous appuyez sur chaque mot, les yeux fixés sur le registre, et vous sentez la chaleur de la lampe sur votre joue. Il sourit, trempe sa plume et écrit un nom qui n'est pas le sien, d'une écriture ronde et appliquée. Il vous croit, ou fait semblant de vous croire, et la jeune femme cesse d'être une question. Le mensonge reste dans son registre, à la page du jour.",
         "effets": [
           {
             "attitude": {
@@ -48,7 +48,7 @@
         ],
         "echec": [
           {
-            "narration": "Le Prieur repose sa plume. « Étrange. Les voyageuses ne gardent pas leur capuchon pour parler à un prieur. » Il ne dit rien de plus, mais son regard ne vous quitte plus."
+            "narration": "Le Prieur repose sa plume, lentement, comme on repose une pièce qu'on vient de tourner entre ses doigts. « Étrange, dit-il. Les voyageuses ne gardent pas leur capuchon pour parler à un prieur. » Il ne vous accuse de rien et ne hausse pas la voix. Il ne dit rien de plus, mais son regard ne vous quitte plus."
           },
           {
             "attitude": {
@@ -65,7 +65,7 @@
       {
         "id": "demander-une-chambre",
         "nom": "Je refuse de répondre et je demande une chambre pour la nuit.",
-        "resume": "Il vous conduit lui-même au dortoir, la lampe à la main, et ferme la porte à clef. Vous dormez. La clef reste dans sa poche, et vous n'êtes plus tout à fait ses hôtes.",
+        "resume": "Il vous conduit lui-même au dortoir, la lampe à la main, par un couloir où les pas résonnent contre le bois. Il s'arrête sur le seuil, s'excuse une fois encore, et ferme la porte à clef. Vous dormez mal, au bruit des volets qui claquent. La clef reste dans sa poche, et vous n'êtes plus tout à fait ses hôtes.",
         "effets": [
           {
             "attitude": {
@@ -91,7 +91,7 @@
     "type": "exploration",
     "lieu": "marais-de-sel",
     "difficulte": "moderee",
-    "intro": "La marée est revenue avant l'heure. Les bassins du marais se remplissent d'une eau trop froide, et une ligne blanche avance entre les digues à la vitesse d'un homme qui marche. Il faut passer avant qu'elle n'ait tout couvert.",
+    "intro": "Un bruit de clapotis, d'abord discret, monte des canaux, puis tout le marais semble se remplir d'un seul coup. Les bassins carrés débordent d'une eau trop froide, et une ligne blanche avance entre les digues à la vitesse d'un homme qui marche, poussant devant elle des roseaux couchés. Le sol mou cède sous vos bottes, et les planches des chemins luisent d'une humidité qui n'a rien de la pluie. Les tas de sel sous leurs bâches commencent déjà à fondre. Il faut passer avant qu'elle n'ait tout couvert.",
     "monstres": [],
     "alternatives": [
       {
@@ -101,7 +101,7 @@
           "competence": "athletisme",
           "dd": 13
         },
-        "resume": "La crête tient, le groupe passe d'un bloc et atteint les salines avant la ligne blanche. Une digue de moins, et l'eau reste derrière vous.",
+        "resume": "Vous prenez la crête de la digue en courant, les bras écartés pour garder l'équilibre, sans regarder l'eau qui frémit sous les planches. La terre tient sous vos pas, et vous passez d'un bloc, en file serrée, jusqu'aux salines. Derrière vous, la ligne blanche bute contre la digue, cherche une brèche, puis recule d'un pas. Une digue de moins, et l'eau reste derrière vous.",
         "effets": [
           {
             "xp": 30
@@ -109,7 +109,7 @@
         ],
         "echec": [
           {
-            "narration": "La crête cède sous le dernier pas. Vous passez, mais trempés jusqu'à la taille, les vivres gâtés par le sel, et la ligne blanche vous suit de près."
+            "narration": "La crête cède sous le dernier pas. Un pan de terre glisse dans le canal avec un bruit de succion. Vous passez, mais l'eau vous prend jusqu'à la taille, et chaque pas dans la boue vous arrache un juron. Les vivres sont gâtés par le sel, et la ligne blanche vous suit de près, sans jamais vous rattraper."
           },
           {
             "jauge": {
@@ -127,7 +127,7 @@
           "competence": "survie",
           "dd": 12
         },
-        "resume": "Les anciens saulniers ont planté des balises de bois le long du chemin le plus haut. Vous les suivez une à une, et vous gagnez du temps sur l'eau.",
+        "resume": "Les anciens saulniers ont planté des balises de bois le long du chemin le plus haut, à peine plus grosses qu'un poignet, couvertes d'une croûte blanche. Vous les suivez une à une, en comptant à voix basse, sans quitter des yeux la balise suivante. Le chemin serpente entre les bassins, et chaque balise vous rend un peu de terrain sur l'eau. Vous gagnez du temps, et l'eau, derrière, ne peut pas suivre le tracé.",
         "effets": [
           {
             "flag": "z6-marais-balises-suivies"
@@ -138,7 +138,7 @@
         ],
         "echec": [
           {
-            "narration": "Une balise manque, puis deux. Vous perdez la piste dans les bassins et traversez à l'estime, l'eau aux genoux, sans rien de sec."
+            "narration": "Une balise manque, puis deux, arrachées ou noyées par la marée. Vous perdez la piste entre les bassins carrés, et les digues se ressemblent toutes. Il faut traverser à l'estime, en suivant le bruit de l'eau, l'eau aux genoux, puis à la taille par endroits. Quand vous atteignez enfin une terre ferme, vos cordes et vos vêtements dégoulinent, et la ligne blanche vous a rattrapés."
           },
           {
             "jauge": {
@@ -152,7 +152,7 @@
       {
         "id": "attendre-le-reflux",
         "nom": "J'attends sur un monticule que l'eau recule.",
-        "resume": "L'eau recule, mais lentement, et les heures passent avec elle. Le groupe traverse à demi transi, et la mer a gagné du temps sur le reste de la côte.",
+        "resume": "Vous vous installez sur un monticule de terre, serrés les uns contre les autres pour garder un peu de chaleur. L'eau recule, mais lentement, pouce par pouce, et les heures passent avec elle. Le vent mord les mains, les vêtements sèchent mal, et vous guettez le moment où la crête redevient praticable. Vous traversez enfin, à demi transis, et la mer a gagné du temps sur le reste de la côte.",
         "effets": [
           {
             "jauge": {
@@ -175,7 +175,7 @@
     "type": "social",
     "lieu": "por-quai-aux-cordes",
     "difficulte": "moderee",
-    "intro": "Au bout du quai, une foule serrée entoure un marin tieffelin, les poignets liés par un cordage goudronné. « Il a fait venir les noyés ! » crie une femme. Un calfat, improvisé juge, attend votre avis. Sur le seuil du hall de la Ligue, un homme en manteau gris observe et ne dit rien.",
+    "intro": "Au bout du quai, une foule serrée entoure un marin tieffelin, les poignets liés par un cordage goudronné qui lui serre la peau. La poix sent fort, mêlée à la saumure, et les cris se mêlent aux claquements de bottes sur les planches. « Il a fait venir les noyés ! » lance une femme, et tous se tournent vers un calfat, improvisé juge, qui attend votre avis. Sur le seuil du hall de la Ligue, un homme en manteau gris observe la scène sans rien dire.",
     "monstres": [],
     "alternatives": [
       {
@@ -185,7 +185,7 @@
           "competence": "persuasion",
           "dd": 14
         },
-        "resume": "Vous montrez ses mains sèches, et la marque de sel sur ses chevilles, celle de quelqu'un qui ne se baigne pas. La foule hésite, un docker baisse son crochet, et le calfat ouvre la porte de la cale.",
+        "resume": "Vous montrez ses mains sèches et les marques de sel sur ses chevilles, celles de quelqu'un qui ne se baigne pas. Vous parlez d'une voix posée, sans crier, et la foule hésite. Un docker baisse son crochet, et le calfat ouvre la porte de la cale : « Qu'il attende ici, et qu'on voie. »",
         "effets": [
           {
             "reputation": {
@@ -202,7 +202,7 @@
         ],
         "echec": [
           {
-            "narration": "Votre plaidoirie sonne faux, et la foule le sent. Le marin est emmené quand même, et les Rats de quai retiennent que vous avez essayé et échoué devant tout le monde."
+            "narration": "Votre plaidoirie sonne faux, et la foule le sent avant vous. Un cri monte, puis un autre, et le calfat fait signe qu'on l'emmène. Le marin passe devant vous, les poignets liés, sans un regard. Les Rats de quai retiennent que vous avez essayé et échoué devant tout le monde."
           },
           {
             "reputation": {
@@ -219,7 +219,7 @@
       {
         "id": "denoncer-le-marin",
         "nom": "Je dis ce que la Ligue veut entendre : qu'il a menti sur le quai.",
-        "resume": "La foule se calme d'un coup. Le marin est emmené vers le hall de la Ligue, et l'homme au manteau gris prend note sans vous remercier. Les Rats de quai, eux, retiennent un nom.",
+        "resume": "La foule se tait d'un coup, comme une houle qui retombe. Le marin est emmené vers le hall de la Ligue, la tête basse, la corde raide derrière lui. L'homme au manteau gris prend note sur un carnet, sans vous remercier. Les Rats de quai, eux, retiennent un nom, et personne ne le prononce tout haut.",
         "effets": [
           {
             "reputation": {
@@ -241,7 +241,7 @@
       {
         "id": "laisser-le-juge-decider",
         "nom": "Je recule d'un pas et je laisse la foule décider.",
-        "resume": "La foule décide seule, sans règle ni greffier. Le marin paie pour une nuit qui n'était pas la sienne, et les Rats apprennent que vous regardez ailleurs.",
+        "resume": "Personne ne parle plus, et la foule décide seule, sans règle ni greffier, au rythme des cris qui montent et retombent. Le calfat hausse les épaules. Le marin paie pour une nuit qui n'était pas la sienne, et les Rats de quai apprennent que vous avez regardé ailleurs.",
         "effets": [
           {
             "reputation": {
@@ -267,7 +267,7 @@
     "type": "social",
     "lieu": "por-entrepots-des-rats",
     "difficulte": "moderee",
-    "intro": "Mère Sorel Quaibas vous fait attendre au bout d'une table de caisses marquées de faux noms de sel. Elle ne lève pas les yeux de ses comptes. « Un passage vers la chaussée, ça se vend, dit-elle. Reste à savoir si vous êtes à vendre. »",
+    "intro": "Le bureau de planches tremble à chaque coup de vent qui force la porte des entrepôts. Mère Sorel Quaibas vous fait attendre au bout d'une table de caisses marquées de faux noms de sel, une cordelette nouée entre ses doigts qu'elle dénoue et renoue sans y penser. Elle ne lève pas les yeux de ses comptes. La lueur d'une veilleuse glisse sur ses cornes polies à la cire, et les pièces qu'elle aligne claquent une à une sur le bois. « Un passage vers la chaussée, ça se vend, dit-elle. Reste à savoir si vous êtes à vendre. »",
     "monstres": [],
     "alternatives": [
       {
@@ -277,7 +277,7 @@
           "competence": "tromperie",
           "dd": 13
         },
-        "resume": "Vous employez les mots qu'elle a appris à reconnaître : un trajet, une cale, une bourse sans nom. Elle sourit pour la première fois et ramène son prix à vingt pièces. Un passage bon marché se vend aussi à quelqu'un d'autre.",
+        "resume": "Vous employez les mots qu'elle a appris à reconnaître : un trajet, une cale, une bourse sans nom. Le vocabulaire fait son effet. Elle repose la cordelette, et un sourire bref lui échappe, vite effacé. « Vingt pièces, et pas une de plus. » Elle ne dit jamais deux fois le même prix : celui-là, vous le garderez en tête. Un passage bon marché se vend aussi à quelqu'un d'autre.",
         "effets": [
           {
             "pieces": -20
@@ -294,7 +294,7 @@
         ],
         "echec": [
           {
-            "narration": "Elle vous écoute jusqu'au bout, puis sourit sans chaleur. « Vous parlez comme un notaire déguisé. » Le prix monte, et le passage se vend quand même."
+            "narration": "Elle vous écoute jusqu'au bout sans interrompre, la cordelette immobile entre ses doigts. Puis elle sourit, sans chaleur. « Vous parlez comme un notaire déguisé en contrebandier. » Elle range ses comptes sous son tablier et vous indique le prix nouveau d'un geste de la main : soixante pièces. Le passage se vend quand même, et cette fois la facture n'a rien d'amical."
           },
           {
             "pieces": -60
@@ -314,7 +314,7 @@
       {
         "id": "payer-le-passage",
         "nom": "Je pose soixante pièces d'or sur la table, sans discours.",
-        "resume": "Elle les compte deux fois, glisse la bourse sous son tablier et vous indique la porte de la cachette, sans un mot de plus. Le passage est sûr, et il coûte cher.",
+        "resume": "Vous posez les soixante pièces sur la table, et elle les compte deux fois, du bout de l'index, en les faisant claquer sur le bois. Puis elle glisse la bourse sous son tablier, sans un regard pour vous. D'un coup de menton, elle désigne une porte basse au fond de l'entrepôt, derrière une pile de sacs : la cachette. « Le passage est sûr, et il coûte cher. Vous le savez, c'est pour ça que vous êtes venus. »",
         "effets": [
           {
             "pieces": -60
@@ -338,7 +338,7 @@
       {
         "id": "refuser-la-table",
         "nom": "Je refuse et je prends la halle, sans passage.",
-        "resume": "Elle hausse les épaules. « La halle, c'est la route des gens qu'on ne revoit pas. » Vous quittez les entrepôts sans passage, et la nouvelle court sur le quai avant vous.",
+        "resume": "Elle hausse les épaules sans quitter ses comptes, et la cordelette reprend son nœud entre ses doigts. « La halle, c'est la route des gens qu'on ne revoit pas. » Vous quittez les entrepôts sans passage, en traversant la passerelle de planches qui gémit sous vos pas. Avant que vous ayez atteint le quai, la nouvelle vous a déjà devancé, et les regards se détournent sur votre chemin.",
         "effets": [
           {
             "reputation": {
@@ -364,7 +364,7 @@
     "type": "social",
     "lieu": "lot-salle-du-conseil",
     "difficulte": "elevee",
-    "intro": "Le Chancelier Orvald Sel siège au bout d'une table de nacre, la couronne de Lothmar posée devant lui sans être portée. Il ne parle pas comme un spectre mais comme un homme qui a déjà signé le traité. « Vous avez l'enfant, dit-il. Dites-moi ce que vous voulez en échange. »",
+    "intro": "La lumière verte qui entre par le balcon glisse sur la table de nacre et sur les sièges aux croûtes pâles. Au bout de la table, le Chancelier Orvald Sel est assis dans un fauteuil plus haut que les autres, la couronne de Lothmar posée devant lui sans être portée. Son manteau d'écailles pâles ne bouge pas quand il lève la main, et l'air sent la pierre froide et le cuivre ancien. Il ne parle pas comme un spectre mais comme un homme qui a déjà signé le traité. « Vous avez l'enfant, dit-il. Dites-moi ce que vous voulez en échange. »",
     "monstres": [],
     "alternatives": [
       {
@@ -374,7 +374,7 @@
           "competence": "persuasion",
           "dd": 15
         },
-        "resume": "Vous invoquez la coutume des Sceaux : une nuit de réflexion avant qu'un vivant ne se lie. Il connaît cette coutume mieux que vous et la respecte, à regret. La nuit passe, et la marée monte avec elle.",
+        "resume": "Vous invoquez la coutume des Sceaux : une nuit de réflexion avant qu'un vivant ne se lie. Le Chancelier laisse ses doigts pâles glisser sur le bord de la table, sans rien dire, puis il incline la tête. « Une nuit, accordée à la Cour. » La nuit passe. Dans les galeries, l'eau monte d'une marche, puis d'une autre, et la marée avance avec elle contre les portes de la salle.",
         "effets": [
           {
             "flag": "z6-delai-du-chancelier"
@@ -397,7 +397,7 @@
         ],
         "echec": [
           {
-            "narration": "Le Chancelier lève une main pâle. « La coutume n'est pas pour les inconnus. » Il ne s'emporte pas ; il vous laisse seulement comprendre que la patience de la Cour a une fin."
+            "narration": "Le Chancelier lève une main pâle, et la table tout entière semble se figer autour de lui. « La coutume n'est pas pour les inconnus. » Il ne s'emporte pas. Ses yeux restent sur vous, sans colère, et ce regard vous fait comprendre que la patience de la Cour a une fin, et qu'elle approche."
           },
           {
             "attitude": {
@@ -414,7 +414,7 @@
       {
         "id": "offrir-le-sauf-conduit",
         "nom": "Je promets de lui présenter l'enfant dès l'aube.",
-        "resume": "Il se redresse, presque soulagé. Le sauf-conduit est écrit à la main sur un parchemin qui n'est pas sec. Vous avez promis une chose que vous ne pourrez pas reprendre, et la Cour le sait désormais.",
+        "resume": "Il se redresse, presque soulagé, et son sourire n'atteint pas ses yeux. Il écrit lui-même le sauf-conduit d'une main lente, sur un parchemin qui n'est pas sec : l'encre s'étale sous sa plume comme une eau qui cherche son niveau. Derrière le balcon, le bruit de la mer paraît soudain plus proche. Vous avez promis une chose que vous ne pourrez pas reprendre, et la Cour le sait désormais.",
         "effets": [
           {
             "flag": "z6-promesse-au-chancelier"
@@ -445,7 +445,7 @@
         "condition": {
           "objet": "carte-des-marees-d-ysmene"
         },
-        "resume": "Il reconnaît sa propre côte, les lignes qu'il a fait tenir pendant trois siècles. Il roule la carte et la glisse dans sa manche : « Elle m'a toujours appartenu. » Sans elle, plus rien ne brouille la marque de Nolwen.",
+        "resume": "Vous dépliez la carte sur la table de nacre, et les lignes d'encre verte, fines comme des cheveux, couvrent aussitôt la côte entière. Il reconnaît sa propre côte, les lignes qu'il a fait tenir pendant trois siècles. Ses doigts glissent le long des caps, s'arrêtent sur une baie, puis il roule la carte et la glisse dans sa manche : « Elle m'a toujours appartenu. » Sans elle, la marque de Nolwen ne restera plus cachée très longtemps.",
         "effets": [
           {
             "objet": {
@@ -467,7 +467,7 @@
       {
         "id": "garder-le-silence",
         "nom": "Je ne réponds pas et je laisse le silence s'installer.",
-        "resume": "Le Chancelier attend, puis reprend seul. Il parle de Lothmar, de ses nobles qui dorment sous les coraux, et du prix qu'ils demanderont. Votre silence lui a donné le ton : il ne vous pose plus aucune question.",
+        "resume": "Le Chancelier attend, les mains à plat sur la nacre, et le silence s'étire jusqu'à devenir pesant. Puis il reprend seul. Il parle de Lothmar, de ses nobles qui dorment sous les coraux, de leurs bijoux rongés par le sel et de leurs noms qu'il récite sans les perdre. Il parle aussi du prix qu'ils demanderont. Votre silence lui a donné le ton : il ne vous pose plus aucune question.",
         "effets": [
           {
             "attitude": {
@@ -493,7 +493,7 @@
     "type": "mixte",
     "lieu": "lot-parvis-des-noyes",
     "difficulte": "elevee",
-    "intro": "Le Héraut Blême se tient au pied de l'escalier du parvis, son armure couverte de coraux, une lance droite devant lui. Autour de lui, trois armures se redressent sans bruit. « Le Sceau doit descendre, dit-il. Il vous reste le choix entre me le remettre et mourir ici. »",
+    "intro": "Le parvis est si silencieux que chaque goutte qui tombe des colonnes de corail résonne sur les dalles. Au pied de l'escalier, le Héraut Blême se tient la lance droite, son armure de corail blanc hérissée de coquillages et son tabard déchiré aux épaules. Autour de lui, trois armures se redressent une à une, sans un bruit, leurs jointures luisantes d'eau noire. Le visage du Héraut ne bouge pas, et l'eau qui coule de son casque dessine des traits gris sur sa poitrine. « Le Sceau doit descendre, dit-il. Il vous reste le choix entre me le remettre et mourir ici. »",
     "monstres": [
       {
         "profil": "spectre",
@@ -535,7 +535,7 @@
         "condition": {
           "objet": "fanal-de-poche"
         },
-        "resume": "La lumière d'un phare tient les noyés à distance : les armures reculent jusqu'à l'escalier, et le Héraut doit parler. Le fanal s'éteint dans votre main, vide.",
+        "resume": "Vous levez le fanal de poche, et sa lumière ambrée balaie le parvis d'un trait net. Les armures reculent jusqu'à l'escalier comme des vagues qui se retirent, en grinçant, sans oser se retourner. La lumière d'un phare tient les noyés à distance, et le Héraut, pour une fois, doit parler. Le fanal s'éteint dans votre main, vide.",
         "effets": [
           {
             "objet": {
@@ -555,7 +555,7 @@
           "competence": "religion",
           "dd": 14
         },
-        "resume": "Vous citez les noms gravés aux piliers de la chapelle, un à un, comme on appelle des gens à table. Le Héraut s'arrête au milieu d'un pas : personne ne l'a appelé par son nom depuis trois cents ans. Il garde la lance levée, sans frapper.",
+        "resume": "Vous citez de mémoire les noms de la chronique des Sceaux, un à un, lentement, comme on appelle des gens à table après la tempête. Le premier nom fait trembler la lance dans la main du Héraut ; au dixième, il s'arrête au milieu d'un pas. Personne ne l'a appelé par son nom depuis trois cents ans. Il garde la lance levée, sans frapper, et la lumière pâle de l'escalier semble se poser sur son visage.",
         "effets": [
           {
             "flag": "z6-noms-recites"
@@ -574,7 +574,7 @@
       {
         "id": "laisser-passer-nolwen",
         "nom": "Je laisse Nolwen descendre seule vers l'escalier, escortée par les armures.",
-        "resume": "Nolwen marche vers l'escalier sans se retourner, les armures en silence autour d'elle. Le Héraut s'incline. Vous gardez vos armes et votre vie, et vous savez exactement qui vous avez laissé partir.",
+        "resume": "Nolwen franchit les premières marches sans se retourner, les épaules raides, et ses pas claquent sur le sel durci du parvis. Les armures se resserrent autour d'elle en silence, et le Héraut s'incline, la lance basse, avec une politesse de cérémonie. Vous gardez vos armes et votre vie. Elle ne vous regarde plus, et vous savez exactement qui vous avez laissé partir.",
         "effets": [
           {
             "flag": "z6-nolwen-conduite"
@@ -600,7 +600,7 @@
           "competence": "athletisme",
           "dd": 14
         },
-        "resume": "Vous traversez le parvis par la droite, sous le feu des lances, et franchissez la porte haute avant que les armures ne bloquent l'escalier. La marée suit de près, et la pierre du palais est encore humide.",
+        "resume": "Vous traversez le parvis par la droite, en vous courbant, pendant que les lances sifflent au-dessus de vos têtes et se plantent dans les colonnes de corail. Le pas des armures claque derrière vous sur les dalles mouillées. Vous franchissez la porte haute avant qu'elles ne bloquent l'escalier. La marée suit de près, et la pierre du palais est encore humide sous vos mains quand vous vous relevez.",
         "effets": [
           {
             "jauge": {

@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "fal-grotte-des-marees-entree",
     "difficulte": "faible",
-    "intro": "Une odeur de viande pourrie et de poil mouillé monte de l'entrée. Des os rongés jonchent le sol, et dans le noir du fond, un souffle chaud répond au vôtre. Trois paires d'yeux pâles se lèvent, sans hâte, comme si la nuit leur appartenait déjà.",
+    "intro": "Le couloir sent la chair faisandée et le poil mouillé, une odeur qui vous serre la gorge avant même que vos yeux s'habituent à la pénombre. Des os rongés, blanchis à l'extrémité, traînent entre les flaques claires. Dans le noir du fond, un souffle chaud répond au vôtre, lent et régulier. Trois paires d'yeux pâles se lèvent, sans hâte, une à une, comme si la nuit leur appartenait déjà. Le plus proche gratte la pierre de sa griffe, et la poussière retombe lentement.",
     "monstres": [
       {
         "profil": "loup",
@@ -32,7 +32,7 @@
       {
         "id": "apaiser-la-meute",
         "nom": "Je pose de la viande à l'entrée et je recule lentement.",
-        "resume": "Les loups reniflent la viande, puis reculent d'un pas à la fois. Il faut reculer avec eux, sans geste brusque, jusqu'à ce que l'odeur de la grotte ne soit plus qu'un souvenir.",
+        "resume": "Vous posez la viande sur la pierre, à l'entrée, puis vous reculez d'un pas lent. Les loups reniflent le morceau, la gueule basse, puis reculent à leur tour, un pas à la fois, sans quitter vos moindres gestes des yeux. Vous reculez avec eux, sans geste brusque, jusqu'à ce que l'odeur de la grotte ne soit plus qu'un souvenir sur vos vêtements.",
         "jet": {
           "competence": "dressage",
           "dd": 13
@@ -47,7 +47,7 @@
         ],
         "echec": [
           {
-            "narration": "Le premier loup ignore la viande, bondit par-dessus les os et vous frappe à l'épaule avant que vous ayez reculé d'un pas. Les deux autres se resserrent autour de vous."
+            "narration": "Le premier loup ignore la viande. Il bondit par-dessus les os, les crocs en avant, et s'élance sur vous avant que vous ayez reculé d'un seul pas. Les deux autres se resserrent autour de vous, la gueule ouverte, les yeux pâles fixés sur votre gorge. Vous n'avez plus le temps de reculer : la meute est déjà sur vous."
           }
         ],
         "echecResout": false
@@ -55,7 +55,7 @@
       {
         "id": "les-chasser-au-feu",
         "nom": "J'allume une torche à l'entrée et je les chasse vers le nord.",
-        "resume": "Les loups craignent le feu plus que la faim : une torche agitée dans l'entrée les refoule vers la galerie du nord, où ils disparaissent entre les rochers. La torche, elle, ne revient pas.",
+        "resume": "Vous enflammez la torche et la tenez haute, à l'entrée. Les flammes crachent et dansent, et les loups craignent le feu plus que la faim : ils grondent, se couchent, puis refluent vers la galerie du nord, où ils disparaissent entre les rochers. La résine crépite contre la pierre et la fumée monte jusqu'au plafond bas. La torche, elle, ne revient pas.",
         "condition": {
           "objet": "torche"
         },

@@ -5,7 +5,7 @@
     "type": "mixte",
     "lieu": "cit-jardins-de-falaise",
     "difficulte": "faible",
-    "intro": "La nuit est tombée sur les jardins de falaise, et l'air sent la terre mouillée et le sel. Une lanterne voilée, posée contre un muret, ne montre qu'un cercle de pierre grise. Plus bas sur le chemin, une jarre racle la pierre, puis un sifflement bref répond dans le noir.",
+    "intro": "Les terrasses de pierre sèche sentent la lavande froissée et la terre mouillée. Une lanterne voilée, posée contre un muret, ne montre qu'un cercle de pierre grise, et les herbes couchées par le vent luisent d'humidité. Plus bas sur le chemin, une jarre racle le sol, lentement, puis une autre, avec un son mat qui roule contre le rocher. Un sifflement bref répond dans le noir, puis se tait, comme une consigne transmise à voix basse. Quelque part sous vous, le ressac monte et retombe contre la falaise.",
     "monstres": [
       { "profil": "bandit", "nombre": 2, "nom": "Pilleurs d'huile" },
       { "profil": "eclaireur", "nombre": 1, "nom": "Guetteur" }
@@ -29,7 +29,7 @@
       {
         "id": "surprendre-en-silence",
         "nom": "Je les laisse entrer dans le jardin et je les prends à revers, sans un bruit.",
-        "resume": "Les voleurs gagnent le jardin à pas de loup, sans se douter qu'on les attend derrière les murets. Il suffit de les prendre à revers avant qu'ils n'aient chargé la première jarre.",
+        "resume": "Les voleurs descendent le chemin à pas de loup, sans se douter que vous attendez derrière les murets. Vous les prenez à revers, avant qu'ils ne chargent la première jarre. Un pas, une main levée, et ils comprennent qu'ils sont pris. Le guetteur, sur son rocher, ne voit rien de ce qui se passe au pied du muret, et la lavande couchée étouffe le bruit de vos bottes.",
         "jet": {
           "competence": "discretion",
           "dd": 12
@@ -41,7 +41,7 @@
         ],
         "echec": [
           {
-            "narration": "Une branche craque sous votre pied. Le guetteur siffle, et les voleurs disparaissent dans le noir en laissant la boue de leurs bottes derrière eux."
+            "narration": "Une branche sèche craque sous votre pied, net comme un coup de fouet. Le guetteur siffle aussitôt, un coup bref et aigu, et les voleurs disparaissent dans le noir. Il ne reste sur le chemin que la boue de leurs bottes, des traces qui vont vers la falaise et ne reviennent pas."
           }
         ],
         "echecResout": false
@@ -49,7 +49,7 @@
       {
         "id": "racheter-la-nuit",
         "nom": "Je leur donne de quoi quitter la côte avant l'aube.",
-        "resume": "Les voleurs ne cherchent pas la bagarre : ils acceptent une bourse et promettent de ne plus remettre les pieds sur la côte. L'argent sonne sur la pierre, et le guetteur compte les pièces avant de faire signe.",
+        "resume": "Les voleurs ne cherchent pas la bagarre. Ils reposent leurs jarres une à une, le dos rond, et acceptent la bourse de trente pièces que vous posez sur le muret. Le guetteur la soupèse, puis compte les pièces à voix basse, en les faisant sonner contre la pierre, avant de faire signe. Ils promettent de quitter la côte avant l'aube, et bientôt il ne reste que le ressac.",
         "condition": {
           "pieces": { "min": 30 }
         },
