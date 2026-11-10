@@ -25,8 +25,9 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 
 ## Ce que reçoit le conteur (à tenir à jour)
 
-- Préfixe en cache : rôle, 11 règles (dont 9 : aucun mot des coulisses ; 10 : trier la demande ; 11 : cohérence), `monde.json`, la bible.
+- Préfixe en cache : rôle, 13 règles (dont 9 : aucun mot des coulisses ; 10 : trier la demande ; 11 : cohérence ; 13 : le monde se souvient du groupe, chacun ne sait que ce qu'il a pu savoir), `monde.json`, la bible.
 - Fiche de tour (`ficheDeTour`) : lieu, heure et moment, sorties, **portraits des PNJ présents** (voix, traits, désir, peur, déjà dit, sujets ouverts avec les faits qu’ils révèlent, faits révélables marqués « aucun sujet écrit ne le dit » quand seule la parole vérifiée peut les donner ; jamais les secrets), conversation, objets, pièges, énigmes, jauges ; **« Ce que le groupe sait et a fait »** (quêtes, faits appris, choix, disparus) ; le groupe ; derniers événements raccourcis.
+- **Mémoire du groupe** (`conteur/memoire.ts`, `docs/M4-CONTEUR.md` §16) : section « Ce que le groupe a vécu » (lieux, rencontres et issue, personnes, compagnons, réputations ; 1 200 caractères au plus) et, par PNJ présent, « Ce qu'il sait du groupe » (paroles, témoin, faction). Calculée par le moteur d'après `etat.exploration`, jamais par un LLM.
 - Mémoire : `memoireDuJournal` (12 échanges par défaut, tirés du journal sauvegardé).
 - **Savoir des PNJ** (`savoirs/`, skill `creer-personnages`) : l'outil `repondreEnPersonnage` (réplique + ids utilisés + faits révélés) est **vérifié par le jeu** ; ne jamais le contourner dans le prompt. Les essais réels se préparent avec `!lieu`, `!attitude`, `!fait`, `!fuite` dans `--essai`.
 

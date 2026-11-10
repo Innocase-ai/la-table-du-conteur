@@ -51,7 +51,7 @@ Fichiers : `monde/etat.ts`, `monde/exploration.ts`, `monde/dialogue.ts`, `monde/
 
 Sortie de phase : un auteur peut écrire « si le groupe a vaincu la bande, le meunier a peur », sans drapeau manuel.
 
-## 4. Phase 2 — Le dossier du groupe pour le conteur
+## 4. Phase 2 — Le dossier du groupe pour le conteur (faite le 10/11/2026 : `conteur/memoire.ts`, règle 13 du prompt, `docs/M4-CONTEUR.md` §16 ; le résumé des événements anciens et l'essai réel payant restent à faire)
 
 Fichiers : `conteur/contexte.ts` (section « Ce que le groupe sait et a fait », `portrait`), `conteur/outils.ts` (rien : le jeu d'outils reste identique).
 

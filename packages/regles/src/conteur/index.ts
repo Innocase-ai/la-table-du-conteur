@@ -1,4 +1,5 @@
 export * from './contexte';
+export * from './memoire';
 export * from './openrouter';
 export * from './outils';
 export * from './schema-json';
