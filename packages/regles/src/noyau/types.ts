@@ -104,9 +104,18 @@ export interface Transaction {
  * l'écran en fait un bouton sans connaître la commande. Les indications de présentation (panneau, ligne, style)
  * restent génériques : un nouveau module apparaît à l'écran sans code d'interface.
  */
+export interface PresentationMonstre {
+  /** Le profil du catalogue SRD : le client en tire l'image du bestiaire commun. */
+  profil: string;
+  nom: string;
+  nombre: number;
+  /** Une ou deux phrases d'apparence ; absente quand on n'en a pas de juste (jamais de chiffre ni de capacité cachée). */
+  description?: string;
+}
+
 export interface Proposition {
   /** Le panneau où ranger l'action ; les panneaux s'affichent par `ordre` croissant, dans l'onglet `onglet` (« Actions » par défaut). */
-  groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean; onglet?: string };
+  groupe: { id: string; titre: string; ordre: number; description?: string; danger?: boolean; onglet?: string; monstres?: PresentationMonstre[] };
   libelle: string;
   /** Le ton ou la nature de l'action, affiché entre crochets avant le libellé (« Persuader » devant une réplique de conversation). */
   etiquette?: string;

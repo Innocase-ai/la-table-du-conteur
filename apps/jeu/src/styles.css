@@ -9304,3 +9304,47 @@ kbd {
   border-left: 3px solid var(--or);
   background: rgba(212, 174, 102, 0.1);
 }
+
+/* Les créatures d'une rencontre (panneau d'actions) : image du bestiaire commun, nom, nombre, courte description. */
+.monstres-rencontre {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.monstre-rencontre {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.monstre-rencontre img {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border: 1px solid var(--monstre);
+  border-radius: 6px;
+  background: var(--monstre-sombre);
+}
+
+.monstre-rencontre strong {
+  font-family: var(--titre);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--texte);
+}
+
+.monstre-nombre {
+  color: var(--or);
+}
+
+.monstre-rencontre p {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--texte-doux);
+}

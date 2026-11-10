@@ -16,6 +16,7 @@ Tu ajoutes au catalogue partagé du jeu les profils de monstres suivants, tirés
 ## Ce que tu produis
 - Un fichier par profil : `packages/donnees/srd/monstres/<id>.json` (id en kebab-case ASCII, d'après le nom français : `loup-arctique`).
 - Pour chaque profil, une **fiche visuelle en anglais** dans `packages/donnees/visuel/charte.json`, tableau `monstres` : `{ "id": "<id>", "nom": "<nom français>", "apparence": "<une phrase en anglais : forme, matière, couleurs, posture>" }`. Le test `outils/images/images.test.ts` (« chaque monstre du monde a une fiche visuelle dans la charte », vérifié sur le Val ; vaut pour tout monde) l'exige ; sans elle, l'illustrateur invente (« Bandit » est devenu un humanoïde-hyène).
+- Pour chaque profil, un champ **`description`** dans son fichier JSON : 2 phrases en français (30 à 50 mots), apparence seulement (silhouette, matière, couleurs, posture, bruit, odeur), juste pour n'importe quel individu de l'espèce, **sans chiffre, sans règle, sans capacité cachée, sans décor ni météo, sans « vous »**. Le jeu l'affiche avec l'image du bestiaire quand une rencontre se montre ; `packages/regles/tests/presentation-monstres.test.ts` exige l'image et la description des 329 profils. Texte écrit par un agent Haiku, relu.
 
 ## Règles
 - **Rien d'inventé** : une valeur introuvable dans le SRD est signalée dans le rapport, pas devinée.

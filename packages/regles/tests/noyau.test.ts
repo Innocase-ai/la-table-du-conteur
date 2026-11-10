@@ -189,6 +189,9 @@ describe('noyau : propositions (boutons générés depuis les commandes)', () =>
     const rencontre = moteur.propositions(r);
     expect(new Set(rencontre.map((x) => x.groupe.id))).toEqual(new Set(['rencontre']));
     expect(rencontre[0]).toMatchObject({ libelle: 'Combattre', intention: 'combattre' });
+    // Le panneau de la rencontre présente ses monstres (image par profil, nom, nombre, description).
+    expect(rencontre[0]!.groupe.monstres?.length).toBeGreaterThan(0);
+    for (const m of rencontre[0]!.groupe.monstres ?? []) expect(m).toMatchObject({ profil: expect.any(String), nom: expect.any(String), nombre: expect.any(Number) });
   });
 
   it('une énigme propose une réponse à saisir et des indices de plus en plus clairs, retenus dans la partie', () => {

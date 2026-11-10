@@ -281,7 +281,7 @@ export const RencontreMonde = z.object({
   difficulte: z.enum(['faible', 'moderee', 'elevee']),
   intro: Texte, // mise en scène pour le MJ
   // Combat : profils de monstres du SRD (ou d'un PNJ qui a un profil) et carte tactique.
-  monstres: z.array(z.object({ profil: Id, nombre: z.number().int().positive(), nom: z.string().optional(), pnj: Id.optional() })).default([]),
+  monstres: z.array(z.object({ profil: Id, nombre: z.number().int().positive(), nom: z.string().optional(), pnj: Id.optional(), description: z.string().optional() })).default([]),
   // Carte de la grille tactique : « . » sol, « # » mur, « ~ » terrain difficile, « H » départ héros, « m » départ monstres.
   carte: z.array(z.string()).optional(),
   // Ambiance du plateau (textures) ; à défaut, le client choisit selon le lieu.

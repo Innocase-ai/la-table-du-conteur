@@ -13,6 +13,7 @@ import {
   type Ordre,
   type Partie,
   type Personnage,
+  type PresentationMonstre,
 } from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
@@ -36,6 +37,7 @@ import { detecterDesamorcage, type Desamorcage } from '../desamorcage-regles';
 import { decorSommeil, detecterSommeil, heuresDormies, type DecorSommeil } from '../sommeil-regles';
 import { ControleSon } from '../composants/ControleSon';
 import { OUVERTURES } from '../ouvertures';
+import { imageMonstre } from '../visuels';
 import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voixDuPnj } from '../ouvertures-regles';
 import { direOuverture } from '../voix';
 import { PageCarte } from './PageCarte';
@@ -590,6 +592,29 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   );
 }
 
+/** Les monstres d'une rencontre : une ligne par type (image du bestiaire commun, nom, nombre, courte description). */
+function MonstresRencontre({ monstres }: { monstres: PresentationMonstre[] }) {
+  return (
+    <ul className="monstres-rencontre" aria-label="Les créatures de la rencontre">
+      {monstres.map((m) => {
+        const image = imageMonstre(m.profil);
+        return (
+          <li key={`${m.profil}:${m.nom}`} className="monstre-rencontre">
+            {image && <img src={image} alt={m.nom} loading="lazy" />}
+            <div>
+              <strong>
+                {m.nom}
+                {m.nombre > 1 && <span className="monstre-nombre"> ×{m.nombre}</span>}
+              </strong>
+              {m.description && <p>{m.description}</p>}
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 /**
  * Les actions proposées par les modules, rangées en panneaux. Cet affichage ne connaît aucune commande : un module
  * qui ajoute des propositions apparaît ici sans code d'interface.
@@ -636,6 +661,7 @@ function Panneaux({
           <section key={panneau.id} className={`panneau-action ${panneau.danger ? 'panneau-danger' : ''}`}>
             {cacherTitre !== panneau.id && <h3>{panneau.titre}</h3>}
             {panneau.description && <p className="enonce">{panneau.description}</p>}
+            {panneau.monstres && panneau.monstres.length > 0 && <MonstresRencontre monstres={panneau.monstres} />}
             <div className="liste-actions">
               {blocs.map((b, i) =>
                 b.element ? (

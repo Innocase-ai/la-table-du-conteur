@@ -18,6 +18,11 @@ export function imageCombattant(c: Combattant): string | undefined {
   return BESTIAIRE.get(c.modele);
 }
 
+/** Image du bestiaire commun pour un profil de monstre du SRD (absente : pas d'image, rien ne casse). */
+export function imageMonstre(profil: string): string | undefined {
+  return BESTIAIRE.get(profil);
+}
+
 export function textureTerrain(terrain: Terrain | undefined, type: TypeCase): string | undefined {
   return terrain ? TERRAINS.get(`${terrain}-${type}`) : undefined;
 }

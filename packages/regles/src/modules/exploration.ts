@@ -18,6 +18,7 @@ import {
 } from '../monde/exploration';
 import { evaluerCondition } from '../monde/etat';
 import { formulaireEnigme } from '../monde/reponses';
+import { presentationMonstres } from '../monde/presentation';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
 import { appliquerEtat } from '../personnage';
@@ -294,7 +295,8 @@ export const moduleExploration: Module = {
         if (p.scene.type !== 'rencontre') return [];
         const r = ctx.dm.rencontres.get(p.scene.rencontre);
         if (!r) return [];
-        const groupe = { id: 'rencontre', titre: r.nom, ordre: 0, danger: true };
+        const monstres = presentationMonstres(r, ctx.dm, ctx.srd);
+        const groupe = { id: 'rencontre', titre: r.nom, ordre: 0, danger: true, ...(monstres.length ? { monstres } : {}) };
         return [
           ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', icone: 'base:combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
           ...r.alternatives

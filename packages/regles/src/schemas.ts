@@ -300,6 +300,8 @@ export const Monstre = z.object({
   bonusMaitrise: z.number().int(),
   traits: z.array(z.object({ id: z.string(), nom: z.string(), resume: z.string() })).default([]),
   actions: z.array(ActionMonstre),
+  /** Présentation lue par le joueur quand la rencontre se montre : apparence seulement, ni chiffre ni capacité cachée. */
+  description: z.string().optional(),
 });
 export type Monstre = z.infer<typeof Monstre>;
 
