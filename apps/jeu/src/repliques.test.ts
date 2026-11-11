@@ -131,7 +131,8 @@ describe('repérage sur un vrai journal du moteur', () => {
     const avant = capturer(etat);
     executer(etat, ctx, { type: 'jouer', carte: 'attaque:epee-longue', cibles: ['gob'] });
     expect(combattant(etat, 'gob').mort).toBe(true);
-    expect(situations(declencheurs(etat, avant))).toEqual(['critique-donne:bran', 'ennemi-abattu:bran']);
+    // Le dernier ennemi abattu : la victoire tombe dans la même commande, sans attendre la fin du tour.
+    expect(situations(declencheurs(etat, avant))).toEqual(['critique-donne:bran', 'ennemi-abattu:bran', 'victoire:-']);
   });
 
   it('un héros qui tombe : les autres le voient tomber ; relevé par un soin, il le dit', () => {

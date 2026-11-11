@@ -1,7 +1,7 @@
 // Les cartes : la main d'un combattant à son tour, et l'exécution des commandes.
 // Une carte est une option de jeu réelle du SRD (attaque, sort, aptitude…) ou une carte d'élan.
 import type { Sort } from '../schemas';
-import { actif, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
+import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, type Position } from './grille';
 import {
   aPortee,
@@ -17,6 +17,7 @@ import {
   infligerDegats,
   portee,
   soigner,
+  verifierFin,
   vitesse,
 } from './moteur';
 import { attaqueArmeSpirituelle, attaqueCaresse, attaqueLameDeFeu, ciblesPossibles, lancerSort, nombreCibles, porteeSort, preparerIncantation, SORTS_AU_CONTACT, SUIVI_ZONES, suiviZone, ZONES_SUPPLEMENTAIRES } from './sorts';
@@ -90,7 +91,7 @@ function carte(partiel: Omit<Carte, 'jouable' | 'cibles' | 'nbCibles'> & Partial
 }
 
 function ciblesAttaque(etat: EtatCombat, c: Combattant, metres: number): string[] {
-  return ennemis(etat, c).filter((e) => aPortee(etat, c, e, metres)).map((e) => e.id);
+  return adversairesCiblables(etat, c).filter((e) => aPortee(etat, c, e, metres)).map((e) => e.id);
 }
 
 function refuser(cartes: Carte, raison: string): Carte {
@@ -333,7 +334,14 @@ function depenser(c: Combattant, cout: CoutCarte): void {
   if (cout === 'elan') c.tour.elanJoue = true;
 }
 
+/** Joue une commande du combattant actif. Le combat s'arrête dès que le dernier adversaire tombe, sans attendre la fin du tour. */
 export function executer(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resultat {
+  const r = executerCommande(etat, ctx, cmd);
+  if (r.ok) verifierFin(etat);
+  return r;
+}
+
+function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resultat {
   if (etat.vainqueur) return { ok: false, erreur: 'Le combat est terminé.' };
   const c = actif(etat);
   if (cmd.type === 'finTour') {
@@ -589,7 +597,8 @@ function executerBase(etat: EtatCombat, c: Combattant, id: string, cibles: Comba
     }
     case 'echapper': {
       const prise = c.etats.find((e) => (e.etat === 'empoigne' || e.etat === 'entrave') && e.evasion)!;
-      const bonus = Math.max(c.mods.for, c.mods.dex) + c.bonusMaitrise;
+      // Test d'Athlétisme (Force) ou d'Acrobaties (Dextérité) : la maîtrise ne compte que si on l'a.
+      const bonus = Math.max(c.competences?.athletisme ?? c.mods.for, c.competences?.acrobaties ?? c.mods.dex);
       const total = lancerDes(etat, '1d20') + bonus;
       const libere = total >= prise.evasion!;
       if (libere) c.etats = c.etats.filter((e) => e !== prise);

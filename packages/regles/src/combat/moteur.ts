@@ -465,14 +465,15 @@ export function jetAttaque(
     cible.etats.some((e) => e.etat === 'paralyse' || e.etat === 'inconscient');
   const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
   let caCible = ca(cible) + bonusCouvert;
-  let touche = d !== 1 && (d >= seuilCritique || total >= caCible);
+  // Seul le 20 naturel touche toujours ; avec un critique amélioré, un 19 est un critique s'il touche (SRD 5.2.1).
+  let touche = d !== 1 && (d === 20 || total >= caCible);
   // Inspiration bardique : un coup raté (hors 1 naturel) peut être rattrapé par le dé.
   if (!touche && d !== 1) {
     total += inspirationRattrape(etat, attaquant, caCible - total);
     touche = total >= caCible;
   }
   // Réaction Bouclier : +5 CA si cela transforme le coup en échec.
-  if (touche && d < seuilCritique && cible.sorts.includes('bouclier') && cible.ressources.reaction && total < caCible + 5) {
+  if (touche && d !== 20 && cible.sorts.includes('bouclier') && cible.ressources.reaction && total < caCible + 5) {
     const niveau = emplacementDisponible(cible, 1);
     if (niveau && peutAgir(cible)) {
       cible.incantation!.emplacements[niveau - 1]! -= 1;
@@ -633,12 +634,16 @@ function jetContreLaMort(etat: EtatCombat, c: Combattant): void {
     journaliser(etat, { type: 'soins', texte: `${c.nom} obtient un 20 naturel et se relève avec 1 PV !`, cible: c.id });
     return;
   }
+  // Un jet contre la mort est un jet de sauvegarde : Bénédiction, Fléau et le dé d'Inspiration bardique s'y appliquent
+  // (le 20 et le 1 naturels gardent leur effet propre).
+  let total = d + desModificateurs(etat, c, 'de_sauvegarde');
+  if (d !== 1 && total < 10) total += inspirationRattrape(etat, c, 10 - total);
   if (d === 1) c.jetsMort.echecs += 2;
-  else if (d >= 10) c.jetsMort.succes += 1;
+  else if (total >= 10) c.jetsMort.succes += 1;
   else c.jetsMort.echecs += 1;
   journaliser(etat, {
     type: 'info',
-    texte: `${c.nom} : jet contre la mort ${d} (${c.jetsMort.succes} réussite(s), ${c.jetsMort.echecs} échec(s)).`,
+    texte: `${c.nom} : jet contre la mort ${d}${total !== d && d !== 1 ? ` (${total} avec les bonus)` : ''} (${c.jetsMort.succes} réussite(s), ${c.jetsMort.echecs} échec(s)).`,
     cible: c.id,
   });
   if (c.jetsMort.echecs >= 3) mourir(etat, c);
@@ -660,7 +665,8 @@ export function occupation(etat: EtatCombat, c: Combattant): { bloquees: Set<str
   for (const x of etat.combattants) {
     if (x.id === c.id || x.mort || x.enFuite) continue;
     occupees.add(cle(x.position));
-    if (x.camp !== c.camp && x.pv > 0) bloquees.add(cle(x.position));
+    // Une créature hostile bloque le passage, même inconsciente (un héros à 0 PV) : on ne traverse pas sa case.
+    if (x.camp !== c.camp) bloquees.add(cle(x.position));
   }
   return { bloquees, occupees };
 }
@@ -727,12 +733,16 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
 function attaqueDOpportunite(etat: EtatCombat, attaquant: Combattant, cible: Combattant): void {
   attaquant.ressources.reaction = 0;
   journaliser(etat, { type: 'attaque', texte: `${attaquant.nom} profite d'une ouverture (attaque d'opportunité).`, acteur: attaquant.id, cible: cible.id });
-  const arme = attaquant.attaques.find((a) => a.mode === 'corps-a-corps');
+  // L'arme qui atteint la cible là où elle se trouvait (une épée ne frappe pas à l'allonge d'une pique).
+  const distance = distanceMetres(attaquant.position, cible.position);
+  const arme = attaquant.attaques.find((a) => a.mode === 'corps-a-corps' && a.allonge >= distance);
   if (arme) {
     attaqueArme(etat, attaquant, cible, arme, { opportunite: true });
     return;
   }
-  const action = attaquant.actionsMonstre.find((a) => a.resolution?.type === 'attaque' && a.resolution.mode === 'corps-a-corps');
+  const action = attaquant.actionsMonstre.find(
+    (a) => a.resolution?.type === 'attaque' && a.resolution.mode === 'corps-a-corps' && (a.portee?.allonge ?? TAILLE_CASE) >= distance,
+  );
   if (action) attaqueMonstre(etat, attaquant, cible, action.id);
 }
 

@@ -33,6 +33,7 @@ import { arreterMusique, demarrerMusique } from '../musique';
 import { Fiche } from './Fiche';
 import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
+import type { XpHistoire } from './xp-combat';
 import { ControleSon } from './ControleSon';
 import { Initiative } from './Initiative';
 import { Pictogramme } from './Pictogramme';
@@ -49,6 +50,8 @@ interface Props {
   onRetour: () => void;
   /** Combat d'une histoire : pas de « Rejouer » ; à la fin (ou en fuyant), l'état final revient au récit. */
   onFinHistoire?: (etat: EtatCombat) => void;
+  /** Combat d'une histoire : l'XP que la victoire rapportera, affichée dans le panneau de fin. */
+  xpHistoire?: XpHistoire;
 }
 
 interface Selection {
@@ -60,7 +63,7 @@ interface Selection {
 const DELAI_IA = 280;
 const DELAI_IA_RAPIDE = 90;
 
-export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire }: Props) {
+export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire, xpHistoire }: Props) {
   const ctx = useMemo(() => ({ sorts: donnees.sorts }), [donnees]);
   // Le moteur mute l'état en place : on le garde dans une ref et on force le rendu avec `version`.
   const etatRef = useRef<EtatCombat | null>(null);
@@ -75,6 +78,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const [selection, setSelection] = useState<Selection | null>(null);
   const [survolCase, setSurvolCase] = useState<Position | null>(null);
   const [survolId, setSurvolId] = useState<string | null>(null);
+  // Fiche épinglée : un clic sur un combattant (hors choix de cible) garde ses renseignements à l'écran ; Échap ou un second clic la retire.
+  const [epingle, setEpingle] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [rapide, setRapide] = useState(false);
   const [pensee, setPensee] = useState<string | null>(null);
@@ -215,7 +220,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       return;
     }
     if (modeCible !== 'cibles' || !carte || !selection) {
-      clicCase(t.position);
+      // Hors choix de cible, cliquer un combattant affiche ses renseignements (sa case est occupée : on ne peut pas s'y déplacer).
+      setEpingle((x) => (x === t.id ? null : t.id));
       return;
     }
     if (!carte.cibles.includes(t.id)) {
@@ -233,7 +239,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   // Clavier : Échap annule, Entrée valide une sélection multiple.
   const clavier = useRef<(e: KeyboardEvent) => void>(() => {});
   clavier.current = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') setSelection(null);
+    if (e.key === 'Escape') {
+      if (selection) setSelection(null);
+      else setEpingle(null);
+    }
     if (e.key === 'Enter' && selection?.cibles.length) valider();
   };
   useEffect(() => {
@@ -359,7 +368,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   // Rendu
   // ---------------------------------------------------------------------------
 
-  const ficheId = survolId ?? cVue.id;
+  const ficheId = survolId ?? (epingle && vue.combattants.some((x) => x.id === epingle) ? epingle : cVue.id);
   const fiche = vue.combattants.find((x) => x.id === ficheId) ?? cVue;
   const survolChemin = !carte && survolCase ? chemins.get(cle(survolCase)) : undefined;
 
@@ -370,7 +379,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   else if (carte && carte.nbCibles > 1) consigne = `${carte.nom} : choisissez jusqu'à ${carte.nbCibles} cibles (${selection?.cibles.length ?? 0}/${carte.nbCibles})${ciblesRepetables(carte) ? ', une même créature peut être visée plusieurs fois' : ''}.`;
   else if (carte) consigne = `${carte.nom} : choisissez une cible.`;
   else if (survolChemin) consigne = `Déplacement : ${formatMetres(survolChemin.cout)}.`;
-  else consigne = 'Cliquez une case en surbrillance pour vous déplacer, ou jouez une carte.';
+  else consigne = 'Cliquez une case en surbrillance pour vous déplacer, jouez une carte, ou cliquez un ennemi pour voir ses renseignements.';
 
   const t = cVue.tour;
   return (
@@ -497,7 +506,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       </aside>
 
       {finAffichee && !masquerFin && (
-        <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} onContinuer={onFinHistoire && (() => onFinHistoire(etat))} />
+        <FinCombat etat={etat} onRejouer={onRejouer} onRetour={onRetour} onVoir={() => setMasquerFin(true)} onContinuer={onFinHistoire && (() => onFinHistoire(etat))} xpHistoire={xpHistoire} />
       )}
       {finAffichee && masquerFin && (
         <button type="button" className="bouton reafficher-fin" onClick={() => setMasquerFin(false)}>

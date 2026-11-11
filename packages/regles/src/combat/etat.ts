@@ -114,6 +114,8 @@ export interface Combattant {
   vitesse: number;
   mods: Record<Caracteristique, number>;
   sauvegardes: Record<Caracteristique, number>;
+  /** Bonus de compétence utiles en combat (Athlétisme, Acrobaties…), maîtrise comprise ; absent : le modificateur seul. */
+  competences?: Record<string, number>;
   bonusInitiative: number;
   bonusMaitrise: number;
   resistances: string[];
@@ -249,6 +251,14 @@ export function peutAgir(c: Combattant): boolean {
 
 export function ennemis(etat: EtatCombat, c: Combattant): Combattant[] {
   return etat.combattants.filter((x) => x.camp !== c.camp && !horsCombat(x));
+}
+
+/**
+ * Ce qu'on peut viser d'une attaque : les ennemis encore debout, plus un héros tombé à 0 PV (ni mort, ni en fuite). Le frapper lui
+ * coûte un échec au jet contre la mort, deux sur un critique (SRD 5.2.1) ; l'IA ne le vise qu'à défaut d'autre cible.
+ */
+export function adversairesCiblables(etat: EtatCombat, c: Combattant): Combattant[] {
+  return etat.combattants.filter((x) => x.camp !== c.camp && !x.mort && !x.enFuite && (!horsCombat(x) || (x.camp === 'heros' && x.pv <= 0)));
 }
 
 export function allies(etat: EtatCombat, c: Combattant): Combattant[] {

@@ -1,6 +1,7 @@
 import { ca, etatApparent, libelleEtat, vitesse, type Combattant, type Donnees } from '@crpg/regles';
 import { formatMetres, LIBELLES_APPARENT, libelleModificateur, nomClasse, ressourcesLisibles } from '../libelles';
 import { Jeton } from './Jeton';
+import { RenseignementsMonstre } from './RenseignementsMonstre';
 
 interface Props {
   c: Combattant;
@@ -136,6 +137,8 @@ export function Fiche({ c, donnees, estActif, elan }: Props) {
           </ul>
         </div>
       )}
+
+      {c.camp === 'monstres' && <RenseignementsMonstre c={c} donnees={donnees} />}
     </div>
   );
 }

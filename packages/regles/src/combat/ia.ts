@@ -185,7 +185,10 @@ function choixCibles(etat: EtatCombat, c: Combattant, k: Carte): string[][] {
   const tries = [...k.cibles].sort((a, b) => {
     const ca = combattant(etat, a);
     const cb = combattant(etat, b);
-    return allie ? ca.pv / ca.pvMax - cb.pv / cb.pvMax : ca.pv - cb.pv || distanceCases(ca.position, c.position) - distanceCases(cb.position, c.position);
+    if (allie) return ca.pv / ca.pvMax - cb.pv / cb.pvMax;
+    // Un héros tombé (0 PV) ne se vise qu'à défaut d'adversaire debout : achever passe après menacer.
+    const tombe = (x: Combattant) => (horsCombat(x) ? 1 : 0);
+    return tombe(ca) - tombe(cb) || ca.pv - cb.pv || distanceCases(ca.position, c.position) - distanceCases(cb.position, c.position);
   });
   if (k.nbCibles > 1 && k.categorie !== 'monstre') return [tries.slice(0, k.nbCibles)];
   return tries.slice(0, 3).map((x) => [x]);

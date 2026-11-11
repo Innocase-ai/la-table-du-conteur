@@ -9348,3 +9348,13 @@ kbd {
   line-height: 1.45;
   color: var(--texte-doux);
 }
+
+/* Renseignements d'un monstre dans la fiche du combat (clic sur un ennemi) */
+.renseignements-type { margin: 0 0 4px; color: var(--or); font-size: 0.85rem; }
+.renseignements-description { margin: 0 0 6px; font-size: 0.8rem; font-style: italic; color: var(--texte-doux); }
+.renseignements-caracs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin: 6px 0; text-align: center; }
+.renseignements-caracs span { display: block; font-size: 0.65rem; color: var(--texte-doux); }
+.renseignements-caracs strong { font-size: 0.85rem; }
+.renseignements-liste { margin: 0; padding-left: 16px; font-size: 0.8rem; line-height: 1.35; }
+.renseignements-liste li { margin-bottom: 4px; }
+.renseignements-cout { color: var(--texte-doux); font-size: 0.75rem; }

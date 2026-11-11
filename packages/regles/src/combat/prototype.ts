@@ -288,7 +288,11 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
   const casesHeros = departs(rencontre.carte, 'H');
   const casesMonstres = departs(rencontre.carte, 'm');
   const ids = new Set<string>();
-  const combattants: Combattant[] = (heros ?? herosPreTires(donnees)).map((h, i) => {
+  const groupe = heros ?? herosPreTires(donnees);
+  if (groupe.length > casesHeros.length) {
+    throw new Error(`${rencontre.id} : ${groupe.length} héros pour ${casesHeros.length} case(s) de départ « H » sur la carte.`);
+  }
+  const combattants: Combattant[] = groupe.map((h, i) => {
     let id = h.id ?? (h.fiche.nom.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || `heros-${i + 1}`);
     if (ids.has(id)) id = `${id}-${i + 1}`;
     ids.add(id);
@@ -301,13 +305,21 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     return c;
   });
   let i = 0;
+  // Un même monstre peut revenir sur plusieurs lignes (« combattant-hobgobelin » ×1 puis ×3) : la numérotation, donc
+  // l'identifiant, court sur toutes les lignes. Deux combattants de même identifiant n'en font qu'un pour le moteur
+  // (`combattant(etat, id)` renvoie le premier) : le second restait vivant, intouchable, et la victoire n'arrivait jamais.
+  const total = new Map<string, number>();
+  for (const { profil, nombre } of rencontre.monstres) total.set(profil, (total.get(profil) ?? 0) + nombre);
+  const deja = new Map<string, number>();
   for (const { profil, nombre } of rencontre.monstres) {
     const m = donnees.monstres.get(profil);
     if (!m) throw new Error(`Monstre inconnu : ${profil}`);
-    for (let n = 1; n <= nombre; n++) {
+    for (let k = 0; k < nombre; k++) {
       const position = casesMonstres[i++];
       if (!position) throw new Error(`${rencontre.id} : pas assez de cases de départ pour les monstres.`);
-      combattants.push(monstreDepuisProfil(m, `${profil}-${n}`, position, nombre > 1 ? `${m.nom} ${n}` : m.nom));
+      const n = (deja.get(profil) ?? 0) + 1;
+      deja.set(profil, n);
+      combattants.push(monstreDepuisProfil(m, `${profil}-${n}`, position, total.get(profil)! > 1 ? `${m.nom} ${n}` : m.nom));
     }
   }
   return { grille, combattants };
