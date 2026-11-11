@@ -61,8 +61,14 @@ export function manifesteDe(id: string): ManifesteImages | undefined {
   return Object.entries(MANIFESTES).find(([c]) => dossier(c) === id)?.[1];
 }
 
-/** URL d'une image du monde (chargée à la demande). */
+// Bibliothèque commune venue des histoires (portraits de PNJ et objets propres) : `communs/pnj|objets/<id>.webp`, citée par un manifeste
+// sous la forme `commun:pnj/<id>` ou `commun:objets/<id>` (`pnpm images communs`).
+const COMMUNS_HISTOIRES = import.meta.glob<string>('./communs/*/*.webp', { query: '?url', import: 'default' });
+
+/** URL d'une image du monde (chargée à la demande), ou de l'asset commun qu'il cite. */
 export function urlImage(id: string, fichier: string): Promise<string> | undefined {
+  const commun = /^commun:(pnj|objets)\/([a-z0-9-]+)$/.exec(fichier);
+  if (commun) return COMMUNS_HISTOIRES[`./communs/${commun[1]}/${commun[2]}.webp`]?.();
   return IMAGES[`../../../packages/mondes/${id}/images/${fichier}`]?.();
 }
 

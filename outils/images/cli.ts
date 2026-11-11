@@ -8,6 +8,7 @@
 //   pnpm images monde <monde> --lieu <id> [--service klein] [--go]   génère les images d'un lieu (sans --go : simulation)
 //   pnpm images cartes <monde>              lieux qui méritent une carte illustrée (≥ 5 enfants), avec les cartes faites / à faire
 //   pnpm images cartes <monde> --lieu <id> | --tous [--service klein] [--go]   génère la carte d'un lieu (ou de tous les candidats ; sans --go : simulation)
+//   pnpm images communs extraire | proposer <monde> [--appliquer]   bibliothèque commune de portraits de PNJ et d'objets venus des histoires
 //   pnpm images galerie [--service klein] [--max N] [--go]   génère les 54 portraits du créateur (communs à tous les mondes)
 //   pnpm images bestiaire [--profils a,b] [--max N] [--go]   une image par profil de monstre du SRD (combat, tous mondes) ; --profils : seulement ceux-là
 //   pnpm images equipement [--ids a,b] [--max N] [--partie i/n] [--go]          une image par arme et par armure du SRD (équipement commun à tous les mondes)
@@ -28,6 +29,7 @@ import { elementsGalerie } from './galerie';
 import { elementsBestiaire, elementsEquipement, elementsInterface, elementsTerrains } from './plateau';
 import { chargerCharte, construireElements, RACINE, type Element } from './charte';
 import { construirePageComparaison } from './comparer';
+import { lancerCommuns } from './communs';
 import { CLE_OPENROUTER, SERVICES, trouverService, utilisationCle, type Env, type Reference, type Service } from './services';
 import { lireFichierEnv } from '../cle';
 
@@ -211,6 +213,10 @@ ${candidats.length} carte(s) proposée(s). Génère-en une avec --lieu <id> (n'i
     if (lieu && !enfantsDe(dm, lieu).length) throw new Error(`« ${lieu} » ne contient aucun lieu : pas de carte à dessiner.`);
     if (args.includes('--go')) preparerRecadrages(dm, dossier, cibles);
     await genererLot(service, elementsCartes(dm, { charte, retouches, existe: (id) => existsSync(join(dossier, `${id}.png`)) }, cibles), lireEnv(), args.includes('--go'), Number(option('--max') ?? 6), undefined, dossier);
+    return;
+  }
+  if (commande === 'communs') {
+    await lancerCommuns(args);
     return;
   }
   if (commande === 'galerie') {

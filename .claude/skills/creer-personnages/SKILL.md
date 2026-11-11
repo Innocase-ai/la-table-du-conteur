@@ -48,3 +48,8 @@ Les salutations (`salutations.variantes`), les sujets (`condition`) et les secre
 - Le jeu vérifie les ids et les mots tabou, pas le sens : un petit détail de décor peut se glisser (« une valise de cordier »). Le canon et la relecture le limitent.
 - Un fait déjà révélé par un sujet de la fiche `pnj/` sans condition ne doit pas être verrouillé plus haut dans `savoirs/` (deux mécanismes, un seul secret) : aligner les accès.
 - **La relecture de cohérence est outillée** : l'atelier (onglet **Revue**, `canon.json` du monde) signale les mots tabou d'un secret dans le passé, les liens ou la couleur libre d'une fiche (la règle « aucun secret dans les champs libres » se vérifie), les noms propres qui n'apparaissent nulle part ailleurs (invention d'agent), les nom/âge/espèce qui contredisent le canon et les liens non réciproques. Ouvre-la après chaque série de fiches de savoir, avant le commit.
+
+
+## Portraits : réutiliser avant de générer
+
+Pour un PNJ secondaire, ne génère pas de portrait avant d'avoir lancé `pnpm images communs proposer <monde>` : la bibliothèque commune (`docs/BIBLIOTHEQUE-COMMUNE.md`) propose les visages déjà faits les plus proches (espèce, sexe, âge, métier), et `--appliquer` les inscrit au manifeste (`commun:pnj/<id>`). Les PNJ importants gardent leur portrait propre.

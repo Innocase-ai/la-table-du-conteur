@@ -6,13 +6,16 @@ import { z } from 'zod';
 import type { DonneesMonde } from './schemas';
 
 const Fichiers = z.record(z.string().regex(/^[a-z0-9-]+\.(webp|png|jpg)$/));
+// Un PNJ ou un objet peut aussi prendre l'image d'un asset commun (`commun:pnj/<id>`, `commun:objets/<id>` : bibliothèque commune venue
+// des histoires, voir `communs.ts`) au lieu d'un fichier du monde.
+const FichiersOuCommuns = z.record(z.string().regex(/^([a-z0-9-]+\.(webp|png|jpg)|commun:(pnj|objets)\/[a-z0-9-]+)$/));
 
 export const ManifesteImages = z.object({
   lieux: Fichiers.default({}),
-  pnj: Fichiers.default({}),
+  pnj: FichiersOuCommuns.default({}),
   /** Clé : profil de monstre (SRD), partagé par toutes les rencontres qui l'utilisent. */
   monstres: Fichiers.default({}),
-  objets: Fichiers.default({}),
+  objets: FichiersOuCommuns.default({}),
   /** Clé : id du lieu parent (région, ville, donjon, niveau…) dont l'image est la carte ; les positions sont sur les lieux enfants. */
   cartes: Fichiers.default({}),
 });
@@ -33,7 +36,13 @@ export interface BilanImages {
   sansPosition: string[];
 }
 
-export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): BilanImages {
+/** Les ids de la bibliothèque commune (tables `packages/donnees/visuel/pnj-communs.json` et `objets-histoires.json`), pour vérifier les références. */
+export interface IdsCommuns {
+  pnj: ReadonlySet<string>;
+  objets: ReadonlySet<string>;
+}
+
+export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages, communs?: IdsCommuns): BilanImages {
   const connus: Record<GroupeImage, Set<string>> = {
     lieux: new Set(dm.lieux.keys()),
     pnj: new Set(dm.pnj.keys()),
@@ -45,6 +54,14 @@ export function verifierImages(dm: DonneesMonde, manifeste: ManifesteImages): Bi
   const inconnues: string[] = [];
   for (const groupe of Object.keys(connus) as GroupeImage[]) {
     for (const id of Object.keys(manifeste[groupe])) if (!connus[groupe].has(id)) inconnues.push(`${groupe}/${id}`);
+  }
+  if (communs) {
+    for (const groupe of ['pnj', 'objets'] as const) {
+      for (const [id, f] of Object.entries(manifeste[groupe])) {
+        const ref = /^commun:(pnj|objets)\/(.+)$/.exec(f);
+        if (ref && (ref[1] !== groupe || !communs[groupe].has(ref[2]!))) inconnues.push(`${groupe}/${id} → ${f} (asset commun inconnu)`);
+      }
+    }
   }
   const manquantes = [
     ...[...dm.lieux.keys()].filter((id) => !manifeste.lieux[id]).map((id) => `lieux/${id}`),

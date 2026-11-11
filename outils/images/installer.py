@@ -108,6 +108,13 @@ def monde(id_monde: str) -> None:
         # Lieux : 960 px de large (plein écran du récit), qualité 75 ; cartes : 1248 px (on y pose des repères), qualité 80 ; portraits, monstres, objets : 512 px.
         reduire(png, cible / f"{png.stem}.webp", *{"lieu-": (960, 75), "carte-": (1248, 80)}.get(prefixe, (512, 80)))
         manifeste[GROUPES[prefixe]][png.stem[len(prefixe):]] = f"{png.stem}.webp"
+    # Les références à la bibliothèque commune (`commun:pnj/<id>`, `commun:objets/<id>`) ne viennent d'aucun PNJ généré : on les garde.
+    ancien = cible / "manifeste.json"
+    if ancien.exists():
+        for groupe, entrees in json.loads(ancien.read_text(encoding="utf8")).items():
+            for cle, fichier in entrees.items():
+                if str(fichier).startswith("commun:"):
+                    manifeste.setdefault(groupe, {}).setdefault(cle, fichier)
     (cible / "manifeste.json").write_text(json.dumps(manifeste, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
     total = sum(len(v) for v in manifeste.values())
     print(f"{total} image(s) installées dans {cible.relative_to(RACINE)} ({', '.join(f'{len(v)} {g}' for g, v in manifeste.items())})")
