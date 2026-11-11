@@ -1,0 +1,24 @@
+[
+  {
+    "id": "ald-t-coffre-de-demi-dent",
+    "nom": "Le coffre blindé de Demi-Dent",
+    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
+    "contenant": "coffre",
+    "description": "Au fond de la plus grande hutte, un coffre en bois de fer cerclé d'acier, long comme un bras, fermé par un cadenas de laiton. Ses ferrures sont neuves, et la marque de la Compagnie du Lion d'Acier brille sur le couvercle, à côté de deux bouts de ficelle. Il est lourd : une seule personne ne le soulève pas à la main.",
+    "contenu": {
+      "pieces": { "po": 75, "pa": 120 },
+      "objets": [
+        { "objet": "potion-de-guerison", "quantite": 1 },
+        { "objet": "ald-o-miroir-de-poche", "quantite": 1 },
+        { "objet": "registre-de-convoi", "quantite": 1 },
+        { "objet": "bottes-de-saut-du-gobelin", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 12 }
+    },
+    "gardien": "ald-r-demi-dent-et-sa-bande",
+    "indice": "f-reactifs-vers-puits-4"
+  }
+]

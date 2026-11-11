@@ -1,0 +1,263 @@
+[
+  {
+    "id": "q-la-securite-du-relais",
+    "nom": "La sécurité du relais",
+    "type": "secondaire",
+    "donneur": "bregor-le-borgne",
+    "lieu": "ald-auberge-comptoir-et-cellier",
+    "resume": "Brégor veut que le Vieux Pont redevienne praticable et que le chef gobelin de la carrière cesse de piller les convois. Il paiera au retour, pas avant.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "le-pont",
+    "etapes": [
+      {
+        "id": "le-pont",
+        "texte": "Des hommes en capes noires guettent les talus du Vieux Pont. Dégagez le passage pour que les convois puissent reprendre.",
+        "completion": { "flag": "z1-pont-libere" },
+        "suivantes": ["le-chef-gobelin"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "le-chef-gobelin",
+        "texte": "Demi-Dent, un chef gobelin, pille les convois depuis la carrière d'argile. Réglez son compte, ou obtenez qu'il parle.",
+        "completion": { "ou": [{ "flag": "z1-demi-dent-tue" }, { "flag": "z1-demi-dent-epargne" }] },
+        "suivantes": ["retour-chez-bregor"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "retour-chez-bregor",
+        "texte": "Le pont est libre et le chef gobelin ne pillera plus. Retournez voir Brégor à l'auberge pour être payé.",
+        "completion": { "flag": "q-la-securite-du-relais-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 50 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Brégor paie 70 po en tout, par le sujet « Demi-Dent est réglé » : 30 pour le pont, 40 pour la prime. L'argent est versé par le dialogue, pas par `recompenses`, pour ne pas le doubler. Le chef gobelin peut être tué ou épargné (dilemme de la zone 1, écrit au V7) : les deux issues rendent la quête."
+  },
+  {
+    "id": "q-la-prime-sur-demi-dent",
+    "nom": "La prime sur Demi-Dent",
+    "type": "secondaire",
+    "donneur": "bregor-le-borgne",
+    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
+    "resume": "Un avis cloué sur la palissade promet quarante pièces d'or pour la tête ou l'insigne du chef gobelin Demi-Dent. Brégor ajoute qu'un prisonnier qui parle vaudrait plus que son cadavre.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "la-tete",
+    "etapes": [
+      {
+        "id": "la-tete",
+        "texte": "Rapportez la tête de Demi-Dent, ou prouvez que le chef gobelin ne nuira plus : mort ou captif qui parle.",
+        "completion": { "ou": [{ "flag": "z1-demi-dent-tue" }, { "flag": "z1-demi-dent-epargne" }] },
+        "suivantes": ["retour-chez-bregor"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "retour-chez-bregor",
+        "texte": "Demi-Dent est réglé. Montrez la preuve à Brégor pour toucher la prime.",
+        "completion": { "flag": "q-la-prime-sur-demi-dent-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Les 40 po de la prime sont versés avec les 30 po de la sécurité du relais par le même sujet de Brégor. Un chef gobelin épargné livre des aveux qui pèsent dans l'histoire (caisses venues du sud)."
+  },
+  {
+    "id": "q-le-cor-du-moulin",
+    "nom": "Le cor du moulin",
+    "type": "secondaire",
+    "donneur": "bregor-le-borgne",
+    "lieu": "ald-moulin-plateforme-du-cor",
+    "resume": "Les guetteurs gobelins du moulin d'Eldren sonnent un cor de bronze à chaque convoi, et les marchands font demi-tour. Brégor veut ce cor réduit au silence.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "le-cor",
+    "etapes": [
+      {
+        "id": "le-cor",
+        "texte": "Montez à la plateforme du moulin d'Eldren et réduisez le cor au silence : en faisant taire les guetteurs, ou en le brisant.",
+        "completion": { "flag": "z1-cor-reduit-au-silence" },
+        "suivantes": ["retour-chez-bregor"],
+        "effets": [{ "xp": 75 }]
+      },
+      {
+        "id": "retour-chez-bregor",
+        "texte": "Le cor ne sonnera plus. Retournez voir Brégor à l'auberge.",
+        "completion": { "flag": "q-le-cor-du-moulin-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Brégor paie 15 po par son sujet de retour. Le mot de passe de la Griffe (arraché à Silas) permet de contourner les guetteurs sans déclencher le cor."
+  },
+  {
+    "id": "q-honneur-de-brise-roc",
+    "nom": "L'honneur de Brise-Roc",
+    "type": "personnelle",
+    "donneur": "varek-le-brise",
+    "lieu": "ald-auberge-salle-commune",
+    "resume": "Varek, nain brisé, veut affronter l'homme de Sombreval qui a laissé pourrir les lingots de son convoi et vendu le fer de son grand-père à la Griffe Noire.",
+    "niveau": { "min": 2, "max": 5 },
+    "prerequis": { "pnj": { "id": "varek-le-brise", "attitudeMin": 40 } },
+    "debut": "le-fondeur",
+    "etapes": [
+      {
+        "id": "le-fondeur",
+        "texte": "Varek vous suivra jusqu'à Sombreval. Trouvez l'homme qui a vendu le fer de son grand-père, et mettez-le face à lui.",
+        "completion": { "flag": "z2-davor-neutralise" },
+        "suivantes": ["retour-chez-varek"],
+        "effets": [{ "xp": 150 }]
+      },
+      {
+        "id": "retour-chez-varek",
+        "texte": "Le coupable est tombé. Dites-le à Varek.",
+        "completion": { "flag": "q-honneur-de-brise-roc-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 50 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Quête de la zone 2 (Sombreval) : le drapeau `z2-davor-neutralise` sera posé quand cette zone sera écrite. Varek ne combat pas : il marche, porte et parle."
+  },
+  {
+    "id": "q-l-echantillon-maudit",
+    "nom": "L'échantillon maudit",
+    "type": "secondaire",
+    "donneur": "torben-main-brulee",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "resume": "Torben a prouvé que le fer neuf s'effrite en poussière. Pour fabriquer une huile qui protège les lames, il lui faut un flacon intact du réactif pur, à chercher dans les galeries de Sombreval.",
+    "niveau": { "min": 2, "max": 5 },
+    "prerequis": { "flag": "z1-sabotage-prouve" },
+    "debut": "le-flacon",
+    "etapes": [
+      {
+        "id": "le-flacon",
+        "texte": "Rapportez à Torben un flacon intact du réactif pur, bouché à la cire, de Sombreval.",
+        "completion": { "objet": "flacon-de-toxine-x44" },
+        "suivantes": ["retour-chez-torben"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "retour-chez-torben",
+        "texte": "Vous avez le flacon. Portez-le à Torben, à la forge de l'auberge, sans le casser.",
+        "completion": { "flag": "q-l-echantillon-maudit-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 50 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Quête de la zone 2 : le flacon se trouve dans les galeries de Sombreval. L'huile promise par Torben (protection des armes contre la crise du fer) est un module à écrire plus tard."
+  },
+  {
+    "id": "q-baume-de-l-aube",
+    "nom": "Le baume de l'aube",
+    "type": "secondaire",
+    "donneur": "mireille-de-la-rose",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "resume": "Mireille a besoin de trois doses de mousse de saule pour préparer un baume qui calmera la fièvre des marais chez les réfugiés. Il y en a dans les vasières du Vieux Pont.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "la-mousse",
+    "etapes": [
+      {
+        "id": "la-mousse",
+        "texte": "Cueillez trois doses de mousse de saule sur les racines, dans les vasières du Vieux Pont.",
+        "completion": { "objet": "ald-o-mousse-de-saule" },
+        "suivantes": ["retour-chez-mireille"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "retour-chez-mireille",
+        "texte": "Vous avez les trois doses. Rapportez-les à Mireille, dans les écuries de l'auberge.",
+        "completion": { "flag": "q-baume-de-l-aube-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [{ "attitude": { "pnj": "mireille-de-la-rose", "delta": 20 } }] },
+    "ramifications": "Mireille ne verse pas d'or : sa reconnaissance (attitude) est la récompense, et elle ouvre la voie du recrutement."
+  },
+  {
+    "id": "q-le-luth-de-finbar",
+    "nom": "Le luth de Finbar",
+    "type": "secondaire",
+    "donneur": "finbar-le-chantre",
+    "lieu": "ald-combe-antre-du-vieux-bourru",
+    "resume": "Des kobolds ont volé le luth en bois de rose du ménestrel Finbar. Ses traces mènent à la combe de craie, devant l'antre d'un ours.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "le-luth",
+    "etapes": [
+      {
+        "id": "le-luth",
+        "texte": "Retrouvez le luth de Finbar dans la Combe de l'Ours, devant la caverne du Vieux Bourru.",
+        "completion": { "objet": "ald-o-luth-de-finbar" },
+        "suivantes": ["retour-chez-finbar"],
+        "effets": [{ "xp": 75 }]
+      },
+      {
+        "id": "retour-chez-finbar",
+        "texte": "Vous avez le luth. Rendez-le à Finbar, dans la grange de l'auberge.",
+        "completion": { "flag": "q-le-luth-de-finbar-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Finbar verse 15 po par son sujet de retour. Le luth peut aussi être gardé : la quête reste alors ouverte."
+  },
+  {
+    "id": "q-le-testament-du-chariot",
+    "nom": "Le testament du chariot",
+    "type": "secondaire",
+    "donneur": "martha-haddon",
+    "lieu": "ald-pont-carcasse-du-chariot",
+    "resume": "Martha Haddon vient d'apprendre que son mari est mort dans son chariot, près du Vieux Pont. Elle veut son coffret : l'or de la ferme, et l'alliance qu'elle lui avait gravée.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "l-alliance",
+    "etapes": [
+      {
+        "id": "l-alliance",
+        "texte": "Fouillez la carcasse du chariot, près du Vieux Pont, et rapportez l'alliance d'Aldwin et, si vous le décidez, son or.",
+        "completion": { "objet": "ald-o-alliance-d-aldwin" },
+        "suivantes": ["retour-chez-martha"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "retour-chez-martha",
+        "texte": "Vous avez l'alliance d'Aldwin. Rendez-la à Martha, dans les écuries de l'auberge.",
+        "completion": { "flag": "q-le-testament-du-chariot-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Le dilemme du coffret (zone 1, écrit au V7) permet de garder l'or : l'alliance, elle, est rendue ou non. Rendre l'or pose `z1-or-rendu`, le garder pose `z1-or-garde`."
+  },
+  {
+    "id": "q-l-ombre-de-la-griffe",
+    "nom": "L'ombre de la Griffe",
+    "type": "secondaire",
+    "donneur": "silas-l-epieur",
+    "lieu": "ald-auberge-salle-commune",
+    "resume": "Le carnet chiffré de Silas révèle un guetteur de la Griffe Noire au porche de l'auberge, et un camp dans la forêt. Silas lui-même sait le mot de passe qui permet de passer les postes de la Griffe.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "capturer-silas",
+    "etapes": [
+      {
+        "id": "capturer-silas",
+        "texte": "Silas travaille pour la Griffe Noire. Mettez-le au pied du mur dans la salle commune, et faites-le parler.",
+        "completion": { "flag": "z1-silas-capture" },
+        "suivantes": ["retour-chez-silas"],
+        "effets": [{ "xp": 75 }]
+      },
+      {
+        "id": "retour-chez-silas",
+        "texte": "Silas a cédé. Écoutez ce qu'il a à dire avant qu'il ne file.",
+        "completion": { "flag": "q-l-ombre-de-la-griffe-rendue" },
+        "termine": true,
+        "effets": [{ "xp": 25 }]
+      }
+    ],
+    "recompenses": { "xp": 0, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Quête découverte, jamais donnée : elle s'ouvre quand le carnet est déchiffré (énigme du carnet), ou par la confrontation. Le mot de passe de la Griffe (« La Serre ne plie point ») permet de passer les guetteurs du moulin sans déclencher le cor."
+  }
+]

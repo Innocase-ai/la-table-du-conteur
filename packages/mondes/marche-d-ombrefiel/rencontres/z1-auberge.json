@@ -1,0 +1,184 @@
+[
+  {
+    "id": "ald-r-chariot-enlise",
+    "nom": "Le chariot enlisé sur la Route du Roi",
+    "type": "combat",
+    "lieu": "ald-auberge-de-bregor",
+    "difficulte": "faible",
+    "intro": "La Route du Roi tourne dans la boue, au pied de la rampe. Un chariot bâché s'est enfoncé jusqu'aux moyeux dans une ornière noire, et son charretier, un homme trapu à la veste déchirée, tient les rênes de ses mules d'une main qui tremble. Autour de lui, trois pillards déguenillés resserrent leur cercle : un gourdin clouté, une dague rouillée, une fronde. Leurs cuirasses de cuir bouilli sont élimées, et leurs visages affamés ne cherchent pas le combat, seulement le gruau du chariot. Vous tenez vos lames. Prenez garde : le fer neuf de cette province peut éclater comme du verre au premier choc.",
+    "monstres": [
+      { "profil": "bandit", "nombre": 3 }
+    ],
+    "alternatives": [
+      {
+        "id": "intimider",
+        "nom": "Je dégaine et je crie un avertissement martial.",
+        "jet": { "competence": "intimidation", "dd": 11 },
+        "resume": "Vos lames luisent sous le crachin, et votre voix porte jusqu'au fossé. Les pillards se regardent, comprennent qu'ils ont affaire à plus fort qu'eux, et lâchent leurs gourdins dans la boue. Ils abandonnent le chariot et filent vers les tourbières sans se retourner. Le charretier, encore tremblant, ramasse ses rênes et vous remercie d'un signe de tête muet.",
+        "effets": [
+          { "xp": 25 }
+        ],
+        "echec": [
+          { "narration": "Ils rient d'une voix rauque, serrent leurs gourdins et se jettent sur vous : le combat commence." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer-le-passage",
+        "nom": "Je lance une pièce d'or dans la boue en leur disant de partir.",
+        "condition": { "pieces": { "min": 1 } },
+        "resume": "Vous lancez la pièce à leurs pieds. Les pillards se jettent dessus, se la disputent en grognant, puis détalent vers les tourbières sans lever les yeux. Le charretier se tait, les mains crispées sur ses rênes, et vous laisse dégager la roue en silence. Ni sang ni fer n'ont été versés, et le gruau reste dans le chariot.",
+        "effets": [
+          { "pieces": -1 },
+          { "xp": 25 }
+        ]
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "effetsVictoire": [
+      { "narration": "Les pillards à terre, le charretier descend de son siège, les mains moites, et vous désigne la butte où l'auberge dresse sa palissade. Il vous escorte jusqu'à la rampe sans rien demander, comme on escorte un convoi qu'on n'espérait plus revoir." }
+    ]
+  },
+  {
+    "id": "ald-r-keldan-au-perron",
+    "nom": "L'assassin du porche",
+    "type": "combat",
+    "lieu": "ald-auberge-perron-et-potence",
+    "difficulte": "faible",
+    "intro": "Le perron de l'auberge se dresse au sommet de la rampe, trois marches de pierre usée sous un auvent de planches. Sous l'auvent, un homme encapuchonné est assis, les jambes croisées, et ses bottes, propres, ne portent pas une goutte de la boue du carrefour. Il a des doigts tachés d'encre et ne vous regarde pas encore. Deux chiens de guerre sont couchés sous l'escalier, la truffe à ras du sol. Un tonneau d'eau de pluie est posé contre le mur, près des marches. L'assassin attend qu'un pas de trop s'engage sur le perron, et le crachin ruisselle sur l'auvent comme un rideau.",
+    "monstres": [
+      {
+        "profil": "acolyte",
+        "nombre": 1,
+        "nom": "Keldan le Pâle",
+        "description": "Assassin à gages de la Griffe Noire, encapuchonné, aux doigts tachés d'encre. Froid et méthodique, il ne quitte pas le perron tant que ses chiens sont vivants."
+      },
+      { "profil": "molosse", "nombre": 2 }
+    ],
+    "tactique": {
+      "doctrine": "Keldan reste sur le perron et frappe à distance ; ses chiens chargent les lanceurs de sorts et les archers qui se tiennent en retrait.",
+      "fuite": "Il ne fuit pas tant que ses chiens sont vivants. Acculé au corps-à-corps avec moins de 4 PV, il tente de sauter par-dessus la rambarde."
+    },
+    "alternatives": [
+      {
+        "id": "contourner-par-la-palissade",
+        "nom": "Je contourne le perron et grimpe la palissade par le côté.",
+        "jet": { "competence": "athletisme", "dd": 13 },
+        "resume": "Vous longez la palissade jusqu'au portail et escaladez les pieux de bois glissants, sous la pluie. Vous retombez dans la cour, parmi les tentes des réfugiés, et Keldan, occupé à surveiller le perron, ne vous voit pas. Quand il se retourne enfin, il ne trouve qu'une cour vide et des chiens qui aboient. Il jure, rappelle ses bêtes et disparaît vers la rampe, dans le crachin.",
+        "effets": [
+          { "xp": 25 }
+        ],
+        "echec": [
+          { "narration": "Vos bottes glissent sur un pieu gras de pluie et vous retombez lourdement contre la palissade. Le bruit attire l'assassin, et les chiens se ruent sur vous." }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "effetsVictoire": [
+      { "objet": { "id": "ordre-de-keldan", "quantite": 1 } },
+      { "fait": "f-ald-keldan-embusque-le-porche" }
+    ]
+  },
+  {
+    "id": "ald-r-silas-confronte",
+    "nom": "Silas l'Épieur à sa table",
+    "type": "social",
+    "lieu": "ald-auberge-salle-commune",
+    "difficulte": "moderee",
+    "intro": "L'âtre fume dans la salle commune, et la plupart des tables sont pleines de réfugiés qui parlent à mi-voix. Une seule reste presque vide, près de la cheminée : Silas l'Épieur y est assis, une pinte intacte devant lui, un gilet sombre serré sous le menton. Il ne boit pas. Il fait semblant de regarder la pluie par les fentes des volets, mais ses doigts tracent des marques sur une plaquette de cire cachée sous sa main. Quand vous vous approchez, il lève à peine les yeux et sourit, sans chaleur, comme un homme qui a déjà calculé le prix de votre visite.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "intimider",
+        "nom": "Je pose la main à plat sur sa table et je le fixe sans sourire.",
+        "jet": { "competence": "intimidation", "dd": 13 },
+        "resume": "Votre voix ne monte pas, elle s'enfonce. Silas blêmit, regarde la porte, puis les mains de ceux qui vous entourent. Il comprend qu'il n'a plus la Griffe pour le protéger ici. Il avoue qu'il guette les convois, et lâche le mot de passe qui fait taire les guetteurs gobelins de la forêt : « La Serre ne plie point ». Il ne dit plus rien d'autre, et vous le faites asseoir de force devant vos armes.",
+        "effets": [
+          { "flag": "z1-silas-capture" },
+          { "fait": "f-ald-mot-de-passe-de-la-griffe" }
+        ],
+        "echec": [
+          { "attitude": { "pnj": "silas-l-epieur", "delta": -20 } },
+          { "narration": "Silas éclate d'un rire sec et se lève : « Vous croyez être les premiers à jouer les héros ? La Griffe sait qui vous êtes. » Il sort par la porte de service, sans payer sa pinte." }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "amadouer",
+        "nom": "Je joue le marchand de passage qui cherche un convoi vers le sud.",
+        "jet": { "competence": "tromperie", "dd": 13 },
+        "resume": "Vous vous présentez comme un acheteur de cuirs, en quête d'une caravane et d'un guide. Silas se détend, croit à votre histoire et, cherchant à se rendre utile, vous décrit le camp fortifié de la Griffe Noire, dans la forêt, son chef et les convois qui en partent. Il se lève ensuite, glisse la plaquette sous son gilet et vous souhaite bonne route avec un clin d'œil.",
+        "effets": [
+          { "fait": "f-griffe-noire-camp-foret" },
+          { "attitude": { "pnj": "silas-l-epieur", "delta": 5 } }
+        ],
+        "echec": [
+          { "attitude": { "pnj": "silas-l-epieur", "delta": -10 } },
+          { "narration": "Silas vous jauge, range sa plaquette et répond sèchement : « Chacun ses affaires, étranger. La route est assez large pour tout le monde. »" }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "soudoyer",
+        "nom": "Je glisse cinq pièces d'or sous sa pinte, sans un mot.",
+        "condition": { "pieces": { "min": 5 } },
+        "resume": "Silas fait disparaître les pièces d'un geste d'expert et murmure qu'il n'a rien vu. Mais le prix est bon, et il lâche ce qu'il vend d'ordinaire : où la Griffe campe, dans la forêt, à quelle heure partent ses charrettes, et par quel sentier. Le reste, il le garde pour lui, et son sourire dit qu'il sait en vendre plus cher. Il retourne à sa pinte, et vous laisse partir sans un regard de plus.",
+        "effets": [
+          { "pieces": -5 },
+          { "fait": "f-griffe-noire-camp-foret" }
+        ]
+      },
+      {
+        "id": "laisser-filer",
+        "nom": "Je lui tourne le dos et je le laisse à sa pinte.",
+        "resume": "Vous laissez Silas à sa table. Il se lève peu après, sans payer, et file par la porte de service vers la cour, la capuche rabattue sur le visage. Vous savez désormais qu'il vous a repérés, et qu'il ne restera pas longtemps en place. La salle reprend son brouhaha, et les voix basses se taisent un instant sur votre passage.",
+        "effets": [
+          { "attitude": { "pnj": "silas-l-epieur", "delta": -10 } }
+        ]
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "effetsVictoire": []
+  },
+  {
+    "id": "ald-r-barnabe",
+    "nom": "Barnabé le Casse-Pieds",
+    "type": "social",
+    "lieu": "ald-auberge-perron-et-potence",
+    "difficulte": "faible",
+    "intro": "Au pied de la rampe, près de la potence et de ses deux pendus en chiffon, un jeune paysan vous attend, un bonnet de laine trois fois trop grand enfoncé jusqu'aux sourcils. Il vous voit approcher, son visage s'éclaire d'un sourire béat, et il agite la main comme on salue un cousin perdu. « Hé salut ! Vous avez des bottes en cuir ? Elles sont en cuir de vraie vache ? » Il ne lâche plus votre trace. Ses questions tombent l'une après l'autre sous la pluie, de plus en plus pressantes, et la potence grince au-dessus de vos têtes comme pour s'en mêler.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "ecouter",
+        "nom": "Je l'écoute jusqu'au bout de ses questions.",
+        "resume": "Vous répondez, patiemment, à chacune de ses questions : oui, les bottes sont de vrai cuir ; non, l'épée ne coupe pas les citrouilles. Barnabé boit chaque mot, hoche la tête, puis vous raconte son cousin, qui a vu un bandit une fois, un bandit au chapeau pointu. Au bout d'un long moment, il vous souhaite bonne route d'une voix émue, comme si vous étiez ses seuls amis du village.",
+        "effets": [
+          { "xp": 10 }
+        ]
+      },
+      {
+        "id": "econduire",
+        "nom": "Je lui explique gentiment qu'il devrait rentrer près du feu.",
+        "jet": { "competence": "persuasion", "dd": 10 },
+        "resume": "Vous lui parlez doucement, comme à un enfant, et l'invitez à rentrer retrouver le feu de sa famille. Barnabé réfléchit gravement, conclut qu'il a très bien compris et qu'il va y réfléchir. Il vous adresse un grand signe de la main et retourne à la potence, deux fois plus heureux qu'avant. Ses questions reprendront sans doute plus tard, ailleurs, sur un autre sujet.",
+        "effets": [
+          { "xp": 10 }
+        ],
+        "echec": [
+          { "narration": "Il vous regarde avec de grands yeux humides, puis recommence à demander si vos bottes sont de vraie vache." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "fuir",
+        "nom": "Je tourne les talons et je grimpe la rampe au pas de course.",
+        "resume": "Vous filez vers le perron, la boue aspirant vos bottes. Barnabé vous suit en trottinant, son bonnet tressautant, et lance dans votre dos ses dernières questions. Arrivé devant la porte, vous l'entendez crier qu'il ne voulait pas de mal, puis il s'éloigne vers le carrefour en comptant ses pas à voix haute. Il ne vous suivra pas plus loin, mais vous savez qu'il vous reconnaîtra au retour.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "effetsVictoire": []
+  }
+]

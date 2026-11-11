@@ -1,0 +1,164 @@
+[
+  {
+    "id": "ald-r-bourru-et-kobolds",
+    "nom": "Le Vieux Bourru et les kobolds de la corniche",
+    "type": "combat",
+    "lieu": "ald-combe-antre-du-vieux-bourru",
+    "difficulte": "moderee",
+    "intro": "Le ravin de craie se resserre, et la sente monte doucement vers la caverne du fond. Sur la corniche pâle, à six mètres, trois kobolds se dressent d'un bond : ils crient, jettent des éclats de craie et agitent leurs dagues, et leur vacarme roule jusqu'à la gueule basse de la grotte. Dans l'ombre, une masse brune remue, et un grognement sourd sort de la caverne. Le Vieux Bourru dort encore, mais le tapage le gagne. À quatre mètres devant la gueule, le luth de Finbar est coincé dans une touffe de ronces, son manche de bois de rose pris dans les épines. Vous avez un instant pour agir.",
+    "monstres": [
+      {
+        "profil": "ours-brun",
+        "nombre": 1,
+        "nom": "le Vieux Bourru",
+        "description": "Ours brun territorial, endormi au fond de la caverne. Non maléfique : il défend sa combe, et ne poursuit pas au-delà du goulet."
+      },
+      {
+        "profil": "combattant-kobold",
+        "nombre": 3
+      }
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "L'ours charge l'intrus le plus proche et frappe de ses pattes avant. Les kobolds, sur la corniche, lancent leurs dagues et se prêtent main-forte dès qu'un allié se tient près de la cible.",
+      "fuite": "Les kobolds se replient dans leurs trous de terrier quand ils ont perdu la moitié de leurs points de vie. Le Vieux Bourru ne poursuit pas au-delà du goulet."
+    },
+    "alternatives": [
+      {
+        "id": "appater-l-ours",
+        "nom": "Je jette un morceau de viande fraîche à dix mètres, devant la gueule.",
+        "jet": {
+          "competence": "dressage",
+          "dd": 10
+        },
+        "resume": "Vous lancez un morceau de viande fraîche à dix mètres, dans la boue, au bord de la caverne. L'ours renifle, puis sort à reculons en grognant et se jette sur la proie, le dos tourné vers vous. Pendant qu'il mâche, vous tendez le bras entre les ronces, dégagez le luth de son manche épineux et reculez sans un bruit jusqu'à la sente. Au-dessus, les kobolds se taisent, dépités de voir leur butin filer.",
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-luth-de-finbar",
+              "quantite": 1
+            }
+          },
+          {
+            "fait": "f-ald-vieux-bourru-territorial"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "narration": "L'ours renifle la viande, relève la tête et voit vos mains dans les ronces. Il rugit et charge l'intrus le plus proche : le combat commence."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "feu-de-broussailles",
+        "nom": "Je mets le feu à des broussailles mortes, au bord du goulet.",
+        "jet": {
+          "competence": "survie",
+          "dd": 11
+        },
+        "resume": "Vous rassemblez des genévriers secs et des ronces mortes à la lisière du taillis, en haut de la pente de boue, et y mettez le feu. Une fumée grise monte au-dessus du ravin. Les kobolds se penchent au bord de leur corniche pour voir les flammes, et l'ours, qui sent la fumée, se lève et s'avance vers le goulet, le museau au vent. Pendant qu'il fixe le feu, vous rampez jusqu'aux ronces, arrachez le luth et reculez vers la sente.",
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-luth-de-finbar",
+              "quantite": 1
+            }
+          },
+          {
+            "fait": "f-ald-vieux-bourru-territorial"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "narration": "La broussaille refuse de prendre sous la pluie et ne fume qu'un instant. Les kobolds rient, puis hurlent de plus belle : leur vacarme réveille l'ours, qui charge l'intrus le plus proche. Le combat commence."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "ramper-dans-l-ombre",
+        "nom": "Je rampe le long de la paroi, dans l'ombre, jusqu'aux ronces.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "resume": "Vous vous glissez à plat ventre le long de la paroi du fond, là où l'ombre tombe, et les éclats de craie roulent sous vous sans bruit. Les épines accrochent vos manches ; vous les dégagez une à une, avec lenteur. L'ours, tourné vers la corniche où les kobolds crient, ne vous voit pas. Vous saisissez le luth entre deux touffes, le serrez contre votre poitrine, et reculez sur les coudes jusqu'à la sente, sans un bruit de plus.",
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-luth-de-finbar",
+              "quantite": 1
+            }
+          },
+          {
+            "fait": "f-ald-vieux-bourru-territorial"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Une branche de ronce claque sous votre coude et fait rouler une pluie de craie jusqu'à la gueule. L'ours se dresse dans la pénombre, rugit, et charge l'intrus le plus proche : le combat commence."
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "ruser-avec-les-kobolds",
+        "nom": "Je crie aux kobolds que la bête sort et qu'ils doivent fuir par leurs trous.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 12
+        },
+        "resume": "Vous levez les bras et criez, à pleine voix, que la bête sort de sa caverne et que les kobolds doivent se mettre à l'abri dans leurs terriers. Ils se regardent, glapissent, dégringolent de la corniche et s'enfoncent dans leurs trous en se bousculant. Plus aucun cri ne sort de la falaise. Vous longez la caverne sans bruit, et le luth est dans vos mains avant que le Vieux Bourru, qui somnole encore, ne se soit retourné.",
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-luth-de-finbar",
+              "quantite": 1
+            }
+          },
+          {
+            "fait": "f-ald-vieux-bourru-territorial"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "narration": "Les kobolds ne vous croient pas. Ils ricanent, lancent leurs dagues depuis la corniche et hurlent de plus belle : le vacarme réveille l'ours, qui charge l'intrus le plus proche. Le combat commence."
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "objet": {
+          "id": "ald-o-luth-de-finbar",
+          "quantite": 1
+        }
+      },
+      {
+        "fait": "f-ald-vieux-bourru-territorial"
+      },
+      {
+        "narration": "Le Vieux Bourru s'effondre au fond de sa caverne, et les kobolds qui restent s'enfuient dans leurs terriers. Dans les ronces, le luth de Finbar a tenu : son bois de rose est rayé, mais ses cordes sont intactes."
+      }
+    ]
+  }
+]

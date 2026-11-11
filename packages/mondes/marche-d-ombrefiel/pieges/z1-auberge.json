@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ald-p-tonneau-du-perron",
+    "nom": "Le tonneau d'eau de pluie",
+    "lieu": "ald-auberge-perron-et-potence",
+    "resume": "Un tonneau de chêne cerclé de fer, posé contre le mur en haut des trois marches, presque plein d'eau de pluie. Il est mal calé, et l'eau qui coule sur les marches les rend glissantes à la moindre poussée.",
+    "detection": { "dd": 11, "competence": "perception" },
+    "desarmement": { "dd": 10, "competence": "athletisme" },
+    "declenchement": "Votre pied heurte le tonneau au passage : il bascule en grondant, déverse une vague d'eau noire sur les marches et les fait glisser comme du savon. Vous rattrapez la rampe de justesse, la main sur la pierre, et plus bas les chiens de guerre jappent et s'emmêlent dans l'eau.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 12, "moitieSiReussite": true },
+    "degats": [{ "des": "1d4", "type": "contondant" }],
+    "etats": ["a-terre"],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  }
+]

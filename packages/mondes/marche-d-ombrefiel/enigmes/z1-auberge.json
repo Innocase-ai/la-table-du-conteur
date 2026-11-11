@@ -1,0 +1,43 @@
+[
+  {
+    "id": "ald-e-carnet-de-silas",
+    "nom": "Le carnet chiffré de la Griffe",
+    "lieu": "ald-auberge-etage-et-combles",
+    "enonce": "Le carnet de cuir noir ne porte aucun nom. Six lignes serrées y consignent des convois de minerai : des comptes de charrettes, des poids, des retards, rien qui semble dangereux. Pourtant, quelqu'un a glissé ici le nom d'un homme posté au porche de l'auberge. Quel est ce nom ?",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": ["keldan"]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chaque ligne commence par un mot ordinaire, et aucun de ces mots ne sert au compte. Pourquoi l'écrivain a-t-il choisi ces premiers mots-là ? Lisez-les comme une liste, et regardez ce qu'ils ont en commun.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 2,
+        "texte": "Ce ne sont pas les mots qui comptent, mais leur première lettre. Lues de haut en bas, les six premières lettres ne forment ni un poids ni une date : elles épellent un nom d'homme, court et sec.",
+        "competence": "investigation",
+        "dd": 13
+      },
+      {
+        "niveau": 3,
+        "texte": "Les six initiales, dans l'ordre des lignes, sont K, E, L, D, A, N : le nom du guetteur que Silas a posté au porche. Écrivez-le comme il se prononce."
+      }
+    ],
+    "echec": {
+      "effets": [],
+      "resume": "Le mot que vous écrivez ne mène nulle part : le carnet reste fermé sur ses convois. Il vous faudra y revenir avec un indice de plus."
+    },
+    "recompense": {
+      "effets": [
+        { "flag": "z1-carnet-dechiffre" },
+        { "fait": "f-ald-keldan-embusque-le-porche" },
+        { "fait": "f-griffe-noire-camp-foret" },
+        { "xp": 25 }
+      ],
+      "resume": "Une fois les six lettres mises bout à bout, le nom s'impose : un homme attend au porche pour les fouineurs. Les convois, lus à rebours, mènent aussi au camp caché dans la forêt, où les hommes de la Griffe rejoignent les charrettes après le prochain convoi."
+    }
+  }
+]

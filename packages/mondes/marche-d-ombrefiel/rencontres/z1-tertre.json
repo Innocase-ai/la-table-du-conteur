@@ -1,0 +1,116 @@
+[
+  {
+    "id": "ald-r-squelettes-du-tombeau",
+    "nom": "Les trois squelettes de la crypte",
+    "type": "combat",
+    "lieu": "ald-tertre-sarcophage",
+    "difficulte": "faible",
+    "intro": "Le couvercle a bougé sous vos mains, ou une arme a été saisie sans respect : la crypte n'attendait que cela. Les urnes brisées des niches tombent en poussière, et les dalles basses du mur ouest se soulèvent avec un raclement d'os. Trois squelettes se redressent, lentement, dans la lueur de vos lanternes. Ils portent encore des lambeaux de cuir et d'acier terni, et leurs épées courtes sont déjà levées. Ils ne parlent pas. Ils se placent entre vous et l'escalier, pour que personne ne remonte à la lumière. La cuve de grès, derrière eux, reste fermée.",
+    "monstres": [
+      { "profil": "squelette", "nombre": 3 }
+    ],
+    "carte": [
+      "##########",
+      "#.HHH....#",
+      "#.HHH....#",
+      "#........#",
+      "#...##...#",
+      "#...##...#",
+      "#.mmm.~..#",
+      "#.mmm....#",
+      "##########"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Les squelettes sortent des niches basses et frappent à l'épée courte ou à l'arc court ; ils se placent devant l'escalier pour bloquer la sortie et ne reculent jamais.",
+      "fuite": "Aucune : ils ne poursuivent pas le groupe au-delà de la crypte."
+    },
+    "alternatives": [
+      {
+        "id": "serment",
+        "nom": "Je m'incline devant la pierre plate et je prête serment.",
+        "jet": { "competence": "religion", "dd": 11 },
+        "resume": "Vous vous inclinez devant la pierre plate et prononcez à voix basse le serment de ne pas troubler le repos d'Aethelgard. Votre voix résonne sous la voûte, puis s'éteint dans la cendre froide. Une lueur bleutée monte de la cuvette de l'autel. Les trois squelettes reprennent leur place dans les dalles basses, les mains croisées sur la poitrine, et ne bougent plus. Le couvercle de grès reste en place : le repos est respecté.",
+        "effets": [
+          { "flag": "z1-rite-du-tombeau" },
+          { "fait": "f-ald-tertre-tombe-d-aethelgard" }
+        ],
+        "echec": [
+          { "narration": "Vos mots sonnent faux dans la crypte, et la lueur ne vient pas. Les dalles des niches basses craquent, les squelettes les repoussent et sortent, épées levées : le combat commence." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "offrande-d-eau-benite",
+        "nom": "Je verse une fiole d'eau bénite sur l'autel.",
+        "condition": { "objet": "eau-benite" },
+        "resume": "Vous débouchez la fiole et versez l'eau bénite dans la cuvette de pierre. Elle y frémit, puis s'étale en une lueur pâle qui gagne les parois de la crypte. Les trois squelettes cessent de bouger et restent dans leurs niches, immobiles, comme des gardiens qui ont reçu leur ordre. Le couvercle de grès ne tremble pas quand vous passez la main sur sa face. Le rite est accompli, sans un mot, et la crypte se tait.",
+        "effets": [
+          { "objet": { "id": "eau-benite", "quantite": 1, "retirer": true } },
+          { "flag": "z1-rite-du-tombeau" },
+          { "fait": "f-ald-tertre-tombe-d-aethelgard" }
+        ]
+      },
+      {
+        "id": "offrande-de-vin",
+        "nom": "Je verse du vin fin sur la pierre de l'autel.",
+        "condition": { "objet": "vin-fin" },
+        "resume": "Vous versez le vin fin sur la pierre de l'autel, lentement, goutte à goutte, comme on offre à un hôte un verre qu'il n'espérait plus. Le vin coule dans la cuvette, sent la vigne et le chêne, et la cendre froide se mêle à sa couleur. Les trois squelettes cessent de remuer et retournent dans leurs niches basses, les mains posées sur leurs genoux. Le couvercle de grès ne bouge pas quand vous le touchez. La crypte retrouve son silence, plus doux qu'avant.",
+        "effets": [
+          { "objet": { "id": "vin-fin", "quantite": 1, "retirer": true } },
+          { "flag": "z1-rite-du-tombeau" },
+          { "fait": "f-ald-tertre-tombe-d-aethelgard" }
+        ]
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "effetsVictoire": [
+      { "narration": "Le dernier squelette s'effondre en un tas d'os, et la crypte retombe dans le silence. Le couvercle de grès ne menace plus personne : il reste à le soulever." },
+      { "fait": "f-ald-tertre-tombe-d-aethelgard" }
+    ]
+  },
+  {
+    "id": "ald-r-sentinelles-de-nuit",
+    "nom": "Les sentinelles de la nuit",
+    "type": "social",
+    "lieu": "ald-tertre-cercle",
+    "difficulte": "faible",
+    "intro": "De nuit seulement, le muret de pierres sèches, au nord-est du cercle, n'est plus vide. Trois silhouettes y sont assises en rond, immobiles, la tête basse. Ce sont des squelettes, coiffés de vieux casques de cuir pourri, les mains posées sur les genoux comme des veilleurs qui attendent leur relève. Quand vous approchez, les crânes se tournent vers vous, lentement, puis reviennent vers le sol. Ils ne se lèvent pas et ne grognent pas. Le vent siffle entre les menhirs et couvre le bruit de vos pas, mais pas le claquement sec d'une mâchoire qui s'entrouvre, une fois, sans un mot.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "passer-son-chemin",
+        "nom": "Je passe mon chemin sans les regarder.",
+        "resume": "Vous contournez le muret à bonne distance, en gardant les pas légers. Aucun crâne ne se relève, et les trois silhouettes restent à leur pause, la tête basse, comme si vous n'étiez qu'un bruit de plus dans la nuit. Derrière vous, le vent continue de siffler entre les pierres. Vous atteignez l'intervalle nord-ouest sans que personne ne vous suive, et la piste de boue s'ouvre devant vous, grise et silencieuse.",
+        "effets": [
+          { "xp": 10 }
+        ]
+      },
+      {
+        "id": "huile-pour-les-veilleurs",
+        "nom": "Je pose une fiole d'huile sur le muret, à côté d'eux.",
+        "condition": { "objet": "huile" },
+        "resume": "Vous posez la fiole d'huile sur le muret. L'un des squelettes la saisit, la tourne entre ses doigts osseux, puis la range dans le creux de son bras avec un cliquetis de contentement. Les deux autres hochent la tête, un à un, et retournent à leur pause. Personne ne se lève. Vous repartez en laissant derrière vous une nuit qui sent l'huile de lampe, et trois gardiens plus détendus que la veille.",
+        "effets": [
+          { "objet": { "id": "huile", "quantite": 1, "retirer": true } },
+          { "xp": 10 }
+        ]
+      },
+      {
+        "id": "observer",
+        "nom": "Je m'approche doucement et je les compte un à un.",
+        "jet": { "competence": "perception", "dd": 10 },
+        "resume": "Vous vous approchez à pas comptés, lanterne baissée, et vous distinguez le détail des trois silhouettes : des casques cabossés, des épées courtes rouillées posées à plat sur les genoux, des mâchoires serrées. Au-delà du muret, la crête se dresse avec ses menhirs, penchés vers le centre. Vous repartez en ayant appris ce qu'il fallait savoir : ces veilleurs gardent un lieu, et ils n'aiment pas les visites.",
+        "effets": [
+          { "xp": 10 }
+        ],
+        "echec": [
+          { "narration": "Une côte d'os craque sous votre botte. Les trois crânes se tournent vers vous, lentement, puis reprennent leur pause, sans un geste : vous avez été vus, et c'est un avertissement." }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "effetsVictoire": []
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ald-p-dalle-a-javelines",
+    "nom": "La dalle à javelines",
+    "lieu": "ald-tertre-antichambre",
+    "resume": "Une dalle de pierre légèrement surélevée, au pied de la dernière marche, en travers du seuil. Une chaîne rouillée la relie à un contrepoids scellé dans le mur est, et deux fentes carrées du mur ouest laissent voir la pointe de deux javelines.",
+    "detection": { "dd": 13, "competence": "perception" },
+    "desarmement": { "dd": 12, "competence": "escamotage", "outil": "outils de voleur" },
+    "declenchement": "Le pied se pose sur la dalle, qui cède d'un doigt. La chaîne claque, le contrepoids tire, et deux javelines rouillées jaillissent des fentes du mur ouest : l'une ricoche sur la pierre et se plante dans le sol, près de vos bottes ; l'autre vous frôle l'épaule dans un sifflement.",
+    "sauvegarde": { "caracteristique": "dex", "dd": 13, "moitieSiReussite": true },
+    "degats": [
+      { "des": "1d6", "type": "perforant" },
+      { "des": "1d6", "type": "perforant" }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  }
+]

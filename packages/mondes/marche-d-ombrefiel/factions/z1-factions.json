@@ -1,0 +1,32 @@
+[
+  {
+    "id": "griffe-noire",
+    "nom": "La Griffe Noire",
+    "resume": "Des hommes en capes bordées d'une griffe brodée en fil noir, qui tiennent les talus et les ponts de la Marche. En surface, ils punissent les convois du Lion d'Acier ; en réalité, ils volent le fer pur pour des maîtres lointains.",
+    "objectifs": [
+      "Piller les convois du Lion d'Acier et en faire une preuve de justice.",
+      "Savoir qui s'intéresse aux mines, et le faire taire avant qu'il parle.",
+      "Faire porter le chapeau aux Veilleurs de la forêt."
+    ],
+    "reputation": -20,
+    "paliers": [
+      { "seuil": -50, "nom": "Cibles de la Griffe", "effet": "Les guetteurs ont l'ordre de ne pas vous laisser passer sans sang." },
+      { "seuil": 0, "nom": "Curiosités gênantes", "effet": "On vous épie de loin et on vous laisse le temps de vous tromper." }
+    ]
+  },
+  {
+    "id": "forges-libres",
+    "nom": "Les Forges libres",
+    "resume": "Mineurs, fondeurs, forgerons et réfugiés d'Aldric, victimes d'un fer qui se brise entre leurs mains. Ils veulent du métal sain, la fin de la crise et la fin des péages.",
+    "objectifs": [
+      "Obtenir du fer sain et prouver qui empoisonne celui des forges.",
+      "Garder les réfugiés en vie jusqu'au printemps.",
+      "Que la Garde et le Lion cessent de les traiter en escrocs."
+    ],
+    "reputation": 10,
+    "paliers": [
+      { "seuil": 0, "nom": "Inconnus de passage", "effet": "On vous répond sans chaleur, mais on vous répond." },
+      { "seuil": 30, "nom": "Amis des forges", "effet": "On vous garde le bronze du fond et le pain du matin." }
+    ]
+  }
+]

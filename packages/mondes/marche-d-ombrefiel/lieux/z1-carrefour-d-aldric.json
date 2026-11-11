@@ -38,7 +38,14 @@
     "position": {
       "x": 50,
       "y": 46
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-chariot-enlise",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-auberge-salle-commune",
@@ -93,7 +100,14 @@
     "position": {
       "x": 34,
       "y": 30
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-silas-confronte",
+        "declencheur": "exploration",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-auberge-comptoir-et-cellier",
@@ -275,7 +289,19 @@
     "position": {
       "x": 12,
       "y": 40
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-keldan-au-perron",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "ald-r-barnabe",
+        "declencheur": "aleatoire",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-vieux-pont",
@@ -361,7 +387,14 @@
     "position": {
       "x": 48,
       "y": 46
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-thibault",
+        "declencheur": "aleatoire",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-pont-talus-d-embuscade",
@@ -392,7 +425,14 @@
     "position": {
       "x": 42,
       "y": 32
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-embuscade-du-pont",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-pont-vasieres",
@@ -462,7 +502,14 @@
     "position": {
       "x": 82,
       "y": 56
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-chariot-d-aldwin",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-moulin-d-eldren",
@@ -540,7 +587,14 @@
     "position": {
       "x": 48,
       "y": 38
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-godefroy",
+        "declencheur": "aleatoire",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-moulin-rez-de-chaussee-et-meules",
@@ -610,7 +664,14 @@
     "position": {
       "x": 52,
       "y": 27
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-guetteurs-du-moulin",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-moulin-ferme-haddon",
@@ -649,7 +710,14 @@
     "position": {
       "x": 50,
       "y": 80
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-deserteurs-de-la-ferme",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-combe-de-l-ours",
@@ -789,7 +857,14 @@
     "position": {
       "x": 50,
       "y": 40
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-bourru-et-kobolds",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-carriere-d-argile",
@@ -992,7 +1067,36 @@
     "position": {
       "x": 30,
       "y": 80
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-demi-dent-et-sa-bande",
+        "declencheur": "entree",
+        "unique": true
+      },
+      {
+        "id": "ald-r-reddition-de-demi-dent",
+        "declencheur": "exploration",
+        "unique": true,
+        "condition": {
+          "et": [
+            {
+              "flag": "z1-demi-dent-vaincu"
+            },
+            {
+              "non": {
+                "flag": "z1-demi-dent-tue"
+              }
+            },
+            {
+              "non": {
+                "flag": "z1-demi-dent-epargne"
+              }
+            }
+          ]
+        }
+      }
+    ]
   },
   {
     "id": "ald-tertre-des-sept-lances",
@@ -1062,7 +1166,14 @@
     "position": {
       "x": 50,
       "y": 40
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-sentinelles-de-nuit",
+        "declencheur": "aleatoire",
+        "unique": true
+      }
+    ]
   },
   {
     "id": "ald-tertre-dalle-et-escalier",
@@ -1171,6 +1282,13 @@
     "position": {
       "x": 50,
       "y": 77
-    }
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-squelettes-du-tombeau",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ]
   }
 ]

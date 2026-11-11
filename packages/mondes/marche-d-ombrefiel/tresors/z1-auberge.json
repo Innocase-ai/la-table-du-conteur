@@ -1,0 +1,55 @@
+[
+  {
+    "id": "ald-t-coffre-de-silas",
+    "nom": "Le coffre cadenassé de Silas",
+    "lieu": "ald-auberge-etage-et-combles",
+    "contenant": "coffre",
+    "description": "Sous le sommier de la chambre d'angle, un coffre de bois sombre, long d'un bras, fermé par un cadenas de fer noirci. Le couvercle a été rafistolé de fil de fer, et la poussière qui le couvre a été dérangée récemment. Il n'est pas piégé.",
+    "contenu": {
+      "pieces": { "po": 18 },
+      "objets": [
+        { "objet": "ald-o-carnet-de-silas", "quantite": 1 },
+        { "objet": "encre", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 14 }
+    }
+  },
+  {
+    "id": "ald-t-trappe-du-lion",
+    "nom": "La caisse du Lion sous la trappe",
+    "lieu": "ald-auberge-comptoir-et-cellier",
+    "contenant": "coffre",
+    "description": "Au pied de la volée de marches taillées, sous une bâche de jute, une caisse de transport clouée, marquée au fer du Lion d'Acier. La trappe qui la ferme au-dessus du cellier est cadenassée de laiton. La caisse sent la poix et le métal neuf, et des carcasses de porc salé pendent au plafond juste au-dessus.",
+    "contenu": {
+      "objets": [
+        { "objet": "ald-o-pioches-du-lion", "quantite": 6 },
+        { "objet": "viande-fumee", "quantite": 1 },
+        { "objet": "chope-inepuisable", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "verrou": { "dd": 13 }
+    }
+  },
+  {
+    "id": "ald-t-cache-du-puits",
+    "nom": "La boîte d'étain du puits",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "contenant": "cache",
+    "description": "Dans une niche de la paroi du puits, quatre mètres sous la margelle, au-dessus de l'eau, une boîte d'étain accroche la lueur de la lanterne. Son couvercle n'est pas verrouillé, seulement tassé par le temps. Pour l'atteindre, il faut descendre au bout de la corde du treuil.",
+    "contenu": {
+      "objets": [
+        { "objet": "potion-de-guerison", "quantite": 1 },
+        { "objet": "ald-o-sifflet-d-argent", "quantite": 1 }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": { "dd": 13, "competence": "perception" }
+    }
+  }
+]

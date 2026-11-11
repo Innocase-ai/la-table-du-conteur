@@ -1,0 +1,93 @@
+[
+  {
+    "id": "demi-dent",
+    "nom": "Demi-Dent",
+    "titre": "Chef gobelin de la carrière",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "40 ans",
+    "role": "Chef de la bande qui pille les convois isolés depuis la carrière. Il touche une part du butin, sans savoir exactement ce qu'il transporte.",
+    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
+    "apparence": "Gobelin trapu, peau terreuse et oreilles déchirées, casque de milicien cabossé sur un crâne dégarni. Cotte rapiécée de fil barbelé, cimeterre à la poignée enveloppée de ficelle. Une cicatrice barre son œil gauche, et il flaire les gens avant de les regarder.",
+    "personnalite": {
+      "traits": ["vantard", "rusé", "lâche sous la pression", "avide"],
+      "voix": "Ton de contremaître qui se croit grand seigneur, des phrases qui se gonflent puis retombent. Il appelle son interlocuteur « mon gros » et compte ses pièces à voix haute.",
+      "valeurs": ["la part du butin", "le respect de la bande"],
+      "desir": "Garder sa tête et sa bourse, et retourner au camp sans que les autres le prennent pour un vaincu.",
+      "peur": "Finir au bout d'une corde, comme les pendus du carrefour.",
+      "defaut": "Il ment sur ses exploits et se trahit en parlant trop."
+    },
+    "presences": [],
+    "attitude": -60,
+    "savoir": ["f-reactifs-vers-puits-4", "f-ald-demi-dent-or-etranger"],
+    "secrets": [
+      { "fait": "f-ald-demi-dent-or-etranger", "condition": { "flag": "z1-demi-dent-epargne" } },
+      { "fait": "f-reactifs-vers-puits-4", "jet": { "competence": "intimidation", "dd": 13 } }
+    ],
+    "sujets": [
+      {
+        "id": "pourquoi-vous-rendre",
+        "mots": ["rendu", "reddition", "pitié", "pourquoi", "vie", "cimeterre", "rendre", "mort"],
+        "question": "Pourquoi vous être rendu ?",
+        "condition": { "flag": "z1-demi-dent-epargne" },
+        "reponse": "« Pourquoi ? Parce que mort, je touche plus rien. » Demi-Dent crache dans la glaise, la main pressée sur son épaule. « Vous m'avez vu tomber. Mes gars se battent pour leur part, pas pour la gloire. Quand le chef tombe, la part s'évapore, et les archers filent vers la falaise. Alors j'ai fait le compte : une vie vaut plus qu'un cimeterre cassé. Ne prenez pas ça pour de la noblesse, c'est de l'arithmétique, mon gros. Le camp l'apprendra demain à la soupe. Compris ? »",
+        "revele": [],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "les-convois-et-le-pont",
+        "mots": ["convois", "chariots", "pillage", "payé", "qui", "commanditaire", "papier", "ficelles"],
+        "question": "Qui vous paie pour piller les convois ?",
+        "condition": { "flag": "z1-demi-dent-epargne" },
+        "reponse": "« Qui paie ? Un type qui ne se montre jamais, une capuche sur la figure et un sceau au fond de la poche. » Il se gratte l'oreille déchirée. « On reçoit un papier avec une date, un chemin, un nombre de chariots. On va, on prend, on rapporte le compte. Le talus du pont et les fosses, c'est moi qui les ai creusés. Moi, je compte. Les gars comptent aussi, mais plus mal. Vous voulez savoir qui tire les ficelles ? Je ne sais que ce qui est écrit sur le papier, et le papier est dans mon coffre. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-reactifs",
+        "mots": ["réactifs", "registre", "caisses", "Puits", "acide", "lettres", "sceau", "signature"],
+        "question": "Que transportaient les caisses vers le Puits n° 4 ?",
+        "condition": { "flag": "z1-demi-dent-epargne" },
+        "reponse": "« Le registre ? Il est dans le coffre, pas sur moi, et je sais lire les chiffres, figurez-vous. » Il rit d'un rire de gorge. « Réactifs alchimiques acides, envoyés au Puits numéro quatre, à Sombreval. Le sceau, c'est le lion des gars de la Compagnie. La signature, en bas, c'est un nom de général, Vane je crois. Des fioles et des caisses, toujours bouchées à la cire. Je ne sais pas ce que ça fait, et je ne veux pas le savoir. Un acide, c'est un acide. Moi, je prends ma part et je dors bien. »",
+        "revele": ["f-reactifs-vers-puits-4"],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "l-or-etranger",
+        "mots": ["or", "pièces", "payé", "monnaie", "argent", "étranger", "paie", "bourse"],
+        "question": "En quelle monnaie vous a-t-on payé ?",
+        "condition": { "flag": "z1-demi-dent-epargne" },
+        "reponse": "« Pas l'or de la Marche, ça. » Demi-Dent sort une pièce de sa poche, la mord, la fait tourner entre ses doigts. « Des pièces lourdes, frappées à l'effigie d'une cité qui n'est pas la nôtre, et qui ne circulent pas chez nous. Des gens bien habillés m'ont payé d'avance, et ils ne m'ont jamais montré leur visage. Pour le reste, ça ne vous regarde pas. Si vous voulez savoir qui m'a payé, il faudra me le faire dire autrement. Vous voyez ce que je veux dire ? »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-prime-sur-ma-tete",
+        "mots": ["prime", "avis", "palissade", "quarante", "insigne", "tête", "Brégor", "récompense"],
+        "question": "Savez-vous que votre tête est mise à prix ?",
+        "condition": { "flag": "z1-demi-dent-epargne" },
+        "reponse": "« Quarante pièces, c'est tout ? Je valais plus cher à la foire d'Aldric ! » Il se redresse, vexé, puis grimace quand la plaie le tire. « Le borgne de l'auberge paie comme un boucher : une pièce de moins et il vous ferme sa porte. Mais qu'il sache que la carrière n'a pas tout perdu. Si vous me menez à lui, qu'il garde son avis et sa prime. Personne ne m'a dit de partir ou de rester depuis ce matin, et les autres ne m'écoutent plus. »",
+        "revele": [],
+        "effets": [],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Restez où vous êtes, ou je siffle le camp. Vous venez me voler ma part, ou me parler ? »",
+      "amical": "« Ah, mon gros, t'es pas comme les autres ! Viens t'asseoir, il reste du ragoût dans la marmite. »",
+      "hostile": "« Encore un gros bras de l'auberge ? Va-t'en avant que mes archers te fassent un trou dans la tête. »",
+      "variantes": [
+        {
+          "condition": { "flag": "z1-demi-dent-epargne" },
+          "texte": "« Ah, c'est vous, mon gros. Vous m'avez laissé la tête, je m'en souviens. Ne touchez pas au coffre, il est à moi, pour l'instant. »"
+        }
+      ]
+    },
+    "profilCombat": "chef-gobelin",
+    "inventaire": []
+  }
+]

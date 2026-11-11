@@ -1,0 +1,178 @@
+[
+  {
+    "id": "ald-r-guetteurs-du-moulin",
+    "nom": "Les guetteurs du moulin",
+    "type": "combat",
+    "lieu": "ald-moulin-plateforme-du-cor",
+    "difficulte": "faible",
+    "intro": "Le moulin d'Eldren tourne au sommet de son tertre, et la crécelle de ses engrenages couvre le bruit de vos pas. Sous le toit conique, deux fentes de tir percent la tour. Derrière la plus haute, un gobelin au cimeterre rouillé guette la route en grignotant une croûte ; son compagnon, près d'une solive, tient une corne d'aurochs accrochée à un crochet de fer. Si le guet vous repère, le cor sonnera dès le premier souffle, et son appel descendra jusqu'aux gobelins de la carrière. Il faut agir avant que la corne ne soit portée aux lèvres.",
+    "monstres": [
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 1,
+        "nom": "Le sonneur",
+        "description": "Il tient la corne d'aurochs. S'il repère des intrus, il la décroche et souffle dès le premier round."
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 1,
+        "nom": "L'archer du guet",
+        "description": "Il tire à l'arc court depuis la fente de tir nord, puis défend le corps à corps au cimeterre."
+      }
+    ],
+    "terrain": "camp",
+    "tactique": {
+      "doctrine": "Le sonneur souffle dans le cor au premier round si le guet a repéré le groupe ; l'archer tire depuis la fente nord, puis descend au corps à corps.",
+      "fuite": "Ils se dissimulent ou se désengagent d'une action bonus, et se replient vers la chambre des meules par l'échelle de meunier."
+    },
+    "alternatives": [
+      {
+        "id": "mot-de-passe",
+        "nom": "Je prononce la phrase que Silas a lâchée : « La Serre ne plie point ».",
+        "condition": { "flag": "z1-silas-capture" },
+        "resume": "Vous approchez du pied de la tour, la voix basse, et prononcez la phrase arrachée à Silas : « La Serre ne plie point ». L'archer baisse son arc, lève la main, et le sonneur repose la corne sur son crochet sans souffler. Ils vous laissent monter par l'échelle, puis le sonneur décroche la corne, la range au fond du guet sous la paille, et la plateforme retrouve son silence. Plus personne ne soufflera dans ce cor ce soir.",
+        "effets": [
+          { "flag": "z1-cor-reduit-au-silence" }
+        ]
+      },
+      {
+        "id": "assommer-par-surprise",
+        "nom": "Je grimpe sans bruit et j'assomme les deux guetteurs d'un coup de pommeau.",
+        "jet": { "competence": "discretion", "dd": 11 },
+        "resume": "Vous gravissez l'échelle de meunier pas à pas, et le claquement des ailes couvre chaque marche. Au sommet, vous frappez le sonneur avant qu'il n'ait saisi la corne, puis l'archer, qui se retourne trop tard. Ils s'effondrent sur la paille, sonnés. Vous ligotez leurs poignets avec la ficelle de chanvre qui traîne et vous descendez sans bruit. La corne reste pendue à son crochet, muette, et le guet n'a plus de guetteurs.",
+        "effets": [
+          { "flag": "z1-cor-reduit-au-silence" }
+        ],
+        "echec": [
+          { "narration": "Une marche craque sous votre botte. Le sonneur se retourne, arrache la corne de son crochet et souffle de toutes ses forces : l'appel résonne dans toute la plaine, et le combat commence." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "briser-le-cor",
+        "nom": "Je bloque les engrenages et je vais arracher la corne à son crochet.",
+        "jet": { "competence": "athletisme", "dd": 12 },
+        "resume": "Vous glissez le madrier de chêne entre les dents de la roue crantée, et les ailes s'arrêtent dans un claquement qui fait trembler la tour. Les deux gobelins tombent à genoux sur le plancher, étourdis, tandis que vous montez par l'échelle. La corne d'aurochs roule sur le bois, et d'un coup de talon vous la brisez en deux. Le bout de corne s'enfonce dans la paille. Le cor ne sonnera plus jamais.",
+        "effets": [
+          { "flag": "z1-cor-reduit-au-silence" },
+          { "xp": 25 }
+        ],
+        "echec": [
+          { "narration": "Le madrier glisse, et la meule reprend sa course. La crécelle s'emballe, les gobelins se redressent en hurlant, et la corne sonne avant que vous n'ayez atteint le guet." }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "effetsVictoire": [
+      { "flag": "z1-cor-reduit-au-silence" },
+      { "fait": "f-ald-moulin-cor-previent-la-carriere" },
+      { "narration": "Les deux gobelins gisent sur la plateforme. La corne d'aurochs, posée sur la paille, ne sonnera plus pour personne, et le vent entre par les fentes de tir." }
+    ]
+  },
+  {
+    "id": "ald-r-deserteurs-de-la-ferme",
+    "nom": "Les déserteurs de la ferme",
+    "type": "social",
+    "lieu": "ald-moulin-ferme-haddon",
+    "difficulte": "faible",
+    "intro": "Les ruines de la ferme Haddon sentent la cendre froide et le vin aigre. Entre les murs noircis, la cheminée de brique se dresse, haute de six mètres ; à vingt pas, une grange au toit intact laisse filtrer une lueur de lanterne et des rires mal assurés. Deux hommes en cotte de mailles rouillée sortent la tête par la porte, une lance à la main, les yeux rouges et les joues luisantes de piquette. Leur écusson est celui de la Garde d'Émeraude, mais leurs ceintures sont vides de solde. « Halte ! Ici, c'est la taxe des ruines », grogne l'un d'eux en titubant vers vous.",
+    "monstres": [
+      { "profil": "garde", "nombre": 2, "nom": "Déserteur de la Garde d'Émeraude", "description": "Ivre, la lance à la main. Il ne combat que si l'on attaque, et ne protège que la grange." }
+    ],
+    "tactique": {
+      "doctrine": "Ivres, ils chargent à la lance dès qu'on les provoque, sans ordre et sans se couvrir.",
+      "fuite": "Dès que l'un des deux tombe, l'autre s'enfuit vers la route du sud."
+    },
+    "alternatives": [
+      {
+        "id": "persuader",
+        "nom": "Je leur parle des pendus du carrefour et de ce que la Garde fera de deux déserteurs.",
+        "jet": { "competence": "persuasion", "dd": 11 },
+        "resume": "Vous leur rappelez les pendus du carrefour, et ce que la Garde réserve aux soldats qui rançonnent la route. L'ivresse retombe d'un coup dans leurs yeux. L'un jette sa lance dans la boue, l'autre murmure qu'ils n'ont jamais voulu ça. Ils acceptent de quitter la région avant l'aube, sans combat, et ne demandent que deux rations pour la route. Puis ils disparaissent dans la brume, vers le sud, et vous laissent les ruines.",
+        "effets": [
+          { "xp": 25 },
+          { "fait": "f-ald-moulin-deserteurs-rancon" }
+        ],
+        "echec": [
+          { "narration": "L'un des deux éclate de rire, empoigne sa lance et hurle que personne ne leur dit quoi faire. Ils se jettent sur vous, et la cour se met à crier." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "intimider",
+        "nom": "Je dégaine et je leur ordonne de poser leurs armes.",
+        "jet": { "competence": "intimidation", "dd": 12 },
+        "resume": "Vous avancez l'épée haute, sans un mot de plus. Les deux déserteurs reculent jusqu'au mur de la grange, leurs lances tremblent, puis elles tombent dans la boue. Ils avouent avoir quitté leur poste par dégoût des ordres, et jurent de disparaître vers le sud avant la nuit. Ils tiennent parole : quand vous jetez un regard dans la grange, il n'y a plus personne, seulement de la paille et une odeur de piquette.",
+        "effets": [
+          { "xp": 25 },
+          { "fait": "f-ald-moulin-deserteurs-rancon" }
+        ],
+        "echec": [
+          { "narration": "L'un d'eux éclate d'un rire aigre : « Un gamin avec une épée ? » Il rabaisse sa lance, et son compagnon le suit. La bagarre éclate au milieu des décombres." }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer",
+        "nom": "Je pose deux pièces d'or sur un moellon noirci et je leur souhaite bon courage.",
+        "condition": { "pieces": { "min": 2 } },
+        "resume": "Vous posez deux pièces d'or sur un moellon noirci, bien en vue. Les déserteurs se jettent dessus comme des chiens sur un os, se les disputent en grognant, puis tournent les talons vers la route du sud sans un regard pour les ruines. La cour reste silencieuse, la grange se vide, et le vent siffle entre les poutres carbonisées. Ni sang ni fer n'ont été versés, mais la ferme a désormais son prix.",
+        "effets": [
+          { "pieces": -2 },
+          { "fait": "f-ald-moulin-deserteurs-rancon" }
+        ]
+      },
+      {
+        "id": "laisser-les-ruines",
+        "nom": "Je les laisse à leur piquette et je poursuis mon chemin.",
+        "resume": "Vous ne vous attardez pas. Les déserteurs vous regardent passer, la lance à l'épaule, sans oser vous suivre : ils ont trop bu pour courir après des gens armés. Vous contournez les murs noircis et laissez la cheminée de brique derrière vous. Personne ne vous retient plus, mais la route du sud reste exposée aux rançons de ces deux-là, et le carrefour le sait aussi bien que vous.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "effetsVictoire": [
+      { "narration": "Les déserteurs gisent dans la boue. Ils n'ont plus de rançon à réclamer, et la grange se tait enfin." }
+    ]
+  },
+  {
+    "id": "ald-r-godefroy",
+    "nom": "Messire Godefroy et le Vouivre-Écorce",
+    "type": "social",
+    "lieu": "ald-moulin-tertre-et-approche",
+    "difficulte": "faible",
+    "intro": "Dans le pré humide, à l'ouest de la tour, la brume reste collée aux herbes couchées. Au milieu des touffes, un chevalier errant en armure de fer si rouillée qu'elle grince à chaque geste se dresse, l'épée haute, devant un vieux tronc de chêne pourri couché dans la boue. « HALTE LÀ, VOYAGEURS ! crie-t-il. Ne réveillez pas le Vouivre-Écorce ! Je le contiens depuis trois lunes grâce à mon regard d'acier. Un pas de plus, et son souffle de sève vous calcine jusqu'aux os ! » Le tronc ne bouge pas. Le chevalier, très grave, se tourne vers vous pour exiger une réponse.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "expliquer-le-tronc",
+        "nom": "Je lui explique patiemment que c'est un tronc de chêne.",
+        "jet": { "competence": "intuition", "dd": 10 },
+        "resume": "Vous désignez les nœuds, la mousse et les champignons qui rongent le bois, et vous l'invitez à sentir la pourriture. Messire Godefroy vous écoute avec une pitié infinie, hoche la tête, puis répond que les sortilèges d'illusion ont voilé votre vue. Il ne vous croit pas, mais accepte de tenir la garde avec vous si vous passez le sentier de bonne grâce. Il vous serre la main, ému, et vous laisse enfin passer.",
+        "effets": [
+          { "xp": 25 },
+          { "fait": "f-ald-moulin-godefroy-tronc" }
+        ],
+        "echec": [
+          { "narration": "Il secoue la tête avec une compassion sans fond : « Les profanes ne voient jamais la bête. » Il vous déclare protecteurs du tronc, puis vous fait un discours de vingt minutes sur la vaillance avant de vous laisser filer." }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "monter-la-garde",
+        "nom": "Je monte la garde à ses côtés, la lance haute, face au Vouivre.",
+        "resume": "Vous prenez place à côté de lui, face au tronc, et tenez la pose en silence pendant qu'il décrit les mouvements de la bête. Il est ravi, et vous confie qu'il ne dort plus depuis trois lunes. Au bout d'un long moment, la brume se lève un peu, et vous comprenez qu'il montera la garde jusqu'à ce que le tronc tombe en poussière. Vous repartez en le laissant à sa mission, un peu plus léger d'une belle histoire.",
+        "effets": [
+          { "fait": "f-ald-moulin-godefroy-tronc" }
+        ]
+      },
+      {
+        "id": "coup-de-pied",
+        "nom": "Je donne un coup de pied au tronc, pour voir.",
+        "resume": "Vous frappez le tronc du pied, et le bois pourri s'effrite dans la boue. Messire Godefroy pousse un rugissement martial, se jette sur le tronc pour l'étouffer de son corps d'acier, et s'étale dans la mousse en gémissant : « Fuyez, mes enfants ! Je le tiens par les ouïes ! » Il ne vous attaque pas. Il reste allongé, la visière de travers, à crier des conseils de bravoure. Vous le laissez à son combat.",
+        "effets": []
+      }
+    ],
+    "butin": { "tables": [], "tresors": [], "depouilles": false }
+  }
+]

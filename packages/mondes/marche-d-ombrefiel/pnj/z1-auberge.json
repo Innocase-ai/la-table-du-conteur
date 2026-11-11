@@ -1,0 +1,1440 @@
+[
+  {
+    "id": "bregor-le-borgne",
+    "nom": "Brégor le Borgne",
+    "titre": "Aubergiste de l'Éperon d'Aldric",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "52 ans",
+    "role": "Aubergiste fortifié et ancien sergent. Il tient le seul abri sûr de la région, compte les chariots qui passent et donne la première mission du groupe.",
+    "lieu": "ald-auberge-comptoir-et-cellier",
+    "apparence": "Crâne rasé, mâchoire carrée couverte d'une barbe grise drue, bandeau de cuir noir sur l'œil gauche. Pourpoint de cuir bouilli élimé, arbalète lourde toujours posée à portée de main derrière le comptoir. Un trousseau de clés de laiton pend à sa ceinture.",
+    "personnalite": {
+      "traits": [
+        "paranoïaque",
+        "protecteur",
+        "bougon",
+        "honnête à sa façon"
+      ],
+      "voix": "Sec et bas, des phrases courtes coupées d'un claquement de langue. Il finit ses menaces par « Compris ? » et ne dit jamais « s'il vous plaît ».",
+      "valeurs": [
+        "le toit d'abord",
+        "on paie ce qu'on consomme"
+      ],
+      "desir": "Garder son auberge debout et ses réfugiés en vie, sans se ruiner ni se faire tuer.",
+      "peur": "Qu'un client qu'il a laissé entrer ouvre la porte aux pillards.",
+      "defaut": "Il soupçonne tout le monde et refuse sa confiance, même quand il la doit."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-salle-commune",
+        "moment": "soir"
+      }
+    ],
+    "attitude": -5,
+    "savoir": [
+      "f-peages-du-lion",
+      "f-ald-marchand-mort-sur-la-route"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ald-bregor-sergent-de-vane",
+        "attitudeMin": 60
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-securite-du-relais",
+        "mots": [
+          "sécurité",
+          "relais",
+          "bandits",
+          "pont",
+          "travail",
+          "danger",
+          "Demi-Dent",
+          "gobelins"
+        ],
+        "question": "Que faut-il faire pour la sécurité ?",
+        "reponse": "« Vous voulez du travail ? Le Vieux Pont est devenu un coupe-gorge. Des hommes en capes noires guettent les talus, et les convois ne passent plus. Plus au sud, dans la carrière, Demi-Dent, un chef gobelin qui se croit grand seigneur, pille tout ce qui roule. Dégagez le pont, réglez son compte à ce gobelin, et revenez me le dire. Je paie après, pas avant : j'ai déjà perdu deux chasseurs qui m'avaient demandé des pièces d'avance. » Il tapote la crosse de son arbalète du bout des doigts. « Et si l'un de vous se fait prendre par la Griffe, je ne le connais pas. Compris ? »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-securite-du-relais",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "l-avis-de-prime",
+        "mots": [
+          "avis",
+          "prime",
+          "palissade",
+          "Demi-Dent",
+          "récompense",
+          "tête",
+          "insigne"
+        ],
+        "question": "Que vaut l'avis cloué sur la palissade ?",
+        "reponse": "« Quarante pièces d'or pour la tête de Demi-Dent, ou pour son insigne, et ce sont mes quarante pièces, pas celles du Lion. » Il croise les bras sous son tablier. « Mais écoutez-moi bien. Il porte un casque de la milice d'Aurevaux cabossé, et une cotte rapiécée de fil barbelé. Un gobelin qui pille des convois ne pille pas seul. Si vous le ramenez vivant, il parlera, et ce qu'il dira vaudra plus que sa tête : des caisses venues du sud, pas de la forge. Je paie pour la preuve que Demi-Dent ne nuira plus : sa tête, son insigne, ou ses aveux devant moi. Pas pour des bavardages. À vous de voir ce que vous voulez vendre. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-prime-sur-demi-dent",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-peages-du-lion",
+        "mots": [
+          "péage",
+          "péages",
+          "Lion",
+          "Route du Roi",
+          "sauf-conduit",
+          "barrière",
+          "argent",
+          "taxe"
+        ],
+        "question": "Qui lève les péages sur la Route du Roi ?",
+        "reponse": "« Le Lion d'Acier, pour protéger les routes, à ce qu'ils disent. » Il crache dans la cendre. « Des barrières de planches, des hommes en armure de fer neuf, et un sceau sur les sauf-conduits : le Doyen Valerius, qu'on dit honnête, signe ces papiers depuis Haute-Garde. Vous payez deux pièces d'argent à chaque barrière, et un reçu vous est tendu. Moi, je compte les chariots qui passent, et ceux qui ne reviennent pas. Ce sont toujours les chargements qui paient en argent étranger, avec des pièces que personne ne reconnaît. Les routes ne sont pas dangereuses à cause des bandits. Elles le sont à cause de ceux qui payent pour passer. Réfléchissez-y. »",
+        "revele": [
+          "f-peages-du-lion"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-cor-du-moulin",
+        "mots": [
+          "cor",
+          "moulin",
+          "Eldren",
+          "guetteurs",
+          "sonnerie",
+          "tertre",
+          "gobelins"
+        ],
+        "question": "Parlez-nous du cor du moulin d'Eldren.",
+        "reponse": "« Le moulin d'Eldren est sur la colline, au nord-est, derrière les Terres Basses. Là-haut, les gobelins ont installé des guetteurs, et un cor de bronze pour prévenir leur camp chaque fois qu'un convoi passe. Depuis trois jours, le cor sonne à chaque chariot, et les marchands qui l'entendent font demi-tour. C'est comme ça que les pillards savent quand frapper. » Il se frotte l'œil valide. « Je veux ce cor muet. Le faire taire, ou le casser si vous voulez. Une fois qu'il se taira, les convois repasseront, et les réfugiés auront peut-être du pain. Ne m'en demandez pas plus. J'ai assez de morts comme ça. »",
+        "effets": [
+          {
+            "quete": {
+              "id": "q-le-cor-du-moulin",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "revele": [],
+        "unique": true
+      },
+      {
+        "id": "le-chariot-de-farine",
+        "mots": [
+          "chariot",
+          "farine",
+          "pont",
+          "marchand",
+          "chevaux",
+          "bais",
+          "fossé",
+          "corbeaux"
+        ],
+        "question": "Un chariot de farine a-t-il été attaqué ?",
+        "reponse": "« Quatre jours que le chariot est dans le fossé, au pont sud. Un marchand de farine de la ferme Haddon, avec deux chevaux bais et une bâche bleue. Les corbeaux y sont allés les premiers. Mes hommes voulaient y aller, j'ai dit non : pas sans armes qui tiennent. » Il baisse la voix. « Le pauvre était un voisin des Terres Basses, de la ferme qu'on a brûlée. Sa femme attend encore à l'écurie. Elle ne sait pas, et je ne veux pas être celui qui le lui dit. Si vous allez au pont, regardez le chariot. Le coffret, on dit qu'il est toujours dessous. »",
+        "revele": [
+          "f-ald-marchand-mort-sur-la-route"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "rapport-securite-et-prime",
+        "mots": [
+          "Demi-Dent",
+          "réglé",
+          "rapport",
+          "tête",
+          "aveux",
+          "pont",
+          "fini",
+          "prime"
+        ],
+        "question": "Demi-Dent est réglé, voici le rapport.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-la-securite-du-relais",
+                "statut": "active"
+              }
+            },
+            {
+              "flag": "z1-pont-libere"
+            },
+            {
+              "ou": [
+                {
+                  "flag": "z1-demi-dent-tue"
+                },
+                {
+                  "flag": "z1-demi-dent-epargne"
+                }
+              ]
+            }
+          ]
+        },
+        "reponse": "« Alors il est mort, ou il parle. Dans les deux cas, le pont est libre et le relais tient. » Il pose une bourse sur le comptoir, qui sonne sourdement. « Soixante-dix pièces d'or : trente pour le pont, quarante pour la prime. Je les ai comptées deux fois, ne me faites pas le coup. Les gens qui tiennent parole se font rares dans la Marche. Vous en êtes. Revenez quand vous voulez. Mon comptoir a toujours une place pour ceux qui ont réglé leurs comptes. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-securite-du-relais",
+              "statut": "terminee"
+            }
+          },
+          {
+            "quete": {
+              "id": "q-la-prime-sur-demi-dent",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-la-securite-du-relais-rendue"
+          },
+          {
+            "flag": "q-la-prime-sur-demi-dent-rendue"
+          },
+          {
+            "pieces": 70
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rapport-cor",
+        "mots": [
+          "cor",
+          "moulin",
+          "silence",
+          "sonnerie",
+          "guetteurs",
+          "rapport",
+          "réglé"
+        ],
+        "question": "Le cor du moulin ne sonnera plus.",
+        "condition": {
+          "flag": "z1-cor-reduit-au-silence"
+        },
+        "reponse": "« Le cor est muet ? » Brégor fait le tour du comptoir, et pour une fois il sourit, de travers. « Alors les convois repasseront demain. Quinze pièces d'or, comme promis, et ce n'est pas la somme qui compte : vous avez fait ce que la Garde n'a pas voulu faire. Gardez le cor si vous voulez, il ne sert plus qu'à réveiller les chiens. Je ferai afficher que le moulin est libre, et les marchands sauront qu'il reste des gens qui ne vendent pas leur silence. Les réfugiés pourront peut-être redescendre moudre leur farine, un jour. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-le-cor-du-moulin",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-le-cor-du-moulin-rendue"
+          },
+          {
+            "pieces": 15
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Essuyez vos bottes et gardez les mains sur la table. Vous voulez boire, payer un lit ou seulement m'apporter des ennuis ? »",
+      "amical": "« Ah, c'est vous. Asseyez-vous, mais le dos au mur. Il y a de la soupe, et du pain qui n'est pas trop dur. »",
+      "hostile": "« Vous avez une minute pour sortir de mon auberge, avant que mon arbalète ne décide à votre place. »",
+      "variantes": []
+    },
+    "services": [
+      {
+        "id": "chambre",
+        "nom": "Chambre individuelle",
+        "resume": "Une chambre à l'étage, avec une porte qui ferme et un seau d'eau chaude. La nuit y est un vrai repos.",
+        "prix": 0.2
+      },
+      {
+        "id": "dortoir",
+        "nom": "Paillasse au dortoir",
+        "resume": "Une paillasse de foin sous la lucarne ronde. On y dort, mais un œil reste ouvert.",
+        "prix": 0.02
+      },
+      {
+        "id": "repas",
+        "nom": "Repas du soir",
+        "resume": "Civet de navets au lard et pain de seigle. Le lard n'est pas toujours frais.",
+        "prix": 0.1
+      }
+    ],
+    "inventaire": [],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "vin-fin",
+          "quantite": 3
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        }
+      ],
+      "tables": [],
+      "rachat": 0,
+      "types": []
+    }
+  },
+  {
+    "id": "varek-le-brise",
+    "nom": "Varek le Brisé",
+    "titre": "Garde de convoi de Sombreval",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "68 ans",
+    "role": "Nain guerrier, garde de convoi sans convoi. Il boit dans l'angle sombre de la salle commune et regarde les morceaux de sa hache. Il peut marcher avec le groupe, sans combattre.",
+    "lieu": "ald-auberge-salle-commune",
+    "apparence": "Épaules massives comme un roc, cheveux et barbe d'un roux flamboyant tressés de lanières de cuir crasseuses. Regard sombre et injecté de sang, fixé en permanence sur trois morceaux de métal brisé posés devant lui. Un bouclier de bois cerclé de fer est appuyé contre son banc.",
+    "personnalite": {
+      "traits": [
+        "fier",
+        "brisé",
+        "rugueux",
+        "loyal"
+      ],
+      "voix": "Grave, lente, des phrases de forgeron qui cognent. Il jure en nain, sans ménagement, et répète « ferraille » quand il veut dire « trahison ».",
+      "valeurs": [
+        "l'honneur de sa lignée",
+        "la parole donnée entre nains"
+      ],
+      "desir": "Laver la honte de ses camarades tombés et retrouver une arme digne de son grand-père.",
+      "peur": "Qu'on le juge sur la journée où il a fui.",
+      "defaut": "Il boit pour oublier et refuse qu'on le plaigne, même quand il en a besoin."
+    },
+    "presences": [],
+    "faction": "forges-libres",
+    "attitude": 0,
+    "savoir": [
+      "f-ald-fonte-friable",
+      "f-ald-convoi-de-minerai-assailli"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ald-varek-a-fui-le-convoi",
+        "attitudeMin": 60
+      }
+    ],
+    "sujets": [
+      {
+        "id": "les-debris-de-la-hache",
+        "mots": [
+          "hache",
+          "débris",
+          "métal",
+          "brisé",
+          "fer",
+          "éclaté",
+          "grand-père",
+          "forge"
+        ],
+        "question": "Que s'est-il passé avec cette hache ?",
+        "reponse": "« Vous voulez savoir ? Regardez ! » Il pousse les trois morceaux du bout de son gant. « Brise-Roc, la hache de mon grand-père. Quarante hivers à tremper cette lame dans les huiles de forge naines. Elle a éclaté au premier choc contre un plastron de cuir bouilli, comme une assiette jetée sur la pierre. Ce n'est pas de l'acier, c'est de la cendre noire déguisée en fer. Depuis six mois, tout le fer neuf de la Marche fait pareil : les clous, les fers à cheval, les lames des gardes. Moi, je sais ce que c'est. C'est un poison. »",
+        "revele": [
+          "f-ald-fonte-friable"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "le-convoi-assailli",
+        "mots": [
+          "convoi",
+          "minerai",
+          "bandits",
+          "camarades",
+          "carrefour",
+          "capes",
+          "attaque",
+          "griffe"
+        ],
+        "question": "Racontez-moi l'attaque de votre convoi.",
+        "reponse": "« Trois jours. On descendait le minerai de Sombreval par la piste : quatorze chariots, huit hommes. Des bandits sont sortis de la brume au carrefour. Des hommes bien nourris, pas des brigands de grand chemin : des capes bordées d'une griffe brodée en fil noir, et des chevaux frais. Ils ne voulaient pas la marchandise. Ils voulaient qu'on sache qu'ils étaient là. » Il serre le poing sur la table, et les morceaux de métal bougent. « Certains sont restés dans la tourbe. Je ne parle pas de ça. Les capes, ce sont les mêmes qui tiennent les talus du pont, à ce qu'on dit au comptoir. »",
+        "revele": [
+          "f-ald-convoi-de-minerai-assailli"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "voyager-avec-nous",
+        "mots": [
+          "voyager",
+          "marcher",
+          "suivre",
+          "compagnie",
+          "rejoindre",
+          "équipe",
+          "bannière",
+          "Sombreval"
+        ],
+        "question": "Voulez-vous marcher avec nous ?",
+        "condition": {
+          "pnj": {
+            "id": "varek-le-brise",
+            "attitudeMin": 20
+          }
+        },
+        "reponse": "« Marcher avec vous ? Vous allez à Sombreval, ou vous cherchez de quoi remplir vos poches ? » Il se lève lentement, comme un homme qui a mal aux genoux. « Très bien. Si vous cherchez les tripes de ceux qui pourrissent la roche, je viens. Je ne combattrai pas à votre place, c'est entendu : je n'ai plus de hache, et je ne tiens pas à finir en morceaux. Je marcherai, je porterai, je vous dirai ce que je vois. Juste de ne pas me mentir sur le fer. Si vous me tendez une arme qui casse, dites-le-moi avant de la lever. »",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "varek-le-brise",
+              "actif": true
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "varek-le-brise",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "honneur-de-brise-roc",
+        "mots": [
+          "venger",
+          "camarades",
+          "honneur",
+          "forgeron",
+          "félon",
+          "Sombreval",
+          "lame",
+          "acier"
+        ],
+        "question": "Vous voulez venger vos camarades ?",
+        "condition": {
+          "pnj": {
+            "id": "varek-le-brise",
+            "attitudeMin": 40
+          }
+        },
+        "reponse": "« Venger mes camarades… » Il se tait longtemps, puis hoche la tête. « Il y a un homme, à Sombreval, qui a laissé nos lingots pourrir, et qui a vendu le fer de mon grand-père à des marchands de la Griffe. Son nom, on le murmure dans les galeries. Je veux le voir en face et lui demander pourquoi. Je n'ai pas d'arme. Il me faut de l'acier véritable, ou une lame de bronze antique comme celles qu'on enterre dans les tertres. Trouvez-moi ça, et je vous suivrai au fond des galeries. Ce n'est pas une faveur. C'est une dette d'honneur, de nain à nain, et je la paierai jusqu'au bout. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-honneur-de-brise-roc",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-fondeur-est-tombe",
+        "mots": [
+          "coupable",
+          "félon",
+          "tombé",
+          "honneur",
+          "vengé",
+          "Sombreval",
+          "forge",
+          "lame"
+        ],
+        "question": "Le coupable de Sombreval est tombé, Varek.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-honneur-de-brise-roc",
+                "statut": "active"
+              }
+            },
+            {
+              "flag": "z2-davor-neutralise"
+            }
+          ]
+        },
+        "reponse": "« Alors c'est fait. » Varek regarde ses mains longtemps, comme s'il y voyait encore la tourbe. « Je ne l'ai pas tué de mes mains. Je l'ai regardé dans les yeux, et c'est lui qui a baissé les siens. Pour moi, c'est plus lourd qu'un coup. » Il se lève et pose une main lourde sur l'épaule de chacun. « Je vais forger une lame avec le métal qui tient. Il faudra du temps et une enclume qui ne sente pas le soufre. Quand elle sera prête, elle vous protégera mieux que moi. Vous êtes des gens bien, j'ai mis du temps à le dire. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-honneur-de-brise-roc",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-honneur-de-brise-roc-rendue"
+          },
+          {
+            "attitude": {
+              "pnj": "varek-le-brise",
+              "delta": 20
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-mines-de-sombreval",
+        "mots": [
+          "mines",
+          "Sombreval",
+          "galeries",
+          "nains",
+          "Harken",
+          "contremaître",
+          "fer pur",
+          "pompes"
+        ],
+        "question": "Parlez-nous des mines de Sombreval.",
+        "reponse": "« Les galeries, c'est notre honneur. Trente-cinq ans que Harken, le contremaître, y descend avec sa lampe, et il sait à l'odeur de la roche où se trouve la veine. Le fer pur de Sombreval n'est pas une légende. C'est le plus beau métal que j'aie vu : il sort de la montagne comme du miel. Aujourd'hui, les contremaîtres font tourner les pompes à bras pour rien, parce que le minerai ne vaut plus une pièce. Harken, lui, n'a pas voulu se taire, et on ne l'a plus revu aux galeries. Moi, je dis que la mine ne ment pas. Ce sont les hommes qui mentent sur elle. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "« Tire-toi de mon ombre, l'ami. Le métal est maudit, et cette piquette ne m'endort même pas. »",
+      "amical": "« Tiens, tu n'es pas comme les autres. Assieds-toi, et dis-moi ce que tu as trouvé dans les galeries. »",
+      "hostile": "« Encore un qui vient me vendre du fer ? Va-t'en avant que je te montre ce qu'il vaut. »",
+      "variantes": []
+    },
+    "inventaire": []
+  },
+  {
+    "id": "mireille-de-la-rose",
+    "nom": "Mireille de la Rose d'Aube",
+    "titre": "Clerc d'Aubéris",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "22 ans",
+    "role": "Clerc d'Aubéris, infirmière de fortune des réfugiés. Elle soigne dans l'écurie et peut rejoindre le groupe sans combattre.",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "apparence": "Visage doux encadré de cheveux châtains noués en natte pratique, yeux noisette vifs et déterminés. Cotte de mailles sobre sous un tabard de laine jaune safran, éclaboussé de boue séchée et taché de sang. Une sacoche de soins en cuir pend à son côté, et ses mains sont rougies d'avoir lavé des plaies.",
+    "personnalite": {
+      "traits": [
+        "pratique",
+        "épuisée",
+        "pieuse sans fausse pudeur",
+        "révoltée"
+      ],
+      "voix": "Phrases nettes, sans fioritures, qui commencent souvent par une question utile. Elle invoque Aubéris d'un mot, sans emphase, et reprend ceux qui jurent devant les blessés.",
+      "valeurs": [
+        "soigner d'abord, juger ensuite",
+        "la parole donnée"
+      ],
+      "desir": "Sauver assez de réfugiés avant que la fièvre des marais ne les emporte.",
+      "peur": "Devoir choisir qui on laisse mourir, faute de bandes et de mousse.",
+      "defaut": "Elle se tue à la tâche et refuse qu'on la plaigne."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-salle-commune",
+        "moment": "soir"
+      }
+    ],
+    "faction": "forges-libres",
+    "attitude": 5,
+    "savoir": [
+      "f-ald-mousse-de-saule-soigne-la-fievre"
+    ],
+    "services": [
+      {
+        "id": "soins-de-fortune",
+        "nom": "Soins de fortune",
+        "resume": "Mireille nettoie, panse et recoud avec ce qu'il lui reste. Elle ne demande qu'un peu d'argent pour les bandes et la mousse.",
+        "prix": 5
+      }
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "besoin-d-aide",
+        "mots": [
+          "aide",
+          "soigner",
+          "blessés",
+          "plaie",
+          "eau",
+          "bandes",
+          "médecin",
+          "soins"
+        ],
+        "question": "Avez-vous besoin d'aide pour les blessés ?",
+        "reponse": "« Ah, des mains propres ! Vous tombez bien, je n'en ai plus assez. » Elle désigne d'un menton les paillasses alignées sous la bâche. « Là-bas, une femme avec une plaie qui sent le fer rouillé. Les lames qu'on fabrique depuis six mois entrent dans la chair et s'effritent dedans, les éclats restent, la plaie pourrit. Lavez-vous les mains à l'eau claire, puis tenez le bras pendant que je nettoie. Pas de vin : ça brûle, et ça ne soigne rien de ce qui pourrit. Si vous voulez vraiment être utiles, allez chercher de l'eau au puits, et des bandes de lin propre dans les réserves. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-fievre-des-marais",
+        "mots": [
+          "fièvre",
+          "marais",
+          "dysenterie",
+          "mousse",
+          "saule",
+          "maladie",
+          "vasières",
+          "gangrène"
+        ],
+        "question": "Quel mal frappe les réfugiés ?",
+        "reponse": "« La fièvre des marais, et la dysenterie qui va avec. Elle vient de l'eau des vasières, que les réfugiés boivent faute de mieux. Je guéris ce que je peux, et j'ai appris autre chose, auprès d'une vieille guérisseuse de Clairmont. La mousse de saule, celle qui pousse sur les racines dans les vasières, bouillie dans l'eau claire, calme la fièvre et ferme les plaies qui suintent. Ce n'est pas un miracle, mais ça marche quand le reste échoue. Le problème, c'est qu'il n'y en a plus dans la cour. Les réfugiés ont tout ramassé. Il faudra aller la chercher là où personne ne veut aller, dans le marais, et personne n'en a envie. »",
+        "revele": [
+          "f-ald-mousse-de-saule-soigne-la-fievre"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-baume-de-l-aube",
+        "mots": [
+          "baume",
+          "remède",
+          "mousse",
+          "saule",
+          "Aubéris",
+          "doses",
+          "vasières",
+          "Haddon"
+        ],
+        "question": "Que faut-il pour votre remède ?",
+        "reponse": "« Trois doses. Il me faut trois doses de mousse de saule, bien vertes, cueillies sur les racines et non sur la terre. Les vasières du Vieux Pont en ont, et la ferme Haddon, en bas des Terres Basses, en avait encore une réserve, si la ferme n'a pas brûlé tout entière. » Elle joint les mains un instant, puis rouvre les yeux. « Avec ça, je fais un baume qui sauve des réfugiés. Aubéris le permet, je le crois. Ce n'est pas la prière qui guérit ici, c'est le savoir, et la main qui ne tremble pas. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-baume-de-l-aube",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "voyager-avec-nous",
+        "mots": [
+          "accompagner",
+          "suivre",
+          "rejoindre",
+          "compagnie",
+          "bannière",
+          "venir",
+          "soigner",
+          "route"
+        ],
+        "question": "Voulez-vous nous accompagner ?",
+        "condition": {
+          "pnj": {
+            "id": "mireille-de-la-rose",
+            "attitudeMin": 25
+          }
+        },
+        "reponse": "« Vous me demandez de venir ? » Elle range ses bandes d'un geste sec et se redresse, une main sur sa sacoche. « Je ne peux pas rester sous ce hangar pendant que la fièvre ronge la province à sa source. Si votre but est de faire la lumière sur ce qui détruit le fer, et d'aider les innocents au passage, je me joindrai à votre bannière. Je ne tiens pas d'épée, je ne tue pas. Mais je soigne ceux qui tombent, et ça, vous le ferez mal sans moi. »",
+        "revele": [],
+        "effets": [
+          {
+            "escorte": {
+              "pnj": "mireille-de-la-rose",
+              "actif": true
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-temple-de-haute-garde",
+        "mots": [
+          "Aubéris",
+          "temple",
+          "Haute-Garde",
+          "orpheline",
+          "prière",
+          "foi",
+          "Seigneur de l'Aube",
+          "Garde"
+        ],
+        "question": "Pourquoi servez-vous Aubéris ?",
+        "reponse": "« Parce qu'il m'a trouvée. » Elle sourit, sans gaieté. « Orpheline, élevée au temple de Haute-Garde, dans une cellule qui sentait la cire et le lin. Le Seigneur de l'Aube ne demande pas de titres, seulement de se lever avant les autres pour panser ceux qui souffrent. Je le fais depuis mes douze ans. Quand les convois médicaux ont demandé des volontaires vers les marches frontalières, j'ai levé la main. Hier encore, un homme de la Garde d'Émeraude a exigé trois pièces d'argent d'un fermier agonisant avant d'accepter d'escorter sa famille. Voilà ce que valent leurs serments. Je prie pour eux le soir, et pour les autres le matin. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "retour-du-baume",
+        "mots": [
+          "mousse",
+          "doses",
+          "rapporté",
+          "saule",
+          "baume",
+          "remède",
+          "voici",
+          "prête"
+        ],
+        "question": "Voici les trois doses de mousse de saule.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-baume-de-l-aube",
+                "statut": "active"
+              }
+            },
+            {
+              "objet": "ald-o-mousse-de-saule"
+            }
+          ]
+        },
+        "reponse": "« Trois doses, bien vertes. Vous avez fait vite, et vous êtes sales. » Elle prend les paquets, les sent, et hoche la tête. « Très bien. Je prépare le baume cette nuit, sous la bâche, avec l'eau bouillie du puits. Demain, ceux qui gémissent dormiront. Je vous dois quelque chose que je ne peux pas payer en pièces : la bénédiction d'Aubéris sur chacun de vos pas. Ça ne vaut rien sur un marché, mais ça tient plus longtemps qu'une bourse. Et puis, l'un de vous a le bras en sang, je le vois d'ici. Asseyez-vous, je vais nettoyer ça avant de partir. C'est la moindre des choses. »",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-mousse-de-saule",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "quete": {
+              "id": "q-baume-de-l-aube",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-baume-de-l-aube-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous êtes là pour soigner, ou pour me retarder ? Dans les deux cas, approchez, je n'ai pas de temps à perdre. »",
+      "amical": "« Ah, vous ! Vous avez l'air moins fatigués que la dernière fois. Vous avez mangé ? Mangez, c'est un ordre. »",
+      "hostile": "« Passez votre chemin. Je ne soigne pas ceux qui crachent sur le travail des autres. »",
+      "variantes": []
+    },
+    "inventaire": [],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "eau-benite",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "rachat": 0,
+      "types": []
+    }
+  },
+  {
+    "id": "torben-main-brulee",
+    "nom": "Torben Main-Brûlée",
+    "titre": "Maître forgeron",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "110 ans",
+    "role": "Forgeron de l'auberge. Il vend des armes anciennes et répare les lames ébréchées, et il sait que le fer neuf est empoisonné.",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "apparence": "Torse d'athlète sous un tablier de cuir épais criblé de trous de brûlures, bras couverts de cicatrices d'étincelles. Visage noirci de suie, lunettes de loupe métalliques relevées sur le front. Il tient toujours une pince et un lingot gris, comme s'il ne pouvait pas le lâcher.",
+    "personnalite": {
+      "traits": [
+        "fier",
+        "furieux",
+        "honnête jusqu'à la faillite",
+        "bourru"
+      ],
+      "voix": "Gros mots de forge, phrases hachées. Il frappe du plat de la main sur l'enclume pour ponctuer, et appelle ses clients « l'ami » ou « pardi ».",
+      "valeurs": [
+        "un bon métal pour un bon travail",
+        "payer ses dettes"
+      ],
+      "desir": "Retrouver des clients qui lui achètent du fer qui tient, et ne plus être traité d'escroc.",
+      "peur": "Que la forge s'éteigne avant qu'il trouve le coupable.",
+      "defaut": "Il croit que tout le monde le prend pour un escroc, et répond avant qu'on ait posé la question."
+    },
+    "presences": [],
+    "faction": "forges-libres",
+    "attitude": 5,
+    "savoir": [
+      "f-fer-sabote-a-la-source",
+      "f-ald-fonte-friable"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ald-torben-vend-a-perte",
+        "attitudeMin": 40
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "dague",
+          "quantite": 2,
+          "prix": 6
+        },
+        {
+          "objet": "gourdin",
+          "quantite": 4,
+          "prix": 1
+        },
+        {
+          "objet": "baton-de-combat",
+          "quantite": 2,
+          "prix": 1.5
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "arme"
+      ]
+    },
+    "services": [
+      {
+        "id": "reparation-d-arme",
+        "nom": "Réparation d'arme",
+        "resume": "Torben redresse et ressoude une arme ébréchée sur son enclume, avec du fer qu'il garde à l'abri de la crise.",
+        "prix": 3
+      }
+    ],
+    "sujets": [
+      {
+        "id": "la-demonstration",
+        "mots": [
+          "lingot",
+          "casse",
+          "poussière",
+          "fer",
+          "explose",
+          "vitriol",
+          "odeur",
+          "tape"
+        ],
+        "question": "Montrez-nous pourquoi ce fer se brise.",
+        "reponse": "« Regardez-moi ça, et ne bougez pas. » Il attrape un lingot gris sur l'établi, le pose sur l'enclume et le frappe d'un coup de marteau sec. Le métal se fend, puis s'effondre en poussière qui retombe comme de la cendre. Torben renifle, grimace. « Vous sentez ça ? Du vitriol, et l'alcali noir qui va avec. Ce n'est pas une faiblesse du métal, c'est une formule de mage empoisonneur. Quelqu'un verse une saleté dans l'eau de lavage des mines de Sombreval : le minerai est pourri avant d'arriver à la forge. Mais je sais que ce n'est pas le fer qui est mauvais. C'est l'eau. »",
+        "revele": [
+          "f-fer-sabote-a-la-source"
+        ],
+        "effets": [
+          {
+            "flag": "z1-sabotage-prouve"
+          },
+          {
+            "objet": {
+              "id": "echantillon-de-fonte-friable",
+              "quantite": 1
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-bronze-ancien",
+        "mots": [
+          "bronze",
+          "ancien",
+          "antique",
+          "tient",
+          "résiste",
+          "neuf",
+          "fer",
+          "six mois"
+        ],
+        "question": "Pourquoi le bronze ancien tient-il, lui ?",
+        "reponse": "« Parce que le bronze n'a pas vu les mines de cette année. » Torben tapote une vieille dague posée sur l'établi, une lame verdie et lourde. « Ce bronze a été coulé il y a des siècles, et il ne rouille pas, il ne s'effrite pas. Il résiste au distillat, à l'acide, à tout ce qui fait fondre le fer neuf. Depuis six mois, tout ce qui sort des fonderies est fragile : les fers à cheval, les clous, les lames de la milice. Vous voulez une arme qui tienne ? Prenez du bronze antique, ou rien. »",
+        "revele": [
+          "f-ald-fonte-friable"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "l-echantillon-maudit",
+        "mots": [
+          "réactif",
+          "contre-réactif",
+          "flacon",
+          "Sombreval",
+          "creuset",
+          "huile",
+          "remède",
+          "mines"
+        ],
+        "question": "Connaissez-vous un contre-réactif ?",
+        "condition": {
+          "flag": "z1-sabotage-prouve"
+        },
+        "reponse": "« Il me faut un flacon du réactif pur, pas celui qui a déjà traversé la galerie. Le creuset d'où il s'écoule est à Sombreval, dans les vieilles galeries sous le puits, là où les pompes ne tournent plus depuis des mois. Ramenez-moi un flacon intact, bouché à la cire. Je fabriquerai une huile protectrice. Elle ne durera qu'un temps, mais elle immunisera les armes de votre groupe contre la crise du fer, le temps de faire le travail. Je demande que vous ne le cassiez pas en route. C'est la seule chose qui m'inquiète. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-l-echantillon-maudit",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "reparation",
+        "mots": [
+          "réparer",
+          "ébréchée",
+          "brisée",
+          "ressouder",
+          "arme",
+          "fendue",
+          "forge",
+          "réparation"
+        ],
+        "question": "Pouvez-vous réparer une arme ébréchée ?",
+        "reponse": "« Une arme ébréchée, c'est comme un os cassé : ça se répare si on sait comment. » Il ramasse un poignard tordu sur l'établi, le retourne, le tâte. « Je la chauffe, je la redresse sur l'enclume, puis je la ressoude au fer le plus sain que j'aie, et je la repasse à la meule. Elle ne sera jamais aussi belle qu'à l'origine, mais elle tiendra la prochaine bataille, et la suivante. Pour la moitié des lames que j'ai réparées ces derniers mois, c'est plus honnête que de les revendre neuves. Apportez-la-moi, je la regarderai. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-flacon-de-davor",
+        "mots": [
+          "flacon",
+          "réactif",
+          "rapporté",
+          "fiole",
+          "cire",
+          "Sombreval",
+          "pur",
+          "huile"
+        ],
+        "question": "Voici le flacon de réactif pur.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-l-echantillon-maudit",
+                "statut": "active"
+              }
+            },
+            {
+              "objet": "flacon-de-toxine-x44"
+            }
+          ]
+        },
+        "reponse": "« Intact ? Montrez-moi. » Il tient le flacon contre la lampe, retourne le bouchon de cire et regarde la couleur du liquide. « Un poinçon d'onyx vert sur le verre : ça vient de la main de quelqu'un qui sait ce qu'il fait. Ce n'est pas une fiole de la carrière. Bien. Je vais analyser ça cette nuit, et je fabriquerai l'huile. Elle protégera vos lames quelques jours, pas plus. Ensuite, il faudra remonter à celui qui distille ça. Je vous le dis franchement : je n'aime pas les histoires qui finissent en poussière. Merci. Pour une fois qu'on me rapporte quelque chose qui n'explose pas, ça me fait du bien. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-l-echantillon-maudit",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-l-echantillon-maudit-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Pas la peine de me demander une épée ! J'ai plus d'acier, j'ai plus de fer, j'ai que de la merde grise livrée par des voleurs. Qu'est-ce qu'il vous faut ? »",
+      "amical": "« Tiens, un client qui ne pleure pas en me voyant. Venez voir ce que j'ai en réserve, c'est du bronze, du vrai. »",
+      "hostile": "« Vous, je vous connais : c'est vous qui avez dit partout que je vendais du vent. Dehors, avant que je fasse fondre votre fourreau. »",
+      "variantes": []
+    },
+    "inventaire": []
+  },
+  {
+    "id": "silas-l-epieur",
+    "nom": "Silas l'Épieur",
+    "titre": "Colporteur de cuirs",
+    "espece": "elfe",
+    "sexe": "M",
+    "age": "35 ans",
+    "role": "Informateur de la Griffe Noire, installé à la table isolée près de l'âtre. Il dit être colporteur et observe qui s'intéresse aux mines.",
+    "lieu": "ald-auberge-salle-commune",
+    "apparence": "Mince, traits fins et fuyants, oreilles pointues cachées sous une capuche de feutre sombre, car il a du sang mêlé. Pourpoint de drap gris foncé sans signe distinctif, ongles impeccablement taillés. Une pinte intacte repose devant lui, qu'il ne boit jamais.",
+    "personnalite": {
+      "traits": [
+        "mielleux",
+        "calculateur",
+        "méfiant",
+        "prudent"
+      ],
+      "voix": "Phrases longues et polies, tournures de politesse qui sonnent faux. Il pose une question pour chaque réponse et sourit quand il ment.",
+      "valeurs": [
+        "la discrétion paie",
+        "chacun ses affaires"
+      ],
+      "desir": "Ne pas rentrer bredouille à la Griffe Noire, et toucher sa solde avant le prochain convoi.",
+      "peur": "Être pris entre la Griffe et la Garde, et devenir celui qu'on sacrifie.",
+      "defaut": "Il ment même quand la vérité lui coûterait moins cher."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-etage-et-combles",
+        "moment": "nuit"
+      }
+    ],
+    "faction": "griffe-noire",
+    "attitude": -20,
+    "savoir": [
+      "f-ald-rumeur-veilleurs-coupables",
+      "f-ald-keldan-embusque-le-porche",
+      "f-griffe-noire-camp-foret"
+    ],
+    "secrets": [
+      {
+        "fait": "f-griffe-noire-camp-foret",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        }
+      }
+    ],
+    "sujets": [
+      {
+        "id": "colporteur",
+        "mots": [
+          "colporteur",
+          "cuirs",
+          "caravane",
+          "auberge",
+          "pourquoi",
+          "faites",
+          "voyage",
+          "Veilleurs"
+        ],
+        "question": "Que faites-vous dans cette auberge ?",
+        "reponse": "« Colporteur de cuirs, pour vous servir. J'attends une caravane vers le sud, elle est en retard, comme tout en ce moment. » Il sourit, les doigts croisés sur la table, sans toucher à sa pinte. « Ce qu'on dit au comptoir, c'est que les Veilleurs de la forêt tuent les convoyeurs du pont, qu'ils gardent les anciens sentiers. Je n'en suis pas certain, mais l'homme qui a vu la chose l'a juré. Faites attention en traversant les bois, étranger. La route est large, mais les gens qui la fréquentent ne sont pas tous des amis. Moi, je ne fais que mes affaires, et je vous conseille d'en faire autant. »",
+        "revele": [
+          "f-ald-rumeur-veilleurs-coupables"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-convois",
+        "mots": [
+          "convois",
+          "minerai",
+          "mines",
+          "Sombreval",
+          "intéresse",
+          "marchands",
+          "Lion",
+          "payé"
+        ],
+        "question": "Qui s'intéresse aux convois de minerai ?",
+        "reponse": "« Qui s'y intéresse ? Tout le monde, étranger, et ça ne me regarde pas. Une maison de négoce de Haute-Garde m'a demandé de compter les chariots qui sortent de Sombreval, rien de plus. Chaque chariot, une marque sur ma cire, un chiffre, une date. » Il pose le doigt sur la plaquette de cire glissée sous son gilet, puis la retire comme si elle brûlait. « Ce sont des gens riches qui veulent savoir qui vend quoi, pas des voleurs. Mais la route est dangereuse pour ceux qui posent trop de questions. Posez-en moins, et vous dormirez mieux ce soir. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-carnet-chiffre",
+        "mots": [
+          "carnet",
+          "chiffré",
+          "Griffe",
+          "Keldan",
+          "camp",
+          "forêt",
+          "code",
+          "convoi"
+        ],
+        "question": "Votre carnet chiffré, que dit-il ?",
+        "condition": {
+          "flag": "z1-carnet-dechiffre"
+        },
+        "reponse": "« Mon carnet ? » Silas se fige, les doigts blancs sur la table. Puis il sourit à nouveau, plus bas, comme on joue une dernière carte. « Vous avez fouillé ma chambre. Alors vous savez que ce sont des chiffres de convoi, et un message qu'on ne vous déchiffrera pas sans clé. Keldan est au porche : il attend le prochain qui sortira vers les mines. Et le camp, c'est la Griffe Noire, dans les hautes fougères de la Forêt des Murmures. Les hommes qui tiennent les talus y ont leur tente, et ils payent bien. Ils payent mieux qu'un pauvre colporteur. Maintenant, vous connaissez mon secret. Alors, qu'allez-vous en faire ? »",
+        "revele": [
+          "f-ald-keldan-embusque-le-porche",
+          "f-griffe-noire-camp-foret"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-l-ombre-de-la-griffe",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "vous-etes-capture",
+        "mots": [
+          "capturé",
+          "captif",
+          "parler",
+          "intimider",
+          "vérité",
+          "mot de passe",
+          "guetteurs",
+          "Moulin"
+        ],
+        "question": "Vous êtes capturé : parlez.",
+        "condition": {
+          "flag": "z1-silas-capture"
+        },
+        "reponse": "« Très bien, très bien. Vous m'avez eu, je le reconnais. » Silas s'affaisse sur sa chaise, les mains ouvertes, et ses yeux cherchent la porte. « Le mot de passe, c'est ce que vous voulez entendre : « La Serre ne plie point ». Dites-le aux guetteurs gobelins du Moulin d'Eldren, ils ouvrent le passage sans sonner le cor. C'est tout ce que je sais de la Griffe. Le reste se trouve au camp, pas auprès de moi. Je suis un informateur, pas un chef, et je paierai pour ça, je le sais. Alors, pour ma peau, laissez-moi quitter Aldric avant que la Griffe ne me pende à la potence du carrefour. »",
+        "revele": [
+          "f-ald-mot-de-passe-de-la-griffe"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-l-ombre-de-la-griffe",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-l-ombre-de-la-griffe-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Ah, des gens qui ne sont pas d'ici. Asseyez-vous, si vous voulez. La table est large, il y a de la place pour tous. »",
+      "amical": "« Mes amis ! Vous revoilà. Dites-moi que vous avez de bonnes nouvelles des routes, ça me ferait plaisir. »",
+      "hostile": "« Vous n'avez rien à faire à ma table. Passez votre chemin, étranger, avant que je me souvienne de votre visage. »",
+      "variantes": []
+    },
+    "inventaire": []
+  },
+  {
+    "id": "finbar-le-chantre",
+    "nom": "Finbar le Chantre",
+    "titre": "Ménestrel réfugié",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "28 ans",
+    "role": "Chansonnier de taverne itinérant, réfugié dans la grange à foin. Il a perdu son luth et chante des rumeurs.",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "apparence": "Silhouette filiforme, pourpoint vert bouteille déchiré aux coudes et couvert de brins de paille. Chapeau à plume de paon lamentablement trempé, yeux écarquillés par l'effroi. Ses mains cherchent sans cesse un instrument qui n'est plus là.",
+    "personnalite": {
+      "traits": [
+        "vaniteux",
+        "poltron",
+        "généreux de paroles",
+        "sensible"
+      ],
+      "voix": "Emphatique, chaque phrase tournée comme un refrain. Il s'interrompt pour citer des ducs qu'il n'a jamais croisés, et se trompe de nom.",
+      "valeurs": [
+        "la beauté d'une ballade",
+        "la gloire"
+      ],
+      "desir": "Retrouver son luth et une scène où l'on se souvient de lui.",
+      "peur": "Mourir sans ballade, ou être oublié dans une grange.",
+      "defaut": "Il exagère tout, y compris ses combats, et s'enfuit au premier bruit."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-salle-commune",
+        "moment": "soir"
+      }
+    ],
+    "attitude": 10,
+    "savoir": [
+      "f-ald-kobolds-ont-vole-le-luth",
+      "f-ald-rumeur-armee-orque"
+    ],
+    "secrets": [
+      {
+        "fait": "f-ald-finbar-n-a-jamais-chante-devant-les-ducs",
+        "attitudeMin": 30
+      }
+    ],
+    "sujets": [
+      {
+        "id": "le-luth-vole",
+        "mots": [
+          "luth",
+          "volé",
+          "kobolds",
+          "bois de rose",
+          "grange",
+          "foin",
+          "voleurs",
+          "ivresse"
+        ],
+        "question": "Qu'est-il arrivé à votre luth ?",
+        "reponse": "« Ah, mon luth ! Mon pauvre luth ! » Finbar se redresse de toute sa hauteur, qui n'est pas grande, et serre contre lui un chapeau trempé. « J'étais tombé dans le foin, je vous l'accorde, après une pinte de trop. Pendant que je ronflais comme un ours, trois kobolds sont entrés par la lucarne, puis sont ressortis avec mon luth en bois de rose, et ma bourse, bien sûr. Des cancrelats à écailles puantes, des doigts sales sur le plus beau bois de la Marche ! Je vous en supplie, retrouvez-le, et je vous dois une chanson. »",
+        "revele": [
+          "f-ald-kobolds-ont-vole-le-luth"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "le-luth-a-retrouver",
+        "mots": [
+          "luth",
+          "retrouver",
+          "récompense",
+          "ours",
+          "ravin",
+          "chercher",
+          "traces",
+          "bourru"
+        ],
+        "question": "Irons-nous chercher votre luth ?",
+        "reponse": "« Vous iriez ? Ah, vous êtes des amis du ciel ! » Il tire son chapeau comme un prince. « J'ai suivi leurs traces jusqu'au ravin calcaire de la combe, et là, par les dieux, mon luth était posé devant la caverne d'une bête monstrueuse, une montagne de poils bruns aux griffes comme des faux. Le Vieux Bourru, disent les bûcherons. Si vous me ramenez mon luth intact, je vous donne tout ce qui me reste : quinze pièces d'or, mes meilleures ballades, et un nom qui fera tourner les têtes dans toutes les auberges de la région. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-le-luth-de-finbar",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "voici-le-luth",
+        "mots": [
+          "luth",
+          "rapporté",
+          "voici",
+          "retrouvé",
+          "bois de rose",
+          "intact",
+          "rendu"
+        ],
+        "question": "Voici votre luth, intact.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-le-luth-de-finbar",
+                "statut": "active"
+              }
+            },
+            {
+              "objet": "ald-o-luth-de-finbar"
+            }
+          ]
+        },
+        "reponse": "« Mon luth ! Intact ! » Finbar le prend dans ses bras comme un enfant, en fait sonner un accord faux, puis pleure de joie sans aucune honte. « Vous ne savez pas ce que vous venez de faire. Je ne vous rends pas seulement un instrument, je vous rends mes ballades, mes soirées dans les tavernes de la côte, et ma dignité, qui était au fond du foin. Voilà vos quinze pièces d'or. Et puisque vous êtes des héros, je vous compose une chanson, dès ce soir, dans la salle commune. Je vous aime bien, vous savez. »",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-luth-de-finbar",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "quete": {
+              "id": "q-le-luth-de-finbar",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-le-luth-de-finbar-rendue"
+          },
+          {
+            "flag": "z1-luth-rendu"
+          },
+          {
+            "pieces": 15
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-orques",
+        "mots": [
+          "orques",
+          "armée",
+          "frontière",
+          "guerre",
+          "rumeur",
+          "chanteurs",
+          "route",
+          "Clairmont"
+        ],
+        "question": "Vous avez entendu parler d'orques ?",
+        "reponse": "« Des orques ? Ah, vous m'attrapez sur mon sujet favori. » Finbar baisse la voix, très théâtral, et jette un coup d'œil vers la porte. « On chante ça sur la route de Clairmont : une armée d'orques marcherait sur la Marche, des milliers, avec des haches noires, pour raser les villages au printemps. Un marchand de cuirs me l'a juré dans cette salle même, et il avait les yeux humides, donc c'est vrai. Moi, je n'ai rien vu. Mais une bonne ballade, c'est une ballade qui fait peur, n'est-ce pas ? Je la chante, et les gens me paient un verre. »",
+        "revele": [
+          "f-ald-rumeur-armee-orque"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ],
+    "salutations": {
+      "neutre": "« Misère ! Mes doigts ne sont plus rien sans mon bois de rose. Vous êtes de passage, voyageurs ? Il me reste une ballade ou deux. »",
+      "amical": "« Mes sauveurs ! Ah, je le savais que vous reviendriez. Une chanson à votre gloire est en préparation, ne bougez pas. »",
+      "hostile": "« Partez ! Je n'ai rien à vous donner, et je ne chante pas pour ceux qui me regardent de travers. »",
+      "variantes": []
+    },
+    "inventaire": []
+  },
+  {
+    "id": "martha-haddon",
+    "nom": "Martha Haddon",
+    "titre": "Veuve réfugiée de la ferme Haddon",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "46 ans",
+    "role": "Paysanne réfugiée, dont le mari Aldwin, marchand de farine, n'est pas rentré de Haute-Garde. Elle attend dans l'écurie, sur une paillasse près de la porte.",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "apparence": "Mère de famille aux traits tirés par le deuil, tablier de bure terne et fichu noir sur la tête. Assise sur une botte de foin, elle serre un médaillon vide contre sa poitrine, et ses mains tremblent quand elle parle de la route.",
+    "personnalite": {
+      "traits": [
+        "digne",
+        "patiente",
+        "lucide",
+        "émue"
+      ],
+      "voix": "Basse, mesurée, des phrases qui ne se terminent pas. Elle appelle les voyageurs « mes enfants » quand elle est triste, même s'ils sont plus âgés qu'elle.",
+      "valeurs": [
+        "l'honnêteté",
+        "le travail de ses mains"
+      ],
+      "desir": "Savoir où est Aldwin, et que la ferme ne lui soit pas volée une seconde fois.",
+      "peur": "Qu'il soit mort loin d'elle, sans que personne le lui dise.",
+      "defaut": "Elle attend trop longtemps avant de demander de l'aide."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-salle-commune",
+        "moment": "soir"
+      }
+    ],
+    "attitude": 0,
+    "savoir": [
+      "f-ald-aldwin-parti-avec-la-farine"
+    ],
+    "secrets": [],
+    "sujets": [
+      {
+        "id": "le-mari-absent",
+        "mots": [
+          "mari",
+          "Aldwin",
+          "chariot",
+          "retour",
+          "ferme",
+          "attends",
+          "Haddon",
+          "hier"
+        ],
+        "question": "Attendez-vous quelqu'un, madame ?",
+        "reponse": "« Mon Aldwin. » Elle tourne le médaillon vide entre ses doigts, sans le regarder. « Il est parti il y a quatre jours avec son dernier chariot de farine, celui qui nous restait de la ferme. Il voulait le vendre à Haute-Garde, pour payer les planches de la reconstruction. Deux chevaux bais, une bâche bleue, et ce sourire qu'il a quand il pense avoir fait une bonne affaire. Il devait être de retour hier au soir, et il n'est pas venu. Alors, mes enfants, je ne dors plus. Si vous passez par là, dites-moi si vous l'avez vu. C'est tout ce que je demande. »",
+        "revele": [
+          "f-ald-aldwin-parti-avec-la-farine"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-mort-sur-le-pont",
+        "mots": [
+          "mort",
+          "pont",
+          "Aldwin",
+          "chariot",
+          "corps",
+          "annoncer",
+          "fossé",
+          "malheur"
+        ],
+        "question": "Lui annoncer la mort d'Aldwin sur le pont.",
+        "condition": {
+          "fait": "f-ald-marchand-mort-sur-la-route"
+        },
+        "reponse": "« Mort. » Elle ne crie pas. Elle s'assoit sur la botte de foin, la main sur la bouche, puis se redresse d'un coup, comme si elle avait décidé quelque chose. « Où ça ? Sur le pont, dans le fossé ? Les corbeaux sont passés, je le vois à votre visage. Je vous en prie, allez le chercher, ramenez-le à la ferme, qu'on le couche comme il faut. Et son coffret. Il y a dedans l'or de la ferme, et l'alliance que je lui ai gravée à l'intérieur : « À mon cher Aldwin, ta Martha ». Rapportez-moi l'or et l'alliance, et je vous serai reconnaissante toute ma vie. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-le-testament-du-chariot",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "le-retour-du-coffret",
+        "mots": [
+          "or",
+          "alliance",
+          "coffret",
+          "rendre",
+          "rapporté",
+          "argent",
+          "bague",
+          "Aldwin"
+        ],
+        "question": "Voici l'or et l'alliance d'Aldwin.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-le-testament-du-chariot",
+                "statut": "active"
+              }
+            },
+            {
+              "objet": "ald-o-alliance-d-aldwin"
+            }
+          ]
+        },
+        "reponse": "« Donnez. » Martha prend le coffret à deux mains, l'ouvre, et l'alliance tombe dans sa paume avec un bruit clair. Elle la serre et pleure enfin, sans bruit, les épaules tremblantes. « Vous me rendez plus que l'or. Vous me rendez son dernier voyage, et la preuve qu'il pensait à moi jusqu'au bout. » Elle compte les pièces une à une, sans vraiment les compter, et repousse le coffret vers vous. « Je ne veux plus de cet argent-là. Il a coûté trop cher, à lui comme à nous. Vous êtes honnêtes, je le vois. Que la lumière vous garde, mes enfants. »",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-alliance-d-aldwin",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "quete": {
+              "id": "q-le-testament-du-chariot",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-le-testament-du-chariot-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "salutations": {
+      "neutre": "« Vous cherchez de la place ? Il y a la botte de foin à côté de moi, si vous voulez vous asseoir. »",
+      "amical": "« Ah, mes enfants. Vous avez une meilleure mine que tout à l'heure. Dites-moi, avez-vous du nouveau ? »",
+      "hostile": "« Laissez-moi tranquille. J'ai déjà assez de malheur sans les histoires des autres. »",
+      "variantes": []
+    },
+    "inventaire": []
+  }
+]
