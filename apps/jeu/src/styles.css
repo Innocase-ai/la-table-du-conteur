@@ -8280,6 +8280,16 @@ kbd {
 .carte-legende.connu { border: 2px dashed var(--texte-doux); box-sizing: border-box; }
 .page-carte-corps { flex: 1; min-height: 0; overflow: auto; padding: 12px 20px; display: flex; justify-content: center; }
 .carte-grande { width: min(100%, 1180px); }
+.carte-objectif { fill: var(--danger, #c0483a); stroke: #0e0c0a; stroke-width: 3; }
+.carte-objectifs { color: var(--or-vif); font-size: 0.9em; }
+.carte-legende.objectif { border-radius: 0; transform: rotate(45deg) scale(0.85); background: var(--danger, #c0483a); }
+
+/* Repères de quête : « ! » une quête à prendre, « ? » un rapport attendu, « ◆ » un objectif en cours mène là. */
+.vignette-bouton { position: relative; }
+.signe-quete { position: absolute; top: -7px; right: -7px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; display: grid; place-items: center; font: 700 12px/1 var(--titre); color: #1a1208; background: var(--or-vif); border: 1px solid #0e0c0a; box-shadow: 0 0 6px rgba(240, 190, 90, 0.6); }
+.signe-quete.signe-rapport { background: #8fc9e8; box-shadow: 0 0 6px rgba(143, 201, 232, 0.6); }
+.signe-quete.signe-objectif { background: var(--danger, #c0483a); color: #fff; }
+.signe-quete.signe-en-ligne { position: static; display: inline-grid; margin-right: 6px; vertical-align: middle; }
 @keyframes carte-pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.7); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .carte-repere { animation: none; } }
 

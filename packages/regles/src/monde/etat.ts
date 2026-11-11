@@ -1,7 +1,7 @@
 // État d'une partie dans un monde : tout ce qui change (drapeaux, faits connus, jauges, réputations, quêtes…).
 // C'est un objet JSON simple, sauvegardable tel quel. Les conditions et effets du format de monde s'évaluent ici.
 import { SEUILS_PX } from '../caracteristiques';
-import type { Condition, DonneesMonde, EffetMonde, Enigme, TypeIssue } from './schemas';
+import type { Condition, DonneesMonde, EffetMonde, Enigme, Quete, TypeIssue } from './schemas';
 
 export type StatutQuete = 'proposee' | 'active' | 'terminee' | 'echouee';
 export type EtatPnj = 'vivant' | 'mort' | 'parti';
@@ -204,12 +204,13 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
   } else if ('pieces' in effet) e.pieces = Math.max(0, e.pieces + effet.pieces);
   else if ('xp' in effet) e.xp += effet.xp;
   else if ('quete' in effet) {
-    const q = (e.quetes[effet.quete.id] ??= { statut: effet.quete.statut, actives: [], accomplies: [] });
     const def = dm.quetes.get(effet.quete.id);
     if (effet.quete.statut === 'terminee' && def) terminerQuete(effet.quete.id, e, dm);
-    // Une quête close (accomplie ou échouée) ne se rouvre pas : redemander au PNJ ne la remet pas « en cours » sans étape.
-    else if (effet.quete.statut === 'active' && (q.statut === 'terminee' || q.statut === 'echouee')) return;
+    else if (effet.quete.statut === 'echouee' && def) echouerQuete(effet.quete.id, e, dm);
     else {
+      const q = (e.quetes[effet.quete.id] ??= { statut: effet.quete.statut, actives: [], accomplies: [] });
+      // Une quête close (accomplie ou échouée) ne se rouvre pas : la reproposer ou la relancer ne la remet pas « en cours » sans étape.
+      if ((effet.quete.statut === 'active' || effet.quete.statut === 'proposee') && (q.statut === 'terminee' || q.statut === 'echouee')) return;
       q.statut = effet.quete.statut;
       if (effet.quete.statut === 'active' && def && !q.actives.length && !q.accomplies.length) q.actives.push(def.debut);
     }
@@ -264,6 +265,32 @@ export function terminerQuete(id: string, e: EtatMonde, dm: DonneesMonde): void 
   for (const eff of def.recompenses.effets) appliquerEffet(eff, e, dm);
 }
 
+/** Fait échouer une quête une seule fois : plus aucune étape active, le texte d'échec raconté, ses effets appliqués. */
+export function echouerQuete(id: string, e: EtatMonde, dm: DonneesMonde): void {
+  const def = dm.quetes.get(id);
+  const q = (e.quetes[id] ??= { statut: 'active', actives: [], accomplies: [] });
+  if (q.statut === 'terminee' || q.statut === 'echouee') return;
+  q.statut = 'echouee';
+  q.actives = [];
+  if (!def?.echec) return;
+  if (def.echec.texte) e.narrations.push(def.echec.texte);
+  for (const eff of def.echec.effets) appliquerEffet(eff, e, dm);
+}
+
+/** Ce qu'une quête rapporte, tout compris : ses récompenses et les PX, l'or et les objets que donnent ses étapes. */
+export function recompensesDeQuete(def: Quete): { xp: number; pieces: number; objets: string[]; annonce?: string } {
+  const effets = [...def.recompenses.effets, ...def.etapes.flatMap((x) => x.effets)];
+  let xp = def.recompenses.xp;
+  let pieces = def.recompenses.pieces;
+  const objets = [...def.recompenses.objets];
+  for (const f of effets) {
+    if ('xp' in f) xp += f.xp;
+    else if ('pieces' in f && f.pieces > 0) pieces += f.pieces;
+    else if ('objet' in f && !f.objet.retirer) objets.push(f.objet.id);
+  }
+  return { xp, pieces, objets, ...(def.recompenses.annonce ? { annonce: def.recompenses.annonce } : {}) };
+}
+
 /** Fait progresser les quêtes dont une étape active est accomplie (jusqu'à stabilité). */
 export function avancerQuetes(e: EtatMonde, dm: DonneesMonde): void {
   for (let tour = 0; tour < 20; tour++) {
@@ -287,7 +314,7 @@ export function avancerQuetes(e: EtatMonde, dm: DonneesMonde): void {
         const etape = def.etapes.find((x) => x.id === idEtape);
         if (!etape) continue;
         if (etape.echec && evaluerCondition(etape.echec, e)) {
-          q.statut = 'echouee';
+          echouerQuete(id, e, dm);
           change = true;
           break;
         }

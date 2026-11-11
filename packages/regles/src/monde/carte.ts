@@ -6,6 +6,7 @@
 // lieu visité (les mêmes passages que le panneau « Partir »). Un passage caché non découvert ne montre rien. Ni résumé, ni
 // description, ni visuel d'un lieu : seulement son nom, son type et sa place sur la carte.
 import { sortiesDe, type PartieMonde } from './exploration';
+import { lieuxObjectifs } from './objectifs';
 import type { Lieu } from './schemas';
 
 export type EtatMarqueur = 'ici' | 'visite' | 'connu';
@@ -24,6 +25,8 @@ export interface MarqueurCarte {
   aCarte: boolean;
   /** On peut y aller directement depuis le lieu où se trouve le groupe (un passage libre, ou verrouillé / bloqué). */
   acces?: { heures: number; verrouille: boolean; bloque: boolean };
+  /** Les quêtes en cours dont une étape active se joue ici (ou dans un lieu qu'il contient). */
+  objectifs?: string[];
 }
 
 export interface VueCarte {
@@ -72,6 +75,7 @@ export function carteDuMonde(p: PartieMonde): CarteMonde {
   // 2. Où le groupe se trouve, et par où il peut aller d'ici.
   const ici = new Set(chaine(lieux, courantId));
   const acces = new Map(sortiesDe(p, courantId).filter((s) => !s.cache).map((s) => [s.vers, s]));
+  const objectifs = lieuxObjectifs(p);
 
   // 3. Les enfants de chaque lieu conteneur (dans l'ordre du monde : les positions automatiques restent stables).
   const enfants = new Map<string, Lieu[]>();
@@ -97,6 +101,7 @@ export function carteDuMonde(p: PartieMonde): CarteMonde {
         etat: etatM,
         aCarte: enfants.has(l.id) && visites.has(l.id),
         ...(s ? { acces: { heures: s.heures, verrouille: !!s.verrou && !s.verrou.ouvert, bloque: s.bloque } } : {}),
+        ...(objectifs.has(l.id) ? { objectifs: objectifs.get(l.id)! } : {}),
       });
     });
     if (!marqueurs.length) continue;

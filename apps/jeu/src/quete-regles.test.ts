@@ -1,7 +1,7 @@
 // Le parchemin d'une quête acceptée : repérage des quêtes qui passent « en cours » et texte du parchemin, avec le vrai moteur.
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche } from '@crpg/regles';
+import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, recompensesDeQuete } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
 import { chargerMonde } from '../../../packages/regles/src/monde/chargeur';
 import { changementsDeQuetes, nouvellesQuetes, parcheminDeQuete } from './quete-regles';
@@ -56,8 +56,11 @@ describe('le texte du parchemin', () => {
   it('les récompenses sont en clair : PX, or et objets nommés', () => {
     const q = [...dm.quetes.values()].find((x) => x.recompenses.xp > 0 && x.recompenses.pieces > 0)!;
     const p = parcheminDeQuete(dm, q.id)!;
-    expect(p.recompenses).toContain(`${q.recompenses.xp} PX`);
-    expect(p.recompenses).toContain(`${q.recompenses.pieces} po`);
+    // Le total : récompenses de la quête plus ce que donnent ses étapes.
+    const total = recompensesDeQuete(q);
+    expect(total.xp).toBeGreaterThanOrEqual(q.recompenses.xp);
+    expect(p.recompenses).toContain(`${total.xp} PX`);
+    expect(p.recompenses).toContain(`${total.pieces} po`);
   });
 });
 
@@ -86,7 +89,7 @@ describe('la fin et l’échec d’une quête', () => {
     expect(changementsDeQuetes(actif.etat.quetes, termine.etat.quetes)).toEqual([{ id: q.id, genre: 'fin' }]);
     const p = parcheminDeQuete(dm, q.id, 'fin')!;
     expect(p.rubrique).toBe('Quête accomplie');
-    expect(p.recompenses).toContain(`${q.recompenses.xp} PX`);
+    expect(p.recompenses).toContain(`${recompensesDeQuete(q).xp} PX`);
     expect(p.objectif).toBeUndefined(); // le premier objectif n'a plus de sens à la fin
     const echec = parcheminDeQuete(dm, q.id, 'echec')!;
     expect(echec.rubrique).toBe('Quête échouée');

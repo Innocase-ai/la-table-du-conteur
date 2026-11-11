@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { attenteInfluence, ddInfluence, influencer, modeInfluence, parler, pnjPresents, sujetsDisponibles, attitude } from '../monde/dialogue';
 import { evaluerCondition } from '../monde/etat';
+import { signeDeQuete } from '../monde/objectifs';
 import { commande, type Module } from '../noyau/types';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
 import type { ContexteJeu, Partie } from '../noyau/types';
@@ -52,7 +53,18 @@ export const moduleDialogue: Module = {
       propositions: (ctx, p) => {
         // En exploration : les personnes présentes ; en conversation : les sujets que le PNJ accepte d'aborder.
         if (enExploration(p)) {
-          return pnjPresents(pm(ctx, p)).map((n) => ({ groupe: PANNEAUX.personnes, libelle: `Parler à ${n.nom}`, detail: n.role, image: { groupe: 'pnj' as const, id: n.id }, ordre: { type: 'parler', pnj: n.id } }));
+          const partie = pm(ctx, p);
+          return pnjPresents(partie).map((n) => {
+            const signe = signeDeQuete(partie, n);
+            return {
+              groupe: PANNEAUX.personnes,
+              libelle: `Parler à ${n.nom}`,
+              detail: n.role,
+              image: { groupe: 'pnj' as const, id: n.id },
+              ordre: { type: 'parler', pnj: n.id },
+              ...(signe ? { signe, aide: signe === '!' ? 'A une quête à vous confier.' : 'Attend votre rapport : une quête peut se conclure ici.' } : {}),
+            };
+          });
         }
         const i = interlocuteur(ctx, p);
         // Le libellé dit ce que le joueur dit ou fait (`question`) ; sans lui, les mots-clés. Les mots restent en infobulle.

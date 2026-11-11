@@ -93,6 +93,7 @@ export const moduleExploration: Module = {
             // Le joueur doit savoir où il va avant de cliquer : une phrase sous le bouton, et ce qu'il ignore encore.
             detail: [x.visite ? undefined : 'inexploré', x.heures > 0 ? `${x.heures} h` : undefined].filter(Boolean).join(', ') || undefined,
             apercu: x.apercu,
+            ...(x.objectifs ? { signe: '◆' as const } : {}),
             ordre: { type: 'aller', vers: x.vers },
             desactivee: x.etat === 'absent' ? (x.absent === 'pack' ? 'Fait partie d’un autre pack.' : 'Bientôt disponible.') : x.etat === 'bloque' ? 'Infranchissable pour l’instant.' : undefined,
           }));

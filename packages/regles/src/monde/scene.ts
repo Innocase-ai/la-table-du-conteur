@@ -5,13 +5,15 @@ import { attitude, pnjPresents, sujetsDisponibles } from './dialogue';
 import { pnjDansLieu } from './presence';
 import { evaluerCondition } from './etat';
 import { sortiesDe, type PartieMonde } from './exploration';
+import { lieuxObjectifs, signeDeQuete, type SigneQuete } from './objectifs';
 
 export interface FicheScene {
   jour: number;
   heure: number;
   lieu: { id: string; nom: string; type: string; resume: string; description: string; ambiance?: string; services: string[]; repos: string; parent?: string };
-  sorties: { vers: string; nom: string; type: string; description?: string; apercu: string; visite: boolean; heures: number; etat: 'libre' | 'verrouille' | 'bloque' | 'absent'; dd?: number; absent?: 'bientot' | 'pack' }[];
-  pnj: { id: string; nom: string; role: string; attitude: number; sujets: number }[];
+  sorties: { vers: string; nom: string; type: string; description?: string; apercu: string; visite: boolean; heures: number; etat: 'libre' | 'verrouille' | 'bloque' | 'absent'; dd?: number; absent?: 'bientot' | 'pack'; objectifs?: string[] }[];
+  /** `quete` : « ! » s'il a une quête à confier, « ? » s'il attend un rapport. */
+  pnj: { id: string; nom: string; role: string; attitude: number; sujets: number; quete?: SigneQuete }[];
   tresors: { id: string; nom: string; contenant: string; description: string; etat: 'ferme' | 'ouvert' | 'garde' }[];
   pieges: { id: string; nom: string; resume: string; etat: 'repere' | 'desarme' | 'declenche' }[];
   enigmes: { id: string; nom: string; enonce: string; etat: 'a-resoudre' | 'resolue' | 'echouee' }[];
@@ -39,7 +41,8 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
   const tresors = [...dm.tresors.values()].filter(
     (t) => t.lieu === l.id && !ex.tresorsPris.includes(t.id) && (!t.condition || evaluerCondition(t.condition, etat)) && (!t.acces.cache || ex.decouverts.includes(`tresor:${t.id}`)),
   );
-  const faitsDuLieu = new Set([...l.faits.map((f) => f.fait), ...presents.flatMap((n) => [...n.savoir, ...n.sujets.flatMap((s) => s.revele)])]);
+  const objectifs = lieuxObjectifs(p);
+  const faitsDuLieu =new Set([...l.faits.map((f) => f.fait), ...presents.flatMap((n) => [...n.savoir, ...n.sujets.flatMap((s) => s.revele)])]);
   return {
     jour: etat.jour,
     heure: etat.heure ?? 8,
@@ -51,14 +54,18 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
         nom: s.nom,
         type: s.type,
         description: s.description,
-        apercu: s.apercu + signalerPnj(p, s.vers),
+        apercu: s.apercu + signalerPnj(p, s.vers) + (objectifs.has(s.vers) ? ` Objectif de quête : ${objectifs.get(s.vers)!.join(', ')}.` : ''),
+        ...(objectifs.has(s.vers) ? { objectifs: objectifs.get(s.vers)! } : {}),
         visite: s.visite,
         heures: s.heures,
         etat: s.absent ? 'absent' : s.bloque ? 'bloque' : s.verrou && !s.verrou.ouvert ? 'verrouille' : 'libre',
         dd: s.verrou && !s.verrou.ouvert ? s.verrou.dd : undefined,
         absent: s.absent?.motif,
       })),
-    pnj: presents.map((n) => ({ id: n.id, nom: n.nom, role: n.role, attitude: attitude(p, n), sujets: sujetsDisponibles(p, n).length })),
+    pnj: presents.map((n) => {
+      const signe = signeDeQuete(p, n);
+      return { id: n.id, nom: n.nom, role: n.role, attitude: attitude(p, n), sujets: sujetsDisponibles(p, n).length, ...(signe ? { quete: signe } : {}) };
+    }),
     tresors: tresors.map((t) => ({
       id: t.id,
       nom: t.nom,

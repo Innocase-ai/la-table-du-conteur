@@ -116,6 +116,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
         <>
           <span className="vignette-bouton" style={vignette ? { backgroundImage: `url(${vignette})` } : undefined} aria-hidden>
             {!vignette && p.libelle.replace(/^Parler à /, '').charAt(0)}
+            {p.signe && <span className={`signe-quete signe-${p.signe === '?' ? 'rapport' : p.signe === '!' ? 'quete' : 'objectif'}`} aria-label={p.aide}>{p.signe}</span>}
           </span>
           <span className="bouton-texte">
             <span className="bouton-titre">{p.libelle}</span>
@@ -125,6 +126,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
       ) : (
         <>
           {p.icone && !aConfirmer && <Pictogramme cle={p.icone} taille={p.style === 'discret' ? 18 : 22} surFond={p.style === 'principal'} />}
+          {p.signe && !aConfirmer && <span className={`signe-quete signe-en-ligne signe-${p.signe === '?' ? 'rapport' : p.signe === '!' ? 'quete' : 'objectif'}`} title="Objectif de quête">{p.signe}</span>}
           {aConfirmer ? 'Confirmer ?' : p.etiquette ? `[${p.etiquette}] ${p.libelle}` : p.libelle}
           {!aConfirmer && detail && <small> — {detail}</small>}
         </>

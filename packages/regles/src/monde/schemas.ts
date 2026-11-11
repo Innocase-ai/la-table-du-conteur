@@ -496,10 +496,22 @@ export const Quete = z.object({
         termine: z.boolean().default(false),
         echec: Condition.optional(),
         effets: Effets.default([]),
+        // Où l'étape se joue (un lieu du monde) : le journal le dit, la carte et les sorties le signalent tant que l'étape est active.
+        lieu: Id.optional(),
       }),
     )
     .min(1),
-  recompenses: z.object({ xp: z.number().int().min(0).default(0), pieces: z.number().int().min(0).default(0), objets: z.array(Id).default([]), effets: Effets.default([]) }),
+  recompenses: z.object({
+    xp: z.number().int().min(0).default(0),
+    pieces: z.number().int().min(0).default(0),
+    objets: z.array(Id).default([]),
+    effets: Effets.default([]),
+    // Ce que le donneur promet, en clair, quand la récompense ne se calcule pas (« sa gratitude », « une place à sa table ») ;
+    // les PX et l'or des étapes et des récompenses sont additionnés à part (`recompensesDeQuete`).
+    annonce: z.string().optional(),
+  }),
+  // Une quête qui échoue (une étape dont l'`echec` devient vrai, ou l'effet `quete: echouee`) : ce qu'on lit et ce qui change.
+  echec: z.object({ texte: Texte.optional(), effets: Effets.default([]) }).optional(),
   // Pour le MJ : les variantes, les façons de la rater ou de la résoudre autrement.
   ramifications: z.string().optional(),
 });

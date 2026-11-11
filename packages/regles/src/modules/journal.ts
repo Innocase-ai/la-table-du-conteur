@@ -1,7 +1,7 @@
 // Module Journal : les quêtes (proposées, en cours avec leurs étapes, accomplies, échouées). Ce que le groupe sait et les
 // questions qu'il se pose vivent dans le module Codex. Sa seule commande : accepter une quête proposée.
 import { z } from 'zod';
-import { evaluerCondition } from '../monde/etat';
+import { evaluerCondition, recompensesDeQuete } from '../monde/etat';
 import { accepterQuete } from '../monde/exploration';
 import { commande, type Encart, type FicheInfo, type Module, type Partie, type ContexteJeu } from '../noyau/types';
 import { libre, partieMonde, verser } from './commun';
@@ -11,17 +11,31 @@ const TYPES = { principale: 'Quête principale', secondaire: 'Quête secondaire'
 
 const STATUTS = { proposee: 'proposée', active: 'en cours', terminee: 'accomplie', echouee: 'échouée' } as const;
 
-/** La fiche d'une quête pour le joueur : type, donneur, niveaux, état, puis son résumé et ce qu'il reste à faire. */
-function ficheDeQuete(ctx: ContexteJeu, p: Partie, def: Quete, statut: keyof typeof STATUTS, actives: string[]): FicheInfo {
+/** Le texte d'une étape à faire, avec le lieu où elle se joue s'il est donné (« → Fouillez le chariot (Le Vieux Pont) »). */
+function ligneEtape(ctx: ContexteJeu, def: Quete, id: string): string | undefined {
+  const etape = def.etapes.find((x) => x.id === id);
+  if (!etape) return undefined;
+  const lieu = etape.lieu ? ctx.dm.lieux.get(etape.lieu)?.nom : undefined;
+  return lieu ? `${etape.texte} (${lieu})` : etape.texte;
+}
+
+/** La fiche d'une quête pour le joueur : type, donneur, niveaux, état, récompense, puis son résumé, ce qu'il reste à faire et ce qui est fait. */
+function ficheDeQuete(ctx: ContexteJeu, p: Partie, def: Quete, statut: keyof typeof STATUTS, actives: string[], accomplies: string[] = []): FicheInfo {
   const proprietes: FicheInfo['proprietes'] = [{ libelle: 'État', valeur: STATUTS[statut] }];
   const donneur = def.donneur ? ctx.dm.pnj.get(def.donneur)?.nom : undefined;
   if (donneur) proprietes.push({ libelle: 'Confiée par', valeur: donneur });
   const lieu = def.lieu ? ctx.dm.lieux.get(def.lieu) : undefined;
   if (lieu && p.etat.lieuxVisites.includes(lieu.id)) proprietes.push({ libelle: 'Lieu', valeur: lieu.nom });
   proprietes.push({ libelle: 'Niveaux', valeur: def.niveau.min === def.niveau.max ? String(def.niveau.min) : `${def.niveau.min} à ${def.niveau.max}` });
-  const etapes = actives.map((e) => def.etapes.find((x) => x.id === e)?.texte).filter((x): x is string => !!x);
+  const total = recompensesDeQuete(def);
+  const recompense = [total.xp ? `${total.xp} PX` : '', total.pieces ? `${total.pieces} po` : '', ...total.objets.map((o) => ctx.dm.objets.get(o)?.nom ?? o), total.annonce ?? ''].filter(Boolean);
+  if (recompense.length && statut !== 'echouee') proprietes.push({ libelle: statut === 'terminee' ? 'Reçu' : 'Récompense', valeur: recompense.join(', ') });
+  const etapes = actives.map((e) => ligneEtape(ctx, def, e)).filter((x): x is string => !!x);
+  const faites = accomplies.map((e) => def.etapes.find((x) => x.id === e)?.texte).filter((x): x is string => !!x);
   const aFaire = statut === 'active' && etapes.length ? [`À faire :\n${etapes.map((e) => `→ ${e}`).join('\n')}`] : [];
-  return { rubrique: 'Informations sur la quête', titre: def.nom, sousTitre: TYPES[def.type], proprietes, texte: [def.resume, ...aFaire].join('\n\n') };
+  const dejaFait = faites.length ? [`Déjà fait :\n${faites.map((e) => `✓ ${e}`).join('\n')}`] : [];
+  const echec = statut === 'echouee' && def.echec?.texte ? [def.echec.texte] : [];
+  return { rubrique: 'Informations sur la quête', titre: def.nom, sousTitre: TYPES[def.type], proprietes, texte: [def.resume, ...echec, ...aFaire, ...dejaFait].join('\n\n') };
 }
 
 const PANNEAU_PROPOSEES = { id: 'quetes-proposees', titre: 'Quêtes proposées', ordre: 15 };
@@ -61,9 +75,9 @@ export const moduleJournal: Module = {
         lignes: enCours.map(({ q, def }) => ({
           libelle: def!.nom,
           valeur: TYPES[def!.type],
-          detail: [def!.resume, ...q.actives.map((e) => `→ ${def!.etapes.find((x) => x.id === e)?.texte ?? e}`)].join('\n'),
+          detail: [def!.resume, ...q.actives.map((e) => `→ ${ligneEtape(ctx, def!, e) ?? e}`)].join('\n'),
           ton: def!.type === 'principale' ? ('fort' as const) : undefined,
-          fiche: ficheDeQuete(ctx, p, def!, q.statut, q.actives),
+          fiche: ficheDeQuete(ctx, p, def!, q.statut, q.actives, q.accomplies),
         })),
       },
       ...(finies.length
@@ -73,7 +87,7 @@ export const moduleJournal: Module = {
               id: 'quetes-finies',
               titre: 'Quêtes achevées',
               ordre: 1,
-              lignes: finies.map(({ q, def }) => ({ libelle: def!.nom, valeur: q.statut === 'terminee' ? 'accomplie' : 'échouée', ton: q.statut === 'terminee' ? ('succes' as const) : ('danger' as const), fiche: ficheDeQuete(ctx, p, def!, q.statut, []) })),
+              lignes: finies.map(({ q, def }) => ({ libelle: def!.nom, valeur: q.statut === 'terminee' ? 'accomplie' : 'échouée', ton: q.statut === 'terminee' ? ('succes' as const) : ('danger' as const), fiche: ficheDeQuete(ctx, p, def!, q.statut, [], q.accomplies) })),
             },
           ]
         : []),

@@ -44,6 +44,7 @@ export * from './monde/diagnostiquer';
 export * from './monde/images';
 export * from './monde/communs';
 export * from './monde/carte';
+export * from './monde/objectifs';
 export * from './monde/estimation';
 export * from './monde/exploration';
 export * from './monde/reponses';

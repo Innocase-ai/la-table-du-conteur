@@ -422,7 +422,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       cond(`${ou}, étape « ${e.id} »`, e.completion);
       cond(`${ou}, étape « ${e.id} » (échec)`, e.echec);
       effets(`${ou}, étape « ${e.id} »`, e.effets);
+      if (e.lieu) verifierRef(`${ou}, étape « ${e.id} » (lieu)`, 'lieu', e.lieu);
     }
+    effets(`${ou} (échec)`, q.echec?.effets);
+    if (q.echec && !q.echec.texte && !q.echec.effets.length) avis(`${ou} : bloc « echec » vide (ni texte ni effets).`);
     const vues = new Set<string>();
     const pile = [q.debut];
     while (pile.length) {

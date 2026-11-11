@@ -127,6 +127,8 @@ export interface Proposition {
   icone?: string;
   /** Une vignette (portrait d'un PNJ, image d'un lieu) du manifeste d'images du monde, affichée à gauche du bouton. */
   image?: { groupe: 'lieux' | 'pnj'; id: string };
+  /** Un repère de quête : « ! » (une quête à prendre), « ? » (un rapport attendu), « ◆ » (un objectif de quête en cours mène là). */
+  signe?: '!' | '?' | '◆';
   /** Une phrase d'explication affichée sous le bouton (où mène une sortie, ce que fait l'action), pour que le joueur sache pourquoi il clique. */
   apercu?: string;
   /** La commande à envoyer au moteur. */

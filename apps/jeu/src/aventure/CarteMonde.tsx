@@ -112,6 +112,11 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
               <circle className="carte-zone" cx={cx} cy={cy} r={26 * u} />
               {m.etat === 'ici' && <circle className="carte-repere" cx={cx} cy={cy} r={20 * u} />}
               <circle className="carte-point" cx={cx} cy={cy} r={(m.etat === 'ici' ? 11 : 9) * u} />
+              {m.objectifs && (
+                <rect className="carte-objectif" x={cx + 9 * u} y={cy - 21 * u} width={11 * u} height={11 * u} transform={`rotate(45 ${cx + 14.5 * u} ${cy - 15.5 * u})`}>
+                  <title>Objectif : {m.objectifs.join(', ')}</title>
+                </rect>
+              )}
               {nom && (
                 <text className="carte-nom" x={cx} y={cy - 18 * u} fontSize={15 * u} textAnchor="middle">
                   {m.nom}
@@ -125,6 +130,7 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
         {sel ? (
           <>
             <strong>{sel.nom}</strong> <small>{TYPES[sel.type] ?? sel.type}</small>
+            {sel.objectifs && <p className="carte-objectifs">◆ Objectif de quête : {sel.objectifs.join(', ')}</p>}
             {sel.etat === 'ici' ? (
               <p>{sel.id === carte.lieu.id ? 'Le groupe est ici.' : 'Le groupe est quelque part là-dedans.'}</p>
             ) : sel.acces?.bloque ? (
@@ -147,7 +153,7 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
           </>
         ) : (
           <p className="carte-aide">
-            <span className="carte-legende ici" /> vous êtes ici · <span className="carte-legende visite" /> visité · <span className="carte-legende connu" /> connu, pas encore visité. Choisissez un lieu.
+            <span className="carte-legende ici" /> vous êtes ici · <span className="carte-legende visite" /> visité · <span className="carte-legende connu" /> connu, pas encore visité · <span className="carte-legende objectif" /> objectif de quête. Choisissez un lieu.
           </p>
         )}
       </div>

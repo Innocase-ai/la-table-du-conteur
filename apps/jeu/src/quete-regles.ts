@@ -1,6 +1,6 @@
 // Le retour visuel d'une quête : repérer les quêtes qui viennent de commencer (bouton « Accepter », parole de PNJ, événement), de
 // se terminer ou d'échouer, et préparer ce que le parchemin raconte. Sans React, testé avec le vrai moteur (`quete-regles.test.ts`).
-import type { DonneesMonde, EtatMonde } from '@crpg/regles';
+import { recompensesDeQuete, type DonneesMonde, type EtatMonde } from '@crpg/regles';
 
 type EtatQuetes = EtatMonde['quetes'];
 
@@ -69,10 +69,12 @@ export function parcheminDeQuete(
   const metier = donneur?.titre ?? donneur?.role.split(/\s*:\s*/)[0];
   const origine = donneur ? `${donneur.nom}${metier ? `, ${metier}` : ''}${lieu ? ` — ${lieu.nom}` : ''}` : lieu ? lieu.nom : undefined;
   const objectif = genre === 'debut' ? q.etapes.find((e) => e.id === q.debut)?.texte : undefined;
+  // Tout ce que la quête rapporte : ses récompenses et ce que donnent ses étapes (PX, or, objets), plus ce que le donneur promet.
+  const total = recompensesDeQuete(q);
   const recompenses =
     genre === 'echec'
       ? []
-      : [q.recompenses.xp ? `${q.recompenses.xp} PX` : '', q.recompenses.pieces ? `${q.recompenses.pieces} po` : '', ...q.recompenses.objets.map(nomObjet)].filter(Boolean);
+      : [total.xp ? `${total.xp} PX` : '', total.pieces ? `${total.pieces} po` : '', ...total.objets.map(nomObjet), total.annonce ?? ''].filter(Boolean);
   return {
     id,
     genre,
@@ -81,7 +83,7 @@ export function parcheminDeQuete(
     nom: q.nom,
     ...(origine ? { origine } : {}),
     ...(donneur ? { donneur: donneur.id } : {}),
-    explication: q.resume,
+    explication: genre === 'echec' && q.echec?.texte ? q.echec.texte : q.resume,
     ...(objectif ? { objectif } : {}),
     recompenses,
     niveaux: q.niveau.min === q.niveau.max ? `niveau ${q.niveau.min}` : `niveaux ${q.niveau.min} à ${q.niveau.max}`,
