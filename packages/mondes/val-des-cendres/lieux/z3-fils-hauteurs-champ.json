@@ -23,7 +23,11 @@
         "retour": "De l'intérieur, la soie laisse filtrer un jour gris ; la caverne reste visible à travers la trame."
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 19,
+      "y": 50
+    }
   },
   {
     "id": "gro-fils-entree-voilee",
@@ -48,7 +52,11 @@
         "retour": "Derrière soi, le couloir ramène à la soie blanche, dont le pan claque doucement quand on le frôle."
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 30
+    }
   },
   {
     "id": "gro-fils-couloir-tisse",
@@ -88,7 +96,11 @@
         "unique": true
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 30
+    }
   },
   {
     "id": "gro-fils-garde-manger",
@@ -112,7 +124,11 @@
         "declencheur": "entree",
         "unique": true
       }
-    ]
+    ],
+    "position": {
+      "x": 78,
+      "y": 30
+    }
   },
   {
     "id": "gro-fils-nid",
@@ -145,7 +161,11 @@
         "unique": true
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 70
+    }
   },
   {
     "id": "gro-fils-gouffre",
@@ -171,7 +191,11 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 70
+    }
   },
   {
     "id": "cairn-des-hauteurs",
@@ -235,7 +259,11 @@
     "evenements": [
       "gro-ev-entree-hauteurs"
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 40,
+      "y": 50
+    }
   },
   {
     "id": "gro-hauteurs-bergerie",
@@ -255,7 +283,11 @@
       "abri",
       "guide"
     ],
-    "repos": "sur"
+    "repos": "sur",
+    "position": {
+      "x": 22,
+      "y": 30
+    }
   },
   {
     "id": "gro-hauteurs-enclos",
@@ -271,7 +303,11 @@
       "min": 1,
       "max": 2
     },
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 30
+    }
   },
   {
     "id": "gro-hauteurs-cairn",
@@ -296,7 +332,11 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 78,
+      "y": 30
+    }
   },
   {
     "id": "gro-hauteurs-replat",
@@ -320,7 +360,11 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 70
+    }
   },
   {
     "id": "gro-hauteurs-vire",
@@ -351,7 +395,11 @@
         "unique": true
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 70
+    }
   },
   {
     "id": "champ-de-cendre-gris",
@@ -412,7 +460,11 @@
     "evenements": [
       "gro-ev-entree-champ"
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 61,
+      "y": 50
+    }
   },
   {
     "id": "gro-champ-camp",
@@ -438,7 +490,11 @@
     "services": [
       "abri"
     ],
-    "repos": "sur"
+    "repos": "sur",
+    "position": {
+      "x": 22,
+      "y": 30
+    }
   },
   {
     "id": "gro-champ-tente-du-frere",
@@ -454,7 +510,11 @@
       "min": 1,
       "max": 3
     },
-    "repos": "sur"
+    "repos": "sur",
+    "position": {
+      "x": 50,
+      "y": 30
+    }
   },
   {
     "id": "gro-champ-allee-des-couches",
@@ -486,7 +546,11 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 78,
+      "y": 30
+    }
   },
   {
     "id": "gro-champ-cercle-des-noms",
@@ -502,7 +566,11 @@
       "min": 1,
       "max": 3
     },
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 70
+    }
   },
   {
     "id": "gro-champ-poste-ensevelie",
@@ -526,6 +594,10 @@
         }
       }
     ],
-    "repos": "dangereux"
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 70
+    }
   }
 ]
