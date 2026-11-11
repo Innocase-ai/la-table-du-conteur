@@ -18,17 +18,18 @@ describe('signaler les PNJ des lieux voisins', () => {
     p.etat.lieu = 'ald-auberge-de-bregor';
     const sorties = ficheDeScene(p).sorties;
     const salle = sorties.find((s) => s.vers === 'ald-auberge-salle-commune');
-    expect(salle?.apercu).toContain('On y croise : Varek le Brisé, Silas l’Épieur.'.replace('’', "'"));
+    expect(salle?.apercu).toMatch(/On y croise : .*Varek le Brisé.*Silas l.Épieur/);
     expect(sorties.find((s) => s.vers === 'ald-auberge-comptoir-et-cellier')?.apercu).toContain('Brégor le Borgne');
-    // le perron est vide : aucune mention
-    expect(sorties.find((s) => s.vers === 'ald-auberge-perron-et-potence')?.apercu).not.toContain('On y croise');
+    // l'étage est vide : aucune mention
+    expect(sorties.find((s) => s.vers === 'ald-auberge-etage-et-combles')?.apercu).not.toContain('On y croise');
   });
 
   it('un PNJ qui voyage avec le groupe, ou mort, n’est pas signalé', () => {
     const p = nouvellePartie(r.monde, etatInitial(r.monde), groupe, creerGenerateur(1));
     p.etat.escortes = ['varek-le-brise'];
-    expect(pnjDansLieu(p, 'ald-auberge-salle-commune').map((n) => n.id)).toEqual(['silas-l-epieur']);
+    expect(pnjDansLieu(p, 'ald-auberge-salle-commune').map((n) => n.id)).not.toContain('varek-le-brise');
+    expect(pnjDansLieu(p, 'ald-auberge-salle-commune').map((n) => n.id)).toContain('silas-l-epieur');
     p.etat.pnjEtats['silas-l-epieur'] = 'mort';
-    expect(pnjDansLieu(p, 'ald-auberge-salle-commune')).toEqual([]);
+    expect(pnjDansLieu(p, 'ald-auberge-salle-commune').map((n) => n.id)).not.toContain('silas-l-epieur');
   });
 });

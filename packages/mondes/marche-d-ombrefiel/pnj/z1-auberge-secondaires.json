@@ -1,0 +1,308 @@
+[
+  {
+    "id": "obert-le-charretier",
+    "nom": "Obert",
+    "titre": "Charretier de la Route du Roi",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "45 ans",
+    "role": "Charretier qui conduisait le chariot attaqué au pied de la rampe, sur la Route du Roi. Il ramenait du gruau et du seigle pour les réfugiés d'Aldric.",
+    "lieu": "ald-carrefour-d-aldric",
+    "apparence": "Trapu, les épaules larges de celui qui a tiré des chariots toute sa vie, le visage tanné et la barbe de trois jours. Veste de toile déchirée à l'épaule, boue séchée jusqu'aux genoux, un fouet enroulé à la ceinture. Il garde une main sur les rênes même quand les mules sont à l'arrêt.",
+    "personnalite": {
+      "traits": [
+        "méfiant",
+        "têtu",
+        "tendre avec les bêtes",
+        "compte chaque sou"
+      ],
+      "voix": "Il parle bas et par à-coups, les yeux sur le chemin. Chaque réponse commence par un « Bon. » qui ne veut pas dire que c'est bien, et il appelle ses mules par leur nom.",
+      "valeurs": [
+        "on ne laisse pas une bête dans la boue",
+        "la route appartient à ceux qui la passent"
+      ],
+      "desir": "Arriver à Aldric avec ce qui reste de son chargement et ses mules.",
+      "peur": "Qu'on lui reproche d'avoir perdu le chariot.",
+      "defaut": "Il soupçonne tout homme armé, même celui qui vient le sauver."
+    },
+    "presences": [
+      {
+        "lieu": "ald-auberge-cour-et-ecuries",
+        "moment": "jour",
+        "condition": {
+          "rencontre": {
+            "id": "ald-r-chariot-enlise"
+          }
+        }
+      },
+      {
+        "lieu": "ald-auberge-cour-et-ecuries",
+        "moment": "soir",
+        "condition": {
+          "rencontre": {
+            "id": "ald-r-chariot-enlise"
+          }
+        }
+      },
+      {
+        "lieu": "ald-auberge-cour-et-ecuries",
+        "moment": "nuit",
+        "condition": {
+          "rencontre": {
+            "id": "ald-r-chariot-enlise"
+          }
+        }
+      }
+    ],
+    "attitude": 5,
+    "savoir": [
+      "f-peages-du-lion",
+      "f-ald-convoi-de-minerai-assailli"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "commercant"
+    },
+    "sujets": [
+      {
+        "id": "les-peages-de-la-route",
+        "mots": [
+          "péage",
+          "péages",
+          "barrière",
+          "Route du Roi",
+          "argent",
+          "sauf-conduit",
+          "taxe"
+        ],
+        "question": "Que coûtent les barrières de la Route du Roi ?",
+        "reponse": "« Deux pièces d'argent à chaque barrière, et un reçu qu'on vous tend comme une faveur. Entre Haute-Garde et ici, il y en a trois. Les soldats du Lion d'Acier portent des armures de fer neuf, bien luisantes, et ils ne regardent même pas les sauf-conduits. » Il crache sur le bas-côté. « Les chargements qui paient en pièces étrangères passent sans qu'on les fouille. Les autres attendent des heures sous la pluie. Moi, j'ai payé trois fois ce mois-ci. Bon. Réfléchissez à qui gagne quand on paie pour passer une route qui devrait être libre. »",
+        "revele": [
+          "f-peages-du-lion"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-pillards-du-chariot",
+        "mots": [
+          "pillards",
+          "bandits",
+          "cuir",
+          "affamés",
+          "attaque",
+          "fronde",
+          "gourdin",
+          "chariot"
+        ],
+        "question": "Qui vous a attaqué au pied de la rampe ?",
+        "reponse": "« Trois gueux, pas des brigands de métier. Un gourdin clouté, une dague rouillée, une fronde. Leur cuir bouilli est troué jusqu'aux coudes, et ils avaient le visage de gens qui n'ont pas mangé depuis une semaine. » Il baisse la voix. « Ils lorgnaient les sacs de seigle plus que ma bourse. Ils voulaient le ventre plein, pas l'or. La Marche est pleine de gens comme eux. Ne les tuez pas tous, si vous pouvez l'éviter. » Il fait claquer sa langue. « Mais ceux qui vous attendront au tournant ne seront pas toujours affamés. Gardez les yeux ouverts. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "ce-que-portait-le-chariot",
+        "mots": [
+          "cargaison",
+          "gruau",
+          "seigle",
+          "sacs",
+          "réfugiés",
+          "chargement",
+          "grain"
+        ],
+        "question": "Que transportait votre chariot ?",
+        "reponse": "« Du gruau et des sacs de seigle, une quarantaine, pour les réfugiés qui dorment dans les granges d'Aldric. Pas de l'or, pas des armes, rien qui vaille qu'on tue pour ça. » Il tapote la bâche, qui pend en lambeaux. « Les gens de la place attendent ce grain depuis dix jours. Une mère m'a demandé si la bouillie serait chaude ce soir, et je n'ai pas su quoi lui répondre. Les sacs sont mouillés, mais pas perdus : ce soir, les réfugiés auront leur bouillie, et c'est à vous qu'ils le devront. Bon. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "id": "perrin-le-garde",
+    "nom": "Perrin",
+    "titre": "Milicien au perron",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "38 ans",
+    "role": "Milicien de la Garde d'Émeraude posté au pied de la potence. Sans solde depuis des mois, il monte la garde pour une troupe qui ne vient plus le relever.",
+    "lieu": "ald-auberge-perron-et-potence",
+    "apparence": "Grand et sec, la barbe mal rasée, un casque de la milice trop grand qu'il garde penché sur la nuque. Cotte de mailles rouillée, un bouclier au blason d'émeraude fendu sur un bord, et une épée dont la lame s'est brisée net à deux doigts de la garde. Il se tient toujours près de la potence, comme si le bois le retenait.",
+    "personnalite": {
+      "traits": [
+        "cynique",
+        "fatigué",
+        "loyal à ses camarades",
+        "sans illusion"
+      ],
+      "voix": "Ton las, il coupe ses phrases par des soupirs et dit « Si ça vous amuse » chaque fois qu'il n'est pas d'accord.",
+      "valeurs": [
+        "ses camarades mangent avant lui",
+        "une lame se répare ou se remplace"
+      ],
+      "desir": "Toucher enfin sa solde et rentrer chez lui avant l'hiver.",
+      "peur": "Finir pendu à cette potence pour avoir désobéi à un ordre qu'il ne comprend pas.",
+      "defaut": "Il laisse passer ce qu'il devrait arrêter, parce que ça lui coûte moins de fatigue."
+    },
+    "presences": [],
+    "attitude": -5,
+    "savoir": [
+      "f-ald-fonte-friable",
+      "f-ald-garde-sans-solde"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "garde"
+    },
+    "sujets": [
+      {
+        "id": "ma-lame-brisee",
+        "mots": [
+          "lame",
+          "brisée",
+          "épée",
+          "fer",
+          "casse",
+          "acier",
+          "fonte"
+        ],
+        "question": "Pourquoi votre lame est-elle brisée ?",
+        "reponse": "« Trois semaines. Ce n'était pas un combat, juste un choc contre la pierre du perron, en tirant un voleur qui se débattait. Et crac : la lame s'est cassée net à deux doigts de la garde. » Il pose la poignée sur la rambarde du perron. « Toute la Marche s'effrite ainsi depuis six mois : les fers à cheval, les clous, les lames de la milice. Vous voulez une lame qui ne casse pas ? Cherchez du bronze ancien, chez Torben, si vous avez de quoi payer. Moi, je n'ai rien. Ma solde, c'est la pluie. »",
+        "revele": [
+          "f-ald-fonte-friable"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-patrouilles-du-pont",
+        "mots": [
+          "patrouille",
+          "patrouilles",
+          "pont",
+          "Vieux Pont",
+          "ronde",
+          "hommes",
+          "disparus"
+        ],
+        "question": "Pourquoi les patrouilles ne vont-elles plus au pont ?",
+        "reponse": "« Parce qu'on y perd des hommes. Il y a deux mois, une ronde de quatre hommes est partie vers le Vieux Pont. Deux sont revenus, sans leurs fers, et ils ont parlé de capes noires bordées de fil, et d'un tireur caché dans un chêne. » Il regarde la potence du coin de l'œil. « Le capitaine dit de ne plus y aller sans ordre écrit, et l'ordre écrit ne vient jamais. Alors les patrouilles tournent autour de la place et rentrent boire. Vous voulez que j'y aille, moi ? Pour être le prochain nom sur la liste ? »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-solde-qui-n-arrive-plus",
+        "mots": [
+          "solde",
+          "paie",
+          "argent",
+          "sans solde",
+          "mois",
+          "Garde",
+          "Haute-Garde"
+        ],
+        "question": "Quand la Garde vous paiera-t-elle enfin ?",
+        "reponse": "« Jamais, si vous écoutez le sergent. Ça fait quatre mois que la solde ne vient plus de Haute-Garde. On nous dit que le trésor est vide, puis qu'il sera plein au printemps. » Il rit sans gaieté. « Au printemps, on sera morts de faim ou partis. Moi, je reste, parce que mon père est resté, et que je n'ai pas d'autre métier que de tenir une porte. Mes camarades ont vendu leurs bottes pour manger. Certains louent leur épée aux marchands d'Aldric pour escorter les voitures, sans un mot à l'officier. La Garde ne paie plus, alors chacun se paie comme il peut. Ne répétez pas ça trop fort. »",
+        "revele": [
+          "f-ald-garde-sans-solde"
+        ],
+        "effets": [],
+        "unique": false
+      }
+    ]
+  },
+  {
+    "id": "ysabeau-de-sombreval",
+    "nom": "Ysabeau",
+    "titre": "Veuve de Sombreval",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "41 ans",
+    "role": "Veuve d'un mineur de Sombreval, réfugiée à l'auberge depuis deux semaines avec son fils et sa fille. Elle a quitté la vallée quand les fosses se sont vidées.",
+    "lieu": "ald-auberge-salle-commune",
+    "apparence": "Femme maigre au visage fatigué, cheveux gris tirés en chignon serré, mains rêches de savon et de charbon qu'elle n'a jamais tout à fait lavé. Robe de laine bleue reprisée aux coudes, châle gris sur les épaules, une lampe de galerie éteinte posée sur le banc à côté d'elle. Elle regarde toujours la porte.",
+    "personnalite": {
+      "traits": [
+        "digne",
+        "méfiante envers les contremaîtres",
+        "tenace",
+        "pudique sur sa peine"
+      ],
+      "voix": "Phrases longues et posées, qui s'arrêtent net quand elle approche de son deuil. Elle dit « mon homme » et jamais son nom en public.",
+      "valeurs": [
+        "on ne ment pas aux enfants",
+        "on paie ses dettes à la mine"
+      ],
+      "desir": "Trouver une place sûre pour ses deux enfants, loin des puits.",
+      "peur": "Que la mine la rappelle, et que ses enfants descendent à leur tour.",
+      "defaut": "Elle refuse l'aide qu'on lui offre, par fierté, puis elle s'en souvient longtemps."
+    },
+    "presences": [],
+    "attitude": 10,
+    "savoir": [
+      "f-ald-ysabeau-galeries-silencieuses"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "villageois"
+    },
+    "sujets": [
+      {
+        "id": "les-galeries-de-sombreval",
+        "mots": [
+          "galeries",
+          "mine",
+          "vide",
+          "mineurs",
+          "partent",
+          "Sombreval",
+          "fosses"
+        ],
+        "question": "Que se passe-t-il dans les galeries de Sombreval ?",
+        "reponse": "« Elles se vident. Depuis un mois, les mineurs partent un par un, puis par groupes, sans congé et sans leur paie. Mon homme y a passé dix-neuf ans. Il rentrait le soir la poussière dans les cils, et il disait que la roche chantait sous la pioche, comme une chose vivante. Maintenant, les fosses sont silencieuses. Les chariots de minerai descendent deux fois moins souvent, et les fondeurs ne rentrent plus coucher chez eux. » Elle serre son châle. « Mes voisins sont partis sans dire adieu. Je ne sais pas ce qui se passe au fond. »",
+        "revele": [
+          "f-ald-ysabeau-galeries-silencieuses"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-contremaitres",
+        "mots": [
+          "contremaître",
+          "contremaîtres",
+          "chefs",
+          "ordres",
+          "silence",
+          "garde",
+          "se taisent"
+        ],
+        "question": "Pourquoi les contremaîtres se taisent-ils ?",
+        "reponse": "« Avant, ils criaient, ils juraient, ils s'énervaient pour une pioche mal posée. Aujourd'hui, ils ne disent plus rien. Ils reçoivent leurs ordres sous pli cacheté, et ils les lisent seuls, dans leur baraque, la lampe baissée. Le contremaître de l'étage quatre, un homme que je connais depuis vingt ans, a demandé pourquoi les fosses fermaient. On lui a répondu de ne pas poser de questions. Il n'en pose plus. Il ne sort plus non plus. Les gens qui savent quelque chose se taisent, et ceux qui ne savent rien ont peur de demander. C'est ça, Sombreval aujourd'hui : un village où l'on baisse la voix avant de dire bonjour. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-piste-de-sombreval",
+        "mots": [
+          "piste",
+          "route",
+          "Sombreval",
+          "ravinée",
+          "chemin",
+          "pluie",
+          "charrette"
+        ],
+        "question": "Peut-on encore prendre la piste de Sombreval ?",
+        "reponse": "« On peut, mais pas comme avant, et pas la nuit. Les pluies ont ravagé le chemin : des ornières de la largeur d'un bras, des pierres qui roulent sous les sabots, et deux charrettes renversées au pied de la montée. » Elle montre l'ouest de la main. « Les muletiers passent quand même, mais ils s'arrêtent à chaque virage pour regarder derrière eux. Moi, j'ai fait le trajet à pied, mon fils sur le dos, en cinq heures. Prenez de l'eau et une corde, et ne vous fiez pas aux bornes : la moitié sont tombées. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ]
+  }
+]

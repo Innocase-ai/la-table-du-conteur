@@ -1,0 +1,102 @@
+[
+  {
+    "id": "hilaire-le-metayer",
+    "nom": "Hilaire",
+    "titre": "Métayer de la ferme Haddon",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "71 ans",
+    "role": "Ancien métayer de la ferme Haddon. Il refuse de quitter les ruines de la ferme brûlée et garde les bêtes qui restent.",
+    "lieu": "ald-moulin-ferme-haddon",
+    "apparence": "Vieil homme voûté, le dos cassé par quarante ans de labour, le visage couvert de cendre qu'il ne prend pas la peine d'essuyer. Blouse de toile brûlée sur une manche, bottes de paille liées aux chevilles. Il s'appuie d'une main à une porte sans charnières et tient de l'autre une fourche au manche noirci.",
+    "personnalite": {
+      "traits": [
+        "têtu",
+        "rancunier envers les soldats",
+        "fidèle",
+        "bavard quand il parle des morts"
+      ],
+      "voix": "Il parle par bribes, longtemps après qu'on lui a posé la question, et il s'interrompt pour regarder la grange. Il dit « Enfin, voilà ce que c'est » pour clore chaque souvenir.",
+      "valeurs": [
+        "on ne quitte pas la terre qui vous a nourri",
+        "on rend ce qu'on emprunte"
+      ],
+      "desir": "Relever un toit sur la ferme avant l'hiver, pour que la maison des Haddon tienne encore debout.",
+      "peur": "Mourir ici sans que personne sache où on l'a enterré.",
+      "defaut": "Il refuse qu'on l'aide, puis il pleure quand on repart."
+    },
+    "presences": [],
+    "attitude": 0,
+    "savoir": [
+      "f-ald-ferme-haddon-brulee",
+      "f-ald-aldwin-parti-avec-la-farine",
+      "f-ald-moulin-deserteurs-rancon"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "villageois"
+    },
+    "sujets": [
+      {
+        "id": "la-ferme-haddon",
+        "mots": [
+          "ferme",
+          "Haddon",
+          "Aldwin",
+          "Martha",
+          "brûlée",
+          "incendie",
+          "famille"
+        ],
+        "question": "Que s'est-il passé à la ferme Haddon ?",
+        "reponse": "« Les flammes, une nuit de fin d'été, il y a deux mois. Le toit de paille a pris comme une allumette, et la grange avec. J'étais au fond du champ, à rentrer les vaches. Quand je suis revenu, il ne restait que les murs noircis. » Il pose la main sur une pierre encore tiède. « J'ai travaillé cette terre quarante ans, comme métayer d'Aldwin et de Martha Haddon. Aldwin est parti il y a quatre jours avec son dernier chariot de farine pour Haute-Garde. Il devait rentrer hier au soir, et il n'est pas revenu. Pour moi, la ferme est toujours à Martha. Je ne la vendrai à personne. »",
+        "revele": [
+          "f-ald-ferme-haddon-brulee",
+          "f-ald-aldwin-parti-avec-la-farine"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-deserteurs-de-la-grange",
+        "mots": [
+          "déserteurs",
+          "grange",
+          "hommes",
+          "armes",
+          "dormir",
+          "ivres",
+          "soldats",
+          "Garde"
+        ],
+        "question": "Qui dort dans la grange, là-bas ?",
+        "reponse": "« Des soldats, enfin, ce qu'il en reste. Des hommes de la Garde d'Émeraude qui ont jeté leur casque et gardé leur couteau. Ils ont pris la grange comme on prend une auberge, sans payer, en rançonnant qui passe sur le chemin. Quand je leur ai demandé de partir, l'un m'a ri au nez. » Il baisse les yeux sur la fourche noircie. « Je ne compte plus ceux qui entrent la nuit. Je veux seulement qu'ils laissent les bêtes tranquilles. Si vous allez les voir, faites-le en plein jour, quand ils dorment encore sous la paille. Et ne prenez rien : ils vous le feront payer deux fois. »",
+        "revele": [
+          "f-ald-moulin-deserteurs-rancon"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "la-veuve-haddon",
+        "mots": [
+          "Martha",
+          "veuve",
+          "Aldwin",
+          "mari",
+          "deuil",
+          "pont",
+          "chariot"
+        ],
+        "condition": {
+          "fait": "f-ald-marchand-mort-sur-la-route"
+        },
+        "question": "Martha Haddon sait-elle que son mari est mort ?",
+        "reponse": "« Non. Personne ne le lui a dit, je crois, et ce n'est pas moi qui le ferai : je ne l'ai pas revue depuis qu'elle a quitté la ferme avec les autres, pour l'auberge de Brégor. » Il se tait, puis reprend à voix basse. « Elle avait vu Aldwin partir avec sa farine, et elle l'attend encore, j'en mettrais ma main au feu. Elle n'a plus rien : la ferme est brûlée, et le coffret que son mari avait emporté n'est jamais revenu. Si vous la voyez, dites-le-lui, mais doucement. Elle a déjà trop de morts dans les yeux. Enfin, voilà ce que c'est. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ]
+  }
+]

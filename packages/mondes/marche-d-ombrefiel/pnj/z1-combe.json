@@ -1,0 +1,97 @@
+[
+  {
+    "id": "lambert-le-bucheron",
+    "nom": "Lambert",
+    "titre": "Bûcheron du taillis",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "58 ans",
+    "role": "Bûcheron qui ramasse le bois mort au bord du taillis, sous la combe de l'Ours. Il connaît les bêtes du vallon et les voleurs de la corniche.",
+    "lieu": "ald-combe-goulet-des-ronces",
+    "apparence": "Haut et maigre, la peau tannée par le vent, les bras zébrés de fines cicatrices de ronces. Chemise de lin grise, gilet de cuir fendu, hache à manche court passée dans la ceinture. Un fagot de bois mort sur l'épaule, qu'il ne pose jamais tout à fait.",
+    "personnalite": {
+      "traits": [
+        "taciturne",
+        "observateur",
+        "honnête",
+        "un peu moqueur"
+      ],
+      "voix": "Il parle lentement, par courtes phrases de forestier, et termine souvent par « Enfin, bon. » qui laisse la suite en suspens.",
+      "valeurs": [
+        "la forêt rend ce qu'on lui prend, à condition de la respecter",
+        "on ne dispute pas la nourriture à un ours"
+      ],
+      "desir": "Garder son taillis et ses bêtes loin des kobolds.",
+      "peur": "Qu'un jour l'ours se fâche pour de bon et descende jusqu'aux fermes.",
+      "defaut": "Il raconte les kobolds comme des démons et gonfle toujours leur nombre."
+    },
+    "presences": [],
+    "attitude": 0,
+    "savoir": [
+      "f-ald-vieux-bourru-territorial",
+      "f-ald-kobolds-de-la-corniche-volent-le-brillant"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "villageois"
+    },
+    "sujets": [
+      {
+        "id": "le-vieux-bourru",
+        "mots": [
+          "ours",
+          "Vieux Bourru",
+          "combe",
+          "bête",
+          "sauvage",
+          "grotte",
+          "antre"
+        ],
+        "question": "Parlez-moi de l'ours de la combe.",
+        "reponse": "« Le Vieux Bourru. Un ours brun, vieux comme les pins du goulet, qui tient sa combe et ne la partage avec personne. Il ne poursuit pas au-delà des ronces. Mais n'approchez pas de sa caverne, ni du ravin calcaire où il dort : c'est là qu'il frappe, sans haine, comme un propriétaire qui chasse un intrus. » Il pose sa hache contre un tronc. « Je l'ai vu deux fois en quarante ans. La seconde fois, il a regardé mon fagot, puis il est retourné à sa tanière. Ce n'est pas une bête à combattre. Elle ne fait pas la guerre, elle garde son bien. »",
+        "revele": [
+          "f-ald-vieux-bourru-territorial"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "les-kobolds-de-la-corniche",
+        "mots": [
+          "kobolds",
+          "corniche",
+          "voleurs",
+          "brillant",
+          "falaise",
+          "vols",
+          "butin"
+        ],
+        "question": "Qui fouille la corniche, et que prend-il ?",
+        "reponse": "« Les kobolds. De petits diables à écailles, qui grimpent les failles de la corniche comme des lézards et volent tout ce qui brille. Des boutons de cuivre, une boucle, un bout de verre de fenêtre : rien n'est trop petit pour eux. Ils cachent leur butin dans les anfractuosités, au-dessus du goulet, et ricanent dans une langue qui grince. » Il frotte le pouce sur le manche de sa hache. « Je n'ai rien contre eux, sauf quand ils prennent mes outils. Mais la boucle de ma femme, ils me l'ont prise il y a un mois. »",
+        "revele": [
+          "f-ald-kobolds-de-la-corniche-volent-le-brillant"
+        ],
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "appater-l-ours",
+        "mots": [
+          "ours",
+          "appâter",
+          "viande",
+          "feu",
+          "détourner",
+          "ruse",
+          "fumée",
+          "conseil"
+        ],
+        "question": "Comment éloigner l'ours sans le combattre ?",
+        "reponse": "« Ne le combattez pas. Un ours qui se bat, c'est une semaine au lit et un bras en moins. Deux moyens marchent. Le premier : de la viande fumée, du lard ou du jambon sec, posé à l'entrée du goulet. Il sent le fumé de loin, il descend, il mange, et il remonte sans vous chercher. Le second : un feu de broussailles vertes, qui fait une fumée épaisse dans le vallon. Il croit à un incendie, il court vers le ravin, et pendant ce temps vous passez de l'autre côté. Et si vous avez de la chance, il ne vous verra jamais. »",
+        "revele": [],
+        "effets": [],
+        "unique": false
+      }
+    ]
+  }
+]
