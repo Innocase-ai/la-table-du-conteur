@@ -186,6 +186,11 @@ export function recommanderCaracteristiques(c: ChoixPartiel & { niveau: number }
   return res;
 }
 
+/** L'ordre de préférence des compétences pour une classe (les siennes d'abord, puis les utiles à tous). */
+export function prioriteCompetences(classeId: string): Competence[] {
+  return [...new Set([...(COMPETENCES_PAR_CLASSE[classeId] ?? []), ...COMPETENCES_GENERALES])];
+}
+
 /** Écran Choix de classe : compétences, expertises, style, options de classe, bottes, sorts, équipement. */
 export function recommanderCompetences(c: ChoixPartiel & { niveau: number }, donnees: Donnees): Recommandation {
   const ex = exigences(c, donnees);

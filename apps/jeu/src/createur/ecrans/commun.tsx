@@ -8,6 +8,8 @@ export interface PropsEcran {
   b: Brouillon;
   donnees: Donnees;
   maj: (f: (b: Brouillon) => Brouillon) => void;
+  /** Comme `maj`, pour des valeurs de départ posées par l'écran : ne compte pas comme une modification du joueur. */
+  initialiser?: (f: (b: Brouillon) => Brouillon) => void;
 }
 
 /** Panneau de description (colonne de droite). */

@@ -104,7 +104,7 @@ function LigneAmelioration({
   );
 }
 
-export function EcranCaracteristiques({ b, donnees, maj }: PropsEcran) {
+export function EcranCaracteristiques({ b, donnees, maj, initialiser }: PropsEcran) {
   const { choix } = b;
   const methode: Methode = choix.methode ?? 'standard';
   const historique = choix.historique ? donnees.historiques.get(choix.historique) : undefined;
@@ -114,9 +114,9 @@ export function EcranCaracteristiques({ b, donnees, maj }: PropsEcran) {
   const nbAmelio = ex?.ameliorations ?? 0;
   const [selection, setSelection] = useState<Caracteristique | null>(null);
 
-  // Valeurs de départ raisonnables : on n'impose rien, le joueur peut tout changer.
+  // Valeurs de départ raisonnables : on n'impose rien, le joueur peut tout changer (ce n'est pas encore un choix du joueur).
   useEffect(() => {
-    maj((x) => {
+    (initialiser ?? maj)((x) => {
       let c = x.choix;
       const m: Methode = c.methode ?? 'standard';
       if (!c.valeursBase && m !== 'tirage') c = { ...c, methode: m, valeursBase: valeursInitiales(x, m) };

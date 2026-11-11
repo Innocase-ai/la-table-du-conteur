@@ -67,13 +67,18 @@ function monterSiBesoin(t: TransactionProgression): void {
       const etat = t.partie.etat;
       const plafond = Math.min(NIVEAU_MAX, plafondDeNiveau(etat, t.ctx.dm));
       const cible = Math.min(plafond, niveauPourPx(etat.xp));
-      if (cible <= etat.niveauGroupe || !t.ctx.srd) return;
+      if (!t.ctx.srd) return;
+      // Un héros resté en arrière (montée impossible une fois) est retenté à chaque occasion : il ne reste jamais derrière le groupe.
+      const enRetard = t.partie.groupe.some((h) => h.choix && h.choix.niveau < Math.min(cible, etat.niveauGroupe));
+      const nouveauNiveau = cible > etat.niveauGroupe;
+      if (!nouveauNiveau && !enRetard) return;
       for (const h of t.partie.groupe) {
         if (!h.choix) continue;
+        const niveauAvant = h.choix.niveau;
         for (let niveau = h.choix.niveau + 1; niveau <= cible; niveau++) {
           const r = monterAuNiveau(h.choix, niveau, t.ctx.srd);
           if (!r) {
-            t.emettre({ type: 'constat', texte: `${h.nom} ne peut pas encore passer au niveau ${niveau} (choix à revoir).` });
+            if (nouveauNiveau) t.emettre({ type: 'constat', texte: `${h.nom} ne peut pas encore passer au niveau ${niveau} (choix à revoir).` });
             break;
           }
           const avant = etatDurableMax(h.fiche);
@@ -87,10 +92,12 @@ function monterSiBesoin(t: TransactionProgression): void {
           appliquerEquipement(t.ctx, h);
           t.emettre({ type: 'constat', texte: `${h.nom} passe au niveau ${niveau} : ${h.fiche.pvMax} PV, CA ${h.fiche.ca}.` });
         }
-        // Des choix nouveaux à ce niveau (amélioration, sorts, options, expertises) : le joueur pourra les revoir.
-        const nouveaux = h.choix ? choixDeMontee(h.choix, t.ctx.srd) : undefined;
+        // Des choix nouveaux à ce niveau (amélioration, sorts, options, expertises) : le joueur pourra les revoir (seulement s'il
+        // vient de monter : un héros déjà à jour ne se voit pas redemander ses choix quand un autre rattrape son retard).
+        const nouveaux = h.choix && h.choix.niveau > niveauAvant ? choixDeMontee(h.choix, t.ctx.srd) : undefined;
         if (nouveaux && !nouveaux.aucun && h.choix!.niveau === cible) h.monteeEnAttente = cible;
       }
+      if (!nouveauNiveau) return;
       etat.niveauGroupe = cible;
       t.emettre({ type: 'constat', texte: `Le groupe atteint le niveau ${cible}.` });
 }

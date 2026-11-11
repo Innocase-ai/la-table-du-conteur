@@ -6,7 +6,8 @@ import { calculerFiche, NIVEAU_MAX, type ChoixPersonnage, type Fiche } from '../
 import type { ChoixCreation } from '../schemas';
 import { exigences, type Exigences } from './exigences';
 import { niveauSortMax } from './regles-creation';
-import { recommanderCaracteristiques, recommanderCompetences } from './recommandations';
+import { prioriteCaracteristiques, prioriteCompetences, recommanderCaracteristiques, recommanderCompetences } from './recommandations';
+import type { Caracteristique, Competence } from '../schemas';
 
 /** Ajoute à `garde` les éléments de `propose` qui n'y sont pas encore, jusqu'à `n` éléments au total. */
 function completer<T>(garde: T[] | undefined, propose: T[] | undefined, n: number): T[] {
@@ -19,6 +20,58 @@ function completer<T>(garde: T[] | undefined, propose: T[] | undefined, n: numbe
 }
 
 /**
+ * Les nouveaux choix de compétences et d'améliorations, complétés à partir de ce que le personnage a VRAIMENT (ses maîtrises et
+ * ses valeurs actuelles), pas des recommandations de départ : un joueur qui a pris d'autres compétences que les conseillées ne
+ * reçoit pas une compétence en double ni une expertise dans une compétence qu'il ne maîtrise pas, et une amélioration ne
+ * dépasse jamais 20 (audit du 11/11/2026).
+ */
+function nouveauxChoixPersonnels(choix: ChoixPersonnage, base: ChoixPersonnage, donnees: Donnees): Pick<ChoixPersonnage, 'competencesSupplementaires' | 'expertises' | 'ameliorations'> | undefined {
+  const actuelle = calculerFiche(choix, donnees);
+  const ex = exigences(base, donnees);
+  if (!actuelle.ok || !ex) return undefined;
+  const fiche = actuelle.fiche;
+  const priorite = prioriteCompetences(choix.classe);
+  const toutes = Object.keys(fiche.competences) as Competence[];
+  const ordre = [...priorite.filter((k) => toutes.includes(k)), ...toutes.filter((k) => !priorite.includes(k))];
+
+  // Compétences supplémentaires : les places nouvelles, avec une compétence pas encore maîtrisée.
+  const maitrisees = new Set(toutes.filter((k) => fiche.competences[k].maitrise === 'maitrise' || fiche.competences[k].maitrise === 'expertise'));
+  const supp = [...(choix.competencesSupplementaires ?? [])];
+  for (const restriction of ex.competencesSupplementaires.restrictions.slice(supp.length)) {
+    const k = ordre.find((x) => !maitrisees.has(x) && !supp.includes(x) && (!restriction || restriction.includes(x)));
+    if (k) {
+      supp.push(k);
+      maitrisees.add(k);
+    }
+  }
+
+  // Expertises : les places nouvelles, parmi les compétences maîtrisées sans expertise.
+  const expertises = [...(choix.expertises ?? [])];
+  for (let i = expertises.length; i < ex.expertises.nombre; i++) {
+    const restreinte = i < ex.expertises.restreintes.length ? ex.expertises.restreintes[i] : undefined;
+    const k = ordre.find((x) => maitrisees.has(x) && !expertises.includes(x) && (!restreinte || restreinte.includes(x)));
+    if (k) expertises.push(k);
+  }
+
+  // Améliorations : depuis les valeurs actuelles, +2 à la première caractéristique utile qui reste à 20, sinon +1 / +1.
+  const ameliorations = [...(choix.ameliorations ?? [])];
+  const total = Object.fromEntries(Object.entries(fiche.caracteristiques).map(([k, v]) => [k, v.valeur])) as Record<Caracteristique, number>;
+  const prioC = prioriteCaracteristiques(choix.classe);
+  while (ameliorations.length < ex.ameliorations) {
+    const [a, b] = prioC.filter((k) => total[k] < 20);
+    if (a && total[a] <= 18) {
+      ameliorations.push({ [a]: 2 });
+      total[a] += 2;
+    } else if (a && b) {
+      ameliorations.push({ [a]: 1, [b]: 1 });
+      total[a] += 1;
+      total[b] += 1;
+    } else break;
+  }
+  return { competencesSupplementaires: supp, expertises, ameliorations };
+}
+
+/**
  * Les choix d'un personnage passé au niveau `niveau` (au plus NIVEAU_MAX), avec sa nouvelle fiche ; `undefined` si les
  * choix complétés ne donnent pas une fiche valide (le personnage reste alors à son niveau).
  */
@@ -27,12 +80,13 @@ export function monterAuNiveau(choix: ChoixPersonnage, niveau: number, donnees: 
   const base: ChoixPersonnage = { ...choix, niveau };
   const carac = recommanderCaracteristiques(base, donnees);
   const comp = recommanderCompetences(base, donnees);
+  const personnels = nouveauxChoixPersonnels(choix, base, donnees);
   const prochain: ChoixPersonnage = {
     ...base,
     // Améliorations : celles déjà faites, puis les recommandées pour les nouveaux paliers (niveau 4).
-    ameliorations: [...(choix.ameliorations ?? []), ...(carac.ameliorations ?? []).slice((choix.ameliorations ?? []).length)],
-    expertises: completer(choix.expertises, comp.expertises, comp.expertises?.length ?? 0),
-    competencesSupplementaires: completer(choix.competencesSupplementaires, comp.competencesSupplementaires, comp.competencesSupplementaires?.length ?? 0),
+    ameliorations: personnels?.ameliorations ?? [...(choix.ameliorations ?? []), ...(carac.ameliorations ?? []).slice((choix.ameliorations ?? []).length)],
+    expertises: personnels?.expertises ?? completer(choix.expertises, comp.expertises, comp.expertises?.length ?? 0),
+    competencesSupplementaires: personnels?.competencesSupplementaires ?? completer(choix.competencesSupplementaires, comp.competencesSupplementaires, comp.competencesSupplementaires?.length ?? 0),
     dons: completer(choix.dons, comp.dons, comp.dons?.length ?? 0),
     faveurCaracteristique: completer(choix.faveurCaracteristique, comp.faveurCaracteristique, comp.faveurCaracteristique?.length ?? 0),
     bottes: completer(choix.bottes, comp.bottes, comp.bottes?.length ?? 0),

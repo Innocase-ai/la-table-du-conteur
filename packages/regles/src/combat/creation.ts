@@ -202,6 +202,11 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   if (fiche.incantation) {
     const i = fiche.incantation;
     incantation = { dd: i.ddSauvegarde, bonusAttaque: i.bonusAttaque, modificateur: mods[i.caracteristique], emplacements: [...durable.emplacements], emplacementsMax: [...durable.emplacements] };
+  } else if (fiche.sortsAccordes.length || kit.sorts?.length) {
+    // Un non-lanceur qui tient des sorts de son espèce ou d'Initié à la magie (Guerrier tieffelin : Bouffée de poison) : le SRD
+    // fait choisir Intelligence, Sagesse ou Charisme pour ces sorts ; on prend la meilleure des trois. Pas d'emplacement.
+    const carac = (['int', 'sag', 'cha'] as const).reduce((a, b) => (mods[b] > mods[a] ? b : a));
+    incantation = { dd: 8 + fiche.bonusMaitrise + mods[carac], bonusAttaque: fiche.bonusMaitrise + mods[carac], modificateur: mods[carac], emplacements: [], emplacementsMax: [] };
   }
   const lanceur = CLASSES_LANCEUSES.includes(fiche.classe);
   return {

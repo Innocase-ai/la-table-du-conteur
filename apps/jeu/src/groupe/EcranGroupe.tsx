@@ -18,6 +18,7 @@ import {
   type TailleGroupe,
 } from '@crpg/regles';
 import { formatMetres } from '../libelles';
+import { groupeMisDeCote, texteGroupeMisDeCote } from './stockage';
 import { Modale, Portrait } from '../createur/ui';
 import { ALIGNEMENTS_INFO } from '../createur/descriptions';
 import { lireGroupeFrancais } from './erreurs';
@@ -141,18 +142,31 @@ export function EcranGroupe(props: Props) {
     remplacer(libre, copie);
   };
 
-  const exporter = () => {
-    const blob = new Blob([serialiser(groupe)], { type: 'application/json' });
+  const telecharger = (texte: string, nom: string) => {
+    const blob = new Blob([texte], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'groupe-crpg.json';
+    a.download = nom;
     document.body.appendChild(a);
     a.click();
     a.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  const exporter = () => {
+    telecharger(serialiser(groupe), 'groupe-crpg.json');
     setInfo('Groupe exporté dans « groupe-crpg.json ».');
     setErreur(null);
+  };
+
+  // Un groupe sauvegardé devenu illisible a été mis de côté au chargement (jamais effacé) : on le dit, et on permet de l'enregistrer.
+  const misDeCote = groupeMisDeCote();
+  const exporterMisDeCote = () => {
+    const texte = texteGroupeMisDeCote();
+    if (!texte) return;
+    telecharger(texte, 'groupe-crpg-illisible.json');
+    setInfo('Ancien groupe enregistré dans « groupe-crpg-illisible.json ».');
   };
 
   const importer = async (f: File | undefined) => {
@@ -236,6 +250,14 @@ export function EcranGroupe(props: Props) {
         </div>
       </header>
 
+      {misDeCote && (
+        <div className="bandeau bandeau-erreur" role="alert">
+          Votre groupe sauvegardé ne se lit plus ({misDeCote}). Il n’a pas été effacé : il est mis de côté dans le navigateur.{' '}
+          <button type="button" className="bouton-discret" onClick={exporterMisDeCote}>
+            L’enregistrer dans un fichier
+          </button>
+        </div>
+      )}
       {erreur && (
         <div className="bandeau bandeau-erreur" role="alert">
           {erreur}

@@ -1,6 +1,6 @@
 // Créateur de personnage : 8 écrans (espèce, classe, historique, caractéristiques, choix de classe,
 // alignement, nom et portrait, récapitulatif), avec « Recommandé » à chaque étape.
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ETAPES,
   NOMS_ETAPES,
@@ -58,20 +58,84 @@ const TITRES: Record<Etape, string> = {
 
 const AVEC_RECOMMANDE: Etape[] = ['espece', 'historique', 'caracteristiques', 'competences', 'alignement', 'identite'];
 
+/** Le héros en cours de création (ou de modification), gardé dans le navigateur : un rechargement ne fait rien perdre. */
+const CLE_BROUILLON = 'crpg.brouillon.v1';
+
+interface BrouillonSauve {
+  /** L'id du héros modifié ; absent pour une création. */
+  pour?: string;
+  b: Brouillon;
+  index: number;
+  maxAtteint: number;
+}
+
+function lireBrouillon(pour: string | undefined): BrouillonSauve | undefined {
+  try {
+    const s = JSON.parse(window.localStorage.getItem(CLE_BROUILLON) ?? 'null') as BrouillonSauve | null;
+    if (!s || typeof s !== 'object' || !s.b?.choix || !s.b?.identite || typeof s.index !== 'number') return undefined;
+    if ((s.pour ?? undefined) !== pour) return undefined;
+    const index = Math.max(0, Math.min(ETAPES.length - 1, s.index));
+    return { ...s, index, maxAtteint: Math.max(index, Math.min(ETAPES.length - 1, s.maxAtteint ?? index)) };
+  } catch {
+    return undefined;
+  }
+}
+
+function effacerBrouillon(): void {
+  try {
+    window.localStorage.removeItem(CLE_BROUILLON);
+  } catch {
+    // stockage indisponible : rien à effacer
+  }
+}
+
 export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuitter }: Props) {
-  const [b, setB] = useState<Brouillon>(() => (personnage ? brouillonDepuis(personnage) : brouillonVide(niveauGroupe)));
-  const [index, setIndex] = useState(personnage ? ETAPES.length - 1 : 0);
-  const [maxAtteint, setMaxAtteint] = useState(personnage ? ETAPES.length - 1 : 0);
+  // Un brouillon laissé en route (rechargement, fermeture) pour ce même héros reprend où il était.
+  const [repris] = useState(() => lireBrouillon(personnage?.id));
+  const [b, setB] = useState<Brouillon>(() => repris?.b ?? (personnage ? brouillonDepuis(personnage) : brouillonVide(niveauGroupe)));
+  const [index, setIndex] = useState(repris?.index ?? (personnage ? ETAPES.length - 1 : 0));
+  const [maxAtteint, setMaxAtteint] = useState(repris?.maxAtteint ?? (personnage ? ETAPES.length - 1 : 0));
   /** Incrémenté quand une recommandation remplace des choix : les écrans à état local se réinitialisent. */
   const [version, setVersion] = useState(0);
   const [confirmerSortie, setConfirmerSortie] = useState(false);
-  const [modifie, setModifie] = useState(false);
+  const [modifie, setModifie] = useState(!!repris);
   const etape = ETAPES[index]!;
 
   const maj = (f: (x: Brouillon) => Brouillon) => {
     setB((x) => f(x));
     setModifie(true);
   };
+  /** Valeurs de départ posées par un écran (caractéristiques par défaut) : ce n'est pas un choix du joueur. */
+  const initialiser = (f: (x: Brouillon) => Brouillon) => setB((x) => f(x));
+
+  useEffect(() => {
+    if (!modifie) return;
+    try {
+      window.localStorage.setItem(CLE_BROUILLON, JSON.stringify({ pour: personnage?.id, b, index, maxAtteint } satisfies BrouillonSauve));
+    } catch {
+      // stockage indisponible (navigation privée, quota) : le brouillon reste en mémoire
+    }
+  }, [b, index, maxAtteint, modifie, personnage?.id]);
+
+  /** Quitter la création (bouton « Annuler », « Quitter » au premier écran, Échap) : on confirme si des choix seraient perdus. */
+  const demanderSortie = () => {
+    if (modifie) setConfirmerSortie(true);
+    else {
+      effacerBrouillon();
+      onQuitter();
+    }
+  };
+  useEffect(() => {
+    const f = (ev: KeyboardEvent) => {
+      if (ev.key !== 'Escape' || confirmerSortie) return;
+      const cible = ev.target as HTMLElement | null;
+      if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (document.querySelector('.modale-fond, [role="dialog"]')) return;
+      demanderSortie();
+    };
+    window.addEventListener('keydown', f);
+    return () => window.removeEventListener('keydown', f);
+  });
 
   const manquants = useMemo(() => manquantsEtape(b, donnees, etape), [b, donnees, etape]);
   const tousManquants = useMemo(() => tousLesManquants(b, donnees, true), [b, donnees]);
@@ -88,10 +152,8 @@ export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuit
     aller(ETAPES[Math.min(ETAPES.length - 1, index + 1)]!);
   };
   const retour = () => {
-    if (index === 0) {
-      if (modifie) setConfirmerSortie(true);
-      else onQuitter();
-    } else setIndex(index - 1);
+    if (index === 0) demanderSortie();
+    else setIndex(index - 1);
   };
 
   const rapide = () => {
@@ -160,10 +222,12 @@ export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuit
   const terminer = () => {
     if (!bilan?.complet) return;
     const p = versPersonnage(b, b.id ?? nouvelId(), donnees);
-    if (p) onTerminer(p);
+    if (!p) return;
+    effacerBrouillon();
+    onTerminer(p);
   };
 
-  const props = { b, donnees, maj };
+  const props = { b, donnees, maj, initialiser };
   let ecran;
   switch (etape) {
     case 'espece':
@@ -211,16 +275,26 @@ export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuit
         </nav>
         <div className="createur-titre">
           <h1>{TITRES[etape]}</h1>
-          <span className="createur-sous">{personnage ? 'Modification du personnage' : 'Nouveau personnage'}</span>
+          <span className="createur-sous">
+            {personnage ? 'Modification du personnage' : 'Nouveau personnage'}
+            {repris ? ' · repris là où vous l’aviez laissé' : ''}
+          </span>
         </div>
       </header>
 
       <main className="createur-corps">{ecran}</main>
 
       <footer className="createur-pied">
-        <button type="button" className="bouton" onClick={retour}>
-          {index === 0 ? '‹ Quitter' : '‹ Retour'}
-        </button>
+        <div className="pied-gauche">
+          <button type="button" className="bouton" onClick={retour}>
+            {index === 0 ? '‹ Quitter' : '‹ Retour'}
+          </button>
+          {index > 0 && (
+            <button type="button" className="bouton-discret" onClick={demanderSortie} title="Quitter la création (Échap)">
+              Annuler
+            </button>
+          )}
+        </div>
         <div className="pied-message" aria-live="polite">
           {dernier
             ? bilan && !bilan.complet
@@ -250,12 +324,15 @@ export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuit
 
       {confirmerSortie && (
         <Modale
-          titre="Abandonner ce personnage ?"
-          texte="Les choix faits pendant cette session de création seront perdus."
+          titre={personnage ? 'Abandonner ces modifications ?' : 'Abandonner ce personnage ?'}
+          texte={personnage ? 'Le personnage reste tel qu’il était avant ces modifications.' : 'Les choix faits pendant cette création seront perdus.'}
           confirmer="Abandonner"
           annuler="Continuer"
           dangereux
-          onConfirmer={onQuitter}
+          onConfirmer={() => {
+            effacerBrouillon();
+            onQuitter();
+          }}
           onAnnuler={() => setConfirmerSortie(false)}
         />
       )}

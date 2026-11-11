@@ -2,6 +2,7 @@
 // et les fonctions qui le font évoluer en gardant les choix cohérents entre eux.
 import {
   bilanPersonnage,
+  bonusHistoriqueRecommande,
   calculerFiche,
   creationRapide,
   effetsAcquis,
@@ -224,9 +225,24 @@ export function changerEspece(b: Brouillon, espece: string, donnees: Donnees): B
   return { ...b, identite, choix: { ...base, espece, taille: undefined, choix: undefined, dons: undefined } };
 }
 
+const memesValeurs = (a: Partial<Valeurs> | undefined, b: Partial<Valeurs> | undefined) => CARACTERISTIQUES.every((k) => (a?.[k] ?? 0) === (b?.[k] ?? 0));
+
 export function changerClasse(b: Brouillon, classe: string, donnees: Donnees): Brouillon {
   if (b.choix.classe === classe) return b;
-  return { ...b, choix: { ...sansChoixDeClasse(b.choix, donnees), classe, sortsInitie: b.choix.sortsInitie } };
+  const c = b.choix;
+  const choix: Choix = { ...sansChoixDeClasse(c, donnees), classe, sortsInitie: c.sortsInitie };
+  // Les caractéristiques suivent la classe tant que le joueur ne les a pas réparties lui-même : un Magicien ne garde pas la
+  // Force 15 et le bonus d'historique sur la Force conseillés au Guerrier choisi d'abord. Une répartition personnelle reste.
+  const ancienne = c.classe;
+  if (ancienne) {
+    const valeursConseillees = (c.methode ?? 'standard') === 'standard' && memesValeurs(c.valeursBase, valeursRecommandees(ancienne));
+    if (valeursConseillees) choix.valeursBase = valeursRecommandees(classe);
+    if (c.historique && memesValeurs(c.bonusHistorique, bonusHistoriqueRecommande(ancienne, c.historique, donnees))) choix.bonusHistorique = bonusHistoriqueRecommande(classe, c.historique, donnees);
+    // Les améliorations conseillées pour l'ancienne classe sont recalculées à l'écran des caractéristiques.
+    const conseillees = recommanderCaracteristiques({ ...c, classe: ancienne }, donnees).ameliorations;
+    if (JSON.stringify(c.ameliorations ?? []) === JSON.stringify(conseillees ?? [])) choix.ameliorations = undefined;
+  }
+  return { ...b, choix };
 }
 
 export function changerHistorique(b: Brouillon, historique: string, donnees: Donnees): Brouillon {
