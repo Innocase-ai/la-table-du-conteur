@@ -1,7 +1,7 @@
 {
   "id": "marche-d-ombrefiel",
   "version": 1,
-  "statut": "brouillon",
+  "statut": "publie",
   "nom": "La Marche d'Ombrefiel",
   "resume": "Depuis six mois, tout le fer neuf de la Marche d'Ombrefiel se brise. Du Carrefour d'Aldric à Haute-Garde, en passant par des mines empoisonnées, une forêt de bandits, des marais de forges clandestines et une tour d'archimage, le groupe remonte le sabotage jusqu'à ceux qui en profitent, avant l'Échéance du Conseil.",
   "accroche": "Le fer se brise, les convois disparaissent, et quelqu'un y trouve son compte. Peut-on sauver la Marche sans la livrer à ceux qui prétendent l'avoir sauvée ?",
@@ -15,7 +15,9 @@
     "min": 1,
     "max": 7
   },
-  "groupe": { "conseille": 4 },
+  "groupe": {
+    "conseille": 4
+  },
   "depart": {
     "lieu": "ald-auberge-de-bregor",
     "intro": "À Aldric, il pleut depuis des semaines, et la boue a fini par manger la route. Sur la butte, l'auberge de Brégor est devenue une forteresse de moellons et de volets ferrés ; dans sa cour, des réfugiés se partagent des soupes claires autour de feux qui fument. Au carrefour, deux pendus se balancent sous un panneau qui promet le même sort à quiconque gênera les convois du Roi. Dans l'angle sombre de la salle commune, un nain regarde trois morceaux de métal brisé comme on regarde un mort. Personne ici ne parle du fer, et tout le monde n'y pense que trop : depuis six mois, aucune lame neuve ne tient."
@@ -48,17 +50,27 @@
   },
   "chapitres": [
     {
-      "id": "ch1-le-fer-sabote",
-      "nom": "Le fer saboté",
+      "id": "prologue-aldric",
+      "nom": "Prologue — Le Carrefour d'Aldric",
       "niveaux": {
         "min": 1,
-        "max": 7
+        "max": 3
       },
-      "resume": "D'Aldric à Haute-Garde : le groupe remonte le sabotage du fer, de la boue d'un carrefour à la salle du Conseil des Pairs, avant l'Échéance.",
+      "resume": "Autour de l'auberge de Brégor, un pont tenu par la Griffe Noire, un moulin à cor, une combe d'ours, une carrière de gobelins et un tertre aux sept menhirs : premiers indices d'un fer qui se brise pour une raison qui n'a rien de naturelle.",
       "lieux": [
-        "marche-d-ombrefiel"
+        "ald-carrefour-d-aldric"
       ],
-      "quetes": []
+      "quetes": [
+        "q-la-securite-du-relais",
+        "q-la-prime-sur-demi-dent",
+        "q-le-cor-du-moulin",
+        "q-honneur-de-brise-roc",
+        "q-l-echantillon-maudit",
+        "q-baume-de-l-aube",
+        "q-le-luth-de-finbar",
+        "q-le-testament-du-chariot",
+        "q-l-ombre-de-la-griffe"
+      ]
     }
   ],
   "regles": [
