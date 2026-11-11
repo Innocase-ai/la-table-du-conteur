@@ -29,7 +29,9 @@ export function histoires(): Histoire[] {
   return Object.entries(FICHIERS)
     .flatMap(([chemin, brut]) => {
       const r = Monde.safeParse(brut);
-      if (!r.success || r.data.statut !== 'publie') return [];
+      // Les brouillons n'existent qu'en développement (`pnpm jeu`), pour qu'un auteur joue son histoire pendant qu'il l'écrit :
+      // le build de production (`import.meta.env.DEV` vaut `false`) ne propose que les histoires publiées.
+      if (!r.success || (r.data.statut !== 'publie' && !import.meta.env.DEV)) return [];
       const id = dossier(chemin);
       const manifeste = Object.entries(MANIFESTES).find(([c]) => dossier(c) === id)?.[1];
       // Couverture : l'image du lieu qui porte le nom du monde, sinon celle du lieu de départ.
@@ -37,7 +39,8 @@ export function histoires(): Histoire[] {
       const chargeur = fichier ? IMAGES[`../../../packages/mondes/${id}/images/${fichier}`] : undefined;
       const brute = Object.entries(ESTIMATIONS).find(([c]) => dossier(c) === id)?.[1];
       const estimation = brute ? Estimation.safeParse(brute) : undefined;
-      return [{ monde: r.data, couverture: chargeur, estimation: estimation?.success ? estimation.data : undefined }];
+      const monde = r.data.statut === 'publie' ? r.data : { ...r.data, nom: `${r.data.nom} (brouillon)` };
+      return [{ monde, couverture: chargeur, estimation: estimation?.success ? estimation.data : undefined }];
     })
     .sort((a, b) => a.monde.nom.localeCompare(b.monde.nom));
 }

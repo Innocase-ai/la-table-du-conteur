@@ -29,28 +29,7 @@
       "doctrine": "Les archers du barrage tirent d'abord sur les groupes qui traversent les fosses ; le molosse charge le premier qui atteint la mare ; Demi-Dent reste à couvert derrière sa hutte et frappe ceux qui montent vers le réduit.",
       "fuite": "Les archers se replient vers la falaise dès que le chef tombe. Demi-Dent, réduit à 5 PV ou moins, jette son arme et se rend : c'est la rencontre de la reddition."
     },
-    "alternatives": [
-      {
-        "id": "se-glisser-hors-du-camp",
-        "nom": "Je contourne le barrage par la fondrière et je file vers la rampe.",
-        "jet": {
-          "competence": "discretion",
-          "dd": 12
-        },
-        "resume": "Vous longez la fondrière de l'est, la boue jusqu'aux genoux, en vous tenant au bord des fascines. Le camp regarde le barrage et les fosses, pas le bourbier : vous traversez sans bruit et montez la rampe de charrois, à l'abri de la falaise. Dans le réduit, Demi-Dent aboie des ordres, mais personne ne vous suit jusqu'au rebord, et le feu de branchages fume encore derrière vous.",
-        "effets": [
-          {
-            "xp": 25
-          }
-        ],
-        "echec": [
-          {
-            "narration": "La boue vous aspire jusqu'aux genoux, et un archer vous repère depuis les fascines. Les cris s'élèvent, et le camp se jette sur vous : le combat commence."
-          }
-        ],
-        "echecResout": false
-      }
-    ],
+    "alternatives": [],
     "butin": {
       "tables": [],
       "tresors": [
@@ -66,48 +45,5 @@
         "narration": "Le camp se tait. Demi-Dent s'effondre à genoux dans la glaise, son cimeterre brisé à côté de lui, et le feu de branchages s'éteint sous la pluie. Il lève les yeux : il vous reste à décider de son sort."
       }
     ]
-  },
-  {
-    "id": "ald-r-reddition-de-demi-dent",
-    "nom": "La reddition de Demi-Dent",
-    "type": "social",
-    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
-    "difficulte": "moderee",
-    "intro": "Demi-Dent est à genoux dans la glaise, devant la plus grande hutte, une main pressée sur la plaie de son épaule. Son cimeterre gît à trois pas, et son casque de milicien a roulé dans une flaque. Les archers ont posé leurs arcs, et le feu de branchages crachote derrière lui. Il lève les yeux vers vous, la voix rauque, et dit qu'il n'a plus rien à perdre. Vous tenez la décision : le laisser vivre pour qu'il parle, ou finir ce qu'a commencé la bataille. Dans les deux cas, tout le camp vous regarde.",
-    "monstres": [],
-    "alternatives": [
-      {
-        "id": "epargner",
-        "nom": "Je range mon arme et je lui laisse la vie sauve, en échange de ce qu'il sait.",
-        "resume": "Vous baissez votre lame. Demi-Dent ouvre la bouche, hésite, puis désigne du menton la plus grande hutte. Il vous montre le coffre de bois de fer caché au fond, et lâche d'une voix sourde où trouver le reste de la bande : les archers posent leurs arcs, puis filent vers la falaise. Il jure que les convois de Sombreval ne seront plus pillés par sa bande. Il garde son nom, sa honte et sa vie.",
-        "effets": [
-          {
-            "flag": "z1-demi-dent-epargne"
-          }
-        ]
-      },
-      {
-        "id": "achever",
-        "nom": "Je lève mon arme et j'achève le chef gobelin dans la glaise.",
-        "resume": "Votre lame tombe avant qu'il n'achève sa phrase. Demi-Dent s'affaisse dans la glaise rouge, sans un cri, et ses archers, qui n'ont plus de chef, jettent leurs arcs et se dispersent vers la falaise. La pluie lave le sang sur la glaise. Le camp reste silencieux, et le feu de branchages s'éteint lentement sous la fumée. Le coffre, au fond de la hutte, attend celui qui saura le forcer.",
-        "effets": [
-          {
-            "flag": "z1-demi-dent-tue"
-          },
-          {
-            "pnjEtat": {
-              "pnj": "demi-dent",
-              "etat": "mort"
-            }
-          }
-        ]
-      }
-    ],
-    "butin": {
-      "tables": [],
-      "tresors": [],
-      "depouilles": false
-    },
-    "effetsVictoire": []
   }
 ]

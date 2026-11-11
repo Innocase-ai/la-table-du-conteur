@@ -1073,28 +1073,6 @@
         "id": "ald-r-demi-dent-et-sa-bande",
         "declencheur": "entree",
         "unique": true
-      },
-      {
-        "id": "ald-r-reddition-de-demi-dent",
-        "declencheur": "exploration",
-        "unique": true,
-        "condition": {
-          "et": [
-            {
-              "flag": "z1-demi-dent-vaincu"
-            },
-            {
-              "non": {
-                "flag": "z1-demi-dent-tue"
-              }
-            },
-            {
-              "non": {
-                "flag": "z1-demi-dent-epargne"
-              }
-            }
-          ]
-        }
       }
     ]
   },

@@ -5,10 +5,18 @@
     "type": "combat",
     "lieu": "ald-pont-talus-d-embuscade",
     "difficulte": "moderee",
-    "intro": "Le talus se dresse à votre gauche, deux chênes noueux penchés au-dessus de la piste, et deux troncs d'aulne sciés reposent sur leurs cales au bord du chemin. Les fougères sèches sont couchées sur dix pas. Vous avez passé le milieu du tablier quand trois hommes en capes bâchées surgissent de derrière la terre meuble, cimeterre au poing, arbalète légère à l'épaule. Dans le feuillage du grand chêne, un sifflet strident perce le crachin : le signal. Les troncs craquent sur leurs cales, et la pente de boue se met à glisser vers la route. Il est trop tard pour reculer, il faut tenir le pont.",
+    "intro": "Le talus se dresse à votre gauche, deux chênes noueux penchés au-dessus de la piste, et deux troncs d'aulne sciés reposent sur leurs cales au bord du chemin. Les fougères sèches sont couchées sur dix pas. Vous avez passé le milieu du tablier quand trois hommes en capes noires surgissent de derrière la terre meuble, cimeterre au poing, arbalète légère à l'épaule. Dans le feuillage du grand chêne, un sifflet strident perce le crachin : le signal. Les troncs craquent sur leurs cales, et la pente de boue se met à glisser vers la route. Il est trop tard pour reculer, il faut tenir le pont.",
     "monstres": [
-      { "profil": "bandit", "nombre": 3 },
-      { "profil": "eclaireur", "nombre": 1, "nom": "Le tireur de la Griffe", "description": "Tireur d'élite de la Griffe Noire, perché dans le feuillage du grand chêne. Il siffle le signal et tire depuis la branche maîtresse tant qu'il reste à l'abri des feuilles." }
+      {
+        "profil": "bandit",
+        "nombre": 3
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 1,
+        "nom": "Le tireur de la Griffe",
+        "description": "Tireur d'élite de la Griffe Noire, perché dans le feuillage du grand chêne. Il siffle le signal et tire depuis la branche maîtresse tant qu'il reste à l'abri des feuilles."
+      }
     ],
     "carte": [
       "..mm.~~...",
@@ -29,31 +37,55 @@
       {
         "id": "donner-le-mot",
         "nom": "Je lève la main et je lance le mot : « La Serre ne plie point. »",
-        "condition": { "flag": "z1-silas-capture" },
+        "condition": {
+          "flag": "z1-silas-capture"
+        },
         "resume": "Le mot tombe entre vous comme une pierre. Les bandits se figent, échangent un regard, puis baissent leurs cimeterres et reculent vers le talus sans lâcher leurs arbalètes. Celui qui les commande crache dans la boue et grogne qu'on les a trahis, puis siffle la retraite. Dans le chêne, le tireur descend de sa branche sans un mot et file vers la forêt. Les troncs restent immobiles sur leurs cales, et le pont est enfin à vous.",
         "effets": [
-          { "flag": "z1-pont-libere" },
-          { "fait": "f-ald-pont-embusque-par-la-griffe" }
+          {
+            "flag": "z1-pont-libere"
+          },
+          {
+            "fait": "f-ald-pont-embusque-par-la-griffe"
+          }
         ],
         "echecResout": false
       },
       {
         "id": "payer-le-passage",
         "nom": "Je jette une bourse de cinq pièces d'or sur les pavés.",
-        "condition": { "pieces": { "min": 5 } },
+        "condition": {
+          "pieces": {
+            "min": 5
+          }
+        },
         "resume": "Vous lancez la bourse sur la pierre, et elle sonne en tombant. Les bandits se jettent dessus, la fouillent en grognant et comptent les pièces du bout de leurs doigts sales. Le tireur siffle deux notes sèches depuis le chêne, signe qu'il trouve la somme maigre, mais ses hommes rappellent déjà leur bande. Ils laissent les troncs en place et disparaissent derrière le talus vers la forêt, sans un coup. Vous gardez le pont, et une bourse plus légère.",
         "effets": [
-          { "pieces": -5 },
-          { "flag": "z1-pont-libere" }
+          {
+            "pieces": -5
+          },
+          {
+            "flag": "z1-pont-libere"
+          }
         ],
         "echecResout": false
       }
     ],
-    "butin": { "tables": [], "tresors": [], "depouilles": true },
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
     "effetsVictoire": [
-      { "flag": "z1-pont-libere" },
-      { "fait": "f-ald-pont-embusque-par-la-griffe" },
-      { "narration": "Les bandits sont à terre, et le tireur, dégringolé de sa branche, rampe hors des fougères. Sous sa cape, un bout de fil noir brodé en forme de griffe. Les troncs d'aulne restent sur leurs cales : le pont est libre, et le chemin vers le carrefour aussi." }
+      {
+        "flag": "z1-pont-libere"
+      },
+      {
+        "fait": "f-ald-pont-embusque-par-la-griffe"
+      },
+      {
+        "narration": "Les bandits sont à terre, et le tireur, dégringolé de sa branche, rampe hors des fougères. Sous sa cape, un bout de fil noir brodé en forme de griffe. Les troncs d'aulne restent sur leurs cales : le pont est libre, et le chemin vers le carrefour aussi."
+      }
     ]
   },
   {
@@ -62,32 +94,28 @@
     "type": "social",
     "lieu": "ald-pont-carcasse-du-chariot",
     "difficulte": "faible",
-    "intro": "Le fossé est une mare de boue noire, et sous le rideau d'aulnes, un chariot de transport gît sur le flanc, son essieu brisé net. Un homme est étendu sous les planches, les bras repliés, les poches retournées à la hâte. Un carreau d'arbalète à pointe d'os est fiché dans son dos, et une botte de cuir trempée dépasse de sous la caisse. Il est mort depuis deux jours, et personne n'est venu le chercher. Au loin, à l'auberge, une femme attend sans savoir que vous êtes là. Il n'y a ici ni bandit ni témoin, seulement vous, le mort, et une décision à prendre.",
+    "intro": "Le fossé est une mare de boue noire, et sous le rideau d'aulnes, un chariot de transport gît sur le flanc, son essieu brisé net. Un homme est étendu sous les planches, les bras repliés, les poches retournées à la hâte. Un carreau d'arbalète à pointe d'os est fiché dans son dos, et une botte de cuir trempée dépasse de sous la caisse. Il est mort depuis deux jours, et personne n'est venu le chercher. Au loin, à l'auberge, une femme attend sans savoir que vous êtes là. Il n'y a ici ni bandit ni témoin, seulement vous, le mort, et ce que vous déciderez d'en faire.",
     "monstres": [],
     "alternatives": [
       {
-        "id": "rendre-l-or",
-        "nom": "Je promets à la veuve de lui rapporter tout ce qui se trouvera dans ce chariot.",
-        "resume": "Vous refermez les poches du marchand et l'étendez plus proprement sous la caisse. Vous jurez de rapporter à Martha tout ce qui se trouvera ici, son or comme le reste, et vous le pensez. En remontant le fossé, la pluie efface vos traces dans la boue. Quelque part à l'auberge, une veuve attend une nouvelle qu'elle ne pourra pas oublier, et cette promesse vous suivra jusqu'à la rampe.",
+        "id": "examiner-le-chariot",
+        "nom": "Je m'accroupis dans la boue et j'examine le mort et son chariot.",
+        "resume": "Vous retournez le mort avec précaution et reconnaissez, à ses mains calleuses et à sa bâche bleue, le marchand de farine dont on parle à l'auberge. Sous les planches, un double-fond a échappé aux pillards. Vous rangez le corps de votre mieux, à l'abri de la caisse. Là-haut, derrière la palissade, une femme attend de savoir ce qu'est devenu son mari, et vous êtes seul à le savoir.",
         "effets": [
-          { "flag": "z1-or-rendu" },
-          { "fait": "f-ald-marchand-mort-sur-la-route" },
-          { "attitude": { "pnj": "martha-haddon", "delta": 20 } }
-        ]
-      },
-      {
-        "id": "garder-l-or",
-        "nom": "Je fouille le chariot et je garde pour le groupe l'or que le marchand n'emportera plus.",
-        "resume": "Vous fouillez le chariot sans vous attarder, glissez dans votre bourse les pièces de la ferme, l'or comme l'argent, et refermez la boue sur le reste. Vous laissez l'alliance où elle est, pour l'instant. Martha, à l'auberge, ne saura jamais ce que l'or est devenu, et la mort d'Aldwin restera une histoire de route. Vous marchez vers le carrefour avec un poids de plus dans la poche, et quelque chose de plus lourd sur la conscience.",
-        "effets": [
-          { "pieces": 69 },
-          { "flag": "z1-or-garde" },
-          { "fait": "f-ald-marchand-mort-sur-la-route" },
-          { "attitude": { "pnj": "martha-haddon", "delta": -20 } }
+          {
+            "fait": "f-ald-marchand-mort-sur-la-route"
+          },
+          {
+            "xp": 10
+          }
         ]
       }
     ],
-    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
     "effetsVictoire": []
   },
   {
@@ -104,19 +132,28 @@
         "nom": "Je m'assieds à côté de lui et j'écoute sa théorie du néant.",
         "resume": "Vous vous asseyez sur le parapet, les jambes au-dessus de la rivière, et Thibault vous expose sa théorie : le néant ne mord pas parce qu'il n'a pas faim, et c'est pour cela qu'il faut le pêcher sans hameçon. Il parle longtemps, sans jamais lâcher sa ficelle, puis vous confie Bertrand dans sa coquille, en vous demandant de bien le traiter. Vous repartez moins sûrs de tout, et un peu plus sages.",
         "effets": [
-          { "xp": 10 }
+          {
+            "xp": 10
+          }
         ]
       },
       {
         "id": "questionner-le-pont",
         "nom": "Je lui demande ce qu'il a vu passer sur le pont ces derniers jours.",
-        "jet": { "competence": "intuition", "dd": 10 },
+        "jet": {
+          "competence": "intuition",
+          "dd": 10
+        },
         "resume": "Il regarde la rivière un long moment avant de répondre. Il a vu le néant passer trois fois, des chariots qui ne sont jamais arrivés, et des hommes accroupis dans les fougères du talus, qui ne pêchent rien du tout. Il vous désigne l'encoche de la hache, où les charretiers comptent les convois. « Eux comptent les convois, moi je compte les pas, ça revient au même. » Vous savez au moins où regarder avant de traverser.",
         "effets": [
-          { "xp": 10 }
+          {
+            "xp": 10
+          }
         ],
         "echec": [
-          { "narration": "Il vous répond par un silence profond, puis vous demande si vous avez vu passer Bertrand dans sa coquille. La rivière, elle, n'a rien à dire." }
+          {
+            "narration": "Il vous répond par un silence profond, puis vous demande si vous avez vu passer Bertrand dans sa coquille. La rivière, elle, n'a rien à dire."
+          }
         ],
         "echecResout": false
       },
@@ -127,7 +164,11 @@
         "effets": []
       }
     ],
-    "butin": { "tables": [], "tresors": [], "depouilles": false },
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
     "effetsVictoire": []
   }
 ]

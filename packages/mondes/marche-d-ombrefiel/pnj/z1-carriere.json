@@ -11,7 +11,7 @@
     "apparence": "Gobelin trapu, peau terreuse et oreilles déchirées, casque de milicien cabossé sur un crâne dégarni. Cotte rapiécée de fil barbelé, cimeterre à la poignée enveloppée de ficelle. Une cicatrice barre son œil gauche, et il flaire les gens avant de les regarder.",
     "personnalite": {
       "traits": ["vantard", "rusé", "lâche sous la pression", "avide"],
-      "voix": "Ton de contremaître qui se croit grand seigneur, des phrases qui se gonflent puis retombent. Il appelle son interlocuteur « mon gros » et compte ses pièces à voix haute.",
+      "voix": "Ton de contremaître qui se croit grand seigneur, des phrases qui se gonflent puis retombent. Il appelle son interlocuteur « camarade » et compte ses pièces à voix haute.",
       "valeurs": ["la part du butin", "le respect de la bande"],
       "desir": "Garder sa tête et sa bourse, et retourner au camp sans que les autres le prennent pour un vaincu.",
       "peur": "Finir au bout d'une corde, comme les pendus du carrefour.",
@@ -30,7 +30,7 @@
         "mots": ["rendu", "reddition", "pitié", "pourquoi", "vie", "cimeterre", "rendre", "mort"],
         "question": "Pourquoi vous être rendu ?",
         "condition": { "flag": "z1-demi-dent-epargne" },
-        "reponse": "« Pourquoi ? Parce que mort, je touche plus rien. » Demi-Dent crache dans la glaise, la main pressée sur son épaule. « Vous m'avez vu tomber. Mes gars se battent pour leur part, pas pour la gloire. Quand le chef tombe, la part s'évapore, et les archers filent vers la falaise. Alors j'ai fait le compte : une vie vaut plus qu'un cimeterre cassé. Ne prenez pas ça pour de la noblesse, c'est de l'arithmétique, mon gros. Le camp l'apprendra demain à la soupe. Compris ? »",
+        "reponse": "« Pourquoi ? Parce que mort, je touche plus rien. » Demi-Dent crache dans la glaise, la main pressée sur son épaule. « Vous m'avez vu tomber. Mes gars se battent pour leur part, pas pour la gloire. Quand le chef tombe, la part s'évapore, et les archers filent vers la falaise. Alors j'ai fait le compte : une vie vaut plus qu'un cimeterre cassé. Ne prenez pas ça pour de la noblesse, c'est de l'arithmétique, camarade. Le camp l'apprendra demain à la soupe. Compris ? »",
         "revele": [],
         "effets": [],
         "unique": true
@@ -40,7 +40,7 @@
         "mots": ["convois", "chariots", "pillage", "payé", "qui", "commanditaire", "papier", "ficelles"],
         "question": "Qui vous paie pour piller les convois ?",
         "condition": { "flag": "z1-demi-dent-epargne" },
-        "reponse": "« Qui paie ? Un type qui ne se montre jamais, une capuche sur la figure et un sceau au fond de la poche. » Il se gratte l'oreille déchirée. « On reçoit un papier avec une date, un chemin, un nombre de chariots. On va, on prend, on rapporte le compte. Le talus du pont et les fosses, c'est moi qui les ai creusés. Moi, je compte. Les gars comptent aussi, mais plus mal. Vous voulez savoir qui tire les ficelles ? Je ne sais que ce qui est écrit sur le papier, et le papier est dans mon coffre. »",
+        "reponse": "« Qui paie ? Un type qui ne se montre jamais, une capuche sur la figure et un sceau au fond de la poche. » Il se gratte l'oreille déchirée. « On reçoit un papier avec une date, un chemin, un nombre de chariots. On va, on prend, on rapporte le compte. Les fosses du périmètre, c'est moi qui les ai creusées. Moi, je compte. Les gars comptent aussi, mais plus mal. Vous voulez savoir qui tire les ficelles ? Je ne sais que ce qui est écrit sur le papier, et le papier est dans mon coffre. »",
         "revele": [],
         "effets": [],
         "unique": false
@@ -78,12 +78,12 @@
     ],
     "salutations": {
       "neutre": "« Restez où vous êtes, ou je siffle le camp. Vous venez me voler ma part, ou me parler ? »",
-      "amical": "« Ah, mon gros, t'es pas comme les autres ! Viens t'asseoir, il reste du ragoût dans la marmite. »",
+      "amical": "« Ah, camarade, t'es pas comme les autres ! Viens t'asseoir, il reste du ragoût dans la marmite. »",
       "hostile": "« Encore un gros bras de l'auberge ? Va-t'en avant que mes archers te fassent un trou dans la tête. »",
       "variantes": [
         {
           "condition": { "flag": "z1-demi-dent-epargne" },
-          "texte": "« Ah, c'est vous, mon gros. Vous m'avez laissé la tête, je m'en souviens. Ne touchez pas au coffre, il est à moi, pour l'instant. »"
+          "texte": "« Ah, c'est vous, camarade. Vous m'avez laissé la tête, je m'en souviens. Ne touchez pas au coffre, il est à moi, pour l'instant. »"
         }
       ]
     },

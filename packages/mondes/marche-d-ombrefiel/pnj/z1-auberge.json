@@ -181,14 +181,7 @@
               "flag": "z1-pont-libere"
             },
             {
-              "ou": [
-                {
-                  "flag": "z1-demi-dent-tue"
-                },
-                {
-                  "flag": "z1-demi-dent-epargne"
-                }
-              ]
+              "flag": "z1-demi-dent-tue"
             }
           ]
         },
@@ -215,6 +208,61 @@
           },
           {
             "pieces": 70
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rapport-securite-et-prime-epargne",
+        "mots": [
+          "Demi-Dent",
+          "épargné",
+          "vivant",
+          "aveux",
+          "prime",
+          "pont",
+          "rapport"
+        ],
+        "question": "Demi-Dent vit encore, mais il ne pillera plus.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-la-securite-du-relais",
+                "statut": "active"
+              }
+            },
+            {
+              "flag": "z1-pont-libere"
+            },
+            {
+              "flag": "z1-demi-dent-epargne"
+            }
+          ]
+        },
+        "reponse": "« Vivant. » Brégor repose son verre d'un coup sec et vous regarde longtemps, de son œil valide. « Le pont est libre, ça, je ne le nie pas. Mais un gobelin qui court encore dans la Marche, ça ne se paie pas plein tarif. Cinquante pièces d'or : trente pour le pont, vingt pour la prime, et ne discutez pas, j'ai compté deux fois. » Il fait glisser la bourse sur le comptoir. « S'il parle autant que vous le dites, ce sera de l'argent bien placé. S'il ne parle pas, je saurai à qui m'en prendre. Compris ? »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-la-securite-du-relais",
+              "statut": "terminee"
+            }
+          },
+          {
+            "quete": {
+              "id": "q-la-prime-sur-demi-dent",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-la-securite-du-relais-rendue"
+          },
+          {
+            "flag": "q-la-prime-sur-demi-dent-rendue"
+          },
+          {
+            "pieces": 50
           }
         ],
         "unique": true
@@ -1403,10 +1451,74 @@
             },
             {
               "objet": "ald-o-alliance-d-aldwin"
+            },
+            {
+              "flag": "choix-le-coffret-d-aldwin-rendre"
             }
           ]
         },
-        "reponse": "« Donnez. » Martha prend le coffret à deux mains, l'ouvre, et l'alliance tombe dans sa paume avec un bruit clair. Elle la serre et pleure enfin, sans bruit, les épaules tremblantes. « Vous me rendez plus que l'or. Vous me rendez son dernier voyage, et la preuve qu'il pensait à moi jusqu'au bout. » Elle compte les pièces une à une, sans vraiment les compter, et repousse le coffret vers vous. « Je ne veux plus de cet argent-là. Il a coûté trop cher, à lui comme à nous. Vous êtes honnêtes, je le vois. Que la lumière vous garde, mes enfants. »",
+        "reponse": "« Donnez. » Martha prend le coffret à deux mains et l'ouvre. L'alliance tombe dans sa paume avec un bruit clair, et elle la serre contre sa poitrine en pleurant enfin, sans bruit. « Vous me rendez l'or de la ferme, et la preuve qu'il pensait à moi jusqu'au bout. Avec cela, la ferme sera rebâtie, pierre après pierre, et les enfants auront un toit où dormir. » Elle garde le coffret contre elle, sans le repousser vers vous. « Que la lumière vous garde, mes enfants. »",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "ald-o-alliance-d-aldwin",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "quete": {
+              "id": "q-le-testament-du-chariot",
+              "statut": "terminee"
+            }
+          },
+          {
+            "flag": "q-le-testament-du-chariot-rendue"
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "retour-de-l-alliance",
+        "mots": [
+          "alliance",
+          "bague",
+          "or",
+          "coffret",
+          "Aldwin",
+          "rendre",
+          "rapporté",
+          "argent"
+        ],
+        "question": "Voici l'alliance d'Aldwin.",
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "q-le-testament-du-chariot",
+                "statut": "active"
+              }
+            },
+            {
+              "objet": "ald-o-alliance-d-aldwin"
+            },
+            {
+              "ou": [
+                {
+                  "flag": "choix-le-coffret-d-aldwin-garder"
+                },
+                {
+                  "flag": "choix-le-coffret-d-aldwin-refugies"
+                },
+                {
+                  "flag": "choix-le-coffret-d-aldwin-abstention"
+                }
+              ]
+            }
+          ]
+        },
+        "reponse": "« Donnez. » Martha prend l'alliance et la serre dans son poing, sans la regarder. Sa voix reste basse, mais elle ne tremble plus. « Et le reste, mes enfants ? Où est l'or de la ferme ? » Elle lève les yeux vers vous, puis comprend à votre silence qu'il n'y aura pas de réponse simple. « Gardez ce que vous avez décidé, puisque c'est votre choix. Je n'ai plus rien à dire sur l'or. Au moins, il me reste son anneau, et c'est déjà beaucoup. Merci pour l'alliance, et que la lumière vous garde. »",
         "revele": [],
         "effets": [
           {

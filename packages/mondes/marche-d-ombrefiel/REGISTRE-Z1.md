@@ -1,5 +1,7 @@
 # Registre des entités de la zone 1 (Carrefour d'Aldric) — contrat des agents de contenu
 
+> **Contenu des 6 lieux (auberge, pont, moulin, combe, carrière, tertre) validé par l'utilisateur le 11/11/2026 (V6). Gelé : tout changement demande un nouveau oui.** Restent à écrire : les dilemmes (V7), la fin provisoire, les images.
+
 Document de travail (le moteur ne le lit pas). **Les ids ci-dessous sont fixes** : chaque agent écrit les entités de **son lieu** et ne fait que **citer** les autres par leur id. Ajouter un id = l'ajouter ici d'abord. Préfixes : `ald-` pour tout ce que la zone 1 crée (rencontres `ald-r-`, pièges `ald-p-`, trésors `ald-t-`, énigmes `ald-e-`, objets `ald-o-` sauf ceux déjà au registre de la BIBLE §7, faits `f-ald-`, événements `ald-ev-`). Les ids de la BIBLE §7 (PNJ, objets clés, drapeaux, faits centraux, quêtes principales) gardent leur forme sans préfixe.
 
 ## Fichiers (un par dossier et par lieu)
@@ -22,7 +24,7 @@ Document de travail (le moteur ne le lit pas). **Les ids ci-dessous sont fixes**
 | `ald-r-godefroy` | `ald-moulin-tertre-et-approche` | social (décalée) | Messire Godefroy |
 | `ald-r-bourru-et-kobolds` | `ald-combe-antre-du-vieux-bourru` | combat | `ours-brun` + 3 `combattant-kobold` (évitable) |
 | `ald-r-demi-dent-et-sa-bande` | `ald-carriere-huttes-et-poste-de-commandement` | combat | `chef-gobelin`, `molosse`, 4 `combattant-gobelin` (3 temps) |
-| `ald-r-reddition-de-demi-dent` | idem | social | reddition à 5 PV ou moins (dilemme) |
+| ~~`ald-r-reddition-de-demi-dent`~~ | idem | (retirée le 11/11 : portée par le dilemme `la-reddition-de-demi-dent`) | |
 | `ald-r-squelettes-du-tombeau` | `ald-tertre-sarcophage` | combat | 3 `squelette` (évitable par le rite) |
 | `ald-r-sentinelles-de-nuit` | `ald-tertre-cercle` | social (décalée) | squelettes sentinelles muets |
 
@@ -55,6 +57,10 @@ Drapeaux (BIBLE §7) : `z1-sabotage-prouve`, `z1-demi-dent-epargne`, `z1-demi-de
 ### Ajouts écrits avec l'auberge (11/11)
 
 Drapeaux : `z1-pont-libere` (posé par la rencontre `ald-r-embuscade-du-pont`, lu par Brégor), `<id de quête>-rendue` (posé par le sujet de retour de chaque donneur). Objets : `ald-o-mousse-de-saule` (une seule pièce, « trois doses » ; à placer dans les vasières du pont), `ald-o-luth-de-finbar` (antre du Vieux Bourru), `ald-o-alliance-d-aldwin` (à placer dans `ald-t-coffret-d-aldwin`, avec l'or), `flacon-de-toxine-x44` (zone 2). Factions : `griffe-noire`, `forges-libres` (`factions/z1-factions.json`, sans chef ni relations tant que les autres zones ne sont pas écrites). Faits ajoutés : `f-ald-fonte-friable`, `f-ald-rumeur-veilleurs-coupables` (faux), `f-ald-rumeur-armee-orque` (faux), `f-ald-aldwin-parti-avec-la-farine`, `f-ald-convoi-de-minerai-assailli`, `f-ald-mousse-de-saule-soigne-la-fievre`, `f-ald-bregor-sergent-de-vane`, `f-ald-varek-a-fui-le-convoi`, `f-ald-torben-vend-a-perte`, `f-ald-finbar-n-a-jamais-chante-devant-les-ducs`. Les récompenses en or des quêtes de Brégor (70 po, 15 po), de Finbar (15 po) sont versées par les sujets de retour : ne pas les doubler dans `recompenses`.
+
+### Ajouts écrits avec les cinq autres lieux (11/11)
+
+Trésor : `ald-t-mousse-des-vasieres` (pont, vasières : la mousse de saule, 9e trésor de la zone). Objets : `ald-o-cailloux-de-quartz` (combe, pot des kobolds), `culotte-a-rubans` (coffret d'Aldwin), `registre-de-convoi`, `bottes-de-saut-du-gobelin` (coffre de Demi-Dent), `spatha-d-aethelgard`, `bouclier-d-aethelgard`, `dague-langue-d-acier`, `ald-o-torque-d-electrum` (sarcophage), `ald-o-miroir-de-poche`, `ald-o-graines-de-pavot`, `ald-o-broche-au-sanglier`. Drapeau : `z1-demi-dent-vaincu` (posé par la victoire du combat, lu par la reddition). Faits : `f-ald-pont-embusque-par-la-griffe`, `f-ald-moulin-cor-previent-la-carriere`, `f-ald-moulin-deserteurs-rancon`, `f-ald-moulin-godefroy-tronc`, `f-ald-vieux-bourru-territorial`, `f-ald-demi-dent-or-etranger`, `f-ald-tertre-tombe-d-aethelgard`. PNJ : `demi-dent`. Déclencheurs : combats à l'entrée du lieu ; confrontation de Silas et reddition à l'exploration ; Barnabé, Thibault, Godefroy et sentinelles de nuit au hasard.
 
 ## Boutiques et services (zone 1)
 

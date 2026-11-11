@@ -1,0 +1,332 @@
+[
+  {
+    "id": "le-coffret-d-aldwin",
+    "titre": "Le coffret d'Aldwin",
+    "situation": "Le groupe est revenu de la carcasse du chariot avec le coffret d'Aldwin, et Martha attend toujours sur sa botte de foin. Elle reconnaît l'alliance gravée à l'intérieur et pleure sans bruit, comme si elle n'espérait plus la revoir. Dans le coffret, il y a aussi l'or de la ferme : soixante-cinq pièces d'or et quarante pièces d'argent. Mais la ferme est brûlée, le fer neuf se brise dans la forge, et les réfugiés de la cour manquent de tout.",
+    "quand": {
+      "et": [
+        {
+          "objet": "ald-o-alliance-d-aldwin"
+        },
+        {
+          "quete": {
+            "id": "q-le-testament-du-chariot",
+            "statut": "active"
+          }
+        }
+      ]
+    },
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "delai": 3,
+    "options": [
+      {
+        "id": "rendre",
+        "libelle": "Je rends tout à Martha, l'or compris.",
+        "ton": "Loyauté",
+        "couts": [
+          "Le groupe perd les 69 po du coffret : ni équipement ni provisions avec cette somme."
+        ],
+        "gains": [
+          "Martha vous est reconnaissante, et la ferme pourra être rebâtie."
+        ],
+        "requis": {
+          "pieces": {
+            "min": 69
+          }
+        },
+        "requisTexte": "Il vous faut 69 po, l'or du coffret.",
+        "effets": [
+          {
+            "pieces": -69
+          },
+          {
+            "flag": "z1-or-rendu"
+          },
+          {
+            "attitude": {
+              "pnj": "martha-haddon",
+              "delta": 20
+            }
+          }
+        ],
+        "epilogue": "Martha a relevé sa ferme avec l'or du coffret, et elle raconte encore votre passage aux voyageurs de la route."
+      },
+      {
+        "id": "garder",
+        "libelle": "Je rends l'alliance, je garde l'or.",
+        "ton": "Pragmatisme",
+        "couts": [
+          "Martha reste sans le sou, et l'auberge ne tarde pas à le savoir : Mireille et Brégor le répéteront."
+        ],
+        "gains": [
+          "Les 69 po restent au groupe, de quoi payer le fer sain qui manque à la forge."
+        ],
+        "effets": [
+          {
+            "flag": "z1-or-garde"
+          },
+          {
+            "attitude": {
+              "pnj": "martha-haddon",
+              "delta": -20
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "mireille-de-la-rose",
+              "delta": -10
+            }
+          }
+        ],
+        "epilogue": "Martha a quitté la cour avec l'alliance serrée dans son poing, et la ferme est restée en cendres."
+      },
+      {
+        "id": "refugies",
+        "libelle": "Je donne l'or à Brégor pour les réfugiés.",
+        "ton": "Charité",
+        "couts": [
+          "Martha ne reçoit pas l'or de son mari, et elle le sait."
+        ],
+        "gains": [
+          "Le dortoir et la soupe des réfugiés sont payés pour des semaines."
+        ],
+        "requis": {
+          "pieces": {
+            "min": 69
+          }
+        },
+        "requisTexte": "Il vous faut 69 po, l'or du coffret.",
+        "effets": [
+          {
+            "pieces": -69
+          },
+          {
+            "flag": "z1-or-aux-refugies"
+          },
+          {
+            "attitude": {
+              "pnj": "bregor-le-borgne",
+              "delta": 15
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martha-haddon",
+              "delta": -10
+            }
+          }
+        ],
+        "epilogue": "Brégor a fait tendre les toiles du dortoir, et la soupe fume chaque soir dans la cour, payée avec l'or d'Aldwin."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas.",
+      "couts": [
+        "Martha attend, et les réfugiés attendent avec elle : sans décision, l'or dort dans le coffret."
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "martha-haddon",
+            "delta": -10
+          }
+        }
+      ],
+      "epilogue": "Martha a appris le sort de l'or par Brégor, et elle ne vous a plus jamais demandé de comptes."
+    },
+    "echos": [
+      {
+        "si": "rendre",
+        "apres": 2,
+        "annonce": "Martha fait monter une cloison neuve dans la grange, et sa voix chante en travaillant.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "martha-haddon",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "garder",
+        "apres": 2,
+        "annonce": "Brégor vous regarde traverser la cour, et son œil borgne ne quitte pas vos mains.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "bregor-le-borgne",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "si": "refugies",
+        "apres": 2,
+        "annonce": "La soupe fume dans la cour, et des enfants font la queue avec leurs gamelles.",
+        "effets": []
+      },
+      {
+        "si": "abstention",
+        "apres": 2,
+        "annonce": "Martha a cessé de vous regarder quand vous traversez la cour.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "martha-haddon",
+              "delta": -5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "la-reddition-de-demi-dent",
+    "titre": "La reddition de Demi-Dent",
+    "situation": "Demi-Dent est à genoux dans la glaise, son cimeterre brisé à côté de lui, et tout le camp regarde. Il dit qu'il n'a plus rien à perdre, et il attend votre sentence. Autour de la mare, les gobelins blessés se taisent, et personne n'ose parler avant vous.",
+    "quand": {
+      "flag": "z1-demi-dent-vaincu"
+    },
+    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
+    "delai": 2,
+    "options": [
+      {
+        "id": "epargner",
+        "libelle": "Je l'épargne, et je l'écoute.",
+        "ton": "Clémence",
+        "couts": [
+          "Brégor le prendra mal, et son avis sur vous en pâtira.",
+          "Le chef gobelin reste libre, et il peut revenir un jour.",
+          "Brégor ne paie que la moitié de la prime : vingt pièces d'or au lieu de quarante."
+        ],
+        "gains": [
+          "Ses aveux sur les caisses venues du sud et sur l'or étranger, qu'il vous livre de lui-même."
+        ],
+        "effets": [
+          {
+            "flag": "z1-demi-dent-epargne"
+          },
+          {
+            "fait": "f-ald-demi-dent-or-etranger"
+          },
+          {
+            "attitude": {
+              "pnj": "bregor-le-borgne",
+              "delta": -10
+            }
+          }
+        ],
+        "epilogue": "Demi-Dent a parlé jusqu'à l'aube, et ses aveux ont mené les gardes jusqu'aux caisses de l'or étranger."
+      },
+      {
+        "id": "achever",
+        "libelle": "Je l'achève. Qu'il ne se relève pas.",
+        "ton": "Fermeté",
+        "couts": [
+          "Ses aveux se perdent avec lui, et sa bande peut vouloir se venger."
+        ],
+        "gains": [
+          "Brégor paie la prime pleine, quarante pièces d'or, et le camp se disperse."
+        ],
+        "effets": [
+          {
+            "flag": "z1-demi-dent-tue"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "demi-dent",
+              "etat": "mort"
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Demi-Dent est mort dans la glaise, et sa bande s'est dispersée dans les fourrés."
+      },
+      {
+        "id": "marche",
+        "libelle": "Je lui offre un marché : sa vie contre son serment de quitter la Marche.",
+        "ton": "Ruse",
+        "couts": [
+          "S'il rompt le marché, il tentera de fuir, et il faudra l'abattre.",
+          "Même si le marché tient, Brégor ne paie que la moitié de la prime."
+        ],
+        "gains": [
+          "S'il tient parole, il vous dit où l'on achemine les réactifs vers le puits 4, et personne n'a besoin de mourir."
+        ],
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "flag": "z1-demi-dent-epargne"
+          },
+          {
+            "fait": "f-reactifs-vers-puits-4"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "flag": "z1-demi-dent-tue"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "demi-dent",
+              "etat": "mort"
+            }
+          },
+          {
+            "narration": "Demi-Dent rompt le marché d'un coup de pied dans la glaise et se rue vers la palissade. Il tombe sous vos coups avant d'atteindre les fascines, et le camp reste figé."
+          }
+        ],
+        "epilogue": "Le marché conclu dans la glaise a fixé le sort de Demi-Dent, et le camp a retenu la leçon."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas.",
+      "couts": [
+        "La bande s'enfuit avec le butin, et la prime de Brégor s'évapore avec elle."
+      ],
+      "effets": [
+        {
+          "flag": "z1-demi-dent-enfui"
+        },
+        {
+          "narration": "La nuit tombe sur la carrière. Pendant que vous hésitiez, la bande a emporté le butin, et Demi-Dent a disparu dans les fourrés."
+        }
+      ],
+      "epilogue": "Demi-Dent s'est enfui dans la nuit, et sa bande dispersée a fini par se perdre sur les routes."
+    },
+    "echos": [
+      {
+        "si": "abstention",
+        "apres": 3,
+        "annonce": "Demi-Dent, affamé et seul, se présente de lui-même à l'auberge et se rend.",
+        "effets": [
+          {
+            "flag": "z1-demi-dent-epargne"
+          }
+        ]
+      },
+      {
+        "si": "epargner",
+        "apres": 3,
+        "annonce": "Un messager gobelin rapporte que des hommes en capes noires cherchent Demi-Dent sur la route du sud.",
+        "effets": []
+      },
+      {
+        "si": "achever",
+        "apres": 2,
+        "annonce": "La bande dispersée pille un chariot sur la route, et les marchands crient au meurtre.",
+        "effets": []
+      }
+    ]
+  }
+]

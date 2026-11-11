@@ -4,17 +4,32 @@
     "nom": "Le coffre de chêne du double-fond",
     "lieu": "ald-pont-carcasse-du-chariot",
     "contenant": "coffre",
-    "description": "Sous le plancher du chariot, côté avant, un double-fond que seul un œil attentif remarque. Dedans, un coffre de chêne cerclé de fer, à la serrure de laiton. On y trouve une alliance de mariage en argent usé, gravée à l'intérieur, un acte de propriété de terres dans la vallée, et, au fond, une culotte à rubans de satin fané dont personne n'a jamais voulu porter le premier ruban.",
+    "description": "Sous le plancher du chariot, côté avant, un double-fond que seul un œil attentif remarque. Dedans, un coffre de chêne cerclé de fer, à la serrure de laiton. On y trouve une bourse de cuir lourde de pièces, une alliance de mariage en argent usé, gravée à l'intérieur, un acte de propriété de terres dans la vallée, et, au fond, une culotte à rubans de satin fané dont personne n'a jamais voulu porter le premier ruban.",
     "contenu": {
       "objets": [
-        { "objet": "ald-o-alliance-d-aldwin", "quantite": 1 },
-        { "objet": "culotte-a-rubans", "quantite": 1 }
+        {
+          "objet": "ald-o-alliance-d-aldwin",
+          "quantite": 1
+        },
+        {
+          "objet": "culotte-a-rubans",
+          "quantite": 1
+        }
       ],
-      "tables": []
+      "tables": [],
+      "pieces": {
+        "po": 65,
+        "pa": 40
+      }
     },
     "acces": {
-      "cache": { "dd": 13, "competence": "investigation" },
-      "verrou": { "dd": 12 }
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      },
+      "verrou": {
+        "dd": 12
+      }
     }
   },
   {
@@ -25,12 +40,18 @@
     "description": "Sous une racine de saule, au ras de la vase, une cache creusée au couteau dans la berge. Dedans, trois petits paquets de mousse d'un vert vif, roulés dans des feuilles de roseau. La mousse est fraîche, et l'odeur de la vase qui l'entoure la garde humide.",
     "contenu": {
       "objets": [
-        { "objet": "ald-o-mousse-de-saule", "quantite": 1 }
+        {
+          "objet": "ald-o-mousse-de-saule",
+          "quantite": 1
+        }
       ],
       "tables": []
     },
     "acces": {
-      "cache": { "dd": 12, "competence": "survie" }
+      "cache": {
+        "dd": 12,
+        "competence": "survie"
+      }
     }
   }
 ]
