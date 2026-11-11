@@ -36,7 +36,7 @@ Un service « rumeurs » utile révèle un fait par ses `effets` (`{ "fait": "<i
 
 ## Où et quand on trouve un PNJ (`Pnj.presences`)
 
-Un PNJ est dans son `lieu`. `presences` l'ajoute ailleurs selon le **moment** (`jour` 6 h-17 h, `soir` 18 h-21 h, `nuit`) et une `condition` facultative : l'aubergiste au marché le jour et à l'auberge le soir, le guetteur sur les remparts la nuit. Une présence ne compte que si le PNJ n'a pas été **déplacé** par un effet `deplacer`. Utile pour qu'un marchand ne soit pas joignable à toute heure, ou pour un rendez-vous de nuit.
+Un PNJ est dans son `lieu`, **sauf** aux moments où il a une présence : `presences` le met ailleurs selon le **moment** (`jour` 6 h-17 h, `soir` 18 h-21 h, `nuit`) et une `condition` facultative, et cette présence **remplace** son lieu habituel (depuis le 11/11/2026 ; avant, il était aux deux endroits à la fois). Exemple : l'aubergiste a `lieu` = l'auberge et une présence `jour` au marché : le jour il est au marché seulement, le soir et la nuit à l'auberge. Plusieurs présences au même moment = plusieurs lieux possibles. Un PNJ **déplacé** par un effet `deplacer` n'est plus que là, à toute heure. Ses services et sa boutique le suivent. Utile pour qu'un marchand ne soit pas joignable à toute heure, ou pour un rendez-vous de nuit ; dans les tests, `lieuxDuPnjMaintenant(partie, pnj)` dit où le trouver.
 
 ## Le compagnon qui voyage
 

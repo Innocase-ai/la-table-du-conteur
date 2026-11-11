@@ -116,7 +116,7 @@ describe('objectifs et signes', () => {
     expect(sortie.objectifs).toEqual([def.nom]);
     expect(sortie.apercu).toContain(`Objectif de quête : ${def.nom}`);
     const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
-    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'aller' && (x.ordre as { vers: string }).vers === voisin)?.signe).toBe('◆');
+    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'aller' && (x.ordre as unknown as { vers: string }).vers === voisin)?.signe).toBe('◆');
   });
 
   it('une quête terminée ou sans lieu d’étape ne marque rien', () => {
@@ -155,7 +155,7 @@ describe('objectifs et signes', () => {
     sujet.effets = [{ quete: { id: QUETE, statut: 'proposee' } }];
     expect(signeDeQuete(pm, pnj)).toBe('!');
     const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
-    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'parler' && (x.ordre as { pnj: string }).pnj === pnj.id)?.signe).toBe('!');
+    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'parler' && (x.ordre as unknown as { pnj: string }).pnj === pnj.id)?.signe).toBe('!');
     appliquerEffets([{ quete: { id: QUETE, statut: 'active' } }], p.etat, dm);
     expect(signeDeQuete(pm, pnj)).toBeUndefined();
     sujet.effets = [{ flag: 'rapport' }, { quete: { id: QUETE, statut: 'terminee' } }];

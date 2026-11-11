@@ -3,9 +3,9 @@
 // d'influence (persuader, intimider, tromper) passent par un jet.
 import { evaluerCondition } from './etat';
 import { appliquer, consignerParole, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
-import { lieuDuPnj, pnjPresents } from './presence';
+import { lieuDuPnj, lieuxDuPnjMaintenant, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
-import type { Pnj } from './schemas';
+import type { EffetMonde, Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
 
 /** Seuils d'attitude : en dessous de -30, hostile ; au-dessus de 30, amical. */
@@ -13,10 +13,15 @@ export const SEUIL_HOSTILE = -30;
 export const SEUIL_AMICAL = 30;
 
 // La présence des PNJ vit dans `presence.ts` (partagée avec l'ouverture des serrures) ; réexportée ici pour les appelants.
-export { lieuDuPnj, pnjPresents };
+export { lieuDuPnj, lieuxDuPnjMaintenant, pnjPresents };
 
 export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
+}
+
+/** Un effet qui s'additionne à chaque application (le reste — fait, drapeau, quête, état d'un PNJ — ne change plus rien la 2e fois). */
+export function estCumulatif(e: EffetMonde): boolean {
+  return 'attitude' in e || 'objet' in e || 'pieces' in e || 'xp' in e || 'jauge' in e || 'reputation' in e;
 }
 
 /** Sujets que le PNJ accepte d'aborder maintenant. */
@@ -72,12 +77,16 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
     return { ...vide(), ok: false, refus: existe ? `${pnj.nom} ne veut pas (ou plus) parler de cela pour l'instant.` : `${pnj.nom} n'a rien à dire là-dessus.` };
   }
   // Tous les sujets abordés sont notés (un sujet unique disparaît ; les autres restent, marqués « déjà abordé »).
-  if (!p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`)) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
+  const deja = p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`);
+  if (!deja) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
   r.narrations.push(s.reponse);
   r.paroles = 1;
   consignerParole(p, pnj.id);
   // Les effets d'un sujet passent par le même chemin qu'une action : paliers de jauge, événements, quêtes, rencontres, fin.
-  appliquer(p, r, [...s.revele.map((f) => ({ fait: f })), ...s.effets]);
+  // Un sujet qu'on repose ne rapporte qu'une fois : ses gains et pertes (attitude, objets, or, PX, jauge, réputation) ne se
+  // rejouent pas, sinon cliquer cinq fois sur « Rejoindre » donnerait la confiance maximale.
+  const effets = deja ? s.effets.filter((x) => !estCumulatif(x)) : s.effets;
+  appliquer(p, r, [...s.revele.map((f) => ({ fait: f })), ...effets]);
   suites(p, r);
   return r;
 }
@@ -95,14 +104,21 @@ export function modeInfluence(attitudePnj: number): 'avantage' | 'desavantage' |
   return attitudePnj >= SEUIL_AMICAL ? 'avantage' : attitudePnj <= SEUIL_HOSTILE ? 'desavantage' : undefined;
 }
 
-/** Après un échec, on attend 24 h avant d'exhorter de nouveau le même PNJ de la même manière. */
+/**
+ * On attend 24 h avant d'exhorter de nouveau le même PNJ de la même manière : après un échec (SRD), et aussi après un succès
+ * qui n'arrachait pas de secret (sinon persuader en boucle mène l'attitude à 100). Le délai d'un secret est propre à ce secret.
+ */
 export const ATTENTE_INFLUENCE_HEURES = 24;
 
 const heureAbsolue = (p: Pick<PartieMonde, 'etat'>) => p.etat.jour * 24 + (p.etat.heure ?? 8);
 
+/** La clé du délai : la manière, et le secret visé s'il y en a un (rater un secret ne ferme pas les autres conversations). */
+const cleInfluence = (pnjId: string, maniere: Influence, secret?: string) => `${pnjId}:${maniere}${secret ? `:${secret}` : ''}`;
+
 /** Heures (entières, par excès) qu'il reste à attendre avant de retenter cette manière avec ce PNJ ; 0 si c'est possible. */
-export function attenteInfluence(p: Pick<PartieMonde, 'etat'>, pnjId: string, maniere: Influence): number {
-  const ratee = p.etat.exploration.influenceRatee?.[`${pnjId}:${maniere}`];
+export function attenteInfluence(p: Pick<PartieMonde, 'etat'>, pnjId: string, maniere: Influence, secret?: string): number {
+  // `influenceRatee` garde son nom (sauvegardes) : il note aussi les succès d'une influence sans secret.
+  const ratee = p.etat.exploration.influenceRatee?.[cleInfluence(pnjId, maniere, secret)];
   if (ratee === undefined) return 0;
   return Math.max(0, Math.ceil(ratee + ATTENTE_INFLUENCE_HEURES - heureAbsolue(p)));
 }
@@ -119,31 +135,41 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   const a = attitude(p, pnj);
   const acteur = choisirOrateur(p, maniere, options.personnage);
   if (!acteur) return { ...vide(), ok: false, refus: 'Personne ne peut le tenter.' };
-  const attente = attenteInfluence(p, pnj.id, maniere);
+  const attente = attenteInfluence(p, pnj.id, maniere, options.secret);
   if (attente > 0) return { ...vide(), ok: false, refus: `${pnj.nom} n'écoutera pas deux fois les mêmes arguments : réessayez dans ${attente} h, ou autrement.` };
   const mode = modeInfluence(a);
-  const rate = () => ((p.etat.exploration.influenceRatee ??= {})[`${pnj.id}:${maniere}`] = heureAbsolue(p));
+  const noter = () => ((p.etat.exploration.influenceRatee ??= {})[cleInfluence(pnj.id, maniere, options.secret)] = heureAbsolue(p));
 
   if (options.secret) {
     const sec = pnj.secrets.find((x) => x.fait === options.secret);
     if (!sec || p.etat.faits.includes(sec.fait)) return { ...vide(), ok: false, refus: `${pnj.nom} n'a rien de tel à révéler.` };
     if (sec.condition && !evaluerCondition(sec.condition, p.etat)) return { ...vide(), ok: false, refus: `${pnj.nom} ne lâchera pas cela pour l'instant.` };
     if (sec.attitudeMin !== undefined && a < sec.attitudeMin && !sec.jet) return { ...vide(), ok: false, refus: `${pnj.nom} ne fait pas assez confiance au groupe pour en parler.` };
-    if (sec.prix) {
-      if (p.etat.pieces < sec.prix) return { ...vide(), ok: false, refus: `${pnj.nom} veut ${sec.prix} po, que le groupe n'a pas.` };
+    if (sec.prix && p.etat.pieces < sec.prix) return { ...vide(), ok: false, refus: `${pnj.nom} veut ${sec.prix} po, que le groupe n'a pas.` };
+    // Un secret à prix sans jet propre s'achète : l'or suffit, pas de jet. Avec un jet, on ne paie que s'il réussit.
+    const paye = () => {
+      if (!sec.prix) return;
       p.etat.pieces -= sec.prix;
       r.constats.push(`Le groupe paie ${sec.prix} po.`);
+    };
+    if (sec.prix && !sec.jet) {
+      paye();
+      appliquer(p, r, [{ fait: sec.fait }]);
+      r.constats.push(`${pnj.nom} empoche l'or et parle.`);
+      suites(p, r);
+      return r;
     }
     const dd = sec.jet?.dd ?? ddInfluence();
     const comp = sec.jet?.competence ?? maniere;
     if (!jet(p, r, acteur, comp, dd, mode)) {
-      rate();
+      noter();
       r.ok = true;
       r.constats.push(`${pnj.nom} ne dit rien.`);
       appliquer(p, r, [{ attitude: { pnj: pnj.id, delta: maniere === 'intimidation' ? -10 : -5 } }]);
       suites(p, r);
       return r;
     }
+    paye();
     appliquer(p, r, [{ fait: sec.fait }]);
     r.constats.push(`${pnj.nom} finit par parler.`);
     suites(p, r);
@@ -151,7 +177,7 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   }
 
   const reussi = jet(p, r, acteur, maniere, ddInfluence(), mode);
-  if (!reussi) rate();
+  noter();
   // L'intimidation fait obéir mais n'attire pas la sympathie ; la tromperie découverte coûte cher.
   const delta = reussi ? (maniere === 'intimidation' ? -5 : 10) : maniere === 'tromperie' ? -15 : maniere === 'intimidation' ? -10 : -5;
   appliquer(p, r, [{ attitude: { pnj: pnj.id, delta } }]);

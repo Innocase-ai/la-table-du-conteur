@@ -116,6 +116,7 @@ export const moduleDialogue: Module = {
         if (!sec) return base;
         const competence = sec.jet?.competence;
         const maniere = competence === 'intimidation' || competence === 'tromperie' ? competence : 'persuasion';
+        // Un secret à prix sans jet s'achète ; avec un jet, on ne paie que s'il réussit.
         const etiquette = sec.prix ? `Payer ${sec.prix} po` : competence === 'intimidation' ? 'Intimider' : competence === 'tromperie' ? 'Tromper' : competence && competence !== 'persuasion' ? 'Insister' : 'Persuader';
         const libelle = sec.prix
           ? 'Glisser quelques pièces : il en sait plus qu’il ne le dit.'
@@ -134,7 +135,7 @@ export const moduleDialogue: Module = {
             icone: icones[maniere],
             aide: sec.prix ? `Payer ${sec.prix} po pour qu'il parle.` : `Tenter de lui faire dire ce qu'il cache (${competence ?? maniere}${sec.jet ? `, DD ${sec.jet.dd}` : `, DD ${dd}`}).`,
             ordre: { type: 'influencer', pnj: i.id, maniere, secret: sec.fait },
-            desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : attenteTexte(attenteInfluence(p, i.id, maniere)) ?? (sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined),
+            desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : attenteTexte(attenteInfluence(p, i.id, maniere, sec.fait)) ?? (sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined),
           },
         ];
       },

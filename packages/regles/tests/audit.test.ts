@@ -1,7 +1,7 @@
 // Les correctifs de l'audit du moteur (05/11/2026) : un test par défaut corrigé.
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { validerMonde, articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
+import { validerMonde, articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, lieuxDuPnjMaintenant, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
 import { chargerMonde } from '../src/monde/chargeur';
 import { dossierMonde } from './mondes-essai';
 import { chargerDonneesSrd } from '../src/donnees-node';
@@ -28,6 +28,8 @@ export function partie(id: string, niveau = 3) {
   return { dm, moteur, p };
 }
 const ici = (p: Partie, lieu: string, flags: Record<string, boolean> = {}): Partie => ({ ...p, scene: { type: 'exploration' }, etat: { ...p.etat, lieu, flags: { ...p.etat.flags, ...flags } } });
+/** Là où se tient ce PNJ à l'heure de la partie (ses présences du moment remplacent son lieu habituel). */
+const chez = (dm: DonneesMonde, p: Partie, id: string): string => lieuxDuPnjMaintenant(p, dm.pnj.get(id)!)[0]!;
 
 describe('audit : dialogue', () => {
   it('une fin déclenchée par un sujet de dialogue pose aussitôt la scène de fin', () => {
@@ -69,7 +71,7 @@ describe('audit : quêtes proposées', () => {
   it('une quête proposée par un PNJ s’accepte (bouton du Journal) et commence à sa première étape', () => {
     const { dm, moteur, p } = partie('val-des-cendres');
     const kor = dm.pnj.get('kor-varnak')!;
-    const depart = ici(p, kor.lieu);
+    const depart = ici(p, chez(dm, p, kor.id));
     depart.etat.attitudes = { ...depart.etat.attitudes, [kor.id]: 20 }; // le sujet demande sa confiance
     let q = moteur.executer(depart, { type: 'parler', pnj: kor.id }).partie;
     q = moteur.executer(q, { type: 'parler', pnj: kor.id, sujet: 'la-forge' }).partie;
@@ -84,7 +86,7 @@ describe('audit : quêtes proposées', () => {
 
 describe('audit : boutiques et services', () => {
   const parlerA = (m: ReturnType<typeof partie>, pnj: string, pieces: number) => {
-    const q = ici(m.p, m.dm.pnj.get(pnj)!.lieu);
+    const q = ici(m.p, chez(m.dm, m.p, pnj));
     q.etat.pieces = pieces;
     return m.moteur.executer(q, { type: 'parler', pnj }).partie;
   };

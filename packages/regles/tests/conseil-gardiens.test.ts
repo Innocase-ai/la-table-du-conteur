@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { etatInitial, nouvellePartie, aller, parler, creerGenerateur, type DonneesMonde } from '../src';
+import { etatInitial, nouvellePartie, aller, parler, creerGenerateur, lieuxDuPnjMaintenant, type DonneesMonde } from '../src';
 import { chargerMonde } from '../src/monde/chargeur';
 import { MONDES_ESSAI } from './mondes-essai';
 
@@ -55,13 +55,13 @@ describe('conseil des Gardiens', () => {
 
   it('ouvre le sujet « le-conseil » chez les quatre PNJ (là où on les retrouve), seulement une fois le conseil tenu', () => {
     for (const id of PNJ) {
-      const chezLui = partie(true).dm.pnj.get(id)!.lieu;
+      // Là où on le trouve à cette heure (ses présences du moment remplacent son lieu habituel).
       const avant = partie(true);
-      avant.etat.lieu = chezLui;
+      avant.etat.lieu = lieuxDuPnjMaintenant(avant, avant.dm.pnj.get(id)!)[0]!;
       expect(parler(avant, id, 'le-conseil').ok).toBe(false);
       const apres = partie(true);
       aller(apres, 'vei-maison-des-gardiens');
-      apres.etat.lieu = chezLui;
+      apres.etat.lieu = lieuxDuPnjMaintenant(apres, apres.dm.pnj.get(id)!)[0]!;
       const r = parler(apres, id, 'le-conseil');
       expect(r.ok, `${id} : ${r.refus ?? ''}`).toBe(true);
       expect(r.narrations.length).toBeGreaterThan(0);

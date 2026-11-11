@@ -5,7 +5,7 @@ import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, person
 import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { parler } from '../src/monde/dialogue';
-import { nouvellePartie, etatInitial } from '../src';
+import { nouvellePartie, etatInitial, lieuxDuPnjMaintenant } from '../src';
 import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
@@ -70,7 +70,7 @@ describe('la Cendre change l’accueil des habitants', () => {
 
   it('au palier « le village se vide », Rolf le dit avant toute autre salutation', () => {
     const p = nouvellePartie(dm, { ...etatInitial(dm, 3), flags: { 'z6-village-se-vide': true, 'z6-couvre-feu': true, 'z6-cendre-rodeurs': true } }, [], () => 0.5);
-    p.etat.lieu = dm.pnj.get('rolf-garde-capitaine')!.lieu;
+    p.etat.lieu = lieuxDuPnjMaintenant(p, dm.pnj.get('rolf-garde-capitaine')!)[0]!;
     const res = parler(p, 'rolf-garde-capitaine');
     expect(res.ok).toBe(true);
     expect(res.narrations.join(' ')).toMatch(/charrettes/i);

@@ -518,7 +518,9 @@ describe('détails déjà décrits : le conteur ne répète pas ses gestes', () 
 
 describe('garde-fou : les paroles de PNJ passent par l’outil', () => {
   const chezBertille = (): Partie => {
+    // Le soir : le jour, Bertille est à la cave de l'auberge (ses présences remplacent son lieu habituel).
     let p = depart();
+    p = { ...p, etat: { ...p.etat, heure: 18 } };
     p = moteur.executer(p, { type: 'aller', vers: 'vei-auberge-dernier-feu' }).partie;
     return moteur.executer(p, { type: 'parler', pnj: 'bertille-dernier-feu' }).partie;
   };

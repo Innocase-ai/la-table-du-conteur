@@ -84,6 +84,13 @@ function TexteJet({ j }: { j: Jet }) {
   );
 }
 
+/** Un nombre de 0 à 1 toujours le même pour une même graine (hachage FNV-1a) : un tirage qui ne change pas au rechargement. */
+export function tirageFixe(graine: string, sel = 0): number {
+  let h = 2166136261 ^ sel;
+  for (let i = 0; i < graine.length; i++) h = Math.imul(h ^ graine.charCodeAt(i), 16777619);
+  return (h >>> 0) / 4294967296;
+}
+
 /**
  * Ce qui vient de se dire dans la conversation en cours : la dernière parole du personnage et ce qui l'a suivie (ce que le
  * groupe apprend, un jet d'influence). Sans parole du personnage, la fin du journal jusqu'à l'arrivée au lieu, à la saisie
@@ -237,8 +244,10 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     const attitude = moteur.vue<{ attitude: number } | undefined>('interlocuteur', partie)?.attitude ?? 0;
     // Un PNJ qui a surpris le groupe aujourd'hui (crocheter, forcer) est méfiant, quelle que soit son attitude.
     const enAlerte = partie.etat.exploration.vus?.[pnj.id]?.jour === partie.etat.jour;
-    const ton = enAlerte ? 'mefiant' : tonDeLAttitude(attitude, Math.random());
-    const o = choisirOuverture(donnees.ouvertures, ton, derniereOuverture.current, Math.random());
+    // Tirage fixé par le PNJ, le jour et le point de la partie : recharger rend la même phrase ; une autre conversation en change.
+    const graine = `${pnj.id}:${partie.etat.jour}:${partie.journal.length}`;
+    const ton = enAlerte ? 'mefiant' : tonDeLAttitude(attitude, tirageFixe(graine, 1));
+    const o = choisirOuverture(donnees.ouvertures, ton, derniereOuverture.current, tirageFixe(graine, 2));
     const voix = voixDuPnj(donnees.voix, pnj.sexe, pnj.id, ageApproximatif(pnj.age));
     derniereOuverture.current = o.id;
     setOuverture({ pnj: pnj.id, texte: texteOuverture(o, voix.id.startsWith('f-') ? 'f' : 'm') });
@@ -372,15 +381,21 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
 
   /** Envoie une commande au moteur ; un refus s'affiche sans changer la partie. */
   const jouer = (ordre: Ordre) => {
+    // Pendant un tour du conteur, rien d'autre : son résultat, calculé sur la partie d'avant, écraserait l'action jouée.
+    if (enCours) return;
     const r = moteur.executer(partie, ordre);
     setRefus(r.refus);
-    if (!r.refus) onPartie(r.partie);
+    if (!r.refus) {
+      // Les suggestions du conteur valaient pour la scène d'avant.
+      setSuggestions([]);
+      onPartie(r.partie);
+    }
   };
 
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
   useEffect(() => {
-    if (!interlocuteur || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
+    if (!interlocuteur || enCours || sceneNarree || pageOuverte || feuille || carteOuverte || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
     const surTouche = (ev: KeyboardEvent) => {
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       const cible = ev.target as HTMLElement | null;

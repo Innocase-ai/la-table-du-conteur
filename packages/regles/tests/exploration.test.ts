@@ -383,12 +383,15 @@ describe('influence selon le SRD : Avantage, Désavantage, attente de 24 h', () 
     expect(influencer(p, NERIO, 'persuasion').jets).toHaveLength(1);
   });
 
-  it("une réussite n'impose aucune attente, et les sauvegardes sans le champ restent jouables", () => {
+  it('une réussite impose aussi 24 h (sinon persuader en boucle mène à 100), et les sauvegardes sans le champ restent jouables', () => {
     const p = chezNerio(SUCCES);
     delete p.etat.exploration.influenceRatee;
-    influencer(p, NERIO, 'persuasion');
-    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(0);
+    const avant = p.etat.attitudes[NERIO] ?? 0;
     expect(influencer(p, NERIO, 'persuasion').ok).toBe(true);
+    expect(attenteInfluence(p, NERIO, 'persuasion')).toBe(24);
+    expect(influencer(p, NERIO, 'persuasion').ok).toBe(false);
+    expect((p.etat.attitudes[NERIO] ?? 0) - avant).toBeLessThanOrEqual(10);
+    expect(influencer(p, NERIO, 'tromperie').ok).toBe(true); // une autre manière reste libre
   });
 });
 
