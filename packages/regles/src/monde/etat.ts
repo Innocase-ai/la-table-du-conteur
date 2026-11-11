@@ -234,8 +234,20 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
   else e.narrations.push(effet.narration);
 }
 
+/**
+ * Un lot d'effets (un sujet, une issue, un choix…). Clore une quête (`terminee`, `echouee`) se fait en dernier : les autres effets du
+ * lot (le drapeau « quête rendue ») et l'avancement des étapes passent d'abord. Sinon l'étape de retour au donneur, accomplie par ce
+ * même drapeau, ne l'était jamais : la quête était déjà close et les effets de l'étape (ses PX) se perdaient.
+ */
 export function appliquerEffets(effets: EffetMonde[], e: EtatMonde, dm: DonneesMonde): void {
-  for (const effet of effets) appliquerEffet(effet, e, dm);
+  const clotures: EffetMonde[] = [];
+  for (const effet of effets) {
+    if ('quete' in effet && (effet.quete.statut === 'terminee' || effet.quete.statut === 'echouee')) clotures.push(effet);
+    else appliquerEffet(effet, e, dm);
+  }
+  avancerQuetes(e, dm);
+  if (!clotures.length) return;
+  for (const effet of clotures) appliquerEffet(effet, e, dm);
   avancerQuetes(e, dm);
 }
 

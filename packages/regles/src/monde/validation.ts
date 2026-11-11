@@ -453,6 +453,23 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   if (sansRetour.length)
     avis(`Quêtes : ${sansRetour.length} quête(s) n'ont pas d'étape de retour à leur donneur (le joueur ne sait pas où ni comment la rendre : ajoutez une dernière étape « Retournez voir <donneur> », accomplie par un sujet de ce PNJ qui pose un drapeau) : ${sansRetour.slice(0, 6).join(', ')}${sansRetour.length > 6 ? '…' : ''}`);
 
+  // Un sujet qui clôt une quête (`quete: terminee`) sans accomplir son étape finale : les effets de cette étape (ses PX) ne seront
+  // jamais appliqués. Le sujet doit poser ce que l'étape finale attend (le drapeau « quête rendue »), ou la quête se clore par ses étapes.
+  const drapeaux = (c: Condition | undefined): string[] =>
+    !c ? [] : 'flag' in c ? [c.flag] : 'et' in c ? c.et.flatMap(drapeaux) : 'ou' in c ? c.ou.flatMap(drapeaux) : [];
+  for (const p of dm.pnj.values()) {
+    for (const s of p.sujets) {
+      const poses = new Set(s.effets.flatMap((x) => ('flag' in x ? [x.flag] : [])));
+      for (const x of s.effets) {
+        if (!('quete' in x) || x.quete.statut !== 'terminee') continue;
+        const q = dm.quetes.get(x.quete.id);
+        const finales = q?.etapes.filter((e) => (e.suivantes.length === 0 || e.termine) && e.effets.length) ?? [];
+        if (finales.length && !finales.some((e) => drapeaux(e.completion).some((f) => poses.has(f))))
+          avis(`PNJ « ${p.id} », sujet « ${s.id} » : il clôt la quête « ${x.quete.id} » sans accomplir son étape finale ; les effets de cette étape (PX…) seront perdus. Posez aussi le drapeau qu'elle attend.`);
+      }
+    }
+  }
+
   // --- Factions, jauges, événements, fins, chapitres ---
   for (const f of dm.factions.values()) {
     if (f.chef) verifierRef(`Faction « ${f.id} »`, 'pnj', f.chef);
