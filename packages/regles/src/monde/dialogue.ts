@@ -1,11 +1,11 @@
 // Dialogue avec les PNJ : le conteur choisit un sujet d'après ce que dit le joueur ; le moteur vérifie que le PNJ
 // est là, qu'il accepte d'en parler (condition, attitude), révèle les faits et applique les effets. Les tentatives
 // d'influence (persuader, intimider, tromper) passent par un jet.
-import { evaluerCondition } from './etat';
+import { arrondirPieces, estCumulatif, evaluerCondition } from './etat';
 import { appliquer, consignerParole, suites, VERBES_OUVRIR, type CompteRendu, type PartieMonde } from './exploration';
 import { lieuDuPnj, lieuxDuPnjMaintenant, pnjPresents } from './presence';
 import type { Personnage } from '../personnage';
-import type { EffetMonde, Pnj } from './schemas';
+import type { Pnj } from './schemas';
 import { testD20 } from '../tests-d20';
 
 /** Seuils d'attitude : en dessous de -30, hostile ; au-dessus de 30, amical. */
@@ -19,10 +19,8 @@ export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
 }
 
-/** Un effet qui s'additionne à chaque application (le reste — fait, drapeau, quête, état d'un PNJ — ne change plus rien la 2e fois). */
-export function estCumulatif(e: EffetMonde): boolean {
-  return 'attitude' in e || 'objet' in e || 'pieces' in e || 'xp' in e || 'jauge' in e || 'reputation' in e;
-}
+// `estCumulatif` vit dans `etat.ts` (l'exploration s'en sert aussi : énigmes) ; réexporté ici pour les appelants.
+export { estCumulatif };
 
 /** Sujets que le PNJ accepte d'aborder maintenant. */
 export function sujetsDisponibles(p: PartieMonde, pnj: Pnj): Pnj['sujets'] {
@@ -149,7 +147,7 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
     // Un secret à prix sans jet propre s'achète : l'or suffit, pas de jet. Avec un jet, on ne paie que s'il réussit.
     const paye = () => {
       if (!sec.prix) return;
-      p.etat.pieces -= sec.prix;
+      p.etat.pieces = arrondirPieces(p.etat.pieces - sec.prix);
       r.constats.push(`Le groupe paie ${sec.prix} po.`);
     };
     if (sec.prix && !sec.jet) {

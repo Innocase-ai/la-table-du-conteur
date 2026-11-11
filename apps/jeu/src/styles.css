@@ -9369,3 +9369,19 @@ kbd {
 .renseignements-liste { margin: 0; padding-left: 16px; font-size: 0.8rem; line-height: 1.35; }
 .renseignements-liste li { margin-bottom: 4px; }
 .renseignements-cout { color: var(--texte-doux); font-size: 0.75rem; }
+
+/* Filet de sécurité : la page d'erreur au lieu d'un écran blanc. */
+.erreur-jeu { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; background: var(--fond); color: var(--texte); z-index: 1000; }
+.erreur-jeu-carte { max-width: 640px; width: 100%; padding: 24px; background: var(--panneau); border: 1px solid var(--rouge); border-radius: 10px; display: flex; flex-direction: column; gap: 12px; }
+.erreur-jeu-carte h1 { margin: 0; font-family: var(--titre); color: var(--or); }
+.erreur-jeu-boutons { display: flex; flex-wrap: wrap; gap: 8px; }
+.erreur-jeu-carte pre { max-height: 240px; overflow: auto; font-size: 0.8em; white-space: pre-wrap; background: var(--fond); padding: 8px; border-radius: 6px; }
+
+/* Menu des sauvegardes de l'écran titre (fichier, partie précédente, partie illisible). */
+.titre-sauvegardes { position: relative; }
+.titre-sauvegardes-volet { position: absolute; bottom: calc(100% + 8px); left: 0; min-width: 300px; padding: 12px; background: var(--panneau); border: 1px solid var(--bord); border-radius: 8px; display: flex; flex-direction: column; gap: 8px; z-index: 5; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); }
+.titre-sauvegardes-volet p { margin: 0; font-size: 0.85em; color: var(--texte-doux); }
+.titre-sauvegardes-volet .bandeau { font-size: 0.85em; }
+
+/* Sauvegarde impossible pendant l'aventure. */
+.bandeau-sauvegarde { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0; }

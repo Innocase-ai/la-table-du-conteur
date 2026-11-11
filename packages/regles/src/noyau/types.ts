@@ -277,6 +277,8 @@ export interface ResultatOrdre {
   partie: Partie;
   evenements: EvenementJeu[];
   refus?: string;
+  /** Une erreur du code (pas un refus des règles) : message et pile, pour le rapport de plantage. La partie est l'ancienne. */
+  erreurInterne?: string;
 }
 
 /** Fonction utilitaire pour déclarer une commande avec inférence du type de son entrée. */

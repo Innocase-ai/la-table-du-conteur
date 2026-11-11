@@ -26,6 +26,25 @@ export interface EtatInventaire {
   nouveaux?: string[];
 }
 
+const clesDuMonde = new WeakMap<object, Set<string>>();
+
+/**
+ * Un objet qu'on ne peut pas abandonner : objet de quête, clé, ou tout objet qui ouvre un passage ou un contenant du monde
+ * (sinon jeter la clé du grenier fermait le grenier pour toujours — audit du 11/11/2026).
+ */
+export function objetIndispensable(ctx: ContexteJeu, id: string): boolean {
+  const o = objetDe(ctx, id);
+  if (o.categorie === 'quete' || o.categorie === 'cle') return true;
+  let cles = clesDuMonde.get(ctx.dm);
+  if (!cles) {
+    cles = new Set<string>();
+    for (const l of ctx.dm.lieux.values()) for (const lien of l.liens) if (lien.verrou?.cle) cles.add(lien.verrou.cle);
+    for (const t of ctx.dm.tresors.values()) if (t.acces.verrou?.cle) cles.add(t.acces.verrou.cle);
+    clesDuMonde.set(ctx.dm, cles);
+  }
+  return cles.has(id);
+}
+
 /** La potion que les héros boivent en combat (2d4 + 2). */
 export const POTION_DE_COMBAT = 'potion-de-guerison';
 
@@ -265,7 +284,7 @@ export const moduleInventaire: Module = {
         const n = t.partie.etat.inventaire[e.objet] ?? 0;
         if (!n) return { refus: "Le groupe n'a pas cet objet." };
         const o = objetDe(t.ctx, e.objet);
-        if (o.categorie === 'quete') return { refus: `${o.nom} est trop important pour être abandonné.` };
+        if (objetIndispensable(t.ctx, e.objet)) return { refus: `${o.nom} est trop important pour être abandonné.` };
         retirer(t, e.objet, Math.min(n, e.quantite ?? 1));
         t.emettre({ type: 'constat', texte: `Le groupe abandonne ${o.nom}.` });
       },

@@ -9,7 +9,7 @@ import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
-import { appliquerEffets, avancerQuetes, evaluerCondition, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
+import { appliquerEffets, avancerQuetes, estCumulatif, evaluerCondition, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
 import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
@@ -174,7 +174,8 @@ function franchirPaliers(p: PartieMonde, r: CompteRendu, id: string, avant: numb
   const j = p.dm.jauges.get(id);
   if (!j) return;
   for (const palier of j.paliers) {
-    const franchi = apres > avant ? avant < palier.seuil && apres >= palier.seuil : avant > palier.seuil && apres <= palier.seuil;
+    // Un palier ne se franchit que dans son sens : « monte » (la menace atteint ce seuil) ou « baisse » (elle redescend jusqu'à lui).
+    const franchi = (palier.sens ?? 'monte') === 'monte' ? avant < palier.seuil && apres >= palier.seuil : avant > palier.seuil && apres <= palier.seuil;
     const cle = `${id}:${palier.seuil}`;
     if (!franchi || p.etat.exploration.paliers.includes(cle)) continue;
     p.etat.exploration.paliers.push(cle);
@@ -503,14 +504,15 @@ export function regarder(p: PartieMonde): CompteRendu {
 export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
   const fouille = `${p.etat.lieu}:${p.etat.jour}`;
   if (p.etat.exploration.fouilles.includes(fouille)) return refus('Le groupe a déjà fouillé ce lieu aujourd\'hui : il faudra revenir après un repos.');
-  p.etat.exploration.fouilles.push(fouille);
   const r = resultat();
   const caches = cachettes(p, p.etat.lieu);
   const competences = [...new Set(caches.map((c) => c.competence))];
   if (!competences.length) competences.push('investigation');
+  // Qui fouille, vérifié AVANT de compter la fouille du jour : un héros inconnu ou à terre n'use pas la fouille.
+  if (competences.some((comp) => !choisir(p, comp, personnage))) return refus(personnage ? `« ${personnage} » ne peut pas fouiller.` : 'Personne ne peut fouiller.');
+  p.etat.exploration.fouilles.push(fouille);
   for (const comp of competences) {
-    const a = choisir(p, comp, personnage);
-    if (!a) return refus(personnage ? `« ${personnage} » ne peut pas fouiller.` : 'Personne ne peut fouiller.');
+    const a = choisir(p, comp, personnage)!;
     // Le DD d'une fouille reste secret : le joueur ne doit pas savoir s'il reste quelque chose à trouver.
     const jet = tester(p, r, a, comp, 0);
     jet.ddSecret = true;
@@ -668,6 +670,12 @@ export function declencher(p: PartieMonde, r: CompteRendu, pg: Piege, victime: P
   if (total > 0) {
     victime.pv = Math.max(0, victime.pv - total);
     r.constats.push(`${victime.nom} subit ${degats.map((d) => `${d.total} dégâts de ${d.type}`).join(' et ')} (PV ${victime.pv}/${victime.fiche.pvMax})${victime.pv === 0 ? ' et tombe inconscient' : ''}.`);
+    // Pas de mort en histoire, et pas de groupe bloqué hors combat : comme après un combat, le héros tombé se relève à 1 PV
+    // (sinon un groupe d'un seul héros ne pouvait plus ni fouiller, ni ouvrir, ni se soigner par une halte).
+    if (victime.pv === 0) {
+      victime.pv = 1;
+      r.constats.push(`${victime.nom} reprend connaissance, à 1 PV.`);
+    }
   }
   if (pg.etats.length && facteur === 1) r.constats.push(`${victime.nom} est ${pg.etats.join(', ')}.`);
   appliquer(p, r, pg.effets);
@@ -838,6 +846,10 @@ export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown)
       }
     }
   } else {
+    // Ce qui s'additionne (jauge, or, PX, attitude…) ne se paie qu'à la PREMIÈRE erreur : on peut retenter, mais trois erreurs
+    // ne font plus monter trois fois une jauge jusqu'à la fin d'échec (audit du 11/11/2026 : la Dîme se perdait en trois
+    // réponses fausses). Le reste se rejoue : une patrouille qui revient à chaque signal faux revient toujours.
+    const premiereErreur = ex.enigmes[enigme] !== 'echouee';
     ex.enigmes[enigme] = 'echouee';
     r.ok = true;
     // Le récit de l'échec précède la rencontre qu'il déclenche (dont l'introduction se raconte à la suite).
@@ -848,7 +860,7 @@ export function repondreEnigme(p: PartieMonde, enigme: string, reponse: unknown)
       const victime = choisir(p, 'perception');
       if (pg && victime && !ex.pieges[pg.id]) declencher(p, r, pg, victime);
     }
-    appliquer(p, r, e.echec?.effets ?? []);
+    appliquer(p, r, (e.echec?.effets ?? []).filter((x) => premiereErreur || !estCumulatif(x)));
   }
   suites(p, r);
   return r;
@@ -896,23 +908,34 @@ export function seReposer(p: PartieMonde, duree: 'court' | 'long', options: { ab
       if (changes.length) r.constats.push(`${a.nom} récupère : ${changes.join(', ')}.`);
     }
   };
+  // Couché de jour ou le soir, le groupe se lève le lendemain à 8 h ; couché en pleine nuit, après minuit (la journée a déjà
+  // changé), il dort ses 8 heures et se lève le même jour : dormir à 2 h ne fait plus sauter une journée entière.
+  const heure = p.etat.heure ?? 8;
+  const apresMinuit = heure < 6;
   if (duree === 'long' && interrompu) {
-    const nuit = (24 - (p.etat.heure ?? 8)) + 8;
+    const nuit = apresMinuit ? 8 : 24 - heure + 8;
     const heures = Math.max(1, Math.floor(nuit / 2));
     r.constats.push(`${PHRASE_NUIT_INTERROMPUE} au bout de ${heures} h : le repos ne vaut qu'une halte.`);
     recuperation('court');
     avancerHeures(p, r, heures);
   } else if (duree === 'long') {
     recuperation('long');
-    p.etat.jour += 1;
-    p.etat.heure = 8;
-    r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
-    nouveauJour(p, r, true);
+    if (apresMinuit) {
+      p.etat.heure = Math.round(heure + 8);
+      r.constats.push(`Le groupe dort huit heures. Il se lève à ${p.etat.heure} h.`);
+    } else {
+      p.etat.jour += 1;
+      p.etat.heure = 8;
+      r.constats.push(`Le groupe se repose une nuit entière. Jour ${p.etat.jour}.`);
+      nouveauJour(p, r, true);
+    }
   } else if (interrompu) {
     r.constats.push('La halte est interrompue : personne ne récupère.');
   } else {
+    // Une halte dure une heure (SRD 5.2.1) : l'horloge avance, les jauges et les présences des PNJ suivent.
     recuperation('court');
     if (!r.constats.length) r.constats.push('Une courte halte.');
+    avancerHeures(p, r, 1);
   }
   // La rencontre se raconte après le repos (ou ce qu'il en reste).
   r.constats.push(...rencontre.constats);

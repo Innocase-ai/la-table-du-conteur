@@ -3,6 +3,7 @@ import { bilanPersonnage, personnageComplet, TAILLE_GROUPE, type Donnees, type G
 import { ControleSon } from '../composants/ControleSon';
 import { Credits } from '../composants/Credits';
 import { NOM_JEU, SOUS_TITRE_JEU } from '../jeu';
+import { Sauvegardes } from './Sauvegardes';
 import { histoires } from '../mondes';
 import { imageInterface } from '../visuels';
 
@@ -120,6 +121,7 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
           <button type="button" className="lien-credits" onClick={() => setCredits(true)}>
             Crédits
           </button>
+          <Sauvegardes />
           <span>Les objets de la table s'ouvrent aussi d'un clic. Prototype : le conteur (maître de jeu) n'est pas encore branché.</span>
         </footer>
         <p className="titre-credits-court">

@@ -10,7 +10,7 @@
 //   d'après leur identifiant : soins (les PV du groupe au maximum), chambre ou abri (une nuit de repos, même là où l'on ne
 //   pourrait pas dormir), identification (les objets du sac à étudier sont identifiés).
 import { z } from 'zod';
-import { evaluerCondition } from '../monde/etat';
+import { arrondirPieces, evaluerCondition } from '../monde/etat';
 import { pnjPresents } from '../monde/dialogue';
 import { appliquer, seReposer, suites, type CompteRendu, type PartieMonde } from '../monde/exploration';
 import type { Pnj } from '../monde/schemas';
@@ -139,12 +139,18 @@ export const moduleCommerce: Module = {
         if (NUIT.test(s.id)) {
           const r = seReposer(pm, 'long', { abri: true });
           if (!r.ok) return verser(t, r);
-          if (s.prix) t.partie.etat.pieces = Math.max(0, t.partie.etat.pieces - s.prix);
+          if (s.prix) t.partie.etat.pieces = arrondirPieces(Math.max(0, t.partie.etat.pieces - s.prix));
           r.constats.unshift(`${s.nom} : ${prixLisible(s.prix)} payés à ${pnj.nom}.`);
           appliquer(pm, r, s.effets);
           suites(pm, r);
           return verser(t, r);
         }
+        // Un service qui ne changerait rien n'est pas vendu : soins à un groupe en pleine forme, identification d'un sac sans
+        // objet inconnu (sauf si le service a d'autres effets, écrits par l'auteur).
+        const inventaire = (t.partie.modules['inventaire'] ?? { identifies: [] }) as { identifies: string[] };
+        const aIdentifier = Object.keys(t.partie.etat.inventaire).filter((id) => objetDe(t.ctx, id).identification && !inventaire.identifies.includes(id));
+        if (!s.effets.length && SOINS.test(s.id) && t.partie.groupe.every((h) => h.pv >= h.fiche.pvMax)) return { refus: `Personne n'a besoin de soins : ${s.nom} ne servirait à rien.` };
+        if (!s.effets.length && IDENTIFICATION.test(s.id) && !aIdentifier.length) return { refus: "Il n'y a rien à identifier dans le sac." };
         const r = vide();
         if (s.prix) appliquer(pm, r, [{ pieces: -s.prix }]);
         r.constats.push(`${s.nom}${s.prix ? ` (${prixLisible(s.prix)})` : ''} : ${s.resume}`);

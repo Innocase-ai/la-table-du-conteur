@@ -18,6 +18,9 @@ const MIGRATIONS: Record<number, (p: Brute) => void> = {
 };
 
 export function migrer(p: Brute): Brute {
+  // Une sauvegarde abîmée (ni version, ni état, ni groupe) est refusée clairement au lieu de passer telle quelle.
+  if (!p || typeof p !== 'object' || !Number.isInteger(p.version) || p.version < 1) throw new Error('Sauvegarde abîmée : sans numéro de version.');
+  if (typeof p.etat !== 'object' || !p.etat || !Array.isArray(p.groupe)) throw new Error('Sauvegarde abîmée : l’état de la partie ou le groupe manque.');
   if (p.version > VERSION_PARTIE) throw new Error(`Sauvegarde de version ${p.version}, plus récente que ce jeu (version ${VERSION_PARTIE}).`);
   while (p.version < VERSION_PARTIE) {
     const m = MIGRATIONS[p.version];

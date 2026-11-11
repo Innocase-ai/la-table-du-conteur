@@ -169,7 +169,9 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
   if ('lieu' in c) return e.lieuxVisites.includes(c.lieu);
   if ('rencontre' in c) {
     const i = memoireDe(e).issues?.[c.rencontre.id];
-    if (c.rencontre.issue === undefined && c.rencontre.alternative === undefined) return !!i || e.rencontresFaites.includes(c.rencontre.id);
+    // « Rencontre X faite » sans issue précisée : réglée (victoire ou autre issue réussie), pas fuie ni perdue. Une porte ou une
+    // quête conditionnée par la rencontre ne s'ouvre plus quand le groupe a fui ; `{ issue: 'fuite' }` reste possible.
+    if (c.rencontre.issue === undefined && c.rencontre.alternative === undefined) return (!!i && i.type !== 'fuite' && i.type !== 'defaite') || e.rencontresFaites.includes(c.rencontre.id);
     return !!i && (c.rencontre.issue === undefined || i.type === c.rencontre.issue) && (c.rencontre.alternative === undefined || i.alternative === c.rencontre.alternative);
   }
   if ('parle' in c) {
@@ -188,6 +190,17 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
 
 const borner = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
+/** L'or au cuivre près (1 pc = 0,01 po) : sans arrondi, trois repas à 1 pa laissaient 0,0999… po et le quatrième était refusé. */
+export const arrondirPieces = (po: number) => Math.round(po * 100) / 100;
+
+/**
+ * Un effet qui s'additionne à chaque application (attitude, objet, or, PX, jauge, réputation). Le reste — fait, drapeau, quête,
+ * état d'un PNJ, rencontre — ne change plus rien la deuxième fois, ou doit se rejouer (une rencontre qui revient).
+ */
+export function estCumulatif(e: EffetMonde): boolean {
+  return 'attitude' in e || 'objet' in e || 'pieces' in e || 'xp' in e || 'jauge' in e || 'reputation' in e;
+}
+
 export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde): void {
   if ('flag' in effet) e.flags[effet.flag] = effet.valeur ?? true;
   else if ('fait' in effet) {
@@ -201,7 +214,7 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     const n = (e.inventaire[effet.objet.id] ?? 0) + (effet.objet.retirer ? -1 : 1) * (effet.objet.quantite ?? 1);
     if (n > 0) e.inventaire[effet.objet.id] = n;
     else delete e.inventaire[effet.objet.id];
-  } else if ('pieces' in effet) e.pieces = Math.max(0, e.pieces + effet.pieces);
+  } else if ('pieces' in effet) e.pieces = arrondirPieces(Math.max(0, e.pieces + effet.pieces));
   else if ('xp' in effet) e.xp += effet.xp;
   else if ('quete' in effet) {
     const def = dm.quetes.get(effet.quete.id);
@@ -260,7 +273,7 @@ export function terminerQuete(id: string, e: EtatMonde, dm: DonneesMonde): void 
   q.statut = 'terminee';
   q.actives = [];
   e.xp += def.recompenses.xp;
-  e.pieces += def.recompenses.pieces;
+  e.pieces = arrondirPieces(e.pieces + def.recompenses.pieces);
   for (const o of def.recompenses.objets) e.inventaire[o] = (e.inventaire[o] ?? 0) + 1;
   for (const eff of def.recompenses.effets) appliquerEffet(eff, e, dm);
 }

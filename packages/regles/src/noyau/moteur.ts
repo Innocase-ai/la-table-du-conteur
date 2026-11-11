@@ -78,26 +78,33 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
       const dispo = entree.commande.disponible?.(ctx, partie) ?? true;
       if (dispo !== true) return refuser(dispo);
 
-      const brouillon = structuredClone(partie);
-      let emis: EvenementJeu[] = [];
-      const t: Transaction = { ctx, partie: brouillon, hasard: generateurSur(brouillon), emettre: (e) => emis.push(e) };
-      const r = entree.commande.executer(t, valide.data);
-      if (r && 'refus' in r) return refuser(r.refus);
+      // Filet de sécurité : une erreur dans une commande ou une réaction devient un refus. La partie d'avant reste intacte (on
+      // travaille sur une copie), le joueur garde la main, et le détail part dans la console pour le rapport de plantage.
+      try {
+        const brouillon = structuredClone(partie);
+        let emis: EvenementJeu[] = [];
+        const t: Transaction = { ctx, partie: brouillon, hasard: generateurSur(brouillon), emettre: (e) => emis.push(e) };
+        const r = entree.commande.executer(t, valide.data);
+        if (r && 'refus' in r) return refuser(r.refus);
 
-      // Le déplacement d'abord (le récit annonce le lieu), puis ce que la commande a émis, puis les autres changements d'état.
-      const tous: EvenementJeu[] = [];
-      let reference: Partie = partie;
-      for (let vague = 0; vague < VAGUES_MAX; vague++) {
-        const diff = differences(reference, brouillon);
-        const vagueEv = [...diff.filter((e) => e.type === 'deplacement'), ...emis, ...diff.filter((e) => e.type !== 'deplacement')];
-        if (!vagueEv.length) break;
-        tous.push(...vagueEv);
-        reference = structuredClone(brouillon);
-        emis = [];
-        reagir(t, vagueEv);
+        // Le déplacement d'abord (le récit annonce le lieu), puis ce que la commande a émis, puis les autres changements d'état.
+        const tous: EvenementJeu[] = [];
+        let reference: Partie = partie;
+        for (let vague = 0; vague < VAGUES_MAX; vague++) {
+          const diff = differences(reference, brouillon);
+          const vagueEv = [...diff.filter((e) => e.type === 'deplacement'), ...emis, ...diff.filter((e) => e.type !== 'deplacement')];
+          if (!vagueEv.length) break;
+          tous.push(...vagueEv);
+          reference = structuredClone(brouillon);
+          emis = [];
+          reagir(t, vagueEv);
+        }
+        brouillon.journal.push(...tous);
+        return { partie: brouillon, evenements: tous };
+      } catch (e) {
+        console.error(`Erreur interne pendant « ${ordre.type} »`, e);
+        return { ...refuser(`Erreur interne du jeu pendant cette action (${ordre.type}) : rien n'a changé, vous pouvez continuer.`), erreurInterne: e instanceof Error ? `${e.message}\n${e.stack ?? ''}` : String(e) };
       }
-      brouillon.journal.push(...tous);
-      return { partie: brouillon, evenements: tous };
     },
 
     commandes(partie) {

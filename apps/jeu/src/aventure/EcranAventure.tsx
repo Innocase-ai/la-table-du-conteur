@@ -19,7 +19,7 @@ import {
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
 import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
-import type { Aventure } from './partie';
+import { nomFichierPartie, sauvegardeEnEchec, telechargerTexte, type Aventure } from './partie';
 import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
@@ -482,6 +482,14 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           </div>
         )}
         {erreurConteur && <p className="recit-refus">{erreurConteur}</p>}
+        {sauvegardeEnEchec() && (
+          <div className="bandeau bandeau-erreur bandeau-sauvegarde" role="alert">
+            La partie n’a pas pu être sauvegardée (stockage du navigateur plein ou indisponible) : gardez-la dans un fichier pour ne rien perdre.
+            <button type="button" className="bouton" onClick={() => telechargerTexte(JSON.stringify(partie), nomFichierPartie(partie.monde, partie.etat.jour))}>
+              Enregistrer la partie dans un fichier
+            </button>
+          </div>
+        )}
         <form
           className="aventure-saisie"
           onSubmit={(ev) => {

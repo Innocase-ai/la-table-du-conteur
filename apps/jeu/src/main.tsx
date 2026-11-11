@@ -1,6 +1,7 @@
 import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { ErreurJeu } from './composants/ErreurJeu';
 import './styles.css';
 
 // `?effets` ouvre le banc d'essai des effets de combat (réglage des effets, sons et musiques), **en développement
@@ -31,7 +32,9 @@ createRoot(document.getElementById('racine')!).render(
         <BancEffets />
       </Suspense>
     ) : (
-      <App />
+      <ErreurJeu>
+        <App />
+      </ErreurJeu>
     )}
   </StrictMode>,
 );

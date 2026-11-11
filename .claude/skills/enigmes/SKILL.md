@@ -5,6 +5,8 @@ description: Écrire, relire, vérifier ou réparer les énigmes d'un monde de �
 
 # Les énigmes : écrire, et surtout vérifier
 
+**Échec répété (moteur, 11/11/2026)** : on peut retenter une énigme ratée ; ce qui s'additionne dans `echec.effets` (jauge, or, PX, attitude, objet, réputation) ne se paie qu'à la **première** erreur, le reste (rencontre qui revient, récit, piège non encore déclenché) se rejoue. Trois erreurs ne mènent donc plus à une fin d'échec par la jauge.
+
 **Règle d'or : une énigme n'existe que si on l'a jouée.** Le schéma et `pnpm monde valider` ne disent pas qu'on peut la résoudre. Dans ce projet, 13 énigmes sur 18 du Val passaient la validation alors que le joueur n'avait aucun moyen de les résoudre, et l'échec de quatre d'entre elles supprimait le combat qu'il annonçait. Chaque fois que tu crées, modifies ou relis une énigme, **tu exécutes la vérification ci-dessous et tu dis ce qu'elle a donné** (y compris les avis).
 
 ## 1. Vérifier (toujours, dans cet ordre)

@@ -536,7 +536,9 @@ export const Jauge = z.object({
   min: z.number(),
   max: z.number(),
   initial: z.number(),
-  paliers: z.array(z.object({ seuil: z.number(), nom: Texte, narration: Texte, effets: Effets.default([]) })).default([]),
+  // `sens` : un palier se franchit en montant (par défaut : la menace grandit) ou en descendant (« baisse » : le danger reflue).
+  // Avant le 11/11/2026 il se franchissait dans les deux sens : payer le péage racontait « la patrouille double le péage ».
+  paliers: z.array(z.object({ seuil: z.number(), nom: Texte, narration: Texte, effets: Effets.default([]), sens: z.enum(['monte', 'baisse']).default('monte') })).default([]),
   evolution: z.array(z.object({ declencheur: z.enum(['repos-long', 'jour', 'lieu', 'condition']), delta: z.number(), lieu: Id.optional(), condition: Condition.optional() })).default([]),
 });
 export type Jauge = z.infer<typeof Jauge>;

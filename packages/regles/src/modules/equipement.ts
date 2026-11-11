@@ -28,10 +28,19 @@ const PANNEAU_SAC = { id: 'sac', titre: 'Objets', ordre: 10, onglet: 'Sac' };
 
 const copie = (e: Equipement): Equipement => ({ armure: e.armure, bouclier: e.bouclier, armes: [...e.armes], portes: [...e.portes], bonusArmes: e.bonusArmes, bonusEmplacements: e.bonusEmplacements });
 
-const harmonises = (ctx: ContexteJeu, e: Equipement) => e.portes.filter((id) => objetDe(ctx, id).attunement).length;
+/** Les objets harmonisés portés : armure, bouclier et armes comptent aussi (SRD : 3 objets harmonisés au plus, de toute sorte). */
+const harmonises = (ctx: ContexteJeu, e: Equipement) => [e.armure, e.bouclier, ...e.armes, ...e.portes].filter((id): id is string => !!id && !!objetDe(ctx, id).attunement).length;
 
 /** Ce que donnerait l'équipement du héros avec cet objet en plus, ou la raison de le refuser. */
 function avecObjet(ctx: ContexteJeu, h: Personnage, objet: string): { equipe: Equipement; remis?: string } | { refus: string } {
+  const r = placer(ctx, h, objet);
+  // Harmonisation : compte tout ce qui serait porté (une armure ou une arme harmonisée remplace peut-être une autre).
+  if ('equipe' in r && objetDe(ctx, objet).attunement && harmonises(ctx, r.equipe) > HARMONISES_MAX)
+    return { refus: `${h.nom} est déjà harmonisé à ${HARMONISES_MAX} objets magiques, le maximum.` };
+  return r;
+}
+
+function placer(ctx: ContexteJeu, h: Personnage, objet: string): { equipe: Equipement; remis?: string } | { refus: string } {
   const info = infoEquipement(ctx, objet);
   const o = objetDe(ctx, objet);
   if (!info) return { refus: `${o.nom} ne s'équipe pas.` };
@@ -54,8 +63,6 @@ function avecObjet(ctx: ContexteJeu, h: Personnage, objet: string): { equipe: Eq
       return { equipe: e };
     case 'porte':
       if (e.portes.length >= PORTES_MAX) return { refus: `${h.nom} ne peut pas porter plus de ${PORTES_MAX} parures ou objets magiques.` };
-      if (o.attunement && harmonises(ctx, e) >= HARMONISES_MAX)
-        return { refus: `${h.nom} est déjà harmonisé à ${HARMONISES_MAX} objets magiques, le maximum.` };
       e.portes.push(objet);
       return { equipe: e };
   }

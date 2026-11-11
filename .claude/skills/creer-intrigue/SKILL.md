@@ -29,7 +29,7 @@ Format : `packages/regles/src/monde/schemas.ts` (`Quete`, `Faction`, `Jauge`, `E
   - `jour` : à chaque nouveau jour ; `repos-long` : à chaque nuit de repos ;
   - `lieu` : **à chaque entrée** dans ce lieu (pas une seule fois) ;
   - `condition` : **une seule fois**, dès que la condition est vraie.
-- Chaque **palier** (`seuil`) se déclenche **une fois**, quand la valeur le franchit (dans un sens ou dans l'autre) : sa `narration` est lue au joueur et ses `effets` s'appliquent. Le moteur ne pose **aucun drapeau tout seul** : pour qu'un PNJ ou une fin réagisse à un palier, mets un effet `{ "flag": "<jauge>-<n>" }` dans le palier, ou lis la jauge par une condition `{ "jauge": { "id", "min" } }`.
+- Chaque **palier** (`seuil`) se déclenche **une fois**, quand la valeur le franchit **en montant** (par défaut, `sens: "monte"` ; `"baisse"` pour un palier qui salue le danger qui reflue) : sa `narration` est lue au joueur et ses `effets` s'appliquent. Un palier dont le seuil vaut la valeur initiale ne se déclenche jamais en montant : mets-le au-dessus. (Avant le 11/11/2026, un palier se franchissait aussi en descendant : payer le péage de la Dîme racontait « la patrouille double le péage ».) Le moteur ne pose **aucun drapeau tout seul** : pour qu'un PNJ ou une fin réagisse à un palier, mets un effet `{ "flag": "<jauge>-<n>" }` dans le palier, ou lis la jauge par une condition `{ "jauge": { "id", "min" } }`.
 - Validateur : au moins 4 paliers, au moins la moitié avec des effets, et si elle monte seule, quelque chose doit pouvoir la faire baisser (un `delta` négatif dans un effet ou une évolution).
 
 ### Factions
