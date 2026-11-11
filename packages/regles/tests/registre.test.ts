@@ -14,7 +14,7 @@ import {
   versIdentifiant,
   type DonneesMonde,
 } from '../src';
-import { chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde, listerMondes, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
 const srd = chargerDonneesSrd();
@@ -65,7 +65,9 @@ describe('identifiants', () => {
   });
 
   it('les BIBLE des mondes livrés donnent des identifiants, et la plupart existent dans le monde', () => {
-    for (const id of listerMondes()) {
+    for (const id of listerMondesEcrits()) {
+      // Un monde en brouillon s'écrit zone par zone : son registre cite des ids de zones pas encore écrites.
+      if (JSON.parse(readFileSync(join(RACINE_MONDES, id, 'monde.json'), 'utf8')).statut === 'brouillon') continue;
       const bible = readFileSync(join(RACINE_MONDES, id, 'BIBLE.md'), 'utf8');
       const ids = idsDeLaBible(bible);
       expect(ids.size, id).toBeGreaterThan(20);
@@ -105,7 +107,7 @@ describe('registre des identifiants', () => {
     expect(r.inconnus.some((x) => x.genre === 'objet' && srd.objets.has(x.id))).toBe(false);
   });
 
-  it.each(listerMondes())('« %s » : aucune référence inconnue (le validateur le garantit déjà)', (id) => {
+  it.each(listerMondesEcrits())('« %s » : aucune référence inconnue (le validateur le garantit déjà)', (id) => {
     const dm = charger(join(RACINE_MONDES, id));
     expect(registreIds(dm, indexerReferences(dm), srd).inconnus).toEqual([]);
   });

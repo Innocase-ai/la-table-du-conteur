@@ -1,0 +1,1176 @@
+[
+  {
+    "id": "ald-carrefour-d-aldric",
+    "nom": "Le Carrefour d'Aldric",
+    "type": "region",
+    "parent": "marche-d-ombrefiel",
+    "resume": "Une plaine de boue autour d'une butte fortifiée où deux routes se croisent, six lieux dispersés : une auberge pleine de réfugiés, un pont d'embuscade, un moulin brisé, un ravin à l'ours, une carrière de pillards et une tombe ancienne.",
+    "description": "Le Carrefour d'Aldric occupe une plaine de six kilomètres sur cinq, que des semaines de crachin ont transformée en bourbier. Hors des pavés, tout déplacement est difficile et deux fois plus long. L'Éperon, butte de calcaire de quinze mètres, porte l'auberge de Brégor, fortifiée à la hâte, et son camp de réfugiés ; c'est le seul abri sûr de la région et le seul lieu où l'on dort sans veiller. Autour, cinq lieux : le Vieux Pont de la Noire-Eau, où les détrousseurs poussent des troncs devant les chariots ; le moulin d'Eldren, dont les gobelins se servent de guet, et la ferme Haddon où des déserteurs de la Garde d'Émeraude rançonnent ; la combe du Vieux Bourru, un ours territorial, et ses kobolds ; la carrière de Demi-Dent, au sud-ouest ; le tertre des Sept-Lances, au sud-est, qui garde une tombe antique et la plus belle arme du pays que le fer pourri n'atteint pas. Ici commence l'enquête : tout indique Sombreval, mais ce qui paie les hommes de main vient de Haute-Garde. Le groupe doit apprendre ici que le fer neuf est friable, qu'il vaut mieux du bois et du bronze, et que les alliés se gagnent.",
+    "ambiance": "Boue, crachin, peur sourde, bière tiède.",
+    "visuel": "Plaine de boue rouge et grise sous un crachin bas, traversée de deux routes en croix. Au centre, une butte calcaire coiffée d'une bâtisse de grès noircie, ceinte d'une palissade de pins écorcés et de tentes serrées. Un gibet de bois noir se dresse au carrefour, des corneilles posées sur la poutre.",
+    "accroche": "Au croisement de la Route du Roi et de la piste de l'ouest, une butte porte une auberge fortifiée ; deux pendus se balancent au carrefour.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "repos": "dangereux",
+    "position": {
+      "x": 36,
+      "y": 64
+    }
+  },
+  {
+    "id": "ald-auberge-de-bregor",
+    "nom": "L'Auberge de Brégor et l'Éperon d'Aldric",
+    "type": "batiment",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "une auberge fortifiée sur une butte de boue, avec sa palissade, sa cour de réfugiés et sa forge.",
+    "description": "L'Éperon d'Aldric est une butte de calcaire de quinze mètres, d'où l'on voit à deux kilomètres par temps clair. Au sommet, l'auberge de Brégor a été fortifiée à la hâte il y a six mois : une bâtisse de grès et de colombages de chêne, des fenêtres du rez-de-chaussée closes par des volets ferrés percés de meurtrières, et une palissade de pins écorcés de trois mètres qui ceinture la cour. La salle commune, le comptoir, le cellier, l'étage et les combles occupent la bâtisse ; la cour, le puits d'Aldric, les écuries, le hangar à foin et la forge occupent l'enceinte. Dans la cour, une vingtaine de tentes de réfugiés sont serrées contre la palissade ; les chevaux de trait et les mules réquisitionnées vivent dans les écuries. Au sommet de la rampe, le perron ferme la bâtisse du côté de la pente ; au pied, la potence se dresse au carrefour. Seul abri sûr de la région, l'auberge permet de dormir sans veiller, mais les marteaux de la forge se taisent de plus en plus souvent : le fer ne tient plus.",
+    "ambiance": "Boue, crachin, marteau qui se tait.",
+    "arrivee": "La butte apparaît d'abord comme une masse plus sombre que la plaine, puis la palissade se détache : des troncs de pin écorcés, clairs sur le fond noir, dressés sur trois mètres. Au-dessus, la bâtisse de grès et de colombages tient sa toiture d'ardoise lourde, et ses fenêtres du bas sont closes par des volets ferrés percés de fentes étroites. Le crachin tombe depuis le matin et ruisselle sur la rampe, où la boue glacée aspire les bottes à chaque pas. Une odeur de suint mouillé et de tourbe remuée monte jusqu'à vous, mêlée à celle de la bière tiède. Un coup de marteau sur le fer résonne à droite, irrégulier, comme si la pièce frappée se défaisait sous le choc. Au bout de la rampe, deux silhouettes de chiffon pendent sous un panneau pourri, et les corneilles s'envolent à votre approche. Le ciel reste bas, gris d'ardoise, et une lueur orange de forge se devine au-dessus de la palissade.",
+    "visuel": "Butte de calcaire gris couronnée d'une bâtisse de grès noirci, coiffée d'ardoise lourde et aux volets ferrés percés de meurtrières. Une palissade de pins écorcés, clairs sur le fond noir, ceinture la cour, et une cheminée de forge fume au nord-est. Une lueur orange se devine derrière les fentes, sous un ciel gris et bas, tandis que la boue glacée luit au pied de la rampe.",
+    "accroche": "Une butte calcaire porte une bâtisse de grès et une palissade de pins écorcés, au-dessus d'une rampe boueuse ; deux pendus se balancent au pied.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "repos": "sur",
+    "position": {
+      "x": 50,
+      "y": 46
+    }
+  },
+  {
+    "id": "ald-auberge-salle-commune",
+    "nom": "Salle commune",
+    "type": "salle",
+    "parent": "ald-auberge-de-bregor",
+    "resume": "une salle basse enfumée, aux tables de chêne, où les voyageurs bloqués attendent que la route se rouvre.",
+    "description": "La salle commune occupe le rez-de-chaussée, sur seize pas de long et dix de large, et ne reçoit de jour que par les fentes des madriers ferrés. L'âtre central en moellons chauffe mal : il réchauffe les tables les plus proches et laisse le reste de la salle dans le froid humide. Six tables de chêne sont réparties dans la pièce. Deux, contre le mur nord, servent aux bûcherons et aux réfugiés, qui parlent à voix basse de fer rongé et de convois arrêtés. Une table isolée, près de l'âtre, reste à moitié libre : Silas s'y installe le plus souvent, une pinte que personne ne touche devant lui. Dans le coin nord-est, sans fenêtre, Varek, un nain, garde les morceaux d'une hache brisée posés sur une table, à l'écart de la lumière. L'escalier de chêne monte dans l'angle sud-est ; la porte de service, au sud, donne sur la cour, et la porte principale, à l'ouest, sur le perron.",
+    "ambiance": "Brouhaha, fumée, bière éventée.",
+    "arrivee": "La porte s'ouvre sur une salle basse où la fumée de l'âtre stagne en couche grise sous les poutres. Le sol est fait de tomettes maculées de boue séchée, et les tables de chêne, serrées les unes contre les autres, portent des cernes de chopes et des entailles de couteau. Les fenêtres sont closes par des madriers ferrés ; seules quelques fentes laissent passer une lumière grise. Une odeur de bière éventée, de suint mouillé et de civet au lard vous enveloppe aussitôt. Au centre, l'âtre en moellons ronfle, sa pierre noircie jusqu'au linteau. Des voix basses se croisent, celles de marchands bloqués et de réfugiés qui parlent à mi-mot, pendant que le crachin tambourine sur les volets. Dans le coin le plus sombre, un homme trapu est penché sur une table couverte de morceaux de métal.",
+    "visuel": "Une salle basse de grès et de chêne noirci, au sol de tomettes couvert de boue séchée. Au centre, l'âtre en moellons est la seule source de lumière chaude, avec un tisonnier gris d'écailles posé contre la pierre. Six tables de chêne balafrées occupent la pièce, et l'escalier de l'angle sud-est disparaît dans la pénombre.",
+    "accroche": "Par les fentes des volets ferrés, la fumée grise de l'âtre et des voix basses s'échappent de la façade ouest de la bâtisse.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-comptoir-et-cellier",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le comptoir d'orme se dresse contre le mur est de la salle, face à la porte ; une ouverture libre permet de passer derrière le comptoir.",
+        "retour": "Derrière le comptoir, la salle entière se voit d'un coup d'œil : l'âtre au centre, les tables, et la porte d'entrée à l'ouest."
+      },
+      {
+        "vers": "ald-auberge-etage-et-combles",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un escalier de chêne noirci monte dans l'angle sud-est de la salle, vers l'étage et les combles.",
+        "retour": "L'escalier de chêne descend vers la salle commune ; la troisième marche grince, et l'âtre se devine en bas."
+      },
+      {
+        "vers": "ald-auberge-cour-et-ecuries",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte de service à planches ferrées, au sud de la salle, ouvre sur la cour boueuse.",
+        "retour": "Depuis la cour, la porte de service est un panneau de planches ferrées ; le bruit de la salle filtre à travers le bois."
+      },
+      {
+        "vers": "ald-auberge-perron-et-potence",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "La porte principale, à l'ouest, s'ouvre sur un perron de trois marches que la pluie rend glissant.",
+        "retour": "Devant le perron, la porte d'une bâtisse de grès s'ouvre sur une salle enfumée ; la pluie coule sur les marches."
+      }
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 34,
+      "y": 30
+    }
+  },
+  {
+    "id": "ald-auberge-comptoir-et-cellier",
+    "nom": "Comptoir blindé et cellier",
+    "type": "salle",
+    "parent": "ald-auberge-de-bregor",
+    "resume": "un comptoir de tôle contre le mur est, et sous une trappe, une cave de pierre pleine de réserves.",
+    "description": "Le comptoir de Brégor est un ouvrage d'orme de cinq pas, renforcé de tôle rivetée, qui occupe le mur est de la salle et laisse un passage étroit à une extrémité. Il sert de guichet pour le gîte et le couvert : une paillasse au dortoir pour deux pièces de cuivre la nuit. Un râtelier d'armes, à gauche, contient de quoi répondre à une bagarre. Deux fûts de cent cinquante litres sont posés derrière le comptoir. Au sol, à côté des fûts, une trappe fermée par un cadenas de laiton ouvre sur un cellier taillé dans la roche calcaire : une douzaine de marches, puis une cave fraîche où pendent des carcasses de porc salé. Dans le cellier, une caisse de transport camouflée sous une bâche de jute est marquée au sceau de la Compagnie du Lion d'Acier ; elle contient six pioches neuves qui sonnent creux, car le fer en est alvéolé. Sur une étagère, une chope d'étain, dont la bière ne se tarit jamais, attend son propriétaire.",
+    "ambiance": "Tôle froide, bière, pierre humide.",
+    "arrivee": "Le comptoir occupe une grande partie du mur est, plus large que la porte, et sa tôle rivetée renvoie la lueur de la lanterne en reflets gris. Derrière lui, les étagères portent des pichets de cuivre et des bouteilles d'eau-de-vie, et une odeur de genièvre piquant se mêle à celle de la bière éventée. Deux fûts de cent cinquante litres sont posés derrière le comptoir, leur bois cerclé de fer et sentant la levure. Le sol de tomettes est couvert de boue séchée jusqu'au pied du comptoir. Un courant d'air froid passe par une fente de meurtrière et fait vaciller la flamme de la lanterne accrochée au-dessus du passage. Le bruit de la salle s'éloigne à mesure que vous approchez. Le plafond est bas, traversé de poutres noircies par la fumée, et la pièce sent la pierre humide.",
+    "visuel": "Un comptoir d'orme renforcé de tôle rivetée occupe le mur est de la pièce, face à l'entrée, avec deux fûts de bière cerclés de fer posés derrière lui. Contre le mur nord, un râtelier d'armes ; une lanterne accrochée au-dessus du passage donne une lumière jaune sur le bois. Tout est gris de suie et de rouille, sauf les pichets de cuivre.",
+    "accroche": "Côté est de la bâtisse, une fenêtre condamnée par des volets ferrés laisse filtrer une lueur jaune et l'odeur de la bière éventée.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-salle-commune",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Derrière le comptoir, la salle entière se voit d'un coup d'œil : l'âtre au centre, les tables, et la porte d'entrée à l'ouest.",
+        "retour": "Le comptoir d'orme se dresse contre le mur est de la salle, face à la porte ; une ouverture libre permet de passer derrière le comptoir."
+      }
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 54,
+      "y": 28
+    }
+  },
+  {
+    "id": "ald-auberge-etage-et-combles",
+    "nom": "Étage et combles",
+    "type": "salle",
+    "parent": "ald-auberge-de-bregor",
+    "resume": "un étage de pin qui grince, une chambre d'angle fermée à double tour, et un dortoir de paille sous le toit.",
+    "description": "L'étage est une coursive de pin de deux pas et demi de large, qui court d'est en ouest au-dessus de la salle commune, de la trémie de l'escalier jusqu'à la chambre. Les lattes craquent sous le pas ; au troisième, une latte fendue a été recollée au fil de fer. Près de la trémie, une échelle de meunier monte par une ouverture sans porte au dortoir sous combles. Au bout ouest, au sud-ouest, la chambre d'angle est louée au mois. Sa porte de chêne noirci se ferme à double tour (Crochetage DD 14) ; à l'intérieur, un sommier de paille repose sur deux tréteaux, une petite table tient contre le mur, et une fenêtre sans volet ouvre sur la cour, à trois mètres en contrebas. Sous le sommier, un coffre de bois cadenassé, non piégé, contient dix-huit pièces d'or étrangères, un flacon d'encre et un carnet chiffré de la Griffe Noire : une liste de convois miniers qui, une fois déchiffrée, annonce Keldan en place au porche et donne l'adresse du camp de la forêt. Le dortoir, sous le toit, abrite une douzaine de réfugiés, qui dorment serrés sur des paillasses de foin pour deux pièces de cuivre la nuit ; une lucarne ronde, au fond, y laisse passer le jour gris.",
+    "ambiance": "Pin qui grince, foin, pluie.",
+    "arrivee": "L'escalier débouche sur un couloir de pin si étroit que vos épaules frôlent les deux cloisons. Le plancher est gris, fait de lattes claires que l'humidité a teintées. La lumière monte de la salle par la trémie et tombe en bande pâle sur les planches. À votre gauche, une échelle de meunier monte vers un plafond sombre. Au bout du couloir, une porte de chêne noirci, serrée dans son cadre, se détache sur un mur couvert de suie. Chaque pas fait gémir le bois, et l'écho se répand jusqu'à la porte fermée. Une odeur de fumée d'âtre et de foin mouillé vous suit depuis la salle, et le silence semble attendre quelqu'un. Le couloir n'a pas de fenêtre, et seule la trémie fait entrer le gris du jour. Par l'ouverture au-dessus de l'échelle monte une odeur tiède de dormeurs et de paille.",
+    "visuel": "Un couloir de pin étroit, aux lattes claires que l'humidité a teintées de gris, longe l'étage à la lumière de la trémie de l'escalier. Au bout ouest, une porte de chêne noirci ferme la chambre d'angle, sous un mur couvert de suie. Près de la trémie, une échelle de meunier monte vers les combles.",
+    "accroche": "Sous le toit d'ardoise, une lucarne et une fenêtre sans volet donnent sur la cour.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-salle-commune",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "L'escalier de chêne descend vers la salle commune ; la troisième marche grince, et l'âtre se devine en bas.",
+        "retour": "Un escalier de chêne noirci monte dans l'angle sud-est de la salle, vers l'étage et les combles."
+      },
+      {
+        "vers": "ald-auberge-cour-et-ecuries",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "La fenêtre de la chambre d'angle n'a pas de volet ferré ; le saut donne sur la boue de la cour, à trois mètres.",
+        "retour": "Sous la fenêtre de la chambre d'angle, la boue porte des traces de pas ; le mur de grès n'offre aucune prise."
+      }
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 44,
+      "y": 38
+    }
+  },
+  {
+    "id": "ald-auberge-cour-et-ecuries",
+    "nom": "Cour, puits, écuries et forge",
+    "type": "lieu-dit",
+    "parent": "ald-auberge-de-bregor",
+    "resume": "une cour de boue autour d'un puits, avec des écuries, un hangar à foin et une forge qui se tait.",
+    "description": "La cour occupe l'enceinte entre la bâtisse et la palissade, une trentaine de pas de long, couverte d'une boue glacée qui tient les bottes. Au centre, le puits d'Aldric, seule eau potable garantie saine de la région, a une margelle de pierre où le chanvre du treuil a creusé une gouttière. Une vingtaine de tentes de réfugiés sont dressées contre la palissade du sud. À l'est, l'écurie basse abrite les chevaux de trait et les mules réquisitionnées ; près de la porte, Martha Haddon dort sur une paillasse, et au fond un coin de paille forme l'hôpital de fortune de Mireille, avec ses cataplasmes et ses bols de tisane. À l'ouest, le hangar à foin, sous un toit bas posé sur des meules, sert de refuge à Finbar le ménestrel. Au nord-est, l'appentis de la forge est adossé à la palissade : Torben y vend des armes anciennes et répare les armes ébréchées. Sur son enclume, un lingot de Sombreval s'effrite au moindre choc. Dans une niche de la paroi du puits, au-dessus de l'eau, une boîte d'étain contient une potion et un sifflet d'argent à la gravure effacée ; on l'atteint en descendant au bout de la corde du treuil.",
+    "ambiance": "Boue, hennissements, marteau qui se tait.",
+    "arrivee": "Vous franchissez la porte de service, et la cour s'ouvre devant vous, plus vaste que la salle, où la boue est si profonde qu'on y avance à petits pas. Au centre, un puits à margelle de pierre dresse son treuil de chanvre sous la pluie fine. À gauche, l'écurie basse laisse échapper un hennissement et une odeur de foin mouillé, âcre et tiède. À droite, un hangar aux meules de foin laisse voir des paillasses et des gourdes pendues aux poutres. Le long de la palissade du sud, des tentes de toile grise sont alignées, et la fumée de leurs foyers monte droit dans l'air humide. Plus loin, au nord-est, un atelier noirci par la suie fume par sa cheminée, et un marteau frappe puis se tait, comme sur un métal qui se brise. L'air sent le suint, le soufre et la tourbe, et la fumée reste collée à la palissade.",
+    "visuel": "Une cour de boue grise, enclose de troncs de pin écorcés hauts de trois mètres. Au centre, un puits à margelle de pierre et treuil de chanvre, éclairé par une lanterne-tempête au bord de la margelle ; le long du mur est, les écuries basses, et à l'ouest le hangar à meules de foin. Au nord-est, l'appentis de la forge fume par une cheminée noire.",
+    "accroche": "Derrière la palissade de pins, une fumée de forge monte du nord-est et des hennissements d'écurie passent les troncs.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-salle-commune",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Depuis la cour, la porte de service est un panneau de planches ferrées ; le bruit de la salle filtre à travers le bois.",
+        "retour": "Une porte de service à planches ferrées, au sud de la salle, ouvre sur la cour boueuse."
+      },
+      {
+        "vers": "ald-auberge-etage-et-combles",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Sous la fenêtre de la chambre d'angle, la boue porte des traces de pas ; le mur de grès n'offre aucune prise.",
+        "retour": "La fenêtre de la chambre d'angle n'a pas de volet ferré ; le saut donne sur la boue de la cour, à trois mètres."
+      },
+      {
+        "vers": "ald-auberge-perron-et-potence",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un portail de planches ferrées ferme la palissade au sud-ouest ; il s'ouvre sur la rampe et le perron.",
+        "retour": "Le long de la palissade, un portail de planches ferrées donne sur la cour ; ses gonds grincent à chaque ouverture."
+      }
+    ],
+    "repos": "sur",
+    "position": {
+      "x": 46,
+      "y": 62
+    }
+  },
+  {
+    "id": "ald-auberge-perron-et-potence",
+    "nom": "Perron, rampe et potence",
+    "type": "lieu-dit",
+    "parent": "ald-auberge-de-bregor",
+    "resume": "un perron glissant, une rampe de boue et, au pied, une potence qui porte deux pendus.",
+    "description": "Le perron est un palier de trois marches de pierre usée, au sommet de la rampe, devant la porte principale, à l'ouest de la bâtisse. Un auvent de planches couvre le palier du haut. La première marche est creusée par les pas des charretiers ; la pluie y fait une flaque. Un tonneau d'eau de pluie est calé en haut des marches : le renverser rend les marches glissantes et gêne les chiens. Sous les marches, dans un renfoncement de pierre, les deux molosses de Keldan attendent ; Keldan le Pâle, tueur à gages au service de la Griffe Noire, se tient sous l'auvent. Ses bottes sont propres malgré la boue, et ses doigts sont tachés d'encre. La rampe descend ensuite vers le carrefour, sur une quarantaine de pas. Au pied, la potence de bois noirci porte deux pendus livrés aux corneilles et un panneau pourri : « Quiconque entrave les convois du Roi connaîtra le gibet. » Près de la potence, un jeune paysan au bonnet trop grand guette les passants. Sur Keldan, après le combat, on trouve un pli scellé de cire noire.",
+    "ambiance": "Crachin, gibet qui craque, boue.",
+    "arrivee": "Vous débouchez au pied de la rampe, et la boue monte jusqu'à la cheville. Au sommet, trois marches de pierre usée mènent à une porte de chêne, sous une lanterne de fer qui se balance. Tout près, au bord de la piste, une potence de bois noirci dresse son bras au-dessus de la boue. Deux silhouettes de chiffon pendent à la poutre, et un panneau pourri se balance avec elles. Les corneilles, posées sur la traverse, s'envolent au passage du vent puis reviennent aussitôt. Un tonneau d'eau de pluie est posé en haut des marches, sa surface couverte de feuilles mortes. La pluie fine fait briller les pavés de la route, et une bande de lumière orange filtre entre les volets, au-dessus de vous. L'odeur de tourbe et de bière tiède monte de la porte, mêlée à celle de la pluie sur la pierre.",
+    "visuel": "Une rampe de boue grise descend de la bâtisse de grès vers la piste, bordée de pierres ; trois marches usées, sous un auvent et une lanterne de fer, mènent à une porte de chêne. Au bas de la pente, une potence de bois noirci se dresse au bord de la piste, sous un panneau pourri et deux silhouettes de chiffon pendues.",
+    "accroche": "Au bas de la rampe qui monte à la butte, une potence de bois noirci porte un panneau pourri et deux silhouettes de chiffon.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-salle-commune",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Devant le perron, la porte d'une bâtisse de grès s'ouvre sur une salle enfumée ; la pluie coule sur les marches.",
+        "retour": "La porte principale, à l'ouest, s'ouvre sur un perron de trois marches que la pluie rend glissant."
+      },
+      {
+        "vers": "ald-auberge-cour-et-ecuries",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le long de la palissade, un portail de planches ferrées donne sur la cour ; ses gonds grincent à chaque ouverture.",
+        "retour": "Un portail de planches ferrées ferme la palissade au sud-ouest ; il s'ouvre sur la rampe et le perron."
+      },
+      {
+        "vers": "som-mines-de-sombreval",
+        "type": "chemin",
+        "heures": 5,
+        "sens": "double",
+        "description": "La piste de Sombreval s'enfonce vers l'ouest, rocailleuse et ravinée, et gravit des contreforts d'ardoise d'où monte une fumée de soufre.",
+        "retour": "Depuis les contreforts, la piste redescend vers l’est dans la brume, jusqu’à une butte fortifiée où deux routes se croisent.",
+        "absent": {
+          "nom": "La piste de Sombreval",
+          "motif": "bientot",
+          "texte": "La piste de Sombreval est ravinée par les pluies : la boue y avale les bottes, et personne ne s'y risque pour l'instant."
+        }
+      },
+      {
+        "vers": "hau-haute-garde",
+        "type": "route",
+        "heures": 12,
+        "sens": "double",
+        "description": "La Route du Roi, voie pavée, file droit vers le nord ; plus loin, des chariots à bâche noire s’arrêtent devant des barrages de péage.",
+        "retour": "Depuis les faubourgs, la Route du Roi redescend vers le sud, pavée et droite, jusqu’à un carrefour de boue où se dresse un gibet.",
+        "absent": {
+          "nom": "La Route du Roi",
+          "motif": "bientot",
+          "texte": "Des barrages de péage tenus par des hommes en bâche noire ferment la Route du Roi : aucun chariot ne passe, et personne ne laisse passer les curieux."
+        }
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 12,
+      "y": 40
+    }
+  },
+  {
+    "id": "ald-vieux-pont",
+    "nom": "Le Vieux Pont d'Aldric et la Noire-Eau",
+    "type": "lieu-dit",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "un pont de grès à une arche sur une rivière noire, avec un talus boisé au nord et des vasières au sud.",
+    "description": "Le Vieux Pont d'Aldric enjambe la Noire-Eau, un ruisseau marécageux qui coule d'ouest en est au sud de la butte. C'est un pont de grès à une arche : un tablier de quatre pas de large et d'une quinzaine de long, aux pavés disjoints et glissants d'algues brunes, dont la brèche de trois mètres s'ouvre dans le parapet de l'est. Au nord, la piste qui vient du carrefour descend vers la tête du pont, et c'est par là que les convois arrivent et que les détrousseurs les attendent. Au nord-ouest, un talus haut de deux mètres porte deux vieux chênes noueux ; au pied, deux troncs d'aulne sciés reposent sur des cales de pierre, prêts à basculer sur la route. Sur la rive sud, sous l'arche, la vase et les roseaux bordent l'eau, et un méphite de vapeur guette les pieds qui s'y aventurent. Le ruisseau continue vers l'est, où un chariot de farine renversé gît à quarante mètres en aval, caché par les aulnes du fossé ; et vers l'ouest, par les vasières, un sentier mène à la carrière d'argile rouge. Le pont n'a ni garde ni barrière : le danger vient des talus, de la vase et de la brèche.",
+    "ambiance": "Pierre mouillée, roseaux, eau noire.",
+    "arrivee": "Vous descendez la piste de boue, et le pont apparaît au bas de la pente : une arche de grès gris rougi de rouille, enjambant une rivière noire qui ne reflète presque rien. Le tablier est étroit et long, ses pavés disjoints luisent de crachin. Au nord-ouest, un talus boisé se détache sur la pente, avec deux chênes noueux qui penchent au-dessus du chemin. Sous l'arche, l'air est plus froid : une odeur de vase et de tourbe remuée monte de l'eau, mêlée à celle de la vase des berges. Au milieu du tablier, dans le parapet de l'est, une brèche de trois mètres laisse voir le vide, et la rivière quatre mètres plus bas. La lumière grise du ciel bas tombe sur des berges de vase, où les pas se perdent dans la boue. Vous entendez le clapotis de l'eau contre les pierres de l'arche, et, au loin, le cri des corneilles. Le ciel est bas, gris d'ardoise, et il pleut sur la rivière.",
+    "visuel": "Un pont d'une seule arche, de grès gris rougi de rouille, traverse une rivière noire et lente, et ses berges de vase sont couvertes de roseaux. Sur le tablier, une brèche de trois mètres s'ouvre dans le parapet de l'est, au-dessus de l'eau. À la tête nord-ouest du pont, un talus boisé porte deux vieux chênes noueux, et la lumière grise du ciel bas tombe sur tout cela.",
+    "accroche": "Au sud du carrefour, une piste de boue descend vers une arche de grès qui enjambe une rivière noire ; des roseaux bruissent dans le vent.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "La route remonte vers le carrefour, puis la butte de l'auberge, à une heure de marche dans la boue.",
+        "retour": "Depuis le perron de l'auberge, la rampe descend vers le carrefour, puis une piste de boue mène à une arche de grès au bord de l'eau noire."
+      },
+      {
+        "vers": "ald-carriere-d-argile",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Par les vasières de la rive sud, un sentier de boue file vers l'ouest, entre les roseaux, jusqu'à l'excavation d'argile rouge.",
+        "retour": "Depuis l'excavation, le sentier descend vers l'est au bord de la rivière, et le pont se découvre, gris, au-dessus des roseaux."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 42,
+      "y": 80
+    }
+  },
+  {
+    "id": "ald-pont-tablier-et-breche",
+    "nom": "Le tablier du pont et la brèche",
+    "type": "lieu-dit",
+    "parent": "ald-vieux-pont",
+    "resume": "un tablier de pierre glissant, une brèche béante dans le parapet et un inconnu assis au bord du vide.",
+    "description": "Le tablier est le cœur du passage : quatre pas de large, quinze de long, et une brèche de trois mètres dans le parapet de l'est, au milieu. La pierre est glissante : un déplacement rapide sur les pavés demande un test d'Acrobaties DD 10, et l'échec fait tomber le personnage à terre ; c'est un terrain, non un piège. Qui veut pousser un bandit ou un ennemi dans la brèche doit tenter une manœuvre de bousculade (Athlétisme opposé) ; la cible tombe dans la Noire-Eau, quatre mètres plus bas, subit 1d6 contondants et reste entravée par la vase du fond. Sur le parapet de l'ouest, Thibault le Pêcheur de Néant est assis en tailleur, sa branche de noisetier à la main et sa ficelle sans hameçon. C'est un philosophe inoffensif, qui ne connaît aucun secret du pont ; il offre volontiers un lombric dans une coquille de noix. Le tablier relie le talus, au nord-ouest, aux vasières, au sud-ouest, par la rive, et la berge de l'est, au sud, mène au chariot renversé, à quarante mètres.",
+    "ambiance": "Pierre glissante, rivière, crachin.",
+    "arrivee": "Le tablier s'étend devant vous, plus étroit que vous ne l'imaginiez, ses pavés disjoints couverts d'algues brunes qui glissent sous le pied. Le crachin ruisselle sur la pierre grise rougie de rouille, et la rivière coule en bas, sous la voûte. Au milieu du pont, le parapet de l'est s'ouvre sur trois mètres de vide : la pierre éclatée bâille au-dessus de la Noire-Eau, quatre mètres plus bas, et le vent y passe avec un souffle froid. Sur le parapet de l'ouest, un homme est assis en tailleur, les jambes pendantes au-dessus de l'eau, une branche de noisetier à la main. Il ne tourne pas la tête quand vous passez. Une odeur de vase et de tourbe remuée monte des berges, et le clapotis de la rivière revient contre la pierre de l'arche. Le ciel bas, gris d'ardoise, éclaire le pont sans ombre. Il ne reste que le gris du jour, les algues et la brèche béante.",
+    "visuel": "Un tablier de grès gris, rougi de rouille, traverse la rivière sur quatre pas de large, ses pavés disjoints couverts d'algues brunes. Au milieu, dans le parapet de l'est, une brèche de trois mètres s'ouvre sur le vide au-dessus de la Noire-Eau. Sur le parapet de l'ouest, une figure assise laisse pendre ses jambes au-dessus de l'eau, et la lumière grise du ciel bas tombe sans ombre sur la pierre.",
+    "accroche": "Au milieu du tablier, une brèche béante ouvre le parapet sur la rivière noire ; les pavés luisent de crachin.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-pont-talus-d-embuscade",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Depuis le tablier, une pente de boue monte vers le talus, au nord-ouest, où un chêne noueux penche sur le chemin.",
+        "retour": "Depuis le talus, le tablier s'étend en contrebas, au sud-est ; la brèche du parapet de l'est se voit de loin, béante."
+      },
+      {
+        "vers": "ald-pont-vasieres",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Du tablier, un passage de pierres descend vers le sud-ouest, jusqu'à la berge de roseaux qui longe l'eau sous l'arche.",
+        "retour": "Depuis la berge, le tablier se dresse au-dessus de vous, large et gris, et la brèche se devine dans le parapet."
+      },
+      {
+        "vers": "ald-pont-carcasse-du-chariot",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au sud du tablier, un chemin de terre file vers l'est, le long de la berge, jusqu'aux aulnes du fossé.",
+        "retour": "Depuis les aulnes du fossé, le pont se voit mal : seul le tablier de grès dépasse, à l'ouest, sur la rivière."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 48,
+      "y": 46
+    }
+  },
+  {
+    "id": "ald-pont-talus-d-embuscade",
+    "nom": "Le talus d'embuscade",
+    "type": "lieu-dit",
+    "parent": "ald-vieux-pont",
+    "resume": "un talus boisé à la tête du pont, deux chênes noueux et des troncs d'aulne posés sur des cales.",
+    "description": "Le talus est le point d'embuscade : la pente monte de deux mètres au nord-ouest de la tête du pont, et les bandits ont creusé des creux derrière la terre meuble. Trois bandits maraudeurs, armés de cimeterres et d'arbalètes légères, sont accroupis derrière le talus, les mains posées sur les deux troncs d'aulne prêts à basculer. Le tireur d'élite de la Griffe Noire se tient sur la branche maîtresse du grand chêne, à quatre mètres ; il est caché dans le feuillage et ne se voit qu'à un test de Perception DD 12, depuis le tablier, à une vingtaine de mètres. Le groupe peut aussi prendre le talus à revers en longeant la berge nord de la rivière (Discrétion DD 12) et surprendre les bandits au corps-à-corps avec un tour de surprise complet. Un groupe qui s'avance en affichant un signe de voleur (Tromperie DD 12) fait hésiter les bandits, qui réclament un mot de passe ; sans lui, le combat reste inévitable. Dès que le groupe passe le milieu du tablier, le tireur siffle : les troncs basculent sur la route, et les bandits ouvrent le feu. Une torche jetée sur les fougères sèches du talus force les bandits à sortir de leur abri en toussant, avec un désavantage à leurs attaques pendant un round.",
+    "ambiance": "Fougères sèches, boue, feuillage gris.",
+    "arrivee": "Le chemin monte doucement entre les fougères, et le talus borde la piste, haut de deux mètres, couvert de terre meuble et de fougères sèches. Deux vieux chênes noueux le couronnent, leurs troncs tordus par les vents du nord, leur feuillage gris retenant la pluie en gouttes lourdes. Au bord du chemin, deux troncs d'aulne, sciés et posés sur des cales de pierre, barrent presque la piste, leur bois clair fraîchement coupé sous la mousse. Le sol est une boue brune qui colle aux bottes. Une odeur de feuilles pourries et de tourbe remuée monte de la pente, mêlée à l'humidité de l'eau en contrebas. Derrière la masse des troncs, le talus cache le reste du chemin, et le chant des corneilles s'est tu d'un coup. Il ne reste que la pluie fine sur le bois.",
+    "visuel": "Un talus de terre meuble, haut de deux mètres, couronné de deux chênes noueux, borde le chemin au nord-ouest du pont. Au pied, deux troncs d'aulne sciés reposent sur des cales de pierre, leur bois clair tranché de frais. Sous une lumière grise qui filtre à travers le feuillage, la boue et les fougères sèches tiennent le sol.",
+    "accroche": "Au nord-ouest du pont, un talus boisé porte deux chênes noueux, et des troncs d'aulne sont posés au bord de la route.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-pont-tablier-et-breche",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "En descendant le talus vers le sud-est, un chemin de terre rejoint la tête nord du tablier, large de quatre pas.",
+        "retour": "Depuis la tête du pont, le talus se dresse au nord-ouest, couvert de fougères et de deux chênes noueux."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 42,
+      "y": 32
+    }
+  },
+  {
+    "id": "ald-pont-vasieres",
+    "nom": "Les vasières de la Noire-Eau",
+    "type": "lieu-dit",
+    "parent": "ald-vieux-pont",
+    "resume": "une berge de vase et de roseaux sous l'arche, où la rivière retient les pieds.",
+    "description": "La berge sud, sous l'arche, est une bande de vase et de tourbe longue d'une dizaine de pas, bordée de roseaux tranchants. Toute créature qui s'avance dans l'eau doit réussir un test de Force (Athlétisme) DD 11, sinon elle s'enfonce jusqu'aux cuisses et sa vitesse tombe à zéro ; elle ne s'en dégage qu'en réussissant le même test par une action. Sonder la vase d'une perche (Investigation DD 13) ne fait remonter rien d'utile. Dans la paroi de grès, au ras de l'eau, un terrier abrite un méphite de vapeur, créature sournoise attirée par les eaux croupies : il ne sort que si une créature tombe dans l'eau sous la brèche ou s'approche de son terrier, et il souffle une bouffée de vapeur chaude (recharge 6 ; jet de Constitution DD 10, sinon 2d4 dégâts de feu et vitesse réduite de 3 m). Les empreintes, bottes ferrées et pattes à griffes, vont et viennent entre la berge et le talus, et ne disent rien de plus sur qui rôde ici. Le sentier de l'ouest quitte la berge et longe la rivière jusqu'à la carrière.",
+    "ambiance": "Vase, roseaux, eau noire, clapotis.",
+    "arrivee": "La berge se descend par une pente de boue ; sous vos pieds, la vase cède à peine, noire et froide, tandis que les roseaux, plus hauts que vous, claquent contre vos épaules. Sous l'arche du pont, la lumière tombe en biais, grise et basse, et la pierre du tablier forme au-dessus de vous une voûte sombre. La Noire-Eau coule, brune, presque immobile à cet endroit, et l'on n'y voit pas le fond. Une bulle crève à la surface, avec une odeur d'œuf pourri qui vous serre la gorge. Dans la boue, des empreintes mêlent des bottes ferrées à de petites pattes aux longues griffes, puis disparaissent sous l'eau. Le roseau frémit ; un oiseau s'envole. Le froid de l'eau monte dans vos chevilles, et chaque pas dans la vase fait un bruit de succion qui se répète sous l'arche. Au-dessus, le tablier de grès, bas et gris, semble peser sur la rivière.",
+    "visuel": "Sous l'arche, une berge de vase noire, couverte de roseaux coupants, descend jusqu'à la Noire-Eau brune. Des empreintes de bottes et de longues griffures marquent la boue, et, dans la paroi de grès, un trou sombre s'ouvre au ras de l'eau. La lumière grise, tombée de part et d'autre de l'arche, laisse la berge dans une pénombre humide.",
+    "accroche": "Sous l'arche du pont, des roseaux bruissent au bord d'une vase noire, et la rivière retient les pieds qui s'y aventurent.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-pont-tablier-et-breche",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Depuis la berge, un passage de pierres monte vers le nord-est, au pied du tablier, jusqu'à sa tête sud.",
+        "retour": "Depuis la tête sud du pont, la berge de roseaux s'enfonce vers l'ouest, sous l'arche, dans la vase."
+      },
+      {
+        "vers": "ald-carriere-d-argile",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Un sentier de boue file vers l'ouest, le long de la rivière, à travers les roseaux, jusqu'à l'excavation d'argile rouge.",
+        "retour": "Depuis l'excavation, le sentier descend vers l'est au bord de la rivière, et le pont se découvre, gris, au-dessus des roseaux."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 38,
+      "y": 52
+    }
+  },
+  {
+    "id": "ald-pont-carcasse-du-chariot",
+    "nom": "La carcasse du chariot renversé",
+    "type": "lieu-dit",
+    "parent": "ald-vieux-pont",
+    "resume": "un chariot de farine renversé dans un fossé d'aulnes.",
+    "description": "À quarante mètres en aval du pont, sur la rive sud, un chariot de transport de farine gît sur le flanc dans un fossé boueux, caché par les buissons d'aulne. Le marchand Aldwin, mari de Martha Haddon, y est mort : un carreau d'arbalète l'a frappé dans le dos il y a deux jours, et ses poches ont été vidées à la hâte. Médecine DD 10 le confirme et permet de dater le coup. Le coffret de chêne cerclé de fer est dans un double-fond, sous le plancher : Investigation DD 13 pour le trouver. Pour l'ouvrir, la petite clé pendue au cou du marchand, sous sa chemise trempée, ou un test d'Outils de voleur DD 12, ou un test de Force DD 13, qui risque d'abîmer le contenu. Le coffret contient 65 pièces d'or et 40 pièces d'argent, une alliance de mariage en argent, un acte de propriété de terres dans la vallée, et, au fond, une culotte à rubans de satin fané. Le dilemme est ici : l'or appartient à Martha, veuve qui dort à l'auberge ; le lui rendre pousse vers la lumière, le garder pour équiper le groupe pousse vers l'ombre. Les bandits du talus ne voient pas ce fossé, à soixante mètres de l'autre côté de la rivière ; ils n'y viennent que s'ils entendent du bruit.",
+    "ambiance": "Farine mouillée, aulnes, boue noire.",
+    "arrivee": "Le chemin vous mène au bord d'un fossé de boue, et les aulnes, serrés, forment un rideau de branches grises. Derrière, un chariot de transport gît sur le flanc, sa caisse de planches claires fendue, son essieu brisé net, une roue levée vers le ciel. La lumière grise tombe entre les feuilles et luit sur la boue noire. Une odeur de farine mouillée, aigre et ancienne, monte de la caisse. Dans le bois, des carreaux d'arbalète à pointe d'os sont fichés, leurs empennages trempés. De sous la caisse, une botte de cuir trempée dépasse dans la boue. Le fossé sent la vase et la tourbe, et le bruit de la rivière, quarante mètres en amont, s'éloigne sous les aulnes. Le ciel bas, gris d'ardoise, pèse sur la caisse et sur la boue, et rien ne bouge, sauf les gouttes qui roulent sur le bois.",
+    "visuel": "Dans un fossé de boue, sous un rideau d'aulnes, un chariot de transport gît sur le flanc, sa caisse de planches claires fendue et son essieu brisé. Des carreaux d'arbalète à pointe d'os sont fichés dans le bois, et une botte de cuir trempée dépasse de sous la caisse. La lumière grise tombe entre les branches et laisse la boue presque noire.",
+    "accroche": "Sur la rive sud, à quarante mètres en aval, une roue brisée dépasse des aulnes d'un fossé boueux.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-pont-tablier-et-breche",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Par la berge sud, un chemin de terre remonte vers l'ouest, quarante mètres, jusqu'à la tête sud du pont.",
+        "retour": "Depuis la tête sud, le fossé se cache sous les aulnes ; seule une roue brisée dépasse du feuillage à l'est."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 82,
+      "y": 56
+    }
+  },
+  {
+    "id": "ald-moulin-d-eldren",
+    "nom": "Le Moulin d'Eldren et la Ferme Haddon",
+    "type": "ruine",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "un moulin de pierre sur un tertre, dont les ailes de bois tournent encore, et une ferme brûlée à deux cents mètres au sud.",
+    "description": "Le moulin d'Eldren occupe un tertre de quatre mètres, au nord-est de la plaine, et son toit conique domine les herbes. La tour de granit gris a trois niveaux. Dans la chambre des meules, à l'étage, une meule dormante et une meule tournante, de deux pas de diamètre, sont superposées autour de l'arbre vertical ; des engrenages de hêtre les relient aux ailes, et la crécelle grince à chaque tour. Au sommet, sous le toit, le guet est tenu par deux gobelins depuis des semaines ; l'un d'eux garde un cor d'alarme en corne d'aurochs. Deux fentes de tir regardent la Route du Roi, au nord, et le chemin de la ferme, au sud. La ferme Haddon, à deux cents mètres, a brûlé il y a deux mois : la charpente est tombée, et restent debout la cheminée de brique et des murs de refend. Dans les ruines, deux déserteurs de la Garde d'Émeraude rançonnent qui passe. À l'ouest, dans le pré, un chevalier rouillé défend un tronc couché. Si le guet repère des intrus, le cor sonne et l'alerte passe de poste de guet en poste de guet, dans la plaine, jusqu'au camp de la carrière d'argile, à un quart d'heure. Une boîte en fer-blanc est cachée dans le conduit de la cheminée, à la ferme.",
+    "ambiance": "Crécelle, ailes, farine moisie, crachin.",
+    "arrivee": "La piste de boue monte vers un tertre couvert d'herbes couchées par le vent. Au sommet, une tour de moellons de granit gris se dresse sous un toit conique de bardeaux noircis, et quatre ailes de bois tournent lentement au-dessus, leurs toiles déchirées battant à chaque bourrasque. Des engrenages grincent à l'intérieur, dans une crécelle continue qui descend jusqu'à la piste. Plus bas, au sud, une cheminée de brique rouge dépasse des décombres d'une ferme brûlée. L'air sent le grain moisi, la farine aigre et la tourbe remuée. À l'ouest, un pré humide s'étend, où la brume reste collée aux touffes. Le ciel est gris et bas, et le crachin ruisselle sur la pierre. Le vent siffle dans les fentes étroites de la tour, et la lumière grise y entre en lames minces. Rien ne bouge sur le tertre, et la lumière ne laisse aucune ombre.",
+    "visuel": "Une tour de moellons de granit gris, coiffée d'un toit conique de bardeaux noircis, se dresse au sommet d'un tertre herbeux, au nord-est de la plaine. Quatre ailes de bois tournent au-dessus du toit, leurs toiles déchirées battant contre le ciel gris ; plus au sud, une cheminée de brique rouge dépasse des ruines calcinées. À l'ouest, un pré humide, où la brume ne se lève pas, s'étale sous une lumière basse qui tombe du ciel, sans lampe ni feu.",
+    "accroche": "Sur un tertre au nord-est de la plaine, une tour de pierre grise tourne ses ailes déchirées ; au sud, une cheminée de brique dépasse des ruines.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1.5,
+        "sens": "double",
+        "description": "La piste de boue descend vers le sud-ouest, passe les ruines d'une ferme, puis rejoint le carrefour et la butte de l'auberge, à une heure et demie de marche.",
+        "retour": "Depuis le perron de l'auberge, au loin vers le nord-est, une tour de pierre grise dépasse d'un tertre, au-dessus des pâtures."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 76,
+      "y": 24
+    }
+  },
+  {
+    "id": "ald-moulin-tertre-et-approche",
+    "nom": "Tertre et approche",
+    "type": "lieu-dit",
+    "parent": "ald-moulin-d-eldren",
+    "resume": "un tertre herbeux et un pré humide, à l'ouest de la tour, où l'herbe couchée garde l'eau.",
+    "description": "Le tertre est une butte de terre et d'herbe de quatre mètres, que la tour couronne ; sa pente sud est pelée par les pas, et la piste de boue en contourne le pied. C'est le premier lieu où le groupe peut être repéré. Un test de Discrétion DD 11 permet de s'approcher jusqu'au pied de la tour sans être vu : réussi, le guet ne sonne pas ; raté, les guetteurs repèrent le groupe et le cor sonne au premier round. À l'ouest, le pré humide reste inondé dans ses creux. Dans l'herbe, près du tronc de chêne couché, Messire Godefroy, chevalier errant en armure de fer rouillée, défend le tronc contre un « Vouivre-Écorce » qui n'est qu'un vieux bois pourri. Si on lui dit que c'est du bois, il secoue la tête avec une pitié infinie et affirme qu'il monte la garde pour eux. S'il reçoit un coup de pied, il se jette sur le tronc pour l'étouffer et s'étale dans la mousse en criant qu'il tient la bête par les ouïes. Il ne connaît rien du moulin ni des guetteurs, ne vole rien et ne fait de mal à personne. Le sentier qui descend vers le sud, deux cents mètres, mène aux ruines de la ferme Haddon.",
+    "ambiance": "Herbe mouillée, brume, crécelle lointaine.",
+    "arrivee": "La piste de boue vous conduit au pied d'un tertre, et la pente d'herbe couchée monte vers la tour. L'herbe est trempée, et la boue noire colle autour des bottes à chaque pas. À votre gauche, un pré humide s'étend vers l'ouest, où la brume reste collée aux touffes et les creux ne sèchent jamais. Au milieu du pré, un tronc de chêne pourri gît dans l'herbe, et une silhouette en armure rouillée se tient devant lui, immobile, l'épée haute. Plus haut, la tour de granit gris dresse sa masse sombre, et ses quatre ailes de bois tournent au-dessus du toit, leurs toiles déchirées claquant au vent. Le grincement de la crécelle des engrenages descend jusqu'à la pente. Une odeur de tourbe remuée et de grain moisi monte du tertre, mêlée au vent froid. Vers le sud, au loin, une cheminée de brique rouge se devine au-dessus des haies. Le crachin tombe sans relâche, et la lumière grise ne laisse aucune ombre sur l'herbe.",
+    "visuel": "Un tertre herbeux, pelé par les pas sur sa pente sud, porte à son sommet une tour de moellons de granit gris. À l'ouest, un pré humide, où la brume reste collée, s'étend jusqu'à un tronc de chêne couché dans l'herbe. La lumière grise du ciel bas tombe sans ombre sur les herbes, et les ailes de bois tournent au-dessus du toit de la tour, leurs toiles déchirées battant au vent.",
+    "accroche": "Au pied de la tour de granit, une pente d'herbe couchée descend vers un pré humide que la brume ne quitte jamais.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-moulin-rez-de-chaussee-et-meules",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au pied de la tour, la pente de terre s'arrête devant le seuil de pierre usée de la face ouest, creusé en gouttière par les sacs traînés.",
+        "retour": "Depuis le seuil de la tour, le pré humide s'étend à l'ouest, et la piste de boue descend vers le sud."
+      },
+      {
+        "vers": "ald-moulin-ferme-haddon",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le sentier de boue descend vers le sud, deux cents mètres, entre des haies basses, jusqu'aux murs noircis de la ferme.",
+        "retour": "Depuis les ruines de la ferme, le tertre se dresse au nord, à deux cents mètres, avec la tour de granit au sommet."
+      },
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1.5,
+        "sens": "double",
+        "description": "La piste de boue quitte le tertre au sud, passe les ruines de la ferme, puis descend vers le carrefour, à une heure et demie.",
+        "retour": "Depuis la piste de boue, au sud du tertre, la tour se dresse au nord, au sommet des herbes couchées."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 48,
+      "y": 38
+    }
+  },
+  {
+    "id": "ald-moulin-rez-de-chaussee-et-meules",
+    "nom": "Rez-de-chaussée et chambre des meules",
+    "type": "salle",
+    "parent": "ald-moulin-d-eldren",
+    "resume": "un rez-de-chaussée de sacs moisis, une chambre de meules qui grince, et une échelle vers le guet.",
+    "description": "Le rez-de-chaussée est une salle ronde de quatre pas, en moellons de granit gris, au sol de terre battue. Des sacs de farine y gisent, percés ou moisis en boules grises ; l'odeur de grain pourri domine. Un escalier de bois, contre la paroi nord, monte à la chambre des meules. Là, une meule dormante et une meule tournante, de deux pas de diamètre, reposent l'une sur l'autre autour de l'arbre vertical ; des engrenages de hêtre et de fer les relient aux ailes, au-dessus du toit, et la crécelle grince à chaque tour. Une action est possible ici, sans piège : glisser le madrier de chêne dans les roues crantées (Athlétisme DD 12) bloque la meule tournante. Le claquement secoue toute la tour, et les guetteurs doivent réussir un jet de sauvegarde de Dextérité DD 12 ou tomber à terre. Fouiller les sacs (Investigation DD 11) ne donne que de la farine gâtée. Une échelle de meunier, dans l'angle est de la chambre, monte par une trappe ouverte au plafond vers le guet.",
+    "ambiance": "Farine moisie, crécelle, courant d'air.",
+    "arrivee": "Le froid de la pierre vous saisit dès le premier pas, et la lumière grise ne va pas plus loin que le premier cercle de sacs. La salle est ronde, ses murs de granit si épais qu'ils étouffent le vent. Au sol, de la terre battue couvre des sacs de farine crevés, dont certains moisissent en boules grises, et une odeur de grain pourri monte jusqu'au plafond. Un escalier de bois grince contre la paroi, et, plus haut, la crécelle des engrenages descend en continu, comme une chose vivante qui tourne. Un arbre de bois monte du centre de la pièce et disparaît dans le plafond ; au-dessus de vous, des dents de roue tournent en grinçant. Les sacs bougent un peu sous le courant d'air venu de l'ouest. La lumière grise du seuil glisse sur le sol, et la farine en suspension y scintille. Vos bottes glissent sur la terre battue, et les engrenages vous rappellent que tout tourne ici, même sans grain.",
+    "visuel": "Une salle ronde de moellons de granit gris, au sol de terre battue couvert de sacs de farine crevés et moisis. Un escalier de bois monte à l'étage, où une meule dormante et une meule tournante, d'environ deux pas de diamètre, s'empilent au centre, autour de l'arbre vertical. Les engrenages de hêtre et de fer tournent autour de l'arbre ; la seule lumière vient du seuil ouvert à l'ouest et d'un faisceau gris qui tombe du plafond, par la trappe.",
+    "accroche": "Au sommet du tertre, la tour de granit grince à chaque tour de ses ailes ; une odeur de grain moisi sort de sa porte.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-moulin-tertre-et-approche",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le seuil de pierre, creusé en gouttière, ouvre à l'ouest sur le pré humide et la pente du tertre.",
+        "retour": "Depuis le tertre, la tour de granit ferme le sommet ; seules des fentes étroites la percent, et son seuil ouest est l'accès."
+      },
+      {
+        "vers": "ald-moulin-plateforme-du-cor",
+        "type": "echelle",
+        "heures": 0,
+        "sens": "double",
+        "description": "Dans la chambre des meules, une échelle de meunier monte à une trappe ouverte au plafond, vers le guet sous le toit.",
+        "retour": "Depuis le guet, une trappe s'ouvre sur la chambre des meules ; l'échelle de meunier descend jusqu'aux engrenages qui grincent."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 30
+    }
+  },
+  {
+    "id": "ald-moulin-plateforme-du-cor",
+    "nom": "Plateforme de guet",
+    "type": "lieu-dit",
+    "parent": "ald-moulin-d-eldren",
+    "resume": "une chambre de guet sous le toit conique, avec deux fentes de tir sur la plaine et sur la ferme.",
+    "description": "Le guet occupe le sommet de la tour, sous le toit conique : un plancher de chêne noirci, de quatre pas de diamètre, percé de la trappe par laquelle on monte depuis la chambre des meules, et deux fentes de tir taillées dans le granit, l'une vers le nord et la Route du Roi, l'autre vers le sud et la ferme. Deux guetteurs gobelins tiennent ce guet depuis des semaines. Le sonneur, près de la solive où un crochet de fer retient la corne d'aurochs, peut la décrocher ; l'autre, à la fente nord, tire à l'arc court (portée 24 m, longue portée 96 m) et défend le corps à corps au cimeterre. Ils ont la vision dans le noir et la fuite agile. Le cor ne sonne que si le guet repère le groupe (échec de Discrétion en 3A, ou approche à découvert) : le sonneur souffle alors dès le premier round, et l'alerte passe de poste en poste dans la plaine jusqu'au camp de la carrière d'argile, en un quart d'heure. Si la tour a été bloquée depuis le rez-de-chaussée (3B), les guetteurs doivent réussir un jet de sauvegarde de Dextérité DD 12 ou tomber à terre. Le mot de passe « La Serre ne plie point », arraché à Silas capturé, les fait baisser leurs armes : prononcé, il laisse passer le groupe sans combat. Après le combat, une ficelle de chanvre neuve, nouée autour de la corne, est la seule chose propre du guet.",
+    "ambiance": "Vent, toile qui claque, ciel bas.",
+    "arrivee": "Vous montez jusqu'à une chambre basse et ronde, dont le plafond de chêne noirci forme le dessous d'un toit conique. Le plancher craque sous chaque pas, et la pierre autour de vous étouffe presque tous les bruits. La lumière grise entre par deux fentes de tir, taillées dans un mur épais d'un pas, et la pluie fine fouette la pierre au-dehors. Par la fente du nord, une route pavée s'éloigne dans la plaine boueuse ; par celle du sud, une cheminée de brique rouge dépasse de ruines lointaines. Un crochet de fer est scellé dans une solive, près de vous, et un tas de paille et de toile sert de couche contre le mur. Une odeur de bois mouillé et de toile humide flotte dans l'air froid. Au-dessus du bardeau, un claquement sec revient à chaque bourrasque : les bras des ailes tournent sur leur arbre.",
+    "visuel": "Un plancher de chêne noirci occupe la chambre sous le toit conique. Deux fentes de tir taillées dans le granit laissent entrer une lumière grise, l'une vers le nord, l'autre vers le sud. Une solive porte un crochet de fer, et contre le mur un tas de paille et de toile sert de couche.",
+    "accroche": "Sous le toit conique de la tour, deux fentes de tir percent le granit ; au-dessus du bardeau, les ailes de bois tournent.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-moulin-rez-de-chaussee-et-meules",
+        "type": "echelle",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une échelle de meunier descend du guet par une trappe, jusqu'à la chambre des meules et ses engrenages qui grincent.",
+        "retour": "Depuis la chambre des meules, une échelle monte à une trappe au plafond, vers le guet sous le toit conique."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 52,
+      "y": 27
+    }
+  },
+  {
+    "id": "ald-moulin-ferme-haddon",
+    "nom": "Ferme Haddon, ruines et grange",
+    "type": "lieu-dit",
+    "parent": "ald-moulin-d-eldren",
+    "resume": "une ferme brûlée, une cheminée de brique debout et une grange qui tient encore, au sud du moulin.",
+    "description": "La ferme Haddon, à deux cents mètres au sud de la tour, a brûlé il y a deux mois : la charpente s'est effondrée sur les pièces, et seules restent debout la cheminée de brique rouge et des murs de refend en moellons noircis. Au pied de la cheminée, le foyer est couvert de cendre froide et de tuiles tombées. Le conduit, au-dessus du foyer, est obturé par un bouchon d'argile séchée ; derrière, une boîte en fer-blanc, au couvercle rouillé et noircie par la suie, contient douze pièces d'argent, vingt-huit pièces de cuivre et un sachet de toile cirée rempli de graines de pavot noir. Pour l'atteindre, il faut gratter l'âtre et inspecter le conduit (Investigation DD 11), puis retirer le bouchon avec un poignard. Dans la grange, à vingt mètres à l'est, deux déserteurs de la Garde d'Émeraude se terrent. Ivres et aigris, ils ont quitté leur poste et rançonnent qui fouille les ruines. Un héros qui entre dans les ruines fait un test de Perception DD 12 : réussi, il repère les déserteurs avant qu'ils ne sortent ; raté, ils sortent une lance à la main. Négocier (Persuasion DD 11) ou intimider (Intimidation DD 12) les fait baisser les armes : ils acceptent de quitter la région sans combat, contre deux rations de nourriture. S'ils attaquent, ils combattent avec le profil `garde`, combat de repli hors budget. Le sentier qui remonte au nord rejoint le tertre.",
+    "ambiance": "Cendre froide, suie, vent entre les murs.",
+    "arrivee": "Le sentier descend encore, les haies basses se resserrent, et les ruines apparaissent d'un coup. Une cheminée de brique rouge, haute de six mètres, se dresse au milieu d'un champ de décombres, noircie de suie jusqu'au conduit. L'air sent la cendre froide et le bois brûlé, une odeur sèche que le crachin ne dissipe pas. Des murs de moellons noircis cloisonnent ce qui fut une maison, sans toit ni plancher, et des poutres carbonisées gisent en travers du chemin. Le sol est une boue grise de cendre et de tuiles brisées, qui colle aux semelles. Le vent passe entre les murs et siffle dans les ouvertures où les fenêtres ont cédé. À vingt mètres, à l'est, une grange au toit encore debout se découpe sur le ciel bas. Rien ne bouge autour de la cheminée, sauf une tuile morte qui claque à chaque bourrasque. Le ciel gris pèse sur les murs, et la pluie tombe sur les tuiles mortes.",
+    "visuel": "Au milieu des ruines, une cheminée de brique rouge, haute de six mètres, est noircie de suie jusqu'au conduit, au-dessus d'un foyer couvert de cendre froide. Des murs de moellons noircis, en refend, cloisonnent des pièces effondrées, et des poutres carbonisées gisent sur le sol. Plus loin, à vingt mètres à l'est, une grange au toit encore debout se découpe sur le ciel bas. La lumière grise tombe du ciel, sans toit pour la retenir.",
+    "accroche": "Plus au sud, une cheminée de brique rouge dépasse des murs noircis d'une ferme brûlée, derrière des haies basses.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-moulin-tertre-et-approche",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le sentier de boue remonte vers le nord, deux cents mètres, jusqu'au tertre et à la tour de granit qui le couronne.",
+        "retour": "Depuis le tertre, la cheminée de brique se dresse au sud, à deux cents mètres, au milieu de murs noircis."
+      },
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1.5,
+        "sens": "double",
+        "description": "La piste de boue quitte les ruines vers le sud-ouest et descend vers le carrefour, à une heure et demie de marche.",
+        "retour": "Depuis la piste du carrefour, des murs noircis et une cheminée de brique se devinent au nord-est, au-delà des haies basses."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 80
+    }
+  },
+  {
+    "id": "ald-combe-de-l-ours",
+    "nom": "Le Taillis aux Épines et la Combe de l'Ours",
+    "type": "lieu-dit",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "un ravin de craie blanche, bordé de prunelliers, où une sente de gibier mène à une caverne au fond.",
+    "description": "La Combe de l'Ours est un ravin de craie blanche, encaissé de huit mètres sous la plaine, qui s'ouvre au nord-ouest d'Aldric sur une quarantaine de mètres. On y descend par une pente de boue jusqu'à son goulet, au sud ; une sente de gibier, moins d'un mètre de large, remonte doucement entre les prunelliers et les ronces géantes. À l'est, la falaise est percée d'une douzaine de trous de terrier, réseau de galeries où les kobolds se replient ; une corniche la borde à six mètres. Trois kobolds y ont fait leur poste de harcèlement : ils lancent des dagues sur qui passe et crient pour réveiller l'ours. Au fond, la caverne de dix mètres sur douze abrite le Vieux Bourru, un ours brun territorial, non maléfique. Leur vacarme peut le réveiller : il rugit alors et charge l'intrus le plus proche, sans poursuivre au-delà du goulet. Le combat peut donc être évité : le luth de Finbar, intact, est coincé dans une touffe de ronces à quatre mètres de la gueule. On peut le récupérer en appâtant l'ours, en rampant dans l'ombre le long de la paroi, ou en le détournant par un feu de broussailles au loin. Le crachin stagne au fond du ravin, et le froid y est vif.",
+    "ambiance": "Craie mouillée, ronces, crachin, vent coupé.",
+    "arrivee": "La piste de boue s'enfonce entre deux haies de prunelliers, et le taillis se referme ; les épines accrochent les manches à chaque pas. Puis une pente glissante descend vers le fond, et le ravin de craie blanche, haut de huit mètres, se referme autour de vous. Sa falaise de l'est est percée de trous ronds, et une corniche pâle la borde, à six mètres. Des massifs de prunelliers bordent la sente qui remonte doucement au fond, et des ronces géantes se mêlent aux buissons. Au loin, au pied de la paroi du fond, une caverne basse ouvre sa gueule, noire au-delà de quelques pas. Une odeur de craie mouillée et de feuilles froissées monte de la terre détrempée. Le vent ne descend pas jusqu'au fond, et le crachin tombe droit dans le ravin. La lumière grise vient du ciel, en bande étroite entre les bords. Quelques éclats de craie glissent le long de la paroi, puis tout redevient immobile.",
+    "visuel": "Un ravin de craie blanche, haut de huit mètres, entaille le taillis au nord-ouest de la plaine. À l'est, la falaise de craie est percée de trous ronds, sous une corniche pâle ; à l'ouest, les prunelliers et les ronces ferment la sente. Au fond, une caverne basse ouvre sa gueule au pied de la paroi, et la lumière grise du ciel n'y entre que sur quelques pas.",
+    "accroche": "Au nord-ouest de la plaine, un ravin de craie blanche entaille un taillis d'épines ; une sente de gibier s'y enfonce, sans que rien ne bouge au fond.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1.5,
+        "sens": "double",
+        "description": "Depuis le goulet, la piste de boue remonte vers le sud-est, à travers le taillis, jusqu'au carrefour et à la butte de l'auberge, à une heure et demie.",
+        "retour": "Depuis la piste du carrefour, un ravin de craie blanche et un taillis d'épines se devinent au nord-ouest, à une heure et demie de marche."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 22,
+      "y": 22
+    }
+  },
+  {
+    "id": "ald-combe-goulet-des-ronces",
+    "nom": "Goulet des ronces",
+    "type": "lieu-dit",
+    "parent": "ald-combe-de-l-ours",
+    "resume": "un goulet de prunelliers et de ronces, où la sente s'enfonce au pied d'une paroi de craie.",
+    "description": "Le goulet des ronces marque l'entrée du ravin. La piste de boue arrive du sud-est ; une pente glissante descend de huit mètres jusqu'au fond, où s'engage une sente de gibier, moins d'un mètre de large, qui remonte doucement vers le nord. À l'ouest, un versant de prunelliers, d'aubépines et de ronces géantes aux épines d'acier ; à l'est, la craie. Traverser les ronces au pas de course inflige de petites blessures ; avancer prudemment, en fendant les épines avec un tranchoir ou en prenant son temps, permet de passer sans dommage. Ce n'est pas un piège, seulement du terrain. Au bord de la sente, un piquet de bois fiché dans la craie porte des lanières de cuir sèches et une entaille ancienne dont on ne sait rien. Sur la craie de la paroi, à hauteur de tête, quatre griffures fraîches disent qu'une bête lourde passe ici souvent, la nuit. Cette lisière marque la limite de son territoire : l'ours ne sort pas au-delà du goulet. La lumière grise tombe du ciel en bande étroite entre les bords.",
+    "ambiance": "Boue, ronces, craie mouillée, crachin.",
+    "arrivee": "Le chemin de boue descend par une pente glissante, et le couloir du ravin se resserre autour de vous. À gauche, le versant de prunelliers hérisse ses épines à hauteur d'épaule, et les ronces géantes accrochent la toile des manches à chaque pas. À droite, la craie blanche monte de huit mètres. Une sente, large de moins d'un mètre, remonte vers le nord entre les buissons et le pied de la paroi. Un piquet de bois est fiché dans la craie, au bord de la sente, et des lanières de cuir sèches pendent à son sommet, nouées depuis longtemps. Une odeur de craie mouillée et de feuilles de prunellier froissées monte de la terre détrempée. Le crachin tombe droit dans le ravin, et le vent qui siffle au-dessus des bords ne descend pas jusqu'à vous. La lumière grise vient du ciel, en bande étroite. Rien ne bouge entre les massifs, sauf la pluie qui ruisselle sur la craie et goutte dans les épines.",
+    "visuel": "Une sente de gibier, boueuse et large de moins d'un mètre, s'enfonce entre un versant de prunelliers et de ronces géantes, au pied d'une paroi de craie qui monte à huit mètres. Un piquet de bois fiché dans la craie, au bord de la sente, porte des lanières de cuir sèches. Le ciel gris tombe en bande étroite entre les bords du ravin, et la pluie ruisselle sur la craie.",
+    "accroche": "Au sud du ravin, un versant de prunelliers et une paroi de craie se resserrent sur une sente de gibier.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-combe-falaise-et-failles",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "La sente de gibier monte vers le nord, entre les prunelliers ; à vingt mètres, la craie blanche de la falaise s'élève à l'est.",
+        "retour": "Depuis la sente au pied de la falaise, le goulet se devine au sud, à vingt mètres, où la pente de boue remonte vers la plaine."
+      },
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 1.5,
+        "sens": "double",
+        "description": "La piste de boue quitte le goulet vers le sud-est, remonte à travers le taillis et rejoint le carrefour, à une heure et demie de marche.",
+        "retour": "Depuis la piste du carrefour, un ravin de craie blanche et un taillis d'épines se devinent au nord-ouest, à une heure et demie de marche."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 82
+    }
+  },
+  {
+    "id": "ald-combe-falaise-et-failles",
+    "nom": "Falaise et failles",
+    "type": "lieu-dit",
+    "parent": "ald-combe-de-l-ours",
+    "resume": "une falaise de craie percée de terriers, sous une corniche pâle, avec une faille à mi-hauteur.",
+    "description": "La falaise de craie, à l'est de la sente, monte à huit mètres et porte une douzaine de trous de terrier, larges d'une cinquantaine de centimètres, qui se prolongent en galeries dans la roche : c'est le réseau des kobolds. Trois combattants kobolds (7 PV, CA 14) tiennent la corniche, à six mètres. Ils lancent des dagues sur qui passe, au corps à corps ou à 6/18 m (+4, 1d4+2 perforant), et se prêtent main-forte : l'avantage dès qu'un allié est à 1,50 m de la cible. Leur sensibilité au soleil n'a pas d'effet, le ravin restant à l'ombre. Ils crient et jettent de la craie pour faire du bruit, dans l'espoir que l'ours se réveille ; ce vacarme peut porter jusqu'à la caverne. Un pot d'argile est scellé dans la faille, à cinq mètres, entre deux racines de genévrier, sous la corniche : c'est le trésor des kobolds. Y accéder demande une escalade (Athlétisme DD 13) ou un grappin et une corde (DD 10) ; un échec de 5 ou plus dans la craie friable réveille l'ours. Les kobolds défendent la faille depuis la corniche. Une fouille de la fissure (Investigation DD 12) livre le pot : 34 pièces de cuivre, 8 pièces d'argent, 3 cailloux de quartz polis et une broche de bronze antique figurant un sanglier, valant 10 po.",
+    "ambiance": "Craie fraîche, terriers, pluie sur la paroi.",
+    "arrivee": "La sente remonte doucement vers le nord, et la craie se dresse d'un coup à votre droite, blanche et sans fin, haute de huit mètres au-dessus de la boue. Sa surface est poudreuse et rongée par la pluie. Elle est percée d'une douzaine de trous ronds, larges d'une cinquantaine de centimètres, dont les bords sont grignotés. Plus haut, une corniche pâle court le long de la paroi, à six mètres. À votre gauche, un versant de prunelliers descend en pente jusqu'au fond. Au pied de la falaise, sous la corniche, trois petits tas de cailloux de craie sont rangés sur la boue, et de la craie fraîche blanchit la terre par plaques. Une odeur de craie mouillée et de terre détrempée vous accompagne. La pluie ruisselle sur la pierre, et le vent passe au-dessus des bords sans descendre. La lumière grise tombe du ciel en bande étroite, et les parois ne renvoient aucun écho.",
+    "visuel": "Une falaise de craie blanche, haute de huit mètres, monte à l'est de la sente et se troue d'une douzaine de terriers larges d'une cinquantaine de centimètres. À six mètres, une corniche pâle court au-dessus de la sente ; sous elle, à cinq mètres, une faille calée entre deux racines de genévrier. Au sol, au pied de la paroi, trois petits tas de cailloux de craie ; à l'ouest, un versant de prunelliers descend vers le fond, sous une lumière grise qui tombe du ciel en bande étroite.",
+    "accroche": "Sur la paroi de craie, percée de trous noirs, une corniche pâle court au-dessus de la sente.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-combe-goulet-des-ronces",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "La sente redescend vers le sud, entre les prunelliers, jusqu'au goulet des ronces, à vingt mètres de la falaise.",
+        "retour": "Depuis le goulet, la falaise de craie se dresse au nord, à vingt mètres, avec sa corniche pâle et ses trous noirs."
+      },
+      {
+        "vers": "ald-combe-antre-du-vieux-bourru",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "La sente remonte vers le nord, au pied de la falaise, jusqu'à la gueule basse de la caverne, à vingt mètres.",
+        "retour": "Depuis la gueule de la caverne, la falaise et la corniche se devinent au sud, à vingt mètres, derrière les ronces."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 56,
+      "y": 61
+    }
+  },
+  {
+    "id": "ald-combe-antre-du-vieux-bourru",
+    "nom": "Antre du Vieux Bourru",
+    "type": "lieu-dit",
+    "parent": "ald-combe-de-l-ours",
+    "resume": "une caverne basse au fond du ravin, tapissée de fougères pourries et jonchée d'os de cerfs.",
+    "description": "La caverne, de dix mètres sur douze, ouvre sa gueule basse au pied de la paroi du fond ; des os de cerfs et de poneys rongés sont éparpillés sur la boue devant elle. Au fond, dans l'ombre, sur un lit de fougères pourries, dort le Vieux Bourru, un ours brun (22 PV, CA 11, FP 1) : une bête territoriale, non maléfique. Il attaque deux fois par tour : une morsure (+5, 1d8+3 perforant) et une griffe (+5, 1d4+3 tranchant), qui met à terre une cible de taille G ou moins ; le combat est dangereux pour un groupe de niveau 1 qui reste au corps à corps. Le luth de Finbar, intact, est coincé dans une touffe de ronces à quatre mètres devant la gueule : les kobolds l'ont volé pendant le sommeil de Finbar et l'ont abandonné ici. Le vacarme des kobolds peut réveiller l'ours : il rugit alors et charge l'intrus le plus proche. Trois voies évitent le combat. Un appât de viande fraîche lancé à dix mètres de la gueule attire l'ours hors de la caverne pour manger le dos tourné (Dressage DD 10) ; le luth, à quatre mètres, devient alors récupérable. Une approche dans l'ombre le long de la paroi, sans faire rouler les cailloux (Discrétion DD 12), permet de le saisir sans l'éveiller. Un feu de broussailles allumé au loin détourne aussi l'attention. Si le combat tourne mal, l'ours ne poursuit pas au-delà du goulet.",
+    "ambiance": "Os blanchis, grognement sourd, crachin.",
+    "arrivee": "La sente vous mène au bord d'une caverne dont la gueule est basse, à peine plus haute qu'un homme courbé. Devant elle, des os de cerfs et de poneys rongés, blanchis par la pluie, traînent sur la boue, et une touffe de ronces s'étale à hauteur de genou. Ses épines accrochent la toile des manches. La roche de la paroi du fond est blanche, mais l'entrée est noire au-delà de quelques pas. Une odeur de fougère pourrie et de terre détrempée sort de l'obscurité, lourde et âcre, et se mêle au crachin. Un grognement sourd et régulier monte du fond. La boue glisse sous les semelles, et le froid de la caverne vous saisit avant même la gueule. Le vent ne rentre pas ici, et la lumière grise s'arrête à trois pas dans l'ombre. Au-delà, la paroi se perd dans une masse sombre que rien n'éclaire.",
+    "visuel": "Une caverne de dix mètres sur douze, à la gueule basse, s'ouvre au pied de la paroi de craie, au fond du ravin. Devant elle, des os de cerfs et de poneys rongés, blanchis par la pluie, traînent sur la boue, et une touffe de ronces s'étale à hauteur de genou. Au-delà de quelques pas, la lumière grise du ciel n'atteint plus rien, et l'intérieur reste noir.",
+    "accroche": "Au fond du ravin, une gueule basse s'ouvre au pied de la craie, entourée de ronces et d'os blanchis par la pluie.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-combe-falaise-et-failles",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "La sente redescend vers le sud, entre les prunelliers, jusqu'à la falaise de craie, à vingt mètres.",
+        "retour": "Depuis la falaise, la gueule basse de la caverne se devine au nord, derrière une touffe de ronces, au fond du ravin."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 40
+    }
+  },
+  {
+    "id": "ald-carriere-d-argile",
+    "nom": "La Carrière d'Argile Rouge",
+    "type": "camp",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "une cuvette d'argile rouge, à gradins, où un campement de huttes s'abrite sous une falaise.",
+    "description": "La Carrière d'Argile Rouge est une excavation de quatre-vingts mètres de large, creusée jusqu'à douze mètres sous la plaine. On y descend par les quatre terrasses du nord. Au pied des gradins, le passage entre la palissade de l'ouest et la fondrière de l'est, long de dix mètres, est barré par deux fosses camouflées sous des toiles de jute, côte à côte : quatre mètres de large, trois de profondeur, des pieux au fond. À l'ouest, une palissade de fascines ; à l'est, une fondrière de boue profonde, terrain difficile, permet de contourner le barrage. Au centre-est, une mare de rouille, profonde de soixante centimètres, s'étale sur une dizaine de mètres, avec deux carcasses de chariots à demi immergées. Le molosse Bave-de-Loup garde sa rive. À l'est, la rampe de charrois sort de la cuvette vers le Vieux Pont. Au pied de la falaise sud, à l'ouest, sept huttes d'écorce et de bâches usées forment le camp. Demi-Dent, chef gobelin (21 PV, CA 17, FP 1), se tient dans la plus grande hutte ; son profil lui donne un cimeterre (1d6 + 2 tranchant) et un arc court (1d6 + 2 perforant, 24/96 m). Quatre archers gobelins (10 PV, CA 15, FP 1/4) tirent derrière les fascines. Quand Demi-Dent tombe à 5 PV ou moins, il jette son arme et se rend : le groupe peut l'épargner ou l'exécuter. Une issue sans violence existe : négocier, intimider, accepter la reddition, ou contourner les fosses par la fondrière de l'est.",
+    "ambiance": "Glaise rouge, fumée de branchages, pluie.",
+    "arrivee": "La piste de boue monte entre deux talus, puis le sol se dérobe d'un coup : vous voici au bord d'une cuvette d'argile rouge, large d'environ quatre-vingts mètres, qui descend en terrasses vers un fond plat. La glaise est écarlate, lisse et luisante sous le crachin, creusée de rigoles où l'eau coule en filets sombres. Au loin, au sud, une fumée de branchages monte au-dessus de petits toits de huttes, au pied d'une falaise d'argile haute de douze mètres, avec une lueur orange sous le surplomb. Au centre-est du fond, une mare plate et rouillée reflète le ciel gris, plus sombre que la terre. Une odeur d'argile mouillée, de fumée âcre et de graisse rance vous atteint. Des voix basses, étouffées par la pluie, montent du bas. Le vent ne descend pas jusqu'ici, et la pluie tombe droit dans la cuvette.",
+    "visuel": "Une cuvette d'argile rouge, large de quatre-vingts mètres, s'enfonce dans la plaine en quatre terrasses de glaise qui descendent du nord. Au centre-est du fond, une mare plate et rouillée reflète le ciel gris ; au sud, une falaise d'argile haute de douze mètres surplombe un campement de huttes d'écorce coiffées de bâches grises. Une lueur orange de feu de branchages brille sous le surplomb, sous un ciel bas et un crachin continu.",
+    "accroche": "Au sud-ouest de la plaine, une excavation d'argile rouge s'ouvre entre des gradins de glaise ; au pied d'une falaise, un campement de huttes fume sous un surplomb.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 2,
+        "sens": "double",
+        "description": "Depuis le fond, la rampe de l'est rejoint le sentier de la berge sud jusqu'au Vieux Pont, puis la piste monte à la butte de l'auberge, environ deux heures.",
+        "retour": "Depuis la butte, la descente mène au Vieux Pont, puis un sentier de boue remonte la berge sud vers une cuvette de glaise rouge, environ deux heures."
+      },
+      {
+        "vers": "ald-vieux-pont",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Depuis le fond, la rampe de l'est rejoint le sentier de la berge sud, qui file vers l'est par les vasières jusqu'au Vieux Pont, à une heure.",
+        "retour": "Depuis l'extrémité sud du pont, le sentier file vers l'ouest par les vasières, au bord de la berge sud, jusqu'à une excavation d'argile rouge, à une heure."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 20,
+      "y": 68
+    }
+  },
+  {
+    "id": "ald-carriere-gradins-d-argile",
+    "nom": "Gradins d'argile et accès supérieur",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "des gradins de glaise rouge qui descendent du rebord vers une cuvette, glissants après la pluie.",
+    "description": "Le rebord nord est l'accès principal de la carrière : la piste de boue du carrefour y débouche à l'extrémité nord-est, et quatre terrasses de glaise descendent de douze mètres vers le fond. Chaque terrasse fait environ trois mètres de haut et six de large, avec un talus lisse. Après la pluie, la glaise est un toboggan : descendre sans glisser demande un jet de Dextérité (Acrobaties) DD 11 ; un échec fait glisser sur une trentaine de mètres, jusqu'au pied, dans la boue, avec 1d4 de dégâts contondants. C'est du terrain, pas un piège. Le bas des gradins est à une trentaine de mètres du rebord. Au pied, le barrage du fond (toiles de jute, fosses, voir 5B) ne se remarque guère de haut : il se voit mieux en descendant.",
+    "ambiance": "Glaise rouge, marches glissantes, pluie.",
+    "arrivee": "Le chemin de boue débouche sur le rebord, et la cuvette s'ouvre devant vous d'un seul coup : quatre marches de glaise rouge descendent vers le sud-ouest, chacune large de six mètres, avec un talus lisse et craquelé au bord. La pluie trace des rigoles dans la terre, et la boue luit sous vos semelles. À votre droite, le rebord file vers le nord-ouest, nu et plat. Au loin, au sud, une fumée de branchages monte au-dessus de petits toits de huttes, au pied de la falaise, avec une lueur orange sous le surplomb ; plus près, au centre-est du fond, une mare rousse luit sous le crachin. Une odeur d'argile mouillée monte des terrasses, et des voix basses, étouffées par la pluie, viennent du bas. Une trace de sabot à demi effacée marque la première terrasse, où la glaise a cédé. La lumière grise tombe du ciel sur les gradins, mais le fond n'en reçoit qu'une part.",
+    "visuel": "Quatre terrasses de glaise rouge, larges de six mètres, descendent du rebord nord vers le fond de la cuvette ; une piste de boue débouche sur le rebord, à son extrémité nord-est. Les talus sont lisses et craquelés, et la pluie y trace des rigoles sombres. Au loin, au sud, une fumée et une lueur orange montent du pied de la falaise, où les toits des huttes se devinent, petits.",
+    "accroche": "Sur le rebord de la plaine, quatre terrasses de glaise rouge descendent vers une cuvette, glissantes sous la pluie, où un feu fume au pied d'une falaise.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Les terrasses descendent vers le sud-ouest, marche après marche, jusqu'au pied de la glaise, à une trentaine de mètres.",
+        "retour": "Depuis le pied des gradins, le rebord se devine au nord-est, à une trentaine de mètres, au bout des terrasses de glaise rouge."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 70,
+      "y": 12
+    }
+  },
+  {
+    "id": "ald-carriere-perimetre-piege",
+    "nom": "Périmètre piégé",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "un fond de glaise couvert de toiles de jute, au pied des gradins, bordé de fascines à l'ouest et de boue à l'est.",
+    "description": "Au pied des gradins, le passage entre la palissade de fascines de l'ouest et la fondrière de l'est, long de dix mètres, est barré. Deux fosses camouflées sous des toiles de jute saupoudrées d'argile sèche occupent tout ce passage, côte à côte et séparées de deux mètres : chacune mesure quatre mètres de large et trois de profondeur, et garde quatre pieux de chêne noircis au feu. Pour les repérer, il faut une Perception passive DD 13, ou une Investigation DD 11 qui fouille la terre. Une chute inflige 2d6 dégâts perforants ; un jet de Dextérité DD 13 permet de se rattraper au bord. À l'ouest, une palissade de fascines ferme le fond jusqu'à la paroi ; à l'est, une fondrière de boue profonde, longue d'une vingtaine de mètres, est un terrain difficile : chaque pas coûte le double, et un jet de Dextérité DD 11 évite de s'enliser. Le seul contournement passe donc par la fondrière. Deux archers gobelins (combattant-gobelin, 10 PV, CA 15, FP 1/4) tirent depuis derrière la palissade de l'ouest : leur cimeterre frappe à 1,50 m (1d6 + 2 tranchant), leur arc court à 24/96 m (1d6 + 2 perforant), et chacun peut se replier par une Fuite agile.",
+    "ambiance": "Toile de jute, fascines, glaise sèche.",
+    "arrivee": "Les derniers pas de la pente vous posent sur une glaise un peu plus ferme, qui sonne sous le talon ; la descente vous a fait glisser, et vos bottes sont lourdes de rouge. Devant vous, le passage se couvre de toiles de jute étalées à sécher sur la terre, saupoudrées d'argile. Une palissade de fascines ferme le fond à l'ouest, et ses branchages tressés sentent la sève coupée ; elle est verte par endroits, brune ailleurs. À l'est, sous le pied des gradins, une bande de boue plus sombre s'étire, lisse et luisante. Une odeur de fumée et de terre remuée vous parvient du sud. La lumière grise du ciel n'atteint ce bas-fond qu'en partie, et le crachin mouille les toiles. Un bruit de bois qui craque retentit quelque part, puis retombe. Rien ne bouge entre les branchages.",
+    "visuel": "Au pied des gradins, des toiles de jute saupoudrées d'argile sèche sont étalées sur la glaise, sur les dix mètres du passage. À l'ouest, une palissade de fascines, haute d'environ un mètre et demi, ferme le fond ; à l'est, une bande de boue sombre s'étire sous les gradins. La lumière grise du ciel n'éclaire ce bas-fond qu'en partie.",
+    "accroche": "Au pied des gradins, le fond se couvre de toiles de jute étalées à sécher, bordé à l'ouest de fascines et à l'est d'une bande de boue.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-gradins-d-argile",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Les terrasses de glaise remontent vers le nord-est, marche après marche, jusqu'au rebord, à une trentaine de mètres.",
+        "retour": "Depuis le rebord, le pied des gradins se devine au sud-ouest, à une trentaine de mètres, où la glaise s'étale en plaques pâles."
+      },
+      {
+        "vers": "ald-carriere-fond-de-fosse-et-mare",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au sud-est, la glaise du fond s'étend vers la mare, à une vingtaine de mètres, le long de la bande de boue.",
+        "retour": "Depuis la mare, le pied des gradins se devine au nord-ouest, à une vingtaine de mètres, au bout d'une glaise battue."
+      },
+      {
+        "vers": "ald-carriere-huttes-et-poste-de-commandement",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le sud-ouest, le fond descend vers le camp, à quarante-cinq mètres, le long de la palissade de l'ouest.",
+        "retour": "Depuis le camp, le fond remonte vers le nord-est, à quarante-cinq mètres, jusqu'à la bande de toiles de jute."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 50,
+      "y": 38
+    }
+  },
+  {
+    "id": "ald-carriere-fond-de-fosse-et-mare",
+    "nom": "Fond de fosse et mare",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "une mare rouillée au centre-est d'une cuvette, bordée au nord de carcasses de chariots, avec une rampe qui remonte vers l'est.",
+    "description": "Le fond de la cuvette est une glaise battue, humide, où la mare de rouille occupe le centre-est : soixante centimètres de profondeur au plus, sur une dizaine de mètres par douze. L'eau est rousse et brune, piquetée par la pluie ; deux carcasses de chariots pillés y sont à demi immergées, roues sans jantes et ridelles brisées, et une bâche grise déchirée flotte près d'elles. Le molosse Bave-de-Loup (5 PV, CA 12, FP 1/8) garde la rive sud : sa morsure fait 1d6 + 1 perforant (+3 pour toucher), et une cible de taille M ou moins tombe à terre. Il aboie et charge le premier qui traverse le fond, et le camp l'entend. Le contourner en longeant la rive nord demande un jet de Discrétion DD 12. À l'est, la rampe de charrois, raide et creusée d'ornières, remonte d'une douzaine de mètres vers le rebord ; de là, un sentier de boue longe la berge sud de la Noire-Eau jusqu'au Vieux Pont, à une heure de marche. Une roue couchée sur la rive nord porte un fer à cheval cloué à son moyeu : le fer se fend au moindre choc, comme les armes du groupe dans cette zone.",
+    "ambiance": "Rouille, eau stagnante, bois pourri.",
+    "arrivee": "Le fond de la cuvette est plus humide, et la glaise rouge se change en boue à chaque pas. Au centre-est, une mare s'étale sur une dizaine de mètres, couleur de vieille rouille, piquetée de gouttes de pluie qui brisent le reflet du ciel gris. Au nord de la mare, deux carcasses de chariots s'enfoncent à demi dans l'eau : roues sans jantes, ridelles cassées, et une bâche grise déchirée qui flotte près d'elles. Une roue couchée sur la berge porte un fer à cheval cloué à son moyeu, et le fer, au bord, est fendu. L'odeur est âcre : rouille, eau morte, bois pourri, argile mouillée par-dessus. Trois ornières, creusées jusqu'à la roche, traversent la glaise vers l'est. Un clapotis léger sur les bords, puis plus rien. La lumière grise vient du ciel et se réfléchit sur l'eau, plus claire que la boue. Plus loin, vers l'ouest-sud-ouest, des braises de feu de branchages luisent sous la falaise, et tout reste silencieux au bord de la mare.",
+    "visuel": "Une mare plate, rousse et brune, s'étend au centre-est de la cuvette, sur une dizaine de mètres, sous un ciel gris qui s'y reflète. Sur sa rive nord, deux carcasses de chariots s'enfoncent à demi, roues sans jantes et ridelles brisées ; une bâche grise déchirée flotte près d'elles. À l'est, une rampe de charrois raide remonte vers le rebord, creusée de traces de roues.",
+    "accroche": "Au centre-est de la cuvette, une mare rouillée s'étale, bordée au nord de carcasses de chariots, et une rampe monte vers l'est.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le nord-ouest, la glaise du fond remonte vers les toiles de jute, à une vingtaine de mètres, le long de la bande de boue.",
+        "retour": "Depuis les toiles de jute, la mare rousse se devine au sud-est, à une vingtaine de mètres, au bout de la glaise battue."
+      },
+      {
+        "vers": "ald-carriere-huttes-et-poste-de-commandement",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers l'ouest-sud-ouest, la glaise battue traverse le fond jusqu'au camp, à quarante-deux mètres.",
+        "retour": "Depuis le camp, la mare rousse s'étale à l'est-nord-est, à quarante-deux mètres, au bout d'une glaise battue."
+      },
+      {
+        "vers": "ald-vieux-pont",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "La rampe de l'est rejoint le sentier de la berge sud, qui file vers l'est par les vasières jusqu'au Vieux Pont, à une heure.",
+        "retour": "Depuis le Vieux Pont, un sentier de boue file vers l'ouest au bord de la berge sud, puis remonte vers la rampe de l'excavation, à une heure de marche."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 64,
+      "y": 56
+    }
+  },
+  {
+    "id": "ald-carriere-huttes-et-poste-de-commandement",
+    "nom": "Huttes et poste de commandement",
+    "type": "salle",
+    "parent": "ald-carriere-d-argile",
+    "resume": "un campement de huttes d'écorce serrées sous une falaise, autour d'un feu de branchages.",
+    "description": "Le réduit occupe le pied de la falaise sud, dans son angle ouest : sept huttes d'écorce, une palissade de fascines au nord et à l'est, un feu de branchages au centre. La plus grande hutte est le poste de commandement de Demi-Dent, chef gobelin (21 PV, CA 17, FP 1). Il se bat au cimeterre ou à l'arc court, deux attaques par tour. Deux archers gobelins (10 PV, CA 15, FP 1/4) tiennent la palissade, au nord et à l'est ; deux autres tirent depuis le barrage de 5B. Quand Demi-Dent tombe à 5 PV ou moins, il jette son arme et se rend : c'est un dilemme de zone, l'épargner ou l'exécuter. Au fond de la plus grande hutte se trouve un coffre au contenu précieux, qui ne s'ouvre pas tant que le chef et ses gardes vivent ; crochetage DD 12, ou Force DD 16, qui fait un fracas et alerte le camp. Les deux portillons, au nord-est (vers 5B) et à l'est (vers la mare, 5C), sont les seules ouvertures du réduit.",
+    "ambiance": "Fumée, écorce, bâches, graisse rance.",
+    "arrivee": "Le réduit s'ouvre au pied de la falaise, et le froid de la glaise s'adoucit : une chaleur de fumée et de bois vert monte de la terre. Sept huttes d'écorce se serrent contre la paroi, coiffées de bâches grises usées et tendues sur des branches. Au centre, un feu de branchages verts brûle sans flamme haute, et sa fumée monte droit sous le surplomb, où elle s'étale en nappe. Un peu à l'ouest, la plus grande hutte se reconnaît à son poteau de devant, planté de travers, et à une bande de boue piétinée. Une palissade de fascines, tressée de branchages et haute d'environ un mètre et demi, ferme le réduit au nord et à l'est. L'odeur de graisse rance de viande grillée est forte, mêlée à celle de l'écorce humide et de la suie. Des voix basses et des craquements de branchages montent du camp. Le surplomb couvre les huttes, et la pluie goutte à sa lisière. Rien ne bouge encore entre les huttes.",
+    "visuel": "Sept huttes d'écorce, coiffées de bâches grises usées, se serrent sous le surplomb d'une falaise d'argile haute de douze mètres, au sud-ouest de la cuvette. Un feu de branchages verts brûle au centre du réduit, et une palissade de fascines le ferme au nord et à l'est. La fumée du feu monte droit sous la falaise, là où le surplomb la retient.",
+    "accroche": "Sous le surplomb d'une falaise d'argile, un campement de huttes d'écorce serrées autour d'un feu de branchages fume au pied de la glaise.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le nord-est, le fond remonte entre les fascines, par le portillon, jusqu'à la bande de toiles de jute, à quarante-cinq mètres.",
+        "retour": "Depuis la bande de toiles, le camp se devine vers le sud-ouest, en contrebas, à quarante-cinq mètres, derrière les fascines."
+      },
+      {
+        "vers": "ald-carriere-fond-de-fosse-et-mare",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers l'est-nord-est, la glaise battue traverse le fond par le portillon, jusqu'à la mare rousse, à quarante-deux mètres.",
+        "retour": "Depuis la mare, les huttes se devinent à l'ouest-sud-ouest, au pied de la falaise, derrière les fascines, à quarante-deux mètres."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 30,
+      "y": 80
+    }
+  },
+  {
+    "id": "ald-tertre-des-sept-lances",
+    "nom": "Le Tertre des Sept-Lances",
+    "type": "ruine",
+    "parent": "ald-carrefour-d-aldric",
+    "resume": "une colline rase couronnée de sept pierres noires, où une dalle glissée laisse voir un escalier vers le sous-sol.",
+    "description": "Le Tertre des Sept-Lances est une butte conique et rase, à environ deux heures de marche de l'auberge par la piste de boue. Son sommet porte un cercle de sept menhirs de granit noir, hauts de trois mètres et demi, inclinés de quinze degrés vers le centre, sur une ligne d'environ vingt mètres de diamètre. La pelouse qui couvre la butte est calcinée et rase. Au centre du cercle, une dalle de grès d'environ quatre cents kilos a été fracturée et glissée de quatre-vingts centimètres ; sous elle, une trouée donne sur un escalier de dix-huit marches, qui descend droit, dans l'axe, à cinq mètres sous terre. Au pied de l'escalier, une antichambre basse ouvre sur une crypte voûtée de six mètres sur cinq, aux six niches d'urnes brisées, avec la cuve de grès au centre. Le piège est au pied de la dernière marche ; les gardiens sont dans la crypte, et le respect se gagne au sarcophage, par un serment ou une offrande. De nuit, trois squelettes sentinelles sont assis près d'un muret, au nord-est du cercle.",
+    "ambiance": "Vent sur la pierre, herbe brûlée, silence.",
+    "arrivee": "La piste de boue monte doucement depuis les landes, puis la pente se dégage et la butte apparaît, nue, au-dessus de la plaine. Sa pelouse est rase et grise, comme brûlée jusqu'à la racine, et pas une herbe ne dépasse. Au sommet, sept pierres noires se dressent en cercle, hautes de trois mètres et demi, toutes penchées vers le centre comme des lances fichées dans la terre. Vos bottes, enfoncées dans la boue de la pente, peinent à se dégager à chaque pas. Le vent siffle entre les pierres, et l'air sent la cendre froide. Au milieu du cercle, une lourde dalle de grès a glissé de côté et laisse voir un trou noir. De loin, la butte semble vide, et l'on ne voit d'abord que le cercle dressé contre le ciel. Le ciel reste bas et gris, sans un oiseau.",
+    "visuel": "Une butte conique couverte d'une pelouse rase et calcinée, d'un gris presque noir, sous un ciel bas. Sept menhirs de granit noir, hauts de trois mètres et demi, se dressent en cercle sur la crête, inclinés vers le centre. Au milieu du cercle, une lourde dalle de grès a glissé de côté et laisse voir un trou noir.",
+    "accroche": "Au sud-est de la plaine, une colline rase porte sept pierres noires penchées vers son centre, comme des lances fichées dans la terre.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 2,
+        "sens": "double",
+        "description": "La piste de boue descend vers le nord-ouest, à travers les landes, vers la butte de l'auberge, à environ deux heures de marche.",
+        "retour": "Depuis le perron de l'auberge, vers le sud-est, on devine la colline rase sur les landes, à demi noyée dans le crachin."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 80,
+      "y": 72
+    }
+  },
+  {
+    "id": "ald-tertre-cercle",
+    "nom": "Tumulus et cercle des menhirs",
+    "type": "lieu-dit",
+    "parent": "ald-tertre-des-sept-lances",
+    "resume": "un cercle de sept menhirs sur une butte rase, couvert de gravures anciennes et d'un muret écroulé.",
+    "description": "Le cercle est le premier lieu que le groupe voit de près : sept menhirs de granit noir brut, inclinés de quinze degrés vers le centre, qui ferment la butte sur une vingtaine de mètres de diamètre. L'entrée se fait par l'intervalle nord-ouest, large d'une dizaine de pas, entre le menhir nord et le menhir ouest. Sur le menhir sud-est, face à l'entrée, des gravures d'avant le royaume représentent, à hauteur d'homme, un guerrier qui terrasse une chimère de brume avec une épée de bronze éclatante. Juste au-dessous, une inscription courte se déchiffre à l'examen (Histoire DD 12, ou Arcanes DD 11) : « Ci-gît Aethelgard, marteau des ombres. Seul le bronze forgé sous l'étoile ne cède point devant la pourriture du ver. » Elle annonce l'immunité de la lame de bronze à la fonte friable, que la crypte permettra de vérifier. Au pied du menhir nord, un trou carré à ras du sol contient de la cendre froide. Le muret de pierres sèches, au nord-est, est effondré. De nuit, entre minuit et l'aube, trois squelettes sentinelles sont assis derrière lui, immobiles, la tête basse et aux aguets ; ils ne combattent pas si l'on passe son chemin. Quand une éclaircie perce les nuages, quelques nuits, une pâle clarté de lune éclaire le cercle ; sous un ciel couvert, il fait presque noir. La dalle glissée est décrite au sous-lieu 6B.",
+    "ambiance": "Vent entre les menhirs, cendre froide, silence.",
+    "arrivee": "Vous franchissez l'intervalle entre deux pierres et entrez dans le cercle. Ici, le vent siffle entre les pierres, et le silence des landes semble se refermer sur vous. Les sept menhirs de granit noir brut se dressent tout autour, sans mousse, et leur inclinaison vers le centre donne l'impression d'être observé de toutes parts. Au milieu, la dalle de grès a glissé de côté et laisse voir un trou noir, d'où monte un air froid qui sent la cendre et la pierre humide. Sur la pelouse brûlée, rien ne pousse. Vos pas font craquer une cendre sèche sous l'herbe, et le froid du lieu vous saisit aussitôt. La lumière est plate, grise, sans une ombre. Sur le menhir qui fait face à l'entrée, à hauteur d'homme, quelque chose de pâle attire le regard : des traits gravés dans la pierre, à demi effacés par la pluie.",
+    "visuel": "Un cercle de sept menhirs de granit noir brut, hauts de trois mètres et demi, se dresse sur une pelouse rase et calcinée. Les pierres penchent toutes vers le centre, où une lourde dalle de grès a glissé de côté. Sur le menhir sud-est, à hauteur d'homme, des gravures pâles se détachent sur le granit, sous un ciel bas et gris.",
+    "accroche": "Au sommet de la butte, sept pierres noires se dressent en cercle, inclinées vers le centre ; au milieu, une dalle glissée laisse voir un trou.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-tertre-dalle-et-escalier",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au centre du cercle, la dalle de grès glissée laisse voir une trouée, et les premières marches d'un escalier qui descend dans la pierre.",
+        "retour": "Depuis la trouée, le cercle des menhirs se voit en plein ciel, avec sa pelouse brûlée et l'intervalle nord-ouest par où l'on est venu."
+      },
+      {
+        "vers": "ald-auberge-de-bregor",
+        "type": "chemin",
+        "heures": 2,
+        "sens": "double",
+        "description": "L'intervalle nord-ouest ouvre sur la piste de boue, qui descend à travers les landes vers la butte de l'auberge.",
+        "retour": "Depuis la piste, au nord-ouest, le cercle des sept pierres noires ferme la crête et se détache sur le ciel gris."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 40
+    }
+  },
+  {
+    "id": "ald-tertre-dalle-et-escalier",
+    "nom": "Dalle et escalier",
+    "type": "lieu-dit",
+    "parent": "ald-tertre-des-sept-lances",
+    "resume": "une dalle de grès glissée de côté, sur un escalier de dix-huit marches qui descend sous la butte.",
+    "description": "La dalle de grès, d'environ quatre cents kilos, a été fracturée sur une arête puis glissée de quatre-vingts centimètres vers la droite de celui qui entre par le nord-ouest. Sous elle, la trouée donne sur un escalier de dix-huit marches de pierre taillée, large de quatre-vingts centimètres, qui descend droit, dans l'axe du cercle, jusqu'à cinq mètres sous la butte. Un souffle froid vient du fond de l'escalier. La lumière grise du ciel s'amenuise de marche en marche ; en bas, elle n'atteint plus que la pénombre de l'antichambre. Il n'y a pas de lampe ici : le groupe doit apporter la sienne. La neuvième marche est fendue en deux, et les parois suintent au niveau des épaules. Il n'y a rien à fouiller dans la trouée : c'est un simple boyau. Le piège n'est pas ici, mais au pied de la dernière marche, en travers du seuil de l'antichambre (6C) ; le sarcophage se trouve au bout de la descente (6D).",
+    "ambiance": "Pierre froide, souffle du fond, goutte d'eau.",
+    "arrivee": "Vous marchez vers le centre du cercle, où la dalle de grès a glissé de côté. Elle est longue comme un homme, et son arête brisée, brune et lisse, se détache faiblement sur le gris du ciel. À sa place s'ouvre un trou étroit, large de quatre-vingts centimètres, d'où monte, de l'escalier, un souffle froid qui fait frissonner les mains. En bas, des marches de pierre taillée descendent tout droit dans le noir, et la lumière du ciel s'amenuise à chaque marche. Une goutte d'eau tombe quelque part au fond, puis une autre, à intervalles réguliers. L'odeur est celle d'une cave : pierre mouillée, poussière de calcaire, cendre éteinte. Vos pas s'arrêtent d'eux-mêmes au bord du trou, et vous tendez l'oreille. Vous ne voyez le fond de l'escalier qu'à demi, et le bas se perd dans un gris sans contours.",
+    "visuel": "Une dalle de grès gris, longue comme un homme, a glissé de côté au centre du cercle, et sa cassure brune se détache sous le ciel gris. Sous elle s'ouvre une trouée étroite, puis un escalier de pierre taillée qui plonge droit dans l'obscurité. Un souffle froid remonte de la trouée, et la lumière grise s'affaiblit à mesure qu'elle descend les marches.",
+    "accroche": "Au centre de la butte, une dalle de grès glissée laisse descendre un escalier étroit dans le noir.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-tertre-cercle",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Par la trouée, on remonte à la lumière grise du ciel, puis au cercle des menhirs et à sa pelouse brûlée.",
+        "retour": "Depuis le cercle, la trouée s'ouvre au centre, à côté du bord de la dalle, et un souffle froid en monte."
+      },
+      {
+        "vers": "ald-tertre-antichambre",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "L'escalier descend droit dans l'axe, dix-huit marches, jusqu'à une antichambre voûtée cinq mètres plus bas.",
+        "retour": "L'escalier remonte dix-huit marches, de plus en plus clair vers le haut, jusqu'à la trouée sous la dalle glissée."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 50
+    }
+  },
+  {
+    "id": "ald-tertre-antichambre",
+    "nom": "Antichambre voûtée",
+    "type": "salle",
+    "parent": "ald-tertre-des-sept-lances",
+    "resume": "une antichambre voûtée au pied d'un escalier, où la pénombre s'arrête devant une ouverture vers la crypte.",
+    "description": "L'antichambre est voûtée en berceau bas, de quatre mètres sur trois, au pied de l'escalier, à cinq mètres sous la butte. Elle ne reçoit que la lueur faible de la trouée. Au pied de la dernière marche, en travers du seuil de l'antichambre, une dalle de pierre légèrement surélevée est reliée par une chaîne de fer rouillée à un contrepoids scellé dans le mur est : si l'on marche dessus sans précaution, le contrepoids tire et deux javelines rouillées jaillissent des fentes carrées du mur ouest. Détection : Perception DD 13. Désarmement : Outils de voleur DD 12, ou un coin de fer glissé sous la dalle pour la bloquer. Échec au déclenchement : deux javelines, Attaque +4, 1d6 perforant chacune. Une flèche gravée sur le mur ouest, pointée vers le sol, est une marque de tailleur qui signale la dalle à qui sait la lire. Au fond, une ouverture sans porte mène à la crypte (6D), où l'obscurité est complète ; l'air qui en sort est plus froid et sent la cendre.",
+    "ambiance": "Pierre humide, pénombre, silence serré.",
+    "arrivee": "L'escalier s'achève sur une antichambre basse, voûtée de pierre taillée. Vous descendez les dernières marches, et la pénombre se fait plus épaisse : la lueur grise de la trouée, là-haut, n'atteint plus ici qu'un pâle reflet sur le sol. Les parois de grès sont humides et luisantes, et la voûte est si basse qu'un grand gaillard doit baisser la tête. Vos pas résonnent sur des dalles usées, et chaque bruit revient en écho. Au fond, le mur de pierre se perd dans un noir plus épais, d'où monte un air plus froid, qui sent la cendre et la poussière de calcaire. Le silence est presque complet ; seule une goutte d'eau tombe quelque part, plus loin. Vous sentez l'humidité sur votre visage. Vos yeux mettent un moment à s'habituer à cette demi-clarté. La pièce est petite, et le moindre mouvement s'entend.",
+    "visuel": "Une antichambre basse, voûtée de pierre taillée, au pied d'un escalier qui vient du haut. Une lueur grise et faible tombe de la trouée et s'arrête sur des parois de grès humides. Au fond, une ouverture sombre, sans porte, s'enfonce dans l'obscurité.",
+    "accroche": "Par la trouée sous la dalle glissée, on n'aperçoit que quelques marches et une lueur grise qui faiblit en descendant.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-tertre-dalle-et-escalier",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "L'escalier de dix-huit marches monte droit vers la trouée, cinq mètres plus haut, où la lueur grise du ciel se fait plus nette.",
+        "retour": "Depuis la trouée, l'escalier descend dix-huit marches vers une pénombre où l'on distingue à peine les dalles du fond."
+      },
+      {
+        "vers": "ald-tertre-sarcophage",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au fond de l'antichambre, une ouverture sans porte mène à la crypte, où l'obscurité est complète et l'air plus froid.",
+        "retour": "Depuis la crypte, la pénombre de l'antichambre se devine au-dessus du seuil, comme un rectangle grisâtre."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 66
+    }
+  },
+  {
+    "id": "ald-tertre-sarcophage",
+    "nom": "Crypte du sarcophage",
+    "type": "salle",
+    "parent": "ald-tertre-des-sept-lances",
+    "resume": "une crypte voûtée et sombre, aux niches d'urnes brisées, autour d'un sarcophage de grès fermé.",
+    "description": "La crypte est voûtée en berceau, six mètres sur cinq, à cinq mètres sous la butte, et ne reçoit aucune lumière : le groupe apporte la sienne. Six niches murales, à hauteur d'épaule, sont creusées dans les murs est et ouest ; chacune contient une urne d'argile brisée. Dans le mur ouest, trois niches basses, au ras du sol, fermées par des dalles de pierre, abritent trois squelettes allongés, immobiles tant que le rite est respecté. Au centre, la cuve de grès, d'environ deux pas sur trois, est fermée par un couvercle de deux cent cinquante kilos, sculpté d'une effigie d'homme armé au bouclier rond dont le visage est ébréché. Devant la cuve, une pierre plate sert d'autel. Le groupe peut s'y incliner, prononcer un serment (Religion DD 11), ou verser du vin ou de l'eau bénite. Le rite réussi est narré : une lueur bleutée éclaire la voûte, et les squelettes restent immobiles. Il ne donne aucune récompense mécanique. Si l'arme est saisie sans respect ni offrande, ou si le couvercle est ouvert sans rite (Force combinée DD 13, ou levier), les squelettes repoussent les dalles de pierre de leurs niches basses pour sortir, et bloquent la crypte et l'escalier. Dans la cuve, sous une doublure de chêne, se trouvent la Spatha de bronze d'Aethelgard, la seule épée longue immunisée de la zone, le torque d'électrum à grenats, le bouclier de chêne cerclé de cuivre, et la dague glissée dans la doublure, décrite dans Contenu prévu.",
+    "ambiance": "Cendre froide, pierre humide, écho lointain.",
+    "arrivee": "Vous entrez dans une crypte voûtée en berceau, où l'obscurité est totale : aucune lueur ne vient d'en haut, et seule votre lumière la découpe. La voûte est de pierre grise, humide, et les murs portent six niches à hauteur d'épaule, chacune contenant une urne d'argile brisée, qui ont perdu leur couvercle. Contre le mur ouest, trois dalles de pierre basses ferment des niches au ras du sol. Au centre, une cuve de grès, fermée par un couvercle lourd, occupe le milieu de la pièce. Sur le couvercle, une effigie d'homme armé au bouclier rond a le visage ébréché. Devant la cuve, une pierre plate sert d'autel, nue, sans offrande. Le silence est total, et l'air sent la cendre froide et la poussière sèche, qui s'accroche à la gorge. Votre voix revient en écho sous la voûte. Le froid y est plus vif qu'au sommet de la butte. Il vous faut une lumière pour lire les niches.",
+    "visuel": "Une crypte voûtée en berceau, de pierre grise et humide, dont six niches murales à hauteur d'épaule contiennent des urnes d'argile brisées. Au centre, une cuve de grès est fermée par un couvercle sculpté d'une effigie d'homme armé au bouclier rond, au visage ébréché. Devant la cuve, une pierre plate forme un autel, et l'obscurité complète ne laisse voir la voûte qu'à la lumière apportée.",
+    "accroche": "Sous la butte, par la trouée, monte une odeur de cendre froide et de poussière de calcaire d'une crypte que la lueur n'atteint pas.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-tertre-antichambre",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Par la baie nord, sans porte, on retrouve l'antichambre basse, où un rectangle de pénombre grise se devine au-dessus du seuil.",
+        "retour": "Depuis l'antichambre, la crypte paraît noire : la voûte et les niches n'apparaissent qu'à la lumière apportée par le groupe."
+      }
+    ],
+    "repos": "dangereux",
+    "position": {
+      "x": 50,
+      "y": 77
+    }
+  }
+]

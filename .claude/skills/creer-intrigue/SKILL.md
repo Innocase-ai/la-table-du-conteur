@@ -16,6 +16,8 @@ Format : `packages/regles/src/monde/schemas.ts` (`Quete`, `Faction`, `Jauge`, `E
 ### Quêtes
 - Une quête devient active par l'effet `{ "quete": { "id", "statut": "active" } }` (un sujet de PNJ, un événement…), ou `proposee` puis le joueur l'accepte (bouton « Accepter », avec `prerequis` éventuel).
 - Active, son étape `debut` est active. **Une étape s'accomplit dès que sa `completion` est vraie** ; ses `effets` s'appliquent, ses `suivantes` deviennent actives. Une étape `termine: true` clôt la quête aussitôt ; sinon la quête se clôt quand plus rien n'est actif. La quête terminée verse ses `recompenses`.
+- **Toute quête qui a un `donneur` se rend** (leçon de Port-Sillage, 11/11/2026 : le joueur avait tué les rats et cherchait où valider). La dernière étape est un **retour au donneur** : texte « Retournez voir <Nom>, <où> : parlez-lui de <sujet> pour <ce qu'il y gagne> », `completion` = un drapeau (`<quete>-rendue`) posé par un **sujet du donneur** dont la `condition` est le drapeau de l'objectif atteint (le sujet de départ reçoit la condition contraire, pour ne plus se proposer), avec `termine: true` ; une salutation variable du donneur (`et` objectif atteint, `non` rendue) rappelle qu'il attend des nouvelles. Les récompenses ne se versent qu'à ce moment, dans la voix du PNJ. Le validateur avertit (« Quêtes : … n'ont pas d'étape de retour ») quand aucune étape finale ne nomme le donneur ; seules les quêtes qui se closent sur une **fin d'histoire** (effet `fin`) en sont dispensées. Test à copier : `packages/regles/tests/quete-rendre-cave.test.ts`.
+- Un effet `quete: active` ne rouvre **jamais** une quête accomplie ou échouée (le moteur l'ignore) : un sujet répétable peut rester sans danger, mais cache-le quand l'objectif est atteint.
 - Une étape active dont la condition `echec` devient vraie fait **échouer** la quête.
 - Le texte des étapes actives est le journal du joueur : écris-le comme une consigne (« Trouver qui a ouvert la vanne »), sans solution.
 
@@ -46,7 +48,7 @@ Format : `packages/regles/src/monde/schemas.ts` (`Quete`, `Faction`, `Jauge`, `E
 4. **L'horloge se voit et se combat.** 4 à 6 paliers, des effets réels (un PNJ part, une route se ferme, une rencontre se déclenche), une évolution lisible (`jour`, ou `lieu` pour un endroit qui use) et au moins deux moyens de la freiner (une quête secondaire, un dilemme, un objet). Annonce le prochain palier dans la narration du précédent.
 5. **Les factions servent des choix.** 3 à 5 factions, chacune avec ce qu'elle veut et ce qu'elle offre ; leur réputation ouvre ou ferme des sujets, des options de dilemme, une fin. Pas de faction décorative.
 6. **Les événements donnent le rythme** : un événement par palier ou par choix majeur, des échos à quelques jours (`jour` + `condition`), un événement d'ouverture.
-7. **Les quêtes secondaires** (6 par chapitre visé par le validateur) tiennent en dix minutes, ont une chute et, idéalement, touchent la jauge ou une faction. Les **quêtes de faction** récompensent en réputation. Les petites quêtes de combat : `creer-contrats`.
+7. **Les quêtes secondaires** (6 par chapitre visé par le validateur) tiennent en dix minutes, ont une chute et, idéalement, touchent la jauge ou une faction ; **chacune se rend à son donneur** (étape de retour, voir « Quêtes »). Les **quêtes de faction** récompensent en réputation. Les petites quêtes de combat : `creer-contrats`.
 8. **Les PX** : `recompenses.xp` des quêtes et les rencontres doivent mener au niveau maximum du monde (avis « PX »).
 
 ## Écrire

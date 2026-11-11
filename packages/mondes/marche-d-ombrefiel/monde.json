@@ -1,0 +1,75 @@
+{
+  "id": "marche-d-ombrefiel",
+  "version": 1,
+  "statut": "brouillon",
+  "nom": "La Marche d'Ombrefiel",
+  "resume": "Depuis six mois, tout le fer neuf de la Marche d'Ombrefiel se brise. Du Carrefour d'Aldric à Haute-Garde, en passant par des mines empoisonnées, une forêt de bandits, des marais de forges clandestines et une tour d'archimage, le groupe remonte le sabotage jusqu'à ceux qui en profitent, avant l'Échéance du Conseil.",
+  "accroche": "Le fer se brise, les convois disparaissent, et quelqu'un y trouve son compte. Peut-on sauver la Marche sans la livrer à ceux qui prétendent l'avoir sauvée ?",
+  "ton": [
+    "cynique et truculent",
+    "gritty : boue, suie, fer",
+    "enquête et conspiration",
+    "un humour absurde qui n'efface jamais le danger"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 7
+  },
+  "groupe": { "conseille": 4 },
+  "depart": {
+    "lieu": "ald-auberge-de-bregor",
+    "intro": "À Aldric, il pleut depuis des semaines, et la boue a fini par manger la route. Sur la butte, l'auberge de Brégor est devenue une forteresse de moellons et de volets ferrés ; dans sa cour, des réfugiés se partagent des soupes claires autour de feux qui fument. Au carrefour, deux pendus se balancent sous un panneau qui promet le même sort à quiconque gênera les convois du Roi. Dans l'angle sombre de la salle commune, un nain regarde trois morceaux de métal brisé comme on regarde un mort. Personne ici ne parle du fer, et tout le monde n'y pense que trop : depuis six mois, aucune lame neuve ne tient."
+  },
+  "direction": {
+    "style": "Parchemin bistre et sépia, tracé à la plume : boue et crachin d'automne, forges et galeries noircies de suie, brume de sous-bois, eaux saumâtres des marais, aiguille de basalte balayée par la neige fondue, granit gris et ardoise d'une cité fortifiée. Lumière basse, grise ou rougeoyante de fonderie ; matières usées, fer rouillé, suie, cuir, pierre humide.",
+    "palette": [
+      "gris ardoise",
+      "brun bistre",
+      "rouille",
+      "vert de mousse",
+      "noir de suie",
+      "orange de forge"
+    ],
+    "motsCles": [
+      "fer",
+      "forge",
+      "suie",
+      "boue",
+      "brume",
+      "masque",
+      "ardoise",
+      "carrefour"
+    ],
+    "interdits": [
+      "high fantasy lumineuse",
+      "armures étincelantes",
+      "noms ou symboles d'univers de jeu existants"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1-le-fer-sabote",
+      "nom": "Le fer saboté",
+      "niveaux": {
+        "min": 1,
+        "max": 7
+      },
+      "resume": "D'Aldric à Haute-Garde : le groupe remonte le sabotage du fer, de la boue d'un carrefour à la salle du Conseil des Pairs, avant l'Échéance.",
+      "lieux": [
+        "marche-d-ombrefiel"
+      ],
+      "quetes": []
+    }
+  ],
+  "regles": [
+    "Le MJ ne révèle jamais l'identité du Chef Masqué (le Doyen Valerius), l'origine de la toxine X-44 ni le plan du putsch avant que le groupe ait découvert les faits correspondants.",
+    "Le fer neuf (récent, non magique) est friable : sur un 1 naturel, l'arme est ébréchée (−1 au toucher, cumul −2, réparée chez un forgeron). Les armes anciennes, en bronze ou magiques sont immunisées.",
+    "La magie est rare, crainte et méprisée : lancer un sort ostentatoire dans une auberge provoque panique, hostilité ou dénonciation à la milice.",
+    "Le danger n'est pas nivelé : hors des routes, de nuit, la forêt et les marais punissent un groupe trop faible. La fuite est une compétence.",
+    "Les rêves du repos sont des scènes narrées sans pouvoir de combat ; ils nomment la Voie du groupe, lumineuse ou sombre.",
+    "Chaque antagoniste croit bien faire, sauf Sévérus et Malakar, qui sont intéressés.",
+    "Aucune fin n'est entièrement heureuse : chaque voie a un coût.",
+    "Le monde est original : aucun nom, lieu ou texte d'un univers de jeu existant."
+  ],
+  "auteurs": []
+}

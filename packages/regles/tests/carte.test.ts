@@ -1,10 +1,10 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { aller, carteDuMonde, creerGenerateur, etatInitial, nouvellePartie, positionAuto, type DonneesMonde } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
 import { readdirSync } from 'node:fs';
 
-const MONDES = readdirSync(RACINE_MONDES, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+const MONDES = listerMondesEcrits();
 
 function partie(monde: string, lieu?: string) {
   const r = chargerMonde(join(RACINE_MONDES, monde));

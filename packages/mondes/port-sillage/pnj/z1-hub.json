@@ -903,6 +903,11 @@
           "descendre",
           "bruit"
         ],
+        "condition": {
+          "non": {
+            "flag": "z1-cave-nettoyee"
+          }
+        },
         "question": "Un souci avec votre cave ?",
         "reponse": "Elle lève les yeux au ciel : sa cave est infestée, des rats gros comme des chats sortent du mur sud, et la nuée emporte tout ce qui est mangeable. Elle n'ose plus descendre chercher les tonneaux. Elle promet de la reconnaissance, et une bonne place près du feu, à qui la débarrasse.",
         "revele": [
@@ -917,6 +922,35 @@
           }
         ],
         "unique": false
+      },
+      {
+        "id": "la-cave-est-propre",
+        "mots": [
+          "cave",
+          "rats",
+          "propre",
+          "nettoyée",
+          "récompense",
+          "merci"
+        ],
+        "condition": {
+          "flag": "z1-cave-nettoyee"
+        },
+        "question": "Votre cave est propre : les rats ne reviendront plus.",
+        "reponse": "Elle pose sa chope, file jeter un œil dans l'escalier, puis remonte en riant : plus un grattement dans le mur sud ! Elle vous glisse quarante pièces dans la main, sert une soupe fumante au coin du feu et promet qu'on dira du bien de vous dans tout le village.",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "z1-cave-rendue"
+          },
+          {
+            "attitude": {
+              "pnj": "maeva-brisant",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
       },
       {
         "id": "les-pieces-marquees",
@@ -1000,6 +1034,21 @@
       "neutre": "Entrez, entrez ! Une chope, une soupe, une chambre ? Dites-moi ce qu'il vous faut, mon chou.",
       "amical": "Ah, les voilà ! Asseyez-vous près du feu, la première chope est pour la maison.",
       "variantes": [
+        {
+          "condition": {
+            "et": [
+              {
+                "flag": "z1-cave-nettoyee"
+              },
+              {
+                "non": {
+                  "flag": "z1-cave-rendue"
+                }
+              }
+            ]
+          },
+          "texte": "Maëva lève le nez de son comptoir, le torchon figé : « Alors, ma cave ? J'ai entendu du bruit en bas, puis plus rien du tout… Dites-moi vite ! »"
+        },
         {
           "condition": {
             "flag": "choix-le-sacristain-cacher"

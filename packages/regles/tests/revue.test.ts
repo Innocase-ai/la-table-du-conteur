@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { Canon, canonDepuisMonde, CANON_VIDE, champsLibres, cleDeRevue, fusionnerCanon, listerRevue, Revue, revoirMonde, sansRejets, trouverMot, type DonneesMonde } from '../src';
-import { chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
 
 const MINI = join(import.meta.dirname, 'fixtures/mini-monde');
 
@@ -191,7 +191,7 @@ describe('la revue', () => {
   });
 });
 
-describe.each(listerMondes())('revue de « %s »', (id) => {
+describe.each(listerMondesEcrits())('revue de « %s »', (id) => {
   it('sans canon, elle ne plante pas et ne signale que peu de noms inconnus', () => {
     const dm = charger(join(RACINE_MONDES, id));
     const d = revoirMonde(dm, CANON_VIDE);

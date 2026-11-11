@@ -51,3 +51,14 @@ export function listerMondes(racine = RACINE_MONDES): string[] {
     .map((d) => d.name)
     .sort();
 }
+
+/**
+ * Les mondes qui ont au moins un lieu écrit : un **squelette** (canon et `monde.json` seulement, avant l'écriture des zones) n'a rien
+ * à cartographier, à relire ni à recouper avec son canon ; les tests qui parcourent les mondes s'en tiennent à ceux-là.
+ */
+export function listerMondesEcrits(racine = RACINE_MONDES): string[] {
+  return listerMondes(racine).filter((id) => {
+    const dossier = join(racine, id, 'lieux');
+    return existsSync(dossier) && readdirSync(dossier).some((f) => f.endsWith('.json'));
+  });
+}

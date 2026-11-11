@@ -437,6 +437,22 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     effets(`${ou}`, q.etapes.flatMap((e) => e.effets));
   }
 
+  // Une quête qui a un donneur se RENDORT : sa dernière étape renvoie à lui (« Retournez voir… ») et s'accomplit par un sujet de
+  // ce PNJ. Sinon elle se clôt seule, au fond d'une cave, et le joueur cherche vainement où la rendre. Heuristique : le texte d'une
+  // étape finale doit nommer le donneur ; les quêtes dont la fin est une fin d'histoire (effet `fin`) en sont dispensées.
+  const sansAccents = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const sansRetour: string[] = [];
+  for (const q of dm.quetes.values()) {
+    const donneur = q.donneur ? dm.pnj.get(q.donneur) : undefined;
+    if (!donneur) continue;
+    const finales = q.etapes.filter((e) => e.suivantes.length === 0 || e.termine);
+    if (finales.some((e) => e.effets.some((x) => 'fin' in x))) continue;
+    const prenom = sansAccents(donneur.nom.split(/\s+/)[0] ?? donneur.nom);
+    if (!finales.some((e) => sansAccents(e.texte).includes(prenom) || sansAccents(donneur.nom).split(/\s+/).some((m) => m.length > 3 && sansAccents(e.texte).includes(m)))) sansRetour.push(q.id);
+  }
+  if (sansRetour.length)
+    avis(`Quêtes : ${sansRetour.length} quête(s) n'ont pas d'étape de retour à leur donneur (le joueur ne sait pas où ni comment la rendre : ajoutez une dernière étape « Retournez voir <donneur> », accomplie par un sujet de ce PNJ qui pose un drapeau) : ${sansRetour.slice(0, 6).join(', ')}${sansRetour.length > 6 ? '…' : ''}`);
+
   // --- Factions, jauges, événements, fins, chapitres ---
   for (const f of dm.factions.values()) {
     if (f.chef) verifierRef(`Faction « ${f.id} »`, 'pnj', f.chef);

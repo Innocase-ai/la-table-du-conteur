@@ -300,8 +300,9 @@
         "completion": {
           "flag": "z1-cave-nettoyee"
         },
-        "suivantes": [],
-        "termine": true,
+        "suivantes": [
+          "rendre"
+        ],
         "echec": {
           "et": [
             {
@@ -322,6 +323,31 @@
             "xp": 50
           }
         ]
+      },
+      {
+        "id": "rendre",
+        "texte": "Retournez voir Maëva Brisant, à la salle du Hareng Rouillé : parlez-lui de sa cave pour lui annoncer que les rats ne reviendront plus et toucher votre récompense.",
+        "completion": {
+          "flag": "z1-cave-rendue"
+        },
+        "suivantes": [],
+        "termine": true,
+        "echec": {
+          "et": [
+            {
+              "jauge": {
+                "id": "grande-maree",
+                "min": 4
+              }
+            },
+            {
+              "non": {
+                "flag": "livre-retrouve"
+              }
+            }
+          ]
+        },
+        "effets": []
       }
     ],
     "recompenses": {

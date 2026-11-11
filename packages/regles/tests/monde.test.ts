@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { adapterRencontre, appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, STYLE_INDIRECT, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
-import { chargerManifesteImages, chargerMonde, listerMondes, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerManifesteImages, chargerMonde, listerMondes, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
 const srd = chargerDonneesSrd();
@@ -153,6 +153,13 @@ describe("état du monde", () => {
 describe('mondes livrés', () => {
   it('le dossier des mondes se lit', () => {
     expect(Array.isArray(listerMondes())).toBe(true);
+  });
+
+  it('un squelette de monde (canon seulement, aucun lieu écrit) n’est pas parcouru par les tests de cartes, de revue et de registre', () => {
+    const ecrits = listerMondesEcrits();
+    for (const id of ecrits) expect(listerMondes()).toContain(id);
+    expect(ecrits).toContain('val-des-cendres');
+    expect(listerMondesEcrits(join(RACINE_MONDES, 'inexistant'))).toEqual([]);
   });
 
   for (const id of listerMondes()) {

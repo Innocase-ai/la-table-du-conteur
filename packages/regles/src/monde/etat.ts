@@ -207,6 +207,8 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     const q = (e.quetes[effet.quete.id] ??= { statut: effet.quete.statut, actives: [], accomplies: [] });
     const def = dm.quetes.get(effet.quete.id);
     if (effet.quete.statut === 'terminee' && def) terminerQuete(effet.quete.id, e, dm);
+    // Une quête close (accomplie ou échouée) ne se rouvre pas : redemander au PNJ ne la remet pas « en cours » sans étape.
+    else if (effet.quete.statut === 'active' && (q.statut === 'terminee' || q.statut === 'echouee')) return;
     else {
       q.statut = effet.quete.statut;
       if (effet.quete.statut === 'active' && def && !q.actives.length && !q.accomplies.length) q.actives.push(def.debut);
@@ -257,6 +259,18 @@ export function avancerQuetes(e: EtatMonde, dm: DonneesMonde): void {
     for (const [id, q] of Object.entries(e.quetes)) {
       const def = dm.quetes.get(id);
       if (!def || q.statut !== 'active') continue;
+      // Réparation : une quête « en cours » sans aucune étape active (sauvegarde d'avant la correction d'une quête rouverte, ou
+      // étape ajoutée à la fiche depuis) reprend aux étapes qui suivent celles déjà accomplies.
+      if (!q.actives.length) {
+        for (const acc of q.accomplies) {
+          for (const s of def.etapes.find((x) => x.id === acc)?.suivantes ?? []) {
+            if (!q.accomplies.includes(s) && !q.actives.includes(s) && def.etapes.some((x) => x.id === s)) {
+              q.actives.push(s);
+              change = true;
+            }
+          }
+        }
+      }
       for (const idEtape of [...q.actives]) {
         const etape = def.etapes.find((x) => x.id === idEtape);
         if (!etape) continue;
