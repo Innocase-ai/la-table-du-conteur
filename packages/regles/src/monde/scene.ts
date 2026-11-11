@@ -2,6 +2,7 @@
 // Elle ne contient que ce que le groupe peut voir ou sait déjà, plus la description factuelle du lieu pour le conteur ;
 // les secrets restent accessibles par les outils de consultation.
 import { attitude, pnjPresents, sujetsDisponibles } from './dialogue';
+import { pnjDansLieu } from './presence';
 import { evaluerCondition } from './etat';
 import { sortiesDe, type PartieMonde } from './exploration';
 
@@ -24,6 +25,12 @@ export interface FicheScene {
   fin?: string;
 }
 
+/** Qui l'on y croisera (« On y croise : … »), pour ne pas passer devant sans savoir qu'on y parle à quelqu'un. */
+function signalerPnj(p: PartieMonde, vers: string): string {
+  const noms = pnjDansLieu(p, vers).map((n) => n.nom);
+  return noms.length ? ` On y croise : ${noms.join(', ')}.` : '';
+}
+
 export function ficheDeScene(p: PartieMonde): FicheScene {
   const { dm, etat } = p;
   const ex = etat.exploration;
@@ -44,7 +51,7 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
         nom: s.nom,
         type: s.type,
         description: s.description,
-        apercu: s.apercu,
+        apercu: s.apercu + signalerPnj(p, s.vers),
         visite: s.visite,
         heures: s.heures,
         etat: s.absent ? 'absent' : s.bloque ? 'bloque' : s.verrou && !s.verrou.ouvert ? 'verrouille' : 'libre',
