@@ -1,13 +1,14 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { aller, carteDuMonde, creerGenerateur, etatInitial, nouvellePartie, positionAuto, type DonneesMonde } from '../src';
-import { chargerMonde, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde, listerMondesEcrits } from '../src/monde/chargeur';
+import { dossierMonde, IDS_MONDES_ESSAI } from './mondes-essai';
 import { readdirSync } from 'node:fs';
 
-const MONDES = listerMondesEcrits();
+const MONDES = [...listerMondesEcrits(), ...IDS_MONDES_ESSAI];
 
 function partie(monde: string, lieu?: string) {
-  const r = chargerMonde(join(RACINE_MONDES, monde));
+  const r = chargerMonde(dossierMonde(monde));
   if (!r.ok) throw new Error('monde illisible');
   const dm = r.monde as DonneesMonde;
   const etat = etatInitial(dm);

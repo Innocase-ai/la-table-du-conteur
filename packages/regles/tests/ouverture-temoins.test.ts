@@ -18,12 +18,13 @@ import {
   type Personnage,
   type PartieMonde,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { dossierMonde } from './mondes-essai';
 import { chargerDonneesSrd } from '../src/donnees-node';
 
 const srd = chargerDonneesSrd();
 const charger = (id: string) => {
-  const r = chargerMonde(join(RACINE_MONDES, id));
+  const r = chargerMonde(dossierMonde(id));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   return r.monde;
 };

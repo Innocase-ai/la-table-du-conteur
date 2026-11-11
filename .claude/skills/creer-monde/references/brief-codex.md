@@ -2,7 +2,7 @@
 
 > **Exemple réel, tiré de La Citadelle des Marées.** Pour un autre monde, garde la structure, les règles et le format ; remplace l'id du monde, les noms, les identifiants et les listes (examens, questions, PNJ, lieux…) par ceux de ton monde, tirés du canon et de l'atlas. `<dossier temporaire de la session>` est le dossier temporaire (scratchpad) de la session en cours. Tous les chemins sont relatifs à la racine du dépôt.
 
-Monde : `packages/mondes/citadelle-des-marees/`. Lis `BIBLE.md` (canon et secrets) et ce brief. Format : `packages/regles/src/monde/codex-donnees.ts`. Écris UNIQUEMENT le fichier `codex/z9-questions.json` (tableau JSON de 14 objets ; crée le dossier `codex/`). Pas de commit. Vérifie : `cd C:/Users/sebas/Documents/GitHub/D&D/crpg-llm && pnpm monde valider citadelle-des-marees` : 0 erreur pour ton fichier. Rapport final court.
+Monde : `packages/regles/tests/fixtures/mondes/citadelle-des-marees/`. Lis `BIBLE.md` (canon et secrets) et ce brief. Format : `packages/regles/src/monde/codex-donnees.ts`. Écris UNIQUEMENT le fichier `codex/z9-questions.json` (tableau JSON de 14 objets ; crée le dossier `codex/`). Pas de commit. Vérifie : `cd C:/Users/sebas/Documents/GitHub/D&D/crpg-llm && pnpm monde valider citadelle-des-marees` : 0 erreur pour ton fichier. Rapport final court.
 
 ## Ce qu'est une question du codex
 Un mystère que le groupe se pose, comme dans le journal d'un grand jeu de rôle. Elle **apparaît** quand le groupe apprend le fait de départ (`quand`), reste **en suspens** avec une **piste**, et se **ferme** quand il apprend le fait qui y répond (`resolue`) ; il lit alors la **réponse**.

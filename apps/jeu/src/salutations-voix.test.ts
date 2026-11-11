@@ -4,7 +4,8 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { chargerMonde, listerMondes, RACINE_MONDES } from '../../../packages/regles/src/monde/chargeur';
+import { chargerMonde, listerMondes } from '../../../packages/regles/src/monde/chargeur';
+import { dossierMonde, IDS_MONDES_ESSAI } from '../../../packages/regles/tests/mondes-essai';
 import { SALUTATIONS_COMMUNES, TONS_SALUTATION } from '../../../packages/regles/src/monde/salutations-communes';
 import { OUVERTURES } from './ouvertures';
 import { ageApproximatif, voixDuPnj } from './ouvertures-regles';
@@ -15,7 +16,7 @@ const VOIX = ['f-commere', 'f-erinome', 'f-matrone', 'f-guerisseuse', 'f-despina
 const LIGNES_COMMUNES = SALUTATIONS_COMMUNES.registres.flatMap((r) => TONS_SALUTATION.flatMap((ton) => r.lignes[ton]));
 
 function textesDuMonde(id: string): { pnj: string; voix: string; texte: string }[] {
-  const r = chargerMonde(join(RACINE_MONDES, id));
+  const r = chargerMonde(dossierMonde(id));
   if (!r.ok || !OUVERTURES?.voix) return [];
   const res: { pnj: string; voix: string; texte: string }[] = [];
   for (const p of r.monde.pnj.values()) {
@@ -41,7 +42,7 @@ describe('la voix des salutations des PNJ', () => {
 
   it('aucun fichier orphelin : chaque fichier livré correspond à une salutation actuelle de l’un des mondes', () => {
     const connus = new Set([
-      ...listerMondes().flatMap((id) => textesDuMonde(id).map((t) => cheminParole(t.voix, t.texte))),
+      ...[...listerMondes(), ...IDS_MONDES_ESSAI].flatMap((id) => textesDuMonde(id).map((t) => cheminParole(t.voix, t.texte))),
       ...VOIX.flatMap((voix) => LIGNES_COMMUNES.map((texte) => cheminParole(voix, texte))),
     ]);
     const livres = [...new Set(textesDuMonde('ombresang').map((t) => cheminParole(t.voix, t.texte)))];

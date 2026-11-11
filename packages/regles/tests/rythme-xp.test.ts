@@ -1,14 +1,15 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { creerMoteur, herosPreTires, MODULES_STANDARD, personnageDepuisFiche } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { etatInitial, plafondDeNiveau } from '../src/monde/etat';
 import { issueRencontre, nouvellePartie } from '../src/monde/exploration';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import type { DonneesMonde } from '../src/monde/schemas';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const monde = r.monde;
 const lieuDe = (dm: DonneesMonde, rencontre: string) => [...dm.lieux.values()].find((l) => l.rencontres.some((x) => x.id === rencontre))?.id;

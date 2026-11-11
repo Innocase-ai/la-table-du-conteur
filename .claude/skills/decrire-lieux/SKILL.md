@@ -26,7 +26,7 @@ Le moteur n'a pas de limite de profondeur : un lieu a un `parent`, et un lieu pe
 
 1. Le canon existe (`BIBLE.md` : secret, factions, fins, registre d'identifiants §7 ; `monde.json` : ton et direction artistique). Sans lui, ne pas commencer : l'atlas en serait l'otage.
 2. Lis la `direction` de `monde.json` (style, palette, mots-clés, interdits) : elle devient le **bloc d'héritage du niveau 0**.
-3. Relis l'exemple livré : les `visuel` et `description` de `packages/mondes/citadelle-des-marees/lieux/` et ses cartes (`images/carte-*.webp`) montrent le niveau attendu ; le modèle de l'atlas est `assets/ATLAS.modele.md`.
+3. Relis l'exemple livré : les `visuel` et `description` de `packages/regles/tests/fixtures/mondes/citadelle-des-marees/lieux/` et ses cartes (`images/carte-*.webp`) montrent le niveau attendu ; le modèle de l'atlas est `assets/ATLAS.modele.md`.
 4. Décide avec l'utilisateur de la **taille** (nombre de lieux au niveau 1, de points au niveau 2) : c'est elle qui fixe le coût (un agent par lieu du niveau 1) ; annonce-le et attends l'accord.
 
 ## Niveau 0 : la carte du monde

@@ -1,12 +1,13 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, ficheDeTour, groupeConseille, MODULES_STANDARD, outilsDuConteur, personnageDepuisFiche, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { validerMonde } from '../src/monde/validation';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm0 = r.monde;
 const LIEU = 'vei-maison-des-gardiens';
@@ -99,7 +100,7 @@ describe('module Examens : regarder de près un détail du lieu', () => {
 });
 
 describe('La Citadelle des Marées : chaque détail à examiner se lit, dans son lieu', () => {
-  const rc = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const rc = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   if (!rc.ok) throw new Error(rc.erreurs.map((e) => e.message).join('\n'));
   const mc = creerMoteur({ dm: rc.monde, srd }, MODULES_STANDARD);
   const examens = (rc.monde.extensions?.['examens'] ?? []) as { id: string; lieu: string; effets: { fait?: string }[]; variantes: { id: string; condition: { fait?: string; flag?: string }; texte: string }[] }[];

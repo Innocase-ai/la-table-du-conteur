@@ -1,11 +1,12 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { appliquerEffets, etatInitial, nouvellePartie, pnjPresents, creerGenerateur, validerMonde, type DonneesMonde } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 /** Un PNJ escorté suit le groupe : présent dans tous les lieux, jusqu'à ce qu'on l'arrête. */
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error('monde illisible');
 const dm = r.monde as DonneesMonde;
 

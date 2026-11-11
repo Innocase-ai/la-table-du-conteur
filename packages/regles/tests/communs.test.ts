@@ -13,7 +13,8 @@ import {
   TableSalutationsReprises,
   verifierImages,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { dossierMonde } from './mondes-essai';
 
 const RACINE = join(import.meta.dirname, '..', '..', '..');
 const lire = (f: string) => JSON.parse(readFileSync(join(RACINE, 'packages', 'donnees', 'visuel', f), 'utf8'));
@@ -40,7 +41,7 @@ describe('tables communes', () => {
   it('les origines pointent vers des PNJ et des objets qui existent', () => {
     const cache = new Map<string, ReturnType<typeof chargerMonde>>();
     const monde = (m: string) => {
-      if (!cache.has(m)) cache.set(m, chargerMonde(join(RACINE_MONDES, m)));
+      if (!cache.has(m)) cache.set(m, chargerMonde(dossierMonde(m)));
       return cache.get(m)!;
     };
     for (const e of pnj) {
@@ -70,7 +71,7 @@ describe('références communes dans un manifeste', () => {
   });
 
   it('la vérification signale une référence à un asset inconnu ou du mauvais groupe', () => {
-    const r = chargerMonde(join(RACINE_MONDES, 'marche-d-ombrefiel'));
+    const r = chargerMonde(dossierMonde('marche-d-ombrefiel'));
     if (!r.ok) throw new Error('monde illisible');
     const idsCommuns = { pnj: new Set(pnj.map((e) => e.id)), objets: new Set(objets.map((e) => e.id)) };
     const premier = pnj[0]!.id;

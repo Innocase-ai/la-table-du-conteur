@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { Canon } from '../../packages/regles/src';
-import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../packages/regles/src/monde/chargeur';
 import {
   cibleDuTexte,
   contexteDeLaFiche,
@@ -18,8 +18,9 @@ import {
   tabousPour,
   textesDeLaFiche,
 } from './src/assistant';
+import { MONDES_ESSAI } from '../../packages/regles/tests/mondes-essai';
 
-const dossierVal = join(RACINE_MONDES, 'val-des-cendres');
+const dossierVal = join(MONDES_ESSAI, 'val-des-cendres');
 const r = chargerMonde(dossierVal);
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;

@@ -4,11 +4,12 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { aller, creerGenerateur, etatInitial, herosPreTires, issueRencontre, nouvellePartie, parler, personnageDepuisFiche, jouerEffets, validerMonde, type PartieMonde } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'port-sillage'));
+const r = chargerMonde(join(MONDES_ESSAI, 'port-sillage'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
 const QUETE = 'q-maeva-la-cave';

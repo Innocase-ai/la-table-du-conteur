@@ -1,8 +1,9 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, ficheDeSort, groupeConseille, MODULES_STANDARD, personnageDepuisFiche } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
 const propriete = (id: string, libelle: string) => ficheDeSort(srd.sorts.get(id)!).proprietes.find((p) => p.libelle === libelle)?.valeur;
@@ -43,7 +44,7 @@ describe('fiche d’un sort (parchemin)', () => {
 });
 
 describe('fiches des onglets Grimoire et Journal', () => {
-  const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   const dm = r.monde;
   const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);

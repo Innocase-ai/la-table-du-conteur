@@ -7,7 +7,7 @@ description: Construire un nouveau monde (une histoire jouable) pour le CRPG de 
 
 Un monde est un dossier de données (`packages/mondes/<id>/`) lu par le même moteur que tous les autres : lieux, PNJ, trésors, rencontres, énigmes, pièges, quêtes, factions, jauges, fins, et les dossiers de modules (`scenes/`, `dilemmes/`). Écrire un monde, c'est écrire des données **cohérentes entre elles** ; la difficulté n'est pas la quantité de texte, c'est que six auteurs (ici des agents en parallèle) produisent un tout qui se tient. Tout ce skill sert cette cohérence : un **canon** écrit d'abord, un **registre d'identifiants fixes** que chacun respecte, un **validateur** qui attrape ce qui dérive.
 
-Les mondes livrés sont les références : **le Val des Cendres** et **La Citadelle des Marées** (publiés), **La Dîme des Roseaux** (brouillon court) (`packages/mondes/`) ; relis leur `BIBLE.md` et `GUIDE-ZONE.md` pour voir le niveau de détail attendu.
+Les références : **La Marche d'Ombrefiel** (publiée) et **La Dîme des Roseaux** (brouillon court) (`packages/mondes/`), et les données des anciennes histoires **Le Val des Cendres**, **La Citadelle des Marées**, **Port-Sillage** et **Ombresang** (`packages/regles/tests/fixtures/mondes/`, sans images) ; relis leur `BIBLE.md` et `GUIDE-ZONE.md` pour voir le niveau de détail attendu.
 
 ## Les points de validation (décision de l'utilisateur, 06/11/2026)
 

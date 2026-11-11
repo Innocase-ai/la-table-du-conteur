@@ -3,10 +3,11 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { presentationMonstres, type DonneesMonde, type RencontreMonde } from '../src';
 import { chargerDonneesSrd } from '../src/donnees-node';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm: DonneesMonde = r.monde;
 const RACINE_BESTIAIRE = join(import.meta.dirname, '../../../apps/jeu/src/bestiaire');

@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { chargerCharte, construireElements, RACINE } from './charte';
-import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../packages/regles/src/monde/chargeur';
 import { elementsParLieu } from './monde';
 import { candidatsCartes, elementsCartes, SEUIL_CARTE } from './cartes';
 import { chargerGalerie, elementsGalerie } from './galerie';
@@ -12,6 +12,7 @@ import { INFO_RELIEFS, RELIEFS, RENCONTRES, TERRAINS } from '../../packages/regl
 import { construirePageComparaison } from './comparer';
 import { mimeDepuisOctets } from './cli';
 import { SERVICES, trouverService, utilisationCle, type Fetch, type Requete } from './services';
+import { MONDES_ESSAI } from '../../packages/regles/tests/mondes-essai';
 
 const PNG = Buffer.from('iVBORw0KGgo=', 'base64');
 const ref = (nom: string) => ({ nom, mime: 'image/png', donnees: PNG });
@@ -162,7 +163,7 @@ describe('règle : pas de héros du groupe dans les images du produit', () => {
 
 describe('images d’un monde, lieu par lieu', () => {
   const racineSrd = join(RACINE, 'packages/donnees/srd');
-  const charge = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const charge = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!charge.ok) throw new Error('monde invalide');
   const parLieu = elementsParLieu(charge.monde, { charte: chargerCharte(), racineSrd });
   const tous = [...parLieu.values()].flat();
@@ -188,7 +189,7 @@ describe('images d’un monde, lieu par lieu', () => {
 
 describe('textes des prompts de monde', () => {
   const racineSrd = join(RACINE, 'packages/donnees/srd');
-  const charge = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const charge = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!charge.ok) throw new Error('monde invalide');
   const tous = (retouches?: Record<string, string>) => [...elementsParLieu(charge.monde, { charte: chargerCharte(), racineSrd, retouches }).values()].flat();
 
@@ -260,7 +261,7 @@ describe('plateau de combat (commun à tous les mondes)', () => {
 });
 
 describe('cartes illustrées', () => {
-  const charge = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const charge = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   if (!charge.ok) throw new Error('monde invalide');
   const dm = charge.monde;
   const cartes = elementsCartes(dm, { charte: chargerCharte() });

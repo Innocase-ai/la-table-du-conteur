@@ -2,11 +2,12 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { bilanPersonnage, commande, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, POTION_DE_COMBAT, type ElementGrille, type Encart, type Module, type Partie, type Personnage } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const moteur = creerMoteur({ dm: r.monde, srd }, MODULES_STANDARD);
 

@@ -1,10 +1,11 @@
 // La vue en arbre de l'atelier, sur un vrai monde : chaque lieu une seule fois, rattaché à son parent, avec ses fiches.
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { chargerMonde, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../packages/regles/src/monde/chargeur';
 import { arbreDuMonde, filtrerArbre, tailleDuNoeud, type NoeudLieu } from './src/arbre';
+import { MONDES_ESSAI } from '../../packages/regles/tests/mondes-essai';
 
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
 const tous = (ns: NoeudLieu[]): NoeudLieu[] => ns.flatMap((n) => [n, ...tous(n.enfants)]);

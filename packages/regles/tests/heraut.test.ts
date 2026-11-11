@@ -1,11 +1,12 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const moteur = creerMoteur({ dm: r.monde, srd }, MODULES_STANDARD);
 

@@ -1,10 +1,11 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { allegerKit, optionsEquipement } from '../src/creation/equipement';
 import { resoudreObjets } from '../src/creation/equipement';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const d = chargerDonneesSrd();
 const armesDe = (objets: string[]) => resoudreObjets(objets, d).armes;
@@ -56,7 +57,7 @@ describe('kit de départ allégé', () => {
   });
 
   it('au début de l’histoire, l’or de départ des fiches forme la bourse du groupe', () => {
-    const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+    const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
     if (!r.ok) throw new Error('monde illisible');
     const moteur = creerMoteur({ dm: r.monde, srd: d }, MODULES_STANDARD);
     const groupe = groupeConseille(1, d).emplacements.map((p) => {

@@ -40,7 +40,7 @@ const essais = (() => {
   }
   return res;
 })();
-const idMonde = args[0] && !args[0].startsWith('--') ? args[0] : 'val-des-cendres';
+const idMonde = args[0] && !args[0].startsWith('--') ? args[0] : 'marche-d-ombrefiel';
 const modele = option('--modele') ?? MODELE_CONTEUR;
 const plafond = lireMontant(option('--plafond'), 0.25);
 

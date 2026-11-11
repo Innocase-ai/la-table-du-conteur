@@ -7,6 +7,8 @@ import { cheminFichierValide, fichierImageValide, idMondeValide, origineAutorise
 import { lireImage, lireMonde, lireMondes } from './serveur-mondes';
 
 const RACINE = resolve(import.meta.dirname, '../../packages/mondes');
+// Les jeux d'essai du moteur (anciennes histoires, données seules) : des mondes complets pour tester la lecture du serveur.
+const ESSAI = resolve(import.meta.dirname, '../../packages/regles/tests/fixtures/mondes');
 
 describe('gardes de chemins', () => {
   it('accepte les identifiants de monde en kebab-case ASCII seulement', () => {
@@ -39,12 +41,13 @@ describe('gardes de chemins', () => {
 describe('lecture des mondes par le serveur', () => {
   it('liste les mondes, brouillons compris', () => {
     const mondes = lireMondes(RACINE);
-    expect(mondes.map((m) => m.id)).toEqual(expect.arrayContaining(['val-des-cendres', 'citadelle-des-marees', 'dime-des-roseaux']));
+    expect(mondes.map((m) => m.id)).toEqual(expect.arrayContaining(['marche-d-ombrefiel', 'dime-des-roseaux']));
     expect(mondes.find((m) => m.id === 'dime-des-roseaux')?.statut).toBe('brouillon');
+    expect(lireMondes(ESSAI).map((m) => m.id)).toEqual(expect.arrayContaining(['val-des-cendres', 'citadelle-des-marees']));
   });
 
   it('un monde lu par le serveur s’assemble comme celui du chargeur Node', () => {
-    const lu = lireMonde(RACINE, 'val-des-cendres')!;
+    const lu = lireMonde(ESSAI, 'val-des-cendres')!;
     expect(lu.erreursLecture).toEqual([]);
     expect(lu.fichiers.length).toBeGreaterThan(20);
     expect(lu.fichiers.every((f) => /^[a-z0-9-]+\/[^/]+\.json$/.test(f.chemin) && /^[0-9a-f]{64}$/.test(f.empreinte))).toBe(true);

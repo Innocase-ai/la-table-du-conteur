@@ -10,7 +10,7 @@ Tu écris les fiches détaillées des points à visiter du lieu **{{id du lieu}}
 1. `LIEUX.md` : la fiche **Niveau 0** (charte du monde) et la fiche **Niveau 1** de {{id du lieu}} (plan, points à visiter, héritage, secret du MJ). C'est ta source ; tu ne la contredis pas.
 2. `BIBLE.md` : le canon (secrets, factions, registre d'identifiants §7).
 3. `lieux/{{fichier de zone}}` : les fiches de lieux existantes de ta zone, pour ne rien dupliquer.
-4. Un exemple du niveau attendu : `packages/mondes/citadelle-des-marees/lieux/z1-citadelle.json` (champs `visuel`, `description`, `accroche`, `liens`).
+4. Un exemple du niveau attendu : `packages/regles/tests/fixtures/mondes/citadelle-des-marees/lieux/z1-citadelle.json` (champs `visuel`, `description`, `accroche`, `liens`).
 
 ## Ce que tu produis
 Pour **chaque point à visiter** listé dans le niveau 1 de {{id du lieu}} (et seulement eux, plus leurs sous-lieux déclarés dans leur section « Intérieur »), une fiche au format du modèle `.claude/skills/decrire-lieux/assets/ATLAS.modele.md` (« Niveau 2 »), écrite dans `LIEUX.md` sous la fiche de niveau 1 du lieu, dans l'ordre de la liste. Aucun fichier JSON : la dérivation vers les fichiers du monde se fait ensuite.

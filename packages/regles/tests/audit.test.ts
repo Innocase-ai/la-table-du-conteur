@@ -2,7 +2,8 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { validerMonde, articles, objetDe, bilanPersonnage, creerMoteur, personnageDepuisFiche, groupeConseille, MODULES_STANDARD, type DonneesMonde, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { dossierMonde } from './mondes-essai';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { rachats } from '../src/modules/commerce';
 
@@ -10,7 +11,7 @@ const srd = chargerDonneesSrd();
 const mondes: Record<string, DonneesMonde> = {};
 function monde(id: string): DonneesMonde {
   if (!mondes[id]) {
-    const r = chargerMonde(join(RACINE_MONDES, id));
+    const r = chargerMonde(dossierMonde(id));
     if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
     mondes[id] = r.monde;
   }

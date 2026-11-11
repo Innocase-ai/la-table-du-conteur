@@ -17,11 +17,12 @@ import {
   type MessageLLM,
   type Partie,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { dossierMonde, MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const dossier = join(RACINE_MONDES, 'val-des-cendres');
+const dossier = join(MONDES_ESSAI, 'val-des-cendres');
 const r = chargerMonde(dossier);
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
@@ -66,9 +67,9 @@ describe('fuiteDeSecret : la recopie, pas la paraphrase', () => {
 
   it('le résumé public de chaque monde, qui n’est pas un secret, ne déclenche rien', () => {
     for (const id of ['val-des-cendres', 'citadelle-des-marees', 'dime-des-roseaux', 'port-sillage']) {
-      const m = chargerMonde(join(RACINE_MONDES, id));
+      const m = chargerMonde(dossierMonde(id));
       if (!m.ok) throw new Error(id);
-      const bible = readFileSync(join(RACINE_MONDES, id, 'BIBLE.md'), 'utf8');
+      const bible = readFileSync(join(dossierMonde(id), 'BIBLE.md'), 'utf8');
       const { accroche, resume, depart: d } = m.monde.monde;
       // La bible reprend souvent le pitch : la présentation publique de l'histoire compte parmi les textes déjà vus.
       const publics = [JSON.stringify(m.monde.monde)];

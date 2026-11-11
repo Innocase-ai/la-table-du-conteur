@@ -3,19 +3,21 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { ajouterElement, elementsDuFichier, formater, indexDeElement, remplacerElement, styleDuFichier } from '../src/monde/ecriture-json';
 import { RACINE_MONDES } from '../src/monde/chargeur';
+import { MONDES_ESSAI } from './mondes-essai';
 
-/** Tous les fichiers JSON de données des mondes livrés (hors images, voix, estimation). */
+/** Tous les fichiers JSON de données des mondes livrés et des jeux d'essai du moteur (hors images, voix, estimation). */
 function fichiersDesMondes(): { chemin: string; texte: string }[] {
   const res: { chemin: string; texte: string }[] = [];
-  const parcourir = (d: string) => {
+  const parcourir = (d: string, racine: string) => {
     for (const f of readdirSync(d)) {
       const p = join(d, f);
       if (statSync(p).isDirectory()) {
-        if (!['images', 'voix', 'node_modules'].includes(f)) parcourir(p);
-      } else if (p.endsWith('.json') && !p.endsWith('estimation.json')) res.push({ chemin: p.slice(RACINE_MONDES.length + 1), texte: readFileSync(p, 'utf8') });
+        if (!['images', 'voix', 'node_modules'].includes(f)) parcourir(p, racine);
+      } else if (p.endsWith('.json') && !p.endsWith('estimation.json')) res.push({ chemin: p.slice(racine.length + 1), texte: readFileSync(p, 'utf8') });
     }
   };
-  parcourir(RACINE_MONDES);
+  parcourir(RACINE_MONDES, RACINE_MONDES);
+  parcourir(MONDES_ESSAI, MONDES_ESSAI);
   return res;
 }
 

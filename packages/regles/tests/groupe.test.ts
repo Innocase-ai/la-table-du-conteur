@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { IA_RAPIDE, SORTS_JOUABLES_EN_COMBAT, TAILLES_GROUPE, avertissementsGroupe, bilanPersonnage, creationRapide, creerCombat, groupeConseille, groupeVide, herosRetires, redimensionner, jouerTourIA, kitDepuisFiche, lireGroupe, nouvelId, personnageComplet, preparerRencontre, RENCONTRES, serialiser, type PersonnageCree } from '../src';
 import { chargerDonneesSrd } from '../src/donnees-node';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { dossierMonde } from './mondes-essai';
 import { join } from 'node:path';
 
 const donnees = chargerDonneesSrd();
@@ -152,7 +153,7 @@ describe('taille du groupe : 4 ou 6 emplacements', () => {
 
   it('chaque histoire annonce sa taille de groupe (Port-Sillage : 4 ; les autres : 6)', () => {
     const lire = (id: string) => {
-      const r = chargerMonde(join(RACINE_MONDES, id));
+      const r = chargerMonde(dossierMonde(id));
       if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join(' | '));
       return r.monde.monde.groupe.conseille;
     };

@@ -13,14 +13,15 @@ import {
   type Generateur,
   type PartieMonde,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
 const SUCCES: Generateur = () => 0.999;
 
 // `MONDE_OMBRESANG` : un autre dossier du monde (essai sur une copie, avant d'écrire dans l'histoire).
-const r = chargerMonde(process.env['MONDE_OMBRESANG'] ?? join(RACINE_MONDES, 'ombresang'));
+const r = chargerMonde(process.env['MONDE_OMBRESANG'] ?? join(MONDES_ESSAI, 'ombresang'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm: DonneesMonde = r.monde;
 

@@ -19,15 +19,16 @@ import {
 } from '../src';
 import { champsLibres } from '../src';
 import { commencer } from '../src/monde/exploration';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
 const SUCCES: Generateur = () => 0.999;
 
 /** Un monde neuf à chaque test (les textes d'arrivée s'ajoutent en mémoire). */
 function monde(): DonneesMonde {
-  const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   // Le Val a désormais ses récits : on les retire pour tester un monde qui n'en a pas (chaque test ajoute les siens).
   for (const l of r.monde.lieux.values()) {

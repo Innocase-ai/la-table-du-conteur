@@ -20,7 +20,7 @@ function remplacer(texte: string, id: string, nom: string): string {
 
 /** Crée packages/mondes/<id>/ avec un monde en brouillon, la bible à remplir et le guide des zones. */
 export function creerSquelette(racineMondes: string, id: string, nom: string, modeles: Modeles): string {
-  if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) throw new Error(`Identifiant invalide « ${id} » : kebab-case ASCII sans accents (ex. val-des-cendres).`);
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) throw new Error(`Identifiant invalide « ${id} » : kebab-case ASCII sans accents (ex. marche-d-ombrefiel).`);
   if (!nom.trim()) throw new Error('Donne un nom au monde.');
   const dossier = join(racineMondes, id);
   if (existsSync(dossier)) throw new Error(`Le monde « ${id} » existe déjà (${dossier}).`);

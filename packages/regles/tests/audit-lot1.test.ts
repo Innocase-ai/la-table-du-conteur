@@ -7,8 +7,9 @@ import { chargerDonneesSrd } from '../src/donnees-node';
 import { niveauPourPx } from '../src/caracteristiques';
 import { calculerFiche, metresDeColonne, type ChoixPersonnage } from '../src/fiche';
 import { creationRapide, manquants, monterAuNiveau } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { etatInitial } from '../src/monde/etat';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const donnees = chargerDonneesSrd();
 
@@ -119,7 +120,7 @@ describe('audit lot 1 : budget de PX des rencontres, niveaux 1 à 20', () => {
 });
 
 describe('audit lot 2 : PX de départ', () => {
-  const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   const dm = r.monde;
 

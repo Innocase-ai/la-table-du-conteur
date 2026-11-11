@@ -1,0 +1,78 @@
+{
+  "id": "ombresang",
+  "version": 1,
+  "statut": "publie",
+  "nom": "L'Échiquier d'Ombresang",
+  "resume": "Sur le continent d'Ombresang, façonné par les dépouilles pétrifiées de sept dieux déchus lors de la Nuit des Sept Lances, l'Empire extrait l'Ichor divin pour alimenter sa puissance. Mais au cœur de la capitale Sépulcre-d'Or, le Cœur Pétrifié du Dieu-Roi solaire a recommencé à battre, éveillant les carcasses divines et menaçant d'embraser les huit provinces.",
+  "accroche": "Les dieux ne meurent jamais tout à fait. Leurs corps sculptent le monde, leur sang alimente nos forges, et sous la capitale, leur cœur s'est réveillé.",
+  "ton": [
+    "dark fantasy crépusculaire",
+    "géopolitique impériale et intrigues de factions",
+    "alchimie sacrilège et reliques divines",
+    "sens du colossal et horreur cosmique"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 20
+  },
+  "groupe": {
+    "conseille": 4
+  },
+  "depart": {
+    "region": "cretes-de-fer-titan",
+    "sousRegion": "la-vallee-des-mille-epees",
+    "lieu": "lr-place",
+    "intro": "Le convoi d'Ichor que vous escortiez vers la capitale vient d'être immobilisé à l'entrée de la Vallée des Mille Épées, au pied de l'immense Pont-Viaduc de Lame-Rousse. Autour du village de forgerons, plus de cent épées titanesques de deux cents mètres de haut — les armes brisées du dieu déchu Vael-Khor — sont fichées dans la roche et vibrent d'un bourdonnement sourd à chaque battement venu du cœur du continent. Depuis trois nuits, les lames forgées au village s'animent toutes seules pour attaquer leurs porteurs, tandis que sous le viaduc, le grattement vorace d'une colonie d'Oxydeurs menace de faire s'effondrer le seul pont des convois lourds vers Sépulcre-d'Or."
+  },
+  "direction": {
+    "style": "Dark fantasy peinte et impériale : contrastes profonds, or impérial patiné contre basalte noir, ivoire fossilisé, sang divin irisé, brume d'orage et éclairage crépusculaire dramatique. Matières nobles et monumentales (marbre blanc, laiton, os titanesque, fer météorique, velours sombre).",
+    "palette": [
+      "or impérial",
+      "noir obsidienne",
+      "ivoire fossile",
+      "rouge sang sombre",
+      "argent vif",
+      "gris ardoise",
+      "blanc de givre",
+      "vert émeraude sourd"
+    ],
+    "motsCles": [
+      "ichor divin",
+      "carcasses de dieux",
+      "cage thoracique colossale",
+      "arches d'ivoire",
+      "fonderies suspendues",
+      "golems d'artifice",
+      "saint-empire",
+      "battements cardiaques sous la terre"
+    ],
+    "interdits": [
+      "high fantasy acidulée ou enfantine",
+      "humour déplacé ou burlesque",
+      "technologie contemporaine ou futuriste",
+      "anachronismes modernes",
+      "personnages manichéens simplistes"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "prologue-lame-rousse",
+      "nom": "Prologue — Lame-Rousse",
+      "niveaux": { "min": 1, "max": 3 },
+      "resume": "Dans la Vallée des Mille Épées, les lames forgées s'animent, le viaduc est rongé, et un premier battement monte de la forge de Vorn.",
+      "lieux": ["lr-vallee"],
+      "quetes": [
+        "le-sang-sur-la-lame",
+        "la-verite-de-joran",
+        "le-treuil-du-temple",
+        "la-herse-du-bastion",
+        "le-nid-des-rouilles",
+        "le-suif-de-martha",
+        "l-apprenti-de-gorm",
+        "le-chargement-de-gorm",
+        "la-lame-fendue",
+        "la-veille-du-camp"
+      ]
+    }
+  ]
+}

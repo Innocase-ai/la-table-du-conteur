@@ -133,7 +133,7 @@ Leçons des premiers lieux :
 
 255 images générées avec FLUX 3 Image Klein, lieu par lieu : 151 lieux, 63 PNJ, 25 monstres, 16 objets notables. Coût des images du monde : environ 2,30 $ (0,009 $ l'une) ; la clé a cumulé 2,98 $ sur 5 $ avec tous les essais de comparaison.
 
-- **Refus de modération : 9 sur 255**, tous résolus par une retouche de texte dans `packages/mondes/val-des-cendres/images.json` : corps gelé, silhouettes allongées, « cadavre en décomposition », petite fille de fer, un sergent-armure (refus sans motif précis). Les mots qui déclenchent : corps, cadavre, enfant, brûlures, silhouettes couchées.
+- **Refus de modération : 9 sur 255**, tous résolus par une retouche de texte dans `packages/regles/tests/fixtures/mondes/val-des-cendres/images.json` : corps gelé, silhouettes allongées, « cadavre en décomposition », petite fille de fer, un sergent-armure (refus sans motif précis). Les mots qui déclenchent : corps, cadavre, enfant, brûlures, silhouettes couchées.
 - **Un délai dépassé** (300 s) sur un appel : le lot s'arrête alors ; relancer la même commande reprend où il s'est arrêté.
 - **Espèces inconnues** (armure animée, construction de fer…) : le prompt dit « être fantastique non humain » au lieu de « homme de l'espèce X », et l'âge n'est donné que s'il est numérique.
 - **Relu en entier le 03/11/2026** (planches de 12) : voir « Images livrées avec le monde » plus bas.

@@ -1,13 +1,14 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type Encart, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { validerMonde } from '../src/monde/validation';
 import { COMMANDES_HORS_CONTEUR } from '../src/conteur/outils';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 
 const DILEMME = {
@@ -175,7 +176,7 @@ describe('module Dilemmes', () => {
 });
 
 describe('les dilemmes de La Citadelle des Marées', () => {
-  const c = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const c = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   if (!c.ok) throw new Error(c.erreurs.map((e) => e.message).join('\n'));
   const m = creerMoteur({ dm: c.monde, srd }, MODULES_STANDARD);
   const jeu = () => {

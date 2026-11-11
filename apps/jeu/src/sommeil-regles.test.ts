@@ -4,8 +4,9 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type Partie } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
-import { chargerMonde, RACINE_MONDES } from '../../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../../packages/regles/src/monde/chargeur';
 import { decorSommeil, detecterSommeil, heureDuCadran, heureDuReveilBrutal, heuresDormies, obscurite } from './sommeil-regles';
+import { MONDES_ESSAI } from '../../../packages/regles/tests/mondes-essai';
 
 describe('le décor de la nuit', () => {
   it('une chambre payée, ou un lieu sous un toit, donne la chambre ; dehors, le camp', () => {
@@ -63,7 +64,7 @@ describe('la durée et l’horloge', () => {
 
 describe('repérer une nuit dans le journal du vrai moteur', () => {
   const srd = chargerDonneesSrd();
-  const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   const dm = r.monde;
   const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);

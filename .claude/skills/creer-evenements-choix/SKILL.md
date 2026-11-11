@@ -46,7 +46,7 @@ Un **événement à choix** est un *tableau* : le groupe tombe sur quelque chose
 6. Trois à cinq événements par histoire, dans des lieux mémorables (une par zone au plus).
 
 ## Qui fait quoi
-Claude **conçoit** (lieu, condition, choix, jets, effets, ids exacts de faits et de rencontres lus dans le monde) ; un agent **Haiku** **écrit** les textes (narration 70-110 mots, variante 60-90, résultats 50-80 mots, libellés d'origine d'une phrase) avec la bible en lecture ; Claude **relit** (pas de lore inventé, pas de secret, accents, longueurs) et assemble le JSON. Modèle : `packages/mondes/val-des-cendres/evenements-choix/z3-source-grise.json`.
+Claude **conçoit** (lieu, condition, choix, jets, effets, ids exacts de faits et de rencontres lus dans le monde) ; un agent **Haiku** **écrit** les textes (narration 70-110 mots, variante 60-90, résultats 50-80 mots, libellés d'origine d'une phrase) avec la bible en lecture ; Claude **relit** (pas de lore inventé, pas de secret, accents, longueurs) et assemble le JSON. Modèle : `packages/regles/tests/fixtures/mondes/val-des-cendres/evenements-choix/z3-source-grise.json`.
 
 ## Vérifier
 `pnpm monde valider <monde>` : erreurs (lieu, image, fait, rencontre inconnus ; id ou choix en double ; jet sans `echec` ni `resultatEchec` ; tous les choix réservés à une origine ; condition `heros` invalide) et conseils (narration hors 40 à 150 mots, résultat hors 30 à 110, aucun choix d'origine, choix sans effet, `quand` jamais vrai). Test modèle : `packages/regles/tests/evenements-choix.test.ts`. Puis dans le jeu (`pnpm jeu`) : l'événement s'ouvre-t-il au bon moment ? Les choix d'origine n'apparaissent-ils qu'avec un héros correspondant ? Le résultat et « Partir » s'affichent-ils ? Les touches 1 à 9 et Échap marchent-elles ?

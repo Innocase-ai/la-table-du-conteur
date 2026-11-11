@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import { adapterRencontre, avertissementsGroupe, bilanPersonnage, creationRapide, creerCombat, IA_RAPIDE, jouerTourIA, kitDepuisFiche, nouvelId, preparerRencontre, RENCONTRES, type PersonnageCree, type Rencontre } from '../src';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const donnees = chargerDonneesSrd();
 const base = RENCONTRES[0]!;
@@ -91,9 +92,9 @@ describe('conseils de groupe', () => {
 describe('une histoire avec un groupe réduit', () => {
   it.each([1, 2, 4])('le joueur automatique explore la Citadelle avec %i héros sans erreur', async (n) => {
     const { join } = await import('node:path');
-    const { chargerMonde, RACINE_MONDES } = await import('../src/monde/chargeur');
+    const { chargerMonde } = await import('../src/monde/chargeur');
     const { explorerParcours, personnageDepuisFiche, groupeConseille } = await import('../src');
-    const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+    const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
     if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
     const niveau = r.monde.monde.niveaux.min;
     const groupe = groupeConseille(niveau, donnees)

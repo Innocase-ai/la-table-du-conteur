@@ -4,7 +4,8 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type DonneesMonde, type EvenementJeu, type Partie } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
-import { chargerMonde, RACINE_MONDES } from '../../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../../packages/regles/src/monde/chargeur';
+import { dossierMonde } from '../../../packages/regles/tests/mondes-essai';
 import { detecterOuverture, dureeCrochetage, messageFinal, sonDuResultat } from './crochetage-regles';
 
 describe('la durée du crochetage', () => {
@@ -57,7 +58,7 @@ describe('le bruitage du résultat', () => {
 describe('repérer une ouverture dans le journal du vrai moteur', () => {
   const srd = chargerDonneesSrd();
   const charger = (id: string): DonneesMonde => {
-    const r = chargerMonde(join(RACINE_MONDES, id));
+    const r = chargerMonde(dossierMonde(id));
     if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
     return r.monde;
   };

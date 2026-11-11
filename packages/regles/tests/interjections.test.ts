@@ -1,12 +1,13 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { validerMonde } from '../src/monde/validation';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm0 = r.monde;
 const LIEU = 'vei-maison-des-gardiens';
@@ -79,7 +80,7 @@ describe('module Interjections : un personnage qui voyage avec le groupe réagit
     expect(bilan.erreurs.join('\n')).toMatch(/Interjection « hesta-chez-elle » : lieu inconnu « nulle-part »/);
     expect(bilan.erreurs.join('\n')).toMatch(/Interjection « hesta-chez-elle » : pnj inconnu « inconnu »/);
     // Un personnage escorté par un effet du monde mais sans interjection : conseil.
-    const citadelle = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+    const citadelle = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
     if (citadelle.ok) {
       const sansParole = { ...citadelle.monde, extensions: { ...(citadelle.monde.extensions ?? {}), interjections: [] } };
       expect(module.conseils!({ dm: sansParole, srd }).join('\n')).toMatch(/« nolwen-brevemer » voyage avec le groupe mais n'a que 0 interjection/);

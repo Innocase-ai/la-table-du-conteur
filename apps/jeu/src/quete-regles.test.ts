@@ -3,11 +3,12 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche } from '@crpg/regles';
 import { chargerDonneesSrd } from '../../../packages/regles/src/donnees-node';
-import { chargerMonde, RACINE_MONDES } from '../../../packages/regles/src/monde/chargeur';
+import { chargerMonde } from '../../../packages/regles/src/monde/chargeur';
 import { changementsDeQuetes, nouvellesQuetes, parcheminDeQuete } from './quete-regles';
+import { dossierMonde, MONDES_ESSAI } from '../../../packages/regles/tests/mondes-essai';
 
 const srd = chargerDonneesSrd();
-const r = chargerMonde(join(RACINE_MONDES, 'port-sillage'));
+const r = chargerMonde(join(MONDES_ESSAI, 'port-sillage'));
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
 const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
@@ -38,7 +39,7 @@ describe('repérer les quêtes qui commencent', () => {
 describe('le texte du parchemin', () => {
   it('chaque quête de chaque monde a un parchemin complet, sans rien de secret', () => {
     for (const id of ['port-sillage', 'val-des-cendres', 'citadelle-des-marees', 'dime-des-roseaux']) {
-      const m = chargerMonde(join(RACINE_MONDES, id));
+      const m = chargerMonde(dossierMonde(id));
       if (!m.ok) throw new Error(id);
       for (const q of m.monde.quetes.values()) {
         const p = parcheminDeQuete(m.monde, q.id)!;

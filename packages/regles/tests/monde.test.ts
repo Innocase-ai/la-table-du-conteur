@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { adapterRencontre, appliquerEffets, avancerQuetes, Estimation, MODULES_STANDARD, STYLE_INDIRECT, estimerCampagne, etatInitial, evaluerCondition, imageDe, validerMonde, verifierEnigme, verifierImages, type DonneesMonde } from '../src';
 import { chargerManifesteImages, chargerMonde, listerMondes, listerMondesEcrits, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
 const DOSSIER = join(import.meta.dirname, 'fixtures/mini-monde');
@@ -158,7 +159,7 @@ describe('mondes livrés', () => {
   it('un squelette de monde (canon seulement, aucun lieu écrit) n’est pas parcouru par les tests de cartes, de revue et de registre', () => {
     const ecrits = listerMondesEcrits();
     for (const id of ecrits) expect(listerMondes()).toContain(id);
-    expect(ecrits).toContain('val-des-cendres');
+    expect(ecrits).toContain('marche-d-ombrefiel');
     expect(listerMondesEcrits(join(RACINE_MONDES, 'inexistant'))).toEqual([]);
   });
 
@@ -211,7 +212,7 @@ describe('images d\'un monde', () => {
   });
 
   it('Val des Cendres : tout est illustré (151 lieux, 63 PNJ, 16 objets ; les monstres sont au bestiaire commun)', () => {
-    const dossier = join(RACINE_MONDES, 'val-des-cendres');
+    const dossier = join(MONDES_ESSAI, 'val-des-cendres');
     const r = chargerMonde(dossier);
     const manifeste = chargerManifesteImages(dossier)!;
     expect(r.ok).toBe(true);
@@ -224,7 +225,7 @@ describe('images d\'un monde', () => {
 });
 
 describe('Val des Cendres : parcours', () => {
-  const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   const dm = r.ok ? r.monde : undefined;
   const base = ['a-parle-a-hesta', 'lanterne-visitee', 'cryptes-ouvertes', 'cryptes-franchies', 'haute-forge-ouverte', 'ecluse-noire-trouvee', 'coeur-atteint'];
 
@@ -258,7 +259,7 @@ describe('Val des Cendres : parcours', () => {
 });
 
 describe('La Citadelle des Marées : parcours', () => {
-  const r = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
   const dm = r.ok ? r.monde : undefined;
   const jusquAuPort = ['a-parle-a-ysmene', 'cit-signes-vus', 'cit-nuit-du-depart', 'nolwen-avec-le-groupe', 'ysmene-tombee', 'port-atteint', 'ligue-alliee'];
   const jusquAuPalais = [...jusquAuPort, 'chaussee-ouverte', 'palais-atteint', 'regente-rencontree'];
@@ -315,7 +316,7 @@ describe('estimation de campagne', () => {
 });
 
 describe('Le Grimoire de Port-Sillage : parcours', () => {
-  const r = chargerMonde(join(RACINE_MONDES, 'port-sillage'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'port-sillage'));
   const dm = r.ok ? r.monde : undefined;
   const enquete = ['vol-connu', 'tobie-retrouve', 'crique-trouvee', 'livre-retrouve'];
   const dilemmeLivre = () => (dm!.extensions as { dilemmes: { id: string; options: { id: string; effets: never[] }[] }[] }).dilemmes.find((d) => d.id === 'le-livre')!;

@@ -19,14 +19,15 @@ import {
   type Generateur,
   type PartieMonde,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
 const SUCCES: Generateur = () => 0.999;
 
 function monde(): DonneesMonde {
-  const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
   return r.monde;
 }

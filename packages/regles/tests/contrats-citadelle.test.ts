@@ -1,12 +1,13 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { bilanPersonnage, creerMoteur, groupeConseille, MODULES_STANDARD, personnageDepuisFiche, type Partie } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 // Les contrats de La Citadelle des Marées au-delà du premier : embuscade, traque, défense, client qui ment.
 const srd = chargerDonneesSrd();
-const c = chargerMonde(join(RACINE_MONDES, 'citadelle-des-marees'));
+const c = chargerMonde(join(MONDES_ESSAI, 'citadelle-des-marees'));
 if (!c.ok) throw new Error(c.erreurs.map((e) => e.message).join('\n'));
 const moteur = creerMoteur({ dm: c.monde, srd }, MODULES_STANDARD);
 

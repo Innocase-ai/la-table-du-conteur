@@ -1,6 +1,6 @@
 # Remplir le canon (BIBLE.md) d'un monde
 
-Le canon est lu par tous les agents et par le MJ. Il doit être **précis là où les zones se touchent** (registre §7) et **suggestif ailleurs**. Exemple complet : `packages/mondes/val-des-cendres/BIBLE.md`.
+Le canon est lu par tous les agents et par le MJ. Il doit être **précis là où les zones se touchent** (registre §7) et **suggestif ailleurs**. Exemple complet : `packages/regles/tests/fixtures/mondes/val-des-cendres/BIBLE.md`.
 
 ## §1 Pitch
 Un décor singulier, une situation de départ qui enferme le groupe (le col se ferme, le pont s'effondre, le navire s'échoue : une raison de ne pas partir), un conflit central. Le groupe doit avoir **une question à laquelle répondre** et un décompte qui court. Ton et esthétique en deux lignes, cohérents avec la direction artistique de `monde.json`.

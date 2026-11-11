@@ -1,7 +1,8 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { etatInitial, nouvellePartie, aller, parler, creerGenerateur, type DonneesMonde } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
+import { MONDES_ESSAI } from './mondes-essai';
 
 /**
  * Le conseil des Gardiens (scène écrite à l'« atelier d'écriture ») : il ne se joue que lorsque le groupe sait
@@ -10,7 +11,7 @@ import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 const PNJ = ['hesta-cendrebrune', 'aurele-montclar', 'rolf-garde-capitaine', 'fennick-rouage'];
 
 function partie(sait: boolean) {
-  const r = chargerMonde(join(RACINE_MONDES, 'val-des-cendres'));
+  const r = chargerMonde(join(MONDES_ESSAI, 'val-des-cendres'));
   if (!r.ok) throw new Error('monde illisible');
   const dm = r.monde as DonneesMonde;
   const etat = etatInitial(dm);

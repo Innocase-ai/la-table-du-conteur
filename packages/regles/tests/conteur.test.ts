@@ -25,11 +25,12 @@ import {
   type MessageLLM,
   type Partie,
 } from '../src';
-import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
+import { chargerMonde } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
+import { MONDES_ESSAI } from './mondes-essai';
 
 const srd = chargerDonneesSrd();
-const dossier = join(RACINE_MONDES, 'val-des-cendres');
+const dossier = join(MONDES_ESSAI, 'val-des-cendres');
 const r = chargerMonde(dossier);
 if (!r.ok) throw new Error(r.erreurs.map((e) => e.message).join('\n'));
 const dm = r.monde;
