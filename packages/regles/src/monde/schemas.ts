@@ -3,6 +3,7 @@
 // Ce fichier est la référence du format : voir docs/MONDES.md.
 import { z } from 'zod';
 import { Caracteristique, Competence } from '../schemas';
+import { nomsDesRegistres, REGISTRE_INCONNU, resoudreSalutationsCommunes, SALUTATIONS_COMMUNES } from './salutations-communes';
 
 export const Id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'identifiant en kebab-case ASCII');
 export type Id = z.infer<typeof Id>;
@@ -319,7 +320,7 @@ export const Sujet = z.object({
   unique: z.boolean().default(false),
 });
 
-export const Pnj = z.object({
+const PnjObjet = z.object({
   id: Id,
   nom: Texte,
   titre: z.string().optional(),
@@ -350,6 +351,9 @@ export const Pnj = z.object({
     .default([]),
   sujets: z.array(Sujet).default([]),
   salutations: z.object({
+    // Un registre de la bibliothèque commune (`salutations-communes.json`, partagée par toutes les histoires) : les salutations que le PNJ
+    // n'écrit pas lui-même (neutre, amicale, hostile) en viennent, toujours les mêmes pour lui, déjà dites à voix haute. Pour les PNJ secondaires.
+    commune: z.string().regex(/^[a-z0-9-]+$/).optional(),
     hostile: z.string().optional(),
     neutre: Texte,
     amical: z.string().optional(),
@@ -382,6 +386,18 @@ export const Pnj = z.object({
     })
     .optional(),
 });
+
+/**
+ * Un PNJ. Avant la validation, `salutations.commune` est remplacé par les textes de la bibliothèque commune ; un registre inconnu est signalé.
+ */
+export const Pnj = z.preprocess(
+  (brut) => resoudreSalutationsCommunes(brut),
+  PnjObjet.superRefine((p, ctx) => {
+    const c = p.salutations.commune;
+    if (c && (p.salutations.neutre === REGISTRE_INCONNU || !SALUTATIONS_COMMUNES.registres.some((x) => x.id === c)))
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['salutations', 'commune'], message: `registre de salutations communes inconnu : « ${c} » (registres : ${nomsDesRegistres()})` });
+  }),
+);
 export type Pnj = z.infer<typeof Pnj>;
 
 // ---------------------------------------------------------------------------

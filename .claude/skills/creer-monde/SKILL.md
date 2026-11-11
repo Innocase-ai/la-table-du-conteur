@@ -88,7 +88,7 @@ Décide ensuite avec lui (propose des défauts) : le ton, les niveaux (1 à 5 pa
 1. **Dilemmes sans bonne réponse**, 3 par chapitre → `creer-dilemmes`.
 2. **Un échec fait avancer** (prix d'échec, fait clé à trois sources, un chemin sans jet) → `creer-rencontres`.
 3. **Révéler dans le bon ordre** (sympathie, puis doute, puis choix) → `creer-dilemmes`.
-4. **Le monde se souvient** : `salutations.variantes` pour au moins 5 PNJ importants.
+4. **Le monde se souvient** : `salutations.variantes` pour au moins 5 PNJ importants. **PNJ secondaires** : `"salutations": { "commune": "<registre>" }` au lieu de textes (bibliothèque partagée déjà voisée, `docs/SALUTATIONS-COMMUNES.md`).
 5. **Conséquences en deux temps** : un effet immédiat et un écho quelques jours plus tard → `creer-dilemmes`.
 6. **Des pertes réelles** : au moins un PNJ qui peut mourir ou partir ; événements `condition` sur la jauge.
 7. **Une horloge visible** : jauge à 4 paliers au moins, la moitié avec des effets, un moyen de la ralentir.

@@ -41,7 +41,7 @@ import { ControleSon } from '../composants/ControleSon';
 import { OUVERTURES } from '../ouvertures';
 import { imageMonstre } from '../visuels';
 import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voixDuPnj } from '../ouvertures-regles';
-import { direOuverture } from '../voix';
+import { direOuverture, direParole, taireVoix } from '../voix';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
@@ -246,6 +246,25 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     // Une seule fois par conversation : seul le changement d'interlocuteur la relance.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idInterlocuteur]);
+  // Ce que le PNJ dit (sa salutation, ses réponses) est lu à voix haute quand un fichier existe pour ce texte exact : avec la même voix
+  // que son ouverture, juste après elle. Au début d'une conversation (ou à la reprise d'une partie), seule sa dernière parole est dite.
+  const parolesDites = useRef<{ pnj?: string; nombre: number }>({ nombre: 0 });
+  useEffect(() => {
+    const pnj = idInterlocuteur ? dm.pnj.get(idInterlocuteur) : undefined;
+    if (!pnj || !OUVERTURES?.voix) {
+      parolesDites.current = { nombre: 0 };
+      taireVoix();
+      return;
+    }
+    const paroles = partie.journal.map((e, i) => (e.type === 'texte' && e.voix === pnj.nom ? i : -1)).filter((i) => i >= 0);
+    const deja = parolesDites.current.pnj === pnj.id ? parolesDites.current.nombre : paroles.length - 1;
+    const voix = voixDuPnj(OUVERTURES.voix, pnj.sexe, pnj.id, ageApproximatif(pnj.age));
+    for (const i of paroles.slice(Math.max(0, deja))) {
+      const e = partie.journal[i];
+      if (e?.type === 'texte') direParole(voix.id, e.texte);
+    }
+    parolesDites.current = { pnj: pnj.id, nombre: paroles.length };
+  }, [partie.journal, idInterlocuteur, dm]);
   // Les encarts se recalculent quand la partie change, pas à chaque frappe dans la saisie du conteur.
   const encarts = useMemo(() => moteur.encarts(partie), [moteur, partie]);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).

@@ -203,7 +203,28 @@
     "salutations": {
       "hostile": "« Pas un pas de plus sans serment, ou sans épée levée. Vos paroles ne valent rien, je les sens déjà fausses. »",
       "neutre": "« Parlez, et ne mentez pas : je le sentirais. »",
-      "amical": "« Vous venez sans lame levée, et vous attendez. Peu de gens ont attendu ainsi devant cette armure. »"
+      "amical": "« Vous venez sans lame levée, et vous attendez. Peu de gens ont attendu ainsi devant cette armure. »",
+      "variantes": [
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "evt-le-chant-de-la-lame-paladin"
+              },
+              {
+                "flag": "evt-le-chant-de-la-lame-clerc"
+              }
+            ]
+          },
+          "texte": "« Des mots justes ont été dits sur le parvis, et je les ai entendus d’ici. Ceux qui ont veillé méritaient ces paroles. Vous qui les avez prononcées, restez un moment. Dites-moi ce qui vous amène ici. »"
+        },
+        {
+          "condition": {
+            "flag": "chant-note-fausse"
+          },
+          "texte": "« Vous avez chanté faux sur le parvis, et la poussière est tombée de la lame. Ça s’entend jusqu’ici. On n’entre pas chez moi en massacrant une note : apprenez-la, puis revenez, ou dites-moi ce qui vous amène. »"
+        }
+      ]
     },
     "inventaire": [],
     "profilCombat": "armure-animee"

@@ -426,7 +426,22 @@
     "salutations": {
       "hostile": "« Le sergent vous raccompagnera à la porte. Ne revenez pas. »",
       "neutre": "« Entrez, et refermez la porte derrière vous. Je n'ai pas de temps pour les courants d'air. »",
-      "amical": "« Depuis trois jours, personne ne s'était assis ici sans me menacer. Parlez, je vous écoute. »"
+      "amical": "« Depuis trois jours, personne ne s'était assis ici sans me menacer. Parlez, je vous écoute. »",
+      "variantes": [
+        {
+          "condition": {
+            "ou": [
+              {
+                "flag": "lr-hommes-de-la-baillie-battus"
+              },
+              {
+                "flag": "lr-hommes-de-main-isoles"
+              }
+            ]
+          },
+          "texte": "« On me rapporte du bruit dans la cour du poste, et des hommes de la tour qui n’ont pas fait grande figure. Je n’y étais pas. Je ne sais pas qui y a gagné, mais je note les noms. Parlez, et soyez bref. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -982,7 +997,15 @@
     "salutations": {
       "hostile": "« Ne m'approchez pas avec ces armes. J'ai assez vu de lames. »",
       "neutre": "« Vous venez du pont, ou de la rive ? Parlez vite, je n'ai pas le temps de m'asseoir. »",
-      "amical": "« Vous venez de la place. Vous savez quelque chose de Joran ? »"
+      "amical": "« Vous venez de la place. Vous savez quelque chose de Joran ? »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "lr-camp-defendu"
+          },
+          "texte": "« Le camp a tenu cette nuit, et je vous en remercie. Les lames sont venues jusqu’ici, je l’ai vu de mes yeux. Je n’ai pas fermé l’œil de la nuit. Asseyez-vous si vous voulez, mais parlez : ma voix ne tiendra pas longtemps. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -1236,7 +1259,33 @@
     "salutations": {
       "hostile": "« Posez ces armes, ou mes hommes décideront pour vous. »",
       "neutre": "« Halte. La route est fermée. Dites-moi ce que vous voulez, et vite. »",
-      "amical": "« Vous ne sortez pas les lames tout de suite. Ça change des autres. »"
+      "amical": "« Vous ne sortez pas les lames tout de suite. Ça change des autres. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "lr-herse-reparee"
+          },
+          "texte": "« La herse du passage sud est remontée, et toute la cour l’a entendue. Ne vous réjouissez pas trop : je n’ai pas encore décidé si j’en suis content. Le passage pourrait rouvrir. Et maintenant, dites-moi ce qui vous amène. »"
+        },
+        {
+          "condition": {
+            "rencontre": {
+              "id": "hommes-de-la-baillie",
+              "alternative": "intimider-les-peagers"
+            }
+          },
+          "texte": "« Mes péagers ont posé leurs armes, sur un ordre, sans un coup. Et les hommes de la Baillie sont restés là, seuls au milieu de la cour. Je ne sais pas si je dois être vexé ou admiratif. Alors, dites-moi qui vous êtes. »"
+        },
+        {
+          "condition": {
+            "rencontre": {
+              "id": "hommes-de-la-baillie",
+              "issue": "victoire"
+            }
+          },
+          "texte": "« Vous les avez battus, dans ma cour, sous mes yeux. Je compte les corps, et je me demande ce que ça va me coûter. Je ne vous remercierai pas. Mais je n’aurais pas fait mieux. Qu’est-ce que vous voulez ? »"
+        }
+      ]
     },
     "inventaire": [
       "cle-des-cellules"

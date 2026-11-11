@@ -15,7 +15,7 @@ pnpm monde parcours  # un joueur automatique joue le moteur pour atteindre chaqu
 pnpm bureau          # le jeu dans sa fenêtre de bureau (Tauri) ; pnpm bureau:installeur pour l'installeur Windows
 ```
 
-Autres commandes : `pnpm monde <doc|enigmes|estimer|nouveau>`, `pnpm simuler`, `pnpm escarmouches`, `pnpm images`, `pnpm voix`, `pnpm conteur`.
+Autres commandes : `pnpm monde <doc|enigmes|estimer|nouveau>`, `pnpm simuler`, `pnpm escarmouches`, `pnpm images`, `pnpm voix`, `pnpm salutations` (voix des salutations des PNJ, avec leur voix d'ouverture ; `communes` pour la bibliothèque partagée `salutations.commune` ; simulation sans coût par défaut), `pnpm conteur`.
 
 Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable `OPENROUTER_API_KEY`). Ne jamais écrire ni afficher une clé dans la conversation, ne pas lire la valeur de `.env`.
 

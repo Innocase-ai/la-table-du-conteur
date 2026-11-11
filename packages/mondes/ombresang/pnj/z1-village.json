@@ -258,7 +258,24 @@
     "salutations": {
       "hostile": "« Passez votre chemin. Vous êtes du côté de ceux qui m'ont enchaîné. »",
       "neutre": "« Vous êtes là pour me regarder, ou pour m'écouter ? »",
-      "amical": "« Vous m'écoutez. Personne ne m'a écouté depuis hier. »"
+      "amical": "« Vous m'écoutez. Personne ne m'a écouté depuis hier. »",
+      "variantes": [
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "joran-deserteur",
+              "genre": "victoire"
+            }
+          },
+          "texte": "« Les épées ont attaqué la place. Moi, je suis resté aux fers, je n’ai pas bougé d’un pouce. Vous, vous vous êtes battus sous mes yeux, et moi je regardais. Alors parlez, avant que je ne me taise. »"
+        },
+        {
+          "condition": {
+            "flag": "lr-foule-reconnaissante"
+          },
+          "texte": "« Vous avez retenu la charrette, celle qui versait sa ferraille sur la foule. Là, devant moi. On me traite de saboteur, moi. Alors pourquoi vous avez fait ça ? Parlez, je ne suis pas dupe. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -390,7 +407,7 @@
           "tâche"
         ],
         "question": "Je peux vous aider, si vous avez besoin de bras.",
-        "reponse": "Elle répond sans relever la tête de ses pansements. « Vous avez des mains, c’est déjà ça. Il me manque une matière que je ne trouve plus ici. Elle se prend dans les cavernes sous le viaduc, et elle ne vient pas toute seule. Je ne vous demande pas de risquer votre peau pour rien. Si vous voulez m’aider, allez voir là-bas, et dites-moi ce que vous rapportez. Je saurai le reconnaître dès que je le verrai. Revenez me voir quand vous aurez quelque chose à me montrer. »",
+        "reponse": "Martha garde la tête sur ses pansements. « Vous avez des mains, c’est déjà ça. Il me manque une matière que je ne trouve plus ici. Elle se prend dans les cavernes sous le viaduc, et elle ne vient pas toute seule. Je ne vous demande pas de risquer votre peau pour rien. Si vous voulez m’aider, allez voir là-bas, et dites-moi ce que vous rapportez. Je saurai le reconnaître dès que je le verrai. Revenez me voir quand vous aurez quelque chose à me montrer. »",
         "effets": [
           {
             "quete": {
@@ -509,7 +526,15 @@
     "salutations": {
       "hostile": "« Je ne vous soignerai pas tant que vous aurez la main sur votre arme. »",
       "neutre": "« Entrez, et ne touchez pas au mortier. »",
-      "amical": "« Vous voilà. Asseyez-vous, je vous fais une tisane de thym. »"
+      "amical": "« Vous voilà. Asseyez-vous, je vous fais une tisane de thym. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "lr-place-sauvee"
+          },
+          "texte": "« Les blessés de la place, je les ai bandés un à un, et je sais qui les a sauvés. Vous m’avez épargné une nuit d’ouvrage. Asseyez-vous si vous voulez, mais parlez-moi pendant que mes mains travaillent. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -777,7 +802,34 @@
     "salutations": {
       "hostile": "« Ici, on paie d'abord. Asseyez-vous, ou sortez. »",
       "neutre": "« Entrez, et refermez vite la porte. »",
-      "amical": "« Ah, vous voilà ! La soupe est chaude, et la chambre est prête. »"
+      "amical": "« Ah, vous voilà ! La soupe est chaude, et la chambre est prête. »",
+      "variantes": [
+        {
+          "condition": {
+            "et": [
+              {
+                "flag": "evt-la-lame-de-la-poutre"
+              },
+              {
+                "flag": "lr-place-sauvee"
+              }
+            ]
+          },
+          "texte": "« Vous avez abattu ces épées sur ma place, alors je ne dirai rien de ma poutre, que vous avez regardée d’un peu trop près. La maison sert chaud ce soir. Qu’est-ce que je vous sers ? »"
+        },
+        {
+          "condition": {
+            "flag": "lr-place-sauvee"
+          },
+          "texte": "« J’ai tout vu depuis ma porte, sur la place, quand ces épées se sont mises à bouger. C’est fini. La maison sert chaud ce soir, mais la bière se paie quand même. Asseyez-vous, et dites-moi ce que vous voulez boire. »"
+        },
+        {
+          "condition": {
+            "flag": "evt-la-lame-de-la-poutre"
+          },
+          "texte": "« Vous avez regardé ma poutre d’un peu trop près. Cette vieille lame tient ma maison debout depuis avant vous, alors dites-moi ce que vous lui voulez, et vite. »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -1106,7 +1158,21 @@
     "salutations": {
       "hostile": "« Vous, je vous ai vendu une lame de trop. Ne revenez pas la réclamer. »",
       "neutre": "« Entrez. Le métal se vend au poids. Regardez ce que vous voulez. »",
-      "amical": "« Ah, vous voilà ! J'ai gardé la meilleure dague au fond du râtelier. »"
+      "amical": "« Ah, vous voilà ! J'ai gardé la meilleure dague au fond du râtelier. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "lr-ansel-sauve"
+          },
+          "texte": "« Ansel est revenu à ma forge après trois jours sans nouvelles. Vous l’avez ramené. Merci. Voilà, c’est dit, et ne prenez pas l’habitude. Qu’est-ce qu’il vous faut ? »"
+        },
+        {
+          "condition": {
+            "flag": "lr-chargement-recupere"
+          },
+          "texte": "« Vous avez récupéré mon chargement au campement de la forêt d’Acier. Je compterai tout avant de dire un mot de plus. Ce n’est pas ce qu’on fait d’habitude, je le note. Qu’est-ce qu’il vous faut ? »"
+        }
+      ]
     },
     "inventaire": []
   },
@@ -1361,7 +1427,18 @@
     "salutations": {
       "hostile": "« Sortez de mon atelier. Le foyer n'est pas pour vous. »",
       "neutre": "« Vous êtes dans ma forge. Dites ce que vous voulez, et tenez-vous loin du foyer. »",
-      "amical": "« Ah. Approchez, mais restez à distance du foyer. Vous avez le visage de quelqu'un qui a vu quelque chose. »"
+      "amical": "« Ah. Approchez, mais restez à distance du foyer. Vous avez le visage de quelqu'un qui a vu quelque chose. »",
+      "variantes": [
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "vorn-bras-de-laiton",
+              "genre": "victoire"
+            }
+          },
+          "texte": "« Des lames se sont dressées devant moi, et vous les avez couchées sous mes yeux. Sans vous, j’aurais mal fini. Ne me demandez pas de le redire. Qu’est-ce qui vous amène encore ? »"
+        }
+      ]
     },
     "inventaire": []
   }
