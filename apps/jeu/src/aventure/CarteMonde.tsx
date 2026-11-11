@@ -19,7 +19,10 @@ function useImageCarte(monde: string, id: string): string | undefined {
   useEffect(() => {
     let actif = true;
     setUrl(undefined);
-    const fichier = manifesteDe(monde)?.cartes?.[id];
+    // Pas de carte illustrée pour ce lieu (peu d'enfants : le seuil des cartes est de 5) : son image de lieu sert de fond, plutôt
+    // qu'un fond noir.
+    const manifeste = manifesteDe(monde);
+    const fichier = manifeste?.cartes?.[id] ?? manifeste?.lieux?.[id];
     if (fichier) urlImage(monde, fichier)?.then((u) => actif && setUrl(u));
     return () => {
       actif = false;
