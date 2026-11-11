@@ -1,0 +1,155 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "Le fer se brise",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "marche-d-ombrefiel"
+        },
+        "mouvement": "recul",
+        "texte": "Une plaine de boue rouge et grise s'étend sous un crachin qui ne lâche plus. Depuis six mois, les routes de la Marche sentent la suie et le fer pourri, et chaque voyageur couve ses lames avec méfiance, comme une bête qui pourrait mordre."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-carrefour-d-aldric"
+        },
+        "mouvement": "approche",
+        "texte": "Deux routes se croisent au pied d'une butte de calcaire, et leur boue lisse avale les roues. Au centre, un gibet de bois noir se dresse, et les corneilles guettent la poutre comme des juges qui n'ont pas hâte."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-auberge-de-bregor"
+        },
+        "mouvement": "approche",
+        "texte": "L'auberge de Brégor tient la butte comme une forteresse : palissade de pins écorcés, volets ferrés, toit d'ardoise lourde. Derrière les fentes, une lueur orange rappelle que la maison n'a pas fermé depuis des semaines, et qu'elle nourrit plus de réfugiés que de voyageurs."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-auberge-cour-et-ecuries"
+        },
+        "mouvement": "droite",
+        "texte": "Dans la cour, la boue monte jusqu'à la cheville. Autour de feux qui fument mal, des réfugiés partagent des soupes claires, et plus loin, à l'atelier, un marteau frappe le fer puis se tait, comme si le métal se défaisait sous le coup."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "varek-le-brise"
+        },
+        "mouvement": "fixe",
+        "texte": "Dans un coin de la salle, un nain regarde les trois morceaux de sa hache posés sur la table, sans oser les toucher. Il ne parle pas, et personne ne lui demande rien. Le métal neuf ne tient plus, et chacun en a déjà fait l'expérience."
+      }
+    ]
+  },
+  {
+    "id": "le-vieux-pont",
+    "nom": "La Noire-Eau",
+    "declencheur": {
+      "lieu": "ald-vieux-pont"
+    },
+    "presentation": "plans",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-vieux-pont"
+        },
+        "mouvement": "approche",
+        "texte": "Un pont d'une seule arche, de grès gris rougi de rouille, enjambe la Noire-Eau, rivière brune et lente. Ses berges de vase sont couvertes de roseaux, et le crachin tombe sans bruit sur la pierre ancienne. Au loin, les corneilles se taisent."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-pont-tablier-et-breche"
+        },
+        "mouvement": "gauche",
+        "texte": "Le tablier est étroit, ses pavés disjoints luisent d'algues brunes. Au milieu, dans le parapet de l'est, une brèche de trois mètres s'ouvre sur le vide, et la Noire-Eau luit quatre mètres plus bas. Le crachin ruisselle sur la pierre, et rien ne bouge alentour."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-pont-talus-d-embuscade"
+        },
+        "mouvement": "fixe",
+        "texte": "Au nord-ouest du pont, un talus boisé porte deux vieux chênes noueux, et la fougère sèche couvre le sol. Pas un oiseau ne chante sous les branches, et le silence y paraît trop long. Même le crachin semble retenir son souffle."
+      }
+    ]
+  },
+  {
+    "id": "le-tombeau",
+    "nom": "Sous les sept menhirs",
+    "declencheur": {
+      "lieu": "ald-tertre-sarcophage"
+    },
+    "presentation": "plans",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-tertre-dalle-et-escalier"
+        },
+        "mouvement": "approche",
+        "texte": "Au centre du cercle de sept menhirs, une dalle de grès a glissé de côté, et sa cassure brune luit sous le ciel gris. Un trou étroit s'ouvre dessous, et des marches de pierre taillée descendent droit dans le noir. Un souffle froid monte de la trouée."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-tertre-antichambre"
+        },
+        "mouvement": "fixe",
+        "texte": "En bas, une antichambre basse, voûtée de pierre taillée, sent la cendre froide et la poussière de calcaire. La lueur du jour s'arrête aux premières marches, et les parois de grès humide luisent faiblement. Au fond, une ouverture sans porte s'enfonce dans l'obscurité."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-tertre-sarcophage"
+        },
+        "mouvement": "recul",
+        "texte": "Une crypte voûtée en berceau, de pierre grise et humide, garde six niches où reposent des urnes d'argile brisées. Au centre, une cuve de grès est fermée par un couvercle sculpté d'un homme armé, au visage ébréché. L'obscurité ne recule que devant votre lumière."
+      }
+    ]
+  },
+  {
+    "id": "la-route-s-ouvre",
+    "nom": "La route s'ouvre",
+    "declencheur": {
+      "quete": "q-la-securite-du-relais",
+      "statut": "terminee"
+    },
+    "presentation": "plans",
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "bregor-le-borgne"
+        },
+        "mouvement": "fixe",
+        "texte": "Brégor le Borgne pose une bourse sur le comptoir, sans un sourire. Il compte les pièces à voix basse, et son œil unique ne quitte pas la porte. Le relais tient, et il n'a pas l'intention de le dire tout haut."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ald-auberge-perron-et-potence"
+        },
+        "mouvement": "gauche",
+        "texte": "Sur le perron, la rampe de boue luit sous la pluie, et la potence se balance près de la piste. Les silhouettes de chiffon ne bougent plus. Au carrefour, deux routes repartent : la piste de Sombreval vers l'ouest, la Route du Roi vers le nord."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "marche-d-ombrefiel"
+        },
+        "mouvement": "recul",
+        "texte": "De loin, la butte de Brégor garde son air de forteresse de moellons et de volets ferrés. Autour, la plaine de boue respire un peu mieux, et les réfugiés reprennent leur place autour des feux. Mais les routes ne s'arrêtent pas là, et le carrefour attend vos prochains pas."
+      }
+    ]
+  }
+]
