@@ -218,20 +218,37 @@ export function appliquerEquipement(ctx: ContexteJeu, p: Personnage): void {
     if (o.bonus?.attaque || o.bonus?.degats || (srd && o.nom !== srd.nom)) bonus[s] = { attaque: o.bonus?.attaque ?? 0, degats: o.bonus?.degats ?? 0, nom: srd && o.nom !== srd.nom ? o.nom : undefined };
   }
   const armees = mainsArmees(ctx, e);
+  const autres = mainsArmees(ctx, e, autreJeu(e.jeuActif));
   e.bonus = bonus;
   e.armesActives = armees;
+  e.armesAutres = autres;
   p.equipe = e;
   const torse = e.emplacements.torse;
   const armureId = torse && infoEquipement(ctx, torse)?.genre === 'armure' ? torse : undefined;
-  const avant = p.fiche.equipement;
-  p.fiche.equipement = { autres: avant?.autres ?? [], po: avant?.po ?? 0, armure: armureId ? base(armureId) : undefined, bouclier: !!bouclierActif(ctx, e), armes: armees.map((s) => base(e.emplacements[s]!)) };
-  p.fiche.ca = caAvecEquipement(ctx, p, e);
   const armureSrd = armureId ? ctx.srd?.armures.get(base(armureId)) : undefined;
   const formation = p.fiche.formationArmures;
+  const sansFormation = (eq: Equipement) => (!!armureSrd && !formation.includes(armureSrd.categorie)) || (!!bouclierActif(ctx, eq) && !formation.includes('bouclier'));
+  // L'autre jeu d'armes : ce que le combat prend en main avec la carte « Changer d'armes » (armes, main gauche, CA avec son bouclier).
+  const inverse: Equipement = { ...e, jeuActif: autreJeu(e.jeuActif) };
+  const autreGarni = autres.length > 0 || !!bouclierActif(ctx, inverse);
+  const avant = p.fiche.equipement;
+  p.fiche.equipement = {
+    autres: avant?.autres ?? [],
+    po: avant?.po ?? 0,
+    armure: armureId ? base(armureId) : undefined,
+    bouclier: !!bouclierActif(ctx, e),
+    armes: armees.map((s) => base(e.emplacements[s]!)),
+    gauche: armees.some(estMainGauche) || undefined,
+    jeu: e.jeuActif,
+    ...(autreGarni
+      ? { autreJeu: { armes: autres.map((s) => base(e.emplacements[s]!)), gauche: autres.some(estMainGauche) || undefined, ca: caAvecEquipement(ctx, p, inverse), sansFormation: sansFormation(inverse) || undefined } }
+      : {}),
+  };
+  p.fiche.ca = caAvecEquipement(ctx, p, e);
   const penalite = armureSrd?.forceMin && p.fiche.caracteristiques.for.valeur < armureSrd.forceMin ? 3 : 0;
   p.fiche.vitesse += (p.fiche.penaliteForce ?? 0) - penalite;
   p.fiche.penaliteForce = penalite;
-  p.fiche.sansFormation = (!!armureSrd && !formation.includes(armureSrd.categorie)) || (!!bouclierActif(ctx, e) && !formation.includes('bouclier'));
+  p.fiche.sansFormation = sansFormation(e);
 }
 
 /** Ce que pèse ce qu'un héros porte. */

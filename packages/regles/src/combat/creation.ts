@@ -33,9 +33,25 @@ export interface Kit {
    * Armes portées ; `botte` : l'arme fait partie des bottes maîtrisées. Une arme magique repose sur une arme du SRD (`id`) :
    * `nom` est son nom propre, `bonus` ses bonus d'attaque et de dégâts.
    */
-  armes: { id: string; botte?: boolean; nom?: string; bonus?: { attaque: number; degats: number } }[];
+  armes: ArmeKit[];
+  /**
+   * L'autre jeu d'armes (celui qui n'est pas en main) : ses armes, la CA quand on l'a en main (le bouclier suit le jeu) et le manque
+   * de formation qu'il entraîne. Sans lui, pas de carte « Changer d'armes ».
+   */
+  autreJeu?: { armes: ArmeKit[]; ca: number; sansFormation?: boolean };
+  /** Le numéro du jeu en main (1 ou 2), gardé pendant le combat dans `ressources.jeuArmes` pour revenir à l'histoire. */
+  jeu?: 1 | 2;
   sorts?: string[];
   potions?: number;
+}
+
+/** Une arme du kit ; `main: 'gauche'` : tenue de la main gauche (attaque de la main gauche, arme Légère). */
+export interface ArmeKit {
+  id: string;
+  botte?: boolean;
+  nom?: string;
+  bonus?: { attaque: number; degats: number };
+  main?: 'gauche';
 }
 
 function vierge(): Combattant['tour'] {
@@ -67,12 +83,13 @@ function attaquesArme(fiche: Fiche, arme: Arme, botte: boolean): AttaqueArme[] {
   // Sans maîtrise de l'arme, pas de bonus de maîtrise à l'attaque (SRD 5.2.1).
   const pb = maitriseArme(fiche, arme) ? fiche.bonusMaitrise : 0;
   const b = botte ? BOTTES[arme.botte] : undefined;
+  const legere = arme.proprietes.includes('Légère') || undefined;
   const res: AttaqueArme[] = [];
   if (arme.portee === 'distance') {
     const carac: Caracteristique = 'dex';
     res.push({
       id: arme.id, nom: arme.nom, mode: 'distance', caracteristique: carac, bonusAttaque: mods[carac] + pb + archerie,
-      degats: [{ des: arme.degats, bonus: mods[carac], type: arme.typeDegats }], allonge: 0, portees: arme.portees, finesse, botte: b,
+      degats: [{ des: arme.degats, bonus: mods[carac], type: arme.typeDegats }], allonge: 0, portees: arme.portees, finesse, botte: b, legere,
     });
     return res;
   }
@@ -80,13 +97,13 @@ function attaquesArme(fiche: Fiche, arme: Arme, botte: boolean): AttaqueArme[] {
   const allonge = arme.proprietes.includes('Allonge') ? 3 : 1.5;
   res.push({
     id: arme.id, nom: arme.nom, mode: 'corps-a-corps', caracteristique: carac, bonusAttaque: mods[carac] + pb,
-    degats: [{ des: arme.degats, bonus: mods[carac], type: arme.typeDegats }], allonge, finesse, botte: b,
+    degats: [{ des: arme.degats, bonus: mods[carac], type: arme.typeDegats }], allonge, finesse, botte: b, legere,
   });
   if (arme.proprietes.includes('Lancer') && arme.portees) {
     res.push({
       id: `${arme.id}-lancer`, nom: `${arme.nom} (lancer)`, mode: 'distance', caracteristique: carac,
       bonusAttaque: mods[carac] + pb + archerie, degats: [{ des: arme.degats, bonus: mods[carac], type: arme.typeDegats }],
-      allonge: 0, portees: arme.portees, finesse, botte: b,
+      allonge: 0, portees: arme.portees, finesse, botte: b, legere,
     });
   }
   return res;
@@ -145,18 +162,18 @@ export function etatDurableMax(fiche: Fiche, potions = 0): EtatDurable {
   return { ressources, emplacements };
 }
 
-export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, position: Position, id = fiche.nom.toLowerCase()): Combattant {
-  const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.caracteristiques[c].modificateur])) as Record<Caracteristique, number>;
-  const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.sauvegardes[c].bonus])) as Record<Caracteristique, number>;
+/** Les attaques d'un jeu d'armes : une par arme (et son lancer), les Arts martiaux du Moine, ou le coup de poing sans arme. */
+function attaquesDuJeu(fiche: Fiche, armes: ArmeKit[], donnees: Donnees, mods: Record<Caracteristique, number>): AttaqueArme[] {
   const deja = new Map<string, number>();
-  const attaques = kit.armes.flatMap((a) => {
+  const attaques: AttaqueArme[] = armes.flatMap((a) => {
     // La même arme portée deux fois : deux attaques distinctes, sinon la carte jouée serait toujours la première.
     const rang = (deja.get(a.id) ?? 0) + 1;
     deja.set(a.id, rang);
     const arme = donnees.armes.get(a.id);
     if (!arme) throw new Error(`Arme inconnue : ${a.id}`);
     return attaquesArme(fiche, arme, !!a.botte).map((brute) => {
-      const atq = rang > 1 ? { ...brute, id: `${brute.id}-${rang}` } : brute;
+      const marquee = a.main === 'gauche' ? { ...brute, main: 'gauche' as const } : brute;
+      const atq = rang > 1 ? { ...marquee, id: `${marquee.id}-${rang}` } : marquee;
       if (!a.bonus && !a.nom) return atq;
       return {
         ...atq,
@@ -181,6 +198,13 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
       degats: [{ des: '1', bonus: nombreForce, type: 'contondant' }], allonge: 1.5, finesse: false,
     });
   }
+  return attaques;
+}
+
+export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, position: Position, id = fiche.nom.toLowerCase()): Combattant {
+  const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.caracteristiques[c].modificateur])) as Record<Caracteristique, number>;
+  const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, fiche.sauvegardes[c].bonus])) as Record<Caracteristique, number>;
+  const attaques = attaquesDuJeu(fiche, kit.armes, donnees, mods);
   const durable = etatDurableMax(fiche, kit.potions ?? 0);
   // Les ressources qui durent d'un combat à l'autre (potions, rages…), plus celles qui ne servent qu'en combat.
   const ressources: Record<string, number> = { reaction: 1, ...durable.ressources };
@@ -189,7 +213,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   // Moine : le maximum de Credo et le dé d'Arts martiaux (Métabolisme surnaturel, Frappe étourdissante).
   if (traits.includes('credo-du-moine')) {
     ressources.credoMax = nombreColonne(fiche.colonnes['Points de Credo']);
-    ressources.deArtsMartiaux = Number(/d(\d+)/.exec(String(colArts ?? '1d6'))?.[1] ?? 6);
+    ressources.deArtsMartiaux = Number(/d(\d+)/.exec(String(fiche.colonnes['Arts martiaux'] ?? '1d6'))?.[1] ?? 6);
   }
   // Le dé d'Inspiration bardique (colonne « Dé bardique » : d6, d8, d10, d12).
   if (traits.includes('inspiration-bardique')) ressources.deInspiration = Number(/d(\d+)/.exec(String(fiche.colonnes['Dé bardique'] ?? 'd6'))?.[1] ?? 6);
@@ -209,6 +233,15 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
     incantation = { dd: 8 + fiche.bonusMaitrise + mods[carac], bonusAttaque: fiche.bonusMaitrise + mods[carac], modificateur: mods[carac], emplacements: [], emplacementsMax: [] };
   }
   const lanceur = CLASSES_LANCEUSES.includes(fiche.classe);
+  // Deux jeux d'armes : celui en main, et l'autre, que la carte « Changer d'armes » prend en main.
+  if (kit.jeu) ressources.jeuArmes = kit.jeu;
+  const autreJeu: Combattant['autreJeu'] = kit.autreJeu && {
+    attaques: attaquesDuJeu(fiche, kit.autreJeu.armes, donnees, mods),
+    caBase: kit.autreJeu.ca,
+    sansFormation: kit.autreJeu.sansFormation,
+    nom: kit.autreJeu.armes.map((a) => a.nom ?? donnees.armes.get(a.id)?.nom ?? a.id).join(' et ') || 'les mains nues',
+    image: kit.autreJeu.armes[0]?.id,
+  };
   return {
     id,
     nom: fiche.nom,
@@ -251,6 +284,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
     elan: { pioche: [...(lanceur ? DECK_ELAN_LANCEUR : DECK_ELAN_MARTIAL)], main: [], defausse: [] },
     px: 0,
     sansFormation: fiche.sansFormation,
+    ...(autreJeu ? { autreJeu } : {}),
   };
 }
 

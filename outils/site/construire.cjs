@@ -10,7 +10,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 const img = (id) => `images/ecrans/${id}.webp`;
 for (const s of c.sections) for (const i of s.images || []) if (!fs.existsSync(path.join(dossier, img(i.id)))) throw new Error(`image absente : ${i.id}`);
 
-const court = { conteur: 'Le conteur', groupe: 'Groupe', histoires: 'Histoires', explorer: 'Explorer', parler: 'Parler', choix: 'Choix', combat: 'Combat', monstres: 'Monstres', monde: 'Image et son', cout: 'Coût' };
+const court = { conteur: 'Le conteur', groupe: 'Groupe', equipement: 'Équipement', histoires: 'Histoires', explorer: 'Explorer', parler: 'Parler', choix: 'Choix', combat: 'Combat', monstres: 'Monstres', monde: 'Image et son', cout: 'Coût' };
 const figure = (i, gros = false) =>
   `<figure class="${gros ? 'gros' : ''}"><button class="zoom" data-src="${img(i.id)}" data-leg="${esc(i.legende)}" aria-label="Agrandir : ${esc(i.legende)}"><img src="${img(i.id)}" alt="${esc(i.legende)}" loading="lazy"></button><figcaption>${esc(i.legende)}</figcaption></figure>`;
 
@@ -36,7 +36,7 @@ const section = (s, n) => {
 const galerie = (titre, texte, fichiers, classe) => `
 <section class="bloc art ${classe}">
   <div class="entete"><h2>${esc(titre)}</h2><p>${esc(texte)}</p></div>
-  <div class="mosaique">${fichiers.map(([f, nom]) => `<figure><img src="images/art/${f}" alt="${esc(nom)}" loading="lazy"><figcaption>${esc(nom)}</figcaption></figure>`).join('')}</div>
+  <div class="mosaique">${fichiers.map(([f, nom]) => `<figure><img src="${f.includes('/') ? 'images/' + f : 'images/art/' + f}" alt="${esc(nom)}" loading="lazy"><figcaption>${esc(nom)}</figcaption></figure>`).join('')}</div>
 </section>`;
 
 const etapes = [['espece','Espèce','Neuf espèces, leurs traits et leur lignage.'],['classe','Classe','Douze classes, niveau de départ de 1 à 20.'],['historique','Historique','Le passé du héros, ses atouts et son don.'],['caracteristiques','Caractéristiques','Valeurs standard, achat de points ou tirage 4d6.'],['choix','Choix de classe','Compétences, sorts, équipement, avec le bouton Recommandé.'],['alignement','Alignement','Les neuf alignements, en un clic.'],['portrait','Nom et portrait','Une galerie de 54 portraits, et une ligne de caractère.'],['recap','Récapitulatif','La fiche complète, validée par le jeu.']];
@@ -48,7 +48,7 @@ const createur = `
 
 const monstres = [['monstre-dragon-rouge-adulte.webp', 'Dragon rouge adulte'], ['monstre-liche.webp', 'Liche'], ['monstre-troll.webp', 'Troll'], ['monstre-kraken.webp', 'Kraken'], ['monstre-hydre.webp', 'Hydre'], ['monstre-vampire.webp', 'Vampire'], ['monstre-golem-de-fer.webp', 'Golem de fer'], ['monstre-mimique.webp', 'Mimique'], ['monstre-manticore.webp', 'Manticore'], ['monstre-basilic.webp', 'Basilic'], ['monstre-griffon.webp', 'Griffon'], ['monstre-licorne.webp', 'Licorne'], ['monstre-balor.webp', 'Balor'], ['monstre-spectre.webp', 'Spectre']];
 const portraits = [['portrait-drakeide-f-1.webp', 'Drakéide'], ['portrait-elfe-m-2.webp', 'Elfe'], ['portrait-gnome-f-2.webp', 'Gnome'], ['portrait-goliath-m-1.webp', 'Goliath'], ['portrait-halfelin-f-1.webp', 'Halfelin'], ['portrait-humain-m-3.webp', 'Humain'], ['portrait-nain-f-2.webp', 'Nain'], ['portrait-orc-m-2.webp', 'Orc'], ['portrait-tieffelin-f-1.webp', 'Tieffelin']];
-const histoires = [['carte-citadelle.webp', 'La Citadelle des Marées'], ['carte-cote.webp', 'La côte de Hautmarée'], ['carte-port-sillage.webp', 'Port-Sillage'], ['lieu-crypte.webp', 'La crypte de Port-Sillage'], ['lieu-place.webp', 'La place de la Criée'], ['pnj-octave.webp', 'Octave Lamberte'], ['pnj-sorel.webp', 'Sorel Noirbec'], ['pnj-aubin.webp', 'Père Aubin'], ['objet-livre.webp', 'Le Livre de Maëlle']];
+const histoires = [['ecrans/carte-monde.webp', 'La carte de La Marche, avec son brouillard'], ['ecrans/aventure.webp', "L'Auberge de Brégor, au cœur de La Marche"], ['ecrans/rencontre.webp', 'Le chariot enlisé, une rencontre à choix'], ['ecrans/histoire-detail.webp', 'La fiche de La Marche, avec son coût d’API']];
 
 const html = `<!doctype html>
 <html lang="fr">
@@ -68,7 +68,7 @@ const html = `<!doctype html>
 <body>
 <header class="barre">
   <a class="marque" href="#haut">${esc(c.meta.titre)}</a>
-  <nav><a href="#presentation">Le jeu</a>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
+  <nav><a href="#presentation">Le jeu</a><a href="#nouveautes">Nouveautés</a>${c.sections.map((s) => `<a href="#${esc(s.id)}">${esc(court[s.id] || s.titre)}</a>` + (s.id === 'groupe' ? '<a href="#createur">Créateur</a>' : '')).join('')}<a href="#etat">État du jeu</a><a href="#claude">Fait par Claude</a><a class="nav-sortie" href="#inscription">Être prévenu</a></nav>
 </header>
 
 <main id="haut">
@@ -87,6 +87,11 @@ const html = `<!doctype html>
   ${c.chiffres.map((x) => `<div><b>${esc(x.valeur)}</b><span>${esc(x.libelle)}</span></div>`).join('')}
 </section>
 
+<section id="nouveautes" class="bloc nouveautes">
+  <div class="entete"><p class="num">Nouveautés</p><h2>Ce qui a changé dans le jeu</h2><p>Le jeu avance par lots. Voici les changements les plus visibles.</p></div>
+  <div class="piliers">${(c.nouveautes || []).map((x, k) => `<div class="pilier"><b>${k + 1}</b><h3>${esc(x.titre)}</h3><p>${esc(x.texte)}</p></div>`).join('')}</div>
+</section>
+
 <section id="presentation" class="bloc intro">
   <p class="num">${esc(c.intro.surtitre)}</p>
   <h2>${esc(c.intro.titre)}</h2>
@@ -100,7 +105,7 @@ ${c.sections.map((s, n) => section(s, n) + (s.id === 'groupe' ? createur : '')).
 
 ${galerie('Un bestiaire complet', 'Les 329 monstres du SRD ont leur illustration, dans un même style peint. En voici quelques-uns.', monstres, 'monstres-galerie')}
 ${galerie('Des héros qui vous ressemblent', 'Neuf espèces, deux silhouettes, trois visages chacune : 54 portraits à choisir.', portraits, 'portraits-galerie')}
-${galerie('Des mondes qui se dessinent', 'Cartes, lieux, personnages et objets des histoires livrées.', histoires, 'mondes-galerie')}
+${galerie('Des mondes qui se dessinent', "La carte, un lieu, une rencontre et la fiche de La Marche d'Ombrefiel, l'histoire complète du jeu.", histoires, 'mondes-galerie')}
 
 <section id="claude" class="bloc claude">
   <div class="claude-carte">

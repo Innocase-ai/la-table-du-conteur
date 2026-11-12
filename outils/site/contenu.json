@@ -30,12 +30,12 @@
       "libelle": "monstres du bestiaire, tous illustrés"
     },
     {
-      "valeur": "502",
+      "valeur": "400+",
       "libelle": "objets illustrés"
     },
     {
-      "valeur": "3",
-      "libelle": "histoires complètes livrées"
+      "valeur": "1",
+      "libelle": "histoire complète livrée"
     },
     {
       "valeur": "54",
@@ -95,45 +95,63 @@
         },
         {
           "id": "feuille",
-          "legende": "La feuille de personnage complète d'un héros (ici Hilda, clerc nain de niveau 3) : caractéristiques, compétences, attaques, sorts, équipement et aptitudes."
+          "legende": "La feuille de Bran, onglet Fiche : caractéristiques, compétences, attaques, sorts et aptitudes. L'équipement se gère sur l'onglet Équipement."
+        }
+      ]
+    },
+    {
+      "id": "equipement",
+      "titre": "Un équipement qui se porte vraiment",
+      "accroche": "Chaque objet a sa place : la tête, le cou, le torse, les mains, les anneaux. Un héros ne tient pas quatre armes ni deux boucliers.",
+      "paragraphes": [
+        "La feuille de personnage est aussi l'inventaire. Un héros porte ses objets sur une silhouette : tête, cou, dos, torse, gants, ceinture, pieds, deux anneaux, et les deux mains de chacun de ses deux jeux d'armes.",
+        "Un seul jeu d'armes est en main à la fois. Une arme à deux mains prend les deux mains ; un bouclier ne se tient qu'à gauche ; la main gauche ne tient une arme que si elle est Légère, et si la main droite aussi. Le jeu le refuse et dit pourquoi.",
+        "On glisse un objet du sac sur une case, ou on le choisit puis on clique la case qui s'allume : la Classe d'Armure qui en résulte s'affiche avant de valider."
+      ],
+      "points": [
+        "Neuf cases de corps et deux jeux d’armes",
+        "Glisser-déposer ou clic, avec la CA avant et après",
+        "Une arme à deux mains, et pas de bouclier avec",
+        "Un bouclier seulement à la main gauche",
+        "Trois objets harmonisés au plus",
+        "En combat, « Changer d’armes » : une fois par tour"
+      ],
+      "images": [
+        {
+          "id": "equipement",
+          "legende": "La feuille de Pip, onglet Équipement : la silhouette à gauche, les deux jeux d'armes, le sac du groupe au centre et le résumé de combat en bas."
+        },
+        {
+          "id": "equiper-case",
+          "legende": "Pip choisit sa case Torse : la cotte de mailles du sac y est proposée, avec le changement de CA (15 → 16) et le bouton Remplacer."
         }
       ]
     },
     {
       "id": "histoires",
-      "titre": "Trois histoires à vivre",
-      "accroche": "Chaque histoire est complète, avec sa carte, ses lieux illustrés et ses fins différentes.",
+      "titre": "Une histoire complète, une autre en écriture",
+      "accroche": "La Marche d'Ombrefiel se joue de bout en bout, avec sa carte, ses lieux illustrés et ses fins différentes.",
       "paragraphes": [
-        "Le Val des Cendres (niveaux 1 à 5, environ 30 h) raconte un village de réfugiés autour d'une Lanterne qui faiblit sous la neige. La Citadelle des Marées (niveaux 1 à 4, environ 16 h) vous mène dans un monastère de cartographes, face à une marée qui s'éloigne trop.",
-        "Le Grimoire de Port-Sillage (niveaux 1 à 3, environ 6 h) est une histoire facile pour 4 héros. Le grimoire de la sainte qui calmait les tempêtes a disparu de la crypte pendant la fête de la Mer.",
-        "Une histoire s'ouvre sur un film d'ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés, et chaque fin a sa propre scène."
+        "La Marche d'Ombrefiel (niveaux 1 à 7, pour un groupe de 4 héros, environ 6 heures) : depuis six mois, le fer neuf de la Marche se brise. Du Carrefour d'Aldric à Haute-Garde, le groupe remonte le sabotage jusqu'à ceux qui en profitent, avant l'Échéance du Conseil.",
+        "La Dîme des Roseaux est en cours d'écriture. Elle apparaît dans la liste, marquée comme brouillon, et n'est pas encore une histoire complète.",
+        "Une histoire s’ouvre sur un film d’ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés, et chaque fin a sa propre scène."
       ],
       "points": [
-        "3 histoires complètes, livrées avec le jeu",
-        "Le Val des Cendres : environ 30 h, niveaux 1 à 5",
-        "La Citadelle des Marées : environ 16 h, niveaux 1 à 4",
-        "Le Grimoire de Port-Sillage : environ 6 h, niveaux 1 à 3",
-        "Un film d'ouverture, avec des images en fondu et une voix",
+        "Une histoire complète : La Marche d'Ombrefiel",
+        "Un groupe conseillé de 4 héros, niveaux 1 à 7",
+        "La Dîme des Roseaux : en cours d’écriture",
+        "Un film d’ouverture, avec des images en fondu et une voix",
         "Une jauge qui rend le temps précieux",
-        "Des choix qui coûtent, et des fins différentes",
-        "Port-Sillage : 4 fins, 13 personnages et 6 combats"
+        "Des choix qui coûtent, et des fins différentes"
       ],
       "images": [
         {
           "id": "histoires",
-          "legende": "La liste des trois histoires, chacune avec son illustration, pour choisir celle que vous voulez vivre."
+          "legende": "La liste des histoires : La Marche d'Ombrefiel, avec son illustration, et La Dîme des Roseaux, marquée comme brouillon."
         },
         {
-          "id": "film-titre",
-          "legende": "Le carton de titre du film d'ouverture, « Le Grimoire de Port-Sillage », sur une image du village."
-        },
-        {
-          "id": "film-plan",
-          "legende": "Un plan du film d'ouverture : une image de l'église, avec un texte lu par la voix du conteur."
-        },
-        {
-          "id": "val",
-          "legende": "Le Val des Cendres : le premier lieu de l'histoire, Veillecendre, illustré comme tous les lieux du jeu."
+          "id": "carte-monde",
+          "legende": "La carte du monde de La Marche, en plein écran : les lieux connus et l'endroit où l'on se trouve."
         }
       ]
     },
@@ -144,7 +162,7 @@
       "paragraphes": [
         "Chaque lieu propose ses actions : fouiller, ouvrir, crocheter, forcer, désamorcer un piège, examiner un détail du décor, prendre, faire une halte ou dormir. Ses personnages attendent aussi qu'on leur parle.",
         "La carte du monde se dévoile au fil de vos pas. Les lieux connus apparaissent, on voit où l'on est, et l'on sait ce qui a déjà été visité. Vous pouvez l'ouvrir en plein écran.",
-        "Le journal garde la trace de tout : quêtes en cours, mystères et scènes à revoir. Le sac du groupe réunit les objets, la charge portée et l'or."
+        "Le journal garde la trace de tout : quêtes en cours, mystères et scènes à revoir. Le sac du groupe réunit les objets, la charge portée et l'or ; chaque héros porte ce qu'il a équipé, sur sa feuille."
       ],
       "points": [
         "Actions de lieu : fouiller, ouvrir, crocheter, forcer",
@@ -152,7 +170,7 @@
         "Chaque sortie expliquée en une phrase avant le clic",
         "Carte du monde avec brouillard, en plein écran",
         "Journal : quêtes, mystères, scènes à revoir",
-        "Inventaire du groupe : objets illustrés, par héros, avec recherche, tri et filtres",
+        "Sac du groupe : objets illustrés, avec recherche, tri et filtres",
         "Grimoire et fiche complète de chaque héros",
         "Les jets de dés sont visibles : « Ambrine — Investigation 9 (DD 14) »",
         "Tous les boutons sont proposés, sans rien écrire",
@@ -161,27 +179,11 @@
       "images": [
         {
           "id": "aventure",
-          "legende": "L'écran d'exploration, sur la Place de la Criée : l'image du lieu, le texte, les personnes à qui parler, les actions, les sorties et la jauge « La grande marée »."
-        },
-        {
-          "id": "inventaire",
-          "legende": "L'inventaire du groupe : tous les objets illustrés, rangés par héros, avec la recherche, le tri, les filtres par type, l'or et la charge portée par le groupe."
-        },
-        {
-          "id": "inventaire-objet",
-          "legende": "Un objet choisi dans l'inventaire : son illustration, sa rareté, sa valeur, son poids et ce qu'il permet de faire. Ici, une huile, avec ses usages."
-        },
-        {
-          "id": "boutique",
-          "legende": "Chez la marchande : la boutique, le rachat de vos objets et les services (faire étudier un objet), avec la bourse du groupe affichée."
+          "legende": "L'Auberge de Brégor, premier lieu de La Marche : l'image du lieu, le texte, les actions, les sorties et le groupe en bas."
         },
         {
           "id": "fouille-examen",
-          "legende": "Après une fouille : le jet d'Investigation et le texte d'un détail du décor examiné."
-        },
-        {
-          "id": "carte-monde",
-          "legende": "La carte du monde en plein écran, avec son brouillard : les lieux connus et l'endroit où l'on se trouve."
+          "legende": "Une fouille à l'Auberge : Ambrine tente son Investigation (7), la fouille ne donne rien, et le jeu l'annonce."
         },
         {
           "id": "journal",
@@ -208,20 +210,7 @@
         "Salutations qui changent selon vos actes",
         "Compagnons de voyage qui commentent vos choix"
       ],
-      "images": [
-        {
-          "id": "dialogue",
-          "legende": "Une conversation avec la maire : les réponses sont cliquables, dont les approches [Persuader], [Intimider] et [Tromper]."
-        },
-        {
-          "id": "rencontre",
-          "legende": "Une rencontre à choix avec un vieux pêcheur : trois approches, dont une avec un jet d'Intuition."
-        },
-        {
-          "id": "rencontre-resultat",
-          "legende": "Le résultat d'un jet d'Intuition de Hilda, 17 contre DD 12, réussi, suivi de « Vous apprenez… »."
-        }
-      ]
+      "images": []
     },
     {
       "id": "choix",
@@ -240,12 +229,12 @@
         "Des échos quelques jours après vos décisions",
         "Un épilogue pour chaque choix",
         "Plusieurs fins, aucune entièrement heureuse",
-        "Port-Sillage : 3 dilemmes, dont la remise finale du livre"
+        "Des rencontres qui se règlent par la parole, la ruse ou le combat, avec un prix pour chaque issue"
       ],
       "images": [
         {
-          "id": "rencontre-combat",
-          "legende": "Avant un combat dans la cave d'une taverne : combattre, ou enfumer, piéger, boucher le trou, ou se replier. Plusieurs de ces options demandent un jet de compétence."
+          "id": "rencontre",
+          "legende": "Le chariot enlisé : le lieu, les créatures, leur danger, puis les choix numérotés, avec le jet que demande chaque issue."
         }
       ]
     },
@@ -268,16 +257,17 @@
         "Terrains : souterrain, forêt, caverne, camp, neige",
         "Couvert (+2 à la CA), eau qui ralentit, murs qui bloquent la vue",
         "Mode « Héros auto », vitesse réglable, journal de chaque jet",
-        "Escarmouche : un combat d'entraînement hors histoire"
+        "Escarmouche : un combat d'entraînement hors histoire",
+        "Deux jeux d'armes : la carte « Changer d'armes » est gratuite, une fois par tour"
       ],
       "images": [
         {
           "id": "combat-debut",
-          "legende": "Le début du combat « Les rats de la cave » : la grille, six héros contre des rats, l'ordre d'initiative en haut, les cartes de Bran à droite et le journal en bas."
+          "legende": "Un combat contre les bandits du chariot : la grille, l’ordre d’initiative en haut, les cartes de Bran à droite et son journal en bas."
         },
         {
-          "id": "combat-milieu",
-          "legende": "Au milieu du combat, les jets s'affichent (13+2 = 15 contre CA 17), avec le journal et la créature ciblée."
+          "id": "combat-armes",
+          "legende": "Bran prend la javeline en main : ses cartes d’attaque changent, et le journal le note."
         },
         {
           "id": "combat-victoire",
@@ -338,14 +328,6 @@
       ],
       "images": [
         {
-          "id": "citadelle",
-          "legende": "La Citadelle des Marées : le premier lieu de cette histoire, illustré comme tous les lieux du jeu."
-        },
-        {
-          "id": "val",
-          "legende": "Le Val des Cendres : Veillecendre, premier lieu de l'histoire, avec son image peinte."
-        },
-        {
           "id": "aide-magie",
           "legende": "L'aide au jeu : les treize familles de dégâts et leurs pictogrammes, pour reconnaître le type de dégâts d'un coup d'œil."
         }
@@ -368,12 +350,12 @@
         "Un récit plus vivant, sur demande",
         "Exploration, combats et images : gratuits",
         "Estimation affichée avant de commencer",
-        "Port-Sillage : environ 6 heures, de 0,2 $ à 2,4 $ selon le modèle"
+        "La Marche d'Ombrefiel : environ 6 heures, de 0,2 $ à 2 $ selon le modèle"
       ],
       "images": [
         {
           "id": "histoire-detail",
-          "legende": "La fiche de Port-Sillage : son accroche, son ton, sa durée estimée et le coût d'API par modèle, affiché avant de commencer."
+          "legende": "La fiche de La Marche d'Ombrefiel : son accroche, sa durée estimée et le coût d'API par modèle, affiché avant de commencer."
         }
       ]
     }
@@ -381,13 +363,14 @@
   "etat": {
     "titre": "Où en est le jeu",
     "paragraphes": [
-      "La Table du Conteur est un prototype jouable, encore en cours de développement. Les trois histoires sont livrées complètes, mais le jeu continue d'évoluer.",
+      "La Table du Conteur est un prototype jouable, encore en cours de développement. La Marche d'Ombrefiel est livrée complète ; La Dîme des Roseaux est en cours d'écriture.",
       "Le conteur IA est à l'essai. L'écran de réglage de votre clé d'API n'est pas encore là.",
       "Une application de bureau est en préparation. Elle gardera la clé d'API du joueur dans le trousseau du système."
     ],
     "points": [
       "Prototype jouable, en cours de développement",
-      "Trois histoires complètes livrées",
+      "Une histoire complète livrée : La Marche d'Ombrefiel",
+      "La Dîme des Roseaux en cours d’écriture",
       "Le conteur IA est à l'essai",
       "L'écran de réglage de la clé d'API n'est pas encore là",
       "Application de bureau en préparation",
@@ -435,5 +418,27 @@
       }
     ],
     "mention": "Jeu indépendant, fondé sur le System Reference Document 5.2.1 de Wizards of the Coast (licence Creative Commons Attribution 4.0). Ce n'est pas un produit officiel de Donjons & Dragons."
-  }
+  },
+  "nouveautes": [
+    {
+      "titre": "La feuille de personnage devient l'inventaire",
+      "texte": "Ouverte en grand : l'équipement sur une silhouette, le sac du groupe à côté, la fiche complète dans un second onglet. Le sac n'est plus dans le panneau latéral."
+    },
+    {
+      "titre": "Deux jeux d’armes",
+      "texte": "Un héros porte deux jeux d'armes, dont un seul est en main. En combat, une carte permet d'en changer, gratuitement, une fois par tour."
+    },
+    {
+      "titre": "Un bouclier ou une arme Légère à la main gauche",
+      "texte": "Le jeu refuse ce que les règles interdisent : une arme à deux mains ne laisse pas de place au bouclier. Avec une arme Légère, l'attaque de la main gauche suit en action bonus."
+    },
+    {
+      "titre": "Des rencontres en plein écran",
+      "texte": "Le lieu, les créatures et leur danger, puis les choix numérotés, et pour chaque issue le jet qu'elle demande."
+    },
+    {
+      "titre": "Un panneau de combat repensé",
+      "texte": "Les cartes rangées par catégorie, avec leur coût, le pourcentage de toucher et l'image de l'arme."
+    }
+  ]
 }

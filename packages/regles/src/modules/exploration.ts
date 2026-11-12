@@ -22,7 +22,8 @@ import { formulaireEnigme } from '../monde/reponses';
 import { presentationMonstres } from '../monde/presentation';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
-import { appliquerEtat } from '../personnage';
+import { appliquerEtat, equipementDe } from '../personnage';
+import { appliquerEquipement, copieEquipement } from './equipement-regles';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
 import type { ContexteJeu, Partie, PresentationRencontre, Proposition } from '../noyau/types';
 
@@ -278,7 +279,17 @@ export const moduleExploration: Module = {
       executer: (t, e) => {
         const scene = t.partie.scene;
         if (scene.type !== 'rencontre') return { refus: "Aucune rencontre n'attend." };
-        for (const a of t.partie.groupe) if (e.heros?.[a.id]) appliquerEtat(a, e.heros[a.id]!);
+        for (const a of t.partie.groupe) {
+          const etatHeros = e.heros?.[a.id];
+          if (!etatHeros) continue;
+          appliquerEtat(a, etatHeros);
+          // Le jeu d'armes pris en main pendant le combat (carte « Changer d'armes ») reste en main après.
+          const jeu = etatHeros.ressources?.jeuArmes;
+          if ((jeu === 1 || jeu === 2) && a.equipe && equipementDe(a).jeuActif !== jeu) {
+            a.equipe = { ...copieEquipement(equipementDe(a)), jeuActif: jeu };
+            appliquerEquipement(t.ctx, a);
+          }
+        }
         const issue =
           e.issue === 'victoire'
             ? { type: 'victoire' as const, px: e.px }

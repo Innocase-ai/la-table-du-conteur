@@ -22,6 +22,10 @@ export interface AttaqueArme {
   portees?: [number, number]; // mètres (distance ou lancer)
   finesse: boolean;
   botte?: Botte;
+  /** Arme Légère (SRD 5.2.1) : attaquer avec elle ouvre l'attaque de la main gauche, en action bonus, avec une autre arme Légère. */
+  legere?: boolean;
+  /** Arme tenue de la main gauche : elle sert à l'attaque de la main gauche (dégâts sans le modificateur de caractéristique s'il est positif). */
+  main?: 'gauche';
 }
 
 export interface EtatActif {
@@ -92,6 +96,12 @@ export interface TourCourant {
   attaqueEntreprise: boolean;
   /** Frappe étourdissante déjà tentée ce tour-ci (une fois par tour). */
   etourdissanteUtilisee: boolean;
+  /** Jeu d'armes déjà changé ce tour-ci (une interaction avec un objet par tour : carte « Changer d'armes »). */
+  armesChangees?: boolean;
+  /** Une attaque avec une arme Légère tenue de la main droite a été faite ce tour-ci, pendant l'action Attaque. */
+  attaqueLegere?: boolean;
+  /** L'attaque de la main gauche a déjà été faite ce tour-ci. */
+  attaqueGaucheFaite?: boolean;
   /** La dernière attaque d'arme qui a touché ce tour-ci (Châtiment divin, Frappe étourdissante). */
   dernierCoup?: { cible: string; corpsACorps: boolean; critique: boolean; mainsNues: boolean };
 }
@@ -140,6 +150,12 @@ export interface Combattant {
   tour: TourCourant;
   elan?: { pioche: string[]; main: string[]; defausse: string[] };
   px: number;
+  /**
+   * L'autre jeu d'armes d'un héros (celui qui n'est pas en main) : ses attaques, sa CA (le bouclier suit le jeu) et le manque de
+   * formation qu'il entraîne. La carte « Changer d'armes » l'échange avec `attaques` et `caBase`. Le numéro du jeu en main est
+   * gardé dans `ressources.jeuArmes` (1 ou 2), qui revient à l'histoire avec les autres ressources à la fin du combat.
+   */
+  autreJeu?: { attaques: AttaqueArme[]; caBase: number; sansFormation?: boolean; nom: string; image?: string };
   /** Armure ou bouclier porté sans formation : désavantage aux attaques et aux jets de Force et de Dextérité, pas d'incantation. */
   sansFormation?: boolean;
   /** Ce qui distingue sa conduite au combat de celle de son camp (absent : il suit la doctrine de son camp). */

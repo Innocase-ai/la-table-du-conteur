@@ -2,7 +2,7 @@
 // Une carte est une option de jeu réelle du SRD (attaque, sort, aptitude…) ou une carte d'élan.
 import { moyenneDes } from '../des';
 import type { Caracteristique, Sort } from '../schemas';
-import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
+import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, type Position } from './grille';
 import {
   aPortee,
@@ -58,6 +58,8 @@ export interface Carte {
   raison?: string;
   /** Ids des cibles valides en ce moment (pour l'interface et l'IA). */
   cibles: string[];
+  /** L'arme du SRD que montre la carte, quand ce n'est pas celle de son identifiant (« Changer d'armes » : l'arme du jeu proposé). */
+  image?: string;
 }
 
 export type Commande =
@@ -160,6 +162,38 @@ export function apercuCarte(etat: EtatCombat, attaquantId: string, carte: Carte,
   return degatsMoyens !== undefined ? { degatsMoyens } : undefined;
 }
 
+/** L'attaque de la main gauche : sans le modificateur de caractéristique aux dégâts s'il est positif (SRD 5.2.1, propriété Légère). */
+function attaqueMainGauche(c: Combattant, a: AttaqueArme): AttaqueArme {
+  const mod = Math.max(0, c.mods[a.caracteristique]);
+  return { ...a, nom: `${a.nom} (main gauche)`, degats: a.degats.map((d, i) => (i === 0 ? { ...d, bonus: d.bonus - mod } : d)) };
+}
+
+/** Prend en main l'autre jeu d'armes : ses attaques, sa CA (le bouclier suit le jeu), son manque de formation ; une fois par tour. */
+export function changerJeuArmes(etat: EtatCombat, c: Combattant): void {
+  const autre = c.autreJeu;
+  if (!autre) return;
+  const avant = { attaques: c.attaques, caBase: c.caBase, sansFormation: c.sansFormation, nom: nomDuJeu(c), image: c.attaques.find((a) => a.id !== 'mains-nues' && a.id !== 'arts-martiaux')?.id.replace(/-lancer$/, '').replace(/-d+$/, '') };
+  c.attaques = autre.attaques;
+  c.caBase = autre.caBase;
+  c.sansFormation = autre.sansFormation;
+  c.autreJeu = avant;
+  c.tour.armesChangees = true;
+  if (c.ressources.jeuArmes) c.ressources.jeuArmes = c.ressources.jeuArmes === 1 ? 2 : 1;
+  journaliser(etat, { type: 'info', texte: `${c.nom} prend en main ${autre.nom}.`, acteur: c.id });
+}
+
+/** Le nom des armes en main (« Épée longue et Dague »), pour la carte qui les reprendra. */
+function nomDuJeu(c: Combattant): string {
+  const vues = new Set<string>();
+  const noms: string[] = [];
+  for (const a of c.attaques) {
+    if (a.id === 'mains-nues' || a.id === 'arts-martiaux' || a.id.endsWith('-lancer') || vues.has(a.id)) continue;
+    vues.add(a.id);
+    noms.push(a.nom.replace(/ (lancer)$/, ''));
+  }
+  return noms.join(' et ') || 'les mains nues';
+}
+
 function refuser(cartes: Carte, raison: string): Carte {
   return { ...cartes, jouable: false, raison };
 }
@@ -192,6 +226,32 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
       stats: { attaque: a.bonusAttaque, mode: a.mode, ...(a.mode === 'distance' ? { porteeNormale: p.normale } : {}), degats: a.degats.map((d) => ({ des: d.des, bonus: d.bonus, type: d.type })), ...(a.botte ? { botte: a.botte } : {}) },
     });
     if (!peutAttaquer(c)) k = refuser(k, 'Action déjà utilisée.');
+    else if (!k.cibles.length) k = refuser(k, 'Aucune cible à portée.');
+    res.push(k);
+  }
+
+  // Attaque de la main gauche (propriété Légère, SRD 5.2.1) : après une attaque avec une arme Légère de la main droite pendant
+  // l'action Attaque, une attaque en action bonus avec l'arme Légère de la main gauche, sans le modificateur de caractéristique
+  // aux dégâts s'il est positif. Avec la botte Coup double, elle fait partie de l'action Attaque (gratuite), une fois par tour.
+  for (const a of c.attaques.filter((x) => x.main === 'gauche' && x.legere)) {
+    const p = portee(a);
+    const b = attaqueMainGauche(c, a);
+    const coupDouble = a.botte === 'coup-double';
+    const cout: CoutCarte = coupDouble ? 'gratuit' : 'bonus';
+    let k = carte({
+      id: `gauche:${a.id}`,
+      nom: `${a.nom} (main gauche)`,
+      description: `Attaque de la main gauche : +${b.bonusAttaque}, ${b.degats.map((d) => `${d.des}${d.bonus ? (d.bonus > 0 ? '+' : '') + d.bonus : ''} ${d.type}`).join(' + ')}. ${coupDouble ? 'Coup double : elle fait partie de l’action Attaque.' : 'Action bonus, après une attaque avec l’arme Légère de la main droite.'}`,
+      categorie: 'attaque',
+      cout,
+      ciblage: 'ennemi',
+      portee: p.longue,
+      cibles: ciblesAttaque(etat, c, p.longue),
+      stats: { attaque: b.bonusAttaque, mode: b.mode, ...(b.mode === 'distance' ? { porteeNormale: p.normale } : {}), degats: b.degats.map((d) => ({ des: d.des, bonus: d.bonus, type: d.type })), ...(b.botte ? { botte: b.botte } : {}) },
+    });
+    if (t.attaqueGaucheFaite) k = refuser(k, 'Une fois par tour.');
+    else if (!t.attaqueLegere) k = refuser(k, 'Attaquez d’abord avec l’arme Légère de la main droite.');
+    else if (!coupDouble && !t.bonus) k = refuser(k, 'Action bonus déjà utilisée.');
     else if (!k.cibles.length) k = refuser(k, 'Aucune cible à portée.');
     res.push(k);
   }
@@ -373,6 +433,21 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const cibles = [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
     res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact, même tombé à 0 PV.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
   }
+  if (c.autreJeu) {
+    const autre = c.autreJeu;
+    const ca = autre.caBase !== c.caBase ? ` (CA ${c.caBase} → ${autre.caBase})` : '';
+    const k = carte({
+      id: 'base:changer-armes',
+      nom: 'Changer d’armes',
+      description: `Prendre en main ${autre.nom}${ca}. Gratuit, une fois par tour.`,
+      categorie: 'base',
+      cout: 'gratuit',
+      ciblage: 'soi',
+      ressource: autre.nom,
+      ...(autre.image ? { image: autre.image } : {}),
+    });
+    res.push(t.armesChangees ? refuser(k, 'Une fois par tour.') : k);
+  }
   const prise = c.etats.find((e) => (e.etat === 'empoigne' || e.etat === 'entrave') && e.evasion);
   if (prise) {
     res.push(verifier(carte({ id: 'base:echapper', nom: 'S\'échapper', description: `Test d'Athlétisme ou d'Acrobaties DD ${prise.evasion} pour vous libérer.`, categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
@@ -449,7 +524,15 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
       }
       c.tour.attaquesRestantes -= 1;
       c.tour.attaqueEntreprise = true;
+      if (arme.legere && arme.main !== 'gauche') c.tour.attaqueLegere = true;
       attaqueArme(etat, c, cibles[0]!, arme);
+      break;
+    }
+    case 'gauche': {
+      const arme = c.attaques.find((a) => a.id === sid)!;
+      depenser(c, k.cout);
+      c.tour.attaqueGaucheFaite = true;
+      attaqueArme(etat, c, cibles[0]!, attaqueMainGauche(c, arme));
       break;
     }
     case 'monstre': {
@@ -653,6 +736,9 @@ function executerBase(etat: EtatCombat, c: Combattant, id: string, cibles: Comba
     case 'desengager':
       c.tour.desengage = true;
       journaliser(etat, { type: 'info', texte: `${c.nom} se désengage.`, acteur: c.id });
+      break;
+    case 'changer-armes':
+      changerJeuArmes(etat, c);
       break;
     case 'esquiver':
       c.tour.esquive = true;

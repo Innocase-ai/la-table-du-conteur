@@ -105,6 +105,16 @@ function meilleureCarteOffensive(cartes: Carte[]): Carte | undefined {
   return offensives.sort((a, b) => b.nbCibles - a.nbCibles || Number(a.categorie === 'sort') - Number(b.categorie === 'sort'))[0];
 }
 
+const CARTE_CHANGER = 'base:changer-armes';
+
+/** Vrai si changer de jeu d'armes ouvre une attaque qu'on n'a pas avec les armes en main. */
+function changerPourAttaquer(etat: EtatCombat, ctx: Contexte, id: string): boolean {
+  if (!cartesDisponibles(etat, ctx, id).some((k) => k.id === CARTE_CHANGER && k.jouable)) return false;
+  const essai = cloner(etat);
+  if (!executer(essai, ctx, { type: 'jouer', carte: CARTE_CHANGER }).ok) return false;
+  return !!meilleureCarteOffensive(cartesDisponibles(essai, ctx, id));
+}
+
 function cibleFaible(etat: EtatCombat, ids: string[]): string {
   return [...ids].sort((a, b) => combattant(etat, a).pv - combattant(etat, b).pv)[0]!;
 }
@@ -123,6 +133,11 @@ export function jouerTourSimple(etat: EtatCombat, ctx: Contexte): void {
       const k = meilleureCarteOffensive(cartesDisponibles(etat, ctx, id));
       if (k) {
         executer(etat, ctx, { type: 'jouer', carte: k.id, cibles: [cibleFaible(etat, k.cibles)] });
+        continue;
+      }
+      // Rien à portée avec les armes en main, mais avec l'autre jeu (l'arc quand l'ennemi est loin) : on change d'armes.
+      if (changerPourAttaquer(etat, ctx, id)) {
+        executer(etat, ctx, { type: 'jouer', carte: CARTE_CHANGER });
         continue;
       }
       if (c.tour.mouvement <= 0 || i > 1) break;
@@ -204,7 +219,7 @@ function pointsZone(etat: EtatCombat, c: Combattant, k: Carte): Position[] {
 function etapesPour(etat: EtatCombat, ctx: Contexte, c: Combattant, prefixe: Commande[]): Etape[] {
   const res: Etape[] = [];
   for (const k of cartesDisponibles(etat, ctx, c.id)) {
-    if (!k.jouable) continue;
+    if (!k.jouable || k.id === CARTE_CHANGER) continue;
     if (k.ciblage === 'point') {
       for (const p of pointsZone(etat, c, k)) res.push({ commandes: [...prefixe, { type: 'jouer', carte: k.id, point: p }], libelle: `${k.nom} sur (${p.x},${p.y})` });
       continue;
@@ -219,6 +234,17 @@ function etapesPour(etat: EtatCombat, ctx: Contexte, c: Combattant, prefixe: Com
 function genererEtapes(etat: EtatCombat, ctx: Contexte, c: Combattant): Etape[] {
   const res: Etape[] = [{ commandes: [{ type: 'finTour' }], libelle: 'fin du tour' }];
   res.push(...etapesPour(etat, ctx, c, []));
+  // Changer d'armes puis frapper avec l'autre jeu (de là où l'on est).
+  if (cartesDisponibles(etat, ctx, c.id).some((k) => k.id === CARTE_CHANGER && k.jouable)) {
+    const essai = cloner(etat);
+    if (executer(essai, ctx, { type: 'jouer', carte: CARTE_CHANGER }).ok) {
+      const prefixe: Commande[] = [{ type: 'jouer', carte: CARTE_CHANGER }];
+      res.push(...etapesPour(essai, ctx, combattant(essai, c.id), prefixe).filter((e) => {
+        const dernier = e.commandes[e.commandes.length - 1];
+        return dernier?.type === 'jouer' && !!dernier.cibles?.length;
+      }).map((e) => ({ ...e, libelle: `changer d’armes, puis ${e.libelle}` })));
+    }
+  }
   for (const p of destinations(etat, c)) {
     const essai = cloner(etat);
     if (!deplacer(essai, combattant(essai, c.id), p) || actif(essai).id !== c.id) continue;

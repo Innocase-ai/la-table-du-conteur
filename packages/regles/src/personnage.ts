@@ -28,6 +28,8 @@ export interface Equipement {
   bonus?: Partial<Record<Emplacement, BonusArme>>;
   /** Les mains du jeu actif qui tiennent une arme (droite d'abord) : dans l'ordre des armes de la fiche, pour leur donner leurs bonus ; recalculé quand on équipe. */
   armesActives?: Emplacement[];
+  /** Les mains de l'autre jeu qui tiennent une arme (droite d'abord), dans l'ordre de `fiche.equipement.autreJeu.armes` ; recalculé quand on équipe. */
+  armesAutres?: Emplacement[];
 }
 
 export interface Personnage extends EtatDurable {
@@ -74,12 +76,15 @@ export function heroCombatDe(p: Personnage): HeroCombat {
   const kit = kitDepuisFiche(p.fiche);
   // Les armes magiques gardent leur nom et leurs bonus.
   const eq = p.equipe && !estAncienEquipement(p.equipe) ? p.equipe : undefined;
-  const armes = kit.armes.map((a, i) => {
-    const main = eq?.armesActives?.[i];
-    const bonus = main ? eq?.bonus?.[main] : undefined;
-    return { ...a, ...(bonus ? { bonus, nom: bonus.nom } : {}) };
-  });
-  return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
+  const avecBonus = (liste: typeof kit.armes, mains: Emplacement[] | undefined) =>
+    liste.map((a, i) => {
+      const main = mains?.[i];
+      const bonus = main ? eq?.bonus?.[main] : undefined;
+      return { ...a, ...(bonus ? { bonus, nom: bonus.nom } : {}) };
+    });
+  const armes = avecBonus(kit.armes, eq?.armesActives);
+  const autreJeu = kit.autreJeu && { ...kit.autreJeu, armes: avecBonus(kit.autreJeu.armes, eq?.armesAutres) };
+  return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, ...(autreJeu ? { autreJeu } : {}), potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
 }
 
 /** Reprend l'état durable laissé par un combat (borné par les maximums de la fiche). */

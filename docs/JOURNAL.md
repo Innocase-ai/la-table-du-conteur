@@ -1919,3 +1919,22 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Code** : `casesPour` et `attaquesEnMain` dans `apps/jeu/src/equipement-regles.ts` (pur, testé) ; `GrilleElements` accepte un glisser-déposer facultatif ; poupée réécrite (`PoupeeEquipement.tsx`).
 - **Tests** : 2 de plus dans `equipement-regles.test.ts`. **1993 tests verts**, typechecks. Vérifié dans le jeu (ancienne sauvegarde, 1600×900 et 1280×720) : ranger et rééquiper la cotte de Bran par clic et par glisser-déposer (CA 17 → 12 → 17), onglet Fiche, panneau latéral sans Sac, aucune erreur de console.
 - **À savoir** : l'aide en jeu (`aide/contenu.json`, modifiée par une autre session) décrit encore l'onglet Sac et l'ancienne page du sac ; à mettre à jour avec ton accord. Le lot 2 de l'équipement (combat) reste à faire.
+
+## 12/11/2026 — Deux jeux d'armes en combat (lot 2)
+
+- **Demande de l'utilisateur** : « oui, lot 2 ». Le combat ne voyait que le jeu en main ; la carte « Changer d'armes » et l'attaque de la main gauche manquaient.
+- **Combattant** : `Kit.autreJeu` (armes, CA, manque de formation), `Kit.jeu`, `ArmeKit.main` ; `Combattant.autreJeu` et `ressources.jeuArmes` (1 ou 2). La fiche transmet l'autre jeu (`fiche.equipement.autreJeu`, `gauche`, `jeu`), `heroCombatDe` garde les bonus des armes magiques des deux jeux.
+- **Cartes** : `base:changer-armes` (gratuite, une fois par tour, `tour.armesChangees`, image de l'arme proposée) ; `gauche:<arme>` (arme Légère de la main gauche : action bonus après une attaque Légère de la main droite pendant l'action Attaque, `tour.attaqueLegere`, une fois par tour ; dégâts sans le modificateur s'il est positif ; avec Coup double, gratuite dans l'action Attaque).
+- **IA** : change d'armes seulement si rien n'est à portée avec le jeu en main et qu'une attaque de l'autre jeu l'est ; au contact, elle garde l'arme à deux mains. Simulation (`pnpm simuler 10 rapide`) inchangée.
+- **Après le combat** : le jeu pris en main reste en main (`reglerRencontre`). Au chargement, l'équipement est réappliqué à la fiche, pour une sauvegarde faite avant ce lot.
+- **Tests** : `combat-jeux-armes.test.ts` (9, dont la sauvegarde ancienne). Suite complète et typechecks verts.
+- **Vérifié dans le jeu** : la carte « Changer d'armes » prend la javeline en main (cartes Javeline et Javeline (lancer) à la place de l'épée à deux mains, journal « Bran prend en main Javeline »), puis le lancer touche (9 dégâts). **Pas encore vérifié dans le jeu** : l'attaque de la main gauche et l'IA qui change d'armes au tour suivant.
+- **Incident à signaler** : pendant l'essai, j'ai modifié la sauvegarde active du navigateur intégré (`table-du-conteur:partie`) au lieu d'une copie, puis supprimé la copie de sécurité avant de vérifier la restauration. Le jeu ouvert a réécrit l'état d'essai. La sauvegarde précédente (`table-du-conteur:partie-precedente`) n'est pas l'état de départ. À décider avec l'utilisateur.
+
+## 12/11/2026 — Site internet : nouveautés et captures du jeu
+
+- **Demande de l'utilisateur** : mettre le site à jour avec les nouveautés et de nouvelles captures du jeu.
+- **Site** (`site/`, généré par `node outils/site/construire.cjs` à partir de `outils/site/contenu.json`) : bloc « Nouveautés » (cinq changements : feuille-inventaire, deux jeux d'armes, main gauche, rencontres en plein écran, panneau de combat) ; nouvelle section « Un équipement qui se porte vraiment » ; section Histoires réécrite : **une** histoire complète (La Marche d'Ombrefiel, publiée) et La Dîme des Roseaux en brouillon, au lieu de trois histoires dont deux retirées le 11/11 ; chiffres et texte d'état corrigés ; galerie « Des mondes » montrant La Marche.
+- **Captures** (`site/images/ecrans/`, Chromium piloté en CDP sur une sauvegarde de test générée par le moteur, profil temporaire) : aventure, journal, carte-monde, fouille-examen, equipement, equiper-case, feuille, histoires, histoire-detail, rencontre, combat-debut, combat-armes.
+- **Pas encore refait** : les captures de dialogue, de boutique, de victoire, d'escarmouche, de sorts en combat, de création et d'aide restent les anciennes. Les 24 images qui ne servaient plus (Port-Sillage, Citadelle, Val, anciens écrans d'inventaire, de rencontre, de dialogue et de boutique, sans compter les écrans d'aide et de grimoire déjà absents du site) ont été retirées du dossier. Elles sont suivies par Git : `git checkout -- site/images/...` les restaure.
+- **Non publié** : rien n'est poussé ni déployé sur Netlify ; la mise en ligne reste à décider.

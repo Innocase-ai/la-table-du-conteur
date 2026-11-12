@@ -11,6 +11,12 @@ export interface EquipementResolu {
   armes: string[];
   autres: string[];
   po: number;
+  /** En jeu (équipement par emplacements) : la dernière des armes est tenue de la main gauche. */
+  gauche?: boolean;
+  /** En jeu : le numéro du jeu d'armes en main (1 ou 2). */
+  jeu?: 1 | 2;
+  /** En jeu : l'autre jeu d'armes (armes du SRD, main gauche, CA quand on le prend en main, manque de formation). */
+  autreJeu?: { armes: string[]; gauche?: boolean; ca: number; sansFormation?: boolean };
 }
 
 function singulier(mot: string): string {

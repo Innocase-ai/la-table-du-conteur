@@ -55,10 +55,17 @@ const verserAuSac = (sac: Record<string, number>, ids: string[]) => {
 
 const nomsDe = (ctx: ContexteJeu, ids: string[]) => ids.map((id) => objetDe(ctx, id).nom).join(', ');
 
-/** Range l'équipement de chaque héros dans les emplacements (départ d'une partie, ancienne sauvegarde) ; le surplus va dans le sac. */
+/**
+ * Range l'équipement de chaque héros dans les emplacements (départ d'une partie, ancienne sauvegarde) ; le surplus va dans le sac.
+ * Puis réapplique l'équipement à la fiche : une sauvegarde faite avant une évolution du pont vers le combat (l'autre jeu d'armes, la
+ * main gauche) retrouve ainsi tout ce que le combat lit.
+ */
 function rangerLeGroupe(ctx: ContexteJeu, partie: Partie): void {
   if (!ctx.srd) return;
-  for (const h of partie.groupe) verserAuSac(partie.etat.inventaire, normaliserEquipement(ctx, h));
+  for (const h of partie.groupe) {
+    verserAuSac(partie.etat.inventaire, normaliserEquipement(ctx, h));
+    if (h.equipe) appliquerEquipement(ctx, h);
+  }
 }
 
 export const moduleEquipement: Module = {

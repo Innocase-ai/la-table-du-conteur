@@ -67,6 +67,8 @@ export function cleDeSort(s: Pick<Sort, 'id' | 'ecole' | 'degats' | 'soins'>): s
 export interface CarteIcone {
   id: string;
   categorie: 'attaque' | 'sort' | 'aptitude' | 'base' | 'elan' | 'monstre';
+  /** L'arme que montre la carte quand ce n'est pas celle de son identifiant (« Changer d'armes »). */
+  image?: string;
 }
 
 /** La clé du dessin d'une carte, et si l'arme est lancée. Un sort sans dessin prend celui de son école, sinon un symbole d'aptitude. */
@@ -111,8 +113,10 @@ export function cleDegats(type: string): string | undefined {
  * Le fichier peut manquer (frappe à mains nues, arme propre à une histoire) : l'écran retombe alors sur le pictogramme.
  */
 export function imageDeCarte(k: CarteIcone): { groupe: 'equipement'; id: string } | undefined {
+  if (k.image) return { groupe: 'equipement', id: k.image };
   const reste = k.id.slice(k.id.indexOf(':') + 1);
-  if (k.categorie === 'attaque') return { groupe: 'equipement', id: reste.replace(/-lancer$/, '') };
+  // « dague-2 » (seconde dague), « dague-lancer », « dague-lancer-2 » : l'image de la dague.
+  if (k.categorie === 'attaque') return { groupe: 'equipement', id: reste.replace(/-\d+$/, '').replace(/-lancer$/, '') };
   if (k.id === 'base:potion') return { groupe: 'equipement', id: 'potion-de-guerison' };
   return undefined;
 }
