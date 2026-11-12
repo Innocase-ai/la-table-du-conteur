@@ -111,6 +111,19 @@ export interface PresentationMonstre {
   nombre: number;
   /** Une ou deux phrases d'apparence ; absente quand on n'en a pas de juste (jamais de chiffre ni de capacité cachée). */
   description?: string;
+  /** Un adversaire nommé (chef, boss, PNJ) : l'écran de rencontre le met en avant. */
+  chef?: boolean;
+}
+
+/** Ce que l'écran montre d'une rencontre qui se présente : de quoi la mettre en scène, rien de caché (ni PV, ni statistiques). */
+export interface PresentationRencontre {
+  id: string;
+  nom: string;
+  type: 'combat' | 'social' | 'exploration' | 'mixte';
+  difficulte: 'faible' | 'moderee' | 'elevee';
+  intro: string;
+  lieu: { id: string; nom: string };
+  monstres: PresentationMonstre[];
 }
 
 export interface Proposition {
@@ -127,6 +140,8 @@ export interface Proposition {
   icone?: string;
   /** Une vignette (portrait d'un PNJ, image d'un lieu) du manifeste d'images du monde, affichée à gauche du bouton. */
   image?: { groupe: 'lieux' | 'pnj'; id: string };
+  /** Le jet qu'entraîne l'action, pour l'annoncer : compétence (id), DD s'il est connu, et qui le tenterait (le meilleur du groupe). */
+  jet?: { test: string; dd?: number; qui?: string; bonus?: number };
   /** Un repère de quête : « ! » (une quête à prendre), « ? » (un rapport attendu), « ◆ » (un objectif de quête en cours mène là). */
   signe?: '!' | '?' | '◆';
   /** Une phrase d'explication affichée sous le bouton (où mène une sortie, ce que fait l'action), pour que le joueur sache pourquoi il clique. */

@@ -15,6 +15,7 @@ import {
   type Partie,
   type Personnage,
   type PresentationMonstre,
+  type PresentationRencontre,
 } from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
@@ -33,6 +34,7 @@ import { LecteurScene } from './LecteurScene';
 import { EcranSommeil } from './EcranSommeil';
 import { EcranCrochetage } from './EcranCrochetage';
 import { EcranEvenement } from './EcranEvenement';
+import { EcranRencontre } from './EcranRencontre';
 import { EcranDesamorcage } from './EcranDesamorcage';
 import { detecterOuverture, type Ouverture } from '../crochetage-regles';
 import { detecterDesamorcage, type Desamorcage } from '../desamorcage-regles';
@@ -177,6 +179,9 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const evenement = moteur.vue<FicheEvenement | undefined>('evenementEnCours', partie);
   const sceneRevue = !!sceneNarree && ((partie.modules['scenes'] as { vues?: string[] } | undefined)?.vues ?? []).includes(sceneNarree.id);
   const propositions = moteur.propositions(partie);
+  // La rencontre qui se présente : un écran plein (lieu, créatures, choix), qu'on peut mettre de côté pour voir le groupe.
+  const rencontre = moteur.vue<PresentationRencontre | undefined>('rencontre', partie);
+  const [rencontreReduite, setRencontreReduite] = useState<string>();
   // La conversation : les répliques du joueur (touches 1 à 9) et « Fin du dialogue » vont dans la boîte posée sur la scène.
   const delaConversation = (x: Proposition) => !!interlocuteur && x.groupe.id === 'dialogue';
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
@@ -301,7 +306,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || evenement || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || evenement || rencontreOuverte || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -371,6 +376,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     avantMontee.current = enAttenteMontee;
   }, [enAttenteMontee]);
   const monteeOuverte = montee && enAttenteMontee > 0 && !sceneNarree;
+  // L'écran de rencontre passe après les écrans qui racontent (scène, événement, sommeil, parchemin, montée).
+  const rencontreOuverte = !!rencontre && rencontreReduite !== rencontre.id && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte;
   const fermerMontee = useCallback(() => setMontee(false), []);
   /** Une commande envoyée par l'écran de montée de niveau : le refus éventuel lui revient, il l'affiche lui-même. */
   const envoyer = (ordre: Ordre): string | undefined => {
@@ -634,6 +641,24 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {desamorcage && !sommeil && !crochetage && <EcranDesamorcage desamorcage={desamorcage} onFin={finDesamorcage} />}
       {evenement && !sceneNarree && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte && <EcranEvenement key={evenement.id} dm={dm} fiche={evenement} jouer={jouer} />}
+      {rencontreOuverte && (
+        <EcranRencontre
+          key={rencontre!.id}
+          rencontre={rencontre!}
+          image={image}
+          propositions={propositions.filter((x) => x.groupe.id === 'rencontre')}
+          journal={partie.journal}
+          refus={refus}
+          jouer={jouer}
+          onCombat={onCombat}
+          onReduire={() => setRencontreReduite(rencontre!.id)}
+        />
+      )}
+      {rencontre && rencontreReduite === rencontre.id && !sceneNarree && !evenement && (
+        <button type="button" className="rencontre-rappel" onClick={() => setRencontreReduite(undefined)}>
+          ⚔ Revenir à la rencontre : {rencontre.nom}
+        </button>
+      )}
       {sceneNarree && !sommeil && !crochetage && !desamorcage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
   );

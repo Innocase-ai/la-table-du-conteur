@@ -136,7 +136,7 @@ const CARAC_COMPETENCE: Record<string, Caracteristique> = {
   survie: 'sag', tromperie: 'cha',
 };
 
-function bonusTest(a: Personnage, test: Competence | Caracteristique): number {
+export function bonusTest(a: Personnage, test: Competence | Caracteristique): number {
   const comp = a.fiche.competences[test as Competence];
   if (comp) return comp.bonus;
   return a.fiche.caracteristiques[test as Caracteristique]?.modificateur ?? 0;

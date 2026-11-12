@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { Competence, Caracteristique } from '../schemas';
 import {
   aller,
+  bonusTest,
   commencer,
   desarmer,
   fouiller,
@@ -23,7 +24,7 @@ import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
 import { appliquerEtat } from '../personnage';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
-import type { ContexteJeu, Partie, Proposition } from '../noyau/types';
+import type { ContexteJeu, Partie, PresentationRencontre, Proposition } from '../noyau/types';
 
 /** Pourquoi on ne peut pas dormir ici (sinon rien) : « impossible » = aucun repos ; « dangereux » = une halte seulement. */
 const raisonPasDeNuit = (lieu: { repos: string } | undefined): string | undefined =>
@@ -302,14 +303,19 @@ export const moduleExploration: Module = {
           ...(r.type === 'combat' || r.type === 'mixte' ? [{ groupe, libelle: 'Combattre', icone: 'base:combattre', style: 'principal' as const, intention: 'combattre' as const }] : []),
           ...r.alternatives
             .filter((a) => !a.condition || evaluerCondition(a.condition, p.etat))
-            .map((a) => ({
+            .map((a) => {
+              // Qui tenterait le jet : le meilleur du groupe (vivant), comme le moteur le choisira.
+              const qui = a.jet ? [...p.groupe.filter((h) => h.pv > 0)].sort((x, y) => bonusTest(y, a.jet!.competence) - bonusTest(x, a.jet!.competence))[0] : undefined;
+              return {
               groupe,
               libelle: a.nom,
               detail: a.jet ? `${a.jet.competence}` : undefined,
+              ...(a.jet ? { jet: { test: a.jet.competence, dd: a.jet.dd, ...(qui ? { qui: qui.nom, bonus: bonusTest(qui, a.jet.competence) } : {}) } } : {}),
               aide: a.resume,
               ordre: { type: 'reglerRencontre', issue: 'alternative', alternative: a.id },
               desactivee: p.etat.exploration.essais?.includes(`${r.id}:${a.id}`) ? 'Déjà tenté, sans succès.' : undefined,
-            })),
+              };
+            }),
           {
             groupe,
             libelle: r.type === 'combat' || r.type === 'mixte' ? 'Se replier' : 'Passer son chemin',
@@ -323,5 +329,13 @@ export const moduleExploration: Module = {
   },
   vues: {
     scene: (ctx, p) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 }),
+    /** La rencontre qui se présente, pour l'écran de rencontre ; rien hors d'une scène de rencontre. */
+    rencontre: (ctx, p): PresentationRencontre | undefined => {
+      if (p.scene.type !== 'rencontre') return undefined;
+      const r = ctx.dm.rencontres.get(p.scene.rencontre);
+      if (!r) return undefined;
+      const lieu = ctx.dm.lieux.get(p.etat.lieu);
+      return { id: r.id, nom: r.nom, type: r.type, difficulte: r.difficulte, intro: r.intro, lieu: { id: p.etat.lieu, nom: lieu?.nom ?? p.etat.lieu }, monstres: presentationMonstres(r, ctx.dm, ctx.srd) };
+    },
   },
 };

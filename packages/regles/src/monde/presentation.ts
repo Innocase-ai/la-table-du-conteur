@@ -23,7 +23,7 @@ export function presentationMonstres(r: RencontreMonde, dm: DonneesMonde, srd: D
       continue;
     }
     const description = m.description?.trim() || (nomPropre ? undefined : profil?.description?.trim() || undefined);
-    vus.set(cle, { profil: m.profil, nom, nombre: m.nombre, ...(description ? { description } : {}) });
+    vus.set(cle, { profil: m.profil, nom, nombre: m.nombre, ...(description ? { description } : {}), ...(nomPropre ? { chef: true } : {}) });
   }
   return [...vus.values()];
 }
