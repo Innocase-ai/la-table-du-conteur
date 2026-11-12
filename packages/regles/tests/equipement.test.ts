@@ -3,14 +3,18 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import {
   bilanPersonnage,
+  bouclierActif,
   caAvec,
   calculerFiche,
   commande,
   creerMoteur,
+  EMPLACEMENTS,
   equipementDe,
+  estDeuxMains,
   groupeConseille,
   heroCombatDe,
   MODULES_STANDARD,
+  objetsPortes,
   personnageDepuisFiche,
   heroDepuisFiche,
   type ElementGrille,
@@ -53,6 +57,7 @@ const donner = (p: Partie, objet: string, quantite = 1) => moteur.executer(p, { 
 const heros = (p: Partie, id: string) => p.groupe.find((a) => a.id === id) as Personnage;
 const grille = (p: Partie) => moteur.encarts(p).find((e) => e.id === 'sac-objets')!.grille!;
 const element = (p: Partie, id: string) => grille(p).elements.find((e) => e.id === id) as ElementGrille;
+const porte = (p: Partie, id: string) => equipementDe(heros(p, id)).emplacements;
 
 describe('fiche : la CA se recalcule à partir de sa défense', () => {
   const armures = [undefined, ...[...srd.armures.values()].filter((a) => a.categorie !== 'bouclier')];
@@ -71,21 +76,21 @@ describe('fiche : la CA se recalcule à partir de sa défense', () => {
 });
 
 describe('module Équipement', () => {
-  it('l’équipement de départ est celui de la fiche ; équiper une armure du sac recalcule la CA et rend l’ancienne', () => {
+  it('l’équipement de départ est rangé dans les emplacements ; équiper une armure du sac recalcule la CA et rend l’ancienne', () => {
     let p = depart();
     const pip = heros(p, 'pip');
     const avant = pip.fiche.ca;
-    expect(equipementDe(pip).armes.length).toBeGreaterThan(0);
+    expect(porte(p, 'pip')['j1.droite']).toBeDefined();
     p = donner(p, 'cotte-de-mailles');
     const res = moteur.executer(p, { type: 'equiper', objet: 'cotte-de-mailles', personnage: 'pip' });
     expect(res.refus).toBeUndefined();
     p = res.partie;
     expect(heros(p, 'pip').fiche.ca).toBeGreaterThan(avant);
     expect(heros(p, 'pip').fiche.equipement?.armure).toBe('cotte-de-mailles');
-    expect(heros(p, 'pip').equipe?.armure).toBe('cotte-de-mailles');
+    expect(porte(p, 'pip').torse).toBe('cotte-de-mailles');
     expect(p.etat.inventaire['cotte-de-mailles']).toBeUndefined();
     // L'armure de cuir de départ revient dans le sac.
-    const ancienne = equipementDe(pip).armure!;
+    const ancienne = equipementDe(heros(depart(), 'pip')).emplacements.torse!;
     expect(p.etat.inventaire[ancienne]).toBe(1);
     expect(res.evenements).toContainEqual({ type: 'equipementChange', personnage: 'pip', objet: 'cotte-de-mailles', ancien: ancienne });
     // Et la fiche d'origine n'a pas été touchée.
@@ -96,7 +101,7 @@ describe('module Équipement', () => {
     let p = depart();
     const bran = heros(p, 'bran');
     const avant = bran.fiche.ca;
-    const bouclier = equipementDe(bran).bouclier;
+    const bouclier = bouclierActif(moteur.ctx, equipementDe(bran));
     if (bouclier) {
       p = moteur.executer(p, { type: 'retirerEquipement', objet: bouclier, personnage: 'bran' }).partie;
       expect(heros(p, 'bran').fiche.ca).toBe(avant - 2);
@@ -104,106 +109,101 @@ describe('module Équipement', () => {
       p = moteur.executer(p, { type: 'equiper', objet: bouclier, personnage: 'bran' }).partie;
       expect(heros(p, 'bran').fiche.ca).toBe(avant);
     } else {
+      // Bran porte une arme à deux mains : il range d'abord celle du jeu en main pour libérer la main gauche.
       p = donner(p, 'bouclier');
+      const droite = porte(p, 'bran')['j1.droite'];
+      if (droite && estDeuxMains(moteur.ctx, droite)) p = moteur.executer(p, { type: 'retirerEquipement', personnage: 'bran', emplacement: 'j1.droite' }).partie;
       p = moteur.executer(p, { type: 'equiper', objet: 'bouclier', personnage: 'bran' }).partie;
       expect(heros(p, 'bran').fiche.ca).toBe(avant + 2);
     }
   });
 
   it('une arme magique du monde repose sur une arme du SRD, garde son nom et ses bonus en combat', () => {
-    let p = depart();
-    // Bran a déjà son compte d'armes : il en range une.
-    const gardee = equipementDe(heros(p, 'bran')).armes;
-    if (gardee.length >= 3) p = moteur.executer(p, { type: 'retirerEquipement', objet: gardee[0]!, personnage: 'bran' }).partie;
+    let p = donner(depart(), 'pdf-lame-de-fer-gris');
     const sansLame = heroCombatDe(heros(p, 'bran'));
-    p = donner(p, 'pdf-lame-de-fer-gris');
-    const res = moteur.executer(p, { type: 'equiper', objet: 'pdf-lame-de-fer-gris', personnage: 'bran' });
+    const res = moteur.executer(p, { type: 'equiper', objet: 'pdf-lame-de-fer-gris', personnage: 'bran', emplacement: 'j1.droite' });
     expect(res.refus).toBeUndefined();
     p = res.partie;
     const bran = heros(p, 'bran');
-    expect(bran.equipe?.armes).toContain('pdf-lame-de-fer-gris');
+    const eq = equipementDe(bran);
+    expect(eq.emplacements['j1.droite']).toBe('pdf-lame-de-fer-gris');
     expect(bran.fiche.equipement?.armes).toContain('epee-longue');
-    expect(bran.equipe?.bonusArmes?.['epee-longue']).toMatchObject({ attaque: 1, degats: 1, nom: dm.objets.get('pdf-lame-de-fer-gris')!.nom });
-    const lame = heroDepuisFiche(bran.fiche, heroCombatDe(bran).kit, srd, { x: 1, y: 1 }).attaques.find((a) => a.id === 'epee-longue')!;
+    expect(eq.bonus?.['j1.droite']).toMatchObject({ attaque: 1, degats: 1, nom: dm.objets.get('pdf-lame-de-fer-gris')!.nom });
+    const kit = heroCombatDe(bran).kit;
+    const lame = heroDepuisFiche(bran.fiche, kit, srd, { x: 1, y: 1 }).attaques.find((a) => a.id === 'epee-longue')!;
     const ordinaire = heroDepuisFiche(sansLame.fiche, { armes: [{ id: 'epee-longue' }] }, srd, { x: 1, y: 1 }).attaques.find((a) => a.id === 'epee-longue')!;
     expect(lame.nom).toContain(dm.objets.get('pdf-lame-de-fer-gris')!.nom);
-    // Lame magique et épée ordinaire de même base : chacune garde ses propres valeurs.
-    const deux = heroCombatDe({ ...bran, fiche: { ...bran.fiche, equipement: { ...bran.fiche.equipement!, armes: ['epee-longue', 'epee-longue'] } }, equipe: { ...bran.equipe!, bonusEmplacements: [bran.equipe!.bonusArmes!['epee-longue']!, null] } });
-    const attaques = heroDepuisFiche(bran.fiche, deux.kit, srd, { x: 1, y: 1 }).attaques.filter((a) => a.id.startsWith('epee-longue'));
-    expect(attaques.map((a) => a.id)).toEqual(['epee-longue', 'epee-longue-2']);
-    expect(attaques[0]!.bonusAttaque).toBe(attaques[1]!.bonusAttaque + 1);
     expect(lame.bonusAttaque).toBe(ordinaire.bonusAttaque + 1);
     expect(lame.degats[0]!.bonus).toBe(ordinaire.degats[0]!.bonus + 1);
   });
 
-  it('les limites : six armes au plus, un objet qui ne s’équipe pas, un héros inconnu, un héros hors de combat', () => {
-    let p = depart();
-    const armesDeDepart = equipementDe(heros(p, 'pip')).armes.length;
-    const armes = ['epee-longue', 'javeline', 'hachette', 'lance', 'arbalete-legere'];
-    for (const a of armes) p = donner(p, a);
-    p = donner(p, 'rations');
-    let refus = '';
-    for (const a of armes) {
-      const res = moteur.executer(p, { type: 'equiper', objet: a, personnage: 'pip' });
-      if (res.refus) refus = res.refus;
-      else p = res.partie;
-    }
-    // Pip part avec peu d'armes (kit allégé) : on en équipe jusqu'à six, le reste demeure dans le sac.
-    expect(armesDeDepart).toBeLessThan(6);
-    expect(equipementDe(heros(p, 'pip')).armes).toHaveLength(6);
-    expect(refus).toMatch(/6 armes/);
-    const restantes = Object.keys(p.etat.inventaire).filter((id) => armes.includes(id));
-    expect(restantes).toHaveLength(armes.length - (6 - armesDeDepart));
+  it('deux armes de même base, l’une magique : chacune garde ses valeurs (main droite et main gauche Légères)', () => {
+    const objets = new Map(dm.objets);
+    objets.set('test-dague-magique', { id: 'test-dague-magique', nom: 'Dague aiguë', categorie: 'arme', rarete: 'peu-commun', valeurPo: 100, resume: 'Une dague +1.', base: 'dague', bonus: { attaque: 1, degats: 1 }, magique: true, effets: [], attunement: false });
+    const m = creerMoteur({ dm: { ...dm, objets }, srd }, [...MODULES_STANDARD, don]);
+    let p = m.executer(m.nouvellePartie(groupe(), { graine: 4, niveau: 3 }), { type: 'commencer' }).partie;
+    for (const o of ['dague', 'test-dague-magique']) p = m.executer(p, { type: 'donner', objet: o, quantite: 1 }).partie;
+    p = m.executer(p, { type: 'equiper', objet: 'dague', personnage: 'pip', emplacement: 'j1.droite' }).partie;
+    const res = m.executer(p, { type: 'equiper', objet: 'test-dague-magique', personnage: 'pip', emplacement: 'j1.gauche' });
+    expect(res.refus).toBeUndefined();
+    const pip = heros(res.partie, 'pip');
+    expect(equipementDe(pip).armesActives).toEqual(['j1.droite', 'j1.gauche']);
+    const attaques = heroDepuisFiche(pip.fiche, heroCombatDe(pip).kit, srd, { x: 1, y: 1 }).attaques.filter((a) => a.id.startsWith('dague') && !a.id.includes('lancer'));
+    expect(attaques.map((a) => a.id)).toEqual(['dague', 'dague-2']);
+    expect(attaques[1]!.bonusAttaque).toBe(attaques[0]!.bonusAttaque + 1);
+  });
+
+  it('un objet qui ne s’équipe pas, un héros inconnu, un héros hors de combat', () => {
+    let p = donner(depart(), 'rations');
     expect(moteur.executer(p, { type: 'equiper', objet: 'rations', personnage: 'pip' }).refus).toMatch(/ne s'équipe pas/);
-    expect(moteur.executer(p, { type: 'equiper', objet: restantes[0]!, personnage: 'personne' }).refus).toMatch(/Aucun héros/);
+    p = donner(p, 'epee-longue');
+    expect(moteur.executer(p, { type: 'equiper', objet: 'epee-longue', personnage: 'personne' }).refus).toMatch(/Aucun héros/);
     const blesse = donner(depart(), 'cotte-de-mailles');
     heros(blesse, 'pip').pv = 0;
     expect(moteur.executer(blesse, { type: 'equiper', objet: 'cotte-de-mailles', personnage: 'pip' }).refus).toMatch(/hors de combat/);
   });
 
-  it('trois objets magiques harmonisés au plus, cinq parures au plus ; les parures du Val se portent', () => {
-    const anneau = (id: string, attunement: boolean) => ({
+  it('trois objets magiques harmonisés au plus, tous emplacements confondus ; deux anneaux, pas trois ; les parures du Val se portent', () => {
+    const objet = (id: string, categorie: 'anneau' | 'bijou' | 'vetement', attunement: boolean, emplacement?: 'cou' | 'tete') => ({
       id,
-      nom: `Anneau ${id}`,
-      categorie: 'anneau' as const,
+      nom: `Objet ${id}`,
+      categorie,
       rarete: 'rare' as const,
       valeurPo: 100,
-      resume: 'Un anneau.',
+      resume: 'Un objet.',
       magique: true,
       effets: [],
       attunement,
+      ...(emplacement ? { emplacement } : {}),
     });
     const objets = new Map(dm.objets);
-    for (let i = 1; i <= 4; i++) objets.set(`test-anneau-${i}`, anneau(`test-anneau-${i}`, true));
-    objets.set('test-anneau-libre', anneau('test-anneau-libre', false));
+    for (const o of [objet('test-anneau-1', 'anneau', true), objet('test-anneau-2', 'anneau', true), objet('test-anneau-3', 'anneau', false), objet('test-collier', 'bijou', true, 'cou'), objet('test-casque', 'vetement', true, 'tete')]) objets.set(o.id, o);
     const m = creerMoteur({ dm: { ...dm, objets }, srd }, [...MODULES_STANDARD, don]);
     let p = m.executer(m.nouvellePartie(groupe(), { graine: 5, niveau: 3 }), { type: 'commencer' }).partie;
-    for (const id of ['test-anneau-1', 'test-anneau-2', 'test-anneau-3', 'test-anneau-4', 'test-anneau-libre'])
-      p = m.executer(p, { type: 'donner', objet: id, quantite: 1 }).partie;
-    for (const i of [1, 2, 3]) {
-      const res = m.executer(p, { type: 'equiper', objet: `test-anneau-${i}`, personnage: 'hilda' });
-      expect(res.refus).toBeUndefined();
+    for (const id of ['test-anneau-1', 'test-anneau-2', 'test-anneau-3', 'test-collier', 'test-casque']) p = m.executer(p, { type: 'donner', objet: id, quantite: 1 }).partie;
+    for (const id of ['test-anneau-1', 'test-anneau-2', 'test-collier']) {
+      const res = m.executer(p, { type: 'equiper', objet: id, personnage: 'hilda' });
+      expect(res.refus, id).toBeUndefined();
       p = res.partie;
     }
-    expect(m.executer(p, { type: 'equiper', objet: 'test-anneau-4', personnage: 'hilda' }).refus).toMatch(/harmonisé/);
-    // Un objet sans harmonisation se porte encore ; un autre héros peut prendre le quatrième.
-    expect(m.executer(p, { type: 'equiper', objet: 'test-anneau-libre', personnage: 'hilda' }).refus).toBeUndefined();
-    expect(m.executer(p, { type: 'equiper', objet: 'test-anneau-4', personnage: 'pip' }).refus).toBeUndefined();
-    // Les parures du Val : le lorgnon de l'archiviste (harmonisé) se porte, la CA ne change pas.
+    // Un quatrième objet harmonisé (le casque) est refusé ; celui qui ne l'est pas remplace un anneau (deux doigts seulement).
+    expect(m.executer(p, { type: 'equiper', objet: 'test-casque', personnage: 'hilda' }).refus).toMatch(/harmonisé/);
+    const remplace = m.executer(p, { type: 'equiper', objet: 'test-anneau-3', personnage: 'hilda' });
+    expect(remplace.refus).toBeUndefined();
+    expect(Object.values(equipementDe(heros(remplace.partie, 'hilda')).emplacements).filter((id) => id?.startsWith('test-anneau'))).toHaveLength(2);
+    // Un autre héros peut prendre le casque.
+    expect(m.executer(p, { type: 'equiper', objet: 'test-casque', personnage: 'pip' }).refus).toBeUndefined();
+    // Les parures du Val : le lorgnon de l'archiviste (harmonisé) se porte à la tête, la CA ne change pas.
     let q = donner(depart(), 'cry-lorgnon-de-l-archiviste');
     const ca = heros(q, 'pip').fiche.ca;
     q = moteur.executer(q, { type: 'equiper', objet: 'cry-lorgnon-de-l-archiviste', personnage: 'pip' }).partie;
-    expect(equipementDe(heros(q, 'pip')).portes).toEqual(['cry-lorgnon-de-l-archiviste']);
+    expect(porte(q, 'pip').tete).toBe('cry-lorgnon-de-l-archiviste');
     expect(heros(q, 'pip').fiche.ca).toBe(ca);
   });
 
   it('une cuirasse magique du monde donne la CA de son armure du SRD plus son bonus', () => {
     let p = donner(depart(), 'hf-cuirasse-de-fonte-grise');
-    const base = caAvec(
-      heros(p, 'bran').fiche.defense!,
-      srd.armures.get('cuirasse'),
-      !!equipementDe(heros(p, 'bran')).bouclier && heros(p, 'bran').fiche.formationArmures.includes('bouclier'),
-    );
+    const base = caAvec(heros(p, 'bran').fiche.defense!, srd.armures.get('cuirasse'), !!bouclierActif(moteur.ctx, equipementDe(heros(p, 'bran'))) && heros(p, 'bran').fiche.formationArmures.includes('bouclier'));
     p = moteur.executer(p, { type: 'equiper', objet: 'hf-cuirasse-de-fonte-grise', personnage: 'bran' }).partie;
     expect(heros(p, 'bran').fiche.ca).toBe(base + 1);
     expect(heros(p, 'bran').fiche.equipement?.armure).toBe('cuirasse');
@@ -226,12 +226,12 @@ describe('module Équipement', () => {
   });
 
   it('la grille montre ce que porte chaque héros, avec ses actions ; la charge du groupe est affichée', () => {
-    let p = donner(depart(), 'cotte-de-mailles');
-    const porte = grille(p).elements.filter((e) => e.porteur);
-    expect(porte.length).toBeGreaterThan(6);
-    expect(new Set(porte.map((e) => e.porteur!.id))).toEqual(new Set(p.groupe.map((a) => a.id)));
-    expect(porte.every((e) => e.groupe.id.startsWith('porte:'))).toBe(true);
-    const unePorte = porte.find((e) => e.porteur!.id === 'bran')!;
+    const p = donner(depart(), 'cotte-de-mailles');
+    const portes = grille(p).elements.filter((e) => e.porteur);
+    expect(portes.length).toBeGreaterThan(6);
+    expect(new Set(portes.map((e) => e.porteur!.id))).toEqual(new Set(p.groupe.map((a) => a.id)));
+    expect(portes.every((e) => e.groupe.id.startsWith('porte:'))).toBe(true);
+    const unePorte = portes.find((e) => e.porteur!.id === 'bran')!;
     const actions = moteur.propositions(p).filter((x) => x.element?.id === unePorte.id);
     expect(actions.map((x) => x.libelle)).toEqual(['Retirer']);
     // Dans le sac : « Équiper… » avec le choix du héros et ce que devient sa CA.
@@ -244,17 +244,12 @@ describe('module Équipement', () => {
     expect(charge.valeur).toMatch(/\d.* \/ \d/);
   });
 
-  it('équiper et retirer en boucle ne perd ni ne crée aucun objet, et la CA suit toujours l’équipement', () => {
+  it('équiper et retirer en boucle ne perd ni ne crée aucun objet, la CA suit l’équipement, et les mains restent cohérentes', () => {
     let p = depart();
-    for (const o of ['cotte-de-mailles', 'bouclier', 'epee-longue', 'dague', 'arc-court']) p = donner(p, o);
-    const total = (x: Partie) =>
-      Object.values(x.etat.inventaire).reduce((n, q) => n + q, 0) +
-      x.groupe.reduce(
-        (n, h) => n + (equipementDe(h).armure ? 1 : 0) + (equipementDe(h).bouclier ? 1 : 0) + equipementDe(h).armes.length + equipementDe(h).portes.length,
-        0,
-      );
+    for (const o of ['cotte-de-mailles', 'bouclier', 'epee-longue', 'dague', 'arc-court', 'epee-a-deux-mains', 'dague', 'cry-lorgnon-de-l-archiviste']) p = donner(p, o);
+    const total = (x: Partie) => Object.values(x.etat.inventaire).reduce((n, q) => n + q, 0) + x.groupe.reduce((n, h) => n + objetsPortes(equipementDe(h)).length, 0);
     const initial = total(p);
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 120; i++) {
       const jouables = moteur.propositions(p).filter((x) => x.ordre && (x.ordre.type === 'equiper' || x.ordre.type === 'retirerEquipement') && !x.desactivee);
       if (!jouables.length) break;
       const x = jouables[(i * 7 + 3) % jouables.length]!;
@@ -268,10 +263,16 @@ describe('module Équipement', () => {
     }
     for (const h of p.groupe) {
       const e = equipementDe(h);
-      const armure = e.armure ? srd.armures.get(e.armure) : undefined;
-      const attendu = caAvec(h.fiche.defense!, armure, !!e.bouclier && h.fiche.formationArmures.includes('bouclier'), 0);
+      const torse = e.emplacements.torse;
+      const armure = torse ? srd.armures.get(torse) : undefined;
+      const attendu = caAvec(h.fiche.defense!, armure, !!bouclierActif(moteur.ctx, e) && h.fiche.formationArmures.includes('bouclier'), 0);
       expect(h.fiche.ca, h.nom).toBe(attendu);
-      expect(e.armes.length).toBeLessThanOrEqual(6);
+      // Un objet par emplacement, jamais de bouclier avec une arme à deux mains, jamais de main gauche sans main droite Légère.
+      for (const jeu of ['j1', 'j2'] as const) {
+        const [d, g] = [e.emplacements[`${jeu}.droite`], e.emplacements[`${jeu}.gauche`]];
+        if (estDeuxMains(moteur.ctx, d)) expect(g, `${h.nom} : arme à deux mains et main gauche pleine`).toBeUndefined();
+      }
+      expect(Object.keys(e.emplacements).every((s) => (EMPLACEMENTS as readonly string[]).includes(s))).toBe(true);
     }
   });
 });

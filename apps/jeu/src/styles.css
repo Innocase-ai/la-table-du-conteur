@@ -7705,10 +7705,7 @@ kbd {
   min-height: 0;
   overflow: auto;
   display: grid;
-  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-  grid-template-areas:
-    'identite identite'
-    'equipement fiche';
+  grid-template-columns: minmax(0, 1fr);
   gap: 10px;
   align-content: start;
   padding-right: 6px;
@@ -7717,12 +7714,10 @@ kbd {
 }
 
 .feuille-corps > .fiche-perso {
-  grid-area: fiche;
-  grid-template-columns: 250px 250px minmax(0, 1fr);
+  grid-template-columns: 300px 260px minmax(0, 1fr);
 }
 
 .feuille-identite {
-  grid-area: identite;
   display: flex;
   gap: 14px;
   align-items: center;
@@ -7771,11 +7766,6 @@ kbd {
   color: var(--texte-faible);
 }
 
-.feuille-equipement {
-  grid-area: equipement;
-  align-self: start;
-}
-
 .feuille-liste {
   list-style: none;
   margin: 0 0 8px;
@@ -7822,13 +7812,6 @@ kbd {
 }
 
 @media (max-width: 1100px) {
-  .feuille-corps {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'identite'
-      'equipement'
-      'fiche';
-  }
   .feuille-corps > .fiche-perso {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -7955,23 +7938,6 @@ kbd {
   .sommeil-voile {
     transition: none;
   }
-}
-
-/* Le bouton « Inventaire » de la feuille de personnage, à droite de l'identité. */
-.feuille-inventaire {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  align-self: center;
-  margin-left: auto;
-  padding: 10px 18px;
-  white-space: nowrap;
-}
-
-.feuille-inventaire small {
-  font-size: 11px;
-  opacity: 0.75;
 }
 
 /* L'écran de crochetage : le crochet (ou le pied-de-biche) en grand, un anneau qui se vide, puis le résultat. */
@@ -9007,3 +8973,376 @@ kbd {
 .cout-gratuit { --accent: var(--cout-gratuit); }
 .cout-elan { --accent: var(--cout-elan); }
 .cout-reaction { --accent: var(--cout-reaction); }
+
+/* --- Feuille de personnage et inventaire (onglet Équipement) --- */
+.feuille-onglets {
+  display: flex;
+  gap: 4px;
+}
+
+.feuille-onglets button {
+  padding: 6px 14px;
+  border: 1px solid var(--bord);
+  border-radius: 8px 8px 0 0;
+  background: transparent;
+  color: var(--texte-doux);
+  font-family: var(--titre);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.feuille-onglets button.actif {
+  border-color: var(--or);
+  color: var(--or-vif);
+  background: rgba(212, 174, 102, 0.1);
+}
+
+.feuille-onglets small {
+  font-family: var(--texte-police, inherit);
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.feuille-resume-sac {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--texte-doux);
+}
+
+.feuille-resume-sac .ton-fort strong {
+  color: var(--or-vif);
+}
+
+.feuille-resume-sac .ton-danger strong {
+  color: var(--rouge);
+}
+
+.feuille-corps.feuille-equipement {
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.inv-corps {
+  display: grid;
+  grid-template-columns: minmax(0, 470px) minmax(0, 1fr) minmax(0, 340px);
+  gap: 10px;
+  min-height: 0;
+}
+
+.inv-corps > section,
+.inv-corps > aside {
+  min-height: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bord-clair) transparent;
+}
+
+.inv-sac.depot {
+  outline: 2px dashed var(--or-vif);
+  outline-offset: -4px;
+}
+
+.inv-sac h3 small {
+  color: var(--or-vif);
+  font-family: inherit;
+}
+
+.inv-fiche {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inv-consigne {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--texte-doux);
+}
+
+.inv-titre-case {
+  margin: 0;
+  font-family: var(--titre);
+  color: var(--or-vif);
+}
+
+.inv-candidats h4 {
+  margin: 0 0 4px;
+}
+
+.inv-combat {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--bord);
+  font-size: 12.5px;
+}
+
+.inv-combat h4 {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin: 0 0 4px;
+}
+
+.inv-combat h4 span {
+  color: var(--or-vif);
+  font-weight: 600;
+}
+
+.inv-combat ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* La poupée : portrait au centre, cases de part et d'autre, jeux d'armes sous le portrait. */
+.poupee {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poupee-silhouette {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 84px;
+  gap: 8px;
+  align-items: start;
+}
+
+.poupee-colonne {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.poupee-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.poupee-portrait {
+  padding: 6px;
+  border: 1px solid var(--bord-clair);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 50% 30%, rgba(212, 174, 102, 0.14), transparent 70%);
+}
+
+.poupee-case {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+  min-height: 78px;
+  padding: 4px;
+  border: 1px dashed var(--bord);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--texte-faible);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+
+.poupee-case.pleine {
+  border-style: solid;
+  border-color: var(--bord-clair);
+  color: var(--texte);
+}
+
+.poupee-case.pleine[draggable='true'] {
+  cursor: grab;
+}
+
+.poupee-case.choisie {
+  outline: 2px solid var(--or-vif);
+}
+
+.poupee-case.bloquee {
+  opacity: 0.45;
+  cursor: help;
+}
+
+/* Un objet du sac en main : les cases qui l'acceptent s'allument, les autres s'effacent. */
+.poupee-case.possible {
+  border: 1px solid #7fc97f;
+  box-shadow: 0 0 10px rgba(127, 201, 127, 0.45);
+  opacity: 1;
+}
+
+.poupee-case.refusee {
+  border-color: rgba(200, 90, 80, 0.7);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.poupee-case.eteinte {
+  opacity: 0.35;
+}
+
+.poupee-case img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: brightness(1.25);
+}
+
+.poupee-icone {
+  font-size: 26px;
+  line-height: 46px;
+  opacity: 0.55;
+}
+
+.poupee-nom {
+  max-width: 100%;
+  font-size: 11px;
+  line-height: 1.15;
+  text-align: center;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.poupee-magie {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+  color: var(--or-vif);
+  font-size: 12px;
+}
+
+.poupee-quantite {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  font-size: 12px;
+  color: var(--or-vif);
+}
+
+.poupee-delta {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.poupee-delta.plus {
+  color: #8fd48f;
+}
+
+.poupee-delta.moins {
+  color: var(--rouge);
+}
+
+.poupee-jeux {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.poupee-jeu {
+  padding: 5px 6px 6px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+}
+
+.poupee-jeu.actif {
+  border-color: var(--or-vif);
+  background: rgba(255, 210, 120, 0.06);
+}
+
+.poupee-jeu-titre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 12.5px;
+}
+
+.poupee-en-main {
+  color: var(--or-vif);
+  font-size: 12px;
+}
+
+.poupee-mains {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.poupee-aide {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--texte-faible);
+}
+
+.poupee-refus {
+  flex-basis: 100%;
+  font-size: 12px;
+  color: var(--rouge);
+}
+
+.feuille-liste li:has(.poupee-refus) {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1200px) {
+  .inv-corps {
+    grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+  }
+  .inv-fiche {
+    grid-column: 1 / -1;
+  }
+  .feuille-corps.feuille-equipement {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .inv-corps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Petits écrans en hauteur : la feuille resserre ses cases pour que la poupée tienne. */
+@media (max-height: 820px) {
+  .feuille-identite {
+    padding: 6px 12px;
+  }
+  .feuille-identite-texte h3 {
+    font-size: 18px;
+  }
+  .poupee-case {
+    min-height: 62px;
+  }
+  .poupee-case img {
+    width: 38px;
+    height: 38px;
+  }
+  .poupee-icone {
+    font-size: 22px;
+    line-height: 36px;
+  }
+  .poupee-portrait .portrait {
+    width: 112px !important;
+    height: 140px !important;
+  }
+  .poupee-silhouette {
+    grid-template-columns: 74px minmax(0, 1fr) 74px;
+  }
+}

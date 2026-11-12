@@ -56,7 +56,7 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
     nouvellePartie(groupe, options = {}) {
       const { dm } = ctx;
       const niveau = options.niveau ?? dm.monde.niveaux.min;
-      return {
+      const partie: Partie = {
         version: VERSION_PARTIE,
         monde: dm.monde.id,
         graine: (options.graine ?? Math.floor(Math.random() * 2 ** 31)) >>> 0,
@@ -66,6 +66,8 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         modules: Object.fromEntries(modules.filter((m) => m.etatInitial).map((m) => [m.id, m.etatInitial!(ctx)])),
         journal: [],
       };
+      for (const mod of modules) mod.demarrer?.(ctx, partie);
+      return partie;
     },
 
     executer(partie, ordre) {
@@ -146,6 +148,7 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
       // Un pack ajouté depuis la sauvegarde apporte des entités nouvelles : on leur donne leur état de départ, sans toucher au reste.
       completerEtat(p.etat, ctx.dm);
       for (const mod of modules) if (mod.etatInitial && !(mod.id in p.modules)) p.modules[mod.id] = mod.etatInitial(ctx);
+      for (const mod of modules) mod.apresChargement?.(ctx, p);
       return p;
     },
   };

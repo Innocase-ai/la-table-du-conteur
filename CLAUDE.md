@@ -75,4 +75,4 @@ Les clés vont dans `.env` (ignoré par git ; modèle : `.env.example`, variable
 
 ## Ce qui reste à faire
 
-Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; glisser-déposer d'objets ; essai réel payant de la parole libre du Val (fiches de savoir et canon.json écrits le 07/11) ; monstres puissants pour les escarmouches de niveau 5 ; **règles SRD : voir `docs/AUDIT-REGLES-SRD.md` §7** (aptitudes de l'Ensorceleur et du Druide, actions de monstre sans effet, états manquants, armes Légère et Polyvalente, grandes créatures).
+Écran Options pour la clé du joueur ; récits d'arrivée du conteur ; comparaison de modèles ; essai réel payant de la parole libre du Val (fiches de savoir et canon.json écrits le 07/11) ; monstres puissants pour les escarmouches de niveau 5 ; **règles SRD : voir `docs/AUDIT-REGLES-SRD.md` §7** (aptitudes de l'Ensorceleur et du Druide, actions de monstre sans effet, états manquants, armes Légère et Polyvalente, grandes créatures).

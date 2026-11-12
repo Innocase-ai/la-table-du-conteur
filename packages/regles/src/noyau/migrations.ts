@@ -15,6 +15,9 @@ const MIGRATIONS: Record<number, (p: Brute) => void> = {
       a.emplacements ??= max.emplacements;
     }
   },
+  // 2 → 3 : l'équipement passe en emplacements (tête, torse, mains des jeux d'armes…). La conversion a besoin du catalogue du SRD :
+  // le module Équipement la fait au chargement (`apresChargement`), avec ce qui ne trouve pas de place renvoyé dans le sac.
+  2: () => undefined,
 };
 
 export function migrer(p: Brute): Brute {

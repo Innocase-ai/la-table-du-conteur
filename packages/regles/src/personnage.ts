@@ -5,23 +5,29 @@ import { etatDurableMax, RECUPERATION, type EtatDurable } from './combat/creatio
 import type { HeroCombat } from './combat/prototype';
 import { kitDepuisFiche } from './creation/kit';
 import { lancer, type Generateur } from './des';
+import { estAncienEquipement, rangerEquipement, type AncienEquipement } from './equipement/ranger';
+import type { Emplacement, Jeu } from './equipement/emplacements';
 import type { ChoixPersonnage, Fiche } from './fiche';
 
+/** Les bonus d'une arme magique (ou le nom propre d'une arme du monde), posés sur l'emplacement qui la tient. */
+export interface BonusArme {
+  attaque: number;
+  degats: number;
+  nom?: string;
+}
+
 /**
- * Ce que porte un héros, en identifiants d'objets (catalogue du SRD, commun à tous les mondes, ou objets du monde). Le SRD
- * y est la référence : une arme ou une armure du monde repose sur une arme ou une armure du SRD (`base`).
+ * Ce que porte un héros, emplacement par emplacement, en identifiants d'objets (catalogue du SRD, commun à tous les mondes, ou objets
+ * du monde). Un seul objet par emplacement. Deux jeux d'armes (I et II), dont un seul est en main : `jeuActif`. Le SRD est la
+ * référence : une arme ou une armure du monde repose sur une arme ou une armure du SRD (`base`).
  */
 export interface Equipement {
-  armure?: string;
-  bouclier?: string;
-  /** Armes portées (six au plus), que le combat propose. */
-  armes: string[];
-  /** Parures et objets magiques portés (cinq au plus, dont trois harmonisés). */
-  portes: string[];
-  /** Bonus des armes magiques portées, par arme du SRD sur laquelle elles reposent ; recalculé quand on équipe. */
-  bonusArmes?: Record<string, { attaque: number; degats: number; nom?: string }>;
-  /** Les mêmes bonus, arme par arme (dans l'ordre de `armes`) : deux armes de même base ne se confondent pas. */
-  bonusEmplacements?: ({ attaque: number; degats: number; nom?: string } | null)[];
+  emplacements: Partial<Record<Emplacement, string>>;
+  jeuActif: Jeu;
+  /** Bonus des armes magiques portées, par emplacement ; recalculé quand on équipe. */
+  bonus?: Partial<Record<Emplacement, BonusArme>>;
+  /** Les mains du jeu actif qui tiennent une arme (droite d'abord) : dans l'ordre des armes de la fiche, pour leur donner leurs bonus ; recalculé quand on équipe. */
+  armesActives?: Emplacement[];
 }
 
 export interface Personnage extends EtatDurable {
@@ -33,19 +39,24 @@ export interface Personnage extends EtatDurable {
   outils: string[];
   /** Portrait de galerie choisi par le joueur (`elfe-f-2`). */
   portrait?: string;
-  /** Ce qu'il porte ; absent tant qu'on n'a rien changé à l'équipement de départ (voir `equipementDe`). */
-  equipe?: Equipement;
+  /** Ce qu'il porte ; absent tant qu'on n'a rien changé à l'équipement de départ (voir `equipementDe`). Peut être l'ancienne forme en listes dans une vieille sauvegarde : la partie la convertit au chargement. */
+  equipe?: Equipement | AncienEquipement;
   /** Ses choix de création, pour le faire monter de niveau en gardant ce que le joueur a choisi. */
   choix?: ChoixPersonnage;
   /** Le niveau qu'il vient d'atteindre, tant que ses nouveaux choix (amélioration, sorts…) n'ont pas été revus par le joueur. */
   monteeEnAttente?: number;
 }
 
-/** L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ. */
+/**
+ * L'équipement d'un héros : celui qu'on lui a donné, sinon son équipement de départ rangé dans les emplacements. Sans le catalogue
+ * on ne connaît pas les mains qu'une arme demande : ce rangement de secours suit l'ordre des armes ; la partie range avec le SRD
+ * (`moteur.nouvellePartie` et `charger`), si bien qu'il ne sert qu'à un héros hors partie.
+ */
 export function equipementDe(p: Personnage): Equipement {
-  if (p.equipe) return p.equipe;
+  if (p.equipe && !estAncienEquipement(p.equipe)) return p.equipe;
   const e = p.fiche.equipement;
-  return { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
+  const ancien: AncienEquipement = p.equipe && estAncienEquipement(p.equipe) ? p.equipe : { armure: e?.armure, bouclier: e?.bouclier ? 'bouclier' : undefined, armes: [...(e?.armes ?? [])], portes: [] };
+  return rangerEquipement(ancien).equipement;
 }
 
 const NOMS_RESSOURCES: Record<string, string> = { rages: 'rages', secondSouffle: 'second souffle', fougue: 'fougue', conduit: 'conduit divin', desVie: 'dés de vie', impositionDesMains: 'imposition des mains', inspiration: 'inspiration bardique', chatimentGratuit: 'châtiment divin gratuit', credo: 'points de Credo', metabolisme: 'métabolisme surnaturel' };
@@ -62,9 +73,10 @@ export function personnageDepuisFiche(fiche: Fiche, options: { id: string; portr
 export function heroCombatDe(p: Personnage): HeroCombat {
   const kit = kitDepuisFiche(p.fiche);
   // Les armes magiques gardent leur nom et leurs bonus.
+  const eq = p.equipe && !estAncienEquipement(p.equipe) ? p.equipe : undefined;
   const armes = kit.armes.map((a, i) => {
-    // Une sauvegarde ancienne n'a que les bonus par arme de base.
-    const bonus = p.equipe?.bonusEmplacements ? p.equipe.bonusEmplacements[i] : p.equipe?.bonusArmes?.[a.id];
+    const main = eq?.armesActives?.[i];
+    const bonus = main ? eq?.bonus?.[main] : undefined;
     return { ...a, ...(bonus ? { bonus, nom: bonus.nom } : {}) };
   });
   return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };

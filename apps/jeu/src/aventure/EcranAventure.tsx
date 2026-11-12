@@ -24,7 +24,7 @@ import { nomFichierPartie, sauvegardeEnEchec, telechargerTexte, type Aventure } 
 import { BoiteDialogue } from './BoiteDialogue';
 import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
-import { FeuillePersonnage } from './FeuillePersonnage';
+import { FeuillePersonnage, type OngletFeuille } from './FeuillePersonnage';
 import { EcranMontee } from './EcranMontee';
 import { EcranQuete } from './EcranQuete';
 import { changementsDeQuetes, parcheminDeQuete, type ChangementQuete } from '../quete-regles';
@@ -46,6 +46,9 @@ import { ageApproximatif, choisirOuverture, texteOuverture, tonDeLAttitude, voix
 import { direOuverture, direParole, taireVoix } from '../voix';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
+
+/** L'onglet du sac (module Inventaire) : il s'affiche dans la feuille de personnage, pas dans la colonne. */
+const ONGLET_SAC = 'Sac';
 
 /** Le moment de la journée, pour l'en-tête (les présences des PNJ, elles, ne distinguent que jour, soir et nuit). */
 const momentLisible = (heure: number) => (heure >= 6 && heure < 12 ? 'matin' : heure >= 12 && heure < 18 ? 'après-midi' : heure >= 18 && heure < 22 ? 'soir' : 'nuit');
@@ -282,13 +285,20 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les encarts se recalculent quand la partie change, pas à chaque frappe dans la saisie du conteur.
   const encarts = useMemo(() => moteur.encarts(partie), [moteur, partie]);
   // Les onglets viennent des modules : « Actions », puis ceux que déclarent encarts et propositions (Sac, Grimoire, Journal…).
-  const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])];
+  // Le sac n'a pas d'onglet : il s'ouvre en grand dans la feuille de personnage (touche I, bouton du sac).
+  const onglets = ['Actions', ...new Set([...encarts.map((e) => e.onglet), ...propositions.flatMap((x) => (x.groupe.onglet ? [x.groupe.onglet] : []))])].filter((o) => o !== ONGLET_SAC);
   const [onglet, setOnglet] = useState('Actions');
   const ongletActif = onglets.includes(onglet) ? onglet : 'Actions';
   // La page plein écran d'un onglet qui a une grille (le sac : touche I).
   const [page, setPage] = useState<{ onglet: string; selection?: string; filtre?: string }>();
   // La feuille de personnage d'un héros (touche C, ou un clic sur le bandeau).
   const [feuille, setFeuille] = useState<string>();
+  const [ongletFeuille, setOngletFeuille] = useState<OngletFeuille>('equipement');
+  /** Ouvre la feuille (et l'inventaire) d'un héros : le premier debout par défaut. */
+  const ouvrirFeuille = (o: OngletFeuille, id?: string) => {
+    setOngletFeuille(o);
+    setFeuille(id ?? feuille ?? partie.groupe.find((h) => h.pv > 0)?.id ?? partie.groupe[0]?.id);
+  };
   // La carte du monde en plein écran (touche M).
   const [carteOuverte, setCarteOuverte] = useState(false);
   const encartsDe = (o: string) => encarts.filter((e) => e.onglet === o);
@@ -311,7 +321,8 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
       if (ev.key === 'Escape' && carteOuverte) return setCarteOuverte(false);
-      if (ev.key.toLowerCase() === 'c' && partie.groupe.length) return setFeuille(partie.groupe.find((h) => h.pv > 0)?.id ?? partie.groupe[0]!.id);
+      if (ev.key.toLowerCase() === 'c' && partie.groupe.length) return ouvrirFeuille('fiche');
+      if (ev.key.toLowerCase() === 'i' && partie.groupe.length) return ouvrirFeuille('equipement');
       if (ev.key === 'Escape' && pageOuverte) return setPage(undefined);
       const e = encarts.find((x) => x.grille?.touche === ev.key.toLowerCase());
       if (e) setPage(pageOuverte?.onglet === e.onglet ? undefined : { onglet: e.onglet });
@@ -599,12 +610,12 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        <BandeauHeros groupe={partie.groupe} onChoisir={setFeuille} onMontee={() => setMontee(true)} />
+        <BandeauHeros groupe={partie.groupe} onChoisir={(id) => ouvrirFeuille(ongletFeuille, id)} onMontee={() => setMontee(true)} />
         <button
           type="button"
           className="aventure-sac"
           title={(scene.inventaire.map((o) => `${o.quantite} × ${o.nom}`).join('\n') || 'Sac vide') + '\n\nOuvrir le sac (I)'}
-          onClick={() => setPage({ onglet: 'Sac' })}
+          onClick={() => ouvrirFeuille('equipement')}
         >
           Sac : {scene.inventaire.reduce((n, o) => n + o.quantite, 0)} objet(s)
           {nouveautes('Sac') > 0 && <span className="onglet-nouveau">{nouveautes('Sac')}</span>}
@@ -633,7 +644,20 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         <PageCarte monde={dm.monde.id} carte={encarts.find((e) => e.carte)!.carte!} groupe={partie.groupe} jouer={jouer} onFermer={() => setCarteOuverte(false)} />
       )}
       {feuille && !sceneNarree && (
-        <FeuillePersonnage ctx={moteur.ctx} partie={partie} heros={feuille} onChoisir={setFeuille} propositions={propositions} jouer={jouer} onFermer={() => setFeuille(undefined)} onInventaire={(selection, filtre) => { setFeuille(undefined); setPage({ onglet: 'Sac', selection, filtre }); }} />
+        <FeuillePersonnage
+          ctx={moteur.ctx}
+          monde={dm.monde.id}
+          partie={partie}
+          heros={feuille}
+          onChoisir={setFeuille}
+          onglet={ongletFeuille}
+          onOnglet={setOngletFeuille}
+          sac={encartsDe(ONGLET_SAC).find((e) => e.grille)}
+          propositions={propositions.filter((x) => x.groupe.onglet === ONGLET_SAC)}
+          jouer={jouer}
+          onCombat={onCombat}
+          onFermer={() => setFeuille(undefined)}
+        />
       )}
       {parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
       {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}

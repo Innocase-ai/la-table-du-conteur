@@ -1,6 +1,7 @@
 // Format d'un monde (une histoire jouable) : lieux, PNJ, objets, trésors, rencontres, énigmes, pièges, quêtes…
 // Un monde est un dossier de fichiers JSON (packages/mondes/<id>/) ; le moteur est le même pour tous les mondes.
 // Ce fichier est la référence du format : voir docs/MONDES.md.
+import { FAMILLES } from '../equipement/emplacements';
 import { z } from 'zod';
 import { Caracteristique, Competence } from '../schemas';
 import { nomsDesRegistres, REGISTRE_INCONNU, resoudreSalutationsCommunes, SALUTATIONS_COMMUNES } from './salutations-communes';
@@ -169,6 +170,8 @@ export const Objet = z.object({
   maudit: z.string().optional(),
   attunement: z.boolean().default(false),
   visuel: z.string().optional(),
+  // Où il se porte (tête, cou, torse, dos, gants, ceinture, pieds, anneau, main) ; sans cela, le moteur le déduit de sa catégorie et de son identifiant (voir equipement/emplacements.ts).
+  emplacement: z.enum(FAMILLES).optional(),
 });
 export type Objet = z.infer<typeof Objet>;
 

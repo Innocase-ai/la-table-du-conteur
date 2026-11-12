@@ -12,7 +12,7 @@ import type { DonneesMonde } from '../monde/schemas';
 import type { Generateur } from '../des';
 
 /** Version du format de sauvegarde ; chaque changement de forme ajoute une migration (noyau/migrations.ts). */
-export const VERSION_PARTIE = 2;
+export const VERSION_PARTIE = 3;
 
 /** Un jet de dés fait par le moteur, montré au joueur tel quel. */
 export interface Jet {
@@ -271,6 +271,10 @@ export interface Module {
   dependances?: string[];
   /** État initial du module dans `partie.modules[id]`. */
   etatInitial?(ctx: ContexteJeu): unknown;
+  /** Prépare la partie qu'on vient de créer (modifie la partie en place) : par exemple range l'équipement de départ des héros. */
+  demarrer?(ctx: ContexteJeu, partie: Partie): void;
+  /** Met à niveau une partie chargée d'une ancienne sauvegarde (modifie la partie en place), après les migrations de version. */
+  apresChargement?(ctx: ContexteJeu, partie: Partie): void;
   commandes?: Record<string, CommandeJeu>;
   /** Réactions aux événements émis par n'importe quel module. */
   reactions?: { [K in TypeEvenement]?: Reaction<K> };

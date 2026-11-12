@@ -85,7 +85,8 @@ function usePreference(cle: string, defaut: string): [string, (v: string) => voi
 // Vignette
 // ---------------------------------------------------------------------------
 
-function Tuile({ monde, e, choisi, legende, heros, onClick }: { monde: string; e: ElementGrille; choisi: boolean; legende: boolean; heros?: Personnage[]; onClick: () => void }) {
+function Tuile({ monde, e, choisi, legende, heros, onClick, glisser }: { monde: string; e: ElementGrille; choisi: boolean; legende: boolean; heros?: Personnage[]; onClick: () => void; glisser?: PropsGrille['glisser'] }) {
+  const glissable = !!glisser?.peut(e);
   const url = useImageElement(monde, e.image, e.imageCommune);
   const porteur = e.porteur ? heros?.find((h) => h.id === e.porteur!.id) : undefined;
   const plusieurs = (e.quantite ?? 1) > 1;
@@ -96,6 +97,14 @@ function Tuile({ monde, e, choisi, legende, heros, onClick }: { monde: string; e
       aria-pressed={choisi}
       title={`${e.titre}${plusieurs ? ` × ${e.quantite}` : ''}${e.magique ? ' — objet magique' : ''}${e.nouveau ? ' (nouveau)' : ''}${e.inconnu ? ' — à découvrir' : ''}`}
       onClick={onClick}
+      draggable={glissable}
+      onDragStart={(ev) => {
+        if (!glissable) return;
+        ev.dataTransfer.setData(glisser!.type, `sac:${e.id}`);
+        ev.dataTransfer.effectAllowed = 'move';
+        glisser!.debut(e);
+      }}
+      onDragEnd={() => glissable && glisser!.fin()}
     >
       <span className="tuile-cadre">
         {url ? <img src={url} alt="" loading="lazy" /> : <Icone id={e.icone} taille={legende ? 40 : 30} />}
@@ -141,9 +150,11 @@ interface PropsGrille {
   onChoisir: (e: ElementGrille) => void;
   /** Les héros du groupe, pour montrer qui porte un élément. */
   heros?: Personnage[];
+  /** Glisser-déposer : les vignettes qu'on peut glisser (type de donnée, début et fin du geste). */
+  glisser?: { type: string; peut: (e: ElementGrille) => boolean; debut: (e: ElementGrille) => void; fin: () => void };
 }
 
-export function GrilleElements({ monde, grille, cle, compact, selection, filtreInitial, focus, onChoisir, heros }: PropsGrille) {
+export function GrilleElements({ monde, grille, cle, compact, selection, filtreInitial, focus, onChoisir, heros, glisser }: PropsGrille) {
   const [critere, setCritere] = usePreference(`tri:${cle}`, 'rangement');
   const [filtre, setFiltre] = useState<string | undefined>(filtreInitial);
   const [recherche, setRecherche] = useState('');
@@ -157,7 +168,7 @@ export function GrilleElements({ monde, grille, cle, compact, selection, filtreI
   const visibles = grille.elements.filter(
     (e) => (compact || !filtre || e.groupe.id === filtre) && (compact || !q || normaliser(`${e.titre} ${e.resume ?? ''} ${e.groupe.titre}`).includes(q)),
   );
-  const tuile = (e: ElementGrille) => <Tuile key={e.id} monde={monde} e={e} choisi={e.id === selection} legende={!compact} heros={heros} onClick={() => onChoisir(e)} />;
+  const tuile = (e: ElementGrille) => <Tuile key={e.id} monde={monde} e={e} choisi={e.id === selection} legende={!compact} heros={heros} onClick={() => onChoisir(e)} glisser={glisser} />;
 
   let contenu: ReactNode;
   if (!grille.elements.length) contenu = <p className="encart-texte">{grille.vide ?? 'Rien ici.'}</p>;

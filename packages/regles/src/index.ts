@@ -1,5 +1,7 @@
 export * from './caracteristiques';
 export * from './des';
+export * from './equipement/emplacements';
+export { estAncienEquipement, rangerEquipement, type AncienEquipement } from './equipement/ranger';
 export * from './donnees';
 export * from './donnees-fichiers';
 export * from './fiche';
