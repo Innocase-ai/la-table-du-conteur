@@ -147,3 +147,27 @@ describe('préparer une rencontre', () => {
     expect(() => preparerRencontre(r, donnees, herosPreTires(donnees))).toThrow(/case\(s\) de départ/);
   });
 });
+
+describe('relever un allié à terre avec une potion de soins', () => {
+  it('la potion vise un allié à 0 PV au contact : il reprend conscience avec les PV rendus ; hors de portée ou plein de PV, pas de cible', () => {
+    const etat = combat([hero('Hilda', 1, 1), hero('Bran', 2, 1), hero('Pip', 7, 1), monstre('ogre', 9, 4, 'ogre')]);
+    const [hilda, bran] = [combattant(etat, 'hilda'), combattant(etat, 'bran')];
+    hilda.ressources.potions = 1;
+    expect(cartesDisponibles(etat, ctx, 'hilda').find((k) => k.id === 'base:potion')!.cibles).toEqual([]); // Hilda est en pleine forme et Bran aussi : personne à soigner
+    infligerDegats(etat, bran, [{ montant: bran.pv, type: 'contondant' }], undefined);
+    expect(bran.pv).toBe(0);
+    expect(aEtat(bran, 'inconscient')).toBe(true);
+    const carte = cartesDisponibles(etat, ctx, 'hilda').find((k) => k.id === 'base:potion')!;
+    expect(carte.cibles).toContain('bran');
+    expect(carte.jouable).toBe(true);
+    // Un allié à terre mais loin (Pip, à 7 cases de Bran) n'a pas de potion à portée ; lui seul est visé quand il est au contact.
+    combattant(etat, 'pip').pv = 0;
+    expect(cartesDisponibles(etat, ctx, 'hilda').find((k) => k.id === 'base:potion')!.cibles).not.toContain('pip');
+    etat.desImposes = [4, 4];
+    expect(executer(etat, ctx, { type: 'jouer', carte: 'base:potion', cibles: ['bran'] }).ok).toBe(true);
+    expect(bran.pv).toBeGreaterThan(0);
+    expect(aEtat(bran, 'inconscient')).toBe(false);
+    expect(hilda.ressources.potions).toBe(0);
+    expect(hilda.tour.bonus).toBe(false);
+  });
+});

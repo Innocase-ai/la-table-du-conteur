@@ -368,8 +368,10 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   if ((r.potions ?? 0) > 0) {
     // Boire une potion ou l'administrer à un allié au contact : une action Bonus (SRD 5.2.1, potion de guérison).
     const cout: CoutCarte = 'bonus';
-    const cibles = [c, ...allies(etat, c)].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
-    res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
+    // Un allié à 0 PV (inconscient, pas mort) peut recevoir la potion : c'est même son usage le plus utile (SRD : on la fait boire à une créature inconsciente).
+    const proches = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite);
+    const cibles = [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
+    res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact, même tombé à 0 PV.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
   }
   const prise = c.etats.find((e) => (e.etat === 'empoigne' || e.etat === 'entrave') && e.evasion);
   if (prise) {
