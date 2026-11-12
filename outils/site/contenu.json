@@ -2,11 +2,11 @@
   "meta": {
     "titre": "La Table du Conteur",
     "sousTitre": "Un jeu de rôle narratif illustré, en français, sur les règles du SRD 5.2.1",
-    "description": "Un jeu de rôle narratif illustré en français : menez de 1 à 6 aventuriers dans des histoires complètes, avec un conteur qui propose et des règles qui décident."
+    "description": "Un jeu de rôle narratif illustré en français : menez de 1 à 6 aventuriers dans des histoires illustrées, avec un conteur qui propose et des règles qui décident."
   },
   "hero": {
     "accroche": "Racontez l'histoire, mais laissez les dés décider.",
-    "paragraphe": "La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires complètes. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence."
+    "paragraphe": "La Table du Conteur vous invite à créer de 1 à 6 aventuriers et à les mener dans des histoires illustrées. Le conteur raconte la scène et répond à vos idées libres. Le jeu, lui, calcule chaque dé, chaque règle et chaque conséquence."
   },
   "chiffres": [
     {
@@ -35,7 +35,7 @@
     },
     {
       "valeur": "1",
-      "libelle": "histoire complète livrée"
+      "libelle": "histoire jouable, en prologue"
     },
     {
       "valeur": "54",
@@ -129,20 +129,20 @@
     },
     {
       "id": "histoires",
-      "titre": "Une histoire complète, une autre en écriture",
-      "accroche": "La Marche d'Ombrefiel se joue de bout en bout, avec sa carte, ses lieux illustrés et ses fins différentes.",
+      "titre": "Un prologue jouable, la suite en écriture",
+      "accroche": "Le prologue de La Marche d'Ombrefiel se joue de bout en bout : sa carte, ses lieux illustrés, ses dilemmes et sa première quête.",
       "paragraphes": [
-        "La Marche d'Ombrefiel (niveaux 1 à 7, pour un groupe de 4 héros, environ 6 heures) : depuis six mois, le fer neuf de la Marche se brise. Du Carrefour d'Aldric à Haute-Garde, le groupe remonte le sabotage jusqu'à ceux qui en profitent, avant l'Échéance du Conseil.",
-        "La Dîme des Roseaux est en cours d'écriture. Elle apparaît dans la liste, marquée comme brouillon, et n'est pas encore une histoire complète.",
-        "Une histoire s’ouvre sur un film d’ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés, et chaque fin a sa propre scène."
+        "La Marche d'Ombrefiel (le prologue : niveaux 1 à 3, environ 6 heures) : depuis six mois, le fer neuf de la Marche se brise. Du Carrefour d'Aldric, le groupe commence à remonter le sabotage.",
+        "La suite de l'histoire est en cours d'écriture, jusqu'à l'Échéance du Conseil. La Dîme des Roseaux, un monde court, est encore en brouillon.",
+        "Une histoire s'ouvre sur un film d'ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés."
       ],
       "points": [
-        "Une histoire complète : La Marche d'Ombrefiel",
-        "Un groupe conseillé de 4 héros, niveaux 1 à 7",
-        "La Dîme des Roseaux : en cours d’écriture",
+        "Un prologue jouable : la zone du Carrefour d'Aldric",
+        "Niveaux 1 à 3, environ 6 heures",
+        "La suite de La Marche : en cours d’écriture",
+        "La Dîme des Roseaux : en brouillon",
         "Un film d’ouverture, avec des images en fondu et une voix",
-        "Une jauge qui rend le temps précieux",
-        "Des choix qui coûtent, et des fins différentes"
+        "Des dilemmes à trancher, et des choix qui coûtent"
       ],
       "images": [
         {
@@ -363,14 +363,15 @@
   "etat": {
     "titre": "Où en est le jeu",
     "paragraphes": [
-      "La Table du Conteur est un prototype jouable, encore en cours de développement. La Marche d'Ombrefiel est livrée complète ; La Dîme des Roseaux est en cours d'écriture.",
+      "La Table du Conteur est un prototype jouable, encore en cours de développement. La Marche d'Ombrefiel est jouable en son prologue ; la suite et La Dîme des Roseaux sont en écriture.",
       "Le conteur IA est à l'essai. L'écran de réglage de votre clé d'API n'est pas encore là.",
       "Une application de bureau est en préparation. Elle gardera la clé d'API du joueur dans le trousseau du système."
     ],
     "points": [
       "Prototype jouable, en cours de développement",
-      "Une histoire complète livrée : La Marche d'Ombrefiel",
-      "La Dîme des Roseaux en cours d’écriture",
+      "Un prologue jouable : La Marche d'Ombrefiel",
+      "La suite de La Marche en cours d’écriture",
+      "La Dîme des Roseaux en brouillon",
       "Le conteur IA est à l'essai",
       "L'écran de réglage de la clé d'API n'est pas encore là",
       "Application de bureau en préparation",
@@ -422,23 +423,39 @@
   "nouveautes": [
     {
       "titre": "La feuille de personnage devient l'inventaire",
-      "texte": "Ouverte en grand : l'équipement sur une silhouette, le sac du groupe à côté, la fiche complète dans un second onglet. Le sac n'est plus dans le panneau latéral."
+      "texte": "Ouverte en grand : l'équipement sur une silhouette, le sac du groupe à côté, la fiche complète dans un second onglet."
     },
     {
-      "titre": "Deux jeux d’armes",
-      "texte": "Un héros porte deux jeux d'armes, dont un seul est en main. En combat, une carte permet d'en changer, gratuitement, une fois par tour."
+      "titre": "Deux jeux d'armes, en combat aussi",
+      "texte": "Un héros porte deux jeux d'armes. En combat, la carte « Changer d'armes » prend l'autre, gratuitement, une fois par tour. La main gauche tient un bouclier ou une arme Légère."
     },
     {
-      "titre": "Un bouclier ou une arme Légère à la main gauche",
-      "texte": "Le jeu refuse ce que les règles interdisent : une arme à deux mains ne laisse pas de place au bouclier. Avec une arme Légère, l'attaque de la main gauche suit en action bonus."
+      "titre": "Des combats qui se voient et s'entendent",
+      "texte": "Treize familles de dégâts, des projectiles et des auras sur les jetons, des bruitages, cinq musiques d'ambiance, et des cris de combat propres à chaque race."
     },
     {
-      "titre": "Des rencontres en plein écran",
-      "texte": "Le lieu, les créatures et leur danger, puis les choix numérotés, et pour chaque issue le jet qu'elle demande."
+      "titre": "Des personnages qui parlent",
+      "texte": "Les salutations de certains PNJ sont dites à voix haute. Les conversations ont leur boîte de dialogue, des réponses numérotées (touches 1 à 9) et une option « Dis-le plus simplement »."
     },
     {
-      "titre": "Un panneau de combat repensé",
-      "texte": "Les cartes rangées par catégorie, avec leur coût, le pourcentage de toucher et l'image de l'arme."
+      "titre": "Un monde qui se souvient",
+      "texte": "Les PNJ réagissent à ce que le groupe a fait, les témoins vous voient forcer une serrure, et le codex garde ce que vous savez et d'où vous le tenez."
+    },
+    {
+      "titre": "Explorer avec plus de sens",
+      "texte": "Examiner un détail du décor, un récit à l'arrivée dans chaque lieu, une phrase sous chaque sortie, et la liste de ceux qu'on croise."
+    },
+    {
+      "titre": "Des épreuves en plein écran",
+      "texte": "Crochetage, désamorçage de piège, rencontres à choix, parchemins de quête et montée de niveau avec vos choix : chacun a son écran."
+    },
+    {
+      "titre": "Des monstres lisibles",
+      "texte": "Chaque rencontre montre ses créatures, avec leur image et leur description. Un clic sur un ennemi affiche ses renseignements. Le couvert donne +2 à la CA."
+    },
+    {
+      "titre": "Un groupe de 4 ou 6",
+      "texte": "Le groupe peut compter 4 ou 6 héros, chaque histoire annonce la taille qu'elle vise, et le kit de départ est allégé : le reste se trouve à acheter."
     }
   ]
 }

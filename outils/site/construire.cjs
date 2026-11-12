@@ -105,7 +105,7 @@ ${c.sections.map((s, n) => section(s, n) + (s.id === 'groupe' ? createur : '')).
 
 ${galerie('Un bestiaire complet', 'Les 329 monstres du SRD ont leur illustration, dans un même style peint. En voici quelques-uns.', monstres, 'monstres-galerie')}
 ${galerie('Des héros qui vous ressemblent', 'Neuf espèces, deux silhouettes, trois visages chacune : 54 portraits à choisir.', portraits, 'portraits-galerie')}
-${galerie('Des mondes qui se dessinent', "La carte, un lieu, une rencontre et la fiche de La Marche d'Ombrefiel, l'histoire complète du jeu.", histoires, 'mondes-galerie')}
+${galerie('Des mondes qui se dessinent', "La carte, un lieu, une rencontre et la fiche de La Marche d'Ombrefiel, le prologue jouable du jeu.", histoires, 'mondes-galerie')}
 
 <section id="claude" class="bloc claude">
   <div class="claude-carte">

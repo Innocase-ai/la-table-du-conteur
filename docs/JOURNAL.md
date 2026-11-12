@@ -1938,3 +1938,8 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Captures** (`site/images/ecrans/`, Chromium piloté en CDP sur une sauvegarde de test générée par le moteur, profil temporaire) : aventure, journal, carte-monde, fouille-examen, equipement, equiper-case, feuille, histoires, histoire-detail, rencontre, combat-debut, combat-armes.
 - **Pas encore refait** : les captures de dialogue, de boutique, de victoire, d'escarmouche, de sorts en combat, de création et d'aide restent les anciennes. Les 24 images qui ne servaient plus (Port-Sillage, Citadelle, Val, anciens écrans d'inventaire, de rencontre, de dialogue et de boutique, sans compter les écrans d'aide et de grimoire déjà absents du site) ont été retirées du dossier. Elles sont suivies par Git : `git checkout -- site/images/...` les restaure.
 - **Non publié** : rien n'est poussé ni déployé sur Netlify ; la mise en ligne reste à décider.
+
+## 12/11/2026 — Site : correction et nouveautés depuis le 4 novembre
+
+- **Correction** : le site annonçait « une histoire complète » et des niveaux 1 à 7. La Marche d'Ombrefiel n'est publiée qu'en **prologue** (zone 1, niveaux 1 à 3, journal du 11/11) : la suite n'est pas écrite et il n'y a pas encore de vraie fin. Le site dit maintenant « un prologue jouable », « la suite en écriture », « La Dîme des Roseaux en brouillon ».
+- **Nouveautés** : neuf cartes, d'après le journal du 4 au 12 novembre (feuille-inventaire, deux jeux d'armes, combats qui se voient et s'entendent, PNJ qui parlent, monde qui se souvient, exploration, épreuves en plein écran, monstres lisibles, groupe de 4 ou 6).
