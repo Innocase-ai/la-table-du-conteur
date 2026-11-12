@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   actif,
   aEtat,
+  apercuCarte,
   doitFuir,
   cartesDisponibles,
   casesZone,
@@ -29,17 +30,17 @@ import { REPLIQUES } from '../repliques';
 import { prechargerVoix } from '../voix';
 import { choisirReplique, declencheurs, nouvelleMemoire, voixDuPortrait, type Replique } from '../repliques-regles';
 import { ciblesRepetables, formatMetres } from '../libelles';
+import { carteDeTouche, sectionsDeMain, texteApercu, toutEstJoue, touchesDeCartes } from '../main-cartes-regles';
 import { arreterMusique, demarrerMusique } from '../musique';
 import { Fiche } from './Fiche';
 import { Illustration } from './Illustration';
 import { FinCombat } from './FinCombat';
 import type { XpHistoire } from './xp-combat';
-import { ControleSon } from './ControleSon';
 import { Initiative } from './Initiative';
-import { Pictogramme } from './Pictogramme';
 import { cleDeSort } from '../pictogrammes-regles';
 import { Journal } from './Journal';
-import { MainCartes } from './MainCartes';
+import { MainCartes, useSectionsRepliees } from './MainCartes';
+import { PanneauTour } from './PanneauTour';
 import { Plateau, type Surcouches } from './Plateau';
 
 interface Props {
@@ -111,6 +112,12 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const sort = carte?.categorie === 'sort' ? donnees.sorts.get(carte.id.slice('sort:'.length)) : undefined;
   const personnel = sort?.portee.type === 'personnel';
   const modeCible: Surcouches['modeCible'] = !carte ? 'aucun' : carte.ciblage === 'point' ? 'point' : 'cibles';
+
+  // La main : des sections (Élan, Attaques, Sorts… puis « Indisponibles »), et les touches 1 à 9 sur les cartes jouables visibles.
+  const cartesAffichees = useMemo(() => (occupe && cVue.id !== c.id ? [] : cartes), [cartes, occupe, cVue.id, c.id]);
+  const sections = useMemo(() => sectionsDeMain(cartesAffichees), [cartesAffichees]);
+  const [repliees, basculerSection] = useSectionsRepliees();
+  const numeros = useMemo(() => touchesDeCartes(sections, repliees), [sections, repliees]);
 
   // Musique d'ambiance : une au hasard à chaque combat (jamais la même deux fois de suite), qui s'éteint en douceur quand le
   // combat se termine et à la sortie de l'écran.
@@ -236,14 +243,22 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     else setSelection({ ...selection, cibles });
   };
 
-  // Clavier : Échap annule, Entrée valide une sélection multiple.
+  // Clavier : Échap annule, Entrée valide une sélection multiple, 1 à 9 jouent la carte du même numéro, F termine le tour.
   const clavier = useRef<(e: KeyboardEvent) => void>(() => {});
   clavier.current = (e: KeyboardEvent) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const cible = e.target as HTMLElement | null;
+    const saisie = !!cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable);
     if (e.key === 'Escape') {
       if (selection) setSelection(null);
       else setEpingle(null);
     }
     if (e.key === 'Enter' && selection?.cibles.length) valider();
+    if (saisie || !tourJoueur || occupe || termine) return;
+    const idCarte = carteDeTouche(e.key, numeros);
+    const k = idCarte ? cartes.find((x) => x.id === idCarte) : undefined;
+    if (k) choisirCarte(k);
+    else if (e.key === 'f' || e.key === 'F') jouer({ type: 'finTour' });
   };
   useEffect(() => {
     const f = (e: KeyboardEvent) => clavier.current(e);
@@ -351,6 +366,14 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     if (modeCible === 'cibles') {
       for (const id of carte.cibles) s.ciblesValides.add(id);
       for (const id of selection?.cibles ?? []) s.ciblesChoisies.set(id, (s.ciblesChoisies.get(id) ?? 0) + 1);
+      // Les chances de la carte sur chaque cible valide (« 65 % »), montrées sur son jeton.
+      for (const id of carte.cibles) {
+        const ap = apercuCarte(etat, c.id, carte, id);
+        const pourcent = ap?.pourcentToucher ?? ap?.pourcentEchec;
+        if (!ap || pourcent === undefined) continue;
+        s.chances ??= new Map();
+        s.chances.set(id, { texte: `${pourcent} %`, titre: texteApercu(ap, carte, etat.combattants.find((x) => x.id === id)?.nom ?? '') ?? '', fort: pourcent >= 60 });
+      }
     } else if (carte.zone) {
       if (!personnel) {
         for (let y = 0; y < etat.grille.hauteur; y++)
@@ -372,10 +395,15 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const fiche = vue.combattants.find((x) => x.id === ficheId) ?? cVue;
   const survolChemin = !carte && survolCase ? chemins.get(cle(survolCase)) : undefined;
 
+  // Une carte à cible choisie et un ennemi survolé : les chances de toucher (ou d'échec de sa sauvegarde) et les dégâts moyens.
+  const survoleCible = carte && modeCible === 'cibles' && survolId && carte.cibles.includes(survolId) ? survolId : undefined;
+  const apercu = carte && survoleCible ? texteApercu(apercuCarte(etat, c.id, carte, survoleCible), carte, vue.combattants.find((x) => x.id === survoleCible)?.nom ?? '') : undefined;
+
   let consigne: string;
   if (termine) consigne = 'Combat terminé.';
   else if (!tourJoueur || (occupe && cVue.id !== c.id)) consigne = pensee ?? `Tour de ${cVue.nom}…`;
   else if (carte && modeCible === 'point') consigne = `${carte.nom} : choisissez ${personnel ? 'une direction' : 'un point'} sur le plateau.`;
+  else if (carte && apercu) consigne = apercu + (carte.nbCibles > 1 ? ` (${selection?.cibles.length ?? 0}/${carte.nbCibles} cibles)` : '');
   else if (carte && carte.nbCibles > 1) consigne = `${carte.nom} : choisissez jusqu'à ${carte.nbCibles} cibles (${selection?.cibles.length ?? 0}/${carte.nbCibles})${ciblesRepetables(carte) ? ', une même créature peut être visée plusieurs fois' : ''}.`;
   else if (carte) consigne = `${carte.nom} : choisissez une cible.`;
   else if (survolChemin) consigne = `Déplacement : ${formatMetres(survolChemin.cout)}.`;
@@ -432,77 +460,43 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
       </aside>
 
       <aside className="zone-main">
-        <div className={`barre-tour ${tourJoueur && cVue.id === c.id ? 'barre-joueur' : 'barre-ia'}`}>
-          <div className="barre-tour-qui">
-            <strong>{finAffichee ? '—' : cVue.nom}</strong>
-            {!finAffichee && peutAgir(cVue) && (
-              <div className="ressources-tour">
-                <span className="rt-mouvement" title="Mouvement restant">
-                  ➜ {formatMetres(t.mouvement)}
-                </span>
-                <span className={`rt ${t.action || t.attaquesRestantes > 0 ? 'dispo' : ''} rt-action`} title="Action">
-                  <Pictogramme cle="cout:action" taille={11} surFond />
-                  Action{t.attaquesRestantes > 0 ? ` (${t.attaquesRestantes} att.)` : ''}
-                </span>
-                <span className={`rt ${t.bonus ? 'dispo' : ''} rt-bonus`} title="Action bonus">
-                  <Pictogramme cle="cout:bonus" taille={11} surFond />
-                  Bonus
-                </span>
-                <span className={`rt ${cVue.ressources.reaction ? 'dispo' : ''} rt-reaction`} title="Réaction">
-                  <Pictogramme cle="cout:reaction" taille={11} surFond />
-                  Réaction
-                </span>
-                {reglages.elan && cVue.elan && (
-                  <span className={`rt ${!t.elanJoue ? 'dispo' : ''} rt-elan`} title="Carte d'élan">
-                    <Pictogramme cle="cout:elan" taille={11} surFond />
-                    Élan
-                  </span>
-                )}
-              </div>
-            )}
-          </div>
-          <div className="barre-tour-consigne">{consigne}</div>
-          <div className="barre-tour-boutons">
-            {carte && carte.nbCibles > 1 && (
-              <button type="button" className="bouton" disabled={!selection?.cibles.length} onClick={() => valider()}>
-                Valider ({selection?.cibles.length ?? 0}/{carte.nbCibles})
-              </button>
-            )}
-            {carte && (
-              <button type="button" className="bouton-discret" onClick={() => setSelection(null)} title="Échap">
-                Annuler
-              </button>
-            )}
-            {tourJoueur && !carte && (
-              <button type="button" className="bouton-discret" onClick={() => setTourAuto(cleCourante)} title="L'IA joue ce tour à votre place">
-                Tour auto
-              </button>
-            )}
-            {!termine && (
-              <button
-                type="button"
-                className={`bouton-discret ${herosAuto ? 'actif' : ''}`}
-                onClick={() => {
-                  setSelection(null);
-                  setHerosAuto(!herosAuto);
-                }}
-                title="L'IA joue aussi tous les héros (pour observer un combat)"
-              >
-                Héros auto
-              </button>
-            )}
-            {!termine && (
-              <button type="button" className={`bouton-discret ${rapide ? 'actif' : ''}`} onClick={() => setRapide(!rapide)} title="Accélérer les animations et les tours de l'IA">
-                {rapide ? '▶▶ Rapide' : '▶ Normal'}
-              </button>
-            )}
-            <ControleSon />
-            <button type="button" className="bouton fin-tour" disabled={!tourJoueur || occupe} onClick={() => jouer({ type: 'finTour' })}>
-              Fin du tour
-            </button>
-          </div>
-        </div>
-        <MainCartes cartes={occupe && cVue.id !== c.id ? [] : cartes} selection={selection?.carte} inactive={!tourJoueur} onJouer={choisirCarte} ecoleDe={(id) => { const s = donnees.sorts.get(id); return s ? cleDeSort(s) : undefined; }} />
+        <PanneauTour
+          heros={cVue}
+          finAffichee={finAffichee}
+          peutAgir={peutAgir(cVue)}
+          elan={reglages.elan && !!cVue.elan}
+          consigne={consigne}
+          tourJoueur={tourJoueur && cVue.id === c.id}
+          occupe={occupe}
+          termine={termine}
+          carte={carte}
+          nbChoisies={selection?.cibles.length ?? 0}
+          toutJoue={toutEstJoue(cartes)}
+          herosAuto={herosAuto}
+          rapide={rapide}
+          onValider={() => valider()}
+          onAnnuler={() => setSelection(null)}
+          onFinTour={() => jouer({ type: 'finTour' })}
+          onTourAuto={() => setTourAuto(cleCourante)}
+          onHerosAuto={() => {
+            setSelection(null);
+            setHerosAuto(!herosAuto);
+          }}
+          onRapide={() => setRapide(!rapide)}
+        />
+        <MainCartes
+          sections={sections}
+          repliees={repliees}
+          onBasculer={basculerSection}
+          numeros={numeros}
+          selection={selection?.carte}
+          inactive={!tourJoueur}
+          onJouer={choisirCarte}
+          ecoleDe={(id) => {
+            const s = donnees.sorts.get(id);
+            return s ? cleDeSort(s) : undefined;
+          }}
+        />
       </aside>
 
       {finAffichee && !masquerFin && (

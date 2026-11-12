@@ -601,7 +601,7 @@ button:disabled {
   min-height: 560px;
   display: grid;
   /* Le plateau prend tout le centre ; les actions sont à droite, la fiche et le journal en bas. */
-  grid-template-columns: 420px minmax(0, 1fr) 300px;
+  grid-template-columns: 420px minmax(0, 1fr) 350px;
   grid-template-rows: auto minmax(0, 1fr) 170px;
   grid-template-areas:
     'haut haut haut'
@@ -862,133 +862,9 @@ button:disabled {
   gap: 6px;
 }
 
-/* Colonne d'actions : la barre du tour s'empile, les cartes deviennent une liste compacte qui défile. */
-.zone-main .barre-tour {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 6px;
-  padding: 8px;
-}
-
-.zone-main .barre-tour-qui {
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.zone-main .ressources-tour {
-  flex-wrap: wrap;
-}
-
-.zone-main .barre-tour-consigne {
-  white-space: normal;
-  font-size: 12px;
-  line-height: 1.35;
-}
-
-.zone-main .barre-tour-boutons {
-  flex-wrap: wrap;
-}
-
-.zone-main .barre-tour-boutons > * {
-  flex: 1 1 auto;
-}
-
-.zone-main .main {
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
-  gap: 4px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2px 4px 4px 2px;
-}
-
 .zone-main .main-vide {
   height: auto;
   flex: 1;
-}
-
-.zone-main .main-emplacement.separateur {
-  margin: 4px 0 0;
-  padding: 6px 0 0;
-  border-left: none;
-  border-top: 1px dashed var(--bord);
-}
-
-.zone-main .carte {
-  width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  grid-template-areas:
-    'cout nom symbole'
-    'desc desc desc'
-    'pied pied pied';
-  align-items: center;
-  column-gap: 6px;
-  row-gap: 2px;
-  padding: 5px 8px 5px 11px;
-}
-
-.zone-main .carte::before {
-  top: 0;
-  bottom: 0;
-  right: auto;
-  width: 3px;
-  height: auto;
-}
-
-.zone-main .carte-haut {
-  display: contents;
-}
-
-.zone-main .cout {
-  grid-area: cout;
-}
-
-.zone-main .carte-symbole {
-  grid-area: symbole;
-}
-
-.zone-main .carte-nom {
-  grid-area: nom;
-  font-size: 12.5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.zone-main .carte-description {
-  grid-area: desc;
-  -webkit-line-clamp: 2;
-}
-
-.zone-main .carte-pied {
-  grid-area: pied;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 8px;
-  border-top: none;
-  padding-top: 0;
-}
-
-.zone-main .carte-pied:empty {
-  display: none;
-}
-
-.zone-main .carte-raison {
-  position: static;
-  grid-area: pied;
-  background: none;
-  padding: 0;
-}
-
-.zone-main .carte:not(.injouable):hover {
-  transform: translateX(-3px);
-}
-
-.zone-main .carte.choisie {
-  transform: translateX(-5px);
 }
 
 /* Plateau --------------------------------------------------------------- */
@@ -1322,116 +1198,7 @@ button:disabled {
   max-width: 90%;
 }
 
-/* Barre du tour et main ------------------------------------------------- */
-
-.barre-tour {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 5px 8px;
-  border: 1px solid var(--bord);
-  border-radius: 8px;
-  background: linear-gradient(180deg, var(--panneau-2), var(--panneau));
-  min-height: 38px;
-}
-
-.barre-joueur {
-  border-color: rgba(212, 174, 102, 0.55);
-}
-
-.barre-tour-qui {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: none;
-}
-
-.barre-tour-qui strong {
-  font-family: var(--titre);
-  color: var(--or-vif);
-  font-size: 14px;
-}
-
-.ressources-tour {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.rt-mouvement {
-  font-variant-numeric: tabular-nums;
-  color: var(--texte);
-  margin-right: 4px;
-}
-
-.rt {
-  font-size: 10px;
-  padding: 1px 7px;
-  border-radius: 99px;
-  border: 1px solid var(--bord);
-  color: var(--texte-faible);
-  text-decoration: line-through;
-}
-
-.rt.dispo {
-  text-decoration: none;
-  color: #1b1209;
-  font-weight: 600;
-}
-
-.rt-action.dispo {
-  background: var(--cout-action);
-  border-color: var(--cout-action);
-}
-.rt-bonus.dispo {
-  background: var(--cout-bonus);
-  border-color: var(--cout-bonus);
-}
-.rt-reaction.dispo {
-  background: var(--cout-reaction);
-  border-color: var(--cout-reaction);
-}
-.rt-elan.dispo {
-  background: var(--cout-elan);
-  border-color: var(--cout-elan);
-}
-
-.barre-tour-consigne {
-  flex: 1;
-  min-width: 0;
-  color: var(--texte-doux);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.barre-ia .barre-tour-consigne {
-  color: var(--texte);
-  font-style: italic;
-}
-
-.barre-tour-boutons {
-  display: flex;
-  gap: 6px;
-  flex: none;
-}
-
-.fin-tour:not(:disabled) {
-  border-color: var(--or);
-  color: var(--or-vif);
-  font-weight: 600;
-}
-
-.main {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 8px 4px 6px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bord-clair) transparent;
-}
-
+/* La main vide. */
 .main-vide {
   height: 140px;
   display: flex;
@@ -1439,147 +1206,6 @@ button:disabled {
   justify-content: center;
   color: var(--texte-faible);
   font-style: italic;
-}
-
-.main-emplacement {
-  flex: none;
-}
-
-.main-emplacement.separateur {
-  margin-left: 8px;
-  padding-left: 8px;
-  border-left: 1px dashed var(--bord);
-}
-
-.carte {
-  position: relative;
-  width: 124px;
-  height: 128px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  text-align: left;
-  padding: 6px 7px;
-  border-radius: 8px;
-  border: 1px solid var(--bord-clair);
-  background: linear-gradient(170deg, #2a221a 0%, #1c1713 70%), #1c1713;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 230, 190, 0.04);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-  overflow: hidden;
-}
-
-.carte::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 3px;
-  background: var(--accent, var(--or));
-}
-
-.cout-action {
-  --accent: var(--cout-action);
-}
-.cout-bonus {
-  --accent: var(--cout-bonus);
-}
-.cout-gratuit {
-  --accent: var(--cout-gratuit);
-}
-.cout-elan {
-  --accent: var(--cout-elan);
-}
-.cout-reaction {
-  --accent: var(--cout-reaction);
-}
-
-.carte.cat-elan {
-  background: linear-gradient(170deg, #2a2136 0%, #1b1622 70%);
-}
-
-.carte:not(.injouable):hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--accent);
-}
-
-.carte.choisie {
-  transform: translateY(-7px);
-  border-color: var(--or-vif);
-  box-shadow: 0 0 0 2px var(--or-vif), 0 10px 26px rgba(240, 205, 132, 0.35);
-}
-
-.carte.injouable {
-  filter: grayscale(0.85);
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.carte-haut {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cout {
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 1px 6px;
-  border-radius: 99px;
-  color: #1b1209;
-  background: var(--accent);
-}
-
-.carte-symbole {
-  color: var(--accent);
-  font-size: 13px;
-}
-
-.carte-nom {
-  font-family: var(--titre);
-  font-weight: 700;
-  color: var(--texte);
-  font-size: 12px;
-  line-height: 1.15;
-}
-
-.carte-description {
-  font-size: 10px;
-  color: var(--texte-doux);
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  flex: 1;
-}
-
-.carte-pied {
-  display: flex;
-  flex-direction: column;
-  font-size: 9px;
-  color: var(--texte-faible);
-  border-top: 1px solid rgba(255, 230, 190, 0.08);
-  padding-top: 2px;
-}
-
-.carte-ressource {
-  color: var(--or);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.carte-raison {
-  position: absolute;
-  inset: auto 0 0 0;
-  background: rgba(10, 8, 6, 0.92);
-  color: #ffcabd;
-  font-size: 9px;
-  padding: 3px 6px;
 }
 
 /* Fiche ----------------------------------------------------------------- */
@@ -1992,19 +1618,10 @@ button:disabled {
 
 @media (max-width: 1240px) {
   .combat {
-    grid-template-columns: 360px minmax(0, 1fr) 260px;
+    grid-template-columns: 330px minmax(0, 1fr) 310px;
   }
   .combat-titre {
     display: none;
-  }
-}
-
-@media (max-height: 700px) {
-  .carte {
-    height: 116px;
-  }
-  .carte-description {
-    -webkit-line-clamp: 3;
   }
 }
 
@@ -7645,45 +7262,6 @@ kbd {
   stroke: #1b1209;
 }
 
-/* Les pastilles de coût et de ressource : le pictogramme devant le libellé. */
-.cout,
-.rt {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-/* Une ressource déjà dépensée : le pictogramme s'éteint avec son libellé. */
-.rt:not(.dispo) .pic-sur-fond .p1,
-.rt:not(.dispo) .pic-sur-fond .p2 {
-  fill: var(--texte-faible);
-}
-.rt:not(.dispo) .pic-sur-fond .p3 {
-  fill: transparent;
-}
-.rt:not(.dispo) .pic-sur-fond .t1,
-.rt:not(.dispo) .pic-sur-fond .t2 {
-  stroke: var(--texte-faible);
-}
-.rt:not(.dispo) .pic {
-  opacity: 0.7;
-}
-
-/* Dans le panneau des cartes, la pastille de coût et le médaillon prennent de la place : le nom se resserre un peu plutôt que d'être coupé. */
-.zone-main .carte {
-  column-gap: 5px;
-}
-.zone-main .carte-nom {
-  font-size: 11.5px;
-  letter-spacing: -0.01em;
-}
-.zone-main .cout {
-  padding: 1px 5px;
-  gap: 3px;
-}
-.carte-symbole {
-  display: inline-flex;
-}
-
 /* Aide : quelques médaillons en exemple. */
 .aide-pictos {
   display: flex;
@@ -9385,3 +8963,47 @@ kbd {
 
 /* Sauvegarde impossible pendant l'aventure. */
 .bandeau-sauvegarde { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0; }
+
+/* Les chances de la carte choisie, sur le jeton de chaque cible valide. */
+.badge-chances {
+  position: absolute;
+  left: 50%;
+  top: -9px;
+  transform: translateX(-50%);
+  padding: 0 6px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #f3e6c8;
+  background: rgba(70, 40, 24, 0.95);
+  border: 1px solid #d6913f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 5;
+  white-space: nowrap;
+}
+.badge-chances.fort {
+  background: rgba(30, 62, 40, 0.95);
+  border-color: #6cae75;
+}
+
+/* La pastille de coût d'une carte (Action, Bonus, Réaction…) : l'aide au jeu et le banc d'essai des pictogrammes. */
+.cout {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 6px;
+  border-radius: 99px;
+  color: #1b1209;
+  background: var(--accent, var(--cout-action));
+}
+.cout-action { --accent: var(--cout-action); }
+.cout-bonus { --accent: var(--cout-bonus); }
+.cout-gratuit { --accent: var(--cout-gratuit); }
+.cout-elan { --accent: var(--cout-elan); }
+.cout-reaction { --accent: var(--cout-reaction); }

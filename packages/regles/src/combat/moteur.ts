@@ -1,5 +1,6 @@
 // Cœur du combat : tours, déplacement, attaques, dégâts, sauvegardes, états, mort.
 // Règles du SRD 5.2.1 (« Combat », « Dégâts et soins », « Glossaire de règles »).
+import { moyenneDes } from '../des';
 import type { Caracteristique, Etat } from '../schemas';
 import {
   aEtat,
@@ -486,6 +487,43 @@ export function jetAttaque(
   }
   const critique = touche && (d >= seuilCritique || critiqueAuto);
   return { ca: caCible, couvert: bonusCouvert, touche, critique, avantage, desavantage, total, de: d };
+}
+
+/** Une estimation, sans tirer un dé, des chances qu'une attaque touche (pour l'aperçu avant de choisir une cible). */
+export interface ProbabiliteToucher {
+  /** Entre 0 et 1. */
+  touche: number;
+  avantage: boolean;
+  desavantage: boolean;
+  /** Demi-couvert de la cible (+2 à sa CA), déjà compris dans `ca`. */
+  couvert: number;
+  ca: number;
+}
+
+/**
+ * Les chances de toucher, avec les mêmes règles que `jetAttaque` : un 1 naturel rate toujours, un 20 touche toujours, avantage et
+ * désavantage selon la situation, demi-couvert, bonus d'attaque en cours (dés de bonus comptés pour leur moyenne). Ignore
+ * l'Inspiration bardique et la réaction Bouclier de la cible : c'est une estimation.
+ */
+export function probabiliteToucher(
+  etat: EtatCombat,
+  attaquant: Combattant,
+  cible: Combattant,
+  bonus: number,
+  mode: 'corps-a-corps' | 'distance',
+  porteeNormale?: number,
+): ProbabiliteToucher {
+  const s = situationAttaque(etat, attaquant, cible, mode, porteeNormale);
+  const avantage = s.avantage && !s.desavantage;
+  const desavantage = s.desavantage && !s.avantage;
+  const bonusTemp = attaquant.modificateurs.filter((m) => m.type === 'bonus_attaque' && (!m.contre || m.contre === cible.id)).reduce((t, m) => t + (m.valeur ?? 0), 0);
+  const bonusDes = attaquant.modificateurs.filter((m) => m.type === 'de_attaque' && m.de).reduce((t, m) => t + moyenneDes(m.de!), 0);
+  const bonusCouvert = couvert(etat.grille, attaquant.position, cible.position);
+  const caCible = ca(cible) + bonusCouvert;
+  const face = Math.min(20, Math.max(2, Math.ceil(caCible - bonus - bonusTemp - bonusDes)));
+  const p = (21 - face) / 20;
+  const touche = avantage ? 1 - (1 - p) ** 2 : desavantage ? p ** 2 : p;
+  return { touche, avantage, desavantage, couvert: bonusCouvert, ca: caCible };
 }
 
 /** Détails d'un jet d'attaque pour le journal. */

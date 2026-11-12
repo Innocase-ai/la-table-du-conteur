@@ -1,0 +1,327 @@
+/* La main de cartes du combat (colonne de droite) : sections repliables, cartes à bande de coût, pastilles de chiffres,
+   illustration de l'arme à droite, touche 1 à 9. Couleurs de coût : variables --cout-* (styles.css). */
+.mc-main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 2px 4px 6px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bord-clair) transparent;
+}
+
+.mc-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mc-titre {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 6px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--bord);
+  color: var(--texte-doux);
+  font-family: var(--titre);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--fond, #0e0c0a);
+}
+.mc-titre:hover,
+.mc-titre:focus-visible {
+  color: var(--or-vif);
+}
+.mc-chevron {
+  width: 10px;
+  font-size: 10px;
+}
+.mc-compteur {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 99px;
+  border: 1px solid var(--bord);
+  font-size: 11px;
+  text-align: center;
+  color: var(--texte-faible);
+}
+.mc-section-indisponibles .mc-titre {
+  color: var(--texte-faible);
+}
+
+.mc-cartes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mc-emplacement {
+  position: relative;
+  --accent: var(--cout-action);
+}
+.mc-emplacement.cout-action { --accent: var(--cout-action); }
+.mc-emplacement.cout-bonus { --accent: var(--cout-bonus); }
+.mc-emplacement.cout-gratuit { --accent: var(--cout-gratuit); }
+.mc-emplacement.cout-elan { --accent: var(--cout-elan); }
+.mc-emplacement.cout-reaction { --accent: var(--cout-reaction); }
+
+/* La carte : bande de coût | texte | illustration. */
+.mc-carte {
+  width: 100%;
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  align-items: stretch;
+  text-align: left;
+  padding: 0 24px 0 0;
+  border-radius: 8px;
+  border: 1px solid var(--bord-clair);
+  background: linear-gradient(170deg, #2a221a 0%, #1c1713 75%), #1c1713;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  color: var(--texte);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+.mc-carte.cat-elan {
+  background: linear-gradient(170deg, #2a2136 0%, #1b1622 75%);
+}
+.mc-carte:not(.injouable):hover,
+.mc-carte:not(.injouable):focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--accent);
+}
+.mc-carte.choisie {
+  border-color: var(--or-vif);
+  box-shadow: 0 0 0 2px var(--or-vif), 0 8px 20px rgba(240, 205, 132, 0.3);
+}
+/* Indisponible : atténuée, jamais illisible (pas de niveaux de gris sur le texte). */
+.mc-carte.injouable {
+  cursor: not-allowed;
+  background: linear-gradient(170deg, #211c17 0%, #181410 75%);
+}
+.mc-carte.injouable .mc-nom,
+.mc-carte.injouable .mc-description,
+.mc-carte.injouable .mc-pastilles {
+  opacity: 0.72;
+}
+.mc-carte.injouable .mc-image img,
+.mc-carte.injouable .mc-symbole {
+  filter: grayscale(0.8);
+  opacity: 0.6;
+}
+
+/* Bande de coût : la couleur du coût sur toute la hauteur. */
+.mc-bande {
+  background: var(--accent);
+  color: #1b1209;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.mc-corps {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding: 7px 8px;
+}
+.mc-nom {
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--texte);
+}
+.mc-description {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--texte-doux);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mc-emplacement.ouverte .mc-description {
+  display: none;
+}
+.mc-ressource {
+  font-size: 11px;
+  color: var(--or);
+}
+.mc-raison {
+  font-size: 11.5px;
+  color: #ffb39f;
+  line-height: 1.3;
+}
+
+/* Les chiffres en pastilles. */
+.mc-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.mc-pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  border: 1px solid var(--bord-clair);
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte);
+  white-space: nowrap;
+}
+.mc-pastille.mc-attaque {
+  border-color: var(--accent);
+  font-weight: 700;
+}
+.mc-pastille.mc-dd {
+  border-color: #8f7fc4;
+}
+.mc-pastille.mc-portee {
+  color: var(--texte-doux);
+}
+
+/* L'illustration de l'arme (ou le médaillon du pictogramme). */
+.mc-image,
+.mc-symbole {
+  align-self: center;
+  margin: 6px 6px 6px 0;
+  width: 58px;
+  height: 58px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.mc-image {
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 40%, #3a2f24, #171310);
+  border: 1px solid var(--accent);
+  overflow: hidden;
+}
+.mc-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Les illustrations d'objets sont sombres : un peu de lumière pour qu'une arme fine se lise à 54 px. */
+  filter: brightness(1.75) contrast(1.15) saturate(1.2);
+}
+.mc-lancer {
+  position: absolute;
+  left: 2px;
+  bottom: 0;
+  font-size: 12px;
+  color: var(--or-vif);
+  text-shadow: 0 1px 2px #000;
+}
+
+/* Le chiffre du clavier. */
+.mc-touche {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 17px;
+  height: 17px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid var(--bord-clair);
+  background: rgba(10, 8, 6, 0.85);
+  color: var(--texte-doux);
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ⓘ : déplie la carte. */
+.mc-info {
+  position: absolute;
+  bottom: 3px;
+  right: -1px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--texte-faible);
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 1;
+}
+.mc-info:hover,
+.mc-info:focus-visible {
+  color: var(--or-vif);
+}
+
+.mc-detail {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--bord);
+  background: rgba(0, 0, 0, 0.3);
+  align-items: flex-start;
+}
+.mc-detail p {
+  margin: 0 0 4px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--texte-doux);
+}
+.mc-detail .mc-image,
+.mc-detail .mc-symbole {
+  width: 88px;
+  height: 88px;
+  margin: 0;
+  flex: none;
+}
+
+@media (max-width: 1240px) {
+  .mc-carte {
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+  }
+  .mc-image,
+  .mc-symbole {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-carte {
+    transition: none;
+  }
+}

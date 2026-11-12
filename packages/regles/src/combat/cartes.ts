@@ -1,6 +1,7 @@
 // Les cartes : la main d'un combattant à son tour, et l'exécution des commandes.
 // Une carte est une option de jeu réelle du SRD (attaque, sort, aptitude…) ou une carte d'élan.
-import type { Sort } from '../schemas';
+import { moyenneDes } from '../des';
+import type { Caracteristique, Sort } from '../schemas';
 import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, type Position } from './grille';
 import {
@@ -16,6 +17,7 @@ import {
   finTour,
   infligerDegats,
   portee,
+  probabiliteToucher,
   soigner,
   verifierFin,
   vitesse,
@@ -24,6 +26,19 @@ import { attaqueArmeSpirituelle, attaqueCaresse, attaqueLameDeFeu, ciblesPossibl
 
 export type CoutCarte = 'action' | 'bonus' | 'reaction' | 'gratuit' | 'elan';
 export type Ciblage = 'aucun' | 'ennemi' | 'allie' | 'creature' | 'point' | 'soi';
+
+/** Les chiffres d'une carte, pour l'interface (pastilles, aperçu du % de toucher) ; `description` garde la phrase pour tous. */
+export interface StatsCarte {
+  /** Bonus au jet d'attaque (arme, ou attaque de sort). */
+  attaque?: number;
+  mode?: 'corps-a-corps' | 'distance';
+  /** Portée normale d'une attaque à distance : au-delà, désavantage. */
+  porteeNormale?: number;
+  /** Sauvegarde imposée à la cible (sorts de zone, d'effet) : caractéristique et DD du lanceur. */
+  sauvegarde?: { caracteristique: Caracteristique; dd: number };
+  degats?: { des: string; bonus: number; type: string }[];
+  botte?: string;
+}
 
 export interface Carte {
   id: string;
@@ -38,6 +53,7 @@ export interface Carte {
   /** D'où se mesure la portée (par défaut, le lanceur) : le centre d'une zone qui dure. */
   origine?: Position;
   ressource?: string; // texte : « 2/3 rages », « emplacement niv. 1 »
+  stats?: StatsCarte;
   jouable: boolean;
   raison?: string;
   /** Ids des cibles valides en ce moment (pour l'interface et l'IA). */
@@ -94,6 +110,56 @@ function ciblesAttaque(etat: EtatCombat, c: Combattant, metres: number): string[
   return adversairesCiblables(etat, c).filter((e) => aPortee(etat, c, e, metres)).map((e) => e.id);
 }
 
+/** Les chiffres d'un sort pour l'interface : attaque de sort (bonus du lanceur), sauvegarde imposée (DD du lanceur), dégâts. */
+function statsDeSort(sort: Sort, c: Combattant): StatsCarte | undefined {
+  const r = sort.resolution;
+  const inc = c.incantation;
+  const stats: StatsCarte = {};
+  if (r?.type === 'attaque' && inc) {
+    stats.attaque = inc.bonusAttaque;
+    stats.mode = r.mode;
+  } else if (r?.type === 'sauvegarde' && inc) stats.sauvegarde = { caracteristique: r.caracteristique, dd: inc.dd };
+  if (sort.degats.length) stats.degats = sort.degats.map((d) => ({ des: d.des, bonus: d.bonus, type: d.type }));
+  return Object.keys(stats).length ? stats : undefined;
+}
+
+/** Ce que l'interface montre d'une carte face à une cible avant qu'on la choisisse : chances de toucher, dégâts moyens… */
+export interface ApercuCarte {
+  /** Chances de toucher (0 à 100), pour une attaque. */
+  pourcentToucher?: number;
+  /** Chances que la cible rate sa sauvegarde (0 à 100), pour un sort à sauvegarde. */
+  pourcentEchec?: number;
+  /** Dégâts moyens si l'attaque touche (ou si la sauvegarde échoue). */
+  degatsMoyens?: number;
+  avantage?: boolean;
+  desavantage?: boolean;
+  /** Demi-couvert de la cible (+2 à sa CA). */
+  couvert?: boolean;
+  caracteristique?: Caracteristique;
+  dd?: number;
+}
+
+/** L'aperçu d'une carte (attaque d'arme ou sort) sur une cible ; rien si la carte n'a pas de chiffres à comparer. */
+export function apercuCarte(etat: EtatCombat, attaquantId: string, carte: Carte, cibleId: string): ApercuCarte | undefined {
+  const s = carte.stats;
+  if (!s) return undefined;
+  const attaquant = combattant(etat, attaquantId);
+  const cible = combattant(etat, cibleId);
+  const degatsMoyens = s.degats?.length ? Math.round(s.degats.reduce((t, d) => t + moyenneDes(d.des) + d.bonus, 0) * 10) / 10 : undefined;
+  if (s.attaque !== undefined && s.mode) {
+    const p = probabiliteToucher(etat, attaquant, cible, s.attaque, s.mode, s.porteeNormale);
+    return { pourcentToucher: Math.round(p.touche * 100), ...(degatsMoyens !== undefined ? { degatsMoyens } : {}), avantage: p.avantage, desavantage: p.desavantage, couvert: p.couvert > 0 };
+  }
+  if (s.sauvegarde) {
+    const { caracteristique, dd } = s.sauvegarde;
+    const bonus = cible.sauvegardes[caracteristique] ?? 0;
+    // Le jet de la cible : d20 + son bonus (+ demi-couvert en Dextérité) contre le DD ; la cible rate sur les faces trop basses.
+    const faces = Math.min(20, Math.max(0, dd - bonus - 1));
+    return { pourcentEchec: Math.round((faces / 20) * 100), ...(degatsMoyens !== undefined ? { degatsMoyens } : {}), caracteristique, dd };
+  }
+  return degatsMoyens !== undefined ? { degatsMoyens } : undefined;
+}
+
 function refuser(cartes: Carte, raison: string): Carte {
   return { ...cartes, jouable: false, raison };
 }
@@ -123,6 +189,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
       portee: p.longue,
       cibles: ciblesAttaque(etat, c, p.longue),
       ressource: t.attaquesRestantes > 0 ? `${t.attaquesRestantes} attaque(s) restante(s)` : undefined,
+      stats: { attaque: a.bonusAttaque, mode: a.mode, ...(a.mode === 'distance' ? { porteeNormale: p.normale } : {}), degats: a.degats.map((d) => ({ des: d.des, bonus: d.bonus, type: d.type })), ...(a.botte ? { botte: a.botte } : {}) },
     });
     if (!peutAttaquer(c)) k = refuser(k, 'Action déjà utilisée.');
     else if (!k.cibles.length) k = refuser(k, 'Aucune cible à portée.');
@@ -174,6 +241,7 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
       nbCibles: ciblage === 'point' || ciblage === 'soi' ? 0 : sort.special === 'projectile-magique' || sort.special === 'rayon-ardent' ? 3 : nombreCibles(sort, niveau ?? sort.niveau),
       cibles: ciblage === 'point' || ciblage === 'soi' ? [] : ciblesPossibles(etat, c, sort).map((x) => x.id),
       ressource: sort.niveau === 0 ? 'sort mineur' : `emplacement niv. ${sort.niveau}+ (${c.incantation?.emplacements.slice(sort.niveau - 1).reduce((s, n) => s + n, 0) ?? 0} restant(s))`,
+      stats: statsDeSort(sort, c),
     });
     if (sort.niveau > 0 && !niveau) k = refuser(k, 'Plus d\'emplacement.');
     else if (sort.niveau > 0 && t.sortEmplacementLance) k = refuser(k, 'Un seul sort à emplacement par tour.');

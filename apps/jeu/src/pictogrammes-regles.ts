@@ -98,3 +98,21 @@ export function cleDeCarte(k: CarteIcone, ecole?: string): { cle: string; lancer
       return { cle: 'cout:elan', lancer: false };
   }
 }
+
+/** Le motif d'un type de dégâts (tranchant, feu, froid…), pour la pastille de dégâts d'une carte ; rien si on n'en a pas. */
+export function cleDegats(type: string): string | undefined {
+  const motif = MOTIF_DEGATS[type];
+  return motif && `motif:${motif}` in DESSINS ? `motif:${motif}` : undefined;
+}
+
+/**
+ * L'illustration d'une carte, quand il en existe une dans les images communes du moteur (équipement du SRD,
+ * `equipement/<id>.webp`) : l'arme d'une attaque (`attaque:epee-longue`, `attaque:javeline-lancer` → `javeline`), la potion de soins.
+ * Le fichier peut manquer (frappe à mains nues, arme propre à une histoire) : l'écran retombe alors sur le pictogramme.
+ */
+export function imageDeCarte(k: CarteIcone): { groupe: 'equipement'; id: string } | undefined {
+  const reste = k.id.slice(k.id.indexOf(':') + 1);
+  if (k.categorie === 'attaque') return { groupe: 'equipement', id: reste.replace(/-lancer$/, '') };
+  if (k.id === 'base:potion') return { groupe: 'equipement', id: 'potion-de-guerison' };
+  return undefined;
+}

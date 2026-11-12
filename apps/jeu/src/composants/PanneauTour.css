@@ -1,0 +1,256 @@
+/* L'en-tête du panneau d'actions du combat : le héros, ses ressources, la consigne, « Fin du tour ». */
+.pt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--panneau-2), var(--panneau));
+  position: relative;
+}
+.pt-joueur {
+  border-color: rgba(212, 174, 102, 0.6);
+}
+
+.pt-heros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pt-portrait {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 2px solid var(--or);
+  background: #1a1612;
+}
+.pt-identite {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pt-identite strong {
+  font-family: var(--titre);
+  color: var(--or-vif);
+  font-size: 17px;
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pt-pv {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pt-pv-barre {
+  flex: 1;
+  height: 7px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--bord);
+  overflow: hidden;
+}
+.pt-pv-barre > span {
+  display: block;
+  height: 100%;
+  background: #6cae75;
+  transition: width 0.3s ease;
+}
+.pt-pv-barre > span.bas { background: #d6a24a; }
+.pt-pv-barre > span.critique { background: #c4513f; }
+.pt-pv-texte {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-doux);
+}
+
+.pt-options {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--bord);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--texte-doux);
+  font-size: 17px;
+  cursor: pointer;
+}
+.pt-options:hover,
+.pt-options.actif {
+  color: var(--or-vif);
+  border-color: var(--or);
+}
+
+/* Le menu des réglages : un petit volet sous l'engrenage. */
+.pt-menu {
+  position: absolute;
+  top: 58px;
+  right: 8px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--bord-clair);
+  background: var(--panneau);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+}
+.pt-menu .bouton-discret {
+  min-height: 36px;
+  text-align: left;
+}
+.pt-menu .controle-son {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pt-ressources {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pt-mouvement {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pt-mouvement-texte {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte);
+}
+.pt-mouvement-texte small {
+  color: var(--texte-faible);
+  font-size: 12px;
+}
+.pt-mouvement-barre {
+  height: 5px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.pt-mouvement-barre > span {
+  display: block;
+  height: 100%;
+  background: var(--or);
+  transition: width 0.25s ease;
+}
+
+.pt-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+/* Une pastille pleine : la ressource est disponible ; vide : elle est utilisée (pas de texte barré). */
+.pt-pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 99px;
+  border: 1px solid var(--bord);
+  color: var(--texte-faible);
+  font-size: 11px;
+  white-space: nowrap;
+  --accent: var(--cout-action);
+}
+.pt-pastille.cout-action { --accent: var(--cout-action); }
+.pt-pastille.cout-bonus { --accent: var(--cout-bonus); }
+.pt-pastille.cout-reaction { --accent: var(--cout-reaction); }
+.pt-pastille.cout-elan { --accent: var(--cout-elan); }
+.pt-pastille.dispo {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1b1209;
+  font-weight: 700;
+}
+
+.pt-consigne {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--texte-doux);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pt-ia .pt-consigne {
+  color: var(--texte);
+  font-style: italic;
+}
+
+.pt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pt-actions .bouton,
+.pt-actions .bouton-discret {
+  min-height: 40px;
+  flex: 1 1 auto;
+}
+
+/* « Fin du tour » : le bouton principal, pleine largeur ; il pulse quand il ne reste plus rien d'utile à jouer. */
+.pt-fin {
+  flex: 1 1 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--or);
+  background: rgba(212, 174, 102, 0.12);
+  color: var(--or-vif);
+  font-family: var(--titre);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pt-fin:hover:not(:disabled) {
+  background: rgba(212, 174, 102, 0.24);
+}
+.pt-fin:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.pt-fin kbd {
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid currentColor;
+  font-family: inherit;
+  font-size: 11px;
+  opacity: 0.8;
+}
+.pt-fin.pret {
+  background: linear-gradient(180deg, #e0b765, #b98a3e);
+  color: #1b1209;
+  animation: pt-pret 1.6s ease-in-out infinite;
+}
+@keyframes pt-pret {
+  50% { box-shadow: 0 0 14px rgba(240, 205, 132, 0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-fin.pret,
+  .pt-pv-barre > span,
+  .pt-mouvement-barre > span {
+    animation: none;
+    transition: none;
+  }
+}

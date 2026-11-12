@@ -56,3 +56,14 @@ export function lancer(expression: string, gen: Generateur): ResultatJet {
   const des = Array.from({ length: nombre }, () => lancerDe(faces, gen));
   return { expression, des, modificateur, total: des.reduce((a, b) => a + b, 0) + modificateur };
 }
+
+/** La valeur moyenne d'une expression de dés (« 2d6+3 » : 10, « 1d8 » : 4,5, « 4 » : 4) ; 0 si l'expression est illisible. */
+export function moyenneDes(expression: string): number {
+  const m = EXPRESSION.exec(expression.trim());
+  if (!m) return 0;
+  if (m[4] !== undefined) return Number(m[4]);
+  const nombre = m[1] ? Number(m[1]) : 1;
+  const faces = Number(m[2]);
+  const modificateur = m[3] ? Number(m[3].replace(/\s/g, '')) : 0;
+  return (nombre * (faces + 1)) / 2 + modificateur;
+}

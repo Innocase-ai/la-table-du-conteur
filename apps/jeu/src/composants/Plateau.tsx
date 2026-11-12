@@ -20,6 +20,8 @@ export interface Surcouches {
   ciblesValides: Set<string>;
   ciblesChoisies: Map<string, number>;
   modeCible: 'aucun' | 'cibles' | 'point';
+  /** Les chances de la carte choisie sur chaque cible valide (« 65 % »), montrées sur le jeton ; absent sans aperçu à comparer. */
+  chances?: Map<string, { texte: string; titre: string; fort: boolean }>;
 }
 
 interface Props {
@@ -295,6 +297,11 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
             >
               <Jeton c={c} taille={Math.round(g.cote * (['G', 'TG', 'Gig'].includes(c.taille) ? TAILLE_JETON_GRAND : TAILLE_JETON))} details />
               {choisie !== undefined && <span className="compteur-cible">{choisie > 1 ? `×${choisie}` : '✓'}</span>}
+              {valide && surcouches.chances?.get(c.id) && (
+                <span className={`badge-chances${surcouches.chances.get(c.id)!.fort ? ' fort' : ''}`} title={surcouches.chances.get(c.id)!.titre}>
+                  {surcouches.chances.get(c.id)!.texte}
+                </span>
+              )}
               {aCouvert && (
                 <span className="badge-couvert" title="À couvert derrière un obstacle bas : +2 à sa CA">
                   🛡+2
