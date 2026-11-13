@@ -62,7 +62,7 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 
 ## 6. Écrire le texte
 
-`intro` : la mise en scène lue par le joueur (**70 à 110 mots**, au présent, sans révéler ce qu'il n'a pas appris) ; l'`effet` ou le `resume` d'une issue : **50 à 80 mots**. Libellés des alternatives à la 1re personne. Sobre, concret, dans le ton du monde. Pour beaucoup de rencontres, confier le texte à des agents **Haiku** avec un brief précis (voir `creer-monde/references/textes-en-serie.md`) et relire.
+`intro` : la mise en scène lue par le joueur (**70 à 110 mots**, au présent, sans révéler ce qu'il n'a pas appris) ; l'`effet` ou le `resume` d'une issue : **50 à 80 mots**. Libellés des alternatives à la 1re personne. Sobre, concret, dans le ton du monde. **`intro` à écrire comme une scène, pas comme un constat** : un détail sensoriel qui fait entrer, la situation, et **une réplique d'un PNJ entre guillemets** quand quelqu'un est en jeu, avec un texte qui finit ouvert sur l'enjeu (modèle : « scène à appel » dans `creer-evenements-choix`, choisi par l'utilisateur le 13/11/2026 ; un exemple à éviter : une `intro` de 110 mots sans aucune voix et une seule alternative). Quand le cœur de la scène est un appel à l'aide ou une découverte où chacun peut réagir selon son origine, préférer un **événement à choix illustré** (image, choix courts, choix par origine) à une rencontre `social`. Pour beaucoup de rencontres, confier le texte à des agents **Haiku** avec un brief précis (voir `creer-monde/references/textes-en-serie.md`) et relire.
 
 ## 7. Vérifier
 

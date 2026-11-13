@@ -17,7 +17,7 @@ Document de travail (le moteur ne le lit pas). **Les ids ci-dessous sont fixes**
 | `ald-r-silas-confronte` | `ald-auberge-salle-commune` | social | le groupe confronte Silas (alternatives : intimider, soudoyer, filer) |
 | `ald-r-barnabe` | `ald-auberge-perron-et-potence` | social (décalée) | Barnabé le Casse-Pieds |
 | `ald-r-embuscade-du-pont` | `ald-pont-talus-d-embuscade` | combat | 3 `bandit`, 1 `eclaireur`, `mephite-vaporeux` optionnel |
-| `ald-r-chariot-d-aldwin` | `ald-pont-carcasse-du-chariot` | social | le coffret et le mort (dilemme) |
+| ~~`ald-r-chariot-d-aldwin`~~ | `ald-pont-carcasse-du-chariot` | (remplacée le 13/11/2026, accord de l'utilisateur : événement à choix illustré `le-chariot-renverse`, `evenements-choix/z1-pont.json`, « scène à appel » : examiner, mettre à l'abri, choix clerc et rôdeur) | le mort ; le coffret reste au dilemme |
 | `ald-r-thibault` | `ald-pont-tablier-et-breche` | social (décalée) | Thibault le Pêcheur de Néant |
 | `ald-r-guetteurs-du-moulin` | `ald-moulin-plateforme-du-cor` | combat | 2 `combattant-gobelin` |
 | `ald-r-deserteurs-de-la-ferme` | `ald-moulin-ferme-haddon` | social | 2 déserteurs ; repli `garde` |

@@ -34,6 +34,7 @@ Retirez la récompense : le PNJ a-t-il encore une raison de demander ? Sinon, c'
 - **Pas de contrat sans enjeu** : ce qui arrive si on refuse (un PNJ blessé, une jauge qui monte, une porte qui reste fermée) doit se voir.
 
 ## Le gabarit d'un contrat complet (six pièces)
+*Contrat offert en scène* : quand le client est rencontré en chemin (un marchand assailli, un voyageur piégé) plutôt qu'au hub, la pièce 1 devient un **événement à choix** écrit en « scène à appel » (`creer-evenements-choix`) dont le choix « L'aider. » pose `quete: active` (donc pas de bouton « Accepter ») ; les pièces 2 à 6 ne changent pas.
 1. **Le sujet du PNJ** (`pnj/…`) : `mots`, `question` (3 à 12 mots, vouvoiement), `reponse` (ce que le PNJ dit : son problème, avec un vrai détail), `effets` `[{ "quete": { "id": "q-…", "statut": "proposee" } }]`. Le joueur accepte dans le Journal (« Accepter : … »).
 2. **La quête** (`quetes/…`) : `type: "secondaire"`, `donneur`, `lieu`, `niveau`, `resume`, `etapes` (au moins l'étape « le combat » dont la `completion` est un drapeau, et si possible une étape de retour au PNJ), `recompenses` (xp, pièces, objets, effets de réputation). Une étape `echec` ou une variante (`ramifications`) pour le refus ou la trahison. Noter la forme dans `ramifications` : « forme : traque ».
 3. **La rencontre** (`rencontres/…`) : voir `creer-rencontres`. `effetsVictoire` : `[{ "flag": "…-fait" }, …]` ; chaque alternative qui règle la rencontre pose le **même drapeau** (sinon la quête reste bloquée).

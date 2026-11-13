@@ -1,0 +1,42 @@
+[
+  {
+    "id": "le-chariot-renverse",
+    "titre": "Le chariot renversé",
+    "lieu": "ald-pont-carcasse-du-chariot",
+    "ouverture": "entree",
+    "image": { "groupe": "lieux", "id": "ald-pont-carcasse-du-chariot" },
+    "narration": "La pluie tambourine sur les planches fendues. Sous le plancher du chariot, un homme est étendu dans la boue noire, une bâche bleue roulée sous le dos, les mains calleuses d'un homme qui a porté des sacs toute sa vie. Un carreau d'arbalète à pointe d'os est planté entre ses omoplates, et ses poches ont été retournées à la hâte. Personne d'autre ici : ni bandit, ni témoin, seulement vous et lui. Au loin, à l'auberge, une femme attend son retour sans savoir que vous êtes là. Reste à décider ce qu'on fait de lui, avant de décider ce qu'on lui dira.",
+    "choix": [
+      {
+        "id": "examiner",
+        "libelle": "Examiner le mort.",
+        "jet": { "competence": "medecine", "dd": 10 },
+        "effets": [ { "fait": "f-ald-marchand-mort-sur-la-route" }, { "xp": 10 } ],
+        "resultat": "Vous vous accroupissez dans la boue et retournez le corps avec soin, une main sous les épaules, l'autre sur la bâche pour ne pas la déchirer. Le carreau est entré net, entre les omoplates. La chair est froide et raide : il est mort depuis deux jours, pas davantage. Le coup est venu de dos, sans qu'il ait le temps de se retourner. Rien d'autre ne vous dit qui l'a tiré.",
+        "echec": [ { "fait": "f-ald-marchand-mort-sur-la-route" } ],
+        "resultatEchec": "Vous glissez les mains sous les épaules et tirez trop fort. La bâche bleue se déchire dans un bruit de toile mouillée et le corps bascule à moitié dans la boue. Le carreau bouge dans la plaie. Vous avez vu la blessure, rien de plus : ni l'heure, ni autre chose à dire. Une seule chose est sûre : il est mort d'un carreau dans le dos, et vous avez abîmé ce qui aurait pu parler."
+      },
+      {
+        "id": "abriter",
+        "libelle": "Le mettre à l'abri.",
+        "effets": [ { "fait": "f-ald-marchand-mort-sur-la-route" }, { "xp": 10 } ],
+        "resultat": "Vous attrapez le marchand par les bras et le tirez à reculons, hors de la boue noire, jusqu'au pied des aulnes. Ses talons tracent deux sillons dans la vase. L'un de vous déplie la bâche bleue et la rabat sur son visage et son torse. Ce n'est pas beau, mais il ne sera plus trempé, et on ne le verra plus depuis la route. Vous reprenez votre souffle, les mains rouges de froid."
+      },
+      {
+        "id": "clerc",
+        "condition": { "heros": { "classe": "clerc" } },
+        "libelle": "« Que la boue lui soit légère, il a fini sa route. »",
+        "effets": [ { "fait": "f-ald-marchand-mort-sur-la-route" }, { "xp": 10 } ],
+        "resultat": "Le clerc se découvre devant le corps, la pluie ruisselant sur son front. Sa voix est grave et sans emphase, comme on lit une liste de noms. Il dit les mots lentement, la pluie les couvrant presque, puis trace un signe sur le front du mort du bout de deux doigts. Personne ne répond. Il n'y a plus que les gouttes sur le bois, et le sentiment que quelque chose a été dit."
+      },
+      {
+        "id": "rodeur",
+        "condition": { "heros": { "classe": "rodeur" } },
+        "libelle": "« Pointe d'os, plantée dans le dos. Il n'a rien vu venir. »",
+        "effets": [ { "fait": "f-ald-marchand-mort-sur-la-route" }, { "xp": 10 } ],
+        "resultat": "Le rôdeur s'accroupit près du plancher sans toucher au bois et suit du doigt la ligne du carreau à pointe d'os. La pointe est fine, taillée dans l'os, et l'empennage est trempé de pluie. Il dit à voix basse que l'homme n'a rien vu venir. Il ne désigne personne et ne cherche aucun coupable ; son regard reste un moment sur les aulnes."
+      }
+    ],
+    "partir": "Vous tournez le dos au mort ; la pluie fera le reste, et la route vous attend."
+  }
+]

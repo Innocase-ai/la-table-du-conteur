@@ -45,6 +45,16 @@ Un **événement à choix** est un *tableau* : le groupe tombe sur quelque chose
 5. **Jamais de héros pré-tiré** dans l'image ni le texte (Bran, Grukk, Pip…) ; le texte dit « vous », le héros qui agit est nommé par le jeu.
 6. Trois à cinq événements par histoire, dans des lieux mémorables (une par zone au plus).
 
+## Modèle d'écriture de référence : la scène à appel
+Modèle choisi par l'utilisateur (13/11/2026), vu dans le jeu : un marchand se défend à coups de bâton contre des rats géants, sur son chariot. Ce n'est pas l'histoire qui compte, c'est la façon de l'écrire et de la présenter. À reproduire pour tout événement où quelqu'un a besoin du groupe (et pour toute quête offerte en scène, voir `creer-intrigue`) :
+1. **L'image d'abord**, grande, puis le texte dans la boîte : jamais plus de 3 à 5 lignes à l'écran à la fois.
+2. **Deux temps.** (a) L'**arrivée**, en mouvement et sensorielle : on avance, un bruit ou un cri, on débouche sur la scène (c'est le récit d'arrivée du lieu, `arrivee`, ou un premier paragraphe de la `narration`). (b) La **situation** : la `narration` proprement dite (70 à 110 mots), dont **une réplique du PNJ entre guillemets**, urgente et adressée au groupe (« Je… je ne veux pas mourir comme ça ! S'il vous plaît, aidez-moi ! »). Le texte finit **ouvert, sur l'appel**, jamais sur une question posée au joueur.
+3. **Des détails concrets et sensoriels** (« leurs yeux rouges brillant de faim », « un chariot branlant et usé par le temps »), pas de résumé abstrait ; l'enjeu se voit sans être expliqué.
+4. **Des libellés très courts.** Choix général : une action nette de 1 à 3 mots, à l'infinitif ou à l'impératif, avec un point (« L'aider. », « Fuir. »). Le repli (« Partir ») est un choix à part, jamais caché ni honteux.
+5. **Les héros réagissent par leur origine.** Chaque choix d'origine est une seule réplique du héros, de 12 mots au plus, qui montre son réflexe de classe ou d'espèce : « (Guerrier) « Tenez bon ! On arrive ! » », « (Rôdeur) « Ne bougez pas. On en tient un. » ». Un regard, pas un meilleur résultat (recette n° 2).
+6. **Aucun mot de machine** dans le texte : ni DD, ni jauge, ni « quête », ni PX.
+7. **Une quête offerte en scène** : le choix « L'aider. » porte l'effet `{ "quete": { "id": "q-…", "statut": "active" } }` ; le parchemin s'ouvre de lui-même, sans passer par le Journal. Le refus (« Partir ») doit coûter quelque chose de visible (un PNJ blessé, une jauge qui monte), sinon la scène n'a pas d'enjeu.
+
 ## Qui fait quoi
 Claude **conçoit** (lieu, condition, choix, jets, effets, ids exacts de faits et de rencontres lus dans le monde) ; un agent **Haiku** **écrit** les textes (narration 70-110 mots, variante 60-90, résultats 50-80 mots, libellés d'origine d'une phrase) avec la bible en lecture ; Claude **relit** (pas de lore inventé, pas de secret, accents, longueurs) et assemble le JSON. Modèle : `packages/regles/tests/fixtures/mondes/val-des-cendres/evenements-choix/z3-source-grise.json`.
 
