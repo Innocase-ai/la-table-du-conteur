@@ -1943,3 +1943,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 
 - **Correction** : le site annonçait « une histoire complète » et des niveaux 1 à 7. La Marche d'Ombrefiel n'est publiée qu'en **prologue** (zone 1, niveaux 1 à 3, journal du 11/11) : la suite n'est pas écrite et il n'y a pas encore de vraie fin. Le site dit maintenant « un prologue jouable », « la suite en écriture », « La Dîme des Roseaux en brouillon ».
 - **Nouveautés** : neuf cartes, d'après le journal du 4 au 12 novembre (feuille-inventaire, deux jeux d'armes, combats qui se voient et s'entendent, PNJ qui parlent, monde qui se souvient, exploration, épreuves en plein écran, monstres lisibles, groupe de 4 ou 6).
+
+## 13/11/2026 — Auditeur de cohérence : verdict « À CONFIRMER »
+
+- **Origine** : comparaison de notre méthode de création d'histoire avec un document de ChatGPT (`GPR-RPG.docx`). Presque tout y était déjà appliqué chez nous (bible verrouillée, registre d'ids, canon contre état du monde, moteur qui décide des dés, étapes validées, vérificateur indépendant) ; une idée manquait.
+- **Fait** : `.claude/agents/auditeur-coherence-histoire.md` rend maintenant trois verdicts, CONFORME, NON CONFORME ou **À CONFIRMER** (sources muettes ou ambiguës), avec une section « À confirmer » (question, sources consultées, réponses possibles) laissée à l'utilisateur, et l'interdiction de résoudre une contradiction ou un silence en inventant une explication.
+- **Pas fait** : des figurants enregistrés pour le conteur (le détail inventé n'est retenu que sur 6 échanges) : à faire seulement si les essais montrent de vraies incohérences ; banc d'essai de 30 scènes du conteur.

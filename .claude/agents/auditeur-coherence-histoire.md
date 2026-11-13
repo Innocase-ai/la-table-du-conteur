@@ -29,7 +29,11 @@ Une liste de fichiers à auditer (fiches de lieux, pitch, contenu d'histoire) et
 7. **Secrets** : aucun « Secret du MJ » n'apparaît dans un texte vu du joueur (`visuel`, `resume`, `accroche`, composition de carte).
 
 ## Ce que tu rends (et rien d'autre)
-- **Verdict** : CONFORME ou NON CONFORME.
+- **Verdict**, l'un de ces trois états :
+  - **CONFORME** : aucune contradiction détectée.
+  - **NON CONFORME** : au moins une anomalie à corriger (bloquante ou à corriger).
+  - **À CONFIRMER** : aucune contradiction prouvée, mais au moins un point où les sources sont **muettes ou ambiguës** (un fait, un nom, une date, une relation que ni la Bible, ni l'atlas, ni les fiches validées ne tranchent). Si tu as à la fois des anomalies et des points à confirmer, le verdict est NON CONFORME et les points à confirmer figurent dans leur propre section.
 - Un tableau des anomalies : `gravité` (bloquante, à corriger, remarque) · `fichier:ligne` · `ce qui est écrit` · `source qui le contredit (fichier:ligne)` · `correction proposée`.
+- Une section **À confirmer** : pour chaque point, `fichier:ligne` · la question précise · les sources consultées et ce qu'elles disent (ou ne disent pas) · les réponses possibles. C'est à l'utilisateur de trancher, jamais à toi.
 - La liste de ce que tu as vérifié sans trouver d'écart (une ligne par contrôle), pour qu'on sache que ce n'est pas un oubli.
-- Si une source manque ou est ambiguë, dis-le : ne devine pas.
+- **Ne résous jamais une contradiction ou un silence en inventant une explication** (un lien, une date, une raison qui n'est dans aucune source) : signale-le comme anomalie ou comme point à confirmer. Si une source manque ou est ambiguë, dis-le : ne devine pas.
