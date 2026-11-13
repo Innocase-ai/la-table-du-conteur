@@ -65,4 +65,5 @@ Claude **conçoit** (lieu, condition, choix, jets, effets, ids exacts de faits e
 - L'événement s'ouvre seulement en exploration : pendant un combat, une conversation ou une scène narrée, il attend la fin.
 - Les origines suivent l'ordre du groupe à la création (`etat.heros`) : une ancienne sauvegarde sans origines ne voit jamais les choix réservés.
 - Le conteur IA ne choisit jamais (commandes hors conteur) : il raconte, le joueur choisit.
+- Un PNJ qui change de lieu selon l'heure (Mireille : la cour le jour, la salle commune le soir) : conditionner l'événement par `{ "non": { "moment": "soir" } }` (condition `moment` : `jour`, `soir`, `nuit`), sinon la scène le montre là où il n'est pas.
 - Une condition `quand` qui ne peut jamais être vraie (drapeau jamais posé) : le validateur le signale.

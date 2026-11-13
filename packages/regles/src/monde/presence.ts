@@ -1,13 +1,11 @@
 // Qui est où, et quand : le moment de la journée et les PNJ présents dans le lieu courant. Fichier sans dépendance envers
 // l'exploration ni le dialogue (qui s'en servent tous les deux, et l'ouverture des serrures pour ses témoins).
-import { evaluerCondition } from './etat';
+import { evaluerCondition, momentDe } from './etat';
 import type { PartieMonde } from './exploration';
 import type { Pnj } from './schemas';
 
-/** Le moment de la journée : jour de 6 h à 17 h, soir de 18 h à 21 h, nuit ensuite (présences des PNJ). */
-export function momentDe(heure = 8): 'jour' | 'soir' | 'nuit' {
-  return heure >= 6 && heure < 18 ? 'jour' : heure >= 18 && heure < 22 ? 'soir' : 'nuit';
-}
+// Le moment de la journée vit dans `etat.ts` (la condition `moment` s'y évalue) ; on le réexporte ici pour ses usages historiques.
+export { momentDe };
 
 export function lieuDuPnj(p: PartieMonde, pnj: Pnj): string {
   return p.etat.pnjLieux[pnj.id] ?? pnj.lieu;

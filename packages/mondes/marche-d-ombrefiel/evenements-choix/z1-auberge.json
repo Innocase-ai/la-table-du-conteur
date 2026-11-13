@@ -1,0 +1,34 @@
+[
+  {
+    "id": "l-hopital-de-paille",
+    "titre": "L'hôpital de paille",
+    "lieu": "ald-auberge-cour-et-ecuries",
+    "quand": { "et": [ { "non": { "parle": "mireille-de-la-rose" } }, { "non": { "moment": "soir" } } ] },
+    "ouverture": "entree",
+    "image": { "groupe": "lieux", "id": "ald-auberge-cour-et-ecuries" },
+    "narration": "Au fond de l'écurie, sous une poutre basse, un coin de paille sert d'hôpital. Les malades y sont couchés, cataplasmes sur la poitrine, bols de tisane refroidie à côté. Mireille est penchée sur l'un d'eux, la main posée sur son front. Elle se redresse, essuie ses doigts sur son tablier et vous regarde. « Vous connaissez la mousse de saule ? Il m'en faut trois doses, bien vertes, cueillies sur les racines et non sur la terre. Avec ça, je fais un baume qui fait tomber la fièvre des marais. Sans la mousse et sans bandes, je devrai choisir qui je laisse mourir. Allez-y, maintenant. »",
+    "choix": [
+      {
+        "id": "aider",
+        "libelle": "L'aider.",
+        "effets": [ { "quete": { "id": "q-baume-de-l-aube", "statut": "active" } } ],
+        "resultat": "Elle griffonne la consigne sur un bout de planche : trois doses de mousse de saule, bien vertes, cueillies sur les racines. Les vasières du Vieux Pont, au bord de l'eau, là où les saules trempent. Elle serre votre bras une seconde, sans effusion. « Merci. Je ne vous ferai pas de discours. Partez, la fièvre n'attend pas. » Vous prenez la route sous la pluie fine, la boue aspirant vos bottes à chaque pas."
+      },
+      {
+        "id": "clerc",
+        "condition": { "heros": { "classe": "clerc" } },
+        "libelle": "« Je peux soulager les malades en attendant. »",
+        "effets": [ { "quete": { "id": "q-baume-de-l-aube", "statut": "active" } } ],
+        "resultat": "Mireille vous regarde autrement, comme on regarde un confrère. « Alors vous savez ce qu'un cataplasme ne peut pas faire seul. Il manque la mousse et les bandes. » Elle répète la consigne comme une litanie : trois doses de mousse de saule, bien vertes, cueillies sur les racines. Les vasières du Vieux Pont, là où les saules trempent. « Soulagez-les en attendant, mais revenez avec la mousse. » Vous sortez sous la pluie."
+      },
+      {
+        "id": "druide",
+        "condition": { "heros": { "classe": "druide" } },
+        "libelle": "« Je connais la mousse de saule et où la trouver. »",
+        "effets": [ { "quete": { "id": "q-baume-de-l-aube", "statut": "active" } } ],
+        "resultat": "Mireille vous écoute sans vous interrompre. « Oui. » Un seul mot, puis un hochement de tête. Elle rassemble les bols de tisane froide et reprend d'une voix plus basse : « Trois doses, bien vertes, cueillies sur les racines et non sur la terre. Les vasières du Vieux Pont. Ce n'est pas la prière qui guérit ici, c'est le savoir et la main qui ne tremble pas. Allez-y. »"
+      }
+    ],
+    "partir": "Vous promettez de repasser. Mireille ne vous retient pas, et derrière vous quelqu'un tousse sur la paille."
+  }
+]

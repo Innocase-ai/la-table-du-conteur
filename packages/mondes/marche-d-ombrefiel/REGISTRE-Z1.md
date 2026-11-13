@@ -28,6 +28,13 @@ Document de travail (le moteur ne le lit pas). **Les ids ci-dessous sont fixes**
 | `ald-r-squelettes-du-tombeau` | `ald-tertre-sarcophage` | combat | 3 `squelette` (évitable par le rite) |
 | `ald-r-sentinelles-de-nuit` | `ald-tertre-cercle` | social (décalée) | squelettes sentinelles muets |
 
+## Événements à choix (« scènes à appel », modèle du 13/11/2026, accord de l'utilisateur)
+
+| id | Lieu | Contenu |
+| --- | --- | --- |
+| `le-chariot-renverse` | `ald-pont-carcasse-du-chariot` | remplace la rencontre `ald-r-chariot-d-aldwin` : examiner le mort (Médecine DD 10), le mettre à l'abri, choix clerc et rôdeur, partir ; pose `f-ald-marchand-mort-sur-la-route` |
+| `l-hopital-de-paille` | `ald-auberge-cour-et-ecuries` | première rencontre avec Mireille (`quand` : le groupe ne lui a pas encore parlé) ; « L'aider. » (ou choix clerc, druide) lance `q-baume-de-l-aube` sans passer par « Accepter » ; le sujet `le-baume-de-l-aube` reste proposé si le groupe part sans aider (il se cache dès que la quête est en cours ou terminée) |
+
 ## Pièges, trésors, énigme
 
 Pièges : `ald-p-tonneau-du-perron` (auberge, 1E), `ald-p-fosses-a-pieux` (carrière, périmètre), `ald-p-dalle-a-javelines` (tertre, antichambre). Trésors : `ald-t-coffre-de-silas` (C1, étage), `ald-t-trappe-du-lion` (C2, cellier), `ald-t-cache-du-puits` (C3, cour), `ald-t-coffret-d-aldwin` (C4, carcasse du chariot), `ald-t-boite-de-la-ferme` (C5), `ald-t-pot-des-kobolds` (C6, falaise), `ald-t-coffre-de-demi-dent` (C7, huttes), `ald-t-sarcophage` (C8). Énigme : `ald-e-carnet-de-silas` (étage, test de déchiffrement).

@@ -41,6 +41,8 @@ export type Condition =
   | { temoin: { pnj: string; genre?: TypeIssue } }
   | { pieces: { min?: number; max?: number } }
   | { niveauGroupe: { min?: number; max?: number } }
+  /** Le moment de la journée (jour 6 h-17 h, soir 18 h-21 h, nuit) : un événement ou un sujet qui ne vaut qu'à cette heure (un PNJ présent le jour seulement). */
+  | { moment: 'jour' | 'soir' | 'nuit' }
   | { heros: { classe?: string; espece?: string; historique?: string } }
   | { non: Condition }
   | { et: Condition[] }
@@ -66,6 +68,7 @@ export const Condition: z.ZodType<Condition> = z.lazy(() =>
     z.object({ temoin: z.object({ pnj: Id, genre: z.enum(TYPES_ISSUE).optional() }) }).strict(),
     z.object({ pieces: z.object({ min: z.number().optional(), max: z.number().optional() }) }).strict(),
     z.object({ niveauGroupe: z.object({ min: z.number().int().optional(), max: z.number().int().optional() }) }).strict(),
+    z.object({ moment: z.enum(['jour', 'soir', 'nuit']) }).strict(),
     // Au moins un héros du groupe a cette classe, cette espèce et cet historique (ceux qui sont donnés) : les origines du groupe.
     z
       .object({ heros: z.object({ classe: Id.optional(), espece: Id.optional(), historique: Id.optional() }).refine((h) => !!(h.classe || h.espece || h.historique), 'heros : au moins une classe, une espèce ou un historique') })

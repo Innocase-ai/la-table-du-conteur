@@ -6,6 +6,14 @@ import type { Condition, DonneesMonde, EffetMonde, Enigme, Quete, TypeIssue } fr
 export type StatutQuete = 'proposee' | 'active' | 'terminee' | 'echouee';
 export type EtatPnj = 'vivant' | 'mort' | 'parti';
 
+/** L'ordre des statuts d'une quête : elle ne fait qu'avancer (proposée, en cours, close). */
+const RANG_STATUT: Record<StatutQuete, number> = { proposee: 0, active: 1, terminee: 2, echouee: 2 };
+
+/** Le moment de la journée : jour de 6 h à 17 h, soir de 18 h à 21 h, nuit ensuite (présences des PNJ, condition `moment`). */
+export function momentDe(heure = 8): 'jour' | 'soir' | 'nuit' {
+  return heure >= 6 && heure < 18 ? 'jour' : heure >= 18 && heure < 22 ? 'soir' : 'nuit';
+}
+
 // La mémoire du groupe (ce qu'il a fait), lue par les conditions `rencontre`, `parle` et `temoin` et par le dossier du conteur.
 // Elle vit dans l'état d'exploration de la partie ; toujours facultative (les anciennes sauvegardes n'en ont pas).
 
@@ -180,6 +188,7 @@ export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
     return (m.pnjVus?.[c.parle]?.paroles ?? 0) > 0 || (m.sujetsVus ?? []).some((s) => s.startsWith(`${c.parle}:`));
   }
   if ('temoin' in c) return (memoireDe(e).temoignages ?? []).some((t) => t.presents.includes(c.temoin.pnj) && (c.temoin.genre === undefined || t.genre === c.temoin.genre));
+  if ('moment' in c) return momentDe(e.heure) === c.moment;
   if ('pieces' in c) return (c.pieces.min === undefined || e.pieces >= c.pieces.min) && (c.pieces.max === undefined || e.pieces <= c.pieces.max);
   if ('niveauGroupe' in c) return (c.niveauGroupe.min === undefined || e.niveauGroupe >= c.niveauGroupe.min) && (c.niveauGroupe.max === undefined || e.niveauGroupe <= c.niveauGroupe.max);
   if ('heros' in c) return (e.heros ?? []).some((h) => (!c.heros.classe || h.classe === c.heros.classe) && (!c.heros.espece || h.espece === c.heros.espece) && (!c.heros.historique || h.historique === c.heros.historique));
@@ -222,13 +231,17 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     else if (effet.quete.statut === 'echouee' && def) echouerQuete(effet.quete.id, e, dm);
     else {
       const q = (e.quetes[effet.quete.id] ??= { statut: effet.quete.statut, actives: [], accomplies: [] });
-      // Une quête close (accomplie ou échouée) ne se rouvre pas : la reproposer ou la relancer ne la remet pas « en cours » sans étape.
-      if ((effet.quete.statut === 'active' || effet.quete.statut === 'proposee') && (q.statut === 'terminee' || q.statut === 'echouee')) return;
+      // Une quête ne recule jamais : close (accomplie ou échouée), elle ne se rouvre pas ; en cours, la reproposer (un sujet de PNJ répété,
+      // une scène qui l'a déjà lancée) ne la remet pas « proposée » (le joueur devait alors l'accepter une seconde fois).
+      if (RANG_STATUT[effet.quete.statut] < RANG_STATUT[q.statut]) return;
       q.statut = effet.quete.statut;
       if (effet.quete.statut === 'active' && def && !q.actives.length && !q.accomplies.length) q.actives.push(def.debut);
     }
   } else if ('etape' in effet) {
     const q = (e.quetes[effet.etape.quete] ??= { statut: 'active', actives: [], accomplies: [] });
+    // Une quête close ne reçoit plus d'étape ; une quête seulement proposée qu'on force à une étape est en cours.
+    if (q.statut === 'terminee' || q.statut === 'echouee') return;
+    q.statut = 'active';
     if (!q.actives.includes(effet.etape.etape) && !q.accomplies.includes(effet.etape.etape)) q.actives.push(effet.etape.etape);
   } else if ('pnjEtat' in effet) e.pnjEtats[effet.pnjEtat.pnj] = effet.pnjEtat.etat;
   else if ('deplacer' in effet) e.pnjLieux[effet.deplacer.pnj] = effet.deplacer.lieu;
@@ -311,16 +324,27 @@ export function avancerQuetes(e: EtatMonde, dm: DonneesMonde): void {
     for (const [id, q] of Object.entries(e.quetes)) {
       const def = dm.quetes.get(id);
       if (!def || q.statut !== 'active') continue;
+      // Réparation : une étape active que le monde ne connaît plus (histoire mise à jour après la sauvegarde) est abandonnée.
+      const connue = (s: string) => def.etapes.some((x) => x.id === s);
+      if (q.actives.some((s) => !connue(s))) {
+        q.actives = q.actives.filter(connue);
+        change = true;
+      }
       // Réparation : une quête « en cours » sans aucune étape active (sauvegarde d'avant la correction d'une quête rouverte, ou
       // étape ajoutée à la fiche depuis) reprend aux étapes qui suivent celles déjà accomplies.
       if (!q.actives.length) {
         for (const acc of q.accomplies) {
           for (const s of def.etapes.find((x) => x.id === acc)?.suivantes ?? []) {
-            if (!q.accomplies.includes(s) && !q.actives.includes(s) && def.etapes.some((x) => x.id === s)) {
+            if (!q.accomplies.includes(s) && !q.actives.includes(s) && connue(s)) {
               q.actives.push(s);
               change = true;
             }
           }
+        }
+        // Rien de ce que la partie a accompli n'existe plus : la quête reprend à son début.
+        if (!q.actives.length && !q.accomplies.some(connue)) {
+          q.actives.push(def.debut);
+          change = true;
         }
       }
       for (const idEtape of [...q.actives]) {

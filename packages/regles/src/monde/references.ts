@@ -28,7 +28,7 @@ export function refsCondition(c: Condition, f: (genre: string, id: string, extra
     if (c.heros.classe) f('classe', c.heros.classe);
     if (c.heros.espece) f('espece', c.heros.espece);
     if (c.heros.historique) f('historique', c.heros.historique);
-  } else if ('niveauGroupe' in c || 'pieces' in c) return;
+  } else if ('niveauGroupe' in c || 'pieces' in c || 'moment' in c) return;
   else if ('non' in c) refsCondition(c.non, f);
   else if ('et' in c) c.et.forEach((x) => refsCondition(x, f));
   else c.ou.forEach((x) => refsCondition(x, f));

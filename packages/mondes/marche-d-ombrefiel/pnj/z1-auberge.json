@@ -666,6 +666,26 @@
         "question": "Que faut-il pour votre remède ?",
         "reponse": "« Trois doses. Il me faut trois doses de mousse de saule, bien vertes, cueillies sur les racines et non sur la terre. Les vasières du Vieux Pont en ont, et la ferme Haddon, en bas des Terres Basses, en avait encore une réserve, si la ferme n'a pas brûlé tout entière. » Elle joint les mains un instant, puis rouvre les yeux. « Avec ça, je fais un baume qui sauve des réfugiés. Aubéris le permet, je le crois. Ce n'est pas la prière qui guérit ici, c'est le savoir, et la main qui ne tremble pas. »",
         "revele": [],
+        "condition": {
+          "et": [
+            {
+              "non": {
+                "quete": {
+                  "id": "q-baume-de-l-aube",
+                  "statut": "active"
+                }
+              }
+            },
+            {
+              "non": {
+                "quete": {
+                  "id": "q-baume-de-l-aube",
+                  "statut": "terminee"
+                }
+              }
+            }
+          ]
+        },
         "effets": [
           {
             "quete": {
