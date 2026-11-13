@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | Portraits de héros du créateur | `apps/jeu/src/portraits/` (`galerie.json`) | 54 |
 | Bestiaire (monstres du SRD) | `apps/jeu/src/bestiaire/` | un par profil |
-| Équipement et objets du SRD | `apps/jeu/src/equipement/` | 433 |
+| Équipement et objets du SRD | `apps/jeu/src/equipement/` | 529 |
 | Terrains, interface | `apps/jeu/src/terrains/`, `interface/` | |
 | Ouvertures de conversation, répliques de combat, salutations communes | `packages/donnees/repliques/`, `apps/jeu/src/voix/` | 648 prises pour les salutations |
 | **Portraits de PNJ des histoires** | `apps/jeu/src/communs/pnj/` + `packages/donnees/visuel/pnj-communs.json` | **157** |

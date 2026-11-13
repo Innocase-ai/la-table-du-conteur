@@ -11,6 +11,8 @@ Format : `packages/regles/src/monde/schemas.ts` (`Pnj` : `boutique`, `services`,
 
 ## Les marchands (`Pnj.boutique`)
 
+**Modèles de boutique** : `boutique.modele` prend un modèle commun (`apothicaire`, `alchimiste`, `arcaniste` pour les parchemins, `magasin-general`, `forgeron` : `packages/regles/src/monde/butin-commun.json`) dont le stock s'ajoute au `stock` du PNJ ; le `rachat` reste le sien, les `types` rachetés viennent du modèle s'il n'en écrit pas. Pour un marchand secondaire, le modèle suffit.
+
 Pendant une conversation avec un PNJ qui a une boutique, ses articles, ce qu'il rachète et ses services s'affichent à côté du dialogue.
 - **`stock`** : `{ objet, quantite, prix? }`. Sans `prix`, l'objet coûte sa valeur (`valeurPo` du catalogue SRD ou de l'objet du monde). Les quantités sont **limitées** : ce qui est acheté ne revient pas.
 - **`tables`** : les objets des tables de butin citées sont aussi en vente (un de chaque).

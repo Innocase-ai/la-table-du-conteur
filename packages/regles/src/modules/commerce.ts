@@ -5,7 +5,7 @@
 //   la boutique (un de chaque). Ce qui a été acheté est retenu dans `partie.modules.commerce.achats`.
 // - Rachat : un objet du sac, au prix `valeur × boutique.rachat` (arrondi à l'inférieur, au moins 1 pc ; gemmes et objets
 //   d'art à pleine valeur, comme le SRD), si la boutique
-//   rachète ce genre d'objet (`types` ; vide = tout) et jamais un objet de quête. `rachat` à 0 : la boutique n'achète rien.
+//   rachète ce genre d'objet (`types` ; vide = tout) et jamais un objet indispensable (quête, clé, objet d'un verrou). `rachat` à 0 : la boutique n'achète rien.
 // - Services : le prix est payé, le résumé raconté, les effets appliqués. Quelques services ont un sens dans les règles,
 //   d'après leur identifiant : soins (les PV du groupe au maximum), chambre ou abri (une nuit de repos, même là où l'on ne
 //   pourrait pas dormir), identification (les objets du sac à étudier sont identifiés).
@@ -16,6 +16,8 @@ import { appliquer, seReposer, suites, type CompteRendu, type PartieMonde } from
 import type { Pnj } from '../monde/schemas';
 import { commande, type ContexteJeu, type Module, type Partie, type Proposition } from '../noyau/types';
 import { objetDe } from './catalogue';
+import { boutiqueComplete, tableDe } from '../monde/butin-commun';
+import { objetIndispensable } from './inventaire';
 import { libre, partieMonde, verser } from './commun';
 
 export interface EtatCommerce {
@@ -39,12 +41,12 @@ export function prixLisible(po: number): string {
 
 /** Ce que propose une boutique maintenant : objet, prix, quantité restante. */
 export function articles(ctx: ContexteJeu, p: Partie, pnj: Pnj): { objet: string; nom: string; prix: number; reste: number }[] {
-  const b = pnj.boutique;
+  const b = pnj.boutique && boutiqueComplete(pnj.boutique);
   if (!b) return [];
   const achats = etatDe(p).achats;
   const lignes = new Map<string, { quantite: number; prix?: number }>();
   for (const s of b.stock) lignes.set(s.objet, { quantite: (lignes.get(s.objet)?.quantite ?? 0) + s.quantite, prix: s.prix });
-  for (const t of b.tables) for (const e of ctx.dm.tables.get(t)?.entrees ?? []) if (e.objet && !lignes.has(e.objet)) lignes.set(e.objet, { quantite: 1 });
+  for (const t of b.tables) for (const e of tableDe(ctx.dm, t)?.entrees ?? []) if (e.objet && !lignes.has(e.objet)) lignes.set(e.objet, { quantite: 1 });
   return [...lignes].flatMap(([objet, l]) => {
     const o = objetDe(ctx, objet);
     const reste = l.quantite - (achats[`${pnj.id}:${objet}`] ?? 0);
@@ -55,11 +57,12 @@ export function articles(ctx: ContexteJeu, p: Partie, pnj: Pnj): { objet: string
 
 /** Ce que la boutique rachète dans le sac, et à quel prix. */
 export function rachats(ctx: ContexteJeu, p: Partie, pnj: Pnj): { objet: string; nom: string; prix: number; quantite: number }[] {
-  const b = pnj.boutique;
+  const b = pnj.boutique && boutiqueComplete(pnj.boutique);
   if (!b || b.rachat <= 0) return [];
   return Object.entries(p.etat.inventaire).flatMap(([objet, quantite]) => {
     const o = objetDe(ctx, objet);
-    if (o.categorie === 'quete' || !o.valeurPo) return [];
+    // Un objet de quête, une clé ou tout objet qui ouvre un passage ne se vend pas (comme il ne se jette pas).
+    if (!o.valeurPo || objetIndispensable(ctx, objet)) return [];
     if (b.types.length && !b.types.includes(o.categorie as never)) return [];
     // Pierres précieuses et objets d'art gardent toute leur valeur sur le marché (SRD 5.2.1, « Vente d'équipement »).
     const taux = o.categorie === 'gemme' || o.categorie === 'objet-d-art' ? 1 : b.rachat;

@@ -204,7 +204,22 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
   const dm = moteur.ctx.dm;
   const f = moteur.vue<FicheScene>('scene', partie);
   const interlocuteur = moteur.vue<Interlocuteur | undefined>('interlocuteur', partie);
-  const nom = (id: string) => objetDe(moteur.ctx, id).nom;
+  const identifies = (partie.modules['inventaire'] as { identifies?: string[] } | undefined)?.identifies ?? [];
+  /** Un objet du sac ou porté, avec ce qui compte pour raconter : magique, rareté, bonus, harmonisation (le nom seul ne dit pas qu'une arme est enchantée). */
+  const etiquette = (id: string) => {
+    const o = objetDe(moteur.ctx, id);
+    // Un objet encore à identifier ne révèle rien de ses pouvoirs.
+    if (o.identification && !identifies.includes(id)) return o.nom;
+    const b = o.bonus;
+    const notes = [
+      o.magique && 'magique',
+      o.rarete && o.rarete !== 'commun' && o.rarete.replace('-', ' '),
+      b?.attaque && `${b.attaque > 0 ? '+' : ''}${b.attaque} attaque`,
+      b?.ca && `${b.ca > 0 ? '+' : ''}${b.ca} CA`,
+      o.attunement && 'harmonisation',
+    ].filter(Boolean);
+    return notes.length ? `${o.nom} (${notes.join(', ')})` : o.nom;
+  };
   const pm: PartieMonde = { dm, etat: partie.etat as PartieMonde['etat'], groupe: partie.groupe, gen: () => 0 };
   const vus = partie.etat.exploration?.sujetsVus ?? [];
   const tx = { ctx: moteur.ctx, partie } as Parameters<typeof accesFerme>[0];
@@ -288,12 +303,12 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
 
   l.push('', '## Le groupe');
   for (const h of partie.groupe) {
-    const portes = objetsPortes(equipementDe(h)).map(nom);
+    const portes = objetsPortes(equipementDe(h)).map(etiquette);
     l.push(
       `- ${h.nom} [id: ${h.id}], ${h.fiche.classe} niv. ${h.fiche.niveau}, PV ${h.pv}/${h.fiche.pvMax}${h.pv === 0 ? ' (inconscient)' : h.pv <= h.fiche.pvMax / 3 ? ' (gravement blessé)' : ''}, CA ${h.fiche.ca}${portes.length ? `, porte : ${portes.join(', ')}` : ''}`,
     );
   }
-  l.push(`Sac : ${f.inventaire.map((o) => `${o.nom}${o.quantite > 1 ? ` ×${o.quantite}` : ''}`).join(', ') || 'vide'} ; ${f.pieces} po.`);
+  l.push(`Sac : ${f.inventaire.map((o) => `${etiquette(o.id)}${o.quantite > 1 ? ` ×${o.quantite}` : ''}`).join(', ') || 'vide'} ; ${f.pieces} po.`);
   if (partie.scene.type === 'rencontre')
     l.push(
       '',

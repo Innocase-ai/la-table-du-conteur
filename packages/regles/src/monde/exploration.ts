@@ -3,6 +3,7 @@
 // applique les effets du monde et renvoie un compte rendu factuel, que le conteur raconte. Voir docs/M4-CONTEUR.md.
 import { lancer, type Generateur } from '../des';
 import type { Donnees } from '../donnees';
+import { tableDe } from './butin-commun';
 import { tirerDepouilles } from './depouilles';
 import type { Jet } from '../noyau/types';
 import { recuperer, type Personnage } from '../personnage';
@@ -798,7 +799,7 @@ function depouilles(p: PartieMonde, r: CompteRendu, rencontre: string): void {
 
 /** Un tirage sur une table de butin (entrées pondérées, tables imbriquées). */
 function tirerTable(p: PartieMonde, id: string, profondeur = 0): string[] {
-  const t = p.dm.tables.get(id);
+  const t = tableDe(p.dm, id);
   if (!t || profondeur > 5) return [];
   const total = t.entrees.reduce((s, e) => s + e.poids, 0);
   let x = p.gen() * total;

@@ -184,7 +184,7 @@ Illustrations de l'**écran de sommeil** (même commande, même installation, sa
 
 ## Images communes du catalogue SRD (05/11/2026)
 
-Tous les objets du catalogue SRD ont une image **commune à tous les mondes** : **433 images** (38 armes, 13 armures, 84 pièces de matériel, 37 outils, 7 paquetages, 254 objets magiques ou familles de variantes (433 en tout)), carrées 384 px en WebP, **4,9 Mo**, dans `apps/jeu/src/equipement/<id>.webp`.
+Tous les objets du catalogue SRD ont une image **commune à tous les mondes** : **529 images** (au 13/11/2026 : une par objet ou famille de variantes du catalogue, plus les armes et armures de base), carrées 384 px en WebP, **4,9 Mo**, dans `apps/jeu/src/equipement/<id>.webp`.
 
 - **Id d'image** : `idImageCommune(id)` (`packages/regles/src/modules/image-commune.ts`) : l'id de l'objet, ou celui de sa **base** (l'épée longue +1 prend l'épée longue), ou celui de sa **famille de variantes** (arme magique +1/+2/+3, ceintures de géant, cors du Valhalla, parchemins de sort, pierres de Ioun, potions de guérison et de force de géant). Le sac l'utilise pour tous les objets (`imageCommune` de la grille) ; l'image du monde, si elle existe, passe avant.
 - **Prompts** : `packages/donnees/visuel/objets-communs.json` (id d'image → description anglaise de l'objet), écrits par 5 agents Haiku d'après un guide (un seul objet, pas de personne ni de texte, mots refusés évités : bone, wound, blood, child…). Un test exige un prompt par image attendue et un fichier installé par image.

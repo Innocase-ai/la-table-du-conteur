@@ -2,6 +2,8 @@
 // Les erreurs rendent le monde injouable ; les avertissements signalent un manque de cohérence ou de richesse.
 import { SEUILS_PX } from '../caracteristiques';
 import { BUDGET_PX } from '../budget';
+import { SORTS_JOUABLES_EN_COMBAT } from '../combat/sorts';
+import { BOUTIQUES_MODELES, PREFIXE_TABLE_COMMUNE, tableDe } from './butin-commun';
 import type { Donnees } from '../donnees';
 import { dilemmesDe, drapeauxDesDilemmes, effetsDuDilemme } from './dilemmes-donnees';
 import { questionsDe } from './codex-donnees';
@@ -262,13 +264,20 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     const minNiveau = RAPPORT_RARETE_NIVEAU[o.rarete]!;
     if (dm.monde.niveaux.max < minNiveau && o.rarete !== 'commun') avis(`Objet « ${o.id} » : rareté « ${o.rarete} » inhabituelle pour les niveaux ${dm.monde.niveaux.min} à ${dm.monde.niveaux.max}.`);
     if (o.usage) effets(`Objet « ${o.id} »`, o.usage.effets);
+    // Les sorts d'un parchemin ou d'une baguette doivent exister et se jouer en combat ; un objet à charges ne coûte pas plus que son maximum.
+    for (const l of o.usage?.sorts ?? []) {
+      if (!srd.sorts.has(l.sort)) err(`Objet « ${o.id} » : sort inconnu « ${l.sort} ».`);
+      else if (!SORTS_JOUABLES_EN_COMBAT.has(l.sort)) err(`Objet « ${o.id} » : le sort « ${l.sort} » ne se joue pas en combat.`);
+      if (o.usage?.charges && (l.charges ?? 1) > o.usage.charges.max) err(`Objet « ${o.id} » : le sort « ${l.sort} » coûte plus de charges que l'objet n'en a.`);
+    }
   }
 
   // --- Tables de butin ---
   for (const t of dm.tables.values()) {
+    if (t.id.startsWith(PREFIXE_TABLE_COMMUNE)) err(`Table « ${t.id} » : le préfixe « ${PREFIXE_TABLE_COMMUNE} » est réservé aux tables communes à toutes les histoires.`);
     for (const e of t.entrees) {
       if (e.objet) verifierRef(`Table « ${t.id} »`, 'objet', e.objet);
-      if (e.table && !dm.tables.has(e.table)) err(`Table « ${t.id} » : table inconnue « ${e.table} ».`);
+      if (e.table && !tableDe(dm, e.table)) err(`Table « ${t.id} » : table inconnue « ${e.table} ».`);
       if (e.table === t.id) err(`Table « ${t.id} » : se référence elle-même.`);
     }
   }
@@ -303,7 +312,8 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     }
     if (p.boutique) {
       for (const s of p.boutique.stock) verifierRef(`${ou}, boutique`, 'objet', s.objet);
-      for (const t of p.boutique.tables) if (!dm.tables.has(t)) err(`${ou}, boutique : table inconnue « ${t} ».`);
+      if (p.boutique.modele && !BOUTIQUES_MODELES.has(p.boutique.modele)) err(`${ou}, boutique : modèle inconnu « ${p.boutique.modele} » (${[...BOUTIQUES_MODELES.keys()].join(', ')}).`);
+      for (const t of p.boutique.tables) if (!tableDe(dm, t)) err(`${ou}, boutique : table inconnue « ${t} ».`);
     }
     for (const o of p.inventaire) verifierRef(`${ou}, inventaire`, 'objet', o);
     if (p.profilCombat && !srd.monstres.has(p.profilCombat)) err(`${ou} : profil de combat inconnu « ${p.profilCombat} ».`);
@@ -328,7 +338,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       valeurTresors += objetValeur(o.objet) * o.quantite;
     }
     valeurTresors += (t.contenu.pieces?.po ?? 0) + (t.contenu.pieces?.pa ?? 0) / 10 + (t.contenu.pieces?.pc ?? 0) / 100;
-    for (const tb of t.contenu.tables) if (!dm.tables.has(tb.table)) err(`${ou} : table inconnue « ${tb.table} ».`);
+    for (const tb of t.contenu.tables) if (!tableDe(dm, tb.table)) err(`${ou} : table inconnue « ${tb.table} ».`);
     if (t.acces.verrou?.cle) verifierRef(`${ou} (clé)`, 'objet', t.acces.verrou.cle);
     if (t.acces.piege && !dm.pieges.has(t.acces.piege)) err(`${ou} : piège inconnu « ${t.acces.piege} ».`);
     if (t.gardien) verifierRef(`${ou} (gardien)`, 'rencontre', t.gardien);
@@ -367,7 +377,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
       if (m.pnj) verifierRef(ou, 'pnj', m.pnj);
     }
     if (r.type === 'combat' && !r.monstres.length) err(`${ou} : rencontre de combat sans monstre.`);
-    for (const t of r.butin.tables) if (!dm.tables.has(t)) err(`${ou} : table de butin inconnue « ${t} ».`);
+    for (const t of r.butin.tables) if (!tableDe(dm, t)) err(`${ou} : table de butin inconnue « ${t} ».`);
     for (const t of r.butin.tresors) if (!dm.tresors.has(t)) err(`${ou} : trésor inconnu « ${t} ».`);
     for (const a of r.alternatives) {
       cond(`${ou}, alternative « ${a.id} »`, a.condition);

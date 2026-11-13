@@ -32,7 +32,7 @@ interface Props {
   onFermer: () => void;
 }
 
-type Selection = { type: 'sac'; id: string } | { type: 'case'; s: Emplacement } | { type: 'potions' };
+type Selection = { type: 'sac'; id: string } | { type: 'case'; s: Emplacement } | { type: 'potions' } | { type: 'emporte'; id: string };
 
 const signe = (n: number) => (n >= 0 ? `+${n}` : String(n));
 
@@ -63,11 +63,14 @@ export function FeuillePersonnage({ ctx, monde, partie, heros, onChoisir, onglet
   const caseChoisie = sel?.type === 'case' ? [...poupee.corps, ...poupee.jeux.flatMap((j) => [j.droite, j.gauche])].find((c) => c.emplacement === sel.s) : undefined;
   const elementCase = caseChoisie?.objet ? tous.find((e) => e.id === idElementPorte(h.id, caseChoisie.objet!.id)) : undefined;
   const elementPotions = tous.find((e) => e.id === idElementPorte(h.id, POTION_DE_COMBAT));
+  // Les autres objets que le héros a reçus pour le combat (antidote, potions plus fortes…).
+  const emportes = Object.keys(h.embarques ?? {}).flatMap((id) => tous.filter((e) => e.id === idElementPorte(h.id, id)));
+  const choisiEmporte = sel?.type === 'emporte' ? emportes.find((e) => e.id === sel.id) : undefined;
   const actionsDe = (e?: ElementGrille) => (e ? propositions.filter((p) => p.element?.id === e.id) : []);
   const boutons = (ps: Proposition[]) => ps.map((p, i) => <BoutonProposition key={`${p.libelle}:${i}`} p={p} jouer={jouer} onCombat={onCombat} groupe={groupe} monde={monde} />);
   const attaques = attaquesEnMain(ctx, h);
   // Une sélection qui ne montre plus rien (objet équipé, donc sorti du sac) ne compte pas.
-  const selectionVisible = onglet === 'equipement' && !!(choisiSac || caseChoisie || sel?.type === 'potions');
+  const selectionVisible = onglet === 'equipement' && !!(choisiSac || caseChoisie || choisiEmporte || sel?.type === 'potions');
 
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
@@ -115,6 +118,7 @@ export function FeuillePersonnage({ ctx, monde, partie, heros, onChoisir, onglet
         </>
       );
     }
+    if (choisiEmporte) return <FicheElement monde={monde} e={choisiEmporte} actions={boutons(actionsDe(choisiEmporte))} />;
     if (sel?.type === 'potions')
       return elementPotions ? <FicheElement monde={monde} e={elementPotions} actions={boutons(actionsDe(elementPotions))} /> : <p className="vide">{h.nom} ne porte aucune potion de guérison. Confiez-en une depuis le sac.</p>;
     if (caseChoisie) {
@@ -237,6 +241,20 @@ export function FeuillePersonnage({ ctx, monde, partie, heros, onChoisir, onglet
                 onPotions={() => setSel(sel?.type === 'potions' ? undefined : { type: 'potions' })}
                 onGlisserCase={setGlisseCase}
               />
+              {emportes.length > 0 && (
+                <div className="inv-emportes">
+                  <h4>Emporté pour le combat</h4>
+                  <ul>
+                    {emportes.map((e) => (
+                      <li key={e.id}>
+                        <button type="button" className={`inv-emporte${choisiEmporte?.id === e.id ? ' choisi' : ''}`} onClick={() => setSel(choisiEmporte?.id === e.id ? undefined : { type: 'emporte', id: e.id })}>
+                          {e.titre} <span>×{e.quantite}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="inv-combat">
                 <h4>
                   Au combat <span>CA {h.fiche.ca}</span> <span>{h.pv} / {h.fiche.pvMax} PV</span>

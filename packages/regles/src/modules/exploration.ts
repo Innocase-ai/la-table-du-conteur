@@ -36,7 +36,7 @@ const raisonPasDeNuit = (lieu: { repos: string } | undefined): string | undefine
       : 'On ne dort pas ici : trop exposé. Une halte est possible ; pour une nuit, cherchez un abri sûr (auberge, camp, refuge).';
 
 /** La fiche de scène du moment (sorties, trésors, pièges, énigmes visibles). */
-const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 });
+const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0, srd: ctx.srd });
 
 /** Ouvrir avec la clé (si le groupe l'a), crocheter, forcer : les propositions d'un élément fermé. */
 function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: string }, element: Proposition['element'], groupe: Proposition['groupe'], cle?: string): Proposition[] {
@@ -339,7 +339,7 @@ export const moduleExploration: Module = {
     }),
   },
   vues: {
-    scene: (ctx, p) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 }),
+    scene: (ctx, p) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0, srd: ctx.srd }),
     /** La rencontre qui se présente, pour l'écran de rencontre ; rien hors d'une scène de rencontre. */
     rencontre: (ctx, p): PresentationRencontre | undefined => {
       if (p.scene.type !== 'rencontre') return undefined;

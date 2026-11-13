@@ -93,7 +93,7 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
     }),
     groupe: p.groupe.map((a) => ({ id: a.id, nom: a.nom, classe: a.fiche.classe, pv: a.pv, pvMax: a.fiche.pvMax })),
     pieces: etat.pieces,
-    inventaire: Object.entries(etat.inventaire).map(([id, quantite]) => ({ id, nom: dm.objets.get(id)?.nom ?? id, quantite })),
+    inventaire: Object.entries(etat.inventaire).map(([id, quantite]) => ({ id, nom: dm.objets.get(id)?.nom ?? p.srd?.objets.get(id)?.nom ?? p.srd?.armes.get(id)?.nom ?? p.srd?.armures.get(id)?.nom ?? id, quantite })),
     fin: etat.fin,
   };
 }

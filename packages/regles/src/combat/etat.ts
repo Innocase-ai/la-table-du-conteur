@@ -58,6 +58,8 @@ export type TypeModificateur =
   | 'bonus_attaque'
   | 'de_degats' // dés de dégâts en plus à la prochaine attaque touchée
   | 'degats_differes' // dégâts infligés à la fin du tour du porteur, une seule fois (Flèche acide)
+  | 'hate' // Hâte : une attaque de plus par tour, avantage aux sauvegardes de Dextérité (la CA et la Vitesse sont des modificateurs à part)
+  | 'resistance' // résistance à un type de dégâts (`typeDegats`) ou à tous (`tous`) tant que le modificateur dure (potions)
   | 'repere'; // sans effet sur les jets : sert seulement à montrer un état en cours (aura d'Aide)
 
 export interface Modificateur {
@@ -72,6 +74,8 @@ export interface Modificateur {
   expire?: { moment: 'debut_tour' | 'fin_tour'; de: string; apres?: number };
   usageUnique?: boolean;
   typeDegats?: string; // pour `degats_differes`
+  /** `degats_differes` qui se répète à chaque fin de tour du porteur tant qu'il dure (créature en flammes). */
+  repete?: boolean;
   // Restreint à des attaques contre une cible donnée (Ouverture).
   contre?: string;
 }
@@ -132,6 +136,8 @@ export interface Combattant {
   immunites: string[];
   vulnerabilites: string[];
   immunitesEtats: Etat[];
+  /** Objets confiés au héros pour ce combat (potions…), par identifiant : leur nombre est dans `ressources['objet:<id>']`. */
+  objetsEmbarques?: Record<string, import('./objets').ObjetEmbarque>;
   etats: EtatActif[];
   modificateurs: Modificateur[];
   attaques: AttaqueArme[];

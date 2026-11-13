@@ -168,6 +168,9 @@ export function retirerDe(ctx: ContexteJeu, e0: Equipement, s: Emplacement): { e
 /** Les objets harmonisés portés (SRD : trois au plus, de toute sorte) : tous les emplacements comptent. */
 export const harmonises = (ctx: ContexteJeu, e: Equipement): number => objetsPortes(e).filter((id) => objetDe(ctx, id).attunement).length;
 
+/** Les objets harmonisés que le héros ne porte pas sur lui mais emporte pour le combat (baguette, bâton) : ils comptent aussi parmi ses trois. */
+export const harmonisesEmbarques = (ctx: ContexteJeu, h: Personnage): number => Object.keys(h.embarques ?? {}).filter((id) => objetDe(ctx, id).attunement).length;
+
 // ---------------------------------------------------------------------------
 // Ranger l'équipement d'une ancienne forme (départ, sauvegardes)
 // ---------------------------------------------------------------------------
@@ -253,7 +256,9 @@ export function appliquerEquipement(ctx: ContexteJeu, p: Personnage): void {
 
 /** Ce que pèse ce qu'un héros porte. */
 export const poidsPorte = (ctx: ContexteJeu, p: Personnage): number =>
-  objetsPortes(equipementDe(p)).reduce((s, id) => s + (objetDe(ctx, id).poidsKg ?? 0), 0) + (p.ressources.potions ?? 0) * (objetDe(ctx, 'potion-de-guerison').poidsKg ?? 0);
+  objetsPortes(equipementDe(p)).reduce((s, id) => s + (objetDe(ctx, id).poidsKg ?? 0), 0) + (p.ressources.potions ?? 0) * (objetDe(ctx, 'potion-de-guerison').poidsKg ?? 0) +
+  // Ce qu'il a reçu pour le combat (`objet:<id>`) pèse aussi.
+  Object.entries(p.ressources).reduce((s, [cle, n]) => (cle.startsWith('objet:') ? s + n * (objetDe(ctx, cle.slice(6)).poidsKg ?? 0) : s), 0);
 
 /** Ce que le groupe peut porter, et ce qu'il porte (le sac et ce que portent les héros). */
 export function chargeDuGroupe(ctx: ContexteJeu, groupe: Personnage[], sac: Record<string, number>): { poids: number; capacite: number } {

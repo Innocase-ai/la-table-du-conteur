@@ -1,0 +1,568 @@
+{
+  "version": 1,
+  "tables": [
+    {
+      "id": "commun-consommables-p1",
+      "nom": "Consommables courants (niveaux 1 à 4)",
+      "palier": 1,
+      "entrees": [
+        {
+          "poids": 30,
+          "objet": "potion-de-guerison"
+        },
+        {
+          "poids": 12,
+          "objet": "antidote"
+        },
+        {
+          "poids": 10,
+          "objet": "eau-benite"
+        },
+        {
+          "poids": 10,
+          "objet": "acide"
+        },
+        {
+          "poids": 8,
+          "objet": "feu-gregeois"
+        },
+        {
+          "poids": 14,
+          "objet": "baume-d-herbes"
+        },
+        {
+          "poids": 6,
+          "objet": "sels-de-reveil"
+        },
+        {
+          "poids": 4,
+          "objet": "parchemin-de-sort-trait-de-feu"
+        },
+        {
+          "poids": 4,
+          "objet": "parchemin-de-sort-projectile-magique"
+        },
+        {
+          "poids": 4,
+          "objet": "parchemin-de-sort-soins"
+        },
+        {
+          "poids": 8,
+          "rien": true
+        }
+      ]
+    },
+    {
+      "id": "commun-parchemins-p1",
+      "nom": "Parchemins de sorts mineurs et de niveau 1 (niveaux 1 à 4)",
+      "palier": 1,
+      "entrees": [
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-trait-de-feu"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-rayon-de-givre"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-flamme-sacree"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-projectile-magique"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-mains-brulantes"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-sommeil"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-soins"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-benediction"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-blessure"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-vague-tonnante"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-mot-de-guerison"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-eclair-tracant"
+        }
+      ]
+    },
+    {
+      "id": "commun-parchemins-p2",
+      "nom": "Parchemins de sorts de niveau 1 à 3 (niveaux 5 à 10)",
+      "palier": 2,
+      "entrees": [
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-projectile-magique"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-sommeil"
+        },
+        {
+          "poids": 1,
+          "objet": "parchemin-de-sort-soins"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-restauration-partielle"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-immobilisation-de-personne"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-fracassement"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-fleche-acide"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-epine-mentale"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-boule-de-feu"
+        },
+        {
+          "poids": 2,
+          "objet": "parchemin-de-sort-eclair"
+        }
+      ]
+    },
+    {
+      "id": "commun-consommables-p2",
+      "nom": "Consommables et parchemins (niveaux 5 à 10)",
+      "palier": 2,
+      "entrees": [
+        {
+          "poids": 25,
+          "objet": "potion-de-guerison-importante"
+        },
+        {
+          "poids": 8,
+          "objet": "potion-de-resistance"
+        },
+        {
+          "poids": 6,
+          "objet": "potion-de-force-de-geant-collines"
+        },
+        {
+          "poids": 10,
+          "objet": "antidote"
+        },
+        {
+          "poids": 8,
+          "objet": "feu-gregeois"
+        },
+        {
+          "poids": 8,
+          "objet": "acide"
+        },
+        {
+          "poids": 12,
+          "table": "commun-parchemins-p2"
+        },
+        {
+          "poids": 8,
+          "table": "commun-consommables-p1"
+        }
+      ]
+    },
+    {
+      "id": "commun-consommables-p3",
+      "nom": "Potions et parchemins rares (niveaux 11 à 16)",
+      "palier": 3,
+      "entrees": [
+        {
+          "poids": 25,
+          "objet": "potion-de-guerison-superieure"
+        },
+        {
+          "poids": 8,
+          "objet": "elixir-de-sante"
+        },
+        {
+          "poids": 8,
+          "objet": "potion-d-heroisme"
+        },
+        {
+          "poids": 6,
+          "objet": "potion-d-invulnerabilite"
+        },
+        {
+          "poids": 6,
+          "objet": "potion-d-invisibilite"
+        },
+        {
+          "poids": 4,
+          "objet": "potion-de-force-de-geant-givre-ou-pierres"
+        },
+        {
+          "poids": 4,
+          "objet": "potion-de-force-de-geant-feu"
+        },
+        {
+          "poids": 15,
+          "table": "commun-parchemins-p2"
+        }
+      ]
+    },
+    {
+      "id": "commun-consommables-p4",
+      "nom": "Potions très rares (niveaux 17 à 20)",
+      "palier": 4,
+      "entrees": [
+        {
+          "poids": 25,
+          "objet": "potion-de-guerison-supreme"
+        },
+        {
+          "poids": 8,
+          "objet": "potion-de-vitesse"
+        },
+        {
+          "poids": 6,
+          "objet": "potion-de-vitalite"
+        },
+        {
+          "poids": 3,
+          "objet": "potion-de-force-de-geant-nuages"
+        },
+        {
+          "poids": 1,
+          "objet": "potion-de-force-de-geant-tempetes"
+        },
+        {
+          "poids": 10,
+          "objet": "elixir-de-sante"
+        },
+        {
+          "poids": 8,
+          "objet": "potion-d-invulnerabilite"
+        },
+        {
+          "poids": 6,
+          "rien": true
+        }
+      ]
+    },
+    {
+      "id": "commun-baguettes-p2",
+      "nom": "Baguette peu commune (niveaux 5 à 10)",
+      "palier": 2,
+      "entrees": [
+        {
+          "poids": 10,
+          "objet": "baguette-de-projectiles-magiques"
+        },
+        {
+          "poids": 10,
+          "rien": true
+        }
+      ]
+    },
+    {
+      "id": "commun-baguettes-p3",
+      "nom": "Baguettes et bâtons rares (niveaux 11 à 16)",
+      "palier": 3,
+      "entrees": [
+        {
+          "poids": 4,
+          "objet": "baguette-de-boules-de-feu"
+        },
+        {
+          "poids": 4,
+          "objet": "baguette-d-eclairs"
+        },
+        {
+          "poids": 3,
+          "objet": "baguette-des-entraves"
+        },
+        {
+          "poids": 3,
+          "objet": "baton-de-guerison"
+        },
+        {
+          "poids": 4,
+          "objet": "baguette-de-projectiles-magiques"
+        }
+      ]
+    }
+  ],
+  "boutiques": [
+    {
+      "id": "apothicaire",
+      "nom": "Apothicaire",
+      "resume": "Soins et remèdes : potions de guérison, antidotes, onguents, eau bénite.",
+      "stock": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 5
+        },
+        {
+          "objet": "antidote",
+          "quantite": 4
+        },
+        {
+          "objet": "baume-d-herbes",
+          "quantite": 6
+        },
+        {
+          "objet": "eau-benite",
+          "quantite": 3
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "sels-de-reveil",
+          "quantite": 4
+        },
+        {
+          "objet": "fiole",
+          "quantite": 6
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "potion",
+        "nourriture",
+        "materiel"
+      ]
+    },
+    {
+      "id": "alchimiste",
+      "nom": "Alchimiste",
+      "resume": "Fioles qui se jettent : acide, feu grégeois, eau bénite, et de quoi les contenir.",
+      "stock": [
+        {
+          "objet": "acide",
+          "quantite": 4
+        },
+        {
+          "objet": "feu-gregeois",
+          "quantite": 4
+        },
+        {
+          "objet": "eau-benite",
+          "quantite": 3
+        },
+        {
+          "objet": "antidote",
+          "quantite": 3
+        },
+        {
+          "objet": "fiole",
+          "quantite": 8
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "potion",
+        "materiel"
+      ]
+    },
+    {
+      "id": "arcaniste",
+      "nom": "Marchand de parchemins",
+      "resume": "Parchemins de sorts mineurs et de niveau 1 ou 2, focaliseurs arcaniques.",
+      "stock": [
+        {
+          "objet": "parchemin-de-sort-trait-de-feu",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-rayon-de-givre",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-flamme-sacree",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-projectile-magique",
+          "quantite": 3
+        },
+        {
+          "objet": "parchemin-de-sort-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "parchemin-de-sort-sommeil",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-mains-brulantes",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-benediction",
+          "quantite": 2
+        },
+        {
+          "objet": "parchemin-de-sort-restauration-partielle",
+          "quantite": 1
+        },
+        {
+          "objet": "parchemin-de-sort-fracassement",
+          "quantite": 1
+        },
+        {
+          "objet": "focaliseur-arcanique-baguette",
+          "quantite": 2
+        },
+        {
+          "objet": "focaliseur-arcanique-cristal",
+          "quantite": 2
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "parchemin",
+        "baguette",
+        "livre"
+      ]
+    },
+    {
+      "id": "magasin-general",
+      "nom": "Magasin général",
+      "resume": "Provisions et matériel de voyage.",
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 12
+        },
+        {
+          "objet": "torche",
+          "quantite": 10
+        },
+        {
+          "objet": "corde",
+          "quantite": 4
+        },
+        {
+          "objet": "sac-de-couchage",
+          "quantite": 4
+        },
+        {
+          "objet": "couverture",
+          "quantite": 4
+        },
+        {
+          "objet": "outre",
+          "quantite": 6
+        },
+        {
+          "objet": "sac-a-dos",
+          "quantite": 3
+        },
+        {
+          "objet": "bougie",
+          "quantite": 10
+        },
+        {
+          "objet": "huile",
+          "quantite": 6
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 2
+        },
+        {
+          "objet": "outils-de-voleur",
+          "quantite": 1
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": []
+    },
+    {
+      "id": "forgeron",
+      "nom": "Forgeron et armurier",
+      "resume": "Armes courantes, armures légères et boucliers.",
+      "stock": [
+        {
+          "objet": "dague",
+          "quantite": 4
+        },
+        {
+          "objet": "epee-courte",
+          "quantite": 3
+        },
+        {
+          "objet": "epee-longue",
+          "quantite": 2
+        },
+        {
+          "objet": "hache-d-armes",
+          "quantite": 2
+        },
+        {
+          "objet": "masse-d-armes",
+          "quantite": 2
+        },
+        {
+          "objet": "arc-court",
+          "quantite": 2
+        },
+        {
+          "objet": "arbalete-legere",
+          "quantite": 2
+        },
+        {
+          "objet": "armure-de-cuir",
+          "quantite": 2
+        },
+        {
+          "objet": "chemise-de-mailles",
+          "quantite": 1
+        },
+        {
+          "objet": "bouclier",
+          "quantite": 3
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "arme",
+        "armure",
+        "bouclier"
+      ]
+    }
+  ]
+}

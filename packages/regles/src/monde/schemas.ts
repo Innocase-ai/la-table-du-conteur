@@ -3,7 +3,7 @@
 // Ce fichier est la référence du format : voir docs/MONDES.md.
 import { FAMILLES } from '../equipement/emplacements';
 import { z } from 'zod';
-import { Caracteristique, Competence } from '../schemas';
+import { Caracteristique, Competence, ETATS } from '../schemas';
 import { nomsDesRegistres, REGISTRE_INCONNU, resoudreSalutationsCommunes, SALUTATIONS_COMMUNES } from './salutations-communes';
 
 export const Id = z.string().regex(/^[a-z0-9][a-z0-9-]*$/, 'identifiant en kebab-case ASCII');
@@ -143,6 +143,33 @@ export type Fait = z.infer<typeof Fait>;
 export const CATEGORIES_OBJET = ['arme', 'armure', 'bouclier', 'potion', 'parchemin', 'baguette', 'anneau', 'bijou', 'vetement', 'outil', 'materiel', 'nourriture', 'livre', 'cle', 'quete', 'curiosite', 'monnaie-ancienne', 'gemme', 'objet-d-art', 'divers'] as const;
 export const RARETES = ['commun', 'peu-commun', 'rare', 'tres-rare', 'legendaire'] as const;
 
+/**
+ * Ce qu'un consommable fait à celui qui le prend (potion, onguent, antidote…), en jeu comme en combat. Les soins d'un objet
+ * (`usage.soins`) comptent comme une première action. La durée d'une aide de combat est `usage.rounds` (10 rounds = 1 minute).
+ */
+export const ActionObjet = z.union([
+  z.object({ soins: z.string().regex(/^\d+d\d+([+-]\d+)?$/) }).strict(),
+  z.object({ pvTemporaires: z.number().int().positive() }).strict(),
+  // Met fin à ces états (identifiants du combat : empoisonne, aveugle, paralyse…).
+  z.object({ retirerEtats: z.array(z.enum(ETATS)).min(1) }).strict(),
+  // Résistance à un type de dégâts, à tous (« tous »), ou à un type tiré au d10 quand on boit (« au-hasard » : table de la potion de résistance).
+  z.object({ resistance: z.string().min(1) }).strict(),
+  // Un dé en plus à chaque jet d'attaque ou de sauvegarde (Bénédiction : 1d4).
+  z.object({ de: z.object({ pour: z.enum(['attaque', 'sauvegarde']), de: z.string().regex(/^\d+d\d+$/) }) }).strict(),
+  // La valeur de Force devient celle-ci (potions de force de géant) ; sans effet si elle est déjà supérieure ou égale.
+  z.object({ force: z.number().int().min(11).max(30) }).strict(),
+  // Objet de jet (acide, feu grégeois, eau bénite) : lancé sur un ennemi à portée, à la place d'une attaque ; sauvegarde contre le DD du lanceur
+  // (8 + modificateur de Dextérité + maîtrise) ; `contre` : seulement ces types de créatures (« Fiélon », « Mort-vivant ») ; `enflamme` : la cible brûle.
+  z.object({ jet: z.object({ sauvegarde: Caracteristique, des: z.string().regex(/^\d+d\d+$/), type: z.string().min(1), contre: z.array(z.string()).optional(), enflamme: z.boolean().optional(), portee: z.number().positive().default(6) }) }).strict(),
+  // L'état Invisible (potion d'invisibilité) : attaques contre lui avec désavantage, les siennes avec avantage, jusqu'à ce qu'il attaque, inflige des dégâts ou lance un sort.
+  z.object({ etat: z.literal('invisible') }).strict(),
+  // Hâte (potion de vitesse) : +2 CA, Vitesse doublée, avantage aux sauvegardes de Dextérité, une attaque de plus par tour.
+  z.object({ hate: z.literal(true) }).strict(),
+  // Dégâts subis en le prenant (potion toxique).
+  z.object({ degats: z.object({ des: z.string().regex(/^\d+d\d+$/), type: z.string().min(1) }) }).strict(),
+]);
+export type ActionObjet = z.infer<typeof ActionObjet>;
+
 export const Objet = z.object({
   id: Id,
   nom: Texte,
@@ -165,6 +192,18 @@ export const Objet = z.object({
       soins: z.string().regex(/^\d+d\d+([+-]\d+)?$/).optional(),
       resume: z.string().optional(),
       effets: Effets.default([]),
+      // Ce que l'objet fait à un héros (voir `ActionObjet`) : un héros peut le porter en combat et le prendre par une action Bonus.
+      agit: z.array(ActionObjet).default([]),
+      // Durée de ses aides de combat, en rounds (10 = 1 minute) ; sans elle, jusqu'à la fin du combat.
+      rounds: z.number().int().positive().optional(),
+      // Les sorts que l'objet lance (parchemin, baguette, bâton) : un héros qui le porte les joue en combat, sans emplacement. `niveau` : le niveau
+      // auquel le sort est lancé (par défaut le sien) ; `charges` : ce que ça coûte à un objet à charges (1 par défaut).
+      sorts: z.array(z.object({ sort: Id, niveau: z.number().int().min(0).max(9).optional(), charges: z.number().int().positive().optional() })).default([]),
+      // DD de sauvegarde et bonus d'attaque des sorts de l'objet.
+      dd: z.number().int().min(5).max(30).optional(),
+      attaque: z.number().int().min(0).max(20).optional(),
+      // Un objet à charges : son nombre, et ce qu'il en regagne à l'aube (`des` + `bonus`) ; sans `recharge`, jamais.
+      charges: z.object({ max: z.number().int().positive(), recharge: z.object({ des: z.string().regex(/^\d+d\d+$/), bonus: z.number().int().default(0) }).optional() }).optional(),
     })
     .optional(),
   identification: Dd.optional(),
@@ -368,6 +407,8 @@ const PnjObjet = z.object({
   }),
   boutique: z
     .object({
+      // Un modèle de boutique commun à toutes les histoires (`apothicaire`, `alchimiste`, `arcaniste`, `magasin-general`, `forgeron` : voir `monde/butin-commun.json`) : son stock s'ajoute à celui-ci.
+      modele: Id.optional(),
       stock: z.array(z.object({ objet: Id, quantite: z.number().int().positive().default(1), prix: z.number().min(0).optional() })).default([]),
       tables: z.array(Id).default([]),
       // Part de la valeur payée pour racheter (0 à 1) ; 0 = n'achète rien.

@@ -47,6 +47,7 @@ export const SYMBOLES_ETATS: Record<Etat, string> = {
   paralyse: '✶',
   empoisonne: '☣',
   etourdi: '✺',
+  invisible: '◇',
 };
 
 export const ORDRE_CATEGORIES: Carte['categorie'][] = ['elan', 'attaque', 'monstre', 'sort', 'aptitude', 'base'];
@@ -97,7 +98,8 @@ const NOMS_MODIFICATEURS: Record<string, string> = {
 };
 
 export function libelleModificateur(m: Modificateur): string {
-  const nom = NOMS_MODIFICATEURS[m.id] ?? CARTES_ELAN[m.id]?.nom ?? m.id;
+  // Un objet pris en combat (`objet:<nom>|<effet>`) montre le nom de l'objet.
+  const nom = NOMS_MODIFICATEURS[m.id] ?? CARTES_ELAN[m.id]?.nom ?? (m.id.startsWith('objet:') ? m.id.slice(6).split('|')[0]! : m.id);
   const v = m.valeur ?? 0;
   const effet: Record<Modificateur['type'], string> = {
     bonus_ca: `${v >= 0 ? '+' : ''}${v} CA`,
@@ -112,6 +114,8 @@ export function libelleModificateur(m: Modificateur): string {
     de_degats: `+${m.de ?? ''} dégâts à la prochaine attaque`,
     repere: 'points de vie maximum accrus',
     degats_differes: 'dégâts à la fin de son tour',
+    hate: 'une attaque de plus par tour, +2 CA, Vitesse doublée, avantage aux sauvegardes de Dextérité',
+    resistance: m.typeDegats === 'tous' ? 'résistance à tous les dégâts' : `résistance aux dégâts de type ${m.typeDegats ?? '?'}`,
   };
   return `${nom} : ${effet[m.type]}`;
 }

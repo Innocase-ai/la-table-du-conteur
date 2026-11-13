@@ -72,7 +72,8 @@ function tourVierge(c: Combattant): Combattant['tour'] {
     mouvement: vitesse(c),
     action: true,
     bonus: true,
-    attaquesRestantes: 0,
+    // Hâte : une attaque de plus par tour, en plus de l'action Attaque.
+    attaquesRestantes: c.modificateurs.some((m) => m.type === 'hate') ? 1 : 0,
     desengage: false,
     esquive: false,
     aBouge: false,
@@ -250,10 +251,10 @@ export function finTour(etat: EtatCombat): void {
   }
   // Dégâts différés (Flèche acide) : au moment où le porteur finit son tour.
   for (const m of c.modificateurs.filter((x) => x.type === 'degats_differes')) {
-    c.modificateurs = c.modificateurs.filter((x) => x !== m);
+    if (!m.repete) c.modificateurs = c.modificateurs.filter((x) => x !== m);
     if (c.mort || !m.de) continue;
     const source = etat.combattants.find((x) => x.id === m.source) ?? c;
-    journaliser(etat, { type: 'sort', texte: `${c.nom} est de nouveau rongé (${m.typeDegats}).`, cible: c.id, details: { sort: m.sort } });
+    journaliser(etat, { type: 'sort', texte: m.repete ? `${c.nom} brûle (${m.typeDegats}).` : `${c.nom} est de nouveau rongé (${m.typeDegats}).`, cible: c.id, details: { sort: m.sort } });
     infligerDegats(etat, c, [{ montant: lancerDes(etat, m.de), type: m.typeDegats ?? 'acide' }], source);
   }
   expirer(etat, 'fin_tour', c.id);
@@ -324,6 +325,7 @@ const LIBELLES_ETATS: Record<Etat, string> = {
   paralyse: 'paralysé',
   empoisonne: 'empoisonné',
   etourdi: 'étourdi',
+  invisible: 'invisible',
 };
 
 export function libelleEtat(e: Etat): string {
@@ -370,7 +372,7 @@ export function sauvegarde(etat: EtatCombat, c: Combattant, carac: Caracteristiq
   // Paralysé, inconscient ou étourdi : échec automatique aux jets de Force et de Dextérité.
   if ((carac === 'for' || carac === 'dex') && c.etats.some((e) => ['paralyse', 'inconscient', 'etourdi'].includes(e.etat))) return false;
   const avantage =
-    carac === 'dex' && (c.tour.esquive || (aTrait(c, 'sens-du-danger') && !aEtat(c, 'neutralise')));
+    carac === 'dex' && (c.tour.esquive || c.modificateurs.some((m) => m.type === 'hate') || (aTrait(c, 'sens-du-danger') && !aEtat(c, 'neutralise')));
   const desavantage = !avantage && !!c.sansFormation && (carac === 'for' || carac === 'dex');
   const d1 = de(etat, 20);
   const d = avantage ? Math.max(d1, de(etat, 20)) : desavantage ? Math.min(d1, de(etat, 20)) : d1;
@@ -414,6 +416,9 @@ export function situationAttaque(
   if (cible.etats.some((e) => ['paralyse', 'inconscient', 'entrave', 'aveugle', 'etourdi'].includes(e.etat))) avantage = true;
   if (attaquant.etats.some((e) => ['a-terre', 'entrave', 'aveugle', 'effraye', 'empoisonne'].includes(e.etat))) desavantage = true;
   if (cible.tour.esquive && peutAgir(cible)) desavantage = true;
+  // Invisible : on ne le voit pas (désavantage contre lui) et il voit tout (avantage à ses attaques).
+  if (aEtat(cible, 'invisible')) desavantage = true;
+  if (aEtat(attaquant, 'invisible')) avantage = true;
   if (mode === 'distance') {
     if (porteeNormale !== undefined && dist > porteeNormale) desavantage = true;
     if (ennemis(etat, attaquant).some((e) => peutAgir(e) && distanceMetres(e.position, attaquant.position) <= TAILLE_CASE)) {
@@ -458,6 +463,8 @@ export function jetAttaque(
     .filter((m) => m.type === 'bonus_attaque' && (!m.contre || m.contre === cible.id))
     .reduce((s2, m) => s2 + (m.valeur ?? 0), 0);
   consommerModificateursAttaque(attaquant, cible);
+  // Attaquer met fin à l'invisibilité (potion).
+  retirerEtat(attaquant, 'invisible');
   let total = d + bonus + bonusTemp + desModificateurs(etat, attaquant, 'de_attaque');
   const seuilCritique = aTrait(attaquant, 'critique-ameliore') ? 19 : 20;
   // Toute attaque qui touche, à 1,5 m ou moins, une cible paralysée ou inconsciente est un critique (SRD 5.2.1).
@@ -556,7 +563,8 @@ export function emplacementDisponible(c: Combattant, niveauMin: number): number 
 export function multiplicateurDegats(c: Combattant, type: string): number {
   if (c.immunites.includes(type)) return 0;
   let m = 1;
-  if (c.resistances.includes(type) || (c.rage && DEGATS_PHYSIQUES.includes(type))) m *= 0.5;
+  const resiste = c.resistances.includes(type) || (c.rage && DEGATS_PHYSIQUES.includes(type)) || c.modificateurs.some((x) => x.type === 'resistance' && (x.typeDegats === 'tous' || x.typeDegats === type));
+  if (resiste) m *= 0.5;
   if (c.vulnerabilites.includes(type)) m *= 2;
   return m;
 }
@@ -569,6 +577,8 @@ export function infligerDegats(
   critique = false,
 ): number {
   if (cible.mort) return 0;
+  // Infliger des dégâts met fin à l'invisibilité (potion).
+  if (source && source !== cible) retirerEtat(source, 'invisible');
   let total = 0;
   const multiplicateurs = degats.map((d) => multiplicateurDegats(cible, d.type));
   // Les dégâts d'un même type s'additionnent, puis la résistance (ou la vulnérabilité) s'applique une fois, arrondie à l'inférieur.

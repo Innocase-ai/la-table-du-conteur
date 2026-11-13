@@ -54,12 +54,15 @@ interface Regle {
   /** Multiplicateur de la bourse (une vieille pièce de noyé vaut moins qu'une bourse de bandit). */
   facteur?: number;
   /** Objets possibles : chacun avec sa chance, tirée indépendamment. */
-  objets: { objet: string; chance: number; quantite?: number }[];
+  objets: { objet: string; chance: number; quantite?: number; /** Un seul de ceux-ci, tiré au hasard, à la place de `objet`. */ parmi?: string[] }[];
 }
+
+/** Les parchemins qu'un humanoïde peut porter sur lui : des sorts de combat de niveau 1 (de vrais sorts, pas un parchemin « au choix du MJ »). */
+export const PARCHEMINS_DE_DEPOUILLE = ['parchemin-de-sort-projectile-magique', 'parchemin-de-sort-soins', 'parchemin-de-sort-sommeil', 'parchemin-de-sort-mains-brulantes', 'parchemin-de-sort-benediction', 'parchemin-de-sort-blessure'];
 
 const REGLES: Record<Famille, Regle> = {
   // Humanoïdes, gobelinoïdes, gnolls : une bourse, du matériel de voyage, parfois une potion ou un parchemin.
-  porteur: { bourse: 0.7, objets: [{ objet: 'rations', chance: 0.15 }, { objet: 'torche', chance: 0.12 }, { objet: 'potion-de-guerison', chance: 0.05 }, { objet: 'parchemin-de-sort-niveau-1', chance: 0.02 }] },
+  porteur: { bourse: 0.7, objets: [{ objet: 'rations', chance: 0.15 }, { objet: 'torche', chance: 0.12 }, { objet: 'potion-de-guerison', chance: 0.05 }, { objet: 'parchemin-de-sort-niveau-1', chance: 0.02, parmi: PARCHEMINS_DE_DEPOUILLE }] },
   // Géants : de quoi voler, beaucoup de matériel.
   geant: { bourse: 0.5, objets: [{ objet: 'corde', chance: 0.2 }, { objet: 'rations', chance: 0.2, quantite: 2 }] },
   // Morts-vivants : de vieilles pièces, des restes d'offrandes.
@@ -93,7 +96,11 @@ export function tirerDepouilles(srd: Donnees, monstres: { profil: string; nombre
         const n = lancer(b.des, gen).total * (regle.facteur ?? 1);
         total.pieces += b.unite === 'po' ? n : b.unite === 'pa' ? n / 10 : n / 100;
       }
-      for (const o of regle.objets) if (gen() < o.chance) total.objets[o.objet] = (total.objets[o.objet] ?? 0) + (o.quantite ?? 1);
+      for (const o of regle.objets)
+        if (gen() < o.chance) {
+          const id = o.parmi?.length ? o.parmi[Math.min(o.parmi.length - 1, Math.floor(gen() * o.parmi.length))]! : o.objet;
+          total.objets[id] = (total.objets[id] ?? 0) + (o.quantite ?? 1);
+        }
     }
   }
   total.pieces = Number(total.pieces.toFixed(2));

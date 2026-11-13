@@ -9074,6 +9074,41 @@ kbd {
   margin: 0 0 4px;
 }
 
+.inv-emportes {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--bord);
+  font-size: 12.5px;
+}
+
+.inv-emportes h4 {
+  margin: 0 0 4px;
+}
+
+.inv-emportes ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inv-emporte {
+  padding: 2px 8px;
+  border: 1px solid var(--bord);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.inv-emporte.choisi {
+  border-color: currentColor;
+  font-weight: 600;
+}
+
 .inv-combat {
   margin-top: 8px;
   padding-top: 6px;

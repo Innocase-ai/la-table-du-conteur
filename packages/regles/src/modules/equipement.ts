@@ -8,7 +8,7 @@ import { commande, type ContexteJeu, type Module, type Partie, type Proposition 
 import { equipementDe, type Personnage } from '../personnage';
 import { objetDe } from './catalogue';
 import { libre } from './commun';
-import { appliquerEquipement, caAvecEquipement, copieEquipement, harmonises, HARMONISES_MAX, idElementPorte, infoEquipement, mainsArmees, normaliserEquipement, placer, retirerDe } from './equipement-regles';
+import { appliquerEquipement, caAvecEquipement, copieEquipement, harmonises, harmonisesEmbarques, HARMONISES_MAX, idElementPorte, infoEquipement, mainsArmees, normaliserEquipement, placer, retirerDe } from './equipement-regles';
 
 declare module '../noyau/types' {
   interface CarteEvenements {
@@ -22,7 +22,7 @@ const PANNEAU_SAC = { id: 'sac', titre: 'Objets', ordre: 10, onglet: 'Sac' };
 function avecObjet(ctx: ContexteJeu, h: Personnage, objet: string, emplacement?: Emplacement) {
   const r = placer(ctx, h, objet, emplacement);
   // Harmonisation : compte tout ce qui serait porté (une pièce harmonisée remplace peut-être une autre).
-  if ('equipe' in r && objetDe(ctx, objet).attunement && harmonises(ctx, r.equipe) > HARMONISES_MAX) return { refus: `${h.nom} est déjà harmonisé à ${HARMONISES_MAX} objets magiques, le maximum.` };
+  if ('equipe' in r && objetDe(ctx, objet).attunement && harmonises(ctx, r.equipe) + harmonisesEmbarques(ctx, h) > HARMONISES_MAX) return { refus: `${h.nom} est déjà harmonisé à ${HARMONISES_MAX} objets magiques, le maximum.` };
   return r;
 }
 

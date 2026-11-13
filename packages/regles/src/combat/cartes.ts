@@ -1,9 +1,11 @@
 // Les cartes : la main d'un combattant à son tour, et l'exécution des commandes.
 // Une carte est une option de jeu réelle du SRD (attaque, sort, aptitude…) ou une carte d'élan.
 import { moyenneDes } from '../des';
+import { idImageCommune } from '../modules/image-commune';
 import type { Caracteristique, Sort } from '../schemas';
 import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
-import { distanceMetres, type Position } from './grille';
+import { distanceMetres, ligneDeVue, type Position } from './grille';
+import { appliquerObjet, avecIncantationDObjet, jetDe, PREFIXE_CHARGES, PREFIXE_OBJET, pourSoiSeul, utileA, visePar } from './objets';
 import {
   aPortee,
   aTrait,
@@ -433,6 +435,54 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
     const cibles = [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5 && x.pv < x.pvMax).map((x) => x.id);
     res.push(verifier(carte({ id: 'base:potion', nom: 'Potion de soins', description: 'Rend 2d4 + 2 PV à vous ou à un allié au contact, même tombé à 0 PV.', categorie: 'base', cout, ciblage: 'allie', cibles, ressource: `${r.potions} potion(s)` }), cout));
   }
+  // Les autres objets confiés au héros (potions de guérison plus fortes, antidote, élixirs…) : une carte chacun, par une action Bonus,
+  // pour soi ou pour un allié au contact (sauf ce qui fait mal à celui qui le prend).
+  for (const [cle, nombre] of Object.entries(r)) {
+    if (!cle.startsWith(PREFIXE_OBJET) || !(nombre > 0)) continue;
+    const idObjet = cle.slice(PREFIXE_OBJET.length);
+    const objet = c.objetsEmbarques?.[idObjet];
+    if (!objet) continue;
+    res.push(...cartesDeSortsDObjet(etat, ctx, c, idObjet, objet, nombre));
+    if (!objet.actions.length) continue;
+    const jet = jetDe(objet.actions);
+    if (jet) {
+      // Un objet de jet se lance à la place d'une attaque, sur un ennemi à portée (6 m) en vue.
+      const visees = adversairesCiblables(etat, c).filter((x) => !horsCombat(x) && visePar(jet, x) && distanceMetres(c.position, x.position) <= jet.portee && ligneDeVue(etat.grille, c.position, x.position)).map((x) => x.id);
+      const k = carte({
+        id: `base:objet-${idObjet}`,
+        nom: objet.nom,
+        description: `À la place d'une attaque : jeté sur un ennemi à ${jet.portee} m, sauvegarde de ${jet.sauvegarde === 'dex' ? 'Dextérité' : jet.sauvegarde} (DD ${8 + c.mods.dex + c.bonusMaitrise}) ou ${jet.des} dégâts de ${jet.type}${jet.contre?.length ? ` (${jet.contre.join(' ou ')} seulement)` : ''}${jet.enflamme ? ' ; la cible prend feu' : ''}.`,
+        categorie: 'base',
+        cout: 'action',
+        ciblage: 'ennemi',
+        portee: jet.portee,
+        cibles: visees,
+        ressource: `${nombre} en réserve`,
+        image: idImageCommune(idObjet),
+        stats: { sauvegarde: { caracteristique: jet.sauvegarde, dd: 8 + c.mods.dex + c.bonusMaitrise }, degats: [{ des: jet.des, bonus: 0, type: jet.type }] },
+      });
+      res.push(peutAttaquer(c) ? verifier(k, 'action') : refuser(k, 'Action déjà utilisée.'));
+      continue;
+    }
+    const cout: CoutCarte = 'bonus';
+    const proches = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite);
+    const voisins = pourSoiSeul(objet.actions) ? [c] : [c, ...proches].filter((x) => distanceMetres(x.position, c.position) <= 1.5);
+    const cibles = voisins.filter((x) => utileA(objet.actions, x)).map((x) => x.id);
+    const k = carte({
+      id: `base:objet-${idObjet}`,
+      nom: objet.nom,
+      description: pourSoiSeul(objet.actions) ? 'Vous le prenez : action Bonus.' : 'À vous ou à un allié au contact : action Bonus.',
+      categorie: 'base',
+      cout,
+      ciblage: 'allie',
+      cibles,
+      ressource: `${nombre} en réserve`,
+      image: idImageCommune(idObjet),
+    });
+    res.push(cibles.length ? verifier(k, cout) : refuser(k, 'Cela ne changerait rien.'));
+  }
+  // Une créature en flammes (feu grégeois) peut étouffer le feu : une action.
+  if (c.modificateurs.some((m) => m.id === 'brule')) res.push(verifier(carte({ id: 'base:eteindre', nom: 'Éteindre les flammes', description: 'Étouffer le feu qui vous ronge : plus de dégâts de feu à la fin de vos tours.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   if (c.autreJeu) {
     const autre = c.autreJeu;
     const ca = autre.caBase !== c.caBase ? ` (CA ${c.caBase} → ${autre.caBase})` : '';
@@ -509,7 +559,8 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
     return { ok: false, erreur: 'Point hors de portée.' };
   }
   // Seuls les projectiles et les rayons peuvent viser plusieurs fois la même créature.
-  if (cmd.carte.startsWith('sort:') && !SORTS_CIBLES_REPETABLES.has(cmd.carte) && new Set(ids).size < ids.length) {
+  const carteDeSort = cmd.carte.startsWith('base:objet-') && cmd.carte.includes('~') ? `sort:${cmd.carte.split('~')[1]}` : cmd.carte;
+  if (carteDeSort.startsWith('sort:') && !SORTS_CIBLES_REPETABLES.has(carteDeSort) && new Set(ids).size < ids.length) {
     return { ok: false, erreur: 'Une même créature ne peut pas être visée deux fois.' };
   }
   const cibles = ids.map((x) => combattant(etat, x));
@@ -573,7 +624,8 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
       break;
     case 'base':
       depenser(c, k.cout);
-      executerBase(etat, c, sid, cibles);
+      if (sid.startsWith('objet-') && sid.includes('~')) lancerSortDObjet(etat, ctx, c, sid, cibles, cmd.point);
+      else executerBase(etat, c, sid, cibles);
       break;
     case 'elan': {
       const [, index, eid] = cmd.carte.split(':') as [string, string, string];
@@ -727,7 +779,66 @@ function executerAptitude(etat: EtatCombat, ctx: Contexte, c: Combattant, id: st
   }
 }
 
+/** Les cartes des sorts d'un objet emporté (parchemin, baguette) : une par sort, sans emplacement, au DD et au bonus d'attaque de l'objet. */
+function cartesDeSortsDObjet(etat: EtatCombat, ctx: Contexte, c: Combattant, idObjet: string, objet: NonNullable<Combattant['objetsEmbarques']>[string], nombre: number): Carte[] {
+  const res: Carte[] = [];
+  const t = c.tour;
+  for (const o of objet.sorts ?? []) {
+    const sort = ctx.sorts.get(o.sort);
+    if (!sort || sort.tempsIncantation === 'reaction') continue;
+    const cout: CoutCarte = sort.tempsIncantation === 'bonus' ? 'bonus' : 'action';
+    const reste = objet.charges ? (c.ressources[PREFIXE_CHARGES + idObjet] ?? 0) : nombre;
+    let k = avecIncantationDObjet(c, objet, o.niveau, () => {
+      const zone = sort.zone ? { forme: sort.zone.forme, taille: sort.zone.taille } : ZONES_SUPPLEMENTAIRES[sort.id];
+      const ciblage: Ciblage = zone ? 'point' : sort.portee.type === 'personnel' && !SORTS_AU_CONTACT.has(sort.id) ? 'soi' : sort.resolution || sort.special === 'marque-du-chasseur' || sort.degats.length ? 'ennemi' : 'allie';
+      return carte({
+        id: `base:objet-${idObjet}~${o.sort}~${o.niveau}`,
+        nom: `${objet.nom} : ${sort.nom}${o.niveau > sort.niveau ? ` (niveau ${o.niveau})` : ''}`,
+        description: sort.resume,
+        categorie: 'base',
+        cout,
+        ciblage,
+        portee: porteeSort(sort),
+        zone,
+        nbCibles: ciblage === 'point' || ciblage === 'soi' ? 0 : sort.special === 'projectile-magique' || sort.special === 'rayon-ardent' ? 3 : nombreCibles(sort, o.niveau),
+        cibles: ciblage === 'point' || ciblage === 'soi' ? [] : ciblesPossibles(etat, c, sort).map((x) => x.id),
+        ressource: objet.charges ? `${reste}/${objet.charges.max} charge(s), ce sort en coûte ${o.charges}` : 'parchemin : détruit après usage',
+        stats: statsDeSort(sort, c),
+        image: idImageCommune(idObjet),
+      });
+    });
+    if (objet.charges && reste < o.charges) k = refuser(k, 'Plus assez de charges.');
+    else if (c.rage) k = refuser(k, 'Impossible en rage.');
+    else if (c.sansFormation) k = refuser(k, 'Armure ou bouclier porté sans formation : impossible de lancer un sort.');
+    else k = cout === 'action' && !t.action ? refuser(k, 'Action déjà utilisée.') : cout === 'bonus' && !t.bonus ? refuser(k, 'Action bonus déjà utilisée.') : k.ciblage !== 'aucun' && k.ciblage !== 'soi' && k.ciblage !== 'point' && !k.cibles.length ? refuser(k, 'Aucune cible à portée.') : k;
+    res.push(k);
+  }
+  return res;
+}
+
+/** Lance un sort d'un objet emporté : le parchemin est détruit, la baguette perd ses charges ; le sort est joué comme un sort du héros. */
+function lancerSortDObjet(etat: EtatCombat, ctx: Contexte, c: Combattant, id: string, cibles: Combattant[], point: Position | undefined): void {
+  const [idObjet, sortId, niveau] = id.slice('objet-'.length).split('~') as [string, string, string];
+  const objet = c.objetsEmbarques![idObjet]!;
+  const option = objet.sorts!.find((s) => s.sort === sortId && s.niveau === Number(niveau))!;
+  if (objet.charges) c.ressources[PREFIXE_CHARGES + idObjet] = (c.ressources[PREFIXE_CHARGES + idObjet] ?? 0) - option.charges;
+  else c.ressources[PREFIXE_OBJET + idObjet] = (c.ressources[PREFIXE_OBJET + idObjet] ?? 1) - 1;
+  journaliser(etat, { type: 'info', texte: objet.charges ? `${c.nom} utilise ${objet.nom} (${option.charges} charge(s)).` : `${c.nom} lit ${objet.nom} : le parchemin tombe en poussière.`, acteur: c.id });
+  avecIncantationDObjet(c, objet, option.niveau, () => lancerSort(etat, c, ctx.sorts.get(sortId)!, option.niveau, { cibles, point }));
+}
+
 function executerBase(etat: EtatCombat, c: Combattant, id: string, cibles: Combattant[]): void {
+  if (id === 'eteindre') {
+    c.modificateurs = c.modificateurs.filter((m) => m.id !== 'brule');
+    journaliser(etat, { type: 'info', texte: `${c.nom} étouffe les flammes.`, acteur: c.id });
+    return;
+  }
+  if (id.startsWith('objet-')) {
+    const idObjet = id.slice('objet-'.length);
+    c.ressources[PREFIXE_OBJET + idObjet] = (c.ressources[PREFIXE_OBJET + idObjet] ?? 1) - 1;
+    appliquerObjet(etat, c, cibles[0] ?? c, c.objetsEmbarques![idObjet]!);
+    return;
+  }
   switch (id) {
     case 'foncer':
       c.tour.mouvement += vitesse(c);

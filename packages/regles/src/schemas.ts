@@ -205,6 +205,7 @@ export const ETATS = [
   'paralyse',
   'empoisonne',
   'etourdi',
+  'invisible',
 ] as const;
 export const Etat = z.enum(ETATS);
 export type Etat = z.infer<typeof Etat>;

@@ -116,6 +116,8 @@ export function preparerIncantation(lanceur: Combattant, sort: Sort): number | s
 }
 
 export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
+  // Lancer un sort met fin à l'invisibilité (potion).
+  retirerEtat(lanceur, 'invisible');
   if (niveau > 0) lanceur.incantation!.emplacements[niveau - 1]! -= 1;
   const cases = sort.zone && cible.point ? casesDeZone(etat, lanceur, sort, cible.point) : undefined;
   journaliser(etat, {

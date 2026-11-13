@@ -2,6 +2,7 @@
 // durable (PV, potions, usages d'aptitudes, emplacements de sorts). L'exploration le modifie, le combat le prend
 // et le rend : une potion bue en combat est bue pour de bon, un sort lancé use son emplacement jusqu'au repos.
 import { etatDurableMax, RECUPERATION, type EtatDurable } from './combat/creation';
+import { PREFIXE_CHARGES, PREFIXE_OBJET, type ObjetEmbarque } from './combat/objets';
 import type { HeroCombat } from './combat/prototype';
 import { kitDepuisFiche } from './creation/kit';
 import { lancer, type Generateur } from './des';
@@ -43,6 +44,8 @@ export interface Personnage extends EtatDurable {
   portrait?: string;
   /** Ce qu'il porte ; absent tant qu'on n'a rien changé à l'équipement de départ (voir `equipementDe`). Peut être l'ancienne forme en listes dans une vieille sauvegarde : la partie la convertit au chargement. */
   equipe?: Equipement | AncienEquipement;
+  /** Ce que le héros a reçu pour le combat (potions, antidote…), par identifiant d'objet : ce qu'ils font ; le nombre est dans `ressources['objet:<id>']`. */
+  embarques?: Record<string, ObjetEmbarque>;
   /** Ses choix de création, pour le faire monter de niveau en gardant ce que le joueur a choisi. */
   choix?: ChoixPersonnage;
   /** Le niveau qu'il vient d'atteindre, tant que ses nouveaux choix (amélioration, sorts…) n'ont pas été revus par le joueur. */
@@ -84,7 +87,7 @@ export function heroCombatDe(p: Personnage): HeroCombat {
     });
   const armes = avecBonus(kit.armes, eq?.armesActives);
   const autreJeu = kit.autreJeu && { ...kit.autreJeu, armes: avecBonus(kit.autreJeu.armes, eq?.armesAutres) };
-  return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, ...(autreJeu ? { autreJeu } : {}), potions: p.ressources.potions ?? 0 }, portrait: p.portrait, etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
+  return { id: p.id, fiche: p.fiche, kit: { ...kit, armes, ...(autreJeu ? { autreJeu } : {}), potions: p.ressources.potions ?? 0 }, portrait: p.portrait, ...(p.embarques ? { objets: p.embarques } : {}), etat: { pv: p.pv, ressources: { ...p.ressources }, emplacements: [...p.emplacements] } };
 }
 
 /** Reprend l'état durable laissé par un combat (borné par les maximums de la fiche). */
@@ -92,8 +95,16 @@ export function appliquerEtat(p: Personnage, etat: { pv: number; ressources?: Re
   const max = etatDurableMax(p.fiche);
   p.pv = Math.max(0, Math.min(p.fiche.pvMax, etat.pv));
   for (const [cle, v] of Object.entries(etat.ressources ?? {})) {
-    if (!RESSOURCES_DURABLES.includes(cle)) continue;
-    p.ressources[cle] = Math.max(0, cle === 'potions' ? v : Math.min(max.ressources[cle] ?? v, v));
+    // Les objets confiés au héros (`objet:<id>`) se comptent comme les potions : ce qui reste après le combat reste dans ses mains.
+    const objet = cle.startsWith(PREFIXE_OBJET);
+    // Les charges d'un objet emporté (`charges:<id>`) durent aussi d'un combat à l'autre.
+    const charges = cle.startsWith(PREFIXE_CHARGES);
+    if (!RESSOURCES_DURABLES.includes(cle) && !objet && !charges) continue;
+    p.ressources[cle] = Math.max(0, cle === 'potions' || objet || charges ? v : Math.min(max.ressources[cle] ?? v, v));
+    if (objet && !p.ressources[cle]) {
+      delete p.ressources[cle];
+      if (p.embarques) delete p.embarques[cle.slice(PREFIXE_OBJET.length)];
+    }
   }
   if (etat.emplacements) p.emplacements = max.emplacements.map((m, i) => Math.max(0, Math.min(m, etat.emplacements![i] ?? 0)));
 }

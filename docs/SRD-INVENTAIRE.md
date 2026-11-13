@@ -28,7 +28,7 @@ Le jeu peut se dire « compatible avec la cinquième édition » ou « compatibl
 | Sorts | 111-186 | Règles d'incantation et description des sorts | M1, M3 | 339 sorts de niveaux 0 à 9 en JSON (`sorts/`) ; 25 jouables en combat |
 | Glossaire de règles | 187-202 | Définitions (états, actions, zones…) | M1 | À faire |
 | Boîte à outils ludique | 203-214 | Voyage, conception d'historique, malédictions, environnement, terreur, poisons, **pièges**, **rencontres de combat** | M1, M5 | À faire |
-| Objets magiques | 215-266 | Règles et objets de A à Z | Mondes | 318 objets en JSON (`objets/magiques-*.json`), un par variante |
+| Objets magiques | 215-266 | Règles et objets de A à Z | Mondes | Catalogue d'objets en JSON (`objets/*.json`) : 542 objets (dont 318 magiques, un par variante), avec 38 armes et 13 armures de base ; les effets d'usage et les effets portés sont encore du texte (voir l'état des lieux des objets du 13/11/2026 dans `docs/JOURNAL.md`) |
 | Monstres | 267-359 | Profils de jeu, monstres de A à Z | M1, Mondes | 30 profils en JSON (FP 1/8 à 7) |
 | Animaux | 360-380 | Profils d'animaux | M1 | À faire |
 

@@ -270,6 +270,8 @@ export interface HeroCombat {
   kit: Kit;
   /** Portrait de la galerie choisi par le joueur (`elfe-f-2`) : il sert de figurine sur le plateau. */
   portrait?: string;
+  /** Les objets confiés au héros pour ce combat (leurs effets) : le nombre de chacun est dans `etat.ressources['objet:<id>']`. */
+  objets?: Record<string, import('./objets').ObjetEmbarque>;
   /** Dans une histoire : l'état du moment (PV, potions, usages, emplacements). Sans lui, le héros est au maximum. */
   etat?: { pv: number; ressources: Record<string, number>; emplacements: number[] };
 }
@@ -300,6 +302,7 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     if (h.etat) {
       c.pv = Math.max(1, h.etat.pv);
       c.ressources = { ...c.ressources, ...h.etat.ressources, reaction: 1 };
+      if (h.objets) c.objetsEmbarques = h.objets;
       if (c.incantation) c.incantation = { ...c.incantation, emplacements: [...h.etat.emplacements] };
     }
     return c;

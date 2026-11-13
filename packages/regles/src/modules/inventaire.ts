@@ -1,6 +1,7 @@
 // Module Inventaire : le sac du groupe (objets trouvés, achetés, reçus), l'usage des consommables, les potions
 // confiées aux héros (qu'ils boivent ensuite en combat), l'identification des objets rares, et ce qu'on jette.
 import { z } from 'zod';
+import { actionsDeUsage, embarquerDepuis, PREFIXE_CHARGES, PREFIXE_OBJET } from '../combat/objets';
 import { lancer } from '../des';
 import { appliquerEffets } from '../monde/etat';
 import type { Objet } from '../monde/schemas';
@@ -9,7 +10,7 @@ import { equipementDe, type Personnage } from '../personnage';
 import { testD20 } from '../tests-d20';
 import { objetDe } from './catalogue';
 import { libre } from './commun';
-import { chargeDuGroupe, idElementPorte, objetsPortes } from './equipement-regles';
+import { chargeDuGroupe, HARMONISES_MAX, harmonisesEmbarques, harmonises, idElementPorte, objetsPortes } from './equipement-regles';
 import { idImageCommune } from './image-commune';
 
 declare module '../noyau/types' {
@@ -24,6 +25,8 @@ export interface EtatInventaire {
   identifies: string[];
   /** Objets arrivés dans le sac que le joueur n'a pas encore regardés (pastille « nouveau »). */
   nouveaux?: string[];
+  /** Les charges restantes des objets à charges que ne porte aucun héros (un objet absent d'ici est plein). */
+  charges?: Record<string, number>;
 }
 
 const clesDuMonde = new WeakMap<object, Set<string>>();
@@ -44,6 +47,21 @@ export function objetIndispensable(ctx: ContexteJeu, id: string): boolean {
   }
   return cles.has(id);
 }
+
+/**
+ * Un objet qu'un héros peut emporter au combat : un consommable dont l'effet est décrit (soins, états retirés, PV temporaires,
+ * résistance, dés). Ce qui ne fait que du mal à celui qui le prend (potion toxique) ne s'emporte pas.
+ */
+export function embarquable(o: Pick<Objet, 'usage'>): boolean {
+  const actions = actionsDeUsage(o.usage);
+  return !!o.usage?.sorts?.length || (o.usage?.type === 'consommable' && actions.some((a) => !('degats' in a)));
+}
+
+/** Les charges qu'un héros trouve dans l'objet qu'on lui confie : celles qui restaient au groupe, ou toutes. */
+const chargesAuSac = (p: Partie, o: Pick<Objet, 'id' | 'usage'>): number => etatModule(p).charges?.[o.id] ?? o.usage?.charges?.max ?? 0;
+
+/** Les dégâts qu'on subit en prenant l'objet hors combat (potion toxique), s'il y en a. */
+const degatsDePrise = (o: Pick<Objet, 'usage'>) => (o.usage?.agit ?? []).flatMap((a) => ('degats' in a ? [a.degats] : []))[0];
 
 /** La potion que les héros boivent en combat (2d4 + 2). */
 export const POTION_DE_COMBAT = 'potion-de-guerison';
@@ -126,7 +144,7 @@ function groupeDuSac(o: Pick<Objet, 'categorie'> & Partial<Objet>): (typeof GROU
 }
 
 /** Un objet du sac vu par la grille : ce que le joueur a le droit de savoir (un objet à identifier reste mystérieux). */
-function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite: number, identifies: string[], nouveaux: string[]): ElementGrille {
+function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite: number, identifies: string[], nouveaux: string[], chargesActuelles?: number): ElementGrille {
   const aIdentifier = !!o.identification && !identifies.includes(o.id);
   const mystere = aIdentifier ? o.inconnu : undefined;
   const proprietes: { libelle: string; valeur: string }[] = [];
@@ -149,6 +167,8 @@ function elementDuSac(ctx: ContexteJeu, o: ReturnType<typeof objetDe>, quantite:
     if (o.usage) {
       const type = { consommable: 'Consommable', charges: 'À charges', permanent: 'Effet permanent' }[o.usage.type];
       proprietes.push({ libelle: type, valeur: o.usage.soins ? `soigne ${o.usage.soins}` : (o.usage.resume ?? '—') });
+      if (o.usage.charges) proprietes.push({ libelle: 'Charges', valeur: `${chargesActuelles ?? o.usage.charges.max} / ${o.usage.charges.max}${o.usage.charges.recharge ? ` (à l'aube : +${o.usage.charges.recharge.des}${o.usage.charges.recharge.bonus ? `+${o.usage.charges.recharge.bonus}` : ''})` : ' (ne se recharge pas)'}` });
+      if (o.usage.sorts?.length) proprietes.push({ libelle: 'Sorts', valeur: o.usage.sorts.map((s) => `${ctx.srd?.sorts.get(s.sort)?.nom ?? s.sort}${s.niveau !== undefined && s.niveau > (ctx.srd?.sorts.get(s.sort)?.niveau ?? 0) ? ` niv. ${s.niveau}` : ''}${o.usage!.charges ? ` (${s.charges ?? 1} ch.)` : ''}`).join(', ') + (o.usage.dd ? ` — DD ${o.usage.dd}` : '') });
     }
     const b = o.bonus;
     if (b) proprietes.push({ libelle: 'Bonus', valeur: [b.attaque && `${b.attaque > 0 ? '+' : ''}${b.attaque} attaque`, b.degats && `${b.degats > 0 ? '+' : ''}${b.degats} dégâts`, b.ca && `${b.ca > 0 ? '+' : ''}${b.ca} CA`].filter(Boolean).join(', ') });
@@ -192,9 +212,23 @@ export const moduleInventaire: Module = {
       executer: (t, e) => {
         if (!(t.partie.etat.inventaire[e.objet] ?? 0)) return { refus: "Le groupe n'a pas cet objet." };
         const o = objetDe(t.ctx, e.objet);
+        if (o.usage?.sorts?.length) return { refus: `${o.nom} se sert en combat : confiez-le à un héros, qui le lancera comme un sort.` };
         if (o.usage?.type !== 'consommable') return { refus: `${o.nom} ne s'utilise pas ainsi${o.usage?.type === 'permanent' ? ' : son effet est permanent tant qu’on le porte' : ''}.` };
         let cible: Personnage | undefined;
-        if (o.usage.soins) {
+        const prise = degatsDePrise(o);
+        // Un objet qui n'agit qu'en combat (résistance, états retirés, PV temporaires, dés) ne se gaspille pas hors du combat.
+        if (!o.usage.soins && !prise && actionsDeUsage(o.usage).length) {
+          const jette = actionsDeUsage(o.usage).some((a) => 'jet' in a);
+          return { refus: jette ? `${o.nom} se lance en combat : confiez-le à un héros, qui le jettera à la place d'une attaque.` : `${o.nom} se prend en combat : confiez-le à un héros, qui le prendra par une action Bonus.` };
+        }
+        if (prise) {
+          cible = e.personnage ? t.partie.groupe.find((a) => a.id === e.personnage) : undefined;
+          if (!cible) return { refus: `Qui prend ${o.nom} ? Désignez un héros.` };
+          const mal = Math.max(1, lancer(prise.des, t.hasard).total);
+          const avant = cible.pv;
+          cible.pv = Math.max(1, cible.pv - mal);
+          t.emettre({ type: 'constat', texte: `${cible.nom} prend ${o.nom} : ${avant - cible.pv} dégâts de ${prise.type} (${cible.pv}/${cible.fiche.pvMax}).` });
+        } else if (o.usage.soins) {
           cible = e.personnage ? t.partie.groupe.find((a) => a.id === e.personnage) : plusBlesse(t.partie);
           if (!cible || cible.pv >= cible.fiche.pvMax) return { refus: `${cible?.nom ?? 'Personne'} n’a pas besoin de soins.` };
           const gain = soigner(t, cible, o.usage.soins);
@@ -243,6 +277,71 @@ export const moduleInventaire: Module = {
             aide: 'La potion revient dans le sac du groupe.',
             ordre: { type: 'rendrePotion', personnage: a.id },
           })),
+    }),
+    confierObjet: commande({
+      description:
+        "Confier un objet consommable du sac (potion de guérison plus forte, antidote, élixir, onguent…) à un héros, qui le prendra en combat par une action Bonus, pour lui ou pour un allié au contact ; sans personnage, à celui qui en porte le moins.",
+      entree: z.object({ objet: z.string(), personnage: z.string().optional() }),
+      disponible: libre,
+      executer: (t, e) => {
+        if (!(t.partie.etat.inventaire[e.objet] ?? 0)) return { refus: "Le groupe n'a pas cet objet." };
+        if (e.objet === POTION_DE_COMBAT) return { refus: 'La potion de guérison se confie avec « Confier une potion ».' };
+        const o = objetDe(t.ctx, e.objet);
+        if (!embarquable(o)) return { refus: `${o.nom} ne se prend pas en combat.` };
+        const cle = PREFIXE_OBJET + e.objet;
+        const a = e.personnage ? t.partie.groupe.find((x) => x.id === e.personnage) : [...vivants(t.partie)].sort((x, y) => (x.ressources[cle] ?? 0) - (y.ressources[cle] ?? 0))[0];
+        if (!a) return { refus: 'Personne pour le prendre.' };
+        const aCharges = !!o.usage?.charges;
+        if (aCharges && (a.ressources[cle] ?? 0)) return { refus: `${a.nom} porte déjà ${o.nom}.` };
+        // Un objet qui demande l'harmonisation compte parmi les trois du héros, qu'il soit porté ou seulement emporté.
+        if (o.attunement && harmonises(t.ctx, equipementDe(a)) + harmonisesEmbarques(t.ctx, a) >= HARMONISES_MAX) return { refus: `${a.nom} est déjà harmonisé à ${HARMONISES_MAX} objets magiques, le maximum.` };
+        retirer(t, e.objet);
+        a.ressources[cle] = (a.ressources[cle] ?? 0) + 1;
+        (a.embarques ??= {})[e.objet] = embarquerDepuis(o.nom, o.usage, (s) => t.ctx.srd?.sorts.get(s)?.niveau ?? 1);
+        if (aCharges) {
+          a.ressources[PREFIXE_CHARGES + e.objet] = chargesAuSac(t.partie, { id: e.objet, usage: o.usage });
+          delete etatPourModifier(t.partie).charges?.[e.objet];
+        }
+        const verbe = o.usage?.sorts?.length ? 'le lancera' : 'le boira';
+        t.emettre({ type: 'constat', texte: `${a.nom} prend ${o.nom} (${a.ressources[cle]} en tout) : il ${verbe} en combat.` });
+      },
+    }),
+    rendreObjet: commande({
+      description: 'Rendre au sac du groupe un objet consommable que portait un héros pour le combat.',
+      entree: z.object({ objet: z.string(), personnage: z.string() }),
+      disponible: libre,
+      executer: (t, e) => {
+        const a = t.partie.groupe.find((x) => x.id === e.personnage);
+        if (!a) return { refus: 'Aucun héros de ce nom.' };
+        const cle = PREFIXE_OBJET + e.objet;
+        if (!(a.ressources[cle] ?? 0)) return { refus: `${a.nom} ne porte pas cet objet.` };
+        a.ressources[cle] = (a.ressources[cle] ?? 1) - 1;
+        if (!a.ressources[cle]) {
+          // Les charges restantes restent avec l'objet, dans le sac.
+          const restant = a.ressources[PREFIXE_CHARGES + e.objet];
+          if (restant !== undefined) {
+            (etatPourModifier(t.partie).charges ??= {})[e.objet] = restant;
+            delete a.ressources[PREFIXE_CHARGES + e.objet];
+          }
+          delete a.ressources[cle];
+          if (a.embarques) delete a.embarques[e.objet];
+        }
+        t.partie.etat.inventaire[e.objet] = (t.partie.etat.inventaire[e.objet] ?? 0) + 1;
+        t.emettre({ type: 'constat', texte: `${a.nom} range ${objetDe(t.ctx, e.objet).nom} dans le sac.` });
+      },
+      propositions: (ctx, p) =>
+        p.groupe.flatMap((a) =>
+          Object.keys(a.embarques ?? {})
+            .filter((id) => (a.ressources[PREFIXE_OBJET + id] ?? 0) > 0)
+            .map((id) => ({
+              groupe: PANNEAU_SAC,
+              element: { id: idElementPorte(a.id, id), titre: `${objetDe(ctx, id).nom} (${a.nom})` },
+              libelle: 'Rendre au sac',
+              style: 'discret' as const,
+              aide: 'L’objet revient dans le sac du groupe.',
+              ordre: { type: 'rendreObjet', objet: id, personnage: a.id },
+            })),
+        ),
     }),
     identifierObjet: commande({
       description: "Étudier un objet du sac pour en connaître l'histoire et les propriétés (jet d'Arcanes contre son DD).",
@@ -301,11 +400,31 @@ export const moduleInventaire: Module = {
       const es = etatPourModifier(t.partie);
       es.nouveaux = es.nouveaux.filter((x) => x !== e.objet);
     },
+    // À l'aube, les objets à charges en regagnent (ceux du sac comme ceux que portent les héros).
+    jourSuivant: (t) => {
+      const es = etatPourModifier(t.partie);
+      const regain = (r: { des: string; bonus: number }) => lancer(r.des, t.hasard).total + r.bonus;
+      const noms: string[] = [];
+      for (const [id, n] of Object.entries(es.charges ?? {})) {
+        const c = objetDe(t.ctx, id).usage?.charges;
+        if (!c?.recharge || n >= c.max) continue;
+        es.charges![id] = Math.min(c.max, n + regain({ des: c.recharge.des, bonus: c.recharge.bonus ?? 0 }));
+        noms.push(objetDe(t.ctx, id).nom);
+      }
+      for (const h of t.partie.groupe)
+        for (const [id, def] of Object.entries(h.embarques ?? {})) {
+          const cle = PREFIXE_CHARGES + id;
+          if (!def.charges?.recharge || h.ressources[cle] === undefined || h.ressources[cle]! >= def.charges.max) continue;
+          h.ressources[cle] = Math.min(def.charges.max, h.ressources[cle]! + regain(def.charges.recharge));
+          noms.push(def.nom);
+        }
+      if (noms.length) t.emettre({ type: 'constat', texte: `À l'aube, ${noms.join(', ')} regagne${noms.length > 1 ? 'nt' : ''} des charges.` });
+    },
   },
   encarts: (ctx, p): Encart[] => {
     const identifies = etatModule(p).identifies;
     const nouveaux = etatModule(p).nouveaux ?? [];
-    const dansLeSac = Object.entries(p.etat.inventaire).map(([id, q]) => elementDuSac(ctx, objetDe(ctx, id), q, identifies, nouveaux));
+    const dansLeSac = Object.entries(p.etat.inventaire).map(([id, q]) => elementDuSac(ctx, objetDe(ctx, id), q, identifies, nouveaux, etatModule(p).charges?.[id]));
     // Ce que portent les héros : un groupe par héros, avant le sac ; l'objet garde son identifiant propre pour ses actions.
     const portes = p.groupe.flatMap((h, i) =>
       objetsPortes(equipementDe(h)).map((id) => ({
@@ -329,7 +448,22 @@ export const moduleInventaire: Module = {
           ]
         : [],
     );
-    const elements = [...dansLeSac, ...portes, ...potions];
+    // Les autres objets confiés à un héros pour le combat (antidote, potions plus fortes…) : aussi dans ses ressources.
+    const emportes = p.groupe.flatMap((h, i) =>
+      Object.keys(h.embarques ?? {}).flatMap((id) =>
+        (h.ressources[PREFIXE_OBJET + id] ?? 0) > 0
+          ? [
+              {
+                ...elementDuSac(ctx, objetDe(ctx, id), h.ressources[PREFIXE_OBJET + id]!, identifies, [], h.ressources[PREFIXE_CHARGES + id]),
+                id: idElementPorte(h.id, id),
+                groupe: { id: `porte:${h.id}`, titre: `Porté par ${h.nom}`, ordre: -100 + i },
+                porteur: { id: h.id, nom: h.nom },
+              },
+            ]
+          : [],
+      ),
+    );
+    const elements = [...dansLeSac, ...portes, ...potions, ...emportes];
     const { poids, capacite } = chargeDuGroupe(ctx, p.groupe, p.etat.inventaire);
     return [
       {
@@ -380,7 +514,8 @@ const propositionsSac = (ctx: ContexteJeu, p: Partie): Proposition[] => {
         ordre,
         choix: { champ: 'personnage', indication: 'Soigner qui ?', options: heros((a) => `${a.pv}/${a.fiche.pvMax} PV`, (a) => (a.pv >= a.fiche.pvMax ? 'Pas blessé.' : undefined)) },
       });
-    } else if (o.usage?.type === 'consommable') {
+    } else if (o.usage?.type === 'consommable' && !o.usage.sorts?.length && !actionsDeUsage(o.usage).length) {
+      // Un objet qui n'agit qu'en combat (potion de résistance, parchemin, objet de jet) ou qui fait mal se confie ou se boit à un héros : pas de bouton « Utiliser » qui serait refusé.
       agir({ libelle: 'Utiliser', aide: o.usage.resume, ordre: { type: 'utiliserObjet', objet: id } });
     }
     if (id === POTION_DE_COMBAT) {
@@ -395,6 +530,16 @@ const propositionsSac = (ctx: ContexteJeu, p: Partie): Proposition[] => {
         choix: { champ: 'personnage', indication: 'Confier à qui ?', options: heros((x) => `${x.ressources.potions ?? 0} potion(s)`) },
       });
     }
+    if (id !== POTION_DE_COMBAT && embarquable(o)) {
+      const ordre = { type: 'confierObjet', objet: id };
+      const cle = PREFIXE_OBJET + id;
+      const a = [...vivants(p)].sort((x, y) => (x.ressources[cle] ?? 0) - (y.ressources[cle] ?? 0))[0];
+      if (a) agir({ libelle: `Confier à ${a.nom}`, style: 'discret', aide: 'Il le prendra en combat, par une action Bonus.', ordre });
+      agir({ libelle: 'Confier à…', style: 'discret', aide: 'Il le prendra en combat, par une action Bonus.', ordre, choix: { champ: 'personnage', indication: 'Confier à qui ?', options: heros((x) => `${x.ressources[cle] ?? 0} en réserve`) } });
+    }
+    if (o.usage?.type === 'consommable' && degatsDePrise(o)) {
+      agir({ libelle: 'Boire…', style: 'discret', aide: o.usage.resume, confirmer: true, ordre: { type: 'utiliserObjet', objet: id }, choix: { champ: 'personnage', indication: 'Qui le boit ?', options: heros((x) => `${x.pv}/${x.fiche.pvMax} PV`) } });
+    }
     if (o.identification && !identifies.includes(id)) {
       const ordre = { type: 'identifierObjet', objet: id };
       agir({ libelle: 'Identifier', icone: 'ecole:divination', style: 'discret', aide: `Arcanes, DD ${o.identification}`, ordre });
@@ -405,7 +550,7 @@ const propositionsSac = (ctx: ContexteJeu, p: Partie): Proposition[] => {
         choix: { champ: 'personnage', indication: 'Qui l’étudie ?', options: heros((a) => `Arcanes ${a.fiche.competences.arcanes.bonus >= 0 ? '+' : ''}${a.fiche.competences.arcanes.bonus}`) },
       });
     }
-    if (o.categorie !== 'quete') {
+    if (!objetIndispensable(ctx, id)) {
       agir({ libelle: q > 1 ? 'Jeter 1' : 'Jeter', style: 'discret', confirmer: true, ordre: { type: 'jeterObjet', objet: id } });
       if (q > 1) agir({ libelle: `Jeter les ${q}`, style: 'discret', confirmer: true, ordre: { type: 'jeterObjet', objet: id, quantite: q } });
     }
