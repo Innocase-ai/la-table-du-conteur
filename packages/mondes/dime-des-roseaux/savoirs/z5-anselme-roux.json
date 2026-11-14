@@ -27,6 +27,11 @@
     "pnj": "perrine-vasseur",
     "nature": "la sœur du charretier",
     "opinion": "Elle le cherche dans les roseaux, et elle est trop curieuse pour une fille de village. Il a peur qu'elle remonte la piste jusqu'au moulin, alors il lui sourit quand elle passe et détourne les yeux dès qu'elle parle de son frère."
+   },
+   {
+    "pnj": "pimmo-rouelente",
+    "nature": "le gnome qui répare sa roue",
+    "opinion": "Il tarde toujours à le payer, et Pimmo le lui rappelle à voix haute. Anselme lui en veut, mais il est soulagé que le gnome n'ait jamais demandé pourquoi tant de sacs partent chaque automne."
    }
   ],
   "couleur": [
@@ -107,6 +112,18 @@
      "attitudeMin": 20
     },
     "evasif": "il dit qu'un homme a le droit de protéger sa fille, et que le reste ne regarde personne"
+   },
+   {
+    "id": "le-pret-de-la-commune",
+    "fait": "f-huguette-livre",
+    "version": "Chaque automne, la commune lui prête du grain, et Huguette l'inscrit sans rien dire. Il ne sait pas où elle range ce livre.",
+    "acces": {
+     "attitudeMin": 40
+    },
+    "evasif": "il dit que la commune et le moulin se rendent des services, comme partout",
+    "tabou": [
+     "prête du grain"
+    ]
    }
   ]
  }

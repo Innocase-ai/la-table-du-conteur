@@ -1,0 +1,357 @@
+[
+ {
+  "id": "q-marin-le-convoi",
+  "nom": "Le convoi de la compagnie",
+  "type": "secondaire",
+  "donneur": "marin",
+  "lieu": "mar-cabane-des-passeurs",
+  "resume": "Marin, le passeur, porte un vieux regret et ne l’a jamais dit à personne. Il sait qu’une barque abandonnée dans les roseaux en raconte plus que lui, mais il faudra d’abord gagner sa confiance.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "aveu",
+  "etapes": [
+   {
+    "id": "aveu",
+    "texte": "Demandez à Marin, à la cabane des passeurs, s’il a déjà travaillé pour la compagnie du Péage, et écoutez ce qu’il finit par avouer.",
+    "completion": {
+     "flag": "marin-avoue-le-convoi"
+    },
+    "suivantes": [
+     "barque"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "barque",
+    "texte": "Allez à la barque enfouie, dans le marais, et regardez les caisses qui portent encore le poinçon de la compagnie, pour savoir à quoi elles ont servi.",
+    "completion": {
+     "lieu": "mar-barque-enfouie"
+    },
+    "suivantes": [
+     "preuve"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "preuve",
+    "texte": "Cherchez dans les caisses une marque ou un morceau de la cargaison, de quoi prouver ce qu’on y a chargé, et gardez-le pour Marin.",
+    "completion": {
+     "fait": "f-convoi-caisses-marquees"
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Retournez voir Marin à la cabane des passeurs et montrez-lui la preuve : il attend de savoir ce que vous avez trouvé avant de décider quoi faire.",
+    "completion": {
+     "flag": "marin-convoi-regle"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "reputation": {
+       "faction": "passeurs-des-roseaux",
+       "delta": 10
+      }
+     },
+     {
+      "quete": {
+       "id": "q-marin-le-convoi",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-huguette-les-comptes",
+  "nom": "Les comptes de la halle",
+  "type": "secondaire",
+  "donneur": "huguette",
+  "lieu": "mir-halle-du-conseil",
+  "resume": "Huguette, la maire, n’ose plus rouvrir un livre rangé dans la halle. Elle ne veut pas être la seule à lire ses propres chiffres : elle demande qu’un autre le lise avant elle, et qu’on lui dise ce qu’il contient.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "demande",
+  "etapes": [
+   {
+    "id": "demande",
+    "texte": "Écoutez Huguette : elle vous demande de lire à sa place le livre qu’elle n’ose pas rouvrir, et de lui dire ce qu’il contient.",
+    "completion": {
+     "flag": "huguette-demande-le-livre"
+    },
+    "suivantes": [
+     "halle"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "halle",
+    "texte": "Allez à l’armoire de la halle du conseil, où Huguette garde les registres de la commune, et ouvrez le second livre qu’elle n’a plus rouvert depuis des années.",
+    "completion": {
+     "lieu": "mir-halle-du-conseil"
+    },
+    "suivantes": [
+     "livre"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "livre",
+    "texte": "Lisez le livre jusqu’au bout, en cherchant ce qui revient chaque automne, et retenez-le pour Huguette qui ne veut pas le lire seule.",
+    "completion": {
+     "fait": "f-huguette-livre"
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Rapportez à Huguette ce que le livre contient, sans rien adoucir : elle attend qu’un autre lui dise ses propres chiffres.",
+    "completion": {
+     "flag": "huguette-comptes-regles"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "reputation": {
+       "faction": "gens-de-mireval",
+       "delta": 10
+      }
+     },
+     {
+      "quete": {
+       "id": "q-huguette-les-comptes",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-celestin-la-contrebande",
+  "nom": "La cave de Bastien",
+  "type": "secondaire",
+  "donneur": "celestin-brindille",
+  "lieu": "mir-cave-de-l-auberge",
+  "resume": "Célestin, le colporteur, sait ce qui dort dans la cave de l’auberge et propose un marché : allez voir derrière les tonneaux et dites-lui ce que vous y trouvez. Il veut savoir si la cave est vide avant de parler de ses propres affaires.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "demande",
+  "etapes": [
+   {
+    "id": "demande",
+    "texte": "Écoutez Célestin à voix basse : il vous propose d’aller voir derrière les tonneaux de l’auberge, contre un service que vous lui rendrez plus tard.",
+    "completion": {
+     "flag": "celestin-parle-cave"
+    },
+    "suivantes": [
+     "cave"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "cave",
+    "texte": "Descendez à la cave de l’auberge, passez devant les tonneaux de cidre et regardez les étagères de près, sans que Bastien vous voie descendre.",
+    "completion": {
+     "lieu": "mir-cave-de-l-auberge"
+    },
+    "suivantes": [
+     "cachette"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "cachette",
+    "texte": "Repérez le faux mur de planches derrière les tonneaux et ouvrez-le : vous y trouverez les sacs de grain mis de côté, à rapporter à Célestin.",
+    "completion": {
+     "fait": "f-bastien-contrebande"
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Retournez voir Célestin et dites-lui ce que la cave cache : il attend de savoir si le grain est encore là avant de vous rendre le service promis.",
+    "completion": {
+     "flag": "celestin-contrebande-regle"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "pieces": 30
+     },
+     {
+      "quete": {
+       "id": "q-celestin-la-contrebande",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ },
+ {
+  "id": "q-archiviste-les-vieilles-cartes",
+  "nom": "Les vieilles cartes du marais",
+  "type": "secondaire",
+  "donneur": "selenie-orvanne",
+  "lieu": "mir-auberge-des-roseaux",
+  "resume": "Sélénie Orvanne, archiviste itinérante, finit une carte des vieux chenaux du marais avant qu’on ne les assèche. Il lui manque une écluse abandonnée, dont elle a seulement un plan ancien, et elle propose de l’échanger contre un coup de main.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "debut": "demande",
+  "etapes": [
+   {
+    "id": "demande",
+    "texte": "Écoutez Sélénie à l’auberge des Roseaux : elle vous propose de relever l’ancienne écluse et de lui rapporter ce que le chenal devient, pour compléter sa carte.",
+    "completion": {
+     "flag": "selenie-propose-releve"
+    },
+    "suivantes": [
+     "ecluse"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "ecluse",
+    "texte": "Gagnez l’ancienne écluse, dans le marais, en suivant le plan de Sélénie avant que l’eau ne monte, et retrouvez les vannes rouillées.",
+    "completion": {
+     "lieu": "mar-ancienne-ecluse"
+    },
+    "suivantes": [
+     "releve"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     }
+    ]
+   },
+   {
+    "id": "releve",
+    "texte": "Suivez le chenal de halage envahi de roseaux jusqu’au bout et relevez son tracé, la largeur et les fonds, pour que Sélénie puisse le porter sur sa carte.",
+    "completion": {
+     "fait": "f-vieux-chenal"
+    },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 50
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Revenez voir Sélénie à l’auberge des Roseaux et lui remettez votre relevé : elle attend de savoir si le chenal est toujours là, et où il mène.",
+    "completion": {
+     "flag": "selenie-releve-rendu"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
+     },
+     {
+      "quete": {
+       "id": "q-archiviste-les-vieilles-cartes",
+       "statut": "terminee"
+      }
+     }
+    ]
+   }
+  ],
+  "recompenses": {
+   "xp": 150,
+   "pieces": 0,
+   "objets": []
+  }
+ }
+]

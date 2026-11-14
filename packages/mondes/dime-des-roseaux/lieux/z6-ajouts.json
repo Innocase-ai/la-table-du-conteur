@@ -1,0 +1,280 @@
+[
+ {
+  "id": "mir-cave-de-l-auberge",
+  "nom": "La cave de l'auberge",
+  "type": "salle",
+  "parent": "mir-auberge-des-roseaux",
+  "resume": "Une cave basse et froide sous l'auberge des Roseaux, où l'on sent le cidre aigre, la terre mouillée et la fumée de tourbe qui monte de l'escalier.",
+  "description": "Une dizaine de tonneaux de cidre couchés sur des chantiers, au fond d'une salle en pierre que la pluie n'atteint plus. Des étagères de planches portent des bocaux de cornichons, des saucisses pendues à des crochets et des pots de graisse. Une échelle mène au hall de l'auberge. Dans le mur du fond, un panneau de planches neuves, plus propre que le reste, touche le sol de terre battue. Des traces de pas fraîches vont et viennent devant lui.",
+  "ambiance": "Goutte d'eau qui tombe dans un seau, odeur de cidre aigre et de tourbe, planches qui craquent au-dessus.",
+  "arrivee": "Vous descendez une échelle de bois glissante, et la fraîcheur vous saisit avant même que vos yeux s'habituent à la pénombre. L'air sent le cidre aigre, la terre mouillée et la fumée de tourbe qui monte de l'escalier. Sous une voûte basse, une dizaine de tonneaux reposent couchés sur des chantiers de bois, et l'un d'eux suinte doucement dans un seau.\n\nSur les étagères, des bocaux de cornichons alignent leurs couvercles, des saucisses sèchent à des crochets, et des pots de graisse portent encore la trace des doigts de celui qui les a fermés. Le sol de terre battue garde des pas récents, qui vont et viennent d'un bout à l'autre de la salle. Au fond, un mur de planches neuves, plus propre que le reste, touche la terre comme s'il avait été posé à la hâte. Une goutte d'eau tombe dans un seau, puis une autre.\n\nLà-haut, les voix de la salle commune couvrent vos pas. Pourquoi un marchand de cidre garde-t-il une cave si bien rangée ?",
+  "visuel": "Une cave de pierre basse et sombre, des tonneaux couchés sur des chantiers de bois, des étagères chargées de bocaux, une lanterne de tourbe, sa lueur ocre sur la marche d'un escalier, un panneau de planches neuves contre le mur du fond.",
+  "accroche": "Sous la salle de l'auberge, une trappe ouverte laisse monter une odeur de cidre et de tourbe, et le bruit d'une goutte qui tombe.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-bastien-contrebande",
+    "decouverte": {
+     "dd": 12,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "repos": "dangereux"
+ },
+ {
+  "id": "mir-halle-du-conseil",
+  "nom": "La halle du conseil",
+  "type": "batiment",
+  "parent": "mireval",
+  "resume": "Une halle de bois sur piliers, au cœur de Mireval, où le conseil du village tient ses réunions sous un tableau de craie et une armoire fermée à clé.",
+  "description": "Une halle de planches grises posée sur des piliers de chêne, ouverte à tous les vents sauf d'un côté, qu'on a fermé avec des volets. Un long banc de conseil, trois sièges pour les anciens, un tableau de bois où l'on écrit à la craie les délibérations de l'année, et une cloche de fer pour les réunions. Au fond, une armoire de noyer à deux portes, fermée à clé ; la clé pend au cou de la maire. Le sol est couvert de paille fraîche, et l'humidité ronge le bas des piliers.",
+  "ambiance": "Pluie qui claque sur les roseaux, odeur de paille mouillée, volets qui grincent au vent.",
+  "arrivee": "La halle se dresse au milieu d'une place que la pluie a rendue luisante, sur une douzaine de piliers de chêne noircis par l'eau. Vous montez deux marches de planches, et le bois cède légèrement sous vos pas. Un toit de roseaux neufs protège un espace ouvert, où le vent entre par les côtés et fait claquer les volets mal fermés. L'odeur de paille mouillée et de vieux bois vous enveloppe aussitôt.\n\nAu centre, un long banc de conseil, usé par des années de discussions, attend les notables. Trois sièges plus hauts se dressent pour les anciens, et une cloche de fer pend à une poutre, immobile. Sur le mur du fond, un tableau de bois couvert de craie garde les délibérations de l'année, certaines lignes effacées à moitié.\n\nAu fond, une armoire de noyer à deux portes reste fermée à clé dans le fond. Qui détient la clé, et qu'a-t-on à cacher dans un village si petit ?",
+  "visuel": "Une halle de bois sur piliers de chêne au toit de roseaux neufs, un banc de conseil et un tableau noirci de craie, sous un ciel de pluie fine, des flaques sur la terre battue.",
+  "accroche": "Sur la place, une grande halle de bois sur piliers, dont le toit de roseaux neufs dépasse les maisons, et une cloche qui ne sonne plus.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-huguette-livre",
+    "decouverte": {
+     "dd": 12,
+     "competence": "investigation",
+     "condition": {
+      "quete": {
+       "id": "q-huguette-les-comptes",
+       "statut": "active"
+      }
+     }
+    }
+   }
+  ],
+  "repos": "dangereux",
+  "position": {
+   "x": 50,
+   "y": 52
+  }
+ },
+ {
+  "id": "mir-roue-du-moulin",
+  "nom": "La roue du moulin",
+  "type": "lieu-dit",
+  "parent": "mir-moulin-roux",
+  "resume": "Un atelier de bois et de ferraille accroché sous la grande roue du moulin, où les engrenages tournent dans le bruit de l'eau et l'odeur de graisse.",
+  "description": "Une cabane de planches goudronnées collée au pilier du moulin, sous la grande roue qui pompe l'eau du Roux à chaque tour. Dans l'atelier : un établi couvert de limes, de clés et de pièces de bois, des engrenages de fonte pendus à des crochets, un tas de fer-blanc, une lampe de tourbe allumée. Le bief déborde et une aube de la roue est cassée, fendue en deux. Sur un tabouret, des sacs à moitié cousus attendent. Pimmo y passe ses journées, parle vite et ne lâche pas ses outils.",
+  "ambiance": "Claquement de la roue sous les planches, grincement des engrenages, odeur de graisse et de fer mouillé.",
+  "arrivee": "Le bruit vous prend avant la vue : un claquement régulier, sourd et mouillé, qui vient de sous le moulin. En contournant le pilier, vous découvrez la grande roue de bois qui tourne lentement dans l'eau brune du Roux, ruisselante, grinçant à chaque tour. Une cabane de planches goudronnées s'adosse à la maçonnerie, et sa porte ouverte laisse échapper une odeur de graisse chaude et de fer.\n\nÀ l'intérieur, tout bruisse de petites choses. Un établi croule sous les limes, les clés et les pièces de bois, et des engrenages de fonte pendent à des crochets comme des fruits lourds. Une lampe de tourbe crache une lueur jaune sur un tas de fer-blanc luisant. Au-dessus du bief, une aube de la roue a cédé et pend, fendue en deux, et l'eau passe dessous en grondant. Un petit bonhomme au crâne dégarni et aux lunettes de cuivre vous jette un regard, et lâche aussitôt sa pince pour vous demander si vous venez du moulin.",
+  "visuel": "Une grande roue de bois ruisselante sous un moulin de pierre, une cabane de planches goudronnées avec un établi, des engrenages de fonte et une lampe de tourbe dans l'eau brune.",
+  "accroche": "En contrebas du moulin, une grande roue de bois tourne dans l'eau brune, et une cabane de planches laisse filtrer une lueur jaune.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [],
+  "rencontres": [],
+  "faits": [],
+  "repos": "dangereux"
+ },
+ {
+  "id": "mir-lavoir",
+  "nom": "Le lavoir",
+  "type": "lieu-dit",
+  "parent": "mireval",
+  "resume": "Un lavoir de planches sur le Roux, où les lavandières battent le linge dans l'eau froide et où les nouvelles de Mireval circulent plus vite qu'ailleurs.",
+  "description": "Un toit de roseaux posé sur six piliers, au bord du Roux, avec un bassin de pierre et une goulotte de bois où l'eau coule à grand bruit. Le linge pend aux cordes tendues entre les piliers, des draps, des chemises, des torchons rapiécés. Trois ou quatre femmes battent le linge sur une planche luisante, et leurs battoirs claquent. Les rumeurs de Mireval circulent plus vite que le courant. Une vieille laveuse garde une auge à part pour ce qu'on ne dit pas devant les autres.",
+  "ambiance": "Battoirs qui claquent sur le bois, eau froide qui glougloute, rires et voix qui se taisent à votre arrivée.",
+  "arrivee": "Le claquement vous guide avant même que vous n'aperceviez le lavoir : des battoirs frappent le bois en rythme, sec et régulier, comme un second cœur du village. Au bord du Roux, un toit de roseaux repose sur six piliers, et des planches luisantes avancent sur l'eau. L'air est froid et sent le savon de cendre. Des cordes tendues entre les piliers portent des draps trempés qui claquent au vent.\n\nTrois ou quatre femmes sont agenouillées sur les planches, les bras rouges jusqu'aux coudes. Elles lèvent la tête à votre arrivée, puis reprennent leur travail en parlant plus bas, et vous sentez les regards se croiser au-dessus des battoirs. Une jeune laveuse vous montre du menton une auge à part, à l'écart du bruit, couverte d'une toile grise, et elle se tait.\n\nQue savent-elles qu'elles ne disent pas devant vous ?",
+  "visuel": "Un toit de roseaux sur six piliers au bord d'une rivière grise, des planches luisantes avancent sur l'eau, des draps trempés pendent aux cordes et des battoirs de bois sèchent sur un muret.",
+  "accroche": "Derrière le village, au bord d'une rivière grise, un toit de roseaux sur des piliers et des draps qui claquent au vent.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-lavoir-rumeur",
+    "decouverte": {
+     "auto": true
+    }
+   }
+  ],
+  "repos": "dangereux",
+  "position": {
+   "x": 50,
+   "y": 88
+  }
+ },
+ {
+  "id": "mar-barque-enfouie",
+  "nom": "La barque enfouie",
+  "type": "lieu-dit",
+  "parent": "marais",
+  "resume": "Une grande barque à fond plat, à demi enfoncée dans la vase sous un rideau de roseaux, dont la bâche pend comme une peau trop large.",
+  "description": "Une barque de chêne de dix pas, posée de travers dans la vase, le nez dans les roseaux et l'arrière enfoncé jusqu'aux bancs. Ses planches sont noires d'eau, ses cordages pourris, mais le fond est sec sous une bâche goudronnée tendue sur des piquets. Sous la bâche, on devine des formes carrées, une douzaine, empilées et couvertes de toile. Un ancrage rouillé traîne dans la boue, et les mouches tournent au-dessus de la vase. Personne n'est venu ici depuis longtemps, à ce qu'il paraît, sauf ceux qui savent où chercher.",
+  "ambiance": "Vase qui suce les bottes, clapotis contre la coque, bâche qui claque, mouches et odeur de goudron.",
+  "arrivee": "Le sentier de vase vous mène jusqu'à une grande forme sombre, plantée dans les roseaux comme un animal endormi. C'est une barque, ou ce qu'il en reste : longue, à fond plat, enfoncée de travers dans la boue jusqu'à ses bancs. L'eau noire lèche ses flancs et les roseaux se referment derrière l'étrave. Une odeur de goudron et de vase vous prend à la gorge, et le silence est si épais que vous entendez le froissement de vos propres pas.\n\nSous une bâche tendue sur des piquets, quelque chose de carré se devine, et une corde pourrie pend jusque dans l'eau. Un ancrage rouillé traîne dans la boue, à deux pas d'une trace de semelles qui n'est pas la vôtre. Une mouche tourne au-dessus, puis une autre. Qui a tiré cette bâche sur la barque, et pourquoi si récemment ?",
+  "visuel": "Une barque à fond plat enfoncée dans une vase grise, sa bâche goudronnée tendue sur des formes carrées, des roseaux ocre qui l'encerclent, une corde pourrie pendant dans une eau noire.",
+  "accroche": "Au milieu des roseaux, une grande forme sombre enfoncée dans la vase, à demi couverte d'une bâche goudronnée qui claque.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-convoi-caisses-marquees",
+    "decouverte": {
+     "dd": 11,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "repos": "dangereux",
+  "position": {
+   "x": 71,
+   "y": 70
+  }
+ },
+ {
+  "id": "mar-ancienne-ecluse",
+  "nom": "L'ancienne écluse",
+  "type": "lieu-dit",
+  "parent": "marais",
+  "resume": "Une écluse de pierre noyée dans les roseaux, aux vannes couvertes de rouille, qui ferme un vieux chenal de halage envahi de joncs.",
+  "description": "Deux murs de pierre moussue ferment un bassin d'eau noire, et au milieu, deux vannes de fer rouillé pendent à demi levées sur leurs chaînes. Le long du mur ouest, un chemin de halage pavé s'enfonce dans les roseaux vers la colline, ses pavés à peine visibles. Un anneau d'amarrage de fonte dépasse de la pierre, couvert de coquilles de moules. Une vieille borne porte encore une marque effacée. L'eau a baissé depuis des années, et plus personne ne s'occupe de ces vannes.",
+  "ambiance": "Clapotis d'eau dans la pierre, grincement de chaînes rouillées, odeur de vase et de mousse froide.",
+  "arrivee": "Le chemin vous conduit jusqu'à une muraille de pierre basse, noircie d'humidité, qui barre une anse de l'eau. Une odeur de vase et de mousse froide monte du bassin, et le clapotis résonne contre les murs comme dans une église vide. Deux grandes vannes de fer se dressent au milieu, rouges de rouille, à demi levées sur des chaînes qui grincent au moindre souffle de vent.\n\nLe long du mur ouest, un chemin de halage pavé s'enfonce entre les roseaux, et ses pavés ne se devinent plus que par endroits, comme les dos de bêtes sous une couverture. Il monte vers la colline, en direction de la pente où les pâtures finissent. Des joncs ont tout envahi, et vos bottes s'enfoncent dans une boue tiède. Une vieille borne, au bord du pavé, porte une marque effacée que la pluie n'a pas tout à fait lavée.\n\nOù mène ce chemin, et qui a pris soin de le cacher sous les joncs ?",
+  "visuel": "Une écluse de pierre noyée à demi, deux vannes de fer rouillé levées sur des chaînes, des roseaux ocre qui envahissent un pavé de halage, une eau grise et sombre sous une lumière de pluie.",
+  "accroche": "Au bout d'un sentier de roseaux, une muraille de pierre basse barre une anse d'eau, avec deux vannes de fer rouillé.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "mine-hobgobeline",
+    "type": "chemin",
+    "heures": 2,
+    "sens": "double",
+    "condition": {
+     "et": [
+      {
+       "fait": "f-vieux-chenal"
+      },
+      {
+       "niveauGroupe": {
+        "min": 2
+       }
+      }
+     ]
+    },
+    "description": "Un vieux chenal de halage, envahi de roseaux, s'enfonce vers la colline : par basses eaux, on peut le suivre à pied sec jusqu'au pied de la mine.",
+    "retour": "Le chenal de halage redescend entre les roseaux jusqu'aux vannes rouillées de l'ancienne écluse."
+   }
+  ],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-vieux-chenal",
+    "decouverte": {
+     "dd": 12,
+     "competence": "investigation"
+    }
+   }
+  ],
+  "repos": "dangereux",
+  "position": {
+   "x": 50,
+   "y": 50
+  }
+ },
+ {
+  "id": "gro-atelier-du-mineur",
+  "nom": "L'atelier du mineur",
+  "type": "salle",
+  "parent": "grotte-des-roseaux",
+  "resume": "Une petite salle taillée dans la roche, où un établi de chêne, des outils rangés au mur et un plan de galeries cloué sous la lampe attendent un mineur qui ne revient pas.",
+  "description": "Une salle carrée, creusée dans la roche sèche, loin des suintements. Un établi de chêne, une enclume de fonte, un tonneau de clous, des pics et des masses accrochés au mur par ordre de taille. Chaque outil est rangé, la poussière est tombée sur tout, et une bougie de suif a fondu sur le coin de l'établi. Cloué au mur du fond, un plan de la veine basse, tracé à la main, avec des croix à l'encre. Un vieux tablier de cuir pend à un clou, comme si on allait revenir.",
+  "ambiance": "Silence de pierre sèche, odeur de suif froid et de rouille, goutte d'eau lointaine dans la galerie.",
+  "arrivee": "Derrière les éboulis enfin dégagés, un passage s'ouvre, et une bouffée d'air sec vous prend au visage. Ici, pas une goutte ne suinte des murs, et le silence a quelque chose de respectueux. Une lampe de tourbe, posée sur un crochet, éclaire une pièce carrée taillée dans la roche, et chaque chose semble attendre son propriétaire.\n\nUn établi de chêne occupe le mur de droite, et les outils y sont rangés par ordre de taille : pics, masses, ciseaux, un jeu de coins de fer, tout poussiéreux et tout à sa place. Un tablier de cuir pend à un clou. Au mur du fond, un grand plan de galeries est cloué, tracé à la main, couvert de croix à l'encre rouge qui s'effacent par endroits. Qui a dessiné ces croix, et pourquoi ne les a-t-il jamais effacées ?",
+  "visuel": "Une salle carrée taillée dans la roche sèche, un établi de chêne couvert d'outils rangés, une enclume de fonte et un plan cloué au mur, éclairés par une lampe de tourbe.",
+  "accroche": "Au fond de la grotte, derrière une galerie que des éboulis ferment encore, une lueur de lampe filtre entre les pierres.",
+  "niveau": {
+   "min": 2,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "gro-galerie-effondree",
+    "type": "passage-secret",
+    "heures": 0,
+    "sens": "double",
+    "condition": {
+     "fait": "f-mine-de-fer"
+    },
+    "description": "Derrière le contrepoids, une dalle a glissé : un boyau étroit mène à une pièce où l'on devine des outils rangés.",
+    "retour": "Le boyau remonte vers la galerie effondrée, où la poussière commence à retomber."
+   }
+  ],
+  "rencontres": [],
+  "faits": [
+   {
+    "fait": "f-atelier-du-pere",
+    "decouverte": {
+     "auto": true
+    }
+   }
+  ],
+  "repos": "dangereux",
+  "position": {
+   "x": 50,
+   "y": 50
+  }
+ },
+ {
+  "id": "bergerie-des-hauteurs",
+  "nom": "La bergerie des hauteurs",
+  "type": "lieu-dit",
+  "parent": "dime-des-roseaux",
+  "resume": "Une bergerie de pierre sèche, sur les pâtures des collines, où le berger Ormak garde ses moutons dans l'odeur de laine mouillée.",
+  "description": "Une bergerie de pierre sèche, toit de lauzes et murs épais, bâtie sur une crête. Un enclos de piquets, une cabane à foin, un chien couché près de la porte, une vingtaine de moutons aux toisons pleines de boue. Ormak y tient le compte des bêtes à la lueur d'une lampe, et son bâton de houx repose contre le seuil. Depuis le muret, la vue plonge sur la chaussée noyée, le pont et son tréteau, et les roseaux du marais. Un berger qui regarde loin voit beaucoup de choses sans les dire.",
+  "ambiance": "Bêlements, vent sur les lauzes, chien qui aboie au loin, odeur de laine mouillée et de fumée.",
+  "arrivee": "Le sentier quitte la chaussée et grimpe à travers des pâtures détrempées, où les pieds glissent dans l'herbe couchée. Il faut deux heures pour arriver depuis Mireval, et chaque pas vous fait découvrir le pays un peu plus. Derrière vous, les roseaux du marais se réduisent à une tache verte. Le vent des crêtes vous fouette le visage, et des bêtes lèvent la tête sur votre passage.\n\nLa bergerie se dresse au bout de la crête, en pierre sèche couverte de lauzes grises. Un chien se lève près de la porte et aboie une fois, sans conviction. Dans l'enclos, une vingtaine de moutons aux toisons pleines de boue vous regardent passer. Un homme de haute taille, adossé au mur, ne bouge pas tout de suite : il vous observe longuement, comme on compte des bêtes.\n\nIl ne vous a pas demandé ce que vous veniez faire, et c'est peut-être pire.",
+  "visuel": "Une bergerie de pierre sèche aux lauzes grises sur une crête balayée par le vent, un enclos de piquets plein de moutons boueux, et au loin la vallée noyée et la chaussée en contrebas.",
+  "accroche": "Tout en haut des collines, une bergerie de pierre grise et quelques moutons, au-dessus de la brume.",
+  "niveau": {
+   "min": 1,
+   "max": 2
+  },
+  "liens": [
+   {
+    "vers": "mireval",
+    "type": "chemin",
+    "heures": 2,
+    "sens": "double",
+    "description": "Un sentier de chèvres monte de Mireval vers les pâtures : deux heures de marche dans le vent, avec la chaussée à vos pieds.",
+    "retour": "Le sentier redescend vers les toits de roseaux de Mireval, deux heures plus bas."
+   }
+  ],
+  "rencontres": [],
+  "faits": [],
+  "repos": "sur",
+  "position": {
+   "x": 78,
+   "y": 70
+  }
+ }
+]

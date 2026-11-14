@@ -258,7 +258,8 @@
    "f-double-tribut",
    "f-marin-tarif",
    "f-rumeur-tresor-noyes",
-   "f-crue-trois-jours"
+   "f-crue-trois-jours",
+   "f-convoi-caisses-marquees"
   ],
   "secrets": [
    {
@@ -268,6 +269,10 @@
      "competence": "persuasion",
      "dd": 11
     }
+   },
+   {
+    "fait": "f-marin-convoi",
+    "attitudeMin": 15
    }
   ],
   "sujets": [
@@ -456,6 +461,62 @@
     ],
     "question": "Pourquoi faites-vous payer si cher ?",
     "reponse": "Parce que la barque prend l’eau, que les roseaux mangent les perches et que personne ne paie un passeur mort. Il tapote une planche rafistolée, celle qui fuit depuis l’hiver, et dit qu’il connaît chaque fuite. Il dit que la neutralité n’est pas gratuite : chaque pièce qu’il prend est une raison de plus de ne pas choisir de camp. Il ne se départ pas de ce tarif, même pour un ami, et il le répète à chaque client."
+   },
+   {
+    "id": "un-convoi-pour-varg",
+    "mots": [
+     "compagnie",
+     "convoi",
+     "Varg",
+     "barque",
+     "caisses"
+    ],
+    "attitudeMin": 15,
+    "question": "Vous avez déjà travaillé pour la compagnie ?",
+    "reponse": "Il ne répond pas tout de suite. Sa gaffe tourne entre ses doigts. « Il y a deux ans, la compagnie de Varg m’a payé pour conduire un convoi de caisses, de nuit, jusqu’au chenal. Je n’ai pas demandé ce qu’elles contenaient, et je ne l’ai pas demandé non plus à la deuxième traversée. » Il s’arrête, la voix basse. « J’ai honte, et je ne l’ai jamais dit à personne. » Il montre le marais d’un mouvement du menton. « Allez voir la vieille barque que j’ai laissée s’enfoncer dans les roseaux. Elle est à l’écart du chenal, la coque à demi dans la vase. Elle en dira plus que moi. »",
+    "revele": [
+     "f-marin-convoi"
+    ],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-marin-le-convoi",
+       "statut": "proposee"
+      }
+     },
+     {
+      "flag": "marin-avoue-le-convoi"
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "le-convoi-regle",
+    "mots": [
+     "caisses",
+     "fer",
+     "poinçon",
+     "compagnie",
+     "marais"
+    ],
+    "condition": {
+     "fait": "f-convoi-caisses-marquees"
+    },
+    "question": "J’ai vu les caisses de la barque enfouie.",
+    "reponse": "Il reste immobile si longtemps que l’eau du chenal semble parler à sa place. Il range la gaffe sous les planches. « Du fer. Je le savais sans le savoir, et c’est pire. Les caisses portaient le poinçon de la compagnie, et j’ai fait la sourde oreille pour garder mon prix. J’ai eu tort de me taire. » Il pose la main à plat sur la table, comme on pose une amarre. « Je vais montrer aux gens du marais d’où vient ce fer, et qui le charge. Je ne prends toujours pas parti. Dorénavant, la compagnie paiera le double, et tout le monde saura pourquoi. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "marin-convoi-regle"
+     },
+     {
+      "attitude": {
+       "pnj": "marin",
+       "delta": 20
+      }
+     }
+    ],
+    "unique": true
    }
   ],
   "salutations": {

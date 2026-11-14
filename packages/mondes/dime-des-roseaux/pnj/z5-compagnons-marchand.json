@@ -483,7 +483,8 @@
   "savoir": [
    "f-grenier-vide",
    "f-double-tribut",
-   "f-celestin-contrebande"
+   "f-celestin-contrebande",
+   "f-bastien-contrebande"
   ],
   "sujets": [
    {
@@ -550,6 +551,53 @@
      "f-tribu-affamee"
     ],
     "effets": []
+   },
+   {
+    "id": "la-cave-de-bastien",
+    "mots": [
+     "cave",
+     "Bastien",
+     "grain",
+     "tonneaux",
+     "service"
+    ],
+    "question": "Que savez-vous de la cave de l’auberge ?",
+    "reponse": "Il sourit, sans répondre tout de suite, et fait tourner son chapeau cabossé entre deux doigts. « Bastien garde du grain à l’abri, dit-il à voix basse, bien à l’abri des regards. Moi, j’ai fait passer quelques sacs avant le péage, comme tout le monde. » Il jette un œil vers la porte, puis tapote la poche de toile sous sa chemise. « Voilà ma proposition. Allez voir derrière les tonneaux, au fond de la cave. Dites-moi ce que vous y trouvez, et je vous rendrai un service, à mon prix. »",
+    "revele": [],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-celestin-la-contrebande",
+       "statut": "proposee"
+      }
+     },
+     {
+      "flag": "celestin-parle-cave"
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "la-cave-fermee",
+    "mots": [
+     "cave",
+     "sacs",
+     "mur",
+     "Bastien",
+     "fermer"
+    ],
+    "condition": {
+     "fait": "f-bastien-contrebande"
+    },
+    "question": "La cave de Bastien, c’est réglé.",
+    "reponse": "Il pousse un soupir si long que son chapeau en tremble. « Des sacs derrière le faux mur. Bien. Bien, bien. » Il se tait, les doigts sur la bourse, et l’on voit passer en lui deux pensées à la fois : le soulagement, et le compte de ce qu’il ne vendra plus. « Vous avez fait ce qu’il fallait, et je vous en suis reconnaissant, à ma façon. Voici trente pièces, c’est le prix d’un bon service, et je ne vous demande pas d’où vient le grain. » Il sourit enfin, un peu trop largement. « Bastien fermera cette cave ce soir, je le lui ferai dire. Ma brouette, elle, reste ouverte aux bons clients. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "celestin-contrebande-regle"
+     }
+    ],
+    "unique": true
    }
   ],
   "salutations": {

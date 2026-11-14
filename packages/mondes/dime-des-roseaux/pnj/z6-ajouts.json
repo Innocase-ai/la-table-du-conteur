@@ -1,0 +1,362 @@
+[
+ {
+  "id": "selenie-orvanne",
+  "nom": "Sélénie Orvanne",
+  "titre": "Archiviste itinérante",
+  "espece": "elfe",
+  "sexe": "F",
+  "age": "environ cent quarante ans",
+  "role": "Archiviste elfe itinérante, hôte de l'auberge des Roseaux, qui relève les vieux chenaux du marais.",
+  "lieu": "mir-auberge-des-roseaux",
+  "apparence": "Une elfe mince, cheveux argentés noués sur la nuque, longue cape de laine grise à capuche rabattue. Sur l'épaule et à la ceinture, des tubes de cuir bouilli fermés par des bouchons de liège, marqués de dates à l'encre. Des gants de daim tachés d'encre.",
+  "personnalite": {
+   "traits": [
+    "précise",
+    "curieuse",
+    "hautaine",
+    "drôle sans le vouloir"
+   ],
+   "voix": "Phrases longues et soignées, dates citées sans y penser, ton de professeur qui s'excuse à peine de corriger.",
+   "valeurs": [
+    "l'exactitude",
+    "la mémoire des lieux",
+    "le relevé fait à la main"
+   ],
+   "desir": "Achever sa carte des vieux chenaux avant que le marais ne soit asséché.",
+   "peur": "Que le marais s'assèche avant qu'elle ait tout relevé, et que personne ne sache plus où passait l'eau.",
+   "defaut": "Elle corrige tout le monde, y compris les gens qui souffrent, et ne voit pas toujours la personne derrière la question."
+  },
+  "presences": [],
+  "attitude": 5,
+  "savoir": [
+   "f-selenie-cartes",
+   "f-vieux-chenal",
+   "f-passeurs-neutres",
+   "f-mine-de-fer"
+  ],
+  "secrets": [],
+  "sujets": [
+   {
+    "id": "les-vieilles-cartes",
+    "mots": [
+     "cartes",
+     "relevés",
+     "chenaux",
+     "écluse",
+     "tubes"
+    ],
+    "question": "Que gardez-vous dans ces tubes ?",
+    "reponse": "Sélénie fait sauter un bouchon de liège, sort une feuille jaunie et la déplie sur la table. « Des relevés, faits au pas et à la corde, depuis trente ans, jusqu’à ce printemps. Ils montrent des chenaux qui n'existent plus, des îles où l'on cultivait encore du lin avant la grande crue. » Elle tapote une ligne d'encre pâle. « Et là, une écluse de pierre que je n'ai jamais pu lever en entier : les vannes sont noyées, je n'ai vu que la moitié du mur. Il me faut quelqu'un de robuste, qui sache tenir une corde dans l'eau sans lâcher la règle. Je paierai ce qu'il faut. »",
+    "revele": [
+     "f-selenie-cartes"
+    ],
+    "effets": [
+     {
+      "quete": {
+       "id": "q-archiviste-les-vieilles-cartes",
+       "statut": "proposee"
+      }
+     },
+     {
+      "flag": "selenie-propose-releve"
+     }
+    ],
+    "unique": true
+   },
+   {
+    "id": "le-marais",
+    "mots": [
+     "marais",
+     "eau",
+     "passeurs",
+     "saisons",
+     "crue"
+    ],
+    "question": "Comment le marais a-t-il changé ?",
+    "reponse": "Sélénie tourne les pages d'un carnet à mesures. « Il y a quarante ans, l'eau montait de deux pieds à la crue d'automne et redescendait en neuf jours. Aujourd'hui elle monte moins haut, mais elle reste trois semaines. Le sol s'enfonce, les roseaux prennent les chenaux, et les passeurs changent de passage à chaque saison. » Elle désigne une colonne de chiffres. « Marin connaît chaque passage de l'année, et il s'en souvient mieux que moi. Demandez-lui quelle eau était la plus basse le mois dernier. » Elle referme le carnet d'un coup sec, puis le rouvre aussitôt, comme pour vérifier un chiffre.",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-mine",
+    "mots": [
+     "mine",
+     "nains",
+     "galeries",
+     "veine",
+     "vieille"
+    ],
+    "question": "Que savez-vous de la vieille mine ?",
+    "reponse": "Sélénie cherche dans une caisse de cuir un plan roulé, long comme un bras, et l'étale sur la table en retenant les coins avec ses doigts. « Vos nains de Mireval l'ont creusée il y a deux générations. Les galeries hautes sont connues de tous, mais mes relevés montrent d'autres galeries, basses, qui passent sous les premières et que personne ne cite. » Elle pose le doigt sur un trait rouge, puis le retire, comme si l'encre pouvait mordre. « Je ne sais pas ce qu'on y trouve aujourd'hui. Je sais seulement qu'on n'y entre pas sans lumière. Demandez à Bram Cœur-de-Tourbe : son père connaissait ces basses galeries mieux que quiconque. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-releve",
+    "mots": [
+     "écluse",
+     "relevé",
+     "chenal",
+     "halage",
+     "pied"
+    ],
+    "condition": {
+     "fait": "f-vieux-chenal"
+    },
+    "question": "J'ai relevé l'ancienne écluse pour vous.",
+    "reponse": "Sélénie lâche sa plume, se lève si vite que son tabouret grince, et prend la feuille avec une douceur de bibliothécaire. Elle la compare ligne par ligne à son plan ancien, en recopiant chaque mesure à voix haute. « Voilà ! Le mur, les deux vannes, le sas... Et le chemin de halage que je cherche depuis vingt ans ! Il part des vannes, traverse les roseaux vers la colline et rejoint le pied de la mine. Par basses eaux, on le suit à pied sec, sans croiser le péage. » Elle plie le relevé en quatre et le tend au groupe. « Gardez-le. Mieux vaut qu'il serve que dormir dans un tube. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "selenie-releve-rendu"
+     }
+    ],
+    "unique": true
+   }
+  ],
+  "salutations": {
+   "neutre": "Je suis Sélénie Orvanne, archiviste. Si vous venez du pont, je vous préviens : mes relevés sont exacts, et je n'ai pas de temps à perdre avec les approximations sur le marais.",
+   "amical": "Ah, vous voilà revenus. Asseyez-vous près du feu : j'ai trouvé une carte vieille de trois siècles qui contredit tout ce que dit Bastien, et je meurs d'envie de vous la montrer.",
+   "hostile": "Je n'ai rien à vous dire, et je ne prête pas mes relevés à des gens qui brûlent les chenaux. Vous avez piétiné les roseaux du pont, je l'ai vu de ma fenêtre. Laissez-moi travailler.",
+   "variantes": []
+  },
+  "services": [],
+  "inventaire": []
+ },
+ {
+  "id": "pimmo-rouelente",
+  "nom": "Pimmo Rouelente",
+  "titre": "Mécanicien des roseaux",
+  "espece": "gnome",
+  "sexe": "M",
+  "age": "cent dix ans",
+  "role": "Mécanicien gnome du moulin de Mireval, qui répare la roue, le bief et les charrettes sans jamais finir une réparation à l'heure.",
+  "lieu": "mir-roue-du-moulin",
+  "apparence": "Un gnome à peine plus haut qu'un tabouret, les cheveux blancs ébouriffés, des lunettes de verre épais sur un nez couvert de suie, un tablier de cuir brun troué aux genoux, des manches retroussées sur des bras maigres et noircis de graisse.",
+  "personnalite": {
+   "traits": [
+    "bavard",
+    "bricoleur",
+    "optimiste",
+    "distrait"
+   ],
+   "voix": "Vive et pleine de digressions, émaillée de mots d'atelier, elle repart toujours du bon pied après une phrase laissée en route.",
+   "valeurs": [
+    "le travail qui tient",
+    "la roue qui tourne",
+    "les bons outils"
+   ],
+   "desir": "Remettre la roue à plein régime, avec une aube neuve et le bief dégagé.",
+   "peur": "Qu'on le chasse du moulin et qu'on confie la roue à quelqu'un qui n'aime pas les engrenages.",
+   "defaut": "Il parle trop, se disperse, et commence cent réparations sans en finir une."
+  },
+  "presences": [],
+  "faction": "gens-de-mireval",
+  "attitude": 10,
+  "savoir": [
+   "f-pimmo-essieu",
+   "f-pacte-du-meunier",
+   "f-grenier-vide",
+   "f-lavoir-rumeur"
+  ],
+  "secrets": [],
+  "sujets": [
+   {
+    "id": "la-roue",
+    "mots": [
+     "roue",
+     "aube",
+     "bief",
+     "moulin",
+     "réparer",
+     "engrenage"
+    ],
+    "question": "La roue du moulin tourne-t-elle encore ?",
+    "reponse": "Pimmo lève les yeux de son établi, la clé à griffe encore à la main, et se met à parler avant d'avoir fini de se lever. « Elle tourne, elle tourne, enfin presque ! Une aube a cassé, la deuxième depuis la crue, et le bief s'engorge comme une gorge pleine de tourbe. » Il tapote l'engrenage du plat de la main, comme on rassure un cheval. « Trois hommes dans l'eau froide, un charpentier, et la roue repart. Moi, je fais les calages, les goupilles, tout le petit bois. » Il secoue la tête, puis reprend, déjà ailleurs. « Le meunier me doit deux réparations, mais je ne compte plus. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-essieux",
+    "mots": [
+     "essieu",
+     "charrette",
+     "sacs",
+     "automne",
+     "renforcer",
+     "moulin"
+    ],
+    "question": "Vous réparez les charrettes du village ?",
+    "reponse": "Pimmo rit, et ses lunettes glissent jusqu'au bout de son nez. « Les charrettes du village ? Non, je répare l'essieu de la charrette du moulin ! Chaque automne, je le renforce : cales de chêne, deux bagues de fer, graisse de mouton. Pour onze sacs, pas un de plus. » Il fronce le nez, puis reprend trop vite. « Quatre ans que c'est pareil. Je me suis toujours demandé pourquoi tant de sacs pour une si petite charrette, mais le meunier ne m'a rien expliqué, et je ne pose pas de questions à un essieu. » Il tapote le moyeu comme on tapote un ami. « Il tient. Je ne sais pas pour quoi, mais il tient. »",
+    "revele": [
+     "f-pimmo-essieu"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-village",
+    "mots": [
+     "village",
+     "meunier",
+     "Anselme",
+     "gens",
+     "réparations",
+     "lavoir"
+    ],
+    "question": "Que pense le village du meunier ?",
+    "reponse": "Pimmo pose sa clé sur l'établi, comme s'il fallait la ranger avant de parler de quelqu'un. « Le village ? Il l'aime bien, Anselme, il le plaint surtout. Un meunier qui a la farine au nez et la mine d'un homme trop chargé de soucis, ça fait pitié à voir. » Il recule vers sa roue et frotte une dent d'engrenage. « Moi, il me doit des réparations depuis deux automnes, et ça, je ne le pardonne pas facilement. » Il rit, puis se tait un instant, la main posée sur la roue qui ne tourne pas. « Demandez aux lavandières, elles savent tout avant que le jour se lève. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-outils",
+    "mots": [
+     "outils",
+     "fer-blanc",
+     "clous",
+     "atelier",
+     "Perrine",
+     "matériel"
+    ],
+    "question": "Que vous faut-il pour votre atelier ?",
+    "reponse": "Pimmo sort de sous l'établi une boîte de fer-blanc cabossée, la secoue pour écouter ce qu'elle contient, et la repose avec regret. « Ce qu'il me faut ? Du fer-blanc, d'abord, pour les carters et les godets, parce que le fer forgé pèse trop sur l'aube. Des clous, des gros, des qui tiennent. Et du temps, surtout du temps, car la roue ne se répare pas en une après-midi. » Il compte sur ses doigts noirs, oublie le troisième, recommence. « Perrine Vasseur, l'éclaireuse, en rapporte parfois du marché, quand elle passe. Elle ne demande rien, elle dépose le paquet et repart. Si vous la croisez, dites-lui que le fer-blanc est pour la roue. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "neutre": "Bonjour, bonjour ! Pardon pour le vacarme, c'est la roue qui fait son caprice. Entrez sans marcher sur les engrenages, et dites-moi vite ce qui vous amène.",
+   "amical": "Ah, vous voilà ! Justement, j'ai une idée pour le bief, et vous allez me dire si elle tient la route. Asseyez-vous sur le tronc, il est solide, je l'ai vérifié.",
+   "hostile": "Vous êtes encore là ? Je n'ai pas le temps de bavarder. La roue attend, et moi j'attends que vous partiez. Allez voir ailleurs, et ne touchez pas à mes engrenages.",
+   "variantes": []
+  },
+  "services": [],
+  "inventaire": []
+ },
+ {
+  "id": "ormak-haute-lande",
+  "nom": "Ormak Haute-Lande",
+  "titre": "Berger des hauteurs",
+  "espece": "goliath",
+  "sexe": "M",
+  "age": "quarante-cinq ans",
+  "role": "Berger goliath des pâtures au-dessus de Mireval, qui descend vendre sa laine une fois par saison et voit tout depuis les crêtes.",
+  "lieu": "bergerie-des-hauteurs",
+  "apparence": "Un goliath qui dépasse de deux bonnes têtes le linteau de la bergerie, la peau grise et rugueuse, les épaules larges comme une porte de grange. Il porte une veste de peau de mouton retournée, un bâton de houx et une cicatrice blanche au menton.",
+  "personnalite": {
+   "traits": [
+    "lent",
+    "calme",
+    "laconique",
+    "observateur"
+   ],
+   "voix": "Grave et lente, avec peu de mots ; il image ses phrases de bergers et laisse les silences faire le reste.",
+   "valeurs": [
+    "les bêtes bien soignées",
+    "la parole donnée",
+    "la lande libre"
+   ],
+   "desir": "Vendre sa laine à un prix honnête et qu'on le laisse tranquille sur ses pâtures.",
+   "peur": "Que la guerre brûle ses pâtures et que ses bêtes meurent de faim dans l'enclos.",
+   "defaut": "Il regarde trop, parle trop peu, et laisse les autres se tromper plutôt que de les avertir."
+  },
+  "presences": [
+   {
+    "lieu": "mir-place-du-marche",
+    "moment": "jour"
+   }
+  ],
+  "attitude": 0,
+  "savoir": [
+   "f-ormak-patrouilles",
+   "f-ormak-fer",
+   "f-mine-de-fer",
+   "f-tribu-affamee"
+  ],
+  "secrets": [],
+  "sujets": [
+   {
+    "id": "les-patrouilles",
+    "mots": [
+     "patrouilles",
+     "pont",
+     "hobgobelins",
+     "péage",
+     "aube",
+     "crépuscule"
+    ],
+    "question": "Que voyez-vous du pont, d'ici ?",
+    "reponse": "Ormak ne se retourne pas tout de suite. Il désigne du menton la chaussée, toute petite en bas, entre les roseaux gris. « Les hobgobelins se relèvent à l'aube et au crépuscule. Je les compte depuis trois saisons, comme on compte les brebis qui rentrent. Ils sont trois hommes au péage, et le reste dort ou boit. » Il fait une pause, long silence, comme s'il pesait le chiffre. « Trois, c'est peu pour tenir une route. Ils le savent aussi, alors ils crient plus fort. » Il montre une trace claire sur la pente. « Passez par le versant, là, quand la brume monte. Ils ne regardent jamais vers le haut. »",
+    "revele": [
+     "f-ormak-patrouilles"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "le-fer-de-nuit",
+    "mots": [
+     "fer",
+     "charrettes",
+     "nuit",
+     "mine",
+     "nord",
+     "escorte"
+    ],
+    "question": "Rien d'autre sur les routes ?",
+    "reponse": "Ormak reste un long moment sans répondre, la main posée sur la laine d'une brebis. Puis il parle sans lever la voix, comme on énumère un chargement. « Chaque nuit, des charrettes descendent de la mine vers le nord. Chargées de fer, bâchées, avec des hommes devant et derrière. Je ne sais pas combien de nuits elles tiennent, mais je les vois passer sous la lune. » Il fait tourner son bâton entre ses doigts. « Le fer prend la route du nord. Varg vend déjà ce qu'il tire de la veine. » « Si vous voulez voir, attendez la nuit sur le talus. Vous verrez la file, et vous compterez comme moi. »",
+    "revele": [
+     "f-ormak-fer"
+    ],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "la-laine",
+    "mots": [
+     "laine",
+     "prix",
+     "marché",
+     "Célestin",
+     "toisons",
+     "vendre"
+    ],
+    "question": "Comment va la laine ?",
+    "reponse": "Ormak frotte une mèche entre le pouce et l'index, la tourne au jour, puis la laisse retomber sur le genou. « Elle est bonne cette année. Pas belle, bonne : elle a passé l'été sur les crêtes, sous la pluie et le vent, et elle tient. Célestin m'en offre le prix d'une mauvaise année, il le sait et je le sais. » Il hausse ses larges épaules, sans colère. « Il compte les toisons en parlant, il ne regarde pas la laine. Pourtant il revient chaque automne, et je préfère un marchand qui revient à dix qui passent. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   },
+   {
+    "id": "les-hauteurs",
+    "mots": [
+     "moutons",
+     "hauteurs",
+     "crêtes",
+     "pâtures",
+     "berger",
+     "bergerie"
+    ],
+    "question": "Que faites-vous là-haut ?",
+    "reponse": "Ormak sourit à peine, ce qui chez lui tient lieu de rire. Il montre les pâtures qui s'étendent en vagues vertes et grises jusqu'aux pierres. « Je garde les moutons. Ils n'ont pas besoin de moi pour brouter, mais ils ont besoin qu'on les compte, pour savoir qui manque au soir. » Il lève le bras vers la vallée, où les toits de Mireval fument dans la brume. « De là-haut, je regarde le village comme on regarde un troupeau : qui rentre, qui sort, qui se fatigue. » Il baisse le bras, lentement. « Vous avez les pieds mouillés. Asseyez-vous près du feu de tourbe, la bergerie a encore de la place. »",
+    "revele": [],
+    "effets": [],
+    "unique": false
+   }
+  ],
+  "salutations": {
+   "neutre": "Je vous ai vus monter depuis le sentier, bien avant que vous n'arriviez. Les bêtes sont calmes aujourd'hui. Si vous venez pour la laine, parlez-moi. Si c'est autre chose, je vous écoute aussi.",
+   "amical": "Vous voilà. Bien. Posez votre sac près du mur, la pierre garde la chaleur du jour. Il y a du lait tiède dans la cruche, et je vous dirai ce que j'ai vu depuis les crêtes.",
+   "hostile": "Je ne vous dois rien, et vous ne m'avez rien donné. Mes bêtes ne se laissent pas voler ni compter, et je ne vous apprendrai pas le chemin des crêtes. Redescendez.",
+   "variantes": []
+  },
+  "services": [],
+  "inventaire": []
+ }
+]

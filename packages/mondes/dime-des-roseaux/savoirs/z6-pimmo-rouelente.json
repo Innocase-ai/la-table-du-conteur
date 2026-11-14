@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "pimmo-rouelente",
+  "passe": "Pimmo est gnome, né dans la maison du moulin il y a cent dix ans, quand la roue tournait encore sans qu'on la surveille. Il parle vite parce qu'il pense plus vite qu'il ne parle, et il perd le fil de ses phrases en route. Il doit au meunier des réparations qu'on ne lui paie jamais à temps, et il s'en plaint à qui veut l'entendre. Il aime les engrenages, la lanterne de tourbe qu'il laisse allumer sous la roue, et les gens qui s'arrêtent pour l'écouter. Il entretient chaque automne l'essieu de la charrette du moulin, sans se demander pourquoi tant de sacs.",
+  "liens": [
+   {
+    "pnj": "anselme-roux",
+    "nature": "le meunier qui paie en retard",
+    "opinion": "Il l'aime bien mais il lui en veut : le meunier ne paie jamais ses réparations à temps, et Pimmo doit lui courir après avec sa caisse à outils."
+   },
+   {
+    "pnj": "huguette",
+    "nature": "la maire qui lui prête des outils",
+    "opinion": "Elle est la seule à lui prêter ses outils sans lui faire la leçon, et il lui en est reconnaissant. Il la trouve juste, mais trop vite en colère."
+   },
+   {
+    "pnj": "perrine-vasseur",
+    "nature": "l'éclaireuse qui lui apporte du fer-blanc",
+    "opinion": "Elle lui rapporte du fer-blanc du marché sans rien demander en retour. Il l'aime comme une nièce qui ne dit jamais merci, et il s'inquiète de la voir dormir au grenier."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-doigts-noirs",
+    "texte": "Ses doigts sont tachés de graisse noire, et il s'essuie sur son tablier en parlant, puis recommence."
+   },
+   {
+    "id": "la-cle-a-griffe",
+    "texte": "Il porte une clé à griffe passée dans la ceinture, et la fait tourner pendant qu'il raconte."
+   },
+   {
+    "id": "le-vocabulaire-d-atelier",
+    "texte": "Il parle d'engrenage, d'aube, de bief et de calage, et corrige ses phrases en pleine course."
+   },
+   {
+    "id": "les-croquis-a-la-craie",
+    "texte": "Il dessine les rouages à la craie sur les planches de l'atelier, puis efface le tout de la manche."
+   },
+   {
+    "id": "l-air-de-meule",
+    "texte": "Il siffle en marchant un air de meule, toujours le même, et s'interrompt au milieu sans s'en rendre compte."
+   },
+   {
+    "id": "la-lanterne-de-tourbe",
+    "texte": "Il garde une lanterne de tourbe allumée sous la roue, même en plein jour, parce que l'atelier lui paraît triste sans elle."
+   }
+  ],
+  "sait": [
+   {
+    "id": "l-essieu",
+    "fait": "f-pimmo-essieu",
+    "version": "Il renforce chaque automne l'essieu de la charrette du moulin pour onze sacs, depuis quatre ans. On ne lui a jamais dit pourquoi tant de sacs, et il n'a jamais demandé.",
+    "acces": {}
+   },
+   {
+    "id": "le-meunier-et-ses-sacs",
+    "fait": "f-pacte-du-meunier",
+    "version": "Il a vu les sacs partir chaque automne et il croit que le meunier paie quelqu'un, sans savoir qui ni pourquoi. Il n'en dit rien de précis.",
+    "acces": {
+     "attitudeMin": 30
+    },
+    "evasif": "il bavarde de bief et de goupilles, puis change de sujet dès qu'on parle de sacs ou de meunier",
+    "tabou": [
+     "paie quelqu’un"
+    ]
+   },
+   {
+    "id": "le-grenier-presque-vide",
+    "fait": "f-grenier-vide",
+    "version": "Il a remarqué que la farine sent moins le grain depuis deux automnes, et il s'en inquiète sans savoir pourquoi.",
+    "acces": {}
+   },
+   {
+    "id": "la-rumeur-du-lavoir",
+    "fait": "f-lavoir-rumeur",
+    "version": "Les lavandières lui ont dit que la fille du meunier est partie seule, en manteau, de nuit. Il le répète en riant, sans savoir s'il faut y croire.",
+    "acces": {}
+   }
+  ]
+ }
+]

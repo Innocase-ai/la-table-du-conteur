@@ -17,6 +17,11 @@
     "pnj": "huguette",
     "nature": "la maire de Mireval",
     "opinion": "Elle le paie sans discuter. Il la trouve plus honnête que la plupart des gens de la terre ferme."
+   },
+   {
+    "pnj": "selenie-orvanne",
+    "nature": "l'archiviste qui cherche ses chenaux",
+    "opinion": "Elle le suit depuis l'automne avec ses tubes et ses questions, et elle compte ses passages comme il compte les siens. Il la tient pour patiente, et il sait qu'elle finira par payer ; un passeur ne livre pas ses chenaux pour un plan ancien."
    }
   ],
   "couleur": [
@@ -81,6 +86,27 @@
     "tabou": [
      "veine"
     ]
+   },
+   {
+    "id": "le-convoi",
+    "fait": "f-marin-convoi",
+    "version": "Il a conduit, il y a deux ans, un convoi de caisses pour les hobgobelins sans savoir ce qu'elles contenaient. Il s'en veut, et il ne le dit qu'à ceux qui ont gagné sa confiance.",
+    "acces": {
+     "attitudeMin": 15
+    },
+    "evasif": "il dit qu'un passeur ne pose pas de questions sur sa cargaison, et change de sujet",
+    "tabou": [
+     "convoi"
+    ]
+   },
+   {
+    "id": "les-caisses-de-la-barque",
+    "fait": "f-convoi-caisses-marquees",
+    "version": "La barque qu'il a laissée s'enfoncer dans les roseaux porte encore des caisses au poinçon de la compagnie du Péage : du fer, il le sait maintenant.",
+    "acces": {
+     "attitudeMin": 15
+    },
+    "evasif": "il dit que cette barque ne vaut plus rien et que les roseaux la garderont"
    }
   ]
  }

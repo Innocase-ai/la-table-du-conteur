@@ -42,10 +42,10 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 
 ## 4. La jauge : la Dîme (0 à 4)
 
-Identifiant : dime. Départ : 1. Bornes : 0 à 4.
+Identifiant : dime. Départ : 0 (corrigé le 14/11/2026 : le palier 1 se joue dès la première nuit). Bornes : 0 à 4. Elle monte d'un cran à chaque repos long.
 
 - **0 — Le pont ouvert.** La chaussée est praticable, le péage est celui d'avant.
-- **1 — La patrouille.** Les hobgobelins doublent le péage, un œil sur le village. Départ de l'histoire.
+- **1 — La patrouille.** Les hobgobelins doublent le péage, un œil sur le village. Première nuit.
 - **2 — Le grenier scellé.** Les villageois rationnent ; les éclaireurs gobelins s'approchent ; première faim.
 - **3 — L'ultimatum.** Varg exige la moitié du grenier ; la milice se forme ; Skarn envisage le raid.
 - **4 — L'assaut.** Le grenier brûle, le village plie : fin d'échec.
@@ -203,7 +203,7 @@ sbire-gobelin, combattant-gobelin, chef-gobelin, combattant-hobgobelin, capitain
 
 ### L'horloge
 
-La jauge dime à 4 paliers (1 à 4), deux paliers ferment des portes : à 3, le grenier est scellé (plus de ravitaillement), à 4, l'assaut met fin au chapitre. On peut la ralentir en payant, négociant, livrant du grain, éliminant une patrouille ou rendant un prisonnier.
+La jauge dime a 4 paliers (1 à 4) et part de 0 ; deux paliers ferment des portes : à 2, le grenier est scellé (plus de ravitaillement), à 4, l'assaut met fin au chapitre (quatre nuits de repos sans rien changer suffisent). On peut la ralentir en payant, négociant, livrant du grain, éliminant une patrouille ou rendant un prisonnier.
 
 ### Salutations variables (au moins 5 PNJ)
 

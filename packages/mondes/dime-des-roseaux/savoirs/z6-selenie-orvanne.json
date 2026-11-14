@@ -1,0 +1,81 @@
+[
+ {
+  "pnj": "selenie-orvanne",
+  "passe": "Sélénie Orvanne est archiviste itinérante. Elle a environ cent quarante ans, et elle compte son existence en campagnes de relevés plutôt qu'en hivers. Elle voyage avec des tubes de cuir pleins de feuilles anciennes, et elle loge à l'auberge des Roseaux depuis l'automne, parce que Bastien lui garde la meilleure chambre sans poser de questions. Son grand chantier est une carte des vieux chenaux du marais, que la crue efface peu à peu. Elle a fait trois fois le tour des roseaux à pied et n'a jamais pu lever le plan complet d'une écluse noyée. Elle a une mémoire de registre et une patience de notaire.",
+  "liens": [
+   {
+    "pnj": "bastien",
+    "nature": "son hôte, l'aubergiste de Mireval",
+    "opinion": "Elle le tolère comme on tolère une auberge bruyante : il a un bon lit, mais il vend tout, même le silence, et elle ne lui pardonne pas de garder ses rumeurs pour lui."
+   },
+   {
+    "pnj": "marin",
+    "nature": "le passeur qu'elle voudrait interroger",
+    "opinion": "Elle le trouve bourru et cher, mais le seul à connaître les chenaux qu'elle cherche. Elle le juge coupable de garder ses trajets pour lui, et elle compte bien le faire parler avant la prochaine crue."
+   },
+   {
+    "pnj": "bram-coeur-de-tourbe",
+    "nature": "le nain qui connaît la vieille mine",
+    "opinion": "Elle le respecte pour sa mémoire des galeries et le trouve trop fier pour demander de l'aide. Il lui a déjà refusé une copie de plan, et elle n'a pas oublié le ton qu'il a pris."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "les-gants",
+    "texte": "Elle retire ses gants de daim avant de toucher un papier, puis les remet aussitôt, comme si la moindre trace de doigt pouvait effacer un siècle."
+   },
+   {
+    "id": "la-plume",
+    "texte": "Elle note tout à la plume et souffle sur chaque ligne au lieu d'attendre que l'encre sèche, ce qui lui vaut des taches sur ses manches."
+   },
+   {
+    "id": "les-dates",
+    "texte": "Elle cite les années avec exactitude, et se reprend d'un an quand elle juge qu'une date fausse mérite d'être corrigée devant tout le monde."
+   },
+   {
+    "id": "le-bouchon",
+    "texte": "Elle débouche chaque tube d'un coup sec, puis le referme à la verticale, toujours dans le même sens, en comptant à voix basse."
+   },
+   {
+    "id": "la-table",
+    "texte": "Elle choisit toujours la table la plus proche du feu et range ses tubes en ligne droite, du plus ancien au plus récent."
+   },
+   {
+    "id": "le-tabouret",
+    "texte": "Elle s'assoit sans jamais croiser les jambes et se lève d'un bond dès qu'elle croit avoir trouvé une erreur dans un relevé."
+   }
+  ],
+  "sait": [
+   {
+    "id": "les-cartes",
+    "fait": "f-selenie-cartes",
+    "version": "Elle porte des relevés du marais depuis plus de trente ans. Elle parle volontiers de ses tubes, et de la carte qu'elle n'a pas encore finie.",
+    "acces": {}
+   },
+   {
+    "id": "le-vieux-chenal",
+    "fait": "f-vieux-chenal",
+    "version": "Une écluse de pierre noyée marque le début d'un vieux chenal de halage, envahi de roseaux, qui file vers la colline. Elle n'a pas encore eu le temps de le relever en entier.",
+    "acces": {
+     "attitudeMin": 15
+    },
+    "evasif": "elle dit que ce chenal relève de la légende de bateliers, et qu'un plan ancien ne prouve rien sans relevé sur le terrain."
+   },
+   {
+    "id": "les-passeurs",
+    "fait": "f-passeurs-neutres",
+    "version": "Les passeurs du marais ne prennent parti pour personne et se font payer chaque traversée. Marin est le plus habile d'entre eux, et le plus silencieux sur ses trajets.",
+    "acces": {}
+   },
+   {
+    "id": "la-mine-de-fer",
+    "fait": "f-mine-de-fer",
+    "version": "Elle sait que des nains de Mireval ont creusé la vieille mine il y a deux générations, et que ses galeries basses ne figurent sur aucun plan récent. Elle ne sait pas ce qu'on en tire aujourd'hui.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "elle change de sujet dès qu'on lui demande ce qui quitte la mine la nuit, et dit qu'elle ne lit que les registres anciens."
+   }
+  ]
+ }
+]

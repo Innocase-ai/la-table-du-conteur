@@ -37,6 +37,11 @@
     "pnj": "varg",
     "nature": "le capitaine du péage",
     "opinion": "Elle ne le hait pas. Elle le trouve cher, prévisible et dangereux, comme une crue qu'on voit venir sans pouvoir l'arrêter. Il la respecte, elle le sait, et elle compte ce respect parmi ses dettes."
+   },
+   {
+    "pnj": "pimmo-rouelente",
+    "nature": "le gnome à qui elle prête ses outils",
+    "opinion": "Il lui rend ses outils en meilleur état qu'il ne les a reçus, et elle ne lui fait pas la leçon. Il parle trop vite et oublie les heures, mais c'est le seul artisan du village qu'elle ne compte pas."
    }
   ],
   "couleur": [
@@ -101,6 +106,18 @@
     "fait": "f-passeurs-neutres",
     "version": "Marin ne prend parti pour personne. Elle le sait et elle continue de le payer, parce qu'un passeur neutre vaut mieux qu'un passeur acheté.",
     "acces": {}
+   },
+   {
+    "id": "le-livre-de-la-halle",
+    "fait": "f-huguette-livre",
+    "version": "Elle tient un second livre de comptes, rangé dans l'armoire de la halle, où un prêt de grain de la commune au moulin revient chaque automne depuis quatre ans. Elle n'ose pas le rouvrir.",
+    "acces": {
+     "attitudeMin": 10
+    },
+    "evasif": "elle dit que les comptes de la commune sont tous dans son carnet, et ferme la conversation",
+    "tabou": [
+     "second livre"
+    ]
    }
   ]
  }

@@ -1,0 +1,78 @@
+[
+ {
+  "pnj": "ormak-haute-lande",
+  "passe": "Ormak est goliath, berger des hauteurs, il a quarante-cinq ans et il a passé la plupart de ses étés sur les pâtures au-dessus de Mireval. Il descend au village une fois par saison, au marché, pour vendre la laine et acheter ce que la lande ne donne pas : du sel, des clous, du fil. Il parle peu, parce qu'il a passé trop de nuits seul avec les bêtes pour s'habituer aux bavardages. Il n'aime pas les soldats et ne se mêle pas de la compagnie, mais il sait où elle passe, à quelle heure, et combien elle est. Il ne le répète qu'à ceux qui le méritent. Il tient sa bergerie de pierre sèche, et compte son troupeau chaque soir.",
+  "liens": [
+   {
+    "pnj": "celestin-brindille",
+    "nature": "le colporteur qui achète sa laine",
+    "opinion": "Célestin paie la laine au plus bas et compte les toisons en parlant, mais il revient chaque automne. Ormak le supporte sans l'apprécier."
+   },
+   {
+    "pnj": "perrine-vasseur",
+    "nature": "l'éclaireuse qui connaît les crêtes",
+    "opinion": "Elle monte parfois jusqu'aux pâtures pour suivre des traces, et elle ne s'assied jamais. Ormak la respecte : elle sait lire une piste comme il lit le ciel."
+   },
+   {
+    "pnj": "varg",
+    "nature": "le capitaine du péage qu'il observe",
+    "opinion": "Il le voit marcher chaque matin sur la chaussée, droit comme un piquet, et ne lui parle jamais. Il le juge dangereux parce qu'il est discipliné, et ce qu'il pense de lui reste pour lui."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "le-baton",
+    "texte": "Il tient son bâton de berger appuyé sur le talon, comme une balance, et ne le lâche jamais quand il parle."
+   },
+   {
+    "id": "la-laine-entre-les-doigts",
+    "texte": "Il frotte une mèche de laine entre ses doigts immenses avant de répondre, comme pour vérifier le prix."
+   },
+   {
+    "id": "le-sifflet-d-os",
+    "texte": "Un sifflet d'os pend à son cou ; il ne siffle qu'une fois par jour, au moment de rentrer les bêtes."
+   },
+   {
+    "id": "le-silence",
+    "texte": "Il laisse les silences s'allonger, et ceux qui parlent trop finissent par se taire devant lui."
+   },
+   {
+    "id": "les-brebis-par-leur-nom",
+    "texte": "Il donne un nom à chaque brebis et les appelle par leur nom en comptant le troupeau le soir."
+   },
+   {
+    "id": "la-bergerie-de-pierre",
+    "texte": "Il a bâti la bergerie de pierre sèche sans mortier, et il rebouche chaque fente avec de la mousse avant l'hiver."
+   }
+  ],
+  "sait": [
+   {
+    "id": "les-relevees",
+    "fait": "f-ormak-patrouilles",
+    "version": "Depuis les crêtes, il voit les hobgobelins du pont se relever à l'aube et au crépuscule. Trois hommes seulement tiennent le péage.",
+    "acces": {}
+   },
+   {
+    "id": "les-charrettes-de-fer",
+    "fait": "f-ormak-fer",
+    "version": "Chaque nuit, il voit descendre de la mine des charrettes de fer, bâchées et escortées, vers le nord. Il ne sait pas où elles vont au-delà, mais il sait ce qu'elles portent.",
+    "acces": {}
+   },
+   {
+    "id": "la-veine-de-fer",
+    "fait": "f-mine-de-fer",
+    "version": "La mine de fer est occupée par la compagnie du péage, dans la montagne. Il n'y est jamais allé, et il n'y tient pas.",
+    "acces": {}
+   },
+   {
+    "id": "les-maigres",
+    "fait": "f-tribu-affamee",
+    "version": "Il a vu des traces maigres dans les pâtures basses du sud, celles de gens qui ont faim. Il n'en parle qu'à regret, parce que la faim ne se moque de personne.",
+    "acces": {
+     "attitudeMin": 20
+    },
+    "evasif": "il dit qu'il ne suit pas les traces des roseaux et qu'il ne sait pas qui a faim"
+   }
+  ]
+ }
+]
