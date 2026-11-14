@@ -147,6 +147,9 @@ export function EcranChoixClasse({ b, donnees, maj, aller }: PropsEcran & { alle
   const eligibles = ex.sorts ? sortsEligibles(c.classe, ex.sorts.niveauMax, donnees).filter((s) => !exclus.has(s.id)) : [];
   const mineurs = c.sortsMineurs ?? [];
   const prepares = c.sortsPrepares ?? [];
+  // Le Magicien inscrit des sorts à son grimoire, puis prépare ceux de son livre.
+  const grimoire = c.sortsGrimoire ?? [];
+  const aGrimoire = ex.sorts?.grimoire !== undefined;
   const survolSort = (s: Sort | null) => setDetail(s ? { titre: s.nom, texte: s.resume, sort: s } : null);
 
   // --- Équipement ---
@@ -333,11 +336,24 @@ export function EcranChoixClasse({ b, donnees, maj, aller }: PropsEcran & { alle
                 />
               </Section>
             )}
+            {aGrimoire && (
+              <Section titre="Grimoire" aide={`Votre grimoire contient ${ex.sorts.grimoire} sorts de niveau 1${ex.sorts.niveauMax > 1 ? ` à ${ex.sorts.niveauMax}` : ''} : ce sont les seuls que vous pourrez préparer. Il commence avec six sorts, et en reçoit deux de plus à chaque niveau.`} etat={complet(grimoire.length, ex.sorts.grimoire!)}>
+                <ListeSorts
+                  etiquette="sorts du grimoire"
+                  sorts={eligibles.filter((s) => s.niveau > 0)}
+                  choisis={grimoire}
+                  max={ex.sorts.grimoire!}
+                  filtreNiveau
+                  onChange={(v) => poser((x) => ({ ...x, sortsGrimoire: v, sortsPrepares: (x.sortsPrepares ?? []).filter((id) => v.includes(id)) }))}
+                  onSurvol={survolSort}
+                />
+              </Section>
+            )}
             {ex.sorts.prepares > 0 && (
-              <Section titre="Sorts préparés" aide={`Choisissez ${ex.sorts.prepares} sorts de niveau 1${ex.sorts.niveauMax > 1 ? ` à ${ex.sorts.niveauMax}` : ''}.`} etat={complet(prepares.length, ex.sorts.prepares)}>
+              <Section titre="Sorts préparés" aide={aGrimoire ? `Choisissez ${ex.sorts.prepares} sorts parmi ceux de votre grimoire.` : `Choisissez ${ex.sorts.prepares} sorts de niveau 1${ex.sorts.niveauMax > 1 ? ` à ${ex.sorts.niveauMax}` : ''}.`} etat={complet(prepares.length, ex.sorts.prepares)}>
                 <ListeSorts
                   etiquette="sorts préparés"
-                  sorts={eligibles.filter((s) => s.niveau > 0)}
+                  sorts={eligibles.filter((s) => s.niveau > 0 && (!aGrimoire || grimoire.includes(s.id)))}
                   choisis={prepares}
                   max={ex.sorts.prepares}
                   filtreNiveau

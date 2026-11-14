@@ -98,6 +98,12 @@ function PanneauHeros({ h, donnees, envoyer }: { h: Personnage; donnees: Donnees
   const eligibles = sortsEligibles(base.classe, nouveaux.niveauSortMax, donnees).filter((s) => !exclus.has(s.id));
   const nbMineurs = nouveaux.sortsMineurs.total - nouveaux.sortsMineurs.figes;
   const nbPrepares = nouveaux.sortsPrepares.total - nouveaux.sortsPrepares.figes;
+  // Le grimoire du Magicien : deux sorts de plus à inscrire, puis on prépare ceux de son livre.
+  const aGrimoire = nouveaux.sortsGrimoire !== undefined;
+  const grimoireFiges = (base.sortsGrimoire ?? []).slice(0, nouveaux.sortsGrimoire?.figes ?? 0);
+  const nbGrimoire = nouveaux.sortsGrimoire ? nouveaux.sortsGrimoire.total - nouveaux.sortsGrimoire.figes : 0;
+  const grimoireNouveau = (choix.sortsGrimoire ?? []).slice(grimoireFiges.length);
+  const preparables = aGrimoire ? sortsEligibles(base.classe, nouveaux.niveauSortMax, donnees).filter((s) => s.niveau > 0 && !preparesFiges.includes(s.id) && !accordes.includes(s.id) && (choix.sortsGrimoire ?? []).includes(s.id)) : eligibles.filter((s) => s.niveau > 0);
 
   // --- Expertises ---
   const expertisesFiges = (base.expertises ?? []).slice(0, nouveaux.expertises.figes);
@@ -134,10 +140,29 @@ function PanneauHeros({ h, donnees, envoyer }: { h: Personnage; donnees: Donnees
         </Section>
       )}
 
+      {nbGrimoire > 0 && (
+        <Section titre="Grimoire" aide={`Inscrivez ${nbGrimoire} sorts de plus (niveau 1 à ${nouveaux.niveauSortMax}) : on ne prépare que les sorts de son grimoire.${grimoireFiges.length ? ` Déjà inscrits : ${grimoireFiges.map(nom).join(', ')}.` : ''}`} etat={grimoireNouveau.length === nbGrimoire ? 'ok' : 'manque'}>
+          <ListeSorts
+            sorts={eligibles.filter((s) => s.niveau > 0 && !grimoireFiges.includes(s.id))}
+            choisis={grimoireNouveau}
+            max={nbGrimoire}
+            filtreNiveau
+            etiquette="les sorts du grimoire"
+            onChange={(ids) =>
+              setChoix((c) => {
+                const livre = [...grimoireFiges, ...ids];
+                // Un sort retiré du grimoire ne peut plus être préparé.
+                return { ...c, sortsGrimoire: livre, sortsPrepares: (c.sortsPrepares ?? []).filter((id, i) => i < preparesFiges.length || livre.includes(id)) };
+              })
+            }
+          />
+        </Section>
+      )}
+
       {nbPrepares > 0 && (
         <Section titre="Sorts préparés" aide={preparesFiges.length ? `Déjà préparés : ${preparesFiges.map(nom).join(', ')}.` : undefined} etat={(choix.sortsPrepares ?? []).length - preparesFiges.length === nbPrepares ? 'ok' : 'manque'}>
           <ListeSorts
-            sorts={eligibles.filter((s) => s.niveau > 0)}
+            sorts={preparables}
             choisis={(choix.sortsPrepares ?? []).slice(preparesFiges.length)}
             max={nbPrepares}
             filtreNiveau

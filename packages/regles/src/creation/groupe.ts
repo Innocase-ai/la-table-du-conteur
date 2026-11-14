@@ -53,6 +53,7 @@ export const ChoixPersonnageSchema = z.object({
   choix: z.record(chaines).optional(),
   sortsMineurs: chaines.optional(),
   sortsPrepares: chaines.optional(),
+  sortsGrimoire: chaines.optional(),
   sortsInitie: z.object({ mineurs: chaines, niveau1: chaines }).optional(),
   bottes: chaines.optional(),
   equipementClasse: z.string().optional(),

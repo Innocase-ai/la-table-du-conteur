@@ -211,6 +211,7 @@ function sansChoixDeClasse(c: Choix, donnees: Donnees): Choix {
     bottes: undefined,
     sortsMineurs: undefined,
     sortsPrepares: undefined,
+    sortsGrimoire: undefined,
     equipementClasse: undefined,
     equipementHistorique: undefined,
     armure: undefined,

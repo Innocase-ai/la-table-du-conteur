@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { lancer } from '../des';
 import { commande, type ContexteJeu, type Encart, type Module, type Partie, type Proposition } from '../noyau/types';
+import { inscrireGrimoireManquant } from '../creation/grimoire';
 import { descriptionDroits, prochainChangement, verifierPreparation } from '../creation/preparation';
 import type { Personnage } from '../personnage';
 import type { Sort } from '../schemas';
@@ -47,8 +48,15 @@ const PANNEAU_PREPARATION = { id: 'preparation', titre: 'Préparer ses sorts', o
 /** Les héros qui ont gagné, par un repos ou un niveau, le droit de changer leurs sorts (et qui le peuvent : ils ont leurs choix de création). */
 const preparateurs = (p: Partie) => p.groupe.filter((a) => a.choix && a.preparation && descriptionDroits(a.preparation));
 
+/** Les héros d'une classe à grimoire sans livre (groupe ou partie d'avant le grimoire) reçoivent le leur. */
+function inscrireLesGrimoires(ctx: ContexteJeu, p: Partie): void {
+  if (ctx.srd) for (const h of p.groupe) inscrireGrimoireManquant(h, ctx.srd);
+}
+
 export const moduleGrimoire: Module = {
   id: 'grimoire',
+  demarrer: inscrireLesGrimoires,
+  apresChargement: inscrireLesGrimoires,
   commandes: {
     changerSortsPrepares: commande({
       description:
@@ -164,6 +172,7 @@ export const moduleGrimoire: Module = {
   encarts: (ctx, p): Encart[] =>
     lanceurs(p).map((a, n) => {
       const sorts = sortsConnus(ctx, a);
+      const ids = new Set(sorts.map((s) => s.id));
       const max = a.fiche.incantation!.emplacements;
       return {
         onglet: 'Grimoire',
@@ -180,6 +189,13 @@ export const moduleGrimoire: Module = {
             : []),
           ...a.emplacements.map((v, i) => ({ libelle: `Emplacements de niveau ${i + 1}`, valeur: `${v} / ${a.fiche.incantation!.niveauEmplacementPacte ? v : (max[i] ?? v)}`, ton: v ? ('fort' as const) : ('faible' as const) })).filter((_, i) => (max[i] ?? 0) > 0 || a.fiche.incantation!.niveauEmplacementPacte),
           ...sorts.map((s) => ({ libelle: s.nom, valeur: s.niveau ? `niveau ${s.niveau}` : 'mineur', detail: s.resume, ton: s.soins ? ('succes' as const) : undefined, fiche: ficheDeSort(s), sort: s.id })),
+          // Le grimoire du Magicien : les sorts qu'il connaît sans les avoir préparés (on ne les lance pas avant de les préparer).
+          ...(a.fiche.grimoire ?? [])
+            .filter((id) => !ids.has(id))
+            .map((id) => ctx.srd?.sorts.get(id))
+            .filter((s): s is Sort => !!s)
+            .sort((x, y) => x.niveau - y.niveau || x.nom.localeCompare(y.nom))
+            .map((s) => ({ libelle: s.nom, valeur: `niveau ${s.niveau} · grimoire`, detail: `${s.resume} (dans le grimoire : à préparer avant de le lancer)`, ton: 'faible' as const, fiche: ficheDeSort(s), sort: s.id })),
         ],
       };
     }),

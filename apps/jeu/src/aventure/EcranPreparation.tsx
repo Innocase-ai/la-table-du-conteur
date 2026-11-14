@@ -44,6 +44,7 @@ function PanneauHeros({ h, donnees, envoyer }: { h: Personnage; donnees: Donnees
     <div className="montee-heros">
       <p className="aide">
         {h.nom} peut changer {descriptionDroits(droit)}.{' '}
+        {h.fiche.grimoire ? `Vous préparez des sorts de votre grimoire (${h.fiche.grimoire.length} sorts). ` : ''}
         {droit.prepares === 'tous' ? 'Reprenez ce que vous voulez, dans la place en mémoire du niveau.' : 'Retirez un sort de la liste pour en choisir un autre.'}
       </p>
 
@@ -53,7 +54,7 @@ function PanneauHeros({ h, donnees, envoyer }: { h: Personnage; donnees: Donnees
           aide={retire.length ? `Retirés : ${retire.map(nom).join(', ')}.` : h.fiche.sortsAccordes.length ? `Toujours préparés (hors compteur) : ${h.fiche.sortsAccordes.map(nom).join(', ')}.` : undefined}
           etat={prepares.length === inc.sortsPrepares ? 'ok' : 'manque'}
         >
-          <ListeSorts sorts={eligibles.filter((s) => s.niveau > 0)} choisis={prepares} max={inc.sortsPrepares} filtreNiveau etiquette="les sorts préparés" onChange={setPrepares} />
+          <ListeSorts sorts={eligibles.filter((s) => s.niveau > 0 && (!h.fiche.grimoire || h.fiche.grimoire.includes(s.id)))} choisis={prepares} max={inc.sortsPrepares} filtreNiveau etiquette="les sorts préparés" onChange={setPrepares} />
         </Section>
       )}
 

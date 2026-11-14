@@ -37,7 +37,7 @@ Les écarts marqués **✔ vérifié** ont été contrôlés dans le code et le 
 - Aptitudes non jouables : ~~Châtiment divin~~, Imposition des mains, ~~Ki (Credo) et frappe bonus du Moine~~, ~~Inspiration bardique~~ (**jouables depuis le 07/11/2026**, voir `docs/COMBAT.md` §10), Métamagie, Sorcellerie innée, Forme sauvage.
 
 **Personnage**
-- Sorts de lignage des niveaux 3 et 5 (elfe, tieffelin) absents ; don Initié à la magie limité (pas de liste Druide, pas d'humain par Polyvalent) ; grimoire du Magicien (les sorts préparés se changent depuis le 14/11/2026, mais dans toute la liste de la classe), Arcanum mystique de l'Occultiste (sorts 6-9) absents ; Cercle de la Terre limité au climat tempéré ; multiclassage absent ; plafond 20 même pour les Faveurs épiques.
+- Sorts de lignage des niveaux 3 et 5 (elfe, tieffelin) absents ; don Initié à la magie limité (pas de liste Druide, pas d'humain par Polyvalent) ; grimoire du Magicien fait le 14/11/2026 (copie de sorts en jeu, rituels et sorts de l'Évocateur absents), Arcanum mystique de l'Occultiste (sorts 6-9) absents ; Cercle de la Terre limité au climat tempéré ; multiclassage absent ; plafond 20 même pour les Faveurs épiques.
 
 **Hors combat**
 - Harmonisation automatique et partielle (armures, boucliers et armes magiques non comptés) ; objets à charges inutilisables hors combat ; ressources de Moine, Ensorceleur, Druide, Barde, Magicien non gérées au repos ; pas d'Épuisement, de rythme de voyage, de lumière.

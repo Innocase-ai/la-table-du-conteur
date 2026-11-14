@@ -5,7 +5,7 @@ import type { Donnees } from '../donnees';
 import type { ChoixPersonnage } from '../fiche';
 import type { ChoixCreation, Competence, Effet } from '../schemas';
 import { optionsEquipement } from './equipement';
-import { bottesPossibles, choixRequis, niveauSortMax, regleInitie, type RegleInitie } from './regles-creation';
+import { bottesPossibles, choixRequis, niveauSortMax, regleInitie, tailleGrimoire, type RegleInitie } from './regles-creation';
 
 export const ETAPES = ['espece', 'classe', 'historique', 'caracteristiques', 'competences', 'alignement', 'identite', 'recapitulatif'] as const;
 export type Etape = (typeof ETAPES)[number];
@@ -37,7 +37,8 @@ export interface Exigences {
   tailles: ('P' | 'M')[];
   choixEspece: { choix: ChoixCreation; nombre: number }[];
   choixClasse: { choix: ChoixCreation; nombre: number }[];
-  sorts?: { mineurs: number; prepares: number; niveauMax: number };
+  /** `grimoire` : sorts du livre du Magicien (les sorts préparés se choisissent dedans) ; absent pour les autres classes. */
+  sorts?: { mineurs: number; prepares: number; niveauMax: number; grimoire?: number };
   initie?: RegleInitie;
   bottes?: { nombre: number; parmi: string[] };
   equipementClasse: { id: string; objets: string[]; po: number }[];
@@ -105,7 +106,7 @@ export function exigences(c: ChoixPartiel & { niveau: number }, donnees: Donnees
     choixEspece: choixRequis('', espece.id, niveau, donnees).filter((x) => x.choix.source.type === 'espece'),
     choixClasse: choixRequis(classe.id, '', niveau, donnees).filter((x) => x.choix.source.type === 'classe'),
     sorts: allClasse
-      ? { mineurs: allClasse.sortsMineurs[niveau - 1]! + mineursExtra, prepares: allClasse.sortsPrepares[niveau - 1]!, niveauMax: maxNiveau }
+      ? { mineurs: allClasse.sortsMineurs[niveau - 1]! + mineursExtra, prepares: allClasse.sortsPrepares[niveau - 1]!, niveauMax: maxNiveau, ...(tailleGrimoire(classe.id, niveau) !== undefined ? { grimoire: tailleGrimoire(classe.id, niveau)! } : {}) }
       : undefined,
     initie: regleInitie(historique.id, [historique.don, ...(c.dons ?? [])]),
     bottes: bottesPossibles(classe, niveau, donnees),
@@ -178,6 +179,7 @@ export function manquants(c: ChoixPartiel & { niveau: number }, donnees: Donnees
   if (ex.bottes && (c.bottes?.length ?? 0) < ex.bottes.nombre) ajouter('competences', `Bottes d'arme : ${ex.bottes.nombre - (c.bottes?.length ?? 0)} arme(s) à choisir.`);
   if (ex.sorts) {
     if ((c.sortsMineurs?.length ?? 0) < ex.sorts.mineurs) ajouter('competences', `${ex.sorts.mineurs - (c.sortsMineurs?.length ?? 0)} sort(s) mineur(s) à choisir.`);
+    if (ex.sorts.grimoire !== undefined && (c.sortsGrimoire?.length ?? 0) < ex.sorts.grimoire) ajouter('competences', `${ex.sorts.grimoire - (c.sortsGrimoire?.length ?? 0)} sort(s) à inscrire dans le grimoire.`);
     if ((c.sortsPrepares?.length ?? 0) < ex.sorts.prepares) ajouter('competences', `${ex.sorts.prepares - (c.sortsPrepares?.length ?? 0)} sort(s) préparé(s) à choisir.`);
   }
   if (!c.equipementClasse) ajouter('competences', "Choisis ton équipement de classe.");

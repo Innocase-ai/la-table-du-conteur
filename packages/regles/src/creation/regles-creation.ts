@@ -12,6 +12,18 @@ export function niveauSortMax(classe: Classe, niveau: number): number {
   return emplacements.length;
 }
 
+/**
+ * Les classes qui préparent leurs sorts dans un livre : le Magicien (SRD 5.2.1) commence avec six sorts du 1er niveau dans son
+ * grimoire et en ajoute deux à chaque niveau gagné ; ses sorts préparés se choisissent dans ce livre.
+ */
+export const GRIMOIRES: Record<string, { depart: number; parNiveau: number }> = { magicien: { depart: 6, parNiveau: 2 } };
+
+/** Nombre de sorts du grimoire à ce niveau de classe ; `undefined` si la classe n'a pas de grimoire. */
+export function tailleGrimoire(classeId: string, niveau: number): number | undefined {
+  const g = GRIMOIRES[classeId];
+  return g ? g.depart + g.parNiveau * Math.max(0, niveau - 1) : undefined;
+}
+
 /** Sorts de la liste de la classe, du niveau 0 au niveau maximal accessible. */
 export function sortsEligibles(classeId: string, niveauMax: number, donnees: Donnees): Sort[] {
   return [...donnees.sorts.values()]

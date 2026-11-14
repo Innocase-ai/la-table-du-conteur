@@ -9,7 +9,7 @@ import {
   VALEURS_STANDARD,
   type Valeurs,
 } from './caracteristiques';
-import { bottesPossibles, choixRequis, niveauSortMax, nombreDeChoix, regleInitie, sortsEligibles } from './creation/regles-creation';
+import { bottesPossibles, choixRequis, niveauSortMax, nombreDeChoix, regleInitie, sortsEligibles, tailleGrimoire } from './creation/regles-creation';
 import { equipementChoisi, type EquipementResolu } from './creation/equipement';
 import { caracteristiquesDeFaveur, VALEUR_MAX_FAVEUR } from './creation/faveurs';
 import type { Donnees } from './donnees';
@@ -60,6 +60,8 @@ export interface ChoixPersonnage {
   choix?: Record<string, string[]>;
   sortsMineurs?: string[];
   sortsPrepares?: string[];
+  /** Le grimoire du Magicien : tous les sorts qu'il connaît (1er niveau et plus) ; ses sorts préparés sont choisis dedans. Absent = ses sorts préparés. */
+  sortsGrimoire?: string[];
   /** Sorts du don Initié à la magie, quand l'historique l'accorde. */
   sortsInitie?: { mineurs: string[]; niveau1: string[] };
   /** Armes dont le personnage maîtrise la botte (aptitude Bottes d'arme). */
@@ -122,6 +124,8 @@ export interface Fiche {
   choix: Record<string, string[]>;
   sortsMineurs: string[];
   sortsPrepares: string[];
+  /** Le grimoire du Magicien (sorts du 1er niveau et plus qu'il connaît, préparés ou non) ; absent pour les autres classes. */
+  grimoire?: string[];
   /** Sorts toujours connus, accordés par l'espèce ou une option. */
   sortsAccordes: string[];
   sortsInitie?: { mineurs: string[]; niveau1: string[] };
@@ -495,6 +499,22 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       if (!s || s.niveau === 0) erreurs.push(`« ${id} » n'est pas un sort de niveau 1 à ${maxNiveau} de la liste ${classe.nom}.`);
     }
   }
+  // Le grimoire du Magicien : ses sorts préparés viennent de ce livre. Sans livre choisi (ancienne partie), le grimoire est la liste préparée.
+  const tailleLivre = tailleGrimoire(classe.id, niveau);
+  let grimoire: string[] | undefined;
+  if (choix.sortsGrimoire?.length && (!incantation || tailleLivre === undefined)) erreurs.push(`${classe.nom} n'a pas de grimoire.`);
+  else if (incantation && tailleLivre !== undefined) {
+    grimoire = choix.sortsGrimoire ?? sortsPrepares;
+    if (grimoire.length > tailleLivre) erreurs.push(`${grimoire.length} sorts dans le grimoire pour ${tailleLivre} permis.`);
+    if (new Set(grimoire).size !== grimoire.length) erreurs.push('Un sort est inscrit deux fois dans le grimoire.');
+    const maxLivre = niveauSortMax(classe, niveau);
+    const dispo = new Map(sortsEligibles(classe.id, maxLivre, donnees).map((s) => [s.id, s]));
+    for (const id of grimoire) {
+      const s = dispo.get(id);
+      if (!s || s.niveau === 0) erreurs.push(`« ${id} » n'est pas un sort de niveau 1 à ${maxLivre} de la liste ${classe.nom} : il ne peut pas entrer dans le grimoire.`);
+    }
+    for (const id of sortsPrepares) if (!grimoire.includes(id)) erreurs.push(`« ${id} » n'est pas dans le grimoire : on ne prépare que les sorts de son grimoire.`);
+  }
   const regleInit = regleInitie(historique.id, idsDons);
   if (choix.sortsInitie) {
     if (!regleInit) erreurs.push("Aucun don Initié à la magie : pas de sorts d'initié.");
@@ -559,6 +579,7 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
       choix: choix.choix ?? {},
       sortsMineurs,
       sortsPrepares,
+      ...(grimoire ? { grimoire } : {}),
       sortsAccordes,
       sortsInitie: choix.sortsInitie,
       bottes,

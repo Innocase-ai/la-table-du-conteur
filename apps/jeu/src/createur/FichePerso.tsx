@@ -39,6 +39,7 @@ export function FichePerso({ fiche, donnees, enJeu }: { fiche: Fiche; donnees: D
     ...fiche.sortsMineurs.map((id) => ({ id, origine: 'Sort mineur' })),
     ...fiche.sortsPrepares.map((id) => ({ id, origine: 'Préparé' })),
     ...fiche.sortsAccordes.map((id) => ({ id, origine: 'Accordé' })),
+    ...(fiche.grimoire ?? []).map((id) => ({ id, origine: 'Grimoire' })),
     ...(fiche.sortsInitie?.mineurs ?? []).map((id) => ({ id, origine: 'Initié (mineur)' })),
     ...(fiche.sortsInitie?.niveau1 ?? []).map((id) => ({ id, origine: 'Initié' })),
   ].filter((s, i, t) => t.findIndex((x) => x.id === s.id) === i);

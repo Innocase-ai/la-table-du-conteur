@@ -273,7 +273,14 @@ export function recommanderCompetences(c: ChoixPartiel & { niveau: number }, don
     const exclus = new Set([...(c.sortsInitie?.mineurs ?? []), ...(c.sortsInitie?.niveau1 ?? []), ...accordes]);
     const eligibles = sortsEligibles(c.classe, ex.sorts.niveauMax, donnees).filter((s) => !exclus.has(s.id));
     res.sortsMineurs = ordreSorts(c.classe, eligibles.filter((s) => s.niveau === 0).map((s) => s.id)).slice(0, ex.sorts.mineurs);
-    res.sortsPrepares = ordreSorts(c.classe, eligibles.filter((s) => s.niveau > 0).map((s) => s.id)).slice(0, ex.sorts.prepares);
+    const niveau1Plus = ordreSorts(c.classe, eligibles.filter((s) => s.niveau > 0).map((s) => s.id));
+    if (ex.sorts.grimoire !== undefined) {
+      // Le Magicien : le grimoire garde les sorts déjà inscrits, complétés par les mieux classés ; les préparés viennent du grimoire.
+      const livre = [...(c.sortsGrimoire ?? c.sortsPrepares ?? []).filter((id) => niveau1Plus.includes(id))];
+      for (const id of niveau1Plus) if (livre.length < ex.sorts.grimoire && !livre.includes(id)) livre.push(id);
+      res.sortsGrimoire = livre.slice(0, ex.sorts.grimoire);
+      res.sortsPrepares = niveau1Plus.filter((id) => livre.includes(id)).slice(0, ex.sorts.prepares);
+    } else res.sortsPrepares = niveau1Plus.slice(0, ex.sorts.prepares);
   }
   return res;
 }

@@ -81,6 +81,10 @@ export function monterAuNiveau(choix: ChoixPersonnage, niveau: number, donnees: 
   const carac = recommanderCaracteristiques(base, donnees);
   const comp = recommanderCompetences(base, donnees);
   const personnels = nouveauxChoixPersonnels(choix, base, donnees);
+  // Le grimoire du Magicien : les sorts déjà inscrits restent, deux nouveaux s'ajoutent ; les préparés viennent toujours du grimoire.
+  // Une ancienne partie sans grimoire part de ses sorts préparés.
+  const livre = comp.sortsGrimoire ? completer(choix.sortsGrimoire ?? choix.sortsPrepares, comp.sortsGrimoire, comp.sortsGrimoire.length) : undefined;
+  const preparesPossibles = livre ? [...(comp.sortsPrepares ?? []), ...livre].filter((id) => livre.includes(id)) : comp.sortsPrepares;
   const prochain: ChoixPersonnage = {
     ...base,
     // Améliorations : celles déjà faites, puis les recommandées pour les nouveaux paliers (niveau 4).
@@ -91,7 +95,8 @@ export function monterAuNiveau(choix: ChoixPersonnage, niveau: number, donnees: 
     faveurCaracteristique: completer(choix.faveurCaracteristique, comp.faveurCaracteristique, comp.faveurCaracteristique?.length ?? 0),
     bottes: completer(choix.bottes, comp.bottes, comp.bottes?.length ?? 0),
     sortsMineurs: completer(choix.sortsMineurs, comp.sortsMineurs, comp.sortsMineurs?.length ?? 0),
-    sortsPrepares: completer(choix.sortsPrepares, comp.sortsPrepares, comp.sortsPrepares?.length ?? 0),
+    ...(livre ? { sortsGrimoire: livre } : {}),
+    sortsPrepares: completer(choix.sortsPrepares, preparesPossibles, comp.sortsPrepares?.length ?? 0),
     choix: Object.fromEntries(
       Object.entries({ ...(comp.choix ?? {}), ...(choix.choix ?? {}) }).map(([id, ids]) => [id, completer(choix.choix?.[id], comp.choix?.[id], comp.choix?.[id]?.length ?? ids.length)]),
     ),
@@ -111,6 +116,8 @@ export interface ChoixDeMontee {
   ameliorations: { total: number; figes: number };
   sortsMineurs: { total: number; figes: number };
   sortsPrepares: { total: number; figes: number };
+  /** Sorts à inscrire au grimoire (Magicien) ; absent pour les autres classes. */
+  sortsGrimoire?: { total: number; figes: number };
   /** Niveau de sort maximal à ce niveau (pour proposer les sorts permis). */
   niveauSortMax: number;
   /** Options de classe (manifestations occultes, Métamagie…) en plus : `total` options, dont `figes` déjà prises. */
@@ -146,12 +153,13 @@ export function choixDeMontee(choix: ChoixPersonnage, donnees: Donnees): ChoixDe
     ameliorations: plus(avant.ameliorations, apres.ameliorations),
     sortsMineurs: plus(avant.sorts?.mineurs ?? 0, apres.sorts?.mineurs ?? 0),
     sortsPrepares: plus(avant.sorts?.prepares ?? 0, apres.sorts?.prepares ?? 0),
+    ...(apres.sorts?.grimoire !== undefined ? { sortsGrimoire: plus(avant.sorts?.grimoire ?? 0, apres.sorts.grimoire) } : {}),
     niveauSortMax: classe ? niveauSortMax(classe, choix.niveau) : 0,
     options,
     expertises: plus(avant.expertises.nombre, apres.expertises.nombre),
     aucun: false,
   };
-  res.aucun = res.ameliorations.total === res.ameliorations.figes && res.sortsMineurs.total === res.sortsMineurs.figes && res.sortsPrepares.total === res.sortsPrepares.figes && !options.length && res.expertises.total === res.expertises.figes;
+  res.aucun = res.ameliorations.total === res.ameliorations.figes && res.sortsMineurs.total === res.sortsMineurs.figes && res.sortsPrepares.total === res.sortsPrepares.figes && (res.sortsGrimoire?.total ?? 0) === (res.sortsGrimoire?.figes ?? 0) && !options.length && res.expertises.total === res.expertises.figes;
   return res;
 }
 
@@ -165,7 +173,7 @@ const egal = (a: unknown, b: unknown): boolean => {
 };
 
 /** Les champs que le joueur peut changer à la montée de niveau : les listes dont les derniers éléments sont nouveaux. */
-const REVISABLES = ['ameliorations', 'sortsMineurs', 'sortsPrepares', 'expertises', 'choix'] as const;
+const REVISABLES = ['ameliorations', 'sortsMineurs', 'sortsPrepares', 'sortsGrimoire', 'expertises', 'choix'] as const;
 
 /**
  * Valide les choix revus après une montée de niveau : tout est identique à `actuel` sauf les derniers éléments des listes
@@ -180,6 +188,7 @@ export function reviserChoixDeMontee(actuel: ChoixPersonnage, propose: ChoixPers
     ameliorations: nouveaux.ameliorations.figes,
     sortsMineurs: nouveaux.sortsMineurs.figes,
     sortsPrepares: nouveaux.sortsPrepares.figes,
+    sortsGrimoire: nouveaux.sortsGrimoire?.figes ?? 0,
     expertises: nouveaux.expertises.figes,
   };
   for (const [champ, n] of Object.entries(figes)) {
