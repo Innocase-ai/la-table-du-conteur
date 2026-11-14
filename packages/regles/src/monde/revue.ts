@@ -52,6 +52,8 @@ export function champsLibres(dm: DonneesMonde): ChampLibre[] {
       if (s.condition || s.attitudeMin !== undefined) return;
       ajouter('pnj', p.id, ['sujets', i, 'question'], `question « ${s.id} »`, s.question);
       ajouter('pnj', p.id, ['sujets', i, 'reponse'], `réponse « ${s.id} »`, s.reponse);
+      // Une variante à condition est lue par tout joueur dont l'état la rend vraie : le secret n'a rien à y faire non plus.
+      s.variantes.forEach((v, k) => ajouter('pnj', p.id, ['sujets', i, 'variantes', k, 'reponse'], `réponse « ${s.id} » (variante ${k + 1})`, v.reponse));
     });
   }
   for (const l of dm.lieux.values()) {

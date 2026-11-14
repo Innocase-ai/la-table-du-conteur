@@ -81,9 +81,9 @@ describe('la revue', () => {
     pnj.salutations.amical = 'Bonjour, ami.';
     pnj.salutations.hostile = 'Dehors.';
     pnj.sujets = [
-      { id: 'ouvert', mots: ['x'], question: 'Que faites-vous ?', reponse: 'Je sers à boire.', revele: [], effets: [], unique: false },
-      { id: 'garde', mots: ['y'], condition: { flag: 'confiance' }, reponse: 'Le vrai secret.', revele: [], effets: [], unique: false },
-      { id: 'garde-attitude', mots: ['z'], attitudeMin: 40, reponse: 'Un autre secret.', revele: [], effets: [], unique: false },
+      { id: 'ouvert', mots: ['x'], question: 'Que faites-vous ?', reponse: 'Je sers à boire.', revele: [], effets: [], variantes: [], unique: false },
+      { id: 'garde', mots: ['y'], condition: { flag: 'confiance' }, reponse: 'Le vrai secret.', revele: [], effets: [], variantes: [], unique: false },
+      { id: 'garde-attitude', mots: ['z'], attitudeMin: 40, reponse: 'Un autre secret.', revele: [], effets: [], variantes: [], unique: false },
     ] as typeof pnj.sujets;
     const lieu = [...dm.lieux.values()][0]!;
     lieu.ambiance = 'Une ambiance.';
@@ -107,7 +107,7 @@ describe('la revue', () => {
   it('un mot tabou dans une réponse de sujet ouvert est signalé', () => {
     const dm = charger(MINI);
     const pnj = dm.pnj.get('bertrand')!;
-    pnj.sujets = [{ id: 'ouvert', mots: ['x'], reponse: 'Le pacte du meunier, on n’en parle pas.', revele: [], effets: [], unique: false }] as typeof pnj.sujets;
+    pnj.sujets = [{ id: 'ouvert', mots: ['x'], reponse: 'Le pacte du meunier, on n’en parle pas.', revele: [], effets: [], variantes: [], unique: false }] as typeof pnj.sujets;
     const canon = Canon.parse({ secrets: [{ id: 'pacte', texte: 'Le meunier a signé un pacte.', motsTabou: ['pacte'] }] });
     const alertes = revoirMonde(dm, canon).filter((a) => a.code === 'revue.secret');
     expect(alertes.some((a) => a.entite?.id === 'bertrand' && (a.chemin ?? []).join('.') === 'sujets.0.reponse')).toBe(true);

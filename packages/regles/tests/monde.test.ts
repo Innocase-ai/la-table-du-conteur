@@ -27,9 +27,9 @@ describe('format de monde', () => {
     const pnj = dm.pnj.get('bertrand')!;
     const long = 'Il se penche sur le comptoir, essuie une chope qui n’en a pas besoin, puis baisse la voix pour que personne d’autre ne l’entende : « Le pacte, c’est une vieille histoire. Les gens d’ici préfèrent la laisser dormir, et moi aussi, jusqu’au jour où vous reviendrez avec quelque chose à me proposer. »';
     pnj.sujets = [
-      { id: 'indirect', mots: ['a'], question: 'Q1', reponse: 'Il dit que la récolte a été mauvaise et que les gens ont faim cette année, mais il n’en dira pas plus devant des étrangers.', revele: [], effets: [], unique: false },
-      { id: 'court', mots: ['b'], question: 'Q2', reponse: 'Il hausse les épaules.', revele: [], effets: [], unique: false },
-      { id: 'bon', mots: ['c'], question: 'Q3', reponse: long, revele: [], effets: [], unique: false },
+      { id: 'indirect', mots: ['a'], question: 'Q1', reponse: 'Il dit que la récolte a été mauvaise et que les gens ont faim cette année, mais il n’en dira pas plus devant des étrangers.', revele: [], effets: [], variantes: [], unique: false },
+      { id: 'court', mots: ['b'], question: 'Q2', reponse: 'Il hausse les épaules.', revele: [], effets: [], variantes: [], unique: false },
+      { id: 'bon', mots: ['c'], question: 'Q3', reponse: long, revele: [], effets: [], variantes: [], unique: false },
     ] as typeof pnj.sujets;
     const bilan = validerMonde(dm, srd);
     expect(bilan.erreurs).toEqual([]);

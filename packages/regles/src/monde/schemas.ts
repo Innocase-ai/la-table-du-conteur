@@ -369,8 +369,12 @@ export const Sujet = z.object({
   // Ce que dit ou fait le joueur pour aborder le sujet, en quelques mots, naturellement (« Que savez-vous de la Lanterne ? »,
   // « Proposer de régler la dette »). C'est le libellé du bouton ; sans lui, le joueur ne voit que les mots-clés.
   question: z.string().optional(),
-  // Ce que le PNJ dit ou fait savoir (le MJ le reformule dans la voix du PNJ).
+  // Ce que le PNJ dit au joueur : le jeu la montre TELLE QUELLE, sous le nom du PNJ, et le conteur la reçoit comme « texte de l'auteur,
+  // déjà montré » (il ne la reformule pas). La parole libre et variable passe par `repondreEnPersonnage` et les fiches de savoir.
   reponse: Texte,
+  // Le monde se souvient : la première variante dont la condition est vraie remplace `reponse` (qui reste le repli). Elle répond à la
+  // même question que le sujet ; `revele` et `effets` restent ceux du sujet, communs à toutes les variantes.
+  variantes: z.array(z.object({ condition: Condition, reponse: Texte })).default([]),
   revele: z.array(Id).default([]),
   effets: Effets.default([]),
   unique: z.boolean().default(false),

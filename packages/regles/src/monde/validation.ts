@@ -172,7 +172,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
 
   // Le jeu montre la réponse d'un sujet telle quelle, sous le nom du PNJ : écrite au style indirect (« Elle dit que… »), elle se lit comme un
   // compte rendu froid (« Ysmène Hautecôte Elle dit que la mer s'est retirée »). Une réponse très courte laisse aussi un PNJ sans voix.
-  const reponses = [...dm.pnj.values()].flatMap((n) => n.sujets.map((s) => ({ ref: `${n.id}:${s.id}`, texte: s.reponse })));
+  const reponses = [...dm.pnj.values()].flatMap((n) =>
+    n.sujets.flatMap((s) => [{ ref: `${n.id}:${s.id}`, texte: s.reponse }, ...s.variantes.map((v, k) => ({ ref: `${n.id}:${s.id} (variante ${k + 1})`, texte: v.reponse }))]),
+  );
   const indirectes = reponses.filter((r) => STYLE_INDIRECT.test(r.texte)).map((r) => r.ref);
   if (indirectes.length)
     avis(`Dialogues : ${indirectes.length} réponses sur ${reponses.length} sont au style indirect (« Il dit que… », « Elle explique que… ») : le jeu les affiche telles quelles, sous le nom du PNJ. Écrivez-les au discours direct, avec un geste (${indirectes.slice(0, 5).join(', ')}${indirectes.length > 5 ? '…' : ''}).`);
@@ -301,6 +303,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     }
     for (const s of p.sujets) {
       cond(`${ou}, sujet « ${s.id} »`, s.condition);
+      s.variantes.forEach((v, k) => cond(`${ou}, sujet « ${s.id} », variante ${k + 1}`, v.condition));
       for (const f of s.revele) (verifierRef(`${ou}, sujet « ${s.id} »`, 'fait', f), revele.add(f));
       effets(`${ou}, sujet « ${s.id} »`, s.effets);
     }
@@ -646,7 +649,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     l.faits.forEach((x) => toutes(`Lieu « ${l.id} », fait « ${x.fait} »`, x.decouverte.condition));
   }
   for (const p of dm.pnj.values()) {
-    p.sujets.forEach((x) => toutes(`PNJ « ${p.id} », sujet « ${x.id} »`, x.condition));
+    p.sujets.forEach((x) => {
+      toutes(`PNJ « ${p.id} », sujet « ${x.id} »`, x.condition);
+      x.variantes.forEach((v, k) => toutes(`PNJ « ${p.id} », sujet « ${x.id} », variante ${k + 1}`, v.condition));
+    });
     p.secrets.forEach((x) => toutes(`PNJ « ${p.id} », secret « ${x.fait} »`, x.condition));
     p.services.forEach((x) => toutes(`PNJ « ${p.id} », service « ${x.id} »`, x.condition));
     p.presences.forEach((x) => toutes(`PNJ « ${p.id} », présence`, x.condition));

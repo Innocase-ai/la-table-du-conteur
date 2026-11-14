@@ -33,6 +33,11 @@ export function sujetsDisponibles(p: PartieMonde, pnj: Pnj): Pnj['sujets'] {
   );
 }
 
+/** Ce que le PNJ répond sur ce sujet maintenant : la première variante dont la condition est vraie, sinon la réponse de base. */
+export function reponseDuSujet(p: Pick<PartieMonde, 'etat'>, sujet: Pnj['sujets'][number]): string {
+  return sujet.variantes.find((v) => evaluerCondition(v.condition, p.etat))?.reponse ?? sujet.reponse;
+}
+
 function vide(): CompteRendu {
   return { ok: true, jets: [], constats: [], revele: [], narrations: [] };
 }
@@ -77,7 +82,7 @@ export function parler(p: PartieMonde, id: string, sujet?: string): CompteRendu 
   // Tous les sujets abordés sont notés (un sujet unique disparaît ; les autres restent, marqués « déjà abordé »).
   const deja = p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`);
   if (!deja) p.etat.exploration.sujetsVus.push(`${pnj.id}:${s.id}`);
-  r.narrations.push(s.reponse);
+  r.narrations.push(reponseDuSujet(p, s));
   r.paroles = 1;
   consignerParole(p, pnj.id);
   // Les effets d'un sujet passent par le même chemin qu'une action : paliers de jauge, événements, quêtes, rencontres, fin.

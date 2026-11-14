@@ -54,6 +54,7 @@ describe('l’assistant d’écriture', () => {
     expect(cibleDuTexte('rencontres', ['intro'])).toMatchObject({ min: 70, max: 110 });
     expect(cibleDuTexte('rencontres', ['alternatives', 1, 'resume'])).toMatchObject({ min: 50, max: 80 });
     expect(cibleDuTexte('pnj', ['sujets', 3, 'reponse'])).toMatchObject({ min: 75, max: 115 });
+    expect(cibleDuTexte('pnj', ['sujets', 3, 'variantes', 1, 'reponse'])).toMatchObject({ min: 75, max: 115 }); // une variante de réponse a la même cible
     expect(cibleDuTexte('pnj', ['apparence'])).toBeUndefined();
   });
 

@@ -125,6 +125,7 @@ export function indexerReferences(dm: DonneesMonde): IndexReferences {
     });
     p.sujets.forEach((s, i) => {
       condition(e, ['sujets', i, 'condition'], s.condition);
+      s.variantes.forEach((v, k) => condition(e, ['sujets', i, 'variantes', k, 'condition'], v.condition));
       s.revele.forEach((f, k) => structure(produit, e, ['sujets', i, 'revele', k], 'fait', f));
       effets(e, ['sujets', i, 'effets'], s.effets);
     });

@@ -148,7 +148,7 @@ describe('les paroles', () => {
   it('une condition d’auteur sur la mémoire gouverne vraiment un sujet de dialogue', () => {
     const dm = monde();
     const hesta = dm.pnj.get('hesta-cendrebrune')!;
-    hesta.sujets.push({ id: 'test-je-sais-pour-la-garde', mots: ['garde'], question: 'test', reponse: 'Vous avez donc affronté la garde du roi.', revele: [], effets: [], unique: false, condition: { rencontre: { id: GARDE, issue: 'victoire' } } });
+    hesta.sujets.push({ id: 'test-je-sais-pour-la-garde', mots: ['garde'], question: 'test', reponse: 'Vous avez donc affronté la garde du roi.', revele: [], effets: [], variantes: [], unique: false, condition: { rencontre: { id: GARDE, issue: 'victoire' } } });
     const p = partieDe(dm);
     p.etat.lieu = hesta.lieu;
     expect(parler(p, 'hesta-cendrebrune', 'test-je-sais-pour-la-garde').ok).toBe(false);
@@ -170,9 +170,9 @@ describe('le format et la validation', () => {
     const dm = monde();
     const hesta = dm.pnj.get('hesta-cendrebrune')!;
     hesta.sujets.push(
-      { id: 'test-a', mots: ['a'], reponse: 'x'.repeat(60), revele: [], effets: [], unique: false, condition: { rencontre: { id: 'rencontre-fantome' } } },
-      { id: 'test-b', mots: ['b'], reponse: 'x'.repeat(60), revele: [], effets: [], unique: false, condition: { parle: 'pnj-fantome' } },
-      { id: 'test-c', mots: ['c'], reponse: 'x'.repeat(60), revele: [], effets: [], unique: false, condition: { temoin: { pnj: 'autre-fantome' } } },
+      { id: 'test-a', mots: ['a'], reponse: 'x'.repeat(60), revele: [], effets: [], variantes: [], unique: false, condition: { rencontre: { id: 'rencontre-fantome' } } },
+      { id: 'test-b', mots: ['b'], reponse: 'x'.repeat(60), revele: [], effets: [], variantes: [], unique: false, condition: { parle: 'pnj-fantome' } },
+      { id: 'test-c', mots: ['c'], reponse: 'x'.repeat(60), revele: [], effets: [], variantes: [], unique: false, condition: { temoin: { pnj: 'autre-fantome' } } },
     );
     const erreurs = validerMonde(dm, srd).erreurs.join('\n');
     expect(erreurs).toMatch(/rencontre-fantome/);
