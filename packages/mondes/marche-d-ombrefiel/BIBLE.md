@@ -65,6 +65,8 @@ Chaque fin a son **épilogue** (le sort de Varek, Mireille, Korgan et Hildegarde
 ### L'Échéance (`echeance`, 0 à 10, départ 0) — l'horloge
 La session solennelle du Conseil approche ; c'est l'**Indice de Tension Urbaine** de la zone 6 étendu à toute l'histoire. **Monte** : +1 tous les quatre jours ✚ (événement de jour) ; +1 à +2 à chaque alarme ou massacre en pleine rue (zone 6). **Baisse** (une quête ou une action nette) : le Puits 1 sauvé (−1), les forges de Val-Brume démantelées (−2), l'alambic détruit (−1), Hildegarde libérée (−1), les registres remis au Sergent Brand (−1), le coffre de Sévérus vidé (−1). *Valeurs à régler au V7 (rythme réel d'une partie).*
 
+**Réglage du 14/11/2026 (prologue, après l’audit de rythme)** : l’horloge devient visible dès la zone 1. Elle monte de **+1 par jour de jeu** (une nuit de repos compte) : le putsch tombe donc au dixième jour sans frein. Paliers 2 (barrages, **ajouté**), 4 (alerte orange : péage de 5 po), 7 (loi martiale : 10 po) et 10 (insurrection). Freins déjà écrits : la sécurité du relais et l’espion de la Griffe Noire (−1 chacun) ; les autres (puits, forges, alambic, registres…) viendront avec leurs zones. Données : `jauges/z1-echeance.json`. À rerégler quand les zones suivantes existeront.
+
 | Palier | Valeur | Ce qui change |
 | --- | --- | --- |
 | Couverture maintenue | 0 à 3 | La milice patrouille ; les routes sont praticables de jour |

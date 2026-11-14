@@ -96,6 +96,13 @@ export type EffetMonde =
   | { debloquer: string }
   | { rencontre: string }
   | { fin: string }
+  /**
+   * Une blessure : des dégâts (« 1d4 ») à un héros vivant tiré au hasard (`un`) ou à tous. Elle ne tue ni n'assomme jamais : les PV ne
+   * descendent pas sous 1 (pas de mort définitive en histoire). C'est le prix d'une chute, d'une embuscade, d'un échec qui fait mal.
+   */
+  | { blessure: { des: string; cible?: 'un' | 'tous' } }
+  /** Du temps qui passe (en heures, jusqu'à 24) : une attente, une poursuite, un échec qui fait perdre une demi-journée. Les jauges « jour » avancent à minuit. */
+  | { temps: number }
   | { narration: string };
 
 export const EffetMonde: z.ZodType<EffetMonde> = z.union([
@@ -116,6 +123,8 @@ export const EffetMonde: z.ZodType<EffetMonde> = z.union([
   z.object({ debloquer: Id }).strict(),
   z.object({ rencontre: Id }).strict(),
   z.object({ fin: Id }).strict(),
+  z.object({ blessure: z.object({ des: z.string().regex(/^\d*d\d+\s*([+-]\s*\d+)?$/, 'dés comme « 1d4 » ou « 2d6+1 »'), cible: z.enum(['un', 'tous']).default('un') }) }).strict(),
+  z.object({ temps: z.number().positive().max(24) }).strict(),
   z.object({ narration: Texte }).strict(),
 ]);
 

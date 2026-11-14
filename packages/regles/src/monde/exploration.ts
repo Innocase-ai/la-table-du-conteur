@@ -168,6 +168,33 @@ export function appliquer(p: PartieMonde, r: CompteRendu, effets: EffetMonde[]):
   r.revele.push(...p.etat.faits.slice(avant.faits));
   r.narrations.push(...p.etat.narrations.slice(avant.narrations));
   for (const [id, v] of Object.entries(p.etat.jauges)) if (v !== avant.jauges[id]) franchirPaliers(p, r, id, avant.jauges[id] ?? 0, v);
+  consommerConsequences(p, r);
+}
+
+/**
+ * Applique les effets `blessure` et `temps` mis en attente par l'état du monde (qui ne tient ni le groupe ni l'horloge). Une blessure
+ * ne tue ni n'assomme : les PV s'arrêtent à 1 (pas de mort définitive en histoire). Le temps qui passe fait changer le jour, donc
+ * avancer les jauges « jour » (l'horloge d'une histoire).
+ */
+function consommerConsequences(p: PartieMonde, r: CompteRendu): void {
+  const file = p.etat.effetsEnAttente;
+  if (!file?.length) return;
+  for (const e of file.splice(0)) {
+    if ('blessure' in e) {
+      const vivants = p.groupe.filter((a) => a.pv > 0);
+      if (!vivants.length) continue;
+      const cibles = e.blessure.cible === 'tous' ? vivants : [vivants[Math.min(vivants.length - 1, Math.floor(p.gen() * vivants.length))]!];
+      for (const a of cibles) {
+        const total = Math.max(1, lancer(e.blessure.des, p.gen).total);
+        const perdu = Math.min(total, a.pv - 1);
+        a.pv -= perdu;
+        r.constats.push(perdu > 0 ? `${a.nom} est blessé : −${perdu} PV.` : `${a.nom} est secoué, mais tient bon.`);
+      }
+    } else if ('temps' in e) {
+      avancerHeures(p, r, e.temps);
+      r.constats.push(e.temps < 1 ? `Le temps passe : ${Math.round(e.temps * 60)} minutes.` : `Le temps passe : ${Math.round(e.temps * 10) / 10} h.`);
+    }
+  }
 }
 
 /** Paliers de jauge franchis dans le sens du changement : narration et effets, une seule fois chacun. */
@@ -192,6 +219,7 @@ function changerJauge(p: PartieMonde, r: CompteRendu, id: string, delta: number)
 
 /** Événements, évolutions de jauge sur condition, quêtes et fin : à vérifier après chaque action (exploration et dialogue). */
 export function suites(p: PartieMonde, r: CompteRendu): void {
+  consommerConsequences(p, r);
   for (let tour = 0; tour < 10; tour++) {
     let change = false;
     for (const j of p.dm.jauges.values()) {

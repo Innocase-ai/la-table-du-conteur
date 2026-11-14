@@ -90,6 +90,8 @@ export interface EtatMonde {
   rencontresFaites: string[];
   /** Rencontres déclenchées par un effet (échec d'une énigme, piège…) : elles se jouent à la fin de l'action en cours. */
   rencontresEnAttente?: string[];
+  /** Effets qui touchent le groupe (blessure) ou l'horloge (temps) : le moteur d'exploration les applique à la fin de l'action en cours. */
+  effetsEnAttente?: EffetMonde[];
   evenementsJoues: string[];
   fin?: string;
   /** Narrations produites par les effets, à raconter par le MJ. */
@@ -207,7 +209,7 @@ export const arrondirPieces = (po: number) => Math.round(po * 100) / 100;
  * état d'un PNJ, rencontre — ne change plus rien la deuxième fois, ou doit se rejouer (une rencontre qui revient).
  */
 export function estCumulatif(e: EffetMonde): boolean {
-  return 'attitude' in e || 'objet' in e || 'pieces' in e || 'xp' in e || 'jauge' in e || 'reputation' in e;
+  return 'attitude' in e || 'objet' in e || 'pieces' in e || 'xp' in e || 'jauge' in e || 'reputation' in e || 'blessure' in e || 'temps' in e;
 }
 
 export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde): void {
@@ -258,6 +260,8 @@ export function appliquerEffet(effet: EffetMonde, e: EtatMonde, dm: DonneesMonde
     const attente = (e.rencontresEnAttente ??= []);
     if (!attente.includes(effet.rencontre)) attente.push(effet.rencontre);
   } else if ('fin' in effet) e.fin = effet.fin;
+  // Blessure et temps touchent le groupe et l'horloge, que l'état du monde ne tient pas : ils attendent la fin de l'action (`suites`).
+  else if ('blessure' in effet || 'temps' in effet) (e.effetsEnAttente ??= []).push(effet);
   else e.narrations.push(effet.narration);
 }
 

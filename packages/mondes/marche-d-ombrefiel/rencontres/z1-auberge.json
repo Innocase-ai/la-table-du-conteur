@@ -69,7 +69,7 @@
           { "xp": 25 }
         ],
         "echec": [
-          { "narration": "Vos bottes glissent sur un pieu gras de pluie et vous retombez lourdement contre la palissade. Le bruit attire l'assassin, et les chiens se ruent sur vous." }
+          { "narration": "Vos bottes glissent sur un pieu gras de pluie et vous retombez lourdement contre la palissade. Le bruit attire l'assassin, et les chiens se ruent sur vous." }, { "blessure": { "des": "1d6", "cible": "un" } }
         ],
         "echecResout": false
       }
@@ -167,7 +167,7 @@
           { "xp": 10 }
         ],
         "echec": [
-          { "narration": "Il vous regarde avec de grands yeux humides, puis recommence à demander si vos bottes sont de vraie vache." }
+          { "narration": "Il vous regarde avec de grands yeux humides, puis recommence à demander si vos bottes sont de vraie vache." }, { "temps": 0.5 }
         ],
         "echecResout": false
       },

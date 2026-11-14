@@ -67,7 +67,9 @@
       "xp": 0,
       "pieces": 0,
       "objets": [],
-      "effets": []
+      "effets": [
+        { "jauge": { "id": "echeance", "delta": -1 } }
+      ]
     },
     "ramifications": "Brégor paie par le sujet « Demi-Dent est réglé » : 70 po si Demi-Dent est mort (30 pour le pont, 40 pour la prime), 50 po s'il est épargné (30 + 20). L'argent est versé par le dialogue, pas par `recompenses`, pour ne pas le doubler. Le sort de Demi-Dent est tranché par le dilemme « La reddition de Demi-Dent »."
   },
@@ -490,7 +492,9 @@
       "xp": 0,
       "pieces": 0,
       "objets": [],
-      "effets": []
+      "effets": [
+        { "jauge": { "id": "echeance", "delta": -1 } }
+      ]
     },
     "ramifications": "Quête découverte, jamais donnée : elle s'ouvre quand le carnet est déchiffré (énigme du carnet), ou par la confrontation. Le mot de passe de la Griffe (« La Serre ne plie point ») permet de passer les guetteurs du moulin sans déclencher le cor."
   }
