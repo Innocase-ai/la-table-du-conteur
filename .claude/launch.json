@@ -14,6 +14,12 @@
       "port": 5180
     },
     {
+      "name": "terres",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["apps/jeu/node_modules/vite/bin/vite.js", "packages/terres/demo", "--port", "5195", "--strictPort"],
+      "port": 5195
+    },
+    {
       "name": "site",
       "runtimeExecutable": "node",
       "runtimeArgs": ["apps/jeu/node_modules/vite/bin/vite.js", "--root", "site", "--port", "5190", "--strictPort"],
