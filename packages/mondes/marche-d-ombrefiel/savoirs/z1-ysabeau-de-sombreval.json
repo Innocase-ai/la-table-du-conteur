@@ -1,0 +1,96 @@
+[
+ {
+  "pnj": "ysabeau-de-sombreval",
+  "passe": "Ysabeau est née à Sombreval. Elle a épousé un mineur qui a passé dix-neuf ans dans les galeries, où la roche chantait sous la pioche comme une chose vivante. Réfugiée à l'auberge d'Aldric depuis deux semaines, elle y vit avec son fils Jorin, onze ans, et sa fille Mina, sept ans. Elle a fait le trajet à pied en cinq heures, son fils sur le dos. Elle a vu les mineurs partir sans congé ni paie, et les contremaîtres ne disent plus rien. Elle dort sur une paillasse de l'écurie, près de Martha Haddon, et ne demande rien à personne.",
+  "liens": [
+   {
+    "pnj": "mireille-de-la-rose",
+    "nature": "la clerc qui a soigné sa fille",
+    "opinion": "Elle a veillé Mina quand la fièvre la prenait, et Ysabeau a refusé qu'on la remercie. Elle lui doit la vie de son enfant et ne le dit à personne."
+   },
+   {
+    "pnj": "martha-haddon",
+    "nature": "voisine de paillasse dans l'écurie",
+    "opinion": "Deux femmes qui n'ont pas besoin de se parler : elles partagent le même coin de paille et se passent l'eau sans un mot. Ysabeau la trouve trop patiente pour une femme qui attend."
+   },
+   {
+    "pnj": "varek-le-brise",
+    "nature": "le garde de convoi qu'elle a vu passer",
+    "opinion": "Il escortait les chariots chargés à la fosse où travaillait son homme. Ils se connaissent de vue, et ni l'un ni l'autre n'en a parlé. Elle le trouve plus digne qu'il ne le croit."
+   },
+   {
+    "pnj": "obert-le-charretier",
+    "nature": "le charretier qui apporte le seigle",
+    "opinion": "Elle l'a vu arriver avec les sacs de seigle pour les réfugiés. Elle ne lui a pas adressé la parole, mais elle a compté les sacs."
+   }
+  ],
+  "couleur": [
+   {
+    "id": "la-mort-de-mon-homme",
+    "texte": "Son homme est mort il y a quatorze mois, la poussière noire dans les poumons, après dix-neuf ans de galeries. Elle ne prononce jamais son nom en public, seulement « mon homme », et elle compte encore les mois à voix basse.",
+    "acces": {
+     "attitudeMin": 30
+    },
+    "evasif": "Elle serre son châle et dit qu'il y a des choses qui se disent dans une cuisine, pas dans une salle commune. Le mot « mon homme » lui échappe encore, puis elle se tait et regarde la porte."
+   },
+   {
+    "id": "pourquoi-elle-refuse-l-aide",
+    "texte": "Quand on lui propose de l'aide, elle refuse avant que la phrase soit finie. Par fierté, elle le sait, et elle s'en souvient longtemps après : ce qu'elle doit, elle veut le rendre elle-même, à la mine ou à ceux qu'elle n'a pas pu payer.",
+    "acces": {
+     "attitudeMin": 30
+    },
+    "evasif": "Elle répond qu'elle n'a besoin de rien, que les enfants ont assez, et qu'on se trompe de porte. Elle ne dit pas ce qui la retient, et son regard passe sur le couloir."
+   },
+   {
+    "id": "les-mains",
+    "texte": "Elle se lave les mains à la pompe chaque matin, à la brosse de chiendent, et il reste toujours une trace grise sous les ongles. Elle dit que la mine ne part pas au savon, et qu'il vaut mieux s'y habituer."
+   },
+   {
+    "id": "la-porte",
+    "texte": "Elle s'assied toujours sur le banc face à la porte. Quand un chariot passe dans la cour, elle lève la tête, cherche la couleur de la bâche, puis se rassoit sans un mot. Elle compte les pas comme on compte les étais."
+   },
+   {
+    "id": "le-contremaitre-de-l-etage-quatre",
+    "texte": "Le contremaître de l'étage quatre la connaît depuis vingt ans. Il y a deux semaines, au départ de la fosse, il a regardé ses bottes et n'a pas voulu qu'on lui pose une question. Elle ne lui en a pas posé."
+   },
+   {
+    "id": "jorin-sur-le-dos",
+    "texte": "Pendant les cinq heures de piste, Jorin, onze ans, a dormi sur son dos. Elle dit qu'il pèse plus lourd qu'un sac de minerai, et que personne n'a besoin de le savoir. Il ne s'est réveillé qu'à la première barrière."
+   },
+   {
+    "id": "les-contremaitres-se-taisent",
+    "texte": "Elle dit que les contremaîtres ont appris à se taire comme on apprend un métier. Les ordres arrivent sous pli cacheté, ils les lisent debout, les plient et sortent à la fosse sans un mot."
+   },
+   {
+    "id": "mina-et-la-clerc",
+    "texte": "Quand la fièvre de Mina est tombée, la clerc qui l'avait veillée a voulu être remerciée. Ysabeau a refusé. Elle ne veut rien devoir, et elle le dit en regardant ailleurs."
+   }
+  ],
+  "sait": [
+   {
+    "id": "les-galeries-silencieuses",
+    "fait": "f-ald-ysabeau-galeries-silencieuses",
+    "version": "Depuis un mois, les fosses de Sombreval se vident : mineurs et fondeurs partent sans congé ni paie, et les chariots descendent deux fois moins souvent. Elle l'a vu de ses yeux avant de partir, et elle n'a pas besoin qu'on le lui répète.",
+    "acces": {}
+   },
+   {
+    "id": "le-fer-friable",
+    "fait": "f-ald-fonte-friable",
+    "version": "Depuis six mois, tout le fer neuf casse, des fers de cheval aux lames de la milice. Le bronze ancien tient encore. Elle le répète comme on rapporte une mauvaise nouvelle venue de la mine.",
+    "acces": {}
+   },
+   {
+    "id": "la-garde-sans-solde",
+    "fait": "f-ald-garde-sans-solde",
+    "version": "La Garde d'Émeraude ne paie plus ses miliciens depuis des mois. Elle sait que certains louent leur épée à qui les paie, et elle ne le leur reproche qu'à moitié, parce qu'il faut bien manger.",
+    "acces": {}
+   },
+   {
+    "id": "la-mousse-de-mireille",
+    "fait": "f-ald-mousse-de-saule-soigne-la-fievre",
+    "version": "La mousse de saule bouillie dans l'eau claire calme la fièvre et ferme les plaies. C'est ce que la clerc a donné à Mina. Ysabeau sait que ça marche, mais elle n'en parle pas, pour ne pas avoir à dire merci.",
+    "acces": {}
+   }
+  ]
+ }
+]

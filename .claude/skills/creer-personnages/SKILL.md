@@ -48,7 +48,9 @@ Les salutations (`salutations.variantes`), les sujets (`condition`) et les secre
 - **Méthode** : rédacteurs Haiku sur des fichiers de propositions (un par groupe de PNJ), relecture et fusion par script avec contrôles (drapeaux lus et posés, `revele` inclus dans `savoir`), puis vérificateur et auditeur.
 
 ## Pièges connus
-- Une scène de rencontre ouverte bloque la parole libre (« Une rencontre attend ») : le joueur la règle par ses boutons d'abord.
+- Une scène de rencontre ouverte bloque la parole libre (« Une rencontre attend ») : le joueur la règle par ses boutons d'abord. **Dans `pnpm conteur … --essai`, commencer par `!fuite`** : la Marche s'ouvre sur une rencontre (le chariot d'Obert) et sans cela 8 tours sur 10 sont refusés (essai du 14/11/2026 : 0,039 $ perdus).
+- **Une confidence verrouillée ne répète jamais ce que le conteur voit toujours** (essai réel sur la Marche, 14/11/2026) : `personnalite.peur`, `desir`, `defaut`, `voix` et le `role` de la fiche `pnj/` sont donnés au conteur à chaque tour, verrouillés ou non. Une confidence qui redit la peur du PNJ (« elle redoute de devoir choisir qui on laisse mourir ») n'est verrouillée que sur le papier : le modèle la dit quand même, sans citer l'élément. Une confidence se gagne par du **neuf et du précis** (un souvenir daté, un nom, un geste), jamais par un résumé de ce qui est déjà dans `personnalite`.
+- **Le `role` s'affiche au joueur** (bouton « Parler à… » et en-tête de la boîte de dialogue) : n'y écris aucun secret (La Marche y met « ancien sergent » pour Brégor et « Informateur de la Griffe Noire » pour Silas).
 - Le LLM ne cite pas toujours l'élément ouvert qui répond à la question : le prompt (règle 10) lui demande de le chercher d'abord ; relire les essais.
 - Le jeu vérifie les ids et les mots tabou, pas le sens : un petit détail de décor peut se glisser (« une valise de cordier »). Le canon et la relecture le limitent.
 - Un fait déjà révélé par un sujet de la fiche `pnj/` sans condition ne doit pas être verrouillé plus haut dans `savoirs/` (deux mécanismes, un seul secret) : aligner les accès.

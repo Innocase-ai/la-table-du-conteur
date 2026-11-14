@@ -1,0 +1,97 @@
+[
+  {
+    "pnj": "hilaire-le-metayer",
+    "passe": "Hilaire a été métayer de la ferme Haddon pendant quarante ans, sous Aldwin et Martha, et il a labouré les Terres Basses jusqu'à ce que son dos se casse. La ferme a brûlé il y a deux mois, une nuit de fin d'été, pendant qu'il rentrait les vaches du fond du champ. Il n'a pas voulu partir : il dort dans la grange noircie, où des déserteurs de la Garde d'Émeraude rôdent la nuit. Aldwin Haddon a pris son dernier chariot de farine pour Haute-Garde il y a quatre jours. Pour Hilaire, il est simplement en retard.",
+    "liens": [
+      {
+        "pnj": "martha-haddon",
+        "nature": "la maîtresse de la ferme, qu'il a servie pendant quarante ans",
+        "opinion": "Il se demande si elle mange. Pour lui, la ferme reste à Martha, et Aldwin n'est simplement pas encore rentré de Haute-Garde."
+      },
+      {
+        "pnj": "lambert-le-bucheron",
+        "nature": "le bûcheron de la combe",
+        "opinion": "Lambert a vu la lueur de l'incendie depuis la combe. Hilaire le tient pour un homme qui dit peu, et qui dit vrai."
+      },
+      {
+        "qui": "Messire Godefroy, chevalier errant",
+        "nature": "un chevalier qui monte la garde contre un tronc de chêne",
+        "opinion": "Il le trouve plus honnête que les soldats de sa grange : au moins, celui-là veille sur quelque chose."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-main-sur-la-pierre",
+        "texte": "Il pose la main à plat sur une pierre encore tiède du mur, et il la garde là pendant qu'il parle, comme on tient une bête qui pourrait s'échapper. La suie lui reste sous les ongles, et il dit qu'il ne la lavera pas.",
+        "acces": {}
+      },
+      {
+        "id": "enfin-voila-ce-que-c-est",
+        "texte": "Il clôt chaque souvenir par « Enfin, voilà ce que c'est », sans changer de ton ni regarder son interlocuteur. Il se remet alors à regarder la grange, comme si elle répondait à sa place.",
+        "acces": {}
+      },
+      {
+        "id": "les-soldats-rancuniers",
+        "texte": "Il tient les soldats de la Garde d'Émeraude pour des voleurs qui ont gardé leur couteau et jeté leur casque. Il les appelle « les hommes de la grange », jamais « les soldats », et il ne leur sert ni eau ni pain.",
+        "acces": {}
+      },
+      {
+        "id": "le-feu-qu-il-ne-connait-pas",
+        "texte": "Il ne sait pas qui a allumé le feu. Il le répète à chaque question, avec les mêmes mots, comme si la réponse allait finir par changer. Il n'accuse personne, faute de savoir, et cela le rend plus amer.",
+        "acces": {}
+      },
+      {
+        "id": "toit-avant-l-hiver",
+        "texte": "Le soir, il compte à voix basse les planches qu'il faudrait pour relever un toit avant l'hiver, et il se trompe toujours de dix. Il recommence depuis le début, et à la fin il ne dit plus rien.",
+        "acces": {}
+      },
+      {
+        "id": "les-vaches-tendres",
+        "texte": "Il parle aux vaches qui restent comme à des gens de la maison, à voix basse, et il se tait dès qu'un étranger approche de l'étable.",
+        "acces": {}
+      },
+      {
+        "id": "la-tombe-du-noyer",
+        "texte": "Sa femme Berthe est morte il y a six ans, et elle est enterrée sous le noyer, derrière la grange. Il y va le soir, une main posée sur le tronc, et il craint de mourir sans que personne sache où on l'a mise.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il regarde le noyer derrière la grange, longtemps, puis dit que les vaches ne sont pas les seules à rester ici. Il change de sujet avant qu'on ait pu demander."
+      },
+      {
+        "id": "pourquoi-il-refuse-l-aide",
+        "texte": "Il refuse qu'on l'aide parce qu'une aide est une dette, et il rend toujours ce qu'il emprunte. Ce n'est pas tout : il ne veut pas qu'on le plaigne pour une ferme qui n'est plus la sienne.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il répond que la terre n'a pas besoin de bras étrangers, et il retourne vers la grange sans finir sa phrase."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-ferme-brulee",
+        "fait": "f-ald-ferme-haddon-brulee",
+        "version": "« Les flammes », dit-il, une nuit de fin d'été, il y a deux mois. Le toit de paille et la grange sont partis comme une allumette, il ne reste que des murs noircis. Il ne sait pas qui a allumé le feu.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-depart-d-aldwin",
+        "fait": "f-ald-aldwin-parti-avec-la-farine",
+        "version": "Aldwin est parti avec son dernier chariot de farine pour Haute-Garde, il y a quatre jours. Il devait rentrer hier au soir. Hilaire dit « il n'est pas encore revenu » et ne va pas plus loin : pour lui, c'est un retard.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-soldats-de-la-grange",
+        "fait": "f-ald-moulin-deserteurs-rancon",
+        "version": "Des hommes de la Garde d'Émeraude, qui ont jeté leur casque et gardé leur couteau. Ils ont pris la grange comme une auberge, sans payer, et rançonnent qui passe sur le chemin. Il veut seulement qu'ils laissent les bêtes tranquilles.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-chevalier-et-le-tronc",
+        "fait": "f-ald-moulin-godefroy-tronc",
+        "version": "Il sait que ce chevalier, sur la route, monte la garde contre un monstre qui n'est qu'un vieux tronc de chêne pourri. Il ne le lui a jamais dit, et ne compte pas le faire.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

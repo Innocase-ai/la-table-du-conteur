@@ -1,0 +1,85 @@
+[
+  {
+    "pnj": "obert-le-charretier",
+    "passe": "Obert conduit des chariots sur la Route du Roi depuis toute sa vie, au service d'un grainetier de Haute-Garde. Pour ce dernier voyage, il ramenait du gruau et une quarantaine de sacs de seigle destinés aux familles réfugiées dans les granges du carrefour. Au pied de la rampe, trois gueux armés d'un gourdin clouté, d'une dague rouillée et d'une fronde l'ont attaqué ; ils voulaient le grain, pas l'or. Il a payé trois fois les barrières ce mois-ci. Il a logé ses mules à l'Éperon d'Aldric, et il craint plus que tout qu'on lui reproche d'avoir perdu le chariot.",
+    "liens": [
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "L'aubergiste de l'Éperon d'Aldric, qui a logé ses mules dans la cour.",
+        "opinion": "Il le trouve dur au tarif des chambres, mais il a logé les bêtes sans un mot de plus, et Obert ne l'oublie pas. Il ne lui parle que des mules et du prix de l'avoine."
+      },
+      {
+        "pnj": "perrin-le-garde",
+        "nature": "Le milicien du perron de l'Éperon, qui ne l'a pas arrêté à son arrivée.",
+        "opinion": "Il le croit honnête mais las : un homme qui n'a pas touché de solde depuis quatre mois ne devrait pas garder une porte pour rien. Il ne lui en veut pas de l'avoir laissé passer."
+      },
+      {
+        "qui": "les réfugiés d'Aldric",
+        "nature": "Les familles qui dorment dans les granges et sous des bâches, destinataires du seigle.",
+        "opinion": "Il sent leurs regards quand il rentre dans la cour, et il se répète que le seigle est à eux, pas à lui. Il n'aime pas être remercié, mais il n'aime pas non plus être plaint."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "mules-par-leur-nom",
+        "texte": "Il appelle ses mules Brune, Pivoine et Capitaine, et leur parle comme à des gens de sa famille. Quand la route monte, il pose la main sur l'encolure de Brune et lui dit qu'elle n'a rien à craindre. Les garçons d'écurie sourient, il ne change pas de voix."
+      },
+      {
+        "id": "bache-tapotee",
+        "texte": "Depuis l'attaque au pied de la rampe, il tapote sans arrêt la bâche déchirée de son chariot, du bout des doigts, comme on caresse une bête blessée. Il ne s'en rend pas compte. Si on le lui fait remarquer, il répond que la toile tient encore."
+      },
+      {
+        "id": "crachat-sur-le-bas-cote",
+        "texte": "Chaque fois qu'il passe une barrière de la Route du Roi, il crache sur le bas-côté et fait claquer sa langue deux fois, sans regarder le soldat. Il dit qu'un homme qui paie trois fois dans le même mois a bien le droit de cracher."
+      },
+      {
+        "id": "ornieres-entre-haute-garde-et-aldric",
+        "texte": "Il connaît chaque ornière de la Route du Roi entre Haute-Garde et Aldric. Il sait où la pierre glisse sous la pluie, et où le fossé avale une roue si l'on tire trop à droite. Il ne le raconte que si on le lui demande."
+      },
+      {
+        "id": "regle-des-betes",
+        "texte": "Il a une règle qu'il répète à tous les valets : on ne laisse pas une bête dans la boue, même quand le chariot est déjà perdu. Il s'est arrêté plus d'une fois au milieu de la route pour dégager une mule embourbée, et il ne s'en vante jamais."
+      },
+      {
+        "id": "vieux-bronze-contre-fer-neuf",
+        "texte": "Il ne fait pas confiance au fer neuf : depuis six mois, tout ce qu'on lui vend casse au premier choc. Il préfère les vieux moyeux de bronze, qui tiennent, et il le dit à qui veut l'entendre, en crachant de nouveau sur le bas-côté."
+      },
+      {
+        "id": "confidence-de-la-bouillie",
+        "texte": "Ce qu'il n'a dit à personne : une mère des granges lui a demandé si la bouillie serait chaude ce soir, et il n'a pas su répondre. Il a fini de décharger les sacs sans un mot, honteux de ne pas savoir si le feu tiendrait.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il se tait longtemps, les yeux sur le chemin, tapote la bâche, puis demande si les mules ont eu leur avoine."
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-barrieres",
+        "fait": "f-peages-du-lion",
+        "version": "Il paie les barrières de la Route du Roi depuis des semaines : deux pièces d'argent à chaque poste, trois entre Haute-Garde et Aldric. Les soldats du Lion d'Acier ne regardent même pas les sauf-conduits au sceau du lion. Les chargements payés en pièces étrangères passent sans fouille.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-convoi-de-minerai",
+        "fait": "f-ald-convoi-de-minerai-assailli",
+        "version": "Au comptoir de l'Éperon, on lui a raconté qu'un convoi de minerai a été arrêté près du carrefour, il y a trois jours, par des hommes aux capes bordées d'une griffe en fil noir. Il n'en sait que ce qu'on dit, et il baisse la voix pour en parler.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fer-friable",
+        "fait": "f-ald-fonte-friable",
+        "version": "Depuis six mois, le fer neuf casse entre ses mains : un fer à cheval qui s'émiette au premier pas d'une mule, des clous qui se brisent sous le marteau. Il ne fait plus confiance qu'au bronze ancien, qui tient.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-garde-qui-laisse-faire",
+        "fait": "f-ald-garde-sans-solde",
+        "version": "Les miliciens de la Garde d'Émeraude n'ont pas touché de solde depuis quatre mois, et certains restent au perron par habitude ou par peur de perdre leur place. Perrin l'a laissé passer sans l'arrêter. Obert sait que d'autres louent leur épée aux marchands d'Aldric, et il n'en pense rien de bon.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

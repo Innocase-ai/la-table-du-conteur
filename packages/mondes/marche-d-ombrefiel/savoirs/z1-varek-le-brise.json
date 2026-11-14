@@ -1,0 +1,111 @@
+[
+  {
+    "pnj": "varek-le-brise",
+    "passe": "Varek est nain, né à Sombreval dans une lignée de forgerons-mineurs, les Brise-Roc. Son grand-père a forgé et trempé pendant quarante hivers la hache qui porte le nom de la famille. Depuis trente ans, Varek est garde de convoi : il escortait les chariots de minerai qui descendaient de la fosse de Sombreval jusqu'au carrefour d'Aldric. Il y a trois jours, quatorze chariots et huit hommes ont été attaqués près du carrefour, et Varek a survécu à l'attaque du convoi. Depuis trois semaines, sa hache a éclaté en trois morceaux au premier choc, et il les garde sur une table de l'Éperon d'Aldric. Soixante-huit ans, un bouclier de bois cerclé de fer appuyé contre son banc, il boit de la piquette trop faible et refuse la pitié. Il a montré les débris à Torben, qui a senti le poison dans le métal.",
+    "liens": [
+      {
+        "pnj": "torben-main-brulee",
+        "nature": "le forgeron nain qui a reniflé les débris",
+        "opinion": "Torben a dit « poison » dès qu'il a senti le métal, et Varek lui doit d'avoir été cru. Il le trouve prompt à répondre avant qu'on ait fini de parler, mais il ne le juge pas malhonnête."
+      },
+      {
+        "pnj": "mireille-de-la-rose",
+        "nature": "la clerc qui le force à manger",
+        "opinion": "Elle lui pose une écuelle devant le nez sans rien demander en retour. Il lui en sait gré sans le dire, et il finit toujours l'écuelle."
+      },
+      {
+        "pnj": "ysabeau-de-sombreval",
+        "nature": "la veuve d'un mineur de Sombreval",
+        "opinion": "Il escortait les chariots à la fosse où travaillait son mari. Ils se connaissent de vue, ni l'un ni l'autre ne l'a jamais dit, et il ne sait pas quoi lui répondre si elle le lui demandait."
+      },
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste de l'Éperon d'Aldric",
+        "opinion": "Brégor lui laisse l'angle sombre et ne fait pas de discours. Varek paie ses pintes à jour, et il apprécie qu'on ne lui demande pas davantage."
+      },
+      {
+        "qui": "Harken, le contremaître",
+        "nature": "le contremaître des galeries de Sombreval, qu'on ne voit plus à la mine",
+        "opinion": "Trente-cinq ans de galeries : Harken sait à l'odeur où se trouve la veine. Varek le respecte pour cela, et ne comprend pas pourquoi on ne le voit plus aux galeries."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "les-morceaux-du-gant",
+        "texte": "Il pousse les trois morceaux de sa hache du bout de son gant de cuir, un par un, puis les aligne sur la table comme on range des outils sur un établi. Il ne les regarde jamais en face."
+      },
+      {
+        "id": "ferraille-pour-trahison",
+        "texte": "Il dit « ferraille » pour dire « trahison », que ce soit un contrat, une promesse ou un clou mal planté. Il jure en nain, à voix basse, sans se soucier de qui l'entend."
+      },
+      {
+        "id": "la-piquette-trop-faible",
+        "texte": "Il boit de la piquette qu'il juge trop faible, avec la lenteur d'un forgeron qui boit pour oublier. Il en commande une deuxième avant d'avoir fini la première."
+      },
+      {
+        "id": "le-refus-de-la-pitie",
+        "texte": "Quand une femme de l'auberge lui pose la main sur l'épaule en demandant comment il va, il se lève d'un coup, ne dit rien, et va s'asseoir plus loin, dans l'angle sombre."
+      },
+      {
+        "id": "la-mine-ne-ment-pas",
+        "texte": "Sur la mine, il n'a qu'une phrase : « la mine ne ment pas, ce sont les hommes qui mentent sur elle ». Il la répète aux colporteurs qui vantent le fer neuf devant le comptoir."
+      },
+      {
+        "id": "le-fer-pur-de-sombreval",
+        "texte": "Le fer pur de Sombreval sort de la montagne comme du miel, dit-il, et il le répète en levant son gobelet à qui veut l'entendre."
+      },
+      {
+        "id": "la-garde-en-vent",
+        "texte": "La Garde d'Émeraude est loyale, dit-il, mais elle est payée en vent : sa solde n'est pas venue depuis quatre mois. Il le dit en serrant les dents, sans jamais élever la voix."
+      },
+      {
+        "id": "le-nom-de-la-hache",
+        "texte": "La hache s'appelait Brise-Roc, comme la lignée qui l'a forgée. Pour lui, ce nom voulait dire une seule chose : la parole donnée entre nains ne se casse pas, même quand le métal se casse.",
+        "acces": { "attitudeMin": 40 },
+        "evasif": "il tapote le bord d'un morceau et dit que la hache avait un nom de famille, rien de plus, et que les nains ne le répètent pas à des étrangers"
+      },
+      {
+        "id": "le-choc-de-brise-roc",
+        "texte": "Il a senti l'éclat de la hache remonter dans son bras avant de voir les morceaux tomber sur la pierre, comme une assiette jetée contre un mur. Il ne l'a dit à personne, et il ne veut pas le raconter une seconde fois.",
+        "acces": { "attitudeMin": 40 },
+        "evasif": "il dit que le métal a parlé avant de céder, et qu'un nain ne décrit pas ce qu'il sent quand son grand-père lui échappe"
+      },
+      {
+        "id": "le-coin-nord-est",
+        "texte": "Il range les trois morceaux de métal dans le coin nord-est de la table, toujours au même endroit. Personne ne les touche sans sa permission, et l'aubergiste le sait mieux que quiconque."
+      },
+      {
+        "id": "l-angle-sombre",
+        "texte": "Il occupe le même angle sombre de la salle commune depuis les premiers jours, le dos au mur, et il voit la porte sans jamais la regarder. Il dit que c'est pour la place, pas pour la vue."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-fer-qui-casse",
+        "fait": "f-ald-fonte-friable",
+        "version": "Tout le fer neuf de la Marche se brise depuis six mois : les clous, les fers à cheval, les lames de la Garde. Il a vu sa hache éclater comme une assiette jetée sur la pierre, et il dit que c'est du poison, pas de la fatigue du métal.",
+        "acces": {}
+      },
+      {
+        "id": "le-convoi",
+        "fait": "f-ald-convoi-de-minerai-assailli",
+        "version": "Il y a trois jours, quatorze chariots de minerai et huit hommes ont été attaqués au carrefour. Les assaillants ne voulaient pas la marchandise, dit-il : ils voulaient qu'on sache qu'ils étaient là. Il serre le poing sur la table quand il en parle.",
+        "acces": {}
+      },
+      {
+        "id": "les-capes-a-griffe",
+        "fait": "f-ald-pont-embusque-par-la-griffe",
+        "version": "Des capes bordées d'une griffe en fil noir, des chevaux frais, des hommes bien nourris. Au comptoir, on dit que ce sont les mêmes qui tiennent les talus du Vieux Pont. Il ne sait pas qui les paie, et il ne prétend pas le savoir.",
+        "acces": {}
+      },
+      {
+        "id": "la-journee-de-la-fuite",
+        "fait": "f-ald-varek-a-fui-le-convoi",
+        "version": "Le jour de l'attaque, il a pris la tourbe au lieu de rester avec les siens, et il ne se le pardonne pas. Il ne parle jamais de cette journée, pas même pour se défendre.",
+        "acces": { "attitudeMin": 60 },
+        "evasif": "il se tait, regarde les trois morceaux de sa hache et dit qu'on ne juge pas un nain sur une journée",
+        "tabou": ["j'ai fui", "ai fui", "j'ai couru", "pris la fuite"]
+      }
+    ]
+  }
+]

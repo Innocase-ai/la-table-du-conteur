@@ -1,0 +1,81 @@
+[
+  {
+    "pnj": "lambert-le-bucheron",
+    "passe": "Lambert est bûcheron du taillis depuis quarante ans, sous la combe de l'Ours. Il vit à la lisière dans une cabane de rondins, avec son chien Brindille. Il a vu le Vieux Bourru deux fois ; la seconde, l'ours a regardé son fagot sans rien faire. Il porte son bois mort à Odile, au pied du Tertre, et il a dit à Finbar où chercher le luth, sans y croire. Les kobolds de la corniche lui ont pris la boucle de sa femme il y a un mois ; il n'a pas oublié.",
+    "liens": [
+      {
+        "pnj": "finbar-le-chantre",
+        "nature": "le ménestrel qui a perdu son luth dans la combe",
+        "opinion": "Il lui a dit où chercher le luth, sans y croire. Il trouve ses chansons trop grandes pour une taverne, et il le laisse parler."
+      },
+      {
+        "pnj": "odile-gardienne-des-sept-lances",
+        "nature": "la gardienne du Tertre, qui reçoit son bois mort",
+        "opinion": "Il laisse le bois contre le mur de sa cabane, sans entrer. Il la trouve seule au pied des menhirs, et il ne voudrait pas être à sa place."
+      },
+      {
+        "pnj": "hilaire-le-metayer",
+        "nature": "le métayer de la ferme Haddon, brûlée",
+        "opinion": "Il a vu la lueur de l'incendie depuis la lisière, et il n'ose pas dire à Hilaire qu'il la voyait. Il le trouve trop vieux pour dormir dans la grange noircie."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-hache",
+        "texte": "Il pose sa hache contre le même tronc à chaque pause, la lame tournée vers le sol, et il ne la pose jamais à plat. Il dit qu'une hache couchée attire les mauvais jours, et il ne rit pas quand on se moque de lui."
+      },
+      {
+        "id": "brindille",
+        "texte": "Son chien Brindille, un bâtard roux à l'oreille déchirée, dort en travers de la porte de la cabane. Lambert lui parle quand il ne parle à personne, et le chien répond d'un coup de queue sur le plancher."
+      },
+      {
+        "id": "enfin-bon",
+        "texte": "Il finit chaque réponse par « Enfin, bon. » et laisse un silence qui sent la résine chaude. Quand on lui fait remarquer qu'il le dit toujours, il répond « Enfin, bon. » une fois de plus."
+      },
+      {
+        "id": "kobolds-gonfles",
+        "texte": "Il raconte les kobolds en les multipliant : au comptoir de l'Éperon, trois deviennent une troupe, et une troupe devient une armée à écailles. Quand Brégor lui demande le compte, il hausse les épaules : il ne compte pas les kobolds, il compte leurs méfaits."
+      },
+      {
+        "id": "la-boucle",
+        "texte": "Il pense encore à la boucle de sa femme, qu'il portait à la ceinture et que les kobolds lui ont prise il y a un mois. Il ne veut pas la racheter, dit-il : c'est la même boucle qui brille là-haut, dans une faille de la corniche."
+      },
+      {
+        "id": "fumee-de-broussailles",
+        "texte": "Il sent la fumée de bois vert à cent pas, et c'est la seule odeur qui le fasse courir. Il garde une botte de broussailles vertes dans la cabane, et un morceau de lard fumé suspendu près de la porte."
+      },
+      {
+        "id": "le-jour-du-fagot",
+        "texte": "La seconde fois qu'il a vu le Vieux Bourru, il tenait son fagot sur l'épaule et il est resté figé. L'ours a regardé le fagot, puis il s'est détourné sans rien faire, et Lambert a rentré le bois les mains tremblantes. Il n'a dit ça à personne.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il pose son fagot à terre quand on lui parle de la combe, sans rien dire, et regarde le fond du vallon comme si quelqu'un l'attendait là-bas. Il ne donnera pas la suite."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-vieux-bourru",
+        "fait": "f-ald-vieux-bourru-territorial",
+        "version": "Un ours brun qui tient sa combe et ne la partage avec personne. Il ne poursuit pas au-delà des ronces, mais il frappe ceux qui approchent de sa caverne. C'est un propriétaire, pas un monstre, et Lambert le répète à qui veut l'entendre.",
+        "acces": {}
+      },
+      {
+        "id": "les-kobolds-de-la-corniche",
+        "fait": "f-ald-kobolds-de-la-corniche-volent-le-brillant",
+        "version": "Des petits diables à écailles qui grimpent les failles au-dessus du goulet et volent tout ce qui brille. Ils cachent le butin dans les anfractuosités de la falaise. Il dit qu'il en a vu une dizaine, sans jamais les avoir comptés.",
+        "acces": {}
+      },
+      {
+        "id": "le-luth-devant-la-caverne",
+        "fait": "f-ald-kobolds-ont-vole-le-luth",
+        "version": "Trois kobolds ont pris le luth de Finbar pendant qu'il dormait ivre dans le foin. Lambert a entendu l'histoire au comptoir et sait où le luth est posé, devant l'antre du Vieux Bourru. Il n'y croit qu'à moitié, mais il a dit où chercher.",
+        "acces": {}
+      },
+      {
+        "id": "la-lueur-de-l-incendie",
+        "fait": "f-ald-ferme-haddon-brulee",
+        "version": "La ferme Haddon a brûlé une nuit de fin d'été, il y a deux mois. Il a vu la lueur rouge sur les pins depuis la lisière, et il n'a pas su qui l'avait allumée. Une nuit de feu, on ne monte pas à la ferme.",
+        "acces": {}
+      }
+    ]
+  }
+]

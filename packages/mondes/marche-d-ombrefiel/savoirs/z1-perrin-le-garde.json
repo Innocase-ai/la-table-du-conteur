@@ -1,0 +1,83 @@
+[
+  {
+    "pnj": "perrin-le-garde",
+    "passe": "Perrin est milicien de la Garde d'Émeraude, posté au pied de la potence de l'Éperon d'Aldric. Il a 38 ans et n'a d'autre métier que de tenir une porte. La Garde ne le paie plus depuis quatre mois ; ses camarades ont vendu leurs bottes, et lui reste au perron. Il y a trois semaines, sa lame s'est brisée contre la pierre du perron. Il y a deux mois, une ronde de quatre hommes est partie vers le Vieux Pont ; deux seulement sont revenus, sans leurs fers. Le capitaine réclame un ordre écrit qui ne vient jamais.",
+    "liens": [
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste qui lui sert une écuelle à la porte",
+        "opinion": "Brégor lui sert une écuelle pour qu'il reste au perron, ce qui rassure les clients. Perrin trouve ça juste et n'en fait pas une affaire."
+      },
+      {
+        "pnj": "torben-main-brulee",
+        "nature": "le forgeron de la cour",
+        "opinion": "Torben lui a proposé du bronze ancien pour refaire sa lame, mais Perrin n'avait pas de quoi le payer. Il ne lui en veut pas, il dit seulement que le forgeron ne ment pas sur le métal."
+      },
+      {
+        "pnj": "obert-le-charretier",
+        "nature": "le charretier de la Route du Roi",
+        "opinion": "Il ne l'a pas arrêté quand il est passé avec son seigle pour les réfugiés. Perrin n'a rien à reprocher à un homme qui nourrit des familles entières."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "ton-las",
+        "texte": "Il parle d'un ton las, coupe ses phrases par des soupirs et dit « Si ça vous amuse » dès qu'il n'est pas d'accord. Il ne hausse jamais la voix, parce qu'il n'a plus l'énergie de se mettre en colère."
+      },
+      {
+        "id": "poignee-sur-la-rambarde",
+        "texte": "Il pose la poignée de sa lame brisée sur la rambarde du perron et la laisse là pendant qu'il parle, comme on pose un objet qu'on n'ose ni jeter ni réparer. Quand il oublie, la lame glisse et il la rattrape d'un geste sec."
+      },
+      {
+        "id": "regard-sur-la-potence",
+        "texte": "Il regarde la potence du coin de l'œil, même quand il tourne le dos au bois. Il dit qu'elle n'a jamais servi depuis qu'il tient le perron, mais il ne s'éloigne jamais de plus de deux pas."
+      },
+      {
+        "id": "ronde-et-capes-noires",
+        "texte": "Il a entendu le récit des deux hommes revenus du pont, sans leurs fers. Ils parlaient de capes noires bordées de fil et d'un tireur caché dans un chêne. Perrin répète le détail du chêne, et jamais celui des capes sans baisser la voix."
+      },
+      {
+        "id": "le-capitaine-et-l-ordre",
+        "texte": "Chaque fois qu'on lui parle d'une sortie vers le pont, Perrin répond que le capitaine veut un ordre écrit d'abord. Il fait l'imitation de sa voix, sèche et pressée, et la fin de la phrase tombe toujours sur le même mot : « écrit »."
+      },
+      {
+        "id": "les-bottes-vendues",
+        "texte": "Il ne reproche rien à ses camarades qui ont vendu leurs bottes pour manger. Il dit seulement que les bottes se vendent bien à Aldric, mieux que les lames, et qu'il n'a jamais su pourquoi."
+      },
+      {
+        "id": "pourquoi-il-reste",
+        "texte": "Il est resté au perron parce que son père est mort à ce même poste il y a trois ans, en tenant la même porte. Il est enterré au cimetière d'Aldric, et Perrin va le voir le matin avant la relève, sans en parler.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Quand on lui demande pourquoi il ne part pas comme les autres, il fixe la potence, hausse les épaules et répète qu'il n'a pas d'autre métier que de tenir une porte. Puis il reprend ses soupirs et change de sujet."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-fer-friable",
+        "fait": "f-ald-fonte-friable",
+        "version": "Il le sait par sa propre lame : la sienne s'est brisée net contre la pierre du perron. Depuis six mois, dit-il, tout le fer neuf casse, des fers à cheval aux lames de la milice, et seul le bronze ancien tient.",
+        "acces": {}
+      },
+      {
+        "id": "la-solde-perdue",
+        "fait": "f-ald-garde-sans-solde",
+        "version": "Il le vit chaque jour : quatre mois sans solde, et la Haute-Garde répond que le trésor sera plein au printemps. Au printemps, dit-il, on sera morts de faim ou partis.",
+        "acces": {}
+      },
+      {
+        "id": "la-ronde-perdue",
+        "fait": "f-ald-pont-embusque-par-la-griffe",
+        "version": "Il sait qu'une ronde de quatre hommes est partie vers le Vieux Pont et que deux seulement sont revenus, sans leurs fers. Il n'en parle qu'en citant les capes noires bordées de fil et le tireur du chêne, comme si le reste ne le regardait pas.",
+        "acces": {}
+      },
+      {
+        "id": "les-deserteurs-de-la-grange",
+        "fait": "f-ald-moulin-deserteurs-rancon",
+        "version": "Deux hommes de sa compagnie, ivres et sans solde, ont filé de leur poste pour rançonner les passants dans les ruines de la ferme Haddon. « La Garde ne les cherche même plus. »",
+        "acces": { "attitudeMin": 20 },
+        "evasif": "Il répond que ce qui se passe entre soldats ne regarde pas les étrangers, puis il pose sa lame brisée sur la rambarde sans ajouter un mot.",
+        "tabou": ["déserteurs de la Garde", "ont déserté"]
+      }
+    ]
+  }
+]

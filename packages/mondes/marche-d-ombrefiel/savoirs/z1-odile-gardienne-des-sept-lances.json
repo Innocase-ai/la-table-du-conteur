@@ -1,0 +1,72 @@
+[
+  {
+    "pnj": "odile-gardienne-des-sept-lances",
+    "passe": "Odile est gardienne du cercle du Tertre des Sept-Lances depuis quarante ans. Elle avait trente-huit ans quand elle a repris la garde de sa grand-mère, dont elle tient seule les récits. Elle vit dans une cabane de pierre au pied des menhirs et a connu les rites de deux gardiennes avant la sienne. Chaque jour, elle entretient le cercle et veille à ce que personne ne foule la pierre sans la saluer. Lambert, le bûcheron de la combe de l'Ours, lui apporte son bois mort. Elle cherche depuis longtemps quelqu'un qui reprenne la garde après elle, et elle se méfie de tout ce qui ne vient pas de sa grand-mère.",
+    "liens": [
+      {
+        "pnj": "lambert-le-bucheron",
+        "nature": "le bûcheron de la combe de l'Ours, qui lui apporte son bois mort",
+        "opinion": "Elle écoute ses histoires de kobolds sans les contredire, mais elle ne le croit qu'à moitié quand il gonfle leur nombre. Elle le remercie d'une seule phrase, toujours la même, et jamais de deux."
+      },
+      {
+        "qui": "sa grand-mère, gardienne du cercle avant elle",
+        "nature": "la gardienne qui lui a transmis le rite et les récits",
+        "opinion": "Elle répète ses paroles mot pour mot et rejette tout ce qui ne vient pas d'elle. Pour Odile, le rite se transmet tel quel, sans une virgule changée."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-garde-reprise",
+        "texte": "Il y a quarante ans, à trente-huit ans, elle a pris la garde du cercle des mains de sa grand-mère. Elle parle de ce jour sans émotion apparente, comme d'une tâche qu'on reçoit et qu'on ne discute pas."
+      },
+      {
+        "id": "la-main-sur-la-pierre",
+        "texte": "Elle pose la main sur une pierre tiède de soleil avant de parler, comme on pose la main sur l'épaule d'un vieil ami. Ses gants de cuir sont usés aux doigts, à force de toucher la pierre froide."
+      },
+      {
+        "id": "la-chaine-de-pierres",
+        "texte": "Autour du cou, une chaîne de petites pierres percées tinte à chaque pas. Elle dit qu'elle les a ramassées au pied des menhirs, une à une, et qu'elle n'en a jamais perdu aucune."
+      },
+      {
+        "id": "le-baton-de-frene",
+        "texte": "Son bâton de frêne porte des runes presque effacées qu'elle refuse de faire repasser au couteau. Elle dit que ce qui s'use doit s'user, et qu'on ne répare pas un nom."
+      },
+      {
+        "id": "le-savoir-ne-se-vend-pas",
+        "texte": "Elle juge sévèrement ceux qui vendent des histoires de tombes sur les routes. Le savoir se transmet, dit-elle, il ne se vend pas, et les morts ne se donnent pas en spectacle."
+      },
+      {
+        "id": "le-passage-du-cercle",
+        "texte": "Elle ne traverse jamais le cercle en courant. Quand un étranger le fait, elle se tourne vers lui sans un mot, et il comprend qu'il a manqué de respect aux morts."
+      },
+      {
+        "id": "ce-qu-elle-craint",
+        "texte": "Elle dit rarement ce qu'elle redoute le plus : que les gardiens se réveillent parce qu'on a oublié le rite. Ce jour-là, elle ne veut pas être la seule à se souvenir des noms.",
+        "acces": { "attitudeMin": 40 },
+        "evasif": "« Écoutez bien. » Elle regarde la chaîne de pierres à son cou sans finir sa phrase. « Le rite se fait à la lettre, ou il ne se fait pas. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-tombe-d-aethelgard",
+        "fait": "f-ald-tertre-tombe-d-aethelgard",
+        "version": "Aethelgard, champion d'un temps sans royaume ni routes pavées, dort sous le tertre avec sept menhirs pour garde. Son nom est gravé sur la pierre, et le menhir sud-est le montre terrassant une chimère de brume. Il faut le saluer sans arme, et ne jamais prétendre le connaître.",
+        "acces": {}
+      },
+      {
+        "id": "le-fer-qui-casse",
+        "fait": "f-ald-fonte-friable",
+        "version": "Depuis six mois, le fer neuf s'effrite sous le marteau, des fers des chevaux aux lames de la milice. Le bronze ancien tient encore, dit-elle, et elle n'en cherche pas plus loin : le vieux métal a été fait pour durer.",
+        "acces": {}
+      },
+      {
+        "id": "la-lame-de-la-cuve",
+        "fait": "f-ald-spatha-immunisee",
+        "version": "Ce qui est resté dans la cuve de pierre est fait de bronze antique. La fonte friable du fer neuf ne le touche pas, et la pourriture qui ronge le métal récent passe à côté sans le mordre.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "« Écoutez bien. Ce qui repose dans la cuve ne se prête pas, ni à vous ni à personne. Ne me demandez pas ce qui s'y trouve. »",
+        "tabou": ["spatha"]
+      }
+    ]
+  }
+]

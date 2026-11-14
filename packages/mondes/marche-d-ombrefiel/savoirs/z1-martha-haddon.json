@@ -1,0 +1,111 @@
+[
+  {
+    "pnj": "martha-haddon",
+    "passe": "Martha Haddon a quarante-six ans. Elle a épousé Aldwin Haddon il y a vingt-quatre ans, marchand de farine, et ils ont élevé ensemble une fille de dix-neuf ans et un fils de quinze ans à la ferme Haddon, aux Terres Basses. Hilaire, leur métayer, y travaillait depuis quarante ans. Il y a deux mois, la ferme a brûlé une nuit de fin d'été, et il ne reste que des murs noircis. Martha a pris une paillasse dans l'écurie de l'Éperon d'Aldric, près de la porte. Il y a quatre jours, Aldwin est parti pour Haute-Garde avec son dernier chariot de farine, pour payer les planches de la reconstruction. Il devait revenir hier au soir. Depuis, elle compte les voyageurs qui passent sur la route, et elle ne dort presque plus.",
+    "liens": [
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste qui l'a logée dans l'écurie",
+        "opinion": "Elle lui doit la paillasse, et il ne le lui rappelle jamais. Elle sait qu'il la protège sans le dire, et elle n'en parle pas, pour ne pas le gêner."
+      },
+      {
+        "pnj": "mireille-de-la-rose",
+        "nature": "la clerc d'Aubéris qui soigne sous la bâche des écuries",
+        "opinion": "Elle s'assied près d'elle quand Martha ne dort pas, sans rien demander en échange. Martha trouve que la jeune femme ne se repose jamais, et le lui dit à voix basse."
+      },
+      {
+        "pnj": "hilaire-le-metayer",
+        "nature": "le métayer de la ferme, quarante ans à ses côtés",
+        "opinion": "Elle se demande s'il mange, car il ne répond jamais quand elle le lui demande. Il regarde la grange avant de parler, et elle lui pardonne cette lenteur."
+      },
+      {
+        "pnj": "ysabeau-de-sombreval",
+        "nature": "la veuve de mineur de la paillasse voisine",
+        "opinion": "Deux femmes qui n'ont pas besoin de se parler : Ysabeau serre son châle sans rien demander, et Martha lui laisse la place près de la porte quand il fait froid."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-botte-de-foin",
+        "texte": "Elle s'assoit toujours sur la même botte de foin, au fond de l'écurie, le dos contre la cloison. Elle y serre un médaillon vide et le fait tourner entre le pouce et l'index quand elle attend, sans jamais le regarder."
+      },
+      {
+        "id": "le-fichu-noir",
+        "texte": "Elle renoue son fichu noir chaque matin devant le seau d'eau, sans miroir, en serrant les nœuds comme on ferme une porte. Elle le porte depuis qu'elle a quitté les murs noircis, et dit que le noir garde mieux la poussière."
+      },
+      {
+        "id": "le-jour-du-mariage",
+        "texte": "Le jour de son mariage, il y a vingt-quatre ans, Aldwin a laissé tomber l'alliance dans la paille de la grange et l'a retrouvée en riant. Il a dit qu'une alliance qui fait le saut ne se perd pas. Elle n'a jamais oublié ce rire."
+      },
+      {
+        "id": "les-pas-d-aldwin",
+        "texte": "Elle reconnaît les pas d'Aldwin entre mille : il marche vite, le talon d'abord, en sifflant faux. Depuis quatre jours, elle entend chaque charrette sur la route, se redresse, puis se rassoit quand ce n'est pas la sienne."
+      },
+      {
+        "id": "les-enfants",
+        "texte": "Sa fille de dix-neuf ans sait compter la farine au gramme près, comme son père. Son fils de quinze ans a déjà la voix grave d'Aldwin quand il se fâche. Martha en parle souvent, avec fierté, et jamais longtemps."
+      },
+      {
+        "id": "la-garde-d-emeraude",
+        "texte": "La Garde d'Émeraude ne cherche plus personne, pense-t-elle, et elle ne compte plus sur elle. Les miliciens passent devant l'écurie sans tourner la tête. La solde leur manque, elle ne leur en veut pas, mais elle ne les croit plus."
+      },
+      {
+        "id": "l-attente",
+        "texte": "Ce qu'on attend revient ou ne revient pas, dit-elle à qui veut l'entendre, et elle n'explique jamais la phrase. Elle la répète surtout le soir, quand les autres dorment et que le feu de la cour est éteint."
+      },
+      {
+        "id": "qui-a-allume-le-feu",
+        "texte": "Elle ne dit pas qui a allumé la ferme, parce qu'elle ne le sait pas, et elle se méfie de ceux qui le savent trop vite. Les voisins disent que le feu a pris par la grange ; elle ne répond ni oui ni non."
+      },
+      {
+        "id": "la-nuit-de-l-incendie",
+        "texte": "La nuit de l'incendie, elle a vu la fumée monter au-dessus des Terres Basses avant d'entendre les cris. Elle a couru jusqu'à la grange avec un seau, et la paille lui a brûlé les paumes. Elle n'a reconnu personne dans le noir.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Elle montre ses paumes, pâles et tendues, et parle de la grange, jamais de la nuit elle-même. Elle détourne les yeux vers la porte de l'écurie et demande si on a mangé."
+      },
+      {
+        "id": "ce-qu-aldwin-a-dit",
+        "texte": "Le matin du départ, Aldwin s'est arrêté sur le seuil, le chariot déjà attelé dans la cour, et lui a dit une phrase qu'elle n'a répétée à personne. Elle la garde comme un fil entre ses doigts, et ne la dira qu'à quelqu'un en qui elle a vraiment confiance.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Elle dit seulement qu'il est parti en riant, sans se retourner, et elle tourne le médaillon plus vite, en fixant le chemin de Haute-Garde."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-depart-d-aldwin",
+        "fait": "f-ald-aldwin-parti-avec-la-farine",
+        "version": "Aldwin est parti avec son dernier chariot de farine pour Haute-Garde, il y a quatre jours. Elle répète « il devait revenir hier au soir » et refuse de faire d'autres hypothèses, comme si le reste n'était pas à dire.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-ferme-brulee",
+        "fait": "f-ald-ferme-haddon-brulee",
+        "version": "La ferme a brûlé il y a deux mois, une nuit de fin d'été. Elle dit « les murs sont restés debout, c'est déjà ça » et ne sait pas qui a allumé le feu : elle le répète à chaque fois qu'on le lui demande.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fer-qui-casse",
+        "fait": "f-ald-fonte-friable",
+        "version": "Depuis six mois, le fer neuf casse, et elle a remarqué que les vieux outils de la ferme tiennent encore mieux que les neufs. Elle dit « on ne fait plus rien qui dure », sans chercher plus loin.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-garde-qui-ne-cherche-plus",
+        "fait": "f-ald-garde-sans-solde",
+        "version": "La Garde d'Émeraude ne verse plus de solde depuis des mois. Elle dit que les miliciens qui passent à l'écurie ne cherchent plus personne, parce qu'ils ont faim, et elle n'en veut pas à ceux qui louent leur épée.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "l-armee-d-orques",
+        "fait": "f-ald-rumeur-armee-orque",
+        "version": "On lui a raconté à l'écurie qu'une armée d'orques marche sur la Marche, pour raser les villages au printemps. Elle n'y croit qu'à moitié : personne ne l'a vue de ses yeux, et la peur voyage plus vite que les chariots.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

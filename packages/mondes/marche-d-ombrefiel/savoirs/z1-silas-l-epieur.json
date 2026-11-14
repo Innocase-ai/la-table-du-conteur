@@ -1,0 +1,101 @@
+[
+  {
+    "pnj": "silas-l-epieur",
+    "passe": "Silas est né dans un faubourg de Clairmont, d'une mère elfe et d'un père humain, et il a grandi entre les deux sans jamais choisir. Il a quitté sa famille à vingt ans et colporte des cuirs depuis quinze ans sur les routes de la Marche. Il sait reconnaître un cuir tanné à la chaux, un bon fil de couture et un marchand qui ment sur le poids. Il porte un gilet de drap gris sous lequel il cache une plaquette de cire, et il n'en parle jamais. Ici, il attend une caravane en retard qui doit descendre vers le sud, et il s'installe chaque soir à la même table, près de l'âtre, pour écouter les gens du carrefour.",
+    "liens": [
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste qui le surveille",
+        "opinion": "Il garde la table isolée près de l'âtre, et Brégor le surveille sans rien dire. Il le trouve méfiant et le flatte à chaque commande. Il sait que l'aubergiste le tient à l'œil, et il lui sourit quand même."
+      },
+      {
+        "pnj": "finbar-le-chantre",
+        "nature": "le ménestrel qui lui parle trop",
+        "opinion": "Il l'écoute poliment sans rien lui dire, et le laisse raconter les ducs qu'il n'a jamais croisés. Il pense qu'un homme qui parle autant ne garde jamais rien pour lui."
+      },
+      {
+        "qui": "une maison de négoce de Haute-Garde",
+        "nature": "la maison qu'il dit servir en comptant les chariots",
+        "opinion": "Il dit compter pour elle les chariots qui sortent de Sombreval : une marque sur sa plaquette de cire, un chiffre, une date. Il ne dit pas ce qu'elle fait de ces chiffres, ni ce qu'elle lui paie."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-plaquette",
+        "texte": "Quand on lui pose une question sur ses affaires, il retire la main de son gilet comme si la plaquette de cire brûlait, puis la repose sur le drap, au même endroit, sans un mot."
+      },
+      {
+        "id": "la-pinte",
+        "texte": "Sa pinte reste pleine devant lui depuis le début de la soirée. Il la fait tourner du bout des doigts, la porte presque aux lèvres sans jamais boire, et dit qu'il l'a commandée pour la conversation, pas pour la soif."
+      },
+      {
+        "id": "les-doigts-croises",
+        "texte": "Il croise les doigts sur la table, les dénoue, puis les recroise, l'index droit toujours par-dessus. Il dit que c'est une habitude de négociant pour ne pas serrer la main d'un client qui ment, et il sourit en disant cela."
+      },
+      {
+        "id": "le-marchand-adroit",
+        "texte": "Un marchand de Haute-Garde a répondu un jour à l'une de ses questions par une autre question, et Silas l'a trouvé si adroit qu'il lui a acheté quelques selles dont il n'avait pas besoin. Il le raconte en riant, puis pose aussitôt une question à son voisin."
+      },
+      {
+        "id": "le-cuir-qui-sent",
+        "texte": "Il sent le cuir avant de le toucher et ferme les yeux pour juger le grain. Il n'achète jamais une peau qui sent le goudron, et il dit que la chaux, elle, ne ment pas sur la qualité du tannage."
+      },
+      {
+        "id": "avis-sur-bregor",
+        "texte": "L'aubergiste borgne, il le trouve méfiant, et il le flatte à chaque commande en lui disant qu'il a le meilleur œil du carrefour, celui qui lui reste. Il ne se moque jamais de lui, il sait qu'un homme qui a perdu un œil ne se laisse pas duper."
+      },
+      {
+        "id": "avis-sur-les-aventuriers",
+        "texte": "Les aventuriers, il les tient pour une source de nouvelles gratuite : il leur offre une pinte, les écoute parler des routes et des monstres, puis les oublie dès qu'ils ont fini de parler. Il a un mot pour chacun, jamais le même."
+      },
+      {
+        "id": "les-veilleurs-en-veillee",
+        "texte": "Il raconte les Veilleurs comme une histoire de veillée, en baissant la voix juste avant le nom, et il finit toujours par demander qui a des pièces pour une pinte de plus."
+      },
+      {
+        "id": "entre-deux-maitres",
+        "texte": "Il a dit un jour que le pire n'est pas de perdre une route, mais d'être pris entre deux maîtres et de devenir celui qu'on sacrifie d'abord. Il ne le redit jamais, et il se reproche d'y avoir pensé à voix haute devant un étranger.",
+        "acces": { "attitudeMin": 50 },
+        "evasif": "Il sourit trop longtemps à la question de sa solde, dit que les routes sont dangereuses pour les colporteurs honnêtes, et demande à son tour qui paie la pinte."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-rumeur-des-veilleurs",
+        "fait": "f-ald-rumeur-veilleurs-coupables",
+        "version": "On dit à l'auberge que les Veilleurs de la forêt tuent les convoyeurs du pont. Il le raconte comme un on-dit qu'il tient d'un autre, et il jure que la source est sûre, sans jamais donner de nom.",
+        "acces": {}
+      },
+      {
+        "id": "les-chariots-comptes",
+        "fait": "f-ald-convoi-de-minerai-assailli",
+        "version": "Il y a trois jours, un convoi de minerai venu de Sombreval a été attaqué près du carrefour, par des hommes aux capes bordées d'un fil noir en forme de griffe. Il en parle en comptant les chariots du doigt, comme si chaque barre était une vérité.",
+        "acces": {}
+      },
+      {
+        "id": "le-porche",
+        "fait": "f-ald-keldan-embusque-le-porche",
+        "version": "Un homme attend au porche de l'auberge pour régler le compte des enquêteurs qui s'intéressent aux mines. Il le dit sans le dire, en regardant la porte, et son sourire ne bouge pas d'un pli.",
+        "acces": { "condition": { "ou": [ { "flag": "z1-carnet-dechiffre" }, { "flag": "z1-silas-capture" } ] } },
+        "evasif": "Il sourit, demande qui compte dormir dans la grange ce soir, et jette un œil par-dessus son épaule vers le porche sans répondre.",
+        "tabou": ["Keldan", "assassin du porche"]
+      },
+      {
+        "id": "le-camp-de-la-foret",
+        "fait": "f-griffe-noire-camp-foret",
+        "version": "Dans la forêt, il y a un campement bien gardé, d'où partent les bandes qui pillent les convois et comptent les chariots qui sortent de Sombreval. Il le dit comme on parle d'un voisin qu'on n'aime pas, sans jamais nommer ceux qui y vivent.",
+        "acces": { "condition": { "ou": [ { "flag": "z1-carnet-dechiffre" }, { "flag": "z1-silas-capture" } ] } },
+        "evasif": "Il prend un air ennuyé, dit que la forêt n'est pas un endroit pour un colporteur, et demande si le groupe a déjà marché de nuit dans les sous-bois.",
+        "tabou": ["camp de la Griffe", "camp fortifié", "Forêt des Murmures"]
+      },
+      {
+        "id": "le-mot-des-guetteurs",
+        "fait": "f-ald-mot-de-passe-de-la-griffe",
+        "version": "Les guetteurs du Moulin d'Eldren laissent passer ceux qui donnent le bon mot, sans faire sonner le cor. Il le dit à voix basse, comme un secret de métier, et ajoute qu'il ne l'a jamais dit à personne.",
+        "acces": { "condition": { "flag": "z1-silas-capture" } },
+        "evasif": "Il pose la main sur son gilet, sourit, et demande d'abord ce que le groupe donnerait pour un passage sans cor.",
+        "tabou": ["La Serre ne plie point", "Serre ne plie"]
+      }
+    ]
+  }
+]

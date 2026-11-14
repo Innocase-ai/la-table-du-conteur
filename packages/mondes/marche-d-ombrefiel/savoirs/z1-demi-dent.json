@@ -1,0 +1,93 @@
+[
+  {
+    "pnj": "demi-dent",
+    "passe": "Demi-Dent est un gobelin de quarante ans. Il a été contremaître dans une carrière d'argile des Terres Basses, et il en garde le ton. Il a quitté sa tribu il y a huit ans pour commander sa propre bande, et s'est installé dans la carrière d'argile du carrefour d'Aldric, dont il a creusé lui-même les fosses du périmètre. Son oreille gauche est déchirée ; il porte un casque de la milice d'Aurevaux cabossé et une cotte rapiécée de fil barbelé. Il touche une part du butin sans savoir exactement ce qu'il transporte, et il reçoit ses ordres sur un papier : une date, un chemin, un nombre de chariots. Il compte ses pièces à voix haute et appelle chacun camarade. Il ment sur ses exploits et se trahit en parlant trop.",
+    "liens": [
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste de l'Éperon d'Aldric, qui a mis sa tête à prix",
+        "opinion": "« Le borgne de l'auberge paie comme un boucher ». La prime de quarante pièces sur sa tête l'a vexé, et il ne le cache pas."
+      },
+      {
+        "qui": "les guetteurs gobelins du moulin d'Eldren",
+        "nature": "ses guetteurs sur la colline au nord-est, au moulin",
+        "opinion": "Ils ont le cor de bronze : c'est par eux que le camp sait qu'un chariot passe. Il compte sur leur cor plus que sur sa propre bande."
+      },
+      {
+        "qui": "ses archers de la carrière",
+        "nature": "les gobelins qui tirent depuis les palissades du camp",
+        "opinion": "Il les tient avec la promesse de la part : « Vous vous battez pour votre part, pas pour la gloire », leur répète-t-il, et il sait qu'ils s'enfuiraient si sa tête tombait."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "les-pieces-du-soir",
+        "texte": "Chaque soir, il s'assoit sur une caisse retournée devant sa hutte et compte ses pièces à voix haute, par tas de cinq. Il mord la dernière, la fait sonner contre la pierre, et recommence si le son ne lui plaît pas."
+      },
+      {
+        "id": "le-casque-trop-grand",
+        "texte": "Le casque de la milice d'Aurevaux est trop grand pour lui : il le cale avec un chiffon de laine. Il le retire quand il parle de sa bande, et le remet dès qu'on parle de chariots, comme s'il avait besoin de sa couronne pour compter."
+      },
+      {
+        "id": "l-oreille-grattee",
+        "texte": "Il se gratte l'oreille gauche déchirée d'un ongle noir, et plus fort quand il ment. Les gobelins de la bande ont cessé de lui demander d'où vient la déchirure : chacun sait qu'il inventerait une histoire."
+      },
+      {
+        "id": "les-mains-grises",
+        "texte": "La glaise de la carrière lui reste dans les plis des mains, jusqu'aux coudes. Il la gratte le soir avec un couteau à manche d'os, en surveillant du coin de l'œil ceux qui passent devant son feu, comme un contremaître qui compte ses ouvriers."
+      },
+      {
+        "id": "le-sifflement",
+        "texte": "Quand il a peur, il siffle entre ses dents, deux notes courtes qui réveillent le camp et s'entendent jusqu'à la falaise. Il dit que c'est pour donner le tempo aux archers, et personne ne lui fait remarquer qu'il siffle aussi quand il a froid."
+      },
+      {
+        "id": "l-ours-de-la-combe",
+        "texte": "Il raconte qu'il a tué un ours à la lance dans la combe de l'Ours. À chaque veillée, la bête gagne une patte et une dent, et les archers ricanent avant la fin sans jamais l'interrompre."
+      },
+      {
+        "id": "le-dormeur",
+        "texte": "Il dort le casque sur le ventre et la bourse sous la nuque. Réveillé en sursaut, il tâte la bourse avant de regarder qui l'a réveillé, et il jure ensuite qu'il ne dormait pas."
+      },
+      {
+        "id": "les-gardes-de-sombreval",
+        "texte": "Il méprise les gardes des convois de Sombreval, qu'il appelle des fanfarons : « Ils se croient payés pour mourir en bon ordre », dit-il, et il rit trop fort en le disant."
+      },
+      {
+        "id": "la-potence",
+        "texte": "Il ne passe jamais sous la potence du carrefour, même de jour : il prend le détour par les fondrières, quitte à s'enfoncer jusqu'aux genoux dans la glaise. Quand on parle de cordes, il compte ses pièces plus vite et siffle le camp sans le vouloir.",
+        "acces": { "attitudeMin": 40 },
+        "evasif": "il compte ses pièces plus vite, siffle le camp sans le vouloir, et dit qu'il n'a pas de goût pour les potences, ce qui ne regarde personne."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-registre-du-coffre",
+        "fait": "f-reactifs-vers-puits-4",
+        "version": "Il garde dans son coffre un registre de chariots : des réactifs alchimiques acides envoyés vers le Puits n° 4, au sceau du lion d'Acier, signé d'un général qu'il croit appeler Vane. Il le lit à voix basse, le doigt sous les lignes.",
+        "acces": { "condition": { "flag": "z1-demi-dent-epargne" } },
+        "evasif": "il se vante qu'il sait lire les chiffres, puis change de sujet dès qu'on lui demande ce que disent les lignes.",
+        "tabou": ["réactifs alchimiques", "Puits n° 4", "Puits numéro quatre"]
+      },
+      {
+        "id": "l-or-etranger",
+        "fait": "f-ald-demi-dent-or-etranger",
+        "version": "Il a touché une avance en or d'une cité rivale, versée par des gens bien habillés qui n'ont jamais montré leur visage. Il compte encore ses pièces en pensant à eux, et il ne sait pas à qui il a vendu sa tranquillité.",
+        "acces": { "condition": { "flag": "z1-demi-dent-epargne" } },
+        "evasif": "il fait tourner une pièce entre ses doigts et change de sujet sans répondre à la question.",
+        "tabou": ["or étranger", "cité rivale"]
+      },
+      {
+        "id": "le-cor-d-eldren",
+        "fait": "f-ald-moulin-cor-previent-la-carriere",
+        "version": "Le cor de bronze du moulin d'Eldren est son fil à la patte : dès qu'il sonne, le camp double les gardes et prépare les embuscades. Il dit que les guetteurs ont le meilleur poste de la colline, et qu'un cor ne ment jamais.",
+        "acces": {}
+      },
+      {
+        "id": "le-fer-friable",
+        "fait": "f-ald-fonte-friable",
+        "version": "Depuis six mois, le fer neuf casse entre les mains de sa bande. Il ne veut plus de fer neuf, et compte sur le vieux bronze, qui tient.",
+        "acces": {}
+      }
+    ]
+  }
+]

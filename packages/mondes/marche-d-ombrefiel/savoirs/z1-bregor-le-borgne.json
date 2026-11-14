@@ -1,0 +1,146 @@
+[
+  {
+    "pnj": "bregor-le-borgne",
+    "passe": "Brégor est né dans un faubourg de Clairmont, fils d'un tonnelier. Il a quitté le faubourg à dix-sept ans, il y a trente-cinq ans, et n'en parle jamais. Il y a douze ans, une écharde de flèche lui a crevé l'œil gauche : depuis, un bandeau de cuir noir, et une façon de tourner toute la tête pour voir ce qui arrive par la gauche. Il y a sept ans, il a acheté le relais de l'Éperon d'Aldric avec ses économies. Il y a logé des familles de Sombreval dans la grange à foin. Il barre la porte lui-même chaque soir, et l'auberge n'a jamais été attaquée. Avant l'été, il a perdu deux chasseurs qu'il avait payés d'avance pour dégager le Vieux Pont ; depuis, il paie après, jamais avant.",
+    "liens": [
+      {
+        "pnj": "torben-main-brulee",
+        "nature": "le forgeron de la cour",
+        "opinion": "Il paie sa place dans la cour en réparant les gonds et la ferrure des portes. Brégor le trouve criard, mais honnête : il ne lui a jamais compté une pièce de trop."
+      },
+      {
+        "pnj": "mireille-de-la-rose",
+        "nature": "la clerc qui soigne sous une bâche des écuries",
+        "opinion": "Il lui a prêté les écuries et grogne qu'elle y gâche la paille. Il lui laisse la meilleure soupe sans le dire, et il ne le lui reprochera jamais."
+      },
+      {
+        "pnj": "martha-haddon",
+        "nature": "la veuve réfugiée de la ferme Haddon",
+        "opinion": "Il la protège sans le dire, et il n'a pas encore trouvé les mots pour ce qu'il sait du chariot d'Aldwin. Il préfère se taire que de lui mentir."
+      },
+      {
+        "pnj": "varek-le-brise",
+        "nature": "le nain au coin sombre",
+        "opinion": "Il paie à jour ses pintes et lui laisse l'angle sombre, près de la cheminée froide. Il trouve le nain grave et juste, et ne lui demande jamais rien sur le convoi de Sombreval."
+      },
+      {
+        "pnj": "silas-l-epieur",
+        "nature": "le colporteur de la table isolée",
+        "opinion": "Il garde la table près de l'âtre et le surveille du coin de l'œil. Il ne l'a jamais vu vendre un cuir, et il ne lui a pas encore demandé pourquoi il reste si longtemps."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "le-tonnelier-du-faubourg",
+        "texte": "Son père tonnelier lui a appris à cercler un fût à coups de maillet et à entendre le bois mouillé avant de le voir. Brégor frappe encore les barriques du plat de la main, et il sait à la voix si le fût est plein ou vide."
+      },
+      {
+        "id": "la-craie-sur-le-chene",
+        "texte": "Sur la planche de chêne clouée au mur du comptoir, il trace une barre à la craie pour chaque chariot qui passe, et une croix pour ceux qui ne reviennent pas. Personne n'a le droit de l'effacer, et il vérifie chaque matin que les barres sont là."
+      },
+      {
+        "id": "claquement-de-langue",
+        "texte": "Il claque la langue entre deux phrases, un petit bruit sec qui fait taire la salle quand il le fait trop fort. Il finit ses menaces par « Compris ? » et ne dit jamais « s'il vous plaît », même aux enfants qui lui demandent une tartine."
+      },
+      {
+        "id": "arbalete-tapotee",
+        "texte": "L'arbalète lourde reste derrière le comptoir, à portée de main. Quand il réfléchit, il tapote la crosse du bout des doigts sans la prendre ; il ne l'a jamais levée devant un client, et les clients le savent."
+      },
+      {
+        "id": "soupe-pour-les-enfants",
+        "texte": "Il sert une soupe d'orge au lard et du pain dur aux réfugiés, qu'il fait payer au tarif des chambres. Les enfants ne paient jamais, et un matin il a glissé un morceau de lard dans l'écuelle d'une petite fille en grognant qu'elle ne le dise à personne."
+      },
+      {
+        "id": "le-lion-trop-propre",
+        "texte": "Le Lion d'Acier lui fait horreur : des barrières propres, des armures neuves, et des péages qui pèsent surtout sur ceux qui n'ont que des fers à réparer. « Trop propre, ce Lion », dit-il, et il crache de côté dans la cendre."
+      },
+      {
+        "id": "garde-de-bons-gars-mal-commandes",
+        "texte": "La Garde d'Émeraude, il la connaît : de bons gars, mal commandés, qui n'ont pas touché de solde depuis quatre mois. Il leur sert une écuelle quand ils passent le perron, à crédit, et il ne leur demande pas pourquoi ils la mangent debout."
+      },
+      {
+        "id": "clients-qui-ne-boivent-rien",
+        "texte": "Un homme qui commande de l'eau claire et la laisse tiédir le rend suspect. Un colporteur qui ne vend rien l'est tout autant. Il les observe à la craie et au coin de l'œil, les sert quand même, et garde la barre à portée de main."
+      },
+      {
+        "id": "l-oeil-et-la-pomme",
+        "texte": "Un gamin de la cour lui a demandé un jour comment il avait perdu l'œil. Il a répondu « un moustique très en colère », lui a donné une pomme, et s'est retourné pour que le gosse ne voie pas son sourire."
+      },
+      {
+        "id": "les-deux-chasseurs",
+        "texte": "Le soir où il a compris que ses deux chasseurs ne reviendraient pas, il est resté jusqu'à l'aube derrière le comptoir, la craie à la main, sans tracer ni la barre ni la croix. Il n'a rien dit à la salle.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il regarde la planche de chêne un long moment sans répondre, puis dit seulement : « J'ai attendu trop longtemps une fois. Je n'attends plus. »"
+      },
+      {
+        "id": "la-porte-qu-il-barre",
+        "texte": "Les deux pattes de fer qui tiennent la barre de chêne, c'est Torben qui les a refaites l'hiver dernier, quand le bois avait rongé l'ancienne. Brégor y a passé le pouce sur chaque soudure, sans un mot. Chaque soir il tire la barre jusqu'au déclic, puis laisse ses doigts posés dessus une seconde.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il tapote la barre de bois du bout des doigts, deux fois, et répond : « Les portes, c'est moi qui les tiens. Compris ? »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-peages",
+        "fait": "f-peages-du-lion",
+        "version": "Il compte deux pièces d'argent à chaque barrière du Lion d'Acier et reçoit un reçu qu'il ne garde jamais. Il a entendu dire que les sauf-conduits viennent de Haute-Garde, signés par un doyen qu'on dit honnête. Pour lui, les routes ne sont pas dangereuses à cause des bandits, mais à cause de ceux qui paient pour passer.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-chariot-de-farine",
+        "fait": "f-ald-marchand-mort-sur-la-route",
+        "version": "Il sait que le chariot de farine d'Aldwin Haddon est renversé dans le fossé, sous les aulnes du Vieux Pont. Il ne l'a dit à personne de la maison, et il ne sait pas encore comment le dire.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-convoi-assailli",
+        "fait": "f-ald-convoi-de-minerai-assailli",
+        "version": "Il y a trois jours, un convoi de minerai de Sombreval est tombé dans une embuscade près du carrefour. Des hommes aux capes bordées de fil noir ont pris les chariots, puis ont laissé les hommes sur la route, comme s'ils voulaient qu'on le sache.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-capes-du-pont",
+        "fait": "f-ald-pont-embusque-par-la-griffe",
+        "version": "Les bandits du Vieux Pont ont des capes bordées d'une griffe en fil noir, et l'on dit qu'un tireur est installé dans le chêne au-dessus du pont. Pour lui, ce ne sont pas des pillards ordinaires : des pillards ne brodent pas leurs capes.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-cor-du-moulin",
+        "fait": "f-ald-moulin-cor-previent-la-carriere",
+        "version": "Le cor du moulin d'Eldren, sur la colline au nord-est, prévient le camp de Demi-Dent dans la carrière à chaque chariot qui passe. Il entend le cor sonner depuis le perron, et il a compris que chaque convoi sonné est un convoi perdu.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-garde-sans-solde",
+        "fait": "f-ald-garde-sans-solde",
+        "version": "La Garde d'Émeraude n'a pas touché de solde depuis des mois. Il voit ses miliciens faire la queue à son perron pour une écuelle, et certains louent leur épée à qui paie. Il ne les blâme pas tous.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "l-ancien-sergent",
+        "fait": "f-ald-bregor-sergent-de-vane",
+        "version": "Il a porté la milice régulière, jusqu'au rang de sergent, et il a acheté le relais avec sa solde de sortie. Il n'en parle à personne, et il préfère que les clients le prennent pour un simple tenancier.",
+        "acces": {
+          "attitudeMin": 60
+        },
+        "evasif": "Il claque la langue, tapote le comptoir et ramène la conversation aux chambres : « Une auberge, ce n'est pas une caserne. Une soupe, ou rien ? »",
+        "tabou": [
+          "sous Vane",
+          "sergent de Vane",
+          "sergent d'infanterie",
+          "mon général"
+        ]
+      }
+    ]
+  }
+]

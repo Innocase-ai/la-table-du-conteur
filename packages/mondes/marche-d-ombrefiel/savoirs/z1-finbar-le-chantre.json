@@ -1,0 +1,108 @@
+[
+  {
+    "pnj": "finbar-le-chantre",
+    "passe": "Finbar a vingt-huit ans et il est le fils d'un teinturier de Clairmont. Il a quitté la maison à dix-huit ans, il y a dix ans, avec un luth en bois de rose que lui a offert sa marraine, et depuis il chante dans les tavernes de la côte et de la Marche, là où on le paie d'un verre. Il s'est réfugié à l'Éperon d'Aldric avec les autres. Une nuit où il dormait ivre dans le foin de la grange, trois kobolds sont entrés par la lucarne et sont repartis avec son luth et sa bourse. Il a suivi leurs traces jusqu'au ravin de la combe et y a vu l'instrument posé devant la caverne d'un ours. Depuis, il promet quinze pièces d'or et une chanson à qui le lui ramènera intact.",
+    "liens": [
+      {
+        "pnj": "mireille-de-la-rose",
+        "nature": "la clerc d'Aubéris qui le gronde",
+        "opinion": "Une sainte qui ne comprend pas la poésie : elle lui fait la morale sur ses lendemains de pinte, et il ne lui en veut qu'à moitié."
+      },
+      {
+        "pnj": "bregor-le-borgne",
+        "nature": "l'aubergiste de l'Éperon, à qui il doit du foin",
+        "opinion": "Il le trouve dur et le craint un peu. Il lui doit du foin, qu'il promet de rembourser en ballades, et il évite de l'annoncer trop fort."
+      },
+      {
+        "pnj": "lambert-le-bucheron",
+        "nature": "le bûcheron de la combe",
+        "opinion": "C'est lui qui lui a parlé du Vieux Bourru et de la caverne. Finbar a suivi ce conseil sans y croire, et il ne sait toujours pas si le bûcheron se moquait de lui."
+      },
+      {
+        "pnj": "silas-l-epieur",
+        "nature": "le colporteur de la table isolée",
+        "opinion": "Silas l'écoute poliment pendant qu'il parle trop, ce qu'il sait sans pouvoir s'en empêcher. Il trouve ce silence flatteur, mais il n'en tire jamais rien."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "chapeau-trempe",
+        "texte": "Il tire son chapeau comme un prince à chaque nouvel arrivant, puis le serre contre lui, trempé, qu'il ne pose jamais sur la table. Il sent le foin mouillé et l'eau-de-vie de prune."
+      },
+      {
+        "id": "le-chien-de-la-cote",
+        "texte": "Il raconte qu'un chien de la côte a avalé une bonne partie de sa première ballade, et il la chante encore pour le prouver, sans que personne le croie tout à fait."
+      },
+      {
+        "id": "larmes-sans-honte",
+        "texte": "Il pleure sans honte devant une ballade qui finit mal, et il essuie ses yeux avec la manche déchirée de son pourpoint vert, comme si c'était un mouchoir de cour."
+      },
+      {
+        "id": "kobolds-cancrelats",
+        "texte": "Il appelle les kobolds des cancrelats à écailles puantes. Il jure qu'il en a vu un dans la grange, puis deux, puis toute une bande, chaque soir un peu plus nombreuse."
+      },
+      {
+        "id": "grange-indigne",
+        "texte": "Il trouve la grange à foin indigne d'un artiste, mais il y dort chaque nuit, la tête sur son chapeau, et il ronfle, ce qu'il nie avec beaucoup d'éclat."
+      },
+      {
+        "id": "respect-mireille",
+        "texte": "Il tient Mireille pour une sainte qui ne comprend rien à la poésie, et il la salue toujours en se découvrant, pour qu'elle voie qu'il sait se tenir devant une femme de foi."
+      },
+      {
+        "id": "dette-de-foin",
+        "texte": "Il doit du foin à Brégor, qu'il promet de rembourser en ballades. Quand l'aubergiste réclame la paye, il trouve cela d'une vulgarité qui le blesse profondément."
+      },
+      {
+        "id": "ducs-a-table",
+        "texte": "Quand il cite un duc à table, il se redresse, le nomme avec aplomb, et se trompe de nom à chaque fois, sans que personne n'ose le corriger devant la salle."
+      },
+      {
+        "id": "confidence-luth",
+        "texte": "Quand on lui demande ce que représente ce luth, il baisse la voix, une fois seulement. Le bois de rose est pour lui le seul bien qu'il ait reçu de quelqu'un qui croyait en lui avant même qu'il sache jouer.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il tapote le chapeau, dit que le bois de rose est simplement le plus beau de la Marche, et change de sujet avant qu'on insiste."
+      },
+      {
+        "id": "confidence-marraine",
+        "texte": "Sa marraine lui a remis le luth le jour où il a quitté Clairmont, sans discours. Elle lui a seulement dit de ne jamais chanter pour de l'argent avant d'avoir chanté pour lui-même.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il dit que sa famille a toujours eu le goût de la musique, qu'une marraine ne se choisit pas, puis il s'essuie les yeux avec le chapeau."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-luth-vole",
+        "fait": "f-ald-kobolds-ont-vole-le-luth",
+        "version": "Il raconte qu'il dormait ivre dans le foin quand trois kobolds sont entrés par la lucarne et sont repartis avec son luth en bois de rose et sa bourse. Il n'y voit aucune honte, seulement une injustice des dieux.",
+        "acces": {}
+      },
+      {
+        "id": "l-armee-d-orques",
+        "fait": "f-ald-rumeur-armee-orque",
+        "version": "Il chante qu'une armée d'orques, des milliers de guerriers aux haches noires, marche sur la Marche pour raser les villages au printemps. Il ajoute avec emphase qu'un marchand de cuirs le lui a juré, les yeux humides, et qu'il n'a rien vu lui-même.",
+        "acces": {}
+      },
+      {
+        "id": "l-ours-de-la-combe",
+        "fait": "f-ald-vieux-bourru-territorial",
+        "version": "Il appelle la bête le Vieux Bourru, une montagne de poils bruns aux griffes comme des faux. Il jure qu'elle garde son ravin calcaire et ne suit pas les intrus au-delà du goulet, ce qu'il dit avec un frisson d'admiration théâtrale.",
+        "acces": {}
+      },
+      {
+        "id": "les-kobolds-de-la-corniche",
+        "fait": "f-ald-kobolds-de-la-corniche-volent-le-brillant",
+        "version": "Il dit que les kobolds grimpent les failles au-dessus du goulet et volent tout ce qui brille, boutons, boucles et verre, pour cacher leur butin dans la falaise. Il les traite de cancrelats, avec une moue de dégoût.",
+        "acces": {}
+      },
+      {
+        "id": "les-ducs",
+        "fait": "f-ald-finbar-n-a-jamais-chante-devant-les-ducs",
+        "version": "Il finit par avouer, à demi-mot, qu'il a surtout écouté les ducs derrière une porte, et qu'une taverne de Haute-Garde l'a mis dehors pour une fausse note qu'il n'a jamais pardonnée à son gosier. Il s'en remet alors à la ballade.",
+        "acces": { "attitudeMin": 30 },
+        "evasif": "Il se redresse, cite un duc en se trompant de nom, puis enchaîne aussitôt sur une ballade qu'il est en train de composer.",
+        "tabou": ["jamais chanté", "chanté faux", "renvoyé de la taverne"]
+      }
+    ]
+  }
+]
