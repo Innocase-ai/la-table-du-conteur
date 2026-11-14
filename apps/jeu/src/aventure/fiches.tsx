@@ -1,7 +1,7 @@
 // Les morceaux d'écran que partagent l'écran d'aventure et les pages plein écran : la fiche d'information d'un module
 // et la bande des héros.
 import { useState } from 'react';
-import { etatDurableMax, type Encart, type FicheInfo, type Personnage, type Sort } from '@crpg/regles';
+import { descriptionDroits, etatDurableMax, type Encart, type FicheInfo, type Personnage, type Sort } from '@crpg/regles';
 import { Parchemin } from '../composants/Parchemin';
 import { Pictogramme } from '../composants/Pictogramme';
 import { cleDeSort } from '../pictogrammes-regles';
@@ -30,7 +30,7 @@ export function resumeRessources(a: Personnage): { court: string; detail: string
 }
 
 /** Les héros du groupe : portrait, points de vie et ressources. */
-export function BandeauHeros({ groupe, onChoisir, onMontee }: { groupe: Personnage[]; onChoisir?: (id: string) => void; onMontee?: () => void }) {
+export function BandeauHeros({ groupe, onChoisir, onMontee, onPreparer }: { groupe: Personnage[]; onChoisir?: (id: string) => void; onMontee?: () => void; onPreparer?: (id: string) => void }) {
   return (
     <>
       {groupe.map((a) => {
@@ -50,6 +50,11 @@ export function BandeauHeros({ groupe, onChoisir, onMontee }: { groupe: Personna
               {a.monteeEnAttente && onMontee && (
                 <button type="button" className="badge-montee" title="Choisir mes nouveautés du niveau" onClick={(ev) => { ev.stopPropagation(); onMontee(); }}>
                   ⬆ Niveau {a.monteeEnAttente}
+                </button>
+              )}
+              {onPreparer && a.choix && descriptionDroits(a.preparation) && (
+                <button type="button" className="badge-montee" title={`Peut changer ${descriptionDroits(a.preparation)} : préparer ses sorts`} onClick={(ev) => { ev.stopPropagation(); onPreparer(a.id); }}>
+                  📖 Préparer
                 </button>
               )}
               <div className="barre">

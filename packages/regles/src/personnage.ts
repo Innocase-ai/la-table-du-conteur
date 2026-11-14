@@ -5,6 +5,7 @@ import { etatDurableMax, RECUPERATION, type EtatDurable } from './combat/creatio
 import { PREFIXE_CHARGES, PREFIXE_OBJET, type ObjetEmbarque } from './combat/objets';
 import type { HeroCombat } from './combat/prototype';
 import { kitDepuisFiche } from './creation/kit';
+import { accorderApresRepos } from './creation/preparation';
 import { lancer, type Generateur } from './des';
 import { estAncienEquipement, rangerEquipement, type AncienEquipement } from './equipement/ranger';
 import type { Emplacement, Jeu } from './equipement/emplacements';
@@ -33,6 +34,15 @@ export interface Equipement {
   armesAutres?: Emplacement[];
 }
 
+/**
+ * Ce qu'un héros peut changer de ses sorts, gagné par un repos ou un niveau (SRD 5.2.1, voir `creation/preparation.ts`) :
+ * sorts préparés à remplacer (`'tous'` = toute sa liste) et sorts mineurs à remplacer.
+ */
+export interface DroitsPreparation {
+  prepares: number | 'tous';
+  mineurs: number;
+}
+
 export interface Personnage extends EtatDurable {
   id: string;
   nom: string;
@@ -50,6 +60,8 @@ export interface Personnage extends EtatDurable {
   choix?: ChoixPersonnage;
   /** Le niveau qu'il vient d'atteindre, tant que ses nouveaux choix (amélioration, sorts…) n'ont pas été revus par le joueur. */
   monteeEnAttente?: number;
+  /** Ses changements de sorts permis (repos, niveau) ; absent quand il n'a rien à changer. Dépensé par `changerSortsPrepares`. */
+  preparation?: DroitsPreparation;
 }
 
 /**
@@ -147,5 +159,8 @@ export function recuperer(p: Personnage, duree: 'court' | 'long', gen: Generateu
     if (gain > 0) changes.push(`${NOMS_RESSOURCES[k] ?? k} ${p.ressources[k]}/${max.ressources[k]}`);
   }
   if (p.emplacements.some((v, i) => v !== avant.emplacements[i])) changes.push('ses emplacements de sorts');
+  // Préparer ses sorts : le repos donne le droit de changer sa liste (selon la classe), dit à part dans le constat.
+  const preparation = accorderApresRepos(p, duree);
+  if (preparation) changes.push(preparation.replace(`${p.nom} peut`, 'il peut'));
   return changes;
 }

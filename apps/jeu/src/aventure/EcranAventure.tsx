@@ -26,6 +26,8 @@ import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage, type OngletFeuille } from './FeuillePersonnage';
 import { EcranMontee } from './EcranMontee';
+import { EcranPreparation, peutPreparer } from './EcranPreparation';
+import { ContextePreparation } from './preparation-contexte';
 import { EcranQuete } from './EcranQuete';
 import { changementsDeQuetes, parcheminDeQuete, type ChangementQuete } from '../quete-regles';
 import { BandeauHeros, FicheEncart } from './fiches';
@@ -219,7 +221,18 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       interrompu: nuit.interrompue || partie.scene.type === 'rencontre',
     });
   }, [partie, dm]);
-  const finSommeil = useCallback(() => setSommeil(undefined), []);
+  // Préparer ses sorts : l'écran s'ouvre depuis le bouton de l'onglet Grimoire ou le badge du bandeau, et une fois au réveil
+  // quand la nuit a donné à un héros le droit de changer ses sorts (il se ferme avec « Plus tard » ou Échap).
+  const [preparer, setPreparer] = useState<string>();
+  const groupeActuel = useRef(partie.groupe);
+  groupeActuel.current = partie.groupe;
+  const finSommeil = useCallback(() => {
+    setSommeil(undefined);
+    const premier = groupeActuel.current.find(peutPreparer);
+    if (premier) setPreparer(premier.id);
+  }, []);
+  const ouvrirPreparation = useCallback((id: string) => setPreparer(id), []);
+  const fermerPreparation = useCallback(() => setPreparer(undefined), []);
 
   // Le crochetage : quand le groupe vient de crocheter ou de forcer, l'écran de crochetage s'ouvre (le moteur a déjà tout réglé :
   // les jets sont dans les nouvelles entrées du journal).
@@ -327,7 +340,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // Les touches des pages (I pour le sac) et Échap pour les fermer ; sans effet pendant une scène narrée ou une saisie.
   useEffect(() => {
     const surTouche = (ev: KeyboardEvent) => {
-      if (ev.ctrlKey || ev.metaKey || ev.altKey || evenement || rencontreOuverte || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert) return;
+      if (ev.ctrlKey || ev.metaKey || ev.altKey || evenement || rencontreOuverte || sceneNarree || feuille || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert || preparationOuverte) return;
       const cible = ev.target as HTMLElement | null;
       if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
       if (ev.key.toLowerCase() === 'm' && encarts.some((e) => e.carte)) return setCarteOuverte((o) => !o);
@@ -401,6 +414,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   // L'écran de rencontre passe après les écrans qui racontent (scène, événement, sommeil, parchemin, montée).
   const rencontreOuverte = !!rencontre && rencontreReduite !== rencontre.id && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte;
   const fermerMontee = useCallback(() => setMontee(false), []);
+  const preparationOuverte = preparer !== undefined && partie.scene.type === 'exploration' && partie.groupe.some(peutPreparer) && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte;
   /** Une commande envoyée par l'écran de montée de niveau : le refus éventuel lui revient, il l'affiche lui-même. */
   const envoyer = (ordre: Ordre): string | undefined => {
     const r = moteur.executer(partie, ordre);
@@ -439,6 +453,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   });
 
   return (
+    <ContextePreparation.Provider value={ouvrirPreparation}>
     <div className="aventure">
       <header className="aventure-haut">
         <button type="button" className="bouton-discret" onClick={onMenu}>
@@ -627,7 +642,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       </aside>
 
       <footer className="aventure-groupe">
-        <BandeauHeros groupe={partie.groupe} onChoisir={(id) => ouvrirFeuille(ongletFeuille, id)} onMontee={() => setMontee(true)} />
+        <BandeauHeros groupe={partie.groupe} onChoisir={(id) => ouvrirFeuille(ongletFeuille, id)} onMontee={() => setMontee(true)} onPreparer={partie.scene.type === 'exploration' ? ouvrirPreparation : undefined} />
         <button
           type="button"
           className="aventure-sac"
@@ -678,6 +693,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       )}
       {parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
       {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
+      {preparationOuverte && <EcranPreparation donnees={moteur.ctx.srd!} groupe={partie.groupe} initial={preparer} envoyer={envoyer} onFermer={fermerPreparation} />}
       {sommeil && <EcranSommeil decor={sommeil.decor} heureDebut={sommeil.heureDebut} heures={sommeil.heures} interrompu={sommeil.interrompu} onFin={finSommeil} />}
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {desamorcage && !sommeil && !crochetage && <EcranDesamorcage desamorcage={desamorcage} onFin={finDesamorcage} />}
@@ -702,6 +718,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       )}
       {sceneNarree && !sommeil && !crochetage && !desamorcage && <LecteurScene key={sceneNarree.id} monde={dm.monde.id} scene={sceneNarree} revue={sceneRevue} onFin={() => jouer({ type: 'terminerScene', scene: sceneNarree.id })} />}
     </div>
+    </ContextePreparation.Provider>
   );
 }
 

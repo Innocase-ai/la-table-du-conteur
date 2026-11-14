@@ -19,6 +19,8 @@ export const COMMANDES_HORS_CONTEUR = new Set([
   // Les nouveaux choix d'une montée de niveau sont ceux du joueur.
   'reviserMontee',
   'garderMontee',
+  // Préparer ses sorts est un choix du joueur (écran dédié) : le conteur raconte le repos, il ne choisit pas la liste.
+  'changerSortsPrepares',
   'revoirScene',
   'voirObjet',
   'jeterObjet',

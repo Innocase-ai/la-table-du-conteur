@@ -3,6 +3,7 @@
 import { z } from 'zod';
 import { lancer } from '../des';
 import { commande, type ContexteJeu, type Encart, type Module, type Partie, type Proposition } from '../noyau/types';
+import { descriptionDroits, prochainChangement, verifierPreparation } from '../creation/preparation';
 import type { Personnage } from '../personnage';
 import type { Sort } from '../schemas';
 import { libre } from './commun';
@@ -41,9 +42,50 @@ const PANNEAU_SOINS = { id: 'soins', titre: 'Soigner', ordre: 10, onglet: 'Grimo
 /** Les paladins qui ont encore des points d'Imposition des mains. */
 const paladins = (p: Partie) => p.groupe.filter((a) => (a.ressources.impositionDesMains ?? 0) > 0);
 
+const PANNEAU_PREPARATION = { id: 'preparation', titre: 'Préparer ses sorts', ordre: 5, onglet: 'Grimoire' };
+
+/** Les héros qui ont gagné, par un repos ou un niveau, le droit de changer leurs sorts (et qui le peuvent : ils ont leurs choix de création). */
+const preparateurs = (p: Partie) => p.groupe.filter((a) => a.choix && a.preparation && descriptionDroits(a.preparation));
+
 export const moduleGrimoire: Module = {
   id: 'grimoire',
   commandes: {
+    changerSortsPrepares: commande({
+      description:
+        "Préparer ses sorts (SRD 5.2.1) : le joueur change la liste de sorts préparés (et un sort mineur) d'un héros, quand un repos ou un niveau gagné le permet (selon la classe). Choix du joueur, fait dans l'écran de préparation.",
+      entree: z.object({ personnage: z.string(), prepares: z.array(z.string()), mineurs: z.array(z.string()).optional() }),
+      disponible: (_c, p) => (p.scene.type === 'exploration' ? true : 'On prépare ses sorts à tête reposée, hors rencontre et hors conversation.'),
+      executer: (t, e) => {
+        const h = t.partie.groupe.find((x) => x.id === e.personnage);
+        if (!h) return { refus: 'Aucun héros de ce nom.' };
+        if (!t.ctx.srd) return { refus: 'Les règles ne sont pas chargées.' };
+        const r = verifierPreparation(h, { prepares: e.prepares, mineurs: e.mineurs }, t.ctx.srd);
+        if (!r.ok) return { refus: r.erreur };
+        h.choix = r.choix;
+        h.fiche = { ...h.fiche, sortsPrepares: r.sortsPrepares, sortsMineurs: r.sortsMineurs };
+        if (r.reste) h.preparation = r.reste;
+        else delete h.preparation;
+        const nom = (id: string) => t.ctx.srd?.sorts.get(id)?.nom ?? id;
+        const liste = (ids: string[]) => ids.map(nom).join(', ');
+        const phrases = [
+          r.ajoutes.prepares.length || r.retires.prepares.length ? `sorts préparés : ${[r.retires.prepares.length ? `− ${liste(r.retires.prepares)}` : '', r.ajoutes.prepares.length ? `+ ${liste(r.ajoutes.prepares)}` : ''].filter(Boolean).join(', ')} (${h.fiche.sortsPrepares.length} / ${h.fiche.incantation?.sortsPrepares ?? h.fiche.sortsPrepares.length})` : '',
+          r.ajoutes.mineurs.length || r.retires.mineurs.length ? `sorts mineurs : ${[r.retires.mineurs.length ? `− ${liste(r.retires.mineurs)}` : '', r.ajoutes.mineurs.length ? `+ ${liste(r.ajoutes.mineurs)}` : ''].filter(Boolean).join(', ')}` : '',
+        ].filter(Boolean);
+        t.emettre({ type: 'constat', texte: `${h.nom} change ses sorts — ${phrases.join(' ; ')}.` });
+      },
+      propositions: (_ctx, p): Proposition[] =>
+        p.scene.type !== 'exploration'
+          ? []
+          : preparateurs(p).map((a) => ({
+              groupe: PANNEAU_PREPARATION,
+              element: { id: `${a.id}:preparer`, titre: `${a.nom} — ${descriptionDroits(a.preparation)} à changer` },
+              icone: 'base:revoir',
+              libelle: 'Préparer ses sorts',
+              aide: `Choisir ses sorts préparés (${a.fiche.sortsPrepares.length} / ${a.fiche.incantation?.sortsPrepares ?? 0}).`,
+              ordre: { type: 'changerSortsPrepares', personnage: a.id },
+              intention: 'preparer' as const,
+            })),
+    }),
     imposerLesMains: commande({
       description: "Imposition des mains (paladin) : puiser dans sa réserve pour rendre des PV à un héros (le plus blessé par défaut), hors combat.",
       entree: z.object({ paladin: z.string(), cible: z.string().optional() }),
@@ -130,6 +172,12 @@ export const moduleGrimoire: Module = {
         ordre: n,
         texte: `DD des sorts ${a.fiche.incantation!.ddSauvegarde}, attaque +${a.fiche.incantation!.bonusAttaque}.`,
         lignes: [
+          // La « place en mémoire » : combien de sorts préparés sur combien permis, et quand les changer.
+          ...(a.fiche.incantation!.sortsPrepares > 0
+            ? [
+                { libelle: 'Sorts préparés', valeur: `${a.fiche.sortsPrepares.length} / ${a.fiche.incantation!.sortsPrepares}`, detail: a.preparation && descriptionDroits(a.preparation) ? `Peut changer : ${descriptionDroits(a.preparation)}.` : a.choix && prochainChangement(a) ? `Changement possible : ${prochainChangement(a)}.` : undefined, ton: a.preparation ? ('succes' as const) : undefined },
+              ]
+            : []),
           ...a.emplacements.map((v, i) => ({ libelle: `Emplacements de niveau ${i + 1}`, valeur: `${v} / ${a.fiche.incantation!.niveauEmplacementPacte ? v : (max[i] ?? v)}`, ton: v ? ('fort' as const) : ('faible' as const) })).filter((_, i) => (max[i] ?? 0) > 0 || a.fiche.incantation!.niveauEmplacementPacte),
           ...sorts.map((s) => ({ libelle: s.nom, valeur: s.niveau ? `niveau ${s.niveau}` : 'mineur', detail: s.resume, ton: s.soins ? ('succes' as const) : undefined, fiche: ficheDeSort(s), sort: s.id })),
         ],

@@ -27,6 +27,7 @@ export * from './creation/recommandations';
 export * from './creation/groupe';
 export * from './creation/kit';
 export * from './creation/progression';
+export * from './creation/preparation';
 export * from './monde/schemas';
 export * from './monde/salutations-communes';
 export * from './monde/presentation';

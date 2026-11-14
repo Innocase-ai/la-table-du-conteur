@@ -169,8 +169,8 @@ export interface Proposition {
   apercu?: string;
   /** La commande à envoyer au moteur. */
   ordre?: Ordre;
-  /** Action prise en charge par le client lui-même (ouvrir l'écran de combat). */
-  intention?: 'combattre';
+  /** Action prise en charge par le client lui-même : ouvrir l'écran de combat, ou l'écran de préparation des sorts (le héros est dans `ordre.personnage`). */
+  intention?: 'combattre' | 'preparer';
   /** La commande attend un texte du joueur, placé dans ce champ de l'ordre. */
   saisie?: { champ: string; indication: string };
   /** La commande attend une réponse structurée (des éléments dans l'ordre, des nombres, des leviers, un placement), placée dans le champ `champ` de l'ordre. */

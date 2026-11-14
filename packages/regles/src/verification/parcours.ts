@@ -215,6 +215,8 @@ function actionsDe(moteur: Moteur, p: Partie): Action[] {
       ajouter({ type: 'reglerRencontre', issue: 'victoire', px }, prop.libelle);
       continue;
     }
+    // Préparer ses sorts se joue dans l'écran du client : le joueur automatique ne s'en occupe pas.
+    if (prop.intention === 'preparer') continue;
     const base = prop.ordre;
     if (!base || BRUIT.has(base.type)) continue;
     if (base.type === 'seReposer' && base.duree === 'court') continue;

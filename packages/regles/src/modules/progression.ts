@@ -4,6 +4,7 @@
 import { etatDurableMax } from '../combat/creation';
 import { niveauPourPx } from '../caracteristiques';
 import { ChoixPersonnageSchema } from '../creation/groupe';
+import { accorderApresNiveau } from '../creation/preparation';
 import { choixDeMontee, monterAuNiveau, reviserChoixDeMontee } from '../creation/progression';
 import { NIVEAU_MAX } from '../fiche';
 import { z } from 'zod';
@@ -91,6 +92,9 @@ function monterSiBesoin(t: TransactionProgression): void {
           h.emplacements = apres.emplacements.map((m, i) => (h.emplacements[i] ?? 0) + Math.max(0, m - (avant.emplacements[i] ?? 0)));
           appliquerEquipement(t.ctx, h);
           t.emettre({ type: 'constat', texte: `${h.nom} passe au niveau ${niveau} : ${h.fiche.pvMax} PV, CA ${h.fiche.ca}.` });
+          // Barde, Ensorceleur, Occultiste (et les mineurs des lanceurs de sorts complets) : un niveau gagné permet de remplacer un sort.
+          const preparation = accorderApresNiveau(h);
+          if (preparation) t.emettre({ type: 'constat', texte: `${preparation}.` });
         }
         // Des choix nouveaux à ce niveau (amélioration, sorts, options, expertises) : le joueur pourra les revoir (seulement s'il
         // vient de monter : un héros déjà à jour ne se voit pas redemander ses choix quand un autre rattrape son retard).

@@ -34,7 +34,7 @@ Principe du projet : **le LLM propose, le moteur décide.** Le conteur raconte e
 ## Règles à garder
 
 - **La liste des outils est la même à chaque tour** (c'est elle, avec le préfixe, qui est mise en cache : ≈ 0,01 $ le million de tokens relus au lieu de 0,10 $). Ne la filtre pas par scène : le moteur refuse ce qui est impossible, avec la raison.
-- Une commande ajoutée au jeu devient un outil du conteur **automatiquement** : décris-la pour un modèle ; sinon `COMMANDES_HORS_CONTEUR`.
+- Une commande ajoutée au jeu devient un outil du conteur **automatiquement** : décris-la pour un modèle ; sinon `COMMANDES_HORS_CONTEUR` (les choix du joueur faits dans un écran, comme `reviserMontee` et `changerSortsPrepares`, y sont : le conteur raconte le repos, il ne choisit pas la liste de sorts).
 - Une panne du service avant tout outil ne change rien (le joueur réécrit) ; après un outil, on garde ce que les règles ont appliqué.
 - **Coût** : mesure-le (`usage.cout` de chaque tour). Haiku 5.5 ≈ 0,0015 $ par tour ; si un changement le double, cherche pourquoi (outils en plus, fiche de tour trop longue, cache cassé : `cache` à 0 dans le compte rendu du tour).
 - **Longueur de sortie** : `max_tokens` vaut 1200 (client et défaut du relais, plafond 1500). À 700, Haiku 5.5 coupait ses récits ou revenait vide ; si « produits » vaut exactement la limite dans un compte rendu, la réponse est tronquée.

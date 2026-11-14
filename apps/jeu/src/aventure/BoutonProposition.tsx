@@ -1,13 +1,14 @@
 // Le bouton d'une proposition des modules : un clic envoie l'ordre au moteur. Il sait aussi demander un texte (`saisie`),
 // proposer un choix parmi des options (`choix`, avec les portraits quand ce sont des héros) et demander une
 // confirmation pour ce qui ne se défait pas (`confirmer`). Aucune commande n'est connue ici.
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import type { Ordre, Personnage, Proposition } from '@crpg/regles';
 import { NOMS_COMPETENCES } from '../createur/libelles';
 import { Portrait } from '../createur/ui';
 import { Pictogramme } from '../composants/Pictogramme';
 import { FormulaireReponse } from './FormulaireReponse';
 import { useImageElement } from './GrilleElements';
+import { ContextePreparation } from './preparation-contexte';
 
 interface Props {
   p: Proposition;
@@ -24,6 +25,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
   const [ouvert, setOuvert] = useState(false);
   const [aConfirmer, setAConfirmer] = useState(false);
   const vignette = useImageElement(monde, p.image);
+  const preparer = useContext(ContextePreparation);
 
   // Une confirmation demandée se perd si on n'y répond pas.
   useEffect(() => {
@@ -109,6 +111,7 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
         if (p.confirmer && !aConfirmer) return setAConfirmer(true);
         setAConfirmer(false);
         if (p.intention === 'combattre') onCombat();
+        else if (p.intention === 'preparer') preparer(String(p.ordre?.personnage ?? ''));
         else if (p.ordre) jouer(p.ordre);
       }}
     >
