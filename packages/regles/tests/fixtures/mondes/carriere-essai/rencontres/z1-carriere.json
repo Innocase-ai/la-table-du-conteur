@@ -1,0 +1,49 @@
+[
+  {
+    "id": "ald-r-demi-dent-et-sa-bande",
+    "nom": "Demi-Dent et sa bande au poste de commandement",
+    "type": "combat",
+    "lieu": "ald-carriere-huttes-et-poste-de-commandement",
+    "difficulte": "moderee",
+    "intro": "Le fond de la cuvette se resserre entre les fascines, et les premières flèches sifflent avant même que vous voyiez les archers. Deux gobelins tirent par-dessus le barrage de toile, depuis la palissade de fascines de l'ouest. Une fois le passage franchi, un molosse à la truffe basse aboie au bord de la mare et se rue sur le premier qui s'approche de la glaise. Au pied de la falaise, le camp se réveille : Demi-Dent, chef gobelin au casque de milicien cabossé, sort de la plus grande hutte son cimeterre à la main, et les archers restants s'éparpillent derrière les fascines du réduit.",
+    "monstres": [
+      {
+        "profil": "chef-gobelin",
+        "nombre": 1,
+        "nom": "Demi-Dent",
+        "description": "Chef gobelin au casque de milicien cabossé et à la cotte rapiécée de fil barbelé. Il se bat au cimeterre ou à l'arc court, et tient la plus grande hutte comme un poste de commandement."
+      },
+      {
+        "profil": "molosse",
+        "nombre": 1,
+        "nom": "Bave-de-Loup",
+        "description": "Molosse de la carrière, qui garde la rive sud de la mare et aboie à l'intrus. Sa morsure fait tomber ceux qu'elle atteint."
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 4,
+        "description": "Archers gobelins : deux tirent derrière le barrage de fascines de l'ouest, deux autres tiennent la palissade du réduit, au nord et à l'est."
+      }
+    ],
+    "tactique": {
+      "doctrine": "Les archers du barrage tirent d'abord sur les groupes qui traversent les fosses ; le molosse charge le premier qui atteint la mare ; Demi-Dent reste à couvert derrière sa hutte et frappe ceux qui montent vers le réduit.",
+      "fuite": "Les archers se replient vers la falaise dès que le chef tombe. Demi-Dent, réduit à 5 PV ou moins, jette son arme et se rend : c'est la rencontre de la reddition."
+    },
+    "alternatives": [],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "ald-t-coffre-de-demi-dent"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "z1-demi-dent-vaincu"
+      },
+      {
+        "narration": "Le camp se tait. Demi-Dent s'effondre à genoux dans la glaise, son cimeterre brisé à côté de lui, et le feu de branchages s'éteint sous la pluie. Il lève les yeux : il vous reste à décider de son sort."
+      }
+    ]
+  }
+]

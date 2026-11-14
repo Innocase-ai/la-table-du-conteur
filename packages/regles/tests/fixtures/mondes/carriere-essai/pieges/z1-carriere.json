@@ -1,0 +1,34 @@
+[
+  {
+    "id": "ald-p-fosses-a-pieux",
+    "nom": "Les fosses à pieux du barrage",
+    "lieu": "ald-carriere-perimetre-piege",
+    "resume": "Deux fosses de quatre mètres, camouflées sous des toiles de jute saupoudrées d'argile, garnies de pieux de chêne noircis au feu, côte à côte au centre du passage, au pied des gradins.",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "athletisme"
+    },
+    "declenchement": "Le sol de toile cède sous votre poids : vous basculez dans une fosse de trois mètres, et les pieux noircis du fond vous attendent à travers la glaise humide.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 13,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "perforant"
+      }
+    ],
+    "etats": [
+      "a-terre"
+    ],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": true
+  }
+]

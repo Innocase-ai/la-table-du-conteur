@@ -1,0 +1,49 @@
+[
+  {
+    "id": "camp-carriere",
+    "nom": "Le camp",
+    "resume": "Vigilance du camp de la carrière : monte quand le groupe se fait voir ou entendre, retombe avec le temps.",
+    "min": 0,
+    "max": 3,
+    "initial": 0,
+    "paliers": [
+      {
+        "seuil": 2,
+        "nom": "Le camp se tient prêt",
+        "narration": "Un sifflet bref, puis plus rien : les archers ont quitté les palissades et se sont mis à couvert, l’arc encoché.",
+        "effets": [
+          {
+            "flag": "z1-carriere-en-alerte"
+          }
+        ],
+        "sens": "monte"
+      },
+      {
+        "seuil": 3,
+        "nom": "Le camp vous tombe dessus",
+        "narration": "Deux notes sifflées, et le fond de la cuvette s’anime : les gobelins sortent de partout, et ce n’est plus au groupe de choisir le moment.",
+        "effets": [
+          {
+            "flag": "z1-carriere-embuscade"
+          },
+          {
+            "rencontre": "ald-r-demi-dent-et-sa-bande"
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": -3
+            }
+          }
+        ],
+        "sens": "monte"
+      }
+    ],
+    "evolution": [
+      {
+        "declencheur": "jour",
+        "delta": -1
+      }
+    ]
+  }
+]

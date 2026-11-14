@@ -1,0 +1,299 @@
+[
+  {
+    "id": "guetter-depuis-le-rebord",
+    "titre": "La cuvette, depuis le rebord",
+    "lieu": "ald-carriere-gradins-d-argile",
+    "ouverture": "bouton",
+    "narration": "Une fumée grise, des voix basses et une trace de sabot sur la première terrasse : quelque chose s'organise au fond de la cuvette, et il faut le voir avant d'y descendre.",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "plat-ventre",
+        "libelle": "Vous coucher dans la glaise et regarder.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 10
+        },
+        "effets": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-carriere-fosses-reperees"
+          }
+        ],
+        "echec": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-carriere-fosses-reperees"
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 1
+            }
+          }
+        ],
+        "resultat": "Vous vous couchez dans la glaise, le menton contre la terre rouge. Sous les toiles de jute, les deux fosses se devinent à leur terre plus sèche et plus claire, et à des pieux noircis qui dépassent à peine. Un archer est accroupi au pied des fascines, son arc court sur les genoux. Plus bas, près de la mare, le molosse Bave-de-Loup tourne en rond sur sa rive. Vous savez enfin où poser le pied.",
+        "resultatEchec": "Vous voyez les fosses, mais une pierre roule sous votre coude et dévale la terrasse. Au-dessus des fascines, un archer lève la tête, puis se dresse à moitié, l'arc à la main. Le molosse aboie une fois. Personne ne tire encore, mais le camp sait maintenant qu'il y a quelqu'un au bord des gradins, et les archers ne quittent plus les palissades des yeux."
+      },
+      {
+        "id": "eclaireur",
+        "libelle": "« Je descends voir. Pas un bruit. »",
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "fait": "f-ald-carriere-fosses-reperees"
+          }
+        ],
+        "echec": [
+          {
+            "fait": "f-ald-carriere-fosses-reperees"
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 2
+            }
+          }
+        ],
+        "resultat": "Le rôdeur descend en rampant le long de la terrasse, sans un bruit, puis revient au bord des gradins avec de la glaise jusqu'aux coudes. Il rapporte les deux fosses, leurs toiles de jute et leurs pieux. Il a aussi relevé des empreintes de gobelins : elles ne traversent jamais le barrage par le milieu, elles contournent toujours par l'est, dans la fondrière. Il ne dit rien de plus.",
+        "resultatEchec": "Le rôdeur glisse sur la dernière terrasse, se rattrape de justesse aux talus, et la glaise lui couvre le dos. Il a vu les fosses, mais un archer, au-dessus des fascines, l'a aperçu à l'instant où il se redressait. Le gobelin crie une seule fois, d'une voix aiguë, et les huttes s'éveillent. Le rôdeur remonte vite par les gradins, sans un mot, et le camp reste sur ses gardes."
+      },
+      {
+        "id": "descendre",
+        "libelle": "Descendre sans attendre.",
+        "effets": [
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 1
+            }
+          }
+        ],
+        "resultat": "Vous dévalez les gradins sans attendre, les talons dans la glaise, et vous arrivez en bas plus vite que vous ne l'auriez voulu, couverts de rouge. Les voix, en contrebas, se taisent un instant, puis reprennent. Vous n'avez rien vu de précis, seulement la boue qui cède sous vos bottes et une fumée qui pique les yeux. Une heure est gagnée, mais vous marchez à découvert vers un fond que vous ne connaissez pas."
+      }
+    ],
+    "partir": "Repartir sans rien tenter."
+  },
+  {
+    "id": "fouiller-les-carcasses",
+    "titre": "Les chariots pillés, dans la mare",
+    "lieu": "ald-carriere-fond-de-fosse-et-mare",
+    "ouverture": "bouton",
+    "narration": "Deux carcasses de chariots à demi immergées dans la mare rousse, la bâche grise déchirée, et sur la rive sud le molosse Bave-de-Loup qui garde l'eau.",
+    "variantes": [],
+    "choix": [
+      {
+        "id": "rive-nord",
+        "libelle": "Longer la rive nord, sans bruit.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-carriere-caisses-cirees"
+          }
+        ],
+        "echec": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-carriere-caisses-cirees"
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 2
+            }
+          }
+        ],
+        "resultat": "Vous longez la rive nord, l'eau rousse aux chevilles, et vous fouillez les carcasses. Sous les ridelles brisées, des caisses vides, bouchées à la cire, portent un lion gravé : le sceau de la Compagnie du Lion d'Acier. Le molosse dort sur sa rive, le museau sur les pattes. Vous ne prenez rien, mais vous savez maintenant à qui appartiennent ces caisses.",
+        "resultatEchec": "Une planche pourrie claque sous votre botte. Bave-de-Loup se lève d'un bond, aboie à s'en briser la gorge, et la mare éclabousse vos jambes. Vous avez eu le temps de voir les caisses, mais il faut repartir vite : les archers du camp ont entendu l'aboi, et des voix gutturales se mettent à s'appeler dans le camp. Vous remontez par la rive, sans regarder en arrière."
+      },
+      {
+        "id": "vivres",
+        "libelle": "Jeter des vivres au molosse.",
+        "requis": {
+          "objet": "rations"
+        },
+        "requisTexte": "Il vous faut une ration.",
+        "effets": [
+          {
+            "temps": 1
+          },
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "fait": "f-ald-carriere-caisses-cirees"
+          },
+          {
+            "flag": "z1-molosse-apaise"
+          }
+        ],
+        "resultat": "Vous déchirez la ration et la jetez sur la rive, loin de l'eau. Le molosse renifle, hésite, puis avale la nourriture d'un coup et se couche dessus, la queue battant la boue. Vous fouillez tranquillement les carcasses pendant qu'il mâchonne. Il restera apaisé, mais il se souviendra qu'on l'a nourri, et que la main qui l'a fait était la vôtre."
+      },
+      {
+        "id": "druide",
+        "libelle": "« Il a faim, il n'a pas peur. Laissez-moi faire. »",
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "effets": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-carriere-caisses-cirees"
+          },
+          {
+            "flag": "z1-molosse-apaise"
+          }
+        ],
+        "resultat": "Le druide avance à découvert, les mains basses, et parle à voix douce à la bête. Le molosse grogne, puis se rassoit, la queue dans la boue. La bête vous laisse passer, et le druide s'agenouille près de lui pour le caresser. Ses flancs sont maigres, ses côtes se voient sous le poil trempé : la bande ne le nourrit pas assez. Vous fouillez les carcasses, pendant que la bête suit le druide des yeux."
+      }
+    ],
+    "partir": "Repartir sans rien tenter."
+  },
+  {
+    "id": "ecouter-la-hutte-du-chef",
+    "titre": "La hutte de Demi-Dent",
+    "lieu": "ald-carriere-portillon-du-reduit",
+    "ouverture": "bouton",
+    "narration": "La plus grande hutte, son poteau planté de travers devant la porte, et la voix de Demi-Dent qui compte à voix haute derrière l'écorce.",
+    "variantes": [
+      {
+        "condition": {
+          "jauge": {
+            "id": "camp-carriere",
+            "min": 2
+          }
+        },
+        "narration": "La plus grande hutte, son poteau planté de travers, et plus aucun archer sur la palissade : ils sont accroupis derrière les fascines, l’arc encoché. Derrière l’écorce, la voix de Demi-Dent ne compte plus à voix haute. Elle donne des ordres, tout bas."
+      }
+    ],
+    "choix": [
+      {
+        "id": "ombre",
+        "libelle": "Vous glisser contre la paroi, sous le surplomb.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "temps": 1
+          },
+          {
+            "fait": "f-ald-demi-dent-recoit-ses-ordres-par-ecrit"
+          }
+        ],
+        "echec": [
+          {
+            "temps": 1
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 2
+            }
+          }
+        ],
+        "resultat": "À travers l'écorce, vous l'entendez parler seul, la voix grasse et contrariée. Il compte, recompte, et grogne contre « le papier » qui donne une date, un chemin, un nombre de chariots. Il parle aussi du coffre, au fond de la hutte, qu'il garde comme la prunelle de ses yeux. Vous retenez les mots sans savoir encore ce qu'ils valent, puis vous reculez avant qu'il ne lève les yeux.",
+        "resultatEchec": "Votre pied glisse sur l'écorce mouillée et une bâche claque contre la hutte. Un archer crie quelque part derrière les fascines. Derrière l'écorce, la voix de Demi-Dent se tait net. Vous attendez, immobile, le souffle court, mais il ne reparle plus, et des pas lourds se rapprochent de la palissade. Vous n'avez rien entendu d'utile, et le camp est en éveil : il faut vous éloigner sans courir."
+      },
+      {
+        "id": "soir",
+        "libelle": "Attendre l'heure où il compte ses pièces.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "temps": 6
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": -1
+            }
+          },
+          {
+            "fait": "f-ald-demi-dent-recoit-ses-ordres-par-ecrit"
+          }
+        ],
+        "echec": [
+          {
+            "temps": 6
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": -1
+            }
+          },
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 1
+            }
+          }
+        ],
+        "resultat": "Vous attendez la nuit. Au soir, Demi-Dent est assis sur une caisse retournée devant sa hutte, et compte ses pièces par tas de cinq. Il mord la dernière, la fait sonner contre la pierre, et recommence parce que le son ne lui plaît pas. Il parle fort, tout seul, distrait, et glisse ce qu'il pense du papier et du coffre. Vous avez le temps d'écouter, et les heures passent.",
+        "resultatEchec": "Même au milieu de ses pièces, il lève la tête. Un chiffon mal calé, une pierre sous votre talon : le bruit suffit. Il se lève, la main sur le cimeterre, et lance deux notes sifflées entre ses dents. Les archers se dressent sur les palissades, et les huttes s'éveillent une à une. Demi-Dent appelle ses gars, et pour la première fois, il ne compte plus rien."
+      },
+      {
+        "id": "faux-papier",
+        "libelle": "Vous présenter au portillon avec un faux papier.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "effets": [
+          {
+            "flag": "z1-demi-dent-parle-sans-combat"
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "camp-carriere",
+              "delta": 3
+            }
+          }
+        ],
+        "resultat": "Vous tendez un papier gribouillé, avec une date, un chemin et un nombre de chariots tracés au charbon. Demi-Dent le lit lentement, les lèvres bougeant, et se gratte l'oreille déchirée plus fort qu'à l'ordinaire. Il vous observe, méfiant, puis hausse les épaules et ouvre le portillon. Par curiosité autant que par peur de son commanditaire, il veut savoir ce que vous avez à dire.",
+        "resultatEchec": "Demi-Dent lit le papier, puis le lit une seconde fois, les lèvres serrées. Il sait lire les chiffres, et celui-ci ne tient pas debout. Il le jette dans le feu, qui crépite, et siffle entre ses dents, deux notes courtes. Les archers se lèvent derrière les palissades, les arcs tendus. Vous n'avez plus de papier à montrer, et le camp vous regarde déjà."
+      }
+    ],
+    "partir": "Repartir sans rien tenter.",
+    "quand": {
+      "non": {
+        "flag": "z1-demi-dent-vaincu"
+      }
+    }
+  }
+]

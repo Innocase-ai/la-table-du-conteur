@@ -1,0 +1,251 @@
+[
+  {
+    "id": "ald-carriere-d-argile",
+    "nom": "La Carrière d'Argile Rouge",
+    "type": "camp",
+    "resume": "une cuvette d'argile rouge, à gradins, où un campement de huttes s'abrite sous une falaise.",
+    "description": "La Carrière d'Argile Rouge est une excavation de quatre-vingts mètres de large, creusée jusqu'à douze mètres sous la plaine. On y descend par les quatre terrasses du nord. Au pied des gradins, le passage entre la palissade de l'ouest et la fondrière de l'est, long de dix mètres, est barré par deux fosses camouflées sous des toiles de jute, côte à côte : quatre mètres de large, trois de profondeur, des pieux au fond. À l'ouest, une palissade de fascines ; à l'est, une fondrière de boue profonde, terrain difficile, permet de contourner le barrage. Au centre-est, une mare de rouille, profonde de soixante centimètres, s'étale sur une dizaine de mètres, avec deux carcasses de chariots à demi immergées. Le molosse Bave-de-Loup garde sa rive. À l'est, la rampe de charrois sort de la cuvette vers le Vieux Pont. Au pied de la falaise sud, à l'ouest, sept huttes d'écorce et de bâches usées forment le camp. Demi-Dent, chef gobelin (21 PV, CA 17, FP 1), se tient dans la plus grande hutte ; son profil lui donne un cimeterre (1d6 + 2 tranchant) et un arc court (1d6 + 2 perforant, 24/96 m). Quatre archers gobelins (10 PV, CA 15, FP 1/4) tirent derrière les fascines. Quand Demi-Dent tombe à 5 PV ou moins, il jette son arme et se rend : le groupe peut l'épargner ou l'exécuter. Une issue sans violence existe : négocier, intimider, accepter la reddition, ou contourner les fosses par la fondrière de l'est.",
+    "ambiance": "Glaise rouge, fumée de branchages, pluie.",
+    "arrivee": "La piste de boue monte entre deux talus, puis le sol se dérobe d'un coup : vous voici au bord d'une cuvette d'argile rouge, large d'environ quatre-vingts mètres, qui descend en terrasses vers un fond plat. La glaise est écarlate, lisse et luisante sous le crachin, creusée de rigoles où l'eau coule en filets sombres. Au loin, au sud, une fumée de branchages monte au-dessus de petits toits de huttes, au pied d'une falaise d'argile haute de douze mètres, avec une lueur orange sous le surplomb. Au centre-est du fond, une mare plate et rouillée reflète le ciel gris, plus sombre que la terre. Une odeur d'argile mouillée, de fumée âcre et de graisse rance vous atteint. Des voix basses, étouffées par la pluie, montent du bas. Le vent ne descend pas jusqu'ici, et la pluie tombe droit dans la cuvette.",
+    "visuel": "Une cuvette d'argile rouge, large de quatre-vingts mètres, s'enfonce dans la plaine en quatre terrasses de glaise qui descendent du nord. Au centre-est du fond, une mare plate et rouillée reflète le ciel gris ; au sud, une falaise d'argile haute de douze mètres surplombe un campement de huttes d'écorce coiffées de bâches grises. Une lueur orange de feu de branchages brille sous le surplomb, sous un ciel bas et un crachin continu.",
+    "accroche": "Au sud-ouest de la plaine, une excavation d'argile rouge s'ouvre entre des gradins de glaise ; au pied d'une falaise, un campement de huttes fume sous un surplomb.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-gradins-d-argile",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le rebord nord, d’où les gradins de glaise descendent vers la cuvette.",
+        "retour": "Les gradins remontent vers le rebord de la carrière."
+      }
+    ],
+    "repos": "impossible"
+  },
+  {
+    "id": "ald-carriere-gradins-d-argile",
+    "nom": "Gradins d'argile et accès supérieur",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "des gradins de glaise rouge qui descendent du rebord vers une cuvette, glissants après la pluie.",
+    "description": "Le rebord nord est l'accès principal de la carrière : la piste de boue du carrefour y débouche à l'extrémité nord-est, et quatre terrasses de glaise descendent de douze mètres vers le fond. Chaque terrasse fait environ trois mètres de haut et six de large, avec un talus lisse. Après la pluie, la glaise est un toboggan : descendre sans glisser demande un jet de Dextérité (Acrobaties) DD 11 ; un échec fait glisser sur une trentaine de mètres, jusqu'au pied, dans la boue, avec 1d4 de dégâts contondants. C'est du terrain, pas un piège. Le bas des gradins est à une trentaine de mètres du rebord. Au pied, le barrage du fond (toiles de jute, fosses, voir 5B) ne se remarque guère de haut : il se voit mieux en descendant.",
+    "ambiance": "Glaise rouge, marches glissantes, pluie.",
+    "arrivee": "Le chemin de boue débouche sur le rebord, et la cuvette s'ouvre devant vous d'un seul coup : quatre marches de glaise rouge descendent vers le sud-ouest, chacune large de six mètres, avec un talus lisse et craquelé au bord. La pluie trace des rigoles dans la terre, et la boue luit sous vos semelles. À votre droite, le rebord file vers le nord-ouest, nu et plat. Au loin, au sud, une fumée de branchages monte au-dessus de petits toits de huttes, au pied de la falaise, avec une lueur orange sous le surplomb ; plus près, au centre-est du fond, une mare rousse luit sous le crachin. Une odeur d'argile mouillée monte des terrasses, et des voix basses, étouffées par la pluie, viennent du bas. Une trace de sabot à demi effacée marque la première terrasse, où la glaise a cédé. La lumière grise tombe du ciel sur les gradins, mais le fond n'en reçoit qu'une part.",
+    "visuel": "Quatre terrasses de glaise rouge, larges de six mètres, descendent du rebord nord vers le fond de la cuvette ; une piste de boue débouche sur le rebord, à son extrémité nord-est. Les talus sont lisses et craquelés, et la pluie y trace des rigoles sombres. Au loin, au sud, une fumée et une lueur orange montent du pied de la falaise, où les toits des huttes se devinent, petits.",
+    "accroche": "Sur le rebord de la plaine, quatre terrasses de glaise rouge descendent vers une cuvette, glissantes sous la pluie, où un feu fume au pied d'une falaise.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Les terrasses descendent vers le sud-ouest, marche après marche, jusqu'au pied de la glaise, à une trentaine de mètres.",
+        "retour": "Depuis le pied des gradins, le rebord se devine au nord-est, à une trentaine de mètres, au bout des terrasses de glaise rouge."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 60,
+      "y": 13
+    }
+  },
+  {
+    "id": "ald-carriere-perimetre-piege",
+    "nom": "Périmètre piégé",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "un fond de glaise couvert de toiles de jute, au pied des gradins, bordé de fascines à l'ouest et de boue à l'est.",
+    "description": "Au pied des gradins, le passage entre la palissade de fascines de l'ouest et la fondrière de l'est, long de dix mètres, est barré. Deux fosses camouflées sous des toiles de jute saupoudrées d'argile sèche occupent tout ce passage, côte à côte et séparées de deux mètres : chacune mesure quatre mètres de large et trois de profondeur, et garde quatre pieux de chêne noircis au feu. Pour les repérer, il faut une Perception passive DD 13, ou une Investigation DD 11 qui fouille la terre. Une chute inflige 2d6 dégâts perforants ; un jet de Dextérité DD 13 permet de se rattraper au bord. À l'ouest, une palissade de fascines ferme le fond jusqu'à la paroi ; à l'est, une fondrière de boue profonde, longue d'une vingtaine de mètres, est un terrain difficile : chaque pas coûte le double, et un jet de Dextérité DD 11 évite de s'enliser. Le seul contournement passe donc par la fondrière. Deux archers gobelins (combattant-gobelin, 10 PV, CA 15, FP 1/4) tirent depuis derrière la palissade de l'ouest : leur cimeterre frappe à 1,50 m (1d6 + 2 tranchant), leur arc court à 24/96 m (1d6 + 2 perforant), et chacun peut se replier par une Fuite agile.",
+    "ambiance": "Toile de jute, fascines, glaise sèche.",
+    "arrivee": "Les derniers pas de la pente vous posent sur une glaise un peu plus ferme, qui sonne sous le talon ; la descente vous a fait glisser, et vos bottes sont lourdes de rouge. Devant vous, le passage se couvre de toiles de jute étalées à sécher sur la terre, saupoudrées d'argile. Une palissade de fascines ferme le fond à l'ouest, et ses branchages tressés sentent la sève coupée ; elle est verte par endroits, brune ailleurs. À l'est, sous le pied des gradins, une bande de boue plus sombre s'étire, lisse et luisante. Une odeur de fumée et de terre remuée vous parvient du sud. La lumière grise du ciel n'atteint ce bas-fond qu'en partie, et le crachin mouille les toiles. Un bruit de bois qui craque retentit quelque part, puis retombe. Rien ne bouge entre les branchages.",
+    "visuel": "Au pied des gradins, des toiles de jute saupoudrées d'argile sèche sont étalées sur la glaise, sur les dix mètres du passage. À l'ouest, une palissade de fascines, haute d'environ un mètre et demi, ferme le fond ; à l'est, une bande de boue sombre s'étire sous les gradins. La lumière grise du ciel n'éclaire ce bas-fond qu'en partie.",
+    "accroche": "Au pied des gradins, le fond se couvre de toiles de jute étalées à sécher, bordé à l'ouest de fascines et à l'est d'une bande de boue.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-gradins-d-argile",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Les terrasses de glaise remontent vers le nord-est, marche après marche, jusqu'au rebord, à une trentaine de mètres.",
+        "retour": "Depuis le rebord, le pied des gradins se devine au sud-ouest, à une trentaine de mètres, où la glaise s'étale en plaques pâles."
+      },
+      {
+        "vers": "ald-carriere-fond-de-fosse-et-mare",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au sud-est, la glaise du fond s'étend vers la mare, à une vingtaine de mètres, le long de la bande de boue.",
+        "retour": "Depuis la mare, le pied des gradins se devine au nord-ouest, à une vingtaine de mètres, au bout d'une glaise battue."
+      },
+      {
+        "vers": "ald-carriere-huttes-et-poste-de-commandement",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le sud-ouest, le fond descend vers le camp, à quarante-cinq mètres, le long de la palissade de l'ouest.",
+        "retour": "Depuis le camp, le fond remonte vers le nord-est, à quarante-cinq mètres, jusqu'à la bande de toiles de jute."
+      },
+      {
+        "vers": "ald-carriere-portillon-du-reduit",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le long de la palissade, un portillon de fascines ferme le réduit.",
+        "retour": "Le passage remonte vers la bande de toiles de jute."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 71,
+      "y": 30
+    }
+  },
+  {
+    "id": "ald-carriere-fond-de-fosse-et-mare",
+    "nom": "Fond de fosse et mare",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "une mare rouillée au centre-est d'une cuvette, bordée au nord de carcasses de chariots, avec une rampe qui remonte vers l'est.",
+    "description": "Le fond de la cuvette est une glaise battue, humide, où la mare de rouille occupe le centre-est : soixante centimètres de profondeur au plus, sur une dizaine de mètres par douze. L'eau est rousse et brune, piquetée par la pluie ; deux carcasses de chariots pillés y sont à demi immergées, roues sans jantes et ridelles brisées, et une bâche grise déchirée flotte près d'elles. Le molosse Bave-de-Loup (5 PV, CA 12, FP 1/8) garde la rive sud : sa morsure fait 1d6 + 1 perforant (+3 pour toucher), et une cible de taille M ou moins tombe à terre. Il aboie et charge le premier qui traverse le fond, et le camp l'entend. Le contourner en longeant la rive nord demande un jet de Discrétion DD 12. À l'est, la rampe de charrois, raide et creusée d'ornières, remonte d'une douzaine de mètres vers le rebord ; de là, un sentier de boue longe la berge sud de la Noire-Eau jusqu'au Vieux Pont, à une heure de marche. Une roue couchée sur la rive nord porte un fer à cheval cloué à son moyeu : le fer se fend au moindre choc, comme les armes du groupe dans cette zone.",
+    "ambiance": "Rouille, eau stagnante, bois pourri.",
+    "arrivee": "Le fond de la cuvette est plus humide, et la glaise rouge se change en boue à chaque pas. Au centre-est, une mare s'étale sur une dizaine de mètres, couleur de vieille rouille, piquetée de gouttes de pluie qui brisent le reflet du ciel gris. Au nord de la mare, deux carcasses de chariots s'enfoncent à demi dans l'eau : roues sans jantes, ridelles cassées, et une bâche grise déchirée qui flotte près d'elles. Une roue couchée sur la berge porte un fer à cheval cloué à son moyeu, et le fer, au bord, est fendu. L'odeur est âcre : rouille, eau morte, bois pourri, argile mouillée par-dessus. Trois ornières, creusées jusqu'à la roche, traversent la glaise vers l'est. Un clapotis léger sur les bords, puis plus rien. La lumière grise vient du ciel et se réfléchit sur l'eau, plus claire que la boue. Plus loin, vers l'ouest-sud-ouest, des braises de feu de branchages luisent sous la falaise, et tout reste silencieux au bord de la mare.",
+    "visuel": "Une mare plate, rousse et brune, s'étend au centre-est de la cuvette, sur une dizaine de mètres, sous un ciel gris qui s'y reflète. Sur sa rive nord, deux carcasses de chariots s'enfoncent à demi, roues sans jantes et ridelles brisées ; une bâche grise déchirée flotte près d'elles. À l'est, une rampe de charrois raide remonte vers le rebord, creusée de traces de roues.",
+    "accroche": "Au centre-est de la cuvette, une mare rouillée s'étale, bordée au nord de carcasses de chariots, et une rampe monte vers l'est.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le nord-ouest, la glaise du fond remonte vers les toiles de jute, à une vingtaine de mètres, le long de la bande de boue.",
+        "retour": "Depuis les toiles de jute, la mare rousse se devine au sud-est, à une vingtaine de mètres, au bout de la glaise battue."
+      },
+      {
+        "vers": "ald-carriere-huttes-et-poste-de-commandement",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers l'ouest-sud-ouest, la glaise battue traverse le fond jusqu'au camp, à quarante-deux mètres.",
+        "retour": "Depuis le camp, la mare rousse s'étale à l'est-nord-est, à quarante-deux mètres, au bout d'une glaise battue."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 29,
+      "y": 70
+    }
+  },
+  {
+    "id": "ald-carriere-huttes-et-poste-de-commandement",
+    "nom": "Huttes et poste de commandement",
+    "type": "salle",
+    "parent": "ald-carriere-d-argile",
+    "resume": "un campement de huttes d'écorce serrées sous une falaise, autour d'un feu de branchages.",
+    "description": "Le réduit occupe le pied de la falaise sud, dans son angle ouest : sept huttes d'écorce, une palissade de fascines au nord et à l'est, un feu de branchages au centre. La plus grande hutte est le poste de commandement de Demi-Dent, chef gobelin (21 PV, CA 17, FP 1). Il se bat au cimeterre ou à l'arc court, deux attaques par tour. Deux archers gobelins (10 PV, CA 15, FP 1/4) tiennent la palissade, au nord et à l'est ; deux autres tirent depuis le barrage de 5B. Quand Demi-Dent tombe à 5 PV ou moins, il jette son arme et se rend : c'est un dilemme de zone, l'épargner ou l'exécuter. Au fond de la plus grande hutte se trouve un coffre au contenu précieux, qui ne s'ouvre pas tant que le chef et ses gardes vivent ; crochetage DD 12, ou Force DD 16, qui fait un fracas et alerte le camp. Les deux portillons, au nord-est (vers 5B) et à l'est (vers la mare, 5C), sont les seules ouvertures du réduit.",
+    "ambiance": "Fumée, écorce, bâches, graisse rance.",
+    "arrivee": "Le réduit s'ouvre au pied de la falaise, et le froid de la glaise s'adoucit : une chaleur de fumée et de bois vert monte de la terre. Sept huttes d'écorce se serrent contre la paroi, coiffées de bâches grises usées et tendues sur des branches. Au centre, un feu de branchages verts brûle sans flamme haute, et sa fumée monte droit sous le surplomb, où elle s'étale en nappe. Un peu à l'ouest, la plus grande hutte se reconnaît à son poteau de devant, planté de travers, et à une bande de boue piétinée. Une palissade de fascines, tressée de branchages et haute d'environ un mètre et demi, ferme le réduit au nord et à l'est. L'odeur de graisse rance de viande grillée est forte, mêlée à celle de l'écorce humide et de la suie. Des voix basses et des craquements de branchages montent du camp. Le surplomb couvre les huttes, et la pluie goutte à sa lisière. Rien ne bouge encore entre les huttes.",
+    "visuel": "Sept huttes d'écorce, coiffées de bâches grises usées, se serrent sous le surplomb d'une falaise d'argile haute de douze mètres, au sud-ouest de la cuvette. Un feu de branchages verts brûle au centre du réduit, et une palissade de fascines le ferme au nord et à l'est. La fumée du feu monte droit sous la falaise, là où le surplomb la retient.",
+    "accroche": "Sous le surplomb d'une falaise d'argile, un campement de huttes d'écorce serrées autour d'un feu de branchages fume au pied de la glaise.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers le nord-est, le fond remonte entre les fascines, par le portillon, jusqu'à la bande de toiles de jute, à quarante-cinq mètres.",
+        "retour": "Depuis la bande de toiles, le camp se devine vers le sud-ouest, en contrebas, à quarante-cinq mètres, derrière les fascines."
+      },
+      {
+        "vers": "ald-carriere-fond-de-fosse-et-mare",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Vers l'est-nord-est, la glaise battue traverse le fond par le portillon, jusqu'à la mare rousse, à quarante-deux mètres.",
+        "retour": "Depuis la mare, les huttes se devinent à l'ouest-sud-ouest, au pied de la falaise, derrière les fascines, à quarante-deux mètres."
+      },
+      {
+        "vers": "ald-carriere-portillon-du-reduit",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le portillon de fascines donne sur le fond de la cuvette.",
+        "retour": "Le portillon s’ouvre sur le camp."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 71,
+      "y": 70
+    },
+    "rencontres": [
+      {
+        "id": "ald-r-demi-dent-et-sa-bande",
+        "declencheur": "entree",
+        "unique": true,
+        "condition": {
+          "non": {
+            "flag": "z1-demi-dent-parle-sans-combat"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ald-carriere-portillon-du-reduit",
+    "nom": "Portillon du réduit",
+    "type": "lieu-dit",
+    "parent": "ald-carriere-d-argile",
+    "resume": "le portillon de fascines du réduit, d’où la plus grande hutte se devine derrière la palissade.",
+    "description": "Le portillon nord-est du réduit : deux battants de fascines liées à la corde, une palissade haute d’un mètre cinquante de part et d’autre. Derrière, les huttes d’écorce se serrent sous la falaise, et la plus grande, au poteau planté de travers, n’est qu’à une quinzaine de mètres. Tant qu’on reste de ce côté, on n’est pas dans le camp.",
+    "ambiance": "Fascines, corde, fumée, voix étouffées.",
+    "arrivee": "La bande de toiles s’achève contre deux battants de fascines liées à la corde. Au-delà, la fumée du feu monte droit sous la falaise, et la plus grande hutte, au poteau planté de travers, se devine derrière la palissade.",
+    "visuel": "Un portillon de fascines liées à la corde dans une palissade basse, devant un camp de huttes d’écorce sous une falaise d’argile ; fumée, pluie, lumière grise.",
+    "accroche": "Un portillon de fascines ferme le réduit des gobelins, au pied de la falaise.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "liens": [
+      {
+        "vers": "ald-carriere-perimetre-piege",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le passage remonte vers la bande de toiles de jute, le long de la palissade.",
+        "retour": "Le long de la palissade, un portillon de fascines ferme le réduit."
+      },
+      {
+        "vers": "ald-carriere-huttes-et-poste-de-commandement",
+        "type": "portail",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le portillon s’ouvre sur le camp, au pied de la falaise.",
+        "retour": "Le portillon de fascines donne sur le fond de la cuvette."
+      }
+    ],
+    "repos": "impossible",
+    "position": {
+      "x": 71,
+      "y": 50
+    }
+  }
+]
