@@ -504,7 +504,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     cond(`Événement « ${ev.id} »`, ev.condition);
     effets(`Événement « ${ev.id} »`, ev.effets);
   }
-  for (const f of dm.fins.values()) cond(`Fin « ${f.id} »`, f.condition);
+  for (const f of dm.fins.values()) {
+    cond(`Fin « ${f.id} »`, f.condition);
+    f.variantes.forEach((v, k) => cond(`Fin « ${f.id} », variante ${k + 1}`, v.condition));
+  }
   // Le moteur pose la première fin dont la condition est vraie, après chaque action : vraie dès le départ, l'histoire s'arrêterait aussitôt.
   const depart = etatInitial(dm);
   for (const f of dm.fins.values()) if (evaluerCondition(f.condition, depart)) err(`Fin « ${f.id} » : sa condition est déjà vraie au départ ; l'histoire se terminerait dès la première action.`);
@@ -669,7 +672,10 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   for (const r of dm.rencontres.values()) r.alternatives.forEach((a) => toutes(`Rencontre « ${r.id} », alternative « ${a.id} »`, a.condition));
   for (const t of dm.tresors.values()) toutes(`Trésor « ${t.id} »`, t.condition);
   for (const e of dm.evenements.values()) toutes(`Événement « ${e.id} »`, e.condition);
-  for (const f of dm.fins.values()) toutes(`Fin « ${f.id} »`, f.condition);
+  for (const f of dm.fins.values()) {
+    toutes(`Fin « ${f.id} »`, f.condition);
+    f.variantes.forEach((v, k) => toutes(`Fin « ${f.id} », variante ${k + 1}`, v.condition));
+  }
   for (const i of interjections) toutes(`Interjection « ${i.id} »`, i.quand);
   for (const q of questions) {
     toutes(`Question « ${q.id} »`, q.quand);
@@ -847,6 +853,7 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
   }
   for (const l of dm.lieux.values()) l.liens.forEach((x) => noterCle(x.condition));
   for (const f of dm.fins.values()) noterCle(f.condition);
+  for (const f of dm.fins.values()) f.variantes.forEach((v) => noterCle(v.condition));
   for (const id of cles) if ((sources.get(id) ?? 0) === 1) avis(`Fait clé « ${id} » : une seule source. S'il est exigé pour avancer (quête, passage, fin), donnez-lui trois sources (un PNJ, un lieu à fouiller, un objet) : un jet raté ne doit pas bloquer l'histoire.`);
   return { erreurs, avertissements, diagnostics, stats };
 }

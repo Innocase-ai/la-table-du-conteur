@@ -67,16 +67,17 @@ describe('exploration', () => {
     return essais.find((x) => !repondreEnigme({ ...p, etat: structuredClone(p.etat), groupe: structuredClone(p.groupe) }, e.id, x).refus) ?? essais[0];
   }
 
-  it('Dîme : trois mauvaises réponses font monter la jauge une seule fois (plus de fin d’échec en trois erreurs)', () => {
+  it('Dîme : trois mauvaises réponses ne coûtent qu’une fois (l’attitude baisse une seule fois, pas de fin d’échec, pas de jauge)', () => {
     const dm = monde('dime-des-roseaux');
-    const e = [...dm.enigmes.values()].find((x) => x.echec?.effets.some((f) => 'jauge' in f))!;
-    expect(e, 'une énigme dont l’échec fait monter une jauge').toBeTruthy();
-    const jauge = (e.echec!.effets.find((f) => 'jauge' in f) as { jauge: { id: string } }).jauge.id;
+    const e = [...dm.enigmes.values()].find((x) => x.echec?.effets.some((f) => 'attitude' in f))!;
+    expect(e, 'une énigme dont l’échec coûte une attitude').toBeTruthy();
+    expect(e.echec!.effets.some((f) => 'jauge' in f), 'l’échec d’une énigme facultative ne fait pas monter la jauge').toBe(false);
+    const { pnj, delta } = (e.echec!.effets.find((f) => 'attitude' in f) as { attitude: { pnj: string; delta: number } }).attitude;
     const p = partieMonde(dm, e.lieu);
-    const avant = p.etat.jauges[jauge] ?? dm.jauges.get(jauge)!.initial;
+    const avant = p.etat.attitudes[pnj] ?? 0;
     const faux = mauvaiseReponse(p, e);
     for (let i = 0; i < 3; i++) repondreEnigme(p, e.id, faux);
-    expect(p.etat.jauges[jauge]).toBe(avant + (e.echec!.effets.find((f) => 'jauge' in f) as { jauge: { delta: number } }).jauge.delta);
+    expect(p.etat.attitudes[pnj]).toBe(avant + delta);
     expect(p.etat.fin).toBeUndefined();
   });
 

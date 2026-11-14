@@ -16,7 +16,22 @@
     "id": "pont",
     "texte": "Franchissez le péage du pont de pierre et gagnez Mireval. Le capitaine hobgobelin vous a laissés passer ; ne lui donnez pas de raison de le regretter.",
     "completion": {
-     "lieu": "mireval"
+     "ou": [
+      {
+       "flag": "z1-peage-paye"
+      },
+      {
+       "flag": "z1-peage-contourne"
+      },
+      {
+       "flag": "z1-peage-ouvert"
+      },
+      {
+       "rencontre": {
+        "id": "z1-le-peage-de-varg"
+       }
+      }
+     ]
     },
     "suivantes": [
      "village"
@@ -277,10 +292,7 @@
        "flag": "colin-libere"
       },
       {
-       "pnj": {
-        "id": "colin-vasseur",
-        "etat": "vivant"
-       }
+       "lieu": "min-veine-de-fer"
       }
      ]
     },
@@ -298,16 +310,9 @@
    },
    {
     "id": "retour",
-    "texte": "Ramenez Colin à Mireval, ou à Perrine. Elle saura ce que cela vaut.",
+    "texte": "Colin est libre : ramenez-le à Mireval, auprès de Perrine. Elle saura ce que cela vaut.",
     "completion": {
-     "ou": [
-      {
-       "lieu": "mireval"
-      },
-      {
-       "flag": "colin-libere"
-      }
-     ]
+     "flag": "perrine-colin-revu"
     },
     "suivantes": [],
     "termine": true,
@@ -390,20 +395,41 @@
       },
       {
        "flag": "choix-exode"
+      },
+      {
+       "flag": "choix-guerre"
+      },
+      {
+       "flag": "choix-marche"
       }
      ]
     },
-    "suivantes": [],
-    "termine": true,
+    "suivantes": [
+     "retour"
+    ],
     "effets": [
      {
-      "xp": 100
+      "xp": 75
      },
      {
       "reputation": {
        "faction": "gens-de-mireval",
        "delta": 10
       }
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Retournez voir Huguette : le village attend de savoir ce que vous avez tranché pour le grenier.",
+    "completion": {
+     "flag": "huguette-grenier-rendu"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 25
      },
      {
       "quete": {
@@ -492,20 +518,38 @@
       },
       {
        "flag": "choix-exode"
+      },
+      {
+       "flag": "choix-marche"
       }
      ]
     },
-    "suivantes": [],
-    "termine": true,
+    "suivantes": [
+     "retour"
+    ],
     "effets": [
      {
-      "xp": 150
+      "xp": 100
      },
      {
       "reputation": {
        "faction": "tribu-de-skarn",
        "delta": 15
       }
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Retournez voir Skarn, dans la salle commune : il attend de savoir ce que vous avez décidé pour la tribu.",
+    "completion": {
+     "flag": "skarn-grain-rendu"
+    },
+    "suivantes": [],
+    "termine": true,
+    "effets": [
+     {
+      "xp": 50
      },
      {
       "quete": {
@@ -539,7 +583,7 @@
     "id": "ecouter",
     "texte": "Payez une chope à Bastien et laissez-le parler de la charrette et de Lina.",
     "completion": {
-     "lieu": "mir-auberge-des-roseaux"
+     "parle": "bastien"
     },
     "suivantes": [
      "verifier"
@@ -563,14 +607,35 @@
       }
      ]
     },
+    "suivantes": [
+     "retour"
+    ],
+    "effets": [
+     {
+      "xp": 25
+     },
+     {
+      "fait": "f-charrette-saisie"
+     }
+    ]
+   },
+   {
+    "id": "retour",
+    "texte": "Retournez voir Bastien, à l’auberge : il attend de savoir ce que vous avez appris sur la charrette.",
+    "completion": {
+     "flag": "bastien-rumeur-rendue"
+    },
     "suivantes": [],
     "termine": true,
     "effets": [
      {
-      "xp": 50
+      "xp": 25
      },
      {
-      "fait": "f-charrette-saisie"
+      "quete": {
+       "id": "q-bastien-la-rumeur",
+       "statut": "terminee"
+      }
      }
     ]
    }
@@ -726,17 +791,7 @@
     "id": "soigner",
     "texte": "Aveline veut voir un prisonnier vivant. Libérez Colin ou ramenez-la auprès de lui.",
     "completion": {
-     "ou": [
-      {
-       "flag": "colin-libere"
-      },
-      {
-       "pnj": {
-        "id": "colin-vasseur",
-        "etat": "vivant"
-       }
-      }
-     ]
+     "flag": "colin-libere"
     },
     "suivantes": [
      "retour"
@@ -749,16 +804,9 @@
    },
    {
     "id": "retour",
-    "texte": "Ramenez Aveline et ses patients à Mireval. Elle saura ce qu'il lui reste à soigner.",
+    "texte": "Colin est libre : revenez voir Aveline. Elle saura ce qu’il lui reste à soigner.",
     "completion": {
-     "ou": [
-      {
-       "lieu": "mireval"
-      },
-      {
-       "flag": "colin-libere"
-      }
-     ]
+     "flag": "aveline-patients-rendus"
     },
     "suivantes": [],
     "termine": true,
@@ -881,16 +929,9 @@
    },
    {
     "id": "retour",
-    "texte": "Revenez à Mireval avec la preuve. Bram saura ce que son père a laissé dans la mine.",
+    "texte": "Rapportez la preuve à Bram, au grenier. Il saura ce que son père a laissé dans la mine.",
     "completion": {
-     "ou": [
-      {
-       "lieu": "mireval"
-      },
-      {
-       "flag": "varg-vaincu"
-      }
-     ]
+     "flag": "bram-preuve-rendue"
     },
     "suivantes": [],
     "termine": true,

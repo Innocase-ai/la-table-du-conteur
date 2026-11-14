@@ -57,7 +57,7 @@
      "quatre ans",
      "charrette"
     ],
-    "question": "Que savez-vous du pacte de votre père ?",
+    "question": "Que savez-vous des comptes de votre père ?",
     "reponse": "Elle parle vite, en comptant sur ses doigts : quatre automnes, quatre charrettes parties du moulin, du grain et des outils contre la paix. Elle dit que le grenier s'est vidé à ce prix, qu'elle a vu les comptes et la manière dont son père les rangeait, et que le village entier ignore d'où venait cette tranquillité. Elle ajoute qu'un accord pareil ne se raconte pas au marché.",
     "revele": [
      "f-pacte-du-meunier"
@@ -137,7 +137,7 @@
       }
      ]
     },
-    "reponse": "Elle accepte, mais pas les mains vides : elle veut pouvoir dire au village ce que Varg exige et ce que la tribu risque. Elle demande qu'on prévienne Skarn avant de l'emmener, par respect pour l'hospitalité reçue, et dit qu'elle fera la route avec les passeurs si le groupe doit rester de l'autre côté de la colline.",
+    "reponse": "Elle accepte, mais pas les mains vides : elle veut pouvoir dire au village ce que Varg exige et ce que la tribu risque. Elle demande qu’on prévienne Skarn avant de l’emmener, par respect pour l’hospitalité reçue, et dit qu’elle fera la route avec les passeurs si le groupe doit rester de l’autre côté de la colline. Elle compte sur ses doigts les sacs, les charrettes et les hivers, puis s’arrête à cinq. Son manteau de laine trop grand glisse sur ses épaules quand elle se lève.",
     "revele": [],
     "effets": [
      {
@@ -161,7 +161,7 @@
      "cailloux"
     ],
     "question": "Que fait cette enfant dans la grotte ?",
-    "reponse": "Elle parle de Miette avec une tendresse brusque : l'enfant lui apporte des cailloux, lui apprend des mots gobelins, et dort contre sa porte quand la salle est trop bruyante. Elle demande qu'on ne l'effraie pas avec les armes, et dit que dans cette grotte, la petite est la seule chose qui n'a rien à voir avec le grain.",
+    "reponse": "Elle parle de Miette avec une tendresse brusque : l’enfant lui apporte des cailloux, lui apprend des mots gobelins, et dort contre sa porte quand la salle est trop bruyante. Elle demande qu’on ne l’effraie pas avec les armes, et dit que dans cette grotte, la petite est la seule chose qui n’a rien à voir avec le grain. Elle rit malgré elle en parlant de la gamelle cabossée que Miette remplit d’eau pour faire durer son repas. Elle dit qu’elle ne sait pas dire non à une enfant qui pose trop de questions.",
     "revele": [],
     "effets": [
      {
@@ -299,7 +299,7 @@
      "lard"
     ],
     "question": "Combien de temps pouvez-vous tenir ?",
-    "reponse": "Il l'avoue sans détour : trois sacs de grain, des champignons secs, un quartier de lard, et les chasseurs rapportent peu depuis que les hobgobelins tiennent les chemins. Il dit que les enfants mangent avant les guerriers, que c'est la règle, et qu'il ne l'a jamais enfreinte, même l'hiver où deux des siens sont restés sous la galerie.",
+    "reponse": "Il l’avoue sans détour : trois sacs de grain, des champignons secs, un quartier de lard, et les chasseurs rapportent peu depuis que les hobgobelins tiennent les chemins. Il dit que les enfants mangent avant les guerriers, que c’est la règle, et qu’il ne l’a jamais enfreinte, même l’hiver où deux des siens sont restés sous la galerie. Avant de répondre, il regarde les braises du feu de tourbe qu’il alimente lui-même. Il dit que le feu dit la vérité des jours, et il montre du menton la dalle gravée près de l’âtre.",
     "revele": [
      "f-tribu-affamee"
     ],
@@ -333,7 +333,7 @@
       }
      ]
     },
-    "reponse": "Il pose sa main abîmée sur la table. Il jure, au nom de la pierre et des siens, que la tribu ne lèvera pas la lance contre le village et qu'elle tiendra le marais ouvert au groupe. En échange, il veut du grain, et il veut que les hobgobelins ne sachent jamais d'où vient l'aide.",
+    "reponse": "Il pose sa main abîmée sur la table. Il jure, au nom de la pierre et des siens, que la tribu ne lèvera pas la lance contre le village et qu’elle tiendra le marais ouvert au groupe. En échange, il veut du grain, et il veut que les hobgobelins ne sachent jamais d’où vient l’aide. Le feu de tourbe crépite entre eux pendant qu’il pèse chaque mot. Il ajoute, à voix plus basse, qu’il préfère un mauvais accord à une guerre qu’il sait perdue.",
     "revele": [],
     "effets": [
      {
@@ -384,6 +384,41 @@
     "revele": [],
     "effets": [],
     "unique": false
+   },
+   {
+    "id": "le-grain-tranche",
+    "mots": [
+     "la tribu",
+     "Lina",
+     "le feu de tourbe",
+     "la question",
+     "dire en face"
+    ],
+    "condition": {
+     "ou": [
+      {
+       "flag": "alliance-gobeline"
+      },
+      {
+       "flag": "grenier-ouvert"
+      },
+      {
+       "flag": "choix-exode"
+      },
+      {
+       "flag": "choix-marche"
+      }
+     ]
+    },
+    "question": "Skarn, la question du grain est réglée.",
+    "reponse": "Skarn ne répond pas tout de suite. Il regarde longtemps les braises du feu de tourbe, comme s’il y lisait la suite, puis il pose sa main abîmée sur la pierre. « La tribu a entendu votre question, et elle a retenu votre visage. Les petits ont cessé de guetter la porte, c’est déjà beaucoup. » Il se tait, la mâchoire serrée. « Pour Lina, je tiendrai ma parole comme je vous demande de tenir la vôtre. Je ne lui demande rien de plus. Une seule chose : quand vous aurez choisi, dites-le-moi en face, pas à travers les roseaux. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "skarn-grain-rendu"
+     }
+    ],
+    "unique": true
    }
   ],
   "salutations": {
@@ -472,7 +507,7 @@
      "divination"
     ],
     "question": "Qu'est-ce que les os vous disent ?",
-    "reponse": "Elle jette des os sur une peau et lit : une charrette qui n'arrive pas, un feu qui monte dans un grenier, un fer qu'on arrache à la pierre. Elle ne traduit pas tout, et dit que les os ne parlent bien que des choses déjà commencées.",
+    "reponse": "Elle jette des os sur une peau et lit : une charrette qui n’arrive pas, un feu qui monte dans un grenier, un fer qu’on arrache à la pierre. Elle ne traduit pas tout, et dit que les os ne parlent bien que des choses déjà commencées. Les os d’oiseaux noués dans ses cheveux cliquettent quand elle se penche. Elle dit qu’ils savent des choses qu’elle ne sait pas encore, et elle n’insiste pas. Elle conseille au groupe de revenir quand les os auront parlé d’autre chose.",
     "revele": [],
     "effets": [],
     "unique": false
@@ -502,7 +537,7 @@
      "veine"
     ],
     "question": "Que cherchent les hobgobelins dans la mine ?",
-    "reponse": "« Pas pour le grain. » Elle fixe les os, sans les toucher. « Ils ont des hommes, des outils, des chariots. Le grain ne se garde pas dans une mine. » Elle s’arrête là, les yeux toujours sur les os, et attend. « Insistez, si vous voulez le reste. »",
+    "reponse": "« Pas pour le grain. » Elle fixe les os, sans les toucher. « Ils ont des hommes, des outils, des chariots. Le grain ne se garde pas dans une mine. » Elle s’arrête là, les yeux toujours sur les os, et attend. Son collier cliquette quand elle recule d’un pas, puis revient. « Insistez, si vous voulez le reste. » Elle frotte entre ses doigts une herbe amère, comme si elle y trouvait la réponse.",
     "revele": [],
     "effets": [],
     "unique": false
@@ -519,7 +554,7 @@
     "condition": {
      "flag": "miette-rassuree"
     },
-    "reponse": "Elle se radoucit à peine, mais assez : elle dit que la petite a dormi sans cauchemar pour la première fois depuis un mois. Elle ajoute que si le groupe tient parole, elle lui donnera un nom gobelin, et que ce n'est pas rien : un nom se donne à ceux qui restent.",
+    "reponse": "Elle se radoucit à peine, mais assez : elle dit que la petite a dormi sans cauchemar pour la première fois depuis un mois. Elle ajoute que si le groupe tient parole, elle lui donnera un nom gobelin, et que ce n’est pas rien : un nom se donne à ceux qui restent. Ses os cliquettent quand elle se tourne vers le coin où Miette compte les enfants. Elle ne répète pas deux fois ce qu’elle vient de dire, et elle ne sourit pas.",
     "revele": [],
     "effets": [
      {
@@ -541,7 +576,7 @@
      "fuir"
     ],
     "question": "Que feriez-vous si vous pouviez partir ?",
-    "reponse": "« Les enfants d’abord. » Elle tourne la tête vers le marais. « Par les roseaux, avec les passeurs. Je laisserais la mine aux hobgobelins sans un regret. » Son collier de vertèbres cliquette quand elle hausse les épaules. « Skarn, lui, ne partira pas. Un chef qui abandonne sa colline n’est plus chef. Il le sait. »",
+    "reponse": "« Les enfants d’abord. » Elle tourne la tête vers le marais. « Par les roseaux, avec les passeurs. Je laisserais la mine aux hobgobelins sans un regret. » Son collier de vertèbres cliquette quand elle hausse les épaules. « Skarn, lui, ne partira pas. Un chef qui abandonne sa colline n’est plus chef. Il le sait. » Elle écrase une herbe entre ses doigts, puis indique le bout du sentier, où le vieux Marin pourrait les conduire.",
     "revele": [],
     "effets": [],
     "unique": false
@@ -611,7 +646,7 @@
      "arrivée"
     ],
     "question": "Qui est la dame rousse ?",
-    "reponse": "Miette raconte que la dame rousse est arrivée un matin avec un sac et un bâton, qu'elle a parlé longtemps avec Skarn devant le feu, et qu'elle a posé elle-même son sac dans le réduit. Personne ne l'a poussée ni tirée. Elle dit que la dame compte les jours avec du charbon et lui apprend des mots.",
+    "reponse": "Miette raconte que la dame rousse est arrivée un matin avec un sac et un bâton, qu’elle a parlé longtemps avec Skarn devant le feu, et qu’elle a posé elle-même son sac dans le réduit. Personne ne l’a poussée ni tirée. Miette tape sa gamelle cabossée du plat de la main en comptant les jours, comme la dame. Elle dit que la dame compte les jours avec du charbon et lui apprend des mots. Si l’on veut la voir, elle se trouve au fond, dans le réduit.",
     "revele": [
      "f-lina-otage"
     ],
@@ -627,7 +662,7 @@
      "verre"
     ],
     "question": "Que faites-vous de ces cailloux ?",
-    "reponse": "Elle montre sa collection : un caillou blanc comme un os, un caillou troué, un morceau de verre de rivière, et une dent qu'elle jure avoir trouvée. Elle dit qu'un caillou donné ne se reprend pas, que c'est la loi, et qu'elle en garde un pour la dame rousse.",
+    "reponse": "Elle montre sa collection : un caillou blanc comme un os, un caillou troué, un morceau de verre de rivière, et une dent qu’elle jure avoir trouvée. Elle dit qu’un caillou donné ne se reprend pas, que c’est la loi, et qu’elle en garde un pour la dame rousse. Elle sort le tout de sa cachette, derrière une pierre de la salle commune, et range les pièces en les comptant à voix haute. Elle compte aussi les enfants qui toussent la nuit, avant de dormir.",
     "revele": [],
     "effets": [],
     "unique": false
@@ -675,7 +710,7 @@
     "condition": {
      "objet": "rations"
     },
-    "reponse": "Elle prend la ration à deux mains, la sent, la met dans sa robe sans la manger. Elle dit qu'elle la gardera pour plus tard, pour un jour où la soupe sera trop claire, et court vers le coin de Nyx en parlant très vite.",
+    "reponse": "Elle prend la ration à deux mains, la sent, la met dans sa robe sans la manger. Elle dit qu’elle la gardera pour plus tard, pour un jour où la soupe sera trop claire, et court vers le coin de Nyx en parlant très vite. Elle demande si la ration est pour elle seule, puis si elle peut en donner aux autres. Elle a déjà compté les enfants qui ont faim ce soir, et elle dit qu’une ration se partage, comme un caillou se donne, sans se reprendre.",
     "revele": [],
     "effets": [
      {

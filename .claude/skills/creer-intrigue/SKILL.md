@@ -43,6 +43,7 @@ Format : `packages/regles/src/monde/schemas.ts` (`Quete`, `Faction`, `Jauge`, `E
 - **Deux voies** : l'effet `{ "fin": "<id>" }`, et la **`condition`** de la fin, évaluée après chaque action (la première vraie gagne). Une condition vraie trop tôt termine l'histoire sans prévenir ; le validateur refuse désormais une condition **déjà vraie au départ**, mais pas une condition qui deviendrait vraie trop tôt (un fait appris au chapitre 1).
 - Le modèle sûr : la condition d'une fin est **le drapeau de son issue**, posé par l'étape d'issue de la quête principale (ou le dernier palier de la jauge), qui porte aussi `{ "fin": "<id>" }`.
 - `epilogue` est lu à la fin ; `consequences` n'est pas lu par le moteur (notes). Les épilogues des dilemmes s'ajoutent (`creer-dilemmes`).
+- **`variantes`** (liste `{ condition, epilogue }`, la première vraie remplace `epilogue`, qui sert de repli) : à utiliser dès que l'épilogue affirme quelque chose que le joueur a pu ne pas faire (un secret révélé ou couvert, un prisonnier libéré, un choix). Ne jamais écrire « Anselme est démasqué » dans l'épilogue de base si la révélation est facultative : la base dit le cas où rien n'a été découvert, la variante celui où c'est arrivé. Chaque variante est une phrase de plus ou de moins dans le même épilogue, pas un nouveau texte.
 
 ## Concevoir
 

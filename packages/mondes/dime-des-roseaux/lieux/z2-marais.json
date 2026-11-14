@@ -54,7 +54,8 @@
   "position": {
    "x": 78,
    "y": 30
-  }
+  },
+  "arrivee": "Le marais s’étale devant vous, une cuvette plate d’eau dormante et de roseaux ocre, coupée de chenaux qui brillent entre les touffes. L’eau monte au crépuscule et découvre des bancs de vase au matin, et l’on sent déjà la vase tiède sous les bottes. Trois passages le traversent. La chaussée de pierre vous a menés jusqu’ici, au sud ; un sentier de fascines file d’ouest en est, et un chenal de tourbe monte vers une falaise basse, au nord.\n\nDes ornières profondes, trop larges pour une brouette, marquent encore la rive du chenal. Le clapotis contre les roseaux ne cesse pas, et le grincement des fascines accompagne chaque pas. Au loin, un sifflet d’oiseau répond, trop juste pour être un oiseau. Personne ne s’attarde ici la nuit sans barque, et l’on comprend vite pourquoi."
  },
  {
   "id": "mar-sentier-des-roseaux",
@@ -107,7 +108,8 @@
   "position": {
    "x": 29,
    "y": 30
-  }
+  },
+  "arrivee": "Des bottes de roseaux et des rondins posés sur la vase forment un chemin large d’un homme, qui tient à peine à hauteur d’eau. Les roseaux montent plus haut que la tête et se referment derrière chaque pas. L’eau monte entre les rondins, et le roseau racle le cuir de vos manches. Le sentier coupe le marais d’ouest en est, sans jamais s’écarter, et l’on y avance à la file.\n\nÀ mi-chemin, une butte de tourbe sèche porte les traces d’un bivouac : un cercle de pierres noircies, des cendres encore tièdes, des arêtes de poisson. À droite, une nappe d’eau claire et immobile dort sur le sable. Au bout du sentier, une fumée basse et grasse marque la cabane, déjà visible entre deux touffes. Un sifflement aigu répond trop vite pour être un oiseau, puis se tait."
  },
  {
   "id": "mar-cabane-des-passeurs",
@@ -117,7 +119,7 @@
   "resume": "Une cabane de planches goudronnées bâtie sur pilotis au-dessus d’un chenal, avec sa barque à fond plat et ses perches.",
   "description": "La cabane est posée sur pilotis au-dessus d’un chenal, coiffée de roseaux liés. Une barque à fond plat est amarrée dessous, avec ses perches, ses filets et une gaffe. À l’intérieur : une table, un banc, un poêle de fonte, une paillasse et une planche où des coches comptent les passages payés. Sous le plancher, une boîte de fer-blanc. Le passeur y vit seul, dort au sec et n’aime pas les visiteurs qui ne paient rien.",
   "ambiance": "La tourbe qui fume, l’eau qui clapote sous les pilotis, la barque qui racle la vase à chaque mouvement.",
-  "arrivee": "Hors de l'eau, des pilotis noircis soutiennent une cabane de planches goudronnées, au-dessus d'un chenal. Son toit de roseaux liés est couché par endroits. Une cheminée crache une fumée âcre, et son odeur s'accroche aux filets suspendus. Dessous, la barque à fond plat racle la vase à chaque mouvement de l'eau, avec un bruit sourd et régulier. Une lanterne à capote, accrochée au seuil, se balance doucement. Le clapotis monte entre les planches, comme si la maison respirait avec le marais.",
+  "arrivee": "Hors de l’eau, des pilotis noircis soutiennent une cabane de planches goudronnées, au-dessus d’un chenal. Son toit de roseaux liés est couché par endroits, et une cheminée crache une fumée âcre qui s’accroche aux filets suspendus. Dessous, une barque à fond plat racle la vase à chaque mouvement de l’eau, avec un bruit sourd et régulier. Des perches et une gaffe sont appuyées contre les pilotis. Une lanterne à capote, accrochée au seuil, se balance doucement.\n\nLe clapotis monte entre les planches, comme si la maison respirait avec le marais. La tourbe fume dans le poêle, et l’odeur chaude traverse les fentes du plancher. Un homme vit ici seul, à ce qu’on dit, et il n’aime guère les visiteurs qui ne paient rien. Vous entendez quelqu’un se lever à l’intérieur, puis une porte qui grince avant de se refermer.",
   "visuel": "une cabane de planches goudronnées sur pilotis, un toit de roseaux liés, une cheminée de tourbe qui fume, une barque à fond plat amarrée, des perches et des filets suspendus, des lanternes à capote",
   "accroche": "Une cabane sur pilotis, coiffée de roseaux, d’où monte une fumée de tourbe ; une barque à fond plat est amarrée dessous.",
   "niveau": {
@@ -131,7 +133,16 @@
     "heures": 3,
     "sens": "double",
     "condition": {
-     "objet": "carte-du-marais"
+     "et": [
+      {
+       "objet": "carte-du-marais"
+      },
+      {
+       "niveauGroupe": {
+        "min": 2
+       }
+      }
+     ]
     },
     "description": "Derrière la cabane, un chenal étroit s’ouvre entre les roseaux ; par endroits, la barque doit être halée à la main.",
     "retour": "Le chenal se referme derrière la barque ; la fumée de tourbe de la cabane marque le chemin du retour."
@@ -164,7 +175,7 @@
   "resume": "Une grotte basse envahie par l'eau brune du marais, avec une margelle de pierre, un autel de roseaux et des cachettes de contrebandiers.",
   "description": "La grotte s'ouvre au ras de l'eau, sous une voûte de calcaire rongée. La marée du marais y monte deux fois par jour et noie la moitié de la salle ; au fond, une margelle sèche porte un autel de roseaux tressés, des bols de bois et des offrandes moisies. Des planches pourries font un plancher au-dessus de l'eau, et sous ce plancher des caisses de contrebande attendent. Quand l'eau monte, elle claque contre la voûte et l'on n'entend plus que cela.",
   "ambiance": "L'eau qui claque sous la voûte, l'odeur de vase et de roseau pourri, des gouttes qui tombent dans le noir.",
-  "arrivee": "Avant même d'apercevoir la voûte, vous avez l'eau aux chevilles. Elle est brune, tiède, et sent la vase et le roseau pourri. Au-dessus de vos têtes, le calcaire rongé forme une voûte basse, où chaque goutte qui tombe résonne longtemps. Sur le côté, une margelle de pierre affleure, et des bols de bois flottent autour d'elle, comme oubliés après une fête. Plus loin, le noir est presque complet. De temps à autre, l'eau claque contre la pierre d'un coup sec, et ce bruit suffit à vous faire lever les yeux.",
+  "arrivee": "Avant même d’apercevoir la voûte, vous avez l’eau aux chevilles. Elle est brune, tiède, et sent la vase et le roseau pourri. La grotte s’ouvre au ras de l’eau, sous une voûte de calcaire rongée, et chaque goutte qui tombe résonne longtemps. Sur le côté, une margelle de pierre affleure, et des bols de bois flottent autour d’elle, comme oubliés après une fête. Plus loin, le noir est presque complet.\n\nAu fond, un autel de roseaux tressés se dresse sur une margelle sèche, avec des offrandes moisies. Des planches pourries font un plancher au-dessus de l’eau. La marée monte deux fois par jour, et de temps à autre l’eau claque contre la pierre d’un coup sec, ce qui suffit à vous faire lever les yeux. Sous les planches, des caisses de contrebande attendent dans l’ombre, bien closes.",
   "visuel": "Une grotte basse au ras de l'eau brune, une margelle de calcaire, un autel de roseaux tressés, des bols de bois, des planches pourries et des caisses à demi immergées.",
   "accroche": "Sous les roseaux, une fente de calcaire laisse passer un courant d'eau brune et une odeur de vase ; au fond, une lueur de bols cirés.",
   "niveau": {

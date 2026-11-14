@@ -154,6 +154,11 @@ export function etatInitial(dm: DonneesMonde, niveauGroupe = dm.monde.niveaux.mi
   };
 }
 
+/** L'épilogue d'une fin : la première variante dont la condition est vraie, sinon l'épilogue de base. */
+export function epilogueDeFin(fin: { epilogue: string; variantes: readonly { condition: Condition; epilogue: string }[] }, etat: EtatMonde): string {
+  return fin.variantes.find((v) => evaluerCondition(v.condition, etat))?.epilogue ?? fin.epilogue;
+}
+
 export function evaluerCondition(c: Condition, e: EtatMonde): boolean {
   if ('flag' in c) return !!e.flags[c.flag];
   if ('fait' in c) return e.faits.includes(c.fait);

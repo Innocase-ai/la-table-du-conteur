@@ -313,6 +313,24 @@ export interface Sortie {
 type Lien = Lieu['liens'][number];
 const cleLien = (de: string, vers: string) => `lien:${de}>${vers}`;
 
+/**
+ * Vrai quand le lieu n'est joignable que par des liens fermés (condition, cachette ou verrou) : le passage automatique
+ * parent → enfant ne doit alors pas les contourner (la mine qui exige la carte du marais ne s'ouvre pas depuis la région).
+ * Un lieu sans aucun lien déclaré, ou avec au moins un lien libre, reste joignable par son parent.
+ */
+function accesSeulementParLiensFermes(p: PartieMonde, id: string): boolean {
+  // Un lieu situé à l'intérieur de `id` (ses salles, leurs sous-salles) n'en est pas une entrée : son lien est une sortie.
+  const dedans = (lieu: string): boolean => {
+    for (let l = p.dm.lieux.get(lieu), n = 0; l && n < 20; l = l.parent ? p.dm.lieux.get(l.parent) : undefined, n++) if (l.parent === id) return true;
+    return false;
+  };
+  const liens: Lien[] = [];
+  for (const autre of p.dm.lieux.values()) if (!dedans(autre.id)) for (const l of autre.liens) if (l.vers === id) liens.push(l);
+  // Un lien à double sens déclaré par le lieu lui-même est aussi une façon d'y entrer, avec ses propres conditions.
+  for (const l of p.dm.lieux.get(id)?.liens ?? []) if (l.sens === 'double' && !dedans(l.vers)) liens.push(l);
+  return liens.length > 0 && liens.every((l) => !!l.condition || !!l.cache || !!l.verrou);
+}
+
 /** Passages qui partent d'un lieu, avec leur définition : liens déclarés ici, liens à double sens déclarés en face, parent et enfants. */
 function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }[] {
   const ex = p.etat.exploration;
@@ -353,7 +371,7 @@ function passages(p: PartieMonde, lieu: string): { sortie: Sortie; lien?: Lien }
   for (const autre of p.dm.lieux.values()) {
     for (const l of autre.liens) if (l.vers === lieu && l.sens === 'double') ajouter(autre.id, cleLien(autre.id, lieu), l, true);
   }
-  for (const enfant of p.dm.lieux.values()) if (enfant.parent === lieu) ajouter(enfant.id, cleLien(lieu, enfant.id), undefined, false, enfant.accroche);
+  for (const enfant of p.dm.lieux.values()) if (enfant.parent === lieu && !accesSeulementParLiensFermes(p, enfant.id)) ajouter(enfant.id, cleLien(lieu, enfant.id), undefined, false, enfant.accroche);
   const parent = ici?.parent ? p.dm.lieux.get(ici.parent) : undefined;
   // « Le pont » → « le pont » au milieu d'une phrase (les noms propres, eux, gardent leur majuscule).
   const minuscule = (nom: string) => nom.replace(/^(Le |La |Les |L['’])/, (a) => a.toLowerCase());

@@ -190,6 +190,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const image = useImage(dm.monde.id, 'lieux', scene.lieu.id);
   const imagePnj = useImage(dm.monde.id, 'pnj', interlocuteur?.id);
   const fin = partie.scene.type === 'fin' ? dm.fins.get(partie.scene.fin) : undefined;
+  const epilogue = moteur.vue<string | undefined>('epilogue', partie);
   const sceneNarree = moteur.vue<SceneNarree | undefined>('sceneEnCours', partie);
   // L'événement à choix illustré ouvert (image, narration, choix, résultat) : un écran posé sur l'aventure.
   const evenement = moteur.vue<FicheEvenement | undefined>('evenementEnCours', partie);
@@ -622,7 +623,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
             {fin && (
               <section className="panneau-action fin-histoire">
                 <h3>{fin.nom}</h3>
-                <p>{fin.epilogue}</p>
+                <p>{epilogue ?? fin.epilogue}</p>
                 <button type="button" className="bouton-principal" onClick={onMenu}>
                   Retour au menu
                 </button>

@@ -45,7 +45,7 @@ Chaque fichier contient un tableau (ou un objet) d'entités. L'identifiant (`id`
 | **Piège** | Détection, désamorçage, déclenchement, sauvegarde, dégâts |
 | **Énigme** | Énoncé, **solution vérifiable par le moteur** (séquence, mot de passe, leviers, placement, cadran, déduction), indices graduels, récompense |
 | **Quête** | Donneur, étapes qui s'achèvent d'elles-mêmes quand leur condition devient vraie, suites, échecs, récompenses ; une étape marquée `termine` clôt la quête aussitôt (fins alternatives) ; sinon la quête se clôt quand la dernière étape active, sans suite, est accomplie |
-| **Faction, Jauge, Événement, Fin, Fait** | Réputation et relations ; compteurs à paliers ; déclencheurs ; conditions d'achèvement et épilogue ; les vérités que le MJ connaît |
+| **Faction, Jauge, Événement, Fin, Fait** | Réputation et relations ; compteurs à paliers ; déclencheurs ; conditions d'achèvement et épilogue (une fin peut avoir des `variantes` d'épilogue : `{ condition, epilogue }`, la première vraie remplace l'épilogue de base, comme les variantes de sujet et de salutation) ; les vérités que le MJ connaît |
 
 ## Données des modules : les scènes narrées
 

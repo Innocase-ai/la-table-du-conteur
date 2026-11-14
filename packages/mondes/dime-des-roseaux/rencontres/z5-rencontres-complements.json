@@ -5,7 +5,7 @@
   "type": "combat",
   "lieu": "mar-grotte-des-noyes",
   "difficulte": "moderee",
-  "intro": "L'eau clapote sous la voûte, puis des dos luisants glissent entre les caisses : des rats gros comme des chiens, le poil collé par la vase, et derrière eux une nuée qui monte du plancher pourri.",
+  "intro": "Une voûte basse, des pierres noires de vase, et l’eau brune qui lèche une margelle ancienne. Une flamme de lanterne tremble au bord de l’eau, et la lumière se reflète sur les caisses empilées, moisies, couvertes de toiles. L’eau clapote sous la voûte, puis des dos luisants glissent entre les caisses : des rats gros comme des chiens, le poil collé par la vase, les yeux rouges qui vous fixent. Derrière eux, une nuée monte du plancher pourri en un bruit de grattement qui emplit la grotte. Une odeur de moisi et d’eau morte vous prend à la gorge.",
   "monstres": [
    {
     "profil": "rat-geant",
@@ -50,7 +50,7 @@
   "type": "combat",
   "lieu": "mar-sentier-des-roseaux",
   "difficulte": "moderee",
-  "intro": "Un hurlement court dans les roseaux, repris par deux autres. Trois loups maigres sortent de la brume, le poil plaqué de vase, et coupent le sentier sans se presser.",
+  "intro": "Un hurlement court dans les roseaux, repris par deux autres, plus proches, plus rauques. Le vent couche les tiges, et le jour pâlit entre les touffes sèches. Trois loups maigres sortent de la brume, le poil plaqué de vase, les côtes saillantes sous la peau. Ils avancent sans se presser, la tête basse, en file le long du sentier de fascines, et coupent le passage devant et derrière vous. Une goutte d’eau tombe d’une feuille de roseau, puis le silence retombe, lourd, sur le marais. On n’entend plus que le clapotis de leurs pattes dans la vase.",
   "monstres": [
    {
     "profil": "loup",
@@ -91,7 +91,7 @@
   "type": "mixte",
   "lieu": "min-grotte-de-la-veine-basse",
   "difficulte": "moderee",
-  "intro": "Deux hommes en capuchon tirent une caisse hors de l'eau quand vous entrez ; un troisième, plus grand, tient une lampe et un coutelas. Ils ne sont pas de la compagnie : ils volent le fer de Varg.",
+  "intro": "Le clapotis s’arrête net quand vous entrez dans la galerie basse. Deux hommes en capuchon tirent une caisse hors de l’eau, les épaules tendues, les bottes enfoncées dans la vase. La caisse ruisselle et laisse voir des barres sombres, du fer brut, marqué au poinçon de la compagnie. Un troisième, plus grand, tient une lampe haute et un coutelas dont la lame luit sous la flamme. Ils se figent, les yeux allant de vous à la caisse, comme s’ils cherchaient une sortie.",
   "monstres": [
    {
     "profil": "bandit",
@@ -182,7 +182,7 @@
   "type": "combat",
   "lieu": "min-grotte-de-la-veine-basse",
   "difficulte": "moderee",
-  "intro": "Des bottes claquent sur l'escalier de bois. Une patrouille hobgobeline descend vérifier la galerie basse : deux combattants en cuir clouté et un éclaireur qui tient une lanterne basse.",
+  "intro": "Des bottes claquent sur l’escalier de bois, une cadence régulière qui descend vers vous. Une lueur jaune glisse le long de la paroi humide, puis une autre, plus basse. La galerie sent l’eau stagnante et la rouille, et les poutres craquent sous le poids de la descente. Une patrouille hobgobeline descend vérifier la galerie : deux combattants en cuir clouté, l’arme au poing, et, devant eux, un éclaireur qui tient une lanterne basse, à hauteur de hanche. Ses yeux balaient les marches, les flaques, les coins d’ombre. Personne ne parle. On entend seulement le bruit des pas qui se rapprochent.",
   "monstres": [
    {
     "profil": "combattant-hobgobelin",
@@ -235,11 +235,7 @@
      "competence": "discretion",
      "dd": 13
     },
-    "effets": [
-     {
-      "flag": "z5-patrouille-evitee"
-     }
-    ],
+    "effets": [],
     "echec": [
      {
       "jauge": {

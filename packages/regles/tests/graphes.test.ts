@@ -59,7 +59,7 @@ describe('graphe des lieux', () => {
 describe('graphe des dépendances d’une fin', () => {
   it('remonte de la fin à ce qui la déclenche, en marquant les drapeaux que rien ne pose', () => {
     const dm = charger(MINI);
-    dm.fins.set('fin-flag', { id: 'fin-flag', nom: 'F', condition: { et: [{ flag: 'pose' }, { flag: 'jamais' }] }, epilogue: 'x', consequences: [] });
+    dm.fins.set('fin-flag', { id: 'fin-flag', nom: 'F', condition: { et: [{ flag: 'pose' }, { flag: 'jamais' }] }, epilogue: 'x', variantes: [], consequences: [] });
     dm.evenements.set('ev-pose', { id: 'ev-pose', declencheur: 'condition', unique: true, narration: 'x', condition: { fait: 'f-taniere' }, effets: [{ flag: 'pose' }] });
     const g = grapheDependancesFin(dm, indexerReferences(dm), 'fin-flag');
     coherent(g);

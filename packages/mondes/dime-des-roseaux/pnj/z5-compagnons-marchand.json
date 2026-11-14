@@ -50,7 +50,7 @@
      "prisonniers"
     ],
     "question": "Qui soignez-vous, ici ?",
-    "reponse": "Ceux qui peuvent payer en grain, ceux qui ne peuvent pas, et les prisonniers quand on me laisse approcher de la mine. Colin Vasseur tousse depuis trois semaines ; on l'a mis à la veine parce qu'il connaît le grain, pas parce qu'il sait tenir un pic.",
+    "reponse": "Ceux qui peuvent payer en grain, ceux qui ne peuvent pas, et les prisonniers quand on me laisse approcher de la mine. Je m'essuie les mains sur mon tablier avant de toucher quelqu'un, elles sentent la menthe et la tourbe. Colin Vasseur tousse depuis trois semaines ; on l'a mis à la veine parce qu'il connaît le grain, pas parce qu'il sait tenir un pic. Je ne le dis pas pour me plaindre : la fièvre vient toujours après la faim, et je la vois déjà arriver dans les granges.",
     "revele": [
      "f-colin-prisonnier"
     ],
@@ -73,7 +73,7 @@
      "Varg"
     ],
     "question": "Aidez-nous à sortir les prisonniers de la mine.",
-    "reponse": "Je ne peux pas y entrer seule, et je ne sais pas me battre. Mais je connais leurs blessures, leurs noms et ce que Varg leur fait porter. Si vous y allez, je viens : je soignerai ceux que vous ramènerez.",
+    "reponse": "Je ne peux pas y entrer seule, et je ne sais pas me battre. Mais je connais leurs blessures, leurs noms et ce que Varg leur fait porter. Je les appelle par leur prénom, jamais par leur nombre, et je sais ce que chacun garde dans les épaules. Si vous y allez, je viens : je soignerai ceux que vous ramènerez, sans faire la différence entre eux. Bram Cœur-de-Tourbe connaît le fond de la mine mieux que moi ; c'est lui qu'il faut écouter sur les étais.",
     "effets": [
      {
       "quete": {
@@ -128,8 +128,30 @@
      "prière"
     ],
     "question": "En qui croyez-vous ?",
-    "reponse": "La Dame des Roseaux n'a pas de temple : elle a des fièvres, des accouchements et des gens qui n'ont plus rien. Je lui parle dans les granges. Elle ne promet pas de vaincre Varg ; elle promet qu'on ne mourra pas seul.",
+    "reponse": "La Dame des Roseaux n'a pas de temple : elle a des fièvres, des accouchements et des gens qui n'ont plus rien. Je lui parle dans les granges, là où les gens se couchent sur la paille et attendent le matin. Je ne la prie pas pour qu'elle me protège, je la prie pour les mains qui tremblent. Elle ne promet pas de vaincre Varg ; elle promet qu'on ne mourra pas seul. Je pose la besace à côté du malade, je reste, et je crois que c'est sa manière de répondre.",
     "effets": []
+   },
+   {
+    "id": "les-patients",
+    "mots": [
+     "Colin",
+     "soigner",
+     "fatigue",
+     "mains",
+     "prisonniers"
+    ],
+    "condition": {
+     "flag": "colin-libere"
+    },
+    "question": "Colin est libre. Comment va-t-il ?",
+    "reponse": "Elle pose sa besace, s'essuie les mains sur son tablier et se penche sur Colin sans attendre qu'on la remercie. Elle lui écoute la poitrine longtemps, lui regarde les yeux, puis soupire. « Il est épuisé, il a faim, et ses mains sont abîmées. Il faudra du pain, de la soupe et du sommeil, et des bandes propres chaque soir. Il tousse depuis trois semaines, je ne le laisserai pas repartir sans un cataplasme. » Elle se redresse et regarde la porte. « Il reste des vivants à la veine, et ils attendent qu'on revienne. Ils n'ont pas encore perdu espoir. Je prépare la soupe, puis j'irai voir qui tient encore debout. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "aveline-patients-rendus"
+     }
+    ],
+    "unique": true
    }
   ],
   "salutations": {
@@ -250,7 +272,7 @@
      "boyau"
     ],
     "question": "Que savez-vous de la vieille mine ?",
-    "reponse": "Mon père l'a creusée avant que les hommes de Varg y mettent leurs bottes. Il y a un boyau derrière la galerie effondrée, et un abri où les mineurs dormaient. Si quelqu'un veut entrer sans passer par le porche, c'est là qu'il faut chercher.",
+    "reponse": "Mon père l'a creusée avant que les hommes de Varg y mettent leurs bottes. Il y a un boyau derrière la galerie effondrée, et un abri où les mineurs dormaient. Si quelqu'un veut entrer sans passer par le porche, c'est là qu'il faut chercher. Je frappe la poutre du plat de la main avant de la dire sûre, puis je tiens mon vieux pic par le manche, comme on tient une main. Je connais le nom de ceux qui ont dormi là ; je les récite sans m'arrêter, et je ne vais pas les oublier pour vos beaux yeux.",
     "revele": [
      "f-mine-de-fer"
     ],
@@ -273,7 +295,7 @@
      "contrepoids"
     ],
     "question": "Pouvez-vous nous montrer le passage de la galerie ?",
-    "reponse": "Je peux vous dire où il est, mais mes jambes ne montent plus jusqu'à la grotte. Il y a un contrepoids de bois, derrière l'éboulement : quatre leviers, deux montants et deux traverses. Si vous les bougez dans le bon sens, le boyau s'ouvre.",
+    "reponse": "Je peux vous dire où il est, mais mes jambes ne montent plus jusqu'à la grotte. Il y a un contrepoids de bois, derrière l'éboulement : quatre leviers, deux montants et deux traverses. Si vous les bougez dans le bon sens, le boyau s'ouvre. Je boite de la jambe gauche, et je le dis sans honte : c'est la mine qui m'a fait ça, pas l'âge. Je tapote la canne de pin contre la pierre pour vous montrer où frapper.",
     "effets": [
      {
       "quete": {
@@ -331,7 +353,7 @@
      "père"
     ],
     "question": "Avez-vous perdu quelqu'un dans la mine ?",
-    "reponse": "Deux frères, il y a trente ans, dans un éboulement que personne n'a creusé assez vite. Leur nom est gravé sur une poutre de l'abri. Si vous y allez, ne marchez pas sur la paille sans regarder.",
+    "reponse": "Deux frères, il y a trente ans, dans un éboulement que personne n'a creusé assez vite. Leur nom est gravé sur une poutre de l'abri. Je les récite comme une liste de courses, sans m'arrêter, puis je frappe la poutre du plat de la main, comme si elle pouvait répondre. Si vous y allez, ne marchez pas sur la paille sans regarder. Moi, je regarde toujours : la vieille habitude m'a déjà sauvé les pieds plus d'une fois, et je ne l'ai jamais perdue.",
     "effets": [
      {
       "attitude": {
@@ -340,6 +362,35 @@
       }
      }
     ]
+   },
+   {
+    "id": "la-preuve-rendue",
+    "mots": [
+     "fer",
+     "veine",
+     "père",
+     "mine",
+     "galerie"
+    ],
+    "condition": {
+     "ou": [
+      {
+       "objet": "fer-de-la-mine"
+      },
+      {
+       "fait": "f-mine-de-fer"
+      }
+     ]
+    },
+    "question": "Voici ce que j'ai trouvé à la veine.",
+    "reponse": "Bram ne prend pas le fer tout de suite. Il le tient à la lumière, le retourne entre ses doigts, passe le pouce sur la cassure comme on lit une lettre. Ses yeux se mouillent et il tousse pour que personne ne le voie. « C'est de la bonne veine, dit-il. Mon père disait qu'elle sentait la pierre mouillée et le métal chaud. » « Elle est toujours là, sous la roche. On l'a crue perdue, elle n'a jamais bougé. » Il range l'échantillon dans sa poche, frappe la poutre du plat de la main, puis ajoute : « Ça tient. Merci. Vous avez fait ce que je n'ai pas pu faire. »",
+    "revele": [],
+    "effets": [
+     {
+      "flag": "bram-preuve-rendue"
+     }
+    ],
+    "unique": true
    }
   ],
   "salutations": {
@@ -445,7 +496,7 @@
      "cher"
     ],
     "question": "Pourquoi vos prix sont-ils si hauts ?",
-    "reponse": "Le pont, les patrouilles, la crue. Chaque sac qui arrive ici a payé trois péages et une peur. Vous voulez du grain ? J'en ai. Vous voulez le prix d'avant le siège ? Allez le chercher à Laelith.",
+    "reponse": "Le pont, les patrouilles, la crue. Chaque sac qui arrive ici a payé trois péages et une peur. Vous voulez du grain ? J'en ai. Vous voulez le prix d'avant le siège ? Allez le chercher à Laelith. Je dis mon prix avant de dire bonjour, puis je le baisse d'un sourire, comme si la pluie elle-même avait un prix. Mon chapeau cabossé se soulève quand je mens, alors regardez-le bien. Et si vous voulez des rations, des torches ou de la corde, c'est dans la brouette : elle ne se touche pas.",
     "effets": [
      {
       "attitude": {
@@ -465,7 +516,7 @@
      "partir"
     ],
     "question": "Que savez-vous de la route du pont ?",
-    "reponse": "Les hobgobelins comptent les charrettes et taxent les mules. Ils ont laissé passer la mienne parce que j'ai payé en grain, pas en or. Si vous voulez sortir de Mireval, il faudra leur donner quelque chose qu'ils ne comptent pas.",
+    "reponse": "Les hobgobelins comptent les charrettes et taxent les mules. Ils ont laissé passer la mienne parce que j'ai payé en grain, pas en or. Si vous voulez sortir de Mireval, il faudra leur donner quelque chose qu'ils ne comptent pas. Je connais chaque péage entre Mireval et Laelith, et je parle des routes comme d'autres parlent de leur famille. Pour les chemins du marais, voyez Marin, le passeur : il ne prend parti pour personne, et il se fait payer d'avance.",
     "revele": [
      "f-double-tribut"
     ],
@@ -480,7 +531,7 @@
      "fonds"
     ],
     "question": "Qu'avez-vous à vendre ?",
-    "reponse": "Des rations, des torches, de l'huile, de la corde, une potion de guérison et deux couvertures. Pas de fer : le fer, ici, c'est Varg qui le garde. Tout se paie d'avance, sauf si vous m'apportez du grain.",
+    "reponse": "Des rations, des torches, de l'huile, de la corde, une potion de guérison et deux couvertures. Pas de fer : le fer, ici, c'est Varg qui le garde. Tout se paie d'avance, sauf si vous m'apportez du grain. Je tapote la poche de toile sous ma chemise, là où je garde ma bourse, et je la touche quand je parle de départ. Pour les soins, la guérisseuse vous dira ce qui vaut vraiment une potion ; moi, je vends ce que je peux porter.",
     "effets": []
    },
    {
@@ -493,7 +544,7 @@
      "gobelins"
     ],
     "question": "Quelles sont les nouvelles ?",
-    "reponse": "On dit que la charrette n'est jamais arrivée chez les gobelins, et que les gobelins n'ont jamais eu aussi faim. On dit aussi que Varg fait travailler des prisonniers à la veine. Moi, je dis que tout le monde a raison et que personne ne paie.",
+    "reponse": "On dit que la charrette n'est jamais arrivée chez les gobelins, et que les gobelins n'ont jamais eu aussi faim. On dit aussi que Varg fait travailler des prisonniers à la veine. Moi, je dis que tout le monde a raison et que personne ne paie. Je commence toujours par une nouvelle que j'ai entendue d'un autre, et je jure que la source est sûre. Mon chapeau se soulève, je le remets en place, et j'attends de voir qui paiera la prochaine tournée d'histoires. À l'auberge, Bastien en raconte encore plus, et plus fort.",
     "revele": [
      "f-charrette-saisie",
      "f-tribu-affamee"
@@ -511,6 +562,32 @@
       "flag": "pacte-revele"
      },
      "texte": "Le registre du meunier, hein ? J'aurais pu vous le vendre, si j'avais su qu'il valait autant."
+    },
+    {
+     "condition": {
+      "ou": [
+       {
+        "flag": "z5-contrebandiers-allies"
+       },
+       {
+        "flag": "z5-contrebandiers-achetes"
+       }
+      ]
+     },
+     "texte": "Les contrebandiers de la mine, hein ? Vous avez traité avec eux, et je le sais avant même que vous soyez assis. Baissez la voix, ça ne se dit pas devant la porte. Je ne vous demande rien, mais je compterai la commission."
+    },
+    {
+     "condition": {
+      "ou": [
+       {
+        "flag": "z5-celestin-complice"
+       },
+       {
+        "flag": "z5-brouette-garde"
+       }
+      ]
+     },
+     "texte": "Entre nous, vous m’avez confié vos affaires, et même la garde de ma brouette. Alors je vous fais un prix, un peu moins cher qu’aux autres. Ne le répétez pas : j’ai une réputation à tenir, et elle est mauvaise."
     }
    ]
   },

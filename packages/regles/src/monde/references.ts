@@ -183,7 +183,10 @@ export function indexerReferences(dm: DonneesMonde): IndexReferences {
     condition(e, ['condition'], ev.condition);
     effets(e, ['effets'], ev.effets);
   }
-  for (const f of dm.fins.values()) condition({ type: 'fins', id: f.id }, ['condition'], f.condition);
+  for (const f of dm.fins.values()) {
+    condition({ type: 'fins', id: f.id }, ['condition'], f.condition);
+    f.variantes.forEach((v, i) => condition({ type: 'fins', id: f.id }, ['variantes', i, 'condition'], v.condition));
+  }
   // Les vivres (`monde.vivres`) consomment un objet du sac : l'index le sait (un objet jeté, vendu ou perdu coupe la règle).
   if (dm.monde.vivres) structure(consomme, { type: 'monde', id: dm.monde.id }, ['vivres', 'objet'], 'objet', dm.monde.vivres.objet);
 

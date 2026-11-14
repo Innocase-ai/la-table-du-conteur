@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { aller, creerGenerateur, etatInitial, ficheDeScene, nouvellePartie, sortiesDe, validerMonde, type DonneesMonde } from '../src';
-import { chargerMonde } from '../src/monde/chargeur';
+import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { MONDES_ESSAI } from './mondes-essai';
 
@@ -105,5 +105,39 @@ describe('passages (sorties expliquées)', () => {
         expect(t, `${l.id} > ${k.vers}`).not.toMatch(/Cœur-de-Braise|Nuit de la Cendre|Thalgrin|Brunhild|tribut|Fer-Gris/);
       }
     }
+  });
+});
+
+describe('passages : le parent ne contourne pas les liens fermés de ses enfants', () => {
+  it("un lieu joignable seulement par des liens à condition, cachés ou verrouillés n'est pas offert par son parent ; un lien libre le rouvre", () => {
+    const p = partie('veillecendre');
+    const maison = 'vei-maison-des-gardiens';
+    expect(sortiesDe(p, 'veillecendre').some((s) => s.vers === maison)).toBe(true);
+    // un lien conditionné vers la maison, déclaré ailleurs : elle ne s'ouvre plus par son parent
+    const pont = p.dm.lieux.get('hf-pont-de-la-veine')!;
+    pont.liens.push({ vers: maison, type: 'passage', heures: 0, sens: 'simple', condition: { flag: 'cle-de-la-maison' } } as (typeof pont.liens)[number]);
+    expect(sortiesDe(p, 'veillecendre').some((s) => s.vers === maison)).toBe(false);
+    // le lien conditionné lui-même reste visible, fermé, depuis son lieu de départ
+    const vu = sortiesDe(p, 'hf-pont-de-la-veine').find((s) => s.vers === maison);
+    expect(vu?.bloque).toBe(true);
+    // un second lien libre : la maison redevient joignable par son parent
+    pont.liens.push({ vers: maison, type: 'passage', heures: 0, sens: 'simple' } as (typeof pont.liens)[number]);
+    expect(sortiesDe(p, 'veillecendre').some((s) => s.vers === maison)).toBe(true);
+  });
+
+  it('La Dîme des Roseaux : la mine ne s’atteint pas depuis la région, mais le marais et la grotte, oui', () => {
+    const r = chargerMonde(join(RACINE_MONDES, 'dime-des-roseaux'));
+    if (!r.ok) throw new Error('monde illisible');
+    const dm = r.monde as DonneesMonde;
+    const etat = etatInitial(dm);
+    etat.lieu = 'dime-des-roseaux';
+    const p = nouvellePartie(dm, etat, [], creerGenerateur(3));
+    const vers = sortiesDe(p, 'dime-des-roseaux').map((s) => s.vers);
+    expect(vers).not.toContain('mine-hobgobeline');
+    expect(vers).toContain('mireval');
+    expect(vers).toContain('marais');
+    // la mine reste joignable par le passage secret de la cabane, fermé tant que le groupe n'a pas la carte du marais
+    const depuisCabane = sortiesDe(p, 'mar-cabane-des-passeurs').find((s) => s.vers === 'mine-hobgobeline');
+    expect(depuisCabane?.bloque).toBe(true);
   });
 });

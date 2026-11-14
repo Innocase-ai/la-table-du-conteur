@@ -71,7 +71,7 @@ describe('diagnostics : rangement des phrases du validateur', () => {
 describe('contrôles statiques de l’atelier', () => {
   it('une fin que rien ne peut déclencher est signalée, sauf si un effet « fin » existe', () => {
     const dm = charger(MINI);
-    dm.fins.set('fin-morte', { id: 'fin-morte', nom: 'Fin morte', condition: { flag: 'jamais-pose' }, epilogue: 'x', consequences: [] });
+    dm.fins.set('fin-morte', { id: 'fin-morte', nom: 'Fin morte', condition: { flag: 'jamais-pose' }, epilogue: 'x', variantes: [], consequences: [] });
     let d = diagnostiquerMonde(dm, srd).diagnostics.filter((x) => x.code === 'fin.inatteignable');
     expect(d).toHaveLength(1);
     expect(d[0]).toMatchObject({ gravite: 'avis', entite: { type: 'fins', id: 'fin-morte' }, source: 'controles' });
@@ -83,7 +83,7 @@ describe('contrôles statiques de l’atelier', () => {
 
   it('une fin dont le drapeau est posé quelque part est atteignable', () => {
     const dm = charger(MINI);
-    dm.fins.set('fin-flag', { id: 'fin-flag', nom: 'Fin', condition: { flag: 'pose' }, epilogue: 'x', consequences: [] });
+    dm.fins.set('fin-flag', { id: 'fin-flag', nom: 'Fin', condition: { flag: 'pose' }, epilogue: 'x', variantes: [], consequences: [] });
     dm.evenements.set('ev-pose', { id: 'ev-pose', declencheur: 'condition', unique: true, narration: 'x', effets: [{ flag: 'pose' }] });
     expect(diagnostiquerMonde(dm, srd).diagnostics.some((x) => x.code === 'fin.inatteignable')).toBe(false);
   });
@@ -143,7 +143,7 @@ describe('index des références : garde-fou contre un site oublié', () => {
   it('dit qui produit et qui consomme un drapeau, un fait et un objet', () => {
     const dm = charger(MINI);
     dm.evenements.set('ev-x', { id: 'ev-x', declencheur: 'condition', unique: true, narration: 'x', condition: { flag: 'porte-ouverte' }, effets: [{ flag: 'cloche-sonnee' }, { fait: 'f-cloche' }] });
-    dm.fins.set('fin-x', { id: 'fin-x', nom: 'X', condition: { et: [{ flag: 'cloche-sonnee' }, { non: { fait: 'f-cloche' } }] }, epilogue: 'x', consequences: [] });
+    dm.fins.set('fin-x', { id: 'fin-x', nom: 'X', condition: { et: [{ flag: 'cloche-sonnee' }, { non: { fait: 'f-cloche' } }] }, epilogue: 'x', variantes: [], consequences: [] });
     const idx = indexerReferences(dm);
     expect(produitPar(idx, 'flag', 'cloche-sonnee')).toEqual([{ entite: { type: 'evenements', id: 'ev-x' }, chemin: ['effets', 0], role: 'effet' }]);
     expect(consommePar(idx, 'flag', 'cloche-sonnee')).toEqual([{ entite: { type: 'fins', id: 'fin-x' }, chemin: ['condition'], role: 'condition' }]);

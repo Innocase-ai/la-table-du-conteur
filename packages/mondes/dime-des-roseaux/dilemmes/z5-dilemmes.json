@@ -555,11 +555,7 @@
     "Grum reste un problème derrière vous.",
     "Varg le retrouvera ou le tuera."
    ],
-   "effets": [
-    {
-     "flag": "grum-abandonne"
-    }
-   ],
+   "effets": [],
    "epilogue": "Grum est resté attaché dans le camp, et personne ne sait ce qu'il est devenu."
   },
   "echos": [
@@ -580,11 +576,7 @@
     "si": "relacher",
     "apres": 2,
     "annonce": "Grum n'est pas revenu au camp ; on dit qu'il marche vers le nord sans uniforme.",
-    "effets": [
-     {
-      "flag": "grum-a-quitte-la-compagnie"
-     }
-    ]
+    "effets": []
    },
    {
     "si": "ranconner",
@@ -739,9 +731,6 @@
       "id": "dime",
       "delta": 1
      }
-    },
-    {
-     "fin": "fin-echec"
     }
    ],
    "epilogue": "Vous êtes partis sans trancher ; Varg a tranché pour vous."
@@ -751,31 +740,19 @@
     "si": "marche",
     "apres": 3,
     "annonce": "La première charrette du tribut quitte Mireval sous la pluie ; personne ne chante.",
-    "effets": [
-     {
-      "flag": "epilogue-marche"
-     }
-    ]
+    "effets": []
    },
    {
     "si": "guerre",
     "apres": 3,
     "annonce": "Les blessés de la milice sont rentrés ; deux ne se lèveront plus.",
-    "effets": [
-     {
-      "flag": "epilogue-guerre"
-     }
-    ]
+    "effets": []
    },
    {
     "si": "exode",
     "apres": 3,
     "annonce": "Les roseaux ont gardé des traces de pas ; le village compte ses sacs et ne dit rien.",
-    "effets": [
-     {
-      "flag": "epilogue-exode"
-     }
-    ]
+    "effets": []
    }
   ]
  }

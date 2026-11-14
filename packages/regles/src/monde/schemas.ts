@@ -621,6 +621,9 @@ export const Fin = z.object({
   nom: Texte,
   condition: Condition,
   epilogue: Texte,
+  // Le monde se souvient : la première variante dont la condition est vraie remplace l'épilogue au moment de la fin (un secret révélé
+  // ou couvert, un prisonnier libéré, un choix) ; l'épilogue de base reste le repli.
+  variantes: z.array(z.object({ condition: Condition, epilogue: Texte })).default([]),
   consequences: z.array(Texte).default([]),
 });
 export type Fin = z.infer<typeof Fin>;

@@ -18,7 +18,7 @@ import {
   seReposer,
   testLibre,
 } from '../monde/exploration';
-import { evaluerCondition } from '../monde/etat';
+import { epilogueDeFin, evaluerCondition } from '../monde/etat';
 import { formulaireEnigme } from '../monde/reponses';
 import { presentationMonstres } from '../monde/presentation';
 import { ficheDeScene } from '../monde/scene';
@@ -349,6 +349,11 @@ export const moduleExploration: Module = {
   },
   vues: {
     scene: (ctx, p) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0, srd: ctx.srd }),
+    /** L'épilogue de la fin atteinte, avec la variante que le monde a retenue (un secret révélé ou couvert…) ; rien hors d'une fin. */
+    epilogue: (ctx, p): string | undefined => {
+      const fin = p.scene.type === 'fin' ? ctx.dm.fins.get(p.scene.fin) : undefined;
+      return fin ? epilogueDeFin(fin, p.etat) : undefined;
+    },
     /** La rencontre qui se présente, pour l'écran de rencontre ; rien hors d'une scène de rencontre. */
     rencontre: (ctx, p): PresentationRencontre | undefined => {
       if (p.scene.type !== 'rencontre') return undefined;
