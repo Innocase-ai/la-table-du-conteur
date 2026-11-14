@@ -145,6 +145,8 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
     charger(json) {
       const p = migrer(JSON.parse(json) as Record<string, unknown> & { version: number }) as unknown as Partie;
       if (p.monde !== ctx.dm.monde.id) throw new Error(`Sauvegarde du monde « ${p.monde} », pas « ${ctx.dm.monde.id} ».`);
+      // Un combat sauvegardé n'a de sens que dans une scène de rencontre : sinon c'est un reste, on l'oublie.
+      if (p.combatEnCours && p.scene.type !== 'rencontre') delete p.combatEnCours;
       // Un pack ajouté depuis la sauvegarde apporte des entités nouvelles : on leur donne leur état de départ, sans toucher au reste.
       completerEtat(p.etat, ctx.dm);
       for (const mod of modules) if (mod.etatInitial && !(mod.id in p.modules)) p.modules[mod.id] = mod.etatInitial(ctx);

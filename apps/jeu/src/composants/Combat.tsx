@@ -53,6 +53,10 @@ interface Props {
   onFinHistoire?: (etat: EtatCombat) => void;
   /** Combat d'une histoire : l'XP que la victoire rapportera, affichée dans le panneau de fin. */
   xpHistoire?: XpHistoire;
+  /** Combat d'une histoire repris d'une sauvegarde : on reprend cet état (dés compris), on ne crée pas un nouveau combat. */
+  etatInitial?: EtatCombat;
+  /** Combat d'une histoire : appelé au début puis après chaque action (la sauvegarde du combat en cours). */
+  onProgres?: (etat: EtatCombat) => void;
 }
 
 interface Selection {
@@ -64,10 +68,11 @@ interface Selection {
 const DELAI_IA = 280;
 const DELAI_IA_RAPIDE = 90;
 
-export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire, xpHistoire }: Props) {
+export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHistoire, xpHistoire, etatInitial, onProgres }: Props) {
   const ctx = useMemo(() => ({ sorts: donnees.sorts }), [donnees]);
   // Le moteur mute l'état en place : on le garde dans une ref et on force le rendu avec `version`.
   const etatRef = useRef<EtatCombat | null>(null);
+  if (!etatRef.current && etatInitial) etatRef.current = structuredClone(etatInitial);
   if (!etatRef.current) {
     const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees, reglages.herosCombat);
     etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan, ...(reglages.rencontre.surprise ? { surpris: [reglages.rencontre.surprise] } : {}) });
@@ -75,6 +80,10 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const etat = etatRef.current;
   const [version, setVersion] = useState(0);
   const rafraichir = useCallback(() => setVersion((v) => v + 1), []);
+  // Sauvegarde du combat d'une histoire : au début, puis après chaque action (version change à chaque commande exécutée).
+  useEffect(() => {
+    onProgres?.(etat);
+  }, [version]);
 
   const [selection, setSelection] = useState<Selection | null>(null);
   const [survolCase, setSurvolCase] = useState<Position | null>(null);
@@ -135,7 +144,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   useEffect(() => {
     prechargerVoix(etat.combattants.flatMap((x) => (x.camp === 'heros' ? [voixDuPortrait(x.portrait) ?? ''] : [])));
     const t = window.setTimeout(() => {
-      if (!REPLIQUES) return;
+      // Un combat repris d'une sauvegarde est déjà commencé : pas de cri de début.
+      if (!REPLIQUES || etatInitial) return;
       const r = choisirReplique([{ situation: 'debut-combat', apres: etat.journal.length }], etat, REPLIQUES, memoireRepliques.current, Math.random);
       if (!r) return;
       const lieu = etat.combattants.find((x) => x.id === r.locuteur)?.position;

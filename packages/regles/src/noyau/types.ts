@@ -10,9 +10,26 @@ import type { FormulaireReponse } from '../monde/reponses';
 import type { Personnage } from '../personnage';
 import type { DonneesMonde } from '../monde/schemas';
 import type { Generateur } from '../des';
+import type { EtatCombat } from '../combat/etat';
+import type { Rencontre } from '../combat/prototype';
 
 /** Version du format de sauvegarde ; chaque changement de forme ajoute une migration (noyau/migrations.ts). */
-export const VERSION_PARTIE = 3;
+export const VERSION_PARTIE = 4;
+
+/**
+ * Un combat d'histoire en cours, gardé dans la sauvegarde : recharger la page reprend au même point. L'état du combat contient
+ * celui du générateur de dés (`etat.rng`) : la reprise se déroule comme le combat quitté, on ne relance pas les dés en rechargeant.
+ * Effacé par `reglerRencontre` (victoire, défaite, repli ou autre issue).
+ */
+export interface CombatEnCours {
+  etat: EtatCombat;
+  /** Graine du combat (identifie le combat côté client). */
+  graine: number;
+  /** La rencontre telle qu'elle a été jouée (nom, ambiance du plateau, surprise), adaptée au groupe. */
+  rencontre: Rencontre;
+  /** Niveau de l'IA des monstres. */
+  ia: 'normale' | 'facile';
+}
 
 /** Un jet de dés fait par le moteur, montré au joueur tel quel. */
 export interface Jet {
@@ -41,6 +58,8 @@ export interface Partie {
   /** État du hasard : une partie rechargée tire les mêmes dés. */
   graine: number;
   scene: Scene;
+  /** Le combat d'histoire commencé et pas fini (absent hors combat ; version 4). */
+  combatEnCours?: CombatEnCours;
   groupe: Personnage[];
   /** État du monde (lieux, faits, quêtes, jauges…) et de son exploration. */
   etat: EtatMonde & { exploration: EtatExploration };

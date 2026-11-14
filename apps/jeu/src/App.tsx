@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IA_NORMALE, IA_RAPIDE, adapterRencontre, heroCombatDe, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
+import { IA_NORMALE, IA_RAPIDE, adapterRencontre, heroCombatDe, type CombatEnCours, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
 import { chargerDonnees } from './donnees';
 import { Accueil } from './composants/Accueil';
 import { Combat } from './composants/Combat';
@@ -68,6 +68,8 @@ export function App() {
   const [combatHistoire, setCombatHistoire] = useState<{
     reglages: Reglages;
     graine: number;
+    /** Combat repris d'une sauvegarde (absent : nouveau combat). */
+    etat?: EtatCombat;
   } | null>(null);
   const [chargement, setChargement] = useState<string | null>(null);
 
@@ -96,7 +98,17 @@ export function App() {
     sauverPartie(p);
   };
 
+  /** Le combat d'histoire en cours, d'après la sauvegarde de la partie (reprise au même point, dés compris). */
+  const combatDeSauvegarde = (c: CombatEnCours) => ({
+    graine: c.graine,
+    etat: c.etat,
+    reglages: { rencontre: c.rencontre, elan: c.etat.options.elan, ia: c.ia, heros: 'groupe' as const },
+  });
+
   if (combatHistoire && aventure) {
+    // Après chaque action : le combat est écrit dans la partie sauvegardée (recharger la page le reprend ; la fin du combat l'efface).
+    const sauverCombat = (etat: EtatCombat) =>
+      suite({ ...aventure.partie, combatEnCours: { etat: structuredClone(etat), graine: combatHistoire.graine, rencontre: combatHistoire.reglages.rencontre, ia: combatHistoire.reglages.ia } });
     const finCombat = (etat: EtatCombat) => {
       // L'état des héros revient à l'histoire : PV (un héros tombé est relevé à 1 PV), potions bues, usages et emplacements dépensés.
       const heros = Object.fromEntries(
@@ -118,6 +130,8 @@ export function App() {
         donnees={d}
         reglages={combatHistoire.reglages}
         graine={combatHistoire.graine}
+        {...(combatHistoire.etat ? { etatInitial: combatHistoire.etat } : {})}
+        onProgres={sauverCombat}
         onRejouer={() => undefined}
         onRetour={() => setCombatHistoire(null)}
         onFinHistoire={finCombat}
@@ -133,6 +147,11 @@ export function App() {
         onCombat={() => {
           const p = aventure.partie;
           if (p.scene.type !== 'rencontre') return;
+          // Un combat commencé (page rechargée, ou « Retour » en plein combat) : on le reprend, on n'en relance pas un autre.
+          if (p.combatEnCours) {
+            setCombatHistoire(combatDeSauvegarde(p.combatEnCours));
+            return;
+          }
           setCombatHistoire({
             graine: nouvelleGraine(),
             reglages: {
@@ -251,6 +270,8 @@ export function App() {
                           if (a) {
                             setAventure(a);
                             setVue({ nom: 'aventure' });
+                            // Un combat était en cours au moment de quitter : on y revient directement.
+                            if (a.partie.combatEnCours && a.partie.scene.type === 'rencontre') setCombatHistoire(combatDeSauvegarde(a.partie.combatEnCours));
                           }
                         })
                         .catch((e: unknown) => alert(e instanceof Error ? e.message : String(e)))

@@ -305,6 +305,7 @@ export const moduleExploration: Module = {
         if (!cr.ok && !cr.jets.length) return { refus: cr.refus ?? 'Impossible.' };
         // La rencontre est réglée, sauf si une autre issue a échoué : le combat attend toujours.
         t.partie.scene = { type: 'exploration' };
+        delete t.partie.combatEnCours;
         return verser(t, cr);
       },
       propositions: (ctx, p) => {

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
-    "typecheck": "tsc -p packages/regles --noEmit && tsc -p outils --noEmit && tsc -p apps/atelier --noEmit",
+    "typecheck": "tsc -p packages/regles --noEmit && tsc -p outils --noEmit && tsc -p apps/atelier --noEmit && tsc -p apps/jeu --noEmit",
     "simuler": "tsx outils/simuler.ts",
     "jeu": "pnpm --filter jeu dev",
     "atelier": "pnpm --filter atelier dev",
