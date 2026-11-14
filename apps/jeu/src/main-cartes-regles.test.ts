@@ -52,7 +52,9 @@ describe('sections de la main', () => {
     expect(carteDeTouche('a', touches)).toBeUndefined();
     const sans = touchesDeCartes(sections, new Set(['elan']));
     expect([...sans.keys()].some((id) => sections.find((s) => s.id === 'elan')!.cartes.some((k) => k.id === id))).toBe(false);
-    expect(sans.size).toBe(touches.size - sections.find((s) => s.id === 'elan')!.cartes.filter((k) => k.jouable).length);
+    // Neuf touches au plus : sans l'élan, les cartes suivantes remontent dans la numérotation.
+    const jouablesSansElan = sections.filter((s) => s.id !== 'elan' && s.id !== 'indisponibles').reduce((n, s) => n + s.cartes.filter((k) => k.jouable).length, 0);
+    expect(sans.size).toBe(Math.min(9, jouablesSansElan));
   });
 
   it('« tout est joué » : plus d’action ni de bonus utiles (l’élan et le gratuit ne comptent pas)', () => {

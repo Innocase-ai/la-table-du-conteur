@@ -231,7 +231,7 @@ function effetsSecondaires(etat: EtatCombat, lanceur: Combattant, sort: Sort, c:
 }
 
 /** Déplacement forcé : la cible s'éloigne de `depuis` de `cases` cases au plus, arrêtée par un mur ou une créature. */
-function repousser(etat: EtatCombat, depuis: Position, c: Combattant, cases: number): void {
+export function repousser(etat: EtatCombat, depuis: Position, c: Combattant, cases: number): void {
   if (c.mort) return;
   const dx = Math.sign(c.position.x - depuis.x);
   const dy = Math.sign(c.position.y - depuis.y);

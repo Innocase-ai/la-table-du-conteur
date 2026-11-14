@@ -424,6 +424,8 @@ export function situationAttaque(
   }
   if (cible.etats.some((e) => ['paralyse', 'inconscient', 'entrave', 'aveugle', 'etourdi'].includes(e.etat))) avantage = true;
   if (attaquant.etats.some((e) => ['a-terre', 'entrave', 'aveugle', 'effraye', 'empoisonne'].includes(e.etat))) desavantage = true;
+  // Empoigné : Désavantage à toute attaque contre une autre créature que celle qui le tient (SRD 5.2.1).
+  if (attaquant.etats.some((e) => e.etat === 'empoigne' && e.source !== cible.id)) desavantage = true;
   if (cible.tour.esquive && peutAgir(cible)) desavantage = true;
   // Invisible : on ne le voit pas (désavantage contre lui) et il voit tout (avantage à ses attaques).
   if (aEtat(cible, 'invisible')) desavantage = true;

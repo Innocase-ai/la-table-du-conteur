@@ -88,8 +88,8 @@ export function cleDeCarte(k: CarteIcone, ecole?: string): { cle: string; lancer
         lancer: false,
       };
     case 'base':
-      // Pas de dessin propre pour Aider et Stabiliser : ils empruntent ceux des sorts Aide et Soins.
-      return { cle: connu(`base:${reste}`) ?? (reste === 'aider' ? 'sort:aide' : reste === 'stabiliser' ? 'sort:soins' : undefined) ?? 'aptitude:defaut', lancer: false };
+      // Pas de dessin propre pour Aider, Stabiliser, Lutte et Bousculade : ils empruntent d'autres dessins.
+      return { cle: connu(`base:${reste}`) ?? { aider: 'sort:aide', stabiliser: 'sort:soins', lutter: 'base:forcer', renverser: 'motif:physique', repousser: 'motif:force' }[reste] ?? 'aptitude:defaut', lancer: false };
     case 'aptitude':
       return {
         cle:

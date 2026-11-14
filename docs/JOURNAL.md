@@ -2046,3 +2046,12 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Actions SRD (lot 1)** : **Aider** (carte `base:aider`, action : Avantage à la prochaine attaque d'un allié contre un adversaire à 1,5 m, jusqu'au début de votre tour) ; **Stabiliser** (`base:stabiliser`, action : Sagesse (Médecine) DD 10 sur un allié à 0 PV au contact ; le bonus de Médecine passe dans `Combattant.competences`) ; **surprise** : `creerCombat(..., { elan, surpris: ['heros'] })` donne le Désavantage à l'Initiative du camp surpris (journal « Pris par surprise… ») ; une rencontre de monde peut porter `surprise: 'heros' | 'monstres'` (`RencontreMonde`, passée par `rencontreDeMonde` et `Combat.tsx`). Aider et Stabiliser empruntent les dessins des sorts Aide et Soins. Tests : `combat-actions-srd.test.ts` (10).
 - **Reste des actions SRD** : Lutte et Bousculade (options de coup à mains nues), Préparer (réaction déclenchée), Se cacher (demande un modèle de vue et d'obscurité), couvert aux trois quarts et total. Reste aussi : le schéma de monde n'accepte pas `terrain: 'neige'` alors que le moteur le connaît.
 - 2183 tests verts (140 fichiers), typechecks (moteur, outils, atelier, jeu) verts. **Pas commité.**
+
+## 14/11/2026 — Combat : Lutte et Bousculade (lot 2 des actions SRD)
+
+- **Trois cartes de base pour les héros** (`base:lutter`, `base:renverser`, `base:repousser`) : coup à mains nues du SRD 5.2.1 à la place d'une attaque de l'action Attaque ; sauvegarde de Force ou de Dextérité (au choix de la cible) contre 8 + Force + maîtrise ; empoigné / à terre / repoussé de 1,5 m. Une cible plus grande d'une taille au plus. Les monstres ne les ont pas (leurs actions sont dans leur profil).
+- **Règle ajoutée** : un empoigné attaque avec Désavantage toute autre créature que celle qui le tient (écart noté à l'audit §4, monstres compris).
+- Dessins empruntés (forcer, motifs physique et force). `main-cartes-regles.test.ts` : la numérotation des touches est plafonnée à neuf, le test en tient compte.
+- **L'IA ne les joue pas** : mesuré (`pnpm escarmouches 6 tous 2,3`, 36 cas), quand l'IA des héros les choisit les victoires passent de 87 % à 81 % et les PV restants de 63 % à 56 % ; elles sont exclues de ses candidates (`CARTES_QUE_L_IA_NE_JOUE_PAS`), comme les objets embarqués. Le calage des escarmouches ne change pas.
+- **Tests** : `combat-lutte-bousculade.test.ts` (15). Typechecks verts. **Pas commité.**
+- **Pas fait** : la main libre n'est pas exigée ; pas de prise traînée en se déplaçant ; restent Préparer, Se cacher, couvert aux trois quarts.

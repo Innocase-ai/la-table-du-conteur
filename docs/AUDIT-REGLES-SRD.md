@@ -45,7 +45,7 @@ Les écarts marqués **✔ vérifié** ont été contrôlés dans le code et le 
 
 ## 4. Écarts mineurs
 
-Combat : Entravé (désavantage aux JS de Dex), Agrippé (désavantage hors agrippeur), Effrayé (vue de la source, ne pas s'approcher), Charmé (ne pas attaquer le charmeur), Esquive (perdue à Vitesse 0), Rage sans expiration et sans avantage en Force, Témérité sur toute attaque au corps à corps, attaque sournoise une fois par tour du roublard seulement, diagonale entre deux murs, Contact glacial sans effet, Poigne électrique bloque toute réaction, Sommeil endort les elfes, Robustesse de la non-vie du zombi ignorée.
+Combat : Entravé (désavantage aux JS de Dex), Effrayé (vue de la source, ne pas s'approcher), Charmé (ne pas attaquer le charmeur), Esquive (perdue à Vitesse 0), Rage sans expiration et sans avantage en Force, Témérité sur toute attaque au corps à corps, attaque sournoise une fois par tour du roublard seulement, diagonale entre deux murs, Contact glacial sans effet, Poigne électrique bloque toute réaction, Sommeil endort les elfes, Robustesse de la non-vie du zombi ignorée.
 Hors combat : crochetage sans maîtrise de l'outil (ni Avantage compétence + outil), repos court qui dépense tous les dés de vie (et n'avance pas l'horloge), repos long sans condition de 1 PV ni délai de 16 h, monnaie sans pe ni pp, Doué sans les outils, Touche-à-tout sans l'initiative.
 
 ## 5. Choix assumés du jeu (pas des erreurs)
@@ -68,7 +68,7 @@ Fait : lot 1 (10 écarts), les 4 décisions (PX de départ, influence SRD, héro
 2. **Actions de monstre** : 186 actions sans résolution (la carte consomme l'action sans effet), 105 actions de zone (souffles) qui ne touchent qu'une cible, résistance à la magie, actions et résistances légendaires, régénération. Commencer par un état des lieux en lecture seule : lesquelles concernent les monstres réellement placés dans les histoires et les escarmouches.
 3. **États manquants** : Pétrifié, Assourdi, Invisible, Épuisement.
 4. **Armes** : (Légère : équipement et attaque de la main gauche faits le 12/11) ; propriété Polyvalente (dégâts à deux mains), botte Coup double, styles Armes à deux mains et Combat à deux armes.
-5. **Actions manquantes** : ~~Aider (dont stabiliser par Médecine DD 10)~~ et ~~surprise à l'initiative~~ (faits le 14/11/2026, `docs/COMBAT.md`) ; restent Se cacher, Préparer, Lutte et Bousculade, couvert au-delà du demi-couvert.
+5. **Actions manquantes** : ~~Aider (dont stabiliser par Médecine DD 10)~~ et ~~surprise à l'initiative~~ (faits le 14/11/2026, `docs/COMBAT.md`) ; ~~Lutte et Bousculade~~ faites le 14/11/2026 (héros seulement) ; restent Se cacher, Préparer, couvert au-delà du demi-couvert.
 6. **Grandes créatures sur plusieurs cases** (G = 2×2, TG = 3×3, Gig = 4×4) : fidèle au SRD mais touche le déplacement, la ligne de vue, les plateaux et l'interface ; à ne faire que si une histoire en a besoin.
 7. **Personnage** : sorts de lignage des niveaux 3 et 5, don Initié à la magie complet, grimoire du Magicien, Arcanum mystique de l'Occultiste, multiclassage, dons généraux à la place d'une amélioration, effets en combat des Faveurs épiques.
 8. **Hors combat** : harmonisation complète (armures, boucliers, armes magiques), objets à charges utilisables hors combat, ressources du Moine, de l'Ensorceleur, du Druide, du Barde et du Magicien au repos, Épuisement, rythme de voyage, pièges (états appliqués, résistances).

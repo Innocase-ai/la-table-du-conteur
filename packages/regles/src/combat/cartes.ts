@@ -3,7 +3,7 @@
 import { moyenneDes } from '../des';
 import { idImageCommune } from '../modules/image-commune';
 import type { Caracteristique, Sort } from '../schemas';
-import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
+import { actif, adversairesCiblables, allies, combattant, ennemis, horsCombat, journaliser, lancerDes, peutAgir, TAILLES, type AttaqueArme, type Combattant, type EtatCombat } from './etat';
 import { distanceMetres, ligneDeVue, type Position } from './grille';
 import { appliquerObjet, avecIncantationDObjet, jetDe, PREFIXE_CHARGES, PREFIXE_OBJET, pourSoiSeul, utileA, visePar } from './objets';
 import {
@@ -24,7 +24,7 @@ import {
   verifierFin,
   vitesse,
 } from './moteur';
-import { attaqueArmeSpirituelle, attaqueCaresse, attaqueLameDeFeu, ciblesPossibles, lancerSort, nombreCibles, porteeSort, preparerIncantation, SORTS_AU_CONTACT, SUIVI_ZONES, suiviZone, ZONES_SUPPLEMENTAIRES } from './sorts';
+import { attaqueArmeSpirituelle, attaqueCaresse, attaqueLameDeFeu, ciblesPossibles, lancerSort, nombreCibles, porteeSort, preparerIncantation, repousser, SORTS_AU_CONTACT, SUIVI_ZONES, suiviZone, ZONES_SUPPLEMENTAIRES } from './sorts';
 
 export type CoutCarte = 'action' | 'bonus' | 'reaction' | 'gratuit' | 'elan';
 export type Ciblage = 'aucun' | 'ennemi' | 'allie' | 'creature' | 'point' | 'soi';
@@ -427,6 +427,24 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   res.push(verifier(carte({ id: 'base:foncer', nom: 'Foncer', description: 'Déplacement supplémentaire égal à votre Vitesse.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   res.push(verifier(carte({ id: 'base:desengager', nom: 'Se désengager', description: 'Pas d\'attaque d\'opportunité ce tour-ci.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   res.push(verifier(carte({ id: 'base:esquiver', nom: 'Esquiver', description: 'Les attaques contre vous ont le désavantage ; avantage aux sauvegardes de Dex.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
+  // Coup à mains nues (SRD 5.2.1) : Lutte et Bousculade, à la place d'une attaque de l'action Attaque. Les héros seulement :
+  // les monstres ont leurs propres actions (empoignade, renversement) dans leur profil.
+  if (c.camp === 'heros') {
+    const voisins = ennemis(etat, c).filter(
+      (e) => distanceMetres(e.position, c.position) <= 1.5 && TAILLES.indexOf(e.taille) <= TAILLES.indexOf(c.taille) + 1,
+    );
+    const dd = 8 + c.mods.for + c.bonusMaitrise;
+    const ajouterCoup = (id: string, nom: string, description: string, cibles: Combattant[]) => {
+      let k = carte({ id: `base:${id}`, nom, description, categorie: 'base', cout: 'action', ciblage: 'ennemi', portee: 1.5, cibles: cibles.map((e) => e.id), ressource: t.attaquesRestantes > 0 ? `${t.attaquesRestantes} attaque(s) restante(s)` : undefined, stats: { sauvegarde: { caracteristique: 'for', dd } } });
+      if (!peutAttaquer(c)) k = refuser(k, 'Action déjà utilisée.');
+      else if (!k.cibles.length) k = refuser(k, 'Aucune cible à portée.');
+      res.push(k);
+    };
+    const commun = `À la place d'une attaque, sur un adversaire à 1,5 m (pas plus grand que d'une taille de plus que vous) : sauvegarde de Force ou de Dextérité (au choix de la cible), DD ${dd}. Raté : `;
+    ajouterCoup('lutter', 'Lutte', `${commun}il est empoigné (Vitesse 0, Désavantage contre un autre que vous ; il s'échappe par un test d'Athlétisme ou d'Acrobaties DD ${dd}).`, voisins.filter((e) => !e.etats.some((x) => x.etat === 'empoigne' && x.source === c.id)));
+    ajouterCoup('renverser', 'Bousculade : jeter à terre', `${commun}il tombe à terre.`, voisins.filter((e) => !e.etats.some((x) => x.etat === 'a-terre')));
+    ajouterCoup('repousser', 'Bousculade : repousser', `${commun}il est repoussé de 1,5 m, loin de vous.`, voisins);
+  }
   // Aider (SRD 5.2.1) : faciliter l'attaque d'un allié contre un adversaire à 1,5 m de soi, ou stabiliser un allié tombé à 0 PV.
   if (allies(etat, c).length) {
     const aidables = ennemis(etat, c).filter((e) => distanceMetres(e.position, c.position) <= 1.5 && !e.modificateurs.some((m) => m.id === 'aide-attaque'));
@@ -532,6 +550,38 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
 
 export type Resultat = { ok: true } | { ok: false; erreur: string };
 
+/** Une attaque de l'action Attaque : la première dépense l'action et ouvre les attaques supplémentaires. */
+function consommerAttaque(c: Combattant): void {
+  if (c.tour.attaquesRestantes <= 0) {
+    c.tour.action = false;
+    c.tour.attaquesRestantes = c.ressources.attaquesParAction ?? 1;
+  }
+  c.tour.attaquesRestantes -= 1;
+  c.tour.attaqueEntreprise = true;
+}
+
+/**
+ * Lutte et Bousculade (SRD 5.2.1, coup à mains nues) : la cible fait une sauvegarde de Force ou de Dextérité, au choix (elle prend
+ * la meilleure), contre 8 + Force + maîtrise de l'attaquant. Raté : empoignée, jetée à terre ou repoussée de 1,5 m.
+ */
+function lutteBousculade(etat: EtatCombat, c: Combattant, mode: string, cible: Combattant): void {
+  const dd = 8 + c.mods.for + c.bonusMaitrise;
+  const carac: Caracteristique = cible.sauvegardes.for >= cible.sauvegardes.dex ? 'for' : 'dex';
+  const reussie = sauvegarde(etat, cible, carac, dd);
+  const verbe = mode === 'lutter' ? 'empoigner' : mode === 'renverser' ? 'jeter à terre' : 'repousser';
+  journaliser(etat, {
+    type: 'attaque',
+    texte: `${c.nom} tente de ${verbe} ${cible.nom} : sauvegarde ${reussie ? 'réussie' : 'ratée'} (${carac === 'for' ? 'Force' : 'Dextérité'} contre DD ${dd}).`,
+    acteur: c.id,
+    cible: cible.id,
+    details: { sauvegarde: reussie ? 'reussie' : 'ratee', distance: false },
+  });
+  if (reussie) return;
+  if (mode === 'lutter') ajouterEtat(etat, cible, { etat: 'empoigne', source: c.id, evasion: dd });
+  else if (mode === 'renverser') ajouterEtat(etat, cible, { etat: 'a-terre', source: c.id });
+  else repousser(etat, c.position, cible, 1);
+}
+
 function depenser(c: Combattant, cout: CoutCarte): void {
   if (cout === 'action') c.tour.action = false;
   if (cout === 'bonus') c.tour.bonus = false;
@@ -578,12 +628,7 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
   switch (famille) {
     case 'attaque': {
       const arme = c.attaques.find((a) => a.id === sid)!;
-      if (c.tour.attaquesRestantes <= 0) {
-        c.tour.action = false;
-        c.tour.attaquesRestantes = c.ressources.attaquesParAction ?? 1;
-      }
-      c.tour.attaquesRestantes -= 1;
-      c.tour.attaqueEntreprise = true;
+      consommerAttaque(c);
       if (arme.legere && arme.main !== 'gauche') c.tour.attaqueLegere = true;
       attaqueArme(etat, c, cibles[0]!, arme);
       break;
@@ -632,7 +677,9 @@ function executerCommande(etat: EtatCombat, ctx: Contexte, cmd: Commande): Resul
       } else executerAptitude(etat, ctx, c, sid, cibles);
       break;
     case 'base':
-      depenser(c, k.cout);
+      // Lutte et Bousculade remplacent une attaque de l'action Attaque ; les autres cartes de base paient leur coût.
+      if (sid === 'lutter' || sid === 'renverser' || sid === 'repousser') consommerAttaque(c);
+      else depenser(c, k.cout);
       if (sid.startsWith('objet-') && sid.includes('~')) lancerSortDObjet(etat, ctx, c, sid, cibles, cmd.point);
       else executerBase(etat, c, sid, cibles);
       break;
@@ -863,6 +910,11 @@ function executerBase(etat: EtatCombat, c: Combattant, id: string, cibles: Comba
     case 'esquiver':
       c.tour.esquive = true;
       journaliser(etat, { type: 'info', texte: `${c.nom} se met en garde (Esquiver).`, acteur: c.id });
+      break;
+    case 'lutter':
+    case 'renverser':
+    case 'repousser':
+      lutteBousculade(etat, c, id, cibles[0]!);
       break;
     case 'aider': {
       const cible = cibles[0]!;

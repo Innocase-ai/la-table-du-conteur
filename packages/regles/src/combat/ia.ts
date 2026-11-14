@@ -129,6 +129,12 @@ function meilleureCarteOffensive(cartes: Carte[]): Carte | undefined {
 
 const CARTE_CHANGER = 'base:changer-armes';
 
+/**
+ * Lutte et Bousculade : le joueur les joue, l'IA non. Mesuré en simulation (36 cas, six héros) : quand l'IA des héros les choisit,
+ * elle gâche ses actions (victoires 87 % → 81 %, PV restants 63 % → 56 %) ; leur valeur tient à ce que les alliés en font ensuite.
+ */
+const CARTES_QUE_L_IA_NE_JOUE_PAS: ReadonlySet<string> = new Set(['base:lutter', 'base:renverser', 'base:repousser']);
+
 /** Vrai si changer de jeu d'armes ouvre une attaque qu'on n'a pas avec les armes en main. */
 function changerPourAttaquer(etat: EtatCombat, ctx: Contexte, id: string): boolean {
   if (!cartesDisponibles(etat, ctx, id).some((k) => k.id === CARTE_CHANGER && k.jouable)) return false;
@@ -289,7 +295,7 @@ export function pointsZone(etat: EtatCombat, c: Combattant, k: Carte): Position[
 function etapesPour(etat: EtatCombat, ctx: Contexte, c: Combattant, prefixe: Commande[]): Etape[] {
   const res: Etape[] = [];
   for (const k of cartesDisponibles(etat, ctx, c.id)) {
-    if (!k.jouable || k.id === CARTE_CHANGER) continue;
+    if (!k.jouable || k.id === CARTE_CHANGER || CARTES_QUE_L_IA_NE_JOUE_PAS.has(k.id)) continue;
     if (k.ciblage === 'point') {
       for (const p of pointsZone(etat, c, k)) res.push({ commandes: [...prefixe, { type: 'jouer', carte: k.id, point: p }], libelle: `${k.nom} sur (${p.x},${p.y})` });
       continue;
