@@ -654,6 +654,16 @@ export const Monde = z.object({
   chapitres: z.array(Chapitre).min(1),
   // Ce que le MJ ne doit jamais faire dans ce monde (ex. magie ressuscitante).
   regles: z.array(Texte).default([]),
+  // Vivres (facultatif, 14/11/2026) : à chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe (`objet`), sauf quand
+  // le groupe se trouve dans un lieu dont `services` contient « repas » (on y mange à table). Sans ration, il a faim : `faim` en dégâts
+  // (les PV ne descendent jamais sous 1). `depart` : jours de vivres par héros dans le sac au début de l'histoire.
+  vivres: z
+    .object({
+      objet: Id.default('rations'),
+      depart: z.number().int().min(0).max(20).default(0),
+      faim: z.string().regex(/^\d*d\d+\s*([+-]\s*\d+)?$/, 'dés comme « 1d4 »').default('1d4'),
+    })
+    .optional(),
   auteurs: z.array(Texte).default([]),
 });
 export type Monde = z.infer<typeof Monde>;

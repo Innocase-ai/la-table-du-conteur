@@ -447,6 +447,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               {j.palier ? ` · ${j.palier}` : ''}
             </span>
           ))}
+          {scene.vivres && (
+            <span className={`aventure-vivres${scene.vivres.jours === 0 ? ' manque' : ''}`} title={`${scene.vivres.rations} ${scene.vivres.nom.toLowerCase()} : un par héros et par jour. On mange à table dans les lieux qui servent des repas.`}>
+              Vivres {scene.vivres.jours} j
+            </span>
+          )}
           <span>{scene.pieces.toLocaleString('fr-FR')} po</span>
           <ControleSon />
         </div>

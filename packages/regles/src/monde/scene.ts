@@ -23,6 +23,8 @@ export interface FicheScene {
   jauges: { id: string; nom: string; valeur: number; max: number; palier?: string; prochain?: string }[];
   groupe: { id: string; nom: string; classe: string; pv: number; pvMax: number }[];
   pieces: number;
+  /** Les vivres du groupe, si l'histoire en demande : rations en réserve et jours qu'elles couvrent (un par héros vivant et par jour). */
+  vivres?: { objet: string; nom: string; rations: number; jours: number };
   inventaire: { id: string; nom: string; quantite: number }[];
   fin?: string;
 }
@@ -93,6 +95,14 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
     }),
     groupe: p.groupe.map((a) => ({ id: a.id, nom: a.nom, classe: a.fiche.classe, pv: a.pv, pvMax: a.fiche.pvMax })),
     pieces: etat.pieces,
+    ...(dm.monde.vivres
+      ? (() => {
+          const v = dm.monde.vivres!;
+          const rations = etat.inventaire[v.objet] ?? 0;
+          const vivants = Math.max(1, p.groupe.filter((a) => a.pv > 0).length);
+          return { vivres: { objet: v.objet, nom: dm.objets.get(v.objet)?.nom ?? p.srd?.objets.get(v.objet)?.nom ?? v.objet, rations, jours: Math.floor(rations / vivants) } };
+        })()
+      : {}),
     inventaire: Object.entries(etat.inventaire).map(([id, quantite]) => ({ id, nom: dm.objets.get(id)?.nom ?? p.srd?.objets.get(id)?.nom ?? p.srd?.armes.get(id)?.nom ?? p.srd?.armures.get(id)?.nom ?? id, quantite })),
     fin: etat.fin,
   };

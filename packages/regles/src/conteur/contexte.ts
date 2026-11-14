@@ -308,7 +308,8 @@ export function ficheDeTour(moteur: Moteur, partie: Partie): string {
       `- ${h.nom} [id: ${h.id}], ${h.fiche.classe} niv. ${h.fiche.niveau}, PV ${h.pv}/${h.fiche.pvMax}${h.pv === 0 ? ' (inconscient)' : h.pv <= h.fiche.pvMax / 3 ? ' (gravement blessé)' : ''}, CA ${h.fiche.ca}${portes.length ? `, porte : ${portes.join(', ')}` : ''}`,
     );
   }
-  l.push(`Sac : ${f.inventaire.map((o) => `${etiquette(o.id)}${o.quantite > 1 ? ` ×${o.quantite}` : ''}`).join(', ') || 'vide'} ; ${f.pieces} po.`);
+  if (f.vivres) l.push(`Vivres : ${f.vivres.rations} ${f.vivres.nom.toLowerCase()}, soit ${f.vivres.jours} jour${f.vivres.jours > 1 ? 's' : ''} de marche pour le groupe${f.vivres.jours === 0 ? ' : le groupe aura faim au prochain lever du jour s’il ne mange pas à une table' : ''}.`);
+  l.push(`Sac :${f.inventaire.map((o) => `${etiquette(o.id)}${o.quantite > 1 ? ` ×${o.quantite}` : ''}`).join(', ') || 'vide'} ; ${f.pieces} po.`);
   if (partie.scene.type === 'rencontre')
     l.push(
       '',

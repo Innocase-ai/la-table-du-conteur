@@ -15,7 +15,7 @@ Référence du format : [packages/regles/src/monde/schemas.ts](../packages/regle
 
 ```
 packages/mondes/<id>/
-  monde.json        identité, ton, niveaux, groupe conseillé (`groupe.conseille` : 4 ou 6 héros, 6 par défaut), départ, direction artistique, chapitres, règles pour le MJ
+  monde.json        identité, ton, niveaux, groupe conseillé (`groupe.conseille` : 4 ou 6 héros, 6 par défaut), départ, direction artistique, chapitres, règles pour le MJ, **`vivres`** (facultatif : `{ "objet": "rations", "depart": 3, "faim": "1d4" }` ; chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe, sauf quand il se trouve dans un lieu, ou dans un bâtiment, dont `services` contient `repas` ; sans ration il a faim et perd `faim` PV, jamais sous 1 ; `depart` : jours de vivres par héros au début ; le sac et l'en-tête de l'aventure montrent « Vivres N j » ; la boutique commune `magasin-general` en vend)
   lieux/            régions, villes, villages, hameaux, camps, routes, grottes, donjons, salles, bâtiments
   pnj/              personnages, marchands, compagnons
   objets/           objets propres au monde (uniques, reliques, objets de quête)

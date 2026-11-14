@@ -507,8 +507,36 @@ export function avancerHeures(p: PartieMonde, r: CompteRendu, heures: number): v
   p.etat.heure = h;
 }
 
+/**
+ * Les vivres d'une histoire qui les demande (`monde.vivres`) : au nouveau jour, chaque héros vivant mange une ration du sac, sauf si le
+ * groupe est dans un lieu où l'on mange à table (`services` : « repas »). Sans ration, le héros a faim et perd des PV (jamais sous 1).
+ */
+function consommerVivres(p: PartieMonde, r: CompteRendu): void {
+  const v = p.dm.monde.vivres;
+  if (!v) return;
+  const vivants = p.groupe.filter((a) => a.pv > 0);
+  if (!vivants.length) return;
+  // À table : le lieu, ou le bâtiment qui le contient (la chambre de l'étage d'une auberge), sert des repas.
+  for (let l = p.dm.lieux.get(p.etat.lieu), n = 0; l && n < 30; l = l.parent ? p.dm.lieux.get(l.parent) : undefined, n++) if (l.services.includes('repas')) return;
+  const nom = p.dm.objets.get(v.objet)?.nom ?? p.srd?.objets.get(v.objet)?.nom ?? v.objet;
+  const stock = p.etat.inventaire[v.objet] ?? 0;
+  const mangent = Math.min(stock, vivants.length);
+  if (mangent > 0) {
+    if (stock - mangent > 0) p.etat.inventaire[v.objet] = stock - mangent;
+    else delete p.etat.inventaire[v.objet];
+    r.constats.push(mangent === vivants.length ? `Le groupe mange : ${mangent} ${mangent > 1 ? 'rations' : 'ration'} de moins.` : `Faute de vivres, seuls ${mangent} héros mangent (${nom} épuisé).`);
+  }
+  // Les derniers du groupe restent sur leur faim quand il manque des rations.
+  for (const a of vivants.slice(mangent)) {
+    const perdu = Math.min(Math.max(1, lancer(v.faim, p.gen).total), a.pv - 1);
+    a.pv -= perdu;
+    r.constats.push(perdu > 0 ? `${a.nom} a faim, sans rien à manger : −${perdu} PV.` : `${a.nom} a faim, sans rien à manger, mais tient bon.`);
+  }
+}
+
 /** Ce qu'apporte un nouveau jour : évolutions de jauge « jour » (et « repos-long » après une nuit de repos), événements. */
 function nouveauJour(p: PartieMonde, r: CompteRendu, repos: boolean): void {
+  consommerVivres(p, r);
   for (const j of p.dm.jauges.values()) for (const ev of j.evolution) if ((repos && ev.declencheur === 'repos-long') || ev.declencheur === 'jour') changerJauge(p, r, j.id, ev.delta);
   for (const ev of p.dm.evenements.values()) if (((repos && ev.declencheur === 'repos') || ev.declencheur === 'jour') && (!ev.lieu || ev.lieu === p.etat.lieu) && jouable(p, ev.id, ev.unique, ev.condition)) jouerEvenement(p, r, ev.id);
 }

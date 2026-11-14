@@ -72,6 +72,9 @@ export const moduleExploration: Module = {
         // L'or de départ des fiches (kits de classe et d'historique, plus le prix des armes retirées du kit allégé) forme la bourse du groupe.
         const orDeDepart = t.partie.groupe.reduce((s, h) => s + (h.fiche.equipement?.po ?? 0), 0);
         t.partie.etat.pieces += Math.round(orDeDepart * 100) / 100;
+        // Des vivres pour quelques jours si l'histoire en demande (`monde.vivres.depart`, par héros).
+        const vivres = t.ctx.dm.monde.vivres;
+        if (vivres?.depart) t.partie.etat.inventaire[vivres.objet] = (t.partie.etat.inventaire[vivres.objet] ?? 0) + vivres.depart * t.partie.groupe.length;
         return verser(t, commencer(partieMonde(t)));
       },
     }),
