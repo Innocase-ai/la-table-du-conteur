@@ -1,6 +1,6 @@
 // Module Dialogue : parler aux PNJ présents (sujets), les influencer (persuader, intimider, tromper).
 import { z } from 'zod';
-import { attenteInfluence, ddInfluence, influencer, modeInfluence, parler, pnjPresents, sujetsDisponibles, attitude } from '../monde/dialogue';
+import { attenteInfluence, ddInfluence, influencer, libelleDuPnj, modeInfluence, parler, pnjPresents, sujetsDisponibles, attitude } from '../monde/dialogue';
 import { evaluerCondition } from '../monde/etat';
 import { signeDeQuete } from '../monde/objectifs';
 import { commande, type Module } from '../noyau/types';
@@ -23,7 +23,7 @@ function interlocuteur(ctx: ContexteJeu, p: Partie): Interlocuteur | undefined {
   const id = p.scene.pnj;
   const pnj = pnjPresents(pm(ctx, p)).find((n) => n.id === id);
   if (!pnj) return undefined;
-  return { id: pnj.id, nom: pnj.nom, role: pnj.role, attitude: attitude(pm(ctx, p), pnj), sujets: sujetsDisponibles(pm(ctx, p), pnj).map((s) => ({ id: s.id, mots: s.mots, question: s.question, vu: p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`) })) };
+  return { id: pnj.id, nom: pnj.nom, role: libelleDuPnj(pnj), attitude: attitude(pm(ctx, p), pnj), sujets: sujetsDisponibles(pm(ctx, p), pnj).map((s) => ({ id: s.id, mots: s.mots, question: s.question, vu: p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`) })) };
 }
 
 /** Le texte d'un bouton d'influence qui doit attendre (SRD : 24 h après un échec), ou rien si c'est possible. */
@@ -59,7 +59,7 @@ export const moduleDialogue: Module = {
             return {
               groupe: PANNEAUX.personnes,
               libelle: `Parler à ${n.nom}`,
-              detail: n.role,
+              detail: libelleDuPnj(n),
               image: { groupe: 'pnj' as const, id: n.id },
               ordre: { type: 'parler', pnj: n.id },
               ...(signe ? { signe, aide: signe === '!' ? 'A une quête à vous confier.' : 'Attend votre rapport : une quête peut se conclure ici.' } : {}),

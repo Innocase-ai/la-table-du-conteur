@@ -1,7 +1,7 @@
 // Fiche de scène : ce que le moteur dit au conteur à chaque tour (et ce que l'écran d'exploration affiche).
 // Elle ne contient que ce que le groupe peut voir ou sait déjà, plus la description factuelle du lieu pour le conteur ;
 // les secrets restent accessibles par les outils de consultation.
-import { attitude, pnjPresents, sujetsDisponibles } from './dialogue';
+import { attitude, libelleDuPnj, pnjPresents, sujetsDisponibles } from './dialogue';
 import { pnjDansLieu } from './presence';
 import { evaluerCondition } from './etat';
 import { sortiesDe, type PartieMonde } from './exploration';
@@ -66,7 +66,7 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
       })),
     pnj: presents.map((n) => {
       const signe = signeDeQuete(p, n);
-      return { id: n.id, nom: n.nom, role: n.role, attitude: attitude(p, n), sujets: sujetsDisponibles(p, n).length, ...(signe ? { quete: signe } : {}) };
+      return { id: n.id, nom: n.nom, role: libelleDuPnj(n), attitude: attitude(p, n), sujets: sujetsDisponibles(p, n).length, ...(signe ? { quete: signe } : {}) };
     }),
     tresors: tresors.map((t) => ({
       id: t.id,

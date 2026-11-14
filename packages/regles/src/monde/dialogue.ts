@@ -33,6 +33,9 @@ export function sujetsDisponibles(p: PartieMonde, pnj: Pnj): Pnj['sujets'] {
   );
 }
 
+/** Ce que le joueur lit pour désigner un PNJ : son titre (« Aubergiste de l'Éperon »), jamais le `role`, qui peut contenir un secret (il n'est donné qu'au conteur). Sans titre, le `role` sert de repli. */
+export const libelleDuPnj = (pnj: Pick<Pnj, 'titre' | 'role'>): string => pnj.titre ?? pnj.role;
+
 /** Ce que le PNJ répond sur ce sujet maintenant : la première variante dont la condition est vraie, sinon la réponse de base. */
 export function reponseDuSujet(p: Pick<PartieMonde, 'etat'>, sujet: Pnj['sujets'][number]): string {
   return sujet.variantes.find((v) => evaluerCondition(v.condition, p.etat))?.reponse ?? sujet.reponse;

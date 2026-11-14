@@ -1,0 +1,251 @@
+[
+  {
+    "id": "mireille-vasieres",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "lieu": "ald-pont-vasieres"
+    },
+    "texte": "Cette eau stagnante et cette boue : je cherche des yeux la mousse de saule, et je pense déjà à la fièvre qui vient avec.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-mousse",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "fait": "f-ald-mousse-de-saule-soigne-la-fievre"
+    },
+    "texte": "Enfin quelque chose qui soigne vraiment, et je compte déjà ce qu'il m'en faudra pour les malades de l'écurie.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-baume-active",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "quete": {
+        "id": "q-baume-de-l-aube",
+        "statut": "active"
+      }
+    },
+    "texte": "Il me faut trois doses, pas une de moins, et je ne peux pas laisser mes malades longtemps.",
+    "effets": []
+  },
+  {
+    "id": "mireille-baume-terminee",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "quete": {
+        "id": "q-baume-de-l-aube",
+        "statut": "terminee"
+      }
+    },
+    "texte": "Le baume est prêt, et ça fera reculer le mal cette nuit. Je ne me réjouirai pas encore : je veux voir les premiers réveils.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-ferme",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "lieu": "ald-moulin-ferme-haddon"
+    },
+    "texte": "Des murs noircis, de la cendre froide. Je cherche des yeux ceux que je n'ai pas pu soigner à temps, et je ne veux pas les trouver.",
+    "effets": []
+  },
+  {
+    "id": "mireille-ysabeau",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "fait": "f-ald-ysabeau-galeries-silencieuses"
+    },
+    "texte": "Cette veuve de Sombreval ne demande jamais rien. Je pense aux gens de la grange, à ce qu'ils portent encore, et à ce qu'ils ont laissé derrière eux.",
+    "effets": []
+  },
+  {
+    "id": "mireille-la-carriere",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "lieu": "ald-carriere-fond-de-fosse-et-mare"
+    },
+    "texte": "Une mare pareille, et des gens qui y boivent. Je regarde déjà l'eau, et j'imagine ceux qui en tomberaient malades.",
+    "effets": []
+  },
+  {
+    "id": "mireille-le-tertre",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "lieu": "ald-tertre-sarcophage"
+    },
+    "texte": "Pardonne-nous de déranger ce repos, Aubéris. Qu'ils dorment en paix, et que nous ayons de bonnes raisons d'être venus.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-fer-sabote",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "fait": "f-fer-sabote-a-la-source"
+    },
+    "texte": "Ce fer a été empoisonné exprès. Je pense aux clous et aux attelles qui cassent entre les mains, au pire moment.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-demi-dent-epargner",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-la-reddition-de-demi-dent-epargner"
+    },
+    "texte": "Bien. Un blessé reste un blessé, même s'il a pillé. Vous le garderez sous surveillance, et je le soignerai avant de lui demander quoi que ce soit.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-demi-dent-achever",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-la-reddition-de-demi-dent-achever"
+    },
+    "texte": "Il s'était rendu, et vous l'avez achevé. Je ne dirai rien de plus, ce soir, mais je m'en souviendrai.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": -3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-demi-dent-marche",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-la-reddition-de-demi-dent-marche"
+    },
+    "texte": "Un marché plutôt qu'un cadavre, c'est le bon choix. Chaque vie sauvée compte, et je les compterai une à une.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-coffret-rendre",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-le-coffret-d-aldwin-rendre"
+    },
+    "texte": "Bien. Rendre l'or à la veuve, c'est ce qu'on doit faire, et je n'ai rien à y ajouter.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-coffret-garder",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-le-coffret-d-aldwin-garder"
+    },
+    "texte": "Garder l'or d'une veuve, sans un mot. Je ne dirai rien devant elle, mais je n'approuve pas, et ça se voit.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-coffret-refugies",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "flag": "choix-le-coffret-d-aldwin-refugies"
+    },
+    "texte": "Je comprends, ces gens n'ont rien. Mais je pense à Martha, à sa paillasse, et à ce qu'elle attend encore.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-testament",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "quete": {
+        "id": "q-le-testament-du-chariot",
+        "statut": "terminee"
+      }
+    },
+    "texte": "Martha a son coffret et l'alliance de son mari, enfin. Une larme n'est pas un luxe, alors qu'elle pleure, et je la laisse faire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-de-la-rose",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-echeance",
+    "pnj": "mireille-de-la-rose",
+    "quand": {
+      "jauge": {
+        "id": "echeance",
+        "min": 4
+      }
+    },
+    "texte": "Les barrages se resserrent, et bientôt il y aura plus de blessés que de bandes. Je ne sais pas combien de temps il nous reste.",
+    "effets": []
+  }
+]

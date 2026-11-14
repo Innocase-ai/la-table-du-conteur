@@ -1,0 +1,114 @@
+[
+  {
+    "id": "varek-le-pont",
+    "pnj": "varek-le-brise",
+    "quand": {"lieu": "ald-vieux-pont"},
+    "texte": "Le talus à gauche, le chêne au bout : c'est là qu'ils attendent. Je longerais le fossé plutôt que de marcher au milieu du pont.",
+    "effets": []
+  },
+  {
+    "id": "varek-la-carriere",
+    "pnj": "varek-le-brise",
+    "quand": {"lieu": "ald-carriere-d-argile"},
+    "texte": "Qui tient la hauteur tient la fosse, je l'ai appris en garde. Les gradins d'argile sont ouverts des deux côtés ; restez en bas et ne montez pas sans regarder.",
+    "effets": []
+  },
+  {
+    "id": "varek-le-moulin",
+    "pnj": "varek-le-brise",
+    "quand": {"lieu": "ald-moulin-plateforme-du-cor"},
+    "texte": "Chaque fois que ce cor sonne, un convoi est perdu quelque part. Je le sais mieux que personne ici, et je n'aime pas l'entendre.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 2}}]
+  },
+  {
+    "id": "varek-le-tertre",
+    "pnj": "varek-le-brise",
+    "quand": {"lieu": "ald-tertre-cercle"},
+    "texte": "Ces pierres ont été dressées pour tenir, comme la parole donnée. Chez les nains, une promesse qui se brise est une ferraille de plus ; je m'en tiens à la mienne.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 2}}]
+  },
+  {
+    "id": "varek-fer-sabote",
+    "pnj": "varek-le-brise",
+    "quand": {"fait": "f-fer-sabote-a-la-source"},
+    "texte": "On a empoisonné le fer de mon grand-père, exprès. Je n'ai pas envie de crier là-dessus. J'ai juste envie de savoir qui a versé la chose.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 3}}]
+  },
+  {
+    "id": "varek-fer-friable",
+    "pnj": "varek-le-brise",
+    "quand": {"fait": "f-ald-fonte-friable"},
+    "texte": "Tout le fer neuf casse, comme les clous et les fers. Ma hache aussi, au premier choc, et je n'ai rien à ajouter.",
+    "effets": []
+  },
+  {
+    "id": "varek-convoi",
+    "pnj": "varek-le-brise",
+    "quand": {"fait": "f-ald-convoi-de-minerai-assailli"},
+    "texte": "Un autre convoi tombé au même endroit. Sans doute les mêmes mains. Qui peut frapper deux fois ne s'arrête pas au premier.",
+    "effets": []
+  },
+  {
+    "id": "varek-sa-fuite",
+    "pnj": "varek-le-brise",
+    "quand": {"fait": "f-ald-varek-a-fui-le-convoi"},
+    "texte": "Oui, j'ai fui à travers la tourbe. Je ne m'excuse pas, je ne demande rien, et je n'ai pas de plus belle version à vous donner.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 4}}]
+  },
+  {
+    "id": "varek-honneur-active",
+    "pnj": "varek-le-brise",
+    "quand": {"quete": {"id": "q-honneur-de-brise-roc", "statut": "active"}},
+    "texte": "Je vais jusqu'au bout de ce que j'ai dit. Un Brise-Roc ne ment pas sur sa parole, et si vous marchez pour cette affaire, je marcherai avec vous.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 2}}]
+  },
+  {
+    "id": "varek-honneur-terminee",
+    "pnj": "varek-le-brise",
+    "quand": {"quete": {"id": "q-honneur-de-brise-roc", "statut": "terminee"}},
+    "texte": "C'est fait. Je pose ma main sur les morceaux de métal, et quelque chose en moi se détend. Chez nous, la parole tient même quand le métal ne tient plus.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 5}}]
+  },
+  {
+    "id": "varek-demi-dent-achever",
+    "pnj": "varek-le-brise",
+    "quand": {"flag": "choix-la-reddition-de-demi-dent-achever"},
+    "texte": "Un homme à genoux, ce n'est pas un combat, c'est une exécution. Je ne vous insulterai pas, mais je ne peux pas dire que ça me plaise.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": -3}}]
+  },
+  {
+    "id": "varek-demi-dent-epargner",
+    "pnj": "varek-le-brise",
+    "quand": {"flag": "choix-la-reddition-de-demi-dent-epargner"},
+    "texte": "Épargner, c'est bien, à condition de surveiller après. Je veux bien croire que ce gobelin tiendra, mais je garderai un œil sur lui.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 3}}]
+  },
+  {
+    "id": "varek-demi-dent-marche",
+    "pnj": "varek-le-brise",
+    "quand": {"flag": "choix-la-reddition-de-demi-dent-marche"},
+    "texte": "Un marché tenu vaut mieux qu'un mort, je le reconnais. Mais si sa parole casse, je ne lui donnerai pas de seconde chance.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 2}}]
+  },
+  {
+    "id": "varek-coffret-rendre",
+    "pnj": "varek-le-brise",
+    "quand": {"flag": "choix-le-coffret-d-aldwin-rendre"},
+    "texte": "Rendre cet or à celle à qui il appartient, c'est payer ses dettes. Voilà ce qu'un homme honnête fait, et je l'approuve.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": 4}}]
+  },
+  {
+    "id": "varek-coffret-garder",
+    "pnj": "varek-le-brise",
+    "quand": {"flag": "choix-le-coffret-d-aldwin-garder"},
+    "texte": "Garder cet or qui n'est pas à vous, je ne le cache pas, ça me dégoûte.",
+    "effets": [{"attitude": {"pnj": "varek-le-brise", "delta": -4}}]
+  },
+  {
+    "id": "varek-echeance",
+    "pnj": "varek-le-brise",
+    "quand": {"jauge": {"id": "echeance", "min": 4}},
+    "texte": "Les barrages du Lion d'Acier se resserrent. Je connais ce chemin-là : on laisse une escorte avancer seule, et on la prend au piège.",
+    "effets": []
+  }
+]
