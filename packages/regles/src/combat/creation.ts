@@ -259,7 +259,7 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
     mods,
     sauvegardes,
     // Pour les tests de compétence en combat (s'échapper d'une prise : Athlétisme ou Acrobaties, maîtrise comprise si on l'a).
-    competences: { athletisme: fiche.competences.athletisme.bonus, acrobaties: fiche.competences.acrobaties.bonus },
+    competences: { athletisme: fiche.competences.athletisme.bonus, acrobaties: fiche.competences.acrobaties.bonus, medecine: fiche.competences.medecine.bonus },
     bonusInitiative: fiche.initiative,
     bonusMaitrise: fiche.bonusMaitrise,
     resistances: fiche.resistances,

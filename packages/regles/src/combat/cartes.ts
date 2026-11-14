@@ -427,6 +427,15 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   res.push(verifier(carte({ id: 'base:foncer', nom: 'Foncer', description: 'Déplacement supplémentaire égal à votre Vitesse.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   res.push(verifier(carte({ id: 'base:desengager', nom: 'Se désengager', description: 'Pas d\'attaque d\'opportunité ce tour-ci.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
   res.push(verifier(carte({ id: 'base:esquiver', nom: 'Esquiver', description: 'Les attaques contre vous ont le désavantage ; avantage aux sauvegardes de Dex.', categorie: 'base', cout: 'action', ciblage: 'soi' }), 'action'));
+  // Aider (SRD 5.2.1) : faciliter l'attaque d'un allié contre un adversaire à 1,5 m de soi, ou stabiliser un allié tombé à 0 PV.
+  if (allies(etat, c).length) {
+    const aidables = ennemis(etat, c).filter((e) => distanceMetres(e.position, c.position) <= 1.5 && !e.modificateurs.some((m) => m.id === 'aide-attaque'));
+    res.push(verifier(carte({ id: 'base:aider', nom: 'Aider', description: "Un adversaire à 1,5 m de vous : la prochaine attaque d'un allié contre lui a l'Avantage, jusqu'au début de votre prochain tour.", categorie: 'base', cout: 'action', ciblage: 'ennemi', portee: 1.5, cibles: aidables.map((e) => e.id) }), 'action'));
+  }
+  const tombes = etat.combattants.filter((x) => x.camp === c.camp && x.id !== c.id && !x.mort && !x.enFuite && x.pv <= 0 && !x.stable && distanceMetres(x.position, c.position) <= 1.5);
+  if (tombes.length) {
+    res.push(verifier(carte({ id: 'base:stabiliser', nom: 'Stabiliser', description: 'Un allié à 0 PV à 1,5 m : test de Sagesse (Médecine) DD 10 ; réussi, il est stabilisé (plus de jets contre la mort).', categorie: 'base', cout: 'action', ciblage: 'allie', portee: 1.5, cibles: tombes.map((x) => x.id) }), 'action'));
+  }
   if ((r.potions ?? 0) > 0) {
     // Boire une potion ou l'administrer à un allié au contact : une action Bonus (SRD 5.2.1, potion de guérison).
     const cout: CoutCarte = 'bonus';
@@ -855,6 +864,23 @@ function executerBase(etat: EtatCombat, c: Combattant, id: string, cibles: Comba
       c.tour.esquive = true;
       journaliser(etat, { type: 'info', texte: `${c.nom} se met en garde (Esquiver).`, acteur: c.id });
       break;
+    case 'aider': {
+      const cible = cibles[0]!;
+      cible.modificateurs.push({ id: 'aide-attaque', type: 'avantage_contre', source: c.id, usageUnique: true, expire: { moment: 'debut_tour', de: c.id } });
+      journaliser(etat, { type: 'info', texte: `${c.nom} aide ses alliés : la prochaine attaque contre ${cible.nom} a l'Avantage.`, acteur: c.id, cible: cible.id });
+      break;
+    }
+    case 'stabiliser': {
+      const cible = cibles[0]!;
+      const total = lancerDes(etat, '1d20') + (c.competences?.medecine ?? c.mods.sag);
+      const reussi = total >= 10;
+      if (reussi) {
+        cible.stable = true;
+        cible.jetsMort = { succes: 0, echecs: 0 };
+      }
+      journaliser(etat, { type: 'soins', texte: `${c.nom} tente de stabiliser ${cible.nom} (Médecine ${total} contre DD 10) : ${reussi ? `${cible.nom} est stabilisé.` : 'échec.'}`, acteur: c.id, cible: cible.id });
+      break;
+    }
     case 'potion': {
       c.ressources.potions! -= 1;
       const cible = cibles[0] ?? c;

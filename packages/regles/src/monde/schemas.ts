@@ -342,6 +342,8 @@ export const RencontreMonde = z.object({
   // Ambiance du plateau (textures) ; à défaut, le client choisit selon le lieu.
   terrain: z.enum(['foret', 'souterrain', 'caverne', 'camp']).optional(),
   tactique: z.object({ doctrine: z.string().optional(), fuite: z.string().optional(), renforts: z.string().optional() }).optional(),
+  // Embuscade : le camp pris par surprise lance son Initiative avec Désavantage (SRD 5.2.1). Absent : personne n'est surpris.
+  surprise: z.enum(['heros', 'monstres']).optional(),
   // Autres façons de résoudre la rencontre (négocier, ruser, fuir).
   alternatives: z
     .array(z.object({ id: Id, nom: Texte, condition: Condition.optional(), jet: z.object({ competence: Competence, dd: Dd }).optional(), resume: Texte, effets: Effets.default([]),

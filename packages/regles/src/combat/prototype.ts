@@ -90,6 +90,8 @@ export interface Rencontre {
   /** « . » sol, « # » mur, « ~ » terrain difficile, « T » arbre, « R » rocher, « e » eau, « b » boue, « n » neige, « H » départ des héros, « m » départ des monstres. */
   carte: string[];
   monstres: { profil: string; nombre: number }[];
+  /** Qui est pris par surprise (embuscade) : ce camp lance son Initiative avec Désavantage (SRD 5.2.1). Absent : personne. */
+  surprise?: 'heros' | 'monstres';
 }
 
 export const RENCONTRES: Rencontre[] = [

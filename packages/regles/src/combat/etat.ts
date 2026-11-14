@@ -240,7 +240,8 @@ export interface EtatCombat {
   rng: number; // état du générateur (mulberry32)
   journal: Evenement[];
   vainqueur?: Camp;
-  options: { elan: boolean };
+  /** `surpris` : les camps pris par surprise (SRD 5.2.1 : Désavantage à leur jet d'Initiative). */
+  options: { elan: boolean; surpris?: Camp[] };
   /** Résultats de dés imposés, consommés avant le générateur (tests, scènes scriptées). */
   desImposes?: number[];
   /** Zones de sorts qui durent (absent : aucune). */

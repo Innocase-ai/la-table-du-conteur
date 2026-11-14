@@ -17,6 +17,7 @@ export * from './combat/ia';
 export * from './combat/prototype';
 export * from './combat/escarmouche';
 export * from './combat/echelle';
+export * from './combat/resultat';
 export * from './creation/equipement';
 export * from './creation/exigences';
 export * from './creation/faveurs';

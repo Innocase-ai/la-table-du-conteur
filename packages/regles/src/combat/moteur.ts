@@ -107,7 +107,10 @@ export function creerCombat(
     options,
   };
   for (const c of etat.combattants) {
-    c.initiative = de(etat, 20) + c.bonusInitiative;
+    // Pris par surprise : Désavantage au jet d'Initiative (SRD 5.2.1), il agit plus tard dans le round.
+    const surpris = !!options.surpris?.includes(c.camp);
+    const d1 = de(etat, 20);
+    c.initiative = (surpris ? Math.min(d1, de(etat, 20)) : d1) + c.bonusInitiative;
     if (c.elan) melanger(etat, c.elan.pioche);
   }
   etat.ordre = [...etat.combattants]
@@ -116,6 +119,10 @@ export function creerCombat(
         b.initiative - a.initiative || b.mods.dex - a.mods.dex || (a.camp === 'heros' ? -1 : 1) - (b.camp === 'heros' ? -1 : 1),
     )
     .map((c) => c.id);
+  if (options.surpris?.length) {
+    const noms = etat.combattants.filter((c) => options.surpris!.includes(c.camp)).map((c) => c.nom);
+    journaliser(etat, { type: 'info', texte: `Pris par surprise (Désavantage à l'Initiative) : ${noms.join(', ')}.` });
+  }
   journaliser(etat, {
     type: 'info',
     texte: `Initiative : ${etat.ordre.map((id) => `${combattant(etat, id).nom} (${combattant(etat, id).initiative})`).join(', ')}.`,
@@ -166,6 +173,8 @@ function debutTour(etat: EtatCombat): void {
     const source = etat.combattants.find((x) => x.id === e.source);
     if (!source || !peutAgir(source) || distanceMetres(source.position, c.position) > 3) c.etats = c.etats.filter((x) => x !== e);
   }
+  // Libéré d'une empoignade à l'instant, il retrouve toute sa Vitesse (le mouvement a été calculé empoigné, donc à 0).
+  c.tour.mouvement = vitesse(c);
   if (c.camp === 'heros' && c.pv <= 0 && !c.mort && !c.stable) {
     jetContreLaMort(etat, c);
     return;

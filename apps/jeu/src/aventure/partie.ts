@@ -76,6 +76,7 @@ export function rencontreDeMonde(dm: DonneesMonde, id: string): Rencontre {
     terrain: r.terrain ?? terrainDuLieu(lieu?.type),
     carte: r.carte ?? carteParDefaut(nombre),
     monstres: r.monstres.map((m) => ({ profil: m.profil, nombre: m.nombre })),
+    ...(r.surprise ? { surprise: r.surprise } : {}),
   };
 }
 

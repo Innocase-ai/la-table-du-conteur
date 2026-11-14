@@ -6,7 +6,8 @@
 // d'après leur état apparent (intact, blessé, en sang).
 import { cartesDisponibles, executer, type Carte, type Commande, type Contexte } from './cartes';
 import { actif, aEtat, cloner, combattant, ennemis, horsCombat, journaliser, peutAgir, type Camp, type Combattant, type EtatCombat } from './etat';
-import { cle, couvert, distanceCases, distanceMetres, ligneDeVue, type Position } from './grille';
+import type { Etat } from '../schemas';
+import { casesZone, cle, couvert, distanceCases, distanceMetres, ligneDeVue, TAILLE_CASE, typeCase, type Position } from './grille';
 import { DOCTRINE_PAR_DEFAUT, doctrineDe, type Doctrine } from './doctrine';
 import { deplacementsPossibles, deplacer, etatApparent, finTour } from './moteur';
 
@@ -44,7 +45,26 @@ function valeurRenforcements(c: Combattant): number {
   if (c.concentration) v += 0.1;
   for (const m of c.modificateurs) {
     if (m.type === 'bonus_ca' && !m.expire) v += 0.08 * (m.valeur ?? 0);
-    if ((m.type === 'de_attaque' || m.type === 'de_sauvegarde') && m.de) v += m.de.startsWith('-') ? -0.12 : 0.12;
+    if ((m.type === 'de_attaque' || m.type === 'de_sauvegarde') && m.de && !m.de.startsWith('-')) v += 0.12;
+  }
+  return v;
+}
+
+/** Ce que chaque état fait perdre à qui le subit (ni les états qui l'empêchent d'agir, comptés à part, ni l'invisibilité). */
+const GENE_PAR_ETAT: Partial<Record<Etat, number>> = { 'a-terre': 0.2, aveugle: 0.3, effraye: 0.25, empoisonne: 0.25, entrave: 0.3, empoigne: 0.2, charme: 0.1 };
+
+/**
+ * Ce qui entrave un combattant sans l'empêcher d'agir : états qui donnent désavantage, malus aux jets (Fléau), Vitesse réduite,
+ * attaques qui le visent avec avantage, brûlure. Ce qui le gêne vaut pour son adversaire autant que ça lui coûte à lui.
+ */
+function valeurEntraves(c: Combattant): number {
+  let v = 0;
+  for (const e of c.etats) v += GENE_PAR_ETAT[e.etat] ?? 0;
+  for (const m of c.modificateurs) {
+    if ((m.type === 'de_attaque' || m.type === 'de_sauvegarde') && m.de?.startsWith('-')) v += 0.12;
+    else if (m.type === 'desavantage_attaque' || m.type === 'avantage_contre') v += 0.2;
+    else if (m.type === 'vitesse' && (m.valeur ?? 0) < 0) v += Math.min(0.2, (0.04 * -(m.valeur ?? 0)) / 1.5);
+    else if (m.type === 'degats_differes') v += m.repete ? 0.25 : 0.15;
   }
   return v;
 }
@@ -67,10 +87,12 @@ export function evaluer(etat: EtatCombat, camp: Camp, d: Doctrine): number {
     const fraction = hors ? 0 : c.pv / c.pvMax;
     if (c.camp === camp) {
       score -= d.prudence * w * ((1 - fraction) + (hors ? 1.5 : 0) + (neutralise ? 0.7 : 0));
-      if (!hors) score += w * (valeurRenforcements(c) + valeurRessources(c));
+      if (!hors) score += w * (valeurRenforcements(c) + valeurRessources(c) - valeurEntraves(c));
     } else {
       const f = w * bonusFocus(c, d) * (d.focus === 'blesses' ? 1.3 : 1);
       score += d.agressivite * f * ((1 - fraction) + (hors ? 1.5 : 0) + (neutralise ? 0.7 : 0));
+      // Affaiblir un adversaire (Fléau, Ralentissement, Sape, à terre…) rapporte, même sans lui ôter un point de vie.
+      if (!hors && !neutralise) score += d.agressivite * w * valeurEntraves(c);
     }
   }
   return score;
@@ -209,11 +231,59 @@ function choixCibles(etat: EtatCombat, c: Combattant, k: Carte): string[][] {
   return tries.slice(0, 3).map((x) => [x]);
 }
 
-function pointsZone(etat: EtatCombat, c: Combattant, k: Carte): Position[] {
-  return ennemis(etat, c)
-    .filter((e) => distanceMetres(k.origine ?? c.position, e.position) <= Math.max(k.portee ?? 0, k.zone?.taille ?? 0) && ligneDeVue(etat.grille, c.position, e.position))
-    .slice(0, 4)
-    .map((e) => e.position);
+/** Les créatures qu'une zone atteindrait si elle était posée en `point` (comme `casesDeZone` de `sorts.ts`). */
+function touchesParZone(etat: EtatCombat, c: Combattant, k: Carte, point: Position): Combattant[] {
+  const z = k.zone!;
+  // Un sort « personnel » (cône, cube) part du lanceur, le point ne donne que la direction.
+  const origine = k.portee || k.origine ? point : c.position;
+  const cases = new Set(casesZone(etat.grille, z.forme as Parameters<typeof casesZone>[1], z.taille, origine, point).map(cle));
+  return etat.combattants.filter((x) => !x.mort && !x.enFuite && x.id !== c.id && cases.has(cle(x.position)));
+}
+
+/**
+ * Où poser une zone : les points où elle touche le plus d'adversaires (comptés selon leur poids) sans abîmer les alliés
+ * (une créature alliée touchée coûte une fois et demie). Sommeil n'endort pas les siens. Aucun point rentable : rien.
+ */
+export function pointsZone(etat: EtatCombat, c: Combattant, k: Carte): Position[] {
+  const adversaires = ennemis(etat, c);
+  if (!k.zone || !adversaires.length) return [];
+  const origine = k.origine ?? c.position;
+  const rayon = Math.ceil(k.zone.taille / TAILLE_CASE);
+  const personnel = !k.portee && !k.origine;
+  let candidats: Position[];
+  if (personnel) {
+    // Une direction : vers chacun des adversaires que le cône ou le cube peut atteindre.
+    candidats = adversaires.filter((e) => distanceMetres(origine, e.position) <= Math.max(k.zone!.taille, TAILLE_CASE)).map((e) => e.position);
+  } else {
+    const dedans = new Map<string, Position>();
+    for (const e of adversaires) {
+      for (let dy = -rayon; dy <= rayon; dy++) {
+        for (let dx = -rayon; dx <= rayon; dx++) {
+          const p = { x: e.position.x + dx, y: e.position.y + dy };
+          if (typeCase(etat.grille, p) === 'mur' || distanceMetres(origine, p) > (k.portee ?? 0)) continue;
+          // Un sort lancé par le héros exige la vue sur le point ; une zone qui dure se déplace sans vue.
+          if (!k.origine && !ligneDeVue(etat.grille, c.position, p)) continue;
+          dedans.set(cle(p), p);
+        }
+      }
+    }
+    candidats = [...dedans.values()];
+  }
+  const sansFeuAmi = k.id === 'sort:sommeil';
+  const notes = candidats.map((p) => {
+    let note = 0;
+    for (const x of touchesParZone(etat, c, k, p)) {
+      if (horsCombat(x)) continue;
+      if (x.camp !== c.camp) note += poids(x);
+      else if (!sansFeuAmi) note -= 1.5 * poids(x);
+    }
+    return { p, note, loin: distanceCases(c.position, p) };
+  });
+  return notes
+    .filter((n) => n.note > 0)
+    .sort((a, b) => b.note - a.note || a.loin - b.loin)
+    .slice(0, 3)
+    .map((n) => n.p);
 }
 
 function etapesPour(etat: EtatCombat, ctx: Contexte, c: Combattant, prefixe: Commande[]): Etape[] {

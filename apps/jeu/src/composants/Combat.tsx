@@ -70,7 +70,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   const etatRef = useRef<EtatCombat | null>(null);
   if (!etatRef.current) {
     const { grille, combattants } = preparerRencontre(reglages.rencontre, donnees, reglages.herosCombat);
-    etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan });
+    etatRef.current = creerCombat(grille, combattants, graine, { elan: reglages.elan, ...(reglages.rencontre.surprise ? { surpris: [reglages.rencontre.surprise] } : {}) });
   }
   const etat = etatRef.current;
   const [version, setVersion] = useState(0);

@@ -88,7 +88,8 @@ export function cleDeCarte(k: CarteIcone, ecole?: string): { cle: string; lancer
         lancer: false,
       };
     case 'base':
-      return { cle: connu(`base:${reste}`) ?? 'aptitude:defaut', lancer: false };
+      // Pas de dessin propre pour Aider et Stabiliser : ils empruntent ceux des sorts Aide et Soins.
+      return { cle: connu(`base:${reste}`) ?? (reste === 'aider' ? 'sort:aide' : reste === 'stabiliser' ? 'sort:soins' : undefined) ?? 'aptitude:defaut', lancer: false };
     case 'aptitude':
       return {
         cle:
