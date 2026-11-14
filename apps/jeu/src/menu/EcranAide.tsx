@@ -247,7 +247,7 @@ const SECTIONS_ECRITES: Section[] = [
             coûte double. Cliquez une case en surbrillance pour vous y rendre.
           </li>
           <li>
-            <strong>Action</strong> : attaquer, lancer un sort, foncer (mouvement doublé), se désengager, esquiver, boire une potion…
+            <strong>Action</strong> : attaquer, lancer un sort, foncer (mouvement doublé), se désengager, esquiver, aider un allié, stabiliser un allié tombé, lutter ou bousculer un adversaire, boire une potion…
           </li>
           <li>
             <strong>Action bonus</strong> : certaines aptitudes et certains sorts (Second souffle, Rage, Action rusée…).
@@ -269,6 +269,23 @@ const SECTIONS_ECRITES: Section[] = [
           </li>
           <li>
             <strong>Critique</strong> : un 20 naturel touche toujours et double les dés de dégâts.
+          </li>
+          <li>
+            <strong>Aider</strong> : un adversaire est à 1,5 m de vous ? Votre action donne l'<strong>Avantage</strong> à la prochaine attaque d'un allié contre lui,
+            jusqu'au début de votre prochain tour.
+          </li>
+          <li>
+            <strong>Stabiliser</strong> : un allié à 0 PV est à 1,5 m de vous ? Test de Sagesse (Médecine) DD 10 : réussi, il est stabilisé et ne fait plus de jets contre
+            la mort (il reste inconscient jusqu'à ce qu'on le soigne).
+          </li>
+          <li>
+            <strong>Lutte et Bousculade</strong> : à la place d'une de vos attaques, sur un adversaire à 1,5 m qui n'est pas plus grand que d'une taille de plus que
+            vous. La cible fait une sauvegarde de Force ou de Dextérité (la meilleure) contre 8 + votre Force + votre maîtrise. Raté : elle est <strong>empoignée</strong>,
+            jetée à terre, ou repoussée d'une case. Un empoigné ne peut plus bouger et attaque avec désavantage tout autre que celui qui le tient ; il s'échappe par
+            un test d'Athlétisme ou d'Acrobaties au même DD. Ces cartes ne sont jouées que par vous, jamais par « Héros auto ».
+          </li>
+          <li>
+            <strong>Surprise</strong> : dans une embuscade, le camp surpris lance son initiative avec désavantage et agit donc le plus souvent après l'autre.
           </li>
         </ul>
         <p>
