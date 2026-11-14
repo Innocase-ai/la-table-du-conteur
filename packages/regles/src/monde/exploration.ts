@@ -5,6 +5,7 @@ import { lancer, type Generateur } from '../des';
 import type { Donnees } from '../donnees';
 import { tableDe } from './butin-commun';
 import { tirerDepouilles } from './depouilles';
+import { hasardDe, phraseTrouvaille, tirerArrivee, type HasardLieu, type TirageArrivee } from './hasard-arrivee';
 import type { Jet } from '../noyau/types';
 import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
@@ -13,7 +14,7 @@ import { testD20 } from '../tests-d20';
 import { appliquerEffets, avancerQuetes, estCumulatif, evaluerCondition, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
 import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
-import type { DonneesMonde, EffetMonde, Lieu, Piege, Tresor } from './schemas';
+import type { DonneesMonde, EffetMonde, Lieu, Piege, RencontreMonde, Tresor } from './schemas';
 
 /** Ce que l'exploration ajoute à l'état du monde (sauvegardé avec lui). */
 export interface EtatExploration {
@@ -55,6 +56,17 @@ export interface EtatExploration {
   pnjVus?: Record<string, PnjVu>;
   /** Les rencontres dénouées sous les yeux de PNJ présents (les plus récentes, plafonnées). */
   temoignages?: Temoignage[];
+  /** Le tirage d'arrivée (`hasard-arrivee.ts`) : par lieu, les interactions déjà vécues et la trouvaille amorcée. */
+  hasard?: Record<string, HasardLieu>;
+  /** Les rencontres fortuites composées par le tirage (`auto-<lieu>-<n>`), gardées avec la partie : le monde ne les connaît pas. */
+  rencontresAuto?: Record<string, RencontreMonde>;
+  /** Les passants déjà croisés (on n'en croise pas deux fois le même avant d'avoir fait le tour). */
+  passantsVus?: string[];
+}
+
+/** Remet dans le monde les rencontres fortuites d'une partie chargée (le monde, lui, vient d'être rechargé sans elles). */
+export function restaurerRencontresAuto(dm: DonneesMonde, etat: { exploration?: EtatExploration }): void {
+  for (const [id, def] of Object.entries(etat.exploration?.rencontresAuto ?? {})) if (!dm.rencontres.has(id)) dm.rencontres.set(id, def);
 }
 
 /** Consigne comment une rencontre s'est dénouée, avec les PNJ présents à ce moment (ils en sont les témoins). */
@@ -109,6 +121,8 @@ export interface CompteRendu {
   fin?: string;
   /** Combien des premières narrations sont les paroles du PNJ (les suivantes, d'un événement ou d'un palier, sont du récit). */
   paroles?: number;
+  /** Le tirage d'arrivée (dé, issue, phrase) : l'écran montre le dé qui roule puis l'issue, « rien » compris. */
+  tirage?: TirageArrivee;
 }
 
 export function etatExplorationVide(): EtatExploration {
@@ -431,9 +445,10 @@ function entrer(p: PartieMonde, r: CompteRendu, lieu: Lieu): void {
 function declencherRencontre(p: PartieMonde, r: CompteRendu, lieu: Lieu, declencheur: 'entree' | 'exploration' | 'repos'): void {
   if (r.combat) return;
   for (const rc of lieu.rencontres) {
-    // Une rencontre « aléatoire » survient une fois sur trois en arrivant au lieu ou en s'y reposant.
+    // Une rencontre « aléatoire » survient une fois sur trois en s'y reposant ; à l'arrivée, c'est le dé d'arrivée qui la tire (un 2), sauf
+    // si le monde coupe le tirage (`tirageArrivee: false`) : alors une fois sur trois, comme avant.
     if (rc.declencheur === 'aleatoire') {
-      if (declencheur === 'exploration' || lancer('1d6', p.gen).total > 2) continue;
+      if (declencheur === 'exploration' || (declencheur === 'entree' && p.dm.monde.tirageArrivee !== false) || lancer('1d6', p.gen).total > 2) continue;
     } else if (rc.declencheur !== declencheur) continue;
     if (rc.unique && p.etat.rencontresFaites.includes(rc.id)) continue;
     if (rc.condition && !evaluerCondition(rc.condition, p.etat)) continue;
@@ -490,7 +505,10 @@ export function aller(p: PartieMonde, vers: string): CompteRendu {
   const r = resultat();
   declencherPiegeDePassage(p, r);
   if (s.heures) avancerHeures(p, r, s.heures);
-  entrer(p, r, p.dm.lieux.get(vers)!);
+  const lieu = p.dm.lieux.get(vers)!;
+  entrer(p, r, lieu);
+  // Un lieu n'est jamais vide : un dé dit s'il s'y passe quelque chose (combat, rencontre, trouvaille) ou rien.
+  tirerArrivee(p, r, lieu, { lancerRencontre: (id) => lancerRencontre(p, r, id) });
   suites(p, r);
   return r;
 }
@@ -579,6 +597,23 @@ export function fouiller(p: PartieMonde, personnage?: string): CompteRendu {
       c.reveler();
       if (c.cle.startsWith('fait:')) r.revele.push(c.cle.slice(5));
       r.constats.push(`${a.nom} trouve ${c.libelle}.`);
+    }
+  }
+  // Une trouvaille amorcée par le tirage d'arrivée (un 4) : un jet de fouille, une seule tentative ; réussi, un objet du butin commun.
+  const amorcee = hasardDe(p, p.etat.lieu).decouverte;
+  if (amorcee) {
+    delete hasardDe(p, p.etat.lieu).decouverte;
+    const a = choisir(p, 'investigation', personnage);
+    if (a) {
+      const jet = tester(p, r, a, 'investigation', amorcee.dd);
+      jet.ddSecret = true;
+      if (jet.reussite) {
+        // Un tirage peut ne rien donner (entrée « rien » d'une table) : on tire encore, quelques fois au plus.
+        let objets: string[] = [];
+        for (let essai = 0; essai < 6 && !objets.length; essai++) objets = tirerTable(p, amorcee.table);
+        if (objets.length) r.constats.push(phraseTrouvaille(p.gen, objets.join(', ')));
+        else jet.reussite = false;
+      }
     }
   }
   if (!r.constats.length) r.constats.push('La fouille ne donne rien.');

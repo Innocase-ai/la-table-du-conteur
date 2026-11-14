@@ -4,8 +4,9 @@
 import type { Donnees } from '../donnees';
 import { MODULES_STANDARD } from '../modules';
 import { auditerEnigmes } from '../verification/enigmes';
+import { problemesDeChargement } from './assemblage';
 import { controlerMonde } from './controles';
-import { diagnosticsDeModule, type Diagnostic } from './diagnostics';
+import { diagnosticsDeModule, entiteDuMessage, type Diagnostic } from './diagnostics';
 import { indexerReferences, type IndexReferences } from './references';
 import type { DonneesMonde } from './schemas';
 import { validerMonde, type StatsMonde } from './validation';
@@ -38,6 +39,13 @@ export function diagnostiquerMonde(dm: DonneesMonde, srd: Donnees): DiagnosticMo
       (x.gravite === 'erreur' ? erreurs : avertissements).push(`[énigmes] ${message}`);
       diagnostics.push({ code: `enigme.${x.id}`, gravite: x.gravite === 'erreur' ? 'erreur' : 'avis', message, entite: { type: 'enigmes', id: rap.id }, source: 'enigmes' });
     }
+  }
+  // Ce que le chargement laisse passer : un dossier que le moteur ne connaît pas (tout son contenu est ignoré), une clé de fiche inconnue
+  // (faute de frappe : sans effet). Les fiches d'extension invalides sont déjà dites par leur module ci-dessus.
+  for (const message of problemesDeChargement(dm).avis) {
+    avertissements.push(message);
+    const entite = entiteDuMessage(message);
+    diagnostics.push({ code: 'chargement.inconnu', gravite: 'avis', message, ...(entite ? { entite } : {}), source: 'validation' });
   }
   const index = indexerReferences(dm);
   diagnostics.push(...controlerMonde(dm, index));

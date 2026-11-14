@@ -18,6 +18,7 @@ export function verser(t: Transaction, cr: CompteRendu, options: { voix?: string
   cr.narrations.forEach((n, i) => t.emettre({ type: 'texte', texte: n, ...(options.voix && i < (cr.paroles ?? Infinity) ? { voix: options.voix } : {}) }));
   if (!options.sansConstats) for (const c of cr.constats) t.emettre({ type: 'constat', texte: c });
   if (cr.refus) t.emettre({ type: 'constat', texte: cr.refus });
+  if (cr.tirage) t.emettre({ type: 'tirageArrivee', ...cr.tirage });
   if (cr.fin) t.partie.scene = { type: 'fin', fin: cr.fin };
   else if (cr.combat) t.partie.scene = { type: 'rencontre', rencontre: cr.combat };
 }

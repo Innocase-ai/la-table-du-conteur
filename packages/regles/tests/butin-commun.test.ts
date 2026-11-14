@@ -18,7 +18,7 @@ const ORDRE_RARETE = ['commun', 'peu-commun', 'rare', 'tres-rare', 'legendaire']
 
 describe('tables de butin communes', () => {
   it('il y en a pour chaque palier, leurs identifiants commencent par « commun- », et chaque objet ou sous-table existe', () => {
-    expect([...TABLES_COMMUNES.values()].map((t) => t.palier).sort()).toEqual([1, 1, 2, 2, 2, 3, 3, 4]);
+    expect([...TABLES_COMMUNES.values()].map((t) => t.palier).sort()).toEqual([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4]);
     for (const t of TABLES_COMMUNES.values()) {
       expect(t.id.startsWith('commun-')).toBe(true);
       for (const e of t.entrees) {

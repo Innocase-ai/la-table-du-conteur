@@ -1,0 +1,321 @@
+/* Le dé d'arrivée dans un lieu (TirageArrivee.tsx) : un dé qui roule, puis l'issue ; le calme a sa propre animation. */
+.tirage {
+  --tirage-couleur: var(--texte-doux);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 10px 0;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--tirage-couleur) 45%, transparent);
+  border-left-width: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--tirage-couleur) 8%, transparent);
+  overflow: hidden;
+}
+
+.tirage-combat {
+  --tirage-couleur: var(--rouge);
+}
+.tirage-pnj {
+  --tirage-couleur: var(--or);
+}
+.tirage-decouverte {
+  --tirage-couleur: var(--vert);
+}
+
+.tirage-de {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font: 700 22px/1 var(--police-titre, Georgia, serif);
+  color: var(--tirage-couleur);
+  border: 2px solid var(--tirage-couleur);
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--tirage-couleur) 12%, #0000);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--tirage-couleur) 55%, transparent);
+}
+
+.tirage.roule .tirage-de {
+  animation: tirage-roule 0.5s linear infinite;
+}
+
+.tirage.pose .tirage-de {
+  animation: tirage-pose 0.55s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.tirage.pose:not(.tirage-rien):not(.tirage-calme) .tirage-de {
+  animation: tirage-pose 0.55s cubic-bezier(0.2, 1.4, 0.4, 1), tirage-halo 1.6s ease-out 0.5s;
+}
+
+.tirage-corps {
+  display: grid;
+  gap: 2px;
+}
+
+.tirage-corps strong {
+  color: var(--tirage-couleur);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.tirage-corps em {
+  color: var(--texte-doux);
+  font-size: 14px;
+}
+
+.tirage.pose .tirage-corps {
+  animation: tirage-apparait 0.7s ease-out 0.1s both;
+}
+
+/* Le calme : de la poussière de lumière qui monte, et un souffle qui s'étend. */
+.tirage-poussieres {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tirage-poussieres i {
+  position: absolute;
+  left: calc(8% + var(--i) * 11%);
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--texte-doux) 80%, #fff);
+  opacity: 0;
+  animation: tirage-poussiere 3.4s ease-in-out calc(var(--i) * 0.28s) 1 both;
+}
+
+.tirage-rien.pose::after,
+.tirage-calme.pose::after {
+  content: '';
+  position: absolute;
+  left: 35px;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border: 1px solid var(--tirage-couleur);
+  border-radius: 50%;
+  opacity: 0;
+  animation: tirage-souffle 2.4s ease-out 0.3s 1 both;
+  pointer-events: none;
+}
+
+@keyframes tirage-roule {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.12);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes tirage-pose {
+  0% {
+    transform: scale(1.5) rotate(-14deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes tirage-halo {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--tirage-couleur) 65%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 18px transparent;
+  }
+}
+
+@keyframes tirage-apparait {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tirage-poussiere {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc((var(--i) - 3.5) * 4px), -70px) scale(1.4);
+  }
+}
+
+@keyframes tirage-souffle {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tirage *,
+  .tirage::after {
+    animation: none !important;
+  }
+}
+
+/* --- Le dé en grand, sur l'illustration du lieu (TirageSurImage) --- */
+.tirage-voile {
+  --tirage-couleur: #d8d2c4;
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background: radial-gradient(ellipse at center, rgba(8, 6, 4, 0.72) 0%, rgba(8, 6, 4, 0.3) 70%, rgba(8, 6, 4, 0.05) 100%);
+  animation: voile-vie 3.4s ease-in-out both;
+}
+
+.tirage-voile.tirage-combat {
+  --tirage-couleur: var(--rouge);
+  box-shadow: inset 0 0 70px rgba(200, 40, 30, 0.55);
+}
+.tirage-voile.tirage-pnj {
+  --tirage-couleur: var(--or);
+}
+.tirage-voile.tirage-decouverte {
+  --tirage-couleur: var(--vert);
+}
+
+.tirage-voile-centre {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  text-align: center;
+}
+
+.tirage-grand-de {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  font: 700 40px/1 var(--police-titre, Georgia, serif);
+  color: var(--tirage-couleur);
+  border: 3px solid var(--tirage-couleur);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--tirage-couleur) 14%, rgba(10, 8, 6, 0.85));
+  box-shadow: 0 0 26px color-mix(in srgb, var(--tirage-couleur) 40%, transparent);
+}
+
+.tirage-voile.roule .tirage-grand-de {
+  animation: tirage-roule 0.45s linear infinite;
+}
+
+.tirage-voile.pose .tirage-grand-de {
+  animation: tirage-pose 0.6s cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+.tirage-voile.pose:not(.tirage-rien):not(.tirage-calme) .tirage-grand-de {
+  animation: tirage-pose 0.6s cubic-bezier(0.2, 1.5, 0.4, 1), tirage-halo-grand 1.4s ease-out 0.55s;
+}
+
+.tirage-voile-texte {
+  display: grid;
+  gap: 4px;
+  max-width: 460px;
+  animation: tirage-apparait 0.7s ease-out 0.15s both;
+}
+
+.tirage-voile-texte strong {
+  color: var(--tirage-couleur);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.tirage-voile-texte em {
+  color: #efe8d6;
+  font-size: 15px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95);
+}
+
+/* Le calme : une poussière de lumière qui monte, lentement, sur toute l'image. */
+.tirage-voile-poussieres {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tirage-voile-poussieres i {
+  position: absolute;
+  left: var(--x);
+  bottom: -10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, rgba(255, 244, 214, 0.55) 55%, transparent 70%);
+  opacity: 0;
+  animation: voile-poussiere 3.2s ease-in-out var(--d) 1 both;
+}
+
+@keyframes voile-vie {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes tirage-halo-grand {
+  0% {
+    box-shadow: 0 0 26px color-mix(in srgb, var(--tirage-couleur) 40%, transparent), 0 0 0 0 color-mix(in srgb, var(--tirage-couleur) 70%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 26px color-mix(in srgb, var(--tirage-couleur) 40%, transparent), 0 0 0 46px transparent;
+  }
+}
+
+@keyframes voile-poussiere {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc((var(--i) - 8) * 6px), -240px) scale(1.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tirage-voile,
+  .tirage-voile * {
+    animation: none !important;
+  }
+}

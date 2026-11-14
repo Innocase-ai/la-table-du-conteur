@@ -1,0 +1,163 @@
+{
+  "secrets": [
+    {
+      "id": "secret-pacte-du-meunier",
+      "texte": "Anselme Roux paie depuis quatre ans un tribut de grain à la tribu de Skarn pour acheter la paix ; le pacte a vidé le grenier et le meunier l'a caché à Mireval.",
+      "fait": "f-pacte-du-meunier",
+      "motsTabou": [
+        "pacte",
+        "tribut de grain"
+      ],
+      "autorise": [
+        "savoirs:anselme-roux",
+        "savoirs:huguette",
+        "savoirs:lina-roux",
+        "savoirs:skarn",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-colin-prisonnier",
+      "texte": "Colin Vasseur travaille prisonnier à la veine de fer de la mine hobgobeline ; Varg le garde vivant parce qu'il sait où le grain est entreposé.",
+      "fait": "f-colin-prisonnier",
+      "motsTabou": [
+        "Colin travaille",
+        "prisonnier à la veine"
+      ],
+      "autorise": [
+        "savoirs:colin-vasseur",
+        "savoirs:grum",
+        "savoirs:varg",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-lina-otage",
+      "texte": "Lina Roux n'est pas prisonnière : elle est venue négocier avec Skarn et sert d'otage d'honneur pour garantir le grain de son père.",
+      "fait": "f-lina-otage",
+      "motsTabou": [
+        "otage d'honneur",
+        "venue négocier",
+        "garantir le grain"
+      ],
+      "autorise": [
+        "savoirs:lina-roux",
+        "savoirs:skarn",
+        "savoirs:nyx",
+        "savoirs:miette",
+        "dilemmes"
+      ]
+    },
+    {
+      "id": "secret-but-de-varg",
+      "texte": "Varg veut la veine de fer et la tribu comme main-d'œuvre ; le grain n'est qu'un prétexte pour affaiblir Mireval.",
+      "fait": "f-but-de-varg",
+      "motsTabou": [
+        "main-d'œuvre",
+        "un prétexte"
+      ],
+      "autorise": []
+    }
+  ],
+  "noms": {
+    "lexique": []
+  },
+  "personnages": [
+    {
+      "id": "anselme-roux",
+      "nom": "Anselme Roux",
+      "age": 52,
+      "espece": "humain"
+    },
+    {
+      "id": "huguette",
+      "nom": "Huguette",
+      "age": 58,
+      "espece": "humain"
+    },
+    {
+      "id": "bastien",
+      "nom": "Bastien",
+      "age": 44,
+      "espece": "halfelin"
+    },
+    {
+      "id": "perrine-vasseur",
+      "nom": "Perrine Vasseur",
+      "age": 24,
+      "espece": "humain"
+    },
+    {
+      "id": "krik",
+      "nom": "Krik",
+      "age": 19,
+      "espece": "gobelin"
+    },
+    {
+      "id": "marin",
+      "nom": "Marin",
+      "age": 52,
+      "espece": "humain"
+    },
+    {
+      "id": "lina-roux",
+      "nom": "Lina Roux",
+      "age": 19,
+      "espece": "humain"
+    },
+    {
+      "id": "skarn",
+      "nom": "Skarn",
+      "age": 58,
+      "espece": "gobelin"
+    },
+    {
+      "id": "nyx",
+      "nom": "Nyx",
+      "age": 40,
+      "espece": "gobelin"
+    },
+    {
+      "id": "miette",
+      "nom": "Miette",
+      "age": 8,
+      "espece": "gobelin"
+    },
+    {
+      "id": "varg",
+      "nom": "Varg",
+      "age": 38,
+      "espece": "hobgobelin"
+    },
+    {
+      "id": "grum",
+      "nom": "Grum",
+      "age": 31,
+      "espece": "gobelours"
+    },
+    {
+      "id": "colin-vasseur",
+      "nom": "Colin Vasseur",
+      "age": 27,
+      "espece": "humain"
+    },
+    {
+      "id": "aveline-ker",
+      "nom": "Aveline Ker",
+      "age": 34,
+      "espece": "humain"
+    },
+    {
+      "id": "bram-coeur-de-tourbe",
+      "nom": "Bram Cœur-de-Tourbe",
+      "age": 78,
+      "espece": "nain"
+    },
+    {
+      "id": "celestin-brindille",
+      "nom": "Célestin Brindille",
+      "age": 52,
+      "espece": "halfelin"
+    }
+  ]
+}

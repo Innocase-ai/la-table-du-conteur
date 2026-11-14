@@ -1,6 +1,7 @@
 // Échafaudage d'un nouveau monde : `pnpm monde nouveau <id> "<Nom>"` (voir .claude/skills/creer-monde).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { CANON_VIDE } from '../../packages/regles/src/monde/canon';
 
 export const DOSSIERS_MONDE = ['lieux', 'pnj', 'objets', 'tresors', 'tables', 'rencontres', 'pieges', 'enigmes', 'quetes', 'factions', 'jauges', 'evenements', 'fins', 'faits'] as const;
 
@@ -53,6 +54,9 @@ export function creerSquelette(racineMondes: string, id: string, nom: string, mo
   writeFileSync(join(dossier, 'monde.json'), JSON.stringify(monde, null, 2) + '\n');
   writeFileSync(join(dossier, 'BIBLE.md'), remplacer(readFileSync(join(modeles.dossier, 'BIBLE.modele.md'), 'utf8'), id, nom));
   writeFileSync(join(dossier, 'GUIDE-ZONE.md'), remplacer(readFileSync(join(modeles.dossier, 'GUIDE-ZONE.modele.md'), 'utf8'), id, nom));
+  // Le canon à la machine (secrets, mots tabou, personnages) : vide, à remplir après la BIBLE (skill creer-monde, étape 2). Sans lui, la
+  // revue de secrets (`pnpm monde verifier`, onglet Revue de l'atelier) n'a rien à surveiller.
+  writeFileSync(join(dossier, 'canon.json'), JSON.stringify(CANON_VIDE, null, 2) + '\n');
   // L'atlas des lieux à remplir (skill decrire-lieux) ; ses autres {{…}} sont les cases des fiches, remplies lieu par lieu.
   if (modeles.atlas) writeFileSync(join(dossier, 'LIEUX.md'), readFileSync(modeles.atlas, 'utf8').replaceAll('{{NOM DU MONDE}}', nom));
   return dossier;

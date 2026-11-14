@@ -83,6 +83,8 @@ export interface CarteEvenements {
   /** Le groupe entre dans l'histoire (lieu de départ). */
   arrivee: { lieu: string };
   deplacement: { de: string; vers: string };
+  /** Le dé d'arrivée dans un lieu : ce qu'il a donné (`rien`, `calme`, `combat`, `pnj`, `decouverte`) et la phrase à montrer. */
+  tirageArrivee: { de: number; issue: 'rien' | 'calme' | 'combat' | 'pnj' | 'decouverte'; texte: string };
   faitAppris: { fait: string };
   decouverte: { cle: string };
   objetObtenu: { objet: string; quantite: number };

@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
+import { Canon } from '../../packages/regles/src/monde/canon';
 import { chargerMonde } from '../../packages/regles/src/monde/chargeur';
 import { validerMonde } from '../../packages/regles/src/monde/validation';
 import { creerSquelette, DOSSIERS_MODULES, DOSSIERS_MONDE } from './nouveau';
@@ -22,6 +23,8 @@ describe('échafaudage d\'un monde', () => {
     expect(bible).toContain("Bible de L'Île aux Brumes");
     expect(readFileSync(join(dossier, 'GUIDE-ZONE.md'), 'utf8')).toContain('packages/mondes/ile-aux-brumes/BIBLE.md');
     expect(bible + readFileSync(join(dossier, 'GUIDE-ZONE.md'), 'utf8')).not.toContain('{{');
+    // Le canon à la machine existe dès le départ, vide mais valide : la revue de secrets a un fichier à compléter.
+    expect(Canon.parse(JSON.parse(readFileSync(join(dossier, 'canon.json'), 'utf8')))).toEqual({ secrets: [], noms: { lexique: [] }, personnages: [] });
     const r = chargerMonde(dossier);
     expect(r.ok).toBe(true);
     if (r.ok) {

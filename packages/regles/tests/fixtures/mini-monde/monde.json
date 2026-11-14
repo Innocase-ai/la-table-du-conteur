@@ -1,7 +1,44 @@
 {
-  "id": "mini-monde", "version": 1, "nom": "Mini-monde de test", "resume": "Un village, une grotte, une quête.",
-  "accroche": "Les loups descendent de la montagne.", "ton": ["simple"], "niveaux": { "min": 1, "max": 3 },
-  "depart": { "lieu": "village", "intro": "Vous arrivez au village." },
-  "direction": { "style": "peinture sobre", "palette": ["vert", "gris"] },
-  "chapitres": [{ "id": "ch1", "nom": "Chapitre 1", "niveaux": { "min": 1, "max": 3 }, "resume": "Tout.", "lieux": ["village", "grotte"], "quetes": ["q-loups"] }]
+  "id": "mini-monde",
+  "version": 1,
+  "nom": "Mini-monde de test",
+  "resume": "Un village, une grotte, une quête.",
+  "accroche": "Les loups descendent de la montagne.",
+  "ton": [
+    "simple"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 3
+  },
+  "depart": {
+    "lieu": "village",
+    "intro": "Vous arrivez au village."
+  },
+  "direction": {
+    "style": "peinture sobre",
+    "palette": [
+      "vert",
+      "gris"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1",
+      "nom": "Chapitre 1",
+      "niveaux": {
+        "min": 1,
+        "max": 3
+      },
+      "resume": "Tout.",
+      "lieux": [
+        "village",
+        "grotte"
+      ],
+      "quetes": [
+        "q-loups"
+      ]
+    }
+  ],
+  "tirageArrivee": false
 }

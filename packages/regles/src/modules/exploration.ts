@@ -14,6 +14,7 @@ import {
   ouvrir,
   prendre,
   repondreEnigme,
+  restaurerRencontresAuto,
   seReposer,
   testLibre,
 } from '../monde/exploration';
@@ -61,6 +62,8 @@ const Personnage = z.string().optional().describe("Id du personnage qui agit ; s
 
 export const moduleExploration: Module = {
   id: 'exploration',
+  // Les rencontres fortuites du tirage d'arrivée vivent dans la partie : on les remet dans le monde rechargé.
+  apresChargement: (ctx, partie) => restaurerRencontresAuto(ctx.dm, partie.etat),
   commandes: {
     commencer: commande({
       description: "Ouvre l'histoire : le groupe arrive au lieu de départ.",
@@ -127,6 +130,8 @@ export const moduleExploration: Module = {
                 libelle: 'Fouiller',
                 icone: 'base:fouiller',
                 desactivee: p.etat.exploration.fouilles.includes(`${p.etat.lieu}:${p.etat.jour}`) ? 'Déjà fouillé aujourd’hui.' : undefined,
+                // Le dé d'arrivée a amorcé une trouvaille : le bouton se met en avant.
+                ...(p.etat.exploration.hasard?.[p.etat.lieu]?.decouverte ? { style: 'principal' as const, aide: 'Quelque chose attire votre regard : fouillez.' } : {}),
                 ordre: { type: 'fouiller' },
               },
             ]

@@ -660,6 +660,8 @@ export const Monde = z.object({
   chapitres: z.array(Chapitre).min(1),
   // Ce que le MJ ne doit jamais faire dans ce monde (ex. magie ressuscitante).
   regles: z.array(Texte).default([]),
+  // Le tirage d'arrivée (`monde/hasard-arrivee.ts`) : un dé à chaque arrivée dans un lieu (combat, rencontre, trouvaille ou rien). `false` le coupe.
+  tirageArrivee: z.boolean().default(true),
   // Vivres (facultatif, 14/11/2026) : à chaque nouveau jour, chaque héros vivant mange une ration du sac du groupe (`objet`), sauf quand
   // le groupe se trouve dans un lieu dont `services` contient « repas » (on y mange à table). Sans ration, il a faim : `faim` en dégâts
   // (les PV ne descendent jamais sous 1). `depart` : jours de vivres par héros dans le sac au début de l'histoire.

@@ -27,7 +27,7 @@ Les rencontres se rattachent à un **lieu** (`lieux/*.json`, champ `rencontres: 
 | `entree` | À l'arrivée dans le lieu (défaut). |
 | `exploration` | Après une fouille du lieu (« on a fait du bruit »). |
 | `repos` | Quand le groupe se repose (halte ou nuit) : embuscade nocturne. Un lieu `repos: sur` autorise la nuit, `dangereux` une halte, `impossible` rien. |
-| `aleatoire` | Une chance sur trois à l'arrivée ou au repos (jamais pendant une fouille). |
+| `aleatoire` | Au repos : une chance sur trois (jamais pendant une fouille). **À l'arrivée : tirée par le dé d'arrivée** (un 2, avant tout adversaire au hasard ; voir « Le tirage d'arrivée » de `docs/MONDES.md`) : une rencontre de combat `aleatoire` écrite pour un lieu y a donc la priorité, et un lieu sans rencontre écrite reçoit quand même un adversaire au hasard du SRD. |
 | effet `rencontre` | Posé par un événement, un sujet de dialogue, un piège, un échec d'énigme, une étape de quête : elle se joue à la fin de l'action en cours. |
 
 `unique: true` (défaut) : une seule fois. `unique: false` : répétable (lieu dangereux). `condition` : un drapeau, une quête, un PNJ, la jauge, l'argent (`{ "pieces": { "min": 100 } }`).

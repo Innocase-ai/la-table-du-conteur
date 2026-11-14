@@ -57,6 +57,7 @@ export * from './conteur';
 export * from './monde/dialogue';
 export * from './monde/scene';
 export * from './monde/assemblage';
+export * from './monde/extensions';
 export * from './personnage';
 export * from './noyau';
 export * from './modules';

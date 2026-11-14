@@ -2,7 +2,7 @@
 
 Le moteur est le même pour tous les mondes. Un **monde** est une histoire jouable : un dossier de fichiers JSON dans `packages/mondes/<id>/`, validé par des schémas et par un validateur. Écrire un nouveau monde, c'est écrire des données, pas du code.
 
-Référence du format : [packages/regles/src/monde/schemas.ts](../packages/regles/src/monde/schemas.ts). Validation : `pnpm monde valider [monde]`. Document lisible généré : `pnpm monde doc [monde]` (écrit `docs/mondes/<monde>.md`).
+Référence du format : [packages/regles/src/monde/schemas.ts](../packages/regles/src/monde/schemas.ts). Validation : `pnpm monde valider [monde]` ; bilan complet avant publication : `pnpm monde verifier [monde]` (voir « Vérifier une histoire avant de la publier »). Document lisible généré : `pnpm monde doc [monde]` (écrit `docs/mondes/<monde>.md`).
 
 ## Principe : le MJ lit une bible, le moteur tient les comptes
 
@@ -154,6 +154,46 @@ Le troisième dossier d'extension est **`savoirs/`** (module Savoirs, `modules/s
 - **Cohérence** : le canon des passés vit dans un document du monde (`CANON-PERSONNAGES.md` pour la Citadelle) ; une fiche ne peut rien affirmer qui le contredise ni qui contredise la bible. Un agent relit les fiches contre la bible et le canon avant publication.
 - Limite connue : le jeu vérifie les **ids** et les **mots tabous**, pas le sens de chaque phrase ; un détail de décor non écrit peut encore se glisser dans une réplique (consigne et relecture le limitent).
 
+## Ce que le chargement vérifie (14/11/2026)
+
+Le chargement d'un monde (`assemblerMonde`, utilisé par les outils, l'atelier et le jeu) valide chaque fiche des 14 dossiers de base avec son schéma ; une fiche invalide fait échouer le chargement. Les **dossiers d'extension** (`dilemmes/`, `evenements-choix/`, `examens/`, `codex/`, `interjections/`, `savoirs/`, `scenes/`) sont validés par leur module (le chargement réussit, le jeu **écarte** une fiche invalide : l'histoire se joue sans elle). `problemesDeChargement(dm)` (`monde/assemblage.ts`) dit ce qui passerait sinon en silence :
+
+- **erreurs** : une fiche d'un dossier d'extension qui ne respecte pas son schéma (le jeu refuse de lancer une histoire **publiée** qui en a ; un brouillon se lance et le dit dans la console) ;
+- **avis** : un dossier inconnu du moteur (`dilemme/` au lieu de `dilemmes/` : tout son contenu est ignoré, avec « vouliez-vous dire… ») et une **clé de fiche inconnue** (`salutaions`, ou imbriquée : `sujets.0.reponsee`), ignorée donc sans effet.
+
+`pnpm monde valider` et l'atelier (Santé) montrent les avis ; `manque`, `parcours`, `enigmes` et `estimer` affichent les erreurs (et `estimer` n'écrit pas une estimation faite sur un monde amputé). Les schémas des dossiers d'extension sont dans `monde/extensions.ts` (celui des scènes : `monde/scenes-donnees.ts`).
+
+## Le tirage d'arrivée : un lieu n'est jamais vide (14/11/2026)
+
+À chaque arrivée dans un lieu (`aller`), le moteur lance un dé à six faces (`monde/hasard-arrivee.ts`) :
+
+| Dé | Issue |
+| --- | --- |
+| 2 | **Combat** contre un adversaire au hasard ; dans un **lieu sûr** (`repos: "sur"` : auberge, maison, temple) : un passant à la place |
+| 3 | **Rencontre de PNJ**, même pour dire bonjour : un PNJ du lieu à qui le groupe n'a pas encore parlé (sa salutation), sinon un des 24 passants communs (`monde/hasard-arrivee.json`, jamais deux fois le même avant d'avoir fait le tour) |
+| 4 | **Quelque chose attire l'œil** : un indice, le bouton « Fouiller » se met en avant (même si le lieu a déjà été fouillé aujourd'hui) ; la fouille fait un jet d'Investigation (DD secret : 10, 12, 14 ou 16 selon le palier du groupe) et, réussie, donne un objet tiré des tables communes `commun-decouverte-p1` à `p4` (armes et armures du SRD, potions, parchemins, baguettes). Une seule tentative |
+| 1, 5, 6 | **Rien** : le jeu le dit à l'écran (un dé qui roule sur l'illustration, puis de la poussière de lumière qui se disperse) |
+
+- **Budget** : chaque lieu n'offre que **2 à 4 interactions** en tout (le nombre dépend de son identifiant : `budgetDuLieu`). Chaque combat, rencontre ou trouvaille vécu en consomme une ; **le lieu épuisé reste calme pour de bon** (le dé dit « le lieu est calme »). Une seule interaction par arrivée : elles ne viennent jamais toutes en même temps.
+- **Adversaire au hasard** : un thème du catalogue d'escarmouches (`combat/escarmouche.ts`, selon le décor du lieu) composé pour le niveau et le nombre de héros du groupe (faible, modérée une fois sur trois) ; la rencontre `auto-<lieu>-<n>` est gardée dans la partie (`etat.exploration.rencontresAuto`), le monde ne la liste pas. Les monstres sont ceux du SRD.
+- **Ce que l'auteur écrit passe avant** : une rencontre de combat écrite pour le lieu avec le déclencheur `aleatoire` (non jouée, condition remplie) est tirée par le 2 avant tout adversaire au hasard ; un PNJ écrit qui se tient dans le lieu et que le groupe n'a pas rencontré est tiré par le 3. Rien n'est à écrire pour qu'un lieu ne soit pas vide.
+- **Pas de tirage** : dans une région (grand ensemble), à l'arrivée au lieu de départ, quand une rencontre écrite se déclenche déjà à l'entrée, ou si `monde.json` dit `"tirageArrivee": false` (alors `aleatoire` redevient « une fois sur trois »). Les jeux d'essai du moteur (`val-des-cendres`, `citadelle-des-marees`, `mini-monde`) le coupent pour garder des parcours déterministes.
+- **Écran** : l'événement `tirageArrivee` (dé, issue, phrase) est montré par `apps/jeu/src/aventure/TirageArrivee.tsx` : un grand dé sur l'illustration (il cède la place à l'écran de rencontre quand c'est un combat), et un bloc dans le récit.
+
+## Vérifier une histoire avant de la publier (`pnpm monde verifier`)
+
+`pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]` (`outils/monde/verifier.ts`) fait en une commande le bilan du point V8, rubrique par rubrique ; code de sortie 1 si une rubrique ❌ bloque :
+
+| Rubrique | ❌ (bloque) | ⚠️ (à lire) |
+| --- | --- | --- |
+| Validation (`valider` : références, quêtes, modules, énigmes jouées, chargement) | une erreur | des avis |
+| Complétude (`manque`) | un manque | des avis |
+| Estimation | absente ou périmée **pour un monde publié** | idem pour un brouillon |
+| Revue de secrets (`canon.json` + `revue.json`) | un mot tabou dans un texte libre (**fuite**), `canon.json` invalide | pas de `canon.json` (la revue n'a pas eu lieu), écarts de personnage, noms inconnus, liens non réciproques |
+| Parcours | une fin non atteinte | aucune fin définie |
+
+Une alerte de revue qui est un faux positif se rejette dans l'atelier (onglet Revue, `revue.json`) ; un secret légitimement dit dans une fiche s'y autorise (`autorise` du canon : `savoirs:<pnj>`, `pnj:<pnj>`, `dilemmes`).
+
 ## Conditions et effets
 
 Conditions (`et`, `ou`, `non` se combinent) : `flag`, `fait`, `quete` (statut), `etape`, `faction` (réputation min/max), `jauge`, `objet`, `pnj` (attitude, vivant/mort/parti), `lieu` (visité), `rencontre` (jouée, et comment), `parle` (a parlé à ce PNJ), `temoin` (ce PNJ était présent quand une rencontre s'est dénouée), `niveauGroupe`, `moment` (`jour` 6 h-17 h, `soir` 18 h-21 h, `nuit` : un événement qui ne vaut que quand un PNJ qui change de lieu le soir est là, `{ "non": { "moment": "soir" } }`), `heros` ; voir « La mémoire du groupe » plus bas. **Une quête ne recule jamais** : proposée, puis en cours, puis close ; un effet `quete: proposee` ne remet pas en cours une quête déjà lancée (par un événement, par un autre sujet).
@@ -164,7 +204,7 @@ Effets : `flag`, `fait`, `jauge` (delta), `reputation`, `attitude`, `objet` (don
 
 - **Boutiques** (`boutique.stock`, `tables`, `rachat`, `types`) : pendant une conversation avec le marchand, ses articles (quantités limitées ; prix donné ou valeur de l'objet), ce qu'il rachète (valeur × `rachat`, seulement les catégories de `types` ; vide = tout ; jamais un objet de quête) et ses **services** s'affichent à côté de la boîte de dialogue (module `commerce` : `acheter`, `vendre`, `payerService`). Un service paie son prix, raconte son résumé et applique ses effets ; d'après son identifiant, `soins…`/`guerison…` rend tous les PV du groupe, `chambre`/`dortoir`/`abri`/`refuge`/`hospitalite` donne une nuit de repos même là où l'on ne peut pas dormir, `identification…` identifie les objets du sac. Vérifier que les `types` d'une boutique couvrent ce qu'elle vend si elle doit le racheter.
 - **Quêtes proposées** : un effet `{ quete: { statut: "proposee" } }` la propose ; le joueur l'accepte (bouton « Accepter : … », commande `accepterQuete`), seulement si son `prerequis` est rempli. Le validateur signale (erreur) une quête que rien ne propose ni n'active.
-- **Rencontres sociales et d'exploration** : elles ouvrent la scène de rencontre avec leurs `alternatives` (dont la `condition` est remplie) ; une issue ratée ne se retente pas ; « Passer son chemin » pour s'en aller. Sans alternative, ce n'est qu'un récit. Une rencontre `aleatoire` survient une fois sur trois en arrivant au lieu ou en s'y reposant.
+- **Rencontres sociales et d'exploration** : elles ouvrent la scène de rencontre avec leurs `alternatives` (dont la `condition` est remplie) ; une issue ratée ne se retente pas ; « Passer son chemin » pour s'en aller. Sans alternative, ce n'est qu'un récit. Une rencontre `aleatoire` survient une fois sur trois en s'y reposant ; à l'arrivée, c'est le dé d'arrivée qui la tire (voir « Le tirage d'arrivée »).
 - **Temps** : un lien a des `heures` de trajet ; elles font avancer l'heure, et passer minuit commence un nouveau jour (évolutions de jauge et événements `jour`). Une nuit de repos mène au matin (8 h). Les `presences` des PNJ (`jour` de 6 h à 17 h, `soir` de 18 h à 21 h, `nuit`) en tiennent compte.
 - **Événement `condition` avec un `lieu`** : il ne se joue que dans ce lieu.
 - **Dialogue** : les effets d'un sujet passent par le même chemin qu'une action (paliers de jauge, événements, quêtes, rencontres, **fin** : elle s'affiche aussitôt). Un PNJ qui a un **secret** propose une réplique pour insister (jet, attitude ou prix), sans en dévoiler le contenu.
@@ -231,14 +271,14 @@ Le jeu dessine une carte par lieu qui en contient d'autres, avec le repère du g
 
 ## Créer un nouveau monde
 
-Le skill **`creer-monde`** (`.claude/skills/creer-monde/`) guide Claude pas à pas : cadrage avec l'utilisateur, canon, échafaudage (`pnpm monde nouveau <id> "<Nom>"`), agents de zone en parallèle, raccordement et validation. Résumé :
+Le skill **`creer-monde`** (`.claude/skills/creer-monde/`) guide Claude pas à pas : cadrage avec l'utilisateur, canon, échafaudage (`pnpm monde nouveau <id> "<Nom>"`, qui crée aussi un `canon.json` vide à compléter), agents de zone en parallèle, raccordement et validation. Résumé :
 
 1. Cadrer avec l'utilisateur : trois pistes, puis le ton, les niveaux, la taille et le coût.
 2. Écrire le **canon** (`BIBLE.md`, registre des identifiants, `canon.json`) et le **canon des personnages** (`CANON-PERSONNAGES.md`).
 3. Écrire l'**atlas des lieux** (`LIEUX.md`, skill `decrire-lieux`) : carte du monde, chaque lieu, chaque point à visiter, avec le contenu prévu ; vérification en cascade.
 4. Écrire les données zone par zone (un agent par zone, qui recopie l'atlas), en validant au fil de l'eau.
 5. Enrichir dans l'ordre : contrats, rencontres, pièges et trésors ; savoirs et compagnon ; dilemmes puis salutations variables ; examens, codex, origines, antagoniste.
-6. Valider (0 erreur, 0 avertissement), prouver les fins (`pnpm monde parcours`), publier, générer le document (`pnpm monde doc`), puis cartes, images, scènes et voix (après accord sur le coût).
+6. Valider (0 erreur, 0 avertissement), prouver les fins (`pnpm monde parcours`), tout vérifier d'un coup (`pnpm monde verifier`), publier, générer le document (`pnpm monde doc`), puis cartes, images, scènes et voix (après accord sur le coût).
 
 L'ordre détaillé, étape par étape, est dans le skill `creer-monde`.
 

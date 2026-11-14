@@ -1,7 +1,7 @@
 // Les histoires jouables : chaque dossier de packages/mondes avec un monde.json publié. Le client ne lit ici que la
 // présentation (nom, accroche, résumé, ton, niveaux, chapitres) et l'image de couverture ; le monde complet sera
 // chargé quand l'aventure commencera.
-import { assemblerMonde, Estimation, Monde, type DonneesMonde, type ManifesteImages } from '@crpg/regles';
+import { assemblerMonde, Estimation, Monde, problemesDeChargement, type DonneesMonde, type ManifesteImages } from '@crpg/regles';
 
 const FICHIERS = import.meta.glob('../../../packages/mondes/*/monde.json', { eager: true, import: 'default' }) as Record<string, unknown>;
 const ESTIMATIONS = import.meta.glob('../../../packages/mondes/*/estimation.json', { eager: true, import: 'default' }) as Record<string, unknown>;
@@ -53,6 +53,11 @@ export async function chargerHistoire(id: string): Promise<DonneesMonde> {
   const fichiers = await Promise.all(entrees.map(async ([c, charger]) => ({ chemin: c.slice(prefixe.length), contenu: await charger() })));
   const r = assemblerMonde(brut, fichiers);
   if (!r.ok) throw new Error(`Histoire « ${id} » invalide : ${r.erreurs.map((e) => `${e.fichier} — ${e.message}`).join(' ; ')}`);
+  // Une fiche d'un dossier d'extension (dilemme, savoir, scène…) qui ne respecte pas son schéma serait écartée sans un mot : l'histoire
+  // se jouerait amputée. Une histoire publiée ne se lance pas ainsi ; un brouillon se lance, et le dit dans la console.
+  const pb = problemesDeChargement(r.monde);
+  if (pb.erreurs.length && r.monde.monde.statut === 'publie') throw new Error(`Histoire « ${id} » invalide : ${pb.erreurs.join(' ; ')}`);
+  for (const m of [...pb.erreurs, ...pb.avis]) console.warn(`[${id}] ${m}`);
   return r.monde;
 }
 

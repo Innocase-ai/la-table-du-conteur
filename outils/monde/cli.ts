@@ -8,21 +8,23 @@
 //   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]
 //                                     un joueur automatique joue le VRAI moteur pour atteindre chaque fin (combats supposés gagnés) ;
 //                                     code 1 si une fin n'est pas atteinte (avec ce budget : ce n'est pas une preuve d'impossibilité)
+//   pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]
+//                                     le bilan complet en une commande (point V8) : validation, ce qui manque, estimation à jour, revue de secrets du canon, fins prouvées ;
+//                                     code 1 si une rubrique bloque la publication
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
 import { diagnostiquerMonde } from '../../packages/regles/src/monde/diagnostiquer';
-import { resumerCompletude, verifierCompletude } from '../../packages/regles/src/monde/completude';
+import { resumerCompletude } from '../../packages/regles/src/monde/completude';
+import { problemesDeChargement } from '../../packages/regles/src/monde/assemblage';
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
-import { ManifesteImages } from '../../packages/regles/src/monde/images';
-import { idImageCommune } from '../../packages/regles/src/modules/image-commune';
-import { scenesDu } from '../../packages/regles/src/modules/scenes';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
+import { afficherBilan, completudeDuMonde, verifierMonde } from './verifier';
 
 const args = process.argv.slice(2);
 /** La valeur d'une option `--nom valeur` (et on la retire des arguments positionnels). */
@@ -38,6 +40,8 @@ const optMs = option('ms');
 const optGraines = option('graines');
 const optChemin = args.includes('--chemin');
 if (optChemin) args.splice(args.indexOf('--chemin'), 1);
+const optSansParcours = args.includes('--sans-parcours');
+if (optSansParcours) args.splice(args.indexOf('--sans-parcours'), 1);
 const optCouvrir = args.includes('--couvrir');
 if (optCouvrir) args.splice(args.indexOf('--couvrir'), 1);
 const [commande, cible, nomMonde] = args;
@@ -56,7 +60,7 @@ if (commande === 'nouveau') {
 
 if (commande === 'lister' || !commande) {
   for (const id of listerMondes()) console.log(id);
-  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | enigmes [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
+  if (!commande) console.log('Usage : pnpm monde lister | valider [monde] | verifier [monde] | manque [monde] | parcours [monde] | enigmes [monde] | doc [monde] | estimer [monde] | nouveau <id> "<Nom>"');
   process.exit(0);
 }
 
@@ -70,6 +74,26 @@ for (const id of mondes) {
     for (const e of r.erreurs) console.error(`  ${e.fichier} — ${e.message}`);
     continue;
   }
+  // `valider`, `verifier` et `doc` passent par le diagnostic complet, qui dit déjà tout ceci ; les autres commandes le disent ici : sans cela,
+  // elles jouent, comptent ou estiment un monde amputé de ses fiches invalides, sans prévenir.
+  if (['estimer', 'manque', 'parcours', 'enigmes'].includes(commande ?? '')) {
+    const pb = problemesDeChargement(r.monde);
+    for (const e of pb.erreurs) console.error(`  ❌ ${id} — fiche écartée par le jeu : ${e}`);
+    for (const a of pb.avis) console.warn(`  ⚠️  ${id} — ${a}`);
+    if (pb.erreurs.length) {
+      echec = true;
+      if (commande === 'estimer') {
+        console.error(`  ${id} : estimation non écrite (corrigez d'abord ces fiches).`);
+        continue;
+      }
+    }
+  }
+  if (commande === 'verifier') {
+    const b = verifierMonde(id, join(RACINE_MONDES, id), r.monde, srd, { parcours: !optSansParcours, ...(optEtats ? { etats: Number(optEtats) } : {}), ...(optMs ? { ms: Number(optMs) } : {}), ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) });
+    for (const l of afficherBilan(b)) console.log(l);
+    if (!b.ok) echec = true;
+    continue;
+  }
   if (commande === 'estimer') {
     const e = estimerCampagne(r.monde);
     writeFileSync(join(RACINE_MONDES, id, 'estimation.json'), JSON.stringify(e, null, 2) + '\n');
@@ -79,20 +103,7 @@ for (const id of mondes) {
     continue;
   }
   if (commande === 'manque') {
-    const dossier = join(RACINE_MONDES, id);
-    const lireJson = (f: string) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : undefined);
-    const manifeste = ManifesteImages.safeParse(lireJson(join(dossier, 'images/manifeste.json')) ?? {});
-    const equipement = join(RACINE_MONDES, '../../apps/jeu/src/equipement');
-    const noms = (d: string, ext: string) => new Set(existsSync(d) ? readdirSync(d).filter((f) => f.endsWith(ext)).map((f) => f.slice(0, -ext.length)) : []);
-    const ecarts = verifierCompletude({
-      dm: r.monde,
-      manifeste: manifeste.success ? manifeste.data : undefined,
-      imagesCommunes: noms(equipement, '.webp'),
-      idImageCommune,
-      scenes: scenesDu(r.monde).scenes,
-      voix: noms(join(dossier, 'voix'), '.mp3'),
-      estimationPresente: existsSync(join(dossier, 'estimation.json')),
-    });
+    const ecarts = completudeDuMonde(join(RACINE_MONDES, id), r.monde);
     const manques = ecarts.filter((x) => x.gravite === 'manque');
     console.log(`\n${manques.length ? '⚠️ ' : '✅'} ${id} — ${manques.length} manque(s), ${ecarts.length - manques.length} avis`);
     for (const [rubrique, n] of resumerCompletude(ecarts)) console.log(`  ${rubrique.padEnd(12)} ${n.manque} manque(s), ${n.avis} avis`);

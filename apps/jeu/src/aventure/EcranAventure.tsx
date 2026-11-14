@@ -35,6 +35,7 @@ import { EcranSommeil } from './EcranSommeil';
 import { EcranCrochetage } from './EcranCrochetage';
 import { EcranEvenement } from './EcranEvenement';
 import { EcranRencontre } from './EcranRencontre';
+import { TirageArrivee, TirageSurImage, type TirageAffiche } from './TirageArrivee';
 import { EcranDesamorcage } from './EcranDesamorcage';
 import { detecterOuverture, type Ouverture } from '../crochetage-regles';
 import { detecterDesamorcage, type Desamorcage } from '../desamorcage-regles';
@@ -161,6 +162,16 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const { moteur, partie } = aventure;
   const dm = moteur.ctx.dm;
   const [refus, setRefus] = useState<string>();
+  // Le dé d'arrivée : un grand dé qui roule sur l'illustration quand le journal vient de recevoir un tirage (jamais au chargement d'une partie).
+  const [tirage, setTirage] = useState<TirageAffiche>();
+  const longueurJournal = useRef(partie.journal.length);
+  useEffect(() => {
+    const avant = longueurJournal.current;
+    longueurJournal.current = partie.journal.length;
+    if (partie.journal.length <= avant) return;
+    const e = [...partie.journal.slice(avant)].reverse().find((x) => x.type === 'tirageArrivee');
+    if (e && e.type === 'tirageArrivee') setTirage({ cle: Date.now(), de: e.de, issue: e.issue, texte: e.texte });
+  }, [partie.journal]);
   const recit = useRef<HTMLDivElement>(null);
   // Le conteur (IA) : disponible si le serveur du jeu a une clé ; le joueur lui écrit librement.
   const [conteur, setConteur] = useState<EtatConteur>();
@@ -459,6 +470,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
 
       <main className="aventure-centre">
         <div className={`aventure-image${interlocuteur ? ' en-dialogue' : ''}`} style={image ? { backgroundImage: `url(${image})` } : undefined}>
+          {tirage && !interlocuteur && <TirageSurImage key={tirage.cle} tirage={tirage} onFin={() => setTirage(undefined)} />}
           {interlocuteur ? (
             <BoiteDialogue
               nom={interlocuteur.nom}
@@ -490,7 +502,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
         {!interlocuteur && (
           <div className="aventure-recit" ref={recit}>
             {partie.journal.map((e, i) => (
-              <EntreeRecit key={i} e={e} dm={dm} />
+              <EntreeRecit key={i} e={e} dm={dm} dernier={i >= partie.journal.length - 8} />
             ))}
             {refus && <p className="recit-refus">{refus}</p>}
           </div>
@@ -670,7 +682,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
       {crochetage && !sommeil && <EcranCrochetage ouverture={crochetage} nomHeros={partie.groupe.find((h) => h.id === crochetage.heros)?.nom ?? crochetage.jet?.nom ?? 'Le groupe'} onFin={finCrochetage} />}
       {desamorcage && !sommeil && !crochetage && <EcranDesamorcage desamorcage={desamorcage} onFin={finDesamorcage} />}
       {evenement && !sceneNarree && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte && <EcranEvenement key={evenement.id} dm={dm} fiche={evenement} jouer={jouer} />}
-      {rencontreOuverte && (
+      {rencontreOuverte && !tirage && (
         <EcranRencontre
           key={rencontre!.id}
           rencontre={rencontre!}
@@ -787,8 +799,11 @@ function Panneaux({
 }
 
 /** Une ligne du récit, d'après un événement du journal. Les événements sans texte pour le joueur ne s'affichent pas. */
-function EntreeRecit({ e, dm }: { e: EvenementJeu; dm: DonneesMonde }) {
+function EntreeRecit({ e, dm, dernier = false }: { e: EvenementJeu; dm: DonneesMonde; dernier?: boolean }) {
   switch (e.type) {
+    case 'tirageArrivee':
+      // Le dé d'arrivée : seul un tirage récent joue son animation (les anciens du récit s'affichent posés).
+      return <TirageArrivee de={e.de} issue={e.issue} texte={e.texte} animer={dernier} />;
     case 'arrivee':
     case 'deplacement': {
       const l = dm.lieux.get(e.type === 'arrivee' ? e.lieu : e.vers);
