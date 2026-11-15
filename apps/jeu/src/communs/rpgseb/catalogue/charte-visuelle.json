@@ -1,0 +1,49 @@
+{
+  "_note": "Charte visuelle RPGSEB, alignée sur celle du projet D&D (crpg-llm/packages/donnees/visuel/charte.json). Source de vérité des prompts : tout nouvel asset part de `style` + gabarit + `contraintes`. Appliquée aux portraits et icônes d'objets (régénérés le 2026-11-13, ids inchangés) ; décors de carte et jeton pas encore réalignés.",
+  "source": "D&D crpg-llm : packages/donnees/visuel/charte.json et outils/images/{monde,plateau}.ts",
+  "modele": "black-forest-labs/flux-3-image-klein",
+  "api": "OpenRouter POST /api/v1/images, aspect_ratio 1:1, resolution 1K, ~0,009 $/image",
+  "style": "Dark fantasy digital painting, refined painterly rendering with visible brushwork, dramatic warm lighting with deep shadows, muted earthy palette with copper and gold accents, realistic proportions, cinematic composition. Not pixel art, not cartoon, not anime, not 3D render.",
+  "contraintes": "No text, no letters, no logos, no watermark, no frame, no user interface.",
+  "gabarits": {
+    "portrait": {
+      "module": "personnages",
+      "format": "carre",
+      "sortie": "webp 512x512, fond integre (pas de detourage)",
+      "vue": "Waist-up, three-quarter view, looking toward the viewer, neutral dark background with a soft warm rim light. Highly detailed face with a distinctive, memorable design.",
+      "nommage": "portrait-<espece>-<m|f>-<n> (ex. portrait-humain-m-1, comme D&D)"
+    },
+    "objet": {
+      "module": "objets",
+      "format": "carre",
+      "sortie": "webp 512x512, fond integre (pas de detourage)",
+      "vue": "Isolated object centred in the frame, seen at a slight three-quarter angle, fully visible, like an inventory icon of a painted tabletop RPG. Plain dark neutral background with a soft warm rim light and a subtle shadow under the object. No hands, no character wearing it, no scenery.",
+      "nommage": "<id objet> (ex. epee-longue, comme D&D)"
+    },
+    "decor-carte": {
+      "module": "carte",
+      "format": "carre",
+      "sortie": "png detoure (fond magenta/cyan), ~128-256 px par case",
+      "vue": "Strictly top-down bird's-eye view, looking straight down from directly above (orthographic, like a satellite photo), no perspective, no horizon, no isometric angle. Single isolated game map asset centred in the frame. Plain flat uniform pure <couleur> background, no cast shadow, no gradient, no vignette. Light from the upper left, soft: the engine adds the shadows.",
+      "nommage": "<type>-<variante>[-neige]"
+    },
+    "texture-sol": {
+      "module": "carte",
+      "format": "carre",
+      "vue": "Seamless tileable texture, strictly top-down orthographic, perfectly flat, even soft lighting, no focal object (identique aux textures de terrain D&D)."
+    },
+    "jeton": {
+      "module": "carte",
+      "format": "carre",
+      "vue": "Top-down figures, plain pure cyan background, no cast shadow, then local rim light + warm glow."
+    }
+  },
+  "ecarts_constates": [
+    "style: manquent 'dramatic warm lighting with deep shadows', 'copper and gold accents', 'realistic proportions', 'cinematic composition'",
+    "contraintes: manquent 'no letters' et 'no user interface'",
+    "portraits: cadrage buste frontal au lieu de waist-up trois-quarts, pas de lumiere de contour chaude, expression neutre imposee, vetements 'simples'",
+    "icones d'objets: vue de face plate sur fond transparent, au lieu de trois-quarts sur fond sombre avec lumiere chaude et ombre legere",
+    "decors/jeton: palette sans accents cuivre/or, rendu plus net et plus clair que les textures de sol D&D (lumiere douce uniforme)",
+    "nommage: portrait-h-01 / objet-epee au lieu de portrait-humain-m-1 / epee-longue"
+  ]
+}

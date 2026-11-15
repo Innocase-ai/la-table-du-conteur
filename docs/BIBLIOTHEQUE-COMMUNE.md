@@ -13,6 +13,7 @@
 | Ouvertures de conversation, répliques de combat, salutations communes | `packages/donnees/repliques/`, `apps/jeu/src/voix/` | 648 prises pour les salutations |
 | **Portraits de PNJ des histoires** | `apps/jeu/src/communs/pnj/` + `packages/donnees/visuel/pnj-communs.json` | **157** |
 | **Images d'objets propres aux histoires** | `apps/jeu/src/communs/objets/` + `objets-histoires.json` | **180** |
+| **Assets de RPGSEB** (décors de carte tuilée, jeton du groupe, interface, icônes d'équipement, 16 portraits de figurants) | `apps/jeu/src/communs/rpgseb/` (voir son `LISEZMOI.md` et `catalogue/`) | **125** (≈ 5 Mo) : pas encore branchés dans le jeu ni dans `proposer` |
 | **Salutations propres déjà dites** | `packages/donnees/visuel/salutations-reprises.json` (fichiers voisés : `apps/jeu/src/voix/dialogues/`) | **57** |
 
 ## Les tables

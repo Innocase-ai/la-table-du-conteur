@@ -1,0 +1,2646 @@
+{
+  "arbre-chene": {
+    "image": "carte/decor/arbre-chene.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "arbre-conifere": {
+    "image": "carte/decor/arbre-conifere.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "arbre-mort": {
+    "image": "carte/decor/arbre-mort.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "roche": {
+    "image": "carte/decor/roche.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ]
+  },
+  "montagne": {
+    "image": "carte/decor/montagne.webp",
+    "taille": [
+      3,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "mountain",
+      "hill"
+    ]
+  },
+  "lac": {
+    "image": "carte/decor/lac.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "maison-chaume": {
+    "image": "carte/decor/maison-chaume.webp",
+    "taille": [
+      2,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "maison-tuiles": {
+    "image": "carte/decor/maison-tuiles.webp",
+    "taille": [
+      2,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "maison-ardoise": {
+    "image": "carte/decor/maison-ardoise.webp",
+    "taille": [
+      3,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "grotte-colline": {
+    "image": "carte/decor/grotte-colline.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ]
+  },
+  "grotte-gouffre": {
+    "image": "carte/decor/grotte-gouffre.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ]
+  },
+  "grotte-falaise": {
+    "image": "carte/decor/grotte-falaise.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ]
+  },
+  "village-hameau": {
+    "image": "carte/decor/village-hameau.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": [
+      2,
+      3
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "village-bourg": {
+    "image": "carte/decor/village-bourg.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "village-fortifie": {
+    "image": "carte/decor/village-fortifie.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "chateau-fort": {
+    "image": "carte/decor/chateau-fort.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "chateau",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "chateau-motte": {
+    "image": "carte/decor/chateau-motte.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "entree": [
+      2,
+      3
+    ],
+    "action": "chateau",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "chateau-ruine": {
+    "image": "carte/decor/chateau-ruine.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "ruine",
+    "terrains": [
+      "plain",
+      "forest"
+    ]
+  },
+  "arbre-chene-neige": {
+    "image": "carte/neige/arbre-chene-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "arbre-conifere-neige": {
+    "image": "carte/neige/arbre-conifere-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "arbre-mort-neige": {
+    "image": "carte/neige/arbre-mort-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "roche-neige": {
+    "image": "carte/neige/roche-neige.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "montagne-neige": {
+    "image": "carte/neige/montagne-neige.webp",
+    "taille": [
+      3,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "mountain",
+      "hill"
+    ],
+    "region": "arctique"
+  },
+  "lac-neige": {
+    "image": "carte/neige/lac-neige.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "maison-chaume-neige": {
+    "image": "carte/neige/maison-chaume-neige.webp",
+    "taille": [
+      2,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "maison-tuiles-neige": {
+    "image": "carte/neige/maison-tuiles-neige.webp",
+    "taille": [
+      2,
+      3
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "maison-ardoise-neige": {
+    "image": "carte/neige/maison-ardoise-neige.webp",
+    "taille": [
+      3,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "grotte-colline-neige": {
+    "image": "carte/neige/grotte-colline-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "grotte-gouffre-neige": {
+    "image": "carte/neige/grotte-gouffre-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "grotte-falaise-neige": {
+    "image": "carte/neige/grotte-falaise-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "entree": [
+      1,
+      1
+    ],
+    "action": "donjon",
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "village-hameau-neige": {
+    "image": "carte/neige/village-hameau-neige.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "entree": [
+      2,
+      3
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "village-bourg-neige": {
+    "image": "carte/neige/village-bourg-neige.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "village-fortifie-neige": {
+    "image": "carte/neige/village-fortifie-neige.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "village",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "chateau-fort-neige": {
+    "image": "carte/neige/chateau-fort-neige.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "chateau",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "chateau-motte-neige": {
+    "image": "carte/neige/chateau-motte-neige.webp",
+    "taille": [
+      4,
+      4
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "entree": [
+      2,
+      3
+    ],
+    "action": "chateau",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "chateau-ruine-neige": {
+    "image": "carte/neige/chateau-ruine-neige.webp",
+    "taille": [
+      6,
+      6
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ]
+    ],
+    "entree": [
+      3,
+      5
+    ],
+    "action": "ruine",
+    "terrains": [
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "arbre-bouleau": {
+    "image": "carte/decor/arbre-bouleau.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "arbre-erable": {
+    "image": "carte/decor/arbre-erable.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "arbre-saule": {
+    "image": "carte/decor/arbre-saule.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ]
+  },
+  "roche-granit": {
+    "image": "carte/decor/roche-granit.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ]
+  },
+  "roche-gres": {
+    "image": "carte/decor/roche-gres.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ]
+  },
+  "roche-basalte": {
+    "image": "carte/decor/roche-basalte.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ]
+  },
+  "arbre-bouleau-neige": {
+    "image": "carte/neige/arbre-bouleau-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "arbre-erable-neige": {
+    "image": "carte/neige/arbre-erable-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "arbre-saule-neige": {
+    "image": "carte/neige/arbre-saule-neige.webp",
+    "taille": [
+      2,
+      2
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "forest",
+      "plain"
+    ],
+    "region": "arctique"
+  },
+  "roche-granit-neige": {
+    "image": "carte/neige/roche-granit-neige.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "roche-gres-neige": {
+    "image": "carte/neige/roche-gres-neige.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  },
+  "roche-basalte-neige": {
+    "image": "carte/neige/roche-basalte-neige.webp",
+    "taille": [
+      1,
+      1
+    ],
+    "ancre": "centre",
+    "bloquant": [
+      [
+        0,
+        0
+      ]
+    ],
+    "entree": null,
+    "action": null,
+    "terrains": [
+      "hill",
+      "mountain",
+      "plain",
+      "forest"
+    ],
+    "region": "arctique"
+  }
+}
