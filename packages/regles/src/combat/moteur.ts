@@ -753,7 +753,7 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
     journaliser(etat, { type: 'deplacement', texte: `${c.nom} se déplace.`, acteur: c.id, details: { chemin: segment } });
     segment = [];
   };
-  for (const etape of chemin.etapes) {
+  for (const [i, etape] of chemin.etapes.entries()) {
     if (!c.tour.desengage) {
       for (const e of ennemis(etat, c)) {
         const portee = allonge(e);
@@ -768,6 +768,8 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
           attaqueDOpportunite(etat, e, c);
           if (horsCombat(c) || aEtat(c, 'inconscient') || etat.vainqueur) {
             c.tour.mouvement = 0;
+            // Mis à terre en traversant la case d'un allié : on ne reste pas dessus (deux jetons au même endroit, le second caché).
+            ecarterSiCaseOccupee(etat, c, [depart, ...chemin.etapes.slice(0, i)]);
             return true;
           }
         }
@@ -787,6 +789,19 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
   }
   // Ralentissement : la vitesse réduite ne s'applique qu'au tour suivant ; rien à faire ici.
   return true;
+}
+
+/**
+ * Un déplacement interrompu (mis à terre ou tué par une attaque d'opportunité) laisse la créature là où elle se trouvait ; si
+ * c'est la case d'un allié qu'elle traversait, elle recule jusqu'à la dernière case libre du chemin déjà parcouru (SRD 5.2.1 : on ne
+ * s'arrête pas dans l'espace d'une autre créature). `parcouru` : la case de départ puis les cases franchies, dans l'ordre.
+ */
+function ecarterSiCaseOccupee(etat: EtatCombat, c: Combattant, parcouru: Position[]): void {
+  const { occupees } = occupation(etat, c);
+  if (!occupees.has(cle(c.position))) return;
+  const libre = [...parcouru].reverse().find((p) => !occupees.has(cle(p))) ?? parcouru[0]!;
+  c.position = { ...libre };
+  journaliser(etat, { type: 'deplacement', texte: `${c.nom} s'écroule et est tiré à l'écart de son allié.`, acteur: c.id, details: { chemin: [{ ...libre }] } });
 }
 
 function attaqueDOpportunite(etat: EtatCombat, attaquant: Combattant, cible: Combattant): void {

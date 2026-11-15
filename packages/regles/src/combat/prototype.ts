@@ -302,7 +302,7 @@ export function preparerRencontre(rencontre: Rencontre, donnees: Donnees, heros?
     ids.add(id);
     const c = { ...heroDepuisFiche(h.fiche, h.kit, donnees, casesHeros[i]!, id), portrait: h.portrait };
     if (h.etat) {
-      c.pv = Math.max(1, h.etat.pv);
+      c.pv = Math.min(c.pvMax, Math.max(1, h.etat.pv));
       c.ressources = { ...c.ressources, ...h.etat.ressources, reaction: 1 };
       if (h.objets) c.objetsEmbarques = h.objets;
       if (c.incantation) c.incantation = { ...c.incantation, emplacements: [...h.etat.emplacements] };

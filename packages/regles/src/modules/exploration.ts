@@ -290,7 +290,8 @@ export const moduleExploration: Module = {
         for (const a of t.partie.groupe) {
           const etatHeros = e.heros?.[a.id];
           if (!etatHeros) continue;
-          appliquerEtat(a, etatHeros);
+          // Pas de mort définitive en histoire : un héros tombé (ou mort) revient à 1 PV au moins, quoi que le client envoie.
+          appliquerEtat(a, { ...etatHeros, pv: Math.max(1, etatHeros.pv) });
           // Le jeu d'armes pris en main pendant le combat (carte « Changer d'armes ») reste en main après.
           const jeu = etatHeros.ressources?.jeuArmes;
           if ((jeu === 1 || jeu === 2) && a.equipe && equipementDe(a).jeuActif !== jeu) {
