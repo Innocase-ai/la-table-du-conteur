@@ -32,7 +32,6 @@
         "jet": { "competence": "religion", "dd": 11 },
         "resume": "Vous vous inclinez devant la pierre plate et prononcez à voix basse le serment de ne pas troubler le repos d'Aethelgard. Votre voix résonne sous la voûte, puis s'éteint dans la cendre froide. Une lueur bleutée monte de la cuvette de l'autel. Les trois squelettes reprennent leur place dans les dalles basses, les mains croisées sur la poitrine, et ne bougent plus. Le couvercle de grès reste en place : le repos est respecté.",
         "effets": [
-          { "flag": "z1-rite-du-tombeau" },
           { "fait": "f-ald-tertre-tombe-d-aethelgard" }
         ],
         "echec": [
@@ -47,7 +46,6 @@
         "resume": "Vous débouchez la fiole et versez l'eau bénite dans la cuvette de pierre. Elle y frémit, puis s'étale en une lueur pâle qui gagne les parois de la crypte. Les trois squelettes cessent de bouger et restent dans leurs niches, immobiles, comme des gardiens qui ont reçu leur ordre. Le couvercle de grès ne tremble pas quand vous passez la main sur sa face. Le rite est accompli, sans un mot, et la crypte se tait.",
         "effets": [
           { "objet": { "id": "eau-benite", "quantite": 1, "retirer": true } },
-          { "flag": "z1-rite-du-tombeau" },
           { "fait": "f-ald-tertre-tombe-d-aethelgard" }
         ]
       },
@@ -58,7 +56,6 @@
         "resume": "Vous versez le vin fin sur la pierre de l'autel, lentement, goutte à goutte, comme on offre à un hôte un verre qu'il n'espérait plus. Le vin coule dans la cuvette, sent la vigne et le chêne, et la cendre froide se mêle à sa couleur. Les trois squelettes cessent de remuer et retournent dans leurs niches basses, les mains posées sur leurs genoux. Le couvercle de grès ne bouge pas quand vous le touchez. La crypte retrouve son silence, plus doux qu'avant.",
         "effets": [
           { "objet": { "id": "vin-fin", "quantite": 1, "retirer": true } },
-          { "flag": "z1-rite-du-tombeau" },
           { "fait": "f-ald-tertre-tombe-d-aethelgard" }
         ]
       }

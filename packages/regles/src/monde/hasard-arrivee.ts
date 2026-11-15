@@ -1,7 +1,7 @@
 // Le tirage d'arrivée : quand le groupe arrive dans un lieu, un dé à six faces dit ce qui s'y passe. Un lieu n'est jamais vide.
 //
 //   2        un combat (adversaire au hasard) ; dans un lieu sûr (auberge, maison…) : un passant à la place
-//   3        une rencontre de PNJ, même juste pour dire bonjour
+//   3        une rencontre de PNJ, même juste pour dire bonjour (celle que l'auteur a écrite pour le lieu en déclencheur `aleatoire`, sociale ou d'exploration, passe d'abord)
 //   4        quelque chose attire l'œil : « Fouiller » a une chance de faire trouver un objet (arme, armure, parchemin, fiole…)
 //   1, 5, 6  rien ; le jeu le dit à l'écran (animation)
 //
@@ -145,7 +145,23 @@ export function tirerArrivee(p: PartieMonde, r: CompteRendu, lieu: Lieu, appels:
       texte = 'Un combat éclate.';
     } else issue = 'rien';
   }
+  // Une rencontre sans combat que l'auteur a écrite pour ce lieu (déclencheur `aleatoire`, pas encore jouée) passe avant le PNJ ou le passant tiré :
+  // sans cela, depuis que le dé remplace le « une fois sur trois » de l'arrivée, ces rencontres n'étaient plus jouées qu'au repos.
+  let ecriteJouee = false;
   if (issue === 'pnj') {
+    const ecrite = lieu.rencontres.find((rc) => {
+      if (rc.declencheur !== 'aleatoire' || (rc.unique && p.etat.rencontresFaites.includes(rc.id))) return false;
+      if (rc.condition && !evaluerCondition(rc.condition, p.etat)) return false;
+      const def = p.dm.rencontres.get(rc.id);
+      return !!def && def.type !== 'combat' && def.type !== 'mixte';
+    });
+    if (ecrite && appels.lancerRencontre(ecrite.id)) {
+      etat.vecues += 1;
+      texte = 'Quelqu’un se présente.';
+      ecriteJouee = true;
+    }
+  }
+  if (issue === 'pnj' && !ecriteJouee) {
     // Un PNJ du lieu à qui le groupe n'a pas encore parlé, sinon un passant.
     const connus = ex.pnjVus ?? {};
     const du_lieu = pnjPresents(p).filter((n) => !connus[n.id] && n.salutations.neutre?.trim());

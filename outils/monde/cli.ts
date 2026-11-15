@@ -5,7 +5,7 @@
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
 //   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
 //   pnpm monde manque [monde]         ce qui MANQUE : images (lieux, PNJ, objets), cartes, positions, scènes, voix, estimation ; code 1 s'il manque quelque chose
-//   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]   (--couvrir liste aussi ce qui n'est jamais vu ; --frontiere N : états en attente au plus, 40 000 par défaut)
+//   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]   (--couvrir liste aussi ce qui n'est jamais vu ; --frontiere N : états en attente au plus, 40 000 par défaut, 4 000 avec --couvrir)
 //                                     un joueur automatique joue le VRAI moteur pour atteindre chaque fin (combats supposés gagnés) ;
 //                                     code 1 si une fin n'est pas atteinte (avec ce budget : ce n'est pas une preuve d'impossibilité)
 //   pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]

@@ -155,10 +155,9 @@ describe('La Marche : l’Échéance', () => {
     const r2 = jouerEffets(p, [], [{ temps: 24 }]);
     expect(p.etat.jauges['echeance']).toBe(2);
     expect(r2.narrations.some((n) => n.includes('Le Conseil des Pairs doit siéger'))).toBe(true);
-    expect(p.etat.flags['echeance-2']).toBe(true);
-    jouerEffets(p, [], [{ temps: 48 }]);
+    const r4 = jouerEffets(p, [], [{ temps: 48 }]);
     expect(p.etat.jauges['echeance']).toBe(4);
-    expect(p.etat.flags['echeance-4']).toBe(true);
+    expect(r4.narrations.some((n) => n.includes('Droit de passage'))).toBe(true);
     // Un palier ne se rejoue pas.
     const avantOr = p.etat.pieces;
     jouerEffets(p, [], [{ jauge: { id: 'echeance', delta: -1 } }, { jauge: { id: 'echeance', delta: 1 } }]);

@@ -78,7 +78,7 @@ export function Parcours({ lu, dm }: { lu: MondeLu; dm: DonneesMonde }) {
     const message: EntreeSimulateur = {
       monde: lu.monde,
       fichiers: lu.fichiers.map(({ chemin, contenu }) => ({ chemin, contenu })),
-      options: { budgetEtats: etats, budgetMs: secondes * 1000, graines: [21, 7], couvrir },
+      options: { budgetEtats: etats, budgetMs: secondes * 1000, graines: [7, 21], couvrir },
     };
     w.postMessage(message);
   };

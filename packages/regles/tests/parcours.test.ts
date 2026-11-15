@@ -66,6 +66,18 @@ describe('avancement vers une condition', () => {
     expect(avancement({ et: [{ flag: 'a' }, { flag: 'b' }] }, partie)).toBe(0.5);
     expect(avancement({ ou: [{ flag: 'a' }, { flag: 'b' }] }, partie)).toBe(1);
   });
+
+  it('une jauge à atteindre donne une pente : plus elle est haute, plus on avance (jamais 1 avant le seuil)', () => {
+    const { partie } = partieDeDepart(charger(MINI));
+    const c = { jauge: { id: 'j', min: 10 } };
+    expect(avancement(c, partie)).toBe(0);
+    partie.etat.jauges['j'] = 5;
+    expect(avancement(c, partie)).toBe(0.5);
+    partie.etat.jauges['j'] = 9;
+    expect(avancement(c, partie)).toBe(0.9);
+    partie.etat.jauges['j'] = 10;
+    expect(avancement(c, partie)).toBe(1);
+  });
 });
 
 describe('explorer les parcours', () => {

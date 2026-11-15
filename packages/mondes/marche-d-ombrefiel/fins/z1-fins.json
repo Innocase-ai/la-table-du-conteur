@@ -1,0 +1,72 @@
+[
+  {
+    "id": "fin-le-carrefour-tient",
+    "nom": "Le Carrefour tient",
+    "condition": {
+      "et": [
+        {
+          "quete": {
+            "id": "q-la-securite-du-relais",
+            "statut": "terminee"
+          }
+        },
+        {
+          "quete": {
+            "id": "q-le-cor-du-moulin",
+            "statut": "terminee"
+          }
+        },
+        {
+          "quete": {
+            "id": "q-l-ombre-de-la-griffe",
+            "statut": "terminee"
+          }
+        }
+      ]
+    },
+    "epilogue": "Le Carrefour tient. Le relais de Brégor a retrouvé ses barres et ses guetteurs, et le soir la cour se remplit sans qu’on compte les chariots à la craie. Le Vieux Pont est dégagé, et les convois de minerai repassent. Silas ne fera plus son rapport à personne. Le chef de la carrière est réglé, d’une façon ou d’une autre. Pourtant le fer neuf casse toujours dans les mains des forgerons, et Torben le répète à qui veut l’entendre : la Marche n’est pas sauvée, ce n’est qu’un début. Plus loin, la Piste de Sombreval descend vers les galeries noires, et la Route du Roi monte vers Haute-Garde, où l’on vous attend.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "z1-demi-dent-tue"
+        },
+        "epilogue": "Le Carrefour tient. Le relais de Brégor a retrouvé ses barres et ses guetteurs, et le soir la cour se remplit sans qu’on compte les chariots à la craie. Le Vieux Pont est dégagé, et les convois de minerai repassent. Silas ne fera plus son rapport à personne. Demi-Dent est mort dans la glaise : les carriers se taisent, et Brégor paie la prime pleine sans discuter. Mais sa bande n’oublie pas. Pourtant le fer neuf casse toujours dans les mains des forgerons, et Torben le répète à qui veut l’entendre : la Marche n’est pas sauvée, ce n’est qu’un début. Plus loin, la Piste de Sombreval descend vers les galeries noires, et la Route du Roi monte vers Haute-Garde, où l’on vous attend."
+      },
+      {
+        "condition": {
+          "flag": "z1-demi-dent-epargne"
+        },
+        "epilogue": "Le Carrefour tient. Le relais de Brégor a retrouvé ses barres et ses guetteurs, et le soir la cour se remplit sans qu’on compte les chariots à la craie. Le Vieux Pont est dégagé, et les convois de minerai repassent. Silas ne fera plus son rapport à personne. Demi-Dent a parlé : ses aveux sur les caisses venues du sud tiennent désormais dans la cour, et Brégor compte la prime pièce par pièce, en grognant. Pourtant le fer neuf casse toujours dans les mains des forgerons, et Torben le répète à qui veut l’entendre : la Marche n’est pas sauvée, ce n’est qu’un début. Plus loin, la Piste de Sombreval descend vers les galeries noires, et la Route du Roi monte vers Haute-Garde, où l’on vous attend."
+      }
+    ],
+    "consequences": [
+      "Le pont et le relais de Brégor sont sûrs.",
+      "Silas est capturé ; la Griffe a perdu son espion.",
+      "Le fer neuf casse toujours : la Marche n’est pas sauvée."
+    ]
+  },
+  {
+    "id": "fin-l-echeance-tombe",
+    "nom": "L’Échéance tombe",
+    "condition": {
+      "jauge": {
+        "id": "echeance",
+        "min": 10
+      }
+    },
+    "epilogue": "L’Échéance est tombée avant que vous ayez fini d’enquêter. Les barrages du Lion d’Acier ferment la Route du Roi, et les tabards d’acier tiennent chaque carrefour : on fouille les charrettes, on emporte ce qui brille. Le Carrefour est pris entre deux feux, et les mercenaires tirent sur quiconque court. Brégor barre sa porte et ne la rouvre plus. Dans la cour, les réfugiés lèvent les yeux vers Haute-Garde, où le sang coule déjà. La route de Sombreval est gardée, celle de Haute-Garde coupée : il ne reste que les sentiers des collines et le nom de fugitifs. Le prologue finit dans la boue, avec le fer qui casse et la ville qui ferme ses portes.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "z1-pont-libere"
+        },
+        "epilogue": "Le Vieux Pont avait été libéré, et les convois sont descendus vers Aldric sans encombre. Cela n’a presque rien changé. Les barrages du Lion d’Acier ferment la Route du Roi de chaque côté, et les tabards d’acier comptent les sacs au pied de la rampe. Brégor a fait tendre des toiles dans la cour. Le Carrefour est pris entre deux feux, et les mercenaires tirent sur qui court. Votre travail sur le pont n’a sauvé personne. La route de Sombreval est gardée ; celle de Haute-Garde est coupée, sauf par les sentiers des collines. Il faut maintenant choisir une fuite, et la fuite coûte cher."
+      }
+    ],
+    "consequences": [
+      "L’Échéance tombe : le Lion d’Acier frappe les carrefours.",
+      "Les routes vers Sombreval et Haute-Garde sont coupées.",
+      "Le groupe devient fugitif ; la Marche s’enfonce dans la boue."
+    ]
+  }
+]

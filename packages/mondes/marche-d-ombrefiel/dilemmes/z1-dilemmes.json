@@ -40,9 +40,6 @@
             "pieces": -69
           },
           {
-            "flag": "z1-or-rendu"
-          },
-          {
             "attitude": {
               "pnj": "martha-haddon",
               "delta": 20
@@ -62,9 +59,6 @@
           "Les 69 po restent au groupe, de quoi payer le fer sain qui manque à la forge."
         ],
         "effets": [
-          {
-            "flag": "z1-or-garde"
-          },
           {
             "attitude": {
               "pnj": "martha-haddon",
@@ -99,9 +93,6 @@
         "effets": [
           {
             "pieces": -69
-          },
-          {
-            "flag": "z1-or-aux-refugies"
           },
           {
             "attitude": {
@@ -296,9 +287,6 @@
       ],
       "effets": [
         {
-          "flag": "z1-demi-dent-enfui"
-        },
-        {
           "narration": "La nuit tombe sur la carrière. Pendant que vous hésitiez, la bande a emporté le butin, et Demi-Dent a disparu dans les fourrés."
         }
       ],
@@ -325,7 +313,14 @@
         "si": "achever",
         "apres": 2,
         "annonce": "La bande dispersée pille un chariot sur la route, et les marchands crient au meurtre.",
-        "effets": []
+        "effets": [
+          {
+            "jauge": {
+              "id": "echeance",
+              "delta": 1
+            }
+          }
+        ]
       }
     ]
   }

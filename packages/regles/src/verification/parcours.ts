@@ -35,7 +35,7 @@ export interface OptionsParcours {
   couvrir?: boolean;
   /**
    * Nombre d'états en attente d'exploration au plus : au-delà, on élague les moins prometteurs (le score le plus bas). Sans ce plafond,
-   * la file garde une copie de partie par état généré et la mémoire explose sur les grands mondes (couverture). 40 000 par défaut.
+   * la file garde une copie de partie par état généré et la mémoire explose sur les grands mondes (couverture). 40 000 par défaut, 4 000 avec `couvrir`.
    */
   frontiereMax?: number;
   /** Le groupe joué (par défaut : le groupe conseillé du créateur). */
@@ -156,7 +156,10 @@ export function cleEtat(p: Partie): string {
 export function avancement(c: Condition, p: Partie): number {
   if ('et' in c) return c.et.reduce((s, x) => s + avancement(x, p), 0) / c.et.length;
   if ('ou' in c) return Math.max(...c.ou.map((x) => avancement(x, p)));
-  return evaluerCondition(c, p.etat) ? 1 : 0;
+  if (evaluerCondition(c, p.etat)) return 1;
+  // Une jauge à atteindre se remplit petit à petit : sans cette pente, le guidage ne distingue pas le jour 1 du jour 9 et ne la monte jamais.
+  if ('jauge' in c && c.jauge.min !== undefined && c.jauge.min > 0) return Math.min(0.95, Math.max(0, (p.etat.jauges[c.jauge.id] ?? 0) / c.jauge.min));
+  return 0;
 }
 
 /** Un maillon des « ancêtres » d'une fin : ce que le monde exige, de proche en proche, pour qu'elle arrive. */
@@ -333,12 +336,13 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
   if (!opts.groupe && !ctx.srd) throw new Error('explorerParcours : il faut le SRD (ctx.srd) ou un groupe.');
   const groupe = opts.groupe ?? groupeDeTest(ctx.srd!);
   const niveau = opts.niveau ?? dm.monde.niveaux.min;
-  const graines = opts.graines ?? [21, 7];
+  const graines = opts.graines ?? [7, 21];
   const poidsAncetres = opts.poidsAncetres ?? graines.map((_, i) => (i === 0 ? 0 : 4));
   const budgetEtats = opts.budgetEtats ?? 6000;
   const budgetMs = opts.budgetMs ?? 60_000;
   const profondeurMax = opts.profondeurMax ?? 400;
-  const frontiereMax = opts.frontiereMax ?? 40_000;
+  // Le mode couvrant ne s'arrête pas aux fins : il explore jusqu'au budget, et sur un grand monde la mémoire (3 à 4 Go pour 6 000 nœuds sur la Marche) l'emporte ; plafond plus étroit par défaut.
+  const frontiereMax = opts.frontiereMax ?? (opts.couvrir ? 4_000 : 40_000);
   let elagues = 0;
   const depart = maintenant();
   const couvrir = opts.couvrir ?? false;
