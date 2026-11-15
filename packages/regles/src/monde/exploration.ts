@@ -314,7 +314,7 @@ type Lien = Lieu['liens'][number];
 const cleLien = (de: string, vers: string) => `lien:${de}>${vers}`;
 
 /**
- * Vrai quand le lieu n'est joignable que par des liens fermés (condition, cachette ou verrou) : le passage automatique
+ * Vrai quand les liens que d'AUTRES lieux déclarent vers ce lieu sont tous fermés (condition, cachette ou verrou) : le passage automatique
  * parent → enfant ne doit alors pas les contourner (la mine qui exige la carte du marais ne s'ouvre pas depuis la région).
  * Un lieu sans aucun lien déclaré, ou avec au moins un lien libre, reste joignable par son parent.
  */
@@ -326,8 +326,6 @@ function accesSeulementParLiensFermes(p: PartieMonde, id: string): boolean {
   };
   const liens: Lien[] = [];
   for (const autre of p.dm.lieux.values()) if (!dedans(autre.id)) for (const l of autre.liens) if (l.vers === id) liens.push(l);
-  // Un lien à double sens déclaré par le lieu lui-même est aussi une façon d'y entrer, avec ses propres conditions.
-  for (const l of p.dm.lieux.get(id)?.liens ?? []) if (l.sens === 'double' && !dedans(l.vers)) liens.push(l);
   return liens.length > 0 && liens.every((l) => !!l.condition || !!l.cache || !!l.verrou);
 }
 
