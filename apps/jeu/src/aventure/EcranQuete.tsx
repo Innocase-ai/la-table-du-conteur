@@ -18,11 +18,12 @@ interface Props {
 // Des signes en texte (pas en émoji) : le cachet les peint de la couleur du type de quête.
 const CACHET: Record<ParcheminQuete['type'], string> = { principale: '✦︎', secondaire: '◆︎', personnelle: '♥︎', faction: '⚑︎' };
 
-const BOUTON = { debut: 'Commencer la quête', fin: 'Poursuivre', echec: 'Poursuivre' } as const;
+const BOUTON = { debut: 'Commencer la quête', fin: 'Poursuivre', echec: 'Poursuivre', suivi: 'Fermer' } as const;
 const NOTE = {
   debut: 'Retrouvez-la dans le Journal, onglet des quêtes en cours.',
   fin: 'Elle est notée dans le Journal, parmi les quêtes accomplies.',
   echec: 'Elle est notée dans le Journal, parmi les quêtes closes.',
+  suivi: 'Elle est suivie dans l’en-tête : l’objectif du moment s’y lit d’un coup d’œil.',
 } as const;
 
 export function EcranQuete({ quete, imageDonneur, suivantes, onFin }: Props) {
@@ -74,7 +75,7 @@ export function EcranQuete({ quete, imageDonneur, suivantes, onFin }: Props) {
           </div>
           {quete.objectif && (
             <div className="quete-objectif">
-              <span className="quete-etiquette">Premier objectif</span>
+              <span className="quete-etiquette">{quete.genre === 'suivi' ? 'Objectif en cours' : 'Premier objectif'}</span>
               <p>{quete.objectif}</p>
             </div>
           )}

@@ -91,6 +91,30 @@
   border-color: var(--or);
 }
 
+/* « ▶▶ Rapide » : en accès direct sur le bandeau du tour, à côté de l'engrenage. */
+.pt-rapide {
+  flex: none;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--bord);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--texte-doux);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.pt-rapide:hover {
+  color: var(--or-vif);
+  border-color: var(--or);
+}
+.pt-rapide.actif {
+  color: #1b1209;
+  background: linear-gradient(180deg, #e0b765, #b98a3e);
+  border-color: var(--or-vif);
+  font-weight: 600;
+}
+
 /* Le menu des réglages : un petit volet sous l'engrenage. */
 .pt-menu {
   position: absolute;

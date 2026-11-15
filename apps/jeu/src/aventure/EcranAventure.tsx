@@ -16,12 +16,15 @@ import {
   type Personnage,
   type PresentationMonstre,
   type PresentationRencontre,
+  type Vitrine,
 } from '@crpg/regles';
 import { NOMS_CARAC, NOMS_COMPETENCES } from '../createur/libelles';
 import { bibleDe, manifesteDe, urlImage } from '../mondes';
 import { etatConteur, llmDuJeu, type EtatConteur } from './conteur';
 import { nomFichierPartie, sauvegardeEnEchec, telechargerTexte, type Aventure } from './partie';
 import { BoiteDialogue } from './BoiteDialogue';
+import { VitrineMarchand } from './VitrineMarchand';
+import { entreesDeConversation, indiceDerniereParole } from './conversation-regles';
 import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage, type OngletFeuille } from './FeuillePersonnage';
@@ -30,6 +33,8 @@ import { EcranPreparation, peutPreparer } from './EcranPreparation';
 import { ContextePreparation } from './preparation-contexte';
 import { EcranQuete } from './EcranQuete';
 import { changementsDeQuetes, parcheminDeQuete, type ChangementQuete } from '../quete-regles';
+import { badgesEtat, boussoleDeQuete, heureLisible, type BadgeEtat } from '../boussole-regles';
+import { annulationPossible, libelleAnnulation, pasAnnulable, type PasAnnulable } from '../annulation-regles';
 import { BandeauHeros, FicheEncart } from './fiches';
 import { GrilleElements } from './GrilleElements';
 import { LecteurScene } from './LecteurScene';
@@ -50,11 +55,11 @@ import { direOuverture, direParole, taireVoix } from '../voix';
 import { PageCarte } from './PageCarte';
 import { PagePleine } from './PagePleine';
 
+/** Les panneaux du module Commerce (achats, rachats, services) : pendant une conversation, la vitrine du marchand les remplace dans la colonne. */
+const GROUPES_VITRINE = new Set(['boutique', 'rachat', 'services']);
+
 /** L'onglet du sac (module Inventaire) : il s'affiche dans la feuille de personnage, pas dans la colonne. */
 const ONGLET_SAC = 'Sac';
-
-/** Le moment de la journée, pour l'en-tête (les présences des PNJ, elles, ne distinguent que jour, soir et nuit). */
-const momentLisible = (heure: number) => (heure >= 6 && heure < 12 ? 'matin' : heure >= 12 && heure < 18 ? 'après-midi' : heure >= 18 && heure < 22 ? 'soir' : 'nuit');
 
 interface Props {
   aventure: Aventure;
@@ -99,23 +104,7 @@ export function tirageFixe(graine: string, sel = 0): number {
   return (h >>> 0) / 4294967296;
 }
 
-/**
- * Ce qui vient de se dire dans la conversation en cours : la dernière parole du personnage et ce qui l'a suivie (ce que le
- * groupe apprend, un jet d'influence). Sans parole du personnage, la fin du journal jusqu'à l'arrivée au lieu, à la saisie
- * du joueur ou à la parole d'un autre personnage.
- */
-function entreesDeConversation(journal: EvenementJeu[], pnj: string): EvenementJeu[] {
-  const derniere = journal.map((e) => e.type === 'texte' && e.voix === pnj).lastIndexOf(true);
-  if (derniere >= 0) return journal.slice(derniere);
-  const res: EvenementJeu[] = [];
-  for (let i = journal.length - 1; i >= 0 && res.length < 12; i--) {
-    const e = journal[i]!;
-    if (e.type === 'arrivee' || e.type === 'deplacement' || e.type === 'saisieJoueur' || e.type === 'recitConteur') break;
-    if (e.type === 'texte' && e.voix && e.voix !== pnj) break;
-    res.unshift(e);
-  }
-  return res;
-}
+// Tout l'échange de la conversation en cours : `entreesDeConversation` (conversation-regles.ts).
 
 /** Image d'un lieu ou d'un PNJ, d'après le manifeste du monde. */
 function useImage(monde: string, groupe: 'lieux' | 'pnj', id: string | undefined): string | undefined {
@@ -203,14 +192,20 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const delaConversation = (x: Proposition) => !!interlocuteur && x.groupe.id === 'dialogue';
   const choixDialogue = propositions.filter((x) => delaConversation(x) && x.ordre?.type !== 'quitterDialogue');
   const finDialogue = propositions.find((x) => delaConversation(x) && x.ordre?.type === 'quitterDialogue');
-  const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom) : [];
+  // Où la conversation s'est ouverte dans le journal : deux conversations de suite avec le même personnage ne se mélangent pas.
+  const debutConversation = useRef<number>();
+  if (!interlocuteur) debutConversation.current = undefined;
+  const entreesDialogue = interlocuteur ? entreesDeConversation(partie.journal, interlocuteur.nom, debutConversation.current) : [];
+  const derniereParole = interlocuteur ? indiceDerniereParole(entreesDialogue, interlocuteur.nom) : -1;
+  // La boutique du marchand à qui l'on parle : un tiroir à côté de la boîte de dialogue (les boutons du moteur n'encombrent plus la colonne).
+  const vitrine = interlocuteur ? moteur.vue<Vitrine | undefined>('vitrine', partie) : undefined;
   // Le sommeil : quand une nuit vient d'être dormie (bouton « Dormir », chambre payée, conteur), l'écran de sommeil s'ouvre.
   // On le repère dans les nouvelles entrées du journal (le moteur écrit « Le groupe se repose une nuit entière »).
   const [sommeil, setSommeil] = useState<{ decor: DecorSommeil; heureDebut: number; heures: number; interrompu: boolean }>();
   const avantSommeil = useRef({ jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length });
   useEffect(() => {
     const avant = avantSommeil.current;
-    const nouvelles = partie.journal.length >= avant.journal ? partie.journal.slice(avant.journal) : partie.journal.slice(-12);
+    const nouvelles = partie.journal.length >= avant.journal ? partie.journal.slice(avant.journal) : [];
     avantSommeil.current = { jour: partie.etat.jour, heure: partie.etat.heure ?? 8, journal: partie.journal.length };
     const nuit = detecterSommeil(nouvelles);
     // Une nuit entière change de jour ; une nuit interrompue s'arrête au milieu (souvent le même jour).
@@ -241,7 +236,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const avantCrochetage = useRef(partie.journal.length);
   useEffect(() => {
     const avant = avantCrochetage.current;
-    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : partie.journal.slice(-12);
+    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : [];
     avantCrochetage.current = partie.journal.length;
     const o = detecterOuverture(nouvelles);
     if (o) setCrochetage(o);
@@ -254,7 +249,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const avantDesamorcage = useRef(partie.journal.length);
   useEffect(() => {
     const avant = avantDesamorcage.current;
-    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : partie.journal.slice(-12);
+    const nouvelles = partie.journal.length >= avant ? partie.journal.slice(avant) : [];
     avantDesamorcage.current = partie.journal.length;
     const d = detecterDesamorcage(nouvelles, dm.pieges.values());
     if (d) setDesamorcage(d);
@@ -387,6 +382,56 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const plafond = conteur?.plafond ?? 0.5;
   const plafondAtteint = (conteur?.depense ?? 0) + depense >= plafond;
 
+  // La boussole de quête : la quête suivie est celle que le joueur a choisie (gardée par histoire) tant qu'elle est en cours ; sinon la
+  // dernière entrée au journal parmi les quêtes en cours. Une quête qui commence devient la quête suivie.
+  const cleSuivie = `table-du-conteur:quete-suivie:${dm.monde.id}`;
+  const [queteChoisie, setQueteChoisie] = useState<string | undefined>(() => {
+    try {
+      return localStorage.getItem(cleSuivie) ?? undefined;
+    } catch {
+      return undefined;
+    }
+  });
+  const [menuBoussole, setMenuBoussole] = useState(false);
+  const choisirQuete = useCallback(
+    (id: string | undefined) => {
+      setQueteChoisie(id);
+      try {
+        if (id) localStorage.setItem(cleSuivie, id);
+        else localStorage.removeItem(cleSuivie);
+      } catch {
+        // stockage indisponible : le choix vaut pour cette session seulement
+      }
+    },
+    [cleSuivie],
+  );
+  const boussole = boussoleDeQuete(dm, partie.etat.quetes, queteChoisie);
+  const nomObjet = (id: string) => dm.objets.get(id)?.nom ?? moteur.ctx.srd?.objets.get(id)?.nom ?? id;
+
+  // Les badges de l'en-tête : à chaque changement de la partie, on compare l'état d'avant et d'après (or, PX, temps, objets, jauges) et
+  // de courts badges l'annoncent quelques secondes. Rien au chargement : seule une action du joueur en fait apparaître.
+  const [badges, setBadges] = useState<(BadgeEtat & { id: number; jusqua: number })[]>([]);
+  const partieAvant = useRef(partie);
+  const compteurBadges = useRef(0);
+  useEffect(() => {
+    const avant = partieAvant.current;
+    partieAvant.current = partie;
+    if (avant === partie || avant.monde !== partie.monde) return;
+    const nouveaux = badgesEtat(avant.etat, partie.etat, { objet: nomObjet, jauge: (id) => dm.jauges.get(id)?.nom ?? id });
+    if (!nouveaux.length) return;
+    const jusqua = Date.now() + 3200;
+    setBadges((b) => [...b.filter((x) => !nouveaux.some((n) => n.cle === x.cle)), ...nouveaux.map((n) => ({ ...n, id: ++compteurBadges.current, jusqua }))].slice(-6));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [partie]);
+  useEffect(() => {
+    if (!badges.length) return;
+    const t = window.setTimeout(() => setBadges((b) => b.filter((x) => x.jusqua > Date.now())), Math.max(60, Math.min(...badges.map((x) => x.jusqua)) - Date.now()));
+    return () => window.clearTimeout(t);
+  }, [badges]);
+
+  // Annuler le dernier pas : la partie d'avant un déplacement, un achat ou une vente, tant qu'aucun dé n'a été lancé (voir annulation-regles.ts).
+  const [dernierPas, setDernierPas] = useState<PasAnnulable>();
+
   // Les quêtes qui commencent, se terminent ou échouent : un parchemin raconte chacune (nom, qui la donne, explication, premier
   // objectif ou récompenses reçues). On compare les quêtes avant et après chaque changement de la partie (bouton « Accepter »,
   // parole de PNJ, événement, étape qui clôt la quête).
@@ -395,9 +440,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   useEffect(() => {
     const nouvelles = changementsDeQuetes(avantQuetes.current, partie.etat.quetes);
     avantQuetes.current = partie.etat.quetes;
+    if (nouvelles.some((n) => n.genre === 'debut')) choisirQuete(undefined);
     if (nouvelles.length) setParchemins((f) => [...f, ...nouvelles.filter((n) => !f.some((x) => x.id === n.id && x.genre === n.genre))]);
   }, [partie.etat.quetes]);
-  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0].id, parchemins[0].genre) : undefined;
+  const parchemin = parchemins[0] ? parcheminDeQuete(dm, parchemins[0].id, parchemins[0].genre, undefined, partie.etat.quetes[parchemins[0].id]?.actives) : undefined;
+  const ouvrirQuete = useCallback((id: string) => setParchemins((f) => (f.some((x) => x.id === id && x.genre === 'suivi') ? f : [...f, { id, genre: 'suivi' }])), []);
   const imageDonneur = useImage(dm.monde.id, 'pnj', parchemin?.donneur);
   const finParchemin = useCallback(() => setParchemins((f) => f.slice(1)), []);
   const parcheminOuvert = !!parchemin && !sceneNarree;
@@ -427,14 +474,40 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
   const jouer = (ordre: Ordre) => {
     // Pendant un tour du conteur, rien d'autre : son résultat, calculé sur la partie d'avant, écraserait l'action jouée.
     if (enCours) return;
+    if (ordre.type === 'parler' && !ordre.sujet) debutConversation.current = partie.journal.length;
     const r = moteur.executer(partie, ordre);
     setRefus(r.refus);
     if (!r.refus) {
       // Les suggestions du conteur valaient pour la scène d'avant.
       setSuggestions([]);
+      setDernierPas(pasAnnulable(partie, ordre, r));
       onPartie(r.partie);
     }
   };
+
+  /** Rend la partie d'avant le dernier pas (sauvegardée aussitôt par l'application) ; sans effet si un autre changement a eu lieu depuis. */
+  const annuler = () => {
+    if (enCours || !annulationPossible(dernierPas, partie)) return;
+    const avant = dernierPas.avant;
+    setDernierPas(undefined);
+    setSuggestions([]);
+    setRefus(undefined);
+    onPartie(avant);
+  };
+  const peutAnnuler = !enCours && annulationPossible(dernierPas, partie);
+  // Ctrl+Z (ou Cmd+Z) annule aussi, hors champ de saisie et quand aucun écran ne couvre l'aventure.
+  useEffect(() => {
+    const surTouche = (ev: KeyboardEvent) => {
+      if (!(ev.ctrlKey || ev.metaKey) || ev.altKey || ev.shiftKey || ev.key.toLowerCase() !== 'z') return;
+      const cible = ev.target as HTMLElement | null;
+      if (cible && (/^(input|textarea|select)$/i.test(cible.tagName) || cible.isContentEditable)) return;
+      if (!peutAnnuler || sceneNarree || evenement || feuille || pageOuverte || carteOuverte || sommeil || crochetage || desamorcage || monteeOuverte || parcheminOuvert || preparationOuverte) return;
+      ev.preventDefault();
+      annuler();
+    };
+    window.addEventListener('keydown', surTouche);
+    return () => window.removeEventListener('keydown', surTouche);
+  });
 
   // Pendant une conversation : les touches 1 à 9 choisissent une réplique, Échap met fin au dialogue. Sans effet pendant une
   // scène narrée, dans un champ de saisie, ou quand une page plein écran est ouverte.
@@ -464,9 +537,62 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           <span>{dm.monde.nom}</span>
           <strong>{scene.lieu.nom}</strong>
         </div>
+        {boussole && (
+          <div
+            className="boussole"
+            onKeyDown={(ev) => ev.key === 'Escape' && menuBoussole && (ev.stopPropagation(), setMenuBoussole(false))}
+            onBlur={(ev) => !ev.currentTarget.contains(ev.relatedTarget as Node | null) && setMenuBoussole(false)}
+          >
+            <button
+              type="button"
+              className={`boussole-bouton boussole-${boussole.type}`}
+              onClick={() => ouvrirQuete(boussole.id)}
+              title={`${boussole.nom}\n${boussole.objectif}${boussole.lieu ? `\n→ ${boussole.lieu}` : ''}\n\nOuvrir la fiche de la quête`}
+            >
+              <span className="boussole-signe" aria-hidden>
+                ◆
+              </span>
+              <span className="boussole-texte">
+                <span className="boussole-nom">{boussole.nom}</span>
+                <span className="boussole-objectif">
+                  {boussole.objectif}
+                  {boussole.lieu ? ` (${boussole.lieu})` : ''}
+                  {boussole.etapesEnPlus ? ` · +${boussole.etapesEnPlus}` : ''}
+                </span>
+              </span>
+            </button>
+            {boussole.enCours.length > 1 && (
+              <>
+                <button type="button" className="boussole-autres" aria-expanded={menuBoussole} aria-label="Suivre une autre quête" title="Suivre une autre quête" onClick={() => setMenuBoussole((m) => !m)}>
+                  ▾
+                </button>
+                {menuBoussole && (
+                  <ul className="boussole-menu" aria-label="Quêtes en cours">
+                    {boussole.enCours.map((q) => (
+                      <li key={q.id}>
+                        <button
+                          type="button"
+                          className={`boussole-choix${q.id === boussole.id ? ' suivie' : ''}`}
+                          aria-pressed={q.id === boussole.id}
+                          onClick={() => {
+                            choisirQuete(q.id);
+                            setMenuBoussole(false);
+                          }}
+                        >
+                          {q.id === boussole.id ? '◆ ' : ''}
+                          {q.nom}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </div>
+        )}
         <div className="aventure-etat">
-          <span title={`${scene.heure} h`}>
-            Jour {scene.jour} · {momentLisible(scene.heure)}
+          <span className="aventure-heure" title="L’heure compte : les trajets, les présences des PNJ et les repas en dépendent.">
+            Jour {scene.jour} · {heureLisible(scene.heure)}
           </span>
           {scene.jauges.map((j) => (
             <span key={j.id} className="aventure-jauge" title={[dm.jauges.get(j.id)?.resume, j.prochain ? `Prochain palier : ${j.prochain}.` : 'Dernier palier atteint.'].filter(Boolean).join('\n\n')}>
@@ -482,6 +608,15 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           <span>{scene.pieces.toLocaleString('fr-FR')} po</span>
           <ControleSon />
         </div>
+        {badges.length > 0 && (
+          <div className="badges-etat" role="status" aria-live="polite">
+            {badges.map((b) => (
+              <span key={b.id} className={`badge-etat badge-etat-${b.genre}`} title={b.details}>
+                {b.texte}
+              </span>
+            ))}
+          </div>
+        )}
       </header>
 
       <main className="aventure-centre">
@@ -492,6 +627,13 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
               nom={interlocuteur.nom}
               role={interlocuteur.role}
               portrait={imagePnj}
+              attitude={{ niveau: interlocuteur.niveauAttitude, libelle: interlocuteur.libelleAttitude, valeur: interlocuteur.attitude, mode: interlocuteur.modeInfluence }}
+              cle={interlocuteur.id}
+              panneau={
+                vitrine
+                  ? { libelle: 'Boutique', contenu: (fermer) => <VitrineMarchand vitrine={vitrine} ctx={moteur.ctx} monde={dm.monde.id} groupe={partie.groupe} jouer={jouer} fermer={fermer} /> }
+                  : undefined
+              }
               nombreEntrees={entreesDialogue.length + (refus ? 1 : 0)}
               choix={choixDialogue}
               fin={finDialogue}
@@ -503,9 +645,15 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                   <strong>{interlocuteur.nom}</strong> « {ouverture.texte} »
                 </p>
               )}
-              {entreesDialogue.map((e, i) => (
-                <EntreeRecit key={i} e={e} dm={dm} />
-              ))}
+              {entreesDialogue.map((e, i) =>
+                i === derniereParole ? (
+                  <div key={i} className="dialogue-derniere">
+                    <EntreeRecit e={e} dm={dm} />
+                  </div>
+                ) : (
+                  <EntreeRecit key={i} e={e} dm={dm} />
+                ),
+              )}
               {refus && <p className="recit-refus">{refus}</p>}
             </BoiteDialogue>
           ) : (
@@ -530,6 +678,18 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                 {s}
               </button>
             ))}
+          </div>
+        )}
+        {peutAnnuler && dernierPas && (
+          <div className="annuler-ligne">
+            <button
+              type="button"
+              className="bouton-discret annuler-bouton"
+              onClick={annuler}
+              title={`Annuler ${libelleAnnulation(dernierPas, { lieu: (id) => dm.lieux.get(id)?.nom ?? id, objet: nomObjet })} (Ctrl+Z). Possible tant qu'aucun dé n'a été lancé.`}
+            >
+              ↶ Annuler
+            </button>
           </div>
         )}
         {erreurConteur && <p className="recit-refus">{erreurConteur}</p>}
@@ -634,10 +794,11 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
                 <h3>Conversation</h3>
                 <p className="enonce">
                   Vous parlez à {interlocuteur.nom}. Choisissez une réplique dans la boîte de dialogue, sur l'illustration (touches 1 à 9, Échap pour finir).
+                  {vitrine && ' Pour acheter, vendre ou payer un service, ouvrez la « Boutique » en haut de la boîte.'}
                 </p>
               </section>
             )}
-            <Panneaux monde={dm.monde.id} propositions={propositions.filter((x) => !x.groupe.onglet && !delaConversation(x))} jouer={jouer} onCombat={onCombat} groupe={partie.groupe} />
+            <Panneaux monde={dm.monde.id} propositions={propositions.filter((x) => !x.groupe.onglet && !delaConversation(x) && !(vitrine && GROUPES_VITRINE.has(x.groupe.id)))} jouer={jouer} onCombat={onCombat} groupe={partie.groupe} />
           </>
         )}
       </aside>

@@ -7,6 +7,7 @@ import { Createur } from './createur/Createur';
 import { EcranGroupe } from './groupe/EcranGroupe';
 import { chargerGroupe, herosDuGroupe, sauverGroupe } from './groupe/stockage';
 import { EcranAide } from './menu/EcranAide';
+import { EcranOptions } from './menu/EcranOptions';
 import { EcranAventure } from './aventure/EcranAventure';
 import { demarrerAventure, partieSauvegardee, rencontreDeMonde, reprendreAventure, sauverPartie, type Aventure } from './aventure/partie';
 import { chargerHistoire } from './mondes';
@@ -34,7 +35,7 @@ function nouvelleGraine(): number {
   return Math.floor(Math.random() * 2 ** 31);
 }
 
-type Ecran = 'titre' | 'histoires' | 'escarmouche' | 'aide' | 'aventure';
+type Ecran = 'titre' | 'histoires' | 'escarmouche' | 'aide' | 'options' | 'aventure';
 type Vue =
   | { nom: Ecran }
   | { nom: 'groupe'; retour: Ecran }
@@ -124,6 +125,15 @@ export function App() {
       suite(r.partie);
       setCombatHistoire(null);
     };
+    // L'XP que la victoire rapportera : le panneau de fin la montre (le calcul est celui de `reglerRencontre`).
+    const sceneCombat = aventure.partie.scene;
+    const rencontreId = sceneCombat.type === 'rencontre' ? sceneCombat.rencontre : undefined;
+    const defRencontre = rencontreId ? aventure.moteur.ctx.dm.rencontres.get(rencontreId) : undefined;
+    const xpHistoire = {
+      nbHeros: aventure.partie.groupe.length,
+      bonus: (defRencontre?.effetsVictoire ?? []).reduce((s, e) => s + ('xp' in e && typeof e.xp === 'number' ? e.xp : 0), 0),
+      dejaFaite: !!rencontreId && aventure.partie.etat.rencontresFaites.includes(rencontreId),
+    };
     return (
       <Combat
         key={combatHistoire.graine}
@@ -135,6 +145,7 @@ export function App() {
         onRejouer={() => undefined}
         onRetour={() => setCombatHistoire(null)}
         onFinHistoire={finCombat}
+        xpHistoire={xpHistoire}
       />
     );
   }
@@ -241,6 +252,7 @@ export function App() {
     );
   }
   if (vue.nom === 'aide') return <EcranAide onRetour={() => setVue({ nom: 'titre' })} />;
+  if (vue.nom === 'options') return <EcranOptions onRetour={() => setVue({ nom: 'titre' })} />;
   if (vue.nom === 'titre') {
     const sauvegarde = aventure ? undefined : partieSauvegardee();
     return (
@@ -253,6 +265,7 @@ export function App() {
           onGroupe={() => setVue({ nom: 'groupe', retour: 'titre' })}
           onEscarmouche={() => setVue({ nom: 'escarmouche' })}
           onAide={() => setVue({ nom: 'aide' })}
+          onOptions={() => setVue({ nom: 'options' })}
           enCours={
             aventure
               ? {

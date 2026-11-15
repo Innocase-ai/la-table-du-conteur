@@ -1,0 +1,249 @@
+/* Écran Options (proposition 10 de docs/AUDIT-UX.md) et réglages d'affichage appliqués partout.
+   Classes préfixées `options-`. Les réglages globaux lisent les attributs posés sur <html> par `appliquerOptions` :
+   `data-texte` (100 / 115 / 130) et `data-mouvement` (reduit / normal). */
+
+/* ---------- Taille du texte : toute la page est agrandie (le jeu est dessiné en pixels, pas en rem). ---------- */
+html[data-texte='115'] {
+  zoom: 1.15;
+}
+html[data-texte='130'] {
+  zoom: 1.3;
+}
+
+/* Le zoom agrandit aussi les hauteurs : les écrans qui occupent « toute la hauteur » (100vh) sont recalculés pour ne pas
+   dépasser la fenêtre. `--echelle-texte` vaut 1, 1.15 ou 1.3 (posée sur <html> par `appliquerOptions`). */
+html[data-texte] .combat,
+html[data-texte] .createur,
+html[data-texte] .ecran-groupe,
+html[data-texte] .aventure {
+  height: calc(100vh / var(--echelle-texte, 1));
+}
+html[data-texte] .titre {
+  min-height: calc(100vh / var(--echelle-texte, 1));
+}
+html[data-texte] .credits {
+  max-height: calc(90vh / var(--echelle-texte, 1));
+}
+html[data-texte] .parchemin-cadre {
+  max-height: calc(92vh / var(--echelle-texte, 1));
+}
+html[data-texte] .quete-rouleau {
+  max-height: calc((100vh - 120px) / var(--echelle-texte, 1));
+}
+
+/* ---------- Réduction des animations : les durées tombent à presque rien (les effets arrivent aussitôt à leur état final). ---------- */
+html[data-mouvement='reduit'] *,
+html[data-mouvement='reduit'] *::before,
+html[data-mouvement='reduit'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* ---------- L'écran ---------- */
+.options {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 20px 30px;
+}
+
+.options-corps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.options-bloc {
+  padding: 16px 18px;
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  background: var(--panneau);
+}
+.options-bloc h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.options-ligne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 0;
+  border-top: 1px solid var(--bord);
+}
+.options-ligne:first-of-type {
+  border-top: none;
+}
+.options-texte {
+  min-width: 0;
+  flex: 1;
+}
+.options-nom {
+  font-size: 15px;
+  color: var(--texte);
+  font-weight: 600;
+}
+.options-aide {
+  margin: 3px 0 0;
+  color: var(--texte-doux);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.options-aide code {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--or);
+  font-size: 11px;
+}
+.options-ligne .segments {
+  flex: none;
+  min-width: 210px;
+}
+
+.options-exemple {
+  margin: 4px 0 10px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--cuivre);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--texte);
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.options-alerte {
+  margin: 8px 0 0;
+  color: var(--cout-action);
+  font-size: 12px;
+}
+
+/* Interrupteur oui / non. */
+.options-interrupteur {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 82px;
+  padding: 4px 10px 4px 4px;
+  border: 1px solid var(--bord-clair);
+  border-radius: 99px;
+  background: #0f0c09;
+  color: var(--texte-doux);
+  font-size: 12px;
+}
+.options-interrupteur-bille {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--texte-faible);
+  transition: background 0.15s;
+}
+.options-interrupteur.actif {
+  border-color: var(--or);
+  color: var(--or-vif);
+}
+.options-interrupteur.actif .options-interrupteur-bille {
+  background: var(--or);
+}
+.options-interrupteur:focus-visible,
+.options .segments button:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+}
+
+/* Le conteur. */
+.options-etat {
+  margin: 8px 0 12px;
+  display: grid;
+  gap: 6px;
+}
+.options-etat > div {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.options-etat dt {
+  flex: 0 0 170px;
+  color: var(--texte-faible);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.options-etat dd {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+}
+.options-etat-texte {
+  margin: 0;
+}
+.options-pastille {
+  padding: 1px 10px;
+  border-radius: 99px;
+  border: 1px solid currentColor;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.options-pastille-ok {
+  color: var(--vert);
+}
+.options-pastille-absent {
+  color: var(--texte-faible);
+}
+
+.options-jauge {
+  height: 6px;
+  border-radius: 99px;
+  background: #0f0c09;
+  border: 1px solid var(--bord);
+  overflow: hidden;
+}
+.options-jauge span {
+  display: block;
+  height: 100%;
+  background: var(--vert);
+}
+.options-jauge .options-jauge-pleine {
+  background: var(--rouge);
+}
+
+.options-cle {
+  margin: 4px 0 14px;
+  padding: 10px 12px;
+  border: 1px dashed var(--bord-clair);
+  border-radius: 8px;
+}
+.options-cle h3 {
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .options {
+    padding: 12px 12px 24px;
+  }
+  .options-ligne {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .options-ligne .segments {
+    min-width: 0;
+  }
+  .options-interrupteur {
+    align-self: flex-start;
+  }
+  .options-etat dt {
+    flex-basis: 100%;
+  }
+}

@@ -26,6 +26,7 @@ import {
   type Brouillon,
 } from './brouillon';
 import { nomAuHasard, portraitEquivalent } from './portraits';
+import { ApercuCreateur } from './ApercuCreateur';
 import { EcranAlignement } from './ecrans/Alignement';
 import { EcranCaracteristiques } from './ecrans/Caracteristiques';
 import { EcranChoixClasse } from './ecrans/ChoixClasse';
@@ -281,6 +282,8 @@ export function Createur({ donnees, personnage, niveauGroupe, onTerminer, onQuit
           </span>
         </div>
       </header>
+
+      <ApercuCreateur b={b} donnees={donnees} />
 
       <main className="createur-corps">{ecran}</main>
 

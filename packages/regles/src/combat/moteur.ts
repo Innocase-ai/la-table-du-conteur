@@ -741,6 +741,34 @@ export function allonge(c: Combattant): number {
   return Math.max(0, ...armes, ...monstres);
 }
 
+/** Un pas de `de` vers `vers` sort-il `c` de l'allonge de l'ennemi `e`, qui a sa réaction et peut s'en servir ? (règle commune au déplacement et à son aperçu) */
+function quitteAllonge(e: Combattant, de: Position, vers: Position): boolean {
+  const portee = allonge(e);
+  return portee > 0 && !!e.ressources.reaction && peutAgir(e) && distanceMetres(e.position, de) <= portee && distanceMetres(e.position, vers) > portee;
+}
+
+/**
+ * Aperçu d'un déplacement, sans rien muter : pour chaque étape du chemin qui ferait sortir `c` de l'allonge d'ennemis ayant leur
+ * réaction, les identifiants de ces ennemis (clé « x,y » de l'étape). Chaque ennemi n'a qu'une réaction : il n'apparaît qu'une fois.
+ * Vide si `c` s'est désengagé ce tour-ci. Reprend exactement la règle de `deplacer`.
+ */
+export function opportunitesSurChemin(etat: EtatCombat, c: Combattant, etapes: Position[]): Map<string, string[]> {
+  const res = new Map<string, string[]>();
+  if (c.tour.desengage) return res;
+  const dejaUtilises = new Set<string>();
+  let de = c.position;
+  for (const etape of etapes) {
+    for (const e of ennemis(etat, c)) {
+      if (dejaUtilises.has(e.id) || !quitteAllonge(e, de, etape)) continue;
+      dejaUtilises.add(e.id);
+      const k = cle(etape);
+      res.set(k, [...(res.get(k) ?? []), e.id]);
+    }
+    de = etape;
+  }
+  return res;
+}
+
 /** Déplace le combattant actif le long du chemin le plus court ; les ennemis quittés font une attaque d'opportunité. */
 export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boolean {
   const chemin = deplacementsPossibles(etat, c).get(cle(vers));
@@ -756,14 +784,7 @@ export function deplacer(etat: EtatCombat, c: Combattant, vers: Position): boole
   for (const [i, etape] of chemin.etapes.entries()) {
     if (!c.tour.desengage) {
       for (const e of ennemis(etat, c)) {
-        const portee = allonge(e);
-        if (
-          portee > 0 &&
-          e.ressources.reaction &&
-          peutAgir(e) &&
-          distanceMetres(e.position, c.position) <= portee &&
-          distanceMetres(e.position, etape) > portee
-        ) {
+        if (quitteAllonge(e, c.position, etape)) {
           publierSegment();
           attaqueDOpportunite(etat, e, c);
           if (horsCombat(c) || aEtat(c, 'inconscient') || etat.vainqueur) {

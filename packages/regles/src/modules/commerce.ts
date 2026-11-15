@@ -14,11 +14,13 @@ import { arrondirPieces, evaluerCondition } from '../monde/etat';
 import { pnjPresents } from '../monde/dialogue';
 import { appliquer, seReposer, suites, type CompteRendu, type PartieMonde } from '../monde/exploration';
 import type { Pnj } from '../monde/schemas';
-import { commande, type ContexteJeu, type Module, type Partie, type Proposition } from '../noyau/types';
+import { commande, type ContexteJeu, type Module, type Ordre, type Partie, type Proposition } from '../noyau/types';
 import { objetDe } from './catalogue';
 import { boutiqueComplete, tableDe } from '../monde/butin-commun';
 import { objetIndispensable } from './inventaire';
 import { libre, partieMonde, verser } from './commun';
+import { idImageCommune } from './image-commune';
+import { resumeObjet, type CaracteristiqueObjet } from './objet-resume';
 
 export interface EtatCommerce {
   /** Quantités déjà achetées : `<pnj>:<objet>`. */
@@ -181,6 +183,8 @@ export const moduleCommerce: Module = {
       if (!pnj) return undefined;
       return { pnj: pnj.id, articles: articles(ctx, p, pnj), rachats: rachats(ctx, p, pnj), services: pnj.services.map((s) => ({ id: s.id, nom: s.nom, prix: s.prix })) };
     },
+    /** La vitrine du marchand à qui l'on parle : ce qu'il vend, ce qu'il rachète et ses services, avec ce qu'il faut pour les montrer (image, résumé, prix, ordre à jouer). */
+    vitrine: (ctx, p) => vitrineDe(ctx, p),
   },
 };
 
@@ -225,4 +229,85 @@ export function propositionsCommerce(ctx: ContexteJeu, p: Partie): Proposition[]
     });
   }
   return res;
+}
+
+/** Un article de la vitrine : un objet à acheter ou à vendre, avec de quoi le montrer et l'ordre du moteur qui l'achète ou le vend. */
+export interface ArticleVitrine {
+  objet: string;
+  nom: string;
+  categorie: string;
+  rarete?: string;
+  magique: boolean;
+  /** Un objet encore à identifier : son nom et son résumé restent mystérieux. */
+  inconnu: boolean;
+  resume: string;
+  proprietes: CaracteristiqueObjet[];
+  /** Le prix d'une pièce, en pièces d'or, et sa forme lisible (« 2,5 po »). */
+  prix: number;
+  prixTexte: string;
+  /** Achat : combien le marchand en a encore ; vente : combien le groupe en a. */
+  quantite: number;
+  image: { groupe: 'objets'; id: string };
+  imageCommune: { groupe: 'equipement'; id: string };
+  ordre: Ordre;
+  desactivee?: string;
+  confirmer?: boolean;
+}
+
+export interface ServiceVitrine {
+  id: string;
+  nom: string;
+  prix: number;
+  prixTexte: string;
+  resume: string;
+  ordre: Ordre;
+  desactivee?: string;
+}
+
+export interface Vitrine {
+  pnj: string;
+  nom: string;
+  bourse: number;
+  bourseTexte: string;
+  articles: ArticleVitrine[];
+  rachats: ArticleVitrine[];
+  services: ServiceVitrine[];
+}
+
+/** La vitrine du marchand de la conversation en cours ; rien s'il n'a ni article, ni rachat, ni service. */
+export function vitrineDe(ctx: ContexteJeu, p: Partie): Vitrine | undefined {
+  if (p.scene.type !== 'dialogue') return undefined;
+  const pnj = ctx.dm.pnj.get(p.scene.pnj);
+  if (!pnj) return undefined;
+  const bourse = p.etat.pieces;
+  const identifies = ((p.modules['inventaire'] as { identifies?: string[] } | undefined)?.identifies ?? []) as string[];
+  const fiche = (objet: string, prix: number, quantite: number, ordre: Ordre, extra: Pick<ArticleVitrine, 'desactivee' | 'confirmer'>): ArticleVitrine => {
+    const o = objetDe(ctx, objet);
+    const r = resumeObjet(ctx, objet, identifies);
+    return {
+      objet,
+      nom: r.nom,
+      categorie: o.categorie,
+      rarete: o.rarete,
+      magique: !!o.magique && !r.inconnu,
+      inconnu: r.inconnu,
+      resume: r.resume,
+      proprietes: r.proprietes,
+      prix,
+      prixTexte: prixLisible(prix),
+      quantite,
+      image: { groupe: 'objets', id: objet },
+      imageCommune: { groupe: 'equipement', id: idImageCommune(o.base ?? objet) },
+      ordre,
+      ...extra,
+    };
+  };
+  const articlesV = articles(ctx, p, pnj).map((a) => fiche(a.objet, a.prix, a.reste, { type: 'acheter', pnj: pnj.id, objet: a.objet }, { desactivee: bourse < a.prix ? 'Pas assez d’or.' : undefined }));
+  const rachatsV = rachats(ctx, p, pnj).map((v) => fiche(v.objet, v.prix, v.quantite, { type: 'vendre', pnj: pnj.id, objet: v.objet }, { confirmer: true }));
+  const services: ServiceVitrine[] = pnj.services.map((s) => {
+    const ok = !s.condition || evaluerCondition(s.condition, p.etat);
+    return { id: s.id, nom: s.nom, prix: s.prix, prixTexte: s.prix ? prixLisible(s.prix) : 'gratuit', resume: s.resume, ordre: { type: 'payerService', pnj: pnj.id, service: s.id }, desactivee: !ok ? 'Pas pour l’instant.' : bourse < s.prix ? 'Pas assez d’or.' : undefined };
+  });
+  if (!articlesV.length && !rachatsV.length && !services.length) return undefined;
+  return { pnj: pnj.id, nom: pnj.nom, bourse, bourseTexte: prixLisible(bourse), articles: articlesV, rachats: rachatsV, services };
 }

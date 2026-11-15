@@ -6,6 +6,7 @@ import { cleDeSort } from '../pictogrammes-regles';
 import { svgModele } from '../icones';
 import { COULEURS_ESPECES, imagePortrait, infoPortrait } from './portraits';
 import { majuscule, tronquer } from './libelles';
+import { AIDE_USAGES, NOMS_USAGES, compterParUsage, filtrerParUsage, type UsageSort } from './apercu-regles';
 
 /** Pictogramme d'une classe (SVG inline), ou l'initiale si la classe n'en a pas. */
 export function IconeClasse({ classe, taille = 28 }: { classe: string; taille?: number }) {
@@ -236,9 +237,15 @@ export interface PropsListeSorts {
 export function ListeSorts({ sorts, choisis, max, onChange, onSurvol, filtreNiveau, etiquette }: PropsListeSorts) {
   const [texte, setTexte] = useState('');
   const [niveau, setNiveau] = useState<number | 'tous'>('tous');
+  const [usage, setUsage] = useState<UsageSort>('tous');
   const niveaux = [...new Set(sorts.map((s) => s.niveau))].sort((a, b) => a - b);
   const norm = (t: string) => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-  const visibles = sorts.filter((s) => (niveau === 'tous' || s.niveau === niveau) && (!texte || norm(s.nom + ' ' + s.resume).includes(norm(texte))));
+  const parUsage = compterParUsage(sorts);
+  // Le filtre « jouables / utilitaires » n'a de sens que si la liste contient les deux sortes.
+  const filtreUsage = parUsage.combat > 0 && parUsage.utilitaire > 0;
+  const visibles = filtrerParUsage(sorts, filtreUsage ? usage : 'tous').filter(
+    (s) => (niveau === 'tous' || s.niveau === niveau) && (!texte || norm(s.nom + ' ' + s.resume).includes(norm(texte))),
+  );
   const plein = choisis.length >= max;
   return (
     <div className="liste-sorts">
@@ -267,6 +274,15 @@ export function ListeSorts({ sorts, choisis, max, onChange, onSurvol, filtreNive
           {choisis.length} / {max}
         </span>
       </div>
+      {filtreUsage && (
+        <div className="segments segments-petits liste-sorts-usage" role="group" aria-label="Usage des sorts">
+          {(['tous', 'combat', 'utilitaire'] as UsageSort[]).map((u) => (
+            <button key={u} type="button" className={usage === u ? 'actif' : ''} aria-pressed={usage === u} title={AIDE_USAGES[u]} onClick={() => setUsage(u)}>
+              {NOMS_USAGES[u]} <span className="usage-nombre">{parUsage[u]}</span>
+            </button>
+          ))}
+        </div>
+      )}
       <ListeNav className="liste-sorts-corps" aria-label={etiquette}>
         {visibles.map((s) => {
           const choisi = choisis.includes(s.id);

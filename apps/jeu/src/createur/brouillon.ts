@@ -26,7 +26,7 @@ import {
   type PersonnageCree,
   type Valeurs,
 } from '@crpg/regles';
-import { idPortrait, nomAuHasard, portraitEquivalent, type Sexe } from './portraits';
+import { idPortrait, nomAuHasard, portraitEquivalent, portraitsPour, type Sexe } from './portraits';
 
 export type Choix = ChoixPartiel & { niveau: number };
 
@@ -284,19 +284,32 @@ export function changerNiveau(b: Brouillon, niveau: number, donnees: Donnees): B
 // Création rapide
 // ---------------------------------------------------------------------------
 
-export function creationRapideBrouillon(b: Brouillon, donnees: Donnees): Brouillon | undefined {
+/**
+ * Création rapide : tous les choix recommandés. Le sexe et le portrait varient d'un héros à l'autre (tirés au hasard parmi
+ * les portraits de la galerie de l'espèce) ; un héros dont le portrait est déjà choisi garde son sexe et son portrait.
+ * `hasard` rend un réel dans [0, 1[ (remplacé dans les tests).
+ */
+export function creationRapideBrouillon(b: Brouillon, donnees: Donnees, hasard: () => number = Math.random): Brouillon | undefined {
   const { classe, espece, niveau } = b.choix;
   if (!classe || !espece) return undefined;
-  const nom = b.identite.nom.trim() || nomAuHasard(espece, b.identite.sexe);
+  const garde = !!b.identite.portrait;
+  const sexe: Sexe = garde ? b.identite.sexe : hasard() < 0.5 ? 'F' : 'M';
+  const galerie = portraitsPour(espece, sexe);
+  const portrait = garde
+    ? portraitEquivalent(b.identite.portrait, espece, sexe)
+    : galerie.length
+      ? galerie[Math.min(galerie.length - 1, Math.floor(hasard() * galerie.length))]!.id
+      : idPortrait(espece, sexe, 1);
+  const nom = b.identite.nom.trim() || nomAuHasard(espece, sexe);
   const choix = creationRapide({ classe, espece, niveau, nom }, donnees);
   return {
     id: b.id,
     choix,
     identite: {
       nom,
-      sexe: b.identite.sexe,
+      sexe,
       alignement: b.identite.alignement ?? 'NB',
-      portrait: idPortrait(espece, b.identite.sexe, 1),
+      portrait,
       caractere: b.identite.caractere,
     },
   };

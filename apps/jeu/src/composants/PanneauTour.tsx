@@ -82,7 +82,18 @@ export function PanneauTour({ heros, finAffichee, peutAgir, elan, consigne, tour
             </span>
           )}
         </div>
-        <button type="button" className={`pt-options${menu ? ' actif' : ''}`} aria-expanded={menu} aria-haspopup="true" aria-label="Options du combat" title="Options : tour auto, vitesse, son" onClick={() => setMenu((m) => !m)}>
+        {!termine && (
+          <button
+            type="button"
+            className={`pt-rapide${rapide ? ' actif' : ''}`}
+            aria-pressed={rapide}
+            title="Accélérer les animations et les tours de l'IA (gardé d'un combat à l'autre)"
+            onClick={onRapide}
+          >
+            {rapide ? '▶▶ Rapide' : '▶ Normal'}
+          </button>
+        )}
+        <button type="button" className={`pt-options${menu ? ' actif' : ''}`} aria-expanded={menu} aria-haspopup="true" aria-label="Options du combat" title="Options : tour auto, héros auto, son" onClick={() => setMenu((m) => !m)}>
           ⚙
         </button>
       </div>
@@ -97,11 +108,6 @@ export function PanneauTour({ heros, finAffichee, peutAgir, elan, consigne, tour
           {!termine && (
             <button type="button" role="menuitemcheckbox" aria-checked={herosAuto} className={`bouton-discret ${herosAuto ? 'actif' : ''}`} onClick={onHerosAuto} title="L'IA joue aussi tous les héros (pour observer un combat)">
               Héros auto {herosAuto ? '· activé' : ''}
-            </button>
-          )}
-          {!termine && (
-            <button type="button" role="menuitemcheckbox" aria-checked={rapide} className={`bouton-discret ${rapide ? 'actif' : ''}`} onClick={onRapide} title="Accélérer les animations et les tours de l'IA">
-              {rapide ? '▶▶ Rapide' : '▶ Normal'}
             </button>
           )}
           <ControleSon />

@@ -22,6 +22,10 @@ export interface Surcouches {
   modeCible: 'aucun' | 'cibles' | 'point';
   /** Les chances de la carte choisie sur chaque cible valide (« 65 % »), montrées sur le jeton ; absent sans aperçu à comparer. */
   chances?: Map<string, { texte: string; titre: string; fort: boolean }>;
+  /** Cases du chemin survolé qui font quitter l'allonge d'un ennemi ayant sa réaction (clé « x,y » → « Attaque d'opportunité de … »). */
+  opportunites?: Map<string, string>;
+  /** Les ennemis qui frapperaient au passage (leur jeton est marqué). */
+  menaces?: Set<string>;
 }
 
 interface Props {
@@ -35,6 +39,10 @@ interface Props {
   onClicCase: (p: Position) => void;
   onClicJeton: (c: Combattant) => void;
   onSurvolJeton: (id: string | null) => void;
+  /** Le jeton illuminé parce que son portrait est survolé dans la piste d'initiative. */
+  illumineId?: string | null;
+  /** Le jeton dont la fiche est épinglée. */
+  epingleId?: string | null;
   /** Effets d'animation en cours (projectiles, chiffres flottants…). */
   effets: Effet[];
   /** Éléments des jetons, pour les animations (élan, secousse, mort). */
@@ -83,7 +91,7 @@ function liseres(grille: EtatCombat['grille'], p: Position, relief: Relief, cote
 /** Centre d'une case (départ et arrivée des projectiles, lueurs, textes). */
 const centre = (p: Position, g: Geometrie) => ({ x: (p.x + 0.5) * g.cote, y: g.marge + (p.y + 0.5) * g.hc });
 
-export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolCase, onClicCase, onClicJeton, onSurvolJeton, effets, elements, vitesse }: Props) {
+export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolCase, onClicCase, onClicJeton, onSurvolJeton, illumineId, epingleId, effets, elements, vitesse }: Props) {
   const conteneur = useRef<HTMLDivElement>(null);
   const [ajuste, setAjuste] = useState(36);
   const [zoom, setZoom] = useState(1);
@@ -124,6 +132,11 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
     elements.get(actifId)?.scrollIntoView?.({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
   }, [actifId, elements]);
 
+  // Le portrait survolé dans la piste d'initiative : son jeton se montre, même hors de la partie visible du plateau.
+  useEffect(() => {
+    if (illumineId) elements.get(illumineId)?.scrollIntoView?.({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+  }, [illumineId, elements]);
+
   const base = Math.max(ajuste, COTE_CONFORT);
   const cote = Math.max(COTE_MIN, Math.min(COTE_MAX, Math.round(base * zoom)));
   const g: Geometrie = { cote, hc: Math.round(cote * INCLINAISON), marge: Math.round(cote * margeRelative) };
@@ -146,6 +159,8 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
       if (plaque) classes.push('case-relief', `case-relief-${plaque}`);
       if (surcouches.atteignables.has(k)) classes.push('case-atteignable');
       if (surcouches.chemin.has(k)) classes.push('case-chemin');
+      const opportunite = surcouches.opportunites?.get(k);
+      if (opportunite) classes.push('combat-opportunite-case');
       if (surcouches.portee.has(k)) classes.push('case-portee');
       if (surcouches.zone.has(k)) classes.push('case-zone');
       // Zone de sort qui dure (sphère de feu, rayon de lune, meute) : visible tant que le sort dure ; le nuage d'orage reste discret.
@@ -189,6 +204,11 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
         >
           {type === 'difficile' && !plaque && !textureTerrain(terrain, 'difficile') && <span className="motif-difficile" />}
           {plaque === 'eau' && <span className="ondes" />}
+          {opportunite && (
+            <span className="combat-opportunite-marque" title={opportunite}>
+              ⚠ Opportunité
+            </span>
+          )}
         </div>,
       );
       if (relief && !plaque) {
@@ -264,6 +284,9 @@ export function Plateau({ etat, donnees, actifId, terrain, surcouches, onSurvolC
           if (choisie) classes.push('cible-choisie');
           if (dansZone && !c.mort) classes.push('dans-zone');
           if (c.mort) classes.push('emplacement-mort');
+          if (c.id === illumineId) classes.push('initiative-illumine');
+          if (c.id === epingleId) classes.push('initiative-epingle');
+          if (surcouches.menaces?.has(c.id)) classes.push('combat-opportunite-menace');
           return (
             <div
               key={c.id}

@@ -2263,3 +2263,46 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Choix à confirmer** : la règle (b) est volontairement large (un meuble ou une cache du lieu d'un combat perdu ou fui reste fermé jusqu'à la victoire). Pour la restreindre aux seules réserves, retirer la seconde moitié de la condition dans `gardienEnPlace`.
 - **Pas de reproduction du butin « donné »** : si l'utilisateur voyait un vrai gain (or, objets en plus) après une défaite, nous n'avons pas de trace ; lui demander histoire, lieu, combat et ce qu'il a pris, ou une sauvegarde.
 - 2 392 tests verts, typechecks verts. **Pas commité.**
+
+## 15/11/2026 — Audit UX (`docs/AUDIT-UX.md`) : les dix propositions, en cinq chantiers
+
+Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par groupe de fichiers ; chacune a vérifié à l'écran, typechecks verts, 2 515 tests verts. **Pas commité.**
+
+### Combat (proposition 2)
+
+- **Attaque d'opportunité visible** : `opportunitesSurChemin` (moteur) ne mute rien et dit, étape par étape, quels ennemis ayant leur réaction frapperaient ; `deplacer` partage sa règle (`quitteAllonge`), donc aperçu et déplacement ne divergent pas (test dédié). Le plateau marque les cases `⚠ Opportunité` et entoure les ennemis menaçants ; la consigne les nomme.
+- **Piste d'initiative interactive** : survol d'un portrait = fiche + jeton illuminé sur le plateau (qui défile jusqu'à lui) ; clic = fiche épinglée (second clic la retire), ou sélection de la cible pendant un choix de cible ; utilisable au clavier.
+- **`▶▶ Rapide`** : bouton sur le bandeau du tour (retiré du menu ⚙), état gardé dans `localStorage` (`crpg.combat.rapide`, try/catch).
+- **Bilan de combat d'histoire** : « Nom (relevé à 1 PV) » au lieu de « (mort) » (décision du 07/11 : pas de mort définitive en histoire) ; « (mort) » reste en escarmouche.
+- Tests : 8 (opportunités), 4 (Rapide), 3 (bilan). `pnpm simuler 10 rapide` sans régression. Fichier partagé : `styles.css`.
+
+### Dialogue lisible et vitrine de marchand (propositions 1 et 5)
+
+- **Dialogue** (`BoiteDialogue.tsx`, `aventure/conversation-regles.ts`) : toute la conversation en cours reste dans la boîte, la dernière réponse est mise en avant ; deux conversations de suite avec le même PNJ ne se mélangent pas. Badge et jauge d'attitude (Hostile, Méfiant, Neutre, Bienveillant, Amical : seuils du moteur −30 et +30, plus deux degrés intermédiaires à valider). Bloc « Peser sur son attitude » séparé et repliable ; chaque bouton annonce compétence, DD, meilleur orateur, bonus, Avantage ou Désavantage.
+- **Moteur** : `niveauAttitude`, `LIBELLES_ATTITUDE`, `meilleurOrateur` (`monde/dialogue.ts`) ; `Interlocuteur` porte `niveauAttitude`, `libelleAttitude`, `modeInfluence` ; les propositions d'influence portent `jet` (champ `mode` ajouté à `Proposition.jet`).
+- **Vitrine** (`VitrineMarchand.tsx`, `vitrine-regles.ts`, vue `vitrine` du module Commerce, `modules/objet-resume.ts`) : tiroir « Boutique » à côté du dialogue (sous 680 px il prend la place du dialogue) ; images du monde ou du catalogue SRD, résumé, prix, portraits de ceux qui peuvent porter l'article (vert, orange sans formation, grisé), fiche au clic avec la CA avant et après. Mêmes ordres d'achat, de vente et de service que les anciens boutons, qui restent proposés par le moteur mais quittent la colonne Actions.
+- Tests : 14 (moteur, `dialogue-attitude-vitrine.test.ts`) et 16 (client). **Constaté, non corrigé** : le jeu n'est pas responsive à 375 px (colonne Actions fixe à 360 px, déjà le cas avant).
+
+### Boussole de quête, jets d'exploration chiffrés, annulation (propositions 3, 4 et 8)
+
+- **Boussole** (`EcranAventure.tsx`, `boussole-regles.ts`) : l'en-tête montre la quête suivie (choisie par le menu ▾, gardée par histoire ; sinon la dernière en cours) et son objectif du moment ; un clic ouvre son parchemin (`EcranQuete.tsx` : « Objectif en cours »). L'heure se lit « 14 h · après-midi ». **Badges d'état** : `badgesEtat(avant, après)` compare or, PX, temps, objets du sac et jauges (`−15 po`, `+1 Corde`, `+2 h`…) ; 5 au plus, 3 s, sans mouvement si `prefers-reduced-motion`.
+- **Jets d'exploration** (`monde/exploration.ts` : `acteursPossibles` ; `noyau/types.ts` : `Proposition.acteurs`) : Fouiller, Crocheter, Forcer et Désamorcer annoncent le héros par défaut et son bonus, avec un sélecteur ⇄ pour en faire agir un autre ; le DD de la fouille reste secret.
+- **Annuler** (`annulation-regles.ts`) : le client garde la partie d'avant un déplacement, un achat ou une vente et offre `↶ Annuler` (aussi Ctrl+Z) tant que la partie affichée est celle d'après le pas. Refusé dès qu'un dé a été lancé (graine avancée), qu'un jet, une rencontre, une scène, un événement, une quête ou un héros touché a suivi ; pas gardé après un rechargement. Conséquence : un trajet qui lance le dé d'arrivée n'est pas annulable ; utile surtout pour achats, ventes et mondes sans tirage (élargir : accepter l'annulation quand le tirage donne « rien »). Trois détecteurs d'`EcranAventure.tsx` ne relisent plus le journal quand il recule.
+- Tests : 9 + 14 + 8.
+
+### Comparateur d'équipement et carte du monde (propositions 6 et 7)
+
+- **Comparateur** (`equipement-regles.ts`, `comparer` ; `aventure/ComparateurEquipement.tsx`) : « Remplace sur [Héros] : [objet actuel] » puis avant → après (CA, attaques, bonus magique, Vitesse, Discrétion, harmonisation x / 3) pour l'emplacement où la commande équiper mettrait l'objet, calculé par le moteur sur une copie du héros (aucune règle refaite ; test : l'« après » égale le résultat de la vraie commande). `candidatsPour` compte maintenant aussi les objets harmonisés emportés pour le combat (`harmonisesEmbarques`).
+- **Carte** (`CarteMonde.tsx`, `carte-regles.ts`) : double-clic ou double-tape sur un lieu accessible pour s'y rendre, Entrée sur le lieu déjà choisi ; un lieu verrouillé, bloqué ou sans passage direct ne se déclenche pas (le volet dit pourquoi). Chemins tracés du lieu du groupe vers chaque sortie avec leur durée (pointillés dorés, orangés si verrouillé, rouges si bloqué). Bouton « Y aller · N h » près du marqueur choisi.
+- Tests : +14 (équipement) et 8 (carte).
+
+### Créateur guidé et menu Options (propositions 9 et 10)
+
+- **Aperçu en direct du créateur** : bandeau permanent (PV, CA, meilleure attaque, DD et attaque des sorts, sorts pris dont jouables en combat), calculé par le moteur (`apercuBrouillon`) ; « Choix complets » ou « Provisoire ». **Filtre des sorts** « Tous / Jouables en combat / Utilitaires » (`SORTS_JOUABLES_EN_COMBAT`). Création rapide : sexe et portrait variés ; les prénoms des six héros pré-tirés ne sont plus jamais tirés au hasard.
+- **Écran Options** (`menu/EcranOptions.tsx`) : taille du texte 100/115/130 %, animations réduites (CSS + `mouvementReduit()`), état du conteur en lecture seule (jamais la clé) ; réglages dans `localStorage`, appliqués au démarrage. Écran titre : phrase « Prototype » retirée, entrée « Options » ajoutée.
+- **Reste** : saisie de la clé du joueur (trousseau Tauri), modèle et plafond réglables, `TirageArrivee` et `EcranRencontre` qui lisent encore `prefers-reduced-motion` seuls, vérification du combat et de l'aventure à 115 % et 130 %.
+
+### À retenir de l'ensemble
+
+- Le jeu n'est pas responsive sous environ 600 px (grille d'aventure à colonne fixe de 360 px) : chantier à part.
+- Les sessions partageant le serveur du jeu (port 5173) ont modifié sa sauvegarde en testant : lancer les essais sur un serveur à part.

@@ -515,7 +515,11 @@ function construire(etat: EtatCombat, inst: Instantane, donnees: Donnees, o: Out
 // ---------------------------------------------------------------------------
 
 export function mouvementReduit(): boolean {
-  return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  if (typeof window === 'undefined') return false;
+  // Le réglage de l'écran Options (appliqué sur <html> par `appliquerOptions`) prime sur celui du système.
+  const choix = document.documentElement.dataset['mouvement'];
+  if (choix === 'reduit' || choix === 'normal') return choix === 'reduit';
+  return !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 }
 
 /** Silence entre deux répliques (ms) : sans lui, deux cris collés donnent l'impression que tout le monde parle à la fois. */

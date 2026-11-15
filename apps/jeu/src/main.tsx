@@ -2,7 +2,11 @@ import { lazy, StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import { ErreurJeu } from './composants/ErreurJeu';
+import { appliquerOptions, lireOptions } from './options/options-regles';
 import './styles.css';
+
+// Les réglages du joueur (taille du texte, animations réduites) s'appliquent avant le premier affichage.
+appliquerOptions(lireOptions());
 
 // `?effets` ouvre le banc d'essai des effets de combat (réglage des effets, sons et musiques), **en développement
 // seulement** : `import.meta.env.DEV` vaut `false` dans le build de production, qui ne contient donc pas le banc.

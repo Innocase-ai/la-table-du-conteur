@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import { idElementPorte, NOMS_EMPLACEMENTS, POTION_DE_COMBAT, type ContexteJeu, type ElementGrille, type Emplacement, type Encart, type Ordre, type Partie, type Proposition } from '@crpg/regles';
 import { Portrait } from '../createur/ui';
 import { FichePerso } from '../createur/FichePerso';
-import { attaquesEnMain, candidatsPour, casesPour, poupeeDe, texteCa } from '../equipement-regles';
+import { attaquesEnMain, candidatsPour, casesPour, comparer, poupeeDe, texteCa } from '../equipement-regles';
 import { BoutonProposition } from './BoutonProposition';
+import { ComparateurEquipement } from './ComparateurEquipement';
 import { resumeRessources } from './fiches';
 import { FicheElement, GrilleElements } from './GrilleElements';
 import { GLISSE, PoupeeEquipement } from './PoupeeEquipement';
@@ -59,6 +60,8 @@ export function FeuillePersonnage({ ctx, monde, partie, heros, onChoisir, onglet
   // L'objet du sac « en main » : celui qu'on glisse, sinon celui qu'on a choisi ; les cases où il peut aller s'allument.
   const enMain = glisseSac ?? choisiSac?.id;
   const cibles = enMain ? casesPour(ctx, h, enMain) : {};
+  // Le comparateur : l'objet du sac choisi (pas celui qu'on glisse), à l'emplacement où il irait vraiment chez ce héros.
+  const comparaison = choisiSac ? comparer(ctx, h, choisiSac.id) : undefined;
   const poupee = poupeeDe(ctx, h);
   const caseChoisie = sel?.type === 'case' ? [...poupee.corps, ...poupee.jeux.flatMap((j) => [j.droite, j.gauche])].find((c) => c.emplacement === sel.s) : undefined;
   const elementCase = caseChoisie?.objet ? tous.find((e) => e.id === idElementPorte(h.id, caseChoisie.objet!.id)) : undefined;
@@ -108,6 +111,7 @@ export function FeuillePersonnage({ ctx, monde, partie, heros, onChoisir, onglet
       return (
         <>
           <FicheElement monde={monde} e={choisiSac} actions={boutons(actionsDe(choisiSac))} />
+          {comparaison && <ComparateurEquipement c={comparaison} />}
           {Object.keys(cibles).length > 0 && (
             <p className="inv-consigne">
               {possibles.length

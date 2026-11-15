@@ -45,9 +45,14 @@ export function portraitEquivalent(id: string | undefined, espece: string, sexe:
   return PORTRAITS.some((p) => p.id === candidat) ? candidat : portraitsPour(espece, sexe)[0]?.id;
 }
 
+/** Les six héros pré-tirés : leurs prénoms ne sont jamais tirés au hasard pour un héros créé par le joueur. */
+export const NOMS_PRETIRES: readonly string[] = ['Bran', 'Grukk', 'Pip', 'Sylvaine', 'Hilda', 'Ambrine'];
+
 export function nomAuHasard(espece: string, sexe: Sexe, exclu?: string): string {
   const liste = NOMS[espece]?.[sexe] ?? NOMS.humain?.[sexe] ?? ['Voyageur'];
-  const possibles = liste.length > 1 ? liste.filter((n) => n !== exclu) : liste;
+  const libres = liste.filter((n) => !NOMS_PRETIRES.includes(n));
+  const base = libres.length ? libres : liste;
+  const possibles = base.length > 1 ? base.filter((n) => n !== exclu) : base;
   return possibles[Math.floor(Math.random() * possibles.length)]!;
 }
 

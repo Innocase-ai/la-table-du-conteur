@@ -5,7 +5,8 @@ import { recompensesDeQuete, type DonneesMonde, type EtatMonde } from '@crpg/reg
 type EtatQuetes = EtatMonde['quetes'];
 
 /** Ce qui vient d'arriver à une quête : elle commence, elle est accomplie, ou elle est perdue. */
-export type GenreParchemin = 'debut' | 'fin' | 'echec';
+/** « suivi » : le joueur rouvre le parchemin de sa quête suivie (boussole de l'en-tête) pour relire son objectif du moment. */
+export type GenreParchemin = 'debut' | 'fin' | 'echec' | 'suivi';
 
 export interface ChangementQuete {
   id: string;
@@ -60,6 +61,8 @@ export function parcheminDeQuete(
   id: string,
   genre: GenreParchemin = 'debut',
   nomObjet: (id: string) => string = (x) => dm.objets.get(x)?.nom ?? x,
+  /** Les étapes actives de la quête (pour le genre « suivi » : l'objectif du moment remplace le premier objectif). */
+  actives: string[] = [],
 ): ParcheminQuete | undefined {
   const q = dm.quetes.get(id);
   if (!q) return undefined;
@@ -68,7 +71,8 @@ export function parcheminDeQuete(
   // Le rôle d'un PNJ est une phrase d'auteur (« Aubergiste : elle sait tout… ») : on n'en garde que le métier, avant les deux points.
   const metier = donneur?.titre ?? donneur?.role.split(/\s*:\s*/)[0];
   const origine = donneur ? `${donneur.nom}${metier ? `, ${metier}` : ''}${lieu ? ` — ${lieu.nom}` : ''}` : lieu ? lieu.nom : undefined;
-  const objectif = genre === 'debut' ? q.etapes.find((e) => e.id === q.debut)?.texte : undefined;
+  const etapeActive = q.etapes.find((e) => e.id === actives[0]);
+  const objectif = genre === 'debut' ? q.etapes.find((e) => e.id === q.debut)?.texte : genre === 'suivi' ? (etapeActive?.texte ?? q.etapes.find((e) => e.id === q.debut)?.texte) : undefined;
   // Tout ce que la quête rapporte : ses récompenses et ce que donnent ses étapes (PX, or, objets), plus ce que le donneur promet.
   const total = recompensesDeQuete(q);
   const recompenses =

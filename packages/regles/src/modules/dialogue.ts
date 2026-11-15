@@ -1,21 +1,32 @@
 // Module Dialogue : parler aux PNJ présents (sujets), les influencer (persuader, intimider, tromper).
 import { z } from 'zod';
-import { attenteInfluence, ddInfluence, influencer, libelleDuPnj, modeInfluence, parler, pnjPresents, sujetsDisponibles, attitude } from '../monde/dialogue';
+import { attenteInfluence, ddInfluence, influencer, LIBELLES_ATTITUDE, libelleDuPnj, meilleurOrateur, modeInfluence, niveauAttitude, parler, pnjPresents, sujetsDisponibles, attitude, type NiveauAttitude } from '../monde/dialogue';
 import { evaluerCondition } from '../monde/etat';
 import { signeDeQuete } from '../monde/objectifs';
 import { commande, type Module } from '../noyau/types';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
-import type { ContexteJeu, Partie } from '../noyau/types';
+import type { ContexteJeu, Partie, Proposition } from '../noyau/types';
 
 export interface Interlocuteur {
   id: string;
   nom: string;
   role: string;
   attitude: number;
+  /** Le degré d'attitude (hostile, méfiant, neutre, bienveillant, amical) et son libellé : le badge de la boîte de dialogue. */
+  niveauAttitude: NiveauAttitude;
+  libelleAttitude: string;
+  /** Avantage (il vous apprécie) ou Désavantage (il vous méprise) aux jets d'influence ; rien si l'attitude est entre les deux. */
+  modeInfluence?: 'avantage' | 'desavantage';
   sujets: { id: string; mots: string[]; question?: string; vu: boolean }[];
 }
 
 const pm = (ctx: ContexteJeu, p: Partie) => ({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0 });
+
+const degreDAttitude = (a: number) => {
+  const niveau = niveauAttitude(a);
+  const mode = modeInfluence(a);
+  return { niveauAttitude: niveau, libelleAttitude: LIBELLES_ATTITUDE[niveau], ...(mode ? { modeInfluence: mode } : {}) };
+};
 
 /** Le PNJ à qui l'on parle, avec les sujets qu'il accepte d'aborder maintenant. */
 function interlocuteur(ctx: ContexteJeu, p: Partie): Interlocuteur | undefined {
@@ -23,11 +34,17 @@ function interlocuteur(ctx: ContexteJeu, p: Partie): Interlocuteur | undefined {
   const id = p.scene.pnj;
   const pnj = pnjPresents(pm(ctx, p)).find((n) => n.id === id);
   if (!pnj) return undefined;
-  return { id: pnj.id, nom: pnj.nom, role: libelleDuPnj(pnj), attitude: attitude(pm(ctx, p), pnj), sujets: sujetsDisponibles(pm(ctx, p), pnj).map((s) => ({ id: s.id, mots: s.mots, question: s.question, vu: p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`) })) };
+  return { id: pnj.id, nom: pnj.nom, role: libelleDuPnj(pnj), attitude: attitude(pm(ctx, p), pnj), ...degreDAttitude(attitude(pm(ctx, p), pnj)), sujets: sujetsDisponibles(pm(ctx, p), pnj).map((s) => ({ id: s.id, mots: s.mots, question: s.question, vu: p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`) })) };
 }
 
 /** Le texte d'un bouton d'influence qui doit attendre (SRD : 24 h après un échec), ou rien si c'est possible. */
 const attenteTexte = (heures: number): string | undefined => (heures > 0 ? `Il ne vous écoutera pas de nouveau avant ${heures} h.` : undefined);
+
+/** Le jet qu'un bouton d'influence va entraîner, annoncé avant le clic : compétence, DD, meilleur orateur du groupe et son bonus, Avantage ou Désavantage. */
+function jetAnnonce(p: Partie, maniere: 'persuasion' | 'intimidation' | 'tromperie', test: string, dd: number, mode: 'avantage' | 'desavantage' | undefined): NonNullable<Proposition['jet']> {
+  const orateur = meilleurOrateur(p, maniere, test as never);
+  return { test, dd, ...(orateur ? { qui: orateur.nom, bonus: orateur.bonus } : {}), ...(mode ? { mode } : {}) };
+}
 
 export const moduleDialogue: Module = {
   id: 'dialogue',
@@ -108,6 +125,7 @@ export const moduleDialogue: Module = {
           aide: aides[m],
           style: 'discret' as const,
           ordre: { type: 'influencer', pnj: i.id, maniere: m },
+          jet: jetAnnonce(p, m, m, dd, mode),
           desactivee: attenteTexte(attenteInfluence(p, i.id, m)),
         }));
         // Un secret qu'il pourrait lâcher : une réplique pour insister, sans rien dire de ce qu'il cache.
@@ -135,6 +153,8 @@ export const moduleDialogue: Module = {
             icone: icones[maniere],
             aide: sec.prix ? `Payer ${sec.prix} po pour qu'il parle.` : `Tenter de lui faire dire ce qu'il cache (${competence ?? maniere}${sec.jet ? `, DD ${sec.jet.dd}` : `, DD ${dd}`}).`,
             ordre: { type: 'influencer', pnj: i.id, maniere, secret: sec.fait },
+            // Un secret à prix sans jet s'achète : aucun jet à annoncer.
+            ...(sec.prix && !sec.jet ? {} : { jet: jetAnnonce(p, maniere, sec.jet?.competence ?? maniere, sec.jet?.dd ?? dd, mode) }),
             desactivee: trop ? 'Il ne vous fait pas encore assez confiance.' : attenteTexte(attenteInfluence(p, i.id, maniere, sec.fait)) ?? (sec.prix && p.etat.pieces < sec.prix ? 'Pas assez d’or.' : undefined),
           },
         ];

@@ -158,12 +158,40 @@ export function bonusTest(a: Personnage, test: Competence | Caracteristique): nu
 }
 
 /** Le personnage désigné, ou celui du groupe qui a le meilleur bonus (« le groupe fouille »). */
-function choisir(p: PartieMonde, test: Competence | Caracteristique, id?: string, qualifie?: (a: Personnage) => boolean): Personnage | undefined {
+function choisir(p: Pick<PartieMonde, 'groupe'>, test: Competence | Caracteristique, id?: string, qualifie?: (a: Personnage) => boolean): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   // Quand l'action demande un équipement (crocheter : les outils de voleur), on préfère ceux qui l'ont, même au bonus plus faible.
   const equipes = qualifie ? vivants.filter(qualifie) : [];
   return [...(equipes.length ? equipes : vivants)].sort((x, y) => bonusTest(y, test) - bonusTest(x, test))[0];
+}
+
+/** Un héros qui pourrait tenter une action d'exploration, avec son bonus au test. */
+export interface ActeurPossible {
+  id: string;
+  nom: string;
+  bonus: number;
+  /** Pourquoi il ne peut pas la tenter (sans les outils requis), sinon rien. */
+  desactivee?: string;
+}
+
+/**
+ * Les héros debout qui pourraient tenter un test (le meilleur d'abord) et celui qui agit par défaut : le même que choisira le
+ * moteur quand l'ordre ne désigne personne (`choisir`). Sert à annoncer « Crocheter — Pip +6 » avant le clic. `requis` est
+ * l'équipement que l'action exige : un héros qui ne l'a pas figure dans la liste, désactivé, et ne passe jamais par défaut.
+ */
+export function acteursPossibles(
+  p: Pick<PartieMonde, 'groupe'>,
+  test: Competence | Caracteristique,
+  requis?: { qualifie: (a: Personnage) => boolean; raison: string },
+): { defaut?: ActeurPossible; liste: ActeurPossible[] } {
+  const defaut = choisir(p, test, undefined, requis?.qualifie);
+  const liste = p.groupe
+    .filter((a) => a.pv > 0)
+    .map((a): ActeurPossible => ({ id: a.id, nom: a.nom, bonus: bonusTest(a, test), ...(requis && !requis.qualifie(a) ? { desactivee: requis.raison } : {}) }))
+    .sort((x, y) => y.bonus - x.bonus);
+  const d = defaut ? liste.find((x) => x.id === defaut.id) : undefined;
+  return { ...(d ? { defaut: d } : {}), liste };
 }
 
 /** Un test d20 du personnage, consigné dans le compte rendu. */
@@ -728,7 +756,7 @@ function repererTemoins(p: PartieMonde, r: CompteRendu, a: Personnage, methode: 
   return true;
 }
 
-function aOutils(p: PartieMonde, a: Personnage): boolean {
+export function aOutils(p: Pick<PartieMonde, 'etat'>, a: Personnage): boolean {
   return a.outils.includes('outils-de-voleur') || (p.etat.inventaire['outils-de-voleur'] ?? 0) > 0;
 }
 

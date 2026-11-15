@@ -27,7 +27,7 @@ Tout le jeu sans le conteur : écran titre, histoires en mode « livre », group
 
 ## Ce qui reste à faire
 
-- **Le conteur** : le relais de développement (`apps/jeu/serveur-conteur.ts`) n'existe pas dans l'application ; sans lui, le jeu reste en mode « livre » (le conteur se dit simplement indisponible). Prochaine étape : l'**écran Options** où le joueur saisit sa clé d'API, gardée dans le **trousseau du système** (Gestionnaire d'identification Windows, Trousseau macOS), et l'appel d'OpenRouter depuis l'application avec plafond de dépense.
+- **Le conteur** : le relais de développement (`apps/jeu/serveur-conteur.ts`) n'existe pas dans l'application ; sans lui, le jeu reste en mode « livre » (le conteur se dit simplement indisponible). L'**écran Options** existe depuis le 15/11/2026 (`menu/EcranOptions.tsx` : taille du texte, animations réduites, état du conteur : branché ou non, modèle, dépense et plafond du relais) mais sans saisie de clé ni réglage du modèle ou du plafond (le relais les fixe). Prochaine étape : y ajouter la saisie de la clé d'API du joueur, gardée dans le **trousseau du système** (Gestionnaire d'identification Windows, Trousseau macOS), et l'appel d'OpenRouter depuis l'application avec plafond de dépense.
 - **Signature** du programme (sinon Windows SmartScreen avertit au premier lancement) : certificat de signature de code pour Windows, compte développeur Apple pour macOS. À faire au moment de vendre.
 - **macOS et Linux** : à construire sur ces systèmes (Tauri ne compile pas pour macOS depuis Windows).
 - **Mises à jour** : par la boutique (Steam, itch.io) ou le module de mise à jour de Tauri.

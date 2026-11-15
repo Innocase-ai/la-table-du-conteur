@@ -4,6 +4,8 @@ import { z } from 'zod';
 import { Competence, Caracteristique } from '../schemas';
 import {
   aller,
+  acteursPossibles,
+  aOutils,
   bonusTest,
   commencer,
   desarmer,
@@ -23,7 +25,7 @@ import { formulaireEnigme } from '../monde/reponses';
 import { presentationMonstres } from '../monde/presentation';
 import { ficheDeScene } from '../monde/scene';
 import { commande, type Module } from '../noyau/types';
-import { appliquerEtat, equipementDe } from '../personnage';
+import { appliquerEtat, equipementDe, type Personnage as Heros } from '../personnage';
 import { appliquerEquipement, copieEquipement } from './equipement-regles';
 import { enExploration, libre, PANNEAUX, partieMonde, verser } from './commun';
 import type { ContexteJeu, Partie, PresentationRencontre, Proposition } from '../noyau/types';
@@ -39,6 +41,22 @@ const raisonPasDeNuit = (lieu: { repos: string } | undefined): string | undefine
 /** La fiche de scène du moment (sorties, trésors, pièges, énigmes visibles). */
 const scene = (ctx: ContexteJeu, p: Partie) => ficheDeScene({ dm: ctx.dm, etat: p.etat, groupe: p.groupe, gen: () => 0, srd: ctx.srd });
 
+/**
+ * Qui tenterait le jet, annoncé avant le clic : le héros par défaut et son bonus (`jet`), et la liste des autres héros
+ * (`acteurs`) pour en faire agir un autre. Le DD n'y figure jamais : celui d'une fouille est secret, les autres s'affichent ailleurs.
+ */
+function annonceActeur(
+  p: Partie,
+  test: Competence | Caracteristique,
+  requis?: { qualifie: (a: Heros) => boolean; raison: string },
+): Pick<Proposition, 'jet' | 'acteurs'> {
+  const { defaut, liste } = acteursPossibles(p, test, requis);
+  return { jet: { test, ...(defaut ? { qui: defaut.nom, bonus: defaut.bonus } : {}) }, ...(liste.length > 1 ? { acteurs: liste } : {}) };
+}
+
+/** Le héros doit avoir des outils de voleur, ou le groupe en avoir dans son sac. */
+const SANS_OUTILS = (p: Partie) => ({ qualifie: (a: Heros) => aOutils(p, a), raison: 'Sans outils de voleur.' });
+
 /** Ouvrir avec la clé (si le groupe l'a), crocheter, forcer : les propositions d'un élément fermé. */
 function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: string }, element: Proposition['element'], groupe: Proposition['groupe'], cle?: string): Proposition[] {
   const res: Proposition[] = [];
@@ -52,9 +70,10 @@ function propositionsOuvrir(p: Partie, cible: { lien: string } | { tresor: strin
     style: 'discret',
     aide: 'Escamotage, avec des outils de voleur. Silencieux : seuls des témoins attentifs vous verraient.',
     desactivee: outils ? undefined : 'Il faut des outils de voleur (aucun héros n’en a).',
+    ...annonceActeur(p, 'escamotage', SANS_OUTILS(p)),
     ordre: { type: 'ouvrir', cible, methode: 'crocheter' },
   });
-  res.push({ groupe, element, libelle: 'Forcer', icone: 'base:forcer', style: 'discret', aide: 'Athlétisme. Bruyant : les témoins vous repèrent plus facilement.', ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
+  res.push({ groupe, element, libelle: 'Forcer', icone: 'base:forcer', style: 'discret', aide: 'Athlétisme. Bruyant : les témoins vous repèrent plus facilement.', ...annonceActeur(p, 'athletisme'), ordre: { type: 'ouvrir', cible, methode: 'forcer' } });
   return res;
 }
 
@@ -129,6 +148,9 @@ export const moduleExploration: Module = {
                 groupe: PANNEAUX.ici,
                 libelle: 'Fouiller',
                 icone: 'base:fouiller',
+                // Le héros annoncé est le meilleur en Investigation ; le DD, lui, reste secret. Ce qui se cache peut demander une autre compétence : chacune est alors tentée par le meilleur du groupe (ou par le héros choisi).
+                aide: 'Chercher passages, trésors, pièges et indices. Le DD reste secret ; chaque jet est tenté par le meilleur du groupe pour la compétence voulue, sauf si vous choisissez un héros.',
+                ...annonceActeur(p, 'investigation'),
                 desactivee: p.etat.exploration.fouilles.includes(`${p.etat.lieu}:${p.etat.jour}`) ? 'Déjà fouillé aujourd’hui.' : undefined,
                 // Le dé d'arrivée a amorcé une trouvaille : le bouton se met en avant.
                 ...(p.etat.exploration.hasard?.[p.etat.lieu]?.decouverte ? { style: 'principal' as const, aide: 'Quelque chose attire votre regard : fouillez.' } : {}),
@@ -169,7 +191,18 @@ export const moduleExploration: Module = {
         enExploration(p)
           ? scene(ctx, p)
               .pieges.filter((x) => x.etat === 'repere')
-              .map((x) => ({ groupe: PANNEAUX.objets, element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true }, libelle: 'Désamorcer', icone: 'base:desamorcer', aide: x.resume, ordre: { type: 'desarmer', piege: x.id } }))
+              .map((x) => {
+                const comp = ctx.dm.pieges.get(x.id)?.desarmement.competence;
+                return {
+                  groupe: PANNEAUX.objets,
+                  element: { id: `piege:${x.id}`, titre: `⚠ ${x.nom}`, danger: true },
+                  libelle: 'Désamorcer',
+                  icone: 'base:desamorcer',
+                  aide: x.resume,
+                  ...(comp ? annonceActeur(p, comp) : {}),
+                  ordre: { type: 'desarmer', piege: x.id },
+                };
+              })
           : [],
     }),
     prendre: commande({

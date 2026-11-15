@@ -14,6 +14,7 @@ import {
   executer,
   jouerTourIA,
   memePosition,
+  opportunitesSurChemin,
   peutAgir,
   preparerRencontre,
   typeCase,
@@ -29,6 +30,7 @@ import { capturer, effetDeReplique, etatAffiche, mouvementReduit, useAnimations,
 import { REPLIQUES } from '../repliques';
 import { prechargerVoix } from '../voix';
 import { choisirReplique, declencheurs, nouvelleMemoire, voixDuPortrait, type Replique } from '../repliques-regles';
+import { ecrireRapide, lireRapide } from '../combat-rapide';
 import { ciblesRepetables, formatMetres } from '../libelles';
 import { carteDeTouche, sectionsDeMain, texteApercu, toutEstJoue, touchesDeCartes } from '../main-cartes-regles';
 import { arreterMusique, demarrerMusique } from '../musique';
@@ -91,7 +93,14 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   // Fiche épinglée : un clic sur un combattant (hors choix de cible) garde ses renseignements à l'écran ; Échap ou un second clic la retire.
   const [epingle, setEpingle] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [rapide, setRapide] = useState(false);
+  // « ▶▶ Rapide » : gardé d'un combat à l'autre dans le navigateur.
+  const [rapide, setRapide] = useState(lireRapide);
+  const basculerRapide = () => {
+    ecrireRapide(!rapide);
+    setRapide(!rapide);
+  };
+  // Piste d'initiative : le portrait survolé illumine son jeton sur le plateau.
+  const [pisteId, setPisteId] = useState<string | null>(null);
   const [pensee, setPensee] = useState<string | null>(null);
   const [masquerFin, setMasquerFin] = useState(false);
   // L'IA peut jouer le tour d'un héros (une fois, ou pour tous les héros).
@@ -253,6 +262,18 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     else setSelection({ ...selection, cibles });
   };
 
+  /**
+   * Un clic sur un portrait de la piste d'initiative : pendant un choix de cible, si c'est une cible légitime on la sélectionne
+   * (comme un clic sur son jeton) ; sinon on épingle sa fiche (second clic : on la retire). Même un combattant en fuite ou mort
+   * a sa fiche.
+   */
+  const clicPortrait = (id: string) => {
+    const x = etat.combattants.find((k) => k.id === id);
+    if (!x) return;
+    if (occupe || (modeCible === 'cibles' && !!carte && !!selection && carte.cibles.includes(id))) clicJeton(x);
+    else setEpingle((e) => (e === id ? null : id));
+  };
+
   // Clavier : Échap annule, Entrée valide une sélection multiple, 1 à 9 jouent la carte du même numéro, F termine le tour.
   const clavier = useRef<(e: KeyboardEvent) => void>(() => {});
   clavier.current = (e: KeyboardEvent) => {
@@ -370,7 +391,16 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
     if (!carte) {
       for (const [k, ch] of chemins) s.atteignables.set(k, ch.cout);
       const ch = survolCase && chemins.get(cle(survolCase));
-      if (ch) for (const p of ch.etapes) s.chemin.add(cle(p));
+      if (ch) {
+        for (const p of ch.etapes) s.chemin.add(cle(p));
+        // Les étapes qui font quitter l'allonge d'un ennemi ayant sa réaction : « ⚠ Opportunité » (calcul du moteur).
+        const nomDe = (id: string) => etat.combattants.find((x) => x.id === id)?.nom ?? id;
+        for (const [k, ids] of opportunitesSurChemin(etat, c, ch.etapes)) {
+          s.opportunites ??= new Map();
+          s.opportunites.set(k, `Attaque d'opportunité de ${ids.map(nomDe).join(' et ')}`);
+          for (const id of ids) (s.menaces ??= new Set()).add(id);
+        }
+      }
       return s;
     }
     if (modeCible === 'cibles') {
@@ -416,7 +446,11 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
   else if (carte && apercu) consigne = apercu + (carte.nbCibles > 1 ? ` (${selection?.cibles.length ?? 0}/${carte.nbCibles} cibles)` : '');
   else if (carte && carte.nbCibles > 1) consigne = `${carte.nom} : choisissez jusqu'à ${carte.nbCibles} cibles (${selection?.cibles.length ?? 0}/${carte.nbCibles})${ciblesRepetables(carte) ? ', une même créature peut être visée plusieurs fois' : ''}.`;
   else if (carte) consigne = `${carte.nom} : choisissez une cible.`;
-  else if (survolChemin) consigne = `Déplacement : ${formatMetres(survolChemin.cout)}.`;
+  else if (survolChemin) {
+    const noms = [...(surcouches.menaces ?? [])].map((id) => etat.combattants.find((x) => x.id === id)?.nom ?? id);
+    const liste = noms.length > 1 ? `${noms.slice(0, -1).join(', ')} et ${noms[noms.length - 1]}` : noms[0];
+    consigne = `Déplacement : ${formatMetres(survolChemin.cout)}.${noms.length ? ` ⚠ Attaque d'opportunité : ${liste}.` : ''}`;
+  }
   else consigne = 'Cliquez une case en surbrillance pour vous déplacer, jouez une carte, ou cliquez un ennemi pour voir ses renseignements.';
 
   const t = cVue.tour;
@@ -431,7 +465,15 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
         >
           {onFinHistoire ? '‹ Fuir' : '‹ Escarmouche'}
         </button>
-        <Initiative etat={vue} onSurvol={setSurvolId} />
+        <Initiative
+          etat={vue}
+          epingleId={epingle}
+          onSurvol={(id) => {
+            setSurvolId(id);
+            setPisteId(id);
+          }}
+          onClic={clicPortrait}
+        />
         <div className="combat-titre">
           <span>{reglages.rencontre.nom}</span>
           <small>
@@ -458,6 +500,8 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
           onClicCase={clicCase}
           onClicJeton={clicJeton}
           onSurvolJeton={setSurvolId}
+          illumineId={pisteId}
+          epingleId={epingle}
           effets={anim.vue.effets}
           elements={anim.elements}
           vitesse={vitesse}
@@ -492,7 +536,7 @@ export function Combat({ donnees, reglages, graine, onRejouer, onRetour, onFinHi
             setSelection(null);
             setHerosAuto(!herosAuto);
           }}
-          onRapide={() => setRapide(!rapide)}
+          onRapide={basculerRapide}
         />
         <MainCartes
           sections={sections}

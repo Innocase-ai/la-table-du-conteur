@@ -22,10 +22,11 @@ export { moduleCarte, moduleCodex, moduleCommerce, moduleProgression, moduleCont
 export { evenementsIci, herosQuiAgit, origineAffichee, type EtatEvenementsChoix, type FicheEvenement, type ChoixAffiche, type ResultatEvenement } from './evenements-choix';
 export { sceneEnCours, scenesDu, SceneNarree, PlanScene, type EtatScenes } from './scenes';
 export { objetDe, plusBlesse, POTION_DE_COMBAT, type EtatInventaire } from './inventaire';
-export { appliquerEquipement, bouclierActif, caAvecEquipement, chargeDuGroupe, copieEquipement, estDeuxMains, estLegere, harmonises, HARMONISES_MAX, idElementPorte, infoEquipement, mainsArmees, normaliserEquipement, objetsPortes, placer, proprietesArme, rangerAvecCatalogue, retirerDe, type ResultatPlacer } from './equipement-regles';
+export { appliquerEquipement, bouclierActif, caAvecEquipement, chargeDuGroupe, copieEquipement, estDeuxMains, estLegere, harmonises, harmonisesEmbarques, HARMONISES_MAX, idElementPorte, infoEquipement, mainsArmees, normaliserEquipement, objetsPortes, placer, proprietesArme, rangerAvecCatalogue, retirerDe, type ResultatPlacer } from './equipement-regles';
 export { sortsConnus } from './grimoire';
 export { ficheDeSort } from './fiche-sort';
-export { articles, rachats, prixLisible, type EtatCommerce } from './commerce';
+export { articles, rachats, prixLisible, vitrineDe, type ArticleVitrine, type EtatCommerce, type ServiceVitrine, type Vitrine } from './commerce';
+export { resumeObjet, type CaracteristiqueObjet, type ResumeObjet } from './objet-resume';
 export { idImageCommune } from './image-commune';
 export type { Interlocuteur } from './dialogue';
 

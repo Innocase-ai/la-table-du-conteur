@@ -165,6 +165,9 @@ const SECTIONS_ECRITES: Section[] = [
           <li>Choisissez une histoire : chacune est un monde complet, avec ses lieux, ses personnages, ses quêtes et plusieurs fins.</li>
           <li>Explorez, parlez, combattez : vos décisions changent le monde et la fin de l'histoire.</li>
         </ol>
+        <p>
+          Les crédits (musiques, pictogrammes, règles du SRD) s'ouvrent depuis la ligne discrète au pied de l'écran titre.
+        </p>
         <p className="aide-note">Le jeu est un prototype jouable, en cours de développement. Le mode « livre » (boutons et textes des auteurs) est complet ; le conteur IA est encore à l'essai (voir « Le conteur et le mode livre »).</p>
       </>
     ),
@@ -247,10 +250,11 @@ const SECTIONS_ECRITES: Section[] = [
             coûte double. Cliquez une case en surbrillance pour vous y rendre.
           </li>
           <li>
-            <strong>Action</strong> : attaquer, lancer un sort, foncer (mouvement doublé), se désengager, esquiver, aider un allié, stabiliser un allié tombé, lutter ou bousculer un adversaire, boire une potion…
+            <strong>Action</strong> : attaquer, lancer un sort, foncer (mouvement doublé), se désengager, esquiver, aider un allié, stabiliser un allié tombé,
+            lutter ou bousculer un adversaire…
           </li>
           <li>
-            <strong>Action bonus</strong> : certaines aptitudes et certains sorts (Second souffle, Rage, Action rusée…).
+            <strong>Action bonus</strong> : boire une potion de soins, et certaines aptitudes et certains sorts (Second souffle, Rage, Action rusée…).
           </li>
           <li>
             <strong>Réaction</strong> : une par round, jouée automatiquement (attaque d'opportunité, sort de Bouclier).
@@ -269,6 +273,16 @@ const SECTIONS_ECRITES: Section[] = [
           </li>
           <li>
             <strong>Critique</strong> : un 20 naturel touche toujours et double les dés de dégâts.
+          </li>
+          <li>
+            <strong>Maîtrise d'arme</strong> : sans la maîtrise d'une arme, votre attaque n'ajoute pas le bonus de maîtrise.
+          </li>
+          <li>
+            <strong>Armure sans formation</strong> : une armure ou un bouclier dont on n'a pas la formation donne le désavantage aux attaques et aux jets de sauvegarde de
+            Force et de Dextérité, et empêche de lancer des sorts. Une armure trop lourde pour votre Force (<strong>Force minimale</strong>) vous ralentit de 3 m.
+          </li>
+          <li>
+            <strong>Sort de zone</strong> : un seul jet de dégâts pour toutes les créatures touchées ; chacune fait sa propre sauvegarde.
           </li>
           <li>
             <strong>Aider</strong> : un adversaire est à 1,5 m de vous ? Votre action donne l'<strong>Avantage</strong> à la prochaine attaque d'un allié contre lui,
@@ -435,13 +449,19 @@ const SECTIONS_ECRITES: Section[] = [
 
         <h3>La musique d’ambiance</h3>
         <p>
-          Chaque combat a sa <strong>musique d’ambiance</strong>, tirée au hasard parmi cinq : embuscade en forêt, crypte et souterrain, caverne, camp de guerre et combat
-          intense. On ne retombe jamais deux fois de suite sur la même. Elle s’installe en fondu au début du combat, tourne en boucle sans coupure et s’éteint en douceur
+          Chaque combat a sa <strong>musique d’ambiance</strong>, tirée au hasard parmi six : embuscade en forêt, crypte et souterrain, caverne, camp de guerre, combat
+          intense et bataille. On ne retombe jamais deux fois de suite sur la même. Elle s’installe en fondu au début du combat, tourne en boucle sans coupure et s’éteint en douceur
           quand le combat se termine.
         </p>
         <p>
           C’est un fond sonore : elle reste volontairement <strong>sous les bruitages</strong>, qu’elle ne couvre jamais. Le bouton <strong>♪</strong> la coupe ou la remet, et
           son curseur, séparé de celui des bruitages, règle son volume ; votre choix est gardé d’une partie à l’autre.
+        </p>
+
+        <p>
+          Hors combat, une <strong>musique d’accueil</strong> joue dans les menus et une <strong>musique de fond</strong>, très basse, accompagne l’histoire ; elles
+          s’enchaînent sans se répéter, et le bouton <strong>⏭</strong> passe à la suivante. Un combat les interrompt ; elles reprennent à leur place quand il se termine, et
+          elles baissent pendant une scène narrée.
         </p>
 
         <p className="aide-note">
@@ -520,6 +540,13 @@ const SECTIONS_ECRITES: Section[] = [
           Jouez une carte, puis choisissez sa cible sur le plateau (ou un point, pour un sort de zone). Une carte grisée n'est pas jouable : survolez-la pour
           savoir pourquoi.
         </p>
+        <h3>Les aptitudes de classe</h3>
+        <p>
+          Les aptitudes à usage limité ont leur propre carte, avec un compteur : l'<strong>Inspiration bardique</strong> du barde (le dé se dépense tout seul sur un jet
+          d'attaque ou de sauvegarde raté qu'il peut rattraper), le <strong>Châtiment divin</strong> du paladin (après un coup au contact : dégâts doublés sur un
+          critique, plus forts contre un fiélon ou un mort-vivant), et les techniques du moine, payées en points de <strong>Credo</strong> (Déluge de coups, Frappe
+          étourdissante, Patience défensive…). Survolez une carte grisée pour savoir pourquoi elle n'est pas jouable.
+        </p>
         <h3>Le deck d'élan</h3>
         <p>
           Option des escarmouches. Chaque héros a un petit paquet de cartes tiré de sa classe : il en pioche <strong>deux</strong> au début de son tour et peut
@@ -561,6 +588,10 @@ const SECTIONS_ECRITES: Section[] = [
         <p>
           Un héros à <strong>0 PV</strong> tombe inconscient et fait des <strong>jets contre la mort</strong> à chacun de ses tours : trois réussites, il se
           stabilise ; trois échecs, il meurt. Un soin le relève aussitôt. Les monstres à 0 PV meurent.
+        </p>
+        <p>
+          <strong>Dans une histoire, personne ne meurt pour de bon</strong> : à la fin du combat, un héros tombé est relevé avec 1 PV. La mort définitive ne
+          s'applique qu'aux escarmouches.
         </p>
       </>
     ),
@@ -693,7 +724,11 @@ const SECTIONS_ECRITES: Section[] = [
         <dt>Botte d'arme</dt>
         <dd>Effet propre à une arme maîtrisée (Sape, Ouverture, Renversement, Ralentissement…), appliqué quand elle touche.</dd>
         <dt>PX</dt>
-        <dd>Points d'expérience : ils mesurent la difficulté d'une rencontre et font monter le groupe de niveau.</dd>
+        <dd>Points d'expérience : ils mesurent la difficulté d'une rencontre et font monter le groupe de niveau. L'XP d'un combat se partage entre les héros.</dd>
+        <dt>Contrat</dt>
+        <dd>Petite quête de combat (une dizaine de minutes) donnée par un personnage qui a un vrai problème ; elle a presque toujours une issue sans combat.</dd>
+        <dt>Parchemin</dt>
+        <dd>L'écran qui ouvre une quête, la déclare accomplie (tampon « Accomplie ») ou échouée.</dd>
       </dl>
     ),
   },

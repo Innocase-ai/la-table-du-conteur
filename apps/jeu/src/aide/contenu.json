@@ -6,7 +6,7 @@
       "blocs": [
         {
           "t": "p",
-          "texte": "Le menu « Choisir une histoire » présente les trois histoires du jeu. Chacune est un monde complet, avec ses lieux, ses personnages, ses quêtes et plusieurs fins. Prenez le temps de comparer avant de vous lancer."
+          "texte": "Le menu « Choisir une histoire » présente les histoires du jeu. Chacune est un monde complet, avec ses lieux, ses personnages, ses quêtes et plusieurs fins. Prenez le temps de comparer avant de vous lancer."
         },
         {
           "t": "h3",
@@ -14,7 +14,7 @@
         },
         {
           "t": "p",
-          "texte": "À gauche, une carte par histoire : illustration, titre, accroche, niveaux, durée et coût d'API estimé. Cliquez une carte pour afficher sa fiche à droite. La fiche présente la grande illustration, le titre, l'accroche en italique, des étiquettes de ton, un résumé et la liste des « Chapitres », avec les niveaux de chacun."
+          "texte": "À gauche, une carte par histoire : illustration, titre, accroche, niveaux, durée et coût d'API estimé. Cliquez une carte pour afficher sa fiche à droite. La fiche présente la grande illustration, le titre, l'accroche en italique, des étiquettes de ton, un résumé et la liste des « Chapitres », avec les niveaux de chacun. La fiche annonce aussi le **groupe conseillé** (4 ou 6 héros) : l'histoire est écrite pour cette taille. À moins de héros, ses combats sont allégés ; à plus, des renforts s'ajoutent."
         },
         {
           "t": "capture",
@@ -89,7 +89,8 @@
           "items": [
             "**En haut** : le titre de l'histoire et du lieu, le jour et le moment (par exemple « Jour 1 · matin »), la **jauge** de l'histoire et l'or du groupe.",
             "**La jauge** est une horloge : elle monte avec le temps et change le monde. Elle affiche son palier, par exemple « La grande marée ●○○○ · Le vol connu ».",
-            "**Au centre** : l'illustration du lieu et sa description, puis le récit de ce qui arrive, avec le texte, les jets de dés et les lignes « Vous apprenez : … »."
+            "**Au centre** : l'illustration du lieu et sa description, puis le récit de ce qui arrive, avec le texte, les jets de dés et les lignes « Vous apprenez : … ».",
+            "**Regarder autour de soi** : à la première visite d’un lieu, un court récit décrit votre arrivée. Le bouton « Regarder autour de soi » le relit, sans jet ni coût ; il change si le lieu a changé (avant et après un événement)."
           ]
         },
         {
@@ -108,7 +109,7 @@
             "**Personnes** : « Parler à… » ouvre la conversation avec quelqu'un du lieu.",
             "**Ici** : **Fouiller** cherche trésors cachés, passages secrets et pièges ; **Halte** est un repos court ; **Dormir** passe la nuit, seulement dans un lieu sûr.",
             "**À portée de main** : les objets et les éléments du lieu. **Examiner** lit un détail du décor, **Prendre** le ramasse, **Crocheter** ouvre une serrure avec des outils de voleur (silencieux), **Forcer** tente de la faire céder (bruyant). Si des personnes sont dans le lieu, un jet de Discrétion dit si elles vous voient : vues, elles vous arrêtent net (rien ne s’ouvre), leur attitude baisse, elles vous surveillent toute la journée, et elles vous en parleront. Persuader, tromper ou intimider avec succès les calme. Un écran montre l’effort et son compte à rebours, plus court pour un héros habile. Un piège repéré se **Désamorce** : un écran montre le mécanisme (aiguille, fil, plaque, sol, poids, gaz, glyphe ou rouages) puis le résultat ; sans l’outil qu’il demande, le jet se fait avec désavantage, et un échec de 5 ou plus le déclenche : sauvegarde, dégâts et états sont alors affichés.",
-            "**Partir** : chaque sortie, avec sa durée en heures. « inexploré » signale un endroit où vous n'êtes jamais allé. Une phrase décrit le passage avant que vous ne cliquiez."
+            "**Partir** : chaque sortie, avec sa durée en heures. « inexploré » signale un endroit où vous n'êtes jamais allé. Une phrase décrit le passage avant que vous ne cliquiez. Une sortie grisée (« Bientôt disponible », « Fait partie d’un autre pack ») mène à une suite pas encore ouverte : elle ne s’ouvre pas, mais son texte dit ce qui vous attend."
           ]
         },
         {
@@ -122,6 +123,10 @@
         {
           "t": "p",
           "texte": "Un héros qui crochète ou force une serrure peut déclencher un piège s'il échoue."
+        },
+        {
+          "t": "p",
+          "texte": "Certains pièges sont cachés dans un passage (une corniche rongée, des dalles) : ils se déclenchent quand le groupe quitte le lieu sans les avoir trouvés. Fouillez avant de repartir."
         },
         {
           "t": "capture",
@@ -145,7 +150,7 @@
         },
         {
           "t": "p",
-          "texte": "« Parler à… » ouvre une boîte de dialogue avec le portrait et le rôle du personnage, sa réplique, puis des réponses numérotées. Appuyez sur les touches 1 à 9 pour choisir. « Fin du dialogue » ou Échap termine la conversation. Les salutations changent selon ce que vous avez déjà fait."
+          "texte": "« Parler à… » ouvre une boîte de dialogue avec le portrait et le rôle du personnage, sa réplique, puis des réponses numérotées. Appuyez sur les touches 1 à 9 pour choisir. « Fin du dialogue » ou Échap termine la conversation. Les salutations changent selon ce que vous avez déjà fait. Le personnage ouvre souvent la conversation par une courte phrase, dite à voix haute : son ton suit sa confiance envers vous (neutre, amical ou méfiant), et il garde la même voix d’une conversation à l’autre."
         },
         {
           "t": "capture",
@@ -161,12 +166,13 @@
           "t": "ul",
           "items": [
             "**Les sujets** : ce que vous voulez demander au personnage.",
-            "**Les approches sociales**, entre crochets : [Persuader], [Intimider], [Tromper]. Un héros fait alors un jet de compétence, et la réussite dépend de l'attitude du personnage, c'est-à-dire sa confiance envers vous."
+            "**Les approches sociales**, entre crochets : [Persuader], [Intimider], [Tromper]. Un héros fait alors un jet de compétence, et la réussite dépend de l'attitude du personnage, c'est-à-dire sa confiance envers vous.",
+            "**Les questions qui s’enchaînent** : une réponse peut en ouvrir d’autres. Certaines questions n’apparaissent qu’après une autre réponse, ou après un fait appris ailleurs. Reparlez aux personnages après chaque découverte : ils en disent aussi sur le lieu, la sous-région ou la région qui l’entoure."
           ]
         },
         {
           "t": "p",
-          "texte": "Certains secrets ne se disent qu'avec assez de confiance : un jet réussi, un prix à payer, ou une preuve, comme un objet ou un fait appris. Si une porte reste fermée, il manque sans doute l'un de ces éléments."
+          "texte": "Certains secrets ne se disent qu'avec assez de confiance : un jet réussi, un prix à payer, ou une preuve, comme un objet ou un fait appris. Si une porte reste fermée, il manque sans doute l'un de ces éléments. Les approches sociales se jouent contre une difficulté de 15 : un personnage amical vous donne l’avantage, un hostile le désavantage. Après un échec, la même approche sur le même personnage reste fermée pendant 24 heures (le bouton est grisé, avec la raison)."
         },
         {
           "t": "h3",
@@ -251,6 +257,18 @@
           "texte": "Le journal rassemble trois rubriques : « Quêtes en cours », « Questions en suspens » (les mystères que le jeu vous pose), et « Scènes », où l'on revoit le film d'ouverture et les scènes narrées. Une chronique de vos choix garde la trace de ce que vous avez décidé."
         },
         {
+          "t": "h3",
+          "texte": "Quêtes, contrats et parchemins"
+        },
+        {
+          "t": "p",
+          "texte": "Une quête qui commence s’ouvre sur un **parchemin** : qui la donne, ce qu’il faut faire, le premier objectif et les récompenses. Le cachet change de couleur selon le type (principale rouge, secondaire bleu, personnelle violet, faction vert). Quand la quête est accomplie, un tampon « Accomplie » tombe sur le parchemin avec ce que le groupe reçoit (PX, or, objets) ; une quête échouée porte un cachet gris. Échap, Espace ou Entrée ferment le parchemin."
+        },
+        {
+          "t": "p",
+          "texte": "Les **contrats** sont de petites quêtes de combat, d’une dizaine de minutes : un personnage a un vrai problème (le tableau de l’auberge, un forgeron, un camp de réfugiés). Une quête proposée se prend dans la conversation, puis « Accepter » dans le Journal. Le combat n’arrive qu’après l’acceptation, et il y a presque toujours une issue sans combat : parler, payer, ruser."
+        },
+        {
           "t": "p",
           "texte": "Si vous ne savez plus où aller, commencez par la carte : les lieux en pointillés sont connus mais jamais visités, et la sortie choisie dans l'onglet Actions indique sa durée en heures. Ensuite, ouvrez « Quêtes en cours » et « Questions en suspens » pour retrouver le fil de l'histoire. Ce que vous découvrez reste sur la carte : le brouillard ne couvre que ce que vous ne connaissez pas encore."
         },
@@ -298,7 +316,7 @@
         },
         {
           "t": "p",
-          "texte": "Cliquez un objet pour afficher sa fiche à droite : grande illustration, nom, rareté (Commun, par exemple), catégorie, valeur, poids et description. Le bouton « Jeter » se trouve dans cette fiche, sauf pour les objets de quête, les clés et tout objet qui ouvre un passage, qu'on ne peut ni jeter ni vendre. Les potions de guérison portées par chaque héros y sont aussi listées."
+          "texte": "Cliquez un objet pour afficher sa fiche à droite : grande illustration, nom, rareté (Commun, par exemple), catégorie, valeur, poids et description. Le bouton « Jeter » se trouve dans cette fiche, sauf pour les objets de quête, les clés et tout objet qui ouvre un passage, qu'on ne peut ni jeter ni vendre. Les potions de guérison portées par chaque héros y sont aussi listées. Chaque objet de l’histoire a sa propre illustration ; sans image, la fiche montre l’icône de sa catégorie."
         },
         {
           "t": "capture",
@@ -338,7 +356,7 @@
         },
         {
           "t": "p",
-          "texte": "Pour ouvrir la feuille, cliquez un héros du bandeau ou appuyez sur C. Les flèches ← → passent d'un héros à l'autre."
+          "texte": "Pour ouvrir la feuille, cliquez un héros du bandeau ou appuyez sur C. Les flèches ← → passent d'un héros à l'autre. Le bouton « Inventaire » de la feuille ouvre le sac à ce que porte le héros ; dans le sac, « Feuille de … » ouvre la sienne."
         },
         {
           "t": "captures",
@@ -401,7 +419,7 @@
         },
         {
           "t": "p",
-          "texte": "L'écran « Victoire » résume le combat : nombre de rounds, PV des héros, ennemis vaincus et héros tombés. Il propose « Reprendre le récit » ou « Voir le plateau »."
+          "texte": "L'écran « Victoire » résume le combat : nombre de rounds, PV des héros, ennemis vaincus, héros tombés et **l’XP gagnée** par chaque héros. Il propose « Reprendre le récit » ou « Voir le plateau »."
         },
         {
           "t": "capture",
@@ -411,7 +429,15 @@
         },
         {
           "t": "p",
-          "texte": "Les PX font monter le niveau du groupe quand ils atteignent le seuil suivant."
+          "texte": "Les PX font monter le niveau du groupe quand ils atteignent le seuil suivant. L’XP d’un combat se partage entre les héros, et une rencontre déjà vaincue ne rapporte plus de PX."
+        },
+        {
+          "t": "h3",
+          "texte": "Tomber au combat"
+        },
+        {
+          "t": "p",
+          "texte": "Dans une histoire, personne ne meurt pour de bon : à la fin du combat, un héros tombé est relevé avec 1 PV. Si tout le groupe est à terre, c’est une défaite : il reprend connaissance huit heures plus tard avec 1 PV, délesté de la moitié de son or, et la rencontre l’attend toujours au même endroit."
         }
       ]
     },
@@ -442,6 +468,14 @@
         },
         {
           "t": "h3",
+          "texte": "L’écran de sommeil"
+        },
+        {
+          "t": "p",
+          "texte": "Dormir ouvre un écran : une chambre si vous dormez à l’auberge ou dans un bâtiment, un camp et son feu sinon. L’horloge avance d’une heure par seconde jusqu’au réveil (8 h) ; « Se réveiller » (Échap, Espace ou Entrée) l’interrompt. Si une rencontre interrompt le repos, il est écourté : une nuit n’apporte alors que les bénéfices d’un repos court, et une halte interrompue ne rend rien."
+        },
+        {
+          "t": "h3",
           "texte": "Le temps qui passe"
         },
         {
@@ -465,7 +499,7 @@
           "items": [
             "Les nouveautés (amélioration de caractéristique, sorts, options de classe, expertises) sont d'abord complétées pour vous, puis un écran « Montée de niveau » s'ouvre : changez ce que vous voulez et validez, ou gardez les choix conseillés. « Plus tard » le ferme ; un bouton « Niveau N » sur le héros le rouvre.",
             "Les PV, les emplacements de sorts et les aptitudes gagnés s'ajoutent à ce que vous aviez déjà.",
-            "Le niveau ne dépasse jamais le niveau maximum de l'histoire, indiqué sur sa fiche."
+            "Le niveau ne dépasse jamais le maximum du chapitre le plus avancé où le groupe est allé (indiqué sur la fiche de l’histoire) : l’XP en trop est mise de côté et devient des niveaux quand le groupe entre dans un chapitre plus avancé. Une rencontre ne rapporte ses PX qu’une fois."
           ]
         }
       ]
@@ -526,11 +560,11 @@
       "blocs": [
         {
           "t": "p",
-          "texte": "L'écran « Mon groupe » rassemble vos six emplacements. Cette section détaille ce que vous y voyez, ce que vous pouvez y faire, puis le créateur de personnage, qui compte huit écrans."
+          "texte": "L'écran « Mon groupe » rassemble les quatre ou six emplacements de votre groupe (au choix, en haut de l’écran). Cette section détaille ce que vous y voyez, ce que vous pouvez y faire, puis le créateur de personnage, qui compte huit écrans."
         },
         {
           "t": "h3",
-          "texte": "Les six emplacements"
+          "texte": "Les emplacements"
         },
         {
           "t": "p",
@@ -563,9 +597,10 @@
           "t": "ul",
           "items": [
             "**Niveau du groupe** : réglable de 1 à 20.",
-            "**Groupe conseillé** crée six héros équilibrés, prêts à jouer. Utilisez-le quand le groupe est vide.",
+            "**Taille du groupe** : « 4 héros » ou « 6 héros » en haut de l’écran. Passer à 4 retire les héros des emplacements 5 et 6, après confirmation : exportez d’abord le groupe si vous voulez les garder.",
             "**Exporter** et **Importer** : sauvegardez un groupe ou chargez-en un autre.",
-            "**Conseils de composition** : ils ne bloquent jamais. Exemple : « Groupe de 1 : les combats des histoires auront moins de monstres »."
+            "**Conseils de composition** : ils ne bloquent jamais. Exemple : « Groupe de 1 : les combats des histoires auront moins de monstres ».",
+            "**Groupe conseillé** crée en un clic un groupe équilibré de la taille choisie (4 ou 6 héros). Utilisez-le quand le groupe est vide."
           ]
         },
         {
@@ -660,7 +695,7 @@
         },
         {
           "t": "p",
-          "texte": "À la fin du combat, l'écran « Victoire » présente les rounds, les PV des héros, les ennemis vaincus et les héros tombés. Il propose « Reprendre le récit » ou « Voir le plateau »."
+          "texte": "À la fin du combat, l'écran « Victoire » présente les rounds, les PV des héros, les ennemis vaincus et les héros tombés. Il propose « Reprendre le récit » ou « Voir le plateau ». Dans une histoire, il ajoute l’XP gagnée par chaque héros."
         },
         {
           "t": "capture",

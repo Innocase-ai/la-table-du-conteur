@@ -1,8 +1,11 @@
 // La carte du monde : l'image illustrée du lieu conteneur (région, ville, donjon…), les lieux posés dessus, un voile de
 // brouillard sur ce que le groupe n'a pas vu et le repère « vous êtes ici ». Elle ne calcule rien : le module Carte du moteur
-// lui donne les lieux visibles ; se déplacer, c'est la commande `aller`, comme avec les boutons de l'onglet Actions.
-import { useEffect, useId, useState } from 'react';
+// lui donne les lieux visibles ; se déplacer, c'est la commande `aller`, comme avec les boutons de l'onglet Actions. Un lieu accessible
+// se rejoint d'un double-clic (ou double-tape), d'Entrée sur le lieu déjà choisi, ou du bouton posé près de son marqueur ; les chemins
+// du lieu du groupe vers ses sorties connues sont tracés avec leur durée. Les règles de présentation sont dans `carte-regles.ts`.
+import { useEffect, useId, useRef, useState } from 'react';
 import type { CarteMonde as DonneesCarte, MarqueurCarte, Ordre } from '@crpg/regles';
+import { activation, estDouble, motifInaccessible, peutAller, trajetsDepuisIci, type DernierClic } from '../carte-regles';
 import { manifesteDe, urlImage } from '../mondes';
 
 const LARGEUR = 1248;
@@ -43,6 +46,7 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
   const idMasque = useId().replace(/:/g, '');
   const [vueId, setVueId] = useState(carte.courant);
   const [choisi, setChoisi] = useState<string>();
+  const dernierClic = useRef<DernierClic>();
   // Le groupe a bougé : la carte revient sur le lieu où il se trouve.
   useEffect(() => {
     setVueId(carte.courant);
@@ -53,10 +57,23 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
   if (!vue) return <p className="encart-texte">Pas encore de carte à montrer ici.</p>;
 
   const u = grande ? 1 : 2.6; // taille d'un point d'interface en unités du dessin
-  const px = (m: MarqueurCarte) => ({ cx: (m.x / 100) * LARGEUR, cy: (m.y / 100) * HAUTEUR });
+  const px = (m: { x: number; y: number }) => ({ cx: (m.x / 100) * LARGEUR, cy: (m.y / 100) * HAUTEUR });
   const sel = vue.marqueurs.find((m) => m.id === choisi);
   const parent = vue.conteneur.parent && carte.vues[vue.conteneur.parent] ? vue.conteneur.parent : undefined;
   const rayonVoile = (m: MarqueurCarte) => (m.etat === 'connu' ? 120 : 180);
+  const trajets = trajetsDepuisIci(vue);
+  const aller = (m: MarqueurCarte) => {
+    dernierClic.current = undefined;
+    jouer({ type: 'aller', vers: m.id });
+  };
+  // Un clic choisit le lieu ; un second clic (ou tape) tout de suite sur le même lieu accessible y va ; au clavier, Entrée sur le lieu déjà choisi.
+  const activer = (m: MarqueurCarte, clavier: boolean) => {
+    const maintenant = Date.now();
+    const double = !clavier && estDouble(dernierClic.current, m.id, maintenant);
+    dernierClic.current = { id: m.id, instant: maintenant };
+    if (peutAller(m) && (double || (clavier && activation(m, choisi) === 'aller'))) return aller(m);
+    setChoisi(m.id);
+  };
 
   return (
     <div className={`carte-monde${grande ? ' carte-grande' : ''}`}>
@@ -69,6 +86,7 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
         <strong>{vue.conteneur.nom}</strong>
         <small>{TYPES[vue.conteneur.type] ?? vue.conteneur.type}</small>
       </div>
+      <div className="carte-cadre">
       <svg className="carte-svg" viewBox={`0 0 ${LARGEUR} ${HAUTEUR}`} role="group" aria-label={`Carte : ${vue.conteneur.nom}`} preserveAspectRatio="xMidYMid meet">
         <defs>
           <radialGradient id={`${idMasque}-fond`} cx="50%" cy="45%" r="75%">
@@ -90,6 +108,25 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
         <rect width={LARGEUR} height={HAUTEUR} fill={`url(#${idMasque}-fond)`} />
         {image && <image href={image} width={LARGEUR} height={HAUTEUR} preserveAspectRatio="xMidYMid slice" />}
         {image && <rect width={LARGEUR} height={HAUTEUR} fill="#0b0907" opacity="0.84" mask={`url(#${idMasque}-masque)`} pointerEvents="none" />}
+        {trajets.length > 0 && (
+          <g className="carte-trace" pointerEvents="none" aria-hidden>
+            {trajets.map((t) => {
+              const a = px(t.de);
+              const b = px(t.a);
+              const m = px(t.milieu);
+              return (
+                <g key={t.vers} className={`carte-trace-chemin carte-trace-${t.statut}${t.vers === choisi ? ' carte-trace-choisi' : ''}`}>
+                  <line x1={a.cx} y1={a.cy} x2={b.cx} y2={b.cy} strokeWidth={3.5 * u} />
+                  {t.duree && (
+                    <text className="carte-trace-duree" x={m.cx} y={m.cy} fontSize={13 * u} textAnchor="middle" dominantBaseline="middle">
+                      {t.duree}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+          </g>
+        )}
         {vue.marqueurs.map((m) => {
           const { cx, cy } = px(m);
           const actif = m.id === choisi;
@@ -100,12 +137,12 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
               className={`carte-lieu carte-${m.etat}${actif ? ' carte-choisi' : ''}`}
               role="button"
               tabIndex={0}
-              aria-label={`${m.nom}${m.etat === 'ici' ? ' (vous êtes ici)' : m.etat === 'connu' ? ' (pas encore visité)' : ''}`}
-              onClick={() => setChoisi(m.id)}
+              aria-label={`${m.nom}${m.etat === 'ici' ? ' (vous êtes ici)' : m.etat === 'connu' ? ' (pas encore visité)' : ''}${peutAller(m) ? ` — accessible${m.acces?.heures ? ` en ${m.acces.heures} h` : ''} : double-clic, ou Entrée une fois choisi, pour y aller` : ''}`}
+              onClick={() => activer(m, false)}
               onKeyDown={(ev) => {
                 if (ev.key === 'Enter' || ev.key === ' ') {
                   ev.preventDefault();
-                  setChoisi(m.id);
+                  activer(m, true);
                 }
               }}
             >
@@ -126,6 +163,14 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
           );
         })}
       </svg>
+      {sel && peutAller(sel) && (
+        <div className={`carte-action${sel.y > 80 ? ' carte-action-haut' : ''}`} style={{ left: `${Math.min(88, Math.max(12, sel.x))}%`, top: `${sel.y}%` }}>
+          <button type="button" className="bouton-principal carte-action-bouton" onClick={() => aller(sel)}>
+            Y aller{sel.acces?.heures ? ` · ${sel.acces.heures} h` : ''}
+          </button>
+        </div>
+      )}
+      </div>
       <div className="carte-volet" aria-live="polite">
         {sel ? (
           <>
@@ -133,16 +178,12 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
             {sel.objectifs && <p className="carte-objectifs">◆ Objectif de quête : {sel.objectifs.join(', ')}</p>}
             {sel.etat === 'ici' ? (
               <p>{sel.id === carte.lieu.id ? 'Le groupe est ici.' : 'Le groupe est quelque part là-dedans.'}</p>
-            ) : sel.acces?.bloque ? (
-              <p>Ce passage est infranchissable pour l’instant.</p>
-            ) : sel.acces?.verrouille ? (
-              <p>Le passage est verrouillé : voyez « Partir » dans l’onglet Actions.</p>
-            ) : sel.acces ? (
-              <button type="button" className="bouton-principal" onClick={() => jouer({ type: 'aller', vers: sel.id })}>
-                Y aller{sel.acces.heures ? ` (${sel.acces.heures} h)` : ''}
+            ) : peutAller(sel) ? (
+              <button type="button" className="bouton-principal" onClick={() => aller(sel)}>
+                Y aller{sel.acces?.heures ? ` (${sel.acces.heures} h)` : ''}
               </button>
             ) : (
-              <p>Pas de passage direct d’ici.</p>
+              <p>{motifInaccessible(sel)}</p>
             )}
             {sel.etat === 'connu' && <p className="carte-aide">Pas encore visité.</p>}
             {sel.aCarte && (
@@ -153,7 +194,7 @@ export function CarteMonde({ monde, carte, jouer, grande }: Props) {
           </>
         ) : (
           <p className="carte-aide">
-            <span className="carte-legende ici" /> vous êtes ici · <span className="carte-legende visite" /> visité · <span className="carte-legende connu" /> connu, pas encore visité · <span className="carte-legende objectif" /> objectif de quête. Choisissez un lieu.
+            <span className="carte-legende ici" /> vous êtes ici · <span className="carte-legende visite" /> visité · <span className="carte-legende connu" /> connu, pas encore visité · <span className="carte-legende objectif" /> objectif de quête. Choisissez un lieu ; un double-clic sur un lieu relié d’un trait vous y emmène.
           </p>
         )}
       </div>

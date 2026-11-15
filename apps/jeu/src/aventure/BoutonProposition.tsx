@@ -20,10 +20,14 @@ interface Props {
   monde?: string;
 }
 
+/** « +6 » ou « −1 » : le bonus d'un test, avec son signe. */
+const signeBonus = (n: number | undefined) => (n === undefined ? '' : n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
+
 export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Props) {
   const [texte, setTexte] = useState('');
   const [ouvert, setOuvert] = useState(false);
   const [aConfirmer, setAConfirmer] = useState(false);
+  const [acteurOuvert, setActeurOuvert] = useState(false);
   const vignette = useImageElement(monde, p.image);
   const preparer = useContext(ContextePreparation);
 
@@ -132,10 +136,60 @@ export function BoutonProposition({ p, jouer, onCombat, groupe, monde = '' }: Pr
           {p.signe && !aConfirmer && <span className={`signe-quete signe-en-ligne signe-${p.signe === '?' ? 'rapport' : p.signe === '!' ? 'quete' : 'objectif'}`} title="Objectif de quête">{p.signe}</span>}
           {aConfirmer ? 'Confirmer ?' : p.etiquette ? `[${p.etiquette}] ${p.libelle}` : p.libelle}
           {!aConfirmer && detail && <small> — {detail}</small>}
+          {!aConfirmer && !p.detail && p.jet?.qui && <small className="acteur-annonce"> — {p.jet.qui} {signeBonus(p.jet.bonus)}</small>}
         </>
       )}
     </button>
   );
+  // Un test d'exploration : un petit sélecteur fait agir un autre héros du groupe que celui annoncé sur le bouton.
+  const acteurs = p.acteurs && p.acteurs.length > 1 && p.ordre && !p.desactivee ? p.acteurs : undefined;
+  if (acteurs && p.ordre) {
+    const ordre = p.ordre;
+    return (
+      <span className="acteur-bloc">
+        <span className="acteur-ligne">
+          {bouton}
+          <button
+            type="button"
+            className="acteur-bascule"
+            aria-expanded={acteurOuvert}
+            aria-label={`${p.libelle} : choisir qui agit`}
+            title="Faire agir un autre héros"
+            onClick={() => setActeurOuvert(!acteurOuvert)}
+          >
+            ⇄
+          </button>
+        </span>
+        {acteurOuvert && (
+          <span className="choix-options acteur-options" role="group" aria-label={`Qui tente : ${p.libelle}`}>
+            <small>Qui tente ?</small>
+            {acteurs.map((o) => {
+              const heros = groupe.find((a) => a.id === o.id);
+              return (
+                <button
+                  key={o.id}
+                  type="button"
+                  className={`choix-option${o.nom === p.jet?.qui ? ' acteur-defaut' : ''}`}
+                  disabled={!!o.desactivee}
+                  title={o.desactivee}
+                  onClick={() => {
+                    setActeurOuvert(false);
+                    jouer({ ...ordre, personnage: o.id });
+                  }}
+                >
+                  {heros && <Portrait id={heros.portrait} espece={heros.fiche.espece} classe={heros.fiche.classe} taille={26} />}
+                  <span>
+                    <strong>{o.nom}</strong>
+                    <small>{o.desactivee ?? `${signeBonus(o.bonus)}${o.nom === p.jet?.qui ? ' · par défaut' : ''}`}</small>
+                  </span>
+                </button>
+              );
+            })}
+          </span>
+        )}
+      </span>
+    );
+  }
   // Une phrase d'explication sous le bouton (où mène une sortie) : le joueur sait pourquoi il clique.
   if (!p.apercu) return bouton;
   return (

@@ -7928,6 +7928,20 @@ kbd {
 @keyframes carte-pulse { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(1.7); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .carte-repere { animation: none; } }
 
+/* Carte du monde : chemins du lieu du groupe vers ses sorties (préfixe `carte-trace-`) et bouton d'action près du marqueur choisi (`carte-action`). */
+.carte-cadre { position: relative; }
+.carte-cadre .carte-svg { user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.carte-trace-chemin line { stroke: var(--or); stroke-linecap: round; stroke-dasharray: 14 12; opacity: 0.7; }
+.carte-trace-verrouille line { stroke: var(--cout-action); stroke-dasharray: 4 12; }
+.carte-trace-bloque line { stroke: var(--rouge); stroke-dasharray: 2 14; opacity: 0.55; }
+.carte-trace-choisi line { stroke: var(--or-vif); stroke-dasharray: none; opacity: 1; }
+.carte-trace-duree { fill: var(--or-vif); paint-order: stroke; stroke: #0e0c0a; stroke-width: 6px; stroke-linejoin: round; font-family: var(--titre); }
+.carte-trace-bloque .carte-trace-duree { fill: var(--texte-doux); }
+.carte-action { position: absolute; transform: translate(-50%, 22px); z-index: 2; pointer-events: none; }
+.carte-action-haut { transform: translate(-50%, calc(-100% - 22px)); }
+.carte-action-bouton { pointer-events: auto; white-space: nowrap; box-shadow: var(--ombre); }
+.carte-monde:not(.carte-grande) .carte-action-bouton { font-size: 12px; padding: 4px 10px; min-height: 0; }
+
 /* L'écran de sommeil : l'illustration de la nuit en plein écran, une horloge au centre. */
 .ecran-sommeil {
   position: fixed;
@@ -9409,6 +9423,44 @@ kbd {
   flex-wrap: wrap;
 }
 
+/* Comparateur d'équipement : sous la fiche d'un objet du sac, ce qu'il changerait chez le héros (avant → après). Préfixe `comparateur-`. */
+.comparateur {
+  padding: 8px 10px;
+  background: var(--panneau-2);
+  border: 1px solid var(--bord-clair);
+  border-left: 3px solid var(--or);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+}
+/* La fiche de l'objet est haute (grande image) : le comparateur reste collé en bas de la colonne tant qu'on ne l'a pas atteint. */
+.inv-fiche .comparateur { position: sticky; bottom: 0; z-index: 1; box-shadow: 0 -10px 14px -8px rgba(0, 0, 0, 0.6); }
+.comparateur-refus { border-left-color: var(--rouge); }
+.comparateur-titre { margin: 0; font-family: var(--titre); font-size: 13px; color: var(--or-vif); }
+.comparateur-lieu { margin: 0; color: var(--texte-faible); font-size: 11.5px; }
+.comparateur-lignes { margin: 2px 0 0; display: flex; flex-direction: column; gap: 3px; }
+.comparateur-ligne { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 6px; align-items: baseline; }
+.comparateur-ligne dt { color: var(--texte-doux); }
+.comparateur-ligne dd { margin: 0; }
+.comparateur-valeurs { display: flex; flex-wrap: wrap; gap: 2px 6px; align-items: baseline; }
+.comparateur-valeurs > span { white-space: pre-line; overflow-wrap: anywhere; }
+.comparateur-long .comparateur-valeurs { flex-direction: column; gap: 1px; }
+.comparateur-long .comparateur-fleche { display: none; }
+.comparateur-long .comparateur-apres::before { content: '→ '; color: var(--texte-faible); font-weight: 400; }
+.comparateur-avant { color: var(--texte-doux); }
+.comparateur-fleche { color: var(--texte-faible); }
+.comparateur-apres { color: var(--texte); font-weight: 600; }
+.comparateur-mieux .comparateur-apres { color: #8fd48f; }
+.comparateur-moins .comparateur-apres { color: var(--rouge); }
+.comparateur-lecteur { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.comparateur-note, .comparateur-rien { margin: 0; color: var(--texte-doux); font-size: 12px; }
+.comparateur-note { color: var(--cout-action); }
+@media (max-width: 520px) {
+  .comparateur-ligne { grid-template-columns: minmax(0, 1fr); gap: 1px; }
+}
+
 @media (max-width: 1200px) {
   .inv-corps {
     grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
@@ -9452,5 +9504,979 @@ kbd {
   }
   .poupee-silhouette {
     grid-template-columns: 74px minmax(0, 1fr) 74px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Combat : aperçu des attaques d'opportunité (préfixe combat-opportunite-) et piste d'initiative interactive (préfixe initiative-)
+   --------------------------------------------------------------------------- */
+.case.combat-opportunite-case::after {
+  background: rgba(226, 110, 80, 0.34);
+  box-shadow: inset 0 0 0 2px rgba(240, 120, 90, 0.95);
+}
+.combat-opportunite-marque {
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  z-index: 3;
+  transform: translateX(-50%);
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(60, 14, 8, 0.88);
+  border: 1px solid rgba(240, 120, 90, 0.9);
+  color: #ffd7c9;
+  font-size: clamp(8px, calc(var(--cote, 52px) * 0.17), 12px);
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.emplacement-jeton.combat-opportunite-menace .jeton-disque {
+  outline: 3px dashed rgba(240, 120, 90, 0.95);
+  outline-offset: 2px;
+}
+
+.initiative-entree[role='button'] {
+  cursor: pointer;
+}
+.initiative-entree:hover,
+.initiative-entree:focus-visible {
+  background: rgba(127, 208, 255, 0.12);
+  border-color: rgba(127, 208, 255, 0.7);
+  outline: none;
+}
+.initiative-entree.initiative-epingle-portrait {
+  border-color: var(--or-vif);
+  border-style: dashed;
+}
+/* Le jeton dont le portrait est survolé dans la piste : un anneau bleu clair qui pulse, distinct du halo doré du héros actif. */
+.emplacement-jeton.initiative-illumine .jeton-disque {
+  outline: 3px solid #7fd0ff;
+  outline-offset: 3px;
+  filter: drop-shadow(0 0 8px rgba(127, 208, 255, 0.85));
+  animation: initiative-pulse 0.9s ease-in-out infinite;
+}
+@keyframes initiative-pulse {
+  50% {
+    outline-offset: 5px;
+    filter: drop-shadow(0 0 14px rgba(127, 208, 255, 1));
+  }
+}
+/* La fiche épinglée : un fin trait pointillé doré autour du jeton. */
+.emplacement-jeton.initiative-epingle .jeton-disque {
+  outline: 2px dashed var(--or-vif);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .emplacement-jeton.initiative-illumine .jeton-disque {
+    animation: none;
+  }
+}
+
+/* ===== Dialogue lisible et vitrine de marchand (préfixes `dialogue-` et `vitrine-`) ===== */
+.boite-dialogue {
+  /* Les colonnes : le dialogue, et à droite la vitrine quand elle est ouverte. */
+  flex-direction: row;
+  gap: 12px;
+}
+
+.dialogue-colonne {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.boite-dialogue.avec-vitrine {
+  min-height: min(430px, calc(100% - 20px));
+}
+
+.boite-dialogue.avec-vitrine .dialogue-colonne {
+  flex: 1 1 52%;
+}
+
+.dialogue-panneau {
+  flex: 1 1 48%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  padding-left: 12px;
+  border-left: 1px solid rgba(184, 116, 60, 0.45);
+}
+
+.boite-entete {
+  flex-wrap: wrap;
+}
+
+/* Le nom garde sa place : ce sont les boutons qui passent à la ligne. */
+.boite-entete .boite-identite {
+  flex: 1 1 150px;
+  min-width: 150px;
+}
+
+.boite-entete .boite-simple {
+  margin-left: 0;
+}
+
+.dialogue-boutique {
+  background: linear-gradient(180deg, #2f5a43, #1d3a2a);
+  border-color: #5fae7c;
+  color: #d8f3e2;
+}
+
+.dialogue-boutique:hover,
+.dialogue-boutique:focus-visible,
+.dialogue-boutique.ouverte {
+  background: linear-gradient(180deg, #3b7156, #25492f);
+  border-color: #8fdcab;
+}
+
+/* Attitude du personnage : badge et jauge de -100 à 100. */
+.dialogue-attitude-ligne {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.dialogue-attitude {
+  padding: 1px 9px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: help;
+}
+
+.dialogue-attitude-hostile {
+  color: #ff8a7a;
+  background: rgba(184, 68, 58, 0.22);
+}
+.dialogue-attitude-mefiant {
+  color: #e6a05c;
+  background: rgba(214, 145, 63, 0.18);
+}
+.dialogue-attitude-neutre {
+  color: var(--texte-doux);
+  background: rgba(167, 155, 136, 0.14);
+}
+.dialogue-attitude-bienveillant {
+  color: #9fd9a7;
+  background: rgba(95, 174, 124, 0.16);
+}
+.dialogue-attitude-amical {
+  color: #7be0a0;
+  background: rgba(95, 174, 124, 0.26);
+}
+
+.dialogue-jauge {
+  position: relative;
+  flex: 0 1 90px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #b8443a 0%, #d6913f 25%, #6b6153 50%, #5fae7c 75%, #7be0a0 100%);
+  opacity: 0.85;
+}
+
+.dialogue-jauge i {
+  position: absolute;
+  top: -3px;
+  width: 4px;
+  height: 10px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--or-vif);
+  box-shadow: 0 0 0 1px #15120f;
+}
+
+/* L'échange : la dernière réponse du personnage est mise en avant, ce qui précède reste lisible mais plus discret. */
+.boite-texte > * {
+  opacity: 0.78;
+}
+
+.boite-texte > .dialogue-derniere,
+.boite-texte > .dialogue-derniere ~ * {
+  opacity: 1;
+}
+
+.dialogue-derniere {
+  margin: 2px 0 7px;
+  padding: 4px 8px 2px 10px;
+  border-left: 3px solid var(--or);
+  border-radius: 0 6px 6px 0;
+  background: rgba(212, 174, 102, 0.09);
+}
+
+.dialogue-derniere p {
+  margin-bottom: 4px;
+}
+
+.dialogue-reponses {
+  flex: 0 1 auto;
+  min-height: 7.5em;
+  overflow-y: auto;
+  border-top: 1px solid rgba(184, 116, 60, 0.45);
+  padding-top: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cuivre) transparent;
+}
+
+.dialogue-reponses .boite-choix {
+  border-top: 0;
+  padding-top: 0;
+  overflow: visible;
+  min-height: 0;
+}
+
+/* « Peser sur son attitude » : un bloc à part, sous les sujets. */
+.dialogue-influence {
+  margin-top: 8px;
+  padding: 6px 8px 8px;
+  border: 1px dashed rgba(212, 174, 102, 0.5);
+  border-radius: 6px;
+  background: rgba(212, 174, 102, 0.05);
+}
+
+.dialogue-influence-titre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--or);
+  font-family: var(--titre);
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dialogue-influence-titre small {
+  margin-left: auto;
+  color: var(--texte-faible);
+  font-family: var(--texte-police);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.dialogue-mode {
+  padding: 0 7px;
+  border-radius: 999px;
+  font-family: var(--texte-police);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.dialogue-mode-avantage {
+  color: #7be0a0;
+  background: rgba(95, 174, 124, 0.24);
+}
+.dialogue-mode-desavantage {
+  color: #ff8a7a;
+  background: rgba(184, 68, 58, 0.26);
+}
+
+.dialogue-influence-liste {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dialogue-influence-bouton {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 6px;
+  text-align: left;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e0705e;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dialogue-influence-bouton:hover:not(:disabled),
+.dialogue-influence-bouton:focus-visible {
+  color: #ff9a85;
+  background: rgba(184, 68, 58, 0.16);
+  outline: none;
+}
+
+.dialogue-influence-bouton:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.dialogue-influence-texte {
+  display: block;
+  min-width: 0;
+}
+
+.dialogue-influence-phrase {
+  display: inline;
+}
+
+.dialogue-influence-phrase svg {
+  vertical-align: -3px;
+  margin-right: 4px;
+}
+
+.dialogue-jet {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.dialogue-jet-puce {
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 155, 136, 0.5);
+  color: var(--texte);
+  background: rgba(167, 155, 136, 0.12);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.dialogue-jet-avantage {
+  border-color: #5fae7c;
+  color: #9fe6bb;
+  background: rgba(95, 174, 124, 0.18);
+}
+.dialogue-jet-desavantage {
+  border-color: #d0584c;
+  color: #ffa496;
+  background: rgba(184, 68, 58, 0.2);
+}
+.dialogue-jet-attente {
+  font-size: 12px;
+  color: var(--texte-faible);
+}
+
+/* La vitrine du marchand. */
+.vitrine {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vitrine-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vitrine-entete h4 {
+  margin: 0;
+  font-family: var(--titre);
+  font-size: 15px;
+  color: var(--or-vif);
+}
+
+.vitrine-entete small {
+  color: var(--texte-doux);
+}
+
+.vitrine-onglets {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.vitrine-onglets button {
+  padding: 3px 10px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid var(--bord-clair);
+  border-bottom-color: transparent;
+  background: transparent;
+  color: var(--texte-doux);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.vitrine-onglets button.actif {
+  color: var(--or-vif);
+  background: rgba(212, 174, 102, 0.12);
+  border-color: var(--or);
+}
+
+.vitrine-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px 0 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cuivre) transparent;
+}
+
+.vitrine-legende {
+  margin: 0;
+  font-size: 11.5px;
+  color: var(--texte-faible);
+}
+.vitrine-legende-oui {
+  color: #7be0a0;
+}
+.vitrine-legende-demi {
+  color: #e6a05c;
+}
+
+.vitrine-message {
+  margin: 0;
+  min-height: 1.2em;
+  font-size: 12.5px;
+  color: #7be0a0;
+}
+
+.vitrine-vide {
+  color: var(--texte-faible);
+  font-style: italic;
+  padding: 8px;
+}
+
+.vitrine-carte {
+  padding: 6px 8px;
+  border: 1px solid var(--bord-clair);
+  border-radius: 8px;
+  background: rgba(34, 29, 24, 0.82);
+}
+
+.vitrine-carte.magique {
+  border-color: #5b93d1;
+  box-shadow: inset 0 0 12px rgba(91, 147, 209, 0.18);
+}
+
+.vitrine-carte.ouverte {
+  border-color: var(--or);
+}
+
+.vitrine-carte.indisponible .vitrine-prix {
+  color: var(--rouge);
+}
+
+.vitrine-carte-haut {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.vitrine-fiche-bouton {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vitrine-fiche-bouton:focus-visible {
+  outline: 2px solid var(--or);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.vitrine-image {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--bord-clair);
+  background: #15120f center / contain no-repeat;
+  color: var(--texte-doux);
+}
+
+.vitrine-corps {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vitrine-nom {
+  color: var(--or-vif);
+  font-size: 14.5px;
+}
+
+.vitrine-nom small {
+  color: var(--texte-doux);
+  font-weight: 400;
+}
+
+.vitrine-resume {
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: var(--texte-doux);
+}
+
+.vitrine-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  font-size: 12.5px;
+  color: var(--texte);
+}
+
+.vitrine-trait small {
+  color: var(--texte-faible);
+}
+
+.vitrine-achat {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.vitrine-prix {
+  color: var(--or);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.vitrine-raison {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--rouge);
+}
+
+/* Qui peut le porter. */
+.vitrine-porteurs {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vitrine-porteurs.detail {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vitrine-porteur {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  line-height: 0;
+}
+
+.vitrine-porteur-oui {
+  border-color: #5fae7c;
+}
+.vitrine-porteur-sans-formation {
+  border-color: #d6913f;
+}
+.vitrine-porteur-non {
+  border-color: #4a4037;
+  opacity: 0.45;
+  filter: grayscale(0.8);
+}
+
+.vitrine-porteurs.detail .vitrine-porteur {
+  padding: 2px 8px 2px 2px;
+  line-height: 1.3;
+  border-width: 1px;
+}
+
+.vitrine-porteur-texte {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.vitrine-porteur-texte small {
+  color: var(--texte-doux);
+}
+
+.vitrine-mieux {
+  position: absolute;
+  right: -3px;
+  bottom: -4px;
+  font-size: 10px;
+  line-height: 1;
+  color: #7be0a0;
+  text-shadow: 0 0 3px #000;
+}
+
+.vitrine-fiche {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--bord);
+  font-size: 13px;
+}
+
+.vitrine-fiche h5 {
+  margin: 8px 0 4px;
+  font-family: var(--titre);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+
+.vitrine-fiche-sous {
+  margin: 0 0 4px;
+  color: var(--texte-doux);
+}
+
+.vitrine-proprietes {
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 10px;
+}
+
+.vitrine-proprietes div {
+  display: contents;
+}
+
+.vitrine-proprietes dt {
+  color: var(--texte-faible);
+}
+
+.vitrine-proprietes dd {
+  margin: 0;
+}
+
+.vitrine-sac {
+  margin: 6px 0 0;
+  color: var(--texte-doux);
+  font-style: italic;
+}
+
+/* Étroit (la boîte fait moins de 680 px de large, classe posée par BoiteDialogue) : la vitrine prend la place du dialogue, et « Retour au dialogue » le rend. */
+.boite-dialogue.etroite.avec-vitrine {
+  flex-direction: column;
+}
+.boite-dialogue.etroite.avec-vitrine .dialogue-colonne {
+  display: none;
+}
+.boite-dialogue.etroite .dialogue-panneau {
+  padding-left: 0;
+  border-left: 0;
+}
+
+@media (max-width: 560px) {
+  .vitrine-image {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ======================================================================== */
+/* En-tête de l'aventure : boussole de quête, badges d'état, annulation,     */
+/* choix du héros qui tente un jet (classes boussole-, badge-etat-, annuler-, */
+/* acteur-)                                                                  */
+/* ======================================================================== */
+
+.aventure-haut {
+  position: relative;
+}
+
+.aventure-heure {
+  white-space: nowrap;
+}
+
+/* La boussole : la quête suivie et son objectif du moment, un clic ouvre sa fiche. */
+.boussole {
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.boussole-bouton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 3px 12px;
+  border: 1px solid var(--cuivre);
+  border-radius: 99px;
+  background: var(--fond-2);
+  color: var(--texte);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.boussole-bouton:hover {
+  border-color: var(--or);
+}
+
+.boussole-signe {
+  flex: none;
+  color: var(--or-vif);
+}
+
+.boussole-principale .boussole-signe {
+  color: var(--or-vif);
+}
+
+.boussole-secondaire .boussole-signe {
+  color: var(--texte-doux);
+}
+
+.boussole-texte {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.boussole-nom {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--texte-faible);
+}
+
+.boussole-nom,
+.boussole-objectif {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.boussole-autres {
+  flex: none;
+  padding: 2px 8px;
+  border: 1px solid var(--bord);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--texte-doux);
+  font: inherit;
+  cursor: pointer;
+}
+
+.boussole-autres:hover {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+.boussole-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 40;
+  min-width: 100%;
+  max-width: min(420px, 90vw);
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: var(--panneau);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.boussole-choix {
+  width: 100%;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--texte);
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.boussole-choix:hover {
+  background: var(--fond-2);
+}
+
+.boussole-choix.suivie {
+  color: var(--or-vif);
+}
+
+/* Les badges d'état : ce qu'une action vient de changer (+1, −15 po, +50 PX…), quelques secondes sous l'en-tête. */
+.badges-etat {
+  position: absolute;
+  top: 100%;
+  /* Au-dessus de l'illustration, à gauche de la colonne des actions (360 px + l'espace entre colonnes). */
+  right: 376px;
+  z-index: 35;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.badge-etat {
+  padding: 2px 10px;
+  border: 1px solid var(--bord);
+  border-radius: 99px;
+  background: var(--panneau);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: badge-etat-monte 3.2s ease-out forwards;
+}
+
+.badge-etat-gain {
+  border-color: var(--vert);
+  color: var(--vert);
+}
+
+.badge-etat-perte {
+  border-color: var(--rouge);
+  color: var(--rouge);
+}
+
+.badge-etat-temps {
+  border-color: var(--texte-faible);
+  color: var(--texte-doux);
+}
+
+.badge-etat-jauge {
+  border-color: var(--cuivre);
+  color: var(--or);
+}
+
+@keyframes badge-etat-monte {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sans mouvement : le badge s'affiche tel quel, puis s'efface. */
+  .badge-etat {
+    animation: badge-etat-fondu 3.2s linear forwards;
+  }
+  @keyframes badge-etat-fondu {
+    0%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+/* Annuler le dernier pas : une ligne discrète au-dessus de la saisie. */
+.annuler-ligne {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.annuler-bouton {
+  font-size: 13px;
+}
+
+/* Le héros qui tente un jet d'exploration : le bouton annonce son nom et son bonus, un petit sélecteur en choisit un autre. */
+.acteur-bloc {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.acteur-ligne {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.acteur-annonce {
+  white-space: nowrap;
+}
+
+.acteur-bascule {
+  padding: 0 8px;
+  border: 1px solid var(--bord);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--texte-doux);
+  font: inherit;
+  cursor: pointer;
+}
+
+.acteur-bascule:hover,
+.acteur-bascule[aria-expanded='true'] {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+.acteur-defaut {
+  border-color: var(--cuivre);
+}
+
+/* Sur un écran étroit, la boussole passe sur sa propre ligne sous le titre. */
+@media (max-width: 1280px) {
+  .aventure-haut {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  .boussole {
+    order: 5;
+    flex: 1 1 100%;
+  }
+  .aventure-etat {
+    flex-wrap: wrap;
+    gap: 6px 10px;
   }
 }

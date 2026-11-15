@@ -162,7 +162,12 @@ export interface Proposition {
   /** Une vignette (portrait d'un PNJ, image d'un lieu) du manifeste d'images du monde, affichée à gauche du bouton. */
   image?: { groupe: 'lieux' | 'pnj'; id: string };
   /** Le jet qu'entraîne l'action, pour l'annoncer : compétence (id), DD s'il est connu, et qui le tenterait (le meilleur du groupe). */
-  jet?: { test: string; dd?: number; qui?: string; bonus?: number };
+  jet?: { test: string; dd?: number; qui?: string; bonus?: number; /** Avantage (attitude amicale) ou Désavantage (hostile) au jet. */ mode?: 'avantage' | 'desavantage' };
+  /**
+   * Les héros qui pourraient tenter l'action (le meilleur d'abord), avec leur bonus : l'écran propose de faire agir l'un d'eux
+   * au lieu du héros par défaut (`jet.qui`) ; l'ordre repart alors avec `personnage` = son id.
+   */
+  acteurs?: { id: string; nom: string; bonus: number; desactivee?: string }[];
   /** Un repère de quête : « ! » (une quête à prendre), « ? » (un rapport attendu), « ◆ » (un objectif de quête en cours mène là). */
   signe?: '!' | '?' | '◆';
   /** Une phrase d'explication affichée sous le bouton (où mène une sortie, ce que fait l'action), pour que le joueur sache pourquoi il clique. */

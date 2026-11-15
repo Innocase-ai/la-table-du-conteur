@@ -14,6 +14,7 @@ interface Props {
   onGroupe: () => void;
   onEscarmouche: () => void;
   onAide: () => void;
+  onOptions: () => void;
   /** Aventure en cours (dans cette session), à reprendre. */
   enCours?: { nom: string; onReprendre: () => void };
 }
@@ -45,7 +46,7 @@ const ZONES: Zone[] = [
 ];
 
 /** Écran d'arrivée du joueur : l'histoire à vivre, le groupe à créer, l'entraînement au combat, l'aide. */
-export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouche, onAide, enCours }: Props) {
+export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouche, onAide, onOptions, enCours }: Props) {
   const [credits, setCredits] = useState(false);
   const complets = groupe.emplacements.filter((p) => p && personnageComplet(bilanPersonnage(p, donnees))).length;
   const nbHistoires = histoires().length;
@@ -66,6 +67,7 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
     },
     { titre: 'Escarmouche', detail: "Un combat d'entraînement, sans histoire", action: onEscarmouche },
     { titre: 'Aide au jeu', detail: 'Règles, combat, cartes, raccourcis', action: onAide },
+    { titre: 'Options', detail: 'Taille du texte, animations, conteur', action: onOptions },
   ];
 
   const actions: Record<string, () => void> = { histoires: onHistoires, groupe: onGroupe, escarmouche: onEscarmouche, aide: onAide, credits: () => setCredits(true) };
@@ -122,7 +124,7 @@ export function EcranTitre({ donnees, groupe, onHistoires, onGroupe, onEscarmouc
             Crédits
           </button>
           <Sauvegardes />
-          <span>Les objets de la table s'ouvrent aussi d'un clic. Prototype : le conteur (maître de jeu) n'est pas encore branché.</span>
+          <span>Les objets de la table s'ouvrent aussi d'un clic.</span>
         </footer>
         <p className="titre-credits-court">
           <button type="button" className="lien-credits" onClick={() => setCredits(true)}>

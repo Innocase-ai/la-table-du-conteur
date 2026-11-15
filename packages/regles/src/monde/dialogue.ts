@@ -19,6 +19,20 @@ export function attitude(p: PartieMonde, pnj: Pnj): number {
   return p.etat.attitudes[pnj.id] ?? pnj.attitude;
 }
 
+/** Les degrés d'attitude que le joueur voit (badge de la boîte de dialogue) : les seuils du moteur, plus deux degrés intermédiaires. */
+export type NiveauAttitude = 'hostile' | 'mefiant' | 'neutre' | 'bienveillant' | 'amical';
+
+/** Le degré d'une attitude : hostile (≤ −30, Désavantage aux jets d'influence), méfiant, neutre (−10 à 10), bienveillant, amical (≥ 30, Avantage). */
+export function niveauAttitude(valeur: number): NiveauAttitude {
+  if (valeur <= SEUIL_HOSTILE) return 'hostile';
+  if (valeur >= SEUIL_AMICAL) return 'amical';
+  if (valeur < -10) return 'mefiant';
+  if (valeur > 10) return 'bienveillant';
+  return 'neutre';
+}
+
+export const LIBELLES_ATTITUDE: Record<NiveauAttitude, string> = { hostile: 'Hostile', mefiant: 'Méfiant', neutre: 'Neutre', bienveillant: 'Bienveillant', amical: 'Amical' };
+
 // `estCumulatif` vit dans `etat.ts` (l'exploration s'en sert aussi : énigmes) ; réexporté ici pour les appelants.
 export { estCumulatif };
 
@@ -197,10 +211,19 @@ export function influencer(p: PartieMonde, id: string, maniere: Influence, optio
   return r;
 }
 
-function choisirOrateur(p: PartieMonde, comp: Influence, id?: string): Personnage | undefined {
+function choisirOrateur(p: Pick<PartieMonde, 'groupe'>, comp: Influence, id?: string): Personnage | undefined {
   const vivants = p.groupe.filter((a) => a.pv > 0);
   if (id) return vivants.find((a) => a.id === id);
   return [...vivants].sort((x, y) => y.fiche.competences[comp].bonus - x.fiche.competences[comp].bonus)[0];
+}
+
+/**
+ * Qui tenterait l'influence et avec quel bonus : pour l'annoncer avant le jet. Comme `influencer`, on prend le meilleur du groupe
+ * debout dans la manière choisie ; le bonus est celui de la compétence réellement testée (celle d'un secret peut être une autre).
+ */
+export function meilleurOrateur(p: Pick<PartieMonde, 'groupe'>, maniere: Influence, competence: keyof Personnage['fiche']['competences'] = maniere): { id: string; nom: string; bonus: number } | undefined {
+  const a = choisirOrateur(p, maniere);
+  return a && { id: a.id, nom: a.nom, bonus: a.fiche.competences[competence].bonus };
 }
 
 function jet(p: PartieMonde, r: CompteRendu, a: Personnage, comp: keyof Personnage['fiche']['competences'], dd: number, mode?: 'avantage' | 'desavantage'): boolean {
