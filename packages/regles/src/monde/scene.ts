@@ -3,7 +3,7 @@
 // les secrets restent accessibles par les outils de consultation.
 import { attitude, libelleDuPnj, pnjPresents, sujetsDisponibles } from './dialogue';
 import { pnjDansLieu } from './presence';
-import { evaluerCondition } from './etat';
+import { evaluerCondition, gardienEnPlace } from './etat';
 import { sortiesDe, type PartieMonde } from './exploration';
 import { lieuxObjectifs, signeDeQuete, type SigneQuete } from './objectifs';
 
@@ -73,7 +73,7 @@ export function ficheDeScene(p: PartieMonde): FicheScene {
       nom: t.nom,
       contenant: t.contenant,
       description: t.description,
-      etat: t.gardien && !etat.rencontresFaites.includes(t.gardien) ? 'garde' : t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`) ? 'ferme' : 'ouvert',
+      etat: gardienEnPlace(dm, etat, t) ? 'garde' : t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`) ? 'ferme' : 'ouvert',
     })),
     pieges: [...dm.pieges.values()]
       .filter((pg) => pg.lieu === l.id && (ex.decouverts.includes(`piege:${pg.id}`) || ex.pieges[pg.id]))

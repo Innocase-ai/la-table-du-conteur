@@ -11,7 +11,7 @@ import { recuperer, type Personnage } from '../personnage';
 import type { Fiche } from '../fiche';
 import type { Caracteristique, Competence } from '../schemas';
 import { testD20 } from '../tests-d20';
-import { appliquerEffets, avancerQuetes, estCumulatif, evaluerCondition, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
+import { appliquerEffets, avancerQuetes, estCumulatif, evaluerCondition, gardienEnPlace, TEMOIGNAGES_MAX, verifierEnigme, type EtatMonde, type IssueRencontre, type PnjVu, type Temoignage } from './etat';
 import { momentDe, pnjPresents } from './presence';
 import { controlerReponse } from './reponses';
 import type { DonneesMonde, EffetMonde, Lieu, Piege, RencontreMonde, Tresor } from './schemas';
@@ -872,7 +872,8 @@ export function prendre(p: PartieMonde, tresor: string): CompteRendu {
   if (!t || t.lieu !== p.etat.lieu || !tresorVisible(p, t)) return refus("Il n'y a rien de tel ici.");
   if (ex.tresorsPris.includes(t.id)) return refus(`${t.nom} a déjà été vidé.`);
   if (t.acces.verrou && !ex.ouverts.includes(`tresor:${t.id}`)) return refus(`${t.nom} est fermé (DD ${t.acces.verrou.dd}).`);
-  if (t.gardien && !p.etat.rencontresFaites.includes(t.gardien)) return refus(`${t.nom} est gardé : ${p.dm.rencontres.get(t.gardien)?.nom ?? t.gardien}.`);
+  const gardien = gardienEnPlace(p.dm, p.etat, t);
+  if (gardien) return refus(`${t.nom} est gardé : ${p.dm.rencontres.get(gardien)?.nom ?? gardien}.`);
   const r = resultat();
   // Un piège encore armé se déclenche sur qui se sert (sauf trésor ouvert à la clé, déjà déclenché dans ouvrir sinon).
   const victime = choisir(p, 'perception');

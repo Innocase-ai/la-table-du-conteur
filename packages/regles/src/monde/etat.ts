@@ -1,7 +1,7 @@
 // État d'une partie dans un monde : tout ce qui change (drapeaux, faits connus, jauges, réputations, quêtes…).
 // C'est un objet JSON simple, sauvegardable tel quel. Les conditions et effets du format de monde s'évaluent ici.
 import { SEUILS_PX } from '../caracteristiques';
-import type { Condition, DonneesMonde, EffetMonde, Enigme, Quete, TypeIssue } from './schemas';
+import type { Condition, DonneesMonde, EffetMonde, Enigme, Quete, Tresor, TypeIssue } from './schemas';
 
 export type StatutQuete = 'proposee' | 'active' | 'terminee' | 'echouee';
 export type EtatPnj = 'vivant' | 'mort' | 'parti';
@@ -55,6 +55,25 @@ export interface MemoireGroupe {
 
 /** La mémoire d'un état (celle de l'exploration ; vide pour un état sans exploration ou une ancienne sauvegarde). */
 export const memoireDe = (e: EtatMonde): MemoireGroupe => (e as EtatMonde & { exploration?: MemoireGroupe }).exploration ?? {};
+
+/**
+ * La rencontre qui garde encore un trésor, ou `undefined` s'il est libre. Le `gardien` déclaré garde jusqu'à sa victoire (ou son
+ * issue réussie). À défaut, un ennemi que le groupe a affronté sans le vaincre (défaite ou fuite) tient toujours sa salle : il garde
+ * sa réserve (`butin.tresors`) et tout trésor posé dans le lieu de son combat. Tant que la rencontre n'a pas eu lieu, ces trésors
+ * restent libres (une rencontre fortuite qui n'arrive jamais ne doit pas fermer un trésor pour toujours) ; un gardien déclaré, lui,
+ * garde dès le départ.
+ */
+export function gardienEnPlace(dm: DonneesMonde, e: EtatMonde, t: Tresor): string | undefined {
+  if (t.gardien) return e.rencontresFaites.includes(t.gardien) ? undefined : t.gardien;
+  const issues = memoireDe(e).issues;
+  for (const rc of dm.rencontres.values()) {
+    if (e.rencontresFaites.includes(rc.id)) continue;
+    const type = issues?.[rc.id]?.type;
+    if (type !== 'defaite' && type !== 'fuite') continue;
+    if (rc.butin.tresors.includes(t.id) || ((rc.type === 'combat' || rc.type === 'mixte') && rc.lieu === t.lieu)) return rc.id;
+  }
+  return undefined;
+}
 
 export interface EtatQuete {
   statut: StatutQuete;
