@@ -20,6 +20,13 @@ describe('escarmouches : des rencontres composées pour le groupe', () => {
     expect(budgetDuGroupe([1, 3, 5], 'faible')).toBe(budgetDuGroupe([1], 'faible') + budgetDuGroupe([3], 'faible') + budgetDuGroupe([5], 'faible'));
   });
 
+  it('une difficulté inconnue donne une erreur claire, pas un plantage obscur (budget NaN)', () => {
+    for (const mauvaise of ['facile', 'difficile', '']) {
+      expect(() => budgetDuGroupe(niveaux(1), mauvaise as never), mauvaise).toThrow(/Difficulté inconnue/);
+      expect(() => composerRencontre(THEMES[0]!, niveaux(1), mauvaise as never, srd), mauvaise).toThrow(/Difficulté inconnue/);
+    }
+  });
+
   it.each(THEMES.map((t) => [t.id, t] as const))(
     '« %s » : chaque niveau, nombre de héros et difficulté donne une rencontre valide qui tient dans son budget',
     (_id, theme) => {

@@ -131,6 +131,8 @@ const FACTEUR_NIVEAU: Record<number, number> = { 1: 1.4, 4: 0.8 };
 
 /** Budget de PX pour ce groupe (somme de ce que vaut chaque héros selon son niveau) et cette difficulté. */
 export function budgetDuGroupe(niveaux: number[], difficulte: Difficulte): number {
+  // Un nom de difficulté inconnu (« facile », « difficile »…) donnerait un budget NaN, puis un plantage obscur plus loin.
+  if (COEFFICIENT_DIFFICULTE[difficulte] === undefined) throw new Error(`Difficulté inconnue « ${String(difficulte)} » (attendu : ${DIFFICULTES.join(', ')}).`);
   const total = niveaux.reduce((s, n) => s + BUDGET_PX[plafonner(n)]![0] * (FACTEUR_NIVEAU[plafonner(n)] ?? 1), 0);
   return Math.round(total * COEFFICIENT_DIFFICULTE[difficulte]);
 }
@@ -191,7 +193,11 @@ export function composerRencontre(theme: ThemeEscarmouche, niveaux: number[], di
     reste -= meilleur.gain;
   }
   // Un budget minuscule : au moins un monstre, le plus faible du thème.
-  if (!nombre) ajouter([...lignes].sort((a, b) => px(a.profil) - px(b.profil))[0]!.profil);
+  if (!nombre) {
+    const plusFaible = [...(lignes.length ? lignes : theme.troupes)].sort((a, b) => px(a.profil) - px(b.profil))[0];
+    if (!plusFaible) throw new Error(`Thème « ${theme.id} » : aucune troupe à composer.`);
+    ajouter(plusFaible.profil);
+  }
 
   const ordre = [...(chef ? [chef] : []), ...theme.troupes.map((t) => t.profil)];
   const monstres = ordre.filter((p, i) => compte.has(p) && ordre.indexOf(p) === i).map((profil) => ({ profil, nombre: compte.get(profil)! }));
