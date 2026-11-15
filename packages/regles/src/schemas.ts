@@ -277,6 +277,28 @@ export const ActionMonstre = z.object({
 });
 export type ActionMonstre = z.infer<typeof ActionMonstre>;
 
+/**
+ * Les sorts qu'un monstre lance en combat (SRD 5.2.1, « Sorts » d'un profil) : seulement ceux que le moteur sait jouer, les
+ * autres restent dans le texte de son trait « Incantation ». Pas d'emplacements : « à volonté », ou N fois par jour (une
+ * réserve commune à plusieurs sorts si `groupe` les relie, comme « Soutien divin »). Un sort est lancé à son niveau le plus bas,
+ * sauf `niveau` (« boule de feu (au 5e niveau) »).
+ */
+export const SortsMonstre = z.object({
+  caracteristique: Caracteristique,
+  dd: z.number().int(),
+  attaque: z.number().int(),
+  liste: z.array(
+    z.object({
+      sort: z.string(),
+      niveau: z.number().int().min(1).max(9).optional(),
+      /** Coût en action quand le profil le change (« Soutien divin » : action bonus). */
+      cout: z.enum(['action', 'bonus']).optional(),
+      usage: z.union([z.literal('volonte'), z.object({ nombre: z.number().int().min(1), par: z.literal('jour'), groupe: z.string().optional() })]),
+    }),
+  ),
+});
+export type SortsMonstre = z.infer<typeof SortsMonstre>;
+
 export const Monstre = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   nom: z.string(),
@@ -301,6 +323,8 @@ export const Monstre = z.object({
   bonusMaitrise: z.number().int(),
   traits: z.array(z.object({ id: z.string(), nom: z.string(), resume: z.string() })).default([]),
   actions: z.array(ActionMonstre),
+  /** Les sorts que le monstre lance en combat (absent : aucun, ou seulement des sorts que le moteur ne joue pas). */
+  sorts: SortsMonstre.optional(),
   /** Présentation lue par le joueur quand la rencontre se montre : apparence seulement, ni chiffre ni capacité cachée. */
   description: z.string().optional(),
 });

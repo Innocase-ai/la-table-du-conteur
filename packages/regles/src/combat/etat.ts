@@ -144,6 +144,12 @@ export interface Combattant {
   actionsMonstre: ActionMonstre[];
   traits: string[]; // ids de traits et d'aptitudes de combat (« attaque-sournoise », « tactique-de-groupe »…)
   sorts: string[];
+  /**
+   * Monstre qui lance des sorts (SRD 5.2.1) : pour chacun, le niveau où il est lancé (absent : son niveau le plus bas),
+   * son coût et sa réserve : `reserve` est la clé de `ressources` qui compte les lancers restants (absent : à
+   * volonté). Pas d'emplacements : `incantation.emplacements` reste vide.
+   */
+  sortsMonstre?: Record<string, { niveau?: number; cout: 'action' | 'bonus'; reserve?: string }>;
   incantation?: { dd: number; bonusAttaque: number; modificateur: number; emplacements: number[]; emplacementsMax: number[] };
   ressources: Record<string, number>;
   concentration?: { sort: string; cibles: string[] };

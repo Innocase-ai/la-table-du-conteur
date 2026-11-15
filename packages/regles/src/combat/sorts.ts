@@ -109,6 +109,12 @@ export function nombreCibles(sort: Sort, niveauEmplacement: number): number {
 export function preparerIncantation(lanceur: Combattant, sort: Sort): number | string {
   if (!lanceur.sorts.includes(sort.id)) return `${lanceur.nom} ne connaît pas ${sort.nom}.`;
   if (lanceur.sansFormation) return `${lanceur.nom} porte une armure ou un bouclier sans formation : impossible de lancer un sort.`;
+  // Un monstre n'a pas d'emplacements : son sort est lancé à son niveau fixé, à volonté ou tant qu'il lui reste des lancers du jour.
+  const monstre = lanceur.sortsMonstre?.[sort.id];
+  if (monstre) {
+    if (monstre.reserve && (lanceur.ressources[monstre.reserve] ?? 0) <= 0) return `${lanceur.nom} ne peut plus lancer ${sort.nom} aujourd’hui.`;
+    return monstre.niveau ?? sort.niveau;
+  }
   if (sort.niveau === 0) return 0;
   const niveau = emplacementDisponible(lanceur, sort.niveau);
   if (!niveau) return `Plus d'emplacement de niveau ${sort.niveau} ou plus.`;
@@ -118,7 +124,11 @@ export function preparerIncantation(lanceur: Combattant, sort: Sort): number | s
 export function lancerSort(etat: EtatCombat, lanceur: Combattant, sort: Sort, niveau: number, cible: CibleSort): void {
   // Lancer un sort met fin à l'invisibilité (potion).
   retirerEtat(lanceur, 'invisible');
-  if (niveau > 0) lanceur.incantation!.emplacements[niveau - 1]! -= 1;
+  const monstre = lanceur.sortsMonstre?.[sort.id];
+  if (monstre) {
+    // Pas d'emplacement : on décompte le lancer du jour (la réserve peut être partagée entre plusieurs sorts).
+    if (monstre.reserve) lanceur.ressources[monstre.reserve] = Math.max(0, (lanceur.ressources[monstre.reserve] ?? 0) - 1);
+  } else if (niveau > 0) lanceur.incantation!.emplacements[niveau - 1]! -= 1;
   const cases = sort.zone && cible.point ? casesDeZone(etat, lanceur, sort, cible.point) : undefined;
   journaliser(etat, {
     type: 'sort',

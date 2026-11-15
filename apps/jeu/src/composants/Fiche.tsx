@@ -99,7 +99,7 @@ export function Fiche({ c, donnees, estActif, elan }: Props) {
       <div className="fiche-bloc">
         <h3>Ressources</h3>
         <dl className="ressources">
-          {ressourcesLisibles(c).map((r) => (
+          {ressourcesLisibles(c, nomSort).map((r) => (
             <div key={r.nom}>
               <dt>{r.nom}</dt>
               <dd>{r.valeur}</dd>

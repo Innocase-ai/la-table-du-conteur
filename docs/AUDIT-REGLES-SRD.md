@@ -30,7 +30,7 @@ Les écarts marqués **✔ vérifié** ont été contrôlés dans le code et le 
 
 **Combat**
 - Grandes créatures sur une seule case (le SRD : G = 2×2, TG = 3×3, Gig = 4×4).
-- 105 actions de monstre à zone (souffles de dragon…) ne touchent qu'une cible ; 186 actions de monstre sans résolution (la carte consomme l'action et ne fait rien) ; résistance à la magie, actions et résistances légendaires, régénération non gérées.
+- 105 actions de monstre à zone (souffles de dragon…) ne touchent qu'une cible ; 186 actions de monstre sans résolution (la carte consomme l'action et ne fait rien) ; résistance à la magie, actions et résistances légendaires, régénération non gérées. **Les monstres lancent leurs sorts depuis le 15/11/2026** (35 profils, sorts jouables seulement, sans Réaction ni Recharge : `docs/COMBAT.md` « Sorts des monstres »).
 - États manquants : Pétrifié, Assourdi, Invisible, Épuisement (Étourdi ajouté le 07/11/2026).
 - Armes Légère (attaque à deux armes) et Polyvalente (dégâts à deux mains) ignorées ; botte Coup double déclarée mais jamais appliquée ; styles Armes à deux mains et Combat à deux armes ignorés.
 - Actions manquantes : Aider (dont stabiliser par Médecine DD 10), Se cacher, Préparer, Lutte et Bousculade ; pas de surprise à l'initiative ; couvert limité au demi-couvert.
@@ -65,7 +65,7 @@ Fait : lot 1 (10 écarts), les 4 décisions (PX de départ, influence SRD, héro
 À faire, dans l'ordre conseillé :
 
 1. **Aptitudes de classe (suite)** : Ensorceleur (Sorcellerie innée : +1 DD et Avantage aux attaques de sort, 2 par repos long ; points de Sorcellerie ; Métamagie, d'abord accéléré, jumeau, intensifié, renforcé) ; Druide (Forme sauvage : métamorphose en Bête, PV temporaires, profil remplacé ; la plus lourde) ; Conduit divin du Clerc et du Paladin ; Déviation d'assaut du Moine ; Châtiment divin au niveau 1 ; sous-classes du niveau 3 (Technique de la paume, Arme sacrée, Mots cinglants, Bénédiction du Ténébreux…) ; Source d'inspiration par emplacement.
-2. **Actions de monstre** : 186 actions sans résolution (la carte consomme l'action sans effet), 105 actions de zone (souffles) qui ne touchent qu'une cible, résistance à la magie, actions et résistances légendaires, régénération. Commencer par un état des lieux en lecture seule : lesquelles concernent les monstres réellement placés dans les histoires et les escarmouches.
+2. **Actions de monstre** : 186 actions sans résolution (la carte consomme l'action sans effet), 105 actions de zone (souffles) qui ne touchent qu'une cible, résistance à la magie, actions et résistances légendaires, régénération (les sorts des monstres sont faits depuis le 15/11/2026, restent leurs sorts en Réaction et à Recharge). Commencer par un état des lieux en lecture seule : lesquelles concernent les monstres réellement placés dans les histoires et les escarmouches.
 3. **États manquants** : Pétrifié, Assourdi, Invisible, Épuisement.
 4. **Armes** : (Légère : équipement et attaque de la main gauche faits le 12/11) ; propriété Polyvalente (dégâts à deux mains), botte Coup double, styles Armes à deux mains et Combat à deux armes.
 5. **Actions manquantes** : ~~Aider (dont stabiliser par Médecine DD 10)~~ et ~~surprise à l'initiative~~ (faits le 14/11/2026, `docs/COMBAT.md`) ; ~~Lutte et Bousculade~~ faites le 14/11/2026 (héros seulement) ; restent Se cacher, Préparer, couvert au-delà du demi-couvert.

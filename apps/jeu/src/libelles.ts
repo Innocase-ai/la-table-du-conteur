@@ -121,7 +121,7 @@ export function libelleModificateur(m: Modificateur): string {
 }
 
 /** Ressources lisibles d'un combattant (hors emplacements de sorts). */
-export function ressourcesLisibles(c: Combattant): { nom: string; valeur: string }[] {
+export function ressourcesLisibles(c: Combattant, nomSort: (id: string) => string = (id) => id): { nom: string; valeur: string }[] {
   const r = c.ressources;
   const res: { nom: string; valeur: string }[] = [];
   const simples: [string, string][] = [
@@ -141,6 +141,14 @@ export function ressourcesLisibles(c: Combattant): { nom: string; valeur: string
   for (const a of c.actionsMonstre) {
     if (a.recharge) res.push({ nom: `${a.nom} (${a.recharge})`, valeur: (r[`recharge:${a.id}`] ?? 1) > 0 ? 'prête' : 'en recharge' });
     if (a.utilisations) res.push({ nom: a.nom, valeur: `${r[`util:${a.id}`] ?? a.utilisations.nombre}/${a.utilisations.nombre}` });
+  }
+  // Un monstre lanceur : les lancers du jour de ses sorts (une réserve partagée n'apparaît qu'une fois).
+  const vues = new Set<string>();
+  for (const [sort, m] of Object.entries(c.sortsMonstre ?? {})) {
+    if (!m.reserve || vues.has(m.reserve)) continue;
+    vues.add(m.reserve);
+    const groupe = Object.entries(c.sortsMonstre!).filter(([, x]) => x.reserve === m.reserve);
+    res.push({ nom: groupe.length > 1 ? 'Sorts (réserve commune)' : nomSort(sort), valeur: `${r[m.reserve] ?? 0} lancer(s)` });
   }
   res.push({ nom: 'Réaction', valeur: r.reaction ? 'disponible' : 'utilisée' });
   return res;

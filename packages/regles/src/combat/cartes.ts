@@ -287,10 +287,13 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
   for (const sid of c.sorts) {
     const sort = ctx.sorts.get(sid);
     if (!sort || sort.tempsIncantation === 'reaction') continue;
-    const cout: CoutCarte = sort.tempsIncantation === 'bonus' ? 'bonus' : 'action';
+    // Un monstre lance ses sorts sans emplacement : à son niveau fixé, à volonté ou N fois par jour (réserve dans `ressources`).
+    const monstre = c.sortsMonstre?.[sid];
+    const lancersRestants = monstre?.reserve ? (c.ressources[monstre.reserve] ?? 0) : undefined;
+    const cout: CoutCarte = monstre ? monstre.cout : sort.tempsIncantation === 'bonus' ? 'bonus' : 'action';
     const zone = sort.zone ? { forme: sort.zone.forme, taille: sort.zone.taille } : ZONES_SUPPLEMENTAIRES[sid];
     const ciblage: Ciblage = zone ? 'point' : sort.portee.type === 'personnel' && !SORTS_AU_CONTACT.has(sid) ? 'soi' : sort.resolution || sort.special === 'marque-du-chasseur' || sort.degats.length ? 'ennemi' : 'allie';
-    const niveau = sort.niveau === 0 ? 0 : emplacementDisponible(c, sort.niveau);
+    const niveau = monstre ? (monstre.niveau ?? sort.niveau) : sort.niveau === 0 ? 0 : emplacementDisponible(c, sort.niveau);
     let k = carte({
       id: `sort:${sid}`,
       nom: sort.nom,
@@ -302,11 +305,18 @@ export function cartesDisponibles(etat: EtatCombat, ctx: Contexte, id: string): 
       zone,
       nbCibles: ciblage === 'point' || ciblage === 'soi' ? 0 : sort.special === 'projectile-magique' || sort.special === 'rayon-ardent' ? 3 : nombreCibles(sort, niveau ?? sort.niveau),
       cibles: ciblage === 'point' || ciblage === 'soi' ? [] : ciblesPossibles(etat, c, sort).map((x) => x.id),
-      ressource: sort.niveau === 0 ? 'sort mineur' : `emplacement niv. ${sort.niveau}+ (${c.incantation?.emplacements.slice(sort.niveau - 1).reduce((s, n) => s + n, 0) ?? 0} restant(s))`,
+      ressource: monstre
+        ? lancersRestants === undefined
+          ? 'à volonté'
+          : `${lancersRestants} lancer(s) restant(s)`
+        : sort.niveau === 0
+          ? 'sort mineur'
+          : `emplacement niv. ${sort.niveau}+ (${c.incantation?.emplacements.slice(sort.niveau - 1).reduce((s, n) => s + n, 0) ?? 0} restant(s))`,
       stats: statsDeSort(sort, c),
     });
-    if (sort.niveau > 0 && !niveau) k = refuser(k, 'Plus d\'emplacement.');
-    else if (sort.niveau > 0 && t.sortEmplacementLance) k = refuser(k, 'Un seul sort à emplacement par tour.');
+    if (monstre && lancersRestants !== undefined && lancersRestants <= 0) k = refuser(k, 'Plus de lancer aujourd’hui.');
+    else if (!monstre && sort.niveau > 0 && !niveau) k = refuser(k, 'Plus d\'emplacement.');
+    else if (!monstre && sort.niveau > 0 && t.sortEmplacementLance) k = refuser(k, 'Un seul sort à emplacement par tour.');
     else if (c.rage) k = refuser(k, 'Impossible en rage.');
     else k = verifier(k, cout);
     res.push(k);

@@ -288,10 +288,30 @@ export function heroDepuisFiche(fiche: Fiche, kit: Kit, donnees: Donnees, positi
   };
 }
 
+/** Les sorts d'un monstre : la liste, la table de ce qui les régit (niveau, coût, réserve) et les lancers du jour. */
+function sortsDeMonstre(m: Monstre, mods: Record<Caracteristique, number>) {
+  const s = m.sorts;
+  if (!s) return undefined;
+  const sortsMonstre: NonNullable<Combattant['sortsMonstre']> = {};
+  const ressources: Record<string, number> = {};
+  for (const l of s.liste) {
+    const reserve = l.usage === 'volonte' ? undefined : `sort:${l.usage.groupe ?? l.sort}`;
+    sortsMonstre[l.sort] = { ...(l.niveau ? { niveau: l.niveau } : {}), cout: l.cout ?? 'action', ...(reserve ? { reserve } : {}) };
+    if (reserve && l.usage !== 'volonte') ressources[reserve] = l.usage.nombre;
+  }
+  return {
+    sorts: s.liste.map((l) => l.sort),
+    sortsMonstre,
+    ressources,
+    incantation: { dd: s.dd, bonusAttaque: s.attaque, modificateur: mods[s.caracteristique], emplacements: [], emplacementsMax: [] },
+  };
+}
+
 export function monstreDepuisProfil(m: Monstre, id: string, position: Position, nom = m.nom): Combattant {
   const mods = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, modificateur(m.caracteristiques[c] ?? 10)])) as Record<Caracteristique, number>;
   const sauvegardes = Object.fromEntries(CARACTERISTIQUES.map((c) => [c, m.sauvegardes[c] ?? mods[c]])) as Record<Caracteristique, number>;
   const doctrine = doctrineDeProfil(m);
+  const lance = sortsDeMonstre(m, mods);
   return {
     id,
     nom,
@@ -320,8 +340,9 @@ export function monstreDepuisProfil(m: Monstre, id: string, position: Position, 
     attaques: [],
     actionsMonstre: m.actions,
     traits: m.traits.map((t) => t.id),
-    sorts: [],
-    ressources: { reaction: 1 },
+    sorts: lance?.sorts ?? [],
+    ...(lance ? { sortsMonstre: lance.sortsMonstre, incantation: lance.incantation } : {}),
+    ressources: { reaction: 1, ...lance?.ressources },
     rage: false,
     initiative: 0,
     mort: false,

@@ -140,5 +140,37 @@
       }
     }
   ],
+  "sorts": {
+    "caracteristique": "sag",
+    "dd": 15,
+    "attaque": 7,
+    "liste": [
+      {
+        "sort": "sommeil",
+        "usage": {
+          "nombre": 1,
+          "par": "jour"
+        }
+      },
+      {
+        "sort": "benediction",
+        "usage": {
+          "nombre": 2,
+          "par": "jour",
+          "groupe": "soutien-divin"
+        },
+        "cout": "bonus"
+      },
+      {
+        "sort": "restauration-partielle",
+        "usage": {
+          "nombre": 2,
+          "par": "jour",
+          "groupe": "soutien-divin"
+        },
+        "cout": "bonus"
+      }
+    ]
+  },
   "description": "Un long serpent ailé aux plumes irisées, dont le corps souple scintille d'émeraude, de turquoise et d'or. Sa tête de serpent, couronnée d'une huppe, porte un regard doux et intelligent qui semble tout comprendre."
 }
