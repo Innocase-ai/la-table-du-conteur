@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { IA_NORMALE, IA_RAPIDE, adapterRencontre, heroCombatDe, type CombatEnCours, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
+import { IA_NORMALE, IA_RAPIDE, adapterRencontre, completerGrimoireGroupe, heroCombatDe, type CombatEnCours, type EtatCombat, type Groupe, type HeroCombat, type OptionsIA, type Partie, type PersonnageCree, type Rencontre } from '@crpg/regles';
 import { chargerDonnees } from './donnees';
 import { Accueil } from './composants/Accueil';
 import { Combat } from './composants/Combat';
@@ -64,7 +64,11 @@ export function App() {
   const [derniers, setDerniers] = useState<Reglages | undefined>();
   // Le joueur arrive sur l'écran titre.
   const [vue, setVue] = useState<Vue>({ nom: 'titre' });
-  const [groupe, setGroupe] = useState<Groupe>(() => chargerGroupe());
+  const [groupe, setGroupe] = useState<Groupe>(() => {
+    const g = chargerGroupe();
+    // Un groupe enregistré avant le grimoire du Magicien : le livre est inscrit au chargement (sinon le Magicien reste au camp).
+    return donnees.ok ? completerGrimoireGroupe(g, donnees.donnees) : g;
+  });
   const [aventure, setAventure] = useState<Aventure | null>(null);
   const [combatHistoire, setCombatHistoire] = useState<{
     reglages: Reglages;

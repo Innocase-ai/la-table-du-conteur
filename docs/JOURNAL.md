@@ -2306,3 +2306,16 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
 
 - Le jeu n'est pas responsive sous environ 600 px (grille d'aventure à colonne fixe de 360 px) : chantier à part.
 - Les sessions partageant le serveur du jeu (port 5173) ont modifié sa sauvegarde en testant : lancer les essais sur un serveur à part.
+
+## 15/11/2026 — Bug : un groupe de 6 héros n'entrait en jeu qu'à 5
+
+**Signalement** : « Je choisis un groupe de 6 persos, mais je n'en ai que 5. »
+
+**Cause** (pas une régression du commit `51e2d9e`, mais du grimoire du Magicien, `175b923`, 14/11) : depuis ce commit, `manquants` exige que le Magicien ait son livre (`sortsGrimoire`). Un groupe **enregistré avant** n'en a pas : le Magicien devenait « incomplet » ; `herosDuGroupe` et `demarrerAventure` n'emmènent que les personnages complets, et l'écran des histoires disait « 5 prêts » sans dire pourquoi. La migration du livre existait pour la partie en cours (`inscrireGrimoireManquant`, module grimoire) mais pas pour le groupe du joueur (enregistrement local, fichier importé). Le groupe conseillé, la création rapide (648 combinaisons classe × espèce × niveau) et la création au créateur donnent bien 6 héros complets.
+
+**Correction**
+- `completerGrimoireGroupe(groupe, donnees)` (`packages/regles/src/creation/grimoire.ts`) : inscrit le livre du Magicien sans livre (sorts préparés, complétés par les conseillés ; rien n'est perdu) ; rend le même groupe quand rien n'est à faire. Appelée au chargement du groupe (`App.tsx`) et à l'import d'un fichier (`EcranGroupe.tsx`).
+- `EcranHistoires.tsx` : la ligne « Pour commencer » nomme les héros incomplets (« Ambrine est incomplet et restera au camp »).
+- Tests : `packages/regles/tests/grimoire-groupe-ancien.test.ts` (5) et `apps/jeu/src/groupe/groupe-ancien.test.ts` (1, parcours enregistrement → chargement → héros entrant en jeu : 5 avant, 6 après). Vérifié à l'écran sur un serveur à part (port 5199) avec un groupe de 6 au format d'avant : 6 prêts, livre enregistré ; un héros réellement incomplet est nommé.
+
+**Constaté, non corrigé** : `composerRencontre` plante (`.profil` d'un monstre indéfini, `escarmouche.ts:194`) pour les thèmes Embuscade gobeline, Crypte, Bande et ogres, Camp hobgobelin, Gué des brigands et Col gelé en difficulté « facile » et « difficile » avec un groupe de 6 héros de niveau 1 (budget trop petit, aucune ligne retenue) : l'escarmouche de niveau 1 est donc cassée dans ces cas.

@@ -4,6 +4,7 @@ import {
   NIVEAU_MAX,
   avertissementsGroupe,
   bilanPersonnage,
+  completerGrimoireGroupe,
   groupeConseille,
   herosRetires,
   nouvelId,
@@ -192,7 +193,8 @@ export function EcranGroupe(props: Props) {
       onChange(groupeConseille(groupe.niveau, donnees, taille));
       setInfo('Groupe conseillé créé.');
     } else {
-      onChange(a.groupe);
+      // Un fichier exporté avant le grimoire du Magicien : on y inscrit le livre (sinon le Magicien serait incomplet).
+      onChange(completerGrimoireGroupe(a.groupe, donnees));
       setInfo('Groupe importé.');
     }
   };

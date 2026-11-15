@@ -75,7 +75,9 @@ function Couverture({ h }: { h: Histoire }) {
 export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommencer }: Props) {
   const liste = useMemo(() => histoires(), []);
   const [choisie, setChoisie] = useState<Histoire | undefined>(liste[0]);
-  const complets = groupe.emplacements.filter((p) => p && personnageComplet(bilanPersonnage(p, donnees))).length;
+  const crees = groupe.emplacements.filter((p) => !!p);
+  const incompletsNoms = crees.filter((p) => !personnageComplet(bilanPersonnage(p!, donnees))).map((p) => p!.choix.nom || 'Sans nom');
+  const complets = crees.length - incompletsNoms.length;
   const [resumes, setResumes] = useState<string[]>([]);
   /** Un groupe complet, au niveau que l'histoire attend : de quoi la lancer. */
   const pretePour = (h: Histoire) => complets >= TAILLE_GROUPE_MIN && groupe.niveau >= h.monde.niveaux.min && groupe.niveau <= h.monde.niveaux.max;
@@ -176,6 +178,7 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                   <li className={complets >= TAILLE_GROUPE_MIN ? 'ok' : 'manque'}>
                     Un groupe de {TAILLE_GROUPE_MIN} à {TAILLE_GROUPE} personnages complets (conseillé : {choisie.monde.groupe.conseille}) : {complets} prêt{complets > 1 ? 's' : ''}
                     {complets > 0 && complets !== choisie.monde.groupe.conseille && ` (les combats seront adaptés à ${complets} héros)`}
+                    {incompletsNoms.length > 0 && ` · ${incompletsNoms.join(', ')} ${incompletsNoms.length > 1 ? 'sont incomplets et resteront au camp' : 'est incomplet et restera au camp'}`}
                     {(complets < TAILLE_GROUPE_MIN || complets < choisie.monde.groupe.conseille) && (
                       <button type="button" className="lien" onClick={onGroupe}>
                         {complets < TAILLE_GROUPE_MIN ? 'créer mon groupe' : 'modifier mon groupe'}
