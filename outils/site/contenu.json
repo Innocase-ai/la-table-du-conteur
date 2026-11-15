@@ -34,8 +34,8 @@
       "libelle": "objets illustrés"
     },
     {
-      "valeur": "1",
-      "libelle": "histoire jouable, en prologue"
+      "valeur": "3",
+      "libelle": "histoires jouables, de 6 à 11 heures"
     },
     {
       "valeur": "54",
@@ -129,25 +129,26 @@
     },
     {
       "id": "histoires",
-      "titre": "Un prologue jouable, la suite en écriture",
-      "accroche": "Le prologue de La Marche d'Ombrefiel se joue de bout en bout : sa carte, ses lieux illustrés, ses dilemmes et sa première quête.",
+      "titre": "Trois histoires à jouer",
+      "accroche": "Une enquête de village, un donjon de pillards et le prologue d'une conspiration : chaque histoire a ses lieux illustrés, ses personnages, ses quêtes et ses choix qui coûtent.",
       "paragraphes": [
-        "La Marche d'Ombrefiel (le prologue : niveaux 1 à 3, environ 6 heures) : depuis six mois, le fer neuf de la Marche se brise. Du Carrefour d'Aldric, le groupe commence à remonter le sabotage.",
-        "La suite de l'histoire est en cours d'écriture, jusqu'à l'Échéance du Conseil. La Dîme des Roseaux, un monde court, est encore en brouillon.",
-        "Une histoire s'ouvre sur un film d'ouverture, avec des images en fondu et un texte lu par la voix du conteur. Des scènes racontées marquent les moments clés."
+        "La Dîme des Roseaux (niveaux 1 à 2, environ 8 heures, 4 fins) : à Mireval, village de roseaux, la charrette de grain a disparu, la fille du meunier est partie avec elle et le pont est fermé pour trois jours de crue. Qui doit payer la paix ?",
+        "La Tombe des Rois Serpents (niveaux 1 à 3, environ 11 heures, 5 fins) : engagé à moitié-part par un noble pour piller une nécropole oubliée, le groupe descend dans trois niveaux de pièges, de sépulcres et de créatures reptiliennes, sous l'œil d'un valet qui compte le butin.",
+        "La Marche d'Ombrefiel (le prologue : environ 6 heures, 2 fins) : depuis six mois, le fer neuf de la Marche se brise. Du Carrefour d'Aldric, le groupe commence à remonter le sabotage. La suite, jusqu'à l'Échéance du Conseil, est en écriture.",
+        "Chaque histoire se présente par un résumé qui donne envie de jouer, puis se lance d'un bouton. Des scènes racontées par la voix du conteur marquent les moments clés."
       ],
       "points": [
-        "Un prologue jouable : la zone du Carrefour d'Aldric",
-        "Niveaux 1 à 3, environ 6 heures",
-        "La suite de La Marche : en cours d’écriture",
-        "La Dîme des Roseaux : en brouillon",
-        "Un film d’ouverture, avec des images en fondu et une voix",
-        "Des dilemmes à trancher, et des choix qui coûtent"
+        "Trois histoires jouables : La Dîme des Roseaux, La Tombe des Rois Serpents et le prologue de La Marche d'Ombrefiel",
+        "De 6 à 11 heures chacune, de 0,2 $ à 3,2 $ de coût d’API selon le modèle du conteur",
+        "Un résumé pour chaque histoire, et un bouton pour la lancer",
+        "De 2 à 5 fins, qui coûtent chacune quelque chose",
+        "Des dilemmes à trancher, et des choix qui coûtent",
+        "Des scènes racontées, avec la voix du conteur"
       ],
       "images": [
         {
           "id": "histoires",
-          "legende": "La liste des histoires : La Marche d'Ombrefiel, avec son illustration, et La Dîme des Roseaux, marquée comme brouillon."
+          "legende": "L'écran « Choisir une histoire » : le résumé d'une histoire (ici La Dîme des Roseaux) se déplie d'un bouton, et « Lancer l'histoire » démarre l'aventure."
         },
         {
           "id": "carte-monde",
@@ -350,7 +351,7 @@
         "Un récit plus vivant, sur demande",
         "Exploration, combats et images : gratuits",
         "Estimation affichée avant de commencer",
-        "La Marche d'Ombrefiel : environ 6 heures, de 0,2 $ à 2 $ selon le modèle"
+        "De 6 à 11 heures selon l'histoire : de 0,2 $ à 3,2 $ selon le modèle"
       ],
       "images": [
         {
@@ -363,17 +364,16 @@
   "etat": {
     "titre": "Où en est le jeu",
     "paragraphes": [
-      "La Table du Conteur est un prototype jouable, encore en cours de développement. La Marche d'Ombrefiel est jouable en son prologue ; la suite et La Dîme des Roseaux sont en écriture.",
-      "Le conteur IA est à l'essai. L'écran de réglage de votre clé d'API n'est pas encore là.",
+      "La Table du Conteur est un prototype jouable, encore en cours de développement. Trois histoires se jouent aujourd'hui : La Dîme des Roseaux et La Tombe des Rois Serpents, jusqu'à leurs fins, et le prologue de La Marche d'Ombrefiel, dont la suite est en écriture.",
+      "Le conteur IA est à l'essai. L'écran Options règle la taille du texte et les animations ; la saisie de votre clé d'API n'y est pas encore.",
       "Une application de bureau est en préparation. Elle gardera la clé d'API du joueur dans le trousseau du système."
     ],
     "points": [
       "Prototype jouable, en cours de développement",
-      "Un prologue jouable : La Marche d'Ombrefiel",
-      "La suite de La Marche en cours d’écriture",
-      "La Dîme des Roseaux en brouillon",
+      "Deux histoires qui se jouent jusqu'à leurs fins : La Dîme des Roseaux et La Tombe des Rois Serpents",
+      "Le prologue de La Marche d'Ombrefiel, dont la suite est en écriture",
       "Le conteur IA est à l'essai",
-      "L'écran de réglage de la clé d'API n'est pas encore là",
+      "La saisie de la clé d'API n'est pas encore dans les Options",
       "Application de bureau en préparation",
       "Clé d'API gardée dans le trousseau du système, sur le bureau"
     ]
@@ -422,40 +422,40 @@
   },
   "nouveautes": [
     {
-      "titre": "La feuille de personnage devient l'inventaire",
-      "texte": "Ouverte en grand : l'équipement sur une silhouette, le sac du groupe à côté, la fiche complète dans un second onglet."
+      "titre": "Trois histoires jouables",
+      "texte": "La Dîme des Roseaux et La Tombe des Rois Serpents se jouent jusqu'à leurs fins ; le prologue de La Marche d'Ombrefiel a maintenant deux fins."
     },
     {
-      "titre": "Deux jeux d'armes, en combat aussi",
-      "texte": "Un héros porte deux jeux d'armes. En combat, la carte « Changer d'armes » prend l'autre, gratuitement, une fois par tour. La main gauche tient un bouclier ou une arme Légère."
+      "titre": "Choisir son histoire, en un clic",
+      "texte": "Chaque histoire a son résumé qui donne envie, et un bouton « Lancer l'histoire » qui démarre tout de suite quand le groupe est prêt."
     },
     {
-      "titre": "Des combats qui se voient et s'entendent",
-      "texte": "Treize familles de dégâts, des projectiles et des auras sur les jetons, des bruitages, cinq musiques d'ambiance, et des cris de combat propres à chaque race."
+      "titre": "Des dialogues plus lisibles",
+      "texte": "Toute la conversation reste à l'écran, l'attitude du personnage s'affiche, et les jets d'influence annoncent leur compétence, leur DD et le meilleur orateur."
     },
     {
-      "titre": "Des personnages qui parlent",
-      "texte": "Les salutations de certains PNJ sont dites à voix haute. Les conversations ont leur boîte de dialogue, des réponses numérotées (touches 1 à 9) et une option « Dis-le plus simplement »."
+      "titre": "Des boutiques illustrées",
+      "texte": "Les marchands ont leur vitrine : image, résumé, prix, et les héros qui peuvent porter chaque article."
     },
     {
-      "titre": "Un monde qui se souvient",
-      "texte": "Les PNJ réagissent à ce que le groupe a fait, les témoins vous voient forcer une serrure, et le codex garde ce que vous savez et d'où vous le tenez."
+      "titre": "Une boussole de quête",
+      "texte": "La quête suivie et son objectif sont dans l'en-tête, avec l'heure lisible et de petits badges (−15 po, +50 PX). Un achat ou un déplacement sans jet de dé peut s'annuler."
     },
     {
-      "titre": "Explorer avec plus de sens",
-      "texte": "Examiner un détail du décor, un récit à l'arrivée dans chaque lieu, une phrase sous chaque sortie, et la liste de ceux qu'on croise."
+      "titre": "Des combats plus lisibles",
+      "texte": "Les attaques d'opportunité sont annoncées sur le chemin, la piste d'initiative éclaire les jetons, le bouton « Rapide » est à portée, et l'écran de fin dit qu'un héros tombé est relevé à 1 PV."
     },
     {
-      "titre": "Des épreuves en plein écran",
-      "texte": "Crochetage, désamorçage de piège, rencontres à choix, parchemins de quête et montée de niveau avec vos choix : chacun a son écran."
+      "titre": "Une carte et un équipement plus directs",
+      "texte": "Un double-clic sur la carte suffit pour s'y rendre, avec les chemins et leur durée. Sur la feuille, un comparateur montre ce que change un objet avant de l'équiper."
     },
     {
-      "titre": "Des monstres lisibles",
-      "texte": "Chaque rencontre montre ses créatures, avec leur image et leur description. Un clic sur un ennemi affiche ses renseignements. Le couvert donne +2 à la CA."
+      "titre": "Un créateur qui montre le résultat",
+      "texte": "PV, CA, attaque et sorts se calculent en direct pendant la création ; le choix des sorts se filtre par ceux qui servent en combat."
     },
     {
-      "titre": "Un groupe de 4 ou 6",
-      "texte": "Le groupe peut compter 4 ou 6 héros, chaque histoire annonce la taille qu'elle vise, et le kit de départ est allégé : le reste se trouve à acheter."
+      "titre": "Des Options pour lire à son aise",
+      "texte": "Taille du texte de 100 à 130 %, animations réduites, et l'état du conteur : le jeu s'adapte à votre écran."
     }
   ]
 }
