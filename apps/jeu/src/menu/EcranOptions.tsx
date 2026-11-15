@@ -14,6 +14,7 @@ import {
   type EchelleTexte,
   type Options,
 } from '../options/options-regles';
+import { SectionTempsDeJeu } from './SectionTempsDeJeu';
 import '../options/options.css';
 
 const dollars = (x: number) => `${x.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 3 })} $`;
@@ -166,6 +167,8 @@ export function EcranOptions({ onRetour }: { onRetour: () => void }) {
             Actualiser l'état
           </button>
         </section>
+
+        <SectionTempsDeJeu />
       </div>
     </div>
   );

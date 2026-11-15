@@ -247,3 +247,33 @@ html[data-mouvement='reduit'] *::after {
     flex-basis: 100%;
   }
 }
+
+/* Temps de jeu mesuré ------------------------------------------------------ */
+.options-temps {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.options-temps th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--texte-faible);
+  font-size: 12px;
+  padding: 4px 8px 4px 0;
+}
+.options-temps td {
+  padding: 6px 8px 6px 0;
+  border-top: 1px solid var(--bord);
+  vertical-align: top;
+}
+.options-temps small {
+  color: var(--texte-faible);
+}
+.options-temps-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}

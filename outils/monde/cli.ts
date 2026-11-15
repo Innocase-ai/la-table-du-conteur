@@ -12,7 +12,8 @@
 //                                     le bilan complet en une commande (point V8) : validation, ce qui manque, estimation à jour, revue de secrets du canon, fins prouvées ;
 //                                     code 1 si une rubrique bloque la publication
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
-import { mkdirSync, writeFileSync } from 'node:fs';
+//   pnpm monde calibrer <temps-de-jeu.json>   compare le temps de jeu mesuré (export de l'écran Options) à la durée estimée de chaque histoire
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde, listerMondes, RACINE_MONDES } from '../../packages/regles/src/monde/chargeur';
@@ -22,6 +23,7 @@ import { problemesDeChargement } from '../../packages/regles/src/monde/assemblag
 import { estimerCampagne } from '../../packages/regles/src/monde/estimation';
 import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verification/enigmes';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
+import { calibrer, texteCalibrage } from './calibrer';
 import { genererDocMonde } from './doc';
 import { creerSquelette } from './nouveau';
 import { afficherBilan, completudeDuMonde, verifierMonde } from './verifier';
@@ -57,6 +59,29 @@ if (commande === 'nouveau') {
     console.error((e as Error).message);
     process.exit(1);
   }
+}
+
+if (commande === 'calibrer') {
+  // Le temps de jeu mesuré (export de l'écran Options) contre la durée estimée de chaque histoire.
+  if (!cible) {
+    console.error('Usage : pnpm monde calibrer <temps-de-jeu.json>  (le fichier exporté par Options > Temps de jeu)');
+    process.exit(1);
+  }
+  let texte: string;
+  try {
+    texte = readFileSync(cible, 'utf8');
+  } catch {
+    console.error(`❌ Fichier illisible : ${cible}`);
+    process.exit(1);
+  }
+  const estimations = new Map<string, ReturnType<typeof estimerCampagne>>();
+  for (const id of listerMondes()) {
+    const r = chargerMonde(join(RACINE_MONDES, id));
+    if (r.ok) estimations.set(id, estimerCampagne(r.monde));
+  }
+  const res = calibrer(texte, estimations);
+  console.log(texteCalibrage(res));
+  process.exit(res.erreur ? 1 : 0);
 }
 
 if (commande === 'lister' || !commande) {

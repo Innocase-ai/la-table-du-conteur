@@ -48,7 +48,15 @@ export const RYTHME = {
   evenement: { tours: 1, conteur: 0 },
   /** Imprévus, saisie libre, errance, repos, commerce : tours en plus, tous racontés par le conteur. */
   marge: 0.15,
-  toursParHeure: 45,
+  /**
+   * Temps par tour de jeu HORS lecture : choisir, cliquer, hésiter, consulter la fiche ou le sac. La lecture des textes est
+   * comptée à part (voir `motsParMinute`) : une histoire aux textes riches dure plus qu'une histoire aux textes secs.
+   */
+  secondesParAction: 60,
+  /** Vitesse de lecture dans le jeu, en mots par minute : plus lente qu'une lecture courante (200 à 250), on lit pour jouer. */
+  motsParMinute: 150,
+  /** Part des mots de chaque sorte de texte qu'un groupe qui finit l'histoire lit vraiment. */
+  lecture: { reponsesPnj: 0.6, extensions: 0.5 },
   minutesParCombat: 12,
   /** Une image de groupe tous les N tours de conteur (les moments forts). */
   toursParImage: 8,
@@ -64,6 +72,8 @@ export const Estimation = z.object({
   heures: z.object({ recit: z.number(), combats: z.number(), total: z.number() }),
   couts: z.array(z.object({ modele: z.string(), nom: z.string(), usd: z.number(), min: z.number(), max: z.number() })),
   imagesUsd: z.number(),
+  /** Mots que le joueur lit en finissant l'histoire (arrivées, réponses, mises en scène, scènes, dilemmes), selon `RYTHME.lecture`. */
+  motsLus: z.number().default(0),
 });
 export type Estimation = z.infer<typeof Estimation>;
 
@@ -72,6 +82,31 @@ const arrondi = (x: number, pas: number) => Number((Math.round(x / pas) * pas).t
 export function coutTourUsd(t: (typeof TARIFS_CONTEUR)[number]): number {
   const parAppel = (TOUR.enCache * t.cache + TOUR.nouveaux * t.entree) / 1e6;
   return TOUR.appels * parAppel + (TOUR.sortie * t.sortie) / 1e6;
+}
+
+const nombreDeMots = (t: unknown): number => (typeof t === 'string' ? t.split(/\s+/).filter(Boolean).length : 0);
+/** Les mots d'un arbre de données qui sont de vraies phrases (5 mots au moins) : on laisse de côté les identifiants et les étiquettes. */
+const motsDePhrases = (v: unknown): number => {
+  if (typeof v === 'string') return nombreDeMots(v) >= 5 ? nombreDeMots(v) : 0;
+  if (Array.isArray(v)) return v.reduce((s: number, x) => s + motsDePhrases(x), 0);
+  if (v && typeof v === 'object') return Object.values(v as object).reduce((s: number, x) => s + motsDePhrases(x), 0);
+  return 0;
+};
+
+/**
+ * Mots que lit un groupe qui finit l'histoire : l'arrivée dans les lieux visités, les réponses des PNJ qu'on interroge, les mises
+ * en scène des rencontres, les événements, et les textes des modules (dilemmes, événements à choix, scènes, examens).
+ */
+export function motsLusDuMonde(dm: DonneesMonde): number {
+  const R = RYTHME;
+  const arrivees = [...dm.lieux.values()].reduce((s, l) => s + nombreDeMots(l.arrivee), 0) * R.lieuxVisites;
+  const reponses = [...dm.pnj.values()].reduce((s, p) => s + p.sujets.reduce((t, x) => t + nombreDeMots(x.reponse), 0), 0) * R.lecture.reponsesPnj;
+  const mises = [...dm.rencontres.values()].reduce((s, r) => s + nombreDeMots(r.intro), 0);
+  const evenements = [...dm.evenements.values()].reduce((s, e) => s + nombreDeMots(e.narration), 0);
+  const modules = Object.entries(dm.extensions ?? {})
+    .filter(([dossier]) => ['dilemmes', 'evenements-choix', 'scenes', 'examens'].includes(dossier))
+    .reduce((s, [, v]) => s + motsDePhrases(v), 0) * R.lecture.extensions;
+  return Math.round(arrivees + reponses + mises + evenements + modules);
 }
 
 export function estimerCampagne(dm: DonneesMonde): Estimation {
@@ -93,7 +128,8 @@ export function estimerCampagne(dm: DonneesMonde): Estimation {
   const marge = base * R.marge;
   const tours = Math.round(base + marge);
   const toursConteur = Math.round(elements.reduce((s, [n, e]) => s + n * e.tours * e.conteur, 0) + marge);
-  const recit = tours / R.toursParHeure;
+  const motsLus = motsLusDuMonde(dm);
+  const recit = (tours * R.secondesParAction) / 3600 + motsLus / (R.motsParMinute * 60);
   const enCombat = (combats * R.minutesParCombat) / 60;
   const i = R.incertitude;
   return {
@@ -107,5 +143,6 @@ export function estimerCampagne(dm: DonneesMonde): Estimation {
       return { modele: t.modele, nom: t.nom, usd: arrondi(usd, pas), min: arrondi(usd * (1 - i), pas), max: arrondi(usd * (1 + i), pas) };
     }),
     imagesUsd: arrondi((toursConteur / R.toursParImage) * PRIX_IMAGE_USD, 0.1),
+    motsLus,
   };
 }

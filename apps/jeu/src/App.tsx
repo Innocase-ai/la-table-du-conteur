@@ -8,6 +8,8 @@ import { EcranGroupe } from './groupe/EcranGroupe';
 import { chargerGroupe, herosDuGroupe, sauverGroupe } from './groupe/stockage';
 import { EcranAide } from './menu/EcranAide';
 import { EcranOptions } from './menu/EcranOptions';
+import { noterAction } from './mesure/mesure-temps';
+import { useMesureTemps } from './mesure/useMesureTemps';
 import { EcranAventure } from './aventure/EcranAventure';
 import { demarrerAventure, partieSauvegardee, rencontreDeMonde, reprendreAventure, sauverPartie, type Aventure } from './aventure/partie';
 import { chargerHistoire } from './mondes';
@@ -86,6 +88,9 @@ export function App() {
   const sceneMusique: SceneMusique = partie ? undefined : (combatHistoire && aventure) || vue.nom === 'aventure' ? 'histoire' : 'accueil';
   useEffect(() => definirSceneMusique(sceneMusique), [sceneMusique]);
 
+  // Temps de jeu réel de l'histoire (aventure ou combat d'histoire à l'écran), pour recaler l'estimation de durée (Options).
+  useMesureTemps(aventure && !partie && (vue.nom === 'aventure' || combatHistoire) ? aventure.moteur.ctx.dm.monde.id : undefined);
+
   if (!donnees.ok) {
     return (
       <div className="erreur-fatale">
@@ -157,7 +162,10 @@ export function App() {
     return (
       <EcranAventure
         aventure={aventure}
-        onPartie={suite}
+        onPartie={(p) => {
+          noterAction(aventure.moteur.ctx.dm.monde.id);
+          suite(p);
+        }}
         onMenu={() => setVue({ nom: 'titre' })}
         onCombat={() => {
           const p = aventure.partie;
