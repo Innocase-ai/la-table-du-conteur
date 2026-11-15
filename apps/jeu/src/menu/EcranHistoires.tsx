@@ -76,6 +76,10 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
   const liste = useMemo(() => histoires(), []);
   const [choisie, setChoisie] = useState<Histoire | undefined>(liste[0]);
   const complets = groupe.emplacements.filter((p) => p && personnageComplet(bilanPersonnage(p, donnees))).length;
+  const [resumes, setResumes] = useState<string[]>([]);
+  /** Un groupe complet, au niveau que l'histoire attend : de quoi la lancer. */
+  const pretePour = (h: Histoire) => complets >= TAILLE_GROUPE_MIN && groupe.niveau >= h.monde.niveaux.min && groupe.niveau <= h.monde.niveaux.max;
+  const basculerResume = (h: Histoire) => setResumes((r) => (r.includes(h.monde.id) ? r.filter((x) => x !== h.monde.id) : [...r, h.monde.id]));
 
   return (
     <div className="histoires">
@@ -91,21 +95,53 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
       ) : (
         <div className="histoires-corps">
           <ul className="histoires-liste">
-            {liste.map((h) => (
-              <li key={h.monde.id}>
-                <button type="button" className={`histoire-carte ${choisie?.monde.id === h.monde.id ? 'choisie' : ''}`} onClick={() => setChoisie(h)}>
-                  <Couverture h={h} />
-                  <span className="histoire-carte-texte">
-                    <strong>{h.monde.nom}</strong>
-                    <span>{h.monde.accroche}</span>
-                    <small>
-                      Niveaux {h.monde.niveaux.min} à {h.monde.niveaux.max} · pour {h.monde.groupe.conseille} héros · {h.monde.chapitres.length} chapitre{h.monde.chapitres.length > 1 ? 's' : ''}
-                      {h.estimation && ` · ≈ ${h.estimation.heures.total} h · API ${dollars(Math.min(...h.estimation.couts.map((c) => c.usd)))} à ${dollars(Math.max(...h.estimation.couts.map((c) => c.usd)))}`}
-                    </small>
-                  </span>
-                </button>
-              </li>
-            ))}
+            {liste.map((h) => {
+              const ouvert = resumes.includes(h.monde.id);
+              const prete = pretePour(h);
+              return (
+                <li key={h.monde.id} className={`histoire-bloc ${choisie?.monde.id === h.monde.id ? 'choisie' : ''}`}>
+                  <button type="button" className="histoire-carte" onClick={() => setChoisie(h)}>
+                    <Couverture h={h} />
+                    <span className="histoire-carte-texte">
+                      <strong>{h.monde.nom}</strong>
+                      <span>{h.monde.accroche}</span>
+                      <small>
+                        Niveaux {h.monde.niveaux.min} à {h.monde.niveaux.max} · pour {h.monde.groupe.conseille} héros · {h.monde.chapitres.length} chapitre{h.monde.chapitres.length > 1 ? 's' : ''}
+                        {h.estimation && ` · ≈ ${h.estimation.heures.total} h · API ${dollars(Math.min(...h.estimation.couts.map((c) => c.usd)))} à ${dollars(Math.max(...h.estimation.couts.map((c) => c.usd)))}`}
+                      </small>
+                    </span>
+                  </button>
+                  {ouvert && (
+                    <div className="histoire-teasing" id={`teasing-${h.monde.id}`}>
+                      {(h.monde.teasing ?? h.monde.resume).split(/\n\s*\n/).map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                      <ul className="histoire-ton">
+                        {h.monde.ton.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  <div className="histoire-actions">
+                    <button type="button" className="bouton" aria-expanded={ouvert} aria-controls={`teasing-${h.monde.id}`} onClick={() => basculerResume(h)}>
+                      {ouvert ? 'Masquer le résumé' : 'Résumé'}
+                    </button>
+                    <button type="button" className="bouton-principal" disabled={!prete} onClick={() => onCommencer(h.monde.id)}>
+                      Lancer l'histoire
+                    </button>
+                  </div>
+                  {!prete && (
+                    <p className="histoire-actions-aide">
+                      Pour la lancer, il faut un groupe de {TAILLE_GROUPE_MIN} à {TAILLE_GROUPE} personnages complets, au niveau {h.monde.niveaux.min} à {h.monde.niveaux.max}.{' '}
+                      <button type="button" className="lien" onClick={onGroupe}>
+                        préparer mon groupe
+                      </button>
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {choisie && (
@@ -155,7 +191,7 @@ export function EcranHistoires({ donnees, groupe, onGroupe, onRetour, onCommence
                     )}
                   </li>
                 </ul>
-                <button type="button" className="bouton-principal" disabled={complets < TAILLE_GROUPE_MIN || groupe.niveau < choisie.monde.niveaux.min || groupe.niveau > choisie.monde.niveaux.max} onClick={() => onCommencer(choisie.monde.id)}>
+                <button type="button" className="bouton-principal" disabled={!pretePour(choisie)} onClick={() => onCommencer(choisie.monde.id)}>
                   Commencer l'aventure
                 </button>
                 <p className="histoire-bientot">

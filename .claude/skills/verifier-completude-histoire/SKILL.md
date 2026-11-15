@@ -36,6 +36,7 @@ Un **manque** bloque la livraison ; un **avis** se lit et se décide.
 - **Chaque lieu a-t-il de quoi faire ?** (combat, PNJ, trésor, énigme, secret) : relire le budget du niveau 1 contre les données (`docs/mondes/<monde>.md`, `pnpm monde doc`).
 - **Rattachement du contenu** : faits, rencontres, PNJ présents, énigmes bien placés dans leur lieu (essai dans le jeu, pas seulement le validateur).
 - **Compagnons, marchands, dilemmes, factions** : annoncés par le canon (BIBLE, fil rouge) et absents des données ; avis « Richesse » du validateur.
+- **Teasing** : `monde.json` a-t-il un champ `teasing` (3 paragraphes, 150 à 200 mots, sans spoiler : rien du § 2 de la BIBLE) ? La commande `manque` ne le contrôle pas ; sans lui, le bouton « Résumé » de l'écran « Choisir une histoire » retombe sur `resume`, bien plus court. Voir `creer-monde`, étape 9 bis.
 - **Sons et musiques** : `docs/SONS.md`.
 - **Jouer vraiment** : lancer le jeu (`pnpm jeu`, Ombresang provisoirement en `publie` pour l'essai, à remettre ensuite), jouer l'ouverture, un combat, un dialogue, un trajet, ouvrir le sac et la carte. C'est ainsi qu'on trouve l'icône vide d'une clé ou une carte sans fond.
 - **Cohérence entre images** : relire chaque image contre sa fiche (une image qui contredit le texte est un manque, pas un détail).

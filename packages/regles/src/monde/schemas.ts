@@ -651,6 +651,9 @@ export const Monde = z.object({
   nom: Texte,
   resume: Texte,
   accroche: Texte,
+  // Le texte qui donne envie, lu sur la page « Choisir une histoire » (bouton Résumé) : plus long que `resume`, sans aucun spoiler,
+  // paragraphes séparés par une ligne vide. Sans lui, l'écran montre `resume`.
+  teasing: z.string().optional(),
   ton: z.array(Texte).min(1),
   // Niveaux de personnages pour lesquels le monde est écrit.
   niveaux: z.object({ min: z.number().int().min(1).max(20), max: z.number().int().min(1).max(20) }),

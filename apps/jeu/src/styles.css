@@ -5048,28 +5048,88 @@ li.fp-maitrise {
   gap: 10px;
 }
 
+/* Un bloc = la carte cliquable, son résumé (teasing) déplié à la demande et les deux boutons : résumé, lancer. */
+.histoire-bloc {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid var(--bord);
+  background: var(--panneau);
+  color: var(--texte);
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.histoire-bloc:hover {
+  border-color: var(--bord-clair);
+}
+
+.histoire-bloc.choisie {
+  border-color: var(--or);
+  box-shadow: 0 0 0 1px var(--or), var(--ombre);
+}
+
 .histoire-carte {
   width: 100%;
   display: flex;
   flex-direction: column;
   text-align: left;
   padding: 0;
-  border-radius: 10px;
-  border: 1px solid var(--bord);
-  background: var(--panneau);
-  color: var(--texte);
-  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.histoire-carte:hover {
-  border-color: var(--bord-clair);
+.histoire-teasing {
+  padding: 4px 14px 10px;
+  border-top: 1px solid var(--bord);
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--texte-doux);
 }
 
-.histoire-carte.choisie {
-  border-color: var(--or);
-  box-shadow: 0 0 0 1px var(--or), var(--ombre);
+.histoire-teasing p {
+  margin: 8px 0;
+}
+
+.histoire-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--bord);
+}
+
+.histoire-actions .bouton,
+.histoire-actions .bouton-principal {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+}
+
+.histoire-actions .bouton-principal {
+  padding: 8px 10px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.histoire-actions .bouton-principal:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.histoire-actions-aide {
+  margin: 0;
+  padding: 0 14px 12px;
+  font-size: 12px;
+  color: var(--texte-faible);
+  line-height: 1.4;
 }
 
 .histoire-carte .histoire-couverture {
