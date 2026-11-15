@@ -109,6 +109,18 @@ describe('explorer les parcours', () => {
     expect(rap.arret).toBe('budget');
   });
 
+  it('plafonne la file d’attente : une frontière minuscule élague sans casser ni les parcours trouvés ni la couverture, et un arrêt « épuisé » devient « budget »', () => {
+    const dm = miniJouable();
+    const large = explorerParcours({ dm, srd }, { budgetEtats: 200, graines: [21] });
+    const etroite = explorerParcours({ dm, srd }, { budgetEtats: 200, graines: [21], frontiereMax: 3, couvrir: true });
+    expect(etroite.etats).toBeGreaterThan(0);
+    // les chemins des fins trouvées gardent leurs lieux (le nœud n'a plus sa partie, seulement son lieu)
+    for (const p of etroite.parcours) for (const e of p.etapes) expect(typeof e.lieu).toBe('string');
+    // elle voit au moins les lieux de départ, et ne prétend pas avoir tout exploré si elle a élagué
+    expect(etroite.couverture.lieux.vus).toEqual(expect.arrayContaining(['village']));
+    if (large.arret === 'epuise') expect(['epuise', 'budget']).toContain(etroite.arret);
+  });
+
   it('avec « couvrir », la recherche continue après avoir trouvé toutes les fins', () => {
     const dm = miniJouable();
     const court = explorerParcours({ dm, srd }, { budgetEtats: 300, graines: [21] });

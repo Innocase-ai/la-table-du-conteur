@@ -6,7 +6,7 @@ import { appliquerEffets, bilanPersonnage, etatInitial, groupeConseille, personn
 import { chargerMonde, RACINE_MONDES } from '../src/monde/chargeur';
 import { chargerDonneesSrd } from '../src/donnees-node';
 import { avancerQuetes } from '../src/monde/etat';
-import { aller, fouiller, nouvellePartie, type PartieMonde } from '../src/monde/exploration';
+import { aller, fouiller, nouvellePartie, repondreEnigme, type PartieMonde } from '../src/monde/exploration';
 import { parler } from '../src/monde/dialogue';
 
 const srd = chargerDonneesSrd();
@@ -137,5 +137,49 @@ describe('quêtes secondaires de La Dîme : de bout en bout', () => {
     va(p, 'bergerie-des-hauteurs');
     dit(p, 'ormak-haute-lande', 'les-patrouilles');
     expect(p.etat.faits).toContain('f-ormak-patrouilles');
+  });
+});
+
+describe('contenu de La Dîme que le joueur automatique ne rejoint pas dans son budget', () => {
+  it('les rencontres d’exploration se déclenchent à la fouille du lieu (rats noyés, Grum, patrouille basse)', () => {
+    for (const [lieu, rencontre] of [
+      ['mar-grotte-des-noyes', 'mar-r-les-rats-noyes'],
+      ['min-camp-hobgobelin', 'min-r-grum-le-gobelours'],
+      ['min-grotte-de-la-veine-basse', 'min-r-la-patrouille-basse'],
+    ] as const) {
+      const p = partie(lieu);
+      let r = fouiller(p).combat;
+      // Un lieu à deux rencontres d'exploration les joue l'une après l'autre : la première faite, la fouille du lendemain donne la suivante.
+      if (r !== rencontre && r) {
+        p.etat.rencontresFaites.push(r);
+        p.etat.jour += 1;
+        r = fouiller(p).combat;
+      }
+      expect(r, `${lieu} → ${rencontre}`).toBe(rencontre);
+    }
+  });
+
+  it('l’énigme des lanternes se résout dans l’ordre vert, ambre, rouge, blanche, à la cabane des passeurs', () => {
+    const p = partie('mar-cabane-des-passeurs');
+    const xp = p.etat.xp;
+    const r = repondreEnigme(p, 'z5-e-signal-des-lanternes', ['verte', 'ambre', 'rouge', 'blanche']);
+    expect(r.refus).toBeUndefined();
+    expect(p.etat.exploration.enigmes['z5-e-signal-des-lanternes']).toBe('resolue');
+    expect(p.etat.faits).toContain('f-passeurs-neutres');
+    expect(p.etat.xp).toBe(xp + 50);
+  });
+
+  it('Marin propose la quête du passage ; Grum se joue (rencontre) ; la chute de Varg ne se joue qu’avec la guerre choisie', () => {
+    const p = partie('mar-cabane-des-passeurs');
+    dit(p, 'marin', 'passage');
+    expect(statut(p, 'q-marin-le-passage')).toBe('proposee');
+    const q = partie('min-bureau-de-varg');
+    q.etat.flags['varg-vaincu'] = true;
+    fouiller(q);
+    expect(q.etat.evenementsJoues).not.toContain('z5-varg-tombe'); // vaincu sans la guerre : pas de chute racontée
+    q.etat.flags['choix-guerre'] = true;
+    q.etat.jour += 1;
+    fouiller(q);
+    expect(q.etat.evenementsJoues).toContain('z5-varg-tombe');
   });
 });

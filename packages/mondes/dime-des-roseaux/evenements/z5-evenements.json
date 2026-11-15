@@ -49,18 +49,18 @@
   "id": "z5-varg-tombe",
   "declencheur": "condition",
   "condition": {
-   "pnj": {
-    "id": "varg",
-    "etat": "mort"
-   }
+   "et": [
+    {
+     "flag": "varg-vaincu"
+    },
+    {
+     "flag": "choix-guerre"
+    }
+   ]
   },
   "unique": true,
-  "narration": "Le capitaine ne se relèvera pas. Les hobgobelins restés debout hésitent, puis reculent ; la compagnie n'a plus de tête.",
-  "effets": [
-   {
-    "flag": "varg-vaincu"
-   }
-  ]
+  "narration": "Varg est chassé de sa mine : les hobgobelins restés debout hésitent, puis reculent. La compagnie n’a plus de tête.",
+  "effets": []
  },
  {
   "id": "z5-colin-libere",

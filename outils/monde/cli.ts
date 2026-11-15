@@ -5,7 +5,7 @@
 //   pnpm monde doc [monde]            écrit docs/mondes/<monde>.md depuis les données
 //   pnpm monde estimer [monde]        écrit packages/mondes/<monde>/estimation.json (durée et coût d'API, affichés aux joueurs)
 //   pnpm monde manque [monde]         ce qui MANQUE : images (lieux, PNJ, objets), cartes, positions, scènes, voix, estimation ; code 1 s'il manque quelque chose
-//   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]
+//   pnpm monde parcours [monde] [--etats N] [--ms N] [--graines a,b] [--chemin] [--couvrir]   (--couvrir liste aussi ce qui n'est jamais vu ; --frontiere N : états en attente au plus, 40 000 par défaut)
 //                                     un joueur automatique joue le VRAI moteur pour atteindre chaque fin (combats supposés gagnés) ;
 //                                     code 1 si une fin n'est pas atteinte (avec ce budget : ce n'est pas une preuve d'impossibilité)
 //   pnpm monde verifier [monde] [--sans-parcours] [--etats N] [--ms N] [--graines a,b]
@@ -36,6 +36,7 @@ function option(nom: string): string | undefined {
   return v;
 }
 const optEtats = option('etats');
+const optFrontiere = option('frontiere');
 const optMs = option('ms');
 const optGraines = option('graines');
 const optChemin = args.includes('--chemin');
@@ -115,7 +116,7 @@ for (const id of mondes) {
     const t0 = Date.now();
     const rap = explorerParcours(
       { dm: r.monde, srd },
-      { budgetEtats: optEtats ? Number(optEtats) : 6000, budgetMs: optMs ? Number(optMs) : 120_000, couvrir: optCouvrir, ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) },
+      { budgetEtats: optEtats ? Number(optEtats) : 6000, budgetMs: optMs ? Number(optMs) : 120_000, couvrir: optCouvrir, ...(optFrontiere ? { frontiereMax: Number(optFrontiere) } : {}), ...(optGraines ? { graines: optGraines.split(',').map(Number) } : {}) },
     );
     const manque = rap.finsNonAtteintes.length > 0;
     console.log(`
@@ -127,6 +128,15 @@ ${manque ? '⚠️ ' : '✅'} ${id} — ${rap.parcours.length}/${r.monde.fins.si
     for (const f of rap.finsNonAtteintes) console.log(`  ❌ ${f} — non atteinte${rap.arret === 'epuise' ? ' (tous les états ont été explorés)' : ' (budget ou temps épuisé : relancer avec --etats plus grand)'}`);
     const c = rap.couverture;
     console.log('  vu : ' + (['lieux', 'pnj', 'rencontres', 'evenements', 'faits', 'enigmes'] as const).map((k) => `${k} ${c[k].vus.length}/${c[k].vus.length + c[k].jamais.length}`).join(' · '));
+    if (optCouvrir) {
+      // Ce que le joueur automatique n'a jamais vu (pas une preuve d'inaccessibilité : il est limité par son budget). Les rencontres tirées au hasard à l'arrivée (« auto-… ») sont comptées à part.
+      for (const k of ['lieux', 'pnj', 'rencontres', 'evenements', 'faits', 'enigmes', 'quetes'] as const) {
+        const jamais = c[k].jamais;
+        const auto = jamais.filter((x) => x.startsWith('auto-'));
+        const reste = jamais.filter((x) => !x.startsWith('auto-'));
+        if (reste.length || auto.length) console.log(`  jamais vus — ${k} (${reste.length}${auto.length ? ` + ${auto.length} tirages au hasard` : ''}) : ${reste.join(', ') || '—'}`);
+      }
+    }
     console.log('  hypothèses : ' + rap.hypotheses.join(' '));
     if (manque) echec = true;
     continue;

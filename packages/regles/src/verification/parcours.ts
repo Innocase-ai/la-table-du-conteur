@@ -33,6 +33,11 @@ export interface OptionsParcours {
   profondeurMax?: number;
   /** Continuer d'explorer quand toutes les fins sont trouvées, pour voir ce que le joueur automatique atteint (couverture). */
   couvrir?: boolean;
+  /**
+   * Nombre d'états en attente d'exploration au plus : au-delà, on élague les moins prometteurs (le score le plus bas). Sans ce plafond,
+   * la file garde une copie de partie par état généré et la mémoire explose sur les grands mondes (couverture). 40 000 par défaut.
+   */
+  frontiereMax?: number;
   /** Le groupe joué (par défaut : le groupe conseillé du créateur). */
   groupe?: Personnage[];
   /** Appelé de temps en temps (états explorés, fins trouvées) ; renvoyer `true` pour arrêter. */
@@ -243,7 +248,10 @@ function actionsDe(moteur: Moteur, p: Partie): Action[] {
 // ---------------------------------------------------------------------------
 
 interface Noeud {
-  partie: Partie;
+  /** L'état de la partie ; libéré (null) une fois le nœud exploré : seul son lieu reste, pour afficher le chemin. */
+  partie: Partie | null;
+  /** Le lieu après l'action (le chemin n'a plus besoin de la partie entière). */
+  lieu: string;
   parent: Noeud | null;
   /** Ce qui a été joué pour arriver ici : l'action, et chaque nouvel essai d'un jet raté (le parcours doit les rejouer tous : les dés avancent). */
   actions: Action[];
@@ -260,6 +268,14 @@ class File {
   }
   private avant(a: Noeud, b: Noeud) {
     return a.score !== b.score ? a.score > b.score : a.profondeur !== b.profondeur ? a.profondeur < b.profondeur : a.ordreArrivee < b.ordreArrivee;
+  }
+  /** Garde les `max` meilleurs nœuds quand la file dépasse `2 × max` ; renvoie le nombre de nœuds jetés (un tableau trié du meilleur au pire est un tas valide). */
+  elaguer(max: number): number {
+    if (this.tas.length <= 2 * max) return 0;
+    this.tas.sort((a, b) => (this.avant(a, b) ? -1 : this.avant(b, a) ? 1 : 0));
+    const jetes = this.tas.length - max;
+    this.tas.length = max;
+    return jetes;
   }
   pousser(n: Noeud) {
     const t = this.tas;
@@ -294,7 +310,7 @@ class File {
 
 function cheminDe(n: Noeud): EtapeParcours[] {
   const etapes: EtapeParcours[] = [];
-  for (let c: Noeud | null = n; c?.parent; c = c.parent) for (let i = c.actions.length - 1; i >= 0; i--) etapes.push({ libelle: c.actions[i]!.libelle, ordre: c.actions[i]!.ordre, lieu: c.partie.etat.lieu });
+  for (let c: Noeud | null = n; c?.parent; c = c.parent) for (let i = c.actions.length - 1; i >= 0; i--) etapes.push({ libelle: c.actions[i]!.libelle, ordre: c.actions[i]!.ordre, lieu: c.lieu });
   return etapes.reverse();
 }
 
@@ -322,6 +338,8 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
   const budgetEtats = opts.budgetEtats ?? 6000;
   const budgetMs = opts.budgetMs ?? 60_000;
   const profondeurMax = opts.profondeurMax ?? 400;
+  const frontiereMax = opts.frontiereMax ?? 40_000;
+  let elagues = 0;
   const depart = maintenant();
   const couvrir = opts.couvrir ?? false;
 
@@ -365,7 +383,7 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
       for (const a of ancetres.values()) if (ancetreAtteint(a, p.etat)) s += poids;
       return s;
     };
-    const racine: Noeud = { partie: initiale, parent: null, actions: [], profondeur: 0, score: evaluer(initiale), ordreArrivee: ordreArrivee++ };
+    const racine: Noeud = { partie: initiale, lieu: initiale.etat.lieu, parent: null, actions: [], profondeur: 0, score: evaluer(initiale), ordreArrivee: ordreArrivee++ };
     connus.add(cleEtat(initiale));
     file.pousser(racine);
     let etatsGraine = 0;
@@ -381,9 +399,10 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         break;
       }
       const n = file.prendre()!;
+      const partieN = n.partie!;
       etats++;
       etatsGraine++;
-      noter(n.partie);
+      noter(partieN);
       if (opts.progres && etats % 200 === 0 && opts.progres({ etats, fins: [...trouvees.keys()], ms: maintenant() - depart })) {
         arret = 'arret';
         arretGlobal = true;
@@ -391,10 +410,10 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
       }
       if (n.profondeur >= profondeurMax) continue;
 
-      const avant = cleEtat(n.partie);
-      for (const action of actionsDe(moteur, n.partie)) {
+      const avant = cleEtat(partieN);
+      for (const action of actionsDe(moteur, partieN)) {
         // Un jet raté ne change rien : on retente (les dés avancent avec la graine de la partie) jusqu'à 4 fois.
-        let courant = n.partie;
+        let courant = partieN;
         let res = moteur.executer(courant, action.ordre);
         if (res.refus) continue;
         const essais: Action[] = [action];
@@ -407,11 +426,11 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         }
         const enfant = res.partie;
         // Le groupe ne change que si un événement l'annonce : sinon on partage celui du parent (mémoire).
-        if (!res.evenements.some((x) => CHANGE_LE_GROUPE.has(x.type))) enfant.groupe = n.partie.groupe;
+        if (!res.evenements.some((x) => CHANGE_LE_GROUPE.has(x.type))) enfant.groupe = partieN.groupe;
         enfant.journal = [];
         const finAtteinte = enfant.etat.fin ?? (enfant.scene.type === 'fin' ? enfant.scene.fin : undefined);
         const cle = cleEtat(enfant);
-        const noeud: Noeud = { partie: enfant, parent: n, actions: essais, profondeur: n.profondeur + 1, score: 0, ordreArrivee: ordreArrivee++ };
+        const noeud: Noeud = { partie: enfant, lieu: enfant.etat.lieu, parent: n, actions: essais, profondeur: n.profondeur + 1, score: 0, ordreArrivee: ordreArrivee++ };
         if (finAtteinte) {
           noter(enfant);
           if (!trouvees.has(finAtteinte)) trouvees.set(finAtteinte, { fin: finAtteinte, graine, niveau, etapes: cheminDe(noeud) });
@@ -427,8 +446,13 @@ export function explorerParcours(ctx: ContexteJeu, opts: OptionsParcours = {}): 
         arret = 'toutes-atteintes';
         break;
       }
+      // Ce nœud est exploré : sa partie (la plus grosse part de la mémoire) n'a plus d'usage ; la file est tenue sous son plafond.
+      n.partie = null;
+      elagues += file.elaguer(frontiereMax);
     }
     if (!couvrir && trouvees.size === fins.length) arret = 'toutes-atteintes';
+    // Des états ont été jetés : « tous les états ont été explorés » ne serait plus vrai.
+    if (elagues > 0 && arret === 'epuise') arret = 'budget';
   }
 
   const vusFins = new Set(trouvees.keys());
