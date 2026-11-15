@@ -39,7 +39,7 @@ Dans `~/crpg-llm/packages/mondes/dime-des-roseaux/`, un fichier par dossier et *
 Français soigné, concret, évocateur sans emphase. Respecte le **ton du monde** (`monde.json`, champ `ton`) et sa direction artistique. Les PNJ ont des **voix distinctes** (`personnalite.voix`). Pas de clichés gratuits ; chaque PNJ a une raison d'être là et un désir. Évite de nommer des éléments d'un univers existant (noms propres originaux).
 
 ## Vérification
-`cd ~/crpg-llm && pnpm monde valider dime-des-roseaux` charge le monde et le valide. **Pendant que les autres zones s'écrivent, des erreurs de références vers leurs entités sont normales** : ne corrige que ce qui concerne tes entités (schéma invalide, référence vers une entité de TA zone qui n'existe pas, lieu de TA zone inaccessible, quête de TA zone mal construite). Les **erreurs de chargement** (fichier `fichiers invalides`) concernent forcément un fichier fautif : si elles viennent d'un autre fichier que les tiens, attends et réessaie un peu plus tard. `pnpm test` doit rester vert (le monde est en `statut: brouillon`).
+`cd ~/crpg-llm && pnpm monde valider dime-des-roseaux` charge le monde et le valide. **Pendant que les autres zones s'écrivent, des erreurs de références vers leurs entités sont normales** : ne corrige que ce qui concerne tes entités (schéma invalide, référence vers une entité de TA zone qui n'existe pas, lieu de TA zone inaccessible, quête de TA zone mal construite). Les **erreurs de chargement** (fichier `fichiers invalides`) concernent forcément un fichier fautif : si elles viennent d'un autre fichier que les tiens, attends et réessaie un peu plus tard. `pnpm test` doit rester vert.
 Objectifs de richesse de ta zone : voir la mission. Pas de commit git.
 
 ## Rapport final (court)

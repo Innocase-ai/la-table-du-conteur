@@ -2202,3 +2202,9 @@ Demande de l'utilisateur : un skill pour construire les autres histoires.
 - **Événement `z5-varg-tombe`** : sa condition (« Varg est mort ») ne pouvait jamais être vraie (aucun effet ne tue Varg, et la victoire sur « Varg et sa garde » le laisse parler). Il se joue maintenant quand Varg est vaincu et que la guerre est choisie, avec une narration « chassé de sa mine » (cohérente avec « chassé ou tué » de la fin guerre).
 - **Hors de mon périmètre** : deux tests échouent sur le monde non suivi `packages/mondes/tombe-des-rois-serpents/` (dilemmes invalides), créé par une autre session.
 - **Pas commité.**
+
+## 15/11/2026 — La Dîme des Roseaux : publiée (le mot « brouillon » retiré)
+
+- **Demande de l'utilisateur** : retirer le mot « brouillon » de l'histoire. `monde.json` passe à `"statut": "publie"` : la Dîme apparaît dans le jeu à côté de La Marche d'Ombrefiel. Le bilan `pnpm monde verifier dime-des-roseaux` est entièrement vert (0 erreur, 0 manque, plus d'avis de publication) ; un monde publié est soumis aux tests des mondes livrés (validation sans erreur, modules, chargement).
+- **Mentions corrigées** : `GUIDE-ZONE.md` (« le monde est en statut brouillon »), `CLAUDE.md` (« La Marche d'Ombrefiel et La Dîme des Roseaux, publiées »), test de l'atelier (`chemins.test.ts` : la Dîme est « publie »). Les anciennes entrées du journal gardent leur mot « brouillon » : elles racontent l'histoire du projet.
+- **Pas fait** : essai à la main de la Dîme dans le jeu (personne ne l'a jouée) ; les avis qui restent (19 PNJ pour 25, examens, rencontres « élevées »). Pas commité.

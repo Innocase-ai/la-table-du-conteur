@@ -39,10 +39,11 @@ describe('gardes de chemins', () => {
 });
 
 describe('lecture des mondes par le serveur', () => {
-  it('liste les mondes, brouillons compris', () => {
+  it('liste les mondes avec leur statut (publié ou brouillon)', () => {
     const mondes = lireMondes(RACINE);
     expect(mondes.map((m) => m.id)).toEqual(expect.arrayContaining(['marche-d-ombrefiel', 'dime-des-roseaux']));
-    expect(mondes.find((m) => m.id === 'dime-des-roseaux')?.statut).toBe('brouillon');
+    expect(mondes.find((m) => m.id === 'dime-des-roseaux')?.statut).toBe('publie');
+    expect(mondes.every((m) => m.statut === 'publie' || m.statut === 'brouillon')).toBe(true);
     expect(lireMondes(ESSAI).map((m) => m.id)).toEqual(expect.arrayContaining(['val-des-cendres', 'citadelle-des-marees']));
   });
 
