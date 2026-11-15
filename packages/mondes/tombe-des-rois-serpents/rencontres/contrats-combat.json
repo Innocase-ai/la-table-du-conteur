@@ -1,0 +1,538 @@
+[
+  {
+    "id": "r-contrat-citerne",
+    "nom": "Ce qui Boit dans la Citerne",
+    "type": "mixte",
+    "lieu": "fort-du-reflet-beni",
+    "difficulte": "faible",
+    "intro": "Le seau remonte lourd, et l'eau qui ruisselle sur la corde laisse une pellicule orangée entre vos doigts, un relent de fer. Marta la Chaude-Chaudron vous a menés depuis sa cuisine jusqu'à la citerne voûtée sous le puits clair, sa lanterne tremblante. « Goûtez-moi ça, mes petits, ça a un goût de vieux clou ! Si l'eau tourne, c'est la disette qui nous attend. » Au fond, sur les marches, trois vases luisent doucement. Des rats géants dévalent les degrés en se bousculant, fuyant les masses grises. Les seaux rongés pendent encore au treuil. Comment rendre à cette eau sa clarté avant que le fort n'en manque ?",
+    "monstres": [
+      {
+        "profil": "vase-grise",
+        "nombre": 3,
+        "nom": "Vase de la citerne",
+        "description": "Flaque grise et luisante, couleur de pierre mouillée, qui ronge le cuir des seaux."
+      },
+      {
+        "profil": "rat-geant",
+        "nombre": 6,
+        "nom": "Rat de cellier",
+        "description": "Rat gros comme un chien, pelage collé de boue grise, dents jaunes."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.eeeee.m.m.eeeee..#",
+      "#.eeeee.m.m.eeeee..#",
+      "#.eeeee.mm..eeeee..#",
+      "#.....m.m.m........#",
+      "#..c.............c.#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "purger-la-citerne",
+        "nom": "Je purge la citerne à la chaux et au sel, sans verser une goutte de sang.",
+        "condition": {
+          "pieces": {
+            "min": 10
+          }
+        },
+        "jet": {
+          "competence": "nature",
+          "dd": 12
+        },
+        "resume": "La chaux vive mord la vase en sifflant, et le sel fait reculer les filaments luisants vers les fissures des marches. Il faut du temps pour que l'eau retrouve sa couleur de source. Les dix pièces d'or passent au fort pour payer la chaux et le sel, et Marta remonte un seau plein en riant, soulagée. Vous ressortez de la citerne couverts de poussière blanche, avec la fierté tranquille de ceux qui ont sauvé la réserve.",
+        "effets": [
+          {
+            "pieces": -10
+          },
+          {
+            "flag": "contrat-eau-fait"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "assecher-a-la-chaine",
+        "nom": "Je vide la citerne à la chaîne de seaux avec les soldats du fort.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "resume": "Les seaux remontent un à un, chargés d'une eau rousse qui ruisselle sur les pierres, et les soldats du fort tirent la chaîne sans s'arrêter. Deux heures passent ainsi, les bras endoloris, à vider le fond de la citerne. Les rats s'enfuient par les degrés, et la vase, à sec, se réfugie dans les fissures. Marta applaudit en secouant sa lanterne : la citerne est vide, et les marches sont dégagées.",
+        "effets": [
+          {
+            "temps": 2
+          },
+          {
+            "flag": "contrat-eau-fait"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "contrat-eau-fait"
+      }
+    ]
+  },
+  {
+    "id": "r-contrat-deserteurs",
+    "nom": "Les Déserteurs de la Piste",
+    "type": "mixte",
+    "lieu": "bivouac-entree",
+    "difficulte": "moderee",
+    "intro": "Le lit de l'oued est sec et craquelé, et la chaleur monte encore des pierres plates. Devant vous, la piste est barrée par des hommes en tenue usée, anciens de l'escorte d'Aldéric : deux éclaireurs aux regards fatigués, six fantassins aux joues creusées et, au milieu, un colosse mal rasé. Le chef des éclaireurs crie, la voix rauque : « Écartez-vous, on ne veut que notre solde, rien d'autre ! » Le sergent Rodrigue, du Fort, a demandé qu'on les ramène. Leurs bottes sont usées, leurs visages creusés par la faim. Que répondez-vous à des hommes qui n'ont plus rien à perdre ?",
+    "monstres": [
+      {
+        "profil": "eclaireur",
+        "nombre": 2,
+        "nom": "Déserteur éclaireur",
+        "description": "Ancien éclaireur de l'escorte d'Aldéric, manteau poussiéreux aux couleurs effacées, arc court tendu."
+      },
+      {
+        "profil": "fantassin",
+        "nombre": 6,
+        "nom": "Déserteur fantassin",
+        "description": "Ancien soldat de l'escorte, cuirasse dépareillée, épée courte, œil las."
+      },
+      {
+        "profil": "gros-bras",
+        "nombre": 1,
+        "nom": "Brutal de la bande",
+        "description": "Colosse mal rasé, massue de bois cerclé de fer, bandage sale au bras."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..~~~.......~~~...#",
+      "#.mmmR..m....R..m..#",
+      "#.....m...R....m...#",
+      "#~~...m......m...~~#",
+      "#..................#",
+      "#...R..........R...#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "alternatives": [
+      {
+        "id": "parlementer-avec-les-deserteurs",
+        "nom": "Je baisse mon arme et je leur demande pourquoi ils ont quitté la solde d'Aldéric.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 13
+        },
+        "resume": "Les éclaireurs posent leurs armes à terre, lentement, et le chef raconte d'une voix rauque qu'Aldéric n'a jamais payé leur solde, pas une pièce. Les fantassins hochent la tête en serrant les dents. Vous écoutez jusqu'au bout, sans interrompre, et vous comprenez que la dette n'est pas de leur côté. Le Fort saura que vous avez entendu ces hommes.",
+        "effets": [
+          {
+            "flag": "contrat-deserteurs-fait"
+          },
+          {
+            "flag": "deserteurs-impayes"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 80
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer-leur-solde",
+        "nom": "Je leur remets soixante pièces : la solde qu'Aldéric leur devait.",
+        "condition": {
+          "pieces": {
+            "min": 60
+          }
+        },
+        "resume": "Vous posez soixante pièces d'or sur une pierre plate, et le colosse les ramasse sans un mot, mais ses épaules se détendent. Le chef des éclaireurs compte les pièces deux fois, puis fait signe à ses hommes de reprendre la route vers le Fort. Ils repartent sans se retourner, la démarche plus légère. Au Fort, le sergent Rodrigue apprendra que la solde a été versée, et sa garnison en parlera longtemps.",
+        "effets": [
+          {
+            "pieces": -60
+          },
+          {
+            "flag": "contrat-deserteurs-fait"
+          },
+          {
+            "flag": "deserteurs-impayes"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 80
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-bandits-du-val"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "contrat-deserteurs-fait"
+      },
+      {
+        "reputation": {
+          "faction": "commanditaire-alderic",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "r-contrat-ankheg",
+    "nom": "La Bête qui Mord les Mules",
+    "type": "mixte",
+    "lieu": "bivouac-entree",
+    "difficulte": "moderee",
+    "intro": "La nuit est tombée sur le Bivouac du Seuil, et le feu n'est plus qu'un lit de braises. Les deux mules s'agitent dans leurs bâts, leurs sabots raclent la roche rouge du surplomb. Gaspard Sans-Hâte, le muletier, tapote sa langue contre son palais pour les calmer. « Ces traces-là, vous les voyez près des bêtes ? grommelle-t-il. Ça ne présage rien de bon. » Puis le sable tremble sous vos bottes, se soulève en une houle tiède, et une bête-ver de la taille d'un cheval jaillit du sable. Le sol continue de trembler. Quelle sera votre première réaction face à cette masse qui n'a pas fini de sortir ?",
+    "monstres": [
+      {
+        "profil": "ankheg",
+        "nombre": 1,
+        "nom": "Bête du sable",
+        "description": "Insecte-ver de la taille d'un cheval, carapace couleur de dune, mandibules larges comme des pelles."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.cc..~~~~~..cc....#",
+      "#.cc..~~m~~..cc....#",
+      "#.....~~~~~........#",
+      "#..r..............r#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "surprise": "heros",
+    "alternatives": [
+      {
+        "id": "detourner-la-bete",
+        "nom": "Je lui abandonne une carcasse loin du camp et je sème sa piste.",
+        "condition": {
+          "objet": "rations"
+        },
+        "jet": {
+          "competence": "survie",
+          "dd": 13
+        },
+        "resume": "Les deux rations, déposées au pied d'un éboulis à bonne distance du camp, attirent la bête qui se rue dessus avec un grondement sourd. Vous revenez à pas feutrés en brouillant vos traces et celles des mules, puis vous coupez la piste en plusieurs endroits. Gaspard souffle, soulagé, et ses bêtes se calment enfin. Le sable reste immobile, et le camp retrouve son calme.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 2,
+              "retirer": true
+            }
+          },
+          {
+            "flag": "contrat-bete-fait"
+          },
+          {
+            "xp": 80
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "effondrer-ses-galeries",
+        "nom": "Je reconnais le tracé de ses galeries et je les fais s'effondrer.",
+        "jet": {
+          "competence": "nature",
+          "dd": 12
+        },
+        "resume": "Vous repérez le tracé des galeries à la courbe du sable et aux fissures qui s'élargissent. Vous frappez les points faibles des voûtes, et la terre s'effondre dans un grondement sourd, entraînant les couloirs. Le sol cesse de frémir. Gaspard, les mains sur les hanches, regarde le trou béant d'un air grave, puis grommelle un merci du bout des lèvres et ramène ses mules vers le feu.",
+        "effets": [
+          {
+            "flag": "contrat-bete-fait"
+          },
+          {
+            "xp": 80
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "contrat-bete-fait"
+      }
+    ]
+  },
+  {
+    "id": "r-contrat-pillards-crete",
+    "nom": "Les Ombres sur la Crête",
+    "type": "mixte",
+    "lieu": "bivouac-entree",
+    "difficulte": "faible",
+    "intro": "Le soleil s'éteint derrière les dunes, et la crête au-dessus du Bivouac se découpe en noir sur un ciel couleur de cuivre. Un caillou roule sous une botte, puis un autre. Lise Oeil-Vif, la guetteuse, ne quitte pas les rochers des yeux. « Ils veulent vos mules et les fontes de Martin, souffle-t-elle, sèche et pressée. Regardez : cinq pillards en cuir râpé avancent, et deux éclaireurs à l'arc les suivent. » Entre les pierres, des silhouettes se faufilent vers le campement, en file serrée, sans lanterne. La première vague n'attend pas. Comment les arrêter avant qu'ils n'atteignent le feu ?",
+    "monstres": [
+      {
+        "profil": "eclaireur",
+        "nombre": 2,
+        "nom": "Éclaireur rival",
+        "description": "Pisteur maigre au visage poussiéreux, cape couleur de sable, arc court."
+      },
+      {
+        "profil": "bandit",
+        "nombre": 5,
+        "nom": "Pillard de la crête",
+        "description": "Brigand en cuir râpé, foulard sur le visage, couteau long."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#~~..R........R..~~#",
+      "#.m.mmm..m....m....#",
+      "#.c..........m...c.#",
+      "#..................#",
+      "#...r..........r...#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "alternatives": [
+      {
+        "id": "simuler-la-garnison",
+        "nom": "Je dresse des mannequins en armure autour du feu et je fais sonner l'appel de la garnison.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 12
+        },
+        "resume": "Les mannequins en armure, dressés autour du feu, prennent des allures de sentinelles dans la lueur vacillante. Vous faites sonner l'appel de la garnison, et l'écho rebondit sur la crête comme si toute une troupe descendait du Fort. Les pillards s'arrêtent net, se consultent à voix basse, puis reculent dans la pénombre. La bande renonce et disparaît entre les rochers. Lise lâche un petit rire sec et reprend sa veille.",
+        "effets": [
+          {
+            "flag": "contrat-crete-fait"
+          },
+          {
+            "xp": 90
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "intimider-les-eclaireurs",
+        "nom": "Je me dresse sur la crête et je leur crie que leur chef est attendu.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "resume": "Vous vous dressez à découvert, et votre voix porte jusqu'aux pierres. Les éclaireurs se figent, hésitent, puis l'éclaireur à l'arc baisse son arme de quelques pouces. L'un des pillards jette un regard inquiet vers la pente, comme pour vérifier vos paroles. Ils n'ont aucune envie de découvrir la suite : la bande tourne les talons et s'éloigne dans la nuit qui tombe, sans tirer une seule flèche.",
+        "effets": [
+          {
+            "flag": "contrat-crete-fait"
+          },
+          {
+            "xp": 90
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-bandits-du-val"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "rencontre": "r-contrat-pillards-bande"
+      }
+    ]
+  },
+  {
+    "id": "r-contrat-pillards-bande",
+    "nom": "L'Assaut au Crépuscule",
+    "type": "combat",
+    "lieu": "bivouac-entree",
+    "difficulte": "moderee",
+    "intro": "La nuit tombe sur le Bivouac du Seuil, et les braises ne suffisent plus à éclairer la pente. Des pas résonnent sur les pierres, puis les silhouettes apparaissent en lisière. Au centre avance un homme massif à barbe grise, un manteau de cavalier rapiécé sur les épaules et une longue lame au côté. Quatre pillards le suivent, et un archer reste en retrait. « Déballez vos fontes, ou je vous les prendrai avec vos vies », lance-t-il d'une voix rude. Les mules se serrent derrière vous, et Martin ne quitte pas des yeux la lame du chef. Qui répondra à cet homme, et avec quels mots ?",
+    "monstres": [
+      {
+        "profil": "chef-de-bande",
+        "nombre": 1,
+        "nom": "Chef des pillards",
+        "description": "Homme massif à la barbe grise, manteau de cavalier rapiécé, longue lame et dague de parade."
+      },
+      {
+        "profil": "bandit",
+        "nombre": 4,
+        "nom": "Pillard de la bande",
+        "description": "Brigand en cuir râpé, foulard sur le visage, couteau long."
+      },
+      {
+        "profil": "eclaireur",
+        "nombre": 1,
+        "nom": "Archer des pillards",
+        "description": "Pisteur maigre, arc court, carquois plein."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#~~..R........R..~~#",
+      "#..m....m.....m....#",
+      "#....m.....m...m...#",
+      "#.c..............c.#",
+      "#...r..........r...#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "camp",
+    "alternatives": [
+      {
+        "id": "parlementer-avec-leur-chef",
+        "nom": "Je m'avance seul et je lui propose de repartir avec la parole de Martin.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "resume": "Le chef vous toise longtemps, la lame posée sur l'épaule. Il écoute chaque mot, et son regard glisse vers ses hommes, qui baissent lentement leurs armes. L'archer abaisse son arc à son tour. Le chef accepte le marché, grogne un ordre bref, et la bande recule dans l'ombre de la crête. Vous voyez les pillards disparaître un à un, les épaules basses, sans se retourner.",
+        "effets": [
+          {
+            "flag": "contrat-crete-fait"
+          },
+          {
+            "xp": 80
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-bandits-du-val"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "contrat-crete-fait"
+      },
+      {
+        "reputation": {
+          "faction": "commanditaire-alderic",
+          "delta": 10
+        }
+      },
+      {
+        "attitude": {
+          "pnj": "martin-le-valet",
+          "delta": 10
+        }
+      },
+      {
+        "attitude": {
+          "pnj": "lise-guetteuse",
+          "delta": 10
+        }
+      }
+    ]
+  }
+]

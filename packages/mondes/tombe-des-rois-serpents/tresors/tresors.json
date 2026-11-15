@@ -1,0 +1,727 @@
+[
+  {
+    "id": "t-niche-du-pilleur",
+    "nom": "Un baluchon oublié dans une niche",
+    "lieu": "n1-couloir-entree",
+    "contenant": "sac",
+    "description": "Au fond d'une niche basse, un baluchon de toile raidie par la sueur sèche. Dans ses plis : une corde enroulée, un carnet aux pages collées, une fiole bouchée de cire, et une bourse qui tinte.",
+    "contenu": {
+      "pieces": {
+        "po": 18
+      },
+      "objets": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 1
+        },
+        {
+          "objet": "journal-du-dernier-pilleur",
+          "quantite": 1
+        },
+        {
+          "objet": "corde",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-vapeur-des-sepulcres"
+  },
+  {
+    "id": "t-amulettes-gardes",
+    "nom": "Cercueils d'argile des gardes",
+    "lieu": "n1-tombes-des-gardes",
+    "contenant": "sarcophage",
+    "description": "Un cercueil de cèdre peint, scellé au plâtre, dont la fissure laisse voir des ossements parés. Trois amulettes d'or terni, en forme de serpents, reposent contre les côtes, luisant dans la suie de la torche.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "amulette-d-argile-et-or",
+          "quantite": 3
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "piege": "p-gaz-sepulcres"
+    },
+    "indice": "f-fausse-tombe-leurre"
+  },
+  {
+    "id": "t-anneau-du-sorcier",
+    "nom": "L'auriculaire du sorcier d'argile",
+    "lieu": "n1-tombe-du-sorcier",
+    "contenant": "autre",
+    "description": "Le doigt d'argile de la statue du mage porte un anneau de cuivre verdi, terminé par une petite griffe recourbée qui accroche la lumière. Dans son cercueil, une amulette d'or luit entre deux plis de lin.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "anneau-griffe-croc",
+          "quantite": 1
+        },
+        {
+          "objet": "amulette-d-argile-et-or",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-dorures-fausse-tombe",
+    "nom": "Dorures des cercueils royaux",
+    "lieu": "n1-porte-et-fausse-tombe",
+    "contenant": "sarcophage",
+    "description": "Trois grands cercueils de bois peint, couverts d'écailles d'or battu si mince qu'elles sonnent creux sous l'ongle, et de bracelets d'étain. En grattant, on en tire un peu d'or véritable ; une bague de bronze gravée repose sur un couvercle.",
+    "contenu": {
+      "pieces": {
+        "po": 35
+      },
+      "objets": [
+        {
+          "objet": "bague-de-bronze-gravee",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "r-squelettes-fausse-tombe",
+    "indice": "f-fausse-tombe-leurre"
+  },
+  {
+    "id": "t-offrande-de-l-idole",
+    "nom": "La niche sous le socle de l'idole",
+    "lieu": "n1-faux-temple",
+    "contenant": "cache",
+    "description": "Une dalle du socle d'obsidienne, à peine plus claire que ses voisines, a coulissé : dans la niche, deux chandeliers d'argent ternis, quelques pièces éparses et une pierre verte polie par les doigts.",
+    "contenu": {
+      "pieces": {
+        "po": 20
+      },
+      "objets": [
+        {
+          "objet": "chandelier-d-argent",
+          "quantite": 2
+        },
+        {
+          "objet": "jaspe",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      },
+      "piege": "p-bouche-de-l-idole"
+    }
+  },
+  {
+    "id": "t-salle-garde-secrete",
+    "nom": "Râtelier et icône de la garde secrète",
+    "lieu": "n2-salle-garde-secrete",
+    "contenant": "etagere",
+    "description": "Sous des planches vermoulues et des meubles éboulés, deux dagues bien huilées reposent l'une près de l'autre. À leurs côtés, une lourde icône d'argent, intacte, représente un serpent couronné.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "dague",
+          "quantite": 2
+        },
+        {
+          "objet": "icone-argent-ophidienne",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-bassin-atrium",
+    "nom": "Trésors noyés du bassin noir",
+    "lieu": "n2-atrium",
+    "contenant": "cache",
+    "description": "Au fond vaseux du bassin, sous une eau si noire qu'elle reflète à peine la torche, des pièces d'or couvertes de vase se mêlent à un bracelet d'argent serti de pierres.",
+    "contenu": {
+      "pieces": {
+        "po": 125
+      },
+      "objets": [
+        {
+          "objet": "bracelet-d-argent-serti",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "investigation"
+      }
+    },
+    "gardien": "r-bleme-atrium"
+  },
+  {
+    "id": "t-parchemin-xisor",
+    "nom": "Sarcophage de Xisor le Vert",
+    "lieu": "n2-tombe-xisor",
+    "contenant": "sarcophage",
+    "description": "Au fond d'un sarcophage de pierre verte, entre les mains squelettiques de Xisor le Vert, un parchemin roulé et scellé de cire verte. Son papier de peau est intact et ses runes restent nettes.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "parchemin-de-sort-vague-tonnante",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "piege": "p-onde-xisor"
+    }
+  },
+  {
+    "id": "t-ornements-sparamantur",
+    "nom": "Ornements funéraires de Sparamantur",
+    "lieu": "n2-tombe-sparamantur",
+    "contenant": "sarcophage",
+    "description": "Sous les gravats calcaires, des plaques funéraires dorées dépassent d'un sarcophage à demi écrasé. Une bague de bronze gravée est restée prise dans une fente du couvercle, et des pièces d'or affleurent parmi les éclats.",
+    "contenu": {
+      "pieces": {
+        "po": 10
+      },
+      "objets": [
+        {
+          "objet": "bague-de-bronze-gravee",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "r-sparamantur-squelette"
+  },
+  {
+    "id": "t-bague-franbinzar",
+    "nom": "Bague d'argent de Franbinzar",
+    "lieu": "n2-tombe-franbinzar",
+    "contenant": "sarcophage",
+    "description": "Au fond du sarcophage de pierre, une bague d'argent poli a survécu à la corrosion. Quelques pièces d'or ont roulé près d'elle, luisant à travers une fine couche de matière jaune et collante.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "bague-d-argent-de-franbinzar",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "r-gelee-ocre-franbinzar"
+  },
+  {
+    "id": "t-sacristie-icone",
+    "nom": "Cache sacerdotale de la sacristie",
+    "lieu": "n2-sacristie",
+    "contenant": "etagere",
+    "description": "Sous un vieux coussin éventré, au pied du dernier lit, une lourde icône d'argent sertie d'émeraudes scintille. Sur la table de pierre, un rouleau de cuir relié au fil de lin attend d'être déchiffré.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "parchemins-baltoplate",
+          "quantite": 1
+        },
+        {
+          "objet": "icone-emeraude-sacristie",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-vrai-nom-baltoplate"
+  },
+  {
+    "id": "t-statue-creuse",
+    "nom": "Le cœur d'une statue creuse",
+    "lieu": "n2-soldats-d-argile",
+    "contenant": "cache",
+    "description": "Dans la poitrine creuse d'une statue d'argile, un étui de cuir gît dans la poussière. Il contient un parchemin roulé, des pièces d'or et une pierre sombre luisante.",
+    "contenu": {
+      "pieces": {
+        "po": 30
+      },
+      "objets": [
+        {
+          "objet": "parchemin-de-sort-sommeil",
+          "quantite": 1
+        },
+        {
+          "objet": "onyx",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 15,
+        "competence": "investigation"
+      }
+    },
+    "gardien": "r-statues-creuses-serpents"
+  },
+  {
+    "id": "t-outils-tombe-inachevee",
+    "nom": "Les outils de la tombe inachevée",
+    "lieu": "n2-soldats-d-argile",
+    "contenant": "etabli",
+    "description": "Sur un établi de pierre à demi sculptée traînent des ciseaux, des maillets de bois dur et une équerre de bronze. Leurs manches sont usés, et leurs lames rouillées mais encore utilisables.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "outils-de-macon",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-boucliers-arene",
+    "nom": "Trophées d'armes de l'arène",
+    "lieu": "n2-arene-gardien",
+    "contenant": "autre",
+    "description": "Cinq boucliers ronds, de bronze cerclé et de chêne, sont accrochés au mur face au gouffre. Leurs umbos brillent encore, et le bois n'a pas gonflé dans l'humidité.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "bouclier",
+          "quantite": 5
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "r-gardien-osseux"
+  },
+  {
+    "id": "t-bourse-fosse-nord",
+    "nom": "Bourse tombée au fond de la fosse",
+    "lieu": "n3-salle-ceremonie",
+    "contenant": "cadavre",
+    "description": "Une bourse de cuir intacte gît au fond de la fosse, entre des squelettes écrasés. Le cuir est souple et la couture serrée ; à travers une déchirure luit un lingot d'argent.",
+    "contenu": {
+      "pieces": {
+        "po": 32
+      },
+      "objets": [
+        {
+          "objet": "lingot-d-argent",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "gardien": "r-chauves-souris-et-fosse"
+  },
+  {
+    "id": "t-gemmes-fosse-flamme",
+    "nom": "Gemmes des cendres éternelles",
+    "lieu": "n3-fosse-sacrificielle",
+    "contenant": "cache",
+    "description": "Au fond du puits, autour de la flamme sans fumée, des gemmes violettes sont posées en offrande. Deux améthystes polies scintillent dans la lueur dorée, parmi les os blancs.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "amethyste",
+          "quantite": 2
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "t-garde-petrifie",
+    "nom": "Relique des gardiens pétrifiés",
+    "lieu": "n3-vestibule-garde",
+    "contenant": "autre",
+    "description": "Sur l'une des statues pétrifiées, une plaque ciselée et ornée d'écailles se détache déjà de la pierre. Un fragment d'éclat métallique, finement gravé, semble pouvoir se dégager sans briser l'ensemble.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "statuette-garde-petrifie",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-autel-invocation",
+    "nom": "Offrandes de la salle d'invocation",
+    "lieu": "n3-salle-invocation",
+    "contenant": "autel",
+    "description": "Sur l'autel de basalte, deux bols d'or débordent de pièces anciennes, près d'une dague ondulée à la lame de jade noir. Un petit serpent de pierre sculptée veille près du cercle d'argent.",
+    "contenu": {
+      "pieces": {
+        "po": 30
+      },
+      "objets": [
+        {
+          "objet": "dague-serpentine-plus-1",
+          "quantite": 1
+        },
+        {
+          "objet": "serpent-de-pierre-cle",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "condition": {
+      "flag": "baltoplate-reglee"
+    }
+  },
+  {
+    "id": "t-offrandes-autel-cobra",
+    "nom": "Cassette cachée de l'autel du cobra",
+    "lieu": "n3-autel-et-couloir-lames",
+    "contenant": "autel",
+    "description": "Au pied de l'autel, un coffret de cuivre s'ouvre sur des pièces d'or empilées en colonnes. Une coupe d'or ciselée de vipères repose au sommet du tas.",
+    "contenu": {
+      "pieces": {
+        "po": 400
+      },
+      "objets": [
+        {
+          "objet": "coupe-d-or-ciselee",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-collier-du-basilic",
+    "nom": "Le collier cuirassé du basilic",
+    "lieu": "n3-hall-du-basilic",
+    "contenant": "cadavre",
+    "description": "Le collier cuirassé du basilic, bronze épais cerclé d'argent et serti de cabochons de jaspe vert, pend à la chaîne, la lanière de la clé tranchée ou rongée.",
+    "contenu": {
+      "pieces": {
+        "po": 60
+      },
+      "objets": [
+        {
+          "objet": "lingot-d-argent",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "gardien": "r-basilic-enchaine",
+    "indice": "f-cle-sur-collier-basilic"
+  },
+  {
+    "id": "t-reserve-xiximantre",
+    "nom": "Épices et graines rares de la réserve",
+    "lieu": "n3-reserve-et-oubliettes",
+    "contenant": "etagere",
+    "description": "Entre des bocaux de safran fin, un lot de graines ophidiennes, sèches et cendrées, est rangé dans des pots de verre fermés de cire. Des pièces d'or dorment au fond d'une caisse voisine.",
+    "contenu": {
+      "pieces": {
+        "po": 50
+      },
+      "objets": [
+        {
+          "objet": "graines-eteintes",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-laboratoire-potions",
+    "nom": "Casiers de potions de Xiximantre",
+    "lieu": "n3-laboratoire",
+    "contenant": "etabli",
+    "description": "Sur la paillasse, trois fioles de guérison aux bouchons de liège, une fiole plus épaisse à la teinte rose et deux antidotes ambrés attendent, rangés en file. Un tiroir entrouvert dévoile d'autres trouvailles.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 3
+        },
+        {
+          "objet": "potion-de-guerison-importante",
+          "quantite": 1
+        },
+        {
+          "objet": "antidote",
+          "quantite": 2
+        }
+      ],
+      "tables": [
+        {
+          "table": "t-alchimie-xiximantre",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {
+      "piege": "p-fiole-piegee"
+    }
+  },
+  {
+    "id": "t-miroirs-salle-trone",
+    "nom": "Miroirs d'argent du trône",
+    "lieu": "n3-salle-du-trone",
+    "contenant": "vitrine",
+    "description": "Sur leurs présentoirs, huit miroirs à main cerclés d'argent renvoient le reflet de la salle ; l'argent des cadres a noirci par endroits et le verre garde une teinte violacée.",
+    "contenu": {
+      "pieces": {
+        "po": 60
+      },
+      "objets": [
+        {
+          "objet": "miroir",
+          "quantite": 4
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-compartiment-du-trone",
+    "nom": "Le compartiment du trône",
+    "lieu": "n3-salle-du-trone",
+    "contenant": "autre",
+    "description": "Sous l'assise du trône, une plaque d'or a glissé et découvert un compartiment. Dans l'alvéole de velours pourri repose un anneau d'argent noirci, gravé de paupières closes qui semblent veiller.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "anneau-de-barriere-mentale",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {},
+    "indice": "f-rumeur-trone-maudit",
+    "condition": {
+      "flag": "trone-ouvert"
+    }
+  },
+  {
+    "id": "t-grand-tresor-rois",
+    "nom": "Coffres du Trésor Royal",
+    "lieu": "n3-salle-du-tresor",
+    "contenant": "coffre",
+    "description": "Quatre coffres de cèdre cerclés de bronze, couvercles rabattus sur des monceaux de pièces anciennes frappées d'un cobra. Entre elles s'alignent des lingots d'argent, et une statuette de jade dépasse d'un tas.",
+    "contenu": {
+      "pieces": {
+        "pc": 3000,
+        "pa": 1200,
+        "po": 400
+      },
+      "objets": [
+        {
+          "objet": "statuette-de-jade",
+          "quantite": 1
+        },
+        {
+          "objet": "lingot-d-argent",
+          "quantite": 6
+        }
+      ],
+      "tables": []
+    },
+    "acces": {}
+  },
+  {
+    "id": "t-console-de-marbre",
+    "nom": "La console de marbre",
+    "lieu": "n3-salle-du-tresor",
+    "contenant": "vitrine",
+    "description": "Sur la console de marbre blanc, quatre grenats taillés brillent près d'un étui d'ivoire. Le couvercle de l'étui laisse voir un parchemin roulé ; une amulette ronde et ciselée repose à côté.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "grenat",
+          "quantite": 4
+        },
+        {
+          "objet": "parchemin-localisation-objet",
+          "quantite": 1
+        },
+        {
+          "objet": "amulette-de-protection-contre-le-poison",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 16,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "t-coussins-des-pretres",
+    "nom": "Coussins décousus des prêtres",
+    "lieu": "n3-repos-des-pretres",
+    "contenant": "sac",
+    "description": "Parmi les coussins de soie pourpre fanée, l'un a été recousu à la hâte : sous la doublure, un petit sac de pièces. Un rouleau de parchemin, enfermé dans un tube de cuir, est glissé avec lui.",
+    "contenu": {
+      "pieces": {
+        "po": 80
+      },
+      "objets": [
+        {
+          "objet": "parchemin-de-sort-soins",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 13,
+        "competence": "investigation"
+      }
+    }
+  },
+  {
+    "id": "t-resserre-gobeline",
+    "nom": "La resserre aux pioches",
+    "lieu": "n3-porte-cylindre-et-reserve",
+    "contenant": "sol",
+    "description": "Entre deux paniers d'osier éventrés, des pioches usées jusqu'au manche attendent sous une pile de cordes de boyau. Dans un trou du mur, un étui de cuir gras contient des outils fins et quelques pièces.",
+    "contenu": {
+      "pieces": {
+        "po": 12
+      },
+      "objets": [
+        {
+          "objet": "outils-de-voleur",
+          "quantite": 1
+        }
+      ],
+      "tables": [
+        {
+          "table": "t-butin-gobelin",
+          "jets": 1
+        }
+      ]
+    },
+    "acces": {
+      "cache": {
+        "dd": 12,
+        "competence": "perception"
+      }
+    }
+  },
+  {
+    "id": "t-statue-fontaine-gobelins",
+    "nom": "Butin de la salle commune gobeline",
+    "lieu": "n3-salle-commune-gobeline",
+    "contenant": "sol",
+    "description": "Contre un mur, la statue d'or volée à la fontaine cérémonielle domine le bric-à-brac : cordes, pioches, paniers et tabourets bancals. Son or est terni de suie et de traces de doigts gras.",
+    "contenu": {
+      "pieces": {},
+      "objets": [
+        {
+          "objet": "statue-or-fontaine",
+          "quantite": 1
+        }
+      ],
+      "tables": [
+        {
+          "table": "t-butin-gobelin",
+          "jets": 2
+        }
+      ]
+    },
+    "acces": {},
+    "gardien": "r-eclaireurs-gobelins",
+    "indice": "f-statue-fontaine-volee"
+  },
+  {
+    "id": "t-couronne-terreau",
+    "nom": "Magot caché sous les champignons",
+    "lieu": "n3-ferme-champignons",
+    "contenant": "cache",
+    "description": "Sous le paillis noir d'une couche à champignons, des pièces d'or brillent entre les mottes humides. Une couronne d'or ornée de serpents d'émail et une sardoine rouge-brun reposent au milieu.",
+    "contenu": {
+      "pieces": {
+        "po": 28
+      },
+      "objets": [
+        {
+          "objet": "couronne-rois-serpents",
+          "quantite": 1
+        },
+        {
+          "objet": "sardoine",
+          "quantite": 1
+        }
+      ],
+      "tables": []
+    },
+    "acces": {
+      "cache": {
+        "dd": 14,
+        "competence": "investigation"
+      }
+    },
+    "indice": "f-couronne-chez-gobelins"
+  }
+]

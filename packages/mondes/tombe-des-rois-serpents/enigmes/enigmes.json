@@ -1,0 +1,169 @@
+[
+  {
+    "id": "e-autel-du-cobra",
+    "nom": "Le pivot du cobra d'obsidienne",
+    "lieu": "n3-autel-et-couloir-lames",
+    "enonce": "Sur un socle d'albâtre fissuré se dresse une statue de cobra poli, montée sur un pivot de cuivre. Le mur derrière elle présente deux gorges : une fente gauche noircie d'une poussière verdâtre sèche, et une niche droite lisse et nette. Dans quel sens faire pivoter le cobra pour ouvrir la cache sans déclencher les buses ?",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": [
+        "droite",
+        "à droite",
+        "a droite",
+        "vers la droite",
+        "la droite",
+        "côté droit",
+        "cote droit",
+        "niche droite",
+        "la niche droite"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Un socle pivotant commande deux conduits différents : l'un sent l'acide et la rouille verte, l'autre est sec."
+      },
+      {
+        "niveau": 2,
+        "texte": "Des traces de gants gras montrent que les anciens prêtres poussaient la tête du serpent toujours du côté opposé à la fente verte.",
+        "competence": "perception",
+        "dd": 10
+      },
+      {
+        "niveau": 3,
+        "texte": "Tourner le cobra vers la gauche libère le poison ; le faire pivoter à droite déverrouille la réserve d'offrandes.",
+        "competence": "investigation",
+        "dd": 12
+      }
+    ],
+    "echec": {
+      "piege": "p-buses-du-cobra",
+      "effets": [],
+      "resume": "Vous tournez la statue vers la fente noircie : un souffle verdâtre s'échappe des narines du cobra."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "xp": 75
+        },
+        {
+          "flag": "autel-cobra-ouvert"
+        }
+      ],
+      "tresor": "t-offrandes-autel-cobra",
+      "resume": "Le socle glisse sans un grincement et révèle une cassette remplie de pièces d'or anciennes."
+    }
+  },
+  {
+    "id": "e-cercle-baltoplate",
+    "nom": "Le vrai nom du cercle d'invocation",
+    "lieu": "n3-salle-invocation",
+    "enonce": "Au pied du piédestal où tremble une femme pâle prétendument enchaînée, sept runes ophidiennes cerclent la pierre. Prononcer son véritable nom brise son mensonge et révèle ce qu'elle est vraiment — mais comment les vieux prêtres de la sacristie l'appelaient-ils dans leurs rouleaux ?",
+    "solution": {
+      "type": "mot-de-passe",
+      "mots": [
+        "Baltoplate",
+        "baltoplate"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Les runes du cercle parlent d'un pacte scellé par un nom, pas d'une simple captive enchaînée."
+      },
+      {
+        "niveau": 2,
+        "texte": "La réponse figure dans les rouleaux sacerdotaux oubliés sur les lits de pierre de la sacristie, au niveau au-dessus.",
+        "competence": "arcanes",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Son véritable nom consigné par les prêtres est Baltoplate : prononcez-le face au cercle.",
+        "competence": "religion",
+        "dd": 14
+      }
+    ],
+    "echec": {
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "baltoplate",
+            "delta": -10
+          }
+        },
+        {
+          "narration": "La captive bat des cils avec un sourire fendu trop large, comprenant que vous ne savez pas qui elle est."
+        }
+      ],
+      "resume": "La syllabe résonne à vide sur les runes : la prétendue prisonnière vous observe avec un calme glacé."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "fait": "f-vrai-nom-baltoplate"
+        },
+        {
+          "flag": "baltoplate-demasquee"
+        },
+        {
+          "xp": 100
+        }
+      ],
+      "resume": "À l'énoncé de son nom véritable, le masque de l'innocente tombe : des ailes de cuir noir palpitent un instant contre le cercle qui la retient encore."
+    }
+  },
+  {
+    "id": "e-miroirs-du-trone",
+    "nom": "Les miroirs de la salle du trône",
+    "lieu": "n3-salle-du-trone",
+    "enonce": "Huit miroirs à manche cerclés d'argent entourent le trône d'or ; quatre d'entre eux portent au dos un emblème gravé : une flamme, un soleil, une lune, un serpent. Sur le dossier du trône, des vers ophidiens courent dans l'or : « Quand la lune se fut tue, le serpent changea de peau. Quand le serpent fut parti, le soleil se montra. Quand le soleil fut couché, la flamme veilla. » Chaque miroir doit être tourné vers le trône, un à un, dans l'ordre où les vers font paraître leurs emblèmes, sans quoi ce que les glaces gardent s'éveillera.",
+    "solution": {
+      "type": "sequence",
+      "ordre": [
+        "la lune",
+        "le serpent",
+        "le soleil",
+        "la flamme"
+      ]
+    },
+    "indices": [
+      {
+        "niveau": 1,
+        "texte": "Chaque vers de l'inscription dit ce qui vient après quoi : cherchez celui qui ne dépend de rien."
+      },
+      {
+        "niveau": 2,
+        "texte": "Le premier vers ne dépend d'aucun autre : c'est la lune qui se tait d'abord. Le serpent la suit, puis le soleil, et la flamme veille en dernier.",
+        "competence": "investigation",
+        "dd": 12
+      },
+      {
+        "niveau": 3,
+        "texte": "Il faut tourner les miroirs dans cet ordre : la lune, le serpent, le soleil, la flamme.",
+        "competence": "histoire",
+        "dd": 13
+      }
+    ],
+    "echec": {
+      "effets": [
+        {
+          "rencontre": "r-reflets-du-trone"
+        }
+      ],
+      "resume": "Un miroir tourne trop tôt et renvoie la lueur violette sur les autres : dans les glaces, des silhouettes se lèvent en même temps que vous, mais pas dans le même sens."
+    },
+    "recompense": {
+      "effets": [
+        {
+          "flag": "trone-ouvert"
+        },
+        {
+          "xp": 100
+        }
+      ],
+      "tresor": "t-compartiment-du-trone",
+      "resume": "Les quatre reflets s'éteignent ensemble ; sous l'assise du trône, une plaque d'or glisse avec un soupir de poussière et découvre une alvéole de velours."
+    }
+  }
+]

@@ -1,0 +1,2158 @@
+[
+  {
+    "id": "r-chantier-sable",
+    "nom": "L'Éboulement des Marches",
+    "type": "exploration",
+    "lieu": "tombe-des-rois",
+    "difficulte": "faible",
+    "intro": "Au sommet des marches, la tranchée sent la poussière chaude. Une nappe de sable glisse lentement vers l'entrée, avec un chuintement de grains. Au-dessus, le linteau sculpté de cobras entrelacés commence à disparaître sous les dunes. Brennan Le-Pic crie, la voix grave et lente : « Il me faut des bras ou des poutres, vite, sinon la tombe reste enterrée ! » Jehan Dos-Vouté recule vers le bord de la tranchée et bredouille des mots inquiets. Les marches tiennent encore, mais pour combien de temps ? Reste à savoir si l'entrée survivra à cette coulée, et le chantier avec elle.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "etayer-le-linteau",
+        "nom": "Je cale le linteau avec une poutre aux côtés des terrassiers.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "resume": "La poutre encaisse la pression, grince, puis tient. Le sable s'arrête à quelques pouces du linteau, et les cobras reprennent leur place dans la lumière. Brennan Le-Pic essuie la poussière de son visage et regarde la pierre avec un respect qu'il ne cherche pas à cacher. Il hoche la tête, lâche une bordée de jurons et vous regarde comme des gens dignes de confiance. Les terrassiers reprennent leur travail autour de l'entrée.",
+        "effets": [
+          {
+            "flag": "chantier-etaye"
+          },
+          {
+            "attitude": {
+              "pnj": "brennan-terrassier",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          },
+          {
+            "temps": 0.5
+          },
+          {
+            "attitude": {
+              "pnj": "brennan-terrassier",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "detourner-la-coulee",
+        "nom": "Je lis la pente du sable et je creuse une rigole pour détourner la coulée.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "Le sable hésite, longe la rigole, puis file sur le côté vers le fond de la tranchée sans jamais atteindre les marches. Le linteau reste dégagé et les cobras gardent leur éclat. Jehan Dos-Vouté a cessé de bredouiller. Il s'approche du bord, les yeux écarquillés, et regarde la pente avec une admiration qu'il ne sait pas exprimer. Il vous adresse un sourire timide et gêné.",
+        "effets": [
+          {
+            "flag": "chantier-etaye"
+          },
+          {
+            "attitude": {
+              "pnj": "jehan-fosseyeur",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "temps": 1
+          },
+          {
+            "attitude": {
+              "pnj": "brennan-terrassier",
+              "delta": -5
+            }
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "chantier-etaye"
+      }
+    ]
+  },
+  {
+    "id": "r-squelettes-fausse-tombe",
+    "nom": "Les Gardiens de la Fausse Tombe",
+    "type": "mixte",
+    "lieu": "n1-porte-et-fausse-tombe",
+    "difficulte": "faible",
+    "intro": "La porte franchie, une haute chambre s'ouvre devant vous, et l'or qui recouvre les murs s'écaille au moindre souffle. Une fine poussière retombe du plafond fissuré. Au centre, sur une estrade, trois grands cercueils de bois peint se dressent côte à côte, leurs couvercles couverts de figures aux couleurs encore vives. Au pied de l'estrade, un cobra de pierre reste lové sur les dalles. Rien ne bouge. Pourtant une odeur de résine sèche flotte dans l'air, lourde et amère. Il s'agit de savoir si ces gardiens dorment vraiment ou s'ils attendent qu'on les dérange.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 6,
+        "nom": "Faux garde royal",
+        "description": "Ossements d'homme-serpent noyés dans un linceul de lin brun, bracelets d'étain aux poignets et lame courte rouillée à la main."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.mmm.m..m......m..#",
+      "#..cc....cc.....cc.#",
+      "#..................#",
+      "#~~..............~~#",
+      "#.......H.H.H......#",
+      "#.....H.H...H......#",
+      "#..................#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "refermer-cercueils",
+        "nom": "Je recale chaque couvercle et je contourne l'estrade sur la pointe des bottes.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "resume": "Les couvercles reprennent leur place sans un bruit de trop, et la poussière retombe sans réveiller personne. Vous longez l'estrade pas à pas, les pieds posés sur les dalles fendues. Les gardiens restent figés dans leurs linceuls brun, les bracelets d'étain immobiles. Derrière vous, la chambre retrouve son air poussiéreux, et la voûte fissurée n'ajoute rien à ce calme trompeur.",
+        "effets": [
+          {
+            "flag": "fausse-tombe-evitee"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "sauf-conduit-d-or",
+        "nom": "Je tends l'amulette d'or du couloir devant les trois cercueils.",
+        "condition": {
+          "objet": "amulette-d-argile-et-or"
+        },
+        "resume": "L'amulette d'or accroche la lueur des torches, et les gardiens s'immobilisent. Leurs lames rouillées retombent lentement, puis ils s'écartent d'un pas. Le cobra de pierre lové près de l'estrade semble suivre le bijou du regard, puis redevient pierre. Ce sauf-conduit rituel, réservé aux serviteurs inhumés, parle à ces gardiens mieux que n'importe quelle parole. Le chemin vers les cercueils reste ouvert, et les linceuls ne bougent plus.",
+        "effets": [
+          {
+            "flag": "fausse-tombe-evitee"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-crypte-mineur"
+      ],
+      "tresors": [
+        "t-dorures-fausse-tombe"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "fausse-tombe-nettoyee"
+      }
+    ]
+  },
+  {
+    "id": "r-statues-d-argile-eveillees",
+    "nom": "Les Veilleuses d'Argile",
+    "type": "mixte",
+    "lieu": "n1-tombes-des-gardes",
+    "difficulte": "moderee",
+    "intro": "Les caveaux latéraux sentent le plâtre frais et la cire de cèdre. Des statues d'argile peinte se dressent de part et d'autre de l'entrée, des guerriers au bouclier levé et des scribes aux mains tendues. Derrière elles, des cercueils de cèdre reposent scellés au plâtre, leurs couvercles couverts d'une peinture qui s'écaille. Au pied du socle le plus proche court une formule funéraire en écriture ophidienne, presque effacée. Vos torches font vibrer les ombres sur les parois. Il reste à décider si vous laisserez ces gardiens immobiles, ou si vous tenterez de comprendre ce qu'ils protègent.",
+    "monstres": [
+      {
+        "profil": "armure-animee",
+        "nombre": 3,
+        "nom": "Veilleuse d'argile",
+        "description": "Statue d'argile peinte de deux mètres, lance et bouclier d'argile cuite, jointures qui grincent comme des poteries qu'on frotte."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.R.m.R.mR.m.R.....#",
+      "#.R...R..R...R.....#",
+      "#..................#",
+      "#...c..........c...#",
+      "#..................#",
+      "#....H.H.H.H.H.H...#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "lire-le-socle",
+        "nom": "Je lis à voix haute les mots gravés au pied des statues.",
+        "jet": {
+          "competence": "histoire",
+          "dd": 12
+        },
+        "resume": "Les mots sonnent lentement dans le caveau, chaque syllabe rebondissant sur le plâtre. La formule se termine, et les statues cessent de pivoter. Leur argile reprend une immobilité de pierre, les lances dressées vers le plafond. Vous pouvez désormais fouiller les lieux sans que les gardiens ne bougent, et le plâtre des cercueils paraît plus pâle à présent.",
+        "effets": [
+          {
+            "flag": "statues-argile-apaisees"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "rendre-l-hommage",
+        "nom": "Je m'incline devant les veilleuses et je leur montre l'amulette d'or.",
+        "condition": {
+          "objet": "amulette-d-argile-et-or"
+        },
+        "resume": "Vous vous inclinez lentement, et l'amulette d'or brille un instant entre vos doigts. Les statues frémissent, puis reculent sur leur socle, les bras le long des flancs. Aucune ne cherche à vous retenir. Le caveau retrouve sa poussière d'avant, et les cercueils de cèdre restent scellés au plâtre, intacts. Le groupe peut passer sans crainte.",
+        "effets": [
+          {
+            "flag": "statues-argile-apaisees"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-crypte-mineur"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "statues-argile-brisees"
+      }
+    ]
+  },
+  {
+    "id": "r-mantes-du-noir-absolu",
+    "nom": "Ce qui Pend à la Voûte",
+    "type": "mixte",
+    "lieu": "n2-hall-aux-statues",
+    "difficulte": "moderee",
+    "intro": "Dès le seuil du passage fissuré, la lumière se perd. Vos torches n'éclairent que quelques pas de dalles humides, et l'air frais glisse sur la nuque. Six colosses de basalte, à tête de serpent, se dressent en double haie de part et d'autre de la salle. Leurs têtes se perdent dans le noir. Au-dessus, la voûte semble couverte de masses grises, collées à la pierre. Elles ne bougent pas encore, mais elles guettent la moindre flamme qui s'approche d'elles. Reste à décider comment avancer dans ce noir sans attirer leur attention.",
+    "monstres": [
+      {
+        "profil": "mante-obscure",
+        "nombre": 7,
+        "nom": "Mante de la voûte",
+        "description": "Masse de chair grise en forme de cloche, huit courts tentacules repliés, collée à la pierre comme un morceau de voûte."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..m...R....R...m..#",
+      "#.m.m.mR....R......#",
+      "#.m..............m.#",
+      "#.....R........R...#",
+      "#..................#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "surprise": "heros",
+    "alternatives": [
+      {
+        "id": "avancer-sans-lumiere",
+        "nom": "J'éteins les torches et j'avance en tenant la corde d'une main.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 13
+        },
+        "resume": "Les torches s'éteignent une à une, et l'obscurité devient totale. Vous avancez à tâtons entre les colosses, la corde glissant dans une main, les pieds cherchant les dalles humides. Au-dessus, les masses grises restent collées à la voûte, sans un frémissement. Vous atteignez l'arche de l'autre côté, la pierre froide sous vos doigts, avant que quiconque ne songe à rallumer une lumière. Vous franchissez la salle sans les réveiller.",
+        "effets": [
+          {
+            "flag": "hall-statues-traverse"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "sonder-la-voute",
+        "nom": "Je lance une poignée de sable vers la voûte pour voir ce qui s'y accroche.",
+        "jet": {
+          "competence": "investigation",
+          "dd": 12
+        },
+        "resume": "Le sable retombe en pluie fine et révèle les formes qui se cachent sous la pierre : des masses grises, souples, accrochées aux fissures de la voûte. Une seule se détache un instant, puis se referme sur sa prise. Le groupe comprend que ces créatures restent immobiles tant que rien ne les dérange. Vous voyez désormais où poser les pieds, et les torches gardent leur distance avec la voûte.",
+        "effets": [
+          {
+            "flag": "hall-statues-traverse"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-catacombes"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "mantes-vaincues"
+      }
+    ]
+  },
+  {
+    "id": "r-bleme-atrium",
+    "nom": "La Blême du Bassin Noir",
+    "type": "mixte",
+    "lieu": "n2-atrium",
+    "difficulte": "moderee",
+    "intro": "L'atrium s'ouvre en huit pans de pierre, et au centre un bassin d'eau noire dort, profond de trois mètres. Cinq portes de cryptes s'ouvrent autour de la salle, et un couloir couvert de reptiles gravés s'enfonce entre elles. Soudain un remous glacial traverse la surface. Une main blafarde et décharnée se hisse sur la margelle, suivie d'une tête pâle. Une forme boursouflée, immense, surgit de l'eau près d'elle, et une odeur de vase envahit l'air. Au fond du bassin, un éclat d'or noyé attire le regard. Reste à savoir comment repousser cette créature avant qu'elle n'en sorte.",
+    "monstres": [
+      {
+        "profil": "bleme",
+        "nombre": 1,
+        "nom": "Noyée des prêtres",
+        "description": "Silhouette décharnée aux doigts trop longs, la peau grise ruisselante d'eau noire, une chaîne d'or enfoncée dans la gorge."
+      },
+      {
+        "profil": "ogre-zombi",
+        "nombre": 1,
+        "nom": "Noyé colossal",
+        "description": "Homme-serpent géant boursouflé, les écailles blanchies par l'eau, un anneau de bronze au bras."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#.......#..#.......#",
+      "#..m....eeee....m..#",
+      "#......eeeeee......#",
+      "#......eeeeee..m...#",
+      "#.c....eeeeee....c.#",
+      "#.......eeee.......#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "repousser-bassin-torche",
+        "nom": "Je tiens la margelle d'une haie de torches pour refouler la créature dans l'eau.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "Les torches forment une haie crépitante autour de la margelle, et la lueur chasse la créature vers l'eau noire. Elle recule en grinçant, ses doigts glissent sur la pierre humide, puis elle disparaît sous la surface dans un bouillonnement. La forme boursouflée la suit en reculant elle aussi. La vase retombe au fond du bassin, et l'or reste visible. Le groupe peut s'approcher du bord sans crainte immédiate.",
+        "effets": [
+          {
+            "flag": "bleme-repoussee"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "office-des-noyes",
+        "nom": "Je récite l'office des noyés pour la renvoyer sous la surface.",
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        },
+        "resume": "Les paroles funèbres montent sous la voûte, rythmées, et l'eau semble les écouter. La blême lâche la margelle, ses doigts s'effacent dans le bassin, et la forme boursouflée s'enfonce à son tour, lentement, en emportant avec elles la vase puante. Le bassin redevient une étendue noire et calme. Au fond, l'or brille toujours, et les cryptes restent ouvertes à vos regards.",
+        "effets": [
+          {
+            "flag": "bleme-repoussee"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-catacombes"
+      ],
+      "tresors": [
+        "t-bassin-atrium"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "bleme-vaincue"
+      }
+    ]
+  },
+  {
+    "id": "r-sparamantur-squelette",
+    "nom": "L'Éveil de Sparamantur",
+    "type": "mixte",
+    "lieu": "n2-tombe-sparamantur",
+    "difficulte": "faible",
+    "intro": "La crypte, à moitié effondrée, laisse dévaler une cascade de gravats blancs. Un fragment de sarcophage doré dépasse de l'éboulis, son or terni par la poussière. Derrière les blocs, Sparamantur avance, une ossature de guerrier prolongée d'une queue de vertèbres qui racle les dalles. Des veilleurs aux lames courbes l'escortent, immobiles, les yeux creux fixés sur vous. Le cliquetis se rapproche, et l'éboulis ne tient plus qu'à quelques pierres. Reste à savoir si vous fermerez le passage, ou si vous tenterez d'apaiser ces gardiens.",
+    "monstres": [
+      {
+        "profil": "squelette",
+        "nombre": 6,
+        "nom": "Sparamantur et ses veilleurs",
+        "description": "Ossature de guerrier prolongée d'une longue queue de vertèbres de serpent qui racle les dalles, entourée de veilleurs aux lames courbes."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#R~~R....~~~.....R.#",
+      "#.~~m.m.m.~~mmm....#",
+      "#..~~..........R...#",
+      "#...r...~~.........#",
+      "#......~~......r...#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "faire-rouler-la-dalle",
+        "nom": "Je fais rouler une dalle pour sceller l'éboulis avant qu'ils ne le franchissent.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "resume": "La dalle roule dans un grondement sourd et vient se loger dans la brèche, scellant le passage entre les blocs. De l'autre côté, la queue de vertèbres racle la pierre, puis s'arrête. Les veilleurs frappent une fois, sans résultat, et leurs pas s'éloignent dans l'ombre. Le cliquetis décroît peu à peu. Les gravats restent en place, et la vieille crypte retrouve son poids de pierre et de poussière.",
+        "effets": [
+          {
+            "flag": "sparamantur-esquive"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "payer-le-tribut",
+        "nom": "Je dépose dix pièces d'or ancien sur le sarcophage, comme un tribut.",
+        "condition": {
+          "pieces": {
+            "min": 10
+          }
+        },
+        "resume": "Vous posez dix pièces d'or ancien sur le sarcophage, et leur éclat terni roule un instant sur la pierre. Les veilleurs s'inclinent lentement, leurs lames baissées, puis reculent d'un pas, puis de deux. Sparamantur hésite, la queue de vertèbres immobile, avant de se retirer derrière les gravats. Le tribut accepté, le passage reste dégagé pour le groupe.",
+        "effets": [
+          {
+            "pieces": -10
+          },
+          {
+            "flag": "sparamantur-esquive"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-crypte-mineur"
+      ],
+      "tresors": [
+        "t-ornements-sparamantur"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "sparamantur-vaincu"
+      }
+    ]
+  },
+  {
+    "id": "r-gelee-ocre-franbinzar",
+    "nom": "La Masse Ambrée de Franbinzar",
+    "type": "mixte",
+    "lieu": "n2-tombe-franbinzar",
+    "difficulte": "moderee",
+    "intro": "La crypte suinte, et l'humidité fait briller les parois de calcaire. Au centre, un sarcophage a été poussé de biais, et une bague d'argent scintille dans l'ouverture. Une pellicule huileuse, couleur de miel brûlé, se rassemble lentement en un dôme gélatineux. Des lambeaux de bandelettes flottent dans sa masse, et chaque goutte qui tombe grésille sur le sol. La momification de Franbinzar a échoué, et ce qui en reste avance vers vous sans hâte. Il reste à décider comment arrêter cette masse avant qu'elle n'atteigne la bague.",
+    "monstres": [
+      {
+        "profil": "gelee-ocre",
+        "nombre": 1,
+        "nom": "Résidu ambré de Franbinzar",
+        "description": "Dôme gélatineux couleur de miel brûlé, des lambeaux de bandelettes en suspension, qui grésille au contact de la pierre."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#...~~~~....r..r...#",
+      "#..~~~m~~..........#",
+      "#...~~~~...........#",
+      "#..................#",
+      "#..r.........r.....#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "refermer-porte-lourde",
+        "nom": "Je recule et je claque le vantail de pierre sur la masse lente.",
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 12
+        },
+        "resume": "Vous reculez d'un pas, et le vantail de pierre claque dans un fracas qui fait trembler la voûte. La masse ambrée se retrouve prise entre la porte et le mur, et ses lambeaux s'agitent en vain. Le grésillement faiblit, puis s'éteint. La bague d'argent reste enfermée avec elle, scintillant faiblement à travers la fente.",
+        "effets": [
+          {
+            "flag": "franbinzar-enfermee"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "repousser-a-la-torche",
+        "nom": "Je la repousse vers le sarcophage à coups de torche.",
+        "condition": {
+          "objet": "torche"
+        },
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "La flamme repousse la masse, qui recule en crépitant vers le sarcophage. Les bandelettes se tordent, la pellicule ambrée se rétracte et glisse le long des parois jusqu'au bord de la pierre. Elle s'y fige un instant, puis se fond dans l'ombre du sarcophage. La bague d'argent reste à sa place, et la crypte cesse de grésiller. Vous pouvez enfin examiner les lieux sans craindre la pellicule.",
+        "effets": [
+          {
+            "flag": "franbinzar-enfermee"
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "t-bague-franbinzar"
+      ],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "franbinzar-vaincue"
+      }
+    ]
+  },
+  {
+    "id": "r-statues-creuses-serpents",
+    "nom": "Les Statues Creuses",
+    "type": "mixte",
+    "lieu": "n2-soldats-d-argile",
+    "difficulte": "moderee",
+    "intro": "Une tombe inachevée s'ouvre sur cette galerie, et des outils rouillés traînent encore contre les murs. Devant vous, dix-huit statues creuses de soldats d'argile se dressent en trois rangées de six. Plusieurs ont la tête fendue, et des éclats de terre cuite jonchent le sol. Une odeur de terre humide monte des fissures. Dès que vous vous attardez, un bruissement sort des poitrines ouvertes. Reste à décider comment traverser ces rangées sans réveiller ce qu'elles abritent.",
+    "monstres": [
+      {
+        "profil": "nuee-de-serpents-venimeux",
+        "nombre": 2,
+        "nom": "Nuée des statues creuses",
+        "description": "Dizaines de petits serpents entrelacés qui coulent hors de la tête creuse d'une statue d'argile."
+      },
+      {
+        "profil": "serpent-venimeux",
+        "nombre": 4,
+        "nom": "Vipère des statues",
+        "description": "Vipère courte, brun terre, lovée dans la poitrine creuse d'un soldat d'argile."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.mR.R.R.R.R.R.....#",
+      "#..m..m.m...m.m....#",
+      "#..R.R.R.R.R.R.....#",
+      "#..................#",
+      "#..R.R.R.R.R.R.....#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "enfumer-les-statues",
+        "nom": "J'enfume les statues avec des torches et de la poussière humide.",
+        "jet": {
+          "competence": "survie",
+          "dd": 12
+        },
+        "resume": "La fumée épaisse s'infiltre dans les statues, puis remonte par les fentes de leurs têtes. Les petits serpents se replient au fond des poitrines creuses, et les vipères brun terre s'éloignent en rampant vers le bout de la galerie. Le bruissement faiblit, puis cesse tout à fait. Vous pouvez avancer entre les rangées, la poussière et la fumée retombant lentement sur les dalles.",
+        "effets": [
+          {
+            "flag": "soldats-argile-contournes"
+          },
+          {
+            "xp": 55
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "guider-entre-les-statues",
+        "nom": "Je reconnais les nids et je guide le groupe entre les rangées sans les déranger.",
+        "jet": {
+          "competence": "nature",
+          "dd": 13
+        },
+        "resume": "Vous reconnaissez les nids à leurs traces, de fines traînées de terre au pied des statues. Vous contournez chaque rangée sans un geste brusque, et les vipères restent blotties dans leurs cavités. Le groupe passe d'une rangée à l'autre, à pas comptés. Au bout de la galerie, les poitrines fendues restent closes, et chacun respire enfin.",
+        "effets": [
+          {
+            "flag": "soldats-argile-contournes"
+          },
+          {
+            "xp": 55
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-catacombes"
+      ],
+      "tresors": [
+        "t-statue-creuse"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "soldats-argile-vaincus"
+      }
+    ]
+  },
+  {
+    "id": "r-gardien-osseux",
+    "nom": "Le Gardien Osseux du Gouffre",
+    "type": "mixte",
+    "lieu": "n2-arene-gardien",
+    "difficulte": "elevee",
+    "intro": "La halle s'ouvre sur un gouffre dont on ne voit pas le fond, et l'air qui monte de l'abîme siffle. Cinq boucliers ronds de bronze sont accrochés en trophée contre le mur. Soudain, un bruit de herse résonne, et des ossements s'assemblent devant vous : un colosse de trois mètres, mâchoire de serpent et cornes de bélier. Quatre gardes squelettes, en bronze vert-de-gris, se dressent à ses côtés. Un géant desséché, enveloppé de bandelettes brunes, lève une hache de bronze. Derrière vous, l'escalier étroit reste trop petit pour lui. Il reste à choisir si vous ferez tomber ce gardien, ou si vous trouverez un autre moyen de l'arrêter.",
+    "monstres": [
+      {
+        "profil": "minotaure-squelette",
+        "nombre": 1,
+        "nom": "Gardien osseux serpentin",
+        "description": "Colosse d'ossements jaunis haut de trois mètres, mâchoire allongée de serpent, cornes de bélier et côtes épaisses comme des madriers."
+      },
+      {
+        "profil": "ogre-zombi",
+        "nombre": 1,
+        "nom": "Colosse de l'arène",
+        "description": "Guerrier géant d'homme-serpent desséché, bandelettes brunes, hache de bronze à deux mains."
+      },
+      {
+        "profil": "squelette",
+        "nombre": 4,
+        "nom": "Garde d'arène",
+        "description": "Ossements d'homme-serpent en armure de bronze vert-de-grisé, bouclier rond au bras."
+      }
+    ],
+    "carte": [
+      "####################",
+      "####~..............#",
+      "####~~m....m.......#",
+      "####~~...m...m.....#",
+      "####~........m.....#",
+      "####~~..c...m..c...#",
+      "####~..............#",
+      "####~..H.H.H.H.H.H.#",
+      "####################"
+    ],
+    "terrain": "caverne",
+    "tactique": {
+      "doctrine": "Le gardien charge dans la salle plate ; il reste trop massif pour remonter l'escalier étroit, mais les gardes d'arène le suivent partout.",
+      "fuite": "Les marches étroites derrière le groupe sont la seule sortie sûre."
+    },
+    "alternatives": [
+      {
+        "id": "pousser-dans-le-gouffre",
+        "nom": "Je feins la fuite pour l'attirer au bord du vide et je le fais basculer.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "Vous reculez vers le bord, et le colosse se précipite à votre suite sans réfléchir, son pas lourd faisant trembler la pierre. Au dernier instant, la masse d'ossements vacille, sa mâchoire de serpent grince, puis elle bascule dans le gouffre. Le fracas s'éloigne longtemps dans les profondeurs. Les gardes de bronze restent figés au seuil.",
+        "effets": [
+          {
+            "flag": "gardien-osseux-ecarte"
+          },
+          {
+            "xp": 120
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "se-faufiler-le-long-du-mur",
+        "nom": "Je glisse dans l'ombre des trophées jusqu'à la corniche.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 14
+        },
+        "resume": "Vous glissez de trophée en trophée, dans l'ombre des boucliers. Les gardes de bronze tournent la tête vers la halle, mais ne vous voient pas. Vous atteignez la corniche sans un bruit, tandis que le colosse d'ossements, trop massif pour les recoins, reste au centre de la halle. Le gouffre reste derrière vous, et la pierre glacée sous vos doigts vous guide vers la suite.",
+        "effets": [
+          {
+            "flag": "gardien-osseux-ecarte"
+          },
+          {
+            "xp": 100
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "prier-pour-son-repos",
+        "nom": "Je prononce la prière de repos pour dénouer le serment qui le tient debout.",
+        "jet": {
+          "competence": "religion",
+          "dd": 14
+        },
+        "resume": "Vos paroles s'élèvent sous la voûte, graves et lentes, et le serment qui tenait le colosse se défait. Ses membres d'ossements s'affaissent un à un, la mâchoire de serpent se referme, et les cornes de bélier roulent sur la pierre. Les gardes de bronze s'arrêtent net, leurs armes baissées. Le colosse ne forme plus qu'un amas d'os posé au bord du gouffre, et l'arène cesse de vous observer.",
+        "effets": [
+          {
+            "flag": "gardien-osseux-ecarte"
+          },
+          {
+            "xp": 110
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-catacombes"
+      ],
+      "tresors": [
+        "t-boucliers-arene"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "gardien-osseux-ecarte"
+      }
+    ]
+  },
+  {
+    "id": "r-traversee-corniche",
+    "nom": "La Corniche Glissante",
+    "type": "exploration",
+    "lieu": "n2-gouffre-et-effondrement",
+    "difficulte": "moderee",
+    "intro": "La corniche de calcaire suinte sous vos mains, large de trois pas à peine. Sous vos semelles, des graviers roulent et disparaissent dans un vide sans fond. Un souffle froid remonte de l'abîme et fait frissonner le groupe. Au bout du chemin, une porte de pierre barrée se dessine dans la paroi, et plus loin, un éboulis sans issue bouche déjà une partie du passage. Le sentier, étroit et glissant, peut devenir mortel au moindre faux pas. Reste à décider comment avancer sans tomber, en gardant le groupe uni.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "encorder-le-groupe",
+        "nom": "Je m'encorde et j'avance pied à pied le long de la paroi.",
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 11
+        },
+        "resume": "La corde relie les héros les uns aux autres, et chacun pose le pied avec méthode sur le calcaire humide. Les graviers continuent de rouler dans le vide, mais personne ne glisse. Le groupe atteint la porte de pierre barrée sans perdre l'équilibre, les mains raidies par la tension. Derrière vous, l'éboulis reste hors d'atteinte, et la cordée se détend enfin devant le seuil.",
+        "effets": [
+          {
+            "flag": "corniche-franchie"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          },
+          {
+            "temps": 0.5
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "forcer-allure-corniche",
+        "nom": "Je m'agrippe aux aspérités du roc et je tire les autres derrière moi.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 12
+        },
+        "resume": "Vos doigts trouvent les aspérités du roc, et chacun prend le relais pour gagner le seuil. Le groupe traverse la corniche d'un seul élan, pendant que les graviers ruissellent sous les semelles. Vous atteignez la porte de pierre barrée avant que la pente ne décide du contraire, et vos compagnons se hissent sur le seuil, essoufflés mais debout.",
+        "effets": [
+          {
+            "flag": "corniche-franchie"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          },
+          {
+            "temps": 0.5
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "suivre-la-roche-seche",
+        "nom": "Je suis la ligne où le calcaire reste mat et je guide le groupe de dalle sèche en dalle sèche.",
+        "jet": {
+          "competence": "nature",
+          "dd": 12
+        },
+        "resume": "Vous suivez des yeux la ligne où le calcaire reste mat, là où l'eau ne suinte pas, et vous guidez le groupe de dalle sèche en dalle sèche. Les semelles accrochent, les graviers restent en place, et la corniche, qui semblait ne vouloir personne, laisse passer chacun sans un glissement. Au bout, la porte de pierre barrée attend, et la paroi garde sa sueur froide derrière vous.",
+        "effets": [
+          {
+            "flag": "corniche-franchie"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          },
+          {
+            "temps": 1
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "corniche-franchie"
+      }
+    ]
+  },
+  {
+    "id": "r-chauves-souris-et-fosse",
+    "nom": "La Nuée de la Salle de Cérémonie",
+    "type": "mixte",
+    "lieu": "n3-salle-ceremonie",
+    "difficulte": "faible",
+    "intro": "Un vent glacial descend de la voûte et fait claquer les flammes de vos torches. Là-haut, un bruissement d'ailes monte des chapiteaux sculptés, de plus en plus proche. Sous vos bottes, la poussière craque sur un tapis de guano. Au centre de la salle, la fontaine est à sec, et son socle vide porte des rayures anciennes. Six chauves-souris géantes et trois nuées de petites bêtes se décrochent des hauteurs, attirées par le feu. Vont-elles s'abattre sur vos flammes, ou trouverez-vous le moyen de les détourner ?",
+    "monstres": [
+      {
+        "profil": "chauve-souris-geante",
+        "nombre": 6,
+        "nom": "Chauve-souris des voûtes",
+        "description": "Grande chauve-souris au pelage gris poussière, envergure d'un bras et demi, crocs fins comme des aiguilles."
+      },
+      {
+        "profil": "nuee-de-chauves-souris",
+        "nombre": 3,
+        "nom": "Nuée des chapiteaux",
+        "description": "Nuage de petites chauves-souris décrochées d'un chapiteau, qui tournoie en piaillant."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..m..m..m...m..m..#",
+      "#.m.m.m.R..R.......#",
+      "#.m....R....R......#",
+      "#.......RRRR.......#",
+      "#..c.............c.#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "caverne",
+    "alternatives": [
+      {
+        "id": "baisser-les-torches",
+        "nom": "Je voile les flammes contre une colonne et j'attends qu'elles remontent.",
+        "jet": {
+          "competence": "discretion",
+          "dd": 12
+        },
+        "resume": "Les flammes, étouffées derrière la colonne, ne projettent plus qu'une lueur rougeâtre. Les bêtes hésitent, tournent longtemps au-dessus de la salle, puis remontent vers les hauteurs sans vous repérer. Vous restez immobile jusqu'à ce que la nuée s'éloigne et que les lieux retrouvent leur calme. Le couloir reste ouvert devant vous, et les torches reprennent doucement leur éclat.",
+        "effets": [
+          {
+            "flag": "chauves-souris-calmees"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "appat-de-rations",
+        "nom": "J'émiette des rations sur le socle de la fontaine pour attirer les bêtes.",
+        "condition": {
+          "objet": "rations"
+        },
+        "resume": "Les miettes à peine tombées, les bêtes plongent en tourbillon vers la fontaine et se disputent chaque morceau au fond de la salle. Le craquement des croûtes couvre bientôt le sifflement de leurs ailes, et leur attention quitte entièrement vos flammes. La ration a disparu dans ce festin, mais le chemin est libre. Vous pouvez passer sans qu'aucune bête ne revienne sur vous.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "flag": "chauves-souris-calmees"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "t-bourse-fosse-nord"
+      ],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "chauves-souris-calmees"
+      }
+    ]
+  },
+  {
+    "id": "r-corniche-fosse-sacrificielle",
+    "nom": "La Corniche de la Flamme",
+    "type": "exploration",
+    "lieu": "n3-fosse-sacrificielle",
+    "difficulte": "moderee",
+    "intro": "Une chaleur sèche monte du puits et vous frappe le visage, alors que la pierre sous vos doigts reste froide. Six mètres plus bas, une flamme dorée brûle sans fumée au milieu d'os blancs, et quelques gemmes renvoient sa lueur en éclats. Le puits sacrificiel est ceint d'une corniche étroite, large de soixante centimètres à peine, qui file le long de la paroi jusqu'au bord opposé. Personne n'a envie de marcher là, mais il n'existe pas d'autre chemin. Comment comptez-vous franchir ces quelques pas de pierre au-dessus du vide ?",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "longer-la-corniche",
+        "nom": "Je longe la corniche étroite dos au mur, sans regarder la flamme.",
+        "jet": {
+          "competence": "acrobaties",
+          "dd": 13
+        },
+        "resume": "Chaque pas tient, malgré la pierre polie qui glisse sous vos semelles et la chaleur qui vous pousse vers le vide. Votre souffle se cale peu à peu sur le rythme de vos mouvements. Au bout de la corniche, vous rejoignez le bord opposé, les jambes encore tremblantes, sans une égratignure. Le reste du groupe peut vous suivre sur ce chemin étroit.",
+        "effets": [
+          {
+            "flag": "fosse-traversee"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          },
+          {
+            "temps": 0.5
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "tendre-une-corde",
+        "nom": "Je plante un piton et je tends une corde pour que chacun s'y accroche.",
+        "condition": {
+          "objet": "corde"
+        },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 11
+        },
+        "resume": "Le piton s'enfonce dans la fissure avec un bruit net, et la corde se tend d'un bord à l'autre. Vous la faites passer de main en main, puis chacun avance à tour de rôle en se retenant à la cordée. La flamme dorée veille en contrebas, mais personne ne lâche prise. Une fois la traversée achevée, le groupe se retrouve de l'autre côté, le souffle court mais sans dommage.",
+        "effets": [
+          {
+            "flag": "fosse-traversee"
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": true
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "fosse-traversee"
+      }
+    ]
+  },
+  {
+    "id": "r-grilles-des-oubliettes",
+    "nom": "Les Grilles de la Réserve",
+    "type": "exploration",
+    "lieu": "n3-reserve-et-oubliettes",
+    "difficulte": "moderee",
+    "intro": "Une odeur de safran monte des bocaux alignés contre les murs, mêlée à la fine poussière des graines noires d'espèces disparues. Six grilles basses percent le sol, et derrière leurs barreaux, quatre gobelins à bout de forces se serrent au fond de la pièce. Un scribe elfe, Elios, murmure à peine, pendant qu'un cueilleur tend les doigts entre les barreaux. « Je vous en supplie, parlez bas, chuchote Krak, il nous entend. » Dans la salle voisine, un bruit de pas s'interrompt net. Que ferez-vous des grilles, et de ceux qu'elles retiennent ?",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "crocheter-les-grilles",
+        "nom": "Je crochète les verrous des grilles un à un.",
+        "jet": {
+          "competence": "escamotage",
+          "dd": 13
+        },
+        "resume": "Les verrous cèdent un à un sous la pointe fine, dans un léger déclic. Les grilles se soulèvent sans heurt, et les quatre gobelins se hissent hors des oubliettes en se frottant les poignets. Krak vous adresse un regard reconnaissant, Elios se redresse sans bruit, et le passage vers la salle voisine devient libre.",
+        "effets": [
+          {
+            "flag": "oubliettes-ouvertes"
+          },
+          {
+            "flag": "gobelins-sauves"
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "xiximantre",
+              "delta": -10
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "soulever-les-grilles",
+        "nom": "Je soulève les grilles à la force des bras et des leviers.",
+        "jet": {
+          "competence": "athletisme",
+          "dd": 14
+        },
+        "resume": "Le métal grince, puis les grilles se redressent une à une, avec un grondement sourd sous les bras tendus. Les gobelins jaillissent, titubants, et s'agrippent à vos manches encore tremblants. Krak murmure encore des remerciements, Elios se range contre le mur, et le passage est dégagé. Les leviers restent en place, couverts de suie.",
+        "effets": [
+          {
+            "flag": "oubliettes-ouvertes"
+          },
+          {
+            "flag": "gobelins-sauves"
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "xiximantre",
+              "delta": -15
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "racheter-les-prisonniers",
+        "nom": "J'offre cent pièces à Xiximantre pour la libération de ses prisonniers.",
+        "condition": {
+          "et": [
+            {
+              "pieces": {
+                "min": 100
+              }
+            },
+            {
+              "non": {
+                "pnj": {
+                  "id": "xiximantre",
+                  "etat": "mort"
+                }
+              }
+            }
+          ]
+        },
+        "resume": "Vous comptez cent pièces d'or et les tendez vers la pénombre de la salle voisine. Une main couverte de soie violette s'avance, prend la bourse et la fait disparaître avec une lenteur calculée. Il accepte le marché sans discuter davantage, et les grilles s'ouvrent une à une. Krak s'effondre à genoux en pleurant de soulagement, Elios baisse la tête, et Xiximantre, depuis la salle voisine, se montre presque cordial.",
+        "effets": [
+          {
+            "pieces": -100
+          },
+          {
+            "flag": "oubliettes-ouvertes"
+          },
+          {
+            "flag": "gobelins-sauves"
+          },
+          {
+            "xp": 50
+          },
+          {
+            "attitude": {
+              "pnj": "xiximantre",
+              "delta": 10
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "oubliettes-ouvertes"
+      }
+    ]
+  },
+  {
+    "id": "r-reflets-du-trone",
+    "nom": "Les Reflets du Roi-Serpent",
+    "type": "mixte",
+    "lieu": "n3-salle-du-trone",
+    "difficulte": "moderee",
+    "intro": "Un froid de cave remonte de l'estrade de marbre blanc, et la lumière des torches glisse sur un trône d'or massif aux bras de cobras. Huit miroirs à manche, cerclés d'argent, se dressent sur leurs présentoirs, et leur surface a perdu toute netteté. Une lueur violette et froide suinte de l'un d'eux. Un roi-serpent couronné s'en détache, translucide, suivi de cinq silhouettes sombres sans visage qui glissent sur le sol. Le trône, lui, reste vide. Que ferez-vous de ces reflets qui quittent leurs cadres ?",
+    "monstres": [
+      {
+        "profil": "necronte",
+        "nombre": 1,
+        "nom": "Reflet du Roi-serpent",
+        "description": "Silhouette d'homme-serpent couronnée, translucide, faite de lumière violette froide, qui avance dans le sens inverse du reflet qui la porte."
+      },
+      {
+        "profil": "ombre",
+        "nombre": 5,
+        "nom": "Reflet de courtisan",
+        "description": "Silhouette sombre et plate, sans visage, qui se détache d'un miroir comme une tache d'encre."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.r.r.mrm.r..r.r.r.#",
+      "#....m........m....#",
+      "#.........R........#",
+      "#....m........m....#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "couvrir-les-miroirs",
+        "nom": "Je jette mon manteau sur les miroirs, l'un après l'autre.",
+        "jet": {
+          "competence": "escamotage",
+          "dd": 14
+        },
+        "resume": "La lumière violette faiblit à mesure que les tissus recouvrent les cadres, et chaque miroir se tait dans un sifflement aigu. Les reflets se tordent, se tassent et refluent dans l'argent des montures. Le roi-serpent disparaît en dernier, le regard tourné vers le trône vide, et la salle retrouve son or ordinaire. Vous pouvez enfin avancer sans craindre les images qui bougent dans le métal.",
+        "effets": [
+          {
+            "flag": "reflets-du-trone-apaises"
+          },
+          {
+            "xp": 110
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "s-incliner-devant-le-trone",
+        "nom": "Je m'incline devant le trône vide, comme devant un roi.",
+        "jet": {
+          "competence": "histoire",
+          "dd": 13
+        },
+        "resume": "Le marbre blanc renvoie un écho de vos paroles, et les formules d'une cour depuis longtemps oubliée semblent peser sur la salle. Le roi-serpent penche la tête à son tour, comme s'il acceptait cet hommage. Les silhouettes sans visage se figent, puis regagnent doucement leurs miroirs, et le trône d'or garde sa place devant vous.",
+        "effets": [
+          {
+            "flag": "reflets-du-trone-apaises"
+          },
+          {
+            "xp": 110
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-reliquaire-des-rois"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "reflets-du-trone-vaincus"
+      }
+    ]
+  },
+  {
+    "id": "r-basilic-enchaine",
+    "nom": "Le Basilic Enchaîné",
+    "type": "mixte",
+    "lieu": "n3-hall-du-basilic",
+    "difficulte": "elevee",
+    "intro": "Des gravats craquent sous vos bottes, et huit piliers brisés se dressent dans la pénombre, tronqués à mi-hauteur. Une chaîne massive descend de la voûte et tinte à chaque secousse. Au bout de ce lien, un basilic à huit pattes tire sur sa laisse : ses écailles brunes ressemblent à de la pierre, et ses yeux vert pâle cherchent le groupe. Une lourde clé de fer pend à son collier cuirassé. Entre les piliers, un prêtre embaumé, enroulé de bandelettes noires, avance d'un pas traînant. Comment approcher cette clé sans offrir vos yeux à la créature ?",
+    "monstres": [
+      {
+        "profil": "basilic",
+        "nombre": 1,
+        "nom": "Gardien pétrifiant du hall",
+        "description": "Reptile massif à huit pattes, écailles de pierre brune, yeux d'un vert pâle, collier cuirassé auquel pend une clé de fer."
+      },
+      {
+        "profil": "momie",
+        "nombre": 1,
+        "nom": "Prêtre embaumé du hall",
+        "description": "Prêtre d'homme-serpent enveloppé de bandelettes noircies, un sceptre brisé à la main."
+      },
+      {
+        "profil": "squelette",
+        "nombre": 2,
+        "nom": "Serviteur du hall",
+        "description": "Ossements d'homme-serpent en tunique de lin, lame courte."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#.R....R....R....R.#",
+      "#.m.m.m............#",
+      "#........m.........#",
+      "#..................#",
+      "#.R....R....R....R.#",
+      "#..................#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "tactique": {
+      "doctrine": "Le basilic est retenu par sa chaîne centrale ; les huit piliers rompent sa ligne de vue.",
+      "fuite": "Le vestibule derrière le groupe reste hors de portée de sa chaîne."
+    },
+    "alternatives": [
+      {
+        "id": "detacher-cle-a-la-ruse",
+        "nom": "Je détourne son regard derrière les piliers et je tranche la lanière de la clé.",
+        "jet": {
+          "competence": "escamotage",
+          "dd": 14
+        },
+        "resume": "Le basilic se débat un instant, puis il retombe lourdement contre son pilier, la chaîne tendue. Vous tenez la clé, encore tiède au creux de la main, et le hall s'ouvre devant vous. La lanière tranchée pend encore au collier cuirassé, tandis que les piliers brisés reprennent leur immobilité dans l'ombre.",
+        "effets": [
+          {
+            "objet": {
+              "id": "cle-du-basilic",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "cle-basilic-prise"
+          },
+          {
+            "xp": 110
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "aveugler-le-basilic",
+        "nom": "Je lui jette un miroir poli devant les yeux pour qu'il se pétrifie lui-même.",
+        "condition": {
+          "objet": "miroir"
+        },
+        "jet": {
+          "competence": "athletisme",
+          "dd": 13
+        },
+        "resume": "Le miroir tournoie dans l'air, renvoie les yeux verts de la bête et la prend à son propre regard. Sa peau se durcit en quelques instants, une pierre grise gagne ses paupières, puis la chaîne se détend d'un coup. Vous récupérez la lourde clé à ses pieds. Le miroir, lui, reste fiché dans la pierre du hall, brisé en fragments luisants.",
+        "effets": [
+          {
+            "objet": {
+              "id": "miroir",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "objet": {
+              "id": "cle-du-basilic",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "cle-basilic-prise"
+          },
+          {
+            "xp": 130
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "endormir-la-bete",
+        "nom": "Je l'apaise par des gestes lents et une voix basse, jusqu'à ce qu'il baisse les paupières.",
+        "jet": {
+          "competence": "dressage",
+          "dd": 14
+        },
+        "resume": "Votre voix descend, lente et régulière, et les muscles de la bête se relâchent un à un. Ses pattes se replient sous les écailles, sa chaîne cesse de tinter, et ses paupières retombent sur des yeux pâles. Vous vous approchez du collier, et la clé de fer se détache sans la moindre résistance. Le basilic respire encore, paisible, pendant que vous quittez le hall.",
+        "effets": [
+          {
+            "objet": {
+              "id": "cle-du-basilic",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "cle-basilic-prise"
+          },
+          {
+            "xp": 120
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "commun-consommables-p1"
+      ],
+      "tresors": [
+        "t-collier-du-basilic"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "objet": {
+          "id": "cle-du-basilic",
+          "quantite": 1
+        }
+      },
+      {
+        "flag": "cle-basilic-prise"
+      },
+      {
+        "flag": "basilic-vaincu"
+      }
+    ]
+  },
+  {
+    "id": "r-eclaireurs-gobelins",
+    "nom": "Les Guetteurs de la Salle Commune",
+    "type": "mixte",
+    "lieu": "n3-salle-commune-gobeline",
+    "difficulte": "moderee",
+    "intro": "Une fumée âcre vous pique les yeux dès que vous franchissez le passage. Dans ce dortoir enfumé, des tas de mousse servent de couchages, et des casseroles de cuivre pendent près d'une barricade de pieux. Contre un mur, la statue d'or volée à la fontaine est posée. Un cri aigu s'élève, suivi de jurons pointus : « Halte ! Pas bouger, vous ! Grib commande, Grib décide, han ! » Le chef de garde, maigre, une oreille mordue, parle vite et mal en agitant les bras. Derrière lui, huit guetteurs affamés reculent, terrifiés par le vieux sorcier voisin. Que faites-vous de cette garde qui tremble ?",
+    "monstres": [
+      {
+        "profil": "chef-gobelin",
+        "nombre": 1,
+        "nom": "Grib, chef de garde",
+        "description": "Gobelin maigre à la peau verdâtre, une oreille mordue, un cordon de dents de rat autour du cou."
+      },
+      {
+        "profil": "combattant-gobelin",
+        "nombre": 8,
+        "nom": "Guetteur des champignons",
+        "description": "Gobelin crasseux, fourche de fer ou arc court, tablier de cuir taché de terreau."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#.m..m....cc....m..#",
+      "#.m.mc..m.......c.m#",
+      "#.~~..m.....~~.....#",
+      "#..R..m..c.........#",
+      "#..................#",
+      "#..c....c..........#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "caverne",
+    "alternatives": [
+      {
+        "id": "parlementer-avec-gobelins",
+        "nom": "Je baisse mes armes, paumes ouvertes, et je demande à voir Skriik.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "resume": "Grib hésite, marmonne entre ses dents, puis il ordonne aux guetteurs de se ranger. Les huit gobelins obéissent en tremblant, et Grib ouvre la barricade pour vous conduire vers la champignonnière. Là-bas, Skriik, l'ancien, vous attend, la serpe d'os posée sur les genoux. La garde vous regarde désormais avec moins de méfiance, et le premier pas vers une entente est fait.",
+        "effets": [
+          {
+            "flag": "treve-gobeline"
+          },
+          {
+            "reputation": {
+              "faction": "clan-des-champignons",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "offrir-des-vivres",
+        "nom": "Je pose mes rations sur le sol : des vivres contre le passage.",
+        "condition": {
+          "objet": "rations"
+        },
+        "resume": "Les gobelins se jettent sur le festin à peine posé près de la barricade, comme s'ils n'avaient pas mangé depuis des jours. Grib se tait enfin, la bouche pleine, et fait signe aux guetteurs de laisser passer les étrangers. Quelques regards restent méfiants, mais le marché est conclu : deux rations contre le passage, sans une goutte de sang versé.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 2,
+              "retirer": true
+            }
+          },
+          {
+            "flag": "treve-gobeline"
+          },
+          {
+            "reputation": {
+              "faction": "clan-des-champignons",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-butin-gobelin"
+      ],
+      "tresors": [
+        "t-statue-fontaine-gobelins"
+      ],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "salle-gobeline-soumise"
+      },
+      {
+        "pnjEtat": {
+          "pnj": "grib-guetteur",
+          "etat": "mort"
+        }
+      },
+      {
+        "reputation": {
+          "faction": "clan-des-champignons",
+          "delta": -15
+        }
+      },
+      {
+        "attitude": {
+          "pnj": "skriik-le-cueilleur",
+          "delta": -10
+        }
+      }
+    ]
+  },
+  {
+    "id": "r-troc-skriik-champignons",
+    "nom": "Trêve dans la Champignonnière",
+    "type": "social",
+    "lieu": "n3-ferme-champignons",
+    "difficulte": "faible",
+    "intro": "L'air humide de la champignonnière colle à la peau, et une odeur de terre grasse monte du sol. Des champignons blancs, hauts comme des tabourets, poussent sur des planches de terreau noir. Trois cueilleurs gobelins reculent en serrant leurs paniers d'osier contre le ventre. Un vieil ancien, Skriik, s'avance avec sa serpe d'os, sans geste brusque : « Vous venez pour nos récoltes, ou pour nos frères enfermés chez le vieux sorcier ? » Sa voix reste calme et prudente. Sous le paillis noir, quelque chose attend d'être découvert, et le groupe doit décider ce qu'il dira en premier.",
+    "monstres": [],
+    "alternatives": [
+      {
+        "id": "pacte-cueilleurs",
+        "nom": "Je promets de libérer leurs frères enfermés chez le sorcier.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 11
+        },
+        "resume": "La promesse est entendue, et Skriik se détend lentement, sa serpe reposée sur l'épaule. Il vous fait signe de vous asseoir au bord des planches. La méfiance ne disparaît pas tout à fait, mais le vieil ancien vous regarde désormais comme un allié possible. Les trois cueilleurs reprennent leur récolte, sans reculer davantage.",
+        "effets": [
+          {
+            "flag": "ferme-apaisee"
+          },
+          {
+            "reputation": {
+              "faction": "clan-des-champignons",
+              "delta": 10
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "skriik-le-cueilleur",
+              "delta": 15
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skriik-le-cueilleur",
+              "delta": -5
+            }
+          },
+          {
+            "temps": 0.5
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "impressionner-cueilleurs",
+        "nom": "Je les presse de me montrer le magot caché sous la terre noire.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 12
+        },
+        "resume": "Votre voix se durcit, et les cueilleurs lâchent leurs paniers pour désigner une planche plus loin. Sous le paillis noir, la terre cède sous vos doigts et laisse apparaître de l'or terni. Ce n'est pas un simple magot : c'est la Couronne des Rois Serpents, dissimulée là par des mains gobelines. Les cueilleurs baissent les yeux, et le groupe comprend enfin pourquoi cette ferme est si bien gardée.",
+        "effets": [
+          {
+            "flag": "ferme-apaisee"
+          },
+          {
+            "fait": "f-couronne-chez-gobelins"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echec": [
+          {
+            "attitude": {
+              "pnj": "skriik-le-cueilleur",
+              "delta": -10
+            }
+          },
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": true
+      },
+      {
+        "id": "offrir-un-repas",
+        "nom": "Je leur offre à manger : une soupe chaude vaut mieux qu'une menace.",
+        "condition": {
+          "objet": "rations"
+        },
+        "resume": "Vous posez deux rations sur une planche propre et ouvrez le paquet devant les cueilleurs, qui approchent d'abord avec méfiance, puis avec appétit. Skriik goûte le premier, sans rien dire, et hoche la tête en signe de remerciement. Les autres se servent, la soupe chaude fume dans les écuelles, et la champignonnière se remplit de voix moins tendues.",
+        "effets": [
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 2,
+              "retirer": true
+            }
+          },
+          {
+            "flag": "ferme-apaisee"
+          },
+          {
+            "attitude": {
+              "pnj": "skriik-le-cueilleur",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "ferme-apaisee"
+      }
+    ]
+  },
+  {
+    "id": "r-baltoplate-devoilee",
+    "nom": "La Fureur du Cercle d'Argent",
+    "type": "mixte",
+    "lieu": "n3-salle-invocation",
+    "difficulte": "elevee",
+    "intro": "Autour du piédestal cerclé d'argent, les runes d'argent gardent leur éclat froid sur la pierre, et l'autel de basalte renvoie un froid sec. La captive, enchaînée au centre, relève la tête et sa voix devient douce : « Libérez-moi, mes braves, et je serai généreuse. » Dès que le vrai nom est prononcé, elle se déchire dans un chuintement : des ailes de cuir noir se déploient contre le cercle, des yeux de braise fixent le groupe, et la voix devient rauque. Deux petites créatures rouges, ailées, tournoient en ricanant autour du cercle. Elle feule : vous me devez un marché, pas une prière. Quel prix ce marché aura-t-il pour vous ?",
+    "monstres": [
+      {
+        "profil": "succube",
+        "nombre": 1,
+        "nom": "Baltoplate l'Enchaînée",
+        "description": "Femme pâle aux yeux de braise, ailes de cuir noir déployées contre un cercle d'argent gravé de runes, griffes noires et sourire trop large."
+      },
+      {
+        "profil": "quasit",
+        "nombre": 2,
+        "nom": "Familier du cercle",
+        "description": "Petite créature rouge aux ailes membraneuses et aux griffes fines, qui rit en tournant autour du cercle."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..................#",
+      "#.mRm...........R..#",
+      "#.......rr.rr......#",
+      "#.......r..........#",
+      "#.......r.m..r.....#",
+      "#.......rr.rr......#",
+      "#..R............R..#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "sceller-et-marchander-baltoplate",
+        "nom": "Je l'oblige à céder le piédestal en échange de mon silence.",
+        "jet": {
+          "competence": "intimidation",
+          "dd": 13
+        },
+        "resume": "Votre menace porte, et la créature ravale son feulement. Elle abandonne le piédestal, les ailes repliées, et vous glisse à mi-voix ce qu'elle sait de la chute de l'empire de Xiximantre. Puis elle s'éloigne vers les ombres du tombeau, et les runes du cercle s'éteignent derrière elle, une à une. Le piédestal reste libre devant vous.",
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "fait": "f-empire-chute-xiximantre"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 150
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "renforcer-le-cercle",
+        "nom": "Je ravive les runes d'argent avec mon propre sang et je referme le cercle.",
+        "jet": {
+          "competence": "arcanes",
+          "dd": 14
+        },
+        "resume": "Les runes répondent enfin, et le cercle se referme sur la créature dans une lueur argentée. Elle hurle, griffe l'air, puis ses ailes se replient dans un dernier sifflement. Il ne reste bientôt qu'un piédestal vide et quelques traces de cendre sur la pierre : ce qu'elle était a été chassé du cercle. L'autel de basalte ne vibre plus, et les runes gardent leur éclat pâle.",
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 150
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "la-supplier-de-partir",
+        "nom": "Je lui offre la sortie du tombeau si elle jure de ne plus jamais y revenir.",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 15
+        },
+        "resume": "Elle écoute, les yeux mi-clos, et un rire rauque lui échappe avant qu'elle ne se résigne. Elle jure devant les runes qu'elle ne reviendra plus dans ce tombeau, et son sourire trop large s'affaisse. Ses ailes se replient, elle quitte le piédestal, et le soufre flotte longtemps dans la salle avant de se dissiper.",
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 130
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [],
+      "tresors": [
+        "t-autel-invocation"
+      ],
+      "depouilles": false
+    },
+    "effetsVictoire": [
+      {
+        "flag": "baltoplate-reglee"
+      },
+      {
+        "pnjEtat": {
+          "pnj": "baltoplate",
+          "etat": "mort"
+        }
+      }
+    ]
+  },
+  {
+    "id": "r-xiximantre-courroux",
+    "nom": "La Colère de Xiximantre",
+    "type": "mixte",
+    "lieu": "n3-antichambre-xiximantre",
+    "difficulte": "elevee",
+    "intro": "La lumière violette des six lampes éternelles glisse sur des tentures de soie intactes, et l'air sent la poussière des parchemins anciens. Au milieu de la salle, Xiximantre se dresse, vert-de-gris, manches de soie violette flottant autour de son bâton d'alchimiste. Sa voix claque : « Comment osez-vous me conter de pareilles calomnies ? Mes cités règnent toujours, et vous n'êtes que des intrus ! » Il vient d'entendre la vérité sur la chute de son empire, et son visage se durcit. Derrière lui, deux sentinelles d'argile se fissurent avec un craquement sec, et deux squelettes en jaillissent. Quelle parole va l'apaiser, ou l'enflammer davantage ?",
+    "monstres": [
+      {
+        "profil": "mage",
+        "nombre": 1,
+        "nom": "Xiximantre l'Alchimiste",
+        "description": "Homme-serpent très ancien aux écailles vert-de-gris, manches de soie violette, bâton d'alchimiste à la main, regard de reptile que rien n'étonne."
+      },
+      {
+        "profil": "armure-animee",
+        "nombre": 2,
+        "nom": "Sentinelle d'argile",
+        "description": "Guerrier d'argile peinte fissuré, lance courte de bronze noirci."
+      },
+      {
+        "profil": "squelette",
+        "nombre": 2,
+        "nom": "Os des sentinelles",
+        "description": "Ossements d'homme-serpent jaillis de l'argile brisée."
+      }
+    ],
+    "carte": [
+      "####################",
+      "#..r.....rr.....r..#",
+      "#.m.m...m..........#",
+      "#......m.m.........#",
+      "#..................#",
+      "#..r.............r.#",
+      "#.....rr...........#",
+      "#...H.H.H.H.H.H....#",
+      "####################"
+    ],
+    "terrain": "souterrain",
+    "alternatives": [
+      {
+        "id": "flatter-tardivement-xiximantre",
+        "nom": "Je me rétracte : mes paroles venaient d'une rumeur barbare, ses cités vivent toujours.",
+        "condition": {
+          "pieces": {
+            "min": 15
+          }
+        },
+        "jet": {
+          "competence": "tromperie",
+          "dd": 14
+        },
+        "resume": "Vous baissez le ton et vantez les cités que la rumeur barbare n'a pas su voir. Xiximantre fronce les sourcils, puis hoche la tête d'un air hautain. Il réclame quinze pièces d'or en guise de réparation, et vous les déposez sur son lutrin sans un mot. Il reprend alors ses parchemins, comme si la querelle n'avait jamais existé.",
+        "effets": [
+          {
+            "flag": "xiximantre-allie"
+          },
+          {
+            "flag": "coeur-tombe-resolu"
+          },
+          {
+            "pieces": -15
+          },
+          {
+            "xp": 150
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      },
+      {
+        "id": "offrir-une-curiosite",
+        "nom": "Je lui tends une curiosité rare, un tribut digne d'un souverain.",
+        "condition": {
+          "objet": "icone-emeraude-sacristie"
+        },
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        },
+        "resume": "Vous posez sur le lutrin l'icône d'argent sertie d'émeraudes, et ses pierres vertes accrochent la lumière violette des lampes. Xiximantre la prend du bout des doigts, l'examine longuement, puis la glisse dans les plis de sa soie avec un soupir satisfait. Il vous parle encore de son empire, comme s'il ne doutait plus de rien.",
+        "effets": [
+          {
+            "objet": {
+              "id": "icone-emeraude-sacristie",
+              "quantite": 1,
+              "retirer": true
+            }
+          },
+          {
+            "flag": "xiximantre-allie"
+          },
+          {
+            "flag": "coeur-tombe-resolu"
+          },
+          {
+            "xp": 150
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d8",
+              "cible": "un"
+            }
+          }
+        ],
+        "echecResout": false
+      }
+    ],
+    "butin": {
+      "tables": [
+        "t-alchimie-xiximantre"
+      ],
+      "tresors": [],
+      "depouilles": true
+    },
+    "effetsVictoire": [
+      {
+        "flag": "xiximantre-vaincu"
+      },
+      {
+        "pnjEtat": {
+          "pnj": "xiximantre",
+          "etat": "mort"
+        }
+      },
+      {
+        "flag": "coeur-tombe-resolu"
+      },
+      {
+        "objet": {
+          "id": "cle-de-xiximantre",
+          "quantite": 1
+        }
+      },
+      {
+        "flag": "gobelins-sauves"
+      },
+      {
+        "deplacer": {
+          "pnj": "krak-oubliettes",
+          "lieu": "n3-ferme-champignons"
+        }
+      }
+    ]
+  }
+]

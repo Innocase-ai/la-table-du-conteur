@@ -1,0 +1,393 @@
+[
+  {
+    "id": "p-gaz-sepulcres",
+    "nom": "Vapeur verte des cercueils d'argile",
+    "lieu": "n1-tombes-des-gardes",
+    "resume": "Un cercueil d'argile, scellé au plâtre, renferme un gaz verdâtre sous pression. Ouvrir le cercueil brutalement libère ce nuage acre dans le caveau exigu, qui brûle la gorge à qui le respire.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage",
+      "outil": "tissu humide ou mèche de graisse"
+    },
+    "declenchement": "Un craquement d'argile brisée, puis une bouffée verte qui vous prend à la gorge. Vous toussez, les yeux brûlés, tandis que la vapeur se répand sous la voûte basse.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 13,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "1d6",
+        "type": "poison"
+      }
+    ],
+    "etats": [
+      "empoisonne"
+    ],
+    "effets": [
+      {
+        "fait": "f-vapeur-des-sepulcres"
+      }
+    ],
+    "reinitialisation": false,
+    "passage": false
+  },
+  {
+    "id": "p-marteau-porte-niveau1",
+    "nom": "Marteau oscillant de la porte d'entrée",
+    "lieu": "n1-porte-et-fausse-tombe",
+    "resume": "Un contrepoids de pierre, caché dans la corniche, balaie le seuil dès que la barre de granit est levée. Le bloc sculpté en tête de serpent ne laisse aucun répit à qui se tient sous la porte.",
+    "detection": {
+      "dd": 14,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "escamotage",
+      "outil": "outils de voleur ou coin de fer"
+    },
+    "declenchement": "Un déclic sourd claque dans la corniche, et un bloc de pierre sculpté s'abat à pleine volée. Il vous faut un instant pour vous dégager, les oreilles pleines de poussière.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "temps": 0.5
+      }
+    ],
+    "reinitialisation": false,
+    "passage": true
+  },
+  {
+    "id": "p-onde-xisor",
+    "nom": "Dalle d'onde tonnante de Xisor",
+    "lieu": "n2-tombe-xisor",
+    "resume": "Une dalle affleurante devant le sarcophage de Xisor cache une plaque à ressort qui libère une onde de tonnerre. Le choc ébranle toute la crypte, et son écho dure bien après le coup.",
+    "detection": {
+      "dd": 13,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "arcanes"
+    },
+    "declenchement": "La dalle s'enfonce sous votre pied d'un pouce, et un grondement de tonnerre éclate contre les parois. L'air vous bat le visage, et chacun se retourne vers son voisin.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 11,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d8",
+        "type": "tonnerre"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "jauge": {
+          "id": "soupcon-et-tension",
+          "delta": 1
+        }
+      }
+    ],
+    "reinitialisation": false,
+    "passage": false
+  },
+  {
+    "id": "p-escalier-basculant",
+    "nom": "Volée basculante et pieux des catacombes",
+    "lieu": "n2-escalier-piege",
+    "resume": "Une longue descente taillée dans la roche. La troisième volée repose sur un axe graissé : dès qu'un poids s'y engage, elle pivote en rampe vers une fosse hérissée de pointes rouillées.",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "escamotage",
+      "outil": "pointes en fer et corde"
+    },
+    "declenchement": "Les marches basculent sous vos bottes en une glissière lisse. Vous glissez vers le bas, les pointes rouillées se dressent devant vous, et l'impact vous coupe le souffle.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 14,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "perforant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "temps": 0.5
+      }
+    ],
+    "reinitialisation": true,
+    "passage": true
+  },
+  {
+    "id": "p-marteau-porte-niveau2",
+    "nom": "Marteau de pierre du seuil profond",
+    "lieu": "n2-gouffre-et-effondrement",
+    "resume": "Une trappe haute, au-dessus du linteau, relâche un bélier de pierre dès que le passage est forcé. Le même système que la porte d'en haut arme cette poutre, qui frappe le seuil.",
+    "detection": {
+      "dd": 12,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage"
+    },
+    "declenchement": "Un craquement sec au-dessus de vous, puis un choc de pierre qui vous jette au sol. Le bélier a frappé l'épaule, et la poussière retombe sur la porte entrouverte.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 10,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "narration": "La poutre de pierre reste coincée en travers du linteau : le passage est entrouvert, mais le fracas a dû porter loin dans les galeries."
+      }
+    ],
+    "reinitialisation": false,
+    "passage": true
+  },
+  {
+    "id": "p-fosse-ceremonie",
+    "nom": "Fausse dalle sur fosse à pieux",
+    "lieu": "n3-salle-ceremonie",
+    "resume": "Le centre du passage repose sur un mortier fragile recouvrant un puits hérissé d'os et de pointes. Le mortier se lézarde sous le poids d'un pas trop lourd.",
+    "detection": {
+      "dd": 14,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "acrobaties"
+    },
+    "declenchement": "La dalle centrale se fend net sous vos pieds et s'effondre. Vous tombez dans quatre mètres de vide, les pieux vous déchirent les flancs, et la torche vous échappe des mains.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 15,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "2d10",
+        "type": "perforant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "objet": {
+          "id": "torche",
+          "quantite": 1,
+          "retirer": true
+        }
+      }
+    ],
+    "reinitialisation": false,
+    "passage": true
+  },
+  {
+    "id": "p-dalles-faux-couloir",
+    "nom": "Corridor des dalles à faux",
+    "lieu": "n3-autel-et-couloir-lames",
+    "resume": "Huit dalles alternent entre pierre claire polie et pierre sombre. Les dalles sombres servent de détentes : chacune fait jouer des faux glissées dans des fentes murales, qui balaient le couloir à hauteur de poitrine.",
+    "detection": {
+      "dd": 15,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 15,
+      "competence": "escamotage"
+    },
+    "declenchement": "Un claquement sec sous vos pieds, puis des fentes étroites qui vomissent une rafale de faux. Une lame vous entaille l'épaule, et vous sentez l'air siffler sur votre nuque.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 15,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "3d6",
+        "type": "tranchant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "fait": "f-dalles-claires-sures"
+      }
+    ],
+    "reinitialisation": true,
+    "passage": true
+  },
+  {
+    "id": "p-sas-cylindre",
+    "nom": "Lances du sas cylindrique",
+    "lieu": "n3-porte-cylindre-et-reserve",
+    "resume": "Un tambour de pierre pivote entre la tombe et la resserre gobeline. Le faire pivoter vers la gauche ouvre une meurtrière armée de trois lances sur ressort.",
+    "detection": {
+      "dd": 13,
+      "competence": "perception"
+    },
+    "desarmement": {
+      "dd": 13,
+      "competence": "escamotage"
+    },
+    "declenchement": "Un cliquetis sec, et trois pointes de fer jaillissent par l'étroite fente du cylindre. Elles s'enfoncent dans l'épaule de celui qui pousse, et le fer reste planté.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 14,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "perforant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "grib-guetteur",
+          "delta": -10
+        }
+      }
+    ],
+    "reinitialisation": true,
+    "passage": true
+  },
+  {
+    "id": "p-buses-du-cobra",
+    "nom": "Buses de vapeur verte du cobra",
+    "lieu": "n3-autel-et-couloir-lames",
+    "resume": "Le cobra d'obsidienne a les narines percées : un conduit descend dans le socle vers un réservoir de cuivre vert-de-gris. Dès que le cobra pivote, le gaz sort de ses narines.",
+    "detection": {
+      "dd": 14,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "escamotage",
+      "outil": "outils de voleur"
+    },
+    "declenchement": "Le socle pivote dans un chuintement, et deux jets de vapeur verte jaillissent des narines. Les yeux vous piquent, la gorge se serre, et vous reculez en toussant.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 14,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "poison"
+      }
+    ],
+    "etats": [],
+    "effets": [],
+    "reinitialisation": false,
+    "passage": false
+  },
+  {
+    "id": "p-bouche-de-l-idole",
+    "nom": "Dalle-ressort du socle de l'idole",
+    "lieu": "n1-faux-temple",
+    "resume": "Une dalle du socle d'obsidienne coulisse sur des rails graissés ; sous elle, une barre de bronze à ressort la relie à un bloc de calcaire suspendu.",
+    "detection": {
+      "dd": 12,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 12,
+      "competence": "escamotage",
+      "outil": "coin de fer"
+    },
+    "declenchement": "La dalle recule, un déclic claque, et le bloc de calcaire tombe sur votre main, que vous mettez une demi-heure à dégager.",
+    "sauvegarde": {
+      "caracteristique": "dex",
+      "dd": 12,
+      "moitieSiReussite": false
+    },
+    "degats": [
+      {
+        "des": "1d10",
+        "type": "contondant"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "temps": 0.5
+      }
+    ],
+    "reinitialisation": false,
+    "passage": false
+  },
+  {
+    "id": "p-fiole-piegee",
+    "nom": "Fiole en équilibre du laboratoire",
+    "lieu": "n3-laboratoire",
+    "resume": "Une fiole de verre épais est suspendue par un fil de cuivre à la porte d'un casier. Ouvrir ce casier tire le fil, et la fiole se brise en libérant une fumée acide.",
+    "detection": {
+      "dd": 15,
+      "competence": "investigation"
+    },
+    "desarmement": {
+      "dd": 14,
+      "competence": "arcanes"
+    },
+    "declenchement": "La porte du casier tire le fil, la fiole bascule et se brise sur la paillasse. Une fumée jaune monte aussitôt, mord vos mains et vos yeux, et une potion est perdue.",
+    "sauvegarde": {
+      "caracteristique": "con",
+      "dd": 14,
+      "moitieSiReussite": true
+    },
+    "degats": [
+      {
+        "des": "2d6",
+        "type": "acide"
+      }
+    ],
+    "etats": [],
+    "effets": [
+      {
+        "objet": {
+          "id": "potion-de-guerison",
+          "quantite": 1,
+          "retirer": true
+        }
+      }
+    ],
+    "reinitialisation": false,
+    "passage": false
+  }
+]
