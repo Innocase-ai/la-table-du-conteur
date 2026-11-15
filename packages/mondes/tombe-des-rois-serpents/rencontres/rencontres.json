@@ -1421,7 +1421,7 @@
     "type": "mixte",
     "lieu": "n3-hall-du-basilic",
     "difficulte": "elevee",
-    "intro": "Des gravats craquent sous vos bottes, et huit piliers brisés se dressent dans la pénombre, tronqués à mi-hauteur. Une chaîne massive descend de la voûte et tinte à chaque secousse. Au bout de ce lien, un basilic à huit pattes tire sur sa laisse : ses écailles brunes ressemblent à de la pierre, et ses yeux vert pâle cherchent le groupe. Une lourde clé de fer pend à son collier cuirassé. Entre les piliers, un prêtre embaumé, enroulé de bandelettes noires, avance d'un pas traînant. Comment approcher cette clé sans offrir vos yeux à la créature ?",
+    "intro": "Des gravats craquent sous vos bottes, et huit piliers brisés se dressent dans la pénombre, tronqués à mi-hauteur. Une chaîne massive descend de la voûte et tinte à chaque secousse. Au bout de ce lien, un basilic à huit pattes tire sur sa laisse : ses écailles brunes ressemblent à de la pierre, et ses yeux vert pâle cherchent le groupe. Une lourde clé de fer pend à son collier cuirassé. Entre les piliers, deux prêtres embaumés, enroulés de bandelettes noires, avancent d'un pas traînant, suivis de squelettes en tunique. Comment approcher cette clé sans offrir vos yeux à la créature ?",
     "monstres": [
       {
         "profil": "basilic",
@@ -1431,13 +1431,13 @@
       },
       {
         "profil": "momie",
-        "nombre": 1,
+        "nombre": 2,
         "nom": "Prêtre embaumé du hall",
         "description": "Prêtre d'homme-serpent enveloppé de bandelettes noircies, un sceptre brisé à la main."
       },
       {
         "profil": "squelette",
-        "nombre": 2,
+        "nombre": 4,
         "nom": "Serviteur du hall",
         "description": "Ossements d'homme-serpent en tunique de lin, lame courte."
       }
@@ -1445,7 +1445,7 @@
     "carte": [
       "####################",
       "#.R....R....R....R.#",
-      "#.m.m.m............#",
+      "#.m.m.m.m.m.m......#",
       "#........m.........#",
       "#..................#",
       "#.R....R....R....R.#",
@@ -1853,7 +1853,7 @@
     "type": "mixte",
     "lieu": "n3-salle-invocation",
     "difficulte": "elevee",
-    "intro": "Autour du piédestal cerclé d'argent, les runes d'argent gardent leur éclat froid sur la pierre, et l'autel de basalte renvoie un froid sec. La captive, enchaînée au centre, relève la tête et sa voix devient douce : « Libérez-moi, mes braves, et je serai généreuse. » Dès que le vrai nom est prononcé, elle se déchire dans un chuintement : des ailes de cuir noir se déploient contre le cercle, des yeux de braise fixent le groupe, et la voix devient rauque. Deux petites créatures rouges, ailées, tournoient en ricanant autour du cercle. Elle feule : vous me devez un marché, pas une prière. Quel prix ce marché aura-t-il pour vous ?",
+    "intro": "Autour du piédestal, le cercle d'argent garde son éclat froid et l'autel de basalte renvoie un souffle sec. La captive, enchaînée au centre, relève la tête, la voix douce : « Libérez-moi, mes braves, et je serai généreuse. » Dès que son vrai nom est prononcé, elle se déchire dans un chuintement : des ailes de cuir noir se déploient contre le cercle, des yeux de braise fixent le groupe, la voix devient rauque. Deux petites créatures rouges tournoient en ricanant, deux molosses de braise grondent à ses pieds. Elle feule : « Vous me devez un marché, pas une prière. » Quel prix ce marché aura-t-il pour vous ?",
     "monstres": [
       {
         "profil": "succube",
@@ -1866,12 +1866,18 @@
         "nombre": 2,
         "nom": "Familier du cercle",
         "description": "Petite créature rouge aux ailes membraneuses et aux griffes fines, qui rit en tournant autour du cercle."
+      },
+      {
+        "profil": "molosse-infernal",
+        "nombre": 2,
+        "nom": "Molosse du cercle",
+        "description": "Chien de forge au pelage de braise, gueule fumante, attaché aux runes du cercle."
       }
     ],
     "carte": [
       "####################",
       "#..................#",
-      "#.mRm...........R..#",
+      "#.mRm.m.m.......R..#",
       "#.......rr.rr......#",
       "#.......r..........#",
       "#.......r.m..r.....#",
