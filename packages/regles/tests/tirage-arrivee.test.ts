@@ -185,4 +185,31 @@ describe('tirage d\'arrivée : les rencontres que l\'auteur écrit', () => {
     }
     expect(vue).toBe(true);
   });
+
+  it('une rencontre sociale `aleatoire` du lieu est tirée par le 3 avant le PNJ ou le passant du dé', () => {
+    const dm = charger();
+    const depart = dm.monde.depart.lieu;
+    const voisin = dm.lieux.get(depart)!.liens.map((l) => l.vers).find((v) => dm.lieux.has(v) && dm.lieux.get(v)!.type !== 'region')!;
+    const modele = [...dm.rencontres.values()].find((r) => r.type === 'combat')!;
+    dm.rencontres.set('essai-social', { ...modele, id: 'essai-social', type: 'social' });
+    dm.lieux.get(voisin)!.rencontres = [{ id: 'essai-social', declencheur: 'aleatoire', unique: false }];
+    let vue = false;
+    for (let graine = 1; graine <= 80 && !vue; graine++) {
+      const moteur = creerMoteur({ dm, srd }, MODULES_STANDARD);
+      let partie = moteur.executer(moteur.nouvellePartie(groupeDeTest(srd), { graine, niveau: 1 }), { type: 'commencer' }).partie;
+      for (let i = 0; i < 8 && !vue; i++) {
+        const r = moteur.executer(partie, { type: 'aller', vers: i % 2 === 0 ? voisin : depart });
+        partie = r.partie;
+        const t = r.evenements.find((e): e is Tirage => e.type === 'tirageArrivee');
+        if (t?.de === 3 && partie.etat.lieu === voisin) {
+          // La rencontre écrite se présente (pas un passant tiré au hasard : celui-là « vous interpelle »).
+          expect(t.issue).toBe('pnj');
+          expect(t.texte).toBe('Quelqu’un se présente.');
+          vue = true;
+        }
+        if (partie.scene.type === 'rencontre') partie = moteur.executer(partie, { type: 'reglerRencontre', issue: 'fuite' }).partie;
+      }
+    }
+    expect(vue).toBe(true);
+  });
 });
