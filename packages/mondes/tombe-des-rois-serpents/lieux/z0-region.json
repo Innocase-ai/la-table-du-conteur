@@ -1,0 +1,126 @@
+[
+  {
+    "id": "val-du-couchant",
+    "nom": "Le Val du Couchant",
+    "type": "region",
+    "resume": "Des confins de sable et de caillasse, à cinq journées de piste de Valdargent, où le vent efface toutes les traces.",
+    "description": "Note MJ : Le Val du Couchant borde l'ancien territoire d'un empire ophidien oublié depuis des siècles. Seuls le Fort du Reflet Béni et la route caravanière maintiennent encore une présence organisée face aux sables mouvants où s'ouvrent les dalles de l'entrée du tombeau.",
+    "ambiance": "Vent sec chargé de poussière ocre, soleil blanc, silence minéral brisé par le grincement des bâts.",
+    "arrivee": "Le vent sec râpe la gorge dès que la piste quitte les derniers arbres rabougris. Devant vous, le Val du Couchant s'ouvre en longues vagues de caillasse rousse. Des dunes pâles, des collines éventrées et des plateaux de calcaire fissuré se succèdent jusqu'à l'horizon, sans un seul chemin qui tienne. Au loin, une ligne d'escarpements découpe de brèves ombres sur le ciel blanchi. Plus bas, entre deux crêtes blondes, les remparts d'un fortin pâle rappellent que Valdargent existe encore, à cinq journées de piste. Sous vos semelles, la sauge grise craque. Dès qu'une rafale rase le sol, chaque empreinte de botte et chaque trace de sabot disparaissent, comme si personne n'était jamais passé ici. Au bord de la piste, une pierre plate, polie par le vent, marque une halte que personne n'a entretenue depuis longtemps. Le soleil frappe la pierre sans relâche, et la chaleur monte de la caillasse jusque dans le cuir des bottes.",
+    "visuel": "Plaine de sable pâle et de caillasse rousse, bordée de collines basses et de plateaux de calcaire fissuré. Au premier plan, quelques arbustes tordus ; au centre, une piste claire marquée d'une pierre plate ; à l'horizon, les remparts pâles d'un fortin. La lumière blanche vient d'un soleil haut, et le sable ne porte aucune ombre sous les arbustes.",
+    "niveau": { "min": 1, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-val-empire-oublie", "decouverte": { "auto": true } }
+    ],
+    "repos": "dangereux"
+  },
+  {
+    "id": "fort-du-reflet-beni",
+    "nom": "Fort du Reflet Béni",
+    "type": "camp",
+    "parent": "val-du-couchant",
+    "resume": "Un avant-poste de chevaliers et de clercs bâti autour d'une fontaine, dernier refuge civilisé avant les sables.",
+    "description": "Note MJ : Dernière étape sûre pour se reposer à table, acheter torches, cordes, potions ou équipement de forge auprès de l'herboriste Elara et du commandeur Garin. Les PJ peuvent revenir ici entre le niveau 2 et le niveau 3 pour souffler sans faire grimper la jauge.",
+    "ambiance": "Cliquetis de lances dans la cour, eau fraîche du puits, odeur de cuir graissé et d'herbes séchées.",
+    "accroche": "Au pied d'une crête de calcaire blanc, des bannières azur et argent claquent au-dessus d'un fortin ceint de douves sèches.",
+    "arrivee": "Derrière la herse de bois cerclée de fer, l'ombre fraîche du cloître vous saisit après la piste brûlante. Une fontaine de pierre claire chante au centre de la cour pavée, entourée d'ateliers couverts. Un forgeron en tablier de cuir noirci frappe l'acier, et deux écuyers martèlent des fers à ses côtés. Sous l'auvent de l'infirmerie pendent des bottes de camomille, de sauge grise, de menthe sèche et d'arnica ; leur parfum d'apothicaire flotte dans l'air tiède. Sur les créneaux blanchis à la chaux, deux sentinelles en manteau azur surveillent l'horizon par-dessus les tourbillons ocre. De l'auberge voisine montent l'odeur des broches de mouton épicé, celle des fèves chaudes et celle du pain doré. Les bannières azur et argent flottent au-dessus du portail. Sous vos pieds, les pavés gardent la fraîcheur de la nuit, et le vent du désert s'arrête contre les murs.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"tension-palier-4"},
+        "texte": "Derrière la herse, la cour n'a plus rien de l'étape tranquille. Deux cavaliers serrent les sangles de leurs montures, sacoches de courrier bouclées, prêts à partir pour Valdargent dès que la porte s'ouvrira. Près de la fontaine, deux écuyers parlent à voix basse en regardant vos armes, puis détournent les yeux. Le forgeron a posé son marteau sur l'enclume, et ses mains restent figées. Sur les créneaux, une sentinelle scrute les dunes, le front plissé : un campement resté trop longtemps au pied des sables n'a pas bougé, et aucune mule chargée n'en est revenue. L'auberge a cessé de griller son mouton, et l'odeur du pain ne couvre plus celle de la sauge. Tout le fort attend votre prochain geste, sans un mot."
+      }
+    ],
+    "visuel": "Fortin carré de calcaire blanc, bâti autour d'une cour pavée aux dalles claires. Au centre, une fontaine de pierre ; à gauche, des écuries de bois brun ; au fond, un auvent où pendent des bouquets secs. Une lumière de plein jour tombe sur les créneaux, et la herse de bois est relevée. Les bannières azur et argent flottent au-dessus des remparts.",
+    "niveau": { "min": 1, "max": 3 },
+    "liens": [
+      {
+        "vers": "bivouac-entree",
+        "type": "route",
+        "heures": 8,
+        "sens": "double",
+        "description": "Une piste de sable battu s'éloigne du portail, longe trois ravines sèches et mène, une journée de marche, au campement des dunes.",
+        "retour": "La piste ramène en ligne droite vers les murailles blanches du fort, qu'on repère de loin à ses créneaux clairs."
+      }
+    ],
+    "rencontres": [
+      {"id": "r-contrat-citerne", "declencheur": "exploration", "condition": {"quete": {"id": "q-contrat-eau-du-fort", "statut": "active"}}, "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-contrat-moitie-part", "decouverte": { "auto": true } },
+      { "fait": "f-fort-contient-les-horreurs", "decouverte": { "dd": 11, "competence": "histoire" } },
+      { "fait": "f-varnac-survivant", "decouverte": { "dd": 11, "competence": "investigation" } }
+    ],
+    "services": ["auberge", "marche", "repas", "soins", "forge"],
+    "repos": "sur",
+    "position": { "x": 75, "y": 55 }
+  },
+  {
+    "id": "bivouac-entree",
+    "nom": "Le Bivouac du Seuil",
+    "type": "lieu-dit",
+    "parent": "val-du-couchant",
+    "resume": "Un creux de rocher abrité, où attendent deux mules et un campement discret, au bord d'une tranchée fraîchement creusée.",
+    "description": "Note MJ : Martin campe ici avec deux mules. Les PJ s'y reposent en sécurité, mais chaque long repos ici ou dans la tombe fait avancer la jauge d'impatience. C'est également ici que se règle le décompte final du partage.",
+    "ambiance": "Bruit d'avoine mâchée par les mules, toile de tente qui claque, chaleur sèche retombant au crépuscule.",
+    "accroche": "Sous un surplomb de roche rouge, une bâche beige claque au vent, et deux mules patientent derrière leurs piquets.",
+    "arrivee": "Sous un surplomb de grès rouge qui coupe les rafales brûlantes, une bâche de chanvre tient sur quatre piquets de frêne. Deux mules grises aux oreilles basses mâchent leur avoine à son ombre, et le vent fait claquer doucement le tissu. Devant elles, un cercle de pierres noircies tiédit encore, ses cendres presque sans fumée. Un homme maigre en livrée brune est assis là, un registre de cuir ouvert sur les genoux. Un stylet d'étain entre les doigts, il lève les yeux dès qu'un caillou roule sur la pente du vallon. À cent pas, devant vous, dans le creux ocre, une tranchée rectangulaire vient d'être déblayée à la pelle. Ses premières marches laissent voir une vieille entrée de pierre claire. Un arbre mort, blanchi par le vent, griffe la rocaille de ses racines noueuses, sans une herbe alentour.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"coeur-tombe-resolu"},
+        "texte": "Retour à l'air libre. La lumière blanche blesse les yeux habitués à la suie des torches, et l'air sent le sable brûlé, la sauge amère et le crottin de mule. Sous le surplomb, les deux mules ont déjà reçu leur picotin ; le cercle de pierres est froid. L'homme en livrée brune referme son carnet de cuir d'un claquement sec, puis tire de ses fontes de selle une balance de cuivre. Il la pose sur un tissu propre, sans un mot, et attend que vous approchiez. Le vallon est silencieux, rompu seulement par un caillou qui roule sur la pente. Il ne semble ni surpris ni inquiet de vous voir ; il a seulement l'air d'avoir compté. L'heure du véritable compte a sonné."
+      },
+      {
+        "condition": {"flag":"tension-palier-4"},
+        "texte": "Le camp se prépare à lever le piquet. La bâche de chanvre est à demi pliée sur le surplomb, et les deux mules grises, sellées, portent déjà des cordes enroulées sur leurs bâts. Le cercle de pierres noircies ne fume plus : quelqu'un a étouffé le feu d'un coup de pelle. L'homme en livrée brune se tient debout près de la tranchée, son registre de cuir à la main. Il lève les yeux vers le ciel, puis vers la pente du vallon, puis rouvre son carnet sans y écrire. Son visage ne montre aucune colère, seulement une patience qui s'use. Les mules s'agitent, et le sable tiède glisse sous leurs sabots. Le vent a tourné, et il soulève déjà la cendre froide du foyer."
+      }
+    ],
+    "visuel": "Campement discret sous un surplomb de roche rouge, avec une bâche beige tendue sur quatre piquets. Au centre, deux mules grises sont bâtées près d'un cercle de pierres noircies. Au fond du vallon ocre, une tranchée de pierre claire s'ouvre dans le sable ; la lumière du jour tombe en plein sur ses premières marches. Le sol de la tranchée est fraîchement remué, et les pierres du cercle sont tièdes.",
+    "niveau": { "min": 1, "max": 3 },
+    "liens": [
+      {
+        "vers": "tombe-des-rois",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Un sentier de sable piétiné descend dans la tranchée fraîchement creusée, jusqu'à un porche de pierre dont on devine la pénombre.",
+        "retour": "La tranchée sableuse remonte vers la lumière du jour, jusqu'au surplomb de grès où les mules attendent."
+      }
+    ],
+    "rencontres": [
+      {"id": "r-contrat-deserteurs", "declencheur": "entree", "condition": {"quete": {"id": "q-contrat-deserteurs", "statut": "active"}}, "unique": true},
+      {"id": "r-contrat-ankheg", "declencheur": "repos", "condition": {"quete": {"id": "q-contrat-bete-des-mules", "statut": "active"}}, "unique": true},
+      {"id": "r-contrat-pillards-crete", "declencheur": "exploration", "condition": {"quete": {"id": "q-contrat-crete-du-seuil", "statut": "active"}}, "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-martin-compte-tout", "decouverte": { "dd": 10, "competence": "intuition" } }
+    ],
+    "services": [],
+    "repos": "sur",
+    "position": { "x": 45, "y": 55 }
+  },
+  {
+    "id": "tombe-des-rois",
+    "nom": "La Tombe des Rois Serpents",
+    "type": "donjon",
+    "parent": "val-du-couchant",
+    "resume": "Une tranchée creusée dans la dune, qui mène à un porche de pierre sculptée, dont les marches plongent sous la terre.",
+    "description": "Note MJ : Le seuil extérieur du donjon. Mène directement au couloir d'entrée ensoleillé (niveau 1). La tombe compte trois niveaux superposés.",
+    "ambiance": "Odeur de sable sec et de renfermé séculaire, souffle tiède venu du sous-sol.",
+    "accroche": "Dans la dune jaune, une entaille fraîchement creusée découpe un linteau de calcaire pâle, gravé de serpents.",
+    "arrivee": "Au fond de cette large tranchée creusée dans la dune, le vent du plateau ne descend pas. Ses hautes parois de sable tassé menacent à peine de couler. Au pied, un porche trapu s'ouvre sous un épais linteau de calcaire pâle. Deux serpents couronnés, sculptés dans la pierre, se font face en un nœud symétrique. Le vent et le sable ont rongé leurs écailles, qu'on distingue à peine. Les premières marches, tièdes, plongent dans un boyau rectiligne où le jour s'arrête à quelques pas. Sur les montants, des éclats frais de mortier brisé et de terre remuée montrent que le sceau extérieur a été forcé. Des pioches sont plantées dans le sable, et des paniers vides gisent près du seuil. Le sable fin crisse sous vos semelles dès le premier pas, et le bruit du vent s'éteint.",
+    "visuel": "Large tranchée creusée dans une dune de sable jaune, aux parois tassées et striées par les pioches. Au fond, un porche trapu sous un linteau de calcaire pâle, orné de deux serpents couronnés qui se font face. Au premier plan, des pioches plantées dans le sable et une volée de marches tièdes. La lumière du plein jour s'arrête au seuil, et l'ombre du porche reste dense.",
+    "niveau": { "min": 1, "max": 3 },
+    "liens": [],
+    "rencontres": [
+      {"id": "r-chantier-sable", "declencheur": "entree", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-tranchee-forcee", "decouverte": { "auto": true } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 25, "y": 55 }
+  }
+]

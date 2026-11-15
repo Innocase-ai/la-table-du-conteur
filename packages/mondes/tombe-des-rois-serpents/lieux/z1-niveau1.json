@@ -1,0 +1,158 @@
+[
+  {
+    "id": "n1-couloir-entree",
+    "nom": "Couloir d'entrée",
+    "type": "salle",
+    "parent": "tombe-des-rois",
+    "resume": "Un couloir encore éclairé du jour, qui se ferme au fond par une porte de granit.",
+    "description": "Note MJ : Salle 1 du scénario. Quatre ouvertures latérales (tombes des gardes, érudit, sorcier) et au sud la lourde porte barrée (n1-porte-et-fausse-tombe).",
+    "ambiance": "Poussière immobile dans la lumière oblique, écho sec sous des voûtes intactes.",
+    "accroche": "Au bas des marches, un couloir rectiligne s'ouvre, encore éclairé par le jour oblique du dehors.",
+    "arrivee": "Un couloir rectiligne, large de trois mètres, s'étire devant vous sous une clarté venue du dehors. Ses parois de calcaire lisse gardent la précision d'une taille ancienne, sans une fissure ni une racine descendue de la surface. Des rais d'ambre tombent en biais sur les dalles pâles, et la poussière dorée tourne lentement à chaque pas. Le calcaire est froid au toucher, et le sol, poli par le passage des siècles, renvoie le bruit de chaque pas. Vos doigts effleurent une paroi lisse, sans un seul éclat. De chaque côté, des embrasures basses s'ouvrent dans l'ombre du mur, et de l'une d'elles monte une odeur sèche d'argile froide et de plâtre ancien. Tout au fond, une porte colossale de granit s'étale sous une corniche de motifs serpentins. Elle est close par une poutre de pierre calée dans de profondes encoches, et l'ensemble paraît ajusté à la main.",
+    "visuel": "Long couloir de calcaire beige aux parois lisses, traversé de rais de soleil oblique. Sur les deux murs, des embrasures basses s'ouvrent dans l'ombre ; au fond, une porte colossale de granit sous une corniche sculptée de serpents. La porte est close par une poutre de pierre grise, et des grains de sable doré flottent dans la lumière.",
+    "niveau": { "min": 1, "max": 1 },
+    "liens": [
+      {
+        "vers": "n1-porte-et-fausse-tombe",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 13 },
+        "description": "Une porte colossale de granit barre le fond du couloir, sous une corniche de serpents sculptés. Derrière la pierre, on devine une chambre close.",
+        "retour": "Vue de la chambre, la porte de granit est lisse et massive, et le long couloir s'ouvre derrière elle, encore éclairé du jour."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-barre-contre-ce-qui-sort", "decouverte": { "dd": 11, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 50, "y": 20 }
+  },
+  {
+    "id": "n1-tombes-des-gardes",
+    "nom": "Caveaux des gardes et de l'érudit",
+    "type": "salle",
+    "parent": "n1-couloir-entree",
+    "resume": "Trois niches funéraires latérales, où des statues d'argile peinte se dressent près de cercueils scellés au plâtre.",
+    "description": "Note MJ : Regroupe les salles 2 (tombes de gardes) et 3 (tombe d'érudit). Contient les statues d'hommes-serpents en argile, des parchemins tombés en poussière et les cercueils piégés par le gaz vert des sépulcres (p-gaz-sepulcres) avec 3 amulettes d'or de 20 po.",
+    "ambiance": "Argile sèche, effluve âcre à peine perceptible derrière le plâtre fissuré, silence sépulcral.",
+    "accroche": "Des embrasures basses s'ouvrent dans le mur du couloir, et l'air qui en sort sent l'argile froide et le plâtre.",
+    "arrivee": "L'air devient plus étroit et plus lourd dans ces trois niches funéraires aux plafonds bas, taillées dans le roc nu. Dans chacune, un cercueil fendu par la sécheresse et joint au plâtre blanc fait face à une statue d'argile peinte, à taille humaine. L'une tient une hallebarde rigide ; l'autre porte une tête de cobra dont les écailles gardent de pâles éclats de vert-de-gris et d'or écaillé. Aux pieds de la statue la plus haute, des rouleaux si secs qu'un souffle les réduirait en cendre gisent sur les dalles. Une odeur d'argile, à peine amère, rappelle le métal. Dans chaque niche, le plafond descend si bas qu'il touche presque la tête des statues. Une fraîcheur de tombeau monte de la pierre et s'accroche aux doigts. Chaque figure regarde l'entrée depuis le fond de son alcôve, immobile dans l'ombre.",
+    "visuel": "Trois niches étroites taillées dans le calcaire, aux plafonds bas et aux murs nus. Dans chacune, un cercueil fendu, joint au plâtre blanc, fait face à une statue d'argile peinte à taille humaine. Au fond de la niche centrale, une statue tient une hallebarde rigide ; à droite, des rouleaux secs gisent sur les dalles. La lumière d'une torche glisse sur le vert-de-gris et l'or écaillé des statues.",
+    "niveau": { "min": 1, "max": 1 },
+    "liens": [],
+    "rencontres": [
+      {"id": "r-statues-d-argile-eveillees", "declencheur": "exploration", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-vapeur-des-sepulcres", "decouverte": { "dd": 12, "competence": "perception" } },
+      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 13, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 25, "y": 40 }
+  },
+  {
+    "id": "n1-tombe-du-sorcier",
+    "nom": "Tombe du sorcier d'argile",
+    "type": "salle",
+    "parent": "n1-couloir-entree",
+    "resume": "Un quatrième caveau plus soigné que les autres, où une haute statue d'argile garde un cercueil de bronze.",
+    "description": "Note MJ : Salle 4. La statue porte l'anneau maudit Griffe-croc (anneau-griffe-croc), et le cercueil contient un squelette serpentin portant une amulette d'or (20 po).",
+    "ambiance": "Air immobile, odeur de cèdre sec et léger scintillement de cuivre terni dans la poussière.",
+    "accroche": "Une embrasure un peu plus soignée que les autres s'ouvre dans l'ombre du mur, peinte d'un bleu nuit écaillé.",
+    "arrivee": "Dans cette quatrième chambre, le décor est plus soigné que dans les niches voisines, et le silence y pèse davantage. Un cercueil lourd, cerclé de bronze verdi, occupe le fond, face à une haute statue d'argile cuite. Elle est drapée dans une robe bleu nuit constellée d'étoiles d'argent très passées, et son bras gauche pointe vers le couloir ensoleillé. À son auriculaire, un anneau de cuivre terni se prolonge par une serre recourbée, qui accroche le peu de clarté venue de la porte. Aux quatre angles de la voûte basse pendent des toiles d'araignée grises, figées dans une sécheresse absolue. Devant le socle, la poudre porte par endroits des marques de semelles anciennes. Le bronze du cercueil a perdu son éclat, et son couvercle n'a pas bougé depuis longtemps. Vous sentez la pierre froide sous vos doigts, et rien ne bouge.",
+    "visuel": "Alcôve étroite de calcaire au plafond bas, aux murs peints d'un bleu nuit écaillé. Au centre, une haute statue d'argile cuite, drapée d'une robe étoilée, lève un bras vers la sortie ; à son petit doigt brille un anneau de cuivre terni. À gauche et à droite, de grandes toiles d'araignée grises pendent aux angles, et un cercueil de bronze verdi occupe le fond. La lumière de la porte arrive faible et oblique sur la poudre grise du sol.",
+    "niveau": { "min": 1, "max": 1 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-griffe-croc-maudite", "decouverte": { "dd": 13, "competence": "arcanes" } },
+      { "fait": "f-traces-expedition-n1", "decouverte": { "dd": 10, "competence": "survie" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 75, "y": 40 }
+  },
+  {
+    "id": "n1-porte-et-fausse-tombe",
+    "nom": "La Fausse Tombe Royale",
+    "type": "salle",
+    "parent": "n1-couloir-entree",
+    "resume": "Une chambre funéraire ornée d'or, où trois cercueils peints reposent sur des estrades de lin, au bout du couloir.",
+    "description": "Note MJ : Salles 5 (porte & marteau oscillant p-marteau-porte-niveau1) et 6 (fausse tombe royale avec 3 cercueils : faux roi + 2 épouses, qui libèrent r-squelettes-fausse-tombe si troublés).",
+    "ambiance": "Poussière remuée, grincement de contrepoids au-dessus du seuil, odeur d'os sec et de bois vermoulu.",
+    "accroche": "Au fond du couloir, une porte de granit sculptée de serpents ferme l'issue, lourde et immobile sous sa corniche.",
+    "arrivee": "Une fois la porte franchie, l'air se fait confiné, et vous sentez une odeur de résine sèche au fond de la gorge. Trois grands cercueils de cèdre peint reposent côte à côte sur des estrades basses, tendues de lin jauni qui tombe en charpie. Celui du milieu porte un masque doré à la feuille, figurant un souverain serpent, encadré par deux coffres plus fins, gravés de lotus fanés. Le lin, quand on l'effleure, s'effrite entre les doigts. Une fine couche de poussière recouvre le bord des estrades et le dallage au pied des cercueils. Le bois des estrades est sec sous la main, comme une écorce ancienne. Les fresques des murs paraissent hâtives, tracées d'un pinceau pressé. L'or posé sur les parois sonne creux sous la lueur des torches, et il semble trop léger pour sa propre splendeur.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"fausse-tombe-nettoyee"},
+        "texte": "Les trois couvercles sont renversés sur le dallage, et les estrades ont basculé de travers. Des ossements brisés jonchent le sol entre les lambeaux de lin, et le masque doré gît fendu près de l'estrade centrale. Le sol est couvert d'éclats de bois et de lin, et l'on marche sur des débris à chaque pas. La salle est redevenue muette ; une poussière fine retombe lentement dans l'air. Une odeur de bois vermoulu et de résine froide flotte encore, comme un souvenir. Dans la lueur des torches, les fresques hâtives montrent des plaques d'or qui se détachent des parois. Une dernière plaque d'or tombe du mur sans bruit. Le décor d'or paraît plus pauvre encore, et la double porte de bois, au fond, reste close."
+      }
+    ],
+    "visuel": "Chambre funéraire aux murs ornés d'or écaillé, sous une haute voûte. Au centre, trois grands cercueils peints reposent sur des estrades basses, couverts de lin jauni ; celui du milieu porte un masque doré. Autour du cercueil central, deux coffres plus fins, gravés de lotus fanés, complètent la scène. La lueur des torches glisse sur l'or, et le lin pend en lambeaux.",
+    "niveau": { "min": 1, "max": 1 },
+    "liens": [
+      {
+        "vers": "n1-faux-temple",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une double porte de bois goudronné, noire et luisante, ferme le fond de la chambre. Derrière, on devine une salle plus vaste et plus haute.",
+        "retour": "Vue de la salle haute, cette double porte s'ouvre sur les trois cercueils peints de la chambre, le masque doré brillant au centre."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-squelettes-fausse-tombe", "declencheur": "exploration", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 14, "competence": "investigation" } },
+      { "fait": "f-marteaux-du-seuil", "decouverte": { "dd": 12, "competence": "investigation" } },
+      { "fait": "f-squelettes-fausse-tombe", "decouverte": { "dd": 13, "competence": "religion" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 50, "y": 50 }
+  },
+  {
+    "id": "n1-faux-temple",
+    "nom": "Le Faux Temple du Dieu Serpent",
+    "type": "salle",
+    "parent": "n1-porte-et-fausse-tombe",
+    "resume": "Une salle haute dominée par une statue colossale du dieu serpent, près d'un mince filet d'eau sur la paroi.",
+    "description": "Note MJ : Salle 7. Cul-de-sac apparent. Une inspection (Perception DD 12) révèle un courant d'air et un passage dissimulé sous le socle de la statue menant au niveau 2 (n2-hall-aux-statues).",
+    "ambiance": "Gouttes d'eau qui claquent régulièrement sur la pierre, odeur d'humidité froide sous l'idole.",
+    "accroche": "La double porte de bois goudronné, noire de poix, bâille d'un doigt sur une pénombre plus haute que la chambre.",
+    "arrivee": "La salle est haute et sans fenêtre. La flamme de vos torches accroche de longs éclats sombres sur les écailles d'une statue colossale du dieu serpent. Elle est taillée dans une pierre grise et s'élève sur un large socle d'obsidienne jusqu'à frôler la clé de voûte. Les murs latéraux sont nus : ni serrure, ni poignée, ni alcôve, ni encadrement de porte. Sur la paroi de droite, un mince filet d'eau claire brille sur le calcaire et ruisselle goutte à goutte jusqu'au pied humide du piédestal. Une fraîcheur monte des dalles, et chaque goutte résonne sous la voûte haute. Les écailles de la statue, usées par les siècles, luisent encore d'un éclat gras. Rien d'autre ne trouble le silence de ce lieu. Les yeux d'onyx de l'idole fixent la porte par laquelle vous venez tout juste d'entrer.",
+    "arriveeVariantes": [
+      {
+        "condition": {"fait":"f-passage-temple-decouvert"},
+        "texte": "Le socle de la statue a pivoté de côté, et une trappe de calcaire pâle est dégagée au ras du sol humide. L'ouverture est étroite, mais praticable pour une compagnie armée, et des marches luisantes de condensation plongent dans le noir. Le mince filet d'eau claire descend le long de l'escalier, comme un fil qui guide vos pas. Les yeux d'onyx de l'idole dominent toujours la salle, mais le passage est ouvert. Derrière vous, la double porte de bois goudronné reste ouverte sur le décor doré des faux cercueils, qui paraît désormais dérisoire. Au pied des marches, la pierre est glissante, et il faut poser les pieds avec précaution. Le froid de la pierre monte des marches, et le passage n'a rien d'accueillant."
+      }
+    ],
+    "visuel": "Salle haute de pierre grise, sans fenêtre, dominée au centre par une statue colossale de serpent aux écailles lustrées. Elle se dresse sur un socle d'obsidienne noire qui touche presque la voûte. Sur la paroi de droite, un mince filet d'eau claire luit sur le calcaire, et des dalles fraîches couvrent le sol au pied de la statue. La lueur des torches fait briller les écailles, et les murs latéraux restent nus.",
+    "niveau": { "min": 1, "max": 1 },
+    "liens": [
+      {
+        "vers": "n2-hall-aux-statues",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 12, "competence": "perception" },
+        "description": "Sous le socle pivoté, un boyau étroit et humide s'enfonce dans la roche, et ses parois fissurées suintent sous les doigts.",
+        "retour": "De ce côté, le boyau devient un escalier étroit et fissuré, qui remonte jusqu'au socle de la statue."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 12, "competence": "perception" } },
+      { "fait": "f-fausse-tombe-leurre", "decouverte": { "dd": 13, "competence": "investigation" } },
+      { "fait": "f-eau-sous-l-idole", "decouverte": { "dd": 10, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 50, "y": 80 }
+  }
+]

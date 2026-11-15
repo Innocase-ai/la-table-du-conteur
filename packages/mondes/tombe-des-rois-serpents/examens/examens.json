@@ -1,0 +1,1570 @@
+[
+  {
+    "id": "exa-val-borne-serpent",
+    "lieu": "val-du-couchant",
+    "nom": "La borne à tête de serpent",
+    "apercu": "Une borne de calcaire à tête de serpent, rongée par le sable.",
+    "texte": "Au bord de la piste caravanière, une borne de calcaire se dresse, plantée droite dans le sable pâle. Sa tête de serpent est rongée jusqu'à la gueule. Trois lignes de signes serpentins courent sous elle, presque effacées : il faut passer le pouce dans les creux pour les suivre. Ces signes marquaient la route d'un empire dont il ne reste plus que des bornes. Les roues des chariots ont frôlé sa base et l'ont éraflée de part en part. Du côté abrité du vent, un lichen gris couvre la pierre en plaques craquelées, comme une peau sèche.",
+    "effets": [
+      {
+        "fait": "f-val-empire-oublie"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-fort-bannieres",
+    "lieu": "fort-du-reflet-beni",
+    "nom": "Le tableau des patrouilles et les cartes du Val",
+    "apercu": "Des cartes rapiécées, des puits taris, une note sur une toux verte.",
+    "texte": "Sous le porche de la forge, trois cartes rapiécées du Val pendent côte à côte. Des croix de sanguine marquent les dunes qui bougent, les anciens puits taris et un campement tracé deux fois. La sanguine poudre encore au bout des doigts. Une annotation récente, d'une écriture serrée, parle de la toux verte de Varnac le Borgne, revenu seul au fort l'automne passé. Le papier sent la fumée de forge et le suif, et les bords sont usés par les doigts.",
+    "effets": [
+      {
+        "fait": "f-varnac-survivant"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-fort-le-survivant",
+        "condition": {
+          "fait": "f-varnac-survivant"
+        },
+        "texte": "Sous le porche de la forge, trois cartes rapiécées du Val pendent côte à côte, croix de sanguine sur les dunes et sur les anciens puits taris. La note est de la main du commandant du fort. Elle parle de la toux verte de Varnac le Borgne, seul revenu de la précédente descente au premier niveau, et la date qu'elle porte est celle de son retour. Le papier sent la fumée de forge, et les bords sont usés par les doigts.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-fort-consigne",
+    "lieu": "fort-du-reflet-beni",
+    "nom": "La consigne gravée au-dessus de la poterne",
+    "apercu": "Une plaque au-dessus de la poterne, repassée par des mains différentes.",
+    "texte": "Au-dessus de la poterne qui s'ouvre sur la piste des dunes, une plaque de calcaire porte quelques lignes de lettres creusées profond, repassées au fil des ans par des mains différentes. La dernière couche de peinture bleue est fraîche, avec des coulures. Les mots disent peu : la garnison est là pour monter la garde, afin que rien ne remonte des sables, et non pour fouiller ce qu'ils recouvrent. Un banc de pierre, dessous, est creusé en son milieu par les sentinelles.",
+    "effets": [
+      {
+        "fait": "f-fort-contient-les-horreurs"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-bivouac-racines",
+    "lieu": "bivouac-entree",
+    "nom": "Le vieil arbre mort à l'ouest du bivouac",
+    "apercu": "Sous un vieil arbre blanchi, un souffle d'air humide sort du sol.",
+    "texte": "À quelques pas des mules, un grand arbre blanchi par le soleil étend ses racines mortes sur le sol. Ses racines couvrent une crevasse sombre, entre deux dalles de grès rouge. Le bois sec sonne sous la botte, et le grès est poli d'un côté seulement. Quand on écarte les cailloux du bout du pied, un souffle d'air humide et terreux sort de dessous, tiède sur la peau, avec une odeur de cave et de terre mouillée.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-racines-connues",
+        "condition": {
+          "fait": "f-sortie-racines-surface"
+        },
+        "texte": "Ce vieil arbre sec, à deux pas du bivouac, étend ses racines blanches sur une crevasse sombre entre deux dalles de grès rouge. On sait maintenant qu'un escalier oublié remonte depuis les galeries gobelines jusque sous ces racines, et qu'il s'agit d'une issue dérobée. On repère aussitôt les marches de pierre et de terre compacte qui plongent sous le réseau. Un souffle d'air humide et terreux sort de dessous, tiède sur la peau, avec une odeur de cave et de terre mouillée.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-bivouac-balance",
+    "lieu": "bivouac-entree",
+    "nom": "La balance et le carnet de comptes",
+    "apercu": "Une balance de cuivre et un carnet de comptes, encre encore fraîche.",
+    "texte": "Sur une caisse près de la bâche, une balance de cuivre attend, ses plateaux un peu gauchis. Les poids sont frappés d'un sceau et rangés du plus lourd au plus petit. À côté, un carnet de cuir est ouvert sur des colonnes serrées : sorties, entrées, reste dû. L'encre est encore fraîche, et le papier garde une odeur de cire. Une boîte de plumes taillées, en nombre, attend près du carnet, la pointe toute neuve.",
+    "effets": [
+      {
+        "fait": "f-martin-compte-tout"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous remarque qu'un plateau porte une usure de frottement, un pli de cuivre au bord où le pouce pèse trop souvent."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "Un des poids sonne plus sourd sous l'ongle que les autres, et l'un de vous se demande s'il n'est pas creux."
+      }
+    ]
+  },
+  {
+    "id": "exa-tombe-linteau",
+    "lieu": "tombe-des-rois",
+    "nom": "Le linteau aux deux cobras",
+    "apercu": "Deux cobras couronnés se font face sur un linteau de calcaire pâle.",
+    "texte": "Au-dessus de l'entrée, un linteau de calcaire pâle porte deux cobras couronnés qui se font face, leurs queues nouées en un nœud royal. Sous le nœud, un cartouche a été rongé par le vent jusqu'à ne garder que des creux. Sur les montants, le mortier frais s'effrite sous l'ongle, et la terre remuée a été poussée à coups de fer. Quelqu'un a forcé cette pierre récemment, et la trace des outils est encore nette dans la poussière blanche.",
+    "effets": [
+      {
+        "fait": "f-tranchee-forcee"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous voit que la pointe a passé en petits éclats réguliers, et que chaque arête reste nette, sans un raté de ciseau."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "Chaque couronne porte trois pointes en éventail, un usage de rang qu'un lettré reconnaît avant même de lire le cartouche."
+      }
+    ]
+  },
+  {
+    "id": "exa-couloir-bas-reliefs",
+    "lieu": "n1-couloir-entree",
+    "nom": "La grande barre de granit et ses encoches",
+    "apercu": "Une barre de granit ferme la porte, le bois porte des griffes.",
+    "texte": "La poutre de granit gris est calée dans de profondes encoches, des deux côtés de la porte. Sa masse est lourde, et la pierre des encoches est usée par le frottement. Sur le linteau et sur le bois de la porte, des éraflures anciennes, longues et profondes, sont toutes tirées dans le même sens, vers le couloir. La barre est posée de ce côté-ci, et l'air du couloir sent la pierre froide et le salpêtre.",
+    "effets": [
+      {
+        "fait": "f-barre-contre-ce-qui-sort"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous estime que la pierre a été taillée pour un ajustement de précision, plus fin qu'un verrou de porte ordinaire."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "barbare"
+          }
+        },
+        "texte": "Il faudrait quatre hommes bien campés, la corde au poing et le levier calé, pour soulever cette poutre hors de sa place."
+      }
+    ]
+  },
+  {
+    "id": "exa-couloir-cartouches",
+    "lieu": "n1-couloir-entree",
+    "nom": "Les cartouches au-dessus des niches",
+    "apercu": "Quatre niches, quatre cartouches peints, et un sorcier sous une étoile.",
+    "texte": "Au-dessus de chacune des quatre ouvertures, un cartouche est peint dans la pierre. Le premier montre un garde à hallebarde, le second un autre garde, plus raide. Un scribe tient son roseau entre deux doigts. La dernière niche, plus soignée, présente un sorcier sous une étoile, dans un double cadre. La peinture ocre et vert-de-gris s'écaille par plaques, et les bords de chaque cadre restent nets, dans la lumière rasante des torches.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-cartouches-expedition",
+        "condition": {
+          "fait": "f-varnac-survivant"
+        },
+        "texte": "Au-dessus des quatre ouvertures, les cartouches peints montrent un garde à hallebarde, un second garde et un scribe au roseau. La dernière niche, plus soignée, porte un sorcier sous une étoile, dans un double cadre. On sait maintenant que c'est dans la niche à l'étoile que Varnac le Borgne, revenu seul de la précédente descente, a perdu son frère d'armes Hélian. La peinture ocre et vert-de-gris s'écaille par plaques, et les bords restent nets.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-gardes-argile",
+    "lieu": "n1-tombes-des-gardes",
+    "nom": "Les rouleaux desséchés de l'érudit serpent",
+    "apercu": "Des feuillets gris, à demi effrités, aux pieds d'une statue de scribe.",
+    "texte": "Aux pieds de la statue du scribe, des feuillets gris sont sur le point de s'effriter. Ils reposent sous des rubans de lin noirci et des éclats de peinture vert-de-gris. Le papier craque quand on le soulève, et il sent la craie et une vieille cire. Deux passages restent lisibles, en signes serpentins aux abréviations serrées. Ils parlent d'un sanctuaire de parade, bâti pour lasser les profanateurs. La dernière ligne s'arrête net, et la suite est arrachée.",
+    "effets": [
+      {
+        "fait": "f-fausse-tombe-leurre"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît la main d'un copiste formé aux écoles de scribes, qui raccourcit les mots par habitude."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L'un de vous reconnaît une offrande de lin et de vin posée près d'un mort, un rite qu'il a vu accomplir dans un temple de ville."
+      }
+    ]
+  },
+  {
+    "id": "exa-gardes-platre",
+    "lieu": "n1-tombes-des-gardes",
+    "nom": "Les joints de plâtre des couvercles",
+    "apercu": "Un plâtre blanc fissuré, et une croûte verdâtre dans les joints.",
+    "texte": "Les couvercles des cercueils sont jointoyés d'un plâtre blanc, fissuré par la sécheresse. Dans les fentes, une croûte verdâtre très fine se détache comme de la poudre de craie. Quand on approche le visage, une amertume métallique reste au creux de la gorge. Le plâtre porte encore la trace nette d'une spatule, lissée d'un seul geste de poignet. Personne n'a pris la peine de le gratter ni de le retirer. Le couvercle voisin a été scellé de la même façon.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-platre-vapeur",
+        "condition": {
+          "fait": "f-vapeur-des-sepulcres"
+        },
+        "texte": "Les couvercles des cercueils sont jointoyés d'un plâtre blanc, fissuré par la sécheresse. Ces cercueils renferment une vapeur verte toxique, qui jaillit à l'ouverture brutale. On sait maintenant que la croûte verdâtre dans les fentes est son dépôt, et que l'amertume au creux de la gorge en témoigne. Le plâtre est un bouchon, posé pour retenir ce qui est dedans et non pour la poussière. Une spatule a lissé chaque joint d'un geste de poignet.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L'un de vous connaît les scellés de plâtre réservés aux morts dangereux, qu'on ne referme jamais à la légère."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "Le joint a été tiré d'une seule passe par une main qui scelle souvent, et qui sait où appuyer pour que le plâtre tienne."
+      }
+    ]
+  },
+  {
+    "id": "exa-sorcier-statue",
+    "lieu": "n1-tombe-du-sorcier",
+    "nom": "La statue étoilée du sorcier",
+    "apercu": "Une statue d'argile étoilée, un anneau de cuivre au petit doigt.",
+    "texte": "La statue d'argile cuite est drapée d'une robe bleu nuit, semée d'étoiles d'argent presque effacées. Son bras gauche pointe vers le couloir, et ses yeux, peints d'un seul trait, regardent vers la porte. À l'auriculaire, un anneau de cuivre terni porte une fine serre recourbée. La patine est grise, sauf à l'intérieur de l'anneau, où le cuivre paraît plus clair. La robe est fendue au coude, et la fente est encore nette.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-anneau-maudit",
+        "condition": {
+          "fait": "f-griffe-croc-maudite"
+        },
+        "texte": "La statue d'argile cuite est drapée d'une robe bleu nuit, semée d'étoiles d'argent presque effacées. Son bras gauche pointe vers le couloir. On sait maintenant que l'anneau de cuivre à l'auriculaire est un piège maudit : celui qui l'enfile ne peut plus l'ôter, et la griffe se retourne contre son porteur. On remarque que la serre est tournée vers l'intérieur de la paume, vers le doigt qui l'enfilerait, et que le cuivre est neuf sous la patine.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous reconnaît dans ces points d'argent un ordre d'astres, peut-être une carte du ciel relevée avec soin."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "ensorceleur"
+          }
+        },
+        "texte": "L'anneau attire le regard de l'un de vous plus qu'il ne devrait, comme une promesse qu'on n'ose pas refuser."
+      }
+    ]
+  },
+  {
+    "id": "exa-sorcier-poussiere",
+    "lieu": "n1-tombe-du-sorcier",
+    "nom": "Les traces de bottes dans la poussière",
+    "apercu": "Des semelles cloutées dans la poussière, et une longue traînée jusqu'au couloir.",
+    "texte": "Devant le socle, la poussière est piétinée. Les semelles sont cloutées, et l'on distingue plusieurs paires, qui ne vont pas dans le même sens. Au pied du cercueil, deux genoux ont marqué le sol, longtemps appuyés. Une longue traînée part de là vers le couloir, puis s'arrête, abandonnée. Tout cela est ancien de quelques mois, et le souffle des torches n'a pas encore tout effacé. Une odeur de cuir et de sueur sèche flotte encore par endroits.",
+    "effets": [
+      {
+        "fait": "f-traces-expedition-n1"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-traces-varnac",
+        "condition": {
+          "fait": "f-varnac-survivant"
+        },
+        "texte": "Devant le socle, la poussière est piétinée par plusieurs paires de semelles cloutées : celles de Varnac le Borgne et de ses compagnons. Les deux genoux marqués au pied du cercueil sont ceux de l'homme qui n'a pas pu ramener son frère d'armes Hélian, tombé dans les vapeurs d'un caveau. Une longue traînée part vers le couloir et s'arrête à la porte, abandonnée. Tout cela est ancien de quelques mois.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous compte au moins trois paires différentes, et voit que les plus récentes ont effacé en partie les plus anciennes."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "Ces semelles à clous serrés en croix sont d'un équipement de troupe, et non celui d'un pillard isolé, l'un de vous le sait."
+      }
+    ]
+  },
+  {
+    "id": "exa-fausse-tombe-doree",
+    "lieu": "n1-porte-et-fausse-tombe",
+    "nom": "Les fresques hâtives de la fausse chambre",
+    "apercu": "Trois cercueils dorés, une feuille d'or posée en hâte qui s'écaille.",
+    "texte": "En approchant la flamme, les moulures dorées qui encadrent les trois cercueils de cèdre montrent leurs défauts. Les tracés sont grossiers, avec des coulures de plâtre le long des bords. La feuille d'or a été posée en hâte, et elle s'écaille au moindre toucher en paillettes fines. Les lotus des coffres latéraux sont tous identiques, imprimés au pochoir et répétés à la chaîne. La chambre sent le cèdre, et le plâtre est encore frais.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-fausse-tombe-leurre",
+        "condition": {
+          "fait": "f-fausse-tombe-leurre"
+        },
+        "texte": "En approchant la flamme, on voit les moulures dorées des trois cercueils de cèdre : tracés grossiers, coulures de plâtre, feuille d'or posée en hâte qui s'écaille au toucher. Les lotus des coffres latéraux sont répétés au pochoir. On sait maintenant que ces trois cercueils sont un leurre : la hâte des fresques prend son sens, car les maîtres d'œuvre ont flatté l'avidité des voleurs pour les retenir loin du véritable escalier. La chambre sent le cèdre.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous jauge la feuille d'or d'un œil de pilleur et sait déjà qu'elle ne tiendra pas plus d'une nuit de transport."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "Un coup de pouce sur une moulure suffirait à l'écailler, et l'un de vous sait combien l'or de ce genre rapporte au marché."
+      }
+    ]
+  },
+  {
+    "id": "exa-fausse-tombe-couvercles",
+    "lieu": "n1-porte-et-fausse-tombe",
+    "nom": "Les couvercles cloués des cercueils",
+    "apercu": "Trois couvercles de cèdre, cloués de bronze, couverts de cire noire craquelée.",
+    "texte": "Les trois couvercles de cèdre sont cloués de gros clous de bronze, enfoncés serrés, plus nombreux qu'il n'en faut pour une planche. Une couche de cire noire, craquelée, recouvre le bois. Des fils de lin noirci pendent d'un coin, usés aux bouts. Sous la cire, le cèdre sent encore sec, et le bronze des clous est froid sous le pouce. Chaque clou a été enfoncé à fond, sans un jeu dans le bois.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-couvercles-barre",
+        "condition": {
+          "fait": "f-barre-contre-ce-qui-sort"
+        },
+        "texte": "Les trois couvercles de cèdre sont cloués de gros clous de bronze, enfoncés serrés, plus nombreux qu'il n'en faut, sous une couche de cire noire craquelée. Des fils de lin noirci pendent d'un coin. On comprend d'où vient cette obstination : on n'a pas cloué ces cercueils pour honorer des morts, mais pour les retenir, comme la barre de granit retenait la porte du fond du couloir. Chaque clou est enfoncé à fond, sans un jeu dans le bois.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-faux-temple",
+    "lieu": "n1-faux-temple",
+    "nom": "L'idole géante et le mur humide",
+    "apercu": "Un immense serpent sculpté domine le temple, et l'eau descend le mur.",
+    "texte": "L'immense serpent sculpté domine le fond du temple, ses yeux d'onyx braqués vers la porte. Contre la paroi de droite, un mince ruissellement d'eau fraîche descend le long du calcaire, jusqu'au pied du socle d'obsidienne. Le socle, poli comme du verre, reflète la lueur des torches. La pierre du mur est couverte de mousse pâle sur sa moitié basse. Le bruit de cette eau est léger, presque un bruissement de tissu.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-faux-temple-eau",
+        "condition": {
+          "fait": "f-eau-sous-l-idole"
+        },
+        "texte": "L'immense serpent sculpté domine le fond du temple, ses yeux d'onyx braqués vers la porte. Contre la paroi de droite, un mince ruissellement d'eau fraîche descend le calcaire jusqu'au socle d'obsidienne. On sait que l'eau ne s'étale jamais : elle disparaît sous le socle, là où un souffle d'air froid trahit un vide. Le pied du socle reste mouillé sans jamais former de flaque, et la pierre autour est polie par ce mince passage.",
+        "effets": []
+      },
+      {
+        "id": "exa-var-faux-temple-decouvert",
+        "condition": {
+          "fait": "f-passage-temple-decouvert"
+        },
+        "texte": "L'immense serpent sculpté domine le fond du temple, mais on sait désormais que tout ce premier sanctuaire n'est qu'un décor pour détourner les curieux du puits d'escalier caché dessous. On lit les jointures du socle d'obsidienne et, dans leurs lignes, le jour d'une trappe pivotante. Contre la paroi de droite, l'eau fraîche descend le calcaire. Sous l'idole serpent s'ouvre l'escalier noyé dans le noir vers les véritables catacombes royales.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous voit que le socle a été taillé d'un seul bloc, puis rejoint au plomb, et qu'un joint plus fin a été repris à la main."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous suit du regard le fil d'eau : il descend droit, se perd au pied du socle et ne reparaît nulle part."
+      }
+    ]
+  },
+  {
+    "id": "exa-hall-six-statues",
+    "lieu": "n2-hall-aux-statues",
+    "nom": "Le sillon circulaire au pied d'une statue",
+    "apercu": "Six colosses de basalte scellés à la chaux dans le dallage.",
+    "texte": "Six colosses de basalte se dressent dans le hall, scellés à la chaux dans le dallage. Au rang de droite, un seul repose sur un socle rond, très légèrement désaxé. À son pied, un arc de frottement poli marque l'humidité du sol. La pierre noire renvoie la lumière des torches en reflets mats. Le basalte est froid au toucher. La chaux des joints a coulé en fines traînées le long du dallage.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-hall-statue-pivot",
+        "condition": {
+          "fait": "f-statue-pivotante-garde-secrete"
+        },
+        "texte": "Six colosses de basalte se dressent dans le hall, scellés à la chaux dans le dallage. Au rang de droite, le colosse posé sur un socle rond, très légèrement désaxé, pivote comme une lourde porte : on sait maintenant qu'il s'agit d'un bloc entier qui masque une salle de garde dérobée. Un arc de frottement poli marque l'humidité à son pied, et la chaux des joints est fendue par les mouvements répétés.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous voit que la chaux a été coulée en une seule fois autour des colosses, et qu'elle tient mal au bord du socle."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "La disposition est celle d'une haie de garde : un passage libre seulement au milieu, ce que l'un de vous reconnaît avant tout le reste."
+      }
+    ]
+  },
+  {
+    "id": "exa-hall-parois",
+    "lieu": "n2-hall-aux-statues",
+    "nom": "Les parois sans torchère",
+    "apercu": "Des murs lisses, sans support de torche ni trace de suie.",
+    "texte": "Les murs de calcaire lisse ne portent ni support de torche, ni niche à lampe, ni trace de suie. Votre flamme y laisse seule sa fumée, qui monte droit puis s'étale au plafond. Ici, la pierre est nette jusqu'au sol, sans une seule tache, et l'air sent seulement la fumée de vos torches. Le sol est froid sous les bottes.",
+    "effets": [
+      {
+        "fait": "f-noir-absolu-n2"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-garde-tablette",
+    "lieu": "n2-salle-garde-secrete",
+    "nom": "La tablette des six prêtres",
+    "apercu": "Une tablette d'argent où six prêtres se penchent devant un soleil fendu.",
+    "texte": "Une large tablette d'argent ciselé est dressée contre le mur, et l'argent n'a pas noirci malgré les siècles. Six prêtres serpents, penchés, font face à un soleil que fend une ligne fine. Chaque figure porte une bande au poignet, gravée d'une fine ondulation. Leurs têtes sont inclinées dans le même sens, et les mains jointes en avant. Les reflets de la torche glissent sur les ciselures, et l'argent est froid sous les doigts.",
+    "effets": [],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L'un de vous hésite entre l'adoration et le serment, car une telle attitude sert aux deux, selon les rites qu'il a vus."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L'un de vous sait que les bandes portées au poignet désignent un rang d'officiant, non un titre de noblesse."
+      }
+    ]
+  },
+  {
+    "id": "exa-atrium-margelle",
+    "lieu": "n2-atrium",
+    "nom": "La margelle luisante du bassin noir",
+    "apercu": "Une margelle glissante, des griffures, et du pâle au fond de l'eau.",
+    "texte": "Sous la lueur rouge des torches, la margelle octogonale glisse sous la botte. Par endroits, de vieilles traces d'ongles sont raclées dans la mousse froide, en longues rayures serrées. Au fond de l'eau sombre, quelque chose de pâle et de métallique miroite confusément. L'eau ne bouge pas, et l'air qui monte du bassin est lourd, sans odeur de pierre mouillée. Tout autour, la vase luit sous les torches. On n'entend aucun clapotis.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-margelle-bleme",
+        "condition": {
+          "fait": "f-bleme-du-bassin"
+        },
+        "texte": "Sous la lueur rouge des torches, la margelle octogonale glisse sous la botte. Des traces d'ongles sont raclées dans la mousse froide, en rayures serrées. On sait qu'une créature blême guette au fond, parmi les bijoux de ceux qu'elle a noyés : ces traces d'ongles sont les siennes. Au fond de l'eau sombre, quelque chose de pâle et de métallique miroite. L'eau ne bouge pas, et son air est lourd. Le bord reste glissant sous la botte.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous mesure l'espacement des rayures et conclut qu'une main aux doigts longs s'est agrippée là, plus d'une fois."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous note qu'aucune vie n'habite cette eau, pas même un insecte, et que sa fraîcheur ressemble à celle d'une bouche."
+      }
+    ]
+  },
+  {
+    "id": "exa-atrium-cartouches",
+    "lieu": "n2-atrium",
+    "nom": "Les cartouches des cinq portes",
+    "apercu": "Sur chaque porte basse, trois noms encore lisibles sous le salpêtre blanc.",
+    "texte": "Sur chaque porte basse, un cartouche est mangé de salpêtre blanc. On y lit encore trois noms, Xisor, Sparamantur et Franbinzar, gravés à côté des glyphes. Sur l'une des portes, le glyphe est celui d'un rouleau ; sur la dernière, celui d'un soldat. Un trait vert souligne le nom de Xisor, et la couleur est encore vive. Les portes sont basses, et il faut s'y pencher pour lire. L'air y est sec et sans écho.",
+    "effets": [
+      {
+        "fait": "f-vraies-tombes-n2"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous lit le glyphe du rouleau et en conclut que cette porte-là ne garde pas un tombeau mais des écrits."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "elfe"
+          }
+        },
+        "texte": "La langue serpentine garde un accent ancien, et l'oreille de l'un de vous le reconnaît, comme un chant qu'on n'entend plus."
+      }
+    ]
+  },
+  {
+    "id": "exa-xisor-sceptre",
+    "lieu": "n2-tombe-xisor",
+    "nom": "Le sceptre brisé du haut prêtre",
+    "apercu": "Un prêtre serpent sur une pierre verte tient un sceptre brisé.",
+    "texte": "Sur le couvercle de pierre verte, le prêtre serpent a les bras croisés. Il tient un sceptre en trois tronçons. Les cassures sont nettes, taillées au ciseau, et le sculpteur a gravé les trois morceaux avec le même soin que le visage. Le sceptre porte une tête de cobra, large, aux crocs précis. La pierre est fraîche sous le doigt, et son vert est plus profond dans les creux. Rien d'autre ne dépasse du couvercle.",
+    "effets": [
+      {
+        "fait": "f-xisor-haut-pretre"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-sparamantur-plaques",
+    "lieu": "n2-tombe-sparamantur",
+    "nom": "Les plaques dorées du sarcophage fendu",
+    "apercu": "Des plaques dorées, un serpent, une balance, une main ouverte.",
+    "texte": "Sur l'angle visible du sarcophage fendu, de petites plaques funéraires dorées sont encore fixées. Leur bas-relief est usé : un serpent, une balance, une main ouverte. La dorure s'écaille par grands lambeaux, et l'or qui reste ternit sous le doigt. Certaines plaques sont tombées parmi les gravats, à vos pieds. On peut les ramasser, elles tiennent dans une paume, et le métal est léger. Une fine poussière dorée reste sur les doigts.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-sparamantur-veille",
+        "condition": {
+          "fait": "f-sparamantur-veille"
+        },
+        "texte": "On sait que Sparamantur ne dort pas tout à fait, et que ses ossements veillent derrière l'éboulis de sa crypte. Sur le sarcophage fendu, les petites plaques dorées portent un serpent, une balance, une main ouverte, et la dorure s'écaille par lambeaux. Sous les plaques, la pierre porte des éraflures fraîches, de celles qu'on laisse en grattant de l'intérieur. Certaines plaques ont glissé parmi les gravats, à vos pieds. Un grattement très faible répond à vos pas.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-franbinzar-cuvettes",
+    "lieu": "n2-tombe-franbinzar",
+    "nom": "Les cuvettes rongées du sol",
+    "apercu": "Des cuvettes lisses rongent la pierre, le couvercle repoussé de biais.",
+    "texte": "La pierre grise est piquée de cuvettes lisses, de la taille d'une paume, là où une coulée jaune a stagné. Le bord du sarcophage porte des bandelettes dissoutes, qui se défont en fils sous le doigt. Le couvercle a été repoussé de biais, et des stries de poussée montrent qu'il a glissé vers l'extérieur. Une odeur âcre et douce monte du creux, comme d'une cuve de tanneur, et l'air y est lourd.",
+    "effets": [
+      {
+        "fait": "f-franbinzar-gelee"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous juge que la matière a été dissoute de l'intérieur par un suc vivant, plutôt que par l'eau ou par le feu."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous voit là un embaumement bâclé, un rite de conservation mal fait, la pâte versée trop vite sur un corps mal scellé."
+      }
+    ]
+  },
+  {
+    "id": "exa-sacristie-casiers",
+    "lieu": "n2-sacristie",
+    "nom": "Les casiers scellés et la table d'étude",
+    "apercu": "Des tablettes de cire comptent des jours de garde sans jamais s'arrêter.",
+    "texte": "Les tablettes de cire et les longs rouleaux de cuir tanné sont rangés dans des casiers scellés. Ils consignent, jour après jour et d'une écriture de comptable, la garde d'un cercle d'argent gravé aux niveaux inférieurs. Certaines marges, d'une autre main, soulignent une seule chose : la récitation du nom véritable de la créature suffit à la maintenir sans danger dans son sceau. Le cuir sent la graisse et le tanin, et la table d'étude porte encore, au centre, la trace usée d'un coude.",
+    "effets": [
+      {
+        "fait": "f-cercle-d-argent-garde"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît la méthode d'un registre de garnison, où chaque jour est noté sans une seule absence."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "Les formules de garde ressemblent à des rites de liaison, et l'un de vous en reconnaît la cadence, une prière répétée chaque aube."
+      }
+    ]
+  },
+  {
+    "id": "exa-soldats-argile-fentes",
+    "lieu": "n2-soldats-d-argile",
+    "nom": "La cohorte creuse des guerriers d'argile",
+    "apercu": "Dix-huit guerriers d'argile, aux têtes sorties d'un même moule.",
+    "texte": "En frappant du doigt les écailles de terre cuite d'un soldat fêlé, le son résonne creux, comme une jarre vide. Les lances sont de bois peint, les boucliers de plâtre. Les dix-huit têtes sortent du même moule, à peine retouchées. Le plâtre des boucliers s'écaille sous l'ongle, et la peinture reste vive sur chaque lance. Les yeux sont creusés au même outil, et la poussière de terre cuite reste au fond des rides. Chaque tête est tournée droit devant.",
+    "effets": [
+      {
+        "fait": "f-soldats-argile-creux"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-soldats-passage",
+        "condition": {
+          "fait": "f-passage-soldats-vers-n3"
+        },
+        "texte": "En frappant du doigt les écailles de terre cuite d'un soldat fêlé, le son résonne creux. Les lances sont de bois peint, les boucliers de plâtre, et les dix-huit têtes sortent du même moule. On sait maintenant qu'un passage descend derrière la statue avancée : un courant d'air glacial filtre autour de sa base et fait trembler la flamme des torches. Il descend directement vers le grand hall du troisième niveau. Pas un bruit ne le trahit.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "L'un de vous repère des retouches au pouce sur les oreilles et sur le menton, de petites différences qu'un mouleur de métier ajoute toujours."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous juge que la terre a été cuite trop vite, les bords des écailles restant sombres, ce qui trahit un four mal réglé."
+      }
+    ]
+  },
+  {
+    "id": "exa-soldats-outils",
+    "lieu": "n2-soldats-d-argile",
+    "nom": "Les outils du chantier abandonné",
+    "apercu": "Ciseaux ébréchés, maillets fendus, et un fil à plomb encore tendu.",
+    "texte": "Dans l'alcôve brute, les outils sont restés en place. Des ciseaux ébréchés, des maillets fendus, des burins rongés de rouille brune. Un niveau de maçon à fil de plomb garde sa corde encore tendue. Sur le mur, un linteau à peine dégrossi attend l'ouvrier, et une seule de ses faces a été taillée. La poussière de taille est retombée en couches fines sur chaque lame. Le sol est couvert d'éclats blancs.",
+    "effets": [
+      {
+        "fait": "f-chantier-abandonne"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous cherche les marques de l'ouvrier, et juge qu'un maillet posé en travers a été laissé là par un homme pressé."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "L'un de vous observe que le maçon a laissé son fil tendu, et que son ouvrage était encore en plein geste."
+      }
+    ]
+  },
+  {
+    "id": "exa-escalier-serpents",
+    "lieu": "n2-escalier-piege",
+    "nom": "Les serpents entrelacés des parois",
+    "apercu": "Des serpents entrelacés sur les parois, et des joints plus larges.",
+    "texte": "Sur les deux parois de la descente, des serpents en relief s'entrelacent, têtes tournées vers le bas. Chaque écaille est gravée une à une, et la sculpture est la même de volée en volée. Le long des marches, la pierre est lisse, usée par les pas. Sur la dernière volée, pourtant, les joints de la pierre sont plus larges que partout ailleurs. Certaines écailles brillent encore, polies par les mains.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-escalier-bascule",
+        "condition": {
+          "fait": "f-escalier-basculant"
+        },
+        "texte": "Sur les deux parois de la descente, des serpents en relief s'entrelacent, têtes tournées vers le bas. On sait que la troisième volée de cet escalier est graissée : elle bascule sous le poids d'un groupe et précipite les imprudents sur une fosse de pointes, puis se réarme d'elle-même. Les joints plus larges sont la ligne de pivot, et la pierre paraît lisse parce qu'elle est enduite de graisse sous les serpents.",
+        "effets": []
+      }
+    ],
+    "regards": []
+  },
+  {
+    "id": "exa-arene-boucliers",
+    "lieu": "n2-arene-gardien",
+    "nom": "Les cinq boucliers du mur",
+    "apercu": "Cinq boucliers accrochés au mur, chacun peint d'une couleur différente.",
+    "texte": "Cinq boucliers ronds sont accrochés au mur, à hauteur d'homme. Le chêne a l'épaisseur d'une main, cerclé de bronze poli aux bords. Chacun porte une bosse centrale et un emblème de serpent enroulé. Une entaille profonde fend chaque bouclier, presque à la même hauteur. La peinture change d'un bouclier à l'autre : rouge sombre, ocre, vert-de-gris, brun pâle, bleu terne. Le bois sent la résine sèche et la poussière froide. Le plus à droite a son emblème à demi effacé, mais l'entaille, elle, reste nette.",
+    "effets": [
+      {
+        "fait": "f-boucliers-trophees"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-boucliers-griffes",
+        "condition": {
+          "fait": "f-gardien-osseux-gouffre"
+        },
+        "texte": "Cinq boucliers ronds de chêne sont accrochés au mur, à hauteur d'homme, cerclés de bronze poli aux bords. Chacun porte une bosse centrale et un emblème de serpent enroulé, et chacun a sa peinture : rouge sombre, ocre, vert-de-gris, brun pâle, bleu terne. Le colosse osseux de l'arène a laissé ses marques sur le bois : de longues griffures parallèles, qui rayent chaque bouclier d'un seul geste de patte. Il tuait ceux qui venaient là, et ces boucliers n'ont pas arrêté ses coups. Le bois sent la résine sèche et la poussière froide.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L'un de vous y reconnaît une prise de rang : ces boucliers ne sont pas faits pour parer, on les accroche pour qu'on les voie."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "guerrier"
+          }
+        },
+        "texte": "L'un de vous voit que la jointure du cercle a été coulée d'une seule pièce, pour qu'aucun coup ne la fasse céder."
+      }
+    ]
+  },
+  {
+    "id": "exa-arene-griffures",
+    "lieu": "n2-arene-gardien",
+    "nom": "Les griffures des dalles",
+    "apercu": "Des griffures rayent les dalles, et s'arrêtent net au pied des marches.",
+    "texte": "Des griffures parallèles, longues de plusieurs pas, rayent les dalles du centre de la salle. Elles filent droit vers le bord d'un gouffre, sans jamais dévier. Passez le doigt dans une griffure : la pierre y paraît lisse, presque polie. Les traces s'arrêtent net au pied de l'escalier. Pas une seule ne mord les premières marches, dont les arêtes restent vives et sèches. Quelque chose de très lourd a tourné ici, sans jamais franchir la première marche.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-griffures-trop-grand",
+        "condition": {
+          "fait": "f-gardien-osseux-gouffre"
+        },
+        "texte": "Des griffures parallèles, longues de plusieurs pas, rayent les dalles et filent droit vers le bord du gouffre. Les traces s'arrêtent net au pied de l'escalier, et pas une ne mord les premières marches. Le colosse osseux de l'arène, trop massif pour ces marches, s'arrête donc ici, et la bordure du gouffre reste sa seule autre limite. Passez le doigt sur une griffure : la pierre y paraît lisse, presque polie. Le reste du sol, plus loin, ne porte aucune autre marque.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous compte l'écart entre les lignes : une patte large comme deux mains, plantée à chaque pas au même endroit."
+      }
+    ]
+  },
+  {
+    "id": "exa-gouffre-eboulis",
+    "lieu": "n2-gouffre-et-effondrement",
+    "nom": "L'éboulis du tunnel",
+    "apercu": "Un éboulis colossal scelle un tunnel, soudé par un limon desséché.",
+    "texte": "Un éboulement colossal ferme le tunnel, de la voûte jusqu'au sol. Les blocs sont soudés entre eux par un limon sec, craquelé comme une vieille argile. Aucun souffle ne sort des fentes, et rien ne suinte de la pierre froide. La roche a plusieurs siècles, et sous le limon, les arêtes restent vives. Un seul coup d'œil suffit à voir qu'on creuserait des jours sans atteindre le fond. Le tunnel ne mène plus nulle part : quelque chose a dû y être creusé, puis scellé.",
+    "effets": [
+      {
+        "fait": "f-porte-niveau-3-corniche"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous, habitué aux galeries, juge que la roche a tenu bien des générations sans jamais fendre."
+      }
+    ]
+  },
+  {
+    "id": "exa-ceremonie-vasque",
+    "lieu": "n3-salle-ceremonie",
+    "nom": "La vasque à sec et son socle",
+    "apercu": "Une vasque à sec, un piédestal marqué d'une empreinte claire.",
+    "texte": "La vasque ronde, à sec, a des parois ocre rougeâtre craquelées en réseau fin. Au centre, sur le piédestal, la poussière porte une large empreinte claire, toute ronde. Quatre petits trous de scellement, vides, l'entourent à égale distance. Du côté gauche, la poussière a été remuée en sillons ; à droite, elle reste lisse, intacte. Le socle garde, à hauteur de hanche, une usure claire où des mains se sont posées. Ce piédestal a attendu quelque chose, longtemps, à en juger par la couche grise.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-vasque-statue",
+        "condition": {
+          "fait": "f-statue-fontaine-volee"
+        },
+        "texte": "La vasque ronde à sec a des parois ocre rougeâtre craquelées. Au centre du piédestal, une large empreinte claire marque la place d'une statue d'or qui manquait ici. Les quatre petits trous de scellement restent vides. Les traces de petits pieds nus, dans la poussière remuée, montrent que des gobelins l'ont traînée loin : leur piétinement dessine un chemin. Le chemin s'éloigne vers le fond de la salle, d'un pas régulier et lourd. Les parois craquelées de la vasque n'en gardent rien.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous reconnaît le travail d'un scelleur : ce qui se dressait là pesait lourd, et il a fallu plusieurs bras pour le soulever."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous lit la direction des marques : de petits pas nombreux et serrés, qui ont tiré quelque chose de lourd vers un couloir."
+      }
+    ]
+  },
+  {
+    "id": "exa-dome-chaines",
+    "lieu": "n3-dome-et-esclaves",
+    "nom": "Les anneaux et les chaînes du roc",
+    "apercu": "Des anneaux de fer scellés dans le roc, usés par des poignets.",
+    "texte": "Des anneaux de fer sont scellés dans le roc de l'antichambre, à hauteur de poignet. Leurs chaînes rouillées pendent encore, et chaque maillon garde un éclat de métal. Là où les maillons frottaient, le fer luit, usé lisse, comme poli par des mains. Le sol, dessous, porte deux sillons creusés par des talons, qui ont traîné longtemps. Passez la main le long d'un anneau : la rouille s'écaille, le métal reste froid. Ces anneaux ont servi bien avant les gobelins, à en juger par l'usure.",
+    "effets": [
+      {
+        "fait": "f-anneaux-d-esclaves"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L'un de vous reconnaît un usage de campagne : un scellement fait pour tenir longtemps, sans qu'il faille veiller beaucoup."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "paladin"
+          }
+        },
+        "texte": "L'un de vous sent le poids du lieu, cette impression de contrainte qui ne vient ni du bruit ni de l'air, mais de la pierre elle-même."
+      }
+    ]
+  },
+  {
+    "id": "exa-tresor-pieces",
+    "lieu": "n3-salle-du-tresor",
+    "nom": "Les pièces au cobra couronné",
+    "apercu": "Des pièces frappées d'un cobra couronné, toutes du même coin.",
+    "texte": "Dans les coffres entrouverts, des pièces d'or fin s'entassent en piles irrégulières. Une face porte un cobra couronné, l'autre une balance, nettes dans le métal. Toutes sortent du même coin, d'un poids régulier, qu'on sent dans la paume. Le cuivre des petites pièces a verdi, l'argent a perdu son éclat, mais l'or reste intact. Sous le doigt, l'or froid glisse, lourd et plein, sans une rayure. Qui a fait frapper ces pièces, et pour qui, ce tas ne le dit pas.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-pieces-sans-cours",
+        "condition": {
+          "fait": "f-empire-chute-xiximantre"
+        },
+        "texte": "Dans les coffres entrouverts, des pièces d'or fin s'entassent en piles irrégulières. Une face porte un cobra couronné, l'autre une balance, nettes dans le métal. Le cuivre des petites pièces a verdi, l'argent a perdu son éclat, mais l'or reste intact. On sait désormais que l'empire qui les a frappées n'existe plus : ces pièces ne valent que leur poids d'or. Aucun marchand ne les prendra pour un paiement ordinaire, malgré leur poids régulier.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous compte déjà ce qu'il pourrait en tirer, et s'inquiète de qui viendra les réclamer."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous connaît les monnaies de forge : ce coin sort d'un graveur de métier, ni rognure ni copie de brigand."
+      }
+    ]
+  },
+  {
+    "id": "exa-fosse-flamme",
+    "lieu": "n3-fosse-sacrificielle",
+    "nom": "La flamme sans mèche",
+    "apercu": "Une flamme dorée brûle au fond d'un puits, sans bois ni huile.",
+    "texte": "Au fond du puits, une haute flamme dorée brûle sur un lit d'os et de cendres. Pas de suie sur les parois, pas de bois, pas la moindre goutte d'huile. Sa chaleur sèche monte jusqu'à la corniche, et brûle les lèvres de celui qui se penche. Les os sont blanchis comme du sel, et aucune fumée ne monte de ce lit. Ce feu brûle depuis longtemps, et personne ne semble le nourrir. Dès qu'on s'y penche, l'air devient pauvre et lourd, presque étouffant.",
+    "effets": [
+      {
+        "fait": "f-flamme-eternelle-fosse"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous perçoit un sort derrière ce feu : il ne se nourrit d'aucun combustible, et pourtant il ne faiblit pas."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "texte": "L'un de vous reconnaît un feu d'autel, entretenu pour une divinité ou un vœu, jamais pour se chauffer."
+      }
+    ]
+  },
+  {
+    "id": "exa-vestibule-gardes",
+    "lieu": "n3-vestibule-garde",
+    "nom": "Les deux gardes de pierre",
+    "apercu": "Deux gardes de pierre, dont la peau et les ongles semblent vivants.",
+    "texte": "Deux hommes-serpents montent la garde dans le vestibule, debout face à la salle. La pierre, grise et lisse, garde au coude un pli de peau. Un ongle fendu, une sangle du bouclier écrasée sous un doigt de pierre. Une poussière blanche tombe encore, en fine pluie, de leurs écailles. Leurs bouches ouvertes montrent les dents, la langue fourchue repliée sous le palais. Aucun sculpteur ne grave des détails pareils, si fins, si vrais. Le sol devant eux ne porte aucune trace de pas.",
+    "effets": [
+      {
+        "fait": "f-gardes-vraiment-petrifies"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous touche la pierre et sent un grain trop fin pour un burin, qui n'aurait jamais poli ainsi."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L'un de vous reconnaît une posture de garde surpris, le bras levé devant les yeux, comme on se protège d'une lumière trop vive."
+      }
+    ]
+  },
+  {
+    "id": "exa-invocation-cercle",
+    "lieu": "n3-salle-invocation",
+    "nom": "Le cercle d'argent et ses sept runes",
+    "apercu": "Un cercle d'argent et sept runes brillent, comme neuves, dans la pierre.",
+    "texte": "Un cercle d'argent, incrusté dans la pierre du sol, luit faiblement. Sept runes ophidiennes, à intervalles égaux, brillent comme neuves, sans une éraflure ni un grain de poussière au creux des traits. Au centre du piédestal, la place d'un pied reste marquée, avec une usure en creux. La poussière s'arrête net à l'extérieur du cercle fin, comme tranchée au couteau, et la pierre y est tiède sous la paume.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-cercle-nom",
+        "condition": {
+          "fait": "f-cercle-d-argent-garde"
+        },
+        "texte": "Un cercle d'argent, incrusté dans la pierre du sol, luit faiblement. Sept runes ophidiennes, à intervalles égaux, forment un sceau : elles brillent comme neuves, sans une éraflure ni un grain de poussière au creux des traits. Seul le nom véritable de la créature tient ce sceau ; les prêtres en récitaient la garde jour après jour. Les chaînes de la captive ne touchent même pas le sol : elles ne servent qu'à la montrer.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous lit la géométrie du tracé : chaque rune répond à sa voisine, et l'ensemble ne sert pas à invoquer, mais à enfermer."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "occultiste"
+          }
+        },
+        "texte": "L'un de vous ressent le frisson d'un pacte conclu jadis, dont les termes restent gravés dans ce tracé."
+      }
+    ]
+  },
+  {
+    "id": "exa-invocation-table",
+    "lieu": "n3-salle-invocation",
+    "nom": "La table de basalte et ses offrandes",
+    "apercu": "Une table de basalte porte deux bols d'or et une dague noire.",
+    "texte": "Au milieu de la salle, une table de basalte noir porte des offrandes soigneusement rangées. Deux bols d'or massif, aux bords tachés d'une pellicule brune, attendent côte à côte. Une dague noire, à lame ondulée, repose en travers de l'un d'eux, sans un grain de poussière sur le manche. Un serpent de pierre sculpté occupe le centre de la table. Son ventre porte une rainure plate, nette, taillée pour glisser dans une encoche. Personne n'a touché à ces offrandes depuis longtemps, et l'or n'a pas bougé.",
+    "effets": [
+      {
+        "fait": "f-serpent-de-pierre-ouvre-la-porte"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous y voit une clef déguisée en objet de culte, faite pour un seul usage."
+      }
+    ]
+  },
+  {
+    "id": "exa-autel-cobra",
+    "lieu": "n3-autel-et-couloir-lames",
+    "nom": "Le socle pivotant du cobra",
+    "apercu": "Un cobra noir luit sous son huile figée, la coiffe déployée.",
+    "texte": "Sur un piédestal d'albâtre, la statue d'un cobra noir se dresse, la coiffe déployée. Un film d'huile figée recouvre le corps et luit faiblement à la lueur des torches. Derrière la coiffe, la rainure de gauche porte un cerne vert qui ronge la pierre. La rainure de droite, en face, reste propre et lisse, sans trace d'usure. Au pied de la statue, la pierre garde les traces d'un long contact, sans qu'on sache lequel. On sent que le cobra n'a pas été déplacé depuis longtemps.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-autel-ouvert",
+        "condition": {
+          "flag": "autel-cobra-ouvert"
+        },
+        "texte": "Sur un piédestal d'albâtre, la statue d'un cobra noir se dresse, la coiffe déployée. Un film d'huile figée recouvre le corps et luit faiblement à la lueur des torches. La rainure de gauche porte un cerne vert qui ronge la pierre, et celle de droite reste lisse. Le cobra pivote désormais librement vers la droite, sur son pivot de cuivre. La niche secrète, à la base de l'autel, se trouve dégagée, avec ses charnières intactes. Le mouvement ne grince pas, et rien ne retient plus le cobra en place.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous s'attend à une magie et trouve un mécanisme : un pivot de cuivre, usé, qui s'accorde à la main."
+      }
+    ]
+  },
+  {
+    "id": "exa-autel-dalles",
+    "lieu": "n3-autel-et-couloir-lames",
+    "nom": "Les huit dalles du couloir",
+    "apercu": "Huit dalles carrées alternent dans le couloir, grises et anthracite.",
+    "texte": "Huit dalles carrées alternent dans le couloir, grises et anthracite, sans un seul défaut. Les joints sont nets, aussi fins qu'un trait de plume, sans une bavure. La poussière des dalles sombres reste lisse comme du velours. Au bas de chaque meurtrière, une fine goutte d'huile a séché. Le couloir se prolonge au fond, où l'on ne distingue plus rien.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-dalles-claires",
+        "condition": {
+          "fait": "f-dalles-claires-sures"
+        },
+        "texte": "Huit dalles carrées alternent dans le couloir, grises et anthracite, sans un seul défaut. Les joints sont nets, aussi fins qu'un trait de plume, sans une bavure. On sait désormais que seules les dalles claires sont sûres : leur centre a été creusé par des siècles de pas. Les dalles sombres ont gardé leurs arêtes vives sous une poussière vierge, lisse comme du velours. Au bas de chaque meurtrière, une fine goutte d'huile a séché.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous compte les dalles pour se fixer un parcours, et sait qu'il faudra le refaire à l'aveugle, de nuit."
+      },
+      {
+        "condition": {
+          "heros": {
+            "espece": "gnome"
+          }
+        },
+        "texte": "L'un de vous, habitué aux comptes et aux marques, lit l'alternance comme une suite de chiffres dont la règle reste à trouver."
+      }
+    ]
+  },
+  {
+    "id": "exa-repos-coussins",
+    "lieu": "n3-repos-des-pretres",
+    "nom": "Les coussins de soie pourpre",
+    "apercu": "Des coussins déchirés, creusés à la même hauteur d'épaule.",
+    "texte": "Des coussins de soie pourpre, déchirés, laissent échapper du crin et des brins d'herbes séchées. Leur senteur subsiste, douce et amère à la fois, presque une tisane oubliée. Chaque coussin porte la même cuvette, creusée à hauteur d'épaule, comme par un corps assis. La barre de bois, du côté de la porte, a une poussière fine, toute fraîche. Quelqu'un a veillé ici longtemps, les genoux repliés, et n'a jamais posé la tête.",
+    "effets": [],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous reconnaît les brins : une plante de veille, qu'on mâche pour tenir éveillé, ou pour calmer la fatigue."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "acolyte"
+          }
+        },
+        "texte": "L'un de vous connaît la règle d'une maison de prière : on dort peu, et toujours prêt à se lever."
+      }
+    ]
+  },
+  {
+    "id": "exa-basilic-chaine",
+    "lieu": "n3-hall-du-basilic",
+    "nom": "L'anneau du plafond et la longueur de la chaîne",
+    "apercu": "Une chaîne forgée pend d'un anneau géant, au centre de la voûte.",
+    "texte": "Au centre de la voûte, un énorme anneau retient une chaîne forgée, tendue vers le sol. Les maillons sont épais, noircis par le temps, et ne portent aucune rouille. Les éraflures profondes des griffes marquent les dalles en longs sillons, depuis le centre. Elles s'arrêtent net à deux pas de la porte du fond, loin du couloir aux lampes violettes. Entre les sillons, les piliers brisés jettent leurs ombres sur les dalles. Le sol, entre les éraflures, ne garde aucune autre marque.",
+    "effets": [
+      {
+        "fait": "f-chaine-du-basilic"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-chaine-basilic-vaincu",
+        "condition": {
+          "flag": "basilic-vaincu"
+        },
+        "texte": "Au centre de la voûte, un énorme anneau retient toujours la chaîne forgée. Mais la bête a été abattue : la chaîne pend molle de l'anneau, et ses maillons raclent encore faiblement. Les éraflures profondes des griffes, dans les dalles, ne mènent plus nulle part. Elles s'arrêtent à deux pas de la porte du fond, loin du couloir aux lampes violettes. Le sol, autour, ne garde aucune autre marque, ni trace de pas.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "texte": "L'un de vous soupèse le métal : des maillons de ce calibre ne cèdent pas, même à force de tirer dessus."
+      }
+    ]
+  },
+  {
+    "id": "exa-basilic-porte",
+    "lieu": "n3-hall-du-basilic",
+    "nom": "La double porte à l'encoche de serpent",
+    "apercu": "Deux hauts battants sans poignée, sans serrure, une encoche en serpent.",
+    "texte": "Deux hauts battants ferment le fond du grand hall, sans loquet ni poignée. Aucune serrure, aucun verrou : seulement une surface lisse, sans fente. Au milieu, creusée dans la pierre et doublée de bronze, une encoche dessine un serpent lové. Le pourtour du bronze luit, poli par un frottement qui a duré des années. Quelque chose de précis a dû glisser là, plus d'une fois. Rien ne cède tant que la pièce juste n'a pas été posée là.",
+    "effets": [
+      {
+        "fait": "f-porte-hall-encoche-serpent"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous voit un verrou sans ferrure dont la clef doit être une forme sculptée, qu'on ne force pas."
+      }
+    ]
+  },
+  {
+    "id": "exa-xiximantre-tapisseries",
+    "lieu": "n3-antichambre-xiximantre",
+    "nom": "Les grandes tentures de soie émeraude",
+    "apercu": "Des tentures de soie émeraude, des cités brodées de fil d'or.",
+    "texte": "Sous la lueur de six lampes violettes, de grandes tentures de soie émeraude couvrent le mur. Elles brodent des ziggourats d'onyx, cernées de jardins irrigués et de canaux. Le fil d'or n'a rien perdu de son éclat, et les canaux portent encore leurs reflets. Le lutrin d'ébène voisin a été tenu avec soin, ses traités rangés par taille. Aucun feuillet ne traîne, et la poussière s'arrête au bord du meuble. Qui entretient ces soieries, et pour quel visiteur ?",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-tentures-empire-mort",
+        "condition": {
+          "fait": "f-empire-chute-xiximantre"
+        },
+        "texte": "Sous la lueur de six lampes violettes, de grandes tentures de soie émeraude couvrent le mur. Elles brodent des ziggourats d'onyx, cernées de jardins irrigués et de canaux. On sait désormais que ces cités n'existent plus depuis des siècles, et que celui qui vit ici l'ignore. Les tentures ne sont plus qu'un souvenir, qu'il offre volontiers à qui passe. La soie reçoit des soins, comme pour une visite royale qui ne viendra pas. Le lutrin d'ébène voisin a été tenu avec soin, ses traités rangés par taille.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "texte": "L'un de vous, qui a fréquenté les cours, reconnaît un atelier de broderie comme il n'en existe qu'à la cour."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous, savant en cartes, cherche en vain ces cités dans les atlas connus, et ne trouve aucune côte familière."
+      }
+    ]
+  },
+  {
+    "id": "exa-xiximantre-lutrin",
+    "lieu": "n3-antichambre-xiximantre",
+    "nom": "Le registre de troc du lutrin",
+    "apercu": "Un registre d'ébène où chaque fiole donnée répond à une curiosité.",
+    "texte": "Un registre d'ébène repose sur le lutrin, couvert d'une écriture serpentine très soignée. À gauche, les lignes notent des fioles données ; à droite, des curiosités reçues en retour. Une graine, une médaille, un instrument de cuivre, notés d'un trait net. Aucune ligne ne porte de montant : la colonne des pièces reste blanche, sans une seule marque. Les lignes sont régulières, comme celles d'un marchand qui n'a rien à craindre. Qui a tenu ce livre, et depuis quand ces échanges durent-ils ?",
+    "effets": [
+      {
+        "fait": "f-xiximantre-troque-curiosites"
+      }
+    ],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous se demande ce qui pourrait tenter ce marchand : pas de l'or, mais un objet qu'il n'a jamais vu."
+      }
+    ]
+  },
+  {
+    "id": "exa-reserve-grilles",
+    "lieu": "n3-reserve-et-oubliettes",
+    "nom": "Les six grilles du sol",
+    "apercu": "Six grilles dans le sol, cinq éraflées de frais, une rouillée.",
+    "texte": "Six lourdes grilles de fer sont scellées dans les dalles du sol. Sur cinq d'entre elles, les barreaux portent des éraflures d'ongles, toutes fraîches. La dernière est rouillée de la même rouille que le sol, et n'a pas servi. Entre deux grilles, la dalle porte une tache d'encre bleue, étalée en traînée. La tache a séché, mais son bord reste net, comme tracé d'un geste rapide. Les grilles qui ont servi se reconnaissent à leurs barreaux, les autres à leur silence.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-grilles-elios",
+        "condition": {
+          "fait": "f-elios-recopie-les-commandes"
+        },
+        "texte": "Six lourdes grilles de fer sont scellées dans les dalles du sol. Sur cinq d'entre elles, les barreaux portent des éraflures d'ongles, toutes fraîches. La dernière est rouillée de la même rouille que le sol, et n'a pas servi. Entre deux grilles, la dalle porte une tache d'encre bleue : celle d'Élios, qui recopie ses commandes. Une plume a été posée ici faute de pupitre, et l'encre a coulé en un trait : on reconnaît la trace de son geste.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous juge les fermetures sans finesse, mais le poids de leur mécanisme ne laisse aucune chance à une main pressée."
+      }
+    ]
+  },
+  {
+    "id": "exa-laboratoire-fioles",
+    "lieu": "n3-laboratoire",
+    "nom": "Les casiers de fioles étiquetées",
+    "apercu": "Des casiers de fioles, scellées à la cire, toutes étiquetées et intactes.",
+    "texte": "Les fioles sont rangées en casiers, scellées à la cire, sans une seule entamée. Chaque étiquette porte une écriture serpentine très régulière, et chaque casier un chiffre et une couleur. Les décoctions carmin sont épaisses, presque sirupeuses, dans leurs fioles. Les baumes sont limpides, et les antidotes d'un vert pâle, qui a la couleur des jeunes feuilles. Le verre des fioles renvoie la lueur violette, net, sans une bulle. Personne n'a touché à ces rangées, et rien ne presse de les ouvrir.",
+    "effets": [],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous, qui lit les vieux comptes, reconnaît une numération abandonnée depuis longtemps, et qui ne sert plus à personne."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous sent une odeur de plantes sèches sous la cire, des simples qu'on cueille en saison, pas au hasard."
+      }
+    ]
+  },
+  {
+    "id": "exa-trone-serpents",
+    "lieu": "n3-salle-du-trone",
+    "nom": "Le grand trône vide et ses miroirs",
+    "apercu": "Un trône d'or ciselé, huit miroirs cerclés d'argent, intacts dans la poussière.",
+    "texte": "Au bout de la salle, un siège royal d'or ciselé se dresse sur une estrade. Il pèse trop lourd pour être arraché sans poutres ni palan. Les coussins pourrissent, et l'or froid laisse voir des runes de commandement gravées. Huit miroirs à manche, cerclés d'argent, entourent l'estrade, intacts dans la poussière. Les miroirs sont tous tournés vers le siège, et leurs manches portent des traces de doigts. Personne n'a osé retirer la poussière de ce siège, depuis longtemps.",
+    "effets": [
+      {
+        "fait": "f-rumeur-trone-maudit"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-trone-maudit",
+        "condition": {
+          "fait": "f-trone-insuffle-la-folie"
+        },
+        "texte": "Au bout de la salle, un siège royal d'or ciselé se dresse sur une estrade. Les coussins pourrissent, et l'or froid laisse voir des runes de commandement gravées. On sait désormais que ces runes ne chantent pas la richesse, mais la folie. Celui qui s'y assoit perd le sens et se croit souverain de ces couloirs déserts. Les huit miroirs à manche, cerclés d'argent, sont placés pour que l'occupant ne voie jamais que lui-même.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "texte": "L'un de vous lit les runes comme des formules de contrainte, pas comme des ornements, et ne tient pas à s'y attarder."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "occultiste"
+          }
+        },
+        "texte": "L'un de vous sent un attrait venu du siège, une voix qui n'a rien de la sienne, et il recule d'un pas."
+      }
+    ]
+  },
+  {
+    "id": "exa-trone-estrade",
+    "lieu": "n3-salle-du-trone",
+    "nom": "L'estrade vide",
+    "apercu": "Une empreinte ronde marque le coussin, à la taille d'une couronne.",
+    "texte": "Sur le coussin du trône, sous la poussière, une empreinte ronde plus claire. Elle a le tour d'une tête d'homme, et ses bords sont nets, sans poussière à l'intérieur. Sur les accoudoirs, une usure en arc, lissée par des mains qui se posaient toujours au même endroit. Au pied de l'estrade, un seul pas s'imprime dans la couche grise, et aucun autre. Le trône garde sa forme, et personne n'a repris sa place depuis longtemps.",
+    "effets": [
+      {
+        "fait": "f-couronne-manque-au-trone"
+      }
+    ],
+    "variantes": [],
+    "regards": []
+  },
+  {
+    "id": "exa-sas-tambour",
+    "lieu": "n3-porte-cylindre-et-reserve",
+    "nom": "Le tambour de granit poli",
+    "apercu": "Un tambour de granit, poli d'un côté seulement, graisseur de bronze propre.",
+    "texte": "Un tambour de granit gris tourne sur son axe, poli à hauteur de main. Mais le poli ne fait qu'une moitié : la droite luit, la gauche reste mate, couverte de la même poussière que le sol. Près de l'axe, un graisseur de bronze, propre, brille d'un éclat neuf. Le granit a la même teinte partout ailleurs, froid et lisse au toucher. Quelqu'un entretient ce graisseur régulièrement, mais le côté mat n'a pas vu la moindre main. Quel côté faut-il pousser, et pour aller où ?",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-tambour-sens",
+        "condition": {
+          "fait": "f-sas-sens-du-tambour"
+        },
+        "texte": "Un tambour de granit gris tourne sur son axe, et la moitié droite luit sous la main. On sait désormais qu'il tourne dans les deux sens, mais que le pousser à gauche arme une meurtrière à lances. Seul le côté droit a été poli par des mains, celles des gobelins, qui n'empruntent que ce sens. Le côté gauche reste mat, couvert de poussière, et le graisseur de bronze, propre, brille près de l'axe.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "roublard"
+          }
+        },
+        "texte": "L'un de vous observe le poli et compte les pas du passage, sans savoir encore lequel des deux côtés tiendra."
+      }
+    ]
+  },
+  {
+    "id": "exa-sas-fosse",
+    "lieu": "n3-porte-cylindre-et-reserve",
+    "nom": "Les rebuts de la fosse",
+    "apercu": "Éclats de verre, creuset noirci et traînées vives dans la boue.",
+    "texte": "Au fond de la fosse, une boue grisâtre garde des éclats de verre. Des tubes brisés flottent à côté d'un creuset noirci, dont le bord a fondu. Des traînées vives, vert de cuivre et rouge garance, zèbrent la vase. L'odeur d'acide pique les yeux dès qu'on se penche au-dessus du bord. Rien ne semble pousser ici, ni mousse ni lichen, seulement de la vase et du verre. Quelqu'un a jeté ces rebuts ici, sans jamais revenir les trier.",
+    "effets": [],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous s'en approche prudemment : une racine plongée ici se dessécherait en un jour."
+      },
+      {
+        "condition": {
+          "heros": {
+            "historique": "sage"
+          }
+        },
+        "texte": "L'un de vous reconnaît des essais ratés, de ceux qu'un alchimiste jette quand la fusion tourne mal."
+      }
+    ]
+  },
+  {
+    "id": "exa-commune-statue",
+    "lieu": "n3-salle-commune-gobeline",
+    "nom": "La statue d'or et ses offrandes",
+    "apercu": "Une statue d'or, à hauteur de hanche, couverte d'offrandes fraîches.",
+    "texte": "Contre un pilier, une statue d'or, à hauteur de hanche, représente un homme-serpent drapé. Il tient une coupe, et ses yeux d'or ont été polis par des mains à force de frotter. Devant elle traînent des cuillères tordues, des tessons de verre colorés et des ficelles à nœuds. Une carapace de scarabée, peinte de rouge, repose au milieu de ces petites offrandes. Les offrandes sont renouvelées, aucune ne fane, et la poussière ne s'y accroche pas. Quelqu'un vient ici régulièrement et les refait avec soin.",
+    "effets": [
+      {
+        "fait": "f-statue-or-salle-commune"
+      }
+    ],
+    "variantes": [
+      {
+        "id": "exa-var-statue-fontaine",
+        "condition": {
+          "fait": "f-statue-fontaine-volee"
+        },
+        "texte": "Contre un pilier, une statue d'or, à hauteur de hanche, représente un homme-serpent drapé. On sait désormais qu'elle vient de la fontaine de cérémonie, et la base porte quatre goujons arrachés. Ces goujons s'ajusteraient exactement aux trous du piédestal laissé nu. Devant elle traînent des cuillères tordues, des tessons de verre colorés et des ficelles à nœuds. Une carapace de scarabée, peinte de rouge, repose au milieu de ces petites offrandes.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "criminel"
+          }
+        },
+        "texte": "L'un de vous sait qu'aucun receleur ne voudrait de cet or, trop reconnaissable pour être fondu sans bruit."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "occultiste"
+          }
+        },
+        "texte": "L'un de vous perçoit dans ces objets une dévotion qui s'adresse à quelque chose qu'on ne nomme pas."
+      }
+    ]
+  },
+  {
+    "id": "exa-commune-barricade",
+    "lieu": "n3-salle-commune-gobeline",
+    "nom": "La barricade de pieux",
+    "apercu": "Fourches et pieux noircis au feu, dressés contre le passage du dôme.",
+    "texte": "Des fourches de ferme et des pieux taillés à la serpe forment une barricade. Les pointes ont été noircies au feu, pour durcir le bois. Elles regardent toutes vers le passage du dôme, à hauteur de poitrine. Un bâton noué sert de loquet, et derrière, des caisses renversées forment une réserve. La barricade a été faite pour être tenue d'un seul côté, celui de la salle. Le bâton du loquet porte les traces d'une main qui le tire souvent.",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-barricade-refuge",
+        "condition": {
+          "fait": "f-gobelins-refugies-aile-ouest"
+        },
+        "texte": "Des fourches de ferme et des pieux taillés à la serpe forment une barricade. On sait désormais qu'un clan a fui ici la bête du grand hall et les galeries du sorcier. La barricade a été faite pour résister, non pour attaquer, et ses pieux ne menacent que celui qui force le passage. Les pointes sont noircies au feu, pour durcir le bois. Un bâton noué sert de loquet, et derrière, des caisses renversées forment une réserve.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "historique": "soldat"
+          }
+        },
+        "texte": "L'un de vous voit une défense de gens qui ne savent guère se battre, mais qui ont peur et le montrent."
+      }
+    ]
+  },
+  {
+    "id": "exa-ferme-planches",
+    "lieu": "n3-ferme-champignons",
+    "nom": "Les planches de culture",
+    "apercu": "Des planches de terre tassée, couvertes de champignons soigneusement cultivés.",
+    "texte": "Sur les planches sombres poussent trois sortes de champignons, rangées par lignes nettes. Les blancs sont charnus, les bleutés plus petits, les bruns montent sur un pied long. Chaque planche porte un nœud de ficelle, d'une couleur et d'un nombre de nœuds qui lui sont propres. La terre a été tassée avec un soin presque tendre, et l'humidité y reste. Une odeur de terre humide et de champignon frais monte entre les rangs. Qui a semé ces planches, et pour qui cette récolte se garde-t-elle ?",
+    "effets": [],
+    "variantes": [
+      {
+        "id": "exa-var-ferme-troc",
+        "condition": {
+          "fait": "f-skriik-troque-couronne"
+        },
+        "texte": "Sur les planches sombres poussent trois sortes de champignons, rangées par lignes nettes. On sait désormais que le cueilleur rendrait un objet précieux enfoui dans ses planches. Un des lits de terre porte un nœud de ficelle dorée, plus soigné que les autres. Les blancs sont charnus, les bleutés plus petits, les bruns montent sur un pied long. Chaque planche garde son nœud de ficelle et son nombre de nœuds, et la terre reste tassée avec soin.",
+        "effets": []
+      }
+    ],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous s'intéresse à l'ordre de croissance : les blancs mûrissent avant les bleutés, et chaque planche a visiblement son rythme."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous reconnaît un savoir-faire de paysan qui vit sous terre, habitué à labourer sans lumière."
+      }
+    ]
+  },
+  {
+    "id": "exa-escalier-racines",
+    "lieu": "n3-escalier-surface",
+    "nom": "Les marches sous les racines",
+    "apercu": "Marches de terre creusées par des pieds nus, sous les racines.",
+    "texte": "Les marches de terre sont usées en creux par de très nombreux pieds nus, petits et légers. Des racines mortes crèvent la voûte, grises, desséchées, cassantes comme du bois de feu. Entre elles pendent quelques racines claires, vivantes, qui ressemblent à des cordes neuves. Leur écorce luit, souple, sous la lueur des torches. Les marches descendent plus bas que la lumière, et l'air y sent la terre humide.",
+    "effets": [],
+    "variantes": [],
+    "regards": [
+      {
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "texte": "L'un de vous lit les empreintes : des pas courts, en file, dont l'un porte visiblement une charge lourde."
+      },
+      {
+        "condition": {
+          "heros": {
+            "classe": "druide"
+          }
+        },
+        "texte": "L'un de vous sent le long des racines vivantes une fraîcheur qui vient d'une eau courante, quelque part en dessous."
+      }
+    ]
+  }
+]

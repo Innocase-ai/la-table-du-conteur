@@ -1,0 +1,329 @@
+[
+  {
+    "id": "n2-hall-aux-statues",
+    "nom": "Hall aux Six Statues",
+    "type": "salle",
+    "parent": "tombe-des-rois",
+    "resume": "Un hall glacé et ténébreux où six colosses de basalte à tête de serpent se dressent en deux rangs, entre un filet d'eau et une haute arche.",
+    "description": "Note MJ : Regroupe les salles 8 (passage secret fissuré) et 9 (hall aux statues). Obscurité totale. L'une des statues est légèrement désaxée (Perception DD 14) et pivotable pour révéler la salle de garde secrète (n2-salle-garde-secrete).",
+    "ambiance": "Noir absolu hors portée des torches, écho d'eau lointaine, air froid de cave profonde.",
+    "accroche": "Au bas du boyau fissuré, l'obscurité se fait plus dense et plus froide, et un mince filet d'eau court sur le calcaire.",
+    "arrivee": "L'obscurité est ici si dense et glacée que la flamme des torches semble avalée dès cinq longueurs d'épée, ne découpant qu'un halo orangé très court devant vos bottes. Au bas du passage fissuré, six immenses statues d'hommes-serpents, taillées dans un basalte sombre, se dressent sur deux rangées serrées. Leurs grandes orbites creuses regardent vers le milieu des dalles mouillées. Un mince filet d'eau, descendu du temple d'en haut, court entre les joints de calcaire disloqués et file vers une haute arche ouverte. L'air a le froid d'une cave profonde ; au loin, une eau goutte, et son écho revient un peu plus faible à chaque fois. Chaque pas résonne longtemps sous la voûte, et la pierre, froide et grasse au toucher, colle un peu aux doigts. Sous vos semelles, le calcaire est glissant, couvert d'une fine pellicule de vase.",
+    "visuel": "Grande salle au sol de calcaire humide, où six statues de basalte sombre se dressent en deux rangées face à face. Au fond, une haute arche ouverte laisse couler un filet d'eau entre les joints disjoints. Une torche, plantée au bord des dalles, est la seule lumière, et son halo orangé ne va pas plus loin que quelques pas ; le reste se perd dans le noir.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [
+      {
+        "vers": "n2-salle-garde-secrete",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 14, "competence": "perception" },
+        "description": "Derrière la statue décalée, une fente étroite s'ouvre dans le mur, à peine plus large qu'un homme. Un air sec et figé en sort, qui sent la pierre ancienne.",
+        "retour": "Un étroit passage dérobé remonte à travers le mur et débouche dans le dos de la sixième statue du hall, là où le regard ne va pas."
+      },
+      {
+        "vers": "n2-atrium",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une haute arche sculptée, à l'autre bout du hall, s'ouvre sur un vaste carrefour où résonne un bruit d'eau dormante.",
+        "retour": "Une arche sculptée ramène entre les six colosses de basalte, et le filet d'eau suit le même chemin, à rebours, jusqu'au seuil."
+      }
+    ],
+    "rencontres": [
+      {"id": "r-mantes-du-noir-absolu", "declencheur": "entree", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-noir-absolu-n2", "decouverte": { "auto": true } },
+      { "fait": "f-statue-pivotante-garde-secrete", "decouverte": { "dd": 14, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 30, "y": 25 }
+  },
+  {
+    "id": "n2-salle-garde-secrete",
+    "nom": "Salle de garde secrète",
+    "type": "salle",
+    "parent": "n2-hall-aux-statues",
+    "resume": "Une étroite remise close, oubliée derrière les statues, où le vieux mobilier a fini en tas de sciure brune.",
+    "description": "Note MJ : Salle 10. Accessible uniquement par le passage secret DD 14 du Hall aux Statues. Contient 2 dagues SRD utilisables et une icône religieuse en argent de 150 po.",
+    "ambiance": "Bois pourri, poussière intacte, calme étouffant d'un réduit oublié depuis des siècles.",
+    "accroche": "Au fond du hall, derrière l'alignement des statues, une ouverture basse laisse filtrer un air sec et sans odeur.",
+    "arrivee": "Ni pelle de pilleur, ni courant d'air venu du dehors, ni pas de gobelin n'ont troublé cette étroite remise oubliée derrière les colosses de basalte. Des bancs de sapin, une table basse et deux petits coffres de bois tendre se sont affaissés avec les siècles en un tas fibreux de sciure brune. Des échardes légères y traînent, et des clous oxydés sont tombés en poudre rouge sur le sol. Au milieu de ces débris, pourtant, deux dagues d'acier restent intactes, glissées dans d'anciens fourreaux de cuir gras. Le cuir des fourreaux a gardé sa souplesse, et les coutures tiennent encore. Près des dagues brille une large tablette d'argent ciselé, où six prêtres serpents se penchent devant un soleil fendu. Sous la sciure, les lattes du plancher se devinent, pourries mais alignées. Ici, l'air est totalement figé, et le bourdonnement des catacombes ne parvient plus jusqu'à vous.",
+    "visuel": "Petite remise voûtée, au sol couvert de sciure brune et d'échardes. Au centre, une table basse et des bancs effondrés forment un tas fibreux. À gauche, deux dagues d'acier reposent dans leurs fourreaux ; à droite, une tablette d'argent ciselé brille sur le bois. La lumière d'une torche portée à la main glisse sur les objets, et le fond reste dans l'ombre.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 15, "y": 25 }
+  },
+  {
+    "id": "n2-atrium",
+    "nom": "L'Atrium du Bassin Noir",
+    "type": "salle",
+    "parent": "n2-hall-aux-statues",
+    "resume": "Un carrefour octogonal de pierre, centré sur un bassin d'eau noire, d'où rayonnent cinq portes et un couloir aux serpents sculptés.",
+    "description": "Note MJ : Salle 11. Hub principal du niveau 2. Une blême (r-bleme-atrium) guette tapie au fond du bassin noir avec des bijoux. Portes vers 12, 13, 14, 15, 16-17, et au sud 18.",
+    "ambiance": "Odeur de vase froide et de charogne mouillée autour d'un miroir d'eau noire immobile.",
+    "accroche": "Au bout du hall, une haute arche sculptée donne sur une salle octogonale où flotte une odeur de vase et de pourriture.",
+    "arrivee": "Huit larges pans de pierre taillée s'écartent autour d'un bassin circulaire, profond de trois mètres, plein d'une eau si noire et si calme qu'elle ressemble à de la poix figée. Elle ne reflète que la braise de vos flammes, sans une seule ride à sa surface. Cinq portes basses, de cèdre et de pierre, s'ouvrent tout autour du carrefour ; leurs cartouches ophidiens sont rongés de salpêtre blanc. Au fond, un long couloir pavé s'enfonce entre deux parois couvertes de serpents sculptés en relief. Chaque pierre des huit pans est taillée avec la même précision, et leurs joints ne laissent passer aucune eau. Une odeur tenace de boue pourrie, d'algue morte et d'ossements détrempés monte du rebord glissant de la margelle. La margelle, lisse sous la main, est tapissée d'une mousse froide et glissante. Au-dessus, la voûte basse renvoie chaque goutte en un écho net.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"bleme-vaincue"},
+        "texte": "Le bassin s'est enfin calmé. L'eau noire clapote encore contre la margelle, en cercles qui s'éteignent un à un, et la vase remontée trouble le reflet des flammes. Des traînées sombres marquent le rebord, à la hauteur de la main. Les dalles autour de la margelle sont humides, et l'eau laisse une écume pâle sur le calcaire. L'air garde son odeur de boue et d'algue, mais l'attente pesante qui emplissait la salle s'est dissipée. Les huit pans de pierre paraissent plus larges, et le carrefour semble plus vaste, vidé de son poids. Au fond, le couloir aux serpents sculptés attend toujours, et les cinq portes basses de cèdre et de pierre restent closes, comme avant. Vos pas résonnent un peu plus nettement sur les dalles, et chaque goutte qui tombe se fait entendre distinctement."
+      }
+    ],
+    "visuel": "Carrefour octogonal de pierre taillée, aux larges pans clairs. Au centre, un bassin rond d'eau noire, plate et luisante, entouré de vase luisante. Cinq portes basses rayonnent sur les murs, et au fond, un couloir pavé, bordé de serpents sculptés en relief, s'enfonce dans l'ombre. Une torche posée au bord du bassin jette une lueur rouge sur l'eau, comme une braise au fond d'un puits.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [
+      {
+        "vers": "n2-escalier-piege",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "Le couloir pavé qui part du fond, bordé de serpents sculptés, plonge vers une longue volée de marches qui descend dans le noir.",
+        "retour": "Les marches remontent vers le couloir aux serpents, puis vers l'air stagnant et le bassin noir de l'atrium."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-bleme-atrium", "declencheur": "exploration", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-vraies-tombes-n2", "decouverte": { "dd": 10, "competence": "investigation" } },
+      { "fait": "f-bleme-du-bassin", "decouverte": { "dd": 12, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 50, "y": 45 }
+  },
+  {
+    "id": "n2-tombe-xisor",
+    "nom": "Tombe de Xisor le Vert",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Un étroit caveau de pierre verte, dominé par un sarcophage gravé, dont les cassolettes de bronze sont éteintes depuis longtemps.",
+    "description": "Note MJ : Salle 12. Contient la dalle piégée p-onde-xisor (Onde de choc 2d8 tonnerre) et le sarcophage de Xisor le Vert avec un parchemin de sort.",
+    "ambiance": "Froid de pierre verte, léger grésillement statique près de l'autel, poussière intacte.",
+    "accroche": "Dans un coin de l'atrium, une porte basse est sculptée d'un serpent émeraude, et ses gonds sont rongés de rouille.",
+    "arrivee": "Les gonds rouillés cèdent avec un raclement grave, et la porte livre un caveau étroit, entièrement pavé de grandes plaques de schiste vert veiné de filons blancs. Au milieu de la chambre s'élève un sarcophage massif, surélevé d'une large marche. Son couvercle sculpté figure un haut prêtre serpent, les bras croisés sur un sceptre brisé en trois tronçons. Le couvercle porte encore des restes de peinture, un vert très pâle presque effacé par les siècles. Dans les quatre coins, de vieilles cassolettes de bronze verdi contiennent encore un résidu de cendre pâle et froide. Aucun grain de sable ne couvre les plaques, ce qui surprend dans un tombeau aussi ancien. Une fraîcheur de pierre verte vous monte aux chevilles. Le froid vient de la pierre elle-même, et non de l'air. Le caveau garde ce froid depuis des siècles, et rien ne bouge.",
+    "visuel": "Caveau étroit au sol pavé de grandes plaques de schiste vert veiné de blanc. Au centre, un sarcophage massif, surélevé d'une marche, porte un couvercle sculpté d'un prêtre serpent aux bras croisés. Dans les quatre coins, des cassolettes de bronze verdi aux bords noircis. La seule lumière vient d'une torche posée sur la marche, et elle glisse sur la pierre polie, sans que rien ne bouge.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-xisor-haut-pretre", "decouverte": { "dd": 11, "competence": "histoire" } },
+      { "fait": "f-dalle-xisor-onde", "decouverte": { "dd": 14, "competence": "arcanes" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 65, "y": 30 }
+  },
+  {
+    "id": "n2-tombe-sparamantur",
+    "nom": "Tombe éboulée de Sparamantur",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Une chambre funéraire à demi effondrée sous les gravats calcaires, où dépasse l'angle brisé d'un sarcophage fissuré.",
+    "description": "Note MJ : Salle 13. Un test de Perception permet d'entendre les ossements de Sparamantur derrière l'éboulis (r-sparamantur-squelette), veillant sur des ornements de 10 po.",
+    "ambiance": "Odeur de poussière de plâtre écrasé, petits cailloux qui roulent seuls dans le silence.",
+    "accroche": "Une porte entrebâillée, sur le côté de l'atrium, laisse filtrer un air sec et une odeur de plâtre fraîchement cassé.",
+    "arrivee": "Un large éboulement de blocs de calcaire fendus, de terre ocre et de plâtre broyé envahit la moitié du caveau, dès le seuil de la porte entrebâillée. La voûte a cédé jadis sous la poussée lente des sables. Des racines blanches et desséchées pendent encore du plafond noir, pareilles à de vieilles cordes effilochées. Au-dessus du seuil, une fissure large comme la main court jusqu'au plafond. Derrière l'épaule de l'éboulis dépasse l'angle brisé d'un sarcophage fissuré, orné de petites plaques funéraires dorées au bas-relief usé. Ses reflets de dorure ne tiennent plus qu'au creux des bas-reliefs. Des éclats de plâtre crissent sous les semelles, et un air de terre sèche, sans fraîcheur, monte des gravats. Une poutre de bois noir, fendue en deux, pend au-dessus des gravats. Un grattement sec résonne de l'autre côté des blocs, puis de petits cailloux roulent seuls jusqu'à vos pieds.",
+    "visuel": "Chambre basse à moitié comblée par des blocs de calcaire fendus et une terre ocre. Le plafond noir est crevé, et des racines blanches pendent comme de vieilles cordes. À droite, sous l'éboulis, l'angle d'un sarcophage fissuré garde un reste de dorure. Une torche posée sur le seuil projette une lueur chaude sur les blocs, et les pierres restent immobiles.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [],
+    "rencontres": [
+      { "id": "r-sparamantur-squelette", "declencheur": "exploration", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-sparamantur-veille", "decouverte": { "dd": 11, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 75, "y": 45 }
+  },
+  {
+    "id": "n2-tombe-franbinzar",
+    "nom": "Tombe de Franbinzar",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Une crypte étroite et suintante, sans autre issue, où le couvercle d'un sarcophage gît repoussé et la pierre est rongée.",
+    "description": "Note MJ : Salle 14. Abrite la gelée ocre née des fluides de Franbinzar (r-gelee-ocre-franbinzar) et sa bague d'argent de 20 po.",
+    "ambiance": "Vapeur acide douceâtre, luisance jaune visqueuse sur les parois, silence collant.",
+    "accroche": "Sous un arc bas de l'atrium, une odeur de vinaigre et de saumure ancienne flotte, plus âcre à mesure qu'on approche.",
+    "arrivee": "Le vantail de pierre n'a bougé que de deux doigts sur ses gonds humides, et déjà une bouffée tiède et vinaigrée vous pique les yeux, la gorge et les narines. Dans cette petite chambre funéraire, sans autre issue, le couvercle du sarcophage a été repoussé de biais depuis l'intérieur. Sur les marches traîne une coulée jaune vif, brillante, mêlée de lambeaux de lin pourri. Là où cette humeur a séjourné, la pierre grise est piquée de mille petites cuvettes lisses. Le sol de la chambre penche légèrement vers le centre, comme si l'eau s'y était longtemps accumulée. Le plafond bas est nu, taillé au ciseau, et le calcaire y paraît plus gris qu'ailleurs, comme lavé. Au fond du coffre béant, une bague d'argent propre brille parmi des ossements blanchis. Derrière l'autel, quelque chose d'ambré palpite doucement dans l'ombre.",
+    "visuel": "Petite chambre funéraire de pierre grise, basse et carrée, sans autre issue. Au centre, un sarcophage dont le couvercle a glissé de biais laisse voir un fond d'ossements blanchis. Sur les marches et le sol, une coulée jaune vif et brillante, et des cuvettes lisses creusées dans la pierre. Une torche posée sur l'autel éclaire l'ensemble d'une lumière rouge et mouvante.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [],
+    "rencontres": [
+      { "id": "r-gelee-ocre-franbinzar", "declencheur": "entree", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-franbinzar-gelee", "decouverte": { "dd": 11, "competence": "nature" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 65, "y": 60 }
+  },
+  {
+    "id": "n2-sacristie",
+    "nom": "La Sacristie aux Parchemins",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Un ancien dortoir sacerdotal, tiède et sec, où des rouleaux de cuir attendent sur une table de lecture.",
+    "description": "Note MJ : Salle 15. Contient les parchemins qui révèlent le véritable nom de Baltoplate (f-vrai-nom-baltoplate) et l'icône d'argent sertie d'émeraudes (200 po).",
+    "ambiance": "Odeur de cire sèche et de vieux parchemin conservé au sec, paix monastique figée.",
+    "accroche": "Une porte de bois bien ajustée, dans le mur de l'atrium, laisse passer un air étonnamment sec, à l'odeur de cire.",
+    "arrivee": "Étonnamment tiède et sèche, cette pièce allongée reste pourtant tout près de l'atrium humide. Trois couchettes de pierre brute sont alignées le long d'un mur de hauts casiers de cèdre rouge. Les tiroirs des casiers sont tous fermés, et le cèdre a gardé une couleur rouge intense. Sur une large table de lecture, plusieurs rouleaux de cuir tanné sont maintenus par des bagues de corne. Leur écriture serpentine, serrée, est ponctuée de gloses d'une autre main, en langue commune. Les marges sont couvertes de notes plus petites, d'une autre encre. Sous un vieux coussin éventré, au pied du dernier lit, brille l'éclat vert d'une lourde icône d'argent fin, sertie de deux émeraudes intactes. Les couchettes, sans couverture, portent encore les rainures usées par le temps. Un silence de bibliothèque règne ici, épais et doux. Le vieux parchemin a pris une teinte de miel, et ses bords sont piqués de petites taches claires.",
+    "visuel": "Pièce allongée de pierre claire, au sol dallé, où trois couchettes de pierre brute longent le mur de gauche. Au fond, de hauts casiers de cèdre rouge montent jusqu'au plafond, et au centre, une grande table de lecture porte des rouleaux de cuir. Sous un coussin, au pied du dernier lit, une icône d'argent luit d'un vert sombre. La lumière d'une torche portée à la main glisse sur le cuir et sur l'argent.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-vrai-nom-baltoplate", "decouverte": { "auto": true } },
+      { "fait": "f-cercle-d-argent-garde", "decouverte": { "dd": 10, "competence": "religion" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 30, "y": 60 }
+  },
+  {
+    "id": "n2-soldats-d-argile",
+    "nom": "Galerie des Soldats d'Argile",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Une alcôve d'outils de taille, puis une salle de figures d'argile cuite alignées au cordeau, face à l'entrée.",
+    "description": "Note MJ : Regroupe les salles 16 et 17. Derrière la statue du coin sud-ouest, un passage secret (Perception DD 16) mène directement au Hall du Basilic (n3-hall-du-basilic).",
+    "ambiance": "Silence pesant de trente-six yeux de terre cuite braqués sur vous, air sec qui tire sur la flamme.",
+    "accroche": "Sur le côté de l'atrium, un chantier abandonné ouvre sur une salle gardée par une cohorte de figures d'argile.",
+    "arrivee": "Vous traversez d'abord une alcôve restée brute de taille, où reposent des ciseaux à pierre ébréchés, des maillets fendus et des burins de fer rongés de rouille brune. Puis la voûte s'ouvre sur une salle où dix-huit grands guerriers d'argile cuite, à tête de serpent, se dressent en trois rangées de six. Chacun tient un bouclier ovale levé et une lance pointée droit vers le seuil. Les bouts de lance sont émoussés, et les boucliers ovales fendus en plusieurs endroits. Certaines épaules fendillées par la sécheresse montrent que ces figures ne sont que des coques creuses, cuites au four. Entre chaque figure, l'intervalle est exactement le même, comme on l'aurait mesuré au pas. Les sols de la galerie sont couverts d'éclats d'argile, et l'on marche sur des fragments qui craquent. Trente-six yeux de terre cuite restent braqués sur l'entrée.",
+    "visuel": "Galerie de pierre brute, sol jonché de vieux outils de taille : ciseaux, maillets et burins rouillés. Au fond, dix-huit figures d'argile cuite se dressent en trois rangées de six, boucliers ovales levés. À gauche, les épaules fendillées laissent voir des coques vides. Une torche posée au sol éclaire la rouille brune des burins et l'ocre pâle de l'argile, d'une lumière basse et chaude.",
+    "niveau": { "min": 1, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-hall-du-basilic",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 16, "competence": "perception" },
+        "description": "Derrière la figure de l'angle, une fente étroite cache un couloir dérobé qui descend loin dans la roche, vers une grande salle.",
+        "retour": "L'étroit couloir remonte en pente raide et débouche derrière les rangées de figures d'argile, dans la galerie d'en haut."
+      }
+    ],
+    "rencontres": [
+      {"id": "r-statues-creuses-serpents", "declencheur": "exploration", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-soldats-argile-creux", "decouverte": { "dd": 10, "competence": "investigation" } },
+      { "fait": "f-chantier-abandonne", "decouverte": { "dd": 12, "competence": "histoire" } },
+      { "fait": "f-passage-soldats-vers-n3", "decouverte": { "dd": 16, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 20, "y": 45 }
+  },
+  {
+    "id": "n2-escalier-piege",
+    "nom": "L'Escalier Basculant",
+    "type": "salle",
+    "parent": "n2-atrium",
+    "resume": "Une descente de trois volées de marches taillées dans le roc, qui conduit vers le souffle froid d'une grande salle.",
+    "description": "Note MJ : Salle 18. Contient le piège réarmable p-escalier-basculant (Dex DD 14 ou 2d6 perforant).",
+    "ambiance": "Marches poussiéreuses et graissées par endroits, cliquetis métallique suspect sous la pierre.",
+    "accroche": "Au bout du couloir aux serpents, le sol s'enfonce en trois longues volées d'escaliers, vers une caverne où l'air est glacé.",
+    "arrivee": "Le couloir couvert de reptiles sculptés s'incline brusquement et se change en trois longues volées d'escaliers raides, taillés dans le roc nu de la colline. Les marches sont étroites et usées au centre, et les trois volées se ressemblent. Des éclats de taille, laissés par d'anciennes chutes ou d'anciens combats, jonchent le bord de chaque degré. Les parois portent des reptiles sculptés qui se répètent de marche en marche. Chaque pas demande de l'attention sur la pierre usée. Les parois se resserrent, et une fraîcheur de cave monte à chaque marche. Plus bas, la descente se poursuit, large de deux pas, sans rampe. Au fond de la descente, un souffle glacé et vaste monte d'une grande salle ouverte sur un gouffre noir invisible. Un ruissellement lointain se mêle au souffle, sans qu'on en voie la source.",
+    "visuel": "Triple volée d'escaliers étroits, taillés dans un roc sombre et descendant en ligne droite dans la colline. Les marches sont grises et usées au centre. Au fond de la dernière volée, une ouverture sombre souffle un air froid. Une torche portée à la main éclaire les premières marches d'une lumière jaune, et plus bas tout s'efface dans l'ombre.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [
+      {
+        "vers": "n2-arene-gardien",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au bas des marches, un escalier étroit de pierre grise descend encore, vers une salle plus basse dont le souffle glacé remonte jusqu'ici.",
+        "retour": "Les marches étroites remontent en trois volées vers le couloir couvert de reptiles sculptés et l'air plus tiède de l'atrium."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-escalier-basculant", "decouverte": { "dd": 12, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 50, "y": 65 }
+  },
+  {
+    "id": "n2-arene-gardien",
+    "nom": "L'Arène du Gardien Osseux",
+    "type": "salle",
+    "parent": "n2-escalier-piege",
+    "resume": "Une large salle d'armes nue, dont un flanc se perd dans un gouffre, et où cinq boucliers ronds ornent le mur.",
+    "description": "Note MJ : Salle 19. Contient 5 boucliers SRD utilisables. Ici rôde le Gardien osseux serpentin (r-gardien-osseux).",
+    "ambiance": "Courant d'air glacial venu du vide, claquement d'os anciens contre la pierre humide.",
+    "accroche": "Au bas des marches étroites, un souffle glacé monte d'une salle dont le sol semble s'arrêter net au bord d'un gouffre.",
+    "arrivee": "Au bas de l'étroit escalier de pierre grise, la voûte s'ouvre d'un seul coup sur une large salle d'armes nue. Tout un flanc de la salle s'effondre dans le vide d'un gouffre noir, sans fond. Contre le mur opposé pendent cinq grands boucliers ronds de chêne cerclé de bronze, intacts, derniers trophées de soldats tombés là depuis des âges. Au centre, les dalles portent de longues griffures parallèles. Sur elles repose un amas de côtes blanches, de vertèbres nouées et d'un lourd crâne cornu à longue mâchoire serpentine, immobile dans la poussière. Des éclats d'os, jaunis par le temps, traînent entre les rayures des dalles. Un courant d'air glacial monte du vide. Le silence de la salle n'est troublé que par le sifflement du vent. Dès que vos bottes touchent le premier pavé plat, un claquement sec d'ossements retentit, et l'amas tressaille.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"gardien-osseux-ecarte"},
+        "texte": "La salle d'armes n'a plus son occupant. Au centre des dalles rayées de longues griffures parallèles, il ne reste que des éclats d'os et une fine poussière blanche, rassemblés par le vent. Le flanc de la salle s'arrête net au bord du gouffre, et ce bord paraît désormais lisse, poli par une chute. Un dernier craquement a roulé jusqu'au fond noir, puis plus rien ne remonte. Contre le mur, les cinq grands boucliers ronds de chêne cerclé de bronze pendent toujours, intacts, à leur place. Un courant d'air glacial monte encore du vide, et vos pas résonnent de nouveau sur le pavé. Le silence a repris ses droits dans la salle, et les dalles gardent encore les marques de la lutte. Le sol n'a pas été balayé."
+      }
+    ],
+    "visuel": "Salle basse de pierre grise, au sol de dalles rayées de longues griffures parallèles. À gauche, le sol s'effondre dans un gouffre noir sans fond. Contre le mur de droite, cinq grands boucliers ronds de chêne cerclé de bronze, éclairés par une torche portée à la main. Au centre, un amas de côtes blanches et de vertèbres nouées, dominé par un crâne cornu, repose dans une poussière pâle.",
+    "niveau": { "min": 1, "max": 2 },
+    "liens": [
+      {
+        "vers": "n2-gouffre-et-effondrement",
+        "type": "chemin",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une étroite corniche longe le bord du gouffre, vers une lourde porte de pierre et un tas de roches effondrées, au bout du rebord.",
+        "retour": "La corniche humide longe le vide et ramène vers la salle des boucliers, le long du mur, jusqu'aux marches."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-gardien-osseux", "declencheur": "entree", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-gardien-osseux-gouffre", "decouverte": { "auto": true } },
+      { "fait": "f-boucliers-trophees", "decouverte": { "dd": 10, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 50, "y": 80 }
+  },
+  {
+    "id": "n2-gouffre-et-effondrement",
+    "nom": "Le Gouffre et la Porte du Seuil Profond",
+    "type": "salle",
+    "parent": "n2-arene-gardien",
+    "resume": "Une corniche étroite au-dessus d'un gouffre, qui mène à un petit palier où un éboulis et une lourde porte de pierre ferment la route.",
+    "description": "Note MJ : Regroupe les salles 20, 21 et 22. Porte barrée piégée menant au Niveau 3.",
+    "ambiance": "Gouttes qui tombent sans bruit dans le vide sans fond, vent glacé le long de la paroi mouillée.",
+    "accroche": "Une saillie étroite, au bord du gouffre, s'éloigne de la salle vers une lourde porte fermée et un tas de roches.",
+    "arrivee": "L'étroite corniche calcaire surplombe ici un abîme ténébreux et muet, où ni caillou jeté ni lumière de torche ne trouvent le fond. La roche blanche, luisante d'une sueur froide, oblige à longer le mur du bout des doigts. Un écho lointain répond à chaque mot prononcé à voix basse, puis se perd dans le gouffre. Au bout du rebord mouillé, le passage débouche sur un petit palier scindé en deux. Devant, un colossal éboulement de roches brisées scelle un ancien tunnel effondré. Sur le côté, une seconde porte de pierre épaisse barre la route. La corniche n'a pas de garde-fou, et la pierre est si étroite qu'un pas de côté suffirait à tout perdre. Des gouttes tombent sans bruit dans le vide, et un vent glacé remonte le long de la paroi. Par la fente du seuil, on devine l'air vaste et profond du niveau d'en dessous.",
+    "visuel": "Corniche de calcaire blanc, étroite, qui longe sur la gauche un gouffre noir sans fond. Au bout, un petit palier : au centre, un éboulis de roches brisées bouche un tunnel. Sur la droite, une porte de pierre épaisse, close, barre le passage. Une torche posée sur le rebord éclaire la paroi humide, et le fond du gouffre se perd dans l'ombre.",
+    "niveau": { "min": 2, "max": 2 },
+    "liens": [
+      {
+        "vers": "n3-salle-ceremonie",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 14 },
+        "description": "Une porte de pierre épaisse, bien close, bloque le passage ; par la fente du seuil, on devine un escalier large qui descend.",
+        "retour": "De l'autre côté, la porte de pierre se voit de dos, et un escalier large remonte vers elle, puis vers la corniche du gouffre."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-traversee-corniche", "declencheur": "entree", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-porte-niveau-3-corniche", "decouverte": { "auto": true } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 35, "y": 85 }
+  }
+]

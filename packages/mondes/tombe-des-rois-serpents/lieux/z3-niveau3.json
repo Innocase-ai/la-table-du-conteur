@@ -1,0 +1,616 @@
+[
+  {
+    "id": "n3-salle-ceremonie",
+    "nom": "Salle de cérémonie et Fosse nord",
+    "type": "salle",
+    "parent": "n2-gouffre-et-effondrement",
+    "resume": "Une vaste salle cérémonielle aux colonnettes peintes, dominée par une vasque asséchée, d'où partent deux couloirs.",
+    "description": "Note MJ : Regroupe les salles 23, 24, 25 et 26.",
+    "ambiance": "Écho ample, odeur de poussière calcaire remuée par de petits pas anciens, battement d'ailes lointain.",
+    "accroche": "Derrière la porte du niveau deux, une pente de marches usées s'enfonce dans la pierre et le froid.",
+    "arrivee": "Les larges marches poussiéreuses débouchent enfin dans une vaste salle cérémonielle, soutenue par des colonnettes cannelées jadis peintes d'azur et d'ocre rouge. Au milieu, une large vasque ronde est à sec ; son piédestal porte un cercle plus clair, net, dont le contour reste intact. Deux couloirs s'ouvrent ici : l'un à gauche, l'autre droit devant vous. Tout en haut des chapiteaux, des ombres nerveuses aux ailes de cuir bruissent au bruit de vos pas, dans un écho ample. Le froid monte de la pierre, et votre souffle se voit encore un instant. Sous vos semelles, les dalles sont usées au centre par des siècles d'humidité. Un éclat d'ocre s'écaille encore sur une colonnette, à hauteur d'épaule, comme une dernière trace de couleur. Vos pas reviennent plus sourds, avalés par la pierre des voûtes. Au-dessus de la vasque, une fissure ancienne barre la voûte d'un trait fin.",
+    "visuel": "Grande salle souterraine voûtée, soutenue par des colonnes cannelées dont la peinture azur et ocre rouge s'écaille. Au centre, une vasque ronde à sec sur un piédestal de pierre claire, marqué d'un cercle plus pâle. À gauche, un couloir sombre ; droit devant, un second passage ouvert. Une torche posée au sol jette sa lumière ocre sur la pierre, et les hauteurs de la voûte restent dans l'ombre.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-dome-et-esclaves",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 10 },
+        "description": "Au bout du couloir de gauche, une porte massive à serrure corrodée, de la couleur du vieux fer.",
+        "retour": "Dans la rotonde, une lourde porte à serrure corrodée ferme le boyau qui revient vers la vasque asséchée."
+      },
+      {
+        "vers": "n3-vestibule-garde",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Droit devant vous, un passage dallé remonte vers un vestibule central, large, où le vent porte des courants frais.",
+        "retour": "Depuis le vestibule central, un passage dallé descend jusqu'à cette salle, où la vasque sèche se voit de loin."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-chauves-souris-et-fosse", "declencheur": "exploration", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-statue-fontaine-volee", "decouverte": { "dd": 12, "competence": "investigation" } },
+      { "fait": "f-fosse-dalles-creuses", "decouverte": { "dd": 13, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 50, "y": 85 }
+  },
+  {
+    "id": "n3-dome-et-esclaves",
+    "nom": "Le Dôme et la Salle des Esclaves",
+    "type": "salle",
+    "parent": "n3-salle-ceremonie",
+    "resume": "Une haute coupole percée de quatre seuils, au bout d'une antichambre aux chaînes rouillées, dont l'un reste fermé par une serrure.",
+    "description": "Note MJ : Regroupe les salles 27 et 28.",
+    "ambiance": "Rouille de chaînes, chaleur douce et chuintement d'une flamme perpétuelle derrière la porte entrebâillée.",
+    "accroche": "Au bout du couloir de gauche, une porte à serrure corrodée ferme le passage vers une rotonde sombre.",
+    "arrivee": "Passé une antichambre basse où pendent encore de lourdes chaînes rouillées, scellées à même le roc, vous débouchez sous une haute coupole obscure. Elle est percée de quatre seuils, en comptant celui que vous venez de franchir, chacun dans un mur différent de la rotonde. Le premier est une porte épaisse, à demi entrebâillée, qui laisse filtrer une lueur cuivrée vacillante. Au-dessus de cette porte, des marques de brûlure ont noirci la pierre en longues traînées. Un souffle sec de fournaise sort de l'entrebâillement, sans fumée ni suie. Le deuxième seuil est une porte de fer noirci, sans poignée ni gond apparent, et sa serrure paraît colossale. Le troisième est un battant de cèdre éclaté à coups de hache, et des boyaux sentent la mousse brûlée. De petits bâtons pointus, taillés au couteau, traînent jusque sur les marches devant vos bottes. Vos pas résonnent longtemps sous la coupole.",
+    "visuel": "Haute coupole de pierre sombre, percée de quatre ouvertures aux linteaux taillés. À gauche, une porte de fer noirci sans poignée ; au centre, un battant de cèdre éclaté ; au fond, une porte épaisse entrebâillée, d'où sort une lueur cuivrée. Au sol, de petits bâtons pointus traînent devant les marches, et dans l'antichambre, des chaînes rouillées pendent à la pierre.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-salle-du-tresor",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 20, "cle": "cle-du-basilic" },
+        "description": "Une épaisse porte de fer noirci, fermée par une serrure colossale ; on n'y voit pas de poignée, et le métal paraît refroidi depuis longtemps.",
+        "retour": "Vue de l'autre côté, la porte de fer noirci n'a ni poignée ni gond, et sa serrure massive paraît refermée depuis des siècles."
+      },
+      {
+        "vers": "n3-fosse-sacrificielle",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte entrebâillée, sur le côté de la rotonde ; une chaleur sèche et des reflets orangés s'en échappent par l'entrebâillement.",
+        "retour": "Depuis la corniche du puits, la porte entrebâillée s'ouvre sur la grande rotonde à quatre seuils."
+      },
+      {
+        "vers": "n3-salle-commune-gobeline",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Des battants de cèdre éclatés à coups de hache, dans un encadrement brisé ; au-delà, un boyau étroit monte vers des galeries habitées.",
+        "retour": "Les battants de cèdre éclatés ouvrent sur la grande rotonde, par l'encadrement brisé du boyau."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-anneaux-d-esclaves", "decouverte": { "dd": 10, "competence": "histoire" } },
+      { "fait": "f-tresor-porte-de-fer", "decouverte": { "dd": 11, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 25, "y": 75 }
+  },
+  {
+    "id": "n3-salle-du-tresor",
+    "nom": "La Salle du Trésor des Rois",
+    "type": "salle",
+    "parent": "n3-dome-et-esclaves",
+    "resume": "Un caveau blindé, épargné par le temps, dont l'air immobile garde des parois froides et un mobilier de pierre et de bois.",
+    "description": "Note MJ : Salle 29. Trésor majeur.",
+    "ambiance": "Odeur de métal ancien, silence d'une chambre forte restée scellée des siècles.",
+    "accroche": "Dans la rotonde, une porte de fer noirci, sans poignée, reste fermée par une serrure colossale.",
+    "arrivee": "Dans ce caveau blindé, épargné miraculeusement par les siècles, l'air est immobile et sent le vieux cèdre sec. Le métal des parois a refroidi depuis mille ans, sans jamais se réchauffer. De grands coffres de bois sombre, cerclés de bronze, reposent dans des niches nettes, balayées. Les niches ont gardé leur ordre, comme si personne n'y avait jamais touché. Leurs couvercles, à peine soulevés par les tas qu'ils recouvrent, laissent voir des couches serrées de sous de cuivre verdis, et de hautes piles d'argent mat. Parmi elles brillent de larges pièces d'or fin, frappées d'un cobra couronné, dont l'or n'a rien perdu de son éclat. Contre la paroi du fond, une console de marbre blanc veiné de vert porte quatre petites gemmes grenat taillées en amande. À côté, un mince étui d'ivoire poli renferme encore un parchemin demeuré souple. Rien ne bouge dans la pierre, et la lumière des torches glisse sur l'or sans l'éteindre.",
+    "visuel": "Caveau de pierre polie aux parois de métal sombre, éclairé par une torche posée au sol. Au fond, une console de marbre blanc veiné de vert porte quatre petites pierres rouges taillées en amande. À gauche, plusieurs coffres de bois cerclés de bronze ont leurs couvercles soulevés par les tas qu'ils contiennent, et des pièces d'or et d'argent brillent dedans. Les niches sont nettes, et le sol garde son poli.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur",
+    "position": { "x": 10, "y": 75 }
+  },
+  {
+    "id": "n3-fosse-sacrificielle",
+    "nom": "La Fosse Sacrificielle",
+    "type": "salle",
+    "parent": "n3-dome-et-esclaves",
+    "resume": "Un puits de six mètres, bordé d'une corniche étroite, dont le fond brille d'une flamme sans bois ni fumée.",
+    "description": "Note MJ : Salle 30.",
+    "ambiance": "Chaleur sèche montant du trou, air pauvre et étouffant au ras du rebord, reflets dansants.",
+    "accroche": "Par la porte entrebâillée, une lueur orangée et une chaleur sèche montent d'un passage étroit.",
+    "arrivee": "La porte entrebâillée s'ouvre sur une corniche si étroite qu'elle n'accueille que deux semelles. Elle fait tout le tour d'un puits circulaire, profond de six mètres, taillé à pic dans la roche sombre. Le bord de la corniche est usé d'un côté, comme si l'on y avait longtemps posé les pieds. Des coulures grises marquent les parois, à hauteur du regard. Au fond, au milieu d'un lit épais d'ossements blanchis au feu et de cendres grises, une haute flamme dorée danse. Elle brûle sans bois, sans huile, et sans aucune trace de fumée. Ses reflets cuivrés frôlent les parois noircies, et des éclats d'améthyste brillent parmi les débris calcinés. L'air du fond semble lourd et appauvri ; dès qu'on s'y penche, il serre la gorge. L'écho de vos mouvements remonte et s'étouffe vite dans les cendres.",
+    "visuel": "Puits circulaire taillé à pic dans une roche sombre, bordé d'une corniche si étroite qu'on n'y tient qu'à deux. Au fond, des ossements blanchis par le feu et des cendres grises forment un lit épais, au centre duquel brûle une haute flamme dorée. Sur les parois noircies, à gauche, des reflets cuivrés ; à droite, des éclats d'améthyste parmi des débris calcinés. Le bord est usé, et aucune fumée ne monte du puits.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [
+      {"id": "r-corniche-fosse-sacrificielle", "declencheur": "entree", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-flamme-eternelle-fosse", "decouverte": { "dd": 12, "competence": "religion" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 25, "y": 90 }
+  },
+  {
+    "id": "n3-vestibule-garde",
+    "nom": "Vestibule des Gardiens Pétrifiés",
+    "type": "salle",
+    "parent": "n3-salle-ceremonie",
+    "resume": "Un vestibule dallé gardé par deux grandes figures de pierre, d'où rayonnent quatre passages vers le cœur du tombeau.",
+    "description": "Note MJ : Regroupe les salles 36, 37 et 31.",
+    "ambiance": "Silence figé des visages de pierre saisis dans la terreur, courants d'air frais venus de plusieurs couloirs.",
+    "accroche": "Au bout du passage dallé, une grande ouverture laisse sortir un air frais et des courants qui font vaciller les torches.",
+    "arrivee": "Au centre de ce large vestibule dallé, deux grandes figures de pierre grise se dressent, grandeur nature. Leurs écailles sont si fines, serrées, qu'un frisson vous parcourt l'échine. Chacune lève un bouclier, et son visage se fige dans un rictus d'épouvante, comme pour se couvrir les yeux. Jamais un burin n'a su produire pareille finesse dans la pierre grise. Au pied de la figure de gauche, une dalle fendue montre une cassure encore claire. Quatre passages rayonnent autour d'eux. Une porte gravée de runes circulaires laisse passer de faibles plaintes étouffées, et une lueur pâle filtre dessous. Un couloir aux dalles claires et sombres file droit devant, et une porte latérale mène à une pièce calme. De profondes traces de griffes lourdes raclent les dalles jusqu'au seuil d'une halle aux longs piliers brisés. Des courants d'air frais circulent entre les colonnes et font vaciller la poussière.",
+    "visuel": "Vaste vestibule au sol dallé de pierres claires et sombres. Au centre, deux grandes figures de pierre grise se dressent côte à côte, tenant des boucliers levés. Quatre ouvertures s'enfoncent dans les murs : une porte gravée de runes à gauche, une porte latérale, un couloir et un large passage à droite. La lumière vient d'une torche posée sur le sol et glisse sur la pierre.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-salle-invocation",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte gravée de runes circulaires, sans verrou visible ; derrière elle, une lueur pâle et une plainte étouffée, à peine audible.",
+        "retour": "La porte aux runes circulaires donne sur le vestibule, face aux deux figures de pierre grise."
+      },
+      {
+        "vers": "n3-autel-et-couloir-lames",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un couloir aux dalles claires et sombres, bas, file vers un petit sanctuaire blanc.",
+        "retour": "Le couloir aux dalles bicolores ramène au vestibule, entre les deux figures de pierre."
+      },
+      {
+        "vers": "n3-repos-des-pretres",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte latérale, bien ajustée dans le mur ; elle se referme sur une pièce qui semble calme, à l'abri des bruits du vestibule.",
+        "retour": "La porte du dortoir ramène au carrefour du vestibule, entre les deux figures."
+      },
+      {
+        "vers": "n3-hall-du-basilic",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un large passage où traînent des chaînes, dont le tintement roule jusqu'au vestibule.",
+        "retour": "Le large passage aux chaînes ramène au vestibule, et l'on entend encore leur traînée lourde."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-gardes-vraiment-petrifies", "decouverte": { "dd": 12, "competence": "nature" } },
+      { "fait": "f-plaintes-derriere-la-porte-runique", "decouverte": { "auto": true } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 55, "y": 65 }
+  },
+  {
+    "id": "n3-salle-invocation",
+    "nom": "La Salle d'Invocation",
+    "type": "salle",
+    "parent": "n3-vestibule-garde",
+    "resume": "Une chambre octogonale aux murs couverts de symboles lunaires, où une figure enchaînée semble attendre au centre d'un cercle d'argent.",
+    "description": "Note MJ : Salle 32. Baltoplate.",
+    "ambiance": "Parfum étrange de musc et de soufre refroidi sous la poussière, voix douce et implorante.",
+    "accroche": "On entend, derrière la porte gravée de runes circulaires, une voix faible qui appelle à l'aide.",
+    "arrivee": "Une tiédeur presque capiteuse imprègne cette chambre octogonale, où flotte une odeur de musc. Les murs lisses portent des symboles lunaires à demi effacés, d'anciennes invocations. Au milieu, sur un large piédestal cerclé de runes d'argent intactes, se tient une jeune femme pâle aux longs cheveux noirs. Des chaînes d'acier entourent ses poignets et tintent à chacun de ses gestes. Les runes d'argent gardent un éclat froid et jamais éteint. Dès que la clarté de vos torches l'atteint, elle lève vers vous des yeux humides et murmure un appel au secours. Elle ne pose jamais un doigt sur le tracé lumineux du cercle. Sur une table basse de basalte, à portée de main, dorment deux bols d'or massif, une dague noire ondulée et un serpent sculpté. Le froid de la pierre monte à travers vos semelles, malgré la tiédeur de l'air.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"baltoplate-reglee"},
+        "texte": "Le piédestal est nu, et le cercle d'argent ne luit plus : ses runes ont perdu leur éclat froid. Les chaînes pendent inertes au bord de la pierre, sans plus aucun tintement. Une marque de griffes noircies raye le tracé, large et profonde, comme un coup porté de l'intérieur. Aucune voix ne supplie plus dans la chambre octogonale ; seuls les symboles lunaires, à demi effacés, veillent sur les murs lisses. Sur la table basse de basalte, tout ce que la pièce garde d'offrandes attend à portée de main. L'air conserve un reste de musc, de plus en plus faible, et le froid qui monte à travers vos semelles ne vient plus que de la roche. On y entre maintenant sans retenir son souffle."
+      },
+      {
+        "condition": {"flag":"baltoplate-demasquee"},
+        "texte": "Le masque est tombé : les syllabes qui viennent d'être prononcées vibrent encore sur le cercle d'argent. Ce qui se tient sur le piédestal n'a plus rien d'une captive grelottante. Les chaînes se sont défaites et gisent au pied de la pierre, la lumière est plus froide. Des griffes noircissent le tracé de la barrière runique, et l'air porte un reste de musc et de colère. Un air de rage retenue émane de l'être, et il sait que vous savez. Sur la table de basalte, rien ne bouge désormais. La créature qui se dresse là ne cherche plus à plaire : elle attend, les griffes posées sur la pierre. Le cercle d'argent n'arrête plus rien, et le froid de la roche remonte jusqu'aux chevilles."
+      }
+    ],
+    "visuel": "Chambre octogonale aux murs lisses, couverts de symboles lunaires à demi effacés. Au centre, un piédestal de pierre pâle est cerclé d'un tracé d'argent brillant, et une figure pâle aux cheveux sombres s'y tient. Sur une table basse de basalte, deux coupes d'or et un serpent sculpté reposent près d'une lame noire.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "r-baltoplate-devoilee",
+        "declencheur": "exploration",
+        "condition": { "et": [{ "flag": "baltoplate-demasquee" }, { "non": { "flag": "baltoplate-reglee" } }] },
+        "unique": true
+      }
+    ],
+    "faits": [
+      { "fait": "f-serpent-de-pierre-ouvre-la-porte", "decouverte": { "dd": 12, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 38, "y": 60 }
+  },
+  {
+    "id": "n3-autel-et-couloir-lames",
+    "nom": "Le Couloir des Lames et l'Autel du Cobra",
+    "type": "salle",
+    "parent": "n3-vestibule-garde",
+    "resume": "Un couloir bas aux dalles alternées, qui débouche sur un petit sanctuaire blanc, orné d'un autel d'albâtre.",
+    "description": "Note MJ : Salles 34 et 33.",
+    "ambiance": "Bruit métallique tendu derrière les fentes murales, silence de pierre polie autour de l'autel.",
+    "accroche": "Au fond du couloir aux dalles bicolores, une blancheur d'albâtre se laisse voir à peine, derrière des murs étroits.",
+    "arrivee": "Huit larges dalles carrées se succèdent le long de ce couloir bas, alternant deux teintes : gris clair et anthracite. Dans les murs, à hauteur de poitrine, de fines meurtrières horizontales laissent passer une vieille odeur d'huile de lampe rance. Le couloir est étroit, et votre voix n'y porte pas loin. Vos torches allongent sur les dalles des ombres qui s'agitent à chaque pas. Au bout, la voûte s'élargit en un petit sanctuaire blanc. Un autel d'albâtre s'y dresse, et sur son pivot un cobra noir poli est posé de biais. Devant l'autel, deux rainures murales se font face, d'aspect très différent : l'une rongée d'un cerne verdâtre, l'autre nette et lisse. La pierre est froide, et les murs gardent l'empreinte d'un vieux travail. Une cassure de vieux mortier court le long du mur, jusqu'au plafond bas. Au plafond, la suie a noirci les joints.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"autel-cobra-ouvert"},
+        "texte": "Le cobra noir reste incliné vers la droite sur son pivot, face au mur. À la base de l'autel, une niche s'ouvre, et la cassette qu'elle abritait a été laissée ouverte. La rainure rongée d'un cerne verdâtre, à gauche, est restée close. Entre les deux rainures, une fine poudre de marbre blanc couvre le dallage. Le sanctuaire est calme ; l'odeur d'huile rance flotte encore, et la pierre reste froide sous la main. Le couloir aux dalles bicolores garde la même allure, avec ses fentes horizontales dans les murs. Rien d'autre n'a changé dans ce lieu, et le mécanisme ne dit plus rien à qui passe. Le cobra attend, figé dans sa position. Une lumière douce tombe de biais sur l'albâtre, sans chaleur. Les torches projettent sur les dalles une clarté qui ne change pas."
+      }
+    ],
+    "visuel": "Couloir étroit pavé de dalles carrées alternées, gris clair et anthracite, qui s'allonge vers le fond. Des fentes horizontales traversent les murs à hauteur de poitrine. Au bout, un petit sanctuaire blanc : un autel d'albâtre porte un cobra noir poli, monté sur un pivot, devant deux rainures murales, l'une verdâtre, l'autre nette. La lumière d'une torche tombe de biais sur l'albâtre.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-dalles-claires-sures", "decouverte": { "dd": 14, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 75, "y": 65 }
+  },
+  {
+    "id": "n3-repos-des-pretres",
+    "nom": "Chambre de repos des prêtres",
+    "type": "salle",
+    "parent": "n3-vestibule-garde",
+    "resume": "Une petite pièce close, derrière une porte de cèdre barrée de l'intérieur, dont les murs de calcaire tiennent le bruit à distance.",
+    "description": "Note MJ : Salle 35. Refuge sûr au niveau 3.",
+    "ambiance": "Air sec et poussiéreux, silence feutré derrière une lourde porte à verrou intérieur.",
+    "accroche": "Une porte latérale, bien ajustée dans le mur du vestibule, en cèdre épais et plein.",
+    "arrivee": "Derrière cette épaisse porte de cèdre plein, calée de l'intérieur par une solide barre de bois, règne un calme presque surprenant. Les ferrures de la porte sont intactes, et la barre tient encore sur ses deux attaches. Après la tension des couloirs noirs, la pièce semble ne rien attendre de vous. Des tas de vieux coussins de soie pourpre, déchirés par le temps, s'étendent le long de bancs de calcaire sec et propre. Jadis bourrés de crin souple, ils ont perdu leur forme, mais leur tissu tient encore sous les doigts. Les murs, taillés dans le massif rocheux, sont bien trop épais pour laisser passer le fracas lointain des chaînes. La salle garde une température égale, du sol jusqu'au plafond bas. La lumière de vos torches fait luire le calcaire, et les coussins retrouvent une teinte plus vive.",
+    "visuel": "Petite chambre close de calcaire lisse, aux murs épais, avec une porte de cèdre plein à deux ferrures. Des bancs bas de calcaire sec longent les parois, et sur eux s'entassent des coussins de soie pourpre fanée. La lumière d'une lampe tombe sur la pierre, et les tissus ont perdu leur éclat. Aucune ouverture ne perce les murs.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur",
+    "position": { "x": 75, "y": 55 }
+  },
+  {
+    "id": "n3-hall-du-basilic",
+    "nom": "Le Hall du Basilic",
+    "type": "salle",
+    "parent": "n3-vestibule-garde",
+    "resume": "Une grande salle ténébreuse, où huit piliers brisés découpent des îlots d'ombre sous une voûte criblée de nids.",
+    "description": "Note MJ : Salle 38 (+39). Basilic enchaîné portant cle-du-basilic.",
+    "ambiance": "Cliquetis de maillons de fer sur les dalles, odeur d'ammoniaque de chauves-souris et de reptile lourd.",
+    "accroche": "Au bout du large passage, un bruit de chaînes traîne sur la pierre, et une ombre épaisse s'étend au-delà du seuil.",
+    "arrivee": "Huit piliers massifs brisés à mi-hauteur découpent cette grande salle ténébreuse en îlots d'ombre. La haute voûte, criblée de vieux nids de chauves-souris sèches, se perd dans la noirceur. Du milieu du plafond pend une longue chaîne de fer forgé, épaisse comme un poignet d'homme. Elle est tendue jusqu'à un collier cuirassé, celui d'une bête écailleuse à huit pattes. Lourdement, la bête tourne entre les colonnes mutilées et râpe les dalles calcaires de ses griffes. Tout au fond, une double porte monumentale se dresse, sans loquet ni poignée. Creusée d'une profonde encoche en forme de serpent lové, elle ne laisse voir aucune serrure classique. Plus loin, une clarté violette, calme et régulière, filtre depuis un couloir de lampes alchimiques. La chaîne tinte à peine quand elle bouge, et le plafond renvoie chaque bruit en écho. Entre deux colonnes, les dalles portent des marques pâles, raclures anciennes et profondes.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"basilic-vaincu"},
+        "texte": "La bête enchaînée gît désormais, masse écailleuse immobile entre deux piliers brisés. La chaîne de fer pend molle du plafond, sans plus tinter ; ses maillons raclent faiblement quand le courant d'air les touche. Les huit piliers restent brisés à mi-hauteur, et les vieux nids de chauves-souris sèches tapissent toujours la voûte. Un relent de reptile lourd flotte encore dans la salle, mais plus aucun râpement de griffes ne troue le silence. Au fond, la double porte n'a ni poignée ni loquet, et son encoche en forme de serpent lové attend toujours. Plus loin, la clarté violette, calme et régulière, filtre toujours depuis le couloir. Le hall reste silencieux, et ses ombres ne bougent plus au rythme des griffes. Vos pas résonnent de nouveau sur les dalles, sans crainte de ce qui rôdait entre les colonnes."
+      }
+    ],
+    "visuel": "Vaste salle souterraine sous une voûte sombre, soutenue par huit piliers brisés à mi-hauteur. Une longue chaîne de fer descend du plafond jusqu'à une lourde pièce de métal cuirassé, parmi les colonnes. Au fond, une double porte de pierre sans poignée porte une encoche en forme de serpent lové. À droite, une clarté violette, celle d'une lampe alchimique, filtre au bout d'un couloir.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-antichambre-xiximantre",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un couloir éclairé de lampes à l'huile violette file vers une salle où quelqu'un se tient.",
+        "retour": "Le couloir aux lampes violettes ramène dans l'ombre des huit piliers du hall."
+      },
+      {
+        "vers": "n3-salle-du-trone",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 18, "cle": "serpent-de-pierre-cle" },
+        "description": "Une haute porte sans loquet, avec seulement une cavité taillée pour un serpent sculpté ; elle reste close.",
+        "retour": "La porte gravée donne sur la grande salle aux piliers ; de ce côté, la cavité en forme de serpent reste vide."
+      },
+      {
+        "vers": "n3-porte-cylindre-et-reserve",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un corridor aboutit devant un curieux tambour de pierre cylindrique qui tourne sur un axe.",
+        "retour": "En retraversant le tambour de pierre, on débouche de nouveau dans le hall aux huit piliers."
+      },
+      {
+        "vers": "n3-escalier-surface",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 16, "competence": "perception" },
+        "description": "Une dalle coulissante, mal jointoyée, s'ouvre dans le mur sur un boyau étroit qui file vers des galeries pleines de champignons.",
+        "retour": "Le boyau ramène derrière une dalle coulissante, au cœur du hall, à côté des huit piliers."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-basilic-enchaine", "declencheur": "exploration", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-cle-sur-collier-basilic", "decouverte": { "dd": 12, "competence": "perception" } },
+      { "fait": "f-chaine-du-basilic", "decouverte": { "dd": 11, "competence": "investigation" } },
+      { "fait": "f-porte-hall-encoche-serpent", "decouverte": { "auto": true } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 55, "y": 40 }
+  },
+  {
+    "id": "n3-antichambre-xiximantre",
+    "nom": "Antichambre de Xiximantre",
+    "type": "salle",
+    "parent": "n3-hall-du-basilic",
+    "resume": "Salon souterrain tendu de soie émeraude, éclairé de six lampes d'alchimiste, où un hôte méticuleux entretient son brasero et ses traités.",
+    "description": "Note MJ : Salle 40. Résidence de Xiximantre.",
+    "ambiance": "Lumière violette douce, odeur d'encens résineux et de plantes distillées, courtois sifflement dans le silence.",
+    "accroche": "Au fond du hall, une tenture de soie émeraude bouge sous une lueur violette, et un parfum de résine passe la porte.",
+    "arrivee": "Pour la première fois depuis le soleil blanc du Val, une vaste salle souterraine s'ouvre devant vous, et l'air y est étonnamment doux. Six lampes d'alchimiste pendent du plafond par de fines chaînettes d'argent et versent un halo violet, serein, sur de grandes tentures de soie émeraude brodées au fil d'or de cités rayonnantes. Le tissu est intact : aucune tache, aucune déchirure, seulement l'éclat ancien des fils. Un lutrin d'ébène porte des traités rangés avec soin, et les coussins ont été battus avant votre arrivée. Le brasero, sans suie, fume doucement, et l'odeur de résine chaude qui monte de ses braises remplit la pièce jusqu'aux tentures. Près du feu, une mince silhouette écailleuse vêtue d'une longue robe de soie pourpre tourne la tête vers vous. Elle s'incline avec une politesse surannée dès que vos ombres franchissent le seuil, puis elle attend, les mains jointes, comme si vous étiez attendus.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"xiximantre-vaincu"},
+        "texte": "Le seuil de la salle d'audience est silencieux. Les six lampes d'alchimiste brûlent encore à leurs chaînettes d'argent et versent leur halo violet sur les tentures de soie émeraude, brodées au fil d'or, qui pendent immobiles. Le brasero sans suie s'est éteint ; il ne reste qu'un cercle de cendres blanches et une odeur de résine refroidie. Les coussins sont toujours battus, mais personne ne s'y est assis depuis longtemps. Le lutrin d'ébène garde ses traités rangés, sans un feuillet déplacé. Plus personne n'incline la tête sur le seuil, et cette absence se remarque au premier pas, comme une marche de moins. Une trace de poussière marque encore le sol devant le brasero, là où une robe a dû traîner. Le silence pèse plus que les lampes, et la salle paraît plus grande."
+      },
+      {
+        "condition": {"flag":"xiximantre-allie"},
+        "texte": "Le maître des lieux vous accueille comme des hôtes de marque. Les coussins battus ont été disposés en cercle autour du brasero sans suie, et quelque chose d'épicé et de résineux chauffe sur les braises. Les six lampes d'alchimiste brûlent à leurs chaînettes d'argent et versent leur halo violet sur les tentures de soie émeraude, brodées de cités au fil d'or, qui n'ont pas bougé. Le lutrin d'ébène attend, avec ses traités rangés, et l'on vous laisse les feuilleter si vous le souhaitez. La politesse surannée reste la même, mais elle a changé de nature : elle ressemble presque à de la chaleur. La mince silhouette en robe pourpre indique un coussin, puis un autre, sans rien exiger d'emblée. Ici, personne ne cherche querelle, et l'odeur sucrée qui se dégage des braises donne envie de s'asseoir."
+      }
+    ],
+    "visuel": "Salle souterraine à voûte de calcaire, aux murs couverts de tentures de soie vert émeraude qui pendent jusqu'au sol. Au centre, un brasero de bronze fume entre des coussins battus ; à gauche, un lutrin d'ébène porte des traités bien rangés ; au fond, une tenture brodée d'or montre des cités serpentines. Six lampes d'alchimiste suspendues au plafond par des chaînettes d'argent versent une lumière violette. Tout est intact : les tissus sont droits, les coussins sont battus, rien n'est tombé.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-reserve-et-oubliettes",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "description": "Une porte latérale, bien huilée, s'ouvre sur le côté de la salle, et l'on devine derrière elle un air plus humide, chargé d'épices.",
+        "retour": "Une porte latérale bien huilée, vue de ce côté, ramène dans la salle aux tentures de soie émeraude, où la résine embaume toujours."
+      }
+    ],
+    "rencontres": [
+      {
+        "id": "r-xiximantre-courroux",
+        "declencheur": "exploration",
+        "condition": { "flag": "xiximantre-provoque" },
+        "unique": true
+      }
+    ],
+    "faits": [
+      { "fait": "f-empire-chute-xiximantre", "decouverte": { "dd": 13, "competence": "intuition" } },
+      { "fait": "f-xiximantre-troque-curiosites", "decouverte": { "dd": 11, "competence": "intuition" } },
+      { "fait": "f-xiximantre-ne-supporte-pas", "decouverte": { "dd": 14, "competence": "intuition" } },
+      { "fait": "f-cle-de-xiximantre-ceinture", "decouverte": { "dd": 12, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 78, "y": 25 }
+  },
+  {
+    "id": "n3-reserve-et-oubliettes",
+    "nom": "Réserve à ingrédients et Oubliettes",
+    "type": "salle",
+    "parent": "n3-antichambre-xiximantre",
+    "resume": "Réserve aux bocaux d'épices, aux rayonnages de cèdre et à la porte blindée du fond, où six grilles de fer barrent le sol.",
+    "description": "Note MJ : Salle 41.",
+    "ambiance": "Odeur d'épices précieuses mêlée aux plaintes faibles montant d'en dessous des grilles de fer.",
+    "accroche": "Par la porte latérale bien huilée, passe une odeur de cèdre et d'épices sèches.",
+    "arrivee": "Des rayonnages de cèdre rouge, époussetés avec soin, plient sous des rangées de bocaux de verre hermétiques. Les pistils de safran y sont d'un écarlate vif, les poudres minérales ont la couleur de l'or, et les grosses graines noires n'ont pas une fêlure. Le bois sent encore la résine et la cire, et ce parfum sec couvre à peine une autre odeur, plus lourde, qui monte du sol. Sous vos semelles, six lourdes grilles de fer sont encastrées dans les dalles : elles bouchent autant de puits étroits, humides, creusés dans le roc. Au fond de cinq d'entre eux se recroquevillent des prisonniers : quatre petits êtres verts aux côtes saillantes, et un homme émacié aux doigts tachés d'encre bleue. Tous lèvent vers vous des mains maigres et tremblantes. Ils ne crient pas : ils supplient dans un souffle brisé, et leur voix se perd dans la pierre. Tout au bout, une porte blindée reste close, et chaque bruit revient deux fois.",
+    "visuel": "Petite salle voûtée de pierre, aux murs couverts de rayonnages de cèdre rouge. À droite, des bocaux de verre alignés renferment des poudres rouges et dorées ; au centre du sol, six grilles de fer sont encastrées dans des dalles grises. Au fond, une porte blindée reste close, et des puits étroits descendent sous les grilles, dans l'ombre. La lumière des torches tombe de haut et s'arrête net au bord des grilles.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-laboratoire",
+        "type": "porte",
+        "heures": 0,
+        "sens": "double",
+        "verrou": { "dd": 18, "cle": "cle-de-xiximantre" },
+        "description": "Au fond, une porte de fer protégée par une fine serrure de bronze mène à un atelier. Le bronze luit, astiqué de frais.",
+        "retour": "Vue de l'atelier, cette porte de fer ramène entre les rayonnages d'épices et les grilles des oubliettes, et sa serrure de bronze reste du côté de la pièce."
+      },
+      {
+        "vers": "n3-salle-du-trone",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 15, "competence": "perception" },
+        "description": "Un rayonnage pivotant, une fois trouvé, laisse voir un escalier étroit et glissant qui s'élève dans l'ombre, de marche en marche, vers une salle plus haute.",
+        "retour": "À l'arrière de l'estrade, un escalier étroit et glissant, caché dans le mur, descend vers le cellier aux bocaux et aux grilles."
+      }
+    ],
+    "rencontres": [
+      {"id": "r-grilles-des-oubliettes", "declencheur": "entree", "unique": true}
+    ],
+    "faits": [
+      { "fait": "f-prisonniers-gobelins-oubliettes", "decouverte": { "auto": true } },
+      { "fait": "f-elios-recopie-les-commandes", "decouverte": { "auto": true } },
+      { "fait": "f-reserve-escalier-trone", "decouverte": { "dd": 15, "competence": "perception" } },
+      { "fait": "f-gobelins-rongeaient-les-racines", "decouverte": { "dd": 12, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 85, "y": 15 }
+  },
+  {
+    "id": "n3-laboratoire",
+    "nom": "Le Laboratoire Alchimique",
+    "type": "salle",
+    "parent": "n3-reserve-et-oubliettes",
+    "resume": "Atelier d'alchimiste aux paillasses d'ardoise, aux alambics de verre et aux casiers de fioles, où des brûleurs entretiennent des distillations.",
+    "description": "Note MJ : Salle 42.",
+    "ambiance": "Glouglous lents dans le verre, vapeurs d'ambre et de menthe alchimique, chaleur douce.",
+    "accroche": "Derrière la porte de fer, verrouillée, un bruit d'eau qui bout doucement et une vapeur d'ambre filtrent sous le seuil.",
+    "arrivee": "L'atelier respire une patience obstinée et silencieuse. Sur de longues paillasses d'ardoise sombre, polie jusqu'au reflet, s'alignent des alambics de verre soufflé reliés par de fins serpentins de cuivre luisant. Des mortiers d'agate verte veinée sont alignés au bout des plans, et des brûleurs sans suie ni fumée entretiennent une douce ébullition dorée. Le mur du fond disparaît derrière des casiers de bois, pleins de fioles étiquetées d'une écriture serpentine si fine qu'il faut se pencher. Décoctions carmin épaisses, baumes limpides couleur d'eau de source, antidotes verts scellés à la cire. Les alambics font des glouglous lents, et de la vapeur d'ambre et de menthe monte dans l'air tiède. Sous les paillasses, le sol porte les marques de pas usés, creusés au même endroit depuis des années. Rien n'est poussiéreux, rien n'est cassé, et chaque objet semble posé la veille.",
+    "visuel": "Atelier long et bas, aux murs de pierre nue. Au centre, de longues paillasses d'ardoise sombre portent des alambics de verre soufflé reliés par des serpentins de cuivre luisant. Au fond, un mur entier de casiers de bois sombre, rangés de fioles carmin, vertes et limpides. La clarté vient de brûleurs posés sur les plans, sans fumée, et les alambics bouillent.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 92, "y": 10 }
+  },
+  {
+    "id": "n3-salle-du-trone",
+    "nom": "La Salle du Trône Miroitant",
+    "type": "salle",
+    "parent": "n3-hall-du-basilic",
+    "resume": "Salle d'apparat sur estrade de marbre, dominée par un trône d'or entouré de huit miroirs à manche, où les coussins pourrissent sur un siège vide.",
+    "description": "Note MJ : Salle 43.",
+    "ambiance": "Reflets multiples dans le verre d'argent, silence solennel chargé d'une ivresse froide.",
+    "accroche": "Au fond du hall, une porte à serrure serpentine ferme une salle d'où filtre un éclat jaune, presque doré.",
+    "arrivee": "En haut de trois larges marches de marbre blanc veiné d'émeraude, un siège massif d'or ciselé porte deux cobras royaux en guise d'accoudoirs, prêts à frapper. Huit miroirs à manche, cerclés d'argent fin, sont posés en arc sur de légers chevalets d'ébène tout autour de l'estrade, et chacun renvoie l'éclat jaune de vos torches. Les coussins sont vieux et pourris, leur tissu s'effrite sous la main ; le dossier, lui, est froid, comme une pierre de cave. Nulle dépouille royale ni couronne d'or ne reposent ici. En vous approchant, vous voyez vos huit reflets pâles se répondre dans le verre d'argent. Une envie de grandeur effleure doucement votre nuque, sans qu'on sache d'où elle vient. L'estrade est propre et vide, et le marbre blanc renvoie une clarté dorée jusque dans les coins. Sous vos pieds, le sol résonne à peine, et chaque pas se perd dans l'air tiède et lourd.",
+    "arriveeVariantes": [
+      {
+        "condition": {"fait":"f-empire-chute-xiximantre"},
+        "texte": "La salle d'apparat n'annonce plus rien. Les trois marches de marbre blanc veiné d'émeraude mènent toujours au trône d'or ciselé, dont les accoudoirs en deux cobras dressés brillent encore, mais l'or a perdu sa promesse. Les huit miroirs à manche, cerclés d'argent, ne reflètent plus qu'un petit groupe de pillards poussiéreux, en train de se demander ce qu'ils attendaient. Les coussins pourris s'affaissent sous les regards, et l'estrade vide ressemble à un salon d'attente où personne ne vient plus. Vous pourriez presque sourire : ce règne a dû être magnifique, et il ne reste de lui que cette attente. Le marbre est froid sous les semelles, les torches grésillent, et l'écho de vos pas revient d'un ton ironique, comme une plaisanterie ancienne."
+      }
+    ],
+    "visuel": "Salle haute aux murs de marbre blanc veiné de vert, au centre d'une estrade qui monte par trois marches. Au fond, un siège massif d'or ciselé aux accoudoirs en deux cobras dressés se détache dans la lumière jaune des torches. Huit miroirs à manche cerclés d'argent sont posés en arc sur des chevalets d'ébène, autour de l'estrade. Les coussins sont pourris, et l'estrade reste vide.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-rumeur-trone-maudit", "decouverte": { "dd": 13, "competence": "arcanes" } },
+      { "fait": "f-trone-insuffle-la-folie", "decouverte": { "dd": 16, "competence": "arcanes" } },
+      { "fait": "f-couronne-manque-au-trone", "decouverte": { "dd": 10, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 60, "y": 15 }
+  },
+  {
+    "id": "n3-porte-cylindre-et-reserve",
+    "nom": "Le Sas Cylindrique et la Fosse des Gobelins",
+    "type": "salle",
+    "parent": "n3-hall-du-basilic",
+    "resume": "Un tambour de granit pivote sur son axe pour ouvrir un boyau encombré d'outils et de paniers, au bout duquel un puits sent la vase.",
+    "description": "Note MJ : Regroupe les salles 44, 45 et 46.",
+    "ambiance": "Grincement de pierre pivotante sur gond central, odeur écœurante de vase animale et de champignon acide.",
+    "accroche": "Dans le fond du hall, un épais cylindre de granit grince sur son pivot et laisse passer une odeur de vase.",
+    "arrivee": "Un cylindre de granit gris, poli par le temps, barre l'accès vers l'autre aile de la nécropole. Il repose sur un lourd pivot central et grince dès qu'on le touche, d'un son long et métallique. En le poussant vers la droite, son ouverture glisse lentement sur un boyau bas. Ce boyau est encombré de quatre vieilles pioches émoussées, de paniers d'osier fendus et de sacs de toile grossière. Un bracelet de laiton jaune traîne dans la poussière, à demi enfoui, comme oublié là depuis longtemps. Plus loin, juste au-delà de ce boyau, un puits suinte une boue grisâtre, et son odeur acide et écœurante monte jusqu'à vous. La fermentation y est ancienne, faite de vase morte, de bois pourri et de restes d'expériences ratées. Le sol, pourtant, est sec sous vos semelles, et ce contraste déconcerte. La pierre du cylindre est froide au toucher, et ses veines blanches luisent à la torche.",
+    "visuel": "Un cylindre de granit gris, poli, monté sur un pivot central, occupe l'arche de pierre. À droite de son ouverture, un boyau bas laisse voir des pioches, des paniers et des sacs entassés. Au-delà, un puits suinte une boue grisâtre. La lumière des torches glisse sur le granit humide, et le cylindre est à demi tourné.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-salle-commune-gobeline",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Passé la réserve des pioches, le boyau s'élargit vers des feux bas et des voix aiguës qui jacassent.",
+        "retour": "Le boyau ramène vers le tambour de granit et le puits qui suinte ; sa paroi garde des traces de pioches."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-sas-sens-du-tambour", "decouverte": { "dd": 12, "competence": "investigation" } }
+    ],
+    "services": [],
+    "repos": "impossible",
+    "position": { "x": 35, "y": 35 }
+  },
+  {
+    "id": "n3-salle-commune-gobeline",
+    "nom": "La Salle Commune des Gobelins",
+    "type": "salle",
+    "parent": "n3-porte-cylindre-et-reserve",
+    "resume": "Une salle souterraine enfumée, faite de couches de mousse, de foyers de braises et de barricades de bois taillé.",
+    "description": "Note MJ : Regroupe les salles 47, 48 et 49.",
+    "ambiance": "Fumée basse de mousse sèche, croûtes de champignons grillés, murmures affolés en gobelin.",
+    "accroche": "Au bout du boyau, une fumée grise monte d'un foyer, avec des cris aigus et des bruits de ferraille.",
+    "arrivee": "Une vingtaine de couches basses, faites de mousse humide et de fougères grisâtres, s'étalent en cercle irrégulier. Autour d'un foyer de braises grises, de vieux sacs rapiécés et des guenilles sombres traînent sur la mousse. Sur des pierres plates, de gros chapeaux de champignons blancs, fendus à la serpe, rôtissent et fument doucement. Dans un recoin, des tessons de verre colorés et des bouts de ficelle nouée entourent une lourde statue d'or, arrachée jadis à une fontaine. Autour d'elle s'alignent des cuillères tordues et des offrandes dérisoires. Une barricade sommaire de fourches et de pieux, taillés à la hâte, barre la percée qui mène au dôme. Derrière des caisses renversées, des yeux jaunes brillent, apeurés. La fumée reste basse, épaisse de mousse sèche, et quelque part un jacassement sourd s'éteint aussitôt. Le sol est tiède sous les couches, et la mousse crisse à chaque mouvement.",
+    "visuel": "Salle basse de pierre noircie de suie, au sol couvert de mousse et de fougères grisâtres. Au centre, un foyer de braises grises éclaire des pierres plates où rôtissent des champignons blancs. À gauche, une statue d'or repose contre le mur, entourée de tessons de verre coloré ; au fond, une barricade de pieux barre une ouverture. La lumière vient des braises, et la fumée monte basse.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-ferme-champignons",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Un couloir humide, bordé de paniers d'osier, s'ouvre derrière les couches et s'enfonce vers une fraîcheur spongieuse qui sent la terre.",
+        "retour": "Ce couloir, vu de la ferme, remonte vers la fumée grise des couches, entre des paniers d'osier et une paroi couverte de terre humide."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-eclaireurs-gobelins", "declencheur": "entree", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-gobelins-refugies-aile-ouest", "decouverte": { "auto": true } },
+      { "fait": "f-statue-or-salle-commune", "decouverte": { "auto": true } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 20, "y": 40 }
+  },
+  {
+    "id": "n3-ferme-champignons",
+    "nom": "La Ferme aux Champignons",
+    "type": "salle",
+    "parent": "n3-salle-commune-gobeline",
+    "resume": "Une champignonnière souterraine, faite de planches de terreau noir et de rangées de champignons blancs et bleutés, au fond de sombres terriers.",
+    "description": "Note MJ : Salle 50. Skriik.",
+    "ambiance": "Odeur de terre noire humide, d'humus et de mycélium frais dans la pénombre calme.",
+    "accroche": "Au bout du couloir bordé d'osier, l'air se rafraîchit et une odeur de terre humide monte vers la salle.",
+    "arrivee": "À peine la fumée grise du dortoir dépassée, l'air change d'un seul coup. Il devient frais et lourd, et la terre noire et grasse se devine sous chaque pas. Sur de longues planches sombres, posées sur de vieux madriers d'acacia, poussent des rangées de gros champignons blancs et bleutés, aux chapeaux charnus. Certains sont larges comme de petits tabourets. Un être maigre, armé d'une courte serpe d'os et vêtu d'un grand tablier de cuir rafistolé, coupe sa récolte avec calme. Il ne cherche pas querelle à qui respecte ses planches, et il ne lève même pas les yeux. Chaque pas s'étouffe dans la terre meuble, sans bruit. Une fraîcheur de caverne profonde enveloppe la pièce, et les champignons luisent faiblement dans l'ombre. Au bout des planches, la terre a été ratissée avec soin, et chaque rangée est droite.",
+    "arriveeVariantes": [
+      {
+        "condition": {"flag":"gobelins-sauves"},
+        "texte": "Les quatre cueilleurs libérés des oubliettes sont assis au bord des planches, maigres, enveloppés dans des sacs de toile. Ils boivent à petites gorgées l'eau tiède qu'on leur a tendue, et serrent contre eux leurs serpes d'os, comme on serre un souvenir. L'air d'humus noir et de champignons frais a repris sa douceur, une fraîcheur de sous-bois monte doucement entre les madriers, et l'on n'entend plus que le bruit léger d'une goutte qui tombe au fond. Le cueilleur au tablier rafistolé vous regarde sans un mot, les mains immobiles pour une fois. Personne ne réclame rien, et personne ne se dispute les planches. Les rangées de champignons blancs et bleutés restent droites, sous la terre luisante d'humidité, et le sous-bois retrouve sa paix d'avant."
+      }
+    ],
+    "visuel": "Caverne basse, cultivée en plates-bandes de terre noire, avec de longues planches sombres posées sur des madriers d'acacia. À gauche, des rangées de gros champignons blancs et bleutés, aux chapeaux charnus, dont certains dépassent la hauteur d'un tabouret ; au centre, une courte serpe d'os repose sur une planche. La lumière vient d'une torche fichée dans la paroi du fond, et ne dépasse pas les planches. Les rangées sont droites, et la terre reste luisante d'humidité.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "n3-escalier-surface",
+        "type": "passage",
+        "heures": 0,
+        "sens": "double",
+        "description": "Au fond de la caverne, un boyau étroit monte entre des racines pendantes, et un souffle d'air plus sec descend jusqu'à vous, comme venu de très haut.",
+        "retour": "Le boyau de terre redescend vers la fraîcheur de la ferme aux champignons, entre des racines mortes qu'on frôle en passant."
+      }
+    ],
+    "rencontres": [
+      { "id": "r-troc-skriik-champignons", "declencheur": "entree", "unique": true }
+    ],
+    "faits": [
+      { "fait": "f-couronne-chez-gobelins", "decouverte": { "dd": 12, "competence": "investigation" } },
+      { "fait": "f-skriik-troque-couronne", "decouverte": { "dd": 12, "competence": "intuition" } }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "position": { "x": 15, "y": 25 }
+  },
+  {
+    "id": "n3-escalier-surface",
+    "nom": "L'Escalier sous les Racines",
+    "type": "salle",
+    "parent": "n3-ferme-champignons",
+    "resume": "Une galerie étroite s'achève au pied d'un escalier raide de terre battue, sous des racines mortes qui crèvent la voûte.",
+    "description": "Note MJ : Salles 51 et 52.",
+    "ambiance": "Air sec du désert qui descend le long des marches terreuses, odeur d'écorce sèche et de racines.",
+    "accroche": "Au fond de la ferme, un souffle d'air pur descend le long de marches enfouies sous des racines mortes.",
+    "arrivee": "L'étroite galerie s'achève au pied d'un escalier raide, taillé dans une terre compacte. Au-dessus de vous, la voûte brune crève sous l'enchevêtrement d'épaisses racines mortes, qui semblent retenir les marches à bout de bras. Entre ces fibres sèches descend une brise tiède et vive, venue tout droit du plateau du Val. Elle apporte le bruit lointain du vent dans l'herbe sèche, et une chaleur de sable balayé. Sous vos semelles, la terre battue cède un peu : les marches sont irrégulières, usées au milieu, et chaque pas y laisse une empreinte nette. Une odeur de crottin de mule, portée par la brise, rappelle que le bivouac est tout proche. Plus haut, un rai de jour blanc filtre entre les racines et tombe en biais sur la terre sèche. Vous sentez que l'air est plus doux à chaque marche.",
+    "visuel": "Escalier raide de terre battue aux marches irrégulières, serré entre deux parois de terre compacte. Au-dessus, la voûte est traversée d'épaisses racines mortes, grises et fendues, qui se croisent comme des cordes. Un rai de lumière blanche tombe du haut et éclaire la première marche. Quelques éclats de pierre et de la terre tassée montrent qu'on est passé par là.",
+    "niveau": { "min": 2, "max": 3 },
+    "liens": [
+      {
+        "vers": "bivouac-entree",
+        "type": "passage-secret",
+        "heures": 0,
+        "sens": "double",
+        "cache": { "dd": 15, "competence": "perception" },
+        "description": "Une fois les racines écartées, tout en haut des marches, on voit des marches de terre qui montent vers l'air libre, à l'arrière d'un bivouac.",
+        "retour": "Sous les racines noueuses du vieil arbre mort, un escalier dérobé s'enfonce droit vers les profondeurs de la nécropole, marche après marche."
+      }
+    ],
+    "rencontres": [],
+    "faits": [
+      { "fait": "f-sortie-racines-surface", "decouverte": { "auto": true } },
+      { "fait": "f-raccourci-gobelin-basilic", "decouverte": { "dd": 14, "competence": "perception" } }
+    ],
+    "services": [],
+    "repos": "sur",
+    "position": { "x": 25, "y": 15 }
+  }
+]
