@@ -183,7 +183,8 @@ describe('mondes livrés', () => {
       if (!manifeste || !r.ok) return;
       expect(verifierImages(r.monde, manifeste).inconnues).toEqual([]);
       for (const fichiers of Object.values(manifeste)) {
-        for (const f of Object.values(fichiers)) expect(existsSync(join(dossier, 'images', f)), f).toBe(true);
+        // Une référence `commun:pnj/…` ou `commun:objets/…` n'est pas un fichier du monde (bibliothèque commune, vérifiée par `pnpm monde manque`).
+        for (const f of Object.values(fichiers)) if (!f.startsWith('commun:')) expect(existsSync(join(dossier, 'images', f)), f).toBe(true);
       }
     });
   }

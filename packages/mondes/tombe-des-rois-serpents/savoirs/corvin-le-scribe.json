@@ -1,0 +1,128 @@
+[
+  {
+    "pnj": "corvin-le-scribe",
+    "passe": "Corvin le Tabellion a cinquante et un ans. Notaire de Valdargent, la cité marchande à cinq jours de piste du Val, il sert le seigneur Aldéric depuis vingt ans. Aldéric l'a envoyé au Fort du Reflet Béni pour rédiger, classer et conserver les doubles des contrats. Il tient le registre des compagnies ayant signé : trois avant le groupe. Il y a inscrit Élios de la Plume comme disparu il y a sept mois, et une part de solde de quarante pièces d'argent reste non réclamée. Au fort, il ne s'emporte jamais, même devant des querelles : il recopie, il relit, et la discussion meurt sur le papier.",
+    "liens": [
+      {
+        "pnj": "martin-le-valet",
+        "nature": "Valet de confiance d'Aldéric, qui surveille la pesée de la part.",
+        "opinion": "Martin m'écrit, et il compte aussi juste que moi : nous ne nous trompons jamais de ligne."
+      },
+      {
+        "pnj": "elios-captif",
+        "nature": "Scribe du collège de Valdargent, inscrit en tête de sa liste des disparus.",
+        "opinion": "Un bon scribe, dont le nom ne doit pas rester sur une liste sans réclamation. Sa part de solde attend dans une enveloppe scellée."
+      },
+      {
+        "pnj": "solene-caravaniere",
+        "nature": "Marchande de caravane, de la maison de Valdargent.",
+        "opinion": "Une Valdargent de la caravane, qu'il range dans les écritures de la maison : un nom de plus à classer, sans plus d'histoire."
+      },
+      {
+        "pnj": "commandeur-garin",
+        "nature": "Commandant du Fort du Reflet Béni.",
+        "opinion": "Il tient la garnison et les murs chaulés ; Corvin tient les registres, et il veille à ce qu'aucune signature ne se perde entre les deux."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "lunettes-fil-de-cuivre",
+        "texte": "Ses lunettes tiennent sur le nez par un fil de cuivre. Il les rajuste d'un doigt avant chaque paragraphe qu'il cite, comme on pose une virgule dans une marge, et il ne quitte jamais sa redingote usée aux coudes.",
+        "acces": {}
+      },
+      {
+        "id": "ecritoire-de-laiton",
+        "texte": "Son écritoire de laiton se ferme d'un claquement sec. Il la referme comme on ferme un cercueil, sans un mot de plus, dès qu'une affaire est close. Il n'aime pas les conversations qui traînent après la signature.",
+        "acces": {}
+      },
+      {
+        "id": "paragraphes-de-memoire",
+        "texte": "Il cite les paragraphes de mémoire, sans jamais ouvrir le vélin. Un contrat qu'on ne sait pas réciter lui paraît déjà à moitié rompu, et il le dit sans hausser la voix, avec le ton d'un homme qui lit un inventaire.",
+        "acces": {}
+      },
+      {
+        "id": "grand-registre-de-velin",
+        "texte": "Le grand registre de vélin ne quitte jamais sa table. Il le tapote d'un doigt sec, de haut en bas, comme on compte des pièces avant de les signer. Chaque acte y figure à sa date, dans l'ordre d'arrivée.",
+        "acces": {}
+      },
+      {
+        "id": "peur-des-ratures",
+        "texte": "Les ratures le font serrer les lèvres. Une page raturée ne lui semble pas un accident mais une faute, et il recopie la ligne entière, au propre, avant de continuer. Il n'a jamais accepté une correction à l'encre sur un contrat.",
+        "acces": {}
+      },
+      {
+        "id": "querelles-devant-temoins",
+        "texte": "Une querelle devant témoins le glace plus qu'un coup d'épée. Il demande alors que chacun signe, puis que chacun relise, et la dispute meurt sur le papier. Il préfère un contrat sec à une parole bruyante.",
+        "acces": {}
+      },
+      {
+        "id": "mercenaires-et-signatures",
+        "texte": "Il juge les mercenaires avec une tendresse de notaire : des gens qui signent sans lire la clause de la solde et qui s'étonnent ensuite de la lire. Il ne les méprise pas, il les classe.",
+        "acces": {}
+      },
+      {
+        "id": "eau-du-puits-clair",
+        "texte": "Il fait remplir sa gourde au puits clair, la seule eau bonne du Val, et il ne se plaint jamais de la soif. Il le fait chaque matin avant d'ouvrir son registre.",
+        "acces": {}
+      },
+      {
+        "id": "murs-chaules-du-fort",
+        "texte": "Les murs chaulés du fort renvoient le soleil, et il travaille près de la fenêtre en plissant les yeux. Il trouve ce reflet trop vif pour lire une ligne fine, et il pose toujours ses lunettes avant de tourner une page.",
+        "acces": {}
+      },
+      {
+        "id": "elios-sur-la-liste",
+        "texte": "Sur sa liste, un nom est encore écrit à l'encre noire : celui d'Élios de la Plume, scribe du collège de Valdargent, parti avec la première compagnie il y a sept mois. Il ne rature pas ce nom, faute de nouvelles.",
+        "acces": {}
+      },
+      {
+        "id": "cire-brisee",
+        "texte": "Il y a douze ans, un apprenti a brisé un sceau. Ce sceau lui a coûté son étude de Valdargent, et Aldéric l'a reprise à moitié prix. Corvin lui doit tout. Il le sert sans l'aimer.",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "evasif": "« Je n'en parlerai pas à des inconnus. Une étude perdue ne se raconte pas devant témoins, et je ne dis que ce qui est classé. » Il ferme son écritoire et reprend sa plume."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-contrat",
+        "fait": "f-contrat-moitie-part",
+        "version": "Il récite le contrat de mémoire, sans ouvrir son vélin : Aldéric finance l'expédition et exige la moitié exacte du butin, pesée sous la surveillance de son valet Martin.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-trois-compagnies",
+        "fait": "f-pnj-compagnies-precedentes",
+        "version": "Trois compagnies ont signé avant vous. La première, partie il y a sept mois, n'est jamais remontée ; une autre a reculé devant la barre de granit ; la dernière a perdu deux hommes dans la vapeur des cercueils.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-vapeur",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Il tient cela du rapport de Varnac : les cercueils d'argile des gardiens et des prêtres lâchent une vapeur verte dès qu'on brise leur couvercle trop brutalement.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-trone-des-clients",
+        "fait": "f-rumeur-trone-maudit",
+        "version": "On raconte qu'un trône d'or fait roi du désert quiconque s'y assoit. Corvin n'y croit qu'à moitié : il dit que le siège insuffle une folie conquérante.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "martin-compte-tout",
+        "fait": "f-martin-compte-tout",
+        "version": "Martin pèse, compte et note chaque pièce sortie de la tombe sur son carnet. Une dissimulation grossière laisse toujours une trace, et Corvin sait qu'elle finit par se voir dans les comptes.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "tabou": [],
+        "evasif": "Il ferme son écritoire et dit que les habitudes d'un confrère ne se commentent pas devant des tiers."
+      }
+    ]
+  }
+]

@@ -1,0 +1,410 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "La Tombe des Rois Serpents",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-du-couchant"
+        },
+        "mouvement": "recul",
+        "texte": "Le désert du Val du Couchant s'étend jusqu'à l'horizon. Sous les dunes dort une nécropole oubliée. Le vent efface chaque nuit les traces de ceux qui ont tenté de la trouver."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fort-du-reflet-beni"
+        },
+        "mouvement": "fixe",
+        "texte": "Le Fort du Reflet Béni dresse ses murailles blanches au bout de cinq jours de piste. Dans la cour, la fontaine coule et les bannières bleues claquent. C'est le dernier bastion avant le sable."
+      },
+      {
+        "image": {
+          "groupe": "objets",
+          "id": "contrat-de-valdargent"
+        },
+        "mouvement": "fixe",
+        "texte": "Un contrat scellé de cire attend sur la table. Aldéric de Valdargent en a paraphé les termes : la moitié exacte de tout ce qui sortira de la tombe lui revient, sans quoi sa maison saura vous retrouver."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "approche",
+        "texte": "Martin, le valet, ne se hâte jamais. Son carnet est ouvert, sa balance de cuivre prête. Il compte chaque pièce, puis il regarde vos armes, une à une."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "droite",
+        "texte": "Le Bivouac du Seuil s'abrite sous un surplomb de roche. Deux mules dorment près d'un foyer de pierres noircies. Un escalier taillé dans la falaise mène plus bas, vers l'ombre."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "tombe-des-rois"
+        },
+        "mouvement": "approche",
+        "texte": "Une tranchée de sable descend vers une porte noire. Des marches taillées s'enfoncent dans la dune. Deux cobras couronnés veillent sur le linteau. À qui reviendront les richesses des Rois Serpents ?"
+      }
+    ]
+  },
+  {
+    "id": "remise-quete",
+    "nom": "Le Contrat des Rois Serpents",
+    "declencheur": {
+      "quete": "q-tombe-des-rois-serpents",
+      "statut": "active"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "fixe",
+        "texte": "Martin pose le contrat devant vous et le lit à voix basse. Vous descendez dans la tombe, vous rapportez tout ce qui a de la valeur, et le partage se fait à moitié-part, sans discussion."
+      },
+      {
+        "image": {
+          "groupe": "objets",
+          "id": "contrat-de-valdargent"
+        },
+        "mouvement": "approche",
+        "texte": "Le sceau de cire d'Aldéric brille encore. Martin ajoute, poliment, que la Maison de Valdargent n'oublie jamais un nom ni une adresse. Personne ne rompt ce contrat sans en payer le prix."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "gauche",
+        "texte": "Martin vous laisse partir sans un mot de plus. Les mules attendent, patientes, les sacs bien calés. Il note l'heure dans son registre, puis referme le carnet. Le soleil baisse sur les dunes."
+      }
+    ]
+  },
+  {
+    "id": "seuil-de-la-tombe",
+    "nom": "Le Seuil de la tombe",
+    "declencheur": {
+      "lieu": "tombe-des-rois"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "tombe-des-rois"
+        },
+        "mouvement": "approche",
+        "texte": "Le sable cesse sous vos pieds. Les marches de pierre s'enfoncent, et l'air change : il devient sec, froid, presque immobile. Chaque pas résonne plus loin que vous ne l'attendiez."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "brennan-terrassier"
+        },
+        "mouvement": "fixe",
+        "texte": "Un colosse gris cendre, en habit de terrassier, tient une pioche au pied des marches. Le contremaître vous regarde descendre, sans rien dire, sans vous quitter des yeux."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n1-couloir-entree"
+        },
+        "mouvement": "approche",
+        "texte": "Un couloir de pierre sèche s'ouvre devant vous. Deux niches bordent les murs, et au fond, une grande porte attend dans la lumière vacillante de la torche. Le silence est total."
+      }
+    ]
+  },
+  {
+    "id": "profondeurs",
+    "nom": "Les Profondeurs",
+    "declencheur": {
+      "lieu": "n3-salle-ceremonie"
+    },
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-salle-ceremonie"
+        },
+        "mouvement": "recul",
+        "texte": "Vous atteignez le troisième niveau, le plus profond. Une vaste salle s'étire, bordée de colonnes peintes, écaillées de bleu et de rouille. Au centre, une vasque de pierre. L'air est tiède, et une odeur étrange monte jusqu'à vous."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-dome-et-esclaves"
+        },
+        "mouvement": "gauche",
+        "texte": "Une salle ronde, voûtée très haut, s'ouvre devant vous. Ses portes sont brisées, et des chaînes pendent du plafond, immobiles. Chaque bruit de vos pas revient en écho."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-fosse-sacrificielle"
+        },
+        "mouvement": "approche",
+        "texte": "Au centre de la salle, une fosse circulaire. Un feu y brûle, et des éclats violets montent à chaque souffle de flamme. Ce feu ne ressemble à aucun feu ordinaire."
+      }
+    ]
+  },
+  {
+    "id": "fin-partage-honnete",
+    "nom": "Le partage loyal",
+    "declencheur": {
+      "fin": "fin-partage-honnete"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "recul",
+        "texte": "Devant les mules, vous étalez tout le butin sur la toile. Il faut partager, et vous le faites moitié-moitié, lot après lot, sans vous presser ni vous disputer."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "fixe",
+        "texte": "Martin pèse chaque lot sur sa balance de cuivre, coche chaque ligne de son registre et ne trouve rien à redire. Chez lui, c'est le plus grand des compliments."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fort-du-reflet-beni"
+        },
+        "mouvement": "droite",
+        "texte": "Cinq jours plus tard, à Valdargent, Aldéric paie la solde devant ses clercs, sans un mot sur la tombe. Votre parole vaut désormais de l'or au Fort du Reflet Béni."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-salle-du-tresor"
+        },
+        "mouvement": "fixe",
+        "texte": "Le prix se compte sans peine : la moitié exacte de tout ce que vous avez remonté s'en est allée, et vous le savez à chaque pas sur la route."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-du-couchant"
+        },
+        "mouvement": "recul",
+        "texte": "Cette moitié, vous l'avez laissée partir de vos propres mains. Le vent du Val efface vos traces dans le sable, sans un bruit."
+      }
+    ]
+  },
+  {
+    "id": "fin-soupcon-et-disgrace",
+    "nom": "La fraude éventée",
+    "declencheur": {
+      "fin": "fin-soupcon-et-disgrace"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "fixe",
+        "texte": "Martin a passé l'attente à écouter le tintement de vos fontes. Il ne dit rien, il compte dans sa tête, au coin du feu, près des mules."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "approche",
+        "texte": "Quand vous posez les paniers, il ne lève même pas la tête. Il appelle deux cavaliers de passage du Fort pour témoigner, puis scelle chaque panier de ses cachets de cire."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fort-du-reflet-beni"
+        },
+        "mouvement": "gauche",
+        "texte": "Le verdict tombe vite, à Valdargent, et il ne laisse aucune place au doute. Aldéric confisque la part exposée, refuse toute solde et vous chasse sans un mot de plus."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-du-couchant"
+        },
+        "mouvement": "fixe",
+        "texte": "Il vous reste quelques pièces cachées dans les doublures, et plus aucun marchand du Val ne vous engagera. Vous reprenez la route, les poches presque vides."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "tombe-des-rois"
+        },
+        "mouvement": "recul",
+        "texte": "Les marches de la tombe restent ouvertes derrière vous. Le nom de Valdargent ferme chaque porte devant vous, une à une, sans bruit ni explication."
+      }
+    ]
+  },
+  {
+    "id": "fin-trahison-fortune",
+    "nom": "L'or gardé de force",
+    "declencheur": {
+      "fin": "fin-trahison-fortune"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "fixe",
+        "texte": "Vous refermez les sacs devant la balance de cuivre. Le contrat est rompu. Personne ne parle autour des mules, et le silence pèse plus lourd que l'or."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "approche",
+        "texte": "Martin n'essaie même pas de dégainer. Il ne crie pas, il ne menace pas. Il mémorise chaque visage, un à un, comme on grave une ligne dans un registre."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-du-couchant"
+        },
+        "mouvement": "droite",
+        "texte": "Puis il reprend seul la piste de Valdargent, sans vous jeter un regard de plus. Le sable du Val efface déjà ses pas."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-salle-du-tresor"
+        },
+        "mouvement": "approche",
+        "texte": "La fortune est complète : tout l'or de la tombe tient dans vos besaces. Vous n'en laissez pas une seule pièce. Le poids vous ravit au début, puis commence à peser."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fort-du-reflet-beni"
+        },
+        "mouvement": "recul",
+        "texte": "Mais dans chaque auberge de la route marchande, le seigneur Aldéric fait afficher un prix sur vos têtes. Le Fort du Reflet Béni ferme ses portes aux parjures. Vous êtes riches, et désormais seuls."
+      }
+    ]
+  },
+  {
+    "id": "fin-pacte-des-profondeurs",
+    "nom": "Le silence des profondeurs",
+    "declencheur": {
+      "fin": "fin-pacte-des-profondeurs"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "tombe-des-rois"
+        },
+        "mouvement": "recul",
+        "texte": "Sous les dunes, l'entrée de la tombe se referme sur le silence. Vous ne laissez derrière vous qu'une pierre fraîche et un secret. Personne ne viendra le chercher."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n1-faux-temple"
+        },
+        "mouvement": "fixe",
+        "texte": "Vous scellez l'accès du faux temple, sous la grande statue de serpent enroulé. La pierre prend sans bruit, comme si elle n'avait jamais été ouverte."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "approche",
+        "texte": "Puis vous déclarez à Martin que la tombe était une sépulture pillée depuis longtemps, sans rien de précieux. Il vous croit à moitié, ce qui suffit."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "n3-ferme-champignons"
+        },
+        "mouvement": "gauche",
+        "texte": "Il repart avec des mules presque vides, et Aldéric classe l'affaire sans perte ni gloire. Dans la ferme aux champignons, les gobelins gardent leur domaine, loin du fouet du sorcier."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "skriik-le-cueilleur"
+        },
+        "mouvement": "approche",
+        "texte": "Vous n'emportez ni solde ni fortune. Ce que vous gardez, c'est la gratitude d'un peuple discret, et Skriik ne vous oubliera pas. L'obscurité protectrice de la tombe se referme sur le secret."
+      }
+    ]
+  },
+  {
+    "id": "fin-echec-horloge",
+    "nom": "Les sables se referment",
+    "declencheur": {
+      "fin": "fin-echec-horloge"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "bivouac-entree"
+        },
+        "mouvement": "recul",
+        "texte": "Les sables se referment sur la tombe. À force de nuits sans progrès décisif, la patience de Valdargent s'épuise, et un matin les piquets du bivouac sont arrachés, un à un."
+      },
+      {
+        "image": {
+          "groupe": "pnj",
+          "id": "martin-le-valet"
+        },
+        "mouvement": "fixe",
+        "texte": "Deux patrouilleurs du Fort repartent avec Martin et les mules, sans se retourner. Martin ne dit pas un mot, il range son registre. Il emporte ses preuves."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "fort-du-reflet-beni"
+        },
+        "mouvement": "droite",
+        "texte": "Aldéric a rompu le contrat et engagé d'autres équipes, plus dociles. Les abords de la tombe passent désormais sous la garde du Fort du Reflet Béni."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "tombe-des-rois"
+        },
+        "mouvement": "fixe",
+        "texte": "Une grille neuve barre la tranchée au nom de la garnison, et le linteau aux cobras disparaît derrière le fer. Vous restez dehors, avec la poussière pour seule compagnie."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "val-du-couchant"
+        },
+        "mouvement": "recul",
+        "texte": "Le vent du Val efface les dernières traces, et la tombe retrouve son silence sous les dunes. Le trésor reste sous terre, et le contrat ne vous paiera rien."
+      }
+    ]
+  }
+]

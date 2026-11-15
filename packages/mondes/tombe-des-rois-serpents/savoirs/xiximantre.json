@@ -1,0 +1,160 @@
+[
+  {
+    "pnj": "xiximantre",
+    "passe": "Xiximantre, âgé de 980 ans, est né dans la capitale de basalte. Alchimiste de la Cour depuis sept siècles, il fut chargé par le dernier roi du Grand Œuvre : un élixir qui rende la Cour immortelle. Il est descendu sous la tombe il y a près de quatre siècles, avec ses alambics, pour y travailler à l'abri des visiteurs. Il ne compte pourtant le temps qu'en « quelques lunes », comme s'il n'était là que depuis peu. Chaque lune, il écrit à la Cour et tient les livres de commandes de ses potions. Il attend le retour de son messager, parti vers la capitale.",
+    "liens": [
+      {
+        "pnj": "elios-captif",
+        "nature": "scribe prisonnier d'une ancienne expédition, qu'il garde dans ses galeries",
+        "opinion": "Il le tient pour un pillard parmi d'autres, un insecte de plus sous clé ; il ne s'inquiète ni de son sort ni de ses notes."
+      },
+      {
+        "pnj": "baltoplate",
+        "nature": "sa captive, qu'il appelle sa « locataire » et qui occupe le cercle",
+        "opinion": "Il la garde pour le principe et lui reconnaît au moins une qualité : elle ne ment jamais deux fois de la même façon."
+      },
+      {
+        "pnj": "skriik-le-cueilleur",
+        "nature": "ancien de la champignonnière gobeline",
+        "opinion": "Un vieux gobelin, de la vermine à champignons qui rongeait ses racines précieuses."
+      },
+      {
+        "pnj": "krak-oubliettes",
+        "nature": "cueilleur gobelin enfermé dans les oubliettes de sa réserve",
+        "opinion": "Un pillard de champignons parmi les quatre prisonniers, qu'il ne regrettera pas s'il quitte ses galeries."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "souvenir-capitale-basalte",
+        "texte": "Il se souvient de la capitale de basalte, où il fut admis à la Cour il y a sept siècles. Il dit encore qu'un visiteur se juge à sa tenue, et que les bottes boueuses ne sont pas des titres.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-grand-oeuvre",
+        "texte": "Il se souvient du jour où le dernier roi lui confia le Grand Œuvre : un élixir pour que la Cour ne vieillisse plus jamais. Il répète la commande mot pour mot, avec la tendresse qu'on réserve à un vieux manuscrit.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-descente-tombe",
+        "texte": "Il se souvient de la descente sous la tombe, il y a près de quatre siècles, ses alambics calés contre la poitrine. Il revient sans cesse à cet instant, comme si la porte venait de se refermer et qu'il ne l'avait pas encore remarqué.",
+        "acces": {}
+      },
+      {
+        "id": "manie-soie-violette",
+        "texte": "Il lisse sans cesse les manches de sa robe de soie violette, du plat de la main, sans jamais y trouver le moindre pli. Il respire alors plus lentement, et son museau poudré se redresse, satisfait.",
+        "acces": {}
+      },
+      {
+        "id": "manie-pluriel-majeste",
+        "texte": "Quand il est ému, il parle de lui-même au pluriel de majesté, et se hausse sur son tabouret d'un bon pouce. Ses sifflantes s'allongent alors, et il s'excuse d'un geste de l'avant-bras, sans réellement s'excuser.",
+        "acces": {}
+      },
+      {
+        "id": "manie-echantillon-goutte",
+        "texte": "Il ne donne jamais rien pour rien : il verse une goutte d'élixir sur un ongle, la fait luire à la lampe, puis la range hors de portée. Ce geste précis lui tient lieu de politesse.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-gobelins-vermine",
+        "texte": "Les gobelins, il les tient pour de la vermine à champignons. Il s'agace de leurs petits pas sur les dalles et des racines qu'ils rongent jusqu'à la moelle, et il ne leur accorde pas la moindre estime.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-pilleurs-insectes",
+        "texte": "Les pilleurs de tombes, il les appelle des insectes, et il ne prend pas la peine de les distinguer les uns des autres. Il leur reproche surtout de souiller les morts, et de toucher à ses dalles avec des bottes boueuses.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-curiosites-monnaie",
+        "texte": "Il juge la monnaie grossière et n'en veut pas. Il ne troque que contre des curiosités : un livre, une monnaie de la Cour, un fossile, un fragment d'écorce. Un objet qui a de l'âge vaut selon lui bien plus qu'une bourse pleine.",
+        "acces": {}
+      },
+      {
+        "id": "anecdote-cour-vivante",
+        "texte": "Il parle de la Cour comme d'une chose vivante : les grandes cités de basalte, le Roi, le Grand Œuvre, tout cela existerait encore au-dessus de sa voûte. Il croit que les nouvelles mettent des mois à descendre jusqu'à lui, et qu'elles sont toujours bonnes.",
+        "acces": {}
+      },
+      {
+        "id": "l-incident-franbinzar",
+        "texte": "Franbinzar voulait une momification à l'ocre ; la formule a tourné en gelée. Il appelle cela « un incident de laboratoire » et s'en veut, à sa façon. Il a gardé la bague d'argent, seule relique qui a survécu à la gelée, et il la montre sans un mot.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "« Je n'en parlerai pas à des inconnus, c'est un sujet trop délicat pour des bipèdes. » Il lisse sa manche et change de sujet."
+      },
+      {
+        "id": "le-dernier-messager",
+        "texte": "Son dernier messager est parti vers la capitale il y a quelques lunes. Il attend sa réponse chaque soir, et la lampe violette de l'entrée reste allumée pour lui, afin qu'il retrouve le chemin du laboratoire.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "« Mes courriers ne regardent que la Cour, et je n'en parlerai pas à des inconnus. » Il lisse sa manche en regardant la porte."
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-gobelins-aux-grilles",
+        "fait": "f-prisonniers-gobelins-oubliettes",
+        "version": "Il parle des quatre gobelins de ses oubliettes comme de rongeurs qui gâchent sa réserve ; qu'ils meurent ou non, il s'en soucie peu, à condition qu'ils quittent ses galeries.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "je-ne-supporte-pas",
+        "fait": "f-xiximantre-ne-supporte-pas",
+        "version": "Il ne tolère ni le vol manifeste ni qu'on le contredise sur l'état de son empire ; l'un comme l'autre le jette aussitôt dans la fureur. Il le dit d'un ton poli, comme une évidence.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-clef-de-bronze",
+        "fait": "f-cle-de-xiximantre-ceinture",
+        "version": "Il tapote sa ceinture, où pend la clé de bronze du laboratoire, et ne la quitte jamais longtemps. Il n'entend pas qu'on la touche, même pour l'admirer.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fauteuil-du-roi",
+        "fait": "f-trone-insuffle-la-folie",
+        "version": "Il parle du trône d'or de son roi comme d'une éprouvante majesté : quiconque s'y assoit se met à vouloir conquérir, et perd le sens de tout le reste. Il ne le dit qu'à voix basse, sans regarder la porte.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il parle de « l'éprouvante majesté » du trône de son roi et change de sujet.",
+        "tabou": [
+          "runes de commandement"
+        ]
+      },
+      {
+        "id": "ma-locataire",
+        "fait": "f-vrai-nom-baltoplate",
+        "version": "Il appelle la captive « ma locataire » et la garde pour le principe : elle occupe le cercle depuis avant son installation, et elle ne ment jamais deux fois de la même façon. Il s'en amuse, en tenant la chose à distance.",
+        "acces": {
+          "condition": {
+            "fait": "f-vrai-nom-baltoplate"
+          }
+        },
+        "evasif": "Il lisse sa manche et dit que ses locataires ne regardent que lui.",
+        "tabou": [
+          "Baltoplate",
+          "succube",
+          "fiélon"
+        ]
+      },
+      {
+        "id": "le-garde-de-l-empire",
+        "fait": "f-cle-sur-collier-basilic",
+        "version": "Il parle de la bête pétrifiante du grand hall comme d'un gardien de l'empire ; la lourde clé de fer qui ouvre la salle du trésor pend à son collier.",
+        "acces": {
+          "attitudeMin": 50
+        },
+        "evasif": "Il se rengorge : le gardien du Seuil n'a pas à être commenté devant des émissaires.",
+        "tabou": [
+          "collier cuirassé",
+          "clé de fer"
+        ]
+      }
+    ]
+  }
+]

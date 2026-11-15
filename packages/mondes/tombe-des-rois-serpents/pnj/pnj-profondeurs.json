@@ -1,0 +1,536 @@
+[
+  {
+    "id": "grib-guetteur",
+    "nom": "Grib l'Édenté",
+    "titre": "Chef de garde de la salle commune",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "31 ans",
+    "role": "Sentinelle principale de la barricade de la salle commune",
+    "lieu": "n3-salle-commune-gobeline",
+    "faction": "clan-des-champignons",
+    "apparence": "Gobelin robuste à la mâchoire ébréchée, coiffé d'un vieux chaudron bosselé en guise de casque et armé d'une fourche tordue.",
+    "personnalite": {
+      "traits": [
+        "méfiant",
+        "protecteur des siens"
+      ],
+      "voix": "Rauque et saccadée, toujours prêt à siffler l'alarme s'il sent la ruse.",
+      "valeurs": [
+        "sécurité du dortoir",
+        "écouter Skriik"
+      ],
+      "desir": "Empêcher les monstres du basilic et les serviteurs d'argile d'entrer par le côté du dôme.",
+      "peur": "Voir le vieux sorcier violet transformer toute sa bande en jus."
+    },
+    "attitude": -10,
+    "profilCombat": "chef-gobelin",
+    "savoir": [
+      "f-statue-fontaine-volee"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "marginal",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "gobelins-sauves"
+          },
+          "texte": "« Les quatre frères mangent enfin chaud grâce à vous ! Grib ne lèvera plus jamais la fourche contre votre troupe. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "garde-barricade",
+        "mots": [
+          "barricade",
+          "dome",
+          "flammes",
+          "basilic",
+          "passage"
+        ],
+        "question": "Que guettez-vous derrière cette barricade de pieux ?",
+        "reponse": "Grib crache une poussière de charbon et pointe sa fourche tordue vers la porte de cèdre éclatée. « D'abord, le grand dôme où une fosse brûle toute seule, sans bois ni fumée. Il y a des os et des offrandes au fond, et l'air devient étouffant dès qu'on s'y penche : mauvais endroit pour vos doigts ! Ensuite, derrière le lourd tambour de pierre, veille la bête à huit pattes qui change la chair en caillou froid. Passez vite, et cachez vos yeux derrière les piliers brisés. Pour un avis de vieux, allez demander à Skriik, Grib ne fait que lui obéir ! »",
+        "revele": [
+          "f-flamme-eternelle-fosse"
+        ],
+        "effets": []
+      },
+      {
+        "id": "dame-or-fontaine",
+        "mots": [
+          "statue",
+          "fontaine",
+          "or",
+          "offrandes",
+          "sud"
+        ],
+        "question": "Pourquoi gardez-vous cette lourde statue d'or près de vos feux ?",
+        "reponse": "Grib montre ses gencives sans dents dans un sourire fier et tapote le socle doré, posé contre un pilier entre les paillasses de mousse. « On l'a tirée à quatre avec de vieilles cordes usées, depuis la fontaine de cérémonie qui est sèche maintenant ! Elle brillait joli sous les flammes rouges, alors nos gars lui offrent des chapeaux de champignons grillés et des cuillères tordues. Ça chasse les cauchemars, tout le monde le sait. Elle est parée de tessons colorés et de petites offrandes. Si vous voulez savoir d'où vient cette traînée dans la poussière, demandez à Skriik, lui il se souvient. »",
+        "revele": [
+          "f-statue-fontaine-volee",
+          "f-statue-or-salle-commune"
+        ],
+        "effets": []
+      },
+      {
+        "id": "passage-du-tambour",
+        "mots": [
+          "tambour",
+          "cylindre",
+          "droite",
+          "gauche",
+          "piege"
+        ],
+        "question": "Comment fonctionne cette grande porte ronde en pierre ?",
+        "reponse": "Grib s'accroupit près des braises et trace deux grands arcs maladroits dans la cendre avec une branche cassée. « Écoutez bien le secret du tambour : il faut toujours le pousser vers la droite, en vous tenant face à la grosse roue de granit ! Poussez de travers, vers la gauche, et la meurtrière à lances s'arme aussitôt. Les pointes de fer mordent les jambes et vous tombez tout droit dans le puits sale. Nous, on ne prend que le sens de droite. Si vous doutez, essayez avec un bâton, pas avec vos jambes, et demandez à Skriik le reste. »",
+        "revele": [
+          "f-sas-sens-du-tambour"
+        ],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "grignote-marmite",
+    "nom": "Grignote la Marmite",
+    "titre": "Cuisinière des champignonniers",
+    "espece": "gobelin",
+    "sexe": "F",
+    "age": "26 ans",
+    "role": "Prépare les soupes et les galettes de champignons de la tribu",
+    "lieu": "n3-salle-commune-gobeline",
+    "faction": "clan-des-champignons",
+    "apparence": "Petite gobeline en tablier taché de terre noire et de suie grise, maniant une grande louche de cuivre volée autrefois dans un caveau.",
+    "personnalite": {
+      "traits": [
+        "maternelle",
+        "économe"
+      ],
+      "voix": "Rapide et chantonnante dès qu'elle parle de bouillon chaud ou de chapeaux grillés.",
+      "valeurs": [
+        "nourrir la tribu",
+        "ne rien gâcher"
+      ],
+      "desir": "Revoir son cousin Krak et les trois autres sortir vivants des grilles.",
+      "peur": "Manquer de mousse sèche pour tenir les braises."
+    },
+    "attitude": 0,
+    "profilCombat": "sbire-gobelin",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "commune": "marginal"
+    },
+    "sujets": [
+      {
+        "id": "cuisine-souterraine",
+        "mots": [
+          "soupe",
+          "champignons",
+          "manger",
+          "rations",
+          "faim"
+        ],
+        "question": "Comment survivez-vous tous ici depuis si longtemps sans voir le jour ?",
+        "reponse": "Grignote chantonne en remuant sa grande louche de cuivre au-dessus du foyer gris, l'air très fière de son ménage. « La terre noire et humide donne de gros chapeaux blancs tendres toute l'année, alors on ne manque jamais de champignons ! Il y a aussi un mince ruisseau qui filtre à travers le roc, au fond de la salle, et il suffit pour boire sans poison. Nos pains secs grillés sur la pierre sont durs comme des cailloux, mais ils tiennent l'estomac chaud. Ne gâchez rien, c'est notre règle. Si vos rations fondent, venez me voir, je vous garde des pains. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "sort-des-disparus",
+        "mots": [
+          "cousins",
+          "quatre",
+          "xiximantre",
+          "oubliettes",
+          "sauver"
+        ],
+        "question": "Qui sont les quatre gobelins retenus derrière les grilles de fer ?",
+        "reponse": "Ses grandes oreilles pointues s'affaissent d'un coup au-dessus de la vapeur du chaudron qui mijote. « Krak et trois de nos meilleurs planteurs ! Ils cherchaient des racines fraîches près des salles violettes, pour notre terreau, et l'homme-serpent aux manches de soie propres les a fait jeter sous ses grilles de fer. Ils n'ont rien fait de mal, je le jure sur ma louche de cuivre. Pitié, grands voyageurs, ne les laissez pas crever de soif là-bas. Si vous voulez les sortir, c'est à Xiximantre qu'il faut parler, pas à nous. »",
+        "revele": [
+          "f-prisonniers-gobelins-oubliettes"
+        ],
+        "effets": []
+      },
+      {
+        "id": "troc-provisions",
+        "mots": [
+          "acheter",
+          "troquer",
+          "provisions",
+          "baume"
+        ],
+        "question": "Pouvez-vous vendre ou troquer quelques vivres secs ?",
+        "reponse": "Elle essuie deux grandes galettes plates dans un torchon propre et montre un coin de caisse garni de paquets ficelés au chanvre sec. « Si vous payez honnête, en bonne monnaie claire, et que vous ne frappez aucun guetteur ni aucun cueilleur ici, Grignote vous prépare aussitôt de solides paquets de chapeaux séchés ! Il y a aussi une fiole contre les morsures de serpent et des chiffons propres pour tenir vos plaies sur la route. Pour entrer dans la salle commune, voyez Grib d'abord, il la garde. Mais la marmite, elle, est toujours ouverte pour vous. »",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 8
+        },
+        {
+          "objet": "antidote",
+          "quantite": 1
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 1
+        }
+      ],
+      "rachat": 0.4,
+      "types": [
+        "nourriture",
+        "materiel"
+      ]
+    }
+  },
+  {
+    "id": "krak-oubliettes",
+    "nom": "Krak Brise-Grille",
+    "titre": "Cueilleur prisonnier des oubliettes",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "34 ans",
+    "role": "Chef des quatre cueilleurs gobelins retenus sous les grilles de Xiximantre",
+    "lieu": "n3-reserve-et-oubliettes",
+    "faction": "clan-des-champignons",
+    "apparence": "Gobelin affaibli aux poignets marqués par la grille de fer, serrant ses doigts maigres entre les barreaux pour parler à voix basse.",
+    "personnalite": {
+      "traits": [
+        "obstiné",
+        "reconnaissant"
+      ],
+      "voix": "Enrouée de soif, chuchotant vite dès que la porte violette se referme.",
+      "valeurs": [
+        "solidarité avec ses frères",
+        "tenir sa parole"
+      ],
+      "desir": "Regagner la ferme de Skriik avec les trois autres survivants.",
+      "peur": "Voir revenir le vieux sorcier avec ses fioles vides."
+    },
+    "attitude": 10,
+    "profilCombat": "sbire-gobelin",
+    "savoir": [
+      "f-prisonniers-gobelins-oubliettes"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "marginal",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "gobelins-sauves"
+          },
+          "texte": "« Les barreaux cèdent ! On file vers les champignons — merci de tout cœur, grands amis ! »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "survie-sous-grilles",
+        "mots": [
+          "grilles",
+          "captifs",
+          "xiximantre",
+          "cle",
+          "soif"
+        ],
+        "condition": {
+          "non": {
+            "flag": "gobelins-sauves"
+          }
+        },
+        "question": "Comment vous a-t-il pris et comment ouvrir ces oubliettes ?",
+        "reponse": "Krak lève un doigt maigre entre les barreaux, vers la porte de fer du fond et la lumière violette du salon. « C'est le vieux serpent qui nous a pris pendant qu'on cherchait des racines près des salles violettes. Lui ne pose aucune barre sur ses serrures ! Il garde sa grosse clé de bronze sur lui, la clé du laboratoire qui pend à sa ceinture, sauf quand elle repose dans son antichambre. Sinon, il faut négocier avec son orgueil fou. Dites-lui que la cour de surface se moque bien de quatre petites bêtes maigres, ou faites-le tomber. Nous voulons juste revoir nos couches de mousse humide. »",
+        "revele": [
+          "f-prisonniers-gobelins-oubliettes",
+          "f-cle-de-xiximantre-ceinture"
+        ],
+        "effets": []
+      },
+      {
+        "id": "etagere-creuse-nord",
+        "mots": [
+          "etagere",
+          "trone",
+          "passage",
+          "escalier",
+          "secret"
+        ],
+        "question": "Qu'avez-vous observé dans ce cellier depuis le fond de la fosse ?",
+        "reponse": "Il cligne de son œil valide vers le grand rayonnage chargé de bocaux d'épices rouges, tout contre le mur du fond. « Vite, écoutez : la nuit, quand tout dort et que les courants d'air passent sous la pierre, cette étagère tremble doucement sur un vieux pivot caché. Il y a un escalier dérobé derrière, qui file tout droit derrière le grand rideau du trône vide, bien loin des griffes du basilic. Regardez le bois, c'est lui qui bouge, pas le mur. Si vous voulez voir le trône de plus près, cherchez ce rideau-là, il ne bouge pas tout seul. »",
+        "revele": [
+          "f-reserve-escalier-trone"
+        ],
+        "effets": []
+      },
+      {
+        "id": "route-retour-tribu",
+        "mots": [
+          "tribu",
+          "skriik",
+          "recompense",
+          "racines"
+        ],
+        "condition": {
+          "non": {
+            "flag": "gobelins-sauves"
+          }
+        },
+        "question": "Que fera votre tribu si nous parvenons à vous sortir d'ici ?",
+        "reponse": "Krak serre plus fort les barreaux glacés et jure sur la terre noire, les yeux plantés dans les vôtres. « Skriik tient toujours sa parole devant les amis. Une fois nos quatre têtes comptées saines près des paniers, il vous confiera tout l'or royal caché hors de vue des monstres. Et il vous ouvrira aussi l'escalier qui remonte sous les racines de l'arbre mort, à deux pas du bivouac. Vous ressortirez sans perdre personne, avec les mules. Pour le reste, parlez à Skriik lui-même. Dites-lui que Krak répond de vous. »",
+        "revele": [
+          "f-sortie-racines-surface",
+          "f-skriik-troque-couronne"
+        ],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "elios-captif",
+    "nom": "Élios de la Plume",
+    "titre": "Scribe prisonnier d'une ancienne expédition",
+    "espece": "elfe",
+    "sexe": "M",
+    "age": "37 ans",
+    "role": "Scribe du collège de Valdargent, prisonnier depuis sept mois, contraint de recopier les lettres de Xiximantre",
+    "lieu": "n3-reserve-et-oubliettes",
+    "apparence": "Elfe amaigri à la tunique de lin souillée d'encre et de poussière, doigts tachés de bleu mais regard encore lucide dans la pénombre.",
+    "personnalite": {
+      "traits": [
+        "observateur",
+        "ironique malgré l'épuisement"
+      ],
+      "voix": "Claire, posée, légèrement sardonique lorsqu'il décrit la folie du maître des lieux.",
+      "valeurs": [
+        "liberté",
+        "savoir exact"
+      ],
+      "desir": "Revoir le soleil du Val du Couchant et rentrer à Valdargent avec ses notes.",
+      "peur": "Devenir aussi fou que son geôlier dans cette cave sans saisons."
+    },
+    "attitude": 10,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-empire-chute-xiximantre"
+    ],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Des bottes neuves, et pas une écaille violette à la ceinture. Dites-moi, Valdargent se souvient-il encore de mon expédition ? Je suis le scribe de la première compagnie, et depuis sept mois je n'ai eu aucune nouvelle de la ville. »",
+      "amical": "« Si vous tirez les gobelins hors d'ici, ne m'oubliez pas dans la cinquième grille. Je connais tous les tours du salon voisin. Un conseil entre gens de plume : relisez deux fois chaque inscription avant de la croire. »",
+      "hostile": "« Gardez vos menaces pour l'alchimiste : on ne menace pas un homme déjà jeté dans un puits. Je n'ai plus grand-chose à perdre, sinon le compte de mes jours à la craie. Passez votre chemin. »",
+      "variantes": [
+        {
+          "condition": {
+            "rencontre": {
+              "id": "r-basilic-enchaine",
+              "issue": "victoire"
+            }
+          },
+          "texte": "« Vous avez fait taire la chaîne de la bête ? Depuis un moment, je n'entends plus son raclement contre le sol, et le silence a une drôle de douceur. Est-ce votre œuvre ? Dites-moi que oui, j'en serai ravi. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "elfe"
+            }
+          },
+          "texte": "« Un elfe parmi vous ! Enfin une oreille qui comprend les deux langues. Je sens encore le bois de ma plume au creux de la main, comme on retrouve une vieille amie. Elle ne m'a jamais quitté. Parlez-moi de votre route. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "folie-du-sorcier",
+        "mots": [
+          "xiximantre",
+          "lettres",
+          "folie",
+          "empire",
+          "alambics"
+        ],
+        "condition": {
+          "non": {
+            "flag": "gobelins-sauves"
+          }
+        },
+        "question": "Pourquoi vous garde-t-il vivant ici plutôt que dans les autres salles ?",
+        "reponse": "Élios lâche un rire bref et amer, puis frotte ses poignets bleuis d'encre. « Parce que sa folie a besoin d'un greffier, et qu'un greffier ne se plaint pas. Xiximantre croit que l'empire des hommes-serpents règne toujours sur la surface, au soleil. Chaque lune, il me dicte des lettres à sa cour et de longues commandes d'ingrédients, d'alambics et de racines. Jurez-lui que son souverain prospère : il s'adoucit comme un agneau. Contredisez-le, et il entre dans une fureur qui ne se calme plus. Si vous voulez le faire parler, demandez-lui des nouvelles de sa cour. »",
+        "revele": [
+          "f-empire-chute-xiximantre",
+          "f-elios-recopie-les-commandes",
+          "f-xiximantre-ne-supporte-pas"
+        ],
+        "effets": []
+      },
+      {
+        "id": "secrets-du-basilic",
+        "mots": [
+          "basilic",
+          "collier",
+          "cle",
+          "miroir",
+          "piliers"
+        ],
+        "question": "Que savez-vous du grand hall et de sa bête ?",
+        "reponse": "L'elfe baisse la voix pour que rien ne filtre sous la porte. « Je ne l'ai pas franchie, et je ne vous le conseille pas. Je suis tombé ici par la dalle creuse du niveau supérieur. Mes deux compagnons, eux, ont pris le chemin du grand hall à piliers et ne sont jamais revenus. Restez hors de portée de sa chaîne, à bonne distance. Si vous voulez le trésor, dérobez plutôt la grosse clé de fer qui pend à son collier cuirassé : c'est elle qui ouvre la salle du trésor. »",
+        "revele": [
+          "f-cle-sur-collier-basilic"
+        ],
+        "effets": []
+      },
+      {
+        "id": "remise-liberte-elios",
+        "mots": [
+          "liberer",
+          "sortir",
+          "valdargent",
+          "merci"
+        ],
+        "condition": {
+          "flag": "gobelins-sauves"
+        },
+        "question": "La voie est libre : comment comptez-vous regagner la surface ?",
+        "reponse": "Élios se hisse hors de la cinquième fosse et serre longuement vos avant-bras. « Merci. Vous avez libéré les gobelins, et c'est déjà beaucoup. Je vous dois la liberté, et je ne l'oublierai pas. Je connais déjà le chemin pour sortir, celui qui passe sous les racines : ces braves gens m'ont partagé un peu d'eau claire pendant ma captivité. Retrouvons-nous au Fort du Reflet Béni, si vous survivez au reste de la tombe. Ma bourse et mes carnets, à Valdargent, vous doivent une fière chandelle. »",
+        "revele": [],
+        "effets": [
+          {
+            "deplacer": {
+              "pnj": "elios-captif",
+              "lieu": "fort-du-reflet-beni"
+            }
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-chute-et-la-captivite",
+        "mots": [
+          "captif",
+          "chute",
+          "expédition",
+          "dalle",
+          "compagnie",
+          "sept mois"
+        ],
+        "question": "Comment vous êtes-vous retrouvé ici ?",
+        "reponse": "Il pose son poignet sur le barreau, où la craie compte les jours. « Je suis scribe du collège de Valdargent, engagé comme secrétaire d'expédition. Il y a sept mois, ma compagnie, qui avait signé le contrat d'Aldéric, est descendue ici. Une dalle creuse, au niveau du haut, a cédé sous mes pieds. Mes deux compagnons ont poursuivi vers le grand hall à piliers, et ils ne sont jamais revenus. Si vous rentrez au fort, dites à Corvin le tabellion que je suis toujours vivant. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "les-lettres-a-la-cour",
+        "mots": [
+          "lettres",
+          "copie",
+          "plume",
+          "commandes",
+          "cour",
+          "encre"
+        ],
+        "question": "Que recopiez-vous pour lui ?",
+        "reponse": "Il fait rouler une plume entre ses doigts tachés de bleu. « Des lettres, et toujours les mêmes. Chaque lune, il me dicte ses commandes d'ingrédients, ses rapports et ses compliments pour la cour. Je les écris à la plume, je les scelle à la cire violette, puis je les pose dans une niche du mur. Au matin, elles ont disparu, et il s'en réjouit comme d'une victoire. Je n'ai jamais vu la moindre réponse. Alors je recopie, je recopie, et je soigne chaque lettre comme si quelqu'un devait la lire. »",
+        "revele": [],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "trou-noir-gobelin",
+    "nom": "Trou-Noir",
+    "titre": "Jeune apprenti cueilleur",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "17 ans",
+    "role": "Jeune gobelin chargé d'arroser les couches de terreau humide",
+    "lieu": "n3-ferme-champignons",
+    "faction": "clan-des-champignons",
+    "apparence": "Tout jeune gobelin maigre aux immenses oreilles tombantes, portant un arrosoir cabossé en cuivre vert-de-gris et une petite serpe émoussée.",
+    "personnalite": {
+      "traits": [
+        "timide",
+        "serviable"
+      ],
+      "voix": "Aiguë et pressée, sursautant dès qu'un écho résonne au fond du boyau.",
+      "valeurs": [
+        "protéger les jeunes pousses",
+        "obéir à Skriik"
+      ],
+      "desir": "Voir tout le monde partir vers une grotte paisible loin des morts-vivants.",
+      "peur": "Les lourdes griffes de la bête enchaînée derrière le mur est."
+    },
+    "attitude": 5,
+    "profilCombat": "sbire-gobelin",
+    "savoir": [
+      "f-sortie-racines-surface"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "marginal"
+    },
+    "sujets": [
+      {
+        "id": "mur-secret-basilic",
+        "mots": [
+          "basilic",
+          "passage",
+          "mur",
+          "pierre",
+          "boyau"
+        ],
+        "question": "Pourquoi le boyau du fond s'arrête-t-il près de la ferme ?",
+        "reponse": "Trou-Noir frotte son arrosoir cabossé et jette un regard craintif vers le fond du boyau. « Ce n'est pas un vrai mur ! Sous les premières marches de l'escalier secret, une haute pierre grise coulisse en grinçant, droit vers le grand hall aux huit piliers, celui du basilic. Par là, on contourne notre propre salle commune sans bruit. On l'a calée avec de gros cailloux pointus, pour que la bête à chaîne ne passe jamais par là pendant que la tribu dort. Ne la poussez pas trop fort, l'écho me fait sursauter ! Demandez à l'ancien Skriik pourquoi il tient cette pierre-là. »",
+        "revele": [
+          "f-raccourci-gobelin-basilic"
+        ],
+        "effets": []
+      },
+      {
+        "id": "sortie-racines",
+        "mots": [
+          "racines",
+          "arbre",
+          "surface",
+          "dehors",
+          "mules"
+        ],
+        "question": "Où mène l'escalier au bout de la caverne ?",
+        "reponse": "Le jeune cueilleur frotte sa manche pleine d'humus sombre et pointe le plafond de terre, au bout du couloir. « Il monte droit sous un très vieux tronc mort, sec et tout blanc, dehors dans les cailloux ! Ses racines sont à deux pas du bivouac d'entrée, je crois. Quand la lune est noire et froide, je monte juste regarder les étoiles sans sortir la tête des branches, pour ne pas effrayer les la grosse bête grise et la noire qui mâchent leur paille près du feu. Et ne criez pas dans le boyau, je sursaute. Demandez à l'ancien Skriik s'il veut qu'on sorte par là. »",
+        "revele": [
+          "f-sortie-racines-surface"
+        ],
+        "effets": []
+      },
+      {
+        "id": "couronne-sous-paillis",
+        "mots": [
+          "couronne",
+          "or",
+          "paillis",
+          "terreau",
+          "cache"
+        ],
+        "condition": {
+          "flag": "gobelins-sauves"
+        },
+        "question": "Savez-vous où Skriik cache son or royal ?",
+        "reponse": "Le jeune gobelin désigne fièrement sa serpe émoussée vers la dernière grande plate-bande noire, arrosée de frais tout au fond de la salle humide. « C'est moi qui ai posé l'épais paillis sombre par-dessus, avec mon râteau d'os ! Sous le terreau, il y a la vraie couronne des Rois Serpents, loin de l'ancienne salle du trône. Skriik disait toujours que les rubis et l'or brillant attirent les voleurs armés, alors qu'un bon champignon blanc nourrit toute la tribu sans attirer de malheur. Nos quatre frères sont sauvés, alors l'ancien vous la rendra. Allez voir Skriik, c'est lui qui décide de tout. »",
+        "revele": [
+          "f-couronne-chez-gobelins",
+          "f-skriik-troque-couronne"
+        ],
+        "effets": []
+      }
+    ]
+  }
+]

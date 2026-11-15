@@ -1,0 +1,720 @@
+[
+  {
+    "id": "varnac-bivouac",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "bivouac-entree"
+    },
+    "texte": "Le bivouac, Martin et les mules : c'est ici que j'ai rampé il y a six semaines, la gorge en feu, et Martin m'a donné de l'eau salée tiède. Cette fois, je ne dois rien à personne.",
+    "effets": []
+  },
+  {
+    "id": "varnac-couloir-entree",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n1-couloir-entree"
+    },
+    "texte": "Regardez le plafond avant de poser la botte : les gonds de terre cuite ne sont pas là pour faire joli. Ce couloir est large, mais une dalle qui tombe n'en a rien à faire, alors avancez à mon pas, à la perche.",
+    "effets": []
+  },
+  {
+    "id": "varnac-salles-gardes",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n1-tombes-des-gardes"
+    },
+    "texte": "C'est ici qu'on s'est repliés quand les pots d'argile ont éclaté, entre les statues peintes et les cercueils scellés au plâtre. La paroi du fond sonne creux : j'en mettrais mon œil restant au feu.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-tombe-sorcier",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n1-tombe-du-sorcier"
+    },
+    "texte": "Dors enfin en paix, vieux frère, et que le sorcier aux étoiles fanées garde sa robe. Tu vois, Hélian, je ne t'ai pas laissé pourrir seul sous la pierre froide, même si je n'ai pas pu te ramener.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-fausse-tombe",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "fait": "f-fausse-tombe-leurre"
+    },
+    "texte": "Trois cercueils de bois doré à la feuille, des os de pacotille : un leurre à pilleurs pressés. Les vrais maçons ont creusé plus bas, là où la pierre est propre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-atrium",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n2-atrium"
+    },
+    "texte": "Ne buvez pas à ce bassin, et ne vous penchez pas sur la margelle : une eau aussi noire et profonde, dans un endroit aussi sec, n'est pas là pour désaltérer les gens. Moi, je reste à trois pas, la perche devant.",
+    "effets": []
+  },
+  {
+    "id": "varnac-escalier-piege",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n2-escalier-piege"
+    },
+    "texte": "Des marches inclinées et une odeur d'huile rance en haut : si quelqu'un touche au mauvais levier, on redescend sur le ventre. La troisième volée est la plus traîtresse, passez-la au bord, près du mur, et jamais au milieu.",
+    "effets": []
+  },
+  {
+    "id": "varnac-arene-gardien",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n2-arene-gardien"
+    },
+    "texte": "Belle carcasse que ce colosse d'os, et les cinq boucliers pendus au mur ne sont pas là pour décorer. Chez les sapeurs, on frappe les jointures avant que le monstre lève ses lames : pas un pas de plus au bord du précipice.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-gardien-vaincu",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-gardien-osseux",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Le colosse est tombé, et ses os ont fait plus de bruit que lui. Chez les sapeurs, on remercie la gravité et on passe à la suite ; ça, c'est ma façon de fêter une victoire : le pouce sur le fil de la lame.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-salle-invocation",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-salle-invocation"
+    },
+    "texte": "Ne bougez pas avant que Lysandre ait parlé : cette jeune femme dans son cercle d'argent, enchaînée, j'ai vu des gens pleurer pour moins que ça. Moi, je ne fais pas un pas tant que ma perche n'a pas sondé le sol devant nous.",
+    "effets": []
+  },
+  {
+    "id": "varnac-hall-basilic",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-hall-du-basilic"
+    },
+    "texte": "Baissez le menton et écoutez la chaîne racler les dalles, là-haut, au milieu des huit piliers brisés : j'ai déjà perdu un œil dans un éboulement, je tiens à garder l'autre. Ne vous placez pas sous la chaîne.",
+    "effets": []
+  },
+  {
+    "id": "varnac-repos-pretres",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-repos-des-pretres"
+    },
+    "texte": "Enfin une pièce où l'on n'a pas envie de compter les issues : les coussins de soie sont déchirés, mais aucune bête n'ose entrer par ces portes épaisses. Je m'assois, j'ôte mon bandeau, et je mange debout quand même, par habitude.",
+    "effets": []
+  },
+  {
+    "id": "varnac-sortie-racines",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-escalier-surface"
+    },
+    "texte": "Ça sent l'air frais, le premier depuis des jours, et ces marches remontent entre les racines de l'arbre mort jusqu'au bivouac. Hélian aurait ri de notre chance, lui qui sifflait faux en la fêtant ; allez, montez.",
+    "effets": []
+  },
+  {
+    "id": "varnac-quete-terminee",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "quete": {
+        "id": "q-varnac-frere-d-armes",
+        "statut": "terminee"
+      }
+    },
+    "texte": "Ma dette envers Hélian est payée : tant qu'il vous restera une porte à enfoncer dans ce trou, ma hache est à vous. Je ne vous demande rien, sauf de sonder le sol avant de poser le pied.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-gobelins-sauves",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "gobelins-sauves"
+    },
+    "texte": "Même une vermine gobeline ne mérite pas de crever de faim au fond d'un puits. Vous avez bien fait de tirer la grille ; moi, je ne l'aurais pas fait sans hésiter, mais je comprends.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-fuite",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "temoin": {
+        "pnj": "varnac-le-borgne",
+        "genre": "fuite"
+      }
+    },
+    "texte": "Respirez, personne ne vous juge : on court quand il le faut, et vous avez couru au bon moment. Je compte les têtes avant de repartir, et je ne laisse personne derrière.",
+    "effets": []
+  },
+  {
+    "id": "varnac-pillage-dissimule",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "choix-dilemme-serment-des-mules-garder-butin-pour-nous"
+    },
+    "texte": "Cacher des sacs dans les fourrés pour doubler Aldéric, ça finit toujours par le fer ou la corde. Le contrat se pèse devant Martin ; je n'aime pas ces manières, et je ne tiendrai pas le sac pour vous.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "varnac-le-borgne",
+          "delta": -3
+        }
+      }
+    ]
+  },
+  {
+    "id": "varnac-sablier-haut",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "jauge": {
+        "id": "soupcon-et-tension",
+        "min": 3
+      }
+    },
+    "texte": "Les torches baissent, et la relève du fort ne nous attendra pas éternellement : mieux vaut presser le pas avant la fermeture des grilles. Un sapeur qui traîne à la lumière finit dans le noir, et je n'aime pas le noir.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-bivouac",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "bivouac-entree"
+    },
+    "texte": "Avant la descente, lisons chaque inscription deux fois, et ne prenons aucun raccourci, car la nuit ne m'effraie pas. Ce sont les raccourcis qui me font peur, alors gardez les mules à l'abri du vent.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-faux-temple",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n1-faux-temple"
+    },
+    "texte": "Cette idole de pierre est froide et muette, et aucune prière sincère n'a jamais habité ce sanctuaire de façade. Ne donnez rien à cette statue, elle n'a jamais rien rendu à personne, et l'air qui stagne ici le prouve.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-sorcier-vaincu",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "fausse-tombe-nettoyee"
+    },
+    "texte": "Que l'Aube recueille ce que la soif d'or avait enchaîné à cette pierre, et que son tourment prenne enfin fin sous la voûte. Je prierai pour lui, même s'il n'a jamais demandé la lumière.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-atrium",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n2-atrium"
+    },
+    "texte": "Restez loin de la margelle de ce bassin : j'ai vu d'autres tombes où l'eau profonde, au milieu d'un lieu de repos, cachait un piège pour le pied imprudent. Je chauffe mon talisman entre mes paumes, et ne vous penchez pas.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-xisor",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n2-tombe-xisor"
+    },
+    "texte": "Un haut prêtre repose ici, les bras croisés sur son sceptre brisé, et je m'incline devant un confrère de foi d'un autre temps. Ne le dérangeons pas sans nécessité, et posons nos pas loin de cette dalle qui semble surélevée.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-laboratoire",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n2-sacristie"
+    },
+    "texte": "Ces rouleaux liturgiques ont survécu aux siècles, et ils méritent qu'on les lise avec soin, une fois puis une seconde fois. Lisons-les avant d'approcher la salle du cercle, car un mot mal lu peut faire plus de dégâts qu'une lame.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-gardien-vaincu",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-gardien-osseux",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Le colosse est tombé, et ses os ne garderont plus rien pour personne. Je prie brièvement pour ceux dont il gardait les restes, sans triomphe, et qu'on les laisse enfin reposer en paix.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-vestibule-garde",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-vestibule-garde"
+    },
+    "texte": "Voyez l'effroi figé sur ces écailles de pierre : ces gardiens ont levé leur bouclier trop tard devant la bête qui rôde plus au fond. Passez entre eux sans les toucher, et ne regardez pas trop longtemps leurs visages.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-salle-invocation",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-salle-invocation"
+    },
+    "texte": "Ne touchez pas à ce cercle d'argent ! L'air est lourd ici, et ces larmes sont un peu trop régulières à mon goût. Je ne veux pas entendre ce qu'elle dit avant d'avoir lu les inscriptions.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-baltoplate-vraie-nature",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "fait": "f-vrai-nom-baltoplate"
+    },
+    "texte": "Les runes ne mentaient pas : une engeance des plans inférieurs se cachait sous ce masque de détresse. Ses larmes sont un outil, pas une plainte, alors ne lui cédez rien et ne la plaignez pas.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-hall-basilic",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-hall-du-basilic"
+    },
+    "texte": "Avancez en baissant les yeux, et gardez un pilier entre vous et la bête. Je ne prie pas pour elle, je prie pour ceux que ce hall a déjà pris, sous ces huit piliers brisés.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-xiximantre",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-antichambre-xiximantre"
+    },
+    "texte": "Cette antichambre est propre, et sa lumière violette est étrangement chaleureuse, ce qui m'inquiète plus que le noir. Ne buvez rien de ce qu'on vous offrira ici, quelle que soit la politesse de celui qui vous reçoit.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-ferme-champignons",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-ferme-champignons"
+    },
+    "texte": "Il y a de la vie ici, et j'entends des cris étouffés d'enfants. Je baisse ma masse, car la miséricorde ne choisit pas le visage de ceux qui souffrent, et je ne vais pas trier ces petits.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-gobelins-sauves",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "gobelins-sauves"
+    },
+    "texte": "La miséricorde ne choisit pas le visage de ceux qui souffrent, et ouvrir ces grilles honore votre compagnie. Je vous remercie d'avoir écouté, et restez près de moi, car ils auront peur de vous voir armés.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-pacte-refuse",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "choix-dilemme-baiser-du-cercle-sceller-fielon"
+    },
+    "texte": "Vous avez repoussé ses promesses d'or et de sang, et la lumière de l'Aube veille sur ceux qui refusent les marchés de l'abîme. Je le dis sans orgueil. Gardez vos mains propres dans la boue de ces catacombes.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-pacte-accepte",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "choix-dilemme-baiser-du-cercle-pacte-secret-baltoplate"
+    },
+    "texte": "Sceller un pacte avec pareille abomination souille vos mains bien plus sûrement que toute la boue de ces catacombes. Je ne vous jugerai pas à voix haute, mais je ne marcherai plus à vos côtés sans y penser.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-pacte-gobelins",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "choix-dilemme-delire-xiximantre-entretenir-illusion"
+    },
+    "texte": "Flatter la folie de ce tyran pendant que ses captifs gémissent sous les grilles me pèse lourdement sur le cœur. Je ne dirai rien de plus devant lui, mais je ne l'oublierai pas, et quatre prisonniers attendent derrière ces barreaux.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": -4
+        }
+      }
+    ]
+  },
+  {
+    "id": "lysandre-fuite",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "temoin": {
+        "pnj": "soeur-lysandre",
+        "genre": "fuite"
+      }
+    },
+    "texte": "Vous avez fui, et je ne vous en veux pas, car la lumière n'oblige jamais à tenir un mur. Reprenez votre souffle, je reste avec vous, et la prudence a sa place dans la foi aussi.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-quete-terminee",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "quete": {
+        "id": "q-lysandre-sceau-brise",
+        "statut": "terminee"
+      }
+    },
+    "texte": "Les ombres profanées de cette tombe ont trouvé le repos, et mon ordre chantera longtemps la droiture de vos pas. Ne laissez pas ce succès vous rendre orgueilleux, car la lumière ne se paie jamais en or.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "soeur-lysandre",
+          "delta": 5
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-bivouac",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "bivouac-entree"
+    },
+    "texte": "Le sol s'affaisse ici par degrés : on voit au moins trois strates taillées dans le calcaire, bien nettes sous le bord de ce creux de rocher. Gardez-moi un peu de lumière pour mes croquis, je ne trace jamais à l'ombre d'une mule.",
+    "effets": []
+  },
+  {
+    "id": "mireille-couloir-entree",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n1-couloir-entree"
+    },
+    "texte": "Trois mètres de large, quatre caveaux sombres et une dalle massive au bout : je compte les pas jusqu'à la dalle, et je marque la première page. L'ombre du soleil tombe en biais, elle nous servira de règle pour le reste du relevé.",
+    "effets": []
+  },
+  {
+    "id": "mireille-porte-fausse-tombe",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n1-porte-et-fausse-tombe"
+    },
+    "texte": "La porte au marteau de pierre : un mécanisme de seuil, je le sens dans la corniche, quelqu'un a pensé à tout. Je ne touche à rien avant de l'avoir dessiné, pas même du bout du doigt.",
+    "effets": []
+  },
+  {
+    "id": "mireille-passage-temple",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "fait": "f-passage-temple-decouvert"
+    },
+    "texte": "Un conduit d'écoulement caché sous le socle même de l'idole, et ses architectes suivaient la pente de l'eau comme un fil d'Ariane. Ce sanctuaire n'est qu'un faux tombeau : l'escalier noyé est le vrai chemin, je le dessine avant de descendre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-hall-statues",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-hall-aux-statues"
+    },
+    "texte": "Six colosses de basalte à tête de serpent, alignés hors d'axe, et un arc de cercle usé sur les dalles, au pied de la rangée. Je note ce détail avant d'en tirer quoi que ce soit.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-atrium",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-atrium"
+    },
+    "texte": "Cet atrium octogonal tourne autour d'un bassin d'eau noire, profond de trois mètres, et rayonne en cinq cryptes et un couloir serpentin. Si je relève bien chaque angle, aucun couloir secret ne nous échappera.",
+    "effets": []
+  },
+  {
+    "id": "mireille-soldats-argile",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-soldats-d-argile"
+    },
+    "texte": "Dix-huit silhouettes d'hommes-serpents sur trois rangs, et une seule décalée près du mur du fond. Ce n'est pas un oubli d'ouvrier, c'est une signature de maître d'œuvre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-gouffre",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-gouffre-et-effondrement"
+    },
+    "texte": "Je lâche un caillou pour mesurer l'à-pic et je compte jusqu'à l'écho, qui ne vient pas. Je n'aime pas qu'un relevé reste inachevé au bord d'un abîme : avançons à pas comptés.",
+    "effets": []
+  },
+  {
+    "id": "mireille-salle-ceremonie",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-salle-ceremonie"
+    },
+    "texte": "Nous voici au cœur rituel de l'hypogée. La rayure blanche sur le pavé montre qu'on a traîné l'idole centrale vers la fontaine asséchée, et deux galeries rayonnent d'ici. Prenons-les dans l'ordre, pas à l'instinct.",
+    "effets": []
+  },
+  {
+    "id": "mireille-mot-cobra",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "autel-cobra-ouvert"
+    },
+    "texte": "Un verrou phonétique, couplé au pivot de l'autel ! Je note chaque syllabe dans mon carnet, dans l'ordre exact où elles tombent, avant que l'écho ne les efface. Ne prononcez rien avant que j'aie fini de dessiner le pivot.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-vestibule",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-vestibule-garde"
+    },
+    "texte": "Les deux gardes pétrifiés sont figés au moment exact de leur geste : boucliers inclinés, main levée. Je dessine leur posture avec respect et je recule d'un pas. Que personne ne touche à leurs boucliers avant que je les aie tracés.",
+    "effets": []
+  },
+  {
+    "id": "mireille-salle-trone",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-salle-du-trone"
+    },
+    "texte": "La salle du trône, intacte derrière la fausse paroi ! Huit miroirs à manche entourent l'estrade, et le trône d'or se dresse au milieu, vide. Rien que ce relevé géométrique vaudra une fortune à la guilde, si personne ne le perd.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-laboratoire",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-laboratoire"
+    },
+    "texte": "Quelle précision ! Ces alambics de cuivre et de verre soufflé sont raccordés sans une goutte de jeu, je copie même un schéma dans la marge. Mais je suis ici pour les murs, pas pour les fioles. Revenons au relevé.",
+    "effets": []
+  },
+  {
+    "id": "mireille-ferme-champignons",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-ferme-champignons"
+    },
+    "texte": "Des planches de terreau gras, alignées au cordeau. Ceux qui cultivent ici ont tout réglé sans équerre, et pourtant chaque rangée tombe juste. Je compte les rangées : un plan comme un autre.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-xiximantre-delire",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "fait": "f-empire-chute-xiximantre"
+    },
+    "texte": "Son dialecte royal a plusieurs siècles de retard : il croit encore que les cités de basalte gouvernent la surface ! Respectez son délire, il troque volontiers ses potions. Quelle merveille pour un linguiste : une langue morte qui parle encore.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-escalier-surface",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-escalier-surface"
+    },
+    "texte": "Cette poterne dérobée remonte entre les racines de l'arbre mort, tout près du bivouac, et un détour mène vers le hall du basilic. La boucle est enfin complète : nous pouvons revenir par là sans repasser le couloir des lames.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "mireille-fuite",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "temoin": {
+        "pnj": "mireille-cartographe",
+        "genre": "fuite"
+      }
+    },
+    "texte": "Vous avez tourné les talons, c'est noté : direction, nombre de pas, tout. Un repli se relève comme une galerie ; on sait toujours ensuite où l'on était, et c'est déjà beaucoup.",
+    "effets": []
+  },
+  {
+    "id": "mireille-quete-terminee",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "quete": {
+        "id": "q-mireille-plan-trois-paliers",
+        "statut": "terminee"
+      }
+    },
+    "texte": "Trois étages complets, couchés à l'encre de Chine, sans une seule galerie manquante ! Sans votre escorte, mes carnets seraient restés blancs. Je le dis sans détour : c'est le plus beau relevé que j'aie jamais tracé, et la guilde n'y pourra rien redire.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "mireille-cartographe",
+          "delta": 5
+        }
+      }
+    ]
+  }
+]

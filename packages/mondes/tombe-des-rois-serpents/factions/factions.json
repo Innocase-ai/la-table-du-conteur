@@ -1,0 +1,71 @@
+[
+  {
+    "id": "commanditaire-alderic",
+    "nom": "Maison de Valdargent",
+    "resume": "La maison marchande et noble du seigneur Aldéric, qui a financé la carte et l'expédition en échange de la moitié exacte du butin. Son valet Martin tient les comptes au bivouac.",
+    "objectifs": [
+      "Récupérer la moitié légitime de chaque objet de valeur tiré de la tombe",
+      "Éviter toute fraude ou détournement grâce à la surveillance de Martin"
+    ],
+    "chef": "martin-le-valet",
+    "reputation": 10,
+    "paliers": [
+      { "seuil": 45, "nom": "Associés loyaux", "effet": "Lu par la fin « Le partage loyal » (variante « associés ») : Aldéric ouvre ses coffres et recommande le groupe. Monte avec le partage loyal (+30), le rapport honnête à Martin, les quêtes de Brennan." },
+      { "seuil": -20, "nom": "Contrat rompu", "effet": "Baisse avec la fraude (−40), la rupture du contrat (−60) et le pacte éventé (−30) : Aldéric met des chasseurs de primes sur la piste des voleurs." }
+    ],
+    "relations": [{ "faction": "ordre-du-reflet-beni", "attitude": 20 }]
+  },
+  {
+    "id": "ordre-du-reflet-beni",
+    "nom": "Garnison du Reflet Béni",
+    "resume": "Les chevaliers et clercs qui tiennent le dernier fort avant les sables du Val du Couchant contre le pillage et les morts-vivants.",
+    "objectifs": [
+      "Contenir les horreurs enfouies sous les sables",
+      "Protéger la route marchande vers Valdargent"
+    ],
+    "chef": "commandeur-garin",
+    "reputation": 15,
+    "paliers": [
+      { "seuil": 30, "nom": "Alliés de la Croix d'Argent", "effet": "Soins gratuits et gîte assuré au Fort (à brancher sur les sujets d'Elara ou de Marta). Monte avec la quête de Lysandre (+10), le sceau renouvelé (+10) ou le bannissement (+15) de Baltoplate, les quêtes d'Elara, de Torin, la statue remise (+5)." },
+      { "seuil": -20, "nom": "Pilleurs suspects", "effet": "Le commandeur fouille les fontes au retour. Baisse avec la rupture du contrat (−35), le refus d'inventaire (écho −10), la libération de Baltoplate (−5) et le palier 4 de l'horloge (−5)." }
+    ],
+    "relations": [
+      { "faction": "commanditaire-alderic", "attitude": 20 },
+      { "faction": "cour-de-xiximantre", "attitude": -80 }
+    ]
+  },
+  {
+    "id": "cour-de-xiximantre",
+    "nom": "Cour de Xiximantre",
+    "resume": "L'alchimiste homme-serpent immortel et ses sentinelles d'argile, reclus au fond du troisième niveau hors du temps, persuadés que leur empire règne toujours.",
+    "objectifs": [
+      "Poursuivre les distillations alchimiques à l'abri de la surface",
+      "Punir quiconque profane les sépulcres royaux ou lui apprend la chute de l'empire"
+    ],
+    "chef": "xiximantre",
+    "reputation": -10,
+    "paliers": [
+      { "seuil": 20, "nom": "Émissaires tolérés", "effet": "Xiximantre accepte le troc de potions rares (à brancher sur ses sujets). Le dilemme « L'Empire Oublié » donne +30 à qui flatte son illusion." },
+      { "seuil": -30, "nom": "Profanateurs condamnés", "effet": "Xiximantre ordonne l'exécution immédiate. Atteint par qui lui dit la vérité (écho −30) ou laisse monter l'horloge." }
+    ],
+    "relations": [
+      { "faction": "clan-des-champignons", "attitude": -90 },
+      { "faction": "ordre-du-reflet-beni", "attitude": -80 }
+    ]
+  },
+  {
+    "id": "clan-des-champignons",
+    "nom": "Clan des Champignons Souterrains",
+    "resume": "Une petite tribu de gobelins terrée dans les galeries humides du troisième niveau, prise en tenaille entre le basilic et les oubliettes de Xiximantre.",
+    "objectifs": [
+      "Survivre grâce aux champignonnières et fuir par l'escalier sous les racines",
+      "Délivrer leurs quatre frères capturés par le sorcier"
+    ],
+    "chef": "skriik-le-cueilleur",
+    "reputation": -10,
+    "paliers": [
+      { "seuil": 20, "nom": "Amis des terriers", "effet": "Skriik cède la Couronne et ouvre le raccourci vers la surface (à brancher sur ses sujets, à côté du drapeau « gobelins sauvés »). Monte avec la libération des captifs (+35), la quête des oubliettes (+20), la trêve (+15) et l'événement des captifs délivrés (+10)." }
+    ],
+    "relations": [{ "faction": "cour-de-xiximantre", "attitude": -90 }]
+  }
+]

@@ -1,0 +1,1450 @@
+[
+  {
+    "id": "commandeur-garin",
+    "nom": "Commandeur Garin",
+    "titre": "Commandant du Fort du Reflet Béni",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "52 ans",
+    "role": "Commandant de la garnison et forgeron d'avant-poste",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Homme carré d'épaules en cotte de mailles bien huilée sous un tabard azur usé par le sable, cicatrice pâle le long de la tempe.",
+    "personnalite": {
+      "traits": [
+        "rigoureux",
+        "protecteur"
+      ],
+      "voix": "Grave et posée, phrase brève de soldat habitué au désert.",
+      "valeurs": [
+        "loyauté envers Valdargent",
+        "containment des morts-vivants"
+      ],
+      "desir": "Empêcher que des pilleurs avides ne réveillent une horreur sous les dunes.",
+      "peur": "Voir revenir vers le fort ce que les anciens prêtres avaient scellé sous le sable."
+    },
+    "attitude": 15,
+    "profilCombat": "chevalier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [
+      {
+        "fait": "f-vapeur-des-sepulcres",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        }
+      },
+      {
+        "fait": "f-pnj-gobelins-enfumes",
+        "jet": {
+          "competence": "intuition",
+          "dd": 14
+        }
+      }
+    ],
+    "salutations": {
+      "neutre": "« Bienvenue entre nos murs, voyageurs. Secouez le sable de vos bottes et ne promettez au seigneur Aldéric que ce que vous comptez tenir. » Il compte les groupes qui partent sur la piste et ceux qui reviennent.",
+      "amical": "« Votre parole vaut mieux que le poids de votre fer, à ce qu'on raconte dans la cour. Entrez boire un verre frais avant la piste. » Il vous tend une tasse de thé de menthe, très sucré.",
+      "hostile": "« L'avant-poste n'est pas un repaire pour parjures. Réglez vos dettes envers Valdargent avant de réclamer nos créneaux. » Il ne vous tend ni main ni tasse, et reprend son tour de ronde.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "verdict-partage-honnete"
+          },
+          "texte": "Il pose le billet à plat sur la table. « Martin m'a envoyé billet par estafette : pas une once dissimulée, pas un parjure. Il a tout compté, et tout est exact. La porte du fort vous restera grande ouverte. »"
+        },
+        {
+          "condition": {
+            "flag": "verdict-tout-garder"
+          },
+          "texte": "Il ne lève pas la voix. « Les cavaliers d'Aldéric ont déjà sonné l'alarme sur la route. Ils disent que vous avez tout gardé. Ne cherchez ni pain ni refuge sous ma bannière. »"
+        },
+        {
+          "condition": {
+            "parle": "varnac-le-borgne"
+          },
+          "texte": "Il ferme les yeux une seconde. « Vous avez parlé à Varnac, et Varnac a parlé. Le fort est petit, tout s'y sait. Hélian est mort, et j'aurais dû interdire cette descente. Ça pèse, et je ne vous demande pas de me plaindre. »"
+        },
+        {
+          "condition": {
+            "parle": "martin-le-valet"
+          },
+          "texte": "Il grommelle et tapote son tabard. « Vous avez parlé à Martin. Il m'écrit tous les trois jours, et il compte tout. Il suit votre groupe à la plume, mieux que des éclaireurs. C'est un honnête homme malheureux. »"
+        },
+        {
+          "condition": {
+            "lieu": "n1-couloir-entree"
+          },
+          "texte": "Il regarde vos bottes, couvertes d'une poussière blanche et verdâtre. « Vous avez franchi le seuil de la tombe. Ça sent le caveau, je le vois sur vous. » Il ne commente pas davantage."
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "contrat-et-piste",
+        "mots": [
+          "contrat",
+          "alderic",
+          "tombe",
+          "valdargent",
+          "martin"
+        ],
+        "question": "Que savez-vous du contrat d'Aldéric et de la piste ?",
+        "reponse": "Garin désigne les dunes rousses par la poterne. « Le seigneur Aldéric paie bien, mais il compte trop. Il exige exactement la moitié du butin, et chaque pièce se pèse sous la surveillance de son valet Martin. Martin a des yeux de comptable : il attend déjà au Bivouac du Seuil, à huit heures de marche du fort, avec deux mules. Ne lui promettez que ce que vous tiendrez. Descendez voir ce qui dort sous ces dalles, puis revenez souffler au fort si la tombe vous mord trop fort. »",
+        "revele": [
+          "f-contrat-moitie-part"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-tombe-des-rois-serpents",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "dangers-sables",
+        "mots": [
+          "dangers",
+          "statues",
+          "sepulcres",
+          "gaz",
+          "drones"
+        ],
+        "question": "À quoi faut-il s'attendre sous le seuil du tombeau ?",
+        "reponse": "Garin tire son gantelet et montre sa paume brûlée. « Les cercueils d'argile des gardiens et des prêtres renferment une vapeur verte. Elle jaillit dès que le couvercle cède brutalement. Il y a dix-sept ans, jeune sergent, j'ai ouvert un cercueil pour prouver à mes hommes que ce n'était rien. La vapeur m'a brûlé la paume. Un homme de ma patrouille en est mort. Frappez vite, ouvrez avec une perche, et prenez de bonnes cordes. Mes hommes n'y mettent plus les pieds. »",
+        "revele": [
+          "f-vapeur-des-sepulcres"
+        ],
+        "effets": []
+      },
+      {
+        "id": "equipement-fort",
+        "mots": [
+          "forge",
+          "bouclier",
+          "armes",
+          "torches",
+          "ravitaillement"
+        ],
+        "question": "Pouvez-vous équiper l'expédition avant le départ ?",
+        "reponse": "Garin jette un regard à vos ceinturons, puis désigne la forge. « Je forge chaque matin avant la cour, et je donne un nom à chaque lame que je termine. Ici, les armes ne manquent pas : lames courtes, dagues de secours et boucliers. Pour le ravitaillement, des torches goudronnées, des cordes, des perches et des rations sèches. C'est pour ceux qui partent sans tourner casaque. Prenez de quoi éclairer plus loin que vos pieds, et ne lésinez pas sur les cordes. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "le-fort-et-son-ordre",
+        "mots": [
+          "fort",
+          "ordre",
+          "reflet",
+          "garnison",
+          "murs",
+          "histoire"
+        ],
+        "question": "Depuis quand le fort garde-t-il le Val ?",
+        "reponse": "Garin frappe le mur chaulé du plat de la main. « Le fort a été bâti il y a quatre-vingt-dix ans par l'Ordre du Reflet Béni, pour garder le Val du Couchant et surveiller la nécropole. Nos murs sont chaulés, et ils renvoient le soleil : c'est de là que vient le nom. Ne vous y trompez pas, la garnison n'est pas là pour piller. Elle veille à ce que rien de ce qui dort sous les sables du Val ne remonte vers les routes de Valdargent. Pour l'histoire de l'Ordre, demandez à frère Balthazar : il tient les archives. »",
+        "revele": [
+          "f-pnj-fort-de-l-ordre",
+          "f-fort-contient-les-horreurs"
+        ],
+        "effets": []
+      },
+      {
+        "id": "les-trois-du-fort",
+        "mots": [
+          "varnac",
+          "lysandre",
+          "mireille",
+          "compagnons",
+          "volontaires"
+        ],
+        "question": "Qui, au fort, pourrait nous accompagner ?",
+        "reponse": "Garin secoue la tête, puis compte trois doigts. « Je ne prête aucun soldat : aucun des miens n'entre dans la tombe. Mais trois personnes du fort ne sont à personne. Varnac le Borgne est sapeur, et c'est le seul revenu de la dernière descente. Sœur Lysandre est envoyée de l'Ordre, pas de la maison d'Aldéric. Mireille Plumevert, arpenteuse et serrurière, est une cartographe gnome. Parlez-leur d'abord, je ne décide pas à leur place. Le reste du fort, lui, ne bouge pas d'un pas. Voyez-les vous-mêmes. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "le-bilan-du-commandant",
+        "mots": [
+          "bilan",
+          "rapport",
+          "retour",
+          "tombe"
+        ],
+        "question": "Rendre compte au commandant de ce qui dort en bas.",
+        "reponse": "Garin écoute sans vous interrompre et hoche la tête. « Alors le Val dormira encore une saison. Ce n'est pas une victoire, c'est une saison de plus. Je ne vous demande rien de plus, et je ne demande pas ce que vous avez vu. Vous êtes remontés, c'est déjà une bonne nouvelle ici. Un bilan vaut mieux qu'une belle histoire. Gardez le vôtre pour Aldéric, c'est lui qui paie. Passez au puits avant de repartir, l'eau y est la meilleure du Val. »",
+        "condition": {
+          "flag": "coeur-tombe-resolu"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "commandeur-garin",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-terriers-de-la-falaise",
+        "mots": [
+          "terriers",
+          "falaise",
+          "gobelins",
+          "fumée",
+          "enfumé"
+        ],
+        "question": "Lui parler des terriers de la falaise.",
+        "reponse": "Garin baisse les yeux vers la poussière et serre la mâchoire. « Oui, le fort a enfumé le terrier des gobelins sur la falaise, il y a quatre ans. J'ai donné l'ordre après un hiver de vols de rations, et je n'y cherche aucune excuse. Je n'ai jamais su combien en étaient sortis. Depuis, aucun de mes hommes ne touche plus aux terriers, et ça ne changera pas tant que je commanderai ce fort. Je ne vous demande pas de me pardonner. »",
+        "condition": {
+          "fait": "f-pnj-gobelins-enfumes"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "commandeur-garin",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "modele": "forgeron",
+      "stock": [
+        {
+          "objet": "torche",
+          "quantite": 12
+        },
+        {
+          "objet": "corde",
+          "quantite": 4
+        },
+        {
+          "objet": "perche",
+          "quantite": 3
+        },
+        {
+          "objet": "rations",
+          "quantite": 15
+        },
+        {
+          "objet": "dague",
+          "quantite": 4
+        },
+        {
+          "objet": "bouclier",
+          "quantite": 2
+        }
+      ],
+      "rachat": 0.5,
+      "types": [
+        "arme",
+        "armure",
+        "bouclier",
+        "materiel",
+        "nourriture"
+      ]
+    },
+    "services": [
+      {
+        "id": "gite-fort",
+        "nom": "Loger et manger à la garnison",
+        "resume": "Chambres propres et table chaude pour se remettre d'une descente éprouvante.",
+        "prix": 2,
+        "effets": [
+          {
+            "narration": "Vous reprenez des forces au calme derrière les remparts blancs du Fort du Reflet Béni."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "elara-herboriste",
+    "nom": "Elara",
+    "titre": "Apothicaire de l'avant-poste",
+    "espece": "elfe",
+    "sexe": "F",
+    "age": "114 ans",
+    "role": "Soigneuse, apothicaire et acheteuse de curiosités antiques",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Elfe menue aux doigts tachés de safran et de brou de noix, tablier de lin clair couvert de fioles attachées.",
+    "personnalite": {
+      "traits": [
+        "curieuse",
+        "pragmatique"
+      ],
+      "voix": "Claire, rapide et précise, avec un intérêt vif pour la botanique perdue.",
+      "valeurs": [
+        "savoir ancien",
+        "préserver les vivants"
+      ],
+      "desir": "Mettre la main sur des graines ou des baumes conservés dans la nécropole sèche.",
+      "peur": "Voir d'anciennes malédictions ressurgir sur la route, et ces fièvres du sable qu'aucune fiole ne retient."
+    },
+    "attitude": 20,
+    "savoir": [
+      "f-rumeur-trone-maudit"
+    ],
+    "secrets": [
+      {
+        "fait": "f-vrai-nom-baltoplate",
+        "jet": {
+          "competence": "arcanes",
+          "dd": 14
+        }
+      },
+      {
+        "fait": "f-fausse-tombe-leurre",
+        "jet": {
+          "competence": "histoire",
+          "dd": 12
+        }
+      }
+    ],
+    "salutations": {
+      "neutre": "Elara pile sans lever les yeux. « Entrez sous l'auvent, il y fait dix degrés de moins que dans la cour. Qu'est-ce qui gratte ou qui brûle aujourd'hui ? Asseyez-vous, mais ne touchez pas aux fioles. »",
+      "amical": "Elara se redresse, ravie. « Ah, vous voilà revenus entiers ! Posez-vous sur le banc, j'ai préparé des décoctions toutes fraîches et un verre de tisane. Racontez-moi tout, je vous écoute. »",
+      "hostile": "Elara ne quitte pas son comptoir des yeux. « Mes fioles sont réservées aux voyageurs fiables. Allez faire peser vos mensonges ailleurs. Je n'ai ni tisane ni temps pour des gens qui meurent de bêtises. »",
+      "variantes": [
+        {
+          "condition": {
+            "objet": "graines-eteintes"
+          },
+          "texte": "Elara renifle l'air, les narines frémissantes. « Par toutes les racines ! Cette odeur de plante éteinte vient de votre besace, n'est-ce pas ? Ouvrez-la et montrez-moi ces graines, tout de suite, je ne tiendrai pas une minute de plus. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "elfe"
+            }
+          },
+          "texte": "« Un elfe parmi vous ! Il y a longtemps que je n'ai pas croisé quelqu'un qui compte en siècles et non en saisons. Venez vous asseoir, je prépare une tisane et nous parlerons tranquillement, sans hâte. Le désert attendra. »"
+        },
+        {
+          "condition": {
+            "lieu": "n1-tombes-des-gardes"
+          },
+          "texte": "« Vous sentez le plâtre et la vapeur verte, je le vois à vos vêtements ! Approchez, respirez là, toussez, montrez-moi vos yeux. Vous êtes passés par les caveaux, ne dites pas le contraire. Je vous gronde gentiment, mais ne recommencez pas. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "antidotes-et-graines",
+        "mots": [
+          "antidote",
+          "graines",
+          "potions",
+          "herbes",
+          "poison"
+        ],
+        "question": "Avez-vous un remède contre les poisons des cryptes ?",
+        "reponse": "Elara pose des fioles vert pâle sur le comptoir de cèdre et essuie ses lunettes de cuivre. « Oui, j'en ai : antidotes, potions de guérison et trousses complètes, à prendre ou à laisser. Les tombes gardent des poisons d'argile secs, aussi efficaces qu'au premier jour, alors ne traînez pas si vous êtes touché. Et si vous trouvez des graines, des œuvres d'art ou de vieilles curiosités, je les rachète au juste prix, ou je vous paie en potions de guérison. Ramenez-moi ce que vous dénichez. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "rumeurs-trone-et-statues",
+        "mots": [
+          "trone",
+          "statues",
+          "basilic",
+          "petrifie",
+          "rumeur"
+        ],
+        "question": "Que sait-on du trône et des statues ?",
+        "reponse": "Elle baisse la voix en pilant de la camomille sèche. « On raconte à Valdargent qu'un trône d'or attend quiconque s'y assoit pour en faire le roi du désert. Ne vous asseyez sur rien d'or, même pour souffler. Une demi-vérité mortelle, à mon avis : le siège insuffle une folie conquérante. Quant aux statues, méfiez-vous de ce qui change la chair en pierre. Si vous en voyez une, rapportez-moi un fragment ou un croquis fidèle, je vous paierai. Et dites-moi d'abord ce que vous avez vu dans la poussière. »",
+        "revele": [
+          "f-rumeur-trone-maudit"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-statues-petrifiees",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "vente-graines-xiximantre",
+        "mots": [
+          "vendre graines",
+          "voici les graines",
+          "seme",
+          "plante eteinte"
+        ],
+        "condition": {
+          "objet": "graines-eteintes"
+        },
+        "question": "Voici le bocal de graines éteintes trouvé dans les profondeurs.",
+        "reponse": "Elara retient son souffle et soulève le bocal hermétique face à la lumière. « Six graines complètes d'écorce-serpent du premier âge ! Je ne connaissais que des herbiers desséchés, et je les croyais perdues pour toujours. Je n'ai vu qu'un fragment de graine, il y a bien longtemps, et il avait la couleur d'une écaille. Tenez, prenez ces cent soixante pièces d'or sans discuter. Enfin des graines que je pourrai semer. Si vous en trouvez d'autres, revenez me voir d'abord. Merci, sincèrement, de tout mon cœur. »",
+        "revele": [],
+        "effets": [
+          {
+            "objet": {
+              "id": "graines-eteintes",
+              "retirer": true
+            }
+          },
+          {
+            "pieces": 160
+          },
+          {
+            "xp": 75
+          },
+          {
+            "attitude": {
+              "pnj": "elara-herboriste",
+              "delta": 25
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rapport-statues-petrifiees",
+        "mots": [
+          "basilic",
+          "statues petrifiees",
+          "gardes figes",
+          "preuve",
+          "tresor"
+        ],
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "objet": "statuette-garde-petrifie"
+                },
+                {
+                  "flag": "cle-basilic-prise"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "statues-petrifiees-rapportees"
+              }
+            }
+          ]
+        },
+        "question": "Nous avons un rapport à vous faire.",
+        "reponse": "Elara pose sa spatule et examine avec passion vos croquis rapides. « Un basilic enchaîné depuis des âges, et des gardiens figés dans la pierre ! Voilà qui explique pourquoi aucun éclaireur ancien n'en est revenu entier. Vos observations valent beaucoup pour les archives du Reflet Béni. Des novices sans cette mise en garde descendraient ces couloirs sans rien savoir. Je voudrais étudier ce que vous avez ramené. Et si vous retournez en bas, avancez lentement, les yeux sur le sol. Merci, sincèrement. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "statues-petrifiees-rapportees"
+          },
+          {
+            "attitude": {
+              "pnj": "elara-herboriste",
+              "delta": 15
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "les-ouvriers-brules",
+        "mots": [
+          "ouvriers",
+          "terrassiers",
+          "pierrot",
+          "brûlure",
+          "vapeur",
+          "soins"
+        ],
+        "question": "Soignez-vous aussi les ouvriers de la tranchée ?",
+        "reponse": "Elle range une fiole dans son tablier et lève les yeux. « Oui, je soigne quiconque vient avec une brûlure. Il y a deux mois, j'ai sauvé Pierrot, un terrassier de Brennan, brûlé à la gorge par la vapeur d'un cercueil. Il a toussé vert pendant trois semaines. Contre la vapeur, il faut de l'eau tiède, la tête haute, et surtout ne jamais frotter. Je m'emporte contre ces contremaîtres qui envoient des hommes sans masque. Allez voir Brennan, c'est lui qui dirige la fouille. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "une-elfe-au-fort",
+        "mots": [
+          "passé",
+          "académie",
+          "valdargent",
+          "pourquoi",
+          "elfe",
+          "herbier"
+        ],
+        "question": "Qu'est-ce qui vous a menée jusqu'ici ?",
+        "reponse": "Elle repousse ses lunettes de cuivre sur son nez, un sourire bref aux lèvres. « Je viens de l'académie des simples de Valdargent, où j'ai été apprentie puis maîtresse. Il y a trente et un ans, une querelle avec le recteur sur « ce qui est une plante éteinte » m'a décidée à partir pour le fort. Le désert garde tout, même les mortes, et c'est pour ça que j'y reste. Mon herbier et l'écorce-serpent me retiennent ici. Voulez-vous voir les feuilles que je conserve ? »",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "modele": "apothicaire",
+      "stock": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 6
+        },
+        {
+          "objet": "antidote",
+          "quantite": 6
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        }
+      ],
+      "rachat": 0.55,
+      "types": [
+        "curiosite",
+        "objet-d-art",
+        "bijou",
+        "gemme",
+        "parchemin",
+        "potion"
+      ]
+    },
+    "services": [
+      {
+        "id": "soins-elara",
+        "nom": "Soin complet et purge des poisons",
+        "resume": "Nettoie les blessures, applique des cataplasmes et chasse les résidus toxiques.",
+        "prix": 10,
+        "effets": [
+          {
+            "narration": "Elara panse chaque plaie avec soin et purge les traces de poison du caveau."
+          }
+        ]
+      },
+      {
+        "id": "identifier-elara",
+        "nom": "Identifier un objet ou anneau suspect",
+        "resume": "Examen alchimique complet d'une relique ou bague douteuse trouvée en bas.",
+        "prix": 15,
+        "effets": [
+          {
+            "narration": "À l'aide de ses réactifs et lentilles, Elara révèle la nature véritable de vos trouvailles."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "martin-le-valet",
+    "nom": "Martin",
+    "titre": "Valet de confiance du seigneur Aldéric",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "39 ans",
+    "role": "Intendant de campagne, gardien des mules et contrôleur du partage",
+    "lieu": "bivouac-entree",
+    "faction": "commanditaire-alderic",
+    "apparence": "Homme sec vêtu d'une livrée brune toujours brossée malgré la poussière, doigts tachés d'encre, carnet et balance à la ceinture.",
+    "personnalite": {
+      "traits": [
+        "méticuleux",
+        "soupçonneux"
+      ],
+      "voix": "Polie mais sèche comme un registre de compte ; écoute plus qu'il ne parle.",
+      "valeurs": [
+        "exactitude des comptes",
+        "fidélité à son maître"
+      ],
+      "desir": "Ramener exactement la moitié promise à Valdargent sans se laisser berner.",
+      "peur": "Rentrer les mains vides ou passer pour un valet naïf devant Aldéric."
+    },
+    "attitude": 5,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [
+      {
+        "fait": "f-sortie-racines-surface",
+        "jet": {
+          "competence": "perception",
+          "dd": 14
+        }
+      }
+    ],
+    "salutations": {
+      "neutre": "« Bonjour, messieurs-dames. Les mules vont bien, et il me reste de la place dans les paniers de droite pour la part du seigneur Aldéric. Posez vos sacs près des mules, je compte les paniers. »",
+      "amical": "Il désigne un rocher du menton. « Toujours un plaisir de travailler avec des associés ponctuels. Vous êtes à l'heure, et je le note. Installez-vous à l'ombre de ce rocher si vous devez souffler. »",
+      "hostile": "Il referme son carnet d'un coup sec. « Vous me prenez pour un imbécile des champs ? Je sais exactement ce que pèse une besace pleine quand on sort d'un trou. Je n'ai pas besoin de regarder vos sacs pour le savoir. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "coeur-tombe-resolu"
+          },
+          "texte": "« Vous voilà remontés des étages bas. Sortez la toile sur le sable : il est temps d'étaler le compte et de trancher notre contrat. Je vous attends depuis un moment, et mes mules aussi. »"
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "min": 4
+            }
+          },
+          "texte": "« Quatre nuits hors du fort, et j'ai coché chaque repos dans mon carnet. Les mules s'impatientent, et le seigneur Aldéric aussi. Je constate peu de progrès, alors montrez-moi une preuve de travail honnête avant que sa patience ne lâche. »"
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "min": 2
+            }
+          },
+          "texte": "« Deux nuits passées dehors, je le constate, sans reproche. Je tapote mon carnet et je note les repos. J'aimerais avoir des nouvelles de la tombe, quand vous en aurez. »"
+        },
+        {
+          "condition": {
+            "parle": "lise-guetteuse"
+          },
+          "texte": "« Vous avez interrogé Lise, éclaireuse du bivouac. C'est votre droit, et je le note. Ce qu'elle ne sait pas, je peux vous le dire moi-même, avec les chiffres exacts. Demandez-moi directement, je répondrai sans détour. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "surveillance-bivouac",
+        "mots": [
+          "mules",
+          "compte",
+          "contrat",
+          "racines",
+          "entree"
+        ],
+        "question": "Comment se passe la garde du camp, et qu'avez-vous remarqué ?",
+        "reponse": "Martin ajuste la sangle d'une mule sans quitter vos sacoches des yeux. « Le camp est calme de jour, si l'on oublie les corbeaux qui tournent sans cesse autour du vieil arbre mort. La nuit dernière, je constate un bruissement sec sous ses racines, comme s'il y avait du creux en dessous. Je n'ai pas ordre d'y descendre. Quant au contrat : moitié exacte pour vous, moitié pour le seigneur Aldéric, et chaque part sera pesée devant moi. Demandez à Lise ce qu'elle voit depuis le rocher. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "rapport-niveau-1",
+        "mots": [
+          "rapport",
+          "nouvelles",
+          "premier niveau",
+          "faux temple",
+          "compte rendu"
+        ],
+        "question": "Lui rendre compte du premier niveau.",
+        "reponse": "Martin referme son carnet sans hâte, la plume posée en travers de la page. « Je constate que vous êtes venus me le dire franchement, et je vous en sais gré. Vous m'avez décrit le faux temple, puis le passage trouvé sous l'idole. Je note tout, mot pour mot. » Il trempe la plume sans faire de tache et écrit longtemps, sans relever les yeux. « Bien. J'écris au fort que tout suit son cours et que vous jouez franc jeu. Les mules se calment déjà. Gardez de quoi me le montrer au retour : nous compterons ensemble ce que vous rapportez. Merci, messieurs-dames. »",
+        "condition": {
+          "et": [
+            {
+              "lieu": "n2-hall-aux-statues"
+            },
+            {
+              "non": {
+                "flag": "rapport-n1-fait"
+              }
+            }
+          ]
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "rapport-n1-fait"
+          },
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": -1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rapport-niveau-2",
+        "mots": [
+          "rapport",
+          "nouvelles",
+          "deuxième niveau",
+          "catacombes",
+          "compte rendu"
+        ],
+        "question": "Lui rendre compte du deuxième niveau.",
+        "reponse": "Martin ouvre son carnet couvert de chiffres et le tourne vers la lumière. « Les catacombes noires. Vous me racontez ce que vous avez vu plus bas sans fioritures, et je vous en sais gré : c'est ainsi qu'on tient un compte. J'ai coché chaque jour depuis le départ, et je constate que le travail avance proprement. » Il compte les lignes qu'il vient d'écrire, puis referme le carnet d'un claquement mesuré. « Gardez le reste pour plus tard, quand nous serons au calme. J'écris au fort que tout suit son cours. Je vous avoue que je suis un peu moins sec que d'habitude : ne vous en vantez pas. »",
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "lieu": "n3-salle-ceremonie"
+                },
+                {
+                  "lieu": "n3-hall-du-basilic"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "rapport-n2-fait"
+              }
+            }
+          ]
+        },
+        "revele": [],
+        "effets": [
+          {
+            "flag": "rapport-n2-fait"
+          },
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": -1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-maison-d-alderic",
+        "mots": [
+          "aldéric",
+          "maître",
+          "maison",
+          "valdargent",
+          "service"
+        ],
+        "question": "Que représente Aldéric pour vous ?",
+        "reponse": "Martin range son carnet et répond sans lever les yeux de la sangle. « Le seigneur Aldéric est mon maître depuis dix ans. Avant cela, j'étais garçon de comptoir à son entrepôt d'épices, à dix-neuf ans. La maison de Valdargent vaut ce qu'elle tient de parole : exactitude, comptes justes, rien de plus. Mon père a été ruiné par un associé qui avait triché sur la moitié, alors je sais ce que coûte une part mal pesée. Depuis, la moitié, c'est la paix. Pour le reste, demandez-le au seigneur lui-même. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "les-compagnies-d-avant",
+        "mots": [
+          "compagnies",
+          "avant",
+          "précédents",
+          "varnac",
+          "blessé",
+          "rampé"
+        ],
+        "question": "Qui est passé par ici avant nous ?",
+        "reponse": "Martin tourne une page de son carnet et lit ses lignes à voix basse, comme un comptable. « Trois compagnies ont signé le contrat avant vous. La première est partie il y a sept mois, et elle n'est jamais remontée. La deuxième a reculé devant la barre de granit du couloir. La troisième, il y a six semaines, a perdu deux hommes dans la vapeur des cercueils du premier niveau. Varnac le Borgne en est revenu : il a rampé jusqu'à moi, la gorge brûlée. Son frère d'armes est resté dans un caveau, et il n'a jamais pu le ramener. Je lui ai donné de l'eau salée tiède, puis je l'ai envoyé au fort. »",
+        "revele": [
+          "f-pnj-compagnies-precedentes",
+          "f-varnac-survivant"
+        ],
+        "effets": []
+      }
+    ],
+    "inventaire": [
+      "contrat-de-valdargent"
+    ]
+  },
+  {
+    "id": "baltoplate",
+    "nom": "La Captive du Cercle",
+    "titre": "Captive du cercle d'argent",
+    "espece": "humaine",
+    "sexe": "F",
+    "age": "25 ans",
+    "role": "Captive implorant sa libération au centre d'un cercle d'argent",
+    "lieu": "n3-salle-invocation",
+    "apparence": "Jeune femme pâle aux yeux sombres noyés de larmes feintes, vêtue de lambeaux gris et portant des menottes lâches au sein d'un cercle d'argent.",
+    "personnalite": {
+      "traits": [
+        "séductrice",
+        "manipulatrice"
+      ],
+      "voix": "Douce, tremblante et musicale tant que personne ne prononce son vrai nom.",
+      "valeurs": [
+        "liberté personnelle"
+      ],
+      "desir": "Obtenir un baiser naïf pour briser le cercle magique et recouvrer ses pouvoirs.",
+      "peur": "Entendre prononcer son vrai nom avant d'avoir pu fuir."
+    },
+    "attitude": 0,
+    "profilCombat": "succube",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "neutre": "Elle joint ses mains meurtries au centre du cercle, les yeux humides. « Pitié, voyageurs ! Ne me laissez pas pourrir ici avec ces vieux serpents... Approchez seulement jusqu'au bord de la pierre, je vous en prie. »",
+      "amical": "Un sourire tremblant éclaire son visage pâle, et ses larmes brillent sous les runes. « Vous êtes enfin revenus me sauver ! Un seul geste, un simple baiser sur mon front, et ces chaînes cruelles se briseront bientôt. »",
+      "hostile": "Elle détourne les yeux, sans une larme, et se tient droite au centre du cercle. « Vous me croyez liée pour toujours, misérables mortels ? Riez donc, puisque vous en avez le temps, pendant que le cercle brûle encore. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "baltoplate-demasquee"
+          },
+          "texte": "Son sourire s'élargit, sans une larme. « Maudits soient ces prêtres morts et leurs vieux rouleaux de sacristie ! Vous connaissez mon nom, alors soyons francs : qu'attendez-vous, un pacte ou une lame ? Je vous écoute, tout le temps que vous voudrez. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "tieffelin"
+            }
+          },
+          "texte": "Elle sourit, sans quitter le cercle. « Un sang qu'on regarde de travers, n'est-ce pas ? L'un d'entre vous porte cette marque-là, je la devine d'ici. On vous a déjà pris pour un monstre. Moi aussi, voyez-vous, et c'est ce qui nous rapproche. »"
+        },
+        {
+          "condition": {
+            "ou": [
+              {
+                "heros": {
+                  "classe": "clerc"
+                }
+              },
+              {
+                "heros": {
+                  "classe": "paladin"
+                }
+              }
+            ]
+          },
+          "texte": "Elle baisse le regard vers le sol, comme si l'éclat du symbole la blessait. « Votre symbole est beau, et je n'ai rien à cacher à la lumière, je vous assure. Bénissez-moi plutôt que de me craindre, je vous en supplie. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "histoire-fausse-captive",
+        "mots": [
+          "qui etes vous",
+          "prisonniere",
+          "chaines",
+          "baiser",
+          "liberer"
+        ],
+        "condition": {
+          "non": {
+            "flag": "baltoplate-demasquee"
+          }
+        },
+        "question": "Qui êtes-vous et comment vous libérer de ces chaînes ?",
+        "reponse": "Elle lève vers vous des poignets couverts de marques, avec un tremblement étudié, sans quitter le centre du cercle d'argent. « Pitié. On m'appelait Lyra, autrefois, avant que ces prêtres à tête de serpent ne m'enferment ici pour leurs rituels. Mes chaînes ne répondent à aucune clé, aucun crochet, aucune lame : seul un baiser sincère, donné au travers du cercle, peut briser leur sortilège. Le bord de la pierre n'est qu'à un pas de vous. Je vous en prie, ne me laissez pas seule avec eux, pas une nuit de plus. » Elle se recroqueville sur elle-même et ne vous quitte pas des yeux.",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "accepter-baiser-piege",
+        "mots": [
+          "embrasser",
+          "donner un baiser",
+          "rompre le cercle"
+        ],
+        "condition": {
+          "non": {
+            "flag": "baltoplate-reglee"
+          }
+        },
+        "question": "Franchir le bord du cercle pour l'embrasser et briser les chaînes.",
+        "reponse": "Vos lèvres effleurent sa joue glacée. Les menottes claquent dans le vide, deux ailes sombres se déploient dans une odeur de soufre, et un souffle de vie vous quitte. « Merci pour votre tendresse, mortels ! Vous êtes tous si sincères, c'est presque touchant. Quelle naïveté, et quel courage, vraiment. Je suis Baltoplate, mes chers, et je n'ai jamais été une Lyra. Seul un baiser donné de plein gré pouvait briser mon cercle, et c'est le mortel qui paie. Rien de personnel, mes chers. Gardez donc la dague, j'ai bien d'autres cités à visiter ! »",
+        "revele": [
+          "f-vrai-nom-baltoplate"
+        ],
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "blessure": {
+              "des": "2d6",
+              "cible": "un"
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "baltoplate",
+              "delta": 20
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "bannir-ou-marchander-baltoplate",
+        "mots": [
+          "baltoplate",
+          "nom",
+          "bannir",
+          "pacte",
+          "dague"
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "baltoplate-demasquee"
+            },
+            {
+              "non": {
+                "flag": "baltoplate-reglee"
+              }
+            }
+          ]
+        },
+        "question": "Exiger la paix et des révélations en prononçant son nom.",
+        "reponse": "Ses yeux se fendent, mais le cercle vibre à ce nom et retient ses griffes au-delà des runes. « Vous avez donc déniché mon nom, et voilà bien du courage. Très bien : prenez la dague noire et le serpent de pierre sur le basalte. Je vous laisse passer sans griffe ni poison. C'est un marché honnête, et je n'en fais jamais deux. » Elle tourne la tête vers le couloir, comme pour écouter les murs. « Un conseil gratuit : Xiximantre, plus loin, se croit encore en plein empire. Flattez son orgueil si vous voulez ses fioles. Quant au reste, personne ne vient plus me voir, et les hommes-serpents ne reviendront pas. »",
+        "revele": [
+          "f-empire-chute-xiximantre"
+        ],
+        "effets": [],
+        "unique": true
+      },
+      {
+        "id": "les-pretres-et-le-cercle",
+        "mots": [
+          "depuis",
+          "enfermée",
+          "prêtres",
+          "années",
+          "cercle",
+          "combien"
+        ],
+        "question": "Depuis quand êtes-vous enfermée ici ?",
+        "reponse": "Elle baisse les yeux vers le cercle, et ses doigts se crispent sur les menottes lâches. « Je ne sais plus compter les nuits, voyageurs. J'ai compté les gouttes de la voûte pendant des jours, des milliers peut-être, puis j'ai cessé. J'ai vu des barbes blanchir devant ces murs, et les prêtres ne viennent plus depuis longtemps. Ne me demandez pas plus, je vous en prie, cela me fait trop de mal. Le silence pèse plus lourd que les chaînes, je vous assure. Je m'accroche à la pierre froide du cercle pour ne pas perdre la tête. »",
+        "condition": {
+          "non": {
+            "flag": "baltoplate-demasquee"
+          }
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "la-tombe-vue-d-ici",
+        "mots": [
+          "salles",
+          "voisines",
+          "couloir",
+          "bête",
+          "clé",
+          "collier",
+          "chaîne",
+          "dalles"
+        ],
+        "question": "Que savez-vous des salles voisines ?",
+        "reponse": "Ses oreilles frémissent, et elle tourne la tête vers le mur du fond. « Je ne vois rien d'ici, mais j'entends tout. Dans le hall voisin, une grande bête pétrifiante est enchaînée, et sa chaîne tinte à chacun de ses mouvements. La clé de fer qui ouvre la salle du trésor pend à son collier. Quant au couloir aux lames, n'y posez pas le pied n'importe où : seules les dalles de pierre claire, usées par d'anciens passages, ne déclenchent pas les faux. Suivez-les, et vous survivrez peut-être. Je ne vous en dirai pas plus sur moi. »",
+        "condition": {
+          "non": {
+            "flag": "baltoplate-demasquee"
+          }
+        },
+        "revele": [
+          "f-cle-sur-collier-basilic",
+          "f-dalles-claires-sures"
+        ],
+        "effets": []
+      },
+      {
+        "id": "pourquoi-liee",
+        "mots": [
+          "pourquoi",
+          "liée",
+          "prêtres",
+          "serment",
+          "baiser",
+          "sceau"
+        ],
+        "question": "Pourquoi les prêtres vous ont-ils liée ?",
+        "reponse": "Elle rit doucement, les mains serrées sur les menottes lâches. « Hessarim, un jeune desservant. Je l'ai séduit, voilà tout, pour qu'il ouvre le sceau du basilic. Appelez ça un crime si vous voulez. Les prêtres m'ont liée à ce cercle d'argent, et seul un baiser donné de plein gré peut m'en délivrer, mais c'est le mortel qui paie, un souffle de vie arraché à sa poitrine. On m'a mal comprise, voyez-vous. Trois cent cinquante ans sans un seul prêtre : je n'ai pas besoin d'un oracle pour deviner que leur empire n'existe plus. »",
+        "condition": {
+          "fait": "f-vrai-nom-baltoplate"
+        },
+        "revele": [],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "xiximantre",
+    "nom": "Xiximantre",
+    "titre": "Dernier Alchimiste des Rois Serpents",
+    "espece": "homme-serpent",
+    "sexe": "M",
+    "age": "980 ans",
+    "role": "Sorcier immortel hors du temps, distilleur de potions rares",
+    "lieu": "n3-antichambre-xiximantre",
+    "faction": "cour-de-xiximantre",
+    "apparence": "Créature élancée à écailles vert-de-gris et museau serpentin poudré, vêtue d'une longue robe de soie violette impeccable sous une lueur alchimique.",
+    "personnalite": {
+      "traits": [
+        "courtois",
+        "mégalomane"
+      ],
+      "voix": "Sifflante, précieuse et affectée, comme un vieux professeur recevant des visiteurs provinciaux.",
+      "valeurs": [
+        "suprématie de l'empire ophidien",
+        "beauté alchimique"
+      ],
+      "desir": "Poursuivre ses distillations et échanger des ingrédients rares contre ses potions.",
+      "peur": "Apprendre que la Cour est morte, ou voir des pilleurs souiller ses morts."
+    },
+    "attitude": 0,
+    "profilCombat": "fanatique-de-secte",
+    "savoir": [
+      "f-vrai-nom-baltoplate"
+    ],
+    "secrets": [
+      {
+        "fait": "f-cle-sur-collier-basilic",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 14
+        }
+      }
+    ],
+    "salutations": {
+      "neutre": "Il dépose un alambic fumant et vous toise d'un œil plissé. « Bonjour, bipèdes. Quel heureux vent vous amène si loin des places marchandes de notre glorieux empire, jusqu'à mon humble laboratoire ? Ne restez pas sur le seuil, émissaires. »",
+      "amical": "Il s'avance, les mains jointes, et sourit de ses crocs polis. « Toujours un plaisir de recevoir des émissaires respectueux de la Couronne ! Mes alambics ont justement achevé un lot prometteur. Je vous en montrerai la couleur, bipèdes. Approchez, je vous prie. »",
+      "hostile": "Il ne daigne pas se retourner. « Comment osez-vous profaner ces dalles de vos bottes boueuses et salir la gloire des Rois ? Je ne vous adresserai pas un mot de plus, bipèdes. Votre présence me glace, et pas de la façon agréable. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "xiximantre-allie"
+          },
+          "texte": "Il vous salue d'un hochement de tête complice. « Vous voilà de retour, voyageurs avisés. Ne traînez pas trop près des oubliettes, je vous prie : ces vermines vertes gâchent mon appétit d'alchimiste. »"
+        },
+        {
+          "condition": {
+            "heros": {
+              "espece": "drakeide"
+            }
+          },
+          "texte": "Il s'incline, touché, et ses yeux glissent sur vos écailles. « Un cousin d'écaille ! Venu d'une maison cadette de l'empire, sans doute ? Pour la première fois, je vous offre un échantillon sans rien demander en retour, bipèdes. »"
+        },
+        {
+          "condition": {
+            "rencontre": {
+              "id": "r-basilic-enchaine",
+              "issue": "victoire"
+            }
+          },
+          "texte": "Il tend l'oreille, un pli d'inquiétude au front. « La chaîne de la grande salle voisine ne racle plus, et mon sommeil vous en remercie. Est-ce une victoire ? Je ne sais si je dois m'en réjouir, bipèdes, mais le silence me convient. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "accueil-de-l-alchimiste",
+        "mots": [
+          "qui",
+          "alchimiste",
+          "distiller",
+          "laboratoire",
+          "potions",
+          "grand œuvre"
+        ],
+        "question": "Qui êtes-vous, et que distillez-vous ici ?",
+        "reponse": "Il lisse le pli de sa robe de soie violette, ravi. « Xiximantre, alchimiste de la Cour, depuis sept siècles déjà ! Le dernier Roi m'a confié le Grand Œuvre : un élixir qui rende la Cour immortelle. Je distille ici, à l'abri des visiteurs, dans mes alambics et mes fioles. Mes laborantins sont en congé, je travaille donc seul. J'attends le retour de mon messager, parti il y a quelques lunes à peine. Si vous voulez voir mes potions de près, demandez-moi plutôt ce que vaut une de mes fioles, bipèdes. »",
+        "condition": {
+          "non": {
+            "flag": "xiximantre-provoque"
+          }
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "empire-et-nouvelles-surface",
+        "mots": [
+          "empire",
+          "surface",
+          "rois serpents",
+          "nouvelles",
+          "siecles"
+        ],
+        "condition": {
+          "non": {
+            "flag": "xiximantre-provoque"
+          }
+        },
+        "question": "Lui assurer que la Cour se porte bien.",
+        "reponse": "Il lisse le revers de sa manche de soie, ravi. « Quelle nouvelle réjouissante, émissaires ! Savoir que nos grandes cités de basalte rayonnent encore sous le soleil réchauffe mon sang froid, je vous l'avoue. Vous avez bien fait de me le dire. Je travaille ici sans relâche pour fournir aux mages de la Cour mes meilleurs élixirs, et leurs commandes s'accumulent. Mais apportez-moi des curiosités rares, bipèdes, jamais vos pièces grossières ; à ce prix seulement je vous ouvrirai mon art. Revenez me voir avec une curiosité, je vous prie. »",
+        "revele": [
+          "f-empire-chute-xiximantre"
+        ],
+        "effets": []
+      },
+      {
+        "id": "liberer-les-gobelins-oubliettes",
+        "mots": [
+          "gobelins",
+          "oubliettes",
+          "prisonniers",
+          "liberer",
+          "racheter"
+        ],
+        "condition": {
+          "fait": "f-prisonniers-gobelins-oubliettes"
+        },
+        "question": "Négocier la remise des quatre prisonniers gobelins enfermés dans sa réserve.",
+        "reponse": "Il jette un regard ennuyé vers la porte de sa réserve. « Ces minuscules pillards de champignons ? De la vermine à champignons, voilà ce qu'ils sont ! Ils s'obstinaient à ronger mes racines les plus précieuses, jusqu'à la dernière. Leur moelle ne donne que des décoctions médiocres et amères, de toute façon. Quatre de moins, et ma réserve respirera enfin. Emmenez-les donc, si vous me promettez de les chasser hors des galeries sacrées, sans les faire revenir. Mais laissez ma clé de laboratoire tranquille, bipèdes, et n'y touchez point. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "gobelins-sauves"
+          },
+          {
+            "deplacer": {
+              "pnj": "krak-oubliettes",
+              "lieu": "n3-ferme-champignons"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "clan-des-champignons",
+              "delta": 35
+            }
+          },
+          {
+            "xp": 100
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "dire-verite-chute-empire",
+        "mots": [
+          "ruine",
+          "mort",
+          "chute",
+          "millenaire",
+          "detruire"
+        ],
+        "condition": {
+          "et": [
+            {
+              "fait": "f-empire-chute-xiximantre"
+            },
+            {
+              "non": {
+                "flag": "xiximantre-vaincu"
+              }
+            },
+            {
+              "non": {
+                "flag": "xiximantre-allie"
+              }
+            }
+          ]
+        },
+        "question": "Lui dire la vérité sur la Cour.",
+        "reponse": "Ses pupilles dorées se contractent en deux fentes ; les six lampes violettes vacillent. « Mensonge ! Misérables voleurs de sépultures, sans honneur et sans mémoire ! Oser prétendre que nos grandes cités de basalte et d'or ne sont plus que poussière sous le vent du désert, vous, des bipèdes de passage qui sentent la boue et la sueur ! Je n'ai jamais entendu pareille insolence dans mon laboratoire depuis sept siècles. Vous ne sortirez pas de cette antichambre pour distiller vos blasphèmes à d'autres bipèdes ignorants. À moi, sentinelles d'argile ! »",
+        "revele": [
+          "f-empire-chute-xiximantre"
+        ],
+        "effets": []
+      },
+      {
+        "id": "l-art-de-l-alchimie",
+        "mots": [
+          "élixirs",
+          "potions",
+          "alambic",
+          "fioles",
+          "vente",
+          "troc",
+          "curiosités"
+        ],
+        "question": "Que valent vos élixirs ?",
+        "reponse": "Il décroche une fiole du râtelier, d'un air de connaisseur. « Mes élixirs ? Des potions de guérison et des antidotes d'une pureté sans égale, bipèdes. Mais ne m'offrez pas de disques de métal : je ne troque point contre ces pièces grossières. Apportez-moi plutôt un livre, une monnaie de la Cour, un fossile ou un fragment d'écorce. Vous repartirez alors avec un échantillon de mes alambics, car je ne donne jamais rien gratuitement. Un art pareil ne se brade pas, et je sais reconnaître une curiosité digne de ce nom. »",
+        "condition": {
+          "non": {
+            "flag": "xiximantre-provoque"
+          }
+        },
+        "revele": [
+          "f-xiximantre-troque-curiosites"
+        ],
+        "effets": []
+      },
+      {
+        "id": "les-nobles-du-second-niveau",
+        "mots": [
+          "tombes",
+          "nobles",
+          "xisor",
+          "sparamantur",
+          "franbinzar",
+          "morts",
+          "pillards"
+        ],
+        "question": "Que dites-vous des tombes du second niveau ?",
+        "reponse": "Il redresse la tête, et son museau se plisse de dégoût. « Xisor le Vert fut un haut prêtre des Rois Serpents, bipèdes, et son sarcophage de pierre verte le montre les bras croisés sur un sceptre brisé en trois tronçons. Sparamantur et Franbinzar sont des collègues en repos, et je ne tolère pas qu'on souille leurs morts. Quant à Franbinzar, il y eut un incident de laboratoire : une momification à l'ocre qui a mal tourné. Il ne reste plus de lui qu'une gelée qui ronge la pierre ; seule sa bague d'argent a résisté. Les pillards, eux, ne méritent que mon mépris. »",
+        "condition": {
+          "non": {
+            "flag": "xiximantre-provoque"
+          }
+        },
+        "revele": [
+          "f-franbinzar-gelee",
+          "f-xisor-haut-pretre"
+        ],
+        "effets": []
+      },
+      {
+        "id": "ma-locataire-du-cercle",
+        "mots": [
+          "captive",
+          "cercle",
+          "locataire",
+          "baltoplate",
+          "baiser"
+        ],
+        "question": "Parlez-moi de la captive du cercle.",
+        "reponse": "Il lisse sa manche, un sourire pincé aux lèvres. « Ma locataire ! Elle occupe ce cercle depuis mon installation, et sans doute avant, et je la garde, pour le principe. Elle ne ment jamais deux fois de la même façon, je dois le reconnaître. Mais ne la touchez pas, je vous prie : elle paie en sourires et réclame en âmes, et je ne voudrais pas vous voir perdre les vôtres. Je n'en dirai pas davantage à des visiteurs qui ignorent l'étiquette de ma demeure. »",
+        "condition": {
+          "fait": "f-vrai-nom-baltoplate"
+        },
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "modele": "alchimiste",
+      "stock": [
+        {
+          "objet": "potion-de-guerison",
+          "quantite": 4
+        },
+        {
+          "objet": "potion-de-guerison-importante",
+          "quantite": 2
+        },
+        {
+          "objet": "antidote",
+          "quantite": 3
+        }
+      ],
+      "rachat": 0.5,
+      "types": [
+        "curiosite",
+        "potion",
+        "parchemin",
+        "gemme"
+      ]
+    }
+  },
+  {
+    "id": "skriik-le-cueilleur",
+    "nom": "Skriik le Cueilleur",
+    "titre": "Ancien de la champignonnière gobeline",
+    "espece": "gobelin",
+    "sexe": "M",
+    "age": "29 ans",
+    "role": "Porte-parole apeuré de la tribu souterraine et cultivateur",
+    "lieu": "n3-ferme-champignons",
+    "faction": "clan-des-champignons",
+    "apparence": "Gobelin nerveux à large tablier de cuir couvert de terre noire, tenant une petite serpe en os poli mais sans armure ni bouclier.",
+    "personnalite": {
+      "traits": [
+        "rusé",
+        "craintif"
+      ],
+      "voix": "Aiguë et pressée, parsemée de reniflements inquiets vers les portes.",
+      "valeurs": [
+        "survie de la tribu",
+        "paix des champignonnières"
+      ],
+      "desir": "Revoir ses quatre frères tirés des oubliettes de Xiximantre et fuir en paix.",
+      "peur": "Se faire dissoudre dans les alambics du sorcier ou croiser le basilic."
+    },
+    "attitude": -5,
+    "profilCombat": "combattant-gobelin",
+    "savoir": [
+      "f-sortie-racines-surface",
+      "f-statue-fontaine-volee"
+    ],
+    "secrets": [
+      {
+        "fait": "f-couronne-chez-gobelins",
+        "attitudeMin": 15
+      }
+    ],
+    "salutations": {
+      "neutre": "« Pas taper ! Pas casser les champignons ! Skriik coupe juste le dîner de la tribu, il a les mains dans la terre. Qu'est-ce que les grandes jambes cherchent dans le noir ? Parlez vite, Skriik renifle les portes. »",
+      "amical": "« Grands amis ! La marmite chauffe pour vous ce soir, et Skriik a gardé le meilleur champignon. Prenez place près du panier sec, grandes jambes, et parlez sans crier. »",
+      "hostile": "« Voleurs de terre ! Reculez de mes planches, grandes jambes, avant que la galerie ne s'écroule sur vos casques. Skriik ne vous doit rien, ni une miette de champignon. Sortez des couches, et vite ! »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "gobelins-sauves"
+          },
+          "texte": "« Nos quatre frères boivent de la soupe tiède derrière, grandes jambes ! Skriik vous doit tout ce qui brille, et l'escalier sous les racines. Venez, les mains sales et le cœur content. »"
+        },
+        {
+          "condition": {
+            "rencontre": {
+              "id": "r-eclaireurs-gobelins",
+              "issue": "victoire"
+            }
+          },
+          "texte": "« Skriik compte ses frères du bout de sa serpe, grandes jambes. Quatorze, moins ceux-là. Skriik ne crie pas, il n'a pas de cris à gaspiller. Que voulez-vous encore dans ses galeries ? Parlez, et posez votre arme avant de répondre. »"
+        },
+        {
+          "condition": {
+            "rencontre": {
+              "id": "r-eclaireurs-gobelins",
+              "issue": "alternative"
+            }
+          },
+          "texte": "« Vous avez parlé au lieu de frapper, quand mes éclaireurs sont venus, grandes jambes. Skriik s'en souvient. Il garde la serpe baissée, mais il n'a pas oublié le fort. Alors dites ce que vous voulez, Skriik écoute. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "prisonniers-et-xiximantre",
+        "mots": [
+          "prisonniers",
+          "oubliettes",
+          "xiximantre",
+          "sorcier",
+          "sauver"
+        ],
+        "question": "Que craignez-vous ici — et comment pouvons-nous aider votre tribu ?",
+        "reponse": "Skriik baisse ses grandes oreilles et mime un gosier tranché avec sa serpe d'os. « Ce qui nous fait peur, grandes jambes, c'est l'écaille qui ne meurt jamais. Elle a pris quatre de nos cueilleurs dans ses grilles, là-bas, par la galerie de droite, et elle tire leurs jus dans ses fioles. Ils agonisent, et la tribu ne dort plus. Libérez nos quatre frères vivants, et la tribu vous fera confiance. Skriik vous montre alors ce qui brille, caché chez nous, et la sortie : un escalier sous les racines d'un arbre sec, à deux pas de votre bivouac ! Skriik attend votre réponse, grandes jambes. »",
+        "revele": [
+          "f-prisonniers-gobelins-oubliettes"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-pactes-de-xiximantre",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "remettre-couronne-en-echange",
+        "mots": [
+          "couronne",
+          "recompense",
+          "racines",
+          "marche",
+          "accord"
+        ],
+        "condition": {
+          "ou": [
+            {
+              "flag": "gobelins-sauves"
+            },
+            {
+              "faction": {
+                "id": "clan-des-champignons",
+                "min": 20
+              }
+            }
+          ]
+        },
+        "question": "Quel accord pouvons-nous conclure maintenant ?",
+        "reponse": "Skriik pousse un gloussement, creuse à mains nues dans l'humus noir et tend ce qu'il trouve. « Chose promise, chose due, grands cœurs ! Voilà le cercle d'or incrusté de rubis, enterré sous le terreau de nos champignons, loin de l'ancienne salle du trône. Ça pèse plus lourd qu'il n'en a l'air, prenez garde. Une couronne qui brille n'attire que les ennuis, alors prenez-la avec les remerciements de la tribu. Soulevez les racines en haut des marches, et vous rejoindrez vos mules sans croiser un seul mort ! » Skriik se remet à compter ses champignons.",
+        "revele": [
+          "f-couronne-chez-gobelins",
+          "f-sortie-racines-surface"
+        ],
+        "effets": [
+          {
+            "objet": {
+              "id": "couronne-rois-serpents",
+              "quantite": 1
+            }
+          },
+          {
+            "flag": "couronne-obtenue"
+          },
+          {
+            "flag": "coeur-tombe-resolu"
+          },
+          {
+            "xp": 150
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "statue-fontaine-et-troc",
+        "mots": [
+          "statue",
+          "fontaine",
+          "or",
+          "basilic",
+          "sortie"
+        ],
+        "question": "D'où vient la statue d'or posée dans votre salle commune ?",
+        "reponse": "Skriik cligne ses petits yeux jaunes et frotte son tablier terreux. « La belle dame d'or du socle de la fontaine ? Nos gars l'ont tirée à quatre avec des cordes, jusqu'à la salle commune, pour garder nos feux bénis. Elle est trop lourde pour nos couloirs, elle reste donc là-bas. Si la paix tient entre nous, prenez donc ce gros bloc d'or ; nous, on préfère nos champignons et la sortie sous les racines. Grib l'Édenté garde la salle commune, allez le voir. » Il hausse les épaules.",
+        "revele": [
+          "f-statue-fontaine-volee"
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "skriik-le-cueilleur",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "id": "la-tribu-sous-la-terre",
+        "mots": [
+          "tribu",
+          "arrivés",
+          "falaise",
+          "fort",
+          "fumée",
+          "terrier"
+        ],
+        "question": "Comment êtes-vous arrivés sous la terre ?",
+        "reponse": "Skriik baisse les yeux et racle sa serpe contre le tablier. « Les fumeurs du fort ont enfumé notre terrier de la falaise, grandes jambes, il y a quatre ans. C'était après un hiver de vols de rations. La fumée a rempli les galeries, les survivants ont plongé sous terre, et Skriik a trouvé l'escalier sous les racines d'un arbre sec. Skriik ne pardonne pas aux fumeurs, mais ne demande pas vengeance. Nous avons fui la bête du grand hall et les galeries de Xiximantre pour nous réfugier dans une aile de la tombe, où nous cultivons des champignons. Nous sommes quatorze aujourd'hui. Laissez-nous cultiver en paix. »",
+        "revele": [
+          "f-pnj-gobelins-enfumes",
+          "f-gobelins-refugies-aile-ouest"
+        ],
+        "effets": []
+      },
+      {
+        "id": "la-bete-qui-change-en-cailloux",
+        "mots": [
+          "basilic",
+          "bête",
+          "chaîne",
+          "cailloux",
+          "yeux",
+          "regard"
+        ],
+        "question": "Que savez-vous de la bête enchaînée ?",
+        "reponse": "Skriik se fige et serre sa serpe d'os à deux mains. « Le basilic, grandes jambes, c'est l'œil qui change en cailloux. Celui qui croise son regard finit en caillou, et il est enchaîné à la voûte du grand hall. Sa chaîne racle la pierre quand il bouge. Elle l'empêche d'atteindre les angles reculés, derrière les piliers brisés et les portes du fond. Baissez les yeux, et cachez-vous derrière les piliers cassés. Skriik n'y va jamais sans un bout de miroir, et Trou-Noir a très peur de la bête. » Il jette un coup d'œil nerveux vers le couloir.",
+        "revele": [
+          "f-chaine-du-basilic"
+        ],
+        "effets": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,1668 @@
+[
+  {
+    "id": "frere-balthazar",
+    "nom": "Frère Balthazar",
+    "titre": "Chapelain et archiviste du Fort",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "61 ans",
+    "role": "Clerc âgé veillant sur les chroniques du Val du Couchant et les bénédictions",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Vieil homme tonsuré à la robe de laine azur rapiécée, portant un lourd recueil enchaîné à la ceinture et un pendentif d'argent terni.",
+    "personnalite": {
+      "traits": [
+        "érudit",
+        "prudent"
+      ],
+      "voix": "Douce mais grave, émaillée de vieilles citations rituelles.",
+      "valeurs": [
+        "connaissance du passé",
+        "protéger les âmes"
+      ],
+      "desir": "Empêcher que d'anciennes malédictions du désert ne soient brisées par ignorance.",
+      "peur": "Les pactes conclus par naïveté dans les chambres d'invocation."
+    },
+    "attitude": 10,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-rumeur-trone-maudit"
+    ],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Que la clarté guide vos torches sous les dunes, voyageurs. Cherchez-vous une prière pour la route, ou de vieilles chroniques sur le Val ? Dites-moi ce qui vous amène, et je vous répondrai sans détour. »",
+      "amical": "« Ah, voyageurs, je suis toujours heureux de confier un peu de sagesse ancienne à ceux qui respectent les morts. Vous avez l'air de gens prudents : posez votre question, je prendrai le temps de vous répondre. »",
+      "hostile": "« L'avidité aveugle davantage que les pièges. Réfléchissez avant de profaner l'ancien ordre. Je ne vous aiderai pas à piller ces tombes, et je ne répéterai pas ma réponse. Ce sera non, aujourd'hui comme demain. »",
+      "variantes": [
+        {
+          "condition": {
+            "parle": "soeur-lysandre"
+          },
+          "texte": "« Vous avez parlé à Sœur Lysandre, ma protégée. Elle emprunte mes volumes avec un soin qui me réjouit. Si vous cherchez un passage de la chronique, je vous en prêterai volontiers une page. »"
+        },
+        {
+          "condition": {
+            "ou": [
+              {
+                "heros": {
+                  "classe": "clerc"
+                }
+              },
+              {
+                "heros": {
+                  "classe": "paladin"
+                }
+              }
+            ]
+          },
+          "texte": "« Il y a parmi vous quelqu'un qui sert un autel, je le vois à la façon de porter son symbole. Je m'en souviens, le jour de mon ordination. Je tiens la porte de la chapelle ouverte pour vous, entrez sans crainte. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "chroniques-trone-maudit",
+        "mots": [
+          "trone",
+          "miroirs",
+          "folie",
+          "rois serpents",
+          "histoire"
+        ],
+        "question": "Que disent vos archives sur l'ancienne dynastie du Val du Couchant ?",
+        "reponse": "Il ouvre son lourd codex sur le lutrin de pierre froide et suit une ligne de son index tremblant. « Nos pères appelaient leurs derniers maîtres les rois serpents du Couchant, bien avant que les dunes n'engloutissent leurs routes dallées. Méfiez-vous surtout de leur grand trône d'or entouré de miroirs. Les anciens racontent que quiconque s'y assoit devient le roi du désert, et la chronique affirme que ce siège sème une folie conquérante. Voilà toute l'histoire. Je ne sais pas s'il existe, et je n'aimerais pas vous voir vous en assurer. »",
+        "revele": [
+          "f-rumeur-trone-maudit"
+        ],
+        "effets": []
+      },
+      {
+        "id": "cercles-et-serments",
+        "mots": [
+          "cercle",
+          "serment",
+          "prieres",
+          "sacristie",
+          "noms"
+        ],
+        "question": "Quelles précautions spirituelles prendre face aux anciens rituels ?",
+        "reponse": "Il baisse la voix sous la voûte silencieuse de la chapelle et ajuste son pendentif d'argent. « Si vous trouvez sous terre une salle d'invocation intacte, ou une créature qui implore pitié au centre d'un cercle d'argent gravé, ne touchez jamais au tracé par simple faiblesse. Lisez d'abord les prières et les rouleaux liturgiques des prêtres voisins, à la sacristie si vous le pouvez. L'ancien ordre scellait rarement des innocents sous un serment si puissant. Et si un nom vous est donné, retenez-le : on ne le prononce pas à la légère. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "reliques-saintes",
+        "mots": [
+          "eau benite",
+          "parchemin",
+          "soins",
+          "benediction"
+        ],
+        "question": "Avez-vous des préparations bénies à céder avant notre départ ?",
+        "reponse": "Il ouvre une armoire de cèdre peint et sort les fioles. « Pour ceux qui descendent affronter les morts sans repos et les vieilles ombres du sable, notre chapelle tient toujours à disposition trois fioles d'eau bénite pure et deux parchemins de prière. L'un porte une bénédiction, l'autre des soins, et ils peuvent vous sauver d'une mauvaise passe. Je les cède volontiers aux fidèles, et aux prudents qui me le demandent. Venez me voir avant de quitter le fort. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "le-reflet-beni",
+        "mots": [
+          "reflet",
+          "béni",
+          "nom",
+          "ordre",
+          "fondation",
+          "murs"
+        ],
+        "question": "Pourquoi ce fort s'appelle-t-il du Reflet Béni ?",
+        "reponse": "Il referme à demi un volume et sourit à peine. « La fondation du fort remonte à quatre-vingt-dix ans, quand l'Ordre du Reflet Béni l'a bâti pour garder le Val du Couchant et surveiller la nécropole. Ses murs chaulés renvoient le soleil, et c'est de là que vient le nom. Le premier commandant a gravé dans la pierre de la chapelle le serment de garder le Val. Le Val borde l'ancien territoire d'un empire d'hommes-serpents disparu depuis des siècles ; sur la piste, seuls le fort et la caravane rappellent encore l'ordre des hommes. Notre chronique en compte douze volumes cousus, si vous voulez le détail. »",
+        "revele": [
+          "f-pnj-fort-de-l-ordre",
+          "f-val-empire-oublie"
+        ],
+        "effets": []
+      },
+      {
+        "id": "prier-pour-les-morts",
+        "mots": [
+          "morts",
+          "âmes",
+          "tombes",
+          "respect",
+          "repos",
+          "profaner"
+        ],
+        "question": "Que dit votre foi de ceux qu'on dérange ?",
+        "reponse": "Il ferme les yeux un instant, la main sur son pendentif. « Je ne vous interdirai pas d'entrer, puisque votre contrat est signé. Je vous demande seulement le respect. Ne profanez pas les tombes, ne brisez rien d'inutile, n'emportez rien qui porte encore un nom, et n'insultez jamais un mort, même celui qui vous paraît méchant. Je crois moins aux démons qu'aux erreurs : on n'enchaîne pas par hasard, et les âmes méritent le repos. Je dirai une courte prière pour vous avant votre départ. Que le repos des morts garde vos pas, et que vos âmes reviennent entières de ces tombes. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "les-vrais-noms",
+        "mots": [
+          "nom",
+          "vrai nom",
+          "rite",
+          "cercle",
+          "nommer"
+        ],
+        "question": "Pourquoi un nom compte-t-il tant dans ces rites ?",
+        "reponse": "Il tapote une ligne de son index, comme pour la fixer. « Dans les vieux rites, on tient ce qu'on sait nommer. Un cercle se garde par le vrai nom de ce qu'il retient, et un nom mal lu ne tient plus rien. Si une inscription vous donne un nom dans un lieu de prêtres, retenez-le exactement, lettre pour lettre, sans l'arrondir ni le deviner. Recopiez-le d'abord, avant de toucher à quoi que ce soit. Le nom n'est pas un détail : c'est la méthode. »",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "eau-benite",
+          "quantite": 3
+        },
+        {
+          "objet": "parchemin-de-sort-benediction",
+          "quantite": 1
+        },
+        {
+          "objet": "parchemin-de-sort-soins",
+          "quantite": 1
+        }
+      ],
+      "rachat": 0.3,
+      "types": [
+        "parchemin",
+        "materiel"
+      ]
+    },
+    "services": [
+      {
+        "id": "benediction-chapelain",
+        "nom": "Prière et réconfort à la chapelle",
+        "resume": "Un moment de recueillement et de soins légers avant la piste du désert.",
+        "prix": 5,
+        "effets": [
+          {
+            "narration": "Frère Balthazar trace un signe de paix sur vos fronts ; vos pas semblent plus légers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "marta-aubergiste",
+    "nom": "Marta la Chaude-Chaudron",
+    "titre": "Cantinière du Fort",
+    "espece": "halfelin",
+    "sexe": "F",
+    "age": "47 ans",
+    "role": "Tient la grande cuisine du réfectoire et vend des vivres de route",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Halfeline joviale aux bras enfarinés, ceinte d'un tablier bleu à poches profondes et d'un gros trousseau de clés de garde-manger.",
+    "personnalite": {
+      "traits": [
+        "chaleureuse",
+        "curieuse"
+      ],
+      "voix": "Sonore et maternelle, toujours un plat à tendre ou un potin à livrer.",
+      "valeurs": [
+        "ventre plein",
+        "hospitalité"
+      ],
+      "desir": "Voir les compagnies revenir entières pour payer sa bonne soupe au mouton.",
+      "peur": "Les disettes si les convois de Valdargent prennent du retard."
+    },
+    "attitude": 15,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "commercant",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "contrat-eau-rapporte"
+          },
+          "texte": "Marta glisse une louche de soupe chaude au groupe : « Au goût de rien, c'est-à-dire parfait. Mangez, c'est pour vous, et revenez quand vous voulez. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "bruits-du-refectoire",
+        "mots": [
+          "rumeurs",
+          "equipes",
+          "alderic",
+          "martin"
+        ],
+        "question": "Qu'entend-on dire au réfectoire sur le contrat du seigneur Aldéric ?",
+        "reponse": "Marta s'essuie les mains sur son tablier bleu et se penche vers vous. « Le seigneur Aldéric finance l'expédition et exige la moitié exacte de tout ce que vous rapporterez, pesée sous les yeux de son valet Martin. Il a du répondant à Valdargent, mais il compte jusqu'au dernier liard ! Martin n'est pas méchant : il pèse, compte et note chaque pièce sur son carnet. Donnez-lui la moitié juste au retour et il vous portera aux nues. Une cachette grossière, en revanche, il la relève toujours. Parlez-en franchement avec lui au bivouac, mes chers. »",
+        "revele": [
+          "f-contrat-moitie-part",
+          "f-martin-compte-tout"
+        ],
+        "effets": []
+      },
+      {
+        "id": "vivres-de-piste",
+        "mots": [
+          "rations",
+          "fromage",
+          "viande",
+          "provisions",
+          "manger"
+        ],
+        "question": "Quels vivres tiennent le mieux la chaleur du désert ?",
+        "reponse": "Elle ouvre son grand garde-manger, qui sent le laurier et l'ail séché. « Prenez mes galettes sèches cuites deux fois, le fromage dur de montagne et ma viande fumée au poivre noir ! Rien ne tourne ici, même après huit heures de soleil blanc jusqu'au campement. Vous avez aussi mes rations et mon pain de campagne, et si la soif vous serre, un bon hydromel pour le chemin. Ça tient bien au ventre quand vous descendez sous terre, loin des cuisines. Passez donc au comptoir avant la piste, mon chou ! »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "rescapes-du-fort",
+        "mots": [
+          "varnac",
+          "lysandre",
+          "mireille",
+          "compagnons",
+          "mercenaires"
+        ],
+        "question": "Y a-t-il ici des compagnons ou mercenaires disponibles ?",
+        "reponse": "Elle désigne d'un coup de cuillère en bois trois tables bien distinctes dans la cour. « Varnac le Borgne, un vétéran de la solde, rumine près du râtelier d'armes depuis sa sale blessure. Sœur Lysandre cherche des bras pieux du côté de la chapelle, et la petite gnome Mireille gribouille ses cartes près de la fontaine claire. Trois bons bras, trois caractères bien différents ! Allez leur parler avant de prendre la piste, mes amis, et dites-leur que c'est Marta qui vous envoie. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "rumeur-de-la-falaise",
+        "mots": [
+          "gobelins",
+          "falaise",
+          "terrier",
+          "fumée",
+          "rumeur",
+          "cuisine"
+        ],
+        "question": "Que dit-on des gobelins de la falaise ?",
+        "reponse": "Elle baisse la voix et jette un regard vers la porte du réfectoire. « Il y a quatre ans, après un hiver où les rations disparaissaient des réserves, une patrouille de cavaliers a enfumé un terrier de gobelins dans la falaise. On n'en reparle pas à table : dès qu'on y fait allusion, le commandant quitte la salle sans un mot. On dit que les survivants sont morts ou partis, et personne ne sait où. Moi, je n'accuse personne. Si la curiosité vous pique, posez la question aux cavaliers du fort, pas au commandant. »",
+        "revele": [
+          "f-pnj-gobelins-enfumes"
+        ],
+        "effets": []
+      },
+      {
+        "id": "contrat-eau-du-puits",
+        "mots": [
+          "eau",
+          "citerne",
+          "puits",
+          "rouille",
+          "cuisine",
+          "cave"
+        ],
+        "question": "Que se passe-t-il avec votre eau ?",
+        "reponse": "Marta essuie ses mains sur son tablier. « Descendez voir ma citerne : l'eau a un goût de rouille, les seaux remontent rongés, et mon pain ne lève plus. Des soldats du fort ont l'estomac tout retourné. Depuis qu'on a ouvert la tombe, quelque chose remonte des fondations, et je ne veux pas savoir quoi. Purgez la citerne à la chaux et au sel, il faut dix pièces que je ne peux pas avancer, ou videz-la à la chaîne de seaux avec mes soldats. Je vous paierai trente pièces. Acceptez-vous ? Sinon, ma cuisine ferme et les rations du fort se raréfient. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-contrat-eau-du-fort",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "contrat-eau-retour",
+        "mots": [
+          "citerne",
+          "eau claire",
+          "rapport",
+          "contrat",
+          "vase"
+        ],
+        "condition": {
+          "flag": "contrat-eau-fait"
+        },
+        "question": "Annoncer que l'eau est claire",
+        "reponse": "Marta lâche sa louche et rit fort. « Ah, enfin une bonne nouvelle ! Je vais refaire mon pain dès ce soir, et les soldats vont retrouver le sourire. Tenez, prenez quatre rations de route, c'est ma maison qui régale. Les trente pièces vont faire un trou dans ma caisse, mais le mouton des compagnies qui reviennent le rebouchera. Vous êtes des gens de parole, ça se voit à vos bottes. Je le dirai à tout le fort. Que ma bénédiction de cuisinière vous accompagne, et mangez avant de partir. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "contrat-eau-rapporte"
+          },
+          {
+            "objet": {
+              "id": "rations",
+              "quantite": 4
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "marta-aubergiste",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "rations",
+          "quantite": 12
+        },
+        {
+          "objet": "pain-de-campagne",
+          "quantite": 8
+        },
+        {
+          "objet": "fromage-de-montagne",
+          "quantite": 6
+        },
+        {
+          "objet": "viande-fumee",
+          "quantite": 6
+        },
+        {
+          "objet": "hydromel",
+          "quantite": 4
+        }
+      ],
+      "rachat": 0.4,
+      "types": [
+        "nourriture"
+      ]
+    },
+    "services": [
+      {
+        "id": "table-chaude-marta",
+        "nom": "Repas complet et cidre chaud",
+        "resume": "Ragoût d'agneau aux herbes sèches, pain frais et pichet d'hydromel doux.",
+        "prix": 1,
+        "effets": [
+          {
+            "narration": "Le repas généreux de Marta chasse la fatigue de la route et réchauffe tout le groupe."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "torin-armurier",
+    "nom": "Torin Martel-Gris",
+    "titre": "Maître d'armes nain",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "44 ans",
+    "role": "Instruit les recrues du fort et examine les pièces anciennes",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Nain carré aux épaules larges, barbe grise tressée en deux pointes, vêtu d'un gambison épais marqué par l'entraînement.",
+    "personnalite": {
+      "traits": [
+        "exigeant",
+        "passionné d'armes anciennes"
+      ],
+      "voix": "Sèche et martelée, chaque phrase sonne comme un coup d'épée sur un écu.",
+      "valeurs": [
+        "acier solide",
+        "discipline martiale"
+      ],
+      "desir": "Étudier ou récupérer les grands boucliers anciens forgés par les dynasties oubliées.",
+      "peur": "Voir des bleus descendre sous terre avec des lames émoussées."
+    },
+    "attitude": 5,
+    "profilCombat": "chevalier",
+    "savoir": [
+      "f-gardien-osseux-gouffre"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "garde"
+    },
+    "sujets": [
+      {
+        "id": "boucliers-trophees",
+        "mots": [
+          "boucliers",
+          "arene",
+          "trophees",
+          "bronze",
+          "quete"
+        ],
+        "question": "Que savez-vous des équipements anciens enfouis dans le tombeau ?",
+        "reponse": "Torin frappe son écu cabossé du plat de la main, sans lever les yeux. « Un vieil éclaireur jurait avoir vu, dans l'arène du second niveau, accrochés au mur, cinq grands boucliers ronds de chêne cerclés de bronze. Intacts, malgré les siècles ! Ce sont des trophées de soldats tombés là, encore solides sous leurs cerclages. Mais prenez garde à la carcasse osseuse qui longe le gouffre : trop massive pour les escaliers, une poussée franche peut la précipiter. Si vous me rapportez un bouclier du fort, je paie la prime de ma poche, guerriers. »",
+        "revele": [
+          "f-gardien-osseux-gouffre",
+          "f-boucliers-trophees"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-boucliers-de-l-arene",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "conseils-morts-vivants",
+        "mots": [
+          "squelettes",
+          "ossements",
+          "statues",
+          "basilic",
+          "gouffre"
+        ],
+        "question": "Comment aborder les grands gardiens d'ossements ou de pierre ?",
+        "reponse": "Torin mime un large coup d'écu devant sa poitrine carrée. « Contre les os secs, frappez lourd, à la masse. Ou attirez les grosses brutes là où le sol s'effondre : la gravité fait le travail, sans user vos lames. Une bête pétrifiante, en revanche, se combat autrement. Glissez un miroir dans votre sac, ou brisez sa ligne de vue derrière un pilier épais. Une lame ébréchée contre la pierre, je n'en veux pas dans ma salle d'armes ! Retenez bien cela avant de descendre. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "livraison-bouclier-torin",
+        "mots": [
+          "voici",
+          "rapport",
+          "bouclier",
+          "prime",
+          "preuve"
+        ],
+        "condition": {
+          "et": [
+            {
+              "lieu": "n2-arene-gardien"
+            },
+            {
+              "objet": "bouclier"
+            },
+            {
+              "non": {
+                "flag": "boucliers-rapportes-torin"
+              }
+            }
+          ]
+        },
+        "question": "Lui présenter un bouclier rapporté de l'expédition.",
+        "reponse": "Torin soupèse longuement le cercle de bronze et passe son pouce épais sur les rivets anciens. Il grogne, admiratif. « Du vieux chêne sec, et pas une seule fente dans la poignée ! On voit tout de suite que ce travail ne sort pas d'un atelier d'apprentis. Le cercle de bronze tient encore, les rivets sont propres, et ce n'est pas la main d'un bleu. Vous m'avez rapporté une belle pièce, guerriers. La prime vous sera versée comme promis, sans discussion. Vous avez mérité le respect de l'armurerie, et je vous le dis franchement. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "boucliers-rapportes-torin"
+          }
+        ],
+        "unique": true
+      }
+    ]
+  },
+  {
+    "id": "solene-caravaniere",
+    "nom": "Solène de Valdargent",
+    "titre": "Marchande de caravane",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "36 ans",
+    "role": "Fournisseuse de matériel d'exploration et acheteuse d'antiquités",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "commanditaire-alderic",
+    "apparence": "Femme vive en manteau de lin poussiéreux bordé de cuir souple, coiffée d'un large chapeau contre le soleil et ceinte d'une bourse pesante.",
+    "personnalite": {
+      "traits": [
+        "calculatrice",
+        "affable"
+      ],
+      "voix": "Claire, rapide et commerçante, jaugeant du regard la valeur de chaque pièce.",
+      "valeurs": [
+        "profits justes",
+        "contrats honorés"
+      ],
+      "desir": "Racheter à bon prix les curiosités que les aventuriers ne souhaitent pas garder.",
+      "peur": "Les routes coupées par des pillards entre le fort et Valdargent."
+    },
+    "attitude": 5,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [],
+    "salutations": {
+      "commune": "commercant"
+    },
+    "sujets": [
+      {
+        "id": "maison-alderic",
+        "mots": [
+          "alderic",
+          "valdargent",
+          "noble",
+          "caravane"
+        ],
+        "question": "Que savez-vous du seigneur Aldéric à Valdargent ?",
+        "reponse": "Solène jauge votre bourse d'un coup d'œil rapide, puis tapote la sangle de son chariot. « Aldéric finance l'expédition, et il exige la moitié exacte de tout le butin, sous la surveillance de son valet Martin. À Valdargent, sa maison tient deux comptoirs de soierie et un entrepôt d'épices. Il aime les antiquités exotiques autant que l'or sonnant. Si vous trahissez Martin au bivouac, toutes les guildes marchandes de la ville vous fermeront leur porte dès la semaine suivante. Restez donc droits dans vos comptes : la piste est plus douce quand les caisses sont justes ! »",
+        "revele": [
+          "f-contrat-moitie-part"
+        ],
+        "effets": []
+      },
+      {
+        "id": "materiel-souterrain",
+        "mots": [
+          "miroir",
+          "corde",
+          "amadou",
+          "trousse",
+          "paquetage"
+        ],
+        "question": "Quel équipement recommandez-vous avant de descendre sous la dune ?",
+        "reponse": "Elle tapote tour à tour plusieurs caisses solidement sanglées sous la bâche claire de son fourgon. « Prenez au moins un petit miroir poli, pour regarder au coin des murs sans passer la tête. Une bonne corde solide pour les puits, une boîte à amadou de rechange, et quelques billes pour sonder les pentes suspectes. Ne partez pas les poches vides, je vous le dis franchement : celui qui descend ainsi remonte dans un linceul. Venez donc voir mes caisses avant de descendre, j'ai de quoi vous équiper ! »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "achat-antiquites",
+        "mots": [
+          "vendre",
+          "rachat",
+          "gemmes",
+          "reliques"
+        ],
+        "question": "Rachetez-vous les gemmes ou curiosités trouvées sous terre ?",
+        "reponse": "Elle sort une petite loupe de laiton pendue à son cou par un ruban bleu. « Oui, bien sûr, et volontiers ! Les pierres taillées, l'argenterie et les vieilles gravures propres m'intéressent aussitôt. Je rachète à la moitié du cours pratiqué sur les marchés de Valdargent, payé comptant en bonnes pièces sonnantes. Je ne vous demande pas de quel caveau vous les sortez : ce n'est pas mon affaire tant que les pièces sont à moi. Apportez-les-moi à mon chariot après la piste, je vous ferai une offre juste et franche. »",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "boutique": {
+      "modele": "magasin-general",
+      "stock": [
+        {
+          "objet": "corde",
+          "quantite": 4
+        },
+        {
+          "objet": "boite-a-amadou",
+          "quantite": 3
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 3
+        },
+        {
+          "objet": "chausse-trappes",
+          "quantite": 2
+        },
+        {
+          "objet": "billes",
+          "quantite": 3
+        },
+        {
+          "objet": "paquetage-d-exploration-souterraine",
+          "quantite": 1
+        }
+      ],
+      "rachat": 0.5,
+      "types": [
+        "materiel",
+        "outil",
+        "curiosite",
+        "gemme",
+        "objet-d-art"
+      ]
+    }
+  },
+  {
+    "id": "varnac-le-borgne",
+    "nom": "Varnac le Borgne",
+    "titre": "Mercenaire vétéran (Compagnon)",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "43 ans",
+    "role": "Survivant de la précédente expédition au premier niveau, recrutable",
+    "lieu": "fort-du-reflet-beni",
+    "apparence": "Guerrier barbu au bandeau de cuir noir sur l'œil gauche, portant un vieux haubert rayé et une cicatrice blanchie sur la gorge.",
+    "personnalite": {
+      "traits": [
+        "bourru",
+        "loyal aux compagnons"
+      ],
+      "voix": "Éraillée par d'anciennes vapeurs acides, parle franc sans détour.",
+      "valeurs": [
+        "ne jamais abandonner un camarade",
+        "sang-froid au combat"
+      ],
+      "desir": "Retrouver ce qui est advenu de son frère d'armes tombé au niveau 1.",
+      "peur": "Laisser quelqu'un d'autre ouvrir un cercueil piégé sans précaution."
+    },
+    "attitude": 5,
+    "profilCombat": "chevalier",
+    "savoir": [
+      "f-vapeur-des-sepulcres"
+    ],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Encore des volontaires pour le sable et les os secs ? Prenez un bouclier plus grand que votre orgueil, et ne vous approchez pas des cercueils sans moi. » Il ne se retourne qu'à moitié.",
+      "amical": "« Si vous gardez l'œil ouvert devant les cercueils d'argile, je veux bien tenir votre flanc droit. Vous avez une bonne tête pour ça, et j'en ai vu de pires. » Il désigne du menton la perche posée contre le mur.",
+      "hostile": "« Je ne vous dois rien et je ne vous attends pas. Allez donc vous faire gazer tout seuls dans le noir, bande d'entêtés. » Il détourne la tête et ne bouge plus.",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "varnac-deuil-accompli"
+          },
+          "texte": "« Mon deuil est fait, et je ne traîne plus ce poids derrière moi. Je suis avec vous jusqu'au bout, celui du trou ou celui du chemin. » Il sourit à peine, de côté, en tapant sa poitrine du plat de la main."
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "varnac-le-borgne",
+              "genre": "victoire"
+            }
+          },
+          "texte": "« Vous avez tenu la ligne jusqu'au bout, sans reculer d'un pas. Un sapeur aime ça : on sait où poser les pieds. » Il hoche la tête une fois, sec, et ne dit rien de plus."
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "varnac-le-borgne",
+              "genre": "fuite"
+            }
+          },
+          "texte": "« Vous avez couru, et je ne vous le reprocherai pas. Un sapeur qui ne court pas à temps ne vieillit pas, c'est la seule leçon que j'ai retenue. » Il s'essuie la bouche d'un revers de manche."
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "derniere-descente-varnac",
+        "mots": [
+          "blessure",
+          "sepulcres",
+          "vapeur",
+          "camarade",
+          "premier niveau"
+        ],
+        "question": "Comment avez-vous survécu à votre première descente dans la tombe ?",
+        "reponse": "Varnac pose sa perche contre le rempart et frotte sa gorge. « Par chance, et parce que j'ai rampé, ça ne se commande pas. Mon camarade Hélian a voulu forcer la quatrième tombe peinte au bout du couloir d'entrée, celle du sorcier à la robe étoilée. Les cercueils d'argile des gardiens renferment une vapeur verte : à l'ouverture brutale du couvercle, elle nous a fauchés, Hélian et Doran avec lui. J'ai rampé jusqu'à Martin en crachant mes poumons. Hélian n'est jamais ressorti de ce caveau. Demandez à Martin, il m'a vu arriver sur le ventre. »",
+        "revele": [
+          "f-vapeur-des-sepulcres",
+          "f-varnac-survivant"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-varnac-frere-d-armes",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rejoindre-varnac",
+        "mots": [
+          "rejoindre",
+          "compagnie",
+          "recruter",
+          "venir",
+          "groupe"
+        ],
+        "question": "Voulez-vous nous accompagner pour retourner là-bas ?",
+        "reponse": "Varnac boucle son lourd ceinturon de cuir, vérifie la garde de son épée longue et jette un vieux bouclier bossué sur son dos. « Je viens. Une dernière descente pour honorer la mémoire d'Hélian, et pour sonder ce qui dort encore là-dessous. Je tiens la ligne de front avec le groupe, à une condition : que personne ne me fasse ouvrir des cercueils à mains nues. Je marche devant avec ma perche et je sonde chaque couvercle avant qu'on le touche. Pour le reste, comptez sur moi, je ne laisserai pas la compagnie repartir incomplète. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "varnac-recrute"
+          },
+          {
+            "escorte": {
+              "pnj": "varnac-le-borgne"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "varnac-le-borgne",
+              "delta": 15
+            }
+          },
+          {
+            "quete": {
+              "id": "q-varnac-frere-d-armes",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "deuil-helian",
+        "mots": [
+          "helian",
+          "sorcier",
+          "anneau",
+          "deuil",
+          "caveau"
+        ],
+        "condition": {
+          "lieu": "n1-tombe-du-sorcier"
+        },
+        "question": "Recueillir Varnac devant le dernier caveau du sorcier d'argile.",
+        "reponse": "Varnac s'incline longtemps devant la poussière grise de la quatrième niche, poing ganté serré contre sa poitrine de mailles usées. « Tu reposes là, Hélian, à l'abri du soleil, vieux frère d'armes, et je n'ai pas pu te ramener. Il ne reculait jamais devant un couvercle et il sifflait faux tout le long de la route. Ne touchez pas à cet anneau de cuivre sur cette statue, pas sans la perche. Mon deuil est fait. Passons à la suite, on n'a pas toute la journée. On rentre vivants cette fois. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "varnac-deuil-accompli"
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "helian-et-doran",
+        "mots": [
+          "hélian",
+          "doran",
+          "compagnons",
+          "frère d'armes",
+          "morts"
+        ],
+        "question": "Parlez-nous de vos deux compagnons.",
+        "reponse": "Varnac regarde par-dessus le rempart, la mâchoire serrée, et ne se retourne pas. « Hélian, je l'ai suivi pendant vingt ans. Un type qui sifflait faux et ne reculait jamais devant un couvercle. Doran, c'était le jeune de la compagnie. Il portait la lanterne et faisait semblant de ne pas avoir peur. Je n'ai vraiment pu ramener ni l'un ni l'autre. Je vous le dis sans pleurer, et je ne vous regarde pas. Lise, au bivouac, lit les traces mieux que moi. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "les-gestes-du-sapeur",
+        "mots": [
+          "cercueil",
+          "perche",
+          "ouvrir",
+          "sonder",
+          "sapeur",
+          "conseils"
+        ],
+        "question": "Comment ouvre-t-on un cercueil sans mourir ?",
+        "reponse": "Varnac tient sa perche à bout de bras et la fait tourner entre ses doigts. « Douze ans de sapeur, ça laisse des habitudes. Glissez la perche sous le bord du couvercle et soulevez-le à bout de bras, sans jamais vous pencher dessus. Reculez de deux pas, puis approchez une torche de la fente : si la flamme verdit, il y a de la vapeur, et vous ne touchez plus à rien. Mouillez un linge et respirez à travers. Et ne soyez jamais le premier à ouvrir, c'est la seule règle qui n'a jamais menti. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "apres-le-deuil",
+        "mots": [
+          "maintenant",
+          "après",
+          "ensuite",
+          "deuil",
+          "suite"
+        ],
+        "question": "Et maintenant, Varnac ?",
+        "reponse": "Varnac essuie la lame de son épée sur sa manche, sans regarder le groupe. « Le deuil est fait, je n'ai plus de dette à payer ici. Ma hache, ou mon épée si vous préférez, reste à vous tant qu'il restera une porte à enfoncer dans ce trou. Après, je ne sais pas où j'irai, et ça ne me ressemble pas de ne pas savoir. Peut-être que je finirai par m'asseoir quelque part, mais je mangerai debout quand même. Ne me demandez pas plus, je ne suis pas un homme de projets. »",
+        "condition": {
+          "flag": "varnac-deuil-accompli"
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "varnac-le-borgne",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "compagnon": {
+      "classe": "guerrier",
+      "espece": "humain",
+      "niveau": 1,
+      "historique": "soldat",
+      "recrutement": {
+        "ou": [
+          {
+            "flag": "varnac-recrute"
+          },
+          {
+            "pnj": {
+              "id": "varnac-le-borgne",
+              "attitudeMin": 15
+            }
+          }
+        ]
+      },
+      "quetePersonnelle": "q-varnac-frere-d-armes",
+      "repliques": [
+        {
+          "declencheur": "en entrant dans une salle funéraire",
+          "texte": "Avant de toucher au moindre couvercle de cèdre, on sonde avec la perche et on recule de deux pas."
+        },
+        {
+          "declencheur": "quand le combat commence",
+          "texte": "Tenez vos boucliers hauts et ne laissez pas ces carcasses briser la ligne !"
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "le contrat d'Aldéric",
+          "reaction": "Un contrat signé devant témoins se respecte si l'on veut encore dormir à l'auberge demain.",
+          "attitude": 5
+        },
+        {
+          "sujet": "les trésors des rois",
+          "reaction": "L'or des morts achète du pain aux vivants, à condition qu'il ne porte pas de poison dessus.",
+          "attitude": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "soeur-lysandre",
+    "nom": "Sœur Lysandre",
+    "titre": "Prêtresse du Reflet Béni (Compagnon)",
+    "espece": "elfe",
+    "sexe": "F",
+    "age": "29 ans",
+    "role": "Clerc envoyée de Valdargent pour purifier d'éventuelles profanations, recrutable",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Elfe élancée en cotte légère sous un manteau blanc bordé d'azur, tenant un masse d'arme d'argent et un talisman solaire.",
+    "personnalite": {
+      "traits": [
+        "résolue",
+        "compatissante"
+      ],
+      "voix": "Claire et posée, empreinte d'une conviction sereine.",
+      "valeurs": [
+        "protéger les vivants",
+        "sceller le mal ancien"
+      ],
+      "desir": "Vérifier ce que les prêtres de jadis ont lié au plus bas niveau du tombeau.",
+      "peur": "Qu'une entité rusée profite de l'appât du gain des pilleurs pour fuir."
+    },
+    "attitude": 5,
+    "profilCombat": "chevalier",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Que la lumière demeure devant vos pas, voyageurs. Le désert cache des tromperies sous son sable. Si vous cherchez de l'eau, le puits clair du fort est la seule bonne du Val. »",
+      "amical": "« Votre courage honore la bannière du fort, voyageurs. Marchez prudemment, et lisez deux fois ce qui est écrit sur les pierres avant de les franchir. Si vous revenez blessés, la chapelle et l'apothicaire vous feront bon accueil. »",
+      "hostile": "« L'Ordre ne prête ni sa foi ni son acier aux pillards sans scrupule. Je ne vous souhaite pas de bonne chance, et je ne vous salue pas au nom du Reflet. Gardez vos mains loin des sceaux. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "baltoplate-reglee"
+          },
+          "texte": "« Le cercle est réglé, et j'en suis soulagée, sans croire encore que tout soit fini. Avant de repartir, laissez-moi lire les rouleaux de la sacristie : je veux comprendre comment la chose a été liée, et pourquoi. Vous avez agi avec courage. »"
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "soeur-lysandre",
+              "genre": "fuite"
+            }
+          },
+          "texte": "« Je vous ai vus fuir, et je ne vous en fais aucun reproche. Je priais déjà, plus doucement qu'à l'accoutumée, pendant que vous couriez vers la lumière. Reprenez votre souffle : la lumière n'oblige jamais à tenir un mur. »"
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "soeur-lysandre",
+              "genre": "victoire"
+            }
+          },
+          "texte": "« Vous avez tenu, et la lumière en soit remerciée. Je ne parle pas de triomphe, seulement de gratitude pour ceux qui restent debout. Si l'un de vous est blessé, laissez-moi soigner, mes mains sont sûres quand il faut faire vite. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "mission-ordre-lysandre",
+        "mots": [
+          "ordre",
+          "cercle",
+          "serment",
+          "mission",
+          "profondeurs"
+        ],
+        "question": "Pourquoi l'Ordre vous a-t-il détachée jusqu'à ce fortin ?",
+        "reponse": "Elle referme son livre de prières sur le métal de son écu solaire. « L'Ordre m'a envoyée parce que d'anciens registres du diocèse de Valdargent mentionnent un grand sceau d'argent posé au fond d'un sanctuaire de ce val. Je les ai lus deux fois avant de partir, et j'ai juré de veiller sur les profondeurs. Si des fouilleurs ouvrent enfin la voie sous les dunes, je dois m'assurer que nul être enchaîné sous terre ne trompe leur pitié pour recouvrer sa liberté perdue. C'est là ma mission, et mon serment en est le garant. Si vous voulez lire les textes, demandez au frère Balthazar, il garde les archives du fort. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-lysandre-sceau-brise",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rejoindre-lysandre",
+        "mots": [
+          "rejoindre",
+          "compagnie",
+          "recruter",
+          "venir",
+          "aider"
+        ],
+        "question": "Voulez-vous venir avec nous ?",
+        "reponse": "Elle passe fermement la courroie de son écu sur l'épaule, un sourire tranquille aux lèvres. « Mon rôle n'est pas de rester à prier derrière des créneaux blancs pendant que d'autres affrontent les ténèbres de ces cryptes. Si vous me jurez loyauté et vigilance devant les vieux pièges des profondeurs, je viens avec vous dès maintenant, et je veux bien aider à panser vos blessés. Je porte ma masse d'argent et mon talisman, et je veillerai à votre place quand la fatigue vous prendra. Une compagnie qui descend sans prêtre finit toujours par regretter ses raccourcis. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lysandre-recruite"
+          },
+          {
+            "escorte": {
+              "pnj": "soeur-lysandre"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "soeur-lysandre",
+              "delta": 15
+            }
+          },
+          {
+            "quete": {
+              "id": "q-lysandre-sceau-brise",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "bilan-sceau-invocation",
+        "mots": [
+          "captive",
+          "sacristie",
+          "cercle",
+          "regle",
+          "verite"
+        ],
+        "condition": {
+          "et": [
+            {
+              "flag": "baltoplate-reglee"
+            },
+            {
+              "non": {
+                "flag": "choix-dilemme-baiser-du-cercle-pacte-secret-baltoplate"
+              }
+            }
+          ]
+        },
+        "question": "Lui confirmer que le danger du cercle d'invocation est définitivement clos.",
+        "reponse": "Lysandre pousse un long soupir et trace lentement un signe d'action de grâce devant son talisman. « Grâce soit rendue à votre sang-froid devant les mensonges des profondeurs. Le cercle est réglé, et la captive ne troublera plus personne. Les anciens prêtres consignaient leur garde jour après jour, et vous avez fait ce que leurs registres n'ont jamais pu faire seuls. Je relirai les rouleaux de la sacristie deux fois, pour que la vérité de leurs pages soit enfin close. Le Val dormira en paix ce soir. Je vous remercie, sincèrement. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "lysandre-mission-accomplie"
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "servir-le-reflet",
+        "mots": [
+          "reflet",
+          "ordre",
+          "foi",
+          "servir",
+          "lumière"
+        ],
+        "question": "Que veut dire, pour vous, servir le Reflet Béni ?",
+        "reponse": "Elle sourit doucement et lève les yeux vers les murs chaulés du fort, comme si la réponse venait d'eux. « Servir le Reflet, c'est renvoyer la lumière sans la retenir, comme ces murs qui rendent le soleil au désert. J'ai grandi à Valdargent, entre les sœurs de l'Ordre et les humains, et l'Ordre garde ce que les autres oublient : les inscriptions, les serments, les noms qu'on n'ose plus prononcer. Pour les miens, à vingt-neuf ans, je suis encore une enfant ; pour les autres, je suis une sœur. Je n'ai pas de grand sermon à vous faire. Demandez plutôt au frère Balthazar ce que l'Ordre a consigné de notre foi. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "la-mentore-aubierge",
+        "mots": [
+          "pitié",
+          "larmes",
+          "méfiance",
+          "piège",
+          "aubierge"
+        ],
+        "question": "Pourquoi vous méfiez-vous tant de la pitié ?",
+        "reponse": "Elle pose sa main sur son talisman et ne détourne pas les yeux. « Parce que j'ai eu une mentore, Sœur Aubierge, qui m'a appris la pitié et l'a payée de sa vie. Il y a sept ans, un mendiant en larmes est venu la supplier. Elle a cru ses larmes, et ce n'était que la marionnette d'une créature des abîmes. Elle est morte en voulant le sauver. Depuis, j'ai gardé une règle : lisez avant de pleurer. La méfiance n'est pas de la dureté. C'est le seul piège que je refuse de répéter. »",
+        "condition": {
+          "pnj": {
+            "id": "soeur-lysandre",
+            "attitudeMin": 40
+          }
+        },
+        "revele": [],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "soeur-lysandre",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "compagnon": {
+      "classe": "clerc",
+      "espece": "elfe",
+      "niveau": 1,
+      "historique": "acolyte",
+      "recrutement": {
+        "ou": [
+          {
+            "flag": "lysandre-recruite"
+          },
+          {
+            "pnj": {
+              "id": "soeur-lysandre",
+              "attitudeMin": 15
+            }
+          }
+        ]
+      },
+      "quetePersonnelle": "q-lysandre-sceau-brise",
+      "repliques": [
+        {
+          "declencheur": "en découvrant un ancien autel",
+          "texte": "Lisez chaque rune deux fois avant d'approcher : la ruse survivra toujours plus longtemps que l'acier."
+        },
+        {
+          "declencheur": "quand un compagnon est blessé",
+          "texte": "Tenez bon, je suis là ; la lumière du Reflet ne s'éteint pas si vite."
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "la prisonnière du cercle",
+          "reaction": "Ne cédez jamais aux larmes sans avoir lu les parchemins de garde : le piège attend souvent un geste de pitié.",
+          "attitude": 5
+        }
+      ]
+    }
+  },
+  {
+    "id": "mireille-cartographe",
+    "nom": "Mireille Plumevert",
+    "titre": "Arpenteuse et serrurière (Compagnon)",
+    "espece": "gnome",
+    "sexe": "F",
+    "age": "26 ans",
+    "role": "Cartographe curieuse et experte des mécanismes anciens, recrutable",
+    "lieu": "fort-du-reflet-beni",
+    "apparence": "Gnome vive aux lunettes de laiton relevées sur le front, besace bourrée de rouleaux de papier quadrillé, plumes d'oie et crochets fins.",
+    "personnalite": {
+      "traits": [
+        "curieuse",
+        "ingénieuse"
+      ],
+      "voix": "Enthousiaste et rapide, parle des mécanismes cachés comme d'œuvres d'art.",
+      "valeurs": [
+        "exactitude du relevé",
+        "astuce plutôt que force brute"
+      ],
+      "desir": "Dresser enfin la carte complète des trois niveaux de la nécropole.",
+      "peur": "Manquer un passage dérobé derrière une statue ou une étagère."
+    },
+    "attitude": 10,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-dalles-claires-sures"
+    ],
+    "secrets": [],
+    "salutations": {
+      "neutre": "Elle lève à peine les yeux de son carnet. « Une seconde, je termine ce repère à la boussole. Vous êtes ceux qui vont dans la tranchée ? Passez derrière moi, mais ne marchez pas sur mon croquis, il est encore humide. »",
+      "amical": "Elle sourit en refermant son carnet d'un coup de poignet. « Toujours ravie de croiser des gens qui savent mesurer une salle avant d'y foncer tête baissée ! Vous m'avez l'air de quelqu'un qui compte ses pas. »",
+      "hostile": "Elle rabat ses lunettes sur les yeux et tourne le dos. « Gardez vos mains loin de mes relevés. Je ne montre rien à des gens qui foncent sans mesurer, et je n'ai pas l'intention de changer d'avis. »",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "mireille-carte-complete"
+          },
+          "texte": "Elle brandit le carnet comme un trophée. « Mon relevé est complet, de la première niche au dernier pilier ! Regardez ce carnet, il est plus épais qu'un registre de la guilde. Les arpenteurs de Valdargent vont en perdre leurs perruques. »"
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "mireille-cartographe",
+              "genre": "victoire"
+            }
+          },
+          "texte": "Elle tend un croquis, fière et un peu pâle. « J'étais là, à l'arrière, et j'ai dessiné la scène dans la marge de mon carnet pendant que ça tapait. Regardez : chaque pas, chaque position, tout y est. »"
+        },
+        {
+          "condition": {
+            "temoin": {
+              "pnj": "mireille-cartographe",
+              "genre": "fuite"
+            }
+          },
+          "texte": "Elle ne lève pas les yeux de son carnet. « Vous avez fui, et je l'ai noté avec le reste : la direction, et le nombre de pas que vous avez faits. Fuir, c'est un relevé comme un autre. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "plan-et-mecanismes",
+        "mots": [
+          "carte",
+          "plans",
+          "mecanismes",
+          "dalles",
+          "statues"
+        ],
+        "question": "Qu'avez-vous déjà appris sur l'architecture des bâtisseurs serpents ?",
+        "reponse": "Mireille fait glisser son croquis sur le muret de la fontaine, le doigt posé sur une ligne d'encre brune. « Les bâtisseurs serpents adoraient les contrepoids d'eau, les socles pivotants cachés sous leurs grandes idoles et les longs couloirs aux dalles bicolores. Voici ma règle : regardez toujours la couleur la plus usée par les pas. Là où la pierre claire est polie, le passage était emprunté tous les jours, et aucun piège n'y a jamais été posé. Suivez cette couleur, et vous ne vous tromperez pas de dalle. »",
+        "revele": [
+          "f-dalles-claires-sures"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-mireille-plan-trois-paliers",
+              "statut": "proposee"
+            }
+          }
+        ]
+      },
+      {
+        "id": "rejoindre-mireille",
+        "mots": [
+          "rejoindre",
+          "compagnie",
+          "recruter",
+          "venir",
+          "crocheter"
+        ],
+        "question": "Voulez-vous nous accompagner avec vos crochets et votre boussole ?",
+        "reponse": "Elle rabaisse ses lunettes de laiton sur les yeux, puis boucle son étui à cartes en cuir verni. « Avec plaisir ! Enfin des gens sensés qui comprennent l'utilité d'une bonne serrurière sous terre ! Je veille sur les joints suspects de la pierre, et mes crochets servent sur les vieux coffres fermés. En échange, laissez-moi relever les plans des trois étages, au pied près. Vous ne le regretterez pas : je compte mes pas à chaque couloir, et je ne laisse aucune porte sans nom. Dites-moi seulement par quel couloir vous entrez, et je prends le carnet. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "mireille-recruite"
+          },
+          {
+            "escorte": {
+              "pnj": "mireille-cartographe"
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "mireille-cartographe",
+              "delta": 15
+            }
+          },
+          {
+            "quete": {
+              "id": "q-mireille-plan-trois-paliers",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "cartes-achevees",
+        "mots": [
+          "releves",
+          "trois niveaux",
+          "hall",
+          "basilic",
+          "fini"
+        ],
+        "condition": {
+          "flag": "niveau-3-atteint"
+        },
+        "question": "Boucler avec Mireille son relevé des trois niveaux souterrains.",
+        "reponse": "Mireille essuie une tache d'encre sur sa joue ronde, son carnet épais étalé au soleil. « Du premier couloir aux niches d'argile jusqu'au grand hall profond aux huit piliers, chaque porte secrète et chaque dénivelé est tracé au pied près ! Le hall du basilic compris. Les trois niveaux sont relevés, et le relevé est fini. Je n'ai pas oublié une seule marche. Regardez la dernière page, elle est encore humide d'encre. La guilde des arpenteurs de Valdargent va en perdre ses perruques poudrées. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "mireille-carte-complete"
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "la-guilde-des-arpenteurs",
+        "mots": [
+          "guilde",
+          "arpenteurs",
+          "maîtresse",
+          "preuve",
+          "carte",
+          "valdargent"
+        ],
+        "question": "Pourquoi cartographier une tombe ?",
+        "reponse": "Elle referme son carnet d'un geste sec et le serre contre sa poitrine. « Pour que la carte prouve ce qu'on dit ! Je suis née à Valdargent, dans une famille de cartographes : on mesure tout, les pentes, les seuils, les murs. La guilde des arpenteurs m'a refusée comme maîtresse, parce que, paraît-il, je n'ai jamais relevé un vrai tombeau. Alors je vais le relever, les trois niveaux, mur par mur, et la guilde pourra lire mon nom sur la preuve. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "lire-une-salle",
+        "mots": [
+          "lire",
+          "salle",
+          "relever",
+          "joints",
+          "pas",
+          "méthode",
+          "mesure"
+        ],
+        "question": "Comment lisez-vous une salle ?",
+        "reponse": "Elle pose la paume à plat sur le mur le plus proche, comme pour en prendre la mesure. « D'abord, je compte les pas du mur au mur, et je note le total avant de regarder le reste. Ensuite, je cherche ce qui ne colle pas : une statue décalée d'un cheveu, un joint plus fin que les autres, une dalle plus usée au milieu. Je dessine avant de toucher, toujours. Et je ne ferme jamais un relevé sur une porte que je n'ai pas comprise : je laisse la case vide et j'y reviens. »",
+        "revele": [],
+        "effets": []
+      }
+    ],
+    "compagnon": {
+      "classe": "roublard",
+      "espece": "gnome",
+      "niveau": 1,
+      "historique": "sage",
+      "recrutement": {
+        "ou": [
+          {
+            "flag": "mireille-recruite"
+          },
+          {
+            "pnj": {
+              "id": "mireille-cartographe",
+              "attitudeMin": 15
+            }
+          }
+        ]
+      },
+      "quetePersonnelle": "q-mireille-plan-trois-paliers",
+      "repliques": [
+        {
+          "declencheur": "en découvrant un passage secret",
+          "texte": "Là ! Vous voyez le jeu dans le joint de pierre ? Ces anciens maîtres étaient de véritables artistes !"
+        },
+        {
+          "declencheur": "devant un couloir suspect",
+          "texte": "Ne marchez pas au hasard : vérifiez d'abord quelles dalles portent des traces d'usure !"
+        }
+      ],
+      "opinions": [
+        {
+          "sujet": "les pièges anciens",
+          "reaction": "Un piège ancien ne déteste personne : il récompense simplement l'inattention.",
+          "attitude": 5
+        }
+      ]
+    }
+  },
+  {
+    "id": "sergent-rodrigue",
+    "nom": "Sergent Rodrigue",
+    "titre": "Chef de patrouille du Fort",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "38 ans",
+    "role": "Commande les rondes de cavalerie entre le fort et la piste du Couchant",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "ordre-du-reflet-beni",
+    "apparence": "Soldat sec au teint tanné, manteau azur poussiéreux, brassards de cuir bouilli et hallebarde bien affûtée.",
+    "personnalite": {
+      "traits": [
+        "strict",
+        "observateur"
+      ],
+      "voix": "Brève et directe comme un rapport du matin.",
+      "valeurs": [
+        "ordre sur la piste",
+        "respect des garnisons"
+      ],
+      "desir": "Éviter que les différends privés d'Aldéric ne virent au brigandage sur ses routes.",
+      "peur": "Devoir lancer ses cavaliers à la poursuite de pillards parjures."
+    },
+    "attitude": 0,
+    "profilCombat": "chevalier",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "commune": "garde",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "contrat-deserteurs-rapporte"
+          },
+          "texte": "Rodrigue lève le menton d'un cran. « Rapport reçu. Le convoi repart à l'aube, la piste reste ouverte, et votre nom figure désormais dans mon registre du matin. Bonne route. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "patrouilles-du-val",
+        "mots": [
+          "patrouilles",
+          "cavaliers",
+          "routes",
+          "tension",
+          "surveillance"
+        ],
+        "question": "Jusqu'où patrouillent vos hommes dans le Val du Couchant ?",
+        "reponse": "Rodrigue croise ses gantelets de cuir bouilli sur la hampe polie de sa hallebarde et balaye la piste du regard. « Nos éclaireurs montés couvrent toute la piste caravanière, jusqu'aux hauteurs rocheuses qui dominent le bivouac. Ce sont mes meilleurs cavaliers, et ils voient loin. Je n'ai ni le temps ni les hommes pour vous courir après. Tant que vous restez droits dans vos comptes avec le valet d'Aldéric, et que vous ne traînez pas dix nuits dehors sans donner signe de vie, tout ira bien. Pour le reste, adressez-vous au commandant du fort, compagnies. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "alerte-en-cours",
+        "mots": [
+          "alerte",
+          "soupcon",
+          "retard",
+          "martin"
+        ],
+        "condition": {
+          "jauge": {
+            "id": "soupcon-et-tension",
+            "min": 2
+          }
+        },
+        "question": "La garnison s'inquiète-t-elle de notre retard ?",
+        "reponse": "Le sergent consulte une tablette de garde couverte de dates et de marques rouges, sans lever la voix. « Mes estafettes rapportent que le valet Martin s'agite de plus en plus au campement, devant ses mules. Il craint que vous ne cherchiez une autre sortie, et la garnison commence à s'en inquiéter. Je ne vous le cache pas : cela monte d'un cran à chaque retour. Je n'ai pas envie de répondre deux fois à la même question. Passez donc lui parler franc jeu au prochain lever de soleil, et dites-lui exactement où vous en êtes, compagnies. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "dangers-de-la-dune",
+        "mots": [
+          "dangers",
+          "sable",
+          "nuit",
+          "vivres"
+        ],
+        "question": "Quelles consignes donnez-vous pour camper entre les dunes ?",
+        "reponse": "Il pointe son menton tanné vers les murs chaulés du fort, qui renvoient le soleil. « Ne dormez jamais la nuit dans une cuvette de sable ouverte sans un guetteur éveillé. Comptez toujours vos outres avant la grosse chaleur de midi, avant même de vous charger. Si la fatigue d'en bas vous pèse trop fort, le Fort du Reflet Béni vous offrira toujours un toit sûr et calme. Le reste, c'est affaire de discipline, compagnies. Un guetteur, des outres comptées, et la nuit passe sans histoire. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "contrat-deserteurs-piste",
+        "mots": [
+          "déserteurs",
+          "piste",
+          "escorte",
+          "bande",
+          "oued",
+          "pillards"
+        ],
+        "question": "Quel problème avez-vous sur votre piste ?",
+        "reponse": "Rodrigue referme son registre sans lever les yeux. « Une dizaine d'hommes de l'escorte d'Aldéric ont quitté le convoi. Ils barrent la piste dans le lit sec de l'oued, près du Bivouac du Seuil, et détroussent les voyageurs qui passent. Ce sont des parjures, et je ne vais pas le tolérer. Si j'envoie mes cavaliers, un différend privé d'Aldéric deviendra une affaire de brigandage sur mes routes, et personne n'y gagnera. Le Bivouac du Seuil est à huit heures de route depuis le fort. Ramenez-les au convoi ou chassez-les, et évitez le sang inutile. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-contrat-deserteurs",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "contrat-deserteurs-retour",
+        "mots": [
+          "déserteurs",
+          "rapport",
+          "oued",
+          "retour",
+          "contrat"
+        ],
+        "condition": {
+          "flag": "contrat-deserteurs-fait"
+        },
+        "question": "Annoncer que la piste est libre",
+        "reponse": "Rodrigue hoche la tête une fois, sans sourire. « La piste est libre, bien. Vous avez fait net, et je le note dans mon rapport du matin. Quarante pièces à inscrire au registre, ligne par ligne, comme il se doit. Je ne tiens pas à lancer mes cavaliers sur une piste pour un différend qui n'était pas le mien. Il me reste une question que je ne poserai pas maintenant. La prochaine fois qu'une escorte passera sur cette route, je saurai à qui la confier. Bon travail, et reposez vos chevaux. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "contrat-deserteurs-rapporte"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 5
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "sergent-rodrigue",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true,
+        "variantes": [
+          {
+            "condition": {
+              "flag": "deserteurs-impayes"
+            },
+            "reponse": "Rodrigue referme son registre avec lenteur. « Impayés. Voilà donc ce que cachaient ces hommes. Quarante pièces pour vous, ligne par ligne, comme il se doit. Je parlerai à Corvin, puis je poserai la question là où elle doit l'être : devant le seigneur Aldéric, par écrit. Vous avez écouté avant de frapper, et je le note aussi. Un soldat qu'on ne paie pas finit toujours par ramasser sa solde sur la route des autres. La piste est libre, reposez vos chevaux. »"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "corvin-le-scribe",
+    "nom": "Corvin le Tabellion",
+    "titre": "Greffier du seigneur Aldéric",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "51 ans",
+    "role": "Rédige et conserve les doubles des contrats d'expédition au fort",
+    "lieu": "fort-du-reflet-beni",
+    "faction": "commanditaire-alderic",
+    "apparence": "Homme mince à redingote sombre usée aux coudes, portant une trousse d'encre et des lunettes tenues par un fil de cuivre.",
+    "personnalite": {
+      "traits": [
+        "tatillon",
+        "polis"
+      ],
+      "voix": "Mesurée, juridique et sèche, citant toujours les paragraphes de mémoire.",
+      "valeurs": [
+        "force du sceau écrit",
+        "clarté des parts"
+      ],
+      "desir": "Boucler les écritures sans litige entre les mercenaires et son seigneur.",
+      "peur": "Les ratures, la cire brisée et les querelles devant témoin."
+    },
+    "attitude": 0,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Votre double d'engagement est dûment classé. Respectez la lettre du contrat, et il ne se passera rien que le registre ne puisse consigner. Je n'ai rien à ajouter à ce qui est écrit. »",
+      "amical": "« Toujours un plaisir de traiter avec des mandataires qui savent lire un reçu en règle. Votre acte est propre, la marge est nette, et la cire tient bien. Passez me voir au retour, je vous montrerai où l'on classe les copies. »",
+      "hostile": "« Toute fraude constatée vaut saisie immédiate sur vos biens à Valdargent. Je ne vous le répéterai pas. Vous êtes inscrits au registre, et le registre ne fait pas de grâce. »",
+      "variantes": [
+        {
+          "condition": {
+            "parle": "martin-le-valet"
+          },
+          "texte": "Il lève à peine la tête. « Martin m'écrit régulièrement, et vos écritures sont à jour dans mon registre. Je vérifie une date, puis une seconde, le doigt sur la ligne. Tout concorde. Je n'ai rien à redire. »"
+        },
+        {
+          "condition": {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "min": 2
+            }
+          },
+          "texte": "Il replace sa plume dans l'encrier, sans hâte. « Martin s'inquiète de votre retard, et l'estafette me l'a fait savoir. Je vous le dis poliment : au-delà du cinquième repos, le contrat ne tient plus. Ne m'obligez pas à le classer comme rompu. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "clauses-contrat",
+        "mots": [
+          "clauses",
+          "contrat",
+          "partage",
+          "moitie",
+          "alderic"
+        ],
+        "question": "Pouvez-vous rappeler les termes exacts du contrat ?",
+        "reponse": "Il tapote son grand registre de vélin d'un doigt sec, sans même regarder la page. « Paragraphe quatre de votre engagement. Moitié exacte de l'or, des gemmes et des œuvres d'art, pesée au bivouac devant Martin, qui consigne chaque pièce. Solde finale de cent pièces au retour, et pleine immunité de passage sur les terres d'Aldéric. Ni plus, ni moins, devant la loi de Valdargent : tout le reste tient dans ce paragraphe. Il n'y a pas d'autre clause. Pour la pesée elle-même, adressez-vous à Martin. »",
+        "revele": [
+          "f-contrat-moitie-part"
+        ],
+        "effets": []
+      },
+      {
+        "id": "precedentes-expeditions",
+        "mots": [
+          "precedents",
+          "expeditions",
+          "pertes",
+          "disparus"
+        ],
+        "question": "Combien de compagnies ont signé avant nous ?",
+        "reponse": "Il feuillette trois pages jaunies de son registre, avec un léger claquement de langue. « Trois compagnies ont signé avant vous. La première, partie il y a sept mois, n'est jamais remontée, et son scribe figure encore sur ma liste. La deuxième a reculé devant la barre de granit du couloir et a rebroussé chemin. La troisième, il y a six semaines, a perdu deux hommes dans les vapeurs des cercueils du premier niveau et n'en a ramené qu'un blessé, sans un sou. Vous êtes les mieux armés que j'aie inscrits. Si vous voulez le détail des pertes, Martin l'a reçu de leur bouche. »",
+        "revele": [
+          "f-pnj-compagnies-precedentes"
+        ],
+        "effets": []
+      },
+      {
+        "id": "sortie-sans-butin",
+        "mots": [
+          "tombe vide",
+          "rien",
+          "echec",
+          "sceller"
+        ],
+        "question": "Que prévoit l'acte si la nécropole s'avérait déjà pillée ou effondrée ?",
+        "reponse": "Il ferme son écritoire de laiton et répond sur le ton égal d'un notaire habitué aux imprévus des dunes. « Si aucune richesse ne sort de la tombe, faute de galerie praticable sous la roche, Martin consigne un procès-verbal devant les mules vides, et chacun repart libre de dettes. Une seule condition, et elle est expresse : qu'on n'ait rien vu luire dans vos propres sacoches. Le registre ne pardonne pas les menues dissimulations. Rien n'est plus simple, et rien n'est plus strict. Pour le détail du procès-verbal, c'est Martin qui le rédige. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "la-liste-des-disparus",
+        "mots": [
+          "disparus",
+          "liste",
+          "registre",
+          "élios",
+          "scribe",
+          "collège"
+        ],
+        "question": "Qui figure sur votre liste des disparus ?",
+        "reponse": "Il pose le doigt sur une ligne de son registre, sans la chercher, puis lève les yeux. « Le premier nom est celui d'Élios de la Plume, scribe du collège de Valdargent. Il est parti il y a sept mois avec la première compagnie, et il n'est jamais remonté. Sa part de solde, quarante pièces d'argent, n'a pas été réclamée et attend dans une enveloppe scellée. Je n'en sais pas davantage, et je n'ai pas à en savoir davantage. Pour le reste, je n'ai que des signatures. »",
+        "revele": [],
+        "effets": [],
+        "variantes": [
+          {
+            "condition": {
+              "parle": "elios-captif"
+            },
+            "reponse": "Il repose sa plume doucement, pâlit, et pose la main à plat sur le registre. « Il est vivant, et prisonnier ? Alors ce registre est faux, et la cire n'aime pas les erreurs. Je n'avais pas imaginé qu'un nom sur ma liste puisse respirer encore. Avez-vous une preuve de ce que vous dites, ou seulement votre parole ? Je le rectifie devant vous, tout de suite. Sa part de solde, quarante pièces d'argent, je la garde pour lui. Vous me rendez là un vrai service, et je vous en remercie. »"
+          }
+        ]
+      },
+      {
+        "id": "les-fraudes-et-leurs-peines",
+        "mots": [
+          "fraude",
+          "tricher",
+          "saisie",
+          "peine",
+          "pesée",
+          "cacher"
+        ],
+        "question": "Que risque-t-on à tricher sur la pesée ?",
+        "reponse": "Il ne lève pas même les yeux de sa plume et énonce les peines comme on lit un tarif. « Fraude constatée par Martin devant témoins : la part du fraudeur est saisie, sa solde est perdue et sa réputation ruinée à Valdargent. Rompre le contrat en gardant l'or, c'est pire : la maison d'Aldéric devient votre ennemie. Je ne vous menace pas, je vous recopie le tarif. Martin compte tout, et une cachette grossière finit toujours par se voir. Si vous doutez d'une pièce, posez la question à Martin avant, pas après. »",
+        "revele": [],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "nolan-palefrenier",
+    "nom": "Nolan le Jeune",
+    "titre": "Garçon d'écurie",
+    "espece": "halfelin",
+    "sexe": "M",
+    "age": "19 ans",
+    "role": "Soigne les chevaux de la garnison et écoute les retours d'expédition",
+    "lieu": "fort-du-reflet-beni",
+    "apparence": "Jeune halfelin aux cheveux bouclés pleins de foin, pieds nus dans la poussière tiède de la cour, tenant toujours une étrille en bois.",
+    "personnalite": {
+      "traits": [
+        "enthousiaste",
+        "rêveur"
+      ],
+      "voix": "Vive et gaie, pleine d'admiration pour les aventuriers.",
+      "valeurs": [
+        "bravoure",
+        "bonté envers les bêtes"
+      ],
+      "desir": "Entendre de vrais récits de monstres et de trésors anciens.",
+      "peur": "Les fantômes ou bruits étranges de la nuit dehors."
+    },
+    "attitude": 15,
+    "profilCombat": "roturier",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "commune": "villageois"
+    },
+    "sujets": [
+      {
+        "id": "ecuries-et-mules",
+        "mots": [
+          "chevaux",
+          "mules",
+          "gaspard",
+          "piste"
+        ],
+        "question": "Comment réagissent les bêtes quand on revient du chantier ?",
+        "reponse": "Nolan frotte le flanc d'un hongre gris. « Les chevaux sentent tout, tu vois... pardon, vous voyez ! Dès qu'on revient de la tranchée, ils flairent la moindre odeur et s'agitent dans leur stalle. La dernière fois, quand Varnac est rentré la nuit en toussant jusqu'au puits, même nos bêtes les plus calmes ont refusé d'approcher de la poterne ouverte pendant deux bonnes heures. Je leur ai parlé doucement, rien à faire ! Demandez à Gaspard, le muletier, il en sait plus que moi sur les mules. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "rumeurs-des-gamins",
+        "mots": [
+          "serpents",
+          "gobelins",
+          "arbres",
+          "histoires"
+        ],
+        "question": "Quelles histoires raconte-t-on dans la cour du fort ?",
+        "reponse": "Nolan baisse la voix, les yeux ronds. « Les palefreniers disent que toute la tombe est creusée sur trois grands étages, comme une termitière à l'envers sous la dune. Tu sais ce qu'on raconte aussi... pardon, vous savez ! Les corbeaux tournent toujours autour d'un grand arbre mort, près du bivouac, et les mules de passage refusent d'en approcher. J'y crois à moitié, mais j'ai les poils qui se dressent rien que d'y penser ! Demandez à Torin Martel-Gris, il les répète mieux que moi. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "souvenir-d-aventure",
+        "mots": [
+          "racines",
+          "couronne",
+          "tresor",
+          "avenir"
+        ],
+        "question": "Auriez-vous envie de partir explorer les dunes ?",
+        "reponse": "Nolan fait tournoyer son étrille de bois poli entre ses doigts. « Oh oui, un jour peut-être ! Quand je saurai manier une dague droite sans me piquer le pouce, et que j'aurai gagné assez de pièces pour mes premières bottes ferrées, je partirai chercher des trésors anciens et de vrais monstres. Ça fait des années que je vis au fort, alors je rêve beaucoup. Pour l'instant je veille bien sagement sur vos bêtes, au sec, ici dans la cour. Demandez à Torin Martel-Gris, le maître d'armes : il sait, lui, comment tenir une dague. »",
+        "revele": [],
+        "effets": []
+      }
+    ]
+  }
+]

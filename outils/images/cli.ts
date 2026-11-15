@@ -171,6 +171,11 @@ async function main(): Promise<void> {
     const service = trouverService(option('--service') ?? 'klein');
     if (!service) throw new Error(`Service inconnu « ${option('--service')} ».`);
     const dossier = join(SORTIES, 'mondes', idMonde);
+    // Un PNJ ou un objet que le manifeste du monde reprend déjà (asset commun, copie) ne se regénère pas.
+    const fichierManifeste = join(RACINE_MONDES, idMonde, 'images', 'manifeste.json');
+    const manifeste = existsSync(fichierManifeste) ? (JSON.parse(readFileSync(fichierManifeste, 'utf8')) as { pnj?: Record<string, string>; objets?: Record<string, string> }) : {};
+    const repris = (e: Element) => (e.id.startsWith('pnj-') && !!manifeste.pnj?.[e.id.slice(4)]) || (e.id.startsWith('objet-') && !!manifeste.objets?.[e.id.slice(6)]);
+    for (const [id, els] of parLieu) parLieu.set(id, els.filter((e) => !repris(e)));
     const fait = (e: Element) => existsSync(join(dossier, `${e.id}.png`));
     const lieu = option('--lieu');
     if (!lieu) {

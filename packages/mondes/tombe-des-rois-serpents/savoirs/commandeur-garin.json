@@ -1,0 +1,154 @@
+[
+  {
+    "pnj": "commandeur-garin",
+    "passe": "Commandeur Garin est fils d'un forgeron de Valdargent. Il s'engage à dix-huit ans, devient sergent à vingt-quatre ans, puis commande le Fort du Reflet Béni depuis onze ans. Il forge encore chaque matin, avant la cour, et donne un nom à chaque lame qu'il termine. Il y a dix-sept ans, jeune sergent, il a ouvert un cercueil de la tombe pour prouver que ce n'était rien : la vapeur verte lui a brûlé la paume, et un homme de sa patrouille en est mort. Depuis, il interdit à ses soldats d'entrer dans la tombe et engage des aventuriers pour descendre à leur place, sans les estimer beaucoup. Il compte chaque groupe qui part sur la piste et chaque groupe qui revient.",
+    "liens": [
+      {
+        "pnj": "elara-herboriste",
+        "nature": "Apothicaire de l'avant-poste.",
+        "opinion": "Il ne se mêle pas de ses mixtures et s'en remet à elle pour les brûlures, lui qui en garde une sur la paume."
+      },
+      {
+        "pnj": "frere-balthazar",
+        "nature": "Chapelain et archiviste du Fort.",
+        "opinion": "Il lui laisse les vieux textes et la chapelle, et ne le contredit jamais sur l'histoire du fort."
+      },
+      {
+        "pnj": "martin-le-valet",
+        "nature": "Valet de confiance du seigneur Aldéric ; il lui écrit tous les trois jours.",
+        "opinion": "Un honnête homme malheureux, qui compte tout comme lui, sans jamais s'en réjouir."
+      },
+      {
+        "pnj": "sergent-rodrigue",
+        "nature": "Chef de patrouille du fort, sous ses ordres.",
+        "opinion": "Il lui confie les sorties de patrouille sans détour, et attend de lui un rapport court et sec."
+      },
+      {
+        "pnj": "torin-armurier",
+        "nature": "Maître d'armes nain.",
+        "opinion": "Il respecte la lame bien finie : entre gens du métal, on parle de l'acier, pas de la politique."
+      },
+      {
+        "pnj": "corvin-le-scribe",
+        "nature": "le greffier d'Aldéric",
+        "opinion": "Il ne comprend pas qu'on craigne une rature plus qu'une lame, mais il lui reconnaît de ne jamais perdre un document."
+      },
+      {
+        "pnj": "varnac-le-borgne",
+        "nature": "le sapeur seul revenu de la dernière descente",
+        "opinion": "Il se reproche de ne pas avoir interdit cette descente ; il ne le lui dit pas et lui garde toujours une place au râtelier d'armes."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "forge-pere",
+        "texte": "Il a grandi dans l'atelier de son père, à Valdargent, où le soufflet ronflait dès l'aube. Il y a appris à tenir le marteau avant de tenir une épée, et il garde l'odeur de charbon sur ses mains.",
+        "acces": {}
+      },
+      {
+        "id": "brulure-paume",
+        "texte": "Sur sa paume, une vieille brûlure a blanchi en une cicatrice lisse. Il la montre quand il veut être cru, et il ne la cache jamais sous le gant.",
+        "acces": {}
+      },
+      {
+        "id": "engage-jeune",
+        "texte": "Il s'est engagé à dix-huit ans et il a gravi les grades un à un. Sergent à vingt-quatre ans, il commande le Fort du Reflet Béni depuis onze ans, et il connaît chaque pierre de ses murs.",
+        "acces": {}
+      },
+      {
+        "id": "the-menthe-sucre",
+        "texte": "Il boit son thé de menthe très sucré, toujours debout, adossé au chambranle de la cuisine, sans jamais s'asseoir. Le sucre ne lui fait pas peur, et il en ajoute encore quand la journée a été longue.",
+        "acces": {}
+      },
+      {
+        "id": "tabard-verifie",
+        "texte": "Il tapote son tabard du plat de la main, comme pour vérifier que la cotte est bien en place sous le sable. Le geste revient à chaque fois qu'il réfléchit, et il ne s'en rend pas compte.",
+        "acces": {}
+      },
+      {
+        "id": "compte-les-groupes",
+        "texte": "Il compte les groupes qui sortent par la porte du fort, puis les mêmes quand ils reviennent, un par un. Il ne note rien : il retient les chiffres, et il les garde pour lui.",
+        "acces": {}
+      },
+      {
+        "id": "aldric-compte",
+        "texte": "Le seigneur Aldéric paie bien, il le reconnaît. Mais il compte trop : chaque pièce doit être justifiée jusqu'au dernier denier, et cela use les nerfs de ceux qui descendent.",
+        "acces": {}
+      },
+      {
+        "id": "martin-honnete",
+        "texte": "Martin est un honnête homme malheureux. Garin le dit sans méchanceté, comme on constate la chaleur du midi, sans rien y changer. Il a du respect pour lui, à sa façon, et il ne le dit jamais.",
+        "acces": {}
+      },
+      {
+        "id": "la-tombe-volcan",
+        "texte": "La tombe, il la compare à un volcan éteint dont on ne se débarrasse pas. On le surveille, on ne le réveille pas, et on ne s'y installe jamais.",
+        "acces": {}
+      },
+      {
+        "id": "puits-clair",
+        "texte": "Le puits du fort donne la seule eau bonne du Val, claire comme du verre. Garin y puise lui-même chaque matin, avant d'allumer la forge.",
+        "acces": {}
+      },
+      {
+        "id": "les-cris-de-la-falaise",
+        "texte": "Une nuit, il a entendu des cris d'enfants monter de la falaise. Depuis, il ne dort plus la fenêtre fermée.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il laisse entendre qu'une nuit l'a marqué, puis il dit : « Je n'en parlerai pas à des inconnus, ça ne regarde pas le contrat. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-contrat",
+        "fait": "f-contrat-moitie-part",
+        "version": "Pour lui, c'est une affaire de comptes : Aldéric veut la moitié exacte, et Martin la pèse sous ses yeux. Il le trouve juste pour un homme qui paie, et trop étroit pour un homme qui risque sa peau.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-vapeur-verte",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Il l'a appris à ses dépens, en ouvrant lui-même un couvercle sans précaution. Il dit que la vapeur saute au visage dès que le couvercle cède, et il montre sa paume pour le prouver.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fort-et-l-ordre",
+        "fait": "f-pnj-fort-de-l-ordre",
+        "version": "Il sait ce que disent les vieux comptes du fort : quatre-vingt-dix ans de murs chaulés, bâtis par l'Ordre du Reflet Béni pour tenir la nécropole. Il le répète comme une leçon apprise par cœur.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "ce-que-garde-le-fort",
+        "fait": "f-fort-contient-les-horreurs",
+        "version": "Pour lui, le fort n'est pas une bande de pillards en armure. Il dit que la garnison veille à ce que rien de ce qui dort sous les sables ne remonte vers les routes de Valdargent, et il ne plaisante pas là-dessus.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-noir-du-second",
+        "fait": "f-noir-absolu-n2",
+        "version": "Par un vieil éclaireur, il sait que le deuxième niveau ne connaît aucune lumière, et que sans flamme ni sort on n'y voit pas à trois pas. Il n'y est jamais allé, et il le dit sans honte.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-fumee-sur-la-falaise",
+        "fait": "f-pnj-gobelins-enfumes",
+        "version": "Il ne le dit qu'à demi-mot : après un hiver de vols de rations, il a ordonné d'enfumer un terrier sur la falaise. Il ne cherche pas d'excuse, il constate, et il évite le sujet dès qu'on insiste.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il regarde ses mains et dit qu'on ne parle pas de ça au premier venu, que ça ne regarde pas le contrat.",
+        "tabou": [
+          "enfumé",
+          "enfumage",
+          "terrier"
+        ]
+      }
+    ]
+  }
+]

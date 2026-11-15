@@ -1,0 +1,143 @@
+[
+  {
+    "pnj": "martin-le-valet",
+    "passe": "Martin est né à Valdargent, fils d'un petit marchand ruiné quand un associé a triché sur « la moitié ». À dix-neuf ans, il entre comme garçon de comptoir à l'entrepôt d'épices du seigneur Aldéric. Depuis dix ans, il est son valet de confiance. Il porte une livrée brune toujours brossée, tient ses comptes au carnet de cuir et pèse les pièces à la balance de cuivre. Aujourd'hui, il accompagne l'expédition au Bivouac du Seuil, à huit heures du fort, avec les mules de la maison, pour peser la moitié exacte du butin du Val du Couchant.",
+    "liens": [
+      {
+        "pnj": "gaspard-muletier",
+        "nature": "Muletier de la maison, il conduit les mules.",
+        "opinion": "Lent, mais honnête : Martin le dit comme il lirait un chiffre, et c'est lui qui paie les mules."
+      },
+      {
+        "pnj": "lise-guetteuse",
+        "nature": "Éclaireuse du Bivouac, elle guette le vallon.",
+        "opinion": "Trop silencieuse : Martin remarque ses silences et ne sait pas encore s'il doit s'en inquiéter."
+      },
+      {
+        "pnj": "corvin-le-scribe",
+        "nature": "Greffier du seigneur Aldéric, il tient les écritures de la maison.",
+        "opinion": "Un homme de plume qui écrit proprement : Martin lui fait confiance pour les papiers, pas pour les bourses."
+      },
+      {
+        "pnj": "varnac-le-borgne",
+        "nature": "Mercenaire vétéran, seul revenu de la descente au premier niveau.",
+        "opinion": "Un aventurier, donc un homme qui triche jusqu'à preuve du contraire ; Martin attend ses preuves, mais il l'a envoyé au fort."
+      },
+      {
+        "pnj": "brennan-terrassier",
+        "nature": "Contremaître de fouille, il a dégagé le porche de la tombe.",
+        "opinion": "Un chantier bien tenu : Martin compte les hommes et les heures de pioche, sans jamais le dire tout haut."
+      },
+      {
+        "pnj": "commandeur-garin",
+        "nature": "le commandant du fort",
+        "opinion": "Il lui écrit tous les trois jours et lui reconnaît de toujours répondre par retour ; il le tient pour un honnête homme, ce qui lui suffit."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "souvenir-entrepot-epices",
+        "texte": "À dix-neuf ans, Martin rangeait les sacs d'épices dans l'entrepôt du seigneur Aldéric, garçon de comptoir qui apprenait les pesées avant les mots. Il a gardé cette odeur sèche d'épices dans la manche de sa livrée, et il ne s'en plaint jamais.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-valdargent",
+        "texte": "Valdargent, cité marchande, est à cinq jours de piste d'ici. Martin en parle peu, mais quand il le fait, c'est en termes de comptoirs, de soie et de comptes à tenir, comme on parle d'un pays qu'on connaît par le registre.",
+        "acces": {}
+      },
+      {
+        "id": "manie-brosse-livree",
+        "texte": "Chaque matin, Martin brosse sa livrée brune à la brosse de crin, même ici, où la poussière retombe sur ses manches dès que le vent se lève. Il frotte jusqu'à ce que le tissu n'accroche plus la lumière.",
+        "acces": {}
+      },
+      {
+        "id": "manie-sel-mules",
+        "texte": "Il offre le sel aux mules de sa main, paume bien ouverte. Pétard, la vieille grise, vient la première et lèche la main sans hâte. Madame Soupir, la noire, attend son tour en secouant la tête, et Martin lui laisse le dernier grain.",
+        "acces": {}
+      },
+      {
+        "id": "manie-plume-encre",
+        "texte": "Ses doigts sont tachés d'encre jusqu'aux jointures. Il trempe sa plume dans sa petite fiole, en essuie la pointe sur le bord, et n'a jamais une goutte sur le papier. Quand il écrit, il ne lève pas la tête, pas même pour vous répondre.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-aventuriers",
+        "texte": "Pour Martin, les aventuriers sont des gens qui trichent, jusqu'à preuve du contraire. Il ne le dit pas avec colère : il le note, comme on note une pièce douteuse, et il attend de voir si la preuve vient.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-alderic",
+        "texte": "Aldéric est un maître qu'on ne déçoit pas. Martin le dit sans emphase, comme on donne un chiffre : dix ans à son service, et il n'a jamais eu à s'en excuser.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-gaspard",
+        "texte": "Gaspard est lent, Martin le constate sans méchanceté. Il conduit les mules à son pas, mais il ne vole pas une pièce, et Martin lui fait confiance pour la route, pas pour les comptes.",
+        "acces": {}
+      },
+      {
+        "id": "anecdote-puits-du-fort",
+        "texte": "Le Fort du Reflet Béni a un puits clair, la seule eau bonne du Val. Martin y remplit les outres des mules avant chaque départ, et il contrôle la corde lui-même, parce qu'un seau mal attaché se perd vite dans le sable.",
+        "acces": {}
+      },
+      {
+        "id": "la-peur-du-noir",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "texte": "Martin n'est jamais descendu sur la première marche de la tombe. Il dit que c'est son ordre, et c'est sa honte. Une fois, enfant, il est resté deux heures enfermé dans le cellier de la boutique de son père, et il n'en parle à personne.",
+        "evasif": "« Je n'en parlerai pas à des inconnus. C'est mon ordre, et je m'y tiens. »"
+      },
+      {
+        "id": "la-promesse-d-alderic",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "texte": "Aldéric lui a promis la charge d'intendant de la maison s'il rapporte exactement la moitié. Rentrer les mains vides serait sa chute, et Martin le sait mieux que quiconque.",
+        "evasif": "« Je n'en parlerai pas à des inconnus. Un engagement de maison se règle entre le maître et ses gens. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-contrat",
+        "fait": "f-contrat-moitie-part",
+        "version": "Il le répète sans détour : le seigneur Aldéric veut exactement la moitié de tout ce qui sort de la tombe, et c'est lui, Martin, qui la pèse. La moitié, c'est la paix.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-trois-compagnies",
+        "fait": "f-pnj-compagnies-precedentes",
+        "version": "Il les a comptées une à une : une compagnie partie il y a sept mois et jamais revenue, une qui a reculé devant la barre de granit, et une qui a perdu deux hommes dans la vapeur. Il sait ce que ça coûte, et il le note.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "varnac-a-rampe",
+        "fait": "f-varnac-survivant",
+        "version": "Varnac le Borgne est le seul revenu de la descente au premier niveau. Son frère d'armes est resté dans un caveau, et il n'a jamais pu le ramener. Martin constate qu'il a rampé jusqu'à lui, la gorge brûlée, et qu'il a bu l'eau salée tiède sans un mot.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-vapeur",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Les cercueils d'argile des gardiens et des prêtres lâchent une vapeur verte quand on en arrache le couvercle. Martin sait que deux hommes de la dernière compagnie sont morts dans cette vapeur, et il n'a pas besoin d'en voir davantage.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-creux-sous-l-arbre",
+        "fait": "f-sortie-racines-surface",
+        "version": "Il a entendu un bruissement sec sous les racines du vieil arbre mort, comme s'il y avait du creux en dessous. Il ne l'a pas vérifié : il n'a pas ordre d'y descendre, et il ne va pas inventer un ordre.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "evasif": "Il dit que la nuit, le vent fait entendre bien des choses, qu'il constate seulement ce qu'il peut peser.",
+        "tabou": [
+          "escalier"
+        ]
+      }
+    ]
+  }
+]

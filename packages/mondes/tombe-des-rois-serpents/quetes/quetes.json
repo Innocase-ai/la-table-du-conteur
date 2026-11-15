@@ -1,0 +1,446 @@
+[
+  {
+    "id": "q-tombe-des-rois-serpents",
+    "nom": "Le Contrat des Rois Serpents",
+    "type": "principale",
+    "donneur": "martin-le-valet",
+    "lieu": "fort-du-reflet-beni",
+    "resume": "Explorer les trois niveaux de la nécropole sous les sables du Val du Couchant, en rapporter de quoi solder le contrat à moitié-part, puis trancher devant Martin ce qu'il adviendra du butin et du contrat d'Aldéric.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "rejoindre-bivouac",
+    "etapes": [
+      {
+        "id": "rejoindre-bivouac",
+        "texte": "Quittez le Fort du Reflet Béni pour le Bivouac du Seuil, huit heures de marche vers l'ouest, et parlez à Martin avant de descendre dans la tombe.",
+        "lieu": "bivouac-entree",
+        "completion": { "ou": [{ "parle": "martin-le-valet" }, { "lieu": "n1-couloir-entree" }, { "lieu": "n3-escalier-surface" }] },
+        "suivantes": ["percer-faux-temple"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "percer-faux-temple",
+        "texte": "Traversez le premier niveau, dont les sépulcres sentent le piège, et cherchez le vrai chemin des catacombes.",
+        "completion": { "ou": [{ "fait": "f-passage-temple-decouvert" }, { "lieu": "n2-hall-aux-statues" }, { "lieu": "n3-salle-ceremonie" }, { "lieu": "n3-hall-du-basilic" }, { "lieu": "n3-escalier-surface" }] },
+        "suivantes": ["franchir-niveau-deux"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "franchir-niveau-deux",
+        "texte": "Descendez dans les catacombes noyées de noir, passez le colosse osseux qui garde le gouffre et trouvez la porte du troisième niveau.",
+        "completion": { "ou": [{ "lieu": "n3-salle-ceremonie" }, { "lieu": "n3-hall-du-basilic" }] },
+        "suivantes": ["resoudre-coeur-tombeau"],
+        "effets": [{ "xp": 150 }, { "flag": "niveau-3-atteint" }]
+      },
+      {
+        "id": "resoudre-coeur-tombeau",
+        "texte": "Fouillez le troisième niveau jusqu'à tenir de quoi solder le contrat : le trésor des rois, la Couronne ou un accord avec le maître des lieux. Puis remontez.",
+        "completion": { "flag": "coeur-tombe-resolu" },
+        "suivantes": ["regler-partage-martin"],
+        "effets": [{ "xp": 200 }]
+      },
+      {
+        "id": "regler-partage-martin",
+        "texte": "Retournez voir Martin au Bivouac du Seuil et rendez vos comptes devant les mules : c'est là que le contrat se solde, ou se rompt.",
+        "lieu": "bivouac-entree",
+        "completion": { "flag": "verdict-partage-rendu" },
+        "echec": { "flag": "horloge-expiree" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 250 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 300,
+      "pieces": 0,
+      "objets": [],
+      "effets": [],
+      "annonce": "Ce que vous en tirez dépend du verdict rendu devant Martin : la solde d'Aldéric, le silence de la tombe, la fortune d'un parjure ou la disgrâce."
+    },
+    "echec": {
+      "texte": "Martin a levé le camp avec les preuves : le contrat d'Aldéric est rompu pour retard, et d'autres chasseurs de trésors prendront votre place.",
+      "effets": []
+    },
+    "ramifications": "Quatre issues devant Martin (scène `evt-le-decompte`) : partage loyal, fraude (réussie ou éventée), rupture du contrat, pacte des profondeurs (réservé à qui a sauvé les gobelins ou flatté Xiximantre, et n'a pas tout dit à Martin). Une cinquième fin : l'horloge `soupcon-et-tension` à 5."
+  },
+  {
+    "id": "q-couronne-des-rois",
+    "nom": "La Couronne Disparue",
+    "type": "secondaire",
+    "lieu": "n3-salle-du-trone",
+    "resume": "La Couronne des Rois Serpents manque à la salle du trône. Quelqu'un l'a emportée sous terre, et il faudra la reprendre.",
+    "niveau": { "min": 2, "max": 3 },
+    "debut": "chercher-la-couronne",
+    "etapes": [
+      {
+        "id": "chercher-la-couronne",
+        "texte": "La Couronne des Rois Serpents manque à la salle du trône. Trouvez qui l'a emportée, et où.",
+        "completion": { "fait": "f-couronne-chez-gobelins" },
+        "suivantes": ["reprendre-la-couronne"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "reprendre-la-couronne",
+        "texte": "Reprenez la Couronne aux gobelins de la ferme aux champignons : par le troc, par la parole ou par la force.",
+        "lieu": "n3-ferme-champignons",
+        "completion": { "objet": "couronne-rois-serpents" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 100 }, { "flag": "coeur-tombe-resolu" }]
+      }
+    ],
+    "recompenses": { "xp": 150, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Trois façons de l'avoir : rendre aux gobelins leurs frères captifs (Skriik la cède), la déterrer après une trêve, ou l'arracher par la force. La Couronne change la variante d'épilogue des fins de partage et de trahison."
+  },
+  {
+    "id": "q-fontaine-des-gobelins",
+    "nom": "La Statue de la Fontaine",
+    "type": "secondaire",
+    "lieu": "n3-salle-ceremonie",
+    "resume": "Une lourde statue d'or a été arrachée de la fontaine de la salle de cérémonie et traînée vers l'ouest. La rapporter, puis décider de ce qu'elle devient.",
+    "niveau": { "min": 2, "max": 3 },
+    "debut": "suivre-les-traces",
+    "etapes": [
+      {
+        "id": "suivre-les-traces",
+        "texte": "Une lourde statue d'or a été traînée hors de la salle de cérémonie. Suivez la rayure dans la poussière jusqu'à elle.",
+        "lieu": "n3-salle-commune-gobeline",
+        "completion": { "objet": "statue-or-fontaine" },
+        "suivantes": ["decider-de-la-statue"],
+        "effets": [{ "xp": 80 }]
+      },
+      {
+        "id": "decider-de-la-statue",
+        "texte": "Vous tenez la statue d'or. Décidez de ce qu'elle devient : la remettre sur son socle, ou la garder pour le butin.",
+        "lieu": "n3-salle-ceremonie",
+        "completion": { "ou": [{ "flag": "statue-remise-fontaine" }, { "flag": "statue-gardee" }] },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 70 }]
+      }
+    ],
+    "recompenses": { "xp": 100, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "La statue se prend aux gobelins par le combat, la parole ou le troc avec Skriik. Remise sur son socle (scène `evt-la-statue-et-la-fontaine`) ou gardée pour le butin : le choix est celui du groupe."
+  },
+  {
+    "id": "q-secret-de-baltoplate",
+    "nom": "La Captive du Cercle",
+    "type": "secondaire",
+    "lieu": "n2-sacristie",
+    "resume": "Les rouleaux de la sacristie parlent d'un être lié sous serment dans les salles d'en bas. Apprendre son vrai nom, puis régler son cas sans tomber dans son piège.",
+    "niveau": { "min": 1, "max": 3 },
+    "debut": "apprendre-le-nom",
+    "etapes": [
+      {
+        "id": "apprendre-le-nom",
+        "texte": "Les rouleaux de la sacristie parlent d'un être lié sous les dalles. Apprenez son vrai nom : sans lui, rien ne tient.",
+        "completion": { "fait": "f-vrai-nom-baltoplate" },
+        "suivantes": ["regler-le-cercle"],
+        "effets": [{ "xp": 60 }]
+      },
+      {
+        "id": "regler-le-cercle",
+        "texte": "Au troisième niveau, la prisonnière du cercle d'argent vous attend. Réglez son sort.",
+        "lieu": "n3-salle-invocation",
+        "completion": { "flag": "baltoplate-reglee" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 120 }]
+      }
+    ],
+    "recompenses": { "xp": 120, "pieces": 0, "objets": [], "effets": [] },
+    "ramifications": "Sceller le cercle par le vrai nom, libérer la captive contre ses secrets, la bannir par le rituel (dilemme `dilemme-baiser-du-cercle`), ou, sans le nom, se laisser prendre au baiser (sujet de Baltoplate)."
+  },
+  {
+    "id": "q-pactes-de-xiximantre",
+    "nom": "Les Oubliettes du Sorcier",
+    "type": "faction",
+    "donneur": "skriik-le-cueilleur",
+    "lieu": "n3-reserve-et-oubliettes",
+    "resume": "Quatre gobelins dépérissent sous les grilles de la réserve d'alchimie. Les libérer par la ruse, le troc ou l'acier contre Xiximantre, puis en rendre compte à Skriik.",
+    "niveau": { "min": 2, "max": 3 },
+    "debut": "delivrer-captifs",
+    "etapes": [
+      {
+        "id": "delivrer-captifs",
+        "texte": "Quatre gobelins sont enfermés dans les oubliettes de la réserve d'alchimie. Obtenez leur libération : par un accord avec Xiximantre, par la ruse ou par l'acier.",
+        "lieu": "n3-reserve-et-oubliettes",
+        "completion": { "flag": "gobelins-sauves" },
+        "suivantes": ["retrouver-skriik"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "retrouver-skriik",
+        "texte": "Retournez voir Skriik à la ferme aux champignons : il vous a promis la Couronne et la route cachée vers la surface.",
+        "lieu": "n3-ferme-champignons",
+        "completion": { "flag": "couronne-obtenue" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 100 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "reputation": { "faction": "clan-des-champignons", "delta": 20 } }],
+      "annonce": "L'amitié du clan des champignons, la Couronne et la route cachée sous les racines."
+    },
+    "ramifications": "Les captifs sortent par la parole (le troc ou la ruse avec Xiximantre, par son sujet des oubliettes) ou par sa mort ; la flatterie seule ne les libère pas. Dans tous les cas Skriik tient sa parole ; sans les captifs, il ne cède rien."
+  },
+  {
+    "id": "q-statues-petrifiees",
+    "nom": "Le Regard qui Pétrifie",
+    "type": "secondaire",
+    "donneur": "elara-herboriste",
+    "lieu": "n3-vestibule-garde",
+    "resume": "Elara veut en savoir plus sur le fléau pétrifiant des profondeurs : passer ou terrasser la bête, prendre la clé qu'elle porte, puis faire rapport à Elara au Fort.",
+    "niveau": { "min": 2, "max": 3 },
+    "debut": "resoudre-basilic",
+    "etapes": [
+      {
+        "id": "resoudre-basilic",
+        "texte": "Passez ou terrassez la bête pétrifiante du grand hall et prenez la lourde clé de fer pendue à son collier.",
+        "lieu": "n3-hall-du-basilic",
+        "completion": { "objet": "cle-du-basilic" },
+        "suivantes": ["ouvrir-salle-tresor"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "ouvrir-salle-tresor",
+        "texte": "Servez-vous de la clé du basilic sur la lourde porte de fer du grand dôme pour ouvrir la Salle du Trésor des Rois.",
+        "lieu": "n3-salle-du-tresor",
+        "completion": { "lieu": "n3-salle-du-tresor" },
+        "suivantes": ["retour-elara"],
+        "effets": [{ "xp": 120 }]
+      },
+      {
+        "id": "retour-elara",
+        "texte": "Retournez voir Elara au Fort du Reflet Béni : elle attend votre rapport sur le fléau pétrifiant.",
+        "lieu": "fort-du-reflet-beni",
+        "completion": { "flag": "statues-petrifiees-rapportees" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 80 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 75,
+      "objets": [],
+      "effets": [{ "reputation": { "faction": "ordre-du-reflet-beni", "delta": 5 } }, { "jauge": { "id": "soupcon-et-tension", "delta": -1 } }],
+      "annonce": "75 po et une lettre d'Elara au commandeur : le Fort cesse de s'inquiéter de vos retards."
+    },
+    "ramifications": "La clé se prend sur le basilic par la ruse (escamotage derrière les piliers) ou par le combat ; une statuette des gardes pétrifiés suffit aussi comme preuve pour Elara."
+  },
+  {
+    "id": "q-boucliers-de-l-arene",
+    "nom": "Les Boucliers de l'Arène",
+    "type": "secondaire",
+    "donneur": "torin-armurier",
+    "lieu": "n2-arene-gardien",
+    "resume": "Torin Martel-Gris veut étudier le cerclage de bronze des anciens boucliers ronds exposés dans la grande arène du deuxième niveau.",
+    "niveau": { "min": 1, "max": 2 },
+    "debut": "trouver-bouclier-arene",
+    "etapes": [
+      {
+        "id": "trouver-bouclier-arene",
+        "texte": "Atteignez l'arène du gardien osseux, au deuxième niveau, et rapportez un des boucliers exposés en trophée.",
+        "lieu": "n2-arene-gardien",
+        "completion": { "et": [{ "lieu": "n2-arene-gardien" }, { "objet": "bouclier" }] },
+        "suivantes": ["rapporter-bouclier-torin"],
+        "effets": [{ "xp": 75 }]
+      },
+      {
+        "id": "rapporter-bouclier-torin",
+        "texte": "Montrez le bouclier antique à Torin, au Fort du Reflet Béni.",
+        "lieu": "fort-du-reflet-beni",
+        "completion": { "flag": "boucliers-rapportes-torin" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 75 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 100,
+      "pieces": 35,
+      "objets": [],
+      "effets": [{ "reputation": { "faction": "ordre-du-reflet-beni", "delta": 5 } }],
+      "annonce": "35 po et la reconnaissance de la forge du Fort."
+    }
+  },
+  {
+    "id": "q-barre-de-granit",
+    "nom": "Derrière la Barre de Granit",
+    "type": "secondaire",
+    "donneur": "brennan-terrassier",
+    "lieu": "n1-couloir-entree",
+    "resume": "Les terrassiers de Brennan veulent savoir ce que retenait l'énorme porte barrée de l'extérieur, au bout du couloir ensoleillé.",
+    "niveau": { "min": 1, "max": 1 },
+    "debut": "ouvrir-porte-granit",
+    "etapes": [
+      {
+        "id": "ouvrir-porte-granit",
+        "texte": "Franchissez la porte barrée du couloir d'entrée et voyez ce que la barre de granit gardait.",
+        "lieu": "n1-couloir-entree",
+        "completion": { "lieu": "n1-faux-temple" },
+        "suivantes": ["retour-brennan"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "retour-brennan",
+        "texte": "Revenez raconter à Brennan, devant la tranchée, ce que cachait la barre de granit.",
+        "lieu": "tombe-des-rois",
+        "completion": { "flag": "barre-granit-rapportee" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 50 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 90,
+      "pieces": 25,
+      "objets": [],
+      "effets": [{ "jauge": { "id": "soupcon-et-tension", "delta": -1 } }, { "reputation": { "faction": "commanditaire-alderic", "delta": 5 } }],
+      "annonce": "25 po, et les terrassiers diront à Martin que l'expédition avance."
+    }
+  },
+  {
+    "id": "q-varnac-frere-d-armes",
+    "nom": "Le Dernier Caveau d'Hélian",
+    "type": "personnelle",
+    "donneur": "varnac-le-borgne",
+    "lieu": "fort-du-reflet-beni",
+    "resume": "Varnac le Borgne veut retourner devant la quatrième niche du premier niveau, où son frère d'armes Hélian est tombé dans les vapeurs toxiques.",
+    "niveau": { "min": 1, "max": 2 },
+    "prerequis": { "pnj": { "id": "varnac-le-borgne", "etat": "vivant" } },
+    "debut": "recruter-ou-parler-varnac",
+    "etapes": [
+      {
+        "id": "recruter-ou-parler-varnac",
+        "texte": "Écoutez l'histoire de Varnac au Fort du Reflet Béni et engagez-le pour retourner sous terre.",
+        "lieu": "fort-du-reflet-beni",
+        "completion": { "ou": [{ "flag": "varnac-recrute" }, { "lieu": "n1-tombe-du-sorcier" }] },
+        "suivantes": ["atteindre-caveau-sorcier"],
+        "effets": [{ "xp": 40 }]
+      },
+      {
+        "id": "atteindre-caveau-sorcier",
+        "texte": "Conduisez Varnac devant la tombe du sorcier d'argile, au premier niveau, pour qu'il reconnaisse l'endroit où Hélian est tombé.",
+        "lieu": "n1-tombe-du-sorcier",
+        "completion": { "lieu": "n1-tombe-du-sorcier" },
+        "suivantes": ["retour-varnac"],
+        "effets": [{ "xp": 50 }]
+      },
+      {
+        "id": "retour-varnac",
+        "texte": "Parlez à Varnac de ce que vous avez vu dans le caveau du sorcier. Il vous attend au Fort s'il ne vous suit pas.",
+        "completion": { "flag": "varnac-deuil-accompli" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 50 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 120,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "attitude": { "pnj": "varnac-le-borgne", "delta": 20 } }],
+      "annonce": "La fidélité de Varnac le Borgne."
+    },
+    "ramifications": "Varnac peut être engagé avant ou après la descente ; la quête se clôt dans les deux cas à son retour."
+  },
+  {
+    "id": "q-lysandre-sceau-brise",
+    "nom": "Le Sceau sous le Sable",
+    "type": "personnelle",
+    "donneur": "soeur-lysandre",
+    "lieu": "fort-du-reflet-beni",
+    "resume": "Sœur Lysandre veut lire les registres de la sacristie et veiller à ce que la créature liée au troisième niveau reste hors d'état de nuire.",
+    "niveau": { "min": 1, "max": 3 },
+    "prerequis": { "pnj": { "id": "soeur-lysandre", "etat": "vivant" } },
+    "debut": "lire-sacristie",
+    "etapes": [
+      {
+        "id": "lire-sacristie",
+        "texte": "Descendez à la sacristie aux parchemins, au deuxième niveau, pour consulter les rouleaux liturgiques avec Lysandre.",
+        "lieu": "n2-sacristie",
+        "completion": { "ou": [{ "fait": "f-vrai-nom-baltoplate" }, { "lieu": "n2-sacristie" }] },
+        "suivantes": ["fermer-cercle-salle"],
+        "effets": [{ "xp": 60 }]
+      },
+      {
+        "id": "fermer-cercle-salle",
+        "texte": "Réglez le sort du cercle d'invocation, au troisième niveau, sans laisser le mal s'étendre.",
+        "lieu": "n3-salle-invocation",
+        "completion": { "flag": "baltoplate-reglee" },
+        "echec": { "flag": "choix-dilemme-baiser-du-cercle-pacte-secret-baltoplate" },
+        "suivantes": ["retour-lysandre"],
+        "effets": [{ "xp": 100 }]
+      },
+      {
+        "id": "retour-lysandre",
+        "texte": "Confirmez à Sœur Lysandre que le péril du cercle d'invocation est maîtrisé. Elle vous attend au Fort si elle ne vous suit pas.",
+        "completion": { "flag": "lysandre-mission-accomplie" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 60 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 0,
+      "objets": [],
+      "effets": [{ "reputation": { "faction": "ordre-du-reflet-beni", "delta": 10 } }],
+      "annonce": "La reconnaissance de Sœur Lysandre et de l'ordre du Reflet Béni."
+    },
+    "echec": {
+      "texte": "Vous avez laissé partir ce que Lysandre voulait voir enchaîné. Elle ne vous suivra plus, et ne vous le pardonnera pas de sitôt.",
+      "effets": []
+    },
+    "ramifications": "Sceller le cercle ou bannir la captive honore la mission ; la libérer contre ses secrets la fait échouer et coûte à Lysandre sa confiance (elle quitte le groupe)."
+  },
+  {
+    "id": "q-mireille-plan-trois-paliers",
+    "nom": "La Carte des Trois Paliers",
+    "type": "personnelle",
+    "donneur": "mireille-cartographe",
+    "lieu": "fort-du-reflet-beni",
+    "resume": "Mireille Plumevert rêve de relever la géométrie exacte des trois étages superposés de la nécropole, jusqu'au grand hall profond.",
+    "niveau": { "min": 1, "max": 3 },
+    "prerequis": { "pnj": { "id": "mireille-cartographe", "etat": "vivant" } },
+    "debut": "relever-niveau-2",
+    "etapes": [
+      {
+        "id": "relever-niveau-2",
+        "texte": "Relevez la jonction centrale de l'atrium du Bassin Noir, au deuxième niveau.",
+        "lieu": "n2-atrium",
+        "completion": { "lieu": "n2-atrium" },
+        "suivantes": ["relever-niveau-3"],
+        "effets": [{ "xp": 60 }]
+      },
+      {
+        "id": "relever-niveau-3",
+        "texte": "Atteignez le grand hall à piliers du troisième niveau pour achever les mesures des trois paliers.",
+        "lieu": "n3-hall-du-basilic",
+        "completion": { "lieu": "n3-hall-du-basilic" },
+        "suivantes": ["retour-mireille"],
+        "effets": [{ "xp": 90 }]
+      },
+      {
+        "id": "retour-mireille",
+        "texte": "Bouclez le relevé final avec Mireille Plumevert. Elle vous attend au Fort si elle ne vous suit pas.",
+        "completion": { "flag": "mireille-carte-complete" },
+        "suivantes": [],
+        "termine": true,
+        "effets": [{ "xp": 75 }]
+      }
+    ],
+    "recompenses": {
+      "xp": 150,
+      "pieces": 40,
+      "objets": [],
+      "effets": [{ "attitude": { "pnj": "mireille-cartographe", "delta": 20 } }],
+      "annonce": "40 po de prime de la guilde des arpenteurs et l'amitié de Mireille."
+    }
+  }
+]

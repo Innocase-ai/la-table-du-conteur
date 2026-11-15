@@ -1,0 +1,265 @@
+{
+  "secrets": [
+    {
+      "id": "secret-vrai-nom-baltoplate",
+      "texte": "La prétendue captive enchaînée dans la salle d'invocation est une succube nommée Baltoplate, liée par les anciens prêtres.",
+      "fait": "f-vrai-nom-baltoplate",
+      "motsTabou": [
+        "Baltoplate",
+        "succube",
+        "fiélon"
+      ],
+      "autorise": [
+        "dilemmes",
+        "enigmes",
+        "evenements-choix",
+        "savoirs:baltoplate",
+        "savoirs:xiximantre",
+        "savoirs:elara-herboriste",
+        "savoirs:elios-captif"
+      ]
+    },
+    {
+      "id": "secret-empire-chute-xiximantre",
+      "texte": "Xiximantre ignore totalement que l'empire des hommes-serpents s'est effondré il y a des siècles et croit régner sous une métropole vivante.",
+      "fait": "f-empire-chute-xiximantre",
+      "motsTabou": [
+        "empire tombé",
+        "siècles d'oubli"
+      ],
+      "autorise": [
+        "dilemmes",
+        "savoirs:xiximantre",
+        "savoirs:elios-captif",
+        "savoirs:baltoplate"
+      ]
+    },
+    {
+      "id": "secret-couronne-chez-gobelins",
+      "texte": "La véritable Couronne des Rois Serpents a été emportée par les gobelins dans leur ferme de champignons pour se cacher du basilic.",
+      "fait": "f-couronne-chez-gobelins",
+      "motsTabou": [
+        "couronne enterrée",
+        "couronne dans le terreau"
+      ],
+      "autorise": [
+        "savoirs:skriik-le-cueilleur"
+      ]
+    },
+    {
+      "id": "secret-fausse-tombe-leurre",
+      "texte": "La tombe royale du premier niveau est un leurre destiné aux pilleurs, cachant derrière une statue le vrai puits vers les catacombes.",
+      "fait": "f-fausse-tombe-leurre",
+      "motsTabou": [
+        "leurre royal",
+        "tunnel sous l'idole"
+      ],
+      "autorise": []
+    }
+  ],
+  "noms": {
+    "lexique": [
+      "Valdargent",
+      "Val du Couchant",
+      "Fort du Reflet Béni",
+      "Xisor",
+      "Sparamantur",
+      "Franbinzar",
+      "Xiximantre",
+      "Baltoplate",
+      "Aldéric",
+      "Garin",
+      "Elara",
+      "Martin",
+      "Skriik",
+      "Grib",
+      "Lyra",
+      "Balthazar",
+      "Marta",
+      "Torin",
+      "Martel-Gris",
+      "Solène",
+      "Varnac",
+      "Lysandre",
+      "Mireille",
+      "Plumevert",
+      "Rodrigue",
+      "Corvin",
+      "Nolan",
+      "Gaspard",
+      "Lise",
+      "Brennan",
+      "Jehan",
+      "Grignote",
+      "Krak",
+      "Élios",
+      "Trou-Noir",
+      "Hélian",
+      "Doran",
+      "Hessarim",
+      "Pétard",
+      "Madame Soupir",
+      "Pierrot",
+      "Ildrin",
+      "Aubierge",
+      "Odon",
+      "Tom",
+      "Reflet Béni",
+      "Œuvre",
+      "Œil-Vif",
+      "Grand Œuvre"
+    ]
+  },
+  "personnages": [
+    {
+      "id": "commandeur-garin",
+      "nom": "Commandeur Garin",
+      "age": 52,
+      "espece": "humain"
+    },
+    {
+      "id": "elara-herboriste",
+      "nom": "Elara",
+      "age": 114,
+      "espece": "elfe"
+    },
+    {
+      "id": "frere-balthazar",
+      "nom": "Frère Balthazar",
+      "age": 61,
+      "espece": "humain"
+    },
+    {
+      "id": "marta-aubergiste",
+      "nom": "Marta la Chaude-Chaudron",
+      "age": 47,
+      "espece": "halfelin"
+    },
+    {
+      "id": "torin-armurier",
+      "nom": "Torin Martel-Gris",
+      "age": 44,
+      "espece": "nain"
+    },
+    {
+      "id": "solene-caravaniere",
+      "nom": "Solène de Valdargent",
+      "age": 36,
+      "espece": "humain"
+    },
+    {
+      "id": "varnac-le-borgne",
+      "nom": "Varnac le Borgne",
+      "age": 43,
+      "espece": "humain"
+    },
+    {
+      "id": "soeur-lysandre",
+      "nom": "Sœur Lysandre",
+      "age": 29,
+      "espece": "elfe"
+    },
+    {
+      "id": "mireille-cartographe",
+      "nom": "Mireille Plumevert",
+      "age": 26,
+      "espece": "gnome"
+    },
+    {
+      "id": "sergent-rodrigue",
+      "nom": "Sergent Rodrigue",
+      "age": 38,
+      "espece": "humain"
+    },
+    {
+      "id": "corvin-le-scribe",
+      "nom": "Corvin le Tabellion",
+      "age": 51,
+      "espece": "humain"
+    },
+    {
+      "id": "nolan-palefrenier",
+      "nom": "Nolan le Jeune",
+      "age": 19,
+      "espece": "halfelin"
+    },
+    {
+      "id": "martin-le-valet",
+      "nom": "Martin",
+      "age": 39,
+      "espece": "humain"
+    },
+    {
+      "id": "gaspard-muletier",
+      "nom": "Gaspard Sans-Hâte",
+      "age": 49,
+      "espece": "nain"
+    },
+    {
+      "id": "lise-guetteuse",
+      "nom": "Lise Oeil-Vif",
+      "age": 27,
+      "espece": "humain"
+    },
+    {
+      "id": "brennan-terrassier",
+      "nom": "Brennan Le-Pic",
+      "age": 45,
+      "espece": "goliath"
+    },
+    {
+      "id": "jehan-fosseyeur",
+      "nom": "Jehan Dos-Vouté",
+      "age": 33,
+      "espece": "humain"
+    },
+    {
+      "id": "baltoplate",
+      "nom": "La Captive du Cercle",
+      "age": 25,
+      "espece": "humaine"
+    },
+    {
+      "id": "xiximantre",
+      "nom": "Xiximantre",
+      "age": 980,
+      "espece": "homme-serpent"
+    },
+    {
+      "id": "skriik-le-cueilleur",
+      "nom": "Skriik le Cueilleur",
+      "age": 29,
+      "espece": "gobelin"
+    },
+    {
+      "id": "grib-guetteur",
+      "nom": "Grib l'Édenté",
+      "age": 31,
+      "espece": "gobelin"
+    },
+    {
+      "id": "grignote-marmite",
+      "nom": "Grignote la Marmite",
+      "age": 26,
+      "espece": "gobelin"
+    },
+    {
+      "id": "krak-oubliettes",
+      "nom": "Krak Brise-Grille",
+      "age": 34,
+      "espece": "gobelin"
+    },
+    {
+      "id": "elios-captif",
+      "nom": "Élios de la Plume",
+      "age": 37,
+      "espece": "elfe"
+    },
+    {
+      "id": "trou-noir-gobelin",
+      "nom": "Trou-Noir",
+      "age": 17,
+      "espece": "gobelin"
+    }
+  ]
+}

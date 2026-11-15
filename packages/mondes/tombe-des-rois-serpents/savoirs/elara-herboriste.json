@@ -1,0 +1,148 @@
+[
+  {
+    "pnj": "elara-herboriste",
+    "passe": "Elara est née dans un bois au bord du fleuve, loin de Valdargent. À soixante ans, elle entre à l'académie des simples de Valdargent comme apprentie, puis en devient la maîtresse. Il y a trente et un ans, après une querelle avec le recteur sur « ce qui est une plante éteinte », elle s'installe au Fort du Reflet Béni, où elle tient l'apothicairerie. Sa passion est l'écorce-serpent, plante du premier âge dont on ne retrouve que des herbiers desséchés. À soixante-dix ans, elle a vu un seul fragment de graine, qui avait la couleur d'une écaille. Depuis, elle rêve d'en semer des graines vivantes.",
+    "liens": [
+      {
+        "pnj": "commandeur-garin",
+        "nature": "Commandant du Fort du Reflet Béni, qui dirige la garnison.",
+        "opinion": "Trop dur, trop juste : il ne pardonne ni l'imprudence ni les excuses, et elle le respecte pour cela."
+      },
+      {
+        "pnj": "frere-balthazar",
+        "nature": "Chapelain et archiviste du fort, gardien des parchemins de la sacristie.",
+        "opinion": "Un homme de registres qui sait toujours où chercher ; elle discute volontiers avec lui des vieux textes, à voix basse."
+      },
+      {
+        "pnj": "jehan-fosseyeur",
+        "nature": "Terrassier craintif de la tranchée, un des camarades de Pierrot.",
+        "opinion": "Jehan tremble à chaque coup de pioche, mais il ne laisse jamais tomber ses camarades."
+      },
+      {
+        "pnj": "torin-armurier",
+        "nature": "Maître d'armes nain, qui raconte les histoires du colosse osseux du second niveau.",
+        "opinion": "Il exagère les récits au coin du feu, mais elle se fie à son œil d'armurier pour juger une lame."
+      },
+      {
+        "pnj": "brennan-terrassier",
+        "nature": "le contremaître des terrassiers",
+        "opinion": "Elle lui reproche d'envoyer ses hommes sans linge mouillé devant les cercueils ; il lui amène ses blessés sans discuter, et c'est ce qu'elle retient."
+      },
+      {
+        "pnj": "soeur-lysandre",
+        "nature": "la jeune prêtresse de l'Ordre",
+        "opinion": "Elle lui monte des tisanes quand elle veille tard à la chapelle ; elle la trouve trop pressée pour une elfe et le lui dit en riant."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "souvenir-academie",
+        "texte": "À l'académie de Valdargent, elle a tenu tête au recteur sur une seule question : ce qui mérite le nom de plante éteinte. Elle a fini par partir pour le fort sans lui dire adieu.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-herbier",
+        "texte": "Elle a vu des feuilles d'écorce-serpent séchées dans un herbier de Valdargent, si fines qu'on les croirait faites de papier. Elle les regarde encore comme on relit une lettre trop souvent lue.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-fragment",
+        "texte": "À soixante-dix ans, elle a vu un fragment de graine d'écorce-serpent. Il avait la couleur d'une écaille, et elle en parle encore plus lentement que le reste, comme d'une chose qu'on n'a vue qu'une fois.",
+        "acces": {}
+      },
+      {
+        "id": "manie-safran",
+        "texte": "Ses doigts gardent des traces jaunes de safran et des taches brunes de brou de noix, qu'elle ne songe jamais à frotter. Au fort, on reconnaît son passage à l'odeur de ses mains avant de la voir.",
+        "acces": {}
+      },
+      {
+        "id": "manie-lunettes",
+        "texte": "Quand une réponse la contrarie, elle essuie ses lunettes de cuivre avec un coin de son tablier de lin clair, très lentement, sans les remettre aussitôt sur le nez.",
+        "acces": {}
+      },
+      {
+        "id": "manie-camomille",
+        "texte": "Quand elle réfléchit, elle pile de la camomille sèche dans un mortier, toujours du même geste rond. Le bruit du pilon remplit l'apothicairerie, et les clients se taisent pour l'écouter penser.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-garin",
+        "texte": "Elle juge le commandeur Garin trop dur et trop juste, ce qui chez elle est un compliment. Il ne pardonne ni les imprudences ni les excuses, et elle n'a jamais réussi à le contredire sur une question de sécurité.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-aventuriers",
+        "texte": "Les aventuriers, elle les trouve pleins de courage et de bêtises. Ce sont, à ses yeux, des gens qui meurent de bêtises évitables, et qui s'étonnent ensuite qu'on les ait prévenus.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-tombe",
+        "texte": "Pour elle, la tombe n'est pas un trésor mais une bibliothèque de poisons et de plantes, où chaque cercueil renferme une recette qu'on ne veut pas ouvrir. Elle y voit surtout des leçons à apprendre avant d'entrer.",
+        "acces": {}
+      },
+      {
+        "id": "anecdote-pierrot",
+        "texte": "Elle a sauvé un terrassier brûlé par la vapeur d'un cercueil, il y a deux mois. Elle n'en fait pas un récit : pour elle, un homme qui tousse vert ne doit pas attendre qu'on s'en occupe.",
+        "acces": {}
+      },
+      {
+        "id": "ildrin-tisane",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "texte": "Il y a quarante ans, Ildrin, un compagnon humain, est mort d'une fièvre du sable qu'aucune de ses fioles n'a retenue. Elle garde une feuille séchée de sa tisane préférée dans un livre, et elle la relit parfois sans un mot.",
+        "evasif": "Elle essuie ses lunettes. « Je n'en parlerai pas à des inconnus : certains souvenirs ne se donnent pas aux passants. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-trone-des-rois",
+        "fait": "f-rumeur-trone-maudit",
+        "version": "Elle répète la rumeur de taverne, un trône d'or attend quiconque s'y assoit, puis elle ajoute qu'il s'agit d'une demi-vérité mortelle : le siège insuffle une folie conquérante. Ce n'est pas une couronne qu'on y gagne, c'est une maladie.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-vapeur-des-cercueils",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Les cercueils d'argile renferment une vapeur verte qui jaillit à l'ouverture brutale ; elle l'a constaté sur un terrassier brûlé à la gorge.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-legende-du-baiser",
+        "fait": "f-vrai-nom-baltoplate",
+        "version": "Elle a lu, à l'académie, dans un grimoire fermé, la légende d'une créature enchaînée que seul un baiser peut rompre. Sans le nom, elle n'a compris qu'à demi ; si on le lui prononce, elle reconnaît aussitôt le cercle.",
+        "acces": {
+          "attitudeMin": 45
+        },
+        "evasif": "Elle essuie ses lunettes et dit que certaines légendes se lisent mal à voix haute devant des inconnus.",
+        "tabou": [
+          "Baltoplate",
+          "succube",
+          "fiélon"
+        ]
+      },
+      {
+        "id": "les-tombes-leurres",
+        "fait": "f-fausse-tombe-leurre",
+        "version": "Les trois cercueils dorés qui précèdent le temple sont un décor des bâtisseurs, édifié pour retenir les pilleurs loin du véritable escalier. Elle trouve cela d'un goût douteux, mais ingénieux.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Elle répond que les bâtisseurs avaient le goût des décors, sans en dire plus.",
+        "tabou": [
+          "leurre",
+          "tunnel"
+        ]
+      },
+      {
+        "id": "les-vraies-tombes",
+        "fait": "f-vraies-tombes-n2",
+        "version": "Les vraies sépultures de la dynastie sont au deuxième niveau, derrière les cinq portes de l'atrium, celles de Xisor le Vert, de Sparamantur et de Franbinzar, entre autres. Elle le tient des carnets d'érudits.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

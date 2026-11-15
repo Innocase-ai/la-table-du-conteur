@@ -1,0 +1,121 @@
+[
+  {
+    "pnj": "brennan-terrassier",
+    "passe": "Brennan Le-Pic est un goliath des plateaux, âgé de quarante-cinq ans. Pendant vingt ans, il a travaillé sur les chantiers de la route de Valdargent, la cité marchande à cinq jours de piste du Val, et en a gardé une règle : payer la sueur au juste prix. Il dirige aujourd'hui une équipe de onze terrassiers, payés par le seigneur Aldéric par la main de Martin. Au Val, sa troupe a dégagé le porche aux cobras jusqu'à la grande barre de granit. Il a fait cesser le travail devant le linteau gravé, car le noir en dessous appartient aux gens armés, et il n'a pas voulu aller plus loin. Chez les goliaths, on compte les mérites : le sien tient en tas de cailloux blancs devant sa tente.",
+    "liens": [
+      {
+        "pnj": "jehan-fosseyeur",
+        "nature": "Son terrassier au chantier",
+        "opinion": "Son pire terrassier, mais son meilleur guetteur de mauvais présages : il sent la mauvaise pierre avant qu'elle ne tombe."
+      },
+      {
+        "pnj": "martin-le-valet",
+        "nature": "Le valet d'Aldéric qui pèse l'or et paie l'équipe",
+        "opinion": "Il pèse l'or devant lui sans jamais se tromper d'un sou : Brennan lui fait confiance pour la paie, pas pour le reste."
+      },
+      {
+        "pnj": "elara-herboriste",
+        "nature": "L'apothicaire de l'avant-poste",
+        "opinion": "Elle recoud vite les mains écorchées par le grès, et il ne marchande jamais quand un de ses hommes saigne."
+      },
+      {
+        "pnj": "gaspard-muletier",
+        "nature": "Le muletier du seigneur Aldéric, au Bivouac du Seuil",
+        "opinion": "Un homme qui ne se presse jamais, ni avec ses mules ni avec ses paroles : Brennan le trouve sage, mais trop lent pour un chantier."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "souvenir-route-valdargent",
+        "texte": "Pendant vingt ans, il a posé ses mains calleuses sur les blocs de la route de Valdargent, et il se souvient de chaque caillou qui lui a écorché la paume. Il en parle moins qu'il ne le pense.",
+        "acces": {}
+      },
+      {
+        "id": "cailloux-blancs",
+        "texte": "Chaque soir, il dépose devant sa tente un caillou blanc pour chaque journée passée sans accident sur le chantier. Le tas grossit en silence, et il le regarde avant de dormir comme un autre regarderait ses comptes.",
+        "acces": {}
+      },
+      {
+        "id": "troisieme-cloche",
+        "texte": "La troisième cloche du fort sonne, et Brennan range sa pioche sans discuter. Il ne fait jamais travailler ses hommes après ce signal, quelle que soit la dalle à dégager. Un bon chantier, dit-il, sait s'arrêter à temps.",
+        "acces": {}
+      },
+      {
+        "id": "pierre-sur-le-seuil",
+        "texte": "En entrant sur un chantier, il pose une pierre sur le seuil, toujours du même geste. Il ne se demande plus pourquoi depuis longtemps, mais il ne rate jamais ce geste, même pressé et même furieux contre une dalle.",
+        "acces": {}
+      },
+      {
+        "id": "chaux-sur-les-bras",
+        "texte": "Ses bras noueux sont couverts de chaux, qu'il frotte distraitement entre ses paumes avant de parler. La poussière blanche lui marque les coudes et s'accroche à sa peau grise. Il ne la chasse jamais, comme s'il la portait en uniforme.",
+        "acces": {}
+      },
+      {
+        "id": "pioche-emoussee",
+        "texte": "Il s'appuie sur une lourde pioche dont le fer s'est émoussé à force de mordre le grès. Il la tapote du plat de la main comme on flatte une bête fidèle, et refuse qu'un autre la prenne en main.",
+        "acces": {}
+      },
+      {
+        "id": "avis-eau-du-puits",
+        "texte": "Il ne boit que l'eau du puits clair du fort, la seule bonne du Val, et tient les autres sources pour douteuses. Il le dit sans rire, les sourcils froncés, en chassant une mouche d'un revers de main.",
+        "acces": {}
+      },
+      {
+        "id": "avis-alderic-sans-descendre",
+        "texte": "Il tient le seigneur Aldéric pour un homme qui paie sans jamais descendre dans la poussière. Brennan n'en dit pas de mal ouvertement, mais il n'aime guère qu'on signe un contrat sans sentir le sable entre ses doigts.",
+        "acces": {}
+      },
+      {
+        "id": "avis-compagnies",
+        "texte": "Il tient les compagnies d'avant pour des têtes dures, qui ont cru pouvoir forcer ce que la pierre garde. Il ne leur souhaite pas de mal, mais il les juge sévèrement, sans lever la voix ni rien ajouter à ce qu'il pense.",
+        "acces": {}
+      },
+      {
+        "id": "anecdote-linteau",
+        "texte": "Brennan a fait cesser le travail au linteau gravé sans chercher à comprendre les signes. Il ne sait pas les lire, et il n'a pas besoin de savoir pour respecter un avertissement.",
+        "acces": {}
+      },
+      {
+        "id": "tom-sous-l-eboulement",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "texte": "Il y a quatre ans, Tom, un de ses hommes, est resté enseveli dans l'éboulement d'un chantier de la route. Depuis, Brennan ne laisse plus personne travailler seul et compte ses hommes à chaque cloche.",
+        "evasif": "Il pose sa pioche, regarde le sable et ne répond pas tout de suite. « Ça, je n'en parlerai pas à des inconnus : c'est une histoire de mes hommes, et on ne la raconte pas en plein chantier. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-chantier-force",
+        "fait": "f-tranchee-forcee",
+        "version": "Il le dit tel quel : ses terrassiers ont dégagé la tranchée et forcé le sceau extérieur, sans jamais s'enfoncer au-delà des premières marches. Il ne s'en vante pas et ne s'en excuse pas non plus.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-barre-de-granit",
+        "fait": "f-barre-contre-ce-qui-sort",
+        "version": "Pour lui, la grande barre de granit n'est pas faite pour arrêter les pilleurs venus du dehors. Elle est posée de notre côté du seuil : les anciens voulaient retenir ce qui se trouve derrière, et il l'a respecté en faisant cesser la pelle.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-vapeur",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Il sait que la vapeur verte jaillit des cercueils d'argile dès qu'on ouvre brutalement le couvercle. Pierrot, un de ses hommes, en a été brûlé, et il ne l'oublie pas.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-trois-compagnies",
+        "fait": "f-pnj-compagnies-precedentes",
+        "version": "Il les a vues entrer, les trois compagnies qui ont signé avant vous. De la dernière, il n'a vu ressortir que Varnac, et il n'a pas envie de compter les autres à voix haute.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "tabou": [],
+        "evasif": "Il hausse ses épaules larges et dit que les gens qui entrent et sortent ne le regardent pas, et qu'il ne regarde pas les gens."
+      }
+    ]
+  }
+]

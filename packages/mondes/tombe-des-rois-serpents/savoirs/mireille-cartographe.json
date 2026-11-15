@@ -1,0 +1,129 @@
+[
+  {
+    "pnj": "mireille-cartographe",
+    "passe": "Mireille Plumevert est née à Valdargent, dans une famille de cartographes où l'on mesure tout : les pentes, les seuils, les murs. Elle a été apprentie à la guilde des arpenteurs, qui ne l'a pas retenue comme maîtresse : elle n'a jamais relevé un vrai tombeau, lui a-t-on répondu. Depuis, elle porte la même besace bourrée de rouleaux de papier quadrillé, de plumes d'oie et de crochets fins. Serrurière autant qu'arpenteuse, elle a décidé de prouver ce que la guilde refuse de voir : elle veut dresser la carte complète des trois niveaux de la nécropole, et y faire entrer chaque passage dérobé.",
+    "liens": [
+      {
+        "pnj": "soeur-lysandre",
+        "nature": "compagne de voyage, prêtresse du Reflet Béni",
+        "opinion": "Une sœur qui prie en comptant : Mireille s'y reconnaît, puisqu'elle compte ses pas à chaque couloir."
+      },
+      {
+        "pnj": "varnac-le-borgne",
+        "nature": "compagnon de chantier, mercenaire vétéran",
+        "opinion": "Un sapeur ! Elle reconnaît en lui quelqu'un qui parle le même langage qu'elle, celui des pentes, des joints et des mesures."
+      },
+      {
+        "pnj": "elios-captif",
+        "nature": "confrère, scribe de la première compagnie",
+        "opinion": "Un confrère du papier et de l'encre, parti avec la première compagnie : elle voudrait savoir quels relevés il a laissés derrière lui."
+      },
+      {
+        "pnj": "torin-armurier",
+        "nature": "maître d'armes",
+        "opinion": "Un nain qui connaît la valeur d'un bon outil : elle le respecte, même si elle trouve qu'il ne mesure jamais assez avant de frapper."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "lunettes-de-laiton",
+        "texte": "Ses lunettes de laiton restent relevées sur le front, presque toujours. Elle ne les rabat sur les yeux que pour examiner un joint de pierre ou une ligne de dessin qu'elle juge trop fine.",
+        "acces": {}
+      },
+      {
+        "id": "caresse-des-joints",
+        "texte": "Elle caresse du pouce les joints de pierre en passant, comme on vérifie la couture d'un vêtement. Un joint trop fin, ou une pierre qui sonne autrement, et elle s'arrête, le carnet déjà ouvert sur les genoux.",
+        "acces": {}
+      },
+      {
+        "id": "compte-les-pas",
+        "texte": "Elle compte ses pas à voix basse d'un mur à l'autre et griffonne le total en marge, sans jamais s'y fier de mémoire. Elle compte aussi les pas des autres quand le groupe avance, et les corrige sans méchanceté.",
+        "acces": {}
+      },
+      {
+        "id": "dessine-en-parlant",
+        "texte": "Elle dessine en parlant : sa plume court sur le papier quadrillé pendant qu'elle explique la pente d'un couloir. Ses doigts gardent des traces d'encre brune jusqu'au soir, et son carnet ne quitte jamais sa besace.",
+        "acces": {}
+      },
+      {
+        "id": "exactitude",
+        "texte": "Pour elle, un relevé vaut par son exactitude, pas par sa beauté : un trait tracé de travers est une faute, jamais un détail. Elle le répète à qui veut l'entendre, parfois à ceux qui n'ont rien demandé.",
+        "acces": {}
+      },
+      {
+        "id": "astuce-et-force",
+        "texte": "Elle méprise la force brute, ou plutôt elle la trouve paresseuse : un bon contrepoids vaut mieux que la masse, et une dalle bien comprise s'ouvre sans bruit. Elle hausse les épaules devant les portes défoncées et soupire longuement.",
+        "acces": {}
+      },
+      {
+        "id": "porte-non-comprise",
+        "texte": "Elle ne ferme jamais un relevé sur une porte qu'elle n'a pas comprise. Elle laisse la case vide, y revient plus tard, et trouve souvent que la réponse était sous ses yeux, dans un joint qu'elle avait mal tracé.",
+        "acces": {}
+      },
+      {
+        "id": "statue-decalee",
+        "texte": "Une statue décalée d'un pouce dans sa rangée la fait toujours sourire. Pour elle, ce n'est jamais un oubli d'ouvrier mais la signature d'un maître d'œuvre, et elle se met aussitôt à chercher l'idée derrière le désordre.",
+        "acces": {}
+      },
+      {
+        "id": "guilde-refus",
+        "texte": "La guilde des arpenteurs de Valdargent l'a refusée comme maîtresse, au motif qu'elle n'a jamais relevé un vrai tombeau. Elle n'a rien oublié de cette décision, et elle en fait une affaire personnelle.",
+        "acces": {}
+      },
+      {
+        "id": "trois-niveaux",
+        "texte": "Son rêve tient en une phrase : dresser la carte complète des trois niveaux de la nécropole, mur par mur, pour que chaque porte secrète figure sur son relevé. Elle y pense en marchant, et parfois en dormant.",
+        "acces": {}
+      },
+      {
+        "id": "la-lettre-de-refus",
+        "acces": {
+          "attitudeMin": 35
+        },
+        "texte": "Dans sa besace, sous les rouleaux, une lettre pliée en quatre. Elle ne la relit jamais, mais elle ne la jette pas non plus, et son regard se fige quand on prononce le nom de la guilde.",
+        "evasif": "Elle referme la besace d'un coup : je n'en parlerai pas à des inconnus, c'est une affaire de guilde et de fierté, pas un sujet de conversation."
+      },
+      {
+        "id": "le-passage-manque",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "texte": "Certaines nuits, un passage manqué lui revient en rêve : une ouverture derrière une statue, qu'elle n'a pas relevée. Elle s'en veut plus qu'elle ne l'avoue, et ne le dit à personne.",
+        "evasif": "Elle serre les lèvres : je n'en parlerai pas à des inconnus, dit-elle, un relevé manqué ne se raconte pas."
+      }
+    ],
+    "sait": [
+      {
+        "id": "les-dalles-claires",
+        "fait": "f-dalles-claires-sures",
+        "version": "Elle a remarqué que seules les dalles de pierre claire sont usées par d'anciens passages, et qu'elles ne déclenchent pas les faux. Pour elle, la couleur la plus usée indique le chemin sûr.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fort-et-l-ordre",
+        "fait": "f-pnj-fort-de-l-ordre",
+        "version": "Pour elle, le Fort du Reflet Béni est une bâtisse de l'Ordre, vieille de quatre-vingt-dix ans, bâtie pour garder le Val et surveiller la nécropole. Ses murs chaulés renvoient le soleil, d'où le nom.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-trone-des-rumeurs",
+        "fait": "f-rumeur-trone-maudit",
+        "version": "Les anciens racontent qu'un trône d'or fait roi du désert quiconque s'y assoit. Elle n'y croit qu'à moitié : c'est une demi-vérité, qui insuffle l'envie de conquérir et tue plus sûrement qu'un piège.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-soldats-creux",
+        "fait": "f-soldats-argile-creux",
+        "version": "Elle a frappé du doigt la poitrine d'une des dix-huit statues et entendu un son creux : des coques cuites au four, un décor de parade et pas une armée. Elle préfère le dire après avoir mesuré chaque rangée.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Elle dit qu'elle préfère mesurer ce qu'elle a vu de ses yeux avant d'en parler.",
+        "tabou": []
+      }
+    ]
+  }
+]

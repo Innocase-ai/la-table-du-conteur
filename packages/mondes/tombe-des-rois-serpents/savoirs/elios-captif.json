@@ -1,0 +1,162 @@
+[
+  {
+    "pnj": "elios-captif",
+    "passe": "Élios de la Plume, trente-sept ans, est scribe du collège de Valdargent, la cité marchande à cinq jours de piste du Val. Engagé comme secrétaire d'expédition, il a suivi la compagnie qui avait signé le contrat du seigneur Aldéric et qui est descendue dans la tombe il y a sept mois. Une dalle creuse du niveau du haut a cédé sous ses pieds ; ses deux compagnons ont poursuivi vers le grand hall à piliers, et ne sont jamais revenus. Depuis, il est retenu par Xiximantre, l'alchimiste des Rois Serpents, qui le fait recopier ses lettres et ses commandes d'ingrédients. Élios tient le compte des jours à la craie sur le barreau de sa cellule.",
+    "liens": [
+      {
+        "pnj": "xiximantre",
+        "nature": "geôlier et employeur",
+        "opinion": "« Mon employeur, mon bourreau, mon seul lecteur. » Il lit chaque ligne qu'Élios recopie, et il ne tolère ni le vol manifeste ni qu'on le contredise."
+      },
+      {
+        "pnj": "krak-oubliettes",
+        "nature": "gobelin des grilles voisines",
+        "opinion": "Il fait partie de ceux qui lui passent de l'eau claire entre les barreaux. Élios le tient pour un voisin fiable."
+      },
+      {
+        "pnj": "corvin-le-scribe",
+        "nature": "confrère de plume au service d'Aldéric",
+        "opinion": "Un tabellion scrupuleux, qui tient le greffe du seigneur Aldéric et range chaque contrat à sa place. Élios compte sur lui pour que son nom soit remis en ordre à Valdargent."
+      },
+      {
+        "pnj": "skriik-le-cueilleur",
+        "nature": "ancien de la champignonnière gobeline",
+        "opinion": "Le plus âgé de la champignonnière, celui que les autres écoutent. Élios le respecte, sans le connaître beaucoup."
+      },
+      {
+        "pnj": "baltoplate",
+        "nature": "la captive du cercle",
+        "opinion": "Xiximantre la nomme sa locataire dans ses dictées ; Élios n'a jamais vu son visage et ne tient pas à le voir."
+      },
+      {
+        "pnj": "mireille-cartographe",
+        "nature": "une cartographe de Valdargent qu'il ne connaît pas encore",
+        "opinion": "S'il la croise, il lui demandera ce qu'on dit du collège ; il a toujours aimé ceux qui dessinent ce qu'ils ne savent pas encore lire."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "souvenir-college",
+        "texte": "Au collège de Valdargent, on lui a appris à tailler une plume avant de lire un contrat. Il se souvient de l'odeur de l'encre fraîche, du grincement des plumes et du maître qui exigeait des pleins et des déliés parfaits.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-depart",
+        "texte": "Le matin du départ, il a regardé le fort chaulé du Reflet Béni renvoyer la lumière comme une lame. Il pensait rentrer avant la fin de l'hiver, avec ses carnets pleins.",
+        "acces": {}
+      },
+      {
+        "id": "souvenir-soleil",
+        "texte": "Dans le Val du Couchant, le soleil tombe sur la piste comme un poids. Élios se souvient de la première matinée, quand il plissait les yeux pour lire les cartes, et il rêve aujourd'hui de ce soleil sans barreaux.",
+        "acces": {}
+      },
+      {
+        "id": "manie-craie",
+        "texte": "Chaque jour, il trace un trait de craie sur le barreau, avec la précision d'un comptable. Quand il en compte cinq, il barre le groupe d'une main, sans un mot, et recommence à compter comme si rien ne s'était passé.",
+        "acces": {}
+      },
+      {
+        "id": "manie-encre",
+        "texte": "Il frotte sans cesse ses poignets bleuis d'encre, comme si la couleur pouvait s'en aller à force de sel et d'eau. Il dit que c'est l'encre des lettres de la cour qui lui reste sur la peau, et il ne rit pas.",
+        "acces": {}
+      },
+      {
+        "id": "manie-correction",
+        "texte": "Il corrige sa propre phrase à voix haute, en la reprenant mot à mot, comme s'il relisait un brouillon devant un juge. Un adjectif de trop, une virgule mal placée, et il recommence sa réplique avec une moue de mécontentement.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-desert",
+        "texte": "Il trouve le désert trop sec pour mentir : les histoires qui circulent au fort sont, selon lui, trop belles pour être vraies. Il ne croit ni au trône d'or maudit ni aux serments des caravaniers, et il le dit sans gêne.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-seigneur",
+        "texte": "Le seigneur Aldéric fait fortune avec les soieries et les épices, mais il ne descend jamais voir les antiquités qu'il achète. Élios trouve cela très commode, et il le dit avec une pointe de mépris qu'il ne cache même pas.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-gobelins",
+        "texte": "Il trouve les gobelins plus honnêtes que la plupart des marchands qu'il a croisés à Valdargent. Ils partagent leur eau claire sans compter, et ils ne mentent que quand c'est nécessaire, ce qui, dans une cave, arrive souvent.",
+        "acces": {}
+      },
+      {
+        "id": "anecdote-seul-lecteur",
+        "texte": "Quand Xiximantre lit à voix haute les réponses qu'il imagine de la cour, Élios écoute sans rien dire, les mains à plat sur la pierre froide, et il ne le contredit jamais.",
+        "acces": {}
+      },
+      {
+        "id": "sa-majeste",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "texte": "Il se surprend parfois à écrire « Sa Majesté » avec respect, et à répondre à la Cour dans sa tête, avec des formules qu'il trouve trop bien tournées. Il a peur de devenir aussi fou que son geôlier, et il le sait.",
+        "evasif": "Il détourne les yeux : « Je n'en parlerai pas à des inconnus. Ce sont des habitudes de cave, et les gens de la surface en riraient. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "l-empire-est-mort",
+        "fait": "f-empire-chute-xiximantre",
+        "version": "Il a compris que son geôlier ignore que la Cour n'est plus là, et il le dit à demi-mot : un homme qui croit son empire vivant se laisse adoucir par qui le flatte.",
+        "acces": {},
+        "tabou": [
+          "empire tombé",
+          "siècles d'oubli"
+        ]
+      },
+      {
+        "id": "les-commandes-recopiees",
+        "fait": "f-elios-recopie-les-commandes",
+        "version": "Il recopie depuis sept mois les commandes d'ingrédients que Xiximantre adresse à sa cour, et il le dit avec une lassitude de greffier : chaque ligne est une ligne de plus dans sa cellule.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-cle-du-collier",
+        "fait": "f-cle-sur-collier-basilic",
+        "version": "Il a vu la grosse clé de fer pendre au collier cuirassé de la bête, et il en parle en l'évitant : « Elle est lourde, et la bête ne la quitte jamais. »",
+        "acces": {},
+        "tabou": [
+          "clé de fer",
+          "collier cuirassé"
+        ]
+      },
+      {
+        "id": "les-gobelins-aux-grilles",
+        "fait": "f-prisonniers-gobelins-oubliettes",
+        "version": "Il sait que quatre gobelins agonisent dans les oubliettes de la réserve d'alchimie, et il en parle avec une pitié brève : « Quatre d'entre eux ne tiendront pas. Ils ont besoin d'eau, et vite. »",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-clef-de-bronze",
+        "fait": "f-cle-de-xiximantre-ceinture",
+        "version": "Il a vu la clé de bronze du laboratoire pendre à la ceinture de Xiximantre, et il la voit toujours quand l'alchimiste s'approche des barreaux : « Il la garde sur lui, sauf quand elle repose dans son antichambre. »",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "ce-qu-il-ne-supporte-pas",
+        "fait": "f-xiximantre-ne-supporte-pas",
+        "version": "Il a appris à ses dépens ce que le sorcier ne supporte pas : le vol manifeste et la contradiction sur son empire, qui le jettent dans une fureur sans fond. Il le raconte sans rire, comme une règle de la maison.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "la-locataire",
+        "fait": "f-vrai-nom-baltoplate",
+        "version": "Il sait qu'une créature est enfermée au troisième niveau, derrière un cercle que personne ne franchit, et il ne veut pas savoir ce qu'elle est.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il dit que son hôte parle parfois d'une locataire dans les couloirs, qu'il préfère ne pas y penser.",
+        "tabou": [
+          "Baltoplate",
+          "succube",
+          "fiélon"
+        ]
+      }
+    ]
+  }
+]

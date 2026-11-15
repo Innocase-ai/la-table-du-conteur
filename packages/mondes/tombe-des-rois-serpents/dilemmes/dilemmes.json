@@ -1,0 +1,837 @@
+[
+  {
+    "id": "dilemme-baiser-du-cercle",
+    "titre": "La Prisonnière du Cercle d'Argent",
+    "situation": "Dans le cercle d'argent, la jeune femme enchaînée lève vers vous des mains tremblantes. Ses yeux sont mouillés, sa voix basse et brisée. Elle murmure qu'elle est là depuis des siècles, qu'on l'a trompée, qu'elle ne sait presque rien de ceux qui l'ont enfermée. Puis elle sourit, et ce sourire n'a rien d'une prisonnière. Vous connaissez son vrai nom : Baltoplate, la succube. Elle le sait, et elle attend votre réponse, les doigts crispés sur les runes.",
+    "quand": {
+      "et": [
+        {
+          "non": {
+            "flag": "baltoplate-reglee"
+          }
+        },
+        {
+          "ou": [
+            {
+              "flag": "baltoplate-demasquee"
+            },
+            {
+              "et": [
+                {
+                  "fait": "f-vrai-nom-baltoplate"
+                },
+                {
+                  "lieu": "n3-salle-invocation"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lieu": "n3-salle-invocation",
+    "delai": 2,
+    "options": [
+      {
+        "id": "sceller-fielon",
+        "libelle": "Je renouvelle le sceau par son vrai nom et je la laisse dans son cercle.",
+        "ton": "Prudence",
+        "couts": [
+          "Elle jure de se venger si le sceau faiblit un jour.",
+          "Vous n'apprenez rien d'elle : ce qu'elle sait de Xiximantre reste à découvrir ailleurs."
+        ],
+        "gains": [
+          "Aucun fiélon n'est relâché vers les routes de Valdargent.",
+          "La dague ondulée et le serpent de pierre du piédestal vous reviennent sans combat.",
+          "Le Fort du Reflet Béni vous en saura gré."
+        ],
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 75
+          }
+        ],
+        "epilogue": "Le cercle reste intact, et Baltoplate ronge son frein sous la terre, enfermée dans son anneau d'argent sans personne pour l'entendre."
+      },
+      {
+        "id": "pacte-secret-baltoplate",
+        "libelle": "Je brise le cercle et je la libère, contre son départ et ses secrets.",
+        "ton": "Calcul",
+        "couts": [
+          "Un fiélon rusé est lâché dans le vaste monde : le cercle brisé réveille les profondeurs et le temps presse davantage.",
+          "Le Fort du Reflet Béni vous le reprocherait s'il l'apprenait.",
+          "Sœur Lysandre ne vous le pardonnera pas : sa mission échoue et elle quitte le groupe."
+        ],
+        "gains": [
+          "Elle vous livre ce qu'elle sait de Xiximantre et disparaît sans combat.",
+          "Vous empochez la dague et le serpent de pierre sans verser une goutte de sang."
+        ],
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "fait": "f-empire-chute-xiximantre"
+          },
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": 1
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": -5
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 50
+          },
+          {
+            "attitude": {
+              "pnj": "soeur-lysandre",
+              "delta": -30
+            }
+          },
+          {
+            "escorte": {
+              "pnj": "soeur-lysandre",
+              "actif": false
+            }
+          }
+        ],
+        "epilogue": "Un souffle de soufre quitte les hauteurs, le cercle s'éteint, et un fiélon rusé est désormais dans le monde."
+      },
+      {
+        "id": "bannir-par-le-nom",
+        "libelle": "Je la bannis par le rituel des prêtres, jusqu'au bout.",
+        "ton": "Rigueur",
+        "jet": {
+          "competence": "religion",
+          "dd": 14
+        },
+        "couts": [
+          "Le rituel est épuisant : chaque héros y laisse un peu de sang.",
+          "S'il échoue, la captive se déchaîne et il faudra l'affronter."
+        ],
+        "gains": [
+          "Baltoplate est chassée pour de bon : plus de rancune à craindre.",
+          "L'ordre du Reflet Béni vous tient pour des champions.",
+          "La dague ondulée et le serpent de pierre sont à vous."
+        ],
+        "effets": [
+          {
+            "flag": "baltoplate-reglee"
+          },
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "tous"
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 15
+            }
+          },
+          {
+            "pnjEtat": {
+              "pnj": "baltoplate",
+              "etat": "parti"
+            }
+          },
+          {
+            "xp": 100
+          }
+        ],
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d6",
+              "cible": "un"
+            }
+          },
+          {
+            "rencontre": "r-baltoplate-devoilee"
+          }
+        ],
+        "epilogue": "Le rituel l'arrache de ce plan, le cercle fume puis s'éteint, et il n'y aura plus de rancune à craindre dans les sables."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je recule sans toucher au cercle ni conclure aucun marché.",
+      "couts": [
+        "La captive reste en travers de vos arrières, et vous perdez son tribut.",
+        "Les heures perdues à hésiter usent la patience de Martin."
+      ],
+      "effets": [
+        {
+          "jauge": {
+            "id": "soupcon-et-tension",
+            "delta": 1
+          }
+        }
+      ],
+      "epilogue": "Le groupe recule sans trancher, et les yeux de la prisonnière le suivent longtemps dans l'ombre du couloir."
+    },
+    "echos": [
+      {
+        "si": "sceller-fielon",
+        "apres": 2,
+        "annonce": "Un grondement sourd remonte de la salle d'invocation : le cercle d'argent s'ancre plus profondément dans la pierre. Au Fort du Reflet Béni, on le sait déjà, et l'on en parle avec respect.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "pacte-secret-baltoplate",
+        "apres": 2,
+        "annonce": "Une bouffée de soufre monte des galeries du haut, et les sentinelles du bivouac s'inquiètent d'ombres qui fuient vers l'horizon. Au Fort du Reflet Béni, le commandeur Garin fronce déjà les sourcils.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "commandeur-garin",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "si": "bannir-par-le-nom",
+        "apres": 2,
+        "annonce": "Au Fort du Reflet Béni, on dit déjà que le fiélon a été banni. À l'aube, sœur Lysandre a allumé un cierge pour la paix des routes.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "soeur-lysandre",
+              "delta": 5
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dilemme-delire-xiximantre",
+    "titre": "L'Empire Oublié de Xiximantre",
+    "situation": "Dans son salon violet, Xiximantre vous accueille avec une courtoisie figée, comme on reçoit des émissaires de province. Ses alambics chantent doucement et ses lampes brûlent sans fumée. Il parle de ses légions, de ses greniers pleins et de ses provinces fidèles, avec une tendresse presque enfantine. Puis il réclame, très poliment, le tribut dû à un ambassadeur. Ses gardes d'argile ne bougent pas, mais leurs yeux de terre cuite suivent chacun de vos gestes. Vous savez, vous, que ses légions ne sont plus que poussière.",
+    "quand": {
+      "et": [
+        {
+          "fait": "f-empire-chute-xiximantre"
+        },
+        {
+          "non": {
+            "flag": "xiximantre-allie"
+          }
+        },
+        {
+          "non": {
+            "flag": "xiximantre-provoque"
+          }
+        },
+        {
+          "non": {
+            "flag": "xiximantre-vaincu"
+          }
+        }
+      ]
+    },
+    "lieu": "n3-antichambre-xiximantre",
+    "delai": 2,
+    "options": [
+      {
+        "id": "entretenir-illusion",
+        "libelle": "Je flatte son orgueil d'ambassadeur d'un empire qui n'existe plus.",
+        "ton": "Diplomatie",
+        "requis": {
+          "pieces": {
+            "min": 50
+          }
+        },
+        "requisTexte": "Il exige un tribut d'ambassadeur : 50 po.",
+        "couts": [
+          "Vous versez un tribut de 50 po à un sorcier qui se croit toujours roi.",
+          "Ses prisonniers gobelins restent dans leurs puits tant que vous ne l'aurez pas convaincu de les lâcher."
+        ],
+        "gains": [
+          "Aucun combat, et l'accès à ses élixirs.",
+          "La Cour de Xiximantre vous tolère comme émissaires."
+        ],
+        "effets": [
+          {
+            "pieces": -50
+          },
+          {
+            "flag": "xiximantre-allie"
+          },
+          {
+            "flag": "coeur-tombe-resolu"
+          },
+          {
+            "reputation": {
+              "faction": "cour-de-xiximantre",
+              "delta": 30
+            }
+          },
+          {
+            "xp": 100
+          }
+        ],
+        "epilogue": "Il continue ses distillations sous terre, ravi des nouvelles de son faux empire, et ses élixirs vous sont vendus à prix d'ami."
+      },
+      {
+        "id": "briser-illusion",
+        "libelle": "Je lui dis la vérité : son empire est tombé, et je ne mens pas à un homme qui meurt de l'ignorer.",
+        "ton": "Rupture",
+        "couts": [
+          "Xiximantre et ses sentinelles d'argile attaquent aussitôt : un combat très dur.",
+          "La Cour de Xiximantre vous condamne pour de bon."
+        ],
+        "gains": [
+          "S'il tombe, sa clé de laboratoire et ses oubliettes sont à vous : les quatre gobelins sont délivrés sans marchander."
+        ],
+        "effets": [
+          {
+            "flag": "xiximantre-provoque"
+          },
+          {
+            "attitude": {
+              "pnj": "xiximantre",
+              "delta": -60
+            }
+          },
+          {
+            "rencontre": "r-xiximantre-courroux"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "epilogue": "La vérité millénaire éclate dans le salon comme du verre, et les lampes violettes vacillent longtemps après les cris."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je garde le silence sur le siècle présent et quitte le salon à reculons.",
+      "couts": [
+        "L'alchimiste se méfie de votre mutisme et double ses gardes d'argile.",
+        "Il faudra revenir plus tard, et il sera plus difficile à convaincre."
+      ],
+      "effets": [
+        {
+          "attitude": {
+            "pnj": "xiximantre",
+            "delta": -15
+          }
+        }
+      ],
+      "epilogue": "Il plisse ses paupières reptiliennes et doute déjà de votre fidélité à l'empire, qu'il croit pourtant encore vivant."
+    },
+    "echos": [
+      {
+        "si": "entretenir-illusion",
+        "apres": 2,
+        "annonce": "Le cliquetis apaisé des alambics reprend dans les profondeurs. Xiximantre vous prépare ses meilleures fioles, comme à des émissaires de cour, et il vous salue d'un sifflement courtois.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "xiximantre",
+              "delta": 10
+            }
+          }
+        ]
+      },
+      {
+        "si": "briser-illusion",
+        "apres": 1,
+        "annonce": "Un tintement métallique résonne dans les murs violets : ses gardes d'argile s'alignent dans le salon pour venger l'affront. Les courtisans de Xiximantre ne vous pardonneront jamais d'avoir dit la vérité.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "cour-de-xiximantre",
+              "delta": -30
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dilemme-serment-des-mules",
+    "titre": "Le Poids des Fontes devant Martin",
+    "situation": "Martin se tient devant les fontes, son registre ouvert sur le genou, et la lampe tremble dans le vent du soir. Il ne compte plus seulement les sacs. Il veut voir ce qu'ils contiennent, et savoir ce qu'il y a en bas, sous la tombe. Sa voix reste polie, sèche comme un registre de comptes, et chaque mot pèse comme une pièce sur une balance. Les mules s'ébrouent dans l'obscurité. Derrière vous, la tombe respire encore, et le valet attend, la plume immobile au-dessus de la page.",
+    "quand": {
+      "flag": "tension-palier-2"
+    },
+    "lieu": "bivouac-entree",
+    "delai": 4,
+    "options": [
+      {
+        "id": "honorer-moitie",
+        "libelle": "J'ouvre les sacs et je lui raconte tout ce que nous avons vu.",
+        "ton": "Droiture",
+        "couts": [
+          "Martin saura ce qui vit sous la tombe : il ne croira jamais à une tombe vide, et le pacte des profondeurs vous est fermé.",
+          "Ce que vous lui racontez ira jusqu'à Aldéric."
+        ],
+        "gains": [
+          "La patience de Martin revient largement : le temps presse bien moins.",
+          "Martin vous fait confiance et la Maison de Valdargent vous en sait gré."
+        ],
+        "effets": [
+          {
+            "flag": "martin-informe"
+          },
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": -2
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": 15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "epilogue": "Les sacs sont ouverts et tout est raconté ; Martin note chaque mot, remercie à sa façon et transmet le tout à Aldéric."
+      },
+      {
+        "id": "echantillon-trompeur",
+        "libelle": "Je lui montre quelques babioles et je parle de sépulcres vides.",
+        "ton": "Ruse",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "couts": [
+          "S'il vous voit mentir, sa méfiance s'aggrave et le temps presse davantage.",
+          "Même réussi, le mensonge laisse à Martin un doute qu'il n'oubliera pas."
+        ],
+        "gains": [
+          "Martin se calme un peu, sans que rien de vos secrets ne sorte de la tombe.",
+          "Le pacte des profondeurs reste possible."
+        ],
+        "effets": [
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": -1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 40
+          }
+        ],
+        "echec": [
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": 1
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": -15
+            }
+          }
+        ],
+        "epilogue": "Martin se contente de ce qu'on lui montre, consigne la somme avec soin, mais garde un doute qu'il n'oubliera pas."
+      },
+      {
+        "id": "garder-butin-pour-nous",
+        "libelle": "Je boucle les sacoches et je refuse l'inventaire du valet.",
+        "ton": "Fermeté",
+        "couts": [
+          "Martin le prend pour une offense : sa patience s'use.",
+          "La garnison du fort, mise au courant, vous soupçonnera."
+        ],
+        "gains": [
+          "Rien de ce que vous avez vu ne quitte la tombe.",
+          "Martin comprend que vous ne vous laisserez pas fouiller."
+        ],
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": -20
+            }
+          },
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": 1
+            }
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "epilogue": "Les boucles claquent sur le cuir lourd, et plus personne au bivouac ne se fait d'illusion sur ce qui a été gardé."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je laisse les sacs fermés et je repars sans lui répondre.",
+      "couts": [
+        "Votre silence passe pour un aveu : Martin perd patience et s'en souvient."
+      ],
+      "effets": [
+        {
+          "jauge": {
+            "id": "soupcon-et-tension",
+            "delta": 1
+          }
+        },
+        {
+          "attitude": {
+            "pnj": "martin-le-valet",
+            "delta": -10
+          }
+        }
+      ],
+      "epilogue": "Martin serre son registre contre sa poitrine, certain que vous gagnez du temps et que la tombe vous retient."
+    },
+    "echos": [
+      {
+        "si": "honorer-moitie",
+        "apres": 1,
+        "annonce": "Martin sort sa balance de cuivre avec un soupir soulagé, et les mules s'ébrouent tranquillement dans la nuit. À Valdargent, on dit déjà du bien de votre droiture.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": 5
+            }
+          }
+        ]
+      },
+      {
+        "si": "echantillon-trompeur",
+        "apres": 2,
+        "annonce": "Martin ne dit rien, mais il compte vos mules deux fois et consigne une ligne dans son registre. Il relit ensuite la page, puis la referme avec lenteur, sans un mot pour personne.",
+        "effets": [
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "si": "garder-butin-pour-nous",
+        "apres": 1,
+        "annonce": "À l'horizon du Val du Couchant, deux cavaliers de la garnison approchent au trot pour prendre des nouvelles du convoi, et leurs regards se posent longuement sur vos sacoches fermées.",
+        "effets": [
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": -10
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dilemme-le-decompte",
+    "titre": "Le décompte devant les mules",
+    "situation": "Le surplomb de grès rouge s'ouvre sur le bivouac, et la lumière rasante du soir dore une toile étalée sur le sable : bourses, pièces d'or et d'argent, reliques ophidiennes et bijoux en tas irréguliers. Au milieu, une balance de cuivre rutilante. Deux mules grises mâchonnent leur avoine sous une bâche beige qui claque au vent. Sur un rocher plat, un petit registre de cuir attend, ouvert. Derrière vous, la tranchée déblayée remonte vers les marches sombres de la tombe, et Martin, le valet d'Aldéric, se lève sans hâte, un stylet d'étain entre les doigts, pour compter ce que vous rapportez.",
+    "quand": {
+      "et": [
+        {
+          "flag": "coeur-tombe-resolu"
+        },
+        {
+          "non": {
+            "flag": "verdict-partage-rendu"
+          }
+        }
+      ]
+    },
+    "lieu": "bivouac-entree",
+    "options": [
+      {
+        "id": "partager",
+        "libelle": "J'étale tout le butin devant Martin : moitié-moitié.",
+        "ton": "Loyauté",
+        "couts": [
+          "La moitié exacte des richesses part avec Martin."
+        ],
+        "gains": [
+          "La solde d'Aldéric et l'appui de la Maison de Valdargent.",
+          "Votre parole vaut de l'or de Valdargent au Fort du Reflet Béni."
+        ],
+        "effets": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-partage-honnete"
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": 30
+            }
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": 15
+            }
+          },
+          {
+            "narration": "Vous étalez tout, sac après sac, sur la toile. Martin pèse chaque lot, coche une ligne dans son registre, pèse encore, puis revient à la première ligne. Il cherche une pièce manquante, une doublure, une bourse trop lourde. Il ne trouve rien. Pour la première fois depuis le seuil de la tombe, ses épaules se détendent d'un cran, et il vous tend un reçu sec, daté, signé d'un trait net."
+          },
+          {
+            "fin": "fin-partage-honnete"
+          }
+        ],
+        "epilogue": "Martin a pesé chaque pièce devant les mules et n'a rien trouvé à redire."
+      },
+      {
+        "id": "dissimuler",
+        "libelle": "Je glisse les plus belles pièces dans les doublures.",
+        "ton": "Ruse",
+        "condition": {
+          "jauge": {
+            "id": "soupcon-et-tension",
+            "max": 2
+          }
+        },
+        "jet": {
+          "competence": "escamotage",
+          "dd": 14
+        },
+        "couts": [
+          "Si Martin s'en aperçoit : tout ce qui est exposé est confisqué, pas de solde, votre nom est ruiné à Valdargent.",
+          "Cette ruse n'est possible que tant que Martin ne vous soupçonne pas déjà."
+        ],
+        "gains": [
+          "S'il ne voit rien, vous touchez la solde et gardez de quoi vivre en plus."
+        ],
+        "effets": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-partage-honnete"
+          },
+          {
+            "flag": "verdict-fraude-reussie"
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": 10
+            }
+          },
+          {
+            "narration": "Les plus belles pièces ont glissé dans les doublures, entre le cuir et la toile, pendant que les autres sacs s'ouvraient sans hâte. Le poids reste sous les plis, lourd contre une cuisse, froid contre un flanc. Martin pèse ce qu'on lui montre, coche, referme son registre avec le même claquement sec. Il ne remarque rien. Le tintement des pièces visibles couvre celui qu'on tait, et la bourse cachée continue de peser."
+          },
+          {
+            "fin": "fin-partage-honnete"
+          }
+        ],
+        "echec": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-soupcon-demasque"
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": -40
+            }
+          },
+          {
+            "narration": "Martin a passé l'attente à écouter vos fontes. Au premier tintement étouffé, son regard quitte la balance et se fixe sur vos sacs. D'un geste sec, il lève la main et appelle deux cavaliers de passage du Fort, qui mettent pied à terre à quelques pas. Ils ne posent pas de questions. Ils regardent le sable étalé, les doublures qui bâillent, et le registre de Martin, ouvert à une page qui ne vous sourit guère."
+          },
+          {
+            "fin": "fin-soupcon-et-disgrace"
+          }
+        ],
+        "epilogue": "Les doublures de vos capes pesaient lourd, et un valet méticuleux avait compté."
+      },
+      {
+        "id": "tout-garder",
+        "libelle": "Je referme les sacs : le contrat est rompu.",
+        "ton": "Cupidité",
+        "couts": [
+          "Le seigneur Aldéric devient un ennemi riche et patient : chaque auberge de la route connaîtra vos visages.",
+          "Le Fort du Reflet Béni ferme ses portes aux parjures."
+        ],
+        "gains": [
+          "Tout l'or et toutes les reliques de la tombe restent à vous."
+        ],
+        "effets": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-tout-garder"
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": -60
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": -35
+            }
+          },
+          {
+            "narration": "Vous refermez les sacs un à un, les lacets serrés à la main. Martin recule d'un pas, sans dégainer, les yeux posés sur chacun de vos visages, l'un après l'autre, comme pour les graver dans son registre. Il ne parle pas tout de suite. Puis sa voix, polie et sèche, tombe sur le sable : le seigneur Aldéric n'a ni mémoire courte ni bourse étroite, et il saura."
+          },
+          {
+            "fin": "fin-trahison-fortune"
+          }
+        ],
+        "epilogue": "Martin a mémorisé vos visages, et la route marchande les connaît désormais."
+      },
+      {
+        "id": "sceller-le-silence",
+        "libelle": "Je déclare la tombe vide et je scelle son silence.",
+        "ton": "Silence",
+        "condition": {
+          "non": {
+            "flag": "martin-informe"
+          }
+        },
+        "requis": {
+          "ou": [
+            {
+              "flag": "gobelins-sauves"
+            },
+            {
+              "flag": "xiximantre-allie"
+            }
+          ]
+        },
+        "requisTexte": "Il vous faut avoir sauvé les gobelins ou conclu un pacte avec Xiximantre.",
+        "jet": {
+          "competence": "tromperie",
+          "dd": 13
+        },
+        "couts": [
+          "Aucune solde : Aldéric ne verse rien pour une tombe « vide ».",
+          "Si Martin ne vous croit pas, il le consigne : d'autres hommes viendront, et Valdargent ne vous le pardonnera pas."
+        ],
+        "gains": [
+          "La paix des profondeurs : les gobelins ou Xiximantre gardent leur domaine.",
+          "Un savoir rare, et la tombe reste inviolée."
+        ],
+        "effets": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-pacte-profondeurs"
+          },
+          {
+            "narration": "Vous annoncez un tombeau sans rien dedans : un couloir refermé, de la poussière, rien d'autre. Vous dites cela d'une voix égale, sans regarder vers les marches. Martin examine vos sacs, qui paraissent presque légers, et son front se plisse. Il soupire, long et contrarié, puis accepte à contrecœur. Il ne demande rien sur les habitants des profondeurs, et son stylet ne se pose pas sur ce sujet."
+          },
+          {
+            "fin": "fin-pacte-des-profondeurs"
+          }
+        ],
+        "echec": [
+          {
+            "flag": "verdict-partage-rendu"
+          },
+          {
+            "flag": "verdict-pacte-profondeurs"
+          },
+          {
+            "flag": "verdict-pacte-evente"
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": -30
+            }
+          },
+          {
+            "narration": "Martin ne croit pas un mot de votre « tombe vide ». Il ne hausse pas la voix ; il note, lentement, chaque mot que vous venez de dire, puis relit la phrase à voix basse pour être sûr de la citer exactement. Ses yeux reviennent aux poussières sur vos bottes, aux traces de sueur sur vos manches. Il referme le registre : Aldéric saura tout, et de la manière la plus précise qui soit."
+          },
+          {
+            "fin": "fin-pacte-des-profondeurs"
+          }
+        ],
+        "epilogue": "La tombe a gardé son silence, et ceux qui y vivent leur paix."
+      }
+    ],
+    "abstention": {
+      "libelle": "Je ne tranche pas : Martin applique le contrat à la lettre.",
+      "couts": [
+        "Martin partage lui-même, moitié-moitié, sans estime particulière : vous perdez la moitié des richesses sans en tirer de reconnaissance."
+      ],
+      "effets": [
+        {
+          "flag": "verdict-partage-rendu"
+        },
+        {
+          "flag": "verdict-partage-honnete"
+        },
+        {
+          "reputation": {
+            "faction": "commanditaire-alderic",
+            "delta": 10
+          }
+        },
+        {
+          "narration": "Vous ne dites rien. Martin attend une longue minute, puis étale lui-même vos sacs sur la toile, pèse sa moitié et pousse l'autre vers vous sans un mot de plus. Le contrat est appliqué à la lettre, rien de plus, rien de moins."
+        },
+        {
+          "fin": "fin-partage-honnete"
+        }
+      ],
+      "epilogue": "Martin a appliqué le contrat à la lettre, et personne n'a rien eu à dire."
+    },
+    "echos": []
+  }
+]

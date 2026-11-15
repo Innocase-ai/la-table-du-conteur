@@ -1,0 +1,141 @@
+[
+  {
+    "id": "ev-contrat-depart",
+    "declencheur": "condition",
+    "condition": {
+      "lieu": "fort-du-reflet-beni"
+    },
+    "unique": true,
+    "narration": "Devant les remparts blancs du Fort du Reflet Béni, vous relisez le contrat paraphé par le seigneur Aldéric. Une clause se détache du reste : la moitié exacte du butin, pesée devant son valet Martin au bivouac, sans que personne ne puisse prétendre avoir compté plus que l'autre. Les clercs du Fort vous regardent passer le portail. Vous glissez le parchemin plié dans votre besace, près de vos provisions.",
+    "effets": [
+      {
+        "objet": {
+          "id": "contrat-de-valdargent",
+          "quantite": 1
+        }
+      },
+      {
+        "quete": {
+          "id": "q-tombe-des-rois-serpents",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-arrivee-bivouac",
+    "declencheur": "entree-lieu",
+    "lieu": "bivouac-entree",
+    "unique": true,
+    "narration": "Le Bivouac du Seuil tient sous un surplomb de grès rouge : une bâche tendue, deux mules sanglées, un petit cercle de pierres noircies par la suie. Plus loin, une tranchée rectangulaire laisse voir les premières marches de la tombe, creusées dans la roche. Martin vous attend, la balance de cuivre posée sur un coffre, le registre ouvert sur ses genoux. Il énonce les termes d'une voix égale : tout ce qui remontera sera compté, pesé et noté. Il ne vous menace pas. Il est simplement poli, et cela rend l'affaire plus froide encore.",
+    "effets": [
+      {
+        "fait": "f-contrat-moitie-part"
+      },
+      {
+        "xp": 25
+      }
+    ]
+  },
+  {
+    "id": "ev-palier-coeur-via-tresor",
+    "declencheur": "condition",
+    "condition": {
+      "lieu": "n3-salle-du-tresor"
+    },
+    "unique": true,
+    "narration": "La lourde porte de fer cède dans un grincement, et le grand caveau blindé des Rois Serpents s'ouvre devant vous. Des coffres de cuivre, d'argent et d'or s'empilent jusqu'aux voûtes, et les gemmes accrochent la lueur de vos torches. Vous tenez là de quoi solder le contrat devant Martin, ou de quoi le rompre. Le poids de ce choix ne tient pas dans les mains, il se pose sur la poitrine, et il attend.",
+    "effets": [
+      {
+        "flag": "coeur-tombe-resolu"
+      }
+    ]
+  },
+  {
+    "id": "ev-gobelins-delivres",
+    "declencheur": "condition",
+    "lieu": "n3-ferme-champignons",
+    "condition": {
+      "flag": "gobelins-sauves"
+    },
+    "unique": true,
+    "narration": "Dans la ferme aux champignons, les quatre gobelins arrachés aux oubliettes du sorcier avancent à petits pas, maigres, les chevilles encore marquées par les chaînes. Le vieux cueilleur Skriik les reçoit sans un mot, puis les serre contre lui un instant. Une soupe tiède passe de main en main, dans un seul bol de terre cuite puis dans un autre. Autour de vous, le clan vous regarde autrement : les yeux ne fuient plus, et personne ne tient plus votre lame à distance.",
+    "effets": [
+      {
+        "reputation": {
+          "faction": "clan-des-champignons",
+          "delta": 10
+        }
+      },
+      {
+        "xp": 50
+      }
+    ]
+  },
+  {
+    "id": "ev-dernier-avertissement-de-martin",
+    "declencheur": "condition",
+    "lieu": "bivouac-entree",
+    "condition": {
+      "jauge": {
+        "id": "soupcon-et-tension",
+        "min": 4
+      }
+    },
+    "unique": true,
+    "narration": "Au bivouac, Martin plie déjà la bâche. Il ne lève pas les yeux de ses courroies quand il parle, d'une voix égale : sans nouvelles de la tombe, il lèvera le camp au prochain lever du soleil, avec les mules, le registre et les preuves de vos retards. Il ne menace pas, il constate. Il pose la dernière courroie sur le bât et attend votre réponse, les mains immobiles.",
+    "effets": [
+      {
+        "attitude": {
+          "pnj": "martin-le-valet",
+          "delta": -5
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-decouverte-sacristie-quete",
+    "declencheur": "entree-lieu",
+    "lieu": "n2-sacristie",
+    "unique": true,
+    "narration": "Parmi les casiers de cèdre, un nom banni revient sans cesse sur les rouleaux liturgiques : un être dangereux dort encore, lié, quelque part au niveau inférieur.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-secret-de-baltoplate",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-decouverte-fontaine-quete",
+    "declencheur": "entree-lieu",
+    "lieu": "n3-salle-ceremonie",
+    "unique": true,
+    "narration": "Devant le socle rayé de la fontaine à sec, une longue traînée dans la poussière montre qu'une lourde statue a été tirée hors de la salle.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-fontaine-des-gobelins",
+          "statut": "active"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ev-decouverte-trone-couronne",
+    "declencheur": "entree-lieu",
+    "lieu": "n3-salle-du-trone",
+    "unique": true,
+    "narration": "L'estrade royale est vide de toute couronne : quelqu'un a emporté l'emblème des Rois Serpents bien avant votre arrivée.",
+    "effets": [
+      {
+        "quete": {
+          "id": "q-couronne-des-rois",
+          "statut": "active"
+        }
+      }
+    ]
+  }
+]

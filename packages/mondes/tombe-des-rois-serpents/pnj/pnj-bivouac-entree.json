@@ -1,0 +1,551 @@
+[
+  {
+    "id": "gaspard-muletier",
+    "nom": "Gaspard Sans-Hâte",
+    "titre": "Muletier du seigneur Aldéric",
+    "espece": "nain",
+    "sexe": "M",
+    "age": "49 ans",
+    "role": "Conducteur des deux mules de charge au Bivouac du Seuil",
+    "lieu": "bivouac-entree",
+    "faction": "commanditaire-alderic",
+    "apparence": "Nain trapu au chapeau de feutre délavé, barbe nouée par deux anneaux de fer et bottes poudreuses d'avoir marché cinq jours derrière ses bêtes.",
+    "personnalite": {
+      "traits": [
+        "placide",
+        "pratique"
+      ],
+      "voix": "Grommelante et lente, toujours ponctuée d'un clappement de langue pour calmer ses bêtes.",
+      "valeurs": [
+        "soin des mules",
+        "paix au campement"
+      ],
+      "desir": "Charger des sacoches honnêtes et rentrer à Valdargent avant l'été chaud.",
+      "peur": "Voir ses mules mordues par quelque charognard sorti du sable la nuit."
+    },
+    "attitude": 5,
+    "profilCombat": "roturier",
+    "savoir": [
+      "f-contrat-moitie-part"
+    ],
+    "secrets": [
+      {
+        "fait": "f-sortie-racines-surface",
+        "jet": {
+          "competence": "perception",
+          "dd": 13
+        }
+      }
+    ],
+    "salutations": {
+      "commune": "villageois",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "contrat-bete-rapporte"
+          },
+          "texte": "Gaspard flatte l'encolure de Pétard et regarde le groupe avec reconnaissance. « Elle vous remercie aussi, à sa façon. Allez, bonne route, et qu'aucune bête ne vous suive. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "etat-des-mules",
+        "mots": [
+          "mules",
+          "charge",
+          "poids",
+          "bivouac"
+        ],
+        "question": "Comment tiennent vos bêtes dans ce vallon ?",
+        "reponse": "Gaspard flatte l'encolure grise de sa plus vieille mule et crache une brindille dans le sable. « Tchk, tchk. Pétard porte deux quintaux sans broncher, comme Madame Soupir, tant qu'on ne les fait pas attendre dix jours devant un trou mort à ronger leurs longes. Le seigneur Aldéric paie l'expédition et exige la moitié exacte de tout ce qu'on ramène, pesée devant Martin. Alors plus vous traînez en bas, plus Martin devient sec comme du cuir oublié au soleil, et plus nos outres baissent vite. Parlez-en à Martin, c'est lui qui pèse. »",
+        "revele": [
+          "f-contrat-moitie-part"
+        ],
+        "effets": []
+      },
+      {
+        "id": "arbre-mort-ouest",
+        "mots": [
+          "arbre",
+          "racines",
+          "crevasse",
+          "vent",
+          "bruit"
+        ],
+        "question": "Avez-vous remarqué quelque chose d'anormal autour du camp ?",
+        "reponse": "Gaspard plisse les yeux vers le grand arbre blanchi. « Le soir, quand la brise brûlante tombe, la terre souffle froid entre ses grosses racines sèches, comme si le désert respirait par une bouche cachée. Ça sent le froid de cave, mon nez ne ment pas. Mes deux mules refusent d'y brouter les rares ronces. M'est avis qu'une vieille galerie du tombeau passe droit dessous. Je n'en suis pas sûr, ce n'est qu'un pressentiment de muletier. Lise, à la crête, en saura peut-être plus. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "reserve-materiel",
+        "mots": [
+          "cordes",
+          "torches",
+          "materiel",
+          "secours"
+        ],
+        "question": "Avez-vous du matériel de rechange dans vos fontes ?",
+        "reponse": "Gaspard tapote deux rouleaux de chanvre neuf. « Le seigneur Aldéric paie pour qu'on ne perde pas ses belles reliques au fond d'un puits, faute d'une corde solide. Je peux toujours céder deux ou trois bricoles de secours, corde, torches ou rations, contre bonne pièce sonnante, si vos lanternes tournent court en plein noir là-dessous. J'ai les fontes pleines, et ça pèse, je vous assure. Pas de marchandage avec les mules, hein. Pour le prix, parlez-en à Martin. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "contrat-mules-mordues",
+        "mots": [
+          "mules",
+          "morsures",
+          "traces",
+          "nuit",
+          "bête",
+          "bâts"
+        ],
+        "question": "Vos mules ont un souci, on dirait ?",
+        "reponse": "Gaspard tire doucement sur la longe de Pétard, et claque la langue. « Alors, elle a une vilaine morsure à la patte. Depuis trois nuits, quelque chose entaille les bâts de mes deux mules, et je n'ai trouvé que des traces. Des mandibules, très larges, et des trous dans le sable. Je n'ai pas assez de bras pour veiller. Je vous demande de dormir au bivouac, près des mules, la nuit suivante. La bête vient vers minuit, je crois bien. Si la bête mord encore, Pétard ne pourra plus porter, et la charge du retour sera diminuée. Je n'ai pas envie de voir mes bêtes déchirées par une charogne qui sort du sable. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-contrat-bete-des-mules",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "contrat-mules-retour",
+        "mots": [
+          "mules",
+          "bête",
+          "retour",
+          "nuit",
+          "contrat"
+        ],
+        "condition": {
+          "flag": "contrat-bete-fait"
+        },
+        "question": "Annoncer que la bête ne reviendra pas",
+        "reponse": "Gaspard clappe la langue, et ses épaules se détendent. « Bien. Bien, ça, c'est une bonne nouvelle pour mes bêtes. Pétard pourra reprendre la route dès demain, et les sacoches seront honnêtes. Tenez, il me reste un grappin dans ma réserve, prenez-le, il vous servira. Quant à l'argent, quarante pièces que Martin m'avait remises pour les imprévus, je les donne maintenant. C'était un imprévu, alors. Je veux rentrer à Valdargent avant l'été chaud, avec mes bêtes entières. Merci à vous. Vous avez fait ce que personne d'autre n'a voulu faire. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "contrat-bete-rapporte"
+          },
+          {
+            "attitude": {
+              "pnj": "gaspard-muletier",
+              "delta": 10
+            }
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "corde",
+          "quantite": 2
+        },
+        {
+          "objet": "torche",
+          "quantite": 6
+        },
+        {
+          "objet": "rations",
+          "quantite": 6
+        }
+      ],
+      "rachat": 0.4,
+      "types": [
+        "materiel",
+        "nourriture"
+      ]
+    }
+  },
+  {
+    "id": "lise-guetteuse",
+    "nom": "Lise Oeil-Vif",
+    "titre": "Éclaireuse du Bivouac",
+    "espece": "humain",
+    "sexe": "F",
+    "age": "27 ans",
+    "role": "Guetteuse engagée par Martin pour surveiller la crête et la piste",
+    "lieu": "bivouac-entree",
+    "faction": "commanditaire-alderic",
+    "apparence": "Jeune femme agile en manteau couleur de sable, arc court en bandoulière et bandeau d'étoffe roulé contre la poussière du vent.",
+    "personnalite": {
+      "traits": [
+        "alerte",
+        "laconique"
+      ],
+      "voix": "Vive et sèche, parle sans jamais quitter les crêtes du regard.",
+      "valeurs": [
+        "vigilance",
+        "tenir sa parole"
+      ],
+      "desir": "Repérer d'avance toute patrouille ou charognard sur la route du fort.",
+      "peur": "Se faire prendre à revers par les galeries du sous-sol."
+    },
+    "attitude": 0,
+    "profilCombat": "roturier",
+    "savoir": [],
+    "secrets": [
+      {
+        "fait": "f-vapeur-des-sepulcres",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        }
+      }
+    ],
+    "salutations": {
+      "commune": "garde",
+      "variantes": [
+        {
+          "condition": {
+            "flag": "contrat-crete-rapporte"
+          },
+          "texte": "Lise, sans lâcher la crête des yeux, hoche la tête vers le groupe. « Vous êtes là, c'est bien. Je garde la crête, vous gardez le camp. Restez à portée de voix. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "surveillance-piste",
+        "mots": [
+          "piste",
+          "fort",
+          "cavaliers",
+          "patrouille",
+          "val"
+        ],
+        "question": "Que voyez-vous depuis votre poste sur la crête ?",
+        "reponse": "Lise ajuste son foulard de sable et pointe le menton vers deux grands pitons calcaires blancs. « La route du Fort du Reflet Béni se lit comme une longue ligne de craie dès que l'air reste clair. Tant que vous rentrez avec la moitié loyale convenue sur votre contrat, la garnison salue de loin, rien de plus. Mais si vous traînez trop longtemps, ou si vous trichez au poids, leurs cavaliers coupent le vallon en moins de quatre heures. Le sergent Rodrigue mène ces cavaliers, parlez-lui si vous avez un doute. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "anciens-pilleurs",
+        "mots": [
+          "survivant",
+          "dernier",
+          "toux",
+          "gaz",
+          "sepulcres"
+        ],
+        "question": "Avez-vous vu l'équipe précédente qui a tenté la tranchée ?",
+        "reponse": "Elle hoche la tête vers la fosse de sable jaune ouverte près du campement. « Deux hommes de cette équipe ne sont jamais sortis du noir. Le troisième a rampé jusqu'au feu, la gorge horriblement brûlée par une vapeur verdâtre et amère, après avoir forcé au levier un cercueil d'argile scellé au plâtre. Les cercueils des gardiens et des prêtres renferment ce gaz, qui jaillit dès que les couvercles s'ouvrent brutalement. Prenez garde avant de coller votre visage contre le bois. Brennan, à la tranchée, pourra vous en dire plus. »",
+        "revele": [
+          "f-vapeur-des-sepulcres"
+        ],
+        "effets": []
+      },
+      {
+        "id": "traces-corbeaux",
+        "mots": [
+          "corbeaux",
+          "racines",
+          "ombre",
+          "nuit"
+        ],
+        "question": "Pourquoi les corbeaux tournent-ils toujours près de l'arbre mort ?",
+        "reponse": "Lise vérifie la corde de son arc sans quitter la crête des yeux. « Les charognards sentent toujours la viande froide, ou les courants d'air frais qui montent des caves. Jamais pour rien. Il y a trois nuits, sous la lune mince, j'ai distinctement vu deux ombres courtes filer sous les grosses racines mortes, juste avant l'aube. Quelqu'un vit encore là-dessous. Ça ne me plaît pas du tout. Je ne sais ni qui ni où ça mène. Demandez à Gaspard ce que font ses mules. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "contrat-crete-ombres",
+        "mots": [
+          "crête",
+          "ombres",
+          "pillards",
+          "mules",
+          "fontes",
+          "crépuscule"
+        ],
+        "question": "Qu'avez-vous vu, depuis la crête ?",
+        "reponse": "Lise ne quitte pas la crête des yeux, et son doigt pointe vers les rochers. « Deux soirs de suite, j'ai vu des ombres qui observent le bivouac. Une bande envoyée par un autre noble de Valdargent veut les mules et les fontes de Martin, avec les sacs de butin dedans. Je n'aime pas être prise à revers, et si elle passe par les galeries du sous-sol, je le serai. Montez la garde au crépuscule et allez voir les abords du camp pour les attirer. Ils enverront d'abord des éclaireurs, puis toute la bande. Vous pouvez les faire renoncer en les bluffant, mais sinon il faudra les battre. Si vous refusez, ils voleront les mules, et Martin sera furieux. »",
+        "revele": [],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-contrat-crete-du-seuil",
+              "statut": "proposee"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "contrat-crete-retour",
+        "mots": [
+          "crête",
+          "pillards",
+          "bande",
+          "retour",
+          "contrat"
+        ],
+        "condition": {
+          "flag": "contrat-crete-fait"
+        },
+        "question": "Annoncer que la bande a fui ou est battue",
+        "reponse": "Lise hoche la tête vers la crête, sans vous regarder. « Bien. Vous avez tenu la garde, et je le reconnais, ce qui est rare chez moi. Je ne ferai pas de compliments, ils n'ont jamais aidé à guetter. Trente pièces, je les ai promises, et je tiens ma parole. Martin dormira mieux cette nuit, et les mules aussi, c'est déjà beaucoup. Gardez les yeux ouverts sur la route du fort, il y a toujours quelque chose qui rôde. Si la bande revient, je serai là, au même endroit. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "contrat-crete-rapporte"
+          },
+          {
+            "attitude": {
+              "pnj": "lise-guetteuse",
+              "delta": 10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "commanditaire-alderic",
+              "delta": 5
+            }
+          }
+        ],
+        "unique": true
+      }
+    ]
+  },
+  {
+    "id": "brennan-terrassier",
+    "nom": "Brennan Le-Pic",
+    "titre": "Contremaître de fouille",
+    "espece": "goliath",
+    "sexe": "M",
+    "age": "45 ans",
+    "role": "Chef des terrassiers ayant dégagé l'entrée de la tombe",
+    "lieu": "tombe-des-rois",
+    "apparence": "Colosse gris cendre aux bras noueux couverts de chaux, appuyé sur une lourde pioche au fer émoussé par le grès.",
+    "personnalite": {
+      "traits": [
+        "franc",
+        "superstitieux"
+      ],
+      "voix": "Grave et lente comme un éboulement contrôlé.",
+      "valeurs": [
+        "sécurité de ses ouvriers",
+        "payer la sueur au juste prix"
+      ],
+      "desir": "Savoir ce qui dormait derrière la grande porte barrée où ses hommes ont arrêté.",
+      "peur": "Voir le sable ensevelir les marches avant la fin du contrat."
+    },
+    "attitude": 5,
+    "profilCombat": "roturier",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "neutre": "« Nos pelles s'arrêtent au linteau gravé, voyageurs. Le noir en dessous appartient à ceux qui portent des armes. Mes hommes n'ont pas envie d'y creuser davantage, alors ne nous demandez pas de faire la tranchée plus loin. »",
+      "amical": "« Bonne pioche et pied ferme là-dedans, voyageurs ! Si vous faites sauter la grande barre, dites-le-nous en sortant : on aime savoir où en est le chantier. Gardez vos lanternes allumées et ne traînez pas au fond. »",
+      "hostile": "« Baissez vos lames sur mon chantier. Je ne paie pas mes hommes pour essuyer vos querelles, et je n'ai pas envie de vous revoir fouiller devant nos pelles. Passez votre chemin sans bruit. »",
+      "variantes": [
+        {
+          "condition": {
+            "heros": {
+              "espece": "goliath"
+            }
+          },
+          "texte": "Brennan lève son poing gris. « Un des miens, à votre carrure ! Vous avez le dos d'un homme qui porte les pierres sans se plaindre. Comparons nos mérites, puis partageons le pain. »"
+        },
+        {
+          "condition": {
+            "lieu": "n1-porte-et-fausse-tombe"
+          },
+          "texte": "Brennan regarde le crochet vide de la porte, puis vous, sans reproche. « Alors c'est fait, la grande barre n'est plus sur son crochet. Vous avez franchi le seuil. Qu'y avait-il derrière ? Je veux savoir ce qui dormait. »"
+        }
+      ]
+    },
+    "sujets": [
+      {
+        "id": "ouverture-tranchee",
+        "mots": [
+          "tranchee",
+          "chantier",
+          "linteau",
+          "porte",
+          "barre"
+        ],
+        "question": "Jusqu'où êtes-vous descendus lors des fouilles ?",
+        "reponse": "Brennan frappe le sol de son pic et désigne le porche aux deux cobras. « Nous, on n'a fait que dégager la tranchée et forcer le sceau extérieur sur ce chantier. Aucun de mes hommes n'a voulu descendre plus loin que les premières marches, ni toucher au linteau. On a poussé nos lanternes jusqu'au bout du grand couloir ensoleillé, pas un pouce de plus. Là-bas, une énorme dalle de granit bloque la porte, avec une épaisse barre posée de notre côté du seuil. Les anciens ne voulaient pas empêcher d'entrer : ils voulaient que ce qui dort derrière n'en sorte jamais. »",
+        "revele": [
+          "f-tranchee-forcee",
+          "f-barre-contre-ce-qui-sort"
+        ],
+        "effets": [
+          {
+            "quete": {
+              "id": "q-barre-de-granit",
+              "statut": "active"
+            }
+          }
+        ]
+      },
+      {
+        "id": "murmures-sable",
+        "mots": [
+          "bruits",
+          "murmures",
+          "temple",
+          "dessous"
+        ],
+        "question": "Avez-vous entendu quoi que ce soit depuis la surface ?",
+        "reponse": "Brennan s'assied lourdement sur une pierre de taille et pose son pic entre ses genoux. « Pas de murmures venus d'en haut, non. Mais quand on a cassé à la masse le vieux sceau de mortier sec, un courant d'air glacial est monté d'en bas, avec des bruits de goutte d'eau très réguliers. Dans ce désert, l'eau qui chante dessous ne ment jamais. Un endroit sec comme ça qui suinte l'eau fraîche tout au fond, ça cache forcément une fissure profonde sous le sol du temple. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "suivi-barre-granit",
+        "mots": [
+          "barre",
+          "sanctuaire",
+          "fausse tombe",
+          "retour"
+        ],
+        "condition": {
+          "et": [
+            {
+              "ou": [
+                {
+                  "lieu": "n1-faux-temple"
+                },
+                {
+                  "lieu": "n2-hall-aux-statues"
+                }
+              ]
+            },
+            {
+              "non": {
+                "flag": "barre-granit-rapportee"
+              }
+            }
+          ]
+        },
+        "question": "Raconter à Brennan ce que cachait la porte de granit.",
+        "reponse": "Brennan écarquille ses yeux gris et laisse échapper un long sifflement admiratif. « Par la roche mère... de faux cercueils dorés, une idole géante au fond du cul-de-sac et, sous son socle, un puits noir ? Pas un sanctuaire, une fausse tombe. Tout ce premier palier n'était qu'une cage de façade pour lasser les curieux. Mes hommes ont suffisamment soulevé de grès pour rien ; je le leur dirai. Tenez, les vingt-cinq pièces promises entre terrassiers, à votre retour. On dormira mieux en sachant le mystère percé. »",
+        "revele": [],
+        "effets": [
+          {
+            "flag": "barre-granit-rapportee"
+          },
+          {
+            "xp": 50
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "l-equipe-de-onze",
+        "mots": [
+          "équipe",
+          "ouvriers",
+          "onze",
+          "paie",
+          "chantier"
+        ],
+        "question": "Combien d'hommes travaillent sous vos ordres ?",
+        "reponse": "Brennan redresse sa carrure et s'appuie sur sa pioche. « Onze, voyageurs. Mon équipe compte onze ouvriers, et je suis fier de chacun. Chez nous, on compte les mérites : moi, je tiens les miens en tas de cailloux blancs devant ma tente, un par jour sans accident. Pas de travail après la troisième cloche du fort, jamais. En entrant sur un chantier, je pose une pierre sur le seuil. La paie vient d'Aldéric, par Martin : exacte, rien de plus. Jehan, lui, est mon pire terrassier, mais mon meilleur guetteur de mauvais présages. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "le-porche-aux-cobras",
+        "mots": [
+          "porche",
+          "cobras",
+          "gravures",
+          "linteau",
+          "inscription"
+        ],
+        "question": "Que disent les gravures du porche ?",
+        "reponse": "Brennan frotte la chaux de son bras et lève le menton vers le porche. « Je ne sais pas lire leurs signes, voyageurs. Les gravures du linteau montrent des cobras entrelacés, la gueule ouverte, et sous leurs têtes une ligne d'inscription que personne parmi nous ne déchiffre. Il y a de la poussière rouge dans les creux. C'est là que j'ai arrêté la pelle, et ça me suffit comme avertissement. Je le respecte, et je n'ai pas l'intention de discuter avec des cobras de pierre. »",
+        "revele": [],
+        "effets": []
+      }
+    ]
+  },
+  {
+    "id": "jehan-fosseyeur",
+    "nom": "Jehan Dos-Vouté",
+    "titre": "Terrassier craintif",
+    "espece": "humain",
+    "sexe": "M",
+    "age": "33 ans",
+    "role": "Manœuvre chargé de déblayer le sable retombant dans la tranchée",
+    "lieu": "tombe-des-rois",
+    "apparence": "Homme maigre au dos courbé vêtu d'une chemise de chanvre déchirée, serrant une lanterne éteinte comme un talisman.",
+    "personnalite": {
+      "traits": [
+        "craintif",
+        "bavard"
+      ],
+      "voix": "Hésitante, pleine de soupirs et de coups d'œil vers l'escalier obscur.",
+      "valeurs": [
+        "rester en vie",
+        "toucher sa paie"
+      ],
+      "desir": "Voir le chantier s'achever sans avoir à remettre un pied sous le linteau.",
+      "peur": "Que les statues d'argile des premières niches sortent la nuit."
+    },
+    "attitude": 0,
+    "profilCombat": "roturier",
+    "savoir": [],
+    "secrets": [],
+    "salutations": {
+      "commune": "villageois"
+    },
+    "sujets": [
+      {
+        "id": "niches-du-couloir",
+        "mots": [
+          "niches",
+          "argile",
+          "statues",
+          "premier couloir",
+          "sorcier"
+        ],
+        "question": "Qu'avez-vous aperçu dans les premières niches du couloir d'entrée ?",
+        "reponse": "Jehan serre le manche de sa pelle et lorgne l'ombre du porche. « Quatre alcôves noires s'ouvrent dès qu'on quitte le rayon oblique du jour ! Dans la dernière, la plus enfoncée, une grande statue peinte en bleu nuit tend la main. Un vieil anneau de cuivre tordu pend à ses doigts, comme un croc de serpent... J'ai juré de ne jamais toucher aux bijoux des morts : l'éclat sur ces doigts-là ne dit rien de bon. Brennan, le contremaître, a dégagé ce porche : demandez-lui le reste. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "odeur-cercueils",
+        "mots": [
+          "odeur",
+          "platre",
+          "poison",
+          "vapeur"
+        ],
+        "question": "Pourquoi les autres ouvriers refusent-ils d'approcher des caveaux ?",
+        "reponse": "Il lorgne avec inquiétude vers l'ombre fraîche du porche, juste derrière vos talons. « Un camarade trop pressé a frappé du manche contre le plâtre sec d'un cercueil de garde. Aussitôt il en est sorti un mince filet d'air vert amer, qui lui a brûlé la gorge et les poumons toute la soirée. Ce camarade, c'était Pierrot : Elara l'a sauvé. Les cercueils d'argile des gardiens et des prêtres renferment cette vapeur, qui jaillit dès que les couvercles s'ouvrent brutalement. Emportez un antidote sûr, ou une longue perche pour soulever les couvercles à bonne distance. »",
+        "revele": [
+          "f-vapeur-des-sepulcres"
+        ],
+        "effets": []
+      },
+      {
+        "id": "rumeur-trone",
+        "mots": [
+          "trone",
+          "couronne",
+          "legende",
+          "or"
+        ],
+        "question": "Que raconte-t-on autour du feu, le soir ?",
+        "reponse": "Jehan baisse la tête et jette un coup d'œil aux rochers roux au-dessus de la fosse. « Autour du feu, on raconte qu'au tréfonds du tombeau brille encore un trône d'or, entouré de miroirs. Il paraît qu'il fait de celui qui s'y assoit le roi du désert, et qu'il donne des rêves fous de conquête à quiconque pose la main sur ses bras de cobra... C'est sûrement une vieille fable d'ivrogne pour effrayer les manœuvres. Moi, je reste près de ma pelle, au soleil. Torin Martel-Gris aime les histoires du fond : demandez-lui. »",
+        "revele": [
+          "f-rumeur-trone-maudit"
+        ],
+        "effets": []
+      }
+    ]
+  }
+]

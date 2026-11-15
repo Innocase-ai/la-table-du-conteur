@@ -1,0 +1,320 @@
+[
+  {
+    "id": "evt-la-fontaine-a-sec",
+    "titre": "La fontaine à sec",
+    "lieu": "n3-salle-ceremonie",
+    "ouverture": "entree",
+    "visuel": "Une vasque ronde de pierre blanche, complètement à sec, au centre d'une grande salle souterraine aux colonnettes cannelées peintes d'azur et d'ocre ; un piédestal au cercle clair net, où une statue manque ; une longue rayure blanche traînée dans la poussière vers un corridor ; des ombres de chauves-souris en haut des chapiteaux ; lueur de torche jaune.",
+    "narration": "Les marches débouchent dans une salle cérémonielle aux colonnettes cannelées, jadis peintes d'azur et d'ocre, dont il ne reste que des éclats pâles. Au centre, une vasque ronde de pierre blanche, parfaitement sèche. Sur son piédestal, un cercle clair, net, comme si une lourde statue avait été arrachée là. Une longue rayure blanche traverse la poussière vers le corridor d'en face. Tout en haut des chapiteaux, des ombres aux ailes de cuir bruissent avant de décrocher au bruit de vos pas. La lueur de torche tremble sur la pierre.",
+    "choix": [
+      {
+        "id": "suivre-la-trainee",
+        "libelle": "Suivre la traînée.",
+        "jet": {
+          "competence": "survie",
+          "dd": 11
+        },
+        "effets": [
+          {
+            "fait": "f-statue-fontaine-volee"
+          },
+          {
+            "xp": 25
+          }
+        ],
+        "resultat": "Vous vous penchez sur la poussière : des pas nus, petits, nombreux, qui se pressent et se bousculent. Une dizaine au moins. Par endroits, une marque plus profonde, comme une corde tendue, a labouré la rayure. La statue a été halée jusqu'au corridor d'en face, et tout le chemin porte la trace de ceux qui tiraient. Vous savez maintenant dans quelle direction la statue a été emportée.",
+        "echec": [
+          {
+            "blessure": {
+              "des": "1d4",
+              "cible": "un"
+            }
+          }
+        ],
+        "resultatEchec": "La poussière remuée par les ailes qui descendent des chapiteaux brouille tout : vous perdez la trace après quelques pas. Une chauve-souris fond sur vous et vous griffe la joue, une petite entaille qui brûle. Vous reprenez votre souffle, les yeux qui piquent, sans rien tirer de sûr de la rayure."
+      },
+      {
+        "id": "nain-pese-l-or",
+        "libelle": "« Cette statue pesait un âne mort. Un seul voleur n'aurait pas pu la déplacer. »",
+        "condition": {
+          "heros": {
+            "espece": "nain"
+          }
+        },
+        "effets": [
+          {
+            "fait": "f-statue-fontaine-volee"
+          },
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le nain s'accroupit près du piédestal et soupèse du regard ce qui manque. Une statue pareille pèse le poids d'un mulet, il le dit à mi-voix, et ses doigts mesurent l'écart entre le cercle clair et la vasque. Un seul voleur n'y aurait pas suffi. Il faut plusieurs porteurs, de petite taille, et une corde solide, tendue longtemps sur la pierre. Il se redresse, la mâchoire serrée, et regarde le couloir d'en face."
+      },
+      {
+        "id": "rodeur-lit-les-pas",
+        "libelle": "« Pieds nus, petits, une dizaine. Ils sont repartis par l'ouest. »",
+        "condition": {
+          "heros": {
+            "classe": "rodeur"
+          }
+        },
+        "effets": [
+          {
+            "fait": "f-statue-fontaine-volee"
+          },
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le rôdeur s'agenouille et lit la poussière comme une page. Pas nus, petits, une dizaine, bousculés les uns contre les autres. Ils ont fui par le couloir d'en face en courant, et leurs traces s'allongent, serrées, tremblantes, dans le sens de la fuite. Il y a de la peur dans la façon dont ils ont couru. Le rôdeur se relève sans un mot, et reste un moment immobile à écouter le silence du corridor."
+      }
+    ],
+    "partir": "Laisser la fontaine à sec et poursuivre."
+  },
+  {
+    "id": "evt-les-rouleaux-de-la-sacristie",
+    "titre": "Les rouleaux de la sacristie",
+    "lieu": "n2-sacristie",
+    "ouverture": "entree",
+    "visuel": "Une longue salle sèche et tiède, trois couchettes de pierre brute alignées le long d'un mur de hauts casiers de cèdre rouge ; au centre, une table de lecture chargée de rouleaux de cuir tanné serrés par des bagues de corne, couverts d'une écriture serpentine serrée ; lumière de torche chaude, poussière en suspension.",
+    "narration": "L'air change en entrant : tiède et sec, sans l'humidité de l'atrium. Trois couchettes de pierre brute s'alignent contre un mur de hauts casiers de cèdre rouge. Au centre, une table de lecture supporte des rouleaux de cuir tanné serrés par des bagues de corne, couverts d'une écriture serpentine serrée. Sur chaque feuille revient un même nom, banni, presque effacé par des gloses ; vos yeux glissent dessus sans parvenir à le lire d'un coup. La lueur de torche danse sur la poussière.",
+    "choix": [
+      {
+        "id": "dechiffrer-les-rouleaux",
+        "libelle": "Déchiffrer les rouleaux.",
+        "jet": {
+          "competence": "religion",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "fait": "f-vrai-nom-baltoplate"
+          },
+          {
+            "xp": 30
+          }
+        ],
+        "resultat": "Vous tenez le rouleau à la lumière et les glyphes se mettent en ordre, ligne après ligne, comme une liturgie qu'on récite. Une créature d'outre-monde reste liée dans la salle du bas, sous les dalles. Son nom véritable : Baltoplate. Seul ce nom la tient, dit le texte, et un baiser porte le danger. La captive dont parlent ces feuilles n'a rien d'innocent. Vous refermez le cuir, la gorge serrée.",
+        "echec": [
+          {
+            "temps": 2
+          }
+        ],
+        "resultatEchec": "Les glyphes se dérobent. Chaque ligne semble se réécrire sous vos yeux, et les heures passent sans qu'une phrase tienne. Vous y laissez deux heures entières. Quand vous voulez tourner une feuille, le rouleau se désagrège entre vos doigts en une poudre sèche qui sent la cire. Il ne vous reste qu'une certitude : quelqu'un gît enchaîné sous les dalles."
+      },
+      {
+        "id": "clerc-lit-le-rite",
+        "libelle": "« Un rite de liaison. Quelqu'un est enchaîné sous nos pieds. »",
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le clerc reconnaît la forme d'un rite de liaison : les mêmes signes répétés, une ligne de sceaux, un cercle de mots pour retenir ce qui ne doit pas bouger. Il pâlit en suivant les gloses du doigt. Quelqu'un gît enchaîné sous les dalles, et ces prêtres n'ont pas tout écrit. Le clerc referme le rouleau avec respect, comme on ferme les yeux d'un mort."
+      },
+      {
+        "id": "magicien-flaire-le-chiffre",
+        "libelle": "« Cette écriture se lit à double sens. Un nom est caché dedans. »",
+        "condition": {
+          "heros": {
+            "classe": "magicien"
+          }
+        },
+        "effets": [
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le magicien remarque que l'écriture se lit dans les deux sens : une ligne va de gauche à droite, la suivante revient, et entre les deux se cache un nom qu'on ne voit qu'en la regardant de biais. Il ne le déchiffre pas encore. Il mémorise quelques signes, les lèvres serrées, et se promet de revenir sur ce rébus quand la lumière sera meilleure."
+      }
+    ],
+    "partir": "Refermer les casiers et ne rien toucher."
+  },
+  {
+    "id": "evt-le-trone-vide",
+    "titre": "Le trône vide",
+    "lieu": "n3-salle-du-trone",
+    "ouverture": "entree",
+    "visuel": "Une grande salle d'apparat sur une estrade de trois marches de marbre blanc veiné d'émeraude ; un massif trône d'or ciselé dont les accoudoirs figurent deux cobras royaux dressés ; huit miroirs à manche cerclés d'argent sur des chevalets d'ébène disposés en arc de cercle, multipliant la lueur des torches ; des coussins pourris sur l'estrade, sans couronne ; pénombre dorée.",
+    "narration": "Trois larges marches de marbre blanc veiné d'émeraude mènent à une estrade haute, dominée par un trône d'or ciselé dont les accoudoirs figurent deux cobras royaux dressés. Huit miroirs à manche cerclés d'argent, posés sur des chevalets d'ébène en arc de cercle, multiplient la lueur de vos torches jusqu'à l'étourdissement. Sur les coussins pourris, pas de dépouille, pas de couronne. Seulement vos huit reflets immobiles dans le verre, et une soif de grandeur qui effleure la nuque, doucement, comme une main.",
+    "choix": [
+      {
+        "id": "chercher-la-couronne",
+        "libelle": "Chercher la couronne parmi les coussins.",
+        "effets": [
+          {
+            "fait": "f-couronne-manque-au-trone"
+          },
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Vous soulevez les coussins pourris un à un, et la poussière s'élève en nuage gris qui pique les yeux. Pas de couronne. Seulement, dans la couche sombre, la marque nette d'un objet lourd et rond, posé là longtemps, puis emporté. Quelqu'un l'a prise bien avant vous, et n'a laissé derrière lui que cette empreinte circulaire, parfaitement propre, comme un anneau de silence sur le sol."
+      },
+      {
+        "id": "s-asseoir",
+        "libelle": "S'asseoir sur le trône.",
+        "jet": {
+          "competence": "intuition",
+          "dd": 12
+        },
+        "effets": [
+          {
+            "xp": 40
+          }
+        ],
+        "resultat": "Vous vous asseyez sur le trône d'or. Le métal reste froid à travers votre tunique, et une soif de grandeur monte en vous, lente, que vous regardez monter sans la suivre. Les huit miroirs vous renvoient huit fois le même visage, un peu trop fier. Vous vous relevez sans mal, un peu secoué, les mains moites, le cœur qui cogne.",
+        "echec": [
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": 1
+            }
+          },
+          {
+            "temps": 6
+          }
+        ],
+        "resultatEchec": "La soif de grandeur vous prend tout entier. Vous restez assis, la tête haute, à régner sur les miroirs qui vous répondent par leurs reflets soumis. Vous ne sentez plus le temps. Des heures passent, peut-être la nuit entière. Quand vous vous levez enfin, en tremblant, les jambes engourdies, vous ne savez plus très bien combien de temps vous avez gouverné."
+      },
+      {
+        "id": "guerrier-flaire-le-danger",
+        "libelle": "« Ce siège attend un roi. Je n'en suis pas un. Ne le touchez pas. »",
+        "condition": {
+          "heros": {
+            "classe": "guerrier"
+          }
+        },
+        "effets": [
+          {
+            "fait": "f-rumeur-trone-maudit"
+          },
+          {
+            "xp": 15
+          }
+        ],
+        "resultat": "Le guerrier sent le danger comme on sent un piège avant de le voir : ce trône réclame un souverain, et vous n'en avez pas la mine. Il se place entre vous et l'estrade, les mains ouvertes, et répète sa mise en garde sans élever le ton. Son regard passe des cobras d'or aux huit miroirs. Vous comprenez alors qu'il y a plus qu'une rumeur dans cette salle."
+      },
+      {
+        "id": "barde-joue-le-roi",
+        "libelle": "« Un trône sans roi ! Laissez-moi le tenir pour vous, le temps d'une scène. »",
+        "condition": {
+          "heros": {
+            "classe": "barde"
+          }
+        },
+        "jet": {
+          "competence": "representation",
+          "dd": 13
+        },
+        "effets": [
+          {
+            "xp": 40
+          }
+        ],
+        "resultat": "Le barde monte les trois marches d'un pas de comédien, se campe sur le trône, pose une main sur un accoudoir de cobra et déclame, avec panache, la tirade d'un roi qui revient de loin. Les miroirs renvoient sa pose, déjà parfaite. La salle applaudit en silence, et l'envie de régner passe pour une réplique de théâtre. L'or reste froid sous lui, et il descend en riant.",
+        "echec": [
+          {
+            "jauge": {
+              "id": "soupcon-et-tension",
+              "delta": 1
+            }
+          },
+          {
+            "temps": 6
+          }
+        ],
+        "resultatEchec": "Le barde se prend à son propre jeu. Il reste assis, la voix qui roule, et promet au miroir qu'il se lèvera au prochain acte. Les minutes deviennent des heures ; il ne veut plus quitter l'estrade, et chaque fois que vous approchez, il vous fait signe de vous taire, royal et ravi. Il faut l'arracher du siège, à bras-le-corps, et la nuit a déjà passé."
+      }
+    ],
+    "partir": "Tourner le dos au trône et poursuivre."
+  },
+  {
+    "id": "evt-la-statue-et-la-fontaine",
+    "titre": "La statue et la fontaine",
+    "lieu": "n3-salle-ceremonie",
+    "quand": {
+      "objet": "statue-or-fontaine"
+    },
+    "ouverture": "entree",
+    "visuel": "Une grande salle souterraine aux colonnettes cannelées ; au centre, une vasque ronde de pierre blanche à sec, sur un piédestal au cercle clair net ; une lourde statuette d'or massif, un roi serpent versant une amphore, posée sur ses marches ; lueur de torche dorée sur l'or et la poussière.",
+    "narration": "La statuette d'or revient dans vos mains, lourde, un roi serpent versant une amphore, et la lueur de torche glisse sur ses écailles dorées comme sur de l'eau. Vous voici de nouveau dans la salle de cérémonie. La vasque reste à sec, et sur le piédestal, le cercle clair attend, net, vide, comme une bouche sans parole. Le poids de l'or vous tire vers le sac ; le cercle vous tire vers le socle. Entre le sac et le socle, la salle attend votre geste.",
+    "choix": [
+      {
+        "id": "remettre-sur-son-socle",
+        "libelle": "La remettre sur son socle.",
+        "effets": [
+          {
+            "objet": {
+              "id": "statue-or-fontaine",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "statue-remise-fontaine"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 5
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "resultat": "Vous reposez la statuette sur le piédestal, avec précaution, comme on repose une lampe fragile. Elle s'y ajuste exactement, à un doigt près, dans le cercle clair qui l'attendait depuis des siècles. Rien d'autre ne se passe : pas de lumière, pas de voix. Mais la salle paraît moins vide, moins offensée, et la poussière semble retomber plus doucement autour de la vasque."
+      },
+      {
+        "id": "garder-pour-le-butin",
+        "libelle": "La garder pour le butin.",
+        "effets": [
+          {
+            "flag": "statue-gardee"
+          },
+          {
+            "xp": 20
+          }
+        ],
+        "resultat": "Vous glissez la statuette dans un sac, en la calant contre le reste du butin pour qu'elle ne cogne pas. Le sac se referme sur son or. Le piédestal reste nu derrière vous, avec son cercle clair et sa rayure dans la poussière. Le poids d'or vous le rappellera à chaque pas, dans chaque couloir, jusqu'à ce que vous ayez quitté la tombe."
+      },
+      {
+        "id": "clerc-rend-a-sa-place",
+        "libelle": "« Chaque chose à sa place. Les morts ont droit à leur fontaine. »",
+        "condition": {
+          "heros": {
+            "classe": "clerc"
+          }
+        },
+        "effets": [
+          {
+            "objet": {
+              "id": "statue-or-fontaine",
+              "retirer": true
+            }
+          },
+          {
+            "flag": "statue-remise-fontaine"
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": 10
+            }
+          },
+          {
+            "xp": 60
+          }
+        ],
+        "resultat": "Le clerc prononce les mots qu'il faut, à voix basse, la main ouverte au-dessus du socle. La statuette reprend sa place, et le cercle l'accueille avec un tintement clair, presque doux, qui monte jusqu'au plafond et s'y perd. La salle s'apaise d'un coup, les chauves-souris se taisent au-dessus de vos têtes. Un geste de respect envers les morts, sans un mot de plus."
+      }
+    ],
+    "partir": "Reposer la statue à terre et poursuivre."
+  }
+]

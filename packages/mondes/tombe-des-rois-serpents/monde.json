@@ -1,0 +1,90 @@
+{
+  "id": "tombe-des-rois-serpents",
+  "version": 1,
+  "statut": "publie",
+  "nom": "La Tombe des Rois Serpents",
+  "resume": "Engagés à moitié-part par un noble de Valdargent pour piller une nécropole oubliée dans les confins désertiques du Val du Couchant, les aventuriers descendent dans trois niveaux de pièges mécaniques, de sépulcres empoisonnés et de créatures reptiliennes — tandis que Martin, le valet de leur commanditaire, compte chaque chargement au seuil de la tombe.",
+  "accroche": "Une carte jaunie, deux mules chargées de cordes, un valet trop observateur à la porte, et les trésors d'une dynastie ophidienne qui ne dort peut-être pas tout à fait.",
+  "teasing": "Cinq jours de piste poussiéreuse depuis Valdargent ont fini de vous user. Au bout du Val du Couchant, une tranchée de sable s'enfonce dans la pierre calcaire. Des marches usées mènent à un linteau où deux cobras couronnés semblent guetter votre venue. L'air sent la suie des torches. Plus bas, une lueur violette alchimique palpite comme une braise oubliée. Les murailles blanches du Fort ne sont plus qu'un trait pâle.\n\nLe contrat est paraphé, sans marge : la moitié exacte du butin revient à Aldéric de Valdargent, faute de quoi sa maison saura vous retrouver. Avant de descendre, le valet Martin pose sa balance de cuivre et ouvre son registre. Il pèse, il note, il compte les sacs, les mules, et vous aussi. Trois niveaux piégés vous attendent, mais le plus redoutable reste peut-être cet homme sec qui ne laisse passer aucune pièce.\n\nQue valent les richesses des Rois Serpents, une fois arrachées à la terre ? Et à qui doivent-elles revenir : au seigneur qui paie, à ceux qui risquent leur peau à chaque marche, ou aux derniers habitants de cette tombe ? Vous aurez le temps d'y penser en comptant vos pièces, si vous remontez au jour.",
+  "ton": [
+    "exploration de donjon classique et mortelle",
+    "ambiance désertique et sépulcrale",
+    "cupidité et méfiance autour du partage",
+    "ironie ancienne des bâtisseurs serpents"
+  ],
+  "niveaux": {
+    "min": 1,
+    "max": 3
+  },
+  "groupe": {
+    "conseille": 6
+  },
+  "depart": {
+    "lieu": "fort-du-reflet-beni",
+    "intro": "Cinq jours de piste poussiéreuse depuis Valdargent vous amènent enfin sous les murailles blanches du Fort du Reflet Béni, dernier bastion avant les sables du Val du Couchant. Dans votre besace pèse le contrat paraphé par le seigneur Aldéric : la moitié exacte de tout ce qui sortira de la tombe lui revient, sans quoi sa maison saura vous retrouver. À la porte de l'écurie, son valet Martin ajuste déjà les bâts de deux mules patientes, le regard fixé sur vos armes."
+  },
+  "vivres": {
+    "objet": "rations",
+    "depart": 4,
+    "faim": "1d4"
+  },
+  "direction": {
+    "style": "Peinture de donjon réaliste et sèche : calcaire blanchi par le soleil, argile peinte vert-de-gris et or terni, torches résineuses découpant la suie noire, lueurs violettes de lampes alchimiques dans les profondeurs.",
+    "palette": [
+      "ocre sable",
+      "vert-de-gris serpentin",
+      "noir de suie",
+      "or terni",
+      "violet alchimique"
+    ],
+    "motsCles": [
+      "nécropole ophidienne",
+      "statues d'argile",
+      "piège de pierre",
+      "basilic enchaîné",
+      "lampes violettes",
+      "désert du Couchant"
+    ],
+    "interdits": [
+      "néons ou technologie moderne",
+      "héroïsme sans poussière ni sueur",
+      "noms de cités d'autres univers",
+      "couleurs fluo sans source magique"
+    ]
+  },
+  "chapitres": [
+    {
+      "id": "ch1-tombe-des-rois-serpents",
+      "nom": "Sous le Sable du Couchant",
+      "niveaux": {
+        "min": 1,
+        "max": 3
+      },
+      "resume": "Du Fort du Reflet Béni aux trois niveaux de la nécropole : sépulcres piégés du seuil, catacombes noyées dans le noir sous la garde du gardien osseux, puis le sanctuaire où se croisent une succube captive, un basilic enchaîné, un sorcier homme-serpent hors du temps et des gobelins terrorisés.",
+      "lieux": [
+        "val-du-couchant"
+      ],
+      "quetes": [
+        "q-tombe-des-rois-serpents",
+        "q-couronne-des-rois",
+        "q-fontaine-des-gobelins",
+        "q-secret-de-baltoplate",
+        "q-pactes-de-xiximantre",
+        "q-statues-petrifiees",
+        "q-boucliers-de-l-arene",
+        "q-barre-de-granit",
+        "q-varnac-frere-d-armes",
+        "q-lysandre-sceau-brise",
+        "q-mireille-plan-trois-paliers"
+      ]
+    }
+  ],
+  "regles": [
+    "Le MJ ne révèle jamais avant l'heure la nature démoniaque de Baltoplate, l'ignorance historique de Xiximantre quant à la chute de son empire, ni les pièges mécaniques non repérés.",
+    "Dans ce monde dur mais jouable, la mort définitive est remplacée hors TPK par une retraite coûteuse vers le bivouac ou le Fort du Reflet Béni.",
+    "Le valet Martin observe les allées et venues et soupèse les fontes ; toute dissimulation grossière laisse des traces."
+  ],
+  "auteurs": [
+    "Adaptation crpg-llm du scénario La Tombe des Rois Serpents"
+  ]
+}

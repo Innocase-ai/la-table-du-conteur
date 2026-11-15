@@ -1,0 +1,123 @@
+[
+  {
+    "pnj": "soeur-lysandre",
+    "passe": "Sœur Lysandre est une elfe de vingt-neuf ans, élevée à Valdargent par les sœurs de l'Ordre du Reflet Béni au milieu des humains, ce qui la fait paraître pressée aux yeux des elfes de sa race. Ordonnée à vingt-deux ans, elle porte depuis un manteau blanc bordé d'azur et garde un talisman solaire qu'elle chauffe entre ses paumes. Il y a six mois, l'Ordre l'a envoyée au Fort du Reflet Béni pour vérifier ce que les prêtres de jadis ont lié. Au fort, elle relit chaque inscription deux fois, et elle parle posément à ceux qui la croisent sur les murs chaulés.",
+    "liens": [
+      {
+        "pnj": "frere-balthazar",
+        "nature": "Chapelain du fort, qui lui prête ses livres",
+        "opinion": "Elle lui rend chaque ouvrage avec des notes en marge au crayon, et il ne s'en plaint jamais."
+      },
+      {
+        "pnj": "mireille-cartographe",
+        "nature": "Compagne de route, arpenteuse et serrurière",
+        "opinion": "Elle la trouve curieuse, dangereusement curieuse, et la surveille du coin de l'œil dès qu'elle touche une serrure."
+      },
+      {
+        "pnj": "varnac-le-borgne",
+        "nature": "Mercenaire vétéran, compagnon de route",
+        "opinion": "Elle le soigne en silence, sans attendre de remerciement, et ne lui demande jamais ce qu'il a vu dans la vapeur verte."
+      },
+      {
+        "pnj": "elara-herboriste",
+        "nature": "Apothicaire de l'avant-poste",
+        "opinion": "Elle respecte ses dosages, qu'elle juge plus exacts que les siens, et ne boit jamais une potion qu'elle n'a pas vue préparer."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "talisman-solaire",
+        "texte": "Elle garde contre sa poitrine un talisman solaire d'argent pur, et le chauffe entre ses paumes quand elle réfléchit. Le métal se réchauffe lentement, et elle attend qu'il devienne tiède avant de rouvrir son livre de prières.",
+        "acces": {}
+      },
+      {
+        "id": "signe-de-paix",
+        "texte": "Avant de lire une inscription, elle trace un signe de paix dans l'air, lentement, du front à la poitrine. Le geste ne dure qu'un instant, mais elle ne le manque jamais, même quand le groupe la presse.",
+        "acces": {}
+      },
+      {
+        "id": "relit-deux-fois",
+        "texte": "Elle relit chaque inscription deux fois, l'index suivant les signes gravés. La première fois pour comprendre, la seconde pour être certaine de n'avoir rien ajouté de son propre désir.",
+        "acces": {}
+      },
+      {
+        "id": "voix-posee",
+        "texte": "Elle parle d'une voix claire et posée, sans jamais hausser le ton, même quand les compagnons s'agitent. Ses phrases sont courtes et ses pauses longues, et ce calme rassure ceux qui l'écoutent.",
+        "acces": {}
+      },
+      {
+        "id": "ordination-valdargent",
+        "texte": "Elle a grandi à Valdargent, entre les sœurs de l'Ordre et les humains, et elle a été ordonnée à vingt-deux ans. Elle parle de cette cérémonie en peu de mots, comme d'une étape franchie sans bruit.",
+        "acces": {}
+      },
+      {
+        "id": "six-mois-au-fort",
+        "texte": "Elle est arrivée au Fort du Reflet Béni il y a six mois, envoyée pour vérifier ce que les prêtres de jadis ont lié. Elle dit que le fort attend beaucoup de ceux qui y vivent, et que les inscriptions l'occupent tout entière.",
+        "acces": {}
+      },
+      {
+        "id": "desir-du-tombeau",
+        "texte": "Elle voudrait vérifier, de ses propres yeux, ce que les prêtres de jadis ont lié au plus bas niveau du tombeau. Elle n'en parle jamais sans une sorte de faim tranquille, qui se voit surtout à la façon dont elle se tait.",
+        "acces": {}
+      },
+      {
+        "id": "peur-entite-rusee",
+        "texte": "Ce qui l'inquiète le plus, c'est qu'une entité rusée profite de l'appât du gain des pilleurs pour s'échapper. Elle le dit sans détour : l'or attire ce qui dort, et les pilleurs l'oublient toujours.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-elfes-presses",
+        "texte": "Les elfes de sa lignée la jugent pressée, et elle trouve qu'ils perdent du temps à se taire. Elle ne le dit pas méchamment, mais elle répond qu'une prière gardée pour plus tard ne sert à personne.",
+        "acces": {}
+      },
+      {
+        "id": "opinion-pilleurs",
+        "texte": "Elle juge les pilleurs sans indulgence quand ils parlent de butin avant de parler de morts. Elle ne tient pas le partage de l'or pour une faute, mais refuse qu'on compte les pièces avant d'avoir lu les inscriptions.",
+        "acces": {}
+      },
+      {
+        "id": "soeur-aubierge",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "texte": "Sa mentore, Sœur Aubierge, a été trompée il y a sept ans par un mendiant en larmes, marionnette d'une créature des abîmes. Elle est morte en voulant le sauver, et Lysandre en a gardé une règle : lisez avant de pleurer.",
+        "evasif": "« Je n'en parlerai pas à des inconnus. Certaines pertes ne se racontent pas, et ma règle suffit à ceux qui la suivent. » Elle serre son talisman et détourne les yeux vers les murs chaulés."
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-fort-et-l-ordre",
+        "fait": "f-pnj-fort-de-l-ordre",
+        "version": "Pour elle, le fort a été bâti il y a quatre-vingt-dix ans par l'Ordre du Reflet Béni pour garder le Val et surveiller la nécropole. Ses murs chaulés renvoient le soleil, et c'est de là que vient son nom.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "ce-que-garde-le-fort",
+        "fait": "f-fort-contient-les-horreurs",
+        "version": "Pour elle, la garnison n'est pas là pour piller : elle veille à ce que rien de ce qui dort sous les sables du Val ne remonte vers les routes de Valdargent, et elle le répète à qui veut l'entendre.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-trone-des-rumeurs",
+        "fait": "f-rumeur-trone-maudit",
+        "version": "Elle tient le trône d'or pour une rumeur qui circule au Val, mais elle sait que le siège est une demi-vérité mortelle. Il insuffle une folie conquérante à qui s'y assoit, et elle ne le répète qu'à ceux qui doivent l'entendre.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-cercle-du-registre",
+        "fait": "f-cercle-d-argent-garde",
+        "version": "Elle a lu dans les registres que des prêtres consignaient, jour après jour, la garde d'un cercle d'argent gravé dans les profondeurs. Elle sait que la créature retenue sous ce sceau restait inoffensive tant qu'une parole précise était prononcée, et elle n'en dit pas davantage.",
+        "acces": {
+          "attitudeMin": 30
+        },
+        "evasif": "Elle dit que le diocèse garde des registres que l'on ne lit pas à voix haute dans un fortin.",
+        "tabou": [
+          "nom véritable"
+        ]
+      }
+    ]
+  }
+]

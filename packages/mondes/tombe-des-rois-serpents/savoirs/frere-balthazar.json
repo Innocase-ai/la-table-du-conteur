@@ -1,0 +1,131 @@
+[
+  {
+    "pnj": "frere-balthazar",
+    "passe": "Frère Balthazar a soixante et un ans. Moine copiste venu de Valdargent, il est arrivé au fort il y a vingt-trois ans, après cinq jours de piste dans le désert. Chapelain et archiviste, il tient la chronique du Val en douze volumes cousus, et porte à sa ceinture un codex enchaîné. Sa foi est sobre : il croit moins aux démons qu'aux erreurs, et redoute surtout les pactes conclus par naïveté, dans les chambres d'invocation. Pour toute preuve, il répond « la chronique ». Il n'a jamais mis les pieds dans la tombe.",
+    "liens": [
+      {
+        "pnj": "soeur-lysandre",
+        "nature": "protégée",
+        "opinion": "Il la tient pour une élève sérieuse : elle lui emprunte ses volumes, et il lui en prête volontiers, sûr qu'elle les rapportera."
+      },
+      {
+        "pnj": "elara-herboriste",
+        "nature": "partenaire d'échecs",
+        "opinion": "Une partie d'échecs avec Elara dure depuis si longtemps qu'il ne sait plus qui a commencé à perdre. Il la juge têtue, et il l'aime bien pour cela."
+      },
+      {
+        "pnj": "commandeur-garin",
+        "nature": "commandant et pénitent",
+        "opinion": "Il l'appelle « mon commandant, mon pénitent ». Il le respecte pour son devoir, mais il le trouve trop prompt à décider pour les autres."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "arrivee-au-fort",
+        "texte": "Il est arrivé au fort il y a vingt-trois ans, venu de Valdargent après cinq jours de piste. Il en parle peu, sinon pour dire que la route parut plus longue qu'on ne le pensait, et que le fort chaulé se voyait de loin.",
+        "acces": {}
+      },
+      {
+        "id": "la-chronique-des-douze",
+        "texte": "Il tient la chronique du Val en douze volumes cousus. Quand on lui demande une preuve, il répond toujours la même chose, à voix basse : « la chronique ». Pour lui, une parole qui n'a pas été écrite compte à peine.",
+        "acces": {}
+      },
+      {
+        "id": "jamais-dans-la-tombe",
+        "texte": "Il n'a jamais mis les pieds dans la tombe. Il le dit sans fierté, presque en s'excusant, comme on avoue une faiblesse de l'âge. Pour un homme qui écrit tout, c'est une lacune qu'il supporte mal.",
+        "acces": {}
+      },
+      {
+        "id": "index-tremblant",
+        "texte": "Quand il lit, son index tremble au-dessus de la ligne, et il ne le pose pas avant d'avoir compris le mot. Il lit lentement, mot après mot, comme un homme qui se méfie de ses propres yeux.",
+        "acces": {}
+      },
+      {
+        "id": "voix-a-la-chapelle",
+        "texte": "À la chapelle, il baisse la voix jusqu'au murmure, comme si les murs pouvaient entendre. Il touche alors son pendentif d'argent terni, qu'il tourne entre le pouce et l'index sans y penser.",
+        "acces": {}
+      },
+      {
+        "id": "codex-enchaine",
+        "texte": "Le codex enchaîné à sa ceinture heurte sa hanche à chaque pas, et le bruit des maillons le suit dans les couloirs du fort. Il ne s'en plaint jamais, et semble même y trouver une forme de compagnie.",
+        "acces": {}
+      },
+      {
+        "id": "demons-et-erreurs",
+        "texte": "Il croit moins aux démons qu'aux erreurs, et le dit à qui veut l'entendre. « On n'enchaîne pas par hasard », répète-t-il quand on lui parle d'une créature qu'il faudrait affronter. Pour lui, la faute commence toujours avant la lame.",
+        "acces": {}
+      },
+      {
+        "id": "pactes-par-naivete",
+        "texte": "Il redoute surtout les pactes conclus par naïveté, dans les chambres d'invocation : un baiser ou une signature suffisent, dit-il, et l'on ne s'en aperçoit qu'après. Il s'en méfie plus que de n'importe quelle lame.",
+        "acces": {}
+      },
+      {
+        "id": "lysandre-et-les-volumes",
+        "texte": "Sœur Lysandre lui emprunte ses volumes, et il les lui prête volontiers, comme on confie un vieux livre à une élève. Il est sûr qu'elle en prendra soin.",
+        "acces": {}
+      },
+      {
+        "id": "partie-d-echecs",
+        "texte": "Il joue aux échecs avec Elara, l'apothicaire, une partie qui dure depuis si longtemps que personne au fort ne se souvient de la position de départ. Il la reprend souvent, avec le sourire d'un joueur qui ne veut pas perdre.",
+        "acces": {}
+      },
+      {
+        "id": "garin-mon-penitent",
+        "texte": "Il appelle Garin « mon commandant, mon pénitent », à moitié pour rire. Il admire son sens du devoir, mais il le trouve trop prompt à décider pour les autres, et il le lui dit sans détour.",
+        "acces": {}
+      },
+      {
+        "id": "maitre-odon-donation",
+        "texte": "Il y a trente-cinq ans, son maître Frère Odon a signé sans la relire une donation qui a livré la bibliothèque du monastère à un usurier. Odon est mort de honte, et depuis, Balthazar relit tout avant de signer ou de laisser signer.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "« Je n'en parlerai pas à des inconnus : c'est une faute qui ne se raconte pas à la légère. »"
+      }
+    ],
+    "sait": [
+      {
+        "id": "le-trone-selon-la-chronique",
+        "fait": "f-rumeur-trone-maudit",
+        "version": "La chronique consigne la rumeur sans la garantir : on dit qu'un trône d'or attend qui s'y assoit pour en faire le roi du désert. Balthazar ne croit pas aux trônes, mais il croit à la folie qui gagne les hommes assis trop haut.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-fort-et-l-ordre",
+        "fait": "f-pnj-fort-de-l-ordre",
+        "version": "Le fort a quatre-vingt-dix ans, bâti par l'Ordre du Reflet Béni pour garder le Val et surveiller la nécropole. Il le raconte comme on récite une liste de dates : les murs chaulés renvoient le soleil, et c'est de là que vient le nom du fort.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "l-empire-oublie",
+        "fait": "f-val-empire-oublie",
+        "version": "Le Val borde l'ancien territoire d'un empire d'hommes-serpents, disparu depuis des siècles. Balthazar le dit calmement, sans effroi : sur la piste, seuls le fort et la caravane rappellent encore l'ordre des hommes, et le reste appartient aux dunes.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-tombes-leurres",
+        "fait": "f-fausse-tombe-leurre",
+        "version": "Les trois cercueils dorés qui précèdent le temple sont l'œuvre de bâtisseurs qui aimaient les décors trompeurs : ils retenaient les pilleurs loin du véritable escalier. Balthazar le dit à mi-voix, comme une faute de goût ancienne.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "Il dit que ces bâtisseurs avaient le goût des décors trompeurs, sans préciser.",
+        "tabou": [
+          "leurre",
+          "tunnel"
+        ]
+      },
+      {
+        "id": "le-xisor-de-la-chronique",
+        "fait": "f-xisor-haut-pretre",
+        "version": "Xisor le Vert fut un haut prêtre des Rois Serpents. Son sarcophage de pierre verte le montre les bras croisés sur un sceptre brisé en trois tronçons, et la chronique note ce détail avec soin.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

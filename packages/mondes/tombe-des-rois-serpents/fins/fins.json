@@ -1,0 +1,165 @@
+[
+  {
+    "id": "fin-partage-honnete",
+    "nom": "Le partage loyal",
+    "condition": {
+      "flag": "verdict-partage-honnete"
+    },
+    "epilogue": "Devant les mules, vous partagez le butin moitié-moitié. Martin pèse chaque lot sur sa balance de cuivre, coche chaque ligne de son registre et ne trouve rien à redire, ce qui chez lui vaut le plus grand des compliments. Cinq jours plus tard, à Valdargent, Aldéric paie la solde devant ses clercs, sans un mot sur la tombe. Votre parole vaut désormais de l'or au Fort du Reflet Béni. Le prix, lui, se compte sans peine : la moitié exacte de tout ce que vous avez remonté s'en est allée, et vous l'avez laissée partir de vos propres mains.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "verdict-fraude-reussie"
+        },
+        "epilogue": "Vous avez glissé les plus belles pièces dans les doublures de vos capes, et les autres dans les paniers, bien en vue. Martin a compté, pesé, noté ; il n'a rien vu, ou du moins rien dit. Cinq jours plus tard, Aldéric paie la solde sans poser une seule question, et vous quittez Valdargent les épaules plus légères. Pourtant la bourse cachée pèse à chaque pas, à chaque tintement d'une fonte. Quelque part, un valet méticuleux compte encore, et il n'oublie rien."
+      },
+      {
+        "condition": {
+          "objet": "couronne-rois-serpents"
+        },
+        "epilogue": "Vous posez la Couronne des Rois Serpents sur la toile, au milieu des pièces, et pour une fois Martin cesse de compter. Son registre reste ouvert, la plume immobile, pendant un long moment. Aldéric, à Valdargent, n'en croit pas ses yeux, puis rachète votre part au poids de l'or, sans marchander. Le partage est loyal, la fortune est grande, et l'héritage d'une dynastie oubliée finit dans un coffre de marchand, à l'abri, sous une clé dont personne ne se souviendra."
+      },
+      {
+        "condition": {
+          "faction": {
+            "id": "commanditaire-alderic",
+            "min": 45
+          }
+        },
+        "epilogue": "À Valdargent, on ne vous appelle plus des aventuriers mais des associés. Les coffres d'Aldéric s'ouvrent devant vous, et les marchands de la ville vous recommandent à quiconque cherche une troupe sûre, discrète et honnête. Les contrats s'enchaînent, plus gros à chaque fois. Vous avez gagné une parole solide et des amis puissants. Mais à force de servir la même maison, vous êtes devenus la troupe d'Aldéric, et le nom de Valdargent ouvre toutes les portes, y compris celles qui ne vous appartiennent pas."
+      }
+    ],
+    "consequences": [
+      "Le butin est divisé à parts égales avec la Maison de Valdargent : la moitié des richesses s'en va.",
+      "Aldéric paie la solde et recommande le groupe (variante « associés » si la réputation de Valdargent est haute).",
+      "Variante « fraude réussie » : le partage a été truqué sans que Martin s'en aperçoive ; Aldéric ne le saura jamais."
+    ]
+  },
+  {
+    "id": "fin-soupcon-et-disgrace",
+    "nom": "La fraude éventée",
+    "condition": {
+      "flag": "verdict-soupcon-demasque"
+    },
+    "epilogue": "Martin a passé l'attente à écouter le tintement de vos fontes. Quand vous posez les paniers, il ne lève même pas la tête : il appelle deux cavaliers de passage du Fort, pour témoigner, et scelle chaque panier de ses cachets de cire. Le verdict tombe vite, à Valdargent. Aldéric confisque la part exposée, refuse toute solde et vous chasse sans un mot de plus. Il vous reste quelques pièces cachées dans les doublures, et plus aucun marchand du Val pour vous engager.",
+    "variantes": [
+      {
+        "condition": {
+          "objet": "couronne-rois-serpents"
+        },
+        "epilogue": "La même scène se joue, mais la Couronne des Rois Serpents est parmi ce que Martin saisit. Il la roule dans un linge, la scelle de cire et ne la regarde plus. À Valdargent, Aldéric la range dans un coffre qui se referme avec un bruit sec, sous vos yeux, puis vous chasse sans solde. Vous la voyez disparaître derrière des serrures que vous ne forcerez jamais. Il vous reste quelques pièces dans les doublures, et le souvenir d'un trophée qui vous a glissé entre les doigts."
+      }
+    ],
+    "consequences": [
+      "Aldéric confisque les trésors présentés et refuse toute solde.",
+      "Martin témoigne devant des cavaliers du Fort ; la réputation du groupe à Valdargent est ruinée.",
+      "Seules quelques pièces cachées dans les doublures restent entre les mains du groupe."
+    ]
+  },
+  {
+    "id": "fin-trahison-fortune",
+    "nom": "L'or gardé de force",
+    "condition": {
+      "flag": "verdict-tout-garder"
+    },
+    "epilogue": "Vous refermez les sacs devant la balance de cuivre : le contrat est rompu. Martin n'essaie même pas de dégainer. Il mémorise chaque visage, un à un, comme on grave une ligne dans un registre, puis reprend seul la piste de Valdargent. La fortune est complète : tout l'or de la tombe tient dans vos besaces. Mais dans chaque auberge de la route marchande, le seigneur Aldéric fait afficher un prix sur vos têtes, et le Fort du Reflet Béni ferme ses portes aux parjures. Vous êtes riches, et désormais seuls.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "xiximantre-vaincu"
+        },
+        "epilogue": "Vous partez chargés de fioles alchimiques et des reliques de Xiximantre lui-même, vaincu au fond de son laboratoire. La fortune que vous emportez dépasse tout ce que le Val a jamais vu. Mais le seigneur Aldéric, humilié, jure de dépenser autant qu'il faudra pour vous retrouver, et des chasseurs de primes comptent déjà les jours. Chaque fiole tinte un peu plus fort que la précédente dans vos sacoches. Vous ne reprendrez plus jamais la grande route sans regarder derrière vous."
+      },
+      {
+        "condition": {
+          "objet": "couronne-rois-serpents"
+        },
+        "epilogue": "La Couronne des Rois Serpents dort dans une de vos fontes, enveloppée de chiffons. Personne ne la voit, mais tout le monde la cherche. Les collectionneurs des grandes villes paieront n'importe quel prix pour la tenir un soir, et leurs intermédiaires vous trouveront vite sur la route. Vous avez réussi là où nul autre n'a osé. Mais chacun sait désormais qui l'a prise, et chacun attendra le moment de vous la reprendre."
+      }
+    ],
+    "consequences": [
+      "Le groupe garde la totalité du butin et des reliques de la nécropole.",
+      "Le seigneur Aldéric devient un ennemi riche et patient ; ses cavaliers préviennent chaque auberge de la route.",
+      "Le Fort du Reflet Béni ferme ses portes aux parjures."
+    ]
+  },
+  {
+    "id": "fin-pacte-des-profondeurs",
+    "nom": "Le silence des profondeurs",
+    "condition": {
+      "flag": "verdict-pacte-profondeurs"
+    },
+    "epilogue": "Vous scellez l'accès du faux temple, puis vous déclarez à Martin que la tombe était une sépulture pillée depuis longtemps, sans rien de précieux. Il vous croit à moitié, ce qui suffit. Il repart avec des mules presque vides, et Aldéric classe l'affaire sans perte ni gloire. Dans la ferme aux champignons, les gobelins gardent leur domaine, loin du fouet du sorcier, et Skriik ne vous oubliera pas. Vous n'emportez ni solde ni fortune. Ce que vous gardez, c'est la gratitude d'un peuple discret et l'obscurité protectrice de la tombe, qui se referme sur le secret.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "verdict-pacte-evente"
+        },
+        "epilogue": "Martin n'a pas cru un mot de votre mensonge. Il l'a écouté poliment, a noté l'heure, puis a rédigé un rapport précis pour Aldéric, ligne après ligne, avec les mesures des salles. Bientôt d'autres hommes viendront creuser dans la tranchée, avec des pelles neuves et des ordres écrits. La paix des profondeurs ne durera pas. Valdargent ne vous pardonnera pas de l'avoir pris pour un sot, et vous le savez en quittant les dunes."
+      },
+      {
+        "condition": {
+          "et": [
+            {
+              "flag": "xiximantre-allie"
+            },
+            {
+              "flag": "gobelins-sauves"
+            }
+          ]
+        },
+        "epilogue": "Les gobelins sont sauvés, Xiximantre vous tient pour alliés : la paix des profondeurs est double, et elle tient à votre parole. Vous scellez le faux temple, puis vous déclarez à Martin que la tombe était pillée depuis longtemps. L'escalier sous les racines de l'arbre mort reste ouvert, aux gobelins comme aux élixirs, et chacun y passe à sa manière. Vous repartez avec un savoir alchimique et des amis sous terre, les mains vides et le cœur un peu plus léger que vous ne l'espériez."
+      },
+      {
+        "condition": {
+          "flag": "xiximantre-allie"
+        },
+        "epilogue": "Xiximantre vous accorde ses élixirs les plus purs. Il se croit toujours à la tête d'un grand empire et vous en parle avec des gestes royaux, comme à des ambassadeurs. Il vous laisse remonter par l'escalier caché sous les racines de l'arbre mort, et la tombe reste inviolée derrière vous : Martin repart avec ses mules vides. Vous emportez un savoir alchimique que nul marchand ne vous achètera. Le coût a quelque chose d'ironique : vous laissez sous terre un sorcier qui règne encore, sans le savoir, sur un royaume disparu."
+      }
+    ],
+    "consequences": [
+      "L'entrée officielle de la tombe est déclarée stérile : Aldéric ne verse aucune solde.",
+      "Les habitants des profondeurs (gobelins, Xiximantre selon vos choix) gardent leur domaine.",
+      "Variante « éventé » : Martin n'a pas cru le mensonge ; Aldéric enverra d'autres hommes, et la réputation du groupe en pâtit."
+    ]
+  },
+  {
+    "id": "fin-echec-horloge",
+    "nom": "Les sables se referment",
+    "condition": {
+      "et": [
+        {
+          "jauge": {
+            "id": "soupcon-et-tension",
+            "min": 5
+          }
+        },
+        {
+          "non": {
+            "flag": "verdict-partage-rendu"
+          }
+        }
+      ]
+    },
+    "epilogue": "Les sables se referment sur la tombe. À force de nuits sans progrès décisif, la patience de Valdargent s'épuise, et un matin les piquets du bivouac sont arrachés, un à un, par le vent et par les ordres. Deux patrouilleurs du Fort repartent avec Martin et les mules, sans se retourner. Aldéric a rompu le contrat et engagé d'autres équipes, plus dociles. Une grille neuve barre la tranchée au nom de la garnison, et le linteau aux cobras disparaît derrière le fer.",
+    "variantes": [
+      {
+        "condition": {
+          "flag": "coeur-tombe-resolu"
+        },
+        "epilogue": "Vous teniez déjà de quoi solder le contrat. Il ne vous manquait qu'une heure, peut-être deux, pour remonter les marches avec le dernier coffre. Vous n'êtes pas revenus à temps. Martin est parti avec ses preuves, son registre et ses mules, et le Fort a tout consigné. Ce que vous avez rapporté ne vous appartient plus aux yeux de la loi, même si vos mains le tiennent encore. Le trésor pèse lourd, et il ne sert plus à rien."
+      },
+      {
+        "condition": {
+          "flag": "niveau-3-atteint"
+        },
+        "epilogue": "Vous aviez atteint le troisième niveau. Vous touchiez au but, une porte après l'autre, et les salles du cœur de la tombe étaient à portée de main quand Martin a levé le camp. Le cœur de la tombe vous échappe désormais. Les mules s'éloignent dans la poussière rouge, et d'autres chasseurs de trésors fouilleront ces galeries avec des outils neufs, sans jamais connaître votre nom. Vous gardez la mémoire du chemin, et rien d'autre."
+      }
+    ],
+    "consequences": [
+      "Le contrat de Valdargent est résilié avant le verdict ; Martin lève le camp avec les preuves.",
+      "Les abords de la tombe passent sous la garde du Fort du Reflet Béni.",
+      "D'autres chasseurs de trésors prendront la suite de l'expédition."
+    ]
+  }
+]

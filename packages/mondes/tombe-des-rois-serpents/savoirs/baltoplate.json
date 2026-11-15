@@ -1,0 +1,159 @@
+[
+  {
+    "pnj": "baltoplate",
+    "passe": "Lyra, comme elle se nomme, raconte avoir été capturée par des prêtres à tête de serpent. Ces prêtres l'ont enfermée au centre d'un cercle d'argent, dans la tombe, pour leurs rituels. Elle ne sait plus depuis combien de temps elle attend là : elle ne compte plus les nuits, seulement les regards qui s'arrêtent sur elle. Ses poignets portent des marques de fers qui ne répondent à aucune clé. Elle parle des prêtres sans jamais les nommer, et affirme qu'ils ne reviennent plus depuis longtemps. Elle se présente comme une victime, dont on a volé la liberté, et supplie qu'on la sorte de là. Son passé reste flou : elle le reprend chaque fois qu'on la presse, toujours avec les mêmes mots.",
+    "liens": [
+      {
+        "pnj": "xiximantre",
+        "nature": "Voisin de murs, qu'elle entend depuis le couloir.",
+        "opinion": "Un vieux fou qui sent la poudre. Elle le trouve pathétique de parler encore de la Cour comme si elle vivait."
+      },
+      {
+        "pnj": "elios-captif",
+        "nature": "Autre captif de la tombe, scribe d'une ancienne expédition.",
+        "opinion": "Un homme de plume qu'elle juge sans intérêt : elle n'a rien à lui dire, ni rien à lui cacher."
+      },
+      {
+        "pnj": "skriik-le-cueilleur",
+        "nature": "les gobelins qu'elle entend vivre au fond",
+        "opinion": "Elle entend leurs pas pressés et leurs chants de cuisine depuis des années ; elle les trouve minuscules, bruyants et plus vivants que les prêtres ne l'ont jamais été."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "ecoute-les-murs",
+        "texte": "Elle a passé plus de temps à écouter les murs qu'à parler à quiconque. Elle reconnaît le pas lourd d'une bête et la voix d'un vieux qui parle seul dans le couloir. Elle ne dit jamais d'emblée ce qu'elle entend, et garde ses sources pour elle.",
+        "acces": {}
+      },
+      {
+        "id": "les-secondes-comptees",
+        "texte": "Elle compte, sans y penser, les secondes pendant lesquelles on la regarde. Elle a le compte exact de chaque regard posé sur elle, et ses lèvres bougent un instant avant de s'arrêter. Dès qu'on détourne les yeux, elle reprend son souffle, comme soulagée.",
+        "acces": {}
+      },
+      {
+        "id": "jamais-les-symboles",
+        "texte": "Elle ne regarde jamais les symboles sacrés, ni les statues ni les emblèmes que portent les prêtres. Son regard glisse à côté, vers le bord du cercle, comme si l'éclat de ces images lui faisait mal aux yeux. Elle ne s'en justifie jamais.",
+        "acces": {}
+      },
+      {
+        "id": "menottes-pour-la-forme",
+        "texte": "Ses mains sont meurtries pour la forme, et les menottes lâches tintent à chacun de ses gestes. Elle ne tente jamais de les ôter. Elle ne quitte pas le centre du cercle, pas même d'un pas, et s'en fait presque une parure.",
+        "acces": {}
+      },
+      {
+        "id": "larmes-sur-regard",
+        "texte": "Elle ne pleure que lorsqu'on la regarde. Une larme apparaît à l'instant où un regard se pose sur elle, et s'efface quand il se détourne. Elle sait très bien que cela touche les cœurs tendres, et elle s'en sert avec une adresse que rien ne trahit.",
+        "acces": {}
+      },
+      {
+        "id": "xiximantre-vieux-fou",
+        "texte": "Elle tient Xiximantre pour un vieux fou qui sent la poudre. Elle l'entend depuis le couloir parler de la Cour comme si elle vivait encore, et ricane à chaque phrase. Elle ne le dit qu'à ceux qui la démasquent, par pur dépit.",
+        "acces": {}
+      },
+      {
+        "id": "pretres-hypocrites",
+        "texte": "Elle juge les prêtres des hypocrites, et le dit d'un ton sec dès qu'on évoque leurs rituels. Elle ne cite jamais aucun d'eux, comme si le seul fait de les nommer les ferait revenir. Une seule phrase suffit pour qu'elle change de sujet.",
+        "acces": {}
+      },
+      {
+        "id": "mortels-cadeaux",
+        "texte": "Elle tient les mortels pour des cadeaux qui se déballent : on croit savoir ce qu'il y a dedans, et l'on est toujours surpris. Elle le dit en souriant, sans jamais cacher le mépris qui fait pétiller ses yeux.",
+        "acces": {}
+      },
+      {
+        "id": "conseils-de-la-captive",
+        "texte": "Elle donne volontiers des conseils exacts sur la tombe, car une captive utile est une captive qu'on libère. Elle les glisse avec un sourire dans la voix, comme on offre une friandise à un enfant, et s'attend à ce qu'on la remercie.",
+        "acces": {}
+      },
+      {
+        "id": "hessarim",
+        "texte": "Le jeune desservant Hessarim a été séduit par cette captive pour ouvrir le sceau du basilic. Elle en parle avec une tendresse mêlée de mépris, et ne le nomme qu'en soupirant.",
+        "acces": {
+          "condition": {
+            "fait": "f-vrai-nom-baltoplate"
+          }
+        },
+        "evasif": "Elle s'essuie les yeux et dit qu'elle n'en parlera pas à des inconnus : ces histoires de jeunes gens ne regardent que ceux qui y ont perdu quelque chose."
+      },
+      {
+        "id": "quatre-siecles-de-silence",
+        "texte": "Plus aucun prêtre n'est venu depuis trois cent cinquante ans. Elle a compté les gouttes d'eau du plafond, et en a déduit que l'empire était mort. Elle ne montre pas le chagrin qu'elle en garde, sauf en fermant les yeux.",
+        "acces": {
+          "condition": {
+            "fait": "f-vrai-nom-baltoplate"
+          }
+        },
+        "evasif": "Elle détourne la tête vers le couloir et dit qu'elle ne parle pas de son silence à des étrangers : ce n'est pas leur affaire."
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-cle-du-collier",
+        "fait": "f-cle-sur-collier-basilic",
+        "version": "Elle le dit comme une chose entendue à travers la pierre : une lourde clé de fer pend au collier de la bête enchaînée dans le hall voisin. Elle n'a aucune raison de mentir là-dessus, puisqu'elle veut qu'on survive.",
+        "acces": {},
+        "tabou": [
+          "clé de fer",
+          "collier cuirassé"
+        ]
+      },
+      {
+        "id": "les-dalles-claires",
+        "fait": "f-dalles-claires-sures",
+        "version": "Elle a longtemps écouté la tombe. Dans le couloir aux lames, seules les dalles de pierre claire, usées par d'anciens passages, ne déclenchent pas les faux. Elle le répète sans détour, comme une évidence, et s'impatiente quand on lui demande pourquoi.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-trone-est-pire",
+        "fait": "f-trone-insuffle-la-folie",
+        "version": "Le trône ne donne pas le désert à qui s'y assoit. Une marque de commandement y insuffle une folie conquérante qui fait perdre le sens à son occupant. Elle en parle à voix basse, comme d'une vieille histoire qu'elle n'aime pas se rappeler, et tourne vite la conversation.",
+        "acces": {
+          "attitudeMin": 20
+        },
+        "evasif": "Elle fait un geste vague : le trône, on en dit tant de choses, elle ne sait plus.",
+        "tabou": [
+          "runes de commandement"
+        ]
+      },
+      {
+        "id": "qui-elle-est",
+        "fait": "f-vrai-nom-baltoplate",
+        "version": "Elle sait parfaitement qui elle est, et le garde pour elle. Un nom ancien, une nature que les parchemins ont fini par consigner noir sur blanc. Elle ne le dit qu'à ceux qui ont déjà prononcé ce nom devant elle, et sans trembler.",
+        "acces": {
+          "condition": {
+            "fait": "f-vrai-nom-baltoplate"
+          }
+        },
+        "evasif": "Elle pleure doucement et répète qu'elle s'appelle Lyra.",
+        "tabou": [
+          "Baltoplate",
+          "succube",
+          "fiélon"
+        ]
+      },
+      {
+        "id": "l-empire-est-mort",
+        "fait": "f-empire-chute-xiximantre",
+        "version": "Elle a conclu seule, à force d'attendre, que l'empire est mort : plus aucun prêtre n'est venu depuis des siècles. Elle écoute Xiximantre réciter sa Cour comme si elle vivait encore, et le trouve pathétique. Elle ne le lui dit pas.",
+        "acces": {
+          "condition": {
+            "fait": "f-vrai-nom-baltoplate"
+          }
+        },
+        "evasif": "Elle tourne la tête vers le couloir, comme pour écouter ; elle dit qu'elle n'a pas de nouvelles du dehors.",
+        "tabou": [
+          "empire tombé",
+          "siècles d'oubli"
+        ]
+      },
+      {
+        "id": "le-seul-qui-parle",
+        "fait": "f-xiximantre-troque-curiosites",
+        "version": "Elle l'a entendu pendant des siècles négocier à travers les murs. Xiximantre ne daigne pas échanger contre de l'or : il troque ses potions contre des curiosités rares, et ouvre son art à qui lui en apporte. Elle s'en amuse, sans la moindre envie de le contredire.",
+        "acces": {},
+        "tabou": []
+      }
+    ]
+  }
+]

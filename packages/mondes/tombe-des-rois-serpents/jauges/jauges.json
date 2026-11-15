@@ -1,0 +1,97 @@
+[
+  {
+    "id": "soupcon-et-tension",
+    "nom": "Soupçon du valet et pression de la tombe",
+    "resume": "Cette tension mesure la patience de Martin et l'éveil des profondeurs. Chaque nuit de repos complète, au bivouac comme dans la tombe, la fait monter d'un cran. Rendre compte à Martin, apaiser les terrassiers ou rapporter des preuves au Fort la fait redescendre. Tout au bout, si elle atteint son maximum, Martin lève le camp.",
+    "min": 0,
+    "max": 5,
+    "initial": 0,
+    "paliers": [
+      {
+        "seuil": 1,
+        "nom": "Les mules piétinent",
+        "narration": "Au bivouac, Martin resserre les sangles de ses mules et note l'heure dans son carnet de cuir, d'une écriture serrée. Les bêtes piétinent la poussière rouge en soufflant. Il ne dit rien de plus que nécessaire : il attend des nouvelles de la descente, et il compte les minutes avant de les réclamer.",
+        "effets": []
+      },
+      {
+        "seuil": 2,
+        "nom": "Regards soupçonneux",
+        "narration": "À chaque remontée, Martin vous attend près de la bâche, la balance de cuivre en main. Il demande à voir ce que contiennent les sacs, pièce par pièce, d'une voix polie qui ne tolère guère de détour. Plus haut, sur la piste, les éclaireurs du Fort commencent à se demander ce que vous faites si longtemps sous terre.",
+        "effets": [
+          {
+            "flag": "tension-palier-2"
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": -10
+            }
+          }
+        ]
+      },
+      {
+        "seuil": 3,
+        "nom": "Les profondeurs s'agitent",
+        "narration": "Dans le noir des catacombes, les échos voyagent plus vite qu'avant : une chaîne claque quelque part derrière une cloison de pierre, puis se tait. Les gobelins doublent leurs guetteurs au bord des champignonnières. Plus bas, la cour de Xiximantre se tient sur ses gardes, et le silence qui suit a quelque chose d'attentif.",
+        "effets": [
+          {
+            "flag": "tension-palier-3"
+          },
+          {
+            "reputation": {
+              "faction": "cour-de-xiximantre",
+              "delta": -10
+            }
+          },
+          {
+            "reputation": {
+              "faction": "clan-des-champignons",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "seuil": 4,
+        "nom": "Enquête du Fort",
+        "narration": "Un cavalier du Fort passe vérifier le campement, la lance haute, puis repart au trot sans un mot. Martin note chaque manquement au contrat dans son registre, ligne après ligne, et annonce qu'il écrira à Valdargent sans plus attendre. Ses mots sont posés, sans colère. Il reste très peu de temps avant qu'il ne tranche.",
+        "effets": [
+          {
+            "flag": "tension-palier-4"
+          },
+          {
+            "attitude": {
+              "pnj": "martin-le-valet",
+              "delta": -15
+            }
+          },
+          {
+            "reputation": {
+              "faction": "ordre-du-reflet-beni",
+              "delta": -5
+            }
+          }
+        ]
+      },
+      {
+        "seuil": 5,
+        "nom": "Le rappel de Valdargent",
+        "narration": "Martin boucle les paniers un à un, démonte la bâche et charge les mules sans se presser. Il a déjà refermé son registre. L'escorte du Fort l'attend au bord de la tranchée, et le camp disparaît en moins d'une heure. Le contrat du seigneur Aldéric est rompu pour retard, et le retard, c'est vous.",
+        "effets": [
+          {
+            "flag": "horloge-expiree"
+          },
+          {
+            "fin": "fin-echec-horloge"
+          }
+        ]
+      }
+    ],
+    "evolution": [
+      {
+        "declencheur": "repos-long",
+        "delta": 1
+      }
+    ]
+  }
+]

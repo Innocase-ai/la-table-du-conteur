@@ -1,0 +1,124 @@
+[
+  {
+    "pnj": "varnac-le-borgne",
+    "passe": "Varnac le Borgne a quarante-trois ans. Il a servi douze ans comme sapeur dans l'armée de Valdargent, où il a appris à manier la perche, la corde et l'écoute au sol. Il y a dix ans, un éboulement de mine lui a coûté l'œil gauche, qu'un bandeau de cuir noir couvre aujourd'hui. Devenu mercenaire, il suit depuis vingt ans Hélian, son frère d'armes, avec Doran à leurs côtés. Il y a six semaines, la compagnie a ouvert les cercueils du premier niveau de la tombe ; la vapeur verte a fauché Hélian et Doran, et Varnac a rampé jusqu'au bivouac, la gorge brûlée. Il n'a pas pu récupérer le corps d'Hélian.",
+    "liens": [
+      {
+        "pnj": "commandeur-garin",
+        "nature": "Commandant du Fort du Reflet Béni, qui surveille la nécropole.",
+        "opinion": "Un bon commandant, dit Varnac, qui n'a jamais perdu un frère d'armes. Il le dit sans chaleur, comme on constate une chose qui ne le concerne pas."
+      },
+      {
+        "pnj": "martin-le-valet",
+        "nature": "Valet de confiance du seigneur Aldéric, au bivouac.",
+        "opinion": "Martin lui a donné de l'eau salée tiède quand il a rampé jusqu'à lui. Varnac ne l'oublie pas, et il n'en dit jamais plus."
+      },
+      {
+        "pnj": "soeur-lysandre",
+        "nature": "Prêtresse du Reflet Béni, compagne de route.",
+        "opinion": "Il la jauge en silence et attend qu'elle ait parlé avant de bouger. Il la garde à portée de voix."
+      },
+      {
+        "pnj": "mireille-cartographe",
+        "nature": "Arpenteuse et serrurière, compagne de route.",
+        "opinion": "Une serrurière qui ouvre ce qu'un sapeur n'ouvre pas : Varnac la tient pour utile, et il le dit sans la regarder."
+      },
+      {
+        "pnj": "nolan-palefrenier",
+        "nature": "Garçon d'écurie du fort.",
+        "opinion": "Un gamin qui soigne les bêtes au fort et qui n'a rien à faire dans ce trou."
+      }
+    ],
+    "couleur": [
+      {
+        "id": "la-promesse-a-helian",
+        "texte": "Il avait promis à Hélian de le ramener et de l'enterrer à Valdargent, sous un arbre. Il n'a pas tenu sa promesse, et il l'a jurée une seconde fois sur la poussière du caveau.",
+        "acces": {
+          "attitudeMin": 40
+        },
+        "evasif": "« Je n'en parlerai pas à des inconnus, c'est une affaire entre Hélian et moi. » Il détourne la tête et se remet à sonder le sol."
+      },
+      {
+        "id": "helian-sifflait-faux",
+        "texte": "Pendant vingt ans de route, Hélian a sifflé faux dès le lever du camp. Varnac le lui a reproché à chaque étape, et il ne sait plus si c'est le son ou le silence qui lui manque le plus.",
+        "acces": {}
+      },
+      {
+        "id": "eclat-de-mine",
+        "texte": "Il y a dix ans, un éboulement de mine lui a pris l'œil gauche. Il ne parle jamais de ce jour-là sans toucher le bord de son bandeau de cuir noir.",
+        "acces": {}
+      },
+      {
+        "id": "douze-ans-de-sapeur",
+        "texte": "Douze ans sapeur dans l'armée de Valdargent, il a appris qu'une perche vaut mieux qu'une lanterne. Il en garde des gestes : coller l'oreille au sol, planter la corde, lever la perche sans se pencher.",
+        "acces": {}
+      },
+      {
+        "id": "mange-debout",
+        "texte": "Il mange debout, toujours, la gamelle en main et les yeux sur les issues. Il n'a jamais su s'asseoir pour manger, même à la cantine du fort, où il préfère rester près de la porte.",
+        "acces": {}
+      },
+      {
+        "id": "sonde-les-couvercles",
+        "texte": "Il sonde chaque couvercle avec sa perche avant de le toucher, et il écoute le sol en posant le pied. Il ne fait confiance ni à une dalle ni à un couvercle qu'il n'a pas entendu sonner.",
+        "acces": {}
+      },
+      {
+        "id": "garin-bon-commandant",
+        "texte": "Garin est un bon commandant, dit-il, un homme qui n'a jamais perdu un frère d'armes. Varnac le dit avec un léger mépris, comme on parle d'un homme qui n'a pas encore payé le prix de la route.",
+        "acces": {}
+      },
+      {
+        "id": "alderic-client",
+        "texte": "Aldéric est un client : il négocie les soieries et les épices, et il ne descend jamais dans un caveau lui-même. Varnac n'aime pas les hommes qui envoient les autres ouvrir les couvercles, et il ne s'en cache pas.",
+        "acces": {}
+      },
+      {
+        "id": "compagnons-jauges",
+        "texte": "Il jauge les compagnons en silence pendant les premières lieues. Ceux qui se taisent devant une porte fermée, il les garde ; ceux qui se vantent, il les laisse passer devant lui.",
+        "acces": {}
+      },
+      {
+        "id": "secrets-gardes",
+        "texte": "Il n'aime pas les secrets, mais il les garde. Quand on lui demande pourquoi, il répond qu'un sapeur ne raconte pas ce qu'il a sondé, il l'écoute seulement.",
+        "acces": {}
+      }
+    ],
+    "sait": [
+      {
+        "id": "la-vapeur",
+        "fait": "f-vapeur-des-sepulcres",
+        "version": "Les cercueils d'argile des gardiens et des prêtres lâchent une vapeur verte dès qu'on soulève le couvercle, et elle ne pardonne pas. Il l'a vue faucher deux hommes en un souffle.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "le-survivant",
+        "fait": "f-varnac-survivant",
+        "version": "Il est le seul revenu de la précédente descente au premier niveau. Il a rampé jusqu'à Martin, la gorge en feu, et il n'a jamais pu ramener Hélian. Il ne se compte pas parmi les héros : il se compte parmi ceux qui sont rentrés.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "les-trois-compagnies",
+        "fait": "f-pnj-compagnies-precedentes",
+        "version": "Trois compagnies ont signé le contrat avant vous. L'une est partie il y a sept mois et n'est jamais remontée ; une autre a reculé devant la barre de granit du couloir ; la dernière, la sienne, a perdu deux hommes dans la vapeur.",
+        "acces": {},
+        "tabou": []
+      },
+      {
+        "id": "l-anneau-maudit",
+        "fait": "f-griffe-croc-maudite",
+        "version": "Il a vu l'anneau de cuivre au doigt du sorcier d'argile et il le tient pour une malédiction : celui qui l'enfile ne peut plus l'ôter, et la griffe se retourne contre lui. Ne pas y toucher, dit-il.",
+        "acces": {
+          "attitudeMin": 25
+        },
+        "tabou": [
+          "griffe",
+          "retourne contre son porteur"
+        ],
+        "evasif": "Il serre le poing et dit que cet anneau a tué assez de monde sans qu'on en parle à des inconnus."
+      }
+    ]
+  }
+]
