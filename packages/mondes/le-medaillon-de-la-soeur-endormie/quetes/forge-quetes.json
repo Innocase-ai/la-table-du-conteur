@@ -5,7 +5,7 @@
     "type": "principale",
     "donneur": "sire-bertrand",
     "lieu": "demeure-du-sire-bertrand",
-    "resume": "On a profané la crypte du sanctuaire et dérobé le médaillon de sainte Odile. Sire Bertrand promet 20 pièces d’or à qui le rapportera. Les traces mènent aux ruines de la vieille chapelle, où une goule veille sur le cercueil profané.",
+    "resume": "On a profané la crypte du sanctuaire et dérobé le médaillon de sainte Odile. Sire Bertrand promet vingt pièces d’or à qui le rapportera. Des traces de boue et de cire s’éloignent du village, et personne ne sait encore où elles mènent.",
     "niveau": {
       "min": 1,
       "max": 2
@@ -14,25 +14,23 @@
     "etapes": [
       {
         "id": "aller-ruines-de-la-chapelle-brulee",
-        "texte": "Suivez les traces jusqu’aux ruines de la chapelle brûlée.",
+        "texte": "Retrouvez où mènent les traces de boue et de cire qui s’éloignent du village.",
         "completion": {
           "lieu": "ruines-de-la-chapelle-brulee"
         },
-        "lieu": "ruines-de-la-chapelle-brulee",
         "suivantes": [
           "vaincre-goule-des-cryptes"
         ]
       },
       {
         "id": "vaincre-goule-des-cryptes",
-        "texte": "Affrontez la goule des cryptes, qui veille le cercueil profané dans les ruines.",
+        "texte": "Venez à bout de ce qui garde le cercueil profané.",
         "completion": {
           "rencontre": {
             "id": "r-goule-des-cryptes",
             "issue": "victoire"
           }
         },
-        "lieu": "ruines-de-la-chapelle-brulee",
         "suivantes": [
           "trouver-medaillon-de-sainte-odile"
         ]
@@ -43,7 +41,6 @@
         "completion": {
           "objet": "medaillon-de-sainte-odile"
         },
-        "lieu": "ruines-de-la-chapelle-brulee",
         "suivantes": [
           "retour"
         ]
@@ -54,7 +51,6 @@
         "completion": {
           "flag": "le-medaillon-vole-rendue"
         },
-        "lieu": "demeure-du-sire-bertrand",
         "suivantes": [],
         "termine": true
       }
@@ -86,7 +82,6 @@
         "completion": {
           "lieu": "bois-des-chenes-pales"
         },
-        "lieu": "bois-des-chenes-pales",
         "suivantes": [
           "trouver-herbes-de-velours"
         ]
@@ -97,7 +92,6 @@
         "completion": {
           "objet": "herbes-de-velours"
         },
-        "lieu": "bois-des-chenes-pales",
         "suivantes": [
           "retour"
         ]
@@ -108,7 +102,6 @@
         "completion": {
           "flag": "herbes-pour-la-soupe-rendue"
         },
-        "lieu": "chaumiere-de-la-vieille-mahaut",
         "suivantes": [],
         "termine": true
       }

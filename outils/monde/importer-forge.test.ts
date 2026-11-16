@@ -248,6 +248,15 @@ describe('import d\'une conception de la Forge', () => {
     });
   });
 
+  it("ne pose aucun repère de lieu sur les étapes de quête par défaut (le joueur cherche) ; l'option `reperes` les rétablit", () => {
+    const sans = convertirForge(brut(), 'villambrune', { profils, armes });
+    const etapes = (r: typeof sans) => (r.dossiers['quetes'] as { etapes: { lieu?: string }[] }[]).flatMap((q) => q.etapes);
+    expect(etapes(sans).length).toBeGreaterThan(0);
+    expect(etapes(sans).some((e) => 'lieu' in e)).toBe(false);
+    const avec = convertirForge(brut(), 'villambrune', { profils, armes, reperes: true });
+    expect(etapes(avec).some((e) => typeof e.lieu === 'string')).toBe(true);
+  });
+
   it('refuse un monde existant et une conception sans lieu, sans rien laisser à moitié écrit', () => {
     const racine = mkdtempSync(join(tmpdir(), 'mondes-'));
     ecrireMondeForge(racine, 'villambrune', FIXTURE, brut(), MODELES, { profils, armes });

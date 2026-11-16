@@ -38,6 +38,15 @@ Les salutations (`salutations.variantes`), les sujets (`condition`) et les secre
 - Aucun secret de la bible, aucun fait d'intrigue dans `passe`, `liens` ou une `couleur` libre.
 - Un souvenir ne change rien à l'intrigue ; ce qui la change est un fait du canon (`faits/`), verrouillé dans `sait`.
 
+## Au moins 4 sujets par PNJ, qui complètent le savoir de l'histoire (décision du 16/11/2026, tous les mondes)
+Un PNJ qui n'a qu'une ou deux questions ne vaut pas la peine d'être abordé. **Chaque PNJ qui parle a au moins 4 sujets** (hors sujets de quête ou de rapport), 5 à 6 pour un PNJ du hub, et ils sont **en rapport avec l'histoire** : le joueur doit sortir de la conversation en sachant quelque chose qu'il ne savait pas, qui complète sa compréhension.
+- **Parler de l'objet central** (le médaillon : d'où il vient, qui l'a vu, ce qu'il vaut pour le village) et **du chef du village** (ce qu'on dit de lui, ce qu'il cache, ce qu'on lui reproche) : ce sont les deux sujets types.
+- **Les rumeurs** : au moins une par PNJ, ou trois pour tout le hub. Elles peuvent être incomplètes ou fausses (`fiable: false` dans le fait, catégorie `rumeur`), mais jamais contradictoires avec ce que le monde a décidé.
+- **Les autres PNJ** (un avis sur chacun, jamais un secret), **les lieux** (ce qu'on en sait ou en raconte, sans dire où est l'objectif : voir `creer-intrigue`, `lieu` d'une étape), **la menace ou l'ambiance** (la cloche, les bruits la nuit, ce qui a changé), **le passé du PNJ** (un petit fait).
+- **Chaque réponse apporte un fait nouveau et relance** : une question, un coût, ou un nom à aller voir. Pas de piste sans suite (un puits scellé, un bruit dans la cave qui ne mènent nulle part), pas d'offre que le jeu ne tient pas (héberger, apprendre, donner un objet), aucune contradiction avec les récits d'arrivée ni avec les fiches (une salle « vide » que le récit décrit pleine).
+- **Aucun secret du MJ** : dire au contexte de l'agent ce que le village sait, et la liste de ce qu'il ne doit jamais évoquer, même par allusion.
+- **Méthode** : un agent Haiku écrit 4 sujets par PNJ (voix, sujets déjà écrits et faits connus en contexte), Claude relit, un second agent audite (secrets, contradictions, pistes sans suite, offres impossibles), Claude vérifie chaque anomalie et renvoie les corrections à l'agent d'écriture.
+
 ## Des conversations riches (décision du 08/11/2026, à appliquer à tout PNJ d'Ombresang)
 - **Réponses de 40 à 80 mots** dans la voix de la fiche (`personnalite.voix`), avec un détail concret (nom, chiffre, geste, souvenir) ; un PNJ de 5 réponses de 30 mots n'a pas de voix (avis « Dialogues » du validateur).
 - **Sujet reposé** : un sujet sans `unique` reste dans la liste (« déjà abordé ») ; reposé, il redit sa réponse et ses faits, drapeaux et quêtes, mais **ne rapporte qu'une fois** ses gains et pertes (`attitude`, `objet`, `pieces`, `xp`, `jauge`, `reputation`). Un échange qui doit se répéter (donner des rations à chaque visite) passe par un service ou une boutique, pas par un sujet.

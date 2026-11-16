@@ -51,6 +51,8 @@ export type FichierForge = z.infer<typeof FichierForge>;
 export class ErreurForge extends Error {}
 
 export interface OptionsImport {
+  /** Poser le `lieu` de chaque étape (la carte, les sorties et la boussole signalent alors l'objectif). Non par défaut : le joueur doit chercher (décision du 16/11/2026). */
+  reperes?: boolean;
   /** Niveaux du groupe pour l'épisode (1 à 2 par défaut : l'épisode pilote du PRD-SAGA). */
   niveaux?: { min: number; max: number };
   /** Temps de trajet, en heures, des chemins entre lieux (1 par défaut). */
@@ -574,6 +576,8 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
         unique: true,
       });
     }
+    // Pas de repère de lieu sur les étapes : la carte ne montre pas l'objectif, le joueur cherche (conversations, rumeurs, exploration).
+    if (!options.reperes) for (const e of etapes) delete e['lieu'];
     etapes.forEach((e, i) => {
       e['suivantes'] = i < etapes.length - 1 ? [(etapes[i + 1] as { id: string }).id] : [];
       if (i === etapes.length - 1) e['termine'] = true;
@@ -694,6 +698,7 @@ export const REGLES_ECRITURE = [
   'Deuxième personne du pluriel, présent, phrases courtes. Un détail sensoriel concret par texte et un détail inattendu. Pas de lore déguisé en dialogue. Finir sur une question ou un coût.',
   'Longueurs : récit d\'arrivée d\'un lieu 130 à 170 mots ; accroche d\'une pièce vue du dehors 1 à 2 phrases ; réponse d\'un PNJ 75 à 115 mots ; mise en scène d\'une rencontre 70 à 110 mots ; journal de quête 2 à 3 phrases ; objet ou contenant 1 à 2 phrases.',
   'Interdits dans les textes lus par le joueur : mot de mécanique (DD, jet, jauge, points de vie, niveau), secret, contenu caché. Accents français corrects.',
+  'Journal de quête : ne nomme un lieu que si un PNJ l’a déjà dit au joueur ; sinon dis ce qu’il cherche, pas où. Chaque PNJ a au moins 4 sujets qui complètent le savoir de l’histoire (l’objet central, le chef du village, les rumeurs, les autres PNJ), sans secret ni piste sans suite.',
   'Chaque PNJ veut quelque chose (du groupe aussi), craint quelque chose, cache quelque chose, a une voix (un tic, un rythme).',
 ];
 

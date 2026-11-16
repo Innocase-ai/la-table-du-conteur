@@ -24,17 +24,23 @@
         "vers": "bois-des-chenes-pales",
         "type": "chemin",
         "heures": 1,
-        "sens": "double",
+        "sens": "simple",
         "description": "Le sentier quitte les dernières maisons et s’enfonce vers les chênes aux troncs pâles. Les haies se resserrent, et la lumière baisse plus vite qu’ailleurs.",
-        "retour": "Le sentier remonte du bois vers les premiers toits de Villambrune. Les chênes pâles s’effacent derrière vous, et les volets du village se referment au loin."
+        "cache": {
+          "dd": 11,
+          "competence": "survie"
+        }
       },
       {
         "vers": "ruines-de-la-chapelle-brulee",
         "type": "chemin",
         "heures": 1,
-        "sens": "double",
+        "sens": "simple",
         "description": "La route de charrette grimpe vers les murs noircis de la vieille chapelle, qu’on aperçoit depuis la place. Les ornières sont envahies d’herbes.",
-        "retour": "La route redescend vers les toits de Villambrune, et les murs calcinés disparaissent derrière les arbres. La cloche du sanctuaire sonne un peu trop tôt."
+        "cache": {
+          "dd": 13,
+          "competence": "survie"
+        }
       }
     ],
     "rencontres": [],
@@ -116,7 +122,15 @@
     "resume": "Une chapelle calcinée au bout d’une route de charrette, dont la nef ouverte au ciel n’a plus de toit. Plus personne n’y monte depuis longtemps.",
     "description": "Vieille chapelle incendiée dont la nef sert de tombeau : un cercueil profané y est posé, et une goule des cryptes monte la garde autour. Le médaillon de sainte Odile est gardé dans le cercueil. Le repos y est dangereux.",
     "visuel": "Murs de pierre noire et cendre grise, nef sans toit où la lumière tombe en colonnes pâles. Mousse blanche sur les pierres, dalles soulevées, terre sombre et humide, et flaques argentées où la pluie tremble.",
-    "liens": [],
+    "liens": [
+      {
+        "vers": "villambrune",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "simple",
+        "description": "La route redescend vers les toits de Villambrune, et les murs calcinés disparaissent derrière les arbres. La cloche du sanctuaire sonne un peu trop tôt."
+      }
+    ],
     "rencontres": [
       {
         "id": "r-goule-des-cryptes",
@@ -137,7 +151,15 @@
     "resume": "Forêt de chênes aux troncs très clairs, à la lisière sauvage du royaume. Les sentiers s’y perdent vite, et l’on y cueille, dit-on, des plantes que l’on ne trouve nulle part ailleurs.",
     "description": "Bois de chênes pâles où rôde un bandit estropié, qui garde près de lui un sac contenant des pièces. Des herbes de velours poussent sur le sol, à l’abri des regards. Le repos y est dangereux.",
     "visuel": "Chênes aux troncs presque blancs, feuilles pâles et pendantes sous une lumière verdâtre et filtrée. Sous-bois de fougères et de mousse grise, sol mouillé, et taches de rosée argentée sur les feuilles basses.",
-    "liens": [],
+    "liens": [
+      {
+        "vers": "villambrune",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "simple",
+        "description": "Le sentier remonte du bois vers les premiers toits de Villambrune. Les chênes pâles s’effacent derrière vous, et les volets du village se referment au loin."
+      }
+    ],
     "rencontres": [
       {
         "id": "r-bandit-estropie",

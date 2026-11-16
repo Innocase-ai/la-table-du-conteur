@@ -32,7 +32,7 @@
           "récompense"
         ],
         "question": "Que savez-vous du médaillon volé ?",
-        "reponse": "On a profané la crypte du sanctuaire, et le médaillon de sainte Odile a disparu. Les gens du village n’osent plus compter les nuits depuis. Les traces de boue et de cire mènent vers les ruines de la vieille chapelle, là où plus personne ne veut aller. Rapporte-le-moi, et tu ne repartiras pas les mains vides : vingt pièces d’or, et la gratitude de Villambrune avec. Mot de châtelain. Ne prends pas ma voix pour de la dureté, elle est tendue depuis trop longtemps. Et sois prudent : ne t’attarde pas là-bas après la cloche du soir.",
+        "reponse": "On a profané la crypte du sanctuaire, et le médaillon de sainte Odile a disparu. Les gens du village n’osent plus compter les nuits depuis. Des traces de boue et de cire sortent de Villambrune, c’est tout ce que je sais. Je n’en sais pas plus, et je n’ai pas envie d’en dire davantage. Interroge les gens, ils en savent peut-être davantage que moi. Rapporte-le-moi, et tu ne repartiras pas les mains vides : vingt pièces d’or, et la gratitude de Villambrune avec. Mot de châtelain. Ne prends pas ma voix pour de la dureté, elle est tendue depuis trop longtemps.",
         "effets": [
           {
             "quete": {
@@ -65,6 +65,65 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "sire-bertrand-volets-clos",
+        "mots": [
+          "cloche",
+          "volets",
+          "règle",
+          "soir"
+        ],
+        "question": "Pourquoi tout le village ferme-t-il ses volets dès la cloche ?",
+        "reponse": "Parce que je l’ai ordonné, voyageur, et un ordre signé n’a pas à être expliqué. Mon père fermait déjà les portes à la cloche, et je n’ai rien changé à cette règle. Les gens disent qu’ils ont peur. Ils ont raison, mais je ne le dis pas à voix haute. Un village qui a peur reste chez lui, c’est tout ce que je demande. Ne cherche pas la raison derrière chaque volet. Elle est simple : on ne sort plus après la cloche. Et toi, tu comptes rentrer avant qu’elle sonne, ou tu comptes encore les pas dans la rue ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "sire-bertrand-offrandes-carrefour",
+        "mots": [
+          "offrandes",
+          "carrefour",
+          "fleurs",
+          "fanées"
+        ],
+        "question": "Qui dépose ces offrandes fanées au carrefour ?",
+        "reponse": "Personne que je puisse nommer, et c’est bien ce qui m’inquiète. Je les ai fait enlever deux fois. Elles reviennent, plus nombreuses, toujours fanées, comme si l’on voulait me rappeler quelque chose. Je ne réponds pas aux rumeurs. Mon rôle est de protéger les portes, pas de juger les fleurs. Pourtant, chaque matin, je compte les pétales depuis ma fenêtre, et je n’aime pas le compte. Si quelqu’un te demande de les porter ailleurs, dis-lui de venir me voir d’abord. Mot de châtelain. Et dis-moi, toi qui marches seul : as-tu vu quelqu’un s’arrêter là-bas, à l’aube ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "sire-bertrand-les-ruines",
+        "mots": [
+          "ruines",
+          "chapelle",
+          "brûlée",
+          "traces"
+        ],
+        "question": "Que savez-vous des ruines de la vieille chapelle ?",
+        "reponse": "Pas grand-chose que je veuille répéter. Une chapelle brûlée, il y a bien longtemps, bien avant mon père. Son toit est tombé, et la nef reste ouverte au ciel. Plus personne n’y monte, et je n’ai jamais exigé qu’on y aille. Les traces de boue et de cire mènent là-haut, c’est tout ce que j’ai vu, et je n’en fais pas un sujet de conversation. Ne prends pas mes silences pour de la peur, mais pour de la prudence. Mot de châtelain. Dis-moi seulement si tu as suivi ces traces jusqu’au bout, et à quelle heure tu es redescendu.",
+        "effets": [
+          {
+            "debloquer": "ruines-de-la-chapelle-brulee"
+          }
+        ],
+        "unique": false,
+        "revele": [
+          "f-traces-route-de-charrette"
+        ]
+      },
+      {
+        "id": "sire-bertrand-la-garde",
+        "mots": [
+          "garde",
+          "crypte",
+          "hommes",
+          "responsabilité"
+        ],
+        "question": "Qui devait garder la crypte du sanctuaire cette nuit-là ?",
+        "reponse": "La garde ? Ce n’est pas ton affaire, voyageur, et je ne vais pas le répéter. La crypte avait une porte, et cette porte était fermée à clé, ce qui suffisait, à mon avis, dans un village qui ferme ses volets à la cloche. Les hommes étaient peu nombreux, les temps sont durs, l’or manque partout. Vingt pièces d’or pour le médaillon : c’est de la reconnaissance, rien de plus, et la reconnaissance se paie. Ne lis rien d’autre dans ma bourse. Je ne réponds pas aux questions sur mes gens ni sur mes choix. Mot de châtelain. Dis-moi plutôt ce que tu as vu sur cette porte, en arrivant là-bas.",
+        "effets": [],
+        "unique": false
       }
     ],
     "age": "la cinquantaine, le teint gris de qui dort mal"
@@ -105,6 +164,65 @@
         "effets": [],
         "unique": false,
         "question": "Votre cou vous fait mal ?"
+      },
+      {
+        "id": "jorane-la-menestriere-volets-du-soir",
+        "mots": [
+          "volets",
+          "chanson",
+          "soir",
+          "cloche"
+        ],
+        "question": "Pourquoi chantez-vous encore quand les volets sont clos ?",
+        "reponse": "Parce qu’une salle qui chante n’a pas le temps d’écouter le reste ! Tu as vu leurs visages à la cloche ? Des gens qui comptent leurs souliers avant de partir. Enfin… je les garde assis avec un refrain. Le luth me tient les mains occupées, et ma voix fait le guet. Pas de regrets, ça me tient. Mais ne crois pas que je sois une héroïne, mon cœur, je tremble entre deux couplets. Si je me tais, ils se mettent à écouter les bruits de dehors, et là, personne ne dort plus. Alors, tu restes jusqu’à la dernière note, ou tu t’en vas dès que la cloche sonne ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "jorane-la-menestriere-ce-qu-on-entend",
+        "mots": [
+          "nuit",
+          "grattements",
+          "entendre",
+          "chambre"
+        ],
+        "question": "Qu’entendez-vous la nuit, quand vous ne chantez plus ?",
+        "reponse": "Ah, ça, je préfère ne pas le dire tout haut. Quand la salle se vide, je monte dans ma chambre et je fredonne pour couvrir le reste. Il y a des grattements, petits, patients, comme une lime sur du bois. Je les compte en notes, enfin… ça m’occupe la tête. Un, deux, trois… puis le silence, puis ça recommence. Les gens du Sanglier disent que ça vient de là-haut, de la vieille chapelle brûlée. Moi, je n’en sais rien, et je ne veux pas y croire. Tu entends ça aussi, ou c’est seulement ma voix fatiguée qui invente ?",
+        "effets": [
+          {
+            "debloquer": "ruines-de-la-chapelle-brulee"
+          }
+        ],
+        "unique": false,
+        "revele": [
+          "f-grattements-vers-la-chapelle"
+        ]
+      },
+      {
+        "id": "jorane-la-menestriere-avant-la-route",
+        "mots": [
+          "passé",
+          "troupe",
+          "route",
+          "ballade"
+        ],
+        "question": "D’où venez-vous, avant d’arriver à Villambrune ?",
+        "reponse": "Oh, d’une troupe de foire, de routes de traverse, de granges où l’on payait en pain et en fromage. J’ai appris la ballade du chevalier perdu auprès d’un vieux qui la chantait faux, et je la chante mieux que lui maintenant. Enfin… ça ne fait pas une histoire. Il y a des soirs où je rêve de ces chemins, et d’autres où je préfère ne plus savoir où je suis. Tu veux la vraie histoire, ou celle qu’on chante aux tables ? Choisis vite, avant que je change d’avis.",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "jorane-la-menestriere-maitre-foulques",
+        "mots": [
+          "Foulques",
+          "salaire",
+          "auberge",
+          "dettes"
+        ],
+        "question": "Maître Foulques vous paie-t-il bien pour chanter ?",
+        "reponse": "Il me paie en pain, en vin coupé et en grands mots, ce qui est pire que rien. Il dit que la maison tient bon. Je n’y crois qu’à moitié, et lui non plus, je le vois à la façon dont il essuie ses verres. Il a besoin de moi, c’est une évidence que je n’oublie pas. Mais je ne vais pas le plaindre, il trouverait ça insultant. Quand il crie que tout est magnifique, je sais qu’il a peur de l’hiver. Moi, j’ai peur de perdre ma voix avant qu’il ne perde son auberge. Tu sais ce que vaut une voix abîmée, toi ? Pose-toi la question avant de payer une chanson.",
+        "effets": [],
+        "unique": false
       }
     ],
     "age": "une trentaine d’années, le regard plus vieux"
@@ -145,6 +263,65 @@
         "effets": [],
         "unique": false,
         "question": "Que vendez-vous ?"
+      },
+      {
+        "id": "maitre-foulques-les-affaires",
+        "mots": [
+          "affaires",
+          "tablées",
+          "silence",
+          "dettes"
+        ],
+        "question": "Comment vont les affaires ?",
+        "reponse": "Excellentes, mon ami, excellentes ! Regarde, les tablées sont pleines, les pichets tournent, ça te va ? Mais vois donc ce qui se passe quand tu franchis la porte : les conversations s’arrêtent net, et les regards se baissent sur les chopes. Ce n’est pas la clientèle qui me fatigue, c’est la curiosité. Je gonfle le ton, je crie que la maison est au meilleur de sa forme, et je serre les mains plus fort qu’il ne faut. Mes dettes ? Oh, des broutilles, un nuage sur un beau ciel. Tu veux t’asseoir, ou tu préfères que je te parle de ce que les gens disent en partant ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "maitre-foulques-la-cloche",
+        "mots": [
+          "cloche",
+          "abri",
+          "coût",
+          "gains"
+        ],
+        "question": "Comment gagnez-vous votre vie quand la cloche condamne les rues ?",
+        "reponse": "Je vends avant la cloche, et je ferme après. Les dernières demi-heures sont sacrées, tu vois, c’est là que les hommes achètent leur courage au verre. Après, la maison devient un abri, et un abri n’a pas de prix, mais il a un coût, ça te va ? Les volets clos, la salle s’adoucit, les voix baissent, et les gens restent parce qu’ils n’ont nulle part où aller. Je fais payer le repos, c’est honnête. Je ne demande pas aux gens pourquoi ils ont peur. Je leur demande seulement de payer d’avance. Tu veux un conseil de commerçant ? Rentre avant la nuit, et garde ta bourse près de toi.",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "maitre-foulques-les-nouvelles",
+        "mots": [
+          "nouvelles",
+          "route",
+          "marchands",
+          "Bois"
+        ],
+        "question": "Que dit-on sur la route, ces temps-ci ?",
+        "reponse": "Les nouvelles ? Je les donne volontiers, ça te va ? Mais un bavardage contre un bavardage, c’est la règle de la maison. On dit que les marchands ont cessé de passer sur la route, et qu’un brigand rôde du côté du Bois. Ce sont des bruits, rien de plus, mais ça fait vendre la bière. Moi, je les écoute comme on écoute la pluie : sans y croire, et sans sortir. Alors, d’où viens-tu, toi ? Raconte-moi ta route, et je te raconte la mienne. Les gens qui arrivent ont toujours quelque chose de neuf à dire, et ça, ça te va ?",
+        "effets": [
+          {
+            "debloquer": "bois-des-chenes-pales"
+          }
+        ],
+        "unique": false,
+        "revele": [
+          "f-herbes-au-bois-des-chenes-pales"
+        ]
+      },
+      {
+        "id": "maitre-foulques-jorane",
+        "mots": [
+          "Jorane",
+          "chanteuse",
+          "dettes",
+          "clients"
+        ],
+        "question": "Que pensez-vous de la ménestrière qui chante ici ?",
+        "reponse": "Jorane ? Elle attire la moitié de mes clients et me coûte la moitié de mes soucis. Elle a de la fierté, cette femme, plus que la moitié du village réunie. Je lui paie ce que je peux, en vin et en pain, et je dis que c’est généreux. Ce n’est pas faux, ça, mais ce n’est pas vrai non plus. Elle le sait, je le sais. Un jour, je lui devrai une vraie somme, et je ferai une grande démonstration de sourire pour lui dire merci. Mais si elle se tait, je perds le plus beau de mes soirs. Ça te va ? Tu vois ce que je veux dire, toi qui écoutes.",
+        "effets": [],
+        "unique": false
       }
     ],
     "boutique": {
@@ -203,6 +380,65 @@
         "effets": [],
         "unique": false,
         "question": "Pouvez-vous soigner mes blessures ?"
+      },
+      {
+        "id": "frere-anselme-la-crypte",
+        "mots": [
+          "crypte",
+          "profanation",
+          "respect",
+          "sainte"
+        ],
+        "question": "Qui a pu profaner la crypte de sainte Odile ?",
+        "reponse": "Je ne sais pas, et je le dis doucement, car je voudrais savoir autant que toi. La crypte est un lieu de repos, on y entre les pieds propres. Quelqu’un y est entré sans ce respect : il a laissé de la boue et de la cire sur les dalles, et emporté ce qui nous était précieux. En sortant, les traces s’en vont par la vieille route de charrette, vers la chapelle brûlée, là où l’on ne monte plus. Je prie pour celui qui l’a fait, car la Lumière ne ferme sa porte à personne. Mais toi, mon enfant, qu’as-tu vu sur les dalles, si tu y es descendu ?",
+        "effets": [
+          {
+            "debloquer": "ruines-de-la-chapelle-brulee"
+          }
+        ],
+        "unique": false,
+        "revele": [
+          "f-traces-route-de-charrette"
+        ]
+      },
+      {
+        "id": "frere-anselme-cloche-et-priere",
+        "mots": [
+          "cloche",
+          "prière",
+          "portes",
+          "nuit"
+        ],
+        "question": "Pourquoi priez-vous à la cloche du soir ?",
+        "reponse": "Parce que la cloche appelle les gens à rentrer, et que ceux qui rentrent doivent trouver une lampe allumée. Je garde la porte du sanctuaire ouverte après la cloche, pour ceux qui sont blessés et ne peuvent pas rentrer chez eux. Il y a des nuits où je veille seul, et je prie à voix basse, et la prière m’apaise. Les bancs restent vides après la cloche, et ce calme me pèse plus que les cris. Il faut que la maison reste accueillante, même si personne ne vient. Je ne te demande rien en échange, mais réponds-moi : as-tu croisé des visages inquiets sur le chemin du sanctuaire, ce soir ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "frere-anselme-la-lumiere",
+        "mots": [
+          "Lumière",
+          "chemin",
+          "foi",
+          "souvenir"
+        ],
+        "question": "Que veut dire votre « Que la Lumière garde ton chemin » ?",
+        "reponse": "Ce n’est pas une formule, mon enfant, c’est une prière que je n’ai jamais cessé de dire. Quand j’étais jeune, mon maître me l’a soufflée à l’oreille, un matin de gel, en me tendant une lampe. Je n’ai jamais oublié la chaleur de cette flamme dans mes mains engourdies. Doucement, j’ai compris que la Lumière ne trace pas les chemins à notre place. Elle nous donne seulement de quoi voir le pas suivant. C’est austère, je le sais, et pas très consolant. Mais c’est ce qui me tient debout chaque matin. Et toi, quel chemin suis-tu, et qui t’a donné ta première lampe ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "frere-anselme-le-sire",
+        "mots": [
+          "Bertrand",
+          "comptes",
+          "sanctuaire",
+          "doutes"
+        ],
+        "question": "Que pensez-vous du Sire Bertrand ?",
+        "reponse": "Il paie le sanctuaire et ne vient jamais s’y agenouiller. Il règle ses dettes en or, et son or nous aide, je ne le nie pas. Mais je ne lui demande rien. Il sait ce qu’il doit à cette crypte, et je le sais aussi, sans que nous ayons besoin de le dire. Il a une façon de se taire qui m’inquiète plus que ses colères. Je garde mes doutes pour moi, comme je garde ma clé. Ce n’est pas du mépris, c’est de la patience. Tu pourrais le lui demander toi-même, mais tu n’obtiendras pas grand-chose sans qu’il se referme. Qu’en as-tu pensé, en le rencontrant ?",
+        "effets": [],
+        "unique": false
       }
     ],
     "services": [
@@ -260,9 +496,15 @@
               "id": "herbes-pour-la-soupe",
               "statut": "active"
             }
+          },
+          {
+            "debloquer": "bois-des-chenes-pales"
           }
         ],
-        "unique": true
+        "unique": true,
+        "revele": [
+          "f-herbes-au-bois-des-chenes-pales"
+        ]
       },
       {
         "id": "rendre-herbes-pour-la-soupe",
@@ -286,6 +528,65 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "vieille-mahaut-la-cloche",
+        "mots": [
+          "cloche",
+          "rentrer",
+          "mère",
+          "soir"
+        ],
+        "question": "Pourquoi tout le monde rentre-t-il à la cloche ?",
+        "reponse": "Pardi, parce qu’on rentre toujours à la cloche, tu vois. Ma mère le disait déjà, et sa mère avant elle, et ça ne change pas. Tiens, à propos, les pois sont sortis trop tôt cette année, c’est la faute du temps. Les gens ont la tête ailleurs, ils rentrent sans rien regarder. Moi je laisse toujours un pot de tisane sur le feu, pour ceux qui arrivent en retard, et le pot refroidit sans que personne n’y touche. Ça me fait de la peine, petit, mais je ne dis rien. Et toi, tu rentres avant la cloche, ou tu traînes encore dans les ruelles avec ton air de rien ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "vieille-mahaut-les-grattements",
+        "mots": [
+          "grattements",
+          "nuit",
+          "souris",
+          "toit"
+        ],
+        "question": "Entendez-vous des bruits sous vos toits, la nuit ?",
+        "reponse": "Gratter ? Bien sûr que j’entends gratter, petit, j’ai les oreilles d’une chouette ! Mais pardi, c’est les souris, ou les vieux clous qui travaillent. Je l’ai déjà dit à tout le monde, tu vois. Tu me demandes la même chose qu’hier, et je te réponds pareil. Je comprends tout avant qu’on ait fini de parler, moi, c’est mon don. Pourtant, ce soir, je ferme mes volets un peu plus fort, et je prie un peu plus fort aussi. Ne va pas croire que j’ai peur, hein. J’ai simplement un bon sens qui me dit de dormir ailleurs. Et toi, tu dors bien, petit, ou les bruits te tiennent éveillé ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "vieille-mahaut-le-carrefour",
+        "mots": [
+          "offrandes",
+          "carrefour",
+          "fleurs",
+          "pourrir"
+        ],
+        "question": "Qui apporte les fleurs au carrefour ?",
+        "reponse": "Des gens qui ont peur, comme moi, et qui veulent que les choses restent sages. On dépose une fleur, une graine, un petit pain, et l’on repart sans se retourner. Mais les fleurs pourrissent vite quand on n’y croit plus, tu vois, et les gens n’y croient plus. Moi, j’y vais le matin, pour ramasser ce qui reste. C’est une vieille habitude. Pardi, je ne veux pas de malheur pour le village, je veux juste que les gens dorment. Ne laisse pas les fleurs à terre, petit, c’est une insulte à ceux qui les ont posées. Et toi, tu as vu quelqu’un déposer quelque chose là-bas, ces derniers jours ?",
+        "effets": [],
+        "unique": false
+      },
+      {
+        "id": "vieille-mahaut-les-chenes-pales",
+        "mots": [
+          "Bois",
+          "chemins",
+          "chênes",
+          "fil"
+        ],
+        "question": "Comment ne pas se perdre dans le Bois des Chênes Pâles ?",
+        "reponse": "Ah, tu veux savoir, petit ? Les chênes là-bas ont des troncs si clairs qu’on les prend pour des fantômes. Les sentiers s’effacent, tu vois, et l’on tourne en rond sans s’en apercevoir. Prends un fil, un ruban, n’importe quoi, et laisse-le derrière toi. Les herbes de velours poussent là où le sol est mou, mais ne les cueille pas à la hâte, elles ne se laissent plus faire. Moi, je connais le chemin depuis cinquante ans, pardi, et même moi je me perds parfois. Dis-moi, tu sais au moins où est le nord, quand les arbres se ressemblent tous ?",
+        "effets": [
+          {
+            "debloquer": "bois-des-chenes-pales"
+          }
+        ],
+        "unique": false,
+        "revele": [
+          "f-herbes-au-bois-des-chenes-pales"
+        ]
       }
     ],
     "age": "plus de soixante-dix ans, toute petite et voûtée"
