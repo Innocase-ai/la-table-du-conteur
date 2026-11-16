@@ -4,13 +4,13 @@
 // Imports relatifs (et non `@crpg/regles`) : ce fichier est chargé par la configuration de Vite.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { ecrireMondeForge, ErreurForge, type ResultatImport } from '../../outils/monde/importer-forge';
+import { ecrireMondeForge, ErreurForge, messagePourClaude, type ResultatImport } from '../../outils/monde/importer-forge';
 import { idMondeValide } from './chemins';
 
 export const TAILLE_MAX_FORGE = 2_000_000;
 
 export type ResultatForge =
-  | { ok: true; id: string; dossier: string; rapport: string; avertissements: string[]; aEcrire: number; stats: Record<string, number> }
+  | { ok: true; id: string; dossier: string; rapport: string; avertissements: string[]; aEcrire: number; stats: Record<string, number>; brief: string; message: string }
   | { ok: false; statut: 400 | 409 | 413 | 500; erreur: string };
 
 export interface DepotsForge {
@@ -54,7 +54,7 @@ export function importerForge(racineMondes: string, demande: { id?: unknown; for
       armes: idsDuDossier(join(depots.srd, 'armes')),
       ...(niveaux ? { niveaux } : {}),
     });
-    return { ok: true, id, dossier, rapport, avertissements: resultat.avertissements, aEcrire: resultat.aEcrire, stats: stats(resultat) };
+    return { ok: true, id, dossier, rapport, avertissements: resultat.avertissements, aEcrire: resultat.aEcrire, stats: stats(resultat), brief: `packages/mondes/${id}/BRIEF-ECRITURE.md`, message: messagePourClaude(id) };
   } catch (e) {
     const message = (e as Error).message;
     // Une conception illisible ou vide est une erreur de la demande ; le reste (disque, modèles introuvables) est une panne.

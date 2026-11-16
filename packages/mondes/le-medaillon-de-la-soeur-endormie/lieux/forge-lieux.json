@@ -1,0 +1,153 @@
+[
+  {
+    "id": "le-medaillon-de-la-soeur-endormie",
+    "nom": "Le Médaillon de la Sœur Endormie",
+    "type": "region",
+    "resume": "Un royaume morcelé où les vieilles chapelles veillent sur des routes infestées.",
+    "description": "Un royaume morcelé où les vieilles chapelles veillent sur des routes infestées. Les villageois laissent des offrandes aux carrefours et ne sortent plus après la cloche du soir.",
+    "visuel": "Des collines brumeuses et des vallons de landes grises, où les clochers des chapelles pointent au-dessus des haies. Des routes de terre serpentent entre les champs, et au loin de fines fumées montent des toits. Un ciel bas, couleur d’ardoise, pèse sur tout le paysage.",
+    "liens": [],
+    "rencontres": [],
+    "services": [],
+    "repos": "dangereux"
+  },
+  {
+    "id": "villambrune",
+    "nom": "Villambrune",
+    "type": "village",
+    "parent": "le-medaillon-de-la-soeur-endormie",
+    "resume": "Un village de l’Aéranne aux toits serrés, où l’on rentre avant la cloche du soir. Les offrandes fanées du carrefour rappellent que les routes ne sont plus sûres.",
+    "description": "Village de la région, regroupé autour d’une place et de son sanctuaire. On y trouve la demeure du Sire Bertrand, châtelain des lieux, l’auberge du Sanglier Doré, le sanctuaire de sainte Odile et la chaumière de la vieille Mahaut. Deux chemins en sortent : l’un vers le Bois des Chênes Pâles, l’autre vers les ruines de la chapelle brûlée. On n’y repose pas tranquillement hors de l’auberge.",
+    "visuel": "Des toits de chaume gris et des pignons de pierre serrés autour d’une place boueuse. Une lumière basse, ocre et froide, glisse entre les murs, et une brume de fin de journée monte des fossés. Quelques fenêtres brillent derrière des volets clos, et un linge sombre pend à l’une d’elles.",
+    "liens": [
+      {
+        "vers": "bois-des-chenes-pales",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "Le sentier quitte les dernières maisons et s’enfonce vers les chênes aux troncs pâles. Les haies se resserrent, et la lumière baisse plus vite qu’ailleurs.",
+        "retour": "Le sentier remonte du bois vers les premiers toits de Villambrune. Les chênes pâles s’effacent derrière vous, et les volets du village se referment au loin."
+      },
+      {
+        "vers": "ruines-de-la-chapelle-brulee",
+        "type": "chemin",
+        "heures": 1,
+        "sens": "double",
+        "description": "La route de charrette grimpe vers les murs noircis de la vieille chapelle, qu’on aperçoit depuis la place. Les ornières sont envahies d’herbes.",
+        "retour": "La route redescend vers les toits de Villambrune, et les murs calcinés disparaissent derrière les arbres. La cloche du sanctuaire sonne un peu trop tôt."
+      }
+    ],
+    "rencontres": [],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "La route s’est vidée à mesure que le jour baissait, et les premiers toits de Villambrune se dressent devant vous, serrés comme des gens qui se parlent à voix basse. Le chemin de terre devient une rue pavée de galets, glissante sous la bruine. Une odeur de cire brûlée et de fumée de bois flotte, et, par-dessus, une senteur plus douce que vous ne parvenez pas à situer. Une cloche tinte au loin, un seul coup, puis plus rien. Au carrefour, une pile d’offrandes fanées s’affaisse sous la pluie : pain sec, rubans, une poignée de pièces que personne n’a osé reprendre. Les volets se referment à votre passage, un à un, sans bruit. Le puits de la place est couvert d’une planche clouée, et les chiens, couchés devant les portes, ne lèvent même pas la tête. Vous sentez tous ces regards posés sur votre dos. Qui, dans ce village, a encore envie de parler à un étranger après la cloche du soir ?",
+    "accroche": "Les toits de Villambrune gardent leurs volets clos dès la cloche du soir. Une lenteur mauvaise s’est glissée sous eux, dit-on, et la nuit, on entend gratter."
+  },
+  {
+    "id": "demeure-du-sire-bertrand",
+    "nom": "Demeure du Sire Bertrand",
+    "type": "batiment",
+    "parent": "villambrune",
+    "resume": "La maison du châtelain de Villambrune, carrée et austère, où l’on vient porter ses plaintes. On y entre en quémandant, et l’on en ressort rarement avec des réponses.",
+    "description": "Demeure de Sire Bertrand, châtelain de Villambrune, qui y reçoit les plaintes du village. Le vestibule et la salle de réception ne contiennent ni service ni coffre, et le repos n’y est pas sûr. Le Sire peut confier des affaires aux voyageurs qui se présentent.",
+    "visuel": "Une maison de pierre grise, haute et étroite, aux fenêtres sombres. Une lampe à huile brille derrière les vitres, les murs sont humides, et le lierre noirci grimpe jusqu’au toit ; des pavés luisent à ses pieds.",
+    "liens": [],
+    "rencontres": [],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "Le portail grince à peine, comme si l’on craignait de réveiller quelqu’un. La cour est pavée de dalles luisantes, et l’eau s’égoutte encore des toits. Une lampe à huile fume dans une niche de pierre, et son odeur de suif lourd se mêle à celle du lierre mort qui grimpe jusqu’aux fenêtres. Vos pas résonnent plus fort que vous ne le voudriez. Dans le vestibule, une tapisserie aux couleurs passées pend de travers, et personne ne semble s’en soucier. Sur une dalle, une traînée de terre fraîche a été frottée à la hâte, sans tout enlever. Le silence est épais, presque poli, comme celui d’une maison qui attend des nouvelles. Quelque part au fond de la salle, une porte grince, puis se referme doucement. Quelqu’un vous a vu entrer, et cette présence n’a pas l’air pressée de vous accueillir. Combien d’heures faudra-t-il pour reprendre votre souffle dans cette maison, et que ferez-vous de cette terre sous vos semelles ?",
+    "accroche": "La plus haute maison de Villambrune, aux fenêtres toujours éclairées. Les villageois y entrent la tête basse et en ressortent sans un mot."
+  },
+  {
+    "id": "le-sanglier-dore",
+    "nom": "Le Sanglier Doré",
+    "type": "batiment",
+    "parent": "villambrune",
+    "resume": "L’auberge de Villambrune, chaude et bruyante, où l’on mange, boit et dort à l’abri des volets clos. C’est le seul endroit du village où la vie semble encore tenir.",
+    "description": "Auberge et taverne tenue par Maître Foulques, tavernier-mercier, qui y vend aussi une potion de soin et une épée de fer. On y trouve un gîte, des repas et du vin, et l’endroit est sûr pour se reposer. La ménestrière Jorane y chante le soir, malgré sa blessure au cou.",
+    "visuel": "Une salle basse aux poutres noircies par la fumée, éclairée par un feu ample et des chandelles de suif. Tables de chêne usées, pichets de grès, et vin rouge qui tache la lumière dorée sur les murs de pierre blanche.",
+    "liens": [],
+    "rencontres": [],
+    "services": [
+      "auberge",
+      "repas"
+    ],
+    "repos": "sur",
+    "arrivee": "La porte du Sanglier Doré cède dans un grincement de gonds, et une bouffée de chaleur vous saisit au visage. L’air sent le vin, l’ail grillé et la fumée de bois, un mélange si familier qu’il en est presque rassurant. Les poutres sont noircies par des années de chandelles, et les bancs de chêne craquent sous le poids des tablées. Des conversations s’arrêtent à votre entrée, puis reprennent, plus bas. Au fond, une voix claire chante une ballade sans y mettre tout son cœur ; une écharpe serrée autour du cou ne parvient pas à cacher la raideur de ses gestes. Derrière le comptoir, un homme rond essuie un pichet avec un soin excessif. Un bol de soupe fumante est posé devant une chaise vide, que personne n’a encore osé occuper. Dehors, la cloche du soir commence à sonner. Combien de ces tablées seront encore là demain matin, quand la route sera redevenue sûre ?",
+    "accroche": "L’enseigne d’un sanglier doré grince au-dessus de la rue, et de la lumière filtre encore par les fenêtres. Des rires et une ballade s’échappent de la porte entrouverte."
+  },
+  {
+    "id": "sanctuaire-de-sainte-odile",
+    "nom": "Sanctuaire de sainte Odile",
+    "type": "batiment",
+    "parent": "villambrune",
+    "resume": "Petit sanctuaire de pierre dédié à sainte Odile, où l’on vient chercher un peu de calme et des soins. Les vitraux y laissent passer une lumière bleue et ocre.",
+    "description": "Lieu de culte de sainte Odile, où le Frère Anselme soigne blessures et fièvres. On y trouve un autel et une nef ouverte aux visiteurs ; le repos n’y est pas sûr, malgré la sérénité du lieu.",
+    "visuel": "Nef étroite de pierre claire, voûtes basses et piliers couverts de cire coulée. Des vitraux bleus et ocre laissent tomber leur lumière sur un dallage usé, et l’air sent l’encens froid et la sauge.",
+    "liens": [],
+    "rencontres": [],
+    "services": [
+      "soins"
+    ],
+    "repos": "dangereux",
+    "arrivee": "La porte du sanctuaire est basse, et il faut se pencher pour entrer. À l’intérieur, le silence a la texture de la pierre froide. Une odeur d’encens éteint se mêle à celle de la cire fondue, et plus fort encore, à celle de la sauge séchée. Les vitraux bleus et ocre dessinent sur le dallage des taches qui bougent lentement, comme si elles respiraient. Quelques bougies brûlent au pied d’un autel, leurs flammes tremblantes sans qu’aucun courant d’air ne les touche. Un bruit de pas feutré s’élève de l’ombre d’une colonne, puis une voix posée, qui n’a rien de pressé, vous salue, en gardant les mains cachées dans les manches de sa robe. Une marche descend derrière l’autel, condamnée par une planche et une bande de cire fraîche. Le silence, ici, paraît attentif, comme s’il écoutait vos pas. Que venez-vous réclamer ici, et à quel prix ?",
+    "accroche": "Le clocher de sainte Odile domine les toits, et l’on dit qu’on y soigne sans rien demander. Sa porte basse reste ouverte jusqu’à la nuit."
+  },
+  {
+    "id": "chaumiere-de-la-vieille-mahaut",
+    "nom": "Chaumière de la vieille Mahaut",
+    "type": "batiment",
+    "parent": "villambrune",
+    "resume": "La chaumière d’une herboriste bavarde, au bout d’une ruelle de Villambrune. Des plantes séchées pendent aux poutres, et la vieille femme ne tarit pas de récits sur la forêt.",
+    "description": "Maison de la vieille Mahaut, herboriste bavarde qui ne peut plus gagner le Bois des Chênes Pâles. Une armoire de bois y contient une brioche d’avoine. Le repos n’y est pas sûr.",
+    "visuel": "Chaumière basse au toit de paille grise et aux murs de torchis ocre. Bouquets de plantes séchées suspendus aux poutres, lumière terne d’un feu de bois vert, odeur de thym et de terre.",
+    "liens": [],
+    "rencontres": [],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "La porte de la chaumière s’ouvre avant que vous ayez frappé, et une odeur de thym, de miel et de terre humide vous accueille. Le feu de bois vert fume davantage qu’il ne chauffe, et la pièce reste tiède. Des bouquets de plantes séchées pendent aux poutres, et certains craquent doucement quand on passe dessous. Une vieille femme, petite et voûtée, se tient près de l’âtre et vous parle déjà, comme si vous l’aviez rejointe en pleine conversation. Elle s’interrompt pour fixer le coin de la pièce, où une armoire de bois sombre se tient entrouverte. De l’armoire monte une chaleur douce, étrangement régulière, bien que le feu soit à l’autre bout. Elle ne détourne pas les yeux de cette ouverture, et vous ne savez plus si elle vous parle ou si elle attend autre chose. Combien de temps resterez-vous à écouter ses plaintes avant de prendre le chemin du bois ?",
+    "accroche": "Une fumée de thym s’échappe d’une chaumière au bout de la rue, et une voix âgée appelle déjà les passants. Des herbes séchées pendent à la fenêtre."
+  },
+  {
+    "id": "ruines-de-la-chapelle-brulee",
+    "nom": "Ruines de la chapelle brûlée",
+    "type": "ruine",
+    "parent": "le-medaillon-de-la-soeur-endormie",
+    "resume": "Une chapelle calcinée au bout d’une route de charrette, dont la nef ouverte au ciel n’a plus de toit. Plus personne n’y monte depuis longtemps.",
+    "description": "Vieille chapelle incendiée dont la nef sert de tombeau : un cercueil profané y est posé, et une goule des cryptes monte la garde autour. Le médaillon de sainte Odile est gardé dans le cercueil. Le repos y est dangereux.",
+    "visuel": "Murs de pierre noire et cendre grise, nef sans toit où la lumière tombe en colonnes pâles. Mousse blanche sur les pierres, dalles soulevées, terre sombre et humide, et flaques argentées où la pluie tremble.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "r-goule-des-cryptes",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "Le chemin s’arrête net devant les ruines, comme s’il n’osait pas aller plus loin. Les murs noircis dressent leurs moignons vers un ciel gris, et les pierres de la nef sont couvertes d’une mousse blanche qui luit sous le crachin. Une odeur de cendre froide et de terre retournée monte du seuil, plus forte qu’elle ne devrait l’être après tant d’années. Les corbeaux se taisent à votre approche, ce qui est pire que leurs cris. Dans la nef, des dalles ont été soulevées et laissées de côté, empilées avec soin, comme par quelqu’un qui range. Un son régulier, presque doux, vient du fond, pareil à un ongle qui gratte un bois épais. Il s’arrête, puis reprend, un peu plus lent. Pas un souffle, et pourtant une cendre fine glisse le long du seuil, vers l’intérieur. Un goût de cendre se dépose sur votre langue, et la pluie froide vous traverse le col. Continuerez-vous, alors que le soleil décline déjà ?",
+    "accroche": "Les murs noircis de la chapelle se dressent au-dessus des champs, visibles depuis la place. Les anciens disent qu’on n’y entre plus après la cloche."
+  },
+  {
+    "id": "bois-des-chenes-pales",
+    "nom": "Bois des Chênes Pâles",
+    "type": "lieu-dit",
+    "parent": "le-medaillon-de-la-soeur-endormie",
+    "resume": "Forêt de chênes aux troncs très clairs, à la lisière sauvage du royaume. Les sentiers s’y perdent vite, et l’on y cueille, dit-on, des plantes que l’on ne trouve nulle part ailleurs.",
+    "description": "Bois de chênes pâles où rôde un bandit estropié, qui garde près de lui un sac contenant des pièces. Des herbes de velours poussent sur le sol, à l’abri des regards. Le repos y est dangereux.",
+    "visuel": "Chênes aux troncs presque blancs, feuilles pâles et pendantes sous une lumière verdâtre et filtrée. Sous-bois de fougères et de mousse grise, sol mouillé, et taches de rosée argentée sur les feuilles basses.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "r-bandit-estropie",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "Le sentier se perd entre les troncs, et les chênes se resserrent autour de vous. Leur écorce est si pâle qu’on dirait des os polis sous la lumière verdâtre. Le silence est total : pas un oiseau, pas une branche qui craque. Seuls vos pas, étouffés par la mousse, ont un son, et plus loin, un tintement de métal mal rangé. Une odeur de feuilles pourries et de terre mouillée, mais aussi quelque chose de plus doux, une senteur de plantes qu’on aurait cueillies récemment. Au pied d’un tronc, de longues tiges fines ondulent sans vent, comme si elles vous observaient. Une silhouette voûtée se détache entre deux arbres ; elle se tient penchée, un bras serré contre le ventre, la jambe raide. Elle ne se retourne pas tout de suite, comme si elle attendait que vous parliez. Que faites-vous de ce silence, et de cette silhouette qui semble garder quelque chose ?",
+    "accroche": "Des chênes aux troncs pâles bordent la route, et les herbes y poussent plus douces qu’ailleurs. Personne ne s’y aventure seul, dit-on."
+  }
+]

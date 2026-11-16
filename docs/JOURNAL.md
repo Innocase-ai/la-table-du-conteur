@@ -2382,3 +2382,24 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
 - **Skill `creer-monde`** : paragraphe sur la Forge pour les épisodes courts. `docs/FORGE.md` réécrit.
 - **Leçon** : une dernière étape « retourner voir le donneur » rend le lieu d'arrivée ambigu à l'export ; l'arrivée est le dernier lieu d'étape qui n'est pas celui du donneur.
 - **Reste** : indices visibles de richesse, énigmes et conversation comme issue de quête, retour des textes écrits par les agents dans le monde, port de la Forge en React si elle devient l'outil principal. Rien n'est commité ; rien n'est dépensé.
+
+## 16/11/2026 (suite 3) — Forge : brief d'écriture et bouton « Copier le message pour Claude »
+
+- **Demande** : « un bouton qui t'envoie tout le scénario avec tous les fichiers dont tu as besoin ». Un bouton ne peut pas écrire dans la conversation de Claude : il prépare donc tout dans le monde et met une ligne dans le presse-papier.
+- **Livré** : « Créer le monde » écrit `BRIEF-ECRITURE.md` (contexte, règles d'écriture, méthode, inventaire des 37 champs « À écrire » de l'exemple avec leur chemin) ; la modale a un bouton **Copier le message pour Claude** ; `pnpm monde importer-forge` affiche le même message. `inventaireAEcrire`, `briefEcriture`, `messagePourClaude`, `REGLES_ECRITURE` dans `outils/monde/importer-forge.ts` ; 3 tests (contenu du brief, message sur une ligne, longueurs identiques dans le brief et dans la consigne de la Forge). 88 tests verts, typage propre ; essayé dans le navigateur, monde d'essai supprimé.
+- **Reste** : retour automatique des textes écrits par une IA hors dépôt (Export IA) dans le monde. Rien n'est commité ; rien n'est dépensé.
+
+## 16/11/2026 (suite 4) — Forge : le bouton « Nouveau » ne faisait rien
+
+- **Cause** : le bouton appelait `confirm()` (boîte native du navigateur). Dans le navigateur intégré du bureau, les boîtes natives sont bloquées : `confirm()` répond « non » sans rien afficher, donc le clic semblait ne rien faire (même sort pour « Exemple », « Voir un monde » et la suppression d'un élément).
+- **Correction** : `demander()` (`apps/atelier/public/forge/index.html`), une confirmation intégrée à la page (Annuler / action, Échap pour annuler), utilisée partout à la place de `confirm()` et `alert()`. Essayée avec de vrais clics : Exemple, Nouveau, suppression, Échap. **Leçon : pas de `confirm()`/`alert()`/`prompt()` natifs dans les pages de l'atelier.**
+
+## 16/11/2026 (suite 5) — Premier épisode écrit depuis la Forge : « Le Médaillon de la Sœur Endormie »
+
+- **Demande** : l'utilisateur colle le message de la Forge (« Écris les textes du monde … ») : le monde brouillon issu de l'exemple de la Forge doit être écrit par des agents Haiku, relu, validé groupe par groupe.
+- **Fait** : `packages/mondes/le-medaillon-de-la-soeur-endormie/` (renommé depuis `le-medaillon-de-la-s-ur-endormie` : le « œ » était perdu par la fonction de nom d'identifiant, corrigée dans la Forge et le convertisseur, avec test). Écrits : 8 lieux (arrivée 130-170 mots, accroche, résumé, description, visuel, textes des 2 chemins), 5 PNJ (espèce, apparence, personnalité, salutations amicales, sujets de 75-115 mots, soins de Frère Anselme sans chiffre), 2 rencontres et la négociation du bandit, les étapes de quête, la fin (titre, épilogue, conséquences), le trésor du bois, le ton et la direction visuelle. Tout **validé par l'utilisateur le 16/11/2026** (lieux, PNJ, puis rencontres, quêtes, fin, trésor, ton et direction ; brioche gardée en double). Aucun « À écrire » ne reste (hors `conception.forge.json`, copie d'origine).
+- **Méthode suivie** : un agent Haiku par groupe, relecture par Claude, audit de cohérence par un second agent Haiku (le sous-agent `auditeur-coherence-histoire` n'est pas chargé dans cette session : un agent généraliste Haiku en lecture seule l'a remplacé), vérification de chaque anomalie, corrections renvoyées à l'agent d'écriture (Claude n'a réécrit aucun texte lui-même, hormis des suppressions de mots). Résultat : `pnpm monde valider` 0 erreur, `pnpm monde parcours` atteint la fin en 22 pas.
+- **Décisions de l'utilisateur** : la pièce d'argent de Mahaut est retirée (récompenses en pièces d'or entières seulement) ; PNJ validés.
+- **Réglages mécaniques** : épée de fer = épée longue du SRD (15 po, comme le prix du catalogue) ; potion de soin = effets de la potion de guérison du catalogue au prix de 8 po ; brioche = nourriture. Les soins de Frère Anselme remettent le groupe au maximum (comportement du moteur), pas « 2d6 ».
+- **Défaut du convertisseur corrigé** : le brief d'écriture ne listait pas les champs de `monde.json` (style visuel, palette, ton) ni les « à définir » ; il part maintenant du monde.json écrit (55 champs sur l'exemple au lieu de 37).
+- **Reste** : images des 8 lieux, voix, scènes, estimation (`pnpm monde estimer`) : coûts à annoncer et à valider avant toute dépense. Rien n'est commité.

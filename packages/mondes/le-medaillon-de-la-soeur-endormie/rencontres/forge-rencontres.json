@@ -1,0 +1,50 @@
+[
+  {
+    "id": "r-goule-des-cryptes",
+    "nom": "Goule des cryptes",
+    "type": "combat",
+    "lieu": "ruines-de-la-chapelle-brulee",
+    "difficulte": "moderee",
+    "intro": "La goule se redresse d’un bond au fond de la nef, près du cercueil dont le couvercle pend de travers. Elle est grande et maigre, la peau tendue sur des os qui craquent à chaque mouvement. Elle ne grogne pas. Elle vous regarde, puis jette un coup d’œil au cercueil, comme pour s’assurer qu’il est toujours là. Quand l’un de vous avance, elle recule d’un pas, hésitante. Puis elle se jette sur le plus proche avec une rapidité qui surprend. Elle défend ce qui repose dans le cercueil, pas sa propre vie.",
+    "monstres": [
+      {
+        "profil": "goule",
+        "nombre": 1,
+        "nom": "Goule des cryptes"
+      }
+    ],
+    "alternatives": [],
+    "butin": {},
+    "effetsVictoire": []
+  },
+  {
+    "id": "r-bandit-estropie",
+    "nom": "Bandit estropié",
+    "type": "combat",
+    "lieu": "bois-des-chenes-pales",
+    "difficulte": "faible",
+    "intro": "Le bandit ne se retourne qu’au dernier moment, une main pressée contre les côtes. Il boite en reculant vers un sac de toile noué près d’un tronc, et se place entre lui et vous sans un mot. Il tient une dague à la lame écaillée, mais ne la lève pas. Il regarde vos mains, vos armes, puis le chemin derrière vous, comme s’il comptait votre nombre. D’une voix sèche, il lâche : « Passez votre chemin. » Si vous insistez, il frappe la terre du pied, sans conviction, puis attaque en boitant, avec la rage lasse de quelqu’un qui n’a plus grand-chose à perdre.",
+    "monstres": [
+      {
+        "profil": "bandit",
+        "nombre": 1,
+        "nom": "Bandit estropié"
+      }
+    ],
+    "alternatives": [
+      {
+        "id": "negocier",
+        "nom": "Négocier",
+        "jet": {
+          "competence": "persuasion",
+          "dd": 12
+        },
+        "resume": "Il reste un long moment immobile, la dague pendue le long de la cuisse, puis lâche un soupir rauque : « Vous n’êtes pas du village. Passez, et ne revenez pas. » Il se décale de deux pas, lentement, sans vous quitter des yeux, et laisse le sentier libre. Quand vous passez à côté de lui, il détourne le regard, comme honteux d’avoir cédé.",
+        "effets": [],
+        "echecResout": false
+      }
+    ],
+    "butin": {},
+    "effetsVictoire": []
+  }
+]

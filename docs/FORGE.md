@@ -62,3 +62,9 @@ Espèce, sexe, apparence et personnalité des PNJ (valeurs provisoires `humain`,
 ## Code
 
 `outils/monde/exporter-forge.ts` (monde vers Forge), `outils/monde/importer-forge.ts` (conversion pure `convertirForge`, écriture `ecrireMondeForge`), commande dans `outils/monde/cli.ts`, tests `importer-forge.test.ts` et `exporter-forge.test.ts` ; côté atelier `apps/atelier/forge.ts` (+ `forge.test.ts`), routes dans `serveur-mondes.ts` ; exemple de conception `outils/monde/fixtures/villambrune.forge.json` (l'histoire d'exemple de la Forge).
+
+## Faire écrire les textes par Claude : le brief
+
+« Créer le monde » écrit aussi **`BRIEF-ECRITURE.md`** dans le monde : le contexte, les règles d'écriture (`REGLES_ECRITURE` dans `importer-forge.ts`, mêmes longueurs que la consigne de l'Export IA : un test les compare), la méthode (agents Haiku, relecture, audit de cohérence, validation de l'utilisateur à chaque groupe, aucun commit sans accord), les points laissés à la main, et **l'inventaire de chaque champ « À écrire »** avec la fiche, le fichier et le chemin du champ (`sujets[1].reponse`).
+
+Après la création, la modale propose **📋 Copier le message pour Claude** : une ligne à coller dans la conversation avec Claude (session du dépôt) ; il lit le brief et lance les agents. Un bouton ne peut pas écrire lui-même dans cette conversation : c'est la seule étape manuelle. La commande `pnpm monde importer-forge` affiche le même message.

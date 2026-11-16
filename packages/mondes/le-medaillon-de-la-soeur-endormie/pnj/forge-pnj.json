@@ -1,0 +1,293 @@
+[
+  {
+    "id": "sire-bertrand",
+    "nom": "Sire Bertrand",
+    "espece": "humain",
+    "sexe": "M",
+    "role": "Châtelain de Villambrune",
+    "lieu": "demeure-du-sire-bertrand",
+    "apparence": "Un homme grand mais voûté par l’inquiétude, le visage rasé de près et les joues creusées. Il porte une cotte de drap sombre brodée d’un blason effacé, et une chaîne d’argent usée pend sur sa poitrine. Il tord sans cesse un gant de cuir entre ses doigts.",
+    "personnalite": {
+      "traits": [
+        "orgueilleux",
+        "pressé",
+        "généreux à contrecœur"
+      ],
+      "voix": "Phrases courtes et sèches, comme on signe un acte. Il termine souvent par « mot de châtelain » et serre sa chaîne entre deux doigts quand il hésite.",
+      "desir": "Récupérer le médaillon de sainte Odile avant que le village ne perde confiance. Il veut des gens fiables, pas des curieux, et qu’on lui rende compte sans détour.",
+      "peur": "Que Villambrune apprenne qu’il a laissé la crypte sans garde.",
+      "defaut": "Il préfère taire ses négligences plutôt que de les reconnaître, et il règle en or ce qu’il ne sait pas dire de vive voix."
+    },
+    "salutations": {
+      "neutre": "Voyageur… on dit que tu cherches fortune ?",
+      "amical": "Tu as su te conduire sous mon toit, voyageur. Je m’en souviendrai, et Villambrune aussi."
+    },
+    "sujets": [
+      {
+        "id": "q-le-medaillon-vole",
+        "mots": [
+          "médaillon",
+          "crypte",
+          "sainte Odile",
+          "récompense"
+        ],
+        "question": "Que savez-vous du médaillon volé ?",
+        "reponse": "On a profané la crypte du sanctuaire, et le médaillon de sainte Odile a disparu. Les gens du village n’osent plus compter les nuits depuis. Les traces de boue et de cire mènent vers les ruines de la vieille chapelle, là où plus personne ne veut aller. Rapporte-le-moi, et tu ne repartiras pas les mains vides : vingt pièces d’or, et la gratitude de Villambrune avec. Mot de châtelain. Ne prends pas ma voix pour de la dureté, elle est tendue depuis trop longtemps. Et sois prudent : ne t’attarde pas là-bas après la cloche du soir.",
+        "effets": [
+          {
+            "quete": {
+              "id": "le-medaillon-vole",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rendre-le-medaillon-vole",
+        "mots": [
+          "médaillon",
+          "rapporté",
+          "récompense",
+          "crypte"
+        ],
+        "question": "Nous avons rapporté le médaillon.",
+        "condition": {
+          "etape": {
+            "quete": "le-medaillon-vole",
+            "etape": "trouver-medaillon-de-sainte-odile"
+          }
+        },
+        "reponse": "Donne-le-moi. Ne bouge pas… Ah. Il est froid, et pourtant ma main tremble en le prenant. Je pensais ne plus jamais le revoir. Tu as fait ce que la garde n’aurait jamais osé, et la gratitude de Villambrune t’accompagnera. Les vingt pièces d’or sont là, comme promis. Mais dis-moi sans détour : as-tu vu quelque chose dans la chapelle qui n’était pas à sa place ? Ne réponds pas tout de suite. Gardons un instant de silence pour sainte Odile, et pour ceux qui dorment encore sous nos pieds.",
+        "effets": [
+          {
+            "flag": "le-medaillon-vole-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "age": "la cinquantaine, le teint gris de qui dort mal"
+  },
+  {
+    "id": "jorane-la-menestriere",
+    "nom": "Jorane la ménestrière",
+    "espece": "elfe",
+    "sexe": "F",
+    "role": "Ménestrière au cou blessé",
+    "lieu": "le-sanglier-dore",
+    "apparence": "Une elfe mince aux cheveux châtains tressés à la hâte et aux yeux gris-vert cernés. Une écharpe de laine sombre serre son cou, et elle tient un luth au vernis écaillé. Sa robe de voyage est propre mais raccommodée, et ses doigts reviennent toujours vers sa gorge.",
+    "personnalite": {
+      "traits": [
+        "gouailleuse",
+        "fière",
+        "fragile"
+      ],
+      "voix": "Elle parle en riant à moitié et coupe ses phrases d’une note de luth ou d’un silence. Elle dit « enfin… » dès qu’elle se sent menacée.",
+      "desir": "Retrouver sa voix pleine et quitter le village sans perdre la face. Elle veut qu’on l’aide sans qu’on la plaigne.",
+      "peur": "Ne plus pouvoir chanter, et que la blessure lui vole ce qui lui reste.",
+      "defaut": "Elle minimise sa douleur devant son public et cache à quel point elle a eu peur."
+    },
+    "salutations": {
+      "neutre": "♪ La ballade du chevalier perdu… tu la connais ? ♪",
+      "amical": "Tu es un bon compagnon, toi. La ballade est à toi, ce soir."
+    },
+    "sujets": [
+      {
+        "id": "jorane-la-menestriere-r1",
+        "mots": [
+          "cou",
+          "blessure",
+          "frère Anselme",
+          "soigner"
+        ],
+        "reponse": "Oh, ça… Ne regarde pas trop, c’est plus laid que douloureux. Aïe, quand je tourne la tête, tout mon cou proteste. Frère Anselme saurait l’apaiser : il pose les mains avec une lenteur qui endort presque, et la douleur recule comme une marée. Mais je ne peux pas quitter cette taverne maintenant. Les gens ont besoin d’une chanson pour rester assis, et les verres se vident, les tablées s’endorment. Enfin… Si tu passes au sanctuaire, dis-lui que Jorane tient bon. Reste à ta table, et je te chante la ballade la plus triste du monde, celle qui fait taire toute la salle.",
+        "effets": [],
+        "unique": false,
+        "question": "Votre cou vous fait mal ?"
+      }
+    ],
+    "age": "une trentaine d’années, le regard plus vieux"
+  },
+  {
+    "id": "maitre-foulques",
+    "nom": "Maître Foulques",
+    "espece": "halfelin",
+    "sexe": "M",
+    "role": "Tavernier-mercier",
+    "lieu": "le-sanglier-dore",
+    "apparence": "Petit et très rond, un halfelin aux cheveux bruns frisés grisonnant sur les tempes. Un tablier de lin taché de vin et une veste de velours trop serrée aux coudes. Il essuie sans cesse un pichet d’étain, et une lourde clé pend à sa ceinture.",
+    "personnalite": {
+      "traits": [
+        "bavard",
+        "intéressé",
+        "généreux en secret"
+      ],
+      "voix": "Il parle vite, en gonflant le ton quand il vend, et finit ses phrases par « ça te va ? ». Quand il doute, il se met à essuyer quelque chose.",
+      "desir": "Vendre son stock avant que la route ne redevienne dangereuse et que les clients fuient. Il veut qu’on achète, mais qu’on ne réclame pas de crédit.",
+      "peur": "Que le Sanglier Doré se vide pour de bon, et que ses créanciers le trouvent seul.",
+      "defaut": "Il surestime toujours ce qu’il vend et cache ses dettes derrière de grands sourires."
+    },
+    "salutations": {
+      "neutre": "Tiens donc, un nouveau visage ! Entre donc : ça sent le vin et l’ail, mais c’est chaleureux.",
+      "amical": "Ah, un vrai compagnon de route ! Tu as la main franche, et la maison s’en souvient."
+    },
+    "sujets": [
+      {
+        "id": "maitre-foulques-r1",
+        "mots": [
+          "potion",
+          "épée",
+          "vendre",
+          "boutique"
+        ],
+        "reponse": "Une potion ? Une lame ? J’ai ce qu’il faut, et même un peu trop. Pour le corps, une potion de soin, huit pièces d’or : le flacon rouge est épais, et il sent la cerise et le fer. Pour les mains plus rudes, une épée de fer, quinze pièces d’or : la poignée est encore lisse, la lame n’a pas un éclat. Ça te va ? Je ne fais pas crédit, mais la conversation est gratuite, et ça, c’est déjà beaucoup. Les nouvelles de la route, je les donne aussi, si tu me dis d’où tu viens ?",
+        "effets": [],
+        "unique": false,
+        "question": "Que vendez-vous ?"
+      }
+    ],
+    "boutique": {
+      "stock": [
+        {
+          "objet": "potion-de-soin",
+          "quantite": 1,
+          "prix": 8
+        },
+        {
+          "objet": "epee-de-fer",
+          "quantite": 1,
+          "prix": 15
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": []
+    },
+    "age": "la cinquantaine bien tassée, les joues rouges de feu de cheminée"
+  },
+  {
+    "id": "frere-anselme",
+    "nom": "Frère Anselme",
+    "espece": "humain",
+    "sexe": "M",
+    "role": "Prêtre-soigneur du sanctuaire de sainte Odile",
+    "lieu": "sanctuaire-de-sainte-odile",
+    "apparence": "Un homme maigre et calme, le crâne rasé en couronne et les yeux pâles. Il porte une robe de bure grise à la capuche rabattue, et ses mains restent cachées dans les manches. Un chapelet de bois noir est enroulé autour de son poignet.",
+    "personnalite": {
+      "traits": [
+        "calme",
+        "scrupuleux",
+        "un peu austère"
+      ],
+      "voix": "Il parle lentement, sans jamais hausser le ton, et laisse de longs silences entre ses phrases. Il dit « doucement » chaque fois qu’une chose l’inquiète.",
+      "desir": "Que le sanctuaire reste ouvert aux blessés et que la crypte soit respectée. Il veut qu’on lui dise la vérité sur ce qu’on a fait.",
+      "peur": "Qu’on lui apporte une blessure qu’il ne saura pas refermer.",
+      "defaut": "Il juge vite et se tait trop longtemps. Il garde pour lui ses doutes sur la marche condamnée derrière l’autel."
+    },
+    "salutations": {
+      "neutre": "Que la Lumière garde ton chemin.",
+      "amical": "Tu as bien agi sous ce toit. Que la Lumière garde ton chemin, et que ton cœur reste aussi droit."
+    },
+    "sujets": [
+      {
+        "id": "frere-anselme-r1",
+        "mots": [
+          "blessures",
+          "soigner",
+          "soins",
+          "guérir",
+          "douleur"
+        ],
+        "reponse": "Approche, et ne crains pas ma robe, elle a vu bien des larmes. Si tes blessures chantent, je sais les apaiser : je pose mes mains sur la plaie, je prie à voix basse, et la chair consent doucement à se refermer. Tu sentiras d’abord une chaleur, puis l’odeur de la sauge, puis plus rien que le calme. Je ne demande rien en échange, car la Lumière ne vend pas ses dons. Il me faut seulement ta patience et le temps de respirer. D’où viennent ces blessures, mon enfant ? Dis-le-moi, et je ne le répéterai à personne.",
+        "effets": [],
+        "unique": false,
+        "question": "Pouvez-vous soigner mes blessures ?"
+      }
+    ],
+    "services": [
+      {
+        "id": "soins",
+        "nom": "Les soins du Frère Anselme",
+        "resume": "Frère Anselme pose les mains sur la blessure et prie à voix basse jusqu’à ce que la douleur recule et que la chair se referme. Son soin est gratuit, mais il demande au blessé de rester assis et calme un instant.",
+        "prix": 0,
+        "effets": [
+          {
+            "narration": "Une chaleur douce gagne la plaie, une odeur de sauge monte dans l’air, et les bords de la blessure se rapprochent lentement sous ses doigts. Le blessé respire enfin plus librement, et Frère Anselme retire ses mains en murmurant une bénédiction."
+          }
+        ]
+      }
+    ],
+    "age": "une soixantaine d’années, le dos encore droit"
+  },
+  {
+    "id": "vieille-mahaut",
+    "nom": "Vieille Mahaut",
+    "espece": "humain",
+    "sexe": "F",
+    "role": "Herboriste bavarde",
+    "lieu": "chaumiere-de-la-vieille-mahaut",
+    "apparence": "Une vieille femme petite et voûtée, les cheveux blancs ramassés sous un foulard de lin brun. Ses mains noueuses sentent la terre et le thym, et elle porte une robe de laine raccommodée sous un tablier couvert de poches. Un panier d’osier pend à son coude.",
+    "personnalite": {
+      "traits": [
+        "bavarde",
+        "têtue",
+        "attachante"
+      ],
+      "voix": "Elle parle en rafale, change de sujet au milieu d’une phrase et ponctue tout d’un « pardi » ou d’un « tu vois, petit ».",
+      "desir": "Que ses herbes reviennent du bois et que la soupe du soir ne manque pas au village. Elle veut de l’aide sans qu’on en fasse toute une histoire.",
+      "peur": "Ne plus pouvoir aller au bois, et devenir une vieille inutile dont on se passe.",
+      "defaut": "Elle se plaint pour qu’on la plaigne et oublie qu’elle a déjà raconté la même chose. Elle prétend avoir tout compris avant même qu’on ait fini de parler."
+    },
+    "salutations": {
+      "neutre": "Mes vieilles jambes ne montent plus au bois…",
+      "amical": "Mes vieilles jambes te remercient, petit ! Tu as bon cœur, et la soupe le sent aussi."
+    },
+    "sujets": [
+      {
+        "id": "q-herbes-pour-la-soupe",
+        "mots": [
+          "herbes",
+          "soupe",
+          "bois",
+          "bandit"
+        ],
+        "question": "Que se passe-t-il avec les herbes de velours ?",
+        "reponse": "Ah, tu veux savoir ? Les herbes de velours poussent au Bois des Chênes Pâles, là-bas où le sol est mou et l’ombre épaisse. Depuis quelque temps, un bandit y rôde, un vieux brigand estropié qui n’aime pas les vieilles femmes. Et les herbes, ah, elles ne se laissent plus prendre : dès qu’on tend la main, elles se referment comme si elles avaient peur. Sans elles, la soupe du soir n’a plus de goût, tu vois le résultat. Si tu me rapportes des herbes fraîches, pardi, je te donne une brioche d’avoine toute chaude. Marché conclu, petit ?",
+        "effets": [
+          {
+            "quete": {
+              "id": "herbes-pour-la-soupe",
+              "statut": "active"
+            }
+          }
+        ],
+        "unique": true
+      },
+      {
+        "id": "rendre-herbes-pour-la-soupe",
+        "mots": [
+          "herbes",
+          "rapporté",
+          "soupe",
+          "brioche"
+        ],
+        "question": "J’ai rapporté les herbes de velours.",
+        "condition": {
+          "etape": {
+            "quete": "herbes-pour-la-soupe",
+            "etape": "trouver-herbes-de-velours"
+          }
+        },
+        "reponse": "Ah ! Mes herbes ! Donne-les-moi, que je les sente… Ça, c’est du velours pur, mon petit, elles sont encore fraîches. Tu as donc tenu tête au bandit, ou à ce qui rôdait là-bas ? Je ne veux pas le savoir, ça me donnerait des frissons. Tiens, la brioche d’avoine, encore toute chaude du four, et prends-la sans faire d’histoires. La soupe de ce soir sera bonne, pour la première fois depuis des jours. Merci, mon cœur, tu as bon fond.",
+        "effets": [
+          {
+            "flag": "herbes-pour-la-soupe-rendue"
+          }
+        ],
+        "unique": true
+      }
+    ],
+    "age": "plus de soixante-dix ans, toute petite et voûtée"
+  }
+]

@@ -494,6 +494,27 @@ function toast(msg){
   clearTimeout(_toastT); _toastT = setTimeout(() => t.classList.remove("show"), 2600);
 }
 
+/* Confirmation et message DANS la page : les boîtes natives confirm() et alert() sont bloquées dans certains navigateurs intégrés
+   (elles répondent « non » sans rien afficher : le bouton semblait ne rien faire). Renvoie une promesse : true si on confirme. */
+function demander(message, oui, titre){
+  return new Promise(resolve => {
+    const fond = document.createElement("div");
+    fond.style.cssText = "position:fixed;inset:0;background:rgba(20,14,6,.6);z-index:500;display:flex;align-items:center;justify-content:center;";
+    fond.innerHTML = `<div class="modal" style="width:min(460px,92vw);" role="dialog" aria-modal="true">
+      <div class="mhead"><span>${esc(titre || "Confirmer")}</span></div>
+      <div class="mbody"><p style="line-height:1.5;margin-bottom:14px;">${esc(message)}</p>
+        <div class="eactions" style="margin-top:0;justify-content:flex-end;">
+          ${oui ? `<button class="btn" data-r="non">Annuler</button><button class="btn danger" data-r="oui">${esc(oui)}</button>` : `<button class="btn" data-r="oui">OK</button>`}
+        </div></div></div>`;
+    const fin = r => { document.removeEventListener("keydown", touche, true); fond.remove(); resolve(r); };
+    const touche = e => { if(e.key === "Escape"){ e.preventDefault(); fin(false); } };
+    fond.addEventListener("click", e => { const b = e.target.closest("button[data-r]"); if(b) fin(b.dataset.r === "oui"); else if(e.target === fond && oui) fin(false); });
+    document.addEventListener("keydown", touche, true);
+    document.body.appendChild(fond);
+    const b = fond.querySelector('button[data-r="non"]') || fond.querySelector("button");
+    if(b) b.focus();
+  });
+}
 /* ================= ICÔNES SVG (dessinées main) ================= */
 const I = {};
 
@@ -1016,7 +1037,7 @@ function loadDraft(){
 }
 function serialize(){ return JSON.stringify({version:1, monde:state.monde, histoire:state.histoire}, null, 2); }
 function slug(s){
-  return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  return String(s || "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae").replace(/ß/g, "ss").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "histoire";
 }
 function download(name, text, mime){
@@ -1618,22 +1639,22 @@ function openCtx(x, y, header, items){
 }
 document.addEventListener("pointerdown", e => { if(e.target && e.target.closest && !e.target.closest("#ctxmenu")) closeCtx(); }, true);
 
-function removeAssetConfirm(a){
+async function removeAssetConfirm(a){
   flushTextHistory();
   const n = descendants(a.id).length;
   const msg = n ? `Supprimer « ${a.nom} » et tout son contenu (${n + 1} éléments) ?` : `Supprimer « ${a.nom} » ?`;
-  if(confirm(msg)){
+  if(await demander(msg, "Supprimer")){
     deleteAsset(a.id);
     renderSheet(); renderEditor(); renderChecks(); renderLinksTab(); autosave(); commitHistory();
     toast("« " + a.nom + " » supprimé.");
   }
 }
-function removeSelectionConfirm(){
+async function removeSelectionConfirm(){
   flushTextHistory();
   const ids = state.selIds.filter(id => getA(id));
   if(!ids.length) return;
   if(ids.length === 1){ removeAssetConfirm(getA(ids[0])); return; }
-  if(confirm(`Supprimer les ${ids.length} éléments sélectionnés (et leur contenu éventuel) ?`)){
+  if(await demander(`Supprimer les ${ids.length} éléments sélectionnés (et leur contenu éventuel) ?`, "Supprimer")){
     const count = deleteAssets(ids);
     renderSheet(); renderEditor(); renderChecks(); renderLinksTab(); autosave(); commitHistory();
     toast(`${count} élément(s) supprimé(s).`);
@@ -2393,18 +2414,18 @@ $("#fileinput").addEventListener("change", e => {
       if(!d.histoire || !Array.isArray(d.histoire.assets)) throw new Error("format");
       adopt(d); renderAll(); fitView();
       toast("Histoire chargée : " + (state.histoire.titre || "sans titre"));
-    }catch(err){ alert("Fichier invalide : ce n’est pas une histoire de la Forge."); }
+    }catch(err){ demander("Fichier invalide : ce n’est pas une histoire de la Forge.", null, "Ouvrir"); }
     $("#fileinput").value = "";
   };
   rd.readAsText(f);
 });
-$("#btnNew").addEventListener("click", () => {
-  if(!confirm("Commencer une nouvelle histoire vierge ? (L’histoire actuelle sera remplacée — pense à la sauvegarder.)")) return;
+$("#btnNew").addEventListener("click", async () => {
+  if(!await demander("Commencer une nouvelle histoire vierge ? L’histoire actuelle sera remplacée : pense à la sauvegarder (💾 Sauver).", "Nouvelle histoire", "Nouveau")) return;
   adopt(emptyState()); renderAll(); fitView();
   toast("Nouvelle histoire vierge. Bonne création !");
 });
-$("#btnSample").addEventListener("click", () => {
-  if(!confirm("Recharger l’histoire d’exemple ? (L’histoire actuelle sera remplacée.)")) return;
+$("#btnSample").addEventListener("click", async () => {
+  if(!await demander("Recharger l’histoire d’exemple ? L’histoire actuelle sera remplacée : pense à la sauvegarder (💾 Sauver).", "Recharger l’exemple", "Exemple")) return;
   adopt(makeSample()); renderAll(); fitView();
   toast("Histoire d’exemple rechargée.");
 });
@@ -2793,6 +2814,21 @@ function openCreateWorldModal(){
       const st = corps.stats || {};
       out.innerHTML = `<div class="ehint" style="background:#f4f8ec;border-color:#9fbf7e;">✔ Monde <b>${esc(corps.id)}</b> créé : ${st.lieux || 0} lieux, ${st.pnj || 0} PNJ, ${st.objets || 0} objets, ${st.tresors || 0} trésors, ${st.rencontres || 0} rencontres, ${st.quetes || 0} quêtes.<br><b>${corps.aEcrire}</b> champ(s) « À écrire ».<br><a href="/#/${encodeURIComponent(corps.id)}" target="_blank" style="color:#8a5a2b;font-weight:700;">Ouvrir dans l’atelier ↗</a> · rapport : <code>packages/mondes/${esc(corps.id)}/RAPPORT-FORGE.md</code></div>
         ${corps.avertissements.length ? `<div class="aiwarn" style="background:#fdf7e3;border-color:#e2c685;color:#5d4322;"><b>À relire :</b><ul style="margin:4px 0 0 18px;">${corps.avertissements.map(a => `<li>${esc(a)}</li>`).join("")}</ul></div>` : ""}`;
+      /* Le brief est déjà écrit dans le monde : il ne reste qu'à coller UNE ligne dans la conversation avec Claude. */
+      if(corps.message){
+        const bloc = document.createElement("div");
+        bloc.className = "ehint";
+        bloc.style.cssText = "background:#eef3fb;border-color:#9db6d8;margin-top:10px;";
+        bloc.innerHTML = `<b>Faire écrire les textes par Claude</b><br>Tout est préparé dans le monde : <code>${esc(corps.brief)}</code> (plan, règles, méthode, inventaire des ${corps.aEcrire} champs à écrire, avec leur chemin).<br>
+          <button class="btn" id="cwCopyMsg" style="margin:8px 0 6px;">📋 Copier le message pour Claude</button><br>
+          <span style="font-size:11px;">Colle-le dans ta conversation avec Claude (la session du dépôt crpg-llm) : il lit le brief et lance les agents d’écriture, puis te présente les textes pour validation.</span>
+          <div class="aipre" style="margin-top:6px;max-height:90px;">${esc(corps.message)}</div>`;
+        out.appendChild(bloc);
+        $("#cwCopyMsg").addEventListener("click", async () => {
+          const ok = await copyText(corps.message);
+          toast(ok ? "Message copié : colle-le dans la conversation avec Claude ✓" : "Copie bloquée par le navigateur — sélectionne le message ci-dessous.");
+        });
+      }
       toast("Monde brouillon « " + corps.id + " » créé.");
     }catch(err){
       const msg = err instanceof TypeError ? "Impossible de joindre l’atelier : lance « pnpm atelier » et ouvre la Forge depuis http://localhost:5180/forge/." : err.message;
@@ -2831,7 +2867,7 @@ async function viewWorld(id){
     const rep = await fetch("/api/atelier/forge-exporter/" + encodeURIComponent(id));
     const corps = await rep.json().catch(() => null);
     if(!rep.ok || !corps) throw new Error((corps && corps.erreur) || ("Erreur " + rep.status));
-    if(A().length && !confirm("Remplacer la conception actuelle (" + A().length + " éléments) par le monde « " + id + " » ? Pense à la sauvegarder d’abord (💾 Sauver).")) { out.innerHTML = ""; return; }
+    if(A().length && !await demander("Remplacer la conception actuelle (" + A().length + " éléments) par le monde « " + id + " » ? Pense à la sauvegarder d’abord (💾 Sauver).", "Remplacer", "Voir un monde")) { out.innerHTML = ""; return; }
     adopt(corps.forge); renderAll(); fitView();
     closeModal();
     toast("Monde « " + id + " » chargé en lecture seule : " + A().length + " éléments. " + (corps.notes && corps.notes.length ? corps.notes.join(" ") : ""));

@@ -1,0 +1,126 @@
+[
+  {
+    "id": "le-medaillon-vole",
+    "nom": "Le médaillon volé",
+    "type": "principale",
+    "donneur": "sire-bertrand",
+    "lieu": "demeure-du-sire-bertrand",
+    "resume": "On a profané la crypte du sanctuaire et dérobé le médaillon de sainte Odile. Sire Bertrand promet 20 pièces d’or à qui le rapportera. Les traces mènent aux ruines de la vieille chapelle, où une goule veille sur le cercueil profané.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "aller-ruines-de-la-chapelle-brulee",
+    "etapes": [
+      {
+        "id": "aller-ruines-de-la-chapelle-brulee",
+        "texte": "Suivez les traces jusqu’aux ruines de la chapelle brûlée.",
+        "completion": {
+          "lieu": "ruines-de-la-chapelle-brulee"
+        },
+        "lieu": "ruines-de-la-chapelle-brulee",
+        "suivantes": [
+          "vaincre-goule-des-cryptes"
+        ]
+      },
+      {
+        "id": "vaincre-goule-des-cryptes",
+        "texte": "Affrontez la goule des cryptes, qui veille le cercueil profané dans les ruines.",
+        "completion": {
+          "rencontre": {
+            "id": "r-goule-des-cryptes",
+            "issue": "victoire"
+          }
+        },
+        "lieu": "ruines-de-la-chapelle-brulee",
+        "suivantes": [
+          "trouver-medaillon-de-sainte-odile"
+        ]
+      },
+      {
+        "id": "trouver-medaillon-de-sainte-odile",
+        "texte": "Cherchez le médaillon de sainte Odile dans les ruines de la chapelle brûlée.",
+        "completion": {
+          "objet": "medaillon-de-sainte-odile"
+        },
+        "lieu": "ruines-de-la-chapelle-brulee",
+        "suivantes": [
+          "retour"
+        ]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez le médaillon à Sire Bertrand, dans sa demeure de Villambrune.",
+        "completion": {
+          "flag": "le-medaillon-vole-rendue"
+        },
+        "lieu": "demeure-du-sire-bertrand",
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 50,
+      "pieces": 20,
+      "objets": [],
+      "effets": [],
+      "annonce": "20 pièces d’or + la gratitude de Villambrune"
+    }
+  },
+  {
+    "id": "herbes-pour-la-soupe",
+    "nom": "Herbes pour la soupe",
+    "type": "secondaire",
+    "donneur": "vieille-mahaut",
+    "lieu": "chaumiere-de-la-vieille-mahaut",
+    "resume": "La vieille Mahaut ne peut plus cueillir ses herbes de velours dans le Bois des Chênes Pâles. Un bandit y rôde, et les herbes ne se laissent pas prendre.",
+    "niveau": {
+      "min": 1,
+      "max": 2
+    },
+    "debut": "aller-bois-des-chenes-pales",
+    "etapes": [
+      {
+        "id": "aller-bois-des-chenes-pales",
+        "texte": "Allez au Bois des Chênes Pâles, où un bandit rôde près des herbes que la vieille Mahaut ne peut plus cueillir.",
+        "completion": {
+          "lieu": "bois-des-chenes-pales"
+        },
+        "lieu": "bois-des-chenes-pales",
+        "suivantes": [
+          "trouver-herbes-de-velours"
+        ]
+      },
+      {
+        "id": "trouver-herbes-de-velours",
+        "texte": "Trouvez des herbes de velours dans le bois, malgré le bandit qui y rôde.",
+        "completion": {
+          "objet": "herbes-de-velours"
+        },
+        "lieu": "bois-des-chenes-pales",
+        "suivantes": [
+          "retour"
+        ]
+      },
+      {
+        "id": "retour",
+        "texte": "Rapportez les herbes à la vieille Mahaut, dans sa chaumière, pour la soupe du soir.",
+        "completion": {
+          "flag": "herbes-pour-la-soupe-rendue"
+        },
+        "lieu": "chaumiere-de-la-vieille-mahaut",
+        "suivantes": [],
+        "termine": true
+      }
+    ],
+    "recompenses": {
+      "xp": 15,
+      "pieces": 0,
+      "objets": [
+        "brioche-d-avoine"
+      ],
+      "effets": [],
+      "annonce": "Brioche d’avoine"
+    }
+  }
+]

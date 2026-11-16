@@ -79,7 +79,7 @@ export interface ResultatImport {
 // ---------------------------------------------------------------------------
 
 const sansAccents = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
-export const slug = (s: string): string => sansAccents(s.toLowerCase()).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'sans-nom';
+export const slug = (s: string): string => sansAccents(s.toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/ß/g, 'ss')).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'sans-nom';
 const texte = (v: unknown): string => (typeof v === 'string' ? v.trim() : '');
 const EC = 'À écrire';
 
@@ -685,13 +685,120 @@ export function rapportMarkdown(id: string, r: ResultatImport, source: string): 
   return l.join('\n');
 }
 
+// ---------------------------------------------------------------------------
+// Le brief d'écriture : tout ce qu'il faut à Claude (et à ses agents d'écriture) pour remplir les « À écrire »
+// ---------------------------------------------------------------------------
+
+/** Les règles d'écriture du projet. Les nombres sont les mêmes que dans la consigne de l'Export IA de la Forge (un test les compare). */
+export const REGLES_ECRITURE = [
+  'Deuxième personne du pluriel, présent, phrases courtes. Un détail sensoriel concret par texte et un détail inattendu. Pas de lore déguisé en dialogue. Finir sur une question ou un coût.',
+  'Longueurs : récit d\'arrivée d\'un lieu 130 à 170 mots ; accroche d\'une pièce vue du dehors 1 à 2 phrases ; réponse d\'un PNJ 75 à 115 mots ; mise en scène d\'une rencontre 70 à 110 mots ; journal de quête 2 à 3 phrases ; objet ou contenant 1 à 2 phrases.',
+  'Interdits dans les textes lus par le joueur : mot de mécanique (DD, jet, jauge, points de vie, niveau), secret, contenu caché. Accents français corrects.',
+  'Chaque PNJ veut quelque chose (du groupe aussi), craint quelque chose, cache quelque chose, a une voix (un tic, un rythme).',
+];
+
+export interface ChampAEcrire {
+  dossier: string;
+  /** Le fichier du monde qui contient la fiche. */
+  fichier: string;
+  id: string;
+  nom: string;
+  /** Le chemin du champ dans la fiche (`sujets[1].reponse`). */
+  champ: string;
+  /** Le texte provisoire (« À écrire : … »). */
+  consigne: string;
+}
+
+/** Tous les champs « À écrire » des fiches produites, avec la fiche et le chemin du champ. */
+export function inventaireAEcrire(dossiers: Record<string, unknown[]>, monde: Record<string, unknown>): ChampAEcrire[] {
+  const res: ChampAEcrire[] = [];
+  const parcourir = (valeur: unknown, chemin: string, base: Omit<ChampAEcrire, 'champ' | 'consigne'>) => {
+    if (typeof valeur === 'string') {
+      // « À écrire : … » partout ; « à définir » est le provisoire du squelette (ton, palette) : à remplacer aussi.
+      if (valeur.startsWith(EC) || valeur === 'à définir') res.push({ ...base, champ: chemin, consigne: valeur });
+    } else if (Array.isArray(valeur)) valeur.forEach((v, i) => parcourir(v, `${chemin}[${i}]`, base));
+    else if (valeur && typeof valeur === 'object') for (const [k, v] of Object.entries(valeur)) parcourir(v, chemin ? `${chemin}.${k}` : k, base);
+  };
+  parcourir(monde, '', { dossier: '.', fichier: 'monde.json', id: String(monde['nom'] ?? ''), nom: String(monde['nom'] ?? '') });
+  for (const [d, fiches] of Object.entries(dossiers)) {
+    for (const f of fiches as Record<string, unknown>[]) parcourir(f, '', { dossier: d, fichier: `${d}/forge-${d}.json`, id: String(f['id'] ?? ''), nom: String(f['nom'] ?? '') });
+  }
+  return res;
+}
+
+/** Le brief d'écriture (`BRIEF-ECRITURE.md`) : le contexte, les règles, la méthode et l'inventaire des champs à écrire. */
+export function briefEcriture(id: string, r: ResultatImport, mondeFinal: Record<string, unknown> = r.monde): string {
+  // `mondeFinal` : le monde.json tel qu'écrit, qui a en plus la direction artistique et le ton du squelette, à remplir.
+  const champs = inventaireAEcrire(r.dossiers, mondeFinal);
+  const parDossier = new Map<string, ChampAEcrire[]>();
+  for (const c of champs) parDossier.set(c.dossier, [...(parDossier.get(c.dossier) ?? []), c]);
+  const niveaux = r.monde['niveaux'] as { min: number; max: number };
+  const l: string[] = [
+    `# Brief d'écriture : ${String(r.monde['nom'])}`,
+    '',
+    `Monde brouillon \`${id}\` créé depuis la Forge d'Histoires. Le plan est **validé par l'utilisateur** : lieux, PNJ, objets, contenants, obstacles, quêtes, récompenses, liens. **On n'y change rien** (ni lieu, ni PNJ, ni DD, ni récompense, ni quête) sans son accord. Il reste à écrire les textes marqués « À écrire » : ${champs.length} champ(s) dans ${new Set(champs.map((c) => `${c.dossier}/${c.id}`)).size} fiche(s).`,
+    '',
+    '## Contexte',
+    '',
+    `- Niveaux du groupe : ${niveaux.min} à ${niveaux.max}. Épisode court d'une saga (docs/PRD-SAGA.md) : lieu de départ dense, 3 à 8 quêtes dont une principale.`,
+    `- Accroche : ${String(r.monde['accroche'])}`,
+    '',
+    '## À lire avant d\'écrire',
+    '',
+    `- \`packages/mondes/${id}/RAPPORT-FORGE.md\` : ce qui a été deviné, la table des références de la Forge (L1, P3…) vers les identifiants du monde.`,
+    `- \`packages/mondes/${id}/conception.forge.json\` : la conception d'origine (descriptions et répliques saisies dans la Forge : à reprendre et réécrire, pas à jeter).`,
+    `- Les fichiers du monde : \`monde.json\`, \`lieux/\`, \`pnj/\`, \`objets/\`, \`tresors/\`, \`pieges/\`, \`rencontres/\`, \`quetes/\`, \`evenements/\`, \`fins/\` (fichiers \`forge-*.json\`).`,
+    '- `docs/ECRIRE-UNE-HISTOIRE.md`, `docs/FORGE.md`, `docs/MONDES.md` (format) ; skills `creer-monde`, `decrire-lieux`, `creer-personnages`, `creer-pieges-tresors`, `creer-rencontres`.',
+    '',
+    '## Règles d\'écriture',
+    '',
+    ...REGLES_ECRITURE.map((x) => `- ${x}`),
+    '',
+    '## Méthode (décisions du projet)',
+    '',
+    '1. **Les textes sont écrits par des agents Haiku** (un par groupe de fiches : lieux, PNJ, rencontres et quêtes, objets et contenants), chacun avec ces règles, les fiches concernées et leur voisinage (lieu, PNJ du lieu, quête liée). Claude relit et arbitre ; il ne réécrit pas à leur place.',
+    '2. Chaque agent remplace **uniquement** les valeurs « À écrire : … » (le chemin du champ est donné ci-dessous) et ne touche à rien d\'autre.',
+    '3. Avant de présenter quoi que ce soit : `pnpm monde valider ' + id + '`, puis le sous-agent `auditeur-coherence-histoire` (lecture seule) pour la cohérence, et vérifier soi-même ses anomalies.',
+    '4. **L\'utilisateur valide chaque groupe de textes** (lieux, puis PNJ, puis quêtes…) avant qu\'on le considère comme gelé.',
+    `5. À la fin : \`pnpm monde verifier ${id}\`, \`pnpm monde parcours ${id}\`, aucune occurrence de « À écrire » ne doit rester (\`grep -r "À écrire" packages/mondes/${id}\`), entrée dans \`docs/JOURNAL.md\`. Ne rien commiter sans l'accord de l'utilisateur ; images, voix et appels d'API : annoncer le coût d'abord.`,
+    '',
+    '## Points laissés à la main par la Forge',
+    '',
+    ...(r.avertissements.length ? r.avertissements.map((a) => `- ${a}`) : ['- aucun']),
+    '- Espèce, sexe, apparence et personnalité des PNJ : valeurs provisoires (`humain`, `N`, `à définir`) à remplacer en même temps que leurs textes.',
+    '- `ton` de `monde.json` : `à définir`, à écrire avec l\'utilisateur.',
+    '',
+    '## Inventaire des champs à écrire',
+    '',
+  ];
+  for (const [d, cs] of parDossier) {
+    l.push(`### ${d === '.' ? 'monde.json' : d} (${cs.length})`, '');
+    let courant = '';
+    for (const c of cs) {
+      const cle = `${c.fichier}#${c.id}`;
+      if (cle !== courant) {
+        l.push(`- **${c.nom || c.id}** (\`${c.id}\`, ${c.fichier})`);
+        courant = cle;
+      }
+      l.push(`  - \`${c.champ || '(racine)'}\` : ${c.consigne}`);
+    }
+    l.push('');
+  }
+  return l.join('\n');
+}
+
+/** Le message à coller dans la conversation avec Claude : une ligne, qui pointe vers le brief. */
+export const messagePourClaude = (id: string): string =>
+  `Écris les textes du monde « ${id} » (brouillon créé depuis la Forge, plan validé) : lis packages/mondes/${id}/BRIEF-ECRITURE.md et suis-le (agents Haiku, puis relecture, validation et ma validation à chaque groupe).`;
+
 /** Crée le monde `id` (brouillon) dans `racineMondes` à partir d'une conception de la Forge ; renvoie le dossier, le résultat et le rapport. `source` : le nom du fichier d'origine (pour le rapport). */
 export function ecrireMondeForge(racineMondes: string, id: string, source: string, brut: unknown, modeles: Modeles, options: OptionsImport): { dossier: string; resultat: ResultatImport; rapport: string } {
   // On convertit AVANT de créer quoi que ce soit : une conception inutilisable ne laisse pas de dossier à moitié rempli.
   const resultat = convertirForge(brut, id, options);
   const dossier = creerSquelette(racineMondes, id, String(resultat.monde['nom']), modeles);
   const monde = JSON.parse(readFileSync(join(dossier, 'monde.json'), 'utf8')) as Record<string, unknown>;
-  writeFileSync(join(dossier, 'monde.json'), `${JSON.stringify({ ...monde, ...resultat.monde, ton: ['à définir'] }, null, 2)}\n`);
+  const mondeFinal = { ...monde, ...resultat.monde, ton: ['à définir'] };
+  writeFileSync(join(dossier, 'monde.json'), `${JSON.stringify(mondeFinal, null, 2)}\n`);
   for (const [d, fiches] of Object.entries(resultat.dossiers)) {
     if (fiches.length) writeFileSync(join(dossier, d, `forge-${d}.json`), `${JSON.stringify(fiches, null, 2)}\n`);
   }
@@ -699,5 +806,6 @@ export function ecrireMondeForge(racineMondes: string, id: string, source: strin
   writeFileSync(join(dossier, 'conception.forge.json'), `${JSON.stringify(brut, null, 2)}\n`);
   const rapport = rapportMarkdown(id, resultat, source.replaceAll('\\', '/').split('/').pop() || 'la Forge');
   writeFileSync(join(dossier, 'RAPPORT-FORGE.md'), rapport);
+  writeFileSync(join(dossier, 'BRIEF-ECRITURE.md'), `${briefEcriture(id, resultat, mondeFinal)}\n`);
   return { dossier, resultat, rapport };
 }

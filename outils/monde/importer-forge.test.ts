@@ -6,7 +6,7 @@ import { chargerDonneesSrd } from '../../packages/regles/src/donnees-node';
 import { chargerMonde } from '../../packages/regles/src/monde/chargeur';
 import { validerMonde } from '../../packages/regles/src/monde/validation';
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
-import { convertirForge, ecrireMondeForge, slug, valeurEnPo } from './importer-forge';
+import { convertirForge, ecrireMondeForge, inventaireAEcrire, messagePourClaude, REGLES_ECRITURE, slug, valeurEnPo } from './importer-forge';
 
 const FIXTURE = join(import.meta.dirname, 'fixtures/villambrune.forge.json');
 const MODELES = { dossier: join(import.meta.dirname, '../../.claude/skills/creer-monde/assets'), atlas: join(import.meta.dirname, '../../.claude/skills/decrire-lieux/assets/ATLAS.modele.md') };
@@ -22,6 +22,7 @@ describe('import d\'une conception de la Forge', () => {
     expect(valeurEnPo('—')).toBe(0);
     expect(slug('Sanctuaire de sainte Odile')).toBe('sanctuaire-de-sainte-odile');
     expect(slug('Chaumière de la vieille Mahaut')).toBe('chaumiere-de-la-vieille-mahaut');
+    expect(slug('Le Médaillon de la Sœur Endormie')).toBe('le-medaillon-de-la-soeur-endormie');
   });
 
   it('convertit l\'histoire d\'exemple : lieux imbriqués, PNJ, trésors, rencontres, quêtes', () => {
@@ -197,6 +198,54 @@ describe('import d\'une conception de la Forge', () => {
       if (charge.ok) expect(validerMonde(charge.monde, SRD).erreurs, 'erreurs').toEqual([]);
     });
     /* eslint-enable @typescript-eslint/no-explicit-any */
+  });
+
+  describe("brief d'écriture pour Claude", () => {
+    const creer = () => {
+      const racine = mkdtempSync(join(tmpdir(), 'mondes-'));
+      return ecrireMondeForge(racine, 'villambrune', FIXTURE, brut(), MODELES, { profils, armes });
+    };
+
+    it("écrit BRIEF-ECRITURE.md avec le contexte, les règles, la méthode et l'inventaire des champs, chemin compris", () => {
+      const { dossier, resultat } = creer();
+      const brief = readFileSync(join(dossier, 'BRIEF-ECRITURE.md'), 'utf8');
+      expect(brief).toContain('# Brief d\'écriture : Le Médaillon de la Sœur Endormie');
+      expect(brief).toContain('validé par l\'utilisateur');
+      expect(brief).toContain('agents Haiku');
+      expect(brief).toContain('auditeur-coherence-histoire');
+      expect(brief).toContain('RAPPORT-FORGE.md');
+      for (const r of REGLES_ECRITURE) expect(brief).toContain(r);
+      // L'inventaire : une ligne par champ, avec le chemin dans la fiche.
+      // L'inventaire part du monde.json tel qu'écrit (direction artistique et ton du squelette compris) et compte aussi les « à définir ».
+      const mondeFinal = JSON.parse(readFileSync(join(dossier, 'monde.json'), 'utf8')) as Record<string, unknown>;
+      const champs = inventaireAEcrire(resultat.dossiers, mondeFinal);
+      expect(champs.length).toBeGreaterThan(resultat.aEcrire);
+      expect(brief).toContain(`${champs.length} champ(s)`);
+      expect(brief).toMatch(/### monde\.json/);
+      expect(brief).toMatch(/`direction\.style` : À écrire/);
+      expect(brief).toMatch(/`ton\[0\]` : à définir/);
+      expect(brief).toMatch(/`direction\.palette\[1\]` : à définir/);
+      // (le village s'appelle comme le monde : la région racine a pris `villambrune`, le village `villambrune-2`)
+      expect(brief).toMatch(/- \*\*Villambrune\*\* \(`villambrune-2`, lieux\/forge-lieux\.json\)\n(?: {2}- `[^`]+` : À écrire[^\n]*\n)*? {2}- `visuel` : À écrire/);
+      expect(brief).toMatch(/`personnalite\.desir` : À écrire/);
+      expect(brief).toMatch(/`alternatives\[0\]\.resume` : À écrire/);
+      // Rien d'autre que du « À écrire » ou du « à définir » dans l'inventaire.
+      expect(champs.every((c) => c.consigne.startsWith('À écrire') || c.consigne === 'à définir')).toBe(true);
+    });
+
+    it("le message pour Claude est une ligne qui pointe vers le brief", () => {
+      expect(messagePourClaude('villambrune')).toContain('packages/mondes/villambrune/BRIEF-ECRITURE.md');
+      expect(messagePourClaude('villambrune')).not.toContain('\n');
+    });
+
+    it("les règles d'écriture du brief et la consigne de l'Export IA de la Forge disent les mêmes longueurs", () => {
+      const forge = readFileSync(join(import.meta.dirname, '../../apps/atelier/public/forge/index.html'), 'utf8');
+      const reglesTexte = REGLES_ECRITURE.join(' ');
+      for (const n of ['130 à 170 mots', '75 à 115 mots', '70 à 110 mots']) {
+        expect(reglesTexte, `brief : ${n}`).toContain(n);
+        expect(forge, `Forge : ${n}`).toContain(n);
+      }
+    });
   });
 
   it('refuse un monde existant et une conception sans lieu, sans rien laisser à moitié écrit', () => {

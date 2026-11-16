@@ -27,7 +27,7 @@ import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verificati
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { calibrer, texteCalibrage } from './calibrer';
 import { genererDocMonde } from './doc';
-import { ecrireMondeForge } from './importer-forge';
+import { ecrireMondeForge, messagePourClaude } from './importer-forge';
 import { creerSquelette } from './nouveau';
 import { afficherBilan, completudeDuMonde, verifierMonde } from './verifier';
 
@@ -86,7 +86,7 @@ if (commande === 'importer-forge') {
     const n = (d: string) => resultat.dossiers[d]?.length ?? 0;
     console.log(`Monde brouillon créé : ${dossier}\n  ${n('lieux')} lieux, ${n('pnj')} PNJ, ${n('objets')} objets, ${n('tresors')} trésors, ${n('rencontres')} rencontres, ${n('quetes')} quêtes ; ${resultat.aEcrire} champ(s) « À écrire ».`);
     for (const a of resultat.avertissements) console.log(`  avis  ${a}`);
-    console.log(`Rapport : ${join(dossier, 'RAPPORT-FORGE.md')}\nÉtape suivante : pnpm monde valider ${nomMonde}, puis remplir les « À écrire » (skill creer-monde).`);
+    console.log(`Rapport : ${join(dossier, 'RAPPORT-FORGE.md')}\nBrief d'écriture : ${join(dossier, 'BRIEF-ECRITURE.md')}\nÉtape suivante : pnpm monde valider ${nomMonde}, puis remplir les « À écrire » ; message pour Claude :\n  ${messagePourClaude(nomMonde)}`);
     process.exit(0);
   } catch (e) {
     console.error(`❌ ${(e as Error).message}`);
