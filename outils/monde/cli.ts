@@ -12,6 +12,8 @@
 //                                     le bilan complet en une commande (point V8) : validation, ce qui manque, estimation à jour, revue de secrets du canon, fins prouvées ;
 //                                     code 1 si une rubrique bloque la publication
 //   pnpm monde nouveau <id> "<Nom>"    crée le squelette d'un nouveau monde (voir .claude/skills/creer-monde)
+//   pnpm monde importer-forge <fichier.forge.json> <id-monde> [--niveaux 1-2] [--heures 1]
+//                                     convertit une conception de la Forge d'Histoires (RPGMakerStory) en NOUVEAU monde brouillon, avec RAPPORT-FORGE.md (docs/FORGE.md)
 //   pnpm monde calibrer <temps-de-jeu.json>   compare le temps de jeu mesuré (export de l'écran Options) à la durée estimée de chaque histoire
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -25,6 +27,7 @@ import { auditerEnigmes, bilanAudit } from '../../packages/regles/src/verificati
 import { explorerParcours } from '../../packages/regles/src/verification/parcours';
 import { calibrer, texteCalibrage } from './calibrer';
 import { genererDocMonde } from './doc';
+import { ecrireMondeForge } from './importer-forge';
 import { creerSquelette } from './nouveau';
 import { afficherBilan, completudeDuMonde, verifierMonde } from './verifier';
 
@@ -41,6 +44,8 @@ const optEtats = option('etats');
 const optFrontiere = option('frontiere');
 const optMs = option('ms');
 const optGraines = option('graines');
+const optNiveaux = option('niveaux');
+const optHeures = option('heures');
 const optChemin = args.includes('--chemin');
 if (optChemin) args.splice(args.indexOf('--chemin'), 1);
 const optSansParcours = args.includes('--sans-parcours');
@@ -57,6 +62,34 @@ if (commande === 'nouveau') {
     process.exit(0);
   } catch (e) {
     console.error((e as Error).message);
+    process.exit(1);
+  }
+}
+
+if (commande === 'importer-forge') {
+  // Une conception de la Forge d'Histoires (RPGMakerStory) devient un NOUVEAU monde en brouillon (docs/FORGE.md).
+  if (!cible || !nomMonde) {
+    console.error('Usage : pnpm monde importer-forge <fichier.forge.json> <id-monde> [--niveaux 1-2] [--heures 1]');
+    process.exit(1);
+  }
+  try {
+    const m = /^(\d+)-(\d+)$/.exec(optNiveaux ?? '');
+    const profils = [...chargerDonneesSrd().monstres.keys()];
+    const { dossier, resultat } = ecrireMondeForge(
+      RACINE_MONDES,
+      nomMonde,
+      cible,
+      JSON.parse(readFileSync(cible, 'utf8')),
+      { dossier: join(RACINE_MONDES, '../../.claude/skills/creer-monde/assets'), atlas: join(RACINE_MONDES, '../../.claude/skills/decrire-lieux/assets/ATLAS.modele.md') },
+      { profils, armes: [...chargerDonneesSrd().armes.keys()], ...(m ? { niveaux: { min: Number(m[1]), max: Number(m[2]) } } : {}), ...(optHeures ? { heures: Number(optHeures) } : {}) },
+    );
+    const n = (d: string) => resultat.dossiers[d]?.length ?? 0;
+    console.log(`Monde brouillon créé : ${dossier}\n  ${n('lieux')} lieux, ${n('pnj')} PNJ, ${n('objets')} objets, ${n('tresors')} trésors, ${n('rencontres')} rencontres, ${n('quetes')} quêtes ; ${resultat.aEcrire} champ(s) « À écrire ».`);
+    for (const a of resultat.avertissements) console.log(`  avis  ${a}`);
+    console.log(`Rapport : ${join(dossier, 'RAPPORT-FORGE.md')}\nÉtape suivante : pnpm monde valider ${nomMonde}, puis remplir les « À écrire » (skill creer-monde).`);
+    process.exit(0);
+  } catch (e) {
+    console.error(`❌ ${(e as Error).message}`);
     process.exit(1);
   }
 }

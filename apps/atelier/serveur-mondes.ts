@@ -5,6 +5,7 @@
 //   GET /api/atelier/monde/<id>    monde.json, ses fichiers de données (contenu JSON + empreinte), BIBLE.md et CANON-PERSONNAGES.md
 //   GET /api/atelier/image/<id>/<fichier>   une image du dossier images/ du monde (la carte à poser les lieux dessus), en lecture seule
 //   PUT /api/atelier/fiche         remplace ou ajoute UNE fiche dans un fichier (voir ecriture.ts : empreinte, schéma, écriture atomique)
+//   POST /api/atelier/forge-importer   une conception de la Forge d'Histoires (/forge/) devient un NOUVEAU monde brouillon (forge.ts)
 // Le navigateur assemble et valide lui-même (le moteur est du TypeScript pur). Les gardes de chemins sont dans chemins.ts.
 import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
@@ -13,6 +14,7 @@ import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre, resoudreImage } from './chemins';
 import { ecrireDocument, ecrireFiche, empreinteDe, type DemandeDocument, type DemandeEcriture } from './ecriture';
+import { importerForge, TAILLE_MAX_FORGE } from './forge';
 
 interface FichierLu {
   chemin: string;
@@ -123,6 +125,12 @@ export function serveurMondes(dossierMondes: string): Plugin {
         if (!origineAutorisee(req.headers.origin)) return repondre(res, 403, { erreur: 'Origine refusée : le serveur ne sert que l’atelier.' }), false;
         return true;
       };
+      // La Forge d'Histoires est une page à part (public/forge/index.html) : `/forge` et `/forge/` y mènent (sinon Vite sert l'atelier).
+      serveur.middlewares.use((req, _res, next) => {
+        const [chemin, requete = ''] = (req.url ?? '').split('?');
+        if (chemin === '/forge' || chemin === '/forge/') req.url = `/forge/index.html${requete ? `?${requete}` : ''}`;
+        next();
+      });
       serveur.middlewares.use('/api/atelier/mondes', (req, res) => {
         if (garde(req, res)) repondre(res, 200, lireMondes(racine));
       });
@@ -184,6 +192,34 @@ export function serveurMondes(dossierMondes: string): Plugin {
           : ecrireFiche(racine, { monde: d['monde'] as string, chemin: d['chemin'], mode: d['mode'] as DemandeEcriture['mode'], ...(d['id'] !== undefined ? { id: String(d['id']) } : {}), valeur: d['valeur'], empreinteAttendue: d['empreinteAttendue'] as string | null }),
       );
       routeEcriture('/api/atelier/document', (d) => ecrireDocument(racine, { monde: d['monde'] as string, nom: d['nom'] as DemandeDocument['nom'], contenu: d['contenu'], empreinteAttendue: d['empreinteAttendue'] as string | null }));
+
+      // La Forge d'Histoires (public/forge) envoie sa conception : un NOUVEAU monde brouillon est créé (jamais d'écrasement), voir forge.ts.
+      serveur.middlewares.use('/api/atelier/forge-importer', (req, res) => {
+        if (req.method !== 'POST') return repondre(res, 405, { erreur: 'POST seulement.' });
+        if (!origineAutorisee(req.headers.origin)) return repondre(res, 403, { erreur: 'Origine refusée : le serveur ne sert que l’atelier.' });
+        if (!corpsJson(req.headers['content-type'])) return repondre(res, 415, { erreur: 'Corps JSON attendu.' });
+        if (ecritureEnCours) return repondre(res, 429, { erreur: 'Une écriture est déjà en cours.' });
+        ecritureEnCours = true;
+        let texte = '';
+        let trop = false;
+        req.on('data', (c: Buffer) => {
+          texte += c.toString('utf8');
+          if (texte.length > TAILLE_MAX_FORGE + 1000 && !trop) (trop = true), req.destroy();
+        });
+        req.on('error', () => (ecritureEnCours = false));
+        req.on('end', () => {
+          try {
+            if (trop) return repondre(res, 413, { erreur: 'Requête trop grande.' });
+            const r = importerForge(racine, JSON.parse(texte) as Record<string, unknown>);
+            if (r.ok) repondre(res, 200, r);
+            else repondre(res, r.statut, { erreur: r.erreur });
+          } catch (e) {
+            repondre(res, 400, { erreur: `Requête illisible : ${(e as Error).message}` });
+          } finally {
+            ecritureEnCours = false;
+          }
+        });
+      });
 
       // Un fichier du monde change sur le disque (un autre éditeur, Claude Code, un agent) : on prévient la page, qui recharge.
       serveur.watcher.add(racine);

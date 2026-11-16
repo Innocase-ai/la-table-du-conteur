@@ -111,6 +111,9 @@ export function App() {
             </a>
           </nav>
         )}
+        <a href="/forge/" target="_blank" rel="noreferrer" title="La Forge d'Histoires : concevoir un lieu de départ, des PNJ, des quêtes, puis créer un monde brouillon">
+          Forge ↗
+        </a>
         {maj && <span className="muet">à jour à {maj.toLocaleTimeString('fr-FR')} · surveille le disque</span>}
       </header>
       <main>

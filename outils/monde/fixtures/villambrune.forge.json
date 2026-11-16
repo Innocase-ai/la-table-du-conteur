@@ -1,0 +1,463 @@
+{
+  "version": 1,
+  "monde": {
+    "nom": "Aéranne — Marches de Brume",
+    "desc": "Un royaume morcelé où les vieilles chapelles veillent sur des routes infestées. Les villageois laissent des offrandes aux carrefours et ne sortent plus après la cloche du soir."
+  },
+  "histoire": {
+    "titre": "Le Médaillon de la Sœur Endormie",
+    "intro": "Une lenteur mauvaise s’est glissée sous les toits de Villambrune : la nuit, on entend gratter les cercueils…",
+    "assets": [
+      {
+        "id": "s1",
+        "type": "village",
+        "cat": "lieu",
+        "nom": "Villambrune",
+        "x": 670,
+        "y": 650,
+        "parent": null,
+        "props": {},
+        "w": 640,
+        "h": 520,
+        "ref": "L1"
+      },
+      {
+        "id": "s2",
+        "type": "maison",
+        "cat": "lieu",
+        "nom": "Demeure du Sire Bertrand",
+        "x": 700,
+        "y": 700,
+        "parent": "s1",
+        "props": {},
+        "w": 210,
+        "h": 150,
+        "ref": "L2"
+      },
+      {
+        "id": "s3",
+        "type": "notable",
+        "cat": "pnj",
+        "nom": "Sire Bertrand",
+        "x": 785,
+        "y": 755,
+        "parent": "s2",
+        "props": {
+          "role": "Châtelain de Villambrune",
+          "dialogue": [
+            "Voyageur… on dit que tu cherches fortune ?",
+            "On a profané la crypte du sanctuaire : le médaillon de sainte Odile a disparu.",
+            "Rapporte-le-moi, et tu ne repartiras pas les mains vides. 20 pièces d’or, mot de châtelain."
+          ]
+        },
+        "ref": "P1"
+      },
+      {
+        "id": "s4",
+        "type": "taverne",
+        "cat": "lieu",
+        "nom": "Le Sanglier Doré",
+        "x": 930,
+        "y": 700,
+        "parent": "s1",
+        "props": {},
+        "w": 300,
+        "h": 230,
+        "ref": "L3"
+      },
+      {
+        "id": "s5",
+        "type": "allie",
+        "cat": "pnj",
+        "nom": "Jorane la ménestrière",
+        "x": 950,
+        "y": 745,
+        "parent": "s4",
+        "props": {
+          "role": "Ménestrière au cou blessé",
+          "dialogue": [
+            "♪ La ballade du chevalier perdu… tu la connais ? ♪",
+            "Aïe, mon cou… Frère Anselme saurait l’apaiser, mais je ne peux quitter la taverne."
+          ]
+        },
+        "ref": "P2"
+      },
+      {
+        "id": "s6",
+        "type": "marchand",
+        "cat": "pnj",
+        "nom": "Maître Foulques",
+        "x": 950,
+        "y": 835,
+        "parent": "s4",
+        "props": {
+          "role": "Tavernier-mercier",
+          "dialogue": [
+            "Tiens donc, un nouveau visage ! Entre donc : ça sent le vin et l’ail, mais c’est chaleureux.",
+            "Une potion ? Une lame ? J’ai ce qu’il faut — et même un peu trop."
+          ]
+        },
+        "ref": "P3"
+      },
+      {
+        "id": "s7",
+        "type": "potion",
+        "cat": "objet",
+        "nom": "Potion de soin",
+        "x": 1055,
+        "y": 835,
+        "parent": "s4",
+        "props": {
+          "valeur": "8 po",
+          "desc": "Un flacon rouge épais qui sent la cerise et le fer."
+        },
+        "ref": "O1"
+      },
+      {
+        "id": "s8",
+        "type": "arme",
+        "cat": "objet",
+        "nom": "Épée de fer",
+        "x": 1145,
+        "y": 835,
+        "parent": "s4",
+        "props": {
+          "valeur": "15 po",
+          "desc": "Une lame honnête, jamais entachée de lâcheté — dit Foulques."
+        },
+        "ref": "O2"
+      },
+      {
+        "id": "s9",
+        "type": "sanctuaire",
+        "cat": "lieu",
+        "nom": "Sanctuaire de sainte Odile",
+        "x": 700,
+        "y": 960,
+        "parent": "s1",
+        "props": {},
+        "w": 210,
+        "h": 150,
+        "ref": "L4"
+      },
+      {
+        "id": "s10",
+        "type": "pretre",
+        "cat": "pnj",
+        "nom": "Frère Anselme",
+        "x": 780,
+        "y": 1015,
+        "parent": "s9",
+        "props": {
+          "soins": "Soins modérés — restaure 2d6 points de vie",
+          "dialogue": [
+            "Que la Lumière garde ton chemin.",
+            "Approche : si tes blessures chantent, je sais les apaiser."
+          ]
+        },
+        "ref": "P4"
+      },
+      {
+        "id": "s11",
+        "type": "maison",
+        "cat": "lieu",
+        "nom": "Chaumière de la vieille Mahaut",
+        "x": 930,
+        "y": 960,
+        "parent": "s1",
+        "props": {},
+        "w": 210,
+        "h": 150,
+        "ref": "L5"
+      },
+      {
+        "id": "s12",
+        "type": "queteur",
+        "cat": "pnj",
+        "nom": "Vieille Mahaut",
+        "x": 938,
+        "y": 1005,
+        "parent": "s11",
+        "props": {
+          "role": "Herboriste bavarde",
+          "dialogue": [
+            "Mes vieilles jambes ne montent plus au bois…",
+            "Rapporte-moi des herbes de velours, petit. La soupe du soir en dépend.",
+            "Et si tu me les portes fraîches, je te garantis une brioche chaude !"
+          ]
+        },
+        "ref": "P5"
+      },
+      {
+        "id": "s13",
+        "type": "armoire",
+        "cat": "contenant",
+        "nom": "Armoire de Mahaut",
+        "x": 1070,
+        "y": 995,
+        "parent": "s11",
+        "props": {
+          "desc": "Elle grince comme une chouette."
+        },
+        "ref": "C1"
+      },
+      {
+        "id": "s14",
+        "type": "objet_divers",
+        "cat": "objet",
+        "nom": "Brioche d’avoine",
+        "x": 1080,
+        "y": 1005,
+        "parent": "s13",
+        "props": {
+          "valeur": "—",
+          "desc": "Encore tiède. Un miracle de pâtisserie."
+        },
+        "ref": "O3"
+      },
+      {
+        "id": "s15",
+        "type": "ruines",
+        "cat": "lieu",
+        "nom": "Ruines de la chapelle brûlée",
+        "x": 1400,
+        "y": 1000,
+        "parent": null,
+        "props": {},
+        "w": 330,
+        "h": 240,
+        "ref": "L6"
+      },
+      {
+        "id": "s16",
+        "type": "quete_principale",
+        "cat": "quete",
+        "nom": "Le médaillon volé",
+        "x": 1420,
+        "y": 460,
+        "parent": null,
+        "props": {
+          "texte": "On a profané la crypte du sanctuaire et dérobé le médaillon de sainte Odile. Sire Bertrand promet 20 pièces d’or à qui le rapportera. Les traces mènent aux ruines de la vieille chapelle, où une goule veille sur le cercueil profané.",
+          "recompense": "20 pièces d’or + la gratitude de Villambrune",
+          "xp": "50 XP"
+        },
+        "ref": "Q1"
+      },
+      {
+        "id": "s17",
+        "type": "cercueil",
+        "cat": "contenant",
+        "nom": "Cercueil profané",
+        "x": 1475,
+        "y": 1110,
+        "parent": "s15",
+        "props": {
+          "desc": "Le couvercle a été arraché… de l’intérieur."
+        },
+        "ref": "C2"
+      },
+      {
+        "id": "s18",
+        "type": "objet_quete",
+        "cat": "objet",
+        "nom": "Médaillon de sainte Odile",
+        "x": 1485,
+        "y": 1120,
+        "parent": "s17",
+        "props": {
+          "valeur": "—",
+          "desc": "Un médaillon d’argent gravé d’une femme endormie, froid comme un regret."
+        },
+        "ref": "O4"
+      },
+      {
+        "id": "s19",
+        "type": "monstre",
+        "cat": "pnj",
+        "nom": "Goule des cryptes",
+        "x": 1615,
+        "y": 1115,
+        "parent": "s15",
+        "props": {
+          "danger": "Modéré",
+          "role": "Monte la garde autour du cercueil"
+        },
+        "ref": "P6"
+      },
+      {
+        "id": "s20",
+        "type": "foret",
+        "cat": "lieu",
+        "nom": "Bois des Chênes Pâles",
+        "x": 1400,
+        "y": 680,
+        "parent": null,
+        "props": {},
+        "w": 330,
+        "h": 260,
+        "ref": "L7"
+      },
+      {
+        "id": "s21",
+        "type": "quete_annexe",
+        "cat": "quete",
+        "nom": "Herbes pour la soupe",
+        "x": 1660,
+        "y": 460,
+        "parent": null,
+        "props": {
+          "texte": "La vieille Mahaut ne peut plus cueillir ses herbes de velours dans le Bois des Chênes Pâles. Un bandit y rôde, et les herbes ne se laissent pas prendre.",
+          "recompense": "Brioche d’avoine + 1 pièce d’argent",
+          "xp": "15 XP"
+        },
+        "ref": "Q2"
+      },
+      {
+        "id": "s22",
+        "type": "adversaire",
+        "cat": "pnj",
+        "nom": "Bandit estropié",
+        "x": 1435,
+        "y": 770,
+        "parent": "s20",
+        "props": {
+          "danger": "Facile",
+          "role": "Rôde près de son sac, l’air maussade"
+        },
+        "ref": "P7"
+      },
+      {
+        "id": "s23",
+        "type": "sac",
+        "cat": "contenant",
+        "nom": "Sac du bandit",
+        "x": 1550,
+        "y": 775,
+        "parent": "s20",
+        "props": {
+          "desc": "Noué en double nœud de lâche."
+        },
+        "ref": "C3"
+      },
+      {
+        "id": "s24",
+        "type": "bourse_or",
+        "cat": "objet",
+        "nom": "Bourse (12 po)",
+        "x": 1560,
+        "y": 785,
+        "parent": "s23",
+        "props": {
+          "valeur": "12 po"
+        },
+        "ref": "O5"
+      },
+      {
+        "id": "s25",
+        "type": "objet_quete",
+        "cat": "objet",
+        "nom": "Herbes de velours",
+        "x": 1645,
+        "y": 780,
+        "parent": "s20",
+        "props": {
+          "valeur": "—",
+          "desc": "Des feuilles bleutées qui frémissent même sans vent."
+        },
+        "ref": "O6"
+      }
+    ],
+    "liens": [
+      {
+        "id": "s26",
+        "from": "s1",
+        "to": "s20",
+        "type": "mene_a"
+      },
+      {
+        "id": "s27",
+        "from": "s1",
+        "to": "s15",
+        "type": "mene_a"
+      },
+      {
+        "id": "s28",
+        "from": "s3",
+        "to": "s16",
+        "type": "donne"
+      },
+      {
+        "id": "s29",
+        "from": "s16",
+        "to": "s15",
+        "type": "termine"
+      },
+      {
+        "id": "s30",
+        "from": "s16",
+        "to": "s18",
+        "type": "requiert"
+      },
+      {
+        "id": "s31",
+        "from": "s16",
+        "to": "s19",
+        "type": "requiert"
+      },
+      {
+        "id": "s32",
+        "from": "s19",
+        "to": "s17",
+        "type": "garde"
+      },
+      {
+        "id": "s33",
+        "from": "s12",
+        "to": "s21",
+        "type": "donne"
+      },
+      {
+        "id": "s34",
+        "from": "s21",
+        "to": "s20",
+        "type": "termine"
+      },
+      {
+        "id": "s35",
+        "from": "s21",
+        "to": "s25",
+        "type": "requiert"
+      },
+      {
+        "id": "s36",
+        "from": "s21",
+        "to": "s14",
+        "type": "donne_obj"
+      },
+      {
+        "id": "s37",
+        "from": "s22",
+        "to": "s23",
+        "type": "garde"
+      },
+      {
+        "id": "s38",
+        "from": "s6",
+        "to": "s7",
+        "type": "vend"
+      },
+      {
+        "id": "s39",
+        "from": "s6",
+        "to": "s8",
+        "type": "vend"
+      },
+      {
+        "id": "s40",
+        "from": "s10",
+        "to": "s5",
+        "type": "soigne"
+      }
+    ]
+  }
+}
