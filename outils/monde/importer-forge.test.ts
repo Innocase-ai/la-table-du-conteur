@@ -97,6 +97,108 @@ describe('import d\'une conception de la Forge', () => {
     expect(rap.parcours[0]!.etapes.map((e) => e.libelle)).toContain('Rendre compte de « Le médaillon volé »');
   }, 90_000);
 
+  describe('champs de F1 à F4 (obstacles, niveau, raretés, types de quête)', () => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const par = (f: Record<string, any>, nom: string) => f['histoire'].assets.find((a: { nom: string }) => a.nom === nom);
+    const lire = (dossier: string, chemin: string) => JSON.parse(readFileSync(join(dossier, chemin), 'utf8')) as Record<string, any>[];
+    const ecrire = (f: Record<string, unknown>, options: Record<string, unknown> = {}) => {
+      const racine = mkdtempSync(join(tmpdir(), 'mondes-'));
+      const r = ecrireMondeForge(racine, 'villambrune', FIXTURE, f, MODELES, { profils, armes, ...options });
+      return { ...r, charge: chargerMonde(r.dossier) };
+    };
+
+    it("verrou, cache et piège du contenant : le trésor porte l'accès, une fiche de piège est créée, le monde reste valide et jouable", () => {
+      const f = brut();
+      Object.assign(par(f, 'Cercueil profané').props, { verrou: 15, cache: 12, piege: true, piegeDetection: 14, piegeDesarmement: 16, piegeDegats: '2d6 poison' });
+      const { dossier, resultat, charge } = ecrire(f);
+      const tresor = lire(dossier, 'tresors/forge-tresors.json').find((t) => t['id'] === 'cercueil-profane')!;
+      expect(tresor['acces']).toEqual({ verrou: { dd: 15 }, cache: { dd: 12, competence: 'perception' }, piege: 'piege-cercueil-profane' });
+      const [piege] = lire(dossier, 'pieges/forge-pieges.json');
+      expect(piege).toMatchObject({ id: 'piege-cercueil-profane', lieu: 'ruines-de-la-chapelle-brulee', detection: { dd: 14 }, desarmement: { dd: 16 }, degats: [{ des: '2d6', type: 'poison' }] });
+      expect(resultat.avertissements.join('\n')).not.toMatch(/Piège de « Cercueil/);
+      expect(charge.ok, JSON.stringify(charge.ok ? [] : charge.erreurs)).toBe(true);
+      if (!charge.ok) return;
+      expect(validerMonde(charge.monde, SRD).erreurs, 'erreurs').toEqual([]);
+      const rap = explorerParcours({ dm: charge.monde, srd: SRD }, { budgetEtats: 6000, budgetMs: 60_000 });
+      expect(rap.finsNonAtteintes).toEqual([]);
+    }, 90_000);
+
+    it('un piège sans DD ni dégâts lisibles prend 13 par défaut et le dit', () => {
+      const f = brut();
+      Object.assign(par(f, 'Armoire de Mahaut').props, { piege: true, piegeDegats: 'beaucoup' });
+      const a = ecrire(f).resultat.avertissements.join('\n');
+      expect(a).toMatch(/Piège de « Armoire de Mahaut ».*13 par défaut/);
+      expect(a).toMatch(/dégâts « beaucoup » illisibles/);
+    });
+
+    it("rareté de l'objet, niveaux de l'histoire (sauf si l'appel les impose)", () => {
+      const f = brut();
+      par(f, 'Médaillon de sainte Odile').props.rarete = 'rare';
+      f['histoire'].niveaux = { min: 2, max: 4 };
+      const a = ecrire(f);
+      expect(lire(a.dossier, 'objets/forge-objets.json').find((o) => o['id'] === 'medaillon-de-sainte-odile')!['rarete']).toBe('rare');
+      expect(JSON.parse(readFileSync(join(a.dossier, 'monde.json'), 'utf8')).niveaux).toEqual({ min: 2, max: 4 });
+      expect(lire(a.dossier, 'quetes/forge-quetes.json')[0]!['niveau']).toEqual({ min: 2, max: 4 });
+      const b = ecrire(f, { niveaux: { min: 1, max: 5 } });
+      expect(JSON.parse(readFileSync(join(b.dossier, 'monde.json'), 'utf8')).niveaux).toEqual({ min: 1, max: 5 });
+      // Des niveaux invalides dans le fichier sont ignorés (1 à 2).
+      f['histoire'].niveaux = { min: 9, max: 3 };
+      expect(convertirForge(f, 'x', { profils, armes }).monde['niveaux']).toEqual({ min: 1, max: 2 });
+    });
+
+    it("un adversaire humanoïde a une alternative « Négocier » ; la quête qui le vise s'accomplit aussi par elle ; un monstre n'en a pas", () => {
+      const f = brut();
+      const qa = par(f, 'Herbes pour la soupe');
+      qa.props.verbe = 'tuer';
+      f['histoire'].liens.push({ id: 'zz', from: qa.id, to: par(f, 'Bandit estropié').id, type: 'requiert' });
+      const { dossier, charge } = ecrire(f);
+      const rencontres = lire(dossier, 'rencontres/forge-rencontres.json');
+      expect(rencontres.find((r) => r['id'] === 'r-bandit-estropie')!['alternatives'][0]).toMatchObject({ id: 'negocier', jet: { competence: 'persuasion', dd: 12 } });
+      expect(rencontres.find((r) => r['id'] === 'r-goule-des-cryptes')!['alternatives']).toEqual([]);
+      const etape = lire(dossier, 'quetes/forge-quetes.json').find((q) => q['id'] === 'herbes-pour-la-soupe')!['etapes'].find((e: { id: string }) => e.id.startsWith('vaincre-'));
+      expect(etape.completion).toEqual({ ou: [{ rencontre: { id: 'r-bandit-estropie', issue: 'victoire' } }, { rencontre: { id: 'r-bandit-estropie', issue: 'alternative' } }] });
+      expect(charge.ok).toBe(true);
+      if (charge.ok) expect(validerMonde(charge.monde, SRD).erreurs, 'erreurs').toEqual([]);
+    });
+
+    it("quête « apporter » : étape de remise, sujet du destinataire qui retire l'objet, retour au donneur", () => {
+      const f = brut();
+      const qa = par(f, 'Herbes pour la soupe');
+      qa.props.verbe = 'apporter';
+      qa.props.destinataire = par(f, 'Maître Foulques').id;
+      const { dossier, charge } = ecrire(f);
+      const q = lire(dossier, 'quetes/forge-quetes.json').find((x) => x['id'] === 'herbes-pour-la-soupe')!;
+      expect((q['etapes'] as { completion: unknown }[]).map((e) => e.completion)).toEqual([
+        { lieu: 'bois-des-chenes-pales' },
+        { objet: 'herbes-de-velours' },
+        { flag: 'herbes-pour-la-soupe-livre' },
+        { flag: 'herbes-pour-la-soupe-rendue' },
+      ]);
+      const foulques = lire(dossier, 'pnj/forge-pnj.json').find((p) => p['id'] === 'maitre-foulques')!;
+      const s = (foulques['sujets'] as Record<string, any>[]).find((x) => x['id'] === 'livraison-herbes-pour-la-soupe')!;
+      expect(s['condition']).toEqual({ objet: 'herbes-de-velours' });
+      expect(s['effets']).toEqual([{ objet: { id: 'herbes-de-velours', retirer: true } }, { flag: 'herbes-pour-la-soupe-livre' }]);
+      expect(charge.ok).toBe(true);
+      if (charge.ok) expect(validerMonde(charge.monde, SRD).erreurs, 'erreurs').toEqual([]);
+    });
+
+    it('quête « libérer » : aller au captif, le délivrer par un sujet, retour au donneur', () => {
+      const f = brut();
+      const qa = par(f, 'Herbes pour la soupe');
+      qa.props.verbe = 'liberer';
+      qa.props.captif = par(f, 'Jorane la ménestrière').id;
+      f['histoire'].liens = f['histoire'].liens.filter((l: { from: string; type: string }) => !(l.from === qa.id && l.type === 'requiert'));
+      const { dossier, charge } = ecrire(f);
+      const q = lire(dossier, 'quetes/forge-quetes.json').find((x) => x['id'] === 'herbes-pour-la-soupe')!;
+      expect((q['etapes'] as { completion: unknown }[]).map((e) => e.completion)).toEqual([{ lieu: 'bois-des-chenes-pales' }, { lieu: 'le-sanglier-dore' }, { flag: 'herbes-pour-la-soupe-libere' }, { flag: 'herbes-pour-la-soupe-rendue' }]);
+      const jorane = lire(dossier, 'pnj/forge-pnj.json').find((p) => p['id'] === 'jorane-la-menestriere')!;
+      expect((jorane['sujets'] as { id: string; effets: unknown }[]).find((x) => x.id === 'delivrer-herbes-pour-la-soupe')!.effets).toEqual([{ flag: 'herbes-pour-la-soupe-libere' }]);
+      expect(charge.ok).toBe(true);
+      if (charge.ok) expect(validerMonde(charge.monde, SRD).erreurs, 'erreurs').toEqual([]);
+    });
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  });
+
   it('refuse un monde existant et une conception sans lieu, sans rien laisser à moitié écrit', () => {
     const racine = mkdtempSync(join(tmpdir(), 'mondes-'));
     ecrireMondeForge(racine, 'villambrune', FIXTURE, brut(), MODELES, { profils, armes });

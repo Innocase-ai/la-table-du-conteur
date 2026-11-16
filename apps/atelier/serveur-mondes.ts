@@ -5,7 +5,8 @@
 //   GET /api/atelier/monde/<id>    monde.json, ses fichiers de données (contenu JSON + empreinte), BIBLE.md et CANON-PERSONNAGES.md
 //   GET /api/atelier/image/<id>/<fichier>   une image du dossier images/ du monde (la carte à poser les lieux dessus), en lecture seule
 //   PUT /api/atelier/fiche         remplace ou ajoute UNE fiche dans un fichier (voir ecriture.ts : empreinte, schéma, écriture atomique)
-//   POST /api/atelier/forge-importer   une conception de la Forge d'Histoires (/forge/) devient un NOUVEAU monde brouillon (forge.ts)
+//   GET /api/atelier/forge-exporter/<id>   un monde existant en conception de la Forge (lecture seule, avec perte)
+//   POST /api/atelier/forge-importer  une conception de la Forge d'Histoires (/forge/) devient un NOUVEAU monde brouillon (forge.ts)
 // Le navigateur assemble et valide lui-même (le moteur est du TypeScript pur). Les gardes de chemins sont dans chemins.ts.
 import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs';
@@ -14,6 +15,7 @@ import { join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import { corpsJson, DOSSIERS_IGNORES, idMondeValide, origineAutorisee, resoudre, resoudreImage } from './chemins';
 import { ecrireDocument, ecrireFiche, empreinteDe, type DemandeDocument, type DemandeEcriture } from './ecriture';
+import { exporterVersForge } from '../../outils/monde/exporter-forge';
 import { importerForge, TAILLE_MAX_FORGE } from './forge';
 
 interface FichierLu {
@@ -140,6 +142,19 @@ export function serveurMondes(dossierMondes: string): Plugin {
         const monde = lireMonde(racine, id);
         if (!monde) return repondre(res, 404, { erreur: `Monde introuvable : « ${id} ».` });
         repondre(res, 200, monde);
+      });
+
+      // Un monde existant vu sur le canevas de la Forge : lecture seule, avec perte (outils/monde/exporter-forge.ts). Rien n'est écrit.
+      serveur.middlewares.use('/api/atelier/forge-exporter', (req, res) => {
+        if (!garde(req, res)) return;
+        const id = decodeURIComponent((req.url ?? '').split('?')[0]!.replace(/^\//, ''));
+        const monde = lireMonde(racine, id);
+        if (!monde || typeof monde.monde !== 'object' || !monde.monde) return repondre(res, 404, { erreur: `Monde introuvable : « ${id} ».` });
+        try {
+          repondre(res, 200, exporterVersForge({ monde: monde.monde as Record<string, unknown>, fichiers: monde.fichiers }));
+        } catch (e) {
+          repondre(res, 500, { erreur: `Conversion impossible : ${(e as Error).message}` });
+        }
       });
 
       serveur.middlewares.use('/api/atelier/image', (req, res) => {

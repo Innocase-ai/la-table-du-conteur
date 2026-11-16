@@ -383,6 +383,7 @@
   <button class="btn" id="btnExportMD" title="Aperçu et export en fiche MJ lisible (.md / impression)">📜 Fiche MJ</button>
   <button class="btn" id="btnExportAI" title="Prévisualiser et exporter un JSON structuré pour un agent (LLM)">🤖 Export IA</button>
   <button class="btn" id="btnCreateWorld" title="Créer un monde brouillon dans l’atelier à partir de cette conception (seulement quand la Forge est ouverte depuis l’atelier)">🏗 Créer le monde</button>
+  <button class="btn" id="btnViewWorld" title="Voir un monde existant de l’atelier sur ce canevas (lecture seule : rien n’est renvoyé dans le monde)">🔭 Voir un monde</button>
 </header>
 <div id="main">
   <aside id="palette">
@@ -434,6 +435,8 @@
         <div class="fld"><label>Nom du monde</label><input type="text" id="fMondeNom"></div>
         <div class="fld"><label>Titre de l’histoire</label><input type="text" id="fTitre"></div>
         <div class="fld full"><label>Description du monde</label><textarea id="fMondeDesc" placeholder="Royaumes, ton, règles maison…"></textarea></div>
+        <div class="fld"><label>Niveau du groupe au départ</label><input type="number" min="1" max="20" id="fNivMin"></div>
+        <div class="fld"><label>Niveau à la fin de l’histoire</label><input type="number" min="1" max="20" id="fNivMax"></div>
         <div class="fld full"><label>Intro de l’histoire</label><textarea id="fIntro" placeholder="L’accroche lue aux joueurs…"></textarea></div>
       </div>
     </div>
@@ -705,7 +708,32 @@ function validLinks(from, to){
 }
 
 /* ================= CHAMPS D'ÉDITION PAR TYPE ================= */
-function fld(k, l, t){ return {k, l, t:t || "text"}; }
+function fld(k, l, t, extra){ return Object.assign({k, l, t:t || "text"}, extra || {}); }
+/* Types de champs : text, area, dialogue, num (DD, nombre), bool (case à cocher), select (options statiques ou calculées).
+   `si` : le champ ne s'affiche que si la fonction renvoie vrai ; `rr` : la fiche se redessine quand il change. */
+const RARETES_F = [{v:"", l:"commun"}, {v:"peu-commun", l:"peu commun"}, {v:"rare", l:"rare"}, {v:"tres-rare", l:"très rare"}, {v:"legendaire", l:"légendaire"}];
+const VERBES_F = [{v:"", l:"auto (d’après les liens)"}, {v:"tuer", l:"Tuer (cibles liées « requiert »)"}, {v:"trouver", l:"Trouver (objets liés « requiert »)"}, {v:"apporter", l:"Apporter (objets requis, à un PNJ)"}, {v:"liberer", l:"Libérer (un PNJ captif)"}];
+const pnjAmicaux = () => [{v:"", l:"— choisir —"}].concat(A().filter(a => a.cat === "pnj" && a.type !== "adversaire" && a.type !== "monstre").map(a => ({v:a.id, l:refOf(a) + " · " + a.nom})));
+/* Obstacles d'un contenant (F1) : verrou et cache avec leur DD, piège avec détection, désarmement et dégâts. */
+const CONT_FIELDS = [
+  fld("verrou", "Verrouillé : DD du crochetage (vide = ouvert)", "num"),
+  fld("cache", "Caché : DD pour le repérer (vide = visible)", "num"),
+  fld("piege", "Piégé", "bool", {rr:true}),
+  fld("piegeDetection", "Piège : DD pour le trouver", "num", {si:a => a.props.piege}),
+  fld("piegeDesarmement", "Piège : DD pour le désarmer", "num", {si:a => a.props.piege}),
+  fld("piegeDegats", "Piège : dégâts (ex. 2d6 poison)", "text", {si:a => a.props.piege}),
+];
+const OBJ_FIELDS = (extra) => [fld("valeur", "Valeur")].concat(extra || [], [
+  fld("rarete", "Rareté", "select", {options:RARETES_F}),
+  fld("unique", "Objet unique (trouvaille de la quête principale ou du boss)", "bool"),
+]);
+const QUETE_FIELDS = [
+  fld("texte", "Résumé de la quête", "area"),
+  fld("verbe", "Type de quête", "select", {options:VERBES_F, rr:true}),
+  fld("destinataire", "À qui apporter l’objet ?", "select", {options:pnjAmicaux, si:a => a.props.verbe === "apporter"}),
+  fld("captif", "Qui faut-il libérer ?", "select", {options:pnjAmicaux, si:a => a.props.verbe === "liberer"}),
+  fld("recompense", "Récompense"), fld("xp", "XP"),
+];
 const DIALOG = fld("dialogue", "Dialogues (une réplique par ligne)", "dialogue");
 const FD = {
   queteur:[fld("role", "Rôle / personnalité"), DIALOG],
@@ -713,25 +741,25 @@ const FD = {
   marchand:[fld("role", "Spécialité"), DIALOG],
   pretre:[fld("soins", "Soins proposés"), DIALOG],
   allie:[fld("role", "Rôle"), DIALOG],
-  adversaire:[fld("danger", "Danger (ex. : Facile — 1d6)"), fld("role", "Tactique / intention")],
-  monstre:[fld("danger", "Danger (ex. : Modéré)"), fld("role", "Comportement")],
-  coffre:[], armoire:[], cercueil:[], sac:[],
-  objet_divers:[fld("valeur", "Valeur")],
-  objet_quete:[fld("valeur", "Valeur")],
-  arme:[fld("valeur", "Valeur")],
-  potion:[fld("valeur", "Valeur")],
+  adversaire:[fld("danger", "Danger (ex. : Facile — 1d6)"), fld("profil", "Profil du SRD (id, ex. bandit, goule)"), fld("role", "Tactique / intention")],
+  monstre:[fld("danger", "Danger (ex. : Modéré)"), fld("profil", "Profil du SRD (id, ex. goule, ogre)"), fld("role", "Comportement")],
+  coffre:CONT_FIELDS, armoire:CONT_FIELDS, cercueil:CONT_FIELDS, sac:CONT_FIELDS,
+  objet_divers:OBJ_FIELDS(),
+  objet_quete:OBJ_FIELDS(),
+  arme:OBJ_FIELDS(),
+  potion:OBJ_FIELDS(),
   bourse_or:[fld("valeur", "Valeur")],
-  quete_principale:[fld("texte", "Résumé de la quête", "area"), fld("recompense", "Récompense"), fld("xp", "XP")],
-  quete_annexe:[fld("texte", "Résumé de la quête", "area"), fld("recompense", "Récompense"), fld("xp", "XP")],
+  quete_principale:QUETE_FIELDS,
+  quete_annexe:QUETE_FIELDS,
 };
 
 /* ================= ÉTAT ================= */
 function emptyState(){
-  return { monde:{nom:"", desc:""}, histoire:{titre:"Nouvelle histoire", intro:"", assets:[], liens:[]} };
+  return { monde:{nom:"", desc:""}, histoire:{titre:"Nouvelle histoire", intro:"", niveaux:{min:1, max:2}, assets:[], liens:[]} };
 }
 const state = {
   monde:{nom:"", desc:""},
-  histoire:{titre:"", intro:"", assets:[], liens:[]},
+  histoire:{titre:"", intro:"", niveaux:{min:1, max:2}, assets:[], liens:[]},
   view:{x:0, y:0, s:1},
   selected:null,
   selIds:[],
@@ -746,6 +774,12 @@ function setSelection(ids, primary){
   if(uniq.length) state.selLink = null;
 }
 function clearSelection(){ state.selIds = []; state.selected = null; }
+/** Les niveaux du groupe pour l'histoire (1 à 20, min <= max) ; 1 à 2 par défaut. */
+function niveauxValides(n){
+  const a = Math.round(Number(n && n.min)), b = Math.round(Number(n && n.max));
+  if(!(a >= 1 && a <= 20 && b >= 1 && b <= 20 && a <= b)) return {min:1, max:2};
+  return {min:a, max:b};
+}
 function adopt(d, keepHistory){
   const e = emptyState();
   const m = (d && typeof d.monde === "object" && d.monde) || {};
@@ -799,6 +833,7 @@ function adopt(d, keepHistory){
   state.histoire = {
     titre:String(h.titre != null ? h.titre : e.histoire.titre),
     intro:String(h.intro || ""),
+    niveaux:niveauxValides(h.niveaux),
     assets:cleanAssets,
     liens:cleanLiens,
   };
@@ -1109,6 +1144,14 @@ function hiddenInContenant(a){
 }
 function renderSheet(){ renderAssets(); renderLinksLayer(); }
 
+/** Les repères d'une carte : obstacles d'un contenant (🔒 verrou, 👁 caché, ⚠ piège) et rareté d'un objet (✦ unique, ◆ rare ou plus). */
+function marques(a){
+  const p = a.props || {};
+  let m = '';
+  if(a.cat === 'contenant') m = (p.verrou ? '🔒' + p.verrou + ' ' : '') + (p.cache ? '👁' + p.cache + ' ' : '') + (p.piege ? '⚠' : '');
+  else if(a.cat === 'objet') m = (p.unique ? '✦ ' : '') + (p.rarete ? '◆ ' + p.rarete : '');
+  return m.trim() ? '<span class="atitle" style="color:#a03030;font-weight:700;">' + esc(m.trim()) + '</span>' : '';
+}
 function renderAssets(){
   const host = $("#assets");
   host.innerHTML = A().map(a => {
@@ -1138,7 +1181,7 @@ function renderAssets(){
     const badge = a.cat === "contenant" ? `<span class="cbadge" title="Objets contenus">${kids(a.id).length || ""}</span>` : "";
     return `<div class="asset leaf ${a.cat === "contenant" ? "contenant" : ""} ${sel}" data-id="${a.id}" data-cat="${a.cat}" data-type="${a.type}"
       style="left:${a.x}px;top:${a.y}px;width:${s.w}px;height:${s.h}px;">
-      <span class="refchip">${esc(a.ref || "?")}</span>${icon(a.type)}<span class="aname">${esc(a.nom)}</span><span class="atitle">${esc(CATALOG[a.type].label)}</span>${badge}
+      <span class="refchip">${esc(a.ref || "?")}</span>${icon(a.type)}<span class="aname">${esc(a.nom)}</span><span class="atitle">${esc(CATALOG[a.type].label)}</span>${marques(a)}${badge}
       <span class="conn" title="Tirer un lien vers…"></span></div>`;
   }).join("");
   host.querySelectorAll(".asset").forEach(el => {
@@ -1844,10 +1887,19 @@ function renderEditor(){
     if(p) html += `<div class="ehint">📍 Dans « ${esc(p.nom)} » — <a href="#" id="edOut" style="color:#8a5a2b;">${a.cat === "quete" ? "la faire sortir" : "le faire sortir"}</a></div>`;
   }
   html += `<div class="fld"><label>Nom</label><input type="text" id="edNom" value="${esc(a.nom)}"></div>`;
-  html += fields.map(f => {
-    const v = f.t === "dialogue" ? (a.props.dialogue || []).join("\n") : (a.props[f.k] || "");
+  html += fields.filter(f => !f.si || f.si(a)).map(f => {
+    const v = f.t === "dialogue" ? (a.props.dialogue || []).join("\n") : (a.props[f.k] == null ? "" : a.props[f.k]);
+    const rr = f.rr ? ' data-rr="1"' : "";
     if(f.t === "dialogue" || f.t === "area")
       return `<div class="fld"><label>${esc(f.l)}</label><textarea data-k="${f.k}" data-t="${f.t}" rows="${f.t === "dialogue" ? 4 : 3}">${esc(v)}</textarea></div>`;
+    if(f.t === "bool")
+      return `<div class="fld"><label style="text-transform:none;letter-spacing:0;font-size:12px;"><input type="checkbox" data-k="${f.k}" data-t="bool"${rr} ${a.props[f.k] ? "checked" : ""}> ${esc(f.l)}</label></div>`;
+    if(f.t === "num")
+      return `<div class="fld"><label>${esc(f.l)}</label><input type="number" min="1" max="30" data-k="${f.k}" data-t="num" value="${esc(v)}"></div>`;
+    if(f.t === "select"){
+      const opts = typeof f.options === "function" ? f.options() : f.options;
+      return `<div class="fld"><label>${esc(f.l)}</label><select data-k="${f.k}" data-t="select"${rr}>${opts.map(o => `<option value="${esc(o.v)}"${String(v) === o.v ? " selected" : ""}>${esc(o.l)}</option>`).join("")}</select></div>`;
+    }
     return `<div class="fld"><label>${esc(f.l)}</label><input type="text" data-k="${f.k}" value="${esc(v)}"></div>`;
   }).join("");
   html += `<div class="fld"><label>Description / notes</label><textarea data-k="desc" rows="3">${esc(a.props.desc || "")}</textarea></div>`;
@@ -1928,12 +1980,16 @@ function renderEditor(){
   });
   $("#edNom").addEventListener("blur", flushTextHistory);
   editorEl.querySelectorAll("[data-k]").forEach(inp => {
-    inp.addEventListener("input", () => {
-      const k = inp.dataset.k;
-      if(inp.dataset.t === "dialogue") a.props.dialogue = inp.value.split("\n").map(s => s.trim()).filter(s => s.length);
+    const surChamp = () => {
+      const k = inp.dataset.k, ty = inp.dataset.t;
+      if(ty === "dialogue") a.props.dialogue = inp.value.split("\n").map(s => s.trim()).filter(s => s.length);
+      else if(ty === "bool") a.props[k] = inp.checked;
+      else if(ty === "num"){ if(inp.value === "") delete a.props[k]; else a.props[k] = Math.round(Number(inp.value)); }
       else a.props[k] = inp.value;
       renderChecks(); autosave(); scheduleTextHistory();
-    });
+      if(inp.dataset.rr){ flushTextHistory(); renderEditor(); renderSheet(); }
+    };
+    inp.addEventListener(inp.dataset.t === "bool" || inp.dataset.t === "select" ? "change" : "input", surChamp);
     inp.addEventListener("blur", flushTextHistory);
   });
   const out = $("#edOut");
@@ -2086,7 +2142,109 @@ const HINTS = [
      return foes.length === 0 || foes.every(f => (f.props.danger || "").trim().length > 0);
    },
    find:() => A().find(a => (a.type === "adversaire" || a.type === "monstre") && !(a.props.danger || "").trim())},
+  /* ---- Conseils du PRD-SAGA (F1 à F4) : indicatifs, jamais bloquants ---- */
+  {id:"h_nbq", label:"3 à 8 quêtes (cap du 15/11/2026)",
+   test:() => quetes().length >= 3 && quetes().length <= 8,
+   find:() => quetes()[0]},
+  {id:"h_pieces", label:"Chaque pièce a quelque chose à faire (2 à 4 couches : PNJ, contenant, obstacle, adversaire, service, objet)",
+   test:() => piecesVides().length === 0,
+   find:() => piecesVides()[0]},
+  {id:"h_butin", label:"Le butin est en rapport avec l’obstacle (pas de coffre riche sans verrou ni piège, pas d’obstacle sérieux pour rien)",
+   test:() => ecartsButin().length === 0,
+   find:() => ecartsButin()[0]},
+  {id:"h_rarete", label:"Les raretés respectent le niveau (rare dès le niveau 3, légendaire dès le niveau 5, sauf objet unique)",
+   test:() => raretesTrop().length === 0,
+   find:() => raretesTrop()[0]},
+  {id:"h_uniques", label:"1 à 3 objets uniques, rattachés à la quête principale ou au boss",
+   test:() => uniquesMalPlaces().length === 0 && uniques().length <= 3,
+   find:() => uniquesMalPlaces()[0] || uniques()[3]},
+  {id:"h_verbe", label:"Chaque quête a de quoi se jouer selon son type (tuer, trouver, apporter, libérer)",
+   test:() => quetesIncoherentes().length === 0,
+   find:() => quetesIncoherentes()[0]},
 ];
+
+/* ---- Calculs des conseils ---- */
+const VALEUR_RICHE = 50;      // po : au-delà, un contenant « riche » mérite un obstacle
+const DD_SERIEUX = 15;        // un verrou ou un piège de ce DD est « sérieux »
+function valeurPo(txt){
+  const m = /(\d+(?:[.,]\d+)?)\s*(po|pa|pc)?/i.exec(String(txt || ""));
+  if(!m) return 0;
+  const n = Number(m[1].replace(",", "."));
+  return m[2] && m[2].toLowerCase() === "pa" ? n / 10 : m[2] && m[2].toLowerCase() === "pc" ? n / 100 : n;
+}
+const contenu = c => kids(c.id).filter(k => k.cat === "objet");
+const valeurDe = c => contenu(c).reduce((s, o) => s + valeurPo(o.props.valeur || (o.type === "bourse_or" ? o.nom : "")), 0);
+const gardeParAdversaire = c => L().some(l => l.type === "garde" && l.to === c.id);
+function obstacleDe(c){
+  const p = c.props || {};
+  return Math.max(p.verrou || 0, p.piege ? Math.max(p.piegeDetection || 0, p.piegeDesarmement || 0) : 0, p.cache || 0);
+}
+const aObstacle = c => !!(c.props.verrou || c.props.piege || c.props.cache || gardeParAdversaire(c));
+function ecartsButin(){
+  return A().filter(a => a.cat === "contenant").filter(c => {
+    const v = valeurDe(c);
+    if(v >= VALEUR_RICHE && !aObstacle(c)) return true;
+    // Un objet de quête ou unique vaut l'obstacle, même sans valeur en pièces.
+    if(obstacleDe(c) >= DD_SERIEUX && v < VALEUR_RICHE / 5 && !contenu(c).some(o => o.type === "objet_quete" || unique(o))) return true;
+    return false;
+  });
+}
+const niveauMax = () => state.histoire.niveaux.max;
+const unique = o => !!o.props.unique;
+const uniques = () => A().filter(a => a.cat === "objet" && unique(a));
+function raretesTrop(){
+  return A().filter(a => a.cat === "objet" && !unique(a)).filter(o => {
+    const r = o.props.rarete || "";
+    if(r === "rare" || r === "tres-rare") return niveauMax() < 3;
+    if(r === "legendaire") return niveauMax() < 5;
+    return false;
+  });
+}
+function uniquesMalPlaces(){
+  const principales = A().filter(a => a.type === "quete_principale").map(q => q.id);
+  return uniques().filter(o => {
+    const recompense = L().some(l => l.type === "donne_obj" && l.to === o.id && principales.indexOf(l.from) !== -1);
+    const c = o.parent ? getA(o.parent) : null;
+    const gardeDuBoss = c && c.cat === "contenant" && gardeParAdversaire(c);
+    return !recompense && !gardeDuBoss;
+  });
+}
+/** Une pièce = un lieu sans sous-lieu, à l'intérieur d'un village ou d'un bâtiment : sa « densité » compte les couches présentes. */
+function couchesDe(l){
+  const sous = kids(l.id);
+  const sousContenants = sous.filter(k => k.cat === "contenant");
+  const adv = sous.filter(k => k.type === "adversaire" || k.type === "monstre").length
+    + A().filter(a => (a.type === "adversaire" || a.type === "monstre") && L().some(x => x.type === "garde" && x.from === a.id && x.to === l.id)).length;
+  return (sous.some(k => k.cat === "pnj" && k.type !== "adversaire" && k.type !== "monstre") ? 1 : 0)
+    + (sousContenants.length ? 1 : 0)
+    + (sousContenants.some(aObstacle) ? 1 : 0)
+    + (adv ? 1 : 0)
+    + (l.type === "taverne" || l.type === "sanctuaire" || sous.some(k => k.type === "marchand" || k.type === "pretre") ? 1 : 0)
+    + (sous.some(k => k.cat === "objet") ? 1 : 0);
+}
+function piecesVides(){
+  return A().filter(a => a.cat === "lieu" && a.parent && getA(a.parent) && getA(a.parent).cat === "lieu" && !kids(a.id).some(k => k.cat === "lieu") && couchesDe(a) === 0);
+}
+/** Le type de quête : celui qu'on a choisi, sinon celui que les liens « requiert » suggèrent. */
+function verbeDe(q){
+  if(q.props.verbe) return q.props.verbe;
+  const cibles = L().filter(l => l.type === "requiert" && l.from === q.id).map(l => getA(l.to)).filter(Boolean);
+  if(cibles.some(c => c.type === "adversaire" || c.type === "monstre")) return "tuer";
+  if(cibles.some(c => c.cat === "objet")) return "trouver";
+  return "";
+}
+function quetesIncoherentes(){
+  return quetes().filter(q => {
+    const cibles = L().filter(l => l.type === "requiert" && l.from === q.id).map(l => getA(l.to)).filter(Boolean);
+    const v = verbeDe(q);
+    if(!v) return true;
+    if(v === "tuer") return !cibles.some(c => c.type === "adversaire" || c.type === "monstre");
+    if(v === "trouver") return !cibles.some(c => c.cat === "objet");
+    if(v === "apporter") return !cibles.some(c => c.cat === "objet") || !q.props.destinataire || !getA(q.props.destinataire);
+    if(v === "liberer") return !q.props.captif || !getA(q.props.captif);
+    return false;
+  });
+}
 function renderChecks(){
   let okCount = 0;
   $("#checks").innerHTML = CHECKS.map(c => {
@@ -2143,12 +2301,17 @@ function syncFiche(){
   $("#fMondeDesc").value = state.monde.desc || "";
   $("#fTitre").value = state.histoire.titre || "";
   $("#fIntro").value = state.histoire.intro || "";
+  $("#fNivMin").value = state.histoire.niveaux.min;
+  $("#fNivMax").value = state.histoire.niveaux.max;
 }
 $("#fMondeNom").addEventListener("input", e => { state.monde.nom = e.target.value; autosave(); scheduleTextHistory(); });
 $("#fMondeDesc").addEventListener("input", e => { state.monde.desc = e.target.value; autosave(); scheduleTextHistory(); });
 $("#fTitre").addEventListener("input", e => { state.histoire.titre = e.target.value; $("#storyTitle").value = e.target.value; renderChecks(); autosave(); scheduleTextHistory(); });
 $("#fIntro").addEventListener("input", e => { state.histoire.intro = e.target.value; renderChecks(); autosave(); scheduleTextHistory(); });
 $("#storyTitle").addEventListener("input", e => { state.histoire.titre = e.target.value; $("#fTitre").value = e.target.value; renderChecks(); autosave(); scheduleTextHistory(); });
+const surNiveaux = () => { state.histoire.niveaux = niveauxValides({min:$("#fNivMin").value, max:$("#fNivMax").value}); renderChecks(); autosave(); scheduleTextHistory(); };
+$("#fNivMin").addEventListener("input", surNiveaux);
+$("#fNivMax").addEventListener("input", surNiveaux);
 ["#fMondeNom","#fMondeDesc","#fTitre","#fIntro","#storyTitle"].forEach(s => $(s).addEventListener("blur", flushTextHistory));
 
 let linkFilterText = "", linkFilterType = "";
@@ -2246,13 +2409,25 @@ $("#btnSample").addEventListener("click", () => {
   toast("Histoire d’exemple rechargée.");
 });
 
+/* La consigne de l'export IA : un brief pour les agents d'écriture (règles de docs/ECRIRE-UNE-HISTOIRE.md). Le plan est arrêté, seuls les textes sont à écrire. */
+const CONSIGNE_REDACTION = [
+  "RÔLE. Tu écris les textes d’un épisode de jeu de rôle narratif en français (CRPG illustré, règles du SRD 5.2.1). Le plan ci-dessous est VALIDÉ : tu n’y changes rien. Tu n’inventes ni lieu, ni PNJ, ni objet, ni quête, ni chemin, ni DD, ni récompense, ni lien ; tu n’ajoutes aucune mécanique. Tu écris seulement les textes qui manquent.",
+  "IDENTIFIANTS. Chaque élément a un id court (L1 = lieu, P3 = PNJ ou adversaire, C2 = contenant, O5 = objet, Q1 = quête). Les champs de référence (de, vers, donne_par, lieu_de_depart, se_termine_a, se_deroule_a, objets_requis, adversaires_cibles, recompenses_objets, a_apporter_a, a_liberer, garde, se_trouve_dans, chemins_vers…) contiennent ces ids. Réponds toujours par id.",
+  "STYLE. Deuxième personne du pluriel, présent, phrases courtes. Un détail sensoriel concret par texte, et un détail inattendu. Pas de lore déguisé en dialogue : le passé se lit dans un objet, une marque, une porte murée. Chaque PNJ veut quelque chose (et veut quelque chose du groupe), craint quelque chose, cache quelque chose, a une voix (un tic, un rythme). Finis sur une question ou un coût, jamais sur une description neutre. Alterne grave, léger, étrange. Accents français corrects.",
+  "LONGUEURS. Récit d’arrivée d’un lieu : 130 à 170 mots, ce que le JOUEUR lit en entrant. Accroche d’une pièce vue depuis l’extérieur : 1 à 2 phrases, sans secret ni contenu. Réponse d’un PNJ à un sujet : 75 à 115 mots, avec sous-texte. Mise en scène d’une rencontre : 70 à 110 mots. Journal de quête : 2 à 3 phrases côté joueur. Objet ou contenant : 1 à 2 phrases.",
+  "INTERDITS dans les textes lus par le joueur : aucun mot de mécanique (DD, jet, jauge, points de vie, niveau), aucun secret, aucun contenu caché (ce qui se trouve dans un contenant, un piège, un adversaire non encore vu). Les DD, verrous et pièges (verrou_dd, cache_dd, piege) servent seulement à rendre l’obstacle crédible (« une serrure d’une finesse inhabituelle »). Un objet rare ou unique se laisse deviner (indice visible), jamais annoncer. Respecte les niveaux du groupe (niveaux_du_groupe) : le ton et les dangers sont à leur mesure.",
+  "À ÉCRIRE, par id. LIEUX : arrivee, accroche (pour une pièce), visuel (ce qu’on voit, pour l’illustrateur, sans nommer de personnage). PNJ : apparence, deux traits de caractère, voix, désir, peur, salutation neutre (et amicale, hostile pour un PNJ important), une réponse par sujet (celles de « dialogues » sont des matériaux à réécrire, pas des textes définitifs). ADVERSAIRES : mise en scène de la rencontre ; pour un adversaire humanoïde, une porte de sortie par la parole (comment il se laisse convaincre). QUÊTES : résumé du journal, texte de chaque étape (aller, vaincre, trouver, apporter, libérer), réponse du donneur au retour du groupe. CONTENANTS et OBJETS : description. Ne rends rien pour ce qui est déjà écrit dans le plan.",
+  "FORMAT DE SORTIE. Du Markdown : un titre « ## [id] nom » par élément, puis un intitulé en gras par champ (**arrivee**, **accroche**, **visuel**, **apparence**, **voix**, **salutation**, **sujet : <question>**…) suivi du texte. Rien d’autre : pas de préambule, pas de commentaire sur ton travail. Si un élément du plan est incohérent ou insuffisant, signale-le en une ligne à la fin sous « À vérifier », sans le corriger toi-même.",
+  "DANS LE DÉPÔT. Si tu travailles dans le dépôt crpg-llm, le monde brouillon issu de ce plan est dans packages/mondes/<id>/ (RAPPORT-FORGE.md donne la correspondance entre ces ids et ceux du monde) : remplace chaque texte « À écrire : … » des fichiers par ton texte, sans toucher au reste, puis lance « pnpm monde valider <id> ». Skills à lire : creer-monde, decrire-lieux, creer-personnages, creer-pieges-tresors."
+].join("\n\n");
 function buildAI(){
   const byId = {};
   A().forEach(a => { byId[a.id] = a; });
   const outgoing = (id, t) => L().filter(l => l.type === t && l.from === id).map(l => byId[l.to]).filter(Boolean);
   const incoming = (id, t) => L().filter(l => l.type === t && l.to === id).map(l => byId[l.from]).filter(Boolean);
   const seTrouveDans = a => (a.parent && byId[a.parent]) ? refOf(byId[a.parent]) : null;
-  const objetLite = o => ({id:refOf(o), nom:o.nom, type:CATALOG[o.type].label, valeur:o.props.valeur || "", description:o.props.desc || ""});
+  const objetLite = o => Object.assign({id:refOf(o), nom:o.nom, type:CATALOG[o.type].label, valeur:o.props.valeur || "", description:o.props.desc || ""},
+    o.props.rarete ? {rarete:o.props.rarete} : {}, o.props.unique ? {unique:true} : {});
   const queteLite = q => {
     const givers = incoming(q.id, "donne");
     let dep = null;
@@ -2265,12 +2440,17 @@ function buildAI(){
       objets_requis:reqs.filter(x => x.cat === "objet").map(x => refOf(x)),
       adversaires_cibles:reqs.filter(x => x.cat === "pnj").map(x => refOf(x)),
       recompenses_objets:outgoing(q.id, "donne_obj").map(x => refOf(x)),
+      type_de_quete:verbeDe(q) || null,
+      ...(q.props.destinataire && byId[q.props.destinataire] ? {a_apporter_a:refOf(byId[q.props.destinataire])} : {}),
+      ...(q.props.captif && byId[q.props.captif] ? {a_liberer:refOf(byId[q.props.captif])} : {}),
       texte:q.props.texte || "", recompense:q.props.recompense || "", xp:q.props.xp || ""};
   };
-  const contenantLite = c => ({id:refOf(c), nom:c.nom, type:CATALOG[c.type].label, description:c.props.desc || "",
-    contenu:kids(c.id).filter(k => k.cat === "objet").map(objetLite)});
+  const contenantLite = c => Object.assign({id:refOf(c), nom:c.nom, type:CATALOG[c.type].label, description:c.props.desc || ""},
+    c.props.verrou ? {verrou_dd:c.props.verrou} : {}, c.props.cache ? {cache_dd:c.props.cache} : {},
+    c.props.piege ? {piege:{detection_dd:c.props.piegeDetection || null, desarmement_dd:c.props.piegeDesarmement || null, degats:c.props.piegeDegats || ""}} : {},
+    {contenu:kids(c.id).filter(k => k.cat === "objet").map(objetLite)});
   const pnjLite = p => ({id:refOf(p), nom:p.nom, type:CATALOG[p.type].label,
-    role:p.props.role || "", soins:p.props.soins || "", danger:p.props.danger || "",
+    role:p.props.role || "", soins:p.props.soins || "", danger:p.props.danger || "", profil_srd:p.props.profil || "",
     dialogues:p.props.dialogue || [], description:p.props.desc || "",
     se_trouve_dans:seTrouveDans(p),
     vend:outgoing(p.id, "vend").map(objetLite),
@@ -2291,6 +2471,7 @@ function buildAI(){
   const missing = CHECKS.filter(c => !c.test()).map(c => c.label);
   const hist = {
     titre:state.histoire.titre || "", intro:state.histoire.intro || "",
+    niveaux_du_groupe:state.histoire.niveaux,
     quete_principale:qps[0] ? queteLite(qps[0]) : null,
     quetes_annexes:A().filter(a => a.type === "quete_annexe").map(queteLite),
     lieux:A().filter(a => a.cat === "lieu" && !a.parent).map(lieuLite),
@@ -2305,8 +2486,8 @@ function buildAI(){
   };
   if(qps.length > 1) hist.quetes_principales = qps.map(queteLite);
   return {
-    document:"résumé structuré d’une histoire de jeu de rôle (D&D médiéval-fantastique), prêt à être développé en récit",
-    consigne:"À partir de ce résumé, rédige en français une courte histoire jouable : accroche, développement de la quête principale et des quêtes annexes (en intégrant les dialogues des PNJ), rencontres des adversaires, trésors et dénouement. Respecte les lieux, les chemins entre lieux (chemins_vers / accessible_depuis), les liens, les objets requis, les adversaires ciblés et les contenus décrits. Chaque élément possède un identifiant (id, ex. « L1 », « P3 », « Q2 ») ; les champs de référence (de, vers, donne_par — un PNJ ou un lieu donneur —, lieu_de_depart, se_termine_a, se_deroule_a, objets_requis, adversaires_cibles, recompenses_objets, garde, soigne, allie_de, se_trouve_dans, donne_les_quetes, quetes, chemins_vers, accessible_depuis) contiennent ces identifiants.",
+    document:"plan validé d’un épisode de jeu de rôle narratif (La Table du Conteur, règles du SRD 5.2.1), dont les faits sont arrêtés et dont les textes sont à écrire",
+    consigne:CONSIGNE_REDACTION,
     monde:{nom:state.monde.nom || "", description:state.monde.desc || ""},
     histoire:hist,
     recette_incomplete:missing,
@@ -2364,7 +2545,9 @@ function buildMarkdown(){
   };
   const fmtCont = c => {
     const items = kids(c.id).filter(k => k.cat === "objet");
-    const head = `- **${c.nom}** *(${CATALOG[c.type].label}, ${refOf(c)})*${c.props.desc ? ` — ${c.props.desc}` : ""}`;
+    const obst = [c.props.verrou ? `🔒 verrou DD ${c.props.verrou}` : "", c.props.cache ? `👁 caché DD ${c.props.cache}` : "",
+      c.props.piege ? `⚠ piège (trouver DD ${c.props.piegeDetection || "?"}, désarmer DD ${c.props.piegeDesarmement || "?"}${c.props.piegeDegats ? `, ${c.props.piegeDegats}` : ""})` : ""].filter(Boolean).join(" · ");
+    const head = `- **${c.nom}** *(${CATALOG[c.type].label}, ${refOf(c)})*${c.props.desc ? ` — ${c.props.desc}` : ""}${obst ? ` · ${obst}` : ""}`;
     if(!items.length) return head + " *(vide)*";
     return head + "\n" + items.map(o => "  " + fmtObj(o)).join("\n");
   };
@@ -2588,8 +2771,8 @@ function openCreateWorldModal(){
       <div class="ehint">Crée un <b>nouveau</b> monde <b>brouillon</b> (jamais un écrasement). Tout ce que la Forge ne sait pas dire est marqué « À écrire » ; un rapport liste ce qui a été deviné.</div>
       <div class="fld"><label>Identifiant du monde (minuscules, chiffres, tirets)</label><input type="text" id="cwId" value="${esc(proposed)}" spellcheck="false"></div>
       <div class="fld" style="display:flex;gap:10px;align-items:end;">
-        <div style="flex:1"><label>Niveau du groupe : de</label><input type="text" id="cwMin" value="1"></div>
-        <div style="flex:1"><label>à</label><input type="text" id="cwMax" value="2"></div>
+        <div style="flex:1"><label>Niveau du groupe : de</label><input type="text" id="cwMin" value="${state.histoire.niveaux.min}"></div>
+        <div style="flex:1"><label>à</label><input type="text" id="cwMax" value="${state.histoire.niveaux.max}"></div>
       </div>
       <div id="cwOut"></div>
       <div class="eactions"><button class="btn" id="cwGo">🏗 Créer le monde brouillon</button></div>
@@ -2619,6 +2802,44 @@ function openCreateWorldModal(){
   });
 }
 $("#btnCreateWorld").addEventListener("click", openCreateWorldModal);
+
+/* ================= VOIR UN MONDE (lecture seule) ================= */
+/* Un monde existant devient une conception sur ce canevas (lieux imbriqués, PNJ, contenants et obstacles, quêtes reliées).
+   C'est une VUE avec perte : rien n'est renvoyé dans le monde ; « Créer le monde » fabrique toujours un NOUVEAU monde. */
+async function openViewWorldModal(){
+  flushTextHistory();
+  $("#modalBox").classList.remove("wide");
+  $("#modalBox").innerHTML = `<div class="mhead"><span>🔭 Voir un monde de l’atelier</span><button class="btn small" id="vwClose">Fermer ✕</button></div>
+    <div class="mbody"><div class="ehint">Charge un monde existant sur le canevas pour le <b>regarder</b> (lieux, PNJ, contenants avec leurs obstacles, quêtes reliées). <b>Lecture seule</b> : rien n’est écrit dans le monde, et la conception actuelle est remplacée (pense à la sauvegarder).</div>
+    <div id="vwList"><div class="ehint">Chargement des mondes…</div></div><div id="vwOut"></div></div>`;
+  $("#overlay").classList.add("show");
+  $("#vwClose").addEventListener("click", closeModal);
+  try{
+    const rep = await fetch("/api/atelier/mondes");
+    const mondes = await rep.json().catch(() => null);
+    if(!rep.ok || !Array.isArray(mondes)) throw new Error("Cette page n’est pas servie par l’atelier : lance « pnpm atelier » et ouvre la Forge depuis http://localhost:5180/forge/.");
+    $("#vwList").innerHTML = mondes.map(m => `<div class="mrow"><span class="nm">${esc(m.nom)} <span class="mini">${esc(m.id)} · ${esc(m.statut)}</span></span><button data-w="${esc(m.id)}">Voir</button></div>`).join("") || `<div class="empty">Aucun monde.</div>`;
+    $("#vwList").querySelectorAll("button[data-w]").forEach(b => b.addEventListener("click", () => viewWorld(b.dataset.w)));
+  }catch(err){
+    $("#vwList").innerHTML = `<div class="aiwarn">${esc(err instanceof TypeError ? "Impossible de joindre l’atelier : lance « pnpm atelier » et ouvre la Forge depuis http://localhost:5180/forge/." : err.message)}</div>`;
+  }
+}
+async function viewWorld(id){
+  const out = $("#vwOut");
+  out.innerHTML = `<div class="ehint">Conversion de « ${esc(id)} »…</div>`;
+  try{
+    const rep = await fetch("/api/atelier/forge-exporter/" + encodeURIComponent(id));
+    const corps = await rep.json().catch(() => null);
+    if(!rep.ok || !corps) throw new Error((corps && corps.erreur) || ("Erreur " + rep.status));
+    if(A().length && !confirm("Remplacer la conception actuelle (" + A().length + " éléments) par le monde « " + id + " » ? Pense à la sauvegarder d’abord (💾 Sauver).")) { out.innerHTML = ""; return; }
+    adopt(corps.forge); renderAll(); fitView();
+    closeModal();
+    toast("Monde « " + id + " » chargé en lecture seule : " + A().length + " éléments. " + (corps.notes && corps.notes.length ? corps.notes.join(" ") : ""));
+  }catch(err){
+    out.innerHTML = `<div class="aiwarn">${esc(err.message)}</div>`;
+  }
+}
+$("#btnViewWorld").addEventListener("click", openViewWorldModal);
 
 /* ================= HISTOIRE D'EXEMPLE ================= */
 function makeSample(){

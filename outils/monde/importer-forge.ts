@@ -15,7 +15,7 @@ import { creerSquelette, type Modeles } from './nouveau';
 // Le format de la Forge
 // ---------------------------------------------------------------------------
 
-const CATEGORIES: Record<string, 'lieu' | 'pnj' | 'contenant' | 'objet' | 'quete'> = {
+export const CATEGORIES: Record<string, 'lieu' | 'pnj' | 'contenant' | 'objet' | 'quete'> = {
   village: 'lieu', maison: 'lieu', taverne: 'lieu', sanctuaire: 'lieu', foret: 'lieu', grotte: 'lieu', ruines: 'lieu', lieu_quete: 'lieu',
   queteur: 'pnj', notable: 'pnj', marchand: 'pnj', pretre: 'pnj', allie: 'pnj', adversaire: 'pnj', monstre: 'pnj',
   coffre: 'contenant', armoire: 'contenant', cercueil: 'contenant', sac: 'contenant',
@@ -36,7 +36,14 @@ const LienForge = z.object({ id: z.string().optional(), from: z.string(), to: z.
 export const FichierForge = z.object({
   version: z.literal(1),
   monde: z.object({ nom: z.string().default(''), desc: z.string().default('') }).default({}),
-  histoire: z.object({ titre: z.string().default(''), intro: z.string().default(''), assets: z.array(ActifForge), liens: z.array(LienForge).default([]) }),
+  histoire: z.object({
+    titre: z.string().default(''),
+    intro: z.string().default(''),
+    /** Niveaux du groupe (fiche de l'histoire) ; ignorés s'ils sont invalides. */
+    niveaux: z.object({ min: z.number().int().min(1).max(20), max: z.number().int().min(1).max(20) }).refine((n) => n.min <= n.max).optional().catch(undefined),
+    assets: z.array(ActifForge),
+    liens: z.array(LienForge).default([]),
+  }),
 });
 export type FichierForge = z.infer<typeof FichierForge>;
 
@@ -125,6 +132,12 @@ const PROFIL_PAR_DEFAUT: Record<'faible' | 'moderee' | 'elevee', string[]> = {
 
 const CONTENANT_TRESOR: Record<string, string> = { coffre: 'coffre', armoire: 'autre', cercueil: 'sarcophage', sac: 'sac' };
 
+/** Un DD saisi dans la Forge (nombre) ramené à l'échelle du moteur (5 à 30), ou `undefined` s'il est vide ou illisible. */
+const dd = (v: unknown): number | undefined => (typeof v === 'number' && Number.isFinite(v) ? Math.min(30, Math.max(5, Math.round(v))) : undefined);
+const RARETES_OBJET = ['commun', 'peu-commun', 'rare', 'tres-rare', 'legendaire'];
+/** DD de la tentative de négociation, selon la difficulté de la rencontre. */
+const DD_NEGOCIER = { faible: 12, moderee: 15, elevee: 18 } as const;
+
 // ---------------------------------------------------------------------------
 // La conversion
 // ---------------------------------------------------------------------------
@@ -138,7 +151,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     throw new ErreurForge(`Conception illisible : ${i?.path.join('.') || 'racine'} — ${i?.message}`);
   }
   const forge = lu.data;
-  const niveaux = options.niveaux ?? { min: 1, max: 2 };
+  const niveaux = options.niveaux ?? forge.histoire.niveaux ?? { min: 1, max: 2 };
   const heures = options.heures ?? 1;
   const avert: string[] = [];
   const A = forge.histoire.assets;
@@ -173,6 +186,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
   const pnjs: Record<string, unknown>[] = [];
   const objets: Record<string, unknown>[] = [];
   const tresors: Record<string, unknown>[] = [];
+  const pieges: Record<string, unknown>[] = [];
   const rencontres: Record<string, unknown>[] = [];
   const quetes: Record<string, unknown>[] = [];
   const evenements: Record<string, unknown>[] = [];
@@ -266,11 +280,12 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
       nom: nom(o),
       categorie,
       ...(base ? { base } : {}),
-      rarete: 'commun',
+      rarete: RARETES_OBJET.includes(texte(o.props['rarete'])) ? texte(o.props['rarete']) : 'commun',
       valeurPo: valeurEnPo(texte(o.props['valeur'])),
       resume: desc || `${EC} : ce que le joueur lit en inspectant ${nom(o)}.`,
     });
   }
+  for (const o of objetsForge.filter((x) => x.props['unique'] === true)) avert.push(`Objet unique « ${nom(o)} » (${ref(o)}) : le monde n'a pas de marque « unique » ; il reste fixe, à garder pour la quête principale ou le boss (1 à 3 par épisode).`);
   const vendu = new Set(L.filter((l) => l.type === 'vend').map((l) => l.to));
   const recompense = new Set(L.filter((l) => l.type === 'donne_obj').map((l) => l.to));
   const requis = new Set(L.filter((l) => l.type === 'requiert').map((l) => l.to));
@@ -295,6 +310,36 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     const kids = enfants(c).filter((k) => cat(k) === 'objet');
     kids.forEach((k) => placees.add(k.id));
     const pieces = piecesDe(kids);
+    // Les obstacles saisis dans la Forge : verrou, cache, piège (une fiche de piège est créée, DD par défaut 13 signalé).
+    const pr = c.props;
+    const acces: Record<string, unknown> = {};
+    const dVerrou = dd(pr['verrou']);
+    const dCache = dd(pr['cache']);
+    if (dVerrou) acces['verrou'] = { dd: dVerrou };
+    if (dCache) acces['cache'] = { dd: dCache, competence: 'perception' };
+    if (pr['piege'] === true) {
+      const pid = unique(`piege-${slug(nom(c))}`);
+      const det = dd(pr['piegeDetection']);
+      const des = dd(pr['piegeDesarmement']);
+      const m = /^(\d+d\d+(?:[+-]\d+)?)\s*(.*)$/.exec(texte(pr['piegeDegats']));
+      if (!det || !des) avert.push(`Piège de « ${nom(c)} » (${ref(c)}) : DD ${!det ? 'de détection' : ''}${!det && !des ? ' et ' : ''}${!des ? 'de désarmement' : ''} non saisi${!det && !des ? 's' : ''} : 13 par défaut, À CHOISIR.`);
+      if (!m) avert.push(`Piège de « ${nom(c)} » (${ref(c)}) : ${texte(pr['piegeDegats']) ? `dégâts « ${texte(pr['piegeDegats'])} » illisibles (attendu : « 2d6 poison »)` : 'aucun dégât saisi'} ; effets du piège à écrire.`);
+      pieges.push({
+        id: pid,
+        nom: `Piège : ${nom(c)}`,
+        lieu: idDe(p),
+        resume: `${EC} : ce qu'est le piège de ${nom(c)} (pour le MJ).`,
+        detection: { dd: det ?? 13, competence: 'perception' },
+        desarmement: { dd: des ?? 13, competence: 'escamotage' },
+        declenchement: `${EC} : ce qui se passe quand le piège se déclenche.`,
+        degats: m ? [{ des: m[1], type: (m[2] ?? '').trim() || 'contondant' }] : [],
+        etats: [],
+        effets: [],
+        reinitialisation: false,
+        passage: false,
+      });
+      acces['piege'] = pid;
+    }
     const t: Record<string, unknown> = {
       id: idDe(c),
       nom: nom(c),
@@ -302,7 +347,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
       contenant: CONTENANT_TRESOR[c.type]!,
       description: texte(c.props['desc']) || `${EC} : ce qu'on voit du ${nom(c).toLowerCase()} avant de l'ouvrir.`,
       contenu: { ...(pieces ? { pieces } : {}), objets: kids.filter((k) => k.type !== 'bourse_or').map((k) => ({ objet: idDe(k), quantite: 1 })), tables: [] },
-      acces: {},
+      acces,
       ...(gardienDeContenant.has(c.id) ? { gardien: gardienDeContenant.get(c.id) } : {}),
     };
     if (!kids.length) avert.push(`Contenant « ${nom(c)} » (${ref(c)}) vide.`);
@@ -332,7 +377,10 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
   for (const a of connus.filter((x) => x.type === 'adversaire' || x.type === 'monstre')) {
     const danger = texte(a.props['danger']);
     const d = difficulte(danger);
-    let profil = profilParNom(nom(a), options.profils);
+    // Le profil saisi dans la Forge d'abord ; à défaut, un mot du nom ; à défaut, un profil par défaut À CHOISIR.
+    const saisi = slug(texte(a.props['profil']));
+    if (texte(a.props['profil']) && !options.profils.includes(saisi)) avert.push(`Rencontre « ${nom(a)} » (${ref(a)}) : le profil « ${texte(a.props['profil'])} » n'existe pas dans le SRD.`);
+    let profil = options.profils.includes(saisi) ? saisi : profilParNom(nom(a), options.profils);
     let devine = '';
     if (!profil) {
       profil = PROFIL_PAR_DEFAUT[d].find((p) => options.profils.includes(p)) ?? options.profils[0] ?? 'bandit';
@@ -347,11 +395,12 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
       difficulte: d,
       intro: texte(a.props['role']) || `${EC} : mise en scène de la rencontre avec ${nom(a)}.`,
       monstres: [{ profil, nombre: 1, nom: nom(a) }],
-      alternatives: [],
+      // Un adversaire humanoïde peut parler : une porte de sortie à écrire (PRD-SAGA F3) ; un monstre n'a que le combat.
+      alternatives: a.type === 'adversaire' ? [{ id: 'negocier', nom: 'Négocier', jet: { competence: 'persuasion', dd: DD_NEGOCIER[d] }, resume: `${EC} : comment ${nom(a)} se laisse convaincre de renoncer.`, effets: [], echecResout: false }] : [],
       butin: {},
       effetsVictoire: [],
     });
-    avert.push(`Rencontre « ${nom(a)} » (${ref(a)}) : difficulté ${d}${danger ? ` (lue dans « ${danger} »)` : ' (par défaut)'}${devine}.${a.type === 'adversaire' ? ' Adversaire humanoïde : prévoir une alternative (négocier, ruser).' : ''}`);
+    avert.push(`Rencontre « ${nom(a)} » (${ref(a)}) : difficulté ${d}${danger ? ` (lue dans « ${danger} »)` : ' (par défaut)'}${devine}.${a.type === 'adversaire' ? ` Adversaire humanoïde : une alternative « Négocier » (Persuasion DD ${DD_NEGOCIER[d]}) est prête, texte et effets à écrire.` : ''}`);
   }
 
   // --- PNJ et quêtes ---
@@ -438,13 +487,70 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     const arrivee = sortants(q, 'termine').find(estLieu);
     if (arrivee) aller(arrivee);
     const cibles = sortants(q, 'requiert');
-    for (const c of cibles.filter((x) => x.type === 'adversaire' || x.type === 'monstre')) {
+    const adversaires = connus.filter((x) => x.type === 'adversaire' || x.type === 'monstre');
+    // Vaincre un adversaire humanoïde peut aussi se faire en négociant : l'étape s'accomplit par la victoire ou par l'alternative.
+    const issuesDe = (c: Actif) => ({ ou: [{ rencontre: { id: idDe(c), issue: 'victoire' } }, { rencontre: { id: idDe(c), issue: 'alternative' } }] });
+    const vaincre = (c: Actif) => {
       const ou = lieuDe(c);
-      etapes.push({ id: idEtape(`vaincre-${slug(nom(c))}`), texte: `Vainquez ${nom(c)}.`, completion: { rencontre: { id: idDe(c), issue: 'victoire' } }, ...(ou ? { lieu: idDe(ou) } : {}) });
+      etapes.push({
+        id: idEtape(`vaincre-${slug(nom(c))}`),
+        texte: `Vainquez ${nom(c)}.`,
+        completion: c.type === 'adversaire' ? issuesDe(c) : { rencontre: { id: idDe(c), issue: 'victoire' } },
+        ...(ou ? { lieu: idDe(ou) } : {}),
+      });
+    };
+    const vaincus = new Set<string>();
+    const poserSujet = (pnj: Actif | undefined, sujet: Record<string, unknown>, pourquoi: string) => {
+      const fiche = pnj ? pnjs.find((x) => x['id'] === idDe(pnj)) : undefined;
+      if (!fiche) return avert.push(`Quête « ${nom(q)} » (${ref(q)}) : ${pourquoi} n'est pas dans un lieu ; la scène à jouer avec lui est à écrire.`);
+      (fiche['sujets'] as Record<string, unknown>[]).push(sujet);
+    };
+    const verbeChoisi = texte(q.props['verbe']);
+    const verbe = ['tuer', 'trouver', 'apporter', 'liberer'].includes(verbeChoisi) ? verbeChoisi : cibles.some((c) => adversaires.includes(c)) ? 'tuer' : cibles.some((c) => cat(c) === 'objet') ? 'trouver' : '';
+    const captif = verbe === 'liberer' ? parId.get(texte(q.props['captif'])) : undefined;
+    const destinataire = verbe === 'apporter' ? parId.get(texte(q.props['destinataire'])) : undefined;
+    if (verbe === 'liberer' && !captif) avert.push(`Quête « ${nom(q)} » (${ref(q)}) « libérer » sans captif choisi : étapes à écrire.`);
+    if (verbe === 'apporter' && !destinataire) avert.push(`Quête « ${nom(q)} » (${ref(q)}) « apporter » sans destinataire choisi : traitée comme « trouver ».`);
+    if (verbe === 'tuer' && !cibles.some((c) => adversaires.includes(c))) avert.push(`Quête « ${nom(q)} » (${ref(q)}) « tuer » sans cible liée (« requiert » un adversaire ou un monstre).`);
+    // Libérer : aller où le captif est retenu, vaincre ceux qui le gardent, puis le délivrer (un sujet du captif pose le drapeau).
+    const lieuCaptif = captif ? lieuDe(captif) : undefined;
+    const gardiensDuCaptif = lieuCaptif ? adversaires.filter((x) => lieuDe(x)?.id === lieuCaptif.id || sortants(x, 'garde').some((g) => g.id === lieuCaptif.id)) : [];
+    if (lieuCaptif) aller(lieuCaptif);
+    for (const c of [...cibles.filter((x) => adversaires.includes(x)), ...gardiensDuCaptif]) {
+      if (vaincus.has(c.id)) continue;
+      vaincus.add(c.id);
+      vaincre(c);
     }
     for (const c of cibles.filter((x) => cat(x) === 'objet')) {
       const ou = lieuDe(c);
       etapes.push({ id: idEtape(`trouver-${slug(nom(c))}`), texte: `Trouvez ${nom(c)}.`, completion: { objet: idDe(c) }, ...(ou ? { lieu: idDe(ou) } : {}) });
+    }
+    if (captif && lieuCaptif) {
+      etapes.push({ id: idEtape(`liberer-${slug(nom(captif))}`), texte: `Libérez ${nom(captif)}.`, completion: { flag: `${qid}-libere` }, lieu: idDe(lieuCaptif) });
+      poserSujet(captif, {
+        id: `delivrer-${slug(nom(q))}`.slice(0, 60),
+        mots: ['libérer', 'délivrer', 'détacher'],
+        question: `Délivrer ${nom(captif)}`,
+        ...(gardiensDuCaptif.length ? { condition: gardiensDuCaptif.length === 1 ? (gardiensDuCaptif[0]!.type === 'adversaire' ? issuesDe(gardiensDuCaptif[0]!) : { rencontre: { id: idDe(gardiensDuCaptif[0]!), issue: 'victoire' } }) : { et: gardiensDuCaptif.map((g) => (g.type === 'adversaire' ? issuesDe(g) : { rencontre: { id: idDe(g), issue: 'victoire' } })) } } : {}),
+        reponse: `${EC} : ce que dit ${nom(captif)} quand on le délivre.`,
+        effets: [{ flag: `${qid}-libere` }],
+        unique: true,
+      }, `${nom(captif)} (le captif)`);
+    }
+    // Apporter : l'objet est trouvé (étape ci-dessus), puis remis au destinataire (un sujet du destinataire retire l'objet et pose le drapeau).
+    const objetsApportes = cibles.filter((x) => cat(x) === 'objet');
+    if (destinataire && objetsApportes.length) {
+      const lieuD = lieuDe(destinataire);
+      etapes.push({ id: idEtape(`apporter-${slug(nom(destinataire))}`), texte: `Apportez ${objetsApportes.map(nom).join(', ')} à ${nom(destinataire)}.`, completion: { flag: `${qid}-livre` }, ...(lieuD ? { lieu: idDe(lieuD) } : {}) });
+      poserSujet(destinataire, {
+        id: `livraison-${slug(nom(q))}`.slice(0, 60),
+        mots: ['livrer', 'apporter', ...objetsApportes.map((o) => nom(o).toLowerCase())],
+        question: `Remettre ${objetsApportes.map(nom).join(', ')}`,
+        condition: objetsApportes.length === 1 ? { objet: idDe(objetsApportes[0]!) } : { et: objetsApportes.map((o) => ({ objet: idDe(o) })) },
+        reponse: `${EC} : la réaction de ${nom(destinataire)} quand on lui remet l'objet.`,
+        effets: [...objetsApportes.map((o) => ({ objet: { id: idDe(o), retirer: true } })), { flag: `${qid}-livre` }],
+        unique: true,
+      }, `${nom(destinataire)} (le destinataire)`);
     }
     if (!etapes.length) {
       etapes.push({ id: 'objectif', texte: `${EC} : l'objectif de « ${nom(q)} ».`, completion: { flag: `${qid}-objectif` } });
@@ -452,7 +558,8 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     }
     // Le retour au donneur (convention des mondes écrits) : une dernière étape, accomplie par un sujet du PNJ qui pose un drapeau.
     const donneurQ = donneur.get(q.id);
-    if (donneurQ && ids.has(donneurQ.id)) {
+    // Quand le destinataire est le donneur, la remise de l'objet est déjà le retour.
+    if (donneurQ && ids.has(donneurQ.id) && !(destinataire && destinataire.id === donneurQ.id && objetsApportes.length)) {
       const avantRetour = (etapes[etapes.length - 1] as { id: string }).id;
       const lieuRetour = lieuDe(donneurQ);
       etapes.push({ id: idEtape('retour'), texte: `Retournez voir ${nom(donneurQ)}.`, completion: { flag: `${qid}-rendue` }, ...(lieuRetour ? { lieu: idDe(lieuRetour) } : {}) });
@@ -534,7 +641,7 @@ export function convertirForge(brut: unknown, id: string, options: OptionsImport
     chapitres: [{ id: 'ch1', nom: titre, niveaux, resume: intro ? premierePhrase(intro) : `${EC}.`, lieux: [racineId], quetes: quetes.map((q) => q['id'] as string) }],
   };
 
-  const dossiers: Record<string, unknown[]> = { lieux, pnj: pnjs, objets, tresors, rencontres, quetes, evenements, fins };
+  const dossiers: Record<string, unknown[]> = { lieux, pnj: pnjs, objets, tresors, pieges, rencontres, quetes, evenements, fins };
 
   // --- Compte des « À écrire » et table de correspondance ---
   const aEcrire = (JSON.stringify([monde, dossiers]).match(/À écrire/g) ?? []).length;
@@ -563,7 +670,7 @@ export function rapportMarkdown(id: string, r: ResultatImport, source: string): 
     '## Ce que la Forge ne sait pas dire (à ajouter à la main)',
     '',
     '- Espèce, sexe, apparence, personnalité des PNJ (mis à « humain », « N », « à définir »).',
-    '- Verrous, pièges, caches et difficulté des contenants ; indices de richesse.',
+    '- Indices visibles de richesse d\'un contenant, effets du piège (sauvegarde, états), clé d\'un verrou, énigmes et conversation comme façon de conclure une quête.',
     '- Récit d\'arrivée (`arrivee`), accroche et visuel des lieux ; images, voix, scènes.',
     '- Alternatives de négociation, jauge, factions, dilemmes, fins multiples ; le texte de la réponse du donneur au retour.',
     '- Les objets de la Forge sont créés dans le monde ; à remplacer par ceux du catalogue SRD quand ils existent (armes, potions…).',
