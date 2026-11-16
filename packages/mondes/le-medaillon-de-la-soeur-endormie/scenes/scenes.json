@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ouverture",
+    "nom": "Le Médaillon de la Sœur Endormie",
+    "declencheur": {
+      "debut": true
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "le-medaillon-de-la-soeur-endormie"
+        },
+        "mouvement": "recul",
+        "texte": "Sous un ciel bas, couleur d’ardoise, les landes s’étendent jusqu’aux haies. Les clochers des chapelles pointent au-dessus de la brume, et la route serpente entre les champs."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "sanctuaire-de-sainte-odile"
+        },
+        "mouvement": "fixe",
+        "texte": "Dans la nef de sainte Odile, les vitraux bleus tombent sur les dalles usées. La crypte a été profanée récemment, et le médaillon de la sainte a disparu."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "villambrune"
+        },
+        "mouvement": "gauche",
+        "texte": "À Villambrune, la cloche du soir sonne, et les volets se referment un à un. La nuit, derrière les murs, on entend gratter. Personne n’aime en parler à voix haute."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ruines-de-la-chapelle-brulee"
+        },
+        "mouvement": "approche",
+        "texte": "Les traces de boue et de cendre mènent au-delà de la place, vers les murs noircis de la vieille chapelle. Les gens du village ne les suivent pas, et n’en parlent pas."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "villambrune"
+        },
+        "mouvement": "droite",
+        "texte": "Vous arrivez à Villambrune au crépuscule. Les portes se ferment sur votre passage. Qui acceptera de vous parler après la cloche, et que vous demandera-t-il en échange ?"
+      }
+    ]
+  },
+  {
+    "id": "ruines-arrivee",
+    "nom": "Au pied des murs noircis",
+    "declencheur": {
+      "lieu": "ruines-de-la-chapelle-brulee"
+    },
+    "presentation": "plans",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "le-medaillon-de-la-soeur-endormie"
+        },
+        "mouvement": "recul",
+        "texte": "La route de charrette monte entre les landes grises. Ses ornières sont envahies d’herbes, et la lumière du soir glisse, pâle, sur les haies et les chaumes."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "ruines-de-la-chapelle-brulee"
+        },
+        "mouvement": "approche",
+        "texte": "Les murs noircis se dressent devant vous, et la nef s’ouvre au ciel sans toit. Le soir tombe. Au seuil, la brume attend, et vous hésitez à franchir la pierre."
+      }
+    ]
+  },
+  {
+    "id": "fin-medaillon",
+    "nom": "Le Médaillon rendu à Villambrune",
+    "declencheur": {
+      "fin": "fin-le-medaillon-vole"
+    },
+    "presentation": "film",
+    "plans": [
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "demeure-du-sire-bertrand"
+        },
+        "mouvement": "fixe",
+        "texte": "Le médaillon revient à Villambrune, enveloppé dans un linge. Sire Bertrand le prend entre ses mains, et son gant, qu’il tordait sans cesse, reste enfin immobile."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "villambrune"
+        },
+        "mouvement": "droite",
+        "texte": "Les vingt pièces d’or vous attendent sur sa table, et il tient parole. Au soir, les volets se referment comme avant, mais quelqu’un ose enfin lever les yeux vers vous."
+      },
+      {
+        "image": {
+          "groupe": "lieux",
+          "id": "le-medaillon-de-la-soeur-endormie"
+        },
+        "mouvement": "recul",
+        "texte": "Personne ne racontera ce qui s’est passé dans les ruines. Cette nuit, un raclement lointain monte des landes. Il vient peut-être du village, peut-être de la route."
+      }
+    ]
+  }
+]
