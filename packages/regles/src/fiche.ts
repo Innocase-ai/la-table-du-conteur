@@ -69,6 +69,8 @@ export interface ChoixPersonnage {
   /** Options d'équipement de départ (A, B…) ; l'armure et le bouclier en découlent si `armure` n'est pas imposée. */
   equipementClasse?: string;
   equipementHistorique?: string;
+  /** Le jeu d'armes du kit de classe gardé au départ : mêlée (par défaut) ou jet / tir. */
+  jeuArmes?: 'melee' | 'tir';
 }
 
 export type NiveauMaitrise = 'aucune' | 'demi' | 'maitrise' | 'expertise';
@@ -422,7 +424,7 @@ export function calculerFiche(choix: ChoixPersonnage, donnees: Donnees): Resulta
     ...new Set([...classe.formationArmures, ...de('formation_armures').flatMap((e) => e.categories)]),
   ];
   const maitrisesArmes = [...new Set([...classe.maitrisesArmes, ...de('maitrise_armes').flatMap((e) => e.armes)])];
-  const equipement = equipementChoisi(classe.id, historique.id, choix.equipementClasse, choix.equipementHistorique, donnees);
+  const equipement = equipementChoisi(classe.id, historique.id, choix.equipementClasse, choix.equipementHistorique, donnees, choix.jeuArmes);
   if (choix.equipementClasse && !equipement) erreurs.push(`Option d'équipement inconnue : « ${choix.equipementClasse} ».`);
   const armureId = choix.armure ?? equipement?.armure;
   let armure: Armure | undefined;

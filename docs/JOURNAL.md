@@ -2465,3 +2465,24 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
 - **Impasses** : les clés (Bertrand), les rats de la cave. **Pistes** : crypte, carrefour, bandit du bois. **Récits de fond** déjà écrits (registre, chanson, flammes blanches, pas traînants).
 - **Méthode** : 2 agents Haiku (lieux/rencontres/examens/faits ; quête/sujets/témoin), corrections de voix et de personne, audit indépendant Haiku (19 points : 10 retenus et corrigés, les autres écartés ou laissés à l'utilisateur), `valider` 0 erreur, parcours : fin atteinte (87 pas, 10/10 lieux, 19/19 faits), 2 140 tests verts.
 - **Reste / à décider** : la quête reste une étape d'enquête unique (pas d'étapes parallèles dans le journal) ; pas de choix final (rendre ou laisser le médaillon) ; le boss n'a toujours pas d'autre issue que la fuite ; l'identité de la Gardienne reste à déduire (registre, chanson, cire, lin, témoin).
+
+## 17/11/2026 (suite 4) — « Le Médaillon de la Sœur Endormie » : boutiques et chambre
+
+- **Constat** : un seul marchand (Foulques : une potion, une épée) et aucun service de chambre payant, alors que l'auberge est marquée « repos sûr ». Le skill `creer-marchands-compagnons` demande 3 marchands par chapitre et une nuit payante.
+- **Fait (stock et prix validés par l'utilisateur)** : Foulques vend en plus dagues (2 po), lanterne à capote (5 po), corde (1 po), rations (5 pa), torches, huile, une potion de soin supplémentaire (8 po, 2 en tout), et loue « Une chambre à l'étage » (2 po, nuit de repos : id `chambre-du-sanglier`). Mahaut devient herboriste-marchande : baume d'herbes (3 po), trousse de soins (5 po), matériel d'herboriste (5 po), pain de campagne ; elle rachète potions, nourriture, matériel, outils, divers, au demi-prix. Sujet « ses remèdes » pour la découvrir ; réponse de Foulques à « Que vendez-vous ? » mise à jour.
+- **Pas fait volontairement** : rien chez Frère Anselme (« la Lumière ne vend pas ses dons »), pas de forgeron ni d'armures.
+- **Vérifié** : `valider` 0 erreur, `manque` 0 (images communes déjà présentes, aucune dépense), 2 marchands sur 3 visés (avis « Richesse » restant).
+
+## 17/11/2026 (suite 5) — Or de départ : fin du remboursement des armes, plafond par monde
+
+- **Constat** : un groupe de 6 démarrait avec ≈ 240 po (≈ 40 po par héros : or de la classe, de l'historique et prix des armes retirées du kit allégé), de quoi acheter trois fois tout le stock du Médaillon (≈ 68 po) ; la récompense de la quête principale (20 po) ne pesait rien.
+- **Deux règles (décision de l'utilisateur)** : (1) `allegerKit` n'ajoute plus le prix des armes retirées à l'or de départ (moyenne ≈ 23 po par héros ; toutes les histoires) ; (2) nouveau champ facultatif `monde.depart.orMax` : plafond d'or de départ par héros, appliqué par la commande `commencer`. Médaillon : `orMax: 10` (60 po pour 6 héros).
+- **Tests** : `kit-allege.test.ts` adapté (le guerrier, le soldat et toutes les classes gardent exactement leur or) + test du plafond ; 2 540 tests verts, typage propre.
+- **Reste** : les marchands pourraient vendre des améliorations que le kit ne donne pas (chemise de mailles, potion de guérison du catalogue) plutôt que du matériel déjà dans le paquetage ; à proposer si l'utilisateur le veut.
+
+## 17/11/2026 (suite 6) — Un seul jeu d'armes au départ
+
+- **Demande** : « que les héros n'aient qu'un jeu d'armes au départ ». Choix de l'utilisateur : **mêlée ou arc, au choix du joueur**.
+- **Fait** : `allegerKit` ne garde plus qu'un jeu d'armes par classe : l'arme principale (`melee`) ou la première arme de jet ou de tir (`tir`) ; les munitions ne restent qu'avec une arme à munitions. Nouveau champ `ChoixPersonnage.jeuArmes` (schéma de groupe, fiche, exigences : `jeuxArmes`, `jeuArmes`), `jeuxDArmes` et `jeuArmesParDefaut` (mêlée ; le rôdeur démarre avec son arc). Écran de classe : section « Votre jeu d'armes » (Mêlée / Jet ou tir) sous l'équipement de classe, l'équipement et l'attaque de l'aperçu suivent le choix (vérifié dans le navigateur avec le rôdeur).
+- **Conséquences** : un héros n'a plus d'autre jeu d'armes en main au départ (le second jeu apparaît quand il équipe une arme dedans ; le comparateur propose le jeu libre) ; les héros d'une partie sauvegardée avant ce changement perdent leur seconde arme au rechargement (la fiche se recalcule depuis les choix).
+- **Tests** : `kit-allege.test.ts` réécrit (un seul jeu, deux jeux, `jeuxDArmes`), tests du comparateur et des jeux d'armes adaptés (Sylvaine donnée en mêlée ; le jeu de la sauvegarde ancienne se retrouve après avoir équipé une javeline), graine d'un test de combat changée (le résultat dépendait des armes du groupe). 2 541 tests verts, typage propre.

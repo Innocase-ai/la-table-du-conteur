@@ -53,54 +53,75 @@ export function resoudreObjets(objets: string[], donnees: Donnees): Omit<Equipem
 
 const MUNITIONS = /^(fleche|carreau|bille|dard|balle|carquois|etui)/;
 
-/**
- * Le kit allégé du jeu (décision du 05/11/2026) : le SRD donne à chaque héros le kit de sa classe (3 à 8 objets) plus celui de
- * son historique (5 à 7 objets), un sac d'armes qui encombre le départ. Ici :
- * - le kit de **classe** garde son armure, son bouclier, ses outils et son paquetage, mais **deux armes** au plus : la
- *   première (l'arme principale) et la première arme de jet ou de tir qui suit (javelines, hachettes, arc), sinon la
- *   deuxième ; les munitions ne restent qu'avec une arme de jet ou de tir gardée ;
- * - le kit d'**historique** ne donne plus d'armes ni de munitions (la lance et l'arc court du Soldat, les dagues du Criminel) ;
- * - le reste est **à acheter** : le prix des armes retirées est ajouté à l'or de départ.
- */
-export function allegerKit(objets: string[], po: number, source: 'classe' | 'historique', donnees: Donnees): { objets: string[]; po: number } {
+/** Les deux jeux d'armes d'un kit de classe : le jeu de **mêlée** (l'arme principale) et le jeu de **jet ou de tir** (la première arme de jet ou de tir qui suit). */
+export type JeuArmes = 'melee' | 'tir';
+
+/** Le jeu d'armes gardé quand le joueur n'a pas choisi : la mêlée, sauf le rôdeur, qui démarre avec son arc. */
+export const jeuArmesParDefaut = (classe: string): JeuArmes => (classe === 'rodeur' ? 'tir' : 'melee');
+
+interface LigneKit {
+  texte: string;
+  quantite: number;
+  arme?: Arme;
+  munition: boolean;
+}
+
+function analyserKit(objets: string[], donnees: Donnees): { lignes: LigneKit[]; principale?: number; alternative?: number } {
   const armes = new Map<string, Arme>();
   for (const a of donnees.armes.values()) armes.set(normaliser(a.nom), a);
-  const lignes = objets.map((texte) => {
+  const lignes: LigneKit[] = objets.map((texte) => {
     const brut = normaliser(texte.replace(/\(.*?\)/g, ''));
     const quantite = Number(/^(\d+) /.exec(brut)?.[1] ?? 1);
     const nom = brut.replace(/^\d+ /, '');
     const arme = [nom, nom.split(' ').map(singulier).join(' ')].map((v) => armes.get(v)).find(Boolean);
     return { texte, quantite, arme, munition: !arme && MUNITIONS.test(nom) };
   });
-  const gardees = new Set<number>();
-  if (source === 'classe') {
-    const idx = lignes.flatMap((l, i) => (l.arme ? [i] : []));
-    const principale = idx[0];
-    if (principale !== undefined) {
-      gardees.add(principale);
-      const secondaire = idx.slice(1).find((i) => lignes[i]!.arme!.portees) ?? idx[1];
-      if (secondaire !== undefined) gardees.add(secondaire);
-    }
-  }
-  const tirOuJet = [...gardees].some((i) => lignes[i]!.arme!.portees);
-  let retire = 0;
-  const gardes = lignes.filter((l, i) => {
-    if (l.arme) {
-      const garde = gardees.has(i);
-      if (!garde) retire += (l.arme.prixPo ?? 0) * l.quantite;
-      return garde;
-    }
-    return !l.munition || (source === 'classe' && tirOuJet);
-  });
-  return { objets: gardes.map((l) => l.texte), po: po + Math.round(retire * 10) / 10 };
+  const idx = lignes.flatMap((l, i) => (l.arme ? [i] : []));
+  const principale = idx[0];
+  const alternative = principale === undefined ? undefined : (idx.slice(1).find((i) => lignes[i]!.arme!.portees) ?? idx[1]);
+  return { lignes, principale, alternative };
+}
+
+const aDesMunitions = (arme: Arme): boolean => arme.proprietes.some((p) => /munitions/i.test(p));
+
+/**
+ * Le kit allégé du jeu (décisions du 05/11 puis du 17/11/2026) : le SRD donne à chaque héros le kit de sa classe (3 à 8 objets) plus
+ * celui de son historique (5 à 7 objets), un sac d'armes qui encombre le départ. Ici :
+ * - le kit de **classe** garde son armure, son bouclier, ses outils et son paquetage, mais **un seul jeu d'armes** : l'arme principale
+ *   (`melee`, par défaut) ou la première arme de jet ou de tir qui suit (`tir`, au choix du joueur) ; les munitions ne restent
+ *   qu'avec une arme à munitions gardée (arc, arbalète) ;
+ * - le kit d'**historique** ne donne plus d'armes ni de munitions (la lance et l'arc court du Soldat, les dagues du Criminel) ;
+ * - le reste est perdu : **le prix des armes retirées n'est pas ajouté à l'or de départ** (décision du 17/11/2026 : la bourse de
+ *   départ d'un groupe de 6 dépassait 240 po, de quoi tout acheter dans un village de départ).
+ */
+export function allegerKit(objets: string[], po: number, source: 'classe' | 'historique', donnees: Donnees, jeu: JeuArmes = 'melee'): { objets: string[]; po: number } {
+  const { lignes, principale, alternative } = analyserKit(objets, donnees);
+  const gardee = source === 'classe' ? (jeu === 'tir' && alternative !== undefined ? alternative : principale) : undefined;
+  const avecMunitions = gardee !== undefined && aDesMunitions(lignes[gardee]!.arme!);
+  const gardes = lignes.filter((l, i) => (l.arme ? i === gardee : !l.munition || avecMunitions));
+  return { objets: gardes.map((l) => l.texte), po };
+}
+
+/** Les jeux d'armes qu'un kit de classe permet de choisir (vide s'il n'a qu'un jeu) : pour chacun, ses armes et ses munitions. */
+export function jeuxDArmes(options: { id: string; objets: string[] }[], donnees: Donnees): { id: JeuArmes; armes: string[] }[] {
+  const kit = options.find((o) => o.objets.length > 0);
+  if (!kit) return [];
+  const { lignes, principale, alternative } = analyserKit(kit.objets, donnees);
+  if (principale === undefined || alternative === undefined) return [];
+  const munitions = lignes.filter((l) => l.munition).map((l) => l.texte);
+  const avec = (i: number) => (aDesMunitions(lignes[i]!.arme!) ? [lignes[i]!.texte, ...munitions] : [lignes[i]!.texte]);
+  return [
+    { id: 'melee', armes: avec(principale) },
+    { id: 'tir', armes: avec(alternative) },
+  ];
 }
 
 /**
  * Options d'équipement proposées pour une classe ou un historique : celles qui contiennent des objets (l'option « or » est
  * écartée), dans leur version allégée (`allegerKit`).
  */
-export function optionsEquipement(options: { id: string; objets: string[]; po: number }[], source: 'classe' | 'historique', donnees: Donnees): { id: string; objets: string[]; po: number }[] {
-  return options.filter((o) => o.objets.length > 0).map((o) => ({ ...o, ...allegerKit(o.objets, o.po, source, donnees) }));
+export function optionsEquipement(options: { id: string; objets: string[]; po: number }[], source: 'classe' | 'historique', donnees: Donnees, jeu: JeuArmes = 'melee'): { id: string; objets: string[]; po: number }[] {
+  return options.filter((o) => o.objets.length > 0).map((o) => ({ ...o, ...allegerKit(o.objets, o.po, source, donnees, jeu) }));
 }
 
 export function equipementChoisi(
@@ -109,11 +130,12 @@ export function equipementChoisi(
   optionClasse: string | undefined,
   optionHistorique: string | undefined,
   donnees: Donnees,
+  jeu?: JeuArmes,
 ): EquipementResolu | undefined {
   const classe = donnees.classes.get(classeId);
   const historique = donnees.historiques.get(historiqueId);
   if (!classe || !historique || !optionClasse) return undefined;
-  const a = optionsEquipement(classe.equipementDepart, 'classe', donnees).find((o) => o.id === optionClasse);
+  const a = optionsEquipement(classe.equipementDepart, 'classe', donnees, jeu ?? jeuArmesParDefaut(classeId)).find((o) => o.id === optionClasse);
   if (!a) return undefined;
   const b = optionHistorique ? optionsEquipement(historique.equipementDepart, 'historique', donnees).find((o) => o.id === optionHistorique) : undefined;
   const resolu = resoudreObjets([...a.objets, ...(b?.objets ?? [])], donnees);

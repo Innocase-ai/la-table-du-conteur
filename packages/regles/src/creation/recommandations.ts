@@ -257,10 +257,12 @@ export function recommanderCompetences(c: ChoixPartiel & { niveau: number }, don
   // Équipement : première option de la classe et de l'historique.
   res.equipementClasse = ex.equipementClasse[0]?.id;
   res.equipementHistorique = ex.equipementHistorique[0]?.id;
+  // Un seul jeu d'armes au départ : celui que le joueur a choisi ; sinon celui par défaut de la classe (mêlée, ou l'arc du rôdeur).
+  res.jeuArmes = c.jeuArmes ?? ex.jeuArmes;
 
   // Bottes d'arme : d'abord les armes de l'équipement choisi.
   if (ex.bottes) {
-    const eq = equipementChoisi(c.classe, c.historique, res.equipementClasse, res.equipementHistorique, donnees);
+    const eq = equipementChoisi(c.classe, c.historique, res.equipementClasse, res.equipementHistorique, donnees, res.jeuArmes);
     const portees = (eq?.armes ?? []).filter((id) => ex.bottes!.parmi.includes(id));
     const reste = ex.bottes.parmi.filter((id) => !portees.includes(id));
     res.bottes = [...portees, ...reste].slice(0, ex.bottes.nombre);

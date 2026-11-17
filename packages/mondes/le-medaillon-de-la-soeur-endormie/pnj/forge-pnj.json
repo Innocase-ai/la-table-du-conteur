@@ -325,7 +325,7 @@
           "vendre",
           "boutique"
         ],
-        "reponse": "Une potion ? Une lame ? J’ai ce qu’il faut, et même un peu trop. Pour le corps, une potion de soin, huit pièces d’or : le flacon rouge est épais, et il sent la cerise et le fer. Pour les mains plus rudes, une épée de fer, quinze pièces d’or : la poignée est encore lisse, la lame n’a pas un éclat. Ça te va ? Je ne fais pas crédit, mais la conversation est gratuite, et ça, c’est déjà beaucoup. Les nouvelles de la route, je les donne aussi, si tu me dis d’où tu viens ?",
+        "reponse": "Une potion ? Une lame ? J’ai de quoi t’équiper, et même un peu trop ! Ma potion de soin : huit pièces d’or le flacon, et il m’en reste deux, rouges, épais, qui sentent la cerise et le fer. Pour les mains plus rudes, une épée de fer à quinze pièces d’or, poignée lisse, lame sans un éclat. Ça te va ? Pour la route, je vends aussi le nécessaire : rations, torches, huile, une lanterne, de la corde, une ou deux dagues. Et si tu veux dormir au chaud, je loue une chambre à l’étage pour deux pièces d’or la nuit, avec un lit, et le bruit de la salle en dessous. Alors, qu’est-ce qui te tente ?",
         "effets": [],
         "unique": false,
         "question": "Que vendez-vous ?"
@@ -422,20 +422,63 @@
       "stock": [
         {
           "objet": "potion-de-soin",
-          "quantite": 1,
+          "quantite": 2,
           "prix": 8
         },
         {
           "objet": "epee-de-fer",
           "quantite": 1,
           "prix": 15
+        },
+        {
+          "objet": "dague",
+          "quantite": 2,
+          "prix": 2
+        },
+        {
+          "objet": "lanterne-a-capote",
+          "quantite": 1,
+          "prix": 5
+        },
+        {
+          "objet": "corde",
+          "quantite": 1,
+          "prix": 1
+        },
+        {
+          "objet": "rations",
+          "quantite": 6,
+          "prix": 0.5
+        },
+        {
+          "objet": "torche",
+          "quantite": 6,
+          "prix": 0.01
+        },
+        {
+          "objet": "huile",
+          "quantite": 3,
+          "prix": 0.1
         }
       ],
       "tables": [],
       "rachat": 0.5,
       "types": []
     },
-    "age": "la cinquantaine bien tassée, les joues rouges de feu de cheminée"
+    "age": "la cinquantaine bien tassée, les joues rouges de feu de cheminée",
+    "services": [
+      {
+        "id": "chambre-du-sanglier",
+        "nom": "Une chambre à l’étage",
+        "resume": "Vous montez l’escalier de bois jusqu’à une petite pièce : un lit de paille propre, une poutre basse qui cogne la tête, et le brouhaha de la salle qui remonte par le plancher. Vous dormez, sans rien de plus qu’une nuit tranquille.",
+        "prix": 2,
+        "effets": [
+          {
+            "narration": "Le pain chaud d’en bas vous réveille avant le jour, et une brume grise colle à la vitre. Un chat roux dort sur vos bottes, et un bol de lait tiède attend sur le rebord de la fenêtre."
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "frere-anselme",
@@ -767,8 +810,54 @@
         "revele": [
           "f-incendie-flammes-blanches"
         ]
+      },
+      {
+        "id": "vieille-mahaut-ses-remedes",
+        "mots": [
+          "baume",
+          "trousse",
+          "remèdes",
+          "pain"
+        ],
+        "question": "Vendez-vous vos remèdes et vos baumes, madame ?",
+        "reponse": "Pardi que oui, je vends, petit ! Mes baumes d’herbes, trois pièces d’or le pot, pour les coupures et les genoux qui grincent. Les trousses de soins, cinq pièces d’or, avec des bandes propres et du fil. Et du matériel d’herboriste, cinq pièces d’or : mortier, couteau, sachets, tout ce qu’il faut pour cueillir sans se piquer. Tu vois, le pain de campagne aussi, il sort du four le matin et sent le bon feu. Pour les armes et les bijoux, je n’en vends pas, et je n’en achète pas non plus. Tu veux un baume, ou une trousse ? Dis-le-moi vite, j’ai la tête qui file.",
+        "effets": [],
+        "unique": false
       }
     ],
-    "age": "plus de soixante-dix ans, toute petite et voûtée"
+    "age": "plus de soixante-dix ans, toute petite et voûtée",
+    "boutique": {
+      "stock": [
+        {
+          "objet": "baume-d-herbes",
+          "quantite": 3,
+          "prix": 3
+        },
+        {
+          "objet": "trousse-de-soins",
+          "quantite": 2,
+          "prix": 5
+        },
+        {
+          "objet": "materiel-d-herboriste",
+          "quantite": 1,
+          "prix": 5
+        },
+        {
+          "objet": "pain-de-campagne",
+          "quantite": 4,
+          "prix": 0.02
+        }
+      ],
+      "tables": [],
+      "rachat": 0.5,
+      "types": [
+        "potion",
+        "nourriture",
+        "materiel",
+        "outil",
+        "divers"
+      ]
+    }
   }
 ]

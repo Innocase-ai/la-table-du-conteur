@@ -660,7 +660,13 @@ export const Monde = z.object({
   // Taille du groupe pour laquelle l'histoire est écrite (4 ou 6 héros). Elle se joue de 1 à 6 héros : les combats s'adaptent
   // (`adapterRencontre`) ; ce champ sert à l'annoncer au joueur. 6 par défaut.
   groupe: z.object({ conseille: z.number().int().min(1).max(6) }).default({ conseille: 6 }),
-  depart: z.object({ lieu: Id, intro: Texte }),
+  depart: z.object({
+    lieu: Id,
+    intro: Texte,
+    // Plafond d'or de départ PAR HÉROS (po) : un village de départ pauvre ne laisse pas un groupe riche de ses kits tout acheter.
+    // Absent : l'or des kits de classe et d'historique, sans plafond.
+    orMax: z.number().min(0).optional(),
+  }),
   // Direction artistique, qui complète la charte graphique commune.
   direction: z.object({ style: Texte, palette: z.array(Texte).min(2), motsCles: z.array(Texte).default([]), interdits: z.array(Texte).default([]) }),
   chapitres: z.array(Chapitre).min(1),

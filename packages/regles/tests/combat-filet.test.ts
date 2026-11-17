@@ -230,7 +230,7 @@ describe('fin d’un combat d’histoire : de l’état du combat à la partie',
   const rencontre = (n: number): Rencontre =>
     adapterRencontre({ id: ID, nom: def.nom, description: def.intro, difficulte: def.difficulte, terrain: def.terrain ?? 'foret', carte: def.carte!, monstres: def.monstres.map((m) => ({ profil: m.profil, nombre: m.nombre })) }, n);
 
-  function jouer(p: Partie, graine = 5): EtatCombat {
+  function jouer(p: Partie, graine = 1): EtatCombat {
     const { grille, combattants } = preparerRencontre(rencontre(p.groupe.length), donnees, p.groupe.map(heroCombatDe));
     const etat = creerCombat(grille, combattants, graine);
     jouerEnVerifiant(etat, IA_RAPIDE);

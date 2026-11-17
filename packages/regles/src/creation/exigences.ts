@@ -4,7 +4,7 @@
 import type { Donnees } from '../donnees';
 import type { ChoixPersonnage } from '../fiche';
 import type { ChoixCreation, Competence, Effet } from '../schemas';
-import { optionsEquipement } from './equipement';
+import { jeuArmesParDefaut, jeuxDArmes, optionsEquipement } from './equipement';
 import { bottesPossibles, choixRequis, niveauSortMax, regleInitie, tailleGrimoire, type RegleInitie } from './regles-creation';
 
 export const ETAPES = ['espece', 'classe', 'historique', 'caracteristiques', 'competences', 'alignement', 'identite', 'recapitulatif'] as const;
@@ -43,6 +43,10 @@ export interface Exigences {
   bottes?: { nombre: number; parmi: string[] };
   equipementClasse: { id: string; objets: string[]; po: number }[];
   equipementHistorique: { id: string; objets: string[]; po: number }[];
+  /** Les jeux d'armes du kit de classe (mêlée, jet ou tir) quand il y en a deux : le joueur en garde un seul. */
+  jeuxArmes: { id: 'melee' | 'tir'; armes: string[] }[];
+  /** Le jeu d'armes qui sera gardé : le choix du joueur, sinon celui par défaut de la classe. */
+  jeuArmes: 'melee' | 'tir';
 }
 
 /** Effets des traits, aptitudes, dons et options déjà choisies ; sert à dénombrer les choix restants. */
@@ -110,7 +114,9 @@ export function exigences(c: ChoixPartiel & { niveau: number }, donnees: Donnees
       : undefined,
     initie: regleInitie(historique.id, [historique.don, ...(c.dons ?? [])]),
     bottes: bottesPossibles(classe, niveau, donnees),
-    equipementClasse: optionsEquipement(classe.equipementDepart, 'classe', donnees),
+    equipementClasse: optionsEquipement(classe.equipementDepart, 'classe', donnees, c.jeuArmes ?? jeuArmesParDefaut(classe.id)),
+    jeuxArmes: jeuxDArmes(classe.equipementDepart, donnees),
+    jeuArmes: c.jeuArmes ?? jeuArmesParDefaut(classe.id),
     equipementHistorique: optionsEquipement(historique.equipementDepart, 'historique', donnees),
   };
 }

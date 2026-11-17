@@ -104,7 +104,7 @@ export function ficheStricte(c: Choix, donnees: Donnees): { fiche?: Fiche; erreu
   return r.ok ? { fiche: r.fiche, erreurs: [] } : { erreurs: r.erreurs };
 }
 
-const CLES_SURES: (keyof ChoixPersonnage)[] = ['methode', 'valeursBase', 'bonusHistorique', 'ameliorations', 'taille', 'equipementClasse', 'equipementHistorique', 'armure', 'bouclier'];
+const CLES_SURES: (keyof ChoixPersonnage)[] = ['methode', 'valeursBase', 'bonusHistorique', 'ameliorations', 'taille', 'equipementClasse', 'equipementHistorique', 'jeuArmes', 'armure', 'bouclier'];
 
 /**
  * Fiche d'aperçu : les choix déjà faits sont gardés, les autres sont remplacés par les valeurs recommandées.
@@ -214,6 +214,7 @@ function sansChoixDeClasse(c: Choix, donnees: Donnees): Choix {
     sortsGrimoire: undefined,
     equipementClasse: undefined,
     equipementHistorique: undefined,
+    jeuArmes: undefined,
     armure: undefined,
     bouclier: undefined,
   };

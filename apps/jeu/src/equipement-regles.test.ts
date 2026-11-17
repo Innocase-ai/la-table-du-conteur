@@ -14,6 +14,8 @@ const moteur: Moteur = creerMoteur({ dm: r.monde, srd }, MODULES_STANDARD);
 
 const depart = (): Partie => {
   const groupe = groupeConseille(3, srd).emplacements.map((p) => {
+    // Sylvaine (rôdeuse) démarre avec son arc long, qui prend les deux mains : ces tests de comparateur lui donnent le jeu de mêlée.
+    if (p!.choix.nom === 'Sylvaine') p!.choix = { ...p!.choix, jeuArmes: 'melee' };
     const f = bilanPersonnage(p!, srd).fiche!;
     return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
   });
@@ -72,7 +74,7 @@ describe('poupée d’équipement', () => {
 
     it('une arme magique remplace l’arme en main : dégâts, bonus et nom de ce qui est remplacé', () => {
       const p = depart();
-      const c = comparer(moteur.ctx, heros(p, 'bran'), 'pdf-lame-de-fer-gris')!;
+      const c = comparer(moteur.ctx, heros(p, 'bran'), 'pdf-lame-de-fer-gris', 'j1.droite')!;
       expect(c.emplacement).toBe('j1.droite');
       expect(c.enMain).toBe(true);
       expect(c.remplace).toEqual(['Épée à deux mains']);
@@ -116,7 +118,7 @@ describe('poupée d’équipement', () => {
     it('un bouclier va à la main gauche : +2 de CA, et les attaques ne changent pas', () => {
       const p = depart();
       p.etat.inventaire['bouclier'] = 1;
-      const c = comparer(moteur.ctx, heros(p, 'sylvaine'), 'bouclier')!;
+      const c = comparer(moteur.ctx, heros(p, 'sylvaine'), 'bouclier', 'j1.gauche')!;
       expect(c.emplacement).toBe('j1.gauche');
       expect(lignesDe(c).ca).toMatchObject({ avant: '15', apres: '17', sens: 'mieux' });
       expect(lignesDe(c).attaques).toBeUndefined();
@@ -198,10 +200,10 @@ describe('poupée d’équipement', () => {
 
     it('l’« après » annoncé est exactement ce que la commande équiper donne (CA et attaques)', () => {
       const essais: [string, string, string?][] = [
-        ['bran', 'pdf-lame-de-fer-gris'],
+        ['bran', 'pdf-lame-de-fer-gris', 'j1.droite'],
         ['hilda', 'cotte-de-mailles'],
         ['hilda', 'epee-a-deux-mains', 'j1.droite'],
-        ['sylvaine', 'bouclier'],
+        ['sylvaine', 'bouclier', 'j1.gauche'],
         ['pip', 'anneau-de-protection'],
       ];
       for (const [id, objet, s] of essais) {

@@ -58,6 +58,7 @@ export const ChoixPersonnageSchema = z.object({
   bottes: chaines.optional(),
   equipementClasse: z.string().optional(),
   equipementHistorique: z.string().optional(),
+  jeuArmes: z.enum(['melee', 'tir']).optional(),
 });
 // Vérifie à la compilation que le schéma décrit bien ChoixPersonnage.
 const _verif: z.infer<typeof ChoixPersonnageSchema> extends ChoixPersonnage ? true : never = true;

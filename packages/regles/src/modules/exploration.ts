@@ -91,8 +91,9 @@ export const moduleExploration: Module = {
       executer: (t) => {
         t.emettre({ type: 'texte', texte: t.ctx.dm.monde.depart.intro });
         t.emettre({ type: 'arrivee', lieu: t.ctx.dm.monde.depart.lieu });
-        // L'or de départ des fiches (kits de classe et d'historique, plus le prix des armes retirées du kit allégé) forme la bourse du groupe.
-        const orDeDepart = t.partie.groupe.reduce((s, h) => s + (h.fiche.equipement?.po ?? 0), 0);
+        // L'or de départ des fiches (kits de classe et d'historique) forme la bourse du groupe, plafonné par héros si le monde le demande (`depart.orMax`).
+        const plafond = t.ctx.dm.monde.depart.orMax ?? Infinity;
+        const orDeDepart = t.partie.groupe.reduce((s, h) => s + Math.min(h.fiche.equipement?.po ?? 0, plafond), 0);
         t.partie.etat.pieces += Math.round(orDeDepart * 100) / 100;
         // Des vivres pour quelques jours si l'histoire en demande (`monde.vivres.depart`, par héros).
         const vivres = t.ctx.dm.monde.vivres;

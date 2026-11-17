@@ -381,6 +381,23 @@ export function EcranChoixClasse({ b, donnees, maj, aller }: PropsEcran & { alle
           </ListeNav>
         </Section>
 
+        {ex.jeuxArmes.length > 0 && (
+          <Section titre="Votre jeu d'armes" aide="Un seul jeu d'armes au départ : la mêlée ou le jet / tir. L'autre s'achète ou se trouve en chemin." etat="ok">
+            <ListeNav className="liste-options" aria-label="Jeu d'armes">
+              {ex.jeuxArmes.map((j) => (
+                <Option
+                  key={j.id}
+                  compact
+                  selectionne={ex.jeuArmes === j.id}
+                  titre={j.id === 'melee' ? 'Mêlée' : 'Jet ou tir'}
+                  sous={liste(j.armes)}
+                  onChoisir={() => poser((x) => ({ ...x, jeuArmes: j.id }))}
+                />
+              ))}
+            </ListeNav>
+          </Section>
+        )}
+
         {ex.equipementHistorique.length > 0 && (
           <Section titre="Équipement d'historique" etat={eqHist ? 'ok' : 'manque'}>
             <ListeNav className="liste-options" aria-label="Équipement d'historique">

@@ -180,11 +180,16 @@ describe('une partie sauvegardée avant les deux jeux en combat', () => {
       return personnageDepuisFiche(f, { id: f.nom.toLowerCase() });
     });
     const p = moteur.nouvellePartie(groupe, { graine: 2, niveau: 3 });
-    const bran = p.groupe.find((h) => h.id === 'bran')!;
+    // Un seul jeu d'armes au départ : l'autre jeu apparaît quand le héros équipe une arme dedans.
+    expect(p.groupe.find((h) => h.id === 'bran')!.fiche.equipement?.autreJeu).toBeUndefined();
+    p.etat.inventaire['javeline'] = 1;
+    const equipee = moteur.executer(p, { type: 'equiper', objet: 'javeline', personnage: 'bran', emplacement: 'j2.droite' });
+    expect(equipee.refus).toBeUndefined();
+    const bran = equipee.partie.groupe.find((h) => h.id === 'bran')!;
     expect(bran.fiche.equipement?.autreJeu).toBeDefined();
     // La fiche d'une sauvegarde plus ancienne n'a pas l'autre jeu : le chargement le recalcule.
-    for (const h of p.groupe) delete h.fiche.equipement!.autreJeu;
-    const relue = moteur.charger(JSON.stringify(p));
+    for (const h of equipee.partie.groupe) delete h.fiche.equipement!.autreJeu;
+    const relue = moteur.charger(JSON.stringify(equipee.partie));
     expect(relue.groupe.find((h) => h.id === 'bran')!.fiche.equipement?.autreJeu).toBeDefined();
     expect(relue.groupe.map((h) => h.fiche.vitesse)).toEqual(p.groupe.map((h) => h.fiche.vitesse));
   });
