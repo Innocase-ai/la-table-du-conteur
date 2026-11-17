@@ -47,8 +47,7 @@
       {"id": "r-statues-d-argile-eveillees", "declencheur": "exploration", "unique": true}
     ],
     "faits": [
-      { "fait": "f-vapeur-des-sepulcres", "decouverte": { "dd": 12, "competence": "perception" } },
-      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 13, "competence": "investigation" } }
+      { "fait": "f-vapeur-des-sepulcres", "decouverte": { "dd": 12, "competence": "perception" } }
     ],
     "services": [],
     "repos": "impossible",
@@ -108,7 +107,6 @@
       { "id": "r-squelettes-fausse-tombe", "declencheur": "exploration", "unique": true }
     ],
     "faits": [
-      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 14, "competence": "investigation" } },
       { "fait": "f-marteaux-du-seuil", "decouverte": { "dd": 12, "competence": "investigation" } },
       { "fait": "f-squelettes-fausse-tombe", "decouverte": { "dd": 13, "competence": "religion" } }
     ],
@@ -140,14 +138,13 @@
         "type": "passage-secret",
         "heures": 0,
         "sens": "double",
-        "cache": { "dd": 12, "competence": "perception" },
+        "cache": { "dd": 17, "competence": "perception" },
         "description": "Sous le socle pivoté, un boyau étroit et humide s'enfonce dans la roche, et ses parois fissurées suintent sous les doigts.",
         "retour": "De ce côté, le boyau devient un escalier étroit et fissuré, qui remonte jusqu'au socle de la statue."
       }
     ],
     "rencontres": [],
     "faits": [
-      { "fait": "f-passage-temple-decouvert", "decouverte": { "dd": 12, "competence": "perception" } },
       { "fait": "f-fausse-tombe-leurre", "decouverte": { "dd": 13, "competence": "investigation" } },
       { "fait": "f-eau-sous-l-idole", "decouverte": { "dd": 10, "competence": "perception" } }
     ],

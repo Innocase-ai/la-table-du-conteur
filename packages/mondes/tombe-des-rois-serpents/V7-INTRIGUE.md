@@ -4,7 +4,9 @@
 
 **La question de l'histoire** : que valent les richesses des Rois Serpents, et à qui reviennent-elles : au seigneur qui paie, à ceux qui ont risqué leur peau, ou aux derniers habitants de la tombe ? Aucune fin n'est entièrement heureuse.
 
-## 1. La quête principale « Le Contrat des Rois Serpents » (5 étapes)
+## 1. La quête principale « Le Contrat des Rois Serpents » (7 étapes, devenue une enquête le 17/11/2026)
+
+> **Mise à jour du 17/11/2026** : la quête est une enquête (voir `PLAN-ENQUETE.md`). 7 étapes, dont 2 en parallèle dès le bivouac : « comprendre les échecs » (2 faits sur 4) et « percer le faux temple » (2 indices sur 4, qui ouvrent le passage ; la fouille, DD 17, reste un dernier recours), puis « franchir le niveau deux », « découvrir le cœur » (une des pistes : trésor, Couronne ou accord) , « résoudre le cœur » et le partage devant Martin. Fins et dilemmes inchangés ; le détail ci-dessous décrit l'ancienne suite en 5 étapes.
 
 1. **Rejoindre le Bivouac du Seuil** et parler à Martin (PX 50) → 2. **Traverser le niveau 1** et trouver le vrai chemin sous le faux temple (100) → 3. **Franchir le niveau 2** : catacombes noires, gardien osseux, porte du gouffre (150) → 4. **Tenir de quoi solder le contrat** au niveau 3 : le grand trésor, la Couronne ou un accord avec Xiximantre (200) → 5. **Rendre ses comptes à Martin** au bivouac (250). À l'étape 5, le groupe tranche devant lui (dilemme « Le décompte devant les mules »). Les 5 quêtes à donneur ont toutes une étape de retour ; 3 quêtes (couronne, statue de la fontaine, captive du cercle) s'ouvrent par une découverte en scène.
 

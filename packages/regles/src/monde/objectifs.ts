@@ -29,6 +29,7 @@ export type SigneQuete = '!' | '?';
 
 /** Le signe à montrer au-dessus d'un PNJ présent, d'après les sujets qu'il peut aborder maintenant. */
 export function signeDeQuete(p: PartieMonde, pnj: Pnj): SigneQuete | undefined {
+  if (p.dm.monde.depart.signesDeQuete === false) return undefined;
   let signe: SigneQuete | undefined;
   for (const s of sujetsDisponibles(p, pnj)) {
     for (const effet of s.effets) {

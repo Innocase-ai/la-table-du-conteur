@@ -13,29 +13,43 @@
         "id": "rejoindre-bivouac",
         "texte": "Quittez le Fort du Reflet Béni pour le Bivouac du Seuil, huit heures de marche vers l'ouest, et parlez à Martin avant de descendre dans la tombe.",
         "completion": { "ou": [{ "parle": "martin-le-valet" }, { "lieu": "n1-couloir-entree" }, { "lieu": "n3-escalier-surface" }] },
-        "suivantes": ["percer-faux-temple"],
+        "suivantes": ["comprendre-les-echecs", "percer-faux-temple"],
         "effets": [{ "xp": 50 }]
       },
       {
+        "id": "comprendre-les-echecs",
+        "texte": "Trois compagnies ont signé avant vous, et aucune n'est revenue entière ; au Fort et au Bivouac, interrogez ceux qui savent et recoupez ce que vous apprenez pour comprendre ce qui les a arrêtées.",
+        "completion": { "ou": [{ "et": [{ "fait": "f-varnac-survivant" }, { "fait": "f-pnj-compagnies-precedentes" }] }, { "et": [{ "fait": "f-varnac-survivant" }, { "fait": "f-tranchee-forcee" }] }, { "et": [{ "fait": "f-varnac-survivant" }, { "fait": "f-traces-expedition-n1" }] }, { "et": [{ "fait": "f-pnj-compagnies-precedentes" }, { "fait": "f-tranchee-forcee" }] }, { "et": [{ "fait": "f-pnj-compagnies-precedentes" }, { "fait": "f-traces-expedition-n1" }] }, { "et": [{ "fait": "f-tranchee-forcee" }, { "fait": "f-traces-expedition-n1" }] }, { "lieu": "n2-hall-aux-statues" }] },
+        "suivantes": [],
+        "effets": [{ "xp": 50 }, { "narration": "Les registres de Corvin et le récit du seul survivant, Varnac le Borgne, se recoupent : les trois compagnies d'avant se sont arrêtées au premier niveau. La tranchée n'a été que dégagée, jamais explorée, et personne n'est descendu par là. Les cercueils dorés que chacun a voulu piller ne sont peut-être pas ce que cache la tombe." }]
+      },
+      {
         "id": "percer-faux-temple",
-        "texte": "Traversez le premier niveau, dont les sépulcres sentent le piège, et cherchez le vrai chemin des catacombes.",
-        "completion": { "ou": [{ "fait": "f-passage-temple-decouvert" }, { "lieu": "n2-hall-aux-statues" }, { "lieu": "n3-salle-ceremonie" }, { "lieu": "n3-hall-du-basilic" }, { "lieu": "n3-escalier-surface" }] },
+        "texte": "Le premier niveau est truffé de pièges et de leurres ; cherchez ce qui cloche dans ce faux tombeau et recoupez vos indices pour trouver le vrai chemin des catacombes.",
+        "completion": { "ou": [{ "et": [{ "fait": "f-eau-sous-l-idole" }, { "fait": "f-fausse-tombe-leurre" }] }, { "et": [{ "fait": "f-eau-sous-l-idole" }, { "fait": "f-vapeur-des-sepulcres" }] }, { "et": [{ "fait": "f-eau-sous-l-idole" }, { "fait": "f-traces-expedition-n1" }] }, { "et": [{ "fait": "f-fausse-tombe-leurre" }, { "fait": "f-vapeur-des-sepulcres" }] }, { "et": [{ "fait": "f-fausse-tombe-leurre" }, { "fait": "f-traces-expedition-n1" }] }, { "et": [{ "fait": "f-vapeur-des-sepulcres" }, { "fait": "f-traces-expedition-n1" }] }, { "lieu": "n2-hall-aux-statues" }, { "lieu": "n3-salle-ceremonie" }, { "lieu": "n3-hall-du-basilic" }, { "lieu": "n3-escalier-surface" }] },
         "suivantes": ["franchir-niveau-deux"],
-        "effets": [{ "xp": 100 }]
+        "effets": [{ "xp": 100 }, { "fait": "f-passage-temple-decouvert" }, { "debloquer": "n2-hall-aux-statues" }, { "narration": "Les pièces s'emboîtent enfin : l'eau qui fuit sous l'idole, le leurre des cercueils dorés, la vapeur des sépulcres et les traces des expéditions passées racontent la même chose. Tout ce premier niveau n'est qu'un décor, dressé pour détourner les pilleurs de leur véritable route. Le vrai chemin passe sous le socle de la grande idole serpent." }]
       },
       {
         "id": "franchir-niveau-deux",
-        "texte": "Descendez dans les catacombes noyées de noir, passez le colosse osseux qui garde le gouffre et trouvez la porte du troisième niveau.",
+        "texte": "Les catacombes du deuxième niveau baignent dans le noir ; il doit exister une porte vers le niveau inférieur, et plus d'un chemin pour l'atteindre : à vous de la trouver.",
         "completion": { "ou": [{ "lieu": "n3-salle-ceremonie" }, { "lieu": "n3-hall-du-basilic" }] },
+        "suivantes": ["decouvrir-le-coeur"],
+        "effets": [{ "xp": 125 }, { "flag": "niveau-3-atteint" }]
+      },
+      {
+        "id": "decouvrir-le-coeur",
+        "texte": "Ce qui paiera le contrat n'est pas posé au premier coin ; cherchez ce que cette tombe garde vraiment de précieux, qui le garde, et à quel prix on peut le prendre.",
+        "completion": { "ou": [{ "fait": "f-serpent-de-pierre-ouvre-la-porte" }, { "fait": "f-couronne-chez-gobelins" }, { "fait": "f-couronne-manque-au-trone" }, { "fait": "f-statue-or-salle-commune" }, { "fait": "f-xiximantre-troque-curiosites" }, { "fait": "f-empire-chute-xiximantre" }, { "flag": "coeur-tombe-resolu" }] },
         "suivantes": ["resoudre-coeur-tombeau"],
-        "effets": [{ "xp": 150 }, { "flag": "niveau-3-atteint" }]
+        "effets": [{ "xp": 75 }, { "narration": "Ce qui vaut le contrat ne se ramasse pas au hasard : cela a un gardien, un prix ou un maître, et vous le comprenez enfin. Ce que vous en tirerez reste à décider, et chaque choix laissera sa trace." }]
       },
       {
         "id": "resoudre-coeur-tombeau",
-        "texte": "Fouillez le troisième niveau jusqu'à tenir de quoi solder le contrat : le trésor des rois, la Couronne ou un accord avec le maître des lieux. Puis remontez.",
+        "texte": "Vous tenez une piste sérieuse ; faites-en de quoi solder le contrat devant Martin, puis remontez.",
         "completion": { "flag": "coeur-tombe-resolu" },
         "suivantes": ["regler-partage-martin"],
-        "effets": [{ "xp": 200 }]
+        "effets": [{ "xp": 100 }]
       },
       {
         "id": "regler-partage-martin",

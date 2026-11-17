@@ -161,6 +161,11 @@ describe('objectifs et signes', () => {
     sujet.effets = [{ flag: 'rapport' }, { quete: { id: QUETE, statut: 'terminee' } }];
     expect(signeDeQuete(pm, pnj)).toBe('?');
     expect(ficheDeScene(pm).pnj.find((n) => n.id === pnj.id)?.quete).toBe('?');
+    // Une histoire peut couper les signes : le joueur cherche et parle sans être guidé.
+    dm.monde.depart.signesDeQuete = false;
+    expect(signeDeQuete(pm, pnj)).toBeUndefined();
+    expect(ficheDeScene(pm).pnj.find((n) => n.id === pnj.id)?.quete).toBeUndefined();
+    expect(moteur.propositions(p).find((x) => x.ordre?.type === 'parler' && (x.ordre as unknown as { pnj: string }).pnj === pnj.id)?.signe).toBeUndefined();
   });
 });
 

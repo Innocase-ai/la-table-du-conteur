@@ -666,6 +666,9 @@ export const Monde = z.object({
     // Plafond d'or de départ PAR HÉROS (po) : un village de départ pauvre ne laisse pas un groupe riche de ses kits tout acheter.
     // Absent : l'or des kits de classe et d'historique, sans plafond.
     orMax: z.number().min(0).optional(),
+    // Signes « ! » (quête à confier) et « ? » (rapport attendu) au-dessus des PNJ. Vrai par défaut ; `false` : le joueur cherche et
+    // parle sans être guidé (règle de RPG du 16/11/2026).
+    signesDeQuete: z.boolean().default(true),
   }),
   // Direction artistique, qui complète la charte graphique commune.
   direction: z.object({ style: Texte, palette: z.array(Texte).min(2), motsCles: z.array(Texte).default([]), interdits: z.array(Texte).default([]) }),

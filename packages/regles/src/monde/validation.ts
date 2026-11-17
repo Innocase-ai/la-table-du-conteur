@@ -849,6 +849,8 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     }
   };
   compterSources([[...dm.lieux.values()].map((l) => l.faits), [...dm.pnj.values()], [...dm.quetes.values()].map((q) => [q.etapes.map((e) => e.effets), q.recompenses.effets]), [...dm.rencontres.values()].map((r) => [r.effetsVictoire, r.alternatives.map((a) => a.effets)]), [...dm.evenements.values()].map((e) => e.effets), [...dm.tresors.values()].map((t) => t.contenu), [...dm.enigmes.values()].map((e) => e.recompense.effets), dilemmes.flatMap((d) => effetsDuDilemme(d))]);
+  // Un examen qui apprend un fait (son texte ou une lecture plus fine) est une source comme une autre.
+  compterSources(examensDe(dm).examens.map((e) => [e.effets, e.variantes.map((v) => v.effets)]));
   const cles = new Set<string>();
   const noterCle = (c: Condition | undefined): void => c && refsCondition(c, (g, id) => g === 'fait' && cles.add(id));
   for (const q of dm.quetes.values()) {
