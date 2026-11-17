@@ -30,6 +30,9 @@
           "pnj": "varnac-le-borgne",
           "delta": 2
         }
+      },
+      {
+        "flag": "bav-gardes-varnac"
       }
     ]
   },
@@ -338,6 +341,9 @@
           "pnj": "soeur-lysandre",
           "delta": 2
         }
+      },
+      {
+        "flag": "bav-larmes-lysandre"
       }
     ]
   },
@@ -487,12 +493,12 @@
     ]
   },
   {
-    "id": "mireille-bivouac",
+    "id": "mireille-tranchee-strates",
     "pnj": "mireille-cartographe",
     "quand": {
-      "lieu": "bivouac-entree"
+      "lieu": "tombe-des-rois"
     },
-    "texte": "Le sol s'affaisse ici par degrés : on voit au moins trois strates taillées dans le calcaire, bien nettes sous le bord de ce creux de rocher. Gardez-moi un peu de lumière pour mes croquis, je ne trace jamais à l'ombre d'une mule.",
+    "texte": "Le sol s'affaisse par degrés ici, dans la tranchée : trois strates taillées dans le calcaire, bien nettes sous le bord. Un peu de lumière, s'il vous plaît, pour mes croquis ; je ne trace pas dans la pénombre, mes traits tremblent.",
     "effets": []
   },
   {
@@ -542,6 +548,9 @@
           "pnj": "mireille-cartographe",
           "delta": 2
         }
+      },
+      {
+        "flag": "bav-pivot-mireille"
       }
     ]
   },
@@ -716,5 +725,778 @@
         }
       }
     ]
+  },
+  {
+    "id": "varnac-r-fausse-tombe",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-squelettes-fausse-tombe",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Les os se sont relevés puis sont retombés, et l'or n'était qu'un appât pour pilleurs pressés. Je tapote le couvercle de la perche, une feuille d'or sur du bois mince, rien à prendre ici, on passe.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-sparamantur",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-sparamantur-squelette",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Sparamantur ne veillera plus derrière l'éboulis, ce vieux noble. Je le salue de la pointe de la perche, sec et pas moqueur. Cette crypte à moitié effondrée n'a pas fini de tomber, on ne traîne pas sous les blocs, ni vous ni moi.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-bleme",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-bleme-atrium",
+        "issue": "victoire"
+      }
+    },
+    "texte": "La chose blême ne remontera plus de son bassin, et je garde mes trois pas de distance avec cette eau. Je vois des bijoux au fond, luisants comme des pièces. Je n'y plonge pas la main, pas avant d'avoir sondé la margelle.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-soldats",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-statues-creuses-serpents",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Les dix-huit statues creuses ont bougé, et un décor de parade peut mordre aussi bien qu'un ennemi. Un sapeur se méfie des décors, toujours. Une statue qui sonne creux se frappe avant qu'elle ne frappe.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-chauves-souris",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-chauves-souris-et-fosse"
+      }
+    },
+    "texte": "Ça sentait le guano à plein nez, et j'ai reconnu l'odeur avant même de voir les ailes. Je n'aime pas les dalles qui sonnent creux, surtout près d'une fosse. Gardez les torches basses et ne regardez pas trop la voûte.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-eclaireurs-gobelins",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-eclaireurs-gobelins",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Ils défendaient des couchettes, pas un trésor, ces petits gars. Je ne tire aucune fierté de les avoir abattus, et je regarde leurs paillasses de mousse, leurs casseroles de cuivre. Des gens qui dorment là ne gardent rien de valeur.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-deserteurs",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-contrat-deserteurs"
+      }
+    },
+    "texte": "Quitter un convoi en pleine piste, ça ne se pardonne pas. Moi, je n'ai jamais lâché ma compagnie, et je ne plains pas ceux qui la lâchent pour une solde. Parlez-leur avant qu'ils parlent avec le fer.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-pillards-bande",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-contrat-pillards-bande",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Ils sont repartis, et Martin et ses mules sont sains et saufs. Je compte les têtes du groupe d'un coup d'œil, puis les mules, deux, avec leurs fontes intactes. Je ne baisse la garde qu'après avoir compté.",
+    "effets": []
+  },
+  {
+    "id": "varnac-r-basilic",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "rencontre": {
+        "id": "r-basilic-enchaine"
+      }
+    },
+    "texte": "Cette chaîne est longue, elle lui laisse tout le hall, et la clé de fer pend sous son collier. Un éboulement m'a pris un œil, et l'autre, je tiens à le garder. Ne vous placez pas dans l'arc de ce lien.",
+    "effets": [
+      {
+        "flag": "bav-basilic-varnac"
+      }
+    ]
+  },
+  {
+    "id": "varnac-o-anneau",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "objet": "anneau-griffe-croc"
+    },
+    "texte": "Ne mettez pas cet anneau au doigt, personne, pas même pour rire. Dans ma tête, il a tué Hélian et Doran. Rangez-le dans un sac fermé, et que ce sac reste loin de vos mains.",
+    "effets": []
+  },
+  {
+    "id": "varnac-o-dague",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "objet": "dague-serpentine-plus-1"
+    },
+    "texte": "Le fil est beau, je l'accorde, c'est un bel ouvrage de jade noir. Mais on a sacrifié des gens avec cette lame, et je n'en veux pas pour moi. Rangez-la au fond du sac.",
+    "effets": []
+  },
+  {
+    "id": "varnac-o-statuette",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "objet": "statuette-garde-petrifie"
+    },
+    "texte": "Ce morceau de garde pétrifiée pèse lourd pour sa taille, et quelqu'un a vécu dedans, je le vois à la forme. Je regrette de ne pas savoir une prière pour lui. Rangez-le sans le cogner.",
+    "effets": []
+  },
+  {
+    "id": "varnac-l-dome",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-dome-et-esclaves"
+    },
+    "texte": "Des anneaux de fer scellés dans le roc, je connais ça : des chaînes pour des hommes qui ne partaient jamais. Je serre la mâchoire, je passe le doigt sur l'anneau, et je n'ajoute rien de plus. Avancez.",
+    "effets": []
+  },
+  {
+    "id": "varnac-l-tresor",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-salle-du-tresor"
+    },
+    "texte": "Des coffres de pièces anciennes, des gemmes, et Martin va compter chaque pièce, c'est sûr. La moitié pour Aldéric, la moitié pour nous, mais l'or pèse toujours plus lourd qu'on ne croit. Ne portez pas tout d'un coup.",
+    "effets": []
+  },
+  {
+    "id": "varnac-l-couloir-lames",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-autel-et-couloir-lames"
+    },
+    "texte": "Mireille, passez devant, ou à défaut marchez sur les dalles claires. Les dalles les plus usées sont les sûres, ça se voit à la poussière. Pas un pas au hasard, je vous le dis.",
+    "effets": []
+  },
+  {
+    "id": "varnac-l-salle-commune",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "lieu": "n3-salle-commune-gobeline"
+    },
+    "texte": "Des marmites sur le feu, des paillasses de mousse, quelqu'un vit ici, et ça change tout pour moi. J'abaisse la perche et je ne touche à rien. Cette statue d'or contre le pilier, on la laisse où elle est, pour l'instant.",
+    "effets": []
+  },
+  {
+    "id": "varnac-p-martin",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "parle": "martin-le-valet"
+    },
+    "texte": "Je lui dois une gorgée d'eau salée tiède, et ça je ne l'oublie pas. Martin compte tout, la moindre pièce et la moindre mule, mais il m'a laissé ramper jusqu'à son feu sans poser une question avant l'eau. Ça je l'ai retenu.",
+    "effets": []
+  },
+  {
+    "id": "varnac-p-skriik",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "parle": "skriik-le-cueilleur"
+    },
+    "texte": "Skriik a plus peur que nous tous, et il le dit à la troisième personne, ça ne m'étonne pas. J'ai vu des gens plus effrayés que lui commander des armées. Ne lui tournez jamais le dos, mais ne lui mentez pas non plus.",
+    "effets": []
+  },
+  {
+    "id": "varnac-p-elios",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "parle": "elios-captif"
+    },
+    "texte": "Une grille, des barreaux et un homme derrière. Je ne laisse pas un homme derrière une grille, c'est ma règle depuis douze ans de sapeur. Ouvrez la grille et sortons-le avant que quelque chose d'autre rampe.",
+    "effets": []
+  },
+  {
+    "id": "varnac-f-boucliers",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "boucliers-rapportes-torin"
+    },
+    "texte": "Torin grogne en payant sa prime, c'est sa manière à lui de compter. Mais ce vieux nain regarde ce bouclier comme un sapeur regarde une corde, il sait ce qu'elle peut tenir.",
+    "effets": []
+  },
+  {
+    "id": "varnac-f-rapport-n2",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "rapport-n2-fait"
+    },
+    "texte": "Vous avez rendu votre rapport du second niveau à Martin, et j'approuve. Un homme qui ne rend de comptes à personne finit par en devoir à plus fort que lui, croyez-moi.",
+    "effets": []
+  },
+  {
+    "id": "varnac-c-30",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "pnj": {
+        "id": "varnac-le-borgne",
+        "attitudeMin": 30
+      }
+    },
+    "texte": "Je ne dis jamais merci, vous le savez, mais je dors mieux depuis que c'est vous qui veillez. Le tour de garde, ce n'est pas une faveur, c'est un bon sens de sapeur. Alors je reste.",
+    "effets": []
+  },
+  {
+    "id": "varnac-c-50",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "pnj": {
+        "id": "varnac-le-borgne",
+        "attitudeMin": 50
+      }
+    },
+    "texte": "Vous êtes ma compagnie maintenant, et je ne l'avais pas dit depuis Hélian et Doran. Voilà, c'est dit. Je n'aime pas les grands discours, alors je me tais, je garde la perche et je regarde mes bottes un moment.",
+    "effets": []
+  },
+  {
+    "id": "varnac-bav-pivot",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "bav-pivot-mireille"
+    },
+    "texte": "Ce piédestal pivote sur une crapaudine, Mireille l'a vu avant moi. Vous dessinez, je prends la perche, et on fait la paire, sapeur et arpenteuse. Poussez doucement, pas de précipitation, je tiens le mur derrière vous.",
+    "effets": []
+  },
+  {
+    "id": "varnac-bav-larmes",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "bav-larmes-lysandre"
+    },
+    "texte": "Je connais les larmes qui ne sont pas des feintes, et je fais confiance à la sœur. Je recule d'un pas, la perche devant, sans toucher au cercle d'argent. Moi, je ne l'écoute pas, je reste à distance.",
+    "effets": []
+  },
+  {
+    "id": "varnac-bav-lezard",
+    "pnj": "varnac-le-borgne",
+    "quand": {
+      "flag": "bav-lezard-lysandre"
+    },
+    "texte": "Je ne bois pas avec un lézard, même poli. Lysandre a raison, rien de ce qu'il offre chez ce sorcier aux lampes violettes. Je garde ma gourde, et je la remplis moi-même.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-veilleuses",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-statues-d-argile-eveillees"
+      }
+    },
+    "texte": "Ces guerriers d'argile tiennent encore leur bouclier haut, et je ne veux pas les oublier. Je trace un signe de paix sur ce socle, puis je vous demande de respirer avant la suite.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-franbinzar",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-gelee-ocre-franbinzar"
+      }
+    },
+    "texte": "Je ne peux pas réciter une prière pour cette gelée, mais je pense à l'homme qu'elle fut, un noble mal embaumé. Chaque goutte grésille sur la pierre, et je recule de ce suintement.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-cercle",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-baltoplate-devoilee"
+      }
+    },
+    "texte": "Mes mains tremblent encore, et je ne nommerai pas ce qui était là. Je remercie la lumière pour cette minute de répit, et gardons notre souffle.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-basilic",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-basilic-enchaine"
+      }
+    },
+    "texte": "J'ai gardé les yeux baissés pendant tout ce qui vient de se passer, et je pense sans arrêt aux gardes de pierre du vestibule. Mon talisman serré dans le poing, je ne veux pas savoir ce que ses yeux verts auraient fait.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-trone",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-reflets-du-trone"
+      }
+    },
+    "texte": "Ce trône me regarde comme un juge, et je n'aime pas la façon dont les miroirs me renvoient mon reflet. Ne vous asseyez jamais sur ce siège, pas même pour rire, je vous le demande.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-citerne",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-contrat-citerne"
+      }
+    },
+    "texte": "Je pense à Marta et à sa soupe, à tous ceux du fort qui boivent cette eau chaque jour. Ce n'est pas grand-chose de purger une citerne, mais je suis heureuse d'avoir pu aider à quelque chose de simple.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-grilles",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-grilles-des-oubliettes"
+      }
+    },
+    "texte": "Personne ne devrait être enfermé derrière du fer, surtout sous cette lumière froide. La compassion passe avant la prudence, et je veux leur dire d'abord que nous sommes là.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-r-troc",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "rencontre": {
+        "id": "r-troc-skriik-champignons"
+      }
+    },
+    "texte": "J'ai vu les cueilleurs cacher leurs petits derrière les planches, et je pose ma masse au sol. Espérons que la parole tienne, car ce serait triste de se tromper devant eux.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-o-parchemins",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "objet": "parchemins-baltoplate"
+    },
+    "texte": "Donnez-moi ces rouleaux, je les enveloppe dans du lin et je les range dans mon sac. Je les relirai à la lumière du jour, et je ne dirai rien de ce qu'ils contiennent avant de les avoir lus.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-o-couronne",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "objet": "couronne-rois-serpents"
+    },
+    "texte": "Je la trouve belle, et tout aussi lourde, cette couronne des Rois Serpents. Une couronne fait toujours du mal à celui qu'elle choisit comme maître, alors ne la posez jamais sur votre tête, je vous en prie.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-o-journal",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "objet": "journal-du-dernier-pilleur"
+    },
+    "texte": "Je le lis à voix basse, ce journal, parce que son auteur n'est pas revenu pour le relire. Donnons-le à Balthazar pour la chronique, il saura mieux que moi ce qu'il faut en garder.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-l-fosse",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-fosse-sacrificielle"
+    },
+    "texte": "Je ne prie pas devant ce puits, je me tiens droite et c'est tout. L'air manque ici, et je sens qu'on a fait des choses terribles au bord de cette flamme sans fumée.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-l-tresor",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-salle-du-tresor"
+    },
+    "texte": "La moitié de ce trésor est promise à Aldéric, et un contrat est un serment comme un autre. Un serment ne se renégocie pas dans le noir, alors pesons-le devant Martin, comme prévu.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-l-oubliettes",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-reserve-et-oubliettes"
+    },
+    "texte": "J'entends des souffles derrière ces grilles, alors je m'agenouille près des barreaux. Je veux d'abord leur dire, à voix basse, qu'on est là, avant de toucher à ces bocaux.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-l-trone",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "lieu": "n3-salle-du-trone"
+    },
+    "texte": "Je me détourne de ces miroirs, je ne veux pas voir ma propre figure dans leur surface. La vanité d'un roi coûte cher ici, je le sais, et cette fascination pour ce siège vide m'inquiète.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-p-xiximantre",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "parle": "xiximantre"
+    },
+    "texte": "Il ressemble à un vieux professeur trop poli, et sa propreté me semble plus effrayante que la pénombre. Méfiez-vous de ses lampes violettes et de tout ce qu'il vous proposera.",
+    "effets": [
+      {
+        "flag": "bav-lezard-lysandre"
+      }
+    ]
+  },
+  {
+    "id": "lysandre-p-baltoplate",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "parle": "baltoplate"
+    },
+    "texte": "Sa voix est très douce, trop peut-être, et je ne dirai pas ce que j'en pense tout haut. J'ai relu l'inscription du cercle deux fois, et je n'ai pas fini de la lire.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-p-elios",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "parle": "elios-captif"
+    },
+    "texte": "Demandons-lui s'il a mangé, et s'il a de quoi boire, un peu d'eau au moins. Avoir tenu sept mois, en comptant à la craie, me bouleverse vraiment.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-f-statues",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "statues-petrifiees-rapportees"
+    },
+    "texte": "Je suis contente que ce savoir serve aux archives du fort. Les novices pourront le lire, et Balthazar va sûrement aimer ce rapport sur les statues pétrifiées.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-f-rapport-n1",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "flag": "rapport-n1-fait"
+    },
+    "texte": "Vous avez dit la vérité à Martin, même à un comptable, et je l'approuve. Taire une chose qu'on sait, c'est déjà mentir, et même par omission, c'est un mensonge.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-j-palier2",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "jauge": {
+        "id": "soupcon-et-tension",
+        "min": 2
+      }
+    },
+    "texte": "Deux nuits dehors, et le soupçon monte entre nous. Une courte prière avant de dormir nous ferait du bien, et n'oublions pas que la patience de Martin n'est pas infinie.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-c-30",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "pnj": {
+        "id": "soeur-lysandre",
+        "attitudeMin": 30
+      }
+    },
+    "texte": "Je vous fais confiance, et je le dis simplement. Je ne me suis pas sentie aussi utile depuis que j'ai quitté les sœurs de Valdargent, alors merci d'être à mes côtés.",
+    "effets": []
+  },
+  {
+    "id": "lysandre-c-50",
+    "pnj": "soeur-lysandre",
+    "quand": {
+      "pnj": {
+        "id": "soeur-lysandre",
+        "attitudeMin": 50
+      }
+    },
+    "texte": "Ce soir, je dirai vos noms dans ma prière, un par un. Je ne l'avais plus fait depuis Sœur Aubierge, et je suis émue de le faire pour vous.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-chantier",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-chantier-sable"
+      }
+    },
+    "texte": "Ce sable qui glisse vers l'entrée, on dirait un sablier renversé ! Les bâtisseurs avaient prévu des contrepoids pour que la pente tienne, je le lis dans la taille des marches. Notez l'inclinaison, je la tracerai dès que nous aurons un instant.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-mantes",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-mantes-du-noir-absolu"
+      }
+    },
+    "texte": "Je n'ai rien relevé, et c'est la première fois que cela m'arrive ! Dans ce noir absolu, je ne pouvais pas mesurer ce que je ne voyais pas. Gardez vos torches près de vous, et dites-moi où se trouve chaque masse.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-corniche",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-traversee-corniche"
+      }
+    },
+    "texte": "J'ai compté mes pas sur la pierre sèche, et je n'ai pas regardé vers le bas, pas une seule fois. Ce passage, je le referai dans mon carnet, trait par trait, pour me convaincre qu'il tient debout. Mes genoux tremblent, je l'avoue.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-gardien",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-gardien-osseux",
+        "issue": "victoire"
+      }
+    },
+    "texte": "Il est tombé, et ses articulations s'effacent déjà dans la poussière ! Je dessine les jointures de ses bras avant qu'elles disparaissent. Quel automate ! Celui qui l'a monté savait exactement où chaque os devait plier, et j'admire ça.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-fosse",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-corniche-fosse-sacrificielle"
+      }
+    },
+    "texte": "Soixante centimètres de large, pas davantage ! Je mesure chaque pas, pas mon souffle, et cet air pauvre brouille mes chiffres. Si je compte mal, personne ne le rattrapera, alors j'avance lentement, la main sur la paroi, en gardant le compte à voix haute.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-ankheg",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-contrat-ankheg"
+      }
+    },
+    "texte": "Ces galeries creusées dans le sable ressemblent à un relevé de termitière, avec des couloirs qui se croisent. Pauvres mules, elles n'ont rien demandé à personne ! Je note l'emplacement de chaque trou, et je retiens que ça revient toujours près des bêtes.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-crete",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-contrat-pillards-crete"
+      }
+    },
+    "texte": "Mon croquis en marge ne laisse que trois rochers pour se cacher, et une seule ligne de tir. Gardez les yeux sur les pierres, pas sur le ciel, et ne vous découvrez pas trop vite.",
+    "effets": []
+  },
+  {
+    "id": "mireille-r-xiximantre",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "rencontre": {
+        "id": "r-xiximantre-courroux"
+      }
+    },
+    "texte": "J'avais relevé l'emplacement des six lampes violettes avant que tout ne tremble, et je trouve ça fascinant. Ça me gêne aussi. Quelqu'un a placé ces lumières avec un soin de géomètre, et cette colère me semble venir de bien plus loin que nous.",
+    "effets": []
+  },
+  {
+    "id": "mireille-o-cle-basilic",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "objet": "cle-du-basilic"
+    },
+    "texte": "La grande clé de fer du basilic est dans notre sac ! Je la pèse, je mesure son panneton et je calcule les dents de la serrure de la salle du trésor avant même d'essayer. Ce genre de pièce ne se trompe jamais.",
+    "effets": []
+  },
+  {
+    "id": "mireille-o-statue",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "objet": "statue-or-fontaine"
+    },
+    "texte": "Cette statue d'or est lourde, et son socle est fait pour une fontaine, pas pour un sac ! Elle manquait à la composition de la salle de cérémonie, on le voit à la place vide qu'elle laisse. Portons-la à deux, sans la cogner.",
+    "effets": []
+  },
+  {
+    "id": "mireille-o-bague",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "objet": "bague-d-argent-de-franbinzar"
+    },
+    "texte": "Cette bague d'argent de Franbinzar a survécu à tout, et sa gravure intérieure tient encore, je la regarde à la loupe ! Seule la précision d'un orfèvre pouvait tenir jusque-là. Laissez-moi la garder près de moi, je veux la dessiner avant qu'elle ne ternisse.",
+    "effets": []
+  },
+  {
+    "id": "mireille-o-serpent",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "objet": "serpent-de-pierre-cle"
+    },
+    "texte": "Ce serpent de pierre est taillé pour une encoche précise, je l'ai déjà tourné dans mes doigts. Il ne sert qu'à une seule serrure, et ça me plaît beaucoup. Un objet qui ne sert qu'à une chose, c'est un plan, et ce plan-là m'intrigue.",
+    "effets": []
+  },
+  {
+    "id": "mireille-l-sacristie",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-sacristie"
+    },
+    "texte": "Trois lits de pierre, alignés dans une sacristie tiède et sèche ! Je compte chacun, et l'usure au pied de chaque lit me dit que les veilleurs se relayaient. Quelqu'un dormait pendant que les autres gardaient la porte, je le vois dans cette pierre polie.",
+    "effets": []
+  },
+  {
+    "id": "mireille-l-garde-secrete",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n2-salle-garde-secrete"
+    },
+    "texte": "J'avais raison, la statue pivote et cachait une salle de garde ! Je trace sa charnière dans mon carnet, en silence, parce que j'ai failli passer à côté. Une étroite remise, le vieux mobilier en tas de sciure brune.",
+    "effets": []
+  },
+  {
+    "id": "mireille-l-couloir-lames",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-autel-et-couloir-lames"
+    },
+    "texte": "Des dalles claires et sombres, alternées jusqu'à l'autel d'albâtre. Je m'agenouille, et l'usure me raconte qui a marché ici. Un couloir usé garde la mémoire de ses passants. Je ne vous dirai pas lesquelles sont sûres, je ne le sais pas encore.",
+    "effets": []
+  },
+  {
+    "id": "mireille-l-cylindre",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "lieu": "n3-porte-cylindre-et-reserve"
+    },
+    "texte": "Ce tambour de granit pivote sur son axe, et un poids pareil tourne sans effort apparent ! Les gobelins l'ont compris avant moi, et ça me vexe un peu. Je ne touche à rien. Admirez ce mécanisme plutôt que de le forcer.",
+    "effets": []
+  },
+  {
+    "id": "mireille-p-elios",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "parle": "elios-captif"
+    },
+    "texte": "Un scribe, et un confrère ! Il a les doigts tachés de bleu, et j'aimerais lui demander ce qu'on raconte au collège de la guilde des arpenteurs. Ce n'est pas le moment, je le sais. Je garde la question dans mon carnet pour plus tard.",
+    "effets": []
+  },
+  {
+    "id": "mireille-p-brennan",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "parle": "brennan-terrassier"
+    },
+    "texte": "Ce contremaître a sûrement un plan de fouille quelque part ! Montrez-le-moi, je veux voir la tranchée tracée sur papier quadrillé avant qu'elle ne se referme. Une petite rancune amicale, je l'avoue : celui qui creuse sans relever me fait grincer des dents.",
+    "effets": []
+  },
+  {
+    "id": "mireille-p-skriik",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "parle": "skriik-le-cueilleur"
+    },
+    "texte": "Ce cueilleur gobelin a tracé ses planches de champignons avec une régularité d'horloger. Ces gobelins cultivent comme d'autres posent des pierres, sans bruit ni faute. Je note ça, je ne peux pas m'en empêcher : un métier qui ne laisse rien au hasard.",
+    "effets": []
+  },
+  {
+    "id": "mireille-f-barre",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "barre-granit-rapportee"
+    },
+    "texte": "Ça y est, la barre de granit a livré son secret, et le mystère du chantier est clos. Mes croquis du premier niveau sont complets, pas une case blanche ! Je suis contente, je l'avoue, de n'avoir plus rien à deviner sur ce couloir.",
+    "effets": []
+  },
+  {
+    "id": "mireille-f-rapport-n1",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "rapport-n1-fait"
+    },
+    "texte": "Le rapport est fait, et Martin l'a sous les yeux. Un rapport, au fond, c'est une carte qu'on accepte de montrer ! J'ai ajouté une légende à la mienne, pour que personne ne se perde dans mes traits.",
+    "effets": []
+  },
+  {
+    "id": "mireille-j-palier4",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "jauge": {
+        "id": "soupcon-et-tension",
+        "min": 4
+      }
+    },
+    "texte": "Quatre nuits dehors, et le soupçon grimpe comme un thermomètre au soleil ! J'ai calculé le temps qu'il nous reste : il faut presser les relevés, ou en sacrifier une partie. Je déteste ce choix, mais la montre ne m'attend pas.",
+    "effets": []
+  },
+  {
+    "id": "mireille-c-30",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "pnj": {
+        "id": "mireille-cartographe",
+        "attitudeMin": 30
+      }
+    },
+    "texte": "Tenez, regardez la première page de mon carnet, celle que je ne montre à personne ! Il y a mes premiers traits, un peu tremblés, et j'en suis fière. Vous avez ma confiance, et ça, je ne le donne pas facilement, croyez-moi.",
+    "effets": []
+  },
+  {
+    "id": "mireille-c-50",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "pnj": {
+        "id": "mireille-cartographe",
+        "attitudeMin": 50
+      }
+    },
+    "texte": "Je vais donner votre nom à une salle de ma carte, et pas la plus grande, la plus utile ! Ne prenez pas la mine si je vous charrie : vous êtes devenus mes amis, et je ne plaisante qu'avec eux.",
+    "effets": []
+  },
+  {
+    "id": "mireille-bav-gardes",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "bav-gardes-varnac"
+    },
+    "texte": "Vous avez raison, Varnac, cette paroi sonne creux, et mon relevé le confirme : une cavité de la taille d'une niche. Vos oreilles de sapeur valent mieux que mes compas. Je ne l'aurais pas entendu, je l'avoue sans honte.",
+    "effets": []
+  },
+  {
+    "id": "mireille-bav-larmes",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "bav-larmes-lysandre"
+    },
+    "texte": "Le cercle d'argent est gravé à la perfection, chaque trait est net et régulier. C'est trop soigné pour un ouvrage de fortune, Lysandre a raison de s'en méfier. Ne touchez à rien avant que j'aie fini mon tracé, et restez à distance du centre.",
+    "effets": []
+  },
+  {
+    "id": "mireille-bav-basilic",
+    "pnj": "mireille-cartographe",
+    "quand": {
+      "flag": "bav-basilic-varnac"
+    },
+    "texte": "La chaîne du basilic, Varnac, n'atteint pas les angles du hall : je l'ai relevé derrière les piliers brisés. Ça nous sert, et beaucoup. Gardez-la en tête pendant que nous avançons, et longez les murs là où elle ne passe pas.",
+    "effets": []
   }
 ]

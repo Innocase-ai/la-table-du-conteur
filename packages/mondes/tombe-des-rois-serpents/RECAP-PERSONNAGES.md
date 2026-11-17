@@ -178,6 +178,6 @@
 - **Réplique type** (« Pourquoi le boyau du fond s'arrête-t-il près de la ferme ? ») : « Ce n'est pas un vrai mur ! Sous les premières marches de l'escalier secret, une haute pierre grise coulisse en grinçant, droit vers le grand hall aux huit piliers, celui du basilic. Par là, on contourne notre propre salle commune sans bruit. On l'a calée avec de gros cailloux pointus, pour que la bête …
 
 ## Les compagnons : interjections
-- Varnac le Borgne : 18 interjections.
-- Sœur Lysandre : 19 interjections.
-- Mireille Plumevert : 18 interjections.
+- Varnac le Borgne : 44 interjections.
+- Sœur Lysandre : 42 interjections.
+- Mireille Plumevert : 45 interjections (enrichies le 15/11/2026 : réactions aux combats, aux trouvailles, aux PNJ rencontrés, échanges entre compagnons, et 6 sujets de conversation chacun).

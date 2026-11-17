@@ -863,6 +863,119 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "avis-sur-la-tombe",
+        "mots": [
+          "tombe",
+          "avis",
+          "impression",
+          "premier niveau",
+          "couloir"
+        ],
+        "question": "Que pensez-vous de cette tombe, jusqu'ici ?",
+        "reponse": "Il tapote le mur du plat de la main. « Une tombe qui vous prévient avant de vous tuer, c'est rare, et je n'ai jamais vu un décor aussi bavard. Les murs sonnent creux, les niches sont scellées, et ces dalles ne mentent pas. Ce qui me fait peur, c'est ce qui se tait, une dalle qui cède sans bruit, un sol qui sonne juste. Alors sondez tout à la perche, avancez à mon pas, et ne vous pressez pas pour rien. »",
+        "condition": {
+          "lieu": "n1-couloir-entree"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-catacombes",
+        "mots": [
+          "catacombes",
+          "noir",
+          "second niveau",
+          "atrium",
+          "avis"
+        ],
+        "question": "Et les catacombes noires ?",
+        "reponse": "Il pose la main à plat sur la pierre froide. « Le noir complet, c'est une autre affaire, on ne voit même plus sa perche au bout du bras. Alors je travaille des mains, je frappe le sol, j'écoute le silence qui répond. Les vraies tombes sont ici, pas dans les galeries d'en haut, et l'atrium au bassin en est le cœur. Ce qui m'inquiète, c'est le moment où quelqu'un allume une torche et voit ce qui attendait depuis longtemps. Restez groupés, ne tendez pas la main vers le noir, et gardez le silence avec moi. »",
+        "condition": {
+          "lieu": "n2-atrium"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-coeur",
+        "mots": [
+          "coeur",
+          "profondeurs",
+          "troisième niveau",
+          "hall",
+          "basilic",
+          "avis"
+        ],
+        "question": "Que dites-vous de ce qu'on a vu tout au fond ?",
+        "reponse": "Il regarde la chaîne, puis détourne les yeux. « Le grand hall, cette bête enchaînée, c'est le bout du monde pour un sapeur. J'ai vu des gobelins qui défendaient leurs couchettes, et un alchimiste qui sourit trop bien pour être honnête. Je pense à Hélian, qui aurait ri de voir une chaîne aussi longue, et qui aurait compté les maillons. On a fait ce qu'il fallait, et il n'y a rien de plus à en tirer. Gardez la tête froide, parce que le fond n'a pas fini de nous surprendre. »",
+        "condition": {
+          "lieu": "n3-hall-du-basilic"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-groupe",
+        "mots": [
+          "groupe",
+          "compagnie",
+          "nous",
+          "confiance",
+          "avis"
+        ],
+        "question": "Que pensez-vous de nous ?",
+        "reponse": "Il replie la perche et la pose contre le mur. « Je juge un groupe comme je juge un couvercle, à la façon dont on le franchit. Vous sondez le dessous de chaque dalle, et ça, c'est du sérieux. Quelqu'un recule quand il faut reculer, et ça je l'ai remarqué aussi, sans rien dire. Personne ne tient la ligne tout seul, et vous la tenez à plusieurs, ce qui me plaît. Pas de compliments de ma part, je n'en ai pas dans le sac. Si vous mourez, au moins ce sera avec de bonnes méthodes. »",
+        "condition": {
+          "pnj": {
+            "id": "varnac-le-borgne",
+            "attitudeMin": 20
+          }
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-autres",
+        "mots": [
+          "autres",
+          "lysandre",
+          "mireille",
+          "compagnons",
+          "équipe"
+        ],
+        "question": "Et les autres qui nous suivent ?",
+        "reponse": "Il lève le menton vers la file, sans se retourner. « Celle qui est avec nous, si c'est Lysandre, lit avant de pleurer, et ça, je l'approuve. Si c'est Mireille, elle dessine pendant que je sonde, et on fait un duo qui marche. Avec les deux, c'est encore mieux, mais je ne compte pas sur ce que je n'ai pas. Gardez la compagnie serrée, comme je le fais avec mes hommes. Ça se voit dès la première porte, croyez-moi. »",
+        "condition": {
+          "et": [
+            {
+              "flag": "lysandre-recruite"
+            },
+            {
+              "flag": "mireille-recrute"
+            }
+          ]
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-l-alchimiste",
+        "mots": [
+          "sorcier",
+          "alchimiste",
+          "xiximantre",
+          "lézard",
+          "avis"
+        ],
+        "question": "Que pensez-vous du sorcier violet ?",
+        "reponse": "Il hausse les épaules, la perche calée contre la hanche. « Un vieux qui parle de l'empire comme d'un voisin qui aurait déménagé, je ne sais pas quoi en penser. Il a du sourire, un sourire d'homme qui n'a jamais perdu de camarade, et ça me met mal à l'aise. Je préfère le basilic à ce sourire, au moins la bête ne fait pas semblant d'être un ami. Il a des lampes violettes et des manières de notable, mais moi je ne bois pas avec lui. »",
+        "condition": {
+          "fait": "f-empire-chute-xiximantre"
+        },
+        "revele": [],
+        "effets": []
       }
     ],
     "compagnon": {
@@ -1100,6 +1213,119 @@
           }
         ],
         "unique": true
+      },
+      {
+        "id": "avis-sur-la-tombe",
+        "mots": [
+          "tombe",
+          "avis",
+          "impression",
+          "premier niveau",
+          "couloir"
+        ],
+        "question": "Que pensez-vous de cette tombe, jusqu'ici ?",
+        "reponse": "Lysandre pose la paume sur le mur froid, puis relève les yeux. « Un calme froid, voilà ce que je ressens ici. Ces morts ont été retenus par de l'argile peinte, et les prières gravées sur ces murs ne s'adressaient à personne. Je n'y vois pas de malice directe, seulement des gens qui ont cru pouvoir enfermer quelque chose avec des images. Ma précaution : lisez chaque socle avant de passer, deux fois s'il le faut, et ne touchez pas aux peintures qui s'écaillent. Pour en savoir plus, relisez les inscriptions du couloir avec moi. »",
+        "condition": {
+          "lieu": "n1-couloir-entree"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-catacombes",
+        "mots": [
+          "catacombes",
+          "noir",
+          "second niveau",
+          "atrium",
+          "avis"
+        ],
+        "question": "Et les catacombes noires ?",
+        "reponse": "Elle serre le talisman solaire contre sa poitrine, puis elle sourit doucement. « Ici, ce ne sont plus des décors, ce sont de vraies tombes, celles d'une dynastie entière, et le haut prêtre Xisor y repose. Le noir me trouble moins que vous ne le croyez : la foi dit qu'on n'est jamais seul dans l'obscurité, et j'ai ma propre petite lumière pour le rappeler. Respectons ces morts, ne touchez pas à leurs offrandes et ne criez pas dans les salles. Si vous voulez comprendre, lisez les inscriptions de l'atrium, elles disent mieux que moi qui ils étaient. »",
+        "condition": {
+          "lieu": "n2-atrium"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-coeur",
+        "mots": [
+          "coeur",
+          "profondeurs",
+          "troisième niveau",
+          "hall",
+          "basilic",
+          "avis"
+        ],
+        "question": "Que dites-vous de ce qu'on a vu tout au fond ?",
+        "reponse": "Elle pose les mains l'une sur l'autre, comme pour s'apaiser. « Au troisième niveau, on a vu un cercle d'argent, des gardes de pierre figés, une bête enchaînée au fond du hall, et des gobelins qui cultivent leurs champignons. La miséricorde d'abord : ces gobelins ne sont pas que des monstres, ils ont des enfants, des paniers et des récoltes. La prudence ensuite, car un cercle d'argent ne se traverse pas à la légère, et une bête enchaînée peut rompre sa chaîne. Ne décidez rien avant d'avoir regardé de près. Pour le reste, Balthazar saura nous dire ce que disent ces inscriptions du cercle. »",
+        "condition": {
+          "lieu": "n3-hall-du-basilic"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-groupe",
+        "mots": [
+          "groupe",
+          "compagnie",
+          "nous",
+          "confiance",
+          "avis"
+        ],
+        "question": "Que pensez-vous de nous ?",
+        "reponse": "Elle sourit, un peu surprise qu'on lui pose la question. « Vous lisez avant de frapper, et vous regardez une inscription avant de la briser. Ce n'est pas si courant chez les pilleurs de tombes. Chacun de vous passe dans mes prières du soir, par son nom, et ce n'est pas une formule. Votre humour, parfois, me fait sourire : la sérénité n'exclut pas de rire, et je ne vous le reprocherai jamais. Continuez ainsi, et ne laissez pas l'or vous tourner la tête. Si vous voulez savoir ce que je pense de chacun, demandez-le-moi plus tard, à voix basse. »",
+        "condition": {
+          "pnj": {
+            "id": "soeur-lysandre",
+            "attitudeMin": 20
+          }
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-autres",
+        "mots": [
+          "autres",
+          "varnac",
+          "mireille",
+          "compagnons",
+          "équipe"
+        ],
+        "question": "Et les autres qui nous suivent ?",
+        "reponse": "Lysandre range le talisman dans sa poche, l'air grave. « Varnac vous observe comme on observe un piège : il sonde chacun de vos gestes avec méfiance, et je ne lui en veux pas, il a vu ses deux compagnons mourir dans la vapeur verte. Je le soigne en silence quand il s'arrête, car ses mains tremblent encore. Mireille, elle, est curieuse, dangereusement curieuse : elle dessine ce qu'elle voit, et elle vous rappellera de ne pas toucher à ses dessins. Ce sont des compagnons utiles, mais surveillez-les tous les deux. Demandez-leur donc ce qu'ils ont vu dans la vapeur, ils vous répondront mieux que moi. »",
+        "condition": {
+          "et": [
+            {
+              "flag": "varnac-recrute"
+            },
+            {
+              "flag": "mireille-recrute"
+            }
+          ]
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-l-alchimiste",
+        "mots": [
+          "sorcier",
+          "alchimiste",
+          "xiximantre",
+          "lézard",
+          "avis"
+        ],
+        "question": "Que pensez-vous du sorcier violet ?",
+        "reponse": "Lysandre baisse les yeux un instant, puis reprend son souffle. « Je ne vais pas le juger à voix haute, ce n'est pas à moi de le faire devant lui. Pourtant sa politesse m'inquiète : il parle des morts comme s'ils étaient encore là, avec le même ton qu'envers un invité. Ses écailles vert-de-gris et son museau poudré ne me rassurent pas, mais ce que je ressens le plus, c'est de la pitié mêlée de méfiance. Ne vous fiez pas à la courtoisie d'un homme sans âge. Si vous voulez un avis plus précis, observez d'abord ses lampes violettes et sa façon de parler de ceux qui ne répondent plus. »",
+        "condition": {
+          "fait": "f-empire-chute-xiximantre"
+        },
+        "revele": [],
+        "effets": []
       }
     ],
     "compagnon": {
@@ -1313,6 +1539,119 @@
         ],
         "question": "Comment lisez-vous une salle ?",
         "reponse": "Elle pose la paume à plat sur le mur le plus proche, comme pour en prendre la mesure. « D'abord, je compte les pas du mur au mur, et je note le total avant de regarder le reste. Ensuite, je cherche ce qui ne colle pas : une statue décalée d'un cheveu, un joint plus fin que les autres, une dalle plus usée au milieu. Je dessine avant de toucher, toujours. Et je ne ferme jamais un relevé sur une porte que je n'ai pas comprise : je laisse la case vide et j'y reviens. »",
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-la-tombe",
+        "mots": [
+          "tombe",
+          "avis",
+          "impression",
+          "premier niveau",
+          "couloir"
+        ],
+        "question": "Que pensez-vous de cette tombe, jusqu'ici ?",
+        "reponse": "Elle tapote son carnet, le sourire aux lèvres. « Cette tombe me plaît plus que je ne l'espérais. Le premier niveau est un couloir large, avec quatre niches et une dalle massive au fond, et les bâtisseurs ont visé juste : ils dissuadent sans tuer d'emblée. Un obstacle qui décourage est plus malin qu'un obstacle qui tue, car on revient sur ses pas, on ralentit, on regarde les murs. Moi, je dessine chaque niche avec plaisir. Si vous voulez mon conseil, suivez la paroi de gauche et gardez l'oreille tendue. »",
+        "condition": {
+          "lieu": "n1-couloir-entree"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-catacombes",
+        "mots": [
+          "catacombes",
+          "noir",
+          "second niveau",
+          "atrium",
+          "avis"
+        ],
+        "question": "Et les catacombes noires ?",
+        "reponse": "Elle lève le menton, les yeux brillants. « Les catacombes noires me fascinent et me font peur, les deux à la fois. L'atrium est octogonal, avec cinq cryptes qui rayonnent autour, et chaque passage caché doit figurer sur mon plan. Dans le noir, je relève aux pas et au toucher, en comptant chaque virage et en posant la main sur la pierre. Mon plus grand effroi, c'est de rater un passage et de l'apprendre trop tard. Avancez doucement, et signalez-moi chaque mur qui sonne autrement. »",
+        "condition": {
+          "lieu": "n2-atrium"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-coeur",
+        "mots": [
+          "coeur",
+          "profondeurs",
+          "troisième niveau",
+          "hall",
+          "basilic",
+          "avis"
+        ],
+        "question": "Que dites-vous de ce qu'on a vu tout au fond ?",
+        "reponse": "Elle pose la main sur son carnet, comme sur un trésor. « Tout au fond, c'est un monde entier qu'on a enterré sous la dune. Les deux ailes sont symétriques, et le grand hall aux huit piliers répond à chacune d'elles avec une précision de géomètre. Le tambour de pierre m'a laissée muette, et la ferme des gobelins montre qu'on peut cultiver même sous la terre. Je n'ai jamais rien vu de pareil. Si vous voulez comprendre ce plan, revenez au hall avec moi, et dessinons-le ensemble, pièce après pièce. »",
+        "condition": {
+          "lieu": "n3-hall-du-basilic"
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-le-groupe",
+        "mots": [
+          "groupe",
+          "compagnie",
+          "nous",
+          "confiance",
+          "avis"
+        ],
+        "question": "Que pensez-vous de nous ?",
+        "reponse": "Elle rit en refermant son carnet d'un coup sec. « Pour moi, vous êtes des points sur ma carte, et je vous place avec plaisir. Ceux qui mesurent avant de foncer, je les aime beaucoup : ils me laissent le temps de dessiner. Par contre, quelqu'un a déjà posé la main sur ce mur avant que j'aie tracé sa paroi, et ça me fait bondir. Restez près de moi, marchez à mon pas, et vous verrez que je ne vous perdrai jamais. Vous êtes plus utiles que vous ne le croyez, je le note. »",
+        "condition": {
+          "pnj": {
+            "id": "mireille-cartographe",
+            "attitudeMin": 20
+          }
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-les-autres",
+        "mots": [
+          "autres",
+          "varnac",
+          "lysandre",
+          "compagnons",
+          "équipe"
+        ],
+        "question": "Et les autres qui nous suivent ?",
+        "reponse": "Elle hausse les épaules, un sourire en coin. « Varnac, c'est un sapeur, il parle le même langage que moi. Pendant que je dessine, il sonde les murs à petits coups, et il trouve souvent ce que mes compas ratent. Lysandre, elle, est une sœur qui prie en comptant, et je la comprends bien : compter, c'est déjà prier pour moi. Ils sont de bons compagnons, et je ne leur reproche qu'une chose, leurs mains qui traînent partout. Gardez-les à côté de vous. Vous verrez qu'ils servent bien mieux au relevé qu'à la bataille. »",
+        "condition": {
+          "et": [
+            {
+              "flag": "varnac-recrute"
+            },
+            {
+              "flag": "lysandre-recruite"
+            }
+          ]
+        },
+        "revele": [],
+        "effets": []
+      },
+      {
+        "id": "avis-sur-l-alchimiste",
+        "mots": [
+          "sorcier",
+          "alchimiste",
+          "xiximantre",
+          "lézard",
+          "avis"
+        ],
+        "question": "Que pensez-vous du sorcier violet ?",
+        "reponse": "Elle baisse la voix et jette un coup d'œil vers la porte. « Son dialecte royal vient d'un autre âge, et ça me fascine. Il parle de l'empire comme d'un voisin qui aurait simplement déménagé, sans une once de deuil dans la voix. Je prends des notes en l'écoutant, et j'avoue que ça me met mal à l'aise. Je ne lui dirais jamais qu'il a tort, en face. Si vous voulez l'interroger, parlez-lui lentement, et écoutez bien chaque mot qu'il prononce. »",
+        "condition": {
+          "fait": "f-empire-chute-xiximantre"
+        },
         "revele": [],
         "effets": []
       }
