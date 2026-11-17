@@ -49,9 +49,9 @@ describe('quête sautable : l’objectif ne doit pas s’atteindre sans la quêt
   it('un sujet qui débloque ET démarre la quête : rien à signaler', () => {
     expect(avisEssai(monde({ condition: true, sujetDebloque: 'avec-quete' }))).toEqual([]);
   });
-  it('les quêtes de faction et personnelles ne sont pas concernées', () => {
+  it('seules les quêtes principales sont concernées (une quête annexe se valide après coup)', () => {
     const dm = monde();
-    dm.quetes.set(QUETE, { ...dm.quetes.get(QUETE)!, type: 'faction' });
+    dm.quetes.set(QUETE, { ...dm.quetes.get(QUETE)!, type: 'secondaire' });
     expect(avisEssai(dm)).toEqual([]);
   });
 });

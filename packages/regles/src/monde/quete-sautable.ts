@@ -60,8 +60,11 @@ const demarre = (effets: EffetMonde[], quete: string) => effets.some((e) => 'que
 /** Les avis « quête sautable » d'un monde (liste de phrases, vide si tout va bien). */
 export function avisQuetesSautables(dm: DonneesMonde): string[] {
   const res: string[] = [];
+  // Seules les quêtes principales comptent : on ne gardera pas toutes les salles d'un donjon derrière une quête annexe (elle se valide
+  // alors après coup). Une quête lancée par un événement (ouverture, entrée dans un lieu) est découverte, pas confiée : exclue.
+  const lanceeParEvenement = (id: string): boolean => [...dm.evenements.values()].some((e) => e.effets.some((x) => 'quete' in x && x.quete.id === id && x.quete.statut === 'active'));
   for (const q of dm.quetes.values()) {
-    if (q.type === 'faction' || q.type === 'personnelle') continue;
+    if (q.type !== 'principale' || lanceeParEvenement(q.id)) continue;
     const objectif = lieuxObjectif(dm, q.id);
     if (!objectif.size) continue;
     const libres = joignablesSans(dm, q.id);

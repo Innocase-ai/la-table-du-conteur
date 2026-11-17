@@ -106,14 +106,14 @@
     "monstres": [
       {
         "profil": "squelette",
-        "nombre": 6,
+        "nombre": 10,
         "nom": "Faux garde royal",
         "description": "Ossements d'homme-serpent noyés dans un linceul de lin brun, bracelets d'étain aux poignets et lame courte rouillée à la main."
       }
     ],
     "carte": [
       "####################",
-      "#..................#",
+      "#.mm..mm...........#",
       "#.mmm.m..m......m..#",
       "#..cc....cc.....cc.#",
       "#..................#",
@@ -194,14 +194,14 @@
     "monstres": [
       {
         "profil": "armure-animee",
-        "nombre": 3,
+        "nombre": 5,
         "nom": "Veilleuse d'argile",
         "description": "Statue d'argile peinte de deux mètres, lance et bouclier d'argile cuite, jointures qui grincent comme des poteries qu'on frotte."
       }
     ],
     "carte": [
       "####################",
-      "#..................#",
+      "#...mm.............#",
       "#.R.m.R.mR.m.R.....#",
       "#.R...R..R...R.....#",
       "#..................#",
@@ -279,15 +279,15 @@
     "monstres": [
       {
         "profil": "mante-obscure",
-        "nombre": 7,
+        "nombre": 12,
         "nom": "Mante de la voûte",
         "description": "Masse de chair grise en forme de cloche, huit courts tentacules repliés, collée à la pierre comme un morceau de voûte."
       }
     ],
     "carte": [
       "####################",
-      "#..m...R....R...m..#",
-      "#.m.m.mR....R......#",
+      "#.mmm.mR....R...mm.#",
+      "#mm.m.mR....R......#",
       "#.m..............m.#",
       "#.....R........R...#",
       "#..................#",
@@ -476,15 +476,15 @@
     "monstres": [
       {
         "profil": "squelette",
-        "nombre": 6,
+        "nombre": 12,
         "nom": "Sparamantur et ses veilleurs",
         "description": "Ossature de guerrier prolongée d'une longue queue de vertèbres de serpent qui racle les dalles, entourée de veilleurs aux lames courbes."
       }
     ],
     "carte": [
       "####################",
-      "#R~~R....~~~.....R.#",
-      "#.~~m.m.m.~~mmm....#",
+      "#R~~R.mm.~~~m.m..R.#",
+      "#.~~mmm.mm~~mmm....#",
       "#..~~..........R...#",
       "#...r...~~.........#",
       "#......~~......r...#",
@@ -764,7 +764,7 @@
     "type": "mixte",
     "lieu": "n2-arene-gardien",
     "difficulte": "elevee",
-    "intro": "La halle s'ouvre sur un gouffre dont on ne voit pas le fond, et l'air qui monte de l'abîme siffle. Cinq boucliers ronds de bronze sont accrochés en trophée contre le mur. Soudain, un bruit de herse résonne, et des ossements s'assemblent devant vous : un colosse de trois mètres, mâchoire de serpent et cornes de bélier. Quatre gardes squelettes, en bronze vert-de-gris, se dressent à ses côtés. Un géant desséché, enveloppé de bandelettes brunes, lève une hache de bronze. Derrière vous, l'escalier étroit reste trop petit pour lui. Il reste à choisir si vous ferez tomber ce gardien, ou si vous trouverez un autre moyen de l'arrêter.",
+    "intro": "La halle s'ouvre sur un gouffre dont on ne voit pas le fond, et l'air qui monte de l'abîme siffle. Cinq boucliers ronds de bronze sont accrochés en trophée contre le mur. Soudain, un bruit de herse résonne, et des ossements s'assemblent devant vous : un colosse de trois mètres, mâchoire de serpent et cornes de bélier. Huit gardes squelettes, en bronze vert-de-gris, se dressent à ses côtés. Deux géants desséchés d'hommes-serpents, enveloppés de bandelettes brunes, lèvent chacun une hache de bronze. Derrière vous, l'escalier étroit reste trop petit pour eux. Il reste à choisir si vous ferez tomber ce gardien, ou si vous trouverez un autre moyen de l'arrêter.",
     "monstres": [
       {
         "profil": "minotaure-squelette",
@@ -774,21 +774,21 @@
       },
       {
         "profil": "ogre-zombi",
-        "nombre": 1,
+        "nombre": 2,
         "nom": "Colosse de l'arène",
         "description": "Guerrier géant d'homme-serpent desséché, bandelettes brunes, hache de bronze à deux mains."
       },
       {
         "profil": "squelette",
-        "nombre": 4,
+        "nombre": 8,
         "nom": "Garde d'arène",
         "description": "Ossements d'homme-serpent en armure de bronze vert-de-grisé, bouclier rond au bras."
       }
     ],
     "carte": [
       "####################",
-      "####~..............#",
-      "####~~m....m.......#",
+      "####~.mm...mm......#",
+      "####~~mm...m.......#",
       "####~~...m...m.....#",
       "####~........m.....#",
       "####~~..c...m..c...#",
@@ -798,7 +798,7 @@
     ],
     "terrain": "caverne",
     "tactique": {
-      "doctrine": "Le gardien charge dans la salle plate ; il reste trop massif pour remonter l'escalier étroit, mais les gardes d'arène le suivent partout.",
+      "doctrine": "Le gardien charge dans la salle plate, flanqué de ses deux colosses de l'arène ; il reste trop massif pour remonter l'escalier étroit, mais les colosses et les gardes d'arène le suivent partout.",
       "fuite": "Les marches étroites derrière le groupe sont la seule sortie sûre."
     },
     "alternatives": [
@@ -1010,24 +1010,24 @@
     "type": "mixte",
     "lieu": "n3-salle-ceremonie",
     "difficulte": "faible",
-    "intro": "Un vent glacial descend de la voûte et fait claquer les flammes de vos torches. Là-haut, un bruissement d'ailes monte des chapiteaux sculptés, de plus en plus proche. Sous vos bottes, la poussière craque sur un tapis de guano. Au centre de la salle, la fontaine est à sec, et son socle vide porte des rayures anciennes. Six chauves-souris géantes et trois nuées de petites bêtes se décrochent des hauteurs, attirées par le feu. Vont-elles s'abattre sur vos flammes, ou trouverez-vous le moyen de les détourner ?",
+    "intro": "Un vent glacial descend de la voûte et fait claquer les flammes de vos torches. Là-haut, un bruissement d'ailes monte des chapiteaux sculptés, de plus en plus proche. Sous vos bottes, la poussière craque sur un tapis de guano. Au centre de la salle, la fontaine est à sec, et son socle vide porte des rayures anciennes. Dix chauves-souris géantes et cinq nuées de petites bêtes se décrochent des hauteurs, attirées par le feu. Vont-elles s'abattre sur vos flammes, ou trouverez-vous le moyen de les détourner ?",
     "monstres": [
       {
         "profil": "chauve-souris-geante",
-        "nombre": 6,
+        "nombre": 10,
         "nom": "Chauve-souris des voûtes",
         "description": "Grande chauve-souris au pelage gris poussière, envergure d'un bras et demi, crocs fins comme des aiguilles."
       },
       {
         "profil": "nuee-de-chauves-souris",
-        "nombre": 3,
+        "nombre": 5,
         "nom": "Nuée des chapiteaux",
         "description": "Nuage de petites chauves-souris décrochées d'un chapiteau, qui tournoie en piaillant."
       }
     ],
     "carte": [
       "####################",
-      "#..m..m..m...m..m..#",
+      "#.mmm.mm.mm.mm.mm..#",
       "#.m.m.m.R..R.......#",
       "#.m....R....R......#",
       "#.......RRRR.......#",
@@ -1321,7 +1321,7 @@
     "type": "mixte",
     "lieu": "n3-salle-du-trone",
     "difficulte": "moderee",
-    "intro": "Un froid de cave remonte de l'estrade de marbre blanc, et la lumière des torches glisse sur un trône d'or massif aux bras de cobras. Huit miroirs à manche, cerclés d'argent, se dressent sur leurs présentoirs, et leur surface a perdu toute netteté. Une lueur violette et froide suinte de l'un d'eux. Un roi-serpent couronné s'en détache, translucide, suivi de cinq silhouettes sombres sans visage qui glissent sur le sol. Le trône, lui, reste vide. Que ferez-vous de ces reflets qui quittent leurs cadres ?",
+    "intro": "Un froid de cave remonte de l'estrade de marbre blanc, et la lumière des torches glisse sur un trône d'or massif aux bras de cobras. Huit miroirs à manche, cerclés d'argent, se dressent sur leurs présentoirs, et leur surface a perdu toute netteté. Une lueur violette et froide suinte de l'un d'eux. Un roi-serpent couronné s'en détache, translucide, suivi de huit silhouettes sombres sans visage qui glissent sur le sol. Le trône, lui, reste vide. Que ferez-vous de ces reflets qui quittent leurs cadres ?",
     "monstres": [
       {
         "profil": "necronte",
@@ -1331,15 +1331,15 @@
       },
       {
         "profil": "ombre",
-        "nombre": 5,
+        "nombre": 8,
         "nom": "Reflet de courtisan",
         "description": "Silhouette sombre et plate, sans visage, qui se détache d'un miroir comme une tache d'encre."
       }
     ],
     "carte": [
       "####################",
-      "#..................#",
-      "#.r.r.mrm.r..r.r.r.#",
+      "#.....mm...........#",
+      "#.r.rmmrm.r..r.r.r.#",
       "#....m........m....#",
       "#.........R........#",
       "#....m........m....#",
@@ -1596,7 +1596,7 @@
     "type": "mixte",
     "lieu": "n3-salle-commune-gobeline",
     "difficulte": "moderee",
-    "intro": "Une fumée âcre vous pique les yeux dès que vous franchissez le passage. Dans ce dortoir enfumé, des tas de mousse servent de couchages, et des casseroles de cuivre pendent près d'une barricade de pieux. Contre un mur, la statue d'or volée à la fontaine est posée. Un cri aigu s'élève, suivi de jurons pointus : « Halte ! Pas bouger, vous ! Grib commande, Grib décide, han ! » Le chef de garde, maigre, une oreille mordue, parle vite et mal en agitant les bras. Derrière lui, huit guetteurs affamés reculent, terrifiés par le vieux sorcier voisin. Que faites-vous de cette garde qui tremble ?",
+    "intro": "Une fumée âcre vous pique les yeux dès que vous franchissez le passage. Dans ce dortoir enfumé, des tas de mousse servent de couchages, et des casseroles de cuivre pendent près d'une barricade de pieux. Contre un mur, la statue d'or volée à la fontaine est posée. Un cri aigu s'élève, suivi de jurons pointus : « Halte ! Pas bouger, vous ! Grib commande, Grib décide, han ! » Le chef de garde, maigre, une oreille mordue, parle vite et mal en agitant les bras. Derrière lui, douze guetteurs affamés reculent, terrifiés par le vieux sorcier voisin. Que faites-vous de cette garde qui tremble ?",
     "monstres": [
       {
         "profil": "chef-gobelin",
@@ -1606,14 +1606,14 @@
       },
       {
         "profil": "combattant-gobelin",
-        "nombre": 8,
+        "nombre": 12,
         "nom": "Guetteur des champignons",
         "description": "Gobelin crasseux, fourche de fer ou arc court, tablier de cuir taché de terreau."
       }
     ],
     "carte": [
       "####################",
-      "#.m..m....cc....m..#",
+      "#mm.mm..mmcc....m..#",
       "#.m.mc..m.......c.m#",
       "#.~~..m.....~~.....#",
       "#..R..m..c.........#",
@@ -1631,7 +1631,7 @@
           "competence": "persuasion",
           "dd": 11
         },
-        "resume": "Grib hésite, marmonne entre ses dents, puis il ordonne aux guetteurs de se ranger. Les huit gobelins obéissent en tremblant, et Grib ouvre la barricade pour vous conduire vers la champignonnière. Là-bas, Skriik, l'ancien, vous attend, la serpe d'os posée sur les genoux. La garde vous regarde désormais avec moins de méfiance, et le premier pas vers une entente est fait.",
+        "resume": "Grib hésite, marmonne entre ses dents, puis il ordonne aux guetteurs de se ranger. Les douze gobelins obéissent en tremblant, et Grib ouvre la barricade pour vous conduire vers la champignonnière. Là-bas, Skriik, l'ancien, vous attend, la serpe d'os posée sur les genoux. La garde vous regarde désormais avec moins de méfiance, et le premier pas vers une entente est fait.",
         "effets": [
           {
             "flag": "treve-gobeline"

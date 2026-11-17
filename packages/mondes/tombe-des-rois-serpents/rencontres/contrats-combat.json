@@ -5,26 +5,26 @@
     "type": "mixte",
     "lieu": "fort-du-reflet-beni",
     "difficulte": "faible",
-    "intro": "Le seau remonte lourd, et l'eau qui ruisselle sur la corde laisse une pellicule orangée entre vos doigts, un relent de fer. Marta la Chaude-Chaudron vous a menés depuis sa cuisine jusqu'à la citerne voûtée sous le puits clair, sa lanterne tremblante. « Goûtez-moi ça, mes petits, ça a un goût de vieux clou ! Si l'eau tourne, c'est la disette qui nous attend. » Au fond, sur les marches, trois vases luisent doucement. Des rats géants dévalent les degrés en se bousculant, fuyant les masses grises. Les seaux rongés pendent encore au treuil. Comment rendre à cette eau sa clarté avant que le fort n'en manque ?",
+    "intro": "Le seau remonte lourd, et l'eau qui ruisselle sur la corde laisse une pellicule orangée entre vos doigts, un relent de fer. Marta la Chaude-Chaudron vous a menés depuis sa cuisine jusqu'à la citerne voûtée sous le puits clair, sa lanterne tremblante. « Goûtez-moi ça, mes petits, ça a un goût de vieux clou ! Si l'eau tourne, c'est la disette qui nous attend. » Au fond, sur les marches, quatre vases luisent doucement. Des rats géants dévalent les degrés en se bousculant, fuyant les masses grises. Les seaux rongés pendent encore au treuil. Comment rendre à cette eau sa clarté avant que le fort n'en manque ?",
     "monstres": [
       {
         "profil": "vase-grise",
-        "nombre": 3,
+        "nombre": 4,
         "nom": "Vase de la citerne",
         "description": "Flaque grise et luisante, couleur de pierre mouillée, qui ronge le cuir des seaux."
       },
       {
         "profil": "rat-geant",
-        "nombre": 6,
+        "nombre": 10,
         "nom": "Rat de cellier",
         "description": "Rat gros comme un chien, pelage collé de boue grise, dents jaunes."
       }
     ],
     "carte": [
       "####################",
-      "#..................#",
-      "#.eeeee.m.m.eeeee..#",
-      "#.eeeee.m.m.eeeee..#",
+      "#.......mm.........#",
+      "#.eeeeemm.mmeeeee..#",
+      "#.eeeeemm.m.eeeee..#",
       "#.eeeee.mm..eeeee..#",
       "#.....m.m.m........#",
       "#..c.............c.#",
@@ -114,31 +114,31 @@
     "type": "mixte",
     "lieu": "bivouac-entree",
     "difficulte": "moderee",
-    "intro": "Le lit de l'oued est sec et craquelé, et la chaleur monte encore des pierres plates. Devant vous, la piste est barrée par des hommes en tenue usée, anciens de l'escorte d'Aldéric : deux éclaireurs aux regards fatigués, six fantassins aux joues creusées et, au milieu, un colosse mal rasé. Le chef des éclaireurs crie, la voix rauque : « Écartez-vous, on ne veut que notre solde, rien d'autre ! » Le sergent Rodrigue, du Fort, a demandé qu'on les ramène. Leurs bottes sont usées, leurs visages creusés par la faim. Que répondez-vous à des hommes qui n'ont plus rien à perdre ?",
+    "intro": "Le lit de l'oued est sec et craquelé, et la chaleur monte encore des pierres plates. Devant vous, la piste est barrée par des hommes en tenue usée, anciens de l'escorte d'Aldéric : trois éclaireurs aux regards fatigués, dix fantassins aux joues creusées et, au milieu, deux colosses mal rasés. Le chef des éclaireurs crie, la voix rauque : « Écartez-vous, on ne veut que notre solde, rien d'autre ! » Le sergent Rodrigue, du Fort, a demandé qu'on les ramène. Leurs bottes sont usées, leurs visages creusés par la faim. Que répondez-vous à des hommes qui n'ont plus rien à perdre ?",
     "monstres": [
       {
         "profil": "eclaireur",
-        "nombre": 2,
+        "nombre": 3,
         "nom": "Déserteur éclaireur",
         "description": "Ancien éclaireur de l'escorte d'Aldéric, manteau poussiéreux aux couleurs effacées, arc court tendu."
       },
       {
         "profil": "fantassin",
-        "nombre": 6,
+        "nombre": 10,
         "nom": "Déserteur fantassin",
         "description": "Ancien soldat de l'escorte, cuirasse dépareillée, épée courte, œil las."
       },
       {
         "profil": "gros-bras",
-        "nombre": 1,
+        "nombre": 2,
         "nom": "Brutal de la bande",
         "description": "Colosse mal rasé, massue de bois cerclé de fer, bandage sale au bras."
       }
     ],
     "carte": [
       "####################",
-      "#..~~~.......~~~...#",
-      "#.mmmR..m....R..m..#",
+      "#.m~~~..mm...~~~m..#",
+      "#mmmmR.mm....R..m..#",
       "#.....m...R....m...#",
       "#~~...m......m...~~#",
       "#..................#",
@@ -191,7 +191,7 @@
             "min": 60
           }
         },
-        "resume": "Vous posez soixante pièces d'or sur une pierre plate, et le colosse les ramasse sans un mot, mais ses épaules se détendent. Le chef des éclaireurs compte les pièces deux fois, puis fait signe à ses hommes de reprendre la route vers le Fort. Ils repartent sans se retourner, la démarche plus légère. Au Fort, le sergent Rodrigue apprendra que la solde a été versée, et sa garnison en parlera longtemps.",
+        "resume": "Vous posez soixante pièces d'or sur une pierre plate, et l'un des colosses les ramasse sans un mot, mais ses épaules se détendent. Le chef des éclaireurs compte les pièces deux fois, puis fait signe à ses hommes de reprendre la route vers le Fort. Ils repartent sans se retourner, la démarche plus légère. Au Fort, le sergent Rodrigue apprendra que la solde a été versée, et sa garnison en parlera longtemps.",
         "effets": [
           {
             "pieces": -60
@@ -343,24 +343,24 @@
     "type": "mixte",
     "lieu": "bivouac-entree",
     "difficulte": "faible",
-    "intro": "Le soleil s'éteint derrière les dunes, et la crête au-dessus du Bivouac se découpe en noir sur un ciel couleur de cuivre. Un caillou roule sous une botte, puis un autre. Lise Oeil-Vif, la guetteuse, ne quitte pas les rochers des yeux. « Ils veulent vos mules et les fontes de Martin, souffle-t-elle, sèche et pressée. Regardez : cinq pillards en cuir râpé avancent, et deux éclaireurs à l'arc les suivent. » Entre les pierres, des silhouettes se faufilent vers le campement, en file serrée, sans lanterne. La première vague n'attend pas. Comment les arrêter avant qu'ils n'atteignent le feu ?",
+    "intro": "Le soleil s'éteint derrière les dunes, et la crête au-dessus du Bivouac se découpe en noir sur un ciel couleur de cuivre. Un caillou roule sous une botte, puis un autre. Lise Oeil-Vif, la guetteuse, ne quitte pas les rochers des yeux. « Ils veulent vos mules et les fontes de Martin, souffle-t-elle, sèche et pressée. Regardez : huit pillards en cuir râpé avancent, et trois éclaireurs à l'arc les suivent. » Entre les pierres, des silhouettes se faufilent vers le campement, en file serrée, sans lanterne. La première vague n'attend pas. Comment les arrêter avant qu'ils n'atteignent le feu ?",
     "monstres": [
       {
         "profil": "eclaireur",
-        "nombre": 2,
+        "nombre": 3,
         "nom": "Éclaireur rival",
         "description": "Pisteur maigre au visage poussiéreux, cape couleur de sable, arc court."
       },
       {
         "profil": "bandit",
-        "nombre": 5,
+        "nombre": 8,
         "nom": "Pillard de la crête",
         "description": "Brigand en cuir râpé, foulard sur le visage, couteau long."
       }
     ],
     "carte": [
       "####################",
-      "#~~..R........R..~~#",
+      "#~~.mRm..mm...R..~~#",
       "#.m.mmm..m....m....#",
       "#.c..........m...c.#",
       "#..................#",
@@ -443,7 +443,7 @@
     "type": "combat",
     "lieu": "bivouac-entree",
     "difficulte": "moderee",
-    "intro": "La nuit tombe sur le Bivouac du Seuil, et les braises ne suffisent plus à éclairer la pente. Des pas résonnent sur les pierres, puis les silhouettes apparaissent en lisière. Au centre avance un homme massif à barbe grise, un manteau de cavalier rapiécé sur les épaules et une longue lame au côté. Quatre pillards le suivent, et un archer reste en retrait. « Déballez vos fontes, ou je vous les prendrai avec vos vies », lance-t-il d'une voix rude. Les mules se serrent derrière vous, et Martin ne quitte pas des yeux la lame du chef. Qui répondra à cet homme, et avec quels mots ?",
+    "intro": "La nuit tombe sur le Bivouac du Seuil, et les braises ne suffisent plus à éclairer la pente. Des pas résonnent sur les pierres, puis les silhouettes apparaissent en lisière. Au centre avance un homme massif à barbe grise, un manteau de cavalier rapiécé sur les épaules et une longue lame au côté. Huit pillards le suivent, et deux archers restent en retrait. « Déballez vos fontes, ou je vous les prendrai avec vos vies », lance-t-il d'une voix rude. Les mules se serrent derrière vous, et Martin ne quitte pas des yeux la lame du chef. Qui répondra à cet homme, et avec quels mots ?",
     "monstres": [
       {
         "profil": "chef-de-bande",
@@ -453,21 +453,21 @@
       },
       {
         "profil": "bandit",
-        "nombre": 4,
+        "nombre": 8,
         "nom": "Pillard de la bande",
         "description": "Brigand en cuir râpé, foulard sur le visage, couteau long."
       },
       {
         "profil": "eclaireur",
-        "nombre": 1,
+        "nombre": 2,
         "nom": "Archer des pillards",
         "description": "Pisteur maigre, arc court, carquois plein."
       }
     ],
     "carte": [
       "####################",
-      "#~~..R........R..~~#",
-      "#..m....m.....m....#",
+      "#~~m.R..mm....R..~~#",
+      "#.mmm...m.....m....#",
       "#....m.....m...m...#",
       "#.c..............c.#",
       "#...r..........r...#",
@@ -484,7 +484,7 @@
           "competence": "persuasion",
           "dd": 14
         },
-        "resume": "Le chef vous toise longtemps, la lame posée sur l'épaule. Il écoute chaque mot, et son regard glisse vers ses hommes, qui baissent lentement leurs armes. L'archer abaisse son arc à son tour. Le chef accepte le marché, grogne un ordre bref, et la bande recule dans l'ombre de la crête. Vous voyez les pillards disparaître un à un, les épaules basses, sans se retourner.",
+        "resume": "Le chef vous toise longtemps, la lame posée sur l'épaule. Il écoute chaque mot, et son regard glisse vers ses hommes, qui baissent lentement leurs armes. Les archers abaissent leurs arcs à leur tour. Le chef accepte le marché, grogne un ordre bref, et la bande recule dans l'ombre de la crête. Vous voyez les pillards disparaître un à un, les épaules basses, sans se retourner.",
         "effets": [
           {
             "flag": "contrat-crete-fait"

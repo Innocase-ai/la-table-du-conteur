@@ -7,15 +7,14 @@
     "lieu": "fort-du-reflet-beni",
     "resume": "Marta tient la cuisine du Fort du Reflet Béni, et l'eau de la citerne a un goût de rouille. Le pain ne lève plus. Quelque chose remonte des fondations depuis l'ouverture de la tombe. Elle demande qu'on nettoie la citerne avant la fermeture des cuisines.",
     "niveau": {
-      "min": 1,
-      "max": 2
+      "min": 3,
+      "max": 4
     },
     "debut": "le-contrat",
     "etapes": [
       {
         "id": "le-contrat",
         "texte": "Fouillez le fort pour descendre par la trappe de la cave, jusqu'à la citerne voûtée. Purgez-la à la chaux et au sel (dix pièces), sans salir les lames, ou videz-la à la chaîne de seaux avec les soldats.",
-        "lieu": "fort-du-reflet-beni",
         "completion": {
           "flag": "contrat-eau-fait"
         },
@@ -26,7 +25,6 @@
       {
         "id": "retour",
         "texte": "Retournez voir Marta aux cuisines du Fort et dites-lui que l'eau est claire. Elle attend ce verdict avant de rallumer ses fourneaux pour les compagnies qui rentrent.",
-        "lieu": "fort-du-reflet-beni",
         "completion": {
           "flag": "contrat-eau-rapporte"
         },
@@ -57,15 +55,14 @@
     "lieu": "bivouac-entree",
     "resume": "Une dizaine d'hommes de l'escorte d'Aldéric ont quitté le convoi et barrent la piste dans le lit sec d'un oued, près du Bivouac du Seuil. Ils détroussent les voyageurs. Le sergent Rodrigue veut qu'on les ramène ou qu'on les chasse avant qu'il lance ses cavaliers.",
     "niveau": {
-      "min": 1,
-      "max": 2
+      "min": 3,
+      "max": 4
     },
     "debut": "le-contrat",
     "etapes": [
       {
         "id": "le-contrat",
         "texte": "Au Bivouac du Seuil, huit heures de route depuis le fort, les déserteurs barrent la piste dans le lit de l'oued. Parlez-leur d'abord. S'ils refusent de rentrer, il faudra les ramener ou les chasser.",
-        "lieu": "bivouac-entree",
         "completion": {
           "flag": "contrat-deserteurs-fait"
         },
@@ -76,7 +73,6 @@
       {
         "id": "retour",
         "texte": "Revenez voir le sergent Rodrigue. Dites-lui comment la piste a été dégagée et ce que vous savez des déserteurs. Il attend un rapport net, sans détour.",
-        "lieu": "fort-du-reflet-beni",
         "completion": {
           "flag": "contrat-deserteurs-rapporte"
         },
@@ -107,15 +103,14 @@
     "lieu": "bivouac-entree",
     "resume": "Depuis trois nuits, une bête entaille les bâts des mules de Gaspard au Bivouac du Seuil, et la mule Pétard a la patte mordue. Gaspard a trouvé des traces de mandibules très larges. Il demande qu'on dorme près des mules la nuit suivante, pour attendre la bête vers minuit.",
     "niveau": {
-      "min": 1,
-      "max": 2
+      "min": 3,
+      "max": 4
     },
     "debut": "le-contrat",
     "etapes": [
       {
         "id": "le-contrat",
         "texte": "Passez la nuit au bivouac, près des mules, et attendez la bête vers minuit. Restez près des bâts, sans bruit. Abattez-la avant qu'elle n'atteigne Pétard.",
-        "lieu": "bivouac-entree",
         "completion": {
           "flag": "contrat-bete-fait"
         },
@@ -126,7 +121,6 @@
       {
         "id": "retour",
         "texte": "Revenez voir Gaspard aux mules, au Bivouac du Seuil, et dites-lui que la bête ne reviendra pas. Il attend ce verdict pour charger Pétard sans crainte.",
-        "lieu": "bivouac-entree",
         "completion": {
           "flag": "contrat-bete-rapporte"
         },
@@ -159,15 +153,14 @@
     "lieu": "bivouac-entree",
     "resume": "Depuis deux soirs, Lise voit des ombres observer le bivouac depuis la crête. Une bande rivale, envoyée par un autre noble de Valdargent, veut les mules et les fontes de Martin avant leur départ. Lise demande qu'on monte la garde au crépuscule et qu'on tienne les abords.",
     "niveau": {
-      "min": 1,
-      "max": 2
+      "min": 3,
+      "max": 4
     },
     "debut": "le-contrat",
     "etapes": [
       {
         "id": "le-contrat",
         "texte": "Montez la garde au crépuscule et fouillez les abords du bivouac. Des éclaireurs viendront d'abord, puis la bande. Vous pouvez les faire renoncer en les bluffant, sinon battez-les.",
-        "lieu": "bivouac-entree",
         "completion": {
           "flag": "contrat-crete-fait"
         },
@@ -178,7 +171,6 @@
       {
         "id": "retour",
         "texte": "Retournez voir Lise sur la crête. Dites-lui si la bande est partie ou battue, pour que Martin puisse enfin dormir cette nuit.",
-        "lieu": "bivouac-entree",
         "completion": {
           "flag": "contrat-crete-rapporte"
         },
