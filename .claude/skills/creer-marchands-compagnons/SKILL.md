@@ -44,7 +44,7 @@ Un PNJ est dans son `lieu`, **sauf** aux moments où il a une présence : `prese
 
 **Ce qui marche aujourd'hui** (éprouvé avec Nolwen dans la Citadelle) :
 - **L'escorte** : l'effet `{ "escorte": { "pnj": "<id>" } }` (posé par un sujet, une quête, un événement) fait **suivre** le groupe : le PNJ est présent dans tous les lieux, on peut lui parler partout ; `{ "escorte": { "pnj": "<id>", "actif": false } }` le laisse là où il est. **Il ne combat pas** : le combat ne connaît que les héros.
-- **Les interjections** (`interjections/`) : de courtes phrases qu'il lance de lui-même quand une condition devient vraie (un lieu, un fait, une quête, un choix de dilemme, un palier de jauge) ; leurs `effets` (`attitude`) font **l'approbation**. 12 à 20 pour un compagnon qui voyage tout le chapitre.
+- **Les interjections** (`interjections/`) : de courtes phrases qu'il lance de lui-même quand une condition devient vraie (un lieu, un fait, une quête, un choix de dilemme, un palier de jauge) ; leurs `effets` (`attitude`) font **l'approbation**. **40 à 45 pour un compagnon qui voyage tout un donjon** (voir « Un compagnon qui parle vraiment » ci-dessous : 12 à 20 phrases rendaient les compagnons presque muets sur 37 salles, constat du 15/11/2026).
 - **Sa profondeur** (fiche de savoir, liens, confidences verrouillées) : skill `creer-personnages` (brief `references/brief-compagnon.md`, exemple de Nolwen).
 - **Sa quête personnelle** : une quête `personnelle`, donnée par un sujet, dont une étape lit son attitude (`{ "pnj": { "id", "attitudeMin" } }`).
 - **Ses salutations variables** (`salutations.variantes`) : il se souvient des choix.
@@ -53,11 +53,26 @@ Un PNJ est dans son `lieu`, **sauf** aux moments où il a une présence : `prese
 
 **Concevoir** : un ou deux compagnons par chapitre, avec **un désir** qui croise l'intrigue (le joueur le sent par les interjections), **une limite** (un lieu où il refuse d'aller, une condition d'escorte qui peut se rompre : `escorte` `actif: false` posé par un choix), et **un moment** (un dilemme ou une fin qui le touche). Écris ses interjections **après** les dilemmes, pour qu'il puisse réagir aux choix.
 
+## Un compagnon qui parle vraiment (méthode éprouvée sur La Tombe des Rois Serpents, 15/11/2026)
+
+Une interjection **ne se dit qu'une fois**, quand sa condition devient vraie et que le compagnon est avec le groupe (escorté ou présent) ; elle s'affiche dans le journal. Pour qu'un compagnon ne paraisse pas muet, écris-lui **40 à 45 phrases** réparties sur ces déclencheurs (Claude choisit les conditions, Haiku écrit les textes, `references/` de `creer-personnages` : `brief-compagnon.md`) :
+- **les lieux** (`{ "lieu" }`), un par salle marquante ; **un seul compagnon « porte-parole » par salle** : si trois parlent à l'arrivée au même endroit, c'est un bruit, pas une conversation ;
+- **les rencontres** : une réaction par rencontre, `{ "rencontre": { "id", "issue": "victoire" } }` pour un combat dont le texte suppose la victoire, `{ "rencontre": { "id" } }` (sans issue) quand l'issue peut varier : le texte reste alors vrai dans tous les cas (un regard, un commentaire sur ce qu'on vient de traverser) et ne dit jamais qui a gagné ; répartis les rencontres entre les compagnons selon leur tempérament ;
+- **les trouvailles** (`{ "objet" }`) : objets de quête, reliques, ce qui peut maudire ou intriguer ;
+- **les PNJ rencontrés** (`{ "parle": "<pnj>" }`) : chaque compagnon a un avis sur 3 ou 4 PNJ marquants (sans trahir un secret : ce qu'il voit, pas ce que le groupe ignore encore) ;
+- **les retours de quête et les paliers de jauge** (`{ "flag" }`, `{ "jauge": { "min" } }`) ; **la confiance** (`{ "pnj": { "id": "<lui>", "attitudeMin": 30 } }`, puis 50) : le moment où il dit « je reste » ;
+- **les échanges entre compagnons** : une interjection pose un drapeau `bav-<sujet>-<qui>` dans ses `effets` (ajoute-le à une interjection existante si besoin), l'autre y répond (`quand: { "flag": "bav-…" }`). Les réponses se jouent dans la même réaction : l'ordre des interjections dans le fichier est l'ordre de parole ; une réplique réagit au sens de l'autre, sans la citer.
+
+**Sujets de conversation d'un compagnon** (dans `pnj/`, reposables, sans effet de jeu, 75 à 115 mots) : un avis par niveau (`lieu` du premier niveau, de l'atrium, du cœur), « Que pensez-vous de nous ? » (`attitudeMin` 20), un avis sur les autres compagnons (**condition `et` des drapeaux de recrutement** si le texte nomme les deux : un `ou` donne une réponse fausse quand il n'y en a qu'un), un avis sur l'antagoniste (condition sur le **fait** que le groupe connaît, pas sur `parle`, pour ne pas souffler un secret).
+
+**Limites actuelles (15/11/2026)** : (1) **pas de voix** : le jeu ne lit à voix haute que le PNJ avec qui l'on est en conversation (`EcranAventure.tsx`), jamais une interjection de compagnon, et `pnpm salutations` ne génère pas les interjections ; la lecture exige un changement de l'interface et du générateur (≈ 0,002 $ la prise, 130 phrases pour 3 compagnons ≈ 0,3 $, dépense à annoncer) ; (2) **pas de bavardage répétable** : une phrase écrite ne peut pas se redire, il faudrait une réserve de phrases tirées au hasard côté moteur ; (3) **pas de fin d'escorte** prévue. Avant de promettre qu'un compagnon « parle », joue-le : `escortes` posées, déplacements dans le moteur, lire le journal.
+
 ## Vérifier
 - [ ] `pnpm monde valider <id>` : pas d'id d'objet inconnu dans un stock ; avis « Richesse » sur les marchands lu.
 - [ ] Chaque service qui doit **faire** quelque chose a un id reconnu (tableau ci-dessus) ou des `effets`.
 - [ ] Le hub a au moins une nuit (service ou lieu `repos: "sur"`), des soins, une identification si le monde a des objets à identifier.
 - [ ] **Joue-le** : acheter, vendre, payer une chambre (le jour avance, les PV remontent), prendre le compagnon en escorte, entrer dans un lieu où il doit parler.
+- [ ] Un compagnon escorté a 40 phrases ou plus, pas deux compagnons qui parlent à la même arrivée sans échange voulu, des sujets de conversation par niveau, des réponses de chaîne qui lisent un drapeau `bav-…` posé par un autre.
 
 ## Les pièges connus
 - **Service sans effet** : un id `lit-a-l-etage` ne fait pas dormir ; renomme-le `chambre-…`.

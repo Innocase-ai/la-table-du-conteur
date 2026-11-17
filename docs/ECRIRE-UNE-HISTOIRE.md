@@ -116,6 +116,7 @@ Le conteur IA **joue** ce texte : il ne peut pas contredire les faits écrits. �
 ## 10. Dans ce projet
 
 - **Le canon (BIBLE.md)** contient le secret, les fins, la jauge, les factions et le registre d'identifiants. C'est lui que lisent tous les agents et le conteur.
+- **Le Pitch** doit impérativement comporter une section finale d'**Emplacement Cartographique & Repères Visuels** (position cardinale, coordonnées, rivière/viaduc/reliefs visibles sur la carte régionale, routes et goulots d'étranglement).
 - **Les scènes** sont des textes courts lus sous des boutons : accroche, description, choix, conséquence. Le codex garde ce que le groupe sait et ce qu'il se demande.
 - **Les conditions** du langage commun (drapeaux, faits, jauges) remplacent les « si le joueur a bien joué » : le monde réagit parce que l'état a changé.
 - **Les images et les voix** amplifient l'envie de lire, mais ne la remplacent pas. Écrire d'abord, illustrer ensuite.
@@ -136,5 +137,6 @@ Le conteur IA **joue** ce texte : il ne peut pas contredire les faits écrits. �
 - [ ] 3 dilemmes avec écho.
 - [ ] 3 indices par conclusion.
 - [ ] Antagoniste présent dès la première heure.
+- [ ] Emplacement cartographique et repères visuels documentés en bas du pitch (carte régionale, cadrage, coordonnées, obstacles et liaisons routières).
 - [ ] Chaque scène change l'état du monde.
 - [ ] Test de la page, test du « je fais quoi maintenant », test du secret.
