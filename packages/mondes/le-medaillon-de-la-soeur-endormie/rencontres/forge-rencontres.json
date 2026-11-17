@@ -1,16 +1,21 @@
 [
   {
     "id": "r-goule-des-cryptes",
-    "nom": "Goule des cryptes",
+    "nom": "La Gardienne du cercueil",
     "type": "combat",
     "lieu": "ruines-de-la-chapelle-brulee",
-    "difficulte": "moderee",
-    "intro": "La goule se redresse d’un bond au fond de la nef, près du cercueil dont le couvercle pend de travers. Elle est grande et maigre, la peau tendue sur des os qui craquent à chaque mouvement. Elle ne grogne pas. Elle vous regarde, puis jette un coup d’œil au cercueil, comme pour s’assurer qu’il est toujours là. Quand l’un de vous avance, elle recule d’un pas, hésitante. Puis elle se jette sur le plus proche avec une rapidité qui surprend. Elle défend ce qui repose dans le cercueil, pas sa propre vie.",
+    "difficulte": "elevee",
+    "intro": "Le cercueil repose au fond de la nef, sous les colonnes de lumière pâle. Son couvercle a été arraché… de l’intérieur. Deux créatures maigres se redressent de part et d’autre, vêtues de lambeaux de linceul, les doigts raclant les dalles. Puis une silhouette se lève du pied du cercueil. C’est une femme, enveloppée de lin jauni et de cire durcie qui craque à chaque pas. Elle ne se hâte pas. Une lampe à huile éteinte pend à son poignet. Avant de vous regarder, elle tourne la tête vers le cercueil, longtemps, comme on veille un dormeur. Puis ses yeux se posent sur vous. Que ferez-vous de ce qu’elle protège ?",
     "monstres": [
       {
-        "profil": "goule",
+        "profil": "momie",
         "nombre": 1,
-        "nom": "Goule des cryptes"
+        "nom": "La Gardienne du cercueil"
+      },
+      {
+        "profil": "goule",
+        "nombre": 2,
+        "nom": "Goule affamée"
       }
     ],
     "alternatives": [],
@@ -39,12 +44,72 @@
           "competence": "persuasion",
           "dd": 12
         },
-        "resume": "Il reste un long moment immobile, la dague pendue le long de la cuisse, puis lâche un soupir rauque : « Vous n’êtes pas du village. Passez, et ne revenez pas. » Il se décale de deux pas, lentement, sans vous quitter des yeux, et laisse le sentier libre. Quand vous passez à côté de lui, il détourne le regard, comme honteux d’avoir cédé.",
-        "effets": [],
+        "resume": "Il reste un long moment immobile, la dague pendue le long de la cuisse, puis lâche un soupir rauque : « Vous n’êtes pas du village. Passez, et ne revenez pas. » Il se décale de deux pas, lentement, sans vous quitter des yeux, et laisse le sentier libre. Avant que vous ne passiez, il ajoute d’une voix basse, en détournant le regard : « Et ne montez pas aux ruines de la vieille chapelle, au bout de la route. Une nuit, je m’y suis abrité. Quelque chose s’est levé du fond de la nef, et je n’ai dû ma fuite qu’à mes jambes, ce qu’il en reste. » Il bougonne entre ses dents, honteux d’avoir cédé, puis s’éloigne en boitant.",
+        "effets": [
+          {
+            "fait": "f-temoin-du-bandit"
+          }
+        ],
         "echecResout": false
       }
     ],
     "butin": {},
+    "effetsVictoire": [
+      {
+        "narration": "Le bandit s’effondre contre le tronc et gémit en serrant ses côtes. Entre deux souffles, il lâche : « Les ruines… la vieille chapelle, au bout de la route. Une nuit, quelque chose s’est levé dans la nef, et je n’en suis pas sorti tel que j’étais. » Puis il se tait, et ne répond plus à vos questions."
+      },
+      {
+        "fait": "f-temoin-du-bandit"
+      }
+    ]
+  },
+  {
+    "id": "r-chiens-errants",
+    "nom": "Les chiens du carrefour",
+    "type": "combat",
+    "lieu": "carrefour-des-offrandes",
+    "difficulte": "faible",
+    "intro": "Trois chiens errants, maigres et sales, sont couchés autour de la pierre des offrandes quand vous approchez. Leurs côtes se dessinent sous un poil collé de boue, et leurs ventres grondent presque aussi fort que leurs gorges. Ils ont compris que les petits pains du carrefour valent le coup de se battre. D’abord, ils grondent et montrent les crocs. Puis le plus grand se lève, les oreilles couchées, et les deux autres se déploient à ses côtés. Un détail étrange : l’un d’eux porte un ruban rouge noué au cou, sans doute retiré à un enfant. Qui cédera la pierre en premier ?",
+    "monstres": [
+      {
+        "profil": "molosse",
+        "nombre": 3,
+        "nom": "Chien errant"
+      }
+    ],
+    "alternatives": [],
+    "butin": {},
     "effetsVictoire": []
+  },
+  {
+    "id": "r-rats-de-la-cave",
+    "nom": "Les rats de la cave",
+    "type": "combat",
+    "lieu": "le-sanglier-dore",
+    "difficulte": "faible",
+    "intro": "Dans la cave du Sanglier Doré, l’odeur de bière aigre et de moisi vous prend à la gorge. Quatre gros rats rongent le bord d’un tonneau éventré, la queue raide, sans même vous regarder. Ce sont eux qui grattaient, ce bruit de lime sur du bois que tout le village entend la nuit. Un tonneau roule dans un coin, et une grappe de rats se disperse en grondant vers vous. Maître Foulques ne vous a pas suivi jusqu’ici. Qui allait donc réparer ces tonneaux, et combien de nuits ces bêtes ont-elles déjà passées ici ?",
+    "monstres": [
+      {
+        "profil": "rat-geant",
+        "nombre": 4,
+        "nom": "Rat de cave"
+      }
+    ],
+    "alternatives": [],
+    "butin": {},
+    "effetsVictoire": [
+      {
+        "narration": "Le silence revient dans la cave, troublé seulement par le goutte-à-goutte d’un tonneau mal bouché. Ce n’étaient que des rats, et la maison, en haut, n’a pas à en savoir davantage."
+      },
+      {
+        "fait": "f-grattements-etaient-des-rats"
+      },
+      {
+        "attitude": {
+          "pnj": "maitre-foulques",
+          "delta": 1
+        }
+      }
+    ]
   }
 ]

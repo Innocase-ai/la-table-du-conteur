@@ -10,8 +10,46 @@
       "min": 1,
       "max": 2
     },
-    "debut": "aller-ruines-de-la-chapelle-brulee",
+    "debut": "enqueter",
     "etapes": [
+      {
+        "id": "enqueter",
+        "texte": "Le voleur a laissé des traces, et le village sait peut-être où elles mènent. Remontez sa piste : interrogez les gens de Villambrune, examinez la crypte du sanctuaire et ses alentours, puis recoupez ce que vous apprenez avant de décider où aller.",
+        "completion": {
+          "et": [
+            {
+              "fait": "f-boue-de-cendre"
+            },
+            {
+              "ou": [
+                {
+                  "fait": "f-cire-d-embaumeur"
+                },
+                {
+                  "fait": "f-temoin-du-bandit"
+                },
+                {
+                  "fait": "f-lambeau-de-lin"
+                }
+              ]
+            }
+          ]
+        },
+        "suivantes": [
+          "aller-ruines-de-la-chapelle-brulee"
+        ],
+        "effets": [
+          {
+            "narration": "La boue des traces contient de la cendre, et la cire n’est pas celle des cierges : c’est de la cire d’embaumeur, celle qu’on coule sur un mort. Une boue pareille ne vient que d’un lieu brûlé, et au bout de la vieille route de charrette il n’y a que la vieille chapelle brûlée, où repose la Sœur. Il ne vous reste plus qu’à décider si vous montez jusqu’à elle."
+          },
+          {
+            "flag": "traces-comprises"
+          },
+          {
+            "debloquer": "ruines-de-la-chapelle-brulee"
+          }
+        ]
+      },
       {
         "id": "aller-ruines-de-la-chapelle-brulee",
         "texte": "Retrouvez où mènent les traces de boue et de cire qui s’éloignent du village.",

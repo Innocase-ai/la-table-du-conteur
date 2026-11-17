@@ -29,6 +29,8 @@ import { BoutonProposition } from './BoutonProposition';
 import { CarteMonde } from './CarteMonde';
 import { FeuillePersonnage, type OngletFeuille } from './FeuillePersonnage';
 import { EcranMontee } from './EcranMontee';
+import { EcranNiveau } from './EcranNiveau';
+import { annonceDeNiveau, type AnnonceNiveau } from '../niveau-regles';
 import { EcranPreparation, peutPreparer } from './EcranPreparation';
 import { ContextePreparation } from './preparation-contexte';
 import { EcranQuete } from './EcranQuete';
@@ -458,11 +460,23 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
     if (enAttenteMontee > avantMontee.current) setMontee(true);
     avantMontee.current = enAttenteMontee;
   }, [enAttenteMontee]);
-  const monteeOuverte = montee && enAttenteMontee > 0 && !sceneNarree;
+  // L'annonce du niveau atteint passe avant l'écran de montée : on compare le niveau du groupe et ses héros avant et après chaque action.
+  const [annonceNiveau, setAnnonceNiveau] = useState<AnnonceNiveau>();
+  const avantNiveau = useRef<{ monde: string; niveau: number; groupe: typeof partie.groupe }>({ monde: partie.monde, niveau: partie.etat.niveauGroupe, groupe: partie.groupe });
+  useEffect(() => {
+    const avant = avantNiveau.current;
+    avantNiveau.current = { monde: partie.monde, niveau: partie.etat.niveauGroupe, groupe: partie.groupe };
+    if (avant.monde !== partie.monde) return;
+    const a = annonceDeNiveau(avant, { niveau: partie.etat.niveauGroupe, groupe: partie.groupe });
+    if (a) setAnnonceNiveau(a);
+  }, [partie.monde, partie.etat.niveauGroupe, partie.groupe]);
+  const fermerAnnonceNiveau = useCallback(() => setAnnonceNiveau(undefined), []);
+  const annonceOuverte = !!annonceNiveau && !sceneNarree;
+  const monteeOuverte = montee && enAttenteMontee > 0 && !sceneNarree && !annonceOuverte;
   // L'écran de rencontre passe après les écrans qui racontent (scène, événement, sommeil, parchemin, montée).
-  const rencontreOuverte = !!rencontre && rencontreReduite !== rencontre.id && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte;
+  const rencontreOuverte = !!rencontre && rencontreReduite !== rencontre.id && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte && !annonceOuverte;
   const fermerMontee = useCallback(() => setMontee(false), []);
-  const preparationOuverte = preparer !== undefined && partie.scene.type === 'exploration' && partie.groupe.some(peutPreparer) && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte;
+  const preparationOuverte = preparer !== undefined && partie.scene.type === 'exploration' && partie.groupe.some(peutPreparer) && !sceneNarree && !evenement && !sommeil && !crochetage && !desamorcage && !parcheminOuvert && !monteeOuverte && !annonceOuverte;
   /** Une commande envoyée par l'écran de montée de niveau : le refus éventuel lui revient, il l'affiche lui-même. */
   const envoyer = (ordre: Ordre): string | undefined => {
     const r = moteur.executer(partie, ordre);
@@ -853,6 +867,7 @@ export function EcranAventure({ aventure, onPartie, onCombat, onMenu }: Props) {
           onFermer={() => setFeuille(undefined)}
         />
       )}
+      {annonceOuverte && !parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranNiveau annonce={annonceNiveau!} onFin={fermerAnnonceNiveau} />}
       {parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranQuete key={`${parchemin!.id}:${parchemin!.genre}`} quete={parchemin!} imageDonneur={imageDonneur} suivantes={parchemins.length - 1} onFin={finParchemin} />}
       {monteeOuverte && !parcheminOuvert && !sommeil && !crochetage && !desamorcage && <EcranMontee donnees={moteur.ctx.srd!} groupe={partie.groupe} envoyer={envoyer} onFermer={fermerMontee} />}
       {preparationOuverte && <EcranPreparation donnees={moteur.ctx.srd!} groupe={partie.groupe} initial={preparer} envoyer={envoyer} onFermer={fermerPreparation} />}

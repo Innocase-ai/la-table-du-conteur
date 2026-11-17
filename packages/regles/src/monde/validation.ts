@@ -12,6 +12,7 @@ import { examensDe } from './examens-donnees';
 import { interjectionsDe } from './interjections-donnees';
 import { diagnosticDeMessage, type Diagnostic } from './diagnostics';
 import { refsCondition, refsEffet } from './references';
+import { avisQuetesSautables } from './quete-sautable';
 import { etatInitial, evaluerCondition } from './etat';
 import type { Condition, DonneesMonde, EffetMonde } from './schemas';
 
@@ -452,6 +453,9 @@ export function validerMonde(dm: DonneesMonde, srd: Donnees): BilanMonde {
     if (q.niveau.min < dm.monde.niveaux.min || q.niveau.max > dm.monde.niveaux.max) avis(`${ou} : niveaux ${q.niveau.min}-${q.niveau.max} hors de ceux du monde (${dm.monde.niveaux.min}-${dm.monde.niveaux.max}).`);
     effets(`${ou}`, q.etapes.flatMap((e) => e.effets));
   }
+
+  // Une quête sautable : son objectif s'atteint sans qu'elle soit active (le chef tué et la relique prise avant d'avoir su qu'on la cherchait).
+  for (const m of avisQuetesSautables(dm)) avis(m);
 
   // Une quête qui a un donneur se RENDORT : sa dernière étape renvoie à lui (« Retournez voir… ») et s'accomplit par un sujet de
   // ce PNJ. Sinon elle se clôt seule, au fond d'une cave, et le joueur cherche vainement où la rendre. Heuristique : le texte d'une

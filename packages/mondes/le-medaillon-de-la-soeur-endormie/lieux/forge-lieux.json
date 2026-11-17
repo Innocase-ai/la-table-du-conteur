@@ -17,7 +17,7 @@
     "type": "village",
     "parent": "le-medaillon-de-la-soeur-endormie",
     "resume": "Un village de l’Aéranne aux toits serrés, où l’on rentre avant la cloche du soir. Les offrandes fanées du carrefour rappellent que les routes ne sont plus sûres.",
-    "description": "Village de la région, regroupé autour d’une place et de son sanctuaire. On y trouve la demeure du Sire Bertrand, châtelain des lieux, l’auberge du Sanglier Doré, le sanctuaire de sainte Odile et la chaumière de la vieille Mahaut. Deux chemins en sortent : l’un vers le Bois des Chênes Pâles, l’autre vers les ruines de la chapelle brûlée. On n’y repose pas tranquillement hors de l’auberge.",
+    "description": "Village de la région, regroupé autour d’une place et de son sanctuaire. On y trouve la demeure du Sire Bertrand, châtelain des lieux, l’auberge du Sanglier Doré, le sanctuaire de sainte Odile et la chaumière de la vieille Mahaut. Trois chemins en sortent : l’un vers le Bois des Chênes Pâles, l’autre vers les ruines de la chapelle brûlée, le troisième vers le carrefour des offrandes. On n’y repose pas tranquillement hors de l’auberge.",
     "visuel": "Des toits de chaume gris et des pignons de pierre serrés autour d’une place boueuse. Une lumière basse, ocre et froide, glisse entre les murs, et une brume de fin de journée monte des fossés. Quelques fenêtres brillent derrière des volets clos, et un linge sombre pend à l’une d’elles.",
     "liens": [
       {
@@ -29,6 +29,12 @@
         "cache": {
           "dd": 11,
           "competence": "survie"
+        },
+        "condition": {
+          "quete": {
+            "id": "herbes-pour-la-soupe",
+            "statut": "active"
+          }
         }
       },
       {
@@ -40,7 +46,28 @@
         "cache": {
           "dd": 13,
           "competence": "survie"
+        },
+        "condition": {
+          "et": [
+            {
+              "quete": {
+                "id": "le-medaillon-vole",
+                "statut": "active"
+              }
+            },
+            {
+              "flag": "traces-comprises"
+            }
+          ]
         }
+      },
+      {
+        "vers": "carrefour-des-offrandes",
+        "type": "chemin",
+        "heures": 0.5,
+        "sens": "double",
+        "description": "Le sentier quitte Villambrune et file entre les haies jusqu’au carrefour.",
+        "retour": "Le sentier redescend vers les toits de Villambrune."
       }
     ],
     "rencontres": [],
@@ -73,7 +100,16 @@
     "description": "Auberge et taverne tenue par Maître Foulques, tavernier-mercier, qui y vend aussi une potion de soin et une épée de fer. On y trouve un gîte, des repas et du vin, et l’endroit est sûr pour se reposer. La ménestrière Jorane y chante le soir, malgré sa blessure au cou.",
     "visuel": "Une salle basse aux poutres noircies par la fumée, éclairée par un feu ample et des chandelles de suif. Tables de chêne usées, pichets de grès, et vin rouge qui tache la lumière dorée sur les murs de pierre blanche.",
     "liens": [],
-    "rencontres": [],
+    "rencontres": [
+      {
+        "id": "r-rats-de-la-cave",
+        "declencheur": "exploration",
+        "condition": {
+          "fait": "f-grattements-vers-la-chapelle"
+        },
+        "unique": true
+      }
+    ],
     "services": [
       "auberge",
       "repas"
@@ -90,7 +126,19 @@
     "resume": "Petit sanctuaire de pierre dédié à sainte Odile, où l’on vient chercher un peu de calme et des soins. Les vitraux y laissent passer une lumière bleue et ocre.",
     "description": "Lieu de culte de sainte Odile, où le Frère Anselme soigne blessures et fièvres. On y trouve un autel et une nef ouverte aux visiteurs ; le repos n’y est pas sûr, malgré la sérénité du lieu.",
     "visuel": "Nef étroite de pierre claire, voûtes basses et piliers couverts de cire coulée. Des vitraux bleus et ocre laissent tomber leur lumière sur un dallage usé, et l’air sent l’encens froid et la sauge.",
-    "liens": [],
+    "liens": [
+      {
+        "vers": "crypte-du-sanctuaire",
+        "type": "escalier",
+        "heures": 0,
+        "sens": "double",
+        "condition": {
+          "flag": "crypte-ouverte"
+        },
+        "description": "La marche derrière l’autel, dont la planche a été levée, descend dans le noir.",
+        "retour": "L’escalier remonte vers la nef du sanctuaire, où les bougies tremblent encore."
+      }
+    ],
     "rencontres": [],
     "services": [
       "soins"
@@ -120,7 +168,7 @@
     "type": "ruine",
     "parent": "le-medaillon-de-la-soeur-endormie",
     "resume": "Une chapelle calcinée au bout d’une route de charrette, dont la nef ouverte au ciel n’a plus de toit. Plus personne n’y monte depuis longtemps.",
-    "description": "Vieille chapelle incendiée dont la nef sert de tombeau : un cercueil profané y est posé, et une goule des cryptes monte la garde autour. Le médaillon de sainte Odile est gardé dans le cercueil. Le repos y est dangereux.",
+    "description": "Vieille chapelle incendiée dont la nef sert de tombeau : un cercueil profané y est posé, et la Gardienne du cercueil (une momie) et deux goules montent la garde autour. Le médaillon de sainte Odile est gardé dans le cercueil. Le repos y est dangereux.",
     "visuel": "Murs de pierre noire et cendre grise, nef sans toit où la lumière tombe en colonnes pâles. Mousse blanche sur les pierres, dalles soulevées, terre sombre et humide, et flaques argentées où la pluie tremble.",
     "liens": [
       {
@@ -171,5 +219,41 @@
     "repos": "dangereux",
     "arrivee": "Le sentier se perd entre les troncs, et les chênes se resserrent autour de vous. Leur écorce est si pâle qu’on dirait des os polis sous la lumière verdâtre. Le silence est total : pas un oiseau, pas une branche qui craque. Seuls vos pas, étouffés par la mousse, ont un son, et plus loin, un tintement de métal mal rangé. Une odeur de feuilles pourries et de terre mouillée, mais aussi quelque chose de plus doux, une senteur de plantes qu’on aurait cueillies récemment. Au pied d’un tronc, de longues tiges fines ondulent sans vent, comme si elles vous observaient. Une silhouette voûtée se détache entre deux arbres ; elle se tient penchée, un bras serré contre le ventre, la jambe raide. Elle ne se retourne pas tout de suite, comme si elle attendait que vous parliez. Que faites-vous de ce silence, et de cette silhouette qui semble garder quelque chose ?",
     "accroche": "Des chênes aux troncs pâles bordent la route, et les herbes y poussent plus douces qu’ailleurs. Personne ne s’y aventure seul, dit-on."
+  },
+  {
+    "id": "crypte-du-sanctuaire",
+    "nom": "Crypte du sanctuaire",
+    "type": "salle",
+    "parent": "sanctuaire-de-sainte-odile",
+    "resume": "Caveau voûté sous le sanctuaire de Villambrune, qu’on atteint par une marche derrière l’autel. Le sol y garde des traces qui ne devraient pas être là.",
+    "description": "Caveau voûté sous l’autel du sanctuaire de Villambrune, où l’on descend par la marche derrière l’autel dont la planche a été levée. Au centre, un piédestal de pierre est vide : c’est là que reposait le médaillon. Les dalles portent des traces de boue grise et de cire blanche.",
+    "visuel": "Caveau de pierre voûté, sans fenêtre. Au centre, un piédestal vide ; sur les dalles, des traces de boue grise et de cire blanche, et une lampe à huile posée près de l’escalier.",
+    "liens": [],
+    "rencontres": [],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "L’escalier derrière l’autel est enfin ouvert : la planche a été levée et posée de côté, et une bande de cire fraîche a été arrachée avec elle. Une marche de pierre, puis une autre, descendent dans le noir. Une odeur de pierre froide et de résine monte vers vous. La lueur des bougies de la nef s’étire sur les premières marches. En bas, un caveau voûté s’ouvre sur des dalles épaisses. Au centre, un piédestal de pierre se dresse, vide, et la poussière y dessine encore la forme de ce qu’il portait. Autour, les dalles portent des traces : une boue grise, sèche en croûte, et des coulures de cire blanche figées en gouttes grasses. Au pied des marches, une porte de chêne est ouverte, ni forcée ni rayée. Les traces vont vers l’escalier, plus légères, plus hésitantes. Qui est remonté par ces marches, et combien de temps a-t-il mis à le faire ?",
+    "accroche": "Derrière l’autel, une planche condamne une marche : quelqu’un l’a soulevée, puis reposée à la hâte."
+  },
+  {
+    "id": "carrefour-des-offrandes",
+    "nom": "Carrefour des offrandes",
+    "type": "lieu-dit",
+    "parent": "le-medaillon-de-la-soeur-endormie",
+    "resume": "Croisement de la vieille route de charrette, couvert d’offrandes fanées, où des chiens errants rôdent.",
+    "description": "Carrefour à la sortie nord de Villambrune, là où la vieille route de charrette quitte le sentier, où une pierre plate reçoit fleurs fanées, graines et petits pains. Des chiens errants rôdent autour, attirés par ces offrandes.",
+    "visuel": "Carrefour de terre sous la bruine, pierre plate couverte de fleurs fanées et de petits pains, chênes pâles au loin, brume, lumière basse ocre.",
+    "liens": [],
+    "rencontres": [
+      {
+        "id": "r-chiens-errants",
+        "declencheur": "entree",
+        "unique": true
+      }
+    ],
+    "services": [],
+    "repos": "dangereux",
+    "arrivee": "Le chemin de terre se resserre et débouche sur un carrefour balayé par la brume. Les deux routes se croisent sous des chênes pâles, et au centre, une pierre plate attend, couverte d’offrandes. Des fleurs fanées, des graines, de petits pains durcis par la pluie : quelqu’un les a posés là avec soin, comme on dépose une prière. Il y a de la peur dans ce geste, et aussi de la piété, et les deux se mêlent sur la pierre. Puis un grognement sourd s’élève de l’ombre des haies. Trois chiens maigres sortent du fossé, les côtes saillantes, la gueule basse. Ils ne viennent pas vers vous tout de suite : ils se déploient autour de la pierre, lentement, et leurs yeux ne quittent pas les petits pains. Un pas dans la boue, et ils grondent plus fort. Combien de temps gardera-t-on ses distances avant que l’un d’eux ne bondisse, et que ferez-vous du pain qu’ils défendent ?",
+    "accroche": "Vu du village, le carrefour n’est qu’une tache de fleurs fanées au bout du sentier, et personne ne s’en approche le soir."
   }
 ]

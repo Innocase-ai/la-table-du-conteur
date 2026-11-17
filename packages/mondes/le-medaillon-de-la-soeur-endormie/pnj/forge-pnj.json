@@ -95,22 +95,28 @@
       {
         "id": "sire-bertrand-les-ruines",
         "mots": [
-          "ruines",
           "chapelle",
           "brûlée",
+          "route",
           "traces"
         ],
-        "question": "Que savez-vous des ruines de la vieille chapelle ?",
-        "reponse": "Pas grand-chose que je veuille répéter. Une chapelle brûlée, il y a bien longtemps, bien avant mon père. Son toit est tombé, et la nef reste ouverte au ciel. Plus personne n’y monte, et je n’ai jamais exigé qu’on y aille. Les traces de boue et de cire mènent là-haut, c’est tout ce que j’ai vu, et je n’en fais pas un sujet de conversation. Ne prends pas mes silences pour de la peur, mais pour de la prudence. Mot de châtelain. Dis-moi seulement si tu as suivi ces traces jusqu’au bout, et à quelle heure tu es redescendu.",
+        "question": "Où a-t-il brûlé, par chez nous ?",
+        "reponse": "Ne me pose pas la question une seconde fois, voyageur. Il n’y a qu’un endroit brûlé au bout de la vieille route de charrette : la chapelle d’avant le sanctuaire, incendiée il y a quatre-vingt-dix ans. Son toit est tombé, la nef reste ouverte au ciel, et personne n’y monte plus. Je ne te dis pas qu’il faut y aller. Je dis seulement que la boue ne vient pas d’ailleurs. Mot de châtelain. Dis-moi à quelle heure tu redescends de là-haut.",
         "effets": [
           {
-            "debloquer": "ruines-de-la-chapelle-brulee"
+            "quete": {
+              "id": "le-medaillon-vole",
+              "statut": "active"
+            }
           }
         ],
         "unique": false,
         "revele": [
           "f-traces-route-de-charrette"
-        ]
+        ],
+        "condition": {
+          "fait": "f-boue-de-cendre"
+        }
       },
       {
         "id": "sire-bertrand-la-garde",
@@ -219,12 +225,8 @@
           "chambre"
         ],
         "question": "Qu’entendez-vous la nuit, quand vous ne chantez plus ?",
-        "reponse": "Ah, ça, je préfère ne pas le dire tout haut. Quand la salle se vide, je monte dans ma chambre et je fredonne pour couvrir le reste. Il y a des grattements, petits, patients, comme une lime sur du bois. Je les compte en notes, enfin… ça m’occupe la tête. Un, deux, trois… puis le silence, puis ça recommence. Les gens du Sanglier disent que ça vient de là-haut, de la vieille chapelle brûlée. Moi, je n’en sais rien, et je ne veux pas y croire. Tu entends ça aussi, ou c’est seulement ma voix fatiguée qui invente ?",
-        "effets": [
-          {
-            "debloquer": "ruines-de-la-chapelle-brulee"
-          }
-        ],
+        "reponse": "Ah, ça, je préfère ne pas le dire tout haut. Quand la salle se vide, je monte dans ma chambre et je fredonne pour couvrir le reste. Il y a des grattements, petits, patients, comme une lime sur du bois. Je les compte en notes, enfin… un, deux, trois, puis le silence, puis ça recommence. Ça vient de là-haut, vers le nord, du côté de la vieille route, et je n’ose pas y penser plus longtemps. J’ai dit à Foulques de regarder dans sa cave, mais il a préféré essuyer son pichet. Tu entends ça aussi, ou c’est seulement ma voix fatiguée qui invente ?",
+        "effets": [],
         "unique": false,
         "revele": [
           "f-grattements-vers-la-chapelle"
@@ -364,11 +366,7 @@
         ],
         "question": "Que dit-on sur la route, ces temps-ci ?",
         "reponse": "Les nouvelles ? Je les donne volontiers, ça te va ? Mais un bavardage contre un bavardage, c’est la règle de la maison. On dit que les marchands ont cessé de passer sur la route, et qu’un brigand rôde du côté du Bois. Ce sont des bruits, rien de plus, mais ça fait vendre la bière. Moi, je les écoute comme on écoute la pluie : sans y croire, et sans sortir. Alors, d’où viens-tu, toi ? Raconte-moi ta route, et je te raconte la mienne. Les gens qui arrivent ont toujours quelque chose de neuf à dire, et ça, ça te va ?",
-        "effets": [
-          {
-            "debloquer": "bois-des-chenes-pales"
-          }
-        ],
+        "effets": [],
         "unique": false,
         "revele": [
           "f-herbes-au-bois-des-chenes-pales"
@@ -486,10 +484,19 @@
           "sainte"
         ],
         "question": "Qui a pu profaner la crypte de sainte Odile ?",
-        "reponse": "Je ne sais pas, et je le dis doucement, car je voudrais savoir autant que toi. La crypte est un lieu de repos, on y entre les pieds propres. Quelqu’un y est entré sans ce respect : il a laissé de la boue et de la cire sur les dalles, et emporté ce qui nous était précieux. En sortant, les traces s’en vont par la vieille route de charrette, vers la chapelle brûlée, là où l’on ne monte plus. Je prie pour celui qui l’a fait, car la Lumière ne ferme sa porte à personne. Mais toi, mon enfant, qu’as-tu vu sur les dalles, si tu y es descendu ?",
+        "reponse": "Doucement, mon enfant, je vais te montrer ce que personne n’a voulu regarder. Je m’approche de l’autel, je pose la main sur la planche de la marche condamnée et je la soulève, lentement, comme on ouvre un coffre fragile. Une odeur de terre froide monte de l’ombre. Descends, regarde les dalles : tu y verras la boue et la cire, mêlées à une poussière grise qui sent le feu. En sortant, ces traces s’en vont par la vieille route de charrette, vers le nord, comme si quelqu’un savait exactement où il allait. Que feras-tu de ce que tu vois là-bas, mon enfant, et jusqu’où iras-tu pour le savoir ?",
         "effets": [
           {
-            "debloquer": "ruines-de-la-chapelle-brulee"
+            "quete": {
+              "id": "le-medaillon-vole",
+              "statut": "active"
+            }
+          },
+          {
+            "flag": "crypte-ouverte"
+          },
+          {
+            "debloquer": "crypte-du-sanctuaire"
           }
         ],
         "unique": false,
@@ -561,8 +568,15 @@
           "page"
         ],
         "question": "Que dit le registre du sanctuaire, sur le médaillon ?",
-        "reponse": "Doucement, mon enfant, je vais chercher le registre. Il dit qu’avant la mise en terre, on a ôté le médaillon du cou de la sainte. Pour qu’il serve aux vivants, c’est écrit ainsi. Le bord de la page est brûlé, et la phrase suivante est perdue. Je n’en sais pas plus, et j’ai longtemps cherché. Derrière l’autel, la marche condamnée descend vers la crypte. J’ai des doutes sur cette marche, et je les garde pour moi. Ce ne sont que des soupçons de vieil homme. Dis-moi : la planche a-t-elle bougé depuis ton arrivée ?",
-        "effets": [],
+        "reponse": "Doucement, mon enfant, je vais chercher le registre. Il dit qu’avant la mise en terre, on a ôté le médaillon du cou de la sainte. Pour qu’il serve aux vivants, c’est écrit ainsi. Le bord de la page est brûlé, et la phrase suivante est perdue. Je n’en sais pas plus, et j’ai longtemps cherché. Derrière l’autel, la marche condamnée descend vers la crypte. J’ai des doutes sur cette marche, et je les garde pour moi. Ce ne sont que des soupçons de vieil homme. Si tu veux voir par toi-même, je lève la planche, et la crypte est ouverte. Qu’espères-tu trouver en bas, et es-tu prêt à voir ce qui s’y cache ?",
+        "effets": [
+          {
+            "flag": "crypte-ouverte"
+          },
+          {
+            "debloquer": "crypte-du-sanctuaire"
+          }
+        ],
         "unique": false,
         "revele": [
           "f-registre-medaillon-ote"
@@ -707,6 +721,12 @@
         "question": "Comment ne pas se perdre dans le Bois des Chênes Pâles ?",
         "reponse": "Ah, tu veux savoir, petit ? Les chênes là-bas ont des troncs si clairs qu’on les prend pour des fantômes. Les sentiers s’effacent, tu vois, et l’on tourne en rond sans s’en apercevoir. Prends un fil, un ruban, n’importe quoi, et laisse-le derrière toi. Les herbes de velours poussent là où le sol est mou, mais ne les cueille pas à la hâte, elles ne se laissent plus faire. Moi, je connais le chemin depuis cinquante ans, pardi, et même moi je me perds parfois. Dis-moi, tu sais au moins où est le nord, quand les arbres se ressemblent tous ?",
         "effets": [
+          {
+            "quete": {
+              "id": "herbes-pour-la-soupe",
+              "statut": "active"
+            }
+          },
           {
             "debloquer": "bois-des-chenes-pales"
           }

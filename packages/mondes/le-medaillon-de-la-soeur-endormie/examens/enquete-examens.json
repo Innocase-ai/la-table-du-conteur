@@ -1,0 +1,59 @@
+[
+  {
+    "id": "exa-boue-de-la-crypte",
+    "lieu": "crypte-du-sanctuaire",
+    "nom": "La boue sur les dalles",
+    "apercu": "Une boue grise et sèche, mêlée de paillettes noires.",
+    "texte": "Une boue grise, sèche en croûte, recouvre les dalles près de l’escalier, et elle crisse sous le doigt quand on la gratte. En la regardant de près, on y voit de fines paillettes noires, légères comme de la poussière, qui se détachent et tombent. De la cendre, fine et grise. Elle n’a rien à faire sous terre, ni sur de la cire.",
+    "effets": [
+      {
+        "fait": "f-boue-de-cendre"
+      }
+    ],
+    "variantes": []
+  },
+  {
+    "id": "exa-cire-de-la-crypte",
+    "lieu": "crypte-du-sanctuaire",
+    "nom": "La cire sur le piédestal",
+    "apercu": "Une cire pâle, plus grasse que les cierges du sanctuaire.",
+    "texte": "Une cire d’un blanc jaunâtre, collée en coulures sur le bord du piédestal. Elle est plus grasse et plus dense que celle des cierges du sanctuaire, et elle sent la résine et les herbes, une odeur douce et lourde qui reste au fond de la gorge. On dirait qu’on l’a coulée lentement, goutte après goutte, sur quelque chose qui ne bougeait plus. Vous vous demandez sur qui, et à quoi elle servait.",
+    "effets": [
+      {
+        "fait": "f-cire-d-embaumeur"
+      }
+    ],
+    "variantes": []
+  },
+  {
+    "id": "exa-serrure-de-la-crypte",
+    "lieu": "crypte-du-sanctuaire",
+    "nom": "La porte de la crypte",
+    "apercu": "La porte de chêne, sa serrure et ses gonds.",
+    "texte": "La porte de chêne et sa serrure sont intactes : ni éclat, ni rayure, ni trace de levier sur le bois. Les gonds sont graissés, et leurs charnières bougent sans un grincement. Le verrou est ouvert, sans la moindre marque de crochet ni de levier. Personne n’a forcé cette porte. Qui avait la clé, ou qui n’en avait pas besoin ?",
+    "effets": [
+      {
+        "fait": "f-serrure-intacte"
+      }
+    ],
+    "variantes": []
+  },
+  {
+    "id": "exa-lambeau-du-carrefour",
+    "lieu": "carrefour-des-offrandes",
+    "nom": "Le lambeau sous la pierre",
+    "apercu": "Un lambeau de lin jauni, coincé sous la pierre plate.",
+    "texte": "Un lambeau de lin jauni par le temps est coincé sous le bord de la pierre plate. Il est raidi, durci, comme imprégné de cire, et il craque quand on le retire. Une bande arrachée à un drap, d’une largeur de main, avec un liseré de point serré. Ce n’est pas un chiffon de cuisine. On dirait un morceau de drap de mort, arraché d’un coup sec.",
+    "visible": {
+      "rencontre": {
+        "id": "r-chiens-errants"
+      }
+    },
+    "effets": [
+      {
+        "fait": "f-lambeau-de-lin"
+      }
+    ],
+    "variantes": []
+  }
+]

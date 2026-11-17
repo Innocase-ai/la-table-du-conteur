@@ -8591,6 +8591,44 @@ kbd {
   --quete-cachet: #2f7a4d;
 }
 
+/* L'annonce d'une montée de niveau : le même rouleau, cachet doré, une ligne par héros qui monte. */
+.ecran-quete-niveau {
+  --quete-cachet: #b8892b;
+}
+
+.niveau-heros {
+  list-style: none;
+  margin: 8px 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.niveau-heros-ligne {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 4px 12px;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(110, 72, 24, 0.25);
+}
+
+.niveau-heros-nom {
+  font-weight: 700;
+}
+
+.niveau-heros-pv {
+  font-variant-numeric: tabular-nums;
+}
+
+.niveau-heros-choix {
+  grid-column: 2 / 4;
+  font-size: 0.85em;
+  font-style: italic;
+  color: #7a4a14;
+}
+
 .quete-rouleau {
   width: min(620px, 100%);
   max-height: calc(100vh - 120px);
