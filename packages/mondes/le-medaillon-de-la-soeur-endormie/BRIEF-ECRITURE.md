@@ -117,4 +117,5 @@ Monde brouillon `le-medaillon-de-la-soeur-endormie` créé depuis la Forge d'His
 - Rencontres (mises en scène, négociation du bandit), étapes de quête, fin (nom, épilogue, conséquences), trésor du bois, ton et direction artistique (`monde.json`) : **validés par l'utilisateur le 16/11/2026**.
 - Réglages mécaniques faits au passage : épée de fer = épée longue du SRD (15 po) ; potion de soin = effets de la potion de guérison du catalogue (au prix de 8 po de l'auteur) ; brioche = nourriture.
 - Décidé le 16/11/2026 : la brioche d'avoine reste dans l'armoire de Mahaut ET en récompense de sa quête (doublon accepté).
+- 10 sujets d'intrigue (2 par PNJ) et leur légende de sainte Odile (lampe, cloche du soir, médaillon ôté de son cou, incendie il y a ~90 ans, serment de l'arrière-grand-père de Bertrand) : **validés par l'utilisateur le 17/11/2026**.
 - Reste : images, voix, scènes, estimation (`pnpm monde estimer`) : à annoncer et à valider avant toute dépense.

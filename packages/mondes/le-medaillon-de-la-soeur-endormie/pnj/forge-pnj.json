@@ -124,6 +124,38 @@
         "reponse": "La garde ? Ce n’est pas ton affaire, voyageur, et je ne vais pas le répéter. La crypte avait une porte, et cette porte était fermée à clé, ce qui suffisait, à mon avis, dans un village qui ferme ses volets à la cloche. Les hommes étaient peu nombreux, les temps sont durs, l’or manque partout. Vingt pièces d’or pour le médaillon : c’est de la reconnaissance, rien de plus, et la reconnaissance se paie. Ne lis rien d’autre dans ma bourse. Je ne réponds pas aux questions sur mes gens ni sur mes choix. Mot de châtelain. Dis-moi plutôt ce que tu as vu sur cette porte, en arrivant là-bas.",
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "sire-bertrand-le-serment",
+        "mots": [
+          "serment",
+          "sanctuaire",
+          "fondateur",
+          "lampe"
+        ],
+        "question": "Qui a fait bâtir ce sanctuaire, et pourquoi ?",
+        "reponse": "Mon arrière-grand-père a fait bâtir ce sanctuaire, voyageur, il y a quatre-vingt-dix ans. La vieille chapelle avait brûlé, et il voulait une maison neuve pour sainte Odile, au cœur du village. Il y a déposé le médaillon, dans la crypte. Il a juré une chose. Qu’elle ne resterait jamais sans une lampe, ni sans un homme à sa porte. Mot de châtelain. Ce serment est gravé dans notre famille. Les temps ont changé, bien sûr. Les hommes sont rares, l’or se fait rare. Mais le serment tient. Ne me demande pas qui gardait la porte cette nuit-là. Et toi, tiens-tu ta parole quand elle te coûte ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-serment-fondateur"
+        ]
+      },
+      {
+        "id": "sire-bertrand-les-cles",
+        "mots": [
+          "clés",
+          "crypte",
+          "frère",
+          "honneur"
+        ],
+        "question": "Qui détient les clés de la crypte du sanctuaire ?",
+        "reponse": "Deux clés, voyageur. Une pend à ma chaîne, l’autre est dans les mains du frère Anselme. Il n’y en a pas une troisième, je le jure sur mon nom. Je ne dors plus, c’est tout. Je ne dis rien à voix haute, et je ne le ferai pas. Ne prends pas mon silence pour de la faiblesse. C’est une question d’honneur pour ma maison, et l’honneur ne se crie pas. Mot de châtelain. Alors dis-moi : as-tu vu l’une de ces clés, ces derniers jours ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-cles-crypte"
+        ]
       }
     ],
     "age": "la cinquantaine, le teint gris de qui dort mal"
@@ -223,6 +255,38 @@
         "reponse": "Il me paie en pain, en vin coupé et en grands mots, ce qui est pire que rien. Il dit que la maison tient bon. Je n’y crois qu’à moitié, et lui non plus, je le vois à la façon dont il essuie ses verres. Il a besoin de moi, c’est une évidence que je n’oublie pas. Mais je ne vais pas le plaindre, il trouverait ça insultant. Quand il crie que tout est magnifique, je sais qu’il a peur de l’hiver. Moi, j’ai peur de perdre ma voix avant qu’il ne perde son auberge. Tu sais ce que vaut une voix abîmée, toi ? Pose-toi la question avant de payer une chanson.",
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "jorane-la-menestriere-chanson-odile",
+        "mots": [
+          "chanson",
+          "odile",
+          "refrain",
+          "lampe"
+        ],
+        "question": "Connaissez-vous une chanson sur sainte Odile ?",
+        "reponse": "Ah, la chanson de la Sœur ? Une vieille, qu’on fredonne aux lavandières. Écoute, je te la chante sans le luth, enfin… « Odile au chemin, lampe en main, qui prend ton or, elle le reprend demain. » Je l’ai un peu arrangée, bien sûr, comme tout le monde. Les anciens disent qu’on la chantait déjà pendant les fièvres. Moi, je n’en sais rien. Mais la lampe revient toujours dans le refrain, et ça me glace les doigts sur le manche. Enfin… ce n’est pas une chanson de taverne, tu vois. Tu veux que je la rechante, ou une ballade plus gaie ? Choisis vite, avant que je perde le fil.",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-chanson-odile"
+        ]
+      },
+      {
+        "id": "jorane-la-menestriere-vieux-de-la-troupe",
+        "mots": [
+          "luth",
+          "ruines",
+          "troupe",
+          "cordes"
+        ],
+        "question": "Avez-vous une histoire étrange, sur les ruines ?",
+        "reponse": "Un vieux de ma troupe, le plus vieux, un barbu qui ronflait comme une forge… Il a dormi une nuit sous les murs de la chapelle brûlée, pour une gageure de sot. Le matin, il est revenu blanc comme un linge. Son luth ? Toutes les cordes accordées sur une seule note, la même, partout. Il a voulu les défaire, et elles revenaient d’elles-mêmes. Enfin… je n’y crois qu’à moitié, mon cœur, et pourtant je frissonne. Tu veux que je te chante cette note ? Non ? Alors dis-moi si tu dormiras à l’auberge ce soir, ou dehors.",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-luth-accorde-ruines"
+        ]
       }
     ],
     "age": "une trentaine d’années, le regard plus vieux"
@@ -322,6 +386,38 @@
         "reponse": "Jorane ? Elle attire la moitié de mes clients et me coûte la moitié de mes soucis. Elle a de la fierté, cette femme, plus que la moitié du village réunie. Je lui paie ce que je peux, en vin et en pain, et je dis que c’est généreux. Ce n’est pas faux, ça, mais ce n’est pas vrai non plus. Elle le sait, je le sais. Un jour, je lui devrai une vraie somme, et je ferai une grande démonstration de sourire pour lui dire merci. Mais si elle se tait, je perds le plus beau de mes soirs. Ça te va ? Tu vois ce que je veux dire, toi qui écoutes.",
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "maitre-foulques-les-pelerins",
+        "mots": [
+          "pèlerins",
+          "fête",
+          "printemps",
+          "sanglier"
+        ],
+        "question": "Que sont devenus les pèlerins de sainte Odile ?",
+        "reponse": "Ah, la fête de sainte Odile, au printemps ! Ça, c’était du beau temps, ça te va ? Les pèlerins arrivaient par charrettes entières pour voir le médaillon. Les volets s’ouvraient, la place sentait le pain chaud. Le Sanglier Doré faisait ses plus belles soirées : vingt tables pleines, des chambres louées jusqu’au grenier, des pichets qui ne s’arrêtaient jamais. Et puis, un jour, plus personne. Les pèlerins ont cessé de venir, je ne saurais plus dire quand. Moi, j’ai emprunté pour tenir, et mes dettes ont poussé comme des champignons. Alors dis-moi : sans le médaillon, qu’est-ce qui reste à venir voir au Sanglier Doré ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-fete-pelerins-sanglier"
+        ]
+      },
+      {
+        "id": "maitre-foulques-la-nuit-du-vol",
+        "mots": [
+          "nuit",
+          "pas",
+          "cire",
+          "vol"
+        ],
+        "question": "Qu’avez-vous entendu la nuit du vol ?",
+        "reponse": "Cette nuit-là ? Je dormais, mon ami, je dormais comme un roi… enfin, presque. Ma chambre est au-dessus de la salle, et vers le milieu de la nuit, des pas ont traversé la place. Lourds, traînants, ça te va ? Pas comme un homme qui rentre ivre, plutôt comme quelqu’un qui tire quelque chose derrière lui. Et une odeur de cire froide, comme une bougie morte depuis longtemps. Je n’ai ouvert aucun volet, bien sûr. Qui ouvrirait après la cloche ? J’ai dit aux gens que c’étaient des bruits de rue. Ça me coûte de le dire. Va demander au frère Anselme s’il a entendu la même chose, ça te va ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-pas-traines-cire"
+        ]
       }
     ],
     "boutique": {
@@ -439,6 +535,38 @@
         "reponse": "Il paie le sanctuaire et ne vient jamais s’y agenouiller. Il règle ses dettes en or, et son or nous aide, je ne le nie pas. Mais je ne lui demande rien. Il sait ce qu’il doit à cette crypte, et je le sais aussi, sans que nous ayons besoin de le dire. Il a une façon de se taire qui m’inquiète plus que ses colères. Je garde mes doutes pour moi, comme je garde ma clé. Ce n’est pas du mépris, c’est de la patience. Tu pourrais le lui demander toi-même, mais tu n’obtiendras pas grand-chose sans qu’il se referme. Qu’en as-tu pensé, en le rencontrant ?",
         "effets": [],
         "unique": false
+      },
+      {
+        "id": "frere-anselme-sainte-odile",
+        "mots": [
+          "odile",
+          "sœur",
+          "lampe",
+          "cloche"
+        ],
+        "question": "Qui était sainte Odile, la Sœur Endormie ?",
+        "reponse": "Doucement, mon enfant, je vais te dire ce que l’on sait. Odile était une religieuse qui soignait pendant les fièvres. Chaque soir, elle marchait dans les rues, une lampe à la main, pour ramener les malades chez eux. C’est elle qui sonnait la cloche du soir, et c’est d’elle que vient la règle de rentrer à la cloche, dont on a oublié l’origine. Un matin, on l’a trouvée endormie, la lampe encore allumée, le visage en paix. On l’a enterrée dans la nef de la première chapelle, au bout de la route de charrette. Tu comprends maintenant ce que l’on oublie. Et toi, pourquoi marches-tu si tard ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-sainte-odile-lampe"
+        ]
+      },
+      {
+        "id": "frere-anselme-le-registre",
+        "mots": [
+          "registre",
+          "médaillon",
+          "marche",
+          "page"
+        ],
+        "question": "Que dit le registre du sanctuaire, sur le médaillon ?",
+        "reponse": "Doucement, mon enfant, je vais chercher le registre. Il dit qu’avant la mise en terre, on a ôté le médaillon du cou de la sainte. Pour qu’il serve aux vivants, c’est écrit ainsi. Le bord de la page est brûlé, et la phrase suivante est perdue. Je n’en sais pas plus, et j’ai longtemps cherché. Derrière l’autel, la marche condamnée descend vers la crypte. J’ai des doutes sur cette marche, et je les garde pour moi. Ce ne sont que des soupçons de vieil homme. Dis-moi : la planche a-t-elle bougé depuis ton arrivée ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-registre-medaillon-ote"
+        ]
       }
     ],
     "services": [
@@ -586,6 +714,38 @@
         "unique": false,
         "revele": [
           "f-herbes-au-bois-des-chenes-pales"
+        ]
+      },
+      {
+        "id": "vieille-mahaut-herbes-d-odile",
+        "mots": [
+          "herbes",
+          "velours",
+          "carrefour",
+          "fleurs"
+        ],
+        "question": "Que sont les herbes de velours, et qui les cueillait ?",
+        "reponse": "Pardi, les herbes de velours, c’est le remède de la Sœur ! Tu vois, petit, sainte Odile soignait avec elles, et les fièvres reculaient. Ma mère tenait la tradition, et moi je la tiens. Ça pousse au bois, dans le sol mou. Et les fleurs du carrefour, avant, c’était pour sa fête, au printemps. On posait une fleur, une graine, un petit pain. Maintenant, ce sont des offrandes qui fanent, ça me fend le cœur. Tu sais ce que je fais de mes pétales secs ? Je les mets dans un sachet pour dormir. Alors, tu veux qu’on parle de la tisane, ou des fleurs ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-herbes-odile-offrandes"
+        ]
+      },
+      {
+        "id": "vieille-mahaut-la-nuit-de-l-incendie",
+        "mots": [
+          "incendie",
+          "mère",
+          "flammes",
+          "oiseaux"
+        ],
+        "question": "Votre mère vous a-t-elle parlé de l’incendie ?",
+        "reponse": "Ma pauvre mère, petit, elle n’avait que cinq ans la nuit où la chapelle a brûlé. Elle est morte depuis longtemps, mais elle me l’a raconté cent fois. Elle était en bas de la route, et elle a vu les flammes monter. Blanches, petit ! Des flammes blanches, sans une seule goutte de fumée noire. Pardi, c’est ce qu’elle disait, et je ne sais pas si c’était vrai. Au matin, plus un oiseau ne chantait. Les arbres étaient muets, comme après un orage. Elle n’en démordait pas. Je ne sais pas si les enfants voient juste, mais je la crois. Et toi, tu as déjà vu du feu blanc ?",
+        "effets": [],
+        "unique": false,
+        "revele": [
+          "f-incendie-flammes-blanches"
         ]
       }
     ],
