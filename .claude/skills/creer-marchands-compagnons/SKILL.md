@@ -19,7 +19,7 @@ Pendant une conversation avec un PNJ qui a une boutique, ses articles, ce qu'il 
 - **`rachat`** : la part de la valeur payée pour un objet du sac (0,5 par défaut) ; **0 = il n'achète rien**. **`types`** : les catégories qu'il rachète (vide = tout). Un objet de quête n'est jamais racheté.
 - Cite les objets ordinaires par leur **id du catalogue SRD** (armes, armures, matériel, potions) ; vérifie l'id (`grep -l '"id": "…"' packages/donnees/srd/objets/*.json`).
 
-**Concevoir** : 3 marchands par chapitre au moins (avis « Richesse »), chacun avec **une spécialité** qui dit le lieu (le forgeron rachète les armes et les armures, pas les herbes ; l'herboriste vend des potions et des simples) ; un stock court et lisible (6 à 12 lignes), une ou deux pièces rares en petite quantité pour donner un objectif ; des prix au catalogue sauf raison (pénurie, monopole : dis-le dans un sujet du PNJ).
+**Concevoir** : 3 marchands par épisode, dans le lieu de départ (dans une grande histoire : 3 par chapitre, avis « Richesse »), chacun avec **une spécialité** qui dit le lieu (le forgeron rachète les armes et les armures, pas les herbes ; l'herboriste vend des potions et des simples) ; un stock court et lisible (6 à 12 lignes), une ou deux pièces rares en petite quantité pour donner un objectif ; des prix au catalogue sauf raison (pénurie, monopole : dis-le dans un sujet du PNJ).
 
 ## Les services (`Pnj.services`)
 
@@ -46,12 +46,12 @@ Un PNJ est dans son `lieu`, **sauf** aux moments où il a une présence : `prese
 - **L'escorte** : l'effet `{ "escorte": { "pnj": "<id>" } }` (posé par un sujet, une quête, un événement) fait **suivre** le groupe : le PNJ est présent dans tous les lieux, on peut lui parler partout ; `{ "escorte": { "pnj": "<id>", "actif": false } }` le laisse là où il est. **Il ne combat pas** : le combat ne connaît que les héros.
 - **Les interjections** (`interjections/`) : de courtes phrases qu'il lance de lui-même quand une condition devient vraie (un lieu, un fait, une quête, un choix de dilemme, un palier de jauge) ; leurs `effets` (`attitude`) font **l'approbation**. **40 à 45 pour un compagnon qui voyage tout un donjon** (voir « Un compagnon qui parle vraiment » ci-dessous : 12 à 20 phrases rendaient les compagnons presque muets sur 37 salles, constat du 15/11/2026).
 - **Sa profondeur** (fiche de savoir, liens, confidences verrouillées) : skill `creer-personnages` (brief `references/brief-compagnon.md`, exemple de Nolwen).
-- **Sa quête personnelle** : une quête `personnelle`, donnée par un sujet, dont une étape lit son attitude (`{ "pnj": { "id", "attitudeMin" } }`).
+- **Sa quête** : dans un épisode, une quête **secondaire** (pas de quête personnelle autonome, cap du 15/11/2026) ; dans une grande histoire, une quête `personnelle`. Elle est donnée par un sujet, et une de ses étapes lit son attitude (`{ "pnj": { "id", "attitudeMin" } }`).
 - **Ses salutations variables** (`salutations.variantes`) : il se souvient des choix.
 
 **Ce qui ne marche pas encore** : le bloc `Pnj.compagnon` (recrutement, classe, niveau, répliques, opinions) **n'est lu par aucune partie du jeu** ; il n'y a pas de compagnon jouable qui rejoint le groupe. N'en écris pas pour un nouveau monde. L'avis du validateur « Richesse : 0 compagnons recrutables » compte ce bloc : il ne dit rien de la qualité du monde tant que le recrutement n'existe pas (le vrai compte est celui des PNJ escortés).
 
-**Concevoir** : un ou deux compagnons par chapitre, avec **un désir** qui croise l'intrigue (le joueur le sent par les interjections), **une limite** (un lieu où il refuse d'aller, une condition d'escorte qui peut se rompre : `escorte` `actif: false` posé par un choix), et **un moment** (un dilemme ou une fin qui le touche). Écris ses interjections **après** les dilemmes, pour qu'il puisse réagir aux choix.
+**Concevoir** : un ou deux compagnons par épisode (par chapitre dans une grande histoire), avec **un désir** qui croise l'intrigue (le joueur le sent par les interjections), **une limite** (un lieu où il refuse d'aller, une condition d'escorte qui peut se rompre : `escorte` `actif: false` posé par un choix), et **un moment** (un dilemme ou une fin qui le touche). Écris ses interjections **après** les dilemmes, pour qu'il puisse réagir aux choix.
 
 ## Un compagnon qui parle vraiment (méthode éprouvée sur La Tombe des Rois Serpents, 15/11/2026)
 

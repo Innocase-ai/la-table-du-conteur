@@ -3,6 +3,8 @@ name: creer-grand-monde
 description: Concevoir et rédiger la Grande Bible d'un monde modulaire à grande échelle (continent de 60 à 75 modules d'aventures) pour « La Table du Conteur » (D&D 5e / SRD). Structure automatiquement le monde avec une intrigue globale, 4 factions mondiales, 4 figures majeures, une capitale impériale en 4 districts et 8 grandes régions divisées chacune en 8 sous-régions indépendantes (avec lieux, conflits locaux et monstres SRD).
 ---
 
+> **Concerne Ombresang, grand monde abandonné le 15/11/2026** (`docs/PRD-SAGA.md` : saga d'épisodes courts). Pour une nouvelle histoire, suivre `creer-monde`.
+
 # Créer la Grande Bible d'un Monde Modulaire (Grand Monde D&D 5e)
 
 Ce skill formalise la méthodologie complète pour bâtir l'architecture d'un **monde-continent modulaire** capable d'accueillir entre **60 et 75 modules d'aventures indépendants**, interconnectés par une intrigue globale forte, sans écrire de code de règles, directement sous forme d'une **Grande Bible de Monde** (`packages/mondes/<id>/BIBLE.md`) et de son descripteur racine (`monde.json`).

@@ -3,6 +3,8 @@ name: creer-carte-monde
 description: Créer et illustrer une véritable carte du monde continentale (Macro-Échelle / Grand Atlas RPG comme Tamriel, Faerûn ou Thedas) pour un grand monde ou une campagne de « La Table du Conteur ». Garantit une cohérence stylistique absolue (vue zénithale d'ensemble, géographie délimitant 8+ provinces et 60+ sous-régions, océans réalistes, chaîne de montagnes, fleuves et carrefour impérial central). Produit à la fois la carte vierge haute définition pour le moteur de jeu React et la version officielle d'atlas ornée (cadre doré, rose des vents, grand cartouche royal et bannières des régions).
 ---
 
+> **Concerne Ombresang, grand monde abandonné le 15/11/2026** (`docs/PRD-SAGA.md` : saga d'épisodes courts). Pour une nouvelle histoire, suivre `creer-monde`.
+
 # Créer la Carte du Monde Continentale (Grand Atlas RPG)
 
 Une carte du monde de grand RPG ne doit jamais être confondue avec une carte tactique ou une maquette locale de château. Pour un monde modulaire conçu pour accueillir **8 grandes régions et 60 à 75 sous-régions**, la carte doit être une **véritable Carte d'Atlas Continental (Macro-Échelle)** comme les cartes officielles de **Tamriel** (*The Elder Scrolls*), de **Faerûn** (*D&D / Baldur's Gate*) ou de **Thedas** (*Dragon Age*).

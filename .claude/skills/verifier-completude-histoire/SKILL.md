@@ -19,12 +19,12 @@ Elle liste, avec un code de sortie 1 s'il manque quelque chose :
 
 | Rubrique | Ce qui manque | Comment le réparer |
 | --- | --- | --- |
-| `images` | lieu, PNJ ou objet du monde sans image ; objet du catalogue cité (trésor, boutique, inventaire, récompense) sans image commune | `pnpm images monde <monde> --lieu <id> --service klein --go` (une image à la fois, coût annoncé d'abord), prompt retouché dans `images.json` (`lieu-<id>`, `pnj-<id>`, `objet-<id>`) ; puis `uv run --with pillow python outils/images/installer.py monde <monde>` |
+| `images` | lieu, PNJ ou objet du monde sans image ; objet du catalogue cité (trésor, boutique, inventaire, récompense) sans image commune ; **fichier cité par le manifeste mais absent** du dossier `images/` ; référence `commun:` inconnue de la bibliothèque commune (une entrée qui ne correspond à rien dans le monde n'est qu'un avis) | `pnpm images monde <monde> --lieu <id> --service klein --go` (une image à la fois, coût annoncé d'abord), prompt retouché dans `images.json` (`lieu-<id>`, `pnj-<id>`, `objet-<id>`) ; puis `uv run --with pillow python outils/images/installer.py monde <monde>` |
 | `cartes` | un lieu qui en contient au moins 5 autres n'a pas de carte illustrée | `pnpm images cartes <monde> --lieu <id>` (simulation), composition dans `images.json` (`carte-<id>`, reprise de la fiche de niveau 1), `--go` après accord ; la carte du parent d'abord, la découpe sert de référence aux enfants |
 | `positions` | lieux enfants sans `position` sur la carte de leur parent | poser `position {x, y}` d'après l'image RÉELLE, en la regardant (le service d'images ne place pas les lieux où on le demande) |
 | `scenes` | pas de scène d'ouverture (`debut`) ; image d'un plan absente du manifeste ; fin sans scène | écrire `scenes/scenes.json` (skill `creer-monde`, étape 12 ; images déjà faites, pas de nouvelle dépense) |
 | `voix` | plan de scène sans voix | `pnpm voix generer <monde> --go` (voix officielle du Maître de jeu, jamais un autre timbre) |
-| `textes` | lieu sans récit d'arrivée ou sans accroche | rédacteur Haiku, d'après la fiche de niveau 2 |
+| `textes` | **manque** : un champ encore « À écrire : … » ou « à définir » (squelette de `pnpm monde nouveau`, import de la Forge) ; avis : lieu sans récit d'arrivée ou sans accroche | rédacteur Haiku, d'après la fiche de niveau 2 |
 | `contrats` | des lieux annoncent des contrats que personne n'a écrits | skill `creer-contrats` |
 | `publication` | monde publié sans `estimation.json` ; aucun chapitre ne liste ses quêtes ; monde encore en brouillon | `pnpm monde estimer <monde>`, `chapitres[].quetes`, puis `statut` à `publie` après accord |
 
@@ -38,7 +38,7 @@ Un **manque** bloque la livraison ; un **avis** se lit et se décide.
 - **Compagnons, marchands, dilemmes, factions** : annoncés par le canon (BIBLE, fil rouge) et absents des données ; avis « Richesse » du validateur.
 - **Teasing** : `monde.json` a-t-il un champ `teasing` (3 paragraphes, 150 à 200 mots, sans spoiler : rien du § 2 de la BIBLE) ? La commande `manque` ne le contrôle pas ; sans lui, le bouton « Résumé » de l'écran « Choisir une histoire » retombe sur `resume`, bien plus court. Voir `creer-monde`, étape 9 bis.
 - **Sons et musiques** : `docs/SONS.md`.
-- **Jouer vraiment** : lancer le jeu (`pnpm jeu`, Ombresang provisoirement en `publie` pour l'essai, à remettre ensuite), jouer l'ouverture, un combat, un dialogue, un trajet, ouvrir le sac et la carte. C'est ainsi qu'on trouve l'icône vide d'une clé ou une carte sans fond.
+- **Jouer vraiment** : lancer le jeu (`pnpm jeu`, le monde en cours provisoirement en `publie` pour l'essai, à remettre ensuite), jouer l'ouverture, un combat, un dialogue, un trajet, ouvrir le sac et la carte. C'est ainsi qu'on trouve l'icône vide d'une clé ou une carte sans fond.
 - **Cohérence entre images** : relire chaque image contre sa fiche (une image qui contredit le texte est un manque, pas un détail).
 
 ## Étape 3 : rendre compte, puis dépenser avec accord
@@ -49,6 +49,8 @@ Un **manque** bloque la livraison ; un **avis** se lit et se décide.
 - Après réparation : relancer `pnpm monde manque <monde>` jusqu'à 0 manque, puis `pnpm monde valider`, `pnpm test`, et noter dans `docs/JOURNAL.md`.
 
 ## Pièges connus
+
+- **L'installateur d'images fusionne le manifeste** (depuis le 18/11/2026) : une entrée dont le PNG n'est plus dans `sorties/` est gardée tant que son WebP existe ; il affiche chaque entrée ajoutée (`+`), changée (`~`) ou dont le fichier manque (`!`), et ne retire une entrée qu'avec `--purger`. Avant, il reconstruisait le manifeste depuis `sorties/` et perdait en silence ce qui n'y était plus (le parchemin de la Tombe, le 18/11/2026) : **lire ses lignes `!` et relancer `pnpm monde manque` après chaque installation**.
 
 - Le modèle d'images **ne sait pas compter** (quatre roues dentées donnent cinq ou six) et **refuse** certains prompts (« blessures », « poignets à vif » : violence) : un refus ne coûte rien, adoucir la description. Pour un objet dont le nombre compte, le montrer fermé ou isolé.
 - Un objet de l'histoire s'affiche avec l'**icône de sa catégorie** (une clé : un cadenas) tant que son image n'existe pas : c'est le signe à chercher dans le sac.

@@ -70,7 +70,7 @@ Document de référence pour tous ceux qui écrivent des données de ce monde. *
 
 ## 10. Choix, pertes et horloge (checklist « histoire qui ne s'ennuie pas »)
 
-[Trois dilemmes par chapitre : la situation, les trois options avec leur coût et leur gain, l'écho trois jours plus tard.]
+[Jusqu'à trois dilemmes par épisode (par chapitre dans une grande histoire) : la situation, les trois options avec leur coût et leur gain, l'écho trois jours plus tard.]
 [Qui peut mourir ou partir selon les choix (au moins un PNJ).]
 [L'horloge : une jauge à 4 paliers au moins, la moitié avec des effets qui ferment une porte, un moyen de la ralentir.]
 [Les PNJ importants dont la salutation change (au moins 5) et ce qui la change.]

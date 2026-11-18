@@ -89,7 +89,7 @@ Positions : `(x, y)` en % de la carte du parent (x : 0 à gauche, 100 à droite 
 - **accroche** (12 à 30 mots, vue du dehors depuis le parent) :
 - **visuel** (2 à 4 phrases, ce qu'on voit depuis l'entrée ; matériaux et couleurs du bloc d'héritage) :
 - **ambiance** (3 à 8 mots) :
-- **description** (MJ, 100 à 250 mots) :
+- **description** (MJ, 100 à 150 mots) :
 
 ---
 

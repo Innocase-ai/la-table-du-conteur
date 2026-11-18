@@ -1,5 +1,7 @@
 # Modèles de prompts pour les agents de zone
 
+> **Grande histoire seulement** (annexe de `creer-monde`, ancien modèle). Un épisode de la saga se conçoit dans la Forge et ses textes s'écrivent par des agents Haiku (`creer-monde`, « Le chemin d'un épisode »). Même ici, les textes que lit le joueur (arrivées, réponses, intros) suivent la règle Haiku et la table des longueurs de `creer-monde`.
+
 Chaque agent est un `general-purpose`, modèle **Sonnet 5.5**. Lance-les **tous dans un seul message**. Le prompt est court : il renvoie au guide (consignes communes), au canon et à l'**atlas** `LIEUX.md`, puis donne la mission. Remplace les `<…>`. Une zone = un ou plusieurs lieux **entiers** du niveau 1 de l'atlas ; ses cibles chiffrées sont la **somme des budgets de contenu** de ces lieux (l'atlas prime) ; sans atlas, elles viennent des objectifs de richesse du validateur (30 lieux, 25 PNJ, 75 sujets, 25 trésors, 15 rencontres… par chapitre).
 
 ## Gabarit général

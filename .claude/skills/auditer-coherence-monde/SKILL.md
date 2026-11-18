@@ -1,9 +1,11 @@
 ---
 name: auditer-coherence-monde
-description: Déclenche systématiquement un sous-agent d'audit croisé pour vérifier la cohérence narrative, géographique, routière et technique (identifiants SRD des Boss, coordonnées {x, y}, symétrie des routes inter-régionales et présence des 5 POI) à chaque fois qu'un fichier de monde est écrit ou modifié.
+description: RÉSERVÉ aux grands mondes abandonnés (Ombresang : 8 régions, 64 sous-régions, 5 POI, routes inter-régionales). Pour une histoire ou un épisode de packages/mondes/, ne pas l'utiliser : l'audit de cohérence d'un épisode se fait par le sous-agent auditeur-coherence-episode (skill creer-monde).
 ---
 
 # Auditer la Cohérence d'un Monde (Vérification Croisée par Sous-Agent)
+
+> **Réservé aux grands mondes abandonnés** (Ombresang, abandonné le 15/11/2026). Pour une histoire ou un épisode : sous-agent **`auditeur-coherence-episode`** (`.claude/agents/auditeur-coherence-episode.md`), avant chaque page V1 à V8 (skill `creer-monde`). Le sous-agent `auditeur-coherence-monde` cité plus bas n'existe pas dans ce dépôt.
 
 Ce skill codifie la règle d'or d'assurance qualité des mondes CRPG : **aucune description de région, de sous-région, de carte ou de fichier `monde.json` n'est considérée comme terminée tant qu'un sous-agent auditeur indépendant ne l'a pas vérifiée par rapport au reste du monde.**
 

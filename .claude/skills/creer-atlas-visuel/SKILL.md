@@ -3,6 +3,8 @@ name: creer-atlas-visuel
 description: Dériver d'une Bible de monde l'ensemble de ses fiches d'Atlas Topographique & Visuel (1 fiche pour la capitale en 4 districts et 8 fiches régionales pour les 64 sous-régions) afin de verrouiller à la fois la cohérence cartographique, le réseau routier/maritime (temps de trajet et verrous), l'emplacement des sous-régions, les Points d'Intérêt (POI) et la hiérarchie des Boss (monstres SRD 5.2.1).
 ---
 
+> **Concerne Ombresang, grand monde abandonné le 15/11/2026** (`docs/PRD-SAGA.md` : saga d'épisodes courts). Pour une nouvelle histoire, suivre `creer-monde`.
+
 # Créer l'Atlas Topographique, Routier, POI & Visuel d'un Monde
 
 Un grand monde CRPG ne peut pas reposer sur des descriptions vagues : avant de dessiner les cartes régionales ou d'écrire les scènes d'aventure, chaque région doit posséder une **fiche d'ingénierie topographique et visuelle complète**.

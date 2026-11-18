@@ -68,7 +68,7 @@ Un agent par lieu du niveau 1, **un lieu à la fois** (dans l'ordre choisi par l
 - **issues** : chaque porte, escalier, passage ; où il mène, comment il se présente de chaque côté (les `liens` avec leur `description` et leur `retour`, 12 à 30 mots) ;
 - **le contenu prévu** : pour chaque PNJ, monstre, rencontre, piège, trésor, énigme ou objet de ce point, son **emplacement** (à quel élément décrit il est lié : le piège sous la dalle devant le coffre, le PNJ derrière le comptoir), son **rôle**, et son id s'il existe déjà dans le canon (sinon « à créer »). C'est un **emplacement**, pas la fiche de l'entité : voir « Le contenu des lieux » plus bas ;
 - **avant / après** : ce qui change selon l'avancée de l'histoire (une salle propre puis dévastée, une porte close puis ouverte) ;
-- les **champs dérivés**, rédigés à la fin de la fiche : `visuel` (voir ci-dessous), `description` (pour le MJ : factuelle, détaillée, 100 à 250 mots), `resume` (une phrase qui ne spoile rien), `ambiance` (3 à 8 mots), `accroche` (12 à 30 mots, vue du dehors).
+- les **champs dérivés**, rédigés à la fin de la fiche : `visuel` (voir ci-dessous), `description` (pour le MJ : factuelle, détaillée, 100 à 150 mots), `resume` (une phrase qui ne spoile rien), `ambiance` (3 à 8 mots), `accroche` (12 à 30 mots, vue du dehors).
 
 ### Quand un point en contient d'autres (taverne, tour, geôle…)
 
