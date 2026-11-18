@@ -14,13 +14,20 @@ import { arrondirPieces, evaluerCondition } from '../monde/etat';
 import { pnjPresents } from '../monde/dialogue';
 import { appliquer, seReposer, suites, type CompteRendu, type PartieMonde } from '../monde/exploration';
 import type { Pnj } from '../monde/schemas';
-import { commande, type ContexteJeu, type Module, type Ordre, type Partie, type Proposition } from '../noyau/types';
+import { commande, type ContexteJeu, type Module, type Ordre, type Partie, type Proposition, type Transaction } from '../noyau/types';
 import { objetDe } from './catalogue';
 import { boutiqueComplete, tableDe } from '../monde/butin-commun';
 import { objetIndispensable } from './inventaire';
+import { fermerDialogueSansInterlocuteur } from './dialogue';
 import { libre, partieMonde, verser } from './commun';
 import { idImageCommune } from './image-commune';
 import { resumeObjet, type CaracteristiqueObjet } from './objet-resume';
+
+/** Après un service payé (une nuit, des heures de soins) : la conversation se ferme si le PNJ n'est plus là (audit du 18/11/2026, M1). */
+function apresService(t: Transaction, resultat: void | { refus: string }): void | { refus: string } {
+  if (!resultat) fermerDialogueSansInterlocuteur(t.ctx, t.partie);
+  return resultat;
+}
 
 export interface EtatCommerce {
   /** Quantités déjà achetées : `<pnj>:<objet>`. */
@@ -148,7 +155,7 @@ export const moduleCommerce: Module = {
           r.constats.unshift(`${s.nom} : ${prixLisible(s.prix)} payés à ${pnj.nom}.`);
           appliquer(pm, r, s.effets);
           suites(pm, r);
-          return verser(t, r);
+          return apresService(t, verser(t, r));
         }
         // Un service qui ne changerait rien n'est pas vendu : soins à un groupe en pleine forme, identification d'un sac sans
         // objet inconnu (sauf si le service a d'autres effets, écrits par l'auteur).
@@ -171,7 +178,7 @@ export const moduleCommerce: Module = {
         }
         appliquer(pm, r, s.effets);
         suites(pm, r);
-        return verser(t, r);
+        return apresService(t, verser(t, r));
       },
     }),
   },

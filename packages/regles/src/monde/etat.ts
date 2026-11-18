@@ -62,12 +62,16 @@ export const memoireDe = (e: EtatMonde): MemoireGroupe => (e as EtatMonde & { ex
  * sa réserve (`butin.tresors`) et tout trésor posé dans le lieu de son combat. Tant que la rencontre n'a pas eu lieu, ces trésors
  * restent libres (une rencontre fortuite qui n'arrive jamais ne doit pas fermer un trésor pour toujours) ; un gardien déclaré, lui,
  * garde dès le départ.
+ * Une rencontre fortuite du tirage d'arrivée (`auto-…`, gardée dans `exploration.rencontresAuto`) ne garde rien : aucun lieu ne la
+ * déclare, elle ne revient jamais, et fuie ou perdue elle fermerait le trésor pour toujours (audit du moteur du 18/11/2026, M2).
  */
 export function gardienEnPlace(dm: DonneesMonde, e: EtatMonde, t: Tresor): string | undefined {
   if (t.gardien) return e.rencontresFaites.includes(t.gardien) ? undefined : t.gardien;
   const issues = memoireDe(e).issues;
+  const fortuites = (e as EtatMonde & { exploration?: { rencontresAuto?: Record<string, unknown> } }).exploration?.rencontresAuto ?? {};
   for (const rc of dm.rencontres.values()) {
     if (e.rencontresFaites.includes(rc.id)) continue;
+    if (rc.id in fortuites) continue;
     const type = issues?.[rc.id]?.type;
     if (type !== 'defaite' && type !== 'fuite') continue;
     if (rc.butin.tresors.includes(t.id) || ((rc.type === 'combat' || rc.type === 'mixte') && rc.lieu === t.lieu)) return rc.id;

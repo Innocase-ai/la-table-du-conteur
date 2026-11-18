@@ -27,6 +27,16 @@ export interface Moteur {
 /** Nombre maximal de vagues de réactions (un module qui réagit à un événement émis par une réaction…). */
 const VAGUES_MAX = 10;
 
+/** Exécute une lecture (boutons, encarts, disponibilité) ; une erreur part dans la console et donne `undefined` au lieu de planter l'écran. */
+function sansPlanter<T>(quoi: string, f: () => T): T | undefined {
+  try {
+    return f();
+  } catch (e) {
+    console.error(`Erreur interne pendant la lecture : ${quoi}`, e);
+    return undefined;
+  }
+}
+
 export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
   const ids = new Set(modules.map((m) => m.id));
   for (const m of modules) for (const d of m.dependances ?? []) if (!ids.has(d)) throw new Error(`Module « ${m.id} » : dépend de « ${d} », absent.`);
@@ -77,12 +87,12 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
       const { type: _type, ...parametres } = ordre;
       const valide = entree.commande.entree.safeParse(parametres);
       if (!valide.success) return refuser(`${ordre.type} : ${valide.error.issues.map((i) => `${i.path.join('.') || 'entrée'} — ${i.message}`).join(' ; ')}`);
-      const dispo = entree.commande.disponible?.(ctx, partie) ?? true;
-      if (dispo !== true) return refuser(dispo);
 
-      // Filet de sécurité : une erreur dans une commande ou une réaction devient un refus. La partie d'avant reste intacte (on
-      // travaille sur une copie), le joueur garde la main, et le détail part dans la console pour le rapport de plantage.
+      // Filet de sécurité : une erreur dans la disponibilité, la commande ou une réaction devient un refus. La partie d'avant reste
+      // intacte (on travaille sur une copie), le joueur garde la main, et le détail part dans la console pour le rapport de plantage.
       try {
+        const dispo = entree.commande.disponible?.(ctx, partie) ?? true;
+        if (dispo !== true) return refuser(dispo);
         const brouillon = structuredClone(partie);
         let emis: EvenementJeu[] = [];
         const t: Transaction = { ctx, partie: brouillon, hasard: generateurSur(brouillon), emettre: (e) => emis.push(e) };
@@ -115,22 +125,24 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
         module: module.id,
         description: commande.description,
         commande,
-        disponible: partie ? (commande.disponible?.(ctx, partie) ?? true) : true,
+        disponible: partie ? (sansPlanter(`disponibilité de « ${type} »`, () => commande.disponible?.(ctx, partie) ?? true) ?? 'Erreur interne du jeu : cette action est indisponible.') : true,
       }));
     },
 
     encarts(partie) {
-      // Les onglets dans l'ordre d'enregistrement des modules ; dans un onglet, par `ordre`.
-      const tous = modules.flatMap((m) => m.encarts?.(ctx, partie) ?? []);
+      // Les onglets dans l'ordre d'enregistrement des modules ; dans un onglet, par `ordre`. Un module qui plante n'efface pas les autres.
+      const tous = modules.flatMap((m) => sansPlanter(`encarts de « ${m.id} »`, () => m.encarts?.(ctx, partie) ?? []) ?? []);
       const rang = [...new Set(tous.map((e) => e.onglet))];
       return tous.sort((a, b) => rang.indexOf(a.onglet) - rang.indexOf(b.onglet) || a.ordre - b.ordre);
     },
 
     propositions(partie) {
       const res: Proposition[] = [];
-      for (const { commande } of index.values()) {
-        if (!commande.propositions || (commande.disponible?.(ctx, partie) ?? true) !== true) continue;
-        res.push(...commande.propositions(ctx, partie));
+      for (const [type, { commande }] of index.entries()) {
+        if (!commande.propositions) continue;
+        // Un module qui plante perd ses boutons, pas ceux des autres : le joueur garde toujours une sortie.
+        const props = sansPlanter(`propositions de « ${type} »`, () => ((commande.disponible?.(ctx, partie) ?? true) !== true ? [] : commande.propositions!(ctx, partie)));
+        if (props) res.push(...props);
       }
       // Tri stable : par panneau, puis dans l'ordre où les modules les ont proposées.
       return res.map((p, i) => ({ p, i })).sort((a, b) => a.p.groupe.ordre - b.p.groupe.ordre || a.i - b.i).map((x) => x.p);
@@ -145,12 +157,24 @@ export function creerMoteur(ctx: ContexteJeu, modules: Module[]): Moteur {
     charger(json) {
       const p = migrer(JSON.parse(json) as Record<string, unknown> & { version: number }) as unknown as Partie;
       if (p.monde !== ctx.dm.monde.id) throw new Error(`Sauvegarde du monde « ${p.monde} », pas « ${ctx.dm.monde.id} ».`);
-      // Un combat sauvegardé n'a de sens que dans une scène de rencontre : sinon c'est un reste, on l'oublie.
-      if (p.combatEnCours && p.scene.type !== 'rencontre') delete p.combatEnCours;
+      // Une sauvegarde abîmée garde ce qui peut l'être : champs indispensables remis à leur valeur de départ (audit du 18/11/2026, M3).
+      if (!p.scene || typeof p.scene !== 'object' || typeof p.scene.type !== 'string') p.scene = { type: 'exploration' };
+      if (!p.modules || typeof p.modules !== 'object') p.modules = {};
+      if (!Array.isArray(p.journal)) p.journal = [];
+      p.etat.exploration = { ...etatExplorationVide(), ...(p.etat.exploration ?? {}) };
+      // Un lieu courant retiré du monde depuis la sauvegarde (histoire mise à jour) : le dernier lieu visité qui existe encore, sinon le départ.
+      if (!ctx.dm.lieux.has(p.etat.lieu)) p.etat.lieu = [...(p.etat.lieuxVisites ?? [])].reverse().find((id) => ctx.dm.lieux.has(id)) ?? ctx.dm.monde.depart.lieu;
+      // Un combat sauvegardé n'a de sens que dans une scène de rencontre : sinon c'est un reste, on l'oublie. Une forme inconnue aussi.
+      if (p.combatEnCours && (p.scene.type !== 'rencontre' || !Array.isArray(p.combatEnCours.etat?.combattants))) delete p.combatEnCours;
       // Un pack ajouté depuis la sauvegarde apporte des entités nouvelles : on leur donne leur état de départ, sans toucher au reste.
       completerEtat(p.etat, ctx.dm);
       for (const mod of modules) if (mod.etatInitial && !(mod.id in p.modules)) p.modules[mod.id] = mod.etatInitial(ctx);
       for (const mod of modules) mod.apresChargement?.(ctx, p);
+      // Une rencontre retirée du monde (les rencontres fortuites de la partie viennent d'être remises en place) : retour à l'exploration.
+      if (p.scene.type === 'rencontre' && !ctx.dm.rencontres.has(p.scene.rencontre)) {
+        p.scene = { type: 'exploration' };
+        delete p.combatEnCours;
+      }
       return p;
     },
   };

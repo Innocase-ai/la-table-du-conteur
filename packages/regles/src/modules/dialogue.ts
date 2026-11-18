@@ -37,6 +37,24 @@ function interlocuteur(ctx: ContexteJeu, p: Partie): Interlocuteur | undefined {
   return { id: pnj.id, nom: pnj.nom, role: libelleDuPnj(pnj), attitude: attitude(pm(ctx, p), pnj), ...degreDAttitude(attitude(pm(ctx, p), pnj)), sujets: sujetsDisponibles(pm(ctx, p), pnj).map((s) => ({ id: s.id, mots: s.mots, question: s.question, vu: p.etat.exploration.sujetsVus.includes(`${pnj.id}:${s.id}`) })) };
 }
 
+/**
+ * Une conversation dont l'interlocuteur n'est plus là (il est parti pendant la nuit payée, un effet l'a éloigné, une sauvegarde
+ * ancienne, un PNJ retiré du monde) se ferme : sinon le joueur resterait face à personne, sans sujet ni « Fin du dialogue ».
+ * Renvoie vrai si la scène a changé. Audit du moteur du 18/11/2026, M1.
+ */
+export function fermerDialogueSansInterlocuteur(ctx: ContexteJeu, p: Partie): boolean {
+  if (p.scene.type !== 'dialogue') return false;
+  const id = p.scene.pnj;
+  if (ctx.dm.pnj.has(id) && pnjPresents(pm(ctx, p)).some((n) => n.id === id)) return false;
+  p.scene = { type: 'exploration' };
+  return true;
+}
+
+/** Réaction : quand le jour ou le lieu change, une conversation sans interlocuteur se ferme. */
+const fermerApres = (t: { ctx: ContexteJeu; partie: Partie }) => {
+  fermerDialogueSansInterlocuteur(t.ctx, t.partie);
+};
+
 /** Le texte d'un bouton d'influence qui doit attendre (SRD : 24 h après un échec), ou rien si c'est possible. */
 const attenteTexte = (heures: number): string | undefined => (heures > 0 ? `Il ne vous écoutera pas de nouveau avant ${heures} h.` : undefined);
 
@@ -100,7 +118,11 @@ export const moduleDialogue: Module = {
       description: "Persuader, intimider ou tromper un PNJ présent, éventuellement pour lui arracher un secret (id d'un fait).",
       entree: z.object({ pnj: z.string(), maniere: z.enum(['persuasion', 'intimidation', 'tromperie']), secret: z.string().optional(), personnage: z.string().optional() }),
       disponible: libre,
-      executer: (t, e) => verser(t, influencer(partieMonde(t), e.pnj, e.maniere, { secret: e.secret, personnage: e.personnage }), { voix: t.ctx.dm.pnj.get(e.pnj)?.nom }),
+      executer: (t, e) => {
+        const r = verser(t, influencer(partieMonde(t), e.pnj, e.maniere, { secret: e.secret, personnage: e.personnage }), { voix: t.ctx.dm.pnj.get(e.pnj)?.nom });
+        if (r) return r;
+        fermerDialogueSansInterlocuteur(t.ctx, t.partie);
+      },
       propositions: (ctx, p) => {
         const i = interlocuteur(ctx, p);
         if (!i) return [];
@@ -168,10 +190,21 @@ export const moduleDialogue: Module = {
         t.partie.scene = { type: 'exploration' };
       },
       propositions: (ctx, p) => {
-        const i = interlocuteur(ctx, p);
-        return i ? [{ groupe: PANNEAUX.dialogue(i.nom), libelle: 'Fin du dialogue', style: 'discret' as const, ordre: { type: 'quitterDialogue' } }] : [];
+        if (p.scene.type !== 'dialogue') return [];
+        // Toujours proposé en conversation, même si l'interlocuteur n'est plus là : c'est la sortie de secours.
+        const nom = interlocuteur(ctx, p)?.nom ?? ctx.dm.pnj.get(p.scene.pnj)?.nom ?? 'Conversation';
+        return [{ groupe: PANNEAUX.dialogue(nom), libelle: 'Fin du dialogue', style: 'discret' as const, ordre: { type: 'quitterDialogue' } }];
       },
     }),
+  },
+  // Le temps ou le lieu ont changé pendant la conversation (nuit payée, effet qui déplace le groupe) : elle se ferme si le PNJ est parti.
+  // Les commandes qui font passer des heures sans changer de jour (service, influence) appellent `fermerDialogueSansInterlocuteur`.
+  reactions: {
+    jourSuivant: fermerApres,
+    deplacement: fermerApres,
+  },
+  apresChargement: (ctx, p) => {
+    fermerDialogueSansInterlocuteur(ctx, p);
   },
   vues: {
     interlocuteur,

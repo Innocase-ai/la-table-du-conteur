@@ -2524,3 +2524,19 @@ Demande de l'utilisateur : « fais tout comme tu veux ». Cinq sessions, une par
 - **Voix** : voix officielle (Gemini Flash TTS, Algieba, ×1,15, style naturel), 10 clips de 16 à 21 s, 0,0459 $ au compteur de la clé (simulation : 0,047 $).
 - **Vérifié** : `pnpm monde verifier` : rien ne bloque, 5 fins sur 5, 0 manque ; 2 tests (`tombe-cinematiques-lieux.test.ts` : dix scènes cohérentes avec voix livrée, jouée à la première entrée et pas à la seconde) ; joué dans le navigateur au Bivouac (image, texte, voix chargée, boutons « Passer la scène » et « Reprendre »).
 - **Pas fait** : les 16 autres lieux « importants » (option B ou textes courts du même format : ≈ 0,07 $) ; une écoute à l'oreille des dix voix par l'utilisateur.
+
+## 18/11/2026 (suite 2) — Audit du moteur (`docs/AUDIT-MOTEUR.md`) et correction des trois premiers rangs
+
+- **Audit** : lecture seule de `packages/regles` (noyau, monde, combat, création, validateur, parcours, sauvegardes) par quatre relectures parallèles ; chaque constat reproduit par un script jetable et revérifié. 4 bloquants, 19 gênants, 8 écarts au SRD non documentés, fragilités et mesures ; dix corrections priorisées (§7). Combat robuste (300 combats, 0 plantage) mais 4 défauts dans `src/combat/` (gelé, à décider).
+- **Corrigé (rangs 1 à 3, accord de l'utilisateur)**, sans toucher au combat :
+  - **M1** : payer une chambre le soir (Bastien, la Dîme) laissait le joueur dans une conversation vide, sans « Fin du dialogue ». `fermerDialogueSansInterlocuteur` (`modules/dialogue.ts`) ramène en exploration une conversation dont le PNJ est parti. Elle est appelée après un service (`modules/commerce.ts`), une influence, un changement de jour ou de lieu, et au chargement. « Fin du dialogue » est toujours proposé en conversation.
+  - **M2** : une rencontre fortuite (`auto-…`) fuie ou perdue gardait pour toujours les trésors de son lieu (armoire de Mahaut, registre du moulin). `gardienEnPlace` (`monde/etat.ts`) l'ignore désormais ; une rencontre écrite fuie garde toujours sa salle.
+  - **M3** : une sauvegarde qui cite une rencontre, un lieu ou un PNJ retirés du monde, ou à laquelle il manque la scène, les modules, le journal ou l'exploration, bloquait ou plantait. `charger` (`noyau/moteur.ts`) répare ces cas : lieu ramené au dernier lieu visité qui existe encore, sinon au départ ; `combatEnCours` invalide oublié. `disponible` passe dans le filet de sécurité d'`executer`, et `propositions`, `encarts` et `commandes` isolent l'erreur d'un module (`sansPlanter`).
+- **Tests** : `tests/audit-moteur-correctifs.test.ts`, 13 tests, dont 10 qui échouaient avant la correction (vérifié) et 3 témoins du comportement inchangé.
+- **Vérifié** :
+  - `pnpm test` : 184 fichiers, 2 613 tests verts, 3 sautés (les mêmes qu'avant).
+  - `pnpm typecheck` : propre.
+  - `pnpm monde valider` : 0 erreur sur les quatre mondes.
+  - `pnpm monde verifier` : Marche 2/2 fins (732 états), Dîme 4/4 (751), Tombe 5/5 (576), rien ne bloque.
+  - Aucun fichier de `src/combat/` touché (P3).
+- **Reste** : rangs 4 à 10 de `docs/AUDIT-MOTEUR.md` §7 (les rangs 4 et 5 touchent le combat gelé).
