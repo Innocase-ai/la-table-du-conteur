@@ -93,6 +93,26 @@
         ],
         "question": "Que savez-vous du contrat d'Aldéric et de la piste ?",
         "reponse": "Garin désigne les dunes rousses par la poterne. « Le seigneur Aldéric paie bien, mais il compte trop. Il exige exactement la moitié du butin, et chaque pièce se pèse sous la surveillance de son valet Martin. Martin a des yeux de comptable : il attend déjà au Bivouac du Seuil, à huit heures de marche du fort, avec deux mules. Ne lui promettez que ce que vous tiendrez. Descendez voir ce qui dort sous ces dalles, puis revenez souffler au fort si la tombe vous mord trop fort. »",
+        "variantes": [
+          {
+            "condition": {
+              "pnj": {
+                "id": "commandeur-garin",
+                "attitudeMin": 30
+              }
+            },
+            "reponse": "Garin désigne les dunes rousses par la poterne, puis le ciel sans nuage. « Le seigneur Aldéric paie bien, même s'il compte chaque denier. Il exige exactement la moitié du butin, et chaque pièce se pèse devant son valet Martin. Martin attend au Bivouac du Seuil, à huit heures de marche, avec deux mules. Ne lui promettez que ce que vous tiendrez. Bonne route vers ces dalles. Quand la tombe aura assez mordu, revenez souffler au fort. »"
+          },
+          {
+            "condition": {
+              "pnj": {
+                "id": "commandeur-garin",
+                "attitudeMax": -30
+              }
+            },
+            "reponse": "Garin ne se retourne pas. Il compte les hommes qui franchissent la poterne, un doigt après l'autre. « Le seigneur Aldéric exige la moitié exacte du butin. Chaque pièce sera pesée devant son valet Martin, et vous n'y changerez rien. Martin attend au Bivouac du Seuil, à huit heures de marche, avec deux mules. Ne lui promettez que ce que vous tiendrez. Descendez sous ces dalles, puisque vous y tenez. Si la tombe vous défait, revenez au fort : on verra ce qui reste de votre fierté. »"
+          }
+        ],
         "revele": [
           "f-contrat-moitie-part"
         ],

@@ -269,6 +269,26 @@
         ],
         "question": "Y a-t-il ici des compagnons ou mercenaires disponibles ?",
         "reponse": "Elle désigne d'un coup de cuillère en bois le coin le plus sombre de la salle, puis la porte ouverte sur la cour. « Varnac le Borgne, un vétéran de la solde, rumine à la table du fond depuis sa sale blessure. Sœur Lysandre cherche des bras pieux du côté de la chapelle, et la petite gnome Mireille gribouille ses cartes là-haut, au scriptorium. Trois bons bras, trois caractères bien différents ! Allez leur parler avant de prendre la piste, mes amis, et dites-leur que c'est Marta qui vous envoie. »",
+        "variantes": [
+          {
+            "condition": {
+              "pnj": {
+                "id": "marta-aubergiste",
+                "attitudeMin": 30
+              }
+            },
+            "reponse": "Marta remue sa louche dans la marmite, puis la pointe vers le fond de la salle. « Mes petits, quel plaisir de vous voir ! Varnac le Borgne, un vétéran blessé, rumine à la table du fond, et il vous regardera de travers, c'est son habitude. Sœur Lysandre est du côté de la chapelle, et la gnome Mireille gribouille ses cartes là-haut, au scriptorium. Trois bons bras, trois caractères bien différents, et je vous les recommande tous ! Allez leur parler avant de prendre la piste, et dites-leur que c'est Marta qui vous envoie. »"
+          },
+          {
+            "condition": {
+              "pnj": {
+                "id": "marta-aubergiste",
+                "attitudeMax": -30
+              }
+            },
+            "reponse": "Marta essuie la table d'un torchon brusque, sans lever les yeux. « Ah, vous voilà, vous ! Ce n'est pas à moi de vous dire quoi faire, mais je vous le dis quand même. Varnac le Borgne, un vétéran blessé, rumine à la table du fond, dans cette salle. Sœur Lysandre est du côté de la chapelle, et la gnome Mireille gribouille au scriptorium, là-haut. Trois compagnons possibles, des caractères tous différents, je vous laisse le plaisir. Parlez-leur avant la piste, et dites-leur que c'est Marta qui vous envoie, pour une fois que quelqu'un m'écoute. »"
+          }
+        ],
         "revele": [],
         "effets": []
       },
@@ -927,6 +947,17 @@
         ],
         "question": "Que pensez-vous de nous ?",
         "reponse": "Il replie la perche et la pose contre le mur. « Je juge un groupe comme je juge un couvercle, à la façon dont on le franchit. Vous sondez le dessous de chaque dalle, et ça, c'est du sérieux. Quelqu'un recule quand il faut reculer, et ça je l'ai remarqué aussi, sans rien dire. Personne ne tient la ligne tout seul, et vous la tenez à plusieurs, ce qui me plaît. Pas de compliments de ma part, je n'en ai pas dans le sac. Si vous mourez, au moins ce sera avec de bonnes méthodes. »",
+        "variantes": [
+          {
+            "condition": {
+              "pnj": {
+                "id": "varnac-le-borgne",
+                "attitudeMin": 30
+              }
+            },
+            "reponse": "Varnac replie la perche et la pose contre le mur, puis la reprend pour tapoter la dalle la plus proche. « Je juge un groupe comme un couvercle : à la façon dont on le franchit. Vous sondez le dessous de chaque dalle, et ça, c'est du sérieux. Quelqu'un recule quand il faut reculer, je l'ai remarqué sans rien dire. Vous tenez la ligne ensemble, ce qui me plaît. Pas de compliments de ma part, je n'en ai pas dans le sac. Je vous suivrais dans un trou de sapeur, mais ne le répétez pas. »"
+          }
+        ],
         "condition": {
           "pnj": {
             "id": "varnac-le-borgne",
@@ -1438,6 +1469,26 @@
         ],
         "question": "Qu'avez-vous déjà appris sur l'architecture des bâtisseurs serpents ?",
         "reponse": "Mireille fait glisser son croquis sur le bord de la table, le doigt posé sur une ligne d'encre brune. « Les bâtisseurs serpents adoraient les contrepoids d'eau, les socles pivotants cachés sous leurs grandes idoles et les longs couloirs aux dalles bicolores. Voici ma règle : regardez toujours la couleur la plus usée par les pas. Là où la pierre claire est polie, le passage était emprunté tous les jours, et aucun piège n'y a jamais été posé. Suivez cette couleur, et vous ne vous tromperez pas de dalle. »",
+        "variantes": [
+          {
+            "condition": {
+              "pnj": {
+                "id": "mireille-cartographe",
+                "attitudeMin": 30
+              }
+            },
+            "reponse": "Mireille glisse son croquis sur la table, le doigt posé sur un trait d'encre brune, s'arrête net, puis repart. « Oh, les bâtisseurs serpents ! Ils adoraient les contrepoids d'eau, des merveilles, je vous jure, et les socles pivotants cachés sous leurs grandes idoles. Ces longs couloirs aux dalles bicolores, on dirait une partition ! Ma règle : regardez toujours la couleur la plus usée par les pas. Là où la pierre claire est polie, le passage était emprunté chaque jour, et il n'y a pas de piège, c'est fou, non ? Suivez cette couleur, et vous ne vous tromperez pas de dalle ! »"
+          },
+          {
+            "condition": {
+              "pnj": {
+                "id": "mireille-cartographe",
+                "attitudeMax": -30
+              }
+            },
+            "reponse": "Mireille rabat son croquis d'un geste sec, sans lever les yeux, et souligne un trait du bout de l'ongle. « Les bâtisseurs serpents. Contrepoids d'eau. Socles pivotants sous les idoles, cachés, évidemment. Couloirs aux dalles bicolores. Vous n'avez pas l'air de savoir lire un plan, alors écoutez une fois. Ma règle : la couleur la plus usée par les pas. Là où la pierre claire est polie, le passage était emprunté chaque jour, et aucun piège n'y a jamais été posé. Suivez cette couleur, et ne vous trompez pas de dalle, par pitié. »"
+          }
+        ],
         "revele": [
           "f-dalles-claires-sures"
         ],
@@ -1911,6 +1962,26 @@
         ],
         "question": "Pouvez-vous rappeler les termes exacts du contrat ?",
         "reponse": "Il tapote son grand registre de vélin d'un doigt sec, sans même regarder la page. « Paragraphe quatre de votre engagement. Moitié exacte de l'or, des gemmes et des œuvres d'art, pesée au bivouac devant Martin, qui consigne chaque pièce. Solde finale de cent pièces au retour, et pleine immunité de passage sur les terres d'Aldéric. Ni plus, ni moins, devant la loi de Valdargent : tout le reste tient dans ce paragraphe. Il n'y a pas d'autre clause. Pour la pesée elle-même, adressez-vous à Martin. »",
+        "variantes": [
+          {
+            "condition": {
+              "pnj": {
+                "id": "corvin-le-scribe",
+                "attitudeMin": 30
+              }
+            },
+            "reponse": "Corvin tapote son grand registre de vélin, puis esquisse un sourire qui ne dépasse pas la commissure. « Paragraphe quatre de votre engagement, que je vous lis de mémoire, c'est plus commode. Moitié exacte de l'or, des gemmes et des œuvres d'art, pesée au bivouac devant Martin, qui consigne chaque pièce. Solde final de cent pièces au retour, et pleine immunité de passage sur les terres d'Aldéric. Ni plus, ni moins, devant la loi de Valdargent : il n'y a pas d'autre clause, et je m'en réjouis. Pour la pesée elle-même, je vous prie de vous adresser à Martin. »"
+          },
+          {
+            "condition": {
+              "pnj": {
+                "id": "corvin-le-scribe",
+                "attitudeMax": -30
+              }
+            },
+            "reponse": "Corvin ne regarde même pas la page. Il tapote le vélin d'un doigt sec, à deux reprises. « Paragraphe quatre. Vous pouvez le relire vous-mêmes si vous doutez de ma mémoire, ce qui me paraît déjà suspect. Moitié exacte de l'or, des gemmes et des œuvres d'art, pesée au bivouac devant Martin, qui consigne chaque pièce sans rien dire. Solde final de cent pièces au retour, et pleine immunité de passage sur les terres d'Aldéric. Ni plus, ni moins, devant la loi de Valdargent. Il n'y a pas d'autre clause, et je ne rédigerai aucune nouvelle à votre intention. Pour la pesée, adressez-vous à Martin. »"
+          }
+        ],
         "revele": [
           "f-contrat-moitie-part"
         ],
