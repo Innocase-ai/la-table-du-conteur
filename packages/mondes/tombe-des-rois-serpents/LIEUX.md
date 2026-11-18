@@ -15,7 +15,7 @@ Document de synthèse géographique de la campagne **La Tombe des Rois Serpents*
 
 | id | nom | type | position | heures vers voisins | rôle |
 | --- | --- | --- | --- | --- | --- |
-| `fort-du-reflet-beni` | Fort du Reflet Béni | `camp` | (75, 55) | 8h → `bivouac-entree` | Départ, refuge `sur`, soins, forge, apothicaire |
+| `fort-du-reflet-beni` | Fort du Reflet Béni | `camp` | (75, 55) | 8h → `bivouac-entree` | Départ (la cour : marché), refuge `sur` ; six pièces enfants : auberge, forge, infirmerie, chapelle, scriptorium, écuries (18/11/2026) |
 | `bivouac-entree` | Le Bivouac du Seuil | `lieu-dit` | (45, 55) | 8h → fort, 1h → tombe | Campement de Martin & mules, `repos: sur`, partage final |
 | `tombe-des-rois` | La Tombe des Rois Serpents | `donjon` | (25, 55) | 1h → bivouac | Entrée de la nécropole en 3 niveaux |
 
@@ -65,7 +65,13 @@ Ce tableau est produit par script : il reflète les fichiers du monde (PNJ, renc
 | lieu | PNJ | rencontres | pièges | trésors | énigmes | faits | examens |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `val-du-couchant` | — | — | — | — | — | `f-val-empire-oublie` | `exa-val-borne-serpent` |
-| `fort-du-reflet-beni` | `frere-balthazar`, `marta-aubergiste`, `torin-armurier`, `solene-caravaniere`, `varnac-le-borgne`, `soeur-lysandre`, `mireille-cartographe`, `sergent-rodrigue`, `corvin-le-scribe`, `nolan-palefrenier`, `commandeur-garin`, `elara-herboriste` | `r-contrat-citerne` | — | — | — | `f-contrat-moitie-part`, `f-fort-contient-les-horreurs` (histoire 11), `f-varnac-survivant` (investigation 11) | `exa-fort-bannieres`, `exa-fort-consigne` |
+| `fort-du-reflet-beni` | `solene-caravaniere`, `sergent-rodrigue` | `r-contrat-citerne` | — | — | — | `f-contrat-moitie-part`, `f-fort-contient-les-horreurs` (histoire 11), `f-varnac-survivant` (investigation 11) | `exa-fort-bannieres`, `exa-fort-consigne` |
+| `fort-auberge` (Auberge et réfectoire) | `marta-aubergiste`, `varnac-le-borgne` | — | — | — | — | — | — |
+| `fort-forge` (Forge et salle d'armes) | `commandeur-garin`, `torin-armurier` | — | — | — | — | — | — |
+| `fort-infirmerie` (Infirmerie et apothicairerie) | `elara-herboriste` | — | — | — | — | — | — |
+| `fort-chapelle` (Chapelle du Reflet Béni) | `frere-balthazar`, `soeur-lysandre` | — | — | — | — | — | — |
+| `fort-scriptorium` (Scriptorium) | `corvin-le-scribe`, `mireille-cartographe` | — | — | — | — | — | — |
+| `fort-ecuries` (Écuries) | `nolan-palefrenier` | — | — | — | — | — | — |
 | `bivouac-entree` | `gaspard-muletier`, `lise-guetteuse`, `martin-le-valet` | `r-contrat-deserteurs`, `r-contrat-ankheg`, `r-contrat-pillards-crete` | — | — | — | `f-martin-compte-tout` (intuition 10) | `exa-bivouac-racines`, `exa-bivouac-balance` |
 | `tombe-des-rois` | `brennan-terrassier`, `jehan-fosseyeur` | `r-chantier-sable` | — | — | — | `f-tranchee-forcee` | `exa-tombe-linteau` |
 
