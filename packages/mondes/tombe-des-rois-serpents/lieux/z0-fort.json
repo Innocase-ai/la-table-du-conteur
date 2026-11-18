@@ -1,0 +1,141 @@
+[
+  {
+    "id": "fort-auberge",
+    "nom": "Auberge et réfectoire",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Grande salle voûtée de l'auberge : longues tables, cuisine ouverte aux broches de mouton, chambres à l'étage et coin tranquille au fond.",
+    "description": "Note MJ : grande salle commune où l'on mange à longues tables et où l'on dort à l'étage. Une aubergiste-cantinière règne sur la cuisine et nourrit quarante bouches depuis quinze ans. On y croise voyageurs de passage, soldats en pause, marmitons et écuyers. On y écoute les rumeurs de table : routes, sables, caravanes. Le coin du fond accueille les voyageurs qui veulent rester à l'écart.",
+    "ambiance": "Vapeur de graisse épicée, fèves chaudes, pain doré ; cliquetis des bols, murmures, lumière blanche des arcs chaulés.",
+    "accroche": "Devant la porte basse, la fontaine de la cour chante. Une odeur de mouton épicé glisse sous le seuil, mêlée à celle du pain doré. Des rires et des cuillères cliquettent derrière le mur.",
+    "arrivee": "Vous franchissez le seuil voûté et la chaleur de la cour s'efface d'un coup. La salle est longue, basse, tenue par des arcs de pierre chaulée qui renvoient une lumière blanche et douce. Au fond, une cuisine ouverte rougeoie : les broches tournent lentement au-dessus des braises, et la graisse de mouton grésille, chargée de cumin et de piment. Une odeur de pain doré monte d'un four en brique, mêlée au parfum sucré des fèves qui mijotent dans une marmite de cuivre. Sur les longues tables de chêne, des bols s'entrechoquent, des cuillères raclent la terre cuite, et des voix basses parlent de vent, de sable et de routes. Un escalier de bois grince au bout de la salle, vers les chambres de l'étage. Dans l'angle, un banc de pierre couvert de coussins de laine attend ceux qui veulent s'asseoir à l'écart.",
+    "arriveeVariantes": [],
+    "visuel": "Grande salle voûtée en plein jour brûlant, vue en profondeur depuis l'entrée. Voûtes d'arêtes et arcs de pierre chaulée blanche, sol de dalles grises usées. Longues tables de chêne brun parallèles, bancs de bois. Au fond, une cuisine ouverte : broches de fer, braises rougeoyantes, fumée dorée, four de brique. Lumière venue de hautes fenêtres étroites et de la porte, poussière dansante. Escalier de bois brun en arrière-plan.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "auberge",
+      "repas"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "fort-forge",
+    "nom": "Forge et salle d'armes",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Atelier de forge et salle d'armes du fort : enclume, soufflet et bac de trempe d'un côté, râteliers et mannequins de l'autre.",
+    "description": "Note MJ : atelier de forge et salle d'armes, lieu de travail du commandant-forgeron qui frappe l'acier et répare les armes de la garnison. Le maître d'armes y instruit les recrues sur les mannequins et les râteliers d'entraînement, souvent aux côtés d'un écuyer. On y parle lames, trempe et fer, entre les coups de marteau et le sable qui crisse.",
+    "ambiance": "Charbon, fer chaud, huile de lin, cuir graissé. Coups de marteau secs, soufflet qui geint, sable crissant sous les semelles, lumière blanche.",
+    "accroche": "Devant ce seuil, la cour pavée résonne de coups de marteau réguliers. Le soleil frappe les murs chaulés, et la fontaine chante à quelques pas. Une fumée de charbon s'élève au-dessus de l'entrée.",
+    "arrivee": "Vous franchissez le seuil, et la chaleur de la cour s'arrête net contre le mur de la forge. L'air est lourd de charbon et de suie, chargé d'une odeur de fer chaud qui pique la gorge. Au centre, le soufflet geint à chaque pression, et la braise rougit dans son foyer de briques noircies. Une enclume trapue occupe le milieu de l'atelier, couverte de limaille grise que la lumière de la porte découpe en traits pâles. Près du bac de trempe, le cuir graissé d'un tablier pend à un crochet, et l'eau sent le soufre et la rouille. Une cloison de planches ouvre sur la salle d'armes. Du sable crisse sous les pieds, et des râteliers alignent lances et épées d'entraînement, polies par des mains innombrables. Des mannequins de paille se dressent au fond. Une odeur d'huile de lin et de cuir tanné monte partout.",
+    "arriveeVariantes": [],
+    "visuel": "Intérieur d'atelier couvert, vu depuis le seuil : murs de pierre chaulée, poutres brunes, sol de terre battue couvert de sable clair. Au premier plan, une enclume de fer noirci et un bac de trempe ; au centre, un foyer de briques rouge braise. À droite, une ouverture sur la salle d'armes, râteliers d'épées d'entraînement et mannequins de paille. Lumière dorée filtrée par la porte, cuir, fer et bois brun.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "forge"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "fort-infirmerie",
+    "nom": "Infirmerie et apothicairerie",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Petite infirmerie fraîche : fioles et mortiers, balance de cuivre, bottes d'herbes au plafond, lits de lin le long du mur.",
+    "description": "Note MJ : pièce de soins et d'apothicairerie tenue par l'apothicaire du fort, présent en général derrière le comptoir. Le groupe vient s'y faire soigner, parler de plantes et de remèdes, ou faire examiner des curiosités rapportées du désert. Les lits servent aux blessés, qui restent anonymes.",
+    "ambiance": "Odeur de camomille et de sauge, vinaigre et cire chaude, pilon qui tinte, lumière blanche entre les volets mi-clos, air frais sous la pierre.",
+    "accroche": "Sous l'auvent du fond de la cour, des bottes d'herbes sèches se balancent dans le vent chaud : camomille, sauge, menthe, arnica. Leur parfum d'apothicaire se mêle à l'odeur de la chaux.",
+    "arrivee": "Vous franchissez le seuil et quittez la cour brûlante pour une fraîcheur de pierre chaulée. Le bruit de la fontaine s'éteint derrière vous, remplacé par le tic régulier d'un pilon qui écrase des graines dans un mortier de bronze. Les volets sont mi-clos, et les rais de lumière blanche glissent sur le carrelage en lames pâles. Au plafond, des bottes d'herbes sèches se balancent doucement à chaque courant d'air : sauge grise, menthe, camomille, dont l'odeur sucrée et poudrée s'épaissit dans l'air immobile. Le long du mur nord, deux lits de lin blanc attendent, bordés de couvertures pliées. Sur une longue étagère, des fioles bouchées de cire et des pots de terre cuite alignent leurs étiquettes à l'encre délavée. Au centre, une balance de cuivre repose sur un plateau de bois ciré, à côté d'un flacon de vinaigre et d'un bol de brou de noix.",
+    "arriveeVariantes": [],
+    "visuel": "Salle voûtée aux murs de chaux blanche, éclairée par des volets mi-clos qui découpent des lames de lumière sur un carrelage de terre cuite. Une longue étagère de bois sombre porte fioles de verre bleuté, pots de grès et mortiers de bronze. Au centre, une table de chêne ciré accueille une balance de cuivre. Le long du mur, deux lits de lin blanc. Bottes d'herbes sèches pendent au plafond.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [
+      "soins"
+    ],
+    "repos": "sur"
+  },
+  {
+    "id": "fort-chapelle",
+    "nom": "Chapelle du Reflet Béni",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Chapelle haute et sobre du fort : murs chaulés, vitraux azur et argent, autel de calcaire, bassin alimenté par la fontaine, recueils de cuir.",
+    "description": "Note MJ : chapelle de l'Ordre. Y officie en général le chapelain archiviste, qui veille sur les registres de l'alcôve ; une prêtresse de l'Ordre y prie à l'occasion. On y prie à voix basse, on s'y fait bénir après la piste, on y parle de l'Ordre et de son fort, et l'on y consulte les chroniques du Val.",
+    "ambiance": "Silence frais, cire et encens léger, pierre froide, eau qui murmure dans le bassin, lumière azur tamisée par les vitraux étroits.",
+    "accroche": "Devant la porte basse, la cour s'apaise : ruissellement de la fontaine, pas des sentinelles sur les créneaux et, derrière le seuil entrouvert, un murmure de prière qui monte dans la lumière blanche.",
+    "arrivee": "Vous franchissez le seuil et la chaleur de la cour retombe d'un coup, comme une étoffe qu'on pose sur les épaules. La lumière du dehors s'éteint ; celle qui reste est blanche, diffuse, rebondie sur les murs chaulés qui montent haut vers une voûte nue. Sous vos pas, les dalles sont froides et polies par les siècles. Une odeur de cire d'abeille se mêle à un encens léger, qui flotte sans jamais s'épaissir. Au fond, un autel de calcaire se dresse sous des vitraux étroits où l'azur et l'argent dessinent des pans de ciel. Au centre de la nef, un bassin de pierre recueille l'eau qui coule de la fontaine voisine ; son clapotis est le seul bruit franc, régulier comme une respiration. Au loin, une présence agenouillée murmure ses paroles d'une voix qu'on n'entend qu'à demi.",
+    "arriveeVariantes": [],
+    "visuel": "Nef étroite et haute : murs chaulés blancs, voûte d'arêtes nue, vitraux étroits en azur et argent qui dessinent des pans de bleu pâle sur le sol. Au fond, autel de calcaire clair ; au centre, bassin de pierre plein d'eau claire. Bancs de bois brun usé, cierges, rayonnages de cuir sombre le long d'un mur. Lumière blanche diffuse, ombres douces, matières mates : chaux, pierre, bois, cuir.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur"
+  },
+  {
+    "id": "fort-scriptorium",
+    "nom": "Scriptorium",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Scriptorium frais au premier étage du rempart : tables inclinées, casiers de cire, odeur de papier et de poussière tiède, grincement de plume.",
+    "description": "Note MJ : pièce de travail de la garnison, consultée par le greffier du seigneur Aldéric ou par une arpenteuse-cartographe venue mettre à jour les cartes du Val. On y copie des contrats sous scellé, on y étudie les grandes cartes, on y parle de serrures et de mécanismes des casiers et du coffre ferré.",
+    "ambiance": "Papier, encre, cire, poussière tiède, grincement de plume ; lumière blanche de chaux, fraîcheur de pierre, odeur de résine et de cuir.",
+    "accroche": "Au pied du rempart, un petit escalier de pierre grimpe à l'écart de la cour, son seuil noyé dans l'ombre. En haut, une fenêtre étroite laisse passer un souffle plus frais.",
+    "arrivee": "Vous franchissez le seuil, en haut du petit escalier de pierre, et la chaleur de la cour reste derrière vous. L'air est plus frais, et sent la poussière tiède, le papier et la cire fondue. Sous vos pieds, les marches, usées au milieu par tant de pas, luisent doucement. Devant vous s'étend une longue salle au plafond bas, éclairée par des fenêtres étroites où la lumière blanche de la chaux descend en bandes droites. Des tables inclinées s'alignent, tachées d'encre séchée, hérissées de plumes d'oie taillées. Au fond, une présence penchée sur un pupitre, loin de vous, fait grincer une plume. Le long des murs, des casiers de bois sentent la résine et le cuir ; des rouleaux y dorment serrés, leurs sceaux de cire brune et rouge accrochant la lumière. Dans un angle, un coffre ferré attend sous une couche de sable gris.",
+    "arriveeVariantes": [],
+    "visuel": "Salle longue, plafond bas de poutres brunes, murs chaulés blancs. Fenêtres étroites à gauche : des bandes de lumière blanche frappent des tables de bois inclinées, encriers de verre, plumes d'oie, piles de rouleaux scellés de cire rouge. Casiers de bois sur le mur du fond, cartes du Val clouées et roulées, lampe à huile, coffre ferré dans un angle. Plancher de bois patiné, tons ivoire et azur.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur"
+  },
+  {
+    "id": "fort-ecuries",
+    "nom": "Écuries",
+    "type": "batiment",
+    "parent": "fort-du-reflet-beni",
+    "resume": "Les écuries du fort : stalles, râteliers de foin, harnais suspendus et soupente, sous des barres de lumière dorée.",
+    "description": "Note MJ : Les écuries abritent les montures de la garnison et les mules des caravanes de passage. Un jeune palefrenier y tient en général, à l'étrille ou au râtelier. On vient y voir les bêtes ou bavarder avec le garçon d'écurie, qui écoute volontiers les retours d'expédition. Harnais et selles sont ceux de la garnison.",
+    "ambiance": "Foin coupé, crottin, cuir gras, chaleur animale, souffles de chevaux, étrille qui gratte, lumière dorée par les planches, terre battue tiède.",
+    "accroche": "Devant les grandes portes ouvertes, la cour brûle de soleil. Sur la gauche, dans l'ombre basse, montent des hennissements, le grattement d'une étrille et le tintement des fers.",
+    "arrivee": "Vous franchissez le seuil des écuries et la cour s'efface derrière vous. Dans les écuries, l'air est plus lourd, tiède, saturé d'odeurs : foin coupé, crottin sec, cuir gras, et cette chaleur animale qui colle à la peau. Des barres de poussière dorée tombent par les interstices des planches et dessinent le sol de terre battue, couvert de paille. Des stalles s'alignent des deux côtés. Un souffle lourd répond à vos pas, puis un hennissement bref, et un sabot frappe le bois. Au fond, près de l'abreuvoir, une étrille gratte en cadence ; quelqu'un siffle à mi-voix un air connu. Les râteliers débordent de foin, les auges luisent d'eau fraîche, et les selles pendent à leurs crochets, harnais brunis par l'usage. Une échelle monte vers la soupente, où le foin a gardé la chaleur du jour. Le chant de la fontaine ne vous parvient plus qu'en écho lointain.",
+    "arriveeVariantes": [],
+    "visuel": "Grande halle basse de bois brun. Poutres sombres au plafond, planches verticales laissant passer des bandes de lumière dorée qui traversent la poussière. Sol de terre battue jonché de paille claire. Stalles alignées en profondeur, râteliers chargés de foin, auges de pierre et d'eau, selles et harnais de cuir suspendus à des crochets de fer. Échelle menant à une soupente sombre.",
+    "niveau": {
+      "min": 3,
+      "max": 4
+    },
+    "liens": [],
+    "rencontres": [],
+    "faits": [],
+    "services": [],
+    "repos": "sur"
+  }
+]
