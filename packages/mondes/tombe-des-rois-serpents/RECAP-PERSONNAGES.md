@@ -65,21 +65,21 @@
 - **Voix** : Vive et gaie, pleine d'admiration pour les aventuriers.
 - **Réplique type** (« Comment réagissent les bêtes quand on revient du chantier ? ») : « Les chevaux sentent tout, tu vois... pardon, vous voyez ! Dès qu'on revient de la tranchée, ils flairent la moindre odeur et s'agitent dans leur stalle. La dernière fois, quand Varnac est rentré la nuit en toussant jusqu'au puits, même nos bêtes les plus calmes ont refusé d'approcher de la poterne ouverte pendant deux …
 
-## Varnac le Borgne (Mercenaire vétéran (Compagnon))
+## Varnac le Borgne (Mercenaire vétéran)
 - **Qui** : humain, 43 ans, Fort du Reflet Béni. Fiche de savoir : oui. 6 sujets.
 - **Veut** : Retrouver ce qui est advenu de son frère d'armes tombé au niveau 1.
 - **Sait / dit** : Les cercueils d'argile des gardiens et des prêtres renferment une vapeur verte toxique qui jaillit à l'ouverture brutale des couvercles ; Varnac le Borgne est le seul revenu de la précédente descente au premier niveau : son frère d'armes Hélian est tombé dans les vapeurs d'un caveau, et Varnac n'a jamais pu le ramener ; Trois compagnies ont signé le contrat d'Aldéric avant le groupe : l'une, partie il y a sept mois, n'est jamais remontée  ; L'anneau de cuivre à griffe de la statue du sorcier d'argile est un piège maudit : celui qui l'enfile ne peut plus l'ôter, et la griffe se retourne contre son porteur
 - **Voix** : Éraillée par d'anciennes vapeurs acides, parle franc sans détour.
 - **Réplique type** (« Comment ouvre-t-on un cercueil sans mourir ? ») : « Douze ans de sapeur, ça laisse des habitudes. Glissez la perche sous le bord du couvercle et soulevez-le à bout de bras, sans jamais vous pencher dessus. Reculez de deux pas, puis approchez une torche de la fente : si la flamme verdit, il y a de la vapeur, et vous ne touchez plus …
 
-## Sœur Lysandre (Prêtresse du Reflet Béni (Compagnon))
+## Sœur Lysandre (Prêtresse du Reflet Béni)
 - **Qui** : elfe, 29 ans, Fort du Reflet Béni. Fiche de savoir : oui. 5 sujets.
 - **Veut** : Vérifier ce que les prêtres de jadis ont lié au plus bas niveau du tombeau.
 - **Sait / dit** : Le Fort du Reflet Béni a été bâti il y a quatre-vingt-dix ans par l'Ordre du Reflet Béni pour garder le Val du Couchant et surveiller la nécropole  ; La garnison du Fort du Reflet Béni n'est pas là pour piller : elle veille à ce que rien de ce qui dort sous les sables du Val ne remonte vers les routes de Valdargent ; Les anciens racontent qu'un trône d'or attend quiconque s'y assoit et fait de lui le roi du désert — une demi-vérité mortelle : le siège insuffle une folie conquérante ; Les prêtres de la sacristie consignaient jour après jour la garde d'un cercle d'argent gravé dans les profondeurs 
 - **Voix** : Claire et posée, empreinte d'une conviction sereine.
 - **Réplique type** (« Pourquoi vous méfiez-vous tant de la pitié ? ») : « Parce que j'ai eu une mentore, Sœur Aubierge, qui m'a appris la pitié et l'a payée de sa vie. Il y a sept ans, un mendiant en larmes est venu la supplier. Elle a cru ses larmes, et ce n'était que la marionnette d'une créature des abîmes. Elle est morte en voulant le sauver. …
 
-## Mireille Plumevert (Arpenteuse et serrurière (Compagnon))
+## Mireille Plumevert (Arpenteuse et serrurière)
 - **Qui** : gnome, 26 ans, Fort du Reflet Béni. Fiche de savoir : oui. 5 sujets.
 - **Veut** : Dresser enfin la carte complète des trois niveaux de la nécropole.
 - **Sait / dit** : Dans le couloir aux lames du cœur du tombeau, seules les dalles de pierre claire sont usées par d'anciens passages et ne déclenchent pas les faux ; Le Fort du Reflet Béni a été bâti il y a quatre-vingt-dix ans par l'Ordre du Reflet Béni pour garder le Val du Couchant et surveiller la nécropole  ; Les anciens racontent qu'un trône d'or attend quiconque s'y assoit et fait de lui le roi du désert — une demi-vérité mortelle : le siège insuffle une folie conquérante ; Les dix-huit guerriers d'argile de la galerie ne sont que des coques creuses cuites au four : un décor de parade, pas une armée
